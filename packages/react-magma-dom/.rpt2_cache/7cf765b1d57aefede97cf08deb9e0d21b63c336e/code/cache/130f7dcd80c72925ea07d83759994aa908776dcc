@@ -1,0 +1,1 @@
+{"code":"export { Button } from './components/Button/Button';\r\n","dts":{"name":"/Users/rgillet/Sites/magma-components/packages/react-magma-dom/index.d.ts","writeByteOrderMark":false,"text":"export { Button } from './components/Button/Button';\r\n"}}
