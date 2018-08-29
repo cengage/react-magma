@@ -1,1 +1,0 @@
-{"code":"export { Button } from './components/Button/Button';\r\nexport { Toggle } from './components/Toggle/Toggle';\r\n","dts":{"name":"/Users/rgillet/Sites/magma-components/packages/react-magma-dom/index.d.ts","writeByteOrderMark":false,"text":"export { Button } from './components/Button/Button';\r\nexport { Toggle } from './components/Toggle/Toggle';\r\n"}}
