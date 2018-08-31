@@ -2,7 +2,8 @@
   "name": "react-magma-core",
   "version": "0.1.0",
   "description": "",
-  "main": "dist/esBundle.js",
+  "main": "dist/bundle.js",
+  "module": "dist/esBundle.js",
   "files": [
     "dist"
   ],
