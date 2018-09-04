@@ -3,11 +3,20 @@ name: Toggle
 menu: Components
 ---
 
-import { Playground } from 'docz'
+import { Playground, PropsTable } from 'docz'
 import { Toggle } from 'react-magma-dom';
+import { Toggle as ToggleNative } from 'react-magma-native';
 
 ### Basic Usage
 
 <Playground>
     <Toggle />
 </Playground>
+
+## Native
+
+<Playground>
+    <ToggleNative />
+</Playground>
+
+<PropsTable of={ToggleNative} />
