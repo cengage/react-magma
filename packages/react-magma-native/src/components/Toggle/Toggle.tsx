@@ -16,7 +16,7 @@ export const Toggle: React.SFC<ToggleProps> = (props: ToggleProps): JSX.Element 
                 onPress={handleToggle}
                 style={styles.toggleView}
               >
-                <Text>{isOn ? 'On' : 'Off'}</Text>
+                <Text>{isOn ? 'On' : 'Off Blah'}</Text>
               </TouchableOpacity>
             </View>
           )

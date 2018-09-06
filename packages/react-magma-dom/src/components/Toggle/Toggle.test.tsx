@@ -29,4 +29,14 @@ describe('Toggle', () => {
 
         expect(true).toBeTruthy();
     });
+
+    it.only('should render a toggle that is on', () => {
+        const { debug, getByText } = renderButton({
+            isOn: true
+        });
+
+        debug();
+
+        expect(getByText('On', {exact: false})).not.toBeNull();
+    });
 })
