@@ -10,6 +10,10 @@ export default [{
     }, {
         file: 'dist/esBundle.js',
         format: 'esm'
+    }, {
+        name: 'umdBundle',
+        file: 'dist/umdBundle.js',
+        format: 'umd'
     }],
     external: [
         'react'
