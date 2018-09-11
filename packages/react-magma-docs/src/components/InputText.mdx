@@ -1,0 +1,30 @@
+---
+name: Input Text
+menu: Components
+---
+
+import { Playground } from 'docz'
+import { InputText } from 'react-magma-dom';
+
+### Basic Usage
+<Playground>
+    <InputText
+        autoFocus={false}
+        id='input1'
+        labelText='Label'
+        placeholder='This is a placeholder'
+        required={false}
+        value='Default Value' />
+</Playground>
+
+### Auto Focus
+<Playground>
+    <InputText
+        autoFocus={true}
+        id='input2'
+        labelText='Label'
+        placeholder='This is a placeholder'
+        required={true} />
+</Playground>
+
+### Props
