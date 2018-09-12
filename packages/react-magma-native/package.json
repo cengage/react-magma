@@ -50,6 +50,8 @@
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-typescript2": "^0.16.1",
     "ts-jest": "^23.1.4",
-    "tslint-config-cengage": "^0.1.0"
+    "tslint": "^5.11.0",
+    "tslint-config-cengage": "^0.1.0",
+    "tslint-react-a11y": "^1.0.0"
   }
 }
