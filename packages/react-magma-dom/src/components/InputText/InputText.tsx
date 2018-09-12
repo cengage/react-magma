@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { InputCore } from 'react-magma-core';
-// const styled = require('styled-components').default;
+const styled = require('styled-components').default;
+
+const StyledLabel = styled.label``;
+const StyledInput = styled.input``;
 
 export interface InputTextProps {
     autoFocus: boolean;
@@ -19,8 +22,8 @@ export const InputText: React.SFC<InputTextProps> = (props: InputTextProps): JSX
 
             return (
                 <>
-                    <label htmlFor={id}>{labelText}</label>
-                    <input
+                    <StyledLabel htmlFor={id}>{labelText}</StyledLabel>
+                    <StyledInput
                         autoFocus={autoFocus}
                         id={id}
                         placeholder={placeholder}
