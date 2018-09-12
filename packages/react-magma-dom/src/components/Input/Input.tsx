@@ -1,9 +1,34 @@
 import * as React from 'react';
 import { InputCore } from 'react-magma-core';
 const styled = require('styled-components').default;
+import { magma } from '../../theme/magma';
 
-const StyledLabel = styled.label``;
-const StyledInput = styled.input``;
+const StyledLabel = styled.label`
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    max-width: 100%;
+`;
+
+const StyledInput = styled.input`
+    background: ${magma.primary04};
+    border: 1px solid ${magma.secondary05};
+    border-radius: 3px;
+    box-shadow: inset 0 4px 5px #e6e6e6;
+    color: ${magma.primary01};
+    display: block;
+    height: 35px;
+    padding: 11px 8px;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    width: 100%;
+
+    &:focus {
+      border-color: ${magma.accent02};
+      outline: 0;
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #9bca43;
+    }
+`;
 
 enum Type {
     text,
