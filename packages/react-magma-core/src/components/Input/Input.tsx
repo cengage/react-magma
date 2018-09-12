@@ -15,11 +15,11 @@ export class InputCore extends React.Component<InputCoreProps, InputCoreState> {
     }
 
     handleBlur() {
-        console.log('blurring');
+        this.props.handleBlur && this.props.handleBlur()
     }
 
     handleFocus() {
-        console.log('focusing');
+        this.props.handleFocus && this.props.handleFocus()
     }
 
     handleChange(event) {
@@ -44,8 +44,10 @@ export class InputCore extends React.Component<InputCoreProps, InputCoreState> {
 }
 
 export interface InputCoreProps {
-    children: (props) => React.ReactChildren,
-    handleChange: (value: string) => void,
+    children: (props) => React.ReactNode,
+    handleBlur?: () => {},
+    handleChange?: (value: string) => {},
+    handleFocus?: () => {},
     value?: string
 }
 
