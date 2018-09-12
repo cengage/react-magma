@@ -1,5 +1,5 @@
 export { Button } from './components/Button/Button';
 export { Toggle } from './components/Toggle/Toggle';
-export { InputText } from './components/InputText/InputText';
+export { Input } from './components/Input/Input';
 
 //import './theme/globalStyle';

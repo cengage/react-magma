@@ -1,9 +1,9 @@
 import * as React from 'react';
 import 'jest-dom/extend-expect';
-import { InputText, InputTextProps } from './InputText';
+import { Input, InputProps } from './Input';
 import { render, fireEvent, cleanup, waitForElement } from 'react-testing-library'
 
-const INPUT_TEXT_PROPS: InputTextProps = {
+const INPUT_TEXT_PROPS: InputProps = {
     autoFocus: false,
     id: 'abc123',
     labelText: 'test label',
@@ -11,30 +11,30 @@ const INPUT_TEXT_PROPS: InputTextProps = {
     required: false
 };
 
-const renderInputText = (myProps = {}) => {
+const renderInput = (myProps = {}) => {
     const props = {
         ...INPUT_TEXT_PROPS,
         ...myProps
     };
 
-    return render(<InputText {...props} />);
+    return render(<Input {...props} />);
 }
 
-describe('InputText', () => {
+describe('Input', () => {
 
     afterEach(() => {
         cleanup();
     });
 
     it('should render a label for the input', () => {
-        const { getByText } = renderInputText();
+        const { getByText } = renderInput();
         const label = getByText(INPUT_TEXT_PROPS.labelText);
 
         expect(label).toBeInTheDocument();
     });
 
     it('should render a input text with desired attributes', () => {
-        const { getByLabelText } = renderInputText();
+        const { getByLabelText } = renderInput();
         const input = getByLabelText(INPUT_TEXT_PROPS.labelText); 
 
         expect(input).toBeInTheDocument();
@@ -47,23 +47,46 @@ describe('InputText', () => {
 
     it('should render an input with a value passed through', () => {
         const value = 'Test Value';
-        const { getByLabelText } = renderInputText({ value });
+        const { getByLabelText } = renderInput({ value });
         const input = getByLabelText(INPUT_TEXT_PROPS.labelText);
 
         expect(input).toHaveAttribute('value', value);
     });
 
+    it('should default to type of text for the input', () => {
+        const { getByLabelText } = renderInput();
+        const input = getByLabelText(INPUT_TEXT_PROPS.labelText);
+
+        expect(input).toHaveAttribute('type', 'text');
+    });
+
+    it('should use the type passed in to the input', () => {
+        const type = 'password';
+        const { getByLabelText } = renderInput({ type });
+        const input = getByLabelText(INPUT_TEXT_PROPS.labelText);
+
+        expect(input).toHaveAttribute('type', type);
+    });
+
+
     it('should auto focus your input', () => {
-        const { getByLabelText } = renderInputText({ autoFocus: true });
+        const { getByLabelText } = renderInput({ autoFocus: true });
         const input = getByLabelText(INPUT_TEXT_PROPS.labelText);
 
         expect(input).toHaveFocus();
     });
 
     it('should require the input', () => {
-        const { getByLabelText } = renderInputText({ required: true });
+        const { getByLabelText } = renderInput({ required: true });
         const input = getByLabelText(INPUT_TEXT_PROPS.labelText);
 
         expect(input).toHaveAttribute('required');
+    });
+
+    it('should disable the input', () => {
+        const { getByLabelText } = renderInput({ disabled: true });
+        const input = getByLabelText(INPUT_TEXT_PROPS.labelText);
+
+        expect(input).toBeDisabled();
     });
 });

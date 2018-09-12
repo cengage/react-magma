@@ -5,20 +5,28 @@ const styled = require('styled-components').default;
 const StyledLabel = styled.label``;
 const StyledInput = styled.input``;
 
-export interface InputTextProps {
-    autoFocus: boolean;
+enum Type {
+    text,
+    password,
+    number
+}
+
+export interface InputProps {
+    autoFocus?: boolean;
+    disabled?: boolean;
     id: string;
     labelText: string;
-    placeholder: string;
-    required: boolean;
+    placeholder?: string;
+    required?: boolean;
+    type?: Type
     value?: string;
 }
 
-export const InputText: React.SFC<InputTextProps> = (props: InputTextProps): JSX.Element => (
+export const Input: React.SFC<InputProps> = (props: InputProps): JSX.Element => (
     <InputCore
         value={props.value}>
         {({ handleBlur, handleChange, handleFocus, value }) => {
-            const { autoFocus, id, labelText, placeholder, required } = props;
+            const { autoFocus, id, disabled, labelText, placeholder, type, required } = props;
 
             return (
                 <>
@@ -26,8 +34,10 @@ export const InputText: React.SFC<InputTextProps> = (props: InputTextProps): JSX
                     <StyledInput
                         autoFocus={autoFocus}
                         id={id}
+                        disabled={disabled}
                         placeholder={placeholder}
                         required={required}
+                        type={ type ? type : 'text' }
                         value={value}
                         onBlur={handleBlur}
                         onChange={handleChange}
@@ -38,4 +48,4 @@ export const InputText: React.SFC<InputTextProps> = (props: InputTextProps): JSX
     </InputCore>
 )
 
-export default InputText;
+export default Input;
