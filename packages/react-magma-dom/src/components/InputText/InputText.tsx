@@ -11,7 +11,7 @@ export interface InputTextProps {
     labelText: string;
     placeholder: string;
     required: boolean;
-    value: string;
+    value?: string;
 }
 
 export const InputText: React.SFC<InputTextProps> = (props: InputTextProps): JSX.Element => (
