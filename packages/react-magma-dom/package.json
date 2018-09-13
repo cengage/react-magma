@@ -7,8 +7,10 @@
     "dist"
   ],
   "scripts": {
-    "test": "jest --watchAll",
-    "build": "rollup -c"
+    "test": "jest",
+    "test-watch": "jest --watchAll",
+    "build": "rollup -c",
+    "lint": "prettier --write src/**/*.ts src/**/*.tsx src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -55,6 +57,7 @@
     "ts-jest": "^23.1.4",
     "tslint": "^5.11.0",
     "tslint-config-cengage": "^0.1.0",
+    "tslint-config-prettier": "^1.15.0",
     "tslint-react-a11y": "^1.0.0"
   },
   "lint-staged": {
