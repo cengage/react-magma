@@ -1,13 +1,16 @@
 {
-    "compilerOptions": {
-      "outDir": "dist",
-      "rootDir": "src",
-      "jsx": "react",
-      "declaration": true,
-      "types": ["jest", "node"],
-      "typeRoots": ["node_modules/@types"]
-    },
-    "include": ["src/**/*"],
-    "exclude": ["node_modules/**"]
-  }
-  
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "es2015",
+    "lib": ["es2015"],
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "rootDir": "src",
+    "jsx": "react",
+    "declaration": true,
+    "types": ["jest", "react", "react-native"],
+    "typeRoots": ["node_modules/@types"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules/**"]
+}

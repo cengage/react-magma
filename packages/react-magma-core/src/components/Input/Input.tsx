@@ -47,9 +47,9 @@ export class InputCore extends React.Component<InputCoreProps, InputCoreState> {
 
 export interface InputCoreProps {
   children: (props) => React.ReactNode;
-  handleBlur?: () => {};
-  handleChange?: (value: string) => {};
-  handleFocus?: () => {};
+  handleBlur?: () => void;
+  handleChange?: (value: string) => void;
+  handleFocus?: () => void;
   value?: string;
 }
 
