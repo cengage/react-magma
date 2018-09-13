@@ -19,8 +19,7 @@
   "dependencies": {
     "@types/react": "^16.4.12",
     "react": "^16.4.2",
-    "react-dom": "^16.5.0",
-    "typescript": "^3.0.1"
+    "react-dom": "^16.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -57,7 +56,8 @@
     "tslint": "^5.11.0",
     "tslint-config-cengage": "^0.1.0",
     "tslint-config-prettier": "^1.15.0",
-    "tslint-react-a11y": "^1.0.0"
+    "tslint-react-a11y": "^1.0.0",
+    "typescript": "^3.0.1"
   },
   "lint-staged": {
     "*.{ts,tsx,js,json,css,md}": [

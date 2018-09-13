@@ -14,10 +14,10 @@
     "docz": "^0.11.0",
     "docz-plugin-react-native": "^0.11.0",
     "react-magma-dom": "^0.1.0",
-    "react-magma-native": "^0.1.0",
-    "typescript": "^3.0.1"
+    "react-magma-native": "^0.1.0"
   },
   "devDependencies": {
-    "prettier": "^1.14.2"
+    "prettier": "^1.14.2",
+    "typescript": "^3.0.1"
   }
 }
