@@ -16,5 +16,8 @@
     "react-magma-dom": "^0.1.0",
     "react-magma-native": "^0.1.0",
     "typescript": "^3.0.1"
+  },
+  "devDependencies": {
+    "prettier": "^1.14.2"
   }
 }
