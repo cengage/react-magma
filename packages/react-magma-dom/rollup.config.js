@@ -20,7 +20,7 @@ export default [
         format: 'umd'
       }
     ],
-    external: ['react'],
+    external: ['react', 'styled-components'],
     plugins: [
       resolve(),
       typescript(),
