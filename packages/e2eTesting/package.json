@@ -6,10 +6,10 @@
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
     "start:staticServer": "npx http-server --cors -p 3001 ./build",
-    "dev": "webpack",
+    "build": "webpack",
     "test-local": "./node_modules/.bin/cypress open",
     "test:ui": "cypress run",
-    "test": "npx start-server-and-test start:staticServer http://localhost:3001/ test:ui"
+    "test": "npm run build && npx start-server-and-test start:staticServer http://localhost:3001/ test:ui"
   },
   "author": "",
   "license": "ISC",
