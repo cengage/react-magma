@@ -3,11 +3,7 @@ pcfNpmPipeline() {
     group: "com.cengage.frontend"
   ]
   npm = [
-    buildDir: "packages/react-magma-docs/.docz/dist",
-    scripts: [
-      test: "npm test",
-      build: "npm run build"
-    ]
+    buildDir: "packages/react-magma-docs/.docz/dist"
   ]
   deployments = [
     dev: [[
