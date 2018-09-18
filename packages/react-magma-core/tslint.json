@@ -1,3 +1,6 @@
 {
-    "extends": "tslint-config-cengage"
+  "extends": [
+    "tslint-config-cengage",
+    "tslint-config-prettier"
+  ]
 }

@@ -8,16 +8,19 @@
     "dist"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\"",
-    "build": "rollup -c"
+    "test": "jest",
+    "test-watch": "jest --watch",
+    "build": "rollup -c",
+    "lint": "npm run tsc && npm run tslint",
+    "tsc": "tsc --noEmit",
+    "tslint": "lint-staged"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@types/react": "^16.4.12",
-    "react": "^16.4.2",
-    "typescript": "^3.0.1"
+  "peerDependencies": {
+    "react": "^15.0.0 || ^16.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -38,13 +41,28 @@
     "@babel/plugin-syntax-import-meta": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@types/enzyme": "^3.1.13",
+    "@types/enzyme-adapter-react-16": "^1.0.3",
+    "@types/jest": "^23.3.2",
+    "@types/react": "^16.4.12",
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
     "jest": "^23.5.0",
+    "lint-staged": "^7.2.2",
+    "prettier": "^1.14.2",
+    "react": "^16.4.2",
+    "react-dom": "^16.5.0",
     "rollup": "^0.65.0",
     "rollup-plugin-babel": "^4.0.1",
     "rollup-plugin-commonjs": "^9.1.6",
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-typescript2": "^0.16.1",
-    "tslint-config-cengage": "^0.1.0"
+    "ts-jest": "^23.1.4",
+    "tslint": "^5.11.0",
+    "tslint-config-cengage": "^0.1.0",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-react-a11y": "^1.0.0",
+    "typescript": "^3.0.1"
   },
   "lint-staged": {
     "*.{ts,tsx,js,json,css,md}": [
