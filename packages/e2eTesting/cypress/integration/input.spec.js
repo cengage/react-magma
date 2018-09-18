@@ -1,7 +1,7 @@
 const runTests = versionNumber => {
   beforeEach(() => {
     const version = Cypress.env("version") || versionNumber;
-    cy.visit(`http://localhost:8080/react_${version}.html`);
+    cy.visit(`http://localhost:3001/react_${version}.html`);
   });
 
   it("Displays and interacts text input", () => {
