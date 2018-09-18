@@ -5,8 +5,8 @@ pcfNpmPipeline() {
   npm = [
     buildDir: "packages/react-magma-docs/.docz/dist",
     scripts: [
-      test: "npm run bootstrap && npm test"
-      build: "npm run build",
+      test: "npm run bootstrap && npm test",
+      build: "npm run build"
     ]
   ]
   deployments = [
