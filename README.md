@@ -9,7 +9,7 @@
 1. Clone this repo
 2. `lerna bootstrap`
 3. `lerna run build`
-4. Go into `packages/react-magma-docs` and run `npm start`
+4. `npm run docs`
 5. Go to localhost:3000 to view the documentation
 
 Note:  If you get errors about a missing typescript module during step three, you may need to run `npm i -s -D typescript` from `packages/react-magma-native` and rerun the previous two commands.
