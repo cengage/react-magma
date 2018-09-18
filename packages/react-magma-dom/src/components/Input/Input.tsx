@@ -63,7 +63,7 @@ export const Input: React.SFC<InputProps> = (
       } = props;
 
       return (
-        <>
+        <div>
           <StyledLabel htmlFor={id}>{labelText}</StyledLabel>
           <StyledInput
             autoFocus={autoFocus}
@@ -77,7 +77,7 @@ export const Input: React.SFC<InputProps> = (
             onChange={handleChange}
             onFocus={handleFocus}
           />
-        </>
+        </div>
       );
     }}
   </InputCore>

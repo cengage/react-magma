@@ -22,7 +22,9 @@
     "webpack-dev-server": "^3.1.8"
   },
   "dependencies": {
+    "@material-ui/core": "^3.1.0",
     "cypress": "^3.1.0",
+    "material-ui": "^0.20.2",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-magma-dom": "^0.1.0"
