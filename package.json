@@ -2,6 +2,7 @@
   "name": "react-magma",
   "private": true,
   "scripts": {
+    "postinstall": "lerna bootstrap && npm run build",
     "test": "lerna run --scope react-magma-dom --scope react-magma-core test",
     "build": "lerna run build",
     "bootstrap": "lerna bootstrap",
