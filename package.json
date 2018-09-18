@@ -9,7 +9,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lerna run lint && lerna run test"
+      "pre-commit": "lerna run lint && npm run test"
     }
   },
   "devDependencies": {
