@@ -10,7 +10,6 @@ injectGlobal`
   *:before,
   *:after {
     box-sizing: border-box;
-    border: 1px solid red;
   }
 
   & body {

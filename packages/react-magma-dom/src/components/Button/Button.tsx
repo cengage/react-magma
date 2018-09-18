@@ -86,7 +86,7 @@ const StyledButton = styled.button`
   border-radius: 3px;
   cursor: pointer;
   display: inline-block;
-  font-family: ${magma.headingFont};
+  font-family: ${magma.bodyFont};
   font-size: ${props => {
     if (props.large) {
       return '20px';
