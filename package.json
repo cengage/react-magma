@@ -1,13 +1,22 @@
 {
-  "name": "root",
+  "name": "react-magma",
+  "version": "0.1.0-SNAPSHOT",
   "private": true,
   "scripts": {
-    "test": "lerna run test",
+    "postinstall": "lerna bootstrap && npm run build",
+    "test": "lerna run --scope react-magma-dom --scope react-magma-core --scope e2etesting test",
     "build": "lerna run build",
     "bootstrap": "lerna bootstrap",
+    "lint": "lerna run lint",
     "docs": "lerna exec --scope react-magma-docs docz dev"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lerna run lint && npm run test"
+    }
+  },
   "devDependencies": {
+    "husky": "^1.0.0-rc.14",
     "lerna": "^3.1.4"
   }
 }

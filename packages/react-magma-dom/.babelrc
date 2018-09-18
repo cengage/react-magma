@@ -9,6 +9,7 @@
     ]
   ],
   "plugins": [
+    "babel-plugin-styled-components",
     "@babel/plugin-proposal-logical-assignment-operators",
     [
       "@babel/plugin-proposal-optional-chaining",

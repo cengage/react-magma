@@ -1,28 +1,32 @@
-import typescript from "rollup-plugin-typescript2";
+import typescript from 'rollup-plugin-typescript2';
 import resolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
 
-export default [{
+export default [
+  {
     input: 'src/index.ts',
-    output: [{
+    output: [
+      {
         file: 'dist/bundle.js',
         format: 'cjs'
-    }, {
+      },
+      {
         file: 'dist/esBundle.js',
         format: 'esm'
-    }, {
+      },
+      {
         name: 'umdBundle',
         file: 'dist/umdBundle.js',
         format: 'umd'
-    }],
-    external: [
-        'react'
+      }
     ],
+    external: ['react'],
     plugins: [
-        typescript(),
-        resolve(),
-        babel({
-            exclude: 'node_modules/**'
-        })
+      typescript(),
+      resolve(),
+      babel({
+        exclude: 'node_modules/**'
+      })
     ]
-}];
+  }
+];
