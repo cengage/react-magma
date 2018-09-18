@@ -4,7 +4,8 @@
   "scripts": {
     "test": "lerna run test",
     "build": "lerna run build",
-    "bootstrap": "lerna bootstrap"
+    "bootstrap": "lerna bootstrap",
+    "docs": "lerna exec --scope react-magma-docs docz dev"
   },
   "devDependencies": {
     "lerna": "^3.1.4"
