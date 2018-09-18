@@ -2,14 +2,14 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "test": "lerna run test",
+    "test": "lerna run --scope react-magma-dom --scope react-magma-core test",
     "build": "lerna run build",
     "bootstrap": "lerna bootstrap",
     "lint": "lerna run lint"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lerna run lint && lerna run test"
+      "pre-commit": "lerna run lint && npm run test"
     }
   },
   "devDependencies": {
