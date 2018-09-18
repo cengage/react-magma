@@ -16,12 +16,11 @@
   "author": "",
   "license": "ISC",
   "peerDependencies": {
+    "react": "^15.0.0 || ^16.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0",
     "react-native": "^0.56.0"
   },
   "dependencies": {
-    "@types/react": "^16.4.13",
-    "@types/react-native": "^0.56.17",
-    "react": "^16.4.2",
     "react-magma-core": "^0.1.0"
   },
   "devDependencies": {
@@ -43,10 +42,13 @@
     "@babel/plugin-syntax-import-meta": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@types/jest": "^23.3.1",
+    "@types/react": "^16.4.13",
+    "@types/react-native": "^0.56.17",
     "jest": "^23.5.0",
     "lint-staged": "^7.2.2",
     "metro-react-native-babel-preset": "^0.45.2",
     "prettier": "^1.14.2",
+    "react": "^16.4.2",
     "react-dom": "^16.5.1",
     "react-native": "^0.57.0",
     "react-test-renderer": "^16.5.1",
