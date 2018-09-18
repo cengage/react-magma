@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "postinstall": "lerna bootstrap && npm run build",
-    "test": "lerna run --scope react-magma-dom --scope react-magma-core --scope e2eTesting test",
+    "test": "lerna run --scope react-magma-dom --scope react-magma-core --scope e2etesting test",
     "build": "lerna run build",
     "bootstrap": "lerna bootstrap",
     "lint": "lerna run lint"
