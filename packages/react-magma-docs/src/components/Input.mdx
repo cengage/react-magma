@@ -3,6 +3,20 @@ name: Input
 menu: Components
 ---
 
+# Inputs
+
+### Input fields are utilized in a number of ways for both collecting and displaying data from the user.
+
+To enable the user the greatest opportunity to correctly input the correct information successfully on the first attempt, input fields should always obey the following rules.
+* It should always appear distinguished as a separate entity from the surrounding application.
+* Required input fields must be visually distinguishable
+* The associated text label should clearly and succinctly describe the desired information.
+* The associated text label should contain no more than 80 characters.
+* The associated error message should contain no more than 80 characters.
+* The syntax and taxonomy used must be written in end user facing terminology and tone.
+
+
+
 import { Playground } from 'docz'
 import { Input } from 'react-magma-dom';
 
@@ -15,17 +29,29 @@ import { Input } from 'react-magma-dom';
         placeholder='This is a placeholder'
         required={false}
         value='Default Value' />
+</Playground>
+
+### Auto Focus
+<Playground>
     <Input
         autoFocus={true}
         id='input2'
         labelText='Auto Focus'
         placeholder='This input is auto focused'
         required={true} />
+</Playground>
+
+### Password
+<Playground>
     <Input
         id='input3'
         labelText='Password'
         placeholder='Enter your password'
         type='password' />
+</Playground>
+
+### Number
+<Playground>
     <Input
         id='input4'
         labelText='Number'
