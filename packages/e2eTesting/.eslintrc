@@ -1,0 +1,11 @@
+{
+  "extends": "cengage/react",
+  "settings": {
+    "react": {
+      "version": "16.4"
+    }
+  },
+  "rules": {
+    jsx-a11y/no-autofocus: 0
+  }
+}

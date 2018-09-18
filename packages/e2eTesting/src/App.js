@@ -3,7 +3,6 @@ import { Input } from "react-magma-dom";
 
 class App extends Component {
   render() {
-    console.log(Input);
     return (
       <div>
         <h1>INPUTS</h1>
