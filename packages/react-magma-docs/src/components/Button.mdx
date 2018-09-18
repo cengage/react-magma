@@ -11,30 +11,28 @@ import { Button } from 'react-magma-dom';
 <Playground>
     <p>
         <Button text="Default Button" />
-        <Button primary text="Primary Button" />
-        <Button success text="Success Button" />
-        <Button warning text="Warning Button" />
-        <Button danger text="Danger Button" />
+        <Button type="primary" text="Primary Button" />
+        <Button type="success" text="Success Button" />
+        <Button type="warning" text="Warning Button" />
+        <Button type="danger" text="Danger Button" />
     </p>
 
     <p>
         <Button ghost text="Default Ghost Button" />{' '}
-        <Button ghost primary text="Primary Ghost Button" />
-        <Button ghost success text="Success Ghost Button" />
-        <Button ghost warning text="Warning Ghost Button" />
-        <Button ghost danger text="Danger Ghost Button" />
+        <Button ghost type="primary" text="Primary Ghost Button" />
+        <Button ghost type="success" text="Success Ghost Button" />
+        <Button ghost type="warning" text="Warning Ghost Button" />
+        <Button ghost type="danger" text="Danger Ghost Button" />
     </p>
 
     <p>
-        <Button primary small text="Small Button" />
-        <Button large primary text="Large Button" />
+        <Button type="primary" size="small" text="Small Button" />
+        <Button type="primary" size="large" text="Large Button" />
     </p>
     <p>
-        <Button disabled primary text="Disabled Button" />
-        <Button link text="Link Button"/>
+        <Button disabled type="primary" text="Disabled Button" />
+        <Button type="link" text="Link Button"/>
     </p>
 </Playground>
 
 ### Props
-
-<PropsTable of={Button} />
