@@ -3,13 +3,14 @@
   "version": "0.1.0-SNAPSHOT",
   "private": true,
   "scripts": {
-    "postinstall": "lerna bootstrap && npm run build",
+    "postinstall": "lerna bootstrap && npm run build && npm run createStaticFile",
     "test": "lerna run --scope react-magma-dom --scope react-magma-core test && npm run report",
     "report": "mkdir -p .nyc_output && istanbul-merge ./packages/*/coverage/*.json --out .nyc_output/coverage.json && nyc report --reporter=lcov --reporter=text",
     "build": "lerna run build",
     "bootstrap": "lerna bootstrap",
     "lint": "lerna run lint",
-    "docs": "lerna exec --scope react-magma-docs docz dev"
+    "docs": "lerna exec --scope react-magma-docs docz dev",
+    "createStaticFile": "echo 'pushstate: enabled' >| packages/react-magma-docs/.docz/dist/Staticfile"
   },
   "husky": {
     "hooks": {

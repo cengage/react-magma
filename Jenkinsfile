@@ -5,6 +5,10 @@ pcfNpmPipeline() {
   npm = [
     buildDir: "packages/react-magma-docs/.docz/dist"
   ]
+  sonar = [
+    language: "js",
+    sources: "packages"
+  ]
   deployments = [
     dev: [[
       id: 'react-magma',
