@@ -1,15 +1,23 @@
-#  React magma
+# React magma
 
-## Dependencies
-1. Node v8.9.4 or greater
-2. Lerna: `npm install --global lerna`
+## Getting started
 
-## Steps to run documentation locally
+_TODO: Add install instructions_
+
+[React Magma Documentation](http://react-magma.apps.dev.cengage.io/)
+
+## Contributing
+
+### Dependencies
+
+Node v8.9.4 or greater
+
+### Steps to run documentation locally
 
 1. Clone this repo
-2. `lerna bootstrap`
-3. `lerna run build`
+2. `npm install`
+3. `npm run boostrap`
 4. `npm run docs`
-5. Go to localhost:3000 to view the documentation
+5. Go to [http://localhost:3000](http://localhost:3000) to view the documentation
 
-Note:  If you get errors about a missing typescript module during step three, you may need to run `npm i -s -D typescript` from `packages/react-magma-native` and rerun the previous two commands.
+Note: If you get errors about a missing typescript module during step three, you may need to run `npm i -s -D typescript` from `packages/react-magma-native` and rerun the previous two commands.
