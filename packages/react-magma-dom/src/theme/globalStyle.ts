@@ -32,4 +32,11 @@ injectGlobal`
       text-decoration: underline;
     }
   }
+
+  h1 {
+    color: ${magma.primary02};
+    &:before {
+      display: none;
+    }
+  }
 `;
