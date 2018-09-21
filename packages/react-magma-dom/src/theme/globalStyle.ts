@@ -34,7 +34,6 @@ injectGlobal`
   }
 
   h1 {
-    color: ${magma.primary02};
     &:before {
       display: none;
     }

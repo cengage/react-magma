@@ -7,7 +7,11 @@ export default {
   plugins: [reactNative()],
   themeConfig: {
     colors: {
-      primary: 'tomato',
+      primary: '#007db8',
+    },
+    logo: {
+      src: '/static/img/React_Magma_Logo_Full.f03d55c8.png',
+      width: 150
     },
     styles: {
       h1: {
