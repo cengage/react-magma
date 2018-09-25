@@ -19,7 +19,17 @@ Buttons should be used in situations where users might need to:
 import { Playground, PropsTable } from 'docz'
 import { Button } from 'react-magma-dom';
 
-### Basic Usage
+### Sizes
+
+<Playground>
+    <p>
+        <Button type="primary" size="small" text="Small Button" />
+        <Button type="primary" text="Default Button" />
+        <Button type="primary" size="large" text="Large Button" />
+    </p>    
+</Playground>
+
+### Types
 
 <Playground>
     <p>
@@ -29,7 +39,11 @@ import { Button } from 'react-magma-dom';
         <Button type="warning" text="Warning Button" />
         <Button type="danger" text="Danger Button" />
     </p>
+</Playground>
 
+### Ghost
+
+<Playground>
     <p>
         <Button ghost text="Default Ghost Button" />{' '}
         <Button ghost type="primary" text="Primary Ghost Button" />
@@ -37,13 +51,20 @@ import { Button } from 'react-magma-dom';
         <Button ghost type="warning" text="Warning Ghost Button" />
         <Button ghost type="danger" text="Danger Ghost Button" />
     </p>
+</Playground>
 
-    <p>
-        <Button type="primary" size="small" text="Small Button" />
-        <Button type="primary" size="large" text="Large Button" />
-    </p>
+### Disabled
+
+<Playground>
     <p>
         <Button disabled type="primary" text="Disabled Button" />
+    </p>
+</Playground>
+
+### Link
+
+<Playground>
+    <p>
         <Button type="link" text="Link Button"/>
     </p>
 </Playground>
