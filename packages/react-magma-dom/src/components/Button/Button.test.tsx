@@ -6,7 +6,7 @@ import { render, fireEvent, cleanup } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 
 const BASE_BUTTON_PROPS: ButtonProps = {
-  onClick: jest.fn(),
+  handleClick: jest.fn(),
   text: 'Test Text'
 };
 
@@ -156,9 +156,9 @@ describe('Button', () => {
   });
 
   it('should trigger the passed in function when clicked', () => {
-    const onClickSpy = jest.fn();
+    const handleClickSpy = jest.fn();
     const { getByText } = renderButton({
-      onClick: onClickSpy
+      handleClick: handleClickSpy
     });
 
     fireEvent(
@@ -169,6 +169,6 @@ describe('Button', () => {
       })
     );
 
-    expect(onClickSpy).toHaveBeenCalledTimes(1);
+    expect(handleClickSpy).toHaveBeenCalledTimes(1);
   });
 });
