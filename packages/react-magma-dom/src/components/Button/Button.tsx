@@ -17,6 +17,7 @@ enum ButtonSize {
 }
 
 export interface ButtonProps {
+  autoFocus?: boolean;
   text: string;
   onClick: () => void;
   disabled?: boolean;
@@ -219,6 +220,7 @@ const StyledButton = styled.button`
 `;
 
 export const Button: React.SFC<ButtonProps> = ({
+  autoFocus,
   text,
   onClick,
   ghost,
@@ -227,6 +229,7 @@ export const Button: React.SFC<ButtonProps> = ({
   type
 }: ButtonProps): JSX.Element => (
   <StyledButton
+    autoFocus={autoFocus}
     onClick={onClick}
     disabled={disabled}
     ghost={ghost}
