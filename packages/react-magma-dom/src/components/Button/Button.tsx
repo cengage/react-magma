@@ -126,7 +126,7 @@ const StyledButton = styled.button`
 
   &:hover:not([disabled]),
   &:focus:not([disabled]) {
-    background-color: ${props => {
+    background: ${props => {
       switch (props.type) {
         case 'primary':
           return magma.secondary02;
@@ -174,7 +174,7 @@ const StyledButton = styled.button`
 
   &:active:not([disabled]),
   &.active:not([disabled]) {
-    background-color: ${props => {
+    background: ${props => {
       switch (props.type) {
         case 'link':
           return 'transparent';
