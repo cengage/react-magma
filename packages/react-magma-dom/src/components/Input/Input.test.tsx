@@ -94,7 +94,7 @@ describe('Input', () => {
   });
 
   describe('events', () => {
-    it('should trigger the passed in handleBlur when clicked', () => {
+    it('should trigger the passed in handleBlur when focus is removed', () => {
       const handleBlurSpy = jest.fn();
       const { getByLabelText } = renderInput({
         handleBlur: handleBlurSpy
@@ -111,7 +111,7 @@ describe('Input', () => {
       expect(handleBlurSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('should trigger the passed in handleChange when clicked', () => {
+    it('should trigger the passed in handleChange when value of the input is changed', () => {
       const value = 'Change';
       const handleChangeSpy = jest.fn();
       const { getByLabelText } = renderInput({
@@ -126,7 +126,7 @@ describe('Input', () => {
       expect(handleChangeSpy).toHaveBeenCalledWith(value);
     });
 
-    it('should trigger the passed in handleFocus when clicked', () => {
+    it('should trigger the passed in handleFocus when focused', () => {
       const handleFocusSpy = jest.fn();
       const { getByLabelText } = renderInput({
         handleFocus: handleFocusSpy

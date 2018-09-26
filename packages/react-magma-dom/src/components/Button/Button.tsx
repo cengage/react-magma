@@ -166,7 +166,7 @@ const StyledButton = styled.button`
         case 'danger':
           return magma.primary04;
         default:
-          return magma.accent02;
+          return magma.accent01;
       }
     }};
     text-decoration: ${props => (props.type === 'link' ? 'underline' : 'none')};

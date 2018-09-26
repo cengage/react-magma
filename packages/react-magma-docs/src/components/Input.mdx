@@ -63,17 +63,31 @@ import { Input } from 'react-magma-dom';
 
 <Playground>
   {() => {
-    let changedValue = '';
-    return <div>
-      <p><strong>Changed Value: </strong> <span id="changedValue">{changedValue}</span></p>
-      <Input
-        id='inputChanged'
-        placeholder='Type in here'
-        handleChange={(newValue) => {
-          changedValue = newValue;
-          document.getElementById('changedValue').textContent = changedValue;
-        }} />
-    </div>
+    class ChangedInput extends React.Component {
+      constructor(props) {
+        super(props)
+          this.state = {
+            message: ''
+          };
+
+          this.changeValueMessage = this.changeValueMessage.bind(this);
+        }
+
+        changeValueMessage(message) {
+          this.setState(state => ({message}))
+        }
+
+        render() {
+          return <div>
+            <p><strong>Changed Value: </strong> <span id="changedValue">{this.state.message}</span></p>
+            <Input
+              id='inputChanged'
+              placeholder='Type in here'
+              handleChange={this.changeValueMessage} />
+          </div>
+        }
+      }
+      return <ChangedInput />
   }}
 </Playground>
 
@@ -81,21 +95,38 @@ import { Input } from 'react-magma-dom';
 
 <Playground>
   {() => {
-    let focused = 'No';
-    return <div>
-      <p><strong>Focused: </strong> <span id="focused">{focused}</span></p>
-      <Input
-        id='inputFocused'
-        labelText='Focused?'
-        handleFocus={() => {
-          focused = 'Yes';
-          document.getElementById('focused').textContent = focused;
-        }}
-        handleBlur={() => {
-          focused = 'No';
-          document.getElementById('focused').textContent = focused;
-        }} />
-    </div>
+    class FocusedInput extends React.Component {
+      constructor(props) {
+        super(props)
+          this.state = {
+            focused: false,
+            message: 'No'
+          };
+
+          this.changeFocusedMessage = this.changeFocusedMessage.bind(this);
+        }
+
+        changeFocusedMessage() {
+          const focused = !this.state.focused;
+
+          this.setState(state => ({
+            focused,
+            message: focused ? 'Yes' : 'No',
+          }));
+        }
+
+        render() {
+          return <div>
+            <p><strong>Focused: </strong> <span id="focused">{this.state.message}</span></p>
+            <Input
+              id='inputFocused'
+              labelText='Focused?'
+              handleFocus={this.changeFocusedMessage}
+              handleBlur={this.changeFocusedMessage} />
+          </div>
+        }
+      }
+      return <FocusedInput />
   }}
 </Playground>
 
