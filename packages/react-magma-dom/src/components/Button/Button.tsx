@@ -145,7 +145,7 @@ const StyledButton = styled.button`
         case 'link':
           return 'transparent';
         case 'primary':
-          return magma.secondary01;
+          return magma.secondary02;
         case 'success':
           return magma.accent03;
         case 'warning':
@@ -166,7 +166,7 @@ const StyledButton = styled.button`
         case 'danger':
           return magma.primary04;
         default:
-          return magma.accent01;
+          return magma.accent02;
       }
     }};
     text-decoration: ${props => (props.type === 'link' ? 'underline' : 'none')};
