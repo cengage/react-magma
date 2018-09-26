@@ -1,6 +1,6 @@
 {
   "name": "react-magma-dom",
-  "version": "0.1.0",
+  "version": "0.1.0-beta.0",
   "description": "",
   "main": "dist/bundle.js",
   "files": [
@@ -25,7 +25,7 @@
   "dependencies": {
     "@types/react": "^16.4.12",
     "react": "^16.4.2",
-    "react-magma-core": "^0.1.0",
+    "react-magma-core": "^0.1.0-beta.0",
     "styled-components": "^3.4.5"
   },
   "devDependencies": {
