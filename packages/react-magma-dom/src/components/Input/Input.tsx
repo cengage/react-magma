@@ -28,6 +28,11 @@ const StyledInput = styled.input`
     outline: 0;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #9bca43;
   }
+
+  &[disabled] {
+    background: ${magma.primary03};
+    cursor: not-allowed;
+  }
 `;
 
 enum Type {
