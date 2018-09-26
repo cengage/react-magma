@@ -1,52 +1,53 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: "development",
-  entry: "./src/index.js",
+  mode: 'development',
+  entry: './src/index.js',
   output: {
-    path: path.join(__dirname, "build"),
-    publicPath: "/",
-    filename: "app.bundle.js"
+    path: path.join(__dirname, 'build'),
+    publicPath: '/',
+    filename: 'app.bundle.js'
   },
   devServer: {
-    contentBase: "./build"
+    contentBase: './build',
+    port: 3001
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
         options: {
-          presets: ["@babel/preset-env", "@babel/preset-react"]
+          presets: ['@babel/preset-env', '@babel/preset-react']
         },
         exclude: /node_modules/
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
         exclude: /node_modules/
       }
     ]
   },
   resolve: {
-    extensions: ["*", ".js", ".jsx"]
+    extensions: ['*', '.js', '.jsx']
   },
   externals: {
-    react: "React",
-    "react-dom": "ReactDOM"
+    react: 'React',
+    'react-dom': 'ReactDOM'
   },
-  devtool: "sourcemap",
+  devtool: 'sourcemap',
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/15/index.html",
-      filename: "react_15.html",
-      inject: "body"
+      template: './src/15/index.html',
+      filename: 'react_15.html',
+      inject: 'body'
     }),
     new HtmlWebpackPlugin({
-      template: "./src/16/index.html",
-      filename: "react_16.html",
-      inject: "body"
+      template: './src/16/index.html',
+      filename: 'react_16.html',
+      inject: 'body'
     })
   ]
 };
