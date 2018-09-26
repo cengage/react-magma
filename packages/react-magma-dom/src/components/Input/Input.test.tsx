@@ -92,4 +92,55 @@ describe('Input', () => {
 
     expect(input).toBeDisabled();
   });
+
+  describe('events', () => {
+    it('should trigger the passed in handleBlur when focus is removed', () => {
+      const handleBlurSpy = jest.fn();
+      const { getByLabelText } = renderInput({
+        handleBlur: handleBlurSpy
+      });
+
+      fireEvent(
+        getByLabelText(INPUT_PROPS.labelText),
+        new MouseEvent('blur', {
+          bubbles: true,
+          cancelable: true
+        })
+      );
+
+      expect(handleBlurSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should trigger the passed in handleChange when value of the input is changed', () => {
+      const value = 'Change';
+      const handleChangeSpy = jest.fn();
+      const { getByLabelText } = renderInput({
+        handleChange: handleChangeSpy
+      });
+
+      fireEvent.change(getByLabelText(INPUT_PROPS.labelText), {
+        target: { value }
+      });
+
+      expect(handleChangeSpy).toHaveBeenCalledTimes(1);
+      expect(handleChangeSpy).toHaveBeenCalledWith(value);
+    });
+
+    it('should trigger the passed in handleFocus when focused', () => {
+      const handleFocusSpy = jest.fn();
+      const { getByLabelText } = renderInput({
+        handleFocus: handleFocusSpy
+      });
+
+      fireEvent(
+        getByLabelText(INPUT_PROPS.labelText),
+        new MouseEvent('focus', {
+          bubbles: true,
+          cancelable: true
+        })
+      );
+
+      expect(handleFocusSpy).toHaveBeenCalledTimes(1);
+    });
+  });
 });

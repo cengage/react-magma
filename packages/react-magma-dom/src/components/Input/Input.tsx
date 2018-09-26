@@ -39,6 +39,9 @@ enum Type {
 export interface InputProps {
   autoFocus?: boolean;
   disabled?: boolean;
+  handleBlur?: () => void;
+  handleChange?: () => void;
+  handleFocus?: () => void;
   id: string;
   labelText: string;
   placeholder?: string;
@@ -50,7 +53,12 @@ export interface InputProps {
 export const Input: React.SFC<InputProps> = (
   props: InputProps
 ): JSX.Element => (
-  <InputCore value={props.value}>
+  <InputCore
+    value={props.value}
+    handleBlur={props.handleBlur}
+    handleChange={props.handleChange}
+    handleFocus={props.handleFocus}
+  >
     {({ handleBlur, handleChange, handleFocus, value }) => {
       const {
         autoFocus,
