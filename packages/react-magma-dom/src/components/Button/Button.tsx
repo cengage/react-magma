@@ -28,7 +28,7 @@ export interface ButtonProps {
 }
 
 const StyledButton = styled.button`
-  background-color: ${props => {
+  background: ${props => {
     if (props.ghost) {
       return 'none';
     }
