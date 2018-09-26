@@ -59,4 +59,44 @@ import { Input } from 'react-magma-dom';
         type='number' />
 </Playground>
 
+### Change Events
+
+<Playground>
+  {() => {
+    let changedValue = '';
+    return <div>
+      <p><strong>Changed Value: </strong> <span id="changedValue">{changedValue}</span></p>
+      <Input
+        id='inputChanged'
+        placeholder='Type in here'
+        handleChange={(newValue) => {
+          changedValue = newValue;
+          document.getElementById('changedValue').textContent = changedValue;
+        }} />
+    </div>
+  }}
+</Playground>
+
+### Focus Events
+
+<Playground>
+  {() => {
+    let focused = 'No';
+    return <div>
+      <p><strong>Focused: </strong> <span id="focused">{focused}</span></p>
+      <Input
+        id='inputFocused'
+        labelText='Focused?'
+        handleFocus={() => {
+          focused = 'Yes';
+          document.getElementById('focused').textContent = focused;
+        }}
+        handleBlur={() => {
+          focused = 'No';
+          document.getElementById('focused').textContent = focused;
+        }} />
+    </div>
+  }}
+</Playground>
+
 ### Props

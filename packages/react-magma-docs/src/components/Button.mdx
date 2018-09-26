@@ -23,9 +23,9 @@ import { Button } from 'react-magma-dom';
 
 <Playground>
     <p>
-        <Button type="primary" size="small" text="Small Button" />
-        <Button type="primary" text="Default Button" />
-        <Button type="primary" size="large" text="Large Button" />
+        <Button type="primary" size="small" text="Small" />
+        <Button type="primary" text="Default" />
+        <Button type="primary" size="large" text="Large" />
     </p>    
 </Playground>
 
@@ -33,11 +33,11 @@ import { Button } from 'react-magma-dom';
 
 <Playground>
     <p>
-        <Button text="Default Button" />
-        <Button type="primary" text="Primary Button" />
-        <Button type="success" text="Success Button" />
-        <Button type="warning" text="Warning Button" />
-        <Button type="danger" text="Danger Button" />
+        <Button text="Default" />
+        <Button type="primary" text="Primary" />
+        <Button type="success" text="Success" />
+        <Button type="warning" text="Warning" />
+        <Button type="danger" text="Danger" />
     </p>
 </Playground>
 
@@ -45,11 +45,11 @@ import { Button } from 'react-magma-dom';
 
 <Playground>
     <p>
-        <Button ghost text="Default Ghost Button" />{' '}
-        <Button ghost type="primary" text="Primary Ghost Button" />
-        <Button ghost type="success" text="Success Ghost Button" />
-        <Button ghost type="warning" text="Warning Ghost Button" />
-        <Button ghost type="danger" text="Danger Ghost Button" />
+        <Button ghost text="Default Ghost" />{' '}
+        <Button ghost type="primary" text="Primary Ghost" />
+        <Button ghost type="success" text="Success Ghost" />
+        <Button ghost type="warning" text="Warning Ghost" />
+        <Button ghost type="danger" text="Danger Ghost" />
     </p>
 </Playground>
 
@@ -57,7 +57,7 @@ import { Button } from 'react-magma-dom';
 
 <Playground>
     <p>
-        <Button disabled type="primary" text="Disabled Button" />
+        <Button disabled type="primary" text="Disabled" />
     </p>
 </Playground>
 
@@ -65,8 +65,25 @@ import { Button } from 'react-magma-dom';
 
 <Playground>
     <p>
-        <Button type="link" text="Link Button"/>
+        <Button type="link" text="Link"/>
     </p>
+</Playground>
+
+### Click Events
+
+<Playground>
+  {() => {
+    let counter = 0;
+    return <div>
+      <p><strong>Counter: </strong> <span id="counter">{counter}</span></p>
+      <Button
+        handleClick={() => {
+          counter += 1;
+          document.getElementById('counter').textContent = counter;
+        }}
+        text="Click me" />
+    </div>
+  }}
 </Playground>
 
 ### Props
