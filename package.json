@@ -11,14 +11,20 @@
     "bootstrap": "lerna bootstrap",
     "lint": "lerna run lint",
     "docs": "lerna exec --scope react-magma-docs docz dev",
-    "createStaticFile": "echo 'pushstate: enabled' >| packages/react-magma-docs/.docz/dist/Staticfile"
+    "createStaticFile": "echo 'pushstate: enabled' >| packages/react-magma-docs/.docz/dist/Staticfile",
+    "commit-changes": "git-cz"
   },
   "husky": {
     "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "lerna run lint && npm run test"
     }
   },
   "devDependencies": {
+    "@commitlint/cli": "^7.1.2",
+    "@commitlint/config-conventional": "^7.1.2",
+    "commitizen": "^2.10.1",
+    "cz-conventional-changelog": "^2.1.0",
     "husky": "^1.0.0-rc.14",
     "istanbul-merge": "^1.1.1",
     "jest": "^23.6.0",
@@ -26,5 +32,10 @@
     "lerna": "^3.1.4",
     "nyc": "^13.0.1",
     "ts-jest": "^23.10.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
