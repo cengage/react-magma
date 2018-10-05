@@ -59,4 +59,84 @@ import { Input } from 'react-magma-dom';
         type='number' />
 </Playground>
 
+### Disabled
+<Playground>
+    <Input
+        id='input5'
+        labelText='Disabled'
+        placeholder='The input is disabled'
+        disabled />
+</Playground>
+
+### Change Events
+
+<Playground>
+  {() => {
+    class ChangedInput extends React.Component {
+      constructor(props) {
+        super(props)
+          this.state = {
+            message: ''
+          };
+
+          this.changeValueMessage = this.changeValueMessage.bind(this);
+        }
+
+        changeValueMessage(message) {
+          this.setState(state => ({message}))
+        }
+
+        render() {
+          return <div>
+            <p><strong>Changed Value: </strong> <span id="changedValue">{this.state.message}</span></p>
+            <Input
+              id='inputChanged'
+              placeholder='Type in here'
+              handleChange={this.changeValueMessage} />
+          </div>
+        }
+      }
+      return <ChangedInput />
+  }}
+</Playground>
+
+### Focus Events
+
+<Playground>
+  {() => {
+    class FocusedInput extends React.Component {
+      constructor(props) {
+        super(props)
+          this.state = {
+            focused: false,
+            message: 'No'
+          };
+
+          this.changeFocusedMessage = this.changeFocusedMessage.bind(this);
+        }
+
+        changeFocusedMessage() {
+          const focused = !this.state.focused;
+
+          this.setState(state => ({
+            focused,
+            message: focused ? 'Yes' : 'No',
+          }));
+        }
+
+        render() {
+          return <div>
+            <p><strong>Focused: </strong> <span id="focused">{this.state.message}</span></p>
+            <Input
+              id='inputFocused'
+              labelText='Focused?'
+              handleFocus={this.changeFocusedMessage}
+              handleBlur={this.changeFocusedMessage} />
+          </div>
+        }
+      }
+      return <FocusedInput />
+  }}
+</Playground>
+
 ### Props

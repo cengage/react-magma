@@ -28,6 +28,11 @@ const StyledInput = styled.input`
     outline: 0;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #9bca43;
   }
+
+  &[disabled] {
+    background: ${magma.primary03};
+    cursor: not-allowed;
+  }
 `;
 
 enum Type {
@@ -39,6 +44,9 @@ enum Type {
 export interface InputProps {
   autoFocus?: boolean;
   disabled?: boolean;
+  handleBlur?: () => void;
+  handleChange?: () => void;
+  handleFocus?: () => void;
   id: string;
   labelText: string;
   placeholder?: string;
@@ -50,7 +58,12 @@ export interface InputProps {
 export const Input: React.SFC<InputProps> = (
   props: InputProps
 ): JSX.Element => (
-  <InputCore value={props.value}>
+  <InputCore
+    value={props.value}
+    handleBlur={props.handleBlur}
+    handleChange={props.handleChange}
+    handleFocus={props.handleFocus}
+  >
     {({ handleBlur, handleChange, handleFocus, value }) => {
       const {
         autoFocus,

@@ -5,6 +5,7 @@
   "scripts": {
     "postinstall": "lerna bootstrap && npm run build && npm run createStaticFile",
     "test": "lerna run --scope react-magma-dom --scope react-magma-core test && npm run report",
+    "test-watch": "jest --watch",
     "report": "mkdir -p .nyc_output && istanbul-merge ./packages/*/coverage/*.json --out .nyc_output/coverage.json && nyc report --reporter=lcov --reporter=text",
     "build": "lerna run build",
     "bootstrap": "lerna bootstrap",
@@ -19,8 +20,11 @@
   },
   "devDependencies": {
     "husky": "^1.0.0-rc.14",
-    "lerna": "^3.1.4",
     "istanbul-merge": "^1.1.1",
-    "nyc": "^13.0.1"
+    "jest": "^23.6.0",
+    "jest-watch-typeahead": "^0.2.0",
+    "lerna": "^3.1.4",
+    "nyc": "^13.0.1",
+    "ts-jest": "^23.10.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "react-magma-dom",
-  "version": "0.1.0",
+  "version": "0.1.0-beta.0",
   "description": "",
   "main": "dist/bundle.js",
   "files": [
@@ -25,7 +25,7 @@
   "dependencies": {
     "@types/react": "^16.4.12",
     "react": "^16.4.2",
-    "react-magma-core": "^0.1.0",
+    "react-magma-core": "^0.1.0-beta.0",
     "styled-components": "^3.4.5"
   },
   "devDependencies": {
@@ -52,6 +52,8 @@
     "babel-plugin-styled-components": "^1.7.1",
     "jest": "^23.5.0",
     "jest-dom": "^1.12.0",
+    "jest-styled-components": "^6.2.1",
+    "jest-watch-typeahead": "^0.2.0",
     "lint-staged": "^7.2.2",
     "prettier": "^1.14.2",
     "react-dom": "^16.4.2",

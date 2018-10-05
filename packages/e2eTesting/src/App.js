@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Input } from "react-magma-dom";
+import React, { Component } from 'react';
+import { Input, Button } from 'react-magma-dom';
 
 class App extends Component {
   render() {
@@ -13,6 +13,16 @@ class App extends Component {
         <Input id="passwordInput" type="password" />
         <Input id="requiredInput" required={true} />
         <Input id="disabledInput" disabled={true} />
+
+        <h1>BUTTONS</h1>
+        <Button
+          id="defaultButton"
+          text="Default Button"
+          handleClick={() => {
+            alert('clicked');
+          }}
+        />
+        <Button id="disabledButton" text="Disabled Button" disabled />
       </div>
     );
   }

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ButtonCore } from 'react-magma-core';
 const styled = require('styled-components').default;
 import { magma } from '../../theme/magma';
 
@@ -17,8 +18,9 @@ enum ButtonSize {
 }
 
 export interface ButtonProps {
+  autoFocus?: boolean;
   text: string;
-  onClick: () => void;
+  handleClick: () => void;
   disabled?: boolean;
   ghost?: boolean;
   size?: ButtonSize;
@@ -26,7 +28,7 @@ export interface ButtonProps {
 }
 
 const StyledButton = styled.button`
-  background-color: ${props => {
+  background: ${props => {
     if (props.ghost) {
       return 'none';
     }
@@ -124,7 +126,7 @@ const StyledButton = styled.button`
 
   &:hover:not([disabled]),
   &:focus:not([disabled]) {
-    background-color: ${props => {
+    background: ${props => {
       switch (props.type) {
         case 'primary':
           return magma.secondary02;
@@ -143,7 +145,7 @@ const StyledButton = styled.button`
         case 'link':
           return 'transparent';
         case 'primary':
-          return magma.secondary01;
+          return magma.secondary02;
         case 'success':
           return magma.accent03;
         case 'warning':
@@ -172,7 +174,7 @@ const StyledButton = styled.button`
 
   &:active:not([disabled]),
   &.active:not([disabled]) {
-    background-color: ${props => {
+    background: ${props => {
       switch (props.type) {
         case 'link':
           return 'transparent';
@@ -218,23 +220,27 @@ const StyledButton = styled.button`
   }
 `;
 
-export const Button: React.SFC<ButtonProps> = ({
-  text,
-  onClick,
-  ghost,
-  disabled,
-  size,
-  type
-}: ButtonProps): JSX.Element => (
-  <StyledButton
-    onClick={onClick}
-    disabled={disabled}
-    ghost={ghost}
-    size={size}
-    type={type}
-  >
-    {text}
-  </StyledButton>
+export const Button: React.SFC<ButtonProps> = (
+  props: ButtonProps
+): JSX.Element => (
+  <ButtonCore handleClick={props.handleClick}>
+    {({ handleClick }) => {
+      const { autoFocus, text, ghost, disabled, size, type } = props;
+
+      return (
+        <StyledButton
+          autoFocus={autoFocus}
+          onClick={handleClick}
+          disabled={disabled}
+          ghost={ghost}
+          size={size}
+          type={type}
+        >
+          {text}
+        </StyledButton>
+      );
+    }}
+  </ButtonCore>
 );
 
 export default Button;

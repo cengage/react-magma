@@ -1,6 +1,6 @@
 {
   "name": "react-magma-docs",
-  "version": "0.1.0",
+  "version": "0.1.0-beta.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -13,8 +13,8 @@
   "dependencies": {
     "docz": "^0.11.0",
     "docz-plugin-react-native": "^0.11.0",
-    "react-magma-dom": "^0.1.0",
-    "react-magma-native": "^0.1.0"
+    "react-magma-dom": "^0.1.0-beta.0",
+    "react-magma-native": "^0.1.0-beta.0"
   },
   "devDependencies": {
     "prettier": "^1.14.2",
