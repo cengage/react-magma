@@ -12,7 +12,8 @@
     "lint": "lerna run lint",
     "docs": "lerna exec --scope react-magma-docs docz dev",
     "createStaticFile": "echo 'pushstate: enabled' >| packages/react-magma-docs/.docz/dist/Staticfile",
-    "commit-changes": "git-cz"
+    "cm": "git-cz",
+    "cm-retry": "git-cz --retry"
   },
   "husky": {
     "hooks": {
