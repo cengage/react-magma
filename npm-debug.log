@@ -1,0 +1,49 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/ojohnson/.nvm/versions/node/v6.0.0/bin/node',
+1 verbose cli   '/Users/ojohnson/.nvm/versions/node/v6.0.0/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'test' ]
+2 info using npm@3.8.6
+3 info using node@v6.0.0
+4 verbose run-script [ 'pretest', 'test', 'posttest' ]
+5 info lifecycle react-magma@0.1.0-SNAPSHOT~pretest: react-magma@0.1.0-SNAPSHOT
+6 silly lifecycle react-magma@0.1.0-SNAPSHOT~pretest: no script for pretest, continuing
+7 info lifecycle react-magma@0.1.0-SNAPSHOT~test: react-magma@0.1.0-SNAPSHOT
+8 verbose lifecycle react-magma@0.1.0-SNAPSHOT~test: unsafe-perm in lifecycle true
+9 verbose lifecycle react-magma@0.1.0-SNAPSHOT~test: PATH: /Users/ojohnson/.nvm/versions/node/v6.0.0/lib/node_modules/npm/bin/node-gyp-bin:/Users/ojohnson/Documents/dev/react-magma/node_modules/.bin:/Users/ojohnson/.nvm/versions/node/v6.0.0/bin:/Users/ojohnson/Documents/dev/react-magma/node_modules/.bin:/Users/ojohnson/Documents/dev/node_modules/.bin:/Users/ojohnson/Documents/node_modules/.bin:/Users/ojohnson/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/Users/ojohnson/.nvm/versions/node/v6.0.0/bin:/Library/Developer/CommandLineTools/usr/libexec/git-core:/Users/ojohnson/.nvm/versions/node/v6.0.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
+10 verbose lifecycle react-magma@0.1.0-SNAPSHOT~test: CWD: /Users/ojohnson/Documents/dev/react-magma
+11 silly lifecycle react-magma@0.1.0-SNAPSHOT~test: Args: [ '-c',
+11 silly lifecycle   'lerna run --scope react-magma-dom --scope react-magma-core test && npm run report' ]
+12 silly lifecycle react-magma@0.1.0-SNAPSHOT~test: Returned: code: 1  signal: null
+13 info lifecycle react-magma@0.1.0-SNAPSHOT~test: Failed to exec test script
+14 verbose stack Error: react-magma@0.1.0-SNAPSHOT test: `lerna run --scope react-magma-dom --scope react-magma-core test && npm run report`
+14 verbose stack Exit status 1
+14 verbose stack     at EventEmitter.<anonymous> (/Users/ojohnson/.nvm/versions/node/v6.0.0/lib/node_modules/npm/lib/utils/lifecycle.js:239:16)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at EventEmitter.emit (events.js:191:7)
+14 verbose stack     at ChildProcess.<anonymous> (/Users/ojohnson/.nvm/versions/node/v6.0.0/lib/node_modules/npm/lib/utils/spawn.js:24:14)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at ChildProcess.emit (events.js:191:7)
+14 verbose stack     at maybeClose (internal/child_process.js:850:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:215:5)
+15 verbose pkgid react-magma@0.1.0-SNAPSHOT
+16 verbose cwd /Users/ojohnson/Documents/dev/react-magma
+17 error Darwin 17.7.0
+18 error argv "/Users/ojohnson/.nvm/versions/node/v6.0.0/bin/node" "/Users/ojohnson/.nvm/versions/node/v6.0.0/bin/npm" "run" "test"
+19 error node v6.0.0
+20 error npm  v3.8.6
+21 error code ELIFECYCLE
+22 error react-magma@0.1.0-SNAPSHOT test: `lerna run --scope react-magma-dom --scope react-magma-core test && npm run report`
+22 error Exit status 1
+23 error Failed at the react-magma@0.1.0-SNAPSHOT test script 'lerna run --scope react-magma-dom --scope react-magma-core test && npm run report'.
+23 error Make sure you have the latest version of node.js and npm installed.
+23 error If you do, this is most likely a problem with the react-magma package,
+23 error not with npm itself.
+23 error Tell the author that this fails on your system:
+23 error     lerna run --scope react-magma-dom --scope react-magma-core test && npm run report
+23 error You can get information on how to open an issue for this project with:
+23 error     npm bugs react-magma
+23 error Or if that isn't available, you can get their info via:
+23 error     npm owner ls react-magma
+23 error There is likely additional logging output above.
+24 verbose exit [ 1, true ]
