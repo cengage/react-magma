@@ -10,12 +10,12 @@ _TODO: Add install instructions_
 
 ### Dependencies
 
-Node v8.9.4 or greater
+Node v8.9.4 or greater with npm 5.7.0 or greater
 
 ### Steps to run documentation locally
 
 1. Clone this repo: `git clone ssh://git@stash.corp.web:7999/front/react-magma.git`
-2. `npm install`
+2. `npm ci` - using `ci` instead of `install` will install dependencies based on `package-lock.json` and should speed up the install
 3. `npm run docs`
 4. Go to [http://localhost:3000](http://localhost:3000) to view the documentation
 
