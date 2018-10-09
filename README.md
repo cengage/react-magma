@@ -93,18 +93,18 @@ git commit -m "feat: Added icon capabilities to button"
 
 ```bash
 #format
-<type>(subject): <short description>
+git commit -m "<type>(subject): <short description>
 
 <optional body>
 
-<optional footer>
+<optional footer>"
 
 #example
-feat(button): Added icon capabilities to button
+git commit -m "feat(button): Added icon capabilities to button
 
 More verbose description of what was added with the icon feature of the button.
 
-BREAKING CHANGE: description of what part of the API brakes with this commit
+BREAKING CHANGE: description of what part of the API brakes with this commit"
 ```
 
 ##### Tooling
