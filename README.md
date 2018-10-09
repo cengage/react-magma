@@ -112,3 +112,7 @@ BREAKING CHANGE: description of what part of the API brakes with this commit
 To facilitate getting the commit format right, you can create your commit messages by adding the files you want to commit with `git add <files>` then by running `npm run cm`, which will step you through the individual parts of the commit message.
 
 _TODO: add an image_
+
+###### Retry
+
+If the `pre-commit` scripts prevent your commit due to a test or linting failure, you can fix those items, `git add` those updates and rather than going through the commit message wizard again, you can retry with `npm run cm-retry`.
