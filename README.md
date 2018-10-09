@@ -77,16 +77,16 @@ The footer is where you designate a breaking change. So if you add a feature and
 
 ```bash
 #format - with subject
-<topic>(<subject>): <short description>
+git commit -m "<topic>(<subject>): <short description>"
 
 #example - with subject
-feat(button): Added icon capabilities to button
+git commit -m "feat(button): Added icon capabilities to button"
 
 #format - no subject
-<topic>: <short description>
+git commit -m "<topic>: <short description>"
 
 #example - no subject
-feat: Added icon capabilities to button
+git commit -m "feat: Added icon capabilities to button"
 ```
 
 ##### Long commit message format (with a breaking change)
