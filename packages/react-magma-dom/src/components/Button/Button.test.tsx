@@ -48,7 +48,7 @@ describe('Button', () => {
         const { getByText } = renderButton({ ghost: true });
         const button = getByText(BASE_BUTTON_PROPS.text);
 
-        expect(button).toHaveStyleRule('background-color', 'none');
+        expect(button).toHaveStyleRule('background', 'none');
         expect(button).toHaveStyleRule('color', magma.secondary04);
       });
 
@@ -86,7 +86,7 @@ describe('Button', () => {
         const { getByText } = renderButton({ type: 'primary' });
         const button = getByText(BASE_BUTTON_PROPS.text);
 
-        expect(button).toHaveStyleRule('background-color', magma.primary02);
+        expect(button).toHaveStyleRule('background', magma.primary02);
         expect(button).toHaveStyleRule('border-color', magma.primary02);
         expect(button).toHaveStyleRule('color', magma.primary04);
       });
@@ -95,7 +95,7 @@ describe('Button', () => {
         const { getByText } = renderButton({ type: 'success' });
         const button = getByText(BASE_BUTTON_PROPS.text);
 
-        expect(button).toHaveStyleRule('background-color', magma.accent02);
+        expect(button).toHaveStyleRule('background', magma.accent02);
         expect(button).toHaveStyleRule('border-color', magma.accent02);
         expect(button).toHaveStyleRule('color', magma.primary04);
       });
@@ -104,7 +104,7 @@ describe('Button', () => {
         const { getByText } = renderButton({ type: 'warning' });
         const button = getByText(BASE_BUTTON_PROPS.text);
 
-        expect(button).toHaveStyleRule('background-color', magma.accent05);
+        expect(button).toHaveStyleRule('background', magma.accent05);
         expect(button).toHaveStyleRule('border-color', magma.accent05);
         expect(button).toHaveStyleRule('color', magma.primary04);
       });
@@ -113,7 +113,7 @@ describe('Button', () => {
         const { getByText } = renderButton({ type: 'danger' });
         const button = getByText(BASE_BUTTON_PROPS.text);
 
-        expect(button).toHaveStyleRule('background-color', magma.limited01);
+        expect(button).toHaveStyleRule('background', magma.limited01);
         expect(button).toHaveStyleRule('border-color', magma.limited01);
         expect(button).toHaveStyleRule('color', magma.primary04);
       });
@@ -122,7 +122,7 @@ describe('Button', () => {
         const { getByText } = renderButton({ type: 'link' });
         const button = getByText(BASE_BUTTON_PROPS.text);
 
-        expect(button).toHaveStyleRule('background-color', 'none');
+        expect(button).toHaveStyleRule('background', 'none');
         expect(button).toHaveStyleRule('border-color', 'transparent');
         expect(button).toHaveStyleRule('color', magma.primary02);
       });

@@ -32,4 +32,10 @@ injectGlobal`
       text-decoration: underline;
     }
   }
+
+  h1 {
+    &:before {
+      display: none;
+    }
+  }
 `;
