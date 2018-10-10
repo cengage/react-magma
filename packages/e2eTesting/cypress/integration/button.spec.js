@@ -27,10 +27,10 @@ const runTests = versionNumber => {
   });
 };
 
-describe('React 15 Input', () => {
+describe('React 15 Button', () => {
   runTests(15);
 });
 
-describe('React 16 Input', () => {
+describe('React 16 Button', () => {
   runTests(16);
 });

@@ -1,0 +1,110 @@
+---
+name: Icon
+menu: Components
+---
+
+import { Playground } from 'docz';
+import { Icon } from 'react-magma-dom';
+
+### Basic Usage
+
+<Playground>
+    <p>
+      <span style={{padding: '20px'}}>
+        <Icon id="infoBasic" title="Basic Info" type="info" />
+      </span>
+      <span style={{padding: '20px'}}>
+        <Icon id="angleDownBasic" title="Basic Angle Down" type="angle-down" />
+      </span>
+      <span style={{padding: '20px'}}>
+        <Icon id="folderOpenBasic" title="Basic Folder Open" type="folder-open" />
+      </span>
+    </p>    
+</Playground>
+
+### Sizes
+
+<Playground>
+  <p>
+    <span style={{padding: '20px'}}>
+      <Icon id="smallSize" size={20} title="Small Size" type="angle-down" />
+    </span>
+    <span style={{padding: '20px'}}>
+      <Icon id="largeSize" size={50} title="Large Size" type="angle-down" />
+    </span>
+  </p>
+</Playground>
+
+### Color
+
+<Playground>
+  <p>
+    <span style={{padding: '20px'}}>
+      <Icon id="noColor" title="No Color" type="angle-down" />
+    </span>
+    <span style={{padding: '20px'}}>
+      <Icon id="someColor" color="green" title="Some Color" type="angle-down" />
+    </span>
+  </p>
+</Playground>
+
+### Click Events
+
+<Playground>
+  {() => {
+    class Example extends React.Component {
+      constructor(props) {
+        super(props)
+          this.state = {
+            counter: 0
+          }
+        }
+
+        render() {
+          return <div>
+          <p><strong>Counter: </strong> <span id="counter">{this.state.counter}</span></p>
+          <Icon
+            handleClick={() => {
+              this.setState(state => ({counter: state.counter + 1}))
+            }}
+            id="clickIcon"
+            title="On Click Icon"
+            type="angle-down"
+          />
+          </div>
+        }
+      }
+      return <Example />
+  }}
+</Playground>
+
+### Disabled
+
+<Playground>
+  {() => {
+    class Example extends React.Component {
+      constructor(props) {
+        super(props)
+          this.state = {
+            counter: 0
+          }
+        }
+
+        render() {
+          return <div>
+          <p><strong>Counter: </strong> <span id="counter">{this.state.counter}</span></p>
+          <Icon
+            handleClick={() => {
+              this.setState(state => ({counter: state.counter + 1}))
+            }}
+            id="clickIcon"
+            title="On Click Icon"
+            type="angle-down"
+            disabled
+          />
+          </div>
+        }
+      }
+      return <Example />
+  }}
+</Playground>
