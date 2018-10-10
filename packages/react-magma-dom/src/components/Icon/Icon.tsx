@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IconCore } from 'react-magma-core';
-import iconMap from './IconMap';
+import { IconMap } from './IconMap';
 const styled = require('styled-components').default;
 
 export interface IconProps {
@@ -15,7 +15,6 @@ export interface IconProps {
 
 const StyledIcon = styled.span`
   pointer-events: ${props => {
-    console.log(props);
     return props.disabled ? 'none' : 'auto';
   }};
 `;
@@ -24,7 +23,7 @@ export const Icon: React.SFC<IconProps> = (props: IconProps): JSX.Element => (
   <IconCore handleClick={props.handleClick}>
     {({ handleClick }) => {
       const { id, title, type, disabled, color, size } = props;
-      const IconType = iconMap[type];
+      const IconType = IconMap[type];
 
       return IconType ? (
         <StyledIcon className={type} onClick={handleClick} disabled={disabled}>
