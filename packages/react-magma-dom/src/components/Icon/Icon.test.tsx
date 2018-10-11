@@ -86,21 +86,4 @@ describe('Icon', () => {
     expect(svg).toHaveAttribute('height', size);
     expect(svg).toHaveAttribute('width', size);
   });
-
-  it('should trigger the passed in function when clicked', () => {
-    const handleClickSpy = jest.fn();
-    const { container } = renderIcon({
-      handleClick: handleClickSpy
-    });
-
-    fireEvent(
-      container.querySelector('span'),
-      new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true
-      })
-    );
-
-    expect(handleClickSpy).toHaveBeenCalledTimes(1);
-  });
 });
