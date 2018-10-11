@@ -76,7 +76,7 @@ describe('Icon', () => {
 });
 
 function renderForSnapshots(type) {
-  const { container } = renderIcon({ type });
+  const { container } = renderIcon({ type, title: `${type} icon` });
 
   expect(container).toMatchSnapshot();
 }
