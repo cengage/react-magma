@@ -14,6 +14,9 @@ export interface IconProps {
 }
 
 const StyledIcon = styled.span`
+  cursor: ${props => {
+    return (props.handleClick !== null && !props.disabled) ? 'pointer' : 'auto';
+  }};
   pointer-events: ${props => {
     return props.disabled ? 'none' : 'auto';
   }};
