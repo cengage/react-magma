@@ -25,24 +25,7 @@ class App extends Component {
         <Button id="disabledButton" text="Disabled Button" disabled />
 
         <h1>ICONS</h1>
-        <Icon
-          id="basicInfoIcon"
-          title="Basic Info Icon"
-          type="info"
-          handleClick={() => {
-            alert('clicked');
-          }}
-        />
-
-        <Icon
-          id="disabledIcon"
-          title="Disabled Icon"
-          type="info"
-          disabled
-          handleClick={() => {
-            alert('clicked');
-          }}
-        />
+        <Icon id="basicInfoIcon" title="Basic Info Icon" type="info" />
       </div>
     );
   }

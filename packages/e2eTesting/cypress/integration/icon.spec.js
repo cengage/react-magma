@@ -4,17 +4,10 @@ const runTests = versionNumber => {
     cy.visit(`/react_${version}.html`);
   });
 
-  it('Displays and interacts with icon', () => {
-    const alertStub = cy.stub();
-    cy.on('window:alert', alertStub);
-
+  it('Displays an icon', () => {
     const icon = cy.get('#basicInfoIcon').parent();
 
     icon.should('be.visible');
-
-    icon.click().then(() => {
-      expect(alertStub.getCall(0)).to.be.calledWith('clicked');
-    });
   });
 };
 
