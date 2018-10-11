@@ -27,37 +27,10 @@ describe('Icon', () => {
   it('should render a icon with the passed in props', () => {
     const { container } = renderIcon();
     const title = container.firstChild.firstChild.childNodes[0];
+    const svg = container.firstChild.firstChild.childNodes[1];
 
     expect(title).toHaveAttribute('id', BASE_ICON_PROPS.id);
     expect(title).toHaveTextContent(BASE_ICON_PROPS.title);
-  });
-
-  it('should render an info icon', () => {
-    const { container } = renderIcon({
-      type: 'info'
-    });
-    const svg = container.firstChild.firstChild.childNodes[1];
-
-    expect(svg).toHaveAttribute('d');
-    expect(svg).toHaveAttribute('transform');
-  });
-
-  it('should render an angle down icon', () => {
-    const { container } = renderIcon({
-      type: 'angle-down'
-    });
-    const svg = container.firstChild.firstChild.childNodes[1];
-
-    expect(svg).toHaveAttribute('d');
-    expect(svg).toHaveAttribute('transform');
-  });
-
-  it('should render a folder open icon', () => {
-    const { container } = renderIcon({
-      type: 'folder-open'
-    });
-    const svg = container.firstChild.firstChild.childNodes[1];
-
     expect(svg).toHaveAttribute('d');
     expect(svg).toHaveAttribute('transform');
   });
@@ -86,4 +59,24 @@ describe('Icon', () => {
     expect(svg).toHaveAttribute('height', size);
     expect(svg).toHaveAttribute('width', size);
   });
+
+  describe('Snapshot Tests', () => {
+    it('should render an info icon', () => {
+      renderForSnapshots('info');
+    });
+
+    it('should render an angle-down icon', () => {
+      renderForSnapshots('angle-down');
+    });
+
+    it('should render an folder-open icon', () => {
+      renderForSnapshots('folder-open');
+    });
+  });
 });
+
+function renderForSnapshots(type) {
+  const { container } = renderIcon({ type });
+
+  expect(container).toMatchSnapshot();
+}
