@@ -19,6 +19,12 @@ const renderIcon = (myProps = {}) => {
   return render(<Icon {...props} />);
 };
 
+function renderForSnapshots(type) {
+  const { container } = renderIcon({ type, title: `${type} icon` });
+
+  expect(container).toMatchSnapshot();
+}
+
 describe('Icon', () => {
   afterEach(() => {
     cleanup();
@@ -74,9 +80,3 @@ describe('Icon', () => {
     });
   });
 });
-
-function renderForSnapshots(type) {
-  const { container } = renderIcon({ type, title: `${type} icon` });
-
-  expect(container).toMatchSnapshot();
-}
