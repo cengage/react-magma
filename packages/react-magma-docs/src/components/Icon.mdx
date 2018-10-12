@@ -4,6 +4,7 @@ menu: Components
 ---
 
 import { Playground } from 'docz';
+import { IconContainer } from '../docs-components/IconContainer';
 import { Icon } from 'react-magma-dom';
 
 # Icons
@@ -12,15 +13,15 @@ import { Icon } from 'react-magma-dom';
 
 <Playground>
     <p>
-      <span style={{padding: '20px'}}>
+      <IconContainer>
         <Icon id="infoBasic" title="Basic Info" type="info" />
-      </span>
-      <span style={{padding: '20px'}}>
+      </IconContainer>
+      <IconContainer>
         <Icon id="angleDownBasic" title="Basic Angle Down" type="angle-down" />
-      </span>
-      <span style={{padding: '20px'}}>
+      </IconContainer>
+      <IconContainer>
         <Icon id="folderOpenBasic" title="Basic Folder Open" type="folder-open" />
-      </span>
+      </IconContainer>
     </p>    
 </Playground>
 
@@ -28,12 +29,12 @@ import { Icon } from 'react-magma-dom';
 
 <Playground>
   <p>
-    <span style={{padding: '20px'}}>
+    <IconContainer>
       <Icon id="smallSize" size={20} title="Small Size" type="angle-down" />
-    </span>
-    <span style={{padding: '20px'}}>
+    </IconContainer>
+    <IconContainer>
       <Icon id="largeSize" size={50} title="Large Size" type="angle-down" />
-    </span>
+    </IconContainer>
   </p>
 </Playground>
 
@@ -41,11 +42,11 @@ import { Icon } from 'react-magma-dom';
 
 <Playground>
   <p>
-    <span style={{padding: '20px'}}>
+    <IconContainer>
       <Icon id="noColor" title="No Color" type="angle-down" />
-    </span>
-    <span style={{padding: '20px'}}>
+    </IconContainer>
+    <IconContainer>
       <Icon id="someColor" color="green" title="Some Color" type="angle-down" />
-    </span>
+    </IconContainer>
   </p>
 </Playground>
