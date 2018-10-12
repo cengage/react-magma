@@ -3,7 +3,7 @@
 exports[`Icon Snapshot Tests should render an angle-down icon 1`] = `
 <div>
   <span
-    class="angle-down "
+    class="angle-down"
   >
     <svg
       aria-labelledby="infoId"
@@ -31,7 +31,7 @@ exports[`Icon Snapshot Tests should render an angle-down icon 1`] = `
 exports[`Icon Snapshot Tests should render an folder-open icon 1`] = `
 <div>
   <span
-    class="folder-open "
+    class="folder-open"
   >
     <svg
       aria-labelledby="infoId"
@@ -59,7 +59,7 @@ exports[`Icon Snapshot Tests should render an folder-open icon 1`] = `
 exports[`Icon Snapshot Tests should render an info icon 1`] = `
 <div>
   <span
-    class="info "
+    class="info"
   >
     <svg
       aria-labelledby="infoId"

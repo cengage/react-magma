@@ -10,16 +10,14 @@ export interface IconProps {
   size?: number;
 }
 
-const StyledIcon = styled.span``;
-
 function renderIcon(props) {
   const { id, title, type, color, size } = props;
   const IconType = IconMap[type];
 
   return IconType ? (
-    <StyledIcon className={type}>
+    <span className={type}>
       <IconType id={id} title={title} color={color} size={size} />
-    </StyledIcon>
+    </span>
   ) : null;
 }
 
