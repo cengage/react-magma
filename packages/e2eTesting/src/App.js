@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Button } from 'react-magma-dom';
+import { Input, Button, Icon } from 'react-magma-dom';
 
 class App extends Component {
   render() {
@@ -23,6 +23,9 @@ class App extends Component {
           }}
         />
         <Button id="disabledButton" text="Disabled Button" disabled />
+
+        <h1>ICONS</h1>
+        <Icon id="basicInfoIcon" title="Basic Info Icon" type="info" />
       </div>
     );
   }
