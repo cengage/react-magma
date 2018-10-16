@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Button, Header } from 'react-magma-dom';
+import { Input, Button, Header, Icon } from 'react-magma-dom';
 
 class App extends Component {
   render() {
@@ -43,6 +43,8 @@ class App extends Component {
         <Header id="header6" size={6}>
           Header 6
         </Header>
+        <h1>ICONS</h1>
+        <Icon id="basicInfoIcon" title="Basic Info Icon" type="info" />
       </div>
     );
   }

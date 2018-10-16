@@ -20,8 +20,6 @@ describe('Input', () => {
   it('should render an input', () => {
     const component = renderInput();
 
-    console.log(component.toJSON());
-
     expect(true).toBeTruthy();
   });
 });

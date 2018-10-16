@@ -10,7 +10,7 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   collectCoverage: true,
-  coveragePathIgnorePatterns: ['(tests/.*.mock).(jsx?|tsx?)$'],
+  coveragePathIgnorePatterns: ['(tests/.*.mock).(jsx?|tsx?)$', '.snap'],
   verbose: true,
   watchPlugins: [
     'jest-watch-typeahead/filename',
