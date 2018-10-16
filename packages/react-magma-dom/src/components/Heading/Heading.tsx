@@ -2,13 +2,13 @@ import * as React from 'react';
 import styled, { css } from 'styled-components';
 import { magma } from '../../theme/magma';
 
-export interface HeaderProps {
+export interface HeadingProps {
   children: React.ReactChild;
   size: number;
   id?: string;
 }
 
-export const baseHeaderStyles = css`
+export const baseHeadingStyles = css`
   color: ${magma.primary02};
   font-family: ${magma.headingFont};
   font-weight: 500;
@@ -17,37 +17,37 @@ export const baseHeaderStyles = css`
 `;
 
 const StyledH1 = styled.h1`
-  ${baseHeaderStyles};
+  ${baseHeadingStyles};
   font-size: 40px;
 `;
 
 const StyledH2 = styled.h2`
-  ${baseHeaderStyles};
+  ${baseHeadingStyles};
   font-size: 32px;
 `;
 
 const StyledH3 = styled.h3`
-  ${baseHeaderStyles};
+  ${baseHeadingStyles};
   font-size: 26px;
 `;
 
 const StyledH4 = styled.h4`
-  ${baseHeaderStyles};
+  ${baseHeadingStyles};
   font-size: 23px;
 `;
 
 const StyledH5 = styled.h5`
-  ${baseHeaderStyles};
+  ${baseHeadingStyles};
   font-size: 20px;
 `;
 
 const StyledH6 = styled.h6`
-  ${baseHeaderStyles};
+  ${baseHeadingStyles};
   font-size: 18px;
 `;
 
-function renderHeader({ size, children, id }: HeaderProps) {
-  const headerSizes = {
+function renderHeading({ size, children, id }: HeadingProps) {
+  const headingSizes = {
     1: StyledH1,
     2: StyledH2,
     3: StyledH3,
@@ -56,13 +56,13 @@ function renderHeader({ size, children, id }: HeaderProps) {
     6: StyledH6
   };
 
-  const HeaderComponent = headerSizes[size];
+  const HeadingComponent = headingSizes[size];
 
-  return <HeaderComponent id={id}>{children}</HeaderComponent>;
+  return <HeadingComponent id={id}>{children}</HeadingComponent>;
 }
 
-export const Header: React.SFC<HeaderProps> = (
-  props: HeaderProps
-): JSX.Element => renderHeader(props);
+export const Heading: React.SFC<HeadingProps> = (
+  props: HeadingProps
+): JSX.Element => renderHeading(props);
 
-export default Header;
+export default Heading;
