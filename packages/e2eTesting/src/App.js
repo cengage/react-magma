@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Button } from 'react-magma-dom';
+import { Input, Button, Header } from 'react-magma-dom';
 
 class App extends Component {
   render() {
@@ -23,6 +23,26 @@ class App extends Component {
           }}
         />
         <Button id="disabledButton" text="Disabled Button" disabled />
+
+        <h1>HEADERS</h1>
+        <Header id="header1" size={1}>
+          Header 1
+        </Header>
+        <Header id="header2" size={2}>
+          Header 2
+        </Header>
+        <Header id="header3" size={3}>
+          Header 3
+        </Header>
+        <Header id="header4" size={4}>
+          Header 4
+        </Header>
+        <Header id="header5" size={5}>
+          Header 5
+        </Header>
+        <Header id="header6" size={6}>
+          Header 6
+        </Header>
       </div>
     );
   }
