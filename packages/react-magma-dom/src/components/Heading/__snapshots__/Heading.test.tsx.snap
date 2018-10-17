@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Heading Snapshot should render headings correctly 1`] = `
+.c0 {
+  color: #007db8;
+  font-family: gnuolane,sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 20px 0 10px;
+  font-size: 40px;
+}
+
+.c1 {
+  color: #007db8;
+  font-family: gnuolane,sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 20px 0 10px;
+  font-size: 32px;
+}
+
+.c2 {
+  color: #007db8;
+  font-family: gnuolane,sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 20px 0 10px;
+  font-size: 26px;
+}
+
+.c3 {
+  color: #007db8;
+  font-family: gnuolane,sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 20px 0 10px;
+  font-size: 23px;
+}
+
+.c4 {
+  color: #007db8;
+  font-family: gnuolane,sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 20px 0 10px;
+  font-size: 20px;
+}
+
+.c5 {
+  color: #007db8;
+  font-family: gnuolane,sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 20px 0 10px;
+  font-size: 18px;
+}
+
+<div>
+  <div>
+    <h1
+      class="c0"
+    >
+      Heading 1
+    </h1>
+    <h2
+      class="c1"
+    >
+      Heading 2
+    </h2>
+    <h3
+      class="c2"
+    >
+      Heading 3
+    </h3>
+    <h4
+      class="c3"
+    >
+      Heading 4
+    </h4>
+    <h5
+      class="c4"
+    >
+      Heading 5
+    </h5>
+    <h6
+      class="c5"
+    >
+      Heading 6
+    </h6>
+  </div>
+</div>
+`;
