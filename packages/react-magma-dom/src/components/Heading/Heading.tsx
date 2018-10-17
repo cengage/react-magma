@@ -4,7 +4,7 @@ import { magma } from '../../theme/magma';
 
 export interface HeadingProps {
   children: React.ReactChild;
-  size: number;
+  level: number;
   id?: string;
 }
 
@@ -46,8 +46,8 @@ const StyledH6 = styled.h6`
   font-size: 18px;
 `;
 
-function renderHeading({ size, children, id }: HeadingProps) {
-  const headingSizes = {
+function renderHeading({ level, children, id }: HeadingProps) {
+  const headingLevels = {
     1: StyledH1,
     2: StyledH2,
     3: StyledH3,
@@ -56,7 +56,7 @@ function renderHeading({ size, children, id }: HeadingProps) {
     6: StyledH6
   };
 
-  const HeadingComponent = headingSizes[size];
+  const HeadingComponent = headingLevels[level];
 
   return <HeadingComponent id={id}>{children}</HeadingComponent>;
 }

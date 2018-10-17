@@ -7,7 +7,7 @@ import { render, cleanup } from 'react-testing-library';
 const headingText = 'Test Heading Text';
 
 const BASE_HEADING_PROPS: HeadingProps = {
-  size: 1,
+  level: 1,
   children: React.createElement('div')
 };
 
@@ -36,7 +36,7 @@ describe('Heading', () => {
 
   it('should render an h2', () => {
     const { container } = renderHeading({
-      size: 2
+      level: 2
     });
     const heading = container.querySelector('h2');
 
@@ -47,7 +47,7 @@ describe('Heading', () => {
 
   it('should render an h3', () => {
     const { container } = renderHeading({
-      size: 3
+      level: 3
     });
     const heading = container.querySelector('h3');
 
@@ -58,7 +58,7 @@ describe('Heading', () => {
 
   it('should render an h4', () => {
     const { container } = renderHeading({
-      size: 4
+      level: 4
     });
     const heading = container.querySelector('h4');
 
@@ -69,7 +69,7 @@ describe('Heading', () => {
 
   it('should render an h5', () => {
     const { container } = renderHeading({
-      size: 5
+      level: 5
     });
     const heading = container.querySelector('h5');
 
@@ -80,7 +80,7 @@ describe('Heading', () => {
 
   it('should render an h6', () => {
     const { container } = renderHeading({
-      size: 6
+      level: 6
     });
     const heading = container.querySelector('h6');
 
@@ -93,12 +93,12 @@ describe('Heading', () => {
     it('should render headings correctly', () => {
       const { container } = render(
         <div>
-          <Heading size={1}>Heading 1</Heading>
-          <Heading size={2}>Heading 2</Heading>
-          <Heading size={3}>Heading 3</Heading>
-          <Heading size={4}>Heading 4</Heading>
-          <Heading size={5}>Heading 5</Heading>
-          <Heading size={6}>Heading 6</Heading>
+          <Heading level={1}>Heading 1</Heading>
+          <Heading level={2}>Heading 2</Heading>
+          <Heading level={3}>Heading 3</Heading>
+          <Heading level={4}>Heading 4</Heading>
+          <Heading level={5}>Heading 5</Heading>
+          <Heading level={6}>Heading 6</Heading>
         </div>
       );
 
