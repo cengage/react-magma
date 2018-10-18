@@ -1,5 +1,4 @@
 import * as React from 'react';
-// import { IconMap } from './IconMap';
 import { ICONS } from './types/icons';
 import { SvgIcon } from './SvgIcon';
 const styled = require('styled-components').default;
