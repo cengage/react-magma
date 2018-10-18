@@ -16,9 +16,7 @@ function renderIcon(props) {
   const iconType = ICONS[type];
 
   return iconType ? (
-    <span className={type}>
-      <SvgIcon id={id} title={title} color={color} size={size} {...iconType} />
-    </span>
+    <SvgIcon id={id} title={title} color={color} size={size} {...iconType} />
   ) : null;
 }
 

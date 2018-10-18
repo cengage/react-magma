@@ -29,8 +29,8 @@ describe('Icon', () => {
 
   it('should render a icon with the passed in props', () => {
     const { container } = renderIcon();
-    const title = container.firstChild.firstChild.childNodes[0];
-    const svg = container.firstChild.firstChild.childNodes[1];
+    const title = container.firstChild.childNodes[0];
+    const svg = container.firstChild.childNodes[1];
 
     expect(title).toHaveAttribute('id', BASE_ICON_PROPS.id);
     expect(title).toHaveTextContent(BASE_ICON_PROPS.title);
@@ -49,7 +49,7 @@ describe('Icon', () => {
   it('should render with different color', () => {
     const color = 'red';
     const { container } = renderIcon({ color });
-    const svg = container.firstChild.firstChild;
+    const svg = container.firstChild;
 
     expect(svg).toHaveAttribute('fill', color);
   });
@@ -57,7 +57,7 @@ describe('Icon', () => {
   it('should render with different size', () => {
     const size = '32';
     const { container } = renderIcon({ size });
-    const svg = container.firstChild.firstChild;
+    const svg = container.firstChild;
 
     expect(svg).toHaveAttribute('height', size);
     expect(svg).toHaveAttribute('width', size);
