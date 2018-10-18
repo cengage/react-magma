@@ -10,22 +10,6 @@ import { Icon, ICONS } from 'react-magma-dom';
 
 # Icons
 
-## Available Icons
-
-<Playground>
-  {
-    <IconListContainer>{Object.keys(ICONS).map((key) => {
-      const id = key + 'Available';
-      const title = key + ' Title';
-
-      return <IconContainer border>
-        <Icon id={id} title={title} type={key} /><br />
-        {key}
-      </IconContainer>
-    })}</IconListContainer>
-  }
-</Playground>
-
 ## Basic Usage
 
 <Playground>
@@ -60,4 +44,20 @@ import { Icon, ICONS } from 'react-magma-dom';
       <Icon id="someColor" color="green" title="Some Color" type="angle-down" />
     </IconContainer>
   </p>
+</Playground>
+
+## Available Icons
+
+<Playground>
+  {
+    <IconListContainer>{Object.keys(ICONS).map((key) => {
+      const id = key + 'Available';
+      const title = key + ' Title';
+
+      return <IconContainer border>
+        <Icon id={id} title={title} type={key} /><br />
+        {key}
+      </IconContainer>
+    })}</IconListContainer>
+  }
 </Playground>
