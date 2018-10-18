@@ -10,12 +10,12 @@ import { Icon, ICONS } from 'react-magma-dom';
 
 # Icons
 
-## Basic Usage
+## Available Icons
 
 <Playground>
   {
     <IconListContainer>{Object.keys(ICONS).map((key) => {
-      const id = key + 'Basic';
+      const id = key + 'Available';
       const title = key + ' Title';
 
       return <IconContainer>
@@ -24,6 +24,16 @@ import { Icon, ICONS } from 'react-magma-dom';
       </IconContainer>
     })}</IconListContainer>
   }
+</Playground>
+
+## Basic Usage
+
+<Playground>
+  <p>
+    <IconContainer>
+      <Icon id="infoBasic" title="Info Available" type="info" />
+    </IconContainer>
+  </p>
 </Playground>
 
 ## Sizes
