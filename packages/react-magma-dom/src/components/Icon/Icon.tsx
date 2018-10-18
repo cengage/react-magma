@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { IconMap } from './IconMap';
+import { ICONS } from './types/icons';
+import { SvgIcon } from './SvgIcon';
 const styled = require('styled-components').default;
 
 export interface IconProps {
@@ -12,12 +13,10 @@ export interface IconProps {
 
 function renderIcon(props) {
   const { id, title, type, color, size } = props;
-  const IconType = IconMap[type];
+  const iconType = ICONS[type];
 
-  return IconType ? (
-    <span className={type}>
-      <IconType id={id} title={title} color={color} size={size} />
-    </span>
+  return iconType ? (
+    <SvgIcon id={id} title={title} color={color} size={size} {...iconType} />
   ) : null;
 }
 

@@ -2,12 +2,15 @@ import * as React from 'react';
 import 'jest-dom/extend-expect';
 import 'jest-styled-components';
 import { Icon, IconProps } from './Icon';
-import { render, fireEvent, cleanup } from 'react-testing-library';
+import { ICONS } from './types/icons';
+import { render, cleanup } from 'react-testing-library';
+
+const baseIconType = Object.keys(ICONS)[0];
 
 const BASE_ICON_PROPS: IconProps = {
-  id: 'infoId',
-  title: 'Info Title',
-  type: 'info'
+  id: `${baseIconType}Id`,
+  title: `${baseIconType} Title`,
+  type: baseIconType
 };
 
 const renderIcon = (myProps = {}) => {
@@ -19,12 +22,6 @@ const renderIcon = (myProps = {}) => {
   return render(<Icon {...props} />);
 };
 
-function renderForSnapshots(type) {
-  const { container } = renderIcon({ type, title: `${type} icon` });
-
-  expect(container).toMatchSnapshot();
-}
-
 describe('Icon', () => {
   afterEach(() => {
     cleanup();
@@ -32,8 +29,8 @@ describe('Icon', () => {
 
   it('should render a icon with the passed in props', () => {
     const { container } = renderIcon();
-    const title = container.firstChild.firstChild.childNodes[0];
-    const svg = container.firstChild.firstChild.childNodes[1];
+    const title = container.firstChild.childNodes[0];
+    const svg = container.firstChild.childNodes[1];
 
     expect(title).toHaveAttribute('id', BASE_ICON_PROPS.id);
     expect(title).toHaveTextContent(BASE_ICON_PROPS.title);
@@ -52,7 +49,7 @@ describe('Icon', () => {
   it('should render with different color', () => {
     const color = 'red';
     const { container } = renderIcon({ color });
-    const svg = container.firstChild.firstChild;
+    const svg = container.firstChild;
 
     expect(svg).toHaveAttribute('fill', color);
   });
@@ -60,23 +57,21 @@ describe('Icon', () => {
   it('should render with different size', () => {
     const size = '32';
     const { container } = renderIcon({ size });
-    const svg = container.firstChild.firstChild;
+    const svg = container.firstChild;
 
     expect(svg).toHaveAttribute('height', size);
     expect(svg).toHaveAttribute('width', size);
   });
 
   describe('Snapshot Tests', () => {
-    it('should render an info icon', () => {
-      renderForSnapshots('info');
-    });
+    test.each(Object.keys(ICONS))('should render %s icon', type => {
+      const { container } = renderIcon({
+        id: `${type}Id`,
+        title: `${type} icon`,
+        type
+      });
 
-    it('should render an angle-down icon', () => {
-      renderForSnapshots('angle-down');
-    });
-
-    it('should render an folder-open icon', () => {
-      renderForSnapshots('folder-open');
+      expect(container).toMatchSnapshot();
     });
   });
 });
