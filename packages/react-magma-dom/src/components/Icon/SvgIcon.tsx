@@ -2,14 +2,24 @@ import * as React from 'react';
 
 const defaultSize = 24;
 
+interface Path {
+  d: string;
+  transform?: string;
+}
+
 interface SvgIconProps {
   id: string;
   title: string;
   viewBox: string;
-  d: string;
-  transform: string;
+  paths: Path[];
   color?: string;
   size?: number;
+}
+
+function renderPaths(paths) {
+  return paths.map(({ d, transform }, index) => (
+    <path key={index} d={d} transform={transform} />
+  ));
 }
 
 export const SvgIcon: React.SFC<SvgIconProps> = ({
@@ -18,8 +28,7 @@ export const SvgIcon: React.SFC<SvgIconProps> = ({
   id,
   title,
   viewBox,
-  d,
-  transform
+  paths
 }): JSX.Element => (
   <svg
     className="icon"
@@ -31,7 +40,7 @@ export const SvgIcon: React.SFC<SvgIconProps> = ({
     aria-labelledby={id}
   >
     <title id={id}>{title}</title>
-    <path d={d} transform={transform} />
+    {renderPaths(paths)}
   </svg>
 );
 

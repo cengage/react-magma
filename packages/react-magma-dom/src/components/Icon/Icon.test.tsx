@@ -2,12 +2,15 @@ import * as React from 'react';
 import 'jest-dom/extend-expect';
 import 'jest-styled-components';
 import { Icon, IconProps } from './Icon';
-import { render, fireEvent, cleanup } from 'react-testing-library';
+import { ICONS } from './types/icons';
+import { render, cleanup } from 'react-testing-library';
+
+const baseIconType = Object.keys(ICONS)[0];
 
 const BASE_ICON_PROPS: IconProps = {
-  id: 'infoId',
-  title: 'Info Title',
-  type: 'info'
+  id: `${baseIconType}Id`,
+  title: `${baseIconType} Title`,
+  type: baseIconType
 };
 
 const renderIcon = (myProps = {}) => {
@@ -18,12 +21,6 @@ const renderIcon = (myProps = {}) => {
 
   return render(<Icon {...props} />);
 };
-
-function renderForSnapshots(type) {
-  const { container } = renderIcon({ type, title: `${type} icon` });
-
-  expect(container).toMatchSnapshot();
-}
 
 describe('Icon', () => {
   afterEach(() => {
@@ -67,16 +64,14 @@ describe('Icon', () => {
   });
 
   describe('Snapshot Tests', () => {
-    it('should render an info icon', () => {
-      renderForSnapshots('info');
-    });
+    test.each(Object.keys(ICONS))('should render %s icon', type => {
+      const { container } = renderIcon({
+        id: `${type}Id`,
+        title: `${type} icon`,
+        type
+      });
 
-    it('should render an angle-down icon', () => {
-      renderForSnapshots('angle-down');
-    });
-
-    it('should render an folder-open icon', () => {
-      renderForSnapshots('folder-open');
+      expect(container).toMatchSnapshot();
     });
   });
 });

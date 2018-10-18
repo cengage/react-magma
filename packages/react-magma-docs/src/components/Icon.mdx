@@ -5,24 +5,25 @@ menu: Components
 
 import { Playground } from 'docz';
 import { IconContainer } from '../docs-components/IconContainer';
-import { Icon } from 'react-magma-dom';
+import { IconListContainer } from '../docs-components/IconListContainer';
+import { Icon, ICONS } from 'react-magma-dom';
 
 # Icons
 
 ## Basic Usage
 
 <Playground>
-    <p>
-      <IconContainer>
-        <Icon id="infoBasic" title="Basic Info" type="info" />
+  {
+    <IconListContainer>{Object.keys(ICONS).map((key) => {
+      const id = key + 'Basic';
+      const title = key + ' Title';
+
+      return <IconContainer>
+        <Icon id={id} title={title} type={key} /><br />
+        {key}
       </IconContainer>
-      <IconContainer>
-        <Icon id="angleDownBasic" title="Basic Angle Down" type="angle-down" />
-      </IconContainer>
-      <IconContainer>
-        <Icon id="folderOpenBasic" title="Basic Folder Open" type="folder-open" />
-      </IconContainer>
-    </p>    
+    })}</IconListContainer>
+  }
 </Playground>
 
 ## Sizes
