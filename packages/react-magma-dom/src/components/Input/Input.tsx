@@ -18,7 +18,7 @@ const StyledInput = styled.input`
   color: ${magma.primary01};
   display: block;
   height: 35px;
-  padding: 11px 8px;
+  padding: 0 8px;
   font-size: 1rem;
   line-height: 1.25rem;
   width: 100%;
