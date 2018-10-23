@@ -47,7 +47,32 @@ class App extends Component {
             }
           ]}
           handleOpen={() => {
-            alert('clicked');
+            alert('opened');
+          }}
+          handleClose={() => {
+            alert('closed');
+          }}
+        />
+        <Select
+          id="changeSelectId"
+          name="change"
+          labelText="Change"
+          options={[
+            {
+              value: 'red',
+              label: 'Red'
+            },
+            {
+              value: 'blue',
+              label: 'Blue'
+            },
+            {
+              value: 'green',
+              label: 'Green'
+            }
+          ]}
+          handleChange={() => {
+            alert('changed');
           }}
         />
       </div>
