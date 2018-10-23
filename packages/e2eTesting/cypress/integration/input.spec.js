@@ -6,70 +6,61 @@ const runTests = versionNumber => {
 
   it('Displays and interacts text input', () => {
     const message = 'Hello There';
-    const input = cy.get('#defaultInput');
+    cy.get('#defaultInput').as('input');
 
-    input.should('be.visible');
-    input.type(message);
+    cy.get('@input').should('be.visible');
+    cy.get('@input').type(message);
 
-    input.should('have.value', message);
+    cy.get('@input').should('have.value', message);
   });
 
   it('Displays and interacts number input', () => {
     const message = '1234';
-    const input = cy.get('#numberInput');
+    cy.get('#numberInput').as('input');
 
-    input.should('be.visible');
-    input.type(message);
+    cy.get('@input').should('be.visible');
+    cy.get('@input').type(message);
 
-    input.should('have.value', message.toString());
+    cy.get('@input').should('have.value', message.toString());
   });
 
   it('Displays only numbers in number input', () => {
     const textString = 'abc';
     const numberString = '123';
     const message = `${textString}${numberString}`;
-    const input = cy.get('#numberInput');
+    cy.get('#numberInput').as('input');
 
-    input.should('be.visible');
-    input.type(message);
+    cy.get('@input').should('be.visible');
+    cy.get('@input').type(message);
 
-    input.should('not.have.value', message);
-    input.should('have.value', numberString);
+    cy.get('@input').should('not.have.value', message);
+    cy.get('@input').should('have.value', numberString);
   });
 
   it('Displays and interacts password input', () => {
     const message = 'password';
-    const input = cy.get('#passwordInput');
+    cy.get('#passwordInput').as('input');
 
-    input.should('be.visible');
-    input.type(message);
+    cy.get('@input').should('be.visible');
+    cy.get('@input').type(message);
 
-    input.should('have.value', message);
+    cy.get('@input').should('have.value', message);
   });
 
   it('Auto Focus input', () => {
-    const input = cy.focused();
-
-    input.should('have.attr', 'id', 'focusedInput');
+    cy.focused().should('have.attr', 'id', 'focusedInput');
   });
 
   it('Makes an input required', () => {
-    const input = cy.get('#requiredInput');
-
-    input.should('have.attr', 'required');
+    cy.get('#requiredInput').should('have.attr', 'required');
   });
 
   it('Makes an input disabled', () => {
-    const message = 'disabled';
-    const input = cy.get('#disabledInput');
-
-    input.should('have.attr', 'disabled');
+    cy.get('#disabledInput').should('have.attr', 'disabled');
   });
 
   it('Creates a label for the input', () => {
-    const label = cy.get('label');
-
-    label.should('have.attr', 'for', 'labeledInput');
+    cy.get('label').should('have.attr', 'for', 'labeledInput');
   });
 };
 
