@@ -6,13 +6,14 @@ const runTests = versionNumber => {
 
   it('Creates a label for the select', () => {
     const alertStub = cy.stub();
-    const select = cy.get('#basicSelectId');
 
     cy.on('window:alert', alertStub);
 
-    select.click().then(() => {
-      expect(alertStub.getCall(0)).to.be.calledWith('clicked');
-    });
+    cy.get('#basicSelectId')
+      .click()
+      .then(() => {
+        expect(alertStub.getCall(0)).to.be.calledWith('clicked');
+      });
   });
 };
 
