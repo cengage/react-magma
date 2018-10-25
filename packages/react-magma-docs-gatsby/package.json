@@ -1,7 +1,7 @@
 {
   "name": "react-magma-docs-gatsby",
   "description": "React Magma docs - take 2",
-  "version": "0.1.0",
+  "version": "0.1.0-beta.0",
   "dependencies": {
     "@mdx-js/mdx": "^0.15.5",
     "@mdx-js/tag": "^0.15.0",
@@ -19,7 +19,8 @@
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-helmet": "^5.2.0",
-    "styled-components": "^4.0.2"
+    "styled-components": "^4.0.2",
+    "react-magma-dom": "0.1.0-beta.0"
   },
   "keywords": [
     "gatsby"

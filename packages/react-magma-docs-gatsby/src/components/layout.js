@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import MainNav from './main-nav'
+import { Button } from 'react-magma-dom'
 
 import Header from './header'
 import './layout.css'
@@ -31,6 +32,7 @@ const Layout = ({ children }) => (
         </Helmet>
         <Header siteTitle={data.site.siteMetadata.title} />
         <MainNav />
+        <Button />
         <div
           style={{
             margin: '0 auto',
