@@ -4,8 +4,8 @@ import { SvgIcon } from './SvgIcon';
 const styled = require('styled-components').default;
 
 export interface IconProps {
-  id: string;
-  title: string;
+  id?: string;
+  title?: string;
   type: string;
   color?: string;
   size?: number;
