@@ -1,5 +1,10 @@
 import React from 'react'
 import { Link, StaticQuery, graphql } from 'gatsby'
+import styled from 'styled-components'
+
+const StyledNav = styled.nav`
+  grid-area: nav;
+`
 
 const MainNav = () => (
   <StaticQuery
@@ -35,7 +40,7 @@ const MainNav = () => (
       }
     `}
     render={data => (
-      <nav>
+      <StyledNav>
         <h1>Components</h1>
         <ul>
           {data.apiDocs.edges.map(({ node }) => (
@@ -52,7 +57,7 @@ const MainNav = () => (
             </li>
           ))}
         </ul>
-      </nav>
+      </StyledNav>
     )}
   />
 )
