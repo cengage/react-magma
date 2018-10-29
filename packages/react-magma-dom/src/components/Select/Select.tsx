@@ -47,12 +47,40 @@ const selectStyles = {
       : 'inset 0 4px 5px #e6e6e6',
     color: magma.primary01,
     height: '35px',
-    padding: '0 8px'
+    padding: '0 8px',
+
+    '&:hover': {
+      borderColor: isFocused ? magma.accent02 : magma.secondary05
+    }
   }),
   indicatorSeparator: styles => ({
+    display: 'none'
+  }),
+  menu: styles => ({
     ...styles,
-    backgroundColor: magma.secondary05,
-    marginRight: '4px'
+    border: `1px solid ${magma.secondary06}`,
+    borderRadius: '3px',
+    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)',
+    zIndex: 999
+  }),
+  multiValueRemove: styles => ({
+    ...styles,
+    backgroundColor: magma.limited03,
+    color: magma.primary01,
+
+    '&:hover': {
+      backgroundColor: magma.secondary05,
+      color: magma.primary01
+    }
+  }),
+  option: (styles, { isFocused, isSelected }) => ({
+    ...styles,
+    backgroundColor: isFocused
+      ? magma.limited03
+      : isSelected
+        ? magma.primary03
+        : magma.primary04,
+    color: magma.primary01
   })
 };
 
@@ -66,11 +94,21 @@ const DropdownIndicator = props => {
   );
 };
 
+const MultiValueRemove = props => {
+  return (
+    components.MultiValueRemove && (
+      <components.MultiValueRemove {...props}>
+        <Icon size={8} type="cross" />
+      </components.MultiValueRemove>
+    )
+  );
+};
+
 export const Select: React.SFC<SelectProps> = (
   props: SelectProps
 ): JSX.Element => (
   <SelectCore
-    components={{ DropdownIndicator }}
+    components={{ DropdownIndicator, MultiValueRemove }}
     defaultValue={props.defaultValue}
     handleBlur={props.handleBlur}
     handleFocus={props.handleFocus}
@@ -101,7 +139,7 @@ export const Select: React.SFC<SelectProps> = (
         <div>
           <StyledLabel htmlFor={id}>{labelText}</StyledLabel>
           <ReactSelect
-            components={{ DropdownIndicator }}
+            components={{ DropdownIndicator, MultiValueRemove }}
             id={id}
             name={name}
             defaultValue={defaultValue}
