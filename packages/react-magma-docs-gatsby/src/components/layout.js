@@ -4,15 +4,15 @@ import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import MainNav from './main-nav'
 import styled from 'styled-components'
+import { MDXProvider } from '@mdx-js/tag'
+import { Button } from 'react-magma-dom'
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
+
+import { convertTextToId } from '../utils'
 
 import Header from './header'
 
-// const GlobalStyles = createGlobalStyle`
-//   body,html {
-//     margin:0;
-//     padding:0;
-//   }
-// `
+import './syntax.css'
 
 const Content = styled.article`
   grid-area: content;
@@ -27,6 +27,30 @@ const Main = styled.main`
     'nav header'
     'nav content';
 `
+
+const PreComponent = ({ className, ...props }) =>
+  props.children.props.props &&
+  props.children.props.props.className === 'language-.jsx' ? (
+    <LiveProvider
+      mountStylesheet={false}
+      code={props.children.props.children}
+      scope={{
+        Button,
+      }}
+    >
+      <LiveEditor tabIndex="-1" />
+      <LiveError />
+      <LivePreview />
+    </LiveProvider>
+  ) : (
+    <pre {...props} />
+  )
+
+const Table = props => <table {...props} />
+
+const SectionHeading = props => (
+  <h2 id={convertTextToId(props.children)}>{props.children}</h2>
+)
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -53,7 +77,17 @@ const Layout = ({ children }) => (
         <Main>
           <MainNav />
           <Header siteTitle={data.site.siteMetadata.title} />
-          <Content>{children}</Content>
+          <Content>
+            <MDXProvider
+              components={{
+                pre: PreComponent,
+                table: Table,
+                h2: SectionHeading,
+              }}
+            >
+              {children}
+            </MDXProvider>
+          </Content>
         </Main>
       </>
     )}

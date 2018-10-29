@@ -2,6 +2,8 @@ import React from 'react'
 import { Link, StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 
+import { convertTextToId } from '../utils'
+
 const StyledNav = styled.nav`
   grid-area: nav;
 `
@@ -17,6 +19,10 @@ const MainNav = () => (
           fileAbsolutePath
           fields {
             slug
+          }
+          headings {
+            depth
+            value
           }
         }
       }
@@ -46,6 +52,19 @@ const MainNav = () => (
           {data.apiDocs.edges.map(({ node }) => (
             <li key={node.fields.slug}>
               <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+              <ul>
+                {node.headings
+                  .filter(heading => {
+                    return heading.depth === 2
+                  })
+                  .map(heading => (
+                    <li>
+                      <a href={`#${convertTextToId(heading.value)}`}>
+                        {heading.value}
+                      </a>
+                    </li>
+                  ))}
+              </ul>
             </li>
           ))}
         </ul>

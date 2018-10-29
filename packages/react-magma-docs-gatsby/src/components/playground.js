@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
+import { Button } from 'react-magma-dom'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 
 const StyledProvider = styled(LiveProvider)`
@@ -58,15 +59,36 @@ const StyledError = styled(LiveError)`
   color: 'white';
 `
 
-const Playground = ({ noInline, code }) => (
-  <StyledProvider code={code} noInline={noInline} mountStylesheet={false}>
-    <LiveWrapper>
-      <StyledPreview />
-      <StyledEditor />
-    </LiveWrapper>
+export class Playground extends React.Component {
+  transformCode(code) {
+    return `
+      const App = ({ children }) => (
+        <div>
+          {children && typeof children === 'function' ? children() : children}
+        </div>
+      )
+      render(<App>${code}</App>)
+    `
+  }
 
-    <StyledError />
-  </StyledProvider>
-)
+  render() {
+    console.log(this.props.children)
+    return (
+      <StyledProvider
+        scope={{ Button }}
+        code={this.props.children}
+        noInline={false}
+        mountStylesheet={false}
+      >
+        <LiveWrapper>
+          <StyledPreview />
+          <StyledEditor />>
+        </LiveWrapper>
+
+        <StyledError />
+      </StyledProvider>
+    )
+  }
+}
 
 export default Playground
