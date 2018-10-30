@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, StaticQuery, graphql } from 'gatsby'
+import { Router } from '@reach/router'
 import styled from 'styled-components'
 
 import { convertTextToId } from '../utils'
@@ -7,6 +8,16 @@ import { convertTextToId } from '../utils'
 const StyledNav = styled.nav`
   grid-area: nav;
 `
+
+const SubMenu = ({ headings }) => (
+  <ul>
+    {headings.map((heading, index) => (
+      <li key={index}>
+        <a href={`#${convertTextToId(heading.value)}`}>{heading.value}</a>
+      </li>
+    ))}
+  </ul>
+)
 
 const MainNav = () => (
   <StaticQuery
@@ -20,7 +31,7 @@ const MainNav = () => (
           fields {
             slug
           }
-          headings {
+          headings(depth: h2) {
             depth
             value
           }
@@ -52,19 +63,9 @@ const MainNav = () => (
           {data.apiDocs.edges.map(({ node }) => (
             <li key={node.fields.slug}>
               <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
-              <ul>
-                {node.headings
-                  .filter(heading => {
-                    return heading.depth === 2
-                  })
-                  .map(heading => (
-                    <li>
-                      <a href={`#${convertTextToId(heading.value)}`}>
-                        {heading.value}
-                      </a>
-                    </li>
-                  ))}
-              </ul>
+              <Router>
+                <SubMenu path={node.fields.slug} headings={node.headings} />
+              </Router>
             </li>
           ))}
         </ul>
