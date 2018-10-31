@@ -5,7 +5,9 @@ import { StaticQuery, graphql } from 'gatsby'
 import MainNav from './main-nav'
 import styled from 'styled-components'
 import { MDXProvider } from '@mdx-js/tag'
-import { Button } from 'react-magma-dom'
+import { Button, Heading, Icon, ICONS, Input } from 'react-magma-dom'
+import { IconContainer } from './iconContainer'
+import { IconListContainer } from './iconListContainer'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 
 import { convertTextToId } from '../utils'
@@ -36,6 +38,12 @@ const PreComponent = ({ className, ...props }) =>
       code={props.children.props.children}
       scope={{
         Button,
+        Heading,
+        Icon,
+        ICONS,
+        IconContainer,
+        IconListContainer,
+        Input,
       }}
     >
       <LiveEditor tabIndex="-1" />

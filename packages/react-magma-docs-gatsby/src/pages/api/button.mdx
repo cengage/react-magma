@@ -1,15 +1,66 @@
 ---
 title: "Buttons"
 ---
-import { Button } from 'react-magma-dom'
-import { Playground } from '../../components/playground'
 
 # Buttons
 
-## Basic Usage
+**Buttons are clickable items used to perform an action.**
+
+Buttons should be used in situations where users might need to:
+
+* Submit a form.
+* Begin a new task.
+* Trigger a new UI element to appear on the page.
+* Specify a new or next step in a process.
+
+## Sizes
 
 ```.jsx
-  <Button text="Hello" />
+    <p>
+        <Button type="primary" size="small" text="Small" />
+        <Button type="primary" text="Default" />
+        <Button type="primary" size="large" text="Large" />
+    </p>    
+```
+
+## Types
+
+```.jsx
+    <p>
+        <Button text="Default" />
+        <Button type="primary" text="Primary" />
+        <Button type="success" text="Success" />
+        <Button type="warning" text="Warning" />
+        <Button type="danger" text="Danger" />
+    </p>
+```
+
+## Ghost
+
+```.jsx
+    <p>
+        <Button ghost text="Default Ghost" />{' '}
+        <Button ghost type="primary" text="Primary Ghost" />
+        <Button ghost type="success" text="Success Ghost" />
+        <Button ghost type="warning" text="Warning Ghost" />
+        <Button ghost type="danger" text="Danger Ghost" />
+    </p>
+```
+
+## Disabled
+
+```.jsx
+    <p>
+        <Button disabled type="primary" text="Disabled" />
+    </p>
+```
+
+## Link
+
+```.jsx
+    <p>
+        <Button type="link" text="Link"/>
+    </p>
 ```
 
 ## Event Handling
