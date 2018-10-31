@@ -3,16 +3,10 @@ import { SelectCore } from 'react-magma-core';
 
 const styled = require('styled-components').default;
 import { Icon } from '../Icon/Icon';
+import { Label } from '../Label/Label';
 import { magma } from '../../theme/magma';
 
 import ReactSelect, { components } from 'react-select';
-
-const StyledLabel = styled.label`
-  display: inline-block;
-  font-weight: bold;
-  margin-bottom: 5px;
-  max-width: 100%;
-`;
 
 interface Options {
   label: string;
@@ -37,9 +31,9 @@ export interface SelectProps {
 }
 
 const selectStyles = {
-  control: (styles, { isFocused }) => ({
+  control: (styles, { isFocused, isDisabled }) => ({
     ...styles,
-    backgroundColor: magma.primary04,
+    backgroundColor: isDisabled ? magma.primary03 : magma.primary04,
     borderColor: isFocused ? magma.accent02 : magma.secondary05,
     borderRadius: '3px',
     boxShadow: isFocused
@@ -164,7 +158,7 @@ export const Select: React.SFC<SelectProps> = (
 
       return (
         <div>
-          <StyledLabel htmlFor={id}>{labelText}</StyledLabel>
+          <Label htmlFor={id}>{labelText}</Label>
           <ReactSelect
             components={{ ClearIndicator, DropdownIndicator, MultiValueRemove }}
             id={id}

@@ -4,6 +4,7 @@ menu: Components
 ---
 
 import { Playground } from 'docz'
+import { SelectContainer } from '../docs-components/SelectContainer';
 import { Select } from 'react-magma-dom';
 
 # Selects
@@ -11,6 +12,7 @@ import { Select } from 'react-magma-dom';
 ## Basic Usage
 
 <Playground>
+  <SelectContainer>
     <Select
       id="basicSelectId"
       name="basic"
@@ -26,17 +28,13 @@ import { Select } from 'react-magma-dom';
         label: 'Green'
       }]}
     />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
+  </SelectContainer>
 </Playground>
 
 ## Multi-Select
 
 <Playground>
+  <SelectContainer>
     <Select
       id="multiSelectId"
       name="multi"
@@ -53,17 +51,13 @@ import { Select } from 'react-magma-dom';
       }]}
       multi
     />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
+  </SelectContainer>
 </Playground>
 
 ## Clearable
 
 <Playground>
+  <SelectContainer>
     <Select
       id="clearableSelectId"
       name="clearable"
@@ -80,17 +74,13 @@ import { Select } from 'react-magma-dom';
       }]}
       clearable
     />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
+  </SelectContainer>
 </Playground>
 
 ## Default Value
 
 <Playground>
+  <SelectContainer>
     <Select
       id="defaultValueSelectId"
       name="defaultValue"
@@ -110,17 +100,13 @@ import { Select } from 'react-magma-dom';
         label: 'Red'
       }}
     />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
+  </SelectContainer>
 </Playground>
 
 ## Disabled
 
 <Playground>
+  <SelectContainer>
     <Select
       id="disabledSelectId"
       name="disabled"
@@ -137,12 +123,7 @@ import { Select } from 'react-magma-dom';
       }]}
       disabled
     />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
+  </SelectContainer>
 </Playground>
 
 ## Controlled
@@ -166,7 +147,7 @@ import { Select } from 'react-magma-dom';
         }
 
         render() {
-          return <div>
+          return <SelectContainer>
             <p>
               <strong>Value: </strong>
               <span id="value">{this.state.value ? this.state.value.value : 'No Value Set'}</span>
@@ -187,13 +168,7 @@ import { Select } from 'react-magma-dom';
               }]}
               handleChange={this.changeValue}
             />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-          </div>
+          </SelectContainer>
         }
       }
       return <SelectInput />
@@ -225,7 +200,7 @@ import { Select } from 'react-magma-dom';
         }
 
         render() {
-          return <div>
+          return <SelectContainer>
             <p><strong>Focused: </strong> <span id="focused">{this.state.message}</span></p>
             <Select
               id="focusedSelectId"
@@ -244,13 +219,7 @@ import { Select } from 'react-magma-dom';
               handleFocus={this.changeFocusedMessage}
               handleBlur={this.changeFocusedMessage}
             />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-          </div>
+          </SelectContainer>
         }
       }
       return <SelectInput />
@@ -282,8 +251,8 @@ import { Select } from 'react-magma-dom';
         }
 
         render() {
-          return <div>
-            <p><strong>Opened: </strong> <span id="opened">{this.state.message}</span></p>
+          return <SelectContainer>
+          <p><strong>Opened: </strong> <span id="opened">{this.state.message}</span></p>
             <Select
               id="openedSelectId"
               name="opened"
@@ -301,13 +270,7 @@ import { Select } from 'react-magma-dom';
               handleOpen={this.changeOpenedMessage}
               handleClose={this.changeOpenedMessage}
             />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-          </div>
+          </SelectContainer>
         }
       }
       return <SelectInput />
