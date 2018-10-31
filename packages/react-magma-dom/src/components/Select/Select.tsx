@@ -53,6 +53,18 @@ const selectStyles = {
       borderColor: isFocused ? magma.accent02 : magma.secondary05
     }
   }),
+  dropdownIndicator: (styles, { isFocused }) => ({
+    ...styles,
+    color: isFocused ? magma.secondary04 : magma.secondary05
+  }),
+  clearIndicator: (styles, { isFocused }) => ({
+    ...styles,
+    color: isFocused ? magma.secondary04 : magma.secondary05,
+
+    '&:hover': {
+      backgroundColor: magma.primary03
+    }
+  }),
   indicatorSeparator: styles => ({
     display: 'none'
   }),
@@ -62,6 +74,11 @@ const selectStyles = {
     borderRadius: '3px',
     boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)',
     zIndex: 999
+  }),
+  multiValue: styles => ({
+    ...styles,
+    backgroundColor: magma.limited03,
+    color: magma.primary01
   }),
   multiValueRemove: styles => ({
     ...styles,
@@ -84,11 +101,21 @@ const selectStyles = {
   })
 };
 
+const ClearIndicator = props => {
+  return (
+    components.ClearIndicator && (
+      <components.ClearIndicator {...props}>
+        <Icon size={12} type="cross" />
+      </components.ClearIndicator>
+    )
+  );
+};
+
 const DropdownIndicator = props => {
   return (
     components.DropdownIndicator && (
       <components.DropdownIndicator {...props}>
-        <Icon color={magma.secondary05} size={18} type="angle-down" />
+        <Icon size={18} type="angle-down" />
       </components.DropdownIndicator>
     )
   );
@@ -108,7 +135,7 @@ export const Select: React.SFC<SelectProps> = (
   props: SelectProps
 ): JSX.Element => (
   <SelectCore
-    components={{ DropdownIndicator, MultiValueRemove }}
+    components={{ ClearIndicator, DropdownIndicator, MultiValueRemove }}
     defaultValue={props.defaultValue}
     handleBlur={props.handleBlur}
     handleFocus={props.handleFocus}
@@ -139,7 +166,7 @@ export const Select: React.SFC<SelectProps> = (
         <div>
           <StyledLabel htmlFor={id}>{labelText}</StyledLabel>
           <ReactSelect
-            components={{ DropdownIndicator, MultiValueRemove }}
+            components={{ ClearIndicator, DropdownIndicator, MultiValueRemove }}
             id={id}
             name={name}
             defaultValue={defaultValue}
