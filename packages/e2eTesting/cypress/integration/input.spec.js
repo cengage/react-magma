@@ -33,8 +33,9 @@ const runTests = versionNumber => {
     cy.get('@input').should('be.visible');
     cy.get('@input').type(message);
 
-    cy.get('@input').should('not.have.value', message);
-    cy.get('@input').should('have.value', numberString);
+    cy.get('@input')
+      .should('not.have.value', message)
+      .and('have.value', numberString);
   });
 
   it('Displays and interacts password input', () => {

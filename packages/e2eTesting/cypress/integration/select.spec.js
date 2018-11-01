@@ -15,10 +15,11 @@ const runTests = versionNumber => {
         cy.get('div[role="option"]').as('options');
 
         expect(alertStub.getCall(0)).to.be.calledWith('opened');
-        cy.get('@options').should('have.length', 3);
-        cy.get('@options').should('contain', 'Red');
-        cy.get('@options').should('contain', 'Blue');
-        cy.get('@options').should('contain', 'Green');
+        cy.get('div[role="option"]')
+          .should('have.length', 3)
+          .and('contain', 'Red')
+          .and('contain', 'Blue')
+          .and('contain', 'Green');
 
         cy.get('#basicSelectId')
           .click()

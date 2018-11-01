@@ -22,10 +22,9 @@ const runTests = versionNumber => {
 
   it('Cannot click on disabled button', () => {
     const message = 'Disabled Button';
-    cy.contains(message).as('button');
-
-    cy.get('@button').should('be.visible');
-    cy.get('@button').should('be.disabled');
+    cy.contains(message)
+      .should('be.visible')
+      .and('be.disabled');
   });
 };
 
