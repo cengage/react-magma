@@ -12,7 +12,42 @@ import { Checkbox } from 'react-magma-dom';
 
 <Playground>
     <Checkbox
+        id='checkbox0'
+        labelText='Checkbox Label'
+        required={false}
+        value={false} />
+
+    <Checkbox
         id='checkbox1'
+        labelText='Checkbox Label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines'
+        required={false}
+        value={false} />
+</Playground>
+
+## Displayed inline
+
+<Playground>
+    <Checkbox
+        id='checkbox2'
+        inline
+        labelText='Checkbox Label'
+        required={false}
+        value={false} />
+
+    <Checkbox
+        id='checkbox3'
+        inline
+        labelText='Checkbox Label'
+        required={false}
+        value={false} />
+</Playground>
+
+## Disabled
+
+<Playground>
+    <Checkbox
+        disabled
+        id='checkbox4'
         labelText='Checkbox Label'
         required={false}
         value={false} />

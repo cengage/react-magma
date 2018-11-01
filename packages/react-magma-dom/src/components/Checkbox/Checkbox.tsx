@@ -1,16 +1,7 @@
 import * as React from 'react';
 import { CheckboxCore } from 'react-magma-core';
 const styled = require('styled-components').default;
-// import { magma } from '../../theme/magma';
-
-const StyledLabel = styled.label`
-  display: inline-block;
-  font-weight: bold;
-  margin-bottom: 5px;
-  max-width: 100%;
-`;
-
-const StyledInput = styled.input``;
+import { magma } from '../../theme/magma';
 
 export interface CheckboxProps {
   autoFocus?: boolean;
@@ -19,10 +10,24 @@ export interface CheckboxProps {
   handleChange?: () => void;
   handleFocus?: () => void;
   id: string;
+  inline?: boolean;
   labelText: string;
   required?: boolean;
   value?: string;
 }
+
+const StyledContainer = styled.div`
+  align-items: baseline;
+  display: ${props => (props.inline ? 'inline-flex' : 'flex')};
+  flex-wrap: nowrap;
+  margin: 0 0 5px;
+`;
+
+const StyledInput = styled.input``;
+
+const StyledLabel = styled.label`
+  margin: ${props => (props.inline ? '0 20px 0 10px' : '0 0 0 10px')};
+`;
 
 export const Checkbox: React.SFC<CheckboxProps> = (
   props: CheckboxProps
@@ -34,10 +39,10 @@ export const Checkbox: React.SFC<CheckboxProps> = (
     handleFocus={props.handleFocus}
   >
     {({ handleBlur, handleChange, handleFocus, value }) => {
-      const { autoFocus, id, disabled, labelText, required } = props;
+      const { autoFocus, id, inline, disabled, labelText, required } = props;
 
       return (
-        <div>
+        <StyledContainer inline={inline}>
           <StyledInput
             autoFocus={autoFocus}
             id={id}
@@ -49,8 +54,10 @@ export const Checkbox: React.SFC<CheckboxProps> = (
             onChange={handleChange}
             onFocus={handleFocus}
           />
-          <StyledLabel htmlFor={id}>{labelText}</StyledLabel>
-        </div>
+          <StyledLabel htmlFor={id} inline={inline}>
+            {labelText}
+          </StyledLabel>
+        </StyledContainer>
       );
     }}
   </CheckboxCore>
