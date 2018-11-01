@@ -26,7 +26,7 @@ export class CheckboxCore extends React.Component<
   }
 
   handleChange(event) {
-    const { value } = event.target;
+    const { checked: value } = event.target;
 
     this.setState(
       () => ({ value }),
