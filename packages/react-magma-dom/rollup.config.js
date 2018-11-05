@@ -22,7 +22,7 @@ export default [
         format: 'umd'
       }
     ],
-    external: ['react', 'styled-components'],
+    external: ['react', 'react-dom', 'styled-components'],
     plugins: [
       postcss({
         extensions: ['.css'],
