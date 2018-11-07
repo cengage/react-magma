@@ -1,0 +1,51 @@
+---
+name: Radio
+menu: Components
+---
+
+# Radios
+
+
+import { Playground, PropsTable } from 'docz';
+import { Radio, RadioGroup } from 'react-magma-dom';
+
+## Basic Usage
+
+<Playground>
+    <RadioGroup name="colors" labelText="Colors">
+      <Radio value="blue" labelText="Blue" />
+      <Radio value="red" labelText="Red" />
+    </RadioGroup>
+</Playground>
+
+<Playground>
+  {() => {
+    class Example extends React.Component {
+      constructor(props) {
+        super(props)
+          this.state = {
+            selectedValue: null
+          }
+        }
+
+        render() {
+          return (
+            <div>
+              <p><strong>Value Chosen: </strong>{this.state.selectedValue}</p>
+              <RadioGroup
+                handleChange={(value) => {
+                  this.setState(state => ({selectedValue: value}))
+                }}
+                name="people"
+                labelText="People"
+              >
+                <Radio value="aaron" labelText="Aaron" />
+                <Radio value="ryan" labelText="Ryan" />
+              </RadioGroup>
+            </div>
+          )
+        }
+      }
+      return <Example />
+  }}
+</Playground>

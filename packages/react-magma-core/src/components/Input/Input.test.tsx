@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import { InputCore, InputCoreProps, InputCoreState } from './Input';
+import { InputCore, InputCoreProps } from './Input';
 
 const handleBlur = jest.fn();
 const handleChange = jest.fn();
