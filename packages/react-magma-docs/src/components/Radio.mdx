@@ -33,8 +33,8 @@ import { Radio, RadioGroup } from 'react-magma-dom';
             <div>
               <p><strong>Value Chosen: </strong>{this.state.selectedValue}</p>
               <RadioGroup
-                handleChange={(value) => {
-                  this.setState(state => ({selectedValue: value}))
+                handleChange={(event) => {
+                  this.setState(state => ({selectedValue: event.target.value}))
                 }}
                 name="people"
                 labelText="People"

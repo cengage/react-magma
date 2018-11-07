@@ -39,6 +39,7 @@ describe('RadioCore', () => {
       const component = inputSetup();
 
       component.instance().handleChange({
+        persist: jest.fn(),
         target: {
           checked
         }
@@ -51,6 +52,7 @@ describe('RadioCore', () => {
   describe('handle change', () => {
     it('should call the handleChange from props during the internal handleChange', () => {
       const event = {
+        persist: jest.fn(),
         target: {
           checked: true
         }
@@ -69,6 +71,7 @@ describe('RadioCore', () => {
       });
 
       component.instance().handleChange({
+        persist: jest.fn(),
         target: {
           checked
         }

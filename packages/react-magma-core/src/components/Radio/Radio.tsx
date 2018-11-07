@@ -13,7 +13,8 @@ export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
   }
 
   handleChange(event) {
-    const { checked, value } = event.target;
+    event.persist();
+    const { checked } = event.target;
 
     this.setState(
       () => ({ checked }),
@@ -35,7 +36,7 @@ export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
 
 export interface RadioCoreProps {
   children: (props) => React.ReactNode;
-  handleChange?: (event: object) => void;
+  handleChange?: (event: React.SyntheticEvent) => void;
   selectedValue?: string;
   value?: string;
 }
