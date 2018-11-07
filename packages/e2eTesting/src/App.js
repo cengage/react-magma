@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Button, Icon } from 'react-magma-dom';
+import { Input, Button, Icon, RadioGroup, Radio } from 'react-magma-dom';
 
 class App extends Component {
   render() {
@@ -26,6 +26,18 @@ class App extends Component {
 
         <h1>ICONS</h1>
         <Icon id="basicInfoIcon" title="Basic Info Icon" type="info" />
+
+        <h1>RADIOS</h1>
+        <RadioGroup
+          name="colors"
+          labelText="Colors"
+          handleChange={event => {
+            alert(`${event.target.value} selected`);
+          }}
+        >
+          <Radio value="red" labelText="Red" />
+          <Radio value="blue" labelText="Blue" />
+        </RadioGroup>
       </div>
     );
   }
