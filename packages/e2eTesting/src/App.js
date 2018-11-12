@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Button, Icon } from 'react-magma-dom';
+import { Input, Button, Icon, Select } from 'react-magma-dom';
 
 class App extends Component {
   render() {
@@ -26,6 +26,55 @@ class App extends Component {
 
         <h1>ICONS</h1>
         <Icon id="basicInfoIcon" title="Basic Info Icon" type="info" />
+
+        <h1>SELECTS</h1>
+        <Select
+          id="basicSelectId"
+          name="basic"
+          labelText="Basic"
+          options={[
+            {
+              value: 'red',
+              label: 'Red'
+            },
+            {
+              value: 'blue',
+              label: 'Blue'
+            },
+            {
+              value: 'green',
+              label: 'Green'
+            }
+          ]}
+          handleOpen={() => {
+            alert('opened');
+          }}
+          handleClose={() => {
+            alert('closed');
+          }}
+        />
+        <Select
+          id="changeSelectId"
+          name="change"
+          labelText="Change"
+          options={[
+            {
+              value: 'red',
+              label: 'Red'
+            },
+            {
+              value: 'blue',
+              label: 'Blue'
+            },
+            {
+              value: 'green',
+              label: 'Green'
+            }
+          ]}
+          handleChange={() => {
+            alert('changed');
+          }}
+        />
       </div>
     );
   }
