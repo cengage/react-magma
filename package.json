@@ -7,7 +7,7 @@
     "test": "lerna run --scope react-magma-dom --scope react-magma-core test && npm run report",
     "test-watch": "jest --watch",
     "report": "mkdir -p .nyc_output && istanbul-merge ./packages/*/coverage/*.json --out .nyc_output/coverage.json && nyc report --reporter=lcov --reporter=text",
-    "build": "lerna run build --scope react-magma-core --scope react-magma-dom",
+    "build": "lerna run build --scope react-magma-core --scope react-magma-dom --scope react-magma-docs-gatsby",
     "bootstrap": "lerna bootstrap",
     "lint": "lerna run lint",
     "docs_old": "lerna exec --scope react-magma-docs docz dev",
