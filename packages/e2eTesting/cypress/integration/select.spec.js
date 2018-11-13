@@ -12,22 +12,20 @@ const runTests = versionNumber => {
     cy.get('#basicSelectId')
       .click()
       .then(() => {
-        cy.get('div[role="option"]').as('options');
-
         expect(alertStub.getCall(0)).to.be.calledWith('opened');
-        cy.get('div[role="option"]')
-          .should('have.length', 3)
-          .and('contain', 'Red')
-          .and('contain', 'Blue')
-          .and('contain', 'Green');
-
-        cy.get('#basicSelectId')
-          .click()
-          .then(() => {
-            expect(alertStub.getCall(1)).to.be.calledWith('closed');
-            cy.get('div[role="option"]').should('have.length', 0);
-          });
       });
+    cy.get('div[role="option"]')
+      .should('have.length', 3)
+      .and('contain', 'Red')
+      .and('contain', 'Blue')
+      .and('contain', 'Green');
+
+    cy.get('#basicSelectId')
+      .click()
+      .then(() => {
+        expect(alertStub.getCall(1)).to.be.calledWith('closed');
+      });
+    cy.get('div[role="option"]').should('have.length', 0);
   });
 
   it('Changes the select value', () => {
@@ -35,16 +33,13 @@ const runTests = versionNumber => {
 
     cy.on('window:alert', alertStub);
 
-    cy.get('#changeSelectId')
+    cy.get('#changeSelectId').click();
+    cy.get('div[role="option"]:first')
       .click()
       .then(() => {
-        cy.get('div[role="option"]:first')
-          .click()
-          .then(() => {
-            expect(alertStub.getCall(0)).to.be.calledWith('changed');
-            cy.get('input[name="change"]').should('have.value', 'red');
-          });
+        expect(alertStub.getCall(0)).to.be.calledWith('changed');
       });
+    cy.get('input[name="change"]').should('have.value', 'red');
   });
 };
 
