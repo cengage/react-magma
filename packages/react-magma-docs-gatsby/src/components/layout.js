@@ -14,6 +14,8 @@ import { convertTextToId } from '../utils'
 
 import Header from './header'
 
+import './app.css'
+import './layout.css'
 import './syntax.css'
 
 const Content = styled.article`

@@ -10,7 +10,7 @@ const StyledNav = styled.nav`
 `
 
 const SubMenu = ({ headings }) => (
-  <ul>
+  <ul className="submenu">
     {headings.map((heading, index) => (
       <li key={index}>
         <a href={`#${convertTextToId(heading.value)}`}>{heading.value}</a>
