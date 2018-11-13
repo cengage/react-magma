@@ -2,11 +2,18 @@ import React from 'react'
 import { Link, StaticQuery, graphql } from 'gatsby'
 import { Router } from '@reach/router'
 import styled from 'styled-components'
+import FullLogo from '../components/FullLogo'
 
 import { convertTextToId } from '../utils'
 
 const StyledNav = styled.nav`
+  background-color: #f7f7f7;
   grid-area: nav;
+  min-height: 100vh;
+`
+
+const LogoContainer = styled.div`
+  padding: 2px 20px 20px;
 `
 
 const SubMenu = ({ headings }) => (
@@ -58,7 +65,10 @@ const MainNav = () => (
     `}
     render={data => (
       <StyledNav>
-        <h1>Components</h1>
+        <LogoContainer>
+          <FullLogo />
+        </LogoContainer>
+        <h2>Components</h2>
         <ul>
           {data.apiDocs.edges.map(({ node }) => (
             <li key={node.fields.slug}>
@@ -69,7 +79,7 @@ const MainNav = () => (
             </li>
           ))}
         </ul>
-        <h1>Design Guidelines</h1>
+        <h2>Design Guidelines</h2>
         <ul>
           {data.designDocs.edges.map(({ node }) => (
             <li key={node.fields.slug}>
