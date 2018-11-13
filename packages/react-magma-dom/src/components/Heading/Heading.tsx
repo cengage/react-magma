@@ -61,7 +61,7 @@ function renderHeading({ level, children, id }: HeadingProps) {
   return <HeadingComponent id={id}>{children}</HeadingComponent>;
 }
 
-export const Heading: React.SFC<HeadingProps> = (
+export const Heading: React.FunctionComponent<HeadingProps> = (
   props: HeadingProps
 ): JSX.Element => renderHeading(props);
 

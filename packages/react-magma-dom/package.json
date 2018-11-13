@@ -3,6 +3,7 @@
   "version": "0.1.0-beta.0",
   "description": "",
   "main": "dist/bundle.js",
+  "module": "dist/esBundle.js",
   "files": [
     "dist"
   ],

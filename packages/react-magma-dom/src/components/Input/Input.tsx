@@ -49,7 +49,7 @@ export interface InputProps {
   value?: string;
 }
 
-export const Input: React.SFC<InputProps> = (
+export const Input: React.FunctionComponent<InputProps> = (
   props: InputProps
 ): JSX.Element => (
   <InputCore

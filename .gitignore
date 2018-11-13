@@ -3,3 +3,6 @@ node_modules
 *.log
 coverage
 .nyc_output
+.cache
+public
+.DS_Store

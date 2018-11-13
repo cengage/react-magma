@@ -1,6 +1,5 @@
 ---
-name: Button
-menu: Components
+title: "Buttons"
 ---
 
 # Buttons
@@ -14,23 +13,19 @@ Buttons should be used in situations where users might need to:
 * Trigger a new UI element to appear on the page.
 * Specify a new or next step in a process.
 
-
-import { Playground, PropsTable } from 'docz';
-import { Button } from 'react-magma-dom';
-
 ## Sizes
 
-<Playground>
+```.jsx
     <p>
         <Button type="primary" size="small" text="Small" />
         <Button type="primary" text="Default" />
         <Button type="primary" size="large" text="Large" />
     </p>    
-</Playground>
+```
 
 ## Types
 
-<Playground>
+```.jsx
     <p>
         <Button text="Default" />
         <Button type="primary" text="Primary" />
@@ -38,11 +33,11 @@ import { Button } from 'react-magma-dom';
         <Button type="warning" text="Warning" />
         <Button type="danger" text="Danger" />
     </p>
-</Playground>
+```
 
 ## Ghost
 
-<Playground>
+```.jsx
     <p>
         <Button ghost text="Default Ghost" />{' '}
         <Button ghost type="primary" text="Primary Ghost" />
@@ -50,29 +45,28 @@ import { Button } from 'react-magma-dom';
         <Button ghost type="warning" text="Warning Ghost" />
         <Button ghost type="danger" text="Danger Ghost" />
     </p>
-</Playground>
+```
 
 ## Disabled
 
-<Playground>
+```.jsx
     <p>
         <Button disabled type="primary" text="Disabled" />
     </p>
-</Playground>
+```
 
 ## Link
 
-<Playground>
+```.jsx
     <p>
         <Button type="link" text="Link"/>
     </p>
-</Playground>
+```
 
-## Click Events
+## Event Handling
 
-<Playground>
-  {() => {
-    class Example extends React.Component {
+```.jsx
+  class Example extends React.Component {
       constructor(props) {
         super(props)
         this.state = {
@@ -91,8 +85,4 @@ import { Button } from 'react-magma-dom';
         </div>
       }
     }
-    return <Example />
-  }}
-</Playground>
-
-## Props
+```

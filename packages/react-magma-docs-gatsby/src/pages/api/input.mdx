@@ -1,0 +1,134 @@
+---
+title: "Inputs"
+---
+
+# Inputs
+
+**Input fields are utilized in a number of ways for both collecting and displaying data from the user.**
+
+To enable the user the greatest opportunity to correctly input the correct information successfully on the first attempt, input fields should always obey the following rules.
+* It should always appear distinguished as a separate entity from the surrounding application.
+* Required input fields must be visually distinguishable
+* The associated text label should clearly and succinctly describe the desired information.
+* The associated text label should contain no more than 80 characters.
+* The associated error message should contain no more than 80 characters.
+* The syntax and taxonomy used must be written in end user facing terminology and tone.
+
+## Basic Usage
+
+```.jsx
+    <Input
+        autoFocus={false}
+        id='input1'
+        labelText='Label'
+        placeholder='This is a placeholder'
+        required={false}
+        value='Default Value' />
+```
+
+## Auto Focus
+
+```.jsx
+    <Input
+        autoFocus={true}
+        id='input2'
+        labelText='Auto Focus'
+        placeholder='This input is auto focused'
+        required={true} />
+```
+
+## Password
+
+```.jsx
+    <Input
+        id='input3'
+        labelText='Password'
+        placeholder='Enter your password'
+        type='password' />
+```
+
+## Number
+
+```.jsx
+    <Input
+        id='input4'
+        labelText='Number'
+        placeholder='Enter a number'
+        type='number' />
+```
+
+## Disabled
+
+```.jsx
+    <Input
+        id='input5'
+        labelText='Disabled'
+        placeholder='The input is disabled'
+        disabled />
+```
+
+## Change Events
+
+```.jsx
+  class ChangedInput extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        message: ''
+      };
+
+      this.changeValueMessage = this.changeValueMessage.bind(this);
+    }
+
+    changeValueMessage(message) {
+      this.setState(state => ({message}))
+    }
+
+    render() {
+      return <div>
+        <p><strong>Changed Value: </strong> <span id="changedValue">{this.state.message}</span></p>
+        <Input
+          id='inputChanged'
+          labelText='Test Value'
+          placeholder='Type in here'
+          handleChange={this.changeValueMessage} />
+      </div>
+    }
+  }
+```
+
+## Focus Events
+
+```.jsx
+  class FocusedInput extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        focused: false,
+        message: 'No'
+      };
+
+      this.changeFocusedMessage = this.changeFocusedMessage.bind(this);
+    }
+
+    changeFocusedMessage() {
+      const focused = !this.state.focused;
+
+      this.setState(state => ({
+        focused,
+        message: focused ? 'Yes' : 'No',
+      }));
+    }
+
+    render() {
+      return <div>
+        <p><strong>Focused: </strong> <span id="focused">{this.state.message}</span></p>
+        <Input
+          id='inputFocused'
+          labelText='Focused?'
+          handleFocus={this.changeFocusedMessage}
+          handleBlur={this.changeFocusedMessage} />
+      </div>
+    }
+  }
+```

@@ -22,7 +22,7 @@ function renderPaths(paths) {
   ));
 }
 
-export const SvgIcon: React.SFC<SvgIconProps> = ({
+export const SvgIcon: React.FunctionComponent<SvgIconProps> = ({
   color,
   size,
   id,

@@ -20,7 +20,8 @@ function renderIcon(props) {
   ) : null;
 }
 
-export const Icon: React.SFC<IconProps> = (props: IconProps): JSX.Element =>
-  renderIcon(props);
+export const Icon: React.FunctionComponent<IconProps> = (
+  props: IconProps
+): JSX.Element => renderIcon(props);
 
 export default Icon;

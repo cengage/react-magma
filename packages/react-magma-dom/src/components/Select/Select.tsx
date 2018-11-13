@@ -89,8 +89,8 @@ const selectStyles = {
     backgroundColor: isFocused
       ? magma.limited03
       : isSelected
-        ? magma.primary03
-        : magma.primary04,
+      ? magma.primary03
+      : magma.primary04,
     color: magma.primary01
   })
 };
@@ -125,7 +125,7 @@ const MultiValueRemove = props => {
   );
 };
 
-export const Select: React.SFC<SelectProps> = (
+export const Select: React.FunctionComponent<SelectProps> = (
   props: SelectProps
 ): JSX.Element => (
   <SelectCore
