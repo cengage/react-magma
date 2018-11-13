@@ -9,32 +9,33 @@ const runTests = versionNumber => {
     cy.on('window:alert', alertStub);
 
     const message = 'Default Button';
-    const button = cy.contains(message);
+    cy.contains(message).as('button');
 
-    button.should('be.visible');
+    cy.get('@button').should('be.visible');
 
-    button.click().then(() => {
-      expect(alertStub.getCall(0)).to.be.calledWith('clicked');
-    });
+    cy.get('@button')
+      .click()
+      .then(() => {
+        expect(alertStub.getCall(0)).to.be.calledWith('clicked');
+      });
   });
 
   it('Cannot click on disabled button', () => {
     const message = 'Disabled Button';
-    const button = cy.contains(message);
-
-    button.should('be.visible');
-    button.should('be.disabled');
+    cy.contains(message)
+      .should('be.visible')
+      .and('be.disabled');
   });
 };
 
-describe('React 15 Input', () => {
+describe('React 15 Button', () => {
   runTests('15');
 });
 
-describe('React 16.0 Input', () => {
+describe('React 16.0 Button', () => {
   runTests('16_0');
 });
 
-describe('React 16.5 Input', () => {
+describe('React 16.5 Button', () => {
   runTests('16_5');
 });

@@ -1,0 +1,88 @@
+---
+title: "Buttons"
+---
+
+# Buttons
+
+**Buttons are clickable items used to perform an action.**
+
+Buttons should be used in situations where users might need to:
+
+* Submit a form.
+* Begin a new task.
+* Trigger a new UI element to appear on the page.
+* Specify a new or next step in a process.
+
+## Sizes
+
+```.jsx
+    <p>
+        <Button type="primary" size="small" text="Small" />
+        <Button type="primary" text="Default" />
+        <Button type="primary" size="large" text="Large" />
+    </p>    
+```
+
+## Types
+
+```.jsx
+    <p>
+        <Button text="Default" />
+        <Button type="primary" text="Primary" />
+        <Button type="success" text="Success" />
+        <Button type="warning" text="Warning" />
+        <Button type="danger" text="Danger" />
+    </p>
+```
+
+## Ghost
+
+```.jsx
+    <p>
+        <Button ghost text="Default Ghost" />{' '}
+        <Button ghost type="primary" text="Primary Ghost" />
+        <Button ghost type="success" text="Success Ghost" />
+        <Button ghost type="warning" text="Warning Ghost" />
+        <Button ghost type="danger" text="Danger Ghost" />
+    </p>
+```
+
+## Disabled
+
+```.jsx
+    <p>
+        <Button disabled type="primary" text="Disabled" />
+    </p>
+```
+
+## Link
+
+```.jsx
+    <p>
+        <Button type="link" text="Link"/>
+    </p>
+```
+
+## Event Handling
+
+```.jsx
+  class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          counter: 0
+        }
+      }
+
+      render() {
+        return <div>
+        <p><strong>Counter: </strong> <span id="counter">{this.state.counter}</span></p>
+        <Button
+          handleClick={() => {
+            this.setState(state => ({counter: state.counter + 1}))
+          }}
+          text="Click me" />
+        </div>
+      }
+    }
+```

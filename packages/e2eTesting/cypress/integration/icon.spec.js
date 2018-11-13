@@ -5,20 +5,20 @@ const runTests = versionNumber => {
   });
 
   it('Displays an icon', () => {
-    const icon = cy.get('#basicInfoIcon').parent();
-
-    icon.should('be.visible');
+    cy.get('#basicInfoIcon')
+      .parent()
+      .should('be.visible');
   });
 };
 
-describe('React 15 Input', () => {
+describe('React 15 Icon', () => {
   runTests('15');
 });
 
-describe('React 16.0 Input', () => {
+describe('React 16.0 Icon', () => {
   runTests('16_0');
 });
 
-describe('React 16.5 Input', () => {
+describe('React 16.5 Icon', () => {
   runTests('16_5');
 });

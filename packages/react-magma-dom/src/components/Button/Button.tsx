@@ -220,7 +220,7 @@ const StyledButton = styled.button`
   }
 `;
 
-export const Button: React.SFC<ButtonProps> = (
+export const Button: React.FunctionComponent<ButtonProps> = (
   props: ButtonProps
 ): JSX.Element => (
   <ButtonCore handleClick={props.handleClick}>

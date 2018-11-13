@@ -75,23 +75,23 @@ import { Button } from 'react-magma-dom';
     class Example extends React.Component {
       constructor(props) {
         super(props)
-          this.state = {
-            counter: 0
-          }
-        }
-
-        render() {
-          return <div>
-          <p><strong>Counter: </strong> <span id="counter">{this.state.counter}</span></p>
-          <Button
-            handleClick={() => {
-              this.setState(state => ({counter: state.counter + 1}))
-            }}
-            text="Click me" />
-          </div>
+        this.state = {
+          counter: 0
         }
       }
-      return <Example />
+
+      render() {
+        return <div>
+        <p><strong>Counter: </strong> <span id="counter">{this.state.counter}</span></p>
+        <Button
+          handleClick={() => {
+            this.setState(state => ({counter: state.counter + 1}))
+          }}
+          text="Click me" />
+        </div>
+      }
+    }
+    return <Example />
   }}
 </Playground>
 
