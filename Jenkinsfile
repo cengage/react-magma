@@ -3,7 +3,7 @@ pcfNpmPipeline() {
     group: "com.cengage.frontend"
   ]
   npm = [
-    buildDir: "packages/react-magma-docs/.docz/dist"
+    buildDir: "packages/react-magma-docs-gatsby/public"
   ]
   sonar = [
     language: "js",
@@ -16,3 +16,4 @@ pcfNpmPipeline() {
     ]]
   ]
 }
+
