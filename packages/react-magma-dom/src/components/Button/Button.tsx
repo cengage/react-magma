@@ -4,111 +4,98 @@ const styled = require('styled-components').default;
 import { magma } from '../../theme/magma';
 
 enum ButtonType {
-  default,
-  primary,
-  success,
-  warning,
-  danger,
+  solid,
+  outline,
   link
+}
+
+enum ButtonColor {
+  primary,
+  secondary,
+  success,
+  danger
+}
+
+enum ButtonShape {
+  fill,
+  leftCap,
+  RightCap
 }
 
 enum ButtonSize {
   large,
+  medium,
   small
 }
 
 export interface ButtonProps {
+  allCaps?: boolean;
   autoFocus?: boolean;
   text: string;
   handleClick: () => void;
+  color?: ButtonColor;
   disabled?: boolean;
-  ghost?: boolean;
+  inverse?: boolean;
+  shape?: ButtonShape;
   size?: ButtonSize;
   type?: ButtonType;
 }
 
 const StyledButton = styled.button`
-  background: ${props => {
-    if (props.ghost) {
-      return 'none';
-    }
-
-    switch (props.type) {
-      case 'link':
-        return 'none';
-      case 'primary':
-        return magma.primary02;
-      case 'success':
-        return magma.accent02;
-      case 'warning':
-        return magma.accent05;
-      case 'danger':
-        return magma.limited01;
-      default:
-        return magma.primary04;
-    }
-  }};
-  border: 1px solid transparent;
-  border-color: ${props => {
-    switch (props.type) {
-      case 'link':
-        return 'transparent';
-      case 'primary':
-        return magma.primary02;
-      case 'success':
-        return magma.accent02;
-      case 'warning':
-        return magma.accent05;
-      case 'danger':
-        return magma.limited01;
-      default:
-        return magma.secondary05;
-    }
-  }};
-  color: ${props => {
-    if (props.type === 'link') {
-      return magma.primary02;
-    }
-    if (props.ghost) {
-      switch (props.type) {
-        case 'primary':
-          return magma.primary02;
-        case 'success':
-          return magma.accent02;
-        case 'warning':
-          return magma.accent05;
-        case 'danger':
-          return magma.limited01;
-        default:
-          return magma.secondary04;
-      }
-    }
-    if (
-      props.type === 'primary' ||
-      props.type === 'success' ||
-      props.type === 'warning' ||
-      props.type === 'danger'
-    ) {
-      return magma.primary04;
-    }
-    return magma.accent02;
-  }};
-  border-radius: 3px;
   cursor: pointer;
   display: inline-block;
   font-family: ${magma.bodyFont};
+  line-height: 1.46666667;
+  margin: 5px;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  white-space: nowrap;
+
+  background: ${props => {
+    switch (props.color) {
+      case 'secondary':
+        return magma.colors.neutral08;
+      case 'success':
+        return magma.colors.success01;
+      case 'danger':
+        return magma.colors.danger;
+      default:
+        return magma.colors.primary;
+    }
+  }};
+
+  border-radius: ${props => {
+    switch (props.shape) {
+      case 'leftCap':
+        return '5px 0 0 5px';
+      case 'rightCap':
+        return '0 5px 5px 0';
+      default:
+        return '5px';
+    }
+  }};
+
+  color: ${props => {
+    switch (props.color) {
+      case 'secondary':
+        return magma.colors.neutral02;
+      default:
+        return magma.colors.neutral08;
+    }
+  }};
+
   font-size: ${props => {
     switch (props.size) {
       case 'large':
-        return '20px';
+        return '18px';
       case 'small':
-        return '14px';
+        return '12px';
       default:
-        return '16px';
+        return '14px';
     }
   }};
-  line-height: 1.46666667;
-  margin: 5px;
+
   padding: ${props => {
     switch (props.size) {
       case 'large':
@@ -119,105 +106,8 @@ const StyledButton = styled.button`
         return '0.4em 15px';
     }
   }};
-  text-align: center;
-  vertical-align: middle;
-  touch-action: manipulation;
-  white-space: nowrap;
 
-  &:hover:not([disabled]),
-  &:focus:not([disabled]) {
-    background: ${props => {
-      switch (props.type) {
-        case 'primary':
-          return magma.secondary02;
-        case 'success':
-          return magma.accent03;
-        case 'warning':
-          return magma.accent06;
-        case 'danger':
-          return magma.limited02;
-        default:
-          return magma.primary04;
-      }
-    }};
-    border-color: ${props => {
-      switch (props.type) {
-        case 'link':
-          return 'transparent';
-        case 'primary':
-          return magma.secondary02;
-        case 'success':
-          return magma.accent03;
-        case 'warning':
-          return magma.accent06;
-        case 'danger':
-          return magma.limited02;
-        default:
-          return magma.secondary05;
-      }
-    }};
-    color: ${props => {
-      switch (props.type) {
-        case 'link':
-          return magma.secondary01;
-        case 'primary':
-        case 'success':
-        case 'warning':
-        case 'danger':
-          return magma.primary04;
-        default:
-          return magma.accent01;
-      }
-    }};
-    text-decoration: ${props => (props.type === 'link' ? 'underline' : 'none')};
-  }
-
-  &:active:not([disabled]),
-  &.active:not([disabled]) {
-    background: ${props => {
-      switch (props.type) {
-        case 'link':
-          return 'transparent';
-        case 'primary':
-          return magma.secondary01;
-        case 'success':
-          return magma.accent01;
-        case 'warning':
-          return magma.accent04;
-        case 'danger':
-          return magma.limited04;
-        default:
-          return magma.secondary06;
-      }
-    }};
-    border-color: ${props => {
-      switch (props.type) {
-        case 'link':
-          return 'transparent';
-        case 'primary':
-          return magma.secondary01;
-        case 'success':
-          return magma.accent01;
-        case 'warning':
-          return magma.accent04;
-        case 'danger':
-          return magma.limited04;
-        default:
-          return magma.secondary05;
-      }
-    }};
-    box-shadow: ${props =>
-      props.type === 'link' ? '0 0 0' : 'inset 0 3px 5px rgba(0, 0, 0, 0.125)'};
-  }
-
-  &[disabled] {
-    background: ${magma.limited03};
-    border-color: ${magma.limited03};
-    box-shadow: 0 0 0;
-    color: rgba(122, 122, 122, 0.6);
-    cursor: not-allowed;
-    opacity: 0.65;
-  }
+  text-transform: uppercase;
 `;
 
 export const Button: React.FunctionComponent<ButtonProps> = (
@@ -225,16 +115,29 @@ export const Button: React.FunctionComponent<ButtonProps> = (
 ): JSX.Element => (
   <ButtonCore handleClick={props.handleClick}>
     {({ handleClick }) => {
-      const { autoFocus, text, ghost, disabled, size, type } = props;
+      const {
+        autoFocus,
+        text,
+        disabled,
+        inverse,
+        allCaps,
+        color,
+        shape,
+        size,
+        type
+      } = props;
 
       return (
         <StyledButton
+          allCaps={allCaps}
           autoFocus={autoFocus}
           onClick={handleClick}
+          color={color ? color : 'primary'}
           disabled={disabled}
-          ghost={ghost}
-          size={size}
-          type={type}
+          inverse={inverse}
+          shape={shape ? shape : 'fill'}
+          size={size ? size : 'medium'}
+          type={type ? type : 'solid'}
         >
           {text}
         </StyledButton>

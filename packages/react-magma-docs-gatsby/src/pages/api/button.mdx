@@ -18,32 +18,59 @@ Buttons should be used in situations where users might need to:
 ```.jsx
     <p>
         <Button type="primary" size="small" text="Small" />
-        <Button type="primary" text="Default" />
+        <Button type="primary" text="Medium" />
         <Button type="primary" size="large" text="Large" />
-    </p>    
+    </p>
+```
+
+## Colors
+
+```.jsx
+    <p>
+        <Button color="primary" text="Primary" />
+        <Button color="secondary" text="Secondary" />
+        <Button color="success" text="Success" />
+        <Button color="danger" text="Danger" />
+    </p>
 ```
 
 ## Types
 
 ```.jsx
     <p>
-        <Button text="Default" />
-        <Button type="primary" text="Primary" />
-        <Button type="success" text="Success" />
-        <Button type="warning" text="Warning" />
-        <Button type="danger" text="Danger" />
+        <Button color="primary" type="Solid" text="Solid" />
+        <Button color="primary" type="Outline" text="Outline" />
+        <Button color="primary" type="Link" text="Link" />
     </p>
 ```
 
-## Ghost
+## Shapes
 
 ```.jsx
     <p>
-        <Button ghost text="Default Ghost" />{' '}
-        <Button ghost type="primary" text="Primary Ghost" />
-        <Button ghost type="success" text="Success Ghost" />
-        <Button ghost type="warning" text="Warning Ghost" />
-        <Button ghost type="danger" text="Danger Ghost" />
+        <Button color="primary" text="Fill (default)" />
+        <Button color="primary" shape="leftCap" text="Left Cap" />
+        <Button color="primary" shape="rightCap" text="Right Cap" />
+    </p>
+```
+
+## Inverse
+
+```.jsx
+    <p>
+        <Button color="primary" inverse text="Primary inverse" />
+        <Button color="secondary" inverse text="Secondary inverse" />
+        <Button color="success" inverse text="Success inverse" />
+        <Button color="danger" inverse text="Danger inverse" />
+    </p>
+```
+
+## All Caps
+
+```.jsx
+    <p>
+        <Button color="primary" allCaps text="All caps" />
+        <Button color="primary" allCaps={false} text="All caps false" />
     </p>
 ```
 
@@ -52,14 +79,6 @@ Buttons should be used in situations where users might need to:
 ```.jsx
     <p>
         <Button disabled type="primary" text="Disabled" />
-    </p>
-```
-
-## Link
-
-```.jsx
-    <p>
-        <Button type="link" text="Link"/>
     </p>
 ```
 
