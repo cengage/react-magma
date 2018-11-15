@@ -17,9 +17,9 @@ Buttons should be used in situations where users might need to:
 
 ```.jsx
     <p>
-        <Button type="primary" size="small" text="Small" />
-        <Button type="primary" text="Medium" />
-        <Button type="primary" size="large" text="Large" />
+        <Button size="small" text="Small" />
+        <Button text="Medium (default)" />
+        <Button size="large" text="Large" />
     </p>
 ```
 
@@ -27,7 +27,7 @@ Buttons should be used in situations where users might need to:
 
 ```.jsx
     <p>
-        <Button color="primary" text="Primary" />
+        <Button color="primary" text="Primary (default)" />
         <Button color="secondary" text="Secondary" />
         <Button color="success" text="Success" />
         <Button color="danger" text="Danger" />
@@ -37,11 +37,28 @@ Buttons should be used in situations where users might need to:
 ## Types
 
 ```.jsx
-    <p>
-        <Button color="primary" type="Solid" text="Solid" />
-        <Button color="primary" type="Outline" text="Outline" />
-        <Button color="primary" type="Link" text="Link" />
-    </p>
+    <div>
+      <p>
+          <Button color="primary" type="solid" text="Solid (default)" />
+          <Button color="primary" type="outline" text="Outline" />
+          <Button color="primary" type="link" text="Link" />
+      </p>
+      <p>
+          <Button color="secondary" type="solid" text="Solid (default)" />
+          <Button color="secondary" type="outline" text="Outline" />
+          <Button color="secondary" type="link" text="Link" />
+      </p>
+      <p>
+          <Button color="success" type="solid" text="Solid (default)" />
+          <Button color="success" type="outline" text="Outline" />
+          <Button color="success" type="link" text="Link" />
+      </p>
+      <p>
+          <Button color="danger" type="solid" text="Solid (default)" />
+          <Button color="danger" type="outline" text="Outline" />
+          <Button color="danger" type="link" text="Link" />
+      </p>
+    </div>
 ```
 
 ## Shapes
@@ -57,12 +74,31 @@ Buttons should be used in situations where users might need to:
 ## Inverse
 
 ```.jsx
-    <p>
-        <Button color="primary" inverse text="Primary inverse" />
-        <Button color="secondary" inverse text="Secondary inverse" />
-        <Button color="success" inverse text="Success inverse" />
-        <Button color="danger" inverse text="Danger inverse" />
-    </p>
+    <div style={{ background : '#00263E', padding: '10px' }}>
+      <p>
+          <Button color="primary" inverse text="Solid inverse" />
+          <Button color="secondary" inverse text="Solid inverse" />
+          <Button color="success" inverse text="Solid inverse" />
+          <Button color="danger" inverse text="Solid inverse" />
+      </p>
+      <p>
+          <Button color="primary" type="outline" inverse text="Outline inverse" />
+          <Button color="secondary" type="outline"  inverse text="Outline inverse" />
+          <Button color="success" type="outline"  inverse text="Outline inverse" />
+          <Button color="danger" type="outline"  inverse text="Outline inverse" />
+      </p>
+      <p>
+          <Button color="primary" type="link" inverse text="Link inverse" />
+          <Button color="secondary" type="link"  inverse text="Link inverse" />
+          <Button color="success" type="link"  inverse text="Link inverse" />
+          <Button color="danger" type="link"  inverse text="Link inverse" />
+      </p>
+      <p>
+          <Button disabled text="Disabled inverse" />
+          <Button disabled type="outline" text="Disabled outline inverse" />
+          <Button disabled type="link" text="Disabled link inverse" />
+      </p>
+    </div>
 ```
 
 ## All Caps
@@ -78,7 +114,9 @@ Buttons should be used in situations where users might need to:
 
 ```.jsx
     <p>
-        <Button disabled type="primary" text="Disabled" />
+        <Button disabled text="Disabled" />
+        <Button disabled type="outline" text="Disabled" />
+        <Button disabled type="link" text="Disabled" />
     </p>
 ```
 

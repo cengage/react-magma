@@ -3,7 +3,7 @@ export const magma = {
   headingFont: 'gnuolane, sans-serif',
 
   colors: {
-    primary: '#006298',
+    primary: '#006298', // link color blue
     foundation01: '#003865',
     foundation02: '#006298',
     foundation03: '#006298',
@@ -16,7 +16,7 @@ export const magma = {
     success02: '#53BB00',
     danger: '#E70000',
     neutral01: '#00263E',
-    neutral02: '#3F3F3F',
+    neutral02: '#3F3F3F', // main dark grey text color
     neutral03: '#575757',
     neutral04: '#727272',
     neutral05: '#BFBFBF',

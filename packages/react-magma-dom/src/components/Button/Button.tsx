@@ -19,7 +19,8 @@ enum ButtonColor {
 enum ButtonShape {
   fill,
   leftCap,
-  RightCap
+  rightCap,
+  round
 }
 
 enum ButtonSize {
@@ -45,6 +46,7 @@ const StyledButton = styled.button`
   cursor: pointer;
   display: inline-block;
   font-family: ${magma.bodyFont};
+  font-weight: 600;
   line-height: 1.46666667;
   margin: 5px;
   text-align: center;
@@ -53,6 +55,16 @@ const StyledButton = styled.button`
   white-space: nowrap;
 
   background: ${props => {
+    // Button color, type, inverse
+    if (props.type === 'link' || props.type === 'outline') {
+      return 'none';
+    }
+    if (props.disabled) {
+      return magma.colors.neutral06;
+    }
+    if (props.inverse) {
+      return magma.colors.neutral08;
+    }
     switch (props.color) {
       case 'secondary':
         return magma.colors.neutral08;
@@ -65,27 +77,64 @@ const StyledButton = styled.button`
     }
   }};
 
-  border-radius: ${props => {
-    switch (props.shape) {
-      case 'leftCap':
-        return '5px 0 0 5px';
-      case 'rightCap':
-        return '0 5px 5px 0';
-      default:
-        return '5px';
+  border: ${props => {
+    // Button color, type, inverse
+    if (props.type === 'link') {
+      return '0';
+    }
+    return '2px solid';
+  }};
+
+  border-color: ${props => {
+    // Button color, type, inverse
+    if (props.disabled && props.type === 'solid') {
+      return magma.colors.neutral04;
+    }
+    if (props.inverse) {
+      return magma.colors.neutral08;
+    }
+    if (props.type === 'solid') {
+      switch (props.color) {
+        case 'secondary':
+          return magma.colors.neutral02;
+        case 'success':
+          return magma.colors.success01;
+        case 'danger':
+          return magma.colors.danger;
+        default:
+          return magma.colors.primary;
+      }
     }
   }};
 
   color: ${props => {
+    // Button color, type, inverse
+    if (props.disabled) {
+      return magma.colors.neutral04;
+    }
+    if (
+      (!props.inverse && props.type === 'solid') ||
+      (props.inverse && props.type !== 'solid')
+    ) {
+      if (props.color === 'secondary' && !props.inverse) {
+        return magma.colors.neutral02;
+      }
+      return magma.colors.neutral08;
+    }
     switch (props.color) {
       case 'secondary':
         return magma.colors.neutral02;
+      case 'success':
+        return magma.colors.success01;
+      case 'danger':
+        return magma.colors.danger;
       default:
-        return magma.colors.neutral08;
+        return magma.colors.primary;
     }
   }};
 
   font-size: ${props => {
+    // Button size
     switch (props.size) {
       case 'large':
         return '18px';
@@ -97,6 +146,7 @@ const StyledButton = styled.button`
   }};
 
   padding: ${props => {
+    // Button size
     switch (props.size) {
       case 'large':
         return '0.4em 20px';
@@ -104,6 +154,20 @@ const StyledButton = styled.button`
         return '0.4em 10px';
       default:
         return '0.4em 15px';
+    }
+  }};
+
+  border-radius: ${props => {
+    // Button shape
+    switch (props.shape) {
+      case 'leftCap':
+        return '5px 0 0 5px';
+      case 'rightCap':
+        return '0 5px 5px 0';
+      case 'round':
+        return '100%';
+      default:
+        return '5px';
     }
   }};
 
