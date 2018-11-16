@@ -3,7 +3,6 @@ module.exports = {
     title: 'React Magma Docs',
   },
   plugins: [
-    'gatsby-plugin-page-transitions',
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-styled-components',
