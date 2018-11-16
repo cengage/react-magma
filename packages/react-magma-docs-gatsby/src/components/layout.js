@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
+import PageTransition from 'gatsby-plugin-page-transitions'
 import { StaticQuery, graphql } from 'gatsby'
 import MainNav from './main-nav'
 import styled, { injectGlobal } from 'styled-components'
@@ -103,7 +104,7 @@ const PreContainer = styled.div`
   display: grid;
   max-width: 100%;
   overflow: scroll;
-`;
+`
 
 const PreComponent = ({ className, ...props }) =>
   props.children.props.props &&
@@ -162,17 +163,19 @@ const Layout = ({ children }) => (
         <Main>
           <MainNav />
           <Header siteTitle={data.site.siteMetadata.title} />
-          <Content>
-            <MDXProvider
-              components={{
-                pre: PreComponent,
-                table: Table,
-                h2: SectionHeading,
-              }}
-            >
-              {children}
-            </MDXProvider>
-          </Content>
+          <PageTransition>
+            <Content>
+              <MDXProvider
+                components={{
+                  pre: PreComponent,
+                  table: Table,
+                  h2: SectionHeading,
+                }}
+              >
+                {children}
+              </MDXProvider>
+            </Content>
+          </PageTransition>
         </Main>
       </>
     )}
