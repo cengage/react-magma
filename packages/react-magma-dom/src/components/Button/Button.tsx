@@ -43,32 +43,76 @@ export interface ButtonProps {
 }
 
 const StyledButton = styled.button`
-  display: inline-block;
-  font-family: ${magma.bodyFont};
-  line-height: 1.46666667;
-  margin: 5px;
-  overflow: hidden;
-  position: relative;
-  text-align: center;
-  vertical-align: middle;
-  touch-action: manipulation;
-  white-space: nowrap;
-
   border-radius: ${props => {
-    // Button shape
     switch (props.shape) {
       case 'leftCap':
         return '5px 0 0 5px';
       case 'rightCap':
         return '0 5px 5px 0';
-      case 'round':
-        return '100%';
       default:
         return '5px';
     }
   }};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+  display: inline-block;
+  font-family: ${magma.bodyFont};
+  line-height: 1.46666667;
+  margin: 5px;
+  min-width: 5.625em;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
   text-transform: ${props => (props.allCaps === false ? 'none' : 'uppercase')};
+  vertical-align: middle;
+  touch-action: manipulation;
+  white-space: nowrap;
+
+  &:after,
+  &:before {
+    background: ${magma.colors.neutral08};
+    content: '';
+    opacity: 0;
+    position: absolute;
+  }
+
+  &:after {
+    border-radius: 50%;
+    height: 32px;
+    left: 50%;
+    padding: 50%;
+    top: 18px;
+    transform: translate(-50%, -50%) scale(1);
+    transition: opacity 1s, transform 0.5s;
+    width: 32px;
+  }
+
+  &:before {
+    height: 200%;
+    left: 0;
+    top: -50%;
+    transition: 0.2s;
+    width: 200%;
+  }
+
+  &:active {
+    &:after {
+      opacity: 0.4;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0s;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    &:before {
+      opacity: 0.2;
+    }
+  }
+
+  &:focus {
+    outline: 2px dotted ${magma.colors.pop03};
+    outline-offset: 3px;
+  }
 
   font-size: ${props => {
     // Button size
@@ -127,7 +171,11 @@ const StyledButton = styled.button`
         return magma.colors.primary;
     }
   }};
-  border: ${props => (props.type === 'link' ? '0' : '2px solid')};
+  border: ${props =>
+    props.type === 'outline' ||
+    (props.type === 'solid' && props.color === 'secondary')
+      ? '2px solid'
+      : '0'};
   border-color: ${props => {
     // Button color, type, inverse
     if (props.disabled) {
@@ -181,20 +229,6 @@ const StyledButton = styled.button`
       props.color === 'secondary'
         ? 'rgba(63,63,63,1)'
         : 'rgba(255, 255, 255, 1)'};
-    content: '';
-    height: 200%;
-    left: -50%;
-    opacity: 0;
-    position: absolute;
-    top: -50%;
-    transition: 0.2s;
-    width: 200%;
-  }
-
-  &:hover {
-    &:before {
-      opacity: 0.1;
-    }
   }
 `;
 

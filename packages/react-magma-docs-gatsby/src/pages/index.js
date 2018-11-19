@@ -12,7 +12,7 @@ const LogoContainer = styled.div`
 const IndexPage = () => (
   <Layout>
     <LogoContainer>
-      <FullLogo />
+      <FullLogo />Hello
     </LogoContainer>
   </Layout>
 )
