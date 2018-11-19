@@ -133,24 +133,24 @@ describe('Button', () => {
         const { getByText } = renderButton();
         const button = getByText(BASE_BUTTON_PROPS.text);
 
-        expect(button).toHaveStyleRule('font-size', '14px');
-        expect(button).toHaveStyleRule('padding', '0.4em 15px');
+        expect(button).toHaveStyleRule('font-size', '.875rem');
+        expect(button).toHaveStyleRule('padding', '0 15px');
       });
 
       it('small button', () => {
         const { getByText } = renderButton({ size: 'small' });
         const button = getByText(BASE_BUTTON_PROPS.text);
 
-        expect(button).toHaveStyleRule('font-size', '12px');
-        expect(button).toHaveStyleRule('padding', '0.4em 10px');
+        expect(button).toHaveStyleRule('font-size', '.750rem');
+        expect(button).toHaveStyleRule('padding', '0 10px');
       });
 
       it('large button', () => {
         const { getByText } = renderButton({ size: 'large' });
         const button = getByText(BASE_BUTTON_PROPS.text);
 
-        expect(button).toHaveStyleRule('font-size', '18px');
-        expect(button).toHaveStyleRule('padding', '0.4em 20px');
+        expect(button).toHaveStyleRule('font-size', '1.125rem');
+        expect(button).toHaveStyleRule('padding', '0 20px');
       });
     });
   });
