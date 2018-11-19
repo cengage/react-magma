@@ -4,20 +4,20 @@ const styled = require('styled-components').default;
 import { magma } from '../../theme/magma';
 
 enum ButtonType {
-  solid,
+  solid, //default
   outline,
   link
 }
 
 enum ButtonColor {
-  primary,
+  primary, //default
   secondary,
   success,
   danger
 }
 
 enum ButtonShape {
-  fill,
+  fill, //default
   leftCap,
   rightCap,
   round
@@ -25,7 +25,7 @@ enum ButtonShape {
 
 enum ButtonSize {
   large,
-  medium,
+  medium, //default
   small
 }
 
@@ -43,16 +43,67 @@ export interface ButtonProps {
 }
 
 const StyledButton = styled.button`
-  cursor: pointer;
   display: inline-block;
   font-family: ${magma.bodyFont};
-  font-weight: 600;
   line-height: 1.46666667;
   margin: 5px;
+  overflow: hidden;
+  position: relative;
   text-align: center;
   vertical-align: middle;
   touch-action: manipulation;
   white-space: nowrap;
+
+  border-radius: ${props => {
+    // Button shape
+    switch (props.shape) {
+      case 'leftCap':
+        return '5px 0 0 5px';
+      case 'rightCap':
+        return '0 5px 5px 0';
+      case 'round':
+        return '100%';
+      default:
+        return '5px';
+    }
+  }};
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+  text-transform: ${props => (props.allCaps === false ? 'none' : 'uppercase')};
+
+  font-size: ${props => {
+    // Button size
+    switch (props.size) {
+      case 'large':
+        return '1.125rem';
+      case 'small':
+        return '.750rem';
+      default:
+        return '.875rem';
+    }
+  }};
+  font-weight: ${props => (props.size === 'large' ? 500 : 600)};
+  height: ${props => {
+    // Button size
+    switch (props.size) {
+      case 'large':
+        return '45px';
+      case 'small':
+        return '29px';
+      default:
+        return '37px';
+    }
+  }};
+  padding: ${props => {
+    // Button size
+    switch (props.size) {
+      case 'large':
+        return '0 20px';
+      case 'small':
+        return '0 10px';
+      default:
+        return '0 15px';
+    }
+  }};
 
   background: ${props => {
     // Button color, type, inverse
@@ -76,27 +127,20 @@ const StyledButton = styled.button`
         return magma.colors.primary;
     }
   }};
-
-  border: ${props => {
-    // Button color, type, inverse
-    if (props.type === 'link') {
-      return '0';
-    }
-    return '2px solid';
-  }};
-
+  border: ${props => (props.type === 'link' ? '0' : '2px solid')};
   border-color: ${props => {
     // Button color, type, inverse
-    if (props.disabled && props.type === 'solid') {
-      return magma.colors.neutral04;
+    if (props.disabled) {
+      return magma.colors.neutral06;
     }
     if (props.inverse) {
       return magma.colors.neutral08;
     }
+    if (props.color === 'secondary') {
+      return magma.colors.neutral05;
+    }
     if (props.type === 'solid') {
       switch (props.color) {
-        case 'secondary':
-          return magma.colors.neutral02;
         case 'success':
           return magma.colors.success01;
         case 'danger':
@@ -106,7 +150,6 @@ const StyledButton = styled.button`
       }
     }
   }};
-
   color: ${props => {
     // Button color, type, inverse
     if (props.disabled) {
@@ -133,45 +176,26 @@ const StyledButton = styled.button`
     }
   }};
 
-  font-size: ${props => {
-    // Button size
-    switch (props.size) {
-      case 'large':
-        return '18px';
-      case 'small':
-        return '12px';
-      default:
-        return '14px';
-    }
-  }};
+  &:before {
+    background: ${props =>
+      props.color === 'secondary'
+        ? 'rgba(63,63,63,1)'
+        : 'rgba(255, 255, 255, 1)'};
+    content: '';
+    height: 200%;
+    left: -50%;
+    opacity: 0;
+    position: absolute;
+    top: -50%;
+    transition: 0.2s;
+    width: 200%;
+  }
 
-  padding: ${props => {
-    // Button size
-    switch (props.size) {
-      case 'large':
-        return '0.4em 20px';
-      case 'small':
-        return '0.4em 10px';
-      default:
-        return '0.4em 15px';
+  &:hover {
+    &:before {
+      opacity: 0.1;
     }
-  }};
-
-  border-radius: ${props => {
-    // Button shape
-    switch (props.shape) {
-      case 'leftCap':
-        return '5px 0 0 5px';
-      case 'rightCap':
-        return '0 5px 5px 0';
-      case 'round':
-        return '100%';
-      default:
-        return '5px';
-    }
-  }};
-
-  text-transform: uppercase;
+  }
 `;
 
 export const Button: React.FunctionComponent<ButtonProps> = (
