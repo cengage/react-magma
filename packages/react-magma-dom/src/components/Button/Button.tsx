@@ -67,45 +67,74 @@ const StyledButton = styled.button`
   touch-action: manipulation;
   white-space: nowrap;
 
-  &:after,
-  &:before {
-    background: ${magma.colors.neutral08};
-    content: '';
-    opacity: 0;
-    position: absolute;
-  }
-
-  &:after {
-    border-radius: 50%;
-    height: 32px;
-    left: 50%;
-    padding: 50%;
-    top: 18px;
-    transform: translate(-50%, -50%) scale(1);
-    transition: opacity 1s, transform 0.5s;
-    width: 32px;
-  }
-
-  &:before {
-    height: 200%;
-    left: 0;
-    top: -50%;
-    transition: 0.2s;
-    width: 200%;
-  }
-
-  &:active {
-    &:after {
-      opacity: 0.4;
-      transform: translate(-50%, -50%) scale(0);
-      transition: transform 0s;
-    }
-  }
-
-  &:hover,
-  &:focus {
+  &:not(:disabled) {
+    &:after,
     &:before {
-      opacity: 0.2;
+      background: ${magma.colors.neutral08};
+      content: '';
+      opacity: 0;
+      position: absolute;
+    }
+
+    &:after {
+      border-radius: 50%;
+      height: 32px;
+      left: 50%;
+      padding: 50%;
+      top: 18px;
+      transform: translate(-50%, -50%) scale(1);
+      transition: opacity 1s, transform 0.5s;
+      width: 32px;
+    }
+
+    &:before {
+      background: ${props => {
+        // Button color, type, inverse
+        if (
+          (props.type !== 'solid' && !props.inverse) ||
+          (props.type === 'solid' && props.inverse)
+        ) {
+          switch (props.color) {
+            case 'secondary':
+              return magma.colors.neutral02;
+            case 'success':
+              return magma.colors.success01;
+            case 'danger':
+              return magma.colors.danger;
+            default:
+              return magma.colors.primary;
+          }
+        }
+        if (
+          props.type === 'solid' &&
+          !props.inverse &&
+          props.color === 'secondary'
+        ) {
+          return magma.colors.neutral02;
+        }
+        return magma.colors.neutral08;
+      }};
+
+      height: 200%;
+      left: 0;
+      top: -50%;
+      transition: 0.2s;
+      width: 200%;
+    }
+
+    &:active {
+      &:after {
+        opacity: 0.4;
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform 0s;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      &:before {
+        opacity: 0.1;
+      }
     }
   }
 
@@ -151,7 +180,7 @@ const StyledButton = styled.button`
 
   background: ${props => {
     // Button color, type, inverse
-    if (props.type === 'link' || props.type === 'outline') {
+    if (props.type !== 'solid') {
       return 'none';
     }
     if (props.disabled) {
@@ -173,7 +202,7 @@ const StyledButton = styled.button`
   }};
   border: ${props =>
     props.type === 'outline' ||
-    (props.type === 'solid' && props.color === 'secondary')
+    (props.type === 'solid' && props.color === 'secondary' && !props.inverse)
       ? '2px solid'
       : '0'};
   border-color: ${props => {
@@ -223,13 +252,6 @@ const StyledButton = styled.button`
         return magma.colors.primary;
     }
   }};
-
-  &:before {
-    background: ${props =>
-      props.color === 'secondary'
-        ? 'rgba(63,63,63,1)'
-        : 'rgba(255, 255, 255, 1)'};
-  }
 `;
 
 export const Button: React.FunctionComponent<ButtonProps> = (
