@@ -5,6 +5,8 @@ import { StaticQuery, graphql } from 'gatsby'
 import MainNav from './main-nav'
 import styled, { injectGlobal } from 'styled-components'
 import { MDXProvider } from '@mdx-js/tag'
+import { Location } from '@reach/router'
+import { Transition, config } from 'react-spring'
 import { Button, Heading, Icon, ICONS, Input, magma } from 'react-magma-dom'
 import { IconContainer } from './iconContainer'
 import { IconListContainer } from './iconListContainer'
@@ -103,7 +105,7 @@ const PreContainer = styled.div`
   display: grid;
   max-width: 100%;
   overflow: scroll;
-`;
+`
 
 const PreComponent = ({ className, ...props }) =>
   props.children.props.props &&
@@ -170,7 +172,19 @@ const Layout = ({ children }) => (
                 h2: SectionHeading,
               }}
             >
-              {children}
+              <Location>
+                {({ location }) => (
+                  <Transition
+                    config={config.slow}
+                    keys={location.pathname}
+                    from={{ opacity: 0 }}
+                    enter={{ opacity: 1 }}
+                    leave={{ opacity: 0 }}
+                  >
+                    {() => style => <article style={style}>{children}</article>}
+                  </Transition>
+                )}
+              </Location>
             </MDXProvider>
           </Content>
         </Main>
