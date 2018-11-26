@@ -5,7 +5,7 @@ import { StaticQuery, graphql } from 'gatsby'
 import MainNav from './main-nav'
 import styled, { injectGlobal } from 'styled-components'
 import { MDXProvider } from '@mdx-js/tag'
-import { Button, Heading, Icon, ICONS, Input, magma } from 'react-magma-dom'
+import { Button, Heading, Icon, ICONS, IconButton, Input, magma } from 'react-magma-dom'
 import { IconContainer } from './iconContainer'
 import { IconListContainer } from './iconListContainer'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
@@ -18,7 +18,7 @@ import './layout.css'
 import './syntax.css'
 
 injectGlobal`
-  @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
   @import url('https://use.typekit.net/rwr6vzk.css');
 
   *,
@@ -116,6 +116,7 @@ const PreComponent = ({ className, ...props }) =>
         Heading,
         Icon,
         ICONS,
+        IconButton,
         IconContainer,
         IconListContainer,
         Input,

@@ -32,7 +32,9 @@ enum ButtonSize {
 export interface ButtonProps {
   allCaps?: boolean;
   autoFocus?: boolean;
-  text: string;
+  //children: React.ReactChild | React.ReactChild[];
+  children: any;
+  text?: string;
   handleClick: () => void;
   color?: ButtonColor;
   disabled?: boolean;
@@ -262,6 +264,7 @@ export const Button: React.FunctionComponent<ButtonProps> = (
       const {
         autoFocus,
         text,
+        children,
         disabled,
         inverse,
         allCaps,
@@ -283,7 +286,7 @@ export const Button: React.FunctionComponent<ButtonProps> = (
           size={size ? size : 'medium'}
           type={type ? type : 'solid'}
         >
-          {text}
+          {children}
         </StyledButton>
       );
     }}

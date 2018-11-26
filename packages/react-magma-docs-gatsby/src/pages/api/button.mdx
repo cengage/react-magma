@@ -13,13 +13,27 @@ Buttons should be used in situations where users might need to:
 * Trigger a new UI element to appear on the page.
 * Specify a new or next step in a process.
 
+## Icon Buttons
+
+```.jsx
+    <p>
+        <IconButton text="Icon button" />
+        <IconButton type="outline" text="Icon button" />
+        <IconButton type="link" text="Icon button" />
+        <IconButton color="secondary" text="Icon button" />
+        <IconButton color="success" text="Icon button" />
+        <IconButton color="danger" text="Icon button" />
+        <IconButton color="danger" type="outline" text="Icon button" />
+    </p>
+```
+
 ## Sizes
 
 ```.jsx
     <p>
-        <Button size="small" text="Small" />
-        <Button text="Medium (default)" />
-        <Button size="large" text="Large" />
+        <Button size="small">Small</Button>
+        <Button>Medium (default)</Button>
+        <Button size="large">Large</Button>
     </p>
 ```
 
@@ -27,10 +41,10 @@ Buttons should be used in situations where users might need to:
 
 ```.jsx
     <p>
-        <Button color="primary" text="Primary (default)" />
-        <Button color="secondary" text="Secondary" />
-        <Button color="success" text="Success" />
-        <Button color="danger" text="Danger" />
+        <Button color="primary">Primary (default)</Button>
+        <Button color="secondary">Secondary</Button>
+        <Button color="success" >Success</Button>
+        <Button color="danger">Danger</Button>
     </p>
 ```
 
@@ -39,24 +53,24 @@ Buttons should be used in situations where users might need to:
 ```.jsx
     <div>
       <p>
-          <Button color="primary" type="solid" text="Solid (default)" />
-          <Button color="primary" type="outline" text="Outline" />
-          <Button color="primary" type="link" text="Link" />
+          <Button color="primary" type="solid">Solid (default)</Button>
+          <Button color="primary" type="outline">Outline</Button>
+          <Button color="primary" type="link">Link</Button>
       </p>
       <p>
-          <Button color="secondary" type="solid" text="Solid (default)" />
-          <Button color="secondary" type="outline" text="Outline" />
-          <Button color="secondary" type="link" text="Link" />
+          <Button color="secondary" type="solid">Solid (default)</Button>
+          <Button color="secondary" type="outline">Outline</Button>
+          <Button color="secondary" type="link">Link</Button>
       </p>
       <p>
-          <Button color="success" type="solid" text="Solid (default)" />
-          <Button color="success" type="outline" text="Outline" />
-          <Button color="success" type="link" text="Link" />
+          <Button color="success" type="solid">Solid (default)</Button>
+          <Button color="success" type="outline">Outline</Button>
+          <Button color="success" type="link">Link</Button>
       </p>
       <p>
-          <Button color="danger" type="solid" text="Solid (default)" />
-          <Button color="danger" type="outline" text="Outline" />
-          <Button color="danger" type="link" text="Link" />
+          <Button color="danger" type="solid">Solid (default)</Button>
+          <Button color="danger" type="outline">Outline</Button>
+          <Button color="danger" type="link">Link</Button>
       </p>
     </div>
 ```
@@ -65,9 +79,9 @@ Buttons should be used in situations where users might need to:
 
 ```.jsx
     <p>
-        <Button color="primary" text="Fill (default)" />
-        <Button color="primary" shape="leftCap" text="Left Cap" />
-        <Button color="primary" shape="rightCap" text="Right Cap" />
+        <Button color="primary">Fill (default)</Button>
+        <Button color="primary" shape="leftCap">Left Cap</Button>
+        <Button color="primary" shape="rightCap">Right Cap</Button>
     </p>
 ```
 
@@ -76,27 +90,27 @@ Buttons should be used in situations where users might need to:
 ```.jsx
     <div style={{ background : '#00263E', padding: '10px' }}>
       <p>
-          <Button color="primary" inverse text="Solid inverse" />
-          <Button color="secondary" inverse text="Solid inverse" />
-          <Button color="success" inverse text="Solid inverse" />
-          <Button color="danger" inverse text="Solid inverse" />
+          <Button color="primary" inverse>Solid inverse</Button>
+          <Button color="secondary" inverse>Solid inverse</Button>
+          <Button color="success" inverse>Solid inverse</Button>
+          <Button color="danger" inverse>Solid inverse</Button>
       </p>
       <p>
-          <Button color="primary" type="outline" inverse text="Outline inverse" />
-          <Button color="secondary" type="outline"  inverse text="Outline inverse" />
-          <Button color="success" type="outline"  inverse text="Outline inverse" />
-          <Button color="danger" type="outline"  inverse text="Outline inverse" />
+          <Button color="primary" type="outline" inverse>Outline inverse</Button>
+          <Button color="secondary" type="outline" inverse>Outline inverse</Button>
+          <Button color="success" type="outline" inverse>Outline inverse</Button>
+          <Button color="danger" type="outline" inverse>Outline inverse</Button>
       </p>
       <p>
-          <Button color="primary" type="link" inverse text="Link inverse" />
-          <Button color="secondary" type="link"  inverse text="Link inverse" />
-          <Button color="success" type="link"  inverse text="Link inverse" />
-          <Button color="danger" type="link"  inverse text="Link inverse" />
+          <Button color="primary" type="link" inverse>Link inverse</Button>
+          <Button color="secondary" type="link" inverse/>Link inverse</Button>
+          <Button color="success" type="link" inverse>Link inverse</Button>
+          <Button color="danger" type="link" inverse>Link inverse</Button>
       </p>
       <p>
-          <Button disabled text="Disabled inverse" />
-          <Button disabled type="outline" text="Disabled outline inverse" />
-          <Button disabled type="link" text="Disabled link inverse" />
+          <Button disabled>Disabled inverse</Button>
+          <Button disabled type="outline">Disabled outline inverse</Button>
+          <Button disabled type="link">Disabled link inverse</Button>
       </p>
     </div>
 ```
@@ -105,8 +119,8 @@ Buttons should be used in situations where users might need to:
 
 ```.jsx
     <p>
-        <Button color="primary" allCaps text="All caps" />
-        <Button color="primary" allCaps={false} text="All caps false" />
+        <Button color="primary" allCaps>All caps</Button>
+        <Button color="primary" allCaps={false}>All caps false</Button>
     </p>
 ```
 
@@ -114,9 +128,9 @@ Buttons should be used in situations where users might need to:
 
 ```.jsx
     <p>
-        <Button disabled text="Disabled" />
-        <Button disabled type="outline" text="Disabled" />
-        <Button disabled type="link" text="Disabled" />
+        <Button disabled>Disabled</Button>
+        <Button disabled type="outline">Disabled</Button>
+        <Button disabled type="link">Disabled</Button>
     </p>
 ```
 
@@ -137,8 +151,7 @@ Buttons should be used in situations where users might need to:
         <Button
           handleClick={() => {
             this.setState(state => ({counter: state.counter + 1}))
-          }}
-          text="Click me" />
+          }}>Click me</Button>
         </div>
       }
     }

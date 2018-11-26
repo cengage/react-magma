@@ -6,8 +6,7 @@ import { render, fireEvent, cleanup } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 
 const BASE_BUTTON_PROPS: ButtonProps = {
-  handleClick: jest.fn(),
-  text: 'Test Text'
+  handleClick: jest.fn()
 };
 
 const renderButton = (myProps = {}) => {
@@ -16,7 +15,7 @@ const renderButton = (myProps = {}) => {
     ...myProps
   };
 
-  return render(<Button {...props} />);
+  return render(<Button {...props}>Test Text</Button>);
 };
 
 describe('Button', () => {
