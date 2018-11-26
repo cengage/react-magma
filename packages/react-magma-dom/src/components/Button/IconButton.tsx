@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { ButtonCore } from 'react-magma-core';
-import { Button, ButtonProps } from './Button';
+import { Button, ButtonProps, StyledButton } from './Button';
 import { Icon } from '../Icon/Icon';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import { magma } from '../../theme/magma';
 
 export interface IconButtonProps extends ButtonProps {
@@ -11,7 +11,7 @@ export interface IconButtonProps extends ButtonProps {
   textPosition?: string;
 }
 
-const StyledIconButton = styled(Button)`
+const StyledIconButton = styled(StyledButton)`
   border-radius: 100%;
   display: inline-flex;
   height: 37px;
@@ -47,7 +47,8 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
           color={color}
           disabled={disabled}
           inverse={inverse}
-          type={type}>
+          type={type}
+        >
           <Icon size={16} type="cross" />
         </StyledIconButton>
       );

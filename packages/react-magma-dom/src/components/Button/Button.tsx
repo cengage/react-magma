@@ -32,8 +32,7 @@ enum ButtonSize {
 export interface ButtonProps {
   allCaps?: boolean;
   autoFocus?: boolean;
-  //children: React.ReactChild | React.ReactChild[];
-  children: any;
+  children?: React.ReactChild | React.ReactChild[];
   text?: string;
   handleClick: () => void;
   color?: ButtonColor;
@@ -44,7 +43,7 @@ export interface ButtonProps {
   type?: ButtonType;
 }
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
   border-radius: ${props => {
     switch (props.shape) {
       case 'leftCap':
@@ -263,7 +262,6 @@ export const Button: React.FunctionComponent<ButtonProps> = (
     {({ handleClick }) => {
       const {
         autoFocus,
-        text,
         children,
         disabled,
         inverse,
