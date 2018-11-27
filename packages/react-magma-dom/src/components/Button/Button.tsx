@@ -65,7 +65,7 @@ export const StyledButton = styled.button`
   overflow: hidden;
   position: relative;
   text-align: center;
-  text-transform: ${props => (props.allCaps === false ? 'none' : 'uppercase')};
+  text-transform: ${props => (!props.allCaps ? 'none' : 'uppercase')};
   vertical-align: middle;
   touch-action: manipulation;
   white-space: nowrap;
