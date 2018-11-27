@@ -116,13 +116,15 @@ online affects `solid inverse buttons`.
 ```
 
 ## All Caps
-The `allCaps` property is an optional boolean.  If `true`, the button will appear with the `text-transform` style set to `uppercase`.
-The default value is `true`.
+Shapes for buttons include `uppercase`, `none`, `lowercase`, and `capitalize`, with `uppercase` being the default value.
+This property sets the CSS `text-tranform` property.  By default text is in all caps.
 
 ```.jsx
     <p>
-        <Button color="primary" allCaps>All caps</Button>
-        <Button color="primary" allCaps={false}>All caps false</Button>
+        <Button>All caps</Button>
+        <Button textTransform="none">No text tranform</Button>
+        <Button textTransform="lowercase">Lowercase</Button>
+        <Button textTransform="capitalize">Capitalize (title case)</Button>
     </p>
 ```
 
@@ -138,6 +140,9 @@ The default value is `true`.
 
 ## Event Handling
 
+The `handleClick` events will fire when the button is clicked, or when the enter or space bar key is pressed.
+Events do not fire on disabled buttons.
+
 ```.jsx
   class Example extends React.Component {
       constructor(props) {
@@ -151,6 +156,12 @@ The default value is `true`.
         return <div>
         <p><strong>Counter: </strong> <span id="counter">{this.state.counter}</span></p>
         <Button
+          handleClick={() => {
+            this.setState(state => ({counter: state.counter + 1}))
+          }}>Click me</Button>
+
+        <Button
+          disabled
           handleClick={() => {
             this.setState(state => ({counter: state.counter + 1}))
           }}>Click me</Button>

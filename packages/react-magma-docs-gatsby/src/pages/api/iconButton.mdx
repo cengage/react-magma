@@ -43,14 +43,14 @@ Sizes for `IconButtons` include `small`, `medium`, and `large`, with `medium` be
 
 ## Round vs square
 
-The `round` property is a boolean, with the default being `true`.
+Icon only buttons have `shape = round`, by default.
 
 ```.jsx
     <p>
       <IconButton icon="bell" text="Icon button" />
-      <IconButton icon="bell" round={false} text="Icon button" />
-      <IconButton icon="bell" type="outline" text="Icon button" />
-      <IconButton icon="bell" type="outline" round={false} text="Icon button" />
+      <IconButton icon="bell" shape="fill" text="Icon button" />
+      <IconButton icon="bell" shape="rightCap" text="Icon button" />
+      <IconButton icon="bell" shape="leftCap" text="Icon button" />
     </p>
 ```
 
@@ -65,7 +65,5 @@ but if you want to have a button with multiple icons, you can use the regular Bu
     <p>
       <IconButton icon="bell" label="Text Left" textPosition="left" />
       <IconButton icon="info" color="secondary" label="Text Right" textPosition="right" />
-      <IconButton icon="bell" label="Text Left" size="small" textPosition="left" />
-      <IconButton icon="info" color="secondary" label="Text Right" size="large" textPosition="right" />
     </p>
 ```
