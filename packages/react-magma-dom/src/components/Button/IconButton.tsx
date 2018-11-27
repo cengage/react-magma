@@ -1,25 +1,34 @@
 import * as React from 'react';
 import { ButtonCore } from 'react-magma-core';
-import { Button, ButtonProps, ButtonSize, StyledButton } from './Button';
+import { Button, ButtonProps, StyledButton } from './Button';
 import { Icon } from '../Icon/Icon';
 import styled from 'styled-components';
 import { magma } from '../../theme/magma';
 
 enum ButtonTextPostition {
-  'left',
-  'right'
+  left = 'left',
+  right = 'right'
 }
 
 export interface IconButtonProps extends ButtonProps {
   icon: string;
   label?: string;
-  iconSize?: string;
-  round?: boolean;
   textPosition?: ButtonTextPostition;
 }
 
 const StyledIconButton = styled(StyledButton)<IconButtonProps>`
-  border-radius: ${props => (props.round === false ? '5px' : '100%')};
+  border-radius: ${props => {
+    switch (props.shape) {
+      case 'fill':
+        return '5px';
+      case 'leftCap':
+        return '5px 0 0 5px';
+      case 'rightCap':
+        return '0 5px 5px 0';
+      default:
+        return '100%';
+    }
+  }};
   display: inline-flex;
   justify-content: center;
   line-height: 1;
@@ -27,7 +36,7 @@ const StyledIconButton = styled(StyledButton)<IconButtonProps>`
   padding: 0;
 
   height: ${props => {
-    switch (props.iconSize) {
+    switch (props.size) {
       case 'large':
         return '44px';
       case 'small':
@@ -38,7 +47,7 @@ const StyledIconButton = styled(StyledButton)<IconButtonProps>`
   }};
 
   width: ${props => {
-    switch (props.iconSize) {
+    switch (props.size) {
       case 'large':
         return '44px';
       case 'small':
@@ -58,7 +67,7 @@ const SpanTextRight = styled.span`
 `;
 
 function getIconSize(size) {
-  switch (size.toString()) {
+  switch (size) {
     case 'large':
       return 24;
     case 'small':
@@ -79,22 +88,17 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
         disabled,
         icon,
         inverse,
-        allCaps,
         color,
         shape,
         size,
         type,
-        iconSize,
-        round,
+        textTransform,
         textPosition
       } = props;
 
       if (textPosition) {
-        const textPositionString = textPosition.toString();
-
         return (
           <StyledButton
-            allCaps={allCaps}
             autoFocus={autoFocus}
             onClick={handleClick}
             color={color ? color : 'primary'}
@@ -102,13 +106,14 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
             inverse={inverse}
             shape={shape ? shape : 'fill'}
             size={size ? size : 'medium'}
+            textTransform={textTransform ? textTransform : 'uppercase'}
             type={type ? type : 'solid'}
           >
-            {textPositionString === 'left' && (
-              <SpanTextLeft>{label}</SpanTextLeft>
+            {textPosition === ButtonTextPostition.left && (
+              <SpanTextLeft>{label} </SpanTextLeft>
             )}
             <Icon size={16} type={icon} />
-            {textPositionString === 'right' && (
+            {textPosition === ButtonTextPostition.right && (
               <SpanTextRight>{label}</SpanTextRight>
             )}
           </StyledButton>
@@ -117,15 +122,14 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
 
       return (
         <StyledIconButton
-          allCaps={allCaps}
           aria-label={label}
           autoFocus={autoFocus}
           handleClick={handleClick}
           color={color ? color : 'primary'}
           disabled={disabled}
           inverse={inverse}
-          iconSize={size ? size : 'medium'}
-          round={round}
+          shape={shape ? shape : 'round'}
+          size={size ? size : 'medium'}
           type={type ? type : 'solid'}
         >
           <Icon size={getIconSize(size ? size : 'medium')} type={icon} />

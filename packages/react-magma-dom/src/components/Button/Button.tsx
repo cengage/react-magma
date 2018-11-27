@@ -4,33 +4,39 @@ const styled = require('styled-components').default;
 import { magma } from '../../theme/magma';
 
 enum ButtonType {
-  solid, //default
-  outline,
-  link
+  solid = 'solid', //default
+  outline = 'outline',
+  link = 'link'
 }
 
 enum ButtonColor {
-  primary, //default
-  secondary,
-  success,
-  danger
+  primary = 'primary', //default
+  secondary = 'secondary',
+  success = 'success',
+  danger = 'danger'
 }
 
 enum ButtonShape {
-  fill, //default
-  leftCap,
-  rightCap,
-  round
+  fill = 'fill', //default
+  leftCap = 'leftCap',
+  rightCap = 'rightCap',
+  round = 'round' // default for icon only buttons
 }
 
 export enum ButtonSize {
-  'large',
-  'medium', //default
-  'small'
+  large = 'large',
+  medium = 'medium', //default
+  small = 'small'
+}
+
+export enum ButtonTextTransform {
+  lowercase = 'lowercase',
+  uppercase = 'uppercase', //default
+  capitalize = 'capitalize',
+  none = 'none'
 }
 
 export interface ButtonProps {
-  allCaps?: boolean;
   autoFocus?: boolean;
   children?: React.ReactChild | React.ReactChild[];
   text?: string;
@@ -40,6 +46,7 @@ export interface ButtonProps {
   inverse?: boolean;
   shape?: ButtonShape;
   size?: ButtonSize;
+  textTransform?: ButtonTextTransform;
   type?: ButtonType;
 }
 
@@ -65,7 +72,7 @@ export const StyledButton = styled.button`
   overflow: hidden;
   position: relative;
   text-align: center;
-  text-transform: ${props => (!props.allCaps ? 'none' : 'uppercase')};
+  text-transform: ${props => props.textTransform};
   vertical-align: middle;
   touch-action: manipulation;
   white-space: nowrap;
@@ -266,16 +273,15 @@ export const Button: React.FunctionComponent<ButtonProps> = (
         children,
         disabled,
         inverse,
-        allCaps,
         color,
         shape,
         size,
+        textTransform,
         type
       } = props;
 
       return (
         <StyledButton
-          allCaps={allCaps}
           autoFocus={autoFocus}
           onClick={handleClick}
           color={color ? color : 'primary'}
@@ -283,6 +289,7 @@ export const Button: React.FunctionComponent<ButtonProps> = (
           inverse={inverse}
           shape={shape ? shape : 'fill'}
           size={size ? size : 'medium'}
+          textTransform={textTransform ? textTransform : 'uppercase'}
           type={type ? type : 'solid'}
         >
           {children}

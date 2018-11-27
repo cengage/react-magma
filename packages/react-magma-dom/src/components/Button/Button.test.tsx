@@ -238,10 +238,17 @@ describe('Button', () => {
     });
 
     it('allCaps button', () => {
-      const { getByText } = renderButton({ allCaps: true });
+      const { getByText } = renderButton({ textTransform: 'uppercase' });
       const button = getByText(TEXT);
 
       expect(button).toHaveStyleRule('text-transform', 'uppercase');
+    });
+
+    it('textTransform none button', () => {
+      const { getByText } = renderButton({ textTransform: 'none' });
+      const button = getByText(TEXT);
+
+      expect(button).toHaveStyleRule('text-transform', 'none');
     });
   });
 
