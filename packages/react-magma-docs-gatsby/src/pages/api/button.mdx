@@ -13,21 +13,9 @@ Buttons should be used in situations where users might need to:
 * Trigger a new UI element to appear on the page.
 * Specify a new or next step in a process.
 
-## Icon Buttons
-
-```.jsx
-    <p>
-        <IconButton text="Icon button" />
-        <IconButton type="outline" text="Icon button" />
-        <IconButton type="link" text="Icon button" />
-        <IconButton color="secondary" text="Icon button" />
-        <IconButton color="success" text="Icon button" />
-        <IconButton color="danger" text="Icon button" />
-        <IconButton color="danger" type="outline" text="Icon button" />
-    </p>
-```
-
 ## Sizes
+
+Sizes for buttons include `small`, `medium`, and `large`, with `medium` being the default value.
 
 ```.jsx
     <p>
@@ -39,6 +27,8 @@ Buttons should be used in situations where users might need to:
 
 ## Colors
 
+Colors for buttons include `primary`, `secondary`, `success`, and `danger`, with `primary` being the default value.
+
 ```.jsx
     <p>
         <Button color="primary">Primary (default)</Button>
@@ -49,6 +39,8 @@ Buttons should be used in situations where users might need to:
 ```
 
 ## Types
+
+Types for buttons include `solid`, `outline`, and `link`, with `solid` being the default value.
 
 ```.jsx
     <div>
@@ -77,6 +69,8 @@ Buttons should be used in situations where users might need to:
 
 ## Shapes
 
+Shapes for buttons include `fill`, `leftCap`, and `rightCap`, with `fill` being the default value.
+
 ```.jsx
     <p>
         <Button color="primary">Fill (default)</Button>
@@ -86,6 +80,12 @@ Buttons should be used in situations where users might need to:
 ```
 
 ## Inverse
+
+The `inverse` property is an optional boolean, that reverses the colors so that the buttons can better appeark on a dark background.
+The default value is `false`.
+
+While `outline inverse buttons` and `link inverse buttons` still accept the `color` property, the `color` property
+online affects `solid inverse buttons`.
 
 ```.jsx
     <div style={{ background : '#00263E', padding: '10px' }}>
@@ -103,7 +103,7 @@ Buttons should be used in situations where users might need to:
       </p>
       <p>
           <Button color="primary" type="link" inverse>Link inverse</Button>
-          <Button color="secondary" type="link" inverse/>Link inverse</Button>
+          <Button color="secondary" type="link" inverse>Link inverse</Button>
           <Button color="success" type="link" inverse>Link inverse</Button>
           <Button color="danger" type="link" inverse>Link inverse</Button>
       </p>
@@ -116,6 +116,8 @@ Buttons should be used in situations where users might need to:
 ```
 
 ## All Caps
+The `allCaps` property is an optional boolean.  If `true`, the button will appear with the `text-transform` style set to `uppercase`.
+The default value is `true`.
 
 ```.jsx
     <p>

@@ -1,0 +1,71 @@
+---
+title: "Icon Buttons"
+---
+
+# Icon Buttons
+
+**Buttons are clickable items used to perform an action.**
+
+Icon buttons have an icon included in them.  Text is not displayed in these buttons by default, but can be using the textPostion property.
+IconButton components accept all of the same props as Button components.
+
+## Basic usage
+
+```.jsx
+    <p>
+        <IconButton icon="bell" text="Icon button" />
+        <IconButton icon="bell" type="outline" text="Icon button" />
+        <IconButton icon="bell" type="link" text="Icon button" />
+        <IconButton icon="cog2" color="secondary" text="Icon button" />
+        <IconButton icon="cog2" color="secondary" type="outline" text="Icon button" />
+        <IconButton icon="cog2" color="secondary" type="link" text="Icon button" />
+        <IconButton icon="check" color="success" text="Icon button" />
+        <IconButton icon="check" color="success"type="outline" text="Icon button" />
+        <IconButton icon="check" color="success" type="link" text="Icon button" />
+        <IconButton icon="alert" color="danger" text="Icon button" />
+        <IconButton icon="alert" color="danger" type="outline" text="Icon button" />
+        <IconButton icon="alert" color="danger" type="link" text="Icon button" />
+        <IconButton disabled icon="bell" text="Icon button" />
+    </p>
+```
+
+## Sizes
+
+Sizes for `IconButtons` include `small`, `medium`, and `large`, with `medium` being the default value.
+
+```.jsx
+    <p>
+        <IconButton icon="bell" size="small" text="Icon button" />
+        <IconButton icon="bell" text="Icon button" />
+        <IconButton icon="bell" size="large" text="Icon button" />
+    </p>
+```
+
+## Round vs square
+
+The `round` property is a boolean, with the default being `true`.
+
+```.jsx
+    <p>
+      <IconButton icon="bell" text="Icon button" />
+      <IconButton icon="bell" round={false} text="Icon button" />
+      <IconButton icon="bell" type="outline" text="Icon button" />
+      <IconButton icon="bell" type="outline" round={false} text="Icon button" />
+    </p>
+```
+
+## Text position
+
+By default, an icon button will not display its label text, and will instead use the label text as an `aria-label`.
+However, if you use the optional prop `textPosition`, the icon button will display a regular button with both the icon and the text.
+The `textPosition` property takes the values `left` and `right`.  Using a button with more than one icon is not recommended,
+but if you want to have a button with multiple icons, you can use the regular Button component and add the icons as the button's children.
+
+```.jsx
+    <p>
+      <IconButton icon="bell" label="Text Left" textPosition="left" />
+      <IconButton icon="info" color="secondary" label="Text Right" textPosition="right" />
+      <IconButton icon="bell" label="Text Left" size="small" textPosition="left" />
+      <IconButton icon="info" color="secondary" label="Text Right" size="large" textPosition="right" />
+    </p>
+```

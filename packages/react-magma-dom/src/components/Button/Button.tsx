@@ -23,10 +23,10 @@ enum ButtonShape {
   round
 }
 
-enum ButtonSize {
-  large,
-  medium, //default
-  small
+export enum ButtonSize {
+  'large',
+  'medium', //default
+  'small'
 }
 
 export interface ButtonProps {
@@ -44,6 +44,7 @@ export interface ButtonProps {
 }
 
 export const StyledButton = styled.button`
+  align-items: center;
   border-radius: ${props => {
     switch (props.shape) {
       case 'leftCap':
@@ -55,9 +56,10 @@ export const StyledButton = styled.button`
     }
   }};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
-  display: inline-block;
+  display: inline-flex;
   font-family: ${magma.bodyFont};
-  line-height: 1.46666667;
+  justify-content: center;
+  line-height: 1;
   margin: 5px;
   min-width: 5.625em;
   overflow: hidden;
@@ -145,7 +147,6 @@ export const StyledButton = styled.button`
   }
 
   font-size: ${props => {
-    // Button size
     switch (props.size) {
       case 'large':
         return '1.125rem';
