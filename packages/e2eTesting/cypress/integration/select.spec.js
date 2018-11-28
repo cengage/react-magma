@@ -1,7 +1,6 @@
-const runTests = versionNumber => {
+describe('Select', () => {
   beforeEach(() => {
-    const version = Cypress.env('version') || versionNumber;
-    cy.visit(`/react_${version}.html`);
+    cy.visit(`/react_16_5.html`);
   });
 
   it('Opens select, shows options, then closes select', () => {
@@ -41,16 +40,4 @@ const runTests = versionNumber => {
       });
     cy.get('input[name="change"]').should('have.value', 'red');
   });
-};
-
-describe('React 15 Select', () => {
-  runTests('15');
-});
-
-describe('React 16.0 Select', () => {
-  runTests('16_0');
-});
-
-describe('React 16.5 Select', () => {
-  runTests('16_5');
 });

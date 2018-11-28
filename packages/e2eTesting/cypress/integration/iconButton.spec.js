@@ -1,4 +1,4 @@
-describe('React 16.5 Icon Button', () => {
+describe('Icon Button', () => {
   beforeEach(() => {
     cy.visit(`/react_16_5.html`);
   });

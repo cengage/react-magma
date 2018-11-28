@@ -17,12 +17,15 @@ class App extends Component {
         <h1>BUTTONS</h1>
         <Button
           id="defaultButton"
-          text="Default Button"
           handleClick={() => {
             alert('clicked');
           }}
-        />
-        <Button id="disabledButton" text="Disabled Button" disabled />
+        >
+          Default Button
+        </Button>
+        <Button id="disabledButton" disabled>
+          Disabled Button
+        </Button>
 
         <h1>ICON BUTTONS</h1>
         <IconButton
