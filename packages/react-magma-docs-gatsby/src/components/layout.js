@@ -14,10 +14,12 @@ import {
   ICONS,
   IconButton,
   Input,
+  Select,
   magma,
 } from 'react-magma-dom'
 import { IconContainer } from './iconContainer'
 import { IconListContainer } from './iconListContainer'
+import { SelectContainer } from './selectContainer'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import { convertTextToId } from '../utils'
 
@@ -93,6 +95,8 @@ injectGlobal`
 
 const Content = styled.article`
   grid-area: content;
+  max-width: 760px;
+  margin: 0 auto;
 
   h1 {
     margin-top: 0;
@@ -130,6 +134,8 @@ const PreComponent = ({ className, ...props }) =>
         IconContainer,
         IconListContainer,
         Input,
+        Select,
+        SelectContainer,
       }}
     >
       <PreContainer>
@@ -142,7 +148,11 @@ const PreComponent = ({ className, ...props }) =>
     <pre {...props} />
   )
 
-const Table = props => <table {...props} />
+const Table = props => (
+  <div style={{ margin: '50px' }}>
+    <table {...props} />
+  </div>
+)
 
 const SectionHeading = props => (
   <h2 id={convertTextToId(props.children)}>{props.children}</h2>
