@@ -95,6 +95,8 @@ injectGlobal`
 
 const Content = styled.article`
   grid-area: content;
+  max-width: 760px;
+  margin: 0 auto;
 
   h1 {
     margin-top: 0;
