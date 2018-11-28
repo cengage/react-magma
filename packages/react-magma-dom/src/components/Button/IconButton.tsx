@@ -11,6 +11,7 @@ enum ButtonTextPostition {
 
 export interface IconButtonProps extends ButtonProps {
   icon: string;
+  id?: string;
   label?: string;
   textPosition?: ButtonTextPostition;
 }
@@ -86,6 +87,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
         label,
         disabled,
         icon,
+        id,
         inverse,
         color,
         shape,
@@ -98,6 +100,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
       if (textPosition) {
         return (
           <StyledButton
+            id={id}
             autoFocus={autoFocus}
             onClick={handleClick}
             color={color ? color : 'primary'}
@@ -121,6 +124,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
 
       return (
         <StyledIconButton
+          id={id}
           aria-label={label}
           autoFocus={autoFocus}
           onClick={handleClick}

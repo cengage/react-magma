@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Button, Icon, Select } from 'react-magma-dom';
+import { Input, Button, Icon, IconButton, Select } from 'react-magma-dom';
 
 class App extends Component {
   render() {
@@ -23,6 +23,37 @@ class App extends Component {
           }}
         />
         <Button id="disabledButton" text="Disabled Button" disabled />
+
+        <h1>ICON BUTTONS</h1>
+        <IconButton
+          label="Default Icon Button With Text"
+          textPosition="right"
+          icon="bell"
+          handleClick={() => {
+            alert('clicked');
+          }}
+        />
+        <IconButton
+          disabled
+          label="Disabled Icon Button With Text"
+          textPosition="right"
+          icon="bell"
+        />
+
+        <IconButton
+          id="defaultIconButton"
+          label="Default Icon Button"
+          icon="bell"
+          handleClick={() => {
+            alert('clicked');
+          }}
+        />
+        <IconButton
+          id="disabledIconButton"
+          disabled
+          label="Disabled Icon Button"
+          icon="bell"
+        />
 
         <h1>ICONS</h1>
         <Icon id="basicInfoIcon" title="Basic Info Icon" type="info" />
