@@ -13,19 +13,19 @@ IconButton components accept all of the same props as Button components.
 
 ```.jsx
     <p>
-        <IconButton icon="bell" text="Icon button" />
-        <IconButton icon="bell" type="outline" text="Icon button" />
-        <IconButton icon="bell" type="link" text="Icon button" />
-        <IconButton icon="cog2" color="secondary" text="Icon button" />
-        <IconButton icon="cog2" color="secondary" type="outline" text="Icon button" />
-        <IconButton icon="cog2" color="secondary" type="link" text="Icon button" />
-        <IconButton icon="check" color="success" text="Icon button" />
-        <IconButton icon="check" color="success"type="outline" text="Icon button" />
-        <IconButton icon="check" color="success" type="link" text="Icon button" />
-        <IconButton icon="alert" color="danger" text="Icon button" />
-        <IconButton icon="alert" color="danger" type="outline" text="Icon button" />
-        <IconButton icon="alert" color="danger" type="link" text="Icon button" />
-        <IconButton disabled icon="bell" text="Icon button" />
+        <IconButton icon="bell" label="Icon button" />
+        <IconButton icon="bell" type="outline" label="Icon button" />
+        <IconButton icon="bell" type="link" label="Icon button" />
+        <IconButton icon="cog2" color="secondary" label="Icon button" />
+        <IconButton icon="cog2" color="secondary" type="outline" label="Icon button" />
+        <IconButton icon="cog2" color="secondary" type="link" label="Icon button" />
+        <IconButton icon="check" color="success" label="Icon button" />
+        <IconButton icon="check" color="success"type="outline" label="Icon button" />
+        <IconButton icon="check" color="success" type="link" label="Icon button" />
+        <IconButton icon="alert" color="danger" label="Icon button" />
+        <IconButton icon="alert" color="danger" type="outline" label="Icon button" />
+        <IconButton icon="alert" color="danger" type="link" label="Icon button" />
+        <IconButton disabled icon="bell" label="Icon button" />
     </p>
 ```
 
@@ -35,9 +35,9 @@ Sizes for `IconButtons` include `small`, `medium`, and `large`, with `medium` be
 
 ```.jsx
     <p>
-        <IconButton icon="bell" size="small" text="Icon button" />
-        <IconButton icon="bell" text="Icon button" />
-        <IconButton icon="bell" size="large" text="Icon button" />
+        <IconButton icon="bell" size="small" label="Icon button" />
+        <IconButton icon="bell" label="Icon button" />
+        <IconButton icon="bell" size="large" label="Icon button" />
     </p>
 ```
 
@@ -47,10 +47,10 @@ Icon only buttons have `shape = round`, by default.
 
 ```.jsx
     <p>
-      <IconButton icon="bell" text="Icon button" />
-      <IconButton icon="bell" shape="fill" text="Icon button" />
-      <IconButton icon="bell" shape="rightCap" text="Icon button" />
-      <IconButton icon="bell" shape="leftCap" text="Icon button" />
+      <IconButton icon="bell" label="Icon button" />
+      <IconButton icon="bell" shape="fill" label="Icon button" />
+      <IconButton icon="bell" shape="rightCap" label="Icon button" />
+      <IconButton icon="bell" shape="leftCap" label="Icon button" />
     </p>
 ```
 
@@ -66,4 +66,50 @@ but if you want to have a button with multiple icons, you can use the regular Bu
       <IconButton icon="bell" label="Text Left" textPosition="left" />
       <IconButton icon="info" color="secondary" label="Text Right" textPosition="right" />
     </p>
+```
+
+## Event Handling
+
+The `handleClick` events will fire when the button is clicked, or when the enter or space bar key is pressed.
+Events do not fire on disabled buttons.
+
+```.jsx
+  class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          iconButtonCounter: 0,
+          textIconButtonCounter: 0
+        }
+      }
+
+      render() {
+        return <div>
+          <p><strong>Icon Counter: </strong> {this.state.iconButtonCounter} | <strong>Text Icon Counter: </strong> {this.state.textIconButtonCounter}</p>
+          <IconButton
+            icon="bell"
+            label="Bell Icon"
+            handleClick={() => {
+              this.setState(state => ({iconButtonCounter: state.iconButtonCounter + 1}))
+            }}
+          />
+          <IconButton
+            icon="bell"
+            label="Click Me"
+            textPosition="left"
+            handleClick={() => {
+              this.setState(state => ({textIconButtonCounter: state.textIconButtonCounter + 1}))
+            }}
+          />
+          <IconButton
+            disabled
+            icon="bell"
+            label="Bell Icon"
+            handleClick={() => {
+              this.setState(state => ({iconButtonCounter: state.iconButtonCounter + 1}))
+            }}
+          />
+        </div>
+      }
+    }
 ```
