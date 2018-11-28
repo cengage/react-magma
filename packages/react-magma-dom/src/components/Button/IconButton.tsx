@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ButtonCore } from 'react-magma-core';
-import { ButtonProps, StyledButton } from './Button';
+import { ButtonProps, ButtonSize, StyledButton } from './Button';
 import { Icon } from '../Icon/Icon';
 import styled from 'styled-components';
 
@@ -11,9 +11,12 @@ enum ButtonTextPostition {
 
 export interface IconButtonProps extends ButtonProps {
   icon: string;
-  id?: string;
   label?: string;
   textPosition?: ButtonTextPostition;
+}
+
+export interface SpanProps {
+  size?: ButtonSize;
 }
 
 const StyledIconButton = styled(StyledButton)<IconButtonProps>`
@@ -58,12 +61,12 @@ const StyledIconButton = styled(StyledButton)<IconButtonProps>`
   }};
 `;
 
-const SpanTextLeft = styled.span`
-  padding-right: 10px;
+const SpanTextLeft = styled.span<SpanProps>`
+  padding-right: ${props => (props.size === 'large' ? '15px' : '10px')};
 `;
 
-const SpanTextRight = styled.span`
-  padding-left: 10px;
+const SpanTextRight = styled.span<SpanProps>`
+  padding-left: ${props => (props.size === 'large' ? '15px' : '10px')};
 `;
 
 function getIconSize(size) {
@@ -77,6 +80,17 @@ function getIconSize(size) {
   }
 }
 
+function getIconWithTextSize(size) {
+  switch (size) {
+    case 'large':
+      return 20;
+    case 'small':
+      return 12;
+    default:
+      return 16;
+  }
+}
+
 export const IconButton: React.FunctionComponent<IconButtonProps> = (
   props: IconButtonProps
 ): JSX.Element => (
@@ -87,8 +101,8 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
         label,
         disabled,
         icon,
-        id,
         inverse,
+        block,
         color,
         shape,
         size,
@@ -100,9 +114,9 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
       if (textPosition) {
         return (
           <StyledButton
-            id={id}
             autoFocus={autoFocus}
             onClick={handleClick}
+            block={block}
             color={color ? color : 'primary'}
             disabled={disabled}
             inverse={inverse}
@@ -112,11 +126,11 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
             type={type ? type : 'solid'}
           >
             {textPosition === ButtonTextPostition.left && (
-              <SpanTextLeft>{label} </SpanTextLeft>
+              <SpanTextLeft size={size}>{label} </SpanTextLeft>
             )}
-            <Icon size={16} type={icon} />
+            <Icon size={getIconWithTextSize(size)} type={icon} />
             {textPosition === ButtonTextPostition.right && (
-              <SpanTextRight>{label}</SpanTextRight>
+              <SpanTextRight size={size}>{label}</SpanTextRight>
             )}
           </StyledButton>
         );
@@ -124,7 +138,6 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
 
       return (
         <StyledIconButton
-          id={id}
           aria-label={label}
           autoFocus={autoFocus}
           onClick={handleClick}
@@ -135,7 +148,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
           size={size ? size : 'medium'}
           type={type ? type : 'solid'}
         >
-          <Icon size={getIconSize(size ? size : 'medium')} type={icon} />
+          <Icon size={getIconSize(size)} type={icon} />
         </StyledIconButton>
       );
     }}

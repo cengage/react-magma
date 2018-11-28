@@ -22,7 +22,9 @@ export const magma = {
     neutral05: '#BFBFBF',
     neutral06: '#DFDFDF',
     neutral07: '#F7F7F7',
-    neutral08: '#FFFFFF' // white
+    neutral08: '#FFFFFF', // white
+    disabledText: 'rgba(114, 114, 114, 0.6)',
+    disabledInverseText: 'rgba(255, 255, 255, 0.25)'
   },
 
   // primary colors

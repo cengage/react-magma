@@ -174,6 +174,21 @@ describe('Button', () => {
         expect(button).toHaveStyleRule('font-size', '1.125rem');
         expect(button).toHaveStyleRule('padding', '0 20px');
       });
+
+      it('disabled inverse outline button', () => {
+        const { getByText } = renderButton({
+          disabled: true,
+          inverse: true,
+          type: 'outline'
+        });
+        const button = getByText(TEXT);
+
+        expect(button).toHaveStyleRule(
+          'border-color',
+          'rgba(255,255,255,0.25)'
+        );
+        expect(button).toHaveStyleRule('color', 'rgba(255,255,255,0.25)');
+      });
     });
 
     describe('Shapes', () => {
@@ -211,6 +226,24 @@ describe('Button', () => {
       const button = getByText(TEXT);
 
       expect(button).toHaveStyleRule('text-transform', 'none');
+    });
+  });
+
+  describe('Block', () => {
+    it('default button', () => {
+      const { getByText } = renderButton();
+      const button = getByText(TEXT);
+
+      expect(button).toHaveStyleRule('display', 'inline-flex');
+      expect(button).toHaveStyleRule('width', 'auto');
+    });
+
+    it('block button', () => {
+      const { getByText } = renderButton({ block: true });
+      const button = getByText(TEXT);
+
+      expect(button).toHaveStyleRule('display', 'flex');
+      expect(button).toHaveStyleRule('width', '100%');
     });
   });
 

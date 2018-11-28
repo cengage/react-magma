@@ -58,13 +58,29 @@ Icon only buttons have `shape = round`, by default.
 
 By default, an icon button will not display its label text, and will instead use the label text as an `aria-label`.
 However, if you use the optional prop `textPosition`, the icon button will display a regular button with both the icon and the text.
-The `textPosition` property takes the values `left` and `right`.  Using a button with more than one icon is not recommended,
-but if you want to have a button with multiple icons, you can use the regular Button component and add the icons as the button's children.
+The `textPosition` property takes the values `left` and `right`.
+
+```.jsx
+    <div>
+      <p>
+        <IconButton icon="bell" label="Text Left" textPosition="left" />
+        <IconButton icon="info" color="secondary" label="Text Right" textPosition="right" />
+      </p>
+      <p>
+          <IconButton icon="bell" size="small" label="Small" textPosition="left" />
+          <IconButton icon="bell" size="large" label="Large" textPosition="left" />
+      </p>
+    </div>
+```
+
+##  Block Buttons
+Passing the `block` property will set the button to display full-width.
+Block buttons only work when the `textPosition` property is set to `left` or `right`.
 
 ```.jsx
     <p>
-      <IconButton icon="bell" label="Text Left" textPosition="left" />
-      <IconButton icon="info" color="secondary" label="Text Right" textPosition="right" />
+        <IconButton icon="bell" block label="Block button" textPosition="left" />
+        <IconButton icon="bell" color="secondary" block label="Block button" textPosition="right" />
     </p>
 ```
 

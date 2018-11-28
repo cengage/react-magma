@@ -172,6 +172,8 @@ describe('Icon Button', () => {
     });
 
     describe('Sizes', () => {
+      const label = 'Test Label';
+
       it('default icon button', () => {
         const { container } = renderButton();
         const button = container.querySelector('button');
@@ -197,6 +199,48 @@ describe('Icon Button', () => {
         expect(button).toHaveStyleRule('height', '28px');
         expect(button).toHaveStyleRule('width', '28px');
         expect(container.querySelector('svg')).toHaveAttribute('height', '14');
+      });
+
+      it('default icon button with text left', () => {
+        const { container } = renderButton({
+          textPosition: 'left',
+          label: label
+        });
+        const span = container.querySelector('span');
+
+        expect(span).toHaveStyleRule('padding-right', '10px');
+      });
+
+      it('large icon button with text left', () => {
+        const { container } = renderButton({
+          size: 'large',
+          textPosition: 'left',
+          label: label
+        });
+        const span = container.querySelector('span');
+
+        expect(span).toHaveStyleRule('padding-right', '15px');
+      });
+
+      it('default icon button with text right', () => {
+        const { container } = renderButton({
+          textPosition: 'right',
+          label: label
+        });
+        const span = container.querySelector('span');
+
+        expect(span).toHaveStyleRule('padding-left', '10px');
+      });
+
+      it('large icon button with text right', () => {
+        const { container } = renderButton({
+          size: 'large',
+          textPosition: 'right',
+          label: label
+        });
+        const span = container.querySelector('span');
+
+        expect(span).toHaveStyleRule('padding-left', '15px');
       });
     });
   });

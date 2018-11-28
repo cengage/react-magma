@@ -90,41 +90,41 @@ online affects `solid inverse buttons`.
 ```.jsx
     <div style={{ background : '#00263E', padding: '10px' }}>
       <p>
-          <Button color="primary" inverse>Solid inverse</Button>
+          <Button inverse>Solid inverse</Button>
           <Button color="secondary" inverse>Solid inverse</Button>
           <Button color="success" inverse>Solid inverse</Button>
           <Button color="danger" inverse>Solid inverse</Button>
       </p>
       <p>
-          <Button color="primary" type="outline" inverse>Outline inverse</Button>
-          <Button color="secondary" type="outline" inverse>Outline inverse</Button>
-          <Button color="success" type="outline" inverse>Outline inverse</Button>
-          <Button color="danger" type="outline" inverse>Outline inverse</Button>
+          <Button type="outline" inverse>Outline inverse</Button>
+          <Button type="link" inverse>Link inverse</Button>
       </p>
       <p>
-          <Button color="primary" type="link" inverse>Link inverse</Button>
-          <Button color="secondary" type="link" inverse>Link inverse</Button>
-          <Button color="success" type="link" inverse>Link inverse</Button>
-          <Button color="danger" type="link" inverse>Link inverse</Button>
-      </p>
-      <p>
-          <Button disabled>Disabled inverse</Button>
-          <Button disabled type="outline">Disabled outline inverse</Button>
-          <Button disabled type="link">Disabled link inverse</Button>
+          <Button disabled inverse>Disabled inverse</Button>
+          <Button disabled inverse type="outline">Disabled outline inverse</Button>
+          <Button disabled inverse type="link">Disabled link inverse</Button>
       </p>
     </div>
 ```
 
 ## All Caps
-Shapes for buttons include `uppercase`, `none`, `lowercase`, and `capitalize`, with `uppercase` being the default value.
-This property sets the CSS `text-tranform` property.  By default text is in all caps.
+Shapes for buttons include `uppercase`, `none`, with `uppercase` (all caps) being the default value.
+This property sets the CSS `text-tranform` property.
 
 ```.jsx
     <p>
         <Button>All caps</Button>
         <Button textTransform="none">No text tranform</Button>
-        <Button textTransform="lowercase">Lowercase</Button>
-        <Button textTransform="capitalize">Capitalize (title case)</Button>
+    </p>
+```
+
+##  Block Buttons
+Passing the `block` property will set the button to display full-width.
+
+```.jsx
+    <p>
+        <Button block>Block button</Button>
+        <Button block color="secondary">Block button</Button>
     </p>
 ```
 

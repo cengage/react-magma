@@ -30,14 +30,13 @@ export enum ButtonSize {
 }
 
 export enum ButtonTextTransform {
-  lowercase = 'lowercase',
   uppercase = 'uppercase', //default
-  capitalize = 'capitalize',
   none = 'none'
 }
 
 export interface ButtonProps {
   autoFocus?: boolean;
+  block?: boolean;
   children?: React.ReactChild | React.ReactChild[];
   text?: string;
   handleClick: () => void;
@@ -63,11 +62,11 @@ export const StyledButton = styled.button`
     }
   }};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
-  display: inline-flex;
+  display: ${props => (props.block ? 'flex' : 'inline-flex')};
   font-family: ${magma.bodyFont};
   justify-content: center;
   line-height: 1;
-  margin: 5px;
+  margin: ${props => (props.block ? '5px 0' : '5px')};
   min-width: 5.625em;
   overflow: hidden;
   position: relative;
@@ -75,28 +74,11 @@ export const StyledButton = styled.button`
   text-transform: ${props => props.textTransform};
   vertical-align: middle;
   touch-action: manipulation;
+  width: ${props => (props.block ? '100%' : 'auto')};
   white-space: nowrap;
 
   &:not(:disabled) {
     &:after,
-    &:before {
-      background: ${magma.colors.neutral08};
-      content: '';
-      opacity: 0;
-      position: absolute;
-    }
-
-    &:after {
-      border-radius: 50%;
-      height: 32px;
-      left: 50%;
-      padding: 50%;
-      top: 18px;
-      transform: translate(-50%, -50%) scale(1);
-      transition: opacity 1s, transform 0.5s;
-      width: 32px;
-    }
-
     &:before {
       background: ${props => {
         // Button color, type, inverse
@@ -124,7 +106,23 @@ export const StyledButton = styled.button`
         }
         return magma.colors.neutral08;
       }};
+      content: '';
+      opacity: 0;
+      position: absolute;
+    }
 
+    &:after {
+      border-radius: 50%;
+      height: 32px;
+      left: 50%;
+      padding: 50%;
+      top: 18px;
+      transform: translate(-50%, -50%) scale(1);
+      transition: opacity 1s, transform 0.5s;
+      width: 32px;
+    }
+
+    &:before {
       height: 200%;
       left: 0;
       top: -50%;
@@ -216,6 +214,9 @@ export const StyledButton = styled.button`
       : '0'};
   border-color: ${props => {
     // Button color, type, inverse
+    if (props.disabled && props.inverse && props.type === 'outline') {
+      return magma.colors.disabledInverseText;
+    }
     if (props.disabled) {
       return magma.colors.neutral06;
     }
@@ -238,8 +239,11 @@ export const StyledButton = styled.button`
   }};
   color: ${props => {
     // Button color, type, inverse
+    if (props.disabled && props.inverse && props.type !== 'solid') {
+      return magma.colors.disabledInverseText;
+    }
     if (props.disabled) {
-      return magma.colors.neutral04;
+      return magma.colors.disabledText;
     }
     if (
       (!props.inverse && props.type === 'solid') ||
@@ -270,6 +274,7 @@ export const Button: React.FunctionComponent<ButtonProps> = (
     {({ handleClick }) => {
       const {
         autoFocus,
+        block,
         children,
         disabled,
         inverse,
@@ -284,6 +289,7 @@ export const Button: React.FunctionComponent<ButtonProps> = (
         <StyledButton
           autoFocus={autoFocus}
           onClick={handleClick}
+          block={block}
           color={color ? color : 'primary'}
           disabled={disabled}
           inverse={inverse}
