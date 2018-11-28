@@ -146,7 +146,11 @@ const PreComponent = ({ className, ...props }) =>
     <pre {...props} />
   )
 
-const Table = props => <table {...props} />
+const Table = props => (
+  <div style={{ margin: '50px' }}>
+    <table {...props} />
+  </div>
+)
 
 const SectionHeading = props => (
   <h2 id={convertTextToId(props.children)}>{props.children}</h2>
