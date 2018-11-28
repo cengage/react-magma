@@ -14,10 +14,12 @@ import {
   ICONS,
   IconButton,
   Input,
+  Select,
   magma,
 } from 'react-magma-dom'
 import { IconContainer } from './iconContainer'
 import { IconListContainer } from './iconListContainer'
+import { SelectContainer } from './selectContainer'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import { convertTextToId } from '../utils'
 
@@ -130,6 +132,8 @@ const PreComponent = ({ className, ...props }) =>
         IconContainer,
         IconListContainer,
         Input,
+        Select,
+        SelectContainer,
       }}
     >
       <PreContainer>
