@@ -44,44 +44,6 @@ describe('Button', () => {
   });
 
   describe('Button classes', () => {
-    // describe('Ghost', () => {
-    //   it('default ghost button', () => {
-    //     const { getByText } = renderButton({ ghost: true });
-    //     const button = getByText(TEXT);
-
-    //     expect(button).toHaveStyleRule('background', 'none');
-    //     expect(button).toHaveStyleRule('color', magma.secondary04);
-    //   });
-
-    //   it('primary ghost button', () => {
-    //     const { getByText } = renderButton({ ghost: true, type: 'primary' });
-    //     const button = getByText(TEXT);
-
-    //     expect(button).toHaveStyleRule('color', magma.primary02);
-    //   });
-
-    //   it('success ghost button', () => {
-    //     const { getByText } = renderButton({ ghost: true, type: 'success' });
-    //     const button = getByText(TEXT);
-
-    //     expect(button).toHaveStyleRule('color', magma.accent02);
-    //   });
-
-    //   it('warning ghost button', () => {
-    //     const { getByText } = renderButton({ ghost: true, type: 'warning' });
-    //     const button = getByText(TEXT);
-
-    //     expect(button).toHaveStyleRule('color', magma.accent05);
-    //   });
-
-    //   it('danger ghost button', () => {
-    //     const { getByText } = renderButton({ ghost: true, type: 'danger' });
-    //     const button = getByText(TEXT);
-
-    //     expect(button).toHaveStyleRule('color', magma.limited01);
-    //   });
-    // });
-
     describe('Types', () => {
       it('solid button', () => {
         const { getByText } = renderButton({ type: 'solid' });

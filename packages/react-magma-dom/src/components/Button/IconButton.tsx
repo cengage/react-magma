@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { ButtonCore } from 'react-magma-core';
-import { Button, ButtonProps, StyledButton } from './Button';
+import { ButtonProps, StyledButton } from './Button';
 import { Icon } from '../Icon/Icon';
 import styled from 'styled-components';
-import { magma } from '../../theme/magma';
 
 enum ButtonTextPostition {
   left = 'left',
@@ -124,7 +123,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
         <StyledIconButton
           aria-label={label}
           autoFocus={autoFocus}
-          handleClick={handleClick}
+          onClick={handleClick}
           color={color ? color : 'primary'}
           disabled={disabled}
           inverse={inverse}
