@@ -3,7 +3,6 @@ import 'jest-dom/extend-expect';
 import 'jest-styled-components';
 import { IconButton, IconButtonProps } from './IconButton';
 import { render, fireEvent, cleanup } from 'react-testing-library';
-// import { magma } from '../../theme/magma';
 
 const TEXT = 'Text';
 
@@ -33,51 +32,47 @@ describe('Icon Button', () => {
     expect(button).not.toBeNull();
     expect(button).toHaveAttribute('color', 'primary');
     expect(button).toHaveAttribute('shape', 'round');
-    expect(button).toHaveAttribute('type', 'solid');
+    expect(button).toHaveStyleRule('border', '0');
   });
 
   it('should render icon button with passed in properties', () => {
     const color = 'secondary';
     const shape = 'fill';
-    const type = 'outline';
+    const variant = 'outline';
     const size = 'small';
     const { container } = renderButton({
       color,
       shape,
-      type,
+      variant,
       size
     });
     const button = container.querySelector('button');
 
     expect(button).toHaveAttribute('color', color);
     expect(button).toHaveAttribute('shape', shape);
-    expect(button).toHaveAttribute('type', type);
+    expect(button).toHaveStyleRule('border', '2px solid');
     expect(button).toHaveStyleRule('height', '28px');
   });
 
   it('should render icon button with text', () => {
-    const label = 'Test Label';
     const { getByText } = renderButton({
-      textPosition: 'right',
-      label
+      textPosition: 'right'
     });
 
-    expect(getByText(label)).not.toBeNull();
+    expect(getByText(TEXT)).not.toBeNull();
   });
 
   it('should render icon button with text with passed in properties', () => {
-    const label = 'Test Label';
     const color = 'secondary';
     const shape = 'fill';
-    const type = 'outline';
+    const variant = 'outline';
     const size = 'small';
     const textTransform = 'none';
     const { container } = renderButton({
-      label,
       textPosition: 'left',
       color,
       shape,
-      type,
+      variant,
       size,
       textTransform
     });
@@ -85,7 +80,7 @@ describe('Icon Button', () => {
 
     expect(button).toHaveAttribute('color', color);
     expect(button).toHaveAttribute('shape', shape);
-    expect(button).toHaveAttribute('type', type);
+    expect(button).toHaveStyleRule('border', '2px solid');
     expect(button).toHaveStyleRule('height', '29px');
     expect(button).toHaveStyleRule('text-transform', textTransform);
   });
@@ -116,7 +111,6 @@ describe('Icon Button', () => {
   it('should trigger the passed in function when icon button with text is clicked', () => {
     const handleClickSpy = jest.fn();
     const { container } = renderButton({
-      label: 'Test Label',
       textPosition: 'left',
       handleClick: handleClickSpy
     });
@@ -172,8 +166,6 @@ describe('Icon Button', () => {
     });
 
     describe('Sizes', () => {
-      const label = 'Test Label';
-
       it('default icon button', () => {
         const { container } = renderButton();
         const button = container.querySelector('button');
@@ -203,8 +195,7 @@ describe('Icon Button', () => {
 
       it('default icon button with text left', () => {
         const { container } = renderButton({
-          textPosition: 'left',
-          label: label
+          textPosition: 'left'
         });
         const span = container.querySelector('span');
 
@@ -214,8 +205,7 @@ describe('Icon Button', () => {
       it('large icon button with text left', () => {
         const { container } = renderButton({
           size: 'large',
-          textPosition: 'left',
-          label: label
+          textPosition: 'left'
         });
         const span = container.querySelector('span');
 
@@ -224,8 +214,7 @@ describe('Icon Button', () => {
 
       it('default icon button with text right', () => {
         const { container } = renderButton({
-          textPosition: 'right',
-          label: label
+          textPosition: 'right'
         });
         const span = container.querySelector('span');
 
@@ -235,8 +224,7 @@ describe('Icon Button', () => {
       it('large icon button with text right', () => {
         const { container } = renderButton({
           size: 'large',
-          textPosition: 'right',
-          label: label
+          textPosition: 'right'
         });
         const span = container.querySelector('span');
 

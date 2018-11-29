@@ -11,7 +11,6 @@ enum ButtonTextPostition {
 
 export interface IconButtonProps extends ButtonProps {
   icon: string;
-  label?: string;
   textPosition?: ButtonTextPostition;
 }
 
@@ -98,7 +97,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
     {({ handleClick }) => {
       const {
         autoFocus,
-        label,
+        children,
         disabled,
         icon,
         inverse,
@@ -106,7 +105,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
         color,
         shape,
         size,
-        type,
+        variant,
         textTransform,
         textPosition
       } = props;
@@ -123,14 +122,14 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
             shape={shape ? shape : 'fill'}
             size={size ? size : 'medium'}
             textTransform={textTransform ? textTransform : 'uppercase'}
-            type={type ? type : 'solid'}
+            variant={variant ? variant : 'solid'}
           >
             {textPosition === ButtonTextPostition.left && (
-              <SpanTextLeft size={size}>{label} </SpanTextLeft>
+              <SpanTextLeft size={size}>{children} </SpanTextLeft>
             )}
             <Icon size={getIconWithTextSize(size)} type={icon} />
             {textPosition === ButtonTextPostition.right && (
-              <SpanTextRight size={size}>{label}</SpanTextRight>
+              <SpanTextRight size={size}>{children}</SpanTextRight>
             )}
           </StyledButton>
         );
@@ -138,7 +137,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
 
       return (
         <StyledIconButton
-          aria-label={label}
+          aria-label={children}
           autoFocus={autoFocus}
           onClick={handleClick}
           color={color ? color : 'primary'}
@@ -146,7 +145,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
           inverse={inverse}
           shape={shape ? shape : 'round'}
           size={size ? size : 'medium'}
-          type={type ? type : 'solid'}
+          variant={variant ? variant : 'solid'}
         >
           <Icon size={getIconSize(size)} type={icon} />
         </StyledIconButton>

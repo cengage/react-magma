@@ -3,7 +3,7 @@ import { ButtonCore } from 'react-magma-core';
 const styled = require('styled-components').default;
 import { magma } from '../../theme/magma';
 
-enum ButtonType {
+enum ButtonVariant {
   solid = 'solid', //default
   outline = 'outline',
   link = 'link'
@@ -46,7 +46,7 @@ export interface ButtonProps {
   shape?: ButtonShape;
   size?: ButtonSize;
   textTransform?: ButtonTextTransform;
-  type?: ButtonType;
+  variant?: ButtonVariant;
 }
 
 export const StyledButton = styled.button`
@@ -81,10 +81,10 @@ export const StyledButton = styled.button`
     &:after,
     &:before {
       background: ${props => {
-        // Button color, type, inverse
+        // Button color, variant, inverse
         if (
-          (props.type !== 'solid' && !props.inverse) ||
-          (props.type === 'solid' && props.inverse)
+          (props.variant !== 'solid' && !props.inverse) ||
+          (props.variant === 'solid' && props.inverse)
         ) {
           switch (props.color) {
             case 'secondary':
@@ -98,7 +98,7 @@ export const StyledButton = styled.button`
           }
         }
         if (
-          props.type === 'solid' &&
+          props.variant === 'solid' &&
           !props.inverse &&
           props.color === 'secondary'
         ) {
@@ -186,8 +186,8 @@ export const StyledButton = styled.button`
   }};
 
   background: ${props => {
-    // Button color, type, inverse
-    if (props.type !== 'solid') {
+    // Button color, variant, inverse
+    if (props.variant !== 'solid') {
       return 'none';
     }
     if (props.disabled) {
@@ -208,13 +208,13 @@ export const StyledButton = styled.button`
     }
   }};
   border: ${props =>
-    props.type === 'outline' ||
-    (props.type === 'solid' && props.color === 'secondary' && !props.inverse)
+    props.variant === 'outline' ||
+    (props.variant === 'solid' && props.color === 'secondary' && !props.inverse)
       ? '2px solid'
       : '0'};
   border-color: ${props => {
-    // Button color, type, inverse
-    if (props.disabled && props.inverse && props.type === 'outline') {
+    // Button color, variant, inverse
+    if (props.disabled && props.inverse && props.variant === 'outline') {
       return magma.colors.disabledInverseText;
     }
     if (props.disabled) {
@@ -226,7 +226,7 @@ export const StyledButton = styled.button`
     if (props.color === 'secondary') {
       return magma.colors.neutral05;
     }
-    if (props.type === 'solid') {
+    if (props.variant === 'solid') {
       switch (props.color) {
         case 'success':
           return magma.colors.success01;
@@ -238,16 +238,16 @@ export const StyledButton = styled.button`
     }
   }};
   color: ${props => {
-    // Button color, type, inverse
-    if (props.disabled && props.inverse && props.type !== 'solid') {
+    // Button color, variant, inverse
+    if (props.disabled && props.inverse && props.variant !== 'solid') {
       return magma.colors.disabledInverseText;
     }
     if (props.disabled) {
       return magma.colors.disabledText;
     }
     if (
-      (!props.inverse && props.type === 'solid') ||
-      (props.inverse && props.type !== 'solid')
+      (!props.inverse && props.variant === 'solid') ||
+      (props.inverse && props.variant !== 'solid')
     ) {
       if (props.color === 'secondary' && !props.inverse) {
         return magma.colors.neutral02;
@@ -282,7 +282,7 @@ export const Button: React.FunctionComponent<ButtonProps> = (
         shape,
         size,
         textTransform,
-        type
+        variant
       } = props;
 
       return (
@@ -296,7 +296,7 @@ export const Button: React.FunctionComponent<ButtonProps> = (
           shape={shape ? shape : 'fill'}
           size={size ? size : 'medium'}
           textTransform={textTransform ? textTransform : 'uppercase'}
-          type={type ? type : 'solid'}
+          variant={variant ? variant : 'solid'}
         >
           {children}
         </StyledButton>

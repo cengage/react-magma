@@ -44,9 +44,9 @@ describe('Button', () => {
   });
 
   describe('Button classes', () => {
-    describe('Types', () => {
+    describe('Variants', () => {
       it('solid button', () => {
-        const { getByText } = renderButton({ type: 'solid' });
+        const { getByText } = renderButton({ variant: 'solid' });
         const button = getByText(TEXT);
 
         expect(button).toHaveStyleRule('background', magma.colors.primary);
@@ -55,7 +55,7 @@ describe('Button', () => {
       });
 
       it('outline button', () => {
-        const { getByText } = renderButton({ type: 'outline' });
+        const { getByText } = renderButton({ variant: 'outline' });
         const button = getByText(TEXT);
 
         expect(button).toHaveStyleRule('background', 'none');
@@ -63,7 +63,7 @@ describe('Button', () => {
       });
 
       it('link button', () => {
-        const { getByText } = renderButton({ type: 'link' });
+        const { getByText } = renderButton({ variant: 'link' });
         const button = getByText(TEXT);
 
         expect(button).toHaveStyleRule('background', 'none');
@@ -179,7 +179,7 @@ describe('Button', () => {
         const { getByText } = renderButton({
           disabled: true,
           inverse: true,
-          type: 'outline'
+          variant: 'outline'
         });
         const button = getByText(TEXT);
 

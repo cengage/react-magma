@@ -4,14 +4,10 @@ title: "Buttons"
 
 # Buttons
 
-**Buttons are clickable items used to perform an action.**
+## Basic usage
 
-Buttons should be used in situations where users might need to:
-
-* Submit a form.
-* Begin a new task.
-* Trigger a new UI element to appear on the page.
-* Specify a new or next step in a process.
+Buttons are clickable items used to perform an action.
+See the Button Design Guidelines for more information on when to use the different kinds of buttons.
 
 ## Sizes
 
@@ -38,31 +34,31 @@ Colors for buttons include `primary`, `secondary`, `success`, and `danger`, with
     </p>
 ```
 
-## Types
+## Variants
 
-Types for buttons include `solid`, `outline`, and `link`, with `solid` being the default value.
+Variants for buttons include `solid`, `outline`, and `link`, with `solid` being the default value.
 
 ```.jsx
     <div>
       <p>
-          <Button color="primary" type="solid">Solid (default)</Button>
-          <Button color="primary" type="outline">Outline</Button>
-          <Button color="primary" type="link">Link</Button>
+          <Button color="primary" variant="solid">Solid (default)</Button>
+          <Button color="primary" variant="outline">Outline</Button>
+          <Button color="primary" variant="link">Link</Button>
       </p>
       <p>
-          <Button color="secondary" type="solid">Solid (default)</Button>
-          <Button color="secondary" type="outline">Outline</Button>
-          <Button color="secondary" type="link">Link</Button>
+          <Button color="secondary" variant="solid">Solid (default)</Button>
+          <Button color="secondary" variant="outline">Outline</Button>
+          <Button color="secondary" variant="link">Link</Button>
       </p>
       <p>
-          <Button color="success" type="solid">Solid (default)</Button>
-          <Button color="success" type="outline">Outline</Button>
-          <Button color="success" type="link">Link</Button>
+          <Button color="success" variant="solid">Solid (default)</Button>
+          <Button color="success" variant="outline">Outline</Button>
+          <Button color="success" variant="link">Link</Button>
       </p>
       <p>
-          <Button color="danger" type="solid">Solid (default)</Button>
-          <Button color="danger" type="outline">Outline</Button>
-          <Button color="danger" type="link">Link</Button>
+          <Button color="danger" variant="solid">Solid (default)</Button>
+          <Button color="danger" variant="outline">Outline</Button>
+          <Button color="danger" variant="link">Link</Button>
       </p>
     </div>
 ```
@@ -96,13 +92,13 @@ online affects `solid inverse buttons`.
           <Button color="danger" inverse>Solid inverse</Button>
       </p>
       <p>
-          <Button type="outline" inverse>Outline inverse</Button>
-          <Button type="link" inverse>Link inverse</Button>
+          <Button variant="outline" inverse>Outline inverse</Button>
+          <Button variant="link" inverse>Link inverse</Button>
       </p>
       <p>
           <Button disabled inverse>Disabled inverse</Button>
-          <Button disabled inverse type="outline">Disabled outline inverse</Button>
-          <Button disabled inverse type="link">Disabled link inverse</Button>
+          <Button disabled inverse variant="outline">Disabled outline inverse</Button>
+          <Button disabled inverse variant="link">Disabled link inverse</Button>
       </p>
     </div>
 ```
@@ -133,8 +129,8 @@ Passing the `block` property will set the button to display full-width.
 ```.jsx
     <p>
         <Button disabled>Disabled</Button>
-        <Button disabled type="outline">Disabled</Button>
-        <Button disabled type="link">Disabled</Button>
+        <Button disabled variant="outline">Disabled</Button>
+        <Button disabled variant="link">Disabled</Button>
     </p>
 ```
 
@@ -172,7 +168,7 @@ Events do not fire on disabled buttons.
 
 ## Button Props
 
-| Prop                   | Type  | Default | Required    |
+| Prop                   | Variant  | Default | Required    |
 | -----------------------|------ |---------|:-----------:|
 | handleClick | func | | &#10003;
 | autoFocus | boolean | false |
@@ -184,4 +180,4 @@ Events do not fire on disabled buttons.
 | shape | enum: 'fill' &#124; 'leftCap' &#124; 'rightCap' &#124; 'round' | 'fill' |
 | size | enum: 'large' &#124; 'medium' &#124; 'small' | 'medium' |
 | textTransform | enum: 'uppercase' &#124; 'none' | 'uppercase' |
-| type | enum: 'solid' &#124; 'outline' &#124; 'link' | 'solid' |
+| variant | enum: 'solid' &#124; 'outline' &#124; 'link' | 'solid' |
