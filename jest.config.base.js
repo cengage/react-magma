@@ -1,12 +1,7 @@
 module.exports = {
   testMatch: ['<rootDir>/src/**/?(*.)(spec|test).{ts,tsx,mjs}'],
-  globals: {
-    'ts-jest': {
-      useBabelrc: true
-    }
-  },
   transform: {
-    '^.+\\.ts(x)?$': 'ts-jest'
+    '^.+\\.ts(x)?$': 'babel-jest'
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   collectCoverage: true,

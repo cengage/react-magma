@@ -1,5 +1,4 @@
 import * as React from 'react';
-import 'jest-dom/extend-expect';
 import { Input, InputProps } from './Input';
 import {
   render,

@@ -1,6 +1,4 @@
 import * as React from 'react';
-import 'jest-dom/extend-expect';
-import 'jest-styled-components';
 import { Heading, HeadingProps } from './Heading';
 import { render, cleanup } from 'react-testing-library';
 

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import 'jest-dom/extend-expect';
 import { Select, SelectProps } from './Select';
 import { render, fireEvent, cleanup } from 'react-testing-library';
 

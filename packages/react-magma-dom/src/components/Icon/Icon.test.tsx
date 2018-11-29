@@ -1,6 +1,4 @@
 import * as React from 'react';
-import 'jest-dom/extend-expect';
-import 'jest-styled-components';
 import { Icon, IconProps } from './Icon';
 import { ICONS } from './types/icons';
 import { render, cleanup } from 'react-testing-library';
