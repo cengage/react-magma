@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { Input, Button, Icon, Checkbox, Select } from 'react-magma-dom';
 
 class App extends Component {

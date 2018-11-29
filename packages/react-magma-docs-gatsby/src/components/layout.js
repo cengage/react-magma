@@ -3,13 +3,14 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import MainNav from './main-nav'
-import styled from 'styled-components'
+import styled, { injectGlobal } from 'styled-components'
 import { MDXProvider } from '@mdx-js/tag'
-import { Button, Checkbox, Heading, Icon, ICONS, Input } from 'react-magma-dom'
+import { Location } from '@reach/router'
+import { Transition, config } from 'react-spring'
+import { Button, Heading, Icon, ICONS, Input, magma } from 'react-magma-dom'
 import { IconContainer } from './iconContainer'
 import { IconListContainer } from './iconListContainer'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
-
 import { convertTextToId } from '../utils'
 
 import Header from './header'
@@ -18,13 +19,83 @@ import './app.css'
 import './layout.css'
 import './syntax.css'
 
+injectGlobal`
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+  @import url('https://use.typekit.net/rwr6vzk.css');
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+
+  & body {
+    color: ${magma.primary01};
+  	font-family: ${magma.bodyFont};
+  	font-style: normal;
+  	font-weight: 400;
+  	font-size: 15px;
+  	line-height: 22px;
+  }
+
+  a {
+    color: ${magma.primary02};
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: ${magma.secondary01};
+      text-decoration: underline;
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: ${magma.primary02};
+    font-family: ${magma.headingFont};
+    font-weight: 500;
+    line-height: 1.1;
+    margin: 20px 0 10px;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+
+  h3 {
+    font-size: 26px;
+  }
+
+  h4 {
+    font-size: 23px;
+  }
+
+  h5 {
+    font-size: 20px;
+  }
+
+  h6 {
+    font-size: 18px;
+  }
+`
+
 const Content = styled.article`
   grid-area: content;
+  max-width: 760px;
+  margin: 0 auto;
+
+  h1 {
+    margin-top: 0;
+  }
 `
 
 const Main = styled.main`
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 20px;
   grid-template-columns: 200px auto;
   grid-template-rows: 100px auto;
   grid-template-areas:
@@ -34,8 +105,8 @@ const Main = styled.main`
 
 const PreContainer = styled.div`
   display: grid;
-  overflow: scroll;
   max-width: 100%;
+  overflow: scroll;
 `
 
 const PreComponent = ({ className, ...props }) =>
@@ -46,7 +117,6 @@ const PreComponent = ({ className, ...props }) =>
       code={props.children.props.children}
       scope={{
         Button,
-        Checkbox,
         Heading,
         Icon,
         ICONS,
@@ -104,7 +174,19 @@ const Layout = ({ children }) => (
                 h2: SectionHeading,
               }}
             >
-              {children}
+              <Location>
+                {({ location }) => (
+                  <Transition
+                    config={config.slow}
+                    keys={location.pathname}
+                    from={{ opacity: 0 }}
+                    enter={{ opacity: 1 }}
+                    leave={{ opacity: 0 }}
+                  >
+                    {() => style => <article style={style}>{children}</article>}
+                  </Transition>
+                )}
+              </Location>
             </MDXProvider>
           </Content>
         </Main>
