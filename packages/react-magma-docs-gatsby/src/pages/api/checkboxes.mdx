@@ -16,8 +16,41 @@ title: "Checkboxes"
 
     <Checkbox
         id='checkbox1'
+        labelText='Checkbox Label'
+        required={false}
+        value={false} />
+
+    <Checkbox
+        id='checkbox2'
         labelText='Checkbox Label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines'
         required={false}
         value={false} />
+    </div>
+```
+
+## Inline Checkboxes
+Adding the `inline` property will allow multiple checkbox groups to sit on the same line.
+
+```.jsx
+  <div>
+    <Checkbox
+        id='checkbox3'
+        inline
+        labelText='Checkbox Label'
+        required={false}
+        value={false} />
+
+    <Checkbox
+        id='checkbox4'
+        inline={true}
+        labelText='Checkbox Label'
+        required={false}
+        value={false} />
+
+      <Checkbox
+          id='checkbox5'
+          labelText='Checkbox Label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines'
+          required={false}
+          value={false} />
     </div>
 ```

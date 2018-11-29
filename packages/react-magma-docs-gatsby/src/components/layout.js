@@ -7,7 +7,7 @@ import styled, { injectGlobal } from 'styled-components'
 import { MDXProvider } from '@mdx-js/tag'
 import { Location } from '@reach/router'
 import { Transition, config } from 'react-spring'
-import { Button, Heading, Icon, ICONS, Input, magma } from 'react-magma-dom'
+import { Button, Checkbox, Heading, Icon, ICONS, Input, magma } from 'react-magma-dom'
 import { IconContainer } from './iconContainer'
 import { IconListContainer } from './iconListContainer'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
@@ -117,6 +117,7 @@ const PreComponent = ({ className, ...props }) =>
       code={props.children.props.children}
       scope={{
         Button,
+        Checkbox,
         Heading,
         Icon,
         ICONS,
