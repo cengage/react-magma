@@ -1,6 +1,6 @@
-import * as React from 'react';
-import 'jest-dom/extend-expect';
-import { Select, SelectProps } from './Select';
+import React from 'react';
+import { axe } from 'jest-axe';
+import { Select } from './Select';
 import { render, fireEvent, cleanup } from 'react-testing-library';
 
 const options = [
@@ -18,7 +18,7 @@ const options = [
   }
 ];
 
-const SELECT_PROPS: SelectProps = {
+const SELECT_PROPS = {
   id: 'abc123',
   name: 'testLabel',
   labelText: 'test label',
@@ -50,8 +50,7 @@ describe('Select', () => {
     const { getByLabelText } = renderSelect();
     const select = getByLabelText(SELECT_PROPS.labelText);
 
-    expect(select).toBeInTheDocument();
-    expect(select).toHaveAttribute('id', SELECT_PROPS.id);
+    expect(select).toHaveAttribute('aria-label', SELECT_PROPS.labelText);
   });
 
   it('should render a select with a value passed through', () => {
@@ -113,6 +112,13 @@ describe('Select', () => {
       );
 
       expect(handleFocusSpy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  it('Does not violate accessibility standards', () => {
+    const { container } = renderSelect();
+    return axe(container.innerHTML).then(result => {
+      return expect(result).toHaveNoViolations();
     });
   });
 });

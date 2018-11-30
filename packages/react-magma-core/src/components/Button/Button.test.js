@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import { mount } from 'enzyme';
-import { ButtonCore, ButtonCoreProps } from './Button';
+import { ButtonCore } from './Button';
 
 const handleClick = jest.fn();
 
-const INPUT_CORE_PROPS: ButtonCoreProps = {
+const INPUT_CORE_PROPS = {
   children: () => React.createElement('div'),
   handleClick
 };
@@ -15,7 +15,7 @@ const buttonSetup = (myProps = {}) => {
     ...myProps
   };
 
-  return mount<ButtonCore>(<ButtonCore {...props} />);
+  return mount(<ButtonCore {...props} />);
 };
 
 describe('ButtonCore', () => {

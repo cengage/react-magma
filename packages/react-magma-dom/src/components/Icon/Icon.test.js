@@ -1,13 +1,12 @@
-import * as React from 'react';
-import 'jest-dom/extend-expect';
-import 'jest-styled-components';
-import { Icon, IconProps } from './Icon';
+import React from 'react';
+import { axe } from 'jest-axe';
+import { Icon } from './Icon';
 import { ICONS } from './types/icons';
 import { render, cleanup } from 'react-testing-library';
 
 const baseIconType = Object.keys(ICONS)[0];
 
-const BASE_ICON_PROPS: IconProps = {
+const BASE_ICON_PROPS = {
   id: `${baseIconType}Id`,
   title: `${baseIconType} Title`,
   type: baseIconType
@@ -72,6 +71,13 @@ describe('Icon', () => {
       });
 
       expect(container).toMatchSnapshot();
+    });
+  });
+
+  it('Does not violate accessibility standards', () => {
+    const { container } = renderIcon();
+    return axe(container.innerHTML).then(result => {
+      return expect(result).toHaveNoViolations();
     });
   });
 });

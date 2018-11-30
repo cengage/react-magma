@@ -158,10 +158,11 @@ export const Select: React.FunctionComponent<SelectProps> = (
 
       return (
         <div>
-          <Label htmlFor={id}>{labelText}</Label>
+          <Label>{labelText}</Label>
           <ReactSelect
-            components={{ ClearIndicator, DropdownIndicator, MultiValueRemove }}
             id={id}
+            components={{ ClearIndicator, DropdownIndicator, MultiValueRemove }}
+            aria-label={labelText}
             name={name}
             defaultValue={defaultValue}
             options={options}

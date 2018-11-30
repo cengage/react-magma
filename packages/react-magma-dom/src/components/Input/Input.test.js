@@ -1,14 +1,9 @@
-import * as React from 'react';
-import 'jest-dom/extend-expect';
-import { Input, InputProps } from './Input';
-import {
-  render,
-  fireEvent,
-  cleanup,
-  waitForElement
-} from 'react-testing-library';
+import React from 'react';
+import { axe } from 'jest-axe';
+import { Input } from './Input';
+import { render, fireEvent, cleanup } from 'react-testing-library';
 
-const INPUT_PROPS: InputProps = {
+const INPUT_PROPS = {
   autoFocus: false,
   id: 'abc123',
   labelText: 'test label',
@@ -141,6 +136,13 @@ describe('Input', () => {
       );
 
       expect(handleFocusSpy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  it('Does not violate accessibility standards', () => {
+    const { container } = renderInput();
+    return axe(container.innerHTML).then(result => {
+      return expect(result).toHaveNoViolations();
     });
   });
 });
