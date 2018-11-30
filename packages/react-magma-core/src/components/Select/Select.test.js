@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import { SelectCore, SelectCoreProps } from './Select';
+import { SelectCore } from './Select';
 
 const handleBlur = jest.fn();
 const handleFocus = jest.fn();
@@ -8,7 +8,7 @@ const handleChange = jest.fn();
 const handleOpen = jest.fn();
 const handleClose = jest.fn();
 
-const SELECT_CORE_PROPS: SelectCoreProps = {
+const SELECT_CORE_PROPS = {
   children: () => React.createElement('div'),
   handleBlur,
   handleChange,
@@ -24,7 +24,7 @@ const selectSetup = (myProps = {}) => {
     ...myProps
   };
 
-  return mount<SelectCore>(<SelectCore {...props} />);
+  return mount(<SelectCore {...props} />);
 };
 
 describe('SelectCore', () => {

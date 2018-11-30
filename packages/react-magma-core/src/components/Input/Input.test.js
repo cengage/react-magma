@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import { InputCore, InputCoreProps, InputCoreState } from './Input';
+import { InputCore } from './Input';
 
 const handleBlur = jest.fn();
 const handleChange = jest.fn();
 const handleFocus = jest.fn();
 
-const INPUT_CORE_PROPS: InputCoreProps = {
+const INPUT_CORE_PROPS = {
   children: () => React.createElement('div'),
   handleBlur,
   handleChange,
@@ -20,7 +20,7 @@ const inputSetup = (myProps = {}) => {
     ...myProps
   };
 
-  return mount<InputCore>(<InputCore {...props} />);
+  return mount(<InputCore {...props} />);
 };
 
 describe('InputCore', () => {
