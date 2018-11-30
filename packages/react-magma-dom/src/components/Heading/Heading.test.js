@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { Heading, HeadingProps } from './Heading';
+import React from 'react';
+import { Heading } from './Heading';
 import { render, cleanup } from 'react-testing-library';
 
 const headingText = 'Test Heading Text';
 
-const BASE_HEADING_PROPS: HeadingProps = {
+const BASE_HEADING_PROPS = {
   level: 1,
   children: React.createElement('div')
 };

@@ -21,5 +21,10 @@
       }
     ],
     "@babel/plugin-proposal-export-default-from"
-  ]
+  ],
+  "env": {
+    "test": {
+      "plugins": ["dynamic-import-node"]
+    }
+  }
 }

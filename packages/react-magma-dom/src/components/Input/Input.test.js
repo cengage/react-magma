@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Input, InputProps } from './Input';
+import { Input } from './Input';
 import {
   render,
   fireEvent,
@@ -7,7 +7,7 @@ import {
   waitForElement
 } from 'react-testing-library';
 
-const INPUT_PROPS: InputProps = {
+const INPUT_PROPS = {
   autoFocus: false,
   id: 'abc123',
   labelText: 'test label',

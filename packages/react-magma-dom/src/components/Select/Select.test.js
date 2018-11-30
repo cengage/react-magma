@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { Select, SelectProps } from './Select';
+import React from 'react';
+import { Select } from './Select';
 import { render, fireEvent, cleanup } from 'react-testing-library';
 
 const options = [
@@ -17,7 +17,7 @@ const options = [
   }
 ];
 
-const SELECT_PROPS: SelectProps = {
+const SELECT_PROPS = {
   id: 'abc123',
   name: 'testLabel',
   labelText: 'test label',

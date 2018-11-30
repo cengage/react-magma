@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { Icon, IconProps } from './Icon';
+import React from 'react';
+import { Icon } from './Icon';
 import { ICONS } from './types/icons';
 import { render, cleanup } from 'react-testing-library';
 
 const baseIconType = Object.keys(ICONS)[0];
 
-const BASE_ICON_PROPS: IconProps = {
+const BASE_ICON_PROPS = {
   id: `${baseIconType}Id`,
   title: `${baseIconType} Title`,
   type: baseIconType

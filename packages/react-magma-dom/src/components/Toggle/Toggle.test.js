@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { Toggle, ToggleProps } from './Toggle';
+import React from 'react';
+import { Toggle } from './Toggle';
 import {
   render,
   fireEvent,
@@ -7,7 +7,7 @@ import {
   waitForElement
 } from 'react-testing-library';
 
-const BASE_TOGGLE_PROPS: ToggleProps = {
+const BASE_TOGGLE_PROPS = {
   handleToggle: jest.fn(),
   isOn: false
 };

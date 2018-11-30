@@ -1,10 +1,11 @@
 module.exports = {
-  testMatch: ['<rootDir>/src/**/?(*.)(spec|test).{ts,tsx,mjs}'],
+  testMatch: ['<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}'],
   transform: {
-    '^.+\\.ts(x)?$': 'babel-jest'
+    '^.+\\.(j|t)s(x)?$': 'babel-jest'
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   collectCoverage: true,
+  collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/index.tsx'],
   coveragePathIgnorePatterns: ['(tests/.*.mock).(jsx?|tsx?)$', '.snap'],
   verbose: true,
   watchPlugins: [
