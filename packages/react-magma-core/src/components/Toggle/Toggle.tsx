@@ -1,9 +1,10 @@
 import * as React from 'react';
 
 export class ToggleCore extends React.Component<ToggleCoreProps> {
-  static state: ToggleCoreState = {
+  initialState: ToggleCoreState = {
     isOn: false
   };
+  state: ToggleCoreState = this.initialState;
 
   constructor(props) {
     super(props);

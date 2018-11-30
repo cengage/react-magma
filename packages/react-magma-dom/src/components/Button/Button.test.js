@@ -1,13 +1,12 @@
-import * as React from 'react';
-import 'jest-dom/extend-expect';
-import 'jest-styled-components';
-import { Button, ButtonProps } from './Button';
+import React from 'react';
+import { axe } from 'jest-axe';
+import { Button } from './Button';
 import { render, fireEvent, cleanup } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 
-const TEXT = 'Text';
+const TEXT = 'Test Text';
 
-const BASE_BUTTON_PROPS: ButtonProps = {
+const BASE_BUTTON_PROPS = {
   handleClick: jest.fn()
 };
 
@@ -262,5 +261,12 @@ describe('Button', () => {
     );
 
     expect(handleClickSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('Does not violate accessibility standards', () => {
+    const { container } = renderButton();
+    return axe(container.innerHTML).then(result => {
+      return expect(result).toHaveNoViolations();
+    });
   });
 });

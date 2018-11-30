@@ -1,12 +1,11 @@
-import * as React from 'react';
-import 'jest-dom/extend-expect';
-import 'jest-styled-components';
-import { Heading, HeadingProps } from './Heading';
+import React from 'react';
+import { axe } from 'jest-axe';
+import { Heading } from './Heading';
 import { render, cleanup } from 'react-testing-library';
 
 const headingText = 'Test Heading Text';
 
-const BASE_HEADING_PROPS: HeadingProps = {
+const BASE_HEADING_PROPS = {
   level: 1,
   children: React.createElement('div')
 };
@@ -103,6 +102,13 @@ describe('Heading', () => {
       );
 
       expect(container).toMatchSnapshot();
+    });
+  });
+
+  it('Does not violate accessibility standards', () => {
+    const { container } = renderHeading();
+    return axe(container.innerHTML).then(result => {
+      return expect(result).toHaveNoViolations();
     });
   });
 });
