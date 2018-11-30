@@ -1,7 +1,6 @@
-const runTests = versionNumber => {
+describe('Button', () => {
   beforeEach(() => {
-    const version = Cypress.env('version') || versionNumber;
-    cy.visit(`/react_${version}.html`);
+    cy.visit(`/react_16_5.html`);
   });
 
   it('Displays and interacts with button', () => {
@@ -26,16 +25,4 @@ const runTests = versionNumber => {
       .should('be.visible')
       .and('be.disabled');
   });
-};
-
-describe('React 15 Button', () => {
-  runTests('15');
-});
-
-describe('React 16.0 Button', () => {
-  runTests('16_0');
-});
-
-describe('React 16.5 Button', () => {
-  runTests('16_5');
 });

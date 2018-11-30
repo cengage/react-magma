@@ -18,23 +18,11 @@ To enable the user the greatest opportunity to correctly input the correct infor
 
 ```.jsx
     <Input
-        autoFocus={false}
         id='input1'
         labelText='Label'
         placeholder='This is a placeholder'
         required={false}
         value='Default Value' />
-```
-
-## Auto Focus
-
-```.jsx
-    <Input
-        autoFocus={true}
-        id='input2'
-        labelText='Auto Focus'
-        placeholder='This input is auto focused'
-        required={true} />
 ```
 
 ## Password
@@ -132,3 +120,19 @@ To enable the user the greatest opportunity to correctly input the correct infor
     }
   }
 ```
+
+## Input Props
+
+| Prop                   | Type | Default | Required    |
+| -----------------------|------|---------|:-----------:|
+| id | string | | &#10003;
+| labelText | string | | &#10003;
+| autoFocus | boolean | | 
+| disabled | boolean | | 
+| handleBlur | func | | 
+| handleChange | func | | 
+| handleFocus | func | | 
+| placeholder | string | | 
+| required | boolean | | 
+| type | enum: 'text' &#124; 'password' &#124; 'number' | 'text' | 
+| value | string | | 
