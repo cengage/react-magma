@@ -1,4 +1,5 @@
 import React from 'react';
+import { axe } from 'jest-axe';
 import { Heading } from './Heading';
 import { render, cleanup } from 'react-testing-library';
 
@@ -101,6 +102,13 @@ describe('Heading', () => {
       );
 
       expect(container).toMatchSnapshot();
+    });
+  });
+
+  it('Does not violate accessibility standards', () => {
+    const { container } = renderHeading();
+    return axe(container.innerHTML).then(result => {
+      return expect(result).toHaveNoViolations();
     });
   });
 });

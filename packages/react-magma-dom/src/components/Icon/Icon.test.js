@@ -1,4 +1,5 @@
 import React from 'react';
+import { axe } from 'jest-axe';
 import { Icon } from './Icon';
 import { ICONS } from './types/icons';
 import { render, cleanup } from 'react-testing-library';
@@ -70,6 +71,13 @@ describe('Icon', () => {
       });
 
       expect(container).toMatchSnapshot();
+    });
+  });
+
+  it('Does not violate accessibility standards', () => {
+    const { container } = renderIcon();
+    return axe(container.innerHTML).then(result => {
+      return expect(result).toHaveNoViolations();
     });
   });
 });
