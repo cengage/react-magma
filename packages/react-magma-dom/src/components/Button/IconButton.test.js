@@ -1,12 +1,11 @@
-import * as React from 'react';
-import 'jest-dom/extend-expect';
-import 'jest-styled-components';
-import { IconButton, IconButtonProps } from './IconButton';
+import React from 'react';
+import { axe } from 'jest-axe';
+import { IconButton } from './IconButton';
 import { render, fireEvent, cleanup } from 'react-testing-library';
 
 const TEXT = 'Text';
 
-const BASE_ICON_BUTTON_PROPS: IconButtonProps = {
+const BASE_ICON_BUTTON_PROPS = {
   handleClick: jest.fn(),
   icon: 'bell'
 };
@@ -230,6 +229,13 @@ describe('Icon Button', () => {
 
         expect(span).toHaveStyleRule('padding-left', '15px');
       });
+    });
+  });
+
+  it('Does not violate accessibility standards', () => {
+    const { container } = renderButton();
+    return axe(container.innerHTML).then(result => {
+      return expect(result).toHaveNoViolations();
     });
   });
 });
