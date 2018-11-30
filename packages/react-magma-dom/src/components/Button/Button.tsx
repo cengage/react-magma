@@ -3,221 +3,268 @@ import { ButtonCore } from 'react-magma-core';
 const styled = require('styled-components').default;
 import { magma } from '../../theme/magma';
 
-enum ButtonType {
-  default,
-  primary,
-  success,
-  warning,
-  danger,
-  link
+enum ButtonVariant {
+  solid = 'solid', //default
+  outline = 'outline',
+  link = 'link'
 }
 
-enum ButtonSize {
-  large,
-  small
+enum ButtonColor {
+  primary = 'primary', //default
+  secondary = 'secondary',
+  success = 'success',
+  danger = 'danger'
+}
+
+enum ButtonShape {
+  fill = 'fill', //default
+  leftCap = 'leftCap',
+  rightCap = 'rightCap',
+  round = 'round' // default for icon only buttons
+}
+
+export enum ButtonSize {
+  large = 'large',
+  medium = 'medium', //default
+  small = 'small'
+}
+
+export enum ButtonTextTransform {
+  uppercase = 'uppercase', //default
+  none = 'none'
 }
 
 export interface ButtonProps {
   autoFocus?: boolean;
-  text: string;
+  block?: boolean;
+  children?: React.ReactChild | React.ReactChild[];
+  text?: string;
   handleClick: () => void;
+  color?: ButtonColor;
   disabled?: boolean;
-  ghost?: boolean;
+  inverse?: boolean;
+  shape?: ButtonShape;
   size?: ButtonSize;
-  type?: ButtonType;
+  textTransform?: ButtonTextTransform;
+  variant?: ButtonVariant;
 }
 
-const StyledButton = styled.button`
-  background: ${props => {
-    if (props.ghost) {
-      return 'none';
+export const StyledButton = styled.button`
+  align-items: center;
+  border-radius: ${props => {
+    switch (props.shape) {
+      case 'leftCap':
+        return '5px 0 0 5px';
+      case 'rightCap':
+        return '0 5px 5px 0';
+      default:
+        return '5px';
+    }
+  }};
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+  display: ${props => (props.block ? 'flex' : 'inline-flex')};
+  font-family: ${magma.bodyFont};
+  justify-content: center;
+  line-height: 1;
+  margin: ${props => (props.block ? '5px 0' : '5px')};
+  min-width: 5.625em;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  text-transform: ${props => props.textTransform};
+  vertical-align: middle;
+  touch-action: manipulation;
+  width: ${props => (props.block ? '100%' : 'auto')};
+  white-space: nowrap;
+
+  &:not(:disabled) {
+    &:after,
+    &:before {
+      background: ${props => {
+        // Button color, variant, inverse
+        if (
+          (props.variant !== 'solid' && !props.inverse) ||
+          (props.variant === 'solid' && props.inverse)
+        ) {
+          switch (props.color) {
+            case 'secondary':
+              return magma.colors.neutral02;
+            case 'success':
+              return magma.colors.success01;
+            case 'danger':
+              return magma.colors.danger;
+            default:
+              return magma.colors.primary;
+          }
+        }
+        if (
+          props.variant === 'solid' &&
+          !props.inverse &&
+          props.color === 'secondary'
+        ) {
+          return magma.colors.neutral02;
+        }
+        return magma.colors.neutral08;
+      }};
+      content: '';
+      opacity: 0;
+      position: absolute;
     }
 
-    switch (props.type) {
-      case 'link':
-        return 'none';
-      case 'primary':
-        return magma.primary02;
-      case 'success':
-        return magma.accent02;
-      case 'warning':
-        return magma.accent05;
-      case 'danger':
-        return magma.limited01;
-      default:
-        return magma.primary04;
+    &:after {
+      border-radius: 50%;
+      height: 32px;
+      left: 50%;
+      padding: 50%;
+      top: 18px;
+      transform: translate(-50%, -50%) scale(1);
+      transition: opacity 1s, transform 0.5s;
+      width: 32px;
     }
-  }};
-  border: 1px solid transparent;
-  border-color: ${props => {
-    switch (props.type) {
-      case 'link':
-        return 'transparent';
-      case 'primary':
-        return magma.primary02;
-      case 'success':
-        return magma.accent02;
-      case 'warning':
-        return magma.accent05;
-      case 'danger':
-        return magma.limited01;
-      default:
-        return magma.secondary05;
+
+    &:before {
+      height: 200%;
+      left: 0;
+      top: -50%;
+      transition: 0.2s;
+      width: 200%;
     }
-  }};
-  color: ${props => {
-    if (props.type === 'link') {
-      return magma.primary02;
-    }
-    if (props.ghost) {
-      switch (props.type) {
-        case 'primary':
-          return magma.primary02;
-        case 'success':
-          return magma.accent02;
-        case 'warning':
-          return magma.accent05;
-        case 'danger':
-          return magma.limited01;
-        default:
-          return magma.secondary04;
+
+    &:active {
+      &:after {
+        opacity: 0.4;
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform 0s;
       }
     }
-    if (
-      props.type === 'primary' ||
-      props.type === 'success' ||
-      props.type === 'warning' ||
-      props.type === 'danger'
-    ) {
-      return magma.primary04;
+
+    &:hover,
+    &:focus {
+      &:before {
+        opacity: 0.1;
+      }
     }
-    return magma.accent02;
-  }};
-  border-radius: 3px;
-  cursor: pointer;
-  display: inline-block;
-  font-family: ${magma.bodyFont};
+  }
+
+  &:focus {
+    outline: 2px dotted ${magma.colors.pop03};
+    outline-offset: 3px;
+  }
+
   font-size: ${props => {
     switch (props.size) {
       case 'large':
-        return '20px';
+        return '1.125rem';
       case 'small':
-        return '14px';
+        return '.750rem';
       default:
-        return '16px';
+        return '.875rem';
     }
   }};
-  line-height: 1.46666667;
-  margin: 5px;
-  padding: ${props => {
+  font-weight: ${props => (props.size === 'large' ? 500 : 600)};
+  height: ${props => {
+    // Button size
     switch (props.size) {
       case 'large':
-        return '0.4em 20px';
+        return '45px';
       case 'small':
-        return '0.4em 10px';
+        return '29px';
       default:
-        return '0.4em 15px';
+        return '37px';
     }
   }};
-  text-align: center;
-  vertical-align: middle;
-  touch-action: manipulation;
-  white-space: nowrap;
+  padding: ${props => {
+    // Button size
+    switch (props.size) {
+      case 'large':
+        return '0 20px';
+      case 'small':
+        return '0 10px';
+      default:
+        return '0 15px';
+    }
+  }};
 
-  &:hover:not([disabled]),
-  &:focus:not([disabled]) {
-    background: ${props => {
-      switch (props.type) {
-        case 'primary':
-          return magma.secondary02;
+  background: ${props => {
+    // Button color, variant, inverse
+    if (props.variant !== 'solid') {
+      return 'none';
+    }
+    if (props.disabled) {
+      return magma.colors.neutral06;
+    }
+    if (props.inverse) {
+      return magma.colors.neutral08;
+    }
+    switch (props.color) {
+      case 'secondary':
+        return magma.colors.neutral08;
+      case 'success':
+        return magma.colors.success01;
+      case 'danger':
+        return magma.colors.danger;
+      default:
+        return magma.colors.primary;
+    }
+  }};
+  border: ${props =>
+    props.variant === 'outline' ||
+    (props.variant === 'solid' && props.color === 'secondary' && !props.inverse)
+      ? '2px solid'
+      : '0'};
+  border-color: ${props => {
+    // Button color, variant, inverse
+    if (props.disabled && props.inverse && props.variant === 'outline') {
+      return magma.colors.disabledInverseText;
+    }
+    if (props.disabled) {
+      return magma.colors.neutral06;
+    }
+    if (props.inverse) {
+      return magma.colors.neutral08;
+    }
+    if (props.color === 'secondary') {
+      return magma.colors.neutral05;
+    }
+    if (props.variant === 'solid') {
+      switch (props.color) {
         case 'success':
-          return magma.accent03;
-        case 'warning':
-          return magma.accent06;
+          return magma.colors.success01;
         case 'danger':
-          return magma.limited02;
+          return magma.colors.danger;
         default:
-          return magma.primary04;
+          return magma.colors.primary;
       }
-    }};
-    border-color: ${props => {
-      switch (props.type) {
-        case 'link':
-          return 'transparent';
-        case 'primary':
-          return magma.secondary02;
-        case 'success':
-          return magma.accent03;
-        case 'warning':
-          return magma.accent06;
-        case 'danger':
-          return magma.limited02;
-        default:
-          return magma.secondary05;
+    }
+  }};
+  color: ${props => {
+    // Button color, variant, inverse
+    if (props.disabled && props.inverse && props.variant !== 'solid') {
+      return magma.colors.disabledInverseText;
+    }
+    if (props.disabled) {
+      return magma.colors.disabledText;
+    }
+    if (
+      (!props.inverse && props.variant === 'solid') ||
+      (props.inverse && props.variant !== 'solid')
+    ) {
+      if (props.color === 'secondary' && !props.inverse) {
+        return magma.colors.neutral02;
       }
-    }};
-    color: ${props => {
-      switch (props.type) {
-        case 'link':
-          return magma.secondary01;
-        case 'primary':
-        case 'success':
-        case 'warning':
-        case 'danger':
-          return magma.primary04;
-        default:
-          return magma.accent01;
-      }
-    }};
-    text-decoration: ${props => (props.type === 'link' ? 'underline' : 'none')};
-  }
-
-  &:active:not([disabled]),
-  &.active:not([disabled]) {
-    background: ${props => {
-      switch (props.type) {
-        case 'link':
-          return 'transparent';
-        case 'primary':
-          return magma.secondary01;
-        case 'success':
-          return magma.accent01;
-        case 'warning':
-          return magma.accent04;
-        case 'danger':
-          return magma.limited04;
-        default:
-          return magma.secondary06;
-      }
-    }};
-    border-color: ${props => {
-      switch (props.type) {
-        case 'link':
-          return 'transparent';
-        case 'primary':
-          return magma.secondary01;
-        case 'success':
-          return magma.accent01;
-        case 'warning':
-          return magma.accent04;
-        case 'danger':
-          return magma.limited04;
-        default:
-          return magma.secondary05;
-      }
-    }};
-    box-shadow: ${props =>
-      props.type === 'link' ? '0 0 0' : 'inset 0 3px 5px rgba(0, 0, 0, 0.125)'};
-  }
-
-  &[disabled] {
-    background: ${magma.limited03};
-    border-color: ${magma.limited03};
-    box-shadow: 0 0 0;
-    color: rgba(122, 122, 122, 0.6);
-    cursor: not-allowed;
-    opacity: 0.65;
-  }
+      return magma.colors.neutral08;
+    }
+    switch (props.color) {
+      case 'secondary':
+        return magma.colors.neutral02;
+      case 'success':
+        return magma.colors.success01;
+      case 'danger':
+        return magma.colors.danger;
+      default:
+        return magma.colors.primary;
+    }
+  }};
 `;
 
 export const Button: React.FunctionComponent<ButtonProps> = (
@@ -225,18 +272,33 @@ export const Button: React.FunctionComponent<ButtonProps> = (
 ): JSX.Element => (
   <ButtonCore handleClick={props.handleClick}>
     {({ handleClick }) => {
-      const { autoFocus, text, ghost, disabled, size, type } = props;
+      const {
+        autoFocus,
+        block,
+        children,
+        disabled,
+        inverse,
+        color,
+        shape,
+        size,
+        textTransform,
+        variant
+      } = props;
 
       return (
         <StyledButton
           autoFocus={autoFocus}
           onClick={handleClick}
+          block={block}
+          color={color ? color : 'primary'}
           disabled={disabled}
-          ghost={ghost}
-          size={size}
-          type={type}
+          inverse={inverse}
+          shape={shape ? shape : 'fill'}
+          size={size ? size : 'medium'}
+          textTransform={textTransform ? textTransform : 'uppercase'}
+          variant={variant ? variant : 'solid'}
         >
-          {text}
+          {children}
         </StyledButton>
       );
     }}
