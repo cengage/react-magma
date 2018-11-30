@@ -10,41 +10,98 @@ title: "Checkboxes"
   <div>
     <Checkbox
         id='checkbox0'
-        labelText='Checkbox Label'
-        required={false}
-        value={false} />
+        labelText='Checkbox Label' />
 
     <Checkbox
         id='checkbox1'
-        labelText='Checkbox Label'
-        required={false}
-        value={false} />
+        labelText='Checkbox Label' />
 
     <Checkbox
         id='checkbox2'
-        labelText='Checkbox Label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines'
-        required={false}
-        value={false} />
+        labelText='Checkbox Label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines' />
     </div>
 ```
 
-## Inline Checkboxes
-Adding the `inline` property will allow multiple checkbox groups to sit on the same line.
+## Colors
+By default, the checkboxes use the theme's primary color.  But any other color may be passed in.
+
+```.jsx
+  <div>
+  <Checkbox
+      id='colorCheckbox'
+      labelText='Default Color'
+      value={false} />
+    <Checkbox
+        color={magma.colors.success01}
+        id='successColorCheckbox'
+        labelText='Success Color' />
+    <Checkbox
+        color={magma.colors.danger}
+        id='dangerColorCheckbox'
+        labelText='Danger Color' />
+    <Checkbox
+        color={magma.colors.pop02}
+        id='popColorCheckbox'
+        labelText='Pop Color' />
+    </div>
+```
+
+## Disabled
 
 ```.jsx
   <div>
     <Checkbox
-        id='checkbox3'
-        inline
-        labelText='Checkbox Label'
-        required={false}
-        value={false} />
-
-    <Checkbox
-        id='checkbox4'
-        inline={true}
-        labelText='Checkbox Label'
-        required={false}
-        value={false} />
+        disabled
+        id='disabledCheckbox'
+        labelText='Disabled Checkbox' />
     </div>
 ```
+
+## Inverse colors
+Inverse is an optional boolean prop, that may be passed in when checkboxes are to be displayed on a dark background.
+
+```.jsx
+  <div style={{ background : '#00263E', padding: '10px' }}>
+  <Checkbox
+      id='inverseCheckbox'
+      inverse
+      labelText='Inverse'
+      value={false} />
+    <Checkbox
+        color={magma.colors.success01}
+        id='successInverseCheckbox'
+        inverse
+        labelText='Success Inverse' />
+    <Checkbox
+        color={magma.colors.danger}
+        id='dangerInverseCheckbox'
+        inverse
+        labelText='Danger Inverse' />
+    <Checkbox
+        color={magma.colors.pop02}
+        id='popInverseCheckbox'
+        inverse
+        labelText='Pop Inverse' />
+      <Checkbox
+          disabled
+          id='popInverseCheckbox'
+          inverse
+          labelText='Disabled Inverse' />
+    </div>
+```
+
+## Checkbox Props
+
+| Prop                   | Type | Default | Required    |
+| -----------------------|------|---------|:-----------:|
+| autoFocus | boolean | | &#10003;
+| color | string | |
+| disabled | boolean | |
+| handleBlur | function | |
+| handleChange | function | |
+| handleFocus | function | |
+| id | string | | &#10003;
+| inverse | boolean | |
+| labelText | string | | &#10003;
+| required | function | |
+| value | string | |

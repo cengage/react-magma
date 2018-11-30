@@ -138,6 +138,7 @@ const PreComponent = ({ className, ...props }) =>
         Input,
         Select,
         SelectContainer,
+        magma
       }}
     >
       <PreContainer>
