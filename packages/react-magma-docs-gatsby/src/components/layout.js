@@ -7,9 +7,20 @@ import styled, { injectGlobal } from 'styled-components'
 import { MDXProvider } from '@mdx-js/tag'
 import { Location } from '@reach/router'
 import { Transition, config } from 'react-spring'
-import { Button, Checkbox, Heading, Icon, ICONS, Input, magma } from 'react-magma-dom'
+import {
+  Button,
+  Checkbox,
+  Heading,
+  Icon,
+  ICONS,
+  IconButton,
+  Input,
+  Select,
+  magma
+} from 'react-magma-dom'
 import { IconContainer } from './iconContainer'
 import { IconListContainer } from './iconListContainer'
+import { SelectContainer } from './selectContainer'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import { convertTextToId } from '../utils'
 
@@ -20,7 +31,7 @@ import './layout.css'
 import './syntax.css'
 
 injectGlobal`
-  @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
   @import url('https://use.typekit.net/rwr6vzk.css');
 
   *,
@@ -121,9 +132,12 @@ const PreComponent = ({ className, ...props }) =>
         Heading,
         Icon,
         ICONS,
+        IconButton,
         IconContainer,
         IconListContainer,
         Input,
+        Select,
+        SelectContainer,
       }}
     >
       <PreContainer>
@@ -136,7 +150,11 @@ const PreComponent = ({ className, ...props }) =>
     <pre {...props} />
   )
 
-const Table = props => <table {...props} />
+const Table = props => (
+  <div style={{ margin: '50px' }}>
+    <table {...props} />
+  </div>
+)
 
 const SectionHeading = props => (
   <h2 id={convertTextToId(props.children)}>{props.children}</h2>

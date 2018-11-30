@@ -1,7 +1,6 @@
-const runTests = versionNumber => {
+describe('Icon', () => {
   beforeEach(() => {
-    const version = Cypress.env('version') || versionNumber;
-    cy.visit(`/react_${version}.html`);
+    cy.visit(`/react_16_5.html`);
   });
 
   it('Displays an icon', () => {
@@ -9,16 +8,4 @@ const runTests = versionNumber => {
       .parent()
       .should('be.visible');
   });
-};
-
-describe('React 15 Icon', () => {
-  runTests('15');
-});
-
-describe('React 16.0 Icon', () => {
-  runTests('16_0');
-});
-
-describe('React 16.5 Icon', () => {
-  runTests('16_5');
 });

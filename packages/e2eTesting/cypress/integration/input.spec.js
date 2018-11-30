@@ -1,7 +1,6 @@
-const runTests = versionNumber => {
+describe('Input', () => {
   beforeEach(() => {
-    const version = Cypress.env('version') || versionNumber;
-    cy.visit(`/react_${version}.html`);
+    cy.visit(`/react_16_5.html`);
   });
 
   it('Displays and interacts text input', () => {
@@ -63,16 +62,4 @@ const runTests = versionNumber => {
   it('Creates a label for the input', () => {
     cy.get('label').should('have.attr', 'for', 'labeledInput');
   });
-};
-
-describe('React 15 Input', () => {
-  runTests('15');
-});
-
-describe('React 16.0 Input', () => {
-  runTests('16_0');
-});
-
-describe('React 16.5 Input', () => {
-  runTests('16_5');
 });
