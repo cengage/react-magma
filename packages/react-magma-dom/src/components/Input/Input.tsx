@@ -1,14 +1,8 @@
 import * as React from 'react';
 import { InputCore } from 'react-magma-core';
 const styled = require('styled-components').default;
+import { Label } from '../Label/Label';
 import { magma } from '../../theme/magma';
-
-const StyledLabel = styled.label`
-  display: inline-block;
-  font-weight: bold;
-  margin-bottom: 5px;
-  max-width: 100%;
-`;
 
 const StyledInput = styled.input`
   background: ${magma.primary04};
@@ -18,7 +12,7 @@ const StyledInput = styled.input`
   color: ${magma.primary01};
   display: block;
   height: 35px;
-  padding: 11px 8px;
+  padding: 0 8px;
   font-size: 1rem;
   line-height: 1.25rem;
   width: 100%;
@@ -55,7 +49,7 @@ export interface InputProps {
   value?: string;
 }
 
-export const Input: React.SFC<InputProps> = (
+export const Input: React.FunctionComponent<InputProps> = (
   props: InputProps
 ): JSX.Element => (
   <InputCore
@@ -77,7 +71,7 @@ export const Input: React.SFC<InputProps> = (
 
       return (
         <div>
-          <StyledLabel htmlFor={id}>{labelText}</StyledLabel>
+          <Label htmlFor={id}>{labelText}</Label>
           <StyledInput
             autoFocus={autoFocus}
             id={id}

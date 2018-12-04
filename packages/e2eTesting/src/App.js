@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Button, Icon, Checkbox } from 'react-magma-dom';
+import { Input, Button, Checkbox, Icon, IconButton, Select } from 'react-magma-dom';
 
 class App extends Component {
   render() {
@@ -17,12 +17,46 @@ class App extends Component {
         <h1>BUTTONS</h1>
         <Button
           id="defaultButton"
-          text="Default Button"
+          handleClick={() => {
+            alert('clicked');
+          }}
+        >
+          Default Button
+        </Button>
+        <Button id="disabledButton" disabled>
+          Disabled Button
+        </Button>
+
+        <h1>ICON BUTTONS</h1>
+        <IconButton
+          label="Default Icon Button With Text"
+          textPosition="right"
+          icon="bell"
           handleClick={() => {
             alert('clicked');
           }}
         />
-        <Button id="disabledButton" text="Disabled Button" disabled />
+        <IconButton
+          disabled
+          label="Disabled Icon Button With Text"
+          textPosition="right"
+          icon="bell"
+        />
+
+        <IconButton
+          id="defaultIconButton"
+          label="Default Icon Button"
+          icon="bell"
+          handleClick={() => {
+            alert('clicked');
+          }}
+        />
+        <IconButton
+          id="disabledIconButton"
+          disabled
+          label="Disabled Icon Button"
+          icon="bell"
+        />
 
         <h1>ICONS</h1>
         <Icon id="basicInfoIcon" title="Basic Info Icon" type="info" />
@@ -35,6 +69,55 @@ class App extends Component {
           labelText="Label"
           handleChange={() => {
             alert('clicked');
+            }}
+          />
+
+        <h1>SELECTS</h1>
+        <Select
+          id="basicSelectId"
+          name="basic"
+          labelText="Basic"
+          options={[
+            {
+              value: 'red',
+              label: 'Red'
+            },
+            {
+              value: 'blue',
+              label: 'Blue'
+            },
+            {
+              value: 'green',
+              label: 'Green'
+            }
+          ]}
+          handleOpen={() => {
+            alert('opened');
+          }}
+          handleClose={() => {
+            alert('closed');
+          }}
+        />
+        <Select
+          id="changeSelectId"
+          name="change"
+          labelText="Change"
+          options={[
+            {
+              value: 'red',
+              label: 'Red'
+            },
+            {
+              value: 'blue',
+              label: 'Blue'
+            },
+            {
+              value: 'green',
+              label: 'Green'
+            }
+          ]}
+          handleChange={() => {
+            alert('changed');
           }}
         />
       </div>

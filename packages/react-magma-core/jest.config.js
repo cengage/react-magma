@@ -4,5 +4,5 @@ module.exports = {
   ...base,
   name: 'react-magma-core',
   displayName: 'react-magma-core',
-  setupTestFrameworkScriptFile: '<rootDir>/setupTests.ts'
+  setupTestFrameworkScriptFile: '<rootDir>/setupTests.js'
 };

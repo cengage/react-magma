@@ -1,7 +1,9 @@
 import * as React from 'react';
 import 'jest-dom/extend-expect';
+import 'jest-styled-components';
 import { Checkbox, CheckboxProps } from './Checkbox';
 import { render, fireEvent, cleanup } from 'react-testing-library';
+import { magma } from '../../theme/magma';
 
 const CHECKBOX_PROPS: CheckboxProps = {
   autoFocus: false,
@@ -65,10 +67,55 @@ describe('Checkbox', () => {
   });
 
   it('should disable the checkbox', () => {
-    const { getByLabelText } = renderCheckbox({ disabled: true });
+    const { container, getByLabelText } = renderCheckbox({ disabled: true });
     const checkbox = getByLabelText(CHECKBOX_PROPS.labelText);
+    const span = container.querySelector('span');
 
     expect(checkbox).toBeDisabled();
+    expect(span).toHaveStyleRule('background', magma.colors.neutral06);
+    expect(span).toHaveStyleRule('border-color', magma.colors.neutral05);
+  });
+
+  it('should render an inverse checkbox with the correct styles', () => {
+    const { container } = renderCheckbox({ inverse: true });
+    const span = container.querySelector('span');
+
+    expect(span).toHaveStyleRule('background', 'none');
+    expect(span).toHaveStyleRule('border-color', magma.colors.neutral08);
+  });
+
+  it('should render an inverse, disabled checkbox with the correct styles', () => {
+    const { container } = renderCheckbox({ disabled: true, inverse: true });
+    const span = container.querySelector('span');
+
+    expect(span).toHaveStyleRule('background', 'none');
+    expect(span).toHaveStyleRule('border-color', 'rgba(255,255,255,0.25)');
+  });
+
+  it('should render an inverse, checked checkbox with the correct styles', () => {
+    const { container } = renderCheckbox({ value: true, inverse: true });
+    const span = container.querySelector('span');
+
+    expect(span).toHaveStyleRule('background', magma.colors.neutral08);
+    expect(span).toHaveStyleRule('border-color', magma.colors.neutral08);
+  });
+
+  it('should give the checkbox an indeterminate value', () => {
+    const { getByLabelText } = renderCheckbox({ indeterminate: true });
+    const checkbox = getByLabelText(CHECKBOX_PROPS.labelText);
+
+    expect(checkbox).toHaveProperty('indeterminate');
+  });
+
+  it('should update indeterminate on rerender', () => {
+    const { getByLabelText, rerender } = renderCheckbox();
+    const checkbox = getByLabelText(CHECKBOX_PROPS.labelText);
+
+    expect(checkbox).toHaveProperty('indeterminate', false);
+
+    rerender(<Checkbox {...CHECKBOX_PROPS} indeterminate={true} />);
+
+    expect(checkbox).toHaveProperty('indeterminate', true);
   });
 
   it('should give the checkbox an indeterminate value', () => {

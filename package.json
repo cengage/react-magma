@@ -7,11 +7,11 @@
     "test": "lerna run --scope react-magma-dom --scope react-magma-core test && npm run report",
     "test-watch": "jest --watch",
     "report": "mkdir -p .nyc_output && istanbul-merge ./packages/*/coverage/*.json --out .nyc_output/coverage.json && nyc report --reporter=lcov --reporter=text",
-    "build": "lerna run build",
+    "build": "lerna run build --scope react-magma-core --scope react-magma-dom --scope react-magma-docs-gatsby",
     "bootstrap": "lerna bootstrap",
     "lint": "lerna run lint",
-    "docs": "lerna exec --scope react-magma-docs docz dev",
-    "createStaticFile": "echo 'pushstate: enabled' >| packages/react-magma-docs/.docz/dist/Staticfile",
+    "docs": "lerna exec --scope react-magma-docs-gatsby gatsby develop",
+    "createStaticFile": "echo 'pushstate: enabled' >| packages/react-magma-docs-gatsby/public/Staticfile",
     "cm": "git-cz",
     "cm-retry": "git-cz --retry"
   },
@@ -31,8 +31,7 @@
     "jest": "^23.6.0",
     "jest-watch-typeahead": "^0.2.0",
     "lerna": "^3.1.4",
-    "nyc": "^13.0.1",
-    "ts-jest": "^23.10.0"
+    "nyc": "^13.0.1"
   },
   "config": {
     "commitizen": {

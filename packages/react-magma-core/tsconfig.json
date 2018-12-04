@@ -3,7 +3,6 @@
     "outDir": "dist",
     "rootDir": "src",
     "jsx": "react",
-    "declaration": true,
     "types": ["jest", "node"],
     "typeRoots": ["node_modules/@types"]
   },

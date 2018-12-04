@@ -6,7 +6,7 @@ export interface ToggleProps {
   handleToggle?: () => void;
 }
 
-export const Toggle: React.SFC<ToggleProps> = (
+export const Toggle: React.FunctionComponent<ToggleProps> = (
   props: ToggleProps
 ): JSX.Element => (
   <ToggleCore>
