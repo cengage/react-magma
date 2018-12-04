@@ -100,6 +100,24 @@ describe('Checkbox', () => {
     expect(span).toHaveStyleRule('border-color', magma.colors.neutral08);
   });
 
+  it('should give the checkbox an indeterminate value', () => {
+    const { getByLabelText } = renderCheckbox({ indeterminate: true });
+    const checkbox = getByLabelText(CHECKBOX_PROPS.labelText);
+
+    expect(checkbox).toHaveProperty('indeterminate');
+  });
+
+  it('should update indeterminate on rerender', () => {
+    const { getByLabelText, rerender } = renderCheckbox();
+    const checkbox = getByLabelText(CHECKBOX_PROPS.labelText);
+
+    expect(checkbox).toHaveProperty('indeterminate', false);
+
+    rerender(<Checkbox {...CHECKBOX_PROPS} indeterminate={true} />);
+
+    expect(checkbox).toHaveProperty('indeterminate', true);
+  });
+
   describe('events', () => {
     it('should trigger the passed in handleBlur when focus is removed', () => {
       const handleBlurSpy = jest.fn();

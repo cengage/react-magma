@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { CheckboxCore } from 'react-magma-core';
 import { Icon } from '../Icon/Icon';
 const styled = require('styled-components').default;
@@ -12,6 +13,7 @@ export interface CheckboxProps {
   handleChange?: () => void;
   handleFocus?: () => void;
   id: string;
+  indeterminate?: boolean;
   inverse?: boolean;
   labelText: string;
   required?: boolean;
@@ -32,7 +34,7 @@ const StyledContainer = styled.div`
   margin: 0 0 5px 10px;
 `;
 
-const StyledInput = styled.input`
+const HiddenInput = styled.input`
   clip: rect(1px, 1px, 1px, 1px);
   height: 1px;
   position: absolute;
@@ -47,7 +49,7 @@ const StyledLabel = styled.label`
   margin: 0 0 0 10px;
 `;
 
-const StyledSpan = styled.span<CheckboxWrapperProps>`
+const StyledInput = styled.span`
   align-items: center;
   background: ${props => {
     if (props.inverse) {
@@ -84,6 +86,7 @@ const StyledSpan = styled.span<CheckboxWrapperProps>`
   height: 20px;
   justify-content: center;
   margin: 2px 5px 0 -25px;
+  position: relative;
   transition: all 0.2s ease-out;
   width: 20px;
 
@@ -93,56 +96,114 @@ const StyledSpan = styled.span<CheckboxWrapperProps>`
     opacity: ${props => (props.checked ? '1' : '0')};
     transition: all 0.2s ease-out;
   }
+
+  ${HiddenInput}:focus + label & {
+    outline: 2px dotted ${magma.colors.pop03};
+    outline-offset: 2px;
+  }
+
+  ${HiddenInput}:active + label & {
+    &:after {
+      opacity: 0.4;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0s;
+    }
+  }
+
+  ${HiddenInput}:indeterminate + label & {
+    background: ${magma.colors.neutral08};
+    border-color: ${props =>
+      props.inverse ? magma.colors.neutral08 : props.color};
+
+    &:before {
+      background: ${props => props.color};
+      content: '';
+      display: block;
+      height: 2px;
+      width: 10px;
+    }
+
+    svg {
+      display: none;
+    }
+  }
 `;
 
-export const Checkbox: React.FunctionComponent<CheckboxProps> = (
-  props: CheckboxProps
-): JSX.Element => (
-  <CheckboxCore
-    value={props.value}
-    handleBlur={props.handleBlur}
-    handleChange={props.handleChange}
-    handleFocus={props.handleFocus}
-  >
-    {({ handleBlur, handleChange, handleFocus, value }) => {
-      const {
-        autoFocus,
-        color,
-        disabled,
-        id,
-        inverse,
-        labelText,
-        required
-      } = props;
+export class Checkbox extends React.Component<CheckboxProps> {
+  constructor(props) {
+    super(props);
 
-      return (
-        <StyledContainer>
-          <StyledInput
-            autoFocus={autoFocus}
-            id={id}
-            disabled={disabled}
-            required={required}
-            type="checkbox"
-            value={value}
-            onBlur={handleBlur}
-            onChange={handleChange}
-            onFocus={handleFocus}
-          />
-          <StyledLabel htmlFor={id} inverse={inverse}>
-            <StyledSpan
-              checked={value}
-              color={color ? color : magma.colors.primary}
-              disabled={disabled}
-              inverse={inverse}
-            >
-              <Icon size={12} type="checkmark" />
-            </StyledSpan>
-            {labelText}
-          </StyledLabel>
-        </StyledContainer>
-      );
-    }}
-  </CheckboxCore>
-);
+    this.setIndeterminate = this.setIndeterminate.bind(this);
+  }
+
+  private checkboxInput = React.createRef<HTMLInputElement>();
+
+  componentDidMount() {
+    this.setIndeterminate();
+  }
+
+  componentDidUpdate() {
+    this.setIndeterminate();
+  }
+
+  setIndeterminate() {
+    ReactDOM.findDOMNode(
+      this.checkboxInput.current
+    ).indeterminate = this.props.indeterminate;
+  }
+
+  render() {
+    return (
+      <CheckboxCore
+        value={this.props.value}
+        handleBlur={this.props.handleBlur}
+        handleChange={this.props.handleChange}
+        handleFocus={this.props.handleFocus}
+      >
+        {({ handleBlur, handleChange, handleFocus, value }) => {
+          const {
+            autoFocus,
+            color,
+            disabled,
+            id,
+            indeterminate,
+            inverse,
+            labelText,
+            required
+          } = this.props;
+
+          return (
+            <StyledContainer>
+              <HiddenInput
+                ref={this.checkboxInput}
+                autoFocus={autoFocus}
+                id={id}
+                disabled={disabled}
+                indeterminate={indeterminate}
+                required={required}
+                type="checkbox"
+                value={value}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                onFocus={handleFocus}
+              />
+              <StyledLabel htmlFor={id} inverse={inverse}>
+                <StyledInput
+                  checked={value}
+                  color={color ? color : magma.colors.primary}
+                  disabled={disabled}
+                  inverse={inverse}
+                >
+                  <Icon size={12} type="checkmark" />
+                </StyledInput>
+                {labelText}
+              </StyledLabel>
+            </StyledContainer>
+          );
+        }}
+      </CheckboxCore>
+    );
+  }
+}
 
 export default Checkbox;

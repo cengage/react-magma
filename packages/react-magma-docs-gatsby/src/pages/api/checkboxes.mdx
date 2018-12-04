@@ -57,6 +57,22 @@ By default, the checkboxes use the theme's primary color.  But any other color m
     </div>
 ```
 
+## Indeterminate
+
+```.jsx
+  <div>
+    <Checkbox
+        id='indeterminateCheckbox'
+        indeterminate
+        labelText='Indeterminate Checkbox' />
+    <Checkbox
+        color={magma.colors.success01}
+        id='indeterminateSuccessCheckbox'
+        indeterminate
+        labelText='Indeterminate Checkbox' />
+    </div>
+```
+
 ## Inverse colors
 Inverse is an optional boolean prop, that may be passed in when checkboxes are to be displayed on a dark background.
 
@@ -84,9 +100,14 @@ Inverse is an optional boolean prop, that may be passed in when checkboxes are t
         labelText='Pop Inverse' />
       <Checkbox
           disabled
-          id='popInverseCheckbox'
+          id='disabledInverseCheckbox'
           inverse
           labelText='Disabled Inverse' />
+      <Checkbox
+          id='indeterminateInverseCheckbox'
+          indeterminate
+          inverse
+          labelText='Indeterminate Checkbox' />
     </div>
 ```
 
@@ -101,6 +122,7 @@ Inverse is an optional boolean prop, that may be passed in when checkboxes are t
 | handleChange | function | |
 | handleFocus | function | |
 | id | string | | &#10003;
+| indeterminate | boolean | |
 | inverse | boolean | |
 | labelText | string | | &#10003;
 | required | function | |

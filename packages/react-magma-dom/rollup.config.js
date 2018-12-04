@@ -7,7 +7,7 @@ import pkg from './package.json';
 
 const base = {
   input: 'src/index.ts',
-  external: ['react', 'styled-components', 'react-select'],
+  external: ['react', 'react-dom', 'styled-components', 'react-select'],
   plugins: [
     postcss({
       extensions: ['.css'],
