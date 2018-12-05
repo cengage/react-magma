@@ -1,11 +1,9 @@
-import * as React from 'react';
-import 'jest-dom/extend-expect';
-import 'jest-styled-components';
-import { Checkbox, CheckboxProps } from './Checkbox';
+import React from 'react';
+import { Checkbox } from './Checkbox';
 import { render, fireEvent, cleanup } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 
-const CHECKBOX_PROPS: CheckboxProps = {
+const CHECKBOX_PROPS = {
   autoFocus: false,
   id: 'abc123',
   labelText: 'test label',
@@ -74,6 +72,14 @@ describe('Checkbox', () => {
     expect(checkbox).toBeDisabled();
     expect(span).toHaveStyleRule('background', magma.colors.neutral06);
     expect(span).toHaveStyleRule('border-color', magma.colors.neutral05);
+  });
+
+  it('should render a passed in color', () => {
+    const color = '#FFFFFF';
+    const { container } = renderCheckbox({ color, checked: true });
+    const span = container.querySelector('span');
+
+    expect(span).toHaveStyleRule('background', color);
   });
 
   it('should render an inverse checkbox with the correct styles', () => {

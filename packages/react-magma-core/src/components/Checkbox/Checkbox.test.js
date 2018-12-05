@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import { CheckboxCore, CheckboxCoreProps } from './Checkbox';
+import { CheckboxCore } from './Checkbox';
 
 const handleBlur = jest.fn();
 const handleChange = jest.fn();
 const handleFocus = jest.fn();
 
-const CHECKBOX_CORE_PROPS: CheckboxCoreProps = {
+const CHECKBOX_CORE_PROPS = {
   children: () => React.createElement('div'),
   handleBlur,
   handleChange,
@@ -20,7 +20,7 @@ const checkboxSetup = (myProps = {}) => {
     ...myProps
   };
 
-  return mount<CheckboxCore>(<CheckboxCore {...props} />);
+  return mount(<CheckboxCore {...props} />);
 };
 
 describe('CheckboxCore', () => {
