@@ -1,22 +1,24 @@
 import * as React from 'react';
 import { ButtonCore } from 'react-magma-core';
-const styled = require('styled-components').default;
+// const styled = require('styled-components').default;
+// import styled from 'styled-components';
+import styled from '../../theme/styled-components';
 import { magma } from '../../theme/magma';
 
-enum ButtonVariant {
+export enum ButtonVariant {
   solid = 'solid', //default
   outline = 'outline',
   link = 'link'
 }
 
-enum ButtonColor {
+export enum ButtonColor {
   primary = 'primary', //default
   secondary = 'secondary',
   success = 'success',
   danger = 'danger'
 }
 
-enum ButtonShape {
+export enum ButtonShape {
   fill = 'fill', //default
   leftCap = 'leftCap',
   rightCap = 'rightCap',
@@ -39,7 +41,7 @@ export interface ButtonProps {
   block?: boolean;
   children?: React.ReactChild | React.ReactChild[];
   text?: string;
-  handleClick: () => void;
+  handleClick?: () => void;
   color?: ButtonColor;
   disabled?: boolean;
   inverse?: boolean;
@@ -49,7 +51,7 @@ export interface ButtonProps {
   variant?: ButtonVariant;
 }
 
-export const StyledButton = styled.button`
+export const StyledButton = styled<ButtonProps, 'button'>('button')`
   align-items: center;
   border-radius: ${props => {
     switch (props.shape) {
@@ -290,13 +292,15 @@ export const Button: React.FunctionComponent<ButtonProps> = (
           autoFocus={autoFocus}
           onClick={handleClick}
           block={block}
-          color={color ? color : 'primary'}
+          color={color ? color : ButtonColor.primary}
           disabled={disabled}
           inverse={inverse}
-          shape={shape ? shape : 'fill'}
-          size={size ? size : 'medium'}
-          textTransform={textTransform ? textTransform : 'uppercase'}
-          variant={variant ? variant : 'solid'}
+          shape={shape ? shape : ButtonShape.fill}
+          size={size ? size : ButtonSize.medium}
+          textTransform={
+            textTransform ? textTransform : ButtonTextTransform.uppercase
+          }
+          variant={variant ? variant : ButtonVariant.solid}
         >
           {children}
         </StyledButton>

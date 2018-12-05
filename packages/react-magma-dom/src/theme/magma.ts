@@ -1,3 +1,64 @@
+interface Colors {
+  primary: string;
+  foundation01: string;
+  foundation02: string;
+  foundation03: string;
+  foundation04: string;
+  pop01: string;
+  pop02: string;
+  pop03: string;
+  pop04: string;
+  success01: string;
+  success02: string;
+  danger: string;
+  neutral01: string;
+  neutral02: string;
+  neutral03: string;
+  neutral04: string;
+  neutral05: string;
+  neutral06: string;
+  neutral07: string;
+  neutral08: string;
+  disabledText: string;
+  disabledInverseText: string;
+}
+
+export default interface ThemeInterface {
+  bodyFont: string;
+  headingFont: string;
+  colors: Colors;
+  primary01: string;
+  primary02: string;
+  primary03: string;
+  primary04: string;
+  primary05: string;
+  secondary01: string;
+  secondary02: string;
+  secondary03: string;
+  secondary04: string;
+  secondary05: string;
+  secondary06: string;
+  secondary07: string;
+  secondary08: string;
+  secondary09: string;
+  secondary10: string;
+  accent01: string;
+  accent02: string;
+  accent03: string;
+  accent04: string;
+  accent05: string;
+  accent06: string;
+  limited01: string;
+  limited02: string;
+  limited03: string;
+  limited04: string;
+  limited05: string;
+  sizeXs: string;
+  sizeSm: string;
+  sizeMd: string;
+  sizeLg: string;
+}
+
 export const magma = {
   bodyFont: '"Open Sans", sans-serif',
   headingFont: 'gnuolane, sans-serif',
