@@ -102,10 +102,25 @@ const StyledInput = styled.span`
     outline-offset: 2px;
   }
 
-  ${HiddenInput}:active + label & {
+  &:after {
+    background: ${props => props.color};
+    border-radius: 50%;
+    content: '';
+    height: 40px;
+    left: -12px;
+    opacity: 0;
+    padding: 50%;
+    position: absolute;
+    top: 50%
+    transform: scale(1);
+    transition: opacity 1s, transform 0.5s;
+    width: 40px;
+  }
+
+  ${HiddenInput}:not(:disabled):active + label & {
     &:after {
       opacity: 0.4;
-      transform: translate(-50%, -50%) scale(0);
+      transform: scale(0);
       transition: transform 0s;
     }
   }
