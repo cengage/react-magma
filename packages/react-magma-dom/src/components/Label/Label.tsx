@@ -1,5 +1,6 @@
 import * as React from 'react';
-const styled = require('styled-components').default;
+// const styled = require('styled-components').default;
+import styled from '../../theme/styled-components';
 
 export interface LabelProps {
   children: React.ReactChild | React.ReactChild[];

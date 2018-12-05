@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { SelectCore } from 'react-magma-core';
-
-const styled = require('styled-components').default;
 import { Icon } from '../Icon/Icon';
 import { Label } from '../Label/Label';
 import { magma } from '../../theme/magma';

@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from './styled-components';
 import { magma } from './magma';
 
 // tslint:disable:no-unused-expression
