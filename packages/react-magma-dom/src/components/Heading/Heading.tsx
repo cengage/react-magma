@@ -1,5 +1,7 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
+// const styled = require('styled-components').default;
+// const css = styled.css;
 import { magma } from '../../theme/magma';
 
 export interface HeadingProps {

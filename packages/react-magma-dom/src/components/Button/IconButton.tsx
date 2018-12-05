@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ButtonCore } from 'react-magma-core';
 import { ButtonProps, ButtonSize, StyledButton } from './Button';
 import { Icon } from '../Icon/Icon';
-import styled from 'styled-components';
+const styled = require('styled-components').default;
 
 enum ButtonTextPostition {
   left = 'left',
