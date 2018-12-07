@@ -1,0 +1,35 @@
+nav > h2 {
+  font-size: 1.3em;
+  margin: 10px 20px;
+}
+
+nav > ul > li {
+  list-style-type: none;
+  font-size: 1em;
+  margin: 2.5px 0;
+}
+
+.submenu {
+  margin-left: 0;
+  border-left: 1px dashed #ced4de;
+}
+
+.submenu > li {
+  list-style-type: none;
+  margin: 0;
+  margin-left: 15px;
+}
+
+.submenu > li > a {
+  font-size: 1em;
+}
+
+.react-live {
+  margin: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.react-live-preview {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 30px 20px 20px;
+}

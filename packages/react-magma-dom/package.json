@@ -3,13 +3,18 @@
   "version": "0.1.0-beta.0",
   "description": "",
   "main": "dist/bundle.js",
+  "module": "dist/esBundle.js",
   "files": [
     "dist"
   ],
   "scripts": {
+    "compiler-checks": "tsc --noEmit --project './tsconfig.json'",
     "test": "jest",
     "test-watch": "jest --watch",
+    "prebuild": "npm run compiler-checks && rimraf 'dist'",
     "build": "rollup -c",
+    "build:types": "tsc --project './tsconfig.types.json'",
+    "postbuild": "npm run build:types",
     "lint": "npm run tsc && npm run tslint",
     "tsc": "tsc --noEmit",
     "tslint": "lint-staged"
@@ -20,13 +25,14 @@
   "peerDependencies": {
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0",
-    "styled-components": "^3.4.5"
+    "styled-components": "^4.1.0"
   },
   "dependencies": {
     "@types/react": "^16.4.12",
     "react": "^16.4.2",
     "react-magma-core": "^0.1.0-beta.0",
-    "styled-components": "^3.4.5"
+    "react-select": "^2.1.0",
+    "styled-components": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -47,13 +53,17 @@
     "@babel/plugin-syntax-import-meta": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.1.0",
     "@types/jest": "^23.3.1",
     "@types/styled-components": "^3.0.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
+    "babel-plugin-dynamic-import-node": "^2.2.0",
     "babel-plugin-styled-components": "^1.7.1",
     "jest": "^23.5.0",
+    "jest-axe": "^3.1.0",
     "jest-dom": "^1.12.0",
+    "jest-extended": "^0.11.0",
     "jest-styled-components": "^6.2.1",
     "jest-watch-typeahead": "^0.2.0",
     "lint-staged": "^7.2.2",
@@ -61,13 +71,13 @@
     "prettier": "^1.14.2",
     "react-dom": "^16.4.2",
     "react-testing-library": "^5.0.0",
-    "rollup": "^0.65.0",
+    "rimraf": "^2.6.2",
+    "rollup": "^0.66.0",
     "rollup-plugin-babel": "^4.0.1",
     "rollup-plugin-commonjs": "^9.1.6",
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-postcss": "^1.6.2",
-    "rollup-plugin-typescript2": "^0.16.1",
-    "ts-jest": "^23.1.4",
+    "rollup-plugin-terser": "^3.0.0",
     "tslint": "^5.11.0",
     "tslint-config-cengage": "^0.1.0",
     "tslint-config-prettier": "^1.15.0",

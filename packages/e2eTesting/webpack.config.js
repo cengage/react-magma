@@ -40,16 +40,6 @@ module.exports = {
   devtool: 'sourcemap',
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/15/index.html',
-      filename: 'react_15.html',
-      inject: 'body'
-    }),
-    new HtmlWebpackPlugin({
-      template: './src/16.0/index.html',
-      filename: 'react_16_0.html',
-      inject: 'body'
-    }),
-    new HtmlWebpackPlugin({
       template: './src/16.5/index.html',
       filename: 'react_16_5.html',
       inject: 'body'

@@ -3,7 +3,7 @@
     "outDir": "dist",
     "rootDir": "src",
     "jsx": "react",
-    "declaration": true,
+    "allowSyntheticDefaultImports": true,
     "types": ["jest", "node"],
     "typeRoots": ["node_modules/@types"],
     "esModuleInterop": true

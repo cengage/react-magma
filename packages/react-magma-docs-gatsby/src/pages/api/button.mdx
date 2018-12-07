@@ -1,0 +1,183 @@
+---
+title: "Buttons"
+---
+
+# Buttons
+
+## Basic usage
+
+Buttons are clickable items used to perform an action.
+See the Button Design Guidelines for more information on when to use the different kinds of buttons.
+
+## Sizes
+
+Sizes for buttons include `small`, `medium`, and `large`, with `medium` being the default value.
+
+```.jsx
+    <p>
+        <Button size="small">Small</Button>
+        <Button>Default</Button>
+        <Button size="large">Large</Button>
+    </p>
+```
+
+## Colors
+
+Colors for buttons include `primary`, `secondary`, `success`, and `danger`, with `primary` being the default value.
+
+```.jsx
+    <p>
+        <Button color="primary">Primary (default)</Button>
+        <Button color="secondary">Secondary</Button>
+        <Button color="success" >Success</Button>
+        <Button color="danger">Danger</Button>
+    </p>
+```
+
+## Variants
+
+Variants for buttons include `solid`, `outline`, and `link`, with `solid` being the default value.
+
+```.jsx
+    <div>
+      <p>
+          <Button color="primary" variant="solid">Solid (default)</Button>
+          <Button color="primary" variant="outline">Outline</Button>
+          <Button color="primary" variant="link">Link</Button>
+      </p>
+      <p>
+          <Button color="secondary" variant="solid">Solid (default)</Button>
+          <Button color="secondary" variant="outline">Outline</Button>
+          <Button color="secondary" variant="link">Link</Button>
+      </p>
+      <p>
+          <Button color="success" variant="solid">Solid (default)</Button>
+          <Button color="success" variant="outline">Outline</Button>
+          <Button color="success" variant="link">Link</Button>
+      </p>
+      <p>
+          <Button color="danger" variant="solid">Solid (default)</Button>
+          <Button color="danger" variant="outline">Outline</Button>
+          <Button color="danger" variant="link">Link</Button>
+      </p>
+    </div>
+```
+
+## Shapes
+
+Shapes for buttons include `fill`, `leftCap`, and `rightCap`, with `fill` being the default value.
+
+```.jsx
+    <p>
+        <Button color="primary">Fill (default)</Button>
+        <Button color="primary" shape="leftCap">Left Cap</Button>
+        <Button color="primary" shape="rightCap">Right Cap</Button>
+    </p>
+```
+
+## Inverse
+
+The `inverse` property is an optional boolean, that reverses the colors so that the buttons can better appeark on a dark background.
+The default value is `false`.
+
+While `outline inverse buttons` and `link inverse buttons` still accept the `color` property, the `color` property
+online affects `solid inverse buttons`.
+
+```.jsx
+    <div style={{ background : '#00263E', padding: '10px' }}>
+      <p>
+          <Button inverse>Solid inverse</Button>
+          <Button color="secondary" inverse>Solid inverse</Button>
+          <Button color="success" inverse>Solid inverse</Button>
+          <Button color="danger" inverse>Solid inverse</Button>
+      </p>
+      <p>
+          <Button variant="outline" inverse>Outline inverse</Button>
+          <Button variant="link" inverse>Link inverse</Button>
+      </p>
+      <p>
+          <Button disabled inverse>Disabled inverse</Button>
+          <Button disabled inverse variant="outline">Disabled outline inverse</Button>
+          <Button disabled inverse variant="link">Disabled link inverse</Button>
+      </p>
+    </div>
+```
+
+## All Caps
+Shapes for buttons include `uppercase`, `none`, with `uppercase` (all caps) being the default value.
+This property sets the CSS `text-tranform` property.
+
+```.jsx
+    <p>
+        <Button>All caps</Button>
+        <Button textTransform="none">No text tranform</Button>
+    </p>
+```
+
+##  Block Buttons
+Passing the `block` property will set the button to display full-width.
+
+```.jsx
+    <p>
+        <Button block>Block button</Button>
+        <Button block color="secondary">Block button</Button>
+    </p>
+```
+
+## Disabled
+
+```.jsx
+    <p>
+        <Button disabled>Disabled</Button>
+        <Button disabled variant="outline">Disabled</Button>
+        <Button disabled variant="link">Disabled</Button>
+    </p>
+```
+
+## Event Handling
+
+The `handleClick` events will fire when the button is clicked, or when the enter or space bar key is pressed.
+Events do not fire on disabled buttons.
+
+```.jsx
+  class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          counter: 0
+        }
+      }
+
+      render() {
+        return <div>
+        <p><strong>Counter: </strong> <span id="counter">{this.state.counter}</span></p>
+        <Button
+          handleClick={() => {
+            this.setState(state => ({counter: state.counter + 1}))
+          }}>Click me</Button>
+
+        <Button
+          disabled
+          handleClick={() => {
+            this.setState(state => ({counter: state.counter + 1}))
+          }}>Click me</Button>
+        </div>
+      }
+    }
+```
+
+## Button Props
+
+| Prop                   | Variant  | Default | Required    |
+| -----------------------|------ |---------|:-----------:|
+| handleClick | func | | &#10003;
+| autoFocus | boolean | false |
+| children | node | |
+| block | boolean | false |
+| color | enum: 'primary' &#124; 'secondary' &#124; 'success' &#124; 'danger' | 'primary' |
+| disabled | boolean | false |
+| inverse | boolean | false |
+| shape | enum: 'fill' &#124; 'leftCap' &#124; 'rightCap' &#124; 'round' | 'fill' |
+| size | enum: 'large' &#124; 'medium' &#124; 'small' | 'medium' |
+| textTransform | enum: 'uppercase' &#124; 'none' | 'uppercase' |
+| variant | enum: 'solid' &#124; 'outline' &#124; 'link' | 'solid' |

@@ -2,8 +2,8 @@ import { injectGlobal } from 'styled-components';
 import { magma } from './magma';
 
 // tslint:disable:no-unused-expression
-injectGlobal`
-  @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+export default injectGlobal`
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
   @import url('https://use.typekit.net/rwr6vzk.css');
 
   *,
@@ -30,12 +30,6 @@ injectGlobal`
     &:focus {
       color: ${magma.secondary01};
       text-decoration: underline;
-    }
-  }
-
-  h1 {
-    &:before {
-      display: none;
     }
   }
 `;
