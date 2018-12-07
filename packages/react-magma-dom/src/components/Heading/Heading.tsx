@@ -1,11 +1,13 @@
 import * as React from 'react';
 import styled, { css } from '../../theme/styled-components';
 import { magma } from '../../theme/magma';
+import { checkPropTypes } from 'prop-types';
 
 export interface HeadingProps {
   children: React.ReactChild;
   level: number;
   id?: string;
+  style?: React.CSSProperties;
 }
 
 export const baseHeadingStyles = css`
@@ -46,7 +48,7 @@ const StyledH6 = styled.h6`
   font-size: 18px;
 `;
 
-function renderHeading({ level, children, id }: HeadingProps) {
+function renderHeading({ level, children, id, style }: HeadingProps) {
   const headingLevels = {
     1: StyledH1,
     2: StyledH2,
@@ -58,7 +60,11 @@ function renderHeading({ level, children, id }: HeadingProps) {
 
   const HeadingComponent = headingLevels[level];
 
-  return <HeadingComponent id={id}>{children}</HeadingComponent>;
+  return (
+    <HeadingComponent id={id} style={style}>
+      {children}
+    </HeadingComponent>
+  );
 }
 
 export const Heading: React.FunctionComponent<HeadingProps> = (
