@@ -6,7 +6,8 @@
   "module": "dist/esBundle.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "!dist/reports"
   ],
   "publishConfig": {
     "registry": "http://nexus.mindtap.corp.web/content/repositories/npm.cengage/"
