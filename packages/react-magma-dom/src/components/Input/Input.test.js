@@ -44,6 +44,14 @@ describe('Input', () => {
     expect(input).not.toHaveAttribute('autoFocus');
   });
 
+  it('should render custom styles', () => {
+    const color = '#cccccc';
+    const { getByLabelText } = renderInput({ style: { color } });
+    const input = getByLabelText(INPUT_PROPS.labelText);
+
+    expect(input).toHaveStyle(`color: ${color}`);
+  });
+
   it('should render an input with a value passed through', () => {
     const value = 'Test Value';
     const { getByLabelText } = renderInput({ value });

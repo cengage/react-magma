@@ -88,6 +88,14 @@ describe('Heading', () => {
     expect(heading).toHaveStyleRule('font-size', '18px');
   });
 
+  it('should render custom styles', () => {
+    const color = '#cccccc';
+    const { container } = renderHeading({ level: 1, style: { color } });
+    const heading = container.querySelector('h1');
+
+    expect(heading).toHaveStyle(`color: ${color}`);
+  });
+
   describe('Snapshot', () => {
     it('should render headings correctly', () => {
       const { container } = render(

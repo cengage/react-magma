@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { ButtonCore } from 'react-magma-core';
-// const styled = require('styled-components').default;
-// import styled from 'styled-components';
 import styled from '../../theme/styled-components';
 import { magma } from '../../theme/magma';
 
@@ -47,6 +45,7 @@ export interface ButtonProps {
   inverse?: boolean;
   shape?: ButtonShape;
   size?: ButtonSize;
+  style?: React.CSSProperties;
   textTransform?: ButtonTextTransform;
   variant?: ButtonVariant;
 }
@@ -283,6 +282,7 @@ export const Button: React.FunctionComponent<ButtonProps> = (
         color,
         shape,
         size,
+        style,
         textTransform,
         variant
       } = props;
@@ -297,6 +297,7 @@ export const Button: React.FunctionComponent<ButtonProps> = (
           inverse={inverse}
           shape={shape ? shape : ButtonShape.fill}
           size={size ? size : ButtonSize.medium}
+          style={style}
           textTransform={
             textTransform ? textTransform : ButtonTextTransform.uppercase
           }
