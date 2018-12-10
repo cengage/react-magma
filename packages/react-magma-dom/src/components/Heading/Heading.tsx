@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled, { css } from '../../theme/styled-components';
 import { magma } from '../../theme/magma';
-import { checkPropTypes } from 'prop-types';
 
 export interface HeadingProps {
   children: React.ReactChild;

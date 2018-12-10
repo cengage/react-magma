@@ -1,6 +1,6 @@
 import React from 'react';
 import { axe } from 'jest-axe';
-import { Select } from './Select';
+import { Select, getStyles } from './Select';
 import { render, fireEvent, cleanup } from 'react-testing-library';
 
 const options = [
@@ -51,6 +51,13 @@ describe('Select', () => {
     const select = getByLabelText(SELECT_PROPS.labelText);
 
     expect(select).toHaveAttribute('aria-label', SELECT_PROPS.labelText);
+  });
+
+  it('should render custom styles', () => {
+    const color = '#cccccc';
+    const styles = getStyles({ multiValue: { color } });
+
+    expect(styles.multiValue({})).toContainKey('color', color);
   });
 
   it('should render a select with a value passed through', () => {

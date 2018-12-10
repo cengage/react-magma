@@ -40,7 +40,7 @@ interface ReactSelectStyles {
   option?: React.CSSProperties;
 }
 
-function getStyles(customStyles: ReactSelectStyles = {}) {
+export function getStyles(customStyles: ReactSelectStyles = {}) {
   return {
     control: (styles, { isFocused, isDisabled }) => ({
       ...styles,
