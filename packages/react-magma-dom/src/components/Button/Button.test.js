@@ -188,6 +188,14 @@ describe('Button', () => {
         );
         expect(button).toHaveStyleRule('color', 'rgba(255,255,255,0.25)');
       });
+
+      it('custom', () => {
+        const color = '#cccccc';
+        const { getByText } = renderButton({ style: { color } });
+        const button = getByText(TEXT);
+
+        expect(button).toHaveStyle(`color: ${color}`);
+      });
     });
 
     describe('Shapes', () => {

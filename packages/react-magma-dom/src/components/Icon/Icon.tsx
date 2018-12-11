@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { ICONS } from './types/icons';
 import { SvgIcon } from './SvgIcon';
-const styled = require('styled-components').default;
 
 export interface IconProps {
   id?: string;

@@ -8,5 +8,4 @@ export { ICONS } from './components/Icon/types/icons';
 export { Label } from './components/Label/Label';
 export { Select } from './components/Select/Select';
 export { magma } from './theme/magma';
-
-import './theme/globalStyle';
+export { Theme } from './theme/globalStyle';

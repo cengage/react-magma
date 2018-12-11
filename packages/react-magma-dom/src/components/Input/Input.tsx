@@ -1,10 +1,31 @@
 import * as React from 'react';
 import { InputCore } from 'react-magma-core';
-const styled = require('styled-components').default;
+import styled from '../../theme/styled-components';
 import { Label } from '../Label/Label';
 import { magma } from '../../theme/magma';
 
-const StyledInput = styled.input`
+enum Type {
+  text = 'text',
+  password = 'password',
+  number = 'number'
+}
+
+export interface InputProps {
+  autoFocus?: boolean;
+  disabled?: boolean;
+  handleBlur?: () => void;
+  handleChange?: () => void;
+  handleFocus?: () => void;
+  id: string;
+  labelText: string;
+  placeholder?: string;
+  required?: boolean;
+  style?: React.CSSProperties;
+  type?: Type;
+  value?: string;
+}
+
+const StyledInput = styled('input')`
   background: ${magma.primary04};
   border: 1px solid ${magma.secondary05};
   border-radius: 3px;
@@ -29,26 +50,6 @@ const StyledInput = styled.input`
   }
 `;
 
-enum Type {
-  text,
-  password,
-  number
-}
-
-export interface InputProps {
-  autoFocus?: boolean;
-  disabled?: boolean;
-  handleBlur?: () => void;
-  handleChange?: () => void;
-  handleFocus?: () => void;
-  id: string;
-  labelText: string;
-  placeholder?: string;
-  required?: boolean;
-  type?: Type;
-  value?: string;
-}
-
 export const Input: React.FunctionComponent<InputProps> = (
   props: InputProps
 ): JSX.Element => (
@@ -65,6 +66,7 @@ export const Input: React.FunctionComponent<InputProps> = (
         disabled,
         labelText,
         placeholder,
+        style,
         type,
         required
       } = props;
@@ -78,7 +80,8 @@ export const Input: React.FunctionComponent<InputProps> = (
             disabled={disabled}
             placeholder={placeholder}
             required={required}
-            type={type ? type : 'text'}
+            style={style}
+            type={type ? type : Type.text}
             value={value}
             onBlur={handleBlur}
             onChange={handleChange}
