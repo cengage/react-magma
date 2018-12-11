@@ -31,7 +31,7 @@ const StyledContainer = styled.div`
   align-items: baseline;
   display: flex;
   flex-wrap: nowrap;
-  margin: 0 0 5px 10px;
+  margin: 0 0 0 10px;
 `;
 
 const HiddenInput = styled.input`
@@ -45,11 +45,15 @@ const HiddenInput = styled.input`
 `;
 
 const StyledLabel = styled.label`
+  align-items: center;
   color: ${props => (props.inverse ? magma.colors.neutral08 : 'inherit')};
-  margin: 0 0 0 10px;
+  display: flex;
+  margin: 0;
+  min-height: 40px;
+  padding: 0 10px;
 `;
 
-const StyledInput = styled.span`
+const StyledFakeInput = styled.span`
   align-items: center;
   background: ${props => {
     if (props.inverse) {
@@ -77,15 +81,19 @@ const StyledInput = styled.span`
     if (props.disabled) {
       return magma.colors.neutral05;
     }
+    if (!props.checked && !props.indeterminate) {
+      return magma.colors.neutral03;
+    }
     return props.color;
   }};
   border-radius: 3px;
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   display: flex;
-  float: left;
   height: 20px;
+  flex-shrink: 0;
   justify-content: center;
-  margin: 2px 5px 0 -25px;
+  margin: 2px 10px 0 -25px;
+  margin-left: 0;
   position: relative;
   transition: all 0.2s ease-out;
   width: 20px;
@@ -94,23 +102,33 @@ const StyledInput = styled.span`
     display: ${props => (props.disabled ? 'none' : 'block')};
     fill: ${props => (props.inverse ? props.color : magma.colors.neutral08)};
     opacity: ${props => (props.checked ? '1' : '0')};
+    pointer-events: none;
     transition: all 0.2s ease-out;
   }
 
-  ${HiddenInput}:focus + label & {
-    outline: 2px dotted ${magma.colors.pop03};
-    outline-offset: 2px;
+  &:before,
+  &:after { // focus state
+    content: '';
+    position: absolute;
   }
 
-  &:after {
-    background: ${props => props.color};
+  ${HiddenInput}:focus + label & { // focus state
+    &:before {
+      height: 30px;
+      outline: 2px dotted ${magma.colors.pop03};
+      position: absolute;
+      width: 30px;
+    }
+  }
+
+  &:after { // active state
+    background: ${props =>
+      props.inverse ? magma.colors.neutral08 : props.color};
     border-radius: 50%;
-    content: '';
     height: 40px;
     left: -12px;
     opacity: 0;
     padding: 50%;
-    position: absolute;
     top: 50%
     transform: scale(1);
     transition: opacity 1s, transform 0.5s;
@@ -130,17 +148,20 @@ const StyledInput = styled.span`
     border-color: ${props =>
       props.inverse ? magma.colors.neutral08 : props.color};
 
-    &:before {
-      background: ${props => props.color};
-      content: '';
-      display: block;
-      height: 2px;
-      width: 10px;
-    }
-
     svg {
       display: none;
     }
+  }
+`;
+
+const IndeterminateIcon = styled.span`
+  background: ${props => props.color};
+  display: none;
+  height: 2px;
+  width: 10px;
+
+  ${HiddenInput}:indeterminate + label & {
+    display: block;
   }
 `;
 
@@ -203,14 +224,15 @@ export class Checkbox extends React.Component<CheckboxProps> {
                 onFocus={handleFocus}
               />
               <StyledLabel htmlFor={id} inverse={inverse}>
-                <StyledInput
+                <StyledFakeInput
                   checked={value}
                   color={color ? color : magma.colors.primary}
                   disabled={disabled}
                   inverse={inverse}
                 >
+                  <IndeterminateIcon />
                   <Icon size={12} type="checkmark" />
-                </StyledInput>
+                </StyledFakeInput>
                 {labelText}
               </StyledLabel>
             </StyledContainer>
