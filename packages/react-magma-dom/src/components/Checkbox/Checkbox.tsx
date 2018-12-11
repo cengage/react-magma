@@ -4,6 +4,7 @@ import { CheckboxCore } from 'react-magma-core';
 import { Icon } from '../Icon/Icon';
 const styled = require('styled-components').default;
 import { magma } from '../../theme/magma';
+import 'focus-visible';
 
 export interface CheckboxProps {
   autoFocus?: boolean;
@@ -45,12 +46,11 @@ const HiddenInput = styled.input`
 `;
 
 const StyledLabel = styled.label`
-  align-items: center;
+  align-items: flex-start;
   color: ${props => (props.inverse ? magma.colors.neutral08 : 'inherit')};
   display: flex;
   margin: 0;
-  min-height: 40px;
-  padding: 0 10px;
+  padding: 10px;
 `;
 
 const StyledFakeInput = styled.span`
@@ -112,7 +112,7 @@ const StyledFakeInput = styled.span`
     position: absolute;
   }
 
-  ${HiddenInput}:focus + label & { // focus state
+  ${HiddenInput}:focus.focus-visible + label & { // focus state
     &:before {
       height: 30px;
       outline: 2px dotted ${magma.colors.pop03};
