@@ -24,6 +24,7 @@ export const Button: React.FunctionComponent<ButtonProps> = (
         color,
         shape,
         size,
+        style,
         textTransform,
         variant
       } = props;
@@ -38,6 +39,7 @@ export const Button: React.FunctionComponent<ButtonProps> = (
           inverse={inverse}
           shape={shape ? shape : ButtonShape.fill}
           size={size ? size : ButtonSize.medium}
+          style={style}
           textTransform={
             textTransform ? textTransform : ButtonTextTransform.uppercase
           }

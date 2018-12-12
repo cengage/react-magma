@@ -241,6 +241,14 @@ describe('Icon Button', () => {
         expect(span).toHaveStyleRule('padding-left', '15px');
       });
     });
+
+    it('custom', () => {
+      const color = '#cccccc';
+      const { container } = renderIconNoTextButton({ style: { color } });
+      const button = container.querySelector('button');
+
+      expect(button).toHaveStyle(`color: ${color}`);
+    });
   });
 
   it('Does not violate accessibility standards for icon button', () => {

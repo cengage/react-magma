@@ -1,8 +1,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Button } from './Button';
-import { render, fireEvent, cleanup } from 'react-testing-library';
-import { magma } from '../../theme/magma';
+import { render, cleanup } from 'react-testing-library';
 import {
   ButtonColor,
   ButtonShape,

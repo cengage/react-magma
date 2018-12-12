@@ -47,6 +47,7 @@ export interface ButtonProps {
   inverse?: boolean;
   shape?: ButtonShape;
   size?: ButtonSize;
+  style?: React.CSSProperties;
   textTransform?: ButtonTextTransform;
   variant?: ButtonVariant;
 }
@@ -282,6 +283,7 @@ export const StyledButton: React.FunctionComponent<ButtonProps> = ({
   color,
   shape,
   size,
+  style,
   textTransform,
   variant
 }: ButtonProps) => (
@@ -297,6 +299,7 @@ export const StyledButton: React.FunctionComponent<ButtonProps> = ({
     inverse={inverse}
     shape={shape}
     size={size}
+    style={style}
     textTransform={textTransform}
     variant={variant}
   >

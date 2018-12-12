@@ -2,6 +2,8 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonJS from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import { terser } from 'rollup-plugin-terser';
+import { plugin as analyze } from 'rollup-plugin-analyzer';
+import visualizer from 'rollup-plugin-visualizer';
 import postcss from 'rollup-plugin-postcss';
 import url from 'postcss-url';
 import pkg from './package.json';
@@ -24,7 +26,8 @@ const base = {
       exclude: 'node_modules/**',
       extensions: ['.ts', '.tsx']
     }),
-    terser()
+    terser(),
+    analyze()
   ]
 };
 
@@ -40,7 +43,11 @@ export default [
         'styled-components': 'styled',
         'react-select': 'ReactSelect'
       }
-    }
+    },
+    plugins: [
+      ...base.plugins,
+      visualizer({ filename: './dist/reports/esm_stats.html' })
+    ]
   },
   {
     ...base,
@@ -53,7 +60,11 @@ export default [
         'styled-components': 'styled',
         'react-select': 'ReactSelect'
       }
-    }
+    },
+    plugins: [
+      ...base.plugins,
+      visualizer({ filename: './dist/reports/esm_stats.html' })
+    ]
   },
   {
     ...base,
@@ -67,6 +78,10 @@ export default [
         'styled-components': 'styled',
         'react-select': 'ReactSelect'
       }
-    }
+    },
+    plugins: [
+      ...base.plugins,
+      visualizer({ filename: './dist/reports/umd_stats.html' })
+    ]
   }
 ];

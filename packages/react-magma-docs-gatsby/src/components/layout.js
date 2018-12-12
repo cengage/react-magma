@@ -29,7 +29,7 @@ import './app.css'
 import './layout.css'
 import './syntax.css'
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
   @import url('https://use.typekit.net/rwr6vzk.css');
 
@@ -158,6 +158,10 @@ const SectionHeading = props => (
   <h2 id={convertTextToId(props.children)}>{props.children}</h2>
 )
 
+const LinkHeading = props => (
+  <h3 id={convertTextToId(props.children)}>{props.children}</h3>
+)
+
 const Layout = ({ children }) => (
   <StaticQuery
     query={graphql`
@@ -171,6 +175,7 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <>
+        <GlobalStyles />
         <Helmet
           title={data.site.siteMetadata.title}
           meta={[
@@ -180,7 +185,6 @@ const Layout = ({ children }) => (
         >
           <html lang="en" />
         </Helmet>
-        <GlobalStyle />
         <Main>
           <MainNav />
           <Header siteTitle={data.site.siteMetadata.title} />
@@ -190,6 +194,7 @@ const Layout = ({ children }) => (
                 pre: PreComponent,
                 table: Table,
                 h2: SectionHeading,
+                h3: LinkHeading,
               }}
             >
               <Location>

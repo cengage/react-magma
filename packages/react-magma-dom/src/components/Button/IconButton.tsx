@@ -125,6 +125,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
         color,
         shape,
         size,
+        style,
         variant,
         textTransform,
         textPosition
@@ -141,6 +142,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
             inverse={inverse}
             shape={shape ? shape : ButtonShape.fill}
             size={size ? size : ButtonSize.medium}
+            style={style}
             textTransform={
               textTransform ? textTransform : ButtonTextTransform.uppercase
             }
@@ -167,6 +169,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
           inverse={inverse}
           shape={shape ? shape : ButtonShape.round}
           size={size ? size : ButtonSize.medium}
+          style={style}
           variant={variant ? variant : ButtonVariant.solid}
         >
           <Icon size={getIconSize(size)} type={icon} />
