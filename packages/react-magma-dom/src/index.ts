@@ -1,4 +1,11 @@
 export { Button } from './components/Button/Button';
+export {
+  ButtonColor,
+  ButtonShape,
+  ButtonSize,
+  ButtonVariant,
+  ButtonTextTransform
+} from './components/Button/StyledButton';
 export { Heading } from './components/Heading/Heading';
 export { IconButton } from './components/Button/IconButton';
 export { Input } from './components/Input/Input';

@@ -68,6 +68,4 @@ function renderHeading({ level, children, id, style }: HeadingProps) {
 
 export const Heading: React.FunctionComponent<HeadingProps> = (
   props: HeadingProps
-): JSX.Element => renderHeading(props);
-
-export default Heading;
+) => renderHeading(props);

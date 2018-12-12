@@ -8,7 +8,7 @@ import {
   ButtonShape,
   StyledButton,
   ButtonTextTransform
-} from './Button';
+} from './StyledButton';
 import { Icon } from '../Icon/Icon';
 import styled from '../../theme/styled-components';
 
@@ -17,12 +17,12 @@ enum ButtonTextPostition {
   right = 'right'
 }
 
-interface IconOnlyButtonProps extends ButtonProps {
+export type IconOnlyButtonProps = ButtonProps & {
   icon: string;
   children: null;
   ariaLabel: string;
   textPosition?: ButtonTextPostition;
-}
+};
 
 interface IconTextButtonProps extends ButtonProps {
   icon: string;
@@ -110,7 +110,7 @@ function getIconWithTextSize(size) {
 
 export const IconButton: React.FunctionComponent<IconButtonProps> = (
   props: IconButtonProps
-): JSX.Element => (
+) => (
   <ButtonCore handleClick={props.handleClick}>
     {({ handleClick }) => {
       const {
@@ -119,6 +119,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
         children,
         disabled,
         icon,
+        iconOnly,
         inverse,
         block,
         color,
@@ -130,11 +131,11 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
         textPosition
       } = props;
 
-      if (children) {
+      if (!iconOnly) {
         return (
           <StyledButton
             autoFocus={autoFocus}
-            onClick={handleClick}
+            handleClick={handleClick}
             block={block}
             color={color ? color : ButtonColor.primary}
             disabled={disabled}
@@ -160,9 +161,9 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
 
       return (
         <StyledIconButton
-          aria-label={ariaLabel}
+          ariaLabel={ariaLabel}
           autoFocus={autoFocus}
-          onClick={handleClick}
+          handleClick={handleClick}
           color={color ? color : ButtonColor.primary}
           disabled={disabled}
           inverse={inverse}
@@ -177,5 +178,3 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
     }}
   </ButtonCore>
 );
-
-export default IconButton;
