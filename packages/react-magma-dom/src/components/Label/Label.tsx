@@ -1,9 +1,11 @@
 import * as React from 'react';
-const styled = require('styled-components').default;
+// const styled = require('styled-components').default;
+import styled from '../../theme/styled-components';
 
 export interface LabelProps {
   children: React.ReactChild | React.ReactChild[];
   htmlFor?: string;
+  style?: React.CSSProperties;
 }
 
 const StyledLabel = styled.label`
@@ -14,13 +16,14 @@ const StyledLabel = styled.label`
 `;
 
 function renderLabel(props) {
-  const { children, htmlFor } = props;
+  const { children, htmlFor, style } = props;
 
-  return <StyledLabel htmlFor={htmlFor}>{children}</StyledLabel>;
+  return (
+    <StyledLabel style={style} htmlFor={htmlFor}>
+      {children}
+    </StyledLabel>
+  );
 }
 
-export const Label: React.FunctionComponent<LabelProps> = (
-  props: LabelProps
-): JSX.Element => renderLabel(props);
-
-export default Label;
+export const Label: React.FunctionComponent<LabelProps> = (props: LabelProps) =>
+  renderLabel(props);

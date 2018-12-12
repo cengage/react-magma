@@ -8,9 +8,7 @@ export interface InputProps {
   value?: string;
 }
 
-export const Input: React.SFC<InputProps> = (
-  props: InputProps
-): JSX.Element => (
+export const Input: React.SFC<InputProps> = (props: InputProps) => (
   <InputCore value={props.value}>
     {({ handleBlur, handleChange, handleFocus, value }) => {
       const { autoFocus, placeholder } = props;

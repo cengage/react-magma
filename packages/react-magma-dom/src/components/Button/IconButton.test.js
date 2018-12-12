@@ -10,7 +10,7 @@ const BASE_ICON_BUTTON_PROPS = {
   icon: 'bell'
 };
 
-const renderButton = (myProps = {}) => {
+const renderIconTextButton = (myProps = {}) => {
   const props = {
     ...BASE_ICON_BUTTON_PROPS,
     ...myProps
@@ -19,13 +19,24 @@ const renderButton = (myProps = {}) => {
   return render(<IconButton {...props}>{TEXT}</IconButton>);
 };
 
+const renderIconNoTextButton = (myProps = {}) => {
+  const props = {
+    ...BASE_ICON_BUTTON_PROPS,
+    ...myProps,
+    ariaLabel: TEXT,
+    iconOnly: true
+  };
+
+  return render(<IconButton {...props} />);
+};
+
 describe('Icon Button', () => {
   afterEach(() => {
     cleanup();
   });
 
   it('should render icon button with default properties', () => {
-    const { container } = renderButton();
+    const { container } = renderIconNoTextButton();
     const button = container.querySelector('button');
 
     expect(button).not.toBeNull();
@@ -39,7 +50,7 @@ describe('Icon Button', () => {
     const shape = 'fill';
     const variant = 'outline';
     const size = 'small';
-    const { container } = renderButton({
+    const { container, debug } = renderIconNoTextButton({
       color,
       shape,
       variant,
@@ -54,7 +65,7 @@ describe('Icon Button', () => {
   });
 
   it('should render icon button with text', () => {
-    const { getByText } = renderButton({
+    const { getByText } = renderIconTextButton({
       textPosition: 'right'
     });
 
@@ -67,7 +78,7 @@ describe('Icon Button', () => {
     const variant = 'outline';
     const size = 'small';
     const textTransform = 'none';
-    const { container } = renderButton({
+    const { container } = renderIconTextButton({
       textPosition: 'left',
       color,
       shape,
@@ -85,14 +96,14 @@ describe('Icon Button', () => {
   });
 
   it('should disable a button when the passed disabled', () => {
-    const { container } = renderButton({ disabled: true });
+    const { container } = renderIconNoTextButton({ disabled: true });
 
     expect(container.querySelector('button')).toBeDisabled();
   });
 
   it('should trigger the passed in function when icon button is clicked', () => {
     const handleClickSpy = jest.fn();
-    const { container } = renderButton({
+    const { container } = renderIconNoTextButton({
       handleClick: handleClickSpy
     });
 
@@ -109,7 +120,7 @@ describe('Icon Button', () => {
 
   it('should trigger the passed in function when icon button with text is clicked', () => {
     const handleClickSpy = jest.fn();
-    const { container } = renderButton({
+    const { container } = renderIconTextButton({
       textPosition: 'left',
       handleClick: handleClickSpy
     });
@@ -128,7 +139,7 @@ describe('Icon Button', () => {
   describe('Icon Button classes', () => {
     describe('Shapes', () => {
       it('default icon button', () => {
-        const { container } = renderButton();
+        const { container } = renderIconNoTextButton();
 
         expect(container.querySelector('button')).toHaveStyleRule(
           'border-radius',
@@ -137,7 +148,7 @@ describe('Icon Button', () => {
       });
 
       it('fill icon button', () => {
-        const { container } = renderButton({ shape: 'fill' });
+        const { container } = renderIconNoTextButton({ shape: 'fill' });
 
         expect(container.querySelector('button')).toHaveStyleRule(
           'border-radius',
@@ -146,7 +157,7 @@ describe('Icon Button', () => {
       });
 
       it('left cap icon button', () => {
-        const { container } = renderButton({ shape: 'leftCap' });
+        const { container } = renderIconNoTextButton({ shape: 'leftCap' });
 
         expect(container.querySelector('button')).toHaveStyleRule(
           'border-radius',
@@ -155,7 +166,7 @@ describe('Icon Button', () => {
       });
 
       it('right cap icon button', () => {
-        const { container } = renderButton({ shape: 'rightCap' });
+        const { container } = renderIconNoTextButton({ shape: 'rightCap' });
 
         expect(container.querySelector('button')).toHaveStyleRule(
           'border-radius',
@@ -166,7 +177,7 @@ describe('Icon Button', () => {
 
     describe('Sizes', () => {
       it('default icon button', () => {
-        const { container } = renderButton();
+        const { container } = renderIconNoTextButton();
         const button = container.querySelector('button');
 
         expect(button).toHaveStyleRule('height', '37px');
@@ -175,7 +186,7 @@ describe('Icon Button', () => {
       });
 
       it('large icon button', () => {
-        const { container } = renderButton({ size: 'large' });
+        const { container } = renderIconNoTextButton({ size: 'large' });
         const button = container.querySelector('button');
 
         expect(button).toHaveStyleRule('height', '44px');
@@ -184,7 +195,7 @@ describe('Icon Button', () => {
       });
 
       it('small icon button', () => {
-        const { container } = renderButton({ size: 'small' });
+        const { container } = renderIconNoTextButton({ size: 'small' });
         const button = container.querySelector('button');
 
         expect(button).toHaveStyleRule('height', '28px');
@@ -193,7 +204,7 @@ describe('Icon Button', () => {
       });
 
       it('default icon button with text left', () => {
-        const { container } = renderButton({
+        const { container } = renderIconTextButton({
           textPosition: 'left'
         });
         const span = container.querySelector('span');
@@ -202,7 +213,7 @@ describe('Icon Button', () => {
       });
 
       it('large icon button with text left', () => {
-        const { container } = renderButton({
+        const { container } = renderIconTextButton({
           size: 'large',
           textPosition: 'left'
         });
@@ -212,7 +223,7 @@ describe('Icon Button', () => {
       });
 
       it('default icon button with text right', () => {
-        const { container } = renderButton({
+        const { container } = renderIconTextButton({
           textPosition: 'right'
         });
         const span = container.querySelector('span');
@@ -221,7 +232,7 @@ describe('Icon Button', () => {
       });
 
       it('large icon button with text right', () => {
-        const { container } = renderButton({
+        const { container } = renderIconTextButton({
           size: 'large',
           textPosition: 'right'
         });
@@ -230,10 +241,25 @@ describe('Icon Button', () => {
         expect(span).toHaveStyleRule('padding-left', '15px');
       });
     });
+
+    it('custom', () => {
+      const color = '#cccccc';
+      const { container } = renderIconNoTextButton({ style: { color } });
+      const button = container.querySelector('button');
+
+      expect(button).toHaveStyle(`color: ${color}`);
+    });
   });
 
-  it('Does not violate accessibility standards', () => {
-    const { container } = renderButton();
+  it('Does not violate accessibility standards for icon button', () => {
+    const { container, debug } = renderIconNoTextButton();
+    return axe(container.innerHTML).then(result => {
+      return expect(result).toHaveNoViolations();
+    });
+  });
+
+  it('Does not violate accessibility standards for icon button with text', () => {
+    const { container } = renderIconTextButton();
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });

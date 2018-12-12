@@ -2,12 +2,14 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { CheckboxCore } from 'react-magma-core';
 import { Icon } from '../Icon/Icon';
-const styled = require('styled-components').default;
+import styled from '../../theme/styled-components';
 import { magma } from '../../theme/magma';
+import 'focus-visible';
 
 export interface CheckboxProps {
   autoFocus?: boolean;
   color?: string;
+  checked?: boolean;
   disabled?: boolean;
   handleBlur?: () => void;
   handleChange?: () => void;
@@ -20,21 +22,14 @@ export interface CheckboxProps {
   value?: string;
 }
 
-export interface CheckboxWrapperProps {
-  checked?: boolean;
-  color: string;
-  disabled?: boolean;
-  inverse?: boolean;
-}
-
 const StyledContainer = styled.div`
   align-items: baseline;
   display: flex;
   flex-wrap: nowrap;
-  margin: 0 0 5px 10px;
+  margin: 0 0 0 10px;
 `;
 
-const HiddenInput = styled.input`
+const HiddenInput = styled<{ indeterminate?: boolean }, 'input'>('input')`
   clip: rect(1px, 1px, 1px, 1px);
   height: 1px;
   position: absolute;
@@ -44,12 +39,24 @@ const HiddenInput = styled.input`
   width: 1px;
 `;
 
-const StyledLabel = styled.label`
+const StyledLabel = styled<{ inverse: boolean }, 'label'>('label')`
+  align-items: flex-start;
   color: ${props => (props.inverse ? magma.colors.neutral08 : 'inherit')};
-  margin: 0 0 0 10px;
+  display: flex;
+  margin: 0;
+  padding: 10px;
 `;
 
-const StyledInput = styled.span`
+const StyledFakeInput = styled<
+  {
+    inverse: boolean;
+    checked: boolean;
+    disabled: boolean;
+    color: string;
+    indeterminate?: boolean;
+  },
+  'span'
+>('span')`
   align-items: center;
   background: ${props => {
     if (props.inverse) {
@@ -77,15 +84,19 @@ const StyledInput = styled.span`
     if (props.disabled) {
       return magma.colors.neutral05;
     }
+    if (!props.checked && !props.indeterminate) {
+      return magma.colors.neutral03;
+    }
     return props.color;
   }};
   border-radius: 3px;
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   display: flex;
-  float: left;
   height: 20px;
+  flex-shrink: 0;
   justify-content: center;
-  margin: 2px 5px 0 -25px;
+  margin: 2px 10px 0 -25px;
+  margin-left: 0;
   position: relative;
   transition: all 0.2s ease-out;
   width: 20px;
@@ -94,18 +105,43 @@ const StyledInput = styled.span`
     display: ${props => (props.disabled ? 'none' : 'block')};
     fill: ${props => (props.inverse ? props.color : magma.colors.neutral08)};
     opacity: ${props => (props.checked ? '1' : '0')};
+    pointer-events: none;
     transition: all 0.2s ease-out;
   }
 
-  ${HiddenInput}:focus + label & {
-    outline: 2px dotted ${magma.colors.pop03};
-    outline-offset: 2px;
+  &:before,
+  &:after { // focus state
+    content: '';
+    position: absolute;
   }
 
-  ${HiddenInput}:active + label & {
+  ${HiddenInput}:focus.focus-visible + label & { // focus state
+    &:before {
+      height: 30px;
+      outline: 2px dotted ${magma.colors.pop03};
+      position: absolute;
+      width: 30px;
+    }
+  }
+
+  &:after { // active state
+    background: ${props =>
+      props.inverse ? magma.colors.neutral08 : props.color};
+    border-radius: 50%;
+    height: 40px;
+    left: -12px;
+    opacity: 0;
+    padding: 50%;
+    top: 50%
+    transform: scale(1);
+    transition: opacity 1s, transform 0.5s;
+    width: 40px;
+  }
+
+  ${HiddenInput}:not(:disabled):active + label & {
     &:after {
       opacity: 0.4;
-      transform: translate(-50%, -50%) scale(0);
+      transform: scale(0);
       transition: transform 0s;
     }
   }
@@ -115,17 +151,20 @@ const StyledInput = styled.span`
     border-color: ${props =>
       props.inverse ? magma.colors.neutral08 : props.color};
 
-    &:before {
-      background: ${props => props.color};
-      content: '';
-      display: block;
-      height: 2px;
-      width: 10px;
-    }
-
     svg {
       display: none;
     }
+  }
+`;
+
+const IndeterminateIcon = styled<{ color?: string }, 'span'>('span')`
+  background: ${props => props.color};
+  display: none;
+  height: 2px;
+  width: 10px;
+
+  ${HiddenInput}:indeterminate + label & {
+    display: block;
   }
 `;
 
@@ -136,7 +175,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
     this.setIndeterminate = this.setIndeterminate.bind(this);
   }
 
-  private checkboxInput = React.createRef<HTMLInputElement>();
+  private checkboxInput = React.createRef<any>();
 
   componentDidMount() {
     this.setIndeterminate();
@@ -188,14 +227,16 @@ export class Checkbox extends React.Component<CheckboxProps> {
                 onFocus={handleFocus}
               />
               <StyledLabel htmlFor={id} inverse={inverse}>
-                <StyledInput
+                <StyledFakeInput
+                  id={id}
                   checked={value}
                   color={color ? color : magma.colors.primary}
                   disabled={disabled}
                   inverse={inverse}
                 >
+                  <IndeterminateIcon />
                   <Icon size={12} type="checkmark" />
-                </StyledInput>
+                </StyledFakeInput>
                 {labelText}
               </StyledLabel>
             </StyledContainer>

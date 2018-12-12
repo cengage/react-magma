@@ -1,24 +1,42 @@
 import * as React from 'react';
 import { ButtonCore } from 'react-magma-core';
-import { ButtonProps, ButtonSize, StyledButton } from './Button';
+import {
+  ButtonProps,
+  ButtonColor,
+  ButtonSize,
+  ButtonVariant,
+  ButtonShape,
+  StyledButton,
+  ButtonTextTransform
+} from './StyledButton';
 import { Icon } from '../Icon/Icon';
-import styled from 'styled-components';
+import styled from '../../theme/styled-components';
 
 enum ButtonTextPostition {
   left = 'left',
   right = 'right'
 }
 
-export interface IconButtonProps extends ButtonProps {
+export type IconOnlyButtonProps = ButtonProps & {
   icon: string;
+  children: null;
+  ariaLabel: string;
+  textPosition?: ButtonTextPostition;
+};
+
+interface IconTextButtonProps extends ButtonProps {
+  icon: string;
+  ariaLabel?: string;
   textPosition?: ButtonTextPostition;
 }
+
+export type IconButtonProps = IconOnlyButtonProps | IconTextButtonProps;
 
 export interface SpanProps {
   size?: ButtonSize;
 }
 
-const StyledIconButton = styled(StyledButton)<IconButtonProps>`
+const StyledIconButton = styled(StyledButton)`
   border-radius: ${props => {
     switch (props.shape) {
       case 'fill':
@@ -92,43 +110,49 @@ function getIconWithTextSize(size) {
 
 export const IconButton: React.FunctionComponent<IconButtonProps> = (
   props: IconButtonProps
-): JSX.Element => (
+) => (
   <ButtonCore handleClick={props.handleClick}>
     {({ handleClick }) => {
       const {
         autoFocus,
+        ariaLabel,
         children,
         disabled,
         icon,
+        iconOnly,
         inverse,
         block,
         color,
         shape,
         size,
+        style,
         variant,
         textTransform,
         textPosition
       } = props;
 
-      if (textPosition) {
+      if (!iconOnly) {
         return (
           <StyledButton
             autoFocus={autoFocus}
-            onClick={handleClick}
+            handleClick={handleClick}
             block={block}
-            color={color ? color : 'primary'}
+            color={color ? color : ButtonColor.primary}
             disabled={disabled}
             inverse={inverse}
-            shape={shape ? shape : 'fill'}
-            size={size ? size : 'medium'}
-            textTransform={textTransform ? textTransform : 'uppercase'}
-            variant={variant ? variant : 'solid'}
+            shape={shape ? shape : ButtonShape.fill}
+            size={size ? size : ButtonSize.medium}
+            style={style}
+            textTransform={
+              textTransform ? textTransform : ButtonTextTransform.uppercase
+            }
+            variant={variant ? variant : ButtonVariant.solid}
           >
             {textPosition === ButtonTextPostition.left && (
               <SpanTextLeft size={size}>{children} </SpanTextLeft>
             )}
             <Icon size={getIconWithTextSize(size)} type={icon} />
-            {textPosition === ButtonTextPostition.right && (
+            {textPosition !== ButtonTextPostition.left && (
               <SpanTextRight size={size}>{children}</SpanTextRight>
             )}
           </StyledButton>
@@ -137,15 +161,16 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
 
       return (
         <StyledIconButton
-          aria-label={children}
+          ariaLabel={ariaLabel}
           autoFocus={autoFocus}
-          onClick={handleClick}
-          color={color ? color : 'primary'}
+          handleClick={handleClick}
+          color={color ? color : ButtonColor.primary}
           disabled={disabled}
           inverse={inverse}
-          shape={shape ? shape : 'round'}
-          size={size ? size : 'medium'}
-          variant={variant ? variant : 'solid'}
+          shape={shape ? shape : ButtonShape.round}
+          size={size ? size : ButtonSize.medium}
+          style={style}
+          variant={variant ? variant : ButtonVariant.solid}
         >
           <Icon size={getIconSize(size)} type={icon} />
         </StyledIconButton>
@@ -153,5 +178,3 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
     }}
   </ButtonCore>
 );
-
-export default IconButton;

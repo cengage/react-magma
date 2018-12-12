@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { ICONS } from './types/icons';
 import { SvgIcon } from './SvgIcon';
-const styled = require('styled-components').default;
 
 export interface IconProps {
   id?: string;
@@ -20,8 +19,5 @@ function renderIcon(props) {
   ) : null;
 }
 
-export const Icon: React.FunctionComponent<IconProps> = (
-  props: IconProps
-): JSX.Element => renderIcon(props);
-
-export default Icon;
+export const Icon: React.FunctionComponent<IconProps> = (props: IconProps) =>
+  renderIcon(props);

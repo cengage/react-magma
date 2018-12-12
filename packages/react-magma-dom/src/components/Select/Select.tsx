@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { SelectCore } from 'react-magma-core';
-
-const styled = require('styled-components').default;
 import { Icon } from '../Icon/Icon';
 import { Label } from '../Label/Label';
 import { magma } from '../../theme/magma';
@@ -23,6 +21,7 @@ export interface SelectProps {
   required?: boolean;
   clearable?: boolean;
   multi?: boolean;
+  style?: ReactSelectStyles;
   handleBlur?: () => void;
   handleFocus?: () => void;
   handleChange?: () => void;
@@ -30,70 +29,91 @@ export interface SelectProps {
   handleClose?: () => void;
 }
 
-const selectStyles = {
-  control: (styles, { isFocused, isDisabled }) => ({
-    ...styles,
-    backgroundColor: isDisabled ? magma.primary03 : magma.primary04,
-    borderColor: isFocused ? magma.accent02 : magma.secondary05,
-    borderRadius: '3px',
-    boxShadow: isFocused
-      ? 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #9bca43'
-      : 'inset 0 4px 5px #e6e6e6',
-    color: magma.primary01,
-    height: '35px',
-    padding: '0 8px',
+interface ReactSelectStyles {
+  control?: React.CSSProperties;
+  dropdownIndicator?: React.CSSProperties;
+  clearIndicator?: React.CSSProperties;
+  indicatorSeparator?: React.CSSProperties;
+  menu?: React.CSSProperties;
+  multiValue?: React.CSSProperties;
+  multiValueRemove?: React.CSSProperties;
+  option?: React.CSSProperties;
+}
 
-    '&:hover': {
-      borderColor: isFocused ? magma.accent02 : magma.secondary05
-    }
-  }),
-  dropdownIndicator: (styles, { isFocused }) => ({
-    ...styles,
-    color: isFocused ? magma.secondary04 : magma.secondary05
-  }),
-  clearIndicator: (styles, { isFocused }) => ({
-    ...styles,
-    color: isFocused ? magma.secondary04 : magma.secondary05,
+export function getStyles(customStyles: ReactSelectStyles = {}) {
+  return {
+    control: (styles, { isFocused, isDisabled }) => ({
+      ...styles,
+      backgroundColor: isDisabled ? magma.primary03 : magma.primary04,
+      borderColor: isFocused ? magma.accent02 : magma.secondary05,
+      borderRadius: '3px',
+      boxShadow: isFocused
+        ? 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #9bca43'
+        : 'inset 0 4px 5px #e6e6e6',
+      color: magma.primary01,
+      height: '35px',
+      padding: '0 8px',
 
-    '&:hover': {
-      backgroundColor: magma.primary03
-    }
-  }),
-  indicatorSeparator: styles => ({
-    display: 'none'
-  }),
-  menu: styles => ({
-    ...styles,
-    border: `1px solid ${magma.secondary06}`,
-    borderRadius: '3px',
-    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)',
-    zIndex: 999
-  }),
-  multiValue: styles => ({
-    ...styles,
-    backgroundColor: magma.limited03,
-    color: magma.primary01
-  }),
-  multiValueRemove: styles => ({
-    ...styles,
-    backgroundColor: magma.limited03,
-    color: magma.primary01,
+      '&:hover': {
+        borderColor: isFocused ? magma.accent02 : magma.secondary05
+      },
+      ...customStyles.control
+    }),
+    dropdownIndicator: (styles, { isFocused }) => ({
+      ...styles,
+      color: isFocused ? magma.secondary04 : magma.secondary05,
+      ...customStyles.dropdownIndicator
+    }),
+    clearIndicator: (styles, { isFocused }) => ({
+      ...styles,
+      color: isFocused ? magma.secondary04 : magma.secondary05,
 
-    '&:hover': {
-      backgroundColor: magma.secondary05,
-      color: magma.primary01
-    }
-  }),
-  option: (styles, { isFocused, isSelected }) => ({
-    ...styles,
-    backgroundColor: isFocused
-      ? magma.limited03
-      : isSelected
-      ? magma.primary03
-      : magma.primary04,
-    color: magma.primary01
-  })
-};
+      '&:hover': {
+        backgroundColor: magma.primary03
+      },
+      ...customStyles.clearIndicator
+    }),
+    indicatorSeparator: styles => ({
+      display: 'none',
+      ...customStyles.indicatorSeparator
+    }),
+    menu: styles => ({
+      ...styles,
+      border: `1px solid ${magma.secondary06}`,
+      borderRadius: '3px',
+      boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)',
+      zIndex: 999,
+      ...customStyles.menu
+    }),
+    multiValue: styles => ({
+      ...styles,
+      backgroundColor: magma.limited03,
+      color: magma.primary01,
+      ...customStyles.multiValue
+    }),
+    multiValueRemove: styles => ({
+      ...styles,
+      backgroundColor: magma.limited03,
+      color: magma.primary01,
+
+      '&:hover': {
+        backgroundColor: magma.secondary05,
+        color: magma.primary01
+      },
+      ...customStyles.multiValueRemove
+    }),
+    option: (styles, { isFocused, isSelected }) => ({
+      ...styles,
+      backgroundColor: isFocused
+        ? magma.limited03
+        : isSelected
+        ? magma.primary03
+        : magma.primary04,
+      color: magma.primary01,
+      ...customStyles.option
+    })
+  };
+}
 
 const ClearIndicator = props => {
   return (
@@ -127,7 +147,7 @@ const MultiValueRemove = props => {
 
 export const Select: React.FunctionComponent<SelectProps> = (
   props: SelectProps
-): JSX.Element => (
+) => (
   <SelectCore
     components={{ ClearIndicator, DropdownIndicator, MultiValueRemove }}
     defaultValue={props.defaultValue}
@@ -153,7 +173,8 @@ export const Select: React.FunctionComponent<SelectProps> = (
         disabled,
         required,
         clearable,
-        multi
+        multi,
+        style
       } = props;
 
       return (
@@ -175,12 +196,10 @@ export const Select: React.FunctionComponent<SelectProps> = (
             onChange={handleChange}
             onMenuOpen={handleOpen}
             onMenuClose={handleClose}
-            styles={selectStyles}
+            styles={getStyles(style)}
           />
         </div>
       );
     }}
   </SelectCore>
 );
-
-export default Select;

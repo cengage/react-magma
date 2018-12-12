@@ -7,6 +7,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "registry": "http://nexus.mindtap.corp.web/content/repositories/npm.cengage/"
+  },
   "scripts": {
     "compiler-checks": "tsc --noEmit --project './tsconfig.json'",
     "test": "jest",
