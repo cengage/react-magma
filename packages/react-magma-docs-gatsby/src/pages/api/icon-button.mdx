@@ -29,6 +29,16 @@ IconButton components accept all of the same props as Button components.
     </p>
 ```
 
+For icon only buttons you _MUST_ pass in an `ariaLabel` property to satisfy accessibility standards.
+
+## Aria Label
+
+```.jsx
+    <p>
+        <IconButton icon="bell" iconOnly={true} ariaLabel="Icon">Icon button</IconButton>
+    </p>
+```
+
 ## Text position
 
 Use the optional prop `textPosition` to position the text of the button on either side of the icon.
@@ -135,6 +145,7 @@ Events do not fire on disabled buttons.
 | ------------- | ------------------------------------------------------------------- | ----------- | :------: |
 | icon          | string                                                              |             | &#10003; |
 | handleClick   | func                                                                |             | &#10003; |
+| ariaLabel     | string                                                              |             |
 | autoFocus     | boolean                                                             | false       |
 | block         | boolean                                                             | false       |
 | children      | node                                                                |             |
