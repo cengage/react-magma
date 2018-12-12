@@ -6,7 +6,7 @@ title: 'Icon Buttons'
 
 **Buttons are clickable items used to perform an action.**
 
-Icon buttons have an icon included in them. Text is not displayed in these buttons by default, but can be using the textPostion property.
+Icon buttons have an icon included in them. Text is displayed in these buttons by default, but can be removed using the `iconOnly` property.
 IconButton components accept all of the same props as Button components.
 
 ## Basic usage
@@ -31,8 +31,7 @@ IconButton components accept all of the same props as Button components.
 
 ## Text position
 
-By default, an icon button will not display its children, and will instead use the child text as an `aria-label`.
-However, if you use the optional prop `textPosition`, the icon button will display a regular button with both the icon and it's children.
+Use the optional prop `textPosition` to position the text of the button on either side of the icon.
 The `textPosition` property takes the values `left` and `right`.
 
 ```.jsx
@@ -79,7 +78,7 @@ Icon only buttons have `shape = round`, by default.
 ## Block Buttons
 
 Passing the `block` property will set the button to display full-width.
-Block buttons only work when the `textPosition` property is set to `left` or `right`.
+Block buttons only work when the `icon` property is set to `false` or not defined.
 
 ```.jsx
     <p>
