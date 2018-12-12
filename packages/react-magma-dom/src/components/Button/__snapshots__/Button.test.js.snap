@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button Snapshot should render with non-default props 1`] = `
-.c1 {
+exports[`Button Snapshot should render with updated shape 1`] = `
+.c0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -38,98 +38,9 @@ exports[`Button Snapshot should render with non-default props 1`] = `
   color: #FFFFFF;
 }
 
-.c1:not(:disabled):after,
-.c1:not(:disabled):before {
-  background: #FFFFFF;
-  content: '';
-  opacity: 0;
-  position: absolute;
-}
-
-.c1:not(:disabled):after {
-  border-radius: 50%;
-  height: 32px;
-  left: 50%;
-  padding: 50%;
-  top: 18px;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 32px;
-}
-
-.c1:not(:disabled):before {
-  height: 200%;
-  left: 0;
-  top: -50%;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-  width: 200%;
-}
-
-.c1:not(:disabled):active:after {
-  opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
-  transition: transform 0s;
-}
-
-.c1:not(:disabled):hover:before,
-.c1:not(:disabled):focus:before {
-  opacity: 0.1;
-}
-
-.c1:focus {
-  outline: 2px dotted #F2A900;
-  outline-offset: 3px;
-}
-
-.c0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  border-radius: 5px;
-  cursor: pointer;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  font-family: "Open Sans",sans-serif;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
-  overflow: hidden;
-  position: relative;
-  text-align: center;
-  text-transform: uppercase;
-  vertical-align: middle;
-  touch-action: manipulation;
-  width: auto;
-  white-space: nowrap;
-  font-size: .875rem;
-  font-weight: 600;
-  height: 37px;
-  padding: 0 15px;
-  background: #FFFFFF;
-  border: 2px solid;
-  border-color: #BFBFBF;
-  color: #3F3F3F;
-}
-
 .c0:not(:disabled):after,
 .c0:not(:disabled):before {
-  background: #3F3F3F;
+  background: #FFFFFF;
   content: '';
   opacity: 0;
   position: absolute;
@@ -179,7 +90,19 @@ exports[`Button Snapshot should render with non-default props 1`] = `
   outline-offset: 3px;
 }
 
-.c2 {
+<div>
+  <button
+    class="c0"
+    color="primary"
+    shape="round"
+  >
+    Test Text
+  </button>
+</div>
+`;
+
+exports[`Button Snapshot should render with updated size 1`] = `
+.c0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -216,15 +139,15 @@ exports[`Button Snapshot should render with non-default props 1`] = `
   color: #FFFFFF;
 }
 
-.c2:not(:disabled):after,
-.c2:not(:disabled):before {
+.c0:not(:disabled):after,
+.c0:not(:disabled):before {
   background: #FFFFFF;
   content: '';
   opacity: 0;
   position: absolute;
 }
 
-.c2:not(:disabled):after {
+.c0:not(:disabled):after {
   border-radius: 50%;
   height: 32px;
   left: 50%;
@@ -239,7 +162,7 @@ exports[`Button Snapshot should render with non-default props 1`] = `
   width: 32px;
 }
 
-.c2:not(:disabled):before {
+.c0:not(:disabled):before {
   height: 200%;
   left: 0;
   top: -50%;
@@ -248,7 +171,7 @@ exports[`Button Snapshot should render with non-default props 1`] = `
   width: 200%;
 }
 
-.c2:not(:disabled):active:after {
+.c0:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -258,17 +181,130 @@ exports[`Button Snapshot should render with non-default props 1`] = `
   transition: transform 0s;
 }
 
-.c2:not(:disabled):hover:before,
-.c2:not(:disabled):focus:before {
+.c0:not(:disabled):hover:before,
+.c0:not(:disabled):focus:before {
   opacity: 0.1;
 }
 
-.c2:focus {
+.c0:focus {
   outline: 2px dotted #F2A900;
   outline-offset: 3px;
 }
 
-.c3 {
+<div>
+  <button
+    class="c0"
+    color="primary"
+    shape="fill"
+  >
+    Test Text
+  </button>
+</div>
+`;
+
+exports[`Button Snapshot should render with updated size 2`] = `
+.c0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-family: "Open Sans",sans-serif;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  line-height: 1;
+  margin: 5px;
+  min-width: 5.625em;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  touch-action: manipulation;
+  width: auto;
+  white-space: nowrap;
+  font-size: .750rem;
+  font-weight: 600;
+  height: 29px;
+  padding: 0 10px;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
+  color: #FFFFFF;
+}
+
+.c0:not(:disabled):after,
+.c0:not(:disabled):before {
+  background: #FFFFFF;
+  content: '';
+  opacity: 0;
+  position: absolute;
+}
+
+.c0:not(:disabled):after {
+  border-radius: 50%;
+  height: 32px;
+  left: 50%;
+  padding: 50%;
+  top: 18px;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 32px;
+}
+
+.c0:not(:disabled):before {
+  height: 200%;
+  left: 0;
+  top: -50%;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  width: 200%;
+}
+
+.c0:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.c0:not(:disabled):hover:before,
+.c0:not(:disabled):focus:before {
+  opacity: 0.1;
+}
+
+.c0:focus {
+  outline: 2px dotted #F2A900;
+  outline-offset: 3px;
+}
+
+<div>
+  <button
+    class="c0"
+    color="primary"
+    shape="fill"
+  >
+    Test Text
+  </button>
+</div>
+`;
+
+exports[`Button Snapshot should render with updated textTransform 1`] = `
+.c0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -305,15 +341,15 @@ exports[`Button Snapshot should render with non-default props 1`] = `
   color: #FFFFFF;
 }
 
-.c3:not(:disabled):after,
-.c3:not(:disabled):before {
+.c0:not(:disabled):after,
+.c0:not(:disabled):before {
   background: #FFFFFF;
   content: '';
   opacity: 0;
   position: absolute;
 }
 
-.c3:not(:disabled):after {
+.c0:not(:disabled):after {
   border-radius: 50%;
   height: 32px;
   left: 50%;
@@ -328,7 +364,7 @@ exports[`Button Snapshot should render with non-default props 1`] = `
   width: 32px;
 }
 
-.c3:not(:disabled):before {
+.c0:not(:disabled):before {
   height: 200%;
   left: 0;
   top: -50%;
@@ -337,7 +373,7 @@ exports[`Button Snapshot should render with non-default props 1`] = `
   width: 200%;
 }
 
-.c3:not(:disabled):active:after {
+.c0:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -347,17 +383,29 @@ exports[`Button Snapshot should render with non-default props 1`] = `
   transition: transform 0s;
 }
 
-.c3:not(:disabled):hover:before,
-.c3:not(:disabled):focus:before {
+.c0:not(:disabled):hover:before,
+.c0:not(:disabled):focus:before {
   opacity: 0.1;
 }
 
-.c3:focus {
+.c0:focus {
   outline: 2px dotted #F2A900;
   outline-offset: 3px;
 }
 
-.c4 {
+<div>
+  <button
+    class="c0"
+    color="primary"
+    shape="fill"
+  >
+    Test Text
+  </button>
+</div>
+`;
+
+exports[`Button Snapshot should render with updated variant 1`] = `
+.c0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -393,15 +441,15 @@ exports[`Button Snapshot should render with non-default props 1`] = `
   color: #006298;
 }
 
-.c4:not(:disabled):after,
-.c4:not(:disabled):before {
+.c0:not(:disabled):after,
+.c0:not(:disabled):before {
   background: #006298;
   content: '';
   opacity: 0;
   position: absolute;
 }
 
-.c4:not(:disabled):after {
+.c0:not(:disabled):after {
   border-radius: 50%;
   height: 32px;
   left: 50%;
@@ -416,7 +464,7 @@ exports[`Button Snapshot should render with non-default props 1`] = `
   width: 32px;
 }
 
-.c4:not(:disabled):before {
+.c0:not(:disabled):before {
   height: 200%;
   left: 0;
   top: -50%;
@@ -425,7 +473,7 @@ exports[`Button Snapshot should render with non-default props 1`] = `
   width: 200%;
 }
 
-.c4:not(:disabled):active:after {
+.c0:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -435,53 +483,23 @@ exports[`Button Snapshot should render with non-default props 1`] = `
   transition: transform 0s;
 }
 
-.c4:not(:disabled):hover:before,
-.c4:not(:disabled):focus:before {
+.c0:not(:disabled):hover:before,
+.c0:not(:disabled):focus:before {
   opacity: 0.1;
 }
 
-.c4:focus {
+.c0:focus {
   outline: 2px dotted #F2A900;
   outline-offset: 3px;
 }
 
 <div>
-  <div>
-    <button
-      class="c0"
-      color="secondary"
-      shape="fill"
-    >
-      Test Text
-    </button>
-    <button
-      class="c1"
-      color="primary"
-      shape="round"
-    >
-      Test Text
-    </button>
-    <button
-      class="c2"
-      color="primary"
-      shape="fill"
-    >
-      Test Text
-    </button>
-    <button
-      class="c3"
-      color="primary"
-      shape="fill"
-    >
-      Test Text
-    </button>
-    <button
-      class="c4"
-      color="primary"
-      shape="fill"
-    >
-      Test Text
-    </button>
-  </div>
+  <button
+    class="c0"
+    color="primary"
+    shape="fill"
+  >
+    Test Text
+  </button>
 </div>
 `;

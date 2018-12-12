@@ -37,28 +37,59 @@ describe('Button', () => {
   });
 
   describe('Snapshot', () => {
-    it('should render with non-default props', () => {
+    it('should render with updated color', () => {
       const { container } = render(
-        <div>
-          <Button {...BASE_BUTTON_PROPS} color={ButtonColor.secondary}>
-            {TEXT}
-          </Button>
-          <Button {...BASE_BUTTON_PROPS} shape={ButtonShape.round}>
-            {TEXT}
-          </Button>
-          <Button {...BASE_BUTTON_PROPS} size={ButtonSize.small}>
-            {TEXT}
-          </Button>
-          <Button
-            {...BASE_BUTTON_PROPS}
-            textTransform={ButtonTextTransform.none}
-          >
-            {TEXT}
-          </Button>
-          <Button {...BASE_BUTTON_PROPS} variant={ButtonVariant.outline}>
-            {TEXT}
-          </Button>
-        </div>
+        <Button {...BASE_BUTTON_PROPS} color={ButtonColor.secondary}>
+          {TEXT}
+        </Button>
+      );
+    });
+
+    it('should render with updated shape', () => {
+      const { container } = render(
+        <Button {...BASE_BUTTON_PROPS} shape={ButtonShape.round}>
+          {TEXT}
+        </Button>
+      );
+
+      expect(container).toMatchSnapshot();
+    });
+
+    it('should render with updated size', () => {
+      const { container } = render(
+        <Button {...BASE_BUTTON_PROPS} size={ButtonSize.small}>
+          {TEXT}
+        </Button>
+      );
+
+      expect(container).toMatchSnapshot();
+    });
+
+    it('should render with updated size', () => {
+      const { container } = render(
+        <Button {...BASE_BUTTON_PROPS} size={ButtonSize.small}>
+          {TEXT}
+        </Button>
+      );
+
+      expect(container).toMatchSnapshot();
+    });
+
+    it('should render with updated textTransform', () => {
+      const { container } = render(
+        <Button {...BASE_BUTTON_PROPS} textTransform={ButtonTextTransform.none}>
+          {TEXT}
+        </Button>
+      );
+
+      expect(container).toMatchSnapshot();
+    });
+
+    it('should render with updated variant', () => {
+      const { container } = render(
+        <Button {...BASE_BUTTON_PROPS} variant={ButtonVariant.outline}>
+          {TEXT}
+        </Button>
       );
 
       expect(container).toMatchSnapshot();
