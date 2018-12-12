@@ -125,7 +125,7 @@ const MultiValueRemove = props => {
 
 export const Select: React.FunctionComponent<SelectProps> = (
   props: SelectProps
-): JSX.Element => (
+) => (
   <SelectCore
     components={{ ClearIndicator, DropdownIndicator, MultiValueRemove }}
     defaultValue={props.defaultValue}
@@ -180,5 +180,3 @@ export const Select: React.FunctionComponent<SelectProps> = (
     }}
   </SelectCore>
 );
-
-export default Select;

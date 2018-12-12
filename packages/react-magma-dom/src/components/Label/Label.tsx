@@ -20,8 +20,5 @@ function renderLabel(props) {
   return <StyledLabel htmlFor={htmlFor}>{children}</StyledLabel>;
 }
 
-export const Label: React.FunctionComponent<LabelProps> = (
-  props: LabelProps
-): JSX.Element => renderLabel(props);
-
-export default Label;
+export const Label: React.FunctionComponent<LabelProps> = (props: LabelProps) =>
+  renderLabel(props);

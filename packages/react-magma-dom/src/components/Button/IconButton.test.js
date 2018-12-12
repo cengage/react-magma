@@ -23,7 +23,8 @@ const renderIconNoTextButton = (myProps = {}) => {
   const props = {
     ...BASE_ICON_BUTTON_PROPS,
     ...myProps,
-    ariaLabel: TEXT
+    ariaLabel: TEXT,
+    iconOnly: true
   };
 
   return render(<IconButton {...props} />);
@@ -49,7 +50,7 @@ describe('Icon Button', () => {
     const shape = 'fill';
     const variant = 'outline';
     const size = 'small';
-    const { container } = renderIconNoTextButton({
+    const { container, debug } = renderIconNoTextButton({
       color,
       shape,
       variant,
@@ -243,14 +244,14 @@ describe('Icon Button', () => {
   });
 
   it('Does not violate accessibility standards for icon button', () => {
-    const { container } = renderIconNoTextButton();
+    const { container, debug } = renderIconNoTextButton();
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });
   });
 
   it('Does not violate accessibility standards for icon button with text', () => {
-    const { container, debug } = renderIconTextButton();
+    const { container } = renderIconTextButton();
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });
