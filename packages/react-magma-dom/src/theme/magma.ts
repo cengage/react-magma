@@ -23,7 +23,7 @@ interface Colors {
   disabledInverseText: string;
 }
 
-export default interface ThemeInterface {
+export interface ThemeInterface {
   bodyFont: string;
   headingFont: string;
   colors: Colors;

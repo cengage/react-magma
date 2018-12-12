@@ -21,13 +21,6 @@ export interface CheckboxProps {
   value?: string;
 }
 
-export interface CheckboxWrapperProps {
-  checked?: boolean;
-  color: string;
-  disabled?: boolean;
-  inverse?: boolean;
-}
-
 const StyledContainer = styled.div`
   align-items: baseline;
   display: flex;

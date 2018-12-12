@@ -29,7 +29,7 @@ export const SvgIcon: React.FunctionComponent<SvgIconProps> = ({
   title,
   viewBox,
   paths
-}): JSX.Element => (
+}) => (
   <svg
     className="icon"
     height={size || defaultSize}
@@ -43,5 +43,3 @@ export const SvgIcon: React.FunctionComponent<SvgIconProps> = ({
     {renderPaths(paths)}
   </svg>
 );
-
-export default SvgIcon;

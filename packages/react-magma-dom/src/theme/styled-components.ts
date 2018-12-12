@@ -1,7 +1,7 @@
 // styled-components.ts
 import * as styledComponents from 'styled-components';
 
-import ThemeInterface from './magma';
+import { ThemeInterface } from './magma';
 
 const {
   default: styled,

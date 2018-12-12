@@ -14,7 +14,7 @@ export interface InputProps {
   autoFocus?: boolean;
   disabled?: boolean;
   handleBlur?: () => void;
-  handleChange?: () => void;
+  handleChange?: (value: string) => void;
   handleFocus?: () => void;
   id: string;
   labelText: string;
@@ -52,7 +52,7 @@ const StyledInput = styled('input')`
 
 export const Input: React.FunctionComponent<InputProps> = (
   props: InputProps
-): JSX.Element => (
+) => (
   <InputCore
     value={props.value}
     handleBlur={props.handleBlur}
@@ -92,5 +92,3 @@ export const Input: React.FunctionComponent<InputProps> = (
     }}
   </InputCore>
 );
-
-export default Input;
