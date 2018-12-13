@@ -234,7 +234,9 @@ export class Checkbox extends React.Component<CheckboxProps> {
                   disabled={disabled}
                   inverse={inverse}
                 >
-                  <IndeterminateIcon />
+                  <IndeterminateIcon
+                    color={color ? color : magma.colors.primary}
+                  />
                   <Icon size={12} type="checkmark" />
                 </StyledFakeInput>
                 {labelText}
