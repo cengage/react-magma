@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Button, Icon, IconButton, Select } from 'react-magma-dom';
+import { Input, Button, Checkbox, Icon, IconButton, Select } from 'react-magma-dom';
 
 class App extends Component {
   render() {
@@ -60,6 +60,17 @@ class App extends Component {
 
         <h1>ICONS</h1>
         <Icon id="basicInfoIcon" title="Basic Info Icon" type="info" />
+
+        <h1>CHECKBOXES</h1>
+        <Checkbox id="requiredCheckbox" labelText="Label" required={true} />
+        <Checkbox id="disabledCheckbox" labelText="Label" disabled={true} />
+        <Checkbox
+          id="defaultCheckbox"
+          labelText="Label"
+          handleChange={() => {
+            alert('clicked');
+            }}
+          />
 
         <h1>SELECTS</h1>
         <Select

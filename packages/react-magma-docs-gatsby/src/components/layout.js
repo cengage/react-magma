@@ -9,13 +9,14 @@ import { Location } from '@reach/router'
 import { Transition, config } from 'react-spring'
 import {
   Button,
+  Checkbox,
   Heading,
   Icon,
   ICONS,
   IconButton,
   Input,
   Select,
-  magma,
+  magma
 } from 'react-magma-dom'
 import { IconContainer } from './iconContainer'
 import { IconListContainer } from './iconListContainer'
@@ -127,6 +128,7 @@ const PreComponent = ({ className, ...props }) =>
       code={props.children.props.children}
       scope={{
         Button,
+        Checkbox,
         Heading,
         Icon,
         ICONS,
@@ -136,6 +138,7 @@ const PreComponent = ({ className, ...props }) =>
         Input,
         Select,
         SelectContainer,
+        magma
       }}
     >
       <PreContainer>
