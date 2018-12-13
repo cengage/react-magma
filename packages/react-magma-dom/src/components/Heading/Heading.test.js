@@ -88,18 +88,47 @@ describe('Heading', () => {
     expect(heading).toHaveStyleRule('font-size', '18px');
   });
 
+  it('should render custom styles', () => {
+    const color = '#cccccc';
+    const { container } = renderHeading({ level: 1, style: { color } });
+    const heading = container.querySelector('h1');
+
+    expect(heading).toHaveStyle(`color: ${color}`);
+  });
+
   describe('Snapshot', () => {
-    it('should render headings correctly', () => {
-      const { container } = render(
-        <div>
-          <Heading level={1}>Heading 1</Heading>
-          <Heading level={2}>Heading 2</Heading>
-          <Heading level={3}>Heading 3</Heading>
-          <Heading level={4}>Heading 4</Heading>
-          <Heading level={5}>Heading 5</Heading>
-          <Heading level={6}>Heading 6</Heading>
-        </div>
-      );
+    it('should render heading 1 correctly', () => {
+      const { container } = render(<Heading level={1}>Heading 1</Heading>);
+
+      expect(container).toMatchSnapshot();
+    });
+
+    it('should render heading 2 correctly', () => {
+      const { container } = render(<Heading level={2}>Heading 2</Heading>);
+
+      expect(container).toMatchSnapshot();
+    });
+
+    it('should render heading 3 correctly', () => {
+      const { container } = render(<Heading level={3}>Heading 3</Heading>);
+
+      expect(container).toMatchSnapshot();
+    });
+
+    it('should render heading 4 correctly', () => {
+      const { container } = render(<Heading level={4}>Heading 4</Heading>);
+
+      expect(container).toMatchSnapshot();
+    });
+
+    it('should render heading 5 correctly', () => {
+      const { container } = render(<Heading level={5}>Heading 5</Heading>);
+
+      expect(container).toMatchSnapshot();
+    });
+
+    it('should render heading 6 correctly', () => {
+      const { container } = render(<Heading level={6}>Heading 6</Heading>);
 
       expect(container).toMatchSnapshot();
     });

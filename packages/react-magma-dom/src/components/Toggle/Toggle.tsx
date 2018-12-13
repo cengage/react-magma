@@ -8,7 +8,7 @@ export interface ToggleProps {
 
 export const Toggle: React.FunctionComponent<ToggleProps> = (
   props: ToggleProps
-): JSX.Element => (
+) => (
   <ToggleCore>
     {({ isOn, handleToggle }) => {
       return (
