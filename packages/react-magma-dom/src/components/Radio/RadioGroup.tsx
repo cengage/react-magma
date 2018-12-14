@@ -11,9 +11,12 @@ const StyledLabel = styled.label`
 
 export interface RadioGroupProps {
   children: React.ReactChild | React.ReactChild[];
+  handleChange?: () => void;
+  id: string;
+  labelStyle?: React.CSSProperties;
   labelText: string;
   name: string;
-  handleChange?: () => void;
+  style?: React.CSSProperties;
   value?: string;
 }
 
@@ -27,19 +30,23 @@ export const RadioContext = React.createContext<RadioContextInterface | null>(
   null
 );
 
-export const RadioGroup: React.SFC<RadioGroupProps> = (
+export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
   props: RadioGroupProps
 ): JSX.Element => (
-  <RadioContext.Provider
-    value={{
-      name: props.name,
-      selectedValue: props.value,
-      handleChange: props.handleChange
-    }}
-  >
-    <StyledLabel>{props.labelText}</StyledLabel>
-    <div role="radiogroup">{props.children}</div>
-  </RadioContext.Provider>
+  <div aria-labelledby={props.id} role="radiogroup" style={props.style}>
+    <RadioContext.Provider
+      value={{
+        name: props.name,
+        selectedValue: props.value,
+        handleChange: props.handleChange
+      }}
+    >
+      <StyledLabel id={props.id} style={props.labelStyle}>
+        {props.labelText}
+      </StyledLabel>
+      <div>{props.children}</div>
+    </RadioContext.Provider>
+  </div>
 );
 
 export default RadioGroup;
