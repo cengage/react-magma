@@ -14,7 +14,9 @@ const RADIO_PROPS = {
 const RADIO_CONTEXT = {
   name: 'colors',
   selectedValue: 'red',
-  handleChange: jest.fn()
+  handleBlur: jest.fn(),
+  handleChange: jest.fn(),
+  handleFocus: jest.fn()
 };
 
 const renderRadio = (myProps = {}, myContext = {}) => {
@@ -45,12 +47,19 @@ describe('Radio Group', () => {
     expect(label).toBeInTheDocument();
   });
 
-  it('should render radio', () => {
+  it('should render radio button', () => {
     const { getByLabelText } = renderRadio();
     const radio = getByLabelText(RADIO_PROPS.labelText);
 
     expect(radio).toBeInTheDocument();
     expect(radio).toHaveAttribute('name', RADIO_CONTEXT.name);
+  });
+
+  it('should require the radio button', () => {
+    const { getByLabelText } = renderRadio({ required: true });
+    const radio = getByLabelText(RADIO_PROPS.labelText);
+
+    expect(radio).toHaveAttribute('required');
   });
 
   it('should disable the radio button', () => {
@@ -99,6 +108,20 @@ describe('Radio Group', () => {
     expect(radio).toHaveAttribute('aria-checked', 'true');
   });
 
+  it('blurring a radio button calls the passed in handleBlur function', () => {
+    const { getByLabelText } = renderRadio();
+
+    fireEvent(
+      getByLabelText(RADIO_PROPS.labelText),
+      new MouseEvent('blur', {
+        bubbles: true,
+        cancelable: true
+      })
+    );
+
+    expect(RADIO_CONTEXT.handleBlur).toHaveBeenCalledTimes(1);
+  });
+
   it('changing a radio button calls the passed in handleChange function', () => {
     const { getByLabelText } = renderRadio();
 
@@ -111,5 +134,19 @@ describe('Radio Group', () => {
     );
 
     expect(RADIO_CONTEXT.handleChange).toHaveBeenCalledTimes(1);
+  });
+
+  it('focusing a radio button calls the passed in handleFocus function', () => {
+    const { getByLabelText } = renderRadio();
+
+    fireEvent(
+      getByLabelText(RADIO_PROPS.labelText),
+      new MouseEvent('focus', {
+        bubbles: true,
+        cancelable: true
+      })
+    );
+
+    expect(RADIO_CONTEXT.handleFocus).toHaveBeenCalledTimes(1);
   });
 });

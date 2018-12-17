@@ -1,7 +1,13 @@
 import * as React from 'react';
+import {
+  DisplayInputStyles,
+  HiddenInputStyles
+} from '../SelectionControls/InputStyles';
 import { RadioContext } from './RadioGroup';
 import { RadioCore } from 'react-magma-core';
-import styled from '../../theme/styled-components';
+import { StyledLabel } from '../SelectionControls/StyledLabel';
+import { StyledContainer } from '../SelectionControls/StyledContainer';
+import styled, { css } from '../../theme/styled-components';
 import { magma } from '../../theme/magma';
 import 'focus-visible';
 
@@ -9,7 +15,9 @@ export interface RadioProps {
   color?: string;
   checked?: boolean;
   disabled?: boolean;
+  handleBlur?: () => void;
   handleChange?: () => void;
+  handleFocus?: () => void;
   id: string;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
@@ -20,29 +28,8 @@ export interface RadioProps {
   value?: string;
 }
 
-const StyledContainer = styled.div`
-  align-items: baseline;
-  display: flex;
-  flex-wrap: nowrap;
-  margin: 0 0 0 10px;
-`;
-
 const HiddenInput = styled<{ indeterminate?: boolean }, 'input'>('input')`
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  position: absolute;
-  overflow: hidden;
-  top: auto;
-  white-space: nowrap;
-  width: 1px;
-`;
-
-const StyledLabel = styled<{ inverse: boolean }, 'label'>('label')`
-  align-items: flex-start;
-  color: ${props => (props.inverse ? magma.colors.neutral08 : 'inherit')};
-  display: flex;
-  margin: 0;
-  padding: 10px;
+  ${HiddenInputStyles};
 `;
 
 const StyledFakeInput = styled<
@@ -53,7 +40,7 @@ const StyledFakeInput = styled<
   },
   'span'
 >('span')`
-  align-items: center;
+  ${DisplayInputStyles};
   background: ${props => {
     if (props.inverse) {
       return 'none';
@@ -63,7 +50,6 @@ const StyledFakeInput = styled<
     }
     return magma.colors.neutral08;
   }};
-  border: 2px solid;
   border-color: ${props => {
     if (props.inverse) {
       if (props.disabled) {
@@ -78,21 +64,6 @@ const StyledFakeInput = styled<
   }};
   border-radius: 100%;
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
-  display: flex;
-  height: 20px;
-  flex-shrink: 0;
-  justify-content: center;
-  margin: 2px 10px 0 -25px;
-  margin-left: 0;
-  position: relative;
-  transition: all 0.2s ease-out;
-  width: 20px;
-
-  &:before,
-  &:after { // focus state
-    content: '';
-    position: absolute;
-  }
 
   ${HiddenInput}:checked:not(:disabled) + label & {
     background: ${props => {
@@ -111,7 +82,8 @@ const StyledFakeInput = styled<
     }};
   }
 
-  ${HiddenInput}:focus.focus-visible + label & { // focus state
+  ${HiddenInput}:focus.focus-visible + label & {
+    // focus state
     &:before {
       height: 30px;
       outline: 2px dotted ${magma.colors.pop03};
@@ -120,18 +92,10 @@ const StyledFakeInput = styled<
     }
   }
 
-  &:after { // active state
+  &:after {
+    // active state
     background: ${props =>
       props.inverse ? magma.colors.neutral08 : props.color};
-    border-radius: 50%;
-    height: 40px;
-    left: -12px;
-    opacity: 0;
-    padding: 50%;
-    top: 50%
-    transform: scale(1);
-    transition: opacity 1s, transform 0.5s;
-    width: 40px;
   }
 
   ${HiddenInput}:not(:disabled):active + label & {
@@ -163,10 +127,12 @@ export const Radio: React.FunctionComponent<RadioProps> = (
       context && (
         <RadioCore
           selectedValue={context.selectedValue}
+          handleBlur={context.handleBlur}
           handleChange={context.handleChange}
+          handleFocus={context.handleFocus}
           value={props.value}
         >
-          {({ handleChange, checked }) => {
+          {({ handleBlur, handleChange, handleFocus, checked }) => {
             const {
               color,
               disabled,
@@ -191,7 +157,9 @@ export const Radio: React.FunctionComponent<RadioProps> = (
                   required={required}
                   type="radio"
                   value={value}
+                  onBlur={handleBlur}
                   onChange={handleChange}
+                  onFocus={handleFocus}
                 />
                 <StyledLabel htmlFor={id} inverse={inverse} style={labelStyle}>
                   <StyledFakeInput

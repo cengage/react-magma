@@ -11,7 +11,9 @@ const StyledLabel = styled.label`
 
 export interface RadioGroupProps {
   children: React.ReactChild | React.ReactChild[];
+  handleBlur?: () => void;
   handleChange?: () => void;
+  handleFocus?: () => void;
   id: string;
   labelStyle?: React.CSSProperties;
   labelText: string;
@@ -23,7 +25,9 @@ export interface RadioGroupProps {
 export interface RadioContextInterface {
   name: string;
   selectedValue?: string;
+  handleBlur?: () => void;
   handleChange?: () => void;
+  handleFocus?: () => void;
 }
 
 export const RadioContext = React.createContext<RadioContextInterface | null>(
@@ -38,7 +42,9 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
       value={{
         name: props.name,
         selectedValue: props.value,
-        handleChange: props.handleChange
+        handleBlur: props.handleBlur,
+        handleChange: props.handleChange,
+        handleFocus: props.handleFocus
       }}
     >
       <StyledLabel id={props.id} style={props.labelStyle}>

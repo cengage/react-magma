@@ -9,7 +9,17 @@ export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
   constructor(props) {
     super(props);
 
+    this.handleBlur = this.handleBlur.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
+  }
+
+  handleBlur() {
+    this.props.handleBlur && this.props.handleBlur();
+  }
+
+  handleFocus() {
+    this.props.handleFocus && this.props.handleFocus();
   }
 
   handleChange(event) {
@@ -28,7 +38,9 @@ export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
     return this.props.children({
       ...this.state,
       ...this.props,
+      handleBlur: this.handleBlur,
       handleChange: this.handleChange,
+      handleFocus: this.handleFocus,
       checked: this.state.checked
     });
   }
@@ -36,8 +48,10 @@ export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
 
 export interface RadioCoreProps {
   children: (props) => React.ReactNode;
+  handleBlur?: () => void;
   handleChange?: (event: React.SyntheticEvent) => void;
   selectedValue?: string;
+  handleFocus?: () => void;
   value?: string;
 }
 

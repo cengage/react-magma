@@ -2,11 +2,15 @@ import * as React from 'react';
 import { mount } from 'enzyme';
 import { RadioCore } from './Radio';
 
+const handleBlur = jest.fn();
 const handleChange = jest.fn();
+const handleFocus = jest.fn();
 
 const RADIO_CORE_PROPS = {
   children: () => React.createElement('div'),
+  handleBlur,
   handleChange,
+  handleFocus,
   selectedValue: 'blue',
   value: 'blue'
 };
@@ -22,7 +26,9 @@ const inputSetup = (myProps = {}) => {
 
 describe('RadioCore', () => {
   afterEach(() => {
+    handleBlur.mockReset();
     handleChange.mockReset();
+    handleFocus.mockReset();
   });
 
   describe('state management', () => {
@@ -46,6 +52,26 @@ describe('RadioCore', () => {
       });
 
       expect(component.state('checked')).toEqual(checked);
+    });
+  });
+
+  describe('handle blur', () => {
+    it('should call the handleBlur from props during the internal handleBlur', () => {
+      const component = inputSetup();
+
+      component.instance().handleBlur();
+
+      expect(RADIO_CORE_PROPS.handleBlur).toHaveBeenCalled();
+    });
+
+    it('should not fail if no handleBlur is passed through the props', () => {
+      const component = inputSetup({
+        handleBlur: undefined
+      });
+
+      component.instance().handleBlur();
+
+      expect(RADIO_CORE_PROPS.handleBlur).not.toHaveBeenCalled();
     });
   });
 
@@ -79,6 +105,26 @@ describe('RadioCore', () => {
 
       expect(component.state('checked')).toEqual(checked);
       expect(RADIO_CORE_PROPS.handleChange).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('handle focus', () => {
+    it('should call the handleFocus from props during the internal handleFocus', () => {
+      const component = inputSetup();
+
+      component.instance().handleFocus();
+
+      expect(RADIO_CORE_PROPS.handleFocus).toHaveBeenCalled();
+    });
+
+    it('should not fail if no handleFocus is passed through the props', () => {
+      const component = inputSetup({
+        handleFocus: undefined
+      });
+
+      component.instance().handleFocus();
+
+      expect(RADIO_CORE_PROPS.handleFocus).not.toHaveBeenCalled();
     });
   });
 });
