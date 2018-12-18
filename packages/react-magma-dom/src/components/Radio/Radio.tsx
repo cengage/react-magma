@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   DisplayInputStyles,
-  HiddenInputStyles
+  HiddenStyles
 } from '../SelectionControls/InputStyles';
 import { RadioContext } from './RadioGroup';
 import { RadioCore } from 'react-magma-core';
@@ -25,11 +25,16 @@ export interface RadioProps {
   labelText: string;
   required?: boolean;
   style?: React.CSSProperties;
+  textVisuallyHidden: boolean;
   value?: string;
 }
 
+const HiddenLabelText = styled.span`
+  ${HiddenStyles};
+`;
+
 const HiddenInput = styled<{ indeterminate?: boolean }, 'input'>('input')`
-  ${HiddenInputStyles};
+  ${HiddenStyles};
 `;
 
 const StyledFakeInput = styled<
@@ -143,6 +148,7 @@ export const Radio: React.FunctionComponent<RadioProps> = (
               labelText,
               required,
               style,
+              textVisuallyHidden,
               value
             } = props;
             const { name } = context;
@@ -172,7 +178,11 @@ export const Radio: React.FunctionComponent<RadioProps> = (
                       color={color ? color : magma.colors.primary}
                     />
                   </StyledFakeInput>
-                  {labelText}
+                  {textVisuallyHidden ? (
+                    <HiddenLabelText>{labelText}</HiddenLabelText>
+                  ) : (
+                    labelText
+                  )}
                 </StyledLabel>
               </StyledContainer>
             );

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { HiddenStyles } from '../SelectionControls/InputStyles';
 import { RadioGroupCore } from 'react-magma-core';
 const styled = require('styled-components').default;
 
@@ -7,6 +8,10 @@ const StyledLabel = styled.label`
   font-weight: bold;
   margin-bottom: 5px;
   max-width: 100%;
+`;
+
+const HiddenLabel = styled.label`
+  ${HiddenStyles};
 `;
 
 export interface RadioGroupProps {
@@ -19,6 +24,7 @@ export interface RadioGroupProps {
   labelText: string;
   name: string;
   style?: React.CSSProperties;
+  textVisuallyHidden?: boolean;
   value?: string;
 }
 
@@ -47,9 +53,15 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
         handleFocus: props.handleFocus
       }}
     >
-      <StyledLabel id={props.id} style={props.labelStyle}>
-        {props.labelText}
-      </StyledLabel>
+      {props.textVisuallyHidden ? (
+        <HiddenLabel id={props.id} style={props.labelStyle}>
+          {props.labelText}
+        </HiddenLabel>
+      ) : (
+        <StyledLabel id={props.id} style={props.labelStyle}>
+          {props.labelText}
+        </StyledLabel>
+      )}
       <div>{props.children}</div>
     </RadioContext.Provider>
   </div>

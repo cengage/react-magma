@@ -132,6 +132,26 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
   </RadioGroup>
 ```
 
+## Visually Hidden Label
+Adding the `textVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
+
+```.jsx
+  <RadioGroup
+      labelText='Hidden Label'
+      id='visuallyHiddenRadioroup'
+      name='custom'
+      textVisuallyHidden>
+        <Radio
+            id='visuallyHiddenRadio1'
+            labelText='Hidden Label'
+            textVisuallyHidden />
+        <Radio
+            id='visuallyHiddenRadio2'
+            labelText='Hidden Label'
+            textVisuallyHidden />
+    </RadioGroup>
+```
+
 ## Radio Group Props
 
 | Prop                   | Type | Default | Required    |
@@ -141,6 +161,7 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
 | handleChange | function | |
 | id | string | | &#10003;
 | name | string | | &#10003;
+| textVisuallyHidden | boolean | |
 | value | string | |
 
 ## Radio Props
@@ -157,4 +178,5 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
 | inverse | boolean | |
 | labelText | string | | &#10003;
 | required | function | |
+| textVisuallyHidden | boolean | |
 | value | string | |

@@ -32,7 +32,7 @@ export const DisplayInputStyles = css`
   }
 `;
 
-export const HiddenInputStyles = css`
+export const HiddenStyles = css`
   clip: rect(1px, 1px, 1px, 1px);
   height: 1px;
   position: absolute;

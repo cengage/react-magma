@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { CheckboxCore } from 'react-magma-core';
 import {
   DisplayInputStyles,
-  HiddenInputStyles
+  HiddenStyles
 } from '../SelectionControls/InputStyles';
 import { Icon } from '../Icon/Icon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
@@ -28,11 +28,16 @@ export interface CheckboxProps {
   labelText: string;
   required?: boolean;
   style?: React.CSSProperties;
+  textVisuallyHidden: boolean;
   value?: string;
 }
 
+const HiddenLabelText = styled.span`
+  ${HiddenStyles};
+`;
+
 const HiddenInput = styled<{ indeterminate?: boolean }, 'input'>('input')`
-  ${HiddenInputStyles};
+  ${HiddenStyles};
 `;
 
 const StyledFakeInput = styled<
@@ -176,7 +181,8 @@ export class Checkbox extends React.Component<CheckboxProps> {
             labelStyle,
             labelText,
             required,
-            style
+            style,
+            textVisuallyHidden
           } = this.props;
 
           return (
@@ -207,7 +213,11 @@ export class Checkbox extends React.Component<CheckboxProps> {
                   />
                   <Icon size={12} type="checkmark" />
                 </StyledFakeInput>
-                {labelText}
+                {textVisuallyHidden ? (
+                  <HiddenLabelText>{labelText}</HiddenLabelText>
+                ) : (
+                  labelText
+                )}
               </StyledLabel>
             </StyledContainer>
           );

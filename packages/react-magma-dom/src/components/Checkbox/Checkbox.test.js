@@ -106,6 +106,13 @@ describe('Checkbox', () => {
     expect(span).toHaveStyleRule('border-color', magma.colors.neutral08);
   });
 
+  it('should render a checkbox with hidden label text with the correct styles', () => {
+    const { getByLabelText } = renderCheckbox({ textVisuallyHidden: true });
+    const span = getByLabelText(CHECKBOX_PROPS.labelText);
+
+    expect(span).toHaveStyleRule('clip', 'rect(1px,1px,1px,1px)');
+  });
+
   it('should give the checkbox an indeterminate value', () => {
     const { getByLabelText } = renderCheckbox({ indeterminate: true });
     const checkbox = getByLabelText(CHECKBOX_PROPS.labelText);

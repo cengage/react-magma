@@ -96,6 +96,13 @@ describe('Radio Group', () => {
     expect(span).toHaveStyleRule('border-color', 'rgba(255,255,255,0.25)');
   });
 
+  it('should render a radio with hidden label text with the correct styles', () => {
+    const { getByLabelText } = renderRadio({ textVisuallyHidden: true });
+    const span = getByLabelText(RADIO_PROPS.labelText);
+
+    expect(span).toHaveStyleRule('clip', 'rect(1px,1px,1px,1px)');
+  });
+
   it("should be checked if selected value equals it's value", () => {
     const { getByLabelText } = renderRadio(
       {},

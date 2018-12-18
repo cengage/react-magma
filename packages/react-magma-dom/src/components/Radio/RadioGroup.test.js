@@ -40,6 +40,13 @@ describe('Radio Group', () => {
 
     expect(radiogroup.firstChild).not.toBeNull();
   });
+
+  it('should render a radio group with hidden label text with the correct styles', () => {
+    const { getByText } = renderRadioGroup({ textVisuallyHidden: true });
+    const label = getByText(RADIO_GROUP_PROPS.labelText);
+
+    expect(label).toHaveStyleRule('clip', 'rect(1px,1px,1px,1px)');
+  });
 });
 
 describe('Radio Conext', () => {
