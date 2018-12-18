@@ -34,14 +34,6 @@ const runTests = versionNumber => {
   });
 };
 
-// describe('React 15 Select', () => {
-//   runTests('15');
-// });
-
-// describe('React 16.0 Select', () => {
-//   runTests('16_0');
-// });
-
 describe('React 16.5 Select', () => {
   runTests('16_5');
 });

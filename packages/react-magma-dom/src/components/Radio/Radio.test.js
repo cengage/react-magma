@@ -1,8 +1,7 @@
 import * as React from 'react';
-import 'jest-dom/extend-expect';
 import { Radio } from './Radio';
 import { RadioContext } from './RadioGroup';
-import { render, cleanup, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 
 const RADIO_PROPS = {
@@ -38,8 +37,6 @@ const renderRadio = (myProps = {}, myContext = {}) => {
 };
 
 describe('Radio Group', () => {
-  afterEach(cleanup);
-
   it('should render a label for the radio', () => {
     const { getByText } = renderRadio();
     const label = getByText(RADIO_PROPS.labelText);

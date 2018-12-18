@@ -1,5 +1,4 @@
 import * as React from 'react';
-import 'jest-dom/extend-expect';
 import { RadioGroup, RadioContext } from './RadioGroup';
 import { render, cleanup, fireEvent } from 'react-testing-library';
 
