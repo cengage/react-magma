@@ -111,6 +111,40 @@ Inverse is an optional boolean prop, that may be passed in when checkboxes are t
     </div>
 ```
 
+## Visually Hidden Label
+Adding the `textVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
+
+```.jsx
+  <div>
+    <Checkbox
+        id='visuallyHiddenCheckbox'
+        labelText='Disabled Checkbox'
+        textVisuallyHidden />
+    </div>
+```
+
+
+## Custom Styles
+Custom styles can be passed into both the Checkbox component.  The `style` property will apply to the container.
+Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discression when adding custom styles.
+
+```.jsx
+  <div>
+    <Checkbox
+        id='custom1'
+        inputStyle={{ 'box-shadow': '3px 3px 3px rgba(0, 0 , 0, .6)'}}
+        labelStyle={{ 'color': 'red', 'font-style': 'italic'}}
+        labelText='Custom Styles'
+        style={{ 'border': '1px dotted purple'}}
+        value='1' />
+
+    <Checkbox
+        id='custom2'
+        labelText='No Custom Styles'
+        value='2' />
+  </div>
+```
+
 ## Checkbox Props
 
 | Prop                   | Type | Default | Required    |
@@ -126,4 +160,5 @@ Inverse is an optional boolean prop, that may be passed in when checkboxes are t
 | inverse | boolean | |
 | labelText | string | | &#10003;
 | required | function | |
+| textVisuallyHidden | boolean | |
 | value | string | |

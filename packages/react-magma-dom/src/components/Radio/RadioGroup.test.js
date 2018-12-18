@@ -1,0 +1,80 @@
+import * as React from 'react';
+import { RadioGroup, RadioContext } from './RadioGroup';
+import { render, fireEvent } from 'react-testing-library';
+
+const RADIO_GROUP_PROPS = {
+  name: 'colors',
+  labelText: 'Colors',
+  children: React.createElement('div')
+};
+
+const RADIO_CONTEXT = {
+  name: RADIO_GROUP_PROPS.name,
+  selectedValue: 'value',
+  handleChange: jest.fn()
+};
+
+const renderRadioGroup = (myProps = {}) => {
+  const props = {
+    ...RADIO_GROUP_PROPS,
+    ...myProps
+  };
+
+  return render(<RadioGroup {...props} />);
+};
+
+describe('Radio Group', () => {
+  it('should render a label for the radiogroup', () => {
+    const { getByText } = renderRadioGroup();
+    const label = getByText(RADIO_GROUP_PROPS.labelText);
+
+    expect(label).toBeInTheDocument();
+  });
+
+  it('should render children under radiogroup', () => {
+    const { container } = renderRadioGroup();
+    const radiogroup = container.querySelector('div[role="radiogroup"]');
+
+    expect(radiogroup.firstChild).not.toBeNull();
+  });
+
+  it('should render a radio group with hidden label text with the correct styles', () => {
+    const { getByText } = renderRadioGroup({ textVisuallyHidden: true });
+    const label = getByText(RADIO_GROUP_PROPS.labelText);
+
+    expect(label).toHaveStyleRule('clip', 'rect(1px,1px,1px,1px)');
+  });
+});
+
+describe('Radio Conext', () => {
+  it('RadioProvider passes context to consumer', () => {
+    const tree = (
+      <RadioContext.Provider value={RADIO_CONTEXT}>
+        <RadioContext.Consumer>
+          {value => (
+            <div>
+              <span>Name: {value.name}</span>
+              <span>Selected Value: {value.selectedValue}</span>
+              <button onClick={value.handleChange}>Click</button>
+            </div>
+          )}
+        </RadioContext.Consumer>
+      </RadioContext.Provider>
+    );
+    const { getByText } = render(tree);
+    expect(getByText(/^Name:/).textContent).toBe(`Name: ${RADIO_CONTEXT.name}`);
+    expect(getByText(/^Selected Value:/).textContent).toBe(
+      `Selected Value: ${RADIO_CONTEXT.selectedValue}`
+    );
+
+    fireEvent(
+      getByText('Click'),
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true
+      })
+    );
+
+    expect(RADIO_CONTEXT.handleChange).toHaveBeenCalledTimes(1);
+  });
+});

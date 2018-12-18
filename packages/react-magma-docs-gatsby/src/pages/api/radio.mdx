@@ -1,0 +1,182 @@
+---
+title: "Radio Buttons"
+---
+
+# Radio Buttons
+
+## Basic Usage
+
+```.jsx
+  <RadioGroup labelText='Basic Usage' id='basicGroup' name='basic'>
+    <Radio
+        id='radio1'
+        labelText='Option One Label'
+        value='1' />
+
+    <Radio
+        id='radio2'
+        labelText='Option Two Label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines'
+        value='2' />
+    </RadioGroup>
+```
+
+## Colors
+By default, the radio buttons use the theme's primary color.  But any other color may be passed in.
+
+```.jsx
+  <RadioGroup labelText='Colors' id='colorsGroup' name='colors'>
+    <Radio
+        id='colorRadio'
+        labelText='Default Color'
+        value='default' />
+      <Radio
+          color={magma.colors.success01}
+          id='successColorRadio'
+          labelText='Success Color'
+          value='success' />
+      <Radio
+          color={magma.colors.danger}
+          id='dangerColorRadio'
+          labelText='Danger Color'
+          value='danger' />
+      <Radio
+          color={magma.colors.pop02}
+          id='popColorRadio'
+          labelText='Pop Color'
+          value='pop' />
+    </RadioGroup>
+```
+
+## Disabled
+
+```.jsx
+  <RadioGroup labelText='Disabled Radio Buttons' id='disabledGroup' name='disabled'>
+    <Radio
+        disabled
+        id='disabledRadio'
+        labelText='Disabled Radio 1'
+        value='1' />
+    <Radio
+        disabled
+        id='disabledRadio2'
+        labelText='Disabled Radio 2'
+        value='2' />
+    </RadioGroup>
+```
+
+## Inverse colors
+
+Inverse is an optional boolean prop, that may be passed in when radio buttons are to be displayed on a dark background.
+
+```.jsx
+  <RadioGroup
+    style={{ background : '#00263E', color: '#fff', padding: '10px' }}
+    labelText='Inverse Radio Buttons'
+    id='inverseGroup'
+    name='inverse'>
+    <Radio
+        id='inverseRadio'
+        inverse
+        labelText='Inverse'
+        value='default' />
+      <Radio
+          color={magma.colors.success01}
+          id='successInverseRadio'
+          inverse
+          labelText='Success Inverse'
+          value='success' />
+      <Radio
+          color={magma.colors.danger}
+          id='dangerInverseRadio'
+          inverse
+          labelText='Danger Inverse'
+          value='danger' />
+      <Radio
+          color={magma.colors.pop02}
+          id='popInverseRadio'
+          inverse
+          labelText='Pop Inverse'
+          value='pop' />
+        <Radio
+            disabled
+            id='disabledInverseRadio'
+            inverse
+            labelText='Disabled Inverse'
+            value='disabled' />
+    </RadioGroup>
+```
+
+## Custom Styles
+Custom styles can be passed into both the RadioGroup component and the Radio component.  The `style` property will apply to the container.
+Additional `labelStyle` and `inputStyle` properties are available to style the respective elements.  Please use discression when adding custom styles.
+
+```.jsx
+  <RadioGroup
+    style={{ 'border': '2px solid yellow', 'padding': '10px'}}
+    labelStyle={{ 'color': 'blue', 'text-transform': 'uppercase'}}
+    labelText='Custom styles'
+    id='customGroup'
+    name='custom'>
+    <Radio
+        id='custom1'
+        inputStyle={{ 'box-shadow': '3px 3px 3px rgba(0, 0 , 0, .6)'}}
+        labelStyle={{ 'color': 'red', 'font-style': 'italic'}}
+        labelText='Custom Styles'
+        style={{ 'border': '1px dotted purple'}}
+        value='1' />
+
+    <Radio
+        id='custom2'
+        labelText='No Custom Styles'
+        value='2' />
+  </RadioGroup>
+```
+
+## Visually Hidden Label
+Adding the `textVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
+
+```.jsx
+  <RadioGroup
+      labelText='Hidden Label'
+      id='visuallyHiddenRadioroup'
+      name='custom'
+      textVisuallyHidden>
+        <Radio
+            id='visuallyHiddenRadio1'
+            labelText='Hidden Label'
+            textVisuallyHidden />
+        <Radio
+            id='visuallyHiddenRadio2'
+            labelText='Hidden Label'
+            textVisuallyHidden />
+    </RadioGroup>
+```
+
+## Radio Group Props
+
+| Prop                   | Type | Default | Required    |
+| -----------------------|------|---------|:-----------:|
+| children | React.ReactChild | |
+| labelText | string | | &#10003;
+| handleChange | function | |
+| id | string | | &#10003;
+| name | string | | &#10003;
+| textVisuallyHidden | boolean | |
+| value | string | |
+
+## Radio Props
+
+| Prop                   | Type | Default | Required    |
+| -----------------------|------|---------|:-----------:|
+| autoFocus | boolean | | &#10003;
+| color | string | |
+| disabled | boolean | |
+| handleBlur | function | |
+| handleChange | function | |
+| handleFocus | function | |
+| id | string | | &#10003;
+| inverse | boolean | |
+| labelText | string | | &#10003;
+| required | function | |
+| textVisuallyHidden | boolean | |
+| value | string | |

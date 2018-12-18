@@ -15,6 +15,8 @@ import {
   ICONS,
   IconButton,
   Input,
+  Radio,
+  RadioGroup,
   Select,
   magma
 } from 'react-magma-dom'
@@ -136,6 +138,8 @@ const PreComponent = ({ className, ...props }) =>
         IconContainer,
         IconListContainer,
         Input,
+        Radio,
+        RadioGroup,
         Select,
         SelectContainer,
         magma

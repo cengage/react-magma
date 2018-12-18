@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Button, Checkbox, Icon, IconButton, Select } from 'react-magma-dom';
+import { Input, Button, Checkbox, Icon, IconButton, RadioGroup, Radio, Select } from 'react-magma-dom';
 
 class App extends Component {
   render() {
@@ -60,6 +60,18 @@ class App extends Component {
 
         <h1>ICONS</h1>
         <Icon id="basicInfoIcon" title="Basic Info Icon" type="info" />
+
+        <h1>RADIOS</h1>
+        <RadioGroup
+          name="colors"
+          labelText="Colors"
+          handleChange={event => {
+            alert(`${event.target.value} selected`);
+          }}
+        >
+          <Radio value="red" labelText="Red" />
+          <Radio value="blue" labelText="Blue" />
+        </RadioGroup>
 
         <h1>CHECKBOXES</h1>
         <Checkbox id="requiredCheckbox" labelText="Label" required={true} />
