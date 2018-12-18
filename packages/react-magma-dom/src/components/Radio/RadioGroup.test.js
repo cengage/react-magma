@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { RadioGroup, RadioContext } from './RadioGroup';
-import { render, cleanup, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from 'react-testing-library';
 
 const RADIO_GROUP_PROPS = {
   name: 'colors',
@@ -24,8 +24,6 @@ const renderRadioGroup = (myProps = {}) => {
 };
 
 describe('Radio Group', () => {
-  afterEach(cleanup);
-
   it('should render a label for the radiogroup', () => {
     const { getByText } = renderRadioGroup();
     const label = getByText(RADIO_GROUP_PROPS.labelText);
@@ -49,8 +47,6 @@ describe('Radio Group', () => {
 });
 
 describe('Radio Conext', () => {
-  afterEach(cleanup);
-
   it('RadioProvider passes context to consumer', () => {
     const tree = (
       <RadioContext.Provider value={RADIO_CONTEXT}>
