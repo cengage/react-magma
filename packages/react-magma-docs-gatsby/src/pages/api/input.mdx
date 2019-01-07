@@ -29,7 +29,7 @@ To enable the user the greatest opportunity to correctly input the correct infor
 
 ```.jsx
     <Input
-        id='input3'
+        id='inputPw'
         labelText='Password'
         placeholder='Enter your password'
         type='password' />
@@ -39,7 +39,7 @@ To enable the user the greatest opportunity to correctly input the correct infor
 
 ```.jsx
     <Input
-        id='input4'
+        id='inputNum'
         labelText='Number'
         placeholder='Enter a number'
         type='number' />
@@ -49,10 +49,85 @@ To enable the user the greatest opportunity to correctly input the correct infor
 
 ```.jsx
     <Input
-        id='input5'
+        id='inputDisabled'
         labelText='Disabled'
         placeholder='The input is disabled'
         disabled />
+```
+
+## Error Message
+
+If an input has an `errorMessage`, the input will be styled to highlight it's error state and the error message will appear below the input field.
+If an error message is present, it will replace the helper text.
+
+```.jsx
+    <Input
+        id='inputError'
+        errorMessage='Please correct this error'
+        helperMessage='Helper text'
+        labelText='Error Message'
+        placeholder='Type in here' />
+```
+
+## Helper Message
+
+The `helperMessage` appears underneath the input field.  It will not appear if an error message is present.
+
+```.jsx
+    <Input
+        id='inputHelper'
+        helperMessage='Helper text goes here'
+        labelText='Helper Message'
+        placeholder='Type in here' />
+```
+
+## Input with Icon
+
+To include an icon both the `icon` and `iconPosition` props must be passed in. Icon position can either be `left` or `right`.
+
+```.jsx
+    <div>
+      <Input
+          icon='calendar'
+          iconPosition='left'
+          id='inputIcon'
+          labelText='Input with Icon Left'
+          placeholder='Type in here' />
+
+      <Input
+          icon='search2'
+          iconPosition='right'
+          id='inputIconRight'
+          labelText='Input with Icon Right'
+          placeholder='Type in here' />
+    </div>
+```
+
+## Inverse inputs
+Inverse is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
+
+```.jsx
+    <div style={{ background : '#00263E', padding: '10px' }}>
+      <Input
+          id='inputInverse'
+          inverse
+          labelText='Inverse Input'
+          placeholder='Type in here' />
+
+      <Input
+          helperMessage='Helper text'
+          id='inputInverseHelper'
+          inverse
+          labelText='Inverse Input with Helper Text'
+          placeholder='Type in here' />
+
+      <Input
+          errorMessage='Please correct your error'
+          id='inputInverseError'
+          inverse
+          labelText='Inverse Input with Error Message'
+          placeholder='Type in here' />
+    </div>
 ```
 
 ## Change Events
@@ -127,13 +202,13 @@ To enable the user the greatest opportunity to correctly input the correct infor
 | -----------------------|------|---------|:-----------:|
 | id | string | | &#10003;
 | labelText | string | | &#10003;
-| autoFocus | boolean | | 
-| disabled | boolean | | 
-| handleBlur | func | | 
-| handleChange | func | | 
-| handleFocus | func | | 
-| placeholder | string | | 
-| required | boolean | | 
-| type | enum: 'text' &#124; 'password' &#124; 'number' | 'text' | 
-| value | string | | 
-| style | React.CSSProperties | | 
+| autoFocus | boolean | |
+| disabled | boolean | |
+| handleBlur | func | |
+| handleChange | func | |
+| handleFocus | func | |
+| placeholder | string | |
+| required | boolean | |
+| type | enum: 'text' &#124; 'password' &#124; 'number' | 'text' |
+| value | string | |
+| style | React.CSSProperties | |

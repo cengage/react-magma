@@ -2,6 +2,7 @@ import React from 'react';
 import { axe } from 'jest-axe';
 import { Input } from './Input';
 import { render, fireEvent, cleanup } from 'react-testing-library';
+import { magma } from '../../theme/magma';
 
 const INPUT_PROPS = {
   autoFocus: false,
@@ -45,11 +46,101 @@ describe('Input', () => {
   });
 
   it('should render custom styles', () => {
-    const color = '#cccccc';
-    const { getByLabelText } = renderInput({ style: { color } });
+    const divColor = '#000000';
+    const inputColor = '#cccccc';
+    const labelColor = '#ffffff';
+
+    const { container, getByLabelText, getByText } = renderInput({
+      inputStyle: { color: inputColor },
+      labelStyle: { color: labelColor },
+      style: { color: divColor }
+    });
+
+    const div = container.querySelector('div');
+    const label = getByText(INPUT_PROPS.labelText);
     const input = getByLabelText(INPUT_PROPS.labelText);
 
-    expect(input).toHaveStyle(`color: ${color}`);
+    expect(div).toHaveStyle(`color: ${divColor}`);
+    expect(input).toHaveStyle(`color: ${inputColor}`);
+    expect(label).toHaveStyle(`color: ${labelColor}`);
+  });
+
+  it('should render an inverse input with the correct styles', () => {
+    const { getByText } = renderInput({ inverse: true });
+
+    const label = getByText(INPUT_PROPS.labelText);
+
+    expect(label).toHaveStyleRule('color', magma.colors.neutral08);
+  });
+
+  it('should render an input with a correctly styled helper message', () => {
+    const testMessage = 'Test message';
+    const { getByText } = renderInput({ helperMessage: testMessage });
+
+    const helperMessage = getByText(testMessage);
+
+    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral04);
+  });
+
+  it('should render an inverse input with a correctly styled helper message', () => {
+    const testMessage = 'Test message';
+    const { getByText } = renderInput({
+      helperMessage: testMessage,
+      inverse: true
+    });
+
+    const helperMessage = getByText(testMessage);
+
+    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral08);
+  });
+
+  it('should render an input with a correctly styled error message', () => {
+    const testMessage = 'Test error message';
+    const { getByText, getByLabelText } = renderInput({
+      errorMessage: testMessage
+    });
+
+    const input = getByLabelText(INPUT_PROPS.labelText);
+    const errorMessage = getByText(testMessage);
+
+    expect(input).toHaveStyleRule('border-color', magma.colors.danger);
+
+    expect(errorMessage).toHaveStyleRule('background', 'none');
+    expect(errorMessage).toHaveStyleRule('color', magma.colors.danger);
+  });
+
+  it('should render an inverse input with a correctly styled error message', () => {
+    const testMessage = 'Test error message';
+    const { getByText, getByLabelText } = renderInput({
+      errorMessage: testMessage,
+      inverse: true
+    });
+
+    const input = getByLabelText(INPUT_PROPS.labelText);
+    const errorMessage = getByText(testMessage);
+
+    expect(input).toHaveStyleRule('border-color', magma.colors.danger);
+
+    expect(errorMessage).toHaveStyleRule('background', magma.colors.danger);
+    expect(errorMessage).toHaveStyleRule('color', magma.colors.neutral08);
+  });
+
+  it('should render an input with a right-aligned icon in the correct position', () => {
+    const { container } = renderInput({ icon: 'check', iconPosition: 'right' });
+
+    const span = container.querySelector('span');
+
+    expect(span).toHaveStyleRule('left', 'auto');
+    expect(span).toHaveStyleRule('right', '10px');
+  });
+
+  it('should render an input with a left-aligned icon in the correct position', () => {
+    const { container } = renderInput({ icon: 'check', iconPosition: 'left' });
+
+    const span = container.querySelector('span');
+
+    expect(span).toHaveStyleRule('left', '10px');
+    expect(span).toHaveStyleRule('right', 'auto');
   });
 
   it('should render an input with a value passed through', () => {
