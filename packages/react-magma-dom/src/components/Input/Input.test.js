@@ -134,6 +134,15 @@ describe('Input', () => {
     expect(span).toHaveStyleRule('right', '10px');
   });
 
+  it('should render an input with a right-aligned icon in the correct position', () => {
+    const { container } = renderInput({ icon: 'check', iconPosition: 'right' });
+
+    const span = container.querySelector('span');
+
+    expect(span).toHaveStyleRule('left', 'auto');
+    expect(span).toHaveStyleRule('right', '10px');
+  });
+
   it('should render an input with a left-aligned icon in the correct position', () => {
     const { container } = renderInput({ icon: 'check', iconPosition: 'left' });
 
@@ -185,6 +194,32 @@ describe('Input', () => {
     const input = getByLabelText(INPUT_PROPS.labelText);
 
     expect(input).toBeDisabled();
+  });
+
+  describe('sizes', () => {
+    it('default input', () => {
+      const { getByLabelText } = renderInput();
+      const input = getByLabelText(INPUT_PROPS.labelText);
+
+      expect(input).toHaveStyleRule('font-size', '1rem');
+      expect(input).toHaveStyleRule('height', '37px');
+    });
+
+    it('small input', () => {
+      const { getByLabelText } = renderInput({ inputSize: 'small' });
+      const input = getByLabelText(INPUT_PROPS.labelText);
+
+      expect(input).toHaveStyleRule('font-size', '.875rem');
+      expect(input).toHaveStyleRule('height', '29px');
+    });
+
+    it('large input', () => {
+      const { getByLabelText } = renderInput({ inputSize: 'large' });
+      const input = getByLabelText(INPUT_PROPS.labelText);
+
+      expect(input).toHaveStyleRule('font-size', '1.125rem');
+      expect(input).toHaveStyleRule('height', '45px');
+    });
   });
 
   describe('events', () => {

@@ -8,7 +8,7 @@ title: "Inputs"
 
 To enable the user the greatest opportunity to correctly input the correct information successfully on the first attempt, input fields should always obey the following rules.
 * It should always appear distinguished as a separate entity from the surrounding application.
-* Required input fields must be visually distinguishable
+* Required input fields must be visually distinguishable.
 * The associated text label should clearly and succinctly describe the desired information.
 * The associated text label should contain no more than 80 characters.
 * The associated error message should contain no more than 80 characters.
@@ -99,6 +99,29 @@ To include an icon both the `icon` and `iconPosition` props must be passed in. I
           iconPosition='right'
           id='inputIconRight'
           labelText='Input with Icon Right'
+          placeholder='Type in here' />
+    </div>
+```
+
+## Input Sizes
+
+The `inputSize` prop can be used to control the input size. Options are `small`, `medium` and `large`, with `medium` being the default.
+
+```.jsx
+    <div>
+      <Input
+          id='inputSmall'
+          inputSize='small'
+          labelText='Small Input'
+          placeholder='Type in here' />
+      <Input
+          id='inputMed'
+          labelText='Medium Input'
+          placeholder='Type in here' />
+      <Input
+          id='inputLarge'
+          inputSize='large'
+          labelText='Large Input'
           placeholder='Type in here' />
     </div>
 ```
@@ -204,9 +227,17 @@ Inverse is an optional boolean prop, that may be passed in when inputs are to be
 | labelText | string | | &#10003;
 | autoFocus | boolean | |
 | disabled | boolean | |
+| errorMessage | string | |
 | handleBlur | func | |
 | handleChange | func | |
 | handleFocus | func | |
+| helperMessage | string | |
+| icon | string | |
+| iconPosition |  enum: 'left' &#124; 'right' &#124; |
+| inputSize |  enum: 'small' &#124; 'medium' &#124; 'large' &#124; | 'medium' |
+| inputStyle | React.CSSProperties | |
+| inverse | boolean | |
+| labelStyle | React.CSSProperties | |
 | placeholder | string | |
 | required | boolean | |
 | type | enum: 'text' &#124; 'password' &#124; 'number' | 'text' |

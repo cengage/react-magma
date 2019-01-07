@@ -4,15 +4,21 @@ import styled from '../../theme/styled-components';
 import { Icon } from '../Icon/Icon';
 import { magma } from '../../theme/magma';
 
+enum IconPosition {
+  left = 'left',
+  right = 'right'
+}
+
+enum InputSize {
+  large = 'large',
+  medium = 'medium', //default
+  small = 'small'
+}
+
 enum Type {
   text = 'text',
   password = 'password',
   number = 'number'
-}
-
-enum IconPosition {
-  left = 'left',
-  right = 'right'
 }
 
 export interface InputProps {
@@ -26,6 +32,7 @@ export interface InputProps {
   icon?: string;
   iconPosition?: IconPosition;
   id: string;
+  inputSize?: InputSize;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
   labelStyle?: React.CSSProperties;
@@ -69,13 +76,31 @@ const StyledInput = styled<InputProps, 'input'>('input')`
   box-shadow: ${props => (props.errorMessage ? '0 0 0 1px #E70000' : '0 0 0')};
   color: ${magma.colors.neutral02};
   display: block;
-  height: 35px;
+  font-size: ${props => {
+    switch (props.inputSize) {
+      case 'large':
+        return '1.125rem';
+      case 'small':
+        return '.875rem';
+      default:
+        return '1rem';
+    }
+  }};
+  height: ${props => {
+    switch (props.inputSize) {
+      case 'large':
+        return '45px';
+      case 'small':
+        return '29px';
+      default:
+        return '37px';
+    }
+  }};
+  line-height: 1.25rem;
   padding: 0;
   padding-left: ${props => (props.iconPosition === 'left' ? '35px' : '8px')};
   padding-right: ${props =>
     props.iconPosition === 'right' || props.errorMessage ? '35px' : '8px'};
-  font-size: 1rem;
-  line-height: 1.25rem;
   width: 100%;
 
   &::placeholder {
@@ -152,6 +177,7 @@ export const Input: React.FunctionComponent<InputProps> = (
         icon,
         iconPosition,
         id,
+        inputSize,
         inputStyle,
         inverse,
         labelStyle,
@@ -173,6 +199,7 @@ export const Input: React.FunctionComponent<InputProps> = (
             disabled={disabled}
             errorMessage={errorMessage}
             iconPosition={iconPosition}
+            inputSize={inputSize ? inputSize : InputSize.medium}
             labelText={labelText}
             placeholder={placeholder}
             required={required}
