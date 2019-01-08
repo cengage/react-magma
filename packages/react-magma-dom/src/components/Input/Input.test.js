@@ -196,6 +196,13 @@ describe('Input', () => {
     expect(input).toBeDisabled();
   });
 
+  it('should render the input with visually hidden label text', () => {
+    const { getByText } = renderInput({ labelVisuallyHidden: true });
+    const label = getByText(INPUT_PROPS.labelText);
+
+    expect(label).toHaveStyleRule('clip', 'rect(1px,1px,1px,1px)');
+  });
+
   describe('sizes', () => {
     it('default input', () => {
       const { getByLabelText } = renderInput();

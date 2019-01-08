@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { InputCore } from 'react-magma-core';
 import styled from '../../theme/styled-components';
+import { HiddenStyles } from '../SelectionControls/InputStyles';
 import { Icon } from '../Icon/Icon';
 import { magma } from '../../theme/magma';
 
@@ -37,6 +38,7 @@ export interface InputProps {
   inverse?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
+  labelVisuallyHidden?: boolean;
   placeholder?: string;
   required?: boolean;
   style?: React.CSSProperties;
@@ -52,8 +54,11 @@ interface TextProps {
   inverse?: boolean;
 }
 
-const StyledDiv = styled.div`
+const Container = styled.div`
   margin-bottom: 10px;
+`;
+
+const InputWrapper = styled.div`
   position: relative;
 `;
 
@@ -65,6 +70,10 @@ const StyledLabel = styled<TextProps, 'label'>('label')`
   font-weight: 600;
   margin-bottom: 5px;
   max-width: 100%;
+`;
+
+const HiddenLabel = styled.label`
+  ${HiddenStyles};
 `;
 
 const StyledInput = styled<InputProps, 'input'>('input')`
@@ -105,11 +114,12 @@ const StyledInput = styled<InputProps, 'input'>('input')`
 
   &::placeholder {
     color: ${magma.colors.neutral04};
+    opacity: 1;
   }
 
   &:focus {
-    border-color: ${magma.colors.pop02};
-    box-shadow: 0 0 0 1px ${magma.colors.pop02};
+    border-color: ${magma.colors.pop03};
+    box-shadow: 0 0 0 1px ${magma.colors.pop03};
     outline: 0;
   }
 
@@ -141,7 +151,8 @@ const IconWrapper = styled<IconWrapperProps, 'span'>('span')`
   right: ${props => (props.iconPosition === 'right' ? '10px' : 'auto')};
   color: ${magma.colors.neutral02};
   position: absolute;
-  top: 37px;
+  margin-top: -8px;
+  top: 50%;
 `;
 
 const ErrorIconWrapper = styled.span`
@@ -152,10 +163,11 @@ const ErrorIconWrapper = styled.span`
   display: flex;
   height: 18px;
   justify-content: center;
+  margin-top: -9px;
   padding: 3px;
   right: 10px;
   position: absolute;
-  top: 37px;
+  top: 50%;
   width: 18px;
 `;
 
@@ -182,6 +194,7 @@ export const Input: React.FunctionComponent<InputProps> = (
         inverse,
         labelStyle,
         labelText,
+        labelVisuallyHidden,
         placeholder,
         style,
         type,
@@ -189,44 +202,50 @@ export const Input: React.FunctionComponent<InputProps> = (
       } = props;
 
       return (
-        <StyledDiv style={style}>
-          <StyledLabel inverse={inverse} htmlFor={id} style={labelStyle}>
-            {labelText}
-          </StyledLabel>
-          <StyledInput
-            autoFocus={autoFocus}
-            id={id}
-            disabled={disabled}
-            errorMessage={errorMessage}
-            iconPosition={iconPosition}
-            inputSize={inputSize ? inputSize : InputSize.medium}
-            labelText={labelText}
-            placeholder={placeholder}
-            required={required}
-            style={inputStyle}
-            type={type ? type : Type.text}
-            value={value}
-            onBlur={handleBlur}
-            onChange={handleChange}
-            onFocus={handleFocus}
-          />
+        <Container style={style}>
+          {labelVisuallyHidden ? (
+            <HiddenLabel htmlFor={id}>{labelText}</HiddenLabel>
+          ) : (
+            <StyledLabel inverse={inverse} htmlFor={id} style={labelStyle}>
+              {labelText}
+            </StyledLabel>
+          )}
+          <InputWrapper>
+            <StyledInput
+              autoFocus={autoFocus}
+              id={id}
+              disabled={disabled}
+              errorMessage={errorMessage}
+              iconPosition={iconPosition}
+              inputSize={inputSize ? inputSize : InputSize.medium}
+              labelText={labelText}
+              placeholder={placeholder}
+              required={required}
+              style={inputStyle}
+              type={type ? type : Type.text}
+              value={value}
+              onBlur={handleBlur}
+              onChange={handleChange}
+              onFocus={handleFocus}
+            />
+            {errorMessage && (
+              <ErrorIconWrapper>
+                <Icon size={10} type="alert" />
+              </ErrorIconWrapper>
+            )}
+            {icon && (
+              <IconWrapper iconPosition={iconPosition}>
+                <Icon size={17} type={icon} />
+              </IconWrapper>
+            )}
+          </InputWrapper>
           {errorMessage && (
             <ErrorMessage inverse={inverse}>{errorMessage}</ErrorMessage>
           )}
           {helperMessage && !errorMessage && (
             <HelperMessage inverse={inverse}>{helperMessage}</HelperMessage>
           )}
-          {errorMessage && (
-            <ErrorIconWrapper>
-              <Icon size={10} type="alert" />
-            </ErrorIconWrapper>
-          )}
-          {icon && (
-            <IconWrapper iconPosition={iconPosition}>
-              <Icon size={17} type={icon} />
-            </IconWrapper>
-          )}
-        </StyledDiv>
+        </Container>
       );
     }}
   </InputCore>
