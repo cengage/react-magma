@@ -45,6 +45,15 @@ describe('Input', () => {
     expect(input).not.toHaveAttribute('autoFocus');
   });
 
+  it('should render the defailt input styles input', () => {
+    const { getByLabelText } = renderInput();
+    const input = getByLabelText(INPUT_PROPS.labelText);
+
+    expect(input).toHaveStyleRule('background', magma.colors.neutral08);
+    expect(input).toHaveStyleRule('border-color', magma.colors.neutral05);
+    expect(input).toHaveStyleRule('box-shadow', '0 0 0');
+  });
+
   it('should render custom styles', () => {
     const divColor = '#000000';
     const inputColor = '#cccccc';
@@ -96,12 +105,13 @@ describe('Input', () => {
 
   it('should render an input with a correctly styled error message', () => {
     const testMessage = 'Test error message';
-    const { getByText, getByLabelText } = renderInput({
+    const { container, getByText, getByLabelText } = renderInput({
       errorMessage: testMessage
     });
 
     const input = getByLabelText(INPUT_PROPS.labelText);
     const errorMessage = getByText(testMessage);
+    const span = container.querySelector('span');
 
     expect(input).toHaveStyleRule('border-color', magma.colors.danger);
 
@@ -205,27 +215,89 @@ describe('Input', () => {
 
   describe('sizes', () => {
     it('default input', () => {
-      const { getByLabelText } = renderInput();
+      const { container, getByLabelText } = renderInput({
+        icon: 'check',
+        iconPosition: 'left'
+      });
       const input = getByLabelText(INPUT_PROPS.labelText);
+      const svg = container.querySelector('svg');
 
       expect(input).toHaveStyleRule('font-size', '1rem');
       expect(input).toHaveStyleRule('height', '37px');
+
+      expect(svg).toHaveAttribute('height', '17');
     });
 
     it('small input', () => {
-      const { getByLabelText } = renderInput({ inputSize: 'small' });
+      const { container, getByLabelText } = renderInput({
+        inputSize: 'small',
+        icon: 'check',
+        iconPosition: 'left'
+      });
       const input = getByLabelText(INPUT_PROPS.labelText);
+      const svg = container.querySelector('svg');
 
       expect(input).toHaveStyleRule('font-size', '.875rem');
       expect(input).toHaveStyleRule('height', '29px');
+
+      expect(svg).toHaveAttribute('height', '15');
     });
 
     it('large input', () => {
-      const { getByLabelText } = renderInput({ inputSize: 'large' });
+      const { container, getByLabelText } = renderInput({
+        inputSize: 'large',
+        icon: 'check',
+        iconPosition: 'left'
+      });
       const input = getByLabelText(INPUT_PROPS.labelText);
+      const svg = container.querySelector('svg');
 
       expect(input).toHaveStyleRule('font-size', '1.125rem');
       expect(input).toHaveStyleRule('height', '45px');
+
+      expect(svg).toHaveAttribute('height', '19');
+    });
+
+    it('default input with error message', () => {
+      const testMessage = 'Test error message';
+      const { container } = renderInput({ errorMessage: testMessage });
+      const span = container.querySelector('span');
+      const svg = container.querySelector('svg');
+
+      expect(span).toHaveStyleRule('height', '18px');
+      expect(span).toHaveStyleRule('width', '18px');
+
+      expect(svg).toHaveAttribute('height', '10');
+    });
+
+    it('small input with error message', () => {
+      const testMessage = 'Test error message';
+      const { container } = renderInput({
+        inputSize: 'small',
+        errorMessage: testMessage
+      });
+      const span = container.querySelector('span');
+      const svg = container.querySelector('svg');
+
+      expect(span).toHaveStyleRule('height', '16px');
+      expect(span).toHaveStyleRule('width', '16px');
+
+      expect(svg).toHaveAttribute('height', '8');
+    });
+
+    it('large input with error message', () => {
+      const testMessage = 'Test error message';
+      const { container } = renderInput({
+        inputSize: 'large',
+        errorMessage: testMessage
+      });
+      const span = container.querySelector('span');
+      const svg = container.querySelector('svg');
+
+      expect(span).toHaveStyleRule('height', '20px');
+      expect(span).toHaveStyleRule('width', '20px');
+
+      expect(svg).toHaveAttribute('height', '12');
     });
   });
 

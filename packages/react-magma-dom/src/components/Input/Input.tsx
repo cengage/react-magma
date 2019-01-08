@@ -50,6 +50,10 @@ interface IconWrapperProps {
   iconPosition?: IconPosition;
 }
 
+interface ErrorIconWrapperProps {
+  inputSize?: InputSize;
+}
+
 interface TextProps {
   inverse?: boolean;
 }
@@ -151,25 +155,73 @@ const IconWrapper = styled<IconWrapperProps, 'span'>('span')`
   right: ${props => (props.iconPosition === 'right' ? '10px' : 'auto')};
   color: ${magma.colors.neutral02};
   position: absolute;
-  margin-top: -8px;
+  margin-top: -9px;
   top: 50%;
 `;
 
-const ErrorIconWrapper = styled.span`
+const ErrorIconWrapper = styled<ErrorIconWrapperProps, 'span'>('span')`
   align-items: center;
   background: ${magma.colors.danger};
   border-radius: 100%;
   color: ${magma.colors.neutral08};
   display: flex;
-  height: 18px;
+  height: ${props => {
+    switch (props.inputSize) {
+      case 'large':
+        return '20px';
+      case 'small':
+        return '16px';
+      default:
+        return '18px';
+    }
+  }};
   justify-content: center;
-  margin-top: -9px;
   padding: 3px;
   right: 10px;
   position: absolute;
-  top: 50%;
-  width: 18px;
+  top: ${props => {
+    switch (props.inputSize) {
+      case 'large':
+        return '13px';
+      case 'small':
+        return '7px';
+      default:
+        return '10px';
+    }
+  }};
+  width: ${props => {
+    switch (props.inputSize) {
+      case 'large':
+        return '20px';
+      case 'small':
+        return '16px';
+      default:
+        return '18px';
+    }
+  }};
 `;
+
+function getIconSize(size) {
+  switch (size) {
+    case 'large':
+      return 19;
+    case 'small':
+      return 15;
+    default:
+      return 17;
+  }
+}
+
+function getErrorIconSize(size) {
+  switch (size) {
+    case 'large':
+      return 12;
+    case 'small':
+      return 8;
+    default:
+      return 10;
+  }
+}
 
 export const Input: React.FunctionComponent<InputProps> = (
   props: InputProps
@@ -229,13 +281,13 @@ export const Input: React.FunctionComponent<InputProps> = (
               onFocus={handleFocus}
             />
             {errorMessage && (
-              <ErrorIconWrapper>
-                <Icon size={10} type="alert" />
+              <ErrorIconWrapper inputSize={inputSize}>
+                <Icon size={getErrorIconSize(inputSize)} type="alert" />
               </ErrorIconWrapper>
             )}
             {icon && (
               <IconWrapper iconPosition={iconPosition}>
-                <Icon size={17} type={icon} />
+                <Icon size={getIconSize(inputSize)} type={icon} />
               </IconWrapper>
             )}
           </InputWrapper>
