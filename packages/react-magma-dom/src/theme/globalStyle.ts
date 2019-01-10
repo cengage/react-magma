@@ -1,8 +1,8 @@
-import { createGlobalStyle } from './styled-components';
+import { createGlobalStyle } from 'styled-components';
 import { magma } from './magma';
 
 // tslint:disable:no-unused-expression
-export const Theme = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
   @import url('https://use.typekit.net/rwr6vzk.css');
 
@@ -13,7 +13,7 @@ export const Theme = createGlobalStyle`
   }
 
   & body {
-    color: ${magma.primary01};
+    color: ${magma.colors.neutral02};
   	font-family: ${magma.bodyFont};
   	font-style: normal;
   	font-weight: 400;
@@ -22,13 +22,13 @@ export const Theme = createGlobalStyle`
   }
 
   a {
-    color: ${magma.primary02};
+    color: ${magma.colors.primary};
     cursor: pointer;
     text-decoration: none;
 
     &:hover,
     &:focus {
-      color: ${magma.secondary01};
+      color: ${magma.colors.foundation01};
       text-decoration: underline;
     }
   }

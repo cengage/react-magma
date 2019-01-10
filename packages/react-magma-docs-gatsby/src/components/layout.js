@@ -10,6 +10,7 @@ import { Transition, config } from 'react-spring'
 import {
   Button,
   Checkbox,
+  GlobalStyles,
   Heading,
   Icon,
   ICONS,
@@ -32,39 +33,9 @@ import './app.css'
 import './layout.css'
 import './syntax.css'
 
-const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
-  @import url('https://use.typekit.net/rwr6vzk.css');
-
-  *,
-  *:before,
-  *:after {
-    box-sizing: border-box;
-  }
-
-  & body {
-    color: ${magma.primary01};
-  	font-family: ${magma.bodyFont};
-  	font-style: normal;
-  	font-weight: 400;
-  	font-size: 15px;
-  	line-height: 22px;
-  }
-
-  a {
-    color: ${magma.primary02};
-    cursor: pointer;
-    text-decoration: none;
-
-    &:hover,
-    &:focus {
-      color: ${magma.secondary01};
-      text-decoration: underline;
-    }
-  }
-
+const GlobalHeadingStyles = createGlobalStyle`
   h1, h2, h3, h4, h5, h6 {
-    color: ${magma.primary02};
+    color: ${magma.colors.primary};
     font-family: ${magma.headingFont};
     font-weight: 500;
     line-height: 1.1;
@@ -94,7 +65,7 @@ const GlobalStyles = createGlobalStyle`
   h6 {
     font-size: 18px;
   }
-`
+  `;
 
 const Content = styled.article`
   grid-area: content;
@@ -183,6 +154,7 @@ const Layout = ({ children }) => (
     render={data => (
       <>
         <GlobalStyles />
+        <GlobalHeadingStyles />
         <Helmet
           title={data.site.siteMetadata.title}
           meta={[
