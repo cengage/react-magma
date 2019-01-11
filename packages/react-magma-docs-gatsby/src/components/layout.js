@@ -10,7 +10,6 @@ import { Transition, config } from 'react-spring'
 import {
   Button,
   Checkbox,
-  GlobalStyles,
   Heading,
   Icon,
   ICONS,
@@ -19,6 +18,7 @@ import {
   Radio,
   RadioGroup,
   Select,
+  Theme,
   magma
 } from 'react-magma-dom'
 import { IconContainer } from './iconContainer'
@@ -153,7 +153,7 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <>
-        <GlobalStyles />
+        <Theme />
         <GlobalHeadingStyles />
         <Helmet
           title={data.site.siteMetadata.title}

@@ -44,32 +44,34 @@ export function getStyles(customStyles: ReactSelectStyles = {}) {
   return {
     control: (styles, { isFocused, isDisabled }) => ({
       ...styles,
-      backgroundColor: isDisabled ? magma.primary03 : magma.primary04,
-      borderColor: isFocused ? magma.accent02 : magma.secondary05,
+      backgroundColor: isDisabled
+        ? magma.colors.neutral07
+        : magma.colors.neutral08,
+      borderColor: isFocused ? magma.colors.success01 : magma.colors.neutral05,
       borderRadius: '3px',
       boxShadow: isFocused
         ? 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #9bca43'
         : 'inset 0 4px 5px #e6e6e6',
-      color: magma.primary01,
+      color: magma.colors.neutral02,
       height: '35px',
       padding: '0 8px',
 
       '&:hover': {
-        borderColor: isFocused ? magma.accent02 : magma.secondary05
+        borderColor: isFocused ? magma.colors.success01 : magma.colors.neutral05
       },
       ...customStyles.control
     }),
     dropdownIndicator: (styles, { isFocused }) => ({
       ...styles,
-      color: isFocused ? magma.secondary04 : magma.secondary05,
+      color: isFocused ? magma.colors.neutral04 : magma.colors.neutral05,
       ...customStyles.dropdownIndicator
     }),
     clearIndicator: (styles, { isFocused }) => ({
       ...styles,
-      color: isFocused ? magma.secondary04 : magma.secondary05,
+      color: isFocused ? magma.colors.neutral04 : magma.colors.neutral05,
 
       '&:hover': {
-        backgroundColor: magma.primary03
+        backgroundColor: magma.colors.neutral07
       },
       ...customStyles.clearIndicator
     }),
@@ -79,7 +81,7 @@ export function getStyles(customStyles: ReactSelectStyles = {}) {
     }),
     menu: styles => ({
       ...styles,
-      border: `1px solid ${magma.secondary06}`,
+      border: `1px solid ${magma.colors.neutral06}`,
       borderRadius: '3px',
       boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)',
       zIndex: 999,
@@ -87,29 +89,29 @@ export function getStyles(customStyles: ReactSelectStyles = {}) {
     }),
     multiValue: styles => ({
       ...styles,
-      backgroundColor: magma.limited03,
-      color: magma.primary01,
+      backgroundColor: magma.colors.neutral07,
+      color: magma.colors.neutral02,
       ...customStyles.multiValue
     }),
     multiValueRemove: styles => ({
       ...styles,
-      backgroundColor: magma.limited03,
-      color: magma.primary01,
+      backgroundColor: magma.colors.neutral06,
+      color: magma.colors.neutral02,
 
       '&:hover': {
-        backgroundColor: magma.secondary05,
-        color: magma.primary01
+        backgroundColor: magma.colors.neutral05,
+        color: magma.colors.neutral02
       },
       ...customStyles.multiValueRemove
     }),
     option: (styles, { isFocused, isSelected }) => ({
       ...styles,
       backgroundColor: isFocused
-        ? magma.limited03
+        ? magma.colors.neutral06
         : isSelected
-        ? magma.primary03
-        : magma.primary04,
-      color: magma.primary01,
+        ? magma.colors.neutral07
+        : magma.colors.neutral08,
+      color: magma.colors.neutral02,
       ...customStyles.option
     })
   };
