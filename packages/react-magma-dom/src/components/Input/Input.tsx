@@ -3,6 +3,7 @@ import { InputCore } from 'react-magma-core';
 import styled from '../../theme/styled-components';
 import { HiddenStyles } from '../UtilityStyles';
 import { Icon } from '../Icon/Icon';
+import { Label } from '../Label/Label';
 import { magma } from '../../theme/magma';
 
 enum IconPosition {
@@ -64,16 +65,6 @@ const Container = styled.div`
 
 const InputWrapper = styled.div`
   position: relative;
-`;
-
-const StyledLabel = styled<TextProps, 'label'>('label')`
-  color: ${props =>
-    props.inverse ? magma.colors.neutral08 : magma.colors.neutral02};
-  display: inline-block;
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 5px;
-  max-width: 100%;
 `;
 
 const HiddenLabel = styled.label`
@@ -258,9 +249,9 @@ export const Input: React.FunctionComponent<InputProps> = (
           {labelVisuallyHidden ? (
             <HiddenLabel htmlFor={id}>{labelText}</HiddenLabel>
           ) : (
-            <StyledLabel inverse={inverse} htmlFor={id} style={labelStyle}>
+            <Label inverse={inverse} htmlFor={id} style={labelStyle}>
               {labelText}
-            </StyledLabel>
+            </Label>
           )}
           <InputWrapper>
             <StyledInput
