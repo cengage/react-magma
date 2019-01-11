@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { InputCore } from 'react-magma-core';
 import styled from '../../theme/styled-components';
-import { HiddenStyles } from '../SelectionControls/InputStyles';
+import { HiddenStyles } from '../UtilityStyles';
 import { Icon } from '../Icon/Icon';
 import { magma } from '../../theme/magma';
 

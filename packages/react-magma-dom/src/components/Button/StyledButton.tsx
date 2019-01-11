@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled-components';
+import { FocusStyles } from '../UtilityStyles';
 import { magma } from '../../theme/magma';
 
 export enum ButtonVariant {
@@ -150,7 +151,7 @@ const StyledButtonComponent = styled<ButtonProps, 'button'>('button')`
   }
 
   &:focus {
-    outline: 2px dotted ${magma.colors.pop03};
+    ${FocusStyles};
     outline-offset: 3px;
   }
 
