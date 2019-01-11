@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { InputCore } from 'react-magma-core';
 import styled from '../../theme/styled-components';
-import { HiddenStyles } from '../UtilityStyles';
 import { Icon } from '../Icon/Icon';
 import { Label } from '../Label/Label';
 import { magma } from '../../theme/magma';
@@ -40,6 +39,7 @@ export interface InputProps {
   labelStyle?: React.CSSProperties;
   labelText: string;
   labelVisuallyHidden?: boolean;
+  multiline?: boolean;
   placeholder?: string;
   required?: boolean;
   style?: React.CSSProperties;
@@ -67,10 +67,6 @@ const InputWrapper = styled.div`
   position: relative;
 `;
 
-const HiddenLabel = styled.label`
-  ${HiddenStyles};
-`;
-
 const StyledInput = styled<InputProps, 'input'>('input')`
   background: ${magma.colors.neutral08};
   border: 1px solid;
@@ -91,6 +87,9 @@ const StyledInput = styled<InputProps, 'input'>('input')`
     }
   }};
   height: ${props => {
+    if (props.multiline) {
+      return '4.5em';
+    }
     switch (props.inputSize) {
       case 'large':
         return '45px';
@@ -105,6 +104,7 @@ const StyledInput = styled<InputProps, 'input'>('input')`
   padding-left: ${props => (props.iconPosition === 'left' ? '35px' : '8px')};
   padding-right: ${props =>
     props.iconPosition === 'right' || props.errorMessage ? '35px' : '8px'};
+  padding-top: ${props => (props.multiline ? '5px' : '0')};
   width: 100%;
 
   &::placeholder {
@@ -238,6 +238,7 @@ export const Input: React.FunctionComponent<InputProps> = (
         labelStyle,
         labelText,
         labelVisuallyHidden,
+        multiline,
         placeholder,
         style,
         type,
@@ -246,15 +247,15 @@ export const Input: React.FunctionComponent<InputProps> = (
 
       return (
         <Container style={style}>
-          {labelVisuallyHidden ? (
-            <HiddenLabel htmlFor={id}>{labelText}</HiddenLabel>
-          ) : (
+          {!labelVisuallyHidden && (
             <Label inverse={inverse} htmlFor={id} style={labelStyle}>
               {labelText}
             </Label>
           )}
           <InputWrapper>
             <StyledInput
+              aria-label={labelVisuallyHidden ? labelText : null}
+              as={multiline ? 'textarea' : 'input'}
               autoFocus={autoFocus}
               id={id}
               disabled={disabled}
@@ -262,6 +263,7 @@ export const Input: React.FunctionComponent<InputProps> = (
               iconPosition={iconPosition}
               inputSize={inputSize ? inputSize : InputSize.medium}
               labelText={labelText}
+              multiline={multiline}
               placeholder={placeholder}
               required={required}
               style={inputStyle}
