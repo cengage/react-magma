@@ -8,7 +8,7 @@ title: "Inputs"
 
 To enable the user the greatest opportunity to correctly input the correct information successfully on the first attempt, input fields should always obey the following rules.
 * It should always appear distinguished as a separate entity from the surrounding application.
-* Required input fields must be visually distinguishable
+* Required input fields must be visually distinguishable.
 * The associated text label should clearly and succinctly describe the desired information.
 * The associated text label should contain no more than 80 characters.
 * The associated error message should contain no more than 80 characters.
@@ -29,7 +29,7 @@ To enable the user the greatest opportunity to correctly input the correct infor
 
 ```.jsx
     <Input
-        id='input3'
+        id='inputPw'
         labelText='Password'
         placeholder='Enter your password'
         type='password' />
@@ -39,7 +39,7 @@ To enable the user the greatest opportunity to correctly input the correct infor
 
 ```.jsx
     <Input
-        id='input4'
+        id='inputNum'
         labelText='Number'
         placeholder='Enter a number'
         type='number' />
@@ -49,10 +49,145 @@ To enable the user the greatest opportunity to correctly input the correct infor
 
 ```.jsx
     <Input
-        id='input5'
+        id='inputDisabled'
         labelText='Disabled'
         placeholder='The input is disabled'
         disabled />
+```
+
+## Error Message
+
+If an input has an `errorMessage`, the input will be styled to highlight it's error state and the error message will appear below the input field.
+If an error message is present, it will replace the helper text.
+
+```.jsx
+    <Input
+        id='inputError'
+        errorMessage='Please correct this error'
+        helperMessage='Helper text'
+        labelText='Error Message'
+        placeholder='Type in here' />
+```
+
+## Helper Message
+
+The `helperMessage` appears underneath the input field.  It will not appear if an error message is present.
+
+```.jsx
+    <Input
+        id='inputHelper'
+        helperMessage='Helper text goes here'
+        labelText='Helper Message'
+        placeholder='Type in here' />
+```
+
+## Input with Icon
+
+To include an icon both the `icon` and `iconPosition` props must be passed in. Icon position can either be `left` or `right`.
+
+```.jsx
+    <div>
+      <Input
+          icon='calendar'
+          iconPosition='left'
+          id='inputIcon'
+          labelText='Input with Icon Left'
+          placeholder='Type in here' />
+
+      <Input
+          icon='search2'
+          iconPosition='right'
+          id='inputIconRight'
+          labelText='Input with Icon Right'
+          placeholder='Type in here' />
+    </div>
+```
+
+## Input Sizes
+
+The `inputSize` prop can be used to control the input size. Options are `small`, `medium` and `large`, with `medium` being the default.
+
+```.jsx
+    <div>
+      <Input
+          icon='search2'
+          iconPosition='right'
+          id='inputSmall'
+          inputSize='small'
+          labelText='Small Input'
+          placeholder='Type in here' />
+      <Input
+          icon='search2'
+          iconPosition='right'
+          id='inputMed'
+          labelText='Medium Input'
+          placeholder='Type in here' />
+      <Input
+          icon='search2'
+          iconPosition='right'
+          id='inputLarge2'
+          inputSize='large'
+          labelText='Large Input'
+          placeholder='Type in here' />
+      <Input
+          errorMessage='Error'
+          id='inputSmallErr'
+          inputSize='small'
+          labelText='Small Input with Error'
+          placeholder='Type in here' />
+      <Input
+          errorMessage='Error'
+          id='inputMedErr'
+          labelText='Medium Input with Error'
+          placeholder='Type in here' />
+      <Input
+          errorMessage='Error'
+          id='inputLargeErr'
+          inputSize='large'
+          labelText='Large Input with Error'
+          placeholder='Type in here' />
+    </div>
+```
+
+## Inverse inputs
+Inverse is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
+
+```.jsx
+    <div style={{ background : '#00263E', padding: '10px' }}>
+      <Input
+          id='inputInverse'
+          inverse
+          labelText='Inverse Input'
+          placeholder='Type in here' />
+
+      <Input
+          helperMessage='Helper text'
+          id='inputInverseHelper'
+          inverse
+          labelText='Inverse Input with Helper Text'
+          placeholder='Type in here' />
+
+      <Input
+          errorMessage='Please correct your error'
+          id='inputInverseError'
+          inverse
+          labelText='Inverse Input with Error Message'
+          placeholder='Type in here' />
+    </div>
+```
+
+## Input with hidden label
+
+The `labelVisuallyHidden` prop can be used to visually hide the text label, while still making the text available to screen readers.
+
+```.jsx
+    <Input
+        icon='search2'
+        iconPosition='right'
+        id='inputLabelHidden'
+        labelVisuallyHidden
+        labelText='Search'
+        placeholder='Search' />
 ```
 
 ## Change Events
@@ -127,13 +262,22 @@ To enable the user the greatest opportunity to correctly input the correct infor
 | -----------------------|------|---------|:-----------:|
 | id | string | | &#10003;
 | labelText | string | | &#10003;
-| autoFocus | boolean | | 
-| disabled | boolean | | 
-| handleBlur | func | | 
-| handleChange | func | | 
-| handleFocus | func | | 
-| placeholder | string | | 
-| required | boolean | | 
-| type | enum: 'text' &#124; 'password' &#124; 'number' | 'text' | 
-| value | string | | 
-| style | React.CSSProperties | | 
+| autoFocus | boolean | |
+| disabled | boolean | |
+| errorMessage | string | |
+| handleBlur | func | |
+| handleChange | func | |
+| handleFocus | func | |
+| helperMessage | string | |
+| icon | string | |
+| iconPosition |  enum: 'left' &#124; 'right' &#124; |
+| inputSize |  enum: 'small' &#124; 'medium' &#124; 'large' &#124; | 'medium' |
+| inputStyle | React.CSSProperties | |
+| inverse | boolean | |
+| labelStyle | React.CSSProperties | |
+| labelVisuallyHidden | boolean | |
+| placeholder | string | |
+| required | boolean | |
+| type | enum: 'text' &#124; 'password' &#124; 'number' | 'text' |
+| value | string | |
+| style | React.CSSProperties | |
