@@ -24,12 +24,12 @@ export const Theme = createGlobalStyle`
   a {
     color: ${magma.colors.primary};
     cursor: pointer;
-    text-decoration: none;
+    text-decoration: underline;
 
     &:hover,
     &:focus {
       color: ${magma.colors.foundation01};
-      text-decoration: underline;
+      text-decoration: none;
     }
   }
 `;

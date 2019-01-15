@@ -16,26 +16,31 @@ export const Button: React.FunctionComponent<ButtonProps> = (
   <ButtonCore handleClick={props.handleClick}>
     {({ handleClick }) => {
       const {
+        as,
         autoFocus,
         block,
         children,
+        color,
         disabled,
         inverse,
-        color,
+        href,
         shape,
         size,
         style,
         textTransform,
+        to,
         variant
       } = props;
 
       return (
         <StyledButton
+          as={as}
           autoFocus={autoFocus}
           handleClick={handleClick}
           block={block}
           color={color ? color : ButtonColor.primary}
           disabled={disabled}
+          href={href}
           inverse={inverse}
           shape={shape ? shape : ButtonShape.fill}
           size={size ? size : ButtonSize.medium}
@@ -43,6 +48,7 @@ export const Button: React.FunctionComponent<ButtonProps> = (
           textTransform={
             textTransform ? textTransform : ButtonTextTransform.uppercase
           }
+          to={to}
           variant={variant ? variant : ButtonVariant.solid}
         >
           {children}

@@ -13,6 +13,7 @@ export { Input } from './components/Input/Input';
 export { Icon } from './components/Icon/Icon';
 export { ICONS } from './components/Icon/types/icons';
 export { Label } from './components/Label/Label';
+export { LinkButton } from './components/Button/LinkButton';
 export { RadioGroup } from './components/Radio/RadioGroup';
 export { Radio } from './components/Radio/Radio';
 export { Select } from './components/Select/Select';
