@@ -190,6 +190,18 @@ The `labelVisuallyHidden` prop can be used to visually hide the text label, whil
         placeholder='Search' />
 ```
 
+## Multi-line (textarea)
+
+The optional `multiline` boolean prop will cause the component to render a textarea, rather than a text input.
+
+```.jsx
+    <Input
+        id='textarea'
+        labelText='Multi-line Textarea'
+        multiline
+        placeholder='Type in here' />
+```
+
 ## Change Events
 
 ```.jsx
@@ -270,12 +282,13 @@ The `labelVisuallyHidden` prop can be used to visually hide the text label, whil
 | handleFocus | func | |
 | helperMessage | string | |
 | icon | string | |
-| iconPosition |  enum: 'left' &#124; 'right' &#124; |
+| iconPosition |  enum: 'left' &#124; 'right' &#124; | 'left' |
 | inputSize |  enum: 'small' &#124; 'medium' &#124; 'large' &#124; | 'medium' |
 | inputStyle | React.CSSProperties | |
 | inverse | boolean | |
 | labelStyle | React.CSSProperties | |
 | labelVisuallyHidden | boolean | |
+| multiline | boolean | |
 | placeholder | string | |
 | required | boolean | |
 | type | enum: 'text' &#124; 'password' &#124; 'number' | 'text' |

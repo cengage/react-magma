@@ -15,6 +15,7 @@ import {
   ICONS,
   IconButton,
   Input,
+  LinkButton,
   Radio,
   RadioGroup,
   Select,
@@ -52,15 +53,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   a {
-    color: ${magma.primary02};
-    cursor: pointer;
     text-decoration: none;
-
-    &:hover,
-    &:focus {
-      color: ${magma.secondary01};
-      text-decoration: underline;
-    }
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -138,6 +131,7 @@ const PreComponent = ({ className, ...props }) =>
         IconContainer,
         IconListContainer,
         Input,
+        LinkButton,
         Radio,
         RadioGroup,
         Select,

@@ -23,6 +23,8 @@ exports[`Button Snapshot should render with updated shape 1`] = `
   overflow: hidden;
   position: relative;
   text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
   text-transform: uppercase;
   vertical-align: middle;
   touch-action: manipulation;
@@ -35,7 +37,6 @@ exports[`Button Snapshot should render with updated shape 1`] = `
   background: #006298;
   border: 0;
   border-color: #006298;
-  color: #FFFFFF;
 }
 
 .c0:not(:disabled):after,
@@ -88,6 +89,12 @@ exports[`Button Snapshot should render with updated shape 1`] = `
 .c0:focus {
   outline: 2px dotted #F2A900;
   outline-offset: 3px;
+}
+
+.c0,
+.c0:hover,
+.c0:focus {
+  color: #FFFFFF;
 }
 
 <div>
@@ -124,6 +131,8 @@ exports[`Button Snapshot should render with updated size 1`] = `
   overflow: hidden;
   position: relative;
   text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
   text-transform: uppercase;
   vertical-align: middle;
   touch-action: manipulation;
@@ -136,7 +145,6 @@ exports[`Button Snapshot should render with updated size 1`] = `
   background: #006298;
   border: 0;
   border-color: #006298;
-  color: #FFFFFF;
 }
 
 .c0:not(:disabled):after,
@@ -189,6 +197,12 @@ exports[`Button Snapshot should render with updated size 1`] = `
 .c0:focus {
   outline: 2px dotted #F2A900;
   outline-offset: 3px;
+}
+
+.c0,
+.c0:hover,
+.c0:focus {
+  color: #FFFFFF;
 }
 
 <div>
@@ -225,6 +239,8 @@ exports[`Button Snapshot should render with updated size 2`] = `
   overflow: hidden;
   position: relative;
   text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
   text-transform: uppercase;
   vertical-align: middle;
   touch-action: manipulation;
@@ -237,7 +253,6 @@ exports[`Button Snapshot should render with updated size 2`] = `
   background: #006298;
   border: 0;
   border-color: #006298;
-  color: #FFFFFF;
 }
 
 .c0:not(:disabled):after,
@@ -290,6 +305,12 @@ exports[`Button Snapshot should render with updated size 2`] = `
 .c0:focus {
   outline: 2px dotted #F2A900;
   outline-offset: 3px;
+}
+
+.c0,
+.c0:hover,
+.c0:focus {
+  color: #FFFFFF;
 }
 
 <div>
@@ -326,6 +347,8 @@ exports[`Button Snapshot should render with updated textTransform 1`] = `
   overflow: hidden;
   position: relative;
   text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
   text-transform: none;
   vertical-align: middle;
   touch-action: manipulation;
@@ -338,7 +361,6 @@ exports[`Button Snapshot should render with updated textTransform 1`] = `
   background: #006298;
   border: 0;
   border-color: #006298;
-  color: #FFFFFF;
 }
 
 .c0:not(:disabled):after,
@@ -393,6 +415,12 @@ exports[`Button Snapshot should render with updated textTransform 1`] = `
   outline-offset: 3px;
 }
 
+.c0,
+.c0:hover,
+.c0:focus {
+  color: #FFFFFF;
+}
+
 <div>
   <button
     class="c0"
@@ -427,6 +455,8 @@ exports[`Button Snapshot should render with updated variant 1`] = `
   overflow: hidden;
   position: relative;
   text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
   text-transform: uppercase;
   vertical-align: middle;
   touch-action: manipulation;
@@ -438,7 +468,6 @@ exports[`Button Snapshot should render with updated variant 1`] = `
   padding: 0 15px;
   background: none;
   border: 2px solid;
-  color: #006298;
 }
 
 .c0:not(:disabled):after,
@@ -491,6 +520,12 @@ exports[`Button Snapshot should render with updated variant 1`] = `
 .c0:focus {
   outline: 2px dotted #F2A900;
   outline-offset: 3px;
+}
+
+.c0,
+.c0:hover,
+.c0:focus {
+  color: #006298;
 }
 
 <div>

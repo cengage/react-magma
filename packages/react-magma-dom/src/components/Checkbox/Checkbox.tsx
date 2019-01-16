@@ -1,10 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { CheckboxCore } from 'react-magma-core';
-import {
-  DisplayInputStyles,
-  HiddenStyles
-} from '../SelectionControls/InputStyles';
+import { DisplayInputStyles } from '../SelectionControls/InputStyles';
+import { FocusStyles, HiddenStyles } from '../UtilityStyles';
 import { Icon } from '../Icon/Icon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
@@ -96,9 +94,9 @@ const StyledFakeInput = styled<
     // focus state
     &:before {
       height: 30px;
-      outline: 2px dotted ${magma.colors.pop03};
       position: absolute;
       width: 30px;
+      ${FocusStyles};
     }
   }
 
