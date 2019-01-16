@@ -80,14 +80,6 @@ describe('Toggle', () => {
     expect(toggle).toBeDisabled();
   });
 
-  it('should render a passed in color', () => {
-    const color = '#000000';
-    const { container } = renderToggle({ color, value: 'true' });
-    const span = container.querySelector('span');
-
-    expect(span).toHaveStyleRule('background', color);
-  });
-
   it('should render a toggle with hidden label text with the correct styles', () => {
     const { getByText } = renderToggle({ textVisuallyHidden: true });
     const span = getByText(TOGGLE_PROPS.labelText);

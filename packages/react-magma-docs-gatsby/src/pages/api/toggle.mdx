@@ -18,33 +18,6 @@ title: "Toggles"
   </div>
 ```
 
-## Colors
-By default, the toggles use the theme's success color.  But any other color may be passed in.
-
-```.jsx
-  <div>
-  <Toggle
-      id='colorToggle'
-      labelText='Default Color'
-      value='something' />
-    <Toggle
-        color={magma.colors.primary}
-        id='successColorToggle'
-        labelText='Primary Color'
-        value='something' />
-    <Toggle
-        color={magma.colors.danger}
-        id='dangerColorToggle'
-        labelText='Danger Color'
-        value='something' />
-    <Toggle
-        color={magma.colors.pop02}
-        id='popColorToggle'
-        labelText='Pop Color'
-        value='something' />
-  </div>
-```
-
 ## Disabled
 
 ```.jsx
@@ -73,18 +46,6 @@ Adding the `textVisuallyHidden` prop will make the label text available to scree
     </div>
 ```
 
-## Visually Hidden Label
-Adding the `noCheckmark` prop will prevent the checkmark icon from rendering.
-
-```.jsx
-  <div>
-    <Toggle
-        id='noCheckmarktoggle'
-        labelText='No checkmark'
-        noCheckmark />
-    </div>
-```
-
 ## Custom Styles
 Custom styles can be passed into both the Toggle component.  The `style` property will apply to the container.
 Additional `labelStyle`, `trackStyle` and `thumbStyle` properties are available to style the respective elements.
@@ -96,7 +57,6 @@ Please use discression when adding custom styles.
         id='custom1'
         labelStyle={{ 'color': 'red', 'font-style': 'italic'}}
         labelText='Custom Styles'
-        noCheckmark
         style={{ 'background': '1px dotted purple'}}
         thumbStyle={{ 'background': 'yellow', 'border' : '1px solid orange', 'box-shadow': '0 0 0' }}
         trackStyle={{ 'border-radius': '5px', 'height': '18px'}}
@@ -118,7 +78,6 @@ Please use discression when adding custom styles.
 | id | string | | &#10003;
 | labelStyle | React.CSSProperties | |
 | labelText | string | | &#10003;
-| noCheckmark | boolean | |
 | required | function | |
 | style | React.CSSProperties | |
 | textVisuallyHidden | boolean | |
