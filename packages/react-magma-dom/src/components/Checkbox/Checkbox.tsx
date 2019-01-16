@@ -28,7 +28,7 @@ export interface CheckboxProps {
   labelText: string;
   required?: boolean;
   style?: React.CSSProperties;
-  textVisuallyHidden: boolean;
+  textVisuallyHidden?: boolean;
   value?: string;
 }
 

@@ -16,5 +16,6 @@ export { Label } from './components/Label/Label';
 export { RadioGroup } from './components/Radio/RadioGroup';
 export { Radio } from './components/Radio/Radio';
 export { Select } from './components/Select/Select';
+export { Toggle } from './components/Toggle/Toggle';
 export { magma } from './theme/magma';
 export { Theme } from './theme/globalStyle';

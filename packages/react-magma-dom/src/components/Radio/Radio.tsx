@@ -25,7 +25,7 @@ export interface RadioProps {
   labelText: string;
   required?: boolean;
   style?: React.CSSProperties;
-  textVisuallyHidden: boolean;
+  textVisuallyHidden?: boolean;
   value?: string;
 }
 
