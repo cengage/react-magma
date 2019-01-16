@@ -206,11 +206,19 @@ describe('Input', () => {
     expect(input).toBeDisabled();
   });
 
-  it('should render the input with visually hidden label text', () => {
-    const { getByText } = renderInput({ labelVisuallyHidden: true });
-    const label = getByText(INPUT_PROPS.labelText);
+  it('should render a textarea for multiline prop', () => {
+    const { container } = renderInput({ multiline: true });
+    const textarea = container.querySelector('textarea');
 
-    expect(label).toHaveStyleRule('clip', 'rect(1px,1px,1px,1px)');
+    expect(textarea).toBeInTheDocument();
+    expect(textarea).toHaveStyleRule('height', '4.5em');
+  });
+
+  it('should render the input with visually hidden label text', () => {
+    const { getByLabelText } = renderInput({ labelVisuallyHidden: true });
+    const input = getByLabelText(INPUT_PROPS.labelText);
+
+    expect(input).toHaveAttribute('aria-label', INPUT_PROPS.labelText);
   });
 
   describe('sizes', () => {

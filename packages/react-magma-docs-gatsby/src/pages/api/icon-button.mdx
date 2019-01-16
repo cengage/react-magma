@@ -97,6 +97,28 @@ Block buttons only work when the `icon` property is set to `false` or not define
     </p>
 ```
 
+
+## Using different elements
+Passing in the `as` prop will allow a styed button to render as a different type of element, which can be useful
+if you need to use an `a` tag or a `Link` component.
+
+```.jsx
+    <p>
+        <IconButton
+          ariaLabel='Search Google'
+          as='a'
+          href='http://google.com'
+          icon="search2"
+          textPosition='left'>Link Element</IconButton>
+        <IconButton
+          ariaLabel='Search Google'
+          as='a'
+          href='http://google.com'
+          icon="search2"
+          iconOnly />
+    </p>
+```
+
 ## Event Handling
 
 The `handleClick` events will fire when the button is clicked, or when the enter or space bar key is pressed.

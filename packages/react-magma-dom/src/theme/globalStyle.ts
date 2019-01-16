@@ -1,4 +1,4 @@
-import { createGlobalStyle } from './styled-components';
+import { createGlobalStyle } from 'styled-components';
 import { magma } from './magma';
 
 // tslint:disable:no-unused-expression
@@ -13,7 +13,7 @@ export const Theme = createGlobalStyle`
   }
 
   & body {
-    color: ${magma.primary01};
+    color: ${magma.colors.neutral02};
   	font-family: ${magma.bodyFont};
   	font-style: normal;
   	font-weight: 400;
@@ -22,14 +22,14 @@ export const Theme = createGlobalStyle`
   }
 
   a {
-    color: ${magma.primary02};
+    color: ${magma.colors.primary};
     cursor: pointer;
-    text-decoration: none;
+    text-decoration: underline;
 
     &:hover,
     &:focus {
-      color: ${magma.secondary01};
-      text-decoration: underline;
+      color: ${magma.colors.foundation01};
+      text-decoration: none;
     }
   }
 `;

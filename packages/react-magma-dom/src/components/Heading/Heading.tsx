@@ -10,7 +10,7 @@ export interface HeadingProps {
 }
 
 export const baseHeadingStyles = css`
-  color: ${magma.primary02};
+  color: ${magma.colors.primary};
   font-family: ${magma.headingFont};
   font-weight: 500;
   line-height: 1.1;

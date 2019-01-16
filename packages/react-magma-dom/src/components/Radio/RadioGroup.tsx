@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { HiddenStyles } from '../SelectionControls/InputStyles';
+import { HiddenStyles } from '../UtilityStyles';
 import { RadioGroupCore } from 'react-magma-core';
 const styled = require('styled-components').default;
 
