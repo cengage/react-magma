@@ -11,6 +11,10 @@ title: "Toggles"
     <Toggle
         id='Toggle0'
         labelText='Toggle label' />
+    <Toggle
+        id='Toggle1'
+        labelText='Toggle label on'
+        value='something' />
   </div>
 ```
 
@@ -22,19 +26,22 @@ By default, the toggles use the theme's success color.  But any other color may 
   <Toggle
       id='colorToggle'
       labelText='Default Color'
-      value={false} />
+      value='something' />
     <Toggle
         color={magma.colors.primary}
         id='successColorToggle'
-        labelText='Primary Color' />
+        labelText='Primary Color'
+        value='something' />
     <Toggle
         color={magma.colors.danger}
         id='dangerColorToggle'
-        labelText='Danger Color' />
+        labelText='Danger Color'
+        value='something' />
     <Toggle
         color={magma.colors.pop02}
         id='popColorToggle'
-        labelText='Pop Color' />
+        labelText='Pop Color'
+        value='something' />
   </div>
 ```
 
@@ -46,6 +53,11 @@ By default, the toggles use the theme's success color.  But any other color may 
         disabled
         id='disabledToggle'
         labelText='Disabled Toggle' />
+    <Toggle
+        disabled
+        id='disabledToggleOn'
+        labelText='Disabled Toggle On'
+        value='true' />
     </div>
 ```
 
@@ -61,6 +73,37 @@ Adding the `textVisuallyHidden` prop will make the label text available to scree
     </div>
 ```
 
+## Visually Hidden Label
+Adding the `noCheckmark` prop will prevent the checkmark icon from rendering.
+
+```.jsx
+  <div>
+    <Toggle
+        id='noCheckmarktoggle'
+        labelText='No checkmark'
+        noCheckmark />
+    </div>
+```
+
+## Custom Styles
+Custom styles can be passed into both the Toggle component.  The `style` property will apply to the container.
+Additional `labelStyle`, `trackStyle` and `thumbStyle` properties are available to style the respective elements.
+Please use discression when adding custom styles.
+
+```.jsx
+  <div>
+    <Toggle
+        id='custom1'
+        labelStyle={{ 'color': 'red', 'font-style': 'italic'}}
+        labelText='Custom Styles'
+        noCheckmark
+        style={{ 'background': '1px dotted purple'}}
+        thumbStyle={{ 'background': 'yellow', 'border' : '1px solid orange', 'box-shadow': '0 0 0' }}
+        trackStyle={{ 'border-radius': '5px', 'height': '18px'}}
+        value='1' />
+  </div>
+```
+
 
 ## Toggle Props
 
@@ -73,8 +116,12 @@ Adding the `textVisuallyHidden` prop will make the label text available to scree
 | handleChange | function | |
 | handleFocus | function | |
 | id | string | | &#10003;
-| inverse | boolean | |
+| labelStyle | React.CSSProperties | |
 | labelText | string | | &#10003;
+| noCheckmark | boolean | |
 | required | function | |
+| style | React.CSSProperties | |
 | textVisuallyHidden | boolean | |
+| thumbStyle | React.CSSProperties | |
+| trackStyle | React.CSSProperties | |
 | value | string | |

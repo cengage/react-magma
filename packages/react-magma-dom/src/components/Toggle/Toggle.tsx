@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { CheckboxCore } from 'react-magma-core';
-import { HiddenStyles } from '../SelectionControls/InputStyles';
+import { FocusStyles, HiddenStyles } from '../UtilityStyles';
 import { Icon } from '../Icon/Icon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
@@ -17,10 +17,14 @@ export interface ToggleProps {
   handleChange?: () => void;
   handleFocus?: () => void;
   id: string;
+  labelStyle?: React.CSSProperties;
   labelText: string;
+  noCheckmark?: boolean;
   required?: boolean;
   style?: React.CSSProperties;
   textVisuallyHidden?: boolean;
+  thumbStyle?: React.CSSProperties;
+  trackStyle?: React.CSSProperties;
   value?: string;
 }
 
@@ -65,6 +69,38 @@ const Track = styled<
       outline: 2px dotted ${magma.colors.pop03};
       outline-offset: 3px;
   }
+
+  &:before { // active state
+    background: ${magma.colors.neutral02};
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: 40px;
+    left: -12px;
+    opacity: 0;
+    margin-top: -22px;
+    padding: 50%;
+    position: absolute;
+    top: 50%;
+    transform: scale(1);
+    transition: opacity 1s, transform 0.25s;
+    width: 40px;
+
+    ${props =>
+      props.checked &&
+      css`
+        background: ${p => p.color};
+        left: 12px;
+      `}
+  }
+
+  ${HiddenInput}:not(:disabled):active + label & {
+    &:before {
+      opacity: 0.4;
+      transform: scale(0);
+      transition: transform 0s;
+    }
+  }
 `;
 
 const Thumb = styled<{ checked?: boolean; disabled?: boolean }, 'span'>('span')`
@@ -74,7 +110,9 @@ const Thumb = styled<{ checked?: boolean; disabled?: boolean }, 'span'>('span')`
   border-radius: 100%;
   height: 20px;
   left: 0;
+  margin-top: -10px;
   position: absolute;
+  top: 50%;
   transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   width: 20px;
 
@@ -95,7 +133,8 @@ const IconContainer = styled.span`
   color: ${magma.colors.neutral08};
   left: 7px;
   position: absolute;
-  top: -1px;
+  margin-top: -11px;
+  top: 50%;
 `;
 
 export const Toggle: React.FunctionComponent<ToggleProps> = (
@@ -110,13 +149,17 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
     {({ handleBlur, handleChange, handleFocus, value }) => {
       const {
         autoFocus,
+        noCheckmark,
         color,
         disabled,
         id,
+        labelStyle,
         labelText,
         required,
         style,
-        textVisuallyHidden
+        textVisuallyHidden,
+        trackStyle,
+        thumbStyle
       } = props;
 
       return (
@@ -133,16 +176,19 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
             onChange={handleChange}
             onFocus={handleFocus}
           />
-          <StyledLabel htmlFor={id}>
+          <StyledLabel htmlFor={id} style={labelStyle}>
             <Track
               checked={value}
               color={color ? color : magma.colors.success01}
               disabled={disabled}
+              style={trackStyle}
             >
-              <IconContainer>
-                <Icon size={11} type="checkmark" />
-              </IconContainer>
-              <Thumb checked={value} disabled={disabled} />
+              {!noCheckmark && (
+                <IconContainer>
+                  <Icon size={11} type="checkmark" />
+                </IconContainer>
+              )}
+              <Thumb checked={value} disabled={disabled} style={thumbStyle} />
             </Track>
             {textVisuallyHidden ? (
               <HiddenLabelText>{labelText}</HiddenLabelText>
