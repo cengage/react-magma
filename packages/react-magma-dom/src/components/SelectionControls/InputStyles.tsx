@@ -1,5 +1,4 @@
-import * as React from 'react';
-import styled, { css } from '../../theme/styled-components';
+import { css } from '../../theme/styled-components';
 
 export const DisplayInputStyles = css`
   align-items: center;

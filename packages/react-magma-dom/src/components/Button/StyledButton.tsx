@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '../../theme/styled-components';
+import { styled } from '../../theme/styled-components';
 import { magma } from '../../theme/magma';
 
 export enum ButtonVariant {
@@ -40,7 +40,7 @@ export interface ButtonProps {
   className?: string;
   children?: React.ReactChild | React.ReactChild[];
   text?: string;
-  handleClick?: () => void;
+  handleClick?: (event: React.SyntheticEvent) => void;
   color?: ButtonColor;
   disabled?: boolean;
   iconOnly?: boolean;

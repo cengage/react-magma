@@ -7,7 +7,7 @@ import { RadioContext } from './RadioGroup';
 import { RadioCore } from 'react-magma-core';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
-import styled, { css } from '../../theme/styled-components';
+import { styled } from '../../theme/styled-components';
 import { magma } from '../../theme/magma';
 import 'focus-visible';
 
@@ -16,7 +16,7 @@ export interface RadioProps {
   checked?: boolean;
   disabled?: boolean;
   handleBlur?: () => void;
-  handleChange?: () => void;
+  handleChange?: (event: React.SyntheticEvent) => void;
   handleFocus?: () => void;
   id: string;
   inputStyle?: React.CSSProperties;
@@ -25,7 +25,7 @@ export interface RadioProps {
   labelText: string;
   required?: boolean;
   style?: React.CSSProperties;
-  textVisuallyHidden: boolean;
+  textVisuallyHidden?: boolean;
   value?: string;
 }
 
@@ -192,5 +192,3 @@ export const Radio: React.FunctionComponent<RadioProps> = (
     }
   </RadioContext.Consumer>
 );
-
-export default Radio;

@@ -17,7 +17,7 @@ const HiddenLabel = styled.label`
 export interface RadioGroupProps {
   children: React.ReactChild | React.ReactChild[];
   handleBlur?: () => void;
-  handleChange?: () => void;
+  handleChange?: (event: React.SyntheticEvent) => void;
   handleFocus?: () => void;
   id: string;
   labelStyle?: React.CSSProperties;
@@ -32,7 +32,7 @@ export interface RadioContextInterface {
   name: string;
   selectedValue?: string;
   handleBlur?: () => void;
-  handleChange?: () => void;
+  handleChange?: (event: React.SyntheticEvent) => void;
   handleFocus?: () => void;
 }
 
@@ -66,5 +66,3 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
     </RadioContext.Provider>
   </div>
 );
-
-export default RadioGroup;
