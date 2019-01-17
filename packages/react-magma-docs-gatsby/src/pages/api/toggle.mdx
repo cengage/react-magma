@@ -34,6 +34,22 @@ title: "Toggles"
     </div>
 ```
 
+## Text position
+Use the optional prop `textPosition` to position the label text on either side of the toggle switch.
+The `textPosition` property takes the values `left` and `right`. The default value is `left`.
+
+```.jsx
+  <div>
+    <Toggle
+        id='ToggleTextLeft'
+        labelText='Text left' />
+    <Toggle
+        id='ToggleTextRight'
+        labelText='Text right'
+        textPosition='right' />
+    </div>
+```
+
 ## Visually Hidden Label
 Adding the `textVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
 
@@ -55,9 +71,9 @@ Please use discression when adding custom styles.
   <div>
     <Toggle
         id='custom1'
-        labelStyle={{ 'color': 'red', 'font-style': 'italic'}}
+        labelStyle={{ 'font-style': 'italic', 'flex-grow': '1'}}
         labelText='Custom Styles'
-        style={{ 'background': '1px dotted purple'}}
+        style={{ 'border': '1px dotted purple', 'width': '100%'}}
         thumbStyle={{ 'background': 'yellow', 'border' : '1px solid orange', 'box-shadow': '0 0 0' }}
         trackStyle={{ 'border-radius': '5px', 'height': '18px'}}
         value='1' />
@@ -70,7 +86,6 @@ Please use discression when adding custom styles.
 | Prop                   | Type | Default | Required    |
 | -----------------------|------|---------|:-----------:|
 | autoFocus | boolean | |
-| color | string | |
 | disabled | boolean | |
 | handleBlur | function | |
 | handleChange | function | |
@@ -80,6 +95,7 @@ Please use discression when adding custom styles.
 | labelText | string | | &#10003;
 | required | function | |
 | style | React.CSSProperties | |
+| textPosition  | enum: 'left' &#124; 'right' | 'left' |
 | textVisuallyHidden | boolean | |
 | thumbStyle | React.CSSProperties | |
 | trackStyle | React.CSSProperties | |

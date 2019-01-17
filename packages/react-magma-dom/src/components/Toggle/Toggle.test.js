@@ -80,6 +80,23 @@ describe('Toggle', () => {
     expect(toggle).toBeDisabled();
   });
 
+  it('should render the toggle with the text position left by default', () => {
+    const { getByText } = renderToggle();
+    const span = getByText(TOGGLE_PROPS.labelText);
+
+    expect(span).toHaveStyleRule('padding-right', '10px');
+  });
+
+  it('should render the toggle with the text position right with the textPosition prop', () => {
+    const { getByText } = renderToggle({
+      textPosition: 'right'
+    });
+
+    const span = getByText(TOGGLE_PROPS.labelText);
+
+    expect(span).toHaveStyleRule('padding-left', '10px');
+  });
+
   it('should render a toggle with hidden label text with the correct styles', () => {
     const { getByText } = renderToggle({ textVisuallyHidden: true });
     const span = getByText(TOGGLE_PROPS.labelText);

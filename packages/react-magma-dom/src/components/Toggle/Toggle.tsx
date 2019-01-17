@@ -8,6 +8,11 @@ import styled, { css } from '../../theme/styled-components';
 import { magma } from '../../theme/magma';
 import 'focus-visible';
 
+enum ToggleTextPostition {
+  left = 'left',
+  right = 'right'
+}
+
 export interface ToggleProps {
   autoFocus?: boolean;
   disabled?: boolean;
@@ -19,6 +24,7 @@ export interface ToggleProps {
   labelText: string;
   required?: boolean;
   style?: React.CSSProperties;
+  textPosition?: ToggleTextPostition;
   textVisuallyHidden?: boolean;
   thumbStyle?: React.CSSProperties;
   trackStyle?: React.CSSProperties;
@@ -40,7 +46,6 @@ const Track = styled<{ checked?: boolean; disabled?: boolean }, 'span'>('span')`
   border-radius: 12px;
   cursor: pointer;
   height: 24px;
-  margin-right: 10px;
   position: relative;
   width: 48px;
 
@@ -120,7 +125,7 @@ const Thumb = styled<{ checked?: boolean; disabled?: boolean }, 'span'>('span')`
     props.disabled &&
     css`
       background: ${magma.colors.neutral05};
-      box-shadow: 0;
+      box-shadow: 0 0 0;
     `}
 `;
 
@@ -131,6 +136,31 @@ const IconContainer = styled.span`
   margin-top: -11px;
   top: 50%;
 `;
+
+const SpanTextLeft = styled.span`
+  padding-right: 10px;
+`;
+
+const SpanTextRight = styled.span`
+  padding-left: 10px;
+`;
+
+const renderLabelText = (
+  textVisuallyHidden,
+  labelText,
+  textPosition,
+  labelStyle
+) => {
+  if (textVisuallyHidden) {
+    return <HiddenLabelText>{labelText}</HiddenLabelText>;
+  }
+
+  return textPosition === ToggleTextPostition.left ? (
+    <SpanTextLeft style={labelStyle}>{labelText}</SpanTextLeft>
+  ) : (
+    <SpanTextRight style={labelStyle}>{labelText}</SpanTextRight>
+  );
+};
 
 export const Toggle: React.FunctionComponent<ToggleProps> = (
   props: ToggleProps
@@ -150,13 +180,14 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
         labelText,
         required,
         style,
+        textPosition,
         textVisuallyHidden,
         trackStyle,
         thumbStyle
       } = props;
 
       return (
-        <StyledContainer style={style}>
+        <StyledContainer>
           <HiddenInput
             autoFocus={autoFocus}
             id={id}
@@ -169,18 +200,27 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
             onChange={handleChange}
             onFocus={handleFocus}
           />
-          <StyledLabel htmlFor={id} style={labelStyle}>
+          <StyledLabel htmlFor={id} style={style}>
+            {textPosition !== ToggleTextPostition.right &&
+              renderLabelText(
+                textVisuallyHidden,
+                labelText,
+                ToggleTextPostition.left,
+                labelStyle
+              )}
             <Track checked={value} disabled={disabled} style={trackStyle}>
               <IconContainer>
                 <Icon size={11} type="check" />
               </IconContainer>
               <Thumb checked={value} disabled={disabled} style={thumbStyle} />
             </Track>
-            {textVisuallyHidden ? (
-              <HiddenLabelText>{labelText}</HiddenLabelText>
-            ) : (
-              labelText
-            )}
+            {textPosition === ToggleTextPostition.right &&
+              renderLabelText(
+                textVisuallyHidden,
+                labelText,
+                ToggleTextPostition.right,
+                labelStyle
+              )}
           </StyledLabel>
         </StyledContainer>
       );
