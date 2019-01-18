@@ -1,0 +1,102 @@
+---
+title: "Toggles"
+---
+
+# Toggles
+
+## Basic Usage
+
+```.jsx
+  <div>
+    <Toggle
+        id='Toggle0'
+        labelText='Toggle label' />
+    <Toggle
+        id='Toggle1'
+        labelText='Toggle label on'
+        value='something' />
+  </div>
+```
+
+## Disabled
+
+```.jsx
+  <div>
+    <Toggle
+        disabled
+        id='disabledToggle'
+        labelText='Disabled Toggle' />
+    <Toggle
+        disabled
+        id='disabledToggleOn'
+        labelText='Disabled Toggle On'
+        value='true' />
+    </div>
+```
+
+## Text position
+Use the optional prop `textPosition` to position the label text on either side of the toggle switch.
+The `textPosition` property takes the values `left` and `right`. The default value is `left`.
+
+```.jsx
+  <div>
+    <Toggle
+        id='ToggleTextLeft'
+        labelText='Text left' />
+    <Toggle
+        id='ToggleTextRight'
+        labelText='Text right'
+        textPosition='right' />
+    </div>
+```
+
+## Visually Hidden Label
+Adding the `textVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
+
+```.jsx
+  <div>
+    <Toggle
+        id='visuallyHiddenToggle'
+        labelText='Label is hidden'
+        textVisuallyHidden />
+    </div>
+```
+
+## Custom Styles
+Custom styles can be passed into both the Toggle component.  The `style` property will apply to the container.
+Additional `labelStyle`, `trackStyle` and `thumbStyle` properties are available to style the respective elements.
+Please use discression when adding custom styles.
+
+```.jsx
+  <div>
+    <Toggle
+        id='custom1'
+        labelStyle={{ 'font-style': 'italic', 'flex-grow': '1'}}
+        labelText='Custom Styles'
+        style={{ 'border': '1px dotted purple', 'width': '100%'}}
+        thumbStyle={{ 'background': 'yellow', 'border' : '1px solid orange', 'box-shadow': '0 0 0' }}
+        trackStyle={{ 'border-radius': '5px', 'height': '18px'}}
+        value='1' />
+  </div>
+```
+
+
+## Toggle Props
+
+| Prop                   | Type | Default | Required    |
+| -----------------------|------|---------|:-----------:|
+| autoFocus | boolean | |
+| disabled | boolean | |
+| handleBlur | function | |
+| handleChange | function | |
+| handleFocus | function | |
+| id | string | | &#10003;
+| labelStyle | React.CSSProperties | |
+| labelText | string | | &#10003;
+| required | function | |
+| style | React.CSSProperties | |
+| textPosition  | enum: 'left' &#124; 'right' | 'left' |
+| textVisuallyHidden | boolean | |
+| thumbStyle | React.CSSProperties | |
+| trackStyle | React.CSSProperties | |
+| value | string | |

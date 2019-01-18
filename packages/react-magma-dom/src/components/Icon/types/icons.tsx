@@ -517,15 +517,6 @@ export const ICONS = {
       }
     ]
   },
-  checkmark: {
-    viewBox: '0 0 28 21.87',
-    paths: [
-      {
-        d: 'M23.62,3.06,10.5,16.19,4.38,10.06,0,14.44l10.5,10.5L28,7.44Z',
-        transform: 'translate(0 -3.06)'
-      }
-    ]
-  },
   'circle-down': {
     viewBox: '0 0 28 28',
     paths: [

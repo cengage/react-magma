@@ -1241,30 +1241,6 @@ exports[`Icon Snapshot Tests should render check icon 1`] = `
 </div>
 `;
 
-exports[`Icon Snapshot Tests should render checkmark icon 1`] = `
-<div>
-  <svg
-    aria-labelledby="checkmarkId"
-    class="icon"
-    fill="currentColor"
-    height="24"
-    viewBox="0 0 28 21.87"
-    width="24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <title
-      id="checkmarkId"
-    >
-      checkmark icon
-    </title>
-    <path
-      d="M23.62,3.06,10.5,16.19,4.38,10.06,0,14.44l10.5,10.5L28,7.44Z"
-      transform="translate(0 -3.06)"
-    />
-  </svg>
-</div>
-`;
-
 exports[`Icon Snapshot Tests should render circle-down icon 1`] = `
 <div>
   <svg

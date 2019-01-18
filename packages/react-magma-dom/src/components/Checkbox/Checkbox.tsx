@@ -26,7 +26,7 @@ export interface CheckboxProps {
   labelText: string;
   required?: boolean;
   style?: React.CSSProperties;
-  textVisuallyHidden: boolean;
+  textVisuallyHidden?: boolean;
   value?: string;
 }
 
@@ -209,7 +209,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
                   <IndeterminateIcon
                     color={color ? color : magma.colors.primary}
                   />
-                  <Icon size={12} type="checkmark" />
+                  <Icon size={12} type="check" />
                 </StyledFakeInput>
                 {textVisuallyHidden ? (
                   <HiddenLabelText>{labelText}</HiddenLabelText>

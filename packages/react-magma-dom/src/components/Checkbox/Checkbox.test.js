@@ -31,7 +31,7 @@ describe('Checkbox', () => {
     expect(label).toBeInTheDocument();
   });
 
-  it('should render a checkbox text with desired attributes', () => {
+  it('should render a checkbox with desired attributes', () => {
     const { getByLabelText } = renderCheckbox();
     const checkbox = getByLabelText(CHECKBOX_PROPS.labelText);
 
