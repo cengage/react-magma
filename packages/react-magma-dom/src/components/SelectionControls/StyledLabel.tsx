@@ -1,15 +1,15 @@
 import * as React from 'react';
-import styled from '../../theme/styled-components';
+import { styled } from '../../theme/styled-components';
 import { magma } from '../../theme/magma';
 
-export interface LabelProps {
+export interface StyledLabelProps {
   children?: any;
   htmlFor: string;
   inverse?: boolean;
   style?: React.CSSProperties;
 }
 
-const StyledLabelComponent = styled<LabelProps, 'label'>('label')`
+const StyledLabelComponent = styled<StyledLabelProps, 'label'>('label')`
   align-items: flex-start;
   color: ${props => (props.inverse ? magma.colors.neutral08 : 'inherit')};
   display: flex;
@@ -17,12 +17,12 @@ const StyledLabelComponent = styled<LabelProps, 'label'>('label')`
   padding: 10px;
 `;
 
-export const StyledLabel: React.FunctionComponent<LabelProps> = ({
+export const StyledLabel: React.FunctionComponent<StyledLabelProps> = ({
   children,
   htmlFor,
   inverse,
   style
-}: LabelProps) => (
+}: StyledLabelProps) => (
   <StyledLabelComponent htmlFor={htmlFor} inverse={inverse} style={style}>
     {children}
   </StyledLabelComponent>

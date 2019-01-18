@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { InputCore } from 'react-magma-core';
-import styled from '../../theme/styled-components';
+import { styled } from '../../theme/styled-components';
 import { Icon } from '../Icon/Icon';
 import { Label } from '../Label/Label';
 import { magma } from '../../theme/magma';

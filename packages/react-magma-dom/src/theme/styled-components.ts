@@ -13,5 +13,4 @@ const {
   ThemeInterface
 >;
 
-export { css, createGlobalStyle, keyframes, ThemeProvider };
-export default styled;
+export { styled, css, createGlobalStyle, keyframes, ThemeProvider };

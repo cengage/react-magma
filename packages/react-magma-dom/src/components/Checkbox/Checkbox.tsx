@@ -6,7 +6,7 @@ import { FocusStyles, HiddenStyles } from '../UtilityStyles';
 import { Icon } from '../Icon/Icon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
-import styled, { css } from '../../theme/styled-components';
+import { styled } from '../../theme/styled-components';
 import { magma } from '../../theme/magma';
 import 'focus-visible';
 
@@ -16,7 +16,7 @@ export interface CheckboxProps {
   checked?: boolean;
   disabled?: boolean;
   handleBlur?: () => void;
-  handleChange?: () => void;
+  handleChange?: (value: string) => void;
   handleFocus?: () => void;
   id: string;
   indeterminate?: boolean;
@@ -154,9 +154,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
   }
 
   setIndeterminate() {
-    ReactDOM.findDOMNode(
-      this.checkboxInput.current
-    ).indeterminate = this.props.indeterminate;
+    this.checkboxInput.current.indeterminate = this.props.indeterminate;
   }
 
   render() {
@@ -189,6 +187,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
                 ref={this.checkboxInput}
                 autoFocus={autoFocus}
                 id={id}
+                checked={value}
                 disabled={disabled}
                 indeterminate={indeterminate}
                 required={required}
@@ -224,5 +223,3 @@ export class Checkbox extends React.Component<CheckboxProps> {
     );
   }
 }
-
-export default Checkbox;

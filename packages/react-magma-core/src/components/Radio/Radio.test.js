@@ -11,7 +11,6 @@ const RADIO_CORE_PROPS = {
   handleBlur,
   handleChange,
   handleFocus,
-  selectedValue: 'blue',
   value: 'blue'
 };
 
@@ -35,23 +34,21 @@ describe('RadioCore', () => {
     it('should create the initial state of the input', () => {
       const component = inputSetup();
 
-      expect(component.state('checked')).toEqual(
-        RADIO_CORE_PROPS.selectedValue === RADIO_CORE_PROPS.value
-      );
+      expect(component.state('selectedValue')).toEqual(RADIO_CORE_PROPS.value);
     });
 
     it('should update the state checked when handleChange is called', () => {
-      const checked = true;
+      const selectedValue = 'blue';
       const component = inputSetup();
 
       component.instance().handleChange({
         persist: jest.fn(),
         target: {
-          checked
+          value: selectedValue
         }
       });
 
-      expect(component.state('checked')).toEqual(checked);
+      expect(component.state('selectedValue')).toEqual(selectedValue);
     });
   });
 
@@ -80,7 +77,7 @@ describe('RadioCore', () => {
       const event = {
         persist: jest.fn(),
         target: {
-          checked: true
+          selectedValue: 'blue'
         }
       };
       const component = inputSetup();
@@ -91,7 +88,7 @@ describe('RadioCore', () => {
     });
 
     it('should not fail if no handleChange is passed through the props', () => {
-      const checked = true;
+      const selectedValue = 'blue';
       const component = inputSetup({
         handleChange: undefined
       });
@@ -99,11 +96,11 @@ describe('RadioCore', () => {
       component.instance().handleChange({
         persist: jest.fn(),
         target: {
-          checked
+          value: selectedValue
         }
       });
 
-      expect(component.state('checked')).toEqual(checked);
+      expect(component.state('selectedValue')).toEqual(selectedValue);
       expect(RADIO_CORE_PROPS.handleChange).not.toHaveBeenCalled();
     });
   });

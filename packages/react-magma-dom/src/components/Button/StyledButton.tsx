@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled, { css } from '../../theme/styled-components';
+import { styled, css } from '../../theme/styled-components';
 import { FocusStyles } from '../UtilityStyles';
 import { magma } from '../../theme/magma';
 
@@ -42,7 +42,7 @@ export interface ButtonProps {
   className?: string;
   children?: React.ReactChild | React.ReactChild[];
   text?: string;
-  handleClick?: () => void;
+  handleClick?: (event: React.SyntheticEvent) => void;
   color?: ButtonColor;
   disabled?: boolean;
   iconOnly?: boolean;

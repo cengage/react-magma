@@ -2,20 +2,15 @@ import * as React from 'react';
 import { DisplayInputStyles } from '../SelectionControls/InputStyles';
 import { FocusStyles, HiddenStyles } from '../UtilityStyles';
 import { RadioContext } from './RadioGroup';
-import { RadioCore } from 'react-magma-core';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
-import styled, { css } from '../../theme/styled-components';
+import { styled } from '../../theme/styled-components';
 import { magma } from '../../theme/magma';
 import 'focus-visible';
 
 export interface RadioProps {
   color?: string;
-  checked?: boolean;
   disabled?: boolean;
-  handleBlur?: () => void;
-  handleChange?: () => void;
-  handleFocus?: () => void;
   id: string;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
@@ -122,73 +117,52 @@ const SelectedIcon = styled<{ color: string }, 'span'>('span')`
   }
 `;
 
-export const Radio: React.FunctionComponent<RadioProps> = (
-  props: RadioProps
-): JSX.Element => (
+export const Radio: React.FunctionComponent<RadioProps> = ({
+  color,
+  disabled,
+  id,
+  inputStyle,
+  inverse,
+  labelStyle,
+  labelText,
+  required,
+  style,
+  textVisuallyHidden,
+  value
+}: RadioProps): JSX.Element => (
   <RadioContext.Consumer>
     {context =>
       context && (
-        <RadioCore
-          selectedValue={context.selectedValue}
-          handleBlur={context.handleBlur}
-          handleChange={context.handleChange}
-          handleFocus={context.handleFocus}
-          value={props.value}
-        >
-          {({ handleBlur, handleChange, handleFocus, checked }) => {
-            const {
-              color,
-              disabled,
-              id,
-              inputStyle,
-              inverse,
-              labelStyle,
-              labelText,
-              required,
-              style,
-              textVisuallyHidden,
-              value
-            } = props;
-            const { name } = context;
-
-            return (
-              <StyledContainer style={style}>
-                <HiddenInput
-                  aria-checked={checked}
-                  id={id}
-                  disabled={disabled}
-                  name={name}
-                  required={required}
-                  type="radio"
-                  value={value}
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  onFocus={handleFocus}
-                />
-                <StyledLabel htmlFor={id} inverse={inverse} style={labelStyle}>
-                  <StyledFakeInput
-                    color={color ? color : magma.colors.primary}
-                    disabled={disabled}
-                    inverse={inverse}
-                    style={inputStyle}
-                  >
-                    <SelectedIcon
-                      color={color ? color : magma.colors.primary}
-                    />
-                  </StyledFakeInput>
-                  {textVisuallyHidden ? (
-                    <HiddenLabelText>{labelText}</HiddenLabelText>
-                  ) : (
-                    labelText
-                  )}
-                </StyledLabel>
-              </StyledContainer>
-            );
-          }}
-        </RadioCore>
+        <StyledContainer style={style}>
+          <HiddenInput
+            checked={context.selectedValue === value}
+            id={id}
+            disabled={disabled}
+            name={context.name}
+            required={required}
+            type="radio"
+            value={value}
+            onBlur={context.handleBlur}
+            onChange={context.handleChange}
+            onFocus={context.handleFocus}
+          />
+          <StyledLabel htmlFor={id} inverse={inverse} style={labelStyle}>
+            <StyledFakeInput
+              color={color ? color : magma.colors.primary}
+              disabled={disabled}
+              inverse={inverse}
+              style={inputStyle}
+            >
+              <SelectedIcon color={color ? color : magma.colors.primary} />
+            </StyledFakeInput>
+            {textVisuallyHidden ? (
+              <HiddenLabelText>{labelText}</HiddenLabelText>
+            ) : (
+              labelText
+            )}
+          </StyledLabel>
+        </StyledContainer>
       )
     }
   </RadioContext.Consumer>
 );
-
-export default Radio;

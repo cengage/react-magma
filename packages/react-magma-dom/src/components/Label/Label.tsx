@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { styled } from '../../theme/styled-components';
 import { magma } from '../../theme/magma';
-import styled from '../../theme/styled-components';
 
 export interface LabelProps {
   children: React.ReactChild | React.ReactChild[];

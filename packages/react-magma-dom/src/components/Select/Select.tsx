@@ -16,7 +16,7 @@ export interface SelectProps {
   name: string;
   labelText: string;
   options: Options[];
-  defaultValue?: string | string[];
+  defaultValue?: Options;
   disabled?: boolean;
   required?: boolean;
   clearable?: boolean;
@@ -24,7 +24,7 @@ export interface SelectProps {
   style?: ReactSelectStyles;
   handleBlur?: () => void;
   handleFocus?: () => void;
-  handleChange?: () => void;
+  handleChange?: (value: string) => void;
   handleOpen?: () => void;
   handleClose?: () => void;
 }

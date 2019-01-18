@@ -13,8 +13,7 @@ const base = {
     babel({
       exclude: 'node_modules/**',
       extensions: ['.ts', '.tsx']
-    }),
-    terser()
+    })
   ]
 };
 

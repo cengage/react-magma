@@ -7,9 +7,12 @@ import { magma } from '../../theme/magma';
 const RADIO_PROPS = {
   labelText: 'Blue',
   id: 'blueId',
-  value: 'blue'
+  value: 'blue',
+  name: 'colors',
+  handleBlur: jest.fn(),
+  handleChange: jest.fn(),
+  handleFocus: jest.fn()
 };
-
 const RADIO_CONTEXT = {
   name: 'colors',
   selectedValue: 'red',
@@ -49,7 +52,7 @@ describe('Radio Group', () => {
     const radio = getByLabelText(RADIO_PROPS.labelText);
 
     expect(radio).toBeInTheDocument();
-    expect(radio).toHaveAttribute('name', RADIO_CONTEXT.name);
+    expect(radio).toHaveAttribute('name', RADIO_PROPS.name);
   });
 
   it('should require the radio button', () => {
@@ -103,13 +106,11 @@ describe('Radio Group', () => {
   it("should be checked if selected value equals it's value", () => {
     const { getByLabelText } = renderRadio(
       {},
-      {
-        selectedValue: RADIO_PROPS.value
-      }
+      { selectedValue: RADIO_PROPS.value }
     );
     const radio = getByLabelText(RADIO_PROPS.labelText);
 
-    expect(radio).toHaveAttribute('aria-checked', 'true');
+    expect(radio).toHaveAttribute('checked');
   });
 
   it('blurring a radio button calls the passed in handleBlur function', () => {
