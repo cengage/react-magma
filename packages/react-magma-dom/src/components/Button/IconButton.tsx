@@ -36,48 +36,6 @@ export interface SpanProps {
   size?: ButtonSize;
 }
 
-const StyledIconButton = styled(StyledButton)`
-  border-radius: ${props => {
-    switch (props.shape) {
-      case 'fill':
-        return '5px';
-      case 'leftCap':
-        return '5px 0 0 5px';
-      case 'rightCap':
-        return '0 5px 5px 0';
-      default:
-        return '100%';
-    }
-  }};
-  display: inline-flex;
-  justify-content: center;
-  line-height: 1;
-  min-width: 0;
-  padding: 0;
-
-  height: ${props => {
-    switch (props.size) {
-      case 'large':
-        return '44px';
-      case 'small':
-        return '28px';
-      default:
-        return '37px';
-    }
-  }};
-
-  width: ${props => {
-    switch (props.size) {
-      case 'large':
-        return '44px';
-      case 'small':
-        return '28px';
-      default:
-        return '37px';
-    }
-  }};
-`;
-
 const SpanTextLeft = styled.span<SpanProps>`
   padding-right: ${props => (props.size === 'large' ? '15px' : '10px')};
 `;
@@ -114,10 +72,12 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
   <ButtonCore handleClick={props.handleClick}>
     {({ handleClick }) => {
       const {
+        as,
         autoFocus,
         ariaLabel,
         children,
         disabled,
+        href,
         icon,
         iconOnly,
         inverse,
@@ -128,14 +88,17 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
         style,
         variant,
         textTransform,
-        textPosition
+        textPosition,
+        to
       } = props;
 
       if (!iconOnly) {
         return (
           <StyledButton
+            as={as}
             autoFocus={autoFocus}
             handleClick={handleClick}
+            href={href}
             block={block}
             color={color ? color : ButtonColor.primary}
             disabled={disabled}
@@ -146,6 +109,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
             textTransform={
               textTransform ? textTransform : ButtonTextTransform.uppercase
             }
+            to={to}
             variant={variant ? variant : ButtonVariant.solid}
           >
             {textPosition === ButtonTextPostition.left && (
@@ -160,20 +124,24 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
       }
 
       return (
-        <StyledIconButton
+        <StyledButton
           ariaLabel={ariaLabel}
+          as={as}
           autoFocus={autoFocus}
           handleClick={handleClick}
           color={color ? color : ButtonColor.primary}
           disabled={disabled}
+          href={href}
+          iconOnly
           inverse={inverse}
           shape={shape ? shape : ButtonShape.round}
           size={size ? size : ButtonSize.medium}
           style={style}
+          to={to}
           variant={variant ? variant : ButtonVariant.solid}
         >
           <Icon size={getIconSize(size)} type={icon} />
-        </StyledIconButton>
+        </StyledButton>
       );
     }}
   </ButtonCore>

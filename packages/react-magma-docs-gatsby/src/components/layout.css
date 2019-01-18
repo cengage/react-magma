@@ -509,3 +509,14 @@ pre tt:after {
     font-size: 100%;
   }
 }
+
+a {
+  color: #006298;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: #003865;
+    text-decoration: underline;
+  }
+}

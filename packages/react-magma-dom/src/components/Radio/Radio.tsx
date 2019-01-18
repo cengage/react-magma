@@ -1,10 +1,6 @@
 import * as React from 'react';
-import {
-  DisplayInputStyles,
-  HiddenStyles
-} from '../SelectionControls/InputStyles';
-// import { RadioContext } from './RadioGroup';
-// import { RadioCore } from 'react-magma-core';
+import { DisplayInputStyles } from '../SelectionControls/InputStyles';
+import { FocusStyles, HiddenStyles } from '../UtilityStyles';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import { styled } from '../../theme/styled-components';
@@ -92,9 +88,9 @@ const StyledFakeInput = styled<
     // focus state
     &:before {
       height: 30px;
-      outline: 2px dotted ${magma.colors.pop03};
       position: absolute;
       width: 30px;
+      ${FocusStyles};
     }
   }
 

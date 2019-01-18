@@ -30,13 +30,3 @@ export const DisplayInputStyles = css`
     width: 40px;
   }
 `;
-
-export const HiddenStyles = css`
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  position: absolute;
-  overflow: hidden;
-  top: auto;
-  white-space: nowrap;
-  width: 1px;
-`;

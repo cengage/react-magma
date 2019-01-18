@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { styled } from '../../theme/styled-components';
+import { styled, css } from '../../theme/styled-components';
+import { FocusStyles } from '../UtilityStyles';
 import { magma } from '../../theme/magma';
 
 export enum ButtonVariant {
@@ -35,6 +36,7 @@ export enum ButtonTextTransform {
 
 export interface ButtonProps {
   ariaLabel?: string;
+  as?: any;
   autoFocus?: boolean;
   block?: boolean;
   className?: string;
@@ -45,10 +47,12 @@ export interface ButtonProps {
   disabled?: boolean;
   iconOnly?: boolean;
   inverse?: boolean;
+  href?: string;
   shape?: ButtonShape;
   size?: ButtonSize;
   style?: React.CSSProperties;
   textTransform?: ButtonTextTransform;
+  to?: string;
   variant?: ButtonVariant;
 }
 
@@ -74,6 +78,7 @@ const StyledButtonComponent = styled<ButtonProps, 'button'>('button')`
   overflow: hidden;
   position: relative;
   text-align: center;
+  text-decoration: none;
   text-transform: ${props => props.textTransform};
   vertical-align: middle;
   touch-action: manipulation;
@@ -150,7 +155,7 @@ const StyledButtonComponent = styled<ButtonProps, 'button'>('button')`
   }
 
   &:focus {
-    outline: 2px dotted ${magma.colors.pop03};
+    ${FocusStyles};
     outline-offset: 3px;
   }
 
@@ -240,44 +245,94 @@ const StyledButtonComponent = styled<ButtonProps, 'button'>('button')`
       }
     }
   }};
-  color: ${props => {
-    // Button color, variant, inverse
-    if (props.disabled && props.inverse && props.variant !== 'solid') {
-      return magma.colors.disabledInverseText;
-    }
-    if (props.disabled) {
-      return magma.colors.disabledText;
-    }
-    if (
-      (!props.inverse && props.variant === 'solid') ||
-      (props.inverse && props.variant !== 'solid')
-    ) {
-      if (props.color === 'secondary' && !props.inverse) {
-        return magma.colors.neutral02;
+
+  &,
+  &:hover,
+  &:focus {
+    color: ${props => {
+      // Button color, variant, inverse
+      if (props.disabled && props.inverse && props.variant !== 'solid') {
+        return magma.colors.disabledInverseText;
       }
-      return magma.colors.neutral08;
-    }
-    switch (props.color) {
-      case 'secondary':
-        return magma.colors.neutral02;
-      case 'success':
-        return magma.colors.success01;
-      case 'danger':
-        return magma.colors.danger;
-      default:
-        return magma.colors.primary;
-    }
-  }};
+      if (props.disabled) {
+        return magma.colors.disabledText;
+      }
+      if (
+        (!props.inverse && props.variant === 'solid') ||
+        (props.inverse && props.variant !== 'solid')
+      ) {
+        if (props.color === 'secondary' && !props.inverse) {
+          return magma.colors.neutral02;
+        }
+        return magma.colors.neutral08;
+      }
+      switch (props.color) {
+        case 'secondary':
+          return magma.colors.neutral02;
+        case 'success':
+          return magma.colors.success01;
+        case 'danger':
+          return magma.colors.danger;
+        default:
+          return magma.colors.primary;
+      }
+    }};
+  }
+  ${props =>
+    props.iconOnly &&
+    css`
+      border-radius: ${p => {
+        switch (p.shape) {
+          case 'fill':
+            return '5px';
+          case 'leftCap':
+            return '5px 0 0 5px';
+          case 'rightCap':
+            return '0 5px 5px 0';
+          default:
+            return '100%';
+        }
+      }};
+      display: inline-flex;
+      justify-content: center;
+      line-height: 1;
+      min-width: 0;
+      padding: 0;
+
+      height: ${p => {
+        switch (p.size) {
+          case 'large':
+            return '44px';
+          case 'small':
+            return '28px';
+          default:
+            return '37px';
+        }
+      }};
+
+      width: ${p => {
+        switch (p.size) {
+          case 'large':
+            return '44px';
+          case 'small':
+            return '28px';
+          default:
+            return '37px';
+        }
+      }};
+    `}
 `;
 
 export const StyledButton: React.FunctionComponent<ButtonProps> = ({
   ariaLabel,
+  as,
   autoFocus,
   block,
   className,
   children,
   disabled,
   handleClick,
+  href,
   iconOnly,
   inverse,
   color,
@@ -285,9 +340,11 @@ export const StyledButton: React.FunctionComponent<ButtonProps> = ({
   size,
   style,
   textTransform,
+  to,
   variant
 }: ButtonProps) => (
   <StyledButtonComponent
+    as={as}
     aria-label={ariaLabel}
     className={className}
     autoFocus={autoFocus}
@@ -295,14 +352,16 @@ export const StyledButton: React.FunctionComponent<ButtonProps> = ({
     block={block}
     color={color}
     disabled={disabled}
+    href={href}
     iconOnly={iconOnly}
     inverse={inverse}
     shape={shape}
     size={size}
     style={style}
     textTransform={textTransform}
+    to={to}
     variant={variant}
   >
-    {!iconOnly && children}
+    {children}
   </StyledButtonComponent>
 );

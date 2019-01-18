@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { HiddenStyles } from '../SelectionControls/InputStyles';
 import { RadioCore } from 'react-magma-core';
 import { RadioProps } from './Radio';
+import { HiddenStyles } from '../UtilityStyles';
+
 const styled = require('styled-components').default;
 
 const StyledLabel = styled.label`

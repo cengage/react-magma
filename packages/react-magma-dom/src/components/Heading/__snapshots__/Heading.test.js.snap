@@ -2,7 +2,7 @@
 
 exports[`Heading Snapshot should render heading 1 correctly 1`] = `
 .c0 {
-  color: #007db8;
+  color: #006298;
   font-family: gnuolane,sans-serif;
   font-weight: 500;
   line-height: 1.1;
@@ -21,7 +21,7 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
 
 exports[`Heading Snapshot should render heading 2 correctly 1`] = `
 .c0 {
-  color: #007db8;
+  color: #006298;
   font-family: gnuolane,sans-serif;
   font-weight: 500;
   line-height: 1.1;
@@ -40,7 +40,7 @@ exports[`Heading Snapshot should render heading 2 correctly 1`] = `
 
 exports[`Heading Snapshot should render heading 3 correctly 1`] = `
 .c0 {
-  color: #007db8;
+  color: #006298;
   font-family: gnuolane,sans-serif;
   font-weight: 500;
   line-height: 1.1;
@@ -59,7 +59,7 @@ exports[`Heading Snapshot should render heading 3 correctly 1`] = `
 
 exports[`Heading Snapshot should render heading 4 correctly 1`] = `
 .c0 {
-  color: #007db8;
+  color: #006298;
   font-family: gnuolane,sans-serif;
   font-weight: 500;
   line-height: 1.1;
@@ -78,7 +78,7 @@ exports[`Heading Snapshot should render heading 4 correctly 1`] = `
 
 exports[`Heading Snapshot should render heading 5 correctly 1`] = `
 .c0 {
-  color: #007db8;
+  color: #006298;
   font-family: gnuolane,sans-serif;
   font-weight: 500;
   line-height: 1.1;
@@ -97,7 +97,7 @@ exports[`Heading Snapshot should render heading 5 correctly 1`] = `
 
 exports[`Heading Snapshot should render heading 6 correctly 1`] = `
 .c0 {
-  color: #007db8;
+  color: #006298;
   font-family: gnuolane,sans-serif;
   font-weight: 500;
   line-height: 1.1;
