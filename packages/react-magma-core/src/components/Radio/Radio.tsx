@@ -1,8 +1,21 @@
 import * as React from 'react';
 
+export interface RadioCoreProps {
+  children: (props) => React.ReactNode;
+  handleBlur?: () => void;
+  handleChange?: (event: React.SyntheticEvent) => void;
+  selectedValue?: string;
+  handleFocus?: () => void;
+  value?: string;
+}
+
+export interface RadioCoreState {
+  selectedValue?: string;
+}
+
 export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
   initialState: RadioCoreState = {
-    checked: this.props.value === this.props.selectedValue
+    selectedValue: this.props.value
   };
   state: RadioCoreState = this.initialState;
 
@@ -24,10 +37,10 @@ export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
 
   handleChange(event) {
     event.persist();
-    const { checked } = event.target;
+    const { value: selectedValue } = event.target;
 
     this.setState(
-      () => ({ checked }),
+      () => ({ selectedValue }),
       () => {
         this.props.handleChange && this.props.handleChange(event);
       }
@@ -41,20 +54,7 @@ export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
       handleBlur: this.handleBlur,
       handleChange: this.handleChange,
       handleFocus: this.handleFocus,
-      checked: this.state.checked
+      selectedValue: this.state.selectedValue
     });
   }
-}
-
-export interface RadioCoreProps {
-  children: (props) => React.ReactNode;
-  handleBlur?: () => void;
-  handleChange?: (event: React.SyntheticEvent) => void;
-  selectedValue?: string;
-  handleFocus?: () => void;
-  value?: string;
-}
-
-export interface RadioCoreState {
-  checked?: boolean;
 }

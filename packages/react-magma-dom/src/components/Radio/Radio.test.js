@@ -7,33 +7,20 @@ import { magma } from '../../theme/magma';
 const RADIO_PROPS = {
   labelText: 'Blue',
   id: 'blueId',
-  value: 'blue'
-};
-
-const RADIO_CONTEXT = {
+  value: 'blue',
   name: 'colors',
-  selectedValue: 'red',
   handleBlur: jest.fn(),
   handleChange: jest.fn(),
   handleFocus: jest.fn()
 };
 
-const renderRadio = (myProps = {}, myContext = {}) => {
+const renderRadio = (myProps = {}) => {
   const props = {
     ...RADIO_PROPS,
     ...myProps
   };
 
-  const context = {
-    ...RADIO_CONTEXT,
-    ...myContext
-  };
-
-  return render(
-    <RadioContext.Provider value={context}>
-      <Radio {...props} />
-    </RadioContext.Provider>
-  );
+  return render(<Radio {...props} />);
 };
 
 describe('Radio Group', () => {
@@ -49,7 +36,7 @@ describe('Radio Group', () => {
     const radio = getByLabelText(RADIO_PROPS.labelText);
 
     expect(radio).toBeInTheDocument();
-    expect(radio).toHaveAttribute('name', RADIO_CONTEXT.name);
+    expect(radio).toHaveAttribute('name', RADIO_PROPS.name);
   });
 
   it('should require the radio button', () => {
@@ -101,15 +88,10 @@ describe('Radio Group', () => {
   });
 
   it("should be checked if selected value equals it's value", () => {
-    const { getByLabelText } = renderRadio(
-      {},
-      {
-        selectedValue: RADIO_PROPS.value
-      }
-    );
+    const { getByLabelText } = renderRadio({ checked: true });
     const radio = getByLabelText(RADIO_PROPS.labelText);
 
-    expect(radio).toHaveAttribute('aria-checked', 'true');
+    expect(radio).toHaveAttribute('checked');
   });
 
   it('blurring a radio button calls the passed in handleBlur function', () => {
@@ -123,7 +105,7 @@ describe('Radio Group', () => {
       })
     );
 
-    expect(RADIO_CONTEXT.handleBlur).toHaveBeenCalledTimes(1);
+    expect(RADIO_PROPS.handleBlur).toHaveBeenCalledTimes(1);
   });
 
   it('changing a radio button calls the passed in handleChange function', () => {
@@ -137,7 +119,7 @@ describe('Radio Group', () => {
       })
     );
 
-    expect(RADIO_CONTEXT.handleChange).toHaveBeenCalledTimes(1);
+    expect(RADIO_PROPS.handleChange).toHaveBeenCalledTimes(1);
   });
 
   it('focusing a radio button calls the passed in handleFocus function', () => {
@@ -151,6 +133,6 @@ describe('Radio Group', () => {
       })
     );
 
-    expect(RADIO_CONTEXT.handleFocus).toHaveBeenCalledTimes(1);
+    expect(RADIO_PROPS.handleFocus).toHaveBeenCalledTimes(1);
   });
 });

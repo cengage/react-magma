@@ -1,16 +1,14 @@
 import * as React from 'react';
 import { RadioGroup, RadioContext } from './RadioGroup';
-import { render, fireEvent } from 'react-testing-library';
+import { Radio } from './Radio';
+import { render, fireEvent, wait } from 'react-testing-library';
+import { magma } from '../../theme/magma';
 
 const RADIO_GROUP_PROPS = {
-  name: 'colors',
+  value: 'default',
   labelText: 'Colors',
-  children: React.createElement('div')
-};
-
-const RADIO_CONTEXT = {
-  name: RADIO_GROUP_PROPS.name,
-  selectedValue: 'value',
+  id: 'colorsGroup',
+  name: 'colors',
   handleChange: jest.fn()
 };
 
@@ -20,7 +18,17 @@ const renderRadioGroup = (myProps = {}) => {
     ...myProps
   };
 
-  return render(<RadioGroup {...props} />);
+  return render(
+    <RadioGroup {...props}>
+      <Radio id="colorRadio" labelText="Default Color" value="default" />
+      <Radio
+        color={magma.colors.success01}
+        id="successColorRadio"
+        labelText="Success Color"
+        value="success"
+      />
+    </RadioGroup>
+  );
 };
 
 describe('Radio Group', () => {
@@ -44,37 +52,46 @@ describe('Radio Group', () => {
 
     expect(label).toHaveStyleRule('clip', 'rect(1px,1px,1px,1px)');
   });
+
+  it('should not render anything when invalid children are present', () => {
+    const { container } = render(
+      <RadioGroup>
+        <Radio id="colorRadio" labelText="Default Color" value="default" />
+        {null}
+      </RadioGroup>
+    );
+
+    expect(container.firstChild.children.length).toBe(2);
+  });
 });
 
-describe('Radio Conext', () => {
-  it('RadioProvider passes context to consumer', () => {
-    const tree = (
-      <RadioContext.Provider value={RADIO_CONTEXT}>
-        <RadioContext.Consumer>
-          {value => (
-            <div>
-              <span>Name: {value.name}</span>
-              <span>Selected Value: {value.selectedValue}</span>
-              <button onClick={value.handleChange}>Click</button>
-            </div>
-          )}
-        </RadioContext.Consumer>
-      </RadioContext.Provider>
-    );
-    const { getByText } = render(tree);
-    expect(getByText(/^Name:/).textContent).toBe(`Name: ${RADIO_CONTEXT.name}`);
-    expect(getByText(/^Selected Value:/).textContent).toBe(
-      `Selected Value: ${RADIO_CONTEXT.selectedValue}`
-    );
+describe('Radio Clone', () => {
+  it('Clone children and pass down props', () => {
+    const { getByLabelText } = renderRadioGroup();
+
+    expect(getByLabelText('Default Color')).toHaveAttribute('checked');
+    expect(getByLabelText('Success Color')).not.toHaveAttribute('checked');
+  });
+
+  it('Changes the selected radio when clicked', () => {
+    const handleChangeSpy = jest.fn();
+    const { getByLabelText } = renderRadioGroup({
+      handleChange: handleChangeSpy
+    });
 
     fireEvent(
-      getByText('Click'),
+      getByLabelText('Success Color'),
       new MouseEvent('click', {
         bubbles: true,
         cancelable: true
       })
     );
 
-    expect(RADIO_CONTEXT.handleChange).toHaveBeenCalledTimes(1);
+    expect(handleChangeSpy).toHaveBeenCalledTimes(1);
+
+    wait(() => {
+      expect(getByLabelText('Default Color')).not.toHaveAttribute('checked');
+      expect(getByLabelText('Success Color')).toHaveAttribute('checked');
+    }, 1000);
   });
 });
