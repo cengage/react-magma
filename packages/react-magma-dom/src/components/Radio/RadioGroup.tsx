@@ -2,8 +2,7 @@ import * as React from 'react';
 import { RadioCore } from 'react-magma-core';
 import { RadioProps } from './Radio';
 import { HiddenStyles } from '../UtilityStyles';
-
-const styled = require('styled-components').default;
+import { styled } from '../../theme/styled-components';
 
 const StyledLabel = styled.label`
   display: block;
@@ -30,6 +29,18 @@ export interface RadioGroupProps {
   value?: string;
 }
 
+export interface RadioContextInterface {
+  name: string;
+  selectedValue?: string;
+  handleBlur?: () => void;
+  handleChange?: (event: React.SyntheticEvent) => void;
+  handleFocus?: () => void;
+}
+
+export const RadioContext = React.createContext<RadioContextInterface | null>(
+  null
+);
+
 export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
   props: RadioGroupProps
 ): JSX.Element => (
@@ -51,32 +62,26 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
       } = props;
       return (
         <div aria-labelledby={id} role="radiogroup" style={style}>
-          {textVisuallyHidden ? (
-            <HiddenLabel id={id} style={labelStyle}>
-              {labelText}
-            </HiddenLabel>
-          ) : (
-            <StyledLabel id={id} style={labelStyle}>
-              {labelText}
-            </StyledLabel>
-          )}
-          {React.Children.map(
-            children,
-            (child: React.ReactElement<RadioProps>) => {
-              if (!React.isValidElement(child)) {
-                return null;
-              }
-
-              return React.cloneElement<RadioProps>(child, {
-                ...child.props,
-                name,
-                checked: selectedValue === child.props.value,
-                handleChange: handleChange,
-                handleBlur: handleBlur,
-                handleFocus: handleFocus
-              });
-            }
-          )}
+          <RadioContext.Provider
+            value={{
+              name: name,
+              selectedValue: selectedValue,
+              handleBlur: handleBlur,
+              handleChange: handleChange,
+              handleFocus: handleFocus
+            }}
+          >
+            {textVisuallyHidden ? (
+              <HiddenLabel id={id} style={labelStyle}>
+                {labelText}
+              </HiddenLabel>
+            ) : (
+              <StyledLabel id={id} style={labelStyle}>
+                {labelText}
+              </StyledLabel>
+            )}
+            {children}
+          </RadioContext.Provider>
         </div>
       );
     }}

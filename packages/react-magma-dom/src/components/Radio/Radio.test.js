@@ -13,14 +13,30 @@ const RADIO_PROPS = {
   handleChange: jest.fn(),
   handleFocus: jest.fn()
 };
+const RADIO_CONTEXT = {
+  name: 'colors',
+  selectedValue: 'red',
+  handleBlur: jest.fn(),
+  handleChange: jest.fn(),
+  handleFocus: jest.fn()
+};
 
-const renderRadio = (myProps = {}) => {
+const renderRadio = (myProps = {}, myContext = {}) => {
   const props = {
     ...RADIO_PROPS,
     ...myProps
   };
 
-  return render(<Radio {...props} />);
+  const context = {
+    ...RADIO_CONTEXT,
+    ...myContext
+  };
+
+  return render(
+    <RadioContext.Provider value={context}>
+      <Radio {...props} />
+    </RadioContext.Provider>
+  );
 };
 
 describe('Radio Group', () => {
@@ -88,7 +104,10 @@ describe('Radio Group', () => {
   });
 
   it("should be checked if selected value equals it's value", () => {
-    const { getByLabelText } = renderRadio({ checked: true });
+    const { getByLabelText } = renderRadio(
+      {},
+      { selectedValue: RADIO_PROPS.value }
+    );
     const radio = getByLabelText(RADIO_PROPS.labelText);
 
     expect(radio).toHaveAttribute('checked');
@@ -105,7 +124,7 @@ describe('Radio Group', () => {
       })
     );
 
-    expect(RADIO_PROPS.handleBlur).toHaveBeenCalledTimes(1);
+    expect(RADIO_CONTEXT.handleBlur).toHaveBeenCalledTimes(1);
   });
 
   it('changing a radio button calls the passed in handleChange function', () => {
@@ -119,7 +138,7 @@ describe('Radio Group', () => {
       })
     );
 
-    expect(RADIO_PROPS.handleChange).toHaveBeenCalledTimes(1);
+    expect(RADIO_CONTEXT.handleChange).toHaveBeenCalledTimes(1);
   });
 
   it('focusing a radio button calls the passed in handleFocus function', () => {
@@ -133,6 +152,6 @@ describe('Radio Group', () => {
       })
     );
 
-    expect(RADIO_PROPS.handleFocus).toHaveBeenCalledTimes(1);
+    expect(RADIO_CONTEXT.handleFocus).toHaveBeenCalledTimes(1);
   });
 });
