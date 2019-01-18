@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CheckboxCore } from 'react-magma-core';
-import { FocusStyles, HiddenStyles } from '../UtilityStyles';
+import { HiddenStyles } from '../UtilityStyles';
 import { Icon } from '../Icon/Icon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
