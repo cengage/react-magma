@@ -4,7 +4,7 @@ import { HiddenStyles } from '../UtilityStyles';
 import { Icon } from '../Icon/Icon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
-import styled, { css } from '../../theme/styled-components';
+import { styled, css } from '../../theme/styled-components';
 import { magma } from '../../theme/magma';
 import 'focus-visible';
 
