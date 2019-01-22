@@ -1,6 +1,6 @@
 {
   "name": "react-magma-dom",
-  "version": "0.1.0-beta.5",
+  "version": "0.1.0-beta.6",
   "description": "",
   "main": "dist/bundle.js",
   "module": "dist/esBundle.js",
