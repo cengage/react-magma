@@ -153,8 +153,8 @@ Passing the `block` property will set the button to display full-width.
 ```
 
 ## Using different elements
-Passing in the `as` prop will allow a styed button to render as a different type of element, which can be useful
-if you need to use an `a` tag or a `Link` component.
+Passing in the `as` prop will allow a styed button to render as a different type of element.
+The `href` and `to` props are also supported, so that a button can be used as an  `a` tag or a `Link` component.
 
 ```.jsx
     <p>
@@ -206,17 +206,21 @@ Events do not fire on disabled buttons.
 
 ## Button Props
 
-| Prop                   | Variant  | Default | Required    |
+| Prop                   | Type  | Default | Required    |
 | -----------------------|------ |---------|:-----------:|
-| handleClick | func | | &#10003;
+| as | any | |
 | autoFocus | boolean | false |
-| children | node | |
 | block | boolean | false |
+| className | string | |
+| children | node | |
 | color | enum: 'primary' &#124; 'secondary' &#124; 'success' &#124; 'danger' | 'primary' |
 | disabled | boolean | false |
+| handleClick | func | | &#10003;
+| href | string | |
 | inverse | boolean | false |
 | shape | enum: 'fill' &#124; 'leftCap' &#124; 'rightCap' &#124; 'round' | 'fill' |
 | size | enum: 'large' &#124; 'medium' &#124; 'small' | 'medium' |
-| textTransform | enum: 'uppercase' &#124; 'none' | 'uppercase' |
-| variant | enum: 'solid' &#124; 'outline' &#124; 'link' | 'solid' |
 | style | React.CSSProperties | |
+| textTransform | enum: 'uppercase' &#124; 'none' | 'uppercase' |
+| to | string | |
+| variant | enum: 'solid' &#124; 'outline' &#124; 'link' | 'solid' |

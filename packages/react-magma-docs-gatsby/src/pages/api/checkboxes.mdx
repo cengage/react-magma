@@ -13,6 +13,7 @@ title: "Checkboxes"
         labelText='Checkbox Label' />
 
     <Checkbox
+        checked
         id='checkbox1'
         labelText='Checkbox Label' />
 
@@ -149,19 +150,19 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
 
 | Prop                   | Type | Default | Required    |
 | -----------------------|------|---------|:-----------:|
-| autoFocus | boolean | | &#10003;
+| autoFocus | boolean | false |
 | color | string | |
-| disabled | boolean | |
+| disabled | boolean | false |
 | handleBlur | function | |
 | handleChange | function | |
 | handleFocus | function | |
 | id | string | | &#10003;
-| indeterminate | boolean | |
+| indeterminate | boolean | false |
 | inputStyle | React.CSSProperties | |
-| inverse | boolean | |
+| inverse | boolean | false |
 | labelStyle | React.CSSProperties | |
 | labelText | string | | &#10003;
-| required | function | |
+| required | boolean | false |
 | style | React.CSSProperties | |
-| textVisuallyHidden | boolean | |
+| textVisuallyHidden | boolean | false |
 | value | string | |

@@ -156,11 +156,15 @@ Adding the `textVisuallyHidden` prop will make the label text available to scree
 
 | Prop                   | Type | Default | Required    |
 | -----------------------|------|---------|:-----------:|
-| children | React.ReactChild | |
-| labelText | string | | &#10003;
+| children | React.ReactChild | | &#10003;
+| handleBlur | function | |
 | handleChange | function | |
+| handleFocus | function | |
 | id | string | | &#10003;
+| labelStyle | React.CSSProperties | |
+| labelText | string | | &#10003;
 | name | string | | &#10003;
+| style | React.CSSProperties | |
 | textVisuallyHidden | boolean | |
 | value | string | |
 
@@ -168,18 +172,14 @@ Adding the `textVisuallyHidden` prop will make the label text available to scree
 
 | Prop                   | Type | Default | Required    |
 | -----------------------|------|---------|:-----------:|
-| autoFocus | boolean | | &#10003;
 | color | string | |
-| disabled | boolean | |
-| handleBlur | function | |
-| handleChange | function | |
-| handleFocus | function | |
+| disabled | boolean | false |
 | id | string | | &#10003;
 | inputStyle | React.CSSProperties | |
-| inverse | boolean | |
-| labelText | string | | &#10003;
+| inverse | boolean | false |
 | labelStyle | React.CSSProperties | |
+| labelText | string | | &#10003;
 | required | function | |
 | style | React.CSSProperties | |
-| textVisuallyHidden | boolean | |
+| textVisuallyHidden | boolean | false |
 | value | string | |
