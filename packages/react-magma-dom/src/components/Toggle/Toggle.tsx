@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CheckboxCore } from 'react-magma-core';
-import { HiddenStyles } from '../UtilityStyles';
+import { FocusStyles, HiddenStyles } from '../UtilityStyles';
 import { Icon } from '../Icon/Icon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
@@ -65,7 +65,7 @@ const Track = styled<{ checked?: boolean; disabled?: boolean }, 'span'>('span')`
     `}
 
   ${HiddenInput}:focus.focus-visible + label & {
-      outline: 2px dotted ${magma.colors.pop03};
+      ${FocusStyles}
       outline-offset: 3px;
   }
 
