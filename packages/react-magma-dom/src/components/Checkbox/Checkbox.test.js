@@ -99,7 +99,7 @@ describe('Checkbox', () => {
   });
 
   it('should render an inverse, checked checkbox with the correct styles', () => {
-    const { container } = renderCheckbox({ value: true, inverse: true });
+    const { container } = renderCheckbox({ checked: true, inverse: true });
     const span = container.querySelector('span');
 
     expect(span).toHaveStyleRule('background', magma.colors.neutral08);

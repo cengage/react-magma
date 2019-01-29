@@ -32,9 +32,9 @@ describe('CheckboxCore', () => {
 
   describe('state management', () => {
     it('should create the initial state of the checkbox', () => {
-      const component = checkboxSetup();
+      const component = checkboxSetup({ checked: false });
 
-      expect(component.state('value')).toEqual(CHECKBOX_CORE_PROPS.value);
+      expect(component.state('checked')).toEqual(false);
     });
 
     it('should update the state value when handleChange is called', () => {
@@ -47,7 +47,7 @@ describe('CheckboxCore', () => {
         }
       });
 
-      expect(component.state('value')).toEqual(checked);
+      expect(component.state('checked')).toEqual(true);
     });
   });
 
@@ -97,7 +97,7 @@ describe('CheckboxCore', () => {
         }
       });
 
-      expect(component.state('value')).toEqual(checked);
+      expect(component.state('checked')).toEqual(true);
       expect(CHECKBOX_CORE_PROPS.handleChange).not.toHaveBeenCalled();
     });
   });

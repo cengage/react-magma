@@ -5,7 +5,7 @@ export class CheckboxCore extends React.Component<
   CheckboxCoreState
 > {
   initialState: CheckboxCoreState = {
-    value: this.props.value
+    checked: this.props.checked
   };
   state: CheckboxCoreState = this.initialState;
 
@@ -26,12 +26,12 @@ export class CheckboxCore extends React.Component<
   }
 
   handleChange(event) {
-    const { checked: value } = event.target;
+    const { checked } = event.target;
 
     this.setState(
-      () => ({ value }),
+      () => ({ checked }),
       () => {
-        this.props.handleChange && this.props.handleChange(this.state.value);
+        this.props.handleChange && this.props.handleChange(this.state.checked);
       }
     );
   }
@@ -43,7 +43,7 @@ export class CheckboxCore extends React.Component<
       handleBlur: this.handleBlur,
       handleChange: this.handleChange,
       handleFocus: this.handleFocus,
-      value: this.state.value
+      checked: this.state.checked
     });
   }
 }
@@ -51,11 +51,11 @@ export class CheckboxCore extends React.Component<
 export interface CheckboxCoreProps {
   children: (props) => React.ReactNode;
   handleBlur?: () => void;
-  handleChange?: (value: string) => void;
+  handleChange?: (checked: boolean) => void;
   handleFocus?: () => void;
-  value?: string;
+  checked?: boolean;
 }
 
 export interface CheckboxCoreState {
-  value?: string;
+  checked?: boolean;
 }

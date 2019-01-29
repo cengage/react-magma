@@ -28,6 +28,7 @@ export interface CheckboxProps {
   inverse?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
+  name?: string;
   required?: boolean;
   style?: React.CSSProperties;
   textVisuallyHidden?: boolean;
@@ -95,7 +96,6 @@ const StyledFakeInput = styled<
   }
 
   ${HiddenInput}:focus.focus-visible + label & {
-    // focus state
     &:before {
       ${DisplayInputFocusStyles};
     }
@@ -159,12 +159,12 @@ export class Checkbox extends React.Component<CheckboxProps> {
   render() {
     return (
       <CheckboxCore
-        value={this.props.value}
+        checked={this.props.checked}
         handleBlur={this.props.handleBlur}
         handleChange={this.props.handleChange}
         handleFocus={this.props.handleFocus}
       >
-        {({ handleBlur, handleChange, handleFocus, value }) => {
+        {({ handleBlur, handleChange, handleFocus, checked }) => {
           const {
             autoFocus,
             color,
@@ -175,20 +175,23 @@ export class Checkbox extends React.Component<CheckboxProps> {
             inverse,
             labelStyle,
             labelText,
+            name,
             required,
             style,
-            textVisuallyHidden
+            textVisuallyHidden,
+            value
           } = this.props;
 
           return (
             <StyledContainer style={style}>
               <HiddenInput
-                ref={this.checkboxInput}
                 autoFocus={autoFocus}
                 id={id}
-                checked={value}
+                checked={checked}
                 disabled={disabled}
                 indeterminate={indeterminate}
+                name={name}
+                ref={this.checkboxInput}
                 required={required}
                 type="checkbox"
                 value={value}
@@ -198,7 +201,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
               />
               <StyledLabel htmlFor={id} inverse={inverse} style={labelStyle}>
                 <StyledFakeInput
-                  checked={value}
+                  checked={checked}
                   color={color ? color : magma.colors.primary}
                   disabled={disabled}
                   inverse={inverse}
