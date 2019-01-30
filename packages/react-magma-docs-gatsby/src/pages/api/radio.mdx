@@ -20,6 +20,24 @@ title: "Radio Buttons"
     </RadioGroup>
 ```
 
+## Default Selected Value
+
+To set a selected value by default, use the `value` prop on the `RadioGroup` to pass in the `value` of the option you wish to select.
+
+```.jsx
+  <RadioGroup labelText='Default Selected Value' id='defaultSelectedGroup' name='defaultSelected' value='selectedOption'>
+    <Radio
+        id='radioSelected'
+        labelText='Selected Option'
+        value='selectedOption' />
+
+    <Radio
+        id='radioUnselected'
+        labelText='Unselected Option'
+        value='unselectedOption' />
+    </RadioGroup>
+```
+
 ## Colors
 By default, the radio buttons use the theme's primary color.  But any other color may be passed in.
 
@@ -64,7 +82,7 @@ By default, the radio buttons use the theme's primary color.  But any other colo
     </RadioGroup>
 ```
 
-## Inverse colors
+## Inverse Colors
 
 Inverse is an optional boolean prop, that may be passed in when radio buttons are to be displayed on a dark background.
 
@@ -138,8 +156,8 @@ Adding the `textVisuallyHidden` prop will make the label text available to scree
 ```.jsx
   <RadioGroup
       labelText='Hidden Label'
-      id='visuallyHiddenRadioroup'
-      name='custom'
+      id='visuallyHiddenRadioGroup'
+      name='visuallyHiddenRadioGroup'
       textVisuallyHidden>
         <Radio
             id='visuallyHiddenRadio1'
