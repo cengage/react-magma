@@ -9,7 +9,12 @@ export {
 } from './components/Button/StyledButton';
 export { Heading } from './components/Heading/Heading';
 export { IconButton } from './components/Button/IconButton';
-export { Input } from './components/Input/Input';
+export {
+  Input,
+  InputSize,
+  InputType,
+  IconPosition
+} from './components/Input/Input';
 export { Icon } from './components/Icon/Icon';
 export { ICONS } from './components/Icon/types/icons';
 export { Label } from './components/Label/Label';
