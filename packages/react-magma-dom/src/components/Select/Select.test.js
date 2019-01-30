@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Select, getStyles } from './Select';
-import { render, fireEvent, cleanup } from 'react-testing-library';
+import { render, fireEvent, cleanup, wait } from 'react-testing-library';
 
 const options = [
   {
@@ -87,6 +87,24 @@ describe('Select', () => {
   });
 
   describe('events', () => {
+    it('should trigger the passed in handleChange when option is changed', () => {
+      const handleChangeSpy = jest.fn();
+      const { getByLabelText } = renderSelect({
+        handleChange: handleChangeSpy
+      });
+
+      fireEvent.keyDown(getByLabelText(SELECT_PROPS.labelText), {
+        key: 'ArrowDown',
+        code: 40
+      });
+      fireEvent.keyDown(getByLabelText(SELECT_PROPS.labelText), {
+        key: 'Enter',
+        code: 13
+      });
+
+      expect(handleChangeSpy).toHaveBeenCalledWith(options[0]);
+    });
+
     it('should trigger the passed in handleBlur when focus is removed', () => {
       const handleBlurSpy = jest.fn();
       const { container } = renderSelect({

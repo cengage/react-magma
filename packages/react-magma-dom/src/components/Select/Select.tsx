@@ -24,7 +24,7 @@ export interface SelectProps {
   style?: ReactSelectStyles;
   handleBlur?: () => void;
   handleFocus?: () => void;
-  handleChange?: (value: string) => void;
+  handleChange?: (option: Options) => void;
   handleOpen?: () => void;
   handleClose?: () => void;
 }
@@ -199,6 +199,7 @@ export const Select: React.FunctionComponent<SelectProps> = (
             onMenuOpen={handleOpen}
             onMenuClose={handleClose}
             styles={getStyles(style)}
+            classNamePrefix="magma"
           />
         </div>
       );

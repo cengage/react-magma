@@ -1,6 +1,6 @@
 {
   "name": "react-magma-dom",
-  "version": "0.1.0-beta.6",
+  "version": "0.1.0-beta.9",
   "description": "",
   "main": "dist/bundle.js",
   "module": "dist/esBundle.js",
@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@types/react": "^16.4.12",
+    "csstype": "^2.6.1",
     "focus-visible": "^4.1.5",
     "fs-extra": "^7.0.1",
     "glob": "^7.1.3",

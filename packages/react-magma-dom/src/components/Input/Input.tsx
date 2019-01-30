@@ -5,18 +5,18 @@ import { Icon } from '../Icon/Icon';
 import { Label } from '../Label/Label';
 import { magma } from '../../theme/magma';
 
-enum IconPosition {
+export enum IconPosition {
   left = 'left',
   right = 'right'
 }
 
-enum InputSize {
+export enum InputSize {
   large = 'large',
   medium = 'medium', //default
   small = 'small'
 }
 
-enum Type {
+export enum InputType {
   text = 'text',
   password = 'password',
   number = 'number'
@@ -43,8 +43,8 @@ export interface InputProps {
   placeholder?: string;
   required?: boolean;
   style?: React.CSSProperties;
-  type?: Type;
-  value?: string;
+  type?: InputType;
+  value?: string | number;
 }
 
 interface IconWrapperProps {
@@ -267,7 +267,7 @@ export const Input: React.FunctionComponent<InputProps> = (
               placeholder={placeholder}
               required={required}
               style={inputStyle}
-              type={type ? type : Type.text}
+              type={type ? type : InputType.text}
               value={value}
               onBlur={handleBlur}
               onChange={handleChange}
