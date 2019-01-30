@@ -1,4 +1,5 @@
 import { css } from '../../theme/styled-components';
+import { FocusStyles } from '../UtilityStyles';
 
 export const DisplayInputStyles = css`
   align-items: center;
@@ -29,4 +30,17 @@ export const DisplayInputStyles = css`
     transition: opacity 1s, transform 0.5s;
     width: 40px;
   }
+`;
+
+export const DisplayInputActiveStyles = css`
+  opacity: 0.4;
+  transform: scale(0);
+  transition: transform 0s;
+`;
+
+export const DisplayInputFocusStyles = css`
+  height: 30px;
+  position: absolute;
+  width: 30px;
+  ${FocusStyles};
 `;

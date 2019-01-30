@@ -9,6 +9,7 @@ title: "Checkboxes"
 ```.jsx
   <div>
     <Checkbox
+        checked
         id='checkbox0'
         labelText='Checkbox Label' />
 
@@ -27,19 +28,22 @@ By default, the checkboxes use the theme's primary color.  But any other color m
 
 ```.jsx
   <div>
-  <Checkbox
-      id='colorCheckbox'
-      labelText='Default Color'
-      value={false} />
     <Checkbox
+        checked
+        id='colorCheckbox'
+        labelText='Default Color' />
+    <Checkbox
+        checked
         color={magma.colors.success01}
         id='primaryColorCheckbox'
         labelText='Success Color' />
     <Checkbox
+        checked
         color={magma.colors.danger}
         id='dangerColorCheckbox'
         labelText='Danger Color' />
     <Checkbox
+        checked
         color={magma.colors.pop02}
         id='popColorCheckbox'
         labelText='Pop Color' />
@@ -78,22 +82,25 @@ Inverse is an optional boolean prop, that may be passed in when checkboxes are t
 
 ```.jsx
   <div style={{ background : '#00263E', padding: '10px' }}>
-  <Checkbox
-      id='inverseCheckbox'
-      inverse
-      labelText='Inverse'
-      value={false} />
     <Checkbox
+        checked
+        id='inverseCheckbox'
+        inverse
+      labelText='Inverse' />
+    <Checkbox
+        checked
         color={magma.colors.success01}
         id='successInverseCheckbox'
         inverse
         labelText='Success Inverse' />
     <Checkbox
+        checked
         color={magma.colors.danger}
         id='dangerInverseCheckbox'
         inverse
         labelText='Danger Inverse' />
     <Checkbox
+        checked
         color={magma.colors.pop02}
         id='popInverseCheckbox'
         inverse
@@ -131,17 +138,17 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
 ```.jsx
   <div>
     <Checkbox
+        checked
         id='custom1'
         inputStyle={{ 'box-shadow': '3px 3px 3px rgba(0, 0 , 0, .6)'}}
         labelStyle={{ 'color': 'red', 'font-style': 'italic'}}
         labelText='Custom Styles'
-        style={{ 'border': '1px dotted purple'}}
-        value='1' />
+        style={{ 'border': '1px dotted purple'}} />
 
     <Checkbox
+        checked
         id='custom2'
-        labelText='No Custom Styles'
-        value='2' />
+        labelText='No Custom Styles' />
   </div>
 ```
 
@@ -149,19 +156,20 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
 
 | Prop                   | Type | Default | Required    |
 | -----------------------|------|---------|:-----------:|
-| autoFocus | boolean | | &#10003;
+| autoFocus | boolean | false |
+| checked | boolean | false |
 | color | string | |
-| disabled | boolean | |
+| disabled | boolean | false |
 | handleBlur | function | |
 | handleChange | function | |
 | handleFocus | function | |
 | id | string | | &#10003;
-| indeterminate | boolean | |
+| indeterminate | boolean | false |
 | inputStyle | React.CSSProperties | |
-| inverse | boolean | |
+| inverse | boolean | false |
 | labelStyle | React.CSSProperties | |
 | labelText | string | | &#10003;
-| required | function | |
+| required | boolean | false |
 | style | React.CSSProperties | |
-| textVisuallyHidden | boolean | |
+| textVisuallyHidden | boolean | false |
 | value | string | |

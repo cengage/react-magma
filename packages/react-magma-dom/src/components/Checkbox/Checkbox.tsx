@@ -1,8 +1,12 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { CheckboxCore } from 'react-magma-core';
-import { DisplayInputStyles } from '../SelectionControls/InputStyles';
-import { FocusStyles, HiddenStyles } from '../UtilityStyles';
+import {
+  DisplayInputStyles,
+  DisplayInputActiveStyles,
+  DisplayInputFocusStyles
+} from '../SelectionControls/InputStyles';
+import { HiddenStyles } from '../UtilityStyles';
 import { Icon } from '../Icon/Icon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
@@ -24,6 +28,7 @@ export interface CheckboxProps {
   inverse?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
+  name?: string;
   required?: boolean;
   style?: React.CSSProperties;
   textVisuallyHidden?: boolean;
@@ -91,12 +96,8 @@ const StyledFakeInput = styled<
   }
 
   ${HiddenInput}:focus.focus-visible + label & {
-    // focus state
     &:before {
-      height: 30px;
-      position: absolute;
-      width: 30px;
-      ${FocusStyles};
+      ${DisplayInputFocusStyles};
     }
   }
 
@@ -108,9 +109,7 @@ const StyledFakeInput = styled<
 
   ${HiddenInput}:not (:disabled):active + label & {
     &:after {
-      opacity: 0.4;
-      transform: scale(0);
-      transition: transform 0s;
+      ${DisplayInputActiveStyles}
     }
   }
 
@@ -160,12 +159,12 @@ export class Checkbox extends React.Component<CheckboxProps> {
   render() {
     return (
       <CheckboxCore
-        value={this.props.value}
+        checked={this.props.checked}
         handleBlur={this.props.handleBlur}
         handleChange={this.props.handleChange}
         handleFocus={this.props.handleFocus}
       >
-        {({ handleBlur, handleChange, handleFocus, value }) => {
+        {({ handleBlur, handleChange, handleFocus, checked }) => {
           const {
             autoFocus,
             color,
@@ -176,20 +175,23 @@ export class Checkbox extends React.Component<CheckboxProps> {
             inverse,
             labelStyle,
             labelText,
+            name,
             required,
             style,
-            textVisuallyHidden
+            textVisuallyHidden,
+            value
           } = this.props;
 
           return (
             <StyledContainer style={style}>
               <HiddenInput
-                ref={this.checkboxInput}
                 autoFocus={autoFocus}
                 id={id}
-                checked={value}
+                checked={checked}
                 disabled={disabled}
                 indeterminate={indeterminate}
+                name={name}
+                ref={this.checkboxInput}
                 required={required}
                 type="checkbox"
                 value={value}
@@ -199,7 +201,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
               />
               <StyledLabel htmlFor={id} inverse={inverse} style={labelStyle}>
                 <StyledFakeInput
-                  checked={value}
+                  checked={checked}
                   color={color ? color : magma.colors.primary}
                   disabled={disabled}
                   inverse={inverse}

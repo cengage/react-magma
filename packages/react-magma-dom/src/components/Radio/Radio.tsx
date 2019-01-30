@@ -1,6 +1,10 @@
 import * as React from 'react';
-import { DisplayInputStyles } from '../SelectionControls/InputStyles';
-import { FocusStyles, HiddenStyles } from '../UtilityStyles';
+import {
+  DisplayInputStyles,
+  DisplayInputActiveStyles,
+  DisplayInputFocusStyles
+} from '../SelectionControls/InputStyles';
+import { HiddenStyles } from '../UtilityStyles';
 import { RadioContext } from './RadioGroup';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
@@ -83,10 +87,7 @@ const StyledFakeInput = styled<
   ${HiddenInput}:focus.focus-visible + label & {
     // focus state
     &:before {
-      height: 30px;
-      position: absolute;
-      width: 30px;
-      ${FocusStyles};
+      ${DisplayInputFocusStyles};
     }
   }
 
@@ -98,9 +99,7 @@ const StyledFakeInput = styled<
 
   ${HiddenInput}:not(:disabled):active + label & {
     &:after {
-      opacity: 0.4;
-      transform: scale(0);
-      transition: transform 0s;
+      ${DisplayInputActiveStyles}
     }
   }
 `;

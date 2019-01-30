@@ -20,6 +20,24 @@ title: "Radio Buttons"
     </RadioGroup>
 ```
 
+## Default Selected Value
+
+To set a selected value by default, use the `value` prop on the `RadioGroup` to pass in the `value` of the option you wish to select.
+
+```.jsx
+  <RadioGroup labelText='Default Selected Value' id='defaultSelectedGroup' name='defaultSelected' value='selectedOption'>
+    <Radio
+        id='radioSelected'
+        labelText='Selected Option'
+        value='selectedOption' />
+
+    <Radio
+        id='radioUnselected'
+        labelText='Unselected Option'
+        value='unselectedOption' />
+    </RadioGroup>
+```
+
 ## Colors
 By default, the radio buttons use the theme's primary color.  But any other color may be passed in.
 
@@ -64,7 +82,7 @@ By default, the radio buttons use the theme's primary color.  But any other colo
     </RadioGroup>
 ```
 
-## Inverse colors
+## Inverse Colors
 
 Inverse is an optional boolean prop, that may be passed in when radio buttons are to be displayed on a dark background.
 
@@ -138,8 +156,8 @@ Adding the `textVisuallyHidden` prop will make the label text available to scree
 ```.jsx
   <RadioGroup
       labelText='Hidden Label'
-      id='visuallyHiddenRadioroup'
-      name='custom'
+      id='visuallyHiddenRadioGroup'
+      name='visuallyHiddenRadioGroup'
       textVisuallyHidden>
         <Radio
             id='visuallyHiddenRadio1'
@@ -156,11 +174,15 @@ Adding the `textVisuallyHidden` prop will make the label text available to scree
 
 | Prop                   | Type | Default | Required    |
 | -----------------------|------|---------|:-----------:|
-| children | React.ReactChild | |
-| labelText | string | | &#10003;
+| children | React.ReactChild | | &#10003;
+| handleBlur | function | |
 | handleChange | function | |
+| handleFocus | function | |
 | id | string | | &#10003;
+| labelStyle | React.CSSProperties | |
+| labelText | string | | &#10003;
 | name | string | | &#10003;
+| style | React.CSSProperties | |
 | textVisuallyHidden | boolean | |
 | value | string | |
 
@@ -168,18 +190,14 @@ Adding the `textVisuallyHidden` prop will make the label text available to scree
 
 | Prop                   | Type | Default | Required    |
 | -----------------------|------|---------|:-----------:|
-| autoFocus | boolean | | &#10003;
 | color | string | |
-| disabled | boolean | |
-| handleBlur | function | |
-| handleChange | function | |
-| handleFocus | function | |
+| disabled | boolean | false |
 | id | string | | &#10003;
 | inputStyle | React.CSSProperties | |
-| inverse | boolean | |
-| labelText | string | | &#10003;
+| inverse | boolean | false |
 | labelStyle | React.CSSProperties | |
+| labelText | string | | &#10003;
 | required | function | |
 | style | React.CSSProperties | |
-| textVisuallyHidden | boolean | |
+| textVisuallyHidden | boolean | false |
 | value | string | |
