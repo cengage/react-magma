@@ -1,6 +1,7 @@
 node_modules
 .rpt2_cache
 dist
+lib
 coverage
 *.log
 *.d.ts

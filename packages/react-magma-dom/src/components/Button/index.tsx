@@ -8,7 +8,7 @@ import {
   ButtonSize,
   ButtonTextTransform,
   ButtonVariant
-} from './StyledButton';
+} from '../StyledButton';
 
 export const Button: React.FunctionComponent<ButtonProps> = (
   props: ButtonProps

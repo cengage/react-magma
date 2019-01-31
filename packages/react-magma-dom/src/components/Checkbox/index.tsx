@@ -7,7 +7,7 @@ import {
   DisplayInputFocusStyles
 } from '../SelectionControls/InputStyles';
 import { HiddenStyles } from '../UtilityStyles';
-import { Icon } from '../Icon/Icon';
+import { Icon } from '../Icon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import { styled } from '../../theme/styled-components';

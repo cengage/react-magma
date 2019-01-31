@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SelectCore } from 'react-magma-core';
-import { Icon } from '../Icon/Icon';
-import { Label } from '../Label/Label';
+import { Icon } from '../Icon';
+import { Label } from '../Label';
 import { magma } from '../../theme/magma';
 
 import ReactSelect, { components } from 'react-select';

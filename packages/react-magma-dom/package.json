@@ -7,12 +7,14 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "!dist/reports"
+    "!dist/reports",
+    "lib"
   ],
   "publishConfig": {
     "registry": "http://nexus.mindtap.corp.web/content/repositories/npm.cengage/"
   },
   "scripts": {
+    "babel-build": "babel src --out-dir lib --extensions '.tsx','.ts'",
     "compiler-checks": "tsc --noEmit --project './tsconfig.json'",
     "test": "jest",
     "test-watch": "jest --watch",
@@ -44,6 +46,7 @@
     "styled-components": "^4.1.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/plugin-proposal-decorators": "^7.0.0",

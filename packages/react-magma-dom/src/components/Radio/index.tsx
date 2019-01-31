@@ -5,7 +5,7 @@ import {
   DisplayInputFocusStyles
 } from '../SelectionControls/InputStyles';
 import { HiddenStyles } from '../UtilityStyles';
-import { RadioContext } from './RadioGroup';
+import { RadioContext } from '../RadioGroup';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import { styled } from '../../theme/styled-components';

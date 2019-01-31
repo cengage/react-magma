@@ -1,6 +1,6 @@
 import React from 'react';
 import { axe } from 'jest-axe';
-import { Input } from './Input';
+import { Input } from '.';
 import { render, fireEvent, cleanup } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 

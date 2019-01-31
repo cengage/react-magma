@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox } from './Checkbox';
+import { Checkbox } from '.';
 import { render, fireEvent, cleanup } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 

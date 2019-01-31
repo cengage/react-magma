@@ -1,11 +1,6 @@
 import React from 'react';
-import { Toggle } from './Toggle';
-import {
-  render,
-  fireEvent,
-  cleanup,
-  waitForElement
-} from 'react-testing-library';
+import { Toggle } from '.';
+import { render, cleanup } from 'react-testing-library';
 
 const TOGGLE_PROPS = {
   autoFocus: false,

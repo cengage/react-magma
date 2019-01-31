@@ -1,6 +1,6 @@
 import React from 'react';
 import { axe } from 'jest-axe';
-import { Button } from './Button';
+import { Button } from '.';
 import { render, cleanup } from 'react-testing-library';
 import {
   ButtonColor,
@@ -8,7 +8,7 @@ import {
   ButtonSize,
   ButtonTextTransform,
   ButtonVariant
-} from './StyledButton';
+} from '../StyledButton';
 
 const TEXT = 'Test Text';
 

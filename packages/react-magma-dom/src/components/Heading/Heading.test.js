@@ -1,6 +1,6 @@
 import React from 'react';
 import { axe } from 'jest-axe';
-import { Heading } from './Heading';
+import { Heading } from '.';
 import { render, cleanup } from 'react-testing-library';
 
 const headingText = 'Test Heading Text';

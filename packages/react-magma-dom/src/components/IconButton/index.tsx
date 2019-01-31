@@ -8,8 +8,8 @@ import {
   ButtonShape,
   StyledButton,
   ButtonTextTransform
-} from './StyledButton';
-import { Icon } from '../Icon/Icon';
+} from '../StyledButton';
+import { Icon } from '../Icon';
 import { styled } from '../../theme/styled-components';
 
 enum ButtonTextPostition {

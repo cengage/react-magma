@@ -1,6 +1,6 @@
 import React from 'react';
 import { axe } from 'jest-axe';
-import { LinkButton } from './LinkButton';
+import { LinkButton } from '.';
 import { render, cleanup } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 
