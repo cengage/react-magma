@@ -7,7 +7,7 @@ import {
   ButtonColor,
   ButtonTextTransform,
   ButtonVariant
-} from './StyledButton';
+} from '.';
 import { render, fireEvent, cleanup } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 

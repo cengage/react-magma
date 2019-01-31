@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { RadioCore } from 'react-magma-core';
-import { RadioProps } from './Radio';
+import { RadioProps } from '../Radio';
 import { HiddenStyles } from '../UtilityStyles';
 import { styled } from '../../theme/styled-components';
 

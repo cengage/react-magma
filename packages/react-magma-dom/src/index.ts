@@ -1,27 +1,22 @@
-export { Button } from './components/Button/Button';
-export { Checkbox } from './components/Checkbox/Checkbox';
+export { Button } from './components/Button';
+export { Checkbox } from './components/Checkbox';
 export {
   ButtonColor,
   ButtonShape,
   ButtonSize,
   ButtonVariant,
   ButtonTextTransform
-} from './components/Button/StyledButton';
-export { Heading } from './components/Heading/Heading';
-export { IconButton } from './components/Button/IconButton';
-export {
-  Input,
-  InputSize,
-  InputType,
-  IconPosition
-} from './components/Input/Input';
-export { Icon } from './components/Icon/Icon';
+} from './components/StyledButton';
+export { Heading } from './components/Heading';
+export { IconButton } from './components/IconButton';
+export { Input, InputSize, InputType, IconPosition } from './components/Input';
+export { Icon } from './components/Icon';
 export { ICONS } from './components/Icon/types/icons';
-export { Label } from './components/Label/Label';
-export { LinkButton } from './components/Button/LinkButton';
-export { RadioGroup } from './components/Radio/RadioGroup';
-export { Radio } from './components/Radio/Radio';
-export { Select } from './components/Select/Select';
-export { Toggle } from './components/Toggle/Toggle';
+export { Label } from './components/Label';
+export { LinkButton } from './components/LinkButton';
+export { RadioGroup } from './components/RadioGroup';
+export { Radio } from './components/Radio';
+export { Select } from './components/Select';
+export { Toggle } from './components/Toggle';
 export { magma } from './theme/magma';
 export { Theme } from './theme/globalStyle';

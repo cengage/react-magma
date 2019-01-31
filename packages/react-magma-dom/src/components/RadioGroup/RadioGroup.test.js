@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { RadioGroup, RadioContext } from './RadioGroup';
-import { Radio } from './Radio';
+import { RadioGroup } from '.';
+import { Radio } from '../Radio';
 import { render, fireEvent, wait } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { axe } from 'jest-axe';
-import { Select, getStyles } from './Select';
+import { Select, getStyles } from '.';
 import { render, fireEvent, cleanup, wait } from 'react-testing-library';
 
 const options = [

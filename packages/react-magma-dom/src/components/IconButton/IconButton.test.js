@@ -1,6 +1,6 @@
 import React from 'react';
 import { axe } from 'jest-axe';
-import { IconButton } from './IconButton';
+import { IconButton } from '.';
 import { render, fireEvent, cleanup } from 'react-testing-library';
 
 const TEXT = 'Text';
