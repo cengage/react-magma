@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '../../theme/styled-components';
+import styled from '@emotion/styled';
 import { magma } from '../../theme/magma';
 
 export interface StyledLabelProps {
@@ -9,7 +9,7 @@ export interface StyledLabelProps {
   style?: React.CSSProperties;
 }
 
-const StyledLabelComponent = styled<StyledLabelProps, 'label'>('label')`
+const StyledLabelComponent = styled.label<StyledLabelProps>`
   align-items: flex-start;
   color: ${props => (props.inverse ? magma.colors.neutral08 : 'inherit')};
   display: flex;

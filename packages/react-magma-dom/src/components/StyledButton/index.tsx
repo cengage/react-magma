@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { styled, css } from '../../theme/styled-components';
+import { css } from '@emotion/core';
+import styled from '@emotion/styled';
 import { FocusStyles } from '../UtilityStyles';
 import { magma } from '../../theme/magma';
 
@@ -56,10 +57,12 @@ export interface ButtonProps {
   variant?: ButtonVariant;
 }
 
-const StyledButtonComponent = styled<ButtonProps, 'button'>('button')`
+const StyledButtonComponent = styled.button<ButtonProps>`
   align-items: center;
   border-radius: ${props => {
     switch (props.shape) {
+      case 'round':
+        return '100%';
       case 'leftCap':
         return '5px 0 0 5px';
       case 'rightCap':
@@ -82,8 +85,119 @@ const StyledButtonComponent = styled<ButtonProps, 'button'>('button')`
   text-transform: ${props => props.textTransform};
   vertical-align: middle;
   touch-action: manipulation;
-  width: ${props => (props.block ? '100%' : 'auto')};
   white-space: nowrap;
+
+  font-size: ${props => {
+    switch (props.size) {
+      case 'large':
+        return '1.125rem';
+      case 'small':
+        return '.750rem';
+      default:
+        return '.875rem';
+    }
+  }};
+  font-weight: ${props => (props.size === 'large' ? 500 : 600)};
+  height: ${props => {
+    if (props.iconOnly) {
+      switch (props.size) {
+        case 'large':
+          return '44px';
+        case 'small':
+          return '28px';
+        default:
+          return '37px';
+      }
+    }
+    switch (props.size) {
+      case 'large':
+        return '45px';
+      case 'small':
+        return '29px';
+      default:
+        return '37px';
+    }
+  }};
+  padding: ${props => {
+    // Button size
+    switch (props.size) {
+      case 'large':
+        return '0 20px';
+      case 'small':
+        return '0 10px';
+      default:
+        return '0 15px';
+    }
+  }};
+  width: ${props => {
+    if (props.iconOnly) {
+      switch (props.size) {
+        case 'large':
+          return '44px';
+        case 'small':
+          return '28px';
+        default:
+          return '37px';
+      }
+    }
+    if (props.block) {
+      return '100%';
+    }
+    return 'auto';
+  }};
+
+  background: ${props => {
+    // Button color, variant, inverse
+    if (props.variant !== 'solid') {
+      return 'none';
+    }
+    if (props.disabled) {
+      return magma.colors.neutral06;
+    }
+    if (props.inverse) {
+      return magma.colors.neutral08;
+    }
+    switch (props.color) {
+      case 'secondary':
+        return magma.colors.neutral08;
+      case 'success':
+        return magma.colors.success01;
+      case 'danger':
+        return magma.colors.danger;
+      default:
+        return magma.colors.primary;
+    }
+  }};
+  border: ${props =>
+    props.variant === 'outline' ||
+    (props.variant === 'solid' && props.color === 'secondary' && !props.inverse)
+      ? '2px solid'
+      : '0'};
+  border-color: ${props => {
+    // Button color, variant, inverse
+    if (props.disabled && props.inverse && props.variant === 'outline') {
+      return magma.colors.disabledInverseText;
+    }
+    if (props.disabled) {
+      return magma.colors.neutral06;
+    }
+    if (props.inverse) {
+      return magma.colors.neutral08;
+    }
+    if (props.color === 'secondary') {
+      return magma.colors.neutral05;
+    }
+    if (props.variant === 'solid') {
+      switch (props.color) {
+        case 'success':
+          return magma.colors.success01;
+        case 'danger':
+          return magma.colors.danger;
+        default:
+          return magma.colors.primary;
+      }
+    }
+  }};
 
   &:not(:disabled) {
     &:after,
@@ -159,93 +273,6 @@ const StyledButtonComponent = styled<ButtonProps, 'button'>('button')`
     outline-offset: 3px;
   }
 
-  font-size: ${props => {
-    switch (props.size) {
-      case 'large':
-        return '1.125rem';
-      case 'small':
-        return '.750rem';
-      default:
-        return '.875rem';
-    }
-  }};
-  font-weight: ${props => (props.size === 'large' ? 500 : 600)};
-  height: ${props => {
-    // Button size
-    switch (props.size) {
-      case 'large':
-        return '45px';
-      case 'small':
-        return '29px';
-      default:
-        return '37px';
-    }
-  }};
-  padding: ${props => {
-    // Button size
-    switch (props.size) {
-      case 'large':
-        return '0 20px';
-      case 'small':
-        return '0 10px';
-      default:
-        return '0 15px';
-    }
-  }};
-
-  background: ${props => {
-    // Button color, variant, inverse
-    if (props.variant !== 'solid') {
-      return 'none';
-    }
-    if (props.disabled) {
-      return magma.colors.neutral06;
-    }
-    if (props.inverse) {
-      return magma.colors.neutral08;
-    }
-    switch (props.color) {
-      case 'secondary':
-        return magma.colors.neutral08;
-      case 'success':
-        return magma.colors.success01;
-      case 'danger':
-        return magma.colors.danger;
-      default:
-        return magma.colors.primary;
-    }
-  }};
-  border: ${props =>
-    props.variant === 'outline' ||
-    (props.variant === 'solid' && props.color === 'secondary' && !props.inverse)
-      ? '2px solid'
-      : '0'};
-  border-color: ${props => {
-    // Button color, variant, inverse
-    if (props.disabled && props.inverse && props.variant === 'outline') {
-      return magma.colors.disabledInverseText;
-    }
-    if (props.disabled) {
-      return magma.colors.neutral06;
-    }
-    if (props.inverse) {
-      return magma.colors.neutral08;
-    }
-    if (props.color === 'secondary') {
-      return magma.colors.neutral05;
-    }
-    if (props.variant === 'solid') {
-      switch (props.color) {
-        case 'success':
-          return magma.colors.success01;
-        case 'danger':
-          return magma.colors.danger;
-        default:
-          return magma.colors.primary;
-      }
-    }
-  }};
-
   &,
   &:hover,
   &:focus {
@@ -278,48 +305,15 @@ const StyledButtonComponent = styled<ButtonProps, 'button'>('button')`
       }
     }};
   }
+
   ${props =>
     props.iconOnly &&
     css`
-      border-radius: ${p => {
-        switch (p.shape) {
-          case 'fill':
-            return '5px';
-          case 'leftCap':
-            return '5px 0 0 5px';
-          case 'rightCap':
-            return '0 5px 5px 0';
-          default:
-            return '100%';
-        }
-      }};
       display: inline-flex;
       justify-content: center;
       line-height: 1;
       min-width: 0;
       padding: 0;
-
-      height: ${p => {
-        switch (p.size) {
-          case 'large':
-            return '44px';
-          case 'small':
-            return '28px';
-          default:
-            return '37px';
-        }
-      }};
-
-      width: ${p => {
-        switch (p.size) {
-          case 'large':
-            return '44px';
-          case 'small':
-            return '28px';
-          default:
-            return '37px';
-        }
-      }};
     `}
 `;
 

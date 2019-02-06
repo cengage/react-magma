@@ -1,7 +1,10 @@
 import React from 'react';
 import { Checkbox } from '.';
 import { render, fireEvent, cleanup } from 'react-testing-library';
+import { matchers } from 'jest-emotion';
 import { magma } from '../../theme/magma';
+
+expect.extend(matchers);
 
 const CHECKBOX_PROPS = {
   autoFocus: false,

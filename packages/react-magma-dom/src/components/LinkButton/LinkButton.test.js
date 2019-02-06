@@ -3,6 +3,9 @@ import { axe } from 'jest-axe';
 import { LinkButton } from '.';
 import { render, cleanup } from 'react-testing-library';
 import { magma } from '../../theme/magma';
+import { matchers } from 'jest-emotion';
+
+expect.extend(matchers);
 
 const TEXT = 'Test Text';
 

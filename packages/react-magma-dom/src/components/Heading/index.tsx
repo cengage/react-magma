@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { styled, css } from '../../theme/styled-components';
+import { css } from '@emotion/core';
+import styled from '@emotion/styled';
 import { magma } from '../../theme/magma';
 
 export interface HeadingProps {

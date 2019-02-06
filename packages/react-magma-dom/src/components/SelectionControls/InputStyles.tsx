@@ -1,4 +1,4 @@
-import { css } from '../../theme/styled-components';
+import { css } from '@emotion/core';
 import { FocusStyles } from '../UtilityStyles';
 
 export const DisplayInputStyles = css`

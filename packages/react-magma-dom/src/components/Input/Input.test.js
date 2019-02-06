@@ -3,6 +3,9 @@ import { axe } from 'jest-axe';
 import { Input } from '.';
 import { render, fireEvent, cleanup } from 'react-testing-library';
 import { magma } from '../../theme/magma';
+import { matchers } from 'jest-emotion';
+
+expect.extend(matchers);
 
 const INPUT_PROPS = {
   autoFocus: false,

@@ -10,7 +10,7 @@ import {
   ButtonTextTransform
 } from '../StyledButton';
 import { Icon } from '../Icon';
-import { styled } from '../../theme/styled-components';
+import styled from '@emotion/styled';
 
 enum ButtonTextPostition {
   left = 'left',

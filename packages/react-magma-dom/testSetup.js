@@ -1,3 +1,4 @@
+require('jest-emotion');
 require('jest-extended');
 require('jest-dom/extend-expect');
 require('jest-styled-components');

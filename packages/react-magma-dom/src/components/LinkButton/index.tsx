@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '../../theme/styled-components';
+import styled from '@emotion/styled';
 import { magma } from '../../theme/magma';
 import { FocusStyles } from '../UtilityStyles';
 
@@ -13,7 +13,7 @@ interface LinkButtonProps {
   style?: React.CSSProperties;
 }
 
-const LinkButtonComponent = styled<LinkButtonProps, 'button'>('button')`
+const LinkButtonComponent = styled.button<LinkButtonProps>`
   background: none;
   border: 0;
   color: ${props =>

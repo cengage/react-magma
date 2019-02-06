@@ -2,6 +2,9 @@ import React from 'react';
 import { axe } from 'jest-axe';
 import { Select, getStyles } from '.';
 import { render, fireEvent, cleanup, wait } from 'react-testing-library';
+import { matchers } from 'jest-emotion';
+
+expect.extend(matchers);
 
 const options = [
   {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '../../theme/styled-components';
+import styled from '@emotion/styled';
 import { magma } from '../../theme/magma';
 
 export interface LabelProps {
@@ -9,7 +9,7 @@ export interface LabelProps {
   style?: React.CSSProperties;
 }
 
-const StyledLabel = styled<LabelProps, 'label'>('label')`
+const StyledLabel = styled.label<LabelProps>`
   color: ${props =>
     props.inverse ? magma.colors.neutral08 : magma.colors.neutral02};
   display: inline-block;

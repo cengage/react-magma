@@ -10,6 +10,7 @@
     ]
   ],
   "plugins": [
+    "emotion",
     "babel-plugin-styled-components",
     "@babel/plugin-proposal-export-namespace-from",
     "@babel/plugin-proposal-throw-expressions",
