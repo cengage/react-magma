@@ -1,8 +1,8 @@
-import { createGlobalStyle } from 'styled-components';
+import { css } from '@emotion/core';
 import { magma } from './magma';
 
 // tslint:disable:no-unused-expression
-export const Theme = createGlobalStyle`
+export const Theme = css`
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
   @import url('https://use.typekit.net/rwr6vzk.css');
 
@@ -14,11 +14,11 @@ export const Theme = createGlobalStyle`
 
   & body {
     color: ${magma.colors.neutral02};
-  	font-family: ${magma.bodyFont};
-  	font-style: normal;
-  	font-weight: 400;
-  	font-size: 15px;
-  	line-height: 22px;
+    font-family: ${magma.bodyFont};
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 22px;
   }
 
   a {
