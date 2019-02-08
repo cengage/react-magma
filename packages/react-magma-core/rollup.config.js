@@ -5,7 +5,7 @@ import pkg from './package.json';
 
 const base = {
   input: 'src/index.ts',
-  external: ['react', 'styled-components', 'react-select'],
+  external: ['react', 'react-select'],
   plugins: [
     resolve({
       extensions: ['.ts', '.tsx', '.js', '.json']
