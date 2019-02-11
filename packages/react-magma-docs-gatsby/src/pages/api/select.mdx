@@ -7,7 +7,7 @@ title: "Selects"
 ## Basic Usage
 
 ```.jsx
-  <div style={{"margin": "0 0 120px"}}>
+  <div className='demo-select-container'>
     <Select
       id="basicSelectId"
       name="basic"
@@ -29,7 +29,7 @@ title: "Selects"
 ## Multi-Select
 
 ```.jsx
-  <div style={{"margin": "0 0 120px"}}>
+  <divclassName='demo-select-container'>
     <Select
       id="multiSelectId"
       name="multi"
@@ -52,7 +52,7 @@ title: "Selects"
 ## Clearable
 
 ```.jsx
-  <div style={{"margin": "0 0 120px"}}>
+  <div className='demo-select-container'>
     <Select
       id="clearableSelectId"
       name="clearable"
@@ -75,7 +75,7 @@ title: "Selects"
 ## Default Value
 
 ```.jsx
-  <div style={{"margin": "0 0 120px"}}>
+  <div className='demo-select-container'>
     <Select
       id="defaultValueSelectId"
       name="defaultValue"
@@ -101,7 +101,7 @@ title: "Selects"
 ## Disabled
 
 ```.jsx
-  <div style={{"margin": "0 0 120px"}}>
+  <div className='demo-select-container'>
     <Select
       id="disabledSelectId"
       name="disabled"
@@ -141,7 +141,7 @@ title: "Selects"
     }
 
     render() {
-      return <div style={{"margin": "0 0 120px"}}>
+      return <div className='demo-select-container'>
         <p>
           <strong>Value: </strong>
           <span id="value">{this.state.value ? this.state.value.value : 'No Value Set'}</span>
@@ -191,7 +191,7 @@ title: "Selects"
     }
 
     render() {
-      return <div style={{"margin": "0 0 120px"}}>
+      return <div className='demo-select-container'>
         <p><strong>Focused: </strong> <span id="focused">{this.state.message}</span></p>
         <Select
           id="focusedSelectId"
@@ -239,7 +239,7 @@ title: "Selects"
     }
 
     render() {
-      return <div style={{"margin": "0 0 120px"}}>
+      return <div className='demo-select-container'>
       <p><strong>Opened: </strong> <span id="opened">{this.state.message}</span></p>
         <Select
           id="openedSelectId"

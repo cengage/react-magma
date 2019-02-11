@@ -8,7 +8,7 @@ title: "Icons"
 
 ```.jsx
   <p>
-    <span style={{"padding": "20px", "text-align": "center", "margin": "10px", "min-width": "200px"}}>
+    <span className='demo-icon-container'>
       <Icon id="infoBasic" title="Info Available" type="info" />
     </span>
   </p>
@@ -18,10 +18,10 @@ title: "Icons"
 
 ```.jsx
   <p>
-    <span style={{"padding": "20px", "text-align": "center", "margin": "10px", "min-width": "200px"}}>
+    <span className='demo-icon-container'>
       <Icon id="smallSize" size={20} title="Small Size" type="angle-down" />
     </span>
-    <span style={{"padding": "20px", "text-align": "center", "margin": "10px", "min-width": "200px"}}>
+    <span className='demo-icon-container'>
       <Icon id="largeSize" size={50} title="Large Size" type="angle-down" />
     </span>
   </p>
@@ -31,10 +31,10 @@ title: "Icons"
 
 ```.jsx
   <p>
-    <span style={{"padding": "20px", "text-align": "center", "margin": "10px", "min-width": "200px"}}>
+    <span className='demo-icon-container'>
       <Icon id="noColor" title="No Color" type="angle-down" />
     </span>
-    <span style={{"padding": "20px", "text-align": "center", "margin": "10px", "min-width": "200px"}}>
+    <span className='demo-icon-container'>
       <Icon id="someColor" color="green" title="Some Color" type="angle-down" />
     </span>
   </p>
@@ -43,11 +43,11 @@ title: "Icons"
 ## Available Icons
 
 ```.jsx
-    <div style={{"display": "flex", "flex-wrap": "wrap", "justify-content": "space-between"}}>{Object.keys(ICONS).map((key) => {
+    <div className='demo-icon-list-container'>{Object.keys(ICONS).map((key) => {
       const id = key + 'Available';
       const title = key + ' Title';
 
-      return <span style={{"padding": "20px", "text-align": "center", "margin": "10px", "min-width": "150px"}}>
+      return <span className='demo-icon-container'>
         <Icon id={id} title={title} type={key} /><br />
         {key}
       </span>
