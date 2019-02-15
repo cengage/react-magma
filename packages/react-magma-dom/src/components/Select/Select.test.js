@@ -87,10 +87,10 @@ describe('Select', () => {
   });
 
   describe('events', () => {
-    it('should trigger the passed in handleChange when option is changed', () => {
-      const handleChangeSpy = jest.fn();
+    it('should trigger the passed in onChange when option is changed', () => {
+      const onChangeSpy = jest.fn();
       const { getByLabelText } = renderSelect({
-        handleChange: handleChangeSpy
+        onChange: onChangeSpy
       });
 
       fireEvent.keyDown(getByLabelText(SELECT_PROPS.labelText), {
@@ -102,13 +102,13 @@ describe('Select', () => {
         code: 13
       });
 
-      expect(handleChangeSpy).toHaveBeenCalledWith(options[0]);
+      expect(onChangeSpy).toHaveBeenCalledWith(options[0]);
     });
 
-    it('should trigger the passed in handleBlur when focus is removed', () => {
-      const handleBlurSpy = jest.fn();
+    it('should trigger the passed in onBlur when focus is removed', () => {
+      const onBlurSpy = jest.fn();
       const { container } = renderSelect({
-        handleBlur: handleBlurSpy
+        onBlur: onBlurSpy
       });
 
       fireEvent(
@@ -119,13 +119,13 @@ describe('Select', () => {
         })
       );
 
-      expect(handleBlurSpy).toHaveBeenCalledTimes(1);
+      expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('should trigger the passed in handleFocus when focused', () => {
-      const handleFocusSpy = jest.fn();
+    it('should trigger the passed in onFocus when focused', () => {
+      const onFocusSpy = jest.fn();
       const { container } = renderSelect({
-        handleFocus: handleFocusSpy
+        onFocus: onFocusSpy
       });
 
       fireEvent(
@@ -136,7 +136,7 @@ describe('Select', () => {
         })
       );
 
-      expect(handleFocusSpy).toHaveBeenCalledTimes(1);
+      expect(onFocusSpy).toHaveBeenCalledTimes(1);
     });
   });
 

@@ -10,7 +10,7 @@ export interface InputProps {
 
 export const Input: React.SFC<InputProps> = (props: InputProps) => (
   <InputCore value={props.value}>
-    {({ handleBlur, handleChange, handleFocus, value }) => {
+    {({ onBlur, onChange, onFocus, value }) => {
       const { autoFocus, placeholder } = props;
 
       return (
@@ -19,9 +19,9 @@ export const Input: React.SFC<InputProps> = (props: InputProps) => (
             autoFocus={autoFocus}
             placeholder={placeholder}
             value={value}
-            onBlur={handleBlur}
-            onChange={handleChange}
-            onFocus={handleFocus}
+            onBlur={onBlur}
+            onChange={onChange}
+            onFocus={onFocus}
           />
         </View>
       );

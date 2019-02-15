@@ -17,9 +17,9 @@ const HiddenLabel = styled.label`
 
 export interface RadioGroupProps {
   children: React.ReactChild | React.ReactChild[];
-  handleBlur?: () => void;
-  handleChange?: (event: React.SyntheticEvent) => void;
-  handleFocus?: () => void;
+  onBlur?: () => void;
+  onChange?: (event: React.SyntheticEvent) => void;
+  onFocus?: () => void;
   id: string;
   labelStyle?: React.CSSProperties;
   labelText: string;
@@ -32,9 +32,9 @@ export interface RadioGroupProps {
 export interface RadioContextInterface {
   name: string;
   selectedValue?: string;
-  handleBlur?: () => void;
-  handleChange?: (event: React.SyntheticEvent) => void;
-  handleFocus?: () => void;
+  onBlur?: () => void;
+  onChange?: (event: React.SyntheticEvent) => void;
+  onFocus?: () => void;
 }
 
 export const RadioContext = React.createContext<RadioContextInterface | null>(
@@ -46,11 +46,11 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
 ): JSX.Element => (
   <RadioCore
     value={props.value}
-    handleBlur={props.handleBlur}
-    handleChange={props.handleChange}
-    handleFocus={props.handleFocus}
+    onBlur={props.onBlur}
+    onChange={props.onChange}
+    onFocus={props.onFocus}
   >
-    {({ handleBlur, handleChange, handleFocus, selectedValue }) => {
+    {({ onBlur, onChange, onFocus, selectedValue }) => {
       const {
         id,
         labelStyle,
@@ -66,9 +66,9 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
             value={{
               name: name,
               selectedValue: selectedValue,
-              handleBlur: handleBlur,
-              handleChange: handleChange,
-              handleFocus: handleFocus
+              onBlur: onBlur,
+              onChange: onChange,
+              onFocus: onFocus
             }}
           >
             {textVisuallyHidden ? (

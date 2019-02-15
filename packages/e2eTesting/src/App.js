@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
-import { Input, Button, Checkbox, Icon, IconButton, LinkButton, RadioGroup, Radio, Select } from 'react-magma-dom';
+import {
+  Input,
+  Button,
+  Checkbox,
+  Icon,
+  IconButton,
+  LinkButton,
+  RadioGroup,
+  Radio,
+  Select
+} from 'react-magma-dom';
 
 class App extends Component {
   render() {
@@ -17,21 +27,22 @@ class App extends Component {
         <h1>BUTTONS</h1>
         <Button
           id="defaultButton"
-          handleClick={() => {
+          onClick={() => {
             alert('clicked');
           }}
         >
           Default Button
         </Button>
-        
+
         <Button id="disabledButton" disabled>
           Disabled Button
         </Button>
 
         <LinkButton
-          handleClick={() => {
+          onClick={() => {
             alert('clicked');
-          }}>
+          }}
+        >
           Link Button
         </LinkButton>
 
@@ -40,7 +51,7 @@ class App extends Component {
           label="Default Icon Button With Text"
           textPosition="right"
           icon="bell"
-          handleClick={() => {
+          onClick={() => {
             alert('clicked');
           }}
         />
@@ -55,7 +66,7 @@ class App extends Component {
           id="defaultIconButton"
           label="Default Icon Button"
           icon="bell"
-          handleClick={() => {
+          onClick={() => {
             alert('clicked');
           }}
         />
@@ -73,7 +84,7 @@ class App extends Component {
         <RadioGroup
           name="colors"
           labelText="Colors"
-          handleChange={event => {
+          onChange={event => {
             alert(`${event.target.value} selected`);
           }}
         >
@@ -87,10 +98,10 @@ class App extends Component {
         <Checkbox
           id="defaultCheckbox"
           labelText="Label"
-          handleChange={() => {
+          onChange={() => {
             alert('clicked');
-            }}
-          />
+          }}
+        />
 
         <h1>SELECTS</h1>
         <Select
@@ -136,7 +147,7 @@ class App extends Component {
               label: 'Green'
             }
           ]}
-          handleChange={() => {
+          onChange={() => {
             alert('changed');
           }}
         />

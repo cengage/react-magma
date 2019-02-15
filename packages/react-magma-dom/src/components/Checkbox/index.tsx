@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import { CheckboxCore } from 'react-magma-core';
 import {
   DisplayInputStyles,
@@ -19,9 +18,9 @@ export interface CheckboxProps {
   color?: string;
   checked?: boolean;
   disabled?: boolean;
-  handleBlur?: () => void;
-  handleChange?: (value: string) => void;
-  handleFocus?: () => void;
+  onBlur?: () => void;
+  onChange?: (event: React.SyntheticEvent) => void;
+  onFocus?: () => void;
   id: string;
   indeterminate?: boolean;
   inputStyle?: React.CSSProperties;
@@ -157,11 +156,11 @@ export class Checkbox extends React.Component<CheckboxProps> {
     return (
       <CheckboxCore
         checked={this.props.checked}
-        handleBlur={this.props.handleBlur}
-        handleChange={this.props.handleChange}
-        handleFocus={this.props.handleFocus}
+        onBlur={this.props.onBlur}
+        onChange={this.props.onChange}
+        onFocus={this.props.onFocus}
       >
-        {({ handleBlur, handleChange, handleFocus, checked }) => {
+        {({ onBlur, onChange, onFocus, checked }) => {
           const {
             autoFocus,
             color,
@@ -192,9 +191,9 @@ export class Checkbox extends React.Component<CheckboxProps> {
                 required={required}
                 type="checkbox"
                 value={value}
-                onBlur={handleBlur}
-                onChange={handleChange}
-                onFocus={handleFocus}
+                onBlur={onBlur}
+                onChange={onChange}
+                onFocus={onFocus}
               />
               <StyledLabel htmlFor={id} inverse={inverse} style={labelStyle}>
                 <StyledFakeInput

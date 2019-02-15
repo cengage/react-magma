@@ -69,8 +69,8 @@ function getIconWithTextSize(size) {
 export const IconButton: React.FunctionComponent<IconButtonProps> = (
   props: IconButtonProps
 ) => (
-  <ButtonCore handleClick={props.handleClick}>
-    {({ handleClick }) => {
+  <ButtonCore onClick={props.onClick}>
+    {({ onClick }) => {
       const {
         as,
         autoFocus,
@@ -97,7 +97,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
           <StyledButton
             as={as}
             autoFocus={autoFocus}
-            handleClick={handleClick}
+            onClick={onClick}
             href={href}
             block={block}
             color={color ? color : ButtonColor.primary}
@@ -128,7 +128,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
           ariaLabel={ariaLabel}
           as={as}
           autoFocus={autoFocus}
-          handleClick={handleClick}
+          onClick={onClick}
           color={color ? color : ButtonColor.primary}
           disabled={disabled}
           href={href}

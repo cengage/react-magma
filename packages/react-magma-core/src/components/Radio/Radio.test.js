@@ -2,15 +2,15 @@ import * as React from 'react';
 import { mount } from 'enzyme';
 import { RadioCore } from './Radio';
 
-const handleBlur = jest.fn();
-const handleChange = jest.fn();
-const handleFocus = jest.fn();
+const onBlur = jest.fn();
+const onChange = jest.fn();
+const onFocus = jest.fn();
 
 const RADIO_CORE_PROPS = {
   children: () => React.createElement('div'),
-  handleBlur,
-  handleChange,
-  handleFocus,
+  onBlur,
+  onChange,
+  onFocus,
   value: 'blue'
 };
 
@@ -25,9 +25,9 @@ const inputSetup = (myProps = {}) => {
 
 describe('RadioCore', () => {
   afterEach(() => {
-    handleBlur.mockReset();
-    handleChange.mockReset();
-    handleFocus.mockReset();
+    onBlur.mockReset();
+    onChange.mockReset();
+    onFocus.mockReset();
   });
 
   describe('state management', () => {
@@ -37,11 +37,11 @@ describe('RadioCore', () => {
       expect(component.state('selectedValue')).toEqual(RADIO_CORE_PROPS.value);
     });
 
-    it('should update the state checked when handleChange is called', () => {
+    it('should update the state checked when onChange is called', () => {
       const selectedValue = 'blue';
       const component = inputSetup();
 
-      component.instance().handleChange({
+      component.instance().onChange({
         persist: jest.fn(),
         target: {
           value: selectedValue
@@ -53,27 +53,27 @@ describe('RadioCore', () => {
   });
 
   describe('handle blur', () => {
-    it('should call the handleBlur from props during the internal handleBlur', () => {
+    it('should call the onBlur from props during the internal onBlur', () => {
       const component = inputSetup();
 
-      component.instance().handleBlur();
+      component.instance().onBlur();
 
-      expect(RADIO_CORE_PROPS.handleBlur).toHaveBeenCalled();
+      expect(RADIO_CORE_PROPS.onBlur).toHaveBeenCalled();
     });
 
-    it('should not fail if no handleBlur is passed through the props', () => {
+    it('should not fail if no onBlur is passed through the props', () => {
       const component = inputSetup({
-        handleBlur: undefined
+        onBlur: undefined
       });
 
-      component.instance().handleBlur();
+      component.instance().onBlur();
 
-      expect(RADIO_CORE_PROPS.handleBlur).not.toHaveBeenCalled();
+      expect(RADIO_CORE_PROPS.onBlur).not.toHaveBeenCalled();
     });
   });
 
   describe('handle change', () => {
-    it('should call the handleChange from props during the internal handleChange', () => {
+    it('should call the onChange from props during the internal onChange', () => {
       const event = {
         persist: jest.fn(),
         target: {
@@ -82,18 +82,18 @@ describe('RadioCore', () => {
       };
       const component = inputSetup();
 
-      component.instance().handleChange(event);
+      component.instance().onChange(event);
 
-      expect(RADIO_CORE_PROPS.handleChange).toHaveBeenCalledWith(event);
+      expect(RADIO_CORE_PROPS.onChange).toHaveBeenCalledWith(event);
     });
 
-    it('should not fail if no handleChange is passed through the props', () => {
+    it('should not fail if no onChange is passed through the props', () => {
       const selectedValue = 'blue';
       const component = inputSetup({
-        handleChange: undefined
+        onChange: undefined
       });
 
-      component.instance().handleChange({
+      component.instance().onChange({
         persist: jest.fn(),
         target: {
           value: selectedValue
@@ -101,27 +101,27 @@ describe('RadioCore', () => {
       });
 
       expect(component.state('selectedValue')).toEqual(selectedValue);
-      expect(RADIO_CORE_PROPS.handleChange).not.toHaveBeenCalled();
+      expect(RADIO_CORE_PROPS.onChange).not.toHaveBeenCalled();
     });
   });
 
   describe('handle focus', () => {
-    it('should call the handleFocus from props during the internal handleFocus', () => {
+    it('should call the onFocus from props during the internal onFocus', () => {
       const component = inputSetup();
 
-      component.instance().handleFocus();
+      component.instance().onFocus();
 
-      expect(RADIO_CORE_PROPS.handleFocus).toHaveBeenCalled();
+      expect(RADIO_CORE_PROPS.onFocus).toHaveBeenCalled();
     });
 
-    it('should not fail if no handleFocus is passed through the props', () => {
+    it('should not fail if no onFocus is passed through the props', () => {
       const component = inputSetup({
-        handleFocus: undefined
+        onFocus: undefined
       });
 
-      component.instance().handleFocus();
+      component.instance().onFocus();
 
-      expect(RADIO_CORE_PROPS.handleFocus).not.toHaveBeenCalled();
+      expect(RADIO_CORE_PROPS.onFocus).not.toHaveBeenCalled();
     });
   });
 });

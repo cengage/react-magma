@@ -6,7 +6,7 @@ import { render, fireEvent, cleanup } from 'react-testing-library';
 const TEXT = 'Text';
 
 const BASE_ICON_BUTTON_PROPS = {
-  handleClick: jest.fn(),
+  onClick: jest.fn(),
   icon: 'bell'
 };
 
@@ -102,9 +102,9 @@ describe('Icon Button', () => {
   });
 
   it('should trigger the passed in function when icon button is clicked', () => {
-    const handleClickSpy = jest.fn();
+    const onClickSpy = jest.fn();
     const { container } = renderIconNoTextButton({
-      handleClick: handleClickSpy
+      onClick: onClickSpy
     });
 
     fireEvent(
@@ -115,14 +115,14 @@ describe('Icon Button', () => {
       })
     );
 
-    expect(handleClickSpy).toHaveBeenCalledTimes(1);
+    expect(onClickSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should trigger the passed in function when icon button with text is clicked', () => {
-    const handleClickSpy = jest.fn();
+    const onClickSpy = jest.fn();
     const { container } = renderIconTextButton({
       textPosition: 'left',
-      handleClick: handleClickSpy
+      onClick: onClickSpy
     });
 
     fireEvent(
@@ -133,7 +133,7 @@ describe('Icon Button', () => {
       })
     );
 
-    expect(handleClickSpy).toHaveBeenCalledTimes(1);
+    expect(onClickSpy).toHaveBeenCalledTimes(1);
   });
 
   describe('Icon Button classes', () => {

@@ -150,10 +150,10 @@ describe('Checkbox', () => {
   });
 
   describe('events', () => {
-    it('should trigger the passed in handleBlur when focus is removed', () => {
-      const handleBlurSpy = jest.fn();
+    it('should trigger the passed in onBlur when focus is removed', () => {
+      const onBlurSpy = jest.fn();
       const { getByLabelText } = renderCheckbox({
-        handleBlur: handleBlurSpy
+        onBlur: onBlurSpy
       });
 
       fireEvent(
@@ -164,26 +164,25 @@ describe('Checkbox', () => {
         })
       );
 
-      expect(handleBlurSpy).toHaveBeenCalledTimes(1);
+      expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('should trigger the passed in handleChange when value of the checkbox is changed', () => {
+    it('should trigger the passed in onChange when value of the checkbox is changed', () => {
       const checked = true;
-      const handleChangeSpy = jest.fn();
+      const onChangeSpy = jest.fn();
       const { getByLabelText } = renderCheckbox({
-        handleChange: handleChangeSpy
+        onChange: onChangeSpy
       });
 
       fireEvent.click(getByLabelText(CHECKBOX_PROPS.labelText));
 
-      expect(handleChangeSpy).toHaveBeenCalledTimes(1);
-      expect(handleChangeSpy).toHaveBeenCalledWith(checked);
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('should trigger the passed in handleFocus when focused', () => {
-      const handleFocusSpy = jest.fn();
+    it('should trigger the passed in onFocus when focused', () => {
+      const onFocusSpy = jest.fn();
       const { getByLabelText } = renderCheckbox({
-        handleFocus: handleFocusSpy
+        onFocus: onFocusSpy
       });
 
       fireEvent(
@@ -194,7 +193,7 @@ describe('Checkbox', () => {
         })
       );
 
-      expect(handleFocusSpy).toHaveBeenCalledTimes(1);
+      expect(onFocusSpy).toHaveBeenCalledTimes(1);
     });
   });
 });

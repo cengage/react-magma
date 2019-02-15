@@ -97,8 +97,8 @@ Block buttons only work when the `icon` property is set to `false` or not define
     </p>
 ```
 
-
 ## Using different elements
+
 Passing in the `as` prop will allow a styed button to render as a different type of element, which can be useful
 if you need to use an `a` tag or a `Link` component.
 
@@ -121,7 +121,7 @@ if you need to use an `a` tag or a `Link` component.
 
 ## Event Handling
 
-The `handleClick` events will fire when the button is clicked, or when the enter or space bar key is pressed.
+The `onClick` event will fire when the button is clicked, or when the enter or space bar key is pressed.
 Events do not fire on disabled buttons.
 
 ```.jsx
@@ -140,20 +140,20 @@ Events do not fire on disabled buttons.
           <IconButton
             icon="bell"
             iconOnly={true}
-            handleClick={() => {
+            onClick={() => {
               this.setState(state => ({iconButtonCounter: state.iconButtonCounter + 1}))
             }}>Click me</IconButton>
           <IconButton
             icon="bell"
             textPosition="left"
-            handleClick={() => {
+            onClick={() => {
               this.setState(state => ({textIconButtonCounter: state.textIconButtonCounter + 1}))
             }}>Click me</IconButton>
           <IconButton
             disabled
             icon="bell"
             iconOnly={true}
-            handleClick={() => {
+            onClick={() => {
               this.setState(state => ({iconButtonCounter: state.iconButtonCounter + 1}))
             }}>Click me if you can</IconButton>
         </div>
@@ -163,25 +163,25 @@ Events do not fire on disabled buttons.
 
 ## Icon Button Props
 
-| Prop                   | Type  | Default | Required    |
-| -----------------------|------ |---------|:-----------:|
-| ariaLabel | string |  |
-| as | any | |
-| autoFocus | boolean | false |
-| block | boolean | false |
-| className | string | |
-| children | node | |
-| color | enum: 'primary' &#124; 'secondary' &#124; 'success' &#124; 'danger' | 'primary' |
-| disabled | boolean | false |
-| handleClick | func | | &#10003;
-| href | string | |
-| icon          | string | | &#10003; |
-| iconOnly      | boolean | false |
-| inverse | boolean | false |
-| shape | enum: 'fill' &#124; 'leftCap' &#124; 'rightCap' &#124; 'round' | 'fill' |
-| size | enum: 'large' &#124; 'medium' &#124; 'small' | 'medium' |
-| style | React.CSSProperties | |
-| textPosition | enum: 'left' &#124; 'right' |  |
-| textTransform | enum: 'uppercase' &#124; 'none' | 'uppercase' |
-| to | string | |
-| variant | enum: 'solid' &#124; 'outline' &#124; 'link' | 'solid' |
+| Prop          | Type                                                                | Default     | Required |
+| ------------- | ------------------------------------------------------------------- | ----------- | :------: |
+| ariaLabel     | string                                                              |             |
+| as            | any                                                                 |             |
+| autoFocus     | boolean                                                             | false       |
+| block         | boolean                                                             | false       |
+| className     | string                                                              |             |
+| children      | node                                                                |             |
+| color         | enum: 'primary' &#124; 'secondary' &#124; 'success' &#124; 'danger' | 'primary'   |
+| disabled      | boolean                                                             | false       |
+| onClick       | func                                                                |             | &#10003; |
+| href          | string                                                              |             |
+| icon          | string                                                              |             | &#10003; |
+| iconOnly      | boolean                                                             | false       |
+| inverse       | boolean                                                             | false       |
+| shape         | enum: 'fill' &#124; 'leftCap' &#124; 'rightCap' &#124; 'round'      | 'fill'      |
+| size          | enum: 'large' &#124; 'medium' &#124; 'small'                        | 'medium'    |
+| style         | React.CSSProperties                                                 |             |
+| textPosition  | enum: 'left' &#124; 'right'                                         |             |
+| textTransform | enum: 'uppercase' &#124; 'none'                                     | 'uppercase' |
+| to            | string                                                              |             |
+| variant       | enum: 'solid' &#124; 'outline' &#124; 'link'                        | 'solid'     |

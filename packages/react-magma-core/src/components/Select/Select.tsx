@@ -2,11 +2,11 @@ import * as React from 'react';
 
 export interface SelectCoreProps {
   children: (props) => React.ReactNode;
-  handleBlur?: () => void;
-  handleFocus?: () => void;
-  handleChange?: (value: string) => void;
-  handleOpen?: () => void;
-  handleClose?: () => void;
+  onBlur?: () => void;
+  onFocus?: () => void;
+  onChange?: (value: string) => void;
+  onOpen?: () => void;
+  onClose?: () => void;
   defaultValue?: string;
 }
 
@@ -26,47 +26,47 @@ export class SelectCore extends React.Component<
   constructor(props) {
     super(props);
 
-    this.handleBlur = this.handleBlur.bind(this);
-    this.handleFocus = this.handleFocus.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleOpen = this.handleOpen.bind(this);
-    this.handleClose = this.handleClose.bind(this);
+    this.onBlur = this.onBlur.bind(this);
+    this.onFocus = this.onFocus.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onOpen = this.onOpen.bind(this);
+    this.onClose = this.onClose.bind(this);
   }
 
-  handleBlur() {
-    this.props.handleBlur && this.props.handleBlur();
+  onBlur() {
+    this.props.onBlur && this.props.onBlur();
   }
 
-  handleFocus() {
-    this.props.handleFocus && this.props.handleFocus();
+  onFocus() {
+    this.props.onFocus && this.props.onFocus();
   }
 
-  handleChange(value) {
+  onChange(value) {
     this.setState(
       () => ({ value }),
       () => {
-        this.props.handleChange && this.props.handleChange(this.state.value);
+        this.props.onChange && this.props.onChange(value);
       }
     );
   }
 
-  handleOpen() {
-    this.props.handleOpen && this.props.handleOpen();
+  onOpen() {
+    this.props.onOpen && this.props.onOpen();
   }
 
-  handleClose() {
-    this.props.handleClose && this.props.handleClose();
+  onClose() {
+    this.props.onClose && this.props.onClose();
   }
 
   render() {
     return this.props.children({
       ...this.state,
       ...this.props,
-      handleBlur: this.handleBlur,
-      handleFocus: this.handleFocus,
-      handleChange: this.handleChange,
-      handleOpen: this.handleOpen,
-      handleClose: this.handleClose,
+      onBlur: this.onBlur,
+      onFocus: this.onFocus,
+      onChange: this.onChange,
+      onOpen: this.onOpen,
+      onClose: this.onClose,
       value: this.state.value
     });
   }
