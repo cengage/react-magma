@@ -194,7 +194,7 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
           <HiddenInput
             autoFocus={autoFocus}
             id={id}
-            defaultChecked={checked}
+            checked={checked}
             disabled={disabled}
             name={name}
             required={required}
