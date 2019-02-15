@@ -1,5 +1,5 @@
 ---
-title: "Buttons"
+title: 'Buttons'
 ---
 
 # Buttons
@@ -65,7 +65,7 @@ Variants for buttons include `solid`, `outline`, and `link`, with `solid` being 
 
 ## Link Buttons
 
-Using the `LinkButton` will render a button that is styled exactly like a link.  Unlike the using `<Button variant='link' />`,
+Using the `LinkButton` will render a button that is styled exactly like a link. Unlike the using `<Button variant='link' />`,
 the `LinkButton` will render as inline text, the way an `a` element would.
 
 ```.jsx
@@ -121,6 +121,7 @@ online affects `solid inverse buttons`.
 ```
 
 ## All Caps
+
 Shapes for buttons include `uppercase`, `none`, with `uppercase` (all caps) being the default value.
 This property sets the CSS `text-tranform` property.
 
@@ -131,7 +132,8 @@ This property sets the CSS `text-tranform` property.
     </p>
 ```
 
-##  Block Buttons
+## Block Buttons
+
 Passing the `block` property will set the button to display full-width.
 
 ```.jsx
@@ -153,8 +155,9 @@ Passing the `block` property will set the button to display full-width.
 ```
 
 ## Using different elements
+
 Passing in the `as` prop will allow a styed button to render as a different type of element.
-The `href` and `to` props are also supported, so that a button can be used as an  `a` tag or a `Link` component.
+The `href` and `to` props are also supported, so that a button can be used as an `a` tag or a `Link` component.
 
 ```.jsx
     <p>
@@ -174,7 +177,7 @@ The `href` and `to` props are also supported, so that a button can be used as an
 
 ## Event Handling
 
-The `onClick` events will fire when the button is clicked, or when the enter or space bar key is pressed.
+The `onClick` event will fire when the button is clicked, or when the enter or space bar key is pressed.
 Events do not fire on disabled buttons.
 
 ```.jsx
@@ -206,21 +209,21 @@ Events do not fire on disabled buttons.
 
 ## Button Props
 
-| Prop                   | Type  | Default | Required    |
-| -----------------------|------ |---------|:-----------:|
-| as | any | |
-| autoFocus | boolean | false |
-| block | boolean | false |
-| className | string | |
-| children | node | |
-| color | enum: 'primary' &#124; 'secondary' &#124; 'success' &#124; 'danger' | 'primary' |
-| disabled | boolean | false |
-| onClick | func | | &#10003;
-| href | string | |
-| inverse | boolean | false |
-| shape | enum: 'fill' &#124; 'leftCap' &#124; 'rightCap' &#124; 'round' | 'fill' |
-| size | enum: 'large' &#124; 'medium' &#124; 'small' | 'medium' |
-| style | React.CSSProperties | |
-| textTransform | enum: 'uppercase' &#124; 'none' | 'uppercase' |
-| to | string | |
-| variant | enum: 'solid' &#124; 'outline' &#124; 'link' | 'solid' |
+| Prop          | Type                                                                | Default     | Required |
+| ------------- | ------------------------------------------------------------------- | ----------- | :------: |
+| as            | any                                                                 |             |
+| autoFocus     | boolean                                                             | false       |
+| block         | boolean                                                             | false       |
+| className     | string                                                              |             |
+| children      | node                                                                |             |
+| color         | enum: 'primary' &#124; 'secondary' &#124; 'success' &#124; 'danger' | 'primary'   |
+| disabled      | boolean                                                             | false       |
+| onClick       | func                                                                |             | &#10003; |
+| href          | string                                                              |             |
+| inverse       | boolean                                                             | false       |
+| shape         | enum: 'fill' &#124; 'leftCap' &#124; 'rightCap' &#124; 'round'      | 'fill'      |
+| size          | enum: 'large' &#124; 'medium' &#124; 'small'                        | 'medium'    |
+| style         | React.CSSProperties                                                 |             |
+| textTransform | enum: 'uppercase' &#124; 'none'                                     | 'uppercase' |
+| to            | string                                                              |             |
+| variant       | enum: 'solid' &#124; 'outline' &#124; 'link'                        | 'solid'     |
