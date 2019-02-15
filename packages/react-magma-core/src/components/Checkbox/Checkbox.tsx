@@ -12,37 +12,33 @@ export class CheckboxCore extends React.Component<
   constructor(props) {
     super(props);
 
-    this.handleBlur = this.handleBlur.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleFocus = this.handleFocus.bind(this);
+    this.onBlur = this.onBlur.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onFocus = this.onFocus.bind(this);
   }
 
-  handleBlur() {
-    this.props.handleBlur && this.props.handleBlur();
+  onBlur() {
+    this.props.onBlur && this.props.onBlur();
   }
 
-  handleFocus() {
-    this.props.handleFocus && this.props.handleFocus();
+  onFocus() {
+    this.props.onFocus && this.props.onFocus();
   }
 
-  handleChange(event) {
+  onChange(event) {
     const { checked } = event.target;
+    this.props.onChange && this.props.onChange(event);
 
-    this.setState(
-      () => ({ checked }),
-      () => {
-        this.props.handleChange && this.props.handleChange(this.state.checked);
-      }
-    );
+    this.setState(() => ({ checked }));
   }
 
   render() {
     return this.props.children({
       ...this.state,
       ...this.props,
-      handleBlur: this.handleBlur,
-      handleChange: this.handleChange,
-      handleFocus: this.handleFocus,
+      onBlur: this.onBlur,
+      onChange: this.onChange,
+      onFocus: this.onFocus,
       checked: this.state.checked
     });
   }
@@ -50,9 +46,9 @@ export class CheckboxCore extends React.Component<
 
 export interface CheckboxCoreProps {
   children: (props) => React.ReactNode;
-  handleBlur?: () => void;
-  handleChange?: (checked: boolean) => void;
-  handleFocus?: () => void;
+  onBlur?: () => void;
+  onChange?: (event: React.SyntheticEvent) => void;
+  onFocus?: () => void;
   checked?: boolean;
 }
 

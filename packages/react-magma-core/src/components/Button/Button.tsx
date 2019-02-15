@@ -4,22 +4,22 @@ export class ButtonCore extends React.Component<ButtonCoreProps> {
   constructor(props) {
     super(props);
 
-    this.handleClick = this.handleClick.bind(this);
+    this.onClick = this.onClick.bind(this);
   }
 
-  handleClick(event) {
-    this.props.handleClick && this.props.handleClick(event);
+  onClick(event) {
+    this.props.onClick && this.props.onClick(event);
   }
 
   render() {
     return this.props.children({
       ...this.props,
-      handleClick: this.handleClick
+      onClick: this.onClick
     });
   }
 }
 
 export interface ButtonCoreProps {
   children: (props) => React.ReactNode;
-  handleClick?: (event: React.SyntheticEvent) => void;
+  onClick?: (event: React.SyntheticEvent) => void;
 }

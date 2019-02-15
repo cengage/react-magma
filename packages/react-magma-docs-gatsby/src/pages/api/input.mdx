@@ -1,5 +1,5 @@
 ---
-title: "Inputs"
+title: 'Inputs'
 ---
 
 # Inputs
@@ -65,7 +65,7 @@ If an error message is present, it will replace the helper text.
 
 ## Helper Message
 
-The `helperMessage` appears underneath the input field.  It will not appear if an error message is present.
+The `helperMessage` appears underneath the input field. It will not appear if an error message is present.
 
 ```.jsx
     <Input
@@ -144,6 +144,7 @@ The `inputSize` prop can be used to control the input size. Options are `small`,
 ```
 
 ## Inverse inputs
+
 Inverse is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
 
 ```.jsx
@@ -209,8 +210,8 @@ The optional `multiline` boolean prop will cause the component to render a texta
       this.changeValueMessage = this.changeValueMessage.bind(this);
     }
 
-    changeValueMessage(message) {
-      this.setState(state => ({message}))
+    changeValueMessage(event) {
+      this.setState({message: event.target.value})
     }
 
     render() {
@@ -219,8 +220,9 @@ The optional `multiline` boolean prop will cause the component to render a texta
         <Input
           id='inputChanged'
           labelText='Test Value'
+          value=''
           placeholder='Type in here'
-          handleChange={this.changeValueMessage} />
+          onChange={this.changeValueMessage} />
       </div>
     }
   }
@@ -255,8 +257,8 @@ The optional `multiline` boolean prop will cause the component to render a texta
         <Input
           id='inputFocused'
           labelText='Focused?'
-          handleFocus={this.changeFocusedMessage}
-          handleBlur={this.changeFocusedMessage} />
+          onFocus={this.changeFocusedMessage}
+          onBlur={this.changeFocusedMessage} />
       </div>
     }
   }
@@ -264,27 +266,27 @@ The optional `multiline` boolean prop will cause the component to render a texta
 
 ## Input Props
 
-| Prop                   | Type | Default | Required    |
-| -----------------------|------|---------|:-----------:|
-| id | string | | &#10003;
-| labelText | string | | &#10003;
-| autoFocus | boolean | |
-| disabled | boolean | |
-| errorMessage | string | |
-| handleBlur | func | |
-| handleChange | func | |
-| handleFocus | func | |
-| helperMessage | string | |
-| icon | string | |
-| iconPosition |  enum: 'left' &#124; 'right' &#124; | 'left' |
-| inputSize |  enum: 'small' &#124; 'medium' &#124; 'large' &#124; | 'medium' |
-| inputStyle | React.CSSProperties | |
-| inverse | boolean | |
-| labelStyle | React.CSSProperties | |
-| labelVisuallyHidden | boolean | |
-| multiline | boolean | |
-| placeholder | string | |
-| required | boolean | |
-| type | enum: 'text' &#124; 'password' &#124; 'number' | 'text' |
-| value | string | |
-| style | React.CSSProperties | |
+| Prop                | Type                                                | Default  | Required |
+| ------------------- | --------------------------------------------------- | -------- | :------: |
+| id                  | string                                              |          | &#10003; |
+| labelText           | string                                              |          | &#10003; |
+| autoFocus           | boolean                                             |          |
+| disabled            | boolean                                             |          |
+| errorMessage        | string                                              |          |
+| onBlur              | func                                                |          |
+| onChange            | func                                                |          |
+| onFocus             | func                                                |          |
+| helperMessage       | string                                              |          |
+| icon                | string                                              |          |
+| iconPosition        | enum: 'left' &#124; 'right' &#124;                  | 'left'   |
+| inputSize           | enum: 'small' &#124; 'medium' &#124; 'large' &#124; | 'medium' |
+| inputStyle          | React.CSSProperties                                 |          |
+| inverse             | boolean                                             |          |
+| labelStyle          | React.CSSProperties                                 |          |
+| labelVisuallyHidden | boolean                                             |          |
+| multiline           | boolean                                             |          |
+| placeholder         | string                                              |          |
+| required            | boolean                                             |          |
+| type                | enum: 'text' &#124; 'password' &#124; 'number'      | 'text'   |
+| value               | string                                              |          |
+| style               | React.CSSProperties                                 |          |

@@ -14,7 +14,7 @@ import { magma } from '../../theme/magma';
 const TEXT = 'Test Text';
 
 const BASE_BUTTON_PROPS = {
-  handleClick: jest.fn(),
+  onClick: jest.fn(),
   color: ButtonColor.primary,
   shape: ButtonShape.fill,
   size: ButtonSize.medium,
@@ -259,9 +259,9 @@ describe('Styled Button', () => {
   });
 
   it('should trigger the passed in function when clicked', () => {
-    const handleClickSpy = jest.fn();
+    const onClickSpy = jest.fn();
     const { getByText } = renderButton({
-      handleClick: handleClickSpy
+      onClick: onClickSpy
     });
 
     fireEvent(
@@ -272,7 +272,7 @@ describe('Styled Button', () => {
       })
     );
 
-    expect(handleClickSpy).toHaveBeenCalledTimes(1);
+    expect(onClickSpy).toHaveBeenCalledTimes(1);
   });
 
   it('Does not violate accessibility standards', () => {

@@ -7,7 +7,7 @@ import { magma } from '../../theme/magma';
 const TEXT = 'Test Text';
 
 const BASE_BUTTON_PROPS = {
-  handleClick: jest.fn()
+  onClick: jest.fn()
 };
 
 const renderLinkButton = (myProps = {}) => {

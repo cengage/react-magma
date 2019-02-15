@@ -18,9 +18,9 @@ export interface ToggleProps {
   autoFocus?: boolean;
   checked?: boolean;
   disabled?: boolean;
-  handleBlur?: () => void;
-  handleChange?: () => void;
-  handleFocus?: () => void;
+  onBlur?: () => void;
+  onChange?: () => void;
+  onFocus?: () => void;
   id: string;
   labelStyle?: React.CSSProperties;
   labelText: string;
@@ -169,11 +169,11 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
 ) => (
   <CheckboxCore
     checked={props.checked}
-    handleBlur={props.handleBlur}
-    handleChange={props.handleChange}
-    handleFocus={props.handleFocus}
+    onBlur={props.onBlur}
+    onChange={props.onChange}
+    onFocus={props.onFocus}
   >
-    {({ handleBlur, handleChange, handleFocus, checked }) => {
+    {({ onBlur, onChange, onFocus, checked }) => {
       const {
         autoFocus,
         disabled,
@@ -194,15 +194,15 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
           <HiddenInput
             autoFocus={autoFocus}
             id={id}
-            checked={checked}
+            defaultChecked={checked}
             disabled={disabled}
             name={name}
             required={required}
             type="checkbox"
             value={value}
-            onBlur={handleBlur}
-            onChange={handleChange}
-            onFocus={handleFocus}
+            onBlur={onBlur}
+            onChange={onChange}
+            onFocus={onFocus}
           />
           <StyledLabel htmlFor={id} style={style}>
             {textPosition !== ToggleTextPostition.right &&

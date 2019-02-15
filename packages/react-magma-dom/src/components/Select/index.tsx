@@ -22,11 +22,11 @@ export interface SelectProps {
   clearable?: boolean;
   multi?: boolean;
   style?: ReactSelectStyles;
-  handleBlur?: () => void;
-  handleFocus?: () => void;
-  handleChange?: (option: Options) => void;
-  handleOpen?: () => void;
-  handleClose?: () => void;
+  onBlur?: () => void;
+  onFocus?: () => void;
+  onChange?: (option: Options) => void;
+  onOpen?: () => void;
+  onClose?: () => void;
 }
 
 interface ReactSelectStyles {
@@ -153,20 +153,13 @@ export const Select: React.FunctionComponent<SelectProps> = (
   <SelectCore
     components={{ ClearIndicator, DropdownIndicator, MultiValueRemove }}
     defaultValue={props.defaultValue}
-    handleBlur={props.handleBlur}
-    handleFocus={props.handleFocus}
-    handleChange={props.handleChange}
-    handleOpen={props.handleOpen}
-    handleClose={props.handleClose}
+    onBlur={props.onBlur}
+    onFocus={props.onFocus}
+    onChange={props.onChange}
+    onOpen={props.onOpen}
+    onClose={props.onClose}
   >
-    {({
-      defaultValue,
-      handleBlur,
-      handleFocus,
-      handleChange,
-      handleOpen,
-      handleClose
-    }) => {
+    {({ defaultValue, onBlur, onFocus, onChange, onOpen, onClose }) => {
       const {
         id,
         name,
@@ -193,11 +186,11 @@ export const Select: React.FunctionComponent<SelectProps> = (
             isDisabled={disabled}
             isMulti={multi}
             isClearable={clearable}
-            onBlur={handleBlur}
-            onFocus={handleFocus}
-            onChange={handleChange}
-            onMenuOpen={handleOpen}
-            onMenuClose={handleClose}
+            onBlur={onBlur}
+            onFocus={onFocus}
+            onChange={onChange}
+            onMenuOpen={onOpen}
+            onMenuClose={onClose}
             styles={getStyles(style)}
             classNamePrefix="magma"
           />

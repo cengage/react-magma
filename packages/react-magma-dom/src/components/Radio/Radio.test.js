@@ -9,16 +9,16 @@ const RADIO_PROPS = {
   id: 'blueId',
   value: 'blue',
   name: 'colors',
-  handleBlur: jest.fn(),
-  handleChange: jest.fn(),
-  handleFocus: jest.fn()
+  onBlur: jest.fn(),
+  onChange: jest.fn(),
+  onFocus: jest.fn()
 };
 const RADIO_CONTEXT = {
   name: 'colors',
   selectedValue: 'red',
-  handleBlur: jest.fn(),
-  handleChange: jest.fn(),
-  handleFocus: jest.fn()
+  onBlur: jest.fn(),
+  onChange: jest.fn(),
+  onFocus: jest.fn()
 };
 
 const renderRadio = (myProps = {}, myContext = {}) => {
@@ -113,7 +113,7 @@ describe('Radio Group', () => {
     expect(radio).toHaveAttribute('checked');
   });
 
-  it('blurring a radio button calls the passed in handleBlur function', () => {
+  it('blurring a radio button calls the passed in onBlur function', () => {
     const { getByLabelText } = renderRadio();
 
     fireEvent(
@@ -124,10 +124,10 @@ describe('Radio Group', () => {
       })
     );
 
-    expect(RADIO_CONTEXT.handleBlur).toHaveBeenCalledTimes(1);
+    expect(RADIO_CONTEXT.onBlur).toHaveBeenCalledTimes(1);
   });
 
-  it('changing a radio button calls the passed in handleChange function', () => {
+  it('changing a radio button calls the passed in onChange function', () => {
     const { getByLabelText } = renderRadio();
 
     fireEvent(
@@ -138,10 +138,10 @@ describe('Radio Group', () => {
       })
     );
 
-    expect(RADIO_CONTEXT.handleChange).toHaveBeenCalledTimes(1);
+    expect(RADIO_CONTEXT.onChange).toHaveBeenCalledTimes(1);
   });
 
-  it('focusing a radio button calls the passed in handleFocus function', () => {
+  it('focusing a radio button calls the passed in onFocus function', () => {
     const { getByLabelText } = renderRadio();
 
     fireEvent(
@@ -152,6 +152,6 @@ describe('Radio Group', () => {
       })
     );
 
-    expect(RADIO_CONTEXT.handleFocus).toHaveBeenCalledTimes(1);
+    expect(RADIO_CONTEXT.onFocus).toHaveBeenCalledTimes(1);
   });
 });

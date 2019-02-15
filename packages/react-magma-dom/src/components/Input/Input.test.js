@@ -310,10 +310,10 @@ describe('Input', () => {
   });
 
   describe('events', () => {
-    it('should trigger the passed in handleBlur when focus is removed', () => {
-      const handleBlurSpy = jest.fn();
+    it('should trigger the passed in onBlur when focus is removed', () => {
+      const onBlurSpy = jest.fn();
       const { getByLabelText } = renderInput({
-        handleBlur: handleBlurSpy
+        onBlur: onBlurSpy
       });
 
       fireEvent(
@@ -324,28 +324,27 @@ describe('Input', () => {
         })
       );
 
-      expect(handleBlurSpy).toHaveBeenCalledTimes(1);
+      expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('should trigger the passed in handleChange when value of the input is changed', () => {
+    it('should trigger the passed in onChange when value of the input is changed', () => {
       const value = 'Change';
-      const handleChangeSpy = jest.fn();
+      const onChangeSpy = jest.fn();
       const { getByLabelText } = renderInput({
-        handleChange: handleChangeSpy
+        onChange: onChangeSpy
       });
 
       fireEvent.change(getByLabelText(INPUT_PROPS.labelText), {
         target: { value }
       });
 
-      expect(handleChangeSpy).toHaveBeenCalledTimes(1);
-      expect(handleChangeSpy).toHaveBeenCalledWith(value);
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('should trigger the passed in handleFocus when focused', () => {
-      const handleFocusSpy = jest.fn();
+    it('should trigger the passed in onFocus when focused', () => {
+      const onFocusSpy = jest.fn();
       const { getByLabelText } = renderInput({
-        handleFocus: handleFocusSpy
+        onFocus: onFocusSpy
       });
 
       fireEvent(
@@ -356,7 +355,7 @@ describe('Input', () => {
         })
       );
 
-      expect(handleFocusSpy).toHaveBeenCalledTimes(1);
+      expect(onFocusSpy).toHaveBeenCalledTimes(1);
     });
   });
 
