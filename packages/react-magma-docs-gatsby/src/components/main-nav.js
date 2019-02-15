@@ -53,7 +53,7 @@ const MainNav = () => (
       }
     `}
     render={data => (
-      <nav style={{"background-color":" #f7f7f7", "grid-area": "nav", "min-height": "100vh" }}>
+      <nav style={{"backgroundColor":" #f7f7f7", "gridArea": "nav", "minHeight": "100vh" }}>
         <div style={{"padding": "2px 20px 20px"}}>
           <FullLogo />
         </div>
