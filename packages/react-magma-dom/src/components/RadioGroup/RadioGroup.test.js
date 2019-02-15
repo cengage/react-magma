@@ -9,7 +9,7 @@ const RADIO_GROUP_PROPS = {
   labelText: 'Colors',
   id: 'colorsGroup',
   name: 'colors',
-  handleChange: jest.fn()
+  onChange: jest.fn()
 };
 
 const renderRadioGroup = (myProps = {}) => {
@@ -74,9 +74,9 @@ describe('Radio Clone', () => {
   });
 
   it('Changes the selected radio when clicked', () => {
-    const handleChangeSpy = jest.fn();
+    const onChangeSpy = jest.fn();
     const { getByLabelText } = renderRadioGroup({
-      handleChange: handleChangeSpy
+      onChange: onChangeSpy
     });
 
     fireEvent(
@@ -87,7 +87,7 @@ describe('Radio Clone', () => {
       })
     );
 
-    expect(handleChangeSpy).toHaveBeenCalledTimes(1);
+    expect(onChangeSpy).toHaveBeenCalledTimes(1);
 
     wait(() => {
       expect(getByLabelText('Default Color')).not.toHaveAttribute('checked');

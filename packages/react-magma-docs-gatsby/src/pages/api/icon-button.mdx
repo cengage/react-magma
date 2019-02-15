@@ -121,7 +121,7 @@ if you need to use an `a` tag or a `Link` component.
 
 ## Event Handling
 
-The `handleClick` events will fire when the button is clicked, or when the enter or space bar key is pressed.
+The `onClick` events will fire when the button is clicked, or when the enter or space bar key is pressed.
 Events do not fire on disabled buttons.
 
 ```.jsx
@@ -140,20 +140,20 @@ Events do not fire on disabled buttons.
           <IconButton
             icon="bell"
             iconOnly={true}
-            handleClick={() => {
+            onClick={() => {
               this.setState(state => ({iconButtonCounter: state.iconButtonCounter + 1}))
             }}>Click me</IconButton>
           <IconButton
             icon="bell"
             textPosition="left"
-            handleClick={() => {
+            onClick={() => {
               this.setState(state => ({textIconButtonCounter: state.textIconButtonCounter + 1}))
             }}>Click me</IconButton>
           <IconButton
             disabled
             icon="bell"
             iconOnly={true}
-            handleClick={() => {
+            onClick={() => {
               this.setState(state => ({iconButtonCounter: state.iconButtonCounter + 1}))
             }}>Click me if you can</IconButton>
         </div>
@@ -173,7 +173,7 @@ Events do not fire on disabled buttons.
 | children | node | |
 | color | enum: 'primary' &#124; 'secondary' &#124; 'success' &#124; 'danger' | 'primary' |
 | disabled | boolean | false |
-| handleClick | func | | &#10003;
+| onClick | func | | &#10003;
 | href | string | |
 | icon          | string | | &#10003; |
 | iconOnly      | boolean | false |

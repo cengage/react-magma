@@ -27,9 +27,9 @@ export interface InputProps {
   autoFocus?: boolean;
   disabled?: boolean;
   errorMessage?: string;
-  handleBlur?: () => void;
-  handleChange?: (value: string) => void;
-  handleFocus?: () => void;
+  onBlur?: () => void;
+  onChange?: (event: React.SyntheticEvent) => void;
+  onFocus?: () => void;
   helperMessage?: string;
   icon?: string;
   iconPosition?: IconPosition;
@@ -220,11 +220,11 @@ export const Input: React.FunctionComponent<InputProps> = (
 ) => (
   <InputCore
     value={props.value}
-    handleBlur={props.handleBlur}
-    handleChange={props.handleChange}
-    handleFocus={props.handleFocus}
+    onBlur={props.onBlur}
+    onChange={props.onChange}
+    onFocus={props.onFocus}
   >
-    {({ handleBlur, handleChange, handleFocus, value }) => {
+    {({ onBlur, onChange, onFocus, value }) => {
       const {
         autoFocus,
         disabled,
@@ -270,9 +270,9 @@ export const Input: React.FunctionComponent<InputProps> = (
               style={inputStyle}
               type={type ? type : InputType.text}
               value={value}
-              onBlur={handleBlur}
-              onChange={handleChange}
-              onFocus={handleFocus}
+              onBlur={onBlur}
+              onChange={onChange}
+              onFocus={onFocus}
             />
             {errorMessage && (
               <ErrorIconWrapper inputSize={inputSize}>

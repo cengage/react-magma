@@ -2,19 +2,19 @@ import * as React from 'react';
 import { mount } from 'enzyme';
 import { SelectCore } from './Select';
 
-const handleBlur = jest.fn();
-const handleFocus = jest.fn();
-const handleChange = jest.fn();
-const handleOpen = jest.fn();
-const handleClose = jest.fn();
+const onBlur = jest.fn();
+const onFocus = jest.fn();
+const onChange = jest.fn();
+const onOpen = jest.fn();
+const onClose = jest.fn();
 
 const SELECT_CORE_PROPS = {
   children: () => React.createElement('div'),
-  handleBlur,
-  handleChange,
-  handleFocus,
-  handleOpen,
-  handleClose,
+  onBlur,
+  onChange,
+  onFocus,
+  onOpen,
+  onClose,
   defaultValue: ''
 };
 
@@ -29,11 +29,11 @@ const selectSetup = (myProps = {}) => {
 
 describe('SelectCore', () => {
   afterEach(() => {
-    handleBlur.mockReset();
-    handleChange.mockReset();
-    handleFocus.mockReset();
-    handleOpen.mockReset();
-    handleClose.mockReset();
+    onBlur.mockReset();
+    onChange.mockReset();
+    onFocus.mockReset();
+    onOpen.mockReset();
+    onClose.mockReset();
   });
 
   describe('state management', () => {
@@ -43,116 +43,116 @@ describe('SelectCore', () => {
       expect(component.state('value')).toEqual(SELECT_CORE_PROPS.defaultValue);
     });
 
-    it('should update the state value when handleChange is called', () => {
+    it('should update the state value when onChange is called', () => {
       const value = 'new value';
       const component = selectSetup();
 
-      component.instance().handleChange(value);
+      component.instance().onChange(value);
 
       expect(component.state('value')).toEqual(value);
     });
   });
 
   describe('handle blur', () => {
-    it('should call the handleBlur from props during the internal handleBlur', () => {
+    it('should call the onBlur from props during the internal onBlur', () => {
       const component = selectSetup();
 
-      component.instance().handleBlur();
+      component.instance().onBlur();
 
-      expect(SELECT_CORE_PROPS.handleBlur).toHaveBeenCalled();
+      expect(SELECT_CORE_PROPS.onBlur).toHaveBeenCalled();
     });
 
-    it('should not fail if no handleBlur is passed through the props', () => {
+    it('should not fail if no onBlur is passed through the props', () => {
       const component = selectSetup({
-        handleBlur: undefined
+        onBlur: undefined
       });
 
-      component.instance().handleBlur();
+      component.instance().onBlur();
 
-      expect(SELECT_CORE_PROPS.handleBlur).not.toHaveBeenCalled();
+      expect(SELECT_CORE_PROPS.onBlur).not.toHaveBeenCalled();
     });
   });
 
   describe('handle change', () => {
-    it('should call the handleChange from props during the internal handleChange', () => {
+    it('should call the onChange from props during the internal onChange', () => {
       const value = 'test handle change';
       const component = selectSetup();
 
-      component.instance().handleChange(value);
+      component.instance().onChange(value);
 
-      expect(SELECT_CORE_PROPS.handleChange).toHaveBeenCalledWith(value);
+      expect(SELECT_CORE_PROPS.onChange).toHaveBeenCalledWith(value);
     });
 
-    it('should not fail if no handleChange is passed through the props', () => {
+    it('should not fail if no onChange is passed through the props', () => {
       const value = 'test no fail';
       const component = selectSetup({
-        handleChange: undefined
+        onChange: undefined
       });
 
-      component.instance().handleChange(value);
+      component.instance().onChange(value);
 
       expect(component.state('value')).toEqual(value);
-      expect(SELECT_CORE_PROPS.handleChange).not.toHaveBeenCalled();
+      expect(SELECT_CORE_PROPS.onChange).not.toHaveBeenCalled();
     });
   });
 
   describe('handle focus', () => {
-    it('should call the handleFocus from props during the internal handleFocus', () => {
+    it('should call the onFocus from props during the internal onFocus', () => {
       const component = selectSetup();
 
-      component.instance().handleFocus();
+      component.instance().onFocus();
 
-      expect(SELECT_CORE_PROPS.handleFocus).toHaveBeenCalled();
+      expect(SELECT_CORE_PROPS.onFocus).toHaveBeenCalled();
     });
 
-    it('should not fail if no handleFocus is passed through the props', () => {
+    it('should not fail if no onFocus is passed through the props', () => {
       const component = selectSetup({
-        handleFocus: undefined
+        onFocus: undefined
       });
 
-      component.instance().handleFocus();
+      component.instance().onFocus();
 
-      expect(SELECT_CORE_PROPS.handleFocus).not.toHaveBeenCalled();
+      expect(SELECT_CORE_PROPS.onFocus).not.toHaveBeenCalled();
     });
   });
 
   describe('handle open', () => {
-    it('should call the handleOpen from props during the internal handleOpen', () => {
+    it('should call the onOpen from props during the internal onOpen', () => {
       const component = selectSetup();
 
-      component.instance().handleOpen();
+      component.instance().onOpen();
 
-      expect(SELECT_CORE_PROPS.handleOpen).toHaveBeenCalled();
+      expect(SELECT_CORE_PROPS.onOpen).toHaveBeenCalled();
     });
 
-    it('should not fail if no handleOpen is passed through the props', () => {
+    it('should not fail if no onOpen is passed through the props', () => {
       const component = selectSetup({
-        handleOpen: undefined
+        onOpen: undefined
       });
 
-      component.instance().handleOpen();
+      component.instance().onOpen();
 
-      expect(SELECT_CORE_PROPS.handleOpen).not.toHaveBeenCalled();
+      expect(SELECT_CORE_PROPS.onOpen).not.toHaveBeenCalled();
     });
   });
 
   describe('handle close', () => {
-    it('should call the handleClose from props during the internal handleClose', () => {
+    it('should call the onClose from props during the internal onClose', () => {
       const component = selectSetup();
 
-      component.instance().handleClose();
+      component.instance().onClose();
 
-      expect(SELECT_CORE_PROPS.handleClose).toHaveBeenCalled();
+      expect(SELECT_CORE_PROPS.onClose).toHaveBeenCalled();
     });
 
-    it('should not fail if no handleClose is passed through the props', () => {
+    it('should not fail if no onClose is passed through the props', () => {
       const component = selectSetup({
-        handleClose: undefined
+        onClose: undefined
       });
 
-      component.instance().handleClose();
+      component.instance().onClose();
 
-      expect(SELECT_CORE_PROPS.handleClose).not.toHaveBeenCalled();
+      expect(SELECT_CORE_PROPS.onClose).not.toHaveBeenCalled();
     });
   });
 });

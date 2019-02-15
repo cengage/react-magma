@@ -1,5 +1,5 @@
 ---
-title: "Selects"
+title: 'Selects'
 ---
 
 # Selects
@@ -160,7 +160,7 @@ title: "Selects"
             value: 'green',
             label: 'Green'
           }]}
-          handleChange={this.changeValue}
+          onChange={this.changeValue}
         />
       </div>
     }
@@ -207,8 +207,8 @@ title: "Selects"
             value: 'green',
             label: 'Green'
           }]}
-          handleFocus={this.changeFocusedMessage}
-          handleBlur={this.changeFocusedMessage}
+          onFocus={this.changeFocusedMessage}
+          onBlur={this.changeFocusedMessage}
         />
       </div>
     }
@@ -255,8 +255,8 @@ title: "Selects"
             value: 'green',
             label: 'Green'
           }]}
-          handleOpen={this.changeOpenedMessage}
-          handleClose={this.changeOpenedMessage}
+          onOpen={this.changeOpenedMessage}
+          onClose={this.changeOpenedMessage}
         />
       </div>
     }
@@ -265,25 +265,26 @@ title: "Selects"
 
 ## Select Props
 
-| Prop                   | Type | Default | Required    |
-| -----------------------|------|---------|:-----------:|
-| id | string | | &#10003;
-| name | string | | &#10003;
-| labelText | string | | &#10003;
-| options | object[]: `{ label, text }` | | &#10003;
-| defaultValue | string | | 
-| disabled | boolean | | 
-| handleBlur | func | | 
-| handleChange | func | |
-| handleClose | func | | 
-| handleFocus | func | | 
-| handleOpen | func | | 
-| required | boolean | | 
-| clearable | boolean | | 
-| multi | boolean | | 
-| style | [ReactSelect.Styles](#style_interface) | | 
+| Prop         | Type                                   | Default | Required |
+| ------------ | -------------------------------------- | ------- | :------: |
+| id           | string                                 |         | &#10003; |
+| name         | string                                 |         | &#10003; |
+| labelText    | string                                 |         | &#10003; |
+| options      | object[]: `{ label, text }`            |         | &#10003; |
+| defaultValue | string                                 |         |
+| disabled     | boolean                                |         |
+| onBlur       | func                                   |         |
+| onChange     | func                                   |         |
+| onClose      | func                                   |         |
+| onFocus      | func                                   |         |
+| onOpen       | func                                   |         |
+| required     | boolean                                |         |
+| clearable    | boolean                                |         |
+| multi        | boolean                                |         |
+| style        | [ReactSelect.Styles](#style_interface) |         |
 
 ### Style Interface
+
 ```
 interface ReactSelectStyles {
   control?: React.CSSProperties;

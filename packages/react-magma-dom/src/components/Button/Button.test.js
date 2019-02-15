@@ -13,7 +13,7 @@ import {
 const TEXT = 'Test Text';
 
 const BASE_BUTTON_PROPS = {
-  handleClick: jest.fn()
+  onClick: jest.fn()
 };
 
 const renderButton = (myProps = {}) => {

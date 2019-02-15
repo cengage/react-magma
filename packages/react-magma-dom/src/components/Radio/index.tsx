@@ -138,9 +138,9 @@ export const Radio: React.FunctionComponent<RadioProps> = ({
             required={required}
             type="radio"
             value={value}
-            onBlur={context.handleBlur}
-            onChange={context.handleChange}
-            onFocus={context.handleFocus}
+            onBlur={context.onBlur}
+            onChange={context.onChange}
+            onFocus={context.onFocus}
           />
           <StyledLabel htmlFor={id} inverse={inverse} style={labelStyle}>
             <StyledFakeInput

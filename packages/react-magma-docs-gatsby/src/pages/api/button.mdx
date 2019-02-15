@@ -174,7 +174,7 @@ The `href` and `to` props are also supported, so that a button can be used as an
 
 ## Event Handling
 
-The `handleClick` events will fire when the button is clicked, or when the enter or space bar key is pressed.
+The `onClick` events will fire when the button is clicked, or when the enter or space bar key is pressed.
 Events do not fire on disabled buttons.
 
 ```.jsx
@@ -190,13 +190,13 @@ Events do not fire on disabled buttons.
         return <div>
         <p><strong>Counter: </strong> <span id="counter">{this.state.counter}</span></p>
         <Button
-          handleClick={() => {
+          onClick={() => {
             this.setState(state => ({counter: state.counter + 1}))
           }}>Click me</Button>
 
         <Button
           disabled
-          handleClick={() => {
+          onClick={() => {
             this.setState(state => ({counter: state.counter + 1}))
           }}>Click me</Button>
         </div>
@@ -215,7 +215,7 @@ Events do not fire on disabled buttons.
 | children | node | |
 | color | enum: 'primary' &#124; 'secondary' &#124; 'success' &#124; 'danger' | 'primary' |
 | disabled | boolean | false |
-| handleClick | func | | &#10003;
+| onClick | func | | &#10003;
 | href | string | |
 | inverse | boolean | false |
 | shape | enum: 'fill' &#124; 'leftCap' &#124; 'rightCap' &#124; 'round' | 'fill' |

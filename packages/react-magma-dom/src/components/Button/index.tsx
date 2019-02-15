@@ -13,8 +13,8 @@ import {
 export const Button: React.FunctionComponent<ButtonProps> = (
   props: ButtonProps
 ) => (
-  <ButtonCore handleClick={props.handleClick}>
-    {({ handleClick }) => {
+  <ButtonCore onClick={props.onClick}>
+    {({ onClick }) => {
       const {
         as,
         autoFocus,
@@ -36,7 +36,7 @@ export const Button: React.FunctionComponent<ButtonProps> = (
         <StyledButton
           as={as}
           autoFocus={autoFocus}
-          handleClick={handleClick}
+          onClick={onClick}
           block={block}
           color={color ? color : ButtonColor.primary}
           disabled={disabled}

@@ -7,7 +7,7 @@ interface LinkButtonProps {
   autoFocus?: boolean;
   className?: string;
   children?: React.ReactChild | React.ReactChild[];
-  handleClick?: () => void;
+  onClick?: () => void;
   disabled?: boolean;
   inverse?: boolean;
   style?: React.CSSProperties;
@@ -44,14 +44,14 @@ export const LinkButton: React.FunctionComponent<LinkButtonProps> = ({
   className,
   children,
   disabled,
-  handleClick,
+  onClick,
   inverse,
   style
 }: LinkButtonProps) => (
   <LinkButtonComponent
     className={className}
     autoFocus={autoFocus}
-    onClick={handleClick}
+    onClick={onClick}
     disabled={disabled}
     inverse={inverse}
     style={style}

@@ -9,37 +9,33 @@ export class InputCore extends React.Component<InputCoreProps, InputCoreState> {
   constructor(props) {
     super(props);
 
-    this.handleBlur = this.handleBlur.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleFocus = this.handleFocus.bind(this);
+    this.onBlur = this.onBlur.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onFocus = this.onFocus.bind(this);
   }
 
-  handleBlur() {
-    this.props.handleBlur && this.props.handleBlur();
+  onBlur() {
+    this.props.onBlur && this.props.onBlur();
   }
 
-  handleFocus() {
-    this.props.handleFocus && this.props.handleFocus();
+  onFocus() {
+    this.props.onFocus && this.props.onFocus();
   }
 
-  handleChange(event) {
+  onChange(event) {
     const { value } = event.target;
+    this.props.onChange && this.props.onChange(event);
 
-    this.setState(
-      () => ({ value }),
-      () => {
-        this.props.handleChange && this.props.handleChange(this.state.value);
-      }
-    );
+    this.setState(() => ({ value }));
   }
 
   render() {
     return this.props.children({
       ...this.state,
       ...this.props,
-      handleBlur: this.handleBlur,
-      handleChange: this.handleChange,
-      handleFocus: this.handleFocus,
+      onBlur: this.onBlur,
+      onChange: this.onChange,
+      onFocus: this.onFocus,
       value: this.state.value
     });
   }
@@ -47,9 +43,9 @@ export class InputCore extends React.Component<InputCoreProps, InputCoreState> {
 
 export interface InputCoreProps {
   children: (props) => React.ReactNode;
-  handleBlur?: () => void;
-  handleChange?: (value: string) => void;
-  handleFocus?: () => void;
+  onBlur?: () => void;
+  onChange?: (event: React.SyntheticEvent) => void;
+  onFocus?: () => void;
   value?: string;
 }
 

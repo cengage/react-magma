@@ -2,15 +2,15 @@ import * as React from 'react';
 import { mount } from 'enzyme';
 import { InputCore } from './Input';
 
-const handleBlur = jest.fn();
-const handleChange = jest.fn();
-const handleFocus = jest.fn();
+const onBlur = jest.fn();
+const onChange = jest.fn();
+const onFocus = jest.fn();
 
 const INPUT_CORE_PROPS = {
   children: () => React.createElement('div'),
-  handleBlur,
-  handleChange,
-  handleFocus,
+  onBlur,
+  onChange,
+  onFocus,
   value: ''
 };
 
@@ -25,9 +25,9 @@ const inputSetup = (myProps = {}) => {
 
 describe('InputCore', () => {
   afterEach(() => {
-    handleBlur.mockReset();
-    handleChange.mockReset();
-    handleFocus.mockReset();
+    onBlur.mockReset();
+    onChange.mockReset();
+    onFocus.mockReset();
   });
 
   describe('state management', () => {
@@ -37,11 +37,11 @@ describe('InputCore', () => {
       expect(component.state('value')).toEqual(INPUT_CORE_PROPS.value);
     });
 
-    it('should update the state value when handleChange is called', () => {
+    it('should update the state value when onChange is called', () => {
       const value = 'new value';
       const component = inputSetup();
 
-      component.instance().handleChange({
+      component.instance().onChange({
         target: {
           value
         }
@@ -52,73 +52,74 @@ describe('InputCore', () => {
   });
 
   describe('handle blur', () => {
-    it('should call the handleBlur from props during the internal handleBlur', () => {
+    it('should call the onBlur from props during the internal onBlur', () => {
       const component = inputSetup();
 
-      component.instance().handleBlur();
+      component.instance().onBlur();
 
-      expect(INPUT_CORE_PROPS.handleBlur).toHaveBeenCalled();
+      expect(INPUT_CORE_PROPS.onBlur).toHaveBeenCalled();
     });
 
-    it('should not fail if no handleBlur is passed through the props', () => {
+    it('should not fail if no onBlur is passed through the props', () => {
       const component = inputSetup({
-        handleBlur: undefined
+        onBlur: undefined
       });
 
-      component.instance().handleBlur();
+      component.instance().onBlur();
 
-      expect(INPUT_CORE_PROPS.handleBlur).not.toHaveBeenCalled();
+      expect(INPUT_CORE_PROPS.onBlur).not.toHaveBeenCalled();
     });
   });
 
   describe('handle change', () => {
-    it('should call the handleChange from props during the internal handleChange', () => {
+    it('should call the onChange from props during the internal onChange', () => {
       const value = 'test handle change';
-      const component = inputSetup();
-
-      component.instance().handleChange({
+      const event = {
         target: {
           value
         }
-      });
+      };
+      const component = inputSetup();
 
-      expect(INPUT_CORE_PROPS.handleChange).toHaveBeenCalledWith(value);
+      component.instance().onChange(event);
+
+      expect(INPUT_CORE_PROPS.onChange).toHaveBeenCalledWith(event);
     });
 
-    it('should not fail if no handleChange is passed through the props', () => {
+    it('should not fail if no onChange is passed through the props', () => {
       const value = 'test no fail';
       const component = inputSetup({
-        handleChange: undefined
+        onChange: undefined
       });
 
-      component.instance().handleChange({
+      component.instance().onChange({
         target: {
           value
         }
       });
 
       expect(component.state('value')).toEqual(value);
-      expect(INPUT_CORE_PROPS.handleChange).not.toHaveBeenCalled();
+      expect(INPUT_CORE_PROPS.onChange).not.toHaveBeenCalled();
     });
   });
 
   describe('handle focus', () => {
-    it('should call the handleFocus from props during the internal handleFocus', () => {
+    it('should call the onFocus from props during the internal onFocus', () => {
       const component = inputSetup();
 
-      component.instance().handleFocus();
+      component.instance().onFocus();
 
-      expect(INPUT_CORE_PROPS.handleFocus).toHaveBeenCalled();
+      expect(INPUT_CORE_PROPS.onFocus).toHaveBeenCalled();
     });
 
-    it('should not fail if no handleFocus is passed through the props', () => {
+    it('should not fail if no onFocus is passed through the props', () => {
       const component = inputSetup({
-        handleFocus: undefined
+        onFocus: undefined
       });
 
-      component.instance().handleFocus();
+      component.instance().onFocus();
 
-      expect(INPUT_CORE_PROPS.handleFocus).not.toHaveBeenCalled();
+      expect(INPUT_CORE_PROPS.onFocus).not.toHaveBeenCalled();
     });
   });
 });

@@ -2,10 +2,10 @@ import * as React from 'react';
 
 export interface RadioCoreProps {
   children: (props) => React.ReactNode;
-  handleBlur?: () => void;
-  handleChange?: (event: React.SyntheticEvent) => void;
+  onBlur?: () => void;
+  onChange?: (event: React.SyntheticEvent) => void;
   selectedValue?: string;
-  handleFocus?: () => void;
+  onFocus?: () => void;
   value?: string;
 }
 
@@ -22,27 +22,27 @@ export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
   constructor(props) {
     super(props);
 
-    this.handleBlur = this.handleBlur.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleFocus = this.handleFocus.bind(this);
+    this.onBlur = this.onBlur.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onFocus = this.onFocus.bind(this);
   }
 
-  handleBlur() {
-    this.props.handleBlur && this.props.handleBlur();
+  onBlur() {
+    this.props.onBlur && this.props.onBlur();
   }
 
-  handleFocus() {
-    this.props.handleFocus && this.props.handleFocus();
+  onFocus() {
+    this.props.onFocus && this.props.onFocus();
   }
 
-  handleChange(event) {
+  onChange(event) {
     event.persist();
     const { value: selectedValue } = event.target;
 
     this.setState(
       () => ({ selectedValue }),
       () => {
-        this.props.handleChange && this.props.handleChange(event);
+        this.props.onChange && this.props.onChange(event);
       }
     );
   }
@@ -51,9 +51,9 @@ export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
     return this.props.children({
       ...this.state,
       ...this.props,
-      handleBlur: this.handleBlur,
-      handleChange: this.handleChange,
-      handleFocus: this.handleFocus,
+      onBlur: this.onBlur,
+      onChange: this.onChange,
+      onFocus: this.onFocus,
       selectedValue: this.state.selectedValue
     });
   }

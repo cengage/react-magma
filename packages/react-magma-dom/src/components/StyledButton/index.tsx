@@ -43,7 +43,7 @@ export interface ButtonProps {
   className?: string;
   children?: React.ReactChild | React.ReactChild[];
   text?: string;
-  handleClick?: (event: React.SyntheticEvent) => void;
+  onClick?: (event: React.SyntheticEvent) => void;
   color?: ButtonColor;
   disabled?: boolean;
   iconOnly?: boolean;
@@ -325,7 +325,7 @@ export const StyledButton: React.FunctionComponent<ButtonProps> = ({
   className,
   children,
   disabled,
-  handleClick,
+  onClick,
   href,
   iconOnly,
   inverse,
@@ -342,7 +342,7 @@ export const StyledButton: React.FunctionComponent<ButtonProps> = ({
     aria-label={ariaLabel}
     className={className}
     autoFocus={autoFocus}
-    onClick={handleClick}
+    onClick={onClick}
     block={block}
     color={color}
     disabled={disabled}
