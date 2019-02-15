@@ -3,9 +3,6 @@ import { Radio } from '.';
 import { RadioContext } from '../RadioGroup';
 import { render, fireEvent } from 'react-testing-library';
 import { magma } from '../../theme/magma';
-import { matchers } from 'jest-emotion';
-
-expect.extend(matchers);
 
 const RADIO_PROPS = {
   labelText: 'Blue',

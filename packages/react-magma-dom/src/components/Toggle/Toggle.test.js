@@ -1,9 +1,6 @@
 import React from 'react';
 import { Toggle } from '.';
 import { render, cleanup } from 'react-testing-library';
-import { matchers } from 'jest-emotion';
-
-expect.extend(matchers);
 
 const TOGGLE_PROPS = {
   autoFocus: false,

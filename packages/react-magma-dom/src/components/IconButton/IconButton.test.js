@@ -2,9 +2,6 @@ import React from 'react';
 import { axe } from 'jest-axe';
 import { IconButton } from '.';
 import { render, fireEvent, cleanup } from 'react-testing-library';
-import { matchers } from 'jest-emotion';
-
-expect.extend(matchers);
 
 const TEXT = 'Text';
 

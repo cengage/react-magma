@@ -3,9 +3,6 @@ import { RadioGroup } from '.';
 import { Radio } from '../Radio';
 import { render, fireEvent, wait } from 'react-testing-library';
 import { magma } from '../../theme/magma';
-import { matchers } from 'jest-emotion';
-
-expect.extend(matchers);
 
 const RADIO_GROUP_PROPS = {
   value: 'default',

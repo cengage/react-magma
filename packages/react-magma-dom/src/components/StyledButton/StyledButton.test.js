@@ -9,10 +9,7 @@ import {
   ButtonVariant
 } from '.';
 import { render, fireEvent, cleanup } from 'react-testing-library';
-import { matchers } from 'jest-emotion';
 import { magma } from '../../theme/magma';
-
-expect.extend(matchers);
 
 const TEXT = 'Test Text';
 
