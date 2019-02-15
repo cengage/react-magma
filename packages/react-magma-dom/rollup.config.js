@@ -10,7 +10,7 @@ import pkg from './package.json';
 
 const base = {
   input: 'src/index.ts',
-  external: ['react', 'react-dom', 'styled-components'],
+  external: ['react', 'react-dom'],
   plugins: [
     postcss({
       extensions: ['.css'],
@@ -40,7 +40,6 @@ export default [
       globals: {
         react: 'React',
         'react-dom': 'ReactDOM',
-        'styled-components': 'styled',
         'react-select': 'ReactSelect'
       }
     },
@@ -57,7 +56,6 @@ export default [
       globals: {
         react: 'React',
         'react-dom': 'ReactDOM',
-        'styled-components': 'styled',
         'react-select': 'ReactSelect'
       }
     },
@@ -75,7 +73,6 @@ export default [
       globals: {
         react: 'React',
         'react-dom': 'ReactDOM',
-        'styled-components': 'styled',
         'react-select': 'ReactSelect'
       }
     },

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import MainNav from './main-nav'
-import styled, { createGlobalStyle } from 'styled-components'
 import { MDXProvider } from '@mdx-js/tag'
 import { Location } from '@reach/router'
 import { Transition, config } from 'react-spring'
@@ -15,6 +14,7 @@ import {
   ICONS,
   IconButton,
   Input,
+  Label,
   LinkButton,
   Radio,
   RadioGroup,
@@ -22,99 +22,11 @@ import {
   Toggle,
   magma
 } from 'react-magma-dom'
-import { IconContainer } from './iconContainer'
-import { IconListContainer } from './iconListContainer'
-import { SelectContainer } from './selectContainer'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import { convertTextToId } from '../utils'
-
-import Header from './header'
-
 import './app.css'
 import './layout.css'
 import './syntax.css'
-
-const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
-  @import url('https://use.typekit.net/rwr6vzk.css');
-
-  *,
-  *:before,
-  *:after {
-    box-sizing: border-box;
-  }
-
-  & body {
-    color: ${magma.primary01};
-  	font-family: ${magma.bodyFont};
-  	font-style: normal;
-  	font-weight: 400;
-  	font-size: 15px;
-  	line-height: 22px;
-  }
-
-  a {
-    text-decoration: none;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    color: ${magma.primary02};
-    font-family: ${magma.headingFont};
-    font-weight: 500;
-    line-height: 1.1;
-    margin: 20px 0 10px;
-  }
-
-  h1 {
-    font-size: 40px;
-  }
-
-  h2 {
-    font-size: 32px;
-  }
-
-  h3 {
-    font-size: 26px;
-  }
-
-  h4 {
-    font-size: 23px;
-  }
-
-  h5 {
-    font-size: 20px;
-  }
-
-  h6 {
-    font-size: 18px;
-  }
-`
-
-const Content = styled.article`
-  grid-area: content;
-  max-width: 760px;
-  margin: 0 auto;
-
-  h1 {
-    margin-top: 0;
-  }
-`
-
-const Main = styled.main`
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: 200px auto;
-  grid-template-rows: 100px auto;
-  grid-template-areas:
-    'nav header'
-    'nav content';
-`
-
-const PreContainer = styled.div`
-  display: grid;
-  max-width: 100%;
-  overflow: scroll;
-`
 
 const PreComponent = ({ className, ...props }) =>
   props.children.props.props &&
@@ -129,21 +41,19 @@ const PreComponent = ({ className, ...props }) =>
         Icon,
         ICONS,
         IconButton,
-        IconContainer,
-        IconListContainer,
         Input,
+        Label,
         LinkButton,
         Radio,
         RadioGroup,
         Select,
-        SelectContainer,
         Toggle,
         magma
       }}
     >
-      <PreContainer>
+      <div className="pre-container">
         <LiveEditor tabIndex="-1" />
-      </PreContainer>
+      </div>
       <LiveError />
       <LivePreview />
     </LiveProvider>
@@ -178,7 +88,6 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <>
-        <GlobalStyles />
         <Helmet
           title={data.site.siteMetadata.title}
           meta={[
@@ -188,10 +97,10 @@ const Layout = ({ children }) => (
         >
           <html lang="en" />
         </Helmet>
-        <Main>
+        <main className="main">
           <MainNav />
-          <Header siteTitle={data.site.siteMetadata.title} />
-          <Content>
+          <h1>{data.site.siteMetadata.title}</h1>
+          <article className="content-aricle">
             <MDXProvider
               components={{
                 pre: PreComponent,
@@ -214,8 +123,8 @@ const Layout = ({ children }) => (
                 )}
               </Location>
             </MDXProvider>
-          </Content>
-        </Main>
+          </article>
+        </main>
       </>
     )}
   />

@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { styled } from '../../theme/styled-components';
+import styled from '@emotion/styled';
 
 export interface ContainerProps {
   children?: any;
   style?: React.CSSProperties;
 }
 
-const StyledContainerComponent = styled<ContainerProps, 'div'>('div')`
+const StyledContainerComponent = styled.div<ContainerProps>`
   align-items: baseline;
   display: flex;
   flex-wrap: nowrap;

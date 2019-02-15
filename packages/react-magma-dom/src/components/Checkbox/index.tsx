@@ -10,7 +10,7 @@ import { HiddenStyles } from '../UtilityStyles';
 import { Icon } from '../Icon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
-import { styled } from '../../theme/styled-components';
+import styled from '@emotion/styled';
 import { magma } from '../../theme/magma';
 import 'focus-visible';
 
@@ -39,20 +39,17 @@ const HiddenLabelText = styled.span`
   ${HiddenStyles};
 `;
 
-const HiddenInput = styled<{ indeterminate?: boolean }, 'input'>('input')`
+const HiddenInput = styled.input<{ indeterminate?: boolean }>`
   ${HiddenStyles};
 `;
 
-const StyledFakeInput = styled<
-  {
-    inverse: boolean;
-    checked: boolean;
-    disabled: boolean;
-    color: string;
-    indeterminate?: boolean;
-  },
-  'span'
->('span')`
+const StyledFakeInput = styled.span<{
+  inverse: boolean;
+  checked: boolean;
+  disabled: boolean;
+  color: string;
+  indeterminate?: boolean;
+}>`
   ${DisplayInputStyles};
   background: ${props => {
     if (props.inverse) {
@@ -124,7 +121,7 @@ const StyledFakeInput = styled<
   }
 `;
 
-const IndeterminateIcon = styled<{ color?: string }, 'span'>('span')`
+const IndeterminateIcon = styled.span<{ color?: string }>`
   background: ${props => props.color};
   display: none;
   height: 2px;

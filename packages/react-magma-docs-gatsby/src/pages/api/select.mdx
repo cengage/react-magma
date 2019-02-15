@@ -7,7 +7,7 @@ title: "Selects"
 ## Basic Usage
 
 ```.jsx
-  <SelectContainer>
+  <div className='demo-select-container'>
     <Select
       id="basicSelectId"
       name="basic"
@@ -23,13 +23,13 @@ title: "Selects"
         label: 'Green'
       }]}
     />
-  </SelectContainer>
+  </div>
 ```
 
 ## Multi-Select
 
 ```.jsx
-  <SelectContainer>
+  <divclassName='demo-select-container'>
     <Select
       id="multiSelectId"
       name="multi"
@@ -46,13 +46,13 @@ title: "Selects"
       }]}
       multi
     />
-  </SelectContainer>
+  </div>
 ```
 
 ## Clearable
 
 ```.jsx
-  <SelectContainer>
+  <div className='demo-select-container'>
     <Select
       id="clearableSelectId"
       name="clearable"
@@ -69,13 +69,13 @@ title: "Selects"
       }]}
       clearable
     />
-  </SelectContainer>
+  </div>
 ```
 
 ## Default Value
 
 ```.jsx
-  <SelectContainer>
+  <div className='demo-select-container'>
     <Select
       id="defaultValueSelectId"
       name="defaultValue"
@@ -95,13 +95,13 @@ title: "Selects"
         label: 'Red'
       }}
     />
-  </SelectContainer>
+  </div>
 ```
 
 ## Disabled
 
 ```.jsx
-  <SelectContainer>
+  <div className='demo-select-container'>
     <Select
       id="disabledSelectId"
       name="disabled"
@@ -118,7 +118,7 @@ title: "Selects"
       }]}
       disabled
     />
-  </SelectContainer>
+  </div>
 ```
 
 ## Controlled
@@ -141,7 +141,7 @@ title: "Selects"
     }
 
     render() {
-      return <SelectContainer>
+      return <div className='demo-select-container'>
         <p>
           <strong>Value: </strong>
           <span id="value">{this.state.value ? this.state.value.value : 'No Value Set'}</span>
@@ -162,7 +162,7 @@ title: "Selects"
           }]}
           handleChange={this.changeValue}
         />
-      </SelectContainer>
+      </div>
     }
   }
 ```
@@ -191,7 +191,7 @@ title: "Selects"
     }
 
     render() {
-      return <SelectContainer>
+      return <div className='demo-select-container'>
         <p><strong>Focused: </strong> <span id="focused">{this.state.message}</span></p>
         <Select
           id="focusedSelectId"
@@ -210,7 +210,7 @@ title: "Selects"
           handleFocus={this.changeFocusedMessage}
           handleBlur={this.changeFocusedMessage}
         />
-      </SelectContainer>
+      </div>
     }
   }
 ```
@@ -239,7 +239,7 @@ title: "Selects"
     }
 
     render() {
-      return <SelectContainer>
+      return <div className='demo-select-container'>
       <p><strong>Opened: </strong> <span id="opened">{this.state.message}</span></p>
         <Select
           id="openedSelectId"
@@ -258,7 +258,7 @@ title: "Selects"
           handleOpen={this.changeOpenedMessage}
           handleClose={this.changeOpenedMessage}
         />
-      </SelectContainer>
+      </div>
     }
   }
 ```

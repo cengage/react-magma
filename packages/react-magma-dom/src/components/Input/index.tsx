@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { InputCore } from 'react-magma-core';
-import { styled } from '../../theme/styled-components';
+import styled from '@emotion/styled';
 import { Icon } from '../Icon';
 import { Label } from '../Label';
 import { magma } from '../../theme/magma';
@@ -23,6 +23,7 @@ export enum InputType {
 }
 
 export interface InputProps {
+  as?: string;
   autoFocus?: boolean;
   disabled?: boolean;
   errorMessage?: string;
@@ -67,7 +68,7 @@ const InputWrapper = styled.div`
   position: relative;
 `;
 
-const StyledInput = styled<InputProps, 'input'>('input')`
+const StyledInput = styled.input<InputProps>`
   background: ${magma.colors.neutral08};
   border: 1px solid;
   border-color: ${props =>
@@ -124,7 +125,7 @@ const StyledInput = styled<InputProps, 'input'>('input')`
   }
 `;
 
-const ErrorMessage = styled<TextProps, 'div'>('div')`
+const ErrorMessage = styled.div<TextProps>`
   background: ${props => (props.inverse ? magma.colors.danger : 'none')};
   border-radius: 5px;
   color: ${props =>
@@ -134,14 +135,14 @@ const ErrorMessage = styled<TextProps, 'div'>('div')`
   padding: ${props => (props.inverse ? '5px 10px' : '0')};
 `;
 
-const HelperMessage = styled<TextProps, 'div'>('div')`
+const HelperMessage = styled.div<TextProps>`
   color: ${props =>
     props.inverse ? magma.colors.neutral08 : magma.colors.neutral04};
   font-size: 13px;
   margin-top: 5px;
 `;
 
-const IconWrapper = styled<IconWrapperProps, 'span'>('span')`
+const IconWrapper = styled.span<IconWrapperProps>`
   left: ${props => (props.iconPosition === 'left' ? '10px' : 'auto')};
   right: ${props => (props.iconPosition === 'right' ? '10px' : 'auto')};
   color: ${magma.colors.neutral02};
@@ -150,7 +151,7 @@ const IconWrapper = styled<IconWrapperProps, 'span'>('span')`
   top: 50%;
 `;
 
-const ErrorIconWrapper = styled<ErrorIconWrapperProps, 'span'>('span')`
+const ErrorIconWrapper = styled.span<ErrorIconWrapperProps>`
   align-items: center;
   background: ${magma.colors.danger};
   border-radius: 100%;
@@ -255,7 +256,7 @@ export const Input: React.FunctionComponent<InputProps> = (
           <InputWrapper>
             <StyledInput
               aria-label={labelVisuallyHidden ? labelText : null}
-              as={multiline ? 'textarea' : 'input'}
+              as={multiline ? 'textarea' : null}
               autoFocus={autoFocus}
               id={id}
               disabled={disabled}

@@ -8,7 +8,7 @@ import { HiddenStyles } from '../UtilityStyles';
 import { RadioContext } from '../RadioGroup';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
-import { styled } from '../../theme/styled-components';
+import styled from '@emotion/styled';
 import { magma } from '../../theme/magma';
 import 'focus-visible';
 
@@ -30,18 +30,15 @@ const HiddenLabelText = styled.span`
   ${HiddenStyles};
 `;
 
-const HiddenInput = styled<{ indeterminate?: boolean }, 'input'>('input')`
+const HiddenInput = styled.input<{ indeterminate?: boolean }>`
   ${HiddenStyles};
 `;
 
-const StyledFakeInput = styled<
-  {
-    inverse: boolean;
-    disabled: boolean;
-    color: string;
-  },
-  'span'
->('span')`
+const StyledFakeInput = styled.span<{
+  inverse: boolean;
+  disabled: boolean;
+  color: string;
+}>`
   ${DisplayInputStyles};
   background: ${props => {
     if (props.inverse) {
@@ -104,7 +101,7 @@ const StyledFakeInput = styled<
   }
 `;
 
-const SelectedIcon = styled<{ color: string }, 'span'>('span')`
+const SelectedIcon = styled.span<{ color: string }>`
   background: ${props => props.color};
   border-radius: 100%;
   display: none;

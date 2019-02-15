@@ -2,7 +2,7 @@ import * as React from 'react';
 import { RadioCore } from 'react-magma-core';
 import { RadioProps } from '../Radio';
 import { HiddenStyles } from '../UtilityStyles';
-import { styled } from '../../theme/styled-components';
+import styled from '@emotion/styled';
 
 const StyledLabel = styled.label`
   display: block;

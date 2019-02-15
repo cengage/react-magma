@@ -8,9 +8,9 @@ title: "Icons"
 
 ```.jsx
   <p>
-    <IconContainer>
+    <span className='demo-icon-container'>
       <Icon id="infoBasic" title="Info Available" type="info" />
-    </IconContainer>
+    </span>
   </p>
 ```
 
@@ -18,12 +18,12 @@ title: "Icons"
 
 ```.jsx
   <p>
-    <IconContainer>
+    <span className='demo-icon-container'>
       <Icon id="smallSize" size={20} title="Small Size" type="angle-down" />
-    </IconContainer>
-    <IconContainer>
+    </span>
+    <span className='demo-icon-container'>
       <Icon id="largeSize" size={50} title="Large Size" type="angle-down" />
-    </IconContainer>
+    </span>
   </p>
 ```
 
@@ -31,27 +31,27 @@ title: "Icons"
 
 ```.jsx
   <p>
-    <IconContainer>
+    <span className='demo-icon-container'>
       <Icon id="noColor" title="No Color" type="angle-down" />
-    </IconContainer>
-    <IconContainer>
+    </span>
+    <span className='demo-icon-container'>
       <Icon id="someColor" color="green" title="Some Color" type="angle-down" />
-    </IconContainer>
+    </span>
   </p>
 ```
 
 ## Available Icons
 
 ```.jsx
-    <IconListContainer>{Object.keys(ICONS).map((key) => {
+    <div className='demo-icon-list-container'>{Object.keys(ICONS).map((key) => {
       const id = key + 'Available';
       const title = key + ' Title';
 
-      return <IconContainer border key={key}>
+      return <span className='demo-icon-container'>
         <Icon id={id} title={title} type={key} /><br />
         {key}
-      </IconContainer>
-    })}</IconListContainer>
+      </span>
+    })}</div>
 ```
 
 ## Icon Props

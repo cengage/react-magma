@@ -4,7 +4,8 @@ import { FocusStyles, HiddenStyles } from '../UtilityStyles';
 import { Icon } from '../Icon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
-import { styled, css } from '../../theme/styled-components';
+import { css } from '@emotion/core';
+import styled from '@emotion/styled';
 import { magma } from '../../theme/magma';
 import 'focus-visible';
 
@@ -39,7 +40,7 @@ const HiddenInput = styled.input`
   ${HiddenStyles};
 `;
 
-const Track = styled<{ checked?: boolean; disabled?: boolean }, 'span'>('span')`
+const Track = styled.span<{ checked?: boolean; disabled?: boolean }>`
   background: ${magma.colors.neutral07};
   border: 2px solid;
   border-color:  ${magma.colors.neutral05};
@@ -102,7 +103,7 @@ const Track = styled<{ checked?: boolean; disabled?: boolean }, 'span'>('span')`
   }
 `;
 
-const Thumb = styled<{ checked?: boolean; disabled?: boolean }, 'span'>('span')`
+const Thumb = styled.span<{ checked?: boolean; disabled?: boolean }>`
   background: ${magma.colors.neutral08};
   box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3), 0 0 4px 0 rgba(0, 0, 0, 0.24),
     0 0 5px 0 rgba(0, 0, 0, 0.22);
