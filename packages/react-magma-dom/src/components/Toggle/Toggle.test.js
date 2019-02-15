@@ -41,8 +41,16 @@ describe('Toggle', () => {
     expect(toggle).toBeInTheDocument();
     expect(toggle).toHaveAttribute('id', TOGGLE_PROPS.id);
     expect(toggle).toHaveAttribute('value', TOGGLE_PROPS.value);
+    expect(toggle).not.toHaveAttribute('checked');
     expect(toggle).not.toHaveAttribute('required');
     expect(toggle).not.toHaveAttribute('autoFocus');
+  });
+
+  it('should render a checked toggle with correct attribute', () => {
+    const { getByLabelText } = renderToggle({ checked: true });
+    const toggle = getByLabelText(TOGGLE_PROPS.labelText);
+
+    expect(toggle).toHaveAttribute('checked');
   });
 
   it('should render a toggle with a value passed through', () => {

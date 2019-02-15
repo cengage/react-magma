@@ -16,6 +16,7 @@ enum ToggleTextPostition {
 
 export interface ToggleProps {
   autoFocus?: boolean;
+  checked?: boolean;
   disabled?: boolean;
   handleBlur?: () => void;
   handleChange?: () => void;
@@ -167,12 +168,12 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
   props: ToggleProps
 ) => (
   <CheckboxCore
-    value={props.value}
+    checked={props.checked}
     handleBlur={props.handleBlur}
     handleChange={props.handleChange}
     handleFocus={props.handleFocus}
   >
-    {({ handleBlur, handleChange, handleFocus, value }) => {
+    {({ handleBlur, handleChange, handleFocus, checked }) => {
       const {
         autoFocus,
         disabled,
@@ -184,7 +185,8 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
         textPosition,
         textVisuallyHidden,
         trackStyle,
-        thumbStyle
+        thumbStyle,
+        value
       } = props;
 
       return (
@@ -192,7 +194,7 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
           <HiddenInput
             autoFocus={autoFocus}
             id={id}
-            checked={value}
+            checked={checked}
             disabled={disabled}
             name={name}
             required={required}
@@ -210,11 +212,11 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
                 ToggleTextPostition.left,
                 labelStyle
               )}
-            <Track checked={value} disabled={disabled} style={trackStyle}>
+            <Track checked={checked} disabled={disabled} style={trackStyle}>
               <IconContainer>
                 <Icon size={11} type="check" />
               </IconContainer>
-              <Thumb checked={value} disabled={disabled} style={thumbStyle} />
+              <Thumb checked={checked} disabled={disabled} style={thumbStyle} />
             </Track>
             {textPosition === ToggleTextPostition.right &&
               renderLabelText(
