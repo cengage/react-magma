@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { InputCore } from 'react-magma-core';
 import styled from '@emotion/styled';
-import { Icon } from '../Icon';
+import { IconProps } from '../Icon/utils';
+import { AlertIcon } from '../Icon/types/AlertIcon';
 import { Label } from '../Label';
 import { magma } from '../../theme/magma';
 
@@ -25,6 +26,7 @@ export enum InputType {
 export interface InputProps {
   as?: string;
   autoFocus?: boolean;
+  children?: React.ReactElement<IconProps>;
   disabled?: boolean;
   errorMessage?: string;
   onBlur?: () => void;
@@ -227,6 +229,7 @@ export const Input: React.FunctionComponent<InputProps> = (
     {({ onBlur, onChange, onFocus, value }) => {
       const {
         autoFocus,
+        children,
         disabled,
         errorMessage,
         helperMessage,
@@ -276,12 +279,14 @@ export const Input: React.FunctionComponent<InputProps> = (
             />
             {errorMessage && (
               <ErrorIconWrapper inputSize={inputSize}>
-                <Icon size={getErrorIconSize(inputSize)} type="alert" />
+                <AlertIcon size={getErrorIconSize(inputSize)} />
               </ErrorIconWrapper>
             )}
-            {icon && (
+            {children && (
               <IconWrapper iconPosition={iconPosition}>
-                <Icon size={getIconSize(inputSize)} type={icon} />
+                {React.Children.only(
+                  React.cloneElement(children, { size: getIconSize(inputSize) })
+                )}
               </IconWrapper>
             )}
           </InputWrapper>

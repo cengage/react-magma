@@ -9,7 +9,6 @@ import {
   StyledButton,
   ButtonTextTransform
 } from '../StyledButton';
-import { Icon } from '../Icon';
 import styled from '@emotion/styled';
 
 enum ButtonTextPostition {
@@ -78,7 +77,6 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
         children,
         disabled,
         href,
-        icon,
         iconOnly,
         inverse,
         block,
@@ -88,7 +86,6 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
         style,
         variant,
         textTransform,
-        textPosition,
         to
       } = props;
 
@@ -112,13 +109,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
             to={to}
             variant={variant ? variant : ButtonVariant.solid}
           >
-            {textPosition === ButtonTextPostition.left && (
-              <SpanTextLeft size={size}>{children} </SpanTextLeft>
-            )}
-            <Icon size={getIconWithTextSize(size)} type={icon} />
-            {textPosition !== ButtonTextPostition.left && (
-              <SpanTextRight size={size}>{children}</SpanTextRight>
-            )}
+            {children}
           </StyledButton>
         );
       }
@@ -140,7 +131,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
           to={to}
           variant={variant ? variant : ButtonVariant.solid}
         >
-          <Icon size={getIconSize(size)} type={icon} />
+          {children}
         </StyledButton>
       );
     }}

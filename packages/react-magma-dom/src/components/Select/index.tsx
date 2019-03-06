@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SelectCore } from 'react-magma-core';
-import { Icon } from '../Icon';
+import { CrossIcon } from '../Icon/types/CrossIcon';
+import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
 import { Label } from '../Label';
 import { magma } from '../../theme/magma';
 
@@ -121,7 +122,7 @@ const ClearIndicator = props => {
   return (
     components.ClearIndicator && (
       <components.ClearIndicator {...props}>
-        <Icon size={12} type="cross" />
+        <CrossIcon size={12} />
       </components.ClearIndicator>
     )
   );
@@ -131,7 +132,7 @@ const DropdownIndicator = props => {
   return (
     components.DropdownIndicator && (
       <components.DropdownIndicator {...props}>
-        <Icon size={10} type="caret-down" />
+        <CaretDownIcon size={10} />
       </components.DropdownIndicator>
     )
   );
@@ -141,7 +142,7 @@ const MultiValueRemove = props => {
   return (
     components.MultiValueRemove && (
       <components.MultiValueRemove {...props}>
-        <Icon size={8} type="cross" />
+        <CrossIcon size={8} />
       </components.MultiValueRemove>
     )
   );

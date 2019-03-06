@@ -1,5 +1,5 @@
 ---
-title: "Icons"
+title: 'Icons'
 ---
 
 # Icons
@@ -9,7 +9,7 @@ title: "Icons"
 ```.jsx
   <p>
     <span className='demo-icon-container'>
-      <Icon id="infoBasic" title="Info Available" type="info" />
+      <InfoIcon id="infoBasic" title="Info Available" />
     </span>
   </p>
 ```
@@ -19,10 +19,10 @@ title: "Icons"
 ```.jsx
   <p>
     <span className='demo-icon-container'>
-      <Icon id="smallSize" size={20} title="Small Size" type="angle-down" />
+      <AngleDownIcon id="smallSize" size={20} title="Small Size" />
     </span>
     <span className='demo-icon-container'>
-      <Icon id="largeSize" size={50} title="Large Size" type="angle-down" />
+      <AngleDownIcon id="largeSize" size={50} title="Large Size" />
     </span>
   </p>
 ```
@@ -32,34 +32,34 @@ title: "Icons"
 ```.jsx
   <p>
     <span className='demo-icon-container'>
-      <Icon id="noColor" title="No Color" type="angle-down" />
+      <AngleDownIcon id="noColor" title="No Color" />
     </span>
     <span className='demo-icon-container'>
-      <Icon id="someColor" color="green" title="Some Color" type="angle-down" />
+      <AngleDownIcon id="someColor" color="green" title="Some Color" />
     </span>
   </p>
 ```
 
 ## Available Icons
 
-```.jsx
-    <div className='demo-icon-list-container'>{Object.keys(ICONS).map((key) => {
-      const id = key + 'Available';
-      const title = key + ' Title';
+```.jsx hideCode
+    <div className='demo-icon-list-container'>{iconsArray.map((icon) => {
+      const id = icon + 'Available';
+      const title = icon + ' Title';
+      const Icon = ICONS[icon];
 
       return <span className='demo-icon-container'>
-        <Icon id={id} title={title} type={key} /><br />
-        {key}
+        <Icon id={id} title={title} /><br />
+        {icon}
       </span>
     })}</div>
 ```
 
 ## Icon Props
 
-| Prop                   | Type | Default | Required    |
-| -----------------------|------|---------|:-----------:|
-| type | string | | &#10003;
-| id | string | | 
-| title | string | | 
-| color | string | | 
-| size | string | | 
+| Prop  | Type   | Default | Required |
+| ----- | ------ | ------- | :------: |
+| id    | string |         |
+| title | string |         |
+| color | string |         |
+| size  | string |         |

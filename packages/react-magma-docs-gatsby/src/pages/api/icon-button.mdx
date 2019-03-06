@@ -13,19 +13,19 @@ IconButton components accept all of the same props as Button components.
 
 ```.jsx
     <p>
-        <IconButton icon="bell" iconOnly={true}>Icon button</IconButton>
-        <IconButton icon="bell" variant="outline" iconOnly={true}>Icon button</IconButton>
-        <IconButton icon="bell" variant="link" iconOnly={true}>Icon button</IconButton>
-        <IconButton icon="cog2" color="secondary" iconOnly={true}>Icon button</IconButton>
-        <IconButton icon="cog2" color="secondary" iconOnly={true}>Icon button</IconButton>
-        <IconButton icon="cog2" color="secondary" iconOnly={true}>Icon button</IconButton>
-        <IconButton icon="check" color="success" iconOnly={true}>Icon button</IconButton>
-        <IconButton icon="check" color="success"variant="outline" iconOnly={true}>Icon button</IconButton>
-        <IconButton icon="check" color="success" variant="link" iconOnly={true}>Icon button</IconButton>
-        <IconButton icon="alert" color="danger" iconOnly={true}>Icon button</IconButton>
-        <IconButton icon="alert" color="danger" variant="outline" iconOnly={true}>Icon button</IconButton>
-        <IconButton icon="alert" color="danger" variant="link" iconOnly={true}>Icon button</IconButton>
-        <IconButton disabled icon="bell" iconOnly={true}>Icon button</IconButton>
+        <IconButton><BellIcon /></IconButton>
+        <IconButton variant="outline"><BellIcon /></IconButton>
+        <IconButton variant="link"><BellIcon /></IconButton>
+        <IconButton color="secondary"><Cog2Icon /></IconButton>
+        <IconButton color="secondary"><Cog2Icon /></IconButton>
+        <IconButton color="secondary"><Cog2Icon /></IconButton>
+        <IconButton color="success"><CheckIcon /></IconButton>
+        <IconButton color="success"variant="outline"><CheckIcon /></IconButton>
+        <IconButton color="success" variant="link"><CheckIcon /></IconButton>
+        <IconButton color="danger"><AlertIcon /></IconButton>
+        <IconButton color="danger" variant="outline"><AlertIcon /></IconButton>
+        <IconButton color="danger" variant="link"><AlertIcon /></IconButton>
+        <IconButton disabled><BellIcon /></IconButton>
     </p>
 ```
 
@@ -35,7 +35,7 @@ For icon only buttons you _MUST_ pass in an `ariaLabel` property to satisfy acce
 
 ```.jsx
     <p>
-        <IconButton icon="bell" iconOnly={true} ariaLabel="Icon">Icon button</IconButton>
+        <IconButton ariaLabel="Icon"><BellIcon /></IconButton>
     </p>
 ```
 
@@ -47,8 +47,8 @@ The `textPosition` property takes the values `left` and `right`.
 ```.jsx
     <div>
       <p>
-        <IconButton icon="bell" textPosition="left">Text Left</IconButton>
-        <IconButton icon="info" color="secondary" textPosition="right">Text Right</IconButton>
+        <IconButton>Text Left <BellIcon /></IconButton>
+        <IconButton color="secondary"><InfoIcon />Text Right</IconButton>
       </p>
     </div>
 ```
