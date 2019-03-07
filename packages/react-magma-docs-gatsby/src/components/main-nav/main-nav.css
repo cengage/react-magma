@@ -1,0 +1,123 @@
+
+/* Main Nav styles */
+.main-nav {
+    background: #fff;
+    border-right: 1px solid #DFDFDF;
+    bottom: 0;
+    grid-area: nav;
+    min-height: 100vh;
+    overflow: auto;
+    position: fixed;
+    transition: all .2s;
+    transform: translateX(-280px);
+    width: 280px;
+}
+
+.main-nav-inner {
+    display: none;
+}
+
+.nav-open {
+    overflow: hidden;
+}
+
+.nav-open body:after {
+    background: rgba(0,0,0,0.6);
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.nav-open .main-nav-inner {
+    display: block;
+}
+
+.nav-open .main-nav {
+    top: 0;
+    transform: translateX(0);
+    z-index: 3;
+}
+
+.menu-button {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+@media (min-width: 600px) {
+    .menu-button {
+        top: 15px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .main-nav {
+        padding-top: 20px;
+        top: 80px;
+        transform: translateX(0);
+    }
+
+    .main-nav-inner {
+        display: block;
+    }
+    
+    .main-nav button,
+    .menu-button {
+        display: none;
+    }
+}
+
+.main-nav h2 {
+    font-size: 20px;
+    font-family: "Open Sans", sans-serif;
+    margin: 10px 20px;
+}
+
+.main-nav hr {
+    background: #dfdfdf;
+    margin-top: 10px;
+}
+
+.main-nav ul {
+    margin: 0;
+    padding: 0;
+    }
+
+.main-nav ul li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav li a {
+    color: #727272;
+    display: block;
+    font-size: 15px;
+    line-height: 20px;
+    padding: 10px 20px;
+}
+
+.main-nav li a[aria-current] {
+    font-weight: bold;
+}
+
+.main-nav li a:hover,
+.main-nav li a:focus {
+    background: #f7f7f7;
+    text-decoration: none;
+}
+
+.submenu > li {
+    list-style-type: none;
+    margin: 0;
+}
+
+.submenu > li > a {
+    font-size: 13px;
+    line-height: 18px;
+    padding-left: 40px;
+}
