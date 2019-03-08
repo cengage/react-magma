@@ -4,6 +4,8 @@ title: 'Icon Buttons'
 
 # Icon Buttons
 
+**Icon Buttons use the Button component to render. It is not a separate component, just different props.**
+
 **Buttons are clickable items used to perform an action.**
 
 Icon buttons have an icon included in them. Text is displayed in these buttons by default, but can be removed using the `iconOnly` property.
@@ -13,19 +15,19 @@ IconButton components accept all of the same props as Button components.
 
 ```.jsx
     <p>
-        <IconButton><BellIcon /></IconButton>
-        <IconButton variant="outline"><BellIcon /></IconButton>
-        <IconButton variant="link"><BellIcon /></IconButton>
-        <IconButton color="secondary"><Cog2Icon /></IconButton>
-        <IconButton color="secondary"><Cog2Icon /></IconButton>
-        <IconButton color="secondary"><Cog2Icon /></IconButton>
-        <IconButton color="success"><CheckIcon /></IconButton>
-        <IconButton color="success"variant="outline"><CheckIcon /></IconButton>
-        <IconButton color="success" variant="link"><CheckIcon /></IconButton>
-        <IconButton color="danger"><AlertIcon /></IconButton>
-        <IconButton color="danger" variant="outline"><AlertIcon /></IconButton>
-        <IconButton color="danger" variant="link"><AlertIcon /></IconButton>
-        <IconButton disabled><BellIcon /></IconButton>
+        <Button ariaLabel="Icon" icon={<BellIcon />} />
+        <Button ariaLabel="Icon" variant="outline" icon={<BellIcon />} />
+        <Button ariaLabel="Icon" variant="link" icon={<BellIcon />} />
+        <Button ariaLabel="Icon" color="secondary" icon={<Cog2Icon />} />
+        <Button ariaLabel="Icon" color="secondary" icon={<Cog2Icon />} />
+        <Button ariaLabel="Icon" color="secondary" icon={<Cog2Icon />} />
+        <Button ariaLabel="Icon" color="success" icon={<CheckIcon />} />
+        <Button ariaLabel="Icon" color="success"variant="outline" icon={<CheckIcon />} />
+        <Button ariaLabel="Icon" color="success" variant="link" icon={<CheckIcon />} />
+        <Button ariaLabel="Icon" color="danger" icon={<AlertIcon />} />
+        <Button ariaLabel="Icon" color="danger" variant="outline" icon={<AlertIcon />} />
+        <Button ariaLabel="Icon" color="danger" variant="link" icon={<AlertIcon />} />
+        <Button ariaLabel="Icon" disabled icon={<BellIcon />} />
     </p>
 ```
 
@@ -35,20 +37,20 @@ For icon only buttons you _MUST_ pass in an `ariaLabel` property to satisfy acce
 
 ```.jsx
     <p>
-        <IconButton ariaLabel="Icon"><BellIcon /></IconButton>
+        <Button ariaLabel="Icon" icon={<BellIcon />} />
     </p>
 ```
 
-## Text position
+## Icon position
 
-Use the optional prop `textPosition` to position the text of the button on either side of the icon.
-The `textPosition` property takes the values `left` and `right`.
+Use the optional prop `iconPosition` to position the icon of the button on either side of the text.
+The `iconPosition` property takes the values `left` and `right`.
 
 ```.jsx
     <div>
       <p>
-        <IconButton>Text Left <BellIcon /></IconButton>
-        <IconButton color="secondary"><InfoIcon />Text Right</IconButton>
+        <Button icon={<BellIcon />}>Icon Left</Button>
+        <Button color="secondary" icon={<InfoIcon />} iconPosition="right">Icon Right</Button>
       </p>
     </div>
 ```
@@ -60,14 +62,14 @@ Sizes for `IconButtons` include `small`, `medium`, and `large`, with `medium` be
 ```.jsx
     <div>
       <p>
-          <IconButton icon="bell" size="small" iconOnly={true}>Icon button</IconButton>
-          <IconButton icon="bell" iconOnly={true}>Icon button</IconButton>
-          <IconButton icon="bell" size="large" iconOnly={true}>Icon button</IconButton>
+          <Button icon={<BellIcon />} size="small">Icon button</Button>
+          <Button icon={<BellIcon />}>Icon button</Button>
+          <Button icon={<BellIcon />} size="large">Icon button</Button>
       </p>
       <p>
-          <IconButton icon="bell" size="small" textPosition="left">Small</IconButton>
-          <IconButton icon="bell" textPosition="left">Medium</IconButton>
-          <IconButton icon="bell" size="large" textPosition="left">Large</IconButton>
+          <Button icon={<BellIcon />} size="small" iconPosition="left">Small</Button>
+          <Button icon={<BellIcon />} iconPosition="left">Medium</Button>
+          <Button icon={<BellIcon />} size="large" iconPosition="left">Large</Button>
       </p>
     </div>
 ```
@@ -78,10 +80,10 @@ Icon only buttons have `shape = round`, by default.
 
 ```.jsx
     <p>
-      <IconButton icon="bell" iconOnly={true}>Icon button</IconButton>
-      <IconButton icon="bell" shape="fill" iconOnly={true}>Icon button</IconButton>
-      <IconButton icon="bell" shape="rightCap" iconOnly={true}>Icon button</IconButton>
-      <IconButton icon="bell" shape="leftCap" iconOnly={true}>Icon button</IconButton>
+      <Button icon={<BellIcon />}>Icon button</Button>
+      <Button icon={<BellIcon />} shape="fill">Icon button</Button>
+      <Button icon={<BellIcon />} shape="rightCap">Icon button</Button>
+      <Button icon={<BellIcon />} shape="leftCap">Icon button</Button>
     </p>
 ```
 
@@ -92,8 +94,8 @@ Block buttons only work when the `icon` property is set to `false` or not define
 
 ```.jsx
     <p>
-        <IconButton icon="bell" block textPosition="left">Block button</IconButton>
-        <IconButton icon="bell" color="secondary" block textPosition="right">Block button</IconButton>
+        <Button icon={<BellIcon />} block iconPosition="left">Block button</Button>
+        <Button icon={<BellIcon />} color="secondary" block iconPosition="right">Block button</Button>
     </p>
 ```
 
@@ -104,18 +106,17 @@ if you need to use an `a` tag or a `Link` component.
 
 ```.jsx
     <p>
-        <IconButton
+        <Button
           ariaLabel='Search Google'
           as='a'
           href='http://google.com'
-          icon="search2"
-          textPosition='left'>Link Element</IconButton>
-        <IconButton
+          icon={<Search2Icon />}
+          iconPosition='left'>Link Element</Button>
+        <Button
           ariaLabel='Search Google'
           as='a'
           href='http://google.com'
-          icon="search2"
-          iconOnly />
+          icon={<Search2Icon />} />
     </p>
 ```
 
@@ -137,25 +138,23 @@ Events do not fire on disabled buttons.
       render() {
         return <div>
           <p><strong>Icon Counter: </strong> {this.state.iconButtonCounter} | <strong>Text Icon Counter: </strong> {this.state.textIconButtonCounter}</p>
-          <IconButton
-            icon="bell"
-            iconOnly={true}
+          <Button
+            icon={<BellIcon />}
             onClick={() => {
               this.setState(state => ({iconButtonCounter: state.iconButtonCounter + 1}))
-            }}>Click me</IconButton>
-          <IconButton
-            icon="bell"
+            }}>Click me</Button>
+          <Button
+            icon={<BellIcon />}
             textPosition="left"
             onClick={() => {
               this.setState(state => ({textIconButtonCounter: state.textIconButtonCounter + 1}))
-            }}>Click me</IconButton>
-          <IconButton
+            }}>Click me</Button>
+          <Button
             disabled
-            icon="bell"
-            iconOnly={true}
+            icon={<BellIcon />}
             onClick={() => {
               this.setState(state => ({iconButtonCounter: state.iconButtonCounter + 1}))
-            }}>Click me if you can</IconButton>
+            }}>Click me if you can</Button>
         </div>
       }
     }
@@ -174,14 +173,12 @@ Events do not fire on disabled buttons.
 | color         | enum: 'primary' &#124; 'secondary' &#124; 'success' &#124; 'danger' | 'primary'   |
 | disabled      | boolean                                                             | false       |
 | onClick       | func                                                                |             | &#10003; |
-| href          | string                                                              |             |
-| icon          | string                                                              |             | &#10003; |
-| iconOnly      | boolean                                                             | false       |
+| icon          | Icon ReactElement                                                   |             |
 | inverse       | boolean                                                             | false       |
 | shape         | enum: 'fill' &#124; 'leftCap' &#124; 'rightCap' &#124; 'round'      | 'fill'      |
 | size          | enum: 'large' &#124; 'medium' &#124; 'small'                        | 'medium'    |
 | style         | React.CSSProperties                                                 |             |
-| textPosition  | enum: 'left' &#124; 'right'                                         |             |
+| iconPosition  | enum: 'left' &#124; 'right'                                         |             |
 | textTransform | enum: 'uppercase' &#124; 'none'                                     | 'uppercase' |
 | to            | string                                                              |             |
 | variant       | enum: 'solid' &#124; 'outline' &#124; 'link'                        | 'solid'     |

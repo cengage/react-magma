@@ -5,10 +5,10 @@ export {
   ButtonShape,
   ButtonSize,
   ButtonVariant,
-  ButtonTextTransform
+  ButtonTextTransform,
+  ButtonIconPostition
 } from './components/StyledButton';
 export { Heading } from './components/Heading';
-export { IconButton } from './components/IconButton';
 export { Input, InputSize, InputType, IconPosition } from './components/Input';
 export { Label } from './components/Label';
 export { LinkButton } from './components/LinkButton';

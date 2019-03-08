@@ -235,8 +235,13 @@ import { WlUseItIcon } from './types/WlUseItIcon';
 import { WrenchIcon } from './types/WrenchIcon';
 import { Wrench3Icon } from './types/Wrench3Icon';
 import { YoutubeIcon } from './types/YoutubeIcon';
+import { IconProps } from './utils';
 
-export const ICONS = {
+interface IconsCollection {
+  [key: string]: React.FunctionComponent<IconProps>;
+}
+
+export const ICONS: IconsCollection = {
   AddPersonIcon,
   AlertIcon,
   AndroidIcon,

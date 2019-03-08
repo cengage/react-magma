@@ -26,14 +26,13 @@ export enum InputType {
 export interface InputProps {
   as?: string;
   autoFocus?: boolean;
-  children?: React.ReactElement<IconProps>;
   disabled?: boolean;
   errorMessage?: string;
   onBlur?: () => void;
   onChange?: (event: React.SyntheticEvent) => void;
   onFocus?: () => void;
   helperMessage?: string;
-  icon?: string;
+  icon?: React.ReactElement<IconProps>;
   iconPosition?: IconPosition;
   id: string;
   inputSize?: InputSize;
@@ -229,7 +228,6 @@ export const Input: React.FunctionComponent<InputProps> = (
     {({ onBlur, onChange, onFocus, value }) => {
       const {
         autoFocus,
-        children,
         disabled,
         errorMessage,
         helperMessage,
@@ -282,10 +280,10 @@ export const Input: React.FunctionComponent<InputProps> = (
                 <AlertIcon size={getErrorIconSize(inputSize)} />
               </ErrorIconWrapper>
             )}
-            {children && (
+            {icon && (
               <IconWrapper iconPosition={iconPosition}>
                 {React.Children.only(
-                  React.cloneElement(children, { size: getIconSize(inputSize) })
+                  React.cloneElement(icon, { size: getIconSize(inputSize) })
                 )}
               </IconWrapper>
             )}

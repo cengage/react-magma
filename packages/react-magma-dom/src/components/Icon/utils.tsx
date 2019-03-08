@@ -8,7 +8,7 @@ export interface IconProps {
   size?: number;
 }
 
-export function renderIcon(props, iconType) {
+export function renderIcon(props: IconProps, iconType: any) {
   const { id, title, color, size } = props;
 
   return iconType ? (

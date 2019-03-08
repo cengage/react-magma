@@ -1,6 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button Snapshot should render with updated shape 1`] = `
+exports[`Button Base Button Snapshot should render with large size 1`] = `
+<div>
+  <button
+    class="css-mu0rhi e183qit0"
+    color="primary"
+    shape="fill"
+  >
+    Test Text
+  </button>
+</div>
+`;
+
+exports[`Button Base Button Snapshot should render with small size 1`] = `
+<div>
+  <button
+    class="css-1b9wjjc e183qit0"
+    color="primary"
+    shape="fill"
+  >
+    Test Text
+  </button>
+</div>
+`;
+
+exports[`Button Base Button Snapshot should render with updated color 1`] = `
+<div>
+  <button
+    class="css-xh5nj e183qit0"
+    color="secondary"
+    shape="fill"
+  >
+    Test Text
+  </button>
+</div>
+`;
+
+exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 <div>
   <button
     class="css-15f1fu6 e183qit0"
@@ -12,31 +48,7 @@ exports[`Button Snapshot should render with updated shape 1`] = `
 </div>
 `;
 
-exports[`Button Snapshot should render with updated size 1`] = `
-<div>
-  <button
-    class="css-1b9wjjc e183qit0"
-    color="primary"
-    shape="fill"
-  >
-    Test Text
-  </button>
-</div>
-`;
-
-exports[`Button Snapshot should render with updated size 2`] = `
-<div>
-  <button
-    class="css-1b9wjjc e183qit0"
-    color="primary"
-    shape="fill"
-  >
-    Test Text
-  </button>
-</div>
-`;
-
-exports[`Button Snapshot should render with updated textTransform 1`] = `
+exports[`Button Base Button Snapshot should render with updated textTransform 1`] = `
 <div>
   <button
     class="css-9tyo2z e183qit0"
@@ -48,7 +60,7 @@ exports[`Button Snapshot should render with updated textTransform 1`] = `
 </div>
 `;
 
-exports[`Button Snapshot should render with updated variant 1`] = `
+exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 <div>
   <button
     class="css-3a4sd6 e183qit0"
@@ -56,6 +68,322 @@ exports[`Button Snapshot should render with updated variant 1`] = `
     shape="fill"
   >
     Test Text
+  </button>
+</div>
+`;
+
+exports[`Button Icon Only Button Snapshot should render with large size 1`] = `
+<div>
+  <button
+    aria-label="Check Icon"
+    class="css-ck9427 e183qit0"
+    color="primary"
+    shape="round"
+  >
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="14"
+      viewBox="0 0 29.37 21.88"
+      width="14"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <title />
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`Button Icon Only Button Snapshot should render with small size 1`] = `
+<div>
+  <button
+    aria-label="Check Icon"
+    class="css-ck9427 e183qit0"
+    color="primary"
+    shape="round"
+  >
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="14"
+      viewBox="0 0 29.37 21.88"
+      width="14"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <title />
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`Button Icon Only Button Snapshot should render with updated color 1`] = `
+<div>
+  <button
+    aria-label="Check Icon"
+    class="css-1c2yoq5 e183qit0"
+    color="secondary"
+    shape="round"
+  >
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="18"
+      viewBox="0 0 29.37 21.88"
+      width="18"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <title />
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`Button Icon Only Button Snapshot should render with updated shape 1`] = `
+<div>
+  <button
+    aria-label="Check Icon"
+    class="css-1kwullk e183qit0"
+    color="primary"
+    shape="fill"
+  >
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="18"
+      viewBox="0 0 29.37 21.88"
+      width="18"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <title />
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`Button Icon Only Button Snapshot should render with updated variant 1`] = `
+<div>
+  <button
+    aria-label="Check Icon"
+    class="css-qmynnk e183qit0"
+    color="primary"
+    shape="round"
+  >
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="18"
+      viewBox="0 0 29.37 21.88"
+      width="18"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <title />
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`Button Icon With Text Button Snapshot should render with large size 1`] = `
+<div>
+  <button
+    class="css-1b9wjjc e183qit0"
+    color="primary"
+    shape="fill"
+  >
+    <span
+      class="css-1p2jtab e1cefif80"
+    >
+      Test Text
+       
+    </span>
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="12"
+      viewBox="0 0 29.37 21.88"
+      width="12"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <title />
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`Button Icon With Text Button Snapshot should render with small size 1`] = `
+<div>
+  <button
+    class="css-1b9wjjc e183qit0"
+    color="primary"
+    shape="fill"
+  >
+    <span
+      class="css-1p2jtab e1cefif80"
+    >
+      Test Text
+       
+    </span>
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="12"
+      viewBox="0 0 29.37 21.88"
+      width="12"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <title />
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`Button Icon With Text Button Snapshot should render with updated color 1`] = `
+<div>
+  <button
+    class="css-xh5nj e183qit0"
+    color="secondary"
+    shape="fill"
+  >
+    <span
+      class="css-1p2jtab e1cefif80"
+    >
+      Test Text
+       
+    </span>
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="16"
+      viewBox="0 0 29.37 21.88"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <title />
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`Button Icon With Text Button Snapshot should render with updated shape 1`] = `
+<div>
+  <button
+    class="css-1vyo6ip e183qit0"
+    color="primary"
+    shape="fill"
+  >
+    <span
+      class="css-1p2jtab e1cefif80"
+    >
+      Test Text
+       
+    </span>
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="16"
+      viewBox="0 0 29.37 21.88"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <title />
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`Button Icon With Text Button Snapshot should render with updated text transform 1`] = `
+<div>
+  <button
+    class="css-9tyo2z e183qit0"
+    color="primary"
+    shape="fill"
+  >
+    <span
+      class="css-1p2jtab e1cefif80"
+    >
+      Test Text
+       
+    </span>
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="16"
+      viewBox="0 0 29.37 21.88"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <title />
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`Button Icon With Text Button Snapshot should render with updated variant 1`] = `
+<div>
+  <button
+    class="css-3a4sd6 e183qit0"
+    color="primary"
+    shape="fill"
+  >
+    <span
+      class="css-1p2jtab e1cefif80"
+    >
+      Test Text
+       
+    </span>
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="16"
+      viewBox="0 0 29.37 21.88"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <title />
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
   </button>
 </div>
 `;
