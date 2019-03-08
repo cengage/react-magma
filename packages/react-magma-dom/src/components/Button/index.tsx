@@ -16,6 +16,7 @@ export const Button: React.FunctionComponent<ButtonProps> = (
   <ButtonCore onClick={props.onClick}>
     {({ onClick }) => {
       const {
+        ariaExpanded,
         as,
         autoFocus,
         block,
@@ -24,6 +25,7 @@ export const Button: React.FunctionComponent<ButtonProps> = (
         disabled,
         inverse,
         href,
+        ref,
         shape,
         size,
         style,
@@ -34,6 +36,7 @@ export const Button: React.FunctionComponent<ButtonProps> = (
 
       return (
         <StyledButton
+          ariaExpanded={ariaExpanded}
           as={as}
           autoFocus={autoFocus}
           onClick={onClick}
@@ -42,6 +45,7 @@ export const Button: React.FunctionComponent<ButtonProps> = (
           disabled={disabled}
           href={href}
           inverse={inverse}
+          ref={ref}
           shape={shape ? shape : ButtonShape.fill}
           size={size ? size : ButtonSize.medium}
           style={style}

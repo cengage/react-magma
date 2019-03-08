@@ -3,7 +3,8 @@
 exports[`Button Snapshot should render with updated shape 1`] = `
 <div>
   <button
-    class="css-15f1fu6 e183qit0"
+    aria-label="hello"
+    class="css-1uocdtg e183qit0"
     color="primary"
     shape="round"
   >
@@ -15,7 +16,8 @@ exports[`Button Snapshot should render with updated shape 1`] = `
 exports[`Button Snapshot should render with updated size 1`] = `
 <div>
   <button
-    class="css-1b9wjjc e183qit0"
+    aria-label="hello"
+    class="css-1kv5z23 e183qit0"
     color="primary"
     shape="fill"
   >
@@ -27,7 +29,8 @@ exports[`Button Snapshot should render with updated size 1`] = `
 exports[`Button Snapshot should render with updated size 2`] = `
 <div>
   <button
-    class="css-1b9wjjc e183qit0"
+    aria-label="hello"
+    class="css-1kv5z23 e183qit0"
     color="primary"
     shape="fill"
   >
@@ -39,7 +42,8 @@ exports[`Button Snapshot should render with updated size 2`] = `
 exports[`Button Snapshot should render with updated textTransform 1`] = `
 <div>
   <button
-    class="css-9tyo2z e183qit0"
+    aria-label="hello"
+    class="css-161ugik e183qit0"
     color="primary"
     shape="fill"
   >
@@ -51,7 +55,8 @@ exports[`Button Snapshot should render with updated textTransform 1`] = `
 exports[`Button Snapshot should render with updated variant 1`] = `
 <div>
   <button
-    class="css-3a4sd6 e183qit0"
+    aria-label="hello"
+    class="css-1vpo9ps e183qit0"
     color="primary"
     shape="fill"
   >

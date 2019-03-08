@@ -74,6 +74,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
       const {
         as,
         autoFocus,
+        ariaExpanded,
         ariaLabel,
         children,
         disabled,
@@ -83,6 +84,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
         inverse,
         block,
         color,
+        ref,
         shape,
         size,
         style,
@@ -97,12 +99,14 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
           <StyledButton
             as={as}
             autoFocus={autoFocus}
+            ariaExpanded={ariaExpanded}
             onClick={onClick}
             href={href}
             block={block}
             color={color ? color : ButtonColor.primary}
             disabled={disabled}
             inverse={inverse}
+            ref={ref}
             shape={shape ? shape : ButtonShape.fill}
             size={size ? size : ButtonSize.medium}
             style={style}
@@ -125,7 +129,8 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
 
       return (
         <StyledButton
-          ariaLabel={ariaLabel}
+          ariaExpanded={ariaExpanded}
+          ariaLabel="hello2"
           as={as}
           autoFocus={autoFocus}
           onClick={onClick}
@@ -134,6 +139,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = (
           href={href}
           iconOnly
           inverse={inverse}
+          ref={ref}
           shape={shape ? shape : ButtonShape.round}
           size={size ? size : ButtonSize.medium}
           style={style}

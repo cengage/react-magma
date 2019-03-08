@@ -37,6 +37,7 @@ export enum ButtonTextTransform {
 
 export interface ButtonProps {
   ariaLabel?: string;
+  ariaExpanded?: boolean;
   as?: any;
   autoFocus?: boolean;
   block?: boolean;
@@ -49,6 +50,7 @@ export interface ButtonProps {
   iconOnly?: boolean;
   inverse?: boolean;
   href?: string;
+  ref?: any;
   shape?: ButtonShape;
   size?: ButtonSize;
   style?: React.CSSProperties;
@@ -86,6 +88,7 @@ const StyledButtonComponent = styled.button<ButtonProps>`
   vertical-align: middle;
   touch-action: manipulation;
   white-space: nowrap;
+  border: 1px solid red !important;
 
   font-size: ${props => {
     switch (props.size) {
@@ -319,6 +322,7 @@ const StyledButtonComponent = styled.button<ButtonProps>`
 
 export const StyledButton: React.FunctionComponent<ButtonProps> = ({
   ariaLabel,
+  ariaExpanded,
   as,
   autoFocus,
   block,
@@ -330,6 +334,7 @@ export const StyledButton: React.FunctionComponent<ButtonProps> = ({
   iconOnly,
   inverse,
   color,
+  ref,
   shape,
   size,
   style,
@@ -339,7 +344,8 @@ export const StyledButton: React.FunctionComponent<ButtonProps> = ({
 }: ButtonProps) => (
   <StyledButtonComponent
     as={as}
-    aria-label={ariaLabel}
+    aria-expanded={ariaExpanded}
+    aria-label="hello"
     className={className}
     autoFocus={autoFocus}
     onClick={onClick}
@@ -349,6 +355,7 @@ export const StyledButton: React.FunctionComponent<ButtonProps> = ({
     href={href}
     iconOnly={iconOnly}
     inverse={inverse}
+    ref={ref}
     shape={shape}
     size={size}
     style={style}

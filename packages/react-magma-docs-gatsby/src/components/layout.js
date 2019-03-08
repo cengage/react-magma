@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
-import MainNav from './main-nav/main-nav'
+import { NavPanel } from './nav-panel/nav-panel'
 import Masthead from './masthead/masthead'
 import { MDXProvider } from '@mdx-js/tag'
 import { Location } from '@reach/router'
@@ -99,8 +99,8 @@ const Layout = ({ children }) => (
           <html lang="en" />
         </Helmet>
         <main className="main">
+          <NavPanel />
           <Masthead />
-          <MainNav />
           <section className="content">
             <MDXProvider
               components={{
