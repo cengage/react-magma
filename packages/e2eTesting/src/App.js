@@ -3,12 +3,12 @@ import {
   Input,
   Button,
   Checkbox,
-  Icon,
-  IconButton,
+  BellIcon,
   LinkButton,
   RadioGroup,
   Radio,
-  Select
+  Select,
+  InfoIcon
 } from 'react-magma-dom';
 
 class App extends Component {
@@ -47,38 +47,35 @@ class App extends Component {
         </LinkButton>
 
         <h1>ICON BUTTONS</h1>
-        <IconButton
-          label="Default Icon Button With Text"
-          textPosition="right"
-          icon="bell"
+        <Button
+          iconPosition="left"
+          icon={<BellIcon />}
           onClick={() => {
             alert('clicked');
           }}
-        />
-        <IconButton
-          disabled
-          label="Disabled Icon Button With Text"
-          textPosition="right"
-          icon="bell"
-        />
+        >
+          Default Icon Button With Text
+        </Button>
+        <Button disabled iconPosition="left" icon={<BellIcon />}>
+          Disabled Icon Button With Text
+        </Button>
 
-        <IconButton
-          id="defaultIconButton"
-          label="Default Icon Button"
-          icon="bell"
+        <Button
+          ariaLabel="Default Icon Button"
+          icon={<BellIcon />}
           onClick={() => {
             alert('clicked');
           }}
         />
-        <IconButton
+        <Button
           id="disabledIconButton"
           disabled
-          label="Disabled Icon Button"
-          icon="bell"
+          ariaLabel="Disabled Icon Button"
+          icon={<BellIcon />}
         />
 
         <h1>ICONS</h1>
-        <Icon id="basicInfoIcon" title="Basic Info Icon" type="info" />
+        <InfoIcon id="basicInfoIcon" title="Basic Info Icon" />
 
         <h1>RADIOS</h1>
         <RadioGroup
@@ -88,8 +85,8 @@ class App extends Component {
             alert(`${event.target.value} selected`);
           }}
         >
-          <Radio value="red" labelText="Red" />
-          <Radio value="blue" labelText="Blue" />
+          <Radio id="red" value="red" labelText="Red" />
+          <Radio id="blue" value="blue" labelText="Blue" />
         </RadioGroup>
 
         <h1>CHECKBOXES</h1>
@@ -122,10 +119,10 @@ class App extends Component {
               label: 'Green'
             }
           ]}
-          handleOpen={() => {
+          onOpen={() => {
             alert('opened');
           }}
-          handleClose={() => {
+          onClose={() => {
             alert('closed');
           }}
         />

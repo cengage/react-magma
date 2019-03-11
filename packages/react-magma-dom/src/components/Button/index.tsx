@@ -12,8 +12,7 @@ import {
 } from '../StyledButton';
 import styled from '@emotion/styled';
 import { IconProps } from '../Icon/utils';
-
-type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+import { Omit } from '../utils';
 
 interface IconOnlyButtonProps extends Omit<ButtonProps, 'children'> {
   icon: React.ReactElement<IconProps>;

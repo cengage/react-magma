@@ -19,8 +19,8 @@ IconButton components accept all of the same props as Button components.
         <Button ariaLabel="Icon" variant="outline" icon={<BellIcon />} />
         <Button ariaLabel="Icon" variant="link" icon={<BellIcon />} />
         <Button ariaLabel="Icon" color="secondary" icon={<Cog2Icon />} />
-        <Button ariaLabel="Icon" color="secondary" icon={<Cog2Icon />} />
-        <Button ariaLabel="Icon" color="secondary" icon={<Cog2Icon />} />
+        <Button ariaLabel="Icon" color="secondary" variant="outline" icon={<Cog2Icon />} />
+        <Button ariaLabel="Icon" color="secondary" variant="link" icon={<Cog2Icon />} />
         <Button ariaLabel="Icon" color="success" icon={<CheckIcon />} />
         <Button ariaLabel="Icon" color="success"variant="outline" icon={<CheckIcon />} />
         <Button ariaLabel="Icon" color="success" variant="link" icon={<CheckIcon />} />
@@ -29,6 +29,20 @@ IconButton components accept all of the same props as Button components.
         <Button ariaLabel="Icon" color="danger" variant="link" icon={<AlertIcon />} />
         <Button ariaLabel="Icon" disabled icon={<BellIcon />} />
     </p>
+```
+
+## Assign Icon to Variable
+
+If you find JSX being passed in as a prop directly ugly, you can assign an icon to a variable and pass that in as the prop.
+
+```.jsx
+  class Example extends React.Component {
+      render() {
+        const icon = <BellIcon />;
+
+        return <Button ariaLabel="Icon" icon={icon} />
+      }
+    }
 ```
 
 For icon only buttons you _MUST_ pass in an `ariaLabel` property to satisfy accessibility standards.
@@ -62,9 +76,9 @@ Sizes for `IconButtons` include `small`, `medium`, and `large`, with `medium` be
 ```.jsx
     <div>
       <p>
-          <Button icon={<BellIcon />} size="small">Icon button</Button>
-          <Button icon={<BellIcon />}>Icon button</Button>
-          <Button icon={<BellIcon />} size="large">Icon button</Button>
+          <Button icon={<BellIcon />} size="small" />
+          <Button icon={<BellIcon />} />
+          <Button icon={<BellIcon />} size="large" />
       </p>
       <p>
           <Button icon={<BellIcon />} size="small" iconPosition="left">Small</Button>
@@ -80,10 +94,10 @@ Icon only buttons have `shape = round`, by default.
 
 ```.jsx
     <p>
-      <Button icon={<BellIcon />}>Icon button</Button>
-      <Button icon={<BellIcon />} shape="fill">Icon button</Button>
-      <Button icon={<BellIcon />} shape="rightCap">Icon button</Button>
-      <Button icon={<BellIcon />} shape="leftCap">Icon button</Button>
+      <Button icon={<BellIcon />} />
+      <Button icon={<BellIcon />} shape="fill" />
+      <Button icon={<BellIcon />} shape="rightCap" />
+      <Button icon={<BellIcon />} shape="leftCap" />
     </p>
 ```
 

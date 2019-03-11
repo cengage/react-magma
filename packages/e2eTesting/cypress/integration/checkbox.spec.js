@@ -1,7 +1,6 @@
-const runTests = versionNumber => {
+describe('Checkbox', () => {
   beforeEach(() => {
-    const version = Cypress.env('version') || versionNumber;
-    cy.visit(`/react_${version}.html`);
+    cy.visit(`/react_16_5.html`);
   });
 
   it('Displays and interacts with checkbox', () => {
@@ -12,7 +11,7 @@ const runTests = versionNumber => {
 
     checkbox.should('be.visible');
 
-    checkbox.click().then(() => {
+    checkbox.click({ force: true }).then(() => {
       expect(alertStub.getCall(0)).to.be.calledWith('clicked');
     });
   });
@@ -24,21 +23,8 @@ const runTests = versionNumber => {
   });
 
   it('Makes an checkbox disabled', () => {
-    const message = 'disabled';
     const checkbox = cy.get('#disabledCheckbox');
 
     checkbox.should('have.attr', 'disabled');
   });
-};
-
-describe('React 15 checkbox', () => {
-  runTests('15');
-});
-
-describe('React 16.0 checkbox', () => {
-  runTests('16_0');
-});
-
-describe('React 16.5 checkbox', () => {
-  runTests('16_5');
 });
