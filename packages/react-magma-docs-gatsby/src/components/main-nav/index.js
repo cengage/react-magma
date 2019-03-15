@@ -1,21 +1,22 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link, StaticQuery, graphql } from 'gatsby'
 import { Router } from '@reach/router'
 import './main-nav.css'
 
 import { convertTextToId } from '../../utils'
 
-const SubMenu = ({ headings }) => (
+const SubMenu = ({ headings, handleClick }) => (
   <ul className="submenu">
     {headings.map((heading, index) => (
       <li key={index}>
-        <a href={`#${convertTextToId(heading.value)}`}>{heading.value}</a>
+        <a href={`#${convertTextToId(heading.value)}`} onClick={handleClick}>{heading.value}</a>
       </li>
     ))}
   </ul>
 )
 
-const MainNav = () => (
+const MainNav = ({...props}) => (
   <StaticQuery
     query={graphql`
       fragment navFields on MdxEdge {
@@ -53,19 +54,19 @@ const MainNav = () => (
       }
     `}
     render={data => (
-      <div>
+      <div className="main-nav">
           <h2>Magma System</h2>
           <ul>
-            <li><a href="/">Introduction</a></li>
+            <li><a href="/" onClick={props.handleClick}>Introduction</a></li>
           </ul>
           <hr />
           <h2>Develop</h2>
           <ul>
             {data.apiDocs.edges.map(({ node }) => (
               <li key={node.fields.slug}>
-                <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+                <Link onClick={props.handleClick} to={node.fields.slug}>{node.frontmatter.title}</Link>
                 <Router>
-                  <SubMenu path={node.fields.slug} headings={node.headings} />
+                  <SubMenu path={node.fields.slug} headings={node.headings} handleClick={props.handleClick} />
                 </Router>
               </li>
             ))}
@@ -75,7 +76,7 @@ const MainNav = () => (
           <ul>
             {data.designDocs.edges.map(({ node }) => (
               <li key={node.fields.slug}>
-                <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+                <Link onClick={props.handleClick} to={node.fields.slug}>{node.frontmatter.title}</Link>
               </li>
             ))}
           </ul>
@@ -83,5 +84,9 @@ const MainNav = () => (
     )}
   />
 )
+
+MainNav.propTypes = {
+  handleClick: PropTypes.function
+}
 
 export default MainNav

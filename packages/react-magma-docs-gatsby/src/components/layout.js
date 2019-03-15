@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
-import { NavPanel } from './nav-panel/nav-panel'
-import Masthead from './masthead/masthead'
+import { SlidingDrawer } from './sliding-drawer'
+import Masthead from './masthead'
 import { MDXProvider } from '@mdx-js/tag'
 import { Location } from '@reach/router'
 import { Transition, config } from 'react-spring'
@@ -99,7 +99,7 @@ const Layout = ({ children }) => (
           <html lang="en" />
         </Helmet>
         <main className="main">
-          <NavPanel />
+          <SlidingDrawer />
           <Masthead />
           <section className="content">
             <MDXProvider

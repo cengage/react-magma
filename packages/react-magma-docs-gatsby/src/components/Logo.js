@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Logo = () => (
-    <svg className="logo" width="35px" height="40px" viewBox="0 0 366 422">
+    <svg viewBox="0 0 366 422">
         <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g transform="translate(-141.000000, -51.000000)">
                 <g transform="translate(113.000000, 51.000000)">

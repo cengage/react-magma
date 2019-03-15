@@ -88,7 +88,6 @@ const StyledButtonComponent = styled.button<ButtonProps>`
   vertical-align: middle;
   touch-action: manipulation;
   white-space: nowrap;
-  border: 1px solid red !important;
 
   font-size: ${props => {
     switch (props.size) {
@@ -334,7 +333,6 @@ export const StyledButton: React.FunctionComponent<ButtonProps> = ({
   iconOnly,
   inverse,
   color,
-  ref,
   shape,
   size,
   style,
@@ -345,7 +343,7 @@ export const StyledButton: React.FunctionComponent<ButtonProps> = ({
   <StyledButtonComponent
     as={as}
     aria-expanded={ariaExpanded}
-    aria-label="hello"
+    aria-label={ariaLabel}
     className={className}
     autoFocus={autoFocus}
     onClick={onClick}
@@ -355,7 +353,6 @@ export const StyledButton: React.FunctionComponent<ButtonProps> = ({
     href={href}
     iconOnly={iconOnly}
     inverse={inverse}
-    ref={ref}
     shape={shape}
     size={size}
     style={style}
