@@ -103,7 +103,7 @@ const StyledFakeInput = styled.span<{
       props.inverse ? magma.colors.neutral08 : props.color};
   }
 
-  ${HiddenInput}:not (:disabled):active + label & {
+  ${HiddenInput}:active:not (:disabled) + label & {
     &:after {
       ${DisplayInputActiveStyles}
     }
