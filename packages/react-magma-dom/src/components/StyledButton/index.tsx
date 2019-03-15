@@ -35,20 +35,21 @@ export enum ButtonTextTransform {
   none = 'none'
 }
 
+export enum ButtonIconPostition {
+  left = 'left',
+  right = 'right'
+}
+
 export interface ButtonProps {
-  ariaLabel?: string;
   as?: any;
   autoFocus?: boolean;
   block?: boolean;
   className?: string;
-  children?: React.ReactChild | React.ReactChild[];
-  text?: string;
+  children: React.ReactChild | React.ReactChild[];
   onClick?: (event: React.SyntheticEvent) => void;
   color?: ButtonColor;
   disabled?: boolean;
-  iconOnly?: boolean;
   inverse?: boolean;
-  href?: string;
   shape?: ButtonShape;
   size?: ButtonSize;
   style?: React.CSSProperties;
@@ -57,7 +58,12 @@ export interface ButtonProps {
   variant?: ButtonVariant;
 }
 
-const StyledButtonComponent = styled.button<ButtonProps>`
+interface StyledButtonProps extends ButtonProps {
+  iconOnly?: boolean;
+  ariaLabel?: string;
+}
+
+const StyledButtonComponent = styled.button<StyledButtonProps>`
   align-items: center;
   border-radius: ${props => {
     switch (props.shape) {
@@ -317,7 +323,7 @@ const StyledButtonComponent = styled.button<ButtonProps>`
     `}
 `;
 
-export const StyledButton: React.FunctionComponent<ButtonProps> = ({
+export const StyledButton: React.FunctionComponent<StyledButtonProps> = ({
   ariaLabel,
   as,
   autoFocus,
@@ -326,7 +332,6 @@ export const StyledButton: React.FunctionComponent<ButtonProps> = ({
   children,
   disabled,
   onClick,
-  href,
   iconOnly,
   inverse,
   color,
@@ -336,7 +341,7 @@ export const StyledButton: React.FunctionComponent<ButtonProps> = ({
   textTransform,
   to,
   variant
-}: ButtonProps) => (
+}: StyledButtonProps) => (
   <StyledButtonComponent
     as={as}
     aria-label={ariaLabel}
@@ -346,7 +351,6 @@ export const StyledButton: React.FunctionComponent<ButtonProps> = ({
     block={block}
     color={color}
     disabled={disabled}
-    href={href}
     iconOnly={iconOnly}
     inverse={inverse}
     shape={shape}

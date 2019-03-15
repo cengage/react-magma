@@ -1,12 +1,11 @@
-const runTests = versionNumber => {
+describe('Radio', () => {
   beforeEach(() => {
-    const version = Cypress.env('version') || versionNumber;
-    cy.visit(`/react_${version}.html`);
+    cy.visit(`/react_16_5.html`);
   });
 
   it('finds radio options', () => {
-    cy.get('#blue').should('be.visible');
-    cy.get('#red').should('be.visible');
+    cy.get('input[value="red"]').should('be.visible');
+    cy.get('input[value="blue"]').should('be.visible');
   });
 
   it('selects a radio in the colors group', () => {
@@ -15,7 +14,7 @@ const runTests = versionNumber => {
     cy.on('window:alert', alertStub);
 
     cy.get('#blue')
-      .click()
+      .click({ force: true })
       .then(() => {
         expect(alertStub.getCall(0)).to.be.calledWith('blue selected');
       });
@@ -27,13 +26,9 @@ const runTests = versionNumber => {
     cy.on('window:alert', alertStub);
 
     cy.get('label[for="blue"]')
-      .click()
+      .click({ force: true })
       .then(() => {
         expect(alertStub.getCall(0)).to.be.calledWith('blue selected');
       });
   });
-};
-
-describe('React 16.5 Select', () => {
-  runTests('16_5');
 });

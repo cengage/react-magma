@@ -223,6 +223,13 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule('border-radius', '0 5px 5px 0');
       });
+
+      it('round button', () => {
+        const { getByText } = renderButton({ shape: 'round' });
+        const button = getByText(TEXT);
+
+        expect(button).toHaveStyleRule('border-radius', '100%');
+      });
     });
 
     it('allCaps button', () => {
@@ -237,6 +244,44 @@ describe('Styled Button', () => {
       const button = getByText(TEXT);
 
       expect(button).toHaveStyleRule('text-transform', 'none');
+    });
+  });
+
+  describe('IconOnly', () => {
+    it('icon small', () => {
+      const { getByText } = renderButton({
+        iconOnly: true,
+        size: ButtonSize.small
+      });
+      const button = getByText(TEXT);
+
+      expect(button).toHaveStyleRule('display', 'inline-flex');
+      expect(button).toHaveStyleRule('height', '28px');
+      expect(button).toHaveStyleRule('width', '28px');
+    });
+
+    it('icon medium', () => {
+      const { getByText } = renderButton({
+        iconOnly: true,
+        size: ButtonSize.medium
+      });
+      const button = getByText(TEXT);
+
+      expect(button).toHaveStyleRule('display', 'inline-flex');
+      expect(button).toHaveStyleRule('height', '37px');
+      expect(button).toHaveStyleRule('width', '37px');
+    });
+
+    it('icon large', () => {
+      const { getByText } = renderButton({
+        iconOnly: true,
+        size: ButtonSize.large
+      });
+      const button = getByText(TEXT);
+
+      expect(button).toHaveStyleRule('display', 'inline-flex');
+      expect(button).toHaveStyleRule('height', '44px');
+      expect(button).toHaveStyleRule('width', '44px');
     });
   });
 

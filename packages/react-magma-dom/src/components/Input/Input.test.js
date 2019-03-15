@@ -3,6 +3,7 @@ import { axe } from 'jest-axe';
 import { Input } from '.';
 import { render, fireEvent, cleanup } from 'react-testing-library';
 import { magma } from '../../theme/magma';
+import { CheckIcon } from '../Icon/types/CheckIcon';
 
 const INPUT_PROPS = {
   autoFocus: false,
@@ -136,7 +137,10 @@ describe('Input', () => {
   });
 
   it('should render an input with a right-aligned icon in the correct position', () => {
-    const { container } = renderInput({ icon: 'check', iconPosition: 'right' });
+    const { container } = renderInput({
+      icon: <CheckIcon />,
+      iconPosition: 'right'
+    });
 
     const span = container.querySelector('span');
 
@@ -145,7 +149,10 @@ describe('Input', () => {
   });
 
   it('should render an input with a right-aligned icon in the correct position', () => {
-    const { container } = renderInput({ icon: 'check', iconPosition: 'right' });
+    const { container } = renderInput({
+      icon: <CheckIcon />,
+      iconPosition: 'right'
+    });
 
     const span = container.querySelector('span');
 
@@ -154,7 +161,10 @@ describe('Input', () => {
   });
 
   it('should render an input with a left-aligned icon in the correct position', () => {
-    const { container } = renderInput({ icon: 'check', iconPosition: 'left' });
+    const { container } = renderInput({
+      icon: <CheckIcon />,
+      iconPosition: 'left'
+    });
 
     const span = container.querySelector('span');
 
@@ -224,7 +234,7 @@ describe('Input', () => {
   describe('sizes', () => {
     it('default input', () => {
       const { container, getByLabelText } = renderInput({
-        icon: 'check',
+        icon: <CheckIcon />,
         iconPosition: 'left'
       });
       const input = getByLabelText(INPUT_PROPS.labelText);
@@ -239,7 +249,7 @@ describe('Input', () => {
     it('small input', () => {
       const { container, getByLabelText } = renderInput({
         inputSize: 'small',
-        icon: 'check',
+        icon: <CheckIcon />,
         iconPosition: 'left'
       });
       const input = getByLabelText(INPUT_PROPS.labelText);
@@ -254,7 +264,7 @@ describe('Input', () => {
     it('large input', () => {
       const { container, getByLabelText } = renderInput({
         inputSize: 'large',
-        icon: 'check',
+        icon: <CheckIcon />,
         iconPosition: 'left'
       });
       const input = getByLabelText(INPUT_PROPS.labelText);

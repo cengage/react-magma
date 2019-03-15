@@ -6,7 +6,7 @@ import {
   DisplayInputFocusStyles
 } from '../SelectionControls/InputStyles';
 import { HiddenStyles } from '../UtilityStyles';
-import { Icon } from '../Icon';
+import { CheckIcon } from '../Icon/types/CheckIcon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';
@@ -206,7 +206,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
                   <IndeterminateIcon
                     color={color ? color : magma.colors.primary}
                   />
-                  <Icon size={12} type="check" />
+                  <CheckIcon size={12} />
                 </StyledFakeInput>
                 {textVisuallyHidden ? (
                   <HiddenLabelText>{labelText}</HiddenLabelText>
