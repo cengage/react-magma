@@ -2,7 +2,7 @@ import React from 'react';
 import { css, keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
 import FocusLock from 'react-focus-lock';
-import { IconButton } from 'react-magma-dom'
+import { Button, MenuIcon, CrossIcon } from 'react-magma-dom'
 import MainNav from '../main-nav'
 
 export class SlidingDrawer extends React.Component {
@@ -125,26 +125,24 @@ export class SlidingDrawer extends React.Component {
             <FocusLock disabled={!isOpen}>
                 <nav>
                     <MenuButton>
-                        <IconButton
-                            ariaLabel="Open navigation menu"
-                            ariaExpanded={isOpen}
-                            icon="menu"
-                            iconOnly
-                            inverse
-                            onClick={this.openMenu}
-                            size="large"
-                            variant="link" />
+                    <Button
+                        ariaLabel="Open navigation menu"
+                        ariaExpanded={isOpen}
+                        icon={<MenuIcon />}
+                        inverse
+                        onClick={this.openMenu}
+                        size="large"
+                        variant="link" />
                     </MenuButton>
                     <Panel isOpen={isOpen}>
                         <PanelInner isOpen={isOpen}>
                             <CloseButton>
-                                <IconButton
-                                    ariaLabel="Close navigation menu"
-                                    color="secondary"
-                                    icon="cross"
-                                    iconOnly
-                                    onClick={this.closeMenu}
-                                    variant="link" />
+                            <Button
+                                ariaLabel="Close navigation menu"
+                                color="secondary"
+                                icon={<CrossIcon />}
+                                onClick={this.closeMenu}
+                                variant="link" />
                             </CloseButton>
                             <MainNav handleClick={this.closeMenu} />
                         </PanelInner>

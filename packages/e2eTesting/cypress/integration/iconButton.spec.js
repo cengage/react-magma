@@ -7,8 +7,9 @@ describe('Icon Button', () => {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
 
-    cy.get('#defaultIconButton').should('be.visible');
-    cy.get('#defaultIconButton')
+    cy.contains('Default Icon Button With Text').as('button');
+    cy.get('@button').should('be.visible');
+    cy.get('@button')
       .click()
       .then(() => {
         expect(alertStub.getCall(0)).to.be.calledWith('clicked');
@@ -16,17 +17,16 @@ describe('Icon Button', () => {
   });
 
   it('Cannot click on disabled button', () => {
-    cy.get('#disabledIconButton')
+    cy.contains('Disabled Icon Button With Text')
       .should('be.visible')
       .and('be.disabled');
   });
 
-  it('Displays and interacts with icon button with text', () => {
+  it('Displays and interacts with icon only button', () => {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
 
-    const message = 'Default Icon Button With Text';
-    cy.contains(message).as('button');
+    cy.get('button[aria-label="Default Icon Button"]').as('button');
 
     cy.get('@button').should('be.visible');
 
@@ -37,9 +37,8 @@ describe('Icon Button', () => {
       });
   });
 
-  it('Cannot click on disabled icon button with text', () => {
-    const message = 'Disabled Icon Button With Text';
-    cy.contains(message)
+  it('Cannot click on disabled icon only button', () => {
+    cy.get('button[aria-label="Disabled Icon Button"]')
       .should('be.visible')
       .and('be.disabled');
   });

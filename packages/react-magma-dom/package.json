@@ -2,8 +2,8 @@
   "name": "react-magma-dom",
   "version": "0.1.0-beta.10",
   "description": "",
-  "main": "dist/bundle.js",
-  "module": "dist/esBundle.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
@@ -14,12 +14,14 @@
     "registry": "http://nexus.mindtap.corp.web/content/repositories/npm.cengage/"
   },
   "scripts": {
-    "babel-build": "babel src --out-dir lib --extensions '.tsx','.ts'",
+    "babel-build": "babel src --out-dir dist --extensions '.tsx','.ts'",
     "compiler-checks": "tsc --noEmit --project './tsconfig.json'",
     "test": "jest",
     "test-watch": "jest --watch",
+    "covg": "open coverage/lcov-report/index.html",
     "prebuild": "npm run compiler-checks && rimraf 'dist'",
-    "build": "rollup -c",
+    "build": "npm run babel-build",
+    "xbuild": "rollup -c",
     "build:types": "tsc --project './tsconfig.types.json'",
     "postbuild": "npm run build:types && node build-types",
     "lint": "npm run tsc && npm run tslint",
@@ -94,7 +96,7 @@
     "tslint-config-cengage": "^0.1.0",
     "tslint-config-prettier": "^1.15.0",
     "tslint-react-a11y": "^1.0.0",
-    "typescript": "3.0.1"
+    "typescript": "3.3.3333"
   },
   "lint-staged": {
     "*.{ts,tsx,js,json,css,md}": [

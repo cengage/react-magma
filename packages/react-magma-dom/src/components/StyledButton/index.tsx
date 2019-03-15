@@ -35,6 +35,11 @@ export enum ButtonTextTransform {
   none = 'none'
 }
 
+export enum ButtonIconPostition {
+  left = 'left',
+  right = 'right'
+}
+
 export interface ButtonProps {
   ariaLabel?: string;
   ariaExpanded?: boolean;
@@ -42,14 +47,12 @@ export interface ButtonProps {
   autoFocus?: boolean;
   block?: boolean;
   className?: string;
-  children?: React.ReactChild | React.ReactChild[];
-  text?: string;
-  onClick?: (event: React.SyntheticEvent) => void;
+  children: React.ReactChild | React.ReactChild[];
   color?: ButtonColor;
   disabled?: boolean;
-  iconOnly?: boolean;
   inverse?: boolean;
   href?: string;
+  onClick?: (event: React.SyntheticEvent) => void;
   ref?: any;
   shape?: ButtonShape;
   size?: ButtonSize;
@@ -59,7 +62,12 @@ export interface ButtonProps {
   variant?: ButtonVariant;
 }
 
-const StyledButtonComponent = styled.button<ButtonProps>`
+interface StyledButtonProps extends ButtonProps {
+  iconOnly?: boolean;
+  ariaLabel?: string;
+}
+
+const StyledButtonComponent = styled.button<StyledButtonProps>`
   align-items: center;
   border-radius: ${props => {
     switch (props.shape) {
@@ -319,7 +327,7 @@ const StyledButtonComponent = styled.button<ButtonProps>`
     `}
 `;
 
-export const StyledButton: React.FunctionComponent<ButtonProps> = ({
+export const StyledButton: React.FunctionComponent<StyledButtonProps> = ({
   ariaLabel,
   ariaExpanded,
   as,
@@ -329,7 +337,6 @@ export const StyledButton: React.FunctionComponent<ButtonProps> = ({
   children,
   disabled,
   onClick,
-  href,
   iconOnly,
   inverse,
   color,
@@ -339,7 +346,7 @@ export const StyledButton: React.FunctionComponent<ButtonProps> = ({
   textTransform,
   to,
   variant
-}: ButtonProps) => (
+}: StyledButtonProps) => (
   <StyledButtonComponent
     as={as}
     aria-expanded={ariaExpanded}
@@ -350,7 +357,6 @@ export const StyledButton: React.FunctionComponent<ButtonProps> = ({
     block={block}
     color={color}
     disabled={disabled}
-    href={href}
     iconOnly={iconOnly}
     inverse={inverse}
     shape={shape}

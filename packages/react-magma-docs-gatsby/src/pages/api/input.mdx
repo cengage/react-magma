@@ -82,18 +82,18 @@ To include an icon both the `icon` and `iconPosition` props must be passed in. I
 ```.jsx
     <div>
       <Input
-          icon='calendar'
-          iconPosition='left'
-          id='inputIcon'
-          labelText='Input with Icon Left'
-          placeholder='Type in here' />
+        iconPosition='left'
+        id='inputIcon'
+        labelText='Input with Icon Left'
+        placeholder='Type in here'
+        icon={<CalendarIcon />} />
 
       <Input
-          icon='search2'
-          iconPosition='right'
-          id='inputIconRight'
-          labelText='Input with Icon Right'
-          placeholder='Type in here' />
+        iconPosition='right'
+        id='inputIconRight'
+        labelText='Input with Icon Right'
+        placeholder='Type in here'
+        icon={<Search2Icon />} />
     </div>
 ```
 
@@ -104,25 +104,26 @@ The `inputSize` prop can be used to control the input size. Options are `small`,
 ```.jsx
     <div>
       <Input
-          icon='search2'
-          iconPosition='right'
-          id='inputSmall'
-          inputSize='small'
-          labelText='Small Input'
-          placeholder='Type in here' />
+        iconPosition='right'
+        id='inputSmall'
+        inputSize='small'
+        labelText='Small Input'
+        placeholder='Type in here'
+        icon={<Search2Icon />} />
+
       <Input
-          icon='search2'
-          iconPosition='right'
-          id='inputMed'
-          labelText='Medium Input'
-          placeholder='Type in here' />
+        iconPosition='right'
+        id='inputMed'
+        labelText='Medium Input'
+        placeholder='Type in here'
+        icon={<Search2Icon />} />
       <Input
-          icon='search2'
-          iconPosition='right'
-          id='inputLarge2'
-          inputSize='large'
-          labelText='Large Input'
-          placeholder='Type in here' />
+        iconPosition='right'
+        id='inputLarge2'
+        inputSize='large'
+        labelText='Large Input'
+        placeholder='Type in here'
+        icon={<Search2Icon />} />
       <Input
           errorMessage='Error'
           id='inputSmallErr'
@@ -177,12 +178,12 @@ The `labelVisuallyHidden` prop can be used to visually hide the text label, whil
 
 ```.jsx
     <Input
-        icon='search2'
-        iconPosition='right'
-        id='inputLabelHidden'
-        labelVisuallyHidden
-        labelText='Search'
-        placeholder='Search' />
+      iconPosition='right'
+      id='inputLabelHidden'
+      labelVisuallyHidden
+      labelText='Search'
+      placeholder='Search'
+      icon={<Search2Icon />} />
 ```
 
 ## Multi-line (textarea)

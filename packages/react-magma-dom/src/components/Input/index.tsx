@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { InputCore } from 'react-magma-core';
 import styled from '@emotion/styled';
-import { Icon } from '../Icon';
+import { IconProps } from '../Icon/utils';
+import { AlertIcon } from '../Icon/types/AlertIcon';
 import { Label } from '../Label';
 import { magma } from '../../theme/magma';
 
@@ -31,7 +32,7 @@ export interface InputProps {
   onChange?: (event: React.SyntheticEvent) => void;
   onFocus?: () => void;
   helperMessage?: string;
-  icon?: string;
+  icon?: React.ReactElement<IconProps>;
   iconPosition?: IconPosition;
   id: string;
   inputSize?: InputSize;
@@ -276,12 +277,14 @@ export const Input: React.FunctionComponent<InputProps> = (
             />
             {errorMessage && (
               <ErrorIconWrapper inputSize={inputSize}>
-                <Icon size={getErrorIconSize(inputSize)} type="alert" />
+                <AlertIcon size={getErrorIconSize(inputSize)} />
               </ErrorIconWrapper>
             )}
             {icon && (
               <IconWrapper iconPosition={iconPosition}>
-                <Icon size={getIconSize(inputSize)} type={icon} />
+                {React.Children.only(
+                  React.cloneElement(icon, { size: getIconSize(inputSize) })
+                )}
               </IconWrapper>
             )}
           </InputWrapper>

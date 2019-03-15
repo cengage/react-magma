@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { CheckboxCore } from 'react-magma-core';
 import { FocusStyles, HiddenStyles } from '../UtilityStyles';
-import { Icon } from '../Icon';
+import { CheckIcon } from '../Icon/types/CheckIcon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import { css } from '@emotion/core';
@@ -214,7 +214,7 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
               )}
             <Track checked={checked} disabled={disabled} style={trackStyle}>
               <IconContainer>
-                <Icon size={11} type="check" />
+                <CheckIcon size={11} />
               </IconContainer>
               <Thumb checked={checked} disabled={disabled} style={thumbStyle} />
             </Track>
