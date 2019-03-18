@@ -56,14 +56,12 @@ export interface ButtonProps {
   textTransform?: ButtonTextTransform;
   to?: string;
   variant?: ButtonVariant;
-  forwardedRef?: any;
-  ref?: any;
 }
 
 interface StyledButtonProps extends ButtonProps {
   iconOnly?: boolean;
   ariaLabel?: string;
-  ref?: any;
+  forwardedRef?: any;
 }
 
 const StyledButtonComponent = styled.button<StyledButtonProps>`
@@ -326,51 +324,45 @@ const StyledButtonComponent = styled.button<StyledButtonProps>`
     `}
 `;
 
-export const StyledButton: React.FunctionComponent<
-  StyledButtonProps
-> = React.forwardRef(
-  (
-    {
-      ariaLabel,
-      as,
-      autoFocus,
-      block,
-      className,
-      children,
-      disabled,
-      onClick,
-      iconOnly,
-      inverse,
-      color,
-      shape,
-      size,
-      style,
-      textTransform,
-      to,
-      variant
-    }: StyledButtonProps,
-    ref: any
-  ) => (
-    <StyledButtonComponent
-      ref={ref}
-      as={as}
-      aria-label={ariaLabel}
-      className={className}
-      autoFocus={autoFocus}
-      onClick={onClick}
-      block={block}
-      color={color}
-      disabled={disabled}
-      iconOnly={iconOnly}
-      inverse={inverse}
-      shape={shape}
-      size={size}
-      style={style}
-      textTransform={textTransform}
-      to={to}
-      variant={variant}
-    >
-      {children}
-    </StyledButtonComponent>
-  )
+export const StyledButton: React.FunctionComponent<StyledButtonProps> = ({
+  ariaLabel,
+  as,
+  autoFocus,
+  block,
+  className,
+  children,
+  disabled,
+  onClick,
+  iconOnly,
+  inverse,
+  color,
+  shape,
+  size,
+  style,
+  textTransform,
+  to,
+  variant,
+  forwardedRef
+}: StyledButtonProps) => (
+  <StyledButtonComponent
+    ref={forwardedRef}
+    as={as}
+    aria-label={ariaLabel}
+    className={className}
+    autoFocus={autoFocus}
+    onClick={onClick}
+    block={block}
+    color={color}
+    disabled={disabled}
+    iconOnly={iconOnly}
+    inverse={inverse}
+    shape={shape}
+    size={size}
+    style={style}
+    textTransform={textTransform}
+    to={to}
+    variant={variant}
+  >
+    {children}
+  </StyledButtonComponent>
 );

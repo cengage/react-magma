@@ -72,9 +72,9 @@ function instanceOfIconOnly(object: any): object is IconOnlyButtonProps {
   return 'icon' in object && !('children' in object);
 }
 
-export const Button: React.FunctionComponent<MergedButtonProps> = (
-  props: MergedButtonProps
-) => (
+export const Button: React.FunctionComponent<
+  MergedButtonProps
+> = React.forwardRef((props: MergedButtonProps, ref: any) => (
   <ButtonCore onClick={props.onClick}>
     {({ onClick }) => {
       let icon;
@@ -110,7 +110,7 @@ export const Button: React.FunctionComponent<MergedButtonProps> = (
       if (icon && children) {
         return (
           <StyledButton
-            ref={props.forwardedRef}
+            forwardedRef={ref}
             as={as}
             autoFocus={autoFocus}
             onClick={onClick}
@@ -141,7 +141,7 @@ export const Button: React.FunctionComponent<MergedButtonProps> = (
       } else if (icon && !children) {
         return (
           <StyledButton
-            ref={props.forwardedRef}
+            forwardedRef={ref}
             ariaLabel={ariaLabel}
             as={as}
             autoFocus={autoFocus}
@@ -165,7 +165,7 @@ export const Button: React.FunctionComponent<MergedButtonProps> = (
 
       return (
         <StyledButton
-          ref={props.forwardedRef}
+          forwardedRef={ref}
           as={as}
           autoFocus={autoFocus}
           onClick={onClick}
@@ -187,4 +187,4 @@ export const Button: React.FunctionComponent<MergedButtonProps> = (
       );
     }}
   </ButtonCore>
-);
+));

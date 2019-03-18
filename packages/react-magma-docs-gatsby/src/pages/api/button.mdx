@@ -221,7 +221,7 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
       render() {
         return <div>
         <Button
-          forwardedRef={this.buttonRef}>Button to be focused</Button>
+          ref={this.buttonRef}>Button to be focused</Button>
 
         <Button
           onClick={() => {
@@ -252,4 +252,4 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 | textTransform | enum: 'uppercase' &#124; 'none'                                     | 'uppercase' |
 | to            | string                                                              |             |
 | variant       | enum: 'solid' &#124; 'outline' &#124; 'link'                        | 'solid'     |
-| forwardedRef  | React.Ref                                                           |             |
+| ref           | React.Ref                                                           |             |
