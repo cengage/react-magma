@@ -8,6 +8,8 @@ export interface HeadingProps {
   level: number;
   id?: string;
   style?: React.CSSProperties;
+  ref?: any;
+  tabIndex?: number;
 }
 
 export const baseHeadingStyles = css`
@@ -48,7 +50,7 @@ const StyledH6 = styled.h6`
   font-size: 18px;
 `;
 
-function renderHeading({ level, children, id, style }: HeadingProps) {
+function renderHeading(level: number) {
   const headingLevels = {
     1: StyledH1,
     2: StyledH2,
@@ -58,15 +60,17 @@ function renderHeading({ level, children, id, style }: HeadingProps) {
     6: StyledH6
   };
 
-  const HeadingComponent = headingLevels[level];
-
-  return (
-    <HeadingComponent id={id} style={style}>
-      {children}
-    </HeadingComponent>
-  );
+  return headingLevels[level];
 }
 
-export const Heading: React.FunctionComponent<HeadingProps> = (
-  props: HeadingProps
-) => renderHeading(props);
+export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
+  ({ level, id, tabIndex, style, children }: HeadingProps, ref: any) => {
+    const HeadingComponent = renderHeading(level);
+
+    return (
+      <HeadingComponent ref={ref} id={id} style={style} tabIndex={tabIndex}>
+        {children}
+      </HeadingComponent>
+    );
+  }
+);

@@ -110,6 +110,7 @@ export const Button: React.FunctionComponent<MergedButtonProps> = (
       if (icon && children) {
         return (
           <StyledButton
+            ref={props.forwardedRef}
             as={as}
             autoFocus={autoFocus}
             onClick={onClick}
@@ -140,6 +141,7 @@ export const Button: React.FunctionComponent<MergedButtonProps> = (
       } else if (icon && !children) {
         return (
           <StyledButton
+            ref={props.forwardedRef}
             ariaLabel={ariaLabel}
             as={as}
             autoFocus={autoFocus}
@@ -163,6 +165,7 @@ export const Button: React.FunctionComponent<MergedButtonProps> = (
 
       return (
         <StyledButton
+          ref={props.forwardedRef}
           as={as}
           autoFocus={autoFocus}
           onClick={onClick}
