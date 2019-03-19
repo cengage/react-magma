@@ -2,7 +2,7 @@ import React from 'react';
 import { css, keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
 import FocusLock from 'react-focus-lock';
-import { Button, MenuIcon, CrossIcon } from 'react-magma-dom'
+import { Button, MenuIcon, CrossIcon, magma } from 'react-magma-dom'
 import MainNav from '../main-nav'
 
 export class SlidingDrawer extends React.Component {
@@ -23,8 +23,6 @@ export class SlidingDrawer extends React.Component {
     }
       
     closeMenu = () => {
-        // TODO: Put focus on menu button -- need refs set up
-
         document.getElementsByTagName('html')[0].style.overflow = "auto"; 
         document.removeEventListener("keydown", this.handleKeypress, false);
 
@@ -52,8 +50,8 @@ export class SlidingDrawer extends React.Component {
 
         const Panel = styled.div`
             animation: .2s ${slideout};
-            background: #fff;
-            border-right: 1px solid #DFDFDF;
+            background: ${magma.colors.neutral08};
+            border-right: 1px solid ${magma.colors.neutral06};
             bottom: 0;
             grid-area: nav;
             min-height: 100vh;
