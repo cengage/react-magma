@@ -86,7 +86,7 @@ const MainNav = ({...props}) => (
 )
 
 MainNav.propTypes = {
-  handleClick: PropTypes.function
+  handleClick: PropTypes.func
 }
 
 export default MainNav

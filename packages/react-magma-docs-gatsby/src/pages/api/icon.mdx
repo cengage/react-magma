@@ -50,7 +50,7 @@ title: 'Icons'
       const title = icon + ' Title';
       const Icon = ICONS[icon];
 
-      return <span className='demo-icon-container'>
+      return <span className='demo-icon-container' key={id} >
         <Icon id={id} title={title} /><br />
         {icon}
       </span>
