@@ -14,11 +14,11 @@ See the Button Design Guidelines for more information on when to use the differe
 Sizes for buttons include `small`, `medium`, and `large`, with `medium` being the default value.
 
 ```.jsx
-    <p>
-        <Button size="small">Small</Button>
+    <ThemeProvider theme={amgam}>
+        <Button size="small" theme={amgam}>Small</Button>
         <Button>Default</Button>
         <Button size="large" style={{ color: '#cccccc' }}>Large</Button>
-    </p>
+    </ThemeProvider>
 ```
 
 ## Colors
@@ -26,12 +26,12 @@ Sizes for buttons include `small`, `medium`, and `large`, with `medium` being th
 Colors for buttons include `primary`, `secondary`, `success`, and `danger`, with `primary` being the default value.
 
 ```.jsx
-    <p>
-        <Button color="primary">Primary (default)</Button>
+    <ThemeProvider theme={amgam}>
+        <Button color="primary" theme={amgam}>Primary (default)</Button>
         <Button color="secondary">Secondary</Button>
         <Button color="success" >Success</Button>
-        <Button color="danger">Danger</Button>
-    </p>
+        <Button color="danger" theme={amgam}>Danger</Button>
+    </ThemeProvider>
 ```
 
 ## Variants
@@ -146,12 +146,12 @@ Passing the `block` property will set the button to display full-width.
 ## Disabled
 
 ```.jsx
-    <p>
+    <div>
         <Button disabled>Disabled</Button>
         <Button disabled variant="outline">Disabled</Button>
         <Button disabled variant="link">Disabled</Button>
         <p>This is a <LinkButton disabled>disabled link button</LinkButton>.</p>
-    </p>
+    </div>
 ```
 
 ## Using different elements
@@ -160,7 +160,7 @@ Passing in the `as` prop will allow a styed button to render as a different type
 The `href` and `to` props are also supported, so that a button can be used as an `a` tag or a `Link` component.
 
 ```.jsx
-    <p>
+    <div>
         <Button
           as='a'
           color='primary'
@@ -172,7 +172,7 @@ The `href` and `to` props are also supported, so that a button can be used as an
           color='primary'
           tabIndex='0'
           variant='solid'>Div</Button>
-    </p>
+    </div>
 ```
 
 ## Event Handling

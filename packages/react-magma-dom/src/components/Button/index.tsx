@@ -13,6 +13,8 @@ import {
 import styled from '@emotion/styled';
 import { IconProps } from '../Icon/utils';
 import { Omit } from '../utils';
+import { magma } from '../../theme/magma';
+import { ThemeProvider } from 'emotion-theming';
 
 interface IconOnlyButtonProps extends Omit<ButtonProps, 'children'> {
   icon: React.ReactElement<IconProps>;
@@ -93,6 +95,7 @@ export const Button: React.FunctionComponent<MergedButtonProps> = (
         style,
         variant,
         textTransform,
+        theme,
         to
       } = props;
 
@@ -109,6 +112,64 @@ export const Button: React.FunctionComponent<MergedButtonProps> = (
 
       if (icon && children) {
         return (
+          <ThemeProvider theme={theme ? theme : magma}>
+            <StyledButton
+              as={as}
+              autoFocus={autoFocus}
+              onClick={onClick}
+              block={block}
+              color={color ? color : ButtonColor.primary}
+              disabled={disabled}
+              inverse={inverse}
+              shape={shape ? shape : ButtonShape.fill}
+              size={size ? size : ButtonSize.medium}
+              style={style}
+              textTransform={
+                textTransform ? textTransform : ButtonTextTransform.uppercase
+              }
+              to={to}
+              variant={variant ? variant : ButtonVariant.solid}
+            >
+              {iconPosition === ButtonIconPostition.right && (
+                <SpanTextLeft size={size}>{children} </SpanTextLeft>
+              )}
+              {React.Children.only(
+                React.cloneElement(icon, { size: getIconWithTextSize(size) })
+              )}
+              {iconPosition !== ButtonIconPostition.right && (
+                <SpanTextRight size={size}>{children}</SpanTextRight>
+              )}
+            </StyledButton>
+          </ThemeProvider>
+        );
+      } else if (icon && !children) {
+        return (
+          <ThemeProvider theme={theme ? theme : magma}>
+            <StyledButton
+              ariaLabel={ariaLabel}
+              as={as}
+              autoFocus={autoFocus}
+              onClick={onClick}
+              color={color ? color : ButtonColor.primary}
+              disabled={disabled}
+              iconOnly
+              inverse={inverse}
+              shape={shape ? shape : ButtonShape.round}
+              size={size ? size : ButtonSize.medium}
+              style={style}
+              to={to}
+              variant={variant ? variant : ButtonVariant.solid}
+            >
+              {React.Children.only(
+                React.cloneElement(icon, { size: getIconSize(size) })
+              )}
+            </StyledButton>
+          </ThemeProvider>
+        );
+      }
+
+      return (
+        <ThemeProvider theme={theme ? theme : magma}>
           <StyledButton
             as={as}
             autoFocus={autoFocus}
@@ -126,61 +187,9 @@ export const Button: React.FunctionComponent<MergedButtonProps> = (
             to={to}
             variant={variant ? variant : ButtonVariant.solid}
           >
-            {iconPosition === ButtonIconPostition.right && (
-              <SpanTextLeft size={size}>{children} </SpanTextLeft>
-            )}
-            {React.Children.only(
-              React.cloneElement(icon, { size: getIconWithTextSize(size) })
-            )}
-            {iconPosition !== ButtonIconPostition.right && (
-              <SpanTextRight size={size}>{children}</SpanTextRight>
-            )}
+            {children}
           </StyledButton>
-        );
-      } else if (icon && !children) {
-        return (
-          <StyledButton
-            ariaLabel={ariaLabel}
-            as={as}
-            autoFocus={autoFocus}
-            onClick={onClick}
-            color={color ? color : ButtonColor.primary}
-            disabled={disabled}
-            iconOnly
-            inverse={inverse}
-            shape={shape ? shape : ButtonShape.round}
-            size={size ? size : ButtonSize.medium}
-            style={style}
-            to={to}
-            variant={variant ? variant : ButtonVariant.solid}
-          >
-            {React.Children.only(
-              React.cloneElement(icon, { size: getIconSize(size) })
-            )}
-          </StyledButton>
-        );
-      }
-
-      return (
-        <StyledButton
-          as={as}
-          autoFocus={autoFocus}
-          onClick={onClick}
-          block={block}
-          color={color ? color : ButtonColor.primary}
-          disabled={disabled}
-          inverse={inverse}
-          shape={shape ? shape : ButtonShape.fill}
-          size={size ? size : ButtonSize.medium}
-          style={style}
-          textTransform={
-            textTransform ? textTransform : ButtonTextTransform.uppercase
-          }
-          to={to}
-          variant={variant ? variant : ButtonVariant.solid}
-        >
-          {children}
-        </StyledButton>
+        </ThemeProvider>
       );
     }}
   </ButtonCore>

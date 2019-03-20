@@ -19,6 +19,7 @@ const BASE_BUTTON_PROPS = {
   shape: ButtonShape.fill,
   size: ButtonSize.medium,
   textTransform: ButtonTextTransform.uppercase,
+  theme: magma,
   variant: ButtonVariant.solid
 };
 
@@ -28,7 +29,11 @@ const renderButton = (myProps = {}) => {
     ...myProps
   };
 
-  return render(<StyledButton {...props}>{TEXT}</StyledButton>);
+  return render(
+    <StyledButton {...props} theme={magma}>
+      {TEXT}
+    </StyledButton>
+  );
 };
 
 describe('Styled Button', () => {

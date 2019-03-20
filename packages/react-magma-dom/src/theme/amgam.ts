@@ -33,31 +33,31 @@ export interface ThemeInterface {
   sizeLg: string;
 }
 
-export const magma = {
+export const amgam = {
   bodyFont: '"Open Sans", sans-serif',
   headingFont: 'gnuolane, sans-serif',
 
   colors: {
-    primary: '#006298', // link color blue
-    foundation01: '#003865',
-    foundation02: '#006298',
-    foundation03: '#00A9E0',
-    foundation04: '#71C5E8',
-    pop01: '#E0004D',
-    pop02: '#FA6600',
+    primary: '#FF9D67', // link color blue
+    foundation01: '#FFC79A',
+    foundation02: '#FF9D67',
+    foundation03: '#ff9d67',
+    foundation04: '#006298',
+    pop01: '#1FFFB2',
+    pop02: '#0D56FF',
     pop03: '#F2A900',
-    pop04: '#FFC72C',
-    success01: '#3A8200',
-    success02: '#53BB00',
-    danger: '#E70000',
+    pop04: '#0038D3',
+    success01: '#C57DFF',
+    success02: '#AC44FF',
+    danger: '#FFD9C1',
     neutral01: '#00263E',
-    neutral02: '#3F3F3F', // main dark grey text color
-    neutral03: '#575757',
-    neutral04: '#727272',
-    neutral05: '#BFBFBF',
-    neutral06: '#DFDFDF',
-    neutral07: '#F7F7F7',
-    neutral08: '#FFFFFF', // white
+    neutral02: '#C0C0C0', // main dark grey text color
+    neutral03: '#A8A8A8',
+    neutral04: '#8D8D8D',
+    neutral05: '#404040',
+    neutral06: '#202020',
+    neutral07: '#080808',
+    neutral08: '#000000', // white
     disabledText: 'rgba(114, 114, 114, 0.6)',
     disabledInverseText: 'rgba(255, 255, 255, 0.25)'
   },

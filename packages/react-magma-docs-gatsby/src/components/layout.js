@@ -6,9 +6,11 @@ import MainNav from './main-nav'
 import { MDXProvider } from '@mdx-js/tag'
 import { Location } from '@reach/router'
 import { Transition, config } from 'react-spring'
+import { ThemeProvider } from 'emotion-theming'
 import {
   Button,
   Checkbox,
+  Demo,
   Heading,
   ICONS,
   IconButton,
@@ -19,6 +21,7 @@ import {
   RadioGroup,
   Select,
   Toggle,
+  amgam,
   magma,
   AddPersonIcon,
   AlertIcon,
@@ -276,6 +279,7 @@ const PreComponent = ({ className, ...props }) => {
         iconsArray,
         Button,
         Checkbox,
+        Demo,
         Heading,
         ICONS,
         IconButton,
@@ -287,6 +291,8 @@ const PreComponent = ({ className, ...props }) => {
         Select,
         Toggle,
         magma,
+        amgam,
+        ThemeProvider,
         AddPersonIcon,
         AlertIcon,
         AndroidIcon,
@@ -566,7 +572,7 @@ const Layout = ({ children }) => (
       }
     `}
     render={data => (
-      <>
+      <ThemeProvider theme={amgam}>
         <Helmet
           title={data.site.siteMetadata.title}
           meta={[
@@ -604,7 +610,7 @@ const Layout = ({ children }) => (
             </MDXProvider>
           </article>
         </main>
-      </>
+      </ThemeProvider>
     )}
   />
 )

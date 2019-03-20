@@ -8,6 +8,7 @@ export {
   ButtonTextTransform,
   ButtonIconPostition
 } from './components/StyledButton';
+export { Demo } from './components/Demo';
 export { Heading } from './components/Heading';
 export { Input, InputSize, InputType, IconPosition } from './components/Input';
 export { Label } from './components/Label';
@@ -16,6 +17,7 @@ export { RadioGroup } from './components/RadioGroup';
 export { Radio } from './components/Radio';
 export { Select } from './components/Select';
 export { Toggle } from './components/Toggle';
+export { amgam } from './theme/amgam';
 export { magma } from './theme/magma';
 export { Theme } from './theme/globalStyle';
 export { ICONS } from './components/Icon';

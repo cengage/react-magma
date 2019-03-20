@@ -54,6 +54,7 @@ export interface ButtonProps {
   size?: ButtonSize;
   style?: React.CSSProperties;
   textTransform?: ButtonTextTransform;
+  theme?: any;
   to?: string;
   variant?: ButtonVariant;
 }
@@ -61,6 +62,7 @@ export interface ButtonProps {
 interface StyledButtonProps extends ButtonProps {
   iconOnly?: boolean;
   ariaLabel?: string;
+  theme?: any;
 }
 
 const StyledButtonComponent = styled.button<StyledButtonProps>`
@@ -79,7 +81,7 @@ const StyledButtonComponent = styled.button<StyledButtonProps>`
   }};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   display: ${props => (props.block ? 'flex' : 'inline-flex')};
-  font-family: ${magma.bodyFont};
+  font-family: ${props => props.theme.bodyFont};
   justify-content: center;
   line-height: 1;
   margin: ${props => (props.block ? '5px 0' : '5px')};
@@ -158,20 +160,20 @@ const StyledButtonComponent = styled.button<StyledButtonProps>`
       return 'none';
     }
     if (props.disabled) {
-      return magma.colors.neutral06;
+      return props.theme.colors.neutral06;
     }
     if (props.inverse) {
-      return magma.colors.neutral08;
+      return props.theme.colors.neutral08;
     }
     switch (props.color) {
       case 'secondary':
-        return magma.colors.neutral08;
+        return props.theme.colors.neutral08;
       case 'success':
-        return magma.colors.success01;
+        return props.theme.colors.success01;
       case 'danger':
-        return magma.colors.danger;
+        return props.theme.colors.danger;
       default:
-        return magma.colors.primary;
+        return props.theme.colors.primary;
     }
   }};
   border: ${props =>
@@ -182,25 +184,25 @@ const StyledButtonComponent = styled.button<StyledButtonProps>`
   border-color: ${props => {
     // Button color, variant, inverse
     if (props.disabled && props.inverse && props.variant === 'outline') {
-      return magma.colors.disabledInverseText;
+      return props.theme.colors.disabledInverseText;
     }
     if (props.disabled) {
-      return magma.colors.neutral06;
+      return props.theme.colors.neutral06;
     }
     if (props.inverse) {
-      return magma.colors.neutral08;
+      return props.theme.colors.neutral08;
     }
     if (props.color === 'secondary') {
-      return magma.colors.neutral05;
+      return props.theme.colors.neutral05;
     }
     if (props.variant === 'solid') {
       switch (props.color) {
         case 'success':
-          return magma.colors.success01;
+          return props.theme.colors.success01;
         case 'danger':
-          return magma.colors.danger;
+          return props.theme.colors.danger;
         default:
-          return magma.colors.primary;
+          return props.theme.colors.primary;
       }
     }
   }};
@@ -216,13 +218,13 @@ const StyledButtonComponent = styled.button<StyledButtonProps>`
         ) {
           switch (props.color) {
             case 'secondary':
-              return magma.colors.neutral02;
+              return props.theme.colors.neutral02;
             case 'success':
-              return magma.colors.success01;
+              return props.theme.colors.success01;
             case 'danger':
-              return magma.colors.danger;
+              return props.theme.colors.danger;
             default:
-              return magma.colors.primary;
+              return props.theme.colors.primary;
           }
         }
         if (
@@ -230,9 +232,9 @@ const StyledButtonComponent = styled.button<StyledButtonProps>`
           !props.inverse &&
           props.color === 'secondary'
         ) {
-          return magma.colors.neutral02;
+          return props.theme.colors.neutral02;
         }
-        return magma.colors.neutral08;
+        return props.theme.colors.neutral08;
       }};
       content: '';
       opacity: 0;
@@ -285,29 +287,29 @@ const StyledButtonComponent = styled.button<StyledButtonProps>`
     color: ${props => {
       // Button color, variant, inverse
       if (props.disabled && props.inverse && props.variant !== 'solid') {
-        return magma.colors.disabledInverseText;
+        return props.theme.colors.disabledInverseText;
       }
       if (props.disabled) {
-        return magma.colors.disabledText;
+        return props.theme.colors.disabledText;
       }
       if (
         (!props.inverse && props.variant === 'solid') ||
         (props.inverse && props.variant !== 'solid')
       ) {
         if (props.color === 'secondary' && !props.inverse) {
-          return magma.colors.neutral02;
+          return props.theme.colors.neutral02;
         }
-        return magma.colors.neutral08;
+        return props.theme.colors.neutral08;
       }
       switch (props.color) {
         case 'secondary':
-          return magma.colors.neutral02;
+          return props.theme.colors.neutral02;
         case 'success':
-          return magma.colors.success01;
+          return props.theme.colors.success01;
         case 'danger':
-          return magma.colors.danger;
+          return props.theme.colors.danger;
         default:
-          return magma.colors.primary;
+          return props.theme.colors.primary;
       }
     }};
   }
@@ -339,6 +341,7 @@ export const StyledButton: React.FunctionComponent<StyledButtonProps> = ({
   size,
   style,
   textTransform,
+  theme,
   to,
   variant
 }: StyledButtonProps) => (
@@ -357,6 +360,7 @@ export const StyledButton: React.FunctionComponent<StyledButtonProps> = ({
     size={size}
     style={style}
     textTransform={textTransform}
+    theme={theme ? theme : magma}
     to={to}
     variant={variant}
   >
