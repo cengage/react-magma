@@ -82,6 +82,7 @@ export const Button: React.FunctionComponent<
       let ariaLabel;
       let children;
       const {
+        ariaExpanded,
         as,
         autoFocus,
         disabled,
@@ -111,6 +112,7 @@ export const Button: React.FunctionComponent<
         return (
           <StyledButton
             ref={ref}
+            ariaExpanded={ariaExpanded}
             as={as}
             autoFocus={autoFocus}
             onClick={onClick}
@@ -142,6 +144,7 @@ export const Button: React.FunctionComponent<
         return (
           <StyledButton
             ref={ref}
+            ariaExpanded={ariaExpanded}
             ariaLabel={ariaLabel}
             as={as}
             autoFocus={autoFocus}
@@ -167,6 +170,7 @@ export const Button: React.FunctionComponent<
         <StyledButton
           ref={ref}
           as={as}
+          ariaExpanded={ariaExpanded}
           autoFocus={autoFocus}
           onClick={onClick}
           block={block}

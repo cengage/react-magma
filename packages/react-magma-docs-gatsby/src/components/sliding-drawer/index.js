@@ -23,11 +23,14 @@ export class SlidingDrawer extends React.Component {
     }
       
     closeMenu = () => {
-        document.getElementsByTagName('html')[0].style.overflow = "auto"; 
-        document.removeEventListener("keydown", this.handleKeypress, false);
-
-        this.setState({isOpen: false})
-        //this.toggleButtonRef.current.focus();
+        if(this.state.isOpen) {
+            document.getElementsByTagName('html')[0].style.overflow = "auto"; 
+            document.removeEventListener("keydown", this.handleKeypress, false);
+            
+            this.setState({isOpen: false}, () => {
+                window.setTimeout(this.toggleButtonRef.current.focus(), 0)
+            })
+        }
     }
 
     openMenu = () => {
@@ -129,6 +132,7 @@ export class SlidingDrawer extends React.Component {
                         icon={<MenuIcon />}
                         inverse
                         onClick={this.openMenu}
+                        ref={this.toggleButtonRef}
                         size="large"
                         variant="link" />
                     </MenuButton>
