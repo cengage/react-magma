@@ -110,7 +110,7 @@ export const Button: React.FunctionComponent<
       if (icon && children) {
         return (
           <StyledButton
-            forwardedRef={ref}
+            ref={ref}
             as={as}
             autoFocus={autoFocus}
             onClick={onClick}
@@ -141,7 +141,7 @@ export const Button: React.FunctionComponent<
       } else if (icon && !children) {
         return (
           <StyledButton
-            forwardedRef={ref}
+            ref={ref}
             ariaLabel={ariaLabel}
             as={as}
             autoFocus={autoFocus}
@@ -165,7 +165,7 @@ export const Button: React.FunctionComponent<
 
       return (
         <StyledButton
-          forwardedRef={ref}
+          ref={ref}
           as={as}
           autoFocus={autoFocus}
           onClick={onClick}
