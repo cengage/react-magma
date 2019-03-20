@@ -207,6 +207,31 @@ Events do not fire on disabled buttons.
     }
 ```
 
+## Forward Ref
+
+Using React's `forwardRef` feature you can gain access to the reference of the internal button.
+
+```.jsx
+  class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.buttonRef = React.createRef();
+      }
+
+      render() {
+        return <div>
+        <Button
+          ref={this.buttonRef}>Button to be focused</Button>
+
+        <Button
+          onClick={() => {
+            this.buttonRef.current.focus();
+          }}>Click to focus other button</Button>
+        </div>
+      }
+    }
+```
+
 ## Button Props
 
 | Prop          | Type                                                                | Default     | Required |
@@ -227,3 +252,4 @@ Events do not fire on disabled buttons.
 | textTransform | enum: 'uppercase' &#124; 'none'                                     | 'uppercase' |
 | to            | string                                                              |             |
 | variant       | enum: 'solid' &#124; 'outline' &#124; 'link'                        | 'solid'     |
+| ref           | React.Ref                                                           |             |

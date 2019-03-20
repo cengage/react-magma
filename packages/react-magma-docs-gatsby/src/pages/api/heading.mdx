@@ -1,5 +1,5 @@
 ---
-title: "Headings"
+title: 'Headings'
 ---
 
 # Headings
@@ -17,11 +17,42 @@ title: "Headings"
   </div>
 ```
 
+## Forward Ref
+
+Using React's `forwardRef` feature you can gain access to the reference of the internal heading.
+
+```.jsx
+  class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.headingRef = React.createRef();
+      }
+
+      render() {
+        return <div>
+        <Heading
+          ref={this.headingRef}
+          level={1}>
+          Heading to be focused
+        </Heading>
+
+        <Button
+          onClick={() => {
+            this.headingRef.current.tabIndex = -1
+            this.headingRef.current.focus();
+          }}>Click to focus heading
+        </Button>
+        </div>
+      }
+    }
+```
+
 ## Heading Props
 
-| Prop                   | Type | Default | Required    |
-| -----------------------|------|---------|:-----------:|
-| children | node | | &#10003;
-| level | number | | &#10003;
-| id | string | | 
-| style | React.CSSProperties | | 
+| Prop     | Type                | Default | Required |
+| -------- | ------------------- | ------- | :------: |
+| children | node                |         | &#10003; |
+| level    | number              |         | &#10003; |
+| id       | string              |         |
+| style    | React.CSSProperties |         |
+| ref      | React.Ref           |         |
