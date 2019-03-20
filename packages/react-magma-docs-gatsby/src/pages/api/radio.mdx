@@ -1,5 +1,5 @@
 ---
-title: "Radio Buttons"
+title: 'Radio Buttons'
 ---
 
 # Radio Buttons
@@ -39,7 +39,8 @@ To set a selected value by default, use the `value` prop on the `RadioGroup` to 
 ```
 
 ## Colors
-By default, the radio buttons use the theme's primary color.  But any other color may be passed in.
+
+By default, the radio buttons use the theme's primary color. But any other color may be passed in.
 
 ```.jsx
   <RadioGroup labelText='Colors' id='colorsGroup' name='colors'>
@@ -125,8 +126,9 @@ Inverse is an optional boolean prop, that may be passed in when radio buttons ar
 ```
 
 ## Custom Styles
-Custom styles can be passed into both the RadioGroup component and the Radio component.  The `style` property will apply to the container.
-Additional `labelStyle` and `inputStyle` properties are available to style the respective elements.  Please use discression when adding custom styles.
+
+Custom styles can be passed into both the RadioGroup component and the Radio component. The `style` property will apply to the container.
+Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discression when adding custom styles.
 
 ```.jsx
   <RadioGroup
@@ -151,6 +153,7 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
 ```
 
 ## Visually Hidden Label
+
 Adding the `textVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
 
 ```.jsx
@@ -170,34 +173,70 @@ Adding the `textVisuallyHidden` prop will make the label text available to scree
     </RadioGroup>
 ```
 
+## Forward Ref
+
+Using React's `forwardRef` feature you can gain access to the reference of the internal radio.
+
+```.jsx
+  class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.radioRef = React.createRef();
+      }
+
+      render() {
+        return <div>
+        <RadioGroup labelText='ForwardRef Usage' id='forwardRefGroup' name='forwardRef'>
+          <Radio
+            ref={this.radioRef}
+            id='forwardRefRadio1'
+            labelText='Option One Label'
+            value='1' />
+
+          <Radio
+            id='forwardRefRadio2'
+            labelText='Option Two Label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines'
+            value='2' />
+        </RadioGroup>
+
+        <Button
+          onClick={() => {
+            this.radioRef.current.checked = !this.radioRef.current.checked
+          }}>Toggle option 1
+        </Button>
+        </div>
+      }
+    }
+```
+
 ## Radio Group Props
 
-| Prop                   | Type | Default | Required    |
-| -----------------------|------|---------|:-----------:|
-| children | React.ReactChild | | &#10003;
-| onBlur | function | |
-| onChange | function | |
-| onFocus | function | |
-| id | string | | &#10003;
-| labelStyle | React.CSSProperties | |
-| labelText | string | | &#10003;
-| name | string | | &#10003;
-| style | React.CSSProperties | |
-| textVisuallyHidden | boolean | |
-| value | string | |
+| Prop               | Type                | Default | Required |
+| ------------------ | ------------------- | ------- | :------: |
+| children           | React.ReactChild    |         | &#10003; |
+| onBlur             | function            |         |
+| onChange           | function            |         |
+| onFocus            | function            |         |
+| id                 | string              |         | &#10003; |
+| labelStyle         | React.CSSProperties |         |
+| labelText          | string              |         | &#10003; |
+| name               | string              |         | &#10003; |
+| style              | React.CSSProperties |         |
+| textVisuallyHidden | boolean             |         |
+| value              | string              |         |
 
 ## Radio Props
 
-| Prop                   | Type | Default | Required    |
-| -----------------------|------|---------|:-----------:|
-| color | string | |
-| disabled | boolean | false |
-| id | string | | &#10003;
-| inputStyle | React.CSSProperties | |
-| inverse | boolean | false |
-| labelStyle | React.CSSProperties | |
-| labelText | string | | &#10003;
-| required | function | |
-| style | React.CSSProperties | |
-| textVisuallyHidden | boolean | false |
-| value | string | |
+| Prop               | Type                | Default | Required |
+| ------------------ | ------------------- | ------- | :------: |
+| color              | string              |         |
+| disabled           | boolean             | false   |
+| id                 | string              |         | &#10003; |
+| inputStyle         | React.CSSProperties |         |
+| inverse            | boolean             | false   |
+| labelStyle         | React.CSSProperties |         |
+| labelText          | string              |         | &#10003; |
+| required           | function            |         |
+| style              | React.CSSProperties |         |
+| textVisuallyHidden | boolean             | false   |
+| value              | string              |         |

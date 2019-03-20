@@ -216,86 +216,87 @@ function getErrorIconSize(size) {
   }
 }
 
-export const Input: React.FunctionComponent<InputProps> = (
-  props: InputProps
-) => (
-  <InputCore
-    value={props.value}
-    onBlur={props.onBlur}
-    onChange={props.onChange}
-    onFocus={props.onFocus}
-  >
-    {({ onBlur, onChange, onFocus, value }) => {
-      const {
-        autoFocus,
-        disabled,
-        errorMessage,
-        helperMessage,
-        icon,
-        iconPosition,
-        id,
-        inputSize,
-        inputStyle,
-        inverse,
-        labelStyle,
-        labelText,
-        labelVisuallyHidden,
-        multiline,
-        placeholder,
-        style,
-        type,
-        required
-      } = props;
+export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
+  (props: InputProps, ref: any) => (
+    <InputCore
+      value={props.value}
+      onBlur={props.onBlur}
+      onChange={props.onChange}
+      onFocus={props.onFocus}
+    >
+      {({ onBlur, onChange, onFocus, value }) => {
+        const {
+          autoFocus,
+          disabled,
+          errorMessage,
+          helperMessage,
+          icon,
+          iconPosition,
+          id,
+          inputSize,
+          inputStyle,
+          inverse,
+          labelStyle,
+          labelText,
+          labelVisuallyHidden,
+          multiline,
+          placeholder,
+          style,
+          type,
+          required
+        } = props;
 
-      return (
-        <Container style={style}>
-          {!labelVisuallyHidden && (
-            <Label inverse={inverse} htmlFor={id} style={labelStyle}>
-              {labelText}
-            </Label>
-          )}
-          <InputWrapper>
-            <StyledInput
-              aria-label={labelVisuallyHidden ? labelText : null}
-              as={multiline ? 'textarea' : null}
-              autoFocus={autoFocus}
-              id={id}
-              disabled={disabled}
-              errorMessage={errorMessage}
-              iconPosition={iconPosition}
-              inputSize={inputSize ? inputSize : InputSize.medium}
-              labelText={labelText}
-              multiline={multiline}
-              placeholder={placeholder}
-              required={required}
-              style={inputStyle}
-              type={type ? type : InputType.text}
-              value={value}
-              onBlur={onBlur}
-              onChange={onChange}
-              onFocus={onFocus}
-            />
+        return (
+          <Container style={style}>
+            {!labelVisuallyHidden && (
+              <Label inverse={inverse} htmlFor={id} style={labelStyle}>
+                {labelText}
+              </Label>
+            )}
+            <InputWrapper>
+              <StyledInput
+                ref={ref}
+                aria-label={labelVisuallyHidden ? labelText : null}
+                as={multiline ? 'textarea' : null}
+                autoFocus={autoFocus}
+                id={id}
+                disabled={disabled}
+                errorMessage={errorMessage}
+                iconPosition={iconPosition}
+                inputSize={inputSize ? inputSize : InputSize.medium}
+                labelText={labelText}
+                multiline={multiline}
+                placeholder={placeholder}
+                required={required}
+                style={inputStyle}
+                type={type ? type : InputType.text}
+                value={value}
+                onBlur={onBlur}
+                onChange={onChange}
+                onFocus={onFocus}
+              />
+              {errorMessage && (
+                <ErrorIconWrapper inputSize={inputSize}>
+                  <AlertIcon size={getErrorIconSize(inputSize)} />
+                </ErrorIconWrapper>
+              )}
+              {icon && (
+                <IconWrapper iconPosition={iconPosition}>
+                  {React.Children.only(
+                    React.cloneElement(icon, { size: getIconSize(inputSize) })
+                  )}
+                </IconWrapper>
+              )}
+            </InputWrapper>
             {errorMessage && (
-              <ErrorIconWrapper inputSize={inputSize}>
-                <AlertIcon size={getErrorIconSize(inputSize)} />
-              </ErrorIconWrapper>
+              <ErrorMessage inverse={inverse}>{errorMessage}</ErrorMessage>
             )}
-            {icon && (
-              <IconWrapper iconPosition={iconPosition}>
-                {React.Children.only(
-                  React.cloneElement(icon, { size: getIconSize(inputSize) })
-                )}
-              </IconWrapper>
+            {helperMessage && !errorMessage && (
+              <HelperMessage inverse={inverse}>{helperMessage}</HelperMessage>
             )}
-          </InputWrapper>
-          {errorMessage && (
-            <ErrorMessage inverse={inverse}>{errorMessage}</ErrorMessage>
-          )}
-          {helperMessage && !errorMessage && (
-            <HelperMessage inverse={inverse}>{helperMessage}</HelperMessage>
-          )}
-        </Container>
-      );
-    }}
-  </InputCore>
+          </Container>
+        );
+      }}
+    </InputCore>
+  )
 );
