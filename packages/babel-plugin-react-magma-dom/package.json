@@ -1,0 +1,25 @@
+{
+  "name": "babel-plugin-react-magma-dom",
+  "version": "0.0.1",
+  "description": "convert react-magma-dom imports",
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel src --out-dir lib || true",
+    "test": "jest",
+    "test-watch": "jest --watch",
+    "covg": "open coverage/lcov-report/index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.5.0",
+    "jest": "^24.0.0"
+  }
+}
