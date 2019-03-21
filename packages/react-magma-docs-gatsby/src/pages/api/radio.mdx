@@ -204,6 +204,13 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
             this.radioRef.current.checked = !this.radioRef.current.checked
           }}>Toggle option 1
         </Button>
+
+         <Button
+          color="secondary"
+          onClick={() => {
+            this.radioRef.current.focus()
+          }}>Focus option 1
+        </Button>
         </div>
       }
     }

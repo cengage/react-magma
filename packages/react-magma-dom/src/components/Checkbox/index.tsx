@@ -11,7 +11,6 @@ import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';
 import { magma } from '../../theme/magma';
-import 'focus-visible';
 
 export interface CheckboxProps {
   autoFocus?: boolean;
@@ -91,7 +90,7 @@ const StyledFakeInput = styled.span<{
     transition: all 0.2s ease-out;
   }
 
-  ${HiddenInput}:focus.focus-visible + label & {
+  ${HiddenInput}:focus + label & {
     &:before {
       ${DisplayInputFocusStyles};
     }

@@ -7,7 +7,6 @@ import { StyledContainer } from '../SelectionControls/StyledContainer';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { magma } from '../../theme/magma';
-import 'focus-visible';
 
 enum ToggleTextPostition {
   left = 'left',
@@ -66,7 +65,7 @@ const Track = styled.span<{ checked?: boolean; disabled?: boolean }>`
       cursor: not-allowed;
     `}
 
-  ${HiddenInput}:focus.focus-visible + label & {
+  ${HiddenInput}:focus + label & {
       ${FocusStyles}
       outline-offset: 3px;
   }

@@ -10,7 +10,6 @@ import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';
 import { magma } from '../../theme/magma';
-import 'focus-visible';
 
 export interface RadioProps {
   color?: string;
@@ -81,7 +80,7 @@ const StyledFakeInput = styled.span<{
     }};
   }
 
-  ${HiddenInput}:focus.focus-visible + label & {
+  ${HiddenInput}:focus + label & {
     // focus state
     &:before {
       ${DisplayInputFocusStyles};

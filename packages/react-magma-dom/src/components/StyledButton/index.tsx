@@ -41,6 +41,7 @@ export enum ButtonIconPostition {
 }
 
 export interface ButtonProps {
+  ariaExpanded?: boolean;
   as?: any;
   autoFocus?: boolean;
   block?: boolean;
@@ -329,6 +330,7 @@ export const StyledButton: React.FunctionComponent<
 > = React.forwardRef(
   (
     {
+      ariaExpanded,
       ariaLabel,
       as,
       autoFocus,
@@ -352,6 +354,7 @@ export const StyledButton: React.FunctionComponent<
     <StyledButtonComponent
       ref={ref}
       as={as}
+      aria-expanded={ariaExpanded}
       aria-label={ariaLabel}
       className={className}
       autoFocus={autoFocus}

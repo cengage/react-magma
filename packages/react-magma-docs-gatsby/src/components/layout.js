@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
-import MainNav from './main-nav'
+import { SlidingDrawer } from './sliding-drawer'
+import Masthead from './masthead'
 import { MDXProvider } from '@mdx-js/tag'
 import { Location } from '@reach/router'
 import { Transition, config } from 'react-spring'
@@ -11,7 +12,6 @@ import {
   Checkbox,
   Heading,
   ICONS,
-  IconButton,
   Input,
   Label,
   LinkButton,
@@ -278,7 +278,6 @@ const PreComponent = ({ className, ...props }) => {
         Checkbox,
         Heading,
         ICONS,
-        IconButton,
         Input,
         Label,
         LinkButton,
@@ -541,7 +540,7 @@ const PreComponent = ({ className, ...props }) => {
 }
 
 const Table = props => (
-  <div style={{ margin: '50px' }}>
+  <div style={{ margin: '10px 0' }}>
     <table {...props} />
   </div>
 )
@@ -577,9 +576,9 @@ const Layout = ({ children }) => (
           <html lang="en" />
         </Helmet>
         <main className="main">
-          <MainNav />
-          <h1>{data.site.siteMetadata.title}</h1>
-          <article className="content-aricle">
+          <SlidingDrawer />
+          <Masthead />
+          <section className="content">
             <MDXProvider
               components={{
                 pre: PreComponent,
@@ -597,12 +596,12 @@ const Layout = ({ children }) => (
                     enter={{ opacity: 1 }}
                     leave={{ opacity: 0 }}
                   >
-                    {() => style => <article style={style}>{children}</article>}
+                    {() => style => <article className="content-article" style={style}>{children}</article>}
                   </Transition>
                 )}
               </Location>
             </MDXProvider>
-          </article>
+          </section>
         </main>
       </>
     )}

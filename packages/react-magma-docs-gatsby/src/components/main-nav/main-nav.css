@@ -1,0 +1,48 @@
+/* Main Nav styles */
+
+.main-nav h2 {
+    font-size: 20px;
+    font-family: "Open Sans", sans-serif;
+    margin: 10px 20px;
+}
+
+.main-nav hr {
+    background: #dfdfdf;
+    margin-top: 10px;
+}
+
+.main-nav ul {
+    margin: 0;
+    padding: 0;
+    }
+
+.main-nav ul li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav li a {
+    color: #727272;
+    display: block;
+    font-size: 15px;
+    line-height: 20px;
+    padding: 10px 20px;
+}
+
+.main-nav li a:hover,
+.main-nav li a:focus {
+    background: #f7f7f7;
+    text-decoration: none;
+}
+
+.submenu > li {
+    list-style-type: none;
+    margin: 0;
+}
+
+.submenu > li > a {
+    font-size: 13px;
+    line-height: 18px;
+    padding-left: 40px;
+}
