@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link, StaticQuery, graphql } from 'gatsby'
 import { Router } from '@reach/router'
 import './main-nav.css'
-
+import { magma } from 'react-magma-dom'
 import { convertTextToId } from '../../utils'
 
 const SubMenu = ({ headings, handleClick }) => (
@@ -15,6 +15,11 @@ const SubMenu = ({ headings, handleClick }) => (
     ))}
   </ul>
 )
+
+const activeStyle = {
+  'color': magma.colors.neutral02,
+  'fontWeight': 'bold'
+}
 
 const MainNav = ({...props}) => (
   <StaticQuery
@@ -57,14 +62,22 @@ const MainNav = ({...props}) => (
       <div className="main-nav">
           <h2>Magma System</h2>
           <ul>
-            <li><a href="/" onClick={props.handleClick}>Introduction</a></li>
+            <li>
+              <Link
+                  activeStyle={activeStyle}
+                  onClick={props.handleClick}
+                  to="/">Introduction</Link>
+                </li>
           </ul>
           <hr />
           <h2>Develop</h2>
           <ul>
             {data.apiDocs.edges.map(({ node }) => (
               <li key={node.fields.slug}>
-                <Link onClick={props.handleClick} to={node.fields.slug}>{node.frontmatter.title}</Link>
+                <Link
+                  activeStyle={activeStyle}
+                  onClick={props.handleClick}
+                  to={node.fields.slug}>{node.frontmatter.title}</Link>
                 <Router>
                   <SubMenu path={node.fields.slug} headings={node.headings} handleClick={props.handleClick} />
                 </Router>
@@ -76,7 +89,10 @@ const MainNav = ({...props}) => (
           <ul>
             {data.designDocs.edges.map(({ node }) => (
               <li key={node.fields.slug}>
-                <Link onClick={props.handleClick} to={node.fields.slug}>{node.frontmatter.title}</Link>
+                <Link
+                  activeStyle={activeStyle}
+                  onClick={props.handleClick}
+                  to={node.fields.slug}>{node.frontmatter.title}</Link>
               </li>
             ))}
           </ul>

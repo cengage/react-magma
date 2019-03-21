@@ -57,8 +57,8 @@ export class SlidingDrawer extends React.Component {
             border-right: 1px solid ${magma.colors.neutral06};
             bottom: 0;
             grid-area: nav;
-            min-height: 100vh;
             overflow: auto;
+            padding-bottom: 20px;
             position: fixed;
             top: 0;
             transform: translateX(-280px);

@@ -604,6 +604,13 @@ body {
     width: 80%;
   }
 
+  @media (max-width: 500px) {
+  .content-article {
+    padding: 0 15px;
+    width: 100%;
+  }
+}
+
   .content-aricle h1 {
     margin-top: 0;
   }

@@ -30,10 +30,6 @@
     padding: 10px 20px;
 }
 
-.main-nav li a[aria-current] {
-    font-weight: bold;
-}
-
 .main-nav li a:hover,
 .main-nav li a:focus {
     background: #f7f7f7;
