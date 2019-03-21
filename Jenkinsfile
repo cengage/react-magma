@@ -1,3 +1,4 @@
+@Library('banzai@feature/npm-snapshots') _
 pcfNpmPipeline() {
   nexus = [
     group: "com.cengage.frontend"
@@ -16,4 +17,3 @@ pcfNpmPipeline() {
     ]]
   ]
 }
-
