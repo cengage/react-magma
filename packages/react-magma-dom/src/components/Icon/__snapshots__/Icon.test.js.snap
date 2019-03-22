@@ -1325,6 +1325,30 @@ exports[`Icon Snapshot Tests should render CnyIcon icon 1`] = `
 </div>
 `;
 
+exports[`Icon Snapshot Tests should render CodeIcon icon 1`] = `
+<div>
+  <svg
+    aria-labelledby="CodeIconAvailable"
+    class="icon"
+    fill="currentColor"
+    height="24"
+    viewBox="0 0 17 11"
+    width="24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <title
+      id="CodeIconAvailable"
+    >
+      CodeIcon Title
+    </title>
+    <path
+      d="M7.44166667,13.1416667 L3.8,9.5 L7.44166667,5.85833333 L6.33333333,4.75 L1.58333333,9.5 L6.33333333,14.25 L7.44166667,13.1416667 Z M11.5583333,13.1416667 L15.2,9.5 L11.5583333,5.85833333 L12.6666667,4.75 L17.4166667,9.5 L12.6666667,14.25 L11.5583333,13.1416667 L11.5583333,13.1416667 Z"
+      transform="translate(0 0)"
+    />
+  </svg>
+</div>
+`;
+
 exports[`Icon Snapshot Tests should render Cog2Icon icon 1`] = `
 <div>
   <svg
