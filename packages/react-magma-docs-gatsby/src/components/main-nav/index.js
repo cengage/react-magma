@@ -6,15 +6,48 @@ import './main-nav.css'
 import { magma } from 'react-magma-dom'
 import { convertTextToId } from '../../utils'
 
-const SubMenu = ({ headings, handleClick }) => (
-  <ul className="submenu">
-    {headings.map((heading, index) => (
-      <li key={index}>
-        <a href={`#${convertTextToId(heading.value)}`} onClick={handleClick}>{heading.value}</a>
-      </li>
-    ))}
-  </ul>
-)
+const handleAnchorLinkClick = (( id, handleClick, e) => {
+  const distanceToTop = el => Math.floor(el.getBoundingClientRect().top);
+
+  e.preventDefault();
+  const targetID = id;
+  const targetAnchor = document.getElementById(id);
+  if (!targetAnchor) return;
+  const originalTop = distanceToTop(targetAnchor);
+
+  window.scrollBy({ top: originalTop, left: 0, behavior: "smooth" });
+
+  const checkIfDone = setInterval(function() {
+      const atBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2;
+      if (distanceToTop(targetAnchor) === 0 || atBottom) {
+          targetAnchor.tabIndex = "-1";
+          targetAnchor.focus();
+          window.history.pushState("", "", ("#" + targetID));
+          clearInterval(checkIfDone);
+      }
+  }, 100);
+
+  handleClick();
+});
+
+const SubMenu = ({ headings, handleClick }) => {
+  return (
+    <ul className="submenu">
+      {headings.map((heading, index) => {
+        const id = convertTextToId(heading.value);
+
+        return(
+          <li key={index}>  
+            <a
+              href={`#${id}`}
+              onClick={(e)=>{handleAnchorLinkClick(id, handleClick, e)}}>
+              {heading.value}
+            </a>
+          </li>
+      )})}
+    </ul>
+  )
+}
 
 const activeStyle = {
   'color': magma.colors.neutral02,
