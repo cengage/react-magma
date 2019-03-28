@@ -5,14 +5,24 @@ import { Link } from 'gatsby'
 import { Button, CodeIcon, PaletteIcon } from 'react-magma-dom'
 
 const StyledDiv = styled.div`
-    align-items: center;
+    align-items: flex-start;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     margin-bottom: 20px;
+
+    @media (min-width: 600px) {
+        align-items: center;
+        flex-direction: row;
+    }
 `;
 
 const Heading = styled.h1`
-    margin: 0;
+    margin: 0 0 20px;
+
+    @media (min-width: 600px) {
+        margin: 0;
+    }
 `;
 
 const DocsHeading = ({ children, to, type }) => (
