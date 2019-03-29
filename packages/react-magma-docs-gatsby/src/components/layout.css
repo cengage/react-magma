@@ -524,13 +524,6 @@ a {
     outline-offset: 3px;
   }
 
-  h1:focus, 
-  h2:focus, 
-  h3:focus {
-    border-bottom: 2px dotted #F2A900;
-    outline: 0;
-  }
-
 /* Global styles */
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
@@ -623,9 +616,15 @@ body {
 
   /* fix for anchor links */
   .content-article h2 {
+    border-bottom: 2px solid transparent;
     margin-top: -60px;
-    padding-top: 80px;
+    padding-top: 85px;
   } 
+
+  .content-article h2:focus {
+    border-bottom: 2px dotted #F2A900;
+    outline: 0;
+  }
   
   .pre-container {
     display: grid;

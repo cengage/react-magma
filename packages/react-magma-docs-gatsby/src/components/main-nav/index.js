@@ -3,8 +3,14 @@ import PropTypes from 'prop-types'
 import { Link, StaticQuery, graphql } from 'gatsby'
 import { Router } from '@reach/router'
 import './main-nav.css'
-import { magma } from 'react-magma-dom'
+import { magma, AngleDownIcon } from 'react-magma-dom'
 import { convertTextToId } from '../../utils'
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemTitle,
+  AccordionItemBody,
+} from 'react-accessible-accordion';
 
 const handleAnchorLinkClick = (( id, handleClick, e) => {
   const distanceToTop = el => Math.floor(el.getBoundingClientRect().top);
@@ -103,32 +109,52 @@ const MainNav = ({...props}) => (
                 </li>
           </ul>
           <hr />
-          <h2>Develop</h2>
-          <ul>
-            {data.apiDocs.edges.map(({ node }) => (
-              <li key={node.fields.slug}>
+          <Accordion accordion={false}>
+            <AccordionItem expanded>
+              <AccordionItemTitle>
+                <h2>
+                  Develop
+                  <AngleDownIcon size="16"/>
+                </h2>
+              </AccordionItemTitle>
+              <AccordionItemBody>
+                <ul>
+                {data.apiDocs.edges.map(({ node }) => (
+                  <li key={node.fields.slug}>
+                    <Link
+                      activeStyle={activeStyle}
+                      onClick={props.handleClick}
+                      to={node.fields.slug}>{node.frontmatter.title}</Link>
+                    <Router>
+                      <SubMenu path={node.fields.slug} headings={node.headings} handleClick={props.handleClick} />
+                    </Router>
+                  </li>
+                ))}
+                </ul>
+              </AccordionItemBody>
+            </AccordionItem>
+            <hr />
+            <AccordionItem expanded>
+              <AccordionItemTitle>
+                <h2>
+                  Design
+                  <AngleDownIcon size="16"/>
+                </h2>
+              </AccordionItemTitle>
+              <AccordionItemBody>
+                <ul>
+                {data.designDocs.edges.map(({ node }) => (
+                <li key={node.fields.slug}>
                 <Link
-                  activeStyle={activeStyle}
-                  onClick={props.handleClick}
-                  to={node.fields.slug}>{node.frontmatter.title}</Link>
-                <Router>
-                  <SubMenu path={node.fields.slug} headings={node.headings} handleClick={props.handleClick} />
-                </Router>
-              </li>
-            ))}
-          </ul>
-          <hr />
-          <h2>Design</h2>
-          <ul>
-            {data.designDocs.edges.map(({ node }) => (
-              <li key={node.fields.slug}>
-                <Link
-                  activeStyle={activeStyle}
-                  onClick={props.handleClick}
-                  to={node.fields.slug}>{node.frontmatter.title}</Link>
-              </li>
-            ))}
-          </ul>
+                activeStyle={activeStyle}
+                onClick={props.handleClick}
+                to={node.fields.slug}>{node.frontmatter.title}</Link>
+                </li>
+                ))}
+                </ul>
+              </AccordionItemBody>
+            </AccordionItem>
+          </Accordion>
         </div>
     )}
   />
