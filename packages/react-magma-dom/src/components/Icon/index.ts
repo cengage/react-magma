@@ -49,6 +49,7 @@ import { Clock2Icon } from './types/Clock2Icon';
 import { ClockIcon } from './types/ClockIcon';
 import { Cloud2Icon } from './types/Cloud2Icon';
 import { CnyIcon } from './types/CnyIcon';
+import { CodeIcon } from './types/CodeIcon';
 import { Cog2Icon } from './types/Cog2Icon';
 import { CommentsIcon } from './types/CommentsIcon';
 import { CompassIcon } from './types/CompassIcon';
@@ -293,6 +294,7 @@ export const ICONS: IconsCollection = {
   ClockIcon,
   Cloud2Icon,
   CnyIcon,
+  CodeIcon,
   Cog2Icon,
   CommentsIcon,
   CompassIcon,

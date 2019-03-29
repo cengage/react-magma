@@ -13,22 +13,21 @@ export class SlidingDrawer extends React.Component {
         this.toggleButtonRef = React.createRef();
         this.closeMenu = this.closeMenu.bind(this);
         this.openMenu = this.openMenu.bind(this);
+        this.closeMenu = this.closeMenu.bind(this);
+        this.handleCloseMenu = this.handleCloseMenu.bind(this);
+        this.handleCloseMenuFromNav = this.handleCloseMenuFromNav.bind(this);
         this.handleKeypress = this.handleKeypress.bind(this);
     }   
-
-    handleKeypress(event){
-        if(event.keyCode === 27) {
-            this.closeMenu();
-        }
-    }
       
-    closeMenu = () => {
+    closeMenu = (returnFocus) => {
         if(this.state.isOpen) {
             document.getElementsByTagName('html')[0].style.overflow = "auto"; 
             document.removeEventListener("keydown", this.handleKeypress, false);
             
             this.setState({isOpen: false}, () => {
-                window.setTimeout(this.toggleButtonRef.current.focus(), 0)
+                if (returnFocus) {
+                    window.setTimeout(this.toggleButtonRef.current.focus(), 0)
+                }
             })
         }
     }
@@ -38,6 +37,20 @@ export class SlidingDrawer extends React.Component {
         this.setState({isOpen: true})
 
         document.addEventListener("keydown", this.handleKeypress, false);
+    }
+
+    handleCloseMenu() {
+        this.closeMenu(true);
+    }
+
+    handleCloseMenuFromNav() {
+        this.closeMenu(false);
+    }
+
+    handleKeypress(event){
+        if(event.keyCode === 27) {
+            this.closeMenu(true);
+        }
     }
 
     render() {
@@ -143,13 +156,13 @@ export class SlidingDrawer extends React.Component {
                                 ariaLabel="Close navigation menu"
                                 color="secondary"
                                 icon={<CrossIcon />}
-                                onClick={this.closeMenu}
+                                onClick={this.handleCloseMenu}
                                 variant="link" />
                             </CloseButton>
-                            <MainNav handleClick={this.closeMenu} />
+                            <MainNav handleClick={this.handleCloseMenuFromNav} />
                         </PanelInner>
                     </Panel>
-                    {isOpen && <Overlay onClick={this.closeMenu} />}
+                    {isOpen && <Overlay onClick={this.handleCloseMenu} />}
                 </nav>
             </FocusLock>
         );
