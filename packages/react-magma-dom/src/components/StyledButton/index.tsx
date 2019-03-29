@@ -50,6 +50,7 @@ export interface ButtonProps {
   onClick?: (event: React.SyntheticEvent) => void;
   color?: ButtonColor;
   disabled?: boolean;
+  href?: string;
   inverse?: boolean;
   shape?: ButtonShape;
   size?: ButtonSize;
@@ -339,6 +340,7 @@ export const StyledButton: React.FunctionComponent<
       children,
       disabled,
       onClick,
+      href,
       iconOnly,
       inverse,
       color,
@@ -362,6 +364,7 @@ export const StyledButton: React.FunctionComponent<
       block={block}
       color={color}
       disabled={disabled}
+      href={href}
       iconOnly={iconOnly}
       inverse={inverse}
       shape={shape}

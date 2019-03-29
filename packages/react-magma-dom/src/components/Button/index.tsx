@@ -89,6 +89,7 @@ export const Button: React.FunctionComponent<
         inverse,
         block,
         color,
+        href,
         shape,
         size,
         style,
@@ -120,6 +121,7 @@ export const Button: React.FunctionComponent<
             color={color ? color : ButtonColor.primary}
             disabled={disabled}
             inverse={inverse}
+            href={href}
             shape={shape ? shape : ButtonShape.fill}
             size={size ? size : ButtonSize.medium}
             style={style}
@@ -153,6 +155,7 @@ export const Button: React.FunctionComponent<
             disabled={disabled}
             iconOnly
             inverse={inverse}
+            href={href}
             shape={shape ? shape : ButtonShape.round}
             size={size ? size : ButtonSize.medium}
             style={style}
@@ -176,6 +179,7 @@ export const Button: React.FunctionComponent<
           block={block}
           color={color ? color : ButtonColor.primary}
           disabled={disabled}
+          href={href}
           inverse={inverse}
           shape={shape ? shape : ButtonShape.fill}
           size={size ? size : ButtonSize.medium}
