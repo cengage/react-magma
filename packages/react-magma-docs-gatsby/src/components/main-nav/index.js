@@ -154,6 +154,7 @@ const MainNav = ({...props}) => (
                 </ul>
               </AccordionItemBody>
             </AccordionItem>
+            <hr />
           </Accordion>
         </div>
     )}
