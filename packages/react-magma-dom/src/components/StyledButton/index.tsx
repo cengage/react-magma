@@ -2,7 +2,6 @@ import * as React from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { FocusStyles } from '../UtilityStyles';
-import { magma } from '../../theme/magma';
 
 export enum ButtonVariant {
   solid = 'solid', //default
@@ -41,6 +40,7 @@ export enum ButtonIconPostition {
 }
 
 export interface ButtonProps {
+  ariaExpanded?: boolean;
   as?: any;
   autoFocus?: boolean;
   block?: boolean;
@@ -49,12 +49,12 @@ export interface ButtonProps {
   onClick?: (event: React.SyntheticEvent) => void;
   color?: ButtonColor;
   disabled?: boolean;
+  href?: string;
   inverse?: boolean;
   shape?: ButtonShape;
   size?: ButtonSize;
   style?: React.CSSProperties;
   textTransform?: ButtonTextTransform;
-  theme?: any;
   to?: string;
   variant?: ButtonVariant;
 }
@@ -62,7 +62,7 @@ export interface ButtonProps {
 interface StyledButtonProps extends ButtonProps {
   iconOnly?: boolean;
   ariaLabel?: string;
-  theme?: any;
+  ref?: any;
 }
 
 const StyledButtonComponent = styled.button<StyledButtonProps>`
@@ -332,16 +332,17 @@ export const StyledButton: React.FunctionComponent<StyledButtonProps> = ({
   block,
   className,
   children,
+  color,
   disabled,
-  onClick,
+  href,
   iconOnly,
   inverse,
-  color,
+  onClick,
+  ref,
   shape,
   size,
   style,
   textTransform,
-  theme,
   to,
   variant
 }: StyledButtonProps) => (
@@ -354,13 +355,14 @@ export const StyledButton: React.FunctionComponent<StyledButtonProps> = ({
     block={block}
     color={color}
     disabled={disabled}
+    href={href}
     iconOnly={iconOnly}
     inverse={inverse}
+    ref={ref}
     shape={shape}
     size={size}
     style={style}
     textTransform={textTransform}
-    theme={theme ? theme : magma}
     to={to}
     variant={variant}
   >

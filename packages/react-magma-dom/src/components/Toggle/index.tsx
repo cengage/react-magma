@@ -7,7 +7,6 @@ import { StyledContainer } from '../SelectionControls/StyledContainer';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { magma } from '../../theme/magma';
-import 'focus-visible';
 
 enum ToggleTextPostition {
   left = 'left',
@@ -44,7 +43,7 @@ const HiddenInput = styled.input`
 const Track = styled.span<{ checked?: boolean; disabled?: boolean }>`
   background: ${magma.colors.neutral07};
   border: 2px solid;
-  border-color:  ${magma.colors.neutral05};
+  border-color: ${magma.colors.neutral05};
   border-radius: 12px;
   cursor: pointer;
   height: 24px;
@@ -54,25 +53,25 @@ const Track = styled.span<{ checked?: boolean; disabled?: boolean }>`
   ${props =>
     props.checked &&
     css`
-      background: ${magma.colors.success02};
-      border-color: ${magma.colors.success02};
+      background: ${props.theme.colors.success02};
+      border-color: ${props.theme.colors.success02};
     `}
 
   ${props =>
     props.disabled &&
     css`
-      background: ${magma.colors.neutral06};
-      border-color: ${magma.colors.neutral06};
+      background: ${props.theme.colors.neutral06};
+      border-color: ${props.theme.colors.neutral06};
       cursor: not-allowed;
     `}
 
-  ${HiddenInput}:focus.focus-visible + label & {
+  ${HiddenInput}:focus + label & {
       ${FocusStyles}
       outline-offset: 3px;
   }
 
   &:before { // active state
-    background: ${magma.colors.neutral02};
+    background: ${props => props.theme.colors.neutral02};
     border-radius: 50%;
     content: '';
     display: block;
@@ -90,7 +89,7 @@ const Track = styled.span<{ checked?: boolean; disabled?: boolean }>`
     ${props =>
       props.checked &&
       css`
-        background: ${magma.colors.success02};
+        background: ${props.theme.colors.success02};
         left: 12px;
       `}
   }
@@ -126,13 +125,13 @@ const Thumb = styled.span<{ checked?: boolean; disabled?: boolean }>`
   ${props =>
     props.disabled &&
     css`
-      background: ${magma.colors.neutral05};
+      background: ${props.theme.colors.neutral05};
       box-shadow: 0 0 0;
     `}
 `;
 
 const IconContainer = styled.span`
-  color: ${magma.colors.neutral08};
+  color: ${props => props.theme.colors.neutral08};
   left: 7px;
   position: absolute;
   margin-top: -11px;

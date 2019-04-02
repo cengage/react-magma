@@ -4,16 +4,12 @@ title: "Demo"
 
 # Demo Composite Component
 
-## Basic Usage
-
-```.jsx
-  <Demo />
-```
-
 ## With theme
 
 ```.jsx
-  <Demo theme={amgam} />
+  <ThemeProvider theme={amgam}>
+    <Demo />
+  </ThemeProvider>
 ```
 
 ## Demo Props

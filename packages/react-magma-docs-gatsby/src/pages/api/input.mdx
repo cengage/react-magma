@@ -2,7 +2,9 @@
 title: 'Inputs'
 ---
 
-# Inputs
+import DocsHeading from '../../components/docs-heading'
+
+<DocsHeading to="/design/inputs/" type="design">Inputs</DocsHeading>
 
 Input fields are utilized in a number of ways for both collecting and displaying data from the user.
 
@@ -265,6 +267,33 @@ The optional `multiline` boolean prop will cause the component to render a texta
   }
 ```
 
+## Forward Ref
+
+Using React's `forwardRef` feature you can gain access to the reference of the internal input.
+
+```.jsx
+  class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.inputRef = React.createRef();
+      }
+
+      render() {
+        return <div>
+        <Input
+          ref={this.inputRef}
+          labelText='Input to be focused' />
+
+        <Button
+          onClick={() => {
+            this.inputRef.current.focus();
+          }}>Click to focus input
+        </Button>
+        </div>
+      }
+    }
+```
+
 ## Input Props
 
 | Prop                | Type                                                | Default  | Required |
@@ -291,3 +320,4 @@ The optional `multiline` boolean prop will cause the component to render a texta
 | type                | enum: 'text' &#124; 'password' &#124; 'number'      | 'text'   |
 | value               | string                                              |          |
 | style               | React.CSSProperties                                 |          |
+| ref                 | React.Ref                                           |          |

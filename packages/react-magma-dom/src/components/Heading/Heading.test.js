@@ -2,6 +2,8 @@ import React from 'react';
 import { axe } from 'jest-axe';
 import { Heading } from '.';
 import { render, cleanup } from 'react-testing-library';
+import { magma } from '../../theme/magma';
+import { ThemeProvider } from 'emotion-theming';
 
 const headingText = 'Test Heading Text';
 
@@ -16,7 +18,11 @@ const renderHeading = (myProps = {}) => {
     ...myProps
   };
 
-  return render(<Heading {...props}>{headingText}</Heading>);
+  return render(
+    <ThemeProvider theme={magma}>
+      <Heading {...props}>{headingText}</Heading>
+    </ThemeProvider>
+  );
 };
 
 describe('Heading', () => {
@@ -98,37 +104,61 @@ describe('Heading', () => {
 
   describe('Snapshot', () => {
     it('should render heading 1 correctly', () => {
-      const { container } = render(<Heading level={1}>Heading 1</Heading>);
+      const { container } = render(
+        <ThemeProvider theme={magma}>
+          <Heading level={1}>Heading 1</Heading>
+        </ThemeProvider>
+      );
 
       expect(container).toMatchSnapshot();
     });
 
     it('should render heading 2 correctly', () => {
-      const { container } = render(<Heading level={2}>Heading 2</Heading>);
+      const { container } = render(
+        <ThemeProvider theme={magma}>
+          <Heading level={2}>Heading 2</Heading>
+        </ThemeProvider>
+      );
 
       expect(container).toMatchSnapshot();
     });
 
     it('should render heading 3 correctly', () => {
-      const { container } = render(<Heading level={3}>Heading 3</Heading>);
+      const { container } = render(
+        <ThemeProvider theme={magma}>
+          <Heading level={3}>Heading 3</Heading>
+        </ThemeProvider>
+      );
 
       expect(container).toMatchSnapshot();
     });
 
     it('should render heading 4 correctly', () => {
-      const { container } = render(<Heading level={4}>Heading 4</Heading>);
+      const { container } = render(
+        <ThemeProvider theme={magma}>
+          <Heading level={4}>Heading 4</Heading>
+        </ThemeProvider>
+      );
 
       expect(container).toMatchSnapshot();
     });
 
     it('should render heading 5 correctly', () => {
-      const { container } = render(<Heading level={5}>Heading 5</Heading>);
+      const { container } = render(
+        <ThemeProvider theme={magma}>
+          <Heading level={5}>Heading 5</Heading>
+        </ThemeProvider>
+      );
 
       expect(container).toMatchSnapshot();
     });
 
     it('should render heading 6 correctly', () => {
-      const { container } = render(<Heading level={6}>Heading 6</Heading>);
+      const { container } = render(
+        <ThemeProvider theme={magma}>
+          <Heading level={6}>Heading 6</Heading>
+        </ThemeProvider>
+      );
 
       expect(container).toMatchSnapshot();
     });

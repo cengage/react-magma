@@ -1,18 +1,15 @@
 import * as React from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { magma } from '../../theme/magma';
-import { ThemeProvider } from 'emotion-theming';
 
 export interface HeadingProps {
   children: React.ReactChild | React.ReactChild[];
   level: number;
   id?: string;
   style?: React.CSSProperties;
-  theme?: any;
+  ref?: any;
+  tabIndex?: number;
 }
-
-//const theme = magma;
 
 export const baseHeadingStyles = css`
   font-weight: 500;
@@ -23,7 +20,6 @@ export const baseHeadingStyles = css`
 const StyledH1 = styled.h1`
   ${baseHeadingStyles};
   color: ${props => props.theme.colors.primary};
-  font-family: ${props => props.theme.headingFont};
   font-size: 40px;
 `;
 
@@ -31,6 +27,7 @@ const StyledH2 = styled.h2`
   ${baseHeadingStyles};
   color: ${props => props.theme.colors.primary};
   font-family: ${props => props.theme.headingFont};
+
   font-size: 32px;
 `;
 
@@ -62,7 +59,7 @@ const StyledH6 = styled.h6`
   font-size: 18px;
 `;
 
-function renderHeading({ level, children, id, style, theme }: HeadingProps) {
+function renderHeading(level: number) {
   const headingLevels = {
     1: StyledH1,
     2: StyledH2,
@@ -72,17 +69,17 @@ function renderHeading({ level, children, id, style, theme }: HeadingProps) {
     6: StyledH6
   };
 
-  const HeadingComponent = headingLevels[level];
-
-  return (
-    <ThemeProvider theme={theme ? theme : magma}>
-      <HeadingComponent id={id} style={style}>
-        {children}
-      </HeadingComponent>
-    </ThemeProvider>
-  );
+  return headingLevels[level];
 }
 
-export const Heading: React.FunctionComponent<HeadingProps> = (
-  props: HeadingProps
-) => renderHeading(props);
+export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
+  ({ level, id, tabIndex, style, children }: HeadingProps, ref: any) => {
+    const HeadingComponent = renderHeading(level);
+
+    return (
+      <HeadingComponent ref={ref} id={id} style={style} tabIndex={tabIndex}>
+        {children}
+      </HeadingComponent>
+    );
+  }
+);

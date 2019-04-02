@@ -13,8 +13,6 @@ import {
 import styled from '@emotion/styled';
 import { IconProps } from '../Icon/utils';
 import { Omit } from '../utils';
-import { magma } from '../../theme/magma';
-import { ThemeProvider } from 'emotion-theming';
 
 interface IconOnlyButtonProps extends Omit<ButtonProps, 'children'> {
   icon: React.ReactElement<IconProps>;
@@ -74,9 +72,9 @@ function instanceOfIconOnly(object: any): object is IconOnlyButtonProps {
   return 'icon' in object && !('children' in object);
 }
 
-export const Button: React.FunctionComponent<MergedButtonProps> = (
-  props: MergedButtonProps
-) => (
+export const Button: React.FunctionComponent<
+  MergedButtonProps
+> = React.forwardRef((props: MergedButtonProps, ref: any) => (
   <ButtonCore onClick={props.onClick}>
     {({ onClick }) => {
       let icon;
@@ -84,18 +82,19 @@ export const Button: React.FunctionComponent<MergedButtonProps> = (
       let ariaLabel;
       let children;
       const {
+        ariaExpanded,
         as,
         autoFocus,
         disabled,
         inverse,
         block,
         color,
+        href,
         shape,
         size,
         style,
         variant,
         textTransform,
-        theme,
         to
       } = props;
 
@@ -112,65 +111,9 @@ export const Button: React.FunctionComponent<MergedButtonProps> = (
 
       if (icon && children) {
         return (
-          <ThemeProvider theme={theme ? theme : magma}>
-            <StyledButton
-              as={as}
-              autoFocus={autoFocus}
-              onClick={onClick}
-              block={block}
-              color={color ? color : ButtonColor.primary}
-              disabled={disabled}
-              inverse={inverse}
-              shape={shape ? shape : ButtonShape.fill}
-              size={size ? size : ButtonSize.medium}
-              style={style}
-              textTransform={
-                textTransform ? textTransform : ButtonTextTransform.uppercase
-              }
-              to={to}
-              variant={variant ? variant : ButtonVariant.solid}
-            >
-              {iconPosition === ButtonIconPostition.right && (
-                <SpanTextLeft size={size}>{children} </SpanTextLeft>
-              )}
-              {React.Children.only(
-                React.cloneElement(icon, { size: getIconWithTextSize(size) })
-              )}
-              {iconPosition !== ButtonIconPostition.right && (
-                <SpanTextRight size={size}>{children}</SpanTextRight>
-              )}
-            </StyledButton>
-          </ThemeProvider>
-        );
-      } else if (icon && !children) {
-        return (
-          <ThemeProvider theme={theme ? theme : magma}>
-            <StyledButton
-              ariaLabel={ariaLabel}
-              as={as}
-              autoFocus={autoFocus}
-              onClick={onClick}
-              color={color ? color : ButtonColor.primary}
-              disabled={disabled}
-              iconOnly
-              inverse={inverse}
-              shape={shape ? shape : ButtonShape.round}
-              size={size ? size : ButtonSize.medium}
-              style={style}
-              to={to}
-              variant={variant ? variant : ButtonVariant.solid}
-            >
-              {React.Children.only(
-                React.cloneElement(icon, { size: getIconSize(size) })
-              )}
-            </StyledButton>
-          </ThemeProvider>
-        );
-      }
-
-      return (
-        <ThemeProvider theme={theme ? theme : magma}>
           <StyledButton
+            ref={ref}
+            ariaExpanded={ariaExpanded}
             as={as}
             autoFocus={autoFocus}
             onClick={onClick}
@@ -178,6 +121,7 @@ export const Button: React.FunctionComponent<MergedButtonProps> = (
             color={color ? color : ButtonColor.primary}
             disabled={disabled}
             inverse={inverse}
+            href={href}
             shape={shape ? shape : ButtonShape.fill}
             size={size ? size : ButtonSize.medium}
             style={style}
@@ -187,10 +131,68 @@ export const Button: React.FunctionComponent<MergedButtonProps> = (
             to={to}
             variant={variant ? variant : ButtonVariant.solid}
           >
-            {children}
+            {iconPosition === ButtonIconPostition.right && (
+              <SpanTextLeft size={size}>{children} </SpanTextLeft>
+            )}
+            {React.Children.only(
+              React.cloneElement(icon, { size: getIconWithTextSize(size) })
+            )}
+            {iconPosition !== ButtonIconPostition.right && (
+              <SpanTextRight size={size}>{children}</SpanTextRight>
+            )}
           </StyledButton>
-        </ThemeProvider>
+        );
+      } else if (icon && !children) {
+        return (
+          <StyledButton
+            ref={ref}
+            ariaExpanded={ariaExpanded}
+            ariaLabel={ariaLabel}
+            as={as}
+            autoFocus={autoFocus}
+            onClick={onClick}
+            color={color ? color : ButtonColor.primary}
+            disabled={disabled}
+            iconOnly
+            inverse={inverse}
+            href={href}
+            shape={shape ? shape : ButtonShape.round}
+            size={size ? size : ButtonSize.medium}
+            style={style}
+            to={to}
+            variant={variant ? variant : ButtonVariant.solid}
+          >
+            {React.Children.only(
+              React.cloneElement(icon, { size: getIconSize(size) })
+            )}
+          </StyledButton>
+        );
+      }
+
+      return (
+        <StyledButton
+          ref={ref}
+          as={as}
+          ariaExpanded={ariaExpanded}
+          autoFocus={autoFocus}
+          onClick={onClick}
+          block={block}
+          color={color ? color : ButtonColor.primary}
+          disabled={disabled}
+          href={href}
+          inverse={inverse}
+          shape={shape ? shape : ButtonShape.fill}
+          size={size ? size : ButtonSize.medium}
+          style={style}
+          textTransform={
+            textTransform ? textTransform : ButtonTextTransform.uppercase
+          }
+          to={to}
+          variant={variant ? variant : ButtonVariant.solid}
+        >
+          {children}
+        </StyledButton>
       );
     }}
   </ButtonCore>
-);
+));

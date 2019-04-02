@@ -11,6 +11,8 @@ import {
   ButtonIconPostition
 } from '../StyledButton';
 import { CheckIcon } from '../Icon/types/CheckIcon';
+import { magma } from '../../theme/magma';
+import { ThemeProvider } from 'emotion-theming';
 
 const TEXT = 'Test Text';
 
@@ -37,7 +39,11 @@ const renderBasicButton = (myProps = {}) => {
     ...myProps
   };
 
-  return render(<Button {...props}>{TEXT}</Button>);
+  return render(
+    <ThemeProvider theme={magma}>
+      <Button {...props}>{TEXT}</Button>
+    </ThemeProvider>
+  );
 };
 
 const renderIconOnlyButton = (myProps = {}) => {
@@ -46,7 +52,11 @@ const renderIconOnlyButton = (myProps = {}) => {
     ...myProps
   };
 
-  return render(<Button {...props} />);
+  return render(
+    <ThemeProvider theme={magma}>
+      <Button {...props} />
+    </ThemeProvider>
+  );
 };
 
 const renderIconWithTextButton = (myProps = {}) => {
@@ -55,7 +65,11 @@ const renderIconWithTextButton = (myProps = {}) => {
     ...myProps
   };
 
-  return render(<Button {...props}>{TEXT}</Button>);
+  return render(
+    <ThemeProvider theme={magma}>
+      <Button {...props}>{TEXT}</Button>
+    </ThemeProvider>
+  );
 };
 
 describe('Button', () => {
@@ -73,9 +87,11 @@ describe('Button', () => {
     describe('Snapshot', () => {
       it('should render with updated color', () => {
         const { container } = render(
-          <Button {...BASE_BUTTON_PROPS} color={ButtonColor.secondary}>
-            {TEXT}
-          </Button>
+          <ThemeProvider theme={magma}>
+            <Button {...BASE_BUTTON_PROPS} color={ButtonColor.secondary}>
+              {TEXT}
+            </Button>
+          </ThemeProvider>
         );
 
         expect(container).toMatchSnapshot();
@@ -83,9 +99,11 @@ describe('Button', () => {
 
       it('should render with updated shape', () => {
         const { container } = render(
-          <Button {...BASE_BUTTON_PROPS} shape={ButtonShape.round}>
-            {TEXT}
-          </Button>
+          <ThemeProvider theme={magma}>
+            <Button {...BASE_BUTTON_PROPS} shape={ButtonShape.round}>
+              {TEXT}
+            </Button>
+          </ThemeProvider>
         );
 
         expect(container).toMatchSnapshot();
@@ -93,9 +111,11 @@ describe('Button', () => {
 
       it('should render with small size', () => {
         const { container } = render(
-          <Button {...BASE_BUTTON_PROPS} size={ButtonSize.small}>
-            {TEXT}
-          </Button>
+          <ThemeProvider theme={magma}>
+            <Button {...BASE_BUTTON_PROPS} size={ButtonSize.small}>
+              {TEXT}
+            </Button>
+          </ThemeProvider>
         );
 
         expect(container).toMatchSnapshot();
@@ -103,9 +123,11 @@ describe('Button', () => {
 
       it('should render with large size', () => {
         const { container } = render(
-          <Button {...BASE_BUTTON_PROPS} size={ButtonSize.large}>
-            {TEXT}
-          </Button>
+          <ThemeProvider theme={magma}>
+            <Button {...BASE_BUTTON_PROPS} size={ButtonSize.large}>
+              {TEXT}
+            </Button>
+          </ThemeProvider>
         );
 
         expect(container).toMatchSnapshot();
@@ -113,12 +135,14 @@ describe('Button', () => {
 
       it('should render with updated textTransform', () => {
         const { container } = render(
-          <Button
-            {...BASE_BUTTON_PROPS}
-            textTransform={ButtonTextTransform.none}
-          >
-            {TEXT}
-          </Button>
+          <ThemeProvider theme={magma}>
+            <Button
+              {...BASE_BUTTON_PROPS}
+              textTransform={ButtonTextTransform.none}
+            >
+              {TEXT}
+            </Button>
+          </ThemeProvider>
         );
 
         expect(container).toMatchSnapshot();
@@ -126,9 +150,11 @@ describe('Button', () => {
 
       it('should render with updated variant', () => {
         const { container } = render(
-          <Button {...BASE_BUTTON_PROPS} variant={ButtonVariant.outline}>
-            {TEXT}
-          </Button>
+          <ThemeProvider theme={magma}>
+            <Button {...BASE_BUTTON_PROPS} variant={ButtonVariant.outline}>
+              {TEXT}
+            </Button>
+          </ThemeProvider>
         );
 
         expect(container).toMatchSnapshot();

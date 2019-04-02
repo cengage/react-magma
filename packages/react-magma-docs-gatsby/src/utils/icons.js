@@ -50,6 +50,7 @@ export default [
   'ClockIcon',
   'Cloud2Icon',
   'CnyIcon',
+  'CodeIcon',
   'Cog2Icon',
   'CommentsIcon',
   'CompassIcon',

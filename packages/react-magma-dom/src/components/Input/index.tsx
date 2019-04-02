@@ -45,6 +45,7 @@ export interface InputProps {
   placeholder?: string;
   required?: boolean;
   style?: React.CSSProperties;
+  theme?: any;
   type?: InputType;
   value?: string | number;
 }
@@ -70,13 +71,15 @@ const InputWrapper = styled.div`
 `;
 
 const StyledInput = styled.input<InputProps>`
-  background: ${magma.colors.neutral08};
+  background: ${props => props.theme.colors.neutral08};
   border: 1px solid;
   border-color: ${props =>
-    props.errorMessage ? magma.colors.danger : magma.colors.neutral05};
+    props.errorMessage
+      ? props.theme.colors.danger
+      : props.theme.colors.neutral05};
   border-radius: 5px;
   box-shadow: ${props => (props.errorMessage ? '0 0 0 1px #E70000' : '0 0 0')};
-  color: ${magma.colors.neutral02};
+  color: ${props => props.theme.colors.neutral02};
   display: block;
   font-size: ${props => {
     switch (props.inputSize) {
@@ -110,27 +113,27 @@ const StyledInput = styled.input<InputProps>`
   width: 100%;
 
   &::placeholder {
-    color: ${magma.colors.neutral04};
+    color: ${props => props.theme.colors.neutral04};
     opacity: 1;
   }
 
   &:focus {
-    border-color: ${magma.colors.pop03};
-    box-shadow: 0 0 0 1px ${magma.colors.pop03};
+    border-color: ${props => props.theme.colors.pop03};
+    box-shadow: 0 0 0 1px ${props => props.theme.colors.pop03};
     outline: 0;
   }
 
   &[disabled] {
-    background: ${magma.colors.neutral07};
+    background: ${props => props.theme.colors.neutral07};
     cursor: not-allowed;
   }
 `;
 
 const ErrorMessage = styled.div<TextProps>`
-  background: ${props => (props.inverse ? magma.colors.danger : 'none')};
+  background: ${props => (props.inverse ? props.theme.colors.danger : 'none')};
   border-radius: 5px;
   color: ${props =>
-    props.inverse ? magma.colors.neutral08 : magma.colors.danger};
+    props.inverse ? props.theme.colors.neutral08 : props.theme.colors.danger};
   font-size: 13px;
   margin-top: 5px;
   padding: ${props => (props.inverse ? '5px 10px' : '0')};
@@ -138,7 +141,9 @@ const ErrorMessage = styled.div<TextProps>`
 
 const HelperMessage = styled.div<TextProps>`
   color: ${props =>
-    props.inverse ? magma.colors.neutral08 : magma.colors.neutral04};
+    props.inverse
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral04};
   font-size: 13px;
   margin-top: 5px;
 `;
@@ -146,7 +151,7 @@ const HelperMessage = styled.div<TextProps>`
 const IconWrapper = styled.span<IconWrapperProps>`
   left: ${props => (props.iconPosition === 'left' ? '10px' : 'auto')};
   right: ${props => (props.iconPosition === 'right' ? '10px' : 'auto')};
-  color: ${magma.colors.neutral02};
+  color: ${props => props.theme.colors.neutral02};
   position: absolute;
   margin-top: -9px;
   top: 50%;
@@ -154,9 +159,9 @@ const IconWrapper = styled.span<IconWrapperProps>`
 
 const ErrorIconWrapper = styled.span<ErrorIconWrapperProps>`
   align-items: center;
-  background: ${magma.colors.danger};
+  background: ${props => props.theme.colors.danger};
   border-radius: 100%;
-  color: ${magma.colors.neutral08};
+  color: ${props => props.theme.colors.neutral08};
   display: flex;
   height: ${props => {
     switch (props.inputSize) {
@@ -216,86 +221,99 @@ function getErrorIconSize(size) {
   }
 }
 
-export const Input: React.FunctionComponent<InputProps> = (
-  props: InputProps
-) => (
-  <InputCore
-    value={props.value}
-    onBlur={props.onBlur}
-    onChange={props.onChange}
-    onFocus={props.onFocus}
-  >
-    {({ onBlur, onChange, onFocus, value }) => {
-      const {
-        autoFocus,
-        disabled,
-        errorMessage,
-        helperMessage,
-        icon,
-        iconPosition,
-        id,
-        inputSize,
-        inputStyle,
-        inverse,
-        labelStyle,
-        labelText,
-        labelVisuallyHidden,
-        multiline,
-        placeholder,
-        style,
-        type,
-        required
-      } = props;
+export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
+  (props: InputProps, ref: any) => (
+    <InputCore
+      value={props.value}
+      onBlur={props.onBlur}
+      onChange={props.onChange}
+      onFocus={props.onFocus}
+    >
+      {({ onBlur, onChange, onFocus, value }) => {
+        const {
+          autoFocus,
+          disabled,
+          errorMessage,
+          helperMessage,
+          icon,
+          iconPosition,
+          id,
+          inputSize,
+          inputStyle,
+          inverse,
+          labelStyle,
+          labelText,
+          labelVisuallyHidden,
+          multiline,
+          placeholder,
+          style,
+          theme,
+          type,
+          required
+        } = props;
 
-      return (
-        <Container style={style}>
-          {!labelVisuallyHidden && (
-            <Label inverse={inverse} htmlFor={id} style={labelStyle}>
-              {labelText}
-            </Label>
-          )}
-          <InputWrapper>
-            <StyledInput
-              aria-label={labelVisuallyHidden ? labelText : null}
-              as={multiline ? 'textarea' : null}
-              autoFocus={autoFocus}
-              id={id}
-              disabled={disabled}
-              errorMessage={errorMessage}
-              iconPosition={iconPosition}
-              inputSize={inputSize ? inputSize : InputSize.medium}
-              labelText={labelText}
-              multiline={multiline}
-              placeholder={placeholder}
-              required={required}
-              style={inputStyle}
-              type={type ? type : InputType.text}
-              value={value}
-              onBlur={onBlur}
-              onChange={onChange}
-              onFocus={onFocus}
-            />
+        return (
+          <Container style={style}>
+            {!labelVisuallyHidden && (
+              <Label inverse={inverse} htmlFor={id} style={labelStyle}>
+                {labelText}
+              </Label>
+            )}
+            <InputWrapper>
+              <StyledInput
+                ref={ref}
+                aria-label={labelVisuallyHidden ? labelText : null}
+                as={multiline ? 'textarea' : null}
+                autoFocus={autoFocus}
+                id={id}
+                disabled={disabled}
+                errorMessage={errorMessage}
+                iconPosition={iconPosition}
+                inputSize={inputSize ? inputSize : InputSize.medium}
+                labelText={labelText}
+                multiline={multiline}
+                placeholder={placeholder}
+                required={required}
+                style={inputStyle}
+                theme={theme ? theme : magma}
+                type={type ? type : InputType.text}
+                value={value}
+                onBlur={onBlur}
+                onChange={onChange}
+                onFocus={onFocus}
+              />
+              {errorMessage && (
+                <ErrorIconWrapper
+                  inputSize={inputSize}
+                  theme={theme ? theme : magma}
+                >
+                  <AlertIcon size={getErrorIconSize(inputSize)} />
+                </ErrorIconWrapper>
+              )}
+              {icon && (
+                <IconWrapper
+                  iconPosition={iconPosition}
+                  theme={theme ? theme : magma}
+                >
+                  {React.Children.only(
+                    React.cloneElement(icon, { size: getIconSize(inputSize) })
+                  )}
+                </IconWrapper>
+              )}
+            </InputWrapper>
             {errorMessage && (
-              <ErrorIconWrapper inputSize={inputSize}>
-                <AlertIcon size={getErrorIconSize(inputSize)} />
-              </ErrorIconWrapper>
+              <ErrorMessage inverse={inverse} theme={theme ? theme : magma}>
+                {errorMessage}
+              </ErrorMessage>
             )}
-            {icon && (
-              <IconWrapper iconPosition={iconPosition}>
-                {React.Children.only(
-                  React.cloneElement(icon, { size: getIconSize(inputSize) })
-                )}
-              </IconWrapper>
+            {helperMessage && !errorMessage && (
+              <HelperMessage inverse={inverse} theme={theme ? theme : magma}>
+                {helperMessage}
+              </HelperMessage>
             )}
-          </InputWrapper>
-          {errorMessage && (
-            <ErrorMessage inverse={inverse}>{errorMessage}</ErrorMessage>
-          )}
-          {helperMessage && !errorMessage && (
-            <HelperMessage inverse={inverse}>{helperMessage}</HelperMessage>
-          )}
-        </Container>
-      );
-    }}
-  </InputCore>
+          </Container>
+        );
+      }}
+    </InputCore>
+  )
 );

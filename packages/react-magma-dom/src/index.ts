@@ -72,6 +72,7 @@ export { Clock2Icon } from './components/Icon/types/Clock2Icon';
 export { ClockIcon } from './components/Icon/types/ClockIcon';
 export { Cloud2Icon } from './components/Icon/types/Cloud2Icon';
 export { CnyIcon } from './components/Icon/types/CnyIcon';
+export { CodeIcon } from './components/Icon/types/CodeIcon';
 export { Cog2Icon } from './components/Icon/types/Cog2Icon';
 export { CommentsIcon } from './components/Icon/types/CommentsIcon';
 export { CompassIcon } from './components/Icon/types/CompassIcon';

@@ -1,24 +1,28 @@
 ---
 title: 'Buttons'
+order: 1
 ---
 
-# Buttons
+import { Link } from 'gatsby'
+import DocsHeading from '../../components/docs-heading'
+
+<DocsHeading to="/design/button/" type="design">Buttons</DocsHeading>
 
 ## Basic usage
 
 Buttons are clickable items used to perform an action.
-See the Button Design Guidelines for more information on when to use the different kinds of buttons.
+See the <Link to="/design/button/">Button Design Guidelines</Link> for more information on when to use the different kinds of buttons.
 
 ## Sizes
 
 Sizes for buttons include `small`, `medium`, and `large`, with `medium` being the default value.
 
 ```.jsx
-    <ThemeProvider theme={amgam}>
-        <Button size="small" theme={amgam}>Small</Button>
+    <div>
+        <Button size="small">Small</Button>
         <Button>Default</Button>
         <Button size="large" style={{ color: '#cccccc' }}>Large</Button>
-    </ThemeProvider>
+    </div>
 ```
 
 ## Colors
@@ -26,12 +30,12 @@ Sizes for buttons include `small`, `medium`, and `large`, with `medium` being th
 Colors for buttons include `primary`, `secondary`, `success`, and `danger`, with `primary` being the default value.
 
 ```.jsx
-    <ThemeProvider theme={amgam}>
-        <Button color="primary" theme={amgam}>Primary (default)</Button>
+    <div
+        <Button color="primary">Primary (default)</Button>
         <Button color="secondary">Secondary</Button>
         <Button color="success" >Success</Button>
-        <Button color="danger" theme={amgam}>Danger</Button>
-    </ThemeProvider>
+        <Button color="danger">Danger</Button>
+    </div>
 ```
 
 ## Variants
@@ -69,9 +73,9 @@ Using the `LinkButton` will render a button that is styled exactly like a link. 
 the `LinkButton` will render as inline text, the way an `a` element would.
 
 ```.jsx
-    <p>
+    <div>
         This is a <LinkButton>link button</LinkButton>.
-    </p>
+    </div>
 ```
 
 ## Shapes
@@ -79,11 +83,11 @@ the `LinkButton` will render as inline text, the way an `a` element would.
 Shapes for buttons include `fill`, `leftCap`, and `rightCap`, with `fill` being the default value.
 
 ```.jsx
-    <p>
+    <div>
         <Button color="primary">Fill (default)</Button>
         <Button color="primary" shape="leftCap">Left Cap</Button>
         <Button color="primary" shape="rightCap">Right Cap</Button>
-    </p>
+    </div>
 ```
 
 ## Inverse
@@ -126,10 +130,10 @@ Shapes for buttons include `uppercase`, `none`, with `uppercase` (all caps) bein
 This property sets the CSS `text-tranform` property.
 
 ```.jsx
-    <p>
+    <div>
         <Button>All caps</Button>
         <Button textTransform="none">No text tranform</Button>
-    </p>
+    </div>
 ```
 
 ## Block Buttons
@@ -137,10 +141,10 @@ This property sets the CSS `text-tranform` property.
 Passing the `block` property will set the button to display full-width.
 
 ```.jsx
-    <p>
+    <div>
         <Button block>Block button</Button>
         <Button block color="secondary">Block button</Button>
-    </p>
+    </div>
 ```
 
 ## Disabled
@@ -154,7 +158,7 @@ Passing the `block` property will set the button to display full-width.
     </div>
 ```
 
-## Using different elements
+## Other Elements
 
 Passing in the `as` prop will allow a styed button to render as a different type of element.
 The `href` and `to` props are also supported, so that a button can be used as an `a` tag or a `Link` component.
@@ -207,6 +211,31 @@ Events do not fire on disabled buttons.
     }
 ```
 
+## Forward Ref
+
+Using React's `forwardRef` feature you can gain access to the reference of the internal button.
+
+```.jsx
+  class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.buttonRef = React.createRef();
+      }
+
+      render() {
+        return <div>
+        <Button
+          ref={this.buttonRef}>Button to be focused</Button>
+
+        <Button
+          onClick={() => {
+            this.buttonRef.current.focus();
+          }}>Click to focus other button</Button>
+        </div>
+      }
+    }
+```
+
 ## Button Props
 
 | Prop          | Type                                                                | Default     | Required |
@@ -227,3 +256,4 @@ Events do not fire on disabled buttons.
 | textTransform | enum: 'uppercase' &#124; 'none'                                     | 'uppercase' |
 | to            | string                                                              |             |
 | variant       | enum: 'solid' &#124; 'outline' &#124; 'link'                        | 'solid'     |
+| ref           | React.Ref                                                           |             |

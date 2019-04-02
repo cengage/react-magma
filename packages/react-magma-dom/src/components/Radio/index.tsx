@@ -10,7 +10,6 @@ import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';
 import { magma } from '../../theme/magma';
-import 'focus-visible';
 
 export interface RadioProps {
   color?: string;
@@ -81,7 +80,7 @@ const StyledFakeInput = styled.span<{
     }};
   }
 
-  ${HiddenInput}:focus.focus-visible + label & {
+  ${HiddenInput}:focus + label & {
     // focus state
     &:before {
       ${DisplayInputFocusStyles};
@@ -113,52 +112,58 @@ const SelectedIcon = styled.span<{ color: string }>`
   }
 `;
 
-export const Radio: React.FunctionComponent<RadioProps> = ({
-  color,
-  disabled,
-  id,
-  inputStyle,
-  inverse,
-  labelStyle,
-  labelText,
-  required,
-  style,
-  textVisuallyHidden,
-  value
-}: RadioProps): JSX.Element => (
-  <RadioContext.Consumer>
-    {context =>
-      context && (
-        <StyledContainer style={style}>
-          <HiddenInput
-            checked={context.selectedValue === value}
-            id={id}
-            disabled={disabled}
-            name={context.name}
-            required={required}
-            type="radio"
-            value={value}
-            onBlur={context.onBlur}
-            onChange={context.onChange}
-            onFocus={context.onFocus}
-          />
-          <StyledLabel htmlFor={id} inverse={inverse} style={labelStyle}>
-            <StyledFakeInput
-              color={color ? color : magma.colors.primary}
+export const Radio: React.FunctionComponent<RadioProps> = React.forwardRef(
+  (
+    {
+      color,
+      disabled,
+      id,
+      inputStyle,
+      inverse,
+      labelStyle,
+      labelText,
+      required,
+      style,
+      textVisuallyHidden,
+      value
+    }: RadioProps,
+    ref: any
+  ): JSX.Element => (
+    <RadioContext.Consumer>
+      {context =>
+        context && (
+          <StyledContainer style={style}>
+            <HiddenInput
+              ref={ref}
+              checked={context.selectedValue === value}
+              id={id}
               disabled={disabled}
-              inverse={inverse}
-              style={inputStyle}
-            >
-              <SelectedIcon color={color ? color : magma.colors.primary} />
-            </StyledFakeInput>
-            {textVisuallyHidden ? (
-              <HiddenLabelText>{labelText}</HiddenLabelText>
-            ) : (
-              labelText
-            )}
-          </StyledLabel>
-        </StyledContainer>
-      )
-    }
-  </RadioContext.Consumer>
+              name={context.name}
+              required={required}
+              type="radio"
+              value={value}
+              onBlur={context.onBlur}
+              onChange={context.onChange}
+              onFocus={context.onFocus}
+            />
+            <StyledLabel htmlFor={id} inverse={inverse} style={labelStyle}>
+              <StyledFakeInput
+                color={color ? color : magma.colors.primary}
+                disabled={disabled}
+                inverse={inverse}
+                style={inputStyle}
+              >
+                <SelectedIcon color={color ? color : magma.colors.primary} />
+              </StyledFakeInput>
+              {textVisuallyHidden ? (
+                <HiddenLabelText>{labelText}</HiddenLabelText>
+              ) : (
+                labelText
+              )}
+            </StyledLabel>
+          </StyledContainer>
+        )
+      }
+    </RadioContext.Consumer>
+  )
 );

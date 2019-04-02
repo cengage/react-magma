@@ -1,6 +1,8 @@
 import React from 'react';
 import { Toggle } from '.';
 import { render, cleanup } from 'react-testing-library';
+import { magma } from '../../theme/magma';
+import { ThemeProvider } from 'emotion-theming';
 
 const TOGGLE_PROPS = {
   autoFocus: false,
@@ -15,7 +17,11 @@ const renderToggle = (myProps = {}) => {
     ...myProps
   };
 
-  return render(<Toggle {...props} />);
+  return render(
+    <ThemeProvider theme={magma}>
+      <Toggle {...props} />
+    </ThemeProvider>
+  );
 };
 
 describe('Toggle', () => {

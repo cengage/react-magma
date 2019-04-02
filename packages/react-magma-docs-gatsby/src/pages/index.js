@@ -4,9 +4,10 @@ import FullLogo from '../components/FullLogo'
 
 const IndexPage = () => (
   <Layout>
-    <div style={{"width": "600px"}}>
-      <FullLogo />
-    </div>
+      <h1>Magma System: Introduction</h1>
+      <div style={{"maxWidth": "600px"}}>
+        <FullLogo />
+      </div>
   </Layout>
 )
 

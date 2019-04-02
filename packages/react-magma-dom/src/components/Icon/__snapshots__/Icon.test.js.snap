@@ -1325,6 +1325,30 @@ exports[`Icon Snapshot Tests should render CnyIcon icon 1`] = `
 </div>
 `;
 
+exports[`Icon Snapshot Tests should render CodeIcon icon 1`] = `
+<div>
+  <svg
+    aria-labelledby="CodeIconAvailable"
+    class="icon"
+    fill="currentColor"
+    height="24"
+    viewBox="0 0 17 11"
+    width="24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <title
+      id="CodeIconAvailable"
+    >
+      CodeIcon Title
+    </title>
+    <path
+      d="M7.44166667,13.1416667 L3.8,9.5 L7.44166667,5.85833333 L6.33333333,4.75 L1.58333333,9.5 L6.33333333,14.25 L7.44166667,13.1416667 Z M11.5583333,13.1416667 L15.2,9.5 L11.5583333,5.85833333 L12.6666667,4.75 L17.4166667,9.5 L12.6666667,14.25 L11.5583333,13.1416667 L11.5583333,13.1416667 Z"
+      transform="translate(0 -4)"
+    />
+  </svg>
+</div>
+`;
+
 exports[`Icon Snapshot Tests should render Cog2Icon icon 1`] = `
 <div>
   <svg
@@ -3641,7 +3665,7 @@ exports[`Icon Snapshot Tests should render MenuIcon icon 1`] = `
     class="icon"
     fill="currentColor"
     height="24"
-    viewBox="0 0 24.5 19.25"
+    viewBox="0 0 20 14"
     width="24"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -3651,8 +3675,8 @@ exports[`Icon Snapshot Tests should render MenuIcon icon 1`] = `
       MenuIcon Title
     </title>
     <path
-      d="M1.75,4.38h24.5V9.62H1.75Zm0,7h24.5v5.24H1.75Zm0,7h24.5v5.24H1.75Z"
-      transform="translate(-1.75 -4.38)"
+      d="M0.5,16.165 L19.4974999,16.165 L19.4974999,14.0541666 L0.5,14.0541666 L0.5,16.165 Z M0.5,10.8879166 L19.4974999,10.8879166 L19.4974999,8.77708332 L0.5,8.77708332 L0.5,10.8879166 Z M0.5,3.5 L0.5,5.61083333 L19.4974999,5.61083333 L19.4974999,3.5 L0.5,3.5 Z"
+      transform="translate(0 -3)"
     />
   </svg>
 </div>

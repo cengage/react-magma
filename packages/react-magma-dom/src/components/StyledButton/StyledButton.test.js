@@ -10,6 +10,7 @@ import {
 } from '.';
 import { render, fireEvent, cleanup } from 'react-testing-library';
 import { magma } from '../../theme/magma';
+import { ThemeProvider } from 'emotion-theming';
 
 const TEXT = 'Test Text';
 
@@ -30,9 +31,11 @@ const renderButton = (myProps = {}) => {
   };
 
   return render(
-    <StyledButton {...props} theme={magma}>
-      {TEXT}
-    </StyledButton>
+    <ThemeProvider theme={magma}>
+      <StyledButton {...props} theme={magma}>
+        {TEXT}
+      </StyledButton>
+    </ThemeProvider>
   );
 };
 
