@@ -45,7 +45,6 @@ export interface InputProps {
   placeholder?: string;
   required?: boolean;
   style?: React.CSSProperties;
-  theme?: any;
   type?: InputType;
   value?: string | number;
 }
@@ -247,7 +246,6 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
           multiline,
           placeholder,
           style,
-          theme,
           type,
           required
         } = props;
@@ -275,7 +273,6 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                 placeholder={placeholder}
                 required={required}
                 style={inputStyle}
-                theme={theme ? theme : magma}
                 type={type ? type : InputType.text}
                 value={value}
                 onBlur={onBlur}
@@ -283,18 +280,12 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                 onFocus={onFocus}
               />
               {errorMessage && (
-                <ErrorIconWrapper
-                  inputSize={inputSize}
-                  theme={theme ? theme : magma}
-                >
+                <ErrorIconWrapper inputSize={inputSize}>
                   <AlertIcon size={getErrorIconSize(inputSize)} />
                 </ErrorIconWrapper>
               )}
               {icon && (
-                <IconWrapper
-                  iconPosition={iconPosition}
-                  theme={theme ? theme : magma}
-                >
+                <IconWrapper iconPosition={iconPosition}>
                   {React.Children.only(
                     React.cloneElement(icon, { size: getIconSize(inputSize) })
                   )}
@@ -302,14 +293,10 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
               )}
             </InputWrapper>
             {errorMessage && (
-              <ErrorMessage inverse={inverse} theme={theme ? theme : magma}>
-                {errorMessage}
-              </ErrorMessage>
+              <ErrorMessage inverse={inverse}>{errorMessage}</ErrorMessage>
             )}
             {helperMessage && !errorMessage && (
-              <HelperMessage inverse={inverse} theme={theme ? theme : magma}>
-                {helperMessage}
-              </HelperMessage>
+              <HelperMessage inverse={inverse}>{helperMessage}</HelperMessage>
             )}
           </Container>
         );

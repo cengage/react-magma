@@ -3,6 +3,7 @@ import { RadioGroup } from '.';
 import { Radio } from '../Radio';
 import { render, fireEvent, wait } from 'react-testing-library';
 import { magma } from '../../theme/magma';
+import { ThemeProvider } from 'emotion-theming';
 
 const RADIO_GROUP_PROPS = {
   value: 'default',
@@ -19,15 +20,17 @@ const renderRadioGroup = (myProps = {}) => {
   };
 
   return render(
-    <RadioGroup {...props}>
-      <Radio id="colorRadio" labelText="Default Color" value="default" />
-      <Radio
-        color={magma.colors.success01}
-        id="successColorRadio"
-        labelText="Success Color"
-        value="success"
-      />
-    </RadioGroup>
+    <ThemeProvider theme={magma}>
+      <RadioGroup {...props}>
+        <Radio id="colorRadio" labelText="Default Color" value="default" />
+        <Radio
+          color={magma.colors.success01}
+          id="successColorRadio"
+          labelText="Success Color"
+          value="success"
+        />
+      </RadioGroup>
+    </ThemeProvider>
   );
 };
 
@@ -55,10 +58,12 @@ describe('Radio Group', () => {
 
   it('should not render anything when invalid children are present', () => {
     const { container } = render(
-      <RadioGroup>
-        <Radio id="colorRadio" labelText="Default Color" value="default" />
-        {null}
-      </RadioGroup>
+      <ThemeProvider theme={magma}>
+        <RadioGroup>
+          <Radio id="colorRadio" labelText="Default Color" value="default" />
+          {null}
+        </RadioGroup>
+      </ThemeProvider>
     );
 
     expect(container.firstChild.children.length).toBe(2);

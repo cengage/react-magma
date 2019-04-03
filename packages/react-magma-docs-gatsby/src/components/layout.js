@@ -11,7 +11,6 @@ import { ThemeProvider } from 'emotion-theming'
 import {
   Button,
   Checkbox,
-  Demo,
   Heading,
   ICONS,
   Input,
@@ -280,7 +279,6 @@ const PreComponent = ({ className, ...props }) => {
         iconsArray,
         Button,
         Checkbox,
-        Demo,
         Heading,
         ICONS,
         Input,

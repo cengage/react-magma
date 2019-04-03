@@ -4,6 +4,7 @@ import { Input } from '.';
 import { render, fireEvent, cleanup } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 import { CheckIcon } from '../Icon/types/CheckIcon';
+import { ThemeProvider } from 'emotion-theming';
 
 const INPUT_PROPS = {
   autoFocus: false,
@@ -19,7 +20,11 @@ const renderInput = (myProps = {}) => {
     ...myProps
   };
 
-  return render(<Input {...props} />);
+  return render(
+    <ThemeProvider theme={magma}>
+      <Input {...props} />
+    </ThemeProvider>
+  );
 };
 
 describe('Input', () => {

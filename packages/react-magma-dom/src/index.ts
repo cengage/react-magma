@@ -8,7 +8,6 @@ export {
   ButtonTextTransform,
   ButtonIconPostition
 } from './components/StyledButton';
-export { Demo } from './components/Demo';
 export { Heading } from './components/Heading';
 export { Input, InputSize, InputType, IconPosition } from './components/Input';
 export { Label } from './components/Label';
