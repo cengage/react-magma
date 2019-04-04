@@ -19,6 +19,7 @@
     "gatsby-source-filesystem": "2.0.4",
     "gatsby-transformer-sharp": "2.1.4",
     "react": "^16.6.0",
+    "react-accessible-accordion": "^2.4.5",
     "react-dev-utils": "^6.1.1",
     "react-dom": "^16.6.0",
     "react-focus-lock": "^1.18.3",
