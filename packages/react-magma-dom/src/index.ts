@@ -17,6 +17,7 @@ export { Radio } from './components/Radio';
 export { Select } from './components/Select';
 export { Toggle } from './components/Toggle';
 export { amgam } from './theme/amgam';
+export { amgamDark } from './theme/amgamDark';
 export { magma } from './theme/magma';
 export { Theme } from './theme/globalStyle';
 export { ICONS } from './components/Icon';

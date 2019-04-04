@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import { IconProps } from '../Icon/utils';
 import { AlertIcon } from '../Icon/types/AlertIcon';
 import { Label } from '../Label';
-import { magma } from '../../theme/magma';
 
 export enum IconPosition {
   left = 'left',
@@ -77,7 +76,8 @@ const StyledInput = styled.input<InputProps>`
       ? props.theme.colors.danger
       : props.theme.colors.neutral05};
   border-radius: 5px;
-  box-shadow: ${props => (props.errorMessage ? '0 0 0 1px #E70000' : '0 0 0')};
+  box-shadow: ${props =>
+    props.errorMessage ? `0 0 0 1px ${props.theme.colors.danger}` : '0 0 0'};
   color: ${props => props.theme.colors.neutral02};
   display: block;
   font-size: ${props => {

@@ -6,7 +6,7 @@ import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { magma } from '../../theme/magma';
+//import { magma } from '../../theme/magma';
 
 enum ToggleTextPostition {
   left = 'left',
@@ -41,9 +41,9 @@ const HiddenInput = styled.input`
 `;
 
 const Track = styled.span<{ checked?: boolean; disabled?: boolean }>`
-  background: ${magma.colors.neutral07};
+  background: ${props => props.theme.colors.neutral07};
   border: 2px solid;
-  border-color: ${magma.colors.neutral05};
+  border-color: ${props => props.theme.colors.neutral05};
   border-radius: 12px;
   cursor: pointer;
   height: 24px;
@@ -104,9 +104,8 @@ const Track = styled.span<{ checked?: boolean; disabled?: boolean }>`
 `;
 
 const Thumb = styled.span<{ checked?: boolean; disabled?: boolean }>`
-  background: ${magma.colors.neutral08};
-  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3), 0 0 4px 0 rgba(0, 0, 0, 0.24),
-    0 0 5px 0 rgba(0, 0, 0, 0.22);
+  background: ${props => props.theme.colors.neutral08};
+  box-shadow: ${props => props.theme.colors.toggleBoxShadow};
   border-radius: 100%;
   height: 20px;
   left: 0;

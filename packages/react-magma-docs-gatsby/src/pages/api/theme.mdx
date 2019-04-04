@@ -7,15 +7,16 @@ title: "Theming"
 Theming is accomplished by using the `ThemeProvider` component that is part of <a href="https://emotion.sh/docs/emotion-theming">emotion-theming</a>.
 The  `ThemeProvider` is usually placed at the root of the application, but themes can be nested.
 
-The default theme is Magma, which is what is used throughout these docs.  The following example uses a demo theme called Amgam.
+The default theme is Magma, which is what is used throughout these docs.  The following example uses a demo theme called Amgam.  This theme is for demo purporses only.
 
 ```.jsx
   <ThemeProvider theme={amgam}>
     <div style={{"border": "1px solid", "padding": "20px"}}>
       <Heading level={2}>Example</Heading>
-      <p>The theme in this example is called Amgam.  It's the greatest theme since Magma.</p>
+      <p>The theme in this example is a demo theme called Amgam. It still uses the same neutral colors as Magma,
+      but it has different colors for the foundation, pop, success, and danger colors.</p>
       <Input id="demoInput" labelText="Input" helperMessage='Helper text' errorMessage='Error message' />
-      
+
       <RadioGroup labelText='Radio Group' id='radioGroup' name='radio'>
         <Radio
           id='radio1'
@@ -30,18 +31,22 @@ The default theme is Magma, which is what is used throughout these docs.  The fo
 
       <Checkbox id="demoCheck" labelText="Checkbox" />
       <Toggle id="demoToggle" labelText="Toggle" />
-      <Button>Primary Button</Button>
+      <Button>Button</Button>
       <Button color="secondary">Secondary Button</Button>
       <Button color="success">Success Button</Button>
       <Button color="danger">Danger Button</Button>
 
-      <ThemeProvider theme={magma}>
-        <div style={{"border": "1px solid", "padding": "20px", "marginTop": "10px"}}>
+      <ThemeProvider theme={amgamDark}>
+        <div style={{"border": "1px solid", "padding": "20px", "marginTop": "10px", "background": "#3F3F3F", "color": "#fff"}}>
           <Heading level={2}>Example 2</Heading>
-          <p>This theme provider is nested inside the first one, and uses Magma styles.</p>
+          <p>
+            This theme provider is nested inside the first one, and uses Amgam Dark theme.
+            This theme uses all of the inverse colors of Magma, including the neutral colors.
+            Because it's not using the GlobalStyles, we need to set the background and foreground color on the containing div.
+          </p>
           <Input id="demoInput" labelText="Input" helperMessage='Helper text' errorMessage='Error message' />
-          
-          <RadioGroup labelText='Radio Group' id='radioGroup2' name='radio'>
+
+          <RadioGroup labelText='Radio Group' id='radioGroup2' name='radio2'>
             <Radio
               id='radio3'
               labelText='Radio 3'
@@ -55,7 +60,7 @@ The default theme is Magma, which is what is used throughout these docs.  The fo
 
           <Checkbox id="demoCheck2" labelText="Checkbox" />
           <Toggle id="demoToggle2" labelText="Toggle" />
-          <Button>Primary Button</Button>
+          <Button>Button</Button>
           <Button color="secondary">Secondary Button</Button>
           <Button color="success">Success Button</Button>
           <Button color="danger">Danger Button</Button>
@@ -63,6 +68,6 @@ The default theme is Magma, which is what is used throughout these docs.  The fo
         </div>
       </ThemeProvider>
 
-    </div> 
+    </div>
   </ThemeProvider>
 ```
