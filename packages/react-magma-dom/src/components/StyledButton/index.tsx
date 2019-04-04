@@ -325,47 +325,55 @@ const StyledButtonComponent = styled.button<StyledButtonProps>`
     `}
 `;
 
-export const StyledButton: React.FunctionComponent<StyledButtonProps> = ({
-  ariaLabel,
-  as,
-  autoFocus,
-  block,
-  className,
-  children,
-  color,
-  disabled,
-  href,
-  iconOnly,
-  inverse,
-  onClick,
-  ref,
-  shape,
-  size,
-  style,
-  textTransform,
-  to,
-  variant
-}: StyledButtonProps) => (
-  <StyledButtonComponent
-    as={as}
-    aria-label={ariaLabel}
-    className={className}
-    autoFocus={autoFocus}
-    onClick={onClick}
-    block={block}
-    color={color}
-    disabled={disabled}
-    href={href}
-    iconOnly={iconOnly}
-    inverse={inverse}
-    ref={ref}
-    shape={shape}
-    size={size}
-    style={style}
-    textTransform={textTransform}
-    to={to}
-    variant={variant}
-  >
-    {children}
-  </StyledButtonComponent>
+export const StyledButton: React.FunctionComponent<
+  StyledButtonProps
+> = React.forwardRef(
+  (
+    {
+      ariaExpanded,
+      ariaLabel,
+      as,
+      autoFocus,
+      block,
+      className,
+      children,
+      disabled,
+      onClick,
+      href,
+      iconOnly,
+      inverse,
+      color,
+      shape,
+      size,
+      style,
+      textTransform,
+      to,
+      variant
+    }: StyledButtonProps,
+    ref: any
+  ) => (
+    <StyledButtonComponent
+      ref={ref}
+      as={as}
+      aria-expanded={ariaExpanded}
+      aria-label={ariaLabel}
+      className={className}
+      autoFocus={autoFocus}
+      onClick={onClick}
+      block={block}
+      color={color}
+      disabled={disabled}
+      href={href}
+      iconOnly={iconOnly}
+      inverse={inverse}
+      shape={shape}
+      size={size}
+      style={style}
+      textTransform={textTransform}
+      to={to}
+      variant={variant}
+    >
+      {children}
+    </StyledButtonComponent>
+  )
 );
