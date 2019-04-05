@@ -92,6 +92,12 @@ figcaption .title-caution {
   border: 1px solid #dfdfdf;
 }
 
+.swatch-rows {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 @media only screen and (max-width: 680px) {
   figure .image-container {
     padding-top: 10px;

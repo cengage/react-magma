@@ -41,9 +41,9 @@ export const magma = {
     primary: '#006298', // link color blue
     foundation01: '#003865',
     foundation02: '#006298',
-    foundation03: '#006298',
-    foundation04: '#006298',
-    pop01: '#006298',
+    foundation03: '#00A9E0',
+    foundation04: '#71C5E8',
+    pop01: '#E0004D',
     pop02: '#FA6600',
     pop03: '#F2A900',
     pop04: '#FFC72C',
