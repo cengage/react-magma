@@ -10,57 +10,62 @@ import {
   AccordionItem,
   AccordionItemTitle,
   AccordionItemBody,
-} from 'react-accessible-accordion';
+} from 'react-accessible-accordion'
 
-const handleAnchorLinkClick = (( id, handleClick, e) => {
-  const distanceToTop = el => Math.floor(el.getBoundingClientRect().top);
+const handleAnchorLinkClick = (id, handleClick, e) => {
+  const distanceToTop = el => Math.floor(el.getBoundingClientRect().top)
 
-  e.preventDefault();
-  const targetID = id;
-  const targetAnchor = document.getElementById(id);
-  if (!targetAnchor) return;
-  const originalTop = distanceToTop(targetAnchor);
+  e.preventDefault()
+  const targetID = id
+  const targetAnchor = document.getElementById(id)
+  if (!targetAnchor) return
+  const originalTop = distanceToTop(targetAnchor)
 
-  window.scrollBy({ top: originalTop, left: 0, behavior: "smooth" });
+  window.scrollBy({ top: originalTop, left: 0, behavior: 'smooth' })
 
   const checkIfDone = setInterval(function() {
-      const atBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2;
-      if (distanceToTop(targetAnchor) === 0 || atBottom) {
-          targetAnchor.tabIndex = "-1";
-          targetAnchor.focus();
-          window.history.pushState("", "", ("#" + targetID));
-          clearInterval(checkIfDone);
-      }
-  }, 100);
+    const atBottom =
+      window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2
+    if (distanceToTop(targetAnchor) === 0 || atBottom) {
+      targetAnchor.tabIndex = '-1'
+      targetAnchor.focus()
+      window.history.pushState('', '', '#' + targetID)
+      clearInterval(checkIfDone)
+    }
+  }, 100)
 
-  handleClick();
-});
+  handleClick()
+}
 
 const SubMenu = ({ headings, handleClick }) => {
   return (
     <ul className="submenu">
       {headings.map((heading, index) => {
-        const id = convertTextToId(heading.value);
+        const id = convertTextToId(heading.value)
 
-        return(
-          <li key={index}>  
+        return (
+          <li key={index}>
             <a
               href={`#${id}`}
-              onClick={(e)=>{handleAnchorLinkClick(id, handleClick, e)}}>
+              onClick={e => {
+                handleAnchorLinkClick(id, handleClick, e)
+              }}
+            >
               {heading.value}
             </a>
           </li>
-      )})}
+        )
+      })}
     </ul>
   )
 }
 
 const activeStyle = {
-  'color': magma.colors.neutral02,
-  'fontWeight': 'bold'
+  color: magma.colors.neutral02,
+  fontWeight: 'bold',
 }
 
-const MainNav = ({...props}) => (
+const MainNav = ({ ...props }) => (
   <StaticQuery
     query={graphql`
       fragment navFields on MdxEdge {
@@ -99,70 +104,86 @@ const MainNav = ({...props}) => (
     `}
     render={data => (
       <div className="main-nav">
-          <h2>Magma System</h2>
-          <ul>
-            <li>
-              <Link
-                  activeStyle={activeStyle}
-                  onClick={props.handleClick}
-                  to="/">Introduction</Link>
-                </li>
-          </ul>
-          <hr />
-          <Accordion accordion={false}>
-            <AccordionItem expanded>
-              <AccordionItemTitle>
-                <h2>
-                  Develop
-                  <AngleDownIcon size="16"/>
-                </h2>
-              </AccordionItemTitle>
-              <AccordionItemBody>
-                <ul>
+        <h2>Magma System</h2>
+        <ul>
+          <li>
+            <Link activeStyle={activeStyle} onClick={props.handleClick} to="/">
+              Introduction
+            </Link>
+          </li>
+        </ul>
+        <hr />
+        <Accordion accordion={false}>
+          <AccordionItem expanded>
+            <AccordionItemTitle>
+              <h2>
+                Develop
+                <AngleDownIcon size="16" />
+              </h2>
+            </AccordionItemTitle>
+            <AccordionItemBody>
+              <ul>
                 {data.apiDocs.edges.map(({ node }) => (
                   <li key={node.fields.slug}>
                     <Link
                       activeStyle={activeStyle}
                       onClick={props.handleClick}
-                      to={node.fields.slug}>{node.frontmatter.title}</Link>
+                      to={node.fields.slug}
+                    >
+                      {node.frontmatter.title}
+                    </Link>
                     <Router>
-                      <SubMenu path={node.fields.slug} headings={node.headings} handleClick={props.handleClick} />
+                      <SubMenu
+                        path={node.fields.slug}
+                        headings={node.headings}
+                        handleClick={props.handleClick}
+                      />
                     </Router>
                   </li>
                 ))}
-                </ul>
-              </AccordionItemBody>
-            </AccordionItem>
-            <hr />
-            <AccordionItem expanded>
-              <AccordionItemTitle>
-                <h2>
-                  Design
-                  <AngleDownIcon size="16"/>
-                </h2>
-              </AccordionItemTitle>
-              <AccordionItemBody>
-                <ul>
+              </ul>
+            </AccordionItemBody>
+          </AccordionItem>
+          <hr />
+          <AccordionItem expanded>
+            <AccordionItemTitle>
+              <h2>
+                Design
+                <AngleDownIcon size="16" />
+              </h2>
+            </AccordionItemTitle>
+            <AccordionItemBody>
+              <ul>
                 {data.designDocs.edges.map(({ node }) => (
-                <li key={node.fields.slug}>
-                <Link
-                activeStyle={activeStyle}
-                onClick={props.handleClick}
-                to={node.fields.slug}>{node.frontmatter.title}</Link>
-                </li>
+                  <li key={node.fields.slug}>
+                    <Link
+                      activeStyle={activeStyle}
+                      onClick={props.handleClick}
+                      to={node.fields.slug}
+                    >
+                      {node.frontmatter.title}
+                    </Link>
+                    <Router>
+                      <SubMenu
+                        path={node.fields.slug}
+                        headings={node.headings}
+                        handleClick={props.handleClick}
+                      />
+                    </Router>
+                  </li>
                 ))}
-                </ul>
-              </AccordionItemBody>
-            </AccordionItem>
-            <hr />
-          </Accordion>
-        </div>
+              </ul>
+            </AccordionItemBody>
+          </AccordionItem>
+          <hr />
+        </Accordion>
+      </div>
     )}
   />
 )
 
 MainNav.propTypes = {
-  handleClick: PropTypes.func
+  handleClick: PropTypes.func,
 }
 
 export default MainNav
