@@ -116,6 +116,10 @@ export function getStyles(customStyles: ReactSelectStyles = {}, theme) {
         : theme.colors.neutral08,
       color: theme.colors.neutral02,
       ...customStyles.option
+    }),
+    singleValue: styles => ({
+      ...styles,
+      color: theme.colors.neutral02
     })
   };
 }

@@ -7,18 +7,50 @@ title: "Theming"
 ## Using Themes
 
 By default, all components in the React Magma library use the Magma theme.  However, you can pass in an alternative theme using the `<ThemeContext.Provider>`,
-and passing in your custom theme as the `value` property. Themes can be nested.
+and passing in your custom theme as the `value` property.  Any decendants of the context provider will receive the theme that is passed in.
 
-This example shows two demo components.  The first one is wrapped inside a `ThemeContext.Provider` with the value of `amgam`.
-Inside that theme provider, is another `ThemeContext.Provider` with the value of `amgamDark`.
+Use the dropdown to change theme for the demo component.
 
 ```.jsx
-  <ThemeContext.Provider value={amgam}>
-      <DemoComponent idPrefix="theme1" />
-      <ThemeContext.Provider value={amgamDark}>
-          <DemoComponent idPrefix="theme2" />
-      </ThemeContext.Provider>
-  </ThemeContext.Provider>
-```
+  class Example extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        theme: magma
+      }
 
-## Creating Themes
+      this.changeTheme = this.changeTheme.bind(this);
+    }
+
+      changeTheme(theme) {
+        this.setState(state => ({
+          theme: theme.value
+        }));
+    }
+
+    render() {
+      return (
+        <div>
+          <Select
+            id="themeSwitcher"
+            labelText="Select Theme"
+            onChange={this.changeTheme}
+            options={[{
+              value: magma,
+              label: 'Magma (default)'
+            }, {
+              value: amgam,
+              label: 'Amgam'
+            }, {
+              value: amgamDark,
+              label: 'Amgam Dark'
+            }]} />
+
+          <ThemeContext.Provider value={this.state.theme}>
+            <DemoComponent idPrefix="theme1" />
+          </ThemeContext.Provider>
+        </div>
+      )
+    }
+  }
+```
