@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { CheckboxCore } from 'react-magma-core';
-import { FocusStyles, HiddenStyles } from '../UtilityStyles';
+import { HiddenStyles } from '../UtilityStyles';
 import { CheckIcon } from '../Icon/types/CheckIcon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-//import { magma } from '../../theme/magma';
+import { ThemeContext } from '../../theme/themeContext';
 
 enum ToggleTextPostition {
   left = 'left',
@@ -27,6 +27,7 @@ export interface ToggleProps {
   style?: React.CSSProperties;
   textPosition?: ToggleTextPostition;
   textVisuallyHidden?: boolean;
+  theme?: any;
   thumbStyle?: React.CSSProperties;
   trackStyle?: React.CSSProperties;
   value?: string;
@@ -66,8 +67,8 @@ const Track = styled.span<{ checked?: boolean; disabled?: boolean }>`
     `}
 
   ${HiddenInput}:focus + label & {
-      ${FocusStyles}
-      outline-offset: 3px;
+    outline: 2px dotted ${props => props.theme.colors.pop03};
+    outline-offset: 3px;
   }
 
   &:before { // active state
@@ -188,43 +189,59 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
       } = props;
 
       return (
-        <StyledContainer>
-          <HiddenInput
-            autoFocus={autoFocus}
-            id={id}
-            checked={checked}
-            disabled={disabled}
-            name={name}
-            required={required}
-            type="checkbox"
-            value={value}
-            onBlur={onBlur}
-            onChange={onChange}
-            onFocus={onFocus}
-          />
-          <StyledLabel htmlFor={id} style={style}>
-            {textPosition !== ToggleTextPostition.right &&
-              renderLabelText(
-                textVisuallyHidden,
-                labelText,
-                ToggleTextPostition.left,
-                labelStyle
-              )}
-            <Track checked={checked} disabled={disabled} style={trackStyle}>
-              <IconContainer>
-                <CheckIcon size={11} />
-              </IconContainer>
-              <Thumb checked={checked} disabled={disabled} style={thumbStyle} />
-            </Track>
-            {textPosition === ToggleTextPostition.right &&
-              renderLabelText(
-                textVisuallyHidden,
-                labelText,
-                ToggleTextPostition.right,
-                labelStyle
-              )}
-          </StyledLabel>
-        </StyledContainer>
+        <ThemeContext.Consumer>
+          {context =>
+            context && (
+              <StyledContainer>
+                <HiddenInput
+                  autoFocus={autoFocus}
+                  id={id}
+                  checked={checked}
+                  disabled={disabled}
+                  name={name}
+                  required={required}
+                  type="checkbox"
+                  value={value}
+                  onBlur={onBlur}
+                  onChange={onChange}
+                  onFocus={onFocus}
+                />
+                <StyledLabel htmlFor={id} style={style} theme={context}>
+                  {textPosition !== ToggleTextPostition.right &&
+                    renderLabelText(
+                      textVisuallyHidden,
+                      labelText,
+                      ToggleTextPostition.left,
+                      labelStyle
+                    )}
+                  <Track
+                    checked={checked}
+                    disabled={disabled}
+                    style={trackStyle}
+                    theme={context}
+                  >
+                    <IconContainer theme={context}>
+                      <CheckIcon size={11} />
+                    </IconContainer>
+                    <Thumb
+                      checked={checked}
+                      disabled={disabled}
+                      style={thumbStyle}
+                      theme={context}
+                    />
+                  </Track>
+                  {textPosition === ToggleTextPostition.right &&
+                    renderLabelText(
+                      textVisuallyHidden,
+                      labelText,
+                      ToggleTextPostition.right,
+                      labelStyle
+                    )}
+                </StyledLabel>
+              </StyledContainer>
+            )
+          }
+        </ThemeContext.Consumer>
       );
     }}
   </CheckboxCore>

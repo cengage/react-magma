@@ -2,6 +2,7 @@ import React from 'react';
 import { axe } from 'jest-axe';
 import { Select, getStyles } from '.';
 import { render, fireEvent, cleanup, wait } from 'react-testing-library';
+import { magma } from '../../theme/magma';
 
 const options = [
   {
@@ -55,7 +56,7 @@ describe('Select', () => {
 
   it('should render custom styles', () => {
     const color = '#cccccc';
-    const styles = getStyles({ multiValue: { color } });
+    const styles = getStyles({ multiValue: { color } }, magma);
 
     expect(styles.multiValue({})).toContainKey('color', color);
   });

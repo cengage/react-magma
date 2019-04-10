@@ -1,17 +1,20 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { magma } from '../../theme/magma';
+import { ThemeContext } from '../../theme/themeContext';
 
 export interface LabelProps {
   children: React.ReactChild | React.ReactChild[];
   htmlFor?: string;
   inverse?: boolean;
   style?: React.CSSProperties;
+  theme?: any;
 }
 
 const StyledLabel = styled.label<LabelProps>`
   color: ${props =>
-    props.inverse ? magma.colors.neutral08 : magma.colors.neutral02};
+    props.inverse
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral02};
   display: inline-block;
   font-size: 13px;
   font-weight: 600;
@@ -23,9 +26,20 @@ function renderLabel(props) {
   const { children, htmlFor, inverse, style } = props;
 
   return (
-    <StyledLabel style={style} htmlFor={htmlFor} inverse={inverse}>
-      {children}
-    </StyledLabel>
+    <ThemeContext.Consumer>
+      {context =>
+        context && (
+          <StyledLabel
+            style={style}
+            htmlFor={htmlFor}
+            inverse={inverse}
+            theme={context}
+          >
+            {children}
+          </StyledLabel>
+        )
+      }
+    </ThemeContext.Consumer>
   );
 }
 

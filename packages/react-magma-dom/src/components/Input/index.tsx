@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { IconProps } from '../Icon/utils';
 import { AlertIcon } from '../Icon/types/AlertIcon';
 import { Label } from '../Label';
+import { ThemeContext } from '../../theme/themeContext';
 
 export enum IconPosition {
   left = 'left',
@@ -251,54 +252,67 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
         } = props;
 
         return (
-          <Container style={style}>
-            {!labelVisuallyHidden && (
-              <Label inverse={inverse} htmlFor={id} style={labelStyle}>
-                {labelText}
-              </Label>
-            )}
-            <InputWrapper>
-              <StyledInput
-                ref={ref}
-                aria-label={labelVisuallyHidden ? labelText : null}
-                as={multiline ? 'textarea' : null}
-                autoFocus={autoFocus}
-                id={id}
-                disabled={disabled}
-                errorMessage={errorMessage}
-                iconPosition={iconPosition}
-                inputSize={inputSize ? inputSize : InputSize.medium}
-                labelText={labelText}
-                multiline={multiline}
-                placeholder={placeholder}
-                required={required}
-                style={inputStyle}
-                type={type ? type : InputType.text}
-                value={value}
-                onBlur={onBlur}
-                onChange={onChange}
-                onFocus={onFocus}
-              />
-              {errorMessage && (
-                <ErrorIconWrapper inputSize={inputSize}>
-                  <AlertIcon size={getErrorIconSize(inputSize)} />
-                </ErrorIconWrapper>
-              )}
-              {icon && (
-                <IconWrapper iconPosition={iconPosition}>
-                  {React.Children.only(
-                    React.cloneElement(icon, { size: getIconSize(inputSize) })
+          <ThemeContext.Consumer>
+            {context =>
+              context && (
+                <Container style={style}>
+                  {!labelVisuallyHidden && (
+                    <Label inverse={inverse} htmlFor={id} style={labelStyle}>
+                      {labelText}
+                    </Label>
                   )}
-                </IconWrapper>
-              )}
-            </InputWrapper>
-            {errorMessage && (
-              <ErrorMessage inverse={inverse}>{errorMessage}</ErrorMessage>
-            )}
-            {helperMessage && !errorMessage && (
-              <HelperMessage inverse={inverse}>{helperMessage}</HelperMessage>
-            )}
-          </Container>
+                  <InputWrapper>
+                    <StyledInput
+                      ref={ref}
+                      aria-label={labelVisuallyHidden ? labelText : null}
+                      as={multiline ? 'textarea' : null}
+                      autoFocus={autoFocus}
+                      id={id}
+                      disabled={disabled}
+                      errorMessage={errorMessage}
+                      iconPosition={iconPosition}
+                      inputSize={inputSize ? inputSize : InputSize.medium}
+                      labelText={labelText}
+                      multiline={multiline}
+                      placeholder={placeholder}
+                      required={required}
+                      style={inputStyle}
+                      theme={context}
+                      type={type ? type : InputType.text}
+                      value={value}
+                      onBlur={onBlur}
+                      onChange={onChange}
+                      onFocus={onFocus}
+                    />
+                    {errorMessage && (
+                      <ErrorIconWrapper inputSize={inputSize} theme={context}>
+                        <AlertIcon size={getErrorIconSize(inputSize)} />
+                      </ErrorIconWrapper>
+                    )}
+                    {icon && (
+                      <IconWrapper iconPosition={iconPosition} theme={context}>
+                        {React.Children.only(
+                          React.cloneElement(icon, {
+                            size: getIconSize(inputSize)
+                          })
+                        )}
+                      </IconWrapper>
+                    )}
+                  </InputWrapper>
+                  {errorMessage && (
+                    <ErrorMessage inverse={inverse} theme={context}>
+                      {errorMessage}
+                    </ErrorMessage>
+                  )}
+                  {helperMessage && !errorMessage && (
+                    <HelperMessage inverse={inverse} theme={context}>
+                      {helperMessage}
+                    </HelperMessage>
+                  )}
+                </Container>
+              )
+            }
+          </ThemeContext.Consumer>
         );
       }}
     </InputCore>

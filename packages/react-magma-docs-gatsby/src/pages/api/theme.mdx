@@ -4,31 +4,44 @@ title: "Theming"
 
 # Theming
 
-Theming is accomplished by using the `ThemeProvider` component that is part of <a href="https://emotion.sh/docs/emotion-theming">emotion-theming</a>.
-The  `ThemeProvider` is usually placed at the root of the application, but themes can be nested.
-
-The default theme is Magma, which is what is used throughout these docs.  The following example uses a demo theme called Amgam.  This theme is for demo purporses only.
+By default, all components in the React Magma library use the Magma theme.  However, you can pass in an alternative theme using the `<ThemeContext.Provider>`,
+and passing in your custom theme as the `value` property.
 
 ```.jsx
-  <ThemeProvider theme={amgam}>
+  <ThemeContext.Provider value={amgam}>
     <div style={{"border": "1px solid", "padding": "20px"}}>
       <Heading level={2}>Example</Heading>
       <p>The theme in this example is a demo theme called Amgam. It still uses the same neutral colors as Magma,
       but it has different colors for the foundation, pop, success, and danger colors.</p>
-      <Input id="demoInput" labelText="Input" helperMessage='Helper text' errorMessage='Error message' />
-
+      <Input
+        id="demoInput"
+        labelText="Input"
+        helperMessage='Helper text'
+        errorMessage='Error message' />
+      <Select id="demoSelect"
+        name="basic"
+        labelText="Basic"
+        options={[{
+          value: 'red',
+          label: 'Red'
+        }, {
+          value: 'blue',
+          label: 'Blue'
+        }, {
+          value: 'green',
+          label: 'Green'
+        }]}
+      />
       <RadioGroup labelText='Radio Group' id='radioGroup' name='radio'>
         <Radio
           id='radio1'
           labelText='Radio 1'
           value='1' />
-
         <Radio
           id='radio2'
           labelText='Radio 2'
           value='2' />
       </RadioGroup>
-
       <Checkbox id="demoCheck" labelText="Checkbox" />
       <Toggle id="demoToggle" labelText="Toggle" />
       <Button>Button</Button>
@@ -36,7 +49,7 @@ The default theme is Magma, which is what is used throughout these docs.  The fo
       <Button color="success">Success Button</Button>
       <Button color="danger">Danger Button</Button>
 
-      <ThemeProvider theme={amgamDark}>
+      <ThemeContext.Provider value={amgamDark}>
         <div style={{"border": "1px solid", "padding": "20px", "marginTop": "10px", "background": "#3F3F3F", "color": "#fff"}}>
           <Heading level={2}>Example 2</Heading>
           <p>
@@ -44,30 +57,42 @@ The default theme is Magma, which is what is used throughout these docs.  The fo
             This theme uses all of the inverse colors of Magma, including the neutral colors.
             Because it's not using the GlobalStyles, we need to set the background and foreground color on the containing div.
           </p>
-          <Input id="demoInput" labelText="Input" helperMessage='Helper text' errorMessage='Error message' />
-
+          <Input
+            id="demoInput2"
+            labelText="Input"
+            helperMessage='Helper text'
+            errorMessage='Error message' />
+          <Select id="demoSelect2"
+            name="basic"
+            labelText="Basic"
+            options={[{
+              value: 'red',
+              label: 'Red'
+            }, {
+              value: 'blue',
+              label: 'Blue'
+            }, {
+              value: 'green',
+              label: 'Green'
+            }]} />
           <RadioGroup labelText='Radio Group' id='radioGroup2' name='radio2'>
             <Radio
               id='radio3'
               labelText='Radio 3'
               value='1' />
-
             <Radio
               id='radio4'
               labelText='Radio 4'
               value='2' />
           </RadioGroup>
-
           <Checkbox id="demoCheck2" labelText="Checkbox" />
           <Toggle id="demoToggle2" labelText="Toggle" />
           <Button>Button</Button>
           <Button color="secondary">Secondary Button</Button>
           <Button color="success">Success Button</Button>
           <Button color="danger">Danger Button</Button>
-
         </div>
-      </ThemeProvider>
-
+      </ThemeContext.Provider>
     </div>
-  </ThemeProvider>
+  </ThemeContext.Provider>
 ```

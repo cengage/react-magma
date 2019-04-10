@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { FocusStyles } from '../UtilityStyles';
+import { ThemeContext } from '../../theme/themeContext';
 
 export enum ButtonVariant {
   solid = 'solid', //default
@@ -55,6 +55,7 @@ export interface ButtonProps {
   size?: ButtonSize;
   style?: React.CSSProperties;
   textTransform?: ButtonTextTransform;
+  theme?: any;
   to?: string;
   variant?: ButtonVariant;
 }
@@ -277,7 +278,7 @@ const StyledButtonComponent = styled.button<StyledButtonProps>`
   }
 
   &:focus {
-    ${FocusStyles};
+    outline: 2px dotted ${props => props.theme.colors.pop03};
     outline-offset: 3px;
   }
 
@@ -352,28 +353,35 @@ export const StyledButton: React.FunctionComponent<
     }: StyledButtonProps,
     ref: any
   ) => (
-    <StyledButtonComponent
-      ref={ref}
-      as={as}
-      aria-expanded={ariaExpanded}
-      aria-label={ariaLabel}
-      className={className}
-      autoFocus={autoFocus}
-      onClick={onClick}
-      block={block}
-      color={color}
-      disabled={disabled}
-      href={href}
-      iconOnly={iconOnly}
-      inverse={inverse}
-      shape={shape}
-      size={size}
-      style={style}
-      textTransform={textTransform}
-      to={to}
-      variant={variant}
-    >
-      {children}
-    </StyledButtonComponent>
+    <ThemeContext.Consumer>
+      {context =>
+        context && (
+          <StyledButtonComponent
+            ref={ref}
+            as={as}
+            aria-expanded={ariaExpanded}
+            aria-label={ariaLabel}
+            className={className}
+            autoFocus={autoFocus}
+            onClick={onClick}
+            block={block}
+            color={color}
+            disabled={disabled}
+            href={href}
+            iconOnly={iconOnly}
+            inverse={inverse}
+            shape={shape}
+            size={size}
+            style={style}
+            textTransform={textTransform}
+            theme={context}
+            to={to}
+            variant={variant}
+          >
+            {children}
+          </StyledButtonComponent>
+        )
+      }
+    </ThemeContext.Consumer>
   )
 );

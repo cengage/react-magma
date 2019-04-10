@@ -20,6 +20,7 @@ export { amgam } from './theme/amgam';
 export { amgamDark } from './theme/amgamDark';
 export { magma } from './theme/magma';
 export { Theme } from './theme/globalStyle';
+export { ThemeContext } from './theme/themeContext';
 export { ICONS } from './components/Icon';
 export { AddPersonIcon } from './components/Icon/types/AddPersonIcon';
 export { AlertIcon } from './components/Icon/types/AlertIcon';

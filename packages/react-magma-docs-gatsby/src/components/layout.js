@@ -7,7 +7,6 @@ import Masthead from './masthead'
 import { MDXProvider } from '@mdx-js/tag'
 import { Location } from '@reach/router'
 import { Transition, config } from 'react-spring'
-import { ThemeProvider } from 'emotion-theming'
 import {
   Button,
   Checkbox,
@@ -23,6 +22,7 @@ import {
   amgam,
   amgamDark,
   magma,
+  ThemeContext,
   AddPersonIcon,
   AlertIcon,
   AndroidIcon,
@@ -271,6 +271,7 @@ import './syntax.css'
 
 const PreComponent = ({ className, ...props }) => {
   const hideCode = props.children.props.props.hideCode
+  
   return props.children.props.props &&
     props.children.props.props.className === 'language-.jsx' ? (
     <LiveProvider
@@ -292,7 +293,7 @@ const PreComponent = ({ className, ...props }) => {
         magma,
         amgam,
         amgamDark,
-        ThemeProvider,
+        ThemeContext,
         AddPersonIcon,
         AlertIcon,
         AndroidIcon,
@@ -573,7 +574,7 @@ const Layout = ({ children }) => (
       }
     `}
     render={data => (
-      <ThemeProvider theme={magma}>
+      <>
         <Helmet
           title={data.site.siteMetadata.title}
           meta={[
@@ -611,7 +612,7 @@ const Layout = ({ children }) => (
             </MDXProvider>
           </section>
         </main>
-      </ThemeProvider>
+      </>
     )}
   />
 )

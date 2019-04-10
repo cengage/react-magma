@@ -10,7 +10,3 @@ export const HiddenStyles = css`
   white-space: nowrap;
   width: 1px;
 `;
-
-export const FocusStyles = css`
-  outline: 2px dotted ${magma.colors.pop03};
-`;

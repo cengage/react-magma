@@ -2,7 +2,6 @@ import React from 'react';
 import { Checkbox } from '.';
 import { render, fireEvent, cleanup } from 'react-testing-library';
 import { magma } from '../../theme/magma';
-import { ThemeProvider } from 'emotion-theming';
 
 const CHECKBOX_PROPS = {
   autoFocus: false,
@@ -17,11 +16,7 @@ const renderCheckbox = (myProps = {}) => {
     ...myProps
   };
 
-  return render(
-    <ThemeProvider theme={magma}>
-      <Checkbox {...props} />
-    </ThemeProvider>
-  );
+  return render(<Checkbox {...props} />);
 };
 
 describe('Checkbox', () => {
@@ -131,11 +126,7 @@ describe('Checkbox', () => {
 
     expect(checkbox).toHaveProperty('indeterminate', false);
 
-    rerender(
-      <ThemeProvider theme={magma}>
-        <Checkbox {...CHECKBOX_PROPS} indeterminate={true} />
-      </ThemeProvider>
-    );
+    rerender(<Checkbox {...CHECKBOX_PROPS} indeterminate={true} />);
 
     expect(checkbox).toHaveProperty('indeterminate', true);
   });
@@ -153,11 +144,7 @@ describe('Checkbox', () => {
 
     expect(checkbox).toHaveProperty('indeterminate', false);
 
-    rerender(
-      <ThemeProvider theme={magma}>
-        <Checkbox {...CHECKBOX_PROPS} indeterminate={true} />
-      </ThemeProvider>
-    );
+    rerender(<Checkbox {...CHECKBOX_PROPS} indeterminate={true} />);
 
     expect(checkbox).toHaveProperty('indeterminate', true);
   });

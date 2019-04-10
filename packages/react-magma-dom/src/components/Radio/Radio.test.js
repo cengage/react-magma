@@ -3,7 +3,6 @@ import { Radio } from '.';
 import { RadioContext } from '../RadioGroup';
 import { render, fireEvent } from 'react-testing-library';
 import { magma } from '../../theme/magma';
-import { ThemeProvider } from 'emotion-theming';
 
 const RADIO_PROPS = {
   labelText: 'Blue',
@@ -34,11 +33,9 @@ const renderRadio = (myProps = {}, myContext = {}) => {
   };
 
   return render(
-    <ThemeProvider theme={magma}>
-      <RadioContext.Provider value={context}>
-        <Radio {...props} />
-      </RadioContext.Provider>
-    </ThemeProvider>
+    <RadioContext.Provider value={context}>
+      <Radio {...props} />
+    </RadioContext.Provider>
   );
 };
 

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ThemeContext } from '../../theme/themeContext';
 import { CheckboxCore } from 'react-magma-core';
 import {
   DisplayInputStyles,
@@ -97,11 +98,11 @@ const StyledFakeInput = styled.span<{
   ${HiddenInput}:focus + label & {
     &:before {
       ${DisplayInputFocusStyles};
+      outline: 2px dotted ${props => props.theme.colors.pop03};
     }
   }
 
   &:after {
-    // active state
     background: ${props =>
       props.inverse
         ? props.theme.colors.neutral08
@@ -150,7 +151,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
     this.setIndeterminate = this.setIndeterminate.bind(this);
   }
 
-  private checkboxInput = React.createRef<any>();
+  readonly checkboxInput = React.createRef<any>();
 
   componentDidMount() {
     this.setIndeterminate();
@@ -191,40 +192,54 @@ export class Checkbox extends React.Component<CheckboxProps> {
           } = this.props;
 
           return (
-            <StyledContainer style={style}>
-              <HiddenInput
-                autoFocus={autoFocus}
-                id={id}
-                checked={checked}
-                disabled={disabled}
-                indeterminate={indeterminate}
-                name={name}
-                ref={this.checkboxInput}
-                required={required}
-                type="checkbox"
-                value={value}
-                onBlur={onBlur}
-                onChange={onChange}
-                onFocus={onFocus}
-              />
-              <StyledLabel htmlFor={id} inverse={inverse} style={labelStyle}>
-                <StyledFakeInput
-                  checked={checked}
-                  color={color ? color : ''}
-                  disabled={disabled}
-                  inverse={inverse}
-                  style={inputStyle}
-                >
-                  <IndeterminateIcon color={color ? color : ''} />
-                  <CheckIcon size={12} />
-                </StyledFakeInput>
-                {textVisuallyHidden ? (
-                  <HiddenLabelText>{labelText}</HiddenLabelText>
-                ) : (
-                  labelText
-                )}
-              </StyledLabel>
-            </StyledContainer>
+            <ThemeContext.Consumer>
+              {theme =>
+                theme && (
+                  <StyledContainer style={style}>
+                    <HiddenInput
+                      autoFocus={autoFocus}
+                      id={id}
+                      checked={checked}
+                      disabled={disabled}
+                      indeterminate={indeterminate}
+                      name={name}
+                      ref={this.checkboxInput}
+                      required={required}
+                      type="checkbox"
+                      value={value}
+                      onBlur={onBlur}
+                      onChange={onChange}
+                      onFocus={onFocus}
+                    />
+                    <StyledLabel
+                      htmlFor={id}
+                      inverse={inverse}
+                      style={labelStyle}
+                    >
+                      <StyledFakeInput
+                        checked={checked}
+                        color={color ? color : ''}
+                        disabled={disabled}
+                        inverse={inverse}
+                        style={inputStyle}
+                        theme={theme}
+                      >
+                        <IndeterminateIcon
+                          color={color ? color : ''}
+                          theme={theme}
+                        />
+                        <CheckIcon size={12} />
+                      </StyledFakeInput>
+                      {textVisuallyHidden ? (
+                        <HiddenLabelText>{labelText}</HiddenLabelText>
+                      ) : (
+                        labelText
+                      )}
+                    </StyledLabel>
+                  </StyledContainer>
+                )
+              }
+            </ThemeContext.Consumer>
           );
         }}
       </CheckboxCore>

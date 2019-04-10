@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { magma } from '../../theme/magma';
-import { FocusStyles } from '../UtilityStyles';
+import { ThemeContext } from '../../theme/themeContext';
 
 interface LinkButtonProps {
   autoFocus?: boolean;
@@ -17,7 +16,7 @@ const LinkButtonComponent = styled.button<LinkButtonProps>`
   background: none;
   border: 0;
   color: ${props =>
-    props.inverse ? magma.colors.neutral08 : magma.colors.primary};
+    props.inverse ? props.theme.colors.neutral08 : props.theme.colors.primary};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   display: inline;
   padding: 0;
@@ -28,12 +27,14 @@ const LinkButtonComponent = styled.button<LinkButtonProps>`
     &:hover,
     &:focus {
       color: ${props =>
-        props.inverse ? magma.colors.neutral07 : magma.colors.foundation01};
+        props.inverse
+          ? props.theme.colors.neutral07
+          : props.theme.colors.foundation01};
       text-decoration: none;
     }
 
     &:focus {
-      ${FocusStyles}
+      outline: 2px dotted ${props => props.theme.colors.pop03};
       outline-offset: 3px;
     }
   }
@@ -48,14 +49,21 @@ export const LinkButton: React.FunctionComponent<LinkButtonProps> = ({
   inverse,
   style
 }: LinkButtonProps) => (
-  <LinkButtonComponent
-    className={className}
-    autoFocus={autoFocus}
-    onClick={onClick}
-    disabled={disabled}
-    inverse={inverse}
-    style={style}
-  >
-    {children}
-  </LinkButtonComponent>
+  <ThemeContext.Consumer>
+    {context =>
+      context && (
+        <LinkButtonComponent
+          className={className}
+          autoFocus={autoFocus}
+          onClick={onClick}
+          disabled={disabled}
+          inverse={inverse}
+          style={style}
+          theme={context}
+        >
+          {children}
+        </LinkButtonComponent>
+      )
+    }
+  </ThemeContext.Consumer>
 );

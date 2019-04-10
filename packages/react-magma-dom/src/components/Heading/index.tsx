@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
+import { ThemeContext } from '../../theme/themeContext';
 
 export interface HeadingProps {
   children: React.ReactChild | React.ReactChild[];
@@ -77,9 +78,19 @@ export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
     const HeadingComponent = renderHeading(level);
 
     return (
-      <HeadingComponent ref={ref} id={id} style={style} tabIndex={tabIndex}>
-        {children}
-      </HeadingComponent>
+      <ThemeContext.Consumer>
+        {context => (
+          <HeadingComponent
+            ref={ref}
+            id={id}
+            style={style}
+            tabIndex={tabIndex}
+            theme={context}
+          >
+            {children}
+          </HeadingComponent>
+        )}
+      </ThemeContext.Consumer>
     );
   }
 );
