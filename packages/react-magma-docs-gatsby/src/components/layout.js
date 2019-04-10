@@ -262,6 +262,7 @@ import {
   Wrench3Icon,
   YoutubeIcon,
 } from 'react-magma-dom'
+import DemoComponent from './demo-component'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import { convertTextToId } from '../utils'
 import iconsArray from '../utils/icons'
@@ -532,6 +533,7 @@ const PreComponent = ({ className, ...props }) => {
         WrenchIcon,
         Wrench3Icon,
         YoutubeIcon,
+        DemoComponent
       }}
     >
       <div

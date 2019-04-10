@@ -4,95 +4,21 @@ title: "Theming"
 
 # Theming
 
+## Using Themes
+
 By default, all components in the React Magma library use the Magma theme.  However, you can pass in an alternative theme using the `<ThemeContext.Provider>`,
-and passing in your custom theme as the `value` property.
+and passing in your custom theme as the `value` property. Themes can be nested.
+
+This example shows two demo components.  The first one is wrapped inside a `ThemeContext.Provider` with the value of `amgam`.
+Inside that theme provider, is another `ThemeContext.Provider` with the value of `amgamDark`.
 
 ```.jsx
   <ThemeContext.Provider value={amgam}>
-    <div style={{"border": "1px solid", "padding": "20px"}}>
-      <Heading level={2}>Example</Heading>
-      <p>The theme in this example is a demo theme called Amgam. It still uses the same neutral colors as Magma,
-      but it has different colors for the foundation, pop, success, and danger colors.</p>
-      <Input
-        id="demoInput"
-        labelText="Input"
-        helperMessage='Helper text'
-        errorMessage='Error message' />
-      <Select id="demoSelect"
-        name="basic"
-        labelText="Basic"
-        options={[{
-          value: 'red',
-          label: 'Red'
-        }, {
-          value: 'blue',
-          label: 'Blue'
-        }, {
-          value: 'green',
-          label: 'Green'
-        }]}
-      />
-      <RadioGroup labelText='Radio Group' id='radioGroup' name='radio'>
-        <Radio
-          id='radio1'
-          labelText='Radio 1'
-          value='1' />
-        <Radio
-          id='radio2'
-          labelText='Radio 2'
-          value='2' />
-      </RadioGroup>
-      <Checkbox id="demoCheck" labelText="Checkbox" />
-      <Toggle id="demoToggle" labelText="Toggle" />
-      <Button>Button</Button>
-      <Button color="secondary">Secondary Button</Button>
-      <Button color="success">Success Button</Button>
-      <Button color="danger">Danger Button</Button>
-
+      <DemoComponent idPrefix="theme1" />
       <ThemeContext.Provider value={amgamDark}>
-        <div style={{"border": "1px solid", "padding": "20px", "marginTop": "10px", "background": "#3F3F3F", "color": "#fff"}}>
-          <Heading level={2}>Example 2</Heading>
-          <p>
-            This theme provider is nested inside the first one, and uses Amgam Dark theme.
-            This theme uses all of the inverse colors of Magma, including the neutral colors.
-            Because it's not using the GlobalStyles, we need to set the background and foreground color on the containing div.
-          </p>
-          <Input
-            id="demoInput2"
-            labelText="Input"
-            helperMessage='Helper text'
-            errorMessage='Error message' />
-          <Select id="demoSelect2"
-            name="basic"
-            labelText="Basic"
-            options={[{
-              value: 'red',
-              label: 'Red'
-            }, {
-              value: 'blue',
-              label: 'Blue'
-            }, {
-              value: 'green',
-              label: 'Green'
-            }]} />
-          <RadioGroup labelText='Radio Group' id='radioGroup2' name='radio2'>
-            <Radio
-              id='radio3'
-              labelText='Radio 3'
-              value='1' />
-            <Radio
-              id='radio4'
-              labelText='Radio 4'
-              value='2' />
-          </RadioGroup>
-          <Checkbox id="demoCheck2" labelText="Checkbox" />
-          <Toggle id="demoToggle2" labelText="Toggle" />
-          <Button>Button</Button>
-          <Button color="secondary">Secondary Button</Button>
-          <Button color="success">Success Button</Button>
-          <Button color="danger">Danger Button</Button>
-        </div>
+          <DemoComponent idPrefix="theme2" />
       </ThemeContext.Provider>
-    </div>
   </ThemeContext.Provider>
 ```
+
+## Creating Themes
