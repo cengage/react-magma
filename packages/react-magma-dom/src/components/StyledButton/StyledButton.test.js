@@ -29,11 +29,7 @@ const renderButton = (myProps = {}) => {
     ...myProps
   };
 
-  return render(
-    <StyledButton {...props} theme={magma}>
-      {TEXT}
-    </StyledButton>
-  );
+  return render(<StyledButton {...props}>{TEXT}</StyledButton>);
 };
 
 describe('Styled Button', () => {

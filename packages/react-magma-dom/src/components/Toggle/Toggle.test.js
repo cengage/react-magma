@@ -1,7 +1,6 @@
 import React from 'react';
 import { Toggle } from '.';
 import { render, cleanup } from 'react-testing-library';
-import { magma } from '../../theme/magma';
 
 const TOGGLE_PROPS = {
   autoFocus: false,

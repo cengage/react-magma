@@ -11,7 +11,6 @@ import {
   ButtonIconPostition
 } from '../StyledButton';
 import { CheckIcon } from '../Icon/types/CheckIcon';
-import { magma } from '../../theme/magma';
 
 const TEXT = 'Test Text';
 
