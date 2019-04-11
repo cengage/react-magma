@@ -3,7 +3,7 @@ import { SelectCore } from 'react-magma-core';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
 import { Label } from '../Label';
-import { magma } from '../../theme/magma';
+import { ThemeContext } from '../../theme/themeContext';
 
 import ReactSelect, { components } from 'react-select';
 
@@ -41,38 +41,39 @@ interface ReactSelectStyles {
   option?: React.CSSProperties;
 }
 
-export function getStyles(customStyles: ReactSelectStyles = {}) {
+export function getStyles(customStyles: ReactSelectStyles = {}, theme) {
   return {
     control: (styles, { isFocused, isDisabled }) => ({
       ...styles,
       backgroundColor: isDisabled
-        ? magma.colors.neutral07
-        : magma.colors.neutral08,
-      borderColor: isFocused ? magma.colors.pop03 : magma.colors.neutral05,
+        ? theme.colors.neutral07
+        : theme.colors.neutral08,
+      borderColor: isFocused ? theme.colors.pop03 : theme.colors.neutral05,
       borderRadius: '5px',
-      boxShadow: isFocused ? '0 0 0 1px #F2A900' : '0 0 0',
-      color: magma.colors.neutral02,
+      boxShadow: isFocused ? `0 0 0 1px ${theme.colors.pop03}` : '0 0 0',
+      color: theme.colors.neutral02,
       cursor: isDisabled ? 'not-allowed' : 'pointer',
       height: '37px',
       outline: '0',
+      marginBottom: '10px',
       padding: '0 8px 0 0',
 
       '&:hover': {
-        borderColor: isFocused ? magma.colors.pop03 : magma.colors.neutral05
+        borderColor: isFocused ? theme.colors.pop03 : theme.colors.neutral05
       },
       ...customStyles.control
     }),
     dropdownIndicator: (styles, { isFocused }) => ({
       ...styles,
-      color: magma.colors.neutral02,
+      color: theme.colors.neutral02,
       ...customStyles.dropdownIndicator
     }),
     clearIndicator: (styles, { isFocused }) => ({
       ...styles,
-      color: magma.colors.neutral03,
+      color: theme.colors.neutral03,
 
       '&:hover': {
-        backgroundColor: magma.colors.neutral07
+        backgroundColor: theme.colors.neutral07
       },
       ...customStyles.clearIndicator
     }),
@@ -82,7 +83,8 @@ export function getStyles(customStyles: ReactSelectStyles = {}) {
     }),
     menu: styles => ({
       ...styles,
-      border: `1px solid ${magma.colors.neutral06}`,
+      background: theme.colors.neutral08,
+      border: `1px solid ${theme.colors.neutral06}`,
       borderRadius: '3px',
       boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)',
       zIndex: 999,
@@ -90,30 +92,34 @@ export function getStyles(customStyles: ReactSelectStyles = {}) {
     }),
     multiValue: styles => ({
       ...styles,
-      backgroundColor: magma.colors.neutral06,
-      color: magma.colors.neutral02,
+      backgroundColor: theme.colors.neutral06,
+      color: theme.colors.neutral02,
       ...customStyles.multiValue
     }),
     multiValueRemove: styles => ({
       ...styles,
-      backgroundColor: magma.colors.neutral06,
-      color: magma.colors.neutral02,
+      backgroundColor: theme.colors.neutral06,
+      color: theme.colors.neutral02,
 
       '&:hover': {
-        backgroundColor: magma.colors.neutral05,
-        color: magma.colors.neutral02
+        backgroundColor: theme.colors.neutral05,
+        color: theme.colors.neutral02
       },
       ...customStyles.multiValueRemove
     }),
     option: (styles, { isFocused, isSelected }) => ({
       ...styles,
       backgroundColor: isFocused
-        ? magma.colors.neutral06
+        ? theme.colors.neutral06
         : isSelected
-        ? magma.colors.neutral07
-        : magma.colors.neutral08,
-      color: magma.colors.neutral02,
+        ? theme.colors.neutral07
+        : theme.colors.neutral08,
+      color: theme.colors.neutral02,
       ...customStyles.option
+    }),
+    singleValue: styles => ({
+      ...styles,
+      color: theme.colors.neutral02
     })
   };
 }
@@ -174,28 +180,38 @@ export const Select: React.FunctionComponent<SelectProps> = (
       } = props;
 
       return (
-        <div>
-          <Label>{labelText}</Label>
-          <ReactSelect
-            id={id}
-            components={{ ClearIndicator, DropdownIndicator, MultiValueRemove }}
-            aria-label={labelText}
-            name={name}
-            defaultValue={defaultValue}
-            options={options}
-            required={required}
-            isDisabled={disabled}
-            isMulti={multi}
-            isClearable={clearable}
-            onBlur={onBlur}
-            onFocus={onFocus}
-            onChange={onChange}
-            onMenuOpen={onOpen}
-            onMenuClose={onClose}
-            styles={getStyles(style)}
-            classNamePrefix="magma"
-          />
-        </div>
+        <ThemeContext.Consumer>
+          {theme =>
+            theme && (
+              <div>
+                <Label>{labelText}</Label>
+                <ReactSelect
+                  id={id}
+                  components={{
+                    ClearIndicator,
+                    DropdownIndicator,
+                    MultiValueRemove
+                  }}
+                  aria-label={labelText}
+                  name={name}
+                  defaultValue={defaultValue}
+                  options={options}
+                  required={required}
+                  isDisabled={disabled}
+                  isMulti={multi}
+                  isClearable={clearable}
+                  onBlur={onBlur}
+                  onFocus={onFocus}
+                  onChange={onChange}
+                  onMenuOpen={onOpen}
+                  onMenuClose={onClose}
+                  styles={getStyles(style, theme)}
+                  classNamePrefix="magma"
+                />
+              </div>
+            )
+          }
+        </ThemeContext.Consumer>
       );
     }}
   </SelectCore>

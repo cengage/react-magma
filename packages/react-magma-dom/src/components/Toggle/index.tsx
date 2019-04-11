@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { CheckboxCore } from 'react-magma-core';
-import { FocusStyles, HiddenStyles } from '../UtilityStyles';
+import { HiddenStyles } from '../UtilityStyles';
 import { CheckIcon } from '../Icon/types/CheckIcon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { magma } from '../../theme/magma';
+import { ThemeContext } from '../../theme/themeContext';
 
 enum ToggleTextPostition {
   left = 'left',
@@ -27,6 +27,7 @@ export interface ToggleProps {
   style?: React.CSSProperties;
   textPosition?: ToggleTextPostition;
   textVisuallyHidden?: boolean;
+  theme?: any;
   thumbStyle?: React.CSSProperties;
   trackStyle?: React.CSSProperties;
   value?: string;
@@ -41,9 +42,9 @@ const HiddenInput = styled.input`
 `;
 
 const Track = styled.span<{ checked?: boolean; disabled?: boolean }>`
-  background: ${magma.colors.neutral07};
+  background: ${props => props.theme.colors.neutral07};
   border: 2px solid;
-  border-color:  ${magma.colors.neutral05};
+  border-color: ${props => props.theme.colors.neutral05};
   border-radius: 12px;
   cursor: pointer;
   height: 24px;
@@ -53,25 +54,25 @@ const Track = styled.span<{ checked?: boolean; disabled?: boolean }>`
   ${props =>
     props.checked &&
     css`
-      background: ${magma.colors.success02};
-      border-color: ${magma.colors.success02};
+      background: ${props.theme.colors.success02};
+      border-color: ${props.theme.colors.success02};
     `}
 
   ${props =>
     props.disabled &&
     css`
-      background: ${magma.colors.neutral06};
-      border-color: ${magma.colors.neutral06};
+      background: ${props.theme.colors.neutral06};
+      border-color: ${props.theme.colors.neutral06};
       cursor: not-allowed;
     `}
 
   ${HiddenInput}:focus + label & {
-      ${FocusStyles}
-      outline-offset: 3px;
+    outline: 2px dotted ${props => props.theme.colors.pop03};
+    outline-offset: 3px;
   }
 
   &:before { // active state
-    background: ${magma.colors.neutral02};
+    background: ${props => props.theme.colors.neutral02};
     border-radius: 50%;
     content: '';
     display: block;
@@ -89,7 +90,7 @@ const Track = styled.span<{ checked?: boolean; disabled?: boolean }>`
     ${props =>
       props.checked &&
       css`
-        background: ${magma.colors.success02};
+        background: ${props.theme.colors.success02};
         left: 12px;
       `}
   }
@@ -104,9 +105,8 @@ const Track = styled.span<{ checked?: boolean; disabled?: boolean }>`
 `;
 
 const Thumb = styled.span<{ checked?: boolean; disabled?: boolean }>`
-  background: ${magma.colors.neutral08};
-  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3), 0 0 4px 0 rgba(0, 0, 0, 0.24),
-    0 0 5px 0 rgba(0, 0, 0, 0.22);
+  background: ${props => props.theme.colors.neutral08};
+  box-shadow: ${props => props.theme.colors.toggleBoxShadow};
   border-radius: 100%;
   height: 20px;
   left: 0;
@@ -125,13 +125,13 @@ const Thumb = styled.span<{ checked?: boolean; disabled?: boolean }>`
   ${props =>
     props.disabled &&
     css`
-      background: ${magma.colors.neutral05};
+      background: ${props.theme.colors.neutral05};
       box-shadow: 0 0 0;
     `}
 `;
 
 const IconContainer = styled.span`
-  color: ${magma.colors.neutral08};
+  color: ${props => props.theme.colors.neutral08};
   left: 7px;
   position: absolute;
   margin-top: -11px;
@@ -189,43 +189,59 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
       } = props;
 
       return (
-        <StyledContainer>
-          <HiddenInput
-            autoFocus={autoFocus}
-            id={id}
-            checked={checked}
-            disabled={disabled}
-            name={name}
-            required={required}
-            type="checkbox"
-            value={value}
-            onBlur={onBlur}
-            onChange={onChange}
-            onFocus={onFocus}
-          />
-          <StyledLabel htmlFor={id} style={style}>
-            {textPosition !== ToggleTextPostition.right &&
-              renderLabelText(
-                textVisuallyHidden,
-                labelText,
-                ToggleTextPostition.left,
-                labelStyle
-              )}
-            <Track checked={checked} disabled={disabled} style={trackStyle}>
-              <IconContainer>
-                <CheckIcon size={11} />
-              </IconContainer>
-              <Thumb checked={checked} disabled={disabled} style={thumbStyle} />
-            </Track>
-            {textPosition === ToggleTextPostition.right &&
-              renderLabelText(
-                textVisuallyHidden,
-                labelText,
-                ToggleTextPostition.right,
-                labelStyle
-              )}
-          </StyledLabel>
-        </StyledContainer>
+        <ThemeContext.Consumer>
+          {theme =>
+            theme && (
+              <StyledContainer>
+                <HiddenInput
+                  autoFocus={autoFocus}
+                  id={id}
+                  checked={checked}
+                  disabled={disabled}
+                  name={name}
+                  required={required}
+                  type="checkbox"
+                  value={value}
+                  onBlur={onBlur}
+                  onChange={onChange}
+                  onFocus={onFocus}
+                />
+                <StyledLabel htmlFor={id} style={style}>
+                  {textPosition !== ToggleTextPostition.right &&
+                    renderLabelText(
+                      textVisuallyHidden,
+                      labelText,
+                      ToggleTextPostition.left,
+                      labelStyle
+                    )}
+                  <Track
+                    checked={checked}
+                    disabled={disabled}
+                    style={trackStyle}
+                    theme={theme}
+                  >
+                    <IconContainer theme={theme}>
+                      <CheckIcon size={11} />
+                    </IconContainer>
+                    <Thumb
+                      checked={checked}
+                      disabled={disabled}
+                      style={thumbStyle}
+                      theme={theme}
+                    />
+                  </Track>
+                  {textPosition === ToggleTextPostition.right &&
+                    renderLabelText(
+                      textVisuallyHidden,
+                      labelText,
+                      ToggleTextPostition.right,
+                      labelStyle
+                    )}
+                </StyledLabel>
+              </StyledContainer>
+            )
+          }
+        </ThemeContext.Consumer>
       );
     }}
   </CheckboxCore>

@@ -13,6 +13,7 @@ export const Theme = css`
   }
 
   & body {
+    background: ${magma.colors.neutral08};
     color: ${magma.colors.neutral02};
     font-family: ${magma.bodyFont};
     font-style: normal;

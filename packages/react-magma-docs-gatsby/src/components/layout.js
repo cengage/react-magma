@@ -19,7 +19,10 @@ import {
   RadioGroup,
   Select,
   Toggle,
+  amgam,
+  amgamDark,
   magma,
+  ThemeContext,
   AddPersonIcon,
   AlertIcon,
   AndroidIcon,
@@ -259,6 +262,7 @@ import {
   Wrench3Icon,
   YoutubeIcon,
 } from 'react-magma-dom'
+import DemoComponent from './demo-component'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import { convertTextToId } from '../utils'
 import iconsArray from '../utils/icons'
@@ -268,6 +272,7 @@ import './syntax.css'
 
 const PreComponent = ({ className, ...props }) => {
   const hideCode = props.children.props.props.hideCode
+  
   return props.children.props.props &&
     props.children.props.props.className === 'language-.jsx' ? (
     <LiveProvider
@@ -287,6 +292,9 @@ const PreComponent = ({ className, ...props }) => {
         Select,
         Toggle,
         magma,
+        amgam,
+        amgamDark,
+        ThemeContext,
         AddPersonIcon,
         AlertIcon,
         AndroidIcon,
@@ -525,6 +533,7 @@ const PreComponent = ({ className, ...props }) => {
         WrenchIcon,
         Wrench3Icon,
         YoutubeIcon,
+        DemoComponent
       }}
     >
       <div

@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { IconProps } from '../Icon/utils';
 import { AlertIcon } from '../Icon/types/AlertIcon';
 import { Label } from '../Label';
-import { magma } from '../../theme/magma';
+import { ThemeContext } from '../../theme/themeContext';
 
 export enum IconPosition {
   left = 'left',
@@ -70,13 +70,16 @@ const InputWrapper = styled.div`
 `;
 
 const StyledInput = styled.input<InputProps>`
-  background: ${magma.colors.neutral08};
+  background: ${props => props.theme.colors.neutral08};
   border: 1px solid;
   border-color: ${props =>
-    props.errorMessage ? magma.colors.danger : magma.colors.neutral05};
+    props.errorMessage
+      ? props.theme.colors.danger
+      : props.theme.colors.neutral05};
   border-radius: 5px;
-  box-shadow: ${props => (props.errorMessage ? '0 0 0 1px #E70000' : '0 0 0')};
-  color: ${magma.colors.neutral02};
+  box-shadow: ${props =>
+    props.errorMessage ? `0 0 0 1px ${props.theme.colors.danger}` : '0 0 0'};
+  color: ${props => props.theme.colors.neutral02};
   display: block;
   font-size: ${props => {
     switch (props.inputSize) {
@@ -110,27 +113,27 @@ const StyledInput = styled.input<InputProps>`
   width: 100%;
 
   &::placeholder {
-    color: ${magma.colors.neutral04};
+    color: ${props => props.theme.colors.neutral04};
     opacity: 1;
   }
 
   &:focus {
-    border-color: ${magma.colors.pop03};
-    box-shadow: 0 0 0 1px ${magma.colors.pop03};
+    border-color: ${props => props.theme.colors.pop03};
+    box-shadow: 0 0 0 1px ${props => props.theme.colors.pop03};
     outline: 0;
   }
 
   &[disabled] {
-    background: ${magma.colors.neutral07};
+    background: ${props => props.theme.colors.neutral07};
     cursor: not-allowed;
   }
 `;
 
 const ErrorMessage = styled.div<TextProps>`
-  background: ${props => (props.inverse ? magma.colors.danger : 'none')};
+  background: ${props => (props.inverse ? props.theme.colors.danger : 'none')};
   border-radius: 5px;
   color: ${props =>
-    props.inverse ? magma.colors.neutral08 : magma.colors.danger};
+    props.inverse ? props.theme.colors.neutral08 : props.theme.colors.danger};
   font-size: 13px;
   margin-top: 5px;
   padding: ${props => (props.inverse ? '5px 10px' : '0')};
@@ -138,7 +141,9 @@ const ErrorMessage = styled.div<TextProps>`
 
 const HelperMessage = styled.div<TextProps>`
   color: ${props =>
-    props.inverse ? magma.colors.neutral08 : magma.colors.neutral04};
+    props.inverse
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral04};
   font-size: 13px;
   margin-top: 5px;
 `;
@@ -146,7 +151,7 @@ const HelperMessage = styled.div<TextProps>`
 const IconWrapper = styled.span<IconWrapperProps>`
   left: ${props => (props.iconPosition === 'left' ? '10px' : 'auto')};
   right: ${props => (props.iconPosition === 'right' ? '10px' : 'auto')};
-  color: ${magma.colors.neutral02};
+  color: ${props => props.theme.colors.neutral02};
   position: absolute;
   margin-top: -9px;
   top: 50%;
@@ -154,9 +159,9 @@ const IconWrapper = styled.span<IconWrapperProps>`
 
 const ErrorIconWrapper = styled.span<ErrorIconWrapperProps>`
   align-items: center;
-  background: ${magma.colors.danger};
+  background: ${props => props.theme.colors.danger};
   border-radius: 100%;
-  color: ${magma.colors.neutral08};
+  color: ${props => props.theme.colors.neutral08};
   display: flex;
   height: ${props => {
     switch (props.inputSize) {
@@ -247,54 +252,67 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
         } = props;
 
         return (
-          <Container style={style}>
-            {!labelVisuallyHidden && (
-              <Label inverse={inverse} htmlFor={id} style={labelStyle}>
-                {labelText}
-              </Label>
-            )}
-            <InputWrapper>
-              <StyledInput
-                ref={ref}
-                aria-label={labelVisuallyHidden ? labelText : null}
-                as={multiline ? 'textarea' : null}
-                autoFocus={autoFocus}
-                id={id}
-                disabled={disabled}
-                errorMessage={errorMessage}
-                iconPosition={iconPosition}
-                inputSize={inputSize ? inputSize : InputSize.medium}
-                labelText={labelText}
-                multiline={multiline}
-                placeholder={placeholder}
-                required={required}
-                style={inputStyle}
-                type={type ? type : InputType.text}
-                value={value}
-                onBlur={onBlur}
-                onChange={onChange}
-                onFocus={onFocus}
-              />
-              {errorMessage && (
-                <ErrorIconWrapper inputSize={inputSize}>
-                  <AlertIcon size={getErrorIconSize(inputSize)} />
-                </ErrorIconWrapper>
-              )}
-              {icon && (
-                <IconWrapper iconPosition={iconPosition}>
-                  {React.Children.only(
-                    React.cloneElement(icon, { size: getIconSize(inputSize) })
+          <ThemeContext.Consumer>
+            {theme =>
+              theme && (
+                <Container style={style}>
+                  {!labelVisuallyHidden && (
+                    <Label inverse={inverse} htmlFor={id} style={labelStyle}>
+                      {labelText}
+                    </Label>
                   )}
-                </IconWrapper>
-              )}
-            </InputWrapper>
-            {errorMessage && (
-              <ErrorMessage inverse={inverse}>{errorMessage}</ErrorMessage>
-            )}
-            {helperMessage && !errorMessage && (
-              <HelperMessage inverse={inverse}>{helperMessage}</HelperMessage>
-            )}
-          </Container>
+                  <InputWrapper>
+                    <StyledInput
+                      ref={ref}
+                      aria-label={labelVisuallyHidden ? labelText : null}
+                      as={multiline ? 'textarea' : null}
+                      autoFocus={autoFocus}
+                      id={id}
+                      disabled={disabled}
+                      errorMessage={errorMessage}
+                      iconPosition={iconPosition}
+                      inputSize={inputSize ? inputSize : InputSize.medium}
+                      labelText={labelText}
+                      multiline={multiline}
+                      placeholder={placeholder}
+                      required={required}
+                      style={inputStyle}
+                      theme={theme}
+                      type={type ? type : InputType.text}
+                      value={value}
+                      onBlur={onBlur}
+                      onChange={onChange}
+                      onFocus={onFocus}
+                    />
+                    {errorMessage && (
+                      <ErrorIconWrapper inputSize={inputSize} theme={theme}>
+                        <AlertIcon size={getErrorIconSize(inputSize)} />
+                      </ErrorIconWrapper>
+                    )}
+                    {icon && (
+                      <IconWrapper iconPosition={iconPosition} theme={theme}>
+                        {React.Children.only(
+                          React.cloneElement(icon, {
+                            size: getIconSize(inputSize)
+                          })
+                        )}
+                      </IconWrapper>
+                    )}
+                  </InputWrapper>
+                  {errorMessage && (
+                    <ErrorMessage inverse={inverse} theme={theme}>
+                      {errorMessage}
+                    </ErrorMessage>
+                  )}
+                  {helperMessage && !errorMessage && (
+                    <HelperMessage inverse={inverse} theme={theme}>
+                      {helperMessage}
+                    </HelperMessage>
+                  )}
+                </Container>
+              )
+            }
+          </ThemeContext.Consumer>
         );
       }}
     </InputCore>

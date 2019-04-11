@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { magma } from '../../theme/magma';
+import { ThemeContext } from '../../theme/themeContext';
 
 export interface HeadingProps {
   children: React.ReactChild | React.ReactChild[];
@@ -13,8 +13,6 @@ export interface HeadingProps {
 }
 
 export const baseHeadingStyles = css`
-  color: ${magma.colors.primary};
-  font-family: ${magma.headingFont};
   font-weight: 500;
   line-height: 1.1;
   margin: 20px 0 10px;
@@ -22,31 +20,43 @@ export const baseHeadingStyles = css`
 
 const StyledH1 = styled.h1`
   ${baseHeadingStyles};
+  color: ${props => props.theme.colors.primary};
   font-size: 40px;
 `;
 
 const StyledH2 = styled.h2`
   ${baseHeadingStyles};
+  color: ${props => props.theme.colors.primary};
+  font-family: ${props => props.theme.headingFont};
+
   font-size: 32px;
 `;
 
 const StyledH3 = styled.h3`
   ${baseHeadingStyles};
+  color: ${props => props.theme.colors.primary};
+  font-family: ${props => props.theme.headingFont};
   font-size: 26px;
 `;
 
 const StyledH4 = styled.h4`
   ${baseHeadingStyles};
+  color: ${props => props.theme.colors.primary};
+  font-family: ${props => props.theme.headingFont};
   font-size: 23px;
 `;
 
 const StyledH5 = styled.h5`
   ${baseHeadingStyles};
+  color: ${props => props.theme.colors.primary};
+  font-family: ${props => props.theme.headingFont};
   font-size: 20px;
 `;
 
 const StyledH6 = styled.h6`
   ${baseHeadingStyles};
+  color: ${props => props.theme.colors.primary};
+  font-family: ${props => props.theme.headingFont};
   font-size: 18px;
 `;
 
@@ -68,9 +78,19 @@ export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
     const HeadingComponent = renderHeading(level);
 
     return (
-      <HeadingComponent ref={ref} id={id} style={style} tabIndex={tabIndex}>
-        {children}
-      </HeadingComponent>
+      <ThemeContext.Consumer>
+        {theme => (
+          <HeadingComponent
+            ref={ref}
+            id={id}
+            style={style}
+            tabIndex={tabIndex}
+            theme={theme}
+          >
+            {children}
+          </HeadingComponent>
+        )}
+      </ThemeContext.Consumer>
     );
   }
 );

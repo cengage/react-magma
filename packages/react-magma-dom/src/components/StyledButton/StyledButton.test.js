@@ -19,6 +19,7 @@ const BASE_BUTTON_PROPS = {
   shape: ButtonShape.fill,
   size: ButtonSize.medium,
   textTransform: ButtonTextTransform.uppercase,
+  theme: magma,
   variant: ButtonVariant.solid
 };
 

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ThemeContext } from '../../theme/themeContext';
 import { CheckboxCore } from 'react-magma-core';
 import {
   DisplayInputStyles,
@@ -10,7 +11,6 @@ import { CheckIcon } from '../Icon/types/CheckIcon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';
-import { magma } from '../../theme/magma';
 
 export interface CheckboxProps {
   autoFocus?: boolean;
@@ -52,39 +52,44 @@ const StyledFakeInput = styled.span<{
   background: ${props => {
     if (props.inverse) {
       if (props.checked) {
-        return magma.colors.neutral08;
+        return props.theme.colors.neutral08;
       }
       return 'none';
     }
     if (props.disabled) {
-      return magma.colors.neutral06;
+      return props.theme.colors.neutral06;
     }
     if (props.checked) {
-      return props.color;
+      return props.color ? props.color : props.theme.colors.primary;
     }
-    return magma.colors.neutral08;
+    return props.theme.colors.neutral08;
   }};
   border-color: ${props => {
     if (props.inverse) {
       if (props.disabled) {
-        return magma.colors.disabledInverseText;
+        return props.theme.colors.disabledInverseText;
       }
-      return magma.colors.neutral08;
+      return props.theme.colors.neutral08;
     }
     if (props.disabled) {
-      return magma.colors.neutral05;
+      return props.theme.colors.neutral05;
     }
     if (!props.checked && !props.indeterminate) {
-      return magma.colors.neutral03;
+      return props.theme.colors.neutral03;
     }
-    return props.color;
+    return props.color ? props.color : props.theme.colors.primary;
   }};
   border-radius: 3px;
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
 
   svg {
     display: ${props => (props.disabled ? 'none' : 'block')};
-    fill: ${props => (props.inverse ? props.color : magma.colors.neutral08)};
+    fill: ${props =>
+      props.inverse
+        ? props.color
+          ? props.color
+          : props.theme.colors.primary
+        : props.theme.colors.neutral08};
     opacity: ${props => (props.checked ? '1' : '0')};
     pointer-events: none;
     transition: all 0.2s ease-out;
@@ -93,13 +98,17 @@ const StyledFakeInput = styled.span<{
   ${HiddenInput}:focus + label & {
     &:before {
       ${DisplayInputFocusStyles};
+      outline: 2px dotted ${props => props.theme.colors.pop03};
     }
   }
 
   &:after {
-    // active state
     background: ${props =>
-      props.inverse ? magma.colors.neutral08 : props.color};
+      props.inverse
+        ? props.theme.colors.neutral08
+        : props.color
+        ? props.color
+        : props.theme.colors.primary};
   }
 
   ${HiddenInput}:not (:disabled):active + label & {
@@ -109,9 +118,13 @@ const StyledFakeInput = styled.span<{
   }
 
   ${HiddenInput}:indeterminate + label & {
-    background: ${magma.colors.neutral08};
+    background: ${props => props.theme.colors.neutral08};
     border-color: ${props =>
-      props.inverse ? magma.colors.neutral08 : props.color};
+      props.inverse
+        ? props.theme.colors.neutral08
+        : props.color
+        ? props.color
+        : props.theme.colors.primary};
 
     svg {
       display: none;
@@ -120,7 +133,8 @@ const StyledFakeInput = styled.span<{
 `;
 
 const IndeterminateIcon = styled.span<{ color?: string }>`
-  background: ${props => props.color};
+  background: ${props =>
+    props.color ? props.color : props.theme.colors.primary};
   display: none;
   height: 2px;
   width: 10px;
@@ -137,7 +151,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
     this.setIndeterminate = this.setIndeterminate.bind(this);
   }
 
-  private checkboxInput = React.createRef<any>();
+  readonly checkboxInput = React.createRef<any>();
 
   componentDidMount() {
     this.setIndeterminate();
@@ -178,42 +192,54 @@ export class Checkbox extends React.Component<CheckboxProps> {
           } = this.props;
 
           return (
-            <StyledContainer style={style}>
-              <HiddenInput
-                autoFocus={autoFocus}
-                id={id}
-                checked={checked}
-                disabled={disabled}
-                indeterminate={indeterminate}
-                name={name}
-                ref={this.checkboxInput}
-                required={required}
-                type="checkbox"
-                value={value}
-                onBlur={onBlur}
-                onChange={onChange}
-                onFocus={onFocus}
-              />
-              <StyledLabel htmlFor={id} inverse={inverse} style={labelStyle}>
-                <StyledFakeInput
-                  checked={checked}
-                  color={color ? color : magma.colors.primary}
-                  disabled={disabled}
-                  inverse={inverse}
-                  style={inputStyle}
-                >
-                  <IndeterminateIcon
-                    color={color ? color : magma.colors.primary}
-                  />
-                  <CheckIcon size={12} />
-                </StyledFakeInput>
-                {textVisuallyHidden ? (
-                  <HiddenLabelText>{labelText}</HiddenLabelText>
-                ) : (
-                  labelText
-                )}
-              </StyledLabel>
-            </StyledContainer>
+            <ThemeContext.Consumer>
+              {theme =>
+                theme && (
+                  <StyledContainer style={style}>
+                    <HiddenInput
+                      autoFocus={autoFocus}
+                      id={id}
+                      checked={checked}
+                      disabled={disabled}
+                      indeterminate={indeterminate}
+                      name={name}
+                      ref={this.checkboxInput}
+                      required={required}
+                      type="checkbox"
+                      value={value}
+                      onBlur={onBlur}
+                      onChange={onChange}
+                      onFocus={onFocus}
+                    />
+                    <StyledLabel
+                      htmlFor={id}
+                      inverse={inverse}
+                      style={labelStyle}
+                    >
+                      <StyledFakeInput
+                        checked={checked}
+                        color={color ? color : ''}
+                        disabled={disabled}
+                        inverse={inverse}
+                        style={inputStyle}
+                        theme={theme}
+                      >
+                        <IndeterminateIcon
+                          color={color ? color : ''}
+                          theme={theme}
+                        />
+                        <CheckIcon size={12} />
+                      </StyledFakeInput>
+                      {textVisuallyHidden ? (
+                        <HiddenLabelText>{labelText}</HiddenLabelText>
+                      ) : (
+                        labelText
+                      )}
+                    </StyledLabel>
+                  </StyledContainer>
+                )
+              }
+            </ThemeContext.Consumer>
           );
         }}
       </CheckboxCore>

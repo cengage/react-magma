@@ -1,5 +1,4 @@
 import { css } from '@emotion/core';
-import { FocusStyles } from '../UtilityStyles';
 
 export const DisplayInputStyles = css`
   align-items: center;
@@ -42,5 +41,4 @@ export const DisplayInputFocusStyles = css`
   height: 30px;
   position: absolute;
   width: 30px;
-  ${FocusStyles};
 `;
