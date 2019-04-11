@@ -253,8 +253,8 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
 
         return (
           <ThemeContext.Consumer>
-            {context =>
-              context && (
+            {theme =>
+              theme && (
                 <Container style={style}>
                   {!labelVisuallyHidden && (
                     <Label inverse={inverse} htmlFor={id} style={labelStyle}>
@@ -277,7 +277,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                       placeholder={placeholder}
                       required={required}
                       style={inputStyle}
-                      theme={context}
+                      theme={theme}
                       type={type ? type : InputType.text}
                       value={value}
                       onBlur={onBlur}
@@ -285,12 +285,12 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                       onFocus={onFocus}
                     />
                     {errorMessage && (
-                      <ErrorIconWrapper inputSize={inputSize} theme={context}>
+                      <ErrorIconWrapper inputSize={inputSize} theme={theme}>
                         <AlertIcon size={getErrorIconSize(inputSize)} />
                       </ErrorIconWrapper>
                     )}
                     {icon && (
-                      <IconWrapper iconPosition={iconPosition} theme={context}>
+                      <IconWrapper iconPosition={iconPosition} theme={theme}>
                         {React.Children.only(
                           React.cloneElement(icon, {
                             size: getIconSize(inputSize)
@@ -300,12 +300,12 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                     )}
                   </InputWrapper>
                   {errorMessage && (
-                    <ErrorMessage inverse={inverse} theme={context}>
+                    <ErrorMessage inverse={inverse} theme={theme}>
                       {errorMessage}
                     </ErrorMessage>
                   )}
                   {helperMessage && !errorMessage && (
-                    <HelperMessage inverse={inverse} theme={context}>
+                    <HelperMessage inverse={inverse} theme={theme}>
                       {helperMessage}
                     </HelperMessage>
                   )}

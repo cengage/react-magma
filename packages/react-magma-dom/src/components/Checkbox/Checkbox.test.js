@@ -90,6 +90,17 @@ describe('Checkbox', () => {
     expect(span).toHaveStyleRule('border-color', magma.colors.neutral08);
   });
 
+  it('should render inverse with a passed in color', () => {
+    const color = '#FFFFFF';
+    const { container } = renderCheckbox({ color, inverse: true });
+    const span = container.querySelector('span');
+    const svg = container.querySelector('svg');
+
+    expect(svg).toHaveAttribute('fill', 'currentColor');
+    expect(span).toHaveStyleRule('background', 'none');
+    expect(span).toHaveStyleRule('border-color', magma.colors.neutral08);
+  });
+
   it('should render an inverse, disabled checkbox with the correct styles', () => {
     const { container } = renderCheckbox({ disabled: true, inverse: true });
     const span = container.querySelector('span');

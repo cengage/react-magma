@@ -27,13 +27,13 @@ function renderLabel(props) {
 
   return (
     <ThemeContext.Consumer>
-      {context =>
-        context && (
+      {theme =>
+        theme && (
           <StyledLabel
             style={style}
             htmlFor={htmlFor}
             inverse={inverse}
-            theme={context}
+            theme={theme}
           >
             {children}
           </StyledLabel>

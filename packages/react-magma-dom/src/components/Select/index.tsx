@@ -181,8 +181,8 @@ export const Select: React.FunctionComponent<SelectProps> = (
 
       return (
         <ThemeContext.Consumer>
-          {context =>
-            context && (
+          {theme =>
+            theme && (
               <div>
                 <Label>{labelText}</Label>
                 <ReactSelect
@@ -205,7 +205,7 @@ export const Select: React.FunctionComponent<SelectProps> = (
                   onChange={onChange}
                   onMenuOpen={onOpen}
                   onMenuClose={onClose}
-                  styles={getStyles(style, context)}
+                  styles={getStyles(style, theme)}
                   classNamePrefix="magma"
                 />
               </div>

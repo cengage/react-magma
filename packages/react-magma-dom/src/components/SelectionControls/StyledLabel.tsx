@@ -7,7 +7,6 @@ export interface StyledLabelProps {
   htmlFor: string;
   inverse?: boolean;
   style?: React.CSSProperties;
-  theme?: any;
 }
 
 const StyledLabelComponent = styled.label<StyledLabelProps>`
@@ -22,17 +21,16 @@ export const StyledLabel: React.FunctionComponent<StyledLabelProps> = ({
   children,
   htmlFor,
   inverse,
-  style,
-  theme
+  style
 }: StyledLabelProps) => (
   <ThemeContext.Consumer>
-    {context =>
-      context && (
+    {theme =>
+      theme && (
         <StyledLabelComponent
           htmlFor={htmlFor}
           inverse={inverse}
           style={style}
-          theme={context}
+          theme={theme}
         >
           {children}
         </StyledLabelComponent>

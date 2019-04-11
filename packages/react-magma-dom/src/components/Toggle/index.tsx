@@ -190,8 +190,8 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
 
       return (
         <ThemeContext.Consumer>
-          {context =>
-            context && (
+          {theme =>
+            theme && (
               <StyledContainer>
                 <HiddenInput
                   autoFocus={autoFocus}
@@ -206,7 +206,7 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
                   onChange={onChange}
                   onFocus={onFocus}
                 />
-                <StyledLabel htmlFor={id} style={style} theme={context}>
+                <StyledLabel htmlFor={id} style={style}>
                   {textPosition !== ToggleTextPostition.right &&
                     renderLabelText(
                       textVisuallyHidden,
@@ -218,16 +218,16 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
                     checked={checked}
                     disabled={disabled}
                     style={trackStyle}
-                    theme={context}
+                    theme={theme}
                   >
-                    <IconContainer theme={context}>
+                    <IconContainer theme={theme}>
                       <CheckIcon size={11} />
                     </IconContainer>
                     <Thumb
                       checked={checked}
                       disabled={disabled}
                       style={thumbStyle}
-                      theme={context}
+                      theme={theme}
                     />
                   </Track>
                   {textPosition === ToggleTextPostition.right &&

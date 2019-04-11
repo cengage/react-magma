@@ -50,8 +50,8 @@ export const LinkButton: React.FunctionComponent<LinkButtonProps> = ({
   style
 }: LinkButtonProps) => (
   <ThemeContext.Consumer>
-    {context =>
-      context && (
+    {theme =>
+      theme && (
         <LinkButtonComponent
           className={className}
           autoFocus={autoFocus}
@@ -59,7 +59,7 @@ export const LinkButton: React.FunctionComponent<LinkButtonProps> = ({
           disabled={disabled}
           inverse={inverse}
           style={style}
-          theme={context}
+          theme={theme}
         >
           {children}
         </LinkButtonComponent>

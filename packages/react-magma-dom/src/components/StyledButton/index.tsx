@@ -354,8 +354,8 @@ export const StyledButton: React.FunctionComponent<
     ref: any
   ) => (
     <ThemeContext.Consumer>
-      {context =>
-        context && (
+      {theme =>
+        theme && (
           <StyledButtonComponent
             ref={ref}
             as={as}
@@ -374,7 +374,7 @@ export const StyledButton: React.FunctionComponent<
             size={size}
             style={style}
             textTransform={textTransform}
-            theme={context}
+            theme={theme}
             to={to}
             variant={variant}
           >

@@ -79,13 +79,13 @@ export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
 
     return (
       <ThemeContext.Consumer>
-        {context => (
+        {theme => (
           <HeadingComponent
             ref={ref}
             id={id}
             style={style}
             tabIndex={tabIndex}
-            theme={context}
+            theme={theme}
           >
             {children}
           </HeadingComponent>
