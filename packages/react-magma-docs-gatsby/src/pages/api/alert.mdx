@@ -1,0 +1,77 @@
+---
+title: 'Alerts'
+order: 2
+---
+
+import DocsHeading from '../../components/docs-heading'
+
+<DocsHeading to="/design/alerts/" type="design">
+  Alerts
+</DocsHeading>
+
+## Basic Usage
+
+```.jsx
+  <div>
+    <Alert>Default Alert</Alert>
+    <Alert variant="info">Info Alert</Alert>
+    <Alert variant="success">Success Alert</Alert>
+    <Alert variant="warning">Warning Alert</Alert>
+    <Alert variant="danger">Danger Alert</Alert>
+  </div>
+```
+
+## With Icon
+
+```.jsx
+  <div>
+    <Alert showIcon>Default Alert</Alert>
+    <Alert showIcon variant="info">Info Alert</Alert>
+    <Alert showIcon variant="success">Success Alert</Alert>
+    <Alert showIcon variant="warning">Warning Alert</Alert>
+    <Alert showIcon variant="danger">Danger Alert</Alert>
+  </div>
+```
+
+## Dismissable
+
+```.jsx
+  class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          showAlert: false
+        }
+
+        this.onShowAlert = this.onShowAlert.bind(this);
+        this.onAlertDismiss = this.onAlertDismiss.bind(this);
+      }
+
+      onShowAlert() {
+        this.setState({showAlert: true})
+      }
+
+      onAlertDismiss() {
+        this.setState({showAlert: false})
+      }
+
+      render() {
+        const { showAlert } = this.state;
+
+        return (<>
+          {showAlert && <Alert dismissable onDismiss={this.onAlertDismiss}>Dismiss Me</Alert>}
+          <Button onClick={this.onShowAlert}>Show Alert</Button>
+        </>)
+      }
+    }
+```
+
+## Alert Props
+
+| Prop     | Type                | Default | Required |
+| -------- | ------------------- | ------- | :------: |
+| children | node                |         | &#10003; |
+| level    | number              |         | &#10003; |
+| id       | string              |         |
+| style    | React.CSSProperties |         |
+| ref      | React.Ref           |         |
