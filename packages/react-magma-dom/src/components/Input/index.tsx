@@ -328,6 +328,13 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                         <Button
                           variant={ButtonVariant.link}
                           onClick={togglePasswordShown}
+                          style={{
+                            height: '30px',
+                            marginTop: '8px',
+                            marginRight: '0',
+                            left: '7px',
+                            borderRadius: '3px'
+                          }}
                         >
                           {passwordShown ? 'Hide' : 'Show'}
                         </Button>
