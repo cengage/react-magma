@@ -5,6 +5,8 @@ import { IconProps } from '../Icon/utils';
 import { AlertIcon } from '../Icon/types/AlertIcon';
 import { Label } from '../Label';
 import { ThemeContext } from '../../theme/themeContext';
+import { Button } from '../Button';
+import { ButtonVariant } from '../StyledButton';
 
 export enum IconPosition {
   left = 'left',
@@ -47,6 +49,7 @@ export interface InputProps {
   style?: React.CSSProperties;
   type?: InputType;
   value?: string | number;
+  hidePasswordMaskButton?: boolean;
 }
 
 interface IconWrapperProps {
@@ -157,6 +160,14 @@ const IconWrapper = styled.span<IconWrapperProps>`
   top: 50%;
 `;
 
+const PassowrdMaskWrapper = styled.span`
+  left: auto;
+  right: 10px;
+  position: absolute;
+  margin-top: -23px;
+  top: 50%;
+`;
+
 const ErrorIconWrapper = styled.span<ErrorIconWrapperProps>`
   align-items: center;
   background: ${props => props.theme.colors.danger};
@@ -229,7 +240,14 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
       onChange={props.onChange}
       onFocus={props.onFocus}
     >
-      {({ onBlur, onChange, onFocus, value }) => {
+      {({
+        onBlur,
+        onChange,
+        onFocus,
+        value,
+        togglePasswordShown,
+        passwordShown
+      }) => {
         const {
           autoFocus,
           disabled,
@@ -248,7 +266,8 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
           placeholder,
           style,
           type,
-          required
+          required,
+          hidePasswordMaskButton
         } = props;
 
         return (
@@ -278,7 +297,13 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                       required={required}
                       style={inputStyle}
                       theme={theme}
-                      type={type ? type : InputType.text}
+                      type={
+                        type
+                          ? type === InputType.password && passwordShown
+                            ? InputType.text
+                            : type
+                          : InputType.text
+                      }
                       value={value}
                       onBlur={onBlur}
                       onChange={onChange}
@@ -297,6 +322,16 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                           })
                         )}
                       </IconWrapper>
+                    )}
+                    {type === InputType.password && !hidePasswordMaskButton && (
+                      <PassowrdMaskWrapper>
+                        <Button
+                          variant={ButtonVariant.link}
+                          onClick={togglePasswordShown}
+                        >
+                          {passwordShown ? 'Hide' : 'Show'}
+                        </Button>
+                      </PassowrdMaskWrapper>
                     )}
                   </InputWrapper>
                   {errorMessage && (

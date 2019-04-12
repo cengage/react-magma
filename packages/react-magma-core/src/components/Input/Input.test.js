@@ -49,6 +49,18 @@ describe('InputCore', () => {
 
       expect(component.state('value')).toEqual(value);
     });
+
+    it('should update passwordShown when togglePasswordShown is called', () => {
+      const component = inputSetup();
+
+      component.instance().togglePasswordShown();
+
+      expect(component.state('passwordShown')).toBeTruthy();
+
+      component.instance().togglePasswordShown();
+
+      expect(component.state('passwordShown')).toBeFalsy();
+    });
   });
 
   describe('handle blur', () => {

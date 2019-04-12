@@ -4,7 +4,9 @@ title: 'Inputs'
 
 import DocsHeading from '../../components/docs-heading'
 
-<DocsHeading to="/design/inputs/" type="design">Inputs</DocsHeading>
+<DocsHeading to="/design/inputs/" type="design">
+  Inputs
+</DocsHeading>
 
 Input fields are utilized in a number of ways for both collecting and displaying data from the user.
 
@@ -24,11 +26,19 @@ Input fields are utilized in a number of ways for both collecting and displaying
 ## Password
 
 ```.jsx
+  <>
     <Input
-        id='inputPw'
-        labelText='Password'
-        placeholder='Enter your password'
-        type='password' />
+      id='inputPw'
+      labelText='Password'
+      placeholder='Enter your password'
+      type='password' />
+    <Input
+      hidePasswordMaskButton
+      id='inputPwWithNoMask'
+      labelText='Password With No Unmask Button'
+      placeholder='Enter your password'
+      type='password' />
+  </>
 ```
 
 ## Number
@@ -296,28 +306,29 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 
 ## Input Props
 
-| Prop                | Type                                                | Default  | Required |
-| ------------------- | --------------------------------------------------- | -------- | :------: |
-| id                  | string                                              |          | &#10003; |
-| labelText           | string                                              |          | &#10003; |
-| autoFocus           | boolean                                             |          |
-| disabled            | boolean                                             |          |
-| errorMessage        | string                                              |          |
-| onBlur              | func                                                |          |
-| onChange            | func                                                |          |
-| onFocus             | func                                                |          |
-| helperMessage       | string                                              |          |
-| icon                | string                                              |          |
-| iconPosition        | enum: 'left' &#124; 'right' &#124;                  | 'left'   |
-| inputSize           | enum: 'small' &#124; 'medium' &#124; 'large' &#124; | 'medium' |
-| inputStyle          | React.CSSProperties                                 |          |
-| inverse             | boolean                                             |          |
-| labelStyle          | React.CSSProperties                                 |          |
-| labelVisuallyHidden | boolean                                             |          |
-| multiline           | boolean                                             |          |
-| placeholder         | string                                              |          |
-| required            | boolean                                             |          |
-| type                | enum: 'text' &#124; 'password' &#124; 'number'      | 'text'   |
-| value               | string                                              |          |
-| style               | React.CSSProperties                                 |          |
-| ref                 | React.Ref                                           |          |
+| Prop                   | Type                                                | Default  | Required |
+| ---------------------- | --------------------------------------------------- | -------- | :------: |
+| id                     | string                                              |          | &#10003; |
+| labelText              | string                                              |          | &#10003; |
+| autoFocus              | boolean                                             |          |
+| disabled               | boolean                                             |          |
+| errorMessage           | string                                              |          |
+| onBlur                 | func                                                |          |
+| onChange               | func                                                |          |
+| onFocus                | func                                                |          |
+| helperMessage          | string                                              |          |
+| icon                   | string                                              |          |
+| iconPosition           | enum: 'left' &#124; 'right' &#124;                  | 'left'   |
+| inputSize              | enum: 'small' &#124; 'medium' &#124; 'large' &#124; | 'medium' |
+| inputStyle             | React.CSSProperties                                 |          |
+| inverse                | boolean                                             |          |
+| labelStyle             | React.CSSProperties                                 |          |
+| labelVisuallyHidden    | boolean                                             |          |
+| multiline              | boolean                                             |          |
+| placeholder            | string                                              |          |
+| required               | boolean                                             |          |
+| type                   | enum: 'text' &#124; 'password' &#124; 'number'      | 'text'   |
+| hidePasswordMaskButton | boolean                                             |          |
+| value                  | string                                              |          |
+| style                  | React.CSSProperties                                 |          |
+| ref                    | React.Ref                                           |          |
