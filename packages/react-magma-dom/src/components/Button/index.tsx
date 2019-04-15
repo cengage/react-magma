@@ -14,7 +14,7 @@ import styled from '@emotion/styled';
 import { IconProps } from '../Icon/utils';
 import { Omit } from '../utils';
 
-interface IconOnlyButtonProps extends Omit<ButtonProps, 'children'> {
+export interface IconOnlyButtonProps extends Omit<ButtonProps, 'children'> {
   icon: React.ReactElement<IconProps>;
   ariaLabel: string;
 }

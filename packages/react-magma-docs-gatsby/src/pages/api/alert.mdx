@@ -14,7 +14,7 @@ import DocsHeading from '../../components/docs-heading'
 ```.jsx
   <div>
     <Alert>Default Alert</Alert>
-    <Alert variant="info">Info Alert</Alert>
+    <Alert variant="info">Info Alert with <a href="#">linked text</a></Alert>
     <Alert variant="success">Success Alert</Alert>
     <Alert variant="warning">Warning Alert</Alert>
     <Alert variant="danger">Danger Alert</Alert>
@@ -29,7 +29,7 @@ import DocsHeading from '../../components/docs-heading'
     <Alert showIcon variant="info">Info Alert</Alert>
     <Alert showIcon variant="success">Success Alert</Alert>
     <Alert showIcon variant="warning">Warning Alert</Alert>
-    <Alert showIcon variant="danger">Danger Alert</Alert>
+    <Alert showIcon variant="danger">Danger Alert<br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Alert>
   </div>
 ```
 
@@ -59,7 +59,7 @@ import DocsHeading from '../../components/docs-heading'
         const { showAlert } = this.state;
 
         return (<>
-          {showAlert && <Alert dismissable onDismiss={this.onAlertDismiss}>Dismiss Me</Alert>}
+          {showAlert && <Alert dismissable onDismiss={this.onAlertDismiss}>Dismiss Me<br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Alert>}
           <Button onClick={this.onShowAlert}>Show Alert</Button>
         </>)
       }

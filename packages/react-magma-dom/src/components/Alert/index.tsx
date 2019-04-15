@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/themeContext';
 import { Info2Icon } from '../Icon/types/Info2Icon';
@@ -33,6 +34,7 @@ export interface AlertProps {
 }
 
 const StyledAlert = styled.div<AlertProps>`
+  align-items: center;
   background-color: ${props => {
     switch (props.variant) {
       case 'info':
@@ -47,30 +49,57 @@ const StyledAlert = styled.div<AlertProps>`
         return props.theme.colors.neutral03;
     }
   }};
+  border-radius: 3px;
+  color: ${props =>
+    props.variant === 'warning'
+      ? props.theme.colors.neutral02
+      : props.theme.colors.neutral08};
+  display: flex;
   position: relative;
   padding: 10px;
   margin: 10px;
   max-width: 100%;
+
   a {
+    color: inherit;
     font-weight: bold;
     text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
   }
 `;
 
-const DismissableIconWrapper = styled.span`
+const AlertContents = styled.div`
+  flex-grow: 1;
+`;
+
+const IconWrapperStyles = css`
   align-items: center;
   display: flex;
-  justify-content: center;
-  padding: 3px;
-  right: 10px;
-  position: absolute;
-  top: -5px;
+  flex-shrink: 0;
+`;
+
+const IconWrapper = styled.span`
+  ${IconWrapperStyles}
+  padding-right: 10px;
+`;
+
+const DismissableIconWrapper = styled.span`
+  ${IconWrapperStyles}
+  padding-left: 10px;
 `;
 
 function renderIcon(variant = 'info') {
   const Icon = VARIANT_ICON[variant];
 
-  return <Icon />;
+  return (
+    <IconWrapper>
+      <Icon size={20} />
+    </IconWrapper>
+  );
 }
 
 export const Alert: React.FunctionComponent<AlertProps> = ({
@@ -86,14 +115,15 @@ export const Alert: React.FunctionComponent<AlertProps> = ({
       theme && (
         <StyledAlert variant={variant} style={style} theme={theme}>
           {showIcon && renderIcon(variant)}
-          {children}
+          <AlertContents>{children}</AlertContents>
           {dismissable && (
             <DismissableIconWrapper>
               <Button
-                variant={ButtonVariant.link}
-                ariaLabel="Dismiss icon"
-                icon={<CrossIcon />}
+                ariaLabel="Close this message"
+                icon={<CrossIcon size={15} />}
                 onClick={onDismiss}
+                style={{ color: 'inherit' }}
+                variant={ButtonVariant.link}
               />
             </DismissableIconWrapper>
           )}

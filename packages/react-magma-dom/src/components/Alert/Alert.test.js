@@ -15,40 +15,47 @@ const renderAlert = (myProps = {}) => {
 
 describe('Alert', () => {
   it('should render an alert with default variant', () => {
-    const { getByText } = renderAlert();
-    const alert = getByText(alertText);
+    const { container } = renderAlert();
 
-    expect(alert).toBeInTheDocument();
-    expect(alert).toHaveStyleRule('background-color', '#575757');
+    expect(container.firstChild).toBeInTheDocument();
+    expect(container.firstChild).toHaveStyleRule('background-color', '#575757');
   });
 
   describe('Variants', () => {
     it('should render an alert with info variant', () => {
-      const { getByText } = renderAlert({ variant: AlertVariant.info });
-      const alert = getByText(alertText);
+      const { container } = renderAlert({ variant: AlertVariant.info });
 
-      expect(alert).toHaveStyleRule('background-color', '#575757');
+      expect(container.firstChild).toHaveStyleRule(
+        'background-color',
+        '#575757'
+      );
     });
 
     it('should render an alert with success variant', () => {
-      const { getByText } = renderAlert({ variant: AlertVariant.success });
-      const alert = getByText(alertText);
+      const { container } = renderAlert({ variant: AlertVariant.success });
 
-      expect(alert).toHaveStyleRule('background-color', '#3A8200');
+      expect(container.firstChild).toHaveStyleRule(
+        'background-color',
+        '#3A8200'
+      );
     });
 
     it('should render an alert with warning variant', () => {
-      const { getByText } = renderAlert({ variant: AlertVariant.warning });
-      const alert = getByText(alertText);
+      const { container } = renderAlert({ variant: AlertVariant.warning });
 
-      expect(alert).toHaveStyleRule('background-color', '#FFC72C');
+      expect(container.firstChild).toHaveStyleRule(
+        'background-color',
+        '#FFC72C'
+      );
     });
 
     it('should render an alert with danger variant', () => {
-      const { getByText } = renderAlert({ variant: AlertVariant.danger });
-      const alert = getByText(alertText);
+      const { container } = renderAlert({ variant: AlertVariant.danger });
 
-      expect(alert).toHaveStyleRule('background-color', '#E70000');
+      expect(container.firstChild).toHaveStyleRule(
+        'background-color',
+        '#E70000'
+      );
     });
   });
 
@@ -58,7 +65,7 @@ describe('Alert', () => {
         showIcon: true
       });
       const alertIcon = container.querySelector('svg');
-      const { container: iconContainer } = render(<Info2Icon />);
+      const { container: iconContainer } = render(<Info2Icon size={20} />);
       const expectedIcon = iconContainer.querySelector('svg');
 
       expect(alertIcon).toEqual(expectedIcon);
@@ -70,7 +77,7 @@ describe('Alert', () => {
         variant: AlertVariant.info
       });
       const alertIcon = container.querySelector('svg');
-      const { container: iconContainer } = render(<Info2Icon />);
+      const { container: iconContainer } = render(<Info2Icon size={20} />);
       const expectedIcon = iconContainer.querySelector('svg');
 
       expect(alertIcon).toEqual(expectedIcon);
@@ -82,7 +89,7 @@ describe('Alert', () => {
         variant: AlertVariant.success
       });
       const alertIcon = container.querySelector('svg');
-      const { container: iconContainer } = render(<CheckIcon />);
+      const { container: iconContainer } = render(<CheckIcon size={20} />);
       const expectedIcon = iconContainer.querySelector('svg');
 
       expect(alertIcon).toEqual(expectedIcon);
@@ -94,7 +101,9 @@ describe('Alert', () => {
         variant: AlertVariant.warning
       });
       const alertIcon = container.querySelector('svg');
-      const { container: iconContainer } = render(<NotificationIcon />);
+      const { container: iconContainer } = render(
+        <NotificationIcon size={20} />
+      );
       const expectedIcon = iconContainer.querySelector('svg');
 
       expect(alertIcon).toEqual(expectedIcon);
@@ -106,7 +115,7 @@ describe('Alert', () => {
         variant: AlertVariant.danger
       });
       const alertIcon = container.querySelector('svg');
-      const { container: iconContainer } = render(<BlockedIcon />);
+      const { container: iconContainer } = render(<BlockedIcon size={20} />);
       const expectedIcon = iconContainer.querySelector('svg');
 
       expect(alertIcon).toEqual(expectedIcon);
@@ -116,7 +125,7 @@ describe('Alert', () => {
   describe('Dismissable', () => {
     it('should render a dismissable icon button', () => {
       const { getByLabelText } = renderAlert({ dismissable: true });
-      const dismissableIconButton = getByLabelText('Dismiss icon');
+      const dismissableIconButton = getByLabelText('Close this message');
 
       expect(dismissableIconButton).toBeInTheDocument();
     });
@@ -127,7 +136,7 @@ describe('Alert', () => {
         dismissable: true,
         onDismiss: onDismissSpy
       });
-      const dismissableIconButton = getByLabelText('Dismiss icon');
+      const dismissableIconButton = getByLabelText('Close this message');
 
       fireEvent.click(dismissableIconButton);
 
@@ -137,10 +146,9 @@ describe('Alert', () => {
 
   it('should render custom styles', () => {
     const color = '#cccccc';
-    const { getByText } = renderAlert({ style: { color } });
-    const alert = getByText(alertText);
+    const { container } = renderAlert({ style: { color } });
 
-    expect(alert).toHaveStyle(`color: ${color}`);
+    expect(container.firstChild).toHaveStyle(`color: ${color}`);
   });
 
   it('Does not violate accessibility standards', () => {
