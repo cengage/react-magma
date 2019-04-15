@@ -160,7 +160,7 @@ const IconWrapper = styled.span<IconWrapperProps>`
   top: 50%;
 `;
 
-const PassowrdMaskWrapper = styled.span`
+const PasswordMaskWrapper = styled.span`
   left: auto;
   right: 10px;
   position: absolute;
@@ -324,7 +324,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                       </IconWrapper>
                     )}
                     {type === InputType.password && !hidePasswordMaskButton && (
-                      <PassowrdMaskWrapper>
+                      <PasswordMaskWrapper>
                         <Button
                           variant={ButtonVariant.link}
                           onClick={togglePasswordShown}
@@ -338,7 +338,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                         >
                           {passwordShown ? 'Hide' : 'Show'}
                         </Button>
-                      </PassowrdMaskWrapper>
+                      </PasswordMaskWrapper>
                     )}
                   </InputWrapper>
                   {errorMessage && (
