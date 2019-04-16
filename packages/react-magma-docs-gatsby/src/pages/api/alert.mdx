@@ -21,18 +21,6 @@ import DocsHeading from '../../components/docs-heading'
   </div>
 ```
 
-## With Icon
-
-```.jsx
-  <div>
-    <Alert showIcon>Default Alert</Alert>
-    <Alert showIcon variant="info">Info Alert</Alert>
-    <Alert showIcon variant="success">Success Alert</Alert>
-    <Alert showIcon variant="warning">Warning Alert</Alert>
-    <Alert showIcon variant="danger">Danger Alert<br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Alert>
-  </div>
-```
-
 ## Dismissable
 
 ```.jsx
@@ -43,11 +31,11 @@ import DocsHeading from '../../components/docs-heading'
           showAlert: false
         }
 
-        this.onShowAlert = this.onShowAlert.bind(this);
+        this.onAlertShow = this.onAlertShow.bind(this);
         this.onAlertDismiss = this.onAlertDismiss.bind(this);
       }
 
-      onShowAlert() {
+      onAlertShow() {
         this.setState({showAlert: true})
       }
 
@@ -60,7 +48,7 @@ import DocsHeading from '../../components/docs-heading'
 
         return (<>
           {showAlert && <Alert dismissable onDismiss={this.onAlertDismiss}>Dismiss Me<br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Alert>}
-          <Button onClick={this.onShowAlert}>Show Alert</Button>
+          <Button onClick={this.onAlertShow}>Show Alert</Button>
         </>)
       }
     }
@@ -68,10 +56,10 @@ import DocsHeading from '../../components/docs-heading'
 
 ## Alert Props
 
-| Prop     | Type                | Default | Required |
-| -------- | ------------------- | ------- | :------: |
-| children | node                |         | &#10003; |
-| level    | number              |         | &#10003; |
-| id       | string              |         |
-| style    | React.CSSProperties |         |
-| ref      | React.Ref           |         |
+| Prop        | Type                                                           | Default | Required |
+| ----------- | -------------------------------------------------------------- | ------- | :------: |
+| children    | node                                                           |         | &#10003; |
+| dismissable | boolean                                                        |         |          |
+| variant     | enum: 'info' &#124; 'success' &#124; 'warning' &#124; 'danger' |         |
+| style       | React.CSSProperties                                            |         |
+| onDismiss   | func                                                           |         |
