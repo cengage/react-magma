@@ -1,6 +1,6 @@
 import React from 'react';
 import { axe } from 'jest-axe';
-import { Input } from '.';
+import { Input, InputType } from '.';
 import { render, fireEvent, cleanup } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 import { CheckIcon } from '../Icon/types/CheckIcon';
@@ -229,6 +229,53 @@ describe('Input', () => {
     const input = getByLabelText(INPUT_PROPS.labelText);
 
     expect(input).toHaveAttribute('aria-label', INPUT_PROPS.labelText);
+  });
+
+  describe('password input', () => {
+    it('renders a show/hide button on password inputs', () => {
+      const { getByText } = renderInput({ type: InputType.password });
+
+      expect(getByText('Show')).toBeInTheDocument();
+    });
+
+    it('does not render a show/hide button when hidePasswordMaskButton is set to true', () => {
+      const { queryByText } = renderInput({
+        type: InputType.password,
+        hidePasswordMaskButton: true
+      });
+
+      expect(queryByText('Show')).not.toBeInTheDocument();
+    });
+
+    it('unmasks password when show button is clicked', () => {
+      const { getByText, getByLabelText } = renderInput({
+        type: InputType.password
+      });
+      const button = getByText('Show');
+      const input = getByLabelText(INPUT_PROPS.labelText);
+
+      fireEvent.click(button);
+
+      expect(input).toHaveProperty('type', 'text');
+      expect(button).toHaveTextContent('Hide');
+    });
+
+    it('masks password when the hide button is clicked', () => {
+      const { getByText, getByLabelText } = renderInput({
+        type: InputType.password
+      });
+      const button = getByText('Show');
+      const input = getByLabelText(INPUT_PROPS.labelText);
+
+      fireEvent.click(button);
+
+      expect(button).toHaveTextContent('Hide');
+
+      fireEvent.click(button);
+
+      expect(button).toHaveTextContent('Show');
+      expect(input).toHaveProperty('type', 'password');
+    });
   });
 
   describe('sizes', () => {

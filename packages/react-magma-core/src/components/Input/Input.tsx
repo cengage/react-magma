@@ -12,6 +12,7 @@ export class InputCore extends React.Component<InputCoreProps, InputCoreState> {
     this.onBlur = this.onBlur.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onFocus = this.onFocus.bind(this);
+    this.togglePasswordShown = this.togglePasswordShown.bind(this);
   }
 
   onBlur() {
@@ -29,6 +30,10 @@ export class InputCore extends React.Component<InputCoreProps, InputCoreState> {
     this.setState(() => ({ value }));
   }
 
+  togglePasswordShown() {
+    this.setState({ passwordShown: !this.state.passwordShown });
+  }
+
   render() {
     return this.props.children({
       ...this.state,
@@ -36,6 +41,8 @@ export class InputCore extends React.Component<InputCoreProps, InputCoreState> {
       onBlur: this.onBlur,
       onChange: this.onChange,
       onFocus: this.onFocus,
+      togglePasswordShown: this.togglePasswordShown,
+      passwordShown: this.state.passwordShown,
       value: this.state.value
     });
   }
@@ -51,4 +58,5 @@ export interface InputCoreProps {
 
 export interface InputCoreState {
   value?: string;
+  passwordShown?: boolean;
 }
