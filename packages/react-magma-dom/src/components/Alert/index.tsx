@@ -27,7 +27,6 @@ export enum AlertVariant {
 export interface AlertProps {
   children: React.ReactNode;
   dismissable?: boolean;
-  showIcon?: boolean;
   variant?: AlertVariant;
   style?: React.CSSProperties;
   onDismiss?: () => void;
@@ -105,7 +104,6 @@ function renderIcon(variant = 'info') {
 export const Alert: React.FunctionComponent<AlertProps> = ({
   variant,
   dismissable,
-  showIcon,
   style,
   children,
   onDismiss
@@ -114,7 +112,7 @@ export const Alert: React.FunctionComponent<AlertProps> = ({
     {theme =>
       theme && (
         <StyledAlert variant={variant} style={style} theme={theme}>
-          {showIcon && renderIcon(variant)}
+          {renderIcon(variant)}
           <AlertContents>{children}</AlertContents>
           {dismissable && (
             <DismissableIconWrapper>
