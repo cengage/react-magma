@@ -22,6 +22,7 @@ import {
   amgam,
   amgamDark,
   magma,
+  GlobalStyles,
   ThemeContext,
   AddPersonIcon,
   AlertIcon,
@@ -577,6 +578,7 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <>
+        <GlobalStyles />
         <Helmet
           title={data.site.siteMetadata.title}
           meta={[

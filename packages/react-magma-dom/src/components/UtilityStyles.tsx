@@ -1,5 +1,4 @@
 import { css } from '@emotion/core';
-import { magma } from '../theme/magma';
 
 export const HiddenStyles = css`
   clip: rect(1px, 1px, 1px, 1px);
