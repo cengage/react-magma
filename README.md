@@ -4,6 +4,8 @@
 
 ### Installation
 
+React v16.5 or greater
+
 Make sure you have a `.npmrc` file and are using http://nexus.mindtap.corp.web/content/groups/npm.group/ as your registry.
 
 `npm i react-magma-dom`
