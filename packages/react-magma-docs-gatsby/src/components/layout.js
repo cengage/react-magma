@@ -297,6 +297,7 @@ const PreComponent = ({ className, ...props }) => {
         magma,
         amgam,
         amgamDark,
+        GlobalStyles,
         ThemeContext,
         AddPersonIcon,
         AlertIcon,

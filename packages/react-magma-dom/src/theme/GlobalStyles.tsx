@@ -33,6 +33,11 @@ function getStyles(theme) {
         color: ${theme.colors.foundation01};
         text-decoration: none;
       }
+
+      &:focus {
+        outline: 2px dotted ${theme.colors.pop03};
+        outline-offset: 3px;
+      }
     }
 
     h1,
