@@ -1,0 +1,65 @@
+---
+title: 'Alerts'
+order: 2
+---
+
+import DocsHeading from '../../components/docs-heading'
+
+<DocsHeading to="/design/alerts/" type="design">
+  Alerts
+</DocsHeading>
+
+## Basic Usage
+
+```.jsx
+  <div>
+    <Alert>Default Alert</Alert>
+    <Alert variant="info">Info Alert with <a href="#">linked text</a></Alert>
+    <Alert variant="success">Success Alert</Alert>
+    <Alert variant="warning">Warning Alert</Alert>
+    <Alert variant="danger">Danger Alert<br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Alert>
+  </div>
+```
+
+## Dismissable
+
+```.jsx
+  class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          showAlert: false
+        }
+
+        this.onAlertShow = this.onAlertShow.bind(this);
+        this.onAlertDismiss = this.onAlertDismiss.bind(this);
+      }
+
+      onAlertShow() {
+        this.setState({showAlert: true})
+      }
+
+      onAlertDismiss() {
+        this.setState({showAlert: false})
+      }
+
+      render() {
+        const { showAlert } = this.state;
+
+        return (<>
+          {showAlert && <Alert dismissable onDismiss={this.onAlertDismiss}>Dismiss Me<br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Alert>}
+          <Button onClick={this.onAlertShow}>Show Alert</Button>
+        </>)
+      }
+    }
+```
+
+## Alert Props
+
+| Prop        | Type                                                           | Default | Required |
+| ----------- | -------------------------------------------------------------- | ------- | :------: |
+| children    | node                                                           |         | &#10003; |
+| dismissable | boolean                                                        |         |          |
+| variant     | enum: 'info' &#124; 'success' &#124; 'warning' &#124; 'danger' |         |
+| style       | React.CSSProperties                                            |         |
+| onDismiss   | func                                                           |         |
