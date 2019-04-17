@@ -1,0 +1,214 @@
+---
+title: 'Toasts'
+order: 2
+---
+
+import DocsHeading from '../../components/docs-heading'
+
+<DocsHeading to="/design/toasts/" type="design">
+  Toasts
+</DocsHeading>
+
+`Toast` components use the `Alert` component internally for it's content and styles. Any props that can be passed to an `Alert` can be passed to a `Toast` component.
+
+## Basic Usage
+
+Variants for toasts include `info`, `success`, `warning`, and `danger`, with `info` being the default value.
+
+```.jsx
+  class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          showDefaultAlert: false,
+          showInfoAlert: false,
+          showSuccessAlert: false,
+          showWarningAlert: false,
+          showDangerAlert: false
+        }
+
+        this.onDefaultAlertShow = this.onDefaultAlertShow.bind(this);
+        this.onDefaultAlertDismiss = this.onDefaultAlertDismiss.bind(this);
+        this.onInfoAlertShow = this.onInfoAlertShow.bind(this);
+        this.onInfoAlertDismiss = this.onInfoAlertDismiss.bind(this);
+        this.onSuccessAlertShow = this.onSuccessAlertShow.bind(this);
+        this.onSuccessAlertDismiss = this.onSuccessAlertDismiss.bind(this);
+        this.onWarningAlertShow = this.onWarningAlertShow.bind(this);
+        this.onWarningAlertDismiss = this.onWarningAlertDismiss.bind(this);
+        this.onDangerAlertShow = this.onDangerAlertShow.bind(this);
+        this.onDangerAlertDismiss = this.onDangerAlertDismiss.bind(this);
+      }
+
+      onDefaultAlertShow() {
+        this.setState({showDefaultAlert: true})
+      }
+
+      onDefaultAlertDismiss() {
+        this.setState({showDefaultAlert: false})
+      }
+
+      onInfoAlertShow() {
+        this.setState({showInfoAlert: true})
+      }
+
+      onInfoAlertDismiss() {
+        this.setState({showInfoAlert: false})
+      }
+
+      onSuccessAlertShow() {
+        this.setState({showSuccessAlert: true})
+      }
+
+      onSuccessAlertDismiss() {
+        this.setState({showSuccessAlert: false})
+      }
+
+      onWarningAlertShow() {
+        this.setState({showWarningAlert: true})
+      }
+
+      onWarningAlertDismiss() {
+        this.setState({showWarningAlert: false})
+      }
+
+      onDangerAlertShow() {
+        this.setState({showDangerAlert: true})
+      }
+
+      onDangerAlertDismiss() {
+        this.setState({showDangerAlert: false})
+      }
+
+      render() {
+        const { showDefaultAlert, showInfoAlert, showSuccessAlert, showWarningAlert, showDangerAlert } = this.state;
+
+        return (<>
+          {showDefaultAlert && <Toast onDismiss={this.onDefaultAlertDismiss}>Default Toast</Toast>}
+          {showInfoAlert && <Toast variant="info" onDismiss={this.onInfoAlertDismiss}>Info Toast</Toast>}
+          {showSuccessAlert && <Toast variant="success" onDismiss={this.onSuccessAlertDismiss}>Success Toast</Toast>}
+          {showWarningAlert && <Toast variant="warning" onDismiss={this.onWarningAlertDismiss}>Warning Toast</Toast>}
+          {showDangerAlert && <Toast variant="danger" onDismiss={this.onDangerAlertDismiss}>Danger Toast</Toast>}
+          <Button size="small" onClick={this.onDefaultAlertShow}>Show Defualt Alert</Button>
+          <Button size="small" onClick={this.onInfoAlertShow}>Show Info Alert</Button>
+          <Button size="small" onClick={this.onSuccessAlertShow}>Show Success Alert</Button>
+          <Button size="small" onClick={this.onWarningAlertShow}>Show Warning Alert</Button>
+          <Button size="small" onClick={this.onDangerAlertShow}>Show Danger Alert</Button>
+        </>)
+      }
+    }
+```
+
+## Toast Duration
+
+```.jsx
+  class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          showAlert: false,
+        }
+
+        this.onAlertShow = this.onAlertShow.bind(this);
+        this.onAlertDismiss = this.onAlertDismiss.bind(this);
+      }
+
+      onAlertShow() {
+        this.setState({showAlert: true})
+      }
+
+      onAlertDismiss() {
+        this.setState({showAlert: false})
+      }
+
+      render() {
+        const { showAlert } = this.state;
+
+        return (<>
+          {showAlert && <Toast toastDuration={1000} onDismiss={this.onAlertDismiss}>Quick Toast</Toast>}
+          <Button onClick={this.onAlertShow}>Show Alert</Button>
+        </>)
+      }
+    }
+```
+
+## Dismissable
+
+```.jsx
+  class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          showAlert: false,
+        }
+
+        this.onAlertShow = this.onAlertShow.bind(this);
+        this.onAlertDismiss = this.onAlertDismiss.bind(this);
+      }
+
+      onAlertShow() {
+        this.setState({showAlert: true})
+      }
+
+      onAlertDismiss() {
+        this.setState({showAlert: false})
+      }
+
+      render() {
+        const { showAlert } = this.state;
+
+        return (<>
+          {showAlert && <Toast dismissable onDismiss={this.onAlertDismiss}>Dismissable Toast</Toast>}
+          <Button onClick={this.onAlertShow}>Show Dismissable Alert</Button>
+        </>)
+      }
+    }
+```
+
+## Mouse Events
+
+When you hover over the Toast the timer is paused. Once the mouse leaves the Toast the timer is restarted and runs for half of the original toast duration.
+
+```.jsx
+  class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          showAlert: false,
+          alertContent: 'Default Alert Content'
+        }
+
+        this.onAlertShow = this.onAlertShow.bind(this)
+        this.onAlertDismiss = this.onAlertDismiss.bind(this)
+        this.onMouseEnter = this.onMouseEnter.bind(this)
+        this.onMouseLeave = this.onMouseLeave.bind(this)
+      }
+
+      onAlertShow() {
+        this.setState({showAlert: true})
+      }
+
+      onAlertDismiss() {
+        this.setState({showAlert: false})
+      }
+
+      onMouseEnter() {
+        this.setState({alertContent: 'Mouse is hovering toast'})
+      }
+
+      onMouseLeave() {
+        this.setState({alertContent: 'Mouse has stopped hovering toast'})
+      }
+
+      render() {
+        const { showAlert, alertContent } = this.state;
+
+        return (<>
+          {showAlert && <Toast
+                          onDismiss={this.onAlertDismiss}
+                          onMouseEnter={this.onMouseEnter}
+                          onMouseLeave={this.onMouseLeave}>{alertContent}</Toast>}
+          <Button onClick={this.onAlertShow}>Show Alert</Button>
+        </>)
+      }
+    }
+```
