@@ -2,7 +2,25 @@
 
 ## Getting started
 
-_TODO: Add install instructions_
+### Installation
+
+Make sure you have a `.npmrc` file and are using http://nexus.mindtap.corp.web/content/groups/npm.group/ as your registry.
+
+`npm i react-magma-dom`
+
+### Babel Plugin
+
+There is a custom babel plugin that we have created as well that will help with optimization. For this install using `npm i babel-plugin-react-magma-dom`
+
+In your `babel.config.js` file add `react-magma-dom` to your `plugins` array.
+
+Ex File: `module.exports = { presets: [ '@babel/preset-react', ], plugins: [ 'react-magma-dom', ] };`
+
+This plugin will go through all of your `react-magma-dom` imports and get rid of any unnecessary imports. This will allow webpack to only put the necessary dependencies in your projects final build.
+
+### Documentation
+
+We have a documentation site that show all of the available components, usage of the components, and design guidlines from the UX team for how to use them in your project.
 
 [React Magma Documentation](http://react-magma.apps.dev.cengage.io/)
 
@@ -20,6 +38,81 @@ Node v8.9.4 or greater with npm 5.7.0 or greater
 4. Go to [http://localhost:3000](http://localhost:3000) to view the documentation
 
 Note: If you get errors about a missing typescript module during step three, you may need to run `npm i -s -D typescript` from `packages/react-magma-native` and rerun the previous two commands.
+
+### Making changes
+
+The code for the project is in one of two folders under the `packages` folder: `react-magma-core` and `react-magma-dom`
+
+#### react-magma-core
+
+This is our project for handling our business logic. This includes lifecycle events, state handling, event handling, etc.
+
+##### Running tests
+
+`npm run test` or `npm run test-watch` to run the test suite.
+
+`npm run covg` to see the generated lcov coverage reports.
+
+##### Building
+
+Once you have finished making your code changes and have tested your changes run `npm run build`. Once you have done this you will immediately be able to see the changes in the `react-magma-dom` package because they are symlinked by default.
+
+#### react-magma-dom
+
+This is our project for the rendering of our components.
+
+##### Running tests
+
+`npm run test` or `npm run test-watch` to run the test suite.
+
+`npm run covg` to see the generated lcov coverage reports.
+
+##### Building
+
+Once you have finished making your code changes and have tested your changes run `npm run build`. Once you have done this you will immediately be able to see the changes in the `react-magma-gatsby-docs` package because they are symlinked by default.
+
+#### End to End Testing
+
+We use `cypress` to create our e2e tests.
+
+##### Running
+
+Start the webpack server using `npm start`. Then, in another terminal window, start up the cypress ui using `npm run test-local`.
+
+##### Create a test
+
+All of the components are found in the `App.js` file. If you have a new component be sure to import it here and add it to the render.
+
+Test files are under the `cypress/integration` folder.
+
+#### react-magma-gatsby-docs
+
+This is our project for the documentation site. Any changes to the usage of our components or the creation of new components should be documented here.
+
+Each component has it's own `.mdx` file. If you have created a new component you will need to create a new `.mdx` file under the `pages/api` folder. To import your new component go to the `layout.js` file, import your new component, then add it to the `scope` prop array of the `LiveProvider`. Now you are able to use the component in your newly created `.mdx` file.
+
+Be sure to add in the navigation details at the top of the page
+
+```
+---
+title: '{ComponentName}'
+order: 2
+---
+```
+
+and import a link to the design guidlines with the correct route
+
+```
+import DocsHeading from '../../components/docs-heading'
+
+<DocsHeading to="/design/{component}/" type="design">
+  {ComponentName}
+</DocsHeading>
+```
+
+##### Running
+
+`npm run develop` then go to [http://localhost:8000](http://localhost:8000)
 
 ### Committing code
 
