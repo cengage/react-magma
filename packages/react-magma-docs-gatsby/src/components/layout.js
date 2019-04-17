@@ -8,6 +8,7 @@ import { MDXProvider } from '@mdx-js/tag'
 import { Location } from '@reach/router'
 import { Transition, config } from 'react-spring'
 import {
+  Alert,
   Button,
   Checkbox,
   Heading,
@@ -273,7 +274,7 @@ import './syntax.css'
 
 const PreComponent = ({ className, ...props }) => {
   const hideCode = props.children.props.props.hideCode
-  
+
   return props.children.props.props &&
     props.children.props.props.className === 'language-.jsx' ? (
     <LiveProvider
@@ -281,6 +282,7 @@ const PreComponent = ({ className, ...props }) => {
       code={props.children.props.children}
       scope={{
         iconsArray,
+        Alert,
         Button,
         Checkbox,
         Heading,
@@ -534,7 +536,7 @@ const PreComponent = ({ className, ...props }) => {
         WrenchIcon,
         Wrench3Icon,
         YoutubeIcon,
-        DemoComponent
+        DemoComponent,
       }}
     >
       <div
@@ -609,7 +611,11 @@ const Layout = ({ children }) => (
                     enter={{ opacity: 1 }}
                     leave={{ opacity: 0 }}
                   >
-                    {() => style => <article className="content-article" style={style}>{children}</article>}
+                    {() => style => (
+                      <article className="content-article" style={style}>
+                        {children}
+                      </article>
+                    )}
                   </Transition>
                 )}
               </Location>
