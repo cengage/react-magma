@@ -41,6 +41,10 @@ Node v8.9.4 or greater with npm 5.7.0 or greater
 
 Note: If you get errors about a missing typescript module during step three, you may need to run `npm i -s -D typescript` from `packages/react-magma-native` and rerun the previous two commands.
 
+### Project structure
+
+The project is built using a monorepo structure with the help of [Lerna](https://github.com/lerna/lerna). Each folder under the `packages` folder is it's own repository. We use Lerna to create symlinks to connect some of the packages that are dependent on each other. For example, `react-magma-dom` uses `react-magma-core` and `react-magma-gatsby-docs` uses `react-magma-dom`. When a dependent project is build the consuming project automatically gets the latest build.
+
 ### Making changes
 
 The code for the project is in one of two folders under the `packages` folder: `react-magma-core` and `react-magma-dom`
