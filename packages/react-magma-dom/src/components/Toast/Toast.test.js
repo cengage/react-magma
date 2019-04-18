@@ -63,7 +63,9 @@ describe('Toast', () => {
 
     fireEvent.click(button);
 
-    expect(onDismiss).toHaveBeenCalled();
+    setTimeout(() => {
+      expect(onDismiss).toHaveBeenCalled();
+    }, 500);
   });
 
   it('should change the variant of the toast when passed in different variant', () => {

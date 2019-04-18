@@ -108,8 +108,9 @@ describe('Alert', () => {
       const dismissableIconButton = getByLabelText('Close this message');
 
       fireEvent.click(dismissableIconButton);
-
-      expect(onDismissSpy).toHaveBeenCalled();
+      setTimeout(() => {
+        expect(onDismissSpy).toHaveBeenCalled();
+      }, 500);
     });
   });
 
