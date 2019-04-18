@@ -10,8 +10,6 @@ import { CrossIcon } from '../Icon/types/CrossIcon';
 import { Button } from '../Button';
 import { ButtonVariant } from '../StyledButton';
 
-const fadeDuration = 350;
-
 const VARIANT_ICON = {
   info: Info2Icon,
   success: CheckIcon,
@@ -39,7 +37,7 @@ export interface AlertState {
   isExiting?: boolean;
 }
 
-const transitionDuration = 500;
+export const transitionDuration = 500;
 
 const StyledAlert = styled.div<AlertProps>`
   align-items: stretch;
@@ -171,7 +169,7 @@ export class Alert extends React.Component<AlertProps, AlertState> {
     setTimeout(() => {
       this.props.onDismiss();
       this.setState({ isExiting: false });
-    }, transitionDuration);
+    }, transitionDuration - 50);
   }
 
   render() {

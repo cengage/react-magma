@@ -39,7 +39,9 @@ describe('Toast', () => {
     });
 
     jest.runAllTimers();
-    expect(onDismiss).toHaveBeenCalled();
+    setTimeout(() => {
+      expect(onDismiss).toHaveBeenCalled();
+    }, 500);
   });
 
   it('should use passed in timeout duration', () => {
