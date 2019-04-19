@@ -9,6 +9,7 @@ import { BlockedIcon } from '../Icon/types/BlockedIcon';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { Button } from '../Button';
 import { ButtonVariant } from '../StyledButton';
+import { AlertCore } from 'react-magma-core';
 
 const VARIANT_ICON = {
   info: Info2Icon,
@@ -30,10 +31,6 @@ export interface AlertProps {
   variant?: AlertVariant;
   style?: React.CSSProperties;
   onDismiss?: () => void;
-  isExiting?: boolean;
-}
-
-export interface AlertState {
   isExiting?: boolean;
 }
 
@@ -154,33 +151,24 @@ function renderIcon(variant = 'info') {
   );
 }
 
-export class Alert extends React.Component<AlertProps, AlertState> {
-  constructor(props) {
-    super(props);
-
-    this.state = { isExiting: false };
-
-    this.handleDismiss = this.handleDismiss.bind(this);
-  }
-
-  handleDismiss() {
-    this.setState({ isExiting: true });
-
-    setTimeout(() => {
-      this.props.onDismiss();
-      this.setState({ isExiting: false });
-    }, transitionDuration - 50);
-  }
-
-  render() {
-    const { variant, style, children, dismissable } = this.props;
-
-    return (
-      <ThemeContext.Consumer>
-        {theme =>
-          theme && (
+export const Alert: React.FunctionComponent<AlertProps> = ({
+  variant,
+  style,
+  children,
+  dismissable,
+  onDismiss,
+  isExiting
+}: AlertProps) => (
+  <ThemeContext.Consumer>
+    {theme =>
+      theme && (
+        <AlertCore
+          transitionDuration={transitionDuration}
+          onDismiss={onDismiss}
+        >
+          {({ handleDismiss, isExiting: coreIsExiting }) => (
             <StyledAlert
-              isExiting={this.state.isExiting}
+              isExiting={isExiting || coreIsExiting}
               variant={variant}
               style={style}
               theme={theme}
@@ -193,7 +181,7 @@ export class Alert extends React.Component<AlertProps, AlertState> {
                     ariaLabel="Close this message"
                     icon={<CrossIcon />}
                     inverse
-                    onClick={this.handleDismiss}
+                    onClick={handleDismiss}
                     style={DismissButtonStyles}
                     theme={theme}
                     variant={ButtonVariant.link}
@@ -201,9 +189,9 @@ export class Alert extends React.Component<AlertProps, AlertState> {
                 </DismissableIconWrapper>
               )}
             </StyledAlert>
-          )
-        }
-      </ThemeContext.Consumer>
-    );
-  }
-}
+          )}
+        </AlertCore>
+      )
+    }
+  </ThemeContext.Consumer>
+);

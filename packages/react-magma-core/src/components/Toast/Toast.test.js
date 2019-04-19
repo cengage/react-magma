@@ -65,6 +65,15 @@ describe('ToastCore', () => {
     expect(onDismiss).toHaveBeenCalledTimes(1);
   });
 
+  it('should clear timeout and dismiss manually', () => {
+    const component = toastSetup();
+
+    component.instance().clearTimeoutAndDismiss();
+
+    expect(clearTimeout).toHaveBeenCalled();
+    expect(onDismiss).toHaveBeenCalled();
+  });
+
   it('should pause timer when mouse enters', () => {
     const component = toastSetup({ onMouseEnter: null });
 
@@ -98,24 +107,4 @@ describe('ToastCore', () => {
     expect(onMouseLeave).toHaveBeenCalledTimes(1);
     expect(setTimeout).toHaveBeenCalled();
   });
-
-  // describe('handle blur', () => {
-  //   it('should call the onClick from props during the internal onClick', () => {
-  //     const component = toastSetup();
-
-  //     component.instance().onClick();
-
-  //     expect(TOAST_CORE_PROPS.onClick).toHaveBeenCalled();
-  //   });
-
-  //   it('should not fail if no onClick is passed through the props', () => {
-  //     const component = toastSetup({
-  //       onClick: undefined
-  //     });
-
-  //     component.instance().onClick();
-
-  //     expect(TOAST_CORE_PROPS.onClick).not.toHaveBeenCalled();
-  //   });
-  // });
 });

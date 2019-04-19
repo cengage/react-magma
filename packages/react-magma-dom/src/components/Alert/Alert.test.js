@@ -99,6 +99,15 @@ describe('Alert', () => {
       expect(dismissableIconButton).toBeInTheDocument();
     });
 
+    it('should render a dismissable icon button with the warning variant', () => {
+      const { container } = renderAlert({
+        dismissable: true,
+        variant: 'warning'
+      });
+
+      expect(container).toMatchSnapshot();
+    });
+
     it('should call passed in onDismiss when dismissable icon button is clicked', () => {
       const onDismissSpy = jest.fn();
       const { getByLabelText } = renderAlert({
@@ -108,6 +117,7 @@ describe('Alert', () => {
       const dismissableIconButton = getByLabelText('Close this message');
 
       fireEvent.click(dismissableIconButton);
+
       setTimeout(() => {
         expect(onDismissSpy).toHaveBeenCalled();
       }, 500);

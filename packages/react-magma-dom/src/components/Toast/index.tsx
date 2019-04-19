@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/themeContext';
-import { ToastCore } from 'react-magma-core';
-import { Alert, AlertProps, AlertState, transitionDuration } from '../Alert';
+import { AlertCore, ToastCore } from 'react-magma-core';
+import { Alert, AlertProps, transitionDuration } from '../Alert';
 
 export interface ToastProps extends AlertProps {
   children: React.ReactNode;
@@ -12,7 +12,7 @@ export interface ToastProps extends AlertProps {
   onMouseLeave?: (event: React.SyntheticEvent) => void;
 }
 
-const ToastWrapper = styled.div<AlertState>`
+const ToastWrapper = styled.div`
   z-index: 1;
   position: fixed;
   display: flex;
@@ -21,11 +21,6 @@ const ToastWrapper = styled.div<AlertState>`
   bottom: 25px;
   justify-content: flex-start;
   align-items: center;
-
-  animation: ${props =>
-    props.isExiting
-      ? `fadeout ${transitionDuration}ms`
-      : `fadein ${transitionDuration}ms`};
 
   @keyframes fadein {
     from {
@@ -46,69 +41,54 @@ const ToastWrapper = styled.div<AlertState>`
   }
 `;
 
-export class Toast extends React.Component<ToastProps, AlertState> {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isExiting: false
-    };
-
-    this.handleDismiss = this.handleDismiss.bind(this);
-  }
-
-  handleDismiss() {
-    this.setState({ isExiting: true });
-
-    setTimeout(() => {
-      this.setState({
-        isExiting: false
-      });
-      this.props.onDismiss();
-    }, transitionDuration - 50);
-  }
-
-  render() {
-    const {
-      variant,
-      style,
-      children,
-      dismissable,
-      toastDuration,
-      onMouseEnter,
-      onMouseLeave
-    } = this.props;
-
-    return (
-      <ThemeContext.Consumer>
-        {theme =>
-          theme && (
+export const Toast: React.FunctionComponent<ToastProps> = ({
+  variant,
+  dismissable,
+  style,
+  children,
+  onDismiss,
+  toastDuration,
+  onMouseEnter,
+  onMouseLeave
+}: ToastProps) => (
+  <ThemeContext.Consumer>
+    {theme =>
+      theme && (
+        <AlertCore
+          transitionDuration={transitionDuration}
+          onDismiss={onDismiss}
+        >
+          {({ handleDismiss, isExiting }) => (
             <ToastCore
               toastDuration={toastDuration}
-              onDismiss={this.handleDismiss}
+              onDismiss={handleDismiss}
               onMouseEnter={onMouseEnter}
               onMouseLeave={onMouseLeave}
             >
-              {({ handleMouseEnter, handleMouseLeave }) => (
+              {({
+                handleMouseEnter,
+                handleMouseLeave,
+                clearTimeoutAndDismiss
+              }) => (
                 <ToastWrapper
-                  isExiting={this.state.isExiting}
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
                   <Alert
                     style={style}
+                    isExiting={isExiting}
                     dismissable={dismissable}
                     variant={variant}
-                    onDismiss={this.props.onDismiss}
+                    onDismiss={clearTimeoutAndDismiss}
                   >
                     {children}
                   </Alert>
                 </ToastWrapper>
               )}
             </ToastCore>
-          )
-        }
-      </ThemeContext.Consumer>
-    );
-  }
-}
+          )}
+        </AlertCore>
+      )
+    }
+  </ThemeContext.Consumer>
+);

@@ -15,6 +15,7 @@ export class ToastCore extends React.Component<ToastCoreProps> {
     super(props);
 
     this.setAutoHideTimer = this.setAutoHideTimer.bind(this);
+    this.clearTimeoutAndDismiss = this.clearTimeoutAndDismiss.bind(this);
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
     this.handlePause = this.handlePause.bind(this);
@@ -36,6 +37,11 @@ export class ToastCore extends React.Component<ToastCoreProps> {
     this.timerAutoHide = setTimeout(() => {
       this.props.onDismiss();
     }, toastDuration);
+  }
+
+  clearTimeoutAndDismiss() {
+    clearTimeout(this.timerAutoHide);
+    this.props.onDismiss();
   }
 
   handleMouseEnter = event => {
@@ -65,6 +71,7 @@ export class ToastCore extends React.Component<ToastCoreProps> {
   render() {
     return this.props.children({
       ...this.props,
+      clearTimeoutAndDismiss: this.clearTimeoutAndDismiss,
       handleMouseEnter: this.handleMouseEnter,
       handleMouseLeave: this.handleMouseLeave
     });
