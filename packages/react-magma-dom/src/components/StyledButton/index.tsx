@@ -2,6 +2,7 @@ import * as React from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/themeContext';
+import { darken } from 'polished';
 
 export enum ButtonVariant {
   solid = 'solid', //default
@@ -92,6 +93,7 @@ const StyledButtonComponent = styled.button<StyledButtonProps>`
   text-align: center;
   text-decoration: none;
   text-transform: ${props => props.textTransform};
+  transition: background 0.35s, color 0.35s;
   vertical-align: middle;
   touch-action: manipulation;
   white-space: nowrap;
@@ -156,9 +158,8 @@ const StyledButtonComponent = styled.button<StyledButtonProps>`
   }};
 
   background: ${props => {
-    // Button color, variant, inverse
     if (props.variant !== 'solid') {
-      return 'none';
+      return 'rgba(0,0,0,0)';
     }
     if (props.disabled) {
       return props.theme.colors.neutral06;
@@ -177,13 +178,14 @@ const StyledButtonComponent = styled.button<StyledButtonProps>`
         return props.theme.colors.primary;
     }
   }};
+
   border: ${props =>
     props.variant === 'outline' ||
     (props.variant === 'solid' && props.color === 'secondary' && !props.inverse)
       ? '2px solid'
       : '0'};
+
   border-color: ${props => {
-    // Button color, variant, inverse
     if (props.disabled && props.inverse && props.variant === 'outline') {
       return props.theme.colors.disabledInverseText;
     }
@@ -208,11 +210,102 @@ const StyledButtonComponent = styled.button<StyledButtonProps>`
     }
   }};
 
+  color: ${props => {
+    if (props.disabled && props.inverse && props.variant !== 'solid') {
+      return props.theme.colors.disabledInverseText;
+    }
+    if (props.disabled) {
+      return props.theme.colors.disabledText;
+    }
+    if (
+      (!props.inverse && props.variant === 'solid') ||
+      (props.inverse && props.variant !== 'solid')
+    ) {
+      if (props.color === 'secondary' && !props.inverse) {
+        return props.theme.colors.neutral02;
+      }
+      return props.theme.colors.neutral08;
+    }
+    switch (props.color) {
+      case 'secondary':
+        return props.theme.colors.neutral02;
+      case 'success':
+        return props.theme.colors.success01;
+      case 'danger':
+        return props.theme.colors.danger;
+      default:
+        return props.theme.colors.primary;
+    }
+  }};
+
   &:not(:disabled) {
-    &:after,
-    &:before {
+    &:focus {
+      outline: 2px dotted ${props => props.theme.colors.pop03};
+      outline-offset: 3px;
+    }
+
+    &:hover,
+    &:focus {
       background: ${props => {
-        // Button color, variant, inverse
+        if (
+          (props.variant !== 'solid' && !props.inverse) ||
+          (props.variant === 'solid' && props.inverse)
+        ) {
+          switch (props.color) {
+            case 'secondary':
+              return '#E6E6E6';
+            case 'success':
+              return '#EBF2E5';
+            case 'danger':
+              return '#FDE5E5';
+            default:
+              return '#E5EFF5';
+          }
+        }
+        if (props.variant !== 'solid' && props.inverse) {
+          return 'rgba(0,0,0,0.2)';
+        }
+        switch (props.color) {
+          case 'secondary':
+            return darken(0.1, props.theme.colors.neutral08);
+          case 'success':
+            return darken(0.1, props.theme.colors.success01);
+          case 'danger':
+            return darken(0.1, props.theme.colors.danger);
+          default:
+            return darken(0.1, props.theme.colors.primary);
+        }
+      }};
+
+      color: ${props => {
+        if (props.variant !== 'solid' && !props.inverse) {
+          switch (props.color) {
+            case 'secondary':
+              return props.theme.colors.neutral02;
+            case 'success':
+              return darken(0.1, props.theme.colors.success01);
+            case 'danger':
+              return darken(0.1, props.theme.colors.danger);
+            default:
+              return darken(0.1, props.theme.colors.primary);
+          }
+        }
+      }};
+    }
+
+    &:after {
+      border-radius: 50%;
+      content: '';
+      height: 32px;
+      left: 50%;
+      opacity: 0;
+      position: absolute;
+      padding: 50%;
+      top: 18px;
+      transform: translate(-50%, -50%) scale(1);
+      transition: opacity 1s, transform 0.5s;
+      width: 32px;
+      background: ${props => {
         if (
           (props.variant !== 'solid' && !props.inverse) ||
           (props.variant === 'solid' && props.inverse)
@@ -237,82 +330,60 @@ const StyledButtonComponent = styled.button<StyledButtonProps>`
         }
         return props.theme.colors.neutral08;
       }};
-      content: '';
-      opacity: 0;
-      position: absolute;
-    }
-
-    &:after {
-      border-radius: 50%;
-      height: 32px;
-      left: 50%;
-      padding: 50%;
-      top: 18px;
-      transform: translate(-50%, -50%) scale(1);
-      transition: opacity 1s, transform 0.5s;
-      width: 32px;
-    }
-
-    &:before {
-      height: 200%;
-      left: 0;
-      top: -50%;
-      transition: 0.2s;
-      width: 200%;
     }
 
     &:active {
+      background: ${props => {
+        if (
+          (props.variant !== 'solid' && !props.inverse) ||
+          (props.variant === 'solid' && props.inverse)
+        ) {
+          switch (props.color) {
+            case 'secondary':
+              return darken(0.1, '#E6E6E6');
+            case 'success':
+              return darken(0.1, '#EBF2E5');
+            case 'danger':
+              return darken(0.1, '#FDE5E5');
+            default:
+              return darken(0.1, '#E5EFF5');
+          }
+        }
+        if (props.variant !== 'solid' && props.inverse) {
+          return 'rgba(0,0,0,0.4);';
+        }
+        switch (props.color) {
+          case 'secondary':
+            return darken(0.2, props.theme.colors.neutral08);
+          case 'success':
+            return darken(0.2, props.theme.colors.success01);
+          case 'danger':
+            return darken(0.2, props.theme.colors.danger);
+          default:
+            return darken(0.2, props.theme.colors.primary);
+        }
+      }};
+      color: ${props => {
+        if (props.variant !== 'solid' && !props.inverse) {
+          switch (props.color) {
+            case 'secondary':
+              return props.theme.colors.neutral02;
+            case 'success':
+              return darken(0.2, props.theme.colors.success01);
+            case 'danger':
+              return darken(0.2, props.theme.colors.danger);
+            default:
+              return darken(0.2, props.theme.colors.primary);
+          }
+        }
+      }};
+
       &:after {
         opacity: 0.4;
         transform: translate(-50%, -50%) scale(0);
         transition: transform 0s;
       }
     }
-
-    &:hover,
-    &:focus {
-      &:before {
-        opacity: 0.1;
-      }
-    }
-  }
-
-  &:focus {
-    outline: 2px dotted ${props => props.theme.colors.pop03};
-    outline-offset: 3px;
-  }
-
-  &,
-  &:hover,
-  &:focus {
-    color: ${props => {
-      // Button color, variant, inverse
-      if (props.disabled && props.inverse && props.variant !== 'solid') {
-        return props.theme.colors.disabledInverseText;
-      }
-      if (props.disabled) {
-        return props.theme.colors.disabledText;
-      }
-      if (
-        (!props.inverse && props.variant === 'solid') ||
-        (props.inverse && props.variant !== 'solid')
-      ) {
-        if (props.color === 'secondary' && !props.inverse) {
-          return props.theme.colors.neutral02;
-        }
-        return props.theme.colors.neutral08;
-      }
-      switch (props.color) {
-        case 'secondary':
-          return props.theme.colors.neutral02;
-        case 'success':
-          return props.theme.colors.success01;
-        case 'danger':
-          return props.theme.colors.danger;
-        default:
-          return props.theme.colors.primary;
-      }
-    }};
   }
 
   ${props =>

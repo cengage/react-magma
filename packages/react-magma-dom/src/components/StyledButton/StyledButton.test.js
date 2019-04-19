@@ -10,6 +10,7 @@ import {
 } from '.';
 import { render, fireEvent, cleanup } from 'react-testing-library';
 import { magma } from '../../theme/magma';
+import { darken } from 'polished';
 
 const TEXT = 'Test Text';
 
@@ -62,6 +63,12 @@ describe('Styled Button', () => {
         const button = getByText(TEXT);
 
         expect(button).toHaveStyleRule('background', magma.colors.primary);
+        expect(button).toHaveStyleRule('background', '#004165', {
+          target: ':hover'
+        });
+        expect(button).toHaveStyleRule('background', '#002032', {
+          target: ':active'
+        });
         expect(button).toHaveStyleRule('border-color', magma.colors.primary);
         expect(button).toHaveStyleRule('color', magma.colors.neutral08);
       });
@@ -70,7 +77,13 @@ describe('Styled Button', () => {
         const { getByText } = renderButton({ variant: 'outline' });
         const button = getByText(TEXT);
 
-        expect(button).toHaveStyleRule('background', 'none');
+        expect(button).toHaveStyleRule('background', 'rgba(0,0,0,0)');
+        expect(button).toHaveStyleRule('background', '#E5EFF5', {
+          target: ':hover'
+        });
+        expect(button).toHaveStyleRule('background', '#c0d8e7', {
+          target: ':active'
+        });
         expect(button).toHaveStyleRule('color', magma.colors.primary);
       });
 
@@ -78,7 +91,7 @@ describe('Styled Button', () => {
         const { getByText } = renderButton({ variant: 'link' });
         const button = getByText(TEXT);
 
-        expect(button).toHaveStyleRule('background', 'none');
+        expect(button).toHaveStyleRule('background', 'rgba(0,0,0,0)');
         expect(button).toHaveStyleRule('color', magma.colors.primary);
       });
     });
@@ -89,6 +102,16 @@ describe('Styled Button', () => {
         const button = getByText(TEXT);
 
         expect(button).toHaveStyleRule('background', magma.colors.primary);
+        expect(button).toHaveStyleRule(
+          'background',
+          darken(0.1, magma.colors.primary),
+          { target: ':hover' }
+        );
+        expect(button).toHaveStyleRule(
+          'background',
+          darken(0.2, magma.colors.primary),
+          { target: ':active' }
+        );
         expect(button).toHaveStyleRule('border-color', magma.colors.primary);
         expect(button).toHaveStyleRule('color', magma.colors.neutral08);
       });
@@ -98,6 +121,16 @@ describe('Styled Button', () => {
         const button = getByText(TEXT);
 
         expect(button).toHaveStyleRule('background', magma.colors.neutral08);
+        expect(button).toHaveStyleRule(
+          'background',
+          darken(0.1, magma.colors.neutral08),
+          { target: ':hover' }
+        );
+        expect(button).toHaveStyleRule(
+          'background',
+          darken(0.2, magma.colors.neutral08),
+          { target: ':active' }
+        );
         expect(button).toHaveStyleRule('border-color', magma.colors.neutral05);
         expect(button).toHaveStyleRule('color', magma.colors.neutral02);
       });
@@ -107,6 +140,16 @@ describe('Styled Button', () => {
         const button = getByText(TEXT);
 
         expect(button).toHaveStyleRule('background', magma.colors.success01);
+        expect(button).toHaveStyleRule(
+          'background',
+          darken(0.1, magma.colors.success01),
+          { target: ':hover' }
+        );
+        expect(button).toHaveStyleRule(
+          'background',
+          darken(0.2, magma.colors.success01),
+          { target: ':active' }
+        );
         expect(button).toHaveStyleRule('border-color', magma.colors.success01);
         expect(button).toHaveStyleRule('color', magma.colors.neutral08);
       });
@@ -116,6 +159,16 @@ describe('Styled Button', () => {
         const button = getByText(TEXT);
 
         expect(button).toHaveStyleRule('background', magma.colors.danger);
+        expect(button).toHaveStyleRule(
+          'background',
+          darken(0.1, magma.colors.danger),
+          { target: ':hover' }
+        );
+        expect(button).toHaveStyleRule(
+          'background',
+          darken(0.2, magma.colors.danger),
+          { target: ':active' }
+        );
         expect(button).toHaveStyleRule('border-color', magma.colors.danger);
         expect(button).toHaveStyleRule('color', magma.colors.neutral08);
       });
