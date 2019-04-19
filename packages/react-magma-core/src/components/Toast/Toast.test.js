@@ -58,6 +58,12 @@ describe('ToastCore', () => {
     );
   });
 
+  it('should not start a timer is the disableAutoDismiss prop is true', () => {
+    const component = toastSetup({ disableAutoDismiss: true });
+
+    expect(setTimeout).not.toHaveBeenCalled();
+  });
+
   it('should call onDismiss once the timer ends', () => {
     const component = toastSetup();
     jest.runAllTimers();

@@ -8,6 +8,7 @@ export interface ToastProps extends AlertProps {
   children: React.ReactNode;
   onDismiss: () => void;
   toastDuration?: number;
+  disableAutoDismiss?: boolean;
   onMouseEnter?: (event: React.SyntheticEvent) => void;
   onMouseLeave?: (event: React.SyntheticEvent) => void;
 }
@@ -48,6 +49,7 @@ export const Toast: React.FunctionComponent<ToastProps> = ({
   children,
   onDismiss,
   toastDuration,
+  disableAutoDismiss,
   onMouseEnter,
   onMouseLeave
 }: ToastProps) => (
@@ -61,6 +63,7 @@ export const Toast: React.FunctionComponent<ToastProps> = ({
           {({ handleDismiss, isExiting }) => (
             <ToastCore
               toastDuration={toastDuration}
+              disableAutoDismiss={disableAutoDismiss}
               onDismiss={handleDismiss}
               onMouseEnter={onMouseEnter}
               onMouseLeave={onMouseLeave}

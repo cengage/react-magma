@@ -3,6 +3,7 @@ import * as React from 'react';
 export interface ToastCoreProps {
   children: (props) => React.ReactNode;
   toastDuration?: number;
+  disableAutoDismiss?: boolean;
   onDismiss: () => void;
   onMouseEnter?: (event: React.SyntheticEvent) => void;
   onMouseLeave?: (event: React.SyntheticEvent) => void;
@@ -25,7 +26,9 @@ export class ToastCore extends React.Component<ToastCoreProps> {
   private timerAutoHide;
 
   componentDidMount() {
-    this.setAutoHideTimer(this.props.toastDuration);
+    if (!this.props.disableAutoDismiss) {
+      this.setAutoHideTimer(this.props.toastDuration);
+    }
   }
 
   componentWillUnmount() {

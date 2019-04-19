@@ -164,6 +164,39 @@ Variants for toasts include `info`, `success`, `warning`, and `danger`, with `in
     }
 ```
 
+## Disable Auto Dismiss
+
+```.jsx
+  class Example extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        showAlert: false,
+      }
+
+      this.onAlertShow = this.onAlertShow.bind(this);
+      this.onAlertDismiss = this.onAlertDismiss.bind(this);
+    }
+
+    onAlertShow() {
+      this.setState({showAlert: true})
+    }
+
+    onAlertDismiss() {
+      this.setState({showAlert: false})
+    }
+
+    render() {
+      const { showAlert } = this.state;
+
+      return (<>
+        {showAlert && <Toast dismissable disableAutoDismiss={true} onDismiss={this.onAlertDismiss}>Non-Auto Hiding Dismissable Toast</Toast>}
+        <Button onClick={this.onAlertShow}>Show Alert</Button>
+      </>)
+    }
+  }
+```
+
 ## Mouse Events
 
 When you hover over the Toast the timer is paused. Once the mouse leaves the Toast the timer is restarted and runs for half of the original toast duration.
