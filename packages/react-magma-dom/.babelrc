@@ -20,7 +20,8 @@
         "loose": false
       }
     ],
-    "@babel/plugin-proposal-export-default-from"
+    "@babel/plugin-proposal-export-default-from",
+    "polished"
   ],
   "env": {
     "test": {

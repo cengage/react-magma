@@ -3,7 +3,7 @@
 exports[`Button Base Button Snapshot should render with large size 1`] = `
 <div>
   <button
-    class="css-123mkx1 e183qit0"
+    class="css-1fs3ka8 e183qit0"
     color="primary"
     shape="fill"
   >
@@ -15,7 +15,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 exports[`Button Base Button Snapshot should render with small size 1`] = `
 <div>
   <button
-    class="css-7khkhj e183qit0"
+    class="css-1s5rzag e183qit0"
     color="primary"
     shape="fill"
   >
@@ -27,7 +27,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
 exports[`Button Base Button Snapshot should render with updated color 1`] = `
 <div>
   <button
-    class="css-dh25il e183qit0"
+    class="css-4x3nij e183qit0"
     color="secondary"
     shape="fill"
   >
@@ -39,7 +39,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 <div>
   <button
-    class="css-1h5fusq e183qit0"
+    class="css-12f1w2t e183qit0"
     color="primary"
     shape="round"
   >
@@ -51,7 +51,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 exports[`Button Base Button Snapshot should render with updated textTransform 1`] = `
 <div>
   <button
-    class="css-qcqxah e183qit0"
+    class="css-jubjjm e183qit0"
     color="primary"
     shape="fill"
   >
@@ -63,7 +63,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 <div>
   <button
-    class="css-1ou980d e183qit0"
+    class="css-exk0g0 e183qit0"
     color="primary"
     shape="fill"
   >
@@ -76,7 +76,7 @@ exports[`Button Icon Only Button Snapshot should render with large size 1`] = `
 <div>
   <button
     aria-label="Check Icon"
-    class="css-6vos3i e183qit0"
+    class="css-1xqhztd e183qit0"
     color="primary"
     shape="round"
   >
@@ -102,7 +102,7 @@ exports[`Button Icon Only Button Snapshot should render with small size 1`] = `
 <div>
   <button
     aria-label="Check Icon"
-    class="css-6vos3i e183qit0"
+    class="css-1xqhztd e183qit0"
     color="primary"
     shape="round"
   >
@@ -128,7 +128,7 @@ exports[`Button Icon Only Button Snapshot should render with updated color 1`] =
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1izk15p e183qit0"
+    class="css-1k6yz2s e183qit0"
     color="secondary"
     shape="round"
   >
@@ -154,7 +154,7 @@ exports[`Button Icon Only Button Snapshot should render with updated shape 1`] =
 <div>
   <button
     aria-label="Check Icon"
-    class="css-hgvk4y e183qit0"
+    class="css-uyui93 e183qit0"
     color="primary"
     shape="fill"
   >
@@ -180,7 +180,7 @@ exports[`Button Icon Only Button Snapshot should render with updated variant 1`]
 <div>
   <button
     aria-label="Check Icon"
-    class="css-qi2b7c e183qit0"
+    class="css-29uj2w e183qit0"
     color="primary"
     shape="round"
   >
@@ -205,7 +205,7 @@ exports[`Button Icon Only Button Snapshot should render with updated variant 1`]
 exports[`Button Icon With Text Button Snapshot should render with large size 1`] = `
 <div>
   <button
-    class="css-7khkhj e183qit0"
+    class="css-1s5rzag e183qit0"
     color="primary"
     shape="fill"
   >
@@ -236,7 +236,7 @@ exports[`Button Icon With Text Button Snapshot should render with large size 1`]
 exports[`Button Icon With Text Button Snapshot should render with small size 1`] = `
 <div>
   <button
-    class="css-7khkhj e183qit0"
+    class="css-1s5rzag e183qit0"
     color="primary"
     shape="fill"
   >
@@ -267,7 +267,7 @@ exports[`Button Icon With Text Button Snapshot should render with small size 1`]
 exports[`Button Icon With Text Button Snapshot should render with updated color 1`] = `
 <div>
   <button
-    class="css-dh25il e183qit0"
+    class="css-4x3nij e183qit0"
     color="secondary"
     shape="fill"
   >
@@ -298,7 +298,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated color 
 exports[`Button Icon With Text Button Snapshot should render with updated shape 1`] = `
 <div>
   <button
-    class="css-1fj8p32 e183qit0"
+    class="css-qhwgaw e183qit0"
     color="primary"
     shape="fill"
   >
@@ -329,7 +329,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated shape 
 exports[`Button Icon With Text Button Snapshot should render with updated text transform 1`] = `
 <div>
   <button
-    class="css-qcqxah e183qit0"
+    class="css-jubjjm e183qit0"
     color="primary"
     shape="fill"
   >
@@ -360,7 +360,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated text t
 exports[`Button Icon With Text Button Snapshot should render with updated variant 1`] = `
 <div>
   <button
-    class="css-1ou980d e183qit0"
+    class="css-exk0g0 e183qit0"
     color="primary"
     shape="fill"
   >
