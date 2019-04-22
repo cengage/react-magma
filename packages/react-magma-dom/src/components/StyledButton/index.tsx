@@ -2,7 +2,7 @@ import * as React from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/themeContext';
-import { darken } from 'polished';
+import { darken, tint } from 'polished';
 
 export enum ButtonVariant {
   solid = 'solid', //default
@@ -253,17 +253,17 @@ const StyledButtonComponent = styled.button<StyledButtonProps>`
         ) {
           switch (props.color) {
             case 'secondary':
-              return '#E6E6E6';
+              return tint(0.9, props.theme.colors.neutral02);
             case 'success':
-              return '#EBF2E5';
+              return tint(0.9, props.theme.colors.success01);
             case 'danger':
-              return '#FDE5E5';
+              return tint(0.9, props.theme.colors.danger);
             default:
-              return '#E5EFF5';
+              return tint(0.9, props.theme.colors.primary);
           }
         }
         if (props.variant !== 'solid' && props.inverse) {
-          return 'rgba(0,0,0,0.2)';
+          return 'rgba(0, 0, 0, 0.3)';
         }
         switch (props.color) {
           case 'secondary':
@@ -349,17 +349,17 @@ const StyledButtonComponent = styled.button<StyledButtonProps>`
         ) {
           switch (props.color) {
             case 'secondary':
-              return darken(0.1, '#E6E6E6');
+              return tint(0.7, props.theme.colors.neutral02);
             case 'success':
-              return darken(0.1, '#EBF2E5');
+              return tint(0.7, props.theme.colors.success01);
             case 'danger':
-              return darken(0.1, '#FDE5E5');
+              return tint(0.7, props.theme.colors.danger);
             default:
-              return darken(0.1, '#E5EFF5');
+              return tint(0.7, props.theme.colors.primary);
           }
         }
         if (props.variant !== 'solid' && props.inverse) {
-          return 'rgba(0,0,0,0.4);';
+          return 'rgba(0, 0, 0, 0.5);';
         }
         switch (props.color) {
           case 'secondary':
