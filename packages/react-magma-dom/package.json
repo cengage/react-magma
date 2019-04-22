@@ -39,6 +39,7 @@
     "@emotion/core": "^10.0.6",
     "@emotion/styled": "^10.0.6",
     "@types/react": "^16.4.12",
+    "babel-plugin-polished": "^1.1.0",
     "csstype": "^2.6.1",
     "focus-visible": "^4.1.5",
     "fs-extra": "^7.0.1",
