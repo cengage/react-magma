@@ -20,7 +20,7 @@ export { Toggle } from './components/Toggle';
 export { amgam } from './theme/amgam';
 export { amgamDark } from './theme/amgamDark';
 export { magma } from './theme/magma';
-export { Theme } from './theme/globalStyle';
+export { GlobalStyles } from './theme/GlobalStyles';
 export { ThemeContext } from './theme/themeContext';
 export { ICONS } from './components/Icon';
 export { AddPersonIcon } from './components/Icon/types/AddPersonIcon';

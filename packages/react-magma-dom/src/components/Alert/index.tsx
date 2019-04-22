@@ -9,7 +9,6 @@ import { BlockedIcon } from '../Icon/types/BlockedIcon';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { Button } from '../Button';
 import { ButtonVariant } from '../StyledButton';
-import { Theme } from '../../theme/globalStyle';
 
 const VARIANT_ICON = {
   info: Info2Icon,
