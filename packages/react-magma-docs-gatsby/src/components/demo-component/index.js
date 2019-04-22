@@ -15,8 +15,8 @@ const StyledDiv = styled.div`
 
 const DemoComponent = (idPrefix) => (
     <ThemeContext.Consumer>
-        {context => context && (
-            <StyledDiv theme={context}>
+        {theme => theme && (
+            <StyledDiv theme={theme}>
                 <Heading level={2}>Example</Heading>
                 <p>This is a demo component.</p>
                 <Input
