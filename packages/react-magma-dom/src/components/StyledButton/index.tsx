@@ -278,6 +278,15 @@ const StyledButtonComponent = styled.button<StyledButtonProps>`
       }};
 
       color: ${props => {
+        if (
+          (!props.inverse && props.variant === 'solid') ||
+          (props.inverse && props.variant !== 'solid')
+        ) {
+          if (props.color === 'secondary' && !props.inverse) {
+            return props.theme.colors.neutral02;
+          }
+          return props.theme.colors.neutral08;
+        }
         if (props.variant !== 'solid' && !props.inverse) {
           switch (props.color) {
             case 'secondary':
