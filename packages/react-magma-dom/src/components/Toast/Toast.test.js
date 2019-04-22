@@ -2,8 +2,6 @@ import React from 'react';
 import { Toast } from '.';
 import { render, fireEvent } from 'react-testing-library';
 
-jest.useFakeTimers();
-
 const TOAST_CONTENT = 'Toast content';
 const onDismiss = jest.fn();
 
@@ -21,9 +19,12 @@ const renderToast = (myProps = {}) => {
 };
 
 describe('Toast', () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
   afterEach(() => {
-    setTimeout.mockReset();
-    clearTimeout.mockReset();
+    jest.useRealTimers();
     onDismiss.mockReset();
   });
 

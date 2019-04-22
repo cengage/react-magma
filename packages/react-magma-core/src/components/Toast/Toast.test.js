@@ -2,7 +2,6 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { ToastCore } from './Toast';
 
-jest.useFakeTimers();
 const onDismiss = jest.fn();
 const onMouseEnter = jest.fn();
 const onMouseLeave = jest.fn();
@@ -24,16 +23,19 @@ const toastSetup = (myProps = {}) => {
 };
 
 describe('ToastCore', () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
   afterEach(() => {
-    setTimeout.mockReset();
-    clearTimeout.mockReset();
+    jest.useRealTimers();
     onDismiss.mockReset();
     onMouseEnter.mockReset();
     onMouseLeave.mockReset();
   });
 
   it('should start timer when component is mounted', () => {
-    const component = toastSetup();
+    toastSetup();
 
     expect(setTimeout).toHaveBeenCalledTimes(1);
     expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 5000);
@@ -49,7 +51,7 @@ describe('ToastCore', () => {
 
   it('should start a timer with passed in duration when mounted', () => {
     const toastDuration = 1000;
-    const component = toastSetup({ toastDuration });
+    toastSetup({ toastDuration });
 
     expect(setTimeout).toHaveBeenCalledTimes(1);
     expect(setTimeout).toHaveBeenLastCalledWith(
@@ -59,16 +61,17 @@ describe('ToastCore', () => {
   });
 
   it('should not start a timer is the disableAutoDismiss prop is true', () => {
-    const component = toastSetup({ disableAutoDismiss: true });
+    toastSetup({ disableAutoDismiss: true });
 
     expect(setTimeout).not.toHaveBeenCalled();
   });
 
   it('should call onDismiss once the timer ends', () => {
-    const component = toastSetup();
+    const onDismissSpy = jest.fn();
+    toastSetup({ onDismiss: onDismissSpy });
     jest.runAllTimers();
 
-    expect(onDismiss).toHaveBeenCalledTimes(1);
+    expect(onDismissSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should clear timeout and dismiss manually', () => {

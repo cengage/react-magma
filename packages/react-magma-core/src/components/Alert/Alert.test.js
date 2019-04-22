@@ -2,7 +2,6 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { AlertCore } from './Alert';
 
-jest.useFakeTimers();
 const onDismiss = jest.fn();
 
 const ALERT_CORE_PROPS = {
@@ -21,8 +20,12 @@ const alertSetup = (myProps = {}) => {
 };
 
 describe('AlertCore', () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
   afterEach(() => {
-    setTimeout.mockReset();
+    jest.useRealTimers();
     onDismiss.mockReset();
   });
 
