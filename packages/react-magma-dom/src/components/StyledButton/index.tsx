@@ -276,18 +276,11 @@ const StyledButtonComponent = styled.button<StyledButtonProps>`
             return darken(0.1, props.theme.colors.primary);
         }
       }};
-
       color: ${props => {
         if (
-          (!props.inverse && props.variant === 'solid') ||
-          (props.inverse && props.variant !== 'solid')
+          (props.variant !== 'solid' && !props.inverse) ||
+          (props.variant === 'solid' && props.inverse)
         ) {
-          if (props.color === 'secondary' && !props.inverse) {
-            return props.theme.colors.neutral02;
-          }
-          return props.theme.colors.neutral08;
-        }
-        if (props.variant !== 'solid' && !props.inverse) {
           switch (props.color) {
             case 'secondary':
               return props.theme.colors.neutral02;
@@ -299,6 +292,13 @@ const StyledButtonComponent = styled.button<StyledButtonProps>`
               return darken(0.1, props.theme.colors.primary);
           }
         }
+        if (props.variant !== 'solid' && props.inverse) {
+          return props.theme.colors.neutral08;
+        }
+        if (props.color === 'secondary' && !props.inverse) {
+          return props.theme.colors.neutral02;
+        }
+        return props.theme.colors.neutral08;
       }};
     }
 
@@ -373,7 +373,10 @@ const StyledButtonComponent = styled.button<StyledButtonProps>`
         }
       }};
       color: ${props => {
-        if (props.variant !== 'solid' && !props.inverse) {
+        if (
+          (props.variant !== 'solid' && !props.inverse) ||
+          (props.variant === 'solid' && props.inverse)
+        ) {
           switch (props.color) {
             case 'secondary':
               return props.theme.colors.neutral02;
@@ -385,8 +388,14 @@ const StyledButtonComponent = styled.button<StyledButtonProps>`
               return darken(0.2, props.theme.colors.primary);
           }
         }
+        if (props.variant !== 'solid' && props.inverse) {
+          return props.theme.colors.neutral08;
+        }
+        if (props.color === 'secondary' && !props.inverse) {
+          return props.theme.colors.neutral02;
+        }
+        return props.theme.colors.neutral08;
       }};
-
       &:after {
         opacity: 0.4;
         transform: translate(-50%, -50%) scale(0);
