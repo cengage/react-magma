@@ -9,6 +9,7 @@ import { BlockedIcon } from '../Icon/types/BlockedIcon';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { Button } from '../Button';
 import { ButtonVariant } from '../StyledButton';
+import { AlertCore } from 'react-magma-core';
 
 const VARIANT_ICON = {
   info: Info2Icon,
@@ -30,7 +31,10 @@ export interface AlertProps {
   variant?: AlertVariant;
   style?: React.CSSProperties;
   onDismiss?: () => void;
+  isExiting?: boolean;
 }
+
+export const transitionDuration = 500;
 
 const StyledAlert = styled.div<AlertProps>`
   align-items: stretch;
@@ -58,6 +62,28 @@ const StyledAlert = styled.div<AlertProps>`
   padding: 0;
   margin: 10px;
   max-width: 100%;
+  animation: ${props =>
+    props.isExiting
+      ? `fadeout ${transitionDuration}ms`
+      : `fadein ${transitionDuration}ms`};
+
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeout {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
 
   a {
     color: inherit;
@@ -127,31 +153,44 @@ function renderIcon(variant = 'info') {
 
 export const Alert: React.FunctionComponent<AlertProps> = ({
   variant,
-  dismissable,
   style,
   children,
-  onDismiss
+  dismissable,
+  onDismiss,
+  isExiting
 }: AlertProps) => (
   <ThemeContext.Consumer>
     {theme =>
       theme && (
-        <StyledAlert variant={variant} style={style} theme={theme}>
-          {renderIcon(variant)}
-          <AlertContents>{children}</AlertContents>
-          {dismissable && (
-            <DismissableIconWrapper variant={variant} theme={theme}>
-              <Button
-                ariaLabel="Close this message"
-                icon={<CrossIcon />}
-                inverse
-                onClick={onDismiss}
-                style={DismissButtonStyles}
-                theme={theme}
-                variant={ButtonVariant.link}
-              />
-            </DismissableIconWrapper>
+        <AlertCore
+          transitionDuration={transitionDuration}
+          onDismiss={onDismiss}
+        >
+          {({ handleDismiss, isExiting: coreIsExiting }) => (
+            <StyledAlert
+              isExiting={isExiting || coreIsExiting}
+              variant={variant}
+              style={style}
+              theme={theme}
+            >
+              {renderIcon(variant)}
+              <AlertContents>{children}</AlertContents>
+              {dismissable && (
+                <DismissableIconWrapper variant={variant} theme={theme}>
+                  <Button
+                    ariaLabel="Close this message"
+                    icon={<CrossIcon />}
+                    inverse
+                    onClick={handleDismiss}
+                    style={DismissButtonStyles}
+                    theme={theme}
+                    variant={ButtonVariant.link}
+                  />
+                </DismissableIconWrapper>
+              )}
+            </StyledAlert>
           )}
-        </StyledAlert>
+        </AlertCore>
       )
     }
   </ThemeContext.Consumer>
