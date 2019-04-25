@@ -3,10 +3,14 @@ title: "Toggles"
 ---
 
 import DocsHeading from '../../components/docs-heading'
+import { Link } from 'gatsby'
 
-<DocsHeading to="/design/selection-controls/" type="design">Toggles</DocsHeading>
+<DocsHeading to="/design/selection-controls/#6._switches" type="design">Toggles</DocsHeading>
 
 ## Basic Usage
+
+Toggles (also called Switches) are form elements used to set a single item either an on or off value.
+See also: <Link to="/api/checkbox">Checkboxes</Link>, <Link to="/api/radio">Radio Buttons</Link>, and the <Link to="/design/selection-controls">Design Guidelines</Link> for selection controls in general.
 
 ```.jsx
   <div>
@@ -67,7 +71,7 @@ Adding the `textVisuallyHidden` prop will make the label text available to scree
 ## Custom Styles
 Custom styles can be passed into both the Toggle component.  The `style` property will apply to the container.
 Additional `labelStyle`, `trackStyle` and `thumbStyle` properties are available to style the respective elements.
-Please use discression when adding custom styles.
+Please use discretion when adding custom styles.
 
 ```.jsx
   <div>
