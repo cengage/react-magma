@@ -32,7 +32,7 @@ exports[`Alert Dismissable should render a dismissable icon button with the warn
     >
       <button
         aria-label="Close this message"
-        class="css-1uvpy8i e183qit0"
+        class="css-1ri5ouh e183qit0"
         color="primary"
         shape="round"
         style="border-radius: 0 3px 3px 0; height: 100%; margin: 0px; padding: 0px 15px; width: auto;"
