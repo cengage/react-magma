@@ -87,6 +87,7 @@ export function getStyles(customStyles: ReactSelectStyles = {}, theme) {
       border: `1px solid ${theme.colors.neutral06}`,
       borderRadius: '3px',
       boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)',
+      color: theme.colors.neutral02,
       zIndex: 999,
       ...customStyles.menu
     }),
@@ -116,6 +117,10 @@ export function getStyles(customStyles: ReactSelectStyles = {}, theme) {
         : theme.colors.neutral08,
       color: theme.colors.neutral02,
       ...customStyles.option
+    }),
+    placeholder: styles => ({
+      ...styles,
+      color: theme.colors.neutral04
     }),
     singleValue: styles => ({
       ...styles,
