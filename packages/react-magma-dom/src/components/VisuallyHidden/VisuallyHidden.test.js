@@ -1,15 +1,12 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { VisuallyHidden } from '.';
-import { render, cleanup } from 'react-testing-library';
+import { render } from 'react-testing-library';
 
 const TEXT = 'Test Text';
 
 describe('VisuallyHidden', () => {
-  afterEach(() => {
-    cleanup();
-  });
-
+ 
   it('should render the visually hidden component', () => {
     const { container, getByText } = render(
       <VisuallyHidden>{TEXT}</VisuallyHidden>

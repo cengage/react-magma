@@ -1,15 +1,11 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Announce } from '.';
-import { render, cleanup } from 'react-testing-library';
+import { render } from 'react-testing-library';
 
 const TEXT = 'Test Text';
 
 describe('Announce', () => {
-  afterEach(() => {
-    cleanup();
-  });
-
   it('should render the announce component', () => {
     const { container, getByText } = render(<Announce>{TEXT}</Announce>);
 
