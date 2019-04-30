@@ -6,6 +6,7 @@ const onDismiss = jest.fn();
 
 const ALERT_CORE_PROPS = {
   children: () => React.createElement('div'),
+  id: 'testId',
   onDismiss,
   transitionDuration: 500
 };

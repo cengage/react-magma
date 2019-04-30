@@ -12,6 +12,8 @@ Input fields are utilized in a number of ways for both collecting and displaying
 
 ## Basic Usage
 
+The label/input association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
+
 ```.jsx
     <div>
       <Input
@@ -308,7 +310,7 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 
 | Prop                   | Type                                                | Default  | Required |
 | ---------------------- | --------------------------------------------------- | -------- | :------: |
-| id                     | string                                              |          | &#10003; |
+| id                     | string                                              |          |          |
 | labelText              | string                                              |          | &#10003; |
 | autoFocus              | boolean                                             |          |
 | disabled               | boolean                                             |          |

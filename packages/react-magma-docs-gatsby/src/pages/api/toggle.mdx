@@ -1,12 +1,16 @@
 ---
-title: "Toggles"
+title: 'Toggles'
 ---
 
 import DocsHeading from '../../components/docs-heading'
 
-<DocsHeading to="/design/selection-controls/" type="design">Toggles</DocsHeading>
+<DocsHeading to="/design/selection-controls/" type="design">
+  Toggles
+</DocsHeading>
 
 ## Basic Usage
+
+The label/toggle association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
 
 ```.jsx
   <div>
@@ -37,6 +41,7 @@ import DocsHeading from '../../components/docs-heading'
 ```
 
 ## Text position
+
 Use the optional prop `textPosition` to position the label text on either side of the toggle switch.
 The `textPosition` property takes the values `left` and `right`. The default value is `left`.
 
@@ -53,6 +58,7 @@ The `textPosition` property takes the values `left` and `right`. The default val
 ```
 
 ## Visually Hidden Label
+
 Adding the `textVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
 
 ```.jsx
@@ -65,7 +71,8 @@ Adding the `textVisuallyHidden` prop will make the label text available to scree
 ```
 
 ## Custom Styles
-Custom styles can be passed into both the Toggle component.  The `style` property will apply to the container.
+
+Custom styles can be passed into both the Toggle component. The `style` property will apply to the container.
 Additional `labelStyle`, `trackStyle` and `thumbStyle` properties are available to style the respective elements.
 Please use discression when adding custom styles.
 
@@ -81,24 +88,23 @@ Please use discression when adding custom styles.
   </div>
 ```
 
-
 ## Toggle Props
 
-| Prop                   | Type | Default | Required    |
-| -----------------------|------|---------|:-----------:|
-| autoFocus | boolean | |
-| checked | boolean | |
-| disabled | boolean | |
-| onBlur | function | |
-| onChange | function | |
-| onFocus | function | |
-| id | string | | &#10003;
-| labelStyle | React.CSSProperties | |
-| labelText | string | | &#10003;
-| required | function | |
-| style | React.CSSProperties | |
-| textPosition  | enum: 'left' &#124; 'right' | 'left' |
-| textVisuallyHidden | boolean | |
-| thumbStyle | React.CSSProperties | |
-| trackStyle | React.CSSProperties | |
-| value | string | |
+| Prop               | Type                        | Default | Required |
+| ------------------ | --------------------------- | ------- | :------: |
+| autoFocus          | boolean                     |         |
+| checked            | boolean                     |         |
+| disabled           | boolean                     |         |
+| onBlur             | function                    |         |
+| onChange           | function                    |         |
+| onFocus            | function                    |         |
+| id                 | string                      |         |          |
+| labelStyle         | React.CSSProperties         |         |
+| labelText          | string                      |         | &#10003; |
+| required           | function                    |         |
+| style              | React.CSSProperties         |         |
+| textPosition       | enum: 'left' &#124; 'right' | 'left'  |
+| textVisuallyHidden | boolean                     |         |
+| thumbStyle         | React.CSSProperties         |         |
+| trackStyle         | React.CSSProperties         |         |
+| value              | string                      |         |

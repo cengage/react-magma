@@ -4,9 +4,13 @@ title: 'Selects'
 
 import DocsHeading from '../../components/docs-heading'
 
-<DocsHeading to="/design/select/" type="design">Selects</DocsHeading>
+<DocsHeading to="/design/select/" type="design">
+  Selects
+</DocsHeading>
 
 ## Basic Usage
+
+The label/select association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
 
 ```.jsx
   <div className='demo-select-container'>
@@ -269,7 +273,7 @@ import DocsHeading from '../../components/docs-heading'
 
 | Prop         | Type                                   | Default | Required |
 | ------------ | -------------------------------------- | ------- | :------: |
-| id           | string                                 |         | &#10003; |
+| id           | string                                 |         |          |
 | name         | string                                 |         | &#10003; |
 | labelText    | string                                 |         | &#10003; |
 | options      | object[]: `{ label, text }`            |         | &#10003; |

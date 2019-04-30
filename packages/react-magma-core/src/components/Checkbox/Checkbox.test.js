@@ -8,6 +8,7 @@ const onFocus = jest.fn();
 
 const CHECKBOX_CORE_PROPS = {
   children: () => React.createElement('div'),
+  id: 'testId',
   onBlur,
   onChange,
   onFocus,
@@ -28,6 +29,22 @@ describe('CheckboxCore', () => {
     onBlur.mockReset();
     onChange.mockReset();
     onFocus.mockReset();
+  });
+
+  it('should auto assign an id if none is passed in', () => {
+    const component = checkboxSetup({ id: null });
+
+    expect(component.state('id')).not.toBeNull();
+  });
+
+  it('should not update the id on rerender', () => {
+    const component = checkboxSetup({ id: null });
+
+    const initialId = component.state('id');
+
+    component.update();
+
+    expect(component.state('id')).toEqual(initialId);
   });
 
   describe('state management', () => {

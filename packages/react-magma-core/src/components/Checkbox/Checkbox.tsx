@@ -1,10 +1,26 @@
 import * as React from 'react';
+const uuidv4 = require('uuid/v4');
+
+export interface CheckboxCoreProps {
+  children: (props) => React.ReactNode;
+  id?: string;
+  onBlur?: () => void;
+  onChange?: (event: React.SyntheticEvent) => void;
+  onFocus?: () => void;
+  checked?: boolean;
+}
+
+export interface CheckboxCoreState {
+  id?: string;
+  checked?: boolean;
+}
 
 export class CheckboxCore extends React.Component<
   CheckboxCoreProps,
   CheckboxCoreState
 > {
   initialState: CheckboxCoreState = {
+    id: this.props.id ? this.props.id : uuidv4(),
     checked: this.props.checked
   };
   state: CheckboxCoreState = this.initialState;
@@ -36,22 +52,11 @@ export class CheckboxCore extends React.Component<
     return this.props.children({
       ...this.state,
       ...this.props,
+      id: this.state.id,
       onBlur: this.onBlur,
       onChange: this.onChange,
       onFocus: this.onFocus,
       checked: this.state.checked
     });
   }
-}
-
-export interface CheckboxCoreProps {
-  children: (props) => React.ReactNode;
-  onBlur?: () => void;
-  onChange?: (event: React.SyntheticEvent) => void;
-  onFocus?: () => void;
-  checked?: boolean;
-}
-
-export interface CheckboxCoreState {
-  checked?: boolean;
 }

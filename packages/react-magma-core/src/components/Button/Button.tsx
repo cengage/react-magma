@@ -1,4 +1,10 @@
 import * as React from 'react';
+const uuidv4 = require('uuid/v4');
+
+export interface ButtonCoreProps {
+  children: (props) => React.ReactNode;
+  onClick?: (event: React.SyntheticEvent) => void;
+}
 
 export class ButtonCore extends React.Component<ButtonCoreProps> {
   constructor(props) {
@@ -17,9 +23,4 @@ export class ButtonCore extends React.Component<ButtonCoreProps> {
       onClick: this.onClick
     });
   }
-}
-
-export interface ButtonCoreProps {
-  children: (props) => React.ReactNode;
-  onClick?: (event: React.SyntheticEvent) => void;
 }

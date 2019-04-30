@@ -1,7 +1,9 @@
 import * as React from 'react';
+const uuidv4 = require('uuid/v4');
 
 export interface RadioCoreProps {
   children: (props) => React.ReactNode;
+  id?: string;
   onBlur?: () => void;
   onChange?: (event: React.SyntheticEvent) => void;
   selectedValue?: string;
@@ -10,11 +12,13 @@ export interface RadioCoreProps {
 }
 
 export interface RadioCoreState {
+  id?: string;
   selectedValue?: string;
 }
 
 export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
   initialState: RadioCoreState = {
+    id: this.props.id ? this.props.id : uuidv4(),
     selectedValue: this.props.value
   };
   state: RadioCoreState = this.initialState;
@@ -51,6 +55,7 @@ export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
     return this.props.children({
       ...this.state,
       ...this.props,
+      id: this.state.id,
       onBlur: this.onBlur,
       onChange: this.onChange,
       onFocus: this.onFocus,
