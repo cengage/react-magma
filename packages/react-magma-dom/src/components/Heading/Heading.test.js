@@ -109,51 +109,31 @@ describe('Heading', () => {
     });
 
     it('should render heading 2 correctly', () => {
-      const { container } = render(
-        <Heading level={2} id="testId">
-          Heading 2
-        </Heading>
-      );
+      const { container } = render(<Heading level={2}>Heading 2</Heading>);
 
       expect(container).toMatchSnapshot();
     });
 
     it('should render heading 3 correctly', () => {
-      const { container } = render(
-        <Heading level={3} id="testId">
-          Heading 3
-        </Heading>
-      );
+      const { container } = render(<Heading level={3}>Heading 3</Heading>);
 
       expect(container).toMatchSnapshot();
     });
 
     it('should render heading 4 correctly', () => {
-      const { container } = render(
-        <Heading level={4} id="testId">
-          Heading 4
-        </Heading>
-      );
+      const { container } = render(<Heading level={4}>Heading 4</Heading>);
 
       expect(container).toMatchSnapshot();
     });
 
     it('should render heading 5 correctly', () => {
-      const { container } = render(
-        <Heading level={5} id="testId">
-          Heading 5
-        </Heading>
-      );
+      const { container } = render(<Heading level={5}>Heading 5</Heading>);
 
       expect(container).toMatchSnapshot();
     });
 
     it('should render heading 6 correctly', () => {
-      const { container } = render(
-        <Heading level={6} id="testId">
-          Heading 6
-        </Heading>
-      );
+      const { container } = render(<Heading level={6}>Heading 6</Heading>);
 
       expect(container).toMatchSnapshot();
     });

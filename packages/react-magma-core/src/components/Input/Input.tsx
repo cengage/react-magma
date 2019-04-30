@@ -17,14 +17,13 @@ export interface InputCoreState {
 }
 
 export class InputCore extends React.Component<InputCoreProps, InputCoreState> {
-  initialState: InputCoreState = {
-    id: this.props.id ? this.props.id : uuidv4(),
-    value: this.props.value
-  };
-  state: InputCoreState = this.initialState;
-
   constructor(props) {
     super(props);
+
+    this.state = {
+      id: this.generateId(this.props.id),
+      value: this.props.value
+    };
 
     this.onBlur = this.onBlur.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -32,17 +31,33 @@ export class InputCore extends React.Component<InputCoreProps, InputCoreState> {
     this.togglePasswordShown = this.togglePasswordShown.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.id !== this.props.id) {
+      this.setState({ id: this.generateId(this.props.id) });
+    }
+  }
+
+  generateId(id?: string) {
+    return id ? id : uuidv4();
+  }
+
   onBlur() {
-    this.props.onBlur && this.props.onBlur();
+    this.props.onBlur &&
+      typeof this.props.onBlur === 'function' &&
+      this.props.onBlur();
   }
 
   onFocus() {
-    this.props.onFocus && this.props.onFocus();
+    this.props.onFocus &&
+      typeof this.props.onFocus === 'function' &&
+      this.props.onFocus();
   }
 
   onChange(event) {
     const { value } = event.target;
-    this.props.onChange && this.props.onChange(event);
+    this.props.onChange &&
+      typeof this.props.onChange === 'function' &&
+      this.props.onChange(event);
 
     this.setState(() => ({ value }));
   }

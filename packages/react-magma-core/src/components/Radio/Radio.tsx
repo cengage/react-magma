@@ -17,26 +17,39 @@ export interface RadioCoreState {
 }
 
 export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
-  initialState: RadioCoreState = {
-    id: this.props.id ? this.props.id : uuidv4(),
-    selectedValue: this.props.value
-  };
-  state: RadioCoreState = this.initialState;
-
   constructor(props) {
     super(props);
+
+    this.state = {
+      id: this.generateId(this.props.id),
+      selectedValue: this.props.value
+    };
 
     this.onBlur = this.onBlur.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onFocus = this.onFocus.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.id !== this.props.id) {
+      this.setState({ id: this.generateId(this.props.id) });
+    }
+  }
+
+  generateId(id?: string) {
+    return id ? id : uuidv4();
+  }
+
   onBlur() {
-    this.props.onBlur && this.props.onBlur();
+    this.props.onBlur &&
+      typeof this.props.onBlur === 'function' &&
+      this.props.onBlur();
   }
 
   onFocus() {
-    this.props.onFocus && this.props.onFocus();
+    this.props.onFocus &&
+      typeof this.props.onFocus === 'function' &&
+      this.props.onFocus();
   }
 
   onChange(event) {
@@ -46,7 +59,9 @@ export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
     this.setState(
       () => ({ selectedValue }),
       () => {
-        this.props.onChange && this.props.onChange(event);
+        this.props.onChange &&
+          typeof this.props.onChange === 'function' &&
+          this.props.onChange(event);
       }
     );
   }

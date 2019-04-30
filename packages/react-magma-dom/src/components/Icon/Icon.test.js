@@ -25,16 +25,28 @@ describe('Icon', () => {
     expect(container.querySelector('svg').id).not.toBeNull();
   });
 
-  it('should not update the id on rerender', () => {
+  it('should not update the id on rerender without change to prop id', () => {
     const Icon = ICONS[Object.keys(ICONS)[0]];
     const { container, rerender } = render(<Icon title="testTitle" />);
 
-    const svg = container.querySelector('svg');
-    const initialId = svg.id;
+    const title = container.querySelector('title');
+    const initialId = title.id;
 
     rerender(<Icon title="newTitle" />);
 
-    expect(svg.id).toEqual(initialId);
+    expect(title.id).toEqual(initialId);
+  });
+
+  it('should update the id on rerender with change to prop id', () => {
+    const Icon = ICONS[Object.keys(ICONS)[0]];
+    const { container, rerender } = render(<Icon title="testTitle" />);
+
+    const title = container.querySelector('title');
+    const initialId = title.id;
+
+    rerender(<Icon id="newId" title="testTitle" />);
+
+    expect(title.id).not.toEqual(initialId);
   });
 
   describe('Snapshot Tests', () => {

@@ -126,10 +126,19 @@ const SelectedIcon = styled.span<{ color: string }>`
 `;
 
 export class RadioComponent extends React.Component<RadioProps, RadioState> {
-  initialState: RadioState = {
-    id: this.props.id ? this.props.id : uuidv4()
+  state: RadioState = {
+    id: this.generateId(this.props.id)
   };
-  state: RadioState = this.initialState;
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.id !== this.props.id) {
+      this.setState({ id: this.generateId(this.props.id) });
+    }
+  }
+
+  generateId(id?: string) {
+    return id ? id : uuidv4();
+  }
 
   render() {
     const { id } = this.state;

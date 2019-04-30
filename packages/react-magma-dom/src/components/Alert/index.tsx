@@ -11,8 +11,6 @@ import { Button } from '../Button';
 import { ButtonVariant } from '../StyledButton';
 import { AlertCore } from 'react-magma-core';
 
-const uuidv4 = require('uuid/v4');
-
 const VARIANT_ICON = {
   info: Info2Icon,
   success: CheckIcon,

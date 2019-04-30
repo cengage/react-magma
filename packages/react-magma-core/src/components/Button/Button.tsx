@@ -1,5 +1,4 @@
 import * as React from 'react';
-const uuidv4 = require('uuid/v4');
 
 export interface ButtonCoreProps {
   children: (props) => React.ReactNode;
@@ -14,7 +13,9 @@ export class ButtonCore extends React.Component<ButtonCoreProps> {
   }
 
   onClick(event) {
-    this.props.onClick && this.props.onClick(event);
+    this.props.onClick &&
+      typeof this.props.onClick === 'function' &&
+      this.props.onClick(event);
   }
 
   render() {

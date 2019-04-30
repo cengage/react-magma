@@ -37,7 +37,7 @@ describe('InputCore', () => {
     expect(component.state('id')).not.toBeNull();
   });
 
-  it('should not update the id on rerender', () => {
+  it('should not update the id on rerender without a change in prop id', () => {
     const component = inputSetup({ id: null });
 
     const initialId = component.state('id');
@@ -45,6 +45,16 @@ describe('InputCore', () => {
     component.update();
 
     expect(component.state('id')).toEqual(initialId);
+  });
+
+  it('should update the id on rerender with a change in prop id', () => {
+    const component = inputSetup({ id: null });
+
+    const initialId = component.state('id');
+
+    component.setProps({ id: 'differentId' });
+
+    expect(component.state('id')).not.toEqual(initialId);
   });
 
   describe('state management', () => {

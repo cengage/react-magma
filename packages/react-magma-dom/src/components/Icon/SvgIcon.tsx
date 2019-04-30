@@ -28,10 +28,19 @@ function renderPaths(paths) {
 }
 
 export class SvgIcon extends React.Component<SvgIconProps, SvgIconState> {
-  initialState: SvgIconState = {
-    id: this.props.id ? this.props.id : uuidv4()
+  state: SvgIconState = {
+    id: this.generateId(this.props.id)
   };
-  state: SvgIconState = this.initialState;
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.id !== this.props.id) {
+      this.setState({ id: this.generateId(this.props.id) });
+    }
+  }
+
+  generateId(id?: string) {
+    return id ? id : uuidv4();
+  }
 
   render() {
     const { id } = this.state;
