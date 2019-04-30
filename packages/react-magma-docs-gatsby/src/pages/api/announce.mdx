@@ -9,9 +9,32 @@ they may not be clear to users of assistive technology.  The `Announce` componen
 ## Basic Usage
 
 ```.jsx
-    <Announce>
-        The text that changes will be read by the screen reader.
-    </Announce>
+  class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          announceContent: <p>Initial content</p>
+        }
+
+        this.handleContentUpdate = this.handleContentUpdate.bind(this);
+      }
+
+      handleContentUpdate() {
+        this.setState({announceContent: <p>New content replacing the initial content</p>})
+      }
+
+      render() {
+        const { announceContent } = this.state;
+
+        return (<>
+            <p>This content will be read by a screen reader when it changes.</p>
+            <p><Button onClick={this.handleContentUpdate}>Update content</Button></p>
+            <Announce>
+                {announceContent}
+            </Announce>
+        </>)
+      }
+    }
 ```
 
 ## Politeness
@@ -20,12 +43,47 @@ The `Announce` component takes an optional `politeness` prop, that accepts the f
 This sets the value of the `aria-live` attribute and is used to set the priority with which screen reader should treat updates to live regions.
 
 When `polite` is used, assistive technology will notify a users of a change after the current task is complete.  When `assertive` is used, assistive technologies will notify the user immediately,
-possibly interrupting the current task.  Using `off` will silence these updates.
+possibly interrupting the current task.  Using `off` will silence these updates, so they will not be read.
 
 ```.jsx
-    <Announce politeness="assertive">
-        This text can be read by a screen reader, but does not appear on the screen.
-    </Announce>
+  class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          announceContentAssertive: <p>Initial assertive content</p>,
+          announceContentOff: <p>Initial off content</p>
+        }
+
+        this.handleContentUpdateAssertive = this.handleContentUpdateAssertive.bind(this);
+        this.handleContentUpdateOff = this.handleContentUpdateOff.bind(this);
+      }
+
+      handleContentUpdateAssertive() {
+        this.setState({announceContentAssertive: <p>New content replacing the assertive initial content</p>})
+      }
+
+      handleContentUpdateOff() {
+        this.setState({announceContentOff: <p>New content replacing the off initial content</p>})
+      }
+
+      render() {
+        const { announceContentAssertive, announceContentOff } = this.state;
+
+        return (<>
+            <p>This content will be read by a screen reader immediately when it changes.</p>
+            <p><Button onClick={this.handleContentUpdateAssertive}>Update assertive content</Button></p>
+            <Announce politeness="assertive">
+                {announceContentAssertive}
+            </Announce>
+            <hr />
+            <p>This content will be not read by a screen reader when it changes.</p>
+            <p><Button onClick={this.handleContentUpdateOff}>Update off content</Button></p>
+            <Announce politeness="off">
+                {announceContentOff}
+            </Announce>
+        </>)
+      }
+    }
 ```
 
 ## Heading Props
