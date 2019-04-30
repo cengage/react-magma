@@ -1,0 +1,36 @@
+---
+title: 'Announce'
+---
+
+# Announce
+When dynamically changing content on a page, it is important that all users become aware of these changes.  While changes may be visually apparent to users who cans see the page,
+they may not be clear to users of assistive technology.  The `Announce` component uses the `aria-live` attribute to to expose dynamic content to those using screen readers.
+
+## Basic Usage
+
+```.jsx
+    <Announce>
+        The text that changes will be read by the screen reader.
+    </Announce>
+```
+
+## Politeness
+
+The `Announce` component takes an optional `politeness` prop, that accepts the following values: `assertive`, `off`, and `polite`.  The default value is `polite`.
+This sets the value of the `aria-live` attribute and is used to set the priority with which screen reader should treat updates to live regions.
+
+When `polite` is used, assistive technology will notify a users of a change after the current task is complete.  When `assertive` is used, assistive technologies will notify the user immediately,
+possibly interrupting the current task.  Using `off` will silence these updates.
+
+```.jsx
+    <Announce politeness="assertive">
+        This text can be read by a screen reader, but does not appear on the screen.
+    </Announce>
+```
+
+## Heading Props
+
+| Prop     | Type                | Default | Required |
+| -------- | ------------------- | ------- | :------: |
+| children | node                |         | &#10003; |
+| politeness | enum 'assertive' &#124; 'off' &#124; 'polite' | 'polite' | |

@@ -19,6 +19,7 @@ export { Radio } from './components/Radio';
 export { Select } from './components/Select';
 export { Toggle } from './components/Toggle';
 export { Toast } from './components/Toast';
+export { VisuallyHidden } from './components/VisuallyHidden';
 
 export { amgam } from './theme/amgam';
 export { amgamDark } from './theme/amgamDark';
