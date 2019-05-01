@@ -21,6 +21,7 @@ export interface CheckboxProps {
   onChange?: (event: React.SyntheticEvent) => void;
   onFocus?: () => void;
   id?: string;
+  testId?: string;
   indeterminate?: boolean;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
@@ -191,6 +192,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
             required,
             style,
             textVisuallyHidden,
+            testId,
             value
           } = this.props;
 
@@ -202,6 +204,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
                     <HiddenInput
                       autoFocus={autoFocus}
                       id={id}
+                      data-testid={testId}
                       checked={checked}
                       disabled={disabled}
                       indeterminate={indeterminate}

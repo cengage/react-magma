@@ -90,6 +90,38 @@ Please use discretion when adding custom styles.
   </div>
 ```
 
+## Testing
+
+Passing in the `testId` prop will add the `data-testid` attribute to the input element for easier querying in tests.
+
+```html
+<div>
+  <input id="Toggle0" data-testid="test-id" name="" type="checkbox" value="" />
+  <label for="Toggle0">
+    <span>Toggle label</span>
+    <span>
+      <span>
+        <svg
+          class="icon"
+          height="11"
+          width="11"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 29.37 21.88"
+          aria-labelledby="573cfe4f-c354-4561-ad1c-4873bca476de"
+        >
+          <title id="573cfe4f-c354-4561-ad1c-4873bca476de"></title>
+          <path
+            d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+            transform="translate(-0.87 -3.06)"
+          ></path>
+        </svg>
+      </span>
+    </span>
+  </label>
+</div>
+```
+
 ## Toggle Props
 
 | Prop               | Type                        | Default | Required |
@@ -107,6 +139,7 @@ Please use discretion when adding custom styles.
 | style              | React.CSSProperties         |         |
 | textPosition       | enum: 'left' &#124; 'right' | 'left'  |
 | textVisuallyHidden | boolean                     |         |
+| testId             | string                      |         |
 | thumbStyle         | React.CSSProperties         |         |
 | trackStyle         | React.CSSProperties         |         |
 | value              | string                      |         |

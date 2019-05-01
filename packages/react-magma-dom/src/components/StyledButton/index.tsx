@@ -51,6 +51,7 @@ export interface ButtonProps {
   disabled?: boolean;
   href?: string;
   id?: string;
+  testId?: string;
   inverse?: boolean;
   onClick?: (event: React.SyntheticEvent) => void;
   shape?: ButtonShape;
@@ -433,6 +434,7 @@ export const StyledButton: React.FunctionComponent<
       href,
       iconOnly,
       id,
+      testId,
       inverse,
       color,
       shape,
@@ -449,6 +451,7 @@ export const StyledButton: React.FunctionComponent<
         theme && (
           <StyledButtonComponent
             id={id}
+            data-testid={testId}
             ref={ref}
             as={as}
             aria-expanded={ariaExpanded}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Alert, AlertVariant } from '.';
-import { create, render, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from 'react-testing-library';
 import { Info2Icon } from '../Icon/types/Info2Icon';
 import { CheckIcon } from '../Icon/types/CheckIcon';
 import { NotificationIcon } from '../Icon/types/NotificationIcon';
@@ -22,6 +22,13 @@ const renderAlert = (myProps = {}) => {
 };
 
 describe('Alert', () => {
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = renderAlert({ testId });
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should render an alert with default variant', () => {
     const { container } = renderAlert();
 

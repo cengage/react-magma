@@ -32,6 +32,13 @@ const renderRadioGroup = (myProps = {}) => {
 };
 
 describe('Radio Group', () => {
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = renderRadioGroup({ testId });
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should render a label for the radiogroup', () => {
     const { getByText } = renderRadioGroup();
     const label = getByText(RADIO_GROUP_PROPS.labelText);

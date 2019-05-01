@@ -14,6 +14,7 @@ interface Options {
 
 export interface SelectProps {
   id?: string;
+  testId?: string;
   name: string;
   labelText: string;
   options: Options[];
@@ -178,6 +179,7 @@ export const Select: React.FunctionComponent<SelectProps> = (
     {({ defaultValue, onBlur, onFocus, onChange, onOpen, onClose }) => {
       const {
         id,
+        testId,
         name,
         labelText,
         options,
@@ -192,7 +194,7 @@ export const Select: React.FunctionComponent<SelectProps> = (
         <ThemeContext.Consumer>
           {theme =>
             theme && (
-              <div>
+              <div data-testid={testId}>
                 <Label>{labelText}</Label>
                 <ReactSelect
                   id={id}

@@ -51,6 +51,14 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
     }
 ```
 
+## Testing
+
+Passing in the `testId` prop will add the `data-testid` attribute to the heading element for easier querying in tests.
+
+```html
+<h1 data-testid="test-id">Heading 1</h1>
+```
+
 ## Heading Props
 
 | Prop     | Type                | Default | Required |
@@ -59,4 +67,5 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 | level    | number              |         | &#10003; |
 | id       | string              |         |
 | style    | React.CSSProperties |         |
+| testId   | string              |         |          |
 | ref      | React.Ref           |         |

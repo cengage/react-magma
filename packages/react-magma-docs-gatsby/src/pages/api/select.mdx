@@ -275,6 +275,40 @@ The optional `clearable` prop allows the user to clear the field once a selectio
   }
 ```
 
+## Testing
+
+Passing in the `testId` prop will add the `data-testid` attribute to the wrapper element for easier querying in tests.
+
+```html
+<div data-testid="test-id">
+  <label class="css-1bgxxbw egrtx8x0">Basic</label>
+  <div id="basicSelectId">
+    <div>
+      <div>
+        <div>Select...</div>
+        <div>
+          <div style="display: inline-block;">
+            <input
+              autocapitalize="none"
+              autocomplete="off"
+              autocorrect="off"
+              id="react-select-19-input"
+              spellcheck="false"
+              tabindex="0"
+              type="text"
+              aria-autocomplete="list"
+              aria-label="Basic"
+              value=""
+            />
+            <div style="text-transform: none;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
 ## Select Props
 
 | Prop         | Type                                   | Default | Required |
@@ -294,6 +328,7 @@ The optional `clearable` prop allows the user to clear the field once a selectio
 | options      | object[]: `{ label, text }`            |         | &#10003; |
 | required     | boolean                                |         |
 | style        | [ReactSelect.Styles](#style_interface) |         |
+| testId       | string                                 |         |
 
 ### Style Interface
 

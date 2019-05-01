@@ -7,6 +7,7 @@ export interface HeadingProps {
   children: React.ReactChild | React.ReactChild[];
   level: number;
   id?: string;
+  testId?: string;
   style?: React.CSSProperties;
   ref?: any;
   tabIndex?: number;
@@ -74,7 +75,10 @@ function renderHeading(level: number) {
 }
 
 export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
-  ({ level, id, tabIndex, style, children }: HeadingProps, ref: any) => {
+  (
+    { level, id, testId, tabIndex, style, children }: HeadingProps,
+    ref: any
+  ) => {
     const HeadingComponent = renderHeading(level);
 
     return (
@@ -84,6 +88,7 @@ export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
             <HeadingComponent
               ref={ref}
               id={id}
+              data-testid={testId}
               style={style}
               tabIndex={tabIndex}
               theme={theme}

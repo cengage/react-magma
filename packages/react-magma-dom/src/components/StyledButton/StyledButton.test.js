@@ -8,7 +8,7 @@ import {
   ButtonTextTransform,
   ButtonVariant
 } from '.';
-import { render, fireEvent, cleanup } from 'react-testing-library';
+import { render, fireEvent } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 import { darken } from 'polished';
 
@@ -34,8 +34,11 @@ const renderButton = (myProps = {}) => {
 };
 
 describe('Styled Button', () => {
-  afterEach(() => {
-    cleanup();
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = renderButton({ testId });
+
+    expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render a button with the passed in text', () => {
