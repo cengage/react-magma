@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Global, css } from '@emotion/core';
-import { ThemeContext } from './themeContext';
+import { ThemeContext } from '../themeContext';
 
 function getStyles(theme) {
   return css`

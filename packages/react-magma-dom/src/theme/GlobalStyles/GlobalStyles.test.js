@@ -1,5 +1,5 @@
 import React from 'react';
-import { GlobalStyles } from './GlobalStyles';
+import { GlobalStyles } from '.';
 import { render, cleanup } from 'react-testing-library';
 
 describe('GlobalStyles', () => {
