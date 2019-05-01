@@ -6,6 +6,7 @@ import { Alert, AlertProps, transitionDuration } from '../Alert';
 
 export interface ToastProps extends AlertProps {
   children: React.ReactNode;
+  id?: string;
   onDismiss: () => void;
   toastDuration?: number;
   disableAutoDismiss?: boolean;
@@ -43,6 +44,7 @@ const ToastWrapper = styled.div`
 `;
 
 export const Toast: React.FunctionComponent<ToastProps> = ({
+  id,
   variant,
   dismissable,
   style,
@@ -78,6 +80,7 @@ export const Toast: React.FunctionComponent<ToastProps> = ({
                   onMouseLeave={handleMouseLeave}
                 >
                   <Alert
+                    id={id}
                     style={style}
                     isExiting={isExiting}
                     dismissable={dismissable}

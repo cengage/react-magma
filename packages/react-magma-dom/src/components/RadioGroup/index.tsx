@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { RadioCore } from 'react-magma-core';
-import { RadioProps } from '../Radio';
 import { HiddenStyles } from '../UtilityStyles';
 import styled from '@emotion/styled';
 
@@ -20,7 +19,7 @@ export interface RadioGroupProps {
   onBlur?: () => void;
   onChange?: (event: React.SyntheticEvent) => void;
   onFocus?: () => void;
-  id: string;
+  id?: string;
   labelStyle?: React.CSSProperties;
   labelText: string;
   name: string;
@@ -45,14 +44,14 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
   props: RadioGroupProps
 ): JSX.Element => (
   <RadioCore
+    id={props.id}
     value={props.value}
     onBlur={props.onBlur}
     onChange={props.onChange}
     onFocus={props.onFocus}
   >
-    {({ onBlur, onChange, onFocus, selectedValue }) => {
+    {({ id, onBlur, onChange, onFocus, selectedValue }) => {
       const {
-        id,
         labelStyle,
         labelText,
         style,

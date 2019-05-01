@@ -40,6 +40,44 @@ const renderRadio = (myProps = {}, myContext = {}) => {
 };
 
 describe('Radio Group', () => {
+  it('should auto assign an id if none is passed in', () => {
+    const { getByLabelText } = renderRadio({ id: null });
+
+    expect(getByLabelText(RADIO_PROPS.labelText).id).not.toBeNull();
+  });
+
+  it('should persist id between renders', () => {
+    const { rerender, getByLabelText } = renderRadio({ id: null });
+
+    const radio = getByLabelText(RADIO_PROPS.labelText);
+    const initialId = radio.id;
+    const initialValue = radio.value;
+
+    rerender(
+      <RadioContext.Provider value={RADIO_CONTEXT}>
+        <Radio {...RADIO_PROPS} id={null} value="pink" />
+      </RadioContext.Provider>
+    );
+
+    expect(radio.value).not.toEqual(initialValue);
+    expect(radio.id).toEqual(initialId);
+  });
+
+  it('should update the id on rerender with change to prop id', () => {
+    const { rerender, getByLabelText } = renderRadio({ id: null });
+
+    const radio = getByLabelText(RADIO_PROPS.labelText);
+    const initialId = radio.id;
+
+    rerender(
+      <RadioContext.Provider value={RADIO_CONTEXT}>
+        <Radio {...RADIO_PROPS} id="differentId" />
+      </RadioContext.Provider>
+    );
+
+    expect(radio.id).not.toEqual(initialId);
+  });
+
   it('should render a label for the radio', () => {
     const { getByText } = renderRadio();
     const label = getByText(RADIO_PROPS.labelText);

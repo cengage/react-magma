@@ -18,13 +18,12 @@ export class SelectCore extends React.Component<
   SelectCoreProps,
   SelectCoreState
 > {
-  initialState: SelectCoreState = {
-    value: this.props.defaultValue
-  };
-  state: SelectCoreState = this.initialState;
-
   constructor(props) {
     super(props);
+
+    this.state = {
+      value: this.props.defaultValue
+    };
 
     this.onBlur = this.onBlur.bind(this);
     this.onFocus = this.onFocus.bind(this);
@@ -34,28 +33,38 @@ export class SelectCore extends React.Component<
   }
 
   onBlur() {
-    this.props.onBlur && this.props.onBlur();
+    this.props.onBlur &&
+      typeof this.props.onBlur === 'function' &&
+      this.props.onBlur();
   }
 
   onFocus() {
-    this.props.onFocus && this.props.onFocus();
+    this.props.onFocus &&
+      typeof this.props.onFocus === 'function' &&
+      this.props.onFocus();
   }
 
   onChange(value) {
     this.setState(
       () => ({ value }),
       () => {
-        this.props.onChange && this.props.onChange(value);
+        this.props.onChange &&
+          typeof this.props.onChange === 'function' &&
+          this.props.onChange(value);
       }
     );
   }
 
   onOpen() {
-    this.props.onOpen && this.props.onOpen();
+    this.props.onOpen &&
+      typeof this.props.onOpen === 'function' &&
+      this.props.onOpen();
   }
 
   onClose() {
-    this.props.onClose && this.props.onClose();
+    this.props.onClose &&
+      typeof this.props.onClose === 'function' &&
+      this.props.onClose();
   }
 
   render() {
