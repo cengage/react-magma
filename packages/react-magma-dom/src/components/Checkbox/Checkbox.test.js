@@ -1,6 +1,6 @@
 import React from 'react';
 import { Checkbox } from '.';
-import { render, fireEvent, cleanup } from 'react-testing-library';
+import { render, fireEvent } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 
 const CHECKBOX_PROPS = {

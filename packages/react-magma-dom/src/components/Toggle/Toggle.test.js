@@ -1,6 +1,6 @@
 import React from 'react';
 import { Toggle } from '.';
-import { render, cleanup } from 'react-testing-library';
+import { render } from 'react-testing-library';
 
 const TOGGLE_PROPS = {
   autoFocus: false,

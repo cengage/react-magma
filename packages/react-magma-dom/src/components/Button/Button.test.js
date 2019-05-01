@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Button } from '.';
-import { render, cleanup } from 'react-testing-library';
+import { render } from 'react-testing-library';
 import {
   ButtonColor,
   ButtonShape,

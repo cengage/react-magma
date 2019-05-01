@@ -8,7 +8,7 @@ import {
   ButtonTextTransform,
   ButtonVariant
 } from '.';
-import { render, fireEvent, cleanup } from 'react-testing-library';
+import { render, fireEvent } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 import { darken } from 'polished';
 
