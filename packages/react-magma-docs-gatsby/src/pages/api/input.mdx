@@ -306,6 +306,10 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
     }
 ```
 
+## Testing
+
+Passing in the `testId` prop will add the `data-testid` attribute to the input element for easier querying in tests.
+
 ## Input Props
 
 | Prop                   | Type                                                | Default  | Required |
@@ -329,6 +333,7 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 | multiline              | boolean                                             |          |
 | placeholder            | string                                              |          |
 | required               | boolean                                             |          |
+| testId                 | string                                              |          |
 | type                   | enum: 'text' &#124; 'password' &#124; 'number'      | 'text'   |
 | hidePasswordMaskButton | boolean                                             |          |
 | value                  | string                                              |          |

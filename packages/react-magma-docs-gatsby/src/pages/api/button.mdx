@@ -238,6 +238,10 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
     }
 ```
 
+## Testing
+
+Passing in the `testId` prop will add the `data-testid` attribute to the button element for easier querying in tests.
+
 ## Button Props
 
 | Prop          | Type                                                                | Default     | Required |
@@ -256,6 +260,7 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 | shape         | enum: 'fill' &#124; 'leftCap' &#124; 'rightCap' &#124; 'round'      | 'fill'      |
 | size          | enum: 'large' &#124; 'medium' &#124; 'small'                        | 'medium'    |
 | style         | React.CSSProperties                                                 |             |
+| testId        | string                                                              |             |          |
 | textTransform | enum: 'uppercase' &#124; 'none'                                     | 'uppercase' |
 | to            | string                                                              |             |
 | variant       | enum: 'solid' &#124; 'outline' &#124; 'link'                        | 'solid'     |

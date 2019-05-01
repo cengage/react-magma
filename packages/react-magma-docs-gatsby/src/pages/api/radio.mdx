@@ -222,6 +222,10 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
     }
 ```
 
+## Testing
+
+Passing in the `testId` prop will add the `data-testid` attribute to the wrapper element for `RadioGroup` and the input element for `Radio` for easier querying in tests.
+
 ## Radio Group Props
 
 | Prop               | Type                | Default | Required |
@@ -235,6 +239,7 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 | labelText          | string              |         | &#10003; |
 | name               | string              |         | &#10003; |
 | style              | React.CSSProperties |         |
+| testId             | string              |         |
 | textVisuallyHidden | boolean             |         |
 | value              | string              |         |
 
@@ -251,5 +256,6 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 | labelText          | string              |         | &#10003; |
 | required           | function            |         |
 | style              | React.CSSProperties |         |
+| testId             | string              |         |
 | textVisuallyHidden | boolean             | false   |
 | value              | string              |         |

@@ -54,12 +54,17 @@ import DocsHeading from '../../components/docs-heading'
     }
 ```
 
+## Testing
+
+Passing in the `testId` prop will add the `data-testid` attribute to the wrapper element for easier querying in tests.
+
 ## Alert Props
 
 | Prop        | Type                                                           | Default | Required |
 | ----------- | -------------------------------------------------------------- | ------- | :------: |
 | children    | node                                                           |         | &#10003; |
 | id          | string                                                         |         |          |
+| testId      | string                                                         |         |          |
 | dismissable | boolean                                                        |         |          |
 | variant     | enum: 'info' &#124; 'success' &#124; 'warning' &#124; 'danger' |         |
 | style       | React.CSSProperties                                            |         |
