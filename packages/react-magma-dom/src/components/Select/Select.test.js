@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Select, getStyles } from '.';
-import { render, fireEvent, cleanup, wait } from 'react-testing-library';
+import { render, fireEvent, cleanup } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 
 const options = [
@@ -71,7 +71,7 @@ describe('Select', () => {
 
   it('should render a multi-select with a multiple values passed through', () => {
     const defaultValue = [options[0], options[1]];
-    const { container, debug } = renderSelect({ defaultValue, multi: true });
+    const { container } = renderSelect({ defaultValue, multi: true });
     const input = container.querySelectorAll(
       `input[name="${SELECT_PROPS.name}"]`
     );

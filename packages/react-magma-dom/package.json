@@ -73,8 +73,14 @@
     "@babel/preset-typescript": "^7.1.0",
     "@types/jest": "^23.3.1",
     "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "babel-plugin-dynamic-import-node": "^2.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-cengage": "^0.5.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-unicorn": "^8.0.2",
     "jest": "^23.5.0",
     "jest-axe": "^3.1.0",
     "jest-dom": "^1.12.0",
@@ -106,6 +112,7 @@
       "prettier --write",
       "git add"
     ],
+    "*.{js,jsx}": "eslint src/components/**/*.test.js",
     "*.{ts,tsx}": [
       "tslint --project './tsconfig.json'"
     ]

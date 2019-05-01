@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Alert, AlertVariant } from '.';
-import { create, render, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from 'react-testing-library';
 import { Info2Icon } from '../Icon/types/Info2Icon';
 import { CheckIcon } from '../Icon/types/CheckIcon';
 import { NotificationIcon } from '../Icon/types/NotificationIcon';

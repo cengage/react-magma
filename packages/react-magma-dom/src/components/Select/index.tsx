@@ -30,10 +30,6 @@ export interface SelectProps {
   onClose?: () => void;
 }
 
-interface SelectState {
-  id?: string;
-}
-
 interface ReactSelectStyles {
   control?: React.CSSProperties;
   dropdownIndicator?: React.CSSProperties;
