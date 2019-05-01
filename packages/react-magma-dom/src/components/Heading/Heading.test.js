@@ -21,8 +21,11 @@ const renderHeading = (myProps = {}) => {
 };
 
 describe('Heading', () => {
-  afterEach(() => {
-    cleanup();
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = renderHeading({ testId });
+
+    expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render an h1', () => {

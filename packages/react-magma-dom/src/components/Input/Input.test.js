@@ -23,8 +23,11 @@ const renderInput = (myProps = {}) => {
 };
 
 describe('Input', () => {
-  afterEach(() => {
-    cleanup();
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = renderInput({ testId });
+
+    expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render a label for the input', () => {

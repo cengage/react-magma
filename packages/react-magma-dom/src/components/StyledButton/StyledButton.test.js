@@ -34,8 +34,11 @@ const renderButton = (myProps = {}) => {
 };
 
 describe('Styled Button', () => {
-  afterEach(() => {
-    cleanup();
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = renderButton({ testId });
+
+    expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render a button with the passed in text', () => {

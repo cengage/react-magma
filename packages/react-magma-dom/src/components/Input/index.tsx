@@ -37,6 +37,7 @@ export interface InputProps {
   icon?: React.ReactElement<IconProps>;
   iconPosition?: IconPosition;
   id?: string;
+  testId?: string;
   inputSize?: InputSize;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
@@ -268,6 +269,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
           style,
           type,
           required,
+          testId,
           hidePasswordMaskButton
         } = props;
 
@@ -288,6 +290,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                       as={multiline ? 'textarea' : null}
                       autoFocus={autoFocus}
                       id={id}
+                      data-testid={testId}
                       disabled={disabled}
                       errorMessage={errorMessage}
                       iconPosition={iconPosition}

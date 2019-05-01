@@ -36,8 +36,11 @@ const renderSelect = (myProps = {}) => {
 };
 
 describe('Select', () => {
-  afterEach(() => {
-    cleanup();
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = renderSelect({ testId });
+
+    expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render a label for the select', () => {

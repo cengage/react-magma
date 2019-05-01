@@ -20,8 +20,11 @@ const renderCheckbox = (myProps = {}) => {
 };
 
 describe('Checkbox', () => {
-  afterEach(() => {
-    cleanup();
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = renderCheckbox({ testId });
+
+    expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render a label for the checkbox', () => {

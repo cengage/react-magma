@@ -39,7 +39,14 @@ const renderRadio = (myProps = {}, myContext = {}) => {
   );
 };
 
-describe('Radio Group', () => {
+describe('Radio', () => {
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = renderRadio({ testId });
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should auto assign an id if none is passed in', () => {
     const { getByLabelText } = renderRadio({ id: null });
 

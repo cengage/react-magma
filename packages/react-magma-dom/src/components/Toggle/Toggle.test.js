@@ -19,8 +19,11 @@ const renderToggle = (myProps = {}) => {
 };
 
 describe('Toggle', () => {
-  afterEach(() => {
-    cleanup();
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = renderToggle({ testId });
+
+    expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render a toggle with the passed in text', () => {

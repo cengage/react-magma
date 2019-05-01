@@ -20,6 +20,7 @@ export interface RadioGroupProps {
   onChange?: (event: React.SyntheticEvent) => void;
   onFocus?: () => void;
   id?: string;
+  testId?: string;
   labelStyle?: React.CSSProperties;
   labelText: string;
   name: string;
@@ -56,11 +57,17 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
         labelText,
         style,
         textVisuallyHidden,
+        testId,
         name,
         children
       } = props;
       return (
-        <div aria-labelledby={id} role="radiogroup" style={style}>
+        <div
+          aria-labelledby={id}
+          data-testid={testId}
+          role="radiogroup"
+          style={style}
+        >
           <RadioContext.Provider
             value={{
               name: name,

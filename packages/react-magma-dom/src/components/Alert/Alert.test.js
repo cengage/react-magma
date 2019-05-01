@@ -22,6 +22,13 @@ const renderAlert = (myProps = {}) => {
 };
 
 describe('Alert', () => {
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = renderAlert({ testId });
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should render an alert with default variant', () => {
     const { container } = renderAlert();
 

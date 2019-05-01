@@ -20,8 +20,11 @@ const renderLinkButton = (myProps = {}) => {
 };
 
 describe('Link Button', () => {
-  afterEach(() => {
-    cleanup();
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = renderLinkButton({ testId });
+
+    expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render a button with the passed in text', () => {
