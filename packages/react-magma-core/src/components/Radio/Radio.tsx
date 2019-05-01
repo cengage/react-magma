@@ -1,5 +1,5 @@
 import * as React from 'react';
-const uuidv4 = require('uuid/v4');
+import { generateId } from '../utils';
 
 export interface RadioCoreProps {
   children: (props) => React.ReactNode;
@@ -21,7 +21,7 @@ export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
     super(props);
 
     this.state = {
-      id: this.generateId(this.props.id),
+      id: generateId(this.props.id),
       selectedValue: this.props.value
     };
 
@@ -32,12 +32,8 @@ export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
 
   componentDidUpdate(prevProps) {
     if (prevProps.id !== this.props.id) {
-      this.setState({ id: this.generateId(this.props.id) });
+      this.setState({ id: generateId(this.props.id) });
     }
-  }
-
-  generateId(id?: string) {
-    return id ? id : uuidv4();
   }
 
   onBlur() {

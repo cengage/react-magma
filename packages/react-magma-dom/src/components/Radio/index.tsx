@@ -10,8 +10,7 @@ import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/themeContext';
-
-const uuidv4 = require('uuid/v4');
+import { generateId } from '../utils';
 
 export interface RadioProps {
   color?: string;
@@ -127,17 +126,13 @@ const SelectedIcon = styled.span<{ color: string }>`
 
 export class RadioComponent extends React.Component<RadioProps, RadioState> {
   state: RadioState = {
-    id: this.generateId(this.props.id)
+    id: generateId(this.props.id)
   };
 
   componentDidUpdate(prevProps) {
     if (prevProps.id !== this.props.id) {
-      this.setState({ id: this.generateId(this.props.id) });
+      this.setState({ id: generateId(this.props.id) });
     }
-  }
-
-  generateId(id?: string) {
-    return id ? id : uuidv4();
   }
 
   render() {

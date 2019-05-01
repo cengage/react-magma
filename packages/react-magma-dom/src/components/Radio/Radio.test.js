@@ -46,7 +46,7 @@ describe('Radio Group', () => {
     expect(getByLabelText(RADIO_PROPS.labelText).id).not.toBeNull();
   });
 
-  it('should not update the id on rerender without change to prop id', () => {
+  it('should persist id between renders', () => {
     const { rerender, getByLabelText } = renderRadio({ id: null });
 
     const radio = getByLabelText(RADIO_PROPS.labelText);

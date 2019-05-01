@@ -1,5 +1,5 @@
 import * as React from 'react';
-const uuidv4 = require('uuid/v4');
+import { generateId } from '../utils';
 
 const defaultSize = 24;
 
@@ -29,17 +29,13 @@ function renderPaths(paths) {
 
 export class SvgIcon extends React.Component<SvgIconProps, SvgIconState> {
   state: SvgIconState = {
-    id: this.generateId(this.props.id)
+    id: generateId(this.props.id)
   };
 
   componentDidUpdate(prevProps) {
     if (prevProps.id !== this.props.id) {
-      this.setState({ id: this.generateId(this.props.id) });
+      this.setState({ id: generateId(this.props.id) });
     }
-  }
-
-  generateId(id?: string) {
-    return id ? id : uuidv4();
   }
 
   render() {

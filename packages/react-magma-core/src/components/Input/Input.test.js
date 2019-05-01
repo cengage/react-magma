@@ -37,7 +37,7 @@ describe('InputCore', () => {
     expect(component.state('id')).not.toBeNull();
   });
 
-  it('should not update the id on rerender without a change in prop id', () => {
+  it('should persist id between renders', () => {
     const component = inputSetup({ id: null });
 
     const initialId = component.state('id');

@@ -1,5 +1,5 @@
 import * as React from 'react';
-const uuidv4 = require('uuid/v4');
+import { generateId } from '../utils';
 
 export interface CheckboxCoreProps {
   children: (props) => React.ReactNode;
@@ -23,7 +23,7 @@ export class CheckboxCore extends React.Component<
     super(props);
 
     this.state = {
-      id: this.generateId(this.props.id),
+      id: generateId(this.props.id),
       checked: this.props.checked
     };
 
@@ -34,12 +34,8 @@ export class CheckboxCore extends React.Component<
 
   componentDidUpdate(prevProps) {
     if (prevProps.id !== this.props.id) {
-      this.setState({ id: this.generateId(this.props.id) });
+      this.setState({ id: generateId(this.props.id) });
     }
-  }
-
-  generateId(id?: string) {
-    return id ? id : uuidv4();
   }
 
   onBlur() {

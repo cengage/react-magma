@@ -25,7 +25,7 @@ describe('Icon', () => {
     expect(container.querySelector('svg').id).not.toBeNull();
   });
 
-  it('should not update the id on rerender without change to prop id', () => {
+  it('should persist id between renders', () => {
     const Icon = ICONS[Object.keys(ICONS)[0]];
     const { container, rerender } = render(<Icon title="testTitle" />);
 
