@@ -9,6 +9,7 @@ import { Location } from '@reach/router'
 import { Transition, config } from 'react-spring'
 import {
   Alert,
+  Announce,
   Button,
   Checkbox,
   Heading,
@@ -250,6 +251,7 @@ import {
   Upload2Icon,
   VideoCameraIcon,
   VideoIcon,
+  VisuallyHidden,
   VolumeDownIcon,
   VolumeOffIcon,
   VolumeUpIcon,
@@ -284,6 +286,7 @@ const PreComponent = ({ className, ...props }) => {
       scope={{
         iconsArray,
         Alert,
+        Announce,
         Button,
         Checkbox,
         Heading,
@@ -540,6 +543,7 @@ const PreComponent = ({ className, ...props }) => {
         Wrench3Icon,
         YoutubeIcon,
         DemoComponent,
+        VisuallyHidden
       }}
     >
       <div

@@ -13,18 +13,20 @@ export const DisplayInputStyles = css`
   width: 20px;
 
   &:before,
-  &:after { // focus and active states
+  &:after {
+    // focus and active states
     content: '';
     position: absolute;
   }
 
-  &:after { // active state
+  &:after {
+    // active state
     border-radius: 50%;
     height: 40px;
     left: -12px;
     opacity: 0;
     padding: 50%;
-    top: 50%
+    top: -12px;
     transform: scale(1);
     transition: opacity 1s, transform 0.5s;
     width: 40px;

@@ -47,13 +47,13 @@ export interface ButtonProps {
   block?: boolean;
   className?: string;
   children: React.ReactChild | React.ReactChild[];
-  onClick?: (event: React.SyntheticEvent) => void;
   color?: ButtonColor;
   disabled?: boolean;
   href?: string;
   id?: string;
   testId?: string;
   inverse?: boolean;
+  onClick?: (event: React.SyntheticEvent) => void;
   shape?: ButtonShape;
   size?: ButtonSize;
   style?: React.CSSProperties;
