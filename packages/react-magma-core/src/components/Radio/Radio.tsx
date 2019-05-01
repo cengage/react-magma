@@ -1,7 +1,9 @@
 import * as React from 'react';
+import { generateId } from '../utils';
 
 export interface RadioCoreProps {
   children: (props) => React.ReactNode;
+  id?: string;
   onBlur?: () => void;
   onChange?: (event: React.SyntheticEvent) => void;
   selectedValue?: string;
@@ -10,29 +12,40 @@ export interface RadioCoreProps {
 }
 
 export interface RadioCoreState {
+  id?: string;
   selectedValue?: string;
 }
 
 export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
-  initialState: RadioCoreState = {
-    selectedValue: this.props.value
-  };
-  state: RadioCoreState = this.initialState;
-
   constructor(props) {
     super(props);
+
+    this.state = {
+      id: generateId(this.props.id),
+      selectedValue: this.props.value
+    };
 
     this.onBlur = this.onBlur.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onFocus = this.onFocus.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.id !== this.props.id) {
+      this.setState({ id: generateId(this.props.id) });
+    }
+  }
+
   onBlur() {
-    this.props.onBlur && this.props.onBlur();
+    this.props.onBlur &&
+      typeof this.props.onBlur === 'function' &&
+      this.props.onBlur();
   }
 
   onFocus() {
-    this.props.onFocus && this.props.onFocus();
+    this.props.onFocus &&
+      typeof this.props.onFocus === 'function' &&
+      this.props.onFocus();
   }
 
   onChange(event) {
@@ -42,7 +55,9 @@ export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
     this.setState(
       () => ({ selectedValue }),
       () => {
-        this.props.onChange && this.props.onChange(event);
+        this.props.onChange &&
+          typeof this.props.onChange === 'function' &&
+          this.props.onChange(event);
       }
     );
   }
@@ -51,6 +66,7 @@ export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
     return this.props.children({
       ...this.state,
       ...this.props,
+      id: this.state.id,
       onBlur: this.onBlur,
       onChange: this.onChange,
       onFocus: this.onFocus,

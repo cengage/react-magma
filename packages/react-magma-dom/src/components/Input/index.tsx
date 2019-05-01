@@ -34,7 +34,7 @@ export interface InputProps {
   hidePasswordMaskButton?: boolean;
   icon?: React.ReactElement<IconProps>;
   iconPosition?: IconPosition;
-  id: string;
+  id?: string;
   inputSize?: InputSize;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
@@ -235,12 +235,14 @@ function getErrorIconSize(size) {
 export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
   (props: InputProps, ref: any) => (
     <InputCore
+      id={props.id}
       value={props.value}
       onBlur={props.onBlur}
       onChange={props.onChange}
       onFocus={props.onFocus}
     >
       {({
+        id,
         onBlur,
         onChange,
         onFocus,
@@ -255,7 +257,6 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
           helperMessage,
           icon,
           iconPosition,
-          id,
           inputSize,
           inputStyle,
           inverse,

@@ -1,58 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Alert Dismissable should render a dismissable icon button with the warning variant 1`] = `
-<div>
-  <div
-    class="css-11ywaem e1i9bore0"
+<button
+  aria-label="Close this message"
+  class="css-1ri5ouh e183qit0"
+  color="primary"
+  id="ignoreButton"
+  shape="round"
+  style="border-radius: 0 3px 3px 0; height: 100%; margin: 0px; padding: 0px 15px; width: auto;"
+>
+  <svg
+    aria-labelledby="ignoreButton"
+    class="icon"
+    fill="currentColor"
+    height="18"
+    id="ignoreSvg"
+    viewBox="0 0 28 28"
+    width="18"
+    xmlns="http://www.w3.org/2000/svg"
   >
-    <span
-      class="css-1o24ohe e1i9bore2"
-    >
-      <svg
-        class="icon"
-        fill="currentColor"
-        height="20"
-        viewBox="0 0 40 40"
-        width="20"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <title />
-        <path
-          d="M20,4.5625 C15.877,4.5625 11.9998125,6.168 9.0845,9.0845 C6.1691875,12.001 4.5625,15.877 4.5625,20 C4.5625,24.123 6.168,28.0001875 9.0845,30.9155 C12.001,33.8308125 15.877,35.4375 20,35.4375 C24.123,35.4375 28.0001875,33.832 30.9155,30.9155 C33.8308125,27.999 35.4375,24.123 35.4375,20 C35.4375,15.877 33.832,11.9998125 30.9155,9.0845 C27.999,6.1691875 24.123,4.5625 20,4.5625 Z M20,1 L20,1 C30.4939375,1 39,9.5060625 39,20 C39,30.4939375 30.4939375,39 20,39 C9.5060625,39 1,30.4939375 1,20 C1,9.5060625 9.5060625,1 20,1 Z M17.625,27.125 L22.375,27.125 L22.375,31.875 L17.625,31.875 L17.625,27.125 Z M17.625,8.125 L22.375,8.125 L22.375,22.375 L17.625,22.375 L17.625,8.125 Z"
-        />
-      </svg>
-    </span>
-    <div
-      class="css-1fwx8ao e1i9bore1"
-    >
-      Test Alert Text
-    </div>
-    <span
-      class="css-fo2t5u e1i9bore3"
-    >
-      <button
-        aria-label="Close this message"
-        class="css-1ri5ouh e183qit0"
-        color="primary"
-        shape="round"
-        style="border-radius: 0 3px 3px 0; height: 100%; margin: 0px; padding: 0px 15px; width: auto;"
-      >
-        <svg
-          class="icon"
-          fill="currentColor"
-          height="18"
-          viewBox="0 0 28 28"
-          width="18"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <title />
-          <path
-            d="M27.75,22.5h0L19.25,14l8.49-8.49h0a.75.75,0,0,0,.2-.31.87.87,0,0,0-.2-.93l-4-4a.86.86,0,0,0-.92-.2.91.91,0,0,0-.32.2h0L14,8.75,5.51.26h0a.83.83,0,0,0-.32-.2.86.86,0,0,0-.92.2l-4,4a.88.88,0,0,0,0,1.24h0L8.75,14,.26,22.5h0a.79.79,0,0,0-.2.31.86.86,0,0,0,.2.92l4,4a.88.88,0,0,0,.92.2,1,1,0,0,0,.32-.2h0L14,19.25l8.49,8.49h0a.78.78,0,0,0,.32.2.86.86,0,0,0,.92-.2l4-4a.86.86,0,0,0,.2-.92A.77.77,0,0,0,27.75,22.5Z"
-            transform="translate(0 0)"
-          />
-        </svg>
-      </button>
-    </span>
-  </div>
-</div>
+    <title
+      id="ignoreTitle"
+    />
+    <path
+      d="M27.75,22.5h0L19.25,14l8.49-8.49h0a.75.75,0,0,0,.2-.31.87.87,0,0,0-.2-.93l-4-4a.86.86,0,0,0-.92-.2.91.91,0,0,0-.32.2h0L14,8.75,5.51.26h0a.83.83,0,0,0-.32-.2.86.86,0,0,0-.92.2l-4,4a.88.88,0,0,0,0,1.24h0L8.75,14,.26,22.5h0a.79.79,0,0,0-.2.31.86.86,0,0,0,.2.92l4,4a.88.88,0,0,0,.92.2,1,1,0,0,0,.32-.2h0L14,19.25l8.49,8.49h0a.78.78,0,0,0,.32.2.86.86,0,0,0,.92-.2l4-4a.86.86,0,0,0,.2-.92A.77.77,0,0,0,27.75,22.5Z"
+      transform="translate(0 0)"
+    />
+  </svg>
+</button>
 `;

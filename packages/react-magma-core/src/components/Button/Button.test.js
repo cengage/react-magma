@@ -6,6 +6,7 @@ const onClick = jest.fn();
 
 const INPUT_CORE_PROPS = {
   children: () => React.createElement('div'),
+  id: 'testId',
   onClick
 };
 

@@ -1,5 +1,5 @@
 ---
-title: "Checkboxes"
+title: 'Checkboxes'
 ---
 
 import DocsHeading from '../../components/docs-heading'
@@ -9,7 +9,8 @@ import { Link } from 'gatsby'
 
 ## Basic Usage
 
-Checkboxes are form elements used to select one or multiple items from a list.
+Checkboxes are form elements used to select one or multiple items from a list. The label/checkbox association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
+
 See also: <Link to="/api/radio">Radio Buttons</Link>, <Link to="/api/toggle">Toggle Switches</Link>, and the <Link to="/design/selection-controls">Design Guidelines</Link> for selection controls in general.
 
 ```.jsx
@@ -30,6 +31,7 @@ See also: <Link to="/api/radio">Radio Buttons</Link>, <Link to="/api/toggle">Tog
 ```
 
 ## Colors
+
 By default, the checkboxes use the theme's primary color. But any other color may be passed in.
 
 ```.jsx
@@ -88,6 +90,7 @@ In addition to being checked or unchecked, checkboxes also support an indetermin
 ```
 
 ## Inverse colors
+
 Inverse is an optional boolean prop, that may be passed in when checkboxes are to be displayed on a dark background.
 
 ```.jsx
@@ -129,6 +132,7 @@ Inverse is an optional boolean prop, that may be passed in when checkboxes are t
 ```
 
 ## Visually Hidden Label
+
 Adding the `textVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
 
 ```.jsx
@@ -140,8 +144,8 @@ Adding the `textVisuallyHidden` prop will make the label text available to scree
     </div>
 ```
 
-
 ## Custom Styles
+
 Custom styles can be passed into both the Checkbox component.  The `style` property will apply to the container.
 Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
 
@@ -164,23 +168,22 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
 
 ## Checkbox Props
 
-| Prop                   | Type | Default | Required    |
-| -----------------------|------|---------|:-----------:|
-| autoFocus | boolean | false |
-| checked | boolean | false |
-| color | string | |
-| disabled | boolean | false |
-| onBlur | function | |
-| onChange | function | |
-| onFocus | function | |
-| id | string | | &#10003;
-| indeterminate | boolean | false |
-| inputStyle | React.CSSProperties | |
-| inverse | boolean | false |
-| labelStyle | React.CSSProperties | |
-| labelText | string | | &#10003;
-| name | string | |
-| required | boolean | false |
-| style | React.CSSProperties | |
-| textVisuallyHidden | boolean | false |
-| value | string | |
+| Prop               | Type                | Default | Required |
+| ------------------ | ------------------- | ------- | :------: |
+| autoFocus          | boolean             | false   |
+| checked            | boolean             | false   |
+| color              | string              |         |
+| disabled           | boolean             | false   |
+| id                 | string              |         |          |
+| indeterminate      | boolean             | false   |
+| inputStyle         | React.CSSProperties |         |
+| inverse            | boolean             | false   |
+| labelStyle         | React.CSSProperties |         |
+| labelText          | string              |         | &#10003; |
+| onBlur             | function            |         |
+| onChange           | function            |         |
+| onFocus            | function            |         |
+| required           | boolean             | false   |
+| style              | React.CSSProperties |         |
+| textVisuallyHidden | boolean             | false   |
+| value              | string              |         |

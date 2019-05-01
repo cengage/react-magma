@@ -83,5 +83,8 @@
     "*.{ts,tsx}": [
       "tslint --project './tsconfig.json'"
     ]
+  },
+  "dependencies": {
+    "uuid": "^3.3.2"
   }
 }
