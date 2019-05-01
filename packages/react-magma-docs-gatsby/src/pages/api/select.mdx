@@ -273,23 +273,34 @@ The label/select association will be handled via the passed in `id` if one is su
 
 Passing in the `testId` prop will add the `data-testid` attribute to the wrapper element for easier querying in tests.
 
-```
-  <div data-testid="test-id">
-    <label class="css-1bgxxbw egrtx8x0">Basic</label>
-    <div id="basicSelectId">
+```html
+<div data-testid="test-id">
+  <label class="css-1bgxxbw egrtx8x0">Basic</label>
+  <div id="basicSelectId">
+    <div>
       <div>
+        <div>Select...</div>
         <div>
-          <div>Select...</div>
-          <div>
-            <div style="display: inline-block;">
-              <input autocapitalize="none" autocomplete="off" autocorrect="off" id="react-select-19-input" spellcheck="false" tabindex="0" type="text" aria-autocomplete="list" aria-label="Basic" value="">
-              <div style="text-transform: none;"></div>
-            </div>
+          <div style="display: inline-block;">
+            <input
+              autocapitalize="none"
+              autocomplete="off"
+              autocorrect="off"
+              id="react-select-19-input"
+              spellcheck="false"
+              tabindex="0"
+              type="text"
+              aria-autocomplete="list"
+              aria-label="Basic"
+              value=""
+            />
+            <div style="text-transform: none;"></div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 ```
 
 ## Select Props
