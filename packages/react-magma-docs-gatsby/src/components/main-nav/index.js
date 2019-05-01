@@ -86,7 +86,7 @@ const MainNav = ({ ...props }) => (
       query NavQuery {
         designDocs: allMdx(
           filter: { fileAbsolutePath: { glob: "**/src/pages/design/**" } }
-          sort: { order: ASC, fields: frontmatter___order }
+          sort: { order: ASC, fields: frontmatter___title }
         ) {
           edges {
             ...navFields
@@ -94,7 +94,7 @@ const MainNav = ({ ...props }) => (
         }
         apiDocs: allMdx(
           filter: { fileAbsolutePath: { glob: "**/src/pages/api/**" } }
-          sort: { order: ASC, fields: frontmatter___order }
+          sort: { order: ASC, fields: frontmatter___title }
         ) {
           edges {
             ...navFields

@@ -8,7 +8,7 @@ import DocsHeading from '../../components/docs-heading'
   Inputs
 </DocsHeading>
 
-Input fields are utilized in a number of ways for both collecting and displaying data from the user.
+Input fields are used in a number of ways for both collecting and displaying data from the user.
 
 ## Basic Usage
 
@@ -306,31 +306,51 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
     }
 ```
 
+## Testing
+
+Passing in the `testId` prop will add the `data-testid` attribute to the input element for easier querying in tests.
+
+```html
+<div>
+  <label for="input1">Label</label>
+  <div>
+    <input
+      id="input1"
+      data-testid="test-id"
+      placeholder="This is a placeholder"
+      type="text"
+      value="Default Value"
+    />
+  </div>
+</div>
+```
+
 ## Input Props
 
 | Prop                   | Type                                                | Default  | Required |
 | ---------------------- | --------------------------------------------------- | -------- | :------: |
-| id                     | string                                              |          |          |
-| labelText              | string                                              |          | &#10003; |
 | autoFocus              | boolean                                             |          |
 | disabled               | boolean                                             |          |
 | errorMessage           | string                                              |          |
-| onBlur                 | func                                                |          |
-| onChange               | func                                                |          |
-| onFocus                | func                                                |          |
 | helperMessage          | string                                              |          |
+| hidePasswordMaskButton | boolean                                             |          |
 | icon                   | string                                              |          |
 | iconPosition           | enum: 'left' &#124; 'right' &#124;                  | 'left'   |
+| id                     | string                                              |          | &#10003; |
 | inputSize              | enum: 'small' &#124; 'medium' &#124; 'large' &#124; | 'medium' |
 | inputStyle             | React.CSSProperties                                 |          |
 | inverse                | boolean                                             |          |
 | labelStyle             | React.CSSProperties                                 |          |
+| labelText              | string                                              |          | &#10003; |
 | labelVisuallyHidden    | boolean                                             |          |
 | multiline              | boolean                                             |          |
+| onBlur                 | function                                            |          |
+| onChange               | function                                            |          |
+| onFocus                | function                                            |          |
 | placeholder            | string                                              |          |
+| ref                    | React.Ref                                           |          |
 | required               | boolean                                             |          |
+| testId                 | string                                              |          |
 | type                   | enum: 'text' &#124; 'password' &#124; 'number'      | 'text'   |
-| hidePasswordMaskButton | boolean                                             |          |
 | value                  | string                                              |          |
 | style                  | React.CSSProperties                                 |          |
-| ref                    | React.Ref                                           |          |

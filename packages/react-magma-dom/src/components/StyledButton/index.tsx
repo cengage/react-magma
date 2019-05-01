@@ -47,12 +47,13 @@ export interface ButtonProps {
   block?: boolean;
   className?: string;
   children: React.ReactChild | React.ReactChild[];
-  onClick?: (event: React.SyntheticEvent) => void;
   color?: ButtonColor;
   disabled?: boolean;
   href?: string;
   id?: string;
+  testId?: string;
   inverse?: boolean;
+  onClick?: (event: React.SyntheticEvent) => void;
   shape?: ButtonShape;
   size?: ButtonSize;
   style?: React.CSSProperties;
@@ -433,6 +434,7 @@ export const StyledButton: React.FunctionComponent<
       href,
       iconOnly,
       id,
+      testId,
       inverse,
       color,
       shape,
@@ -449,6 +451,7 @@ export const StyledButton: React.FunctionComponent<
         theme && (
           <StyledButtonComponent
             id={id}
+            data-testid={testId}
             ref={ref}
             as={as}
             aria-expanded={ariaExpanded}

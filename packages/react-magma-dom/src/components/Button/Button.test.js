@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Button } from '.';
-import { render, cleanup } from 'react-testing-library';
+import { render } from 'react-testing-library';
 import {
   ButtonColor,
   ButtonShape,
@@ -62,11 +62,14 @@ const renderIconWithTextButton = (myProps = {}) => {
 };
 
 describe('Button', () => {
-  afterEach(() => {
-    cleanup();
-  });
-
   describe('Base Button', () => {
+    it('should find element by testId', () => {
+      const testId = 'test-id';
+      const { getByTestId } = renderBasicButton({ testId });
+
+      expect(getByTestId(testId)).toBeInTheDocument();
+    });
+
     it('should render a button with the passed in text', () => {
       const { getByText } = renderBasicButton();
 
@@ -147,6 +150,13 @@ describe('Button', () => {
   });
 
   describe('Icon Only Button', () => {
+    it('should find element by testId', () => {
+      const testId = 'test-id';
+      const { getByTestId } = renderIconOnlyButton({ testId });
+
+      expect(getByTestId(testId)).toBeInTheDocument();
+    });
+
     it('should render an icon only button with passed in icon', () => {
       const { getByLabelText } = renderIconOnlyButton();
 
@@ -214,6 +224,13 @@ describe('Button', () => {
   });
 
   describe('Icon With Text Button', () => {
+    it('should find element by testId', () => {
+      const testId = 'test-id';
+      const { getByTestId } = renderIconWithTextButton({ testId });
+
+      expect(getByTestId(testId)).toBeInTheDocument();
+    });
+
     it('should render an icon with text button with passed in icon and text', () => {
       const { getByText, container } = renderIconWithTextButton();
 

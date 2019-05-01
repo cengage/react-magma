@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Heading } from '.';
-import { render, cleanup } from 'react-testing-library';
+import { render } from 'react-testing-library';
 
 const headingText = 'Test Heading Text';
 
@@ -21,8 +21,11 @@ const renderHeading = (myProps = {}) => {
 };
 
 describe('Heading', () => {
-  afterEach(() => {
-    cleanup();
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = renderHeading({ testId });
+
+    expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render an h1', () => {

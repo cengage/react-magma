@@ -3,14 +3,15 @@ title: 'Checkboxes'
 ---
 
 import DocsHeading from '../../components/docs-heading'
+import { Link } from 'gatsby'
 
-<DocsHeading to="/design/selection-controls/" type="design">
-  Checkboxes
-</DocsHeading>
+<DocsHeading to="/design/selection-controls/#4._checkboxes" type="design">Checkboxes</DocsHeading>
 
 ## Basic Usage
 
-The label/checkbox association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
+Checkboxes are form elements used to select one or multiple items from a list. The label/checkbox association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
+
+See also: <Link to="/api/radio">Radio Buttons</Link>, <Link to="/api/toggle">Toggle Switches</Link>, and the <Link to="/design/selection-controls">Design Guidelines</Link> for selection controls in general.
 
 ```.jsx
   <div>
@@ -59,6 +60,8 @@ By default, the checkboxes use the theme's primary color. But any other color ma
 
 ## Disabled
 
+Adding the optional boolean prop `disabled` will apply disabled styles and add the disabled attribute to the underlying HTML element.
+
 ```.jsx
   <div>
     <Checkbox
@@ -69,6 +72,8 @@ By default, the checkboxes use the theme's primary color. But any other color ma
 ```
 
 ## Indeterminate
+
+In addition to being checked or unchecked, checkboxes also support an indeterminate or mixed state, but using the optional `indeterminate` boolean prop.
 
 ```.jsx
   <div>
@@ -141,8 +146,8 @@ Adding the `textVisuallyHidden` prop will make the label text available to scree
 
 ## Custom Styles
 
-Custom styles can be passed into both the Checkbox component. The `style` property will apply to the container.
-Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discression when adding custom styles.
+Custom styles can be passed into both the Checkbox component.  The `style` property will apply to the container.
+Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
 
 ```.jsx
   <div>
@@ -161,6 +166,43 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
   </div>
 ```
 
+## Testing
+
+Passing in the `testId` prop will add the `data-testid` attribute to the input element for easier querying in tests.
+
+```html
+<div>
+  <input
+    id="checkbox0"
+    data-testid="test-id"
+    type="checkbox"
+    value=""
+    checked=""
+  />
+  <label for="checkbox0">
+    <span>
+      <span color="" class="css-1on1hey e1iwfc8c3"></span>
+      <svg
+        class="icon"
+        height="12"
+        width="12"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 29.37 21.88"
+        aria-labelledby="78a52361-5b36-4198-8d06-c9f8a239af09"
+      >
+        <title id="78a52361-5b36-4198-8d06-c9f8a239af09"></title>
+        <path
+          d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+          transform="translate(-0.87 -3.06)"
+        ></path>
+      </svg>
+    </span>
+    Checkbox Label
+  </label>
+</div>
+```
+
 ## Checkbox Props
 
 | Prop               | Type                | Default | Required |
@@ -169,16 +211,17 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
 | checked            | boolean             | false   |
 | color              | string              |         |
 | disabled           | boolean             | false   |
-| onBlur             | function            |         |
-| onChange           | function            |         |
-| onFocus            | function            |         |
 | id                 | string              |         |          |
 | indeterminate      | boolean             | false   |
 | inputStyle         | React.CSSProperties |         |
 | inverse            | boolean             | false   |
 | labelStyle         | React.CSSProperties |         |
 | labelText          | string              |         | &#10003; |
+| onBlur             | function            |         |
+| onChange           | function            |         |
+| onFocus            | function            |         |
 | required           | boolean             | false   |
 | style              | React.CSSProperties |         |
+| testId             | string              |         |
 | textVisuallyHidden | boolean             | false   |
 | value              | string              |         |

@@ -91,6 +91,7 @@ export const Button: React.FunctionComponent<
         color,
         href,
         id,
+        testId,
         shape,
         size,
         style,
@@ -114,6 +115,7 @@ export const Button: React.FunctionComponent<
         return (
           <StyledButton
             id={id}
+            testId={testId}
             ref={ref}
             ariaExpanded={ariaExpanded}
             as={as}
@@ -148,6 +150,7 @@ export const Button: React.FunctionComponent<
         return (
           <StyledButton
             id={id}
+            testId={testId}
             ref={ref}
             ariaExpanded={ariaExpanded}
             ariaLabel={ariaLabel}
@@ -175,6 +178,7 @@ export const Button: React.FunctionComponent<
       return (
         <StyledButton
           id={id}
+          testId={testId}
           ref={ref}
           as={as}
           ariaExpanded={ariaExpanded}

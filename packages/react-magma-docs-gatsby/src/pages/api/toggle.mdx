@@ -3,12 +3,14 @@ title: 'Toggles'
 ---
 
 import DocsHeading from '../../components/docs-heading'
+import { Link } from 'gatsby'
 
-<DocsHeading to="/design/selection-controls/" type="design">
-  Toggles
-</DocsHeading>
+<DocsHeading to="/design/selection-controls/#6._switches" type="design">Toggles</DocsHeading>
 
 ## Basic Usage
+
+Toggles (also called Switches) are form elements used to set a single item either an on or off value.
+See also: <Link to="/api/checkbox">Checkboxes</Link>, <Link to="/api/radio">Radio Buttons</Link>, and the <Link to="/design/selection-controls">Design Guidelines</Link> for selection controls in general.
 
 The label/toggle association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
 
@@ -74,7 +76,7 @@ Adding the `textVisuallyHidden` prop will make the label text available to scree
 
 Custom styles can be passed into both the Toggle component. The `style` property will apply to the container.
 Additional `labelStyle`, `trackStyle` and `thumbStyle` properties are available to style the respective elements.
-Please use discression when adding custom styles.
+Please use discretion when adding custom styles.
 
 ```.jsx
   <div>
@@ -86,6 +88,38 @@ Please use discression when adding custom styles.
         thumbStyle={{ 'background': 'yellow', 'border' : '1px solid orange', 'boxShadow': '0 0 0' }}
         trackStyle={{ 'borderRadius': '5px', 'height': '18px'}} />
   </div>
+```
+
+## Testing
+
+Passing in the `testId` prop will add the `data-testid` attribute to the input element for easier querying in tests.
+
+```html
+<div>
+  <input id="Toggle0" data-testid="test-id" name="" type="checkbox" value="" />
+  <label for="Toggle0">
+    <span>Toggle label</span>
+    <span>
+      <span>
+        <svg
+          class="icon"
+          height="11"
+          width="11"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 29.37 21.88"
+          aria-labelledby="573cfe4f-c354-4561-ad1c-4873bca476de"
+        >
+          <title id="573cfe4f-c354-4561-ad1c-4873bca476de"></title>
+          <path
+            d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+            transform="translate(-0.87 -3.06)"
+          ></path>
+        </svg>
+      </span>
+    </span>
+  </label>
+</div>
 ```
 
 ## Toggle Props
@@ -105,6 +139,7 @@ Please use discression when adding custom styles.
 | style              | React.CSSProperties         |         |
 | textPosition       | enum: 'left' &#124; 'right' | 'left'  |
 | textVisuallyHidden | boolean                     |         |
+| testId             | string                      |         |
 | thumbStyle         | React.CSSProperties         |         |
 | trackStyle         | React.CSSProperties         |         |
 | value              | string                      |         |

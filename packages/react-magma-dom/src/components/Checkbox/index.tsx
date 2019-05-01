@@ -21,6 +21,7 @@ export interface CheckboxProps {
   onChange?: (event: React.SyntheticEvent) => void;
   onFocus?: () => void;
   id?: string;
+  testId?: string;
   indeterminate?: boolean;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
@@ -99,10 +100,13 @@ const StyledFakeInput = styled.span<{
     &:before {
       ${DisplayInputFocusStyles};
       outline: 2px dotted ${props => props.theme.colors.pop03};
+      top: -7px;
+      left: -7px;
     }
   }
 
   &:after {
+    // active state
     background: ${props =>
       props.inverse
         ? props.theme.colors.neutral08
@@ -188,6 +192,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
             required,
             style,
             textVisuallyHidden,
+            testId,
             value
           } = this.props;
 
@@ -199,6 +204,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
                     <HiddenInput
                       autoFocus={autoFocus}
                       id={id}
+                      data-testid={testId}
                       checked={checked}
                       disabled={disabled}
                       indeterminate={indeterminate}

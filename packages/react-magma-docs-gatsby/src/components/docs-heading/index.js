@@ -37,7 +37,7 @@ const DocsHeading = ({ children, to, type }) => (
 
         {(type === 'code' && to)  && (
             <Button as={Link} color="secondary" icon={<CodeIcon />} to={to}>
-                View Code
+                View Component API
             </Button>
         )}
         

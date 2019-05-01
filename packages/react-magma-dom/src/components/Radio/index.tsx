@@ -16,6 +16,7 @@ export interface RadioProps {
   color?: string;
   disabled?: boolean;
   id?: string;
+  testId?: string;
   innerRef?: any;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
@@ -91,6 +92,8 @@ const StyledFakeInput = styled.span<{
     &:before {
       ${DisplayInputFocusStyles};
       outline: 2px dotted ${props => props.theme.colors.pop03};
+      top: -7px;
+      left: -7px;
     }
   }
 
@@ -148,6 +151,7 @@ export class RadioComponent extends React.Component<RadioProps, RadioState> {
       required,
       style,
       textVisuallyHidden,
+      testId,
       value
     } = this.props;
     return (
@@ -162,6 +166,7 @@ export class RadioComponent extends React.Component<RadioProps, RadioState> {
                       ref={innerRef}
                       checked={context.selectedValue === value}
                       id={id}
+                      data-testid={testId}
                       disabled={disabled}
                       name={context.name}
                       required={required}

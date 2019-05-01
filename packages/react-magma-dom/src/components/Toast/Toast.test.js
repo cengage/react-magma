@@ -28,6 +28,13 @@ describe('Toast', () => {
     onDismiss.mockReset();
   });
 
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = renderToast({ testId });
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should render a toast', () => {
     const { getByText } = renderToast();
 

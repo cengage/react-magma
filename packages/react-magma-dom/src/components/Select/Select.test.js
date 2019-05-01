@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Select, getStyles } from '.';
-import { render, fireEvent, cleanup } from 'react-testing-library';
+import { render, fireEvent } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 
 const options = [
@@ -36,8 +36,11 @@ const renderSelect = (myProps = {}) => {
 };
 
 describe('Select', () => {
-  afterEach(() => {
-    cleanup();
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = renderSelect({ testId });
+
+    expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render a label for the select', () => {

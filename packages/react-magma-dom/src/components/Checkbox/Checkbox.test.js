@@ -1,6 +1,6 @@
 import React from 'react';
 import { Checkbox } from '.';
-import { render, fireEvent, cleanup } from 'react-testing-library';
+import { render, fireEvent } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 
 const CHECKBOX_PROPS = {
@@ -20,8 +20,11 @@ const renderCheckbox = (myProps = {}) => {
 };
 
 describe('Checkbox', () => {
-  afterEach(() => {
-    cleanup();
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = renderCheckbox({ testId });
+
+    expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render a label for the checkbox', () => {

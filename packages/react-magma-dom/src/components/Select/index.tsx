@@ -14,6 +14,7 @@ interface Options {
 
 export interface SelectProps {
   id?: string;
+  testId?: string;
   name: string;
   labelText: string;
   options: Options[];
@@ -87,6 +88,7 @@ export function getStyles(customStyles: ReactSelectStyles = {}, theme) {
       border: `1px solid ${theme.colors.neutral06}`,
       borderRadius: '3px',
       boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)',
+      color: theme.colors.neutral02,
       zIndex: 999,
       ...customStyles.menu
     }),
@@ -116,6 +118,10 @@ export function getStyles(customStyles: ReactSelectStyles = {}, theme) {
         : theme.colors.neutral08,
       color: theme.colors.neutral02,
       ...customStyles.option
+    }),
+    placeholder: styles => ({
+      ...styles,
+      color: theme.colors.neutral04
     }),
     singleValue: styles => ({
       ...styles,
@@ -169,6 +175,7 @@ export const Select: React.FunctionComponent<SelectProps> = (
     {({ defaultValue, onBlur, onFocus, onChange, onOpen, onClose }) => {
       const {
         id,
+        testId,
         name,
         labelText,
         options,
@@ -183,7 +190,7 @@ export const Select: React.FunctionComponent<SelectProps> = (
         <ThemeContext.Consumer>
           {theme =>
             theme && (
-              <div>
+              <div data-testid={testId}>
                 <Label>{labelText}</Label>
                 <ReactSelect
                   id={id}

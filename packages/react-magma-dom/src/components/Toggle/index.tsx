@@ -21,6 +21,7 @@ export interface ToggleProps {
   onChange?: () => void;
   onFocus?: () => void;
   id?: string;
+  testId?: string;
   labelStyle?: React.CSSProperties;
   labelText: string;
   required?: boolean;
@@ -183,6 +184,7 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
         style,
         textPosition,
         textVisuallyHidden,
+        testId,
         trackStyle,
         thumbStyle,
         value
@@ -196,6 +198,7 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
                 <HiddenInput
                   autoFocus={autoFocus}
                   id={id}
+                  data-testid={testId}
                   checked={checked}
                   disabled={disabled}
                   name={name}

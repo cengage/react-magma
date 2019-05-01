@@ -12,6 +12,14 @@ const renderIcon = icon => {
 };
 
 describe('Icon', () => {
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const Icon = ICONS[Object.keys(ICONS)[0]];
+    const { getByTestId } = render(<Icon testId={testId} title="testTitle" />);
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should return null is no iconType is passed in', () => {
     const icon = renderIconUtil({ id: 'id', title: 'title' });
 

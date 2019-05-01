@@ -8,6 +8,7 @@ export interface LabelProps {
   inverse?: boolean;
   style?: React.CSSProperties;
   theme?: any;
+  testId?: string;
 }
 
 const StyledLabel = styled.label<LabelProps>`
@@ -23,13 +24,14 @@ const StyledLabel = styled.label<LabelProps>`
 `;
 
 function renderLabel(props) {
-  const { children, htmlFor, inverse, style } = props;
+  const { children, htmlFor, inverse, testId, style } = props;
 
   return (
     <ThemeContext.Consumer>
       {theme =>
         theme && (
           <StyledLabel
+            data-testid={testId}
             style={style}
             htmlFor={htmlFor}
             inverse={inverse}

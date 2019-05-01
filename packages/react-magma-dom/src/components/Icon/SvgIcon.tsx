@@ -10,6 +10,7 @@ interface Path {
 
 interface SvgIconProps {
   id: string;
+  testId?: string;
   title: string;
   viewBox: string;
   paths: Path[];
@@ -40,7 +41,7 @@ export class SvgIcon extends React.Component<SvgIconProps, SvgIconState> {
 
   render() {
     const { id } = this.state;
-    const { color, size, title, viewBox, paths } = this.props;
+    const { color, size, title, testId, viewBox, paths } = this.props;
 
     return (
       <svg
@@ -51,6 +52,7 @@ export class SvgIcon extends React.Component<SvgIconProps, SvgIconState> {
         xmlns="http://www.w3.org/2000/svg"
         viewBox={viewBox}
         aria-labelledby={id}
+        data-testid={testId}
       >
         <title id={id}>{title}</title>
         {renderPaths(paths)}

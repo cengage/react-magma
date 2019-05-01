@@ -8,6 +8,8 @@ interface LinkButtonProps {
   children?: React.ReactChild | React.ReactChild[];
   onClick?: () => void;
   disabled?: boolean;
+  id?: string;
+  testId?: string;
   inverse?: boolean;
   style?: React.CSSProperties;
 }
@@ -46,6 +48,8 @@ export const LinkButton: React.FunctionComponent<LinkButtonProps> = ({
   children,
   disabled,
   onClick,
+  id,
+  testId,
   inverse,
   style
 }: LinkButtonProps) => (
@@ -53,6 +57,8 @@ export const LinkButton: React.FunctionComponent<LinkButtonProps> = ({
     {theme =>
       theme && (
         <LinkButtonComponent
+          id={id}
+          data-testid={testId}
           className={className}
           autoFocus={autoFocus}
           onClick={onClick}

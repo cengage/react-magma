@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Input, InputType } from '.';
-import { render, fireEvent, cleanup } from 'react-testing-library';
+import { render, fireEvent } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 import { CheckIcon } from '../Icon/types/CheckIcon';
 
@@ -23,8 +23,11 @@ const renderInput = (myProps = {}) => {
 };
 
 describe('Input', () => {
-  afterEach(() => {
-    cleanup();
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = renderInput({ testId });
+
+    expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render a label for the input', () => {

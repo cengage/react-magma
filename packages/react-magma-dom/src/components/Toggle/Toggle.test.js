@@ -1,6 +1,6 @@
 import React from 'react';
 import { Toggle } from '.';
-import { render, cleanup } from 'react-testing-library';
+import { render } from 'react-testing-library';
 
 const TOGGLE_PROPS = {
   autoFocus: false,
@@ -19,8 +19,11 @@ const renderToggle = (myProps = {}) => {
 };
 
 describe('Toggle', () => {
-  afterEach(() => {
-    cleanup();
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = renderToggle({ testId });
+
+    expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render a toggle with the passed in text', () => {
