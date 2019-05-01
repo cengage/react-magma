@@ -4,7 +4,8 @@
     "rootDir": "src",
     "jsx": "react",
     "types": ["jest", "node"],
-    "typeRoots": ["node_modules/@types"]
+    "typeRoots": ["node_modules/@types"],
+    "noUnusedLocals": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules/**"]
