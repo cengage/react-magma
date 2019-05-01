@@ -20,7 +20,7 @@ export interface CheckboxProps {
   onBlur?: () => void;
   onChange?: (event: React.SyntheticEvent) => void;
   onFocus?: () => void;
-  id: string;
+  id?: string;
   indeterminate?: boolean;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
@@ -168,17 +168,17 @@ export class Checkbox extends React.Component<CheckboxProps> {
   render() {
     return (
       <CheckboxCore
+        id={this.props.id}
         checked={this.props.checked}
         onBlur={this.props.onBlur}
         onChange={this.props.onChange}
         onFocus={this.props.onFocus}
       >
-        {({ onBlur, onChange, onFocus, checked }) => {
+        {({ id, onBlur, onChange, onFocus, checked }) => {
           const {
             autoFocus,
             color,
             disabled,
-            id,
             indeterminate,
             inputStyle,
             inverse,

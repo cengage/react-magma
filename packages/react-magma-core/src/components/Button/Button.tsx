@@ -1,5 +1,10 @@
 import * as React from 'react';
 
+export interface ButtonCoreProps {
+  children: (props) => React.ReactNode;
+  onClick?: (event: React.SyntheticEvent) => void;
+}
+
 export class ButtonCore extends React.Component<ButtonCoreProps> {
   constructor(props) {
     super(props);
@@ -8,7 +13,9 @@ export class ButtonCore extends React.Component<ButtonCoreProps> {
   }
 
   onClick(event) {
-    this.props.onClick && this.props.onClick(event);
+    this.props.onClick &&
+      typeof this.props.onClick === 'function' &&
+      this.props.onClick(event);
   }
 
   render() {
@@ -17,9 +24,4 @@ export class ButtonCore extends React.Component<ButtonCoreProps> {
       onClick: this.onClick
     });
   }
-}
-
-export interface ButtonCoreProps {
-  children: (props) => React.ReactNode;
-  onClick?: (event: React.SyntheticEvent) => void;
 }

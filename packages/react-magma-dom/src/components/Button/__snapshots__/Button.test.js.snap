@@ -5,6 +5,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   <button
     class="css-1fs3ka8 e183qit0"
     color="primary"
+    id="testId"
     shape="fill"
   >
     Test Text
@@ -17,6 +18,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   <button
     class="css-1s5rzag e183qit0"
     color="primary"
+    id="testId"
     shape="fill"
   >
     Test Text
@@ -29,6 +31,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   <button
     class="css-4x3nij e183qit0"
     color="secondary"
+    id="testId"
     shape="fill"
   >
     Test Text
@@ -41,6 +44,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   <button
     class="css-12f1w2t e183qit0"
     color="primary"
+    id="testId"
     shape="round"
   >
     Test Text
@@ -53,6 +57,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   <button
     class="css-jubjjm e183qit0"
     color="primary"
+    id="testId"
     shape="fill"
   >
     Test Text
@@ -65,6 +70,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   <button
     class="css-exk0g0 e183qit0"
     color="primary"
+    id="testId"
     shape="fill"
   >
     Test Text
@@ -78,9 +84,11 @@ exports[`Button Icon Only Button Snapshot should render with large size 1`] = `
     aria-label="Check Icon"
     class="css-1xqhztd e183qit0"
     color="primary"
+    id="testId"
     shape="round"
   >
     <svg
+      aria-labelledby="testId"
       class="icon"
       fill="currentColor"
       height="14"
@@ -88,7 +96,9 @@ exports[`Button Icon Only Button Snapshot should render with large size 1`] = `
       width="14"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <title />
+      <title
+        id="testId"
+      />
       <path
         d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
         transform="translate(-0.87 -3.06)"
@@ -104,9 +114,11 @@ exports[`Button Icon Only Button Snapshot should render with small size 1`] = `
     aria-label="Check Icon"
     class="css-1xqhztd e183qit0"
     color="primary"
+    id="testId"
     shape="round"
   >
     <svg
+      aria-labelledby="testId"
       class="icon"
       fill="currentColor"
       height="14"
@@ -114,7 +126,9 @@ exports[`Button Icon Only Button Snapshot should render with small size 1`] = `
       width="14"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <title />
+      <title
+        id="testId"
+      />
       <path
         d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
         transform="translate(-0.87 -3.06)"
@@ -130,9 +144,11 @@ exports[`Button Icon Only Button Snapshot should render with updated color 1`] =
     aria-label="Check Icon"
     class="css-1k6yz2s e183qit0"
     color="secondary"
+    id="testId"
     shape="round"
   >
     <svg
+      aria-labelledby="testId"
       class="icon"
       fill="currentColor"
       height="18"
@@ -140,7 +156,9 @@ exports[`Button Icon Only Button Snapshot should render with updated color 1`] =
       width="18"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <title />
+      <title
+        id="testId"
+      />
       <path
         d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
         transform="translate(-0.87 -3.06)"
@@ -156,9 +174,11 @@ exports[`Button Icon Only Button Snapshot should render with updated shape 1`] =
     aria-label="Check Icon"
     class="css-uyui93 e183qit0"
     color="primary"
+    id="testId"
     shape="fill"
   >
     <svg
+      aria-labelledby="testId"
       class="icon"
       fill="currentColor"
       height="18"
@@ -166,7 +186,9 @@ exports[`Button Icon Only Button Snapshot should render with updated shape 1`] =
       width="18"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <title />
+      <title
+        id="testId"
+      />
       <path
         d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
         transform="translate(-0.87 -3.06)"
@@ -182,9 +204,11 @@ exports[`Button Icon Only Button Snapshot should render with updated variant 1`]
     aria-label="Check Icon"
     class="css-29uj2w e183qit0"
     color="primary"
+    id="testId"
     shape="round"
   >
     <svg
+      aria-labelledby="testId"
       class="icon"
       fill="currentColor"
       height="18"
@@ -192,7 +216,9 @@ exports[`Button Icon Only Button Snapshot should render with updated variant 1`]
       width="18"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <title />
+      <title
+        id="testId"
+      />
       <path
         d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
         transform="translate(-0.87 -3.06)"
@@ -207,6 +233,7 @@ exports[`Button Icon With Text Button Snapshot should render with large size 1`]
   <button
     class="css-1s5rzag e183qit0"
     color="primary"
+    id="testId"
     shape="fill"
   >
     <span
@@ -216,6 +243,7 @@ exports[`Button Icon With Text Button Snapshot should render with large size 1`]
        
     </span>
     <svg
+      aria-labelledby="testId"
       class="icon"
       fill="currentColor"
       height="12"
@@ -223,7 +251,9 @@ exports[`Button Icon With Text Button Snapshot should render with large size 1`]
       width="12"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <title />
+      <title
+        id="testId"
+      />
       <path
         d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
         transform="translate(-0.87 -3.06)"
@@ -238,6 +268,7 @@ exports[`Button Icon With Text Button Snapshot should render with small size 1`]
   <button
     class="css-1s5rzag e183qit0"
     color="primary"
+    id="testId"
     shape="fill"
   >
     <span
@@ -247,6 +278,7 @@ exports[`Button Icon With Text Button Snapshot should render with small size 1`]
        
     </span>
     <svg
+      aria-labelledby="testId"
       class="icon"
       fill="currentColor"
       height="12"
@@ -254,7 +286,9 @@ exports[`Button Icon With Text Button Snapshot should render with small size 1`]
       width="12"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <title />
+      <title
+        id="testId"
+      />
       <path
         d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
         transform="translate(-0.87 -3.06)"
@@ -269,6 +303,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated color 
   <button
     class="css-4x3nij e183qit0"
     color="secondary"
+    id="testId"
     shape="fill"
   >
     <span
@@ -278,6 +313,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated color 
        
     </span>
     <svg
+      aria-labelledby="testId"
       class="icon"
       fill="currentColor"
       height="16"
@@ -285,7 +321,9 @@ exports[`Button Icon With Text Button Snapshot should render with updated color 
       width="16"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <title />
+      <title
+        id="testId"
+      />
       <path
         d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
         transform="translate(-0.87 -3.06)"
@@ -300,6 +338,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated shape 
   <button
     class="css-qhwgaw e183qit0"
     color="primary"
+    id="testId"
     shape="fill"
   >
     <span
@@ -309,6 +348,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated shape 
        
     </span>
     <svg
+      aria-labelledby="testId"
       class="icon"
       fill="currentColor"
       height="16"
@@ -316,7 +356,9 @@ exports[`Button Icon With Text Button Snapshot should render with updated shape 
       width="16"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <title />
+      <title
+        id="testId"
+      />
       <path
         d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
         transform="translate(-0.87 -3.06)"
@@ -331,6 +373,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated text t
   <button
     class="css-jubjjm e183qit0"
     color="primary"
+    id="testId"
     shape="fill"
   >
     <span
@@ -340,6 +383,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated text t
        
     </span>
     <svg
+      aria-labelledby="testId"
       class="icon"
       fill="currentColor"
       height="16"
@@ -347,7 +391,9 @@ exports[`Button Icon With Text Button Snapshot should render with updated text t
       width="16"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <title />
+      <title
+        id="testId"
+      />
       <path
         d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
         transform="translate(-0.87 -3.06)"
@@ -362,6 +408,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated varian
   <button
     class="css-exk0g0 e183qit0"
     color="primary"
+    id="testId"
     shape="fill"
   >
     <span
@@ -371,6 +418,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated varian
        
     </span>
     <svg
+      aria-labelledby="testId"
       class="icon"
       fill="currentColor"
       height="16"
@@ -378,7 +426,9 @@ exports[`Button Icon With Text Button Snapshot should render with updated varian
       width="16"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <title />
+      <title
+        id="testId"
+      />
       <path
         d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
         transform="translate(-0.87 -3.06)"

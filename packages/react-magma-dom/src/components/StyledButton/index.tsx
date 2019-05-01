@@ -51,6 +51,7 @@ export interface ButtonProps {
   color?: ButtonColor;
   disabled?: boolean;
   href?: string;
+  id?: string;
   inverse?: boolean;
   shape?: ButtonShape;
   size?: ButtonSize;
@@ -431,6 +432,7 @@ export const StyledButton: React.FunctionComponent<
       onClick,
       href,
       iconOnly,
+      id,
       inverse,
       color,
       shape,
@@ -446,6 +448,7 @@ export const StyledButton: React.FunctionComponent<
       {theme =>
         theme && (
           <StyledButtonComponent
+            id={id}
             ref={ref}
             as={as}
             aria-expanded={ariaExpanded}

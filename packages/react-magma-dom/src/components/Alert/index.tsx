@@ -27,6 +27,7 @@ export enum AlertVariant {
 
 export interface AlertProps {
   children: React.ReactNode;
+  id?: string;
   dismissable?: boolean;
   variant?: AlertVariant;
   style?: React.CSSProperties;
@@ -152,6 +153,7 @@ function renderIcon(variant = 'info') {
 }
 
 export const Alert: React.FunctionComponent<AlertProps> = ({
+  id,
   variant,
   style,
   children,
@@ -168,6 +170,7 @@ export const Alert: React.FunctionComponent<AlertProps> = ({
         >
           {({ handleDismiss, isExiting: coreIsExiting }) => (
             <StyledAlert
+              id={id}
               isExiting={isExiting || coreIsExiting}
               variant={variant}
               style={style}

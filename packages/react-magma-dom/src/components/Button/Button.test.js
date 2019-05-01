@@ -15,18 +15,21 @@ import { CheckIcon } from '../Icon/types/CheckIcon';
 const TEXT = 'Test Text';
 
 const BASE_BUTTON_PROPS = {
+  id: 'testId',
   onClick: jest.fn()
 };
 
 const ICON_ONLY_BUTTON_PROPS = {
+  id: 'testId',
   onClick: jest.fn(),
-  icon: <CheckIcon />,
+  icon: <CheckIcon id="testId" />,
   ariaLabel: 'Check Icon'
 };
 
 const ICON_WITH_TEXT_BUTTON_PROPS = {
+  id: 'testId',
   onClick: jest.fn(),
-  icon: <CheckIcon />,
+  icon: <CheckIcon id="testId" />,
   ariaLabel: 'Check Icon',
   iconPosition: ButtonIconPostition.right
 };

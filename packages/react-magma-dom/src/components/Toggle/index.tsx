@@ -20,7 +20,7 @@ export interface ToggleProps {
   onBlur?: () => void;
   onChange?: () => void;
   onFocus?: () => void;
-  id: string;
+  id?: string;
   labelStyle?: React.CSSProperties;
   labelText: string;
   required?: boolean;
@@ -167,16 +167,16 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
   props: ToggleProps
 ) => (
   <CheckboxCore
+    id={props.id}
     checked={props.checked}
     onBlur={props.onBlur}
     onChange={props.onChange}
     onFocus={props.onFocus}
   >
-    {({ onBlur, onChange, onFocus, checked }) => {
+    {({ id, onBlur, onChange, onFocus, checked }) => {
       const {
         autoFocus,
         disabled,
-        id,
         labelStyle,
         labelText,
         required,
