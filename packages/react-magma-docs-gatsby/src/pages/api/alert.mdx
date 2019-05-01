@@ -1,27 +1,48 @@
 ---
 title: 'Alerts'
-order: 2
 ---
 
 import DocsHeading from '../../components/docs-heading'
+import { Link } from 'gatsby'
 
 <DocsHeading to="/design/alerts/" type="design">
   Alerts
 </DocsHeading>
 
 ## Basic Usage
+Alerts are available for any length of text, and may contain HTML markup.  They may also have an optional dismiss button.
+
+Alerts render where ever they are placed contextually in the DOM. The `Toast` component is similar but renders with a fixed position and has auto dismiss functionality.
+See the <Link to="/api/toast/">Toasts documentation</Link> for more information.
 
 ```.jsx
-  <div>
+  <>
+    <Alert>I'm an Alert</Alert>
+    <Alert>I'm an Alert with <a href="#">linked text</a></Alert>
+  </>
+```
+
+## Variants
+
+The optional `variant` prop accepts the following values: `info`, `success`, `warning` and `danger`, with `info` being the default value.
+This prop determines the icon and color scheme used to style the Alert.
+
+```.jsx
+  <>
     <Alert>Default Alert</Alert>
-    <Alert variant="info">Info Alert with <a href="#">linked text</a></Alert>
+    <Alert variant="info">Info Alert</Alert>
     <Alert variant="success">Success Alert</Alert>
     <Alert variant="warning">Warning Alert</Alert>
     <Alert variant="danger">Danger Alert<br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Alert>
-  </div>
+  </>
 ```
 
 ## Dismissable
+
+The `dismissable` prop is optional, and if provided the Alert will render a dismiss button.
+Providing this property only causes the dismiss button to render; it does not control the dismiss behavior itself. If you include the `dismissable` prop,
+you must also include a function in the `onDimiss` prop to handle the dismiss behavior.
+
 
 ```.jsx
   class Example extends React.Component {

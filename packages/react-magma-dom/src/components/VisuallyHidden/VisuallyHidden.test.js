@@ -6,7 +6,6 @@ import { render } from 'react-testing-library';
 const TEXT = 'Test Text';
 
 describe('VisuallyHidden', () => {
- 
   it('should render the visually hidden component', () => {
     const { container, getByText } = render(
       <VisuallyHidden>{TEXT}</VisuallyHidden>

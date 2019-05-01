@@ -1,6 +1,5 @@
 ---
 title: 'Buttons'
-order: 1
 ---
 
 import { Link } from 'gatsby'
@@ -12,8 +11,9 @@ import DocsHeading from '../../components/docs-heading'
 
 ## Basic usage
 
-Buttons are clickable items used to perform an action.
-See the <Link to="/design/button/">Button Design Guidelines</Link> for more information on when to use the different kinds of buttons.
+Buttons are clickable items used to perform an action. See the <Link to="/design/button/">Button Design Guidelines</Link> for more information on when to use the different kinds of buttons.
+
+When used with icons, the Button component takes a slightly different set of props. For information on how to use this component with icons, please see documention on <Link to="/api/icon-button">Icon Buttons</Link>.
 
 ## Sizes
 
@@ -94,7 +94,7 @@ Shapes for buttons include `fill`, `leftCap`, and `rightCap`, with `fill` being 
 
 ## Inverse
 
-The `inverse` property is an optional boolean, that reverses the colors so that the buttons can better appeark on a dark background.
+The `inverse` property is an optional boolean, that reverses the colors so that the buttons can better appear on a dark background.
 The default value is `false`.
 
 While `outline inverse buttons` and `link inverse buttons` still accept the `color` property, the `color` property
@@ -126,15 +126,16 @@ online affects `solid inverse buttons`.
     </div>
 ```
 
-## All Caps
+## Text Transform
 
-Shapes for buttons include `uppercase`, `none`, with `uppercase` (all caps) being the default value.
-This property sets the CSS `text-tranform` property.
+Options for the `textTransform` prop for buttons include `uppercase` and `none`, with `uppercase` (all caps) being the default value.
+This sets the CSS `text-transform` property.
 
 ```.jsx
     <div>
         <Button>All caps</Button>
         <Button textTransform="none">No text tranform</Button>
+        <Button textTransform="uppercase">Uppercase tranform</Button>
     </div>
 ```
 
@@ -162,7 +163,7 @@ Passing the `block` property will set the button to display full-width.
 
 ## Other Elements
 
-Passing in the `as` prop will allow a styed button to render as a different type of element.
+Passing in the `as` prop will allow a styled button to render as a different type of element.
 The `href` and `to` props are also supported, so that a button can be used as an `a` tag or a `Link` component.
 
 ```.jsx
@@ -242,18 +243,19 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 
 | Prop          | Type                                                                | Default     | Required |
 | ------------- | ------------------------------------------------------------------- | ----------- | :------: |
+| ariaExpanded  | boolean                                                             |             |
 | as            | any                                                                 |             |
 | autoFocus     | boolean                                                             | false       |
 | block         | boolean                                                             | false       |
 | className     | string                                                              |             |
-| children      | node                                                                |             |
+| children      | node                                                                |             | &#10003; |
 | color         | enum: 'primary' &#124; 'secondary' &#124; 'success' &#124; 'danger' | 'primary'   |
 | disabled      | boolean                                                             | false       |
-| onClick       | func                                                                |             | &#10003; |
+| onClick       | function                                                                |         | &#10003; |
 | href          | string                                                              |             |
 | id            | string                                                              |             |          |
 | inverse       | boolean                                                             | false       |
-| shape         | enum: 'fill' &#124; 'leftCap' &#124; 'rightCap' &#124; 'round'      | 'fill'      |
+| shape         | enum: 'fill' &#124; 'leftCap' &#124; 'rightCap'                     | 'fill'      |
 | size          | enum: 'large' &#124; 'medium' &#124; 'small'                        | 'medium'    |
 | style         | React.CSSProperties                                                 |             |
 | textTransform | enum: 'uppercase' &#124; 'none'                                     | 'uppercase' |

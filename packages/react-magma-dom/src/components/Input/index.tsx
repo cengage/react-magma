@@ -30,10 +30,8 @@ export interface InputProps {
   autoFocus?: boolean;
   disabled?: boolean;
   errorMessage?: string;
-  onBlur?: () => void;
-  onChange?: (event: React.SyntheticEvent) => void;
-  onFocus?: () => void;
   helperMessage?: string;
+  hidePasswordMaskButton?: boolean;
   icon?: React.ReactElement<IconProps>;
   iconPosition?: IconPosition;
   id?: string;
@@ -44,12 +42,14 @@ export interface InputProps {
   labelText: string;
   labelVisuallyHidden?: boolean;
   multiline?: boolean;
+  onBlur?: () => void;
+  onChange?: (event: React.SyntheticEvent) => void;
+  onFocus?: () => void;
   placeholder?: string;
   required?: boolean;
   style?: React.CSSProperties;
   type?: InputType;
   value?: string | number;
-  hidePasswordMaskButton?: boolean;
 }
 
 interface IconWrapperProps {

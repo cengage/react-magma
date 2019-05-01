@@ -2,33 +2,41 @@
 title: 'Icon Buttons'
 ---
 
+import { Link } from 'gatsby'
+
 # Icon Buttons
 
-**Icon Buttons use the Button component to render. It is not a separate component, just different props.**
-
-**Buttons are clickable items used to perform an action.**
-
-Icon buttons have an icon included in them. Text is displayed in these buttons by default, but can be removed using the `iconOnly` property.
-IconButton components accept all of the same props as Button components.
+**Icon Buttons use the <Link to="/api/button">Buttons component</Link> to render. It is not a separate component, just different props.**
 
 ## Basic usage
 
+Icon buttons have an icon included in them. If children are included with these buttons (such as text), then they render in a style similar to the non-icon buttons.
+If no children are included, then they render in the icon-only style.
+
 ```.jsx
-    <p>
-        <Button ariaLabel="Icon" icon={<BellIcon />} />
-        <Button ariaLabel="Icon" variant="outline" icon={<BellIcon />} />
-        <Button ariaLabel="Icon" variant="link" icon={<BellIcon />} />
-        <Button ariaLabel="Icon" color="secondary" icon={<Cog2Icon />} />
-        <Button ariaLabel="Icon" color="secondary" variant="outline" icon={<Cog2Icon />} />
-        <Button ariaLabel="Icon" color="secondary" variant="link" icon={<Cog2Icon />} />
-        <Button ariaLabel="Icon" color="success" icon={<CheckIcon />} />
-        <Button ariaLabel="Icon" color="success"variant="outline" icon={<CheckIcon />} />
-        <Button ariaLabel="Icon" color="success" variant="link" icon={<CheckIcon />} />
-        <Button ariaLabel="Icon" color="danger" icon={<AlertIcon />} />
-        <Button ariaLabel="Icon" color="danger" variant="outline" icon={<AlertIcon />} />
-        <Button ariaLabel="Icon" color="danger" variant="link" icon={<AlertIcon />} />
-        <Button ariaLabel="Icon" disabled icon={<BellIcon />} />
-    </p>
+    <>
+        <p>
+          <Button ariaLabel="Icon" icon={<BellIcon />} />
+          <Button ariaLabel="Icon" icon={<BellIcon />} />
+          <Button ariaLabel="Icon" variant="outline" icon={<BellIcon />} />
+          <Button ariaLabel="Icon" variant="link" icon={<BellIcon />} />
+          <Button ariaLabel="Icon" color="secondary" icon={<Cog2Icon />} />
+          <Button ariaLabel="Icon" color="secondary" variant="outline" icon={<Cog2Icon />} />
+          <Button ariaLabel="Icon" color="secondary" variant="link" icon={<Cog2Icon />} />
+          <Button ariaLabel="Icon" color="success" icon={<CheckIcon />} />
+          <Button ariaLabel="Icon" color="success"variant="outline" icon={<CheckIcon />} />
+          <Button ariaLabel="Icon" color="success" variant="link" icon={<CheckIcon />} />
+          <Button ariaLabel="Icon" color="danger" icon={<AlertIcon />} />
+          <Button ariaLabel="Icon" color="danger" variant="outline" icon={<AlertIcon />} />
+          <Button ariaLabel="Icon" color="danger" variant="link" icon={<AlertIcon />} />
+          <Button ariaLabel="Icon" disabled icon={<BellIcon />} />
+        </p>
+         <p>
+          <Button icon={<BellIcon />}>Button with text</Button>
+          <Button icon={<BellIcon />} color="secondary" variant="outline" >Button with text</Button>
+          <Button icon={<BellIcon />} color="success" variant="link" >Button with text</Button>
+        </p>
+    </>
 ```
 
 ## Assign Icon to Variable
@@ -50,9 +58,9 @@ For icon only buttons you _MUST_ pass in an `ariaLabel` property to satisfy acce
 ## Aria Label
 
 ```.jsx
-    <p>
+    <>
         <Button ariaLabel="Icon" icon={<BellIcon />} />
-    </p>
+    </>
 ```
 
 ## Icon position
@@ -61,12 +69,10 @@ Use the optional prop `iconPosition` to position the icon of the button on eithe
 The `iconPosition` property takes the values `left` and `right`.
 
 ```.jsx
-    <div>
-      <p>
+    <>
         <Button icon={<BellIcon />}>Icon Left</Button>
         <Button color="secondary" icon={<InfoIcon />} iconPosition="right">Icon Right</Button>
-      </p>
-    </div>
+    </>
 ```
 
 ## Sizes
@@ -74,7 +80,7 @@ The `iconPosition` property takes the values `left` and `right`.
 Sizes for `IconButtons` include `small`, `medium`, and `large`, with `medium` being the default value.
 
 ```.jsx
-    <div>
+    <>
       <p>
           <Button icon={<BellIcon />} size="small" />
           <Button icon={<BellIcon />} />
@@ -85,7 +91,7 @@ Sizes for `IconButtons` include `small`, `medium`, and `large`, with `medium` be
           <Button icon={<BellIcon />} iconPosition="left">Medium</Button>
           <Button icon={<BellIcon />} size="large" iconPosition="left">Large</Button>
       </p>
-    </div>
+    </>
 ```
 
 ## Round vs square
@@ -93,12 +99,12 @@ Sizes for `IconButtons` include `small`, `medium`, and `large`, with `medium` be
 Icon only buttons have `shape = round`, by default.
 
 ```.jsx
-    <p>
+    <>
       <Button icon={<BellIcon />} />
       <Button icon={<BellIcon />} shape="fill" />
       <Button icon={<BellIcon />} shape="rightCap" />
       <Button icon={<BellIcon />} shape="leftCap" />
-    </p>
+    </>
 ```
 
 ## Block Buttons
@@ -107,10 +113,10 @@ Passing the `block` property will set the button to display full-width.
 Block buttons only work when the `icon` property is set to `false` or not defined.
 
 ```.jsx
-    <p>
+    <>
         <Button icon={<BellIcon />} block iconPosition="left">Block button</Button>
         <Button icon={<BellIcon />} color="secondary" block iconPosition="right">Block button</Button>
-    </p>
+    </>
 ```
 
 ## Using different elements
@@ -119,7 +125,7 @@ Passing in the `as` prop will allow a styed button to render as a different type
 if you need to use an `a` tag or a `Link` component.
 
 ```.jsx
-    <p>
+    <>
         <Button
           ariaLabel='Search Google'
           as='a'
@@ -131,7 +137,7 @@ if you need to use an `a` tag or a `Link` component.
           as='a'
           href='http://google.com'
           icon={<Search2Icon />} />
-    </p>
+    </>
 ```
 
 ## Event Handling
@@ -150,7 +156,7 @@ Events do not fire on disabled buttons.
       }
 
       render() {
-        return <div>
+        return <>
           <p><strong>Icon Counter: </strong> {this.state.iconButtonCounter} | <strong>Text Icon Counter: </strong> {this.state.textIconButtonCounter}</p>
           <Button
             icon={<BellIcon />}
@@ -169,7 +175,7 @@ Events do not fire on disabled buttons.
             onClick={() => {
               this.setState(state => ({iconButtonCounter: state.iconButtonCounter + 1}))
             }}>Click me if you can</Button>
-        </div>
+        </>
       }
     }
 ```
@@ -178,6 +184,7 @@ Events do not fire on disabled buttons.
 
 | Prop          | Type                                                                | Default     | Required |
 | ------------- | ------------------------------------------------------------------- | ----------- | :------: |
+| ariaExpanded  | boolean                                                             |             |
 | ariaLabel     | string                                                              |             |
 | as            | any                                                                 |             |
 | autoFocus     | boolean                                                             | false       |
