@@ -30,13 +30,11 @@ export interface InputProps {
   autoFocus?: boolean;
   disabled?: boolean;
   errorMessage?: string;
-  onBlur?: () => void;
-  onChange?: (event: React.SyntheticEvent) => void;
-  onFocus?: () => void;
   helperMessage?: string;
+  hidePasswordMaskButton?: boolean;
   icon?: React.ReactElement<IconProps>;
   iconPosition?: IconPosition;
-  id: string;
+  id?: string;
   inputSize?: InputSize;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
@@ -44,12 +42,14 @@ export interface InputProps {
   labelText: string;
   labelVisuallyHidden?: boolean;
   multiline?: boolean;
+  onBlur?: () => void;
+  onChange?: (event: React.SyntheticEvent) => void;
+  onFocus?: () => void;
   placeholder?: string;
   required?: boolean;
   style?: React.CSSProperties;
   type?: InputType;
   value?: string | number;
-  hidePasswordMaskButton?: boolean;
 }
 
 interface IconWrapperProps {
@@ -235,12 +235,14 @@ function getErrorIconSize(size) {
 export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
   (props: InputProps, ref: any) => (
     <InputCore
+      id={props.id}
       value={props.value}
       onBlur={props.onBlur}
       onChange={props.onChange}
       onFocus={props.onFocus}
     >
       {({
+        id,
         onBlur,
         onChange,
         onFocus,
@@ -255,7 +257,6 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
           helperMessage,
           icon,
           iconPosition,
-          id,
           inputSize,
           inputStyle,
           inverse,

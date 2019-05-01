@@ -8,6 +8,7 @@ const onFocus = jest.fn();
 
 const INPUT_CORE_PROPS = {
   children: () => React.createElement('div'),
+  id: 'testId',
   onBlur,
   onChange,
   onFocus,
@@ -28,6 +29,32 @@ describe('InputCore', () => {
     onBlur.mockReset();
     onChange.mockReset();
     onFocus.mockReset();
+  });
+
+  it('should auto assign an id if none is passed in', () => {
+    const component = inputSetup({ id: null });
+
+    expect(component.state('id')).not.toBeNull();
+  });
+
+  it('should persist id between renders', () => {
+    const component = inputSetup({ id: null });
+
+    const initialId = component.state('id');
+
+    component.update();
+
+    expect(component.state('id')).toEqual(initialId);
+  });
+
+  it('should update the id on rerender with a change in prop id', () => {
+    const component = inputSetup({ id: null });
+
+    const initialId = component.state('id');
+
+    component.setProps({ id: 'differentId' });
+
+    expect(component.state('id')).not.toEqual(initialId);
   });
 
   describe('state management', () => {

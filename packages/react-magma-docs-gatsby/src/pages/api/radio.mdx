@@ -3,10 +3,17 @@ title: 'Radio Buttons'
 ---
 
 import DocsHeading from '../../components/docs-heading'
+import { Link } from 'gatsby'
 
-<DocsHeading to="/design/selection-controls/" type="design">Radio Buttons</DocsHeading>
+<DocsHeading to="/design/selection-controls/#5._radio%20buttons" type="design">Radio Buttons</DocsHeading>
 
 ## Basic Usage
+
+Radio buttons are form elements used to select one item from a set of mutuallty exclusive options. The `RadioGroup` component is used as the container for the set of options.  The `Radio` component is used for each of the options themselves.
+
+See also: <Link to="/api/checkbox">Checkboxes</Link>, <Link to="/api/toggle">Toggle Switches</Link>, and the <Link to="/design/selection-controls">Design Guidelines</Link> for selection controls in general.
+
+The label/radio association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
 
 ```.jsx
   <RadioGroup labelText='Basic Usage' id='basicGroup' name='basic'>
@@ -130,7 +137,7 @@ Inverse is an optional boolean prop, that may be passed in when radio buttons ar
 ## Custom Styles
 
 Custom styles can be passed into both the RadioGroup component and the Radio component. The `style` property will apply to the container.
-Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discression when adding custom styles.
+Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
 
 ```.jsx
   <RadioGroup
@@ -226,7 +233,7 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 | onBlur             | function            |         |
 | onChange           | function            |         |
 | onFocus            | function            |         |
-| id                 | string              |         | &#10003; |
+| id                 | string              |         |          |
 | labelStyle         | React.CSSProperties |         |
 | labelText          | string              |         | &#10003; |
 | name               | string              |         | &#10003; |
@@ -240,7 +247,7 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 | ------------------ | ------------------- | ------- | :------: |
 | color              | string              |         |
 | disabled           | boolean             | false   |
-| id                 | string              |         | &#10003; |
+| id                 | string              |         |          |
 | inputStyle         | React.CSSProperties |         |
 | inverse            | boolean             | false   |
 | labelStyle         | React.CSSProperties |         |

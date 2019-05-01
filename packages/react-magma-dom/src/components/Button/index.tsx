@@ -90,6 +90,7 @@ export const Button: React.FunctionComponent<
         block,
         color,
         href,
+        id,
         shape,
         size,
         style,
@@ -112,6 +113,7 @@ export const Button: React.FunctionComponent<
       if (icon && children) {
         return (
           <StyledButton
+            id={id}
             ref={ref}
             ariaExpanded={ariaExpanded}
             as={as}
@@ -145,6 +147,7 @@ export const Button: React.FunctionComponent<
       } else if (icon && !children) {
         return (
           <StyledButton
+            id={id}
             ref={ref}
             ariaExpanded={ariaExpanded}
             ariaLabel={ariaLabel}
@@ -171,6 +174,7 @@ export const Button: React.FunctionComponent<
 
       return (
         <StyledButton
+          id={id}
           ref={ref}
           as={as}
           ariaExpanded={ariaExpanded}

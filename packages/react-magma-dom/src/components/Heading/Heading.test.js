@@ -7,6 +7,7 @@ const headingText = 'Test Heading Text';
 
 const BASE_HEADING_PROPS = {
   level: 1,
+  id: 'testId',
   children: React.createElement('div')
 };
 
@@ -98,7 +99,11 @@ describe('Heading', () => {
 
   describe('Snapshot', () => {
     it('should render heading 1 correctly', () => {
-      const { container } = render(<Heading level={1}>Heading 1</Heading>);
+      const { container } = render(
+        <Heading level={1} id="testId">
+          Heading 1
+        </Heading>
+      );
 
       expect(container).toMatchSnapshot();
     });

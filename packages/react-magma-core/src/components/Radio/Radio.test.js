@@ -8,13 +8,14 @@ const onFocus = jest.fn();
 
 const RADIO_CORE_PROPS = {
   children: () => React.createElement('div'),
+  id: 'testId',
   onBlur,
   onChange,
   onFocus,
   value: 'blue'
 };
 
-const inputSetup = (myProps = {}) => {
+const radioSetup = (myProps = {}) => {
   const props = {
     ...RADIO_CORE_PROPS,
     ...myProps
@@ -30,16 +31,42 @@ describe('RadioCore', () => {
     onFocus.mockReset();
   });
 
+  it('should auto assign an id if none is passed in', () => {
+    const component = radioSetup({ id: null });
+
+    expect(component.state('id')).not.toBeNull();
+  });
+
+  it('should persist id between renders', () => {
+    const component = radioSetup({ id: null });
+
+    const initialId = component.state('id');
+
+    component.update();
+
+    expect(component.state('id')).toEqual(initialId);
+  });
+
+  it('should update the id on rerender with a change in prop id', () => {
+    const component = radioSetup({ id: null });
+
+    const initialId = component.state('id');
+
+    component.setProps({ id: 'differentId' });
+
+    expect(component.state('id')).not.toEqual(initialId);
+  });
+
   describe('state management', () => {
     it('should create the initial state of the input', () => {
-      const component = inputSetup();
+      const component = radioSetup();
 
       expect(component.state('selectedValue')).toEqual(RADIO_CORE_PROPS.value);
     });
 
     it('should update the state checked when onChange is called', () => {
       const selectedValue = 'blue';
-      const component = inputSetup();
+      const component = radioSetup();
 
       component.instance().onChange({
         persist: jest.fn(),
@@ -54,7 +81,7 @@ describe('RadioCore', () => {
 
   describe('handle blur', () => {
     it('should call the onBlur from props during the internal onBlur', () => {
-      const component = inputSetup();
+      const component = radioSetup();
 
       component.instance().onBlur();
 
@@ -62,7 +89,7 @@ describe('RadioCore', () => {
     });
 
     it('should not fail if no onBlur is passed through the props', () => {
-      const component = inputSetup({
+      const component = radioSetup({
         onBlur: undefined
       });
 
@@ -80,7 +107,7 @@ describe('RadioCore', () => {
           selectedValue: 'blue'
         }
       };
-      const component = inputSetup();
+      const component = radioSetup();
 
       component.instance().onChange(event);
 
@@ -89,7 +116,7 @@ describe('RadioCore', () => {
 
     it('should not fail if no onChange is passed through the props', () => {
       const selectedValue = 'blue';
-      const component = inputSetup({
+      const component = radioSetup({
         onChange: undefined
       });
 
@@ -107,7 +134,7 @@ describe('RadioCore', () => {
 
   describe('handle focus', () => {
     it('should call the onFocus from props during the internal onFocus', () => {
-      const component = inputSetup();
+      const component = radioSetup();
 
       component.instance().onFocus();
 
@@ -115,7 +142,7 @@ describe('RadioCore', () => {
     });
 
     it('should not fail if no onFocus is passed through the props', () => {
-      const component = inputSetup({
+      const component = radioSetup({
         onFocus: undefined
       });
 

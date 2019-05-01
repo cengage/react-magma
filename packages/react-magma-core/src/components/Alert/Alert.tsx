@@ -11,10 +11,10 @@ interface AlertCoreState {
 }
 
 export class AlertCore extends React.Component<AlertCoreProps, AlertCoreState> {
-  state: AlertCoreState = {};
-
   constructor(props) {
     super(props);
+
+    this.state = {};
 
     this.handleDismiss = this.handleDismiss.bind(this);
   }

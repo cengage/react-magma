@@ -13,7 +13,7 @@ interface Options {
 }
 
 export interface SelectProps {
-  id: string;
+  id?: string;
   name: string;
   labelText: string;
   options: Options[];
@@ -28,6 +28,10 @@ export interface SelectProps {
   onChange?: (option: Options) => void;
   onOpen?: () => void;
   onClose?: () => void;
+}
+
+interface SelectState {
+  id?: string;
 }
 
 interface ReactSelectStyles {

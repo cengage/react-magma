@@ -4,9 +4,15 @@ title: 'Selects'
 
 import DocsHeading from '../../components/docs-heading'
 
-<DocsHeading to="/design/select/" type="design">Selects</DocsHeading>
+<DocsHeading to="/design/select/" type="design">
+  Selects
+</DocsHeading>
 
 ## Basic Usage
+
+A `Select` component allows the user to choose one or more item from a list.  By default, only one item may be selected.
+
+The label/select association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
 
 ```.jsx
   <div className='demo-select-container'>
@@ -30,6 +36,8 @@ import DocsHeading from '../../components/docs-heading'
 
 ## Multi-Select
 
+The optional `multi` prop allows the user to select more than one item.
+
 ```.jsx
   <div className='demo-select-container'>
     <Select
@@ -52,6 +60,8 @@ import DocsHeading from '../../components/docs-heading'
 ```
 
 ## Clearable
+
+The optional `clearable` prop allows the user to clear the field once a selection has been made.
 
 ```.jsx
   <div className='demo-select-container'>
@@ -269,20 +279,20 @@ import DocsHeading from '../../components/docs-heading'
 
 | Prop         | Type                                   | Default | Required |
 | ------------ | -------------------------------------- | ------- | :------: |
-| id           | string                                 |         | &#10003; |
-| name         | string                                 |         | &#10003; |
-| labelText    | string                                 |         | &#10003; |
-| options      | object[]: `{ label, text }`            |         | &#10003; |
+| clearable    | boolean                                |         |
 | defaultValue | string                                 |         |
 | disabled     | boolean                                |         |
-| onBlur       | func                                   |         |
-| onChange     | func                                   |         |
-| onClose      | func                                   |         |
-| onFocus      | func                                   |         |
-| onOpen       | func                                   |         |
-| required     | boolean                                |         |
-| clearable    | boolean                                |         |
+| id           | string                                 |         |          |
+| labelText    | string                                 |         | &#10003; |
 | multi        | boolean                                |         |
+| name         | string                                 |         | &#10003; |
+| onBlur       | function                               |         |
+| onChange     | function                               |         |
+| onClose      | function                               |         |
+| onFocus      | function                               |         |
+| onOpen       | function                               |         |
+| options      | object[]: `{ label, text }`            |         | &#10003; |
+| required     | boolean                                |         |
 | style        | [ReactSelect.Styles](#style_interface) |         |
 
 ### Style Interface

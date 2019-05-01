@@ -4,6 +4,7 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
 <div>
   <h1
     class="css-8mgj9o exymr0g0"
+    id="testId"
   >
     Heading 1
   </h1>
