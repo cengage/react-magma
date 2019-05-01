@@ -310,6 +310,15 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 
 Passing in the `testId` prop will add the `data-testid` attribute to the input element for easier querying in tests.
 
+```
+  <div>
+    <label for="input1">Label</label>
+    <div>
+      <input id="input1" data-testid="test-id" placeholder="This is a placeholder" type="text" value="Default Value">
+    </div>
+  </div>
+```
+
 ## Input Props
 
 | Prop                   | Type                                                | Default  | Required |
