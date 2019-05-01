@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Global, css } from '@emotion/core';
-import { ThemeContext } from './themeContext';
+import { ThemeContext } from '../themeContext';
 
 function getStyles(theme) {
   return css`
@@ -78,12 +78,10 @@ function getStyles(theme) {
   `;
 }
 
-function renderGlobalStyles() {
+export const GlobalStyles: React.FunctionComponent = () => {
   return (
     <ThemeContext.Consumer>
       {theme => theme && <Global styles={getStyles(theme)} />}
     </ThemeContext.Consumer>
   );
-}
-
-export const GlobalStyles: React.FunctionComponent = () => renderGlobalStyles();
+};

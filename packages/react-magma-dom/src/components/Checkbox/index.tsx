@@ -99,10 +99,13 @@ const StyledFakeInput = styled.span<{
     &:before {
       ${DisplayInputFocusStyles};
       outline: 2px dotted ${props => props.theme.colors.pop03};
+      top: -7px;
+      left: -7px;
     }
   }
 
   &:after {
+    // active state
     background: ${props =>
       props.inverse
         ? props.theme.colors.neutral08

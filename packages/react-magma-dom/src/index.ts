@@ -1,4 +1,4 @@
-export { Alert } from './components/Alert';
+export { Alert, AlertVariant } from './components/Alert';
 export { Announce } from './components/Announce';
 export { Button } from './components/Button';
 export { Checkbox } from './components/Checkbox';
