@@ -3,10 +3,6 @@ module.exports = {
     jest: true
   },
   extends: 'cengage/react',
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly'
-  },
   parser: 'babel-eslint',
   parserOptions: {
     ecmaFeatures: {
