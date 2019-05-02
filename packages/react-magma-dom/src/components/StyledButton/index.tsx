@@ -42,6 +42,7 @@ export enum ButtonIconPostition {
 
 export interface ButtonProps {
   ariaExpanded?: boolean;
+  ariaLabel?: string;
   as?: any;
   autoFocus?: boolean;
   block?: boolean;
@@ -65,7 +66,6 @@ export interface ButtonProps {
 
 interface StyledButtonProps extends ButtonProps {
   iconOnly?: boolean;
-  ariaLabel?: string;
   ref?: any;
 }
 

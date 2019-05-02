@@ -7,6 +7,8 @@ import { Label } from '../Label';
 import { ThemeContext } from '../../theme/themeContext';
 import { Button } from '../Button';
 import { ButtonVariant } from '../StyledButton';
+import { VisuallyHidden } from '../VisuallyHidden';
+import { Announce } from '../Announce';
 
 export enum IconPosition {
   left = 'left',
@@ -285,7 +287,6 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                   )}
                   <InputWrapper>
                     <StyledInput
-                      ref={ref}
                       aria-label={labelVisuallyHidden ? labelText : null}
                       as={multiline ? 'textarea' : null}
                       autoFocus={autoFocus}
@@ -330,7 +331,11 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                     {type === InputType.password && !hidePasswordMaskButton && (
                       <PasswordMaskWrapper>
                         <Button
-                          variant={ButtonVariant.link}
+                          ariaLabel={
+                            passwordShown
+                              ? 'Hide Password'
+                              : 'Show Password. Note: this will visually expose your password on the screen'
+                          }
                           onClick={togglePasswordShown}
                           style={{
                             height: '30px',
@@ -339,9 +344,17 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                             left: '7px',
                             borderRadius: '3px'
                           }}
+                          variant={ButtonVariant.link}
                         >
                           {passwordShown ? 'Hide' : 'Show'}
                         </Button>
+                        <VisuallyHidden>
+                          <Announce>
+                            {passwordShown
+                              ? 'Password is now visible.'
+                              : 'Password is now hidden.'}
+                          </Announce>
+                        </VisuallyHidden>
                       </PasswordMaskWrapper>
                     )}
                   </InputWrapper>

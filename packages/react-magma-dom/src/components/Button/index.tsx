@@ -79,10 +79,10 @@ export const Button: React.FunctionComponent<
     {({ onClick }) => {
       let icon;
       let iconPosition;
-      let ariaLabel;
       let children;
       const {
         ariaExpanded,
+        ariaLabel,
         as,
         autoFocus,
         disabled,
@@ -102,7 +102,6 @@ export const Button: React.FunctionComponent<
 
       if (instanceOfIconOnly(props)) {
         icon = props.icon;
-        ariaLabel = props.ariaLabel;
       } else if (instanceOfIconText(props)) {
         icon = props.icon;
         iconPosition = props.iconPosition;
@@ -117,6 +116,7 @@ export const Button: React.FunctionComponent<
             id={id}
             testId={testId}
             ref={ref}
+            ariaLabel={ariaLabel}
             ariaExpanded={ariaExpanded}
             as={as}
             autoFocus={autoFocus}
@@ -182,6 +182,7 @@ export const Button: React.FunctionComponent<
           ref={ref}
           as={as}
           ariaExpanded={ariaExpanded}
+          ariaLabel={ariaLabel}
           autoFocus={autoFocus}
           onClick={onClick}
           block={block}
