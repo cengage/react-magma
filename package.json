@@ -5,7 +5,9 @@
   "scripts": {
     "postinstall": "lerna bootstrap && npm run build && npm run createStaticFile",
     "test": "lerna run --scope react-magma-dom --scope react-magma-core test && npm run report",
-    "test-watch": "jest --watch",
+    "test-watch": "lerna exec --scope react-magma-dom --scope react-magma-core 'npm t -- --watch'",
+    "test-dom": "lerna exec --scope react-magma-dom 'npm t -- --watch --coverage=false'",
+    "test-core": "lerna exec --scope react-magma-core 'npm t -- --watch --coverage=false'",
     "report": "mkdir -p .nyc_output && istanbul-merge ./packages/*/coverage/*.json --out .nyc_output/coverage.json && nyc report --reporter=lcov --reporter=text",
     "build": "lerna run build --scope react-magma-core --scope react-magma-dom --scope react-magma-docs-gatsby",
     "bootstrap": "lerna bootstrap",

@@ -390,7 +390,8 @@ describe('Input', () => {
       const value = 'Change';
       const onChangeSpy = jest.fn();
       const { getByLabelText } = renderInput({
-        onChange: onChangeSpy
+        onChange: onChangeSpy,
+        value: ''
       });
 
       fireEvent.change(getByLabelText(INPUT_PROPS.labelText), {
