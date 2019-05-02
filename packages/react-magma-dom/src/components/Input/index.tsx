@@ -33,11 +33,13 @@ export interface InputProps {
   disabled?: boolean;
   errorMessage?: string;
   helperMessage?: string;
+  hiddenPasswordAnnounceText?: string;
+  hidePasswordButtonAriaLabel?: string;
+  hidePasswordButtonText?: string;
   hidePasswordMaskButton?: boolean;
   icon?: React.ReactElement<IconProps>;
   iconPosition?: IconPosition;
   id?: string;
-  testId?: string;
   inputSize?: InputSize;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
@@ -50,7 +52,11 @@ export interface InputProps {
   onFocus?: () => void;
   placeholder?: string;
   required?: boolean;
+  shownPasswordAnnounceText?: string;
+  showPasswordButtonAriaLabel?: string;
+  showPasswordButtonText?: string;
   style?: React.CSSProperties;
+  testId?: string;
   type?: InputType;
   value?: string | number;
 }
@@ -272,8 +278,33 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
           type,
           required,
           testId,
-          hidePasswordMaskButton
+          hidePasswordMaskButton,
+          hiddenPasswordAnnounceText,
+          hidePasswordButtonAriaLabel,
+          hidePasswordButtonText,
+          shownPasswordAnnounceText,
+          showPasswordButtonAriaLabel,
+          showPasswordButtonText
         } = props;
+
+        const HIDDEN_PASSWORD_ANNOUCNE_TEXT = hiddenPasswordAnnounceText
+            ? hiddenPasswordAnnounceText
+            : 'Password is now hidden',
+          HIDE_PASSWORD_BUTTON_ARIA_LABEL = hidePasswordButtonAriaLabel
+            ? hidePasswordButtonAriaLabel
+            : 'Hide password',
+          HIDE_PASSWORD_BUTTON_TEXT = hidePasswordButtonText
+            ? hidePasswordButtonText
+            : 'Hide',
+          SHOWN_PASSWORD_ANNOUCNE_TEXT = shownPasswordAnnounceText
+            ? shownPasswordAnnounceText
+            : 'Password is now visible',
+          SHOW_PASSWORD_BUTTON_ARIA_LABEL = showPasswordButtonAriaLabel
+            ? showPasswordButtonAriaLabel
+            : 'Show password. Note: this will visually expose your password on the screen',
+          SHOW_PASSWORD_BUTTON_TEXT = showPasswordButtonText
+            ? showPasswordButtonText
+            : 'Show';
 
         return (
           <ThemeContext.Consumer>
@@ -333,8 +364,8 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                         <Button
                           ariaLabel={
                             passwordShown
-                              ? 'Hide Password'
-                              : 'Show Password. Note: this will visually expose your password on the screen'
+                              ? HIDE_PASSWORD_BUTTON_ARIA_LABEL
+                              : SHOW_PASSWORD_BUTTON_ARIA_LABEL
                           }
                           onClick={togglePasswordShown}
                           style={{
@@ -346,13 +377,15 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                           }}
                           variant={ButtonVariant.link}
                         >
-                          {passwordShown ? 'Hide' : 'Show'}
+                          {passwordShown
+                            ? HIDE_PASSWORD_BUTTON_TEXT
+                            : SHOW_PASSWORD_BUTTON_TEXT}
                         </Button>
                         <VisuallyHidden>
                           <Announce>
                             {passwordShown
-                              ? 'Password is now visible.'
-                              : 'Password is now hidden.'}
+                              ? SHOWN_PASSWORD_ANNOUCNE_TEXT
+                              : HIDDEN_PASSWORD_ANNOUCNE_TEXT}
                           </Announce>
                         </VisuallyHidden>
                       </PasswordMaskWrapper>

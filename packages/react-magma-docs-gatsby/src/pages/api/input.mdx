@@ -26,6 +26,11 @@ The label/input association will be handled via the passed in `id` if one is sup
 ```
 
 ## Password
+When the `type` prop is set to `password`, the input field that is rendered also have the `type` set to password, meaning that the text is obscured so that it cannot be read, usually by replacing each character with a symbol such as the asterisk ("*") or a dot ("•"). 
+
+By default, users can show the password, by pressing a toggle button.  To prevent users from showing the password, the optional boolean `hidePasswordMaskButton` can be used.
+
+The following option props can be used to override various text strings that appear on the UI or to users using assistive technology:  `hiddenPasswordAnnounceText`, `hidePasswordButtonAriaLabel`, `hidePasswordButtonText`, `shownPasswordAnnounceText`, `showPasswordButtonAriaLabel`, `showPasswordButtonText`.
 
 ```.jsx
   <>
@@ -327,30 +332,36 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 
 ## Input Props
 
-| Prop                   | Type                                                | Default  | Required |
-| ---------------------- | --------------------------------------------------- | -------- | :------: |
-| autoFocus              | boolean                                             |          |
-| disabled               | boolean                                             |          |
-| errorMessage           | string                                              |          |
-| helperMessage          | string                                              |          |
-| hidePasswordMaskButton | boolean                                             |          |
-| icon                   | string                                              |          |
-| iconPosition           | enum: 'left' &#124; 'right' &#124;                  | 'left'   |
-| id                     | string                                              |          | &#10003; |
-| inputSize              | enum: 'small' &#124; 'medium' &#124; 'large' &#124; | 'medium' |
-| inputStyle             | React.CSSProperties                                 |          |
-| inverse                | boolean                                             |          |
-| labelStyle             | React.CSSProperties                                 |          |
-| labelText              | string                                              |          | &#10003; |
-| labelVisuallyHidden    | boolean                                             |          |
-| multiline              | boolean                                             |          |
-| onBlur                 | function                                            |          |
-| onChange               | function                                            |          |
-| onFocus                | function                                            |          |
-| placeholder            | string                                              |          |
-| ref                    | React.Ref                                           |          |
-| required               | boolean                                             |          |
-| testId                 | string                                              |          |
-| type                   | enum: 'text' &#124; 'password' &#124; 'number'      | 'text'   |
-| value                  | string                                              |          |
-| style                  | React.CSSProperties                                 |          |
+| Prop                        | Type                                                | Default  | Required |
+| ----------------------------| --------------------------------------------------- | -------- | :------: |
+| autoFocus                   | boolean                                             |          |
+| disabled                    | boolean                                             |          |
+| errorMessage                | string                                              |          |
+| helperMessage               | string                                              |          |
+| hidePasswordMaskButton      | boolean                                             |          |
+| hiddenPasswordAnnounceText  | string                                              | 'Password is now hidden' |
+| hidePasswordButtonAriaLabel | boolean                                             | 'Hide password' |
+| hidePasswordButtonText      | string                                              | 'Hide'   |
+| icon                        | string                                              |          |
+| iconPosition                | enum: 'left' &#124; 'right' &#124;                  | 'left'   |
+| id                          | string                                              |          | &#10003; |
+| inputSize                   | enum: 'small' &#124; 'medium' &#124; 'large' &#124; | 'medium' |
+| inputStyle                  | React.CSSProperties                                 |          |
+| inverse                     | boolean                                             |          |
+| labelStyle                  | React.CSSProperties                                 |          |
+| labelText                   | string                                              |          | &#10003; |
+| labelVisuallyHidden         | boolean                                             |          |
+| multiline                   | boolean                                             |          |
+| onBlur                      | function                                            |          |
+| onChange                    | function                                            |          |
+| onFocus                     | function                                            |          |
+| placeholder                 | string                                              |          |
+| ref                         | React.Ref                                           |          |
+| required                    | boolean                                             |          |
+| testId                      | string                                              |          |
+| type                        | enum: 'text' &#124; 'password' &#124; 'number'      | 'text'   |
+| value                       | string                                              |          |
+| shownPasswordAnnounceText   | string                                              | 'Password is now visible' |
+| showPasswordButtonAriaLabel | boolean                                             | 'Show password. Note: this will visually expose your password on the screen'        |
+| showPasswordButtonText      | string                                              | 'Show'   |
+| style                       | React.CSSProperties                                 |          |

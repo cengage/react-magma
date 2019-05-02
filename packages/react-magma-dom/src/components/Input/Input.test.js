@@ -239,6 +239,27 @@ describe('Input', () => {
       const { getByText } = renderInput({ type: InputType.password });
 
       expect(getByText('Show')).toBeInTheDocument();
+      expect(getByText('Show')).toHaveAttribute(
+        'aria-label',
+        'Show password. Note: this will visually expose your password on the screen'
+      );
+      expect(getByText('Password is now hidden')).toBeInTheDocument();
+    });
+
+    it('renders a show/hide button on password inputs with custom text', () => {
+      const { getByText } = renderInput({
+        showPasswordButtonAriaLabel: 'Test button aria label',
+        showPasswordButtonText: 'Test button text',
+        hiddenPasswordAnnounceText: 'Test announce text',
+        type: InputType.password
+      });
+
+      expect(getByText('Test button text')).toBeInTheDocument();
+      expect(getByText('Test button text')).toHaveAttribute(
+        'aria-label',
+        'Test button aria label'
+      );
+      expect(getByText('Test announce text')).toBeInTheDocument();
     });
 
     it('does not render a show/hide button when hidePasswordMaskButton is set to true', () => {
@@ -261,6 +282,26 @@ describe('Input', () => {
 
       expect(input).toHaveProperty('type', 'text');
       expect(button).toHaveTextContent('Hide');
+      expect(button).toHaveAttribute('aria-label', 'Hide password');
+      expect(getByText('Password is now visible')).toBeInTheDocument();
+    });
+
+    it('unmasks password when show button is clicked with custom text', () => {
+      const { getByText, getByLabelText } = renderInput({
+        type: InputType.password,
+        hidePasswordButtonAriaLabel: 'Test button aria label',
+        hidePasswordButtonText: 'Test button text',
+        shownPasswordAnnounceText: 'Test announce text'
+      });
+      const button = getByText('Show');
+      const input = getByLabelText(INPUT_PROPS.labelText);
+
+      fireEvent.click(button);
+
+      expect(input).toHaveProperty('type', 'text');
+      expect(button).toHaveTextContent('Test button text');
+      expect(button).toHaveAttribute('aria-label', 'Test button aria label');
+      expect(getByText('Test announce text')).toBeInTheDocument();
     });
 
     it('masks password when the hide button is clicked', () => {
