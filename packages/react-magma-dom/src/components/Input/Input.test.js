@@ -109,13 +109,12 @@ describe('Input', () => {
 
   it('should render an input with a correctly styled error message', () => {
     const testMessage = 'Test error message';
-    const { container, getByText, getByLabelText } = renderInput({
+    const { getByText, getByLabelText } = renderInput({
       errorMessage: testMessage
     });
 
     const input = getByLabelText(INPUT_PROPS.labelText);
     const errorMessage = getByText(testMessage);
-    const span = container.querySelector('span');
 
     expect(input).toHaveStyleRule('border-color', magma.colors.danger);
 

@@ -74,7 +74,7 @@ describe('Select', () => {
 
   it('should render a multi-select with a multiple values passed through', () => {
     const defaultValue = [options[0], options[1]];
-    const { container, debug } = renderSelect({ defaultValue, multi: true });
+    const { container } = renderSelect({ defaultValue, multi: true });
     const input = container.querySelectorAll(
       `input[name="${SELECT_PROPS.name}"]`
     );

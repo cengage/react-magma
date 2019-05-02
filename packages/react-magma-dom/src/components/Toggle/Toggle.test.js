@@ -79,9 +79,8 @@ describe('Toggle', () => {
   });
 
   it('should disable the toggle', () => {
-    const { container, getByLabelText } = renderToggle({ disabled: true });
+    const { getByLabelText } = renderToggle({ disabled: true });
     const toggle = getByLabelText(TOGGLE_PROPS.labelText);
-    const span = container.querySelector('span');
 
     expect(toggle).toBeDisabled();
   });
