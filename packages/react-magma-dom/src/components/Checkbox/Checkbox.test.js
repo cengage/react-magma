@@ -184,7 +184,8 @@ describe('Checkbox', () => {
     it('should trigger the passed in onChange when value of the checkbox is changed', () => {
       const onChangeSpy = jest.fn();
       const { getByLabelText } = renderCheckbox({
-        onChange: onChangeSpy
+        onChange: onChangeSpy,
+        checked: true
       });
 
       fireEvent.click(getByLabelText(CHECKBOX_PROPS.labelText));
