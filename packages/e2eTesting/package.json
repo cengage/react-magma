@@ -7,7 +7,8 @@
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
     "start:staticServer": "npx http-server --cors -p 3001 ./build",
     "build": "webpack",
-    "test-local": "./node_modules/.bin/cypress open",
+    "test:local": "cypress open",
+    "test:dev": "npm run build && npx start-server-and-test start:staticServer http://localhost:3001/ test:local",
     "test:ui": "cypress run",
     "test": "npm run build && npx start-server-and-test start:staticServer http://localhost:3001/ test:ui",
     "lint": "eslint src/"
