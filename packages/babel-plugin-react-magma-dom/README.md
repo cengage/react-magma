@@ -2,12 +2,28 @@
 
 ### Dependencies
 
-Node v8.9.4 or greater with npm 5.7.0 or greater
+Node v10.x or greater with npm 6.1.x or greater
 
 ### Setup
 
-1. Clone this repo: `git clone ssh://git@stash.corp.web:7999/front/react-magma.git`
-2. `npm ci` - using `ci` instead of `install` will install dependencies based on `package-lock.json` and should speed up the install.
+1. Clone this repo:
+
+```
+git clone ssh://git@stash.corp.web:7999/front/react-magma.git
+```
+
+2. Install the project's dependencies with the `npm ci` command
+
+   <details>
+     <summary>Why npm ci?</summary>
+
+   Using `npm ci` instead of `npm install` will install dependencies based on `package-lock.json` so you will get specific package versions and it should also speed up the install.
+
+   </details>
+
+```sh
+npm ci
+```
 
 ### Resources
 

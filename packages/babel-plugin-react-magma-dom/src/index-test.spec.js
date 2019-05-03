@@ -1,5 +1,5 @@
-const babel = require("@babel/core");
-const plugin = require(".");
+const babel = require('@babel/core');
+const plugin = require('.');
 
 const combinationExample = `
   import * as React from 'react';
@@ -115,12 +115,12 @@ const renamedImportExample = `
   }
 `;
 
-it("works", () => {
+it('handles a combination of imports and use cases', () => {
   const { code } = babel.transform(combinationExample, { plugins: [plugin] });
   expect(code).toMatchSnapshot();
 });
 
-it("rewrites the named imports", () => {
+it('rewrites the named imports', () => {
   const { ast } = babel.transform(namedExample, {
     ast: true,
     plugins: [plugin]
@@ -129,11 +129,11 @@ it("rewrites the named imports", () => {
   const sourceValue1 = program.body[0].declarations[0].init.arguments[0].value;
   const sourceValue2 = program.body[1].declarations[0].init.arguments[0].value;
 
-  expect(sourceValue1).toEqual("react-magma-dom/lib/Button");
-  expect(sourceValue2).toEqual("react-magma-dom/lib/Heading");
+  expect(sourceValue1).toEqual('react-magma-dom/lib/Button');
+  expect(sourceValue2).toEqual('react-magma-dom/lib/Heading');
 });
 
-it("changes default import reference to named imports", () => {
+it('changes default import reference to named imports', () => {
   const { ast } = babel.transform(defaultImportExample, {
     ast: true,
     plugins: [plugin]
@@ -142,11 +142,11 @@ it("changes default import reference to named imports", () => {
   const sourceValue1 = program.body[2].declarations[0].init.arguments[0].value;
   const sourceValue2 = program.body[3].declarations[0].init.arguments[0].value;
 
-  expect(sourceValue1).toEqual("react-magma-dom/lib/Button");
-  expect(sourceValue2).toEqual("react-magma-dom/lib/Input");
+  expect(sourceValue1).toEqual('react-magma-dom/lib/Button');
+  expect(sourceValue2).toEqual('react-magma-dom/lib/Input');
 });
 
-it("changes default namespace import reference to named imports", () => {
+it('changes default namespace import reference to named imports', () => {
   const { ast } = babel.transform(defaultNamespaceExample, {
     ast: true,
     plugins: [plugin]
@@ -155,11 +155,11 @@ it("changes default namespace import reference to named imports", () => {
   const sourceValue1 = program.body[2].declarations[0].init.arguments[0].value;
   const sourceValue2 = program.body[3].declarations[0].init.arguments[0].value;
 
-  expect(sourceValue1).toEqual("react-magma-dom/lib/Button");
-  expect(sourceValue2).toEqual("react-magma-dom/lib/Input");
+  expect(sourceValue1).toEqual('react-magma-dom/lib/Button');
+  expect(sourceValue2).toEqual('react-magma-dom/lib/Input');
 });
 
-it("changes Icons import references to named imports", () => {
+it('changes Icons import references to named imports', () => {
   const { ast } = babel.transform(iconsExample, {
     ast: true,
     plugins: [plugin]
@@ -167,10 +167,10 @@ it("changes Icons import references to named imports", () => {
   const program = ast.program;
   const sourceValue = program.body[2].declarations[0].init.arguments[0].value;
 
-  expect(sourceValue).toEqual("react-magma-dom/lib/Icons/type/CheckIcon");
+  expect(sourceValue).toEqual('react-magma-dom/lib/Icons/type/CheckIcon');
 });
 
-it("changes default import references to Icons to named imports", () => {
+it('changes default import references to Icons to named imports', () => {
   const { ast } = babel.transform(defaultIconsExample, {
     ast: true,
     plugins: [plugin]
@@ -179,11 +179,11 @@ it("changes default import references to Icons to named imports", () => {
   const sourceValue1 = program.body[2].declarations[0].init.arguments[0].value;
   const sourceValue2 = program.body[3].declarations[0].init.arguments[0].value;
 
-  expect(sourceValue1).toEqual("react-magma-dom/lib/Icons/type/DeleteIcon");
-  expect(sourceValue2).toEqual("react-magma-dom/lib/Icons/type/CheckIcon");
+  expect(sourceValue1).toEqual('react-magma-dom/lib/Icons/type/DeleteIcon');
+  expect(sourceValue2).toEqual('react-magma-dom/lib/Icons/type/CheckIcon');
 });
 
-it("changes renamed import references to named imports", () => {
+it('changes renamed import references to named imports', () => {
   const { ast } = babel.transform(renamedImportExample, {
     ast: true,
     plugins: [plugin]
@@ -191,5 +191,5 @@ it("changes renamed import references to named imports", () => {
   const program = ast.program;
   const sourceValue = program.body[2].declarations[0].init.arguments[0].value;
 
-  expect(sourceValue).toEqual("react-magma-dom/lib/Button");
+  expect(sourceValue).toEqual('react-magma-dom/lib/Button');
 });
