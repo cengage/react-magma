@@ -5,5 +5,5 @@
     "declarationDir": "dist",
     "emitDeclarationOnly": true
   },
-  "include": ["./src/components/"]
+  "include": ["./src/components/", "./src/theme/**/*"]
 }
