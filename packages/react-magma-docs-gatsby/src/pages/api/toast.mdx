@@ -83,20 +83,63 @@ Variants for toasts include `info`, `success`, `warning`, and `danger`, with `in
         const { showDefaultAlert, showInfoAlert, showSuccessAlert, showWarningAlert, showDangerAlert } = this.state;
 
         return (<>
+          <Button size="small" onClick={this.onDefaultAlertShow}>Show Default Toast</Button>
+          <Button size="small" onClick={this.onInfoAlertShow}>Show Info Toast</Button>
+          <Button size="small" onClick={this.onSuccessAlertShow}>Show Success Toast</Button>
+          <Button size="small" onClick={this.onWarningAlertShow}>Show Warning Toast</Button>
+          <Button size="small" onClick={this.onDangerAlertShow}>Show Danger Toast</Button>
           {showDefaultAlert && <Toast onDismiss={this.onDefaultAlertDismiss}>Default Toast</Toast>}
           {showInfoAlert && <Toast variant="info" onDismiss={this.onInfoAlertDismiss}>Info Toast</Toast>}
           {showSuccessAlert && <Toast variant="success" onDismiss={this.onSuccessAlertDismiss}>Success Toast</Toast>}
           {showWarningAlert && <Toast variant="warning" onDismiss={this.onWarningAlertDismiss}>Warning Toast</Toast>}
           {showDangerAlert && <Toast variant="danger" onDismiss={this.onDangerAlertDismiss}>Danger Toast</Toast>}
-          <Button size="small" onClick={this.onDefaultAlertShow}>Show Default Alert</Button>
-          <Button size="small" onClick={this.onInfoAlertShow}>Show Info Alert</Button>
-          <Button size="small" onClick={this.onSuccessAlertShow}>Show Success Alert</Button>
-          <Button size="small" onClick={this.onWarningAlertShow}>Show Warning Alert</Button>
-          <Button size="small" onClick={this.onDangerAlertShow}>Show Danger Alert</Button>
         </>)
       }
     }
 ```
+
+## Accessibility Considerations
+
+Toasts are intended to be small interruptions to users, so when a `Toast` component is added to a screen, it is important that screen readers or similar assistive technology
+read the new content. One way to do this is to the user the <Link to="/api/announce">Announce component</Link>, which employs the `aria-live` attribute.  Be sure to place
+the conditional logic to display the Toast _inside_ the Announce component.
+
+While toasts appear visually in the lower right side of the screen, they will exist in the dom where ever they are placed.  Keep this in mind when you are structuring your
+markup, to ensure that they have the expected tab order.
+
+```.jsx
+  class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          showAlert: false,
+        }
+
+        this.onAlertShow = this.onAlertShow.bind(this);
+        this.onAlertDismiss = this.onAlertDismiss.bind(this);
+      }
+
+      onAlertShow() {
+        this.setState({showAlert: true})
+      }
+
+      onAlertDismiss() {
+        this.setState({showAlert: false})
+      }
+
+      render() {
+        const { showAlert } = this.state;
+
+        return (<>
+          <Button onClick={this.onAlertShow}>Show Toast in Announce</Button>
+          <Announce>
+            {showAlert && <Toast dismissable onDismiss={this.onAlertDismiss}>Dismissable Toast with <a href="#">linked text</a></Toast>}
+          </Announce>
+        </>)
+      }
+    }
+```
+
 
 ## Toast Duration
 
@@ -124,8 +167,8 @@ Variants for toasts include `info`, `success`, `warning`, and `danger`, with `in
         const { showAlert } = this.state;
 
         return (<>
+          <Button onClick={this.onAlertShow}>Show Toast</Button>
           {showAlert && <Toast toastDuration={1000} onDismiss={this.onAlertDismiss}>Quick Toast</Toast>}
-          <Button onClick={this.onAlertShow}>Show Alert</Button>
         </>)
       }
     }
@@ -157,8 +200,8 @@ Variants for toasts include `info`, `success`, `warning`, and `danger`, with `in
         const { showAlert } = this.state;
 
         return (<>
+          <Button onClick={this.onAlertShow}>Show Dismissable Toast</Button>
           {showAlert && <Toast dismissable onDismiss={this.onAlertDismiss}>Dismissable Toast</Toast>}
-          <Button onClick={this.onAlertShow}>Show Dismissable Alert</Button>
         </>)
       }
     }
@@ -190,8 +233,8 @@ Variants for toasts include `info`, `success`, `warning`, and `danger`, with `in
       const { showAlert } = this.state;
 
       return (<>
+        <Button onClick={this.onAlertShow}>Show Toast</Button>
         {showAlert && <Toast dismissable disableAutoDismiss={true} onDismiss={this.onAlertDismiss}>Non-Auto Hiding Dismissable Toast</Toast>}
-        <Button onClick={this.onAlertShow}>Show Alert</Button>
       </>)
     }
   }
@@ -236,11 +279,11 @@ When you hover over the Toast the timer is paused. Once the mouse leaves the Toa
         const { showAlert, alertContent } = this.state;
 
         return (<>
+          <Button onClick={this.onAlertShow}>Show Toast</Button>
           {showAlert && <Toast
                           onDismiss={this.onAlertDismiss}
                           onMouseEnter={this.onMouseEnter}
                           onMouseLeave={this.onMouseLeave}>{alertContent}</Toast>}
-          <Button onClick={this.onAlertShow}>Show Alert</Button>
         </>)
       }
     }
