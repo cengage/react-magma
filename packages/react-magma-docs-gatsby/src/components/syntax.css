@@ -76,7 +76,7 @@ pre[class*='language-'] {
 .token.operator,
 .token.boolean,
 .token.number {
-  color: #FA6600;
+  color: #E0004D;
 }
 .token.property {
   color: rgb(35, 79, 0);
