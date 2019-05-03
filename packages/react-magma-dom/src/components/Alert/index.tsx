@@ -27,6 +27,7 @@ export enum AlertVariant {
 
 export interface AlertProps {
   children: React.ReactNode;
+  closeLabel?: string;
   id?: string;
   testId?: string;
   dismissable?: boolean;
@@ -154,6 +155,7 @@ function renderIcon(variant = 'info') {
 }
 
 export const Alert: React.FunctionComponent<AlertProps> = ({
+  closeLabel,
   id,
   testId,
   variant,
@@ -184,7 +186,7 @@ export const Alert: React.FunctionComponent<AlertProps> = ({
               {dismissable && (
                 <DismissableIconWrapper variant={variant} theme={theme}>
                   <Button
-                    ariaLabel="Close this message"
+                    ariaLabel={closeLabel ? closeLabel : 'Close this message'}
                     icon={<CrossIcon />}
                     inverse
                     onClick={handleDismiss}

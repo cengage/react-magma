@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export interface AnnounceProps {
   children: React.ReactChild | React.ReactChild[];
-  politeness: AnnouncePoliteness;
+  politeness?: AnnouncePoliteness;
   ref?: any;
 }
 

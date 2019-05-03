@@ -122,6 +122,16 @@ describe('Alert', () => {
       expect(dismissableIconButton).toBeInTheDocument();
     });
 
+    it('should render a dismissable icon button with custom close label text', () => {
+      const { getByLabelText } = renderAlert({
+        closeLabel: 'Test',
+        dismissable: true
+      });
+      const dismissableIconButton = getByLabelText('Test');
+
+      expect(dismissableIconButton).toBeInTheDocument();
+    });
+
     it('should render a dismissable icon button with the warning variant', () => {
       const { getByLabelText } = renderAlert({
         dismissable: true,

@@ -43,6 +43,8 @@ The `dismissable` prop is optional, and if provided the Alert will render a dism
 Providing this property only causes the dismiss button to render; it does not control the dismiss behavior itself. If you include the `dismissable` prop,
 you must also include a function in the `onDimiss` prop to handle the dismiss behavior.
 
+The aria-label, by default is `Close this message` but can be overriden using the optional `closeLabel` prop.
+
 
 ```.jsx
   class Example extends React.Component {
@@ -104,12 +106,13 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 
 ## Alert Props
 
-| Prop        | Type                                                           | Default | Required |
-| ----------- | -------------------------------------------------------------- | ------- | :------: |
-| children    | node                                                           |         | &#10003; |
-| id          | string                                                         |         |          |
-| testId      | string                                                         |         |          |
-| dismissable | boolean                                                        |         |          |
-| variant     | enum: 'info' &#124; 'success' &#124; 'warning' &#124; 'danger' |         |
-| style       | React.CSSProperties                                            |         |
-| onDismiss   | func                                                           |         |
+| Prop        | Type                                                           | Default              | Required |
+| ----------- | -------------------------------------------------------------- | -------------------- | :------: |
+| children    | node                                                           |                      | &#10003; |
+| closeLabel  | string                                                         | 'Close this message' |          |
+| id          | string                                                         |                      |          |
+| testId      | string                                                         |                      |          |
+| dismissable | boolean                                                        |                      |          |
+| variant     | enum: 'info' &#124; 'success' &#124; 'warning' &#124; 'danger' |                      |
+| style       | React.CSSProperties                                            |                      |
+| onDismiss   | func                                                           |                      |
