@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import { SlidingDrawer } from './sliding-drawer'
+import SkipLink from './skip-link'
 import Masthead from './masthead'
 import { MDXProvider } from '@mdx-js/tag'
 import { Location } from '@reach/router'
@@ -574,6 +575,8 @@ const LinkHeading = props => (
   <h3 id={convertTextToId(props.children)}>{props.children}</h3>
 )
 
+const skipLinkTargetID = 'maincontent'
+
 const Layout = ({ children }) => (
   <StaticQuery
     query={graphql`
@@ -597,10 +600,11 @@ const Layout = ({ children }) => (
         >
           <html lang="en" />
         </Helmet>
+        <SkipLink targetID={skipLinkTargetID} />
         <main className="main">
           <SlidingDrawer />
           <Masthead />
-          <section className="content">
+          <section className="content" id={skipLinkTargetID} tabIndex="-1">
             <MDXProvider
               components={{
                 pre: PreComponent,
