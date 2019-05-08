@@ -1,0 +1,76 @@
+---
+title: 'Skip Link'
+---
+
+import { Link } from 'gatsby'
+
+# Skip Link
+
+Because the main content is often not the first thing on a page, it is valuable to provide a Skip Navigation link
+to allow users who navigate via keyboard and/or screen reader to jump directly to the content.
+
+The `SkipLink` component should be the first item in your page, positioned in the DOM before the navigation and the content.
+Users will not see the component unless they are navigating by keyboard.
+
+It is recommended to use only one skip link per page, and to keep it in a consistent location throughout the appliation.
+
+## Basic Usage
+
+The `targetID` property is required, and refers to the id of the main content area that will receive focus when the `SkipLink` is clicked.
+If there is an h1 heading inside the target element, the h1 will receive focus.  Otherwise, the element with the `targetId` will receive focus.
+
+```.jsx
+    <SkipLink targetID='myID' />
+```
+
+## Button Text
+
+By default, the text inside the button says "Skip Navigation".  This can be overriden using the `buttonText` prop.
+
+```.jsx
+    <SkipLink
+        buttonText='Skip to main content'
+        targetID='myID' />
+```
+
+## Positioning
+
+By default, the `SkipLink` is fixed poistioned 10px from the top and 10px from left of the screen.  This can be customized using the optional `positionLeft`
+and `positionTop` properties, which take numeric values.
+
+```.jsx
+    <SkipLink
+        positionLeft={25}
+        positionTop={25}
+        targetID='myID' />
+```
+
+## Button Variations
+
+By default, the `SkipLink` looks like a standard button with `color` as`primary`, `variant` as `solid`, and `inverse` as false.
+
+Variants for buttons include `solid`, `outline`, and `link`.
+Colors for buttons include `primary`, `secondary`, `success`, and `danger`.
+Inverse is can be either `true` or `false`, and is used when the SkipLink is to appear on a dark background.
+
+For more information, see the <Link to="/api/button">Button Component documentation</Link>.
+
+```.jsx
+    <SkipLink
+        color="secondary"
+        inverse
+        variant="outline"
+        targetID='myID' />
+```
+
+## SkipLink Props
+
+| Prop         | Type                                                                | Default     | Required |
+| ------------ | ------------------------------------------------------------------- | ----------- | :------: |
+| buttonText   | string                                                              |             |          |
+| color        | enum: 'primary' &#124; 'secondary' &#124; 'success' &#124; 'danger' | 'primary'   |          |
+| inverse      | boolean                                                             |             |          |
+| positionLeft | number                                                              |             |          |
+| positionTop  | number                                                              |             |          |
+| targetID     | string                                                              |             | &#10003; |
+| variant      | enum: 'solid' &#124; 'outline' &#124; 'link'                        | 'solid'     |

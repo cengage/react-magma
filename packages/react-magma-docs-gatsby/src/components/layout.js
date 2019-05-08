@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import { SlidingDrawer } from './sliding-drawer'
-import SkipLink from './skip-link'
 import Masthead from './masthead'
 import { MDXProvider } from '@mdx-js/tag'
 import { Location } from '@reach/router'
@@ -21,6 +20,7 @@ import {
   Radio,
   RadioGroup,
   Select,
+  SkipLink,
   Toggle,
   Toast,
   amgam,
@@ -298,6 +298,7 @@ const PreComponent = ({ className, ...props }) => {
         Radio,
         RadioGroup,
         Select,
+        SkipLink,
         Toggle,
         Toast,
         magma,
@@ -600,7 +601,12 @@ const Layout = ({ children }) => (
         >
           <html lang="en" />
         </Helmet>
-        <SkipLink targetID={skipLinkTargetID} />
+        <SkipLink
+          inverse
+          positionLeft={275}
+          positionTop={16}
+          targetID={skipLinkTargetID}
+          variant="outline" />
         <main className="main">
           <SlidingDrawer />
           <Masthead />
@@ -609,7 +615,7 @@ const Layout = ({ children }) => (
               components={{
                 pre: PreComponent,
                 table: Table,
-                h2: SectionHeading,
+                h2: SectionHeading, 
                 h3: LinkHeading,
               }}
             >
