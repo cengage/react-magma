@@ -1,15 +1,13 @@
 import React from 'react';
-import { render, fireEvent, cleanup } from 'react-testing-library';
+import { render, fireEvent } from 'react-testing-library';
 import { CheckboxCore } from './Checkbox';
 import uuid from 'uuid/v4';
-import 'jest-dom/extend-expect';
 
 jest.mock('uuid/v4');
 
 describe('CheckboxCore', () => {
   afterEach(() => {
     jest.resetAllMocks();
-    cleanup();
   });
 
   it('should auto assign an id if none is passed in', () => {

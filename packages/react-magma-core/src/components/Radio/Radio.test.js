@@ -1,15 +1,13 @@
-import * as React from 'react';
-import { render, fireEvent, cleanup } from 'react-testing-library';
+import React from 'react';
+import { render, fireEvent } from 'react-testing-library';
 import { RadioCore } from './Radio';
 import uuid from 'uuid/v4';
-import 'jest-dom/extend-expect';
 
 jest.mock('uuid/v4');
 
 describe('RadioCore', () => {
   afterEach(() => {
     jest.resetAllMocks();
-    cleanup();
   });
 
   it('should auto assign an id if none is passed in', () => {

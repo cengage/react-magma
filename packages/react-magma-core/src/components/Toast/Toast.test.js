@@ -1,6 +1,6 @@
 import React from 'react';
 import { ToastCore } from './Toast';
-import { render, cleanup, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from 'react-testing-library';
 
 describe('ToastCore', () => {
   beforeEach(() => {
@@ -10,7 +10,6 @@ describe('ToastCore', () => {
   afterEach(() => {
     jest.useRealTimers();
     jest.resetAllMocks();
-    cleanup();
   });
 
   it('Should auto dismiss after timeout', () => {

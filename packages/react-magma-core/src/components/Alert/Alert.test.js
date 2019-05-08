@@ -1,7 +1,6 @@
 import React from 'react';
-import { render, fireEvent, cleanup } from 'react-testing-library';
+import { render, fireEvent } from 'react-testing-library';
 import { AlertCore } from './Alert';
-import 'jest-dom/extend-expect';
 
 describe('AlertCore', () => {
   beforeEach(() => {
@@ -11,7 +10,6 @@ describe('AlertCore', () => {
   afterEach(() => {
     jest.useRealTimers();
     jest.resetAllMocks();
-    cleanup();
   });
 
   it('should handle the dismiss', () => {
