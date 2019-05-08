@@ -295,7 +295,7 @@ pre {
   margin-bottom: 0;
   font-size: 0.85rem;
   line-height: 1.42;
-  background: hsla(0, 0%, 0%, 0.04);
+  background:#F7F7F7;
   border-radius: 3px;
   overflow: auto;
   word-wrap: normal;
@@ -478,7 +478,7 @@ td:last-child {
 }
 tt,
 code {
-  background-color: hsla(0, 0%, 0%, 0.04);
+  background-color: #F7F7F7;
   border-radius: 3px;
   font-family: 'SFMono-Regular', Consolas, 'Roboto Mono', 'Droid Sans Mono',
     'Liberation Mono', Menlo, Courier, monospace;

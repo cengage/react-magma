@@ -14,6 +14,7 @@
     "compiler-checks": "tsc --noEmit --project './tsconfig.json'",
     "test": "jest",
     "test-watch": "jest --watch",
+    "covg": "open coverage/lcov-report/index.html",
     "prebuild": "npm run compiler-checks && rimraf 'dist'",
     "build": "rollup -c",
     "build:types": "tsc --project './tsconfig.types.json'",
