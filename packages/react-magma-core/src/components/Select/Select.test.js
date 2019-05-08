@@ -1,158 +1,141 @@
-import * as React from 'react';
-import { mount } from 'enzyme';
+import React from 'react';
 import { SelectCore } from './Select';
-
-const onBlur = jest.fn();
-const onFocus = jest.fn();
-const onChange = jest.fn();
-const onOpen = jest.fn();
-const onClose = jest.fn();
-
-const SELECT_CORE_PROPS = {
-  children: () => React.createElement('div'),
-  onBlur,
-  onChange,
-  onFocus,
-  onOpen,
-  onClose,
-  defaultValue: ''
-};
-
-const selectSetup = (myProps = {}) => {
-  const props = {
-    ...SELECT_CORE_PROPS,
-    ...myProps
-  };
-
-  return mount(<SelectCore {...props} />);
-};
+import { render, fireEvent, cleanup } from 'react-testing-library';
+import 'jest-dom/extend-expect';
 
 describe('SelectCore', () => {
   afterEach(() => {
-    onBlur.mockReset();
-    onChange.mockReset();
-    onFocus.mockReset();
-    onOpen.mockReset();
-    onClose.mockReset();
+    jest.resetAllMocks();
+    cleanup();
   });
 
-  describe('state management', () => {
-    it('should create the initial state of the input', () => {
-      const component = selectSetup();
+  it('should call the supplied onChange and update the value when onChange is called', () => {
+    const handleChange = jest.fn();
+    const newValue = 'Test';
+    const { getByText, queryByText, getByTestId } = render(
+      <SelectCore onChange={handleChange} defaultValue="Start here">
+        {({ value, onChange }) => (
+          <button data-testid="target" onClick={() => onChange(newValue)}>
+            {value}
+          </button>
+        )}
+      </SelectCore>
+    );
 
-      expect(component.state('value')).toEqual(SELECT_CORE_PROPS.defaultValue);
-    });
+    expect(getByText(/start here/i)).toBeInTheDocument();
 
-    it('should update the state value when onChange is called', () => {
-      const value = 'new value';
-      const component = selectSetup();
+    fireEvent.click(getByTestId('target'));
 
-      component.instance().onChange(value);
+    expect(getByText(newValue)).toBeInTheDocument();
+    expect(queryByText(/start here/i)).not.toBeInTheDocument();
 
-      expect(component.state('value')).toEqual(value);
-    });
+    expect(handleChange).toHaveBeenCalledWith(newValue);
   });
 
-  describe('handle blur', () => {
-    it('should call the onBlur from props during the internal onBlur', () => {
-      const component = selectSetup();
+  it('Should not throw if a non-function is passed as an onChange', () => {
+    const handleChange = 'This is NOT a function';
+    const { getByTestId } = render(
+      <SelectCore onChange={handleChange} defaultValue="Start here">
+        {({ value, onChange }) => (
+          <button data-testid="target" onClick={() => onChange('test')}>
+            {value}
+          </button>
+        )}
+      </SelectCore>
+    );
 
-      component.instance().onBlur();
-
-      expect(SELECT_CORE_PROPS.onBlur).toHaveBeenCalled();
-    });
-
-    it('should not fail if no onBlur is passed through the props', () => {
-      const component = selectSetup({
-        onBlur: undefined
-      });
-
-      component.instance().onBlur();
-
-      expect(SELECT_CORE_PROPS.onBlur).not.toHaveBeenCalled();
-    });
+    expect(() => fireEvent.click(getByTestId('target'))).not.toThrow();
   });
 
-  describe('handle change', () => {
-    it('should call the onChange from props during the internal onChange', () => {
-      const value = 'test handle change';
-      const component = selectSetup();
+  it('should call the onBlur from props during the internal onBlur', () => {
+    const handleBlur = jest.fn();
+    const { getByTestId } = render(
+      <SelectCore onBlur={handleBlur}>
+        {({ onBlur }) => <input data-testid="target" onBlur={onBlur} />}
+      </SelectCore>
+    );
 
-      component.instance().onChange(value);
-
-      expect(SELECT_CORE_PROPS.onChange).toHaveBeenCalledWith(value);
-    });
-
-    it('should not fail if no onChange is passed through the props', () => {
-      const value = 'test no fail';
-      const component = selectSetup({
-        onChange: undefined
-      });
-
-      component.instance().onChange(value);
-
-      expect(component.state('value')).toEqual(value);
-      expect(SELECT_CORE_PROPS.onChange).not.toHaveBeenCalled();
-    });
+    fireEvent.blur(getByTestId('target'));
+    expect(handleBlur).toHaveBeenCalledTimes(1);
   });
 
-  describe('handle focus', () => {
-    it('should call the onFocus from props during the internal onFocus', () => {
-      const component = selectSetup();
+  it('should not throw if a non-function is passed as an onBlur', () => {
+    const handleBlur = 'This is NOT a function';
+    const { getByTestId } = render(
+      <SelectCore onBlur={handleBlur}>
+        {({ onBlur }) => <input data-testid="target" onBlur={onBlur} />}
+      </SelectCore>
+    );
 
-      component.instance().onFocus();
-
-      expect(SELECT_CORE_PROPS.onFocus).toHaveBeenCalled();
-    });
-
-    it('should not fail if no onFocus is passed through the props', () => {
-      const component = selectSetup({
-        onFocus: undefined
-      });
-
-      component.instance().onFocus();
-
-      expect(SELECT_CORE_PROPS.onFocus).not.toHaveBeenCalled();
-    });
+    expect(() => fireEvent.blur(getByTestId('target'))).not.toThrow();
   });
 
-  describe('handle open', () => {
-    it('should call the onOpen from props during the internal onOpen', () => {
-      const component = selectSetup();
+  it('should call the onFocus from props during the internal onFocus', () => {
+    const handleFocus = jest.fn();
+    const { getByTestId } = render(
+      <SelectCore onFocus={handleFocus}>
+        {({ onFocus }) => <input data-testid="target" onFocus={onFocus} />}
+      </SelectCore>
+    );
 
-      component.instance().onOpen();
-
-      expect(SELECT_CORE_PROPS.onOpen).toHaveBeenCalled();
-    });
-
-    it('should not fail if no onOpen is passed through the props', () => {
-      const component = selectSetup({
-        onOpen: undefined
-      });
-
-      component.instance().onOpen();
-
-      expect(SELECT_CORE_PROPS.onOpen).not.toHaveBeenCalled();
-    });
+    fireEvent.focus(getByTestId('target'));
+    expect(handleFocus).toHaveBeenCalledTimes(1);
   });
 
-  describe('handle close', () => {
-    it('should call the onClose from props during the internal onClose', () => {
-      const component = selectSetup();
+  it('should not throw if a non-function is passed as an onFocus', () => {
+    const handleFocus = 'This is NOT a function';
+    const { getByTestId } = render(
+      <SelectCore onFocus={handleFocus}>
+        {({ onFocus }) => <input data-testid="target" onFocus={onFocus} />}
+      </SelectCore>
+    );
 
-      component.instance().onClose();
+    expect(() => fireEvent.focus(getByTestId('target'))).not.toThrow();
+  });
 
-      expect(SELECT_CORE_PROPS.onClose).toHaveBeenCalled();
-    });
+  it('should call the onOpen from props during the internal onOpen', () => {
+    const handleOpen = jest.fn();
+    const { getByTestId } = render(
+      <SelectCore onOpen={handleOpen}>
+        {({ onOpen }) => <button data-testid="target" onClick={onOpen} />}
+      </SelectCore>
+    );
 
-    it('should not fail if no onClose is passed through the props', () => {
-      const component = selectSetup({
-        onClose: undefined
-      });
+    fireEvent.click(getByTestId('target'));
+    expect(handleOpen).toHaveBeenCalledTimes(1);
+  });
 
-      component.instance().onClose();
+  it('should not throw if a non-function is passed as an onOpen', () => {
+    const handleOpen = 'This is NOT a function';
+    const { getByTestId } = render(
+      <SelectCore onOpen={handleOpen}>
+        {({ onOpen }) => <button data-testid="target" onClick={onOpen} />}
+      </SelectCore>
+    );
 
-      expect(SELECT_CORE_PROPS.onClose).not.toHaveBeenCalled();
-    });
+    expect(() => fireEvent.click(getByTestId('target'))).not.toThrow();
+  });
+
+  it('should call the onClose from props during the internal onClose', () => {
+    const handleClose = jest.fn();
+    const { getByTestId } = render(
+      <SelectCore onClose={handleClose}>
+        {({ onClose }) => <button data-testid="target" onClick={onClose} />}
+      </SelectCore>
+    );
+
+    fireEvent.click(getByTestId('target'));
+    expect(handleClose).toHaveBeenCalledTimes(1);
+  });
+
+  it('should not throw if a non-function is passed as an onClose', () => {
+    const handleClose = 'This is NOT a function';
+    const { getByTestId } = render(
+      <SelectCore onClose={handleClose}>
+        {({ onClose }) => <button data-testid="target" onClick={onClose} />}
+      </SelectCore>
+    );
+
+    expect(() => fireEvent.click(getByTestId('target'))).not.toThrow();
   });
 });

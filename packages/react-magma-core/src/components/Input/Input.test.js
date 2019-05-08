@@ -1,164 +1,128 @@
-import * as React from 'react';
-import { mount } from 'enzyme';
+import React from 'react';
+import { render, cleanup, fireEvent } from 'react-testing-library';
 import { InputCore } from './Input';
+import uuid from 'uuid/v4';
+import 'jest-dom/extend-expect';
 
-const onBlur = jest.fn();
-const onChange = jest.fn();
-const onFocus = jest.fn();
-
-const INPUT_CORE_PROPS = {
-  children: () => React.createElement('div'),
-  id: 'testId',
-  onBlur,
-  onChange,
-  onFocus,
-  value: ''
-};
-
-const inputSetup = (myProps = {}) => {
-  const props = {
-    ...INPUT_CORE_PROPS,
-    ...myProps
-  };
-
-  return mount(<InputCore {...props} />);
-};
+jest.mock('uuid/v4');
 
 describe('InputCore', () => {
   afterEach(() => {
-    onBlur.mockReset();
-    onChange.mockReset();
-    onFocus.mockReset();
+    jest.resetAllMocks();
+    cleanup();
   });
 
   it('should auto assign an id if none is passed in', () => {
-    const component = inputSetup({ id: null });
-
-    expect(component.state('id')).not.toBeNull();
+    uuid.mockReturnValue('auto-generated-id');
+    const { getByTestId } = render(
+      <InputCore>
+        {({ id }) => <span data-testid="target">{id}</span>}
+      </InputCore>
+    );
+    expect(getByTestId(/target/i).innerHTML).toBe('auto-generated-id');
   });
 
   it('should persist id between renders', () => {
-    const component = inputSetup({ id: null });
+    uuid.mockReturnValue('auto-generated-id');
+    const { getByTestId, rerender } = render(
+      <InputCore>{({ id }) => <span id={id} data-testid="target" />}</InputCore>
+    );
 
-    const initialId = component.state('id');
+    expect(getByTestId(/target/i).getAttribute('id')).toBe('auto-generated-id');
 
-    component.update();
+    rerender(
+      <InputCore>{({ id }) => <span id={id} data-testid="target" />}</InputCore>
+    );
 
-    expect(component.state('id')).toEqual(initialId);
+    expect(getByTestId(/target/i).getAttribute('id')).toBe('auto-generated-id');
   });
 
   it('should update the id on rerender with a change in prop id', () => {
-    const component = inputSetup({ id: null });
+    const { getByTestId, rerender } = render(
+      <InputCore>{({ id }) => <span id={id} data-testid="target" />}</InputCore>
+    );
 
-    const initialId = component.state('id');
+    rerender(
+      <InputCore id="differentId">
+        {({ id }) => <span id={id} data-testid="target" />}
+      </InputCore>
+    );
 
-    component.setProps({ id: 'differentId' });
-
-    expect(component.state('id')).not.toEqual(initialId);
+    const newId = getByTestId('target').getAttribute('id');
+    expect(newId).toEqual('differentId');
   });
 
   describe('state management', () => {
-    it('should create the initial state of the input', () => {
-      const component = inputSetup();
-
-      expect(component.state('value')).toEqual(INPUT_CORE_PROPS.value);
-    });
-
-    it('should update the state value when onChange is called', () => {
-      const value = 'new value';
-      const component = inputSetup();
-
-      component.instance().onChange({
-        target: {
-          value
-        }
-      });
-
-      expect(component.state('value')).toEqual(value);
-    });
-
     it('should update passwordShown when togglePasswordShown is called', () => {
-      const component = inputSetup();
+      const { getByTestId, getByText, queryByText } = render(
+        <InputCore type="password">
+          {({ togglePasswordShown, passwordShown }) => (
+            <button data-testid="target" onClick={togglePasswordShown}>
+              {passwordShown ? 'Shown' : 'Hidden'}
+            </button>
+          )}
+        </InputCore>
+      );
 
-      component.instance().togglePasswordShown();
+      expect(getByText('Hidden')).toBeInTheDocument();
 
-      expect(component.state('passwordShown')).toBeTruthy();
+      fireEvent.click(getByTestId('target'));
 
-      component.instance().togglePasswordShown();
-
-      expect(component.state('passwordShown')).toBeFalsy();
+      expect(queryByText('Hidden')).not.toBeInTheDocument();
+      expect(getByText('Shown')).toBeInTheDocument();
     });
-  });
 
-  describe('handle blur', () => {
+    it('should call the supplied onChange and update the value when onChange is called', () => {
+      const handleChange = jest.fn();
+      const { getByTestId, getByDisplayValue } = render(
+        <InputCore onChange={handleChange} value="">
+          {({ onChange, value }) => (
+            <input value={value} onChange={onChange} data-testid="target" />
+          )}
+        </InputCore>
+      );
+
+      fireEvent.change(getByTestId('target'), {
+        target: { value: 'whatever' }
+      });
+
+      expect(getByDisplayValue('whatever')).toBeInTheDocument();
+      expect(handleChange).toHaveBeenCalledTimes(1);
+    });
+
+    it('Should not throw if a non-function is passed as an onChange', () => {
+      const handleChange = 'This is NOT a function';
+      const { getByTestId } = render(
+        <InputCore onChange={handleChange} value="">
+          {({ onChange, value }) => (
+            <input value={value} onChange={onChange} data-testid="target" />
+          )}
+        </InputCore>
+      );
+
+      expect(() =>
+        fireEvent.change(getByTestId('target'), {
+          target: { value: 'whatever' }
+        })
+      ).not.toThrow();
+    });
+
     it('should call the onBlur from props during the internal onBlur', () => {
-      const component = inputSetup();
+      const handleBlur = jest.fn();
+      const handleFocus = jest.fn();
+      const { getByTestId } = render(
+        <InputCore onBlur={handleBlur} onFocus={handleFocus}>
+          {({ onBlur, onFocus }) => (
+            <input data-testid="target" onFocus={onFocus} onBlur={onBlur} />
+          )}
+        </InputCore>
+      );
+      const theInput = getByTestId('target');
+      fireEvent.focus(theInput);
+      expect(handleFocus).toHaveBeenCalledTimes(1);
 
-      component.instance().onBlur();
-
-      expect(INPUT_CORE_PROPS.onBlur).toHaveBeenCalled();
-    });
-
-    it('should not fail if no onBlur is passed through the props', () => {
-      const component = inputSetup({
-        onBlur: undefined
-      });
-
-      component.instance().onBlur();
-
-      expect(INPUT_CORE_PROPS.onBlur).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('handle change', () => {
-    it('should call the onChange from props during the internal onChange', () => {
-      const value = 'test handle change';
-      const event = {
-        target: {
-          value
-        }
-      };
-      const component = inputSetup();
-
-      component.instance().onChange(event);
-
-      expect(INPUT_CORE_PROPS.onChange).toHaveBeenCalledWith(event);
-    });
-
-    it('should not fail if no onChange is passed through the props', () => {
-      const value = 'test no fail';
-      const component = inputSetup({
-        onChange: undefined
-      });
-
-      component.instance().onChange({
-        target: {
-          value
-        }
-      });
-
-      expect(component.state('value')).toEqual(value);
-      expect(INPUT_CORE_PROPS.onChange).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('handle focus', () => {
-    it('should call the onFocus from props during the internal onFocus', () => {
-      const component = inputSetup();
-
-      component.instance().onFocus();
-
-      expect(INPUT_CORE_PROPS.onFocus).toHaveBeenCalled();
-    });
-
-    it('should not fail if no onFocus is passed through the props', () => {
-      const component = inputSetup({
-        onFocus: undefined
-      });
-
-      component.instance().onFocus();
-
-      expect(INPUT_CORE_PROPS.onFocus).not.toHaveBeenCalled();
+      fireEvent.blur(theInput);
+      expect(handleBlur).toHaveBeenCalledTimes(1);
     });
   });
 });
