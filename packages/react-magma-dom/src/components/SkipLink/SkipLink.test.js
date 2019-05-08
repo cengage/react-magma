@@ -10,6 +10,9 @@ describe('SkipLink', () => {
 
     expect(button).toBeInTheDocument();
     expect(button.innerHTML).toEqual('Skip Navigation');
+    expect(button).toHaveStyleRule('background', '#006298');
+    expect(button).toHaveStyleRule('color', '#FFFFFF');
+    expect(button).toMatchSnapshot();
   });
 
   it('should render the skip link component with custom text', () => {
@@ -19,6 +22,24 @@ describe('SkipLink', () => {
 
     expect(button).toBeInTheDocument();
     expect(button.innerHTML).toEqual(TEXT);
+  });
+
+  it('should render the skip link button with specified color and variant', () => {
+    const { container } = render(
+      <SkipLink color="success" variant="outline" />
+    );
+    const button = container.querySelector('button');
+
+    expect(button).toHaveStyleRule('background', 'rgba(0,0,0,0)');
+    expect(button).toHaveStyleRule('color', '#3A8200');
+  });
+
+  it('should render the skip link button the correct colors for an inverse button', () => {
+    const { container } = render(<SkipLink inverse />);
+    const button = container.querySelector('button');
+
+    expect(button).toHaveStyleRule('background', '#FFFFFF');
+    expect(button).toHaveStyleRule('color', '#006298');
   });
 
   it('Does not violate accessibility standards', () => {
