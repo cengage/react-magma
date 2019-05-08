@@ -19,19 +19,22 @@ const handleClick = (targetID, e) => {
     targetAnchor.focus();
   }
 
-const ButtonContainer = styled.div`
-    display: none;
+const ButtonContainer = styled.span`
+    button {
+        display: none;
 
-    @media (min-width: 1024px) {
-        display: block;
-        left: -9999px;
-        position: fixed;
-        top: -9999px;
-        
-        &:focus-within {
-            left: 275px;
-            top: 16px;
-            z-index: 3;
+        @media (min-width: 1024px) {
+            display: inline-block;
+            left: -9999px;
+            position: fixed;
+            top: -9999px;
+            
+            &:not(:disabled):focus{
+                background: transparent;
+                left: 275px;
+                top: 16px;  
+                z-index: 3;
+            }
         }
     }
 `;
@@ -43,7 +46,6 @@ const SkipLink = ({ ...props }) => (
             onClick={e => {
                 handleClick(props.targetID, e)
             }}
-            style={{'background': 'transparent'}}
             variant='outline'>Skip Navigation</Button>
     </ButtonContainer>
 );
