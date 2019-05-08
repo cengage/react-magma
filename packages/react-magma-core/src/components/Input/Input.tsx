@@ -5,7 +5,7 @@ export interface InputCoreProps {
   children: (props) => React.ReactNode;
   id?: string;
   onBlur?: () => void;
-  onChange?: (event: React.SyntheticEvent) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
   value?: string;
 }

@@ -17,7 +17,7 @@ const HiddenLabel = styled.label`
 export interface RadioGroupProps {
   children: React.ReactChild | React.ReactChild[];
   onBlur?: () => void;
-  onChange?: (event: React.SyntheticEvent) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
   id?: string;
   testId?: string;
@@ -33,7 +33,7 @@ export interface RadioContextInterface {
   name: string;
   selectedValue?: string;
   onBlur?: () => void;
-  onChange?: (event: React.SyntheticEvent) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
 }
 
