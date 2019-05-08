@@ -45,14 +45,10 @@ export class SelectCore extends React.Component<
   }
 
   onChange(value) {
-    this.setState(
-      () => ({ value }),
-      () => {
-        this.props.onChange &&
-          typeof this.props.onChange === 'function' &&
-          this.props.onChange(value);
-      }
-    );
+    this.setState({ value });
+    this.props.onChange &&
+      typeof this.props.onChange === 'function' &&
+      this.props.onChange(value);
   }
 
   onOpen() {

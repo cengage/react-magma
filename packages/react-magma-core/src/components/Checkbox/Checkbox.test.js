@@ -1,152 +1,178 @@
-import * as React from 'react';
-import { mount } from 'enzyme';
+import React from 'react';
+import { render, fireEvent } from 'react-testing-library';
 import { CheckboxCore } from './Checkbox';
+import uuid from 'uuid/v4';
 
-const onBlur = jest.fn();
-const onChange = jest.fn();
-const onFocus = jest.fn();
-
-const CHECKBOX_CORE_PROPS = {
-  children: () => React.createElement('div'),
-  id: 'testId',
-  onBlur,
-  onChange,
-  onFocus,
-  value: ''
-};
-
-const checkboxSetup = (myProps = {}) => {
-  const props = {
-    ...CHECKBOX_CORE_PROPS,
-    ...myProps
-  };
-
-  return mount(<CheckboxCore {...props} />);
-};
+jest.mock('uuid/v4');
 
 describe('CheckboxCore', () => {
   afterEach(() => {
-    onBlur.mockReset();
-    onChange.mockReset();
-    onFocus.mockReset();
+    jest.resetAllMocks();
   });
 
   it('should auto assign an id if none is passed in', () => {
-    const component = checkboxSetup({ id: null });
-
-    expect(component.state('id')).not.toBeNull();
+    uuid.mockReturnValue('auto-generated-id');
+    const { getByTestId } = render(
+      <CheckboxCore>
+        {({ id }) => <span data-testid="target">{id}</span>}
+      </CheckboxCore>
+    );
+    expect(getByTestId(/target/i).innerHTML).toBe('auto-generated-id');
   });
 
   it('should persist id between renders', () => {
-    const component = checkboxSetup({ id: null });
+    uuid.mockReturnValue('auto-generated-id');
+    const { getByTestId, rerender } = render(
+      <CheckboxCore>
+        {({ id }) => <span id={id} data-testid="target" />}
+      </CheckboxCore>
+    );
 
-    const initialId = component.state('id');
+    expect(getByTestId(/target/i).getAttribute('id')).toBe('auto-generated-id');
 
-    component.update();
+    rerender(
+      <CheckboxCore>
+        {({ id }) => <span id={id} data-testid="target" />}
+      </CheckboxCore>
+    );
 
-    expect(component.state('id')).toEqual(initialId);
+    expect(getByTestId(/target/i).getAttribute('id')).toBe('auto-generated-id');
   });
 
   it('should update the id on rerender with a change in prop id', () => {
-    const component = checkboxSetup({ id: null });
+    const { getByTestId, rerender } = render(
+      <CheckboxCore>
+        {({ id }) => <span id={id} data-testid="target" />}
+      </CheckboxCore>
+    );
 
-    const initialId = component.state('id');
+    rerender(
+      <CheckboxCore id="differentId">
+        {({ id }) => <span id={id} data-testid="target" />}
+      </CheckboxCore>
+    );
 
-    component.setProps({ id: 'differentId' });
-
-    expect(component.state('id')).not.toEqual(initialId);
+    const newId = getByTestId(/target/i).getAttribute('id');
+    expect(newId).toEqual('differentId');
   });
 
-  describe('state management', () => {
-    it('should create the initial state of the checkbox', () => {
-      const component = checkboxSetup({ checked: false });
+  it('should call the supplied onChange and update the value when onChange is called', () => {
+    const handleChange = jest.fn();
+    const { getByTestId } = render(
+      <CheckboxCore onChange={handleChange}>
+        {({ checked, onChange }) => (
+          <input
+            type="checkbox"
+            checked={checked}
+            onChange={onChange}
+            data-testid="target"
+          />
+        )}
+      </CheckboxCore>
+    );
 
-      expect(component.state('checked')).toEqual(false);
-    });
+    const checkbox = getByTestId('target');
 
-    it('should update the state value when onChange is called', () => {
-      const checked = true;
-      const component = checkboxSetup();
+    expect(checkbox.checked).toBeFalsy();
+    fireEvent.click(checkbox);
 
-      component.instance().onChange({
-        target: {
-          checked
-        }
-      });
-
-      expect(component.state('checked')).toEqual(true);
-    });
+    expect(checkbox.checked).toBeTruthy();
+    expect(handleChange).toHaveBeenCalledTimes(1);
   });
 
-  describe('handle blur', () => {
-    it('should call the onBlur from props during the internal onBlur', () => {
-      const component = checkboxSetup();
+  it('Should not throw if a non-function is passed as an onChange', () => {
+    const handleChange = 'This is NOT a function';
+    const { getByTestId } = render(
+      <CheckboxCore onChange={handleChange}>
+        {({ checked, onChange }) => (
+          <input
+            type="checkbox"
+            checked={checked}
+            onChange={onChange}
+            data-testid="target"
+          />
+        )}
+      </CheckboxCore>
+    );
 
-      component.instance().onBlur();
+    const checkbox = getByTestId('target');
 
-      expect(CHECKBOX_CORE_PROPS.onBlur).toHaveBeenCalled();
-    });
-
-    it('should not fail if no onBlur is passed through the props', () => {
-      const component = checkboxSetup({
-        onBlur: undefined
-      });
-
-      component.instance().onBlur();
-
-      expect(CHECKBOX_CORE_PROPS.onBlur).not.toHaveBeenCalled();
-    });
+    expect(checkbox.checked).toBeFalsy();
+    expect(() => fireEvent.click(checkbox)).not.toThrow();
+    expect(checkbox.checked).toBeTruthy();
   });
 
-  describe('handle change', () => {
-    it('should call the onChange from props during the internal onChange', () => {
-      const checked = true;
-      const event = {
-        target: {
-          checked
-        }
-      };
-      const component = checkboxSetup();
-
-      component.instance().onChange(event);
-
-      expect(CHECKBOX_CORE_PROPS.onChange).toHaveBeenCalledWith(event);
-    });
-
-    it('should not fail if no onChange is passed through the props', () => {
-      const checked = true;
-      const component = checkboxSetup({
-        onChange: undefined
-      });
-
-      component.instance().onChange({
-        target: {
-          checked
-        }
-      });
-
-      expect(component.state('checked')).toEqual(true);
-      expect(CHECKBOX_CORE_PROPS.onChange).not.toHaveBeenCalled();
-    });
+  it('should call the onBlur from props during the internal onBlur', () => {
+    const handleBlur = jest.fn();
+    const { getByTestId } = render(
+      <CheckboxCore onBlur={handleBlur}>
+        {({ checked, onBlur }) => (
+          <input
+            type="checkbox"
+            checked={checked}
+            onBlur={onBlur}
+            data-testid="target"
+          />
+        )}
+      </CheckboxCore>
+    );
+    const checkbox = getByTestId('target');
+    fireEvent.blur(checkbox);
+    expect(handleBlur).toHaveBeenCalledTimes(1);
   });
 
-  describe('handle focus', () => {
-    it('should call the onFocus from props during the internal onFocus', () => {
-      const component = checkboxSetup();
+  it('Should not throw if a non-function is passed as an onBlur', () => {
+    const handleBlur = 'This is NOT a function';
+    const { getByTestId } = render(
+      <CheckboxCore onBlur={handleBlur}>
+        {({ checked, onBlur }) => (
+          <input
+            type="checkbox"
+            checked={checked}
+            onBlur={onBlur}
+            data-testid="target"
+          />
+        )}
+      </CheckboxCore>
+    );
+    const checkbox = getByTestId('target');
+    expect(() => fireEvent.blur(checkbox)).not.toThrow();
+  });
 
-      component.instance().onFocus();
+  it('should call the onFocus from props during the internal onFocus', () => {
+    const handleFocus = jest.fn();
+    const { getByTestId } = render(
+      <CheckboxCore onFocus={handleFocus}>
+        {({ checked, onFocus }) => (
+          <input
+            type="checkbox"
+            checked={checked}
+            onFocus={onFocus}
+            data-testid="target"
+          />
+        )}
+      </CheckboxCore>
+    );
+    const checkbox = getByTestId('target');
+    fireEvent.focus(checkbox);
+    expect(handleFocus).toHaveBeenCalledTimes(1);
+  });
 
-      expect(CHECKBOX_CORE_PROPS.onFocus).toHaveBeenCalled();
-    });
-
-    it('should not fail if no onFocus is passed through the props', () => {
-      const component = checkboxSetup({
-        onFocus: undefined
-      });
-
-      component.instance().onFocus();
-
-      expect(CHECKBOX_CORE_PROPS.onFocus).not.toHaveBeenCalled();
-    });
+  it('Should not throw if a non-function is passed as an onFocus', () => {
+    const handleFocus = 'This is NOT a function';
+    const { getByTestId } = render(
+      <CheckboxCore onFocus={handleFocus}>
+        {({ checked, onFocus }) => (
+          <input
+            type="checkbox"
+            checked={checked}
+            onFocus={onFocus}
+            data-testid="target"
+          />
+        )}
+      </CheckboxCore>
+    );
+    const checkbox = getByTestId('target');
+    expect(() => fireEvent.focus(checkbox)).not.toThrow();
   });
 });

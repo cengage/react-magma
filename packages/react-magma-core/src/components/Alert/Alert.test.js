@@ -1,24 +1,6 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render, fireEvent } from 'react-testing-library';
 import { AlertCore } from './Alert';
-
-const onDismiss = jest.fn();
-
-const ALERT_CORE_PROPS = {
-  children: () => React.createElement('div'),
-  id: 'testId',
-  onDismiss,
-  transitionDuration: 500
-};
-
-const alertSetup = (myProps = {}) => {
-  const props = {
-    ...ALERT_CORE_PROPS,
-    ...myProps
-  };
-
-  return mount(<AlertCore {...props} />);
-};
 
 describe('AlertCore', () => {
   beforeEach(() => {
@@ -27,23 +9,26 @@ describe('AlertCore', () => {
 
   afterEach(() => {
     jest.useRealTimers();
-    onDismiss.mockReset();
+    jest.resetAllMocks();
   });
 
   it('should handle the dismiss', () => {
-    const component = alertSetup();
-
-    component.instance().handleDismiss();
-
-    expect(component.state().isExiting).toBeTruthy();
-    expect(setTimeout).toHaveBeenLastCalledWith(
-      expect.any(Function),
-      ALERT_CORE_PROPS.transitionDuration - 300
+    const onDismiss = jest.fn();
+    const { getByText, getByTestId } = render(
+      <AlertCore onDismiss={onDismiss}>
+        {({ isExiting, handleDismiss }) => (
+          <button onClick={handleDismiss} data-testid="target">
+            {isExiting ? 'Exiting' : 'Not Exiting'}
+          </button>
+        )}
+      </AlertCore>
     );
+    expect(getByText(/not/i)).toBeInTheDocument();
 
+    fireEvent.click(getByTestId('target'));
     jest.runAllTimers();
 
-    expect(component.state().isExiting).toBeFalsy();
+    expect(getByText(/exiting/i)).toBeInTheDocument();
     expect(onDismiss).toHaveBeenCalled();
   });
 });

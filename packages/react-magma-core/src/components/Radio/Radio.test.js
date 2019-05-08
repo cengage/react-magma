@@ -1,154 +1,170 @@
-import * as React from 'react';
-import { mount } from 'enzyme';
+import React from 'react';
+import { render, fireEvent } from 'react-testing-library';
 import { RadioCore } from './Radio';
+import uuid from 'uuid/v4';
 
-const onBlur = jest.fn();
-const onChange = jest.fn();
-const onFocus = jest.fn();
-
-const RADIO_CORE_PROPS = {
-  children: () => React.createElement('div'),
-  id: 'testId',
-  onBlur,
-  onChange,
-  onFocus,
-  value: 'blue'
-};
-
-const radioSetup = (myProps = {}) => {
-  const props = {
-    ...RADIO_CORE_PROPS,
-    ...myProps
-  };
-
-  return mount(<RadioCore {...props} />);
-};
+jest.mock('uuid/v4');
 
 describe('RadioCore', () => {
   afterEach(() => {
-    onBlur.mockReset();
-    onChange.mockReset();
-    onFocus.mockReset();
+    jest.resetAllMocks();
   });
 
   it('should auto assign an id if none is passed in', () => {
-    const component = radioSetup({ id: null });
-
-    expect(component.state('id')).not.toBeNull();
+    uuid.mockReturnValue('auto-generated-id');
+    const { getByTestId } = render(
+      <RadioCore>
+        {({ id }) => <span data-testid="sample">{id}</span>}
+      </RadioCore>
+    );
+    expect(getByTestId(/sample/i).innerHTML).toBe('auto-generated-id');
   });
 
   it('should persist id between renders', () => {
-    const component = radioSetup({ id: null });
+    uuid.mockReturnValue('auto-generated-id');
+    const { getByTestId, rerender } = render(
+      <RadioCore>{({ id }) => <span id={id} data-testid="sample" />}</RadioCore>
+    );
 
-    const initialId = component.state('id');
+    expect(getByTestId(/sample/i).getAttribute('id')).toBe('auto-generated-id');
 
-    component.update();
+    rerender(
+      <RadioCore>{({ id }) => <span id={id} data-testid="sample" />}</RadioCore>
+    );
 
-    expect(component.state('id')).toEqual(initialId);
+    expect(getByTestId(/sample/i).getAttribute('id')).toBe('auto-generated-id');
   });
 
   it('should update the id on rerender with a change in prop id', () => {
-    const component = radioSetup({ id: null });
+    const { getByTestId, rerender } = render(
+      <RadioCore>{({ id }) => <span id={id} data-testid="sample" />}</RadioCore>
+    );
 
-    const initialId = component.state('id');
+    rerender(
+      <RadioCore id="differentId">
+        {({ id }) => <span id={id} data-testid="sample" />}
+      </RadioCore>
+    );
 
-    component.setProps({ id: 'differentId' });
-
-    expect(component.state('id')).not.toEqual(initialId);
+    const newId = getByTestId(/sample/i).getAttribute('id');
+    expect(newId).toEqual('differentId');
   });
 
-  describe('state management', () => {
-    it('should create the initial state of the input', () => {
-      const component = radioSetup();
+  it('should call the supplied onChange and update the value when onChange is called', () => {
+    const handleChange = jest.fn();
+    const { getByTestId } = render(
+      <RadioCore onChange={handleChange} value="blue">
+        {({ value, onChange }) => (
+          <input
+            type="radio"
+            value={value}
+            onChange={onChange}
+            data-testid="target"
+          />
+        )}
+      </RadioCore>
+    );
 
-      expect(component.state('selectedValue')).toEqual(RADIO_CORE_PROPS.value);
-    });
+    const radio = getByTestId('target');
 
-    it('should update the state checked when onChange is called', () => {
-      const selectedValue = 'blue';
-      const component = radioSetup();
-
-      component.instance().onChange({
-        persist: jest.fn(),
-        target: {
-          value: selectedValue
-        }
-      });
-
-      expect(component.state('selectedValue')).toEqual(selectedValue);
-    });
+    expect(radio.value).toBe('blue');
+    fireEvent.click(radio);
+    expect(handleChange).toHaveBeenCalledTimes(1);
   });
 
-  describe('handle blur', () => {
-    it('should call the onBlur from props during the internal onBlur', () => {
-      const component = radioSetup();
+  it('Should not throw if a non-function is passed as an onChange', () => {
+    const handleChange = 'This is NOT a function';
+    const { getByTestId } = render(
+      <RadioCore onChange={handleChange}>
+        {({ checked, onChange }) => (
+          <input
+            type="radio"
+            checked={checked}
+            onChange={onChange}
+            data-testid="target"
+          />
+        )}
+      </RadioCore>
+    );
 
-      component.instance().onBlur();
+    const radio = getByTestId('target');
 
-      expect(RADIO_CORE_PROPS.onBlur).toHaveBeenCalled();
-    });
-
-    it('should not fail if no onBlur is passed through the props', () => {
-      const component = radioSetup({
-        onBlur: undefined
-      });
-
-      component.instance().onBlur();
-
-      expect(RADIO_CORE_PROPS.onBlur).not.toHaveBeenCalled();
-    });
+    expect(radio.checked).toBeFalsy();
+    expect(() => fireEvent.click(radio)).not.toThrow();
+    expect(radio.checked).toBeTruthy();
   });
 
-  describe('handle change', () => {
-    it('should call the onChange from props during the internal onChange', () => {
-      const event = {
-        persist: jest.fn(),
-        target: {
-          selectedValue: 'blue'
-        }
-      };
-      const component = radioSetup();
-
-      component.instance().onChange(event);
-
-      expect(RADIO_CORE_PROPS.onChange).toHaveBeenCalledWith(event);
-    });
-
-    it('should not fail if no onChange is passed through the props', () => {
-      const selectedValue = 'blue';
-      const component = radioSetup({
-        onChange: undefined
-      });
-
-      component.instance().onChange({
-        persist: jest.fn(),
-        target: {
-          value: selectedValue
-        }
-      });
-
-      expect(component.state('selectedValue')).toEqual(selectedValue);
-      expect(RADIO_CORE_PROPS.onChange).not.toHaveBeenCalled();
-    });
+  it('should call the onBlur from props during the internal onBlur', () => {
+    const handleBlur = jest.fn();
+    const { getByTestId } = render(
+      <RadioCore onBlur={handleBlur}>
+        {({ checked, onBlur }) => (
+          <input
+            type="radio"
+            checked={checked}
+            onBlur={onBlur}
+            data-testid="target"
+          />
+        )}
+      </RadioCore>
+    );
+    const radio = getByTestId('target');
+    fireEvent.blur(radio);
+    expect(handleBlur).toHaveBeenCalledTimes(1);
   });
 
-  describe('handle focus', () => {
-    it('should call the onFocus from props during the internal onFocus', () => {
-      const component = radioSetup();
+  it('Should not throw if a non-function is passed as an onBlur', () => {
+    const handleBlur = 'This is NOT a function';
+    const { getByTestId } = render(
+      <RadioCore onBlur={handleBlur}>
+        {({ checked, onBlur }) => (
+          <input
+            type="radio"
+            checked={checked}
+            onBlur={onBlur}
+            data-testid="target"
+          />
+        )}
+      </RadioCore>
+    );
+    const radio = getByTestId('target');
+    expect(() => fireEvent.blur(radio)).not.toThrow();
+  });
 
-      component.instance().onFocus();
+  it('should call the onFocus from props during the internal onFocus', () => {
+    const handleFocus = jest.fn();
+    const { getByTestId } = render(
+      <RadioCore onFocus={handleFocus}>
+        {({ checked, onFocus }) => (
+          <input
+            type="radio"
+            checked={checked}
+            onFocus={onFocus}
+            data-testid="target"
+          />
+        )}
+      </RadioCore>
+    );
+    const radio = getByTestId('target');
+    fireEvent.focus(radio);
+    expect(handleFocus).toHaveBeenCalledTimes(1);
+  });
 
-      expect(RADIO_CORE_PROPS.onFocus).toHaveBeenCalled();
-    });
-
-    it('should not fail if no onFocus is passed through the props', () => {
-      const component = radioSetup({
-        onFocus: undefined
-      });
-
-      component.instance().onFocus();
-
-      expect(RADIO_CORE_PROPS.onFocus).not.toHaveBeenCalled();
-    });
+  it('Should not throw if a non-function is passed as an onFocus', () => {
+    const handleFocus = 'This is NOT a function';
+    const { getByTestId } = render(
+      <RadioCore onFocus={handleFocus}>
+        {({ checked, onFocus }) => (
+          <input
+            type="radio"
+            checked={checked}
+            onFocus={onFocus}
+            data-testid="target"
+          />
+        )}
+      </RadioCore>
+    );
+    const radio = getByTestId('target');
+    expect(() => fireEvent.focus(radio)).not.toThrow();
   });
 });
