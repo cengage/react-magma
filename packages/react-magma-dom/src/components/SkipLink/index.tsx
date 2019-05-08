@@ -36,19 +36,14 @@ const ButtonContainer = styled.span<{
   positionTop: number;
 }>`
   button {
-    display: none;
+    left: -9999px;
+    position: fixed;
+    top: -9999px;
 
-    @media (min-width: 1024px) {
-      display: inline-block;
-      left: -9999px;
-      position: fixed;
-      top: -9999px;
-
-      &:not(:disabled):focus {
-        left: ${props => props.positionLeft}px;
-        top: ${props => props.positionTop}px;
-        z-index: 3;
-      }
+    &:focus {
+      left: ${props => props.positionLeft}px;
+      top: ${props => props.positionTop}px;
+      z-index: 3;
     }
   }
 `;
