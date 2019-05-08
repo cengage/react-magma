@@ -1,7 +1,9 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { SkipLink } from '.';
-import { render } from 'react-testing-library';
+import { SkipLinkContent } from '../SkipLinkContent';
+
+import { render, fireEvent } from 'react-testing-library';
 
 describe('SkipLink', () => {
   it('should render the skip link component', () => {
@@ -22,6 +24,47 @@ describe('SkipLink', () => {
 
     expect(button).toBeInTheDocument();
     expect(button.innerHTML).toEqual(TEXT);
+  });
+
+  it('should put focus on the h1 in the main content area when the button is clicked', () => {
+    const { container } = render(
+      <>
+        <SkipLink />
+        <SkipLinkContent>
+          <h1>Test</h1>
+        </SkipLinkContent>
+      </>
+    );
+    const button = container.querySelector('button');
+    const heading = container.querySelector('h1');
+
+    expect(heading).not.toHaveFocus();
+    fireEvent.click(button);
+    expect(heading).toHaveFocus();
+  });
+
+  it('should put focus on the main content area when the button is clicked if they content area does not have an h1', () => {
+    const { container } = render(
+      <>
+        <SkipLink />
+        <SkipLinkContent />
+      </>
+    );
+    const button = container.querySelector('button');
+    const contentDiv = container.querySelector('#reactMagmaMainContent');
+
+    expect(contentDiv).not.toHaveFocus();
+    fireEvent.click(button);
+    expect(contentDiv).toHaveFocus();
+  });
+
+  it('should not move focus if there is no content area', () => {
+    const { container } = render(<SkipLink />);
+    const button = container.querySelector('button');
+
+    button.focus();
+    fireEvent.click(button);
+    expect(button).toHaveFocus();
   });
 
   it('should render the skip link button with specified color and variant', () => {
