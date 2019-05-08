@@ -21,6 +21,7 @@ import {
   RadioGroup,
   Select,
   SkipLink,
+  SkipLinkContent,
   Toggle,
   Toast,
   amgam,
@@ -298,7 +299,8 @@ const PreComponent = ({ className, ...props }) => {
         Radio,
         RadioGroup,
         Select,
-        SkipLink,
+        SkipLink, 
+        SkipLinkContent,
         Toggle,
         Toast,
         magma,
@@ -576,7 +578,7 @@ const LinkHeading = props => (
   <h3 id={convertTextToId(props.children)}>{props.children}</h3>
 )
 
-const skipLinkTargetID = 'maincontent'
+const skipLinkTargetID = 'reactMagmaMainContent'
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -610,7 +612,7 @@ const Layout = ({ children }) => (
         <main className="main">
           <SlidingDrawer />
           <Masthead />
-          <section className="content" id={skipLinkTargetID} tabIndex="-1">
+          <section className="content">
             <MDXProvider
               components={{
                 pre: PreComponent,
@@ -630,7 +632,9 @@ const Layout = ({ children }) => (
                   >
                     {() => style => (
                       <article className="content-article" style={style}>
-                        {children}
+                        <SkipLinkContent>
+                          {children}
+                        </SkipLinkContent>
                       </article>
                     )}
                   </Transition>

@@ -3,47 +3,45 @@ title: 'Skip Link'
 ---
 
 import { Link } from 'gatsby'
+import { Button } from 'react-magma-dom'
 
 # Skip Link
 
 Because the main content is often not the first thing on a page, it is valuable to provide a Skip Navigation link
 to allow users who navigate via keyboard and/or screen reader to jump directly to the content.
 
-The `SkipLink` component should be the first item in your page, positioned in the DOM before the navigation and the content.
-Users will not see the component unless they are navigating by keyboard.
-
-It is recommended to use only one skip link per page, and to keep it in a consistent location throughout the appliation.
+Because the `SkipLink` and `SkipLinkContent` work based on an `id`, it is important that you only have one pair of these elements on a page.
 
 ## Basic Usage
 
-The `targetID` property is required, and refers to the id of the main content area that will receive focus when the `SkipLink` is clicked.
-If there is an h1 heading inside the target element, the h1 will receive focus.  Otherwise, the element with the `targetId` will receive focus.
+The `SkipLink` component is the button that will jump the user to the main content area.  It should be the first item in your app, positioned in the DOM before the navigation and the content.
+Users will not see the component unless they are navigating by keyboard.
 
-```.jsx
-    <SkipLink targetID='myID' />
+The `SkipLinkContent` component is the div that is the target of the `SkipLink`. It can either be used as a wrapper for your content, or as a sibling of your content.
+If there is an h1 heading inside the SkipLinkContent, the h1 will receive focus.  Otherwise, just the SkipLinkContent div itself will get focus.
+
+```
+    <div>
+        <SkipLink />
+        <YourNav />
+        <SkipLinkContent>
+            <YourContent />
+        </SkipLinkContent>
+    </div>
+```
+Or
+```
+    <div>
+        <SkipLink />
+        <YourNav />
+        <SkipLinkContent />
+        <YourContent />
+    </div>
 ```
 
-## Button Text
+When the user tabs to the first element, a button with this appearace will display in focus:
 
-By default, the text inside the button says "Skip Navigation".  This can be overriden using the `buttonText` prop.
-
-```.jsx
-    <SkipLink
-        buttonText='Skip to main content'
-        targetID='myID' />
-```
-
-## Positioning
-
-By default, the `SkipLink` is fixed poistioned 10px from the top and 10px from left of the screen.  This can be customized using the optional `positionLeft`
-and `positionTop` properties, which take numeric values.
-
-```.jsx
-    <SkipLink
-        positionLeft={25}
-        positionTop={25}
-        targetID='myID' />
-```
+<Button>Skip Navigation</Button>
 
 ## Button Variations
 
@@ -55,13 +53,40 @@ Inverse is can be either `true` or `false`, and is used when the SkipLink is to 
 
 For more information, see the <Link to="/api/button">Button Component documentation</Link>.
 
-```.jsx
-    <SkipLink
-        color="secondary"
-        inverse
-        variant="outline"
-        targetID='myID' />
 ```
+    <SkipLink
+        color="success"
+        variant="outline" />
+```
+
+This would render the button as:
+<Button color="success" variant="outline">Skip Navigation</Button>
+
+## Button Text
+
+By default, the text inside the button says "Skip Navigation".  This can be overriden using the `buttonText` prop.
+
+```
+    <SkipLink
+        buttonText='Skip to main content' />
+```
+
+This would render the button as:
+<Button>Skip to main content</Button>
+
+## Positioning
+
+By default, the `SkipLink` is fixed poistioned 10px from the top and 10px from left of the screen.  This can be customized using the optional `positionLeft`
+and `positionTop` properties, which take numeric values.
+
+```
+    <SkipLink
+        positionLeft={25}
+        positionTop={25} />
+```
+
+This would render the button 25px from the top, and 25px from the left of the browser window.
+
 
 ## SkipLink Props
 
@@ -73,4 +98,11 @@ For more information, see the <Link to="/api/button">Button Component documentat
 | positionLeft | number                                                              |             |          |
 | positionTop  | number                                                              |             |          |
 | targetID     | string                                                              |             | &#10003; |
-| variant      | enum: 'solid' &#124; 'outline' &#124; 'link'                        | 'solid'     |
+| variant      | enum: 'solid' &#124; 'outline' &#124; 'link'                        | 'solid'     |          |
+
+
+## SkipLinkContent Props
+
+| Prop       | Type     | Default     | Required |
+| ---------- | -------- | ----------- | :------: |
+| children   | node     |             |          |

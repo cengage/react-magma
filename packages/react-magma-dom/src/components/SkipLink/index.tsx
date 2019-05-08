@@ -3,19 +3,19 @@ import styled from '@emotion/styled';
 import { Button } from '../Button';
 import { ButtonColor, ButtonVariant } from '../StyledButton';
 
+export const TARGET_ID = 'reactMagmaMainContent';
+
 export interface SkipLinkProps {
   buttonText?: string;
   color?: ButtonColor;
   inverse?: boolean;
   positionLeft?: number;
   positionTop?: number;
-  targetID: string;
   variant?: ButtonVariant;
 }
 
-const handleClick = (targetID, e) => {
-  e.preventDefault();
-  const targetAnchor = document.getElementById(targetID);
+const handleClick = () => {
+  const targetAnchor = document.getElementById(TARGET_ID);
 
   if (!targetAnchor) {
     return;
@@ -59,7 +59,6 @@ export const SkipLink: React.FunctionComponent<SkipLinkProps> = ({
   inverse,
   positionLeft,
   positionTop,
-  targetID,
   variant
 }: SkipLinkProps) => {
   return (
@@ -70,9 +69,7 @@ export const SkipLink: React.FunctionComponent<SkipLinkProps> = ({
       <Button
         color={color ? color : ButtonColor.primary}
         inverse={inverse}
-        onClick={e => {
-          handleClick(targetID, e);
-        }}
+        onClick={handleClick}
         variant={variant ? variant : ButtonVariant.solid}
       >
         {buttonText ? buttonText : 'Skip Navigation'}
