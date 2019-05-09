@@ -1,26 +1,6 @@
 import React from 'react';
-import { mount } from 'enzyme';
 import { ToastCore } from './Toast';
-
-const onDismiss = jest.fn();
-const onMouseEnter = jest.fn();
-const onMouseLeave = jest.fn();
-
-const TOAST_CORE_PROPS = {
-  children: () => React.createElement('div'),
-  onDismiss,
-  onMouseEnter,
-  onMouseLeave
-};
-
-const toastSetup = (myProps = {}) => {
-  const props = {
-    ...TOAST_CORE_PROPS,
-    ...myProps
-  };
-
-  return mount(<ToastCore {...props} />);
-};
+import { render, fireEvent } from 'react-testing-library';
 
 describe('ToastCore', () => {
   beforeEach(() => {
@@ -29,91 +9,108 @@ describe('ToastCore', () => {
 
   afterEach(() => {
     jest.useRealTimers();
-    onDismiss.mockReset();
-    onMouseEnter.mockReset();
-    onMouseLeave.mockReset();
+    jest.resetAllMocks();
   });
 
-  it('should start timer when component is mounted', () => {
-    toastSetup();
-
-    expect(setTimeout).toHaveBeenCalledTimes(1);
-    expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 5000);
-  });
-
-  it('should clear timer when component is unmounted', () => {
-    const component = toastSetup();
-
-    component.unmount();
-
-    expect(clearTimeout).toHaveBeenCalled();
-  });
-
-  it('should start a timer with passed in duration when mounted', () => {
-    const toastDuration = 1000;
-    toastSetup({ toastDuration });
-
-    expect(setTimeout).toHaveBeenCalledTimes(1);
-    expect(setTimeout).toHaveBeenLastCalledWith(
-      expect.any(Function),
-      toastDuration
+  it('Should auto dismiss after timeout', () => {
+    const handleDismiss = jest.fn();
+    render(
+      <ToastCore onDismiss={handleDismiss} toastDuration={1000}>
+        {() => 'rendered'}
+      </ToastCore>
     );
+    expect(handleDismiss).not.toHaveBeenCalled();
+    jest.advanceTimersByTime(500);
+    expect(handleDismiss).not.toHaveBeenCalled();
+
+    jest.advanceTimersByTime(501);
+    expect(handleDismiss).toHaveBeenCalled();
   });
 
-  it('should not start a timer is the disableAutoDismiss prop is true', () => {
-    toastSetup({ disableAutoDismiss: true });
+  it('Should persist after timeout when auto dismissed is disabled', () => {
+    const handleDismiss = jest.fn();
+    render(
+      <ToastCore
+        onDismiss={handleDismiss}
+        toastDuration={1000}
+        disableAutoDismiss
+      >
+        {() => 'rendered'}
+      </ToastCore>
+    );
 
-    expect(setTimeout).not.toHaveBeenCalled();
+    jest.advanceTimersByTime(2000);
+    expect(handleDismiss).not.toHaveBeenCalled();
   });
 
-  it('should call onDismiss once the timer ends', () => {
-    const onDismissSpy = jest.fn();
-    toastSetup({ onDismiss: onDismissSpy });
+  it('Should not call onDismiss more than once when dismissed before the timeout', () => {
+    const handleDismiss = jest.fn();
+    const { getByTestId } = render(
+      <ToastCore onDismiss={handleDismiss} toastDuration={1000}>
+        {({ clearTimeoutAndDismiss }) => (
+          <button onClick={clearTimeoutAndDismiss} data-testid="the-button">
+            dismiss
+          </button>
+        )}
+      </ToastCore>
+    );
+
+    fireEvent.click(getByTestId('the-button'));
     jest.runAllTimers();
-
-    expect(onDismissSpy).toHaveBeenCalledTimes(1);
+    expect(handleDismiss).toHaveBeenCalledTimes(1);
   });
 
-  it('should clear timeout and dismiss manually', () => {
-    const component = toastSetup();
+  it('Should persist while the mouse is over the element', () => {
+    const handleDismiss = jest.fn();
+    const { getByTestId } = render(
+      <ToastCore onDismiss={handleDismiss} toastDuration={1000}>
+        {({ clearTimeoutAndDismiss, handleMouseEnter, handleMouseLeave }) => (
+          <button
+            onClick={clearTimeoutAndDismiss}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            data-testid="the-button"
+          >
+            dismiss
+          </button>
+        )}
+      </ToastCore>
+    );
 
-    component.instance().clearTimeoutAndDismiss();
+    fireEvent.mouseOver(getByTestId('the-button'));
+    jest.runAllTimers();
+    expect(handleDismiss).not.toHaveBeenCalled();
 
-    expect(clearTimeout).toHaveBeenCalled();
-    expect(onDismiss).toHaveBeenCalled();
+    fireEvent.mouseLeave(getByTestId('the-button'));
+    jest.runAllTimers();
+    expect(handleDismiss).toHaveBeenCalledTimes(1);
   });
 
-  it('should pause timer when mouse enters', () => {
-    const component = toastSetup({ onMouseEnter: null });
+  it('Should call supplied mouseEnter and mouseLeave handlers', () => {
+    const handleMouseEnter = jest.fn();
+    const handleMouseLeave = jest.fn();
+    const { getByTestId } = render(
+      <ToastCore
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {({ handleMouseEnter, handleMouseLeave }) => (
+          <div
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            data-testid="toast-message"
+          >
+            toast message
+          </div>
+        )}
+      </ToastCore>
+    );
 
-    component.instance().handleMouseEnter();
+    const targetEl = getByTestId('toast-message');
+    fireEvent.mouseOver(targetEl);
+    expect(handleMouseEnter).toHaveBeenCalled();
 
-    expect(clearTimeout).toHaveBeenCalled();
-  });
-
-  it('should call passed in onMouseEnter function when mouse enters', () => {
-    const component = toastSetup();
-
-    component.instance().handleMouseEnter();
-
-    expect(onMouseEnter).toHaveBeenCalledTimes(1);
-    expect(clearTimeout).toHaveBeenCalled();
-  });
-
-  it('should resume timer when mouse leaves', () => {
-    const component = toastSetup({ onMouseLeave: null });
-
-    component.instance().handleMouseLeave();
-
-    expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 2500);
-  });
-
-  it('should call passed in onMouseLeave function when mouse leaves', () => {
-    const component = toastSetup();
-
-    component.instance().handleMouseLeave();
-
-    expect(onMouseLeave).toHaveBeenCalledTimes(1);
-    expect(setTimeout).toHaveBeenCalled();
+    fireEvent.mouseLeave(targetEl);
+    expect(handleMouseLeave).toHaveBeenCalled();
   });
 });
