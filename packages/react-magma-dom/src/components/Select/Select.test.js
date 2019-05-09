@@ -1,60 +1,31 @@
+/// <reference types="jest-dom/extend-expect"/>
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Select, getStyles } from '.';
 import { render, fireEvent } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 
-const options = [
-  {
-    label: 'Red',
-    value: 'red'
-  },
-  {
-    label: 'Blue',
-    value: 'blue'
-  },
-  {
-    label: 'Yellow',
-    value: 'yellow'
-  }
-];
-
-const SELECT_PROPS = {
-  id: 'abc123',
-  name: 'testLabel',
-  labelText: 'test label',
-  options
-};
-
-const renderSelect = (myProps = {}) => {
-  const props = {
-    ...SELECT_PROPS,
-    ...myProps
-  };
-
-  return render(<Select {...props} />);
-};
-
 describe('Select', () => {
   it('should find element by testId', () => {
     const testId = 'test-id';
-    const { getByTestId } = renderSelect({ testId });
+    const { getByTestId } = render(<Select testId={testId} />);
 
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render a label for the select', () => {
-    const { getByText } = renderSelect();
-    const label = getByText(SELECT_PROPS.labelText);
+    const labelText = 'Test';
+    const { getByText } = render(<Select labelText={labelText} />);
 
-    expect(label).toBeInTheDocument();
+    expect(getByText(labelText)).toBeInTheDocument();
   });
 
   it('should render a select with desired attributes', () => {
-    const { getByLabelText } = renderSelect();
-    const select = getByLabelText(SELECT_PROPS.labelText);
-
-    expect(select).toHaveAttribute('aria-label', SELECT_PROPS.labelText);
+    const labelText = 'Test';
+    const { getByLabelText } = render(<Select labelText={labelText} />);
+    const input = getByLabelText(labelText);
+    expect(input).toBeInTheDocument();
+    expect(input).toHaveAttribute('aria-label', labelText);
   });
 
   it('should render custom styles', () => {
@@ -65,87 +36,96 @@ describe('Select', () => {
   });
 
   it('should render a select with a value passed through', () => {
-    const defaultValue = options[0];
-    const { container } = renderSelect({ defaultValue });
-    const input = container.querySelector(`input[name="${SELECT_PROPS.name}"]`);
+    const defaultValue = { value: 'red', label: 'Red' };
+    const inputName = 'Test';
+    const { getByValue } = render(
+      <Select name={inputName} defaultValue={defaultValue} />
+    );
 
-    expect(input).toHaveAttribute('value', defaultValue.value);
+    expect(getByValue('red')).toBeInTheDocument();
   });
 
   it('should render a multi-select with a multiple values passed through', () => {
-    const defaultValue = [options[0], options[1]];
-    const { container } = renderSelect({ defaultValue, multi: true });
-    const input = container.querySelectorAll(
-      `input[name="${SELECT_PROPS.name}"]`
+    const options = [
+      {
+        label: 'Red',
+        value: 'red'
+      },
+      {
+        label: 'Blue',
+        value: 'blue'
+      }
+    ];
+    const inputName = 'Test';
+    const { getByValue, getByText } = render(
+      <Select defaultValue={[...options]} name={inputName} multi />
     );
+    expect(getByValue('red')).toBeInTheDocument();
+    expect(getByText('Red')).toBeInTheDocument();
 
-    expect(input[0]).toHaveAttribute('value', defaultValue[0].value);
-    expect(input[1]).toHaveAttribute('value', defaultValue[1].value);
+    expect(getByValue('blue')).toBeInTheDocument();
+    expect(getByText('Blue')).toBeInTheDocument();
   });
 
   it('should disable the select', () => {
-    const { container } = renderSelect({ disabled: true });
+    const { container } = render(<Select disabled />);
     const input = container.querySelector('input');
 
     expect(input).toBeDisabled();
   });
 
-  describe('events', () => {
-    it('should trigger the passed in onChange when option is changed', () => {
-      const onChangeSpy = jest.fn();
-      const { getByLabelText } = renderSelect({
-        onChange: onChangeSpy
-      });
+  it('should trigger the passed in onChange when option is changed', () => {
+    const options = [
+      {
+        label: 'Red',
+        value: 'red'
+      },
+      {
+        label: 'Blue',
+        value: 'blue'
+      }
+    ];
+    const onChangeSpy = jest.fn();
+    const { getByLabelText } = render(
+      <Select onChange={onChangeSpy} labelText="target" options={options} />
+    );
 
-      fireEvent.keyDown(getByLabelText(SELECT_PROPS.labelText), {
-        key: 'ArrowDown',
-        code: 40
-      });
-      fireEvent.keyDown(getByLabelText(SELECT_PROPS.labelText), {
-        key: 'Enter',
-        code: 13
-      });
+    const targetNode = getByLabelText('target');
 
-      expect(onChangeSpy).toHaveBeenCalledWith(options[0]);
+    fireEvent.keyDown(targetNode, {
+      key: 'ArrowDown',
+      code: 40
+    });
+    fireEvent.keyDown(targetNode, {
+      key: 'Enter',
+      code: 13
     });
 
-    it('should trigger the passed in onBlur when focus is removed', () => {
-      const onBlurSpy = jest.fn();
-      const { container } = renderSelect({
-        onBlur: onBlurSpy
-      });
+    expect(onChangeSpy).toHaveBeenCalledWith(options[0]);
+  });
 
-      fireEvent(
-        container.querySelector('input'),
-        new MouseEvent('blur', {
-          bubbles: true,
-          cancelable: true
-        })
-      );
+  it('should trigger the passed in onBlur when focus is removed', () => {
+    const onBlurSpy = jest.fn();
+    const { container } = render(<Select onFocus={onBlurSpy} />);
 
-      expect(onBlurSpy).toHaveBeenCalledTimes(1);
-    });
+    const input = container.querySelector('input');
+    fireEvent.focus(input);
 
-    it('should trigger the passed in onFocus when focused', () => {
-      const onFocusSpy = jest.fn();
-      const { container } = renderSelect({
-        onFocus: onFocusSpy
-      });
+    expect(onBlurSpy).toHaveBeenCalledTimes(1);
+  });
 
-      fireEvent(
-        container.querySelector('input'),
-        new MouseEvent('focus', {
-          bubbles: true,
-          cancelable: true
-        })
-      );
+  it('should trigger the passed in onFocus when focused', () => {
+    const onFocusSpy = jest.fn();
+    const { container } = render(<Select onFocus={onFocusSpy} />);
 
-      expect(onFocusSpy).toHaveBeenCalledTimes(1);
-    });
+    const input = container.querySelector('input');
+    fireEvent.focus(input);
+
+    expect(onFocusSpy).toHaveBeenCalledTimes(1);
   });
 
   it('Does not violate accessibility standards', () => {
-    const { container } = renderSelect();
+    const { container } = render(<Select labelText="test label" />);
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });
