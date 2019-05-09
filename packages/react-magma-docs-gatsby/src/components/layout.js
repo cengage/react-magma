@@ -573,7 +573,7 @@ const StyledSkipLink = styled(SkipLink)`
     }
     
     @media (min-width: 1024px) {
-      display: inline-block;
+      display: inline-flex;
     }
 `;
 

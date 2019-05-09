@@ -15,7 +15,9 @@ export interface SkipLinkProps {
   variant?: ButtonVariant;
 }
 
-const handleClick = () => {
+const handleClick = e => {
+  e.preventDefault();
+
   const targetAnchor = document.getElementById(TARGET_ID);
 
   if (!targetAnchor) {
@@ -59,10 +61,14 @@ export const SkipLink: React.FunctionComponent<SkipLinkProps> = ({
 }: SkipLinkProps) => {
   return (
     <StyledSkipButton
+      as="a"
       className={className}
       color={color ? color : ButtonColor.primary}
+      href={`#${TARGET_ID}`}
       inverse={inverse}
-      onClick={handleClick}
+      onClick={e => {
+        handleClick(e);
+      }}
       positionLeft={positionLeft ? positionLeft : 10}
       positionTop={positionTop ? positionTop : 10}
       variant={variant ? variant : ButtonVariant.solid}

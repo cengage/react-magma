@@ -8,25 +8,25 @@ import { render, fireEvent } from 'react-testing-library';
 describe('SkipLink', () => {
   it('should render the skip link component', () => {
     const { container } = render(<SkipLink />);
-    const button = container.querySelector('button');
+    const link = container.querySelector('a');
 
-    expect(button).toBeInTheDocument();
-    expect(button.innerHTML).toEqual('Skip Navigation');
-    expect(button).toHaveStyleRule('background', '#006298');
-    expect(button).toHaveStyleRule('color', '#FFFFFF');
-    expect(button).toMatchSnapshot();
+    expect(link).toBeInTheDocument();
+    expect(link.innerHTML).toEqual('Skip Navigation');
+    expect(link).toHaveStyleRule('background', '#006298');
+    expect(link).toHaveStyleRule('color', '#FFFFFF');
+    expect(link).toMatchSnapshot();
   });
 
   it('should render the skip link component with custom text', () => {
     const TEXT = 'Test text';
     const { container } = render(<SkipLink buttonText={TEXT} />);
-    const button = container.querySelector('button');
+    const link = container.querySelector('a');
 
-    expect(button).toBeInTheDocument();
-    expect(button.innerHTML).toEqual(TEXT);
+    expect(link).toBeInTheDocument();
+    expect(link.innerHTML).toEqual(TEXT);
   });
 
-  it('should put focus on the h1 in the main content area when the button is clicked', () => {
+  it('should put focus on the h1 in the main content area when the skip link is clicked', () => {
     const { container } = render(
       <>
         <SkipLink />
@@ -35,72 +35,77 @@ describe('SkipLink', () => {
         </SkipLinkContent>
       </>
     );
-    const button = container.querySelector('button');
+    const link = container.querySelector('a');
     const heading = container.querySelector('h1');
 
     expect(heading).not.toHaveFocus();
-    fireEvent.click(button);
+    fireEvent.click(link);
     expect(heading).toHaveFocus();
   });
 
-  it('should put focus on the main content area when the button is clicked if they content area does not have an h1', () => {
+  it('should put focus on the main content area when the skip link is clicked if they content area does not have an h1', () => {
     const { container } = render(
       <>
         <SkipLink />
         <SkipLinkContent />
       </>
     );
-    const button = container.querySelector('button');
+    const link = container.querySelector('a');
     const contentDiv = container.querySelector('#reactMagmaMainContent');
 
     expect(contentDiv).not.toHaveFocus();
-    fireEvent.click(button);
+    fireEvent.click(link);
     expect(contentDiv).toHaveFocus();
   });
 
   it('should not move focus if there is no content area', () => {
     const { container } = render(<SkipLink />);
-    const button = container.querySelector('button');
+    const link = container.querySelector('a');
 
-    button.focus();
-    fireEvent.click(button);
-    expect(button).toHaveFocus();
+    link.focus();
+    fireEvent.click(link);
+    expect(link).toHaveFocus();
   });
 
-  it('should render the skip link button with specified color and variant', () => {
+  it('should render the skip link with specified color and variant', () => {
     const { container } = render(
       <SkipLink color="success" variant="outline" />
     );
-    const button = container.querySelector('button');
+    const link = container.querySelector('a');
 
-    expect(button).toHaveStyleRule('background', 'rgba(0,0,0,0)');
-    expect(button).toHaveStyleRule('color', '#3A8200');
+    expect(link).toHaveStyleRule('background', 'rgba(0,0,0,0)');
+    expect(link).toHaveStyleRule('color', '#3A8200');
   });
 
   it('should render the skip link button the correct colors for an inverse button', () => {
     const { container } = render(<SkipLink inverse />);
-    const button = container.querySelector('button');
+    const link = container.querySelector('a');
 
-    expect(button).toHaveStyleRule('background', '#FFFFFF');
-    expect(button).toHaveStyleRule('color', '#006298');
+    expect(link).toHaveStyleRule('background', '#FFFFFF');
+    expect(link).toHaveStyleRule('color', '#006298');
   });
 
-  it('should render the skip link button specified position top and left attributes', () => {
+  it('should render the skip link specified position top and left attributes', () => {
     const { container } = render(
       <SkipLink positionLeft={86} positionTop={99} />
     );
-    const button = container.querySelector('button');
+    const link = container.querySelector('a');
 
-    expect(button).toHaveStyleRule('left', '86px', {
+    expect(link).toHaveStyleRule('left', '86px', {
       target: ':focus'
     });
-    expect(button).toHaveStyleRule('top', '99px', {
+    expect(link).toHaveStyleRule('top', '99px', {
       target: ':focus'
     });
   });
 
   it('Does not violate accessibility standards', () => {
-    const { container } = render(<SkipLink />);
+    const { container } = render(
+      <>
+        <SkipLink />
+        <SkipLinkContent />
+      </>
+    );
 
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
