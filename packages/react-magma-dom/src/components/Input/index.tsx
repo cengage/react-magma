@@ -48,7 +48,7 @@ export interface InputProps {
   labelVisuallyHidden?: boolean;
   multiline?: boolean;
   onBlur?: () => void;
-  onChange?: (event: React.SyntheticEvent) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
   placeholder?: string;
   required?: boolean;

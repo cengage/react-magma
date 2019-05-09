@@ -18,7 +18,7 @@ export interface CheckboxProps {
   checked?: boolean;
   disabled?: boolean;
   onBlur?: () => void;
-  onChange?: (event: React.SyntheticEvent) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
   id?: string;
   testId?: string;
