@@ -22,7 +22,8 @@ export interface RadioGroupProps {
   id?: string;
   testId?: string;
   labelStyle?: React.CSSProperties;
-  labelText: string;
+  labelledById?: string;
+  labelText?: string;
   name: string;
   style?: React.CSSProperties;
   textVisuallyHidden?: boolean;
@@ -53,6 +54,7 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
   >
     {({ id, onBlur, onChange, onFocus, selectedValue }) => {
       const {
+        labelledById,
         labelStyle,
         labelText,
         style,
@@ -63,7 +65,7 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
       } = props;
       return (
         <div
-          aria-labelledby={id}
+          aria-labelledby={labelledById ? labelledById : id}
           data-testid={testId}
           role="radiogroup"
           style={style}

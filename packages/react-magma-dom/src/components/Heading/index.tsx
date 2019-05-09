@@ -21,42 +21,36 @@ export const baseHeadingStyles = css`
 
 const StyledH1 = styled.h1`
   ${baseHeadingStyles};
-  color: ${props => props.theme.colors.primary};
+  font-family: ${props => props.theme.headingFont};
   font-size: 40px;
 `;
 
 const StyledH2 = styled.h2`
   ${baseHeadingStyles};
-  color: ${props => props.theme.colors.primary};
   font-family: ${props => props.theme.headingFont};
-
   font-size: 32px;
 `;
 
 const StyledH3 = styled.h3`
   ${baseHeadingStyles};
-  color: ${props => props.theme.colors.primary};
   font-family: ${props => props.theme.headingFont};
   font-size: 26px;
 `;
 
 const StyledH4 = styled.h4`
   ${baseHeadingStyles};
-  color: ${props => props.theme.colors.primary};
   font-family: ${props => props.theme.headingFont};
   font-size: 23px;
 `;
 
 const StyledH5 = styled.h5`
   ${baseHeadingStyles};
-  color: ${props => props.theme.colors.primary};
   font-family: ${props => props.theme.headingFont};
   font-size: 20px;
 `;
 
 const StyledH6 = styled.h6`
   ${baseHeadingStyles};
-  color: ${props => props.theme.colors.primary};
   font-family: ${props => props.theme.headingFont};
   font-size: 18px;
 `;

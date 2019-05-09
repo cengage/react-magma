@@ -161,9 +161,46 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
   </RadioGroup>
 ```
 
+
+## Labeling Radio Groups
+To meet accessibilty requirements, a radio group *must* have a label.  You can provide a label in one of two ways.
+
+You can use the `labelText` prop, which takes a string.  This string will be displayed on screen inside a `<label>` element and be associated with your radio group.
+
+Or you can use the `labelledById` prop, which also takes a string.  This string should refer to an ID of an element that exists somewhere else on the page.
+This id will become the value of the `aria-labelledby` attribute for the group.
+
+```.jsx
+  <div>
+    
+    <RadioGroup
+        id='labelledByGroup'
+        labelText="Labelled by labelText"
+        name='labelledByGroup'>
+          <Radio
+              labelText='Label' />
+          <Radio
+              labelText='Label' />
+      </RadioGroup>
+    
+    
+    <RadioGroup
+        id='labelledByGroup'
+        labelledById="h3Label"
+        name='labelledByGroup'>
+          <h3 id="h3Label">Labelled by h3 with labelledById prop</h3>
+          <Radio
+              labelText='Label' />
+          <Radio
+              labelText='Label' />
+      </RadioGroup>
+  </div>
+```
+
+
 ## Visually Hidden Label
 
-Adding the `textVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
+Adding the `textVisuallyHidden` prop will make the label text for either the radio group or the radio button available to screen readers, but will hide it visually.
 
 ```.jsx
   <RadioGroup
@@ -252,31 +289,32 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 | Prop               | Type                | Default | Required |
 | ------------------ | ------------------- | ------- | :------: |
 | children           | React.ReactChild    |         | &#10003; |
-| onBlur             | function            |         |
-| onChange           | function            |         |
-| onFocus            | function            |         |
+| onBlur             | function            |         |          |
+| onChange           | function            |         |          |
+| onFocus            | function            |         |          |
 | id                 | string              |         |          |
-| labelStyle         | React.CSSProperties |         |
-| labelText          | string              |         | &#10003; |
+| labelledById        | string              |         |          |
+| labelStyle         | React.CSSProperties |         |          |
+| labelText          | string              |         |          |
 | name               | string              |         | &#10003; |
-| style              | React.CSSProperties |         |
-| testId             | string              |         |
-| textVisuallyHidden | boolean             |         |
-| value              | string              |         |
+| style              | React.CSSProperties |         |          |
+| testId             | string              |         |          |
+| textVisuallyHidden | boolean             |         |          |
+| value              | string              |         |          |
 
 ## Radio Props
 
 | Prop               | Type                | Default | Required |
 | ------------------ | ------------------- | ------- | :------: |
-| color              | string              |         |
-| disabled           | boolean             | false   |
+| color              | string              |         |          |
+| disabled           | boolean             | false   |          |
 | id                 | string              |         |          |
-| inputStyle         | React.CSSProperties |         |
-| inverse            | boolean             | false   |
-| labelStyle         | React.CSSProperties |         |
+| inputStyle         | React.CSSProperties |         |          |
+| inverse            | boolean             | false   |          |
+| labelStyle         | React.CSSProperties |         |          |
 | labelText          | string              |         | &#10003; |
-| required           | function            |         |
-| style              | React.CSSProperties |         |
-| testId             | string              |         |
-| textVisuallyHidden | boolean             | false   |
-| value              | string              |         |
+| required           | function            |         |          |
+| style              | React.CSSProperties |         |          |
+| testId             | string              |         |          |
+| textVisuallyHidden | boolean             | false   |          |
+| value              | string              |         |          |

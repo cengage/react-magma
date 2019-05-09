@@ -203,10 +203,10 @@ export class Checkbox extends React.Component<CheckboxProps> {
                   <StyledContainer style={style}>
                     <HiddenInput
                       autoFocus={autoFocus}
-                      id={id}
                       data-testid={testId}
                       checked={checked}
                       disabled={disabled}
+                      id={id}
                       indeterminate={indeterminate}
                       name={name}
                       ref={this.checkboxInput}

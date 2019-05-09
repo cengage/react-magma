@@ -13,6 +13,12 @@ function getStyles(theme) {
       box-sizing: border-box;
     }
 
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       background: ${theme.colors.neutral08};
       color: ${theme.colors.neutral02};
