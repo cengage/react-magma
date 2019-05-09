@@ -1,5 +1,9 @@
 # React magma
 
+## Known Issues
+
+1. `Legacy context API has been detected within a strict-mode tree` - https://github.com/JedWatson/react-select/pull/3487
+
 ## Getting started
 
 ### Setup requirements
