@@ -85,6 +85,20 @@ describe('SkipLink', () => {
     expect(button).toHaveStyleRule('color', '#006298');
   });
 
+  it('should render the skip link button specified position top and left attributes', () => {
+    const { container } = render(
+      <SkipLink positionLeft={86} positionTop={99} />
+    );
+    const button = container.querySelector('button');
+
+    expect(button).toHaveStyleRule('left', '86px', {
+      target: ':focus'
+    });
+    expect(button).toHaveStyleRule('top', '99px', {
+      target: ':focus'
+    });
+  });
+
   it('Does not violate accessibility standards', () => {
     const { container } = render(<SkipLink />);
 

@@ -565,11 +565,15 @@ const PreComponent = ({ className, ...props }) => {
   )
 }
 
-const SkipLinkWrapper = styled.div`
+const StyledSkipLink = styled(SkipLink)`
     display: none;
+
+    &:not(:disabled):focus {
+      background: transparent;
+    }
     
     @media (min-width: 1024px) {
-      display: block;
+      display: inline-block;
     }
 `;
 
@@ -610,13 +614,11 @@ const Layout = ({ children }) => (
         >
           <html lang="en" />
         </Helmet>
-        <SkipLinkWrapper>
-          <SkipLink
-            inverse
-            positionLeft={275}
-            positionTop={16}
-            variant="outline" />
-        </SkipLinkWrapper>
+        <StyledSkipLink
+          inverse
+          positionLeft={275}
+          positionTop={16}
+          variant="outline" />
         <main className="main">
           <SlidingDrawer />
           <Masthead />

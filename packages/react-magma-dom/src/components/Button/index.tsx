@@ -88,6 +88,7 @@ export const Button: React.FunctionComponent<
         disabled,
         inverse,
         block,
+        className,
         color,
         href,
         id,
@@ -123,6 +124,7 @@ export const Button: React.FunctionComponent<
             onClick={onClick}
             block={block}
             color={color ? color : ButtonColor.primary}
+            className={className}
             disabled={disabled}
             inverse={inverse}
             href={href}
@@ -157,6 +159,7 @@ export const Button: React.FunctionComponent<
             as={as}
             autoFocus={autoFocus}
             onClick={onClick}
+            className={className}
             color={color ? color : ButtonColor.primary}
             disabled={disabled}
             iconOnly
@@ -187,6 +190,7 @@ export const Button: React.FunctionComponent<
           onClick={onClick}
           block={block}
           color={color ? color : ButtonColor.primary}
+          className={className}
           disabled={disabled}
           href={href}
           inverse={inverse}

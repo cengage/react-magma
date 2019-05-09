@@ -7,6 +7,7 @@ export const TARGET_ID = 'reactMagmaMainContent';
 
 export interface SkipLinkProps {
   buttonText?: string;
+  className?: string;
   color?: ButtonColor;
   inverse?: boolean;
   positionLeft?: number;
@@ -31,11 +32,10 @@ const handleClick = () => {
   targetAnchor.focus();
 };
 
-const ButtonContainer = styled.span<{
+const StyledSkipButton = styled(Button)<{
   positionLeft: number;
   positionTop: number;
 }>`
-  button {
     left: -9999px;
     position: fixed;
     top: -9999px;
@@ -50,6 +50,7 @@ const ButtonContainer = styled.span<{
 
 export const SkipLink: React.FunctionComponent<SkipLinkProps> = ({
   buttonText,
+  className,
   color,
   inverse,
   positionLeft,
@@ -57,18 +58,16 @@ export const SkipLink: React.FunctionComponent<SkipLinkProps> = ({
   variant
 }: SkipLinkProps) => {
   return (
-    <ButtonContainer
+    <StyledSkipButton
+      className={className}
+      color={color ? color : ButtonColor.primary}
+      inverse={inverse}
+      onClick={handleClick}
       positionLeft={positionLeft ? positionLeft : 10}
       positionTop={positionTop ? positionTop : 10}
+      variant={variant ? variant : ButtonVariant.solid}
     >
-      <Button
-        color={color ? color : ButtonColor.primary}
-        inverse={inverse}
-        onClick={handleClick}
-        variant={variant ? variant : ButtonVariant.solid}
-      >
-        {buttonText ? buttonText : 'Skip Navigation'}
-      </Button>
-    </ButtonContainer>
+      {buttonText ? buttonText : 'Skip Navigation'}
+    </StyledSkipButton>
   );
 };
