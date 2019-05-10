@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
+import isPropValid from '@emotion/is-prop-valid';
 import { ThemeContext } from '../../theme/themeContext';
 import { darken, tint } from 'polished';
 
@@ -69,7 +70,9 @@ interface StyledButtonProps extends ButtonProps {
   ref?: any;
 }
 
-const StyledButtonComponent = styled.button<StyledButtonProps>`
+const StyledButtonComponent = styled('button', {
+  shouldForwardProp: prop => isPropValid(prop)
+})<StyledButtonProps>`
   align-items: center;
   border-radius: ${props => {
     switch (props.shape) {
