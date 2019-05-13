@@ -82,7 +82,7 @@ exports[`Button Icon Only Button Snapshot should render with large size 1`] = `
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1xqhztd e183qit0"
+    class="css-mnpfpi e183qit0"
     color="primary"
     id="testId"
     shape="round"
@@ -91,9 +91,9 @@ exports[`Button Icon Only Button Snapshot should render with large size 1`] = `
       aria-labelledby="testId"
       class="icon"
       fill="currentColor"
-      height="14"
+      height="24"
       viewBox="0 0 29.37 21.88"
-      width="14"
+      width="24"
       xmlns="http://www.w3.org/2000/svg"
     >
       <title
@@ -232,7 +232,43 @@ exports[`Button Icon With Text Button Snapshot should render with large size 1`]
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1s5rzag e183qit0"
+    class="css-1fs3ka8 e183qit0"
+    color="primary"
+    id="testId"
+    shape="fill"
+  >
+    <span
+      class="css-6d5fwk e1cefif80"
+    >
+      Test Text
+       
+    </span>
+    <svg
+      aria-labelledby="testId"
+      class="icon"
+      fill="currentColor"
+      height="20"
+      viewBox="0 0 29.37 21.88"
+      width="20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <title
+        id="testId"
+      />
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`Button Icon With Text Button Snapshot should render with medium size 1`] = `
+<div>
+  <button
+    aria-label="Check Icon"
+    class="css-qhwgaw e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -247,9 +283,9 @@ exports[`Button Icon With Text Button Snapshot should render with large size 1`]
       aria-labelledby="testId"
       class="icon"
       fill="currentColor"
-      height="12"
+      height="16"
       viewBox="0 0 29.37 21.88"
-      width="12"
+      width="16"
       xmlns="http://www.w3.org/2000/svg"
     >
       <title
