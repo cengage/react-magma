@@ -9,7 +9,7 @@ import {
   ButtonSize,
   ButtonTextTransform,
   ButtonVariant,
-  ButtonIconPostition
+  ButtonIconPosition
 } from '../StyledButton';
 import { CheckIcon } from '../Icon/types/CheckIcon';
 
@@ -136,7 +136,7 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPostition.right}
+            iconPosition={ButtonIconPosition.right}
             size={ButtonSize.large}
           />
         );
@@ -151,7 +151,7 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPostition.right}
+            iconPosition={ButtonIconPosition.right}
             size={ButtonSize.medium}
           />
         );
@@ -166,7 +166,7 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPostition.right}
+            iconPosition={ButtonIconPosition.right}
             size={ButtonSize.small}
           />
         );
@@ -183,7 +183,7 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPostition.right}
+            iconPosition={ButtonIconPosition.right}
             color={ButtonColor.secondary}
           />
         );
@@ -198,7 +198,7 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPostition.right}
+            iconPosition={ButtonIconPosition.right}
             shape={ButtonShape.fill}
           />
         );
@@ -213,7 +213,7 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPostition.right}
+            iconPosition={ButtonIconPosition.right}
             size={ButtonSize.small}
           />
         );
@@ -228,7 +228,7 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPostition.right}
+            iconPosition={ButtonIconPosition.right}
             size={ButtonSize.large}
           />
         );
@@ -243,7 +243,7 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPostition.right}
+            iconPosition={ButtonIconPosition.right}
             variant={ButtonVariant.outline}
           />
         );
@@ -282,7 +282,7 @@ describe('Button', () => {
       const icon = <CheckIcon />;
 
       const { container, getByText } = render(
-        <Button iconPosition={ButtonIconPostition.left} icon={icon}>
+        <Button iconPosition={ButtonIconPosition.left} icon={icon}>
           {buttonText}
         </Button>
       );
@@ -297,7 +297,7 @@ describe('Button', () => {
       const { container } = render(
         <Button
           icon={icon}
-          iconPosition={ButtonIconPostition.left}
+          iconPosition={ButtonIconPosition.left}
           size={ButtonSize.large}
         >
           Click me
@@ -360,7 +360,7 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPostition.right}
+            iconPosition={ButtonIconPosition.right}
             color={ButtonColor.secondary}
           >
             Test Text
@@ -377,7 +377,7 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPostition.right}
+            iconPosition={ButtonIconPosition.right}
             shape={ButtonShape.fill}
           >
             Test Text
@@ -394,7 +394,7 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPostition.right}
+            iconPosition={ButtonIconPosition.right}
             size={ButtonSize.small}
           >
             Test Text
@@ -411,7 +411,7 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPostition.right}
+            iconPosition={ButtonIconPosition.right}
             size={ButtonSize.medium}
           >
             Test Text
@@ -433,7 +433,7 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPostition.right}
+            iconPosition={ButtonIconPosition.right}
             size={ButtonSize.large}
           >
             Test Text
@@ -450,7 +450,7 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPostition.right}
+            iconPosition={ButtonIconPosition.right}
             textTransform={ButtonTextTransform.none}
           >
             Test Text
@@ -467,7 +467,7 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPostition.right}
+            iconPosition={ButtonIconPosition.right}
             variant={ButtonVariant.outline}
           >
             Test Text
