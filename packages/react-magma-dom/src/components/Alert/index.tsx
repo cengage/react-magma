@@ -93,6 +93,11 @@ const StyledAlert = styled.div<AlertProps>`
     font-weight: 600;
     text-decoration: underline;
   }
+
+  &:focus {
+    outline: 2px dotted ${props => props.theme.colors.pop03};
+    outline-offset: 2px;
+  }
 `;
 
 const AlertContents = styled.div`
