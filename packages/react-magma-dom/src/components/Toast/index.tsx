@@ -5,10 +5,7 @@ import { AlertCore, ToastCore } from 'react-magma-core';
 import { Alert, AlertProps, transitionDuration } from '../Alert';
 
 export interface ToastProps extends AlertProps {
-  children: React.ReactNode;
-  id?: string;
-  testId?: string;
-  onDismiss: () => void;
+  alertStyle?: React.CSSProperties;
   toastDuration?: number;
   disableAutoDismiss?: boolean;
   onMouseEnter?: (event: React.SyntheticEvent) => void;
@@ -16,7 +13,7 @@ export interface ToastProps extends AlertProps {
 }
 
 const ToastWrapper = styled.div`
-  z-index: 1;
+  z-index: 999;
   position: fixed;
   display: flex;
   left: 25px;
@@ -45,6 +42,7 @@ const ToastWrapper = styled.div`
 `;
 
 export const Toast: React.FunctionComponent<ToastProps> = ({
+  alertStyle,
   id,
   testId,
   variant,
@@ -80,11 +78,12 @@ export const Toast: React.FunctionComponent<ToastProps> = ({
                 <ToastWrapper
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
+                  style={style}
                 >
                   <Alert
                     id={id}
                     testId={testId}
-                    style={style}
+                    style={alertStyle}
                     isExiting={isExiting}
                     dismissable={dismissable}
                     variant={variant}

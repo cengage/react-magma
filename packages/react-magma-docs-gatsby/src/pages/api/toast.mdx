@@ -289,6 +289,48 @@ When you hover over the Toast the timer is paused. Once the mouse leaves the Toa
     }
 ```
 
+## Custom styles
+
+Custom styles can be added to a toast using two different props.  The `style` prop controls the style for the toast container itself,
+which includes the component's positioning and z-index.  The `alertStyle` prop controls the style for the interal alert component, which
+includes the element's background, border-radius, and fade animation.
+
+```.jsx
+  class Example extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        showAlert: false,
+      }
+
+      this.onAlertShow = this.onAlertShow.bind(this);
+      this.onAlertDismiss = this.onAlertDismiss.bind(this);
+    }
+
+    onAlertShow() {
+      this.setState({showAlert: true})
+    }
+
+    onAlertDismiss() {
+      this.setState({showAlert: false})
+    }
+
+    render() {
+      const { showAlert } = this.state;
+
+      return (<>
+        <Button onClick={this.onAlertShow}>Show Toast</Button>
+        {showAlert &&
+          <Toast
+            alertStyle={{border: '4px dotted yellow'}}
+            onDismiss={this.onAlertDismiss}
+            style={{'border': '1px solid purple', 'left': 'auto', 'right': '20px'}}            >Toast with custom styles</Toast>
+        }
+      </>)
+    }
+  }
+```
+
 ## Testing
 
 Passing in the `testId` prop will pass the `testId` to the interal `Alert` element.
@@ -315,3 +357,21 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
   <div>Quick Toast</div>
 </div>
 ```
+
+## Toast Props
+
+| Prop          | Type                                                           | Default              | Required |
+| ------------- | -------------------------------------------------------------- | -------------------- | :------: |
+| alertStyle    | React.CSSProperties                                            |                      |          |
+| children      | node                                                           |                      | &#10003; |
+| closeLabel    | string                                                         | 'Close this message' |          |
+| dismissable   | boolean                                                        |                      |          |
+| id            | string                                                         |                      |          |
+| onDismiss     | func                                                           |                      |          |
+| onMouseEnter  | func                                                           |                      |          |
+| onMouseLeave  | func                                                           |                      |          |
+| style         | React.CSSProperties                                            |                      |          |
+| toastDuration | number                                                         | 5000                 |          |
+| variant       | enum: 'info' &#124; 'success' &#124; 'warning' &#124; 'danger' |                      |          |
+| testId        | string                                                         |                      |          |
+
