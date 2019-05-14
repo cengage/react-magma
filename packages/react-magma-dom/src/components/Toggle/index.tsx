@@ -16,6 +16,7 @@ enum ToggleTextPostition {
 export interface ToggleProps {
   autoFocus?: boolean;
   checked?: boolean;
+  containerStyle?: React.CSSProperties;
   disabled?: boolean;
   onBlur?: () => void;
   onChange?: () => void;
@@ -25,7 +26,6 @@ export interface ToggleProps {
   labelStyle?: React.CSSProperties;
   labelText: string;
   required?: boolean;
-  style?: React.CSSProperties;
   textPosition?: ToggleTextPostition;
   textVisuallyHidden?: boolean;
   theme?: any;
@@ -177,11 +177,11 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
     {({ id, onBlur, onChange, onFocus, checked }) => {
       const {
         autoFocus,
+        containerStyle,
         disabled,
         labelStyle,
         labelText,
         required,
-        style,
         textPosition,
         textVisuallyHidden,
         testId,
@@ -209,7 +209,7 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
                   onChange={onChange}
                   onFocus={onFocus}
                 />
-                <StyledLabel htmlFor={id} style={style}>
+                <StyledLabel htmlFor={id} style={containerStyle}>
                   {textPosition !== ToggleTextPostition.right &&
                     renderLabelText(
                       textVisuallyHidden,

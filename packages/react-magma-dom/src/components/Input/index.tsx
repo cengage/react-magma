@@ -55,7 +55,7 @@ export interface InputProps {
   shownPasswordAnnounceText?: string;
   showPasswordButtonAriaLabel?: string;
   showPasswordButtonText?: string;
-  style?: React.CSSProperties;
+  containerStyle?: React.CSSProperties;
   testId?: string;
   type?: InputType;
   value?: string | number;
@@ -261,6 +261,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
       }) => {
         const {
           autoFocus,
+          containerStyle,
           disabled,
           errorMessage,
           helperMessage,
@@ -274,7 +275,6 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
           labelVisuallyHidden,
           multiline,
           placeholder,
-          style,
           type,
           required,
           testId,
@@ -310,7 +310,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
           <ThemeContext.Consumer>
             {theme =>
               theme && (
-                <Container style={style}>
+                <Container style={containerStyle}>
                   {!labelVisuallyHidden && (
                     <Label inverse={inverse} htmlFor={id} style={labelStyle}>
                       {labelText}

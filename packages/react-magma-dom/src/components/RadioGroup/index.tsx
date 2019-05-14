@@ -16,16 +16,16 @@ const HiddenLabel = styled.label`
 
 export interface RadioGroupProps {
   children: React.ReactChild | React.ReactChild[];
-  onBlur?: () => void;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onFocus?: () => void;
+  containerStyle?: React.CSSProperties;
   id?: string;
-  testId?: string;
   labelStyle?: React.CSSProperties;
   labelledById?: string;
   labelText?: string;
   name: string;
-  style?: React.CSSProperties;
+  onBlur?: () => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocus?: () => void;
+  testId?: string;
   textVisuallyHidden?: boolean;
   value?: string;
 }
@@ -54,10 +54,10 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
   >
     {({ id, onBlur, onChange, onFocus, selectedValue }) => {
       const {
+        containerStyle,
         labelledById,
         labelStyle,
         labelText,
-        style,
         textVisuallyHidden,
         testId,
         name,
@@ -68,7 +68,7 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
           aria-labelledby={labelledById ? labelledById : id}
           data-testid={testId}
           role="radiogroup"
-          style={style}
+          style={containerStyle}
         >
           <RadioContext.Provider
             value={{

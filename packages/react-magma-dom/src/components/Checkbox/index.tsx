@@ -15,6 +15,7 @@ import styled from '@emotion/styled';
 export interface CheckboxProps {
   autoFocus?: boolean;
   color?: string;
+  containerStyle?: React.CSSProperties;
   checked?: boolean;
   disabled?: boolean;
   onBlur?: () => void;
@@ -29,7 +30,6 @@ export interface CheckboxProps {
   labelText: string;
   name?: string;
   required?: boolean;
-  style?: React.CSSProperties;
   textVisuallyHidden?: boolean;
   value?: string;
 }
@@ -182,6 +182,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
           const {
             autoFocus,
             color,
+            containerStyle,
             disabled,
             indeterminate,
             inputStyle,
@@ -190,7 +191,6 @@ export class Checkbox extends React.Component<CheckboxProps> {
             labelText,
             name,
             required,
-            style,
             textVisuallyHidden,
             testId,
             value
@@ -200,7 +200,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
             <ThemeContext.Consumer>
               {theme =>
                 theme && (
-                  <StyledContainer style={style}>
+                  <StyledContainer style={containerStyle}>
                     <HiddenInput
                       autoFocus={autoFocus}
                       data-testid={testId}
