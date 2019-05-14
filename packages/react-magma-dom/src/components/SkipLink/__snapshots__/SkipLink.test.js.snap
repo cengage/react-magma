@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SkipLink should render the skip link component 1`] = `
+<a
+  class="ehvni9a0 css-5udrug e183qit0"
+  color="primary"
+  href="#reactMagmaMainContent"
+  shape="fill"
+>
+  Skip Navigation
+</a>
+`;

@@ -17,6 +17,8 @@ export { LinkButton } from './components/LinkButton';
 export { RadioGroup } from './components/RadioGroup';
 export { Radio } from './components/Radio';
 export { Select } from './components/Select';
+export { SkipLink } from './components/SkipLink';
+export { SkipLinkContent } from './components/SkipLinkContent';
 export { Toggle } from './components/Toggle';
 export { Toast } from './components/Toast';
 export { VisuallyHidden } from './components/VisuallyHidden';

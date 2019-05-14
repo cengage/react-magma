@@ -82,6 +82,7 @@ export const Button: React.FunctionComponent<
     ariaLabel,
     as,
     autoFocus,
+    className,
     disabled,
     inverse,
     block,
@@ -120,6 +121,7 @@ export const Button: React.FunctionComponent<
         autoFocus={autoFocus}
         onClick={onClick}
         block={block}
+        className={className}
         color={color ? color : ButtonColor.primary}
         disabled={disabled}
         inverse={inverse}
@@ -154,6 +156,7 @@ export const Button: React.FunctionComponent<
         ariaLabel={ariaLabel}
         as={as}
         autoFocus={autoFocus}
+        className={className}
         onClick={onClick}
         color={color ? color : ButtonColor.primary}
         disabled={disabled}
@@ -182,6 +185,7 @@ export const Button: React.FunctionComponent<
       ariaExpanded={ariaExpanded}
       ariaLabel={ariaLabel}
       autoFocus={autoFocus}
+      className={className}
       onClick={onClick}
       block={block}
       color={color ? color : ButtonColor.primary}
