@@ -60,6 +60,24 @@ describe('Radio Group', () => {
     expect(label).toHaveStyleRule('clip', 'rect(1px,1px,1px,1px)');
   });
 
+  it('should render a radio group with the aria-labelledby attribute', () => {
+    const { container } = render(
+      <RadioGroup name="colors" labelledById="myID">
+        <h3 id="myID">Heading</h3>
+        <Radio labelText="Default Color" value="default" />
+        <Radio
+          color={magma.colors.success01}
+          labelText="Success Color"
+          value="success"
+        />
+      </RadioGroup>
+    );
+
+    const group = container.querySelector('div');
+
+    expect(group).toHaveAttribute('aria-labelledby', 'myID');
+  });
+
   it('should not render anything when invalid children are present', () => {
     const { container } = render(
       <RadioGroup>
