@@ -81,7 +81,6 @@ export const Button: React.FunctionComponent<
     ariaExpanded,
     ariaLabel,
     as,
-    disabled,
     inverse,
     block,
     color,
