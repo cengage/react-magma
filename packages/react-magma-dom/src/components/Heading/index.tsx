@@ -4,12 +4,8 @@ import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/themeContext';
 
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
-  // children: React.ReactChild | React.ReactChild[];
   level: number;
-  // id?: string;
   testId?: string;
-  // style?: React.CSSProperties;
-  // ref?: any;
   tabIndex?: number;
 }
 
