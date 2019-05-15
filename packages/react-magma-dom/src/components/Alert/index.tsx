@@ -25,17 +25,14 @@ export enum AlertVariant {
   danger = 'danger'
 }
 
-export interface AlertProps {
+export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   closeLabel?: string;
-  id?: string;
   testId?: string;
   dismissable?: boolean;
   variant?: AlertVariant;
-  style?: React.CSSProperties;
   onDismiss?: () => void;
   isExiting?: boolean;
-  ref?: any;
 }
 
 export const transitionDuration = 500;
@@ -164,55 +161,51 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
   (
     {
       closeLabel,
-      id,
       testId,
       variant,
-      style,
       children,
       dismissable,
       onDismiss,
-      isExiting
+      isExiting,
+      ...other
     }: AlertProps,
     ref: any
   ) => (
     <ThemeContext.Consumer>
-      {theme =>
-        theme && (
-          <AlertCore
-            transitionDuration={transitionDuration}
-            onDismiss={onDismiss}
-          >
-            {({ handleDismiss, isExiting: coreIsExiting }) => (
-              <StyledAlert
-                id={id}
-                data-testid={testId}
-                ref={ref}
-                tabIndex={-1}
-                isExiting={isExiting || coreIsExiting}
-                variant={variant}
-                style={style}
-                theme={theme}
-              >
-                {renderIcon(variant)}
-                <AlertContents>{children}</AlertContents>
-                {dismissable && (
-                  <DismissableIconWrapper variant={variant} theme={theme}>
-                    <Button
-                      ariaLabel={closeLabel ? closeLabel : 'Close this message'}
-                      icon={<CrossIcon />}
-                      inverse
-                      onClick={handleDismiss}
-                      style={DismissButtonStyles}
-                      theme={theme}
-                      variant={ButtonVariant.link}
-                    />
-                  </DismissableIconWrapper>
-                )}
-              </StyledAlert>
-            )}
-          </AlertCore>
-        )
-      }
+      {theme => (
+        <AlertCore
+          transitionDuration={transitionDuration}
+          onDismiss={onDismiss}
+        >
+          {({ handleDismiss, isExiting: coreIsExiting }) => (
+            <StyledAlert
+              data-testid={testId}
+              ref={ref}
+              tabIndex={-1}
+              isExiting={isExiting || coreIsExiting}
+              variant={variant}
+              theme={theme}
+              {...other}
+            >
+              {renderIcon(variant)}
+              <AlertContents>{children}</AlertContents>
+              {dismissable && (
+                <DismissableIconWrapper variant={variant} theme={theme}>
+                  <Button
+                    ariaLabel={closeLabel ? closeLabel : 'Close this message'}
+                    icon={<CrossIcon />}
+                    inverse
+                    onClick={handleDismiss}
+                    style={DismissButtonStyles}
+                    theme={theme}
+                    variant={ButtonVariant.link}
+                  />
+                </DismissableIconWrapper>
+              )}
+            </StyledAlert>
+          )}
+        </AlertCore>
+      )}
     </ThemeContext.Consumer>
   )
 );

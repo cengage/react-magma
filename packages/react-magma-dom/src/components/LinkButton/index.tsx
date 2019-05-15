@@ -2,16 +2,10 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/themeContext';
 
-interface LinkButtonProps {
-  autoFocus?: boolean;
-  className?: string;
-  children?: React.ReactChild | React.ReactChild[];
-  onClick?: () => void;
-  disabled?: boolean;
-  id?: string;
+interface LinkButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   testId?: string;
   inverse?: boolean;
-  style?: React.CSSProperties;
 }
 
 const LinkButtonComponent = styled.button<LinkButtonProps>`
@@ -43,33 +37,21 @@ const LinkButtonComponent = styled.button<LinkButtonProps>`
 `;
 
 export const LinkButton: React.FunctionComponent<LinkButtonProps> = ({
-  autoFocus,
-  className,
   children,
-  disabled,
-  onClick,
-  id,
   testId,
   inverse,
-  style
+  ...other
 }: LinkButtonProps) => (
   <ThemeContext.Consumer>
-    {theme =>
-      theme && (
-        <LinkButtonComponent
-          id={id}
-          data-testid={testId}
-          className={className}
-          autoFocus={autoFocus}
-          onClick={onClick}
-          disabled={disabled}
-          inverse={inverse}
-          style={style}
-          theme={theme}
-        >
-          {children}
-        </LinkButtonComponent>
-      )
-    }
+    {theme => (
+      <LinkButtonComponent
+        data-testid={testId}
+        inverse={inverse}
+        theme={theme}
+        {...other}
+      >
+        {children}
+      </LinkButtonComponent>
+    )}
   </ThemeContext.Consumer>
 );

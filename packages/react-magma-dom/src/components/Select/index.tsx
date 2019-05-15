@@ -188,36 +188,34 @@ export const Select: React.FunctionComponent<SelectProps> = (
 
       return (
         <ThemeContext.Consumer>
-          {theme =>
-            theme && (
-              <div data-testid={testId}>
-                <Label>{labelText}</Label>
-                <ReactSelect
-                  id={id}
-                  components={{
-                    ClearIndicator,
-                    DropdownIndicator,
-                    MultiValueRemove
-                  }}
-                  aria-label={labelText}
-                  name={name}
-                  defaultValue={defaultValue}
-                  options={options}
-                  required={required}
-                  isDisabled={disabled}
-                  isMulti={multi}
-                  isClearable={clearable}
-                  onBlur={onBlur}
-                  onFocus={onFocus}
-                  onChange={onChange}
-                  onMenuOpen={onOpen}
-                  onMenuClose={onClose}
-                  styles={getStyles(style, theme)}
-                  classNamePrefix="magma"
-                />
-              </div>
-            )
-          }
+          {theme => (
+            <div data-testid={testId}>
+              <Label>{labelText}</Label>
+              <ReactSelect
+                id={id}
+                components={{
+                  ClearIndicator,
+                  DropdownIndicator,
+                  MultiValueRemove
+                }}
+                aria-label={labelText}
+                name={name}
+                defaultValue={defaultValue}
+                options={options}
+                required={required}
+                isDisabled={disabled}
+                isMulti={multi}
+                isClearable={clearable}
+                onBlur={onBlur}
+                onFocus={onFocus}
+                onChange={onChange}
+                onMenuOpen={onOpen}
+                onMenuClose={onClose}
+                styles={getStyles(style, theme)}
+                classNamePrefix="magma"
+              />
+            </div>
+          )}
         </ThemeContext.Consumer>
       );
     }}
