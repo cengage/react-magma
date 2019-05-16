@@ -100,7 +100,7 @@ Inverse is an optional boolean prop, that may be passed in when radio buttons ar
 
 ```.jsx
   <RadioGroup
-    style={{ background : '#00263E', color: '#fff', padding: '10px' }}
+    containerStyle={{ background : '#00263E', color: '#fff', padding: '10px' }}
     labelText='Inverse Radio Buttons'
     id='inverseGroup'
     name='inverse'>
@@ -138,7 +138,7 @@ Inverse is an optional boolean prop, that may be passed in when radio buttons ar
 
 ## Custom Styles
 
-Custom styles can be passed into both the RadioGroup component and the Radio component. The `style` property will apply to the container.
+Custom styles can be passed into both the RadioGroup component and the Radio component. The `containerStyle` property will apply to the container.
 Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
 
 ```.jsx
@@ -149,11 +149,10 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
     id='customGroup'
     name='custom'>
     <Radio
-        id='custom1'
+        containerStyle={{ 'border': '1px dotted purple'}}
         inputStyle={{ 'boxShadow': '3px 3px 3px rgba(0, 0 , 0, .6)'}}
         labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
         labelText='Custom Styles'
-        style={{ 'border': '1px dotted purple'}}
         value='1' />
 
     <Radio
@@ -290,6 +289,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 | Prop               | Type                | Default | Required |
 | ------------------ | ------------------- | ------- | :------: |
 | children           | React.ReactChild    |         | &#10003; |
+| containerStyle     | React.CSSProperties |         |          |
 | onBlur             | function            |         |          |
 | onChange           | function            |         |          |
 | onFocus            | function            |         |          |
@@ -298,7 +298,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 | labelStyle         | React.CSSProperties |         |          |
 | labelText          | string              |         |          |
 | name               | string              |         | &#10003; |
-| style              | React.CSSProperties |         |          |
 | testId             | string              |         |          |
 | textVisuallyHidden | boolean             |         |          |
 | value              | string              |         |          |
@@ -315,7 +314,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 | labelStyle         | React.CSSProperties |         |          |
 | labelText          | string              |         | &#10003; |
 | required           | function            |         |          |
-| style              | React.CSSProperties |         |          |
+| containerStyle     | React.CSSProperties |         |
 | testId             | string              |         |          |
 | textVisuallyHidden | boolean             | false   |          |
 | value              | string              |         |          |

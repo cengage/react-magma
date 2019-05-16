@@ -15,9 +15,10 @@ enum ToggleTextPostition {
 
 export interface ToggleProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  testId?: string;
+  containerStyle?: React.CSSProperties;
   labelStyle?: React.CSSProperties;
   labelText: string;
+  testId?: string;
   textPosition?: ToggleTextPostition;
   textVisuallyHidden?: boolean;
   theme?: any;
@@ -167,10 +168,10 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
   >
     {({ id, onBlur, onChange, onFocus, checked }) => {
       const {
+        containerStyle,
         disabled,
         labelStyle,
         labelText,
-        style,
         textPosition,
         textVisuallyHidden,
         testId,
@@ -196,7 +197,7 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
                   checked
                 }}
               />
-              <StyledLabel htmlFor={id} style={style}>
+              <StyledLabel htmlFor={id} style={containerStyle}>
                 {textPosition !== ToggleTextPostition.right &&
                   renderLabelText(
                     textVisuallyHidden,

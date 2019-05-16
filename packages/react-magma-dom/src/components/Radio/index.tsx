@@ -15,12 +15,13 @@ import { generateId } from '../utils';
 export interface RadioProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   color?: string;
-  testId?: string;
+  containerStyle?: React.CSSProperties;
   innerRef?: any;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
+  testId?: string;
   textVisuallyHidden?: boolean;
 }
 
@@ -138,6 +139,7 @@ export class RadioComponent extends React.Component<RadioProps, RadioState> {
     const { id } = this.state;
     const {
       color,
+      containerStyle,
       disabled,
       innerRef,
       inputStyle,
@@ -145,7 +147,6 @@ export class RadioComponent extends React.Component<RadioProps, RadioState> {
       labelStyle,
       labelText,
       required,
-      style,
       textVisuallyHidden,
       testId,
       value,
@@ -157,7 +158,7 @@ export class RadioComponent extends React.Component<RadioProps, RadioState> {
           context && (
             <ThemeContext.Consumer>
               {theme => (
-                <StyledContainer style={style}>
+                <StyledContainer style={containerStyle}>
                   <HiddenInput
                     ref={innerRef}
                     checked={context.selectedValue === value}

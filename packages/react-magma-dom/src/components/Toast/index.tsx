@@ -6,6 +6,7 @@ import { Alert, AlertProps, transitionDuration } from '../Alert';
 
 export interface ToastProps extends AlertProps {
   alertStyle?: React.CSSProperties;
+  containerStyle?: React.CSSProperties;
   toastDuration?: number;
   disableAutoDismiss?: boolean;
   onMouseEnter?: (event: React.SyntheticEvent) => void;
@@ -47,8 +48,8 @@ export const Toast: React.FunctionComponent<ToastProps> = ({
   testId,
   variant,
   dismissable,
-  style,
   children,
+  containerStyle,
   onDismiss,
   toastDuration,
   disableAutoDismiss,
@@ -74,7 +75,7 @@ export const Toast: React.FunctionComponent<ToastProps> = ({
               <ToastWrapper
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
-                style={style}
+                style={containerStyle}
               >
                 <Alert
                   id={id}

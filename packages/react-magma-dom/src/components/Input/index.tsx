@@ -30,6 +30,7 @@ export enum InputType {
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   as?: string;
+  containerStyle?: React.CSSProperties;
   errorMessage?: string;
   helperMessage?: string;
   hiddenPasswordAnnounceText?: string;
@@ -251,6 +252,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
         passwordShown
       }) => {
         const {
+          containerStyle,
           errorMessage,
           helperMessage,
           icon,
@@ -262,7 +264,6 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
           labelText,
           labelVisuallyHidden,
           multiline,
-          style,
           type,
           testId,
           hidePasswordMaskButton,
@@ -297,7 +298,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
         return (
           <ThemeContext.Consumer>
             {theme => (
-              <Container style={style}>
+              <Container style={containerStyle}>
                 {!labelVisuallyHidden && (
                   <Label inverse={inverse} htmlFor={id} style={labelStyle}>
                     {labelText}

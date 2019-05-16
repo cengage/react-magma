@@ -291,7 +291,7 @@ When you hover over the Toast the timer is paused. Once the mouse leaves the Toa
 
 ## Custom styles
 
-Custom styles can be added to a toast using two different props.  The `style` prop controls the style for the toast container itself,
+Custom styles can be added to a toast using two different props.  The `containerStyle` prop controls the style for the toast container itself,
 which includes the component's positioning and z-index.  The `alertStyle` prop controls the style for the interal alert component, which
 includes the element's background, border-radius, and fade animation.
 
@@ -323,8 +323,8 @@ includes the element's background, border-radius, and fade animation.
         {showAlert &&
           <Toast
             alertStyle={{border: '4px dotted yellow'}}
-            onDismiss={this.onAlertDismiss}
-            style={{'border': '1px solid purple', 'left': 'auto', 'right': '20px'}}            >Toast with custom styles</Toast>
+            containerStyle={{'border': '1px solid purple', 'left': 'auto', 'right': '20px'}}
+            onDismiss={this.onAlertDismiss}>Toast with custom styles</Toast>
         }
       </>)
     }
@@ -360,18 +360,18 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
 
 ## Toast Props
 
-| Prop          | Type                                                           | Default              | Required |
-| ------------- | -------------------------------------------------------------- | -------------------- | :------: |
-| alertStyle    | React.CSSProperties                                            |                      |          |
-| children      | node                                                           |                      | &#10003; |
-| closeLabel    | string                                                         | 'Close this message' |          |
-| dismissable   | boolean                                                        |                      |          |
-| id            | string                                                         |                      |          |
-| onDismiss     | func                                                           |                      |          |
-| onMouseEnter  | func                                                           |                      |          |
-| onMouseLeave  | func                                                           |                      |          |
-| style         | React.CSSProperties                                            |                      |          |
-| toastDuration | number                                                         | 5000                 |          |
-| variant       | enum: 'info' &#124; 'success' &#124; 'warning' &#124; 'danger' |                      |          |
-| testId        | string                                                         |                      |          |
+| Prop           | Type                                                           | Default              | Required |
+| -------------- | -------------------------------------------------------------- | -------------------- | :------: |
+| alertStyle     | React.CSSProperties                                            |                      |          |
+| children       | node                                                           |                      | &#10003; |
+| closeLabel     | string                                                         | 'Close this message' |          |
+| containerStyle | React.CSSProperties                                            |                      |          |
+| dismissable    | boolean                                                        |                      |          |
+| id             | string                                                         |                      |          |
+| onDismiss      | func                                                           |                      |          |
+| onMouseEnter   | func                                                           |                      |          |
+| onMouseLeave   | func                                                           |                      |          |
+| toastDuration  | number                                                         | 5000                 |          |
+| variant        | enum: 'info' &#124; 'success' &#124; 'warning' &#124; 'danger' |                      |          |
+| testId         | string                                                         |                      |          |
 
