@@ -7,7 +7,7 @@ import {
   ButtonSize,
   ButtonTextTransform,
   ButtonVariant,
-  ButtonIconPostition
+  ButtonIconPosition
 } from '../StyledButton';
 import styled from '@emotion/styled';
 import { IconProps } from '../Icon/utils';
@@ -21,7 +21,7 @@ export interface IconOnlyButtonProps extends Omit<ButtonProps, 'children'> {
 interface IconTextButtonProps extends ButtonProps {
   icon: React.ReactElement<IconProps>;
   children: React.ReactChild | React.ReactChild[];
-  iconPosition?: ButtonIconPostition;
+  iconPosition?: ButtonIconPosition;
 }
 
 export type MergedButtonProps =
@@ -125,13 +125,13 @@ export const Button: React.FunctionComponent<
         variant={variant ? variant : ButtonVariant.solid}
         {...other}
       >
-        {iconPosition === ButtonIconPostition.right && (
+        {iconPosition === ButtonIconPosition.right && (
           <SpanTextLeft size={size}>{children} </SpanTextLeft>
         )}
         {React.Children.only(
           React.cloneElement(icon, { size: getIconWithTextSize(size) })
         )}
-        {iconPosition !== ButtonIconPostition.right && (
+        {iconPosition !== ButtonIconPosition.right && (
           <SpanTextRight size={size}>{children}</SpanTextRight>
         )}
       </StyledButton>

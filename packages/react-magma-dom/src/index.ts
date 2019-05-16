@@ -9,7 +9,7 @@ export {
   ButtonVariant,
   ButtonTextTransform,
   ButtonType,
-  ButtonIconPostition
+  ButtonIconPosition
 } from './components/StyledButton';
 export { Heading } from './components/Heading';
 export { Input, InputSize, InputType, IconPosition } from './components/Input';

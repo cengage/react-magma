@@ -36,7 +36,7 @@ export enum ButtonTextTransform {
   none = 'none'
 }
 
-export enum ButtonIconPostition {
+export enum ButtonIconPosition {
   left = 'left',
   right = 'right'
 }
