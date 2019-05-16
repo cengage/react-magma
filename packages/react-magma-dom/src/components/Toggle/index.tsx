@@ -13,25 +13,16 @@ enum ToggleTextPostition {
   right = 'right'
 }
 
-export interface ToggleProps {
-  autoFocus?: boolean;
-  checked?: boolean;
-  disabled?: boolean;
-  onBlur?: () => void;
-  onChange?: () => void;
-  onFocus?: () => void;
-  id?: string;
+export interface ToggleProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   testId?: string;
   labelStyle?: React.CSSProperties;
   labelText: string;
-  required?: boolean;
-  style?: React.CSSProperties;
   textPosition?: ToggleTextPostition;
   textVisuallyHidden?: boolean;
   theme?: any;
   thumbStyle?: React.CSSProperties;
   trackStyle?: React.CSSProperties;
-  value?: string;
 }
 
 const HiddenLabelText = styled.span`
@@ -176,74 +167,69 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
   >
     {({ id, onBlur, onChange, onFocus, checked }) => {
       const {
-        autoFocus,
         disabled,
         labelStyle,
         labelText,
-        required,
         style,
         textPosition,
         textVisuallyHidden,
         testId,
         trackStyle,
         thumbStyle,
-        value
+        ...other
       } = props;
 
       return (
         <ThemeContext.Consumer>
-          {theme =>
-            theme && (
-              <StyledContainer>
-                <HiddenInput
-                  autoFocus={autoFocus}
-                  id={id}
-                  data-testid={testId}
+          {theme => (
+            <StyledContainer>
+              <HiddenInput
+                data-testid={testId}
+                disabled={disabled}
+                type="checkbox"
+                {...{
+                  ...other,
+                  id,
+                  onBlur,
+                  onChange,
+                  onFocus,
+                  checked
+                }}
+              />
+              <StyledLabel htmlFor={id} style={style}>
+                {textPosition !== ToggleTextPostition.right &&
+                  renderLabelText(
+                    textVisuallyHidden,
+                    labelText,
+                    ToggleTextPostition.left,
+                    labelStyle
+                  )}
+                <Track
                   checked={checked}
                   disabled={disabled}
-                  name={name}
-                  required={required}
-                  type="checkbox"
-                  value={value}
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  onFocus={onFocus}
-                />
-                <StyledLabel htmlFor={id} style={style}>
-                  {textPosition !== ToggleTextPostition.right &&
-                    renderLabelText(
-                      textVisuallyHidden,
-                      labelText,
-                      ToggleTextPostition.left,
-                      labelStyle
-                    )}
-                  <Track
+                  style={trackStyle}
+                  theme={theme}
+                >
+                  <IconContainer theme={theme}>
+                    <CheckIcon size={11} />
+                  </IconContainer>
+                  <Thumb
                     checked={checked}
                     disabled={disabled}
-                    style={trackStyle}
+                    style={thumbStyle}
                     theme={theme}
-                  >
-                    <IconContainer theme={theme}>
-                      <CheckIcon size={11} />
-                    </IconContainer>
-                    <Thumb
-                      checked={checked}
-                      disabled={disabled}
-                      style={thumbStyle}
-                      theme={theme}
-                    />
-                  </Track>
-                  {textPosition === ToggleTextPostition.right &&
-                    renderLabelText(
-                      textVisuallyHidden,
-                      labelText,
-                      ToggleTextPostition.right,
-                      labelStyle
-                    )}
-                </StyledLabel>
-              </StyledContainer>
-            )
-          }
+                  />
+                </Track>
+                {textPosition === ToggleTextPostition.right &&
+                  renderLabelText(
+                    textVisuallyHidden,
+                    labelText,
+                    ToggleTextPostition.right,
+                    labelStyle
+                  )}
+              </StyledLabel>
+            </StyledContainer>
+          )}
         </ThemeContext.Consumer>
       );
     }}

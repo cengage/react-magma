@@ -182,6 +182,41 @@ The `href` and `to` props are also supported, so that a button can be used as an
     </div>
 ```
 
+## Types
+
+```.jsx
+  class Example extends React.Component {
+      constructor(props) {
+        super(props);
+        this.onFormSubmit = this.onFormSubmit.bind(this);
+        this.onFormReset = this.onFormReset.bind(this);
+
+        this.inputRef = React.createRef();
+      }
+
+      onFormSubmit(event) {
+        event.preventDefault();
+        alert('Form Submitted');
+      }
+
+      onFormReset(event) {
+        event.preventDefault();
+        this.inputRef.current.value = '';
+      }
+
+      render() {
+        return <form onSubmit={this.onFormSubmit} onReset={this.onFormReset}>
+          <Input
+            ref={this.inputRef}
+            labelText='Form Field'
+            value='' />
+          <Button type="submit">Submit</Button>
+          <Button type="reset">Reset</Button>
+        </form>
+      }
+    }
+```
+
 ## Event Handling
 
 The `onClick` event will fire when the button is clicked, or when the enter or space bar key is pressed.
@@ -259,7 +294,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
 | children      | node                                                                |             | &#10003; |
 | color         | enum: 'primary' &#124; 'secondary' &#124; 'success' &#124; 'danger' | 'primary'   |
 | disabled      | boolean                                                             | false       |
-| onClick       | function                                                                |         | &#10003; |
+| onClick       | function                                                            |             | &#10003; |
 | href          | string                                                              |             |
 | id            | string                                                              |             |          |
 | inverse       | boolean                                                             | false       |
@@ -269,5 +304,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
 | testId        | string                                                              |             |          |
 | textTransform | enum: 'uppercase' &#124; 'none'                                     | 'uppercase' |
 | to            | string                                                              |             |
+| type          | enum: 'button' &#124; 'submit' &#124; 'reset'                       |
 | variant       | enum: 'solid' &#124; 'outline' &#124; 'link'                        | 'solid'     |
 | ref           | React.Ref                                                           |             |

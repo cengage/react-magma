@@ -2,9 +2,8 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { HiddenStyles } from '../UtilityStyles';
 
-export interface VisuallyHiddenProps {
-  children: React.ReactChild | React.ReactChild[];
-}
+export interface VisuallyHiddenProps
+  extends React.HTMLAttributes<HTMLDivElement> {}
 
 const VisuallyHiddenDiv = styled.div`
   ${HiddenStyles}

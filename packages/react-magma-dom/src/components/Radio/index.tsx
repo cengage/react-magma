@@ -12,20 +12,16 @@ import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/themeContext';
 import { generateId } from '../utils';
 
-export interface RadioProps {
+export interface RadioProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   color?: string;
-  disabled?: boolean;
-  id?: string;
   testId?: string;
   innerRef?: any;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
-  required?: boolean;
-  style?: React.CSSProperties;
   textVisuallyHidden?: boolean;
-  value?: string;
 }
 
 interface RadioState {
@@ -152,56 +148,52 @@ export class RadioComponent extends React.Component<RadioProps, RadioState> {
       style,
       textVisuallyHidden,
       testId,
-      value
+      value,
+      ...other
     } = this.props;
     return (
       <RadioContext.Consumer>
         {context =>
           context && (
             <ThemeContext.Consumer>
-              {theme =>
-                theme && (
-                  <StyledContainer style={style}>
-                    <HiddenInput
-                      ref={innerRef}
-                      checked={context.selectedValue === value}
-                      id={id}
-                      data-testid={testId}
+              {theme => (
+                <StyledContainer style={style}>
+                  <HiddenInput
+                    ref={innerRef}
+                    checked={context.selectedValue === value}
+                    data-testid={testId}
+                    disabled={disabled}
+                    name={context.name}
+                    required={required}
+                    type="radio"
+                    value={value}
+                    onBlur={context.onBlur}
+                    onChange={context.onChange}
+                    onFocus={context.onFocus}
+                    {...{ ...other, id }}
+                  />
+                  <StyledLabel
+                    htmlFor={id}
+                    inverse={inverse}
+                    style={labelStyle}
+                  >
+                    <StyledFakeInput
+                      color={color ? color : ''}
                       disabled={disabled}
-                      name={context.name}
-                      required={required}
-                      type="radio"
-                      value={value}
-                      onBlur={context.onBlur}
-                      onChange={context.onChange}
-                      onFocus={context.onFocus}
-                    />
-                    <StyledLabel
-                      htmlFor={id}
                       inverse={inverse}
-                      style={labelStyle}
+                      style={inputStyle}
+                      theme={theme}
                     >
-                      <StyledFakeInput
-                        color={color ? color : ''}
-                        disabled={disabled}
-                        inverse={inverse}
-                        style={inputStyle}
-                        theme={theme}
-                      >
-                        <SelectedIcon
-                          color={color ? color : ''}
-                          theme={theme}
-                        />
-                      </StyledFakeInput>
-                      {textVisuallyHidden ? (
-                        <HiddenLabelText>{labelText}</HiddenLabelText>
-                      ) : (
-                        labelText
-                      )}
-                    </StyledLabel>
-                  </StyledContainer>
-                )
-              }
+                      <SelectedIcon color={color ? color : ''} theme={theme} />
+                    </StyledFakeInput>
+                    {textVisuallyHidden ? (
+                      <HiddenLabelText>{labelText}</HiddenLabelText>
+                    ) : (
+                      labelText
+                    )}
+                  </StyledLabel>
+                </StyledContainer>
+              )}
             </ThemeContext.Consumer>
           )
         }

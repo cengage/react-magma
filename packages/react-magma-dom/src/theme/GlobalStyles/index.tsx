@@ -87,7 +87,7 @@ function getStyles(theme) {
 export const GlobalStyles: React.FunctionComponent = () => {
   return (
     <ThemeContext.Consumer>
-      {theme => theme && <Global styles={getStyles(theme)} />}
+      {theme => <Global styles={getStyles(theme)} />}
     </ThemeContext.Consumer>
   );
 };

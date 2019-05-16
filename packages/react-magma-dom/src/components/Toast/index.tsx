@@ -56,47 +56,42 @@ export const Toast: React.FunctionComponent<ToastProps> = ({
   onMouseLeave
 }: ToastProps) => (
   <ThemeContext.Consumer>
-    {theme =>
-      theme && (
-        <AlertCore
-          transitionDuration={transitionDuration}
-          onDismiss={onDismiss}
-        >
-          {({ handleDismiss, isExiting }) => (
-            <ToastCore
-              toastDuration={toastDuration}
-              disableAutoDismiss={disableAutoDismiss}
-              onDismiss={handleDismiss}
-              onMouseEnter={onMouseEnter}
-              onMouseLeave={onMouseLeave}
-            >
-              {({
-                handleMouseEnter,
-                handleMouseLeave,
-                clearTimeoutAndDismiss
-              }) => (
-                <ToastWrapper
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                  style={style}
+    {theme => (
+      <AlertCore transitionDuration={transitionDuration} onDismiss={onDismiss}>
+        {({ handleDismiss, isExiting }) => (
+          <ToastCore
+            toastDuration={toastDuration}
+            disableAutoDismiss={disableAutoDismiss}
+            onDismiss={handleDismiss}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+          >
+            {({
+              handleMouseEnter,
+              handleMouseLeave,
+              clearTimeoutAndDismiss
+            }) => (
+              <ToastWrapper
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                style={style}
+              >
+                <Alert
+                  id={id}
+                  testId={testId}
+                  style={alertStyle}
+                  isExiting={isExiting}
+                  dismissable={dismissable}
+                  variant={variant}
+                  onDismiss={clearTimeoutAndDismiss}
                 >
-                  <Alert
-                    id={id}
-                    testId={testId}
-                    style={alertStyle}
-                    isExiting={isExiting}
-                    dismissable={dismissable}
-                    variant={variant}
-                    onDismiss={clearTimeoutAndDismiss}
-                  >
-                    {children}
-                  </Alert>
-                </ToastWrapper>
-              )}
-            </ToastCore>
-          )}
-        </AlertCore>
-      )
-    }
+                  {children}
+                </Alert>
+              </ToastWrapper>
+            )}
+          </ToastCore>
+        )}
+      </AlertCore>
+    )}
   </ThemeContext.Consumer>
 );

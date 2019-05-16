@@ -2,11 +2,9 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/themeContext';
 
-export interface LabelProps {
-  children: React.ReactChild | React.ReactChild[];
-  htmlFor?: string;
+export interface LabelProps
+  extends React.LabelHTMLAttributes<HTMLLabelElement> {
   inverse?: boolean;
-  style?: React.CSSProperties;
   theme?: any;
   testId?: string;
 }
@@ -24,23 +22,20 @@ const StyledLabel = styled.label<LabelProps>`
 `;
 
 function renderLabel(props) {
-  const { children, htmlFor, inverse, testId, style } = props;
+  const { children, inverse, testId, ...other } = props;
 
   return (
     <ThemeContext.Consumer>
-      {theme =>
-        theme && (
-          <StyledLabel
-            data-testid={testId}
-            style={style}
-            htmlFor={htmlFor}
-            inverse={inverse}
-            theme={theme}
-          >
-            {children}
-          </StyledLabel>
-        )
-      }
+      {theme => (
+        <StyledLabel
+          data-testid={testId}
+          inverse={inverse}
+          theme={theme}
+          {...other}
+        >
+          {children}
+        </StyledLabel>
+      )}
     </ThemeContext.Consumer>
   );
 }
