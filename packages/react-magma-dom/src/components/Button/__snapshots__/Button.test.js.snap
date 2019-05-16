@@ -3,7 +3,7 @@
 exports[`Button Base Button Snapshot should render with large size 1`] = `
 <div>
   <button
-    class="css-1fs3ka8 e183qit0"
+    class="css-1fkonf1-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -16,7 +16,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 exports[`Button Base Button Snapshot should render with small size 1`] = `
 <div>
   <button
-    class="css-1s5rzag e183qit0"
+    class="css-4ez70t-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -29,7 +29,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
 exports[`Button Base Button Snapshot should render with updated color 1`] = `
 <div>
   <button
-    class="css-4x3nij e183qit0"
+    class="css-xpdwzk-StyledButtonComponent e183qit0"
     color="secondary"
     id="testId"
     shape="fill"
@@ -42,7 +42,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 <div>
   <button
-    class="css-12f1w2t e183qit0"
+    class="css-98egax-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="round"
@@ -55,7 +55,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 exports[`Button Base Button Snapshot should render with updated textTransform 1`] = `
 <div>
   <button
-    class="css-jubjjm e183qit0"
+    class="css-18777kp-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -68,7 +68,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 <div>
   <button
-    class="css-exk0g0 e183qit0"
+    class="css-1idu1p8-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -82,7 +82,7 @@ exports[`Button Icon Only Button Snapshot should render with large size 1`] = `
 <div>
   <button
     aria-label="Check Icon"
-    class="css-mnpfpi e183qit0"
+    class="css-7sidls-StyledButtonComponent-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="round"
@@ -112,7 +112,7 @@ exports[`Button Icon Only Button Snapshot should render with small size 1`] = `
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1xqhztd e183qit0"
+    class="css-2deuy2-StyledButtonComponent-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="round"
@@ -142,7 +142,7 @@ exports[`Button Icon Only Button Snapshot should render with updated color 1`] =
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1k6yz2s e183qit0"
+    class="css-ve45ov-StyledButtonComponent-StyledButtonComponent e183qit0"
     color="secondary"
     id="testId"
     shape="round"
@@ -172,7 +172,7 @@ exports[`Button Icon Only Button Snapshot should render with updated shape 1`] =
 <div>
   <button
     aria-label="Check Icon"
-    class="css-uyui93 e183qit0"
+    class="css-14gdnce-StyledButtonComponent-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -202,7 +202,7 @@ exports[`Button Icon Only Button Snapshot should render with updated variant 1`]
 <div>
   <button
     aria-label="Check Icon"
-    class="css-29uj2w e183qit0"
+    class="css-1a6zkql-StyledButtonComponent-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="round"
@@ -232,13 +232,13 @@ exports[`Button Icon With Text Button Snapshot should render with large size 1`]
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1fs3ka8 e183qit0"
+    class="css-1fkonf1-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"
   >
     <span
-      class="css-6d5fwk e1cefif80"
+      class="css-1apg407-SpanTextLeft e1cefif80"
     >
       Test Text
        
@@ -268,13 +268,13 @@ exports[`Button Icon With Text Button Snapshot should render with medium size 1`
 <div>
   <button
     aria-label="Check Icon"
-    class="css-qhwgaw e183qit0"
+    class="css-14nugrn-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"
   >
     <span
-      class="css-1p2jtab e1cefif80"
+      class="css-4fhr0b-SpanTextLeft e1cefif80"
     >
       Test Text
        
@@ -304,13 +304,13 @@ exports[`Button Icon With Text Button Snapshot should render with small size 1`]
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1s5rzag e183qit0"
+    class="css-4ez70t-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"
   >
     <span
-      class="css-1p2jtab e1cefif80"
+      class="css-4fhr0b-SpanTextLeft e1cefif80"
     >
       Test Text
        
@@ -340,13 +340,13 @@ exports[`Button Icon With Text Button Snapshot should render with updated color 
 <div>
   <button
     aria-label="Check Icon"
-    class="css-4x3nij e183qit0"
+    class="css-xpdwzk-StyledButtonComponent e183qit0"
     color="secondary"
     id="testId"
     shape="fill"
   >
     <span
-      class="css-1p2jtab e1cefif80"
+      class="css-4fhr0b-SpanTextLeft e1cefif80"
     >
       Test Text
        
@@ -376,13 +376,13 @@ exports[`Button Icon With Text Button Snapshot should render with updated shape 
 <div>
   <button
     aria-label="Check Icon"
-    class="css-qhwgaw e183qit0"
+    class="css-14nugrn-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"
   >
     <span
-      class="css-1p2jtab e1cefif80"
+      class="css-4fhr0b-SpanTextLeft e1cefif80"
     >
       Test Text
        
@@ -412,13 +412,13 @@ exports[`Button Icon With Text Button Snapshot should render with updated text t
 <div>
   <button
     aria-label="Check Icon"
-    class="css-jubjjm e183qit0"
+    class="css-18777kp-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"
   >
     <span
-      class="css-1p2jtab e1cefif80"
+      class="css-4fhr0b-SpanTextLeft e1cefif80"
     >
       Test Text
        
@@ -448,13 +448,13 @@ exports[`Button Icon With Text Button Snapshot should render with updated varian
 <div>
   <button
     aria-label="Check Icon"
-    class="css-exk0g0 e183qit0"
+    class="css-1idu1p8-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"
   >
     <span
-      class="css-1p2jtab e1cefif80"
+      class="css-4fhr0b-SpanTextLeft e1cefif80"
     >
       Test Text
        

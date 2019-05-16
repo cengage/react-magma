@@ -15,12 +15,13 @@ import styled from '@emotion/styled';
 export interface CheckboxProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   color?: string;
-  testId?: string;
+  containerStyle?: React.CSSProperties;
   indeterminate?: boolean;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
+  testId?: string;
   textVisuallyHidden?: boolean;
 }
 
@@ -171,13 +172,13 @@ export class Checkbox extends React.Component<CheckboxProps> {
         {({ id, onBlur, onChange, onFocus, checked }) => {
           const {
             color,
+            containerStyle,
             disabled,
             indeterminate,
             inputStyle,
             inverse,
             labelStyle,
             labelText,
-            style,
             textVisuallyHidden,
             testId,
             ...other
@@ -186,12 +187,11 @@ export class Checkbox extends React.Component<CheckboxProps> {
           return (
             <ThemeContext.Consumer>
               {theme => (
-                <StyledContainer style={style}>
+                <StyledContainer style={containerStyle}>
                   <HiddenInput
                     data-testid={testId}
                     checked={checked}
                     disabled={disabled}
-                    id={id}
                     indeterminate={indeterminate}
                     name={name}
                     ref={this.checkboxInput}

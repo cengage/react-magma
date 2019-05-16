@@ -74,17 +74,17 @@ Adding the `textVisuallyHidden` prop will make the label text available to scree
 
 ## Custom Styles
 
-Custom styles can be passed into both the Toggle component. The `style` property will apply to the container.
+Custom styles can be passed into both the Toggle component. The `containerStyle` property will apply to the container.
 Additional `labelStyle`, `trackStyle` and `thumbStyle` properties are available to style the respective elements.
 Please use discretion when adding custom styles.
 
 ```.jsx
   <div>
     <Toggle
+        containerStyle={{ 'border': '1px dotted purple', 'width': '100%'}}
         id='custom1'
         labelStyle={{ 'fontStyle': 'italic', 'flexGrow': '1'}}
         labelText='Custom Styles'
-        style={{ 'border': '1px dotted purple', 'width': '100%'}}
         thumbStyle={{ 'background': 'yellow', 'border' : '1px solid orange', 'boxShadow': '0 0 0' }}
         trackStyle={{ 'borderRadius': '5px', 'height': '18px'}} />
   </div>
@@ -128,6 +128,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 | ------------------ | --------------------------- | ------- | :------: |
 | autoFocus          | boolean                     |         |
 | checked            | boolean                     |         |
+| containerStyle     | React.CSSProperties         |         |
 | disabled           | boolean                     |         |
 | onBlur             | function                    |         |
 | onChange           | function                    |         |
@@ -136,7 +137,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 | labelStyle         | React.CSSProperties         |         |
 | labelText          | string                      |         | &#10003; |
 | required           | function                    |         |
-| style              | React.CSSProperties         |         |
 | textPosition       | enum: 'left' &#124; 'right' | 'left'  |
 | textVisuallyHidden | boolean                     |         |
 | testId             | string                      |         |
