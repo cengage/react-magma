@@ -36,5 +36,18 @@ packages.forEach(package => {
   writeJsonSync(package.path, updatedConfig, { spaces: 2 });
 });
 
+// Update package-lock files
+packagePaths
+  .filter(path => existsSync(`${path}/package-lock.json`))
+  .forEach(path => {
+    const packageLockPath = `${path}/package-lock.json`;
+    const lockFile = require(packageLockPath);
+    writeJsonSync(
+      packageLockPath,
+      { ...lockFile, version: targetVersion },
+      { spaces: 2 }
+    );
+  });
+
 // Write out updated lerna config
 writeJsonSync(lernaConfigPath, updatedLernaConfig, { spaces: 2 });
