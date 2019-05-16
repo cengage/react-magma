@@ -40,7 +40,6 @@ describe('Checkbox', () => {
 
     expect(checkbox).toBeInTheDocument();
     expect(checkbox).toHaveAttribute('id', CHECKBOX_PROPS.id);
-    expect(checkbox).toHaveAttribute('value', CHECKBOX_PROPS.value);
     expect(checkbox).not.toHaveAttribute('required');
     expect(checkbox).not.toHaveAttribute('autoFocus');
   });

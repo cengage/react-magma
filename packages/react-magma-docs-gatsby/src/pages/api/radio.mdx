@@ -5,11 +5,13 @@ title: 'Radio Buttons'
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
 
-<DocsHeading to="/design/selection-controls/#5._radio%20buttons" type="design">Radio Buttons</DocsHeading>
+<DocsHeading to="/design/selection-controls/#5._radio%20buttons" type="design">
+  Radio Buttons
+</DocsHeading>
 
 ## Basic Usage
 
-Radio buttons are form elements used to select one item from a set of mutuallty exclusive options. The `RadioGroup` component is used as the container for the set of options.  The `Radio` component is used for each of the options themselves.
+Radio buttons are form elements used to select one item from a set of mutuallty exclusive options. The `RadioGroup` component is used as the container for the set of options. The `Radio` component is used for each of the options themselves.
 
 See also: <Link to="/api/checkbox">Checkboxes</Link>, <Link to="/api/toggle">Toggle Switches</Link>, and the <Link to="/design/selection-controls">Design Guidelines</Link> for selection controls in general.
 
@@ -98,7 +100,7 @@ Inverse is an optional boolean prop, that may be passed in when radio buttons ar
 
 ```.jsx
   <RadioGroup
-    style={{ background : '#00263E', color: '#fff', padding: '10px' }}
+    containerStyle={{ background : '#00263E', color: '#fff', padding: '10px' }}
     labelText='Inverse Radio Buttons'
     id='inverseGroup'
     name='inverse'>
@@ -136,7 +138,7 @@ Inverse is an optional boolean prop, that may be passed in when radio buttons ar
 
 ## Custom Styles
 
-Custom styles can be passed into both the RadioGroup component and the Radio component. The `style` property will apply to the container.
+Custom styles can be passed into both the RadioGroup component and the Radio component. The `containerStyle` property will apply to the container.
 Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
 
 ```.jsx
@@ -147,11 +149,10 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
     id='customGroup'
     name='custom'>
     <Radio
-        id='custom1'
+        containerStyle={{ 'border': '1px dotted purple'}}
         inputStyle={{ 'boxShadow': '3px 3px 3px rgba(0, 0 , 0, .6)'}}
         labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
         labelText='Custom Styles'
-        style={{ 'border': '1px dotted purple'}}
         value='1' />
 
     <Radio
@@ -161,18 +162,18 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
   </RadioGroup>
 ```
 
-
 ## Labeling Radio Groups
-To meet accessibilty requirements, a radio group *must* have a label.  You can provide a label in one of two ways.
 
-You can use the `labelText` prop, which takes a string.  This string will be displayed on screen inside a `<label>` element and be associated with your radio group.
+To meet accessibilty requirements, a radio group _must_ have a label. You can provide a label in one of two ways.
 
-Or you can use the `labelledById` prop, which also takes a string.  This string should refer to an ID of an element that exists somewhere else on the page.
+You can use the `labelText` prop, which takes a string. This string will be displayed on screen inside a `<label>` element and be associated with your radio group.
+
+Or you can use the `labelledById` prop, which also takes a string. This string should refer to an ID of an element that exists somewhere else on the page.
 This id will become the value of the `aria-labelledby` attribute for the group.
 
 ```.jsx
   <div>
-    
+
     <RadioGroup
         id='labelledByGroup'
         labelText="Labelled by labelText"
@@ -182,8 +183,8 @@ This id will become the value of the `aria-labelledby` attribute for the group.
           <Radio
               labelText='Label' />
       </RadioGroup>
-    
-    
+
+
     <RadioGroup
         id='labelledByGroup'
         labelledById="h3Label"
@@ -196,7 +197,6 @@ This id will become the value of the `aria-labelledby` attribute for the group.
       </RadioGroup>
   </div>
 ```
-
 
 ## Visually Hidden Label
 
@@ -289,15 +289,15 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 | Prop               | Type                | Default | Required |
 | ------------------ | ------------------- | ------- | :------: |
 | children           | React.ReactChild    |         | &#10003; |
+| containerStyle     | React.CSSProperties |         |          |
 | onBlur             | function            |         |          |
 | onChange           | function            |         |          |
 | onFocus            | function            |         |          |
 | id                 | string              |         |          |
-| labelledById        | string              |         |          |
+| labelledById       | string              |         |          |
 | labelStyle         | React.CSSProperties |         |          |
 | labelText          | string              |         |          |
 | name               | string              |         | &#10003; |
-| style              | React.CSSProperties |         |          |
 | testId             | string              |         |          |
 | textVisuallyHidden | boolean             |         |          |
 | value              | string              |         |          |
@@ -314,7 +314,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 | labelStyle         | React.CSSProperties |         |          |
 | labelText          | string              |         | &#10003; |
 | required           | function            |         |          |
-| style              | React.CSSProperties |         |          |
+| containerStyle     | React.CSSProperties |         |
 | testId             | string              |         |          |
 | textVisuallyHidden | boolean             | false   |          |
 | value              | string              |         |          |

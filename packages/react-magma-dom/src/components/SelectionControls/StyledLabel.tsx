@@ -24,17 +24,15 @@ export const StyledLabel: React.FunctionComponent<StyledLabelProps> = ({
   style
 }: StyledLabelProps) => (
   <ThemeContext.Consumer>
-    {theme =>
-      theme && (
-        <StyledLabelComponent
-          htmlFor={htmlFor}
-          inverse={inverse}
-          style={style}
-          theme={theme}
-        >
-          {children}
-        </StyledLabelComponent>
-      )
-    }
+    {theme => (
+      <StyledLabelComponent
+        htmlFor={htmlFor}
+        inverse={inverse}
+        style={style}
+        theme={theme}
+      >
+        {children}
+      </StyledLabelComponent>
+    )}
   </ThemeContext.Consumer>
 );

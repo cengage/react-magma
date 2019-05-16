@@ -43,7 +43,6 @@ describe('Toggle', () => {
 
     expect(toggle).toBeInTheDocument();
     expect(toggle).toHaveAttribute('id', TOGGLE_PROPS.id);
-    expect(toggle).toHaveAttribute('value', TOGGLE_PROPS.value);
     expect(toggle).not.toHaveAttribute('checked');
     expect(toggle).not.toHaveAttribute('required');
     expect(toggle).not.toHaveAttribute('autoFocus');

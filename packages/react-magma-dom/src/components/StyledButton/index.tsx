@@ -41,27 +41,29 @@ export enum ButtonIconPosition {
   right = 'right'
 }
 
-export interface ButtonProps {
+export enum ButtonType {
+  button = 'button',
+  submit = 'submit',
+  reset = 'reset'
+}
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   ariaExpanded?: boolean;
   ariaLabel?: string;
   as?: any;
   autoFocus?: boolean;
   block?: boolean;
-  className?: string;
-  children: React.ReactChild | React.ReactChild[];
   color?: ButtonColor;
-  disabled?: boolean;
   href?: string;
-  id?: string;
   testId?: string;
   inverse?: boolean;
-  onClick?: (event: React.SyntheticEvent) => void;
   shape?: ButtonShape;
   size?: ButtonSize;
-  style?: React.CSSProperties;
   textTransform?: ButtonTextTransform;
   theme?: any;
   to?: string;
+  type?: ButtonType;
   variant?: ButtonVariant;
 }
 
@@ -428,58 +430,44 @@ export const StyledButton: React.FunctionComponent<
       ariaExpanded,
       ariaLabel,
       as,
-      autoFocus,
       block,
-      className,
       children,
-      disabled,
-      onClick,
-      href,
       iconOnly,
-      id,
       testId,
       inverse,
       color,
       shape,
       size,
-      style,
       textTransform,
       to,
-      variant
+      variant,
+      ...other
     }: StyledButtonProps,
     ref: any
   ) => (
     <ThemeContext.Consumer>
-      {theme =>
-        theme && (
-          <StyledButtonComponent
-            id={id}
-            data-testid={testId}
-            ref={ref}
-            as={as}
-            aria-expanded={ariaExpanded}
-            aria-label={ariaLabel}
-            className={className}
-            autoFocus={autoFocus}
-            onClick={onClick}
-            block={block}
-            color={color}
-            disabled={disabled}
-            href={href}
-            iconOnly={iconOnly}
-            inverse={inverse}
-            shape={shape}
-            size={size}
-            style={style}
-            textTransform={textTransform}
-            theme={theme}
-            to={to}
-            variant={variant}
-          >
-            {children}
-          </StyledButtonComponent>
-        )
-      }
+      {theme => (
+        <StyledButtonComponent
+          data-testid={testId}
+          ref={ref}
+          as={as}
+          aria-expanded={ariaExpanded}
+          aria-label={ariaLabel}
+          block={block}
+          color={color}
+          iconOnly={iconOnly}
+          inverse={inverse}
+          shape={shape}
+          size={size}
+          textTransform={textTransform}
+          theme={theme}
+          to={to}
+          variant={variant}
+          {...other}
+        >
+          {children}
+        </StyledButtonComponent>
+      )}
     </ThemeContext.Consumer>
   )
 );

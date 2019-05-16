@@ -5,10 +5,8 @@ import { AlertCore, ToastCore } from 'react-magma-core';
 import { Alert, AlertProps, transitionDuration } from '../Alert';
 
 export interface ToastProps extends AlertProps {
-  children: React.ReactNode;
-  id?: string;
-  testId?: string;
-  onDismiss: () => void;
+  alertStyle?: React.CSSProperties;
+  containerStyle?: React.CSSProperties;
   toastDuration?: number;
   disableAutoDismiss?: boolean;
   onMouseEnter?: (event: React.SyntheticEvent) => void;
@@ -16,7 +14,7 @@ export interface ToastProps extends AlertProps {
 }
 
 const ToastWrapper = styled.div`
-  z-index: 1;
+  z-index: 999;
   position: fixed;
   display: flex;
   left: 25px;
@@ -45,12 +43,13 @@ const ToastWrapper = styled.div`
 `;
 
 export const Toast: React.FunctionComponent<ToastProps> = ({
+  alertStyle,
   id,
   testId,
   variant,
   dismissable,
-  style,
   children,
+  containerStyle,
   onDismiss,
   toastDuration,
   disableAutoDismiss,
@@ -58,46 +57,42 @@ export const Toast: React.FunctionComponent<ToastProps> = ({
   onMouseLeave
 }: ToastProps) => (
   <ThemeContext.Consumer>
-    {theme =>
-      theme && (
-        <AlertCore
-          transitionDuration={transitionDuration}
-          onDismiss={onDismiss}
-        >
-          {({ handleDismiss, isExiting }) => (
-            <ToastCore
-              toastDuration={toastDuration}
-              disableAutoDismiss={disableAutoDismiss}
-              onDismiss={handleDismiss}
-              onMouseEnter={onMouseEnter}
-              onMouseLeave={onMouseLeave}
-            >
-              {({
-                handleMouseEnter,
-                handleMouseLeave,
-                clearTimeoutAndDismiss
-              }) => (
-                <ToastWrapper
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
+    {theme => (
+      <AlertCore transitionDuration={transitionDuration} onDismiss={onDismiss}>
+        {({ handleDismiss, isExiting }) => (
+          <ToastCore
+            toastDuration={toastDuration}
+            disableAutoDismiss={disableAutoDismiss}
+            onDismiss={handleDismiss}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+          >
+            {({
+              handleMouseEnter,
+              handleMouseLeave,
+              clearTimeoutAndDismiss
+            }) => (
+              <ToastWrapper
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                style={containerStyle}
+              >
+                <Alert
+                  id={id}
+                  testId={testId}
+                  style={alertStyle}
+                  isExiting={isExiting}
+                  dismissable={dismissable}
+                  variant={variant}
+                  onDismiss={clearTimeoutAndDismiss}
                 >
-                  <Alert
-                    id={id}
-                    testId={testId}
-                    style={style}
-                    isExiting={isExiting}
-                    dismissable={dismissable}
-                    variant={variant}
-                    onDismiss={clearTimeoutAndDismiss}
-                  >
-                    {children}
-                  </Alert>
-                </ToastWrapper>
-              )}
-            </ToastCore>
-          )}
-        </AlertCore>
-      )
-    }
+                  {children}
+                </Alert>
+              </ToastWrapper>
+            )}
+          </ToastCore>
+        )}
+      </AlertCore>
+    )}
   </ThemeContext.Consumer>
 );

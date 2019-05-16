@@ -3,13 +3,9 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/themeContext';
 
-export interface HeadingProps {
-  children: React.ReactChild | React.ReactChild[];
+export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   level: number;
-  id?: string;
   testId?: string;
-  style?: React.CSSProperties;
-  ref?: any;
   tabIndex?: number;
 }
 
@@ -69,28 +65,22 @@ function renderHeading(level: number) {
 }
 
 export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
-  (
-    { level, id, testId, tabIndex, style, children }: HeadingProps,
-    ref: any
-  ) => {
+  ({ level, testId, tabIndex, children, ...other }: HeadingProps, ref: any) => {
     const HeadingComponent = renderHeading(level);
 
     return (
       <ThemeContext.Consumer>
-        {theme =>
-          theme && (
-            <HeadingComponent
-              ref={ref}
-              id={id}
-              data-testid={testId}
-              style={style}
-              tabIndex={tabIndex}
-              theme={theme}
-            >
-              {children}
-            </HeadingComponent>
-          )
-        }
+        {theme => (
+          <HeadingComponent
+            ref={ref}
+            data-testid={testId}
+            tabIndex={tabIndex}
+            theme={theme}
+            {...other}
+          >
+            {children}
+          </HeadingComponent>
+        )}
       </ThemeContext.Consumer>
     );
   }

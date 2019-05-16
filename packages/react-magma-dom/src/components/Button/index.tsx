@@ -81,22 +81,17 @@ export const Button: React.FunctionComponent<
     ariaExpanded,
     ariaLabel,
     as,
-    autoFocus,
-    className,
-    disabled,
     inverse,
     block,
     color,
     href,
-    id,
-    onClick,
     testId,
     shape,
     size,
-    style,
     variant,
     textTransform,
-    to
+    to,
+    ...other
   } = props;
 
   if (instanceOfIconOnly(props)) {
@@ -112,28 +107,23 @@ export const Button: React.FunctionComponent<
   if (icon && children) {
     return (
       <StyledButton
-        id={id}
         testId={testId}
         ref={ref}
         ariaLabel={ariaLabel}
         ariaExpanded={ariaExpanded}
         as={as}
-        autoFocus={autoFocus}
-        onClick={onClick}
         block={block}
-        className={className}
         color={color ? color : ButtonColor.primary}
-        disabled={disabled}
         inverse={inverse}
         href={href}
         shape={shape ? shape : ButtonShape.fill}
         size={size ? size : ButtonSize.medium}
-        style={style}
         textTransform={
           textTransform ? textTransform : ButtonTextTransform.uppercase
         }
         to={to}
         variant={variant ? variant : ButtonVariant.solid}
+        {...other}
       >
         {iconPosition === ButtonIconPosition.right && (
           <SpanTextLeft size={size}>{children} </SpanTextLeft>
@@ -149,25 +139,20 @@ export const Button: React.FunctionComponent<
   } else if (icon && !children) {
     return (
       <StyledButton
-        id={id}
         testId={testId}
         ref={ref}
         ariaExpanded={ariaExpanded}
         ariaLabel={ariaLabel}
         as={as}
-        autoFocus={autoFocus}
-        className={className}
-        onClick={onClick}
         color={color ? color : ButtonColor.primary}
-        disabled={disabled}
         iconOnly
         inverse={inverse}
         href={href}
         shape={shape ? shape : ButtonShape.round}
         size={size ? size : ButtonSize.medium}
-        style={style}
         to={to}
         variant={variant ? variant : ButtonVariant.solid}
+        {...other}
       >
         {React.Children.only(
           React.cloneElement(icon, { size: getIconSize(size) })
@@ -178,28 +163,23 @@ export const Button: React.FunctionComponent<
 
   return (
     <StyledButton
-      id={id}
       testId={testId}
       ref={ref}
       as={as}
       ariaExpanded={ariaExpanded}
       ariaLabel={ariaLabel}
-      autoFocus={autoFocus}
-      className={className}
-      onClick={onClick}
       block={block}
       color={color ? color : ButtonColor.primary}
-      disabled={disabled}
       href={href}
       inverse={inverse}
       shape={shape ? shape : ButtonShape.fill}
       size={size ? size : ButtonSize.medium}
-      style={style}
       textTransform={
         textTransform ? textTransform : ButtonTextTransform.uppercase
       }
       to={to}
       variant={variant ? variant : ButtonVariant.solid}
+      {...other}
     >
       {children}
     </StyledButton>

@@ -146,18 +146,18 @@ Adding the `textVisuallyHidden` prop will make the label text available to scree
 
 ## Custom Styles
 
-Custom styles can be passed into both the Checkbox component.  The `style` property will apply to the container.
+Custom styles can be passed into both the Checkbox component.  The `containerStyle` property will apply to the container.
 Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
 
 ```.jsx
   <div>
     <Checkbox
         checked
+        containerStyle={{ 'border': '1px dotted purple'}}
         id='custom1'
         inputStyle={{ 'boxShadow': '3px 3px 3px rgba(0, 0 , 0, .6)'}}
         labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
-        labelText='Custom Styles'
-        style={{ 'border': '1px dotted purple'}} />
+        labelText='Custom Styles' />
 
     <Checkbox
         checked
@@ -210,6 +210,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 | autoFocus          | boolean             | false   |
 | checked            | boolean             | false   |
 | color              | string              |         |
+| containerStyle     | React.CSSProperties |         |
 | disabled           | boolean             | false   |
 | id                 | string              |         |          |
 | indeterminate      | boolean             | false   |
@@ -221,7 +222,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 | onChange           | function            |         |
 | onFocus            | function            |         |
 | required           | boolean             | false   |
-| style              | React.CSSProperties |         |
 | testId             | string              |         |
 | textVisuallyHidden | boolean             | false   |
 | value              | string              |         |

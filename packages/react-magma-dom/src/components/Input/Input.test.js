@@ -66,7 +66,7 @@ describe('Input', () => {
     const { container, getByLabelText, getByText } = renderInput({
       inputStyle: { color: inputColor },
       labelStyle: { color: labelColor },
-      style: { color: divColor }
+      containerStyle: { color: divColor }
     });
 
     const div = container.querySelector('div');

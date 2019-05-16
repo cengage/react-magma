@@ -8,10 +8,7 @@ const RADIO_PROPS = {
   labelText: 'Blue',
   id: 'blueId',
   value: 'blue',
-  name: 'colors',
-  onBlur: jest.fn(),
-  onChange: jest.fn(),
-  onFocus: jest.fn()
+  name: 'colors'
 };
 const RADIO_CONTEXT = {
   name: 'colors',
