@@ -1,6 +1,6 @@
 {
   "name": "react-magma",
-  "version": "0.1.0-SNAPSHOT",
+  "version": "0.1.0-beta.10",
   "private": true,
   "scripts": {
     "postinstall": "lerna bootstrap && npm run build && npm run createStaticFile",
@@ -15,12 +15,18 @@
     "docs": "lerna exec --scope react-magma-docs-gatsby gatsby develop",
     "createStaticFile": "echo 'pushstate: enabled' >| packages/react-magma-docs-gatsby/public/Staticfile",
     "cm": "git-cz",
-    "cm-retry": "git-cz --retry"
+    "cm-retry": "git-cz --retry",
+    "bump": "standard-version -a --prerelease beta --release-as patch"
   },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "lerna run lint && npm run test"
+    }
+  },
+  "standard-version": {
+    "scripts": {
+      "postbump": "node ./tools/sync-versions && git add ."
     }
   },
   "devDependencies": {
@@ -33,7 +39,8 @@
     "jest": "^23.6.0",
     "jest-watch-typeahead": "^0.2.0",
     "lerna": "^3.1.4",
-    "nyc": "^13.0.1"
+    "nyc": "^13.0.1",
+    "standard-version": "^6.0.1"
   },
   "config": {
     "commitizen": {
