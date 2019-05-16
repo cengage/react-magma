@@ -54,7 +54,6 @@ export interface ButtonProps
   as?: any;
   autoFocus?: boolean;
   block?: boolean;
-  children: React.ReactChild | React.ReactChild[];
   color?: ButtonColor;
   href?: string;
   testId?: string;

@@ -15,18 +15,13 @@ import { generateId } from '../utils';
 export interface RadioProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   color?: string;
-  // disabled?: boolean;
-  // id?: string;
   testId?: string;
   innerRef?: any;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
-  // required?: boolean;
-  // style?: React.CSSProperties;
   textVisuallyHidden?: boolean;
-  // value?: string;
 }
 
 interface RadioState {

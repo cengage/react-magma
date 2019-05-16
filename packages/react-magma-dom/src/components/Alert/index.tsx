@@ -26,7 +26,6 @@ export enum AlertVariant {
 }
 
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
   closeLabel?: string;
   testId?: string;
   dismissable?: boolean;
