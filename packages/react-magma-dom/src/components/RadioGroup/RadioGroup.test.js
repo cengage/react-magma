@@ -32,6 +32,9 @@ const renderRadioGroup = (myProps = {}) => {
 };
 
 describe('Radio Group', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
   it('should find element by testId', () => {
     const testId = 'test-id';
     const { getByTestId } = renderRadioGroup({ testId });
@@ -100,17 +103,25 @@ describe('Radio Clone', () => {
 
   it('Changes the selected radio when clicked', () => {
     const onChangeSpy = jest.fn();
-    const { getByLabelText } = renderRadioGroup({
-      onChange: onChangeSpy
-    });
-
-    fireEvent(
-      getByLabelText('Success Color'),
-      new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true
-      })
+    const { getByLabelText } = render(
+      <RadioGroup
+        value="default"
+        labelText="Colors"
+        id="colorsGroup"
+        name="colors"
+        onChange={onChangeSpy}
+      >
+        <Radio id="colorRadio" labelText="Default Color" value="default" />
+        <Radio
+          color={magma.colors.success01}
+          id="successColorRadio"
+          labelText="Success Color"
+          value="success"
+        />
+      </RadioGroup>
     );
+
+    fireEvent.click(getByLabelText('Success Color'));
 
     expect(onChangeSpy).toHaveBeenCalledTimes(1);
 

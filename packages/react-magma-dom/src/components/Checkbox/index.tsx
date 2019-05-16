@@ -12,26 +12,17 @@ import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';
 
-export interface CheckboxProps {
-  autoFocus?: boolean;
+export interface CheckboxProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   color?: string;
   containerStyle?: React.CSSProperties;
-  checked?: boolean;
-  disabled?: boolean;
-  onBlur?: () => void;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onFocus?: () => void;
-  id?: string;
-  testId?: string;
   indeterminate?: boolean;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
-  name?: string;
-  required?: boolean;
+  testId?: string;
   textVisuallyHidden?: boolean;
-  value?: string;
 }
 
 const HiddenLabelText = styled.span`
@@ -180,7 +171,6 @@ export class Checkbox extends React.Component<CheckboxProps> {
       >
         {({ id, onBlur, onChange, onFocus, checked }) => {
           const {
-            autoFocus,
             color,
             containerStyle,
             disabled,
@@ -189,62 +179,55 @@ export class Checkbox extends React.Component<CheckboxProps> {
             inverse,
             labelStyle,
             labelText,
-            name,
-            required,
             textVisuallyHidden,
             testId,
-            value
+            ...other
           } = this.props;
 
           return (
             <ThemeContext.Consumer>
-              {theme =>
-                theme && (
-                  <StyledContainer style={containerStyle}>
-                    <HiddenInput
-                      autoFocus={autoFocus}
-                      data-testid={testId}
+              {theme => (
+                <StyledContainer style={containerStyle}>
+                  <HiddenInput
+                    data-testid={testId}
+                    checked={checked}
+                    disabled={disabled}
+                    indeterminate={indeterminate}
+                    name={name}
+                    ref={this.checkboxInput}
+                    type="checkbox"
+                    onBlur={onBlur}
+                    onChange={onChange}
+                    onFocus={onFocus}
+                    {...other}
+                  />
+                  <StyledLabel
+                    htmlFor={id}
+                    inverse={inverse}
+                    style={labelStyle}
+                  >
+                    <StyledFakeInput
                       checked={checked}
+                      color={color ? color : ''}
                       disabled={disabled}
-                      id={id}
-                      indeterminate={indeterminate}
-                      name={name}
-                      ref={this.checkboxInput}
-                      required={required}
-                      type="checkbox"
-                      value={value}
-                      onBlur={onBlur}
-                      onChange={onChange}
-                      onFocus={onFocus}
-                    />
-                    <StyledLabel
-                      htmlFor={id}
                       inverse={inverse}
-                      style={labelStyle}
+                      style={inputStyle}
+                      theme={theme}
                     >
-                      <StyledFakeInput
-                        checked={checked}
+                      <IndeterminateIcon
                         color={color ? color : ''}
-                        disabled={disabled}
-                        inverse={inverse}
-                        style={inputStyle}
                         theme={theme}
-                      >
-                        <IndeterminateIcon
-                          color={color ? color : ''}
-                          theme={theme}
-                        />
-                        <CheckIcon size={12} />
-                      </StyledFakeInput>
-                      {textVisuallyHidden ? (
-                        <HiddenLabelText>{labelText}</HiddenLabelText>
-                      ) : (
-                        labelText
-                      )}
-                    </StyledLabel>
-                  </StyledContainer>
-                )
-              }
+                      />
+                      <CheckIcon size={12} />
+                    </StyledFakeInput>
+                    {textVisuallyHidden ? (
+                      <HiddenLabelText>{labelText}</HiddenLabelText>
+                    ) : (
+                      labelText
+                    )}
+                  </StyledLabel>
+                </StyledContainer>
+              )}
             </ThemeContext.Consumer>
           );
         }}

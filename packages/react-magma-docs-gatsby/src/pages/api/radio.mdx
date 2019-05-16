@@ -5,11 +5,13 @@ title: 'Radio Buttons'
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
 
-<DocsHeading to="/design/selection-controls/#5._radio%20buttons" type="design">Radio Buttons</DocsHeading>
+<DocsHeading to="/design/selection-controls/#5._radio%20buttons" type="design">
+  Radio Buttons
+</DocsHeading>
 
 ## Basic Usage
 
-Radio buttons are form elements used to select one item from a set of mutuallty exclusive options. The `RadioGroup` component is used as the container for the set of options.  The `Radio` component is used for each of the options themselves.
+Radio buttons are form elements used to select one item from a set of mutuallty exclusive options. The `RadioGroup` component is used as the container for the set of options. The `Radio` component is used for each of the options themselves.
 
 See also: <Link to="/api/checkbox">Checkboxes</Link>, <Link to="/api/toggle">Toggle Switches</Link>, and the <Link to="/design/selection-controls">Design Guidelines</Link> for selection controls in general.
 
@@ -160,18 +162,18 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
   </RadioGroup>
 ```
 
-
 ## Labeling Radio Groups
-To meet accessibilty requirements, a radio group *must* have a label.  You can provide a label in one of two ways.
 
-You can use the `labelText` prop, which takes a string.  This string will be displayed on screen inside a `<label>` element and be associated with your radio group.
+To meet accessibilty requirements, a radio group _must_ have a label. You can provide a label in one of two ways.
 
-Or you can use the `labelledById` prop, which also takes a string.  This string should refer to an ID of an element that exists somewhere else on the page.
+You can use the `labelText` prop, which takes a string. This string will be displayed on screen inside a `<label>` element and be associated with your radio group.
+
+Or you can use the `labelledById` prop, which also takes a string. This string should refer to an ID of an element that exists somewhere else on the page.
 This id will become the value of the `aria-labelledby` attribute for the group.
 
 ```.jsx
   <div>
-    
+
     <RadioGroup
         id='labelledByGroup'
         labelText="Labelled by labelText"
@@ -181,8 +183,8 @@ This id will become the value of the `aria-labelledby` attribute for the group.
           <Radio
               labelText='Label' />
       </RadioGroup>
-    
-    
+
+
     <RadioGroup
         id='labelledByGroup'
         labelledById="h3Label"
@@ -195,7 +197,6 @@ This id will become the value of the `aria-labelledby` attribute for the group.
       </RadioGroup>
   </div>
 ```
-
 
 ## Visually Hidden Label
 

@@ -25,14 +25,11 @@ export enum AlertVariant {
   danger = 'danger'
 }
 
-export interface AlertProps {
-  children: React.ReactNode;
+export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   closeLabel?: string;
-  id?: string;
   testId?: string;
   dismissable?: boolean;
   variant?: AlertVariant;
-  style?: React.CSSProperties;
   onDismiss?: () => void;
   isExiting?: boolean;
 }
@@ -159,32 +156,35 @@ function renderIcon(variant = 'info') {
   );
 }
 
-export const Alert: React.FunctionComponent<AlertProps> = ({
-  closeLabel,
-  id,
-  testId,
-  variant,
-  style,
-  children,
-  dismissable,
-  onDismiss,
-  isExiting
-}: AlertProps) => (
-  <ThemeContext.Consumer>
-    {theme =>
-      theme && (
+export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
+  (
+    {
+      closeLabel,
+      testId,
+      variant,
+      children,
+      dismissable,
+      onDismiss,
+      isExiting,
+      ...other
+    }: AlertProps,
+    ref: any
+  ) => (
+    <ThemeContext.Consumer>
+      {theme => (
         <AlertCore
           transitionDuration={transitionDuration}
           onDismiss={onDismiss}
         >
           {({ handleDismiss, isExiting: coreIsExiting }) => (
             <StyledAlert
-              id={id}
               data-testid={testId}
+              ref={ref}
+              tabIndex={-1}
               isExiting={isExiting || coreIsExiting}
               variant={variant}
-              style={style}
               theme={theme}
+              {...other}
             >
               {renderIcon(variant)}
               <AlertContents>{children}</AlertContents>
@@ -204,7 +204,7 @@ export const Alert: React.FunctionComponent<AlertProps> = ({
             </StyledAlert>
           )}
         </AlertCore>
-      )
-    }
-  </ThemeContext.Consumer>
+      )}
+    </ThemeContext.Consumer>
+  )
 );

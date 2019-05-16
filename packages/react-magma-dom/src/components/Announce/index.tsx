@@ -1,9 +1,7 @@
 import * as React from 'react';
 
-export interface AnnounceProps {
-  children: React.ReactChild | React.ReactChild[];
+export interface AnnounceProps extends React.HTMLAttributes<HTMLDivElement> {
   politeness?: AnnouncePoliteness;
-  ref?: any;
 }
 
 export enum AnnouncePoliteness {
