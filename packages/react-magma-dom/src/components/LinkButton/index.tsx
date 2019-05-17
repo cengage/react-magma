@@ -45,10 +45,10 @@ export const LinkButton: React.FunctionComponent<LinkButtonProps> = ({
   <ThemeContext.Consumer>
     {theme => (
       <LinkButtonComponent
+        {...other}
         data-testid={testId}
         inverse={inverse}
         theme={theme}
-        {...other}
       >
         {children}
       </LinkButtonComponent>

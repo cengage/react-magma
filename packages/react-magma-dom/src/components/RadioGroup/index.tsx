@@ -2,6 +2,7 @@ import * as React from 'react';
 import { RadioCore } from 'react-magma-core';
 import { HiddenStyles } from '../UtilityStyles';
 import styled from '@emotion/styled';
+import { omit } from '../utils';
 
 const StyledLabel = styled.label`
   display: block;
@@ -60,18 +61,17 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
         testId,
         name,
         children,
-        ...other
+        ...rest
       } = props;
+      const other = omit(['onBlur', 'onChange', 'onFocus', 'id'], rest);
+
       return (
         <div
+          {...other}
           aria-labelledby={labelledById ? labelledById : id}
           style={containerStyle}
           data-testid={testId}
           role="radiogroup"
-          {...{
-            ...other,
-            ...{ onBlur: null, onChange: null, onFocus: null, id: null }
-          }}
         >
           <RadioContext.Provider
             value={{

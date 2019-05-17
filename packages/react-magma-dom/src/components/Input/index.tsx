@@ -46,6 +46,7 @@ export interface InputProps
   labelText: string;
   labelVisuallyHidden?: boolean;
   multiline?: boolean;
+  ref?: any;
   shownPasswordAnnounceText?: string;
   showPasswordButtonAriaLabel?: string;
   showPasswordButtonText?: string;
@@ -306,6 +307,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                 )}
                 <InputWrapper>
                   <StyledInput
+                    {...other}
                     aria-label={labelVisuallyHidden ? labelText : null}
                     as={multiline ? 'textarea' : null}
                     id={id}
@@ -329,7 +331,6 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                     onBlur={onBlur}
                     onChange={onChange}
                     onFocus={onFocus}
-                    {...other}
                   />
                   {errorMessage && (
                     <ErrorIconWrapper inputSize={inputSize} theme={theme}>
