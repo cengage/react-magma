@@ -4,11 +4,10 @@ export function generateId(id?: string) {
   return id ? id : uuidv4();
 }
 
-export function omitFromOtherProps(propsToOmit, otherProps) {
-  return propsToOmit.reduce(
-    (newOtherProps, propToRemove) =>
-      (({ [propToRemove]: dropped, ...rest }) => rest)(newOtherProps),
-    otherProps
+export function omit(props, obj) {
+  return props.reduce(
+    (newObj, val) => (({ [val]: dropped, ...rest }) => rest)(newObj),
+    obj
   );
 }
 

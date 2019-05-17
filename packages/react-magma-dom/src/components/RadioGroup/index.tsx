@@ -2,7 +2,7 @@ import * as React from 'react';
 import { RadioCore } from 'react-magma-core';
 import { HiddenStyles } from '../UtilityStyles';
 import styled from '@emotion/styled';
-import { omitFromOtherProps } from '../utils';
+import { omit } from '../utils';
 
 const StyledLabel = styled.label`
   display: block;
@@ -61,15 +61,13 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
         testId,
         name,
         children,
-        ...other
+        ...rest
       } = props;
+      const other = omit(['onBlur', 'onChange', 'onFocus', 'id'], rest);
 
       return (
         <div
-          {...omitFromOtherProps(
-            ['onBlur', 'onChange', 'onFocus', 'id'],
-            other
-          )}
+          {...other}
           aria-labelledby={labelledById ? labelledById : id}
           style={containerStyle}
           data-testid={testId}
