@@ -5,6 +5,7 @@ import { ThemeContext } from '../../theme/themeContext';
 
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   level: number;
+  ref?: any;
   testId?: string;
   tabIndex?: number;
 }
@@ -72,11 +73,11 @@ export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
       <ThemeContext.Consumer>
         {theme => (
           <HeadingComponent
+            {...other}
             ref={ref}
             data-testid={testId}
             tabIndex={tabIndex}
             theme={theme}
-            {...other}
           >
             {children}
           </HeadingComponent>

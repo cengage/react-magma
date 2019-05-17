@@ -21,6 +21,7 @@ export interface RadioProps
   inverse?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
+  ref?: any;
   testId?: string;
   textVisuallyHidden?: boolean;
 }
@@ -160,6 +161,8 @@ export class RadioComponent extends React.Component<RadioProps, RadioState> {
               {theme => (
                 <StyledContainer style={containerStyle}>
                   <HiddenInput
+                    {...other}
+                    id={id}
                     ref={innerRef}
                     checked={context.selectedValue === value}
                     data-testid={testId}
@@ -171,7 +174,6 @@ export class RadioComponent extends React.Component<RadioProps, RadioState> {
                     onBlur={context.onBlur}
                     onChange={context.onChange}
                     onFocus={context.onFocus}
-                    {...{ ...other, id }}
                   />
                   <StyledLabel
                     htmlFor={id}

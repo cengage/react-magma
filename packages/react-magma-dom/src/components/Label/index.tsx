@@ -28,10 +28,10 @@ function renderLabel(props) {
     <ThemeContext.Consumer>
       {theme => (
         <StyledLabel
+          {...other}
           data-testid={testId}
           inverse={inverse}
           theme={theme}
-          {...other}
         >
           {children}
         </StyledLabel>

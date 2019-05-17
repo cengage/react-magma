@@ -58,6 +58,7 @@ export interface ButtonProps
   href?: string;
   testId?: string;
   inverse?: boolean;
+  ref?: any;
   shape?: ButtonShape;
   size?: ButtonSize;
   textTransform?: ButtonTextTransform;
@@ -448,6 +449,7 @@ export const StyledButton: React.FunctionComponent<
     <ThemeContext.Consumer>
       {theme => (
         <StyledButtonComponent
+          {...other}
           data-testid={testId}
           ref={ref}
           as={as}
@@ -463,7 +465,6 @@ export const StyledButton: React.FunctionComponent<
           theme={theme}
           to={to}
           variant={variant}
-          {...other}
         >
           {children}
         </StyledButtonComponent>

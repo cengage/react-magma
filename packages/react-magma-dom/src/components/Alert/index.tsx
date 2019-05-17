@@ -32,6 +32,7 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: AlertVariant;
   onDismiss?: () => void;
   isExiting?: boolean;
+  ref?: any;
 }
 
 export const transitionDuration = 500;
@@ -178,13 +179,13 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
         >
           {({ handleDismiss, isExiting: coreIsExiting }) => (
             <StyledAlert
+              {...other}
               data-testid={testId}
               ref={ref}
               tabIndex={-1}
               isExiting={isExiting || coreIsExiting}
               variant={variant}
               theme={theme}
-              {...other}
             >
               {renderIcon(variant)}
               <AlertContents>{children}</AlertContents>

@@ -64,14 +64,14 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
       } = props;
       return (
         <div
-          aria-labelledby={labelledById ? labelledById : id}
-          style={containerStyle}
-          data-testid={testId}
-          role="radiogroup"
           {...{
             ...other,
             ...{ onBlur: null, onChange: null, onFocus: null, id: null }
           }}
+          aria-labelledby={labelledById ? labelledById : id}
+          style={containerStyle}
+          data-testid={testId}
+          role="radiogroup"
         >
           <RadioContext.Provider
             value={{

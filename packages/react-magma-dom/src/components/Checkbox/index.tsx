@@ -189,6 +189,8 @@ export class Checkbox extends React.Component<CheckboxProps> {
               {theme => (
                 <StyledContainer style={containerStyle}>
                   <HiddenInput
+                    {...other}
+                    id={id}
                     data-testid={testId}
                     checked={checked}
                     disabled={disabled}
@@ -199,7 +201,6 @@ export class Checkbox extends React.Component<CheckboxProps> {
                     onBlur={onBlur}
                     onChange={onChange}
                     onFocus={onFocus}
-                    {...other}
                   />
                   <StyledLabel
                     htmlFor={id}

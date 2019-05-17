@@ -2,6 +2,7 @@ import * as React from 'react';
 
 export interface AnnounceProps extends React.HTMLAttributes<HTMLDivElement> {
   politeness?: AnnouncePoliteness;
+  ref?: any;
 }
 
 export enum AnnouncePoliteness {

@@ -107,6 +107,7 @@ export const Button: React.FunctionComponent<
   if (icon && children) {
     return (
       <StyledButton
+        {...other}
         testId={testId}
         ref={ref}
         ariaLabel={ariaLabel}
@@ -123,7 +124,6 @@ export const Button: React.FunctionComponent<
         }
         to={to}
         variant={variant ? variant : ButtonVariant.solid}
-        {...other}
       >
         {iconPosition === ButtonIconPosition.right && (
           <SpanTextLeft size={size}>{children} </SpanTextLeft>
@@ -139,6 +139,7 @@ export const Button: React.FunctionComponent<
   } else if (icon && !children) {
     return (
       <StyledButton
+        {...other}
         testId={testId}
         ref={ref}
         ariaExpanded={ariaExpanded}
@@ -152,7 +153,6 @@ export const Button: React.FunctionComponent<
         size={size ? size : ButtonSize.medium}
         to={to}
         variant={variant ? variant : ButtonVariant.solid}
-        {...other}
       >
         {React.Children.only(
           React.cloneElement(icon, { size: getIconSize(size) })
@@ -163,6 +163,7 @@ export const Button: React.FunctionComponent<
 
   return (
     <StyledButton
+      {...other}
       testId={testId}
       ref={ref}
       as={as}
@@ -179,7 +180,6 @@ export const Button: React.FunctionComponent<
       }
       to={to}
       variant={variant ? variant : ButtonVariant.solid}
-      {...other}
     >
       {children}
     </StyledButton>

@@ -185,17 +185,15 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
           {theme => (
             <StyledContainer>
               <HiddenInput
+                {...other}
+                id={id}
                 data-testid={testId}
                 disabled={disabled}
+                checked={checked}
                 type="checkbox"
-                {...{
-                  ...other,
-                  id,
-                  onBlur,
-                  onChange,
-                  onFocus,
-                  checked
-                }}
+                onBlur={onBlur}
+                onChange={onChange}
+                onFocus={onFocus}
               />
               <StyledLabel htmlFor={id} style={containerStyle}>
                 {textPosition !== ToggleTextPostition.right &&
