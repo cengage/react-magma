@@ -18,8 +18,8 @@ export interface SelectProps {
   name: string;
   labelText: string;
   options: Options[];
-  defaultValue?: Options;
-  value?: Options;
+  defaultValue?: Options | null;
+  value?: Options | null;
   disabled?: boolean;
   required?: boolean;
   clearable?: boolean;
