@@ -34,6 +34,10 @@ export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
     if (prevProps.id !== this.props.id) {
       this.setState({ id: generateId(this.props.id) });
     }
+
+    if (prevProps.value !== this.props.value) {
+      this.setState({ selectedValue: this.props.value });
+    }
   }
 
   onBlur() {

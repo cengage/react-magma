@@ -36,6 +36,10 @@ export class CheckboxCore extends React.Component<
     if (prevProps.id !== this.props.id) {
       this.setState({ id: generateId(this.props.id) });
     }
+
+    if (prevProps.checked !== this.props.checked) {
+      this.setState({ checked: this.props.checked });
+    }
   }
 
   onBlur() {

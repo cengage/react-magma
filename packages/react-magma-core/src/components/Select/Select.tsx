@@ -8,6 +8,7 @@ export interface SelectCoreProps {
   onOpen?: () => void;
   onClose?: () => void;
   defaultValue?: string;
+  value?: string;
 }
 
 export interface SelectCoreState {
@@ -22,7 +23,7 @@ export class SelectCore extends React.Component<
     super(props);
 
     this.state = {
-      value: this.props.defaultValue
+      value: this.props.defaultValue || this.props.value
     };
 
     this.onBlur = this.onBlur.bind(this);
@@ -30,6 +31,12 @@ export class SelectCore extends React.Component<
     this.onChange = this.onChange.bind(this);
     this.onOpen = this.onOpen.bind(this);
     this.onClose = this.onClose.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.value !== this.props.value) {
+      this.setState({ value: this.props.value });
+    }
   }
 
   onBlur() {

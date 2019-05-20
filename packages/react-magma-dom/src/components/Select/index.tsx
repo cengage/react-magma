@@ -19,6 +19,7 @@ export interface SelectProps {
   labelText: string;
   options: Options[];
   defaultValue?: Options;
+  value?: Options;
   disabled?: boolean;
   required?: boolean;
   clearable?: boolean;
@@ -166,14 +167,16 @@ export const Select: React.FunctionComponent<SelectProps> = (
   <SelectCore
     components={{ ClearIndicator, DropdownIndicator, MultiValueRemove }}
     defaultValue={props.defaultValue}
+    value={props.value}
     onBlur={props.onBlur}
     onFocus={props.onFocus}
     onChange={props.onChange}
     onOpen={props.onOpen}
     onClose={props.onClose}
   >
-    {({ defaultValue, onBlur, onFocus, onChange, onOpen, onClose }) => {
+    {({ value, onBlur, onFocus, onChange, onOpen, onClose }) => {
       const {
+        defaultValue,
         id,
         testId,
         name,
@@ -201,6 +204,7 @@ export const Select: React.FunctionComponent<SelectProps> = (
                 aria-label={labelText}
                 name={name}
                 defaultValue={defaultValue}
+                value={value}
                 options={options}
                 required={required}
                 isDisabled={disabled}

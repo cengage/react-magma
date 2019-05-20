@@ -35,12 +35,20 @@ describe('Select', () => {
     expect(styles.multiValue({})).toContainKey('color', color);
   });
 
-  it('should render a select with a value passed through', () => {
+  it('should render a select with a default value passed through', () => {
     const defaultValue = { value: 'red', label: 'Red' };
     const inputName = 'Test';
     const { getByValue } = render(
       <Select name={inputName} defaultValue={defaultValue} />
     );
+
+    expect(getByValue('red')).toBeInTheDocument();
+  });
+
+  it('should render a select with a value passed through', () => {
+    const value = { value: 'red', label: 'Red' };
+    const inputName = 'Test';
+    const { getByValue } = render(<Select name={inputName} value={value} />);
 
     expect(getByValue('red')).toBeInTheDocument();
   });

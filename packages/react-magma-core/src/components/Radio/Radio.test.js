@@ -50,6 +50,29 @@ describe('RadioCore', () => {
     expect(newId).toEqual('differentId');
   });
 
+  it('should update the selected value on rerender with a change in prop value', () => {
+    const { getByTestId, rerender } = render(
+      <RadioCore>
+        {({ selectedValue }) => (
+          <span data-selectedValue={selectedValue} data-testid="sample" />
+        )}
+      </RadioCore>
+    );
+
+    rerender(
+      <RadioCore value="newValue">
+        {({ selectedValue }) => (
+          <span data-selectedValue={selectedValue} data-testid="sample" />
+        )}
+      </RadioCore>
+    );
+
+    const newSelectedValue = getByTestId(/sample/i).getAttribute(
+      'data-selectedValue'
+    );
+    expect(newSelectedValue).toEqual('newValue');
+  });
+
   it('should call the supplied onChange and update the value when onChange is called', () => {
     const handleChange = jest.fn();
     const { getByTestId } = render(
