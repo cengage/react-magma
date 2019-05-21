@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styled from '@emotion/styled';
 import { SelectCore } from 'react-magma-core';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
@@ -22,6 +23,8 @@ export interface SelectProps {
   disabled?: boolean;
   required?: boolean;
   clearable?: boolean;
+  errorMessage?: string;
+  inverse?: boolean;
   multi?: boolean;
   style?: ReactSelectStyles;
   onBlur?: () => void;
@@ -42,16 +45,28 @@ interface ReactSelectStyles {
   option?: React.CSSProperties;
 }
 
-export function getStyles(customStyles: ReactSelectStyles = {}, theme) {
+export function getStyles(
+  customStyles: ReactSelectStyles = {},
+  theme: any,
+  errorMessage?: string
+) {
   return {
     control: (styles, { isFocused, isDisabled }) => ({
       ...styles,
       backgroundColor: isDisabled
         ? theme.colors.neutral07
         : theme.colors.neutral08,
-      borderColor: isFocused ? theme.colors.pop03 : theme.colors.neutral05,
+      borderColor: isFocused
+        ? theme.colors.pop03
+        : errorMessage
+        ? theme.colors.danger
+        : theme.colors.neutral05,
       borderRadius: '5px',
-      boxShadow: isFocused ? `0 0 0 1px ${theme.colors.pop03}` : '0 0 0',
+      boxShadow: isFocused
+        ? `0 0 0 1px ${theme.colors.pop03}`
+        : errorMessage
+        ? `0 0 0 1px ${theme.colors.danger}`
+        : '0 0 0',
       color: theme.colors.neutral02,
       cursor: isDisabled ? 'not-allowed' : 'pointer',
       height: '37px',
@@ -64,12 +79,12 @@ export function getStyles(customStyles: ReactSelectStyles = {}, theme) {
       },
       ...customStyles.control
     }),
-    dropdownIndicator: (styles, { isFocused }) => ({
+    dropdownIndicator: styles => ({
       ...styles,
       color: theme.colors.neutral02,
       ...customStyles.dropdownIndicator
     }),
-    clearIndicator: (styles, { isFocused }) => ({
+    clearIndicator: styles => ({
       ...styles,
       color: theme.colors.neutral03,
 
@@ -160,6 +175,16 @@ const MultiValueRemove = props => {
   );
 };
 
+const ErrorMessage = styled.div<{ inverse?: boolean }>`
+  background: ${props => (props.inverse ? props.theme.colors.danger : 'none')};
+  border-radius: 5px;
+  color: ${props =>
+    props.inverse ? props.theme.colors.neutral08 : props.theme.colors.danger};
+  font-size: 13px;
+  margin-top: 5px;
+  padding: ${props => (props.inverse ? '5px 10px' : '0')};
+`;
+
 export const Select: React.FunctionComponent<SelectProps> = (
   props: SelectProps
 ) => (
@@ -182,17 +207,22 @@ export const Select: React.FunctionComponent<SelectProps> = (
         disabled,
         required,
         clearable,
+        errorMessage,
+        inverse,
         multi,
         style
       } = props;
+
+      console.log('inverse', inverse);
 
       return (
         <ThemeContext.Consumer>
           {theme => (
             <div data-testid={testId}>
-              <Label>{labelText}</Label>
+              <Label inverse={inverse}>{labelText}</Label>
               <ReactSelect
                 id={id}
+                inverse={inverse}
                 components={{
                   ClearIndicator,
                   DropdownIndicator,
@@ -211,9 +241,14 @@ export const Select: React.FunctionComponent<SelectProps> = (
                 onChange={onChange}
                 onMenuOpen={onOpen}
                 onMenuClose={onClose}
-                styles={getStyles(style, theme)}
+                styles={getStyles(style, theme, errorMessage)}
                 classNamePrefix="magma"
               />
+              {errorMessage && (
+                <ErrorMessage inverse={inverse} theme={theme}>
+                  {errorMessage}
+                </ErrorMessage>
+              )}
             </div>
           )}
         </ThemeContext.Consumer>

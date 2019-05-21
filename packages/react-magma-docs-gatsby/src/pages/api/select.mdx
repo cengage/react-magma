@@ -133,6 +133,55 @@ The optional `clearable` prop allows the user to clear the field once a selectio
   </div>
 ```
 
+## Error message
+If a select has an `errorMessage`, the select will be styled to highlight it's error state and the error message will appear below the field.
+
+```.jsx
+  <div className='demo-select-container'>
+    <Select
+      errorMessage="Please select a color"
+      name="error"
+      labelText="Error message"
+      options={[{
+        value: 'red',
+        label: 'Red'
+      }, {
+        value: 'blue',
+        label: 'Blue'
+      }, {
+        value: 'green',
+        label: 'Green'
+      }]}
+    />
+  </div>
+```
+
+## Inverse styles
+
+The `inverse` property is an optional boolean, that reverses the colors so that the select can better appear on a dark background.
+The default value is `false`.
+
+```.jsx
+  <div className='demo-select-container'  style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
+    <Select
+      errorMessage="Please select a color"
+      inverse
+      name="inverse"
+      labelText="Error message"
+      options={[{
+        value: 'red',
+        label: 'Red'
+      }, {
+        value: 'blue',
+        label: 'Blue'
+      }, {
+        value: 'green',
+        label: 'Green'
+      }]}
+    />
+  </div>
+```
+
 ## Controlled
 
 ```.jsx
