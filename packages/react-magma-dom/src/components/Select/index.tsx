@@ -213,8 +213,6 @@ export const Select: React.FunctionComponent<SelectProps> = (
         style
       } = props;
 
-      console.log('inverse', inverse);
-
       return (
         <ThemeContext.Consumer>
           {theme => (
