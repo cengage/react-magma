@@ -74,6 +74,28 @@ describe('Select', () => {
     expect(input).toBeDisabled();
   });
 
+  it('should render the error message with the correct styles', () => {
+    const errorString = 'Please fix this error';
+
+    const { getByText } = render(<Select errorMessage={errorString} />);
+    const errorMessage = getByText(errorString);
+
+    expect(errorMessage).toBeInTheDocument();
+    expect(errorMessage).toHaveStyleRule('background', 'none');
+    expect(errorMessage).toHaveStyleRule('color', '#E70000');
+  });
+
+  it('should render the error message on an inverse component with the correct styles', () => {
+    const errorString = 'Please fix this error';
+
+    const { getByText } = render(<Select errorMessage={errorString} inverse />);
+    const errorMessage = getByText(errorString);
+
+    expect(errorMessage).toBeInTheDocument();
+    expect(errorMessage).toHaveStyleRule('background', '#E70000');
+    expect(errorMessage).toHaveStyleRule('color', '#FFFFFF');
+  });
+
   it('should trigger the passed in onChange when option is changed', () => {
     const options = [
       {
