@@ -16,7 +16,8 @@
     "createStaticFile": "echo 'pushstate: enabled' >| packages/react-magma-docs-gatsby/public/Staticfile",
     "cm": "git-cz",
     "cm-retry": "git-cz --retry",
-    "bump": "standard-version -a --prerelease beta --release-as patch"
+    "bump": "standard-version -a --prerelease beta --release-as patch",
+    "publish-all": "lerna exec --scope react-magma-core --scope react-magma-dom 'npm publish'"
   },
   "husky": {
     "hooks": {
