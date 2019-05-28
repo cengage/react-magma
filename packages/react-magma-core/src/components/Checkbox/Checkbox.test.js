@@ -70,7 +70,7 @@ describe('CheckboxCore', () => {
     );
 
     const checked = getByTestId(/target/i).getAttribute('data-checked');
-    expect(checked).toBeTruthy();
+    expect(checked).toEqual('true');
   });
 
   it('should call the supplied onChange and update the value when onChange is called', () => {
