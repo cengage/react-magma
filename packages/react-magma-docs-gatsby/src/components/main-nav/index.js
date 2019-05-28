@@ -114,7 +114,7 @@ const MainNav = ({ ...props }) => (
         </ul>
         <hr />
         <Accordion accordion={false}>
-          <AccordionItem expanded>
+          <AccordionItem>
             <AccordionItemTitle>
               <h2>
                 Develop
@@ -145,7 +145,7 @@ const MainNav = ({ ...props }) => (
             </AccordionItemBody>
           </AccordionItem>
           <hr />
-          <AccordionItem expanded>
+          <AccordionItem>
             <AccordionItemTitle>
               <h2>
                 Design
