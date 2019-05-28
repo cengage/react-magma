@@ -35,6 +35,10 @@ export class InputCore extends React.Component<InputCoreProps, InputCoreState> {
     if (prevProps.id !== this.props.id) {
       this.setState({ id: generateId(this.props.id) });
     }
+
+    if (prevProps.value !== this.props.value) {
+      this.setState({ value: this.props.value });
+    }
   }
 
   onBlur() {
