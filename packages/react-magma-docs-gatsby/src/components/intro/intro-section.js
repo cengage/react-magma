@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled';
-import IntroImage from './intro-image'
 
 export const StyledSection = styled.section`
     align-items: center;
@@ -13,19 +12,17 @@ export const StyledSection = styled.section`
 `;
 
 const ImgContainer = styled.div`
-    max-height: 315px;
-    max-width: 315px;
     flex-shrink: 0;
-    height: 315px;
     margin-right: 30px;
-    width: 315px;
 `;
 
-const IntroSection = ({ children, id }) => (
+const IntroSection = ({ children, id, image }) => (
     <StyledSection id={id}>
-        <ImgContainer>
-            <IntroImage />
-        </ImgContainer>
+        { image && 
+            <ImgContainer>
+                {image}
+            </ImgContainer> 
+        }
         <div>
             {children}
         </div>
@@ -34,7 +31,8 @@ const IntroSection = ({ children, id }) => (
 
 IntroSection.propTypes = {
     children: PropTypes.node.isRequired,
-    id: PropTypes.string.isRequired
+    id: PropTypes.string.isRequired,
+    image: PropTypes.node
 }
 
 export default IntroSection
