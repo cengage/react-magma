@@ -12,15 +12,15 @@ const HeadingNum = styled.span`
    font-size: 17px;
 `;
 
-const IntroHeading = ({ children, number }) => (
+const IntroHeading = ({ name, number }) => (
     <StyledHeading>
         <HeadingNum>{number}</HeadingNum>
-        {children}
+        {name}
     </StyledHeading>
 );
 
 IntroHeading.propTypes = {
-    children: PropTypes.node.isRequired,
+    name: PropTypes.string.isRequired,
     number: PropTypes.string.isRequired
 }
 

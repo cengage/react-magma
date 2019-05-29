@@ -13,6 +13,11 @@ function getStyles(theme) {
       box-sizing: border-box;
     }
 
+    *:focus {
+      outline: 1px dotted ${theme.colors.pop03};
+      outline-offset: 3px;
+    }
+
     html,
     body {
       margin: 0;
