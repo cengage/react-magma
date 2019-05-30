@@ -18,6 +18,10 @@ function getStyles(theme) {
       outline-offset: 3px;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     html,
     body {
       margin: 0;
@@ -61,6 +65,11 @@ function getStyles(theme) {
       font-weight: 500;
       line-height: 1.1;
       margin: 20px 0 10px;
+
+      &:focus {
+        border-bottom: ${theme.colors.pop03};
+        outline: 0;
+      }
     }
 
     h1 {

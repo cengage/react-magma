@@ -3,24 +3,31 @@ import React from 'react'
 import styled from '@emotion/styled';
 
 const List = styled.ol`
-    background-color: #00263E;
-    display: flex;
-    left: 280px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    position: fixed;
-    right: 0;
-    top: 80px;
-    z-index: 2;
+    display: none;
+
+    @media (min-width: 768px) {
+        background-color: #00263E;
+        display: flex;
+        left: 0;
+        list-style: none;
+        justify-content: space-around;
+        margin: 0;
+        padding: 0 0 0 10px;
+        position: fixed;
+        right: 0;
+        top: 80px;
+        z-index: 2;
+    }
+
+    @media (min-width: 1024px) {
+        left: 280px;
+    }
 `;
 
 const Item = styled.li`
     list-style: none;
-    flex-grow: 1;
-    font-size: 13px;
     margin: 0;
-    padding: 0 60px 0 40px;
+    padding: 0;
     text-transform: uppercase;
 `;
 
@@ -29,17 +36,21 @@ const Link = styled.a`
    border-color: ${props => props.active? '#FFC72C' : 'transparent'};
    color: ${props => props.active? '#FFC72C' : '#fff'};
    display: block;
-   padding: 10px 0;
+   font-size: 13px;
+   line-height: 1.3em;
+   padding: 9px 15px 7px;
    text-decoration: none;
 
    &:hover,
    &:focus {
     color: #DFDFDF;
+    outline-offset: 0;
    }
 `;
 
 const Num = styled.span`
    display: block;
+   font-family: 'Abel', sans-serif;
 `;
 
 const IntroNav = () => (

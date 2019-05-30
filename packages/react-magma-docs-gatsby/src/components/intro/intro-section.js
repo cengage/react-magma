@@ -5,15 +5,27 @@ import styled from '@emotion/styled';
 export const StyledSection = styled.section`
     align-items: center;
     display: flex;
-    flex-direction: row;
-    height: 100vh;
+    flex-direction: column;
+    height: auto;
     max-width: 1100px;
     margin: 0 auto;
+    padding: 80px 5%;
+
+    @media (min-width: 600px) {
+        flex-direction: row;
+        height: 100vh;
+        padding: 0 10%;
+    }
 `;
 
 const ImgContainer = styled.div`
     flex-shrink: 0;
-    margin-right: 30px;
+    width: 100%;
+
+    @media (min-width: 600px) {
+        margin-right: 30px;
+        width: 30%;
+    }
 `;
 
 const IntroSection = ({ children, id, image }) => (

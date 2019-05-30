@@ -4,11 +4,17 @@ import styled from '@emotion/styled';
 
 const StyledHeading = styled.h2`
    font-size: 36px;
+   text-align: center;
    text-transform: uppercase;
+
+    @media (min-width: 600px) {
+      text-align: left;
+    }
 `;
 
 const HeadingNum = styled.span`
    display: block;
+   font-family: 'Abel', sans-serif;
    font-size: 17px;
 `;
 
