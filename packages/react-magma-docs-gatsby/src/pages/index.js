@@ -6,6 +6,8 @@ import IntroSection from '../components/intro/intro-section'
 import IntroNav from '../components/intro/intro-nav'
 import { Global, css } from '@emotion/core'
 import styled from '@emotion/styled';
+import "animate.css/animate.min.css";
+
 import ColorLogo from '../images/React_Magma_Logo_Color.svg'
 import ImageAccessible from '../images/img-accessible.svg'
 import ImageComponents from '../images/img-component-based.svg'
@@ -47,14 +49,15 @@ const IndexPage = () => (
   <Layout>
     <Global styles={css`
       @import url('https://fonts.googleapis.com/css?family=Abel');
-      .content { background: #00263E; color: #fff; padding: 0; } 
-      .content-article { background: #003865; margin: 0; max-width: none; width: auto; } 
+      .content { background: #00263E; color: #fff; padding: 0; overflow: hidden; } 
+      .content-article { background: #003865; margin: 0; max-width: none; padding: 0; width: auto; } 
     `} />
     <IntroNav />
 
     <IntroSection
       id="sectionIntro"
       image={<ColorLogo style={{width: '100%'}} />}
+      noAnimate
       style={{marginTop: '70px'}}>
         <Heading>React Magma</Heading>
         <p style={{marginBottom: '20px'}}>React Magma is a suite of React components based on the Magma design system that make it easy to create powerful and consistent experiences for students and instructors using Cengage products.</p>

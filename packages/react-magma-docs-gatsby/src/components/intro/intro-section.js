@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled';
+import ScrollAnimation from 'react-animate-on-scroll';
 
 export const StyledSection = styled.section`
     align-items: center;
@@ -18,7 +19,7 @@ export const StyledSection = styled.section`
     }
 `;
 
-const ImgContainer = styled.div`
+const ImgContainer = styled(ScrollAnimation)`
     flex-shrink: 0;
     width: 100%;
 
@@ -28,12 +29,14 @@ const ImgContainer = styled.div`
     }
 `;
 
-const IntroSection = ({ children, id, image }) => (
+const IntroSection = ({ children, id, image, noAnimate }) => (
     <StyledSection id={id}>
         { image && 
-            <ImgContainer>
+            <ImgContainer
+                animateIn="fadeInLeft"
+                duration={noAnimate ? 0 : 1.2}>
                 {image}
-            </ImgContainer> 
+            </ImgContainer>
         }
         <div>
             {children}
@@ -44,7 +47,8 @@ const IntroSection = ({ children, id, image }) => (
 IntroSection.propTypes = {
     children: PropTypes.node.isRequired,
     id: PropTypes.string.isRequired,
-    image: PropTypes.node
+    image: PropTypes.node,
+    noAnimate: PropTypes.bool
 }
 
 export default IntroSection
