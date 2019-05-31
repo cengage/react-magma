@@ -56,6 +56,23 @@ describe('CheckboxCore', () => {
     expect(newId).toEqual('differentId');
   });
 
+  it('should update the checked value on rerender with a change in prop checked', () => {
+    const { getByTestId, rerender } = render(
+      <CheckboxCore checked={false}>
+        {({ checked }) => <span data-checked={checked} data-testid="target" />}
+      </CheckboxCore>
+    );
+
+    rerender(
+      <CheckboxCore checked={true}>
+        {({ checked }) => <span data-checked={checked} data-testid="target" />}
+      </CheckboxCore>
+    );
+
+    const checked = getByTestId(/target/i).getAttribute('data-checked');
+    expect(checked).toEqual('true');
+  });
+
   it('should call the supplied onChange and update the value when onChange is called', () => {
     const handleChange = jest.fn();
     const { getByTestId } = render(
