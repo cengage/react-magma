@@ -8,7 +8,7 @@ export const StyledSection = styled.section`
     display: flex;
     flex-direction: column;
     height: auto;
-    max-width: 1100px;
+    max-width: 1335px;
     margin: 0 auto;
     padding: 80px 5%;
 
