@@ -1,12 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
+import { ThemeContext } from 'react-magma-dom';
 
 const List = styled.ol`
     display: none;
 
-    @media (min-width: 768px) {
-        background-color: #00263E;
+    @media (min-width: ${props => props.theme.sizeSm}) {
+        background-color: ${props => props.theme.colors.neutral01};
         display: flex;
         left: 0;
         list-style: none;
@@ -19,7 +20,7 @@ const List = styled.ol`
         z-index: 2;
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: ${props => props.theme.sizeMd}) {
         left: 280px;
     }
 `;
@@ -33,8 +34,8 @@ const Item = styled.li`
 
 const Link = styled.a`
    border-bottom: 2px solid;
-   border-color: ${props => props.active? '#FFC72C' : 'transparent'};
-   color: ${props => props.active? '#FFC72C' : '#fff'};
+   border-color: ${props => props.active? props.theme.colors.pop04 : 'transparent'};
+   color: ${props => props.active? props.theme.colors.pop04 : props.theme.colors.neutral08};
    display: block;
    font-size: 13px;
    line-height: 1.3em;
@@ -43,7 +44,7 @@ const Link = styled.a`
 
    &:hover,
    &:focus {
-    color: #DFDFDF;
+    color: ${props => props.theme.colors.neutral06};
     outline-offset: 0;
    }
 `;
@@ -54,40 +55,44 @@ const Num = styled.span`
 `;
 
 const IntroNav = ({activeSection}) => (
-    <nav>
-        <List>
-            <Item>
-                <Link active={activeSection === 'sectionIntro'} href="#sectionIntro">
-                    <Num>00</Num>Intro
-                </Link>
-            </Item>
-            <Item>
-                <Link active={activeSection === 'sectionComponents'} href="#sectionComponents">
-                    <Num>01</Num>Component-based
-                </Link>
-            </Item>
-            <Item>
-                <Link active={activeSection === 'sectionQuality'} href="#sectionQuality">
-                    <Num>02</Num>Quality
-                </Link>
-            </Item>
-            <Item>
-                <Link active={activeSection === 'sectionAccessible'} href="#sectionAccessible">
-                    <Num>03</Num>Accessible
-                </Link>
-            </Item>
-            <Item>
-                <Link active={activeSection === 'sectionDevice'} href="#sectionDevice">
-                    <Num>04</Num>Device-agnostic
-                </Link>
-            </Item>
-            <Item>
-                <Link active={activeSection === 'sectionEvolving'} href="#sectionEvolving">
-                    <Num>05</Num>Always evolving
-                </Link>
-            </Item>
-        </List>
-    </nav>
+    <ThemeContext.Consumer>
+        {theme => (
+            <nav>
+                <List theme={theme}>
+                    <Item>
+                        <Link active={activeSection === 'sectionIntro'} href="#sectionIntro" theme={theme}>
+                            <Num>00</Num>Intro
+                        </Link>
+                    </Item>
+                    <Item>
+                        <Link active={activeSection === 'sectionComponents'} href="#sectionComponents" theme={theme}>
+                            <Num>01</Num>Component-based
+                        </Link>
+                    </Item>
+                    <Item>
+                        <Link active={activeSection === 'sectionQuality'} href="#sectionQuality" theme={theme}>
+                            <Num>02</Num>Quality
+                        </Link>
+                    </Item>
+                    <Item>
+                        <Link active={activeSection === 'sectionAccessible'} href="#sectionAccessible" theme={theme}>
+                            <Num>03</Num>Accessible
+                        </Link>
+                    </Item>
+                    <Item>
+                        <Link active={activeSection === 'sectionDevice'} href="#sectionDevice" theme={theme}>
+                            <Num>04</Num>Device-agnostic
+                        </Link>
+                    </Item>
+                    <Item>
+                        <Link active={activeSection === 'sectionEvolving'} href="#sectionEvolving" theme={theme}>
+                            <Num>05</Num>Always evolving
+                        </Link>
+                    </Item>
+                </List>
+            </nav>
+        )}
+    </ThemeContext.Consumer>
 );
 
 IntroNav.propTypes = {

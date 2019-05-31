@@ -65,8 +65,8 @@ export const magma = {
   },
 
   // screen sizes
-  sizeXs: '576px',
+  sizeXs: '600px',
   sizeSm: '768px',
-  sizeMd: '992px',
+  sizeMd: '1024px',
   sizeLg: '1200px'
 };

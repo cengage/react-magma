@@ -1,28 +1,37 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
+import { ThemeContext } from 'react-magma-dom';
 
 const StyledHeading = styled.h2`
-   font-size: 36px;
-   text-align: center;
-   text-transform: uppercase;
+    font-family: ${props => props.theme.bodyFont};
+    font-size: 2.4em;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
 
-    @media (min-width: 600px) {
-      text-align: left;
+    @media (min-width: ${props => props.theme.sizeXs}) {
+        text-align: left;
     }
 `;
 
 const HeadingNum = styled.span`
    display: block;
    font-family: 'Abel', sans-serif;
+   font-weight: normal;
    font-size: 17px;
+   margin-bottom: 15px;
 `;
 
 const IntroHeading = ({ name, number }) => (
-    <StyledHeading>
-        <HeadingNum>{number}</HeadingNum>
-        {name}
-    </StyledHeading>
+    <ThemeContext.Consumer>
+        {theme => (
+            <StyledHeading theme={theme}>
+                <HeadingNum>{number}</HeadingNum>
+                {name}
+            </StyledHeading>
+        )}
+    </ThemeContext.Consumer>
 );
 
 IntroHeading.propTypes = {

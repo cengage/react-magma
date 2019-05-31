@@ -1,19 +1,23 @@
-import React from 'react'
-import Layout from '../components/layout'
-import { IndexPageContent } from '../components/intro/index-page-content'
-import { Global, css } from '@emotion/core'
+import React from 'react';
+import Layout from '../components/layout';
+import { IndexPageContent } from '../components/intro/index-page-content';
+import { Global, css } from '@emotion/core';
+import { ThemeContext } from 'react-magma-dom';
 import "animate.css/animate.min.css";
 
 const IndexPage = () => (
-  <Layout>
-    <Global styles={css`
-      @import url('https://fonts.googleapis.com/css?family=Abel');
-      .content { background: #00263E; color: #fff; padding: 0; overflow: hidden; } 
-      .content-article { background: linear-gradient(to bottom, #003865 0%,#e0004d 100%);  margin: 0; max-width: none; padding: 0; width: auto; } 
-    `} />
-
-    <IndexPageContent />
-  </Layout>
+  <ThemeContext.Consumer>
+      {theme => (
+        <Layout>
+          <Global styles={css`
+            @import url('https://fonts.googleapis.com/css?family=Abel');
+            .content { background: ${theme.colors.neutral01}; color: ${theme.colors.neutral08}; padding: 0; overflow: hidden; } 
+            .content-article { background: linear-gradient(to bottom, ${theme.colors.foundation01} 0%, ${theme.colors.pop01} 100%);  margin: 0; max-width: none; padding: 0; width: auto; } 
+          `} />
+          <IndexPageContent />
+        </Layout>
+    )}
+  </ThemeContext.Consumer>
 )
 
 export default IndexPage
