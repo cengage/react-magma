@@ -1,5 +1,5 @@
 import React from 'react'
-//import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import styled from '@emotion/styled';
 
 const List = styled.ol`
@@ -53,32 +53,46 @@ const Num = styled.span`
    font-family: 'Abel', sans-serif;
 `;
 
-const IntroNav = () => (
+const IntroNav = ({activeSection}) => (
     <nav>
         <List>
             <Item>
-                <Link active href="#sectionIntro"><Num>00</Num>Intro</Link>
+                <Link active={activeSection === 'sectionIntro'} href="#sectionIntro">
+                    <Num>00</Num>Intro
+                </Link>
             </Item>
             <Item>
-                <Link href="#sectionComponents"><Num>01</Num>Component-based</Link>
+                <Link active={activeSection === 'sectionComponents'} href="#sectionComponents">
+                    <Num>01</Num>Component-based
+                </Link>
             </Item>
             <Item>
-                <Link href="#sectionQuality"><Num>02</Num>Quality</Link>
+                <Link active={activeSection === 'sectionQuality'} href="#sectionQuality">
+                    <Num>02</Num>Quality
+                </Link>
             </Item>
             <Item>
-                <Link href="#sectionAccessible"><Num>03</Num>Accessible</Link>
+                <Link active={activeSection === 'sectionAccessible'} href="#sectionAccessible">
+                    <Num>03</Num>Accessible
+                </Link>
             </Item>
             <Item>
-                <Link href="#sectionDevice"><Num>04</Num>Device-agnostic</Link>
+                <Link active={activeSection === 'sectionDevice'} href="#sectionDevice">
+                    <Num>04</Num>Device-agnostic
+                </Link>
             </Item>
             <Item>
-                <Link href="#sectionEvolving"><Num>05</Num>Always evolving</Link>
+                <Link active={activeSection === 'sectionEvolving'} href="#sectionEvolving">
+                    <Num>05</Num>Always evolving
+                </Link>
             </Item>
         </List>
     </nav>
 );
 
-//IntroNav.propTypes = {}
+IntroNav.propTypes = {
+    activeSection: PropTypes.string
+}
 
 export default IntroNav
 

@@ -29,10 +29,11 @@ const ImgContainer = styled(ScrollAnimation)`
     }
 `;
 
-const IntroSection = ({ children, id, image, noAnimate }) => (
+const IntroSection = ({ children, id, image, noAnimate, afterAnimatedIn }) => (
     <StyledSection id={id}>
         { image && 
             <ImgContainer
+                afterAnimatedIn={(v) => {afterAnimatedIn(id, v)}}
                 animateIn="fadeInLeft"
                 duration={noAnimate ? 0 : 1.2}>
                 {image}
@@ -48,7 +49,8 @@ IntroSection.propTypes = {
     children: PropTypes.node.isRequired,
     id: PropTypes.string.isRequired,
     image: PropTypes.node,
-    noAnimate: PropTypes.bool
+    noAnimate: PropTypes.bool,
+    afterAnimatedIn: PropTypes.func.isRequired
 }
 
 export default IntroSection

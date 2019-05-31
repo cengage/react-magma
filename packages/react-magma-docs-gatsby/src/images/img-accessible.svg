@@ -54,10 +54,10 @@
                                 </g>
                             </g>
                             <rect id="a_Rectangle" fill="url(#a_linearGradient-9)" x="85" y="212" width="80" height="3"></rect>
-                            <text id="a_A" font-family="OpenSans, Open Sans" font-size="80" font-weight="normal" line-spacing="80" fill="#FFFFFF">
+                            <text id="a_A" font-family="OpenSans, Open Sans" font-size="80" font-weight="normal" fill="#FFFFFF">
                                 <tspan x="37" y="171">A</tspan>
                             </text>
-                            <text id="a_a" font-family="OpenSans, Open Sans" font-size="80" font-weight="normal" line-spacing="80" fill="#00263E">
+                            <text id="a_a" font-family="OpenSans, Open Sans" font-size="80" font-weight="normal" fill="#00263E">
                                 <tspan x="165" y="171">a</tspan>
                             </text>
                         </g>
