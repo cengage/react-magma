@@ -11,9 +11,9 @@ const List = styled.ol`
         display: flex;
         left: 0;
         list-style: none;
-        justify-content: space-around;
+        justify-content: space-between;
         margin: 0;
-        padding: 0 0 0 10px;
+        padding: 0 20px;
         position: fixed;
         right: 0;
         top: 80px;

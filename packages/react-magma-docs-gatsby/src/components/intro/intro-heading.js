@@ -5,13 +5,13 @@ import { ThemeContext } from 'react-magma-dom';
 
 const StyledHeading = styled.h2`
     font-family: ${props => props.theme.bodyFont};
-    font-size: 2.4em;
+    font-size:  ${props => props.isCta ? '2em' : '2.4em'};
     font-weight: 600;
     text-align: center;
     text-transform: uppercase;
 
     @media (min-width: ${props => props.theme.sizeXs}) {
-        text-align: left;
+        text-align: ${props => props.isCta ? 'center' : 'left'};
     }
 `;
 
@@ -23,11 +23,11 @@ const HeadingNum = styled.span`
    margin-bottom: 15px;
 `;
 
-const IntroHeading = ({ name, number }) => (
+const IntroHeading = ({ isCta, name, number }) => (
     <ThemeContext.Consumer>
         {theme => (
-            <StyledHeading theme={theme}>
-                <HeadingNum>{number}</HeadingNum>
+            <StyledHeading isCta={isCta} theme={theme}>
+                {number && <HeadingNum>{number}</HeadingNum>}
                 {name}
             </StyledHeading>
         )}
@@ -35,8 +35,9 @@ const IntroHeading = ({ name, number }) => (
 );
 
 IntroHeading.propTypes = {
+    isCta: PropTypes.bool,
     name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired
+    number: PropTypes.string,
 }
 
 export default IntroHeading

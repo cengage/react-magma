@@ -43,6 +43,13 @@ const Footer = styled.footer`
     text-align: center;
 `;
 
+const FooterPara = styled.p`
+    font-size: 1.5em;
+    line-height: 1.5em;
+    margin: 0 auto;
+    max-width: 750px;
+`;
+
 export class IndexPageContent extends React.Component {
 
   constructor(props) {
@@ -134,8 +141,8 @@ export class IndexPageContent extends React.Component {
             </HexBackground>
             
             <Footer theme={theme}>
-              <h2 style={{margin: '0 0 0.5em 0', padding: 0, textTransform: 'uppercase'}}>Contact us anytime</h2>
-              <p style={{ fontSize: '1.5em', lineHeight: '1.5em'}}>If you have questions or you’d like to be personally involved in helping React Magma be the best it can be, please reach out to us on Slack — #magma.</p>
+              <IntroHeading isCta name="Contact us anytime" />
+              <FooterPara>If you have questions or you’d like to be personally involved in helping React Magma be the best it can be, please reach out to us on Slack — #magma.</FooterPara>
             </Footer>
           </>
         )}
