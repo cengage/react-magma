@@ -5,6 +5,7 @@ import IntroSection from './intro-section'
 import IntroNav from './intro-nav'
 import HexBackground from './hex-background'
 import styled from '@emotion/styled';
+import { Parallax } from 'react-scroll-parallax';
 
 import ColorLogo from '../../images/React_Magma_Logo_Color.svg'
 import ImageAccessible from '../../images/img-accessible.svg'
@@ -40,6 +41,7 @@ const ButtonContainer = styled.div`
 const Footer = styled.footer`
     background: ${props => props.theme.colors.neutral01};
     padding: 80px 10%;
+    position: relative;
     text-align: center;
 `;
 
@@ -75,6 +77,7 @@ export class IndexPageContent extends React.Component {
         {theme => (
           <>
             <IntroNav activeSection={this.state.activeSection} />
+            <Parallax x={[0, 3]}  y={[0, 3]}>
             <HexBackground>
               <IntroSection
                 id="sectionIntro"
@@ -139,6 +142,7 @@ export class IndexPageContent extends React.Component {
                   <p>The React Magma team actively designs, develops, tests, and maintains the design system. If you have any requests for new components or if you find any bugs, please contact the team.</p>
                 </IntroSection>
             </HexBackground>
+            </Parallax>
             
             <Footer theme={theme}>
               <IntroHeading isCta name="Contact us anytime" />
