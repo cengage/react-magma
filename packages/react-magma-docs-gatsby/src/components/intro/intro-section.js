@@ -30,7 +30,7 @@ const ImgContainer = styled(ScrollAnimation)`
     }
 `;
 
-const IntroSection = ({ children, id, image, noAnimate, afterAnimatedIn }) => (
+const IntroSection = ({ children, id, image, afterAnimatedIn }) => (
     <ThemeContext.Consumer>
         {theme => (
             <StyledSection id={id} theme={theme}>
@@ -38,7 +38,7 @@ const IntroSection = ({ children, id, image, noAnimate, afterAnimatedIn }) => (
                     <ImgContainer
                         afterAnimatedIn={(v) => {afterAnimatedIn(id, v)}}
                         animateIn="fadeInLeft"
-                        duration={noAnimate ? 0 : 1.2}
+                        duration={1.2}
                         theme={theme}>
                         {image}
                     </ImgContainer>
@@ -55,7 +55,6 @@ IntroSection.propTypes = {
     children: PropTypes.node.isRequired,
     id: PropTypes.string.isRequired,
     image: PropTypes.node,
-    noAnimate: PropTypes.bool,
     afterAnimatedIn: PropTypes.func.isRequired
 }
 

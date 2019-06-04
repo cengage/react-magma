@@ -2,10 +2,9 @@ import React from 'react'
 import { Button, CodeIcon, PaletteIcon, ThemeContext } from 'react-magma-dom'
 import IntroHeading from './intro-heading'
 import IntroSection from './intro-section'
-import IntroNav from './intro-nav'
+import NavItem from './nav-item'
 import HexBackground from './hex-background'
 import styled from '@emotion/styled';
-import { Parallax } from 'react-scroll-parallax';
 
 import ColorLogo from '../../images/React_Magma_Logo_Color.svg'
 import ImageAccessible from '../../images/img-accessible.svg'
@@ -17,7 +16,7 @@ import ImageQuality from '../../images/img-quality.svg'
 const Heading = styled.h1`
   font-family:  ${props => props.theme.bodyFont};  
   font-size: 3.4em;
-  font-weight: normal;
+  font-weight: 600;
   text-align: center;      
   text-transform: uppercase;
 
@@ -28,6 +27,28 @@ const Heading = styled.h1`
   @media (min-width: ${props => props.theme.sizeXs}) {
     text-align: left;
   }
+`;
+
+const List = styled.ol`
+    display: none;
+
+    @media (min-width: ${props => props.theme.sizeSm}) {
+        background-color: ${props => props.theme.colors.neutral01};
+        display: flex;
+        left: 0;
+        list-style: none;
+        justify-content: space-between;
+        margin: 0;
+        padding: 0 20px;
+        position: fixed;
+        right: 0;
+        top: 80px;
+        z-index: 2;
+    }
+
+    @media (min-width: ${props => props.theme.sizeMd}) {
+        left: 280px;
+    }
 `;
 
 const ButtonContainer = styled.div`
@@ -61,6 +82,7 @@ export class IndexPageContent extends React.Component {
     };   
     
     this.handleAnimateIn = this.handleAnimateIn.bind(this);
+    this.handleNavClick = this.handleNavClick.bind(this);
   }   
 
   handleAnimateIn(id, v) {
@@ -71,18 +93,62 @@ export class IndexPageContent extends React.Component {
     }
   };
 
+  handleNavClick(id) {
+    this.setState({
+      activeSection: id
+    })
+  };
+
   render() {
     return(
       <ThemeContext.Consumer>
         {theme => (
           <>
-            <IntroNav activeSection={this.state.activeSection} />
-            <Parallax x={[0, 3]}  y={[0, 3]}>
+            <nav>
+              <List theme={theme}>
+                  <NavItem
+                    activeSection={this.state.activeSection}
+                    id="sectionIntro"
+                    number="00"
+                    onClick={this.handleNavClick}
+                    text="Intro"  />
+                  <NavItem
+                    activeSection={this.state.activeSection}
+                    id="sectionComponents"
+                    number="01"
+                    onClick={this.handleNavClick}
+                    text="Component-based"  />
+                  <NavItem
+                    activeSection={this.state.activeSection}
+                    id="sectionQuality"
+                    number="02"
+                    onClick={this.handleNavClick}
+                    text="Quality"  />
+                  <NavItem
+                    activeSection={this.state.activeSection}
+                    id="sectionAccessible"
+                    number="03"
+                    onClick={this.handleNavClick}
+                    text="Accessible"  />
+                  <NavItem
+                    activeSection={this.state.activeSection}
+                    id="sectionDevice"
+                    number="04"
+                    onClick={this.handleNavClick}
+                    text="Device-agnostic"  />
+                  <NavItem
+                    activeSection={this.state.activeSection}
+                    id="sectionEvolving"
+                    number="05"
+                    onClick={this.handleNavClick}
+                    text="Always evolving"  />
+              </List>
+            </nav>
+
             <HexBackground>
               <IntroSection
                 id="sectionIntro"
                 image={<ColorLogo style={{width: '100%'}} />}
-                noAnimate
                 afterAnimatedIn={this.handleAnimateIn}
                 style={{marginTop: '70px'}}>
                   <Heading theme={theme}>React Magma</Heading>
@@ -142,7 +208,6 @@ export class IndexPageContent extends React.Component {
                   <p>The React Magma team actively designs, develops, tests, and maintains the design system. If you have any requests for new components or if you find any bugs, please contact the team.</p>
                 </IntroSection>
             </HexBackground>
-            </Parallax>
             
             <Footer theme={theme}>
               <IntroHeading isCta name="Contact us anytime" />
