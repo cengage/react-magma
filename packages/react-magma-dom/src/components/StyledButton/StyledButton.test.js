@@ -10,7 +10,7 @@ import {
 } from '.';
 import { render, fireEvent } from 'react-testing-library';
 import { magma } from '../../theme/magma';
-import { darken } from 'polished';
+import { darken, lighten } from 'polished';
 
 const TEXT = 'Test Text';
 
@@ -174,6 +174,25 @@ describe('Styled Button', () => {
         );
         expect(button).toHaveStyleRule('border-color', magma.colors.danger);
         expect(button).toHaveStyleRule('color', magma.colors.neutral08);
+      });
+
+      it('marketing button', () => {
+        const { getByText } = renderButton({ color: 'marketing' });
+        const button = getByText(TEXT);
+
+        expect(button).toHaveStyleRule('background', magma.colors.pop04);
+        expect(button).toHaveStyleRule(
+          'background',
+          lighten(0.1, magma.colors.pop04),
+          { target: ':hover' }
+        );
+        expect(button).toHaveStyleRule(
+          'background',
+          lighten(0.2, magma.colors.pop04),
+          { target: ':active' }
+        );
+        expect(button).toHaveStyleRule('border-color', magma.colors.pop04);
+        expect(button).toHaveStyleRule('color', magma.colors.foundation01);
       });
     });
 

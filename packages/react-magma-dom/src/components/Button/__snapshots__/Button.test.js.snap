@@ -3,7 +3,7 @@
 exports[`Button Base Button Snapshot should render with large size 1`] = `
 <div>
   <button
-    class="css-1fs3ka8 e183qit0"
+    class="css-1m78rby e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -16,7 +16,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 exports[`Button Base Button Snapshot should render with small size 1`] = `
 <div>
   <button
-    class="css-1s5rzag e183qit0"
+    class="css-1begpfu e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -42,7 +42,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 <div>
   <button
-    class="css-12f1w2t e183qit0"
+    class="css-1lfgqyo e183qit0"
     color="primary"
     id="testId"
     shape="round"
@@ -55,7 +55,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 exports[`Button Base Button Snapshot should render with updated textTransform 1`] = `
 <div>
   <button
-    class="css-jubjjm e183qit0"
+    class="css-1d39qv5 e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -82,7 +82,7 @@ exports[`Button Icon Only Button Snapshot should render with large size 1`] = `
 <div>
   <button
     aria-label="Check Icon"
-    class="css-mnpfpi e183qit0"
+    class="css-144n4s0 e183qit0"
     color="primary"
     id="testId"
     shape="round"
@@ -112,7 +112,7 @@ exports[`Button Icon Only Button Snapshot should render with small size 1`] = `
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1xqhztd e183qit0"
+    class="css-1almfua e183qit0"
     color="primary"
     id="testId"
     shape="round"
@@ -172,7 +172,7 @@ exports[`Button Icon Only Button Snapshot should render with updated shape 1`] =
 <div>
   <button
     aria-label="Check Icon"
-    class="css-uyui93 e183qit0"
+    class="css-1p6rnw7 e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -232,7 +232,7 @@ exports[`Button Icon With Text Button Snapshot should render with large size 1`]
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1fs3ka8 e183qit0"
+    class="css-1m78rby e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -268,7 +268,7 @@ exports[`Button Icon With Text Button Snapshot should render with medium size 1`
 <div>
   <button
     aria-label="Check Icon"
-    class="css-qhwgaw e183qit0"
+    class="css-neg7og e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -304,7 +304,7 @@ exports[`Button Icon With Text Button Snapshot should render with small size 1`]
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1s5rzag e183qit0"
+    class="css-1begpfu e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -376,7 +376,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated shape 
 <div>
   <button
     aria-label="Check Icon"
-    class="css-qhwgaw e183qit0"
+    class="css-neg7og e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -412,7 +412,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated text t
 <div>
   <button
     aria-label="Check Icon"
-    class="css-jubjjm e183qit0"
+    class="css-1d39qv5 e183qit0"
     color="primary"
     id="testId"
     shape="fill"

@@ -3,7 +3,7 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import isPropValid from '@emotion/is-prop-valid';
 import { ThemeContext } from '../../theme/themeContext';
-import { darken, tint } from 'polished';
+import { darken, lighten, tint } from 'polished';
 
 export enum ButtonVariant {
   solid = 'solid', //default
@@ -15,7 +15,8 @@ export enum ButtonColor {
   primary = 'primary', //default
   secondary = 'secondary',
   success = 'success',
-  danger = 'danger'
+  danger = 'danger',
+  marketing = 'marketing'
 }
 
 export enum ButtonShape {
@@ -166,11 +167,14 @@ const StyledButtonComponent = styled('button', {
   }};
 
   background: ${props => {
-    if (props.variant !== 'solid') {
+    if (props.variant !== 'solid' && props.color !== 'marketing') {
       return 'rgba(0,0,0,0)';
     }
     if (props.disabled) {
       return props.theme.colors.neutral06;
+    }
+    if (props.color === 'marketing') {
+      return props.theme.colors.pop04;
     }
     if (props.inverse) {
       return props.theme.colors.neutral08;
@@ -200,6 +204,9 @@ const StyledButtonComponent = styled('button', {
     if (props.disabled) {
       return props.theme.colors.neutral06;
     }
+    if (props.color === 'marketing') {
+      return props.theme.colors.pop04;
+    }
     if (props.inverse) {
       return props.theme.colors.neutral08;
     }
@@ -224,6 +231,9 @@ const StyledButtonComponent = styled('button', {
     }
     if (props.disabled) {
       return props.theme.colors.disabledText;
+    }
+    if (props.color === 'marketing') {
+      return props.theme.colors.foundation01;
     }
     if (
       (!props.inverse && props.variant === 'solid') ||
@@ -255,6 +265,9 @@ const StyledButtonComponent = styled('button', {
     &:hover,
     &:focus {
       background: ${props => {
+        if (props.color === 'marketing') {
+          return lighten(0.1, props.theme.colors.pop04);
+        }
         if (
           (props.variant !== 'solid' && !props.inverse) ||
           (props.variant === 'solid' && props.inverse)
@@ -285,6 +298,9 @@ const StyledButtonComponent = styled('button', {
         }
       }};
       color: ${props => {
+        if (props.color === 'marketing') {
+          return props.theme.colors.foundation01;
+        }
         if (
           (props.variant !== 'solid' && !props.inverse) ||
           (props.variant === 'solid' && props.inverse)
@@ -306,7 +322,6 @@ const StyledButtonComponent = styled('button', {
         if (props.color === 'secondary' && !props.inverse) {
           return props.theme.colors.neutral02;
         }
-        return props.theme.colors.neutral08;
       }};
     }
 
@@ -351,6 +366,9 @@ const StyledButtonComponent = styled('button', {
 
     &:active {
       background: ${props => {
+        if (props.color === 'marketing') {
+          return lighten(0.2, props.theme.colors.pop04);
+        }
         if (
           (props.variant !== 'solid' && !props.inverse) ||
           (props.variant === 'solid' && props.inverse)
@@ -381,6 +399,9 @@ const StyledButtonComponent = styled('button', {
         }
       }};
       color: ${props => {
+        if (props.color === 'marketing') {
+          return props.theme.colors.foundation01;
+        }
         if (
           (props.variant !== 'solid' && !props.inverse) ||
           (props.variant === 'solid' && props.inverse)
