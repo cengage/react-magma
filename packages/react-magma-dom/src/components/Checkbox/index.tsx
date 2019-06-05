@@ -106,9 +106,11 @@ const StyledFakeInput = styled.span<{
         : props.theme.colors.primary};
   }
 
-  ${HiddenInput}:not (:disabled):active + label & {
-    &:after {
-      ${DisplayInputActiveStyles}
+  ${HiddenInput}:not (:disabled) {
+    &:active + label & {
+      &:after {
+        ${DisplayInputActiveStyles}
+      }
     }
   }
 

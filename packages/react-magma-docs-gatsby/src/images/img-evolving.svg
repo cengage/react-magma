@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="250px" height="250px" viewBox="0 0 250 250" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
+    <title>Group 15 Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="e_path-1" x="0" y="0" width="250" height="250"></rect>
+    </defs>
+    <g id="e_Intro-Page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-470.000000, -3224.000000)" id="e_MAIN">
+            <g transform="translate(280.000000, 0.000000)">
+                <g id="e_Group-7" transform="translate(190.000000, 233.000000)">
+                    <g id="e_Always-Evolving" transform="translate(0.000000, 2991.000000)">
+                        <g id="e_Group-15-Copy">
+                            <g id="e_🎨/foundation01"></g>
+                            <mask id="e_mask-2" fill="white">
+                                <use xlink:href="#e_path-1"></use>
+                            </mask>
+                            <use id="e_Rectangle" fill="#003865" xlink:href="#e_path-1"></use>
+                            <polygon id="e_Polygon" fill="#FFC72C" mask="url(#e_mask-2)" points="41 22 55.7224319 30.5 55.7224319 47.5 41 56 26.2775681 47.5 26.2775681 30.5"></polygon>
+                            <polygon id="e_Polygon-Copy" fill="#FFC72C" mask="url(#e_mask-2)" points="111 62 125.722432 70.5 125.722432 87.5 111 96 96.2775681 87.5 96.2775681 70.5"></polygon>
+                            <polygon id="e_Polygon-Copy-2" fill="#E0004D" mask="url(#e_mask-2)" points="143 62 157.722432 70.5 157.722432 87.5 143 96 128.277568 87.5 128.277568 70.5"></polygon>
+                            <polygon id="e_Polygon-Copy-3" fill="#FFC72C" mask="url(#e_mask-2)" points="73 132 87.7224319 140.5 87.7224319 157.5 73 166 58.2775681 157.5 58.2775681 140.5"></polygon>
+                            <polygon id="e_Polygon-Copy-4" fill="#E0004D" mask="url(#e_mask-2)" points="105 132 119.722432 140.5 119.722432 157.5 105 166 90.2775681 157.5 90.2775681 140.5"></polygon>
+                            <polygon id="e_Polygon-Copy-5" fill="#00A9E0" mask="url(#e_mask-2)" points="89 160 103.722432 168.5 103.722432 185.5 89 194 74.2775681 185.5 74.2775681 168.5"></polygon>
+                            <polygon id="e_Polygon-Copy-6" fill="#FFC72C" mask="url(#e_mask-2)" points="189 180 203.722432 188.5 203.722432 205.5 189 214 174.277568 205.5 174.277568 188.5"></polygon>
+                            <polygon id="e_Polygon-Copy-7" fill="#E0004D" mask="url(#e_mask-2)" points="221 180 235.722432 188.5 235.722432 205.5 221 214 206.277568 205.5 206.277568 188.5"></polygon>
+                            <polygon id="e_Polygon-Copy-8" fill="#00A9E0" mask="url(#e_mask-2)" points="205 208 219.722432 216.5 219.722432 233.5 205 242 190.277568 233.5 190.277568 216.5"></polygon>
+                            <polygon id="e_Polygon-Copy-9" fill="#48A200" mask="url(#e_mask-2)" points="237 208 251.722432 216.5 251.722432 233.5 237 242 222.277568 233.5 222.277568 216.5"></polygon>
+                            <polygon id="e_Polygon-Copy-10" fill="#FA6600" mask="url(#e_mask-2)" points="221 236 235.722432 244.5 235.722432 261.5 221 270 206.277568 261.5 206.277568 244.5"></polygon>
+                            <polygon id="e_Polygon-Copy-12" fill="#FA6600" mask="url(#e_mask-2)" points="237 152 251.722432 160.5 251.722432 177.5 237 186 222.277568 177.5 222.277568 160.5"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

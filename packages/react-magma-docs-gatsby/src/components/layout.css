@@ -514,7 +514,6 @@ pre tt:after {
   @media (min-width: 1024px) {
     .main {
       display: grid;
-      grid-gap: 3px;
       grid-template-columns: 280px auto;
       grid-template-rows: 80px auto;
       grid-template-areas:
@@ -533,7 +532,6 @@ pre tt:after {
   .content-article {
     margin: 0 auto;
     max-width: 750px;
-    overflow: hidden;
     width: 80%;
   }
 
