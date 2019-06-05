@@ -29,7 +29,7 @@ Sizes for buttons include `small`, `medium`, and `large`, with `medium` being th
 
 ## Colors
 
-Colors for buttons include `primary`, `secondary`, `success`, and `danger`, with `primary` being the default value.
+Colors for buttons include `primary`, `secondary`, `success`, `danger`, and `marketing` with `primary` being the default value.
 
 ```.jsx
     <div>
@@ -37,12 +37,15 @@ Colors for buttons include `primary`, `secondary`, `success`, and `danger`, with
         <Button color="secondary">Secondary</Button>
         <Button color="success" >Success</Button>
         <Button color="danger">Danger</Button>
+        <Button color="marketing">Marketing</Button>
     </div>
 ```
 
 ## Variants
 
-Variants for buttons include `solid`, `outline`, and `link`, with `solid` being the default value.
+Variants for buttons include `solid`, `outline`, and `link`, with `solid` being the default value.  
+
+The `marketing` buttons do not have `outline` and `link` variants, and will render as solid buttons. 
 
 ```.jsx
     <div>
@@ -100,6 +103,8 @@ The default value is `false`.
 While `outline inverse buttons` and `link inverse buttons` still accept the `color` property, the `color` property
 online affects `solid inverse buttons`.
 
+The `marketing` button does not have an inverse state, as it already is styled to appear well against a dark background. 
+
 ```.jsx
     <div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
       <p>
@@ -107,6 +112,7 @@ online affects `solid inverse buttons`.
           <Button color="secondary" inverse>Solid inverse</Button>
           <Button color="success" inverse>Solid inverse</Button>
           <Button color="danger" inverse>Solid inverse</Button>
+          <Button color="marketing" inverse>Marketing inverse</Button>
       </p>
       <p>
           <Button variant="outline" inverse>Outline inverse</Button>
@@ -292,7 +298,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
 | block         | boolean                                                             | false       |
 | className     | string                                                              |             |
 | children      | node                                                                |             | &#10003; |
-| color         | enum: 'primary' &#124; 'secondary' &#124; 'success' &#124; 'danger' | 'primary'   |
+| color         | enum: 'primary' &#124; 'secondary' &#124; 'success' &#124; 'danger'  &#124; 'marketing' | 'primary'   |
 | disabled      | boolean                                                             | false       |
 | onClick       | function                                                            |             | &#10003; |
 | href          | string                                                              |             |
