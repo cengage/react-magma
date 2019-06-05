@@ -1,17 +1,45 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
+import { ModalCore } from 'react-magma-core';
 import { ThemeContext } from '../../theme/themeContext';
+import { Heading } from '../Heading';
 import { Button } from '../Button';
+import FocusTrap from 'focus-trap-react';
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   open?: boolean;
-  onOpen?: (event) => void;
-  onClose?: (event) => void;
+  disableBackdropClick?: boolean;
+  disableEscKeyDown?: boolean;
+  onClose?: () => void;
+  onEscKeyDown: (event: React.KeyboardEvent) => void;
   header?: React.ReactNode;
+  hideEscButton?: boolean;
   testId?: string;
 }
 
-const ModalHeading = styled.h3`
+const ModalContainer = styled.div<{ isExiting?: boolean }>`
+  animation: ${props => (props.isExiting ? 'fadeout 1000ms' : 'fadein 1000ms')};
+
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeout {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+`;
+
+const ModalHeading = styled.div`
     color: ${props => props.theme.colors.foundation01};
     font-family: color: ${props => props.theme.headingFont};
 `;
@@ -43,24 +71,53 @@ const ModalContent = styled.div<ModalProps>`
 `;
 
 export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
-  ({ children, header, onClose, open, ...other }: ModalProps, ref: any) => (
+  (props: ModalProps, ref: any) => (
     <ThemeContext.Consumer>
       {theme => (
-        <>
-          {open && (
-            <>
-              {' '}
-              <ModalBackdrop />
-              <ModalContent ref={ref} theme={theme} {...other}>
-                <ModalHeading theme={theme}>
-                  {header}
-                  <Button onClick={onClose}>Close</Button>
-                </ModalHeading>
-                <ModalBody>{children}</ModalBody>
-              </ModalContent>{' '}
-            </>
-          )}
-        </>
+        <ModalCore open={props.open} onClose={props.onClose}>
+          {({ isExiting, onClose, onKeyDown }) => {
+            const {
+              children,
+              disableBackdropClick,
+              disableEscKeyDown,
+              header,
+              hideEscButton,
+              open,
+              ...other
+            } = props;
+            return (
+              <>
+                {open && (
+                  <FocusTrap
+                    active={open}
+                    focusTrapOptions={{
+                      clickOutsideDeactivates: false,
+                      escapeDeactivates: false
+                    }}
+                  >
+                    <ModalContainer
+                      isExiting={isExiting}
+                      onKeyDown={disableEscKeyDown ? null : onKeyDown}
+                    >
+                      <ModalBackdrop
+                        onClick={disableBackdropClick ? null : onClose}
+                      />
+                      <ModalContent ref={ref} theme={theme} {...other}>
+                        <ModalHeading theme={theme}>
+                          <Heading level={3}>{header}</Heading>
+                          {!hideEscButton && (
+                            <Button onClick={onClose}>Close</Button>
+                          )}
+                        </ModalHeading>
+                        <ModalBody>{children}</ModalBody>
+                      </ModalContent>
+                    </ModalContainer>
+                  </FocusTrap>
+                )}
+              </>
+            );
+          }}
+        </ModalCore>
       )}
     </ThemeContext.Consumer>
   )
