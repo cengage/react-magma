@@ -6,7 +6,7 @@ import { AlertIcon } from '../Icon/types/AlertIcon';
 import { Label } from '../Label';
 import { ThemeContext } from '../../theme/themeContext';
 import { Button } from '../Button';
-import { ButtonVariant } from '../StyledButton';
+import { ButtonVariant, ButtonType } from '../StyledButton';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { Announce } from '../Announce';
 
@@ -362,6 +362,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                           left: '7px',
                           borderRadius: '3px'
                         }}
+                        type={ButtonType.button}
                         variant={ButtonVariant.link}
                       >
                         {passwordShown
