@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="250px" height="250px" viewBox="0 0 250 250" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>Group 18</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="30.1314507 5.25 13.345255 22.0361957 4.871902 13.5628428 0.875 17.5597448 13.345255 30.0299997 34.1283527 9.246902"></polygon>
+        <polygon id="path-3" points="30.1314507 5.25 13.345255 22.0361957 4.871902 13.5628428 0.875 17.5597448 13.345255 30.0299997 34.1283527 9.246902"></polygon>
+        <polygon id="path-5" points="30.1314507 5.25 13.345255 22.0361957 4.871902 13.5628428 0.875 17.5597448 13.345255 30.0299997 34.1283527 9.246902"></polygon>
+    </defs>
+    <g id="Intro-Page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-471.000000, -1577.000000)" id="MAIN">
+            <g transform="translate(280.000000, 0.000000)">
+                <g id="Group-7" transform="translate(190.000000, 212.000000)">
+                    <g id="Accessible-Copy" transform="translate(1.000000, 1365.000000)">
+                        <g id="Group-18">
+                            <g id="🎨/pop02" fill="#FA6600">
+                                <rect id="Rectangle" x="0" y="0" width="250" height="250"></rect>
+                            </g>
+                            <g id="🎨/pop02-copy" fill="#E0004D">
+                                <polygon id="Rectangle" points="125 129 250 0 250 250 0 250"></polygon>
+                            </g>
+                            <g id="Group-11" transform="translate(100.000000, 47.000000)" fill="#FFFFFF">
+                                <g id="🎨/neutral08">
+                                    <rect id="Rectangle" x="0" y="0" width="120" height="8"></rect>
+                                </g>
+                                <g id="🎨/neutral08" transform="translate(0.000000, 16.000000)">
+                                    <rect id="Rectangle" x="0" y="0" width="90" height="8"></rect>
+                                </g>
+                            </g>
+                            <g id="Group-11-Copy" transform="translate(100.000000, 113.000000)" fill="#FFFFFF">
+                                <g id="🎨/neutral08">
+                                    <rect id="Rectangle" x="0" y="0" width="120" height="8"></rect>
+                                </g>
+                                <g id="🎨/neutral08" transform="translate(0.000000, 16.000000)">
+                                    <rect id="Rectangle" x="0" y="0" width="90" height="8"></rect>
+                                </g>
+                            </g>
+                            <g id="Group-11-Copy-2" transform="translate(100.000000, 180.000000)" fill="#FFFFFF">
+                                <g id="🎨/neutral08">
+                                    <rect id="Rectangle" x="0" y="0" width="120" height="8"></rect>
+                                </g>
+                                <g id="🎨/neutral08" transform="translate(0.000000, 16.000000)">
+                                    <rect id="Rectangle" x="0" y="0" width="90" height="8"></rect>
+                                </g>
+                            </g>
+                            <g id="Group-10" transform="translate(34.000000, 36.000000)">
+                                <rect id="Rectangle" stroke="#FFFFFF" stroke-width="3" x="1.5" y="1.5" width="43" height="43" rx="5"></rect>
+                                <g id="check" transform="translate(6.000000, 6.000000)">
+                                    <mask id="mask-2" fill="white">
+                                        <use xlink:href="#path-1"></use>
+                                    </mask>
+                                    <use id="Shape" fill="#444444" fill-rule="nonzero" xlink:href="#path-1"></use>
+                                    <g id="🎨/neutral08" mask="url(#mask-2)" fill="#FFFFFF" fill-rule="evenodd">
+                                        <rect id="Rectangle" x="0" y="0" width="35" height="35"></rect>
+                                    </g>
+                                </g>
+                                <g id="check" transform="translate(6.000000, 72.000000)">
+                                    <mask id="mask-4" fill="white">
+                                        <use xlink:href="#path-3"></use>
+                                    </mask>
+                                    <use id="Shape" fill="#444444" fill-rule="nonzero" xlink:href="#path-3"></use>
+                                    <g id="🎨/neutral08" mask="url(#mask-4)" fill="#FFFFFF" fill-rule="evenodd">
+                                        <rect id="Rectangle" x="0" y="0" width="35" height="35"></rect>
+                                    </g>
+                                </g>
+                                <g id="check" transform="translate(6.000000, 139.000000)">
+                                    <mask id="mask-6" fill="white">
+                                        <use xlink:href="#path-5"></use>
+                                    </mask>
+                                    <use id="Shape" fill="#444444" fill-rule="nonzero" xlink:href="#path-5"></use>
+                                    <g id="🎨/neutral08" mask="url(#mask-6)" fill="#FFFFFF" fill-rule="evenodd">
+                                        <rect id="Rectangle" x="0" y="0" width="35" height="35"></rect>
+                                    </g>
+                                </g>
+                                <rect id="Rectangle-Copy-3" stroke="#FFFFFF" stroke-width="3" x="1.5" y="67.5" width="43" height="43" rx="5"></rect>
+                                <rect id="Rectangle-Copy-4" stroke="#FFFFFF" stroke-width="3" x="1.5" y="134.5" width="43" height="43" rx="5"></rect>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

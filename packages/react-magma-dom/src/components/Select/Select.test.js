@@ -35,12 +35,20 @@ describe('Select', () => {
     expect(styles.multiValue({})).toContainKey('color', color);
   });
 
-  it('should render a select with a value passed through', () => {
+  it('should render a select with a default value passed through', () => {
     const defaultValue = { value: 'red', label: 'Red' };
     const inputName = 'Test';
     const { getByValue } = render(
       <Select name={inputName} defaultValue={defaultValue} />
     );
+
+    expect(getByValue('red')).toBeInTheDocument();
+  });
+
+  it('should render a select with a value passed through', () => {
+    const value = { value: 'red', label: 'Red' };
+    const inputName = 'Test';
+    const { getByValue } = render(<Select name={inputName} value={value} />);
 
     expect(getByValue('red')).toBeInTheDocument();
   });
@@ -72,6 +80,28 @@ describe('Select', () => {
     const input = container.querySelector('input');
 
     expect(input).toBeDisabled();
+  });
+
+  it('should render the error message with the correct styles', () => {
+    const errorString = 'Please fix this error';
+
+    const { getByText } = render(<Select errorMessage={errorString} />);
+    const errorMessage = getByText(errorString);
+
+    expect(errorMessage).toBeInTheDocument();
+    expect(errorMessage).toHaveStyleRule('background', 'none');
+    expect(errorMessage).toHaveStyleRule('color', '#E70000');
+  });
+
+  it('should render the error message on an inverse component with the correct styles', () => {
+    const errorString = 'Please fix this error';
+
+    const { getByText } = render(<Select errorMessage={errorString} inverse />);
+    const errorMessage = getByText(errorString);
+
+    expect(errorMessage).toBeInTheDocument();
+    expect(errorMessage).toHaveStyleRule('background', '#E70000');
+    expect(errorMessage).toHaveStyleRule('color', '#FFFFFF');
   });
 
   it('should trigger the passed in onChange when option is changed', () => {

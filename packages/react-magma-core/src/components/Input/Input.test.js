@@ -50,6 +50,23 @@ describe('InputCore', () => {
     expect(newId).toEqual('differentId');
   });
 
+  it('should update the value on rerender with a change in the prop value', () => {
+    const { getByTestId, rerender } = render(
+      <InputCore value="firstValue">
+        {({ value }) => <input data-testid="target" value={value} />}
+      </InputCore>
+    );
+
+    rerender(
+      <InputCore value="newValue">
+        {({ value }) => <input data-testid="target" value={value} />}
+      </InputCore>
+    );
+
+    const newValue = getByTestId('target').getAttribute('value');
+    expect(newValue).toEqual('newValue');
+  });
+
   it('should update passwordShown when togglePasswordShown is called', () => {
     const { getByTestId, getByText, queryByText } = render(
       <InputCore type="password">

@@ -7,6 +7,52 @@ describe('SelectCore', () => {
     jest.resetAllMocks();
   });
 
+  it('should update the value on rerender to be different than the default value', () => {
+    const { getByTestId, rerender } = render(
+      <SelectCore defaultValue="defaultValue">
+        {({ value }) => (
+          <span data-selectedValue={value} data-testid="sample" />
+        )}
+      </SelectCore>
+    );
+
+    rerender(
+      <SelectCore value="newValue">
+        {({ value }) => (
+          <span data-selectedValue={value} data-testid="sample" />
+        )}
+      </SelectCore>
+    );
+
+    const newSelectedValue = getByTestId(/sample/i).getAttribute(
+      'data-selectedValue'
+    );
+    expect(newSelectedValue).toEqual('newValue');
+  });
+
+  it('should update the value on rerender with a change in prop value', () => {
+    const { getByTestId, rerender } = render(
+      <SelectCore value="firstValue">
+        {({ value }) => (
+          <span data-selectedValue={value} data-testid="sample" />
+        )}
+      </SelectCore>
+    );
+
+    rerender(
+      <SelectCore value="newValue">
+        {({ value }) => (
+          <span data-selectedValue={value} data-testid="sample" />
+        )}
+      </SelectCore>
+    );
+
+    const newSelectedValue = getByTestId(/sample/i).getAttribute(
+      'data-selectedValue'
+    );
+    expect(newSelectedValue).toEqual('newValue');
+  });
+
   it('should call the supplied onChange and update the value when onChange is called', () => {
     const handleChange = jest.fn();
     const newValue = 'Test';
@@ -33,7 +79,7 @@ describe('SelectCore', () => {
   it('Should not throw if a non-function is passed as an onChange', () => {
     const handleChange = 'This is NOT a function';
     const { getByTestId } = render(
-      <SelectCore onChange={handleChange} defaultValue="Start here">
+      <SelectCore onChange={handleChange} value="Start here">
         {({ value, onChange }) => (
           <button data-testid="target" onClick={() => onChange('test')}>
             {value}
