@@ -4,7 +4,6 @@ import { ModalCore } from 'react-magma-core';
 import { ThemeContext } from '../../theme/themeContext';
 import { Heading } from '../Heading';
 import { Button } from '../Button';
-import FocusTrap from 'focus-trap-react';
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   open?: boolean;
@@ -75,7 +74,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
     <ThemeContext.Consumer>
       {theme => (
         <ModalCore open={props.open} onClose={props.onClose}>
-          {({ isExiting, onClose, onKeyDown }) => {
+          {({ isExiting, onClose, onKeyDown, focusTrapElement }) => {
             const {
               children,
               disableBackdropClick,
@@ -85,37 +84,30 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
               open,
               ...other
             } = props;
-            return (
+
+            return open ? (
               <>
-                {open && (
-                  <FocusTrap
-                    active={open}
-                    focusTrapOptions={{
-                      clickOutsideDeactivates: false,
-                      escapeDeactivates: false
-                    }}
-                  >
-                    <ModalContainer
-                      isExiting={isExiting}
-                      onKeyDown={disableEscKeyDown ? null : onKeyDown}
-                    >
-                      <ModalBackdrop
-                        onClick={disableBackdropClick ? null : onClose}
-                      />
-                      <ModalContent ref={ref} theme={theme} {...other}>
-                        <ModalHeading theme={theme}>
-                          <Heading level={3}>{header}</Heading>
-                          {!hideEscButton && (
-                            <Button onClick={onClose}>Close</Button>
-                          )}
-                        </ModalHeading>
-                        <ModalBody>{children}</ModalBody>
-                      </ModalContent>
-                    </ModalContainer>
-                  </FocusTrap>
-                )}
+                <ModalContainer
+                  ref={focusTrapElement}
+                  isExiting={isExiting}
+                  onKeyDown={disableEscKeyDown ? null : onKeyDown}
+                >
+                  <ModalBackdrop
+                    data-testid="modal-backdrop"
+                    onClick={disableBackdropClick ? null : onClose}
+                  />
+                  <ModalContent ref={ref} theme={theme} {...other}>
+                    <ModalHeading theme={theme}>
+                      <Heading level={3}>{header}</Heading>
+                      {!hideEscButton && (
+                        <Button onClick={onClose}>Close</Button>
+                      )}
+                    </ModalHeading>
+                    <ModalBody>{children}</ModalBody>
+                  </ModalContent>
+                </ModalContainer>
               </>
-            );
+            ) : null;
           }}
         </ModalCore>
       )}
