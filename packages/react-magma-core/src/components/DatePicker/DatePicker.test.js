@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import * as React from 'react';
-// import { mount } from 'enzyme';
 import { render, fireEvent } from 'react-testing-library';
 import { DatePickerCore } from './DatePicker';
 import {
@@ -86,7 +85,9 @@ describe('DatePickerCore', () => {
 
   describe('build calendar month', () => {
     it('should build the calendar for the given date', () => {
-      const defaultDate = new Date('January 17, 2019');
+      const defaultDate = new Date('January 17, 2019').toLocaleString('en-US', {
+        timeZone: 'America/New_York'
+      });
       const { getByTestId } = render(
         <DatePickerCore>
           {({ buildCalendarMonth }) => {
@@ -116,7 +117,9 @@ describe('DatePickerCore', () => {
     });
 
     it('should build the calendar for the given date with outside dates enabled', () => {
-      const defaultDate = new Date('January 17, 2019');
+      const defaultDate = new Date('January 17, 2019').toLocaleString('en-US', {
+        timeZone: 'America/New_York'
+      });
       const { getByTestId } = render(
         <DatePickerCore>
           {({ buildCalendarMonth }) => {
