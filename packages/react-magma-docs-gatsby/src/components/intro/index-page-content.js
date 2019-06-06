@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from 'gatsby'
 import { Button, CodeIcon, PaletteIcon, ThemeContext } from 'react-magma-dom'
 import IntroHeading from './intro-heading'
 import IntroSection from './intro-section'
 import NavItem from './nav-item'
 import HexBackground from './hex-background'
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
 import ColorLogo from '../../images/React_Magma_Logo_Color.svg'
 import ImageAccessible from '../../images/img-accessible.svg'
@@ -71,6 +72,10 @@ const FooterPara = styled.p`
     line-height: 1.5em;
     margin: 0 auto;
     max-width: 750px;
+
+    a {
+      color: inherit !important;
+    }
 `;
 
 export class IndexPageContent extends React.Component {
@@ -155,15 +160,19 @@ export class IndexPageContent extends React.Component {
                   <p style={{marginBottom: '20px'}}>React Magma is a suite of React components based on the Magma design system that make it easy to create powerful and consistent experiences for students and instructors using Cengage products.</p>
                   <ButtonContainer theme={theme}>
                     <Button
+                      as={Link}
                       icon={<CodeIcon />}
                       iconPosition='left'
                       inverse
-                      style={{minWidth: '325px', marginBottom: '20px'}}>Develop with React Magma</Button><br/>
+                      style={{minWidth: '325px', marginBottom: '20px'}}
+                      to="/api-introduction">Develop with React Magma</Button><br/>
                     <Button
+                      as={Link}
                       icon={<PaletteIcon />}
                       iconPosition='left'
                       inverse
-                      style={{minWidth: '325px'}}>Design with React Magma</Button>
+                      style={{minWidth: '325px'}}
+                      to="/design-introduction">Design with React Magma</Button>
                   </ButtonContainer>
                 </IntroSection>
 
@@ -211,7 +220,7 @@ export class IndexPageContent extends React.Component {
             
             <Footer theme={theme}>
               <IntroHeading isCta name="Contact us anytime" />
-              <FooterPara>If you have questions or you’d like to be personally involved in helping React Magma be the best it can be, please reach out to us on Slack — #magma.</FooterPara>
+              <FooterPara>If you have questions or you’d like to be personally involved in helping React Magma be the best it can be, please reach out to us on Slack — <a href="https://cengage.slack.com/app_redirect?channel=magma">#magma</a>.</FooterPara>
             </Footer>
           </>
         )}
