@@ -2,10 +2,12 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { ModalCore } from 'react-magma-core';
 import { ThemeContext } from '../../theme/themeContext';
-import { Heading } from '../Heading';
 import { Button } from '../Button';
+import { ButtonColor, ButtonVariant } from '../StyledButton';
+import { CrossIcon } from '../Icon/types/CrossIcon';
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
+  closeLabel?: string;
   open?: boolean;
   disableBackdropClick?: boolean;
   disableEscKeyDown?: boolean;
@@ -18,6 +20,12 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const ModalContainer = styled.div<{ isExiting?: boolean }>`
   animation: ${props => (props.isExiting ? 'fadeout 1000ms' : 'fadein 1000ms')};
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 998;
 
   @keyframes fadein {
     from {
@@ -38,23 +46,12 @@ const ModalContainer = styled.div<{ isExiting?: boolean }>`
   }
 `;
 
-const ModalHeading = styled.div`
-    color: ${props => props.theme.colors.foundation01};
-    font-family: color: ${props => props.theme.headingFont};
-`;
-
 const ModalBackdrop = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   background: rgba(0, 0, 0, 0.3);
+  height: 100%;
+  position: fixed;
+  width: 100%;
   z-index: 999;
-`;
-
-const ModalBody = styled.div`
-  padding: 20px;
 `;
 
 const ModalContent = styled.div<ModalProps>`
@@ -63,10 +60,34 @@ const ModalContent = styled.div<ModalProps>`
   border-color: ${props => props.theme.colors.neutral06};
   border-radius: 3px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  position: fixed;
-  top: 50px;
+  margin: 30px auto;
+  max-width: 750px;
+  position: relative;
   z-index: 1000;
-  width: 100%;
+  width: 90%;
+`;
+
+const ModalHeader = styled.div`
+  padding: 20px 20px 10px;
+`;
+
+const H3 = styled.h3`
+  border-bottom: 1px solid;
+  border-color: ${props => props.theme.colors.neutral06};
+  color: ${props => props.theme.colors.primary};
+  margin: 0;
+  padding-right: 50px;
+  text-transform: uppercase;
+`;
+
+const CloseBtn = styled.span`
+  position: absolute;
+  top: 0;
+  right: 0;
+`;
+
+const ModalBody = styled.div`
+  padding: 20px;
 `;
 
 export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
@@ -77,6 +98,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
           {({ isExiting, onClose, onKeyDown, focusTrapElement }) => {
             const {
               children,
+              closeLabel,
               disableBackdropClick,
               disableEscKeyDown,
               header,
@@ -97,12 +119,27 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
                     onClick={disableBackdropClick ? null : onClose}
                   />
                   <ModalContent ref={ref} theme={theme} {...other}>
-                    <ModalHeading theme={theme}>
-                      <Heading level={3}>{header}</Heading>
+                    <ModalHeader theme={theme}>
+                      {header && <H3 theme={theme}>{header}</H3>}
+
                       {!hideEscButton && (
-                        <Button onClick={onClose}>Close</Button>
+                        <CloseBtn>
+                          <Button
+                            ariaLabel={closeLabel ? closeLabel : 'Close'}
+                            color={ButtonColor.secondary}
+                            icon={<CrossIcon />}
+                            onClick={onClose}
+                            style={{
+                              borderRadius: 0,
+                              margin: 0,
+                              outlineOffset: 0
+                            }}
+                            testId="modal-closebtn"
+                            variant={ButtonVariant.link}
+                          />
+                        </CloseBtn>
                       )}
-                    </ModalHeading>
+                    </ModalHeader>
                     <ModalBody>{children}</ModalBody>
                   </ModalContent>
                 </ModalContainer>

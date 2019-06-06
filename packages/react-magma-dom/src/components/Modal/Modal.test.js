@@ -39,23 +39,23 @@ describe('Modal', () => {
   });
 
   it('should render a close button', () => {
-    const { getByText } = render(
+    const { getByTestId } = render(
       <Modal header="Hello" open={true}>
         Modal Content
       </Modal>
     );
 
-    expect(getByText(/close/i)).toBeInTheDocument();
+    expect(getByTestId('modal-closebtn')).toBeInTheDocument();
   });
 
   it('should not render a close button if the hideEscButton prop is true', () => {
-    const { queryByText } = render(
+    const { queryByTestId } = render(
       <Modal header="Hello" open={true} hideEscButton>
         Modal Content
       </Modal>
     );
 
-    expect(queryByText(/close/i)).not.toBeInTheDocument();
+    expect(queryByTestId('modal-closebtn')).not.toBeInTheDocument();
   });
 
   describe('Closing', () => {
@@ -69,7 +69,7 @@ describe('Modal', () => {
 
     it('should close when clicking the close button', () => {
       const onCloseSpy = jest.fn();
-      const { rerender, getByText } = render(
+      const { rerender, getByText, getByTestId } = render(
         <>
           <button>Open</button>
           <Modal header="Hello" open={false} onClose={onCloseSpy}>
@@ -89,7 +89,7 @@ describe('Modal', () => {
         </>
       );
 
-      fireEvent.click(getByText(/close/i));
+      fireEvent.click(getByTestId('modal-closebtn'));
 
       jest.runAllTimers();
 

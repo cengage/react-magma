@@ -36,8 +36,9 @@ import { Link } from 'gatsby'
         const { showModal } = this.state;
 
         return (<>
-            <Modal header="Hello" onClose={this.onModalClose} open={showModal}>
-                This is a modal, doing modal things.
+            <Modal header="Modal title" onClose={this.onModalClose} open={showModal}>
+                <p>This is a modal, doing modal things.</p>
+                <p>This is <a href="#">linked text</a> in the modal</p>
             </Modal>
           <Button onClick={this.onModalShow}>Show Modal</Button>
         </>)
