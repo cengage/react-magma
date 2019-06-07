@@ -1,20 +1,28 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
+import { Global, css } from '@emotion/core';
 import { ModalCore } from 'react-magma-core';
 import { ThemeContext } from '../../theme/themeContext';
 import { Button } from '../Button';
 import { ButtonColor, ButtonVariant } from '../StyledButton';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 
+export enum ModalSize {
+  large = 'large',
+  medium = 'medium', //default
+  small = 'small'
+}
+
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   closeLabel?: string;
-  open?: boolean;
   disableBackdropClick?: boolean;
   disableEscKeyDown?: boolean;
-  onClose?: () => void;
-  onEscKeyDown: (event: React.KeyboardEvent) => void;
   header?: React.ReactNode;
   hideEscButton?: boolean;
+  onClose?: () => void;
+  onEscKeyDown: (event: React.KeyboardEvent) => void;
+  open?: boolean;
+  size?: string;
   testId?: string;
 }
 
@@ -22,6 +30,7 @@ const ModalContainer = styled.div<{ isExiting?: boolean }>`
   animation: ${props => (props.isExiting ? 'fadeout 1000ms' : 'fadein 1000ms')};
   bottom: 0;
   left: 0;
+  overflow-y: auto;
   position: fixed;
   right: 0;
   top: 0;
@@ -47,7 +56,7 @@ const ModalContainer = styled.div<{ isExiting?: boolean }>`
 `;
 
 const ModalBackdrop = styled.div`
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.6);
   height: 100%;
   position: fixed;
   width: 100%;
@@ -60,11 +69,25 @@ const ModalContent = styled.div<ModalProps>`
   border-color: ${props => props.theme.colors.neutral06};
   border-radius: 3px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  margin: 30px auto;
   max-width: 750px;
+  margin: 10px;
   position: relative;
   z-index: 1000;
-  width: 90%;
+
+  max-width: ${props => {
+    switch (props.size) {
+      case 'large':
+        return '900px';
+      case 'small':
+        return '300px';
+      default:
+        return '750px';
+    }
+  }};
+
+  @media (min-width: ${props => props.theme.sizeSm}) {
+    margin: 30px auto;
+  }
 `;
 
 const ModalHeader = styled.div`
@@ -84,6 +107,11 @@ const CloseBtn = styled.span`
   position: absolute;
   top: 0;
   right: 0;
+
+  svg {
+    height: 15px;
+    width: 15px;
+  }
 `;
 
 const ModalBody = styled.div`
@@ -104,11 +132,22 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
               header,
               hideEscButton,
               open,
+              size,
               ...other
             } = props;
 
+            const CloseIcon = <CrossIcon color={theme.colors.neutral04} />;
+
             return open ? (
               <>
+                <Global
+                  styles={css`
+                    html {
+                      overflow: hidden;
+                    }
+                  `}
+                />
+
                 <ModalContainer
                   ref={focusTrapElement}
                   isExiting={isExiting}
@@ -118,7 +157,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
                     data-testid="modal-backdrop"
                     onClick={disableBackdropClick ? null : onClose}
                   />
-                  <ModalContent ref={ref} theme={theme} {...other}>
+                  <ModalContent ref={ref} theme={theme} size={size} {...other}>
                     <ModalHeader theme={theme}>
                       {header && <H3 theme={theme}>{header}</H3>}
 
@@ -127,7 +166,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
                           <Button
                             ariaLabel={closeLabel ? closeLabel : 'Close'}
                             color={ButtonColor.secondary}
-                            icon={<CrossIcon />}
+                            icon={CloseIcon}
                             onClick={onClose}
                             style={{
                               borderRadius: 0,
