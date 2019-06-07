@@ -17,7 +17,7 @@
     "cm": "git-cz",
     "cm-retry": "git-cz --retry",
     "bump": "standard-version -a --prerelease beta --release-as patch",
-    "publish-all": "lerna exec --scope react-magma-core --scope react-magma-dom 'npm publish'"
+    "publish-all": "lerna exec --scope react-magma-core --scope react-magma-dom --scope babel-plugin-react-magma-dom 'npm publish'"
   },
   "husky": {
     "hooks": {
