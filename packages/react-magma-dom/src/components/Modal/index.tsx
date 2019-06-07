@@ -157,7 +157,13 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
                     data-testid="modal-backdrop"
                     onClick={disableBackdropClick ? null : onClose}
                   />
-                  <ModalContent ref={ref} theme={theme} size={size} {...other}>
+                  <ModalContent
+                    ref={ref}
+                    size={size}
+                    data-testid="modal-content"
+                    theme={theme}
+                    {...other}
+                  >
                     <ModalHeader theme={theme}>
                       {header && <H3 theme={theme}>{header}</H3>}
 

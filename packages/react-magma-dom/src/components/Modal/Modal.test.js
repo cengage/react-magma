@@ -27,6 +27,39 @@ describe('Modal', () => {
     expect(getByText(modalContent)).toBeInTheDocument();
   });
 
+  it('should render the modal with the default medium size', () => {
+    const modalContent = 'Modal content';
+    const { getByTestId } = render(
+      <Modal header="Hello" open={true}>
+        {modalContent}
+      </Modal>
+    );
+
+    expect(getByTestId('modal-content')).toHaveStyleRule('max-width', '750px');
+  });
+
+  it('should render the modal with the small size', () => {
+    const modalContent = 'Modal content';
+    const { getByTestId } = render(
+      <Modal header="Hello" open={true} size="small">
+        {modalContent}
+      </Modal>
+    );
+
+    expect(getByTestId('modal-content')).toHaveStyleRule('max-width', '300px');
+  });
+
+  it('should render the modal with the large size', () => {
+    const modalContent = 'Modal content';
+    const { getByTestId } = render(
+      <Modal header="Hello" open={true} size="large">
+        {modalContent}
+      </Modal>
+    );
+
+    expect(getByTestId('modal-content')).toHaveStyleRule('max-width', '900px');
+  });
+
   it('should render a header', () => {
     const headerText = 'Hello';
     const { getByText } = render(
@@ -46,6 +79,23 @@ describe('Modal', () => {
     );
 
     expect(getByTestId('modal-closebtn')).toBeInTheDocument();
+    expect(getByTestId('modal-closebtn')).toHaveAttribute(
+      'aria-label',
+      'Close'
+    );
+  });
+
+  it('should render a close button with custom label', () => {
+    const { getByTestId } = render(
+      <Modal header="Hello" open={true} closeLabel="Goodbye">
+        Modal Content
+      </Modal>
+    );
+
+    expect(getByTestId('modal-closebtn')).toHaveAttribute(
+      'aria-label',
+      'Goodbye'
+    );
   });
 
   it('should not render a close button if the hideEscButton prop is true', () => {
