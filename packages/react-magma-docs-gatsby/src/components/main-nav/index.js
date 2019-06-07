@@ -114,7 +114,7 @@ const MainNav = ({ ...props }) => (
         </ul>
         <hr />
         <Accordion accordion={false}>
-          <AccordionItem expanded>
+          <AccordionItem>
             <AccordionItemTitle>
               <h2>
                 Develop
@@ -123,6 +123,14 @@ const MainNav = ({ ...props }) => (
             </AccordionItemTitle>
             <AccordionItemBody>
               <ul>
+                <li>
+                  <Link
+                      activeStyle={activeStyle}
+                      onClick={props.handleClick}
+                      to="/api-introduction">
+                    Introduction
+                  </Link>
+                </li>
                 {data.apiDocs.edges.map(({ node }) => (
                   <li key={node.fields.slug}>
                     <Link
@@ -145,7 +153,7 @@ const MainNav = ({ ...props }) => (
             </AccordionItemBody>
           </AccordionItem>
           <hr />
-          <AccordionItem expanded>
+          <AccordionItem>
             <AccordionItemTitle>
               <h2>
                 Design
@@ -154,6 +162,14 @@ const MainNav = ({ ...props }) => (
             </AccordionItemTitle>
             <AccordionItemBody>
               <ul>
+                <li>
+                  <Link
+                      activeStyle={activeStyle}
+                      onClick={props.handleClick}
+                      to="/design-introduction">
+                    Introduction
+                  </Link>
+                </li>
                 {data.designDocs.edges.map(({ node }) => (
                   <li key={node.fields.slug}>
                     <Link

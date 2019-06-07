@@ -72,7 +72,6 @@ export function getStyles(
       cursor: isDisabled ? 'not-allowed' : 'pointer',
       height: '37px',
       outline: '0',
-      marginBottom: '10px',
       padding: '0 8px 0 0',
 
       '&:hover': {
