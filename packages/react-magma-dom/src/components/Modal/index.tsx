@@ -22,7 +22,7 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   onClose?: () => void;
   onEscKeyDown: (event: React.KeyboardEvent) => void;
   open?: boolean;
-  size?: string;
+  size?: ModalSize;
   testId?: string;
 }
 
@@ -69,7 +69,6 @@ const ModalContent = styled.div<ModalProps>`
   border-color: ${props => props.theme.colors.neutral06};
   border-radius: 3px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  max-width: 750px;
   margin: 10px;
   position: relative;
   z-index: 1000;
@@ -85,7 +84,15 @@ const ModalContent = styled.div<ModalProps>`
     }
   }};
 
-  @media (min-width: ${props => props.theme.sizeSm}) {
+  @media (min-width: 320px) {
+    margin: ${props => (props.size === 'small' ? '30px auto' : '10px')};
+  }
+
+  @media (min-width: 770px) {
+    margin: ${props => (props.size !== 'large' ? '30px auto' : '10px')};
+  }
+
+  @media (min-width: 920px) {
     margin: 30px auto;
   }
 `;

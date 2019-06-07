@@ -5,14 +5,12 @@ title: 'Modals'
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
 
-<DocsHeading>
-  Modals
-</DocsHeading>
+<DocsHeading>Modals</DocsHeading>
 
 ## Basic Usage
 
 ```.jsx
-    
+
     class Example extends React.Component {
       constructor(props) {
         super(props)
@@ -54,12 +52,73 @@ import { Link } from 'gatsby'
     }
 ```
 
+## Sizes
+
+Sizes for modals include `small`, `medium`, and `large`, with `medium` being the default value.
+
+```.jsx
+
+    class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          showSmallModal: false,
+          showLargeModal: false
+        }
+
+        this.onModalSmallShow = this.onModalSmallShow.bind(this);
+        this.onModalSmallClose = this.onModalSmallClose.bind(this);
+        this.onModalLargeShow = this.onModalLargeShow.bind(this);
+        this.onModalLargeClose = this.onModalLargeClose.bind(this);
+      }
+
+      onModalSmallShow() {
+        this.setState({showSmallModal: true})
+      }
+
+      onModalSmallClose() {
+        this.setState({showSmallModal: false})
+      }
+
+      onModalLargeShow() {
+        this.setState({showLargeModal: true})
+      }
+
+      onModalLargeClose() {
+        this.setState({showLargeModal: false})
+      }
+
+
+      render() {
+        const { showSmallModal, showLargeModal } = this.state;
+
+        return (<>
+            <Modal size="small" header="Modal Small" onClose={this.onModalSmallClose} open={showSmallModal}>
+                <p>This is a small modal, doing small modal things.</p>
+            </Modal>
+
+            <Modal size="large" header="Modal Large" onClose={this.onModalLargeClose} open={showLargeModal}>
+                <p>This is a large modal, doing large modal things.</p>
+            </Modal>
+
+          <Button size="small" onClick={this.onModalSmallShow}>Show Small Modal</Button>
+          <Button size="large" onClick={this.onModalLargeShow}>Show Large Modal</Button>
+        </>)
+      }
+    }
+```
+
 ## Modal Props
 
-| Prop     | Type                | Default | Required |
-| -------- | ------------------- | ------- | :------: |
-| children | node                |         | &#10003; |
-
-```
-
-```
+| Prop                 | Type                                         | Default  | Required |
+| -------------------- | -------------------------------------------- | -------- | :------: |
+| children             | node                                         |          | &#10003; |
+| disableBackdropClick | boolean                                      | false    |          |
+| disableEscKeyDown    | boolean                                      | false    |          |
+| header               | node                                         |          |          |
+| hideEscButton        | boolean                                      | false    |          |
+| onClose              | function                                     |          |          |
+| onEscKeyDown         | function                                     |          |          |
+| open                 | boolean                                      | false    |          |
+| size                 | enum: 'large' &#124; 'medium' &#124; 'small' | 'medium' |
+| testId               | string                                       | false    |          |
