@@ -20,7 +20,7 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   header?: React.ReactNode;
   hideEscButton?: boolean;
   onClose?: () => void;
-  onEscKeyDown: (event: React.KeyboardEvent) => void;
+  onEscKeyDown?: (event: React.KeyboardEvent) => void;
   open?: boolean;
   size?: ModalSize;
   testId?: string;

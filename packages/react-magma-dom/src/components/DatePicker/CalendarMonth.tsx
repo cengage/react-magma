@@ -60,6 +60,7 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
     this.onCalendarTableFocus = this.onCalendarTableFocus.bind(this);
     this.onCalendarTableBlur = this.onCalendarTableBlur.bind(this);
     this.onHelperButtonClick = this.onHelperButtonClick.bind(this);
+    this.onHelperClose = this.onHelperClose.bind(this);
   }
 
   onCalendarTableFocus() {
@@ -72,6 +73,10 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
 
   onHelperButtonClick() {
     this.setState({ showHelperInformation: true });
+  }
+
+  onHelperClose() {
+    this.setState({ showHelperInformation: false });
   }
 
   render() {
@@ -127,7 +132,10 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
                         variant={ButtonVariant.link}
                       />
                     </HelperButton>
-                    {this.state.showHelperInformation && <HelperInformation />}
+                    <HelperInformation
+                      open={this.state.showHelperInformation}
+                      onClose={this.onHelperClose}
+                    />
                   </MonthContainer>
                 </CalendarContainer>
               )
