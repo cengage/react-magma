@@ -132,11 +132,11 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
                         variant={ButtonVariant.link}
                       />
                     </HelperButton>
-                    <HelperInformation
-                      open={this.state.showHelperInformation}
-                      onClose={this.onHelperClose}
-                    />
                   </MonthContainer>
+                  <HelperInformation
+                    open={this.state.showHelperInformation}
+                    onClose={this.onHelperClose}
+                  />
                 </CalendarContainer>
               )
             }

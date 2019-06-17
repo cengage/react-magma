@@ -29,7 +29,7 @@ const DatePickerCalendar = styled.div<{ opened: boolean }>`
   overflow: hidden;
   transition: opacity 0.2s ease-in-out 0s;
   width: 320px;
-  z-index: ${props => (props.opened ? '0' : '-1')};
+  z-index: ${props => (props.opened ? '999' : '-1')};
 `;
 
 export const DatePicker: React.FunctionComponent<DatePickerProps> = (
