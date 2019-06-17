@@ -194,6 +194,7 @@ export {
   NonMindtapActivityIcon
 } from './components/Icon/types/NonMindtapActivityIcon';
 export { NotificationIcon } from './components/Icon/types/NotificationIcon';
+export { Notification2Icon } from './components/Icon/types/Notification2Icon';
 export { PaletteIcon } from './components/Icon/types/PaletteIcon';
 export {
   ParagraphCenterIcon
