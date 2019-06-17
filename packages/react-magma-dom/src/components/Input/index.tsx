@@ -2,7 +2,7 @@ import * as React from 'react';
 import { InputCore } from 'react-magma-core';
 import styled from '@emotion/styled';
 import { IconProps } from '../Icon/utils';
-import { Notification2Icon } from '../Icon/types/Notification2Icon';
+import { InputMessage } from './InputMessage';
 import { Label } from '../Label';
 import { ThemeContext } from '../../theme/themeContext';
 import { Button } from '../Button';
@@ -58,13 +58,9 @@ interface IconWrapperProps {
   iconPosition?: IconPosition;
 }
 
-interface TextProps {
-  inverse?: boolean;
-}
-
-const Container = styled.div<{ inverse?: boolean }>`
+const Container = styled.div`
   margin-bottom: 10px;
-  min-height: ${props => (props.inverse ? '7em' : ' 6.5em')};
+  min-height: 7em;
 `;
 
 const InputWrapper = styled.div`
@@ -130,29 +126,6 @@ const StyledInput = styled.input<InputProps>`
   }
 `;
 
-const ErrorMessage = styled.div<TextProps>`
-  align-items: center;
-  background: ${props => (props.inverse ? props.theme.colors.danger : 'none')};
-  border-radius: 5px;
-  color: ${props =>
-    props.inverse ? props.theme.colors.neutral08 : props.theme.colors.danger};
-  display: flex;
-  font-size: 13px;
-  margin-top: 5px;
-  padding: ${props => (props.inverse ? '5px 10px' : '0')};
-  text-align: left;
-`;
-
-const HelperMessage = styled.div<TextProps>`
-  color: ${props =>
-    props.inverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral04};
-  font-size: 13px;
-  margin-top: 5px;
-  text-align: left;
-`;
-
 const IconWrapper = styled.span<IconWrapperProps>`
   left: ${props => (props.iconPosition === 'left' ? '10px' : 'auto')};
   right: ${props => (props.iconPosition === 'right' ? '10px' : 'auto')};
@@ -180,17 +153,6 @@ function getIconSize(size) {
       return 17;
   }
 }
-
-// function getErrorIconSize(size) {
-//   switch (size) {
-//     case 'large':
-//       return 12;
-//     case 'small':
-//       return 8;
-//     default:
-//       return 10;
-//   }
-// }
 
 export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
   (props: InputProps, ref: any) => (
@@ -254,10 +216,13 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
             ? showPasswordButtonText
             : 'Show';
 
+        const descriptionId =
+          errorMessage || helperMessage ? `${id}__desc` : null;
+
         return (
           <ThemeContext.Consumer>
             {theme => (
-              <Container inverse={inverse} style={containerStyle}>
+              <Container style={containerStyle}>
                 {!labelVisuallyHidden && (
                   <Label inverse={inverse} htmlFor={id} style={labelStyle}>
                     {labelText}
@@ -266,6 +231,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                 <InputWrapper>
                   <StyledInput
                     {...other}
+                    aria-describedby={descriptionId}
                     aria-label={labelVisuallyHidden ? labelText : null}
                     as={multiline ? 'textarea' : null}
                     id={id}
@@ -332,15 +298,15 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                     </PasswordMaskWrapper>
                   )}
                 </InputWrapper>
-                {errorMessage && (
-                  <ErrorMessage inverse={inverse} theme={theme}>
-                    <Notification2Icon size={18} /> &nbsp; {errorMessage}
-                  </ErrorMessage>
-                )}
-                {helperMessage && !errorMessage && (
-                  <HelperMessage inverse={inverse} theme={theme}>
-                    {helperMessage}
-                  </HelperMessage>
+
+                {(errorMessage || helperMessage) && (
+                  <InputMessage
+                    inverse={inverse}
+                    id={descriptionId}
+                    isError={!!errorMessage}
+                  >
+                    {errorMessage ? errorMessage : helperMessage}
+                  </InputMessage>
                 )}
               </Container>
             )}

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { SelectCore } from 'react-magma-core';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
-import { Notification2Icon } from '../Icon/types/Notification2Icon';
+import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';
 import { ThemeContext } from '../../theme/themeContext';
 
@@ -176,21 +176,9 @@ const MultiValueRemove = props => {
   );
 };
 
-const Container = styled.div<{ inverse?: boolean }>`
+const Container = styled.div`
   margin-bottom: 10px;
-  min-height: ${props => (props.inverse ? '7em' : ' 6.5em')};
-`;
-
-const ErrorMessage = styled.div<{ inverse?: boolean }>`
-  align-items: center;
-  background: ${props => (props.inverse ? props.theme.colors.danger : 'none')};
-  border-radius: 5px;
-  color: ${props =>
-    props.inverse ? props.theme.colors.neutral08 : props.theme.colors.danger};
-  display: flex;
-  font-size: 13px;
-  margin-top: 5px;
-  padding: ${props => (props.inverse ? '5px 10px' : '0')};
+  min-height: 7em;
 `;
 
 export const Select: React.FunctionComponent<SelectProps> = (
@@ -223,12 +211,15 @@ export const Select: React.FunctionComponent<SelectProps> = (
         style
       } = props;
 
+      const descriptionId = errorMessage ? `${id}__desc` : null;
+
       return (
         <ThemeContext.Consumer>
           {theme => (
-            <Container inverse={inverse} data-testid={testId}>
+            <Container data-testid={testId}>
               <Label inverse={inverse}>{labelText}</Label>
               <ReactSelect
+                aria-describedby={descriptionId}
                 id={id}
                 inverse={inverse}
                 components={{
@@ -254,9 +245,9 @@ export const Select: React.FunctionComponent<SelectProps> = (
                 classNamePrefix="magma"
               />
               {errorMessage && (
-                <ErrorMessage inverse={inverse} theme={theme}>
-                  <Notification2Icon size={18} /> &nbsp; {errorMessage}
-                </ErrorMessage>
+                <InputMessage id={descriptionId} inverse={inverse} isError>
+                  {errorMessage}
+                </InputMessage>
               )}
             </Container>
           )}
