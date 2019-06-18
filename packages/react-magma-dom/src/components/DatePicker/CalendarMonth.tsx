@@ -86,7 +86,7 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
           <CalendarContext.Consumer>
             {context =>
               context && (
-                <CalendarContainer theme={theme}>
+                <CalendarContainer tabIndex={-1} theme={theme}>
                   <MonthContainer data-visible="true" theme={theme}>
                     <CalendarHeader
                       text={format(context.focusedDate, 'MMMM YYYY')}
@@ -131,12 +131,12 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
                         onFocus={context.onHelperFocus}
                         variant={ButtonVariant.link}
                       />
+                      <HelperInformation
+                        open={this.state.showHelperInformation}
+                        onClose={this.onHelperClose}
+                      />
                     </HelperButton>
                   </MonthContainer>
-                  <HelperInformation
-                    open={this.state.showHelperInformation}
-                    onClose={this.onHelperClose}
-                  />
                 </CalendarContainer>
               )
             }

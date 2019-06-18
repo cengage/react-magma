@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { Modal } from '../Modal';
+import { Modal, ModalSize } from '../Modal';
 
 interface HelperInformationProps {
   open?: boolean;
@@ -30,7 +30,13 @@ const KeyboardShortcutButtonWrapper = styled.span`
 export const HelperInformation: React.FunctionComponent<
   HelperInformationProps
 > = ({ open, onClose }) => (
-  <Modal header="Keyboard Shortcuts" open={open} onClose={onClose}>
+  <Modal
+    disableBackdropClick
+    header="Keyboard Shortcuts"
+    onClose={onClose}
+    open={open}
+    size={ModalSize.small}
+  >
     <List id="DayPickerKeyboardShortcuts_description">
       <Item>
         <KeyboardShortcutButtonWrapper role="img" aria-label="Enter key,">
