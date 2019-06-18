@@ -10,7 +10,7 @@ import DocsHeading from '../../components/docs-heading'
 
 ## Basic Usage
 
-A `Select` component allows the user to choose one or more item from a list.  By default, only one item may be selected.
+A `Select` component allows the user to choose one or more item from a list. By default, only one item may be selected.
 
 The label/select association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
 
@@ -134,6 +134,7 @@ The optional `clearable` prop allows the user to clear the field once a selectio
 ```
 
 ## Error message
+
 If a select has an `errorMessage`, the select will be styled to highlight it's error state and the error message will appear below the field.
 
 ```.jsx
@@ -180,6 +181,160 @@ The default value is `false`.
       }]}
     />
   </div>
+```
+
+## AsyncSelect
+
+```.jsx
+class Select extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.filterColors = this.filterColors.bind(this);
+    this.promiseOptions = this.promiseOptions.bind(this);
+  }
+
+  filterColors(inputValue) {
+    return [
+      {
+        label: "Red",
+        value: "red"
+      },
+      {
+        label: "Blue",
+        value: "blue"
+      }
+    ].filter(i =>
+      i.label.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  }
+
+  promiseOptions(inputValue) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(this.filterColors(inputValue));
+      }, 1000);
+    });
+  }
+
+  render() {
+    return (
+      <>
+        <AsyncSelect loadOptions={this.promiseOptions} />
+      </>
+    );
+  }
+}
+```
+
+## CreatableSelect
+
+```.jsx
+class Select extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      options: [
+        {
+          label: "Red",
+          value: "red"
+        },
+        {
+          label: "Blue",
+          value: "blue"
+        }
+      ]
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleChange(value, action) {
+    if (value.__isNew__) {
+      this.state.options.push({
+        label: value.label,
+        value: value.value
+      })
+    }
+  }
+
+  handleInputChange(value, action) {
+    console.group('Input Changed');
+    console.log(value);
+    console.groupEnd();
+  };
+
+  render() {
+    return (
+      <CreatableSelect
+        isClearable
+        onChange={this.handleChange}
+        onInputChange={this.handleInputChange}
+        options={this.state.options}
+      />
+    );
+  }
+}
+```
+
+## AsyncCreatableSelect
+
+```.jsx
+class Select extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      options: [
+        {
+          label: "Red",
+          value: "red"
+        },
+        {
+          label: "Blue",
+          value: "blue"
+        }
+      ]
+    };
+
+    this.filterColors = this.filterColors.bind(this);
+    this.promiseOptions = this.promiseOptions.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  filterColors(inputValue) {
+    return this.state.options.filter(i =>
+      i.label.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  }
+
+  promiseOptions(inputValue) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(this.filterColors(inputValue));
+      }, 1000);
+    });
+  }
+
+  handleChange(value, action) {
+    if (value.__isNew__) {
+      this.state.options.push({
+        label: value.label,
+        value: value.value
+      })
+    }
+  }
+
+  render() {
+    return (
+      <>
+        <AsyncCreatableSelect loadOptions={this.promiseOptions} onChange={this.handleChange} />
+      </>
+    );
+  }
+}
 ```
 
 ## Controlled
@@ -379,17 +534,88 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 | style        | [ReactSelect.Styles](#style_interface) |         |
 | testId       | string                                 |         |
 
+## AsyncSelect
+
+````.jsx
+export class Select extends Component {
+  colourOptions = [
+    {
+      label: "Red",
+      value: "red"
+    },
+    {
+      label: "Blue",
+      value: "blue"
+    }
+  ];
+
+  constructor(props) {
+    super(props);
+
+    this.filterColors = this.filterColors.bind(this);
+    this.promiseOptions = this.promiseOptions.bind(this);
+  }
+
+  filterColors(inputValue) {
+    return this.colourOptions.filter(i =>
+      i.label.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  }
+
+  promiseOptions(inputValue) {
+    new Promise(resolve => {
+      setTimeout(() => {
+        resolve(this.filterColors(inputValue));
+      }, 1000);
+    });
+  }
+
+  render() {
+    return (
+      <>
+        <AsyncSelect loadOptions={this.promiseOptions} />
+      </>
+    );
+  }
+}
+``` Props
+
+| Prop           | Type                                   | Default | Required |
+| -------------- | -------------------------------------- | ------- | :------: |
+| cacheOptions   | boolean                                |         |
+| clearable      | boolean                                |         |
+| defaultOptions | object[]: `{ label, text }`            |         |
+| defaultValue   | string                                 |         |
+| disabled       | boolean                                |         |
+| id             | string                                 |         |          |
+| labelText      | string                                 |         | &#10003; |
+| multi          | boolean                                |         |
+| name           | string                                 |         | &#10003; |
+| onBlur         | function                               |         |
+| onChange       | function                               |         |
+| onClose        | function                               |         |
+| onFocus        | function                               |         |
+| onOpen         | function                               |         |
+| loadOptions    | function(value: string)                |         | &#10003; |
+| required       | boolean                                |         |
+| style          | [ReactSelect.Styles](#style_interface) |         |
+| testId         | string                                 |         |
+
 ### Style Interface
 
-```
+````
+
 interface ReactSelectStyles {
-  control?: React.CSSProperties;
-  dropdownIndicator?: React.CSSProperties;
-  clearIndicator?: React.CSSProperties;
-  indicatorSeparator?: React.CSSProperties;
-  menu?: React.CSSProperties;
-  multiValue?: React.CSSProperties;
-  multiValueRemove?: React.CSSProperties;
-  option?: React.CSSProperties;
+control?: React.CSSProperties;
+dropdownIndicator?: React.CSSProperties;
+clearIndicator?: React.CSSProperties;
+indicatorSeparator?: React.CSSProperties;
+menu?: React.CSSProperties;
+multiValue?: React.CSSProperties;
+multiValueRemove?: React.CSSProperties;
+option?: React.CSSProperties;
 }
+
+```
+
 ```
