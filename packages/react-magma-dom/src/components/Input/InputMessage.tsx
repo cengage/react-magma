@@ -5,7 +5,7 @@ import { Notification2Icon } from '../Icon/types/Notification2Icon';
 
 export interface InputMessageProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  id: string;
+  id?: string;
   inverse?: boolean;
   isError?: boolean;
 }
