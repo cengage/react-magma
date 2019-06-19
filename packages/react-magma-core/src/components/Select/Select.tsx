@@ -7,6 +7,7 @@ export interface SelectCoreProps {
   onChange?: (value: string) => void;
   onOpen?: () => void;
   onClose?: () => void;
+  onInputChange?: (value: string) => void;
   defaultValue?: string;
   value?: string;
 }
@@ -31,6 +32,7 @@ export class SelectCore extends React.Component<
     this.onChange = this.onChange.bind(this);
     this.onOpen = this.onOpen.bind(this);
     this.onClose = this.onClose.bind(this);
+    this.onInputChange = this.onInputChange.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -70,6 +72,12 @@ export class SelectCore extends React.Component<
       this.props.onClose();
   }
 
+  onInputChange(value) {
+    this.props.onInputChange &&
+      typeof this.props.onInputChange === 'function' &&
+      this.props.onInputChange(value);
+  }
+
   render() {
     return this.props.children({
       ...this.state,
@@ -79,6 +87,7 @@ export class SelectCore extends React.Component<
       onChange: this.onChange,
       onOpen: this.onOpen,
       onClose: this.onClose,
+      onInputChange: this.onInputChange,
       value: this.state.value
     });
   }
