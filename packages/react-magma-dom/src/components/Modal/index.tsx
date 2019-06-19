@@ -162,6 +162,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
                 >
                   <ModalBackdrop
                     data-testid="modal-backdrop"
+                    onMouseDown={event => event.preventDefault()}
                     onClick={disableBackdropClick ? null : onClose}
                   />
                   <ModalContent
