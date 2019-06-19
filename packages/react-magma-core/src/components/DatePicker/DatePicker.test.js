@@ -85,9 +85,7 @@ describe('DatePickerCore', () => {
 
   describe('build calendar month', () => {
     it('should build the calendar for the given date', () => {
-      const defaultDate = new Date('January 17, 2019').toLocaleString('en-US', {
-        timeZone: 'America/New_York'
-      });
+      const defaultDate = new Date('January 17, 2019');
       const { getByTestId } = render(
         <DatePickerCore>
           {({ buildCalendarMonth }) => {
@@ -97,7 +95,13 @@ describe('DatePickerCore', () => {
                 <button
                   data-testid="buildCalendarButton"
                   onClick={() => {
-                    expect(buildCalendarMonth(defaultDate)).toMatchSnapshot();
+                    const month = buildCalendarMonth(defaultDate);
+
+                    expect(month.length).toEqual(5);
+                    expect(month[0][0]).toEqual(null);
+                    expect(
+                      isSameDay(month[0][2], new Date('January 1, 2019'))
+                    ).toBeTruthy();
                   }}
                 >
                   Build Calendar
@@ -117,9 +121,7 @@ describe('DatePickerCore', () => {
     });
 
     it('should build the calendar for the given date with outside dates enabled', () => {
-      const defaultDate = new Date('January 17, 2019').toLocaleString('en-US', {
-        timeZone: 'America/New_York'
-      });
+      const defaultDate = new Date('January 17, 2019');
       const { getByTestId } = render(
         <DatePickerCore>
           {({ buildCalendarMonth }) => {
@@ -128,9 +130,15 @@ describe('DatePickerCore', () => {
                 <button
                   data-testid="buildCalendarButton"
                   onClick={() => {
+                    const month = buildCalendarMonth(defaultDate, true);
+
+                    expect(month.length).toEqual(5);
                     expect(
-                      buildCalendarMonth(defaultDate, true)
-                    ).toMatchSnapshot();
+                      isSameDay(month[0][0], new Date('December 30, 2018'))
+                    ).toBeTruthy();
+                    expect(
+                      isSameDay(month[0][2], new Date('January 1, 2019'))
+                    ).toBeTruthy();
                   }}
                 >
                   Build Calendar
