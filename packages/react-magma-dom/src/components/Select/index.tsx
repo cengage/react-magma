@@ -1,14 +1,13 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
 import { SelectCore } from 'react-magma-core';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
-import { Label } from '../Label';
 import { ThemeContext } from '../../theme/themeContext';
 
 import ReactSelect, { components } from 'react-select';
+import { SelectWrapper } from './SelectWrapper';
 
-interface Options {
+export interface Options {
   label: string;
   value: string;
 }
@@ -19,8 +18,8 @@ export interface SelectProps {
   name: string;
   labelText: string;
   options: Options[];
-  defaultValue?: Options | null;
-  value?: Options | null;
+  defaultValue?: Options[] | Options | null;
+  value?: Options[] | Options | null;
   disabled?: boolean;
   required?: boolean;
   clearable?: boolean;
@@ -33,6 +32,7 @@ export interface SelectProps {
   onChange?: (option: Options) => void;
   onOpen?: () => void;
   onClose?: () => void;
+  onInputChange?: (value: string) => void;
 }
 
 interface ReactSelectStyles {
@@ -145,7 +145,7 @@ export function getStyles(
   };
 }
 
-const ClearIndicator = props => {
+export const ClearIndicator = props => {
   return (
     components.ClearIndicator && (
       <components.ClearIndicator {...props}>
@@ -155,7 +155,7 @@ const ClearIndicator = props => {
   );
 };
 
-const DropdownIndicator = props => {
+export const DropdownIndicator = props => {
   return (
     components.DropdownIndicator && (
       <components.DropdownIndicator {...props}>
@@ -165,7 +165,7 @@ const DropdownIndicator = props => {
   );
 };
 
-const MultiValueRemove = props => {
+export const MultiValueRemove = props => {
   return (
     components.MultiValueRemove && (
       <components.MultiValueRemove {...props}>
@@ -174,16 +174,6 @@ const MultiValueRemove = props => {
     )
   );
 };
-
-const ErrorMessage = styled.div<{ inverse?: boolean }>`
-  background: ${props => (props.inverse ? props.theme.colors.danger : 'none')};
-  border-radius: 5px;
-  color: ${props =>
-    props.inverse ? props.theme.colors.neutral08 : props.theme.colors.danger};
-  font-size: 13px;
-  margin-top: 5px;
-  padding: ${props => (props.inverse ? '5px 10px' : '0')};
-`;
 
 export const Select: React.FunctionComponent<SelectProps> = (
   props: SelectProps
@@ -197,8 +187,9 @@ export const Select: React.FunctionComponent<SelectProps> = (
     onChange={props.onChange}
     onOpen={props.onOpen}
     onClose={props.onClose}
+    onInputChange={props.onInputChange}
   >
-    {({ value, onBlur, onFocus, onChange, onOpen, onClose }) => {
+    {({ value, onBlur, onFocus, onChange, onOpen, onClose, onInputChange }) => {
       const {
         defaultValue,
         id,
@@ -218,8 +209,12 @@ export const Select: React.FunctionComponent<SelectProps> = (
       return (
         <ThemeContext.Consumer>
           {theme => (
-            <div data-testid={testId}>
-              <Label inverse={inverse}>{labelText}</Label>
+            <SelectWrapper
+              errorMessage={errorMessage}
+              inverse={inverse}
+              labelText={labelText}
+              testId={testId}
+            >
               <ReactSelect
                 id={id}
                 inverse={inverse}
@@ -242,15 +237,11 @@ export const Select: React.FunctionComponent<SelectProps> = (
                 onChange={onChange}
                 onMenuOpen={onOpen}
                 onMenuClose={onClose}
+                onInputChange={onInputChange}
                 styles={getStyles(style, theme, errorMessage)}
                 classNamePrefix="magma"
               />
-              {errorMessage && (
-                <ErrorMessage inverse={inverse} theme={theme}>
-                  {errorMessage}
-                </ErrorMessage>
-              )}
-            </div>
+            </SelectWrapper>
           )}
         </ThemeContext.Consumer>
       );

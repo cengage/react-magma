@@ -91,6 +91,35 @@ describe('SelectCore', () => {
     expect(() => fireEvent.click(getByTestId('target'))).not.toThrow();
   });
 
+  it('should call the supplied onChange and update the value when onInputChange is called', () => {
+    const handleInputChange = jest.fn();
+    const newValue = 'Test';
+    const { getByTestId } = render(
+      <SelectCore onInputChange={handleInputChange} defaultValue="Start here">
+        {({ onInputChange }) => (
+          <input data-testid="target" onChange={onInputChange} />
+        )}
+      </SelectCore>
+    );
+
+    fireEvent.change(getByTestId('target'), { target: { value: newValue } });
+
+    expect(handleInputChange).toHaveBeenCalled();
+  });
+
+  it('Should not throw if a non-function is passed as an onInputChange', () => {
+    const handleInputChange = 'This is NOT a function';
+    const { getByTestId } = render(
+      <SelectCore onInputChange={handleInputChange} value="Start here">
+        {({ onInputChange }) => (
+          <input data-testid="target" onChange={onInputChange} />
+        )}
+      </SelectCore>
+    );
+
+    expect(() => fireEvent.change(getByTestId('target'))).not.toThrow();
+  });
+
   it('should call the onBlur from props during the internal onBlur', () => {
     const handleBlur = jest.fn();
     const { getByTestId } = render(
