@@ -561,7 +561,7 @@ describe('Calendar Month', () => {
       </DatePickerCore>
     );
 
-    fireEvent.click(getByLabelText('Help'));
+    fireEvent.click(getByLabelText('Calendar Help'));
 
     expect(getByText(/keyboard shortcuts/i)).toBeInTheDocument();
   });

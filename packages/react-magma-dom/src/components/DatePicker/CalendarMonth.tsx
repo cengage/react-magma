@@ -125,7 +125,7 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
                     </Table>
                     <HelperButton>
                       <Button
-                        ariaLabel="Help"
+                        ariaLabel="Calendar Help"
                         icon={<QuestionCircleOIcon />}
                         onClick={this.onHelperButtonClick}
                         onFocus={context.onHelperFocus}
