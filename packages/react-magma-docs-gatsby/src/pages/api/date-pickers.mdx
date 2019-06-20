@@ -31,7 +31,14 @@ import { Link } from 'gatsby'
     render() {
       const { chosenDate } = this.state;
       return <div>
-      <p><strong>Chosen Date: </strong> {chosenDate && <span>{this.state.chosenDate.format('dddd, LL')}</span>}</p>
+      <p>
+        <strong>Chosen Date: </strong>
+        {chosenDate &&
+          <span>
+            {`${chosenDate.getDate()}/${chosenDate.getMonth()}/${chosenDate.getFullYear()}`}
+          </span>
+        }
+      </p>
       <DatePicker
         onDayClick={(chosenDate) => {
           this.setState(state => ({chosenDate}))
