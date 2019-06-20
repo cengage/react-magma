@@ -1,14 +1,16 @@
 import * as React from 'react';
-import { getTrapElements, getFocusedElementIndex } from '../utils';
+import { generateId, getTrapElements, getFocusedElementIndex } from '../utils';
 
 export interface ModalCoreProps {
   children: (props) => React.ReactNode;
+  id?: string;
   open?: boolean;
   onClose?: () => void;
   onEscKeyDown?: (event: React.KeyboardEvent) => void;
 }
 
 interface ModalCoreState {
+  id?: string;
   isExiting?: boolean;
   focusableElements: Array<HTMLElement>;
 }
@@ -21,6 +23,7 @@ export class ModalCore extends React.Component<ModalCoreProps, ModalCoreState> {
     super(props);
 
     this.state = {
+      id: generateId(this.props.id),
       focusableElements: []
     };
 
@@ -29,6 +32,10 @@ export class ModalCore extends React.Component<ModalCoreProps, ModalCoreState> {
   }
 
   componentDidUpdate(prevProps: ModalCoreProps) {
+    if (prevProps.id !== this.props.id) {
+      this.setState({ id: generateId(this.props.id) });
+    }
+
     if (!prevProps.open && this.props.open) {
       // @ts-ignore: CreateRef only gives back a immutable ref
       this.lastFocus.current = document.activeElement;
@@ -43,6 +50,7 @@ export class ModalCore extends React.Component<ModalCoreProps, ModalCoreState> {
 
     if (keyCode === 27) {
       event.preventDefault();
+      event.stopPropagation();
       this.props.onEscKeyDown &&
         typeof this.props.onEscKeyDown === 'function' &&
         this.props.onEscKeyDown(event);
@@ -87,6 +95,7 @@ export class ModalCore extends React.Component<ModalCoreProps, ModalCoreState> {
   render() {
     return this.props.children({
       ...this.props,
+      id: this.state.id,
       onClose: this.onClose,
       onKeyDown: this.onKeyDown,
       isExiting: this.state.isExiting,

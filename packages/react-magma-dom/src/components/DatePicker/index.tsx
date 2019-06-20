@@ -9,7 +9,7 @@ import styled from '@emotion/styled';
 import { CalendarIcon } from '../Icon/types/CalendarIcon';
 
 interface DatePickerProps {
-  id: string;
+  id?: string;
   labelText: string;
   defaultDate?: Date;
   onDayClick?: (day: Date, event: React.SyntheticEvent) => void;
@@ -35,8 +35,13 @@ const DatePickerCalendar = styled.div<{ opened: boolean }>`
 export const DatePicker: React.FunctionComponent<DatePickerProps> = (
   props: DatePickerProps
 ) => (
-  <DatePickerCore defaultDate={props.defaultDate} onDayClick={props.onDayClick}>
+  <DatePickerCore
+    id={props.id}
+    defaultDate={props.defaultDate}
+    onDayClick={props.onDayClick}
+  >
     {({
+      id,
       calendarOpened,
       chosenDate,
       focusedDate,
@@ -51,7 +56,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
       onKeyDown,
       onDayClick
     }) => {
-      const { id, labelText } = props;
+      const { labelText } = props;
       const inputValue = chosenDate ? format(chosenDate, 'MM/DD/YYYY') : '';
       return (
         <CalendarContext.Provider

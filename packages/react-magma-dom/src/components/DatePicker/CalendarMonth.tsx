@@ -7,7 +7,6 @@ import { CalendarHeader } from './CalendarHeader';
 import { CalendarDay } from './CalendarDay';
 import { ThemeContext } from '../../theme/themeContext';
 import styled from '@emotion/styled';
-import { format } from 'date-fns';
 import { HelperInformation } from './HelperInformation';
 
 interface CalendarMonthState {
@@ -86,14 +85,15 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
           <CalendarContext.Consumer>
             {context =>
               context && (
-                <CalendarContainer tabIndex={-1} theme={theme}>
+                <CalendarContainer
+                  tabIndex={-1}
+                  theme={theme}
+                  onKeyDown={context.onKeyDown}
+                >
                   <MonthContainer data-visible="true" theme={theme}>
-                    <CalendarHeader
-                      text={format(context.focusedDate, 'MMMM YYYY')}
-                    />
+                    <CalendarHeader />
                     <Table
                       role="presentation"
-                      onKeyDown={context.onKeyDown}
                       onBlur={this.onCalendarTableBlur}
                       onFocus={this.onCalendarTableFocus}
                     >

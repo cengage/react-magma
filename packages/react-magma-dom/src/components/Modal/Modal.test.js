@@ -287,6 +287,48 @@ describe('Modal', () => {
 
       expect(onCloseSpy).not.toHaveBeenCalled();
     });
+
+    it('should prevent default on mouse down on the backdrop if the disableBackdropClick prop is true', () => {
+      const onCloseSpy = jest.fn();
+      const { rerender, getByText, getByTestId, container } = render(
+        <>
+          <button>Open</button>
+          <Modal
+            header="Hello"
+            open={false}
+            onClose={onCloseSpy}
+            disableBackdropClick
+          >
+            Modal Content
+          </Modal>
+        </>
+      );
+
+      fireEvent.focus(getByText('Open'));
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal
+            header="Hello"
+            open={true}
+            onClose={onCloseSpy}
+            disableBackdropClick
+          >
+            Modal Content
+          </Modal>
+        </>
+      );
+
+      fireEvent.mouseDown(getByTestId('modal-backdrop'));
+
+      jest.runAllTimers();
+
+      expect(container.querySelector(':focus')).toHaveAttribute(
+        'aria-label',
+        'Close'
+      );
+    });
   });
 
   it('Does not violate accessibility standards', () => {

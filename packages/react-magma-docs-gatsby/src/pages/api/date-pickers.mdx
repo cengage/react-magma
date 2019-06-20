@@ -43,13 +43,9 @@ import { Link } from 'gatsby'
 
 ## Datepicker Props
 
-| Prop     | Type                | Default | Required |
-| -------- | ------------------- | ------- | :------: |
-| children | node                |         | &#10003; |
-| level    | number              |         | &#10003; |
-| id       | string              |         |
-| style    | React.CSSProperties |         |
-
-```
-
-```
+| Prop        | Type                                             | Default | Required |
+| ----------- | ------------------------------------------------ | ------- | :------: |
+| id          | string                                           |         |
+| labelText   | string                                           |         | &#10003; |
+| defaultDate | Date                                             |         |
+| onDayClick  | (day: Date, event: React.SyntheticEvent) => void |         |          |

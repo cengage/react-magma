@@ -14,6 +14,7 @@ export enum ModalSize {
 }
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
+  id?: string;
   closeLabel?: string;
   disableBackdropClick?: boolean;
   disableEscKeyDown?: boolean;
@@ -129,8 +130,8 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
   (props: ModalProps, ref: any) => (
     <ThemeContext.Consumer>
       {theme => (
-        <ModalCore open={props.open} onClose={props.onClose}>
-          {({ isExiting, onClose, onKeyDown, focusTrapElement }) => {
+        <ModalCore id={props.id} open={props.open} onClose={props.onClose}>
+          {({ id, isExiting, onClose, onKeyDown, focusTrapElement }) => {
             const {
               children,
               closeLabel,
@@ -156,13 +157,18 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
                 />
 
                 <ModalContainer
+                  id={id}
                   ref={focusTrapElement}
                   isExiting={isExiting}
                   onKeyDown={disableEscKeyDown ? null : onKeyDown}
                 >
                   <ModalBackdrop
                     data-testid="modal-backdrop"
-                    onMouseDown={event => event.preventDefault()}
+                    onMouseDown={
+                      disableBackdropClick
+                        ? event => event.preventDefault()
+                        : null
+                    }
                     onClick={disableBackdropClick ? null : onClose}
                   />
                   <ModalContent

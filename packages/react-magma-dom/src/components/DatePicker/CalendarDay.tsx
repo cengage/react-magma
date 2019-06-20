@@ -166,7 +166,9 @@ export class CalendarDay extends React.Component<
                     >
                       {format(day, 'D')}
                     </CalendarDayInner>
-                    {sameDateAsToday && <TodayIndicator />}
+                    {sameDateAsToday && (
+                      <TodayIndicator data-testid="todayIndicator" />
+                    )}
                   </CalendarDayCell>
                 );
               }}

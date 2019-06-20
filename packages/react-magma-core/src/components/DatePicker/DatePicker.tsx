@@ -5,15 +5,18 @@ import {
   getNextMonthFromDate,
   handleKeyPress
 } from './utils';
+import { generateId } from '../utils';
 
 export interface DatePickerCoreProps {
   children: (props) => React.ReactNode;
+  id?: string;
   calendarOpened?: boolean;
   defaultDate?: Date;
   onDayClick?: (day: any, event: React.SyntheticEvent) => void;
 }
 
 interface DatePickerState {
+  id?: string;
   calendarOpened: boolean;
   focusedDate: Date;
   chosenDate?: Date;
@@ -25,6 +28,7 @@ export class DatePickerCore extends React.Component<
   DatePickerState
 > {
   initialState: DatePickerState = {
+    id: generateId(this.props.id),
     calendarOpened: this.props.calendarOpened,
     focusedDate: this.props.defaultDate || new Date(),
     chosenDate: this.props.defaultDate
@@ -46,6 +50,12 @@ export class DatePickerCore extends React.Component<
       this
     );
     this.onDayClick = this.onDayClick.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.id !== this.props.id) {
+      this.setState({ id: generateId(this.props.id) });
+    }
   }
 
   buildCalendarMonth(date: Date, enableOutsideDates: boolean) {
@@ -91,7 +101,7 @@ export class DatePickerCore extends React.Component<
   }
 
   onKeyDown(event: React.KeyboardEvent) {
-    if (this.state.dateFocused) {
+    if (this.state.dateFocused && document.activeElement.closest('table')) {
       const newChosenDate = handleKeyPress(
         event,
         this.state.focusedDate,
@@ -100,6 +110,10 @@ export class DatePickerCore extends React.Component<
       );
       if (newChosenDate) {
         this.onDayChangedByKeyboardNavigation(newChosenDate);
+      }
+    } else {
+      if (event.key === 'Escape') {
+        this.onEscKey();
       }
     }
   }
@@ -123,6 +137,7 @@ export class DatePickerCore extends React.Component<
 
     return this.props.children({
       ...this.props,
+      id: this.state.id,
       calendarOpened,
       chosenDate,
       focusedDate,

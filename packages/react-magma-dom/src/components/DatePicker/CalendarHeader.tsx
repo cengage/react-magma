@@ -5,11 +5,8 @@ import { ArrowRight2Icon } from '../Icon/types/ArrowRight2Icon';
 import { Button } from '../Button';
 import { ButtonVariant } from '../StyledButton';
 import { magma } from '../../theme/magma';
+import { format } from 'date-fns';
 import styled from '@emotion/styled';
-
-interface CalendarHeaderProps {
-  text: string;
-}
 
 const CalendarHeaderContainer = styled.div`
   align-items: center;
@@ -33,9 +30,7 @@ const CalendarHeaderText = styled.div`
   flex-basis: 75%;
 `;
 
-export const CalendarHeader: React.FunctionComponent<CalendarHeaderProps> = ({
-  text
-}: CalendarHeaderProps) => (
+export const CalendarHeader: React.FunctionComponent<{}> = () => (
   <CalendarContext.Consumer>
     {context =>
       context && (
@@ -48,7 +43,9 @@ export const CalendarHeader: React.FunctionComponent<CalendarHeaderProps> = ({
               onClick={context.onPrevMonthClick}
             />
           </CalendarIconButton>
-          <CalendarHeaderText>{text}</CalendarHeaderText>
+          <CalendarHeaderText>
+            {format(context.focusedDate, 'MMMM YYYY')}
+          </CalendarHeaderText>
           <CalendarIconButton>
             <Button
               ariaLabel="Next Month"

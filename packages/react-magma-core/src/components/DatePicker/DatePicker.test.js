@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import * as React from 'react';
 import { render, fireEvent } from 'react-testing-library';
@@ -15,7 +16,9 @@ import {
   endOfWeek,
   format
 } from 'date-fns';
+import uuid from 'uuid/v4';
 
+jest.mock('uuid/v4');
 const onDayClick = jest.fn();
 
 const DATE_PICKER_CORE_PROPS = {
@@ -28,6 +31,52 @@ const DATE_PICKER_CORE_PROPS = {
 describe('DatePickerCore', () => {
   afterEach(() => {
     onDayClick.mockReset();
+  });
+
+  it('should auto assign an id if none is passed in', () => {
+    uuid.mockReturnValue('auto-generated-id');
+    const { getByTestId } = render(
+      <DatePickerCore>
+        {({ id }) => <span data-testid="target">{id}</span>}
+      </DatePickerCore>
+    );
+    expect(getByTestId(/target/i).innerHTML).toBe('auto-generated-id');
+  });
+
+  it('should persist id between renders', () => {
+    uuid.mockReturnValue('auto-generated-id');
+    const { getByTestId, rerender } = render(
+      <DatePickerCore>
+        {({ id }) => <span id={id} data-testid="target" />}
+      </DatePickerCore>
+    );
+
+    expect(getByTestId(/target/i).getAttribute('id')).toBe('auto-generated-id');
+
+    rerender(
+      <DatePickerCore>
+        {({ id }) => <span id={id} data-testid="target" />}
+      </DatePickerCore>
+    );
+
+    expect(getByTestId(/target/i).getAttribute('id')).toBe('auto-generated-id');
+  });
+
+  it('should update the id on rerender with a change in prop id', () => {
+    const { getByTestId, rerender } = render(
+      <DatePickerCore>
+        {({ id }) => <span id={id} data-testid="target" />}
+      </DatePickerCore>
+    );
+
+    rerender(
+      <DatePickerCore id="differentId">
+        {({ id }) => <span id={id} data-testid="target" />}
+      </DatePickerCore>
+    );
+
+    const newId = getByTestId(/target/i).getAttribute('id');
+    expect(newId).toEqual('differentId');
   });
 
   describe('state management', () => {
@@ -43,6 +92,7 @@ describe('DatePickerCore', () => {
                   data-testid="calendarOpened"
                   type="checkbox"
                   checked={calendarOpened}
+                  onChange={() => {}}
                 />
                 <span data-testid="focusedDate">
                   {format(focusedDate, 'MMMM Do YYYY')}
@@ -109,7 +159,7 @@ describe('DatePickerCore', () => {
                 <span
                   data-testid="calendarData"
                   ref={calendarData}
-                  data-calendarData=""
+                  data-calendardata=""
                 />
               </>
             );
@@ -163,7 +213,7 @@ describe('DatePickerCore', () => {
                 <input data-testid="inputToFocus" onFocus={onInputFocus} />
                 <span
                   data-testid="calendarOpened"
-                  data-calendarOpened={calendarOpened}
+                  data-calendaropened={calendarOpened}
                 />
               </>
             );
@@ -172,13 +222,13 @@ describe('DatePickerCore', () => {
       );
 
       expect(
-        getByTestId('calendarOpened').getAttribute('data-calendarOpened')
+        getByTestId('calendarOpened').getAttribute('data-calendaropened')
       ).toBeFalsy();
 
       fireEvent.focus(getByTestId('inputToFocus'));
 
       expect(
-        getByTestId('calendarOpened').getAttribute('data-calendarOpened')
+        getByTestId('calendarOpened').getAttribute('data-calendaropened')
       ).toBeTruthy();
     });
   });
@@ -352,13 +402,9 @@ describe('DatePickerCore', () => {
           {({ focusedDate, onKeyDown }) => {
             return (
               <>
-                <div
-                  data-testid="calendarContainer"
-                  role="table"
-                  onKeyDown={onKeyDown}
-                >
+                <table data-testid="calendarContainer" onKeyDown={onKeyDown}>
                   <span data-testid="focusedDate" data-date={focusedDate} />
-                </div>
+                </table>
               </>
             );
           }}
@@ -378,21 +424,30 @@ describe('DatePickerCore', () => {
       ).toBeTruthy();
     });
 
-    it('ArrowUp', () => {
+    it('ArrowUp', async () => {
       const defaultDate = new Date();
       const { getByTestId } = render(
         <DatePickerCore defaultDate={defaultDate}>
           {({ focusedDate, onKeyDown, onDateFocus }) => {
             return (
               <>
-                <div
+                <table
                   data-testid="calendarContainer"
-                  role="table"
                   onFocus={onDateFocus}
                   onKeyDown={onKeyDown}
                 >
-                  <span data-testid="focusedDate" data-date={focusedDate} />
-                </div>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div
+                          data-testid="focusedDate"
+                          data-date={focusedDate}
+                          tabIndex={0}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </>
             );
           }}
@@ -400,6 +455,7 @@ describe('DatePickerCore', () => {
       );
 
       fireEvent.focus(getByTestId('calendarContainer'));
+      getByTestId('focusedDate').focus();
       fireEvent.keyDown(getByTestId('calendarContainer'), {
         key: 'ArrowUp',
         code: 38
@@ -420,14 +476,23 @@ describe('DatePickerCore', () => {
           {({ focusedDate, onKeyDown, onDateFocus }) => {
             return (
               <>
-                <div
+                <table
                   data-testid="calendarContainer"
-                  role="table"
                   onFocus={onDateFocus}
                   onKeyDown={onKeyDown}
                 >
-                  <span data-testid="focusedDate" data-date={focusedDate} />
-                </div>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div
+                          data-testid="focusedDate"
+                          data-date={focusedDate}
+                          tabIndex={0}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </>
             );
           }}
@@ -435,6 +500,7 @@ describe('DatePickerCore', () => {
       );
 
       fireEvent.focus(getByTestId('calendarContainer'));
+      getByTestId('focusedDate').focus();
       fireEvent.keyDown(getByTestId('calendarContainer'), {
         key: 'ArrowLeft',
         code: 37
@@ -455,14 +521,23 @@ describe('DatePickerCore', () => {
           {({ focusedDate, onKeyDown, onDateFocus }) => {
             return (
               <>
-                <div
+                <table
                   data-testid="calendarContainer"
-                  role="table"
                   onFocus={onDateFocus}
                   onKeyDown={onKeyDown}
                 >
-                  <span data-testid="focusedDate" data-date={focusedDate} />
-                </div>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div
+                          data-testid="focusedDate"
+                          data-date={focusedDate}
+                          tabIndex={0}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </>
             );
           }}
@@ -470,6 +545,7 @@ describe('DatePickerCore', () => {
       );
 
       fireEvent.focus(getByTestId('calendarContainer'));
+      getByTestId('focusedDate').focus();
       fireEvent.keyDown(getByTestId('calendarContainer'), {
         key: 'Home',
         code: 36
@@ -490,14 +566,23 @@ describe('DatePickerCore', () => {
           {({ focusedDate, onKeyDown, onDateFocus }) => {
             return (
               <>
-                <div
+                <table
                   data-testid="calendarContainer"
-                  role="table"
                   onFocus={onDateFocus}
                   onKeyDown={onKeyDown}
                 >
-                  <span data-testid="focusedDate" data-date={focusedDate} />
-                </div>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div
+                          data-testid="focusedDate"
+                          data-date={focusedDate}
+                          tabIndex={0}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </>
             );
           }}
@@ -505,6 +590,7 @@ describe('DatePickerCore', () => {
       );
 
       fireEvent.focus(getByTestId('calendarContainer'));
+      getByTestId('focusedDate').focus();
       fireEvent.keyDown(getByTestId('calendarContainer'), {
         key: 'PageUp',
         code: 33
@@ -525,14 +611,23 @@ describe('DatePickerCore', () => {
           {({ focusedDate, onKeyDown, onDateFocus }) => {
             return (
               <>
-                <div
+                <table
                   data-testid="calendarContainer"
-                  role="table"
                   onFocus={onDateFocus}
                   onKeyDown={onKeyDown}
                 >
-                  <span data-testid="focusedDate" data-date={focusedDate} />
-                </div>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div
+                          data-testid="focusedDate"
+                          data-date={focusedDate}
+                          tabIndex={0}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </>
             );
           }}
@@ -540,6 +635,7 @@ describe('DatePickerCore', () => {
       );
 
       fireEvent.focus(getByTestId('calendarContainer'));
+      getByTestId('focusedDate').focus();
       fireEvent.keyDown(getByTestId('calendarContainer'), {
         key: 'PageDown',
         code: 34
@@ -560,14 +656,23 @@ describe('DatePickerCore', () => {
           {({ focusedDate, onKeyDown, onDateFocus }) => {
             return (
               <>
-                <div
+                <table
                   data-testid="calendarContainer"
-                  role="table"
                   onFocus={onDateFocus}
                   onKeyDown={onKeyDown}
                 >
-                  <span data-testid="focusedDate" data-date={focusedDate} />
-                </div>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div
+                          data-testid="focusedDate"
+                          data-date={focusedDate}
+                          tabIndex={0}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </>
             );
           }}
@@ -575,6 +680,7 @@ describe('DatePickerCore', () => {
       );
 
       fireEvent.focus(getByTestId('calendarContainer'));
+      getByTestId('focusedDate').focus();
       fireEvent.keyDown(getByTestId('calendarContainer'), {
         key: 'ArrowDown',
         code: 40
@@ -595,14 +701,23 @@ describe('DatePickerCore', () => {
           {({ focusedDate, onKeyDown, onDateFocus }) => {
             return (
               <>
-                <div
+                <table
                   data-testid="calendarContainer"
-                  role="table"
                   onFocus={onDateFocus}
                   onKeyDown={onKeyDown}
                 >
-                  <span data-testid="focusedDate" data-date={focusedDate} />
-                </div>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div
+                          data-testid="focusedDate"
+                          data-date={focusedDate}
+                          tabIndex={0}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </>
             );
           }}
@@ -610,6 +725,7 @@ describe('DatePickerCore', () => {
       );
 
       fireEvent.focus(getByTestId('calendarContainer'));
+      getByTestId('focusedDate').focus();
       fireEvent.keyDown(getByTestId('calendarContainer'), {
         key: 'ArrowRight',
         code: 39
@@ -630,14 +746,23 @@ describe('DatePickerCore', () => {
           {({ focusedDate, onKeyDown, onDateFocus }) => {
             return (
               <>
-                <div
+                <table
                   data-testid="calendarContainer"
-                  role="table"
                   onFocus={onDateFocus}
                   onKeyDown={onKeyDown}
                 >
-                  <span data-testid="focusedDate" data-date={focusedDate} />
-                </div>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div
+                          data-testid="focusedDate"
+                          data-date={focusedDate}
+                          tabIndex={0}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </>
             );
           }}
@@ -645,6 +770,7 @@ describe('DatePickerCore', () => {
       );
 
       fireEvent.focus(getByTestId('calendarContainer'));
+      getByTestId('focusedDate').focus();
       fireEvent.keyDown(getByTestId('calendarContainer'), {
         key: 'End',
         code: 35
@@ -665,17 +791,63 @@ describe('DatePickerCore', () => {
           {({ calendarOpened, onKeyDown, onDateFocus }) => {
             return (
               <>
-                <div
+                <table
                   data-testid="calendarContainer"
-                  role="table"
                   onFocus={onDateFocus}
                   onKeyDown={onKeyDown}
                 >
-                  <input
-                    data-testid="calendarOpened"
-                    checked={calendarOpened}
-                  />
-                </div>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <input
+                          data-testid="calendarOpened"
+                          checked={calendarOpened}
+                          onChange={() => {}}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </>
+            );
+          }}
+        </DatePickerCore>
+      );
+
+      fireEvent.focus(getByTestId('calendarContainer'));
+      getByTestId('calendarOpened').focus();
+      fireEvent.keyDown(getByTestId('calendarContainer'), {
+        key: 'Escape',
+        code: 27
+      });
+
+      expect(getByTestId('calendarOpened').checked).toBeFalsy();
+    });
+
+    it('Escape without focus', () => {
+      const defaultDate = new Date();
+      const { getByTestId } = render(
+        <DatePickerCore calendarOpened={true} defaultDate={defaultDate}>
+          {({ calendarOpened, onKeyDown, onDateFocus }) => {
+            return (
+              <>
+                <table
+                  data-testid="calendarContainer"
+                  onFocus={onDateFocus}
+                  onKeyDown={onKeyDown}
+                >
+                  <tbody>
+                    <tr>
+                      <td>
+                        <input
+                          data-testid="calendarOpened"
+                          checked={calendarOpened}
+                          onChange={() => {}}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </>
             );
           }}
@@ -698,14 +870,23 @@ describe('DatePickerCore', () => {
           {({ chosenDate, onKeyDown, onDateFocus }) => {
             return (
               <>
-                <div
+                <table
                   data-testid="calendarContainer"
-                  role="table"
                   onFocus={onDateFocus}
                   onKeyDown={onKeyDown}
                 >
-                  <span data-testid="chosenDate" data-date={chosenDate} />
-                </div>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div
+                          data-testid="chosenDate"
+                          data-date={chosenDate}
+                          tabIndex={0}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </>
             );
           }}
@@ -713,6 +894,7 @@ describe('DatePickerCore', () => {
       );
 
       fireEvent.focus(getByTestId('calendarContainer'));
+      getByTestId('chosenDate').focus();
       fireEvent.keyDown(getByTestId('calendarContainer'), {
         key: 'Enter',
         code: 13
@@ -733,14 +915,23 @@ describe('DatePickerCore', () => {
           {({ chosenDate, onKeyDown, onDateFocus }) => {
             return (
               <>
-                <div
+                <table
                   data-testid="calendarContainer"
-                  role="table"
                   onFocus={onDateFocus}
                   onKeyDown={onKeyDown}
                 >
-                  <span data-testid="chosenDate" data-date={chosenDate} />
-                </div>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div
+                          data-testid="chosenDate"
+                          data-date={chosenDate}
+                          tabIndex={0}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </>
             );
           }}
@@ -748,6 +939,7 @@ describe('DatePickerCore', () => {
       );
 
       fireEvent.focus(getByTestId('calendarContainer'));
+      getByTestId('chosenDate').focus();
       fireEvent.keyDown(getByTestId('calendarContainer'), {
         key: 'Space',
         code: 32
@@ -768,14 +960,23 @@ describe('DatePickerCore', () => {
           {({ focusedDate, onKeyDown, onDateFocus }) => {
             return (
               <>
-                <div
+                <table
                   data-testid="calendarContainer"
-                  role="table"
                   onFocus={onDateFocus}
                   onKeyDown={onKeyDown}
                 >
-                  <span data-testid="focusedDate" data-date={focusedDate} />
-                </div>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div
+                          data-testid="focusedDate"
+                          data-date={focusedDate}
+                          tabIndex={0}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </>
             );
           }}
@@ -783,6 +984,7 @@ describe('DatePickerCore', () => {
       );
 
       fireEvent.focus(getByTestId('calendarContainer'));
+      getByTestId('focusedDate').focus();
       fireEvent.keyDown(getByTestId('calendarContainer'), {
         key: 'f',
         code: 70
@@ -796,29 +998,6 @@ describe('DatePickerCore', () => {
       ).toBeTruthy();
     });
   });
-
-  // describe('on esc key', () => {
-  //   it('closes the calendar when the esc key function is called', () => {
-  //     const component = datePickerSetup({ calendarOpened: true });
-  //     component.setState({ dateFocused: true });
-
-  //     component.instance().onEscKey();
-
-  //     expect(component.state('calendarOpened')).toBeFalsy();
-  //   });
-  // });
-
-  // describe('on day changed by keyboard navigation', () => {
-  //   it('updates the focused date when the keyboard naviagation function is called', () => {
-  //     const updatedDate = new Date();
-  //     const component = datePickerSetup({ calendarOpened: true });
-  //     component.setState({ dateFocused: true });
-
-  //     component.instance().onDayChangedByKeyboardNavigation(updatedDate);
-
-  //     expect(component.state('focusedDate')).toEqual(updatedDate);
-  //   });
-  // });
 
   describe('on day click', () => {
     it('should updated the chosen date and close the calendar', () => {
@@ -846,6 +1025,7 @@ describe('DatePickerCore', () => {
                   <input
                     data-testid="calendarOpened"
                     checked={calendarOpened}
+                    onChange={() => {}}
                   />
                 </div>
               </>
