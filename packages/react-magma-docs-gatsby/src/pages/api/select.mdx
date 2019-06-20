@@ -136,13 +136,39 @@ The optional `clearable` prop allows the user to clear the field once a selectio
 ## Error message
 
 If a select has an `errorMessage`, the select will be styled to highlight it's error state and the error message will appear below the field.
+If an error message is present, it will replace the helper text.
 
 ```.jsx
   <div className='demo-select-container'>
     <Select
       errorMessage="Please select a color"
+      helperMessage="Helper text goes here"
       name="error"
       labelText="Error message"
+      options={[{
+        value: 'red',
+        label: 'Red'
+      }, {
+        value: 'blue',
+        label: 'Blue'
+      }, {
+        value: 'green',
+        label: 'Green'
+      }]}
+    />
+  </div>
+```
+
+## Helper message
+
+The `helperMessage` appears underneath the select field. It will not appear if an error message is present.
+
+```.jsx
+  <div className='demo-select-container'>
+    <Select
+      helperMessage="Helper text goes here"
+      name="helper"
+      labelText="Helper message"
       options={[{
         value: 'red',
         label: 'Red'
@@ -222,7 +248,7 @@ class Select extends React.Component {
   render() {
     return (
       <>
-        <AsyncSelect loadOptions={this.promiseOptions} />
+        <AsyncSelect labelText="Async Select" loadOptions={this.promiseOptions} />
       </>
     );
   }
@@ -273,6 +299,7 @@ class Select extends React.Component {
   render() {
     return (
       <CreatableSelect
+        labelText="Creatable Select"
         isClearable
         onChange={this.handleChange}
         onInputChange={this.handleInputChange}
@@ -336,7 +363,7 @@ class Select extends React.Component {
   render() {
     return (
       <>
-        <AsyncCreatableSelect loadOptions={this.promiseOptions} onChange={this.handleChange} />
+        <AsyncCreatableSelect labelText="Async Creatable Select" loadOptions={this.promiseOptions} onChange={this.handleChange} />
       </>
     );
   }
@@ -528,6 +555,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 | defaultOptions | object[]: `{ label, text }`            |         |
 | defaultValue   | string                                 |         |
 | disabled       | boolean                                |         |
+| errorMessage   | string                                 |         |          |
+| helperMessage  | string                                 |         |          |
 | id             | string                                 |         |          |
 | labelText      | string                                 |         | &#10003; |
 | multi          | boolean                                |         |
@@ -541,7 +570,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 | required       | boolean                                |         |
 | style          | [ReactSelect.Styles](#style_interface) |         |
 | testId         | string                                 |         |
-
 
 ### Style Interface
 

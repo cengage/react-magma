@@ -45,6 +45,7 @@ export const AsyncSelect: React.FunctionComponent<AsyncSelectProps> = (
         required,
         clearable,
         errorMessage,
+        helperMessage,
         inverse,
         multi,
         style
@@ -55,6 +56,7 @@ export const AsyncSelect: React.FunctionComponent<AsyncSelectProps> = (
           {theme => (
             <SelectWrapper
               errorMessage={errorMessage}
+              helperMessage={helperMessage}
               id={id}
               inverse={inverse}
               labelText={labelText}

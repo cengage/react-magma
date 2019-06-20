@@ -31,11 +31,17 @@ const Message = styled.div<InputMessageProps>`
 export const InputMessage: React.FunctionComponent<
   InputMessageProps
 > = React.forwardRef(
-  ({ children, id, inverse, isError }: InputMessageProps) => {
+  ({ children, id, inverse, isError, ...other }: InputMessageProps) => {
     return (
       <ThemeContext.Consumer>
         {theme => (
-          <Message id={id} inverse={inverse} isError={isError} theme={theme}>
+          <Message
+            {...other}
+            id={id}
+            inverse={inverse}
+            isError={isError}
+            theme={theme}
+          >
             {isError && (
               <>
                 <Notification2Icon aria-label="Error" size={18} /> &nbsp;

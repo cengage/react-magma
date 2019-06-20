@@ -24,6 +24,7 @@ export interface SelectProps {
   required?: boolean;
   clearable?: boolean;
   errorMessage?: string;
+  helperMessage?: string;
   inverse?: boolean;
   multi?: boolean;
   style?: ReactSelectStyles;
@@ -201,26 +202,24 @@ export const Select: React.FunctionComponent<SelectProps> = (
         required,
         clearable,
         errorMessage,
+        helperMessage,
         inverse,
         multi,
         style
       } = props;
 
-      const descriptionId = errorMessage ? `${id}__desc` : null;
-
       return (
         <ThemeContext.Consumer>
           {theme => (
             <SelectWrapper
-              descriptionId={descriptionId}
               errorMessage={errorMessage}
+              helperMessage={helperMessage}
               id={id}
               inverse={inverse}
               labelText={labelText}
               testId={testId}
             >
               <ReactSelect
-                aria-describedby={descriptionId}
                 aria-label={labelText}
                 classNamePrefix="magma"
                 components={{
