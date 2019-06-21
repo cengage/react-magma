@@ -13,6 +13,7 @@ export interface DatePickerCoreProps {
   calendarOpened?: boolean;
   defaultDate?: Date;
   onDayClick?: (day: any, event: React.SyntheticEvent) => void;
+  onHelperInformationOpen?: () => void;
 }
 
 interface DatePickerState {
@@ -46,6 +47,7 @@ export class DatePickerCore extends React.Component<
     this.onNextMonthClick = this.onNextMonthClick.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
     this.onEscKey = this.onEscKey.bind(this);
+    this.onQuestionKey = this.onQuestionKey.bind(this);
     this.onDayChangedByKeyboardNavigation = this.onDayChangedByKeyboardNavigation.bind(
       this
     );
@@ -66,6 +68,10 @@ export class DatePickerCore extends React.Component<
     this.setState({ calendarOpened: true });
   }
 
+  onInputBlur() {
+    console.log('onInputBlur', this.state);
+  }
+
   onDateFocus() {
     this.setState({ dateFocused: true });
   }
@@ -84,6 +90,8 @@ export class DatePickerCore extends React.Component<
 
       if (!isInStuff) {
         this.setState({ calendarOpened: false });
+
+        console.log('onCalendarBlur', this.state);
       }
     }, 0);
   }
@@ -101,7 +109,12 @@ export class DatePickerCore extends React.Component<
   }
 
   onKeyDown(event: React.KeyboardEvent) {
-    if (this.state.dateFocused && document.activeElement.closest('table')) {
+    if (event.key === '?') {
+      this.onQuestionKey();
+    } else if (
+      this.state.dateFocused &&
+      document.activeElement.closest('table')
+    ) {
       const newChosenDate = handleKeyPress(
         event,
         this.state.focusedDate,
@@ -116,6 +129,10 @@ export class DatePickerCore extends React.Component<
         this.onEscKey();
       }
     }
+  }
+
+  onQuestionKey() {
+    this.props.onHelperInformationOpen();
   }
 
   onEscKey() {

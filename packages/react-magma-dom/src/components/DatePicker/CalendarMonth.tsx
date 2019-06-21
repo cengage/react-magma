@@ -9,9 +9,14 @@ import { ThemeContext } from '../../theme/themeContext';
 import styled from '@emotion/styled';
 import { HelperInformation } from './HelperInformation';
 
+interface CalendarMonthProps {
+  showHelperInformation?: boolean;
+  onHelperInformationClose?: () => void;
+  onHelperInformationOpen?: () => void;
+}
+
 interface CalendarMonthState {
   dayFocusable?: boolean;
-  showHelperInformation?: boolean;
 }
 
 const CalendarContainer = styled.div`
@@ -47,12 +52,10 @@ const HelperButton = styled.span`
   z-index: 2;
 `;
 
-export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
-  state = {
-    dayFocusable: false,
-    showHelperInformation: false
-  };
-
+export class CalendarMonth extends React.Component<
+  CalendarMonthProps,
+  CalendarMonthState
+> {
   constructor(props) {
     super(props);
 
@@ -60,6 +63,10 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
     this.onCalendarTableBlur = this.onCalendarTableBlur.bind(this);
     this.onHelperButtonClick = this.onHelperButtonClick.bind(this);
     this.onHelperClose = this.onHelperClose.bind(this);
+
+    this.state = {
+      dayFocusable: false
+    };
   }
 
   onCalendarTableFocus() {
@@ -71,11 +78,11 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
   }
 
   onHelperButtonClick() {
-    this.setState({ showHelperInformation: true });
+    this.props.onHelperInformationOpen();
   }
 
   onHelperClose() {
-    this.setState({ showHelperInformation: false });
+    this.props.onHelperInformationClose();
   }
 
   render() {
@@ -132,7 +139,7 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
                         variant={ButtonVariant.link}
                       />
                       <HelperInformation
-                        open={this.state.showHelperInformation}
+                        open={this.props.showHelperInformation}
                         onClose={this.onHelperClose}
                       />
                     </HelperButton>

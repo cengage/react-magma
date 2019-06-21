@@ -62,6 +62,9 @@ export function handleKeyPress(
   onDayClick?: (day: Date, event: React.SyntheticEvent) => void
 ) {
   const { key } = e;
+
+  console.log('handleKeyPress key', key);
+
   if (key === 'Enter' || key === ' ') {
     onDayClick(prevDate, e);
   }
