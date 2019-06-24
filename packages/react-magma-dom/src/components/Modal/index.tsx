@@ -1,4 +1,5 @@
 import * as React from 'react';
+import ReactDOM from 'react-dom';
 import styled from '@emotion/styled';
 import { Global, css } from '@emotion/core';
 import { ModalCore } from 'react-magma-core';
@@ -146,64 +147,69 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
 
             const CloseIcon = <CrossIcon color={theme.colors.neutral04} />;
 
-            return open ? (
-              <>
-                <Global
-                  styles={css`
-                    html {
-                      overflow: hidden;
-                    }
-                  `}
-                />
+            return open
+              ? ReactDOM.createPortal(
+                  <>
+                    <Global
+                      styles={css`
+                        html {
+                          overflow: hidden;
+                        }
+                      `}
+                    />
 
-                <ModalContainer
-                  id={id}
-                  ref={focusTrapElement}
-                  isExiting={isExiting}
-                  onKeyDown={disableEscKeyDown ? null : onKeyDown}
-                >
-                  <ModalBackdrop
-                    data-testid="modal-backdrop"
-                    onMouseDown={
-                      disableBackdropClick
-                        ? event => event.preventDefault()
-                        : null
-                    }
-                    onClick={disableBackdropClick ? null : onClose}
-                  />
-                  <ModalContent
-                    ref={ref}
-                    size={size}
-                    data-testid="modal-content"
-                    theme={theme}
-                    {...other}
-                  >
-                    <ModalHeader theme={theme}>
-                      {header && <H3 theme={theme}>{header}</H3>}
+                    <ModalContainer
+                      aria-modal={true}
+                      data-testid="modal-container"
+                      id={id}
+                      ref={focusTrapElement}
+                      isExiting={isExiting}
+                      onKeyDown={disableEscKeyDown ? null : onKeyDown}
+                    >
+                      <ModalBackdrop
+                        data-testid="modal-backdrop"
+                        onMouseDown={
+                          disableBackdropClick
+                            ? event => event.preventDefault()
+                            : null
+                        }
+                        onClick={disableBackdropClick ? null : onClose}
+                      />
+                      <ModalContent
+                        ref={ref}
+                        size={size}
+                        data-testid="modal-content"
+                        theme={theme}
+                        {...other}
+                      >
+                        <ModalHeader theme={theme}>
+                          {header && <H3 theme={theme}>{header}</H3>}
 
-                      {!hideEscButton && (
-                        <CloseBtn>
-                          <Button
-                            ariaLabel={closeLabel ? closeLabel : 'Close'}
-                            color={ButtonColor.secondary}
-                            icon={CloseIcon}
-                            onClick={onClose}
-                            style={{
-                              borderRadius: 0,
-                              margin: 0,
-                              outlineOffset: 0
-                            }}
-                            testId="modal-closebtn"
-                            variant={ButtonVariant.link}
-                          />
-                        </CloseBtn>
-                      )}
-                    </ModalHeader>
-                    <ModalBody>{children}</ModalBody>
-                  </ModalContent>
-                </ModalContainer>
-              </>
-            ) : null;
+                          {!hideEscButton && (
+                            <CloseBtn>
+                              <Button
+                                ariaLabel={closeLabel ? closeLabel : 'Close'}
+                                color={ButtonColor.secondary}
+                                icon={CloseIcon}
+                                onClick={onClose}
+                                style={{
+                                  borderRadius: 0,
+                                  margin: 0,
+                                  outlineOffset: 0
+                                }}
+                                testId="modal-closebtn"
+                                variant={ButtonVariant.link}
+                              />
+                            </CloseBtn>
+                          )}
+                        </ModalHeader>
+                        <ModalBody>{children}</ModalBody>
+                      </ModalContent>
+                    </ModalContainer>
+                  </>,
+                  document.getElementsByTagName('body')[0]
+                )
+              : null;
           }}
         </ModalCore>
       )}
