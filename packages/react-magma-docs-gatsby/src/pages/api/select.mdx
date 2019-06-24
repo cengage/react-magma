@@ -136,13 +136,39 @@ The optional `clearable` prop allows the user to clear the field once a selectio
 ## Error message
 
 If a select has an `errorMessage`, the select will be styled to highlight it's error state and the error message will appear below the field.
+If an error message is present, it will replace the helper text.
 
 ```.jsx
   <div className='demo-select-container'>
     <Select
       errorMessage="Please select a color"
+      helperMessage="Helper text goes here"
       name="error"
       labelText="Error message"
+      options={[{
+        value: 'red',
+        label: 'Red'
+      }, {
+        value: 'blue',
+        label: 'Blue'
+      }, {
+        value: 'green',
+        label: 'Green'
+      }]}
+    />
+  </div>
+```
+
+## Helper message
+
+The `helperMessage` appears underneath the select field. It will not appear if an error message is present.
+
+```.jsx
+  <div className='demo-select-container'>
+    <Select
+      helperMessage="Helper text goes here"
+      name="helper"
+      labelText="Helper message"
       options={[{
         value: 'red',
         label: 'Red'
@@ -222,7 +248,7 @@ class Select extends React.Component {
   render() {
     return (
       <>
-        <AsyncSelect loadOptions={this.promiseOptions} />
+        <AsyncSelect labelText="Async Select" loadOptions={this.promiseOptions} />
       </>
     );
   }
@@ -273,6 +299,7 @@ class Select extends React.Component {
   render() {
     return (
       <CreatableSelect
+        labelText="Creatable Select"
         isClearable
         onChange={this.handleChange}
         onInputChange={this.handleInputChange}
@@ -336,7 +363,7 @@ class Select extends React.Component {
   render() {
     return (
       <>
-        <AsyncCreatableSelect loadOptions={this.promiseOptions} onChange={this.handleChange} />
+        <AsyncCreatableSelect labelText="Async Creatable Select" loadOptions={this.promiseOptions} onChange={this.handleChange} />
       </>
     );
   }
@@ -521,71 +548,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 
 ## Select Props
 
-| Prop         | Type                                   | Default | Required |
-| ------------ | -------------------------------------- | ------- | :------: |
-| clearable    | boolean                                |         |
-| defaultValue | string                                 |         |
-| disabled     | boolean                                |         |
-| id           | string                                 |         |          |
-| labelText    | string                                 |         | &#10003; |
-| multi        | boolean                                |         |
-| name         | string                                 |         | &#10003; |
-| onBlur       | function                               |         |
-| onChange     | function                               |         |
-| onClose      | function                               |         |
-| onFocus      | function                               |         |
-| onOpen       | function                               |         |
-| options      | object[]: `{ label, text }`            |         | &#10003; |
-| required     | boolean                                |         |
-| style        | [ReactSelect.Styles](#style_interface) |         |
-| testId       | string                                 |         |
-
-## AsyncSelect
-
-````.jsx
-export class Select extends Component {
-  colourOptions = [
-    {
-      label: "Red",
-      value: "red"
-    },
-    {
-      label: "Blue",
-      value: "blue"
-    }
-  ];
-
-  constructor(props) {
-    super(props);
-
-    this.filterColors = this.filterColors.bind(this);
-    this.promiseOptions = this.promiseOptions.bind(this);
-  }
-
-  filterColors(inputValue) {
-    return this.colourOptions.filter(i =>
-      i.label.toLowerCase().includes(inputValue.toLowerCase())
-    );
-  }
-
-  promiseOptions(inputValue) {
-    new Promise(resolve => {
-      setTimeout(() => {
-        resolve(this.filterColors(inputValue));
-      }, 1000);
-    });
-  }
-
-  render() {
-    return (
-      <>
-        <AsyncSelect loadOptions={this.promiseOptions} />
-      </>
-    );
-  }
-}
-``` Props
-
 | Prop           | Type                                   | Default | Required |
 | -------------- | -------------------------------------- | ------- | :------: |
 | cacheOptions   | boolean                                |         |
@@ -593,6 +555,8 @@ export class Select extends Component {
 | defaultOptions | object[]: `{ label, text }`            |         |
 | defaultValue   | string                                 |         |
 | disabled       | boolean                                |         |
+| errorMessage   | string                                 |         |          |
+| helperMessage  | string                                 |         |          |
 | id             | string                                 |         |          |
 | labelText      | string                                 |         | &#10003; |
 | multi          | boolean                                |         |
@@ -609,8 +573,7 @@ export class Select extends Component {
 
 ### Style Interface
 
-````
-
+```
 interface ReactSelectStyles {
 control?: React.CSSProperties;
 dropdownIndicator?: React.CSSProperties;
@@ -621,7 +584,5 @@ multiValue?: React.CSSProperties;
 multiValueRemove?: React.CSSProperties;
 option?: React.CSSProperties;
 }
-
-```
 
 ```

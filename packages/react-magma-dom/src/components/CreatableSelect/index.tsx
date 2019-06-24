@@ -67,6 +67,7 @@ export const CreatableSelect: React.FunctionComponent<CreatableSelectProps> = (
           {theme => (
             <SelectWrapper
               errorMessage={errorMessage}
+              id={id}
               inverse={inverse}
               labelText={labelText}
               testId={testId}

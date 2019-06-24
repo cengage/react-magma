@@ -365,48 +365,6 @@ describe('Input', () => {
 
       expect(svg).toHaveAttribute('height', '19');
     });
-
-    it('default input with error message', () => {
-      const testMessage = 'Test error message';
-      const { container } = renderInput({ errorMessage: testMessage });
-      const span = container.querySelector('span');
-      const svg = container.querySelector('svg');
-
-      expect(span).toHaveStyleRule('height', '18px');
-      expect(span).toHaveStyleRule('width', '18px');
-
-      expect(svg).toHaveAttribute('height', '10');
-    });
-
-    it('small input with error message', () => {
-      const testMessage = 'Test error message';
-      const { container } = renderInput({
-        inputSize: 'small',
-        errorMessage: testMessage
-      });
-      const span = container.querySelector('span');
-      const svg = container.querySelector('svg');
-
-      expect(span).toHaveStyleRule('height', '16px');
-      expect(span).toHaveStyleRule('width', '16px');
-
-      expect(svg).toHaveAttribute('height', '8');
-    });
-
-    it('large input with error message', () => {
-      const testMessage = 'Test error message';
-      const { container } = renderInput({
-        inputSize: 'large',
-        errorMessage: testMessage
-      });
-      const span = container.querySelector('span');
-      const svg = container.querySelector('svg');
-
-      expect(span).toHaveStyleRule('height', '20px');
-      expect(span).toHaveStyleRule('width', '20px');
-
-      expect(svg).toHaveAttribute('height', '12');
-    });
   });
 
   describe('events', () => {

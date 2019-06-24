@@ -24,6 +24,7 @@ export interface SelectProps {
   required?: boolean;
   clearable?: boolean;
   errorMessage?: string;
+  helperMessage?: string;
   inverse?: boolean;
   multi?: boolean;
   style?: ReactSelectStyles;
@@ -201,6 +202,7 @@ export const Select: React.FunctionComponent<SelectProps> = (
         required,
         clearable,
         errorMessage,
+        helperMessage,
         inverse,
         multi,
         style
@@ -211,35 +213,37 @@ export const Select: React.FunctionComponent<SelectProps> = (
           {theme => (
             <SelectWrapper
               errorMessage={errorMessage}
+              helperMessage={helperMessage}
+              id={id}
               inverse={inverse}
               labelText={labelText}
               testId={testId}
             >
               <ReactSelect
-                id={id}
-                inverse={inverse}
+                aria-label={labelText}
+                classNamePrefix="magma"
                 components={{
                   ClearIndicator,
                   DropdownIndicator,
                   MultiValueRemove
                 }}
-                aria-label={labelText}
-                name={name}
                 defaultValue={defaultValue}
-                value={value}
-                options={options}
-                required={required}
+                id={id}
+                inverse={inverse}
+                isClearable={clearable}
                 isDisabled={disabled}
                 isMulti={multi}
-                isClearable={clearable}
+                name={name}
                 onBlur={onBlur}
-                onFocus={onFocus}
                 onChange={onChange}
-                onMenuOpen={onOpen}
-                onMenuClose={onClose}
+                onFocus={onFocus}
                 onInputChange={onInputChange}
+                onMenuClose={onClose}
+                onMenuOpen={onOpen}
+                options={options}
+                required={required}
                 styles={getStyles(style, theme, errorMessage)}
-                classNamePrefix="magma"
+                value={value}
               />
             </SelectWrapper>
           )}

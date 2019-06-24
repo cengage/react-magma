@@ -2,7 +2,7 @@ import * as React from 'react';
 import { InputCore } from 'react-magma-core';
 import styled from '@emotion/styled';
 import { IconProps } from '../Icon/utils';
-import { AlertIcon } from '../Icon/types/AlertIcon';
+import { InputMessage } from './InputMessage';
 import { Label } from '../Label';
 import { ThemeContext } from '../../theme/themeContext';
 import { Button } from '../Button';
@@ -58,16 +58,9 @@ interface IconWrapperProps {
   iconPosition?: IconPosition;
 }
 
-interface ErrorIconWrapperProps {
-  inputSize?: InputSize;
-}
-
-interface TextProps {
-  inverse?: boolean;
-}
-
 const Container = styled.div`
   margin-bottom: 10px;
+  min-height: 7em;
 `;
 
 const InputWrapper = styled.div`
@@ -112,8 +105,7 @@ const StyledInput = styled.input<InputProps>`
   line-height: 1.25rem;
   padding: 0;
   padding-left: ${props => (props.iconPosition === 'left' ? '35px' : '8px')};
-  padding-right: ${props =>
-    props.iconPosition === 'right' || props.errorMessage ? '35px' : '8px'};
+  padding-right: ${props => (props.iconPosition === 'right' ? '35px' : '8px')};
   padding-top: ${props => (props.multiline ? '5px' : '0')};
   width: 100%;
 
@@ -134,25 +126,6 @@ const StyledInput = styled.input<InputProps>`
   }
 `;
 
-const ErrorMessage = styled.div<TextProps>`
-  background: ${props => (props.inverse ? props.theme.colors.danger : 'none')};
-  border-radius: 5px;
-  color: ${props =>
-    props.inverse ? props.theme.colors.neutral08 : props.theme.colors.danger};
-  font-size: 13px;
-  margin-top: 5px;
-  padding: ${props => (props.inverse ? '5px 10px' : '0')};
-`;
-
-const HelperMessage = styled.div<TextProps>`
-  color: ${props =>
-    props.inverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral04};
-  font-size: 13px;
-  margin-top: 5px;
-`;
-
 const IconWrapper = styled.span<IconWrapperProps>`
   left: ${props => (props.iconPosition === 'left' ? '10px' : 'auto')};
   right: ${props => (props.iconPosition === 'right' ? '10px' : 'auto')};
@@ -170,48 +143,6 @@ const PasswordMaskWrapper = styled.span`
   top: 50%;
 `;
 
-const ErrorIconWrapper = styled.span<ErrorIconWrapperProps>`
-  align-items: center;
-  background: ${props => props.theme.colors.danger};
-  border-radius: 100%;
-  color: ${props => props.theme.colors.neutral08};
-  display: flex;
-  height: ${props => {
-    switch (props.inputSize) {
-      case 'large':
-        return '20px';
-      case 'small':
-        return '16px';
-      default:
-        return '18px';
-    }
-  }};
-  justify-content: center;
-  padding: 3px;
-  right: 10px;
-  position: absolute;
-  top: ${props => {
-    switch (props.inputSize) {
-      case 'large':
-        return '13px';
-      case 'small':
-        return '7px';
-      default:
-        return '10px';
-    }
-  }};
-  width: ${props => {
-    switch (props.inputSize) {
-      case 'large':
-        return '20px';
-      case 'small':
-        return '16px';
-      default:
-        return '18px';
-    }
-  }};
-`;
-
 function getIconSize(size) {
   switch (size) {
     case 'large':
@@ -220,17 +151,6 @@ function getIconSize(size) {
       return 15;
     default:
       return 17;
-  }
-}
-
-function getErrorIconSize(size) {
-  switch (size) {
-    case 'large':
-      return 12;
-    case 'small':
-      return 8;
-    default:
-      return 10;
   }
 }
 
@@ -296,6 +216,9 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
             ? showPasswordButtonText
             : 'Show';
 
+        const descriptionId =
+          errorMessage || helperMessage ? `${id}__desc` : null;
+
         return (
           <ThemeContext.Consumer>
             {theme => (
@@ -308,6 +231,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                 <InputWrapper>
                   <StyledInput
                     {...other}
+                    aria-describedby={descriptionId}
                     aria-label={labelVisuallyHidden ? labelText : null}
                     as={multiline ? 'textarea' : null}
                     id={id}
@@ -332,11 +256,6 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                     onChange={onChange}
                     onFocus={onFocus}
                   />
-                  {errorMessage && (
-                    <ErrorIconWrapper inputSize={inputSize} theme={theme}>
-                      <AlertIcon size={getErrorIconSize(inputSize)} />
-                    </ErrorIconWrapper>
-                  )}
                   {icon && (
                     <IconWrapper iconPosition={iconPosition} theme={theme}>
                       {React.Children.only(
@@ -379,15 +298,15 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                     </PasswordMaskWrapper>
                   )}
                 </InputWrapper>
-                {errorMessage && (
-                  <ErrorMessage inverse={inverse} theme={theme}>
-                    {errorMessage}
-                  </ErrorMessage>
-                )}
-                {helperMessage && !errorMessage && (
-                  <HelperMessage inverse={inverse} theme={theme}>
-                    {helperMessage}
-                  </HelperMessage>
+
+                {(errorMessage || helperMessage) && (
+                  <InputMessage
+                    inverse={inverse}
+                    id={descriptionId}
+                    isError={!!errorMessage}
+                  >
+                    {errorMessage ? errorMessage : helperMessage}
+                  </InputMessage>
                 )}
               </Container>
             )}

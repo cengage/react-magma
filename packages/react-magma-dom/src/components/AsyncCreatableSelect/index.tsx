@@ -51,6 +51,7 @@ export const AsyncCreatableSelect: React.FunctionComponent<
         required,
         clearable,
         errorMessage,
+        helperMessage,
         inverse,
         multi,
         style
@@ -61,6 +62,8 @@ export const AsyncCreatableSelect: React.FunctionComponent<
           {theme => (
             <SelectWrapper
               errorMessage={errorMessage}
+              helperMessage={helperMessage}
+              id={id}
               inverse={inverse}
               labelText={labelText}
               testId={testId}
