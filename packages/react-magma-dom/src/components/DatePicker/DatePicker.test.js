@@ -36,6 +36,24 @@ describe('Date Picker', () => {
     expect(getByText(getDate(defaultDate).toString())).toBeInTheDocument();
   });
 
+  it('should open the helper information on ? press', () => {
+    const defaultDate = new Date('January 17, 2019');
+    const labelText = 'Date Picker Label';
+    const { getByLabelText, queryByText, getByText } = render(
+      <DatePicker defaultDate={defaultDate} labelText={labelText} />
+    );
+
+    expect(getByLabelText(labelText)).toBeInTheDocument();
+    expect(queryByText(/select the date/i)).not.toBeInTheDocument();
+
+    fireEvent.keyDown(getByLabelText(labelText), {
+      key: '?',
+      code: 63
+    });
+
+    expect(getByText(/select the date/i)).toBeInTheDocument();
+  });
+
   it('Does not violate accessibility standards', async () => {
     const { container } = render(<DatePicker labelText="Date Picker Label" />);
     const result = await axe(container.innerHTML);

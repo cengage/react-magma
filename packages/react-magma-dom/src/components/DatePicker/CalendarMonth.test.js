@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, fireEvent } from 'react-testing-library';
-//import { render, fireEvent, waitForElement } from 'react-testing-library';
 import {
   format,
   getDate,
@@ -532,95 +531,125 @@ describe('Calendar Month', () => {
     );
   });
 
-  // it('should open helper information', () => {
-  //   const defaultDate = new Date('January 17, 2019');
-  //   const { getByLabelText, getByText } = render(
-  //     <DatePickerCore defaultDate={defaultDate}>
-  //       {({
-  //         buildCalendarMonth,
-  //         calendarOpened,
-  //         chosenDate,
-  //         focusedDate,
-  //         dateFocused,
-  //         onKeyDown,
-  //         onDateFocus
-  //       }) => (
-  //         <CalendarContext.Provider
-  //           value={{
-  //             buildCalendarMonth,
-  //             calendarOpened,
-  //             chosenDate,
-  //             focusedDate,
-  //             dateFocused,
-  //             onKeyDown
-  //           }}
-  //         >
-  //           <button onClick={onDateFocus}>Focus</button>
-  //           <CalendarMonth
-  //             onHelperInformationClose={() => {}}
-  //             onHelperInformationOpen={() => {}}
-  //           />
-  //         </CalendarContext.Provider>
-  //       )}
-  //     </DatePickerCore>
-  //   );
+  it('should show helper information', () => {
+    const defaultDate = new Date('January 17, 2019');
+    const { getByText } = render(
+      <DatePickerCore defaultDate={defaultDate}>
+        {({
+          buildCalendarMonth,
+          calendarOpened,
+          chosenDate,
+          focusedDate,
+          dateFocused,
+          onKeyDown,
+          onDateFocus
+        }) => (
+          <CalendarContext.Provider
+            value={{
+              buildCalendarMonth,
+              calendarOpened,
+              chosenDate,
+              focusedDate,
+              dateFocused,
+              onKeyDown
+            }}
+          >
+            <button onClick={onDateFocus}>Focus</button>
+            <CalendarMonth
+              showHelperInformation
+              onHelperInformationClose={() => {}}
+              onHelperInformationOpen={() => {}}
+            />
+          </CalendarContext.Provider>
+        )}
+      </DatePickerCore>
+    );
 
-  //   fireEvent.click(getByLabelText('Calendar Help'));
+    expect(getByText(/keyboard shortcuts/i)).toBeInTheDocument();
+  });
 
-  //   //expect(getByText(/keyboard shortcuts/i)).toBeInTheDocument();
-  // });
+  it('should open the helper information', async () => {
+    const onHelperInformationOpenSpy = jest.fn();
 
-  describe('Timers', () => {
-    beforeEach(() => {
-      jest.useFakeTimers();
+    const defaultDate = new Date('January 17, 2019');
+    const { getByLabelText } = render(
+      <DatePickerCore defaultDate={defaultDate}>
+        {({
+          buildCalendarMonth,
+          calendarOpened,
+          chosenDate,
+          focusedDate,
+          dateFocused,
+          onKeyDown,
+          onDateFocus
+        }) => (
+          <CalendarContext.Provider
+            value={{
+              buildCalendarMonth,
+              calendarOpened,
+              chosenDate,
+              focusedDate,
+              dateFocused,
+              onKeyDown
+            }}
+          >
+            <button onClick={onDateFocus}>Focus</button>
+            <CalendarMonth
+              onHelperInformationOpen={onHelperInformationOpenSpy}
+            />
+          </CalendarContext.Provider>
+        )}
+      </DatePickerCore>
+    );
+
+    fireEvent.click(getByLabelText(/calendar help/i));
+
+    setTimeout(() => {
+      expect(onHelperInformationOpenSpy).toHaveBeenCalled();
+    }, 500);
+  });
+
+  it('should close the helper information', async () => {
+    const onHelperInformationCloseSpy = jest.fn();
+
+    const defaultDate = new Date('January 17, 2019');
+    const { container } = render(
+      <DatePickerCore defaultDate={defaultDate}>
+        {({
+          buildCalendarMonth,
+          calendarOpened,
+          chosenDate,
+          focusedDate,
+          dateFocused,
+          onKeyDown,
+          onDateFocus
+        }) => (
+          <CalendarContext.Provider
+            value={{
+              buildCalendarMonth,
+              calendarOpened,
+              chosenDate,
+              focusedDate,
+              dateFocused,
+              onKeyDown
+            }}
+          >
+            <button onClick={onDateFocus}>Focus</button>
+            <CalendarMonth
+              onHelperInformationClose={onHelperInformationCloseSpy}
+            />
+          </CalendarContext.Provider>
+        )}
+      </DatePickerCore>
+    );
+
+    fireEvent.keyDown(container, {
+      key: 'Escape',
+      code: 27
     });
 
-    afterEach(() => {
-      jest.useRealTimers();
-    });
-
-    // it('should close helper information', async () => {
-    //   // const defaultDate = new Date('January 17, 2019');
-    //   // const { getByLabelText, queryByText } = render(
-    //   //   <DatePickerCore defaultDate={defaultDate}>
-    //   //     {({
-    //   //       buildCalendarMonth,
-    //   //       calendarOpened,
-    //   //       chosenDate,
-    //   //       focusedDate,
-    //   //       dateFocused,
-    //   //       onKeyDown,
-    //   //       onDateFocus
-    //   //     }) => (
-    //   //       <CalendarContext.Provider
-    //   //         value={{
-    //   //           buildCalendarMonth,
-    //   //           calendarOpened,
-    //   //           chosenDate,
-    //   //           focusedDate,
-    //   //           dateFocused,
-    //   //           onKeyDown
-    //   //         }}
-    //   //       >
-    //   //         <button onClick={onDateFocus}>Focus</button>
-    //   //         <CalendarMonth
-    //   //           onHelperInformationClose={() => {}}
-    //   //           onHelperInformationOpen={() => {}}
-    //   //         />
-    //   //       </CalendarContext.Provider>
-    //   //     )}
-    //   //   </DatePickerCore>
-    //   // );
-
-    //   //fireEvent.click(getByLabelText(/calendar help/i));
-
-    //   // await waitForElement(() => getByLabelText(/close/i));
-
-    //   // fireEvent.click(getByLabelText(/close/i));
-
-    //   // jest.runAllTimers();
-
-    //   //expect(queryByText(/keyboard shortcuts/i)).not.toBeInTheDocument();
-    // });
+    setTimeout(() => {
+      expect(onHelperInformationCloseSpy).toHaveBeenCalled();
+    }, 500);
   });
 });

@@ -54,11 +54,6 @@ export class DatePicker extends React.Component<
       this.handleHelperInformationOpen();
       return;
     }
-
-    if (e.key === 'ArrowDown') {
-      console.log('TODO: Put focus in calendar');
-      return;
-    }
   };
 
   handleHelperInformationClose = () => {
