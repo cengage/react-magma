@@ -2,13 +2,15 @@ import * as React from 'react';
 import { InputCore } from 'react-magma-core';
 import styled from '@emotion/styled';
 import { IconProps } from '../Icon/utils';
-import { InputMessage } from './InputMessage';
-import { Label } from '../Label';
 import { ThemeContext } from '../../theme/themeContext';
+
+import { Announce } from '../Announce';
 import { Button } from '../Button';
 import { ButtonVariant, ButtonType } from '../StyledButton';
+import { InputMessage } from './InputMessage';
+import { Label } from '../Label';
+import { QuestionCircleIcon } from '../Icon/types/QuestionCircleIcon';
 import { VisuallyHidden } from '../VisuallyHidden';
-import { Announce } from '../Announce';
 
 export enum IconPosition {
   left = 'left',
@@ -32,6 +34,7 @@ export interface InputProps
   as?: string;
   containerStyle?: React.CSSProperties;
   errorMessage?: string;
+  helpLinkText?: string;
   helperMessage?: string;
   hiddenPasswordAnnounceText?: string;
   hidePasswordButtonAriaLabel?: string;
@@ -46,6 +49,7 @@ export interface InputProps
   labelText: string;
   labelVisuallyHidden?: boolean;
   multiline?: boolean;
+  onHelpLinkClick?: () => void;
   ref?: any;
   shownPasswordAnnounceText?: string;
   showPasswordButtonAriaLabel?: string;
@@ -64,6 +68,8 @@ const Container = styled.div`
 `;
 
 const InputWrapper = styled.div`
+  align-items: center;
+  display: flex;
   position: relative;
 `;
 
@@ -176,6 +182,11 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
           containerStyle,
           errorMessage,
           helperMessage,
+          helpLinkText,
+          hidePasswordMaskButton,
+          hiddenPasswordAnnounceText,
+          hidePasswordButtonAriaLabel,
+          hidePasswordButtonText,
           icon,
           iconPosition,
           inputSize,
@@ -185,15 +196,12 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
           labelText,
           labelVisuallyHidden,
           multiline,
-          type,
-          testId,
-          hidePasswordMaskButton,
-          hiddenPasswordAnnounceText,
-          hidePasswordButtonAriaLabel,
-          hidePasswordButtonText,
+          onHelpLinkClick,
           shownPasswordAnnounceText,
           showPasswordButtonAriaLabel,
           showPasswordButtonText,
+          type,
+          testId,
           ...other
         } = props;
 
@@ -214,7 +222,8 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
             : 'Show password. Note: this will visually expose your password on the screen',
           SHOW_PASSWORD_BUTTON_TEXT = showPasswordButtonText
             ? showPasswordButtonText
-            : 'Show';
+            : 'Show',
+          HELP_LINK_TEXT = helpLinkText ? helpLinkText : "What's this?";
 
         const descriptionId =
           errorMessage || helperMessage ? `${id}__desc` : null;
@@ -296,6 +305,17 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                         </Announce>
                       </VisuallyHidden>
                     </PasswordMaskWrapper>
+                  )}
+                  {onHelpLinkClick && (
+                    <Button
+                      ariaLabel={HELP_LINK_TEXT}
+                      icon={<QuestionCircleIcon />}
+                      inverse={inverse}
+                      onClick={onHelpLinkClick}
+                      style={{ margin: '0 0 0 7px' }}
+                      title={HELP_LINK_TEXT}
+                      variant={ButtonVariant.link}
+                    />
                   )}
                 </InputWrapper>
 

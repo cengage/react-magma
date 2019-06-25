@@ -233,6 +233,27 @@ describe('Input', () => {
     expect(input).toHaveAttribute('aria-label', INPUT_PROPS.labelText);
   });
 
+  it('should render the a help link button', () => {
+    const { container } = renderInput({ onHelpLinkClick: () => {} });
+
+    expect(container.querySelector('button')).toHaveAttribute(
+      'aria-label',
+      "What's this?"
+    );
+  });
+
+  it('should render the a help link button with custom text', () => {
+    const { container } = renderInput({
+      onHelpLinkClick: () => {},
+      helpLinkText: 'Custom text'
+    });
+
+    expect(container.querySelector('button')).toHaveAttribute(
+      'aria-label',
+      'Custom text'
+    );
+  });
+
   describe('password input', () => {
     it('renders a show/hide button on password inputs', () => {
       const { getByText } = renderInput({ type: InputType.password });
