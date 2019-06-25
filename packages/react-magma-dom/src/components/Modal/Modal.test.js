@@ -1,6 +1,4 @@
-/// <reference types="jest-dom/extend-expect"/>
 import React from 'react';
-import { axe } from 'jest-axe';
 import { Modal } from '.';
 import { render, fireEvent } from 'react-testing-library';
 
@@ -301,7 +299,8 @@ describe('Modal', () => {
           >
             Modal Content
           </Modal>
-        </>
+        </>,
+        { container: document.body }
       );
 
       fireEvent.focus(getByText('Open'));
@@ -317,7 +316,8 @@ describe('Modal', () => {
           >
             Modal Content
           </Modal>
-        </>
+        </>,
+        { container: document.body }
       );
 
       fireEvent.mouseDown(getByTestId('modal-backdrop'));
@@ -328,17 +328,6 @@ describe('Modal', () => {
         'aria-label',
         'Close'
       );
-    });
-  });
-
-  it('Does not violate accessibility standards', () => {
-    const { container } = render(
-      <Modal header="Hello" open={true}>
-        Modal Content
-      </Modal>
-    );
-    return axe(container.innerHTML).then(result => {
-      return expect(result).toHaveNoViolations();
     });
   });
 });
