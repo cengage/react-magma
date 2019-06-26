@@ -3934,6 +3934,29 @@ exports[`Icon Snapshot Tests should render NonMindtapActivityIcon icon 1`] = `
 </div>
 `;
 
+exports[`Icon Snapshot Tests should render Notification2Icon icon 1`] = `
+<div>
+  <svg
+    aria-labelledby="Notification2IconAvailable"
+    class="icon"
+    fill="currentColor"
+    height="24"
+    viewBox="0 0 40 40"
+    width="24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <title
+      id="Notification2IconAvailable"
+    >
+      Notification2Icon Title
+    </title>
+    <path
+      d="M20,1 C9.512,1 1,9.512 1,20 C1,30.488 9.512,39 20,39 C30.488,39 39,30.488 39,20 C39,9.512 30.488,1 20,1 Z M21.9,29.5 L18.1,29.5 L18.1,25.7 L21.9,25.7 L21.9,29.5 Z M21.9,21.9 L18.1,21.9 L18.1,10.5 L21.9,10.5 L21.9,21.9 Z"
+    />
+  </svg>
+</div>
+`;
+
 exports[`Icon Snapshot Tests should render NotificationIcon icon 1`] = `
 <div>
   <svg

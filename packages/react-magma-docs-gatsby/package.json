@@ -7,7 +7,6 @@
     "@emotion/styled": "10.0.7",
     "@mdx-js/mdx": "0.15.7",
     "@mdx-js/tag": "0.15.6",
-    "animate.css": "^3.7.1",
     "buble": "0.19.4",
     "file-loader": "^3.0.1",
     "gatsby": "2.5.0",

@@ -10,6 +10,9 @@ import { Transition, config } from 'react-spring'
 import {
   Alert,
   Announce,
+  AsyncCreatableSelect,
+  AsyncSelect,
+  CreatableSelect,
   Button,
   Checkbox,
   Heading,
@@ -185,6 +188,7 @@ import {
   Next2Icon,
   NonMindtapActivityIcon,
   NotificationIcon,
+  Notification2Icon,
   PaletteIcon,
   ParagraphCenterIcon,
   ParagraphJustifyIcon,
@@ -273,7 +277,7 @@ import DemoComponent from './demo-component'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import { convertTextToId } from '../utils'
 import iconsArray from '../utils/icons'
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 import './app.css'
 import './layout.css'
 import './syntax.css'
@@ -290,6 +294,9 @@ const PreComponent = ({ className, ...props }) => {
         iconsArray,
         Alert,
         Announce,
+        AsyncCreatableSelect,
+        AsyncSelect,
+        CreatableSelect,
         Button,
         Checkbox,
         Heading,
@@ -300,7 +307,7 @@ const PreComponent = ({ className, ...props }) => {
         Radio,
         RadioGroup,
         Select,
-        SkipLink, 
+        SkipLink,
         SkipLinkContent,
         Toggle,
         Toast,
@@ -465,6 +472,7 @@ const PreComponent = ({ className, ...props }) => {
         Next2Icon,
         NonMindtapActivityIcon,
         NotificationIcon,
+        Notification2Icon,
         PaletteIcon,
         ParagraphCenterIcon,
         ParagraphJustifyIcon,
@@ -548,7 +556,7 @@ const PreComponent = ({ className, ...props }) => {
         Wrench3Icon,
         YoutubeIcon,
         DemoComponent,
-        VisuallyHidden
+        VisuallyHidden,
       }}
     >
       <div
@@ -566,16 +574,16 @@ const PreComponent = ({ className, ...props }) => {
 }
 
 const StyledSkipLink = styled(SkipLink)`
-    display: none;
+  display: none;
 
-    &:not(:disabled):focus {
-      background: transparent;
-    }
-    
-    @media (min-width: 1024px) {
-      display: inline-flex;
-    }
-`;
+  &:not(:disabled):focus {
+    background: transparent;
+  }
+
+  @media (min-width: 1024px) {
+    display: inline-flex;
+  }
+`
 
 const Table = props => (
   <div style={{ margin: '10px 0' }}>
@@ -618,7 +626,8 @@ const Layout = ({ children }) => (
           inverse
           positionLeft={275}
           positionTop={16}
-          variant="outline" />
+          variant="outline"
+        />
         <main className="main">
           <SlidingDrawer />
           <Masthead />
@@ -627,7 +636,7 @@ const Layout = ({ children }) => (
               components={{
                 pre: PreComponent,
                 table: Table,
-                h2: SectionHeading, 
+                h2: SectionHeading,
                 h3: LinkHeading,
               }}
             >
@@ -642,9 +651,7 @@ const Layout = ({ children }) => (
                   >
                     {() => style => (
                       <article className="content-article" style={style}>
-                        <SkipLinkContent>
-                          {children}
-                        </SkipLinkContent>
+                        <SkipLinkContent>{children}</SkipLinkContent>
                       </article>
                     )}
                   </Transition>
