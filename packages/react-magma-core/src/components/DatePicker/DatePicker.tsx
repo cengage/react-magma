@@ -104,7 +104,7 @@ export class DatePickerCore extends React.Component<
     setTimeout(() => {
       const isInCalendar = currentTarget.contains(document.activeElement);
 
-      if (!isInCalendar) {
+      if (!isInCalendar && !this.state.showHelperInformation) {
         this.setState({ calendarOpened: false });
       }
     }, 0);
