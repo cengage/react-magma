@@ -541,6 +541,8 @@ describe('Calendar Month', () => {
           chosenDate,
           focusedDate,
           dateFocused,
+          openHelperInformation,
+          closeHelperInformation,
           onKeyDown,
           onDateFocus
         }) => (
@@ -551,15 +553,14 @@ describe('Calendar Month', () => {
               chosenDate,
               focusedDate,
               dateFocused,
+              showHelperInformation: true,
+              openHelperInformation,
+              closeHelperInformation,
               onKeyDown
             }}
           >
             <button onClick={onDateFocus}>Focus</button>
-            <CalendarMonth
-              showHelperInformation
-              onHelperInformationClose={() => {}}
-              onHelperInformationOpen={() => {}}
-            />
+            <CalendarMonth />
           </CalendarContext.Provider>
         )}
       </DatePickerCore>

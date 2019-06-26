@@ -13,7 +13,6 @@ export interface DatePickerCoreProps {
   calendarOpened?: boolean;
   defaultDate?: Date;
   onDayClick?: (day: any, event: React.SyntheticEvent) => void;
-  onHelperInformationOpen?: () => void;
 }
 
 interface DatePickerState {
@@ -22,6 +21,7 @@ interface DatePickerState {
   focusedDate: Date;
   chosenDate?: Date;
   dateFocused?: boolean;
+  showHelperInformation?: boolean;
 }
 
 export class DatePickerCore extends React.Component<
@@ -39,6 +39,9 @@ export class DatePickerCore extends React.Component<
   constructor(props) {
     super(props);
 
+    this.onInputKeyDown = this.onInputKeyDown.bind(this);
+    this.openHelperInformation = this.openHelperInformation.bind(this);
+    this.closeHelperInformation = this.closeHelperInformation.bind(this);
     this.onInputFocus = this.onInputFocus.bind(this);
     this.onDateFocus = this.onDateFocus.bind(this);
     this.onCalendarBlur = this.onCalendarBlur.bind(this);
@@ -47,7 +50,6 @@ export class DatePickerCore extends React.Component<
     this.onNextMonthClick = this.onNextMonthClick.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
     this.onEscKey = this.onEscKey.bind(this);
-    this.onQuestionKey = this.onQuestionKey.bind(this);
     this.onDayChangedByKeyboardNavigation = this.onDayChangedByKeyboardNavigation.bind(
       this
     );
@@ -64,12 +66,27 @@ export class DatePickerCore extends React.Component<
     return getCalendarMonthWeeks(date, enableOutsideDates);
   }
 
-  onInputFocus() {
-    this.setState({ calendarOpened: true });
+  onInputKeyDown(event: React.KeyboardEvent) {
+    if (event.key === '?') {
+      event.preventDefault();
+      this.openHelperInformation();
+    }
   }
 
-  onInputBlur() {
-    console.log('onInputBlur', this.state);
+  openHelperInformation() {
+    this.setState({
+      showHelperInformation: true
+    });
+  }
+
+  closeHelperInformation() {
+    this.setState({
+      showHelperInformation: false
+    });
+  }
+
+  onInputFocus() {
+    this.setState({ calendarOpened: true });
   }
 
   onDateFocus() {
@@ -86,12 +103,10 @@ export class DatePickerCore extends React.Component<
     // timeout needed for active element to update. Browser behavior.
     // https://bugzilla.mozilla.org/show_bug.cgi?id=452307
     setTimeout(() => {
-      const isInStuff = currentTarget.contains(document.activeElement);
+      const isInCalendar = currentTarget.contains(document.activeElement);
 
-      if (!isInStuff) {
+      if (!isInCalendar) {
         this.setState({ calendarOpened: false });
-
-        console.log('onCalendarBlur', this.state);
       }
     }, 0);
   }
@@ -109,12 +124,7 @@ export class DatePickerCore extends React.Component<
   }
 
   onKeyDown(event: React.KeyboardEvent) {
-    if (event.key === '?') {
-      this.onQuestionKey();
-    } else if (
-      this.state.dateFocused &&
-      document.activeElement.closest('table')
-    ) {
+    if (this.state.dateFocused && document.activeElement.closest('table')) {
       const newChosenDate = handleKeyPress(
         event,
         this.state.focusedDate,
@@ -129,10 +139,6 @@ export class DatePickerCore extends React.Component<
         this.onEscKey();
       }
     }
-  }
-
-  onQuestionKey() {
-    this.props.onHelperInformationOpen();
   }
 
   onEscKey() {
@@ -150,7 +156,13 @@ export class DatePickerCore extends React.Component<
   }
 
   render() {
-    const { calendarOpened, chosenDate, focusedDate, dateFocused } = this.state;
+    const {
+      calendarOpened,
+      chosenDate,
+      focusedDate,
+      dateFocused,
+      showHelperInformation
+    } = this.state;
 
     return this.props.children({
       ...this.props,
@@ -159,8 +171,12 @@ export class DatePickerCore extends React.Component<
       chosenDate,
       focusedDate,
       dateFocused,
+      showHelperInformation,
       buildCalendarMonth: this.buildCalendarMonth,
       onCalendarBlur: this.onCalendarBlur,
+      onInputKeyDown: this.onInputKeyDown,
+      openHelperInformation: this.openHelperInformation,
+      closeHelperInformation: this.closeHelperInformation,
       onInputFocus: this.onInputFocus,
       onDateFocus: this.onDateFocus,
       onHelperFocus: this.onHelperFocus,

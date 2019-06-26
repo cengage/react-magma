@@ -9,12 +9,6 @@ import { ThemeContext } from '../../theme/themeContext';
 import styled from '@emotion/styled';
 import { HelperInformation } from './HelperInformation';
 
-interface CalendarMonthProps {
-  showHelperInformation?: boolean;
-  onHelperInformationClose?: () => void;
-  onHelperInformationOpen?: () => void;
-}
-
 interface CalendarMonthState {
   dayFocusable?: boolean;
 }
@@ -52,17 +46,12 @@ const HelperButton = styled.span`
   z-index: 2;
 `;
 
-export class CalendarMonth extends React.Component<
-  CalendarMonthProps,
-  CalendarMonthState
-> {
+export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
   constructor(props) {
     super(props);
 
     this.onCalendarTableFocus = this.onCalendarTableFocus.bind(this);
     this.onCalendarTableBlur = this.onCalendarTableBlur.bind(this);
-    this.onHelperButtonClick = this.onHelperButtonClick.bind(this);
-    this.onHelperClose = this.onHelperClose.bind(this);
 
     this.state = {
       dayFocusable: false
@@ -75,14 +64,6 @@ export class CalendarMonth extends React.Component<
 
   onCalendarTableBlur() {
     this.setState({ dayFocusable: false });
-  }
-
-  onHelperButtonClick() {
-    this.props.onHelperInformationOpen();
-  }
-
-  onHelperClose() {
-    this.props.onHelperInformationClose();
   }
 
   render() {
@@ -134,13 +115,13 @@ export class CalendarMonth extends React.Component<
                       <Button
                         ariaLabel="Calendar Help"
                         icon={<QuestionCircleOIcon />}
-                        onClick={this.onHelperButtonClick}
+                        onClick={context.openHelperInformation}
                         onFocus={context.onHelperFocus}
                         variant={ButtonVariant.link}
                       />
                       <HelperInformation
-                        open={this.props.showHelperInformation}
-                        onClose={this.onHelperClose}
+                        open={context.showHelperInformation}
+                        onClose={context.closeHelperInformation}
                       />
                     </HelperButton>
                   </MonthContainer>

@@ -131,6 +131,43 @@ describe('DatePickerCore', () => {
         )
       ).toBeTruthy();
     });
+
+    it('should open and close helper information', () => {
+      const { getByTestId } = render(
+        <DatePickerCore>
+          {({
+            showHelperInformation,
+            openHelperInformation,
+            closeHelperInformation
+          }) => {
+            return (
+              <>
+                <button data-testid="open" onClick={openHelperInformation}>
+                  Open Helper Information
+                </button>
+                <button data-testid="close" onClick={closeHelperInformation}>
+                  Close Helper Information
+                </button>
+                <input
+                  type="checkbox"
+                  data-testid="helperInformation"
+                  checked={showHelperInformation || false}
+                  onChange={() => {}}
+                />
+              </>
+            );
+          }}
+        </DatePickerCore>
+      );
+
+      fireEvent.click(getByTestId('open'));
+
+      expect(getByTestId('helperInformation').checked).toBeTruthy();
+
+      fireEvent.click(getByTestId('close'));
+
+      expect(getByTestId('helperInformation').checked).toBeFalsy();
+    });
   });
 
   describe('build calendar month', () => {
@@ -395,6 +432,59 @@ describe('DatePickerCore', () => {
   });
 
   describe('on key down press', () => {
+    it('handles the question mark key when typing in the input', () => {
+      const defaultDate = new Date();
+      const { getByTestId } = render(
+        <DatePickerCore defaultDate={defaultDate}>
+          {({ showHelperInformation, onInputKeyDown }) => {
+            return (
+              <>
+                <input data-testid="calendarInput" onKeyDown={onInputKeyDown} />
+                <input
+                  data-testid="helperInformation"
+                  type="checkbox"
+                  checked={showHelperInformation}
+                />
+              </>
+            );
+          }}
+        </DatePickerCore>
+      );
+
+      fireEvent.keyDown(getByTestId('calendarInput'), {
+        key: '?'
+      });
+
+      expect(getByTestId('helperInformation').checked).toBeTruthy();
+    });
+
+    it('types in the input if you type anything other than the question mark key', () => {
+      const defaultDate = new Date();
+      const { getByTestId } = render(
+        <DatePickerCore defaultDate={defaultDate}>
+          {({ showHelperInformation, onInputKeyDown }) => {
+            return (
+              <>
+                <input data-testid="calendarInput" onKeyDown={onInputKeyDown} />
+                <input
+                  data-testid="helperInformation"
+                  type="checkbox"
+                  checked={showHelperInformation || false}
+                  onChange={() => {}}
+                />
+              </>
+            );
+          }}
+        </DatePickerCore>
+      );
+
+      fireEvent.keyDown(getByTestId('calendarInput'), {
+        key: 'abc123'
+      });
+
+      expect(getByTestId('helperInformation').checked).toBeFalsy();
+    });
+
     it('does not update focused date if date is not focused', () => {
       const defaultDate = new Date();
       const { getByTestId } = render(

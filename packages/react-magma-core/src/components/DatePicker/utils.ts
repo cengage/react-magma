@@ -63,8 +63,6 @@ export function handleKeyPress(
 ) {
   const { key } = e;
 
-  console.log('handleKeyPress key', key);
-
   if (key === 'Enter' || key === ' ') {
     onDayClick(prevDate, e);
   }
