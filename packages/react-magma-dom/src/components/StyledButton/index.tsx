@@ -92,6 +92,7 @@ const StyledButtonComponent = styled('button', {
   }};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   display: ${props => (props.block ? 'flex' : 'inline-flex')};
+  flex-shrink: 0;
   font-family: ${props => props.theme.bodyFont};
   justify-content: center;
   line-height: 1;

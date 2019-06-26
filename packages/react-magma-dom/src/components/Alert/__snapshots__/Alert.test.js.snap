@@ -3,7 +3,7 @@
 exports[`Alert Dismissable should render a dismissable icon button with the warning variant 1`] = `
 <button
   aria-label="Close this message"
-  class="css-1n72oy7-StyledButtonComponent-StyledButtonComponent e183qit0"
+  class="css-ds5kek-StyledButtonComponent-StyledButtonComponent e183qit0"
   color="primary"
   id="ignoreButton"
   shape="round"
