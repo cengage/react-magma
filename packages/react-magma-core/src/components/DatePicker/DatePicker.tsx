@@ -49,6 +49,7 @@ export class DatePickerCore extends React.Component<
     this.onPrevMonthClick = this.onPrevMonthClick.bind(this);
     this.onNextMonthClick = this.onNextMonthClick.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
+    this.onQuestionMarkKey = this.onQuestionMarkKey.bind(this);
     this.onEscKey = this.onEscKey.bind(this);
     this.onDayChangedByKeyboardNavigation = this.onDayChangedByKeyboardNavigation.bind(
       this
@@ -74,9 +75,7 @@ export class DatePickerCore extends React.Component<
   }
 
   openHelperInformation() {
-    this.setState({
-      showHelperInformation: true
-    });
+    this.onQuestionMarkKey();
   }
 
   closeHelperInformation() {
@@ -129,6 +128,7 @@ export class DatePickerCore extends React.Component<
         event,
         this.state.focusedDate,
         this.onEscKey,
+        this.onQuestionMarkKey,
         this.onDayClick
       );
       if (newChosenDate) {
@@ -143,6 +143,12 @@ export class DatePickerCore extends React.Component<
 
   onEscKey() {
     this.setState({ calendarOpened: false });
+  }
+
+  onQuestionMarkKey() {
+    this.setState({
+      showHelperInformation: true
+    });
   }
 
   onDayChangedByKeyboardNavigation(day) {

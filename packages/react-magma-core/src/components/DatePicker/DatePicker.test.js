@@ -914,6 +914,45 @@ describe('DatePickerCore', () => {
       expect(getByTestId('calendarOpened').checked).toBeFalsy();
     });
 
+    it('?', () => {
+      const defaultDate = new Date();
+      const { getByTestId } = render(
+        <DatePickerCore calendarOpened={true} defaultDate={defaultDate}>
+          {({ onKeyDown, onDateFocus, showHelperInformation }) => {
+            return (
+              <>
+                <table
+                  data-testid="calendarContainer"
+                  onFocus={onDateFocus}
+                  onKeyDown={onKeyDown}
+                >
+                  <tbody>
+                    <tr>
+                      <td>
+                        <input
+                          data-testid="helperInformation"
+                          checked={showHelperInformation}
+                          onChange={() => {}}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </>
+            );
+          }}
+        </DatePickerCore>
+      );
+
+      fireEvent.focus(getByTestId('calendarContainer'));
+      getByTestId('helperInformation').focus();
+      fireEvent.keyDown(getByTestId('calendarContainer'), {
+        key: '?'
+      });
+
+      expect(getByTestId('helperInformation').checked).toBeTruthy();
+    });
+
     it('Escape without focus', () => {
       const defaultDate = new Date();
       const { getByTestId } = render(

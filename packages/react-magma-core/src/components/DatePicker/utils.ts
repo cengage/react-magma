@@ -59,6 +59,7 @@ export function handleKeyPress(
   e: React.KeyboardEvent,
   prevDate: Date,
   onEscKey?: () => void,
+  onQuestionMarkKey?: () => void,
   onDayClick?: (day: Date, event: React.SyntheticEvent) => void
 ) {
   const { key } = e;
@@ -103,6 +104,11 @@ export function handleKeyPress(
     case 'Escape':
       e.preventDefault();
       onEscKey();
+      break;
+
+    case '?':
+      e.preventDefault();
+      onQuestionMarkKey();
       break;
 
     default:
