@@ -138,6 +138,10 @@ export class DatePickerCore extends React.Component<
       if (event.key === 'Escape') {
         this.onEscKey();
       }
+
+      if (event.key === '?') {
+        this.onQuestionMarkKey();
+      }
     }
   }
 
