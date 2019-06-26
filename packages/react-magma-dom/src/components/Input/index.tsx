@@ -2,13 +2,15 @@ import * as React from 'react';
 import { InputCore } from 'react-magma-core';
 import styled from '@emotion/styled';
 import { IconProps } from '../Icon/utils';
-import { AlertIcon } from '../Icon/types/AlertIcon';
-import { Label } from '../Label';
 import { ThemeContext } from '../../theme/themeContext';
+
+import { Announce } from '../Announce';
 import { Button } from '../Button';
 import { ButtonVariant, ButtonType } from '../StyledButton';
+import { InputMessage } from './InputMessage';
+import { Label } from '../Label';
+import { QuestionCircleIcon } from '../Icon/types/QuestionCircleIcon';
 import { VisuallyHidden } from '../VisuallyHidden';
-import { Announce } from '../Announce';
 
 export enum IconPosition {
   left = 'left',
@@ -32,6 +34,7 @@ export interface InputProps
   as?: string;
   containerStyle?: React.CSSProperties;
   errorMessage?: string;
+  helpLinkText?: string;
   helperMessage?: string;
   hiddenPasswordAnnounceText?: string;
   hidePasswordButtonAriaLabel?: string;
@@ -46,6 +49,7 @@ export interface InputProps
   labelText: string;
   labelVisuallyHidden?: boolean;
   multiline?: boolean;
+  onHelpLinkClick?: () => void;
   ref?: any;
   shownPasswordAnnounceText?: string;
   showPasswordButtonAriaLabel?: string;
@@ -58,19 +62,14 @@ interface IconWrapperProps {
   iconPosition?: IconPosition;
 }
 
-interface ErrorIconWrapperProps {
-  inputSize?: InputSize;
-}
-
-interface TextProps {
-  inverse?: boolean;
-}
-
 const Container = styled.div`
   margin-bottom: 10px;
+  min-height: 7em;
 `;
 
 const InputWrapper = styled.div`
+  align-items: center;
+  display: flex;
   position: relative;
 `;
 
@@ -112,8 +111,7 @@ const StyledInput = styled.input<InputProps>`
   line-height: 1.25rem;
   padding: 0;
   padding-left: ${props => (props.iconPosition === 'left' ? '35px' : '8px')};
-  padding-right: ${props =>
-    props.iconPosition === 'right' || props.errorMessage ? '35px' : '8px'};
+  padding-right: ${props => (props.iconPosition === 'right' ? '35px' : '8px')};
   padding-top: ${props => (props.multiline ? '5px' : '0')};
   width: 100%;
 
@@ -134,25 +132,6 @@ const StyledInput = styled.input<InputProps>`
   }
 `;
 
-const ErrorMessage = styled.div<TextProps>`
-  background: ${props => (props.inverse ? props.theme.colors.danger : 'none')};
-  border-radius: 5px;
-  color: ${props =>
-    props.inverse ? props.theme.colors.neutral08 : props.theme.colors.danger};
-  font-size: 13px;
-  margin-top: 5px;
-  padding: ${props => (props.inverse ? '5px 10px' : '0')};
-`;
-
-const HelperMessage = styled.div<TextProps>`
-  color: ${props =>
-    props.inverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral04};
-  font-size: 13px;
-  margin-top: 5px;
-`;
-
 const IconWrapper = styled.span<IconWrapperProps>`
   left: ${props => (props.iconPosition === 'left' ? '10px' : 'auto')};
   right: ${props => (props.iconPosition === 'right' ? '10px' : 'auto')};
@@ -170,48 +149,6 @@ const PasswordMaskWrapper = styled.span`
   top: 50%;
 `;
 
-const ErrorIconWrapper = styled.span<ErrorIconWrapperProps>`
-  align-items: center;
-  background: ${props => props.theme.colors.danger};
-  border-radius: 100%;
-  color: ${props => props.theme.colors.neutral08};
-  display: flex;
-  height: ${props => {
-    switch (props.inputSize) {
-      case 'large':
-        return '20px';
-      case 'small':
-        return '16px';
-      default:
-        return '18px';
-    }
-  }};
-  justify-content: center;
-  padding: 3px;
-  right: 10px;
-  position: absolute;
-  top: ${props => {
-    switch (props.inputSize) {
-      case 'large':
-        return '13px';
-      case 'small':
-        return '7px';
-      default:
-        return '10px';
-    }
-  }};
-  width: ${props => {
-    switch (props.inputSize) {
-      case 'large':
-        return '20px';
-      case 'small':
-        return '16px';
-      default:
-        return '18px';
-    }
-  }};
-`;
-
 function getIconSize(size) {
   switch (size) {
     case 'large':
@@ -220,17 +157,6 @@ function getIconSize(size) {
       return 15;
     default:
       return 17;
-  }
-}
-
-function getErrorIconSize(size) {
-  switch (size) {
-    case 'large':
-      return 12;
-    case 'small':
-      return 8;
-    default:
-      return 10;
   }
 }
 
@@ -256,6 +182,11 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
           containerStyle,
           errorMessage,
           helperMessage,
+          helpLinkText,
+          hidePasswordMaskButton,
+          hiddenPasswordAnnounceText,
+          hidePasswordButtonAriaLabel,
+          hidePasswordButtonText,
           icon,
           iconPosition,
           inputSize,
@@ -265,15 +196,12 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
           labelText,
           labelVisuallyHidden,
           multiline,
-          type,
-          testId,
-          hidePasswordMaskButton,
-          hiddenPasswordAnnounceText,
-          hidePasswordButtonAriaLabel,
-          hidePasswordButtonText,
+          onHelpLinkClick,
           shownPasswordAnnounceText,
           showPasswordButtonAriaLabel,
           showPasswordButtonText,
+          type,
+          testId,
           ...other
         } = props;
 
@@ -294,7 +222,11 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
             : 'Show password. Note: this will visually expose your password on the screen',
           SHOW_PASSWORD_BUTTON_TEXT = showPasswordButtonText
             ? showPasswordButtonText
-            : 'Show';
+            : 'Show',
+          HELP_LINK_TEXT = helpLinkText ? helpLinkText : "What's this?";
+
+        const descriptionId =
+          errorMessage || helperMessage ? `${id}__desc` : null;
 
         return (
           <ThemeContext.Consumer>
@@ -308,6 +240,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                 <InputWrapper>
                   <StyledInput
                     {...other}
+                    aria-describedby={descriptionId}
                     aria-label={labelVisuallyHidden ? labelText : null}
                     as={multiline ? 'textarea' : null}
                     id={id}
@@ -332,11 +265,6 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                     onChange={onChange}
                     onFocus={onFocus}
                   />
-                  {errorMessage && (
-                    <ErrorIconWrapper inputSize={inputSize} theme={theme}>
-                      <AlertIcon size={getErrorIconSize(inputSize)} />
-                    </ErrorIconWrapper>
-                  )}
                   {icon && (
                     <IconWrapper iconPosition={iconPosition} theme={theme}>
                       {React.Children.only(
@@ -378,16 +306,27 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                       </VisuallyHidden>
                     </PasswordMaskWrapper>
                   )}
+                  {onHelpLinkClick && (
+                    <Button
+                      ariaLabel={HELP_LINK_TEXT}
+                      icon={<QuestionCircleIcon />}
+                      inverse={inverse}
+                      onClick={onHelpLinkClick}
+                      style={{ margin: '0 0 0 7px' }}
+                      title={HELP_LINK_TEXT}
+                      variant={ButtonVariant.link}
+                    />
+                  )}
                 </InputWrapper>
-                {errorMessage && (
-                  <ErrorMessage inverse={inverse} theme={theme}>
-                    {errorMessage}
-                  </ErrorMessage>
-                )}
-                {helperMessage && !errorMessage && (
-                  <HelperMessage inverse={inverse} theme={theme}>
-                    {helperMessage}
-                  </HelperMessage>
+
+                {(errorMessage || helperMessage) && (
+                  <InputMessage
+                    inverse={inverse}
+                    id={descriptionId}
+                    isError={!!errorMessage}
+                  >
+                    {errorMessage ? errorMessage : helperMessage}
+                  </InputMessage>
                 )}
               </Container>
             )}

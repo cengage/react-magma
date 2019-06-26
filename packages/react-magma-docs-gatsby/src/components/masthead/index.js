@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'gatsby'
 import Logo from '../Logo'
 import styled from '@emotion/styled';
 import { magma } from 'react-magma-dom'
@@ -40,6 +41,20 @@ const InnerHeader = styled.div`
     }
 `;
 
+
+const LogoLink = styled(Link)`
+    align-items: center;
+    color: ${magma.colors.neutral08};
+    display: inline-flex;
+    text-decoration: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: ${magma.colors.neutral08};
+    }
+`;
+
 const LogoContainer = styled.div`
     height: 32px;
     margin-right: 20px;
@@ -54,10 +69,12 @@ const LogoContainer = styled.div`
 const Masthead = () => (
     <StyledHeader>
         <InnerHeader>
-            <LogoContainer>
-                <Logo />
-            </LogoContainer>
-            React Magma
+            <LogoLink to="/">
+                <LogoContainer>
+                    <Logo />
+                </LogoContainer>
+                React Magma
+            </LogoLink>
         </InnerHeader>
     </StyledHeader>
 );

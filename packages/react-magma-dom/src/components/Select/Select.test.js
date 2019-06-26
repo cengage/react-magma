@@ -82,6 +82,17 @@ describe('Select', () => {
     expect(input).toBeDisabled();
   });
 
+  it('should render the helper message with the correct styles', () => {
+    const helperString = 'Helper text';
+
+    const { getByText } = render(<Select helperMessage={helperString} />);
+    const helperMessage = getByText(helperString);
+
+    expect(helperMessage).toBeInTheDocument();
+    expect(helperMessage).toHaveStyleRule('color', '#727272');
+    expect(helperMessage).toHaveStyleRule('font-size', '13px');
+  });
+
   it('should render the error message with the correct styles', () => {
     const errorString = 'Please fix this error';
 

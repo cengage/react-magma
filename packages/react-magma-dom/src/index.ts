@@ -18,6 +18,9 @@ export { LinkButton } from './components/LinkButton';
 export { RadioGroup } from './components/RadioGroup';
 export { Radio } from './components/Radio';
 export { Select } from './components/Select';
+export { AsyncSelect } from './components/AsyncSelect';
+export { CreatableSelect } from './components/CreatableSelect';
+export { AsyncCreatableSelect } from './components/AsyncCreatableSelect';
 export { SkipLink } from './components/SkipLink';
 export { SkipLinkContent } from './components/SkipLinkContent';
 export { Toggle } from './components/Toggle';
@@ -194,6 +197,7 @@ export {
   NonMindtapActivityIcon
 } from './components/Icon/types/NonMindtapActivityIcon';
 export { NotificationIcon } from './components/Icon/types/NotificationIcon';
+export { Notification2Icon } from './components/Icon/types/Notification2Icon';
 export { PaletteIcon } from './components/Icon/types/PaletteIcon';
 export {
   ParagraphCenterIcon
