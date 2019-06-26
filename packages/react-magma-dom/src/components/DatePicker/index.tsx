@@ -36,10 +36,14 @@ const DatePickerCalendar = styled.div<{ opened: boolean }>`
 export const DatePicker: React.FunctionComponent<DatePickerProps> = (
   props: DatePickerProps
 ) => {
-  const { defaultDate, id, labelText, onDayClick } = props;
+  const { defaultDate, id, labelText } = props;
 
   return (
-    <DatePickerCore id={id} defaultDate={defaultDate} onDayClick={onDayClick}>
+    <DatePickerCore
+      id={id}
+      defaultDate={defaultDate}
+      onDayClick={props.onDayClick}
+    >
       {({
         calendarOpened,
         chosenDate,
@@ -56,7 +60,8 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
         onCalendarBlur,
         onPrevMonthClick,
         onNextMonthClick,
-        onKeyDown
+        onKeyDown,
+        onDayClick
       }) => {
         const inputValue = chosenDate ? format(chosenDate, 'MM/DD/YYYY') : '';
         const srMessageId = `${id}_sr`;
