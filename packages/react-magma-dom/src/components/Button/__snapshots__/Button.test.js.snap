@@ -3,7 +3,7 @@
 exports[`Button Base Button Snapshot should render with large size 1`] = `
 <div>
   <button
-    class="css-acv1q0-StyledButtonComponent e183qit0"
+    class="css-xg5zak-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -16,7 +16,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 exports[`Button Base Button Snapshot should render with small size 1`] = `
 <div>
   <button
-    class="css-w71wo3-StyledButtonComponent e183qit0"
+    class="css-1fp4r1z-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -29,7 +29,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
 exports[`Button Base Button Snapshot should render with updated color 1`] = `
 <div>
   <button
-    class="css-xpdwzk-StyledButtonComponent e183qit0"
+    class="css-112dezj-StyledButtonComponent e183qit0"
     color="secondary"
     id="testId"
     shape="fill"
@@ -42,7 +42,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 <div>
   <button
-    class="css-e4yukp-StyledButtonComponent e183qit0"
+    class="css-1hjzz9v-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="round"
@@ -55,7 +55,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 exports[`Button Base Button Snapshot should render with updated textTransform 1`] = `
 <div>
   <button
-    class="css-qjeo74-StyledButtonComponent e183qit0"
+    class="css-6b5bm1-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -68,7 +68,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 <div>
   <button
-    class="css-1idu1p8-StyledButtonComponent e183qit0"
+    class="css-4qkpmb-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -82,7 +82,7 @@ exports[`Button Icon Only Button Snapshot should render with large size 1`] = `
 <div>
   <button
     aria-label="Check Icon"
-    class="css-jh80j2-StyledButtonComponent-StyledButtonComponent e183qit0"
+    class="css-lz2qyp-StyledButtonComponent-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="round"
@@ -112,7 +112,7 @@ exports[`Button Icon Only Button Snapshot should render with small size 1`] = `
 <div>
   <button
     aria-label="Check Icon"
-    class="css-13s2tzl-StyledButtonComponent-StyledButtonComponent e183qit0"
+    class="css-ed1xu6-StyledButtonComponent-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="round"
@@ -142,7 +142,7 @@ exports[`Button Icon Only Button Snapshot should render with updated color 1`] =
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1qcz368-StyledButtonComponent-StyledButtonComponent e183qit0"
+    class="css-n3xymg-StyledButtonComponent-StyledButtonComponent e183qit0"
     color="secondary"
     id="testId"
     shape="round"
@@ -172,7 +172,7 @@ exports[`Button Icon Only Button Snapshot should render with updated shape 1`] =
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1x28e43-StyledButtonComponent-StyledButtonComponent e183qit0"
+    class="css-u63ng1-StyledButtonComponent-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -202,7 +202,7 @@ exports[`Button Icon Only Button Snapshot should render with updated variant 1`]
 <div>
   <button
     aria-label="Check Icon"
-    class="css-xj8db-StyledButtonComponent-StyledButtonComponent e183qit0"
+    class="css-1o40ar7-StyledButtonComponent-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="round"
@@ -232,7 +232,7 @@ exports[`Button Icon With Text Button Snapshot should render with large size 1`]
 <div>
   <button
     aria-label="Check Icon"
-    class="css-acv1q0-StyledButtonComponent e183qit0"
+    class="css-xg5zak-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -268,7 +268,7 @@ exports[`Button Icon With Text Button Snapshot should render with medium size 1`
 <div>
   <button
     aria-label="Check Icon"
-    class="css-3xuwu5-StyledButtonComponent e183qit0"
+    class="css-a3ft0a-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -304,7 +304,7 @@ exports[`Button Icon With Text Button Snapshot should render with small size 1`]
 <div>
   <button
     aria-label="Check Icon"
-    class="css-w71wo3-StyledButtonComponent e183qit0"
+    class="css-1fp4r1z-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -340,7 +340,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated color 
 <div>
   <button
     aria-label="Check Icon"
-    class="css-xpdwzk-StyledButtonComponent e183qit0"
+    class="css-112dezj-StyledButtonComponent e183qit0"
     color="secondary"
     id="testId"
     shape="fill"
@@ -376,7 +376,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated shape 
 <div>
   <button
     aria-label="Check Icon"
-    class="css-3xuwu5-StyledButtonComponent e183qit0"
+    class="css-a3ft0a-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -412,7 +412,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated text t
 <div>
   <button
     aria-label="Check Icon"
-    class="css-qjeo74-StyledButtonComponent e183qit0"
+    class="css-6b5bm1-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -448,7 +448,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated varian
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1idu1p8-StyledButtonComponent e183qit0"
+    class="css-4qkpmb-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"

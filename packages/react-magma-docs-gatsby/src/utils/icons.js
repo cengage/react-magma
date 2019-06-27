@@ -157,6 +157,8 @@ export default [
 
   'NonMindtapActivityIcon',
   'NotificationIcon',
+  'Notification2Icon',
+
   'PaletteIcon',
 
   'ParagraphCenterIcon',

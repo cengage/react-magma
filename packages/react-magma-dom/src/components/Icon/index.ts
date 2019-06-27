@@ -154,6 +154,7 @@ import { NextIcon } from './types/NextIcon';
 import { Next2Icon } from './types/Next2Icon';
 import { NonMindtapActivityIcon } from './types/NonMindtapActivityIcon';
 import { NotificationIcon } from './types/NotificationIcon';
+import { Notification2Icon } from './types/Notification2Icon';
 import { PaletteIcon } from './types/PaletteIcon';
 import { ParagraphCenterIcon } from './types/ParagraphCenterIcon';
 import { ParagraphJustifyIcon } from './types/ParagraphJustifyIcon';
@@ -399,6 +400,7 @@ export const ICONS: IconsCollection = {
   Next2Icon,
   NonMindtapActivityIcon,
   NotificationIcon,
+  Notification2Icon,
   PaletteIcon,
   ParagraphCenterIcon,
   ParagraphJustifyIcon,
