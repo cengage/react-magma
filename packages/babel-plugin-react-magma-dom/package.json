@@ -6,6 +6,7 @@
     "lib"
   ],
   "main": "lib/index.js",
+  "registry": "http://nexus.cengage.info/content/groups/cengage-npm/",
   "scripts": {
     "build": "babel src --out-dir lib || true",
     "test": "jest",
