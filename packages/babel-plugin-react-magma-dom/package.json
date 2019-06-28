@@ -6,7 +6,9 @@
     "lib"
   ],
   "main": "lib/index.js",
-  "registry": "http://nexus.cengage.info/content/groups/cengage-npm/",
+  "publishConfig": {
+    "registry": "http://nexus.mindtap.corp.web/content/repositories/npm.cengage/"
+  },
   "scripts": {
     "build": "babel src --out-dir lib || true",
     "test": "jest",
