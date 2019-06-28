@@ -1,0 +1,37 @@
+---
+title: 'Tooltip'
+---
+
+# Tooltip
+
+## Basic Usage
+
+```.jsx
+    <>
+        <Tooltip position='bottom'>
+            Tooltip content
+        </Tooltip>
+        <br/>
+        <br/>
+        <Tooltip position='left'>
+            Tooltip content
+        </Tooltip>
+        <br/>
+        <br/>
+        <Tooltip position='right'>
+            Tooltip content
+        </Tooltip>
+        <br/>
+        <br/>
+        <Tooltip position='top'>
+            Tooltip content
+        </Tooltip>
+    </>
+```
+
+## Tooltip Props
+
+| Prop     | Type                                                     | Default | Required |
+| -------- | -------------------------------------------------------- | ------- | :------: |
+| children | node                                                     |         | &#10003; |
+| position | enum: 'bottom' &#124; 'left' &#124; 'right' &#124; 'top' | 'left'  |          |
