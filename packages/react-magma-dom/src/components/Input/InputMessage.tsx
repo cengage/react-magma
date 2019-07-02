@@ -28,29 +28,31 @@ const Message = styled.div<InputMessageProps>`
   text-align: left;
 `;
 
-export const InputMessage: React.FunctionComponent<
-  InputMessageProps
-> = React.forwardRef(
-  ({ children, id, inverse, isError, ...other }: InputMessageProps) => {
-    return (
-      <ThemeContext.Consumer>
-        {theme => (
-          <Message
-            {...other}
-            id={id}
-            inverse={inverse}
-            isError={isError}
-            theme={theme}
-          >
-            {isError && (
-              <>
-                <Notification2Icon aria-label="Error" size={18} /> &nbsp;
-              </>
-            )}
-            {children}
-          </Message>
-        )}
-      </ThemeContext.Consumer>
-    );
-  }
-);
+export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
+  children,
+  id,
+  inverse,
+  isError,
+  ...other
+}: InputMessageProps) => {
+  return (
+    <ThemeContext.Consumer>
+      {theme => (
+        <Message
+          {...other}
+          id={id}
+          inverse={inverse}
+          isError={isError}
+          theme={theme}
+        >
+          {isError && (
+            <>
+              <Notification2Icon aria-label="Error" size={18} /> &nbsp;
+            </>
+          )}
+          {children}
+        </Message>
+      )}
+    </ThemeContext.Consumer>
+  );
+};
