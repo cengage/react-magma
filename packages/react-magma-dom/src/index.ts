@@ -26,6 +26,8 @@ export { SkipLinkContent } from './components/SkipLinkContent';
 export { Toggle } from './components/Toggle';
 export { Toast } from './components/Toast';
 export { VisuallyHidden } from './components/VisuallyHidden';
+export { DatePicker } from './components/DatePicker';
+export { Modal } from './components/Modal';
 
 export { amgam } from './theme/amgam';
 export { amgamDark } from './theme/amgamDark';
