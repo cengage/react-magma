@@ -25,7 +25,7 @@ export { SkipLink } from './components/SkipLink';
 export { SkipLinkContent } from './components/SkipLinkContent';
 export { Toast } from './components/Toast';
 export { Toggle } from './components/Toggle';
-export { Tooltip } from './components/Tooltip';
+export { Tooltip, TooltipPosition } from './components/Tooltip';
 export { VisuallyHidden } from './components/VisuallyHidden';
 
 export { amgam } from './theme/amgam';

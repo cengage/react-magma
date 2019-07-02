@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import { ThemeContext } from '../../theme/themeContext';
 
-export enum ToolTipPosition {
+export enum TooltipPosition {
   bottom = 'bottom',
   left = 'left',
   right = 'right',
@@ -11,18 +11,25 @@ export enum ToolTipPosition {
 }
 
 export interface TooltipProps extends React.HTMLAttributes<HTMLSpanElement> {
-  position: ToolTipPosition;
+  content: React.ReactNode;
+  position: TooltipPosition;
 }
 
-const StyledTooltip = styled.span<TooltipProps>`
+const ToolTipContainer = styled.div`
+  display: inline;
+  position: relative;
+`;
+
+const StyledTooltip = styled.span<{ position: TooltipPosition }>`
   background: ${props => props.theme.colors.neutral02};
   border-radius: 3px;
   color: ${props => props.theme.colors.neutral08};
   font-size: 12px;
   font-weight: 600;
   max-width: 200px;
+  min-width: 100%;
   padding: 3px 5px;
-  position: relative;
+  position: absolute;
   text-align: center;
 
   &:before,
@@ -55,6 +62,11 @@ const StyledTooltip = styled.span<TooltipProps>`
   ${props =>
     props.position === 'bottom' &&
     css`
+      top: 100%;
+      margin-top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+
       &:after {
         border-width: 0 5px 5px 5px;
         bottom: auto;
@@ -71,6 +83,11 @@ const StyledTooltip = styled.span<TooltipProps>`
   ${props =>
     props.position === 'left' &&
     css`
+      right: 100%;
+      margin-right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+
       &:before,
       &:after {
         left: auto;
@@ -92,6 +109,11 @@ const StyledTooltip = styled.span<TooltipProps>`
   ${props =>
     props.position === 'right' &&
     css`
+      left: 100%;
+      margin-left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+
       &:before,
       &:after {
         right: auto;
@@ -113,6 +135,11 @@ const StyledTooltip = styled.span<TooltipProps>`
   ${props =>
     props.position === 'top' &&
     css`
+      bottom: 100%;
+      margin-bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+
       &:after {
         bottom: -5px;
         top: auto;
@@ -129,15 +156,19 @@ const StyledTooltip = styled.span<TooltipProps>`
 
 export const Tooltip: React.FunctionComponent<TooltipProps> = ({
   children,
+  content,
   position
 }: TooltipProps) => {
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <StyledTooltip position={position} theme={theme}>
-          {children}
-        </StyledTooltip>
-      )}
-    </ThemeContext.Consumer>
+    <ToolTipContainer>
+      {children}
+      <ThemeContext.Consumer>
+        {theme => (
+          <StyledTooltip position={position} theme={theme}>
+            {content}
+          </StyledTooltip>
+        )}
+      </ThemeContext.Consumer>
+    </ToolTipContainer>
   );
 };
