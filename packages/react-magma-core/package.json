@@ -1,6 +1,6 @@
 {
   "name": "react-magma-core",
-  "version": "0.1.0-beta.20",
+  "version": "0.1.0-beta.21",
   "description": "",
   "main": "dist/bundle.js",
   "module": "dist/esBundle.js",
