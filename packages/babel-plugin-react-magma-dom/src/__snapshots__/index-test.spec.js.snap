@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`works 1`] = `
+exports[`handles a combination of imports and use cases 1`] = `
 "\\"use strict\\";
 
 Object.defineProperty(exports, \\"__esModule\\", {
@@ -10,29 +10,29 @@ exports.Example = void 0;
 
 var React = _interopRequireWildcard(require(\\"react\\"));
 
-var _Button = require(\\"react-magma-dom/lib/Button\\");
+var _Button = require(\\"react-magma-dom/dist/components/Button\\");
 
-var _Heading = require(\\"react-magma-dom/lib/Heading\\");
+var _Heading = require(\\"react-magma-dom/dist/components/Heading\\");
 
-var _DeleteIcon = require(\\"react-magma-dom/lib/Icons/type/DeleteIcon\\");
+var _DeleteIcon = require(\\"react-magma-dom/dist/components/Icons/type/DeleteIcon\\");
 
-var _ArrowIcon = require(\\"react-magma-dom/lib/Icons/type/ArrowIcon\\");
+var _ArrowIcon = require(\\"react-magma-dom/dist/components/Icons/type/ArrowIcon\\");
 
-var _CheckIcon = require(\\"react-magma-dom/lib/Icons/type/CheckIcon\\");
+var _CheckIcon = require(\\"react-magma-dom/dist/components/Icons/type/CheckIcon\\");
 
-var _Radio = require(\\"react-magma-dom/lib/Radio\\");
+var _Radio = require(\\"react-magma-dom/dist/components/Radio\\");
 
-var _ArrowLeftIcon = require(\\"react-magma-dom/lib/Icons/type/ArrowLeftIcon\\");
+var _ArrowLeftIcon = require(\\"react-magma-dom/dist/components/Icons/type/ArrowLeftIcon\\");
 
-var _Input = require(\\"react-magma-dom/lib/Input\\");
+var _Input = require(\\"react-magma-dom/dist/components/Input\\");
 
-var _Blah = require(\\"react-magma-dom/lib/Blah\\");
+var _Blah = require(\\"react-magma-dom/dist/components/Blah\\");
 
-var _ArrowRightIcon = require(\\"react-magma-dom/lib/Icons/type/ArrowRightIcon\\");
+var _ArrowRightIcon = require(\\"react-magma-dom/dist/components/Icons/type/ArrowRightIcon\\");
 
-var _Checkbox = require(\\"react-magma-dom/lib/Checkbox\\");
+var _Checkbox = require(\\"react-magma-dom/dist/components/Checkbox\\");
 
-var _FakeIcon = require(\\"react-magma-dom/lib/Icons/type/FakeIcon\\");
+var _FakeIcon = require(\\"react-magma-dom/dist/components/Icons/type/FakeIcon\\");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 

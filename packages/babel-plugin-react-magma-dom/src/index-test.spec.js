@@ -71,6 +71,20 @@ const defaultNamespaceExample = `
   }
 `;
 
+const globalStylesExample = `
+  import { GlobalStyles } from 'react-magma-dom'
+
+  export class Example extends React.Component {
+    render() {
+      return (
+        <div>
+          <GlobalStyles />
+        </div>
+      );
+    }
+  }
+`;
+
 const iconsExample = `
   import { Icons } from 'react-magma-dom'
 
@@ -129,8 +143,8 @@ it('rewrites the named imports', () => {
   const sourceValue1 = program.body[0].declarations[0].init.arguments[0].value;
   const sourceValue2 = program.body[1].declarations[0].init.arguments[0].value;
 
-  expect(sourceValue1).toEqual('react-magma-dom/lib/Button');
-  expect(sourceValue2).toEqual('react-magma-dom/lib/Heading');
+  expect(sourceValue1).toEqual('react-magma-dom/dist/components/Button');
+  expect(sourceValue2).toEqual('react-magma-dom/dist/components/Heading');
 });
 
 it('changes default import reference to named imports', () => {
@@ -142,8 +156,8 @@ it('changes default import reference to named imports', () => {
   const sourceValue1 = program.body[2].declarations[0].init.arguments[0].value;
   const sourceValue2 = program.body[3].declarations[0].init.arguments[0].value;
 
-  expect(sourceValue1).toEqual('react-magma-dom/lib/Button');
-  expect(sourceValue2).toEqual('react-magma-dom/lib/Input');
+  expect(sourceValue1).toEqual('react-magma-dom/dist/components/Button');
+  expect(sourceValue2).toEqual('react-magma-dom/dist/components/Input');
 });
 
 it('changes default namespace import reference to named imports', () => {
@@ -155,8 +169,19 @@ it('changes default namespace import reference to named imports', () => {
   const sourceValue1 = program.body[2].declarations[0].init.arguments[0].value;
   const sourceValue2 = program.body[3].declarations[0].init.arguments[0].value;
 
-  expect(sourceValue1).toEqual('react-magma-dom/lib/Button');
-  expect(sourceValue2).toEqual('react-magma-dom/lib/Input');
+  expect(sourceValue1).toEqual('react-magma-dom/dist/components/Button');
+  expect(sourceValue2).toEqual('react-magma-dom/dist/components/Input');
+});
+
+it('changes GlobalStyles to import from the theme folder', () => {
+  const { ast } = babel.transform(globalStylesExample, {
+    ast: true,
+    plugins: [plugin]
+  });
+  const program = ast.program;
+  const sourceValue = program.body[2].declarations[0].init.arguments[0].value;
+
+  expect(sourceValue).toEqual('react-magma-dom/dist/theme/GlobalStyles');
 });
 
 it('changes Icons import references to named imports', () => {
@@ -167,7 +192,9 @@ it('changes Icons import references to named imports', () => {
   const program = ast.program;
   const sourceValue = program.body[2].declarations[0].init.arguments[0].value;
 
-  expect(sourceValue).toEqual('react-magma-dom/lib/Icons/type/CheckIcon');
+  expect(sourceValue).toEqual(
+    'react-magma-dom/dist/components/Icons/type/CheckIcon'
+  );
 });
 
 it('changes default import references to Icons to named imports', () => {
@@ -179,8 +206,12 @@ it('changes default import references to Icons to named imports', () => {
   const sourceValue1 = program.body[2].declarations[0].init.arguments[0].value;
   const sourceValue2 = program.body[3].declarations[0].init.arguments[0].value;
 
-  expect(sourceValue1).toEqual('react-magma-dom/lib/Icons/type/DeleteIcon');
-  expect(sourceValue2).toEqual('react-magma-dom/lib/Icons/type/CheckIcon');
+  expect(sourceValue1).toEqual(
+    'react-magma-dom/dist/components/Icons/type/DeleteIcon'
+  );
+  expect(sourceValue2).toEqual(
+    'react-magma-dom/dist/components/Icons/type/CheckIcon'
+  );
 });
 
 it('changes renamed import references to named imports', () => {
@@ -191,5 +222,5 @@ it('changes renamed import references to named imports', () => {
   const program = ast.program;
   const sourceValue = program.body[2].declarations[0].init.arguments[0].value;
 
-  expect(sourceValue).toEqual('react-magma-dom/lib/Button');
+  expect(sourceValue).toEqual('react-magma-dom/dist/components/Button');
 });
