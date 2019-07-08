@@ -16,21 +16,23 @@ export interface ITooltipProps extends React.HTMLAttributes<HTMLSpanElement> {
   trigger: React.ReactElement;
 }
 
+export interface ITooltipState {
+  isVisible?: boolean;
+}
+
 const ToolTipContainer = styled.div`
   display: inline;
   position: relative;
-
-  > :hover + [role='tooltip'],
-  > :focus + [role='tooltip'] {
-    display: block;
-  }
 `;
 
-const StyledTooltip = styled.span<{ position: ITooltipPosition }>`
+const StyledTooltip = styled.span<{
+  position: ITooltipPosition;
+  visible?: boolean;
+}>`
   background: ${props => props.theme.colors.neutral02};
   border-radius: 3px;
   color: ${props => props.theme.colors.neutral08};
-  display: none;
+  display: ${props => (props.visible ? 'block' : 'none')};
   font-size: 12px;
   font-weight: 600;
   max-width: 200px;
@@ -162,27 +164,58 @@ const StyledTooltip = styled.span<{ position: ITooltipPosition }>`
     `}
 `;
 
-export const Tooltip: React.FunctionComponent<ITooltipProps> = ({
-  content,
-  id,
-  position,
-  trigger
-}: ITooltipProps) => {
-  return (
-    <ToolTipContainer>
-      {React.cloneElement(trigger, { 'aria-labeledby': id })}
-      <ThemeContext.Consumer>
-        {theme => (
-          <StyledTooltip
-            id={id}
-            position={position ? position : ITooltipPosition.bottom}
-            role="tooltip"
-            theme={theme}
-          >
-            {content}
-          </StyledTooltip>
-        )}
-      </ThemeContext.Consumer>
-    </ToolTipContainer>
-  );
-};
+export class Tooltip extends React.Component<ITooltipProps, ITooltipState> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isVisible: false
+    };
+  }
+
+  handleKeyDown = e => {
+    if (e.key === 'Escape') {
+      this.setState({ isVisible: false });
+    }
+  };
+
+  hideTooltip = () => {
+    this.setState({ isVisible: false });
+  };
+
+  showTooltip = () => {
+    this.setState({ isVisible: true });
+  };
+
+  render() {
+    const { trigger, id, position, content } = this.props;
+
+    return (
+      <ToolTipContainer>
+        {React.cloneElement(trigger, {
+          'aria-labeledby': id,
+          onKeyDown: e => {
+            this.handleKeyDown(e);
+          },
+          onBlur: this.hideTooltip,
+          onFocus: this.showTooltip,
+          onMouseLeave: this.hideTooltip,
+          onMouseEnter: this.showTooltip
+        })}
+        <ThemeContext.Consumer>
+          {theme => (
+            <StyledTooltip
+              id={id}
+              position={position ? position : ITooltipPosition.bottom}
+              role="tooltip"
+              visible={this.state.isVisible}
+              theme={theme}
+            >
+              {content}
+            </StyledTooltip>
+          )}
+        </ThemeContext.Consumer>
+      </ToolTipContainer>
+    );
+  }
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import { axe } from 'jest-axe';
 import { Tooltip } from '.';
 
-import { render } from 'react-testing-library';
+import { render, fireEvent } from 'react-testing-library';
 
 const CONTENT_TEXT = 'Test Content';
 const TRIGGER_ELEMENT = <button>Test trigger</button>;
@@ -62,6 +62,38 @@ describe('Tooltip', () => {
     const tooltip = getByText('Test Content');
 
     expect(tooltip).toHaveStyleRule('bottom', '100%');
+  });
+
+  it('should show the tooltip on focus and hide it on blur', () => {
+    const { getByText } = render(
+      <Tooltip content={CONTENT_TEXT} trigger={TRIGGER_ELEMENT} />
+    );
+    const trigger = getByText('Test trigger');
+    const tooltip = getByText('Test Content');
+    expect(tooltip).toHaveStyleRule('display', 'none');
+
+    fireEvent.focus(trigger);
+
+    expect(tooltip).toHaveStyleRule('display', 'block');
+    fireEvent.blur(trigger);
+
+    expect(tooltip).toHaveStyleRule('display', 'none');
+  });
+
+  it('should show the tooltip on mouseenter and hide it on mouseleave', () => {
+    const { getByText } = render(
+      <Tooltip content={CONTENT_TEXT} trigger={TRIGGER_ELEMENT} />
+    );
+    const trigger = getByText('Test trigger');
+    const tooltip = getByText('Test Content');
+    expect(tooltip).toHaveStyleRule('display', 'none');
+
+    fireEvent.mouseEnter(trigger);
+
+    expect(tooltip).toHaveStyleRule('display', 'block');
+    fireEvent.mouseLeave(trigger);
+
+    expect(tooltip).toHaveStyleRule('display', 'none');
   });
 
   it('Does not violate accessibility standards', () => {
