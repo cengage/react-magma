@@ -1,17 +1,77 @@
 import * as React from 'react';
-import {
-  StyledButton,
-  ButtonProps,
-  ButtonColor,
-  ButtonShape,
-  ButtonSize,
-  ButtonTextTransform,
-  ButtonVariant,
-  ButtonIconPosition
-} from '../StyledButton';
+import { StyledButton } from '../StyledButton';
 import styled from '@emotion/styled';
 import { IconProps } from '../Icon/utils';
 import { Omit } from '../utils';
+
+export enum IButtonVariant {
+  solid = 'solid', //default
+  outline = 'outline',
+  link = 'link'
+}
+
+export enum IButtonColor {
+  primary = 'primary', //default
+  secondary = 'secondary',
+  success = 'success',
+  danger = 'danger',
+  marketing = 'marketing'
+}
+
+export enum IButtonShape {
+  fill = 'fill', //default
+  leftCap = 'leftCap',
+  rightCap = 'rightCap',
+  round = 'round' // default for icon only buttons
+}
+
+export enum IButtonSize {
+  large = 'large',
+  medium = 'medium', //default
+  small = 'small'
+}
+
+export enum IButtonTextTransform {
+  uppercase = 'uppercase', //default
+  none = 'none'
+}
+
+export enum IButtonIconPosition {
+  left = 'left',
+  right = 'right'
+}
+
+export enum IButtonType {
+  button = 'button',
+  submit = 'submit',
+  reset = 'reset'
+}
+
+export interface ButtonStyles {
+  block?: boolean;
+  color?: IButtonColor;
+  inverse?: boolean;
+  shape?: IButtonShape;
+  size?: IButtonSize;
+  textTransform?: IButtonTextTransform;
+  type?: IButtonType;
+  variant?: IButtonVariant;
+}
+
+interface BaseButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  ariaExpanded?: boolean;
+  ariaLabel?: string;
+  as?: any;
+  autoFocus?: boolean;
+  href?: string;
+  testId?: string;
+  ref?: any;
+  theme?: any;
+  to?: string;
+}
+
+export type ButtonProps = BaseButtonProps & ButtonStyles;
 
 export interface IconOnlyButtonProps extends Omit<ButtonProps, 'children'> {
   icon: React.ReactElement<IconProps>;
@@ -21,7 +81,7 @@ export interface IconOnlyButtonProps extends Omit<ButtonProps, 'children'> {
 interface IconTextButtonProps extends ButtonProps {
   icon: React.ReactElement<IconProps>;
   children: React.ReactChild | React.ReactChild[];
-  iconPosition?: ButtonIconPosition;
+  iconPosition?: IButtonIconPosition;
 }
 
 export type MergedButtonProps =
@@ -30,7 +90,7 @@ export type MergedButtonProps =
   | IconOnlyButtonProps;
 
 export interface SpanProps {
-  size?: ButtonSize;
+  size?: IButtonSize;
 }
 
 const SpanTextLeft = styled.span<SpanProps>`
@@ -114,24 +174,24 @@ export const Button: React.FunctionComponent<
         ariaExpanded={ariaExpanded}
         as={as}
         block={block}
-        color={color ? color : ButtonColor.primary}
+        color={color ? color : IButtonColor.primary}
         inverse={inverse}
         href={href}
-        shape={shape ? shape : ButtonShape.fill}
-        size={size ? size : ButtonSize.medium}
+        shape={shape ? shape : IButtonShape.fill}
+        size={size ? size : IButtonSize.medium}
         textTransform={
-          textTransform ? textTransform : ButtonTextTransform.uppercase
+          textTransform ? textTransform : IButtonTextTransform.uppercase
         }
         to={to}
-        variant={variant ? variant : ButtonVariant.solid}
+        variant={variant ? variant : IButtonVariant.solid}
       >
-        {iconPosition === ButtonIconPosition.right && (
+        {iconPosition === IButtonIconPosition.right && (
           <SpanTextLeft size={size}>{children} </SpanTextLeft>
         )}
         {React.Children.only(
           React.cloneElement(icon, { size: getIconWithTextSize(size) })
         )}
-        {iconPosition !== ButtonIconPosition.right && (
+        {iconPosition !== IButtonIconPosition.right && (
           <SpanTextRight size={size}>{children}</SpanTextRight>
         )}
       </StyledButton>
@@ -145,14 +205,14 @@ export const Button: React.FunctionComponent<
         ariaExpanded={ariaExpanded}
         ariaLabel={ariaLabel}
         as={as}
-        color={color ? color : ButtonColor.primary}
+        color={color ? color : IButtonColor.primary}
         iconOnly
         inverse={inverse}
         href={href}
-        shape={shape ? shape : ButtonShape.round}
-        size={size ? size : ButtonSize.medium}
+        shape={shape ? shape : IButtonShape.round}
+        size={size ? size : IButtonSize.medium}
         to={to}
-        variant={variant ? variant : ButtonVariant.solid}
+        variant={variant ? variant : IButtonVariant.solid}
       >
         {React.Children.only(
           React.cloneElement(icon, { size: getIconSize(size) })
@@ -170,16 +230,16 @@ export const Button: React.FunctionComponent<
       ariaExpanded={ariaExpanded}
       ariaLabel={ariaLabel}
       block={block}
-      color={color ? color : ButtonColor.primary}
+      color={color ? color : IButtonColor.primary}
       href={href}
       inverse={inverse}
-      shape={shape ? shape : ButtonShape.fill}
-      size={size ? size : ButtonSize.medium}
+      shape={shape ? shape : IButtonShape.fill}
+      size={size ? size : IButtonSize.medium}
       textTransform={
-        textTransform ? textTransform : ButtonTextTransform.uppercase
+        textTransform ? textTransform : IButtonTextTransform.uppercase
       }
       to={to}
-      variant={variant ? variant : ButtonVariant.solid}
+      variant={variant ? variant : IButtonVariant.solid}
     >
       {children}
     </StyledButton>

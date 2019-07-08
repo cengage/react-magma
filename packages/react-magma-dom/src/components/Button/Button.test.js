@@ -1,16 +1,16 @@
 /// <reference types="jest-dom/extend-expect"/>
 import React from 'react';
 import { axe } from 'jest-axe';
-import { Button } from '.';
-import { render } from 'react-testing-library';
 import {
-  ButtonColor,
-  ButtonShape,
-  ButtonSize,
-  ButtonTextTransform,
-  ButtonVariant,
-  ButtonIconPosition
-} from '../StyledButton';
+  Button,
+  IButtonColor,
+  IButtonShape,
+  IButtonSize,
+  IButtonTextTransform,
+  IButtonVariant,
+  IButtonIconPosition
+} from '.';
+import { render } from 'react-testing-library';
 import { CheckIcon } from '../Icon/types/CheckIcon';
 
 describe('Button', () => {
@@ -49,7 +49,11 @@ describe('Button', () => {
     describe('Snapshot', () => {
       it('should render with updated color', () => {
         const { container } = render(
-          <Button id="testId" onClick={jest.fn()} color={ButtonColor.secondary}>
+          <Button
+            id="testId"
+            onClick={jest.fn()}
+            color={IButtonColor.secondary}
+          >
             Test Text
           </Button>
         );
@@ -59,7 +63,7 @@ describe('Button', () => {
 
       it('should render with updated shape', () => {
         const { container } = render(
-          <Button id="testId" onClick={jest.fn()} shape={ButtonShape.round}>
+          <Button id="testId" onClick={jest.fn()} shape={IButtonShape.round}>
             Test Text
           </Button>
         );
@@ -69,7 +73,7 @@ describe('Button', () => {
 
       it('should render with small size', () => {
         const { container } = render(
-          <Button id="testId" onClick={jest.fn()} size={ButtonSize.small}>
+          <Button id="testId" onClick={jest.fn()} size={IButtonSize.small}>
             Test Text
           </Button>
         );
@@ -79,7 +83,7 @@ describe('Button', () => {
 
       it('should render with large size', () => {
         const { container } = render(
-          <Button id="testId" onClick={jest.fn()} size={ButtonSize.large}>
+          <Button id="testId" onClick={jest.fn()} size={IButtonSize.large}>
             Test Text
           </Button>
         );
@@ -92,7 +96,7 @@ describe('Button', () => {
           <Button
             id="testId"
             onClick={jest.fn()}
-            textTransform={ButtonTextTransform.none}
+            textTransform={IButtonTextTransform.none}
           >
             Test Text
           </Button>
@@ -106,7 +110,7 @@ describe('Button', () => {
           <Button
             id="testId"
             onClick={jest.fn()}
-            variant={ButtonVariant.outline}
+            variant={IButtonVariant.outline}
           >
             Test Text
           </Button>
@@ -136,8 +140,8 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPosition.right}
-            size={ButtonSize.large}
+            iconPosition={IButtonIconPosition.right}
+            size={IButtonSize.large}
           />
         );
         expect(container.querySelector('svg')).toHaveAttribute('height', '24');
@@ -151,8 +155,8 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPosition.right}
-            size={ButtonSize.medium}
+            iconPosition={IButtonIconPosition.right}
+            size={IButtonSize.medium}
           />
         );
         expect(container.querySelector('svg')).toHaveAttribute('height', '18');
@@ -166,8 +170,8 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPosition.right}
-            size={ButtonSize.small}
+            iconPosition={IButtonIconPosition.right}
+            size={IButtonSize.small}
           />
         );
         expect(container.querySelector('svg')).toHaveAttribute('height', '14');
@@ -183,8 +187,8 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPosition.right}
-            color={ButtonColor.secondary}
+            iconPosition={IButtonIconPosition.right}
+            color={IButtonColor.secondary}
           />
         );
 
@@ -198,8 +202,8 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPosition.right}
-            shape={ButtonShape.fill}
+            iconPosition={IButtonIconPosition.right}
+            shape={IButtonShape.fill}
           />
         );
 
@@ -213,8 +217,8 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPosition.right}
-            size={ButtonSize.small}
+            iconPosition={IButtonIconPosition.right}
+            size={IButtonSize.small}
           />
         );
 
@@ -228,8 +232,8 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPosition.right}
-            size={ButtonSize.large}
+            iconPosition={IButtonIconPosition.right}
+            size={IButtonSize.large}
           />
         );
 
@@ -243,8 +247,8 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPosition.right}
-            variant={ButtonVariant.outline}
+            iconPosition={IButtonIconPosition.right}
+            variant={IButtonVariant.outline}
           />
         );
 
@@ -282,7 +286,7 @@ describe('Button', () => {
       const icon = <CheckIcon />;
 
       const { container, getByText } = render(
-        <Button iconPosition={ButtonIconPosition.left} icon={icon}>
+        <Button iconPosition={IButtonIconPosition.left} icon={icon}>
           {buttonText}
         </Button>
       );
@@ -297,8 +301,8 @@ describe('Button', () => {
       const { container } = render(
         <Button
           icon={icon}
-          iconPosition={ButtonIconPosition.left}
-          size={ButtonSize.large}
+          iconPosition={IButtonIconPosition.left}
+          size={IButtonSize.large}
         >
           Click me
         </Button>
@@ -314,7 +318,7 @@ describe('Button', () => {
       it('Large', () => {
         const icon = <CheckIcon />;
         const { container } = render(
-          <Button icon={icon} size={ButtonSize.large}>
+          <Button icon={icon} size={IButtonSize.large}>
             click
           </Button>
         );
@@ -328,7 +332,7 @@ describe('Button', () => {
       it('Medium', () => {
         const icon = <CheckIcon />;
         const { container } = render(
-          <Button icon={icon} size={ButtonSize.medium}>
+          <Button icon={icon} size={IButtonSize.medium}>
             click
           </Button>
         );
@@ -341,7 +345,7 @@ describe('Button', () => {
       it('Small', () => {
         const icon = <CheckIcon />;
         const { container } = render(
-          <Button icon={icon} size={ButtonSize.small}>
+          <Button icon={icon} size={IButtonSize.small}>
             click
           </Button>
         );
@@ -360,8 +364,8 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPosition.right}
-            color={ButtonColor.secondary}
+            iconPosition={IButtonIconPosition.right}
+            color={IButtonColor.secondary}
           >
             Test Text
           </Button>
@@ -377,8 +381,8 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPosition.right}
-            shape={ButtonShape.fill}
+            iconPosition={IButtonIconPosition.right}
+            shape={IButtonShape.fill}
           >
             Test Text
           </Button>
@@ -394,8 +398,8 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPosition.right}
-            size={ButtonSize.small}
+            iconPosition={IButtonIconPosition.right}
+            size={IButtonSize.small}
           >
             Test Text
           </Button>
@@ -411,8 +415,8 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPosition.right}
-            size={ButtonSize.medium}
+            iconPosition={IButtonIconPosition.right}
+            size={IButtonSize.medium}
           >
             Test Text
           </Button>
@@ -423,7 +427,7 @@ describe('Button', () => {
 
       it('should render with large size', () => {
         // const { container } = renderIconWithTextButton({
-        //   size: ButtonSize.small
+        //   size: IButtonSize.small
         // });
 
         // expect(container).toMatchSnapshot();
@@ -433,8 +437,8 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPosition.right}
-            size={ButtonSize.large}
+            iconPosition={IButtonIconPosition.right}
+            size={IButtonSize.large}
           >
             Test Text
           </Button>
@@ -450,8 +454,8 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPosition.right}
-            textTransform={ButtonTextTransform.none}
+            iconPosition={IButtonIconPosition.right}
+            textTransform={IButtonTextTransform.none}
           >
             Test Text
           </Button>
@@ -467,8 +471,8 @@ describe('Button', () => {
             ariaLabel="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={ButtonIconPosition.right}
-            variant={ButtonVariant.outline}
+            iconPosition={IButtonIconPosition.right}
+            variant={IButtonVariant.outline}
           >
             Test Text
           </Button>

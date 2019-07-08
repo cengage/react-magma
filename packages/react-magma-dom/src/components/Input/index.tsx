@@ -2,28 +2,27 @@ import * as React from 'react';
 import { InputCore } from 'react-magma-core';
 import styled from '@emotion/styled';
 import { IconProps } from '../Icon/utils';
-import { ThemeContext } from '../../theme/themeContext';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 import { Announce } from '../Announce';
-import { Button } from '../Button';
-import { ButtonVariant, ButtonType } from '../StyledButton';
+import { Button, IButtonVariant, IButtonType } from '../Button';
 import { InputMessage } from './InputMessage';
 import { Label } from '../Label';
 import { QuestionCircleIcon } from '../Icon/types/QuestionCircleIcon';
 import { VisuallyHidden } from '../VisuallyHidden';
 
-export enum IconPosition {
+export enum IInputIconPosition {
   left = 'left',
   right = 'right'
 }
 
-export enum InputSize {
+export enum IInputSize {
   large = 'large',
   medium = 'medium', //default
   small = 'small'
 }
 
-export enum InputType {
+export enum IInputType {
   text = 'text',
   password = 'password',
   number = 'number'
@@ -41,8 +40,8 @@ export interface InputProps
   hidePasswordButtonText?: string;
   hidePasswordMaskButton?: boolean;
   icon?: React.ReactElement<IconProps>;
-  iconPosition?: IconPosition;
-  inputSize?: InputSize;
+  iconPosition?: IInputIconPosition;
+  inputSize?: IInputSize;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
   labelStyle?: React.CSSProperties;
@@ -55,11 +54,11 @@ export interface InputProps
   showPasswordButtonAriaLabel?: string;
   showPasswordButtonText?: string;
   testId?: string;
-  type?: InputType;
+  type?: IInputType;
 }
 
 interface IconWrapperProps {
-  iconPosition?: IconPosition;
+  iconPosition?: IInputIconPosition;
 }
 
 const Container = styled.div`
@@ -247,7 +246,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                     data-testid={testId}
                     errorMessage={errorMessage}
                     iconPosition={iconPosition}
-                    inputSize={inputSize ? inputSize : InputSize.medium}
+                    inputSize={inputSize ? inputSize : IInputSize.medium}
                     labelText={labelText}
                     multiline={multiline}
                     ref={ref}
@@ -255,10 +254,10 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                     theme={theme}
                     type={
                       type
-                        ? type === InputType.password && passwordShown
-                          ? InputType.text
+                        ? type === IInputType.password && passwordShown
+                          ? IInputType.text
                           : type
-                        : InputType.text
+                        : IInputType.text
                     }
                     value={value}
                     onBlur={onBlur}
@@ -274,7 +273,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                       )}
                     </IconWrapper>
                   )}
-                  {type === InputType.password && !hidePasswordMaskButton && (
+                  {type === IInputType.password && !hidePasswordMaskButton && (
                     <PasswordMaskWrapper>
                       <Button
                         ariaLabel={
@@ -290,8 +289,8 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                           left: '7px',
                           borderRadius: '3px'
                         }}
-                        type={ButtonType.button}
-                        variant={ButtonVariant.link}
+                        type={IButtonType.button}
+                        variant={IButtonVariant.link}
                       >
                         {passwordShown
                           ? HIDE_PASSWORD_BUTTON_TEXT
@@ -314,7 +313,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                       onClick={onHelpLinkClick}
                       style={{ margin: '0 0 0 7px' }}
                       title={HELP_LINK_TEXT}
-                      variant={ButtonVariant.link}
+                      variant={IButtonVariant.link}
                     />
                   )}
                 </InputWrapper>

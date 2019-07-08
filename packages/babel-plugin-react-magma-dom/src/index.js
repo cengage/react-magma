@@ -14,7 +14,7 @@ export default function reactMagmaDom({ types: t, template }) {
         if (
           (path.parentPath.container.type === 'JSXMemberExpression' ||
             path.parentPath.container.type === 'MemberExpression') &&
-          path.parentPath.container.object.name === 'Icons'
+          path.parentPath.container.object.name === 'ICONS'
         ) {
           const name = path.parentPath.container.property.name;
           path.parentPath.parentPath.replaceWith(
@@ -22,7 +22,7 @@ export default function reactMagmaDom({ types: t, template }) {
               ? t.JSXIdentifier(name)
               : t.identifier(name)
           );
-          return { name, path: `${importPath}/Icons/type` };
+          return { name, path: `${importPath}/Icon/types` };
         }
         return { name };
       });
@@ -48,16 +48,20 @@ export default function reactMagmaDom({ types: t, template }) {
             let importPathString = 'react-magma-dom/dist/components';
             if (specifierType === 'ImportSpecifier') {
               const specifierImportedName = specifier.imported.name;
-              if (specifierImportedName === 'GlobalStyles') {
+              if (
+                specifierImportedName === 'GlobalStyles' ||
+                specifierImportedName === 'ThemeContext' ||
+                specifierImportedName === 'magma'
+              ) {
                 importPathString = 'react-magma-dom/dist/theme';
               }
 
-              if (specifierImportedName === 'Icons') {
+              if (specifierImportedName === 'ICONS') {
                 const namespace = path.scope.bindings[specifierLocalName];
 
                 return removeNamespaces(
                   namespace,
-                  `${importPathString}/Icons/type`
+                  `${importPathString}/Icon/types`
                 );
               }
 
@@ -66,6 +70,22 @@ export default function reactMagmaDom({ types: t, template }) {
 
                 namespace.referencePaths.map(path => {
                   path.replaceWith(t.JSXIdentifier(specifierImportedName));
+                });
+              }
+
+              if (/.+Icon$/.test(specifierImportedName)) {
+                importPathString += '/Icon/types';
+              }
+
+              if (/^I[A-Z].*/.test(specifierImportedName)) {
+                const importFileName = specifierImportedName
+                  .replace(/([A-Z])/g, ' $1')
+                  .trim()
+                  .split(' ')[1];
+
+                return buildRequire({
+                  IMPORT_NAME: t.identifier(specifierImportedName),
+                  SOURCE: `${importPathString}/${importFileName}`
                 });
               }
 

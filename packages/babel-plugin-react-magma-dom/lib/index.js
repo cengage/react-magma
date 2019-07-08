@@ -25,12 +25,12 @@ function reactMagmaDom(_ref) {
         var type = path.container.type;
         path.parentPath.replaceWith(type === 'JSXMemberExpression' ? t.JSXIdentifier(name) : t.identifier(name));
 
-        if ((path.parentPath.container.type === 'JSXMemberExpression' || path.parentPath.container.type === 'MemberExpression') && path.parentPath.container.object.name === 'Icons') {
+        if ((path.parentPath.container.type === 'JSXMemberExpression' || path.parentPath.container.type === 'MemberExpression') && path.parentPath.container.object.name === 'ICONS') {
           var _name = path.parentPath.container.property.name;
           path.parentPath.parentPath.replaceWith(type === 'JSXMemberExpression' ? t.JSXIdentifier(_name) : t.identifier(_name));
           return {
             name: _name,
-            path: "".concat(importPath, "/Icons/type")
+            path: "".concat(importPath, "/Icon/types")
           };
         }
 
@@ -65,13 +65,13 @@ function reactMagmaDom(_ref) {
             if (specifierType === 'ImportSpecifier') {
               var specifierImportedName = specifier.imported.name;
 
-              if (specifierImportedName === 'GlobalStyles') {
+              if (specifierImportedName === 'GlobalStyles' || specifierImportedName === 'ThemeContext' || specifierImportedName === 'magma') {
                 importPathString = 'react-magma-dom/dist/theme';
               }
 
-              if (specifierImportedName === 'Icons') {
+              if (specifierImportedName === 'ICONS') {
                 var namespace = path.scope.bindings[specifierLocalName];
-                return removeNamespaces(namespace, "".concat(importPathString, "/Icons/type"));
+                return removeNamespaces(namespace, "".concat(importPathString, "/Icon/types"));
               }
 
               if (specifierImportedName !== specifierLocalName) {
@@ -79,6 +79,18 @@ function reactMagmaDom(_ref) {
 
                 _namespace.referencePaths.map(function (path) {
                   path.replaceWith(t.JSXIdentifier(specifierImportedName));
+                });
+              }
+
+              if (/.+Icon$/.test(specifierImportedName)) {
+                importPathString += '/Icon/types';
+              }
+
+              if (/^I[A-Z].*/.test(specifierImportedName)) {
+                var importFileName = specifierImportedName.replace(/([A-Z])/g, ' $1').trim().split(' ')[1];
+                return buildRequire({
+                  IMPORT_NAME: t.identifier(specifierImportedName),
+                  SOURCE: "".concat(importPathString, "/").concat(importFileName)
                 });
               }
 

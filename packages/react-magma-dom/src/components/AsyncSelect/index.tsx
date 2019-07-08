@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SelectCore } from 'react-magma-core';
-import { ThemeContext } from '../../theme/themeContext';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { Omit } from '../utils';
 import {
   Options,

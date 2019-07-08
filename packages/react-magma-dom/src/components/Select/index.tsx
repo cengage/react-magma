@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SelectCore } from 'react-magma-core';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
-import { ThemeContext } from '../../theme/themeContext';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 import ReactSelect, { components } from 'react-select';
 import { SelectWrapper } from './SelectWrapper';

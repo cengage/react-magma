@@ -6,7 +6,7 @@ const combinationExample = `
   import {
     Button,
     Heading,
-    Icons as RenamedIcons,
+    ICONS as RenamedIcons,
     Radio as MyRadio
   } from 'react-magma-dom';
   import * as Magma2 from 'react-magma-dom';
@@ -16,17 +16,17 @@ const combinationExample = `
     render() {
       const icon = <RenamedIcons.DeleteIcon />;
       const MyIcon = RenamedIcons.ArrowIcon;
-      const NestedIcon = Magma2.Icons.ArrowLeftIcon;
+      const NestedIcon = Magma2.ICONS.ArrowLeftIcon;
       return (
         <>
           <Button />
           <Magma.Checkbox />
-          <Magma.Icons.FakeIcon />
+          <Magma.ICONS.FakeIcon />
           <Magma2.Input prop={prop} />
           <Magma2.Blah />
           <RenamedIcons.CheckIcon />
           <MyIcon />
-          <Magma2.Icons.ArrowRightIcon />
+          <Magma2.ICONS.ArrowRightIcon />
 
           <MyRadio />
         </>
@@ -86,13 +86,13 @@ const globalStylesExample = `
 `;
 
 const iconsExample = `
-  import { Icons } from 'react-magma-dom'
+  import { ICONS } from 'react-magma-dom'
 
   export class Example extends React.Component {
     render() {
       return (
         <div>
-          <Icons.CheckIcon />
+          <ICONS.CheckIcon />
         </div>
       );
     }
@@ -104,13 +104,27 @@ const defaultIconsExample = `
 
   export class Example extends React.Component {
     render() {
-      const DeleteIcon = Magma.Icons.DeleteIcon
+      const DeleteIcon = Magma.ICONS.DeleteIcon
       return (
         <div>
-          <Magma.Icons.CheckIcon />
+          <Magma.ICONS.CheckIcon />
           <DeleteIcon />
         </div>
       );
+    }
+  }
+`;
+
+const namedIconsExample = `
+  import { DeleteIcon } from 'react-magma-dom'
+
+  export class Example extends React.Component {
+    render() {
+      return (
+        <div>
+          <DeleteIcon />
+        </div>
+      )
     }
   }
 `;
@@ -123,6 +137,20 @@ const renamedImportExample = `
       return (
         <div>
           <MyButton />
+        </div>
+      );
+    }
+  }
+`;
+
+const interfaceExample = `
+  import { IButtonColor } from 'react-magma-dom'
+
+  export class Example extends React.Component {
+    render() {
+      return (
+        <div>
+          <button color={IButtonColor.yellow} />
         </div>
       );
     }
@@ -193,7 +221,7 @@ it('changes Icons import references to named imports', () => {
   const sourceValue = program.body[2].declarations[0].init.arguments[0].value;
 
   expect(sourceValue).toEqual(
-    'react-magma-dom/dist/components/Icons/type/CheckIcon'
+    'react-magma-dom/dist/components/Icon/types/CheckIcon'
   );
 });
 
@@ -207,10 +235,24 @@ it('changes default import references to Icons to named imports', () => {
   const sourceValue2 = program.body[3].declarations[0].init.arguments[0].value;
 
   expect(sourceValue1).toEqual(
-    'react-magma-dom/dist/components/Icons/type/DeleteIcon'
+    'react-magma-dom/dist/components/Icon/types/DeleteIcon'
   );
   expect(sourceValue2).toEqual(
-    'react-magma-dom/dist/components/Icons/type/CheckIcon'
+    'react-magma-dom/dist/components/Icon/types/CheckIcon'
+  );
+});
+
+it('changes named icon import references to their path', () => {
+  const { ast } = babel.transform(namedIconsExample, {
+    ast: true,
+    plugins: [plugin]
+  });
+
+  const program = ast.program;
+  const sourceValue = program.body[2].declarations[0].init.arguments[0].value;
+
+  expect(sourceValue).toEqual(
+    'react-magma-dom/dist/components/Icon/types/DeleteIcon'
   );
 });
 
@@ -219,6 +261,18 @@ it('changes renamed import references to named imports', () => {
     ast: true,
     plugins: [plugin]
   });
+  const program = ast.program;
+  const sourceValue = program.body[2].declarations[0].init.arguments[0].value;
+
+  expect(sourceValue).toEqual('react-magma-dom/dist/components/Button');
+});
+
+it('changes inteface imports to reference the base component file', () => {
+  const { ast } = babel.transform(interfaceExample, {
+    ast: true,
+    plugins: [plugin]
+  });
+
   const program = ast.program;
   const sourceValue = program.body[2].declarations[0].init.arguments[0].value;
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ThemeContext } from '../../theme/themeContext';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { CheckboxCore } from 'react-magma-core';
 import {
   DisplayInputStyles,

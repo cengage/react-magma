@@ -2,72 +2,9 @@ import * as React from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import isPropValid from '@emotion/is-prop-valid';
-import { ThemeContext } from '../../theme/themeContext';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { darken, lighten, tint } from 'polished';
-
-export enum ButtonVariant {
-  solid = 'solid', //default
-  outline = 'outline',
-  link = 'link'
-}
-
-export enum ButtonColor {
-  primary = 'primary', //default
-  secondary = 'secondary',
-  success = 'success',
-  danger = 'danger',
-  marketing = 'marketing'
-}
-
-export enum ButtonShape {
-  fill = 'fill', //default
-  leftCap = 'leftCap',
-  rightCap = 'rightCap',
-  round = 'round' // default for icon only buttons
-}
-
-export enum ButtonSize {
-  large = 'large',
-  medium = 'medium', //default
-  small = 'small'
-}
-
-export enum ButtonTextTransform {
-  uppercase = 'uppercase', //default
-  none = 'none'
-}
-
-export enum ButtonIconPosition {
-  left = 'left',
-  right = 'right'
-}
-
-export enum ButtonType {
-  button = 'button',
-  submit = 'submit',
-  reset = 'reset'
-}
-
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  ariaExpanded?: boolean;
-  ariaLabel?: string;
-  as?: any;
-  autoFocus?: boolean;
-  block?: boolean;
-  color?: ButtonColor;
-  href?: string;
-  testId?: string;
-  inverse?: boolean;
-  ref?: any;
-  shape?: ButtonShape;
-  size?: ButtonSize;
-  textTransform?: ButtonTextTransform;
-  theme?: any;
-  to?: string;
-  type?: ButtonType;
-  variant?: ButtonVariant;
-}
+import { ButtonProps } from '../Button';
 
 interface StyledButtonProps extends ButtonProps {
   iconOnly?: boolean;
