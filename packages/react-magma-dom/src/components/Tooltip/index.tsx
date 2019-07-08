@@ -3,34 +3,42 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import { ThemeContext } from '../../theme/themeContext';
 
-export enum TooltipPosition {
-  bottom = 'bottom',
+export enum ITooltipPosition {
+  bottom = 'bottom', //default
   left = 'left',
   right = 'right',
   top = 'top'
 }
 
-export interface TooltipProps extends React.HTMLAttributes<HTMLSpanElement> {
-  content: React.ReactNode;
-  position: TooltipPosition;
+export interface ITooltipProps extends React.HTMLAttributes<HTMLSpanElement> {
+  content: React.ReactElement;
+  position?: ITooltipPosition;
+  trigger: React.ReactElement;
 }
 
 const ToolTipContainer = styled.div`
   display: inline;
   position: relative;
+
+  > :hover + [role='tooltip'],
+  > :focus + [role='tooltip'] {
+    display: block;
+  }
 `;
 
-const StyledTooltip = styled.span<{ position: TooltipPosition }>`
+const StyledTooltip = styled.span<{ position: ITooltipPosition }>`
   background: ${props => props.theme.colors.neutral02};
   border-radius: 3px;
   color: ${props => props.theme.colors.neutral08};
+  display: none;
   font-size: 12px;
   font-weight: 600;
   max-width: 200px;
-  min-width: 100%;
+  min-width: 100px;
   padding: 3px 5px;
   position: absolute;
   text-align: center;
+  z-index: 999;
 
   &:before,
   &:after {
@@ -154,17 +162,23 @@ const StyledTooltip = styled.span<{ position: TooltipPosition }>`
     `}
 `;
 
-export const Tooltip: React.FunctionComponent<TooltipProps> = ({
-  children,
+export const Tooltip: React.FunctionComponent<ITooltipProps> = ({
   content,
-  position
-}: TooltipProps) => {
+  id,
+  position,
+  trigger
+}: ITooltipProps) => {
   return (
     <ToolTipContainer>
-      {children}
+      {React.cloneElement(trigger, { 'aria-labeledby': id })}
       <ThemeContext.Consumer>
         {theme => (
-          <StyledTooltip position={position} theme={theme}>
+          <StyledTooltip
+            id={id}
+            position={position ? position : ITooltipPosition.bottom}
+            role="tooltip"
+            theme={theme}
+          >
             {content}
           </StyledTooltip>
         )}
