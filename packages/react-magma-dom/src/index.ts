@@ -27,6 +27,8 @@ export { Toast } from './components/Toast';
 export { Toggle } from './components/Toggle';
 export { Tooltip, ITooltipPosition } from './components/Tooltip';
 export { VisuallyHidden } from './components/VisuallyHidden';
+export { DatePicker } from './components/DatePicker';
+export { Modal } from './components/Modal';
 
 export { amgam } from './theme/amgam';
 export { amgamDark } from './theme/amgamDark';

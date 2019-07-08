@@ -1,6 +1,6 @@
 {
   "name": "react-magma-core",
-  "version": "0.1.0-beta.16",
+  "version": "0.1.0-beta.22",
   "description": "",
   "main": "dist/bundle.js",
   "module": "dist/esBundle.js",
@@ -91,6 +91,7 @@
     ]
   },
   "dependencies": {
+    "date-fns": "^1.30.1",
     "uuid": "^3.3.2"
   }
 }

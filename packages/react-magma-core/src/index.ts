@@ -4,3 +4,6 @@ export { RadioCore } from './components/Radio/Radio';
 export { SelectCore } from './components/Select/Select';
 export { AlertCore } from './components/Alert/Alert';
 export { ToastCore } from './components/Toast/Toast';
+export { DatePickerCore } from './components/DatePicker/DatePicker';
+export { CalendarDayCore } from './components/DatePicker/CalendarDay';
+export { ModalCore } from './components/Modal/Modal';

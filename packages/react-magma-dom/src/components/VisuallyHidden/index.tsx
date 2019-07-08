@@ -10,5 +10,8 @@ const VisuallyHiddenDiv = styled.div`
 `;
 
 export const VisuallyHidden: React.FunctionComponent<VisuallyHiddenProps> = ({
-  children
-}: VisuallyHiddenProps) => <VisuallyHiddenDiv>{children}</VisuallyHiddenDiv>;
+  children,
+  ...other
+}: VisuallyHiddenProps) => (
+  <VisuallyHiddenDiv {...other}>{children}</VisuallyHiddenDiv>
+);
