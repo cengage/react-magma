@@ -96,6 +96,33 @@ describe('Tooltip', () => {
     expect(tooltip).toHaveStyleRule('display', 'none');
   });
 
+  it('should hide the tooltip when the escape key is pressed', () => {
+    const { getByText } = render(
+      <Tooltip content={CONTENT_TEXT} trigger={TRIGGER_ELEMENT} />
+    );
+    const trigger = getByText('Test trigger');
+    const tooltip = getByText('Test Content');
+    expect(tooltip).toHaveStyleRule('display', 'none');
+
+    fireEvent.focus(trigger);
+
+    expect(tooltip).toHaveStyleRule('display', 'block');
+
+    fireEvent.keyDown(trigger, {
+      key: 'ArrowDown',
+      code: 40
+    });
+
+    expect(tooltip).toHaveStyleRule('display', 'block');
+
+    fireEvent.keyDown(trigger, {
+      key: 'Escape',
+      keyCode: 27
+    });
+
+    expect(tooltip).toHaveStyleRule('display', 'none');
+  });
+
   it('Does not violate accessibility standards', () => {
     const { container } = render(
       <Tooltip content={CONTENT_TEXT} trigger={TRIGGER_ELEMENT} />

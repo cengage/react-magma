@@ -20,10 +20,10 @@ The `Tooltip` component takes a `position` property, that accepts the following 
 
 ```.jsx
     <>
-        <Tooltip position='bottom' id="bottomTooltip" content="What is this?" trigger={<Button icon={<QuestionCircleIcon />} variant="link" />} />
-        <Tooltip position='left' id="leftTooltip" content="What is this?" trigger={<Button icon={<QuestionCircleIcon />} variant="link" />} />
-        <Tooltip position='right' id="rightTooltip" content="What is this?" trigger={<Button icon={<QuestionCircleIcon />} variant="link" />} />
-        <Tooltip position='top'  id="topTooltip" content="What is this?" trigger={<Button icon={<QuestionCircleIcon />} variant="link" />} />
+        <Tooltip position='bottom' content="Tooltip bottom" trigger={<Button ariaLabel="Question Icon" icon={<QuestionCircleIcon />} variant="link" />} />
+        <Tooltip position='left' content="Tooltip left" trigger={<Button icon={<QuestionCircleIcon />} variant="link" />} />
+        <Tooltip position='right' content="Tooltip right" trigger={<Button icon={<QuestionCircleIcon />} variant="link" />} />
+        <Tooltip position='top' content="Tooltip top" trigger={<Button icon={<QuestionCircleIcon />} variant="link" />} />
     </>
 ```
 

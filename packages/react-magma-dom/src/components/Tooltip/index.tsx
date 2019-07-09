@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import { ThemeContext } from '../../theme/themeContext';
+import { generateId } from '../utils';
 
 export enum ITooltipPosition {
   bottom = 'bottom', //default
@@ -17,6 +18,7 @@ export interface ITooltipProps extends React.HTMLAttributes<HTMLSpanElement> {
 }
 
 export interface ITooltipState {
+  id?: string;
   isVisible?: boolean;
 }
 
@@ -169,6 +171,7 @@ export class Tooltip extends React.Component<ITooltipProps, ITooltipState> {
     super(props);
 
     this.state = {
+      id: generateId(this.props.id),
       isVisible: false
     };
   }
@@ -188,12 +191,12 @@ export class Tooltip extends React.Component<ITooltipProps, ITooltipState> {
   };
 
   render() {
-    const { trigger, id, position, content } = this.props;
+    const { trigger, position, content } = this.props;
 
     return (
       <ToolTipContainer>
         {React.cloneElement(trigger, {
-          'aria-labeledby': id,
+          'aria-describedby': this.state.id,
           onKeyDown: e => {
             this.handleKeyDown(e);
           },
@@ -205,7 +208,7 @@ export class Tooltip extends React.Component<ITooltipProps, ITooltipState> {
         <ThemeContext.Consumer>
           {theme => (
             <StyledTooltip
-              id={id}
+              id={this.state.id}
               position={position ? position : ITooltipPosition.bottom}
               role="tooltip"
               visible={this.state.isVisible}
