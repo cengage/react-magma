@@ -8,7 +8,7 @@ const CONTENT_TEXT = 'Test Content';
 const TRIGGER_ELEMENT = <button>Test trigger</button>;
 
 describe('Tooltip', () => {
-  it('should render the tooltip component, positioned bottom by default', () => {
+  it('should render the tooltip component, positioned top by default', () => {
     const { container, getByText } = render(
       <Tooltip content={CONTENT_TEXT} trigger={TRIGGER_ELEMENT} />
     );
@@ -22,7 +22,7 @@ describe('Tooltip', () => {
 
     expect(tooltip).toBeInTheDocument();
     expect(tooltip).toHaveStyleRule('position', 'absolute');
-    expect(tooltip).toHaveStyleRule('top', '100%');
+    expect(tooltip).toHaveStyleRule('bottom', '100%');
   });
 
   it('should render the tooltip component with the correct styles when positioned left', () => {
@@ -51,17 +51,17 @@ describe('Tooltip', () => {
     expect(tooltip).toHaveStyleRule('left', '100%');
   });
 
-  it('should render the tooltip component with the correct styles when positioned top', () => {
+  it('should render the tooltip component with the correct styles when positioned bottom', () => {
     const { getByText } = render(
       <Tooltip
         content={CONTENT_TEXT}
-        position="top"
+        position="bottom"
         trigger={TRIGGER_ELEMENT}
       />
     );
     const tooltip = getByText('Test Content');
 
-    expect(tooltip).toHaveStyleRule('bottom', '100%');
+    expect(tooltip).toHaveStyleRule('top', '100%');
   });
 
   it('should show the tooltip on focus and hide it on blur', () => {

@@ -6,17 +6,17 @@ title: 'Tooltips'
 
 ## Basic usage
 
-The `content` prop is a React Node, and determines the content inside of the tooltip bubble.
+The `content` prop can take a string or a react node, and determines the content inside of the tooltip bubble.
 
-The `trigger` prop is a React Node, and determines the content that tiggers the tooltip on hover or on focus. Note: in order to trigger the content on focus, the `trigger` should be a focusable element.
-
+The `trigger` prop must take a react element (not just a string), and determines the content that tiggers the tooltip on hover or on focus. Note: in order to trigger the content on focus (a requirement for accessibility), the `trigger` should be a focusable element.
 
 ```.jsx
     <Tooltip content="What is this?" id="basicTooltip" trigger={<Button icon={<QuestionCircleIcon />} variant="link" />} />
 ```
 
 ## position
-The `Tooltip` component takes a `position` property, that accepts the following values: bottom, left, right, top. Bottom is the default value.
+
+The `Tooltip` component takes a `position` property, that accepts the following values: bottom, left, right, top. Top is the default value.
 
 ```.jsx
     <>
@@ -27,12 +27,10 @@ The `Tooltip` component takes a `position` property, that accepts the following 
     </>
 ```
 
-
-
 ## Tooltip Props
 
-| Prop     | Type                                                     | Default  | Required |
-| -------- | -------------------------------------------------------- | -------- | :------: |
-| content  | node                                                     |          | &#10003; |
-| position | enum: 'bottom' &#124; 'left' &#124; 'right' &#124; 'top' | 'bottom' |          |
-| trigger  | node                                                     |          | &#10003; |
+| Prop     | Type                                                     | Default | Required |
+| -------- | -------------------------------------------------------- | ------- | :------: |
+| content  | node                                                     |         | &#10003; |
+| position | enum: 'bottom' &#124; 'left' &#124; 'right' &#124; 'top' | 'top'   |          |
+| trigger  | element                                                  |         | &#10003; |

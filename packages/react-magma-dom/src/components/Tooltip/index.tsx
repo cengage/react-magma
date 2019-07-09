@@ -12,7 +12,7 @@ export enum ITooltipPosition {
 }
 
 export interface ITooltipProps extends React.HTMLAttributes<HTMLSpanElement> {
-  content: React.ReactElement;
+  content: React.ReactNode;
   position?: ITooltipPosition;
   trigger: React.ReactElement;
 }
@@ -209,7 +209,7 @@ export class Tooltip extends React.Component<ITooltipProps, ITooltipState> {
           {theme => (
             <StyledTooltip
               id={this.state.id}
-              position={position ? position : ITooltipPosition.bottom}
+              position={position ? position : ITooltipPosition.top}
               role="tooltip"
               visible={this.state.isVisible}
               theme={theme}

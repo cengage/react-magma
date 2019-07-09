@@ -236,8 +236,7 @@ describe('Input', () => {
   it('should render the a help link button', () => {
     const { container } = renderInput({ onHelpLinkClick: () => {} });
 
-    expect(container.querySelector('button')).toHaveAttribute(
-      'aria-label',
+    expect(container.querySelector('span[role="tooltip"]')).toHaveTextContent(
       "What's this?"
     );
   });
@@ -248,8 +247,7 @@ describe('Input', () => {
       helpLinkText: 'Custom text'
     });
 
-    expect(container.querySelector('button')).toHaveAttribute(
-      'aria-label',
+    expect(container.querySelector('span[role="tooltip"]')).toHaveTextContent(
       'Custom text'
     );
   });
