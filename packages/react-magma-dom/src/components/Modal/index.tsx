@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom';
 import styled from '@emotion/styled';
 import { Global, css } from '@emotion/core';
 import { ModalCore } from 'react-magma-core';
-import { ThemeContext } from '../../theme/themeContext';
-import { Button } from '../Button';
-import { ButtonColor, ButtonVariant } from '../StyledButton';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { Button, IButtonColor, IButtonVariant } from '../Button';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 
 export enum ModalSize {
@@ -189,7 +188,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
                             <CloseBtn>
                               <Button
                                 ariaLabel={closeLabel ? closeLabel : 'Close'}
-                                color={ButtonColor.secondary}
+                                color={IButtonColor.secondary}
                                 icon={CloseIcon}
                                 onClick={onClose}
                                 style={{
@@ -198,7 +197,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
                                   outlineOffset: 0
                                 }}
                                 testId="modal-closebtn"
-                                variant={ButtonVariant.link}
+                                variant={IButtonVariant.link}
                               />
                             </CloseBtn>
                           )}
