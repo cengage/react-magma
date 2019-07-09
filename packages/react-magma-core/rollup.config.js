@@ -1,6 +1,7 @@
 import resolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
-import { terser } from 'rollup-plugin-terser';
+// import { terser } from 'rollup-plugin-terser';
+import commonJS from 'rollup-plugin-commonjs';
 import pkg from './package.json';
 
 const base = {
@@ -9,6 +10,9 @@ const base = {
   plugins: [
     resolve({
       extensions: ['.ts', '.tsx', '.js', '.json']
+    }),
+    commonJS({
+      include: 'node_modules/**'
     }),
     babel({
       exclude: 'node_modules/**',
