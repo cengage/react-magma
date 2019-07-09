@@ -10,7 +10,11 @@ const TRIGGER_ELEMENT = <button>Test trigger</button>;
 describe('Tooltip', () => {
   it('should render the tooltip component, positioned top by default', () => {
     const { container, getByText } = render(
-      <Tooltip content={CONTENT_TEXT} trigger={TRIGGER_ELEMENT} />
+      <Tooltip
+        content={CONTENT_TEXT}
+        id="testTooltipId"
+        trigger={TRIGGER_ELEMENT}
+      />
     );
     const tooltip = getByText('Test Content');
     const tooltipTrigger = container.firstChild;
@@ -23,6 +27,22 @@ describe('Tooltip', () => {
     expect(tooltip).toBeInTheDocument();
     expect(tooltip).toHaveStyleRule('position', 'absolute');
     expect(tooltip).toHaveStyleRule('bottom', '100%');
+    expect(tooltip).toHaveStyleRule('background', '#3F3F3F');
+    expect(tooltip).toHaveStyleRule('color', '#FFFFFF');
+    expect(tooltip).toHaveStyleRule('border-bottom-color', '#3F3F3F', {
+      target: ':before'
+    });
+    expect(tooltip).toHaveStyleRule('border-top-color', '#3F3F3F', {
+      target: ':before'
+    });
+    expect(tooltip).toHaveStyleRule('border-left-color', 'transparent', {
+      target: ':before'
+    });
+    expect(tooltip).toHaveStyleRule('border-right-color', 'transparent', {
+      target: ':before'
+    });
+
+    expect(tooltip).toMatchSnapshot();
   });
 
   it('should render the tooltip component with the correct styles when positioned left', () => {
@@ -36,6 +56,18 @@ describe('Tooltip', () => {
     const tooltip = getByText('Test Content');
 
     expect(tooltip).toHaveStyleRule('right', '100%');
+    expect(tooltip).toHaveStyleRule('border-bottom-color', 'transparent', {
+      target: ':before'
+    });
+    expect(tooltip).toHaveStyleRule('border-top-color', 'transparent', {
+      target: ':before'
+    });
+    expect(tooltip).toHaveStyleRule('border-left-color', '#3F3F3F', {
+      target: ':before'
+    });
+    expect(tooltip).toHaveStyleRule('border-right-color', '#3F3F3F', {
+      target: ':before'
+    });
   });
 
   it('should render the tooltip component with the correct styles when positioned right', () => {
@@ -121,6 +153,42 @@ describe('Tooltip', () => {
     });
 
     expect(tooltip).toHaveStyleRule('display', 'none');
+  });
+
+  it('should render the tooltip component with the correct styles for the inverse prop', () => {
+    const { getByText } = render(
+      <Tooltip content={CONTENT_TEXT} inverse trigger={TRIGGER_ELEMENT} />
+    );
+    const tooltip = getByText('Test Content');
+
+    expect(tooltip).toHaveStyleRule('background', '#FFFFFF');
+    expect(tooltip).toHaveStyleRule('color', '#3F3F3F');
+
+    expect(tooltip).toHaveStyleRule('border-bottom-color', '#FFFFFF', {
+      target: ':before'
+    });
+    expect(tooltip).toHaveStyleRule('border-top-color', '#FFFFFF', {
+      target: ':before'
+    });
+  });
+
+  it('should render the tooltip component with the correct styles for the inverse prop, positioned left or right', () => {
+    const { getByText } = render(
+      <Tooltip
+        content={CONTENT_TEXT}
+        inverse
+        position="left"
+        trigger={TRIGGER_ELEMENT}
+      />
+    );
+    const tooltip = getByText('Test Content');
+
+    expect(tooltip).toHaveStyleRule('border-left-color', '#FFFFFF', {
+      target: ':before'
+    });
+    expect(tooltip).toHaveStyleRule('border-right-color', '#FFFFFF', {
+      target: ':before'
+    });
   });
 
   it('Does not violate accessibility standards', () => {

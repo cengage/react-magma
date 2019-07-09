@@ -13,6 +13,7 @@ export enum ITooltipPosition {
 
 export interface ITooltipProps extends React.HTMLAttributes<HTMLSpanElement> {
   content: React.ReactNode;
+  inverse?: boolean;
   position?: ITooltipPosition;
   trigger: React.ReactElement;
 }
@@ -29,11 +30,18 @@ const ToolTipContainer = styled.div`
 
 const StyledTooltip = styled.span<{
   position: ITooltipPosition;
+  inverse: boolean;
   visible?: boolean;
 }>`
-  background: ${props => props.theme.colors.neutral02};
+  background: ${props =>
+    props.inverse
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral02};
   border-radius: 3px;
-  color: ${props => props.theme.colors.neutral08};
+  color: ${props =>
+    props.inverse
+      ? props.theme.colors.neutral02
+      : props.theme.colors.neutral08};
   display: ${props => (props.visible ? 'block' : 'none')};
   font-size: 12px;
   font-weight: 600;
@@ -48,19 +56,27 @@ const StyledTooltip = styled.span<{
   &:after {
     border-left-color: ${props =>
       props.position === 'left' || props.position === 'right'
-        ? props.theme.colors.neutral02
+        ? props.inverse
+          ? props.theme.colors.neutral08
+          : props.theme.colors.neutral02
         : 'transparent'};
     border-right-color: ${props =>
       props.position === 'left' || props.position === 'right'
-        ? props.theme.colors.neutral02
+        ? props.inverse
+          ? props.theme.colors.neutral08
+          : props.theme.colors.neutral02
         : 'transparent'};
     border-top-color: ${props =>
       props.position === 'left' || props.position === 'right'
         ? 'transparent'
+        : props.inverse
+        ? props.theme.colors.neutral08
         : props.theme.colors.neutral02};
     border-bottom-color: ${props =>
       props.position === 'left' || props.position === 'right'
         ? 'transparent'
+        : props.inverse
+        ? props.theme.colors.neutral08
         : props.theme.colors.neutral02};
     border-style: solid;
     content: '';
@@ -191,7 +207,7 @@ export class Tooltip extends React.Component<ITooltipProps, ITooltipState> {
   };
 
   render() {
-    const { trigger, position, content } = this.props;
+    const { content, inverse, position, trigger } = this.props;
 
     return (
       <ToolTipContainer>
@@ -209,6 +225,7 @@ export class Tooltip extends React.Component<ITooltipProps, ITooltipState> {
           {theme => (
             <StyledTooltip
               id={this.state.id}
+              inverse={inverse}
               position={position ? position : ITooltipPosition.top}
               role="tooltip"
               visible={this.state.isVisible}

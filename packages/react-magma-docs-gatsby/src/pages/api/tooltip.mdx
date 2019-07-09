@@ -14,7 +14,7 @@ The `trigger` prop must take a react element (not just a string), and determines
     <Tooltip content="What is this?" id="basicTooltip" trigger={<Button icon={<QuestionCircleIcon />} variant="link" />} />
 ```
 
-## position
+## Position
 
 The `Tooltip` component takes a `position` property, that accepts the following values: bottom, left, right, top. Top is the default value.
 
@@ -27,10 +27,21 @@ The `Tooltip` component takes a `position` property, that accepts the following 
     </>
 ```
 
+## Inverse
+
+The `Tooltip` component takes an optional `inverse` prop, for when the tooltip is to appear on a dark background.
+
+```.jsx
+    <div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
+        <Tooltip inverse position="right" content="Inverse tooltip" trigger={<Button ariaLabel="Question Icon" icon={<QuestionCircleIcon />} inverse variant="link" />} />
+    </div>
+```
+
 ## Tooltip Props
 
 | Prop     | Type                                                     | Default | Required |
 | -------- | -------------------------------------------------------- | ------- | :------: |
 | content  | node                                                     |         | &#10003; |
+| inverse  | boolean                                                  | false   |          |
 | position | enum: 'bottom' &#124; 'left' &#124; 'right' &#124; 'top' | 'top'   |          |
 | trigger  | element                                                  |         | &#10003; |
