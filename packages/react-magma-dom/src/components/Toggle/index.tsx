@@ -6,7 +6,7 @@ import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/themeContext';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 enum ToggleTextPostition {
   left = 'left',

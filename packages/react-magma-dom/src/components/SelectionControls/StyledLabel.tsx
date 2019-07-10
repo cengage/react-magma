@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/themeContext';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface StyledLabelProps {
   children?: any;

@@ -7,22 +7,22 @@ export default function reactMagmaDom({ types: t, template }) {
         const name = path.container.property.name;
         const type = path.container.type;
         path.parentPath.replaceWith(
-          type === "JSXMemberExpression"
+          type === 'JSXMemberExpression'
             ? t.JSXIdentifier(name)
             : t.identifier(name)
         );
         if (
-          (path.parentPath.container.type === "JSXMemberExpression" ||
-            path.parentPath.container.type === "MemberExpression") &&
-          path.parentPath.container.object.name === "Icons"
+          (path.parentPath.container.type === 'JSXMemberExpression' ||
+            path.parentPath.container.type === 'MemberExpression') &&
+          path.parentPath.container.object.name === 'ICONS'
         ) {
           const name = path.parentPath.container.property.name;
           path.parentPath.parentPath.replaceWith(
-            type === "JSXMemberExpression"
+            type === 'JSXMemberExpression'
               ? t.JSXIdentifier(name)
               : t.identifier(name)
           );
-          return { name, path: `${importPath}/Icons/type` };
+          return { name, path: `${importPath}/Icon/types` };
         }
         return { name };
       });
@@ -40,19 +40,28 @@ export default function reactMagmaDom({ types: t, template }) {
   return {
     visitor: {
       ImportDeclaration(path) {
-        if (path.node.source.value === "react-magma-dom") {
+        if (path.node.source.value === 'react-magma-dom') {
           const specifiers = path.node.specifiers;
           const names = specifiers.map(specifier => {
             const specifierLocalName = specifier.local.name;
             const specifierType = specifier.type;
-            if (specifierType === "ImportSpecifier") {
+            let importPathString = 'react-magma-dom/dist/components';
+            if (specifierType === 'ImportSpecifier') {
               const specifierImportedName = specifier.imported.name;
-              if (specifierImportedName === "Icons") {
+              if (
+                specifierImportedName === 'GlobalStyles' ||
+                specifierImportedName === 'ThemeContext' ||
+                specifierImportedName === 'magma'
+              ) {
+                importPathString = 'react-magma-dom/dist/theme';
+              }
+
+              if (specifierImportedName === 'ICONS') {
                 const namespace = path.scope.bindings[specifierLocalName];
 
                 return removeNamespaces(
                   namespace,
-                  "react-magma-dom/dist/components/Icons/type"
+                  `${importPathString}/Icon/types`
                 );
               }
 
@@ -64,20 +73,36 @@ export default function reactMagmaDom({ types: t, template }) {
                 });
               }
 
+              if (/.+Icon$/.test(specifierImportedName)) {
+                importPathString += '/Icon/types';
+              }
+
+              if (
+                /^I[A-Z].*/.test(specifierImportedName) ||
+                /^Enum[A-Z].*/.test(specifierImportedName)
+              ) {
+                const importFileName = specifierImportedName
+                  .replace(/([A-Z])/g, ' $1')
+                  .trim()
+                  .split(' ')[1];
+
+                return buildRequire({
+                  IMPORT_NAME: t.identifier(specifierImportedName),
+                  SOURCE: `${importPathString}/${importFileName}`
+                });
+              }
+
               return buildRequire({
                 IMPORT_NAME: t.identifier(specifierImportedName),
-                SOURCE: `react-magma-dom/dist/components/${specifierImportedName}`
+                SOURCE: `${importPathString}/${specifierImportedName}`
               });
             } else if (
-              specifierType === "ImportNamespaceSpecifier" ||
-              specifierType === "ImportDefaultSpecifier"
+              specifierType === 'ImportNamespaceSpecifier' ||
+              specifierType === 'ImportDefaultSpecifier'
             ) {
               const namespace = path.scope.bindings[specifierLocalName];
 
-              return removeNamespaces(
-                namespace,
-                "react-magma-dom/dist/components"
-              );
+              return removeNamespaces(namespace, importPathString);
             }
           });
 

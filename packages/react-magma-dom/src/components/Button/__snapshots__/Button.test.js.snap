@@ -82,7 +82,7 @@ exports[`Button Icon Only Button Snapshot should render with large size 1`] = `
 <div>
   <button
     aria-label="Check Icon"
-    class="css-lz2qyp-StyledButtonComponent-StyledButtonComponent e183qit0"
+    class="css-17tc4b7-StyledButtonComponent-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="round"
@@ -112,7 +112,7 @@ exports[`Button Icon Only Button Snapshot should render with small size 1`] = `
 <div>
   <button
     aria-label="Check Icon"
-    class="css-ed1xu6-StyledButtonComponent-StyledButtonComponent e183qit0"
+    class="css-1otr7kt-StyledButtonComponent-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="round"
@@ -142,7 +142,7 @@ exports[`Button Icon Only Button Snapshot should render with updated color 1`] =
 <div>
   <button
     aria-label="Check Icon"
-    class="css-n3xymg-StyledButtonComponent-StyledButtonComponent e183qit0"
+    class="css-1hxs3ms-StyledButtonComponent-StyledButtonComponent e183qit0"
     color="secondary"
     id="testId"
     shape="round"
@@ -172,7 +172,7 @@ exports[`Button Icon Only Button Snapshot should render with updated shape 1`] =
 <div>
   <button
     aria-label="Check Icon"
-    class="css-u63ng1-StyledButtonComponent-StyledButtonComponent e183qit0"
+    class="css-14xp49j-StyledButtonComponent-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="fill"
@@ -202,7 +202,7 @@ exports[`Button Icon Only Button Snapshot should render with updated variant 1`]
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1o40ar7-StyledButtonComponent-StyledButtonComponent e183qit0"
+    class="css-1udbjf6-StyledButtonComponent-StyledButtonComponent e183qit0"
     color="primary"
     id="testId"
     shape="round"
