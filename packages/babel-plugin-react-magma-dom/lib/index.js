@@ -86,7 +86,7 @@ function reactMagmaDom(_ref) {
                 importPathString += '/Icon/types';
               }
 
-              if (/^I[A-Z].*/.test(specifierImportedName)) {
+              if (/^I[A-Z].*/.test(specifierImportedName) || /^Enum[A-Z].*/.test(specifierImportedName)) {
                 var importFileName = specifierImportedName.replace(/([A-Z])/g, ' $1').trim().split(' ')[1];
                 return buildRequire({
                   IMPORT_NAME: t.identifier(specifierImportedName),
