@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { Modal, ModalSize } from '../Modal';
+import { Modal, EnumModalSize } from '../Modal';
 
 interface HelperInformationProps {
   open?: boolean;
@@ -36,7 +36,7 @@ export const HelperInformation: React.FunctionComponent<
     header="Keyboard Shortcuts"
     onClose={onClose}
     open={open}
-    size={ModalSize.small}
+    size={EnumModalSize.small}
   >
     <List id="DayPickerKeyboardShortcuts_description">
       <Item>

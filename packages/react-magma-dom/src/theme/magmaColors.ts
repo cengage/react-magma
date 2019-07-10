@@ -1,4 +1,4 @@
-export enum MagmaColors {
+export enum EnumMagmaColors {
   primary = 'primary',
   secondary = 'secondary',
   success = 'success',

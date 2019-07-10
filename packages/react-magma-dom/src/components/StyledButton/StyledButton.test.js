@@ -2,11 +2,11 @@ import React from 'react';
 import { axe } from 'jest-axe';
 import { StyledButton } from '.';
 import {
-  IButtonSize,
-  IButtonShape,
-  IButtonColor,
-  IButtonTextTransform,
-  IButtonVariant
+  EnumButtonSize,
+  EnumButtonShape,
+  EnumButtonColor,
+  EnumButtonTextTransform,
+  EnumButtonVariant
 } from '../Button';
 import { render, fireEvent } from 'react-testing-library';
 import { magma } from '../../theme/magma';
@@ -16,12 +16,12 @@ const TEXT = 'Test Text';
 
 const BASE_BUTTON_PROPS = {
   onClick: jest.fn(),
-  color: IButtonColor.primary,
-  shape: IButtonShape.fill,
-  size: IButtonSize.medium,
-  textTransform: IButtonTextTransform.uppercase,
+  color: EnumButtonColor.primary,
+  shape: EnumButtonShape.fill,
+  size: EnumButtonSize.medium,
+  textTransform: EnumButtonTextTransform.uppercase,
   theme: magma,
-  variant: IButtonVariant.solid
+  variant: EnumButtonVariant.solid
 };
 
 const renderButton = (myProps = {}) => {
@@ -327,7 +327,7 @@ describe('Styled Button', () => {
     it('icon small', () => {
       const { getByText } = renderButton({
         iconOnly: true,
-        size: IButtonSize.small
+        size: EnumButtonSize.small
       });
       const button = getByText(TEXT);
 
@@ -339,7 +339,7 @@ describe('Styled Button', () => {
     it('icon medium', () => {
       const { getByText } = renderButton({
         iconOnly: true,
-        size: IButtonSize.medium
+        size: EnumButtonSize.medium
       });
       const button = getByText(TEXT);
 
@@ -351,7 +351,7 @@ describe('Styled Button', () => {
     it('icon large', () => {
       const { getByText } = renderButton({
         iconOnly: true,
-        size: IButtonSize.large
+        size: EnumButtonSize.large
       });
       const button = getByText(TEXT);
 

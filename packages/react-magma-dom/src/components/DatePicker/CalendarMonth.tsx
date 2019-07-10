@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, IButtonVariant } from '../Button';
+import { Button, EnumButtonVariant } from '../Button';
 import { QuestionCircleOIcon } from '../Icon/types/QuestionCircleOIcon';
 import { CalendarContext } from './CalendarContext';
 import { CalendarHeader } from './CalendarHeader';
@@ -116,7 +116,7 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
                         icon={<QuestionCircleOIcon />}
                         onClick={context.openHelperInformation}
                         onFocus={context.onHelperFocus}
-                        variant={IButtonVariant.link}
+                        variant={EnumButtonVariant.link}
                       />
                       <HelperInformation
                         open={context.showHelperInformation}

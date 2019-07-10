@@ -1,22 +1,22 @@
-export { Alert, IAlertVariant } from './components/Alert';
+export { Alert, EnumAlertVariant } from './components/Alert';
 export { Announce } from './components/Announce';
 export {
   Button,
-  IButtonColor,
-  IButtonShape,
-  IButtonSize,
-  IButtonVariant,
-  IButtonTextTransform,
-  IButtonType,
-  IButtonIconPosition
+  EnumButtonColor,
+  EnumButtonShape,
+  EnumButtonSize,
+  EnumButtonVariant,
+  EnumButtonTextTransform,
+  EnumButtonType,
+  EnumButtonIconPosition
 } from './components/Button';
 export { Checkbox } from './components/Checkbox';
 export { Heading } from './components/Heading';
 export {
   Input,
-  IInputSize,
-  IInputType,
-  IInputIconPosition
+  EnumInputSize,
+  EnumInputType,
+  EnumInputIconPosition
 } from './components/Input';
 export { Label } from './components/Label';
 export { LinkButton } from './components/LinkButton';

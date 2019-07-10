@@ -77,7 +77,10 @@ export default function reactMagmaDom({ types: t, template }) {
                 importPathString += '/Icon/types';
               }
 
-              if (/^I[A-Z].*/.test(specifierImportedName)) {
+              if (
+                /^I[A-Z].*/.test(specifierImportedName) ||
+                /^Enum[A-Z].*/.test(specifierImportedName)
+              ) {
                 const importFileName = specifierImportedName
                   .replace(/([A-Z])/g, ' $1')
                   .trim()

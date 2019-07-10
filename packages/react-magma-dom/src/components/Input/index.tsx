@@ -5,24 +5,24 @@ import { IconProps } from '../Icon/utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 import { Announce } from '../Announce';
-import { Button, IButtonVariant, IButtonType } from '../Button';
+import { Button, EnumButtonVariant, EnumButtonType } from '../Button';
 import { InputMessage } from './InputMessage';
 import { Label } from '../Label';
 import { QuestionCircleIcon } from '../Icon/types/QuestionCircleIcon';
 import { VisuallyHidden } from '../VisuallyHidden';
 
-export enum IInputIconPosition {
+export enum EnumInputIconPosition {
   left = 'left',
   right = 'right'
 }
 
-export enum IInputSize {
+export enum EnumInputSize {
   large = 'large',
   medium = 'medium', //default
   small = 'small'
 }
 
-export enum IInputType {
+export enum EnumInputType {
   text = 'text',
   password = 'password',
   number = 'number'
@@ -40,8 +40,8 @@ export interface InputProps
   hidePasswordButtonText?: string;
   hidePasswordMaskButton?: boolean;
   icon?: React.ReactElement<IconProps>;
-  iconPosition?: IInputIconPosition;
-  inputSize?: IInputSize;
+  iconPosition?: EnumInputIconPosition;
+  inputSize?: EnumInputSize;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
   labelStyle?: React.CSSProperties;
@@ -54,11 +54,11 @@ export interface InputProps
   showPasswordButtonAriaLabel?: string;
   showPasswordButtonText?: string;
   testId?: string;
-  type?: IInputType;
+  type?: EnumInputType;
 }
 
 interface IconWrapperProps {
-  iconPosition?: IInputIconPosition;
+  iconPosition?: EnumInputIconPosition;
 }
 
 const Container = styled.div`
@@ -246,7 +246,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                     data-testid={testId}
                     errorMessage={errorMessage}
                     iconPosition={iconPosition}
-                    inputSize={inputSize ? inputSize : IInputSize.medium}
+                    inputSize={inputSize ? inputSize : EnumInputSize.medium}
                     labelText={labelText}
                     multiline={multiline}
                     ref={ref}
@@ -254,10 +254,10 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                     theme={theme}
                     type={
                       type
-                        ? type === IInputType.password && passwordShown
-                          ? IInputType.text
+                        ? type === EnumInputType.password && passwordShown
+                          ? EnumInputType.text
                           : type
-                        : IInputType.text
+                        : EnumInputType.text
                     }
                     value={value}
                     onBlur={onBlur}
@@ -273,7 +273,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                       )}
                     </IconWrapper>
                   )}
-                  {type === IInputType.password && !hidePasswordMaskButton && (
+                  {type === EnumInputType.password && !hidePasswordMaskButton && (
                     <PasswordMaskWrapper>
                       <Button
                         ariaLabel={
@@ -289,8 +289,8 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                           left: '7px',
                           borderRadius: '3px'
                         }}
-                        type={IButtonType.button}
-                        variant={IButtonVariant.link}
+                        type={EnumButtonType.button}
+                        variant={EnumButtonVariant.link}
                       >
                         {passwordShown
                           ? HIDE_PASSWORD_BUTTON_TEXT
@@ -313,7 +313,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                       onClick={onHelpLinkClick}
                       style={{ margin: '0 0 0 7px' }}
                       title={HELP_LINK_TEXT}
-                      variant={IButtonVariant.link}
+                      variant={EnumButtonVariant.link}
                     />
                   )}
                 </InputWrapper>

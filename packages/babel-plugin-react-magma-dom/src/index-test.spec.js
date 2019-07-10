@@ -157,6 +157,20 @@ const interfaceExample = `
   }
 `;
 
+const enumExample = `
+  import { EnumButtonColor } from 'react-magma-dom'
+
+  export class Example extends React.Component {
+    render() {
+      return (
+        <div>
+          <button color={EnumButtonColor.yellow} />
+        </div>
+      );
+    }
+  }
+`;
+
 it('handles a combination of imports and use cases', () => {
   const { code } = babel.transform(combinationExample, { plugins: [plugin] });
   expect(code).toMatchSnapshot();
@@ -269,6 +283,18 @@ it('changes renamed import references to named imports', () => {
 
 it('changes inteface imports to reference the base component file', () => {
   const { ast } = babel.transform(interfaceExample, {
+    ast: true,
+    plugins: [plugin]
+  });
+
+  const program = ast.program;
+  const sourceValue = program.body[2].declarations[0].init.arguments[0].value;
+
+  expect(sourceValue).toEqual('react-magma-dom/dist/components/Button');
+});
+
+it('changes enum imports to reference the base component file', () => {
+  const { ast } = babel.transform(enumExample, {
     ast: true,
     plugins: [plugin]
   });
