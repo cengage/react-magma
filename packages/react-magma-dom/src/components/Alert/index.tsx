@@ -191,7 +191,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
               {dismissable && (
                 <DismissableIconWrapper variant={variant} theme={theme}>
                   <Button
-                    ariaLabel={closeLabel ? closeLabel : 'Close this message'}
+                    aria-label={closeLabel ? closeLabel : 'Close this message'}
                     icon={<CrossIcon />}
                     inverse
                     onClick={handleDismiss}

@@ -9,7 +9,7 @@
     "test-dom": "lerna exec --scope react-magma-dom 'npm t -- --watch --coverage=false'",
     "test-core": "lerna exec --scope react-magma-core 'npm t -- --watch --coverage=false'",
     "report": "mkdir -p .nyc_output && istanbul-merge ./packages/*/coverage/*.json --out .nyc_output/coverage.json && nyc report --reporter=lcov --reporter=text",
-    "build": "lerna run build --scope react-magma-core --scope react-magma-dom --scope react-magma-docs-gatsby",
+    "build": "lerna run build --scope react-magma-core --scope react-magma-dom --scope react-magma-docs-gatsby --scope babel-plugin-react-magma-dom",
     "bootstrap": "lerna bootstrap",
     "lint": "lerna run lint",
     "docs": "lerna exec --scope react-magma-docs-gatsby gatsby develop",

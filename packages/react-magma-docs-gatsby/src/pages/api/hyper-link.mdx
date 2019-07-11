@@ -1,0 +1,28 @@
+---
+title: 'Hyper Link'
+---
+
+import { Link } from 'gatsby'
+import { Button } from 'react-magma-dom'
+
+# Hyper Link
+
+## Basic Usage
+
+```.jsx
+    <div>
+      <HyperLink to="https://www.google.com">Google</HyperLink>
+    </div>
+```
+
+## SkipLink Props
+
+| Prop         | Type                                                                | Default   | Required |
+| ------------ | ------------------------------------------------------------------- | --------- | :------: |
+| buttonText   | string                                                              |           |          |
+| color        | enum: 'primary' &#124; 'secondary' &#124; 'success' &#124; 'danger' | 'primary' |          |
+| inverse      | boolean                                                             |           |          |
+| positionLeft | number                                                              |           |          |
+| positionTop  | number                                                              |           |          |
+| targetID     | string                                                              |           | &#10003; |
+| variant      | enum: 'solid' &#124; 'outline' &#124; 'link'                        | 'solid'   |          |

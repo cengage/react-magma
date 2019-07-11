@@ -276,7 +276,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                   {type === EnumInputType.password && !hidePasswordMaskButton && (
                     <PasswordMaskWrapper>
                       <Button
-                        ariaLabel={
+                        aria-label={
                           passwordShown
                             ? HIDE_PASSWORD_BUTTON_ARIA_LABEL
                             : SHOW_PASSWORD_BUTTON_ARIA_LABEL
@@ -307,7 +307,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                   )}
                   {onHelpLinkClick && (
                     <Button
-                      ariaLabel={HELP_LINK_TEXT}
+                      aria-label={HELP_LINK_TEXT}
                       icon={<QuestionCircleIcon />}
                       inverse={inverse}
                       onClick={onHelpLinkClick}

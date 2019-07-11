@@ -43,9 +43,9 @@ Colors for buttons include `primary`, `secondary`, `success`, `danger`, and `mar
 
 ## Variants
 
-Variants for buttons include `solid`, `outline`, and `link`, with `solid` being the default value.  
+Variants for buttons include `solid`, `outline`, and `link`, with `solid` being the default value.
 
-The `marketing` buttons do not have `outline` and `link` variants, and will render as solid buttons. 
+The `marketing` buttons do not have `outline` and `link` variants, and will render as solid buttons.
 
 ```.jsx
     <div>
@@ -103,7 +103,7 @@ The default value is `false`.
 While `outline inverse buttons` and `link inverse buttons` still accept the `color` property, the `color` property
 online affects `solid inverse buttons`.
 
-The `marketing` button does not have an inverse state, as it already is styled to appear well against a dark background. 
+The `marketing` button does not have an inverse state, as it already is styled to appear well against a dark background.
 
 ```.jsx
     <div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
@@ -290,26 +290,26 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
 
 ## Button Props
 
-| Prop          | Type                                                                | Default     | Required |
-| ------------- | ------------------------------------------------------------------- | ----------- | :------: |
-| ariaExpanded  | boolean                                                             |             |
-| as            | any                                                                 |             |
-| autoFocus     | boolean                                                             | false       |
-| block         | boolean                                                             | false       |
-| className     | string                                                              |             |
-| children      | node                                                                |             | &#10003; |
-| color         | enum: 'primary' &#124; 'secondary' &#124; 'success' &#124; 'danger'  &#124; 'marketing' | 'primary'   |
-| disabled      | boolean                                                             | false       |
-| onClick       | function                                                            |             | &#10003; |
-| href          | string                                                              |             |
-| id            | string                                                              |             |          |
-| inverse       | boolean                                                             | false       |
-| shape         | enum: 'fill' &#124; 'leftCap' &#124; 'rightCap'                     | 'fill'      |
-| size          | enum: 'large' &#124; 'medium' &#124; 'small'                        | 'medium'    |
-| style         | React.CSSProperties                                                 |             |
-| testId        | string                                                              |             |          |
-| textTransform | enum: 'uppercase' &#124; 'none'                                     | 'uppercase' |
-| to            | string                                                              |             |
-| type          | enum: 'button' &#124; 'submit' &#124; 'reset'                       |
-| variant       | enum: 'solid' &#124; 'outline' &#124; 'link'                        | 'solid'     |
-| ref           | React.Ref                                                           |             |
+| Prop          | Type                                                                                   | Default     | Required |
+| ------------- | -------------------------------------------------------------------------------------- | ----------- | :------: |
+| aria-expanded | boolean                                                                                |             |
+| as            | any                                                                                    |             |
+| autoFocus     | boolean                                                                                | false       |
+| block         | boolean                                                                                | false       |
+| className     | string                                                                                 |             |
+| children      | node                                                                                   |             | &#10003; |
+| color         | enum: 'primary' &#124; 'secondary' &#124; 'success' &#124; 'danger' &#124; 'marketing' | 'primary'   |
+| disabled      | boolean                                                                                | false       |
+| onClick       | function                                                                               |             | &#10003; |
+| href          | string                                                                                 |             |
+| id            | string                                                                                 |             |          |
+| inverse       | boolean                                                                                | false       |
+| shape         | enum: 'fill' &#124; 'leftCap' &#124; 'rightCap'                                        | 'fill'      |
+| size          | enum: 'large' &#124; 'medium' &#124; 'small'                                           | 'medium'    |
+| style         | React.CSSProperties                                                                    |             |
+| testId        | string                                                                                 |             |          |
+| textTransform | enum: 'uppercase' &#124; 'none'                                                        | 'uppercase' |
+| to            | string                                                                                 |             |
+| type          | enum: 'button' &#124; 'submit' &#124; 'reset'                                          |
+| variant       | enum: 'solid' &#124; 'outline' &#124; 'link'                                           | 'solid'     |
+| ref           | React.Ref                                                                              |             |
