@@ -10,19 +10,26 @@ import { Button } from 'react-magma-dom'
 ## Basic Usage
 
 ```.jsx
-    <div>
-      <HyperLink to="https://www.google.com">Google</HyperLink>
-    </div>
+    <>
+      <HyperLink target="_blank" to="https://www.google.com">Google</HyperLink>
+    </>
+```
+
+## StyledAs
+
+```.jsx
+    <>
+      <HyperLink styledAs="Button" target="_blank" to="https://www.google.com">Google</HyperLink>
+      <HyperLink color="secondary" styledAs="Button" target="_blank" to="https://www.google.com">Google</HyperLink>
+      <HyperLink color="success" styledAs="Button" target="_blank" to="https://www.google.com">Google</HyperLink>
+      <HyperLink color="danger" styledAs="Button" target="_blank" to="https://www.google.com">Google</HyperLink>
+      <HyperLink color="marketing"  styledAs="Button" target="_blank" to="https://www.google.com">Google</HyperLink>
+    </>
 ```
 
 ## SkipLink Props
 
-| Prop         | Type                                                                | Default   | Required |
-| ------------ | ------------------------------------------------------------------- | --------- | :------: |
-| buttonText   | string                                                              |           |          |
-| color        | enum: 'primary' &#124; 'secondary' &#124; 'success' &#124; 'danger' | 'primary' |          |
-| inverse      | boolean                                                             |           |          |
-| positionLeft | number                                                              |           |          |
-| positionTop  | number                                                              |           |          |
-| targetID     | string                                                              |           | &#10003; |
-| variant      | enum: 'solid' &#124; 'outline' &#124; 'link'                        | 'solid'   |          |
+| Prop      | Type           | Default | Required |
+| --------- | -------------- | ------- | :------: |
+| styledAs? | enum: 'Button' |         |          |
+| to        | string         |         |          |

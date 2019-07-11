@@ -16,7 +16,7 @@ interface anchorAttributesRemoveType
 export interface HyperLinkProps
   extends ButtonStyles,
     anchorAttributesRemoveType {
-  children: (props: object) => React.ReactNode | React.ReactNode;
+  children: string | React.ReactNode | ((props: object) => React.ReactNode);
   styledAs?: 'Button';
   testId?: string;
   to: string;

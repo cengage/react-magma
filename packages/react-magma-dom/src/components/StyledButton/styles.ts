@@ -199,6 +199,7 @@ export function buildFocusColor(props) {
   if (props.color === 'secondary' && !props.inverse) {
     return props.theme.colors.neutral02;
   }
+  return props.theme.colors.neutral08;
 }
 
 export function buildAfterBackground(props) {
