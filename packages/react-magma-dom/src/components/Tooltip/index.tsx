@@ -2,10 +2,9 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import { ThemeContext } from '../../theme/themeContext';
-// import { generateId } from '../utils';
 import { TooltipCore } from 'react-magma-core';
 
-export enum ITooltipPosition {
+export enum EnumTooltipPosition {
   bottom = 'bottom', //default
   left = 'left',
   right = 'right',
@@ -15,7 +14,7 @@ export enum ITooltipPosition {
 export interface ITooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   content: React.ReactNode;
   inverse?: boolean;
-  position?: ITooltipPosition;
+  position?: EnumTooltipPosition;
   trigger: React.ReactElement;
 }
 
@@ -30,7 +29,7 @@ const ToolTipContainer = styled.div`
 `;
 
 const StyledTooltip = styled.div<{
-  position: ITooltipPosition;
+  position: EnumTooltipPosition;
   visible?: boolean;
 }>`
   display: ${props => (props.visible ? 'block' : 'none')};
@@ -80,7 +79,7 @@ const StyledTooltip = styled.div<{
 
 const StyledTooltipInner = styled.div<{
   inverse: boolean;
-  position: ITooltipPosition;
+  position: EnumTooltipPosition;
 }>`
   background: ${props =>
     props.inverse
@@ -231,19 +230,20 @@ export const Tooltip: React.FunctionComponent<ITooltipProps> = React.forwardRef(
                 onBlur: hideTooltip,
                 onFocus: showTooltip,
                 onMouseLeave: hideTooltip,
-                onMouseEnter: showTooltip
+                onMouseEnter: showTooltip,
+                ref
               })}
               <ThemeContext.Consumer>
                 {theme => (
                   <StyledTooltip
                     id={id}
-                    position={position ? position : ITooltipPosition.top}
+                    position={position ? position : EnumTooltipPosition.top}
                     role="tooltip"
                     visible={isVisible}
                   >
                     <StyledTooltipInner
                       inverse={inverse}
-                      position={position ? position : ITooltipPosition.top}
+                      position={position ? position : EnumTooltipPosition.top}
                       theme={theme}
                     >
                       {content}

@@ -46,7 +46,7 @@ export class TooltipCore extends React.Component<
 
   onKeyDown(event) {
     if (event.key === 'Escape') {
-      this.setState({ isVisible: false });
+      this.hideTooltip();
     }
   }
 
