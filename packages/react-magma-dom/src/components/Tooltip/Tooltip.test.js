@@ -16,7 +16,8 @@ describe('Tooltip', () => {
         trigger={TRIGGER_ELEMENT}
       />
     );
-    const tooltip = getByText('Test Content');
+    const tooltip = container.querySelector('div[role="tooltip"]');
+    const tooltipInner = getByText('Test Content');
     const tooltipTrigger = container.firstChild;
 
     expect(container).toBeInTheDocument();
@@ -27,18 +28,18 @@ describe('Tooltip', () => {
     expect(tooltip).toBeInTheDocument();
     expect(tooltip).toHaveStyleRule('position', 'absolute');
     expect(tooltip).toHaveStyleRule('bottom', '100%');
-    expect(tooltip).toHaveStyleRule('background', '#3F3F3F');
-    expect(tooltip).toHaveStyleRule('color', '#FFFFFF');
-    expect(tooltip).toHaveStyleRule('border-bottom-color', '#3F3F3F', {
+    expect(tooltipInner).toHaveStyleRule('background', '#3F3F3F');
+    expect(tooltipInner).toHaveStyleRule('color', '#FFFFFF');
+    expect(tooltipInner).toHaveStyleRule('border-bottom-color', '#3F3F3F', {
       target: ':before'
     });
-    expect(tooltip).toHaveStyleRule('border-top-color', '#3F3F3F', {
+    expect(tooltipInner).toHaveStyleRule('border-top-color', '#3F3F3F', {
       target: ':before'
     });
-    expect(tooltip).toHaveStyleRule('border-left-color', 'transparent', {
+    expect(tooltipInner).toHaveStyleRule('border-left-color', 'transparent', {
       target: ':before'
     });
-    expect(tooltip).toHaveStyleRule('border-right-color', 'transparent', {
+    expect(tooltipInner).toHaveStyleRule('border-right-color', 'transparent', {
       target: ':before'
     });
 
@@ -46,62 +47,63 @@ describe('Tooltip', () => {
   });
 
   it('should render the tooltip component with the correct styles when positioned left', () => {
-    const { getByText } = render(
+    const { container, getByText } = render(
       <Tooltip
         content={CONTENT_TEXT}
         position="left"
         trigger={TRIGGER_ELEMENT}
       />
     );
-    const tooltip = getByText('Test Content');
+    const tooltip = container.querySelector('div[role="tooltip"]');
+    const tooltipInner = getByText('Test Content');
 
     expect(tooltip).toHaveStyleRule('right', '100%');
-    expect(tooltip).toHaveStyleRule('border-bottom-color', 'transparent', {
+    expect(tooltipInner).toHaveStyleRule('border-bottom-color', 'transparent', {
       target: ':before'
     });
-    expect(tooltip).toHaveStyleRule('border-top-color', 'transparent', {
+    expect(tooltipInner).toHaveStyleRule('border-top-color', 'transparent', {
       target: ':before'
     });
-    expect(tooltip).toHaveStyleRule('border-left-color', '#3F3F3F', {
+    expect(tooltipInner).toHaveStyleRule('border-left-color', '#3F3F3F', {
       target: ':before'
     });
-    expect(tooltip).toHaveStyleRule('border-right-color', '#3F3F3F', {
+    expect(tooltipInner).toHaveStyleRule('border-right-color', '#3F3F3F', {
       target: ':before'
     });
   });
 
   it('should render the tooltip component with the correct styles when positioned right', () => {
-    const { getByText } = render(
+    const { container } = render(
       <Tooltip
         content={CONTENT_TEXT}
         position="right"
         trigger={TRIGGER_ELEMENT}
       />
     );
-    const tooltip = getByText('Test Content');
+    const tooltip = container.querySelector('div[role="tooltip"]');
 
     expect(tooltip).toHaveStyleRule('left', '100%');
   });
 
   it('should render the tooltip component with the correct styles when positioned bottom', () => {
-    const { getByText } = render(
+    const { container } = render(
       <Tooltip
         content={CONTENT_TEXT}
         position="bottom"
         trigger={TRIGGER_ELEMENT}
       />
     );
-    const tooltip = getByText('Test Content');
+    const tooltip = container.querySelector('div[role="tooltip"]');
 
     expect(tooltip).toHaveStyleRule('top', '100%');
   });
 
   it('should show the tooltip on focus and hide it on blur', () => {
-    const { getByText } = render(
+    const { container, getByText } = render(
       <Tooltip content={CONTENT_TEXT} trigger={TRIGGER_ELEMENT} />
     );
     const trigger = getByText('Test trigger');
-    const tooltip = getByText('Test Content');
+    const tooltip = container.querySelector('div[role="tooltip"]');
     expect(tooltip).toHaveStyleRule('display', 'none');
 
     fireEvent.focus(trigger);
@@ -113,11 +115,11 @@ describe('Tooltip', () => {
   });
 
   it('should show the tooltip on mouseenter and hide it on mouseleave', () => {
-    const { getByText } = render(
+    const { container, getByText } = render(
       <Tooltip content={CONTENT_TEXT} trigger={TRIGGER_ELEMENT} />
     );
     const trigger = getByText('Test trigger');
-    const tooltip = getByText('Test Content');
+    const tooltip = container.querySelector('div[role="tooltip"]');
     expect(tooltip).toHaveStyleRule('display', 'none');
 
     fireEvent.mouseEnter(trigger);
@@ -129,11 +131,11 @@ describe('Tooltip', () => {
   });
 
   it('should hide the tooltip when the escape key is pressed', () => {
-    const { getByText } = render(
+    const { container, getByText } = render(
       <Tooltip content={CONTENT_TEXT} trigger={TRIGGER_ELEMENT} />
     );
     const trigger = getByText('Test trigger');
-    const tooltip = getByText('Test Content');
+    const tooltip = container.querySelector('div[role="tooltip"]');
     expect(tooltip).toHaveStyleRule('display', 'none');
 
     fireEvent.focus(trigger);
@@ -159,15 +161,15 @@ describe('Tooltip', () => {
     const { getByText } = render(
       <Tooltip content={CONTENT_TEXT} inverse trigger={TRIGGER_ELEMENT} />
     );
-    const tooltip = getByText('Test Content');
+    const tooltipInner = getByText('Test Content');
 
-    expect(tooltip).toHaveStyleRule('background', '#FFFFFF');
-    expect(tooltip).toHaveStyleRule('color', '#3F3F3F');
+    expect(tooltipInner).toHaveStyleRule('background', '#FFFFFF');
+    expect(tooltipInner).toHaveStyleRule('color', '#3F3F3F');
 
-    expect(tooltip).toHaveStyleRule('border-bottom-color', '#FFFFFF', {
+    expect(tooltipInner).toHaveStyleRule('border-bottom-color', '#FFFFFF', {
       target: ':before'
     });
-    expect(tooltip).toHaveStyleRule('border-top-color', '#FFFFFF', {
+    expect(tooltipInner).toHaveStyleRule('border-top-color', '#FFFFFF', {
       target: ':before'
     });
   });
@@ -181,12 +183,12 @@ describe('Tooltip', () => {
         trigger={TRIGGER_ELEMENT}
       />
     );
-    const tooltip = getByText('Test Content');
+    const tooltipInner = getByText('Test Content');
 
-    expect(tooltip).toHaveStyleRule('border-left-color', '#FFFFFF', {
+    expect(tooltipInner).toHaveStyleRule('border-left-color', '#FFFFFF', {
       target: ':before'
     });
-    expect(tooltip).toHaveStyleRule('border-right-color', '#FFFFFF', {
+    expect(tooltipInner).toHaveStyleRule('border-right-color', '#FFFFFF', {
       target: ':before'
     });
   });

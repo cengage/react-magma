@@ -11,7 +11,7 @@ export enum ITooltipPosition {
   top = 'top'
 }
 
-export interface ITooltipProps extends React.HTMLAttributes<HTMLSpanElement> {
+export interface ITooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   content: React.ReactNode;
   inverse?: boolean;
   position?: ITooltipPosition;
@@ -28,10 +28,58 @@ const ToolTipContainer = styled.div`
   position: relative;
 `;
 
-const StyledTooltip = styled.span<{
+const StyledTooltip = styled.div<{
   position: ITooltipPosition;
-  inverse: boolean;
   visible?: boolean;
+}>`
+  display: ${props => (props.visible ? 'block' : 'none')};
+  font-size: 12px;
+  font-weight: 600;
+  position: absolute;
+  text-align: center;
+  width: 300px;
+  z-index: 999;
+
+  ${props =>
+    props.position === 'bottom' &&
+    css`
+      top: 100%;
+      margin-top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    `}
+
+  ${props =>
+    props.position === 'left' &&
+    css`
+      right: 100%;
+      margin-right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    `}
+
+  ${props =>
+    props.position === 'right' &&
+    css`
+      left: 100%;
+      margin-left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    `}
+
+  ${props =>
+    props.position === 'top' &&
+    css`
+      bottom: 100%;
+      margin-bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    `}
+`;
+
+const StyledTooltipInner = styled.div<{
+  inverse: boolean;
+  position: ITooltipPosition;
 }>`
   background: ${props =>
     props.inverse
@@ -42,15 +90,9 @@ const StyledTooltip = styled.span<{
     props.inverse
       ? props.theme.colors.neutral02
       : props.theme.colors.neutral08};
-  display: ${props => (props.visible ? 'block' : 'none')};
-  font-size: 12px;
-  font-weight: 600;
-  max-width: 200px;
-  min-width: 100px;
+  display: inline-block;
   padding: 3px 5px;
-  position: absolute;
-  text-align: center;
-  z-index: 999;
+  position: relative;
 
   &:before,
   &:after {
@@ -88,13 +130,15 @@ const StyledTooltip = styled.span<{
   }
 
   ${props =>
+    (props.position === 'left' || props.position === 'right') &&
+    css`
+      position: absolute;
+      transform: translateY(-50%);
+    `}
+
+  ${props =>
     props.position === 'bottom' &&
     css`
-      top: 100%;
-      margin-top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-
       &:after {
         border-width: 0 5px 5px 5px;
         bottom: auto;
@@ -111,10 +155,7 @@ const StyledTooltip = styled.span<{
   ${props =>
     props.position === 'left' &&
     css`
-      right: 100%;
-      margin-right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
+      right: 0;
 
       &:before,
       &:after {
@@ -137,10 +178,7 @@ const StyledTooltip = styled.span<{
   ${props =>
     props.position === 'right' &&
     css`
-      left: 100%;
-      margin-left: 10px;
-      top: 50%;
-      transform: translateY(-50%);
+      left: 0;
 
       &:before,
       &:after {
@@ -163,11 +201,6 @@ const StyledTooltip = styled.span<{
   ${props =>
     props.position === 'top' &&
     css`
-      bottom: 100%;
-      margin-bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-
       &:after {
         bottom: -5px;
         top: auto;
@@ -225,13 +258,17 @@ export class Tooltip extends React.Component<ITooltipProps, ITooltipState> {
           {theme => (
             <StyledTooltip
               id={this.state.id}
-              inverse={inverse}
               position={position ? position : ITooltipPosition.top}
               role="tooltip"
               visible={this.state.isVisible}
-              theme={theme}
             >
-              {content}
+              <StyledTooltipInner
+                inverse={inverse}
+                position={position ? position : ITooltipPosition.top}
+                theme={theme}
+              >
+                {content}
+              </StyledTooltipInner>
             </StyledTooltip>
           )}
         </ThemeContext.Consumer>
