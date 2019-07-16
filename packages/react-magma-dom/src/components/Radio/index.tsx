@@ -9,7 +9,7 @@ import { RadioContext } from '../RadioGroup';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/themeContext';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { generateId } from '../utils';
 
 export interface RadioProps

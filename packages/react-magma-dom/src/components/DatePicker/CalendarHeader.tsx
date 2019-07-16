@@ -2,8 +2,7 @@ import * as React from 'react';
 import { CalendarContext } from './CalendarContext';
 import { ArrowLeft2Icon } from '../Icon/types/ArrowLeft2Icon';
 import { ArrowRight2Icon } from '../Icon/types/ArrowRight2Icon';
-import { Button } from '../Button';
-import { ButtonVariant } from '../StyledButton';
+import { Button, EnumButtonVariant } from '../Button';
 import { magma } from '../../theme/magma';
 import { format } from 'date-fns';
 import styled from '@emotion/styled';
@@ -39,7 +38,7 @@ export const CalendarHeader: React.FunctionComponent<{}> = () => (
             <Button
               ariaLabel="Previous Month"
               icon={<ArrowLeft2Icon />}
-              variant={ButtonVariant.link}
+              variant={EnumButtonVariant.link}
               onClick={context.onPrevMonthClick}
             />
           </CalendarIconButton>
@@ -50,7 +49,7 @@ export const CalendarHeader: React.FunctionComponent<{}> = () => (
             <Button
               ariaLabel="Next Month"
               icon={<ArrowRight2Icon />}
-              variant={ButtonVariant.link}
+              variant={EnumButtonVariant.link}
               onClick={context.onNextMonthClick}
             />
           </CalendarIconButton>

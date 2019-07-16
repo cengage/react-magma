@@ -1,18 +1,23 @@
-export { Alert, AlertVariant } from './components/Alert';
+export { Alert, EnumAlertVariant } from './components/Alert';
 export { Announce } from './components/Announce';
-export { Button } from './components/Button';
-export { Checkbox } from './components/Checkbox';
 export {
-  ButtonColor,
-  ButtonShape,
-  ButtonSize,
-  ButtonVariant,
-  ButtonTextTransform,
-  ButtonType,
-  ButtonIconPosition
-} from './components/StyledButton';
+  Button,
+  EnumButtonColor,
+  EnumButtonShape,
+  EnumButtonSize,
+  EnumButtonVariant,
+  EnumButtonTextTransform,
+  EnumButtonType,
+  EnumButtonIconPosition
+} from './components/Button';
+export { Checkbox } from './components/Checkbox';
 export { Heading } from './components/Heading';
-export { Input, InputSize, InputType, IconPosition } from './components/Input';
+export {
+  Input,
+  EnumInputSize,
+  EnumInputType,
+  EnumInputIconPosition
+} from './components/Input';
 export { Label } from './components/Label';
 export { LinkButton } from './components/LinkButton';
 export { RadioGroup } from './components/RadioGroup';
@@ -34,7 +39,7 @@ export { amgam } from './theme/amgam';
 export { amgamDark } from './theme/amgamDark';
 export { magma } from './theme/magma';
 export { GlobalStyles } from './theme/GlobalStyles';
-export { ThemeContext } from './theme/themeContext';
+export { ThemeContext } from './theme/ThemeContext';
 export { ICONS } from './components/Icon';
 export { AddPersonIcon } from './components/Icon/types/AddPersonIcon';
 export { AlertIcon } from './components/Icon/types/AlertIcon';

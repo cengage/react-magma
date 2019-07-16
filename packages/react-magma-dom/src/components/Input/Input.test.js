@@ -1,6 +1,6 @@
 import React from 'react';
 import { axe } from 'jest-axe';
-import { Input, InputType } from '.';
+import { Input, EnumInputType } from '.';
 import { render, fireEvent } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 import { CheckIcon } from '../Icon/types/CheckIcon';
@@ -254,7 +254,7 @@ describe('Input', () => {
 
   describe('password input', () => {
     it('renders a show/hide button on password inputs', () => {
-      const { getByText } = renderInput({ type: InputType.password });
+      const { getByText } = renderInput({ type: EnumInputType.password });
 
       expect(getByText('Show')).toBeInTheDocument();
       expect(getByText('Show')).toHaveAttribute(
@@ -269,7 +269,7 @@ describe('Input', () => {
         showPasswordButtonAriaLabel: 'Test button aria label',
         showPasswordButtonText: 'Test button text',
         hiddenPasswordAnnounceText: 'Test announce text',
-        type: InputType.password
+        type: EnumInputType.password
       });
 
       expect(getByText('Test button text')).toBeInTheDocument();
@@ -282,7 +282,7 @@ describe('Input', () => {
 
     it('does not render a show/hide button when hidePasswordMaskButton is set to true', () => {
       const { queryByText } = renderInput({
-        type: InputType.password,
+        type: EnumInputType.password,
         hidePasswordMaskButton: true
       });
 
@@ -291,7 +291,7 @@ describe('Input', () => {
 
     it('unmasks password when show button is clicked', () => {
       const { getByText, getByLabelText } = renderInput({
-        type: InputType.password
+        type: EnumInputType.password
       });
       const button = getByText('Show');
       const input = getByLabelText(INPUT_PROPS.labelText);
@@ -306,7 +306,7 @@ describe('Input', () => {
 
     it('unmasks password when show button is clicked with custom text', () => {
       const { getByText, getByLabelText } = renderInput({
-        type: InputType.password,
+        type: EnumInputType.password,
         hidePasswordButtonAriaLabel: 'Test button aria label',
         hidePasswordButtonText: 'Test button text',
         shownPasswordAnnounceText: 'Test announce text'
@@ -324,7 +324,7 @@ describe('Input', () => {
 
     it('masks password when the hide button is clicked', () => {
       const { getByText, getByLabelText } = renderInput({
-        type: InputType.password
+        type: EnumInputType.password
       });
       const button = getByText('Show');
       const input = getByLabelText(INPUT_PROPS.labelText);

@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { Button } from '../Button';
-import { ButtonVariant } from '../StyledButton';
+import { Button, EnumButtonVariant } from '../Button';
 import { QuestionCircleOIcon } from '../Icon/types/QuestionCircleOIcon';
 import { CalendarContext } from './CalendarContext';
 import { CalendarHeader } from './CalendarHeader';
 import { CalendarDay } from './CalendarDay';
-import { ThemeContext } from '../../theme/themeContext';
+import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
 import { HelperInformation } from './HelperInformation';
 
@@ -117,7 +116,7 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
                         icon={<QuestionCircleOIcon />}
                         onClick={context.openHelperInformation}
                         onFocus={context.onHelperFocus}
-                        variant={ButtonVariant.link}
+                        variant={EnumButtonVariant.link}
                       />
                       <HelperInformation
                         open={context.showHelperInformation}

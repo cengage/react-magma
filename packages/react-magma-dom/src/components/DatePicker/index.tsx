@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DatePickerCore } from 'react-magma-core';
 import { CalendarContext } from './CalendarContext';
 import { CalendarMonth } from './CalendarMonth';
-import { Input, IconPosition } from '../Input';
+import { Input, EnumInputIconPosition } from '../Input';
 import { format } from 'date-fns';
 import { magma } from '../../theme/magma';
 import styled from '@emotion/styled';
@@ -93,7 +93,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
               <Input
                 aria-describedby={srMessageId}
                 icon={<CalendarIcon />}
-                iconPosition={IconPosition.left}
+                iconPosition={EnumInputIconPosition.left}
                 id={id}
                 labelText={labelText}
                 onFocus={onInputFocus}

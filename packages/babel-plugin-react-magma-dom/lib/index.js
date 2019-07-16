@@ -23,14 +23,14 @@ function reactMagmaDom(_ref) {
       var namespaceNames = namespace.referencePaths.map(function (path) {
         var name = path.container.property.name;
         var type = path.container.type;
-        path.parentPath.replaceWith(type === "JSXMemberExpression" ? t.JSXIdentifier(name) : t.identifier(name));
+        path.parentPath.replaceWith(type === 'JSXMemberExpression' ? t.JSXIdentifier(name) : t.identifier(name));
 
-        if ((path.parentPath.container.type === "JSXMemberExpression" || path.parentPath.container.type === "MemberExpression") && path.parentPath.container.object.name === "Icons") {
+        if ((path.parentPath.container.type === 'JSXMemberExpression' || path.parentPath.container.type === 'MemberExpression') && path.parentPath.container.object.name === 'ICONS') {
           var _name = path.parentPath.container.property.name;
-          path.parentPath.parentPath.replaceWith(type === "JSXMemberExpression" ? t.JSXIdentifier(_name) : t.identifier(_name));
+          path.parentPath.parentPath.replaceWith(type === 'JSXMemberExpression' ? t.JSXIdentifier(_name) : t.identifier(_name));
           return {
             name: _name,
-            path: "".concat(importPath, "/Icons/type")
+            path: "".concat(importPath, "/Icon/types")
           };
         }
 
@@ -55,18 +55,23 @@ function reactMagmaDom(_ref) {
   return {
     visitor: {
       ImportDeclaration: function ImportDeclaration(path) {
-        if (path.node.source.value === "react-magma-dom") {
+        if (path.node.source.value === 'react-magma-dom') {
           var specifiers = path.node.specifiers;
           var names = specifiers.map(function (specifier) {
             var specifierLocalName = specifier.local.name;
             var specifierType = specifier.type;
+            var importPathString = 'react-magma-dom/dist/components';
 
-            if (specifierType === "ImportSpecifier") {
+            if (specifierType === 'ImportSpecifier') {
               var specifierImportedName = specifier.imported.name;
 
-              if (specifierImportedName === "Icons") {
+              if (specifierImportedName === 'GlobalStyles' || specifierImportedName === 'ThemeContext' || specifierImportedName === 'magma') {
+                importPathString = 'react-magma-dom/dist/theme';
+              }
+
+              if (specifierImportedName === 'ICONS') {
                 var namespace = path.scope.bindings[specifierLocalName];
-                return removeNamespaces(namespace, "react-magma-dom/dist/components/Icons/type");
+                return removeNamespaces(namespace, "".concat(importPathString, "/Icon/types"));
               }
 
               if (specifierImportedName !== specifierLocalName) {
@@ -77,13 +82,25 @@ function reactMagmaDom(_ref) {
                 });
               }
 
+              if (/.+Icon$/.test(specifierImportedName)) {
+                importPathString += '/Icon/types';
+              }
+
+              if (/^I[A-Z].*/.test(specifierImportedName)) {
+                var importFileName = specifierImportedName.replace(/([A-Z])/g, ' $1').trim().split(' ')[1];
+                return buildRequire({
+                  IMPORT_NAME: t.identifier(specifierImportedName),
+                  SOURCE: "".concat(importPathString, "/").concat(importFileName)
+                });
+              }
+
               return buildRequire({
                 IMPORT_NAME: t.identifier(specifierImportedName),
-                SOURCE: "react-magma-dom/dist/components/".concat(specifierImportedName)
+                SOURCE: "".concat(importPathString, "/").concat(specifierImportedName)
               });
-            } else if (specifierType === "ImportNamespaceSpecifier" || specifierType === "ImportDefaultSpecifier") {
+            } else if (specifierType === 'ImportNamespaceSpecifier' || specifierType === 'ImportDefaultSpecifier') {
               var _namespace2 = path.scope.bindings[specifierLocalName];
-              return removeNamespaces(_namespace2, "react-magma-dom/dist/components");
+              return removeNamespaces(_namespace2, importPathString);
             }
           });
           path.replaceWithMultiple([].concat.apply([], names));
