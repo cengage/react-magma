@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
-import { ThemeContext } from '../../theme/themeContext';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { TooltipCore } from 'react-magma-core';
 
 export enum EnumTooltipPosition {
