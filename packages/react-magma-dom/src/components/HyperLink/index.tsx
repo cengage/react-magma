@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import * as React from 'react';
 import { ButtonStyles } from '../Button';
-import { jsx } from '@emotion/core';
+import { css, jsx, ClassNames } from '@emotion/core';
 import { Omit } from '../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { buttonStyles } from '../StyledButton';
@@ -17,10 +17,32 @@ export interface HyperLinkProps
   extends ButtonStyles,
     anchorAttributesRemoveType {
   children: string | React.ReactNode | ((props: object) => React.ReactNode);
-  styledAs?: 'Button';
+  styledAs?: 'Button' | 'Link';
   testId?: string;
   to: string;
 }
+
+const linkStyles = props => css`
+  color: ${props.inverse
+    ? props.theme.colors.neutral08
+    : props.theme.colors.primary};
+  text-decoration: underline;
+
+  &:not([disabled]) {
+    &:hover,
+    &:focus {
+      color: ${props.inverse
+        ? props.theme.colors.neutral07
+        : props.theme.colors.foundation01};
+      text-decoration: none;
+    }
+
+    &:focus {
+      outline: 2px dotted ${props.theme.colors.pop03};
+      outline-offset: 3px;
+    }
+  }
+`;
 
 export const HyperLink: React.FunctionComponent<
   HyperLinkProps
@@ -34,10 +56,17 @@ export const HyperLink: React.FunctionComponent<
         const composedStyle =
           styledAs === 'Button'
             ? buttonStyles({ ...composedProps, theme })
-            : null;
+            : linkStyles({ ...props, theme });
 
         if (typeof children === 'function') {
-          return children({ to, style: composedStyle });
+          return (
+            <ClassNames>
+              {({ css }) => {
+                const stylesClass = css(composedStyle);
+                return children({ to, stylesClass });
+              }}
+            </ClassNames>
+          );
         } else {
           return (
             <a {...other} href={to} css={composedStyle}>

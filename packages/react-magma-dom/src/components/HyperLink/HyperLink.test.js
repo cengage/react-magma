@@ -15,6 +15,28 @@ describe('Hyper Link', () => {
     );
   });
 
+  it('should render a basic anchor element with link styles', () => {
+    const { getByText } = render(
+      <HyperLink to="https://www.google.com">Google</HyperLink>
+    );
+
+    const element = getByText(/google/i);
+
+    expect(element).toHaveStyleRule('color', '#006298');
+  });
+
+  it('should render an inverse anchor element', () => {
+    const { getByText } = render(
+      <HyperLink inverse to="https://www.google.com">
+        Google
+      </HyperLink>
+    );
+
+    const element = getByText(/google/i);
+
+    expect(element).toHaveStyleRule('color', '#FFFFFF');
+  });
+
   it('should render an anchor element with default button styles', () => {
     const { getByText } = render(
       <HyperLink styledAs="Button" to="https://www.google.com">
@@ -59,9 +81,9 @@ describe('Hyper Link', () => {
   it('should compose css when styled as button for function children', () => {
     render(
       <HyperLink styledAs="Button" to="https://www.google.com">
-        {({ style, to }) => {
+        {({ stylesClass, to }) => {
           expect(to).toEqual('https://www.google.com');
-          expect(style).not.toBeNull();
+          expect(stylesClass).not.toBeNull();
         }}
       </HyperLink>
     );

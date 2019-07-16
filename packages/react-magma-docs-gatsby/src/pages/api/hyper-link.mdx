@@ -27,9 +27,29 @@ import { Button } from 'react-magma-dom'
     </>
 ```
 
+## Render Props Usage
+
+Use this when you want to render something that is from another library. For example, the `Link` component from `react-router`.
+
+```.jsx
+  <>
+    <HyperLink styledAs="Button" to="https://www.google.com">{({to, stylesClass}) => (
+      <a className={stylesClass} href={to}>Render Props Google</a>
+    )}</HyperLink>
+  </>
+```
+
 ## SkipLink Props
 
-| Prop      | Type           | Default | Required |
-| --------- | -------------- | ------- | :------: |
-| styledAs? | enum: 'Button' |         |          |
-| to        | string         |         |          |
+| Prop          | Type                                                                                   | Default     | Required |
+| ------------- | -------------------------------------------------------------------------------------- | ----------- | :------: |
+| block         | boolean                                                                                | false       |
+| color         | enum: 'primary' &#124; 'secondary' &#124; 'success' &#124; 'danger' &#124; 'marketing' | 'primary'   |
+| shape         | enum: 'fill' &#124; 'leftCap' &#124; 'rightCap'                                        | 'fill'      |
+| size          | enum: 'large' &#124; 'medium' &#124; 'small'                                           | 'medium'    |
+| style         | React.CSSProperties                                                                    |             |
+| styledAs      | enum: 'Button', 'Link'                                                                 | 'Link'      |          |
+| textTransform | enum: 'uppercase' &#124; 'none'                                                        | 'uppercase' |
+| to            | string                                                                                 |
+| type          | enum: 'button' &#124; 'submit' &#124; 'reset'                                          |
+| variant       | enum: 'solid' &#124; 'outline' &#124; 'link'                                           | 'solid'     |          |
