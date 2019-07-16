@@ -1,6 +1,7 @@
 /* Main Nav styles */
 
-.main-nav h2 {
+.main-nav h2,
+.main-nav h3 {
     align-items: center;
     display: flex;
     font-size: 20px;
@@ -8,6 +9,10 @@
     justify-content: space-between;
     margin: 0;
     padding: 10px 20px;
+}
+
+.main-nav h3 {
+    font-size: 18px;
 }
 
 .main-nav hr {

@@ -3,11 +3,11 @@ title: Getting Started
 order: 1
 ---
 
-# React Magma Component API
+# Getting Started with React Magma
 
-## Getting started
+Install the React Magma component library, and start using Cengage-themed, accessible components in your application. For more information, see the [Stash Repository](http://stash.corp.web:7990/projects/FRONT/repos/react-magma/browse).
 
-[Stash Repository](http://stash.corp.web:7990/projects/FRONT/repos/react-magma/browse)
+## Installation
 
 ### Setup requirements
 
@@ -18,22 +18,19 @@ order: 1
 registry=http://nexus.mindtap.corp.web/content/groups/npm.group/
 ```
 
-### Add the react-magma components to your project
+### Install the component library
+
+Install the React Magma Component library with `npm`.
 
 ```sh
 npm install --save react-magma-dom
 ```
 
+Once the component library is installed, you may begin using React Magma components in your application.  It is highly recommended that you install the Babel plugin before using in production.
+
 ### Install the Babel Plugin
 
-<details>
-  <summary>
-  Learn more about this Babel plugin:
-  </summary>
-
 This custom Babel plugin will help with optimization. This plugin will go through all of your `react-magma-dom` imports and get rid of any unnecessary imports. This will allow webpack to only put the necessary dependencies in your projects final build.
-
-</details>
 
 #### Add the plugin as a dev dependency
 
@@ -50,8 +47,8 @@ example `babel.config.js`:
 ```js
 module.exports = {
   presets: ['@babel/preset-react'],
-  plugins: ['react-magma-dom']
-};
+  plugins: ['react-magma-dom'],
+}
 ```
 
 ## Known Issues
