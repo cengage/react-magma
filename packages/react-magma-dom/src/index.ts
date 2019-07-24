@@ -33,6 +33,7 @@ export { Toast } from './components/Toast';
 export { VisuallyHidden } from './components/VisuallyHidden';
 export { DatePicker } from './components/DatePicker';
 export { Modal } from './components/Modal';
+export { HyperLink } from './components/HyperLink';
 
 export { amgam } from './theme/amgam';
 export { amgamDark } from './theme/amgamDark';
