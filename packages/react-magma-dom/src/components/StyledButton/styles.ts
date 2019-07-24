@@ -1,11 +1,4 @@
 import { darken, lighten, tint } from 'polished';
-// import {
-//   EnumButtonShape,
-//   EnumButtonSize,
-//   EnumButtonTextTransform,
-//   EnumButtonVariant,
-//   EnumButtonColor
-// } from '../Button';
 
 const DEFAULT_STYLE_PROPS = {
   color: 'primary',
