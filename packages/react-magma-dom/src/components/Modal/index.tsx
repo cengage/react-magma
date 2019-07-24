@@ -187,7 +187,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
                           {!hideEscButton && (
                             <CloseBtn>
                               <Button
-                                ariaLabel={closeLabel ? closeLabel : 'Close'}
+                                aria-label={closeLabel ? closeLabel : 'Close'}
                                 color={ButtonColor.secondary}
                                 icon={CloseIcon}
                                 onClick={onClose}

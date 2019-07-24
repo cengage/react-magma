@@ -39,7 +39,7 @@ describe('Button', () => {
 
   it('An icon-only button does not violate detectible accessibility standards', () => {
     const icon = <CheckIcon />;
-    const { container } = render(<Button icon={icon} ariaLabel="Click me" />);
+    const { container } = render(<Button icon={icon} aria-label="Click me" />);
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });
@@ -126,7 +126,7 @@ describe('Button', () => {
       const icon = <CheckIcon />;
       const buttonLabel = 'check icon';
       const { getByLabelText } = render(
-        <Button icon={icon} ariaLabel={buttonLabel} />
+        <Button icon={icon} aria-label={buttonLabel} />
       );
 
       expect(getByLabelText(buttonLabel)).toBeInTheDocument();
@@ -137,7 +137,7 @@ describe('Button', () => {
         const icon = <CheckIcon id="testId" />;
         const { container } = render(
           <Button
-            ariaLabel="Check Icon"
+            aria-label="Check Icon"
             id="testId"
             icon={icon}
             iconPosition={ButtonIconPosition.right}
@@ -152,7 +152,7 @@ describe('Button', () => {
         const icon = <CheckIcon id="testId" />;
         const { container } = render(
           <Button
-            ariaLabel="Check Icon"
+            aria-label="Check Icon"
             id="testId"
             icon={icon}
             iconPosition={ButtonIconPosition.right}
@@ -167,7 +167,7 @@ describe('Button', () => {
         const icon = <CheckIcon id="testId" />;
         const { container } = render(
           <Button
-            ariaLabel="Check Icon"
+            aria-label="Check Icon"
             id="testId"
             icon={icon}
             iconPosition={ButtonIconPosition.right}
@@ -184,7 +184,7 @@ describe('Button', () => {
         const icon = <CheckIcon id="testId" />;
         const { container } = render(
           <Button
-            ariaLabel="Check Icon"
+            aria-label="Check Icon"
             id="testId"
             icon={icon}
             iconPosition={ButtonIconPosition.right}
@@ -199,7 +199,7 @@ describe('Button', () => {
         const icon = <CheckIcon id="testId" />;
         const { container } = render(
           <Button
-            ariaLabel="Check Icon"
+            aria-label="Check Icon"
             id="testId"
             icon={icon}
             iconPosition={ButtonIconPosition.right}
@@ -214,7 +214,7 @@ describe('Button', () => {
         const icon = <CheckIcon id="testId" />;
         const { container } = render(
           <Button
-            ariaLabel="Check Icon"
+            aria-label="Check Icon"
             id="testId"
             icon={icon}
             iconPosition={ButtonIconPosition.right}
@@ -229,7 +229,7 @@ describe('Button', () => {
         const icon = <CheckIcon id="testId" />;
         const { container } = render(
           <Button
-            ariaLabel="Check Icon"
+            aria-label="Check Icon"
             id="testId"
             icon={icon}
             iconPosition={ButtonIconPosition.right}
@@ -244,7 +244,7 @@ describe('Button', () => {
         const icon = <CheckIcon id="testId" />;
         const { container } = render(
           <Button
-            ariaLabel="Check Icon"
+            aria-label="Check Icon"
             id="testId"
             icon={icon}
             iconPosition={ButtonIconPosition.right}
@@ -361,7 +361,7 @@ describe('Button', () => {
         const icon = <CheckIcon id="testId" />;
         const { container } = render(
           <Button
-            ariaLabel="Check Icon"
+            aria-label="Check Icon"
             id="testId"
             icon={icon}
             iconPosition={ButtonIconPosition.right}
@@ -378,7 +378,7 @@ describe('Button', () => {
         const icon = <CheckIcon id="testId" />;
         const { container } = render(
           <Button
-            ariaLabel="Check Icon"
+            aria-label="Check Icon"
             id="testId"
             icon={icon}
             iconPosition={ButtonIconPosition.right}
@@ -395,7 +395,7 @@ describe('Button', () => {
         const icon = <CheckIcon id="testId" />;
         const { container } = render(
           <Button
-            ariaLabel="Check Icon"
+            aria-label="Check Icon"
             id="testId"
             icon={icon}
             iconPosition={ButtonIconPosition.right}
@@ -412,7 +412,7 @@ describe('Button', () => {
         const icon = <CheckIcon id="testId" />;
         const { container } = render(
           <Button
-            ariaLabel="Check Icon"
+            aria-label="Check Icon"
             id="testId"
             icon={icon}
             iconPosition={ButtonIconPosition.right}
@@ -434,7 +434,7 @@ describe('Button', () => {
         const icon = <CheckIcon id="testId" />;
         const { container } = render(
           <Button
-            ariaLabel="Check Icon"
+            aria-label="Check Icon"
             id="testId"
             icon={icon}
             iconPosition={ButtonIconPosition.right}
@@ -451,7 +451,7 @@ describe('Button', () => {
         const icon = <CheckIcon id="testId" />;
         const { container } = render(
           <Button
-            ariaLabel="Check Icon"
+            aria-label="Check Icon"
             id="testId"
             icon={icon}
             iconPosition={ButtonIconPosition.right}
@@ -468,7 +468,7 @@ describe('Button', () => {
         const icon = <CheckIcon id="testId" />;
         const { container } = render(
           <Button
-            ariaLabel="Check Icon"
+            aria-label="Check Icon"
             id="testId"
             icon={icon}
             iconPosition={ButtonIconPosition.right}

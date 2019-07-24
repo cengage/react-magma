@@ -36,7 +36,7 @@ export const CalendarHeader: React.FunctionComponent<{}> = () => (
         <CalendarHeaderContainer>
           <CalendarIconButton>
             <Button
-              ariaLabel="Previous Month"
+              aria-label="Previous Month"
               icon={<ArrowLeft2Icon />}
               variant={ButtonVariant.link}
               onClick={context.onPrevMonthClick}
@@ -47,7 +47,7 @@ export const CalendarHeader: React.FunctionComponent<{}> = () => (
           </CalendarHeaderText>
           <CalendarIconButton>
             <Button
-              ariaLabel="Next Month"
+              aria-label="Next Month"
               icon={<ArrowRight2Icon />}
               variant={ButtonVariant.link}
               onClick={context.onNextMonthClick}

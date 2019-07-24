@@ -60,22 +60,18 @@ export interface ButtonStyles {
 
 interface BaseButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  ariaExpanded?: boolean;
-  ariaLabel?: string;
-  as?: any;
   autoFocus?: boolean;
-  href?: string;
   testId?: string;
   ref?: any;
   theme?: any;
-  to?: string;
+  type?: ButtonType;
 }
 
 export type ButtonProps = BaseButtonProps & ButtonStyles;
 
 export interface IconOnlyButtonProps extends Omit<ButtonProps, 'children'> {
   icon: React.ReactElement<IconProps>;
-  ariaLabel: string;
+  'aria-label': string;
 }
 
 interface IconTextButtonProps extends ButtonProps {
@@ -138,19 +134,14 @@ export const Button: React.FunctionComponent<
   let iconPosition;
   let children;
   const {
-    ariaExpanded,
-    ariaLabel,
-    as,
     inverse,
     block,
     color,
-    href,
     testId,
     shape,
     size,
     variant,
     textTransform,
-    to,
     ...other
   } = props;
 
@@ -170,19 +161,14 @@ export const Button: React.FunctionComponent<
         {...other}
         testId={testId}
         ref={ref}
-        ariaLabel={ariaLabel}
-        ariaExpanded={ariaExpanded}
-        as={as}
         block={block}
         color={color ? color : ButtonColor.primary}
         inverse={inverse}
-        href={href}
         shape={shape ? shape : ButtonShape.fill}
         size={size ? size : ButtonSize.medium}
         textTransform={
           textTransform ? textTransform : ButtonTextTransform.uppercase
         }
-        to={to}
         variant={variant ? variant : ButtonVariant.solid}
       >
         {iconPosition === ButtonIconPosition.right && (
@@ -202,16 +188,11 @@ export const Button: React.FunctionComponent<
         {...other}
         testId={testId}
         ref={ref}
-        ariaExpanded={ariaExpanded}
-        ariaLabel={ariaLabel}
-        as={as}
         color={color ? color : ButtonColor.primary}
         iconOnly
         inverse={inverse}
-        href={href}
         shape={shape ? shape : ButtonShape.round}
         size={size ? size : ButtonSize.medium}
-        to={to}
         variant={variant ? variant : ButtonVariant.solid}
       >
         {React.Children.only(
@@ -226,19 +207,14 @@ export const Button: React.FunctionComponent<
       {...other}
       testId={testId}
       ref={ref}
-      as={as}
-      ariaExpanded={ariaExpanded}
-      ariaLabel={ariaLabel}
       block={block}
       color={color ? color : ButtonColor.primary}
-      href={href}
       inverse={inverse}
       shape={shape ? shape : ButtonShape.fill}
       size={size ? size : ButtonSize.medium}
       textTransform={
         textTransform ? textTransform : ButtonTextTransform.uppercase
       }
-      to={to}
       variant={variant ? variant : ButtonVariant.solid}
     >
       {children}
