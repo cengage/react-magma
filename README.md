@@ -135,7 +135,7 @@ or
 
 ```sh
 # run the core tests
-npm run test-dom
+npm run test-core
 ```
 
 `npm run covg` to see the generated lcov coverage reports.

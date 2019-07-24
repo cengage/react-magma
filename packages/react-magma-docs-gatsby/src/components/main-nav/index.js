@@ -129,7 +129,25 @@ const MainNav = ({ ...props }) => (
                     onClick={props.handleClick}
                     to="/api-introduction"
                   >
-                    Getting Started
+                    Installation
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    activeStyle={activeStyle}
+                    onClick={props.handleClick}
+                    to="/api-usage"
+                  >
+                    Usage
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    activeStyle={activeStyle}
+                    onClick={props.handleClick}
+                    to="/contribution"
+                  >
+                    Contributing
                   </Link>
                 </li>
               </ul>
