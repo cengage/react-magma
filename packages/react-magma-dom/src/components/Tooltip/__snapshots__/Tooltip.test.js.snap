@@ -2,12 +2,12 @@
 
 exports[`Tooltip should render the tooltip component, positioned top by default 1`] = `
 <div
-  class="css-jyuca-StyledTooltip-StyledTooltip elrt5sw1"
+  class="css-vb1u9d-StyledTooltip-StyledTooltip elrt5sw1"
   id="testTooltipId"
   role="tooltip"
 >
   <div
-    class="css-akj8mm-StyledTooltipInner-StyledTooltipInner elrt5sw2"
+    class="css-458qzt-StyledTooltipInner-StyledTooltipInner elrt5sw2"
   >
     Test Content
   </div>

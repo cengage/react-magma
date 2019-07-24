@@ -4,10 +4,10 @@ import styled from '@emotion/styled';
 import { Global, css } from '@emotion/core';
 import { ModalCore } from 'react-magma-core';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { Button, EnumButtonColor, EnumButtonVariant } from '../Button';
+import { Button, ButtonColor, ButtonVariant } from '../Button';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 
-export enum EnumModalSize {
+export enum ModalSize {
   large = 'large',
   medium = 'medium', //default
   small = 'small'
@@ -23,7 +23,7 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   onClose?: () => void;
   onEscKeyDown?: (event: React.KeyboardEvent) => void;
   open?: boolean;
-  size?: EnumModalSize;
+  size?: ModalSize;
   testId?: string;
 }
 
@@ -187,8 +187,8 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
                           {!hideEscButton && (
                             <CloseBtn>
                               <Button
-                                ariaLabel={closeLabel ? closeLabel : 'Close'}
-                                color={EnumButtonColor.secondary}
+                                aria-label={closeLabel ? closeLabel : 'Close'}
+                                color={ButtonColor.secondary}
                                 icon={CloseIcon}
                                 onClick={onClose}
                                 style={{
@@ -197,7 +197,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
                                   outlineOffset: 0
                                 }}
                                 testId="modal-closebtn"
-                                variant={EnumButtonVariant.link}
+                                variant={ButtonVariant.link}
                               />
                             </CloseBtn>
                           )}

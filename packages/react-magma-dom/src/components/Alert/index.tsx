@@ -7,7 +7,7 @@ import { CheckIcon } from '../Icon/types/CheckIcon';
 import { NotificationIcon } from '../Icon/types/NotificationIcon';
 import { BlockedIcon } from '../Icon/types/BlockedIcon';
 import { CrossIcon } from '../Icon/types/CrossIcon';
-import { Button, EnumButtonVariant } from '../Button';
+import { Button, ButtonVariant } from '../Button';
 import { AlertCore } from 'react-magma-core';
 
 const VARIANT_ICON = {
@@ -17,7 +17,7 @@ const VARIANT_ICON = {
   danger: BlockedIcon
 };
 
-export enum EnumAlertVariant {
+export enum AlertVariant {
   info = 'info', //default
   success = 'success',
   warning = 'warning',
@@ -28,7 +28,7 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   closeLabel?: string;
   testId?: string;
   dismissable?: boolean;
-  variant?: EnumAlertVariant;
+  variant?: AlertVariant;
   onDismiss?: () => void;
   isExiting?: boolean;
   ref?: any;
@@ -191,13 +191,13 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
               {dismissable && (
                 <DismissableIconWrapper variant={variant} theme={theme}>
                   <Button
-                    ariaLabel={closeLabel ? closeLabel : 'Close this message'}
+                    aria-label={closeLabel ? closeLabel : 'Close this message'}
                     icon={<CrossIcon />}
                     inverse
                     onClick={handleDismiss}
                     style={DismissButtonStyles}
                     theme={theme}
-                    variant={EnumButtonVariant.link}
+                    variant={ButtonVariant.link}
                   />
                 </DismissableIconWrapper>
               )}
