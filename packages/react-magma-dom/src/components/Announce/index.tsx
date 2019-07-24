@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 export interface AnnounceProps extends React.HTMLAttributes<HTMLDivElement> {
-  politeness?: EnumAnnouncePoliteness;
+  politeness?: AnnouncePoliteness;
   ref?: any;
 }
 
-export enum EnumAnnouncePoliteness {
+export enum AnnouncePoliteness {
   polite = 'polite', //default
   off = 'off',
   assertive = 'assertive'
@@ -16,7 +16,7 @@ export const Announce: React.FunctionComponent<
 > = React.forwardRef(({ children, politeness }: AnnounceProps, ref: any) => {
   return (
     <div
-      aria-live={politeness ? politeness : EnumAnnouncePoliteness.polite}
+      aria-live={politeness ? politeness : AnnouncePoliteness.polite}
       ref={ref}
     >
       {children}

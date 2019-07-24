@@ -6,14 +6,13 @@
       "@babel/preset-env",
       {
         "useBuiltIns": "entry",
-        "corejs": 2
+        "corejs": "3.*.*"
       }
     ]
   ],
   "plugins": [
     "@babel/plugin-proposal-export-namespace-from",
     "@babel/plugin-proposal-throw-expressions",
-    "@babel/plugin-syntax-dynamic-import",
     [
       "@babel/plugin-proposal-class-properties",
       {

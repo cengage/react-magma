@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { EnumButtonColor, EnumButtonVariant } from '../Button';
+import { ButtonColor, ButtonVariant } from '../Button';
 import { HyperLink } from '../HyperLink';
 
 export const TARGET_ID = 'reactMagmaMainContent';
@@ -8,11 +8,11 @@ export const TARGET_ID = 'reactMagmaMainContent';
 export interface SkipLinkProps {
   buttonText?: string;
   className?: string;
-  color?: EnumButtonColor;
+  color?: ButtonColor;
   inverse?: boolean;
   positionLeft?: number;
   positionTop?: number;
-  variant?: EnumButtonVariant;
+  variant?: ButtonVariant;
 }
 
 const handleClick = e => {
@@ -62,7 +62,7 @@ export const SkipLink: React.FunctionComponent<SkipLinkProps> = ({
   return (
     <StyledSkipLink
       className={className}
-      color={color ? color : EnumButtonColor.primary}
+      color={color ? color : ButtonColor.primary}
       inverse={inverse}
       onClick={e => {
         handleClick(e);
@@ -71,7 +71,7 @@ export const SkipLink: React.FunctionComponent<SkipLinkProps> = ({
       positionTop={positionTop ? positionTop : 10}
       styledAs="Button"
       to={`#${TARGET_ID}`}
-      variant={variant ? variant : EnumButtonVariant.solid}
+      variant={variant ? variant : ButtonVariant.solid}
     >
       {buttonText ? buttonText : 'Skip Navigation'}
     </StyledSkipLink>

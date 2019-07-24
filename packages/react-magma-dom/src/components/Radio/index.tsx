@@ -14,6 +14,7 @@ import { generateId } from '../utils';
 
 export interface RadioProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
+  css?: any; // Adding css prop to fix emotion error
   color?: string;
   containerStyle?: React.CSSProperties;
   innerRef?: any;

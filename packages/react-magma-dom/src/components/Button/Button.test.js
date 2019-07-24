@@ -3,12 +3,12 @@ import React from 'react';
 import { axe } from 'jest-axe';
 import {
   Button,
-  EnumButtonColor,
-  EnumButtonShape,
-  EnumButtonSize,
-  EnumButtonTextTransform,
-  EnumButtonVariant,
-  EnumButtonIconPosition
+  ButtonColor,
+  ButtonShape,
+  ButtonSize,
+  ButtonTextTransform,
+  ButtonVariant,
+  ButtonIconPosition
 } from '.';
 import { render } from 'react-testing-library';
 import { CheckIcon } from '../Icon/types/CheckIcon';
@@ -52,7 +52,7 @@ describe('Button', () => {
           <Button
             id="testId"
             onClick={jest.fn()}
-            color={EnumButtonColor.secondary}
+            color={ButtonColor.secondary}
           >
             Test Text
           </Button>
@@ -63,7 +63,7 @@ describe('Button', () => {
 
       it('should render with updated shape', () => {
         const { container } = render(
-          <Button id="testId" onClick={jest.fn()} shape={EnumButtonShape.round}>
+          <Button id="testId" onClick={jest.fn()} shape={ButtonShape.round}>
             Test Text
           </Button>
         );
@@ -73,7 +73,7 @@ describe('Button', () => {
 
       it('should render with small size', () => {
         const { container } = render(
-          <Button id="testId" onClick={jest.fn()} size={EnumButtonSize.small}>
+          <Button id="testId" onClick={jest.fn()} size={ButtonSize.small}>
             Test Text
           </Button>
         );
@@ -83,7 +83,7 @@ describe('Button', () => {
 
       it('should render with large size', () => {
         const { container } = render(
-          <Button id="testId" onClick={jest.fn()} size={EnumButtonSize.large}>
+          <Button id="testId" onClick={jest.fn()} size={ButtonSize.large}>
             Test Text
           </Button>
         );
@@ -96,7 +96,7 @@ describe('Button', () => {
           <Button
             id="testId"
             onClick={jest.fn()}
-            textTransform={EnumButtonTextTransform.none}
+            textTransform={ButtonTextTransform.none}
           >
             Test Text
           </Button>
@@ -110,7 +110,7 @@ describe('Button', () => {
           <Button
             id="testId"
             onClick={jest.fn()}
-            variant={EnumButtonVariant.outline}
+            variant={ButtonVariant.outline}
           >
             Test Text
           </Button>
@@ -140,8 +140,8 @@ describe('Button', () => {
             aria-label="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={EnumButtonIconPosition.right}
-            size={EnumButtonSize.large}
+            iconPosition={ButtonIconPosition.right}
+            size={ButtonSize.large}
           />
         );
         expect(container.querySelector('svg')).toHaveAttribute('height', '24');
@@ -155,8 +155,8 @@ describe('Button', () => {
             aria-label="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={EnumButtonIconPosition.right}
-            size={EnumButtonSize.medium}
+            iconPosition={ButtonIconPosition.right}
+            size={ButtonSize.medium}
           />
         );
         expect(container.querySelector('svg')).toHaveAttribute('height', '18');
@@ -170,8 +170,8 @@ describe('Button', () => {
             aria-label="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={EnumButtonIconPosition.right}
-            size={EnumButtonSize.small}
+            iconPosition={ButtonIconPosition.right}
+            size={ButtonSize.small}
           />
         );
         expect(container.querySelector('svg')).toHaveAttribute('height', '14');
@@ -187,8 +187,8 @@ describe('Button', () => {
             aria-label="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={EnumButtonIconPosition.right}
-            color={EnumButtonColor.secondary}
+            iconPosition={ButtonIconPosition.right}
+            color={ButtonColor.secondary}
           />
         );
 
@@ -202,8 +202,8 @@ describe('Button', () => {
             aria-label="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={EnumButtonIconPosition.right}
-            shape={EnumButtonShape.fill}
+            iconPosition={ButtonIconPosition.right}
+            shape={ButtonShape.fill}
           />
         );
 
@@ -217,8 +217,8 @@ describe('Button', () => {
             aria-label="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={EnumButtonIconPosition.right}
-            size={EnumButtonSize.small}
+            iconPosition={ButtonIconPosition.right}
+            size={ButtonSize.small}
           />
         );
 
@@ -232,8 +232,8 @@ describe('Button', () => {
             aria-label="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={EnumButtonIconPosition.right}
-            size={EnumButtonSize.large}
+            iconPosition={ButtonIconPosition.right}
+            size={ButtonSize.large}
           />
         );
 
@@ -247,8 +247,8 @@ describe('Button', () => {
             aria-label="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={EnumButtonIconPosition.right}
-            variant={EnumButtonVariant.outline}
+            iconPosition={ButtonIconPosition.right}
+            variant={ButtonVariant.outline}
           />
         );
 
@@ -286,7 +286,7 @@ describe('Button', () => {
       const icon = <CheckIcon />;
 
       const { container, getByText } = render(
-        <Button iconPosition={EnumButtonIconPosition.left} icon={icon}>
+        <Button iconPosition={ButtonIconPosition.left} icon={icon}>
           {buttonText}
         </Button>
       );
@@ -301,8 +301,8 @@ describe('Button', () => {
       const { container } = render(
         <Button
           icon={icon}
-          iconPosition={EnumButtonIconPosition.left}
-          size={EnumButtonSize.large}
+          iconPosition={ButtonIconPosition.left}
+          size={ButtonSize.large}
         >
           Click me
         </Button>
@@ -318,7 +318,7 @@ describe('Button', () => {
       it('Large', () => {
         const icon = <CheckIcon />;
         const { container } = render(
-          <Button icon={icon} size={EnumButtonSize.large}>
+          <Button icon={icon} size={ButtonSize.large}>
             click
           </Button>
         );
@@ -332,7 +332,7 @@ describe('Button', () => {
       it('Medium', () => {
         const icon = <CheckIcon />;
         const { container } = render(
-          <Button icon={icon} size={EnumButtonSize.medium}>
+          <Button icon={icon} size={ButtonSize.medium}>
             click
           </Button>
         );
@@ -345,7 +345,7 @@ describe('Button', () => {
       it('Small', () => {
         const icon = <CheckIcon />;
         const { container } = render(
-          <Button icon={icon} size={EnumButtonSize.small}>
+          <Button icon={icon} size={ButtonSize.small}>
             click
           </Button>
         );
@@ -364,8 +364,8 @@ describe('Button', () => {
             aria-label="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={EnumButtonIconPosition.right}
-            color={EnumButtonColor.secondary}
+            iconPosition={ButtonIconPosition.right}
+            color={ButtonColor.secondary}
           >
             Test Text
           </Button>
@@ -381,8 +381,8 @@ describe('Button', () => {
             aria-label="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={EnumButtonIconPosition.right}
-            shape={EnumButtonShape.fill}
+            iconPosition={ButtonIconPosition.right}
+            shape={ButtonShape.fill}
           >
             Test Text
           </Button>
@@ -398,8 +398,8 @@ describe('Button', () => {
             aria-label="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={EnumButtonIconPosition.right}
-            size={EnumButtonSize.small}
+            iconPosition={ButtonIconPosition.right}
+            size={ButtonSize.small}
           >
             Test Text
           </Button>
@@ -415,8 +415,8 @@ describe('Button', () => {
             aria-label="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={EnumButtonIconPosition.right}
-            size={EnumButtonSize.medium}
+            iconPosition={ButtonIconPosition.right}
+            size={ButtonSize.medium}
           >
             Test Text
           </Button>
@@ -427,7 +427,7 @@ describe('Button', () => {
 
       it('should render with large size', () => {
         // const { container } = renderIconWithTextButton({
-        //   size: EnumButtonSize.small
+        //   size: ButtonSize.small
         // });
 
         // expect(container).toMatchSnapshot();
@@ -437,8 +437,8 @@ describe('Button', () => {
             aria-label="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={EnumButtonIconPosition.right}
-            size={EnumButtonSize.large}
+            iconPosition={ButtonIconPosition.right}
+            size={ButtonSize.large}
           >
             Test Text
           </Button>
@@ -454,8 +454,8 @@ describe('Button', () => {
             aria-label="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={EnumButtonIconPosition.right}
-            textTransform={EnumButtonTextTransform.none}
+            iconPosition={ButtonIconPosition.right}
+            textTransform={ButtonTextTransform.none}
           >
             Test Text
           </Button>
@@ -471,8 +471,8 @@ describe('Button', () => {
             aria-label="Check Icon"
             id="testId"
             icon={icon}
-            iconPosition={EnumButtonIconPosition.right}
-            variant={EnumButtonVariant.outline}
+            iconPosition={ButtonIconPosition.right}
+            variant={ButtonVariant.outline}
           >
             Test Text
           </Button>
