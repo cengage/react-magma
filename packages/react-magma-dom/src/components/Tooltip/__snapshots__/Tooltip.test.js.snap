@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tooltip should render the tooltip component, positioned top by default 1`] = `
+<div
+  class="css-vb1u9d-StyledTooltip-StyledTooltip elrt5sw1"
+  id="testTooltipId"
+  role="tooltip"
+>
+  <div
+    class="css-458qzt-StyledTooltipInner-StyledTooltipInner elrt5sw2"
+  >
+    Test Content
+  </div>
+</div>
+`;

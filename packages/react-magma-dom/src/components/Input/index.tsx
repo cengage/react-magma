@@ -9,6 +9,7 @@ import { Button, ButtonVariant, ButtonType } from '../Button';
 import { InputMessage } from './InputMessage';
 import { Label } from '../Label';
 import { QuestionCircleIcon } from '../Icon/types/QuestionCircleIcon';
+import { Tooltip } from '../Tooltip';
 import { VisuallyHidden } from '../VisuallyHidden';
 
 export enum InputIconPosition {
@@ -306,14 +307,19 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                     </PasswordMaskWrapper>
                   )}
                   {onHelpLinkClick && (
-                    <Button
-                      aria-label={HELP_LINK_TEXT}
-                      icon={<QuestionCircleIcon />}
-                      inverse={inverse}
-                      onClick={onHelpLinkClick}
-                      style={{ margin: '0 0 0 7px' }}
-                      title={HELP_LINK_TEXT}
-                      variant={ButtonVariant.link}
+                    <Tooltip
+                      content={HELP_LINK_TEXT}
+                      trigger={
+                        <Button
+                          aria-label={HELP_LINK_TEXT}
+                          icon={<QuestionCircleIcon />}
+                          inverse={inverse}
+                          onClick={onHelpLinkClick}
+                          style={{ margin: '0 0 0 7px' }}
+                          title={HELP_LINK_TEXT}
+                          variant={ButtonVariant.link}
+                        />
+                      }
                     />
                   )}
                 </InputWrapper>
