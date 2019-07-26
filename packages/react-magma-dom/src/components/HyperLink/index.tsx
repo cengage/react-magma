@@ -38,7 +38,8 @@ const linkStyles = props => css`
     }
 
     &:focus {
-      outline: 2px dotted ${props.theme.colors.pop03};
+      outline: 2px dotted
+        ${props.inverse ? props.theme.neutral08 : props.theme.colors.pop02};
       outline-offset: 3px;
     }
   }
@@ -61,7 +62,7 @@ export const HyperLink: React.FunctionComponent<
         if (typeof children === 'function') {
           return (
             <ClassNames>
-              {({ css }) => {
+              {({}) => {
                 const stylesClass = css(composedStyle);
                 return children({ to, stylesClass });
               }}

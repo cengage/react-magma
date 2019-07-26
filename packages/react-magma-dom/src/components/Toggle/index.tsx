@@ -60,7 +60,7 @@ const Track = styled.span<{ checked?: boolean; disabled?: boolean }>`
     `}
 
   ${HiddenInput}:focus + label & {
-    outline: 2px dotted ${props => props.theme.colors.pop03};
+    outline: 2px dotted ${props => props.theme.colors.pop02};
     outline-offset: 3px;
   }
 
@@ -140,10 +140,10 @@ const SpanTextRight = styled.span`
 `;
 
 const renderLabelText = (
-  textVisuallyHidden,
-  labelText,
-  textPosition,
-  labelStyle
+  textVisuallyHidden: boolean,
+  labelText: string,
+  textPosition: ToggleTextPostition,
+  labelStyle: React.CSSProperties
 ) => {
   if (textVisuallyHidden) {
     return <HiddenLabelText>{labelText}</HiddenLabelText>;
@@ -186,6 +186,7 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
             <StyledContainer>
               <HiddenInput
                 {...other}
+                aria-checked={checked}
                 id={id}
                 data-testid={testId}
                 disabled={disabled}
@@ -194,6 +195,7 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
                 onBlur={onBlur}
                 onChange={onChange}
                 onFocus={onFocus}
+                role="switch"
               />
               <StyledLabel htmlFor={id} style={containerStyle}>
                 {textPosition !== ToggleTextPostition.right &&

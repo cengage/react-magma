@@ -4,7 +4,7 @@ import { ArrowLeft2Icon } from '../Icon/types/ArrowLeft2Icon';
 import { ArrowRight2Icon } from '../Icon/types/ArrowRight2Icon';
 import { Button, ButtonVariant } from '../Button';
 import { magma } from '../../theme/magma';
-import { format } from 'date-fns';
+import { format, addMonths, subMonths } from 'date-fns';
 import styled from '@emotion/styled';
 
 const CalendarHeaderContainer = styled.div`
@@ -36,7 +36,10 @@ export const CalendarHeader: React.FunctionComponent<{}> = () => (
         <CalendarHeaderContainer>
           <CalendarIconButton>
             <Button
-              aria-label="Previous Month"
+              aria-label={`Previous Month ${format(
+                subMonths(context.focusedDate, 1),
+                'MMMM YYYY'
+              )}`}
               icon={<ArrowLeft2Icon />}
               variant={ButtonVariant.link}
               onClick={context.onPrevMonthClick}
@@ -47,7 +50,10 @@ export const CalendarHeader: React.FunctionComponent<{}> = () => (
           </CalendarHeaderText>
           <CalendarIconButton>
             <Button
-              aria-label="Next Month"
+              aria-label={`Next Month ${format(
+                addMonths(context.focusedDate, 1),
+                'MMMM YYYY'
+              )}`}
               icon={<ArrowRight2Icon />}
               variant={ButtonVariant.link}
               onClick={context.onNextMonthClick}

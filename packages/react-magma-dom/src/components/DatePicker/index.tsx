@@ -28,6 +28,7 @@ const DatePickerCalendar = styled.div<{ opened: boolean }>`
   opacity: ${props => (props.opened ? '1' : '0')};
   position: absolute;
   overflow: hidden;
+  top: 70px;
   transition: opacity 0.2s ease-in-out 0s;
   width: 320px;
   z-index: ${props => (props.opened ? '998' : '-1')};
@@ -53,6 +54,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
         buildCalendarMonth,
         openHelperInformation,
         closeHelperInformation,
+        srMessageId,
         onInputFocus,
         onInputKeyDown,
         onDateFocus,
@@ -64,7 +66,6 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
         onDayClick
       }) => {
         const inputValue = chosenDate ? format(chosenDate, 'MM/DD/YYYY') : '';
-        const srMessageId = `${id}_sr`;
 
         return (
           <CalendarContext.Provider

@@ -23,7 +23,7 @@ describe('Calendar Header', () => {
       </DatePickerCore>
     );
 
-    fireEvent.click(getByLabelText('Next Month'));
+    fireEvent.click(getByLabelText(/Next Month/i));
 
     expect(getByText('February 2019')).toBeInTheDocument();
   });
@@ -46,7 +46,7 @@ describe('Calendar Header', () => {
       </DatePickerCore>
     );
 
-    fireEvent.click(getByLabelText('Previous Month'));
+    fireEvent.click(getByLabelText(/Previous Month/i));
 
     expect(getByText('December 2018')).toBeInTheDocument();
   });

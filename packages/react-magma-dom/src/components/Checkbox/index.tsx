@@ -75,7 +75,7 @@ const StyledFakeInput = styled.span<{
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
 
   svg {
-    display: ${props => (props.disabled ? 'none' : 'block')};
+    display: ${props => (props.checked && !props.disabled ? 'block' : 'none')};
     fill: ${props =>
       props.inverse
         ? props.color
@@ -90,7 +90,10 @@ const StyledFakeInput = styled.span<{
   ${HiddenInput}:focus + label & {
     &:before {
       ${DisplayInputFocusStyles};
-      outline: 2px dotted ${props => props.theme.colors.pop03};
+      outline: 2px dotted ${props =>
+        props.inverse
+          ? props.theme.colors.neutral08
+          : props.theme.colors.pop02};
       top: -7px;
       left: -7px;
     }
@@ -106,11 +109,10 @@ const StyledFakeInput = styled.span<{
         : props.theme.colors.primary};
   }
 
-  ${HiddenInput}:not (:disabled) {
-    &:active + label & {
-      &:after {
-        ${DisplayInputActiveStyles}
-      }
+  /* prettier-ignore */
+  ${HiddenInput}:not(:disabled):active + label & {
+    &:after {
+      ${DisplayInputActiveStyles}
     }
   }
 

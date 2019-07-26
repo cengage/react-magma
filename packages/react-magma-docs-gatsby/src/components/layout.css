@@ -560,7 +560,7 @@ pre tt:after {
 
 .content-article h1:focus,
 .content-article h2:focus {
-  border-bottom: 2px dotted #F2A900;
+  border-bottom: 2px dotted #FA6600;
   outline: 0;
 }
 

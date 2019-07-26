@@ -59,13 +59,13 @@ export function getStyles(
         ? theme.colors.neutral07
         : theme.colors.neutral08,
       borderColor: isFocused
-        ? theme.colors.pop03
+        ? theme.colors.pop02
         : errorMessage
         ? theme.colors.danger
         : theme.colors.neutral05,
       borderRadius: '5px',
       boxShadow: isFocused
-        ? `0 0 0 1px ${theme.colors.pop03}`
+        ? `0 0 0 1px ${theme.colors.pop02}`
         : errorMessage
         ? `0 0 0 1px ${theme.colors.danger}`
         : '0 0 0',
@@ -76,7 +76,7 @@ export function getStyles(
       padding: '0 8px 0 0',
 
       '&:hover': {
-        borderColor: isFocused ? theme.colors.pop03 : theme.colors.neutral05
+        borderColor: isFocused ? theme.colors.pop02 : theme.colors.neutral05
       },
       ...customStyles.control
     }),
