@@ -5,7 +5,9 @@
   "main": "dist/react-magma-dom.cjs.js",
   "module": "dist/react-magma-dom.esm.js",
   "typings": "dist/index.d.ts",
-  "sideEffects": false,
+  "sideEffects": [
+    "**/utils/*"
+  ],
   "files": [
     "dist",
     "!dist/reports",
