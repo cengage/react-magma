@@ -2,7 +2,7 @@
   "name": "react-magma-core",
   "version": "0.1.0-beta.26",
   "description": "",
-  "main": "dist/react-magma-core.cjs.js",
+  "main": "dist/react-magma-core.cjs.production.min.js",
   "module": "dist/react-magma-core.esm.js",
   "files": [
     "dist"

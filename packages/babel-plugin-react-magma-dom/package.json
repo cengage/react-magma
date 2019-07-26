@@ -10,10 +10,10 @@
     "registry": "http://nexus.mindtap.corp.web/content/repositories/npm.cengage/"
   },
   "scripts": {
-    "build": "babel src --out-dir lib || true",
-    "test": "jest",
-    "test-watch": "jest --watch",
-    "covg": "open coverage/lcov-report/index.html"
+    "DEPRECATED-build": "babel src --out-dir lib || true",
+    "DEPRECATED-test": "jest",
+    "DEPRECATED-test-watch": "jest --watch",
+    "DEPRECATED-covg": "open coverage/lcov-report/index.html"
   },
   "author": "",
   "license": "ISC",
