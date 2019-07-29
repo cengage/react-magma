@@ -1,17 +1,18 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { Button, EnumButtonColor, EnumButtonVariant } from '../Button';
+import { ButtonColor, ButtonVariant } from '../Button';
+import { HyperLink } from '../HyperLink';
 
 export const TARGET_ID = 'reactMagmaMainContent';
 
 export interface SkipLinkProps {
   buttonText?: string;
   className?: string;
-  color?: EnumButtonColor;
+  color?: ButtonColor;
   inverse?: boolean;
   positionLeft?: number;
   positionTop?: number;
-  variant?: EnumButtonVariant;
+  variant?: ButtonVariant;
 }
 
 const handleClick = e => {
@@ -33,7 +34,7 @@ const handleClick = e => {
   targetAnchor.focus();
 };
 
-const StyledSkipButton = styled(Button)<{
+const StyledSkipLink = styled(HyperLink)<{
   positionLeft: number;
   positionTop: number;
 }>`
@@ -59,20 +60,20 @@ export const SkipLink: React.FunctionComponent<SkipLinkProps> = ({
   variant
 }: SkipLinkProps) => {
   return (
-    <StyledSkipButton
-      as="a"
+    <StyledSkipLink
       className={className}
-      color={color ? color : EnumButtonColor.primary}
-      href={`#${TARGET_ID}`}
+      color={color ? color : ButtonColor.primary}
       inverse={inverse}
       onClick={e => {
         handleClick(e);
       }}
       positionLeft={positionLeft ? positionLeft : 10}
       positionTop={positionTop ? positionTop : 10}
-      variant={variant ? variant : EnumButtonVariant.solid}
+      styledAs="Button"
+      to={`#${TARGET_ID}`}
+      variant={variant ? variant : ButtonVariant.solid}
     >
       {buttonText ? buttonText : 'Skip Navigation'}
-    </StyledSkipButton>
+    </StyledSkipLink>
   );
 };

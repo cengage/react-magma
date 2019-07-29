@@ -16,20 +16,20 @@ If no children are included, then they render in the icon-only style.
 ```.jsx
     <>
         <p>
-          <Button ariaLabel="Icon" icon={<BellIcon />} />
-          <Button ariaLabel="Icon" icon={<BellIcon />} />
-          <Button ariaLabel="Icon" variant="outline" icon={<BellIcon />} />
-          <Button ariaLabel="Icon" variant="link" icon={<BellIcon />} />
-          <Button ariaLabel="Icon" color="secondary" icon={<Cog2Icon />} />
-          <Button ariaLabel="Icon" color="secondary" variant="outline" icon={<Cog2Icon />} />
-          <Button ariaLabel="Icon" color="secondary" variant="link" icon={<Cog2Icon />} />
-          <Button ariaLabel="Icon" color="success" icon={<CheckIcon />} />
-          <Button ariaLabel="Icon" color="success"variant="outline" icon={<CheckIcon />} />
-          <Button ariaLabel="Icon" color="success" variant="link" icon={<CheckIcon />} />
-          <Button ariaLabel="Icon" color="danger" icon={<AlertIcon />} />
-          <Button ariaLabel="Icon" color="danger" variant="outline" icon={<AlertIcon />} />
-          <Button ariaLabel="Icon" color="danger" variant="link" icon={<AlertIcon />} />
-          <Button ariaLabel="Icon" disabled icon={<BellIcon />} />
+          <Button aria-label="Icon" icon={<BellIcon />} />
+          <Button aria-label="Icon" icon={<BellIcon />} />
+          <Button aria-label="Icon" variant="outline" icon={<BellIcon />} />
+          <Button aria-label="Icon" variant="link" icon={<BellIcon />} />
+          <Button aria-label="Icon" color="secondary" icon={<Cog2Icon />} />
+          <Button aria-label="Icon" color="secondary" variant="outline" icon={<Cog2Icon />} />
+          <Button aria-label="Icon" color="secondary" variant="link" icon={<Cog2Icon />} />
+          <Button aria-label="Icon" color="success" icon={<CheckIcon />} />
+          <Button aria-label="Icon" color="success"variant="outline" icon={<CheckIcon />} />
+          <Button aria-label="Icon" color="success" variant="link" icon={<CheckIcon />} />
+          <Button aria-label="Icon" color="danger" icon={<AlertIcon />} />
+          <Button aria-label="Icon" color="danger" variant="outline" icon={<AlertIcon />} />
+          <Button aria-label="Icon" color="danger" variant="link" icon={<AlertIcon />} />
+          <Button aria-label="Icon" disabled icon={<BellIcon />} />
         </p>
          <p>
           <Button icon={<BellIcon />}>Button with text</Button>
@@ -48,18 +48,18 @@ If you find JSX being passed in as a prop directly ugly, you can assign an icon 
       render() {
         const icon = <BellIcon />;
 
-        return <Button ariaLabel="Icon" icon={icon} />
+        return <Button aria-label="Icon" icon={icon} />
       }
     }
 ```
 
-For icon only buttons you _MUST_ pass in an `ariaLabel` property to satisfy accessibility standards.
+For icon only buttons you _MUST_ pass in an `aria-label` property to satisfy accessibility standards.
 
 ## Aria Label
 
 ```.jsx
     <>
-        <Button ariaLabel="Icon" icon={<BellIcon />} />
+        <Button aria-label="Icon" icon={<BellIcon />} />
     </>
 ```
 
@@ -127,13 +127,13 @@ if you need to use an `a` tag or a `Link` component.
 ```.jsx
     <>
         <Button
-          ariaLabel='Search Google'
+          aria-label='Search Google'
           as='a'
           href='http://google.com'
           icon={<Search2Icon />}
           iconPosition='left'>Link Element</Button>
         <Button
-          ariaLabel='Search Google'
+          aria-label='Search Google'
           as='a'
           href='http://google.com'
           icon={<Search2Icon />} />
@@ -208,8 +208,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
 
 | Prop          | Type                                                                | Default     | Required |
 | ------------- | ------------------------------------------------------------------- | ----------- | :------: |
-| ariaExpanded  | boolean                                                             |             |
-| ariaLabel     | string                                                              |             |
+| aria-expanded | boolean                                                             |             |
+| aria-label    | string                                                              |             |
 | as            | any                                                                 |             |
 | autoFocus     | boolean                                                             | false       |
 | block         | boolean                                                             | false       |

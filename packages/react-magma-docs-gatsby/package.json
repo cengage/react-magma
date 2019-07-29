@@ -1,7 +1,7 @@
 {
   "name": "react-magma-docs-gatsby",
   "description": "React Magma docs - take 2",
-  "version": "0.1.0-beta.22",
+  "version": "0.1.0-beta.24",
   "dependencies": {
     "@emotion/core": "10.0.7",
     "@emotion/styled": "10.0.7",
@@ -30,7 +30,7 @@
     "react-focus-lock": "1.18.3",
     "react-helmet": "5.2.0",
     "react-live": "1.12.0",
-    "react-magma-dom": "0.1.0-beta.22",
+    "react-magma-dom": "0.1.0-beta.24",
     "react-spring": "6.1.9",
     "url-loader": "^1.1.2"
   },
@@ -39,7 +39,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby build --prefix-paths",
     "develop": "gatsby develop",
     "serve": "gatsby serve",
     "format": "prettier --write \"src/**/*.js\"",

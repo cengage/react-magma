@@ -14,6 +14,7 @@ var defaultIconsExample = "\n  import * as Magma from 'react-magma-dom'\n\n  exp
 var namedIconsExample = "\n  import { DeleteIcon } from 'react-magma-dom'\n\n  export class Example extends React.Component {\n    render() {\n      return (\n        <div>\n          <DeleteIcon />\n        </div>\n      )\n    }\n  }\n";
 var renamedImportExample = "\n  import { Button as MyButton } from 'react-magma-dom'\n\n  export class Example extends React.Component {\n    render() {\n      return (\n        <div>\n          <MyButton />\n        </div>\n      );\n    }\n  }\n";
 var interfaceExample = "\n  import { IButtonColor } from 'react-magma-dom'\n\n  export class Example extends React.Component {\n    render() {\n      return (\n        <div>\n          <button color={IButtonColor.yellow} />\n        </div>\n      );\n    }\n  }\n";
+var enumExample = "\n  import { EnumButtonColor } from 'react-magma-dom'\n\n  export class Example extends React.Component {\n    render() {\n      return (\n        <div>\n          <button color={EnumButtonColor.yellow} />\n        </div>\n      );\n    }\n  }\n";
 it('handles a combination of imports and use cases', function () {
   var _babel$transform = babel.transform(combinationExample, {
     plugins: [plugin]
@@ -124,6 +125,17 @@ it('changes inteface imports to reference the base component file', function () 
     plugins: [plugin]
   }),
       ast = _babel$transform10.ast;
+
+  var program = ast.program;
+  var sourceValue = program.body[2].declarations[0].init.arguments[0].value;
+  expect(sourceValue).toEqual('react-magma-dom/dist/components/Button');
+});
+it('changes enum imports to reference the base component file', function () {
+  var _babel$transform11 = babel.transform(enumExample, {
+    ast: true,
+    plugins: [plugin]
+  }),
+      ast = _babel$transform11.ast;
 
   var program = ast.program;
   var sourceValue = program.body[2].declarations[0].init.arguments[0].value;

@@ -61,7 +61,7 @@ class App extends Component {
         </Button>
 
         <Button
-          ariaLabel="Default Icon Button"
+          aria-label="Default Icon Button"
           icon={<BellIcon />}
           onClick={() => {
             alert('clicked');
@@ -70,7 +70,7 @@ class App extends Component {
         <Button
           id="disabledIconButton"
           disabled
-          ariaLabel="Disabled Icon Button"
+          aria-label="Disabled Icon Button"
           icon={<BellIcon />}
         />
 

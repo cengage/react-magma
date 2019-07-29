@@ -1,6 +1,6 @@
 import React from 'react';
 import { axe } from 'jest-axe';
-import { Alert, EnumAlertVariant } from '.';
+import { Alert, AlertVariant } from '.';
 import { render, fireEvent } from 'react-testing-library';
 import { Info2Icon } from '../Icon/types/Info2Icon';
 import { CheckIcon } from '../Icon/types/CheckIcon';
@@ -46,7 +46,7 @@ describe('Alert', () => {
 
   describe('Variants', () => {
     it('should render an alert with info variant', () => {
-      const { container } = renderAlert({ variant: EnumAlertVariant.info });
+      const { container } = renderAlert({ variant: AlertVariant.info });
 
       expect(container.firstChild).toHaveStyleRule(
         'background-color',
@@ -63,7 +63,7 @@ describe('Alert', () => {
     });
 
     it('should render an alert with success variant', () => {
-      const { container } = renderAlert({ variant: EnumAlertVariant.success });
+      const { container } = renderAlert({ variant: AlertVariant.success });
 
       expect(container.firstChild).toHaveStyleRule(
         'background-color',
@@ -80,7 +80,7 @@ describe('Alert', () => {
     });
 
     it('should render an alert with warning variant', () => {
-      const { container } = renderAlert({ variant: EnumAlertVariant.warning });
+      const { container } = renderAlert({ variant: AlertVariant.warning });
 
       expect(container.firstChild).toHaveStyleRule(
         'background-color',
@@ -97,7 +97,7 @@ describe('Alert', () => {
     });
 
     it('should render an alert with danger variant', () => {
-      const { container } = renderAlert({ variant: EnumAlertVariant.danger });
+      const { container } = renderAlert({ variant: AlertVariant.danger });
 
       expect(container.firstChild).toHaveStyleRule(
         'background-color',

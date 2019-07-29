@@ -1,22 +1,22 @@
-export { Alert, EnumAlertVariant } from './components/Alert';
+export { Alert, AlertVariant } from './components/Alert';
 export { Announce } from './components/Announce';
 export {
   Button,
-  EnumButtonColor,
-  EnumButtonShape,
-  EnumButtonSize,
-  EnumButtonVariant,
-  EnumButtonTextTransform,
-  EnumButtonType,
-  EnumButtonIconPosition
+  ButtonColor,
+  ButtonShape,
+  ButtonSize,
+  ButtonVariant,
+  ButtonTextTransform,
+  ButtonType,
+  ButtonIconPosition
 } from './components/Button';
 export { Checkbox } from './components/Checkbox';
 export { Heading } from './components/Heading';
 export {
   Input,
-  EnumInputSize,
-  EnumInputType,
-  EnumInputIconPosition
+  InputSize,
+  InputType,
+  InputIconPosition
 } from './components/Input';
 export { Label } from './components/Label';
 export { LinkButton } from './components/LinkButton';
@@ -28,11 +28,13 @@ export { CreatableSelect } from './components/CreatableSelect';
 export { AsyncCreatableSelect } from './components/AsyncCreatableSelect';
 export { SkipLink } from './components/SkipLink';
 export { SkipLinkContent } from './components/SkipLinkContent';
-export { Toggle } from './components/Toggle';
 export { Toast } from './components/Toast';
+export { Toggle } from './components/Toggle';
+export { Tooltip, EnumTooltipPosition } from './components/Tooltip';
 export { VisuallyHidden } from './components/VisuallyHidden';
 export { DatePicker } from './components/DatePicker';
 export { Modal } from './components/Modal';
+export { HyperLink } from './components/HyperLink';
 
 export { amgam } from './theme/amgam';
 export { amgamDark } from './theme/amgamDark';

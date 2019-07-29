@@ -4,13 +4,13 @@ import styled from '@emotion/styled';
 import { IconProps } from '../Icon/utils';
 import { Omit } from '../utils';
 
-export enum EnumButtonVariant {
+export enum ButtonVariant {
   solid = 'solid', //default
   outline = 'outline',
   link = 'link'
 }
 
-export enum EnumButtonColor {
+export enum ButtonColor {
   primary = 'primary', //default
   secondary = 'secondary',
   success = 'success',
@@ -18,30 +18,30 @@ export enum EnumButtonColor {
   marketing = 'marketing'
 }
 
-export enum EnumButtonShape {
+export enum ButtonShape {
   fill = 'fill', //default
   leftCap = 'leftCap',
   rightCap = 'rightCap',
   round = 'round' // default for icon only buttons
 }
 
-export enum EnumButtonSize {
+export enum ButtonSize {
   large = 'large',
   medium = 'medium', //default
   small = 'small'
 }
 
-export enum EnumButtonTextTransform {
+export enum ButtonTextTransform {
   uppercase = 'uppercase', //default
   none = 'none'
 }
 
-export enum EnumButtonIconPosition {
+export enum ButtonIconPosition {
   left = 'left',
   right = 'right'
 }
 
-export enum EnumButtonType {
+export enum ButtonType {
   button = 'button',
   submit = 'submit',
   reset = 'reset'
@@ -49,39 +49,35 @@ export enum EnumButtonType {
 
 export interface ButtonStyles {
   block?: boolean;
-  color?: EnumButtonColor;
+  color?: ButtonColor;
   inverse?: boolean;
-  shape?: EnumButtonShape;
-  size?: EnumButtonSize;
-  textTransform?: EnumButtonTextTransform;
-  type?: EnumButtonType;
-  variant?: EnumButtonVariant;
+  shape?: ButtonShape;
+  size?: ButtonSize;
+  textTransform?: ButtonTextTransform;
+  type?: ButtonType;
+  variant?: ButtonVariant;
 }
 
 interface BaseButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  ariaExpanded?: boolean;
-  ariaLabel?: string;
-  as?: any;
   autoFocus?: boolean;
-  href?: string;
   testId?: string;
   ref?: any;
   theme?: any;
-  to?: string;
+  type?: ButtonType;
 }
 
 export type ButtonProps = BaseButtonProps & ButtonStyles;
 
 export interface IconOnlyButtonProps extends Omit<ButtonProps, 'children'> {
   icon: React.ReactElement<IconProps>;
-  ariaLabel: string;
+  'aria-label': string;
 }
 
 interface IconTextButtonProps extends ButtonProps {
   icon: React.ReactElement<IconProps>;
   children: React.ReactChild | React.ReactChild[];
-  iconPosition?: EnumButtonIconPosition;
+  iconPosition?: ButtonIconPosition;
 }
 
 export type MergedButtonProps =
@@ -90,7 +86,7 @@ export type MergedButtonProps =
   | IconOnlyButtonProps;
 
 export interface SpanProps {
-  size?: EnumButtonSize;
+  size?: ButtonSize;
 }
 
 const SpanTextLeft = styled.span<SpanProps>`
@@ -138,19 +134,14 @@ export const Button: React.FunctionComponent<
   let iconPosition;
   let children;
   const {
-    ariaExpanded,
-    ariaLabel,
-    as,
     inverse,
     block,
     color,
-    href,
     testId,
     shape,
     size,
     variant,
     textTransform,
-    to,
     ...other
   } = props;
 
@@ -170,28 +161,23 @@ export const Button: React.FunctionComponent<
         {...other}
         testId={testId}
         ref={ref}
-        ariaLabel={ariaLabel}
-        ariaExpanded={ariaExpanded}
-        as={as}
         block={block}
-        color={color ? color : EnumButtonColor.primary}
+        color={color ? color : ButtonColor.primary}
         inverse={inverse}
-        href={href}
-        shape={shape ? shape : EnumButtonShape.fill}
-        size={size ? size : EnumButtonSize.medium}
+        shape={shape ? shape : ButtonShape.fill}
+        size={size ? size : ButtonSize.medium}
         textTransform={
-          textTransform ? textTransform : EnumButtonTextTransform.uppercase
+          textTransform ? textTransform : ButtonTextTransform.uppercase
         }
-        to={to}
-        variant={variant ? variant : EnumButtonVariant.solid}
+        variant={variant ? variant : ButtonVariant.solid}
       >
-        {iconPosition === EnumButtonIconPosition.right && (
+        {iconPosition === ButtonIconPosition.right && (
           <SpanTextLeft size={size}>{children} </SpanTextLeft>
         )}
         {React.Children.only(
           React.cloneElement(icon, { size: getIconWithTextSize(size) })
         )}
-        {iconPosition !== EnumButtonIconPosition.right && (
+        {iconPosition !== ButtonIconPosition.right && (
           <SpanTextRight size={size}>{children}</SpanTextRight>
         )}
       </StyledButton>
@@ -202,17 +188,12 @@ export const Button: React.FunctionComponent<
         {...other}
         testId={testId}
         ref={ref}
-        ariaExpanded={ariaExpanded}
-        ariaLabel={ariaLabel}
-        as={as}
-        color={color ? color : EnumButtonColor.primary}
+        color={color ? color : ButtonColor.primary}
         iconOnly
         inverse={inverse}
-        href={href}
-        shape={shape ? shape : EnumButtonShape.round}
-        size={size ? size : EnumButtonSize.medium}
-        to={to}
-        variant={variant ? variant : EnumButtonVariant.solid}
+        shape={shape ? shape : ButtonShape.round}
+        size={size ? size : ButtonSize.medium}
+        variant={variant ? variant : ButtonVariant.solid}
       >
         {React.Children.only(
           React.cloneElement(icon, { size: getIconSize(size) })
@@ -226,20 +207,15 @@ export const Button: React.FunctionComponent<
       {...other}
       testId={testId}
       ref={ref}
-      as={as}
-      ariaExpanded={ariaExpanded}
-      ariaLabel={ariaLabel}
       block={block}
-      color={color ? color : EnumButtonColor.primary}
-      href={href}
+      color={color ? color : ButtonColor.primary}
       inverse={inverse}
-      shape={shape ? shape : EnumButtonShape.fill}
-      size={size ? size : EnumButtonSize.medium}
+      shape={shape ? shape : ButtonShape.fill}
+      size={size ? size : ButtonSize.medium}
       textTransform={
-        textTransform ? textTransform : EnumButtonTextTransform.uppercase
+        textTransform ? textTransform : ButtonTextTransform.uppercase
       }
-      to={to}
-      variant={variant ? variant : EnumButtonVariant.solid}
+      variant={variant ? variant : ButtonVariant.solid}
     >
       {children}
     </StyledButton>
