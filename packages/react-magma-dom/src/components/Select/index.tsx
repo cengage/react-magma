@@ -7,11 +7,6 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import ReactSelect, { components } from 'react-select';
 import { SelectWrapper } from './SelectWrapper';
 
-// export interface Options {
-//   label: string;
-//   value: string;
-// }
-
 export interface SelectProps {
   id?: string;
   testId?: string;

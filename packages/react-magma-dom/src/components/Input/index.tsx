@@ -163,22 +163,8 @@ function getIconSize(size) {
 
 export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
   (props: InputProps, ref: any) => (
-    <InputCore
-      id={props.id}
-      value={props.value}
-      // onBlur={props.onBlur}
-      onChange={props.onChange}
-      // onFocus={props.onFocus}
-    >
-      {({
-        id,
-        // onBlur,
-        onChange,
-        // onFocus,
-        value,
-        togglePasswordShown,
-        passwordShown
-      }) => {
+    <InputCore id={props.id} value={props.value} onChange={props.onChange}>
+      {({ id, onChange, value, togglePasswordShown, passwordShown }) => {
         const {
           containerStyle,
           errorMessage,
