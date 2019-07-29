@@ -73,30 +73,6 @@ describe('CheckboxCore', () => {
     expect(checked).toEqual('true');
   });
 
-  // it('should call the supplied onChange and update the value when onChange is called', () => {
-  //   const handleChange = jest.fn();
-  //   const { getByTestId } = render(
-  //     <CheckboxCore onChange={handleChange}>
-  //       {({ checked, onChange }) => (
-  //         <input
-  //           type="checkbox"
-  //           checked={checked}
-  //           onChange={onChange}
-  //           data-testid="target"
-  //         />
-  //       )}
-  //     </CheckboxCore>
-  //   );
-
-  //   const checkbox = getByTestId('target');
-
-  //   expect(checkbox.checked).toBeFalsy();
-  //   fireEvent.click(checkbox);
-
-  //   expect(checkbox.checked).toBeTruthy();
-  //   expect(handleChange).toHaveBeenCalledTimes(1);
-  // });
-
   it('Should not throw if a non-function is passed as an onChange', () => {
     const handleChange = 'This is NOT a function';
     const { getByTestId } = render(
@@ -118,78 +94,4 @@ describe('CheckboxCore', () => {
     expect(() => fireEvent.click(checkbox)).not.toThrow();
     expect(checkbox.checked).toBeTruthy();
   });
-
-  // it('should call the onBlur from props during the internal onBlur', () => {
-  //   const handleBlur = jest.fn();
-  //   const { getByTestId } = render(
-  //     <CheckboxCore onBlur={handleBlur}>
-  //       {({ checked, onBlur }) => (
-  //         <input
-  //           type="checkbox"
-  //           checked={checked}
-  //           onBlur={onBlur}
-  //           data-testid="target"
-  //         />
-  //       )}
-  //     </CheckboxCore>
-  //   );
-  //   const checkbox = getByTestId('target');
-  //   fireEvent.blur(checkbox);
-  //   expect(handleBlur).toHaveBeenCalledTimes(1);
-  // });
-
-  // it('Should not throw if a non-function is passed as an onBlur', () => {
-  //   const handleBlur = 'This is NOT a function';
-  //   const { getByTestId } = render(
-  //     <CheckboxCore onBlur={handleBlur}>
-  //       {({ checked, onBlur }) => (
-  //         <input
-  //           type="checkbox"
-  //           checked={checked}
-  //           onBlur={onBlur}
-  //           data-testid="target"
-  //         />
-  //       )}
-  //     </CheckboxCore>
-  //   );
-  //   const checkbox = getByTestId('target');
-  //   expect(() => fireEvent.blur(checkbox)).not.toThrow();
-  // });
-
-  //   it('should call the onFocus from props during the internal onFocus', () => {
-  //     const handleFocus = jest.fn();
-  //     const { getByTestId } = render(
-  //       <CheckboxCore onFocus={handleFocus}>
-  //         {({ checked, onFocus }) => (
-  //           <input
-  //             type="checkbox"
-  //             checked={checked}
-  //             onFocus={onFocus}
-  //             data-testid="target"
-  //           />
-  //         )}
-  //       </CheckboxCore>
-  //     );
-  //     const checkbox = getByTestId('target');
-  //     fireEvent.focus(checkbox);
-  //     expect(handleFocus).toHaveBeenCalledTimes(1);
-  //   });
-
-  //   it('Should not throw if a non-function is passed as an onFocus', () => {
-  //     const handleFocus = 'This is NOT a function';
-  //     const { getByTestId } = render(
-  //       <CheckboxCore onFocus={handleFocus}>
-  //         {({ checked, onFocus }) => (
-  //           <input
-  //             type="checkbox"
-  //             checked={checked}
-  //             onFocus={onFocus}
-  //             data-testid="target"
-  //           />
-  //         )}
-  //       </CheckboxCore>
-  //     );
-  //     const checkbox = getByTestId('target');
-  //     expect(() => fireEvent.focus(checkbox)).not.toThrow();
-  //   });
 });

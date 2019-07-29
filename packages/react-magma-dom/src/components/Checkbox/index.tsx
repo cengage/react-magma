@@ -14,7 +14,6 @@ import styled from '@emotion/styled';
 
 export interface CheckboxProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  // onBlur?: () => void;
   color?: string;
   containerStyle?: React.CSSProperties;
   indeterminate?: boolean;
@@ -176,13 +175,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
 
   render() {
     return (
-      <CheckboxCore
-        id={this.props.id}
-        checked={this.props.checked}
-        // onBlur={this.props.onBlur}
-        // onChange={this.props.onChange}
-        // onFocus={this.props.onFocus}
-      >
+      <CheckboxCore id={this.props.id} checked={this.props.checked}>
         {({ id, onChange, checked }) => {
           const {
             onBlur,
