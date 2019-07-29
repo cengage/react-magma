@@ -48,7 +48,7 @@ export const HyperLink: React.FunctionComponent<
   HyperLinkProps
 > = React.forwardRef((props: HyperLinkProps, ref: any) => {
   const composedProps = buildPropsWithDefaultButtonStyles(props);
-  const { children, to, testId, styledAs, ...other } = props;
+  const { children, to, testId, styledAs, textTransform, ...other } = props;
 
   return (
     <ThemeContext.Consumer>
@@ -61,7 +61,7 @@ export const HyperLink: React.FunctionComponent<
         if (typeof children === 'function') {
           return (
             <ClassNames>
-              {({ css }) => {
+              {({}) => {
                 const stylesClass = css(composedStyle);
                 return children({ to, stylesClass });
               }}
