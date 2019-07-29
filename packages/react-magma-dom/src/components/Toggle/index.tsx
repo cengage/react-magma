@@ -8,7 +8,7 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 
-enum ToggleTextPostition {
+enum ToggleTextPosition {
   left = 'left',
   right = 'right'
 }
@@ -19,7 +19,7 @@ export interface ToggleProps
   labelStyle?: React.CSSProperties;
   labelText: string;
   testId?: string;
-  textPosition?: ToggleTextPostition;
+  textPosition?: ToggleTextPosition;
   textVisuallyHidden?: boolean;
   theme?: any;
   thumbStyle?: React.CSSProperties;
@@ -149,90 +149,101 @@ const renderLabelText = (
     return <HiddenLabelText>{labelText}</HiddenLabelText>;
   }
 
-  return textPosition === ToggleTextPostition.left ? (
+  return textPosition === ToggleTextPosition.left ? (
     <SpanTextLeft style={labelStyle}>{labelText}</SpanTextLeft>
   ) : (
     <SpanTextRight style={labelStyle}>{labelText}</SpanTextRight>
   );
 };
 
-export const Toggle: React.FunctionComponent<ToggleProps> = (
-  props: ToggleProps
-) => (
-  <CheckboxCore
-    id={props.id}
-    checked={props.checked}
-    onBlur={props.onBlur}
-    onChange={props.onChange}
-    onFocus={props.onFocus}
-  >
-    {({ id, onBlur, onChange, onFocus, checked }) => {
-      const {
-        containerStyle,
-        disabled,
-        labelStyle,
-        labelText,
-        textPosition,
-        textVisuallyHidden,
-        testId,
-        trackStyle,
-        thumbStyle,
-        ...other
-      } = props;
+export class Toggle extends React.Component<ToggleProps> {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
 
-      return (
-        <ThemeContext.Consumer>
-          {theme => (
-            <StyledContainer>
-              <HiddenInput
-                {...other}
-                id={id}
-                data-testid={testId}
-                disabled={disabled}
-                checked={checked}
-                type="checkbox"
-                onBlur={onBlur}
-                onChange={onChange}
-                onFocus={onFocus}
-              />
-              <StyledLabel htmlFor={id} style={containerStyle}>
-                {textPosition !== ToggleTextPostition.right &&
-                  renderLabelText(
-                    textVisuallyHidden,
-                    labelText,
-                    ToggleTextPostition.left,
-                    labelStyle
-                  )}
-                <Track
-                  checked={checked}
-                  disabled={disabled}
-                  style={trackStyle}
-                  theme={theme}
-                >
-                  <IconContainer theme={theme}>
-                    <CheckIcon size={11} />
-                  </IconContainer>
-                  <Thumb
-                    checked={checked}
+  handleChange(onChange: (checked: boolean) => void) {
+    return (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { checked } = event.target;
+      this.props.onChange &&
+        typeof this.props.onChange === 'function' &&
+        this.props.onChange(event);
+      onChange(checked);
+    };
+  }
+
+  render() {
+    return (
+      <CheckboxCore id={this.props.id} checked={this.props.checked}>
+        {({ id, onChange, checked }) => {
+          const {
+            onBlur,
+            onFocus,
+            containerStyle,
+            disabled,
+            labelStyle,
+            labelText,
+            textPosition,
+            textVisuallyHidden,
+            testId,
+            trackStyle,
+            thumbStyle,
+            ...other
+          } = this.props;
+
+          return (
+            <ThemeContext.Consumer>
+              {theme => (
+                <StyledContainer>
+                  <HiddenInput
+                    {...other}
+                    id={id}
+                    data-testid={testId}
                     disabled={disabled}
-                    style={thumbStyle}
-                    theme={theme}
+                    checked={checked}
+                    type="checkbox"
+                    onBlur={onBlur}
+                    onChange={this.handleChange(onChange)}
+                    onFocus={onFocus}
                   />
-                </Track>
-                {textPosition === ToggleTextPostition.right &&
-                  renderLabelText(
-                    textVisuallyHidden,
-                    labelText,
-                    ToggleTextPostition.right,
-                    labelStyle
-                  )}
-              </StyledLabel>
-            </StyledContainer>
-          )}
-        </ThemeContext.Consumer>
-      );
-    }}
-  </CheckboxCore>
-);
-
-export default Toggle;
+                  <StyledLabel htmlFor={id} style={containerStyle}>
+                    {textPosition !== ToggleTextPosition.right &&
+                      renderLabelText(
+                        textVisuallyHidden,
+                        labelText,
+                        ToggleTextPosition.left,
+                        labelStyle
+                      )}
+                    <Track
+                      checked={checked}
+                      disabled={disabled}
+                      style={trackStyle}
+                      theme={theme}
+                    >
+                      <IconContainer theme={theme}>
+                        <CheckIcon size={11} />
+                      </IconContainer>
+                      <Thumb
+                        checked={checked}
+                        disabled={disabled}
+                        style={thumbStyle}
+                        theme={theme}
+                      />
+                    </Track>
+                    {textPosition === ToggleTextPosition.right &&
+                      renderLabelText(
+                        textVisuallyHidden,
+                        labelText,
+                        ToggleTextPosition.right,
+                        labelStyle
+                      )}
+                  </StyledLabel>
+                </StyledContainer>
+              )}
+            </ThemeContext.Consumer>
+          );
+        }}
+      </CheckboxCore>
+    );
+  }
+}

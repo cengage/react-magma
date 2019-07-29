@@ -1,3 +1,13 @@
+# DEPRECATION NOTICE
+
+---
+
+- DO NOT BUILD OR INSTALL THIS PLUGIN
+- This plugin is deprecated and is being retained here as a reference implementation
+- it will be moved to a separate repo in the future, but for now, it should be ignored
+
+---
+
 ## Contributing
 
 ### Dependencies

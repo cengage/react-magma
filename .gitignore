@@ -7,3 +7,4 @@ coverage
 public
 .DS_Store
 packages/cengage-ts-react-boilerplate
+*_cache*

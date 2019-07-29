@@ -288,7 +288,7 @@ describe('Modal', () => {
 
     it('should prevent default on mouse down on the backdrop if the disableBackdropClick prop is true', () => {
       const onCloseSpy = jest.fn();
-      const { rerender, getByText, getByTestId, container } = render(
+      const { rerender, getByText, getByTestId } = render(
         <>
           <button>Open</button>
           <Modal
@@ -324,10 +324,7 @@ describe('Modal', () => {
 
       jest.runAllTimers();
 
-      expect(container.querySelector(':focus')).toHaveAttribute(
-        'aria-label',
-        'Close'
-      );
+      expect(getByTestId('modal-content')).toBeInTheDocument();
     });
   });
 });
