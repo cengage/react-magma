@@ -5,8 +5,6 @@ exports[`SkipLink should render the skip link component 1`] = `
   class="ehvni9a0 css-17x7vgk-StyledSkipLink"
   color="primary"
   href="#reactMagmaMainContent"
-  positionleft="10"
-  positiontop="10"
   variant="solid"
 >
   Skip Navigation
