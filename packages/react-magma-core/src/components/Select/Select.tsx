@@ -1,19 +1,23 @@
 import * as React from 'react';
 
+export interface Options {
+  label: string;
+  value: string;
+}
 export interface SelectCoreProps {
   children: (props) => React.ReactNode;
   onBlur?: () => void;
   onFocus?: () => void;
-  onChange?: (value: string) => void;
+  onChange?: (value: Options | Options[] | null) => void;
   onOpen?: () => void;
   onClose?: () => void;
   onInputChange?: (value: string) => void;
-  defaultValue?: string;
-  value?: string;
+  defaultValue?: Options | Options[] | null;
+  value?: Options | Options[] | null;
 }
 
 export interface SelectCoreState {
-  value?: string;
+  value?: Options | Options[] | null;
 }
 
 export class SelectCore extends React.Component<
@@ -53,7 +57,7 @@ export class SelectCore extends React.Component<
       this.props.onFocus();
   }
 
-  onChange(value) {
+  onChange(value: Options | Options[] | null) {
     this.setState({ value });
     this.props.onChange &&
       typeof this.props.onChange === 'function' &&

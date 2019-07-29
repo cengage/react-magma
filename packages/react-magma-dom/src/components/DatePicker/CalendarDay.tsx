@@ -140,8 +140,8 @@ export class CalendarDay extends React.Component<
       <CalendarContext.Consumer>
         {context =>
           context && day ? (
-            <CalendarDayCore onClick={context.onDayClick}>
-              {({ onClick }) => {
+            <CalendarDayCore>
+              {() => {
                 const sameDateAsFocusedDate = isSameDay(
                   day,
                   context.focusedDate
@@ -159,7 +159,7 @@ export class CalendarDay extends React.Component<
                       isFocused={dayFocusable && sameDateAsFocusedDate}
                       role="button"
                       onClick={e => {
-                        onClick(day, e);
+                        context.onDayClick(day, e);
                       }}
                       ref={this.dayRef}
                       tabIndex={sameDateAsFocusedDate ? 0 : -1}
