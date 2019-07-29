@@ -62,8 +62,8 @@ export const HyperLink: React.FunctionComponent<
         if (typeof children === 'function') {
           return (
             <ClassNames>
-              {({}) => {
-                const stylesClass = css(composedStyle);
+              {({ css: composedCss }) => {
+                const stylesClass = composedCss(composedStyle);
                 return children({ to, stylesClass });
               }}
             </ClassNames>
