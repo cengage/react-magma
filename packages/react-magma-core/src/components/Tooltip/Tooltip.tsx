@@ -5,10 +5,10 @@ export interface TooltipCoreProps {
   children: (props) => React.ReactNode;
   id?: string;
   onKeyDown?: (event: React.SyntheticEvent) => void;
-  onBlur?: () => void;
-  onFocus?: () => void;
-  hideTooltip: () => void;
-  showTooltip: () => void;
+  // onBlur?: () => void;
+  // onFocus?: () => void;
+  // hideTooltip: () => void;
+  // showTooltip: () => void;
   isVisible?: boolean;
 }
 

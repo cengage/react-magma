@@ -32,6 +32,7 @@ export enum InputType {
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   as?: string;
+  value?: string;
   containerStyle?: React.CSSProperties;
   errorMessage?: string;
   helpLinkText?: string;
@@ -165,15 +166,15 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
     <InputCore
       id={props.id}
       value={props.value}
-      onBlur={props.onBlur}
+      // onBlur={props.onBlur}
       onChange={props.onChange}
-      onFocus={props.onFocus}
+      // onFocus={props.onFocus}
     >
       {({
         id,
-        onBlur,
+        // onBlur,
         onChange,
-        onFocus,
+        // onFocus,
         value,
         togglePasswordShown,
         passwordShown
@@ -261,9 +262,9 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                         : InputType.text
                     }
                     value={value}
-                    onBlur={onBlur}
+                    onBlur={props.onBlur}
                     onChange={onChange}
-                    onFocus={onFocus}
+                    onFocus={props.onFocus}
                   />
                   {icon && (
                     <IconWrapper iconPosition={iconPosition} theme={theme}>

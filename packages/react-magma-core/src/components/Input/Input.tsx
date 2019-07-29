@@ -4,9 +4,9 @@ import { generateId } from '../utils';
 export interface InputCoreProps {
   children: (props) => React.ReactNode;
   id?: string;
-  onBlur?: () => void;
+  // onBlur?: () => void;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onFocus?: () => void;
+  // onFocus?: () => void;
   value?: string;
 }
 
@@ -25,9 +25,9 @@ export class InputCore extends React.Component<InputCoreProps, InputCoreState> {
       value: this.props.value
     };
 
-    this.onBlur = this.onBlur.bind(this);
+    // this.onBlur = this.onBlur.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.onFocus = this.onFocus.bind(this);
+    // this.onFocus = this.onFocus.bind(this);
     this.togglePasswordShown = this.togglePasswordShown.bind(this);
   }
 
@@ -41,17 +41,17 @@ export class InputCore extends React.Component<InputCoreProps, InputCoreState> {
     }
   }
 
-  onBlur() {
-    this.props.onBlur &&
-      typeof this.props.onBlur === 'function' &&
-      this.props.onBlur();
-  }
+  // onBlur() {
+  //   this.props.onBlur &&
+  //     typeof this.props.onBlur === 'function' &&
+  //     this.props.onBlur();
+  // }
 
-  onFocus() {
-    this.props.onFocus &&
-      typeof this.props.onFocus === 'function' &&
-      this.props.onFocus();
-  }
+  // onFocus() {
+  //   this.props.onFocus &&
+  //     typeof this.props.onFocus === 'function' &&
+  //     this.props.onFocus();
+  // }
 
   onChange(event) {
     const { value } = event.target;
@@ -71,9 +71,9 @@ export class InputCore extends React.Component<InputCoreProps, InputCoreState> {
       ...this.state,
       ...this.props,
       id: this.state.id,
-      onBlur: this.onBlur,
+      // onBlur: this.onBlur,
       onChange: this.onChange,
-      onFocus: this.onFocus,
+      // onFocus: this.onFocus,
       togglePasswordShown: this.togglePasswordShown,
       passwordShown: this.state.passwordShown,
       value: this.state.value

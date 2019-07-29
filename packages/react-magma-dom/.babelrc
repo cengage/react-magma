@@ -1,31 +1,27 @@
 {
-  "presets": [
-    "@babel/preset-react",
-    "@babel/preset-typescript",
-    [
-      "@babel/preset-env",
-      {
-        "useBuiltIns": "entry",
-        "corejs": "3.*.*"
-      }
-    ]
-  ],
   "plugins": [
-    "polished",
     ["emotion", { "autoLabel": true }],
-    "@babel/plugin-proposal-export-namespace-from",
-    "@babel/plugin-proposal-throw-expressions",
     [
       "@babel/plugin-proposal-class-properties",
       {
         "loose": false
       }
-    ],
-    "@babel/plugin-proposal-export-default-from"
+    ]
   ],
   "env": {
     "test": {
-      "plugins": ["dynamic-import-node"]
+      "plugins": ["dynamic-import-node"],
+      "presets": [
+        "@babel/preset-react",
+        "@babel/preset-typescript",
+        [
+          "@babel/preset-env",
+          {
+            "useBuiltIns": "entry",
+            "corejs": "3.*.*"
+          }
+        ]
+      ]
     }
   }
 }

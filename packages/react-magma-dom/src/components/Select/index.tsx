@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SelectCore } from 'react-magma-core';
+import { SelectCore, Options } from 'react-magma-core';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -7,10 +7,10 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import ReactSelect, { components } from 'react-select';
 import { SelectWrapper } from './SelectWrapper';
 
-export interface Options {
-  label: string;
-  value: string;
-}
+// export interface Options {
+//   label: string;
+//   value: string;
+// }
 
 export interface SelectProps {
   id?: string;
@@ -180,7 +180,6 @@ export const Select: React.FunctionComponent<SelectProps> = (
   props: SelectProps
 ) => (
   <SelectCore
-    components={{ ClearIndicator, DropdownIndicator, MultiValueRemove }}
     defaultValue={props.defaultValue}
     value={props.value}
     onBlur={props.onBlur}

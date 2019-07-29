@@ -2,8 +2,9 @@
   "name": "react-magma-core",
   "version": "0.1.0-beta.26",
   "description": "",
-  "main": "dist/react-magma-core.cjs.production.min.js",
+  "main": "dist/index.js",
   "module": "dist/react-magma-core.esm.js",
+  "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -16,13 +17,11 @@
     "test": "jest",
     "test-watch": "jest --watch",
     "covg": "open coverage/lcov-report/index.html",
-    "xxprebuild": "npm run compiler-checks && rimraf 'dist'",
     "prebuild": "rimraf 'dist'",
     "babel-build": "babel src --out-dir dist --extensions '.tsx','.ts'",
-    "xxbuild": "npm run babel-build",
     "build": "tsdx build",
+    "build-watch": "tsdx watch",
     "build:types": "tsc --project './tsconfig.types.json'",
-    "xxpostbuild": "npm run build:types && node ../../tools/terser",
     "lint": "npm run tsc && npm run tslint",
     "tsc": "tsc --noEmit",
     "tslint": "lint-staged"
