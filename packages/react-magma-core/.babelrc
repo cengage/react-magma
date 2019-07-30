@@ -11,14 +11,11 @@
     ]
   ],
   "plugins": [
-    "@babel/plugin-proposal-export-namespace-from",
-    "@babel/plugin-proposal-throw-expressions",
     [
       "@babel/plugin-proposal-class-properties",
       {
         "loose": false
       }
-    ],
-    "@babel/plugin-proposal-export-default-from"
+    ]
   ]
 }
