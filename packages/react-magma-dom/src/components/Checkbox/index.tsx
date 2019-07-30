@@ -148,6 +148,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
     super(props);
 
     this.setIndeterminate = this.setIndeterminate.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   readonly checkboxInput = React.createRef<any>();
@@ -164,17 +165,23 @@ export class Checkbox extends React.Component<CheckboxProps> {
     this.checkboxInput.current.indeterminate = this.props.indeterminate;
   }
 
+  handleChange(onChange: (checked: boolean) => void) {
+    return (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { checked } = event.target;
+      this.props.onChange &&
+        typeof this.props.onChange === 'function' &&
+        this.props.onChange(event);
+      onChange(checked);
+    };
+  }
+
   render() {
     return (
-      <CheckboxCore
-        id={this.props.id}
-        checked={this.props.checked}
-        onBlur={this.props.onBlur}
-        onChange={this.props.onChange}
-        onFocus={this.props.onFocus}
-      >
-        {({ id, onBlur, onChange, onFocus, checked }) => {
+      <CheckboxCore id={this.props.id} checked={this.props.checked}>
+        {({ id, onChange, checked }) => {
           const {
+            onBlur,
+            onFocus,
             color,
             containerStyle,
             disabled,
@@ -203,7 +210,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
                     ref={this.checkboxInput}
                     type="checkbox"
                     onBlur={onBlur}
-                    onChange={onChange}
+                    onChange={this.handleChange(onChange)}
                     onFocus={onFocus}
                   />
                   <StyledLabel

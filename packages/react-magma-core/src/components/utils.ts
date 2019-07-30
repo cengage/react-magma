@@ -20,8 +20,13 @@ export function getTrapElements(container) {
   const inContainer = [
     ...container.current.querySelectorAll(candidateSelectors)
   ];
-
-  inContainer[0].focus();
+  if (
+    inContainer[0] &&
+    inContainer[0].focus &&
+    typeof inContainer[0].focus === 'function'
+  ) {
+    inContainer[0].focus();
+  }
 
   return inContainer;
 }

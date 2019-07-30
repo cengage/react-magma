@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { SelectCore } from 'react-magma-core';
+import { SelectCore, Options } from 'react-magma-core';
 import { ThemeContext } from '../../theme/ThemeContext';
 import {
-  Options,
   SelectProps,
   getStyles,
   ClearIndicator,
