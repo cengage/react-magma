@@ -122,8 +122,8 @@ const StyledInput = styled.input<InputProps>`
   }
 
   &:focus {
-    border-color: ${props => props.theme.colors.pop03};
-    box-shadow: 0 0 0 1px ${props => props.theme.colors.pop03};
+    border-color: ${props => props.theme.colors.pop02};
+    box-shadow: 0 0 0 1px ${props => props.theme.colors.pop02};
     outline: 0;
   }
 
@@ -227,7 +227,9 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                 <InputWrapper>
                   <StyledInput
                     {...other}
-                    aria-describedby={descriptionId}
+                    aria-describedby={
+                      descriptionId ? descriptionId : props['aria-describedby']
+                    }
                     aria-label={labelVisuallyHidden ? labelText : null}
                     as={multiline ? 'textarea' : null}
                     id={id}

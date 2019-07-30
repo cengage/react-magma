@@ -22,11 +22,14 @@ const Link = styled.a`
     text-decoration: none;
     transition: background 0.3s;
 
-
     &:hover,
     &:focus {
         background: rgba(0,0,0,0.14);
         color: ${props => props.theme.colors.neutral06};
+    }
+
+    &:focus {
+        outline: 2px dotted ${props => props.theme.colors.neutral08};
         outline-offset: 0;
     }
 `;

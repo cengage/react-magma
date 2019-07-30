@@ -14,7 +14,7 @@ function getStyles(theme) {
     }
 
     *:focus {
-      outline: 1px dotted ${theme.colors.pop03};
+      outline: 2px dotted ${theme.colors.pop02};
       outline-offset: 3px;
     }
 
@@ -50,7 +50,7 @@ function getStyles(theme) {
       }
 
       &:focus {
-        outline: 2px dotted ${theme.colors.pop03};
+        outline: 2px dotted ${theme.colors.pop02};
         outline-offset: 3px;
       }
     }
@@ -67,7 +67,7 @@ function getStyles(theme) {
       margin: 20px 0 10px;
 
       &:focus {
-        border-bottom: ${theme.colors.pop03};
+        border-bottom: ${theme.colors.pop02};
         outline: 0;
       }
     }
