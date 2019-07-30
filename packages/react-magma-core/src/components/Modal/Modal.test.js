@@ -95,6 +95,32 @@ describe('ModalCore', () => {
     expect(onClose).toHaveBeenCalled();
   });
 
+  it('should not focus an element if there is nothing in the modal that can be focused', () => {
+    const { getByText, rerender } = render(
+      <>
+        <button>Open</button>
+        <ModalCore onClose={jest.fn()}>{() => <div>Hello</div>}</ModalCore>
+      </>
+    );
+
+    fireEvent.focus(getByText('Open'));
+
+    rerender(
+      <>
+        <button>Open</button>
+        <ModalCore onClose={jest.fn()} open={true}>
+          {({ focusTrapElement }) => (
+            <div ref={focusTrapElement}>
+              <div>Hello</div>
+            </div>
+          )}
+        </ModalCore>
+      </>
+    );
+
+    expect(getByText('Hello')).not.toHaveFocus();
+  });
+
   describe('Key down', () => {
     it('should handle escape key', () => {
       const onEscKeyDown = jest.fn();
