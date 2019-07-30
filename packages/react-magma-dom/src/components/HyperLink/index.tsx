@@ -53,7 +53,7 @@ export const HyperLink: React.FunctionComponent<
   const composedProps = buildPropsWithDefaultButtonStyles(props);
   const { children, to, styledAs, inverse, ...other } = props;
 
-  const rest = omit(['textTransform'], other);
+  const rest = omit(['textTransform', 'positionTop', 'positionLeft'], other);
 
   return (
     <ThemeContext.Consumer>

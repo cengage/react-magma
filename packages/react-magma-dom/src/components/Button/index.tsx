@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyledButton } from '../StyledButton';
 import styled from '@emotion/styled';
 import { IconProps } from '../Icon/utils';
-import { Omit } from '../utils';
+import { omit, Omit } from '../utils';
 
 export enum ButtonVariant {
   solid = 'solid', //default
@@ -142,7 +142,7 @@ export const Button: React.FunctionComponent<
     size,
     variant,
     textTransform,
-    ...other
+    ...rest
   } = props;
 
   if (instanceOfIconOnly(props)) {
@@ -154,6 +154,8 @@ export const Button: React.FunctionComponent<
   } else {
     children = props.children;
   }
+
+  const other = omit(['iconPosition', 'textPosition'], rest);
 
   if (icon && children) {
     return (
