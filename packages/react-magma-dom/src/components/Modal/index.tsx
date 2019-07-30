@@ -102,10 +102,11 @@ const ModalHeader = styled.div`
   padding: 20px 20px 10px;
 `;
 
-const H3 = styled.h3`
+const H1 = styled.h1`
   border-bottom: 1px solid;
   border-color: ${props => props.theme.colors.neutral06};
   color: ${props => props.theme.colors.primary};
+  font-size: 26px;
   margin: 0;
   padding-right: 50px;
   text-transform: uppercase;
@@ -161,9 +162,10 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
                       aria-modal={true}
                       data-testid="modal-container"
                       id={id}
-                      ref={focusTrapElement}
                       isExiting={isExiting}
                       onKeyDown={disableEscKeyDown ? null : onKeyDown}
+                      ref={focusTrapElement}
+                      role="dialog"
                     >
                       <ModalBackdrop
                         data-testid="modal-backdrop"
@@ -182,27 +184,26 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
                         {...other}
                       >
                         <ModalHeader theme={theme}>
-                          {header && <H3 theme={theme}>{header}</H3>}
-
-                          {!hideEscButton && (
-                            <CloseBtn>
-                              <Button
-                                aria-label={closeLabel ? closeLabel : 'Close'}
-                                color={ButtonColor.secondary}
-                                icon={CloseIcon}
-                                onClick={onClose}
-                                style={{
-                                  borderRadius: 0,
-                                  margin: 0,
-                                  outlineOffset: 0
-                                }}
-                                testId="modal-closebtn"
-                                variant={ButtonVariant.link}
-                              />
-                            </CloseBtn>
-                          )}
+                          {header && <H1 theme={theme}>{header}</H1>}
                         </ModalHeader>
                         <ModalBody>{children}</ModalBody>
+                        {!hideEscButton && (
+                          <CloseBtn>
+                            <Button
+                              aria-label={closeLabel ? closeLabel : 'Close'}
+                              color={ButtonColor.secondary}
+                              icon={CloseIcon}
+                              onClick={onClose}
+                              style={{
+                                borderRadius: 0,
+                                margin: 0,
+                                outlineOffset: 0
+                              }}
+                              testId="modal-closebtn"
+                              variant={ButtonVariant.link}
+                            />
+                          </CloseBtn>
+                        )}
                       </ModalContent>
                     </ModalContainer>
                   </>,

@@ -32,6 +32,7 @@ export enum InputType {
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   as?: string;
+  value?: string;
   containerStyle?: React.CSSProperties;
   errorMessage?: string;
   helpLinkText?: string;
@@ -121,8 +122,8 @@ const StyledInput = styled.input<InputProps>`
   }
 
   &:focus {
-    border-color: ${props => props.theme.colors.pop03};
-    box-shadow: 0 0 0 1px ${props => props.theme.colors.pop03};
+    border-color: ${props => props.theme.colors.pop02};
+    box-shadow: 0 0 0 1px ${props => props.theme.colors.pop02};
     outline: 0;
   }
 
@@ -162,22 +163,8 @@ function getIconSize(size) {
 
 export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
   (props: InputProps, ref: any) => (
-    <InputCore
-      id={props.id}
-      value={props.value}
-      onBlur={props.onBlur}
-      onChange={props.onChange}
-      onFocus={props.onFocus}
-    >
-      {({
-        id,
-        onBlur,
-        onChange,
-        onFocus,
-        value,
-        togglePasswordShown,
-        passwordShown
-      }) => {
+    <InputCore id={props.id} value={props.value} onChange={props.onChange}>
+      {({ id, onChange, value, togglePasswordShown, passwordShown }) => {
         const {
           containerStyle,
           errorMessage,
@@ -240,7 +227,9 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                 <InputWrapper>
                   <StyledInput
                     {...other}
-                    aria-describedby={descriptionId}
+                    aria-describedby={
+                      descriptionId ? descriptionId : props['aria-describedby']
+                    }
                     aria-label={labelVisuallyHidden ? labelText : null}
                     as={multiline ? 'textarea' : null}
                     id={id}
@@ -261,9 +250,9 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                         : InputType.text
                     }
                     value={value}
-                    onBlur={onBlur}
+                    onBlur={props.onBlur}
                     onChange={onChange}
-                    onFocus={onFocus}
+                    onFocus={props.onFocus}
                   />
                   {icon && (
                     <IconWrapper iconPosition={iconPosition} theme={theme}>

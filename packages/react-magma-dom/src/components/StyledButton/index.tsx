@@ -69,7 +69,10 @@ export const buttonStyles = props => css`
 
   &:not(:disabled) {
     &:focus {
-      outline: 2px dotted ${props.theme.colors.pop03};
+      outline: 2px dotted
+        ${props.inverse
+          ? props.theme.colors.neutral08
+          : props.theme.colors.pop02};
       outline-offset: 3px;
     }
 

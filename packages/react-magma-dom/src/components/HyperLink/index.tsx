@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { ButtonStyles } from '../Button';
 import { css, jsx, ClassNames } from '@emotion/core';
-import { Omit } from '../utils';
+import { omit, Omit } from '../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { buttonStyles } from '../StyledButton';
 import { buildPropsWithDefaultButtonStyles } from '../StyledButton/styles';
@@ -20,6 +20,8 @@ export interface HyperLinkProps
   styledAs?: 'Button' | 'Link';
   testId?: string;
   to: string;
+  positionLeft?: number;
+  positionTop?: number;
 }
 
 const linkStyles = props => css`
@@ -38,7 +40,8 @@ const linkStyles = props => css`
     }
 
     &:focus {
-      outline: 2px dotted ${props.theme.colors.pop03};
+      outline: 2px dotted
+        ${props.inverse ? props.theme.neutral08 : props.theme.colors.pop02};
       outline-offset: 3px;
     }
   }
@@ -48,7 +51,9 @@ export const HyperLink: React.FunctionComponent<
   HyperLinkProps
 > = React.forwardRef((props: HyperLinkProps, ref: any) => {
   const composedProps = buildPropsWithDefaultButtonStyles(props);
-  const { children, to, testId, styledAs, ...other } = props;
+  const { children, to, styledAs, inverse, ...rest } = props;
+
+  const other = omit(['textTransform', 'positionTop', 'positionLeft'], rest);
 
   return (
     <ThemeContext.Consumer>
@@ -61,8 +66,8 @@ export const HyperLink: React.FunctionComponent<
         if (typeof children === 'function') {
           return (
             <ClassNames>
-              {({ css }) => {
-                const stylesClass = css(composedStyle);
+              {({ css: composedCss }) => {
+                const stylesClass = composedCss(composedStyle);
                 return children({ to, stylesClass });
               }}
             </ClassNames>

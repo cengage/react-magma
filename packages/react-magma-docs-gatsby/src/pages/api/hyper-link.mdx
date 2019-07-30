@@ -19,7 +19,7 @@ import { Button } from 'react-magma-dom'
 
 ```.jsx
     <>
-      <HyperLink styledAs="Button" target="_blank" to="https://www.google.com">Google</HyperLink>
+      <HyperLink textTransform="none" styledAs="Button" target="_blank" to="https://www.google.com">Google</HyperLink>
       <HyperLink color="secondary" styledAs="Button" target="_blank" to="https://www.google.com">Google</HyperLink>
       <HyperLink color="success" styledAs="Button" target="_blank" to="https://www.google.com">Google</HyperLink>
       <HyperLink color="danger" styledAs="Button" target="_blank" to="https://www.google.com">Google</HyperLink>
@@ -39,12 +39,23 @@ Use this when you want to render something that is from another library. For exa
   </>
 ```
 
-## SkipLink Props
+## Inverse Colors
+
+Inverse is an optional boolean prop, that may be passed in when the hyper link is to be displayed on a dark background.
+
+```.jsx
+    <div style={{ background : '#00263E', padding: '10px' }}>
+      <HyperLink inverse target="_blank" to="https://www.google.com">Google inverse link</HyperLink>
+    </div>
+```
+
+## Hyper Link Props
 
 | Prop          | Type                                                                                   | Default     | Required |
 | ------------- | -------------------------------------------------------------------------------------- | ----------- | :------: |
 | block         | boolean                                                                                | false       |
 | color         | enum: 'primary' &#124; 'secondary' &#124; 'success' &#124; 'danger' &#124; 'marketing' | 'primary'   |
+| inverse       | boolean                                                                                | false       |
 | shape         | enum: 'fill' &#124; 'leftCap' &#124; 'rightCap'                                        | 'fill'      |
 | size          | enum: 'large' &#124; 'medium' &#124; 'small'                                           | 'medium'    |
 | style         | React.CSSProperties                                                                    |             |

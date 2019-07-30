@@ -171,17 +171,21 @@ export class DatePickerCore extends React.Component<
       chosenDate,
       focusedDate,
       dateFocused,
+      id,
       showHelperInformation
     } = this.state;
 
+    const srMessageId = `${id}_sr`;
+
     return this.props.children({
       ...this.props,
-      id: this.state.id,
+      id,
       calendarOpened,
       chosenDate,
       focusedDate,
       dateFocused,
       showHelperInformation,
+      srMessageId,
       buildCalendarMonth: this.buildCalendarMonth,
       onCalendarBlur: this.onCalendarBlur,
       onInputKeyDown: this.onInputKeyDown,

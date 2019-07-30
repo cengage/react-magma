@@ -92,7 +92,7 @@ const StyledAlert = styled.div<AlertProps>`
   }
 
   &:focus {
-    outline: 2px dotted ${props => props.theme.colors.pop03};
+    outline: 2px dotted;
     outline-offset: 2px;
   }
 `;

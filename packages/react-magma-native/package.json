@@ -7,10 +7,10 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c",
-    "lint": "npm run tsc && npm run tslint",
-    "tsc": "tsc --noEmit",
-    "tslint": "lint-staged"
+    "DISABLED-build": "rollup -c",
+    "DISABLED-lint": "npm run tsc && npm run tslint",
+    "DISABLED-tsc": "tsc --noEmit",
+    "DISABLED-tslint": "lint-staged"
   },
   "keywords": [],
   "author": "",

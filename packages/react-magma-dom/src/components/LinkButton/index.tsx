@@ -30,7 +30,11 @@ const LinkButtonComponent = styled.button<LinkButtonProps>`
     }
 
     &:focus {
-      outline: 2px dotted ${props => props.theme.colors.pop03};
+      outline: 2px dotted
+        ${props =>
+          props.inverse
+            ? props.theme.colors.neutral08
+            : props.theme.colors.pop02};
       outline-offset: 3px;
     }
   }

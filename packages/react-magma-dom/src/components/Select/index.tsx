@@ -1,16 +1,11 @@
 import * as React from 'react';
-import { SelectCore } from 'react-magma-core';
+import { SelectCore, Options } from 'react-magma-core';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 import ReactSelect, { components } from 'react-select';
 import { SelectWrapper } from './SelectWrapper';
-
-export interface Options {
-  label: string;
-  value: string;
-}
 
 export interface SelectProps {
   id?: string;
@@ -59,13 +54,13 @@ export function getStyles(
         ? theme.colors.neutral07
         : theme.colors.neutral08,
       borderColor: isFocused
-        ? theme.colors.pop03
+        ? theme.colors.pop02
         : errorMessage
         ? theme.colors.danger
         : theme.colors.neutral05,
       borderRadius: '5px',
       boxShadow: isFocused
-        ? `0 0 0 1px ${theme.colors.pop03}`
+        ? `0 0 0 1px ${theme.colors.pop02}`
         : errorMessage
         ? `0 0 0 1px ${theme.colors.danger}`
         : '0 0 0',
@@ -76,7 +71,7 @@ export function getStyles(
       padding: '0 8px 0 0',
 
       '&:hover': {
-        borderColor: isFocused ? theme.colors.pop03 : theme.colors.neutral05
+        borderColor: isFocused ? theme.colors.pop02 : theme.colors.neutral05
       },
       ...customStyles.control
     }),
@@ -180,7 +175,6 @@ export const Select: React.FunctionComponent<SelectProps> = (
   props: SelectProps
 ) => (
   <SelectCore
-    components={{ ClearIndicator, DropdownIndicator, MultiValueRemove }}
     defaultValue={props.defaultValue}
     value={props.value}
     onBlur={props.onBlur}
