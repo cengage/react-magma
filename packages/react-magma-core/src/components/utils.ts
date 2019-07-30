@@ -17,9 +17,10 @@ const candidateSelectors = [
 ].join(',');
 
 export function getTrapElements(container) {
-  const inContainer = [
-    ...container.current.querySelectorAll(candidateSelectors)
-  ];
+  const inContainer: Array<HTMLElement> = Array.from(
+    container.current.querySelectorAll(candidateSelectors)
+  );
+
   if (
     inContainer[0] &&
     inContainer[0].focus &&
