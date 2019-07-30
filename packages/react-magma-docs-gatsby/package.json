@@ -14,6 +14,7 @@
     "gatsby-image": "2.0.15",
     "gatsby-mdx": "0.2.0",
     "gatsby-plugin-emotion": "4.0.3",
+    "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-manifest": "2.0.5",
     "gatsby-plugin-offline": "2.0.5",
     "gatsby-plugin-react-helmet": "3.0.0",

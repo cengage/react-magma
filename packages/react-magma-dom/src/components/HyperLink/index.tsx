@@ -20,6 +20,8 @@ export interface HyperLinkProps
   styledAs?: 'Button' | 'Link';
   testId?: string;
   to: string;
+  positionLeft?: number;
+  positionTop?: number;
 }
 
 const linkStyles = props => css`
@@ -48,7 +50,7 @@ export const HyperLink: React.FunctionComponent<
   HyperLinkProps
 > = React.forwardRef((props: HyperLinkProps, ref: any) => {
   const composedProps = buildPropsWithDefaultButtonStyles(props);
-  const { children, to, styledAs, ...other } = props;
+  const { children, to, styledAs, inverse, ...other } = props;
 
   const rest = omit(['textTransform'], other);
 
