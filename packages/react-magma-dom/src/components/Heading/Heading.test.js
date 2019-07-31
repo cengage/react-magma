@@ -3,34 +3,22 @@ import { axe } from 'jest-axe';
 import { Heading } from '.';
 import { render } from 'react-testing-library';
 
-const headingText = 'Test Heading Text';
-
-const BASE_HEADING_PROPS = {
-  level: 1,
-  id: 'testId',
-  children: React.createElement('div')
-};
-
-const renderHeading = (myProps = {}) => {
-  const props = {
-    ...BASE_HEADING_PROPS,
-    ...myProps
-  };
-
-  return render(<Heading {...props}>{headingText}</Heading>);
-};
-
 describe('Heading', () => {
   it('should find element by testId', () => {
     const testId = 'test-id';
-    const { getByTestId } = renderHeading({ testId });
+    const { getByTestId } = render(
+      <Heading level={1} testId={testId}>
+        test
+      </Heading>
+    );
 
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render an h1', () => {
-    const { container } = renderHeading();
-    const heading = container.querySelector('h1');
+    const headingText = 'test';
+    const { getByText } = render(<Heading level={1}>{headingText}</Heading>);
+    const heading = getByText(headingText);
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
@@ -38,10 +26,9 @@ describe('Heading', () => {
   });
 
   it('should render an h2', () => {
-    const { container } = renderHeading({
-      level: 2
-    });
-    const heading = container.querySelector('h2');
+    const headingText = 'test';
+    const { getByText } = render(<Heading level={2}>{headingText}</Heading>);
+    const heading = getByText(headingText);
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
@@ -49,10 +36,9 @@ describe('Heading', () => {
   });
 
   it('should render an h3', () => {
-    const { container } = renderHeading({
-      level: 3
-    });
-    const heading = container.querySelector('h3');
+    const headingText = 'test';
+    const { getByText } = render(<Heading level={3}>{headingText}</Heading>);
+    const heading = getByText(headingText);
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
@@ -60,10 +46,9 @@ describe('Heading', () => {
   });
 
   it('should render an h4', () => {
-    const { container } = renderHeading({
-      level: 4
-    });
-    const heading = container.querySelector('h4');
+    const headingText = 'test';
+    const { getByText } = render(<Heading level={4}>{headingText}</Heading>);
+    const heading = getByText(headingText);
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
@@ -71,10 +56,9 @@ describe('Heading', () => {
   });
 
   it('should render an h5', () => {
-    const { container } = renderHeading({
-      level: 5
-    });
-    const heading = container.querySelector('h5');
+    const headingText = 'test';
+    const { getByText } = render(<Heading level={5}>{headingText}</Heading>);
+    const heading = getByText(headingText);
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
@@ -82,10 +66,9 @@ describe('Heading', () => {
   });
 
   it('should render an h6', () => {
-    const { container } = renderHeading({
-      level: 6
-    });
-    const heading = container.querySelector('h6');
+    const headingText = 'test';
+    const { getByText } = render(<Heading level={6}>{headingText}</Heading>);
+    const heading = getByText(headingText);
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
@@ -94,8 +77,13 @@ describe('Heading', () => {
 
   it('should render custom styles', () => {
     const color = '#cccccc';
-    const { container } = renderHeading({ level: 1, style: { color } });
-    const heading = container.querySelector('h1');
+    const headingText = 'test';
+    const { getByText } = render(
+      <Heading level={1} style={{ color }}>
+        {headingText}
+      </Heading>
+    );
+    const heading = getByText(headingText);
 
     expect(heading).toHaveStyle(`color: ${color}`);
   });
@@ -143,7 +131,7 @@ describe('Heading', () => {
   });
 
   it('Does not violate accessibility standards', () => {
-    const { container } = renderHeading();
+    const { container } = render(<Heading level={1}>test</Heading>);
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });
