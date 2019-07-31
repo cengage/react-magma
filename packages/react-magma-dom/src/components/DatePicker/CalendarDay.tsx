@@ -1,5 +1,4 @@
 import * as React from 'react';
-// import { CalendarDayCore } from 'react-magma-core';
 import { magma } from '../../theme/magma';
 import styled from '@emotion/styled';
 import { format, isSameDay } from 'date-fns';
