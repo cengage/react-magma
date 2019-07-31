@@ -1,64 +1,49 @@
 import * as React from 'react';
+import { axe } from 'jest-axe';
 import { RadioGroup } from '.';
 import { Radio } from '../Radio';
 import { render, fireEvent, wait } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 
-const RADIO_GROUP_PROPS = {
-  value: 'default',
-  labelText: 'Colors',
-  id: 'colorsGroup',
-  name: 'colors',
-  onChange: jest.fn()
-};
-
-const renderRadioGroup = (myProps = {}) => {
-  const props = {
-    ...RADIO_GROUP_PROPS,
-    ...myProps
-  };
-
-  return render(
-    <RadioGroup {...props}>
-      <Radio id="colorRadio" labelText="Default Color" value="default" />
-      <Radio
-        color={magma.colors.success01}
-        id="successColorRadio"
-        labelText="Success Color"
-        value="success"
-      />
-    </RadioGroup>
-  );
-};
-
 describe('Radio Group', () => {
   afterEach(() => {
     jest.restoreAllMocks();
   });
-  it('should find element by testId', () => {
+
+  it('should assign a data-testid attribute with a testId prop', () => {
     const testId = 'test-id';
-    const { getByTestId } = renderRadioGroup({ testId });
+    const { getByTestId } = render(<RadioGroup testId={testId}></RadioGroup>);
 
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render a label for the radiogroup', () => {
-    const { getByText } = renderRadioGroup();
-    const label = getByText(RADIO_GROUP_PROPS.labelText);
+    const labelText = 'Colors';
+    const { getByText } = render(<RadioGroup labelText={labelText} />);
+    const label = getByText(labelText);
 
     expect(label).toBeInTheDocument();
   });
 
   it('should render children under radiogroup', () => {
-    const { container } = renderRadioGroup();
-    const radiogroup = container.querySelector('div[role="radiogroup"]');
+    const { getByRole } = render(
+      <RadioGroup>
+        <Radio id="colorRadio" labelText="Default Color" value="default" />
+      </RadioGroup>
+    );
+    const radiogroup = getByRole('radiogroup');
 
     expect(radiogroup.firstChild).not.toBeNull();
   });
 
   it('should render a radio group with hidden label text with the correct styles', () => {
-    const { getByText } = renderRadioGroup({ textVisuallyHidden: true });
-    const label = getByText(RADIO_GROUP_PROPS.labelText);
+    const labelText = 'Color';
+    const { getByText } = render(
+      <RadioGroup textVisuallyHidden labelText={labelText}>
+        <Radio id="colorRadio" labelText="Default Color" value="default" />
+      </RadioGroup>
+    );
+    const label = getByText(labelText);
 
     expect(label).toHaveStyleRule('clip', 'rect(1px,1px,1px,1px)');
   });
@@ -91,11 +76,19 @@ describe('Radio Group', () => {
 
     expect(container.firstChild.children.length).toBe(2);
   });
-});
 
-describe('Radio Clone', () => {
-  it('Clone children and pass down props', () => {
-    const { getByLabelText } = renderRadioGroup();
+  it('Should select an option based on value passed to group', () => {
+    const { getByLabelText } = render(
+      <RadioGroup value="default">
+        <Radio id="colorRadio" labelText="Default Color" value="default" />
+        <Radio
+          color={magma.colors.success01}
+          id="successColorRadio"
+          labelText="Success Color"
+          value="success"
+        />
+      </RadioGroup>
+    );
 
     expect(getByLabelText('Default Color')).toHaveAttribute('checked');
     expect(getByLabelText('Success Color')).not.toHaveAttribute('checked');
@@ -129,5 +122,22 @@ describe('Radio Clone', () => {
       expect(getByLabelText('Default Color')).not.toHaveAttribute('checked');
       expect(getByLabelText('Success Color')).toHaveAttribute('checked');
     }, 1000);
+  });
+
+  it('Does not violate accessibility standards', () => {
+    const { container } = render(
+      <RadioGroup value="default">
+        <Radio id="colorRadio" labelText="Default Color" value="default" />
+        <Radio
+          color={magma.colors.success01}
+          id="successColorRadio"
+          labelText="Success Color"
+          value="success"
+        />
+      </RadioGroup>
+    );
+    return axe(container.innerHTML).then(result => {
+      return expect(result).toHaveNoViolations();
+    });
   });
 });
