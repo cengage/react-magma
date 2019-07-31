@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CalendarDayCore } from 'react-magma-core';
+// import { CalendarDayCore } from 'react-magma-core';
 import { magma } from '../../theme/magma';
 import styled from '@emotion/styled';
 import { format, isSameDay } from 'date-fns';
@@ -134,49 +134,40 @@ export class CalendarDay extends React.Component<
 
   render() {
     const { day, dayFocusable } = this.props;
-    const { onDateFocus } = this.context;
+    const { toggleDateFocus } = this.context;
 
     return (
       <CalendarContext.Consumer>
-        {context =>
-          context && day ? (
-            <CalendarDayCore>
-              {() => {
-                const sameDateAsFocusedDate = isSameDay(
-                  day,
-                  context.focusedDate
-                );
+        {context => {
+          if (context && day) {
+            const sameDateAsFocusedDate = isSameDay(day, context.focusedDate);
+            const sameDateAsChosenDate = isSameDay(day, context.chosenDate);
+            const sameDateAsToday = isSameDay(day, new Date());
 
-                const sameDateAsChosenDate = isSameDay(day, context.chosenDate);
-
-                const sameDateAsToday = isSameDay(day, new Date());
-
-                return (
-                  <CalendarDayCell onFocus={onDateFocus}>
-                    <CalendarDayInner
-                      aria-label={format(day, 'MMMM Do YYYY')}
-                      isChosen={sameDateAsChosenDate}
-                      isFocused={dayFocusable && sameDateAsFocusedDate}
-                      role="button"
-                      onClick={e => {
-                        context.onDayClick(day, e);
-                      }}
-                      ref={this.dayRef}
-                      tabIndex={sameDateAsFocusedDate ? 0 : -1}
-                    >
-                      {format(day, 'D')}
-                    </CalendarDayInner>
-                    {sameDateAsToday && (
-                      <TodayIndicator data-testid="todayIndicator" />
-                    )}
-                  </CalendarDayCell>
-                );
-              }}
-            </CalendarDayCore>
-          ) : (
-            <EmptyCell />
-          )
-        }
+            return (
+              <CalendarDayCell onFocus={() => toggleDateFocus(true)}>
+                <CalendarDayInner
+                  aria-label={format(day, 'MMMM Do YYYY')}
+                  isChosen={sameDateAsChosenDate}
+                  isFocused={dayFocusable && sameDateAsFocusedDate}
+                  role="button"
+                  onClick={e => {
+                    context.onDayClick(day, e);
+                  }}
+                  ref={this.dayRef}
+                  tabIndex={sameDateAsFocusedDate ? 0 : -1}
+                >
+                  {format(day, 'D')}
+                </CalendarDayInner>
+                {sameDateAsToday && (
+                  <TodayIndicator data-testid="todayIndicator" />
+                )}
+              </CalendarDayCell>
+            );
+          } else {
+            return <EmptyCell />;
+          }
+        }}
       </CalendarContext.Consumer>
     );
   }

@@ -12,7 +12,7 @@ export interface CalendarContextInterface {
   onKeyDown: (event: React.KeyboardEvent) => void;
   onPrevMonthClick: () => void;
   onNextMonthClick: () => void;
-  onDateFocus: () => void;
+  toggleDateFocus: (dateFocused: boolean) => void;
   onHelperFocus: () => void;
 }
 

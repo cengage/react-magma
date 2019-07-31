@@ -1,14 +1,10 @@
 import {
   subDays,
-  subWeeks,
   subMonths,
   addDays,
-  addWeeks,
   addMonths,
   getDay,
-  startOfWeek,
   startOfMonth,
-  endOfWeek,
   endOfMonth,
   differenceInDays
 } from 'date-fns';
@@ -53,65 +49,4 @@ export function getPrevMonthFromDate(prevDate) {
 
 export function getNextMonthFromDate(prevDate) {
   return startOfMonth(addMonths(prevDate, 1));
-}
-
-export function handleKeyPress(
-  e: React.KeyboardEvent,
-  prevDate: Date,
-  onEscKey?: () => void,
-  onQuestionMarkKey?: () => void,
-  onDayClick?: (day: Date, event: React.SyntheticEvent) => void
-) {
-  const { key } = e;
-
-  if (key === 'Enter' || key === ' ') {
-    onDayClick(prevDate, e);
-  }
-
-  switch (key) {
-    case 'ArrowUp':
-      e.preventDefault();
-      return subWeeks(prevDate, 1);
-
-    case 'ArrowLeft':
-      e.preventDefault();
-      return subDays(prevDate, 1);
-
-    case 'Home':
-      e.preventDefault();
-      return startOfWeek(prevDate);
-
-    case 'PageUp':
-      e.preventDefault();
-      return subMonths(prevDate, 1);
-
-    case 'ArrowDown':
-      e.preventDefault();
-      return addWeeks(prevDate, 1);
-
-    case 'ArrowRight':
-      e.preventDefault();
-      return addDays(prevDate, 1);
-
-    case 'End':
-      e.preventDefault();
-      return endOfWeek(prevDate);
-
-    case 'PageDown':
-      e.preventDefault();
-      return addMonths(prevDate, 1);
-
-    case 'Escape':
-      e.preventDefault();
-      onEscKey();
-      break;
-
-    case '?':
-      e.preventDefault();
-      onQuestionMarkKey();
-      break;
-
-    default:
-      break;
-  }
 }
