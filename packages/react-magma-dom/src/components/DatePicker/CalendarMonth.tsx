@@ -81,7 +81,10 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
                     <CalendarHeader />
                     <Table
                       role="presentation"
-                      onBlur={this.onCalendarTableBlur}
+                      onBlur={() => {
+                        this.onCalendarTableBlur();
+                        context.toggleDateFocus(false);
+                      }}
                       onFocus={this.onCalendarTableFocus}
                     >
                       <tbody>
