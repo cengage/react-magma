@@ -86,23 +86,16 @@ describe('TooltipCore', () => {
   it('should show the tooltip', () => {
     const showTooltip = jest.fn();
     const hideTooltip = jest.fn();
-    const onKeyDown = jest.fn();
 
     const { container, getByText } = render(
       <TooltipCore
-        onKeyDown={onKeyDown}
         onFocus={showTooltip}
         onBlur={hideTooltip}
         hideTooltip={hideTooltip}
         showTooltip={showTooltip}
       >
-        {({ id, hideTooltip, showTooltip, onKeyDown, isVisible }) => (
-          <button
-            onBlur={hideTooltip}
-            onFocus={showTooltip}
-            id={id}
-            onKeyDown={onKeyDown}
-          >
+        {({ id, hideTooltip, showTooltip, isVisible }) => (
+          <button onBlur={hideTooltip} onFocus={showTooltip} id={id}>
             {isVisible ? 'Is visible' : 'Not visible'}
           </button>
         )}
@@ -125,23 +118,16 @@ describe('TooltipCore', () => {
   it('should hide the tooltip on blur', () => {
     const showTooltip = jest.fn();
     const hideTooltip = jest.fn();
-    const onKeyDown = jest.fn();
 
     const { container, getByText } = render(
       <TooltipCore
-        onKeyDown={onKeyDown}
         onFocus={showTooltip}
         onBlur={hideTooltip}
         hideTooltip={hideTooltip}
         showTooltip={showTooltip}
       >
-        {({ id, hideTooltip, showTooltip, onKeyDown, isVisible }) => (
-          <button
-            onBlur={hideTooltip}
-            onFocus={showTooltip}
-            id={id}
-            onKeyDown={onKeyDown}
-          >
+        {({ id, hideTooltip, showTooltip, isVisible }) => (
+          <button onBlur={hideTooltip} onFocus={showTooltip} id={id}>
             {isVisible ? 'Is visible' : 'Not visible'}
           </button>
         )}
@@ -158,58 +144,6 @@ describe('TooltipCore', () => {
     setTimeout(() => {
       expect(hideTooltip).toHaveBeenCalled();
       expect(getByText(/not visible/i)).toBeInTheDocument();
-    }, 500);
-  });
-
-  it('should hide the tooltip on pressing escape key', () => {
-    const showTooltip = jest.fn();
-    const hideTooltip = jest.fn();
-    const onKeyDown = jest.fn();
-
-    const { container, getByText } = render(
-      <TooltipCore
-        onKeyDown={onKeyDown}
-        onFocus={showTooltip}
-        onBlur={hideTooltip}
-        hideTooltip={hideTooltip}
-        showTooltip={showTooltip}
-      >
-        {({ id, hideTooltip, showTooltip, onKeyDown, isVisible }) => (
-          <button
-            onBlur={hideTooltip}
-            onFocus={showTooltip}
-            id={id}
-            onKeyDown={onKeyDown}
-          >
-            {isVisible ? 'Is visible' : 'Not visible'}
-          </button>
-        )}
-      </TooltipCore>
-    );
-
-    expect(showTooltip).not.toHaveBeenCalled();
-    expect(hideTooltip).not.toHaveBeenCalled();
-
-    fireEvent.focus(container.querySelector('button'));
-
-    fireEvent.keyDown(container.querySelector('button'), {
-      key: 'ArrowDown',
-      code: 40
-    });
-
-    setTimeout(() => {
-      expect(hideTooltip).not.toHaveBeenCalled();
-      expect(getByText(/is visible/i)).toBeInTheDocument();
-
-      fireEvent.keyDown(container.querySelector('button'), {
-        key: 'Escape',
-        code: 27
-      });
-
-      setTimeout(() => {
-        expect(hideTooltip).toHaveBeenCalled();
-        expect(getByText(/not visible/i)).toBeInTheDocument();
-      }, 500);
     }, 500);
   });
 });
