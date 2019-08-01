@@ -8,7 +8,10 @@ import MainNav from '../main-nav'
 export class SlidingDrawer extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { isOpen: false }
+    this.state = {
+      isOpen: false,
+      isActivated: false,
+    }
     this.toggleButtonRef = React.createRef()
     this.closeMenu = this.closeMenu.bind(this)
     this.openMenu = this.openMenu.bind(this)
@@ -25,15 +28,23 @@ export class SlidingDrawer extends React.Component {
 
       this.setState({ isOpen: false }, () => {
         if (returnFocus) {
-          window.setTimeout(this.toggleButtonRef.current.focus(), 0)
+          window.setTimeout(0)
+
+          setTimeout(() => {
+            this.toggleButtonRef.current.focus()
+          }, 0)
         }
+
+        setTimeout(() => {
+          this.setState({ isActivated: false })
+        }, 250)
       })
     }
   }
 
   openMenu = () => {
     document.getElementsByTagName('html')[0].style.overflow = 'hidden'
-    this.setState({ isOpen: true })
+    this.setState({ isOpen: true, isActivated: true })
 
     document.addEventListener('keydown', this.handleKeypress, false)
   }
@@ -64,7 +75,6 @@ export class SlidingDrawer extends React.Component {
         `
 
     const Panel = styled.div`
-      animation: 0.2s ${slideout};
       background: ${magma.colors.neutral08};
       border-right: 1px solid ${magma.colors.neutral06};
       bottom: 0;
@@ -75,6 +85,12 @@ export class SlidingDrawer extends React.Component {
       top: 0;
       transform: translateX(-280px);
       width: 280px;
+
+      ${props =>
+        props.isActivated &&
+        css`
+          animation: 0.2s ${slideout};
+        `}
 
       ${props =>
         props.isOpen &&
@@ -134,7 +150,7 @@ export class SlidingDrawer extends React.Component {
       }
     `
 
-    const { isOpen } = this.state
+    const { isOpen, isActivated } = this.state
 
     return (
       <FocusLock disabled={!isOpen}>
@@ -151,7 +167,7 @@ export class SlidingDrawer extends React.Component {
               variant="link"
             />
           </MenuButton>
-          <Panel isOpen={isOpen}>
+          <Panel isOpen={isOpen} isActivated={isActivated}>
             <PanelInner isOpen={isOpen}>
               <CloseButton>
                 <Button
