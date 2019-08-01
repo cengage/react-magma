@@ -228,6 +228,7 @@ h4,
 h5,
 h6 {
   border-bottom: 2px solid transparent;
+  color: #003865;
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
   line-height: 1.2;

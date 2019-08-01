@@ -12,6 +12,7 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
 
 export const baseHeadingStyles = props => css`
   border-bottom: 2px solid transparent;
+  color: ${props.theme.colors.foundation01};
   font-family: ${props.theme.headingFont};
   font-weight: 300;
   line-height: 1.2;
