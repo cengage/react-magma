@@ -10,46 +10,47 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   tabIndex?: number;
 }
 
-export const baseHeadingStyles = css`
-  font-weight: 500;
-  line-height: 1.1;
+export const baseHeadingStyles = props => css`
+  border-bottom: 2px solid transparent;
+  font-family: ${props.theme.headingFont};
+  font-weight: 300;
+  line-height: 1.2;
   margin: 20px 0 10px;
+
+  &:focus {
+    border-bottom: 2px dotted ${props.theme.colors.pop02};
+    outline: 0;
+  }
 `;
 
 const StyledH1 = styled.h1`
-  ${baseHeadingStyles};
-  font-family: ${props => props.theme.headingFont};
-  font-size: 40px;
+  font-size: 2.8em;
 `;
 
 const StyledH2 = styled.h2`
-  ${baseHeadingStyles};
-  font-family: ${props => props.theme.headingFont};
-  font-size: 32px;
+  font-size: 2.4em;
 `;
 
 const StyledH3 = styled.h3`
-  ${baseHeadingStyles};
-  font-family: ${props => props.theme.headingFont};
-  font-size: 26px;
+  font-size: 1.867em;
 `;
 
 const StyledH4 = styled.h4`
-  ${baseHeadingStyles};
-  font-family: ${props => props.theme.headingFont};
-  font-size: 23px;
+  font-size: 1.467em;
+  font-weight: 600;
+  line-height: 1.4;
 `;
 
 const StyledH5 = styled.h5`
-  ${baseHeadingStyles};
-  font-family: ${props => props.theme.headingFont};
-  font-size: 20px;
+  font-size: 1.067em;
+  font-weight: 600;
+  line-height: 1.4;
 `;
 
 const StyledH6 = styled.h6`
-  ${baseHeadingStyles};
-  font-family: ${props => props.theme.headingFont};
-  font-size: 18px;
+  font-size: 0.867em;
+  font-weight: 700;
+  line-height: 1.5;
 `;
 
 function renderHeading(level: number) {
@@ -74,6 +75,7 @@ export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
         {theme => (
           <HeadingComponent
             {...other}
+            css={baseHeadingStyles({ theme })}
             ref={ref}
             data-testid={testId}
             tabIndex={tabIndex}
