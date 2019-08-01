@@ -4,10 +4,7 @@ import { generateId } from '../utils';
 export interface RadioCoreProps {
   children: (props) => React.ReactNode;
   id?: string;
-  onBlur?: () => void;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   selectedValue?: string;
-  onFocus?: () => void;
   value?: string;
 }
 
@@ -25,9 +22,9 @@ export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
       selectedValue: this.props.value
     };
 
-    this.onBlur = this.onBlur.bind(this);
+    // this.onBlur = this.onBlur.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.onFocus = this.onFocus.bind(this);
+    // this.onFocus = this.onFocus.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -40,30 +37,34 @@ export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
     }
   }
 
-  onBlur() {
-    this.props.onBlur &&
-      typeof this.props.onBlur === 'function' &&
-      this.props.onBlur();
-  }
+  // onBlur() {
+  //   this.props.onBlur &&
+  //     typeof this.props.onBlur === 'function' &&
+  //     this.props.onBlur();
+  // }
 
-  onFocus() {
-    this.props.onFocus &&
-      typeof this.props.onFocus === 'function' &&
-      this.props.onFocus();
-  }
+  // onFocus() {
+  //   this.props.onFocus &&
+  //     typeof this.props.onFocus === 'function' &&
+  //     this.props.onFocus();
+  // }
 
-  onChange(event) {
-    event.persist();
-    const { value: selectedValue } = event.target;
+  // onChange(event) {
+  //   event.persist();
+  //   const { value: selectedValue } = event.target;
 
-    this.setState(
-      () => ({ selectedValue }),
-      () => {
-        this.props.onChange &&
-          typeof this.props.onChange === 'function' &&
-          this.props.onChange(event);
-      }
-    );
+  //   this.setState(
+  //     () => ({ selectedValue }),
+  //     () => {
+  //       this.props.onChange &&
+  //         typeof this.props.onChange === 'function' &&
+  //         this.props.onChange(event);
+  //     }
+  //   );
+  // }
+
+  onChange(selectedValue: string) {
+    this.setState({ selectedValue });
   }
 
   render() {
@@ -71,9 +72,9 @@ export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
       ...this.state,
       ...this.props,
       id: this.state.id,
-      onBlur: this.onBlur,
+      // onBlur: this.onBlur,
       onChange: this.onChange,
-      onFocus: this.onFocus,
+      // onFocus: this.onFocus,
       selectedValue: this.state.selectedValue
     });
   }
