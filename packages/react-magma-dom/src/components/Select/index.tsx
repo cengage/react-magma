@@ -177,14 +177,9 @@ export const Select: React.FunctionComponent<SelectProps> = (
   <SelectCore
     defaultValue={props.defaultValue}
     value={props.value}
-    onBlur={props.onBlur}
-    onFocus={props.onFocus}
     onChange={props.onChange}
-    onOpen={props.onOpen}
-    onClose={props.onClose}
-    onInputChange={props.onInputChange}
   >
-    {({ value, onBlur, onFocus, onChange, onOpen, onClose, onInputChange }) => {
+    {({ value, onChange }) => {
       const {
         defaultValue,
         id,
@@ -193,6 +188,11 @@ export const Select: React.FunctionComponent<SelectProps> = (
         labelText,
         options,
         disabled,
+        onBlur,
+        onFocus,
+        onOpen,
+        onClose,
+        onInputChange,
         required,
         clearable,
         errorMessage,

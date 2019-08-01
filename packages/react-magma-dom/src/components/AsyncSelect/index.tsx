@@ -24,13 +24,9 @@ export const AsyncSelect: React.FunctionComponent<AsyncSelectProps> = (
   <SelectCore
     defaultValue={props.defaultValue}
     value={props.value}
-    onBlur={props.onBlur}
-    onFocus={props.onFocus}
     onChange={props.onChange}
-    onOpen={props.onOpen}
-    onClose={props.onClose}
   >
-    {({ value, onBlur, onFocus, onChange, onOpen, onClose }) => {
+    {({ value, onChange }) => {
       const {
         cacheOptions,
         defaultOptions,
@@ -41,6 +37,10 @@ export const AsyncSelect: React.FunctionComponent<AsyncSelectProps> = (
         labelText,
         loadOptions,
         disabled,
+        onBlur,
+        onFocus,
+        onOpen,
+        onClose,
         required,
         clearable,
         errorMessage,
