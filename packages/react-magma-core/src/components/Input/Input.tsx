@@ -37,13 +37,8 @@ export class InputCore extends React.Component<InputCoreProps, InputCoreState> {
     }
   }
 
-  onChange(event) {
-    const { value } = event.target;
-    this.props.onChange &&
-      typeof this.props.onChange === 'function' &&
-      this.props.onChange(event);
-
-    this.setState(() => ({ value }));
+  onChange(value: string) {
+    this.setState({ value });
   }
 
   togglePasswordShown() {
