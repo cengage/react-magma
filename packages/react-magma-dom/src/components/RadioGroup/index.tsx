@@ -110,7 +110,3 @@ export class RadioGroup extends React.Component<RadioGroupProps> {
     );
   }
 }
-// export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
-//   props: RadioGroupProps
-// ): JSX.Element => (
-// );
