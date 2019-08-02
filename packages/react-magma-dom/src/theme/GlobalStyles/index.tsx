@@ -5,7 +5,6 @@ import { ThemeContext } from '../ThemeContext';
 function getStyles(theme) {
   return css`
     @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
-    @import url('https://use.typekit.net/rwr6vzk.css');
 
     *,
     *:before,
@@ -53,47 +52,6 @@ function getStyles(theme) {
         outline: 2px dotted ${theme.colors.pop02};
         outline-offset: 3px;
       }
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-family: ${theme.headingFont};
-      font-weight: 500;
-      line-height: 1.1;
-      margin: 20px 0 10px;
-
-      &:focus {
-        border-bottom: ${theme.colors.pop02};
-        outline: 0;
-      }
-    }
-
-    h1 {
-      font-size: 40px;
-    }
-
-    h2 {
-      font-size: 32px;
-    }
-
-    h3 {
-      font-size: 26px;
-    }
-
-    h4 {
-      font-size: 23px;
-    }
-
-    h5 {
-      font-size: 20px;
-    }
-
-    h6 {
-      font-size: 18px;
     }
   `;
 }

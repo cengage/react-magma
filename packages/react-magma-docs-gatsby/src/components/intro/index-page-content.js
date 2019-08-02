@@ -15,6 +15,7 @@ import ImageEvolving from '../../images/img-evolving.svg'
 import ImageQuality from '../../images/img-quality.svg'
 
 const Heading = styled.h1`
+  color: inherit;
   font-family: ${props => props.theme.bodyFont};
   font-size: 3.4em;
   font-weight: 600;
