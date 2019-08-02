@@ -13,7 +13,7 @@ import {magma} from 'react-magma-dom'
 # Colors
 Color helps express hierarchy, establish brand presence, give meaning, and indicate element states.
 
-## 1. Principles
+## Principles
 ### Consistent
 Color should be applied throughout a UI consistently and be compatible with the brand it represents.
 ### Hierarchical
@@ -25,7 +25,7 @@ Reinforce your brand by showing brand colors at memorable moments that reinforce
 
 <hr class="article-divider" />
 
-## 2. Color Palette
+## Color Palette
 *&ast; Contrast ratio on each color is based on a white background. *
 ### Primary
 The primary color is the main brand color.  A brand color can be used in key moments, in ways that associate that color with specific actions and information.
@@ -150,8 +150,8 @@ Sometimes, going subtle makes a statement, too. Use our neutrals for the ultimat
     <span>4.8:1</span>
   </ColorSwatch>
   <ColorSwatch color={magma.colors.neutral05}>
-    <span><strong>neutral06</strong></span>
-    <span>{magma.colors.neutral06}</span>
+    <span><strong>neutral05</strong></span>
+    <span>{magma.colors.neutral05}</span>
     <span>rgb(191,191,191)</span>
     <span>1.8:1</span>
   </ColorSwatch>
@@ -177,7 +177,7 @@ Sometimes, going subtle makes a statement, too. Use our neutrals for the ultimat
 
 <hr class="article-divider" />
 
-## 3. Accessibility
-All text should be legible and meet accessibility standards. [The Web Content Accessibility Guidelines (WCAG 2.0)](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html) level AA requires a 4.5:1 color contrast between text and background for normal text, and 3:1 to large text. Large text is at least 18 point or 14 point bold.
+## Accessibility
+All text should be legible and meet accessibility standards. [The Web Content Accessibility Guidelines (WCAG 2.1)](https://www.w3.org/TR/WCAG21/#contrast-minimum) level AA requires a 4.5:1 color contrast between text and background for normal text, and 3:1 to large text. Large text is at least 18 point or 14 point bold.  Additionally,  any non-text visual information provided that is necessary for a user to identify that a control is present and how to operate it must have a minimum 3:1 contrast ratio with the adjacent colors.
 
 The contrast ratio displayed on each color above is based on that color on a white background.  If you are using a background color other than white, make sure you check the contrast ratio using a tool like the one found at [webaim.org](https://webaim.org/resources/contrastchecker/)*

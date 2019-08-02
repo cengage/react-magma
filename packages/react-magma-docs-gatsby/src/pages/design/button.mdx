@@ -4,15 +4,14 @@ order: 1
 ---
 
 import { Link } from 'gatsby'
-
 import './design-guidelines-styles.css'
-
 import DocsHeading from '../../components/docs-heading'
+import { Button } from 'react-magma-dom'
 
 <DocsHeading to="/api/button/" type="code">Buttons</DocsHeading>
 
 Buttons are clickable items used to perform an action.
-## 1. Usage
+## Usage
 
 Buttons communicate actions that users can take.
 
@@ -23,7 +22,7 @@ Buttons communicate actions that users can take.
 
 <hr class="article-divider" />
 
-## 2. Principles
+## Principles
 ### Identifiable
 Buttons should indicate that they can trigger an action.
 ### Findable
@@ -33,22 +32,22 @@ A button’s action and state should be clear.
 
 <hr class="article-divider" />
 
-## 3. Types
+## Types
 1. Text button (low emphasis)
 Text buttons are typically used for less important actions
-<button class="StyledButton__StyledButtonComponent-sc-8kiq4d-0 gweYkq" color="primary" shape="fill">BUTTON LABEL</button>
+<Button color="primary" variant="link">Text Button</Button>
 
 2. Outlined Button (medium emphasis)
 Outlined buttons are used for more emphasis than text buttons due to the stroke
-<button class="StyledButton__StyledButtonComponent-sc-8kiq4d-0 glsKz" color="primary" shape="fill">BUTTON LABEL</button>
+<Button color="primary" variant="outline">Outlined Button</Button>
 
 3. Solid button (high emphasis)
 Solid buttons have more emphasis, as they use use a color fill
-<button class="StyledButton__StyledButtonComponent-sc-8kiq4d-0 cekKaY" color="primary" shape="fill">BUTTON LABEL</button>
+<Button>Solid Button</Button>
 
 <hr class="article-divider" />
 
-## 4. Anatomy
+## Anatomy
 ### Text Label
 Almost all buttons use text labels, which describe the action that will occur if a user taps a button.
 #### All caps or sentence case?
@@ -166,7 +165,7 @@ You can place icons next to text labels to both clarify an action and call atten
 
 <hr class="article-divider" />
 
-## 5. Sizes
+## Sizes
 Other than the standard sized buttons, there are two other sizes – Large and small.
 
 *Large* buttons can be used in scenarios where space allows and you desire a much more prominent call to action.
@@ -177,7 +176,7 @@ Other than the standard sized buttons, there are two other sizes – Large and s
 
 <hr class="article-divider" />
 
-## 6. Button Colors
+## Button Colors
 Color can help reinforce the type of action that a button will perform if tapped.  The default colors of Magma are carefully chosen to both fit Cengage branding guidelines, as well as meet the accessibility requirement for color contrast ratio of at least 4.5:1.  If deviations to these colors are required, then you assume responsibility to meet accessibility requirements.
 
 By default, a button using the **Primary** color should be used.  This includes outlined buttons.
@@ -234,7 +233,7 @@ If your button is going on a dark background, you can use any of the solid butto
 
 <hr class="article-divider" />
 
-## 7. Button States
+## Button States
 Buttons have clear states to provide feedback to the user.
 
 <div class="one-col">
@@ -267,7 +266,7 @@ The dotted outline is 2px, and the color is #F2A900 ($accent06).  Both of these 
 
 <hr class="article-divider" />
 
-## 8. Hierarchy and Placement
+## Hierarchy and Placement
 ### Hierarchy
 #### A single, prominent button
 A layout should contain a single prominent button that makes it clear that other buttons have less visual importance in the hierarchy. This high-emphasis button commands the most attention.
@@ -321,7 +320,7 @@ Multiple button types can be used to express different emphasis levels.  When us
 
 <hr class="article-divider" />
 
-## 9. Responsive Behavior
+## Responsive Behavior
 Button sizes and placements will sometimes need to change because of the size of the user’s screen.  CSS breakpoints should be determined based on need, instead of limited to a set of standard breakpoints.
 
 <div class="two-col">
