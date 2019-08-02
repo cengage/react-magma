@@ -220,6 +220,60 @@ hgroup {
   padding-top: 0;
   margin-bottom: 1.45rem;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  border-bottom: 2px solid transparent;
+  color: #003865;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 20px 0 10px;
+}
+
+h1:focus,
+h2:focus,
+h3:focus,
+h4:focus,
+h5:focus,
+h6:focus {
+  border-bottom: 2px dotted #FA6600;
+  outline: 0;
+}
+
+h1 {
+  font-size: 2.8em;
+}
+
+h2 {
+  font-size: 2.4em;
+}
+
+h3 {
+  font-size: 1.867em;
+}
+
+h4 {
+  font-size: 1.467em;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+h5 {
+  font-size: 1.067em;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+h6 {
+  font-size: 0.867em;
+  font-weight: 700;
+  line-height: 1.5;
+}
 ul {
   margin-left: 1.45rem;
   margin-right: 0;
@@ -548,13 +602,6 @@ pre tt:after {
 .content-article h1,
 .content-article h2 {
   border-bottom: 2px solid transparent;
-
-}
-
-.content-article h1:focus,
-.content-article h2:focus {
-  border-bottom: 2px dotted #FA6600;
-  outline: 0;
 }
 
 .pre-container {

@@ -60,7 +60,7 @@ const StyledAlert = styled.div<AlertProps>`
   display: flex;
   position: relative;
   padding: 0;
-  margin: 10px;
+  margin-bottom: 20px;
   max-width: 100%;
   animation: ${props =>
     props.isExiting

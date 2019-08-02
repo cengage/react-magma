@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, StaticQuery, graphql } from 'gatsby'
-import { Router } from '@reach/router'
+import { Location, Router } from '@reach/router'
 import './main-nav.css'
 import { magma, AngleDownIcon } from 'react-magma-dom'
 import { convertTextToId } from '../../utils'
@@ -113,100 +113,104 @@ const MainNav = ({ ...props }) => (
           </li>
         </ul>
         <hr />
-        <Accordion accordion={false}>
-          <AccordionItem>
-            <AccordionItemTitle>
-              <h2>
-                Develop
-                <AngleDownIcon size="16" />
-              </h2>
-            </AccordionItemTitle>
-            <AccordionItemBody>
-              <ul>
-                <li>
-                  <Link
-                    activeStyle={activeStyle}
-                    onClick={props.handleClick}
-                    to="/api-introduction"
-                  >
-                    Installation
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    activeStyle={activeStyle}
-                    onClick={props.handleClick}
-                    to="/api-usage"
-                  >
-                    Usage
-                  </Link>
-                </li>
-              </ul>
-              <h3>Component API</h3>
-              <ul>
-                {data.apiDocs.edges.map(({ node }) => (
-                  <li key={node.fields.slug}>
-                    <Link
-                      activeStyle={activeStyle}
-                      onClick={props.handleClick}
-                      to={node.fields.slug}
-                    >
-                      {node.frontmatter.title}
-                    </Link>
-                    <Router>
-                      <SubMenu
-                        path={node.fields.slug}
-                        headings={node.headings}
-                        handleClick={props.handleClick}
-                      />
-                    </Router>
-                  </li>
-                ))}
-              </ul>
-            </AccordionItemBody>
-          </AccordionItem>
-          <hr />
-          <AccordionItem>
-            <AccordionItemTitle>
-              <h2>
-                Design
-                <AngleDownIcon size="16" />
-              </h2>
-            </AccordionItemTitle>
-            <AccordionItemBody>
-              <ul>
-                <li>
-                  <Link
-                    activeStyle={activeStyle}
-                    onClick={props.handleClick}
-                    to="/design-introduction"
-                  >
-                    Introduction
-                  </Link>
-                </li>
-                {data.designDocs.edges.map(({ node }) => (
-                  <li key={node.fields.slug}>
-                    <Link
-                      activeStyle={activeStyle}
-                      onClick={props.handleClick}
-                      to={node.fields.slug}
-                    >
-                      {node.frontmatter.title}
-                    </Link>
-                    <Router>
-                      <SubMenu
-                        path={node.fields.slug}
-                        headings={node.headings}
-                        handleClick={props.handleClick}
-                      />
-                    </Router>
-                  </li>
-                ))}
-              </ul>
-            </AccordionItemBody>
-          </AccordionItem>
-          <hr />
-        </Accordion>
+        <Location>
+          {({ location }) => (
+            <Accordion accordion={false}>
+              <AccordionItem expanded={location.pathname.includes('api')}>
+                <AccordionItemTitle>
+                  <h2>
+                    Develop
+                    <AngleDownIcon size="16" />
+                  </h2>
+                </AccordionItemTitle>
+                <AccordionItemBody>
+                  <ul>
+                    <li>
+                      <Link
+                        activeStyle={activeStyle}
+                        onClick={props.handleClick}
+                        to="/api-introduction"
+                      >
+                        Installation
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        activeStyle={activeStyle}
+                        onClick={props.handleClick}
+                        to="/api-usage"
+                      >
+                        Usage
+                      </Link>
+                    </li>
+                  </ul>
+                  <h3>Component API</h3>
+                  <ul>
+                    {data.apiDocs.edges.map(({ node }) => (
+                      <li key={node.fields.slug}>
+                        <Link
+                          activeStyle={activeStyle}
+                          onClick={props.handleClick}
+                          to={node.fields.slug}
+                        >
+                          {node.frontmatter.title}
+                        </Link>
+                        <Router>
+                          <SubMenu
+                            path={node.fields.slug}
+                            headings={node.headings}
+                            handleClick={props.handleClick}
+                          />
+                        </Router>
+                      </li>
+                    ))}
+                  </ul>
+                </AccordionItemBody>
+              </AccordionItem>
+              <hr />
+              <AccordionItem expanded={location.pathname.includes('design')}>
+                <AccordionItemTitle>
+                  <h2>
+                    Design
+                    <AngleDownIcon size="16" />
+                  </h2>
+                </AccordionItemTitle>
+                <AccordionItemBody>
+                  <ul>
+                    <li>
+                      <Link
+                        activeStyle={activeStyle}
+                        onClick={props.handleClick}
+                        to="/design-introduction"
+                      >
+                        Introduction
+                      </Link>
+                    </li>
+                    {data.designDocs.edges.map(({ node }) => (
+                      <li key={node.fields.slug}>
+                        <Link
+                          activeStyle={activeStyle}
+                          onClick={props.handleClick}
+                          to={node.fields.slug}
+                        >
+                          {node.frontmatter.title}
+                        </Link>
+                        <Router>
+                          <SubMenu
+                            path={node.fields.slug}
+                            headings={node.headings}
+                            handleClick={props.handleClick}
+                          />
+                        </Router>
+                      </li>
+                    ))}
+                  </ul>
+                </AccordionItemBody>
+              </AccordionItem>
+              <hr />
+            </Accordion>
+          )}
+        </Location>
       </div>
     )}
   />

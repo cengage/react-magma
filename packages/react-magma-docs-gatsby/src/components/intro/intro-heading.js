@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { ThemeContext } from 'react-magma-dom';
 
 const StyledHeading = styled.h2`
+    color: inherit;
     font-family: ${props => props.theme.bodyFont};
     font-size:  ${props => props.isCta ? '2em' : '2.4em'};
     font-weight: 600;

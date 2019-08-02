@@ -1,0 +1,64 @@
+---
+title: Alerts
+order: 1
+---
+
+import { Link } from 'gatsby'
+import './design-guidelines-styles.css'
+import DocsHeading from '../../components/docs-heading'
+import { Alert } from 'react-magma-dom'
+
+<DocsHeading to="/api/alert/" type="code">Alerts</DocsHeading>
+
+Alerts are used to provide action-based feedback messages or to convey informational and/or critical account-related messages.
+
+## Standard Alert Blocks
+
+Alerts are categorized into four types based on severity:
+
+### Info
+Provides non-urgent information related to a performed action, or used within a page to communicate completely neutral information.
+
+<Alert>I'm just here to tell you something totally not worth stressing over.</Alert>
+
+### Success
+Indicates that an action processed successfully.
+
+<Alert variant="success">Yay!  You did it!  Great job!</Alert>
+
+### Warning
+Indicates that something isn't quite right, but there wasn't an error.
+
+<Alert variant="warning">Umm, something's not quite right here.</Alert>
+
+### Error
+Indicates that an error occurred within a page or in relation to an action the user just attempted.
+
+<Alert variant="danger">Oh no, it's all gone horribly wrong!</Alert>
+
+<hr class="article-divider" />
+
+## Dismissable alerts
+Alerts may be dismissable by including a close button.
+
+<Alert dismissable variant="info" onDismiss={()=>{}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Alert>
+<Alert dismissable variant="success" onDismiss={()=>{}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Alert>
+<Alert dismissable variant="warning" onDismiss={()=>{}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Alert>
+<Alert dismissable variant="danger" onDismiss={()=>{}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Alert>
+
+<hr class="article-divider" />
+
+## Alert links
+Links may be included in alerts and the appropriate styling will be automatically applied.  Due to the background colors, we use semi-bold text and underline to stand out from the rest of the message.
+
+<Alert variant="info">Info Alert with <a href="#">linked text</a></Alert>
+<Alert variant="success">Success Alert with <a href="#">linked text</a></Alert>
+<Alert variant="warning">Warning Alert with <a href="#">linked text</a></Alert>
+<Alert variant="danger">Danger Alert with <a href="#">linked text</a></Alert>
+
+<hr class="article-divider" />
+
+## Toaster alerts
+Toaster messages are shown at the bottom-left of the page and stay for 5 seconds, providing immediate feedback in response to a user action.  The time it takes for the alert to disappear automatically can be adjusted if necessary.
+
+[See demo](/api/toast/)
