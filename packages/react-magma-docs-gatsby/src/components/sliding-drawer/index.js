@@ -27,16 +27,11 @@ export class SlidingDrawer extends React.Component {
       document.removeEventListener('keydown', this.handleKeypress, false)
 
       this.setState({ isOpen: false }, () => {
-        if (returnFocus) {
-          window.setTimeout(0)
-
-          setTimeout(() => {
-            this.toggleButtonRef.current.focus()
-          }, 0)
-        }
-
         setTimeout(() => {
           this.setState({ isActivated: false })
+          if (returnFocus) {
+            this.toggleButtonRef.current.focus()
+          }
         }, 250)
       })
     }
