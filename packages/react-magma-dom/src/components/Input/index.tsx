@@ -80,7 +80,7 @@ const StyledInput = styled.input<InputProps>`
   border-color: ${props =>
     props.errorMessage
       ? props.theme.colors.danger
-      : props.theme.colors.neutral05};
+      : props.theme.colors.neutral04};
   border-radius: 5px;
   box-shadow: ${props =>
     props.errorMessage ? `0 0 0 1px ${props.theme.colors.danger}` : '0 0 0'};

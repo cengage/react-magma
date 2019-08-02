@@ -57,7 +57,7 @@ export function getStyles(
         ? theme.colors.pop02
         : errorMessage
         ? theme.colors.danger
-        : theme.colors.neutral05,
+        : theme.colors.neutral04,
       borderRadius: '5px',
       boxShadow: isFocused
         ? `0 0 0 1px ${theme.colors.pop02}`
@@ -71,7 +71,7 @@ export function getStyles(
       padding: '0 8px 0 0',
 
       '&:hover': {
-        borderColor: isFocused ? theme.colors.pop02 : theme.colors.neutral05
+        borderColor: isFocused ? theme.colors.pop02 : theme.colors.neutral04
       },
       ...customStyles.control
     }),
