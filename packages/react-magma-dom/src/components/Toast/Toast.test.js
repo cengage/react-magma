@@ -30,21 +30,23 @@ describe('Toast', () => {
 
   it('should find element by testId', () => {
     const testId = 'test-id';
-    const { getByTestId } = renderToast({ testId });
+    const { getByTestId } = render(
+      <Toast testId={testId}>Toast Content</Toast>
+    );
 
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render a toast', () => {
-    const { getByText } = renderToast();
+    const toastContent = 'Toast Content';
+    const { getByText } = render(<Toast>{toastContent}</Toast>);
 
-    expect(getByText(TOAST_CONTENT)).toBeInTheDocument();
+    expect(getByText(toastContent)).toBeInTheDocument();
   });
 
   it('should call passed in onDismiss when timer runs out', () => {
-    renderToast({
-      toastDuration: 1000
-    });
+    const onDismiss = jest.fn();
+    render(<Toast onDismiss={onDismiss}>Toast Content</Toast>);
 
     jest.runAllTimers();
     setTimeout(() => {
@@ -53,29 +55,79 @@ describe('Toast', () => {
   });
 
   it('should use passed in timeout duration', () => {
-    renderToast({
-      toastDuration: 1000
-    });
+    render(<Toast toastDuration={1000}>Toast Content</Toast>);
 
     expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 1000);
   });
 
   it('should have a dismissable toast', () => {
-    const { container } = renderToast({ dismissable: true });
+    const { container } = render(<Toast dismissable>Toast Content</Toast>);
 
     expect(container.querySelector('button')).toBeInTheDocument();
   });
 
   it('should call onDismiss if the dismiss button is clicked', () => {
-    const { container } = renderToast({ dismissable: true });
+    const onDismiss = jest.fn();
+    const { container } = render(
+      <Toast dismissable onDismiss={onDismiss}>
+        Toast Content
+      </Toast>
+    );
 
     const button = container.querySelector('button');
 
     fireEvent.click(button);
+    jest.runAllTimers();
 
-    setTimeout(() => {
-      expect(onDismiss).toHaveBeenCalled();
-    }, 500);
+    expect(onDismiss).toHaveBeenCalled();
+  });
+
+  it('should keep the toast up when hovering over the toast and dismiss when mouse leaves', () => {
+    const onDismiss = jest.fn();
+    const toastContent = 'I am a toast';
+    const { getByText } = render(
+      <Toast onDismiss={onDismiss}>{toastContent}</Toast>
+    );
+
+    const toast = getByText(toastContent);
+
+    fireEvent.mouseOver(toast);
+    jest.runAllTimers();
+
+    expect(onDismiss).not.toHaveBeenCalled();
+
+    fireEvent.mouseLeave(toast);
+    jest.runAllTimers();
+
+    expect(onDismiss).toHaveBeenCalled();
+  });
+
+  it('calls passed in onMouseEnter and onMouseLeave', () => {
+    const onDismiss = jest.fn();
+    const onMouseEnter = jest.fn();
+    const onMouseLeave = jest.fn();
+    const toastContent = 'I am a toast';
+    const { getByText } = render(
+      <Toast
+        onDismiss={onDismiss}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+      >
+        {toastContent}
+      </Toast>
+    );
+
+    const toast = getByText(toastContent);
+
+    fireEvent.mouseOver(toast);
+    jest.runAllTimers();
+
+    expect(onMouseEnter).toHaveBeenCalled();
+
+    fireEvent.mouseLeave(toast);
+    jest.runAllTimers();
+
+    expect(onMouseLeave).toHaveBeenCalled();
   });
 
   it('should change the variant of the toast when passed in different variant', () => {

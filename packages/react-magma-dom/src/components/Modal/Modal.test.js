@@ -176,6 +176,48 @@ describe('Modal', () => {
       expect(onCloseSpy).toHaveBeenCalled();
     });
 
+    it('should call the passed in onEscKeyDown function', () => {
+      const onEscKeyDown = jest.fn();
+      const { rerender, getByText } = render(
+        <>
+          <button>Open</button>
+          <Modal
+            header="Hello"
+            open={false}
+            onEscKeyDown={onEscKeyDown}
+            onClose={jest.fn()}
+          >
+            Modal Content
+          </Modal>
+        </>
+      );
+
+      fireEvent.focus(getByText('Open'));
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal
+            header="Hello"
+            open={true}
+            onEscKeyDown={onEscKeyDown}
+            onClose={jest.fn()}
+          >
+            Modal Content
+          </Modal>
+        </>
+      );
+
+      fireEvent.keyDown(getByText('Modal Content'), {
+        key: 'Escape',
+        keyCode: 27
+      });
+
+      jest.runAllTimers();
+
+      expect(onEscKeyDown).toHaveBeenCalled();
+    });
+
     it('should close when clicking on the backdrop', () => {
       const onCloseSpy = jest.fn();
       const { rerender, getByText, getByTestId } = render(
@@ -288,7 +330,7 @@ describe('Modal', () => {
 
     it('should prevent default on mouse down on the backdrop if the disableBackdropClick prop is true', () => {
       const onCloseSpy = jest.fn();
-      const { rerender, getByText, getByTestId, container } = render(
+      const { rerender, getByText, getByTestId } = render(
         <>
           <button>Open</button>
           <Modal
@@ -324,10 +366,157 @@ describe('Modal', () => {
 
       jest.runAllTimers();
 
-      expect(container.querySelector(':focus')).toHaveAttribute(
-        'aria-label',
-        'Close'
+      expect(getByTestId('modal-content')).toBeInTheDocument();
+    });
+  });
+
+  describe('focus trap', () => {
+    it('should not focus an element if there is nothing in the modal that can be focused', () => {
+      const { rerender, getByText } = render(
+        <>
+          <button>Open</button>
+          <Modal header="Hello" open={false} onClose={jest.fn()} hideEscButton>
+            Modal Content
+          </Modal>
+        </>,
+        { container: document.body }
       );
+
+      fireEvent.focus(getByText('Open'));
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal header="Hello" open={true} onClose={jest.fn()} hideEscButton>
+            Modal Content
+          </Modal>
+        </>,
+        { container: document.body }
+      );
+
+      expect(getByText('Modal Content')).not.toHaveFocus();
+    });
+
+    it('should handle tab and loop it through the modal', () => {
+      const { getByTestId, getByText, rerender } = render(
+        <>
+          <button>Open</button>
+          <Modal header="Hello" open={false} onClose={jest.fn()} hideEscButton>
+            <>
+              <button data-testid="closeButton">Close</button>
+              <input data-testid="emailInput" type="text" name="email" />
+              <input data-testid="passwordInput" type="text" name="password" />
+            </>
+          </Modal>
+        </>
+      );
+
+      fireEvent.focus(getByText('Open'));
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal header="Hello" open={true} onClose={jest.fn()} hideEscButton>
+            <>
+              <button data-testid="closeButton">Close</button>
+              <input data-testid="emailInput" type="text" name="email" />
+              <input data-testid="passwordInput" type="text" name="password" />
+            </>
+          </Modal>
+        </>
+      );
+
+      fireEvent.keyDown(getByTestId('closeButton'), {
+        keyCode: 9
+      });
+
+      fireEvent.keyDown(getByTestId('emailInput'), {
+        keyCode: 9
+      });
+
+      fireEvent.keyDown(getByTestId('passwordInput'), {
+        keyCode: 9
+      });
+
+      expect(getByTestId('closeButton')).toHaveFocus();
+    });
+
+    it('should handle shift + tab and loop it through the modal', () => {
+      const { getByTestId, getByText, rerender } = render(
+        <>
+          <button>Open</button>
+          <Modal header="Hello" open={false} onClose={jest.fn()} hideEscButton>
+            <>
+              <button data-testid="closeButton">Close</button>
+              <input data-testid="emailInput" type="text" name="email" />
+              <input data-testid="passwordInput" type="text" name="password" />
+            </>
+          </Modal>
+        </>
+      );
+
+      fireEvent.focus(getByText('Open'));
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal header="Hello" open={true} onClose={jest.fn()} hideEscButton>
+            <>
+              <button data-testid="closeButton">Close</button>
+              <input data-testid="emailInput" type="text" name="email" />
+              <input data-testid="passwordInput" type="text" name="password" />
+            </>
+          </Modal>
+        </>
+      );
+
+      fireEvent.keyDown(getByTestId('emailInput'), {
+        keyCode: 9,
+        shiftKey: true
+      });
+
+      fireEvent.keyDown(getByTestId('closeButton'), {
+        keyCode: 9,
+        shiftKey: true
+      });
+
+      expect(getByTestId('passwordInput')).toHaveFocus();
+    });
+
+    it('should not break if a different key is pressed', () => {
+      const { getByTestId, getByText, rerender } = render(
+        <>
+          <button>Open</button>
+          <Modal header="Hello" open={false} onClose={jest.fn()} hideEscButton>
+            <>
+              <button data-testid="closeButton">Close</button>
+              <input data-testid="emailInput" type="text" name="email" />
+              <input data-testid="passwordInput" type="text" name="password" />
+            </>
+          </Modal>
+        </>
+      );
+
+      fireEvent.focus(getByText('Open'));
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal header="Hello" open={true} onClose={jest.fn()} hideEscButton>
+            <>
+              <button data-testid="closeButton">Close</button>
+              <input data-testid="emailInput" type="text" name="email" />
+              <input data-testid="passwordInput" type="text" name="password" />
+            </>
+          </Modal>
+        </>
+      );
+
+      fireEvent.keyDown(getByTestId('closeButton'), {
+        keyCode: 10
+      });
+
+      expect(getByTestId('closeButton')).toBeInTheDocument();
     });
   });
 });

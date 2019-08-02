@@ -1,16 +1,16 @@
 {
   "name": "react-magma-native",
-  "version": "0.1.0-beta.24",
+  "version": "0.1.0-beta.28",
   "description": "",
   "main": "dist/bundle.js",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c",
-    "lint": "npm run tsc && npm run tslint",
-    "tsc": "tsc --noEmit",
-    "tslint": "lint-staged"
+    "DISABLED-build": "rollup -c",
+    "DISABLED-lint": "npm run tsc && npm run tslint",
+    "DISABLED-tsc": "tsc --noEmit",
+    "DISABLED-tslint": "lint-staged"
   },
   "keywords": [],
   "author": "",
@@ -20,7 +20,7 @@
     "react-native": "^0.56.0"
   },
   "dependencies": {
-    "react-magma-core": "0.1.0-beta.24"
+    "react-magma-core": "0.1.0-beta.28"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

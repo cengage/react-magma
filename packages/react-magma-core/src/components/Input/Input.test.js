@@ -86,12 +86,15 @@ describe('InputCore', () => {
     expect(getByText('Shown')).toBeInTheDocument();
   });
 
-  it('should call the supplied onChange and update the value when onChange is called', () => {
-    const handleChange = jest.fn();
+  it('should update the value when onChange is called', () => {
     const { getByTestId, getByDisplayValue } = render(
-      <InputCore onChange={handleChange} value="">
+      <InputCore value="">
         {({ onChange, value }) => (
-          <input value={value} onChange={onChange} data-testid="target" />
+          <input
+            value={value}
+            onChange={event => onChange(event.target.value)}
+            data-testid="target"
+          />
         )}
       </InputCore>
     );
@@ -101,7 +104,6 @@ describe('InputCore', () => {
     });
 
     expect(getByDisplayValue('whatever')).toBeInTheDocument();
-    expect(handleChange).toHaveBeenCalledTimes(1);
   });
 
   it('Should not throw if a non-function is passed as an onChange', () => {

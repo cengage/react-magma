@@ -16,6 +16,7 @@ export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   inverse?: boolean;
   position?: EnumTooltipPosition;
   trigger: React.ReactElement;
+  ref?: any;
 }
 
 export interface ITooltipState {
@@ -215,23 +216,37 @@ const StyledTooltipInner = styled.div<{
     `}
 `;
 
-export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
-  (props: TooltipProps, ref: any) => {
+class TooltipComponent extends React.Component<TooltipProps> {
+  constructor(props) {
+    super(props);
+
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+  }
+
+  handleKeyDown(hideTooltip: () => void) {
+    return (event: React.KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        hideTooltip();
+      }
+    };
+  }
+
+  render() {
     return (
-      <TooltipCore id={props.id}>
-        {({ id, hideTooltip, showTooltip, onKeyDown, isVisible }) => {
-          const { content, inverse, position, trigger } = props;
+      <TooltipCore id={this.props.id}>
+        {({ id, hideTooltip, showTooltip, isVisible }) => {
+          const { content, inverse, position, trigger } = this.props;
 
           return (
             <ToolTipContainer>
               {React.cloneElement(trigger, {
                 'aria-describedby': id,
-                onKeyDown,
+                onKeyDown: this.handleKeyDown(hideTooltip),
                 onBlur: hideTooltip,
                 onFocus: showTooltip,
                 onMouseLeave: hideTooltip,
                 onMouseEnter: showTooltip,
-                ref
+                ref: this.props.ref
               })}
               <ThemeContext.Consumer>
                 {theme => (
@@ -257,4 +272,8 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
       </TooltipCore>
     );
   }
-);
+}
+
+export const Tooltip = React.forwardRef((props: TooltipProps, ref: any) => (
+  <TooltipComponent ref={ref} {...props} />
+));

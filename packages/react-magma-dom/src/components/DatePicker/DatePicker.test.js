@@ -1,7 +1,19 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { render, fireEvent } from 'react-testing-library';
-import { format, getDate } from 'date-fns';
+import {
+  format,
+  getDate,
+  subWeeks,
+  subDays,
+  startOfWeek,
+  subMonths,
+  addMonths,
+  addWeeks,
+  addDays,
+  endOfWeek,
+  isSameDay
+} from 'date-fns';
 import { DatePicker } from '.';
 
 describe('Date Picker', () => {
@@ -52,6 +64,417 @@ describe('Date Picker', () => {
     });
 
     expect(getByText(/select the date/i)).toBeInTheDocument();
+  });
+
+  it('should handle a day click', () => {
+    const onDayClick = jest.fn();
+    const defaultDate = new Date();
+    const labelText = 'Date picker label';
+    const { getByText, container } = render(
+      <DatePicker
+        defaultDate={defaultDate}
+        labelText={labelText}
+        onDayClick={onDayClick}
+      />
+    );
+
+    fireEvent.focus(container.querySelector('table'));
+
+    fireEvent.click(getByText(defaultDate.getDate().toString()));
+
+    expect(onDayClick).toHaveBeenCalled();
+  });
+
+  describe('on key down press', () => {
+    it('handles the question mark key when typing in the input', () => {
+      const defaultDate = new Date();
+      const labelText = 'Date picker label';
+      const { getByLabelText, getByRole } = render(
+        <DatePicker defaultDate={defaultDate} labelText={labelText} />
+      );
+
+      const datePickerInput = getByLabelText(labelText);
+      fireEvent.focus(datePickerInput);
+
+      fireEvent.keyDown(datePickerInput, {
+        key: '?'
+      });
+
+      expect(getByRole('dialog')).toBeVisible();
+    });
+
+    it('types in the input if you type anything other than the question mark key', () => {
+      const defaultDate = new Date();
+      const labelText = 'Date picker label';
+      const { getByLabelText, queryByRole } = render(
+        <DatePicker defaultDate={defaultDate} labelText={labelText} />
+      );
+
+      const datePickerInput = getByLabelText(labelText);
+      fireEvent.focus(datePickerInput);
+
+      fireEvent.keyDown(datePickerInput, {
+        key: 'abc123'
+      });
+
+      expect(queryByRole('dialog')).not.toBeInTheDocument();
+    });
+
+    it('does not update focused date if date is not focused', () => {
+      const defaultDate = new Date();
+      const labelText = 'Date picker label';
+      const { getByLabelText, getByText, container } = render(
+        <DatePicker defaultDate={defaultDate} labelText={labelText} />
+      );
+
+      const nextMonthButton = getByLabelText(/next month/i);
+      fireEvent.focus(nextMonthButton);
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'ArrowUp',
+        code: 38
+      });
+
+      fireEvent.focus(container.querySelector('table'));
+
+      expect(getByText(defaultDate.getDate().toString())).not.toHaveStyleRule(
+        'border-color',
+        'transparent'
+      );
+    });
+
+    it('ArrowUp', () => {
+      const defaultDate = new Date();
+      const labelText = 'Date picker label';
+      const { getByText, container } = render(
+        <DatePicker defaultDate={defaultDate} labelText={labelText} />
+      );
+
+      fireEvent.focus(container.querySelector('table'));
+
+      getByText(defaultDate.getDate().toString()).focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'ArrowUp',
+        code: 38
+      });
+
+      expect(
+        getByText(
+          subWeeks(defaultDate, 1)
+            .getDate()
+            .toString()
+        )
+      ).not.toHaveStyleRule('border-color', 'transparent');
+    });
+
+    it('ArrowLeft', () => {
+      const defaultDate = new Date();
+      const labelText = 'Date picker label';
+      const { getByText, container } = render(
+        <DatePicker defaultDate={defaultDate} labelText={labelText} />
+      );
+
+      fireEvent.focus(container.querySelector('table'));
+
+      getByText(defaultDate.getDate().toString()).focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'ArrowLeft',
+        code: 37
+      });
+
+      expect(
+        getByText(
+          subDays(defaultDate, 1)
+            .getDate()
+            .toString()
+        )
+      ).not.toHaveStyleRule('border-color', 'transparent');
+    });
+
+    it('Home', () => {
+      const defaultDate = new Date();
+      const labelText = 'Date picker label';
+      const { getByText, container } = render(
+        <DatePicker defaultDate={defaultDate} labelText={labelText} />
+      );
+
+      fireEvent.focus(container.querySelector('table'));
+
+      getByText(defaultDate.getDate().toString()).focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'Home',
+        code: 36
+      });
+
+      expect(
+        getByText(
+          startOfWeek(defaultDate, 1)
+            .getDate()
+            .toString()
+        )
+      ).not.toHaveStyleRule('border-color', 'transparent');
+    });
+
+    it('PageUp', () => {
+      const defaultDate = new Date();
+      const labelText = 'Date picker label';
+      const { getByText, container } = render(
+        <DatePicker defaultDate={defaultDate} labelText={labelText} />
+      );
+
+      fireEvent.focus(container.querySelector('table'));
+
+      getByText(defaultDate.getDate().toString()).focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'PageUp',
+        code: 33
+      });
+
+      expect(
+        getByText(
+          subMonths(defaultDate, 1)
+            .getDate()
+            .toString()
+        )
+      ).not.toHaveStyleRule('border-color', 'transparent');
+    });
+
+    it('PageDown', () => {
+      const defaultDate = new Date();
+      const labelText = 'Date picker label';
+      const { getByText, container } = render(
+        <DatePicker defaultDate={defaultDate} labelText={labelText} />
+      );
+
+      fireEvent.focus(container.querySelector('table'));
+
+      getByText(defaultDate.getDate().toString()).focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'PageDown',
+        code: 34
+      });
+
+      expect(
+        getByText(
+          addMonths(defaultDate, 1)
+            .getDate()
+            .toString()
+        )
+      ).not.toHaveStyleRule('border-color', 'transparent');
+    });
+
+    it('ArrowDown', () => {
+      const defaultDate = new Date();
+      const labelText = 'Date picker label';
+      const { getByText, container } = render(
+        <DatePicker defaultDate={defaultDate} labelText={labelText} />
+      );
+
+      fireEvent.focus(container.querySelector('table'));
+
+      getByText(defaultDate.getDate().toString()).focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'ArrowDown',
+        code: 40
+      });
+
+      expect(
+        getByText(
+          addWeeks(defaultDate, 1)
+            .getDate()
+            .toString()
+        )
+      ).not.toHaveStyleRule('border-color', 'transparent');
+    });
+
+    it('ArrowRight', () => {
+      const defaultDate = new Date();
+      const labelText = 'Date picker label';
+      const { getByText, container } = render(
+        <DatePicker defaultDate={defaultDate} labelText={labelText} />
+      );
+
+      fireEvent.focus(container.querySelector('table'));
+
+      getByText(defaultDate.getDate().toString()).focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'ArrowRight',
+        code: 39
+      });
+
+      expect(
+        getByText(
+          addDays(defaultDate, 1)
+            .getDate()
+            .toString()
+        )
+      ).not.toHaveStyleRule('border-color', 'transparent');
+    });
+
+    it('End', () => {
+      const defaultDate = new Date();
+      const labelText = 'Date picker label';
+      const { getByText, container } = render(
+        <DatePicker defaultDate={defaultDate} labelText={labelText} />
+      );
+
+      fireEvent.focus(container.querySelector('table'));
+
+      getByText(defaultDate.getDate().toString()).focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'End',
+        code: 35
+      });
+
+      expect(
+        getByText(
+          endOfWeek(defaultDate)
+            .getDate()
+            .toString()
+        )
+      ).not.toHaveStyleRule('border-color', 'transparent');
+    });
+
+    it('Escape', () => {
+      const defaultDate = new Date();
+      const labelText = 'Date picker label';
+      const { getByText, container } = render(
+        <DatePicker defaultDate={defaultDate} labelText={labelText} />
+      );
+
+      fireEvent.focus(container.querySelector('table'));
+
+      getByText(defaultDate.getDate().toString()).focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'Escape',
+        code: 27
+      });
+
+      expect(container.querySelector('table')).not.toBeVisible();
+    });
+
+    it('?', () => {
+      const defaultDate = new Date();
+      const labelText = 'Date picker label';
+      const { getByText, container } = render(
+        <DatePicker defaultDate={defaultDate} labelText={labelText} />
+      );
+
+      fireEvent.focus(container.querySelector('table'));
+
+      getByText(defaultDate.getDate().toString()).focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: '?'
+      });
+
+      expect(getByText(/keyboard shortcuts/i)).toBeVisible();
+    });
+
+    it('Escape without focus', () => {
+      const defaultDate = new Date();
+      const labelText = 'Date picker label';
+      const { container } = render(
+        <DatePicker defaultDate={defaultDate} labelText={labelText} />
+      );
+
+      fireEvent.focus(container.querySelector('input'));
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'Escape',
+        code: 27
+      });
+
+      expect(container.querySelector('table')).not.toBeVisible();
+    });
+
+    it('? without focus', () => {
+      const defaultDate = new Date();
+      const labelText = 'Date picker label';
+      const { container, getByText } = render(
+        <DatePicker defaultDate={defaultDate} labelText={labelText} />
+      );
+
+      fireEvent.focus(container.querySelector('input'));
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: '?'
+      });
+
+      expect(getByText(/keyboard shortcuts/i)).toBeVisible();
+    });
+
+    it('Enter', () => {
+      const defaultDate = new Date();
+      const labelText = 'Date picker label';
+      const { getByText, container } = render(
+        <DatePicker defaultDate={defaultDate} labelText={labelText} />
+      );
+
+      fireEvent.focus(container.querySelector('table'));
+
+      getByText(defaultDate.getDate().toString()).focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'Enter',
+        code: 13
+      });
+
+      expect(
+        isSameDay(container.querySelector('input').value, defaultDate)
+      ).toBeTruthy();
+    });
+
+    it('Spacebar', () => {
+      const defaultDate = new Date();
+      const labelText = 'Date picker label';
+      const { getByText, container } = render(
+        <DatePicker defaultDate={defaultDate} labelText={labelText} />
+      );
+
+      fireEvent.focus(container.querySelector('table'));
+
+      getByText(defaultDate.getDate().toString()).focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'Space',
+        code: 32
+      });
+
+      expect(
+        isSameDay(container.querySelector('input').value, defaultDate)
+      ).toBeTruthy();
+    });
+
+    it('does not update the focused date if a bad key press occurs', () => {
+      const defaultDate = new Date();
+      const labelText = 'Date picker label';
+      const { getByText, container } = render(
+        <DatePicker defaultDate={defaultDate} labelText={labelText} />
+      );
+
+      fireEvent.focus(container.querySelector('table'));
+
+      getByText(defaultDate.getDate().toString()).focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'f',
+        code: 70
+      });
+
+      expect(getByText(defaultDate.getDate().toString())).not.toHaveStyleRule(
+        'border-color',
+        'transparent'
+      );
+    });
   });
 
   it('Does not violate accessibility standards', async () => {

@@ -21,36 +21,6 @@ registry=http://nexus.mindtap.corp.web/content/groups/npm.group/
 npm install --save react-magma-dom
 ```
 
-### Install the Babel Plugin
-
-<details>
-  <summary>
-  Learn more about this Babel plugin:
-  </summary>
-
-This custom Babel plugin will help with optimization. This plugin will go through all of your `react-magma-dom` imports and get rid of any unnecessary imports. This will allow webpack to only put the necessary dependencies in your projects final build.
-
-</details>
-
-#### Add the plugin as a dev dependency
-
-```sh
-npm install --save-dev babel-plugin-react-magma-dom
-```
-
-#### Configure the plugin in your Babel config
-
-In your `babel.config.js` file add `react-magma-dom` to your `plugins` array.
-
-example `babel.config.js`:
-
-```js
-module.exports = {
-  presets: ['@babel/preset-react'],
-  plugins: ['react-magma-dom']
-};
-```
-
 ### Documentation
 
 [React Magma Documentation](http://react-magma.apps.dev.cengage.io/)
@@ -231,7 +201,7 @@ npm run cm
 ```
 
 <details>
-  <summary>Learn more about SemVar and the commit message format:</summary>
+  <summary>Learn more about SemVer and the commit message format:</summary>
   
   SemVer is just a responsible way to release packages and it's the right thing to do.
   

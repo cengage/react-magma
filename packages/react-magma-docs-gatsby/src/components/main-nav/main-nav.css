@@ -77,11 +77,6 @@
     background: #f7f7f7;
 }
 
-.accordion__title:focus {
-    outline: 2px dotted #F2A900;
-    outline-offset: 3px;
-}
-
 .accordion__title svg {
     transition: transform .35s;
 }

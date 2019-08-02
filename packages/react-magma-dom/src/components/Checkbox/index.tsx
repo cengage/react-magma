@@ -75,7 +75,7 @@ const StyledFakeInput = styled.span<{
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
 
   svg {
-    display: ${props => (props.disabled ? 'none' : 'block')};
+    display: ${props => (props.checked && !props.disabled ? 'block' : 'none')};
     fill: ${props =>
       props.inverse
         ? props.color
@@ -90,7 +90,10 @@ const StyledFakeInput = styled.span<{
   ${HiddenInput}:focus + label & {
     &:before {
       ${DisplayInputFocusStyles};
-      outline: 2px dotted ${props => props.theme.colors.pop03};
+      outline: 2px dotted ${props =>
+        props.inverse
+          ? props.theme.colors.neutral08
+          : props.theme.colors.pop02};
       top: -7px;
       left: -7px;
     }
@@ -106,11 +109,10 @@ const StyledFakeInput = styled.span<{
         : props.theme.colors.primary};
   }
 
-  ${HiddenInput}:not (:disabled) {
-    &:active + label & {
-      &:after {
-        ${DisplayInputActiveStyles}
-      }
+  /* prettier-ignore */
+  ${HiddenInput}:not(:disabled):active + label & {
+    &:after {
+      ${DisplayInputActiveStyles}
     }
   }
 
@@ -146,6 +148,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
     super(props);
 
     this.setIndeterminate = this.setIndeterminate.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   readonly checkboxInput = React.createRef<any>();
@@ -162,17 +165,23 @@ export class Checkbox extends React.Component<CheckboxProps> {
     this.checkboxInput.current.indeterminate = this.props.indeterminate;
   }
 
+  handleChange(onChange: (checked: boolean) => void) {
+    return (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { checked } = event.target;
+      this.props.onChange &&
+        typeof this.props.onChange === 'function' &&
+        this.props.onChange(event);
+      onChange(checked);
+    };
+  }
+
   render() {
     return (
-      <CheckboxCore
-        id={this.props.id}
-        checked={this.props.checked}
-        onBlur={this.props.onBlur}
-        onChange={this.props.onChange}
-        onFocus={this.props.onFocus}
-      >
-        {({ id, onBlur, onChange, onFocus, checked }) => {
+      <CheckboxCore id={this.props.id} checked={this.props.checked}>
+        {({ id, onChange, checked }) => {
           const {
+            onBlur,
+            onFocus,
             color,
             containerStyle,
             disabled,
@@ -201,7 +210,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
                     ref={this.checkboxInput}
                     type="checkbox"
                     onBlur={onBlur}
-                    onChange={onChange}
+                    onChange={this.handleChange(onChange)}
                     onFocus={onFocus}
                   />
                   <StyledLabel
