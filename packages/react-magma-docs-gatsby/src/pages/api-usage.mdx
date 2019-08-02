@@ -27,21 +27,19 @@ Here is a most basic example:
 
 When using a prop that takes an enum, you must import that type from React Magma if you are using TypeScript.
 
-TODO: Rewrite when Ryan's changes to the Enums are in
-
 ```.js
   import React from 'react'
-  import { Button, EnumButtonVariant } from 'react-magma-dom'
+  import { Button, ButtonVariant } from 'react-magma-dom'
 
   function Demo() {
-    return <Button variant={EnumButtonVariant.outline}>Hello World</Button>
+    return <Button variant={ButtonVariant.outline}>Hello World</Button>
   }
 ```
 
 ## Importing React Magma Global Styles
 
 Most of the styles for React Magma are bundled within their components. However, a `GlobalStyles` object is available, which provides a
-very basic CSS reset plus the required fonts, body styles, and some generic styles for links and headings. It is recommended that you use this `GlobalStyles` component in any app that uses React Magma
+very basic CSS reset plus the required fonts, body styles, and some generic styles for links. It is recommended that you use this `GlobalStyles` component in any app that uses React Magma
 to insure consistency across products.
 
 To use the `GlobalStyles` object, simply import it from `react-magma-dom` and include it in your App.
@@ -61,9 +59,7 @@ The `GlobalStyles` component can be nested inside the <Link to="/api/theme">Them
 
 ## Adding Custom Styles to Components
 
-Custom styles can be passed to components using the `style` prop. 
-
-TODO: Look into using the CSS prop or another way to support media queries, pseudo elements and classes etc
+Custom styles can be passed to components using the `style` prop.
 
 ```.jsx
   <>
@@ -72,8 +68,8 @@ TODO: Look into using the CSS prop or another way to support media queries, pseu
 ```
 
 Some non-atomic components support styling of individual elements within the component via use of specific props.
-For example, the <Link to="/api/checkbox">Checkbox</Link> supports the following properties:  `containerStyle`, `inputStyle`
-and `labelStyle`.  In these cases, the `style` prop would have no effect because there is more than one element to target.
+For example, the <Link to="/api/checkbox">Checkbox</Link> supports the following properties: `containerStyle`, `inputStyle`
+and `labelStyle`. In these cases, the `style` prop would have no effect because there is more than one element to target.
 
 ```.jsx
   <>
@@ -85,7 +81,6 @@ and `labelStyle`.  In these cases, the `style` prop would have no effect because
         labelText='Custom Styles' />
   </>
 ```
-
 
 ## Using the Magma Theme in your Application
 
@@ -113,10 +108,9 @@ For more information about colors, see the <Link to="/design/colors">Design Docu
   }
 ```
 
-
 ## Creating Custom Themes
 
-Custom themes can be created by extending the Magma theme with your own values.  
+Custom themes can be created by extending the Magma theme with your own values.
 
 ```.js
   import { magma } from './magma';
@@ -128,19 +122,18 @@ Custom themes can be created by extending the Magma theme with your own values.
     colors: {
       ...magma.colors,
 
-      primary: '#0000FF', 
+      primary: '#0000FF',
       foundation01: '#FF0000',
     }
 };
 ```
 
-
 To apply the custom theme, use the <Link to="/api/theme/">ThemeContext.Provider</Link>, passing in your custom theme as the value property.
 Any descendants of the context provider will receive the theme that is passed in.
-
 
 ```.js
   <ThemeContext.Provider value={myCustomTheme}>
     <div>....</div>
   </ThemeContext.Provider>
 };
+```

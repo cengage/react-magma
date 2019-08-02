@@ -141,48 +141,28 @@ const MainNav = ({ ...props }) => (
                     Usage
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    activeStyle={activeStyle}
-                    onClick={props.handleClick}
-                    to="/contribution"
-                  >
-                    Contributing
-                  </Link>
-                </li>
               </ul>
-              <Accordion accordion={false}>
-                <AccordionItem>
-                  <AccordionItemTitle>
-                    <h3>
-                      Component API
-                      <AngleDownIcon size="14" />
-                    </h3>
-                  </AccordionItemTitle>
-                  <AccordionItemBody>
-                    <ul>
-                      {data.apiDocs.edges.map(({ node }) => (
-                        <li key={node.fields.slug}>
-                          <Link
-                            activeStyle={activeStyle}
-                            onClick={props.handleClick}
-                            to={node.fields.slug}
-                          >
-                            {node.frontmatter.title}
-                          </Link>
-                          <Router>
-                            <SubMenu
-                              path={node.fields.slug}
-                              headings={node.headings}
-                              handleClick={props.handleClick}
-                            />
-                          </Router>
-                        </li>
-                      ))}
-                    </ul>
-                  </AccordionItemBody>
-                </AccordionItem>
-              </Accordion>
+              <h3>Component API</h3>
+              <ul>
+                {data.apiDocs.edges.map(({ node }) => (
+                  <li key={node.fields.slug}>
+                    <Link
+                      activeStyle={activeStyle}
+                      onClick={props.handleClick}
+                      to={node.fields.slug}
+                    >
+                      {node.frontmatter.title}
+                    </Link>
+                    <Router>
+                      <SubMenu
+                        path={node.fields.slug}
+                        headings={node.headings}
+                        handleClick={props.handleClick}
+                      />
+                    </Router>
+                  </li>
+                ))}
+              </ul>
             </AccordionItemBody>
           </AccordionItem>
           <hr />
