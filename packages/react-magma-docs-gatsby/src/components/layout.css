@@ -232,7 +232,7 @@ h6 {
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
   line-height: 1.2;
-  margin: 20px 0 10px;
+  margin: 40px 0 20px;
 }
 
 h1:focus,
@@ -604,7 +604,7 @@ pre tt:after {
 .content-article h2 {
   margin-top: -60px;
   padding-top: 85px;
-} 
+}
 
 .content-article h1,
 .content-article h2 {
@@ -615,6 +615,11 @@ pre tt:after {
   display: grid;
   max-width: 100%;
   overflow: scroll;
+}
+
+.horizontal-spacer {
+  height: 20px;
+  display: block;
 }
 
 /* Demo styles for specific components */

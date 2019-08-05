@@ -54,6 +54,7 @@ figure .image-container img {
 
 figcaption {
   font-size: 13px;
+  color: #727272;
   line-height: 1.5em;
   display: flex;
   flex-direction: column;
@@ -88,7 +89,8 @@ figcaption .title-caution {
   color: #3f3f3f;
 }
 
-.two-col img {
+.two-col img,
+figure img {
   border: 1px solid #dfdfdf;
 }
 
@@ -96,6 +98,56 @@ figcaption .title-caution {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.typo-details-table ul,
+.typo-details-table li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.typo-details-table li {
+  border-bottom: 1px solid #bfbfbf;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.typo-details-table div {
+  width: 50%;
+}
+
+.typo-example h1,
+.typo-example h2,
+.typo-example h3,
+.typo-example h4,
+.typo-example h5,
+.typo-example h6 {
+  margin: 0;
+  padding: 0;
+}
+
+.typo-specs {
+  text-align: right;
+}
+
+@media only screen and (max-width: 768px) {
+
+  .typo-details-table li {
+    flex-direction: column;
+  }
+
+  .typo-details-table div {
+    width: 100%;
+  }
+
+  .typo-specs {
+    text-align: left;
+  }
+
 }
 
 @media only screen and (max-width: 680px) {
