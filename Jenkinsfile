@@ -1,3 +1,3 @@
 lernaPipeline([
-    docs: 'packages/react-magma-docs-gatsby/public'
+    docs: 'packages/react-magma-docs/public'
 ])
