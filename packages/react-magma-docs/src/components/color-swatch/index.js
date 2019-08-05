@@ -35,10 +35,6 @@ const ColorDetails = styled.div`
     span:last-of-type {
       margin-bottom: 0;
     }
-
-    span strong {
-      text-transform: uppercase
-    }
 `;
 
 const ColorSwatch = ({ children, color }) => (

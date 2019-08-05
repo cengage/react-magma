@@ -131,9 +131,21 @@ const MainNav = ({ ...props }) => (
                         onClick={props.handleClick}
                         to="/api-introduction"
                       >
-                        Introduction
+                        Installation
                       </Link>
                     </li>
+                    <li>
+                      <Link
+                        activeStyle={activeStyle}
+                        onClick={props.handleClick}
+                        to="/api-usage"
+                      >
+                        Usage
+                      </Link>
+                    </li>
+                  </ul>
+                  <h3>Component API</h3>
+                  <ul>
                     {data.apiDocs.edges.map(({ node }) => (
                       <li key={node.fields.slug}>
                         <Link

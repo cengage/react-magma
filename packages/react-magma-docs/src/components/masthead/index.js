@@ -53,6 +53,10 @@ const LogoLink = styled(Link)`
     &:active {
         color: ${magma.colors.neutral08};
     }
+
+    &:focus {
+        outline: 2px dotted ${magma.colors.neutral08};
+    }
 `;
 
 const LogoContainer = styled.div`
