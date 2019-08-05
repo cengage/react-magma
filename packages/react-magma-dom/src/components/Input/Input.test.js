@@ -43,7 +43,7 @@ describe('Input', () => {
     const input = getByTestId(testId);
 
     expect(input).toHaveStyleRule('background', magma.colors.neutral08);
-    expect(input).toHaveStyleRule('border-color', magma.colors.neutral05);
+    expect(input).toHaveStyleRule('border-color', magma.colors.neutral04);
     expect(input).toHaveStyleRule('box-shadow', '0 0 0');
   });
 
