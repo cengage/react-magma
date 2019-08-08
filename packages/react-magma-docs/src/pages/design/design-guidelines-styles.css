@@ -134,6 +134,18 @@ figure img {
   text-align: right;
 }
 
+.heading-leading-img {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.heading-leading-img img,
+.heading-leading-img a {
+  width: 40px;
+  margin-right: 10px;
+}
+
 @media only screen and (max-width: 768px) {
 
   .typo-details-table li {
