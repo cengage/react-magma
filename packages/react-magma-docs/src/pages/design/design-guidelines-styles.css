@@ -134,15 +134,13 @@ figure img {
   text-align: right;
 }
 
-.heading-leading-img {
+.heading-leading-img h3 {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.heading-leading-img img,
-.heading-leading-img a {
-  width: 40px;
+.heading-leading-img svg {
   margin-right: 10px;
 }
 
