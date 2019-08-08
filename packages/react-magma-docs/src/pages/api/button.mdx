@@ -3,6 +3,7 @@ title: 'Buttons'
 ---
 
 import { Link } from 'gatsby'
+import { SimplePropsTable } from '../../components/props-table'
 import DocsHeading from '../../components/docs-heading'
 
 <DocsHeading to="/design/button/" type="design">
@@ -268,6 +269,33 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
 ```
 
 ## Button Props
+
+<SimplePropsTable
+  props={{
+    'aria-expanded': {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'Aria-expanded explanation',
+    },
+    as: {
+      type: {
+        name: 'any',
+      },
+      required: false,
+      description: 'as something',
+    },
+    autoFocus: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'Description baz.',
+      defaultValue: 'false',
+    },
+  }}
+/>
 
 | Prop          | Type                                                                                   | Default     | Required |
 | ------------- | -------------------------------------------------------------------------------------- | ----------- | :------: |
