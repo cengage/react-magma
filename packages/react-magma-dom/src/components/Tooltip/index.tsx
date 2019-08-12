@@ -16,7 +16,7 @@ export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   inverse?: boolean;
   position?: EnumTooltipPosition;
   trigger: React.ReactElement;
-  ref?: any;
+  innerRef?: any;
 }
 
 export interface ITooltipState {
@@ -246,7 +246,7 @@ class TooltipComponent extends React.Component<TooltipProps> {
                 onFocus: showTooltip,
                 onMouseLeave: hideTooltip,
                 onMouseEnter: showTooltip,
-                ref: this.props.ref
+                ref: this.props.innerRef
               })}
               <ThemeContext.Consumer>
                 {theme => (
@@ -275,5 +275,5 @@ class TooltipComponent extends React.Component<TooltipProps> {
 }
 
 export const Tooltip = React.forwardRef((props: TooltipProps, ref: any) => (
-  <TooltipComponent ref={ref} {...props} />
+  <TooltipComponent innerRef={ref} {...props} />
 ));
