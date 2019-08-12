@@ -51,7 +51,7 @@ export interface InputProps
   labelVisuallyHidden?: boolean;
   multiline?: boolean;
   onHelpLinkClick?: () => void;
-  ref?: any;
+  innerRef?: any;
   shownPasswordAnnounceText?: string;
   showPasswordButtonAriaLabel?: string;
   showPasswordButtonText?: string;
@@ -258,7 +258,7 @@ class InputComponent extends React.Component<InputProps> {
                       inputSize={inputSize ? inputSize : InputSize.medium}
                       labelText={labelText}
                       multiline={multiline}
-                      ref={this.props.ref}
+                      ref={this.props.innerRef}
                       style={inputStyle}
                       theme={theme}
                       type={
@@ -352,5 +352,5 @@ class InputComponent extends React.Component<InputProps> {
 }
 
 export const Input = React.forwardRef((props: InputProps, ref: any) => (
-  <InputComponent ref={ref} {...props} />
+  <InputComponent innerRef={ref} {...props} />
 ));
