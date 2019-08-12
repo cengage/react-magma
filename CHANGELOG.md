@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0-beta.29](http://stash.corp.web:7999/front/react-magma/compare/v0.1.0-beta.28...v0.1.0-beta.29) (2019-08-12)
+
+
+### Bug Fixes
+
+* **docs:** fix issue with settimeout in docs nav ([212a0fc](http://stash.corp.web:7999/front/react-magma/commit/212a0fc))
+
+
+### Features
+
+* **date-picker:** Clean out dom information in core ([534b626](http://stash.corp.web:7999/front/react-magma/commit/534b626))
+* **date-picker:** removing commented out code ([a8312a3](http://stash.corp.web:7999/front/react-magma/commit/a8312a3))
+* **heading:** change heading color to foundation blue ([e449e95](http://stash.corp.web:7999/front/react-magma/commit/e449e95))
+* **headings:** new heading styles, refactor some styling ([b644d32](http://stash.corp.web:7999/front/react-magma/commit/b644d32))
+* **input:** Clean up dom related code in input core ([1a74df3](http://stash.corp.web:7999/front/react-magma/commit/1a74df3))
+* **modal:** adding callback guard for modal closing ([824ad9f](http://stash.corp.web:7999/front/react-magma/commit/824ad9f))
+* **modals:** removing dom related code in modal core ([69c46a3](http://stash.corp.web:7999/front/react-magma/commit/69c46a3))
+* **radio:** clean up dom related code in radio core ([72f3a66](http://stash.corp.web:7999/front/react-magma/commit/72f3a66))
+* **radio:** Removing commented out code ([f713e1c](http://stash.corp.web:7999/front/react-magma/commit/f713e1c))
+* **select:** clean up dom related code in select core ([a0f9c7e](http://stash.corp.web:7999/front/react-magma/commit/a0f9c7e))
+* **toast:** clean up dom related code in toast core ([ae6356f](http://stash.corp.web:7999/front/react-magma/commit/ae6356f))
+* **tooltip:** removing dom related code in toolitp core ([7f1bfb7](http://stash.corp.web:7999/front/react-magma/commit/7f1bfb7))
+
+
+### Tests
+
+* **checkbox:** moved render into tests ([750ec9e](http://stash.corp.web:7999/front/react-magma/commit/750ec9e))
+* **heading:** refactored to remove test utils ([9398191](http://stash.corp.web:7999/front/react-magma/commit/9398191))
+* **icon:** Moved render calls into tests to keep tests self-contained ([b70b2b5](http://stash.corp.web:7999/front/react-magma/commit/b70b2b5))
+* **input:** move renders into tests ([411873f](http://stash.corp.web:7999/front/react-magma/commit/411873f))
+* **linkbutton:** Moved render calls into tests ([e6c1dd6](http://stash.corp.web:7999/front/react-magma/commit/e6c1dd6))
+* **radiogroup:** Moved render calls into tests ([122abcb](http://stash.corp.web:7999/front/react-magma/commit/122abcb))
+* **styled button:** move rendering into tests ([cb6b136](http://stash.corp.web:7999/front/react-magma/commit/cb6b136))
+* **tooltip:** update snapshot for a tooltip in another componentn ([2fd6055](http://stash.corp.web:7999/front/react-magma/commit/2fd6055))
+
+
+
 ## 0.1.0-beta.28 (2019-07-30)
 
 
