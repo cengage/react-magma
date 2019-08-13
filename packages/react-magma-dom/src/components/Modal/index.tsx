@@ -26,7 +26,7 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   open?: boolean;
   size?: ModalSize;
   testId?: string;
-  innerRef?: any;
+  innerRef?: React.Ref<HTMLDivElement>;
 }
 
 interface ModalState {
@@ -306,6 +306,6 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
   }
 }
 
-export const Modal = React.forwardRef((props: ModalProps, ref: any) => (
-  <ModalComponent innerRef={ref} {...props} />
-));
+export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
+  (props, ref) => <ModalComponent innerRef={ref} {...props} />
+);
