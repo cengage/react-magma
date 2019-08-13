@@ -38,7 +38,13 @@ export const SimplePropsTable = ({ props }) => {
               return (
                 <tr key={name}>
                   <td>{name}</td>
-                  <td>{prop.type.name}</td>
+                  <td>
+                    {prop.type.name}
+                    <br/>
+                    {prop.type.options && Object.keys(prop.type.options).map(i => {
+                      return <code>{prop.type.options[i]}</code>
+                    })}
+                  </td>
                   <td>{prop.required ? String(prop.required) : 'false'}</td>
                   {!prop.defaultValue ? (
                     <td>

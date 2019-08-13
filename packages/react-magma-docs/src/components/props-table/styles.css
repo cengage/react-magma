@@ -28,12 +28,8 @@
   overflow-y: hidden;
 }
 
-.table thead {
-  color: #2d3747;
+table thead th {
   background: #eef1f5;
-}
-
-.table thead th {
   font-weight: 400;
   padding: 20px 20px;
 }
@@ -58,15 +54,18 @@
   width: 20%;
 }
 
-.table tbody td {
+table tbody td {
   padding: 12px 20px;
   line-height: 2;
-  font-weight: 200;
 }
 
 .table tbody > tr {
   display: table-row;
   border-top: 1px solid #ced4de;
+}
+
+table tbody > tr:nth-child(odd) {
+  background: #F7F7F7;
 }
 
 .table a {
