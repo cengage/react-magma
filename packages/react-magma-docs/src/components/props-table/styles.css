@@ -1,73 +1,52 @@
-.link {
-  text-decoration: none;
-  color: initial;
-}
-
-.wrapper {
-  overflow-x: auto;
-  padding: 2px;
-  width: 100%;
-  max-width: 100%;
-}
-
-.table {
-  font-family: monospace, sans-serif;
+.props-table {
   padding: 0;
   table-layout: auto;
-  box-shadow: 0 0 0 1px #ced4de;
-  background-color: transparent;
   border-spacing: 0;
   border-collapse: collapse;
-  border-style: hidden;
-  border-radius: 2px;
-  font-size: 14px;
-  color: #13161f;
   display: block;
-  width: 100%;
+  font-size: 14px;
   overflow-x: initial;
   overflow-y: hidden;
+  width: 100%;
 }
 
-table thead th {
-  background: #eef1f5;
+.props-table thead th {
   font-weight: 400;
-  padding: 20px 20px;
+  padding: 10px;
 }
 
-.table thead th:nth-of-type(1) {
-  width: 20%;
-}
-
-.table thead th:nth-of-type(2) {
+.props-table thead th:nth-of-type(1) {
   width: 10%;
 }
 
-.table thead th:nth-of-type(3) {
+.props-table thead th:nth-of-type(2) {
+  width: 30%;
+}
+
+.props-table thead th:nth-of-type(3) {
   width: 10%;
 }
 
-.table thead th:nth-of-type(4) {
-  width: 10%;
+.props-table thead th:nth-of-type(4) {
+  width: 50%;
 }
 
-.table thead th:nth-of-type(5) {
-  width: 20%;
+.props-table td {
+  padding: 10px;
 }
 
-table tbody td {
-  padding: 12px 20px;
-  line-height: 2;
-}
-
-.table tbody > tr {
+.props-table tbody > tr {
   display: table-row;
   border-top: 1px solid #ced4de;
 }
 
-table tbody > tr:nth-child(odd) {
+.props-table tbody > tr:nth-child(odd) {
   background: #F7F7F7;
 }
 
-.table a {
-  color: #0b5fff;
+.props-table .required {
+  display: block;
+  font-size: .9em;
+  font-weight: bold;
+  padding-left: 5px;
 }

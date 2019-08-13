@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './styles.css'
+import './styles.css'
 
 export const SimplePropsTable = ({ props }) => {
   if (props === undefined) {
@@ -11,8 +11,8 @@ export const SimplePropsTable = ({ props }) => {
   })
 
   return (
-    <div className={styles.wrapper}>
-      <table className={styles.table}>
+    <div>
+      <table className="props-table" cellSpacing="0" cellPadding="0">
         <thead
           style={{
             textAlign: 'left',
@@ -21,7 +21,6 @@ export const SimplePropsTable = ({ props }) => {
           <tr>
             <th>Property</th>
             <th>Type</th>
-            <th>Required</th>
             <th>Default</th>
             {hasDescription && <th width="40%">Description</th>}
           </tr>
@@ -37,7 +36,10 @@ export const SimplePropsTable = ({ props }) => {
 
               return (
                 <tr key={name}>
-                  <td>{name}</td>
+                  <td>
+                    {name}
+                    {prop.required ? <span className="required">required</span> :''}
+                  </td>
                   <td>
                     {prop.type.name}
                     <br/>
@@ -45,7 +47,6 @@ export const SimplePropsTable = ({ props }) => {
                       return <code>{prop.type.options[i]}</code>
                     })}
                   </td>
-                  <td>{prop.required ? String(prop.required) : 'false'}</td>
                   {!prop.defaultValue ? (
                     <td>
                       <em>-</em>
