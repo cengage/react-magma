@@ -66,10 +66,6 @@ h3 {
   font-size: 1.867em;
 }
 
-p {
-  font-size: 1.2em;
-}
-
 ul,
 li {
   list-style: none;
@@ -122,16 +118,41 @@ header h1 {
   margin-bottom: 40px;
 }
 
+.intro {
+  font-size: 18px;
+  line-height: 1.5em;
+  color: #727272;
+}
+
 .boxes {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 10px 0;
+  margin-bottom:  30px;
 }
 
 .box {
   padding: 20px;
-  width: 200px;
+  width: 45%;
+  border: 1px solid #dfdfdf;
+  box-shadow: 0 1px 6px 0 rgba(0,0,0,.15);
+  border-radius:  5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box-icon {
+  width: 80px;
+  margin-bottom: 20px;
+}
+
+.box .subtext {
+  font-size:  13px;
+  color:  #727272;
+  margin: 5px 0;
+  line-height:  1.2em;
 }
 
 .btn {
@@ -185,4 +206,17 @@ header h1 {
   opacity: 0.4;
   transform: translate(-50%, -50%) scale(0);
   transition: transform 0s ease 0s;
+}
+
+@media (max-width: 580px) {
+
+.boxes {
+  flex-direction: column;
+}
+
+.box {
+  margin-bottom: 30px;
+  width: 100%;
+}
+
 }
