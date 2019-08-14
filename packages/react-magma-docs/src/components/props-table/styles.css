@@ -12,7 +12,6 @@
 
 .props-table thead th {
   font-weight: 400;
-  padding: 10px;
 }
 
 .props-table thead th:nth-of-type(1) {
@@ -20,19 +19,20 @@
 }
 
 .props-table thead th:nth-of-type(2) {
-  width: 30%;
+  width: 25%;
 }
 
 .props-table thead th:nth-of-type(3) {
-  width: 10%;
+  width: 15%;
 }
 
 .props-table thead th:nth-of-type(4) {
-  width: 50%;
+  width: 45%;
 }
 
-.props-table td {
-  padding: 10px;
+.props-table td,
+.props-table th {
+  padding: 10px 15px;
 }
 
 .props-table tbody > tr {

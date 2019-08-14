@@ -4,8 +4,11 @@ title: 'Checkboxes'
 
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
+import { SimplePropsTable } from '../../components/props-table'
 
-<DocsHeading to="/design/selection-controls/#4._checkboxes" type="design">Checkboxes</DocsHeading>
+<DocsHeading to="/design/selection-controls/#4._checkboxes" type="design">
+  Checkboxes
+</DocsHeading>
 
 ## Basic Usage
 
@@ -146,7 +149,7 @@ Adding the `textVisuallyHidden` prop will make the label text available to scree
 
 ## Custom Styles
 
-Custom styles can be passed into both the Checkbox component.  The `containerStyle` property will apply to the container.
+Custom styles can be passed into both the Checkbox component. The `containerStyle` property will apply to the container.
 Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
 
 ```.jsx
@@ -205,14 +208,71 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 
 ## Checkbox Props
 
+<SimplePropsTable
+  props={{
+    color: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Hex code for the background color',
+      defaultValue: '#0000FF',
+    },
+    containerStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the component container element',
+    },
+    disabled: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, element is disabled',
+      defaultValue: 'false',
+    },
+    indeterminate: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, element is will show indeterminate (or mixed) state',
+      defaultValue: 'false',
+    },
+    inputStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the checkbox element',
+    },
+    inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    labelStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the label element',
+    },
+  }}
+/>
+
 | Prop               | Type                | Default | Required |
 | ------------------ | ------------------- | ------- | :------: |
-| autoFocus          | boolean             | false   |
-| checked            | boolean             | false   |
 | color              | string              |         |
 | containerStyle     | React.CSSProperties |         |
 | disabled           | boolean             | false   |
-| id                 | string              |         |          |
 | indeterminate      | boolean             | false   |
 | inputStyle         | React.CSSProperties |         |
 | inverse            | boolean             | false   |

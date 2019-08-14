@@ -22,7 +22,7 @@ export const SimplePropsTable = ({ props }) => {
             <th>Property</th>
             <th>Type</th>
             <th>Default</th>
-            {hasDescription && <th width="40%">Description</th>}
+            {hasDescription && <th>Description</th>}
           </tr>
         </thead>
         <tbody>
@@ -41,10 +41,10 @@ export const SimplePropsTable = ({ props }) => {
                     {prop.required ? <span className="required">required</span> :''}
                   </td>
                   <td>
-                    {prop.type.name}
+                    {prop.type.name === 'enum' ? 'enum, one of:' : prop.type.name}
                     <br/>
                     {prop.type.options && Object.keys(prop.type.options).map(i => {
-                      return <code>{prop.type.options[i]}</code>
+                      return <><code>{prop.type.options[i]}</code><br/></>
                     })}
                   </td>
                   {!prop.defaultValue ? (
