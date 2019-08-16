@@ -21,6 +21,7 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   disableEscKeyDown?: boolean;
   header?: React.ReactNode;
   hideEscButton?: boolean;
+  isExiting?: boolean;
   onClose?: () => void;
   onEscKeyDown?: (event: React.KeyboardEvent) => void;
   open?: boolean;
@@ -33,8 +34,7 @@ interface ModalState {
   focusableElements: Array<HTMLElement>;
 }
 
-const ModalContainer = styled.div<{ isExiting?: boolean }>`
-  animation: ${props => (props.isExiting ? 'fadeout 1000ms' : 'fadein 1000ms')};
+const ModalContainer = styled.div`
   bottom: 0;
   left: 0;
   overflow-y: auto;
@@ -42,13 +42,24 @@ const ModalContainer = styled.div<{ isExiting?: boolean }>`
   right: 0;
   top: 0;
   z-index: 998;
+`;
+
+const ModalBackdrop = styled.div<{ isExiting?: boolean }>`
+  animation: ${props => (props.isExiting ? 'fadeout 500ms' : 'fadein 500ms')};
+  background: rgba(0, 0, 0, 0.6);
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
 
   @keyframes fadein {
     from {
       opacity: 0;
+      transition: translate(0, -50px);
     }
     to {
       opacity: 1;
+      transition: translate(0, 0);
     }
   }
 
@@ -62,15 +73,9 @@ const ModalContainer = styled.div<{ isExiting?: boolean }>`
   }
 `;
 
-const ModalBackdrop = styled.div`
-  background: rgba(0, 0, 0, 0.6);
-  height: 100%;
-  position: fixed;
-  width: 100%;
-  z-index: 999;
-`;
-
 const ModalContent = styled.div<ModalProps>`
+  animation: ${props =>
+    props.isExiting ? 'fadeSlideOut 500ms' : 'fadeSlideIn 500ms'};
   background: ${props => props.theme.colors.neutral08};
   border: 1px solid;
   border-color: ${props => props.theme.colors.neutral06};
@@ -79,6 +84,28 @@ const ModalContent = styled.div<ModalProps>`
   margin: 10px;
   position: relative;
   z-index: 1000;
+
+  @keyframes fadeSlideIn {
+    from {
+      opacity: 0;
+      transform: translate(0, -50px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+
+  @keyframes fadeSlideOut {
+    from {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+    to {
+      opacity: 0;
+      transform: translate(0, -50px);
+    }
+  }
 
   max-width: ${props => {
     switch (props.size) {
@@ -109,10 +136,9 @@ const ModalHeader = styled.div`
 `;
 
 const H1 = styled.h1`
-  border-bottom: 1px solid;
-  border-color: ${props => props.theme.colors.neutral06};
-  color: ${props => props.theme.colors.primary};
-  font-size: 26px;
+  color: ${props => props.theme.colors.foundation01};
+  font-size: 20px;
+  font-weight: 600;
   margin: 0;
   padding-right: 50px;
   text-transform: uppercase;
@@ -244,7 +270,6 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                         aria-modal={true}
                         data-testid="modal-container"
                         id={id}
-                        isExiting={isExiting}
                         onKeyDown={
                           disableEscKeyDown ? null : this.handleKeyDown(onClose)
                         }
@@ -253,6 +278,7 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                       >
                         <ModalBackdrop
                           data-testid="modal-backdrop"
+                          isExiting={isExiting}
                           onMouseDown={
                             disableBackdropClick
                               ? event => event.preventDefault()
@@ -265,9 +291,10 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                           }
                         />
                         <ModalContent
+                          data-testid="modal-content"
+                          isExiting={isExiting}
                           ref={innerRef}
                           size={size}
-                          data-testid="modal-content"
                           theme={theme}
                           {...other}
                         >
@@ -282,11 +309,6 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                                 color={ButtonColor.secondary}
                                 icon={CloseIcon}
                                 onClick={this.handleClose(onClose)}
-                                style={{
-                                  borderRadius: 0,
-                                  margin: 0,
-                                  outlineOffset: 0
-                                }}
                                 testId="modal-closebtn"
                                 variant={ButtonVariant.link}
                               />
