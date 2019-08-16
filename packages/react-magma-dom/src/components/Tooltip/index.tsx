@@ -5,10 +5,10 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { TooltipCore } from 'react-magma-core';
 
 export enum EnumTooltipPosition {
-  bottom = 'bottom', //default
+  bottom = 'bottom',
   left = 'left',
   right = 'right',
-  top = 'top'
+  top = 'top' //default
 }
 
 export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {

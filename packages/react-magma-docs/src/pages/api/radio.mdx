@@ -4,6 +4,7 @@ title: 'Radio Buttons'
 
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
+import { SimplePropsTable } from '../../components/props-table'
 
 <DocsHeading to="/design/selection-controls/#5._radio%20buttons" type="design">
   Radio Buttons
@@ -286,35 +287,192 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 
 ## Radio Group Props
 
-| Prop               | Type                | Default | Required |
-| ------------------ | ------------------- | ------- | :------: |
-| children           | React.ReactChild    |         | &#10003; |
-| containerStyle     | React.CSSProperties |         |          |
-| onBlur             | function            |         |          |
-| onChange           | function            |         |          |
-| onFocus            | function            |         |          |
-| id                 | string              |         |          |
-| labelledById       | string              |         |          |
-| labelStyle         | React.CSSProperties |         |          |
-| labelText          | string              |         |          |
-| name               | string              |         | &#10003; |
-| testId             | string              |         |          |
-| textVisuallyHidden | boolean             |         |          |
-| value              | string              |         |          |
+<SimplePropsTable
+  props={{
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
+    },
+    containerStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the component container element',
+    },
+    labelledById: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'ID of the element that labels the radio group, used in the aria-labelledby attribute for the group.  Alertnatively, the labelText prop can be used.',
+      defaultValue: '',
+    },
+    labelStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the label of the radio group',
+    },
+    labelText: {
+      type: {
+        name: 'string',
+      },
+      required: true,
+      description: 'Text for label of the radio group. Alertnatively, the labelledById prop can be used.',
+    },
+    onBlur: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Action that fires when the radio group loses focus',
+    },
+    onChange: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description:
+        'Action that fires when selected value of the radio group changes',
+    },
+    onFocus: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description:
+        'Action that fires when one of the radio buttons within the group receives focus',
+    },
+    name: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Name attribute the radio group',
+      defaultValue: '',
+    },
+    textVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text for the radio group will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'ID used for testing purposes',
+      defaultValue: '',
+    },
+    value: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Value of the radio button that is the default selected value for the group',
+      defaultValue: '',
+    },
+  }}
+/>
 
 ## Radio Props
 
-| Prop               | Type                | Default | Required |
-| ------------------ | ------------------- | ------- | :------: |
-| color              | string              |         |          |
-| disabled           | boolean             | false   |          |
-| id                 | string              |         |          |
-| inputStyle         | React.CSSProperties |         |          |
-| inverse            | boolean             | false   |          |
-| labelStyle         | React.CSSProperties |         |          |
-| labelText          | string              |         | &#10003; |
-| required           | function            |         |          |
-| containerStyle     | React.CSSProperties |         |
-| testId             | string              |         |          |
-| textVisuallyHidden | boolean             | false   |          |
-| value              | string              |         |          |
+<SimplePropsTable
+  props={{
+    color: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Hex code for the background color',
+      defaultValue: '#0000FF',
+    },
+    containerStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the component container element',
+    },
+    disabled: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, element is disabled',
+      defaultValue: 'false',
+    },
+    inputStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the radio button element',
+    },
+    inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    labelStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the label element',
+    },
+    labelText: {
+      type: {
+        name: 'string',
+      },
+      required: true,
+      description: 'Text for label',
+    },
+    required: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the form field is required',
+      defaultValue: 'false',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'ID used for testing purposes',
+      defaultValue: '',
+    },
+    textVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
+    },
+    value: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Value attribute the form field',
+      defaultValue: '',
+    },
+  }}
+/>

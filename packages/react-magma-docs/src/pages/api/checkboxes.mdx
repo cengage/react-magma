@@ -210,6 +210,14 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 
 <SimplePropsTable
   props={{
+    checked: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, element is checked (i.e. selected)',
+      defaultValue: 'false',
+    },
     color: {
       type: {
         name: 'string',
@@ -265,23 +273,38 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       required: false,
       description: 'Style properties for the label element',
     },
+    labelText: {
+      type: {
+        name: 'string'
+      },
+      required: true,
+      description: 'Text for label',
+    },
+    required: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the form field is required',
+      defaultValue: 'false',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'ID used for testing purposes',
+      defaultValue: '',
+    },
+    textVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
+    },
   }}
 />
-
-| Prop               | Type                | Default | Required |
-| ------------------ | ------------------- | ------- | :------: |
-| color              | string              |         |
-| containerStyle     | React.CSSProperties |         |
-| disabled           | boolean             | false   |
-| indeterminate      | boolean             | false   |
-| inputStyle         | React.CSSProperties |         |
-| inverse            | boolean             | false   |
-| labelStyle         | React.CSSProperties |         |
-| labelText          | string              |         | &#10003; |
-| onBlur             | function            |         |
-| onChange           | function            |         |
-| onFocus            | function            |         |
-| required           | boolean             | false   |
-| testId             | string              |         |
-| textVisuallyHidden | boolean             | false   |
-| value              | string              |         |

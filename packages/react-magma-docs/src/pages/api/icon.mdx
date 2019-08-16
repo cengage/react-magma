@@ -1,6 +1,7 @@
 ---
 title: 'Icons'
 ---
+import { SimplePropsTable } from '../../components/props-table'
 
 # Icons
 
@@ -80,10 +81,32 @@ Passing in the `testId` prop will add the `data-testid` attribute to the svg ele
 
 ## Icon Props
 
-| Prop   | Type   | Default | Required |
-| ------ | ------ | ------- | :------: |
-| id     | string |         |
-| title  | string |         |
-| color  | string |         |
-| size   | string |         |
-| testId | string |         |
+
+<SimplePropsTable
+  props={{
+    color: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Hex code for the color',
+      defaultValue: 'inherit'
+    },
+    size: {
+      type: {
+        name: 'number'
+      },
+      required: false,
+      description: 'Number of pixels for the icon height and width',
+      defaultValue: '24',
+    },
+     testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'ID used for testing purposes',
+      defaultValue: '',
+    },
+  }}
+/>

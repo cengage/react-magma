@@ -3,6 +3,7 @@ title: 'Selects'
 ---
 
 import DocsHeading from '../../components/docs-heading'
+import { SimplePropsTable } from '../../components/props-table'
 
 <DocsHeading to="/design/select/" type="design">
   Selects
@@ -13,6 +14,8 @@ import DocsHeading from '../../components/docs-heading'
 A `Select` component allows the user to choose one or more item from a list. By default, only one item may be selected.
 
 The label/select association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
+
+This component is built upon [React Select by Jed Watson](https://react-select.com/home).
 
 ```.jsx
   <div className='demo-select-container'>
@@ -548,28 +551,158 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 
 ## Select Props
 
-| Prop           | Type                                   | Default | Required |
-| -------------- | -------------------------------------- | ------- | :------: |
-| cacheOptions   | boolean                                |         |
-| clearable      | boolean                                |         |
-| defaultOptions | object[]: `{ label, text }`            |         |
-| defaultValue   | string                                 |         |
-| disabled       | boolean                                |         |
-| errorMessage   | string                                 |         |          |
-| helperMessage  | string                                 |         |          |
-| id             | string                                 |         |          |
-| labelText      | string                                 |         | &#10003; |
-| multi          | boolean                                |         |
-| name           | string                                 |         | &#10003; |
-| onBlur         | function                               |         |
-| onChange       | function                               |         |
-| onClose        | function                               |         |
-| onFocus        | function                               |         |
-| onOpen         | function                               |         |
-| loadOptions    | function(value: string)                |         | &#10003; |
-| required       | boolean                                |         |
-| style          | [ReactSelect.Styles](#style_interface) |         |
-| testId         | string                                 |         |
+<SimplePropsTable
+  props={{
+    cacheOptions: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: '',
+      defaultValue: 'false',
+    },
+    clearable: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the user may clear the field once a selection has been made',
+      defaultValue: 'false',
+    },
+    defaultOptions: {
+      type: {
+        name: 'object[]:',
+        options: ['{ label, text }'],
+      },
+      required: false,
+      description: 'Default options that appear in the select menu',
+      defaultValue: '',
+    },
+    defaultValue: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: '',
+      defaultValue: '',
+    },
+    disabled: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: '',
+      defaultValue: 'false',
+    },
+    errorMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Text of the error message.  If a value is provided, the error message will be styled as an error state.',
+      defaultValue: '',
+    },
+    helperMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text of the helper message.',
+      defaultValue: '',
+    },
+    labelText: {
+      type: {
+        name: 'string',
+      },
+      required: true,
+      description: 'Text for label',
+    },
+    loadOptions: {
+      type: {
+        name: 'function(value: string)',
+      },
+      required: true,
+      description: '',
+    },
+    multi: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: '',
+      defaultValue: 'false',
+    },
+    name: {
+      type: {
+        name: 'striing',
+      },
+      required: true,
+      description: '',
+      defaultValue: '',
+    },
+    onBlur: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Action that fires when the component loses focus',
+    },
+    onChange: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description:
+        'Action that fires when selected value of the component changes',
+    },
+    onClose: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Action that fires when the select menu closes',
+    },
+    onFocus: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Action that fires when the component receives focus',
+    },
+    onOpen: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Action that fires when the select menu opens',
+    },
+    required: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the form field is required',
+      defaultValue: 'false',
+    },
+    style: {
+      type: {
+        name: 'ReactSelect.Styles',
+      },
+      required: false,
+      description: 'Custom styles for the component using the style interface below',
+      defaultValue: '',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'ID used for testing purposes',
+      defaultValue: '',
+    }
+  }}
+/>
 
 ### Style Interface
 
