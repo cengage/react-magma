@@ -1,4 +1,4 @@
-import { magma } from './magma';
+import { magma } from 'react-magma-dom';
 
 export const amgam = {
   ...magma,

@@ -30,8 +30,6 @@ import {
   Toast,
   Toggle,
   Tooltip,
-  amgam,
-  amgamDark,
   magma,
   GlobalStyles,
   ThemeContext,
@@ -285,6 +283,8 @@ import styled from '@emotion/styled'
 import './app.css'
 import './layout.css'
 import './syntax.css'
+import { amgam } from '../themes/amgam.ts'
+import { amgamDark } from '../themes/amgamDark.ts'
 
 const PreComponent = ({ className, ...props }) => {
   const hideCode = props.children.props.props.hideCode

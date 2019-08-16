@@ -18,7 +18,7 @@ const DemoComponent = (idPrefix) => (
         {theme => theme && (
             <StyledDiv theme={theme}>
                 <Heading level={2}>Example</Heading>
-                <p>This is a demo component.</p>
+                <p>This is a demo component. Amgam themes are for demo purposes only, and do not meet accessibility requiirements.</p>
                 <Input
                     id={`${idPrefix}-input`}
                     labelText="Input"

@@ -36,8 +36,6 @@ export { DatePicker } from './components/DatePicker';
 export { Modal } from './components/Modal';
 export { HyperLink } from './components/HyperLink';
 
-export { amgam } from './theme/amgam';
-export { amgamDark } from './theme/amgamDark';
 export { magma } from './theme/magma';
 export { GlobalStyles } from './theme/GlobalStyles';
 export { ThemeContext } from './theme/ThemeContext';
