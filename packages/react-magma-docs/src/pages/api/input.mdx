@@ -328,6 +328,28 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
     }
 ```
 
+## Custom Styles
+
+Custom styles can be passed into the Input component. The `containerStyle` property will apply to the container.
+Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
+
+```.jsx
+  <div>
+    <Input
+        containerStyle={{ 'border': '1px dotted purple', 'padding': '5px'}}
+        inputStyle={{ 'borderRadius': '0'}}
+        labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
+        labelText='Custom Styles for input' />
+
+    <Input
+        containerStyle={{ 'border': '1px dotted purple', 'padding': '5px'}}
+        inputStyle={{ 'width': '200px', 'height': '50px'}}
+        labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
+        labelText='Custom Styles for textarea (multiline)'
+        multiline />
+  </div>
+```
+
 ## Testing
 
 Passing in the `testId` prop will add the `data-testid` attribute to the input element for easier querying in tests.
@@ -408,7 +430,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description: 'Text read by screen reader when the password is hidden',
       defaultValue: 'Password is now hidden',
     },
-     hidePasswordButtonAriaLabel: {
+    hidePasswordButtonAriaLabel: {
       type: {
         name: 'string',
       },
@@ -426,10 +448,10 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
     },
     icon: {
       type: {
-        name: 'React Element'
+        name: 'React Element',
       },
       required: false,
-      description: 'Icon to display within the component'
+      description: 'Icon to display within the component',
     },
     iconPosition: {
       type: {
@@ -495,13 +517,14 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description: 'Text read by screen reader when the password is hidden',
       defaultValue: 'Password is now hidden',
     },
-     showPasswordButtonAriaLabel: {
+    showPasswordButtonAriaLabel: {
       type: {
         name: 'string',
       },
       required: false,
       description: 'Aria-label for the "Show Password" button',
-      defaultValue: 'Show password. Note: this will visually expose your password on the screen',
+      defaultValue:
+        'Show password. Note: this will visually expose your password on the screen',
     },
     showPasswordButtonText: {
       type: {

@@ -149,7 +149,7 @@ Adding the `textVisuallyHidden` prop will make the label text available to scree
 
 ## Custom Styles
 
-Custom styles can be passed into both the Checkbox component. The `containerStyle` property will apply to the container.
+Custom styles can be passed into the Checkbox component. The `containerStyle` property will apply to the container.
 Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
 
 ```.jsx
@@ -157,14 +157,12 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
     <Checkbox
         checked
         containerStyle={{ 'border': '1px dotted purple'}}
-        id='custom1'
         inputStyle={{ 'boxShadow': '3px 3px 3px rgba(0, 0 , 0, .6)'}}
         labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
         labelText='Custom Styles' />
 
     <Checkbox
         checked
-        id='custom2'
         labelText='No Custom Styles' />
   </div>
 ```
