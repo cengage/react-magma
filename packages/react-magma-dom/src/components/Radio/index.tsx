@@ -17,7 +17,7 @@ export interface RadioProps
   css?: any; // Adding css prop to fix emotion error
   color?: string;
   containerStyle?: React.CSSProperties;
-  innerRef?: any;
+  innerRef?: React.Ref<HTMLInputElement>;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
   labelStyle?: React.CSSProperties;
@@ -210,6 +210,6 @@ export class RadioComponent extends React.Component<RadioProps, RadioState> {
   }
 }
 
-export const Radio = React.forwardRef((props: RadioProps, ref) => (
-  <RadioComponent innerRef={ref} {...props} />
-));
+export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
+  (props, ref) => <RadioComponent innerRef={ref} {...props} />
+);

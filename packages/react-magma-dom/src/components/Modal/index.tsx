@@ -26,7 +26,7 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   open?: boolean;
   size?: ModalSize;
   testId?: string;
-  ref?: any;
+  innerRef?: React.Ref<HTMLDivElement>;
 }
 
 interface ModalState {
@@ -223,7 +223,7 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                 hideEscButton,
                 open,
                 size,
-                ref,
+                innerRef,
                 ...other
               } = this.props;
 
@@ -265,7 +265,7 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                           }
                         />
                         <ModalContent
-                          ref={ref}
+                          ref={innerRef}
                           size={size}
                           data-testid="modal-content"
                           theme={theme}
@@ -306,6 +306,6 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
   }
 }
 
-export const Modal = React.forwardRef((props: ModalProps, ref: any) => (
-  <ModalComponent ref={ref} {...props} />
-));
+export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
+  (props, ref) => <ModalComponent innerRef={ref} {...props} />
+);
