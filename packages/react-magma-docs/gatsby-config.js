@@ -65,15 +65,6 @@ module.exports = {
         icon: 'src/images/react-magma-icon.png', // This path is relative to the root of the site.
       },
     },
-    'gatsby-plugin-offline',
-    {
-      resolve: `gatsby-plugin-google-fonts`,
-      options: {
-        fonts: [
-          `Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i` // you can also specify font weights and styles
-        ],
-        display: 'swap'
-      }
-    }
+    'gatsby-plugin-offline'
   ],
 }

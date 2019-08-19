@@ -4,7 +4,7 @@ import { ThemeContext } from '../ThemeContext';
 
 function getStyles(theme) {
   return css`
-    @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
+    @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap');
 
     *,
     *:before,
