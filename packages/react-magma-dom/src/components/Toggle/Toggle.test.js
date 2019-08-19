@@ -1,5 +1,6 @@
 import React from 'react';
 import { Toggle } from '.';
+import { axe } from 'jest-axe';
 import { render } from 'react-testing-library';
 
 const TOGGLE_PROPS = {
@@ -106,5 +107,12 @@ describe('Toggle', () => {
     const span = getByText(TOGGLE_PROPS.labelText);
 
     expect(span).toHaveStyleRule('clip', 'rect(1px,1px,1px,1px)');
+  });
+
+  it('Does not violate accessibility standards', () => {
+    const { container } = renderToggle();
+    return axe(container.innerHTML).then(result => {
+      return expect(result).toHaveNoViolations();
+    });
   });
 });
