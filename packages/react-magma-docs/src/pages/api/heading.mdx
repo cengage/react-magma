@@ -3,6 +3,7 @@ title: 'Headings'
 ---
 
 import DocsHeading from '../../components/docs-heading'
+import { SimplePropsTable } from '../../components/props-table'
 
 <DocsHeading to="/design/headings/" type="design">
   Headings
@@ -61,11 +62,30 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
 
 ## Heading Props
 
-| Prop     | Type                | Default | Required |
-| -------- | ------------------- | ------- | :------: |
-| children | node                |         | &#10003; |
-| level    | number              |         | &#10003; |
-| id       | string              |         |
-| style    | React.CSSProperties |         |
-| testId   | string              |         |          |
-| ref      | React.Ref           |         |
+<SimplePropsTable
+  props={{
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
+    }, 
+    level: {
+      type: {
+        name: 'number',
+      },
+      required: true,
+      description: 'Number to indicate which level heading will render (e.g. h1, h2 etc.)',
+      defaultValue: '',
+    },
+     testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'ID used for testing purposes',
+      defaultValue: '',
+    },
+  }}
+/>

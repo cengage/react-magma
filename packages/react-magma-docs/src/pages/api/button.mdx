@@ -3,6 +3,7 @@ title: 'Buttons'
 ---
 
 import { Link } from 'gatsby'
+import { SimplePropsTable } from '../../components/props-table'
 import DocsHeading from '../../components/docs-heading'
 
 <DocsHeading to="/design/button/" type="design">
@@ -269,26 +270,108 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
 
 ## Button Props
 
-| Prop          | Type                                                                                   | Default     | Required |
-| ------------- | -------------------------------------------------------------------------------------- | ----------- | :------: |
-| aria-expanded | boolean                                                                                |             |
-| as            | any                                                                                    |             |
-| autoFocus     | boolean                                                                                | false       |
-| block         | boolean                                                                                | false       |
-| className     | string                                                                                 |             |
-| children      | node                                                                                   |             | &#10003; |
-| color         | enum: 'primary' &#124; 'secondary' &#124; 'success' &#124; 'danger' &#124; 'marketing' | 'primary'   |
-| disabled      | boolean                                                                                | false       |
-| onClick       | function                                                                               |             | &#10003; |
-| href          | string                                                                                 |             |
-| id            | string                                                                                 |             |          |
-| inverse       | boolean                                                                                | false       |
-| shape         | enum: 'fill' &#124; 'leftCap' &#124; 'rightCap'                                        | 'fill'      |
-| size          | enum: 'large' &#124; 'medium' &#124; 'small'                                           | 'medium'    |
-| style         | React.CSSProperties                                                                    |             |
-| testId        | string                                                                                 |             |          |
-| textTransform | enum: 'uppercase' &#124; 'none'                                                        | 'uppercase' |
-| to            | string                                                                                 |             |
-| type          | enum: 'button' &#124; 'submit' &#124; 'reset'                                          |
-| variant       | enum: 'solid' &#124; 'outline' &#124; 'link'                                           | 'solid'     |
-| ref           | React.Ref                                                                              |             |
+<SimplePropsTable
+  props={{
+    block: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the button will take up the full width of its container',
+      defaultValue: 'false',
+    },
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component'
+    },
+    color: {
+      type: {
+        name: 'enum',
+        options: ['ButtonColor.primary', 'ButtonColor.secondary', 'ButtonColor.success',  'ButtonColor.danger', 'ButtonColor.marketing']
+      },
+      required: false,
+      description: 'The color of the button, indicating its function in the UI',
+      defaultValue: 'primary',
+    },
+    disabled: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, element is disabled',
+      defaultValue: 'false',
+    },
+    inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    onClick: {
+      type: {
+        name: 'function',
+      },
+      required: true,
+      description: 'Action that fires when the button is clicked'
+    },
+    shape: {
+      type: {
+        name: 'enum',
+        options: ['ButtonShape.fill', 'ButtonShape.leftCap', 'ButtonShape.rightCap']
+      },
+      required: false,
+      description: 'Defines the border radius',
+      defaultValue: 'fill',
+    },
+    size: {
+      type: {
+        name: 'enum',
+        options: ['ButtonSize.large', 'ButtonSize.medium', 'ButtonSize.small']
+      },
+      required: false,
+      description: 'The relative size of the button',
+      defaultValue: 'medium',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'ID used for testing purposes',
+      defaultValue: '',
+    },
+    textTransform: {
+      type: {
+        name: 'enum',
+        options: ['ButtonTextTransform.uppercase', 'ButtonTextTransform.none']
+      },
+      required: false,
+      description: 'Determines whether the button appears in all-caps',
+      defaultValue: 'uppercase',
+    },
+    type: {
+      type: {
+        name: 'enum',
+        options: ['ButtonType.button', 'ButtonType.submit', 'ButtonType.reset']
+      },
+      required: false,
+      description: 'The type attribute of the button',
+      defaultValue: 'button',
+    },
+    variant: {
+      type: {
+        name: 'enum',
+        options: ['ButtonVariant.solid', 'ButtonVariant.outline', 'ButtonVariant.link']
+      },
+      required: false,
+      description: 'The variant of the button',
+      defaultValue: 'solid',
+    },
+  }}
+/>
+

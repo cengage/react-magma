@@ -4,6 +4,7 @@ title: 'Skip Link'
 
 import { Link } from 'gatsby'
 import { Button } from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
 
 # Skip Link
 
@@ -14,11 +15,11 @@ Because the `SkipLink` and `SkipLinkContent` work based on an `id`, it is import
 
 ## Basic Usage
 
-The `SkipLink` component is the button that will jump the user to the main content area.  It should be the first item in your app, positioned in the DOM before the navigation and the content.
+The `SkipLink` component is the button that will jump the user to the main content area. It should be the first item in your app, positioned in the DOM before the navigation and the content.
 Users will not see the component unless they are navigating by keyboard.
 
 The `SkipLinkContent` component is the div that is the target of the `SkipLink`. It can either be used as a wrapper for your content, or as a sibling of your content.
-If there is an h1 heading inside the SkipLinkContent, the h1 will receive focus.  Otherwise, just the SkipLinkContent div itself will get focus.
+If there is an h1 heading inside the SkipLinkContent, the h1 will receive focus. Otherwise, just the SkipLinkContent div itself will get focus.
 
 ```
     <div>
@@ -29,7 +30,9 @@ If there is an h1 heading inside the SkipLinkContent, the h1 will receive focus.
         </SkipLinkContent>
     </div>
 ```
+
 Or
+
 ```
     <div>
         <SkipLink />
@@ -60,11 +63,14 @@ For more information, see the <Link to="/api/button">Button Component documentat
 ```
 
 This would render the button as:
-<Button color="success" variant="outline">Skip Navigation</Button>
+
+<Button color="success" variant="outline">
+  Skip Navigation
+</Button>
 
 ## Button Text
 
-By default, the text inside the button says "Skip Navigation".  This can be overriden using the `buttonText` prop.
+By default, the text inside the button says "Skip Navigation". This can be overriden using the `buttonText` prop.
 
 ```
     <SkipLink
@@ -72,11 +78,12 @@ By default, the text inside the button says "Skip Navigation".  This can be over
 ```
 
 This would render the button as:
+
 <Button>Skip to main content</Button>
 
 ## Positioning
 
-By default, the `SkipLink` is fixed poistioned 10px from the top and 10px from left of the screen.  This can be customized using the optional `positionLeft`
+By default, the `SkipLink` is fixed poistioned 10px from the top and 10px from left of the screen. This can be customized using the optional `positionLeft`
 and `positionTop` properties, which take numeric values.
 
 ```
@@ -87,22 +94,95 @@ and `positionTop` properties, which take numeric values.
 
 This would render the button 25px from the top, and 25px from the left of the browser window.
 
+## Skip Link Props
 
-## SkipLink Props
+<SimplePropsTable
+  props={{
+    buttonText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'The text in the skip link',
+      defaultValue: "'Skip Navigation'",
+    },
+    color: {
+      type: {
+        name: 'enum',
+        options: [
+          'ButtonColor.primary',
+          'ButtonColor.secondary',
+          'ButtonColor.success',
+          'ButtonColor.danger',
+          'ButtonColor.marketing',
+        ],
+      },
+      required: false,
+      description: 'The color of the button',
+      defaultValue: 'primary',
+    },
+    inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    positionLeft: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description:
+        'Number of pixels from the left of the screen for the skip link to be positioned ',
+      defaultValue: '10',
+    },
+    positionTop: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description:
+        'Number of pixels from the top of the screen for the skip link to be positioned ',
+      defaultValue: '10',
+    },
+    targetID: {
+      type: {
+        name: 'string',
+      },
+      required: true,
+      description: 'ID of the element the skip link will navigate to',
+      defaultValue: '',
+    },
+    variant: {
+      type: {
+        name: 'enum',
+        options: [
+          'ButtonVariant.solid',
+          'ButtonVariant.outline',
+          'ButtonVariant.link',
+        ],
+      },
+      required: false,
+      description: 'The variant of the button',
+      defaultValue: 'solid',
+    },
+  }}
+/>
 
-| Prop         | Type                                                                | Default     | Required |
-| ------------ | ------------------------------------------------------------------- | ----------- | :------: |
-| buttonText   | string                                                              |             |          |
-| color        | enum: 'primary' &#124; 'secondary' &#124; 'success' &#124; 'danger' | 'primary'   |          |
-| inverse      | boolean                                                             |             |          |
-| positionLeft | number                                                              |             |          |
-| positionTop  | number                                                              |             |          |
-| targetID     | string                                                              |             | &#10003; |
-| variant      | enum: 'solid' &#124; 'outline' &#124; 'link'                        | 'solid'     |          |
+## Skip Link Content Props
 
+<SimplePropsTable
+  props={{
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: false,
+      description: 'The content of the destination of the skip link',
+    }
+  }}
+/>
 
-## SkipLinkContent Props
-
-| Prop       | Type     | Default     | Required |
-| ---------- | -------- | ----------- | :------: |
-| children   | node     |             |          |

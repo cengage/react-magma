@@ -3,6 +3,7 @@ title: 'Inputs'
 ---
 
 import DocsHeading from '../../components/docs-heading'
+import { SimplePropsTable } from '../../components/props-table'
 
 <DocsHeading to="/design/inputs/" type="design">
   Inputs
@@ -327,6 +328,28 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
     }
 ```
 
+## Custom Styles
+
+Custom styles can be passed into the Input component. The `containerStyle` property will apply to the container.
+Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
+
+```.jsx
+  <div>
+    <Input
+        containerStyle={{ 'border': '1px dotted purple', 'padding': '5px'}}
+        inputStyle={{ 'borderRadius': '0'}}
+        labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
+        labelText='Custom Styles for input' />
+
+    <Input
+        containerStyle={{ 'border': '1px dotted purple', 'padding': '5px'}}
+        inputStyle={{ 'width': '200px', 'height': '50px'}}
+        labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
+        labelText='Custom Styles for textarea (multiline)'
+        multiline />
+  </div>
+```
+
 ## Testing
 
 Passing in the `testId` prop will add the `data-testid` attribute to the input element for easier querying in tests.
@@ -348,38 +371,184 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 
 ## Input Props
 
-| Prop                        | Type                                                | Default                                                                      | Required |
-| --------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------------- | :------: |
-| autoFocus                   | boolean                                             |                                                                              |
-| containerStyle              | React.CSSProperties                                 |                                                                              |
-| disabled                    | boolean                                             |                                                                              |
-| errorMessage                | string                                              |                                                                              |
-| helperMessage               | string                                              |                                                                              |
-| helpLinkText                | string                                              |                                                                              |
-| hidePasswordMaskButton      | boolean                                             | 'What's this?'                                                                             |
-| hiddenPasswordAnnounceText  | string                                              | 'Password is now hidden'                                                     |
-| hidePasswordButtonAriaLabel | boolean                                             | 'Hide password'                                                              |
-| hidePasswordButtonText      | string                                              | 'Hide'                                                                       |
-| icon                        | string                                              |                                                                              |
-| iconPosition                | enum: 'left' &#124; 'right' &#124;                  | 'left'                                                                       |
-| id                          | string                                              |                                                                              | &#10003; |
-| inputSize                   | enum: 'small' &#124; 'medium' &#124; 'large' &#124; | 'medium'                                                                     |
-| inputStyle                  | React.CSSProperties                                 |                                                                              |
-| inverse                     | boolean                                             |                                                                              |
-| labelStyle                  | React.CSSProperties                                 |                                                                              |
-| labelText                   | string                                              |                                                                              | &#10003; |
-| labelVisuallyHidden         | boolean                                             |                                                                              |
-| multiline                   | boolean                                             |                                                                              |
-| onBlur                      | function                                            |                                                                              |
-| onChange                    | function                                            |                                                                              |
-| onFocus                     | function                                            |                                                                              |
-| onHelpLinkClick             | function                                            |                                                                              |
-| placeholder                 | string                                              |                                                                              |
-| ref                         | React.Ref                                           |                                                                              |
-| required                    | boolean                                             |                                                                              |
-| testId                      | string                                              |                                                                              |
-| type                        | enum: 'text' &#124; 'password' &#124; 'number'      | 'text'                                                                       |
-| value                       | string                                              |                                                                              |
-| shownPasswordAnnounceText   | string                                              | 'Password is now visible'                                                    |
-| showPasswordButtonAriaLabel | boolean                                             | 'Show password. Note: this will visually expose your password on the screen' |
-| showPasswordButtonText      | string                                              | 'Show'                                                                       |
+<SimplePropsTable
+  props={{
+    containerStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the component container element',
+    },
+    disabled: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, element is disabled',
+      defaultValue: 'false',
+    },
+    errorMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Text of the error message.  If a value is provided, the error message will be styled as an error state.',
+      defaultValue: '',
+    },
+    helperMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text of the helper message.',
+      defaultValue: '',
+    },
+    helpLinkText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Aria-label for the help icon',
+      defaultValue: "What's this?",
+    },
+    hidePasswordMaskButton: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
+    },
+    hiddenPasswordAnnounceText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text read by screen reader when the password is hidden',
+      defaultValue: 'Password is now hidden',
+    },
+    hidePasswordButtonAriaLabel: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Aria-label for the "Hide Password" button',
+      defaultValue: 'Hide password',
+    },
+    hidePasswordButtonText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text displayed on screen for the "Hide Password" button',
+      defaultValue: 'Hide',
+    },
+    icon: {
+      type: {
+        name: 'React Element',
+      },
+      required: false,
+      description: 'Icon to display within the component',
+    },
+    iconPosition: {
+      type: {
+        name: 'enum',
+        options: ['InputIconPosition.left', 'InputIconPosition.right'],
+      },
+      required: false,
+      description: 'Position within the component for the icon to appear',
+      defaultValue: 'right',
+    },
+    inputStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the input element',
+    },
+    inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    labelStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the label element',
+    },
+    labelText: {
+      type: {
+        name: 'string',
+      },
+      required: true,
+      description: 'Text for label',
+    },
+    labelVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
+    },
+    required: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the form field is required',
+      defaultValue: 'false',
+    },
+    shownPasswordAnnounceText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text read by screen reader when the password is hidden',
+      defaultValue: 'Password is now hidden',
+    },
+    showPasswordButtonAriaLabel: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Aria-label for the "Show Password" button',
+      defaultValue:
+        'Show password. Note: this will visually expose your password on the screen',
+    },
+    showPasswordButtonText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text displayed on screen for the "Show Password" button',
+      defaultValue: 'Show',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'ID used for testing purposes',
+      defaultValue: '',
+    },
+    value: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Default value for the form field',
+      defaultValue: '',
+    },
+  }}
+/>

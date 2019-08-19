@@ -4,8 +4,11 @@ title: 'Toggles'
 
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
+import { SimplePropsTable } from '../../components/props-table'
 
-<DocsHeading to="/design/selection-controls/#6._switches" type="design">Toggles</DocsHeading>
+<DocsHeading to="/design/selection-controls/#6._switches" type="design">
+  Toggles
+</DocsHeading>
 
 ## Basic Usage
 
@@ -124,22 +127,102 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 
 ## Toggle Props
 
-| Prop               | Type                        | Default | Required |
-| ------------------ | --------------------------- | ------- | :------: |
-| autoFocus          | boolean                     |         |
-| checked            | boolean                     |         |
-| containerStyle     | React.CSSProperties         |         |
-| disabled           | boolean                     |         |
-| onBlur             | function                    |         |
-| onChange           | function                    |         |
-| onFocus            | function                    |         |
-| id                 | string                      |         |          |
-| labelStyle         | React.CSSProperties         |         |
-| labelText          | string                      |         | &#10003; |
-| required           | function                    |         |
-| textPosition       | enum: 'left' &#124; 'right' | 'left'  |
-| textVisuallyHidden | boolean                     |         |
-| testId             | string                      |         |
-| thumbStyle         | React.CSSProperties         |         |
-| trackStyle         | React.CSSProperties         |         |
-| value              | string                      |         |
+<SimplePropsTable
+  props={{
+    containerStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the component container element',
+    },
+    disabled: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, element is disabled',
+      defaultValue: 'false',
+    },
+    inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    labelStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the label element',
+    },
+    labelText: {
+      type: {
+        name: 'string',
+      },
+      required: true,
+      description: 'Text for label',
+    },
+    required: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the form field is required',
+      defaultValue: 'false',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'ID used for testing purposes',
+      defaultValue: '',
+    },
+     textPosition: {
+      type: {
+        name: 'enum',
+        options: ['ToggleTextPosition.left', 'ToggleTextPosition.right']
+      },
+      required: false,
+      description:
+        'Whether the label appears to the left of the right of the toggle switch',
+      defaultValue: 'left',
+    },
+    textVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
+    },
+    thumbStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the part of the component that slides back and forth on the track',
+    },
+    trackStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for track on which the toggle thumb slides',
+    },
+    value: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Value attribute the form field',
+      defaultValue: '',
+    },
+  }}
+/>

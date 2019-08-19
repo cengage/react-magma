@@ -2,9 +2,12 @@
 title: 'Announce'
 ---
 
+import { SimplePropsTable } from '../../components/props-table'
+
 # Announce
-When dynamically changing content on a page, it is important that all users become aware of these changes.  While changes may be visually apparent to users who cans see the page,
-they may not be clear to users of assistive technology.  The `Announce` component uses the `aria-live` attribute to to expose dynamic content to those using screen readers.
+
+When dynamically changing content on a page, it is important that all users become aware of these changes. While changes may be visually apparent to users who cans see the page,
+they may not be clear to users of assistive technology. The `Announce` component uses the `aria-live` attribute to to expose dynamic content to those using screen readers.
 
 ## Basic Usage
 
@@ -39,11 +42,11 @@ they may not be clear to users of assistive technology.  The `Announce` componen
 
 ## Politeness
 
-The `Announce` component takes an optional `politeness` prop, that accepts the following values: `assertive`, `off`, and `polite`.  The default value is `polite`.
+The `Announce` component takes an optional `politeness` prop, that accepts the following values: `assertive`, `off`, and `polite`. The default value is `polite`.
 This sets the value of the `aria-live` attribute and is used to set the priority with which screen reader should treat updates to live regions.
 
-When `polite` is used, assistive technology will notify a users of a change after the current task is complete.  When `assertive` is used, assistive technologies will notify the user immediately,
-possibly interrupting the current task.  Using `off` will silence these updates, so they will not be read.
+When `polite` is used, assistive technology will notify a users of a change after the current task is complete. When `assertive` is used, assistive technologies will notify the user immediately,
+possibly interrupting the current task. Using `off` will silence these updates, so they will not be read.
 
 ```.jsx
   class Example extends React.Component {
@@ -86,9 +89,25 @@ possibly interrupting the current task.  Using `off` will silence these updates,
     }
 ```
 
-## Heading Props
+## Announce Props
 
-| Prop     | Type                | Default | Required |
-| -------- | ------------------- | ------- | :------: |
-| children | node                |         | &#10003; |
-| politeness | enum 'assertive' &#124; 'off' &#124; 'polite' | 'polite' | |
+<SimplePropsTable
+  props={{
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
+    },
+    politeness: {
+      type: {
+        name: 'enum',
+        options: ['assertive', 'off', 'polite'],
+      },
+      required: false,
+      description: 'Value of the `aria-live` attribute',
+      defaultValue: 'polite',
+    },
+  }}
+/>

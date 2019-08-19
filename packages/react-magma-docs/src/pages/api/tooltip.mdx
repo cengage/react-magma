@@ -2,6 +2,8 @@
 title: 'Tooltips'
 ---
 
+import { SimplePropsTable } from '../../components/props-table'
+
 # Tooltip
 
 ## Basic usage
@@ -68,9 +70,42 @@ The `Tooltip` component takes an optional `inverse` prop, for when the tooltip i
 
 ## Tooltip Props
 
-| Prop     | Type                                                     | Default | Required |
-| -------- | -------------------------------------------------------- | ------- | :------: |
-| content  | node                                                     |         | &#10003; |
-| inverse  | boolean                                                  | false   |          |
-| position | enum: 'bottom' &#124; 'left' &#124; 'right' &#124; 'top' | 'top'   |          |
-| trigger  | element                                                  |         | &#10003; |
+<SimplePropsTable
+  props={{
+    content: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description:
+        'The content of the tooltip.  May be a string or a react node',
+    },
+    inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    position: {
+      type: {
+        name: 'enum',
+        options: ['EnumTooltipPosition.bottom', 'EnumTooltipPosition.left', 'EnumTooltipPosition.right', 'EnumTooltipPosition.top']
+      },
+      required: false,
+      description:
+        'Position the tooltip appears in relation to its trigger',
+        defaultValue: 'top'
+    },
+    trigger: {
+      type: {
+        name: 'element',
+      },
+      required: true,
+      description:
+        'The element that triggers the tooltip when it is hovered or focused.  Must be a react element (not a string) and should be a focusable element to meet a11y requirements',
+    },
+  }}
+/>

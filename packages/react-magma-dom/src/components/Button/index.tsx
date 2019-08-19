@@ -60,7 +60,6 @@ export interface ButtonStyles {
 
 interface BaseButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  autoFocus?: boolean;
   testId?: string;
   ref?: any;
   theme?: any;

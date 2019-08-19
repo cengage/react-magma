@@ -4,6 +4,7 @@ title: 'Modals'
 
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
+import { SimplePropsTable } from '../../components/props-table'
 
 <DocsHeading>Modals</DocsHeading>
 
@@ -110,16 +111,85 @@ Sizes for modals include `small`, `medium`, and `large`, with `medium` being the
 
 ## Modal Props
 
-| Prop                 | Type                                         | Default  | Required |
-| -------------------- | -------------------------------------------- | -------- | :------: |
-| children             | node                                         |          | &#10003; |
-| id                   | string                                       |          |          |
-| disableBackdropClick | boolean                                      | false    |          |
-| disableEscKeyDown    | boolean                                      | false    |          |
-| header               | node                                         |          |          |
-| hideEscButton        | boolean                                      | false    |          |
-| onClose              | function                                     |          |          |
-| onEscKeyDown         | function                                     |          |          |
-| open                 | boolean                                      | false    |          |
-| size                 | enum: 'large' &#124; 'medium' &#124; 'small' | 'medium' |
-| testId               | string                                       | false    |          |
+<SimplePropsTable
+  props={{
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
+    },
+    disableBackdropClick: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, clicking the backdrop will not dismiss the modal',
+      defaultValue: 'false',
+    },
+    disableEscKeyDown: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, pressing the Escape key will not dismiss the modal',
+      defaultValue: 'false',
+    },
+    header: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the modal header',
+    },
+    hideEscButton: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the close button the the modal will be supressed',
+      defaultValue: 'false',
+    },
+    onClose: {
+      type: {
+        name: 'function',
+      },
+      required: true,
+      description: 'Action that fires when the close button is clicked',
+    },
+    onClose: {
+      type: {
+        name: 'function',
+      },
+      required: true,
+      description: 'Action that fires when the Escape key is pressed',
+    },
+    open: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the modal will be visible',
+      defaultValue: 'false',
+    },
+    size: {
+      type: {
+        name: 'enum',
+        options: ['ModalSize.large', 'ModalSize.medium', 'ModalSize.small'],
+      },
+      required: false,
+      description: 'The relative size of the modal',
+      defaultValue: 'medium',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'ID used for testing purposes',
+      defaultValue: '',
+    },
+  }}
+/>
