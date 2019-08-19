@@ -36,7 +36,7 @@ export class ModalCore extends React.Component<ModalCoreProps, ModalCoreState> {
         this.setState({ isExiting: false });
 
         callback && typeof callback === 'function' && callback();
-      }, 700);
+      }, 300);
     });
   }
 
