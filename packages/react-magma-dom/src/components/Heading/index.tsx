@@ -21,6 +21,7 @@ export const baseHeadingStyles = props => css`
   &:focus {
     border-bottom: 2px dotted ${props.theme.colors.pop02};
     outline: 0;
+    transition: border 0.1s linear;
   }
 `;
 

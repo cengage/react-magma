@@ -604,6 +604,11 @@ pre tt:after {
   border-bottom: 2px solid transparent;
 }
 
+.content-article h1:focus,
+.content-article h2:focus {
+  border-bottom: 2px dotted #FA6600;
+}
+
 .pre-container {
   display: grid;
   max-width: 100%;

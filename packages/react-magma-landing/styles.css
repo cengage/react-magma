@@ -9,6 +9,7 @@
 *:focus {
   outline: 2px dotted #fa6600;
   outline-offset: 3px;
+  transition: outline .1s linear;
 }
 
 html {
