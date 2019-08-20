@@ -26,14 +26,10 @@ export const SelectWrapper: React.FunctionComponent<SelectWrapperProps> = ({
   <div data-testid={testId}>
     <Label inverse={inverse}>{labelText}</Label>
     {children}
-    {(errorMessage || helperMessage) && (
-      <InputMessage
-        inverse={inverse}
-        id={descriptionId}
-        isError={!!errorMessage}
-      >
-        {errorMessage ? errorMessage : helperMessage}
-      </InputMessage>
-    )}
+    <InputMessage inverse={inverse} id={descriptionId} isError={!!errorMessage}>
+      {(errorMessage || helperMessage) && (
+        <>{errorMessage ? errorMessage : helperMessage}</>
+      )}
+    </InputMessage>
   </div>
 );

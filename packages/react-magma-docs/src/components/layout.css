@@ -633,7 +633,3 @@ pre tt:after {
   flex-wrap: wrap;
   justify-content: space-between;
 }
-
-.demo-select-container {
-  margin: 0 0 120px;
-}

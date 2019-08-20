@@ -65,7 +65,6 @@ interface IconWrapperProps {
 
 const Container = styled.div`
   margin-bottom: 10px;
-  min-height: 7em;
 `;
 
 const InputWrapper = styled.div`
@@ -341,16 +340,15 @@ class InputComponent extends React.Component<InputProps> {
                       />
                     )}
                   </InputWrapper>
-
-                  {(errorMessage || helperMessage) && (
-                    <InputMessage
-                      inverse={inverse}
-                      id={descriptionId}
-                      isError={!!errorMessage}
-                    >
-                      {errorMessage ? errorMessage : helperMessage}
-                    </InputMessage>
-                  )}
+                  <InputMessage
+                    inverse={inverse}
+                    id={descriptionId}
+                    isError={!!errorMessage}
+                  >
+                    {(errorMessage || helperMessage) && (
+                      <>{errorMessage ? errorMessage : helperMessage}</>
+                    )}
+                  </InputMessage>
                 </Container>
               )}
             </ThemeContext.Consumer>

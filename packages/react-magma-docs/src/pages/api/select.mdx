@@ -18,7 +18,7 @@ The label/select association will be handled via the passed in `id` if one is su
 This component is built upon [React Select by Jed Watson](https://react-select.com/home).
 
 ```.jsx
-  <div className='demo-select-container'>
+  <>
     <Select
       id="basicSelectId"
       name="basic"
@@ -34,7 +34,7 @@ This component is built upon [React Select by Jed Watson](https://react-select.c
         label: 'Green'
       }]}
     />
-  </div>
+  </>
 ```
 
 ## Multi-Select
@@ -42,7 +42,7 @@ This component is built upon [React Select by Jed Watson](https://react-select.c
 The optional `multi` prop allows the user to select more than one item.
 
 ```.jsx
-  <div className='demo-select-container'>
+  <>
     <Select
       id="multiSelectId"
       name="multi"
@@ -59,7 +59,7 @@ The optional `multi` prop allows the user to select more than one item.
       }]}
       multi
     />
-  </div>
+  </>
 ```
 
 ## Clearable
@@ -67,7 +67,7 @@ The optional `multi` prop allows the user to select more than one item.
 The optional `clearable` prop allows the user to clear the field once a selection has been made.
 
 ```.jsx
-  <div className='demo-select-container'>
+  <>
     <Select
       id="clearableSelectId"
       name="clearable"
@@ -84,13 +84,13 @@ The optional `clearable` prop allows the user to clear the field once a selectio
       }]}
       clearable
     />
-  </div>
+  </>
 ```
 
 ## Default Value
 
 ```.jsx
-  <div className='demo-select-container'>
+  <>
     <Select
       id="defaultValueSelectId"
       name="defaultValue"
@@ -110,13 +110,13 @@ The optional `clearable` prop allows the user to clear the field once a selectio
         label: 'Red'
       }}
     />
-  </div>
+  </>
 ```
 
 ## Disabled
 
 ```.jsx
-  <div className='demo-select-container'>
+  <>
     <Select
       id="disabledSelectId"
       name="disabled"
@@ -133,7 +133,7 @@ The optional `clearable` prop allows the user to clear the field once a selectio
       }]}
       disabled
     />
-  </div>
+  </>
 ```
 
 ## Error message
@@ -142,7 +142,7 @@ If a select has an `errorMessage`, the select will be styled to highlight it's e
 If an error message is present, it will replace the helper text.
 
 ```.jsx
-  <div className='demo-select-container'>
+  <>
     <Select
       errorMessage="Please select a color"
       helperMessage="Helper text goes here"
@@ -159,7 +159,7 @@ If an error message is present, it will replace the helper text.
         label: 'Green'
       }]}
     />
-  </div>
+  </>
 ```
 
 ## Helper message
@@ -167,7 +167,7 @@ If an error message is present, it will replace the helper text.
 The `helperMessage` appears underneath the select field. It will not appear if an error message is present.
 
 ```.jsx
-  <div className='demo-select-container'>
+  <>
     <Select
       helperMessage="Helper text goes here"
       name="helper"
@@ -183,7 +183,7 @@ The `helperMessage` appears underneath the select field. It will not appear if a
         label: 'Green'
       }]}
     />
-  </div>
+  </>
 ```
 
 ## Inverse styles
@@ -192,7 +192,7 @@ The `inverse` property is an optional boolean, that reverses the colors so that 
 The default value is `false`.
 
 ```.jsx
-  <div className='demo-select-container'  style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
+  <div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
     <Select
       errorMessage="Please select a color"
       inverse
@@ -393,7 +393,7 @@ class Select extends React.Component {
     }
 
     render() {
-      return <div className='demo-select-container'>
+      return <>
         <p>
           <strong>Value: </strong>
           <span id="value">{this.state.value ? this.state.value.value : 'No Value Set'}</span>
@@ -414,7 +414,7 @@ class Select extends React.Component {
           }]}
           onChange={this.changeValue}
         />
-      </div>
+      </>
     }
   }
 ```
@@ -443,7 +443,7 @@ class Select extends React.Component {
     }
 
     render() {
-      return <div className='demo-select-container'>
+      return <>
         <p><strong>Focused: </strong> <span id="focused">{this.state.message}</span></p>
         <Select
           id="focusedSelectId"
@@ -462,7 +462,7 @@ class Select extends React.Component {
           onFocus={this.changeFocusedMessage}
           onBlur={this.changeFocusedMessage}
         />
-      </div>
+      </>
     }
   }
 ```
@@ -491,7 +491,7 @@ class Select extends React.Component {
     }
 
     render() {
-      return <div className='demo-select-container'>
+      return <>
       <p><strong>Opened: </strong> <span id="opened">{this.state.message}</span></p>
         <Select
           id="openedSelectId"
@@ -510,7 +510,7 @@ class Select extends React.Component {
           onOpen={this.changeOpenedMessage}
           onClose={this.changeOpenedMessage}
         />
-      </div>
+      </>
     }
   }
 ```
@@ -566,7 +566,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
         name: 'boolean',
       },
       required: false,
-      description: 'If true, the user may clear the field once a selection has been made',
+      description:
+        'If true, the user may clear the field once a selection has been made',
       defaultValue: 'false',
     },
     defaultOptions: {
@@ -690,7 +691,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
         name: 'ReactSelect.Styles',
       },
       required: false,
-      description: 'Custom styles for the component using the style interface below',
+      description:
+        'Custom styles for the component using the style interface below',
       defaultValue: '',
     },
     testId: {
@@ -700,7 +702,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       required: false,
       description: 'ID used for testing purposes',
       defaultValue: '',
-    }
+    },
   }}
 />
 
