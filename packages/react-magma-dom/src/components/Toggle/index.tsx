@@ -198,7 +198,7 @@ export class Toggle extends React.Component<ToggleProps> {
                 <StyledContainer>
                   <HiddenInput
                     {...other}
-                    aria-checked={checked}
+                    aria-checked={!!checked}
                     id={id}
                     data-testid={testId}
                     disabled={disabled}
