@@ -109,20 +109,19 @@ display a help link to the right of the input field. The text can be customized 
 
 ## Input with Icon
 
-To include an icon both the `icon` and `iconPosition` props must be passed in. Icon position can either be `left` or `right`.
+An `icon` may be included with the input, by passing in the `icon` prop. The `iconPosition` position prop is optional and takes the values `left` and `right`, with `left` being the default.
+
+TODO:  Input with clickable icon
 
 ```.jsx
     <div>
       <Input
-        iconPosition='left'
-        id='inputIcon'
         labelText='Input with Icon Left'
         placeholder='Type in here'
         icon={<CalendarIcon />} />
 
       <Input
         iconPosition='right'
-        id='inputIconRight'
         labelText='Input with Icon Right'
         placeholder='Type in here'
         icon={<Search2Icon />} />

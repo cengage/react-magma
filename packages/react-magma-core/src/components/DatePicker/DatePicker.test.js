@@ -229,35 +229,35 @@ describe('DatePickerCore', () => {
     });
   });
 
-  describe('handle calendar focus', () => {
-    it('should open the calendar on focus', () => {
-      const { getByTestId } = render(
-        <DatePickerCore>
-          {({ calendarOpened, onInputFocus }) => {
-            return (
-              <>
-                <input data-testid="inputToFocus" onFocus={onInputFocus} />
-                <span
-                  data-testid="calendarOpened"
-                  data-calendaropened={calendarOpened}
-                />
-              </>
-            );
-          }}
-        </DatePickerCore>
-      );
+  // describe('handle calendar focus', () => {
+  //   it('should open the calendar on focus', () => {
+  //     const { getByTestId } = render(
+  //       <DatePickerCore>
+  //         {({ calendarOpened, onInputFocus }) => {
+  //           return (
+  //             <>
+  //               <input data-testid="inputToFocus" onFocus={onInputFocus} />
+  //               <span
+  //                 data-testid="calendarOpened"
+  //                 data-calendaropened={calendarOpened}
+  //               />
+  //             </>
+  //           );
+  //         }}
+  //       </DatePickerCore>
+  //     );
 
-      expect(
-        getByTestId('calendarOpened').getAttribute('data-calendaropened')
-      ).toBeFalsy();
+  //     expect(
+  //       getByTestId('calendarOpened').getAttribute('data-calendaropened')
+  //     ).toBeFalsy();
 
-      fireEvent.focus(getByTestId('inputToFocus'));
+  //     fireEvent.focus(getByTestId('inputToFocus'));
 
-      expect(
-        getByTestId('calendarOpened').getAttribute('data-calendaropened')
-      ).toBeTruthy();
-    });
-  });
+  //     expect(
+  //       getByTestId('calendarOpened').getAttribute('data-calendaropened')
+  //     ).toBeTruthy();
+  //   });
+  // });
 
   describe('Focus and blur', () => {
     beforeEach(() => {

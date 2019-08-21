@@ -5,10 +5,17 @@ import { IconProps } from '../Icon/utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 import { Announce } from '../Announce';
-import { Button, ButtonVariant, ButtonType } from '../Button';
+import {
+  Button,
+  ButtonVariant,
+  ButtonType,
+  ButtonSize,
+  ButtonShape
+} from '../Button';
 import { InputMessage } from './InputMessage';
 import { Label } from '../Label';
 import { QuestionCircleIcon } from '../Icon/types/QuestionCircleIcon';
+import { CalendarIcon } from '../Icon/types/CalendarIcon';
 import { Tooltip } from '../Tooltip';
 import { VisuallyHidden } from '../VisuallyHidden';
 
@@ -42,6 +49,8 @@ export interface InputProps
   hidePasswordButtonText?: string;
   hidePasswordMaskButton?: boolean;
   icon?: React.ReactElement<IconProps>;
+  iconOnClick?: () => void;
+  iconOnKeyDown?: (event) => void;
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
   inputStyle?: React.CSSProperties;
@@ -192,7 +201,8 @@ class InputComponent extends React.Component<InputProps> {
             hidePasswordButtonAriaLabel,
             hidePasswordButtonText,
             icon,
-            iconPosition,
+            iconOnClick,
+            iconOnKeyDown,
             inputSize,
             inputStyle,
             inverse,
@@ -209,6 +219,11 @@ class InputComponent extends React.Component<InputProps> {
             innerRef,
             ...other
           } = this.props;
+
+          const iconPosition =
+            icon && !this.props.iconPosition
+              ? InputIconPosition.left
+              : this.props.iconPosition;
 
           const HIDDEN_PASSWORD_ANNOUCNE_TEXT = hiddenPasswordAnnounceText
               ? hiddenPasswordAnnounceText
@@ -315,6 +330,7 @@ class InputComponent extends React.Component<InputProps> {
                         </VisuallyHidden>
                       </PasswordMaskWrapper>
                     )}
+
                     {onHelpLinkClick && (
                       <Tooltip
                         content={HELP_LINK_TEXT}
@@ -329,6 +345,23 @@ class InputComponent extends React.Component<InputProps> {
                             variant={ButtonVariant.link}
                           />
                         }
+                      />
+                    )}
+
+                    {iconOnClick && (
+                      <Button
+                        aria-label="Calendar"
+                        icon={<CalendarIcon />}
+                        onClick={iconOnClick}
+                        onKeyDown={iconOnKeyDown}
+                        shape={ButtonShape.fill}
+                        size={ButtonSize.small}
+                        style={{
+                          position: 'absolute',
+                          bottom: 0,
+                          right: 0
+                        }}
+                        variant={ButtonVariant.link}
                       />
                     )}
                   </InputWrapper>

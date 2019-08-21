@@ -2,11 +2,12 @@ import * as React from 'react';
 import { DatePickerCore } from 'react-magma-core';
 import { CalendarContext } from './CalendarContext';
 import { CalendarMonth } from './CalendarMonth';
-import { Input, InputIconPosition } from '../Input';
+import { Announce } from '../Announce';
+import { Input } from '../Input';
 import { format } from 'date-fns';
 import { magma } from '../../theme/magma';
 import styled from '@emotion/styled';
-import { CalendarIcon } from '../Icon/types/CalendarIcon';
+// import { CalendarIcon } from '../Icon/types/CalendarIcon';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { handleKeyPress } from './utils';
 
@@ -45,8 +46,16 @@ export class DatePicker extends React.Component<DatePickerProps> {
     this.handleCalendarBlur = this.handleCalendarBlur.bind(this);
   }
 
-  handleInputKeyDown(openHelperInformation: () => void) {
+  handleInputKeyDown(
+    openHelperInformation: () => void,
+    toggleCalendar: (calendarOpened: boolean) => void
+  ) {
     return (event: React.KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        toggleCalendar(false);
+      }
+
       if (event.key === '?') {
         event.preventDefault();
         openHelperInformation();
@@ -91,7 +100,6 @@ export class DatePicker extends React.Component<DatePickerProps> {
       this.props.onDayClick &&
         typeof this.props.onDayClick === 'function' &&
         this.props.onDayClick(day, event);
-      onDayClick(day);
     };
   }
 
@@ -130,6 +138,7 @@ export class DatePicker extends React.Component<DatePickerProps> {
           openHelperInformation,
           closeHelperInformation,
           srMessageId,
+          onIconClick,
           onInputFocus,
           toggleDateFocus,
           onHelperFocus,
@@ -171,19 +180,28 @@ export class DatePicker extends React.Component<DatePickerProps> {
                   showHelperInformation
                 )}
               >
-                <VisuallyHidden id={srMessageId}>
-                  Press the tab key to interact with the calendar and select a
-                  date. Press the question mark key to get the keyboard
-                  shortcuts for changing dates.
-                </VisuallyHidden>
+                <Announce>
+                  {calendarOpened && (
+                    <VisuallyHidden>
+                      Calendar widget is now open. Press the tab key to interact
+                      with the calendar and select a date. Press the question
+                      mark key to get the keyboard shortcuts for changing dates.
+                    </VisuallyHidden>
+                  )}
+                </Announce>
                 <Input
-                  aria-describedby={srMessageId}
-                  icon={<CalendarIcon />}
-                  iconPosition={InputIconPosition.left}
+                  iconOnClick={onIconClick}
+                  iconOnKeyDown={this.handleInputKeyDown(
+                    openHelperInformation,
+                    toggleCalendar
+                  )}
                   id={id}
                   labelText={labelText}
                   onFocus={onInputFocus}
-                  onKeyDown={this.handleInputKeyDown(openHelperInformation)}
+                  onKeyDown={this.handleInputKeyDown(
+                    openHelperInformation,
+                    toggleCalendar
+                  )}
                   placeholder="Select Date"
                   value={inputValue}
                 />
