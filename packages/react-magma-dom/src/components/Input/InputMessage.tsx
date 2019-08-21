@@ -24,6 +24,7 @@ const Message = styled.div<InputMessageProps>`
   display: flex;
   font-size: 13px;
   margin-top: 5px;
+  min-height: 2.5em;
   padding: ${props => (props.inverse && props.isError ? '5px 10px' : '0')};
   text-align: left;
 `;

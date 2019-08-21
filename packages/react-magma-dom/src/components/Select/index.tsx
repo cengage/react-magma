@@ -45,7 +45,8 @@ interface ReactSelectStyles {
 export function getStyles(
   customStyles: ReactSelectStyles = {},
   theme: any,
-  errorMessage?: string
+  errorMessage?: string,
+  inverse?: boolean
 ) {
   return {
     control: (styles, { isFocused, isDisabled }) => ({
@@ -53,21 +54,18 @@ export function getStyles(
       backgroundColor: isDisabled
         ? theme.colors.neutral07
         : theme.colors.neutral08,
-      borderColor: isFocused
-        ? theme.colors.pop02
-        : errorMessage
-        ? theme.colors.danger
-        : theme.colors.neutral04,
+      borderColor: errorMessage ? theme.colors.danger : theme.colors.neutral04,
       borderRadius: '5px',
-      boxShadow: isFocused
-        ? `0 0 0 1px ${theme.colors.pop02}`
-        : errorMessage
-        ? `0 0 0 1px ${theme.colors.danger}`
-        : '0 0 0',
+      boxShadow: errorMessage ? `0 0 0 1px ${theme.colors.neutral08}` : '0 0 0',
       color: theme.colors.neutral02,
       cursor: isDisabled ? 'not-allowed' : 'pointer',
       height: '37px',
-      outline: '0',
+      outline: isFocused
+        ? inverse
+          ? `2px dotted ${theme.colors.neutral08}`
+          : `2px dotted ${theme.colors.pop02}`
+        : '0',
+      outlineOffset: '2px',
       padding: '0 8px 0 0',
 
       '&:hover': {
@@ -236,7 +234,7 @@ export const Select: React.FunctionComponent<SelectProps> = (
                 onMenuOpen={onOpen}
                 options={options}
                 required={required}
-                styles={getStyles(style, theme, errorMessage)}
+                styles={getStyles(style, theme, errorMessage, inverse)}
                 value={value}
               />
             </SelectWrapper>
