@@ -19,8 +19,7 @@ export enum InputIconPosition {
 
 export enum InputSize {
   large = 'large',
-  medium = 'medium', //default
-  small = 'small'
+  medium = 'medium' //default
 }
 
 export enum InputType {
@@ -91,8 +90,6 @@ const StyledInput = styled.input<InputProps>`
     switch (props.inputSize) {
       case 'large':
         return '1.125rem';
-      case 'small':
-        return '.875rem';
       default:
         return '1rem';
     }
@@ -103,9 +100,7 @@ const StyledInput = styled.input<InputProps>`
     }
     switch (props.inputSize) {
       case 'large':
-        return '45px';
-      case 'small':
-        return '29px';
+        return '58px';
       default:
         return '37px';
     }
@@ -159,8 +154,6 @@ function getIconSize(size) {
   switch (size) {
     case 'large':
       return 19;
-    case 'small':
-      return 15;
     default:
       return 17;
   }
@@ -243,7 +236,12 @@ class InputComponent extends React.Component<InputProps> {
               {theme => (
                 <Container style={containerStyle}>
                   {!labelVisuallyHidden && (
-                    <Label inverse={inverse} htmlFor={id} style={labelStyle}>
+                    <Label
+                      inverse={inverse}
+                      htmlFor={id}
+                      size={inputSize ? inputSize : InputSize.medium}
+                      style={labelStyle}
+                    >
                       {labelText}
                     </Label>
                   )}

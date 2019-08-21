@@ -347,26 +347,6 @@ describe('Input', () => {
       expect(svg).toHaveAttribute('height', '17');
     });
 
-    it('small input', () => {
-      const labelText = 'test label';
-      const icon = <CheckIcon />;
-      const { container, getByLabelText } = render(
-        <Input
-          labelText={labelText}
-          inputSize="small"
-          icon={icon}
-          iconPosition="left"
-        />
-      );
-      const input = getByLabelText(labelText);
-      const svg = container.querySelector('svg');
-
-      expect(input).toHaveStyleRule('font-size', '.875rem');
-      expect(input).toHaveStyleRule('height', '29px');
-
-      expect(svg).toHaveAttribute('height', '15');
-    });
-
     it('large input', () => {
       const labelText = 'test label';
       const icon = <CheckIcon />;
@@ -382,7 +362,7 @@ describe('Input', () => {
       const svg = container.querySelector('svg');
 
       expect(input).toHaveStyleRule('font-size', '1.125rem');
-      expect(input).toHaveStyleRule('height', '45px');
+      expect(input).toHaveStyleRule('height', '58px');
 
       expect(svg).toHaveAttribute('height', '19');
     });
