@@ -144,6 +144,103 @@ figure img {
   margin-right: 10px;
 }
 
+.principles-c {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 5%;
+  color: #FFFFFF;
+  text-align: center;
+  margin-bottom: 30px;
+  border-radius: 5px;
+}
+
+.principles-c h3 {
+  font-size: 36px;
+  color: #FFFFFF;
+  margin-top: 10px;
+}
+
+.principles-c p {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.anticipate-container {
+  background: #006298;
+}
+
+.encourage-container {
+  background: #E0004D;
+}
+
+.inspire-container {
+  background: #FA6600;
+}
+
+.cultivate-container {
+  background: #48A200;
+}
+
+.preserve-container {
+  background: #F2A900;
+  color: #00263E;
+}
+
+.preserve-container h3 {
+  color: #00263E;
+}
+
+.discover-container {
+  background: #92278F;
+}
+
+.principles-c blockquote {
+  padding: 20px;
+  margin: 0 0 20px 0;
+  text-align: left;
+  background: rgba(0,0,0,0.35);
+  border-radius: 5px;
+}
+
+.principles-c blockquote p {
+  font-size: 15px;
+  line-height: 22px;
+  margin-bottom: 10px;
+}
+
+.preserve-container blockquote {
+  color: #ffffff;
+}
+
+blockquote footer  {
+  font-style: italic;
+}
+
+.feature-list,
+.feature-list li {
+  margin:  0;
+  padding: 0;
+  list-style: none;
+}
+
+.feature-list {
+  padding: 0 0 0 20px;
+}
+
+.feature-list li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.feature-list li svg {
+  margin-right: 10px;
+}
+
+
+
+
 @media only screen and (max-width: 768px) {
 
   .typo-details-table li {
@@ -172,5 +269,16 @@ figure img {
   .two-col .col {
     width: 100%;
     max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .principles-c h3 {
+    font-size: 28px;
+  }
+
+  .principles-c p {
+    font-size: 16px;
+    line-height: 24px;
   }
 }
