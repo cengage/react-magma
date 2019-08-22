@@ -12,7 +12,7 @@ const IndexPage = () => (
       <Layout>
         <Global
           styles={css`
-            @import url('https://fonts.googleapis.com/css?family=Abel');
+            @import url('https://fonts.googleapis.com/css?family=Abel&display=swap');
             .content {
               background: ${theme.colors.neutral01};
               color: ${theme.colors.neutral08};

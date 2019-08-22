@@ -27,6 +27,7 @@ const MonthContainer = styled.div`
 const Table = styled.table`
   border-collapse: collapse;
   border-spacing: 0;
+  margin-bottom: 38px;
 `;
 
 const Th = styled.th`

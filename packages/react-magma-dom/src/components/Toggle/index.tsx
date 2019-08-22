@@ -62,6 +62,7 @@ const Track = styled.span<{ checked?: boolean; disabled?: boolean }>`
   ${HiddenInput}:focus + label & {
     outline: 2px dotted ${props => props.theme.colors.pop02};
     outline-offset: 3px;
+    transition: outline .1s linear;
   }
 
   &:before { // active state
@@ -197,7 +198,7 @@ export class Toggle extends React.Component<ToggleProps> {
                 <StyledContainer>
                   <HiddenInput
                     {...other}
-                    aria-checked={checked}
+                    aria-checked={!!checked}
                     id={id}
                     data-testid={testId}
                     disabled={disabled}

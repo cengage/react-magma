@@ -74,7 +74,6 @@ interface IconWrapperProps {
 
 const Container = styled.div`
   margin-bottom: 10px;
-  min-height: 7em;
 `;
 
 const InputWrapper = styled.div`
@@ -89,10 +88,12 @@ const StyledInput = styled.input<InputProps>`
   border-color: ${props =>
     props.errorMessage
       ? props.theme.colors.danger
+      : props.inverse
+      ? props.theme.colors.neutral08
       : props.theme.colors.neutral04};
   border-radius: 5px;
   box-shadow: ${props =>
-    props.errorMessage ? `0 0 0 1px ${props.theme.colors.danger}` : '0 0 0'};
+    props.errorMessage ? `0 0 0 1px ${props.theme.colors.neutral08}` : '0 0 0'};
   color: ${props => props.theme.colors.neutral02};
   display: block;
   font-size: ${props => {
@@ -131,9 +132,13 @@ const StyledInput = styled.input<InputProps>`
   }
 
   &:focus {
-    border-color: ${props => props.theme.colors.pop02};
-    box-shadow: 0 0 0 1px ${props => props.theme.colors.pop02};
-    outline: 0;
+    outline: 2px dotted
+      ${props =>
+        props.inverse
+          ? props.theme.colors.neutral08
+          : props.theme.colors.pop02};
+    outline-offset: 2px;
+    transition: outline 0.1s linear;
   }
 
   &[disabled] {
@@ -265,6 +270,7 @@ class InputComponent extends React.Component<InputProps> {
                           ? descriptionId
                           : this.props['aria-describedby']
                       }
+                      aria-invalid={!!errorMessage}
                       aria-label={labelVisuallyHidden ? labelText : null}
                       as={multiline ? 'textarea' : null}
                       id={id}
@@ -272,6 +278,7 @@ class InputComponent extends React.Component<InputProps> {
                       errorMessage={errorMessage}
                       iconPosition={iconPosition}
                       inputSize={inputSize ? inputSize : InputSize.medium}
+                      inverse={inverse}
                       labelText={labelText}
                       multiline={multiline}
                       ref={innerRef}
@@ -334,6 +341,7 @@ class InputComponent extends React.Component<InputProps> {
                     {onHelpLinkClick && (
                       <Tooltip
                         content={HELP_LINK_TEXT}
+                        inverse={inverse}
                         trigger={
                           <Button
                             aria-label={HELP_LINK_TEXT}
@@ -365,16 +373,15 @@ class InputComponent extends React.Component<InputProps> {
                       />
                     )}
                   </InputWrapper>
-
-                  {(errorMessage || helperMessage) && (
-                    <InputMessage
-                      inverse={inverse}
-                      id={descriptionId}
-                      isError={!!errorMessage}
-                    >
-                      {errorMessage ? errorMessage : helperMessage}
-                    </InputMessage>
-                  )}
+                  <InputMessage
+                    inverse={inverse}
+                    id={descriptionId}
+                    isError={!!errorMessage}
+                  >
+                    {(errorMessage || helperMessage) && (
+                      <>{errorMessage ? errorMessage : helperMessage}</>
+                    )}
+                  </InputMessage>
                 </Container>
               )}
             </ThemeContext.Consumer>

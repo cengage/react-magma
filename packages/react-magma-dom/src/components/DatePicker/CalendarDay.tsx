@@ -36,9 +36,7 @@ const CalendarDayInner = styled.span<{
   align-items: center;
   background: ${props =>
     props.isChosen ? magma.colors.foundation01 : magma.colors.neutral08};
-  border: 2px solid;
-  border-color: ${props =>
-    props.isFocused ? magma.colors.pop02 : 'transparent'};
+  border: 2px solid transparent;
   border-radius: 100%;
   color: ${props =>
     props.isChosen ? magma.colors.neutral08 : magma.colors.neutral02};
@@ -46,10 +44,12 @@ const CalendarDayInner = styled.span<{
   height: 35px;
   justify-content: center;
   margin: 2px;
-  outline: 0;
+  outline: ${props =>
+    props.isFocused ? `2px dotted ${magma.colors.pop02}` : '0'};
   overflow: hidden;
+  outline-offset: 0;
   position: relative;
-  transition: background 0.5s ease-in-out 0s;
+  transition: background 0.5s ease-in-out 0s, outline 0.1s linear;
   width: 35px;
 
   &:before {

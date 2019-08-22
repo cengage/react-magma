@@ -604,6 +604,11 @@ pre tt:after {
   border-bottom: 2px solid transparent;
 }
 
+.content-article h1:focus,
+.content-article h2:focus {
+  border-bottom: 2px dotted #FA6600;
+}
+
 .pre-container {
   display: grid;
   max-width: 100%;
@@ -627,8 +632,4 @@ pre tt:after {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-}
-
-.demo-select-container {
-  margin: 0 0 120px;
 }
