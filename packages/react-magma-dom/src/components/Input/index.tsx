@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { InputCore } from 'react-magma-core';
 import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 import { IconProps } from '../Icon/utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 import { Announce } from '../Announce';
-import { Button, ButtonVariant, ButtonType } from '../Button';
+import { Button, ButtonVariant, ButtonType, ButtonSize } from '../Button';
 import { InputMessage } from './InputMessage';
 import { Label } from '../Label';
 import { QuestionCircleIcon } from '../Icon/types/QuestionCircleIcon';
@@ -60,6 +61,7 @@ export interface InputProps
 
 interface IconWrapperProps {
   iconPosition?: InputIconPosition;
+  inputSize?: InputSize;
 }
 
 const Container = styled.div`
@@ -86,31 +88,25 @@ const StyledInput = styled.input<InputProps>`
     props.errorMessage ? `0 0 0 1px ${props.theme.colors.neutral08}` : '0 0 0'};
   color: ${props => props.theme.colors.neutral02};
   display: block;
-  font-size: ${props => {
-    switch (props.inputSize) {
-      case 'large':
-        return '1.125rem';
-      default:
-        return '1rem';
-    }
-  }};
-  height: ${props => {
-    if (props.multiline) {
-      return '4.5em';
-    }
-    switch (props.inputSize) {
-      case 'large':
-        return '58px';
-      default:
-        return '37px';
-    }
-  }};
+  font-size: 1rem;
+  height: ${props => (props.multiline ? '4.5em' : '37px')};
   line-height: 1.25rem;
   padding: 0;
   padding-left: ${props => (props.iconPosition === 'left' ? '35px' : '8px')};
   padding-right: ${props => (props.iconPosition === 'right' ? '35px' : '8px')};
   padding-top: ${props => (props.multiline ? '5px' : '0')};
   width: 100%;
+
+  ${props =>
+    props.inputSize === 'large' &&
+    !props.multiline &&
+    css`
+      font-size: 22px;
+      height: 58px;
+      line-height: 33px;
+      padding-left: ${props.iconPosition === 'left' ? '50px' : '15px'};
+      padding-right: ${props.iconPosition === 'right' ? '50px' : '15px'};
+    `}
 
   &::placeholder {
     color: ${props => props.theme.colors.neutral04};
@@ -129,7 +125,12 @@ const StyledInput = styled.input<InputProps>`
 
   &[disabled] {
     background: ${props => props.theme.colors.neutral07};
+    border-color: ${props => props.theme.colors.neutral05};
+    color: ${props => props.theme.colors.disabledText};
     cursor: not-allowed;
+
+    &::placeholder {
+      color: ${props => props.theme.colors.disabledText};
   }
 `;
 
@@ -140,6 +141,14 @@ const IconWrapper = styled.span<IconWrapperProps>`
   position: absolute;
   margin-top: -9px;
   top: 50%;
+
+  ${props =>
+    props.inputSize === 'large' &&
+    css`
+      left: ${props.iconPosition === 'left' ? '15px' : 'auto'};
+      right: ${props.iconPosition === 'right' ? '15px' : 'auto'};
+      margin-top: -10px;
+    `}
 `;
 
 const PasswordMaskWrapper = styled.span`
@@ -153,7 +162,7 @@ const PasswordMaskWrapper = styled.span`
 function getIconSize(size) {
   switch (size) {
     case 'large':
-      return 19;
+      return 21;
     default:
       return 17;
   }
@@ -239,7 +248,9 @@ class InputComponent extends React.Component<InputProps> {
                     <Label
                       inverse={inverse}
                       htmlFor={id}
-                      size={inputSize ? inputSize : InputSize.medium}
+                      size={
+                        inputSize && !multiline ? inputSize : InputSize.medium
+                      }
                       style={labelStyle}
                     >
                       {labelText}
@@ -280,10 +291,20 @@ class InputComponent extends React.Component<InputProps> {
                       onFocus={this.props.onFocus}
                     />
                     {icon && (
-                      <IconWrapper iconPosition={iconPosition} theme={theme}>
+                      <IconWrapper
+                        iconPosition={iconPosition}
+                        inputSize={
+                          inputSize && !multiline ? inputSize : InputSize.medium
+                        }
+                        theme={theme}
+                      >
                         {React.Children.only(
                           React.cloneElement(icon, {
-                            size: getIconSize(inputSize)
+                            size: getIconSize(
+                              inputSize && !multiline
+                                ? inputSize
+                                : InputSize.medium
+                            )
                           })
                         )}
                       </IconWrapper>
@@ -330,6 +351,11 @@ class InputComponent extends React.Component<InputProps> {
                             icon={<QuestionCircleIcon />}
                             inverse={inverse}
                             onClick={onHelpLinkClick}
+                            size={
+                              inputSize === InputSize.large && !multiline
+                                ? ButtonSize.large
+                                : ButtonSize.medium
+                            }
                             style={{ margin: '0 0 0 7px' }}
                             title={HELP_LINK_TEXT}
                             variant={ButtonVariant.link}

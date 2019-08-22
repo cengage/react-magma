@@ -143,6 +143,22 @@ describe('Input', () => {
     expect(span).toHaveStyleRule('right', '10px');
   });
 
+  it('should render a large input with a right-aligned icon in the correct position', () => {
+    const icon = <CheckIcon />;
+    const { container } = render(
+      <Input icon={icon} iconPosition="right" inputSize="large" />
+    );
+
+    const span = container.querySelector('span');
+    const input = container.querySelector('input');
+
+    expect(span).toHaveStyleRule('left', 'auto');
+    expect(span).toHaveStyleRule('right', '15px');
+
+    expect(input).toHaveStyleRule('padding-right', '50px');
+    expect(input).toHaveStyleRule('padding-left', '15px');
+  });
+
   it('should render an input with a left-aligned icon in the correct position', () => {
     const icon = <CheckIcon />;
     const { container } = render(<Input icon={icon} iconPosition="left" />);
@@ -151,6 +167,22 @@ describe('Input', () => {
 
     expect(span).toHaveStyleRule('left', '10px');
     expect(span).toHaveStyleRule('right', 'auto');
+  });
+
+  it('should render a large input with a left-aligned icon in the correct position', () => {
+    const icon = <CheckIcon />;
+    const { container } = render(
+      <Input icon={icon} iconPosition="left" inputSize="large" />
+    );
+
+    const span = container.querySelector('span');
+    const input = container.querySelector('input');
+
+    expect(span).toHaveStyleRule('left', '15px');
+    expect(span).toHaveStyleRule('right', 'auto');
+
+    expect(input).toHaveStyleRule('padding-left', '50px');
+    expect(input).toHaveStyleRule('padding-right', '15px');
   });
 
   it('should render an input with a value passed through', () => {
@@ -332,22 +364,41 @@ describe('Input', () => {
   });
 
   describe('sizes', () => {
-    it('default input', () => {
+    it('should render a default input with correct styles', () => {
       const labelText = 'test label';
       const icon = <CheckIcon />;
       const { container, getByLabelText } = render(
-        <Input labelText={labelText} icon={icon} iconPosition="left" />
+        <Input
+          labelText={labelText}
+          icon={icon}
+          iconPosition="left"
+          onHelpLinkClick={() => {}}
+        />
       );
+
+      const label = container.querySelector('label');
       const input = getByLabelText(labelText);
+      const iconWrapper = container.querySelector('span');
       const svg = container.querySelector('svg');
+      const helpButton = container.querySelector('button');
+
+      expect(label).toHaveStyleRule('font-size', '13px');
 
       expect(input).toHaveStyleRule('font-size', '1rem');
       expect(input).toHaveStyleRule('height', '37px');
+      expect(input).toHaveStyleRule('padding-left', '35px');
+      expect(input).toHaveStyleRule('padding-right', '8px');
+
+      expect(iconWrapper).toHaveStyleRule('margin-top', '-9px');
+      expect(iconWrapper).toHaveStyleRule('left', '10px');
+      expect(iconWrapper).toHaveStyleRule('right', 'auto');
 
       expect(svg).toHaveAttribute('height', '17');
+
+      expect(helpButton).toHaveStyleRule('height', '37px');
     });
 
-    it('large input', () => {
+    it('should render a large input with correct styles', () => {
       const labelText = 'test label';
       const icon = <CheckIcon />;
       const { container, getByLabelText } = render(
@@ -356,15 +407,62 @@ describe('Input', () => {
           inputSize="large"
           icon={icon}
           iconPosition="left"
+          onHelpLinkClick={() => {}}
         />
       );
+
+      const label = container.querySelector('label');
       const input = getByLabelText(labelText);
+      const iconWrapper = container.querySelector('span');
+      const svg = container.querySelector('svg');
+      const helpButton = container.querySelector('button');
+
+      expect(label).toHaveStyleRule('font-size', '16px');
+
+      expect(input).toHaveStyleRule('font-size', '22px');
+      expect(input).toHaveStyleRule('height', '58px');
+      expect(input).toHaveStyleRule('padding-left', '50px');
+      expect(input).toHaveStyleRule('padding-right', '15px');
+
+      expect(iconWrapper).toHaveStyleRule('margin-top', '-10px');
+      expect(iconWrapper).toHaveStyleRule('left', '15px');
+      expect(iconWrapper).toHaveStyleRule('right', 'auto');
+
+      expect(svg).toHaveAttribute('height', '21');
+
+      expect(helpButton).toHaveStyleRule('height', '44px');
+    });
+
+    it('should render a large input with multline attribue as a medium textarea', () => {
+      const labelText = 'test label';
+      const icon = <CheckIcon />;
+      const { container, getByLabelText } = render(
+        <Input
+          labelText={labelText}
+          inputSize="large"
+          icon={icon}
+          iconPosition="left"
+          multiline
+        />
+      );
+
+      const label = container.querySelector('label');
+      const input = getByLabelText(labelText);
+      const iconWrapper = container.querySelector('span');
       const svg = container.querySelector('svg');
 
-      expect(input).toHaveStyleRule('font-size', '1.125rem');
-      expect(input).toHaveStyleRule('height', '58px');
+      expect(label).toHaveStyleRule('font-size', '13px');
 
-      expect(svg).toHaveAttribute('height', '19');
+      expect(input).toHaveStyleRule('font-size', '1rem');
+      expect(input).toHaveStyleRule('height', '4.5em');
+      expect(input).toHaveStyleRule('padding-left', '35px');
+      expect(input).toHaveStyleRule('padding-right', '8px');
+
+      expect(iconWrapper).toHaveStyleRule('margin-top', '-9px');
+      expect(iconWrapper).toHaveStyleRule('left', '10px');
+      expect(iconWrapper).toHaveStyleRule('right', 'auto');
+
+      expect(svg).toHaveAttribute('height', '17');
     });
   });
 
