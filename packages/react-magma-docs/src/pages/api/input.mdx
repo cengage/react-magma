@@ -131,48 +131,35 @@ To include an icon both the `icon` and `iconPosition` props must be passed in. I
 
 ## Input Sizes
 
-The `inputSize` prop can be used to control the input size. Options are `small`, `medium` and `large`, with `medium` being the default.
+The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default.  Input size does not affect multiline textareas.
 
 ```.jsx
     <div>
       <Input
         iconPosition='right'
-        id='inputSmall'
-        inputSize='small'
-        labelText='Small Input'
-        placeholder='Type in here'
-        icon={<Search2Icon />} />
-
-      <Input
-        iconPosition='right'
-        id='inputMed'
         labelText='Medium Input'
         placeholder='Type in here'
         icon={<Search2Icon />} />
       <Input
         iconPosition='right'
-        id='inputLarge2'
         inputSize='large'
         labelText='Large Input'
         placeholder='Type in here'
         icon={<Search2Icon />} />
       <Input
           errorMessage='Error'
-          id='inputSmallErr'
-          inputSize='small'
-          labelText='Small Input with Error'
-          placeholder='Type in here' />
+          labelText='Medium Input with Error' />
       <Input
           errorMessage='Error'
-          id='inputMedErr'
-          labelText='Medium Input with Error'
-          placeholder='Type in here' />
-      <Input
-          errorMessage='Error'
-          id='inputLargeErr'
           inputSize='large'
-          labelText='Large Input with Error'
-          placeholder='Type in here' />
+          labelText='Large Input with Error' />
+      <Input
+          onHelpLinkClick={()=> {alert('Help link clicked!')}}
+          labelText='Medium Input with Help Link' />
+      <Input
+          onHelpLinkClick={()=> {alert('Help link clicked!')}}
+          inputSize='large'
+          labelText='Large Input with Help Link' />
     </div>
 ```
 
@@ -533,6 +520,14 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       required: false,
       description: 'Text displayed on screen for the "Show Password" button',
       defaultValue: 'Show',
+    },
+    size: {
+      type: {
+        name: 'enum',
+        options: ['inputSize.medium', 'inputSize.large']
+      },
+      description: 'The relative size of the component',
+      defaultValue: 'medium'
     },
     testId: {
       type: {
