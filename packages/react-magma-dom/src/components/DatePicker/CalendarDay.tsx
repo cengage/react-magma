@@ -29,7 +29,7 @@ const CalendarDayCell = styled.td`
   width: 40px;
 `;
 
-const CalendarDayInner = styled.span<{
+const CalendarDayInner = styled.button<{
   isChosen?: boolean;
   isFocused?: boolean;
 }>`
@@ -149,7 +149,6 @@ export class CalendarDay extends React.Component<
                   aria-label={format(day, 'MMMM Do YYYY')}
                   isChosen={sameDateAsChosenDate}
                   isFocused={dayFocusable && sameDateAsFocusedDate}
-                  role="button"
                   onClick={e => {
                     context.onDayClick(day, e);
                   }}

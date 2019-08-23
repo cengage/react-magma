@@ -122,8 +122,6 @@ export class DatePickerCore extends React.Component<
       showHelperInformation
     } = this.state;
 
-    const srMessageId = `${id}_sr`;
-
     return this.props.children({
       ...this.props,
       id,
@@ -132,7 +130,6 @@ export class DatePickerCore extends React.Component<
       focusedDate,
       dateFocused,
       showHelperInformation,
-      srMessageId,
       buildCalendarMonth: this.buildCalendarMonth,
       toggleCalendar: this.toggleCalendar,
       openHelperInformation: this.openHelperInformation,

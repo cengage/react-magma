@@ -109,22 +109,32 @@ display a help link to the right of the input field. The text can be customized 
 
 ## Input with Icon
 
-An `icon` may be included with the input, by passing in the `icon` prop. The `iconPosition` position prop is optional and takes the values `left` and `right`, with `left` being the default.
+An `icon` may be included with the input, by passing in the `icon` prop. An aria-label may be added using the `iconAriaLabel` prop.
 
-TODO:  Input with clickable icon
+Functionality can be added to the icon by using the `iconOnClick` and `iconOnKeyDown` props. All clickable input icons will appear on the right.
+
+The `iconPosition` position prop is optional and takes the values `left` and `right`, with `left` being the default for non-clickable icons.
 
 ```.jsx
     <div>
       <Input
-        labelText='Input with Icon Left'
+        labelText='Input with Icon on Left'
         placeholder='Type in here'
-        icon={<CalendarIcon />} />
+        icon={<EnvelopeOIcon />}
+        type="email" />
 
       <Input
         iconPosition='right'
-        labelText='Input with Icon Right'
+        labelText='Input with Icon on Right'
         placeholder='Type in here'
         icon={<Search2Icon />} />
+
+      <Input
+        labelText='Input with Clickable Icon on Right'
+        iconAriaLabel="Calendar"
+        iconOnClick={()=>{alert('Icon clicked')}}
+        placeholder='Type in here'
+        icon={<CalendarIcon />} />
     </div>
 ```
 
@@ -412,15 +422,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description: 'Aria-label for the help icon',
       defaultValue: "What's this?",
     },
-    hidePasswordMaskButton: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, label text will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
-    },
     hiddenPasswordAnnounceText: {
       type: {
         name: 'string',
@@ -445,12 +446,45 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description: 'Text displayed on screen for the "Hide Password" button',
       defaultValue: 'Hide',
     },
+    hidePasswordMaskButton: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
+    },
     icon: {
       type: {
         name: 'React Element',
       },
       required: false,
       description: 'Icon to display within the component',
+    },
+    iconAriaLabel: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text for the aria-label attribute for an icon, if provided',
+      defaultValue: '',
+    },
+    iconOnClick: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Action that will fire when icon is clicked.',
+      defaultValue: '',
+    },
+    iconOnKeyDown: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Action that will fire when icon is receives keypress.',
+      defaultValue: '',
     },
     iconPosition: {
       type: {
@@ -460,6 +494,15 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       required: false,
       description: 'Position within the component for the icon to appear',
       defaultValue: 'right',
+    },
+    inputSize: {
+      type: {
+        name: 'enum',
+        options: ['InputSize.large', 'InputSize.medium']
+      },
+      required: false,
+      description: 'Relative size of the component',
+      defaultValue: 'medium'
     },
     inputStyle: {
       type: {
@@ -540,6 +583,15 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       required: false,
       description: 'ID used for testing purposes',
       defaultValue: '',
+    },
+    type: {
+      type: {
+        name: 'enum',
+        options: ['InputType.email', 'InputType.number', 'InputType.password', 'InputType.text']
+      },
+      required: false,
+      description: 'The type attribute of the form field',
+      defaultValue: 'text',
     },
     value: {
       type: {

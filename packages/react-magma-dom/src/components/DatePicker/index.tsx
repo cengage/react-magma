@@ -7,7 +7,7 @@ import { Input } from '../Input';
 import { format } from 'date-fns';
 import { magma } from '../../theme/magma';
 import styled from '@emotion/styled';
-// import { CalendarIcon } from '../Icon/types/CalendarIcon';
+import { CalendarIcon } from '../Icon/types/CalendarIcon';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { handleKeyPress } from './utils';
 
@@ -95,11 +95,22 @@ export class DatePicker extends React.Component<DatePickerProps> {
     };
   }
 
-  handleDayClick(onDayClick: (day: Date) => void) {
+  //TODO:  Needs to fire when date is clicked with keyboard
+  //TODO:  Needs to focus back into the input wihtout a custom id
+  handleDayClick(onDayClick: (day: Date) => void, inputId: string) {
     return (day: Date, event: React.SyntheticEvent) => {
       this.props.onDayClick &&
         typeof this.props.onDayClick === 'function' &&
         this.props.onDayClick(day, event);
+      onDayClick(day);
+
+      const inputElement = document.getElementById(inputId);
+
+      console.log(' handleDayClick dominputElement', inputElement);
+
+      if (inputElement) {
+        inputElement.focus();
+      }
     };
   }
 
@@ -137,7 +148,6 @@ export class DatePicker extends React.Component<DatePickerProps> {
           toggleCalendar,
           openHelperInformation,
           closeHelperInformation,
-          srMessageId,
           onIconClick,
           onInputFocus,
           toggleDateFocus,
@@ -169,7 +179,7 @@ export class DatePicker extends React.Component<DatePickerProps> {
                 ),
                 onPrevMonthClick,
                 onNextMonthClick,
-                onDayClick: this.handleDayClick(onDayClick),
+                onDayClick: this.handleDayClick(onDayClick, id),
                 toggleDateFocus,
                 onHelperFocus
               }}
@@ -190,6 +200,8 @@ export class DatePicker extends React.Component<DatePickerProps> {
                   )}
                 </Announce>
                 <Input
+                  icon={<CalendarIcon />}
+                  iconAriaLabel="Calendar"
                   iconOnClick={onIconClick}
                   iconOnKeyDown={this.handleInputKeyDown(
                     openHelperInformation,

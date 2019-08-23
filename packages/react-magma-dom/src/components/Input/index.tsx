@@ -15,7 +15,6 @@ import {
 import { InputMessage } from './InputMessage';
 import { Label } from '../Label';
 import { QuestionCircleIcon } from '../Icon/types/QuestionCircleIcon';
-import { CalendarIcon } from '../Icon/types/CalendarIcon';
 import { Tooltip } from '../Tooltip';
 import { VisuallyHidden } from '../VisuallyHidden';
 
@@ -31,15 +30,15 @@ export enum InputSize {
 }
 
 export enum InputType {
-  text = 'text',
+  email = 'email',
+  number = 'number',
   password = 'password',
-  number = 'number'
+  text = 'text' // default
 }
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   as?: string;
-  value?: string;
   containerStyle?: React.CSSProperties;
   errorMessage?: string;
   helpLinkText?: string;
@@ -49,6 +48,7 @@ export interface InputProps
   hidePasswordButtonText?: string;
   hidePasswordMaskButton?: boolean;
   icon?: React.ReactElement<IconProps>;
+  iconAriaLabel?: string;
   iconOnClick?: () => void;
   iconOnKeyDown?: (event) => void;
   iconPosition?: InputIconPosition;
@@ -66,6 +66,7 @@ export interface InputProps
   showPasswordButtonText?: string;
   testId?: string;
   type?: InputType;
+  value?: string;
 }
 
 interface IconWrapperProps {
@@ -156,6 +157,12 @@ const IconWrapper = styled.span<IconWrapperProps>`
   top: 50%;
 `;
 
+const IconButton = styled(Button)`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+`;
+
 const PasswordMaskWrapper = styled.span`
   left: auto;
   right: 10px;
@@ -206,6 +213,7 @@ class InputComponent extends React.Component<InputProps> {
             hidePasswordButtonAriaLabel,
             hidePasswordButtonText,
             icon,
+            iconAriaLabel,
             iconOnClick,
             iconOnKeyDown,
             inputSize,
@@ -226,7 +234,9 @@ class InputComponent extends React.Component<InputProps> {
           } = this.props;
 
           const iconPosition =
-            icon && !this.props.iconPosition
+            icon && iconOnClick
+              ? InputIconPosition.right
+              : icon && !this.props.iconPosition
               ? InputIconPosition.left
               : this.props.iconPosition;
 
@@ -252,7 +262,6 @@ class InputComponent extends React.Component<InputProps> {
 
           const descriptionId =
             errorMessage || helperMessage ? `${id}__desc` : null;
-
           return (
             <ThemeContext.Consumer>
               {theme => (
@@ -296,8 +305,12 @@ class InputComponent extends React.Component<InputProps> {
                       onChange={this.handleChange(onChange)}
                       onFocus={this.props.onFocus}
                     />
-                    {icon && (
-                      <IconWrapper iconPosition={iconPosition} theme={theme}>
+                    {icon && !iconOnClick && (
+                      <IconWrapper
+                        aria-label={iconAriaLabel}
+                        iconPosition={iconPosition}
+                        theme={theme}
+                      >
                         {React.Children.only(
                           React.cloneElement(icon, {
                             size: getIconSize(inputSize)
@@ -357,18 +370,14 @@ class InputComponent extends React.Component<InputProps> {
                     )}
 
                     {iconOnClick && (
-                      <Button
-                        aria-label="Calendar"
-                        icon={<CalendarIcon />}
+                      <IconButton
+                        aria-label={iconAriaLabel}
+                        icon={icon}
                         onClick={iconOnClick}
                         onKeyDown={iconOnKeyDown}
                         shape={ButtonShape.fill}
                         size={ButtonSize.small}
-                        style={{
-                          position: 'absolute',
-                          bottom: 0,
-                          right: 0
-                        }}
+                        theme={theme}
                         variant={ButtonVariant.link}
                       />
                     )}
