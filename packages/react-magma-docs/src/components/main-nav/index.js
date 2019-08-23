@@ -143,6 +143,15 @@ const MainNav = ({ ...props }) => (
                         Usage
                       </Link>
                     </li>
+                    <li>
+                      <Link
+                        activeStyle={activeStyle}
+                        onClick={props.handleClick}
+                        to="/api-custom-styles"
+                      >
+                        Custom Styles
+                      </Link>
+                    </li>
                   </ul>
                   <h3>Component API</h3>
                   <ul>
