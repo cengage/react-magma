@@ -12,9 +12,10 @@ import { VisuallyHidden } from '../VisuallyHidden';
 import { handleKeyPress } from './utils';
 
 interface DatePickerProps {
-  id?: string;
-  labelText: string;
   defaultDate?: Date;
+  id?: string;
+  inputRef?: React.RefObject<{}>;
+  labelText: string;
   onDayClick?: (day: Date, event: React.SyntheticEvent) => void;
 }
 
@@ -45,6 +46,8 @@ export class DatePicker extends React.Component<DatePickerProps> {
     this.handleDayClick = this.handleDayClick.bind(this);
     this.handleCalendarBlur = this.handleCalendarBlur.bind(this);
   }
+
+  inputRef = React.createRef<any>();
 
   handleInputKeyDown(
     openHelperInformation: () => void,
@@ -95,22 +98,14 @@ export class DatePicker extends React.Component<DatePickerProps> {
     };
   }
 
-  //TODO:  Needs to fire when date is clicked with keyboard
-  //TODO:  Needs to focus back into the input wihtout a custom id
-  handleDayClick(onDayClick: (day: Date) => void, inputId: string) {
+  handleDayClick(onDayClick: (day: Date) => void) {
     return (day: Date, event: React.SyntheticEvent) => {
       this.props.onDayClick &&
         typeof this.props.onDayClick === 'function' &&
         this.props.onDayClick(day, event);
       onDayClick(day);
 
-      const inputElement = document.getElementById(inputId);
-
-      console.log(' handleDayClick dominputElement', inputElement);
-
-      if (inputElement) {
-        inputElement.focus();
-      }
+      this.inputRef.current.focus();
     };
   }
 
@@ -179,7 +174,7 @@ export class DatePicker extends React.Component<DatePickerProps> {
                 ),
                 onPrevMonthClick,
                 onNextMonthClick,
-                onDayClick: this.handleDayClick(onDayClick, id),
+                onDayClick: this.handleDayClick(onDayClick),
                 toggleDateFocus,
                 onHelperFocus
               }}
@@ -208,6 +203,7 @@ export class DatePicker extends React.Component<DatePickerProps> {
                     toggleCalendar
                   )}
                   id={id}
+                  innerRef={this.inputRef}
                   labelText={labelText}
                   onFocus={onInputFocus}
                   onKeyDown={this.handleInputKeyDown(
@@ -217,7 +213,10 @@ export class DatePicker extends React.Component<DatePickerProps> {
                   placeholder="Select Date"
                   value={inputValue}
                 />
-                <DatePickerCalendar id="calendar" opened={calendarOpened}>
+                <DatePickerCalendar
+                  data-testid="calendarContainer"
+                  opened={calendarOpened}
+                >
                   <CalendarMonth />
                 </DatePickerCalendar>
               </DatePickerContainer>

@@ -3,7 +3,6 @@ import { axe } from 'jest-axe';
 import { render, fireEvent } from 'react-testing-library';
 import {
   format,
-  getDate,
   subWeeks,
   subDays,
   startOfWeek,
@@ -37,15 +36,41 @@ describe('Date Picker', () => {
     );
   });
 
-  it('should open the calendar month', () => {
+  it('should open the calendar month when the icon button is clicked', () => {
     const defaultDate = new Date('January 17, 2019');
-    const { getByLabelText, getByText } = render(
+    const { getByLabelText, getByTestId } = render(
       <DatePicker defaultDate={defaultDate} labelText="Date Picker Label" />
     );
 
-    fireEvent.focus(getByLabelText('Date Picker Label'));
+    expect(getByTestId('calendarContainer')).toHaveStyleRule('display', 'none');
 
-    expect(getByText(getDate(defaultDate).toString())).toBeInTheDocument();
+    fireEvent.click(getByLabelText('Calendar'));
+
+    expect(getByTestId('calendarContainer')).toHaveStyleRule(
+      'display',
+      'block'
+    );
+  });
+
+  it('should close the calendar month when the escape key is pressed', () => {
+    const defaultDate = new Date('January 17, 2019');
+    const { getByLabelText, getByTestId } = render(
+      <DatePicker defaultDate={defaultDate} labelText="Date Picker Label" />
+    );
+
+    fireEvent.click(getByLabelText('Calendar'));
+
+    expect(getByTestId('calendarContainer')).toHaveStyleRule(
+      'display',
+      'block'
+    );
+
+    fireEvent.keyDown(getByLabelText('Calendar'), {
+      key: 'Escape',
+      code: 27
+    });
+
+    expect(getByTestId('calendarContainer')).toHaveStyleRule('display', 'none');
   });
 
   it('should open the helper information on ? press', () => {
