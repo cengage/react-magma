@@ -165,6 +165,11 @@ const IconButton = styled(Button)`
   position: absolute;
   bottom: 0;
   right: 0;
+
+  svg {
+    height: 17px;
+    width: 17px;
+  }
 `;
 
 const PasswordMaskWrapper = styled.span`
