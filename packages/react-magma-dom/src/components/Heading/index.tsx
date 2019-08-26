@@ -26,30 +26,36 @@ export const baseHeadingStyles = props => css`
 `;
 
 const StyledH1 = styled.h1`
+  ${baseHeadingStyles};
   font-size: 2.8em;
 `;
 
 const StyledH2 = styled.h2`
+  ${baseHeadingStyles};
   font-size: 2.4em;
 `;
 
 const StyledH3 = styled.h3`
+  ${baseHeadingStyles};
   font-size: 1.867em;
 `;
 
 const StyledH4 = styled.h4`
+  ${baseHeadingStyles};
   font-size: 1.467em;
   font-weight: 600;
   line-height: 1.4;
 `;
 
 const StyledH5 = styled.h5`
+  ${baseHeadingStyles};
   font-size: 1.067em;
   font-weight: 600;
   line-height: 1.4;
 `;
 
 const StyledH6 = styled.h6`
+  ${baseHeadingStyles};
   font-size: 0.867em;
   font-weight: 700;
   line-height: 1.5;
