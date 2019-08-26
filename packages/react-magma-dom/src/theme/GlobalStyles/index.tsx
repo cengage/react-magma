@@ -46,7 +46,6 @@ function getStyles(theme) {
       &:hover,
       &:focus {
         color: ${theme.colors.foundation01};
-        text-decoration: none;
       }
     }
   `;
