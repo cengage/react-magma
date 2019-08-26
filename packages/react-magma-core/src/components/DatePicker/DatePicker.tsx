@@ -40,7 +40,6 @@ export class DatePickerCore extends React.Component<
     this.openHelperInformation = this.openHelperInformation.bind(this);
     this.closeHelperInformation = this.closeHelperInformation.bind(this);
     this.onIconClick = this.onIconClick.bind(this);
-    this.onInputFocus = this.onInputFocus.bind(this);
     this.toggleDateFocus = this.toggleDateFocus.bind(this);
     this.toggleCalendar = this.toggleCalendar.bind(this);
     this.onHelperFocus = this.onHelperFocus.bind(this);
@@ -70,10 +69,6 @@ export class DatePickerCore extends React.Component<
     this.setState({
       showHelperInformation: false
     });
-  }
-
-  onInputFocus() {
-    //this.setState({ calendarOpened: true });
   }
 
   onIconClick() {
@@ -135,7 +130,6 @@ export class DatePickerCore extends React.Component<
       openHelperInformation: this.openHelperInformation,
       closeHelperInformation: this.closeHelperInformation,
       onIconClick: this.onIconClick,
-      onInputFocus: this.onInputFocus,
       toggleDateFocus: this.toggleDateFocus,
       onHelperFocus: this.onHelperFocus,
       onPrevMonthClick: this.onPrevMonthClick,

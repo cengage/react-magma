@@ -144,7 +144,6 @@ export class DatePicker extends React.Component<DatePickerProps> {
           openHelperInformation,
           closeHelperInformation,
           onIconClick,
-          onInputFocus,
           toggleDateFocus,
           onHelperFocus,
           onPrevMonthClick,
@@ -205,7 +204,6 @@ export class DatePicker extends React.Component<DatePickerProps> {
                   id={id}
                   innerRef={this.inputRef}
                   labelText={labelText}
-                  onFocus={onInputFocus}
                   onKeyDown={this.handleInputKeyDown(
                     openHelperInformation,
                     toggleCalendar
