@@ -46,7 +46,7 @@ export class DatePickerCore extends React.Component<
     this.onPrevMonthClick = this.onPrevMonthClick.bind(this);
     this.onNextMonthClick = this.onNextMonthClick.bind(this);
     this.updateFocusedDate = this.updateFocusedDate.bind(this);
-    this.onDayClick = this.onDayClick.bind(this);
+    this.onDateChange = this.onDateChange.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -103,7 +103,7 @@ export class DatePickerCore extends React.Component<
     this.setState({ focusedDate: day });
   }
 
-  onDayClick(day: Date) {
+  onDateChange(day: Date) {
     this.setState({ chosenDate: day, calendarOpened: false });
   }
 
@@ -135,7 +135,7 @@ export class DatePickerCore extends React.Component<
       onPrevMonthClick: this.onPrevMonthClick,
       onNextMonthClick: this.onNextMonthClick,
       updateFocusedDate: this.updateFocusedDate,
-      onDayClick: this.onDayClick
+      onDateChange: this.onDateChange
     });
   }
 }

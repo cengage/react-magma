@@ -14,12 +14,12 @@ export function handleKeyPress(
   prevDate: Date,
   toggleCalendar?: (calendarOpened: boolean) => void,
   openHelperInformation?: () => void,
-  onDayClick?: (day: Date) => void
+  onDateChange?: (day: Date) => void
 ) {
   const { key } = e;
 
   if (key === 'Enter' || key === ' ') {
-    onDayClick(prevDate);
+    onDateChange(prevDate);
   }
 
   switch (key) {

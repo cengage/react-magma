@@ -10,7 +10,7 @@ import { CalendarContext, CalendarContextInterface } from './CalendarContext';
 interface CalendarDayProps {
   day: Date;
   dayFocusable?: boolean;
-  onDayClick?: (day: Date, event: React.SyntheticEvent) => void;
+  onDateChange?: (day: Date, event: React.SyntheticEvent) => void;
 }
 
 interface CalendarDayState {
@@ -150,7 +150,7 @@ export class CalendarDay extends React.Component<
                   isChosen={sameDateAsChosenDate}
                   isFocused={dayFocusable && sameDateAsFocusedDate}
                   onClick={e => {
-                    context.onDayClick(day, e);
+                    context.onDateChange(day, e);
                   }}
                   ref={this.dayRef}
                   tabIndex={sameDateAsFocusedDate ? 0 : -1}

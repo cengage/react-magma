@@ -92,14 +92,14 @@ describe('Date Picker', () => {
   });
 
   it('should handle a day click', () => {
-    const onDayClick = jest.fn();
+    const onDateChange = jest.fn();
     const defaultDate = new Date();
     const labelText = 'Date picker label';
     const { getByText, container } = render(
       <DatePicker
         defaultDate={defaultDate}
         labelText={labelText}
-        onDayClick={onDayClick}
+        onDateChange={onDateChange}
       />
     );
 
@@ -107,7 +107,7 @@ describe('Date Picker', () => {
 
     fireEvent.click(getByText(defaultDate.getDate().toString()));
 
-    expect(onDayClick).toHaveBeenCalled();
+    expect(onDateChange).toHaveBeenCalled();
   });
 
   describe('on key down press', () => {

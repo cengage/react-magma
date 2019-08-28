@@ -14,7 +14,7 @@ describe('Calendar Day', () => {
           dateFocused,
           focusedDate,
           toggleDateFocus,
-          onDayClick,
+          onDateChange,
           chosenDate
         }) => (
           <CalendarContext.Provider
@@ -22,7 +22,7 @@ describe('Calendar Day', () => {
               dateFocused,
               focusedDate,
               toggleDateFocus,
-              onDayClick,
+              onDateChange,
               chosenDate
             }}
           >
@@ -43,7 +43,7 @@ describe('Calendar Day', () => {
           dateFocused,
           focusedDate,
           toggleDateFocus,
-          onDayClick,
+          onDateChange,
           chosenDate
         }) => (
           <CalendarContext.Provider
@@ -51,7 +51,7 @@ describe('Calendar Day', () => {
               dateFocused,
               focusedDate,
               toggleDateFocus,
-              onDayClick,
+              onDateChange,
               chosenDate
             }}
           >
@@ -77,7 +77,7 @@ describe('Calendar Day', () => {
           dateFocused,
           focusedDate,
           toggleDateFocus,
-          onDayClick,
+          onDateChange,
           chosenDate
         }) => (
           <CalendarContext.Provider
@@ -85,7 +85,7 @@ describe('Calendar Day', () => {
               dateFocused,
               focusedDate,
               toggleDateFocus,
-              onDayClick,
+              onDateChange,
               chosenDate
             }}
           >
@@ -108,7 +108,7 @@ describe('Calendar Day', () => {
           dateFocused,
           focusedDate,
           toggleDateFocus,
-          onDayClick,
+          onDateChange,
           chosenDate
         }) => (
           <CalendarContext.Provider
@@ -116,7 +116,7 @@ describe('Calendar Day', () => {
               dateFocused,
               focusedDate,
               toggleDateFocus,
-              onDayClick,
+              onDateChange,
               chosenDate
             }}
           >
@@ -139,7 +139,7 @@ describe('Calendar Day', () => {
           dateFocused,
           focusedDate,
           toggleDateFocus,
-          onDayClick,
+          onDateChange,
           chosenDate
         }) => (
           <CalendarContext.Provider
@@ -147,7 +147,7 @@ describe('Calendar Day', () => {
               dateFocused,
               focusedDate,
               toggleDateFocus,
-              onDayClick,
+              onDateChange,
               chosenDate
             }}
           >

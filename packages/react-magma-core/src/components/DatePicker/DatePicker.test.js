@@ -459,7 +459,7 @@ describe('DatePickerCore', () => {
       const newDate = addDays(defaultDate, 1);
       const { getByTestId } = render(
         <DatePickerCore calendarOpened={true} defaultDate={defaultDate}>
-          {({ calendarOpened, chosenDate, toggleDateFocus, onDayClick }) => {
+          {({ calendarOpened, chosenDate, toggleDateFocus, onDateChange }) => {
             return (
               <>
                 <div
@@ -470,7 +470,7 @@ describe('DatePickerCore', () => {
                   <button
                     data-testid="dayClickButton"
                     onClick={() => {
-                      onDayClick(newDate);
+                      onDateChange(newDate);
                     }}
                   >
                     Click Day

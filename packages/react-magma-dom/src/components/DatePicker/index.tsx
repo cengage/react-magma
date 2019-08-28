@@ -16,7 +16,7 @@ interface DatePickerProps {
   id?: string;
   inputRef?: React.RefObject<{}>;
   labelText: string;
-  onDayClick?: (day: Date, event: React.SyntheticEvent) => void;
+  onDateChange?: (day: Date, event: React.SyntheticEvent) => void;
 }
 
 const DatePickerContainer = styled.div`
@@ -57,6 +57,7 @@ export class DatePicker extends React.Component<DatePickerProps> {
       if (event.key === 'Escape') {
         event.preventDefault();
         toggleCalendar(false);
+        this.inputRef.current.focus();
       }
 
       if (event.key === '?') {
@@ -71,7 +72,7 @@ export class DatePicker extends React.Component<DatePickerProps> {
     focusedDate: Date,
     toggleCalendar: (calendarOpened: boolean) => void,
     openHelperInformation: () => void,
-    onDayClick: (day: Date) => void,
+    onDateChange: (day: Date) => void,
     updateFocusedDate: (day: Date) => void
   ) {
     return (event: React.KeyboardEvent) => {
@@ -81,7 +82,7 @@ export class DatePicker extends React.Component<DatePickerProps> {
           focusedDate,
           toggleCalendar,
           openHelperInformation,
-          onDayClick
+          onDateChange
         );
         if (newChosenDate) {
           updateFocusedDate(newChosenDate);
@@ -89,6 +90,7 @@ export class DatePicker extends React.Component<DatePickerProps> {
       } else {
         if (event.key === 'Escape') {
           toggleCalendar(false);
+          this.inputRef.current.focus();
         }
 
         if (event.key === '?') {
@@ -98,12 +100,12 @@ export class DatePicker extends React.Component<DatePickerProps> {
     };
   }
 
-  handleDayClick(onDayClick: (day: Date) => void) {
+  handleDayClick(onDateChange: (day: Date) => void) {
     return (day: Date, event: React.SyntheticEvent) => {
-      this.props.onDayClick &&
-        typeof this.props.onDayClick === 'function' &&
-        this.props.onDayClick(day, event);
-      onDayClick(day);
+      this.props.onDateChange &&
+        typeof this.props.onDateChange === 'function' &&
+        this.props.onDateChange(day, event);
+      onDateChange(day);
 
       this.inputRef.current.focus();
     };
@@ -149,7 +151,7 @@ export class DatePicker extends React.Component<DatePickerProps> {
           onPrevMonthClick,
           onNextMonthClick,
           updateFocusedDate,
-          onDayClick
+          onDateChange
         }) => {
           const inputValue = chosenDate ? format(chosenDate, 'MM/DD/YYYY') : '';
 
@@ -168,12 +170,12 @@ export class DatePicker extends React.Component<DatePickerProps> {
                   focusedDate,
                   toggleCalendar,
                   openHelperInformation,
-                  onDayClick,
+                  onDateChange,
                   updateFocusedDate
                 ),
                 onPrevMonthClick,
                 onNextMonthClick,
-                onDayClick: this.handleDayClick(onDayClick),
+                onDateChange: this.handleDayClick(onDateChange),
                 toggleDateFocus,
                 onHelperFocus
               }}

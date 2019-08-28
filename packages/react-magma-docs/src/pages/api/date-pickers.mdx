@@ -39,7 +39,7 @@ import { SimplePropsTable } from '../../components/props-table'
         }
       </p>
       <DatePicker
-        onDayClick={(chosenDate) => {
+        onDateChange={(chosenDate) => {
           this.setState(state => ({chosenDate}))
         }} />
       </div>
@@ -73,12 +73,12 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
       required: false,
       description: 'Default selected date value',
     },
-    onDayClick: {
+    onDateChange: {
       type: {
         name: '(day: Date, event: React.SyntheticEvent) => void',
       },
       required: false,
-      description: 'Event that will fire when day is selected',
+      description: 'Event that will fire when day is changed',
     },
   }}
 />
