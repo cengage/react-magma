@@ -35,6 +35,7 @@ export { VisuallyHidden } from './components/VisuallyHidden';
 export { DatePicker } from './components/DatePicker';
 export { Modal } from './components/Modal';
 export { HyperLink } from './components/HyperLink';
+export { TimePicker } from './components/TimePicker';
 
 export { magma } from './theme/magma';
 export { GlobalStyles } from './theme/GlobalStyles';

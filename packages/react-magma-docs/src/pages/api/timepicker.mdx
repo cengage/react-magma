@@ -1,0 +1,28 @@
+---
+title: 'Time Pickers'
+---
+
+import DocsHeading from '../../components/docs-heading'
+import { SimplePropsTable } from '../../components/props-table'
+
+<DocsHeading>Time Pickers</DocsHeading>
+
+## Basic Usage
+
+```.jsx
+        <TimePicker labelText="Time Due" />
+```
+
+## Time Picker Props
+
+<SimplePropsTable
+  props={{
+    labelText: {
+      type: {
+        name: 'string',
+      },
+      required: true,
+      description: 'Text for label',
+    },
+  }}
+/>
