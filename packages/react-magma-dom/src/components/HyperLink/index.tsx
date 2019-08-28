@@ -36,7 +36,6 @@ const linkStyles = props => css`
       color: ${props.inverse
         ? props.theme.colors.neutral07
         : props.theme.colors.foundation01};
-      text-decoration: none;
     }
 
     &:focus {
