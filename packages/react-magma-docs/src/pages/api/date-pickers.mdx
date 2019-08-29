@@ -23,12 +23,13 @@ import { SimplePropsTable } from '../../components/props-table'
     constructor(props) {
       super(props)
       this.state = {
-        chosenDate: 0
+        chosenDate: 0,
+        inputValue: ''
       }
     }
 
     render() {
-      const { chosenDate } = this.state;
+      const { chosenDate, inputValue } = this.state;
       return <div>
       <p>
         <strong>Chosen Date: </strong>
@@ -38,9 +39,16 @@ import { SimplePropsTable } from '../../components/props-table'
           </span>
         }
       </p>
+      <p><strong>Input Value: </strong>{inputValue}</p>
       <DatePicker
+        onInputChange={(event) => {
+          this.setState({inputValue: event.target.value});
+        }}
         onDateChange={(chosenDate) => {
           this.setState(state => ({chosenDate}))
+        }}
+        onInputBlur={(chosenDate) => {
+          console.log('blurred')
         }} />
       </div>
     }

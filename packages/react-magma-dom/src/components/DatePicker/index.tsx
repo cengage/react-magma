@@ -4,7 +4,7 @@ import { CalendarContext } from './CalendarContext';
 import { CalendarMonth } from './CalendarMonth';
 import { Announce } from '../Announce';
 import { Input } from '../Input';
-import { format } from 'date-fns';
+import { format, isValid } from 'date-fns';
 import { magma } from '../../theme/magma';
 import styled from '@emotion/styled';
 import { CalendarIcon } from '../Icon/types/CalendarIcon';
@@ -17,6 +17,8 @@ interface DatePickerProps {
   inputRef?: React.RefObject<{}>;
   labelText: string;
   onDateChange?: (day: Date, event: React.SyntheticEvent) => void;
+  onInputBlur?: (event: React.FocusEvent) => void;
+  onInputChange?: (event: React.ChangeEvent) => void;
 }
 
 const DatePickerContainer = styled.div`
@@ -41,13 +43,46 @@ export class DatePicker extends React.Component<DatePickerProps> {
   constructor(props) {
     super(props);
 
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleInputBlur = this.handleInputBlur.bind(this);
     this.handleInputKeyDown = this.handleInputKeyDown.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.handleDayClick = this.handleDayClick.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleDaySelection = this.handleDaySelection.bind(this);
     this.handleCalendarBlur = this.handleCalendarBlur.bind(this);
   }
 
   inputRef = React.createRef<any>();
+
+  handleInputChange(toggleCalendar: (calendarOpened: boolean) => void) {
+    return event => {
+      toggleCalendar(false);
+
+      this.props.onInputChange &&
+        typeof this.props.onInputChange === 'function' &&
+        this.props.onInputChange(event);
+    };
+  }
+
+  handleInputBlur(
+    onDateChange: (day: Date) => void,
+    updateFocusedDate: (day: Date) => void
+  ) {
+    return (event: React.FocusEvent) => {
+      const { value } = this.inputRef.current;
+      const day = new Date(value);
+      const isValidDateFormat = /^\d{1,2}\/\d{1,2}\/\d{4}$/.test(value);
+      const isValidDate = isValid(day);
+
+      if (isValidDateFormat && isValidDate) {
+        this.handleDateChange(day, event, onDateChange, updateFocusedDate);
+      }
+
+      this.props.onInputBlur &&
+        typeof this.props.onInputBlur === 'function' &&
+        this.props.onInputBlur(event);
+    };
+  }
 
   handleInputKeyDown(
     openHelperInformation: () => void,
@@ -100,12 +135,25 @@ export class DatePicker extends React.Component<DatePickerProps> {
     };
   }
 
-  handleDayClick(onDateChange: (day: Date) => void) {
+  handleDateChange(
+    day: Date,
+    event: React.SyntheticEvent | React.ChangeEvent,
+    onDateChange: (day: Date) => void,
+    updateFocusedDate?: (day: Date) => void
+  ) {
+    this.props.onDateChange &&
+      typeof this.props.onDateChange === 'function' &&
+      this.props.onDateChange(day, event);
+    onDateChange(day);
+
+    updateFocusedDate &&
+      typeof updateFocusedDate === 'function' &&
+      updateFocusedDate(day);
+  }
+
+  handleDaySelection(onDateChange: (day: Date) => void) {
     return (day: Date, event: React.SyntheticEvent) => {
-      this.props.onDateChange &&
-        typeof this.props.onDateChange === 'function' &&
-        this.props.onDateChange(day, event);
-      onDateChange(day);
+      this.handleDateChange(day, event, onDateChange);
 
       this.inputRef.current.focus();
     };
@@ -175,7 +223,7 @@ export class DatePicker extends React.Component<DatePickerProps> {
                 ),
                 onPrevMonthClick,
                 onNextMonthClick,
-                onDateChange: this.handleDayClick(onDateChange),
+                onDateChange: this.handleDaySelection(onDateChange),
                 toggleDateFocus,
                 onHelperFocus
               }}
@@ -204,8 +252,10 @@ export class DatePicker extends React.Component<DatePickerProps> {
                     toggleCalendar
                   )}
                   id={id}
-                  innerRef={this.inputRef}
+                  ref={this.inputRef}
                   labelText={labelText}
+                  onChange={this.handleInputChange(toggleCalendar)}
+                  onBlur={this.handleInputBlur(onDateChange, updateFocusedDate)}
                   onKeyDown={this.handleInputKeyDown(
                     openHelperInformation,
                     toggleCalendar

@@ -20,7 +20,6 @@ interface CalendarDayState {
 const CalendarDayCell = styled.td`
   border: 1px solid ${magma.colors.neutral06};
   color: ${magma.colors.neutral02};
-  cursor: pointer;
   font-size: 15px;
   height: 40px;
   padding: 0;
@@ -40,6 +39,7 @@ const CalendarDayInner = styled.button<{
   border-radius: 100%;
   color: ${props =>
     props.isChosen ? magma.colors.neutral08 : magma.colors.neutral02};
+  cursor: pointer;
   display: flex;
   height: 35px;
   justify-content: center;
