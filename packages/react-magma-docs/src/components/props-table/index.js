@@ -38,14 +38,26 @@ export const SimplePropsTable = ({ props }) => {
                 <tr key={name}>
                   <td>
                     {name}
-                    {prop.required ? <span className="required">required</span> :''}
+                    {prop.required ? (
+                      <span className="required">required</span>
+                    ) : (
+                      ''
+                    )}
                   </td>
                   <td>
-                    {prop.type.name === 'enum' ? 'enum, one of:' : prop.type.name}
-                    <br/>
-                    {prop.type.options && Object.keys(prop.type.options).map(i => {
-                      return <><code>{prop.type.options[i]}</code><br/></>
-                    })}
+                    {prop.type.name === 'enum'
+                      ? 'enum, one of:'
+                      : prop.type.name}
+                    <br />
+                    {prop.type.options &&
+                      Object.keys(prop.type.options).map(i => {
+                        return (
+                          <div key={i}>
+                            <code>{prop.type.options[i]}</code>
+                            <br />
+                          </div>
+                        )
+                      })}
                   </td>
                   {!prop.defaultValue ? (
                     <td>
