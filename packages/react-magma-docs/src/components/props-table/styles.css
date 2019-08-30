@@ -41,12 +41,14 @@
 }
 
 .props-table tbody > tr:nth-child(odd) {
-  background: #F7F7F7;
+  background: #f7f7f7;
+}
+
+.props-table .prop-name {
+  align-items: center;
+  display: flex;
 }
 
 .props-table .required {
-  display: block;
-  font-size: .9em;
-  font-weight: bold;
-  padding-left: 5px;
+  padding-left: 10px;
 }
