@@ -2,6 +2,8 @@
 title: 'Hyper Link'
 ---
 
+import { ScopeableLayout } from '../../components/layout'
+import { HyperLink } from 'react-magma-dom'
 import { Link } from 'gatsby'
 import { Button } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
@@ -171,3 +173,7 @@ Inverse is an optional boolean prop, that may be passed in when the hyper link i
     },
   }}
 />
+
+export default props => (
+  <ScopeableLayout {...props} components={{ HyperLink }} />
+)

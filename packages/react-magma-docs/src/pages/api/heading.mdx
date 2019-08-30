@@ -2,6 +2,8 @@
 title: 'Headings'
 ---
 
+import { ScopeableLayout } from '../../components/layout'
+import { Heading, Button } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { SimplePropsTable } from '../../components/props-table'
 
@@ -70,16 +72,17 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
       },
       required: true,
       description: 'The content of the component',
-    }, 
+    },
     level: {
       type: {
         name: 'number',
       },
       required: true,
-      description: 'Number to indicate which level heading will render (e.g. h1, h2 etc.)',
+      description:
+        'Number to indicate which level heading will render (e.g. h1, h2 etc.)',
       defaultValue: '',
     },
-     testId: {
+    testId: {
       type: {
         name: 'string',
       },
@@ -89,3 +92,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
     },
   }}
 />
+
+export default props => (
+  <ScopeableLayout {...props} components={{ Heading, Button }} />
+)

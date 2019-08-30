@@ -2,6 +2,15 @@
 title: 'Icon Buttons'
 ---
 
+import { ScopeableLayout } from '../../components/layout'
+import {
+  Button,
+  AlertIcon,
+  BellIcon,
+  Cog2Icon,
+  CheckIcon,
+  InfoIcon,
+} from 'react-magma-dom'
 import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
 
@@ -238,10 +247,10 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
     },
     icon: {
       type: {
-        name: 'React Element'
+        name: 'React Element',
       },
       required: false,
-      description: 'Icon to display within the component'
+      description: 'Icon to display within the component',
     },
     iconPosition: {
       type: {
@@ -332,3 +341,10 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
     },
   }}
 />
+
+export default props => (
+  <ScopeableLayout
+    {...props}
+    components={{ Button, AlertIcon, BellIcon, Cog2Icon, CheckIcon, InfoIcon }}
+  />
+)

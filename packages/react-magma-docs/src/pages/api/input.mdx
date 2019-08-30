@@ -2,6 +2,8 @@
 title: 'Inputs'
 ---
 
+import { ScopeableLayout } from '../../components/layout'
+import { Input, Button, CalendarIcon, Search2Icon } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { SimplePropsTable } from '../../components/props-table'
 
@@ -131,7 +133,7 @@ To include an icon both the `icon` and `iconPosition` props must be passed in. I
 
 ## Input Sizes
 
-The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default.  Input size does not affect multiline textareas.
+The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default. Input size does not affect multiline textareas.
 
 ```.jsx
     <div>
@@ -524,10 +526,10 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
     size: {
       type: {
         name: 'enum',
-        options: ['inputSize.medium', 'inputSize.large']
+        options: ['inputSize.medium', 'inputSize.large'],
       },
       description: 'The relative size of the component',
-      defaultValue: 'medium'
+      defaultValue: 'medium',
     },
     testId: {
       type: {
@@ -547,3 +549,10 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
     },
   }}
 />
+
+export default props => (
+  <ScopeableLayout
+    {...props}
+    components={{ Input, Button, CalendarIcon, Search2Icon }}
+  />
+)

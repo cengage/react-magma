@@ -2,6 +2,8 @@
 title: 'Announce'
 ---
 
+import { ScopeableLayout } from '../../components/layout'
+import { Announce, Button } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 
 # Announce
@@ -111,3 +113,7 @@ possibly interrupting the current task. Using `off` will silence these updates, 
     },
   }}
 />
+
+export default props => (
+  <ScopeableLayout {...props} components={{ Announce, Button }} />
+)

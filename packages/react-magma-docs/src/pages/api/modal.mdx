@@ -2,6 +2,8 @@
 title: 'Modals'
 ---
 
+import { ScopeableLayout } from '../../components/layout'
+import { Modal, Button } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
@@ -193,3 +195,7 @@ Sizes for modals include `small`, `medium`, and `large`, with `medium` being the
     },
   }}
 />
+
+export default props => (
+  <ScopeableLayout {...props} components={{ Modal, Button }} />
+)

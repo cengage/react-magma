@@ -1,13 +1,19 @@
 ---
-title: "Theming"
+title: 'Theming'
 ---
+
+import { ScopeableLayout } from '../../components/layout'
+import { Select, ThemeContext, magma } from 'react-magma-dom'
+import DemoComponent from '../../components/demo-component'
+import { amgam } from '../../themes/amgam.ts'
+import { amgamDark } from '../../themes/amgamDark.ts'
 
 # Theming
 
 ## Using Themes
 
-By default, all components in the React Magma library use the Magma theme.  However, you can pass in an alternative theme using the `<ThemeContext.Provider>`,
-and passing in your custom theme as the `value` property.  Any descendants of the context provider will receive the theme that is passed in.
+By default, all components in the React Magma library use the Magma theme. However, you can pass in an alternative theme using the `<ThemeContext.Provider>`,
+and passing in your custom theme as the `value` property. Any descendants of the context provider will receive the theme that is passed in.
 
 Use the dropdown to change theme for the demo component.
 
@@ -54,3 +60,17 @@ Use the dropdown to change theme for the demo component.
     }
   }
 ```
+
+export default props => (
+  <ScopeableLayout
+    {...props}
+    components={{
+      Select,
+      ThemeContext,
+      DemoComponent,
+      magma,
+      amgam,
+      amgamDark,
+    }}
+  />
+)
