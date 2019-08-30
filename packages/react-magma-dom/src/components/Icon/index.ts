@@ -16,6 +16,7 @@ import { ArrowUp2Icon } from './types/ArrowUp2Icon';
 import { ArrowUp3Icon } from './types/ArrowUp3Icon';
 import { ArticleIcon } from './types/ArticleIcon';
 import { AssignIcon } from './types/AssignIcon';
+import { AsteriskIcon } from './types/AsteriskIcon';
 import { AttachmentIcon } from './types/AttachmentIcon';
 import { BackwardIcon } from './types/BackwardIcon';
 import { Backward2Icon } from './types/Backward2Icon';
@@ -262,6 +263,7 @@ export const ICONS: IconsCollection = {
   ArrowUp3Icon,
   ArticleIcon,
   AssignIcon,
+  AsteriskIcon,
   AttachmentIcon,
   BackwardIcon,
   Backward2Icon,
