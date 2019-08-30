@@ -47,9 +47,8 @@
 .props-table .prop-name {
   align-items: center;
   display: flex;
-  justify-content: space-between;
 }
 
 .props-table .required {
-  padding-left: 5px;
+  padding-left: 10px;
 }
