@@ -1,15 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { MDXProvider } from '@mdx-js/tag'
-import { Location } from '@reach/router'
-import { Transition, config } from 'react-spring'
 import { SkipLinkContent } from 'react-magma-dom'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import { convertTextToId } from '../utils'
 import './app.css'
 import './layout.css'
 import './syntax.css'
-import LayoutComponent from './layout-comoponent'
+import LayoutComponent from './layout-component'
 
 const PreComponent = ({ className, components, ...props }) => {
   const hideCode = props.children.props.props.hideCode
@@ -61,23 +59,10 @@ const Layout = ({ children }) => (
         h3: LinkHeading,
       }}
     >
-      <Location>
-        {({ location }) => (
-          <Transition
-            config={config.slow}
-            keys={location.pathname}
-            from={{ opacity: 0 }}
-            enter={{ opacity: 1 }}
-            leave={{ opacity: 0 }}
-          >
-            {() => style => (
-              <article className="content-article" style={style}>
-                <SkipLinkContent>{children}</SkipLinkContent>
-              </article>
-            )}
-          </Transition>
-        )}
-      </Location>
+      <article className="content-article">
+        <SkipLinkContent>{children}</SkipLinkContent>
+      </article>
+      )}
     </MDXProvider>
   </LayoutComponent>
 )
@@ -92,23 +77,9 @@ export const ScopeableLayout = ({ children, components, ...props }) => (
         h3: LinkHeading,
       }}
     >
-      <Location>
-        {({ location }) => (
-          <Transition
-            config={config.slow}
-            keys={location.pathname}
-            from={{ opacity: 0 }}
-            enter={{ opacity: 1 }}
-            leave={{ opacity: 0 }}
-          >
-            {() => style => (
-              <article className="content-article" style={style}>
-                <SkipLinkContent>{children}</SkipLinkContent>
-              </article>
-            )}
-          </Transition>
-        )}
-      </Location>
+      <article className="content-article">
+        <SkipLinkContent>{children}</SkipLinkContent>
+      </article>
     </MDXProvider>
   </LayoutComponent>
 )
