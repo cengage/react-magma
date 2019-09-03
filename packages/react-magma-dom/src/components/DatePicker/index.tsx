@@ -5,7 +5,7 @@ import { CalendarMonth } from './CalendarMonth';
 import { Announce } from '../Announce';
 import { Input } from '../Input';
 import { format, isValid } from 'date-fns';
-import { magma } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
 import { CalendarIcon } from '../Icon/types/CalendarIcon';
 import { VisuallyHidden } from '../VisuallyHidden';
@@ -27,7 +27,7 @@ const DatePickerContainer = styled.div`
 `;
 
 const DatePickerCalendar = styled.div<{ opened: boolean }>`
-  border: 1px solid ${magma.colors.neutral06};
+  border: 1px solid ${props => props.theme.colors.neutral06};
   border-radius: 3px;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.15);
   display: ${props => (props.opened ? 'block' : 'none')};
@@ -267,12 +267,17 @@ export class DatePicker extends React.Component<DatePickerProps> {
                   placeholder={placeholderText ? placeholderText : dateFormat}
                   value={inputValue}
                 />
-                <DatePickerCalendar
-                  data-testid="calendarContainer"
-                  opened={calendarOpened}
-                >
-                  <CalendarMonth />
-                </DatePickerCalendar>
+                <ThemeContext.Consumer>
+                  {theme => (
+                    <DatePickerCalendar
+                      data-testid="calendarContainer"
+                      opened={calendarOpened}
+                      theme={theme}
+                    >
+                      <CalendarMonth />
+                    </DatePickerCalendar>
+                  )}
+                </ThemeContext.Consumer>
               </DatePickerContainer>
             </CalendarContext.Provider>
           );
