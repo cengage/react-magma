@@ -44,8 +44,6 @@ const CalendarDayInner = styled.button<{
   height: 35px;
   justify-content: center;
   margin: 2px;
-  outline: ${props =>
-    props.isFocused ? `2px dotted ${magma.colors.pop02}` : '0'};
   overflow: hidden;
   outline-offset: 0;
   position: relative;
@@ -68,6 +66,10 @@ const CalendarDayInner = styled.button<{
     &:before {
       opacity: 0.1;
     }
+  }
+
+  &:focus {
+    outline: 2px dotted ${magma.colors.pop02};
   }
 `;
 
