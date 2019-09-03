@@ -453,6 +453,7 @@ describe('Date Picker', () => {
       });
 
       expect(container.querySelector('table')).not.toBeVisible();
+      expect(document.activeElement).toBe(container.querySelector('input'));
     });
 
     it('?', () => {

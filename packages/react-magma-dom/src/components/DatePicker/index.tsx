@@ -117,13 +117,15 @@ export class DatePicker extends React.Component<DatePickerProps> {
           focusedDate,
           toggleCalendar,
           openHelperInformation,
-          onDateChange
+          onDateChange,
+          this.inputRef
         );
         if (newChosenDate) {
           updateFocusedDate(newChosenDate);
         }
       } else {
         if (event.key === 'Escape') {
+          console.log('we are here');
           toggleCalendar(false);
           this.inputRef.current.focus();
         }
