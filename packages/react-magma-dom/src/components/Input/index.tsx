@@ -120,7 +120,6 @@ const StyledInput = styled.input<InputProps>`
           ? props.theme.colors.neutral08
           : props.theme.colors.pop02};
     outline-offset: 2px;
-    transition: outline 0.1s linear;
   }
 
   &[disabled] {

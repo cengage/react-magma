@@ -62,7 +62,6 @@ const Track = styled.span<{ checked?: boolean; disabled?: boolean }>`
   ${HiddenInput}:focus + label & {
     outline: 2px dotted ${props => props.theme.colors.pop02};
     outline-offset: 3px;
-    transition: outline .1s linear;
   }
 
   &:before { // active state

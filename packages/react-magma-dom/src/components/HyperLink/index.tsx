@@ -42,7 +42,6 @@ const linkStyles = props => css`
       outline: 2px dotted
         ${props.inverse ? props.theme.neutral08 : props.theme.colors.pop02};
       outline-offset: 3px;
-      transition: outline 0.1s linear;
     }
   }
 `;
