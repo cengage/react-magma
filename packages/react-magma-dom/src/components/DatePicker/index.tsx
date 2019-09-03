@@ -248,8 +248,8 @@ export class DatePicker extends React.Component<DatePickerProps> {
                 <Input
                   icon={<CalendarIcon />}
                   iconAriaLabel="Calendar"
-                  iconOnClick={onIconClick}
-                  iconOnKeyDown={this.handleInputKeyDown(
+                  onIconClick={onIconClick}
+                  onIconKeyDown={this.handleInputKeyDown(
                     openHelperInformation,
                     toggleCalendar
                   )}

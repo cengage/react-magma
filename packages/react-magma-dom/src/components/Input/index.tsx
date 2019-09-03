@@ -49,8 +49,8 @@ export interface InputProps
   hidePasswordMaskButton?: boolean;
   icon?: React.ReactElement<IconProps>;
   iconAriaLabel?: string;
-  iconOnClick?: () => void;
-  iconOnKeyDown?: (event) => void;
+  onIconClick?: () => void;
+  onIconKeyDown?: (event) => void;
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
   inputStyle?: React.CSSProperties;
@@ -221,8 +221,8 @@ class InputComponent extends React.Component<InputProps> {
             hidePasswordButtonText,
             icon,
             iconAriaLabel,
-            iconOnClick,
-            iconOnKeyDown,
+            onIconClick,
+            onIconKeyDown,
             inputSize,
             inputStyle,
             inverse,
@@ -241,7 +241,7 @@ class InputComponent extends React.Component<InputProps> {
           } = this.props;
 
           const iconPosition =
-            icon && iconOnClick
+            icon && onIconClick
               ? InputIconPosition.right
               : icon && !this.props.iconPosition
               ? InputIconPosition.left
@@ -321,7 +321,7 @@ class InputComponent extends React.Component<InputProps> {
                       onChange={this.handleChange(onChange)}
                       onFocus={this.props.onFocus}
                     />
-                    {icon && !iconOnClick && (
+                    {icon && !onIconClick && (
                       <IconWrapper
                         aria-label={iconAriaLabel}
                         iconPosition={iconPosition}
@@ -397,12 +397,12 @@ class InputComponent extends React.Component<InputProps> {
                       />
                     )}
 
-                    {iconOnClick && (
+                    {onIconClick && (
                       <IconButton
                         aria-label={iconAriaLabel}
                         icon={icon}
-                        onClick={iconOnClick}
-                        onKeyDown={iconOnKeyDown}
+                        onClick={onIconClick}
+                        onKeyDown={onIconKeyDown}
                         shape={ButtonShape.fill}
                         size={ButtonSize.small}
                         theme={theme}

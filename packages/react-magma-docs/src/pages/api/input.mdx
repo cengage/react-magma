@@ -111,7 +111,7 @@ display a help link to the right of the input field. The text can be customized 
 
 An `icon` may be included with the input, by passing in the `icon` prop. An aria-label may be added using the `iconAriaLabel` prop.
 
-Functionality can be added to the icon by using the `iconOnClick` and `iconOnKeyDown` props. All clickable input icons will appear on the right.
+Functionality can be added to the icon by using the `onIconClick` and `onIconKeyDown` props. All clickable input icons will appear on the right.
 
 The `iconPosition` position prop is optional and takes the values `left` and `right`, with `left` being the default for non-clickable icons.
 
@@ -132,7 +132,7 @@ The `iconPosition` position prop is optional and takes the values `left` and `ri
       <Input
         labelText='Input with Clickable Icon on Right'
         iconAriaLabel="Calendar"
-        iconOnClick={()=>{alert('Icon clicked')}}
+        onIconClick={()=>{alert('Icon clicked')}}
         placeholder='Type in here'
         icon={<CalendarIcon />} />
     </div>
@@ -457,7 +457,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description: 'Text for the aria-label attribute for an icon, if provided',
       defaultValue: '',
     },
-    iconOnClick: {
+    onIconClick: {
       type: {
         name: 'function',
       },
@@ -465,7 +465,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description: 'Action that will fire when icon is clicked.',
       defaultValue: '',
     },
-    iconOnKeyDown: {
+    onIconKeyDown: {
       type: {
         name: 'function',
       },
