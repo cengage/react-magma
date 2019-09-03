@@ -22,6 +22,10 @@ describe('Date Picker', () => {
     );
 
     expect(getByLabelText('Date Picker Label')).not.toBeNull();
+    expect(getByLabelText('Date Picker Label')).toHaveAttribute(
+      'placeholder',
+      'MM/DD/YYYY'
+    );
   });
 
   it('should render with a default date', () => {
@@ -33,6 +37,21 @@ describe('Date Picker', () => {
     expect(getByLabelText('Date Picker Label')).toHaveAttribute(
       'value',
       format(defaultDate, 'MM/DD/YYYY')
+    );
+  });
+
+  it('should render custom placeholder text', () => {
+    const customPlaceholder = 'Custom text';
+    const { getByLabelText } = render(
+      <DatePicker
+        placeholderText={customPlaceholder}
+        labelText="Date Picker Label"
+      />
+    );
+
+    expect(getByLabelText('Date Picker Label')).toHaveAttribute(
+      'placeholder',
+      customPlaceholder
     );
   });
 

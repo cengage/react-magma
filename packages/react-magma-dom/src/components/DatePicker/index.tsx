@@ -16,6 +16,7 @@ interface DatePickerProps {
   id?: string;
   inputRef?: React.RefObject<{}>;
   labelText: string;
+  placeholderText?: string;
   onDateChange?: (day: Date, event: React.SyntheticEvent) => void;
   onInputBlur?: (event: React.FocusEvent) => void;
   onInputChange?: (event: React.ChangeEvent) => void;
@@ -179,7 +180,7 @@ export class DatePicker extends React.Component<DatePickerProps> {
   }
 
   render() {
-    const { defaultDate, id, labelText } = this.props;
+    const { defaultDate, id, labelText, placeholderText } = this.props;
 
     return (
       <DatePickerCore id={id} defaultDate={defaultDate}>
@@ -201,7 +202,8 @@ export class DatePicker extends React.Component<DatePickerProps> {
           updateFocusedDate,
           onDateChange
         }) => {
-          const inputValue = chosenDate ? format(chosenDate, 'MM/DD/YYYY') : '';
+          const dateFormat = 'MM/DD/YYYY';
+          const inputValue = chosenDate ? format(chosenDate, dateFormat) : '';
 
           return (
             <CalendarContext.Provider
@@ -260,7 +262,7 @@ export class DatePicker extends React.Component<DatePickerProps> {
                     openHelperInformation,
                     toggleCalendar
                   )}
-                  placeholder="Select Date"
+                  placeholder={placeholderText ? placeholderText : dateFormat}
                   value={inputValue}
                 />
                 <DatePickerCalendar

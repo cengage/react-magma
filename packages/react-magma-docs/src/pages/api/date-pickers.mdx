@@ -16,6 +16,21 @@ import { SimplePropsTable } from '../../components/props-table'
     <DatePicker labelText="Date" />
 ```
 
+## Default Date
+By default, no date value is selected.  You can add a default date, by using the `defaultDate` prop.
+
+```.jsx
+    <DatePicker defaultDate='07/23/2019' labelText="Date" />
+```
+
+## Placeholder Text
+By default, the placeholder text of the input is 'MM/DD/YYYY'.  You can override this by using the `placeholderText` prop.
+Note: the expected date format should appear somewhere in either the labelText or the placeholderText.
+
+```.jsx
+    <DatePicker placeholderText='Your birthday (format MM/DD/YYYY)' labelText="Birthday" />
+```
+
 ## Click Events
 
 ```.jsx
@@ -67,13 +82,6 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
 
 <SimplePropsTable
   props={{
-    labelText: {
-      type: {
-        name: 'string',
-      },
-      required: true,
-      description: 'Text for label',
-    },
     defaultDate: {
       type: {
         name: 'Date',
@@ -81,12 +89,27 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
       required: false,
       description: 'Default selected date value',
     },
+    labelText: {
+      type: {
+        name: 'string',
+      },
+      required: true,
+      description: 'Text for label',
+    },
     onDateChange: {
       type: {
         name: '(day: Date, event: React.SyntheticEvent) => void',
       },
       required: false,
       description: 'Event that will fire when day is changed',
+    },
+    placeholderText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text for input placeholder',
+      defaultValue: 'MM/DD/YYYY'
     },
   }}
 />
