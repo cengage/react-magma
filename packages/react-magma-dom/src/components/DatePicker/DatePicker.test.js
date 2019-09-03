@@ -36,6 +36,55 @@ describe('Date Picker', () => {
     );
   });
 
+  it('should watch for input change', () => {
+    const onInputChange = jest.fn();
+    const labelText = 'Date Picker Label';
+    const { getByLabelText } = render(
+      <DatePicker labelText={labelText} onInputChange={onInputChange} />
+    );
+
+    fireEvent.change(getByLabelText(labelText), {
+      target: { value: 'new value' }
+    });
+
+    expect(onInputChange).toHaveBeenCalled();
+  });
+
+  it('should call passed in handle blur function', () => {
+    const onInputBlur = jest.fn();
+    const labelText = 'Date Picker Label';
+    const { getByLabelText } = render(
+      <DatePicker labelText={labelText} onInputBlur={onInputBlur} />
+    );
+
+    getByLabelText(labelText).focus();
+
+    getByLabelText('Calendar').focus();
+
+    expect(onInputBlur).toHaveBeenCalled();
+  });
+
+  it('should change the focused date on blur if the typed in date is a valid date', () => {
+    const labelText = 'Date Picker Label';
+    const { getByLabelText, getByText } = render(
+      <DatePicker labelText={labelText} />
+    );
+
+    getByLabelText(labelText).focus();
+
+    fireEvent.change(getByLabelText(labelText), {
+      target: { value: '1/1/1991' }
+    });
+
+    getByLabelText('Calendar').focus();
+
+    fireEvent.click(getByLabelText('Calendar'));
+
+    expect(
+      getByText(new Date('1/1/1991').getDate().toString())
+    ).not.toHaveStyleRule('border-color', 'transparent');
+  });
+
   it('should open the calendar month when the icon button is clicked', () => {
     const defaultDate = new Date('January 17, 2019');
     const { getByLabelText, getByTestId } = render(
@@ -50,6 +99,25 @@ describe('Date Picker', () => {
       'display',
       'block'
     );
+  });
+
+  it('should close the calendar when there is an input change', () => {
+    const { getByLabelText, getByTestId } = render(
+      <DatePicker labelText="Date Picker Label" />
+    );
+
+    fireEvent.click(getByLabelText('Calendar'));
+
+    expect(getByTestId('calendarContainer')).not.toHaveStyleRule(
+      'display',
+      'none'
+    );
+
+    fireEvent.change(getByLabelText('Date Picker Label'), {
+      target: { value: '12' }
+    });
+
+    expect(getByTestId('calendarContainer')).toHaveStyleRule('display', 'none');
   });
 
   it('should close the calendar month when the escape key is pressed', () => {
