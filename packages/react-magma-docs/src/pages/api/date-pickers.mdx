@@ -16,19 +16,35 @@ import { SimplePropsTable } from '../../components/props-table'
     <DatePicker labelText="Date" />
 ```
 
-## Click Events
+## Default Date
+By default, no date value is selected.  You can add a default date, by using the `defaultDate` prop.
+
+```.jsx
+    <DatePicker defaultDate='07/23/2019' labelText="Date" />
+```
+
+## Placeholder Text
+By default, the placeholder text of the input is 'MM/DD/YYYY'.  You can override this by using the `placeholderText` prop.
+Note: the expected date format should appear somewhere in either the labelText or the placeholderText.
+
+```.jsx
+    <DatePicker placeholderText='Your birthday (format MM/DD/YYYY)' labelText="Birthday" />
+```
+
+## Date Change Event
 
 ```.jsx
   class Example extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
-        chosenDate: 0
+        chosenDate: 0,
+        inputValue: ''
       }
     }
 
     render() {
-      const { chosenDate } = this.state;
+      const { chosenDate, inputValue } = this.state;
       return <div>
       <p>
         <strong>Chosen Date: </strong>
@@ -38,9 +54,16 @@ import { SimplePropsTable } from '../../components/props-table'
           </span>
         }
       </p>
+      <p><strong>Input Value: </strong>{inputValue}</p>
       <DatePicker
-        onDayClick={(chosenDate) => {
+        onInputChange={(event) => {
+          this.setState({inputValue: event.target.value});
+        }}
+        onDateChange={(chosenDate) => {
           this.setState(state => ({chosenDate}))
+        }}
+        onInputBlur={(chosenDate) => {
+          console.log('blurred')
         }} />
       </div>
     }
@@ -59,13 +82,6 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
 
 <SimplePropsTable
   props={{
-    labelText: {
-      type: {
-        name: 'string',
-      },
-      required: true,
-      description: 'Text for label',
-    },
     defaultDate: {
       type: {
         name: 'Date',
@@ -73,12 +89,27 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
       required: false,
       description: 'Default selected date value',
     },
-    onDayClick: {
+    labelText: {
+      type: {
+        name: 'string',
+      },
+      required: true,
+      description: 'Text for label',
+    },
+    onDateChange: {
       type: {
         name: '(day: Date, event: React.SyntheticEvent) => void',
       },
       required: false,
-      description: 'Event that will fire when day is selected',
+      description: 'Event that will fire when day is changed',
+    },
+    placeholderText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text for input placeholder',
+      defaultValue: 'MM/DD/YYYY'
     },
   }}
 />
