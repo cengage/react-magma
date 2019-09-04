@@ -275,6 +275,9 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule('font-size', '.875rem');
         expect(button).toHaveStyleRule('padding', '0 15px');
+        expect(button).toHaveStyleRule('top', '18px', {
+          target: ':after'
+        });
       });
 
       it('small button', () => {
@@ -286,6 +289,9 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule('font-size', '.750rem');
         expect(button).toHaveStyleRule('padding', '0 10px');
+        expect(button).toHaveStyleRule('top', '14px', {
+          target: ':after'
+        });
       });
 
       it('large button', () => {
@@ -297,6 +303,9 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule('font-size', '1.125rem');
         expect(button).toHaveStyleRule('padding', '0 20px');
+        expect(button).toHaveStyleRule('top', '22px', {
+          target: ':after'
+        });
       });
 
       it('disabled inverse outline button', () => {

@@ -4,6 +4,8 @@ order: 2
 ---
 
 import { Link } from 'gatsby'
+import { Button } from 'react-magma-dom'
+
 
 # Using React Magma
 
@@ -23,6 +25,9 @@ Here is a most basic example:
   }
 ```
 
+This would render as:
+<Button>Hello World</Button>
+
 ## Using TypeScript Enums
 
 When using a prop that takes an enum, you must import that type from React Magma if you are using TypeScript.
@@ -35,6 +40,9 @@ When using a prop that takes an enum, you must import that type from React Magma
     return <Button variant={ButtonVariant.outline}>Hello World</Button>
   }
 ```
+
+This would render as:
+<Button variant='outline'>Hello World</Button>
 
 ## Importing React Magma Global Styles
 
@@ -55,31 +63,6 @@ The `GlobalStyles` component can be nested inside the <Link to="/api/theme">Them
       <GlobalStyles />
     </div>
   }
-```
-
-## Adding Custom Styles to Components
-
-Custom styles can be passed to components using the `style` prop.
-
-```.jsx
-  <>
-    <Button style={{borderRadius: '40px', minWidth: '300px'}}>Custom Styles</Button>
-  </>
-```
-
-Some non-atomic components support styling of individual elements within the component via use of specific props.
-For example, the <Link to="/api/checkbox">Checkbox</Link> supports the following properties: `containerStyle`, `inputStyle`
-and `labelStyle`. In these cases, the `style` prop would have no effect because there is more than one element to target.
-
-```.jsx
-  <>
-    <Checkbox
-        checked
-        containerStyle={{ 'border': '1px dotted purple'}}
-        inputStyle={{ 'boxShadow': '3px 3px 3px rgba(0, 0 , 0, .6)'}}
-        labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
-        labelText='Custom Styles' />
-  </>
 ```
 
 ## Using the Magma Theme in your Application
@@ -106,34 +89,4 @@ For more information about colors, see the <Link to="/design/colors">Design Docu
       Hello world
     </StyledDiv>
   }
-```
-
-## Creating Custom Themes
-
-Custom themes can be created by extending the Magma theme with your own values.
-
-```.js
-  import { magma } from './magma';
-
-  export const myCustomTheme = {
-    ...magma,
-    headingFont: 'Papyrus, sans-serif',
-
-    colors: {
-      ...magma.colors,
-
-      primary: '#0000FF',
-      foundation01: '#FF0000',
-    }
-};
-```
-
-To apply the custom theme, use the <Link to="/api/theme/">ThemeContext.Provider</Link>, passing in your custom theme as the value property.
-Any descendants of the context provider will receive the theme that is passed in.
-
-```.js
-  <ThemeContext.Provider value={myCustomTheme}>
-    <div>....</div>
-  </ThemeContext.Provider>
-};
 ```
