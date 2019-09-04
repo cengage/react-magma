@@ -15,7 +15,6 @@ function getStyles(theme) {
     *:focus {
       outline: 2px dotted ${theme.colors.pop02};
       outline-offset: 3px;
-      transition: outline 0.1s linear;
     }
 
     html {

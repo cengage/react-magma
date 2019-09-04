@@ -35,7 +35,6 @@ const LinkButtonComponent = styled.button<LinkButtonProps>`
             ? props.theme.colors.neutral08
             : props.theme.colors.pop02};
       outline-offset: 3px;
-      transition: outline 0.1s linear;
     }
   }
 `;
