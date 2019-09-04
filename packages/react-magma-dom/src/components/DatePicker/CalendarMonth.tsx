@@ -107,7 +107,7 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
                                   key={dayOfWeek}
                                   day={day}
                                   dayFocusable={this.state.dayFocusable}
-                                  onDayClick={context.onDayClick}
+                                  onDateChange={context.onDateChange}
                                 />
                               ))}
                             </tr>

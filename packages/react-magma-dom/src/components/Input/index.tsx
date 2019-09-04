@@ -6,7 +6,13 @@ import { IconProps } from '../Icon/utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 import { Announce } from '../Announce';
-import { Button, ButtonVariant, ButtonType, ButtonSize } from '../Button';
+import {
+  Button,
+  ButtonVariant,
+  ButtonType,
+  ButtonSize,
+  ButtonShape
+} from '../Button';
 import { InputMessage } from './InputMessage';
 import { Label } from '../Label';
 import { QuestionCircleIcon } from '../Icon/types/QuestionCircleIcon';
@@ -24,15 +30,15 @@ export enum InputSize {
 }
 
 export enum InputType {
-  text = 'text',
+  email = 'email',
+  number = 'number',
   password = 'password',
-  number = 'number'
+  text = 'text' // default
 }
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   as?: string;
-  value?: string;
   containerStyle?: React.CSSProperties;
   errorMessage?: string;
   helpLinkText?: string;
@@ -42,6 +48,9 @@ export interface InputProps
   hidePasswordButtonText?: string;
   hidePasswordMaskButton?: boolean;
   icon?: React.ReactElement<IconProps>;
+  iconAriaLabel?: string;
+  onIconClick?: () => void;
+  onIconKeyDown?: (event) => void;
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
   inputStyle?: React.CSSProperties;
@@ -57,6 +66,7 @@ export interface InputProps
   showPasswordButtonText?: string;
   testId?: string;
   type?: InputType;
+  value?: string;
 }
 
 interface IconWrapperProps {
@@ -151,6 +161,17 @@ const IconWrapper = styled.span<IconWrapperProps>`
     `}
 `;
 
+const IconButton = styled(Button)`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  svg {
+    height: 17px;
+    width: 17px;
+  }
+`;
+
 const PasswordMaskWrapper = styled.span`
   left: auto;
   right: 10px;
@@ -199,7 +220,9 @@ class InputComponent extends React.Component<InputProps> {
             hidePasswordButtonAriaLabel,
             hidePasswordButtonText,
             icon,
-            iconPosition,
+            iconAriaLabel,
+            onIconClick,
+            onIconKeyDown,
             inputSize,
             inputStyle,
             inverse,
@@ -216,6 +239,13 @@ class InputComponent extends React.Component<InputProps> {
             innerRef,
             ...other
           } = this.props;
+
+          const iconPosition =
+            icon && onIconClick
+              ? InputIconPosition.right
+              : icon && !this.props.iconPosition
+              ? InputIconPosition.left
+              : this.props.iconPosition;
 
           const HIDDEN_PASSWORD_ANNOUCNE_TEXT = hiddenPasswordAnnounceText
               ? hiddenPasswordAnnounceText
@@ -239,7 +269,6 @@ class InputComponent extends React.Component<InputProps> {
 
           const descriptionId =
             errorMessage || helperMessage ? `${id}__desc` : null;
-
           return (
             <ThemeContext.Consumer>
               {theme => (
@@ -271,7 +300,9 @@ class InputComponent extends React.Component<InputProps> {
                       data-testid={testId}
                       errorMessage={errorMessage}
                       iconPosition={iconPosition}
-                      inputSize={inputSize ? inputSize : InputSize.medium}
+                      inputSize={
+                        inputSize && !multiline ? inputSize : InputSize.medium
+                      }
                       inverse={inverse}
                       labelText={labelText}
                       multiline={multiline}
@@ -290,8 +321,9 @@ class InputComponent extends React.Component<InputProps> {
                       onChange={this.handleChange(onChange)}
                       onFocus={this.props.onFocus}
                     />
-                    {icon && (
+                    {icon && !onIconClick && (
                       <IconWrapper
+                        aria-label={iconAriaLabel}
                         iconPosition={iconPosition}
                         inputSize={
                           inputSize && !multiline ? inputSize : InputSize.medium
@@ -341,6 +373,7 @@ class InputComponent extends React.Component<InputProps> {
                         </VisuallyHidden>
                       </PasswordMaskWrapper>
                     )}
+
                     {onHelpLinkClick && (
                       <Tooltip
                         content={HELP_LINK_TEXT}
@@ -361,6 +394,19 @@ class InputComponent extends React.Component<InputProps> {
                             variant={ButtonVariant.link}
                           />
                         }
+                      />
+                    )}
+
+                    {onIconClick && (
+                      <IconButton
+                        aria-label={iconAriaLabel}
+                        icon={icon}
+                        onClick={onIconClick}
+                        onKeyDown={onIconKeyDown}
+                        shape={ButtonShape.fill}
+                        size={ButtonSize.small}
+                        theme={theme}
+                        variant={ButtonVariant.link}
                       />
                     )}
                   </InputWrapper>

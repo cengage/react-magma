@@ -229,14 +229,14 @@ describe('DatePickerCore', () => {
     });
   });
 
-  describe('handle calendar focus', () => {
-    it('should open the calendar on focus', () => {
+  describe('handle calendar icon click', () => {
+    it('should open the calendar icon click', () => {
       const { getByTestId } = render(
         <DatePickerCore>
-          {({ calendarOpened, onInputFocus }) => {
+          {({ calendarOpened, onIconClick }) => {
             return (
               <>
-                <input data-testid="inputToFocus" onFocus={onInputFocus} />
+                <button data-testid="buttonToClick" onClick={onIconClick} />
                 <span
                   data-testid="calendarOpened"
                   data-calendaropened={calendarOpened}
@@ -251,7 +251,7 @@ describe('DatePickerCore', () => {
         getByTestId('calendarOpened').getAttribute('data-calendaropened')
       ).toBeFalsy();
 
-      fireEvent.focus(getByTestId('inputToFocus'));
+      fireEvent.click(getByTestId('buttonToClick'));
 
       expect(
         getByTestId('calendarOpened').getAttribute('data-calendaropened')
@@ -459,7 +459,7 @@ describe('DatePickerCore', () => {
       const newDate = addDays(defaultDate, 1);
       const { getByTestId } = render(
         <DatePickerCore calendarOpened={true} defaultDate={defaultDate}>
-          {({ calendarOpened, chosenDate, toggleDateFocus, onDayClick }) => {
+          {({ calendarOpened, chosenDate, toggleDateFocus, onDateChange }) => {
             return (
               <>
                 <div
@@ -470,7 +470,7 @@ describe('DatePickerCore', () => {
                   <button
                     data-testid="dayClickButton"
                     onClick={() => {
-                      onDayClick(newDate);
+                      onDateChange(newDate);
                     }}
                   >
                     Click Day
