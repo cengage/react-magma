@@ -32,9 +32,28 @@ describe('Styled Button', () => {
 
   it('should disable a button when the passed disabled', () => {
     const text = 'test text';
-    const { getByText } = render(<StyledButton disabled>{text}</StyledButton>);
+    const { getByText } = render(
+      <StyledButton disabled variant="solid">
+        {text}
+      </StyledButton>
+    );
 
     expect(getByText(text)).toBeDisabled();
+    expect(getByText(text)).toHaveStyleRule(
+      'background',
+      magma.colors.neutral06
+    );
+  });
+
+  it('should render correct styled for disabled outline button when the passed disabled', () => {
+    const text = 'test text';
+    const { getByText } = render(
+      <StyledButton disabled variant="outline">
+        {text}
+      </StyledButton>
+    );
+
+    expect(getByText(text)).toHaveStyleRule('background', 'rgba(0,0,0,0)');
   });
 
   describe('Button classes', () => {
