@@ -2,6 +2,8 @@
 title: 'Inputs'
 ---
 
+import { ScopeableLayout } from '../../components/layout'
+import { Input, Button, CalendarIcon, Search2Icon } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { SimplePropsTable } from '../../components/props-table'
 
@@ -140,7 +142,7 @@ The `iconPosition` position prop is optional and takes the values `left` and `ri
 
 ## Input Sizes
 
-The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default.  Input size does not affect multiline textareas.
+The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default. Input size does not affect multiline textareas.
 
 ```.jsx
     <div>
@@ -485,11 +487,11 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
     inputSize: {
       type: {
         name: 'enum',
-        options: ['InputSize.large', 'InputSize.medium']
+        options: ['InputSize.large', 'InputSize.medium'],
       },
       required: false,
       description: 'Relative size of the component',
-      defaultValue: 'medium'
+      defaultValue: 'medium',
     },
     inputStyle: {
       type: {
@@ -574,7 +576,12 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
     type: {
       type: {
         name: 'enum',
-        options: ['InputType.email', 'InputType.number', 'InputType.password', 'InputType.text']
+        options: [
+          'InputType.email',
+          'InputType.number',
+          'InputType.password',
+          'InputType.text',
+        ],
       },
       required: false,
       description: 'The type attribute of the form field',
@@ -590,3 +597,10 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
     },
   }}
 />
+
+export default props => (
+  <ScopeableLayout
+    {...props}
+    components={{ Input, Button, CalendarIcon, Search2Icon }}
+  />
+)

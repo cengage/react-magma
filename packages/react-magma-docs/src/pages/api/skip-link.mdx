@@ -2,6 +2,8 @@
 title: 'Skip Link'
 ---
 
+import { ScopeableLayout } from '../../components/layout'
+import { SkipLink, SkipLinkContent } from 'react-magma-dom'
 import { Link } from 'gatsby'
 import { Button } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
@@ -182,7 +184,10 @@ This would render the button 25px from the top, and 25px from the left of the br
       },
       required: false,
       description: 'The content of the destination of the skip link',
-    }
+    },
   }}
 />
 
+export default props => (
+  <ScopeableLayout {...props} components={{ SkipLink, SkipLinkContent }} />
+)

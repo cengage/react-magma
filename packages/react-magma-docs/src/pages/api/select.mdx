@@ -2,6 +2,13 @@
 title: 'Selects'
 ---
 
+import { ScopeableLayout } from '../../components/layout'
+import {
+  Select,
+  AsyncSelect,
+  CreatableSelect,
+  AsyncCreatableSelect,
+} from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { SimplePropsTable } from '../../components/props-table'
 
@@ -735,3 +742,15 @@ option?: React.CSSProperties;
 }
 
 ```
+
+export default props => (
+  <ScopeableLayout
+    {...props}
+    components={{
+      Select,
+      AsyncSelect,
+      CreatableSelect,
+      AsyncCreatableSelect,
+    }}
+  />
+)

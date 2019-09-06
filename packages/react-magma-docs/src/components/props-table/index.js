@@ -62,10 +62,10 @@ export const SimplePropsTable = ({ props }) => {
                     {prop.type.options &&
                       Object.keys(prop.type.options).map(i => {
                         return (
-                          <>
+                          <div key={i}>
                             <code>{prop.type.options[i]}</code>
                             <br />
-                          </>
+                          </div>
                         )
                       })}
                   </td>

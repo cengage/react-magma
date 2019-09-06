@@ -2,6 +2,8 @@
 title: 'Toasts'
 ---
 
+import { ScopeableLayout } from '../../components/layout'
+import { Button, Toast, Announce } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
@@ -358,22 +360,22 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
 
 ## Toast Props
 
-
 <SimplePropsTable
   props={{
-     alertStyle: {
+    alertStyle: {
       type: {
         name: 'React.CSSProperties',
       },
       required: false,
-      description: 'CSS properties for the alert component within the toast container'
+      description:
+        'CSS properties for the alert component within the toast container',
     },
     children: {
       type: {
         name: 'node',
       },
       required: true,
-      description: 'The content of the component'
+      description: 'The content of the component',
     },
     closeLabel: {
       type: {
@@ -381,43 +383,45 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
       },
       required: false,
       description: 'The text read by screen readers for the close button',
-      defaultValue: '"Close this message"'
+      defaultValue: '"Close this message"',
     },
     containerStyle: {
       type: {
         name: 'React.CSSProperties',
       },
       required: false,
-      description: 'CSS properties for the component container'
+      description: 'CSS properties for the component container',
     },
     dismissable: {
       type: {
         name: 'boolean',
       },
       required: false,
-      description: 'If true, the component will be able to be dismissed and will include a close button',
-      defaultValue: 'false'
+      description:
+        'If true, the component will be able to be dismissed and will include a close button',
+      defaultValue: 'false',
     },
     onDimiss: {
       type: {
         name: 'function',
       },
       required: false,
-      description: 'Action that fires when the close button is clicked (required when dismissable is true)'
+      description:
+        'Action that fires when the close button is clicked (required when dismissable is true)',
     },
-     onMouseEnter: {
+    onMouseEnter: {
       type: {
         name: 'function',
       },
       required: false,
-      description: 'Action that fires when the mouse enters the component'
+      description: 'Action that fires when the mouse enters the component',
     },
-     onMouseLeave	: {
+    onMouseLeave: {
       type: {
         name: 'function',
       },
       required: false,
-      description: 'Action that fires when the mouse leaves the component'
+      description: 'Action that fires when the mouse leaves the component',
     },
     testId: {
       type: {
@@ -438,13 +442,20 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
     variant: {
       type: {
         name: 'enum',
-        options: ['AlertVariant.info', 'AlertVariant.success', 'AlertVariant.warning', 'AlertVariant.danger']
+        options: [
+          'AlertVariant.info',
+          'AlertVariant.success',
+          'AlertVariant.warning',
+          'AlertVariant.danger',
+        ],
       },
       required: false,
-      description: 'The variant of the alert, indicating its function in the UI',
+      description:
+        'The variant of the alert, indicating its function in the UI',
       defaultValue: 'info',
     },
-  }} />
+  }}
+/>
 
 | Prop           | Type                                                           | Default              | Required |
 | -------------- | -------------------------------------------------------------- | -------------------- | :------: |
@@ -460,3 +471,7 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
 | toastDuration  | number                                                         | 5000                 |          |
 | variant        | enum: 'info' &#124; 'success' &#124; 'warning' &#124; 'danger' |                      |          |
 | testId         | string                                                         |                      |          |
+
+export default props => (
+  <ScopeableLayout {...props} components={{ Button, Toast, Announce }} />
+)

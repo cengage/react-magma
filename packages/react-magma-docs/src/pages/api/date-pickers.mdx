@@ -2,6 +2,8 @@
 title: 'Date Pickers'
 ---
 
+import { ScopeableLayout } from '../../components/layout'
+import { DatePicker } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
@@ -113,3 +115,7 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
     },
   }}
 />
+
+export default props => (
+  <ScopeableLayout {...props} components={{ DatePicker }} />
+)

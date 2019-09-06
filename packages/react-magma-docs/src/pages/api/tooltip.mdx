@@ -2,6 +2,16 @@
 title: 'Tooltips'
 ---
 
+import { ScopeableLayout } from '../../components/layout'
+import {
+  Tooltip,
+  Button,
+  CircleDownIcon,
+  CircleLeftIcon,
+  CircleRightIcon,
+  CircleUpIcon,
+  QuestionCircleIcon,
+} from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 
 # Tooltip
@@ -92,12 +102,16 @@ The `Tooltip` component takes an optional `inverse` prop, for when the tooltip i
     position: {
       type: {
         name: 'enum',
-        options: ['EnumTooltipPosition.bottom', 'EnumTooltipPosition.left', 'EnumTooltipPosition.right', 'EnumTooltipPosition.top']
+        options: [
+          'EnumTooltipPosition.bottom',
+          'EnumTooltipPosition.left',
+          'EnumTooltipPosition.right',
+          'EnumTooltipPosition.top',
+        ],
       },
       required: false,
-      description:
-        'Position the tooltip appears in relation to its trigger',
-        defaultValue: 'top'
+      description: 'Position the tooltip appears in relation to its trigger',
+      defaultValue: 'top',
     },
     trigger: {
       type: {
@@ -109,3 +123,18 @@ The `Tooltip` component takes an optional `inverse` prop, for when the tooltip i
     },
   }}
 />
+
+export default props => (
+  <ScopeableLayout
+    {...props}
+    components={{
+      Tooltip,
+      Button,
+      CircleDownIcon,
+      CircleLeftIcon,
+      CircleRightIcon,
+      CircleUpIcon,
+      QuestionCircleIcon,
+    }}
+  />
+)
