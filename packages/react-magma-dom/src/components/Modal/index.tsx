@@ -7,6 +7,7 @@ import { getTrapElements, getFocusedElementIndex } from './utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Button, ButtonColor, ButtonVariant } from '../Button';
 import { CrossIcon } from '../Icon/types/CrossIcon';
+import { Heading } from '../Heading';
 
 export enum ModalSize {
   large = 'large',
@@ -135,8 +136,7 @@ const ModalHeader = styled.div`
   padding: 20px 20px 10px;
 `;
 
-const H1 = styled.h1`
-  color: ${props => props.theme.colors.foundation01};
+const H1 = styled(Heading)`
   font-size: 20px;
   font-weight: 600;
   margin: 0;
@@ -299,7 +299,11 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                           {...other}
                         >
                           <ModalHeader theme={theme}>
-                            {header && <H1 theme={theme}>{header}</H1>}
+                            {header && (
+                              <H1 level={1} theme={theme}>
+                                {header}
+                              </H1>
+                            )}
                           </ModalHeader>
                           <ModalBody>{children}</ModalBody>
                           {!hideEscButton && (
