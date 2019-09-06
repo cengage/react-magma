@@ -19,6 +19,7 @@ function getStyles(theme) {
 
     html {
       scroll-behavior: smooth;
+      font-size: 15px;
     }
 
     html,
