@@ -2,8 +2,7 @@ import * as React from 'react';
 import {
   getCalendarMonthWeeks,
   getPrevMonthFromDate,
-  getNextMonthFromDate,
-  handleKeyPress
+  getNextMonthFromDate
 } from './utils';
 import { generateId } from '../utils';
 
@@ -12,7 +11,6 @@ export interface DatePickerCoreProps {
   id?: string;
   calendarOpened?: boolean;
   defaultDate?: Date;
-  onDayClick?: (day: any, event: React.SyntheticEvent) => void;
 }
 
 interface DatePickerState {
@@ -39,22 +37,16 @@ export class DatePickerCore extends React.Component<
   constructor(props) {
     super(props);
 
-    this.onInputKeyDown = this.onInputKeyDown.bind(this);
     this.openHelperInformation = this.openHelperInformation.bind(this);
     this.closeHelperInformation = this.closeHelperInformation.bind(this);
-    this.onInputFocus = this.onInputFocus.bind(this);
-    this.onDateFocus = this.onDateFocus.bind(this);
-    this.onCalendarBlur = this.onCalendarBlur.bind(this);
+    this.onIconClick = this.onIconClick.bind(this);
+    this.toggleDateFocus = this.toggleDateFocus.bind(this);
+    this.toggleCalendar = this.toggleCalendar.bind(this);
     this.onHelperFocus = this.onHelperFocus.bind(this);
     this.onPrevMonthClick = this.onPrevMonthClick.bind(this);
     this.onNextMonthClick = this.onNextMonthClick.bind(this);
-    this.onKeyDown = this.onKeyDown.bind(this);
-    this.onQuestionMarkKey = this.onQuestionMarkKey.bind(this);
-    this.onEscKey = this.onEscKey.bind(this);
-    this.onDayChangedByKeyboardNavigation = this.onDayChangedByKeyboardNavigation.bind(
-      this
-    );
-    this.onDayClick = this.onDayClick.bind(this);
+    this.updateFocusedDate = this.updateFocusedDate.bind(this);
+    this.onDateChange = this.onDateChange.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -67,15 +59,10 @@ export class DatePickerCore extends React.Component<
     return getCalendarMonthWeeks(date, enableOutsideDates);
   }
 
-  onInputKeyDown(event: React.KeyboardEvent) {
-    if (event.key === '?') {
-      event.preventDefault();
-      this.openHelperInformation();
-    }
-  }
-
   openHelperInformation() {
-    this.onQuestionMarkKey();
+    this.setState({
+      showHelperInformation: true
+    });
   }
 
   closeHelperInformation() {
@@ -84,84 +71,39 @@ export class DatePickerCore extends React.Component<
     });
   }
 
-  onInputFocus() {
-    this.setState({ calendarOpened: true });
+  onIconClick() {
+    this.setState({ calendarOpened: !this.state.calendarOpened });
   }
 
-  onDateFocus() {
-    this.setState({ dateFocused: true });
+  toggleDateFocus(dateFocused: boolean) {
+    this.setState({ dateFocused });
   }
 
   onHelperFocus() {
     this.setState({ dateFocused: false });
   }
 
-  onCalendarBlur(event) {
-    const { currentTarget } = event;
-
-    // timeout needed for active element to update. Browser behavior.
-    // https://bugzilla.mozilla.org/show_bug.cgi?id=452307
-    setTimeout(() => {
-      const isInCalendar = currentTarget.contains(document.activeElement);
-
-      if (!isInCalendar && !this.state.showHelperInformation) {
-        this.setState({ calendarOpened: false });
-      }
-    }, 0);
+  toggleCalendar(calendarOpened: boolean) {
+    this.setState({ calendarOpened });
   }
 
   onPrevMonthClick() {
-    this.onDayChangedByKeyboardNavigation(
-      getPrevMonthFromDate(this.state.focusedDate)
-    );
-  }
-
-  onNextMonthClick() {
-    this.onDayChangedByKeyboardNavigation(
-      getNextMonthFromDate(this.state.focusedDate)
-    );
-  }
-
-  onKeyDown(event: React.KeyboardEvent) {
-    if (this.state.dateFocused && document.activeElement.closest('table')) {
-      const newChosenDate = handleKeyPress(
-        event,
-        this.state.focusedDate,
-        this.onEscKey,
-        this.onQuestionMarkKey,
-        this.onDayClick
-      );
-      if (newChosenDate) {
-        this.onDayChangedByKeyboardNavigation(newChosenDate);
-      }
-    } else {
-      if (event.key === 'Escape') {
-        this.onEscKey();
-      }
-
-      if (event.key === '?') {
-        this.onQuestionMarkKey();
-      }
-    }
-  }
-
-  onEscKey() {
-    this.setState({ calendarOpened: false });
-  }
-
-  onQuestionMarkKey() {
     this.setState({
-      showHelperInformation: true
+      focusedDate: getPrevMonthFromDate(this.state.focusedDate)
     });
   }
 
-  onDayChangedByKeyboardNavigation(day) {
+  onNextMonthClick() {
+    this.setState({
+      focusedDate: getNextMonthFromDate(this.state.focusedDate)
+    });
+  }
+
+  updateFocusedDate(day: Date) {
     this.setState({ focusedDate: day });
   }
 
-  onDayClick(day, event) {
-    this.props.onDayClick && this.props.onDayClick(day, event);
-
+  onDateChange(day: Date) {
     this.setState({ chosenDate: day, calendarOpened: false });
   }
 
@@ -175,8 +117,6 @@ export class DatePickerCore extends React.Component<
       showHelperInformation
     } = this.state;
 
-    const srMessageId = `${id}_sr`;
-
     return this.props.children({
       ...this.props,
       id,
@@ -185,19 +125,17 @@ export class DatePickerCore extends React.Component<
       focusedDate,
       dateFocused,
       showHelperInformation,
-      srMessageId,
       buildCalendarMonth: this.buildCalendarMonth,
-      onCalendarBlur: this.onCalendarBlur,
-      onInputKeyDown: this.onInputKeyDown,
+      toggleCalendar: this.toggleCalendar,
       openHelperInformation: this.openHelperInformation,
       closeHelperInformation: this.closeHelperInformation,
-      onInputFocus: this.onInputFocus,
-      onDateFocus: this.onDateFocus,
+      onIconClick: this.onIconClick,
+      toggleDateFocus: this.toggleDateFocus,
       onHelperFocus: this.onHelperFocus,
       onPrevMonthClick: this.onPrevMonthClick,
       onNextMonthClick: this.onNextMonthClick,
-      onKeyDown: this.onKeyDown,
-      onDayClick: this.onDayClick
+      updateFocusedDate: this.updateFocusedDate,
+      onDateChange: this.onDateChange
     });
   }
 }

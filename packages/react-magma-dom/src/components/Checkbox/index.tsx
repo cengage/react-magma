@@ -206,7 +206,6 @@ export class Checkbox extends React.Component<CheckboxProps> {
                     checked={checked}
                     disabled={disabled}
                     indeterminate={indeterminate}
-                    name={name}
                     ref={this.checkboxInput}
                     type="checkbox"
                     onBlur={onBlur}

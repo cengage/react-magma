@@ -1,0 +1,296 @@
+---
+title: Inputs
+order: 1
+---
+
+import DocsHeading from '../../components/docs-heading'
+import { Input } from 'react-magma-dom'
+
+<DocsHeading to="/api/input/" type="code">Inputs</DocsHeading>
+
+## Usage
+Text fields let users enter and edit text.  This includes text fields, text areas, password fields, and number inputs.  They typically appear in forms and dialogs.
+
+<span class="horizontal-spacer"></span>
+<hr class="article-divider" />
+
+## Principles
+
+### Discoverable
+Inputs should stand out and indicate that users can input information.
+
+### Clear
+Input states should be clearly differentiated from one another.
+
+### Efficient
+Text fields should make it easy to understand the requested information and to address any errors.
+
+<span class="horizontal-spacer"></span>
+<hr class="article-divider" />
+
+## Types
+
+### Text field
+<Input id='input1' labelText='Email' placeholder='john.doe@gmail.com' required={false} />
+
+### Text area
+<Input id='textarea' labelText='Comments' multiline />
+
+### Password
+<Input id='inputPw' labelText='Password' placeholder='Enter your password' type='password' />
+
+### Number
+<Input id='inputNum' labelText='Number' type='number' inputStyle={{width: '80px'}} />
+
+<hr class="article-divider" />
+
+## Anatomy
+<figure>
+  <div class="image-container">
+    <img src="../../images/inputs/Input-anatomy.png" alt="Illustration showing the anatomy of an input" />
+  </div>
+</figure>
+
+1. Field label
+1. Input text
+1. Container
+1. Leading icon
+1. Trailing icon
+1. Helper text
+
+### Field label
+The field label tells the user what information is being requested.  Most inputs should have a field label, unless you make sure the placeholder text, and other text available to screen readers, very clear about what the input is asking for from the user.  For example, search fields don't typically have a visible field label, but instead rely on the placeholder text to make it clear what you're searching.
+
+Do not truncate text labels.  Try to keep text labels as short and clear as possible to avoid wrapping to multiple lines.
+
+<div class="two-col">
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img src="../../images/inputs/wrong-truncate-label.png" alt="" />
+        <figcaption>
+          <p class="title title-incorrect">Incorrect</p>
+          <p>Do not truncate field labels.</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="col col-2">
+      <figure>
+        <img src="../../images/inputs/caution-wrap-label.png" alt="" />
+        <figcaption>
+          <p class="title title-caution">Caution</p>
+          <p>Wrapping long field labels is acceptable, but try to avoid at all costs.  Labels are best kept simple and short enough to fit on a single line.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+
+#### Required text indicator
+Required fields should be indicated by putting an asterisk (*) at the end of the label.  If there are very few required inputs in the form, you can use the helper text to inform the user what the asterisk means.  If there are a relatively large number of required fields in the form, you can put a legend at the top of the form and just tell them once.
+
+<div class="two-col">
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img src="../../images/inputs/single-required-field.png" alt="" />
+        <figcaption>
+          <p class="title title-correct">Correct</p>
+          <p>A required field is indicated with an asterisk.  If there aren't many required fields, you may use the Helper Text to tell the user what the  asterisk means.</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="col col-2">
+      <figure>
+        <img src="../../images/inputs/multiple-required-fields.png" alt="" />
+        <figcaption>
+          <p class="title title-correct">Correct</p>
+          <p>If there are multiple required fields, you may explain the meaning of the asterisk one time above the form.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img src="../../images/inputs/wrong-optional-field.png" alt="" />
+        <figcaption>
+          <p class="title title-incorrect">Incorrect</p>
+          <p>Only required fields are called out as such.  Do not mark optional fields.</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="col col-2">
+    </div>
+  </div>
+</div>
+
+### Container
+Containers improve the discoverability of inputs by creating enough contrast between the input and the surrounding content.
+
+#### Fill and border
+
+Inputs have a white fill which provides optimal visibility on dark backgrounds.  The border of inputs on a white background are 1px wide and use the color neutral04 (#727272).  The border of inputs on a white background is 1px wide and white.
+
+#### Rounded corners
+
+Inputs have a 5px border radius to be consistent with buttons, which often accompany inputs.
+
+<div class="two-col">
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img src="../../images/inputs/input-container.png" alt="" />
+        <figcaption>
+          <p>Examples of text fields on light and dark backgrounds.</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="col col-2">
+    </div>
+  </div>
+</div>
+
+### Input text
+Input text is text the user has entered into a text field.  You can also use placeholder text to help inform the user how their input should be formatted.
+
+<div class="two-col">
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img src="../../images/inputs/input-text.png" alt="" />
+        <figcaption>
+          <p>Example of placeholder text and user input</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="col col-2">
+    </div>
+  </div>
+</div>
+
+### Assistive elements
+
+#### Helper text
+
+Helper text is extra guidance for the input such as how the input will be used.  Try to keep helper text limited to a single line.
+
+<div class="two-col">
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img src="../../images/inputs/input-helper-text.png" alt="" />
+        <figcaption>
+          <p>Example of input helper text</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="col col-2">
+    </div>
+  </div>
+</div>
+
+#### Error message
+
+When the input provided is invalid, an error message should be used to provide instructions on how to fix the error.  The error message will replace the helper text until it is fixed.
+
+<div class="two-col">
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img src="../../images/inputs/input-error-message.png" alt="" />
+        <figcaption>
+          <p>Example of input with error message</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="col col-2">
+    </div>
+  </div>
+</div>
+
+#### Icons
+
+Icons can be used to help provide clarity or functionality.  Leading icons are typically used to help clarify the type of input, such as email or phone.  Trailing icons are typically also buttons that can be used to clear the input or trigger something else like a calendar component.
+
+<div class="two-col">
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img src="../../images/inputs/input-leading-icon.png" alt="" />
+        <figcaption>
+          <p>Example of input with leading icon.  The Visa icon helps identify the specific kind of credit card entered.</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="col col-2">
+      <figure>
+        <img src="../../images/inputs/input-trailing-icon.png" alt="" />
+        <figcaption>
+          <p>Example of input with trailing icon.  The calendar icon is a button that opens a calendar widget.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+
+#### What is this?
+The “What is this?” icon can be used for inputs that might require even more explanation or clarification to the user.  The icon can be configured to trigger actions like opening a modal or navigating to another location.
+
+<div class="two-col">
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img src="../../images/inputs/input-what-is-this.png" alt="" />
+        <figcaption>
+          <p>Example of input with "What is this?" icon</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="col col-2">
+    </div>
+  </div>
+</div>
+
+<hr class="article-divider" />
+
+## States
+
+<div class="two-col">
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img src="../../images/inputs/input-states.png" alt="" />
+        <figcaption>
+          <p>Inputs can display the following states: active, disabled, focused, and error.</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="col col-2">
+    </div>
+  </div>
+</div>
+
+1. Active
+1. Disabled
+1. Focus
+1. Error
+
+<span class="horizontal-spacer"></span>
+<hr class="article-divider" />
+
+## Sizes
+
+<figure>
+  <div class="image-container">
+    <img src="../../images/inputs/input-sizes.png" alt="Illustration showing regular and large inputs" />
+  </div>
+</figure>
+
+1. Regular
+1. Large
+
+The regular sized inputs should be used in all cases, unless you are creating an interface that justifies the use of the large input.  One example could be a page focusing entirely on search.  Inputs should not be customized outside of these two standards without review and approval by the UX Department.
+
+
+<span class="horizontal-spacer"></span>

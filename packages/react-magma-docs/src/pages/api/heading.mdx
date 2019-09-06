@@ -1,0 +1,98 @@
+---
+title: 'Headings'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { Heading, Button } from 'react-magma-dom'
+import DocsHeading from '../../components/docs-heading'
+import { SimplePropsTable } from '../../components/props-table'
+
+<DocsHeading to="/design/headings/" type="design">
+  Headings
+</DocsHeading>
+
+## Basic Usage
+
+```.jsx
+  <div>
+    <Heading level={1}>Heading 1</Heading>
+    <Heading level={2}>Heading 2</Heading>
+    <Heading level={3}>Heading 3</Heading>
+    <Heading level={4}>Heading 4</Heading>
+    <Heading level={5}>Heading 5</Heading>
+    <Heading level={6}>Heading 6</Heading>
+  </div>
+```
+
+## Forward Ref
+
+Using React's `forwardRef` feature you can gain access to the reference of the internal heading.
+
+```.jsx
+  class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.headingRef = React.createRef();
+      }
+
+      render() {
+        return <div>
+        <Heading
+          ref={this.headingRef}
+          level={1}>
+          Heading to be focused
+        </Heading>
+
+        <Button
+          onClick={() => {
+            this.headingRef.current.tabIndex = -1
+            this.headingRef.current.focus();
+          }}>Click to focus heading
+        </Button>
+        </div>
+      }
+    }
+```
+
+## Testing
+
+Passing in the `testId` prop will add the `data-testid` attribute to the heading element for easier querying in tests.
+
+```html
+<h1 data-testid="test-id">Heading 1</h1>
+```
+
+## Heading Props
+
+<SimplePropsTable
+  props={{
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
+    },
+    level: {
+      type: {
+        name: 'number',
+      },
+      required: true,
+      description:
+        'Number to indicate which level heading will render (e.g. h1, h2 etc.)',
+      defaultValue: '',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'ID used for testing purposes',
+      defaultValue: '',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout {...props} components={{ Heading, Button }} />
+)

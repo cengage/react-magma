@@ -1,0 +1,97 @@
+---
+title: Headings
+order: 1
+---
+
+import DocsHeading from '../../components/docs-heading'
+
+<DocsHeading to="/api/heading/" type="code">Headings</DocsHeading>
+
+Headings are used to show the structure of a document, and help users skim a page for content.
+
+<div class="typo-details-table">
+  <ul>
+    <li>
+      <div class="typo-example">
+        <h1>Heading 1</h1>
+      </div>
+      <div class="typo-specs">
+        42px / 1.2em &middot; Open Sans &middot; Light 300
+      </div>
+    </li>
+    <li>
+      <div class="typo-example">
+        <h2>Heading 2</h2>
+      </div>
+      <div class="typo-specs">
+        36px / 1.2em &middot; Open Sans &middot; Light 300
+      </div>
+    </li>
+    <li>
+      <div class="typo-example">
+        <h3>Heading 3</h3>
+      </div>
+      <div class="typo-specs">
+        28px / 1.2em &middot; Open Sans &middot; Light 300
+      </div>
+    </li>
+    <li>
+      <div class="typo-example">
+        <h4>Heading 4</h4>
+      </div>
+      <div class="typo-specs">
+        22px / 1.3em &middot; Open Sans &middot; Regular 400
+      </div>
+    </li>
+    <li>
+      <div class="typo-example">
+        <h5>Heading 5</h5>
+      </div>
+      <div class="typo-specs">
+        16px / 1.4em &middot; Open Sans &middot; Semibold 600
+      </div>
+    </li>
+    <li>
+      <div class="typo-example">
+        <h6>Heading 6</h6>
+      </div>
+      <div class="typo-specs">
+        13px / 1.5em &middot; Open Sans &middot; Bold 700
+      </div>
+    </li>
+  </ul>
+</div>
+
+<span class="horizontal-spacer"></span>
+
+## Usage
+Headings used in a traditional heading/subheading/paragraph context should use the default styles defined in Magma and not be customized without good reason.
+<figure>
+  <img src="../../images/headings/Headings_example.png" alt="" />
+  <figcaption>
+    <p>Examples of heading styling.</p>
+  </figcaption>
+</figure>
+<span class="horizontal-spacer"></span>
+
+When using an H1 as the title of a component like a modal, it’s the structure that is important so customizing the styles is acceptable.  Also, don't use a heading just because you want the style of that heading.  If using a heading doesn't make sense for the HTML structure of your component or interface, you'll be better off creating a new component or CSS class and just duplicating the styles of the heading it matches.
+<figure>
+  <img src="../../images/headings/Restyled_H1.png" alt="" />
+  <figcaption>
+    <p>Example of a restyled H1 being used as the title of a modal.</p>
+  </figcaption>
+</figure>
+
+<span class="horizontal-spacer"></span>
+
+<hr class="article-divider" />
+
+## Principles
+
+### Consistent
+The default styling of headings should be used consistently across pages when applied to a traditional set of content.
+
+### Hierarchical
+Headings provide a hierarchy and structure to a page, which is important for both users and screen readers.
+
+<span class="horizontal-spacer"></span>

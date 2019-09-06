@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { CalendarDayCore } from 'react-magma-core';
-import { magma } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
 import { format, isSameDay } from 'date-fns';
 
@@ -11,7 +10,7 @@ import { CalendarContext, CalendarContextInterface } from './CalendarContext';
 interface CalendarDayProps {
   day: Date;
   dayFocusable?: boolean;
-  onDayClick?: (day: Date, event: React.SyntheticEvent) => void;
+  onDateChange?: (day: Date, event: React.SyntheticEvent) => void;
 }
 
 interface CalendarDayState {
@@ -19,9 +18,8 @@ interface CalendarDayState {
 }
 
 const CalendarDayCell = styled.td`
-  border: 1px solid ${magma.colors.neutral06};
-  color: ${magma.colors.neutral02};
-  cursor: pointer;
+  border: 1px solid ${props => props.theme.colors.neutral06};
+  color: ${props => props.theme.colors.neutral02};
   font-size: 15px;
   height: 40px;
   padding: 0;
@@ -30,31 +28,34 @@ const CalendarDayCell = styled.td`
   width: 40px;
 `;
 
-const CalendarDayInner = styled.span<{
+const CalendarDayInner = styled.button<{
   isChosen?: boolean;
   isFocused?: boolean;
 }>`
   align-items: center;
   background: ${props =>
-    props.isChosen ? magma.colors.foundation01 : magma.colors.neutral08};
-  border: 2px solid;
-  border-color: ${props =>
-    props.isFocused ? magma.colors.pop02 : 'transparent'};
+    props.isChosen
+      ? props.theme.colors.foundation01
+      : props.theme.colors.neutral08};
+  border: 2px solid transparent;
   border-radius: 100%;
   color: ${props =>
-    props.isChosen ? magma.colors.neutral08 : magma.colors.neutral02};
+    props.isChosen
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral02};
+  cursor: pointer;
   display: flex;
   height: 35px;
   justify-content: center;
   margin: 2px;
-  outline: 0;
   overflow: hidden;
+  outline-offset: 0;
   position: relative;
-  transition: background 0.5s ease-in-out 0s;
+  transition: background 0.5s ease-in-out 0s, outline 0.1s linear;
   width: 35px;
 
   &:before {
-    background: ${magma.colors.neutral02};
+    background: ${props => props.theme.colors.neutral02};
     content: '';
     height: 200%;
     left: 0;
@@ -70,6 +71,10 @@ const CalendarDayInner = styled.span<{
       opacity: 0.1;
     }
   }
+
+  &:focus {
+    outline: 2px dotted ${props => props.theme.colors.pop02};
+  }
 `;
 
 const EmptyCell = styled.td`
@@ -78,7 +83,7 @@ const EmptyCell = styled.td`
 `;
 
 const TodayIndicator = styled.span`
-  border-left: 8px solid ${magma.colors.pop01};
+  border-left: 8px solid ${props => props.theme.colors.pop01};
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
   bottom: -6px;
@@ -134,49 +139,50 @@ export class CalendarDay extends React.Component<
 
   render() {
     const { day, dayFocusable } = this.props;
-    const { onDateFocus } = this.context;
+    const { toggleDateFocus } = this.context;
 
     return (
       <CalendarContext.Consumer>
-        {context =>
-          context && day ? (
-            <CalendarDayCore>
-              {() => {
-                const sameDateAsFocusedDate = isSameDay(
-                  day,
-                  context.focusedDate
-                );
+        {context => {
+          if (context && day) {
+            const sameDateAsFocusedDate = isSameDay(day, context.focusedDate);
+            const sameDateAsChosenDate = isSameDay(day, context.chosenDate);
+            const sameDateAsToday = isSameDay(day, new Date());
 
-                const sameDateAsChosenDate = isSameDay(day, context.chosenDate);
-
-                const sameDateAsToday = isSameDay(day, new Date());
-
-                return (
-                  <CalendarDayCell onFocus={onDateFocus}>
+            return (
+              <ThemeContext.Consumer>
+                {theme => (
+                  <CalendarDayCell
+                    onFocus={() => toggleDateFocus(true)}
+                    theme={theme}
+                  >
                     <CalendarDayInner
                       aria-label={format(day, 'MMMM Do YYYY')}
                       isChosen={sameDateAsChosenDate}
                       isFocused={dayFocusable && sameDateAsFocusedDate}
-                      role="button"
                       onClick={e => {
-                        context.onDayClick(day, e);
+                        context.onDateChange(day, e);
                       }}
                       ref={this.dayRef}
                       tabIndex={sameDateAsFocusedDate ? 0 : -1}
+                      theme={theme}
                     >
                       {format(day, 'D')}
                     </CalendarDayInner>
                     {sameDateAsToday && (
-                      <TodayIndicator data-testid="todayIndicator" />
+                      <TodayIndicator
+                        data-testid="todayIndicator"
+                        theme={theme}
+                      />
                     )}
                   </CalendarDayCell>
-                );
-              }}
-            </CalendarDayCore>
-          ) : (
-            <EmptyCell />
-          )
-        }
+                )}
+              </ThemeContext.Consumer>
+            );
+          } else {
+            return <EmptyCell />;
+          }
+        }}
       </CalendarContext.Consumer>
     );
   }

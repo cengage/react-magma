@@ -1,0 +1,37 @@
+---
+title: 'Visually Hidden'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { VisuallyHidden } from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
+
+# Visually Hidden
+
+Using the `VisuallyHidden` component will hide the children of this component visually, while still allowing the content to be accessed by screenreaders.
+
+## Basic Usage
+
+```.jsx
+    <VisuallyHidden>
+        This text can be read by a screen reader, but does not appear on the screen.
+    </VisuallyHidden>
+```
+
+## Visually Hidden Props
+
+<SimplePropsTable
+  props={{
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout {...props} components={{ VisuallyHidden }} />
+)

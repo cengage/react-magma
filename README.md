@@ -4,7 +4,7 @@
 
 1. `Legacy context API has been detected within a strict-mode tree` - https://github.com/JedWatson/react-select/pull/3487
 
-## Getting started
+## Getting started with React Magma in your application
 
 ### Setup requirements
 
@@ -21,43 +21,13 @@ registry=http://nexus.mindtap.corp.web/content/groups/npm.group/
 npm install --save react-magma-dom
 ```
 
-### Install the Babel Plugin
+### Documentation site
 
-<details>
-  <summary>
-  Learn more about this Babel plugin:
-  </summary>
+For more information on using React Magma, see the [React Magma Documentation](https://react-magma.cengage.info/version/latest/)
 
-This custom Babel plugin will help with optimization. This plugin will go through all of your `react-magma-dom` imports and get rid of any unnecessary imports. This will allow webpack to only put the necessary dependencies in your projects final build.
+This site has general usage information, as well as information on all of the available components, including code examples and demos. It also has design guidelines from the UX team with more details about the why and when to use each component in your project.
 
-</details>
-
-#### Add the plugin as a dev dependency
-
-```sh
-npm install --save-dev babel-plugin-react-magma-dom
-```
-
-#### Configure the plugin in your Babel config
-
-In your `babel.config.js` file add `react-magma-dom` to your `plugins` array.
-
-example `babel.config.js`:
-
-```js
-module.exports = {
-  presets: ['@babel/preset-react'],
-  plugins: ['react-magma-dom']
-};
-```
-
-### Documentation
-
-[React Magma Documentation](http://react-magma.apps.dev.cengage.io/)
-
-We have a documentation site that show all of the available components, usage of the components, and design guidelines from the UX team for how to use them in your project.
-
-## Contributing
+## Contributing to React Magma
 
 ### Dependencies
 
@@ -110,11 +80,26 @@ The `react-magma-core` project is render-agnostic, meaning it does not have a sp
 
 The `react-magma-dom` package is the browser-specific version of the components. The components utilize `react-magma-core` and handle the DOM specific rendering for those components.
 
+The `react-magma-native` package is similar to `react-magma-dom` but is for the native-specific version of the components.
+
+The `react-magma-docs-gatsby` package handles the React Magma documentation, and is built on the <a href="https://www.gatsbyjs.org/">Gatsby framework</a>.
+
+
 ### Making changes
 
-The source code for each independent package in the project can be found under the `packages` folder.
+The source code for each independent package in the project can be found under the `packages` folder. You will likely end up making changes to multiple packages.
 
-You will likely end up making changes to multiple packages. Core and the implementation for your render target will typically be changed in tandem, and any changes to public facing APIs will require that your PR also include accurate updates to the docs.
+
+All state management and logic should be handled in `react-magma-core`. Therefore, any component with any statefulness will have a component within `react-magma-core`, as well as a corresponding component for each of its rendering targets (i.e. `react-magma-dom` or `react-magma-native`).  Core and the implementation for your render target will typically be changed in tandem.
+
+Any changes to the public-facing API **must** be accurately captured in the docs, and therefore will require updates to `react-magma-docs-gatsby`.
+
+### Building
+
+Once you have finished making your code changes within a package run `npm run build` from inside that package.
+
+You must build before your changes will be reflected in the browser. Because of the linking provided by Lerna, making changes in `react-magma-core` will immediately be reflected in the `react-magma-dom` once `react-magma-core` is built.
+
 
 ### Running tests
 
@@ -135,16 +120,10 @@ or
 
 ```sh
 # run the core tests
-npm run test-dom
+npm run test-core
 ```
 
 `npm run covg` to see the generated lcov coverage reports.
-
-### Building
-
-Once you have finished making your code changes and have tested your changes run `npm run build`.
-
-Because of the linking provided by Lerna, making changes in `react-magma-core` will immediately be reflected in the `react-magma-dom`.
 
 ### End to End Testing
 
@@ -231,7 +210,7 @@ npm run cm
 ```
 
 <details>
-  <summary>Learn more about SemVar and the commit message format:</summary>
+  <summary>Learn more about SemVer and the commit message format:</summary>
   
   SemVer is just a responsible way to release packages and it's the right thing to do.
   

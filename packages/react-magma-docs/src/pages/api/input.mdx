@@ -1,0 +1,606 @@
+---
+title: 'Inputs'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { Input, Button, CalendarIcon, Search2Icon } from 'react-magma-dom'
+import DocsHeading from '../../components/docs-heading'
+import { SimplePropsTable } from '../../components/props-table'
+
+<DocsHeading to="/design/inputs/" type="design">
+  Inputs
+</DocsHeading>
+
+Input fields are used in a number of ways for both collecting and displaying data from the user.
+
+## Basic Usage
+
+The label/input association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
+
+```.jsx
+    <div>
+      <Input
+          id='input1'
+          labelText='Label'
+          placeholder='This is a placeholder'
+          required={false}
+          value='Default Value' />
+    </div>
+```
+
+## Password
+
+When the `type` prop is set to `password`, the input field that is rendered also have the `type` set to password, meaning that the text is obscured so that it cannot be read, usually by replacing each character with a symbol such as the asterisk ("\*") or a dot ("•").
+
+By default, users can show the password, by pressing a toggle button. To prevent users from showing the password, the optional boolean `hidePasswordMaskButton` can be used.
+
+The following option props can be used to override various text strings that appear on the UI or to users using assistive technology: `hiddenPasswordAnnounceText`, `hidePasswordButtonAriaLabel`, `hidePasswordButtonText`, `shownPasswordAnnounceText`, `showPasswordButtonAriaLabel`, `showPasswordButtonText`.
+
+```.jsx
+  <>
+    <Input
+      id='inputPw'
+      labelText='Password'
+      placeholder='Enter your password'
+      type='password' />
+    <Input
+      hidePasswordMaskButton
+      id='inputPwWithNoMask'
+      labelText='Password With No Unmask Button'
+      placeholder='Enter your password'
+      type='password' />
+  </>
+```
+
+## Number
+
+```.jsx
+    <Input
+        id='inputNum'
+        labelText='Number'
+        placeholder='Enter a number'
+        type='number' />
+```
+
+## Disabled
+
+```.jsx
+    <Input
+        id='inputDisabled'
+        labelText='Disabled'
+        placeholder='The input is disabled'
+        disabled />
+```
+
+## Error Message
+
+If an input has an `errorMessage`, the input will be styled to highlight it's error state and the error message will appear below the input field.
+If an error message is present, it will replace the helper text.
+
+```.jsx
+    <Input
+        id='inputError'
+        errorMessage='Please correct this error'
+        helperMessage='Helper text'
+        labelText='Error Message'
+        placeholder='Type in here' />
+```
+
+## Helper Message
+
+The `helperMessage` appears underneath the input field. It will not appear if an error message is present.
+
+```.jsx
+    <Input
+        id='inputHelper'
+        helperMessage='Helper text goes here'
+        labelText='Helper Message'
+        placeholder='Type in here' />
+```
+
+## Help Link
+
+Some inputs require a bit of explanation to the user. Passing in a function to the `onHelpLinkClick` prop, will
+display a help link to the right of the input field. The text can be customized using the optional `helpLinkText` prop.
+
+```.jsx
+   <Input
+      labelText='Help Link'
+      onHelpLinkClick={()=> {alert('Help link clicked!')}} />
+```
+
+## Input with Icon
+
+An `icon` may be included with the input, by passing in the `icon` prop. An aria-label may be added using the `iconAriaLabel` prop.
+
+Functionality can be added to the icon by using the `onIconClick` and `onIconKeyDown` props. All clickable input icons will appear on the right.
+
+The `iconPosition` position prop is optional and takes the values `left` and `right`, with `left` being the default for non-clickable icons.
+
+```.jsx
+    <div>
+      <Input
+        labelText='Input with Icon on Left'
+        placeholder='Type in here'
+        icon={<EnvelopeOIcon />}
+        type="email" />
+
+      <Input
+        iconPosition='right'
+        labelText='Input with Icon on Right'
+        placeholder='Type in here'
+        icon={<Search2Icon />} />
+
+      <Input
+        labelText='Input with Clickable Icon on Right'
+        iconAriaLabel="Calendar"
+        onIconClick={()=>{alert('Icon clicked')}}
+        placeholder='Type in here'
+        icon={<CalendarIcon />} />
+    </div>
+```
+
+## Input Sizes
+
+The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default. Input size does not affect multiline textareas.
+
+```.jsx
+    <div>
+      <Input
+        iconPosition='right'
+        labelText='Medium Input'
+        placeholder='Type in here'
+        icon={<Search2Icon />} />
+      <Input
+        iconPosition='right'
+        inputSize='large'
+        labelText='Large Input'
+        placeholder='Type in here'
+        icon={<Search2Icon />} />
+      <Input
+          errorMessage='Error'
+          labelText='Medium Input with Error' />
+      <Input
+          errorMessage='Error'
+          inputSize='large'
+          labelText='Large Input with Error' />
+      <Input
+          onHelpLinkClick={()=> {alert('Help link clicked!')}}
+          labelText='Medium Input with Help Link' />
+      <Input
+          onHelpLinkClick={()=> {alert('Help link clicked!')}}
+          inputSize='large'
+          labelText='Large Input with Help Link' />
+    </div>
+```
+
+## Inverse inputs
+
+Inverse is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
+
+```.jsx
+    <div style={{ background : '#00263E', padding: '20px' }}>
+      <Input
+          id='inputInverse'
+          inverse
+          labelText='Inverse Input'
+          placeholder='Type in here' />
+
+      <Input
+          helperMessage='Helper text'
+          id='inputInverseHelper'
+          inverse
+          labelText='Inverse Input with Helper Text'
+          placeholder='Type in here' />
+
+      <Input
+          errorMessage='Please correct your error'
+          id='inputInverseError'
+          inverse
+          labelText='Inverse Input with Error Message'
+          placeholder='Type in here' />
+      <Input
+          inverse
+          labelText='Help Link'
+          onHelpLinkClick={()=> {alert('Help link clicked!')}} />
+    </div>
+```
+
+## Input with hidden label
+
+The `labelVisuallyHidden` prop can be used to visually hide the text label, while still making the text available to screen readers.
+
+```.jsx
+    <Input
+      iconPosition='right'
+      id='inputLabelHidden'
+      labelVisuallyHidden
+      labelText='Search'
+      placeholder='Search'
+      icon={<Search2Icon />} />
+```
+
+## Multi-line (textarea)
+
+The optional `multiline` boolean prop will cause the component to render a textarea, rather than a text input.
+
+```.jsx
+    <Input
+        id='textarea'
+        labelText='Multi-line Textarea'
+        multiline
+        placeholder='Type in here' />
+```
+
+## Change Events
+
+```.jsx
+  class ChangedInput extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        message: ''
+      };
+
+      this.changeValueMessage = this.changeValueMessage.bind(this);
+    }
+
+    changeValueMessage(event) {
+      this.setState({message: event.target.value})
+    }
+
+    render() {
+      return <div>
+        <p><strong>Changed Value: </strong> <span id="changedValue">{this.state.message}</span></p>
+        <Input
+          id='inputChanged'
+          labelText='Test Value'
+          value=''
+          placeholder='Type in here'
+          onChange={this.changeValueMessage} />
+      </div>
+    }
+  }
+```
+
+## Focus Events
+
+```.jsx
+  class FocusedInput extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        focused: false,
+        message: 'No'
+      };
+
+      this.changeFocusedMessage = this.changeFocusedMessage.bind(this);
+    }
+
+    changeFocusedMessage() {
+      const focused = !this.state.focused;
+
+      this.setState(state => ({
+        focused,
+        message: focused ? 'Yes' : 'No',
+      }));
+    }
+
+    render() {
+      return <div>
+        <p><strong>Focused: </strong> <span id="focused">{this.state.message}</span></p>
+        <Input
+          id='inputFocused'
+          labelText='Focused?'
+          onFocus={this.changeFocusedMessage}
+          onBlur={this.changeFocusedMessage} />
+      </div>
+    }
+  }
+```
+
+## Forward Ref
+
+Using React's `forwardRef` feature you can gain access to the reference of the internal input.
+
+```.jsx
+  class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.inputRef = React.createRef();
+      }
+
+      render() {
+        return <div>
+        <Input
+          ref={this.inputRef}
+          labelText='Input to be focused' />
+
+        <Button
+          onClick={() => {
+            this.inputRef.current.focus();
+          }}>Click to focus input
+        </Button>
+        </div>
+      }
+    }
+```
+
+## Custom Styles
+
+Custom styles can be passed into the Input component. The `containerStyle` property will apply to the container.
+Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
+
+```.jsx
+  <div>
+    <Input
+        containerStyle={{ 'border': '1px dotted purple', 'padding': '5px'}}
+        inputStyle={{ 'borderRadius': '0'}}
+        labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
+        labelText='Custom Styles for input' />
+
+    <Input
+        containerStyle={{ 'border': '1px dotted purple', 'padding': '5px'}}
+        inputStyle={{ 'width': '200px', 'height': '50px'}}
+        labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
+        labelText='Custom Styles for textarea (multiline)'
+        multiline />
+  </div>
+```
+
+## Testing
+
+Passing in the `testId` prop will add the `data-testid` attribute to the input element for easier querying in tests.
+
+```html
+<div>
+  <label for="input1">Label</label>
+  <div>
+    <input
+      id="input1"
+      data-testid="test-id"
+      placeholder="This is a placeholder"
+      type="text"
+      value="Default Value"
+    />
+  </div>
+</div>
+```
+
+## Input Props
+
+<SimplePropsTable
+  props={{
+    containerStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the component container element',
+    },
+    disabled: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, element is disabled',
+      defaultValue: 'false',
+    },
+    errorMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Text of the error message.  If a value is provided, the error message will be styled as an error state.',
+      defaultValue: '',
+    },
+    helperMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text of the helper message.',
+      defaultValue: '',
+    },
+    helpLinkText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Aria-label for the help icon',
+      defaultValue: "What's this?",
+    },
+    hiddenPasswordAnnounceText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text read by screen reader when the password is hidden',
+      defaultValue: 'Password is now hidden',
+    },
+    hidePasswordButtonAriaLabel: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Aria-label for the "Hide Password" button',
+      defaultValue: 'Hide password',
+    },
+    hidePasswordButtonText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text displayed on screen for the "Hide Password" button',
+      defaultValue: 'Hide',
+    },
+    hidePasswordMaskButton: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
+    },
+    icon: {
+      type: {
+        name: 'React Element',
+      },
+      required: false,
+      description: 'Icon to display within the component',
+    },
+    iconAriaLabel: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text for the aria-label attribute for an icon, if provided',
+      defaultValue: '',
+    },
+    onIconClick: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Action that will fire when icon is clicked.',
+      defaultValue: '',
+    },
+    onIconKeyDown: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Action that will fire when icon is receives keypress.',
+      defaultValue: '',
+    },
+    iconPosition: {
+      type: {
+        name: 'enum',
+        options: ['InputIconPosition.left', 'InputIconPosition.right'],
+      },
+      required: false,
+      description: 'Position within the component for the icon to appear',
+      defaultValue: 'right',
+    },
+    inputSize: {
+      type: {
+        name: 'enum',
+        options: ['InputSize.large', 'InputSize.medium'],
+      },
+      required: false,
+      description: 'Relative size of the component',
+      defaultValue: 'medium',
+    },
+    inputStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the input element',
+    },
+    inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    labelStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the label element',
+    },
+    labelText: {
+      type: {
+        name: 'string',
+      },
+      required: true,
+      description: 'Text for label',
+    },
+    labelVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
+    },
+    required: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the form field is required',
+      defaultValue: 'false',
+    },
+    shownPasswordAnnounceText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text read by screen reader when the password is hidden',
+      defaultValue: 'Password is now hidden',
+    },
+    showPasswordButtonAriaLabel: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Aria-label for the "Show Password" button',
+      defaultValue:
+        'Show password. Note: this will visually expose your password on the screen',
+    },
+    showPasswordButtonText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text displayed on screen for the "Show Password" button',
+      defaultValue: 'Show',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'ID used for testing purposes',
+      defaultValue: '',
+    },
+    type: {
+      type: {
+        name: 'enum',
+        options: [
+          'InputType.email',
+          'InputType.number',
+          'InputType.password',
+          'InputType.text',
+        ],
+      },
+      required: false,
+      description: 'The type attribute of the form field',
+      defaultValue: 'text',
+    },
+    value: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Default value for the form field',
+      defaultValue: '',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout
+    {...props}
+    components={{ Input, Button, CalendarIcon, Search2Icon }}
+  />
+)

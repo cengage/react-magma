@@ -9,6 +9,7 @@ export interface ToastProps extends AlertProps {
   containerStyle?: React.CSSProperties;
   toastDuration?: number;
   disableAutoDismiss?: boolean;
+  onDismiss: () => void;
   onMouseEnter?: (event: React.SyntheticEvent) => void;
   onMouseLeave?: (event: React.SyntheticEvent) => void;
 }
@@ -42,57 +43,85 @@ const ToastWrapper = styled.div`
   }
 `;
 
-export const Toast: React.FunctionComponent<ToastProps> = ({
-  alertStyle,
-  id,
-  testId,
-  variant,
-  dismissable,
-  children,
-  containerStyle,
-  onDismiss,
-  toastDuration,
-  disableAutoDismiss,
-  onMouseEnter,
-  onMouseLeave
-}: ToastProps) => (
-  <ThemeContext.Consumer>
-    {theme => (
-      <AlertCore transitionDuration={transitionDuration} onDismiss={onDismiss}>
-        {({ handleDismiss, isExiting }) => (
-          <ToastCore
-            toastDuration={toastDuration}
-            disableAutoDismiss={disableAutoDismiss}
-            onDismiss={handleDismiss}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
+export class Toast extends React.Component<ToastProps> {
+  constructor(props) {
+    super(props);
+
+    this.handleMouseEnter = this.handleMouseEnter.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
+  }
+
+  handleMouseEnter(handlePause: () => void) {
+    return (event: React.SyntheticEvent) => {
+      this.props.onMouseEnter &&
+        typeof this.props.onMouseEnter === 'function' &&
+        this.props.onMouseEnter(event);
+
+      handlePause();
+    };
+  }
+
+  handleMouseLeave(handleResume: () => void) {
+    return (event: React.SyntheticEvent) => {
+      this.props.onMouseLeave &&
+        typeof this.props.onMouseLeave === 'function' &&
+        this.props.onMouseLeave(event);
+
+      handleResume();
+    };
+  }
+
+  render() {
+    const {
+      alertStyle,
+      id,
+      testId,
+      variant,
+      dismissable,
+      children,
+      containerStyle,
+      onDismiss,
+      toastDuration,
+      disableAutoDismiss
+    } = this.props;
+
+    return (
+      <ThemeContext.Consumer>
+        {theme => (
+          <AlertCore
+            transitionDuration={transitionDuration}
+            onDismiss={onDismiss}
           >
-            {({
-              handleMouseEnter,
-              handleMouseLeave,
-              clearTimeoutAndDismiss
-            }) => (
-              <ToastWrapper
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                style={containerStyle}
+            {({ handleDismiss, isExiting }) => (
+              <ToastCore
+                toastDuration={toastDuration}
+                disableAutoDismiss={disableAutoDismiss}
+                onDismiss={handleDismiss}
               >
-                <Alert
-                  id={id}
-                  testId={testId}
-                  style={alertStyle}
-                  isExiting={isExiting}
-                  dismissable={dismissable}
-                  variant={variant}
-                  onDismiss={clearTimeoutAndDismiss}
-                >
-                  {children}
-                </Alert>
-              </ToastWrapper>
+                {({ handlePause, handleResume, clearTimeoutAndDismiss }) => (
+                  <ToastWrapper
+                    onMouseEnter={this.handleMouseEnter(handlePause)}
+                    onMouseLeave={this.handleMouseLeave(handleResume)}
+                    style={containerStyle}
+                  >
+                    <Alert
+                      id={id}
+                      testId={testId}
+                      style={alertStyle}
+                      isExiting={isExiting}
+                      dismissable={dismissable}
+                      variant={variant}
+                      onDismiss={clearTimeoutAndDismiss}
+                    >
+                      {children}
+                    </Alert>
+                  </ToastWrapper>
+                )}
+              </ToastCore>
             )}
-          </ToastCore>
+          </AlertCore>
         )}
-      </AlertCore>
-    )}
-  </ThemeContext.Consumer>
-);
+      </ThemeContext.Consumer>
+    );
+  }
+}

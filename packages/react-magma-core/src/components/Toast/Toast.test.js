@@ -60,15 +60,15 @@ describe('ToastCore', () => {
     expect(handleDismiss).toHaveBeenCalledTimes(1);
   });
 
-  it('Should persist while the mouse is over the element', () => {
+  it('Should pause the timer', () => {
     const handleDismiss = jest.fn();
     const { getByTestId } = render(
       <ToastCore onDismiss={handleDismiss} toastDuration={1000}>
-        {({ clearTimeoutAndDismiss, handleMouseEnter, handleMouseLeave }) => (
+        {({ clearTimeoutAndDismiss, handlePause, handleResume }) => (
           <button
             onClick={clearTimeoutAndDismiss}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            onMouseEnter={handlePause}
+            onMouseLeave={handleResume}
             data-testid="the-button"
           >
             dismiss
@@ -86,31 +86,29 @@ describe('ToastCore', () => {
     expect(handleDismiss).toHaveBeenCalledTimes(1);
   });
 
-  it('Should call supplied mouseEnter and mouseLeave handlers', () => {
-    const handleMouseEnter = jest.fn();
-    const handleMouseLeave = jest.fn();
+  it('Should pause the timer with default duration', () => {
+    const handleDismiss = jest.fn();
     const { getByTestId } = render(
-      <ToastCore
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        {({ handleMouseEnter, handleMouseLeave }) => (
-          <div
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            data-testid="toast-message"
+      <ToastCore onDismiss={handleDismiss}>
+        {({ clearTimeoutAndDismiss, handlePause, handleResume }) => (
+          <button
+            onClick={clearTimeoutAndDismiss}
+            onMouseEnter={handlePause}
+            onMouseLeave={handleResume}
+            data-testid="the-button"
           >
-            toast message
-          </div>
+            dismiss
+          </button>
         )}
       </ToastCore>
     );
 
-    const targetEl = getByTestId('toast-message');
-    fireEvent.mouseOver(targetEl);
-    expect(handleMouseEnter).toHaveBeenCalled();
+    fireEvent.mouseOver(getByTestId('the-button'));
+    jest.runAllTimers();
+    expect(handleDismiss).not.toHaveBeenCalled();
 
-    fireEvent.mouseLeave(targetEl);
-    expect(handleMouseLeave).toHaveBeenCalled();
+    fireEvent.mouseLeave(getByTestId('the-button'));
+    jest.runAllTimers();
+    expect(handleDismiss).toHaveBeenCalledTimes(1);
   });
 });

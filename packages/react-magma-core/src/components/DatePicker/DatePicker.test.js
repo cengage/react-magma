@@ -9,30 +9,19 @@ import {
   addMonths,
   startOfMonth,
   addDays,
-  subWeeks,
-  subDays,
-  startOfWeek,
-  addWeeks,
-  endOfWeek,
   format
 } from 'date-fns';
 import uuid from 'uuid/v4';
 
 jest.mock('uuid/v4');
-const onDayClick = jest.fn();
 
 const DATE_PICKER_CORE_PROPS = {
   children: () => React.createElement('div'),
   calendarOpened: false,
-  defaultDate: new Date('January 17, 2019'),
-  onDayClick
+  defaultDate: new Date('January 17, 2019')
 };
 
 describe('DatePickerCore', () => {
-  afterEach(() => {
-    onDayClick.mockReset();
-  });
-
   it('should auto assign an id if none is passed in', () => {
     uuid.mockReturnValue('auto-generated-id');
     const { getByTestId } = render(
@@ -240,14 +229,14 @@ describe('DatePickerCore', () => {
     });
   });
 
-  describe('handle calendar focus', () => {
-    it('should open the calendar on focus', () => {
+  describe('handle calendar icon click', () => {
+    it('should open the calendar icon click', () => {
       const { getByTestId } = render(
         <DatePickerCore>
-          {({ calendarOpened, onInputFocus }) => {
+          {({ calendarOpened, onIconClick }) => {
             return (
               <>
-                <input data-testid="inputToFocus" onFocus={onInputFocus} />
+                <button data-testid="buttonToClick" onClick={onIconClick} />
                 <span
                   data-testid="calendarOpened"
                   data-calendaropened={calendarOpened}
@@ -262,7 +251,7 @@ describe('DatePickerCore', () => {
         getByTestId('calendarOpened').getAttribute('data-calendaropened')
       ).toBeFalsy();
 
-      fireEvent.focus(getByTestId('inputToFocus'));
+      fireEvent.click(getByTestId('buttonToClick'));
 
       expect(
         getByTestId('calendarOpened').getAttribute('data-calendaropened')
@@ -282,10 +271,13 @@ describe('DatePickerCore', () => {
     it('should handle date focus', () => {
       const { getByTestId } = render(
         <DatePickerCore>
-          {({ dateFocused, onDateFocus, onHelperFocus }) => {
+          {({ dateFocused, toggleDateFocus, onHelperFocus }) => {
             return (
               <>
-                <div data-testid="focusDate" onFocus={onDateFocus} />
+                <div
+                  data-testid="focusDate"
+                  onFocus={() => toggleDateFocus(true)}
+                />
                 <div data-testid="focusHelper" onFocus={onHelperFocus} />
                 <input data-testid="dateFocused" checked={dateFocused} />
               </>
@@ -303,33 +295,63 @@ describe('DatePickerCore', () => {
       expect(getByTestId('dateFocused').checked).toBeFalsy();
     });
 
-    it('should close the calendar when active element is inside of calendar container', () => {
-      const { container } = render(
-        <DatePickerCore {...DATE_PICKER_CORE_PROPS} calendarOpened={true}>
-          {({ onCalendarBlur, calendarOpened }) => {
+    it('should update the focused date', () => {
+      const newFocusedDate = new Date();
+      const { getByTestId } = render(
+        <DatePickerCore>
+          {({ focusedDate, updateFocusedDate }) => {
             return (
               <>
-                <div
-                  style={{ display: calendarOpened ? 'block' : 'none' }}
-                  id="calendar"
-                  onBlur={onCalendarBlur}
+                <button
+                  data-testid="changeFocusedDate"
+                  onClick={() => updateFocusedDate(newFocusedDate)}
                 >
-                  <button id="calendarButton" />
-                </div>
-                <button id="notInCalendarButton" />
+                  Update Focused Date
+                </button>
+                <div data-testid="focusedDate" data-date={focusedDate} />
               </>
             );
           }}
         </DatePickerCore>
       );
 
-      const calendarButton = container.querySelector('#calendarButton');
-      const notCalendarButton = container.querySelector('#notInCalendarButton');
+      fireEvent.click(getByTestId('changeFocusedDate'));
 
-      calendarButton.focus();
-      notCalendarButton.focus();
+      expect(
+        isSameDay(
+          getByTestId('focusedDate').getAttribute('data-date'),
+          newFocusedDate
+        )
+      ).toBeTruthy();
+    });
 
-      jest.advanceTimersByTime(1000);
+    it('should toggle the calendar', () => {
+      const { getByTestId } = render(
+        <DatePickerCore
+          defaultDate={new Date('January 17, 2019')}
+          calendarOpened={true}
+        >
+          {({ toggleCalendar, calendarOpened }) => {
+            return (
+              <>
+                <div
+                  style={{ display: calendarOpened ? 'block' : 'none' }}
+                  id="calendar"
+                >
+                  <button
+                    data-testid="calendarButton"
+                    onClick={() => toggleCalendar(false)}
+                  />
+                </div>
+              </>
+            );
+          }}
+        </DatePickerCore>
+      );
+
+      const calendarButton = getByTestId('calendarButton');
+
+      fireEvent.click(calendarButton);
 
       expect(calendarButton).not.toBeVisible();
     });
@@ -431,760 +453,24 @@ describe('DatePickerCore', () => {
     });
   });
 
-  describe('on key down press', () => {
-    it('handles the question mark key when typing in the input', () => {
-      const defaultDate = new Date();
-      const { getByTestId } = render(
-        <DatePickerCore defaultDate={defaultDate}>
-          {({ showHelperInformation, onInputKeyDown }) => {
-            return (
-              <>
-                <input data-testid="calendarInput" onKeyDown={onInputKeyDown} />
-                <input
-                  data-testid="helperInformation"
-                  type="checkbox"
-                  checked={showHelperInformation}
-                />
-              </>
-            );
-          }}
-        </DatePickerCore>
-      );
-
-      fireEvent.keyDown(getByTestId('calendarInput'), {
-        key: '?'
-      });
-
-      expect(getByTestId('helperInformation').checked).toBeTruthy();
-    });
-
-    it('types in the input if you type anything other than the question mark key', () => {
-      const defaultDate = new Date();
-      const { getByTestId } = render(
-        <DatePickerCore defaultDate={defaultDate}>
-          {({ showHelperInformation, onInputKeyDown }) => {
-            return (
-              <>
-                <input data-testid="calendarInput" onKeyDown={onInputKeyDown} />
-                <input
-                  data-testid="helperInformation"
-                  type="checkbox"
-                  checked={showHelperInformation || false}
-                  onChange={() => {}}
-                />
-              </>
-            );
-          }}
-        </DatePickerCore>
-      );
-
-      fireEvent.keyDown(getByTestId('calendarInput'), {
-        key: 'abc123'
-      });
-
-      expect(getByTestId('helperInformation').checked).toBeFalsy();
-    });
-
-    it('does not update focused date if date is not focused', () => {
-      const defaultDate = new Date();
-      const { getByTestId } = render(
-        <DatePickerCore defaultDate={defaultDate}>
-          {({ focusedDate, onKeyDown }) => {
-            return (
-              <>
-                <table data-testid="calendarContainer" onKeyDown={onKeyDown}>
-                  <span data-testid="focusedDate" data-date={focusedDate} />
-                </table>
-              </>
-            );
-          }}
-        </DatePickerCore>
-      );
-
-      fireEvent.keyDown(getByTestId('calendarContainer'), {
-        key: 'ArrowUp',
-        code: 38
-      });
-
-      expect(
-        isSameDay(
-          getByTestId('focusedDate').getAttribute('data-date'),
-          defaultDate
-        )
-      ).toBeTruthy();
-    });
-
-    it('ArrowUp', async () => {
-      const defaultDate = new Date();
-      const { getByTestId } = render(
-        <DatePickerCore defaultDate={defaultDate}>
-          {({ focusedDate, onKeyDown, onDateFocus }) => {
-            return (
-              <>
-                <table
-                  data-testid="calendarContainer"
-                  onFocus={onDateFocus}
-                  onKeyDown={onKeyDown}
-                >
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div
-                          data-testid="focusedDate"
-                          data-date={focusedDate}
-                          tabIndex={0}
-                        />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </>
-            );
-          }}
-        </DatePickerCore>
-      );
-
-      fireEvent.focus(getByTestId('calendarContainer'));
-      getByTestId('focusedDate').focus();
-      fireEvent.keyDown(getByTestId('calendarContainer'), {
-        key: 'ArrowUp',
-        code: 38
-      });
-
-      expect(
-        isSameDay(
-          getByTestId('focusedDate').getAttribute('data-date'),
-          subWeeks(defaultDate, 1)
-        )
-      ).toBeTruthy();
-    });
-
-    it('ArrowLeft', () => {
-      const defaultDate = new Date();
-      const { getByTestId } = render(
-        <DatePickerCore defaultDate={defaultDate}>
-          {({ focusedDate, onKeyDown, onDateFocus }) => {
-            return (
-              <>
-                <table
-                  data-testid="calendarContainer"
-                  onFocus={onDateFocus}
-                  onKeyDown={onKeyDown}
-                >
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div
-                          data-testid="focusedDate"
-                          data-date={focusedDate}
-                          tabIndex={0}
-                        />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </>
-            );
-          }}
-        </DatePickerCore>
-      );
-
-      fireEvent.focus(getByTestId('calendarContainer'));
-      getByTestId('focusedDate').focus();
-      fireEvent.keyDown(getByTestId('calendarContainer'), {
-        key: 'ArrowLeft',
-        code: 37
-      });
-
-      expect(
-        isSameDay(
-          getByTestId('focusedDate').getAttribute('data-date'),
-          subDays(defaultDate, 1)
-        )
-      ).toBeTruthy();
-    });
-
-    it('Home', () => {
-      const defaultDate = new Date();
-      const { getByTestId } = render(
-        <DatePickerCore defaultDate={defaultDate}>
-          {({ focusedDate, onKeyDown, onDateFocus }) => {
-            return (
-              <>
-                <table
-                  data-testid="calendarContainer"
-                  onFocus={onDateFocus}
-                  onKeyDown={onKeyDown}
-                >
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div
-                          data-testid="focusedDate"
-                          data-date={focusedDate}
-                          tabIndex={0}
-                        />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </>
-            );
-          }}
-        </DatePickerCore>
-      );
-
-      fireEvent.focus(getByTestId('calendarContainer'));
-      getByTestId('focusedDate').focus();
-      fireEvent.keyDown(getByTestId('calendarContainer'), {
-        key: 'Home',
-        code: 36
-      });
-
-      expect(
-        isSameDay(
-          getByTestId('focusedDate').getAttribute('data-date'),
-          startOfWeek(defaultDate)
-        )
-      ).toBeTruthy();
-    });
-
-    it('PageUp', () => {
-      const defaultDate = new Date();
-      const { getByTestId } = render(
-        <DatePickerCore defaultDate={defaultDate}>
-          {({ focusedDate, onKeyDown, onDateFocus }) => {
-            return (
-              <>
-                <table
-                  data-testid="calendarContainer"
-                  onFocus={onDateFocus}
-                  onKeyDown={onKeyDown}
-                >
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div
-                          data-testid="focusedDate"
-                          data-date={focusedDate}
-                          tabIndex={0}
-                        />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </>
-            );
-          }}
-        </DatePickerCore>
-      );
-
-      fireEvent.focus(getByTestId('calendarContainer'));
-      getByTestId('focusedDate').focus();
-      fireEvent.keyDown(getByTestId('calendarContainer'), {
-        key: 'PageUp',
-        code: 33
-      });
-
-      expect(
-        isSameDay(
-          getByTestId('focusedDate').getAttribute('data-date'),
-          subMonths(defaultDate, 1)
-        )
-      ).toBeTruthy();
-    });
-
-    it('PageDown', () => {
-      const defaultDate = new Date();
-      const { getByTestId } = render(
-        <DatePickerCore defaultDate={defaultDate}>
-          {({ focusedDate, onKeyDown, onDateFocus }) => {
-            return (
-              <>
-                <table
-                  data-testid="calendarContainer"
-                  onFocus={onDateFocus}
-                  onKeyDown={onKeyDown}
-                >
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div
-                          data-testid="focusedDate"
-                          data-date={focusedDate}
-                          tabIndex={0}
-                        />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </>
-            );
-          }}
-        </DatePickerCore>
-      );
-
-      fireEvent.focus(getByTestId('calendarContainer'));
-      getByTestId('focusedDate').focus();
-      fireEvent.keyDown(getByTestId('calendarContainer'), {
-        key: 'PageDown',
-        code: 34
-      });
-
-      expect(
-        isSameDay(
-          getByTestId('focusedDate').getAttribute('data-date'),
-          addMonths(defaultDate, 1)
-        )
-      ).toBeTruthy();
-    });
-
-    it('ArrowDown', () => {
-      const defaultDate = new Date();
-      const { getByTestId } = render(
-        <DatePickerCore defaultDate={defaultDate}>
-          {({ focusedDate, onKeyDown, onDateFocus }) => {
-            return (
-              <>
-                <table
-                  data-testid="calendarContainer"
-                  onFocus={onDateFocus}
-                  onKeyDown={onKeyDown}
-                >
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div
-                          data-testid="focusedDate"
-                          data-date={focusedDate}
-                          tabIndex={0}
-                        />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </>
-            );
-          }}
-        </DatePickerCore>
-      );
-
-      fireEvent.focus(getByTestId('calendarContainer'));
-      getByTestId('focusedDate').focus();
-      fireEvent.keyDown(getByTestId('calendarContainer'), {
-        key: 'ArrowDown',
-        code: 40
-      });
-
-      expect(
-        isSameDay(
-          getByTestId('focusedDate').getAttribute('data-date'),
-          addWeeks(defaultDate, 1)
-        )
-      ).toBeTruthy();
-    });
-
-    it('ArrowRight', () => {
-      const defaultDate = new Date();
-      const { getByTestId } = render(
-        <DatePickerCore defaultDate={defaultDate}>
-          {({ focusedDate, onKeyDown, onDateFocus }) => {
-            return (
-              <>
-                <table
-                  data-testid="calendarContainer"
-                  onFocus={onDateFocus}
-                  onKeyDown={onKeyDown}
-                >
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div
-                          data-testid="focusedDate"
-                          data-date={focusedDate}
-                          tabIndex={0}
-                        />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </>
-            );
-          }}
-        </DatePickerCore>
-      );
-
-      fireEvent.focus(getByTestId('calendarContainer'));
-      getByTestId('focusedDate').focus();
-      fireEvent.keyDown(getByTestId('calendarContainer'), {
-        key: 'ArrowRight',
-        code: 39
-      });
-
-      expect(
-        isSameDay(
-          getByTestId('focusedDate').getAttribute('data-date'),
-          addDays(defaultDate, 1)
-        )
-      ).toBeTruthy();
-    });
-
-    it('End', () => {
-      const defaultDate = new Date();
-      const { getByTestId } = render(
-        <DatePickerCore defaultDate={defaultDate}>
-          {({ focusedDate, onKeyDown, onDateFocus }) => {
-            return (
-              <>
-                <table
-                  data-testid="calendarContainer"
-                  onFocus={onDateFocus}
-                  onKeyDown={onKeyDown}
-                >
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div
-                          data-testid="focusedDate"
-                          data-date={focusedDate}
-                          tabIndex={0}
-                        />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </>
-            );
-          }}
-        </DatePickerCore>
-      );
-
-      fireEvent.focus(getByTestId('calendarContainer'));
-      getByTestId('focusedDate').focus();
-      fireEvent.keyDown(getByTestId('calendarContainer'), {
-        key: 'End',
-        code: 35
-      });
-
-      expect(
-        isSameDay(
-          getByTestId('focusedDate').getAttribute('data-date'),
-          endOfWeek(defaultDate)
-        )
-      ).toBeTruthy();
-    });
-
-    it('Escape', () => {
-      const defaultDate = new Date();
-      const { getByTestId } = render(
-        <DatePickerCore calendarOpened={true} defaultDate={defaultDate}>
-          {({ calendarOpened, onKeyDown, onDateFocus }) => {
-            return (
-              <>
-                <table
-                  data-testid="calendarContainer"
-                  onFocus={onDateFocus}
-                  onKeyDown={onKeyDown}
-                >
-                  <tbody>
-                    <tr>
-                      <td>
-                        <input
-                          data-testid="calendarOpened"
-                          checked={calendarOpened}
-                          onChange={() => {}}
-                        />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </>
-            );
-          }}
-        </DatePickerCore>
-      );
-
-      fireEvent.focus(getByTestId('calendarContainer'));
-      getByTestId('calendarOpened').focus();
-      fireEvent.keyDown(getByTestId('calendarContainer'), {
-        key: 'Escape',
-        code: 27
-      });
-
-      expect(getByTestId('calendarOpened').checked).toBeFalsy();
-    });
-
-    it('?', () => {
-      const defaultDate = new Date();
-      const { getByTestId } = render(
-        <DatePickerCore calendarOpened={true} defaultDate={defaultDate}>
-          {({ onKeyDown, onDateFocus, showHelperInformation }) => {
-            return (
-              <>
-                <table
-                  data-testid="calendarContainer"
-                  onFocus={onDateFocus}
-                  onKeyDown={onKeyDown}
-                >
-                  <tbody>
-                    <tr>
-                      <td>
-                        <input
-                          data-testid="helperInformation"
-                          checked={showHelperInformation}
-                          onChange={() => {}}
-                        />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </>
-            );
-          }}
-        </DatePickerCore>
-      );
-
-      fireEvent.focus(getByTestId('calendarContainer'));
-      getByTestId('helperInformation').focus();
-      fireEvent.keyDown(getByTestId('calendarContainer'), {
-        key: '?'
-      });
-
-      expect(getByTestId('helperInformation').checked).toBeTruthy();
-    });
-
-    it('Escape without focus', () => {
-      const defaultDate = new Date();
-      const { getByTestId } = render(
-        <DatePickerCore calendarOpened={true} defaultDate={defaultDate}>
-          {({ calendarOpened, onKeyDown, onDateFocus }) => {
-            return (
-              <>
-                <table
-                  data-testid="calendarContainer"
-                  onFocus={onDateFocus}
-                  onKeyDown={onKeyDown}
-                >
-                  <tbody>
-                    <tr>
-                      <td>
-                        <input
-                          data-testid="calendarOpened"
-                          checked={calendarOpened}
-                          onChange={() => {}}
-                        />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </>
-            );
-          }}
-        </DatePickerCore>
-      );
-
-      fireEvent.focus(getByTestId('calendarContainer'));
-      fireEvent.keyDown(getByTestId('calendarContainer'), {
-        key: 'Escape',
-        code: 27
-      });
-
-      expect(getByTestId('calendarOpened').checked).toBeFalsy();
-    });
-
-    it('? without focus', () => {
-      const defaultDate = new Date();
-      const { getByTestId } = render(
-        <DatePickerCore calendarOpened={true} defaultDate={defaultDate}>
-          {({ showHelperInformation, onKeyDown, onDateFocus }) => {
-            return (
-              <>
-                <table
-                  data-testid="calendarContainer"
-                  onFocus={onDateFocus}
-                  onKeyDown={onKeyDown}
-                >
-                  <input
-                    data-testid="helperInformation"
-                    checked={showHelperInformation}
-                    onChange={() => {}}
-                  />
-                  <tbody>
-                    <tr>
-                      <td>
-                        <input data-testid="calendarOpened" />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </>
-            );
-          }}
-        </DatePickerCore>
-      );
-
-      fireEvent.focus(getByTestId('calendarContainer'));
-      fireEvent.keyDown(getByTestId('helperInformation'), {
-        key: '?'
-      });
-
-      expect(getByTestId('helperInformation').checked).toBeTruthy();
-    });
-
-    it('Enter', () => {
-      const defaultDate = new Date();
-      const { getByTestId } = render(
-        <DatePickerCore defaultDate={defaultDate}>
-          {({ chosenDate, onKeyDown, onDateFocus }) => {
-            return (
-              <>
-                <table
-                  data-testid="calendarContainer"
-                  onFocus={onDateFocus}
-                  onKeyDown={onKeyDown}
-                >
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div
-                          data-testid="chosenDate"
-                          data-date={chosenDate}
-                          tabIndex={0}
-                        />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </>
-            );
-          }}
-        </DatePickerCore>
-      );
-
-      fireEvent.focus(getByTestId('calendarContainer'));
-      getByTestId('chosenDate').focus();
-      fireEvent.keyDown(getByTestId('calendarContainer'), {
-        key: 'Enter',
-        code: 13
-      });
-
-      expect(
-        isSameDay(
-          getByTestId('chosenDate').getAttribute('data-date'),
-          defaultDate
-        )
-      ).toBeTruthy();
-    });
-
-    it('Spacebar', () => {
-      const defaultDate = new Date();
-      const { getByTestId } = render(
-        <DatePickerCore defaultDate={defaultDate}>
-          {({ chosenDate, onKeyDown, onDateFocus }) => {
-            return (
-              <>
-                <table
-                  data-testid="calendarContainer"
-                  onFocus={onDateFocus}
-                  onKeyDown={onKeyDown}
-                >
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div
-                          data-testid="chosenDate"
-                          data-date={chosenDate}
-                          tabIndex={0}
-                        />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </>
-            );
-          }}
-        </DatePickerCore>
-      );
-
-      fireEvent.focus(getByTestId('calendarContainer'));
-      getByTestId('chosenDate').focus();
-      fireEvent.keyDown(getByTestId('calendarContainer'), {
-        key: 'Space',
-        code: 32
-      });
-
-      expect(
-        isSameDay(
-          getByTestId('chosenDate').getAttribute('data-date'),
-          defaultDate
-        )
-      ).toBeTruthy();
-    });
-
-    it('does not update the focused date if a bad key press occurs', () => {
-      const defaultDate = new Date();
-      const { getByTestId } = render(
-        <DatePickerCore defaultDate={defaultDate}>
-          {({ focusedDate, onKeyDown, onDateFocus }) => {
-            return (
-              <>
-                <table
-                  data-testid="calendarContainer"
-                  onFocus={onDateFocus}
-                  onKeyDown={onKeyDown}
-                >
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div
-                          data-testid="focusedDate"
-                          data-date={focusedDate}
-                          tabIndex={0}
-                        />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </>
-            );
-          }}
-        </DatePickerCore>
-      );
-
-      fireEvent.focus(getByTestId('calendarContainer'));
-      getByTestId('focusedDate').focus();
-      fireEvent.keyDown(getByTestId('calendarContainer'), {
-        key: 'f',
-        code: 70
-      });
-
-      expect(
-        isSameDay(
-          getByTestId('focusedDate').getAttribute('data-date'),
-          defaultDate
-        )
-      ).toBeTruthy();
-    });
-  });
-
   describe('on day click', () => {
     it('should updated the chosen date and close the calendar', () => {
       const defaultDate = new Date();
       const newDate = addDays(defaultDate, 1);
       const { getByTestId } = render(
         <DatePickerCore calendarOpened={true} defaultDate={defaultDate}>
-          {({ calendarOpened, chosenDate, onDateFocus, onDayClick }) => {
+          {({ calendarOpened, chosenDate, toggleDateFocus, onDateChange }) => {
             return (
               <>
                 <div
                   data-testid="calendarContainer"
                   role="table"
-                  onFocus={onDateFocus}
+                  onFocus={() => toggleDateFocus(true)}
                 >
                   <button
                     data-testid="dayClickButton"
                     onClick={() => {
-                      onDayClick(newDate);
+                      onDateChange(newDate);
                     }}
                   >
                     Click Day
@@ -1209,42 +495,6 @@ describe('DatePickerCore', () => {
         isSameDay(getByTestId('chosenDate').getAttribute('data-date'), newDate)
       ).toBeTruthy();
       expect(getByTestId('calendarOpened').checked).toBeFalsy();
-    });
-
-    it('should call the passed in onDayClick function', () => {
-      const onDayClickSpy = jest.fn();
-      const defaultDate = new Date();
-      const newDate = addDays(defaultDate, 1);
-      const { getByTestId } = render(
-        <DatePickerCore
-          calendarOpened={true}
-          defaultDate={defaultDate}
-          onDayClick={onDayClickSpy}
-        >
-          {({ onDayClick }) => {
-            return (
-              <>
-                <div data-testid="calendarContainer" role="table">
-                  <button
-                    data-testid="dayClickButton"
-                    onClick={() => {
-                      onDayClick(newDate);
-                    }}
-                  >
-                    Click Day
-                  </button>
-                </div>
-              </>
-            );
-          }}
-        </DatePickerCore>
-      );
-
-      const event = {};
-      fireEvent.focus(getByTestId('calendarContainer'));
-      fireEvent.click(getByTestId('dayClickButton'), event);
-
-      expect(onDayClickSpy).toHaveBeenCalled();
     });
   });
 });

@@ -1,0 +1,490 @@
+---
+title: 'Radio Buttons'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { Radio, RadioGroup, Button, magma } from 'react-magma-dom'
+import DocsHeading from '../../components/docs-heading'
+import { Link } from 'gatsby'
+import { SimplePropsTable } from '../../components/props-table'
+
+<DocsHeading to="/design/selection-controls/#5._radio%20buttons" type="design">
+  Radio Buttons
+</DocsHeading>
+
+## Basic Usage
+
+Radio buttons are form elements used to select one item from a set of mutuallty exclusive options. The `RadioGroup` component is used as the container for the set of options. The `Radio` component is used for each of the options themselves.
+
+See also: <Link to="/api/checkbox">Checkboxes</Link>, <Link to="/api/toggle">Toggle Switches</Link>, and the <Link to="/design/selection-controls">Design Guidelines</Link> for selection controls in general.
+
+The label/radio association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
+
+```.jsx
+  <RadioGroup labelText='Basic Usage' id='basicGroup' name='basic'>
+    <Radio
+        id='radio1'
+        labelText='Option One Label'
+        value='1' />
+
+    <Radio
+        id='radio2'
+        labelText='Option Two Label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines'
+        value='2' />
+    </RadioGroup>
+```
+
+## Default Selected Value
+
+To set a selected value by default, use the `value` prop on the `RadioGroup` to pass in the `value` of the option you wish to select.
+
+```.jsx
+  <RadioGroup labelText='Default Selected Value' id='defaultSelectedGroup' name='defaultSelected' value='selectedOption'>
+    <Radio
+        id='radioSelected'
+        labelText='Selected Option'
+        value='selectedOption' />
+
+    <Radio
+        id='radioUnselected'
+        labelText='Unselected Option'
+        value='unselectedOption' />
+    </RadioGroup>
+```
+
+## Colors
+
+By default, the radio buttons use the theme's primary color. But any other color may be passed in.
+
+```.jsx
+  <RadioGroup labelText='Colors' id='colorsGroup' name='colors'>
+    <Radio
+        id='colorRadio'
+        labelText='Default Color'
+        value='default' />
+      <Radio
+          color={magma.colors.success01}
+          id='successColorRadio'
+          labelText='Success Color'
+          value='success' />
+      <Radio
+          color={magma.colors.danger}
+          id='dangerColorRadio'
+          labelText='Danger Color'
+          value='danger' />
+      <Radio
+          color={magma.colors.pop02}
+          id='popColorRadio'
+          labelText='Pop Color'
+          value='pop' />
+    </RadioGroup>
+```
+
+## Disabled
+
+```.jsx
+  <RadioGroup labelText='Disabled Radio Buttons' id='disabledGroup' name='disabled'>
+    <Radio
+        disabled
+        id='disabledRadio'
+        labelText='Disabled Radio 1'
+        value='1' />
+    <Radio
+        disabled
+        id='disabledRadio2'
+        labelText='Disabled Radio 2'
+        value='2' />
+    </RadioGroup>
+```
+
+## Inverse Colors
+
+Inverse is an optional boolean prop, that may be passed in when radio buttons are to be displayed on a dark background.
+
+```.jsx
+  <RadioGroup
+    containerStyle={{ background : '#00263E', color: '#fff', padding: '10px' }}
+    labelText='Inverse Radio Buttons'
+    id='inverseGroup'
+    name='inverse'>
+    <Radio
+        id='inverseRadio'
+        inverse
+        labelText='Inverse'
+        value='default' />
+      <Radio
+          color={magma.colors.success01}
+          id='successInverseRadio'
+          inverse
+          labelText='Success Inverse'
+          value='success' />
+      <Radio
+          color={magma.colors.danger}
+          id='dangerInverseRadio'
+          inverse
+          labelText='Danger Inverse'
+          value='danger' />
+      <Radio
+          color={magma.colors.pop02}
+          id='popInverseRadio'
+          inverse
+          labelText='Pop Inverse'
+          value='pop' />
+        <Radio
+            disabled
+            id='disabledInverseRadio'
+            inverse
+            labelText='Disabled Inverse'
+            value='disabled' />
+    </RadioGroup>
+```
+
+## Custom Styles
+
+Custom styles can be passed into both the RadioGroup component and the Radio component. The `containerStyle` property will apply to the container.
+Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
+
+```.jsx
+  <RadioGroup
+    style={{ 'border': '2px solid yellow', 'padding': '10px'}}
+    labelStyle={{ 'color': 'blue', 'textTransform': 'uppercase'}}
+    labelText='Custom styles'
+    id='customGroup'
+    name='custom'>
+    <Radio
+        containerStyle={{ 'border': '1px dotted purple'}}
+        inputStyle={{ 'boxShadow': '3px 3px 3px rgba(0, 0 , 0, .6)'}}
+        labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
+        labelText='Custom Styles'
+        value='1' />
+
+    <Radio
+        id='custom2'
+        labelText='No Custom Styles'
+        value='2' />
+  </RadioGroup>
+```
+
+## Labeling Radio Groups
+
+To meet accessibilty requirements, a radio group _must_ have a label. You can provide a label in one of two ways.
+
+You can use the `labelText` prop, which takes a string. This string will be displayed on screen inside a `<label>` element and be associated with your radio group.
+
+Or you can use the `labelledById` prop, which also takes a string. This string should refer to an ID of an element that exists somewhere else on the page.
+This id will become the value of the `aria-labelledby` attribute for the group.
+
+```.jsx
+  <div>
+
+    <RadioGroup
+        id='labelledByGroup'
+        labelText="Labelled by labelText"
+        name='labelledByGroup'>
+          <Radio
+              labelText='Label' />
+          <Radio
+              labelText='Label' />
+      </RadioGroup>
+
+
+    <RadioGroup
+        id='labelledByGroup'
+        labelledById="h3Label"
+        name='labelledByGroup'>
+          <h3 id="h3Label">Labelled by h3 with labelledById prop</h3>
+          <Radio
+              labelText='Label' />
+          <Radio
+              labelText='Label' />
+      </RadioGroup>
+  </div>
+```
+
+## Visually Hidden Label
+
+Adding the `textVisuallyHidden` prop will make the label text for either the radio group or the radio button available to screen readers, but will hide it visually.
+
+```.jsx
+  <RadioGroup
+      labelText='Hidden Label'
+      id='visuallyHiddenRadioGroup'
+      name='visuallyHiddenRadioGroup'
+      textVisuallyHidden>
+        <Radio
+            id='visuallyHiddenRadio1'
+            labelText='Hidden Label'
+            textVisuallyHidden />
+        <Radio
+            id='visuallyHiddenRadio2'
+            labelText='Hidden Label'
+            textVisuallyHidden />
+    </RadioGroup>
+```
+
+## Forward Ref
+
+Using React's `forwardRef` feature you can gain access to the reference of the internal radio.
+
+```.jsx
+  class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.radioRef = React.createRef();
+      }
+
+      render() {
+        return <div>
+        <RadioGroup labelText='ForwardRef Usage' id='forwardRefGroup' name='forwardRef'>
+          <Radio
+            ref={this.radioRef}
+            id='forwardRefRadio1'
+            labelText='Option One Label'
+            value='1' />
+
+          <Radio
+            id='forwardRefRadio2'
+            labelText='Option Two Label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines'
+            value='2' />
+        </RadioGroup>
+
+        <Button
+          onClick={() => {
+            this.radioRef.current.checked = !this.radioRef.current.checked
+          }}>Toggle option 1
+        </Button>
+
+         <Button
+          color="secondary"
+          onClick={() => {
+            this.radioRef.current.focus()
+          }}>Focus option 1
+        </Button>
+        </div>
+      }
+    }
+```
+
+## Testing
+
+Passing in the `testId` prop will add the `data-testid` attribute to the wrapper element for `RadioGroup` and the input element for `Radio` for easier querying in tests.
+
+```html
+<div aria-labelledby="basicGroup" data-testid="group-test=id" role="radiogroup">
+  <label id="basicGroup">Basic Usage</label>
+  <div>
+    <input
+      id="radio1"
+      data-testid="radio-test-id"
+      name="basic"
+      type="radio"
+      value="1"
+    />
+    <label for="radio1">
+      <span> <span color=""></span> </span> Option One Label
+    </label>
+  </div>
+</div>
+```
+
+## Radio Group Props
+
+<SimplePropsTable
+  props={{
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
+    },
+    containerStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the component container element',
+    },
+    labelledById: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'ID of the element that labels the radio group, used in the aria-labelledby attribute for the group.  Alertnatively, the labelText prop can be used.',
+      defaultValue: '',
+    },
+    labelStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the label of the radio group',
+    },
+    labelText: {
+      type: {
+        name: 'string',
+      },
+      required: true,
+      description:
+        'Text for label of the radio group. Alertnatively, the labelledById prop can be used.',
+    },
+    onBlur: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Action that fires when the radio group loses focus',
+    },
+    onChange: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description:
+        'Action that fires when selected value of the radio group changes',
+    },
+    onFocus: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description:
+        'Action that fires when one of the radio buttons within the group receives focus',
+    },
+    name: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Name attribute the radio group',
+      defaultValue: '',
+    },
+    textVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text for the radio group will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'ID used for testing purposes',
+      defaultValue: '',
+    },
+    value: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Value of the radio button that is the default selected value for the group',
+      defaultValue: '',
+    },
+  }}
+/>
+
+## Radio Props
+
+<SimplePropsTable
+  props={{
+    color: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Hex code for the background color',
+      defaultValue: '#0000FF',
+    },
+    containerStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the component container element',
+    },
+    disabled: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, element is disabled',
+      defaultValue: 'false',
+    },
+    inputStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the radio button element',
+    },
+    inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    labelStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the label element',
+    },
+    labelText: {
+      type: {
+        name: 'string',
+      },
+      required: true,
+      description: 'Text for label',
+    },
+    required: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the form field is required',
+      defaultValue: 'false',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'ID used for testing purposes',
+      defaultValue: '',
+    },
+    textVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
+    },
+    value: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Value attribute the form field',
+      defaultValue: '',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout
+    {...props}
+    components={{ Radio, RadioGroup, Button, magma }}
+  />
+)

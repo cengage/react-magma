@@ -1,69 +1,50 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { StyledButton } from '.';
-import {
-  ButtonSize,
-  ButtonShape,
-  ButtonColor,
-  ButtonTextTransform,
-  ButtonVariant
-} from '../Button';
 import { render, fireEvent } from 'react-testing-library';
 import { magma } from '../../theme/magma';
 import { darken, lighten } from 'polished';
 
-const TEXT = 'Test Text';
-
-const BASE_BUTTON_PROPS = {
-  onClick: jest.fn(),
-  color: ButtonColor.primary,
-  shape: ButtonShape.fill,
-  size: ButtonSize.medium,
-  textTransform: ButtonTextTransform.uppercase,
-  theme: magma,
-  variant: ButtonVariant.solid
-};
-
-const renderButton = (myProps = {}) => {
-  const props = {
-    ...BASE_BUTTON_PROPS,
-    ...myProps
-  };
-
-  return render(<StyledButton {...props}>{TEXT}</StyledButton>);
-};
-
 describe('Styled Button', () => {
   it('should find element by testId', () => {
     const testId = 'test-id';
-    const { getByTestId } = renderButton({ testId });
+    const { getByTestId } = render(
+      <StyledButton testId={testId}>test</StyledButton>
+    );
 
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render a button with the passed in text', () => {
-    const { getByText } = renderButton();
+    const text = 'test text';
+    const { getByText } = render(<StyledButton>{text}</StyledButton>);
 
-    expect(getByText(TEXT)).not.toBeNull();
+    expect(getByText(text)).toBeInTheDocument();
   });
 
   it('should autofocus a button when the passed autoFocus', () => {
-    const { getByText } = renderButton({ autoFocus: true });
+    const text = 'test text';
+    // eslint-disable-next-line jsx-a11y/no-autofocus
+    const { getByText } = render(<StyledButton autoFocus>{text}</StyledButton>);
 
-    expect(getByText(TEXT)).toHaveFocus();
+    expect(getByText(text)).toHaveFocus();
   });
 
   it('should disable a button when the passed disabled', () => {
-    const { getByText } = renderButton({ disabled: true });
+    const text = 'test text';
+    const { getByText } = render(<StyledButton disabled>{text}</StyledButton>);
 
-    expect(getByText(TEXT)).toBeDisabled();
+    expect(getByText(text)).toBeDisabled();
   });
 
   describe('Button classes', () => {
     describe('Variants', () => {
       it('solid button', () => {
-        const { getByText } = renderButton({ variant: 'solid' });
-        const button = getByText(TEXT);
+        const text = 'test text';
+        const { getByText } = render(
+          <StyledButton variant="solid">{text}</StyledButton>
+        );
+        const button = getByText(text);
 
         expect(button).toHaveStyleRule('background', magma.colors.primary);
         expect(button).toHaveStyleRule('background', '#004165', {
@@ -77,8 +58,11 @@ describe('Styled Button', () => {
       });
 
       it('outline button', () => {
-        const { getByText } = renderButton({ variant: 'outline' });
-        const button = getByText(TEXT);
+        const text = 'test text';
+        const { getByText } = render(
+          <StyledButton variant="outline">{text}</StyledButton>
+        );
+        const button = getByText(text);
 
         expect(button).toHaveStyleRule('background', 'rgba(0,0,0,0)');
         expect(button).toHaveStyleRule('background', '#e5eff4', {
@@ -91,8 +75,11 @@ describe('Styled Button', () => {
       });
 
       it('link button', () => {
-        const { getByText } = renderButton({ variant: 'link' });
-        const button = getByText(TEXT);
+        const text = 'test text';
+        const { getByText } = render(
+          <StyledButton variant="link">{text}</StyledButton>
+        );
+        const button = getByText(text);
 
         expect(button).toHaveStyleRule('background', 'rgba(0,0,0,0)');
         expect(button).toHaveStyleRule('color', magma.colors.primary);
@@ -101,8 +88,13 @@ describe('Styled Button', () => {
 
     describe('Colors', () => {
       it('primary button', () => {
-        const { getByText } = renderButton({ color: 'primary' });
-        const button = getByText(TEXT);
+        const text = 'test text';
+        const { getByText } = render(
+          <StyledButton color="primary" theme="magma" variant="solid">
+            {text}
+          </StyledButton>
+        );
+        const button = getByText(text);
 
         expect(button).toHaveStyleRule('background', magma.colors.primary);
         expect(button).toHaveStyleRule(
@@ -120,8 +112,14 @@ describe('Styled Button', () => {
       });
 
       it('secondary button', () => {
-        const { getByText } = renderButton({ color: 'secondary' });
-        const button = getByText(TEXT);
+        const text = 'test text';
+        const { getByText } = render(
+          <StyledButton color="secondary" theme="magma" variant="solid">
+            {text}
+          </StyledButton>
+        );
+
+        const button = getByText(text);
 
         expect(button).toHaveStyleRule('background', magma.colors.neutral08);
         expect(button).toHaveStyleRule(
@@ -139,8 +137,13 @@ describe('Styled Button', () => {
       });
 
       it('success button', () => {
-        const { getByText } = renderButton({ color: 'success' });
-        const button = getByText(TEXT);
+        const text = 'test text';
+        const { getByText } = render(
+          <StyledButton color="success" theme="magma" variant="solid">
+            {text}
+          </StyledButton>
+        );
+        const button = getByText(text);
 
         expect(button).toHaveStyleRule('background', magma.colors.success01);
         expect(button).toHaveStyleRule(
@@ -158,8 +161,13 @@ describe('Styled Button', () => {
       });
 
       it('danger button', () => {
-        const { getByText } = renderButton({ color: 'danger' });
-        const button = getByText(TEXT);
+        const text = 'test text';
+        const { getByText } = render(
+          <StyledButton color="danger" theme="magma" variant="solid">
+            {text}
+          </StyledButton>
+        );
+        const button = getByText(text);
 
         expect(button).toHaveStyleRule('background', magma.colors.danger);
         expect(button).toHaveStyleRule(
@@ -177,8 +185,11 @@ describe('Styled Button', () => {
       });
 
       it('marketing button', () => {
-        const { getByText } = renderButton({ color: 'marketing' });
-        const button = getByText(TEXT);
+        const text = 'test text';
+        const { getByText } = render(
+          <StyledButton color="marketing">{text}</StyledButton>
+        );
+        const button = getByText(text);
 
         expect(button).toHaveStyleRule('background', magma.colors.pop04);
         expect(button).toHaveStyleRule(
@@ -198,8 +209,13 @@ describe('Styled Button', () => {
 
     describe('Inverse', () => {
       it('primary button', () => {
-        const { getByText } = renderButton({ inverse: true, color: 'primary' });
-        const button = getByText(TEXT);
+        const text = 'test text';
+        const { getByText } = render(
+          <StyledButton inverse color="primary" theme="magma" variant="solid">
+            {text}
+          </StyledButton>
+        );
+        const button = getByText(text);
 
         expect(button).toHaveStyleRule('background', magma.colors.neutral08);
         expect(button).toHaveStyleRule('border-color', magma.colors.neutral08);
@@ -207,11 +223,13 @@ describe('Styled Button', () => {
       });
 
       it('secondary button', () => {
-        const { getByText } = renderButton({
-          inverse: true,
-          color: 'secondary'
-        });
-        const button = getByText(TEXT);
+        const text = 'test text';
+        const { getByText } = render(
+          <StyledButton inverse color="secondary" theme="magma" variant="solid">
+            {text}
+          </StyledButton>
+        );
+        const button = getByText(text);
 
         expect(button).toHaveStyleRule('background', magma.colors.neutral08);
         expect(button).toHaveStyleRule('border-color', magma.colors.neutral08);
@@ -219,8 +237,13 @@ describe('Styled Button', () => {
       });
 
       it('success button', () => {
-        const { getByText } = renderButton({ inverse: true, color: 'success' });
-        const button = getByText(TEXT);
+        const text = 'test text';
+        const { getByText } = render(
+          <StyledButton inverse color="success" theme="magma" variant="solid">
+            {text}
+          </StyledButton>
+        );
+        const button = getByText(text);
 
         expect(button).toHaveStyleRule('background', magma.colors.neutral08);
         expect(button).toHaveStyleRule('border-color', magma.colors.neutral08);
@@ -228,8 +251,13 @@ describe('Styled Button', () => {
       });
 
       it('danger button', () => {
-        const { getByText } = renderButton({ inverse: true, color: 'danger' });
-        const button = getByText(TEXT);
+        const text = 'test text';
+        const { getByText } = render(
+          <StyledButton inverse color="danger" theme="magma" variant="solid">
+            {text}
+          </StyledButton>
+        );
+        const button = getByText(text);
 
         expect(button).toHaveStyleRule('background', magma.colors.neutral08);
         expect(button).toHaveStyleRule('border-color', magma.colors.neutral08);
@@ -238,37 +266,56 @@ describe('Styled Button', () => {
     });
 
     describe('Sizes', () => {
-      it('default button', () => {
-        const { getByText } = renderButton();
-        const button = getByText(TEXT);
+      it('medium button', () => {
+        const text = 'test text';
+        const { getByText } = render(
+          <StyledButton size="medium">{text}</StyledButton>
+        );
+        const button = getByText(text);
 
         expect(button).toHaveStyleRule('font-size', '.875rem');
         expect(button).toHaveStyleRule('padding', '0 15px');
+        expect(button).toHaveStyleRule('top', '18px', {
+          target: ':after'
+        });
       });
 
       it('small button', () => {
-        const { getByText } = renderButton({ size: 'small' });
-        const button = getByText(TEXT);
+        const text = 'test text';
+        const { getByText } = render(
+          <StyledButton size="small">{text}</StyledButton>
+        );
+        const button = getByText(text);
 
         expect(button).toHaveStyleRule('font-size', '.750rem');
         expect(button).toHaveStyleRule('padding', '0 10px');
+        expect(button).toHaveStyleRule('top', '14px', {
+          target: ':after'
+        });
       });
 
       it('large button', () => {
-        const { getByText } = renderButton({ size: 'large' });
-        const button = getByText(TEXT);
+        const text = 'test text';
+        const { getByText } = render(
+          <StyledButton size="large">{text}</StyledButton>
+        );
+        const button = getByText(text);
 
         expect(button).toHaveStyleRule('font-size', '1.125rem');
         expect(button).toHaveStyleRule('padding', '0 20px');
+        expect(button).toHaveStyleRule('top', '22px', {
+          target: ':after'
+        });
       });
 
       it('disabled inverse outline button', () => {
-        const { getByText } = renderButton({
-          disabled: true,
-          inverse: true,
-          variant: 'outline'
-        });
-        const button = getByText(TEXT);
+        const text = 'test text';
+        const { getByText } = render(
+          <StyledButton disabled inverse variant="outline">
+            {text}
+          </StyledButton>
+        );
+        const button = getByText(text);
 
         expect(button).toHaveStyleRule(
           'border-color',
@@ -279,45 +326,63 @@ describe('Styled Button', () => {
     });
 
     describe('Shapes', () => {
-      it('default button', () => {
-        const { getByText } = renderButton();
-        const button = getByText(TEXT);
+      it('fill button', () => {
+        const text = 'test text';
+        const { getByText } = render(
+          <StyledButton shape="fill">{text}</StyledButton>
+        );
+        const button = getByText(text);
 
         expect(button).toHaveStyleRule('border-radius', '5px');
       });
 
       it('leftCap button', () => {
-        const { getByText } = renderButton({ shape: 'leftCap' });
-        const button = getByText(TEXT);
+        const text = 'test text';
+        const { getByText } = render(
+          <StyledButton shape="leftCap">{text}</StyledButton>
+        );
+        const button = getByText(text);
 
         expect(button).toHaveStyleRule('border-radius', '5px 0 0 5px');
       });
 
       it('rightCap button', () => {
-        const { getByText } = renderButton({ shape: 'rightCap' });
-        const button = getByText(TEXT);
+        const text = 'test text';
+        const { getByText } = render(
+          <StyledButton shape="rightCap">{text}</StyledButton>
+        );
+        const button = getByText(text);
 
         expect(button).toHaveStyleRule('border-radius', '0 5px 5px 0');
       });
 
       it('round button', () => {
-        const { getByText } = renderButton({ shape: 'round' });
-        const button = getByText(TEXT);
+        const text = 'test text';
+        const { getByText } = render(
+          <StyledButton shape="round">{text}</StyledButton>
+        );
+        const button = getByText(text);
 
         expect(button).toHaveStyleRule('border-radius', '100%');
       });
     });
 
     it('allCaps button', () => {
-      const { getByText } = renderButton({ textTransform: 'uppercase' });
-      const button = getByText(TEXT);
+      const text = 'test text';
+      const { getByText } = render(
+        <StyledButton textTransform="uppercase">{text}</StyledButton>
+      );
+      const button = getByText(text);
 
       expect(button).toHaveStyleRule('text-transform', 'uppercase');
     });
 
     it('textTransform none button', () => {
-      const { getByText } = renderButton({ textTransform: 'none' });
-      const button = getByText(TEXT);
+      const text = 'test text';
+      const { getByText } = render(
+        <StyledButton textTransform="none">{text}</StyledButton>
+      );
+      const button = getByText(text);
 
       expect(button).toHaveStyleRule('text-transform', 'none');
     });
@@ -325,11 +390,13 @@ describe('Styled Button', () => {
 
   describe('IconOnly', () => {
     it('icon small', () => {
-      const { getByText } = renderButton({
-        iconOnly: true,
-        size: ButtonSize.small
-      });
-      const button = getByText(TEXT);
+      const text = 'test text';
+      const { getByText } = render(
+        <StyledButton iconOnly size="small">
+          {text}
+        </StyledButton>
+      );
+      const button = getByText(text);
 
       expect(button).toHaveStyleRule('display', 'inline-flex');
       expect(button).toHaveStyleRule('height', '28px');
@@ -337,11 +404,13 @@ describe('Styled Button', () => {
     });
 
     it('icon medium', () => {
-      const { getByText } = renderButton({
-        iconOnly: true,
-        size: ButtonSize.medium
-      });
-      const button = getByText(TEXT);
+      const text = 'test text';
+      const { getByText } = render(
+        <StyledButton iconOnly size="medium">
+          {text}
+        </StyledButton>
+      );
+      const button = getByText(text);
 
       expect(button).toHaveStyleRule('display', 'inline-flex');
       expect(button).toHaveStyleRule('height', '37px');
@@ -349,11 +418,13 @@ describe('Styled Button', () => {
     });
 
     it('icon large', () => {
-      const { getByText } = renderButton({
-        iconOnly: true,
-        size: ButtonSize.large
-      });
-      const button = getByText(TEXT);
+      const text = 'test text';
+      const { getByText } = render(
+        <StyledButton iconOnly size="large">
+          {text}
+        </StyledButton>
+      );
+      const button = getByText(text);
 
       expect(button).toHaveStyleRule('display', 'inline-flex');
       expect(button).toHaveStyleRule('height', '44px');
@@ -363,16 +434,18 @@ describe('Styled Button', () => {
 
   describe('Block', () => {
     it('default button', () => {
-      const { getByText } = renderButton();
-      const button = getByText(TEXT);
+      const text = 'test text';
+      const { getByText } = render(<StyledButton>{text}</StyledButton>);
+      const button = getByText(text);
 
       expect(button).toHaveStyleRule('display', 'inline-flex');
       expect(button).toHaveStyleRule('width', 'auto');
     });
 
     it('block button', () => {
-      const { getByText } = renderButton({ block: true });
-      const button = getByText(TEXT);
+      const text = 'test text';
+      const { getByText } = render(<StyledButton block>{text}</StyledButton>);
+      const button = getByText(text);
 
       expect(button).toHaveStyleRule('display', 'flex');
       expect(button).toHaveStyleRule('width', '100%');
@@ -381,12 +454,13 @@ describe('Styled Button', () => {
 
   it('should trigger the passed in function when clicked', () => {
     const onClickSpy = jest.fn();
-    const { getByText } = renderButton({
-      onClick: onClickSpy
-    });
+    const text = 'test text';
+    const { getByText } = render(
+      <StyledButton onClick={onClickSpy}>{text}</StyledButton>
+    );
 
     fireEvent(
-      getByText(TEXT),
+      getByText(text),
       new MouseEvent('click', {
         bubbles: true,
         cancelable: true
@@ -397,7 +471,8 @@ describe('Styled Button', () => {
   });
 
   it('Does not violate accessibility standards', () => {
-    const { container } = renderButton();
+    const text = 'test text';
+    const { container } = render(<StyledButton>{text}</StyledButton>);
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });

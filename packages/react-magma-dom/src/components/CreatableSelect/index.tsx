@@ -31,13 +31,9 @@ export const CreatableSelect: React.FunctionComponent<CreatableSelectProps> = (
   <SelectCore
     defaultValue={props.defaultValue}
     value={props.value}
-    onBlur={props.onBlur}
-    onFocus={props.onFocus}
     onChange={props.onChange}
-    onOpen={props.onOpen}
-    onClose={props.onClose}
   >
-    {({ value, onBlur, onFocus, onChange, onOpen, onClose }) => {
+    {({ value, onChange }) => {
       const {
         allowCreateWhileLoading,
         createOptionPosition,
@@ -50,6 +46,10 @@ export const CreatableSelect: React.FunctionComponent<CreatableSelectProps> = (
         testId,
         name,
         onCreateOption,
+        onBlur,
+        onFocus,
+        onOpen,
+        onClose,
         options,
         labelText,
         disabled,

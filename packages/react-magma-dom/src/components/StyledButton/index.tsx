@@ -5,6 +5,7 @@ import {
   buildActiveBackground,
   buildActiveColor,
   buildAfterBackground,
+  buildAfterTopPosition,
   buildBorderColor,
   buildButtonBackground,
   buildColor,
@@ -90,7 +91,7 @@ export const buttonStyles = props => css`
       opacity: 0;
       position: absolute;
       padding: 50%;
-      top: 18px;
+      top: ${buildAfterTopPosition(props)};
       transform: translate(-50%, -50%) scale(1);
       transition: opacity 1s, transform 0.5s;
       width: 32px;

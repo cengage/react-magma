@@ -1,0 +1,284 @@
+.article-divider {
+  background: #DFDFDF;
+  margin: 40px 0;
+}
+
+.two-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.two-col .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+.two-col .col {
+  display: flex;
+  flex-direction: column;
+  width: 47%;
+  max-width: 400px;
+}
+
+.three-col .col {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  max-width: 400px;
+}
+
+.one-col .col {
+  width: 100%;
+}
+
+figure .image-container {
+  border: 1px solid #dfdfdf;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 40px 10px 0 10px;
+  background: #f7f7f7;
+}
+
+figure .image-container span {
+  padding-bottom: 0px!important;
+}
+
+figure .image-container img {
+  max-width: 400px;
+  margin: auto!important;
+  position: relative!important;
+}
+
+figcaption {
+  font-size: 13px;
+  color: #727272;
+  line-height: 1.5em;
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0 0 0;
+}
+
+figcaption p {
+  margin: 0;
+}
+
+figcaption .title {
+  display: block;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 3px 5px;
+  margin: 0 0 5px 0!important;
+  letter-spacing: 1px;
+}
+
+figcaption .title-correct {
+  background: #3A8200;
+  color: #fff;
+}
+
+figcaption .title-incorrect {
+  background: #E70000;
+  color: #fff;
+}
+
+figcaption .title-caution {
+  background: #F2A900;
+  color: #3f3f3f;
+}
+
+.two-col img,
+figure img {
+  border: 1px solid #dfdfdf;
+}
+
+.swatch-rows {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.typo-details-table ul,
+.typo-details-table li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.typo-details-table li {
+  border-bottom: 1px solid #bfbfbf;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.typo-details-table div {
+  width: 50%;
+}
+
+.typo-example h1,
+.typo-example h2,
+.typo-example h3,
+.typo-example h4,
+.typo-example h5,
+.typo-example h6 {
+  margin: 0;
+  padding: 0;
+}
+
+.typo-specs {
+  text-align: right;
+}
+
+.heading-leading-img h3 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.heading-leading-img svg {
+  margin-right: 10px;
+}
+
+.principles-c {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 5%;
+  color: #FFFFFF;
+  text-align: center;
+  margin-bottom: 30px;
+  border-radius: 5px;
+}
+
+.principles-c h3 {
+  font-size: 36px;
+  color: #FFFFFF;
+  margin-top: 10px;
+}
+
+.principles-c p {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.anticipate-container {
+  background: #006298;
+}
+
+.encourage-container {
+  background: #E0004D;
+}
+
+.inspire-container {
+  background: #FA6600;
+}
+
+.cultivate-container {
+  background: #48A200;
+}
+
+.preserve-container {
+  background: #F2A900;
+  color: #00263E;
+}
+
+.preserve-container h3 {
+  color: #00263E;
+}
+
+.discover-container {
+  background: #92278F;
+}
+
+.principles-c blockquote {
+  padding: 20px;
+  margin: 0 0 20px 0;
+  text-align: left;
+  background: rgba(0,0,0,0.35);
+  border-radius: 5px;
+}
+
+.principles-c blockquote p {
+  font-size: 15px;
+  line-height: 22px;
+  margin-bottom: 10px;
+}
+
+.preserve-container blockquote {
+  color: #ffffff;
+}
+
+blockquote footer  {
+  font-style: italic;
+}
+
+.feature-list,
+.feature-list li {
+  margin:  0;
+  padding: 0;
+  list-style: none;
+}
+
+.feature-list {
+  padding: 0 0 0 20px;
+}
+
+.feature-list li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.feature-list li svg {
+  margin-right: 10px;
+}
+
+
+
+
+@media only screen and (max-width: 768px) {
+
+  .typo-details-table li {
+    flex-direction: column;
+  }
+
+  .typo-details-table div {
+    width: 100%;
+  }
+
+  .typo-specs {
+    text-align: left;
+  }
+
+}
+
+@media only screen and (max-width: 680px) {
+  figure .image-container {
+    padding-top: 10px;
+  }
+
+  .two-col .row {
+    flex-direction: column;
+  }
+
+  .two-col .col {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .principles-c h3 {
+    font-size: 28px;
+  }
+
+  .principles-c p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}

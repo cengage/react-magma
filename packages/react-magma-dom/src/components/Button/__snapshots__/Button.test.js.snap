@@ -3,7 +3,7 @@
 exports[`Button Base Button Snapshot should render with large size 1`] = `
 <div>
   <button
-    class="css-1h9mfik"
+    class="css-cq75bt"
     id="testId"
   >
     Test Text
@@ -14,7 +14,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 exports[`Button Base Button Snapshot should render with small size 1`] = `
 <div>
   <button
-    class="css-1iav34z"
+    class="css-c0zouf"
     id="testId"
   >
     Test Text
@@ -70,7 +70,7 @@ exports[`Button Icon Only Button Snapshot should render with large size 1`] = `
 <div>
   <button
     aria-label="Check Icon"
-    class="css-cna0ue"
+    class="css-1072zye"
     icon="[object Object]"
     id="testId"
   >
@@ -99,7 +99,7 @@ exports[`Button Icon Only Button Snapshot should render with small size 1`] = `
 <div>
   <button
     aria-label="Check Icon"
-    class="css-jjqtom"
+    class="css-12g5r5a"
     icon="[object Object]"
     id="testId"
   >
@@ -128,7 +128,7 @@ exports[`Button Icon Only Button Snapshot should render with updated color 1`] =
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1hcpzx8"
+    class="css-pd5hq6"
     icon="[object Object]"
     id="testId"
   >
@@ -157,7 +157,7 @@ exports[`Button Icon Only Button Snapshot should render with updated shape 1`] =
 <div>
   <button
     aria-label="Check Icon"
-    class="css-43hqe"
+    class="css-1yt41l3"
     icon="[object Object]"
     id="testId"
   >
@@ -186,7 +186,7 @@ exports[`Button Icon Only Button Snapshot should render with updated variant 1`]
 <div>
   <button
     aria-label="Check Icon"
-    class="css-jryr46"
+    class="css-1kidzu4"
     icon="[object Object]"
     id="testId"
   >
@@ -215,7 +215,7 @@ exports[`Button Icon With Text Button Snapshot should render with large size 1`]
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1h9mfik"
+    class="css-cq75bt"
     icon="[object Object]"
     id="testId"
   >
@@ -285,7 +285,7 @@ exports[`Button Icon With Text Button Snapshot should render with small size 1`]
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1iav34z"
+    class="css-c0zouf"
     icon="[object Object]"
     id="testId"
   >

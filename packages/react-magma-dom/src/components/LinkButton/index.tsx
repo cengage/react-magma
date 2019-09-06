@@ -26,7 +26,6 @@ const LinkButtonComponent = styled.button<LinkButtonProps>`
         props.inverse
           ? props.theme.colors.neutral07
           : props.theme.colors.foundation01};
-      text-decoration: none;
     }
 
     &:focus {

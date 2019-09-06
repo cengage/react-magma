@@ -3,14 +3,6 @@ import { ICONS } from '.';
 import { render } from 'react-testing-library';
 import { renderIcon as renderIconUtil } from './utils';
 
-const renderIcon = icon => {
-  const id = icon + 'Available';
-  const title = icon + ' Title';
-  const Icon = ICONS[icon];
-
-  return render(<Icon id={id} title={title} />);
-};
-
 describe('Icon', () => {
   it('should find element by testId', () => {
     const testId = 'test-id';
@@ -59,7 +51,11 @@ describe('Icon', () => {
 
   describe('Snapshot Tests', () => {
     test.each(Object.keys(ICONS))('should render %s icon', icon => {
-      const { container } = renderIcon(icon);
+      const id = icon + 'Available';
+      const title = icon + ' Title';
+      const Icon = ICONS[icon];
+
+      const { container } = render(<Icon id={id} title={title} />);
 
       expect(container).toMatchSnapshot();
     });

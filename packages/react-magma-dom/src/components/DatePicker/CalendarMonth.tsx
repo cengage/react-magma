@@ -27,6 +27,7 @@ const MonthContainer = styled.div`
 const Table = styled.table`
   border-collapse: collapse;
   border-spacing: 0;
+  margin-bottom: 38px;
 `;
 
 const Th = styled.th`
@@ -81,7 +82,10 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
                     <CalendarHeader />
                     <Table
                       role="presentation"
-                      onBlur={this.onCalendarTableBlur}
+                      onBlur={() => {
+                        this.onCalendarTableBlur();
+                        context.toggleDateFocus(false);
+                      }}
                       onFocus={this.onCalendarTableFocus}
                     >
                       <tbody>
@@ -103,7 +107,7 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
                                   key={dayOfWeek}
                                   day={day}
                                   dayFocusable={this.state.dayFocusable}
-                                  onDayClick={context.onDayClick}
+                                  onDateChange={context.onDateChange}
                                 />
                               ))}
                             </tr>

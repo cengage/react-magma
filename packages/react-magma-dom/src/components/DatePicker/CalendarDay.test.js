@@ -13,16 +13,16 @@ describe('Calendar Day', () => {
         {({
           dateFocused,
           focusedDate,
-          onDateFocus,
-          onDayClick,
+          toggleDateFocus,
+          onDateChange,
           chosenDate
         }) => (
           <CalendarContext.Provider
             value={{
               dateFocused,
               focusedDate,
-              onDateFocus,
-              onDayClick,
+              toggleDateFocus,
+              onDateChange,
               chosenDate
             }}
           >
@@ -42,20 +42,20 @@ describe('Calendar Day', () => {
         {({
           dateFocused,
           focusedDate,
-          onDateFocus,
-          onDayClick,
+          toggleDateFocus,
+          onDateChange,
           chosenDate
         }) => (
           <CalendarContext.Provider
             value={{
               dateFocused,
               focusedDate,
-              onDateFocus,
-              onDayClick,
+              toggleDateFocus,
+              onDateChange,
               chosenDate
             }}
           >
-            <button onClick={onDateFocus}>Focus</button>
+            <button onClick={() => toggleDateFocus(true)}>Focus</button>
             <CalendarDay day={defaultDate} />
           </CalendarContext.Provider>
         )}
@@ -76,20 +76,20 @@ describe('Calendar Day', () => {
         {({
           dateFocused,
           focusedDate,
-          onDateFocus,
-          onDayClick,
+          toggleDateFocus,
+          onDateChange,
           chosenDate
         }) => (
           <CalendarContext.Provider
             value={{
               dateFocused,
               focusedDate,
-              onDateFocus,
-              onDayClick,
+              toggleDateFocus,
+              onDateChange,
               chosenDate
             }}
           >
-            <button onClick={onDateFocus}>Focus</button>
+            <button onClick={() => toggleDateFocus(true)}>Focus</button>
             <CalendarDay day={new Date('January 18, 2019')} />
           </CalendarContext.Provider>
         )}
@@ -107,20 +107,20 @@ describe('Calendar Day', () => {
         {({
           dateFocused,
           focusedDate,
-          onDateFocus,
-          onDayClick,
+          toggleDateFocus,
+          onDateChange,
           chosenDate
         }) => (
           <CalendarContext.Provider
             value={{
               dateFocused,
               focusedDate,
-              onDateFocus,
-              onDayClick,
+              toggleDateFocus,
+              onDateChange,
               chosenDate
             }}
           >
-            <button onClick={onDateFocus}>Focus</button>
+            <button onClick={() => toggleDateFocus(true)}>Focus</button>
             <CalendarDay day={defaultDate} />
           </CalendarContext.Provider>
         )}
@@ -138,20 +138,20 @@ describe('Calendar Day', () => {
         {({
           dateFocused,
           focusedDate,
-          onDateFocus,
-          onDayClick,
+          toggleDateFocus,
+          onDateChange,
           chosenDate
         }) => (
           <CalendarContext.Provider
             value={{
               dateFocused,
               focusedDate,
-              onDateFocus,
-              onDayClick,
+              toggleDateFocus,
+              onDateChange,
               chosenDate
             }}
           >
-            <button onClick={onDateFocus}>Focus</button>
+            <button onClick={() => toggleDateFocus(true)}>Focus</button>
             <CalendarDay day={defaultDate} />
           </CalendarContext.Provider>
         )}

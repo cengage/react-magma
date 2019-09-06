@@ -5,8 +5,6 @@ export interface ToastCoreProps {
   toastDuration?: number;
   disableAutoDismiss?: boolean;
   onDismiss: () => void;
-  onMouseEnter?: (event: React.SyntheticEvent) => void;
-  onMouseLeave?: (event: React.SyntheticEvent) => void;
 }
 
 const DEFAULT_TOAST_DURATION = 5000;
@@ -17,8 +15,6 @@ export class ToastCore extends React.Component<ToastCoreProps> {
 
     this.setAutoHideTimer = this.setAutoHideTimer.bind(this);
     this.clearTimeoutAndDismiss = this.clearTimeoutAndDismiss.bind(this);
-    this.handleMouseEnter = this.handleMouseEnter.bind(this);
-    this.handleMouseLeave = this.handleMouseLeave.bind(this);
     this.handlePause = this.handlePause.bind(this);
     this.handleResume = this.handleResume.bind(this);
   }
@@ -47,20 +43,6 @@ export class ToastCore extends React.Component<ToastCoreProps> {
     this.props.onDismiss();
   }
 
-  handleMouseEnter = event => {
-    if (this.props.onMouseEnter) {
-      this.props.onMouseEnter(event);
-    }
-    this.handlePause();
-  };
-
-  handleMouseLeave = event => {
-    if (this.props.onMouseLeave) {
-      this.props.onMouseLeave(event);
-    }
-    this.handleResume();
-  };
-
   handlePause = () => {
     clearTimeout(this.timerAutoHide);
   };
@@ -75,8 +57,8 @@ export class ToastCore extends React.Component<ToastCoreProps> {
     return this.props.children({
       ...this.props,
       clearTimeoutAndDismiss: this.clearTimeoutAndDismiss,
-      handleMouseEnter: this.handleMouseEnter,
-      handleMouseLeave: this.handleMouseLeave
+      handlePause: this.handlePause,
+      handleResume: this.handleResume
     });
   }
 }

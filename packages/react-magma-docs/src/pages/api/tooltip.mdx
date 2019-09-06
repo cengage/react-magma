@@ -1,0 +1,140 @@
+---
+title: 'Tooltips'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import {
+  Tooltip,
+  Button,
+  CircleDownIcon,
+  CircleLeftIcon,
+  CircleRightIcon,
+  CircleUpIcon,
+  QuestionCircleIcon,
+} from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
+
+# Tooltip
+
+## Basic usage
+
+The `content` prop can take a string or a react node, and determines the content inside of the tooltip bubble.
+
+The `trigger` prop must take a react element (not just a string), and determines the content that tiggers the tooltip on hover or on focus. Note: in order to trigger the content on focus (a requirement for accessibility), the `trigger` should be a focusable element.
+
+```.jsx
+    <>
+        <Tooltip content="What is this?" id="basicTooltip" trigger={<Button icon={<QuestionCircleIcon />} variant="link" />} />
+        <Tooltip content="Lorem ipsum dolor sit amet, mutat utroque cu quo. Vel molestie invidunt dissentiet no, ut vim iriure eloquentiam." id="basicTooltip2" trigger={<Button icon={<QuestionCircleIcon />} variant="link" />} />
+    </>
+```
+
+## Position
+
+The `Tooltip` component takes a `position` property, that accepts the following values: bottom, left, right, top. Top is the default value.
+
+```.jsx
+    <>
+        <Tooltip position='bottom' content="Tooltip bottom" trigger={<Button aria-label="Question Icon" icon={<CircleDownIcon />} variant="link" />} />
+        <Tooltip position='left' content="Tooltip left" trigger={<Button icon={<CircleLeftIcon />} variant="link" />} />
+        <Tooltip position='right' content="Tooltip right" trigger={<Button icon={<CircleRightIcon />} variant="link" />} />
+        <Tooltip position='top' content="Tooltip top" trigger={<Button icon={<CircleUpIcon />} variant="link" />} />
+        <br/>
+        <Tooltip position='bottom' content="Lorem ipsum dolor sit amet, mutat utroque cu quo. Vel molestie invidunt dissentiet no, ut vim iriure eloquentiam." trigger={<Button aria-label="Question Icon" icon={<CircleDownIcon />} variant="link" />} />
+        <Tooltip position='left' content="Lorem ipsum dolor sit amet, mutat utroque cu quo. Vel molestie invidunt dissentiet no, ut vim iriure eloquentiam." trigger={<Button icon={<CircleLeftIcon />} variant="link" />} />
+        <Tooltip position='right' content="Lorem ipsum dolor sit amet, mutat utroque cu quo. Vel molestie invidunt dissentiet no, ut vim iriure eloquentiam." trigger={<Button icon={<CircleRightIcon />} variant="link" />} />
+        <Tooltip position='top' content="Lorem ipsum dolor sit amet, mutat utroque cu quo. Vel molestie invidunt dissentiet no, ut vim iriure eloquentiam." trigger={<Button icon={<CircleUpIcon />} variant="link" />} />
+    </>
+```
+
+## Inverse
+
+The `Tooltip` component takes an optional `inverse` prop, for when the tooltip is to appear on a dark background.
+
+```.jsx
+    <div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
+        <Tooltip inverse position="right" content="Inverse tooltip" trigger={<Button aria-label="Question Icon" icon={<QuestionCircleIcon />} inverse variant="link" />} />
+    </div>
+```
+
+## Refs
+
+```.jsx
+  class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.tooltipRef = React.createRef();
+      }
+
+      render() {
+        return <div>
+          <Tooltip ref={this.tooltipRef} position="right" content="Ref tooltip" trigger={<Button aria-label="Question Icon" icon={<QuestionCircleIcon />} variant="link" />} />
+          <Button
+          onClick={() => {
+            this.tooltipRef.current.focus();
+          }}>Click to focus the tooltip</Button>
+        </div>
+      }
+    }
+```
+
+## Tooltip Props
+
+<SimplePropsTable
+  props={{
+    content: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description:
+        'The content of the tooltip.  May be a string or a react node',
+    },
+    inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    position: {
+      type: {
+        name: 'enum',
+        options: [
+          'EnumTooltipPosition.bottom',
+          'EnumTooltipPosition.left',
+          'EnumTooltipPosition.right',
+          'EnumTooltipPosition.top',
+        ],
+      },
+      required: false,
+      description: 'Position the tooltip appears in relation to its trigger',
+      defaultValue: 'top',
+    },
+    trigger: {
+      type: {
+        name: 'element',
+      },
+      required: true,
+      description:
+        'The element that triggers the tooltip when it is hovered or focused.  Must be a react element (not a string) and should be a focusable element to meet a11y requirements',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout
+    {...props}
+    components={{
+      Tooltip,
+      Button,
+      CircleDownIcon,
+      CircleLeftIcon,
+      CircleRightIcon,
+      CircleUpIcon,
+      QuestionCircleIcon,
+    }}
+  />
+)

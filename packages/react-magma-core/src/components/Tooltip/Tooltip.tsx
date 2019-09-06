@@ -4,7 +4,6 @@ import { generateId } from '../utils';
 export interface TooltipCoreProps {
   children: (props) => React.ReactNode;
   id?: string;
-  onKeyDown?: (event: React.SyntheticEvent) => void;
   isVisible?: boolean;
 }
 
@@ -25,7 +24,6 @@ export class TooltipCore extends React.Component<
       isVisible: false
     };
 
-    this.onKeyDown = this.onKeyDown.bind(this);
     this.showTooltip = this.showTooltip.bind(this);
     this.hideTooltip = this.hideTooltip.bind(this);
   }
@@ -37,12 +35,6 @@ export class TooltipCore extends React.Component<
 
     if (prevProps.isVisible !== this.props.isVisible) {
       this.setState({ isVisible: this.props.isVisible });
-    }
-  }
-
-  onKeyDown(event) {
-    if (event.key === 'Escape') {
-      this.hideTooltip();
     }
   }
 
@@ -58,7 +50,6 @@ export class TooltipCore extends React.Component<
     return this.props.children({
       ...this.props,
       id: this.state.id,
-      onKeyDown: this.onKeyDown,
       hideTooltip: this.hideTooltip,
       showTooltip: this.showTooltip,
       isVisible: this.state.isVisible

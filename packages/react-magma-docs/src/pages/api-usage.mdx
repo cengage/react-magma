@@ -1,0 +1,92 @@
+---
+title: Usage
+order: 2
+---
+
+import { Link } from 'gatsby'
+import { Button } from 'react-magma-dom'
+
+
+# Using React Magma
+
+How to use React Magma components. The examples here use the <Link to="/api/button">Button</Link> component. More information about each of the components can be found in the Component API section.
+
+## Basic Usage
+
+To use a component, simply import the component and add it to your UI. The styles are already bundled with the component.
+Here is a most basic example:
+
+```.js
+  import React from 'react'
+  import { Button } from 'react-magma-dom'
+
+  function Demo() {
+    return <Button>Hello World</Button>
+  }
+```
+
+This would render as:
+<Button>Hello World</Button>
+
+## Using TypeScript Enums
+
+When using a prop that takes an enum, you must import that type from React Magma if you are using TypeScript.
+
+```.js
+  import React from 'react'
+  import { Button, ButtonVariant } from 'react-magma-dom'
+
+  function Demo() {
+    return <Button variant={ButtonVariant.outline}>Hello World</Button>
+  }
+```
+
+This would render as:
+<Button variant='outline'>Hello World</Button>
+
+## Importing React Magma Global Styles
+
+Most of the styles for React Magma are bundled within their components. However, a `GlobalStyles` object is available, which provides a
+very basic CSS reset plus the required fonts, body styles, and some generic styles for links. It is recommended that you use this `GlobalStyles` component in any app that uses React Magma
+to insure consistency across products.
+
+To use the `GlobalStyles` object, simply import it from `react-magma-dom` and include it in your App.
+
+The `GlobalStyles` component can be nested inside the <Link to="/api/theme">ThemeContext.Provivder</Link> to inherit styles from the theme.
+
+```.js
+  import React from 'react'
+  import { GlobalStyles } from 'react-magma-dom'
+
+  function App() {
+    return <div>
+      <GlobalStyles />
+    </div>
+  }
+```
+
+## Using the Magma Theme in your Application
+
+React Magma uses the Magma theme for styles, which includes fonts, colors and screen sizes for media queries. To remain consistent,
+you can import `magma` and reference these values in your application's styles.
+
+The complete Magma theme can be found in the [Stash repository](http://stash.corp.web:7990/projects/FRONT/repos/react-magma/browse/packages/react-magma-dom/src/theme/magma.ts).
+For more information about colors, see the <Link to="/design/colors">Design Documentation</Link>.
+
+```.js
+  import React from 'react'
+  import { magma } from 'react-magma-dom'
+  import styled from '@emotion/styled';
+
+  function Demo() {
+
+    const StyledDiv = styled.div`
+      background: ${magma.colors.neutral02};
+      color: ${magma.colors.neutral08};
+    `;
+
+    return <StyledDiv>
+      Hello world
+    </StyledDiv>
+  }
+```
