@@ -1,6 +1,6 @@
 {
   "name": "react-magma-native",
-  "version": "0.1.0-beta.35",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/bundle.js",
   "files": [
@@ -20,7 +20,7 @@
     "react-native": "^0.56.0"
   },
   "dependencies": {
-    "react-magma-core": "0.1.0-beta.35"
+    "react-magma-core": "0.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
