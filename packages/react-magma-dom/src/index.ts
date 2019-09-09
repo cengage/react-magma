@@ -33,7 +33,7 @@ export { Toggle } from './components/Toggle';
 export { Tooltip, EnumTooltipPosition } from './components/Tooltip';
 export { VisuallyHidden } from './components/VisuallyHidden';
 export { DatePicker } from './components/DatePicker';
-export { Modal } from './components/Modal';
+export { Modal, ModalSize } from './components/Modal';
 export { HyperLink } from './components/HyperLink';
 
 export { magma } from './theme/magma';
