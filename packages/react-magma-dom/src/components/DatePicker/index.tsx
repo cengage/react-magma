@@ -13,6 +13,8 @@ import { handleKeyPress } from './utils';
 
 interface DatePickerProps {
   defaultDate?: Date;
+  errorMessage?: string;
+  helperMessage?: string;
   id?: string;
   inputRef?: React.RefObject<{}>;
   labelText: string;
@@ -126,7 +128,6 @@ export class DatePicker extends React.Component<DatePickerProps> {
         }
       } else {
         if (event.key === 'Escape') {
-          console.log('we are here');
           toggleCalendar(false);
           this.inputRef.current.focus();
         }
@@ -182,7 +183,14 @@ export class DatePicker extends React.Component<DatePickerProps> {
   }
 
   render() {
-    const { defaultDate, id, labelText, placeholderText } = this.props;
+    const {
+      defaultDate,
+      errorMessage,
+      helperMessage,
+      id,
+      labelText,
+      placeholderText
+    } = this.props;
 
     return (
       <DatePickerCore id={id} defaultDate={defaultDate}>
@@ -248,6 +256,8 @@ export class DatePicker extends React.Component<DatePickerProps> {
                   )}
                 </Announce>
                 <Input
+                  errorMessage={errorMessage}
+                  helperMessage={helperMessage}
                   icon={<CalendarIcon />}
                   iconAriaLabel="Calendar"
                   onIconClick={onIconClick}
