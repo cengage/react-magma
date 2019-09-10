@@ -79,7 +79,6 @@ export class DatePicker extends React.Component<DatePickerProps> {
       if (isValidDateFormat && isValidDate) {
         this.handleDateChange(day, event, onDateChange, updateFocusedDate);
       } else {
-        console.log('hello there');
         reset && typeof reset === 'function' && reset();
       }
 
