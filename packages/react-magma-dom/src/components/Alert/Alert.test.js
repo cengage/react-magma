@@ -15,22 +15,18 @@ jest.mock('uuid', () => {
   };
 });
 
-const alertText = 'Test Alert Text';
-
-const renderAlert = (myProps = {}) => {
-  return render(<Alert {...myProps}>{alertText}</Alert>);
-};
-
 describe('Alert', () => {
   it('should find element by testId', () => {
     const testId = 'test-id';
-    const { getByTestId } = renderAlert({ testId });
+    const { getByTestId } = render(
+      <Alert testId={testId}>Test Alert Text</Alert>
+    );
 
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render an alert with default variant', () => {
-    const { container } = renderAlert();
+    const { container } = render(<Alert>Test Alert Text</Alert>);
 
     expect(container.firstChild).toBeInTheDocument();
     expect(container.firstChild).toHaveStyleRule('background-color', '#575757');
@@ -46,7 +42,9 @@ describe('Alert', () => {
 
   describe('Variants', () => {
     it('should render an alert with info variant', () => {
-      const { container } = renderAlert({ variant: AlertVariant.info });
+      const { container } = render(
+        <Alert variant={AlertVariant.info}>Test Alert Text</Alert>
+      );
 
       expect(container.firstChild).toHaveStyleRule(
         'background-color',
@@ -63,7 +61,9 @@ describe('Alert', () => {
     });
 
     it('should render an alert with success variant', () => {
-      const { container } = renderAlert({ variant: AlertVariant.success });
+      const { container } = render(
+        <Alert variant={AlertVariant.success}>Test Alert Text</Alert>
+      );
 
       expect(container.firstChild).toHaveStyleRule(
         'background-color',
@@ -80,7 +80,9 @@ describe('Alert', () => {
     });
 
     it('should render an alert with warning variant', () => {
-      const { container } = renderAlert({ variant: AlertVariant.warning });
+      const { container } = render(
+        <Alert variant={AlertVariant.warning}>Test Alert Text</Alert>
+      );
 
       expect(container.firstChild).toHaveStyleRule(
         'background-color',
@@ -97,7 +99,9 @@ describe('Alert', () => {
     });
 
     it('should render an alert with danger variant', () => {
-      const { container } = renderAlert({ variant: AlertVariant.danger });
+      const { container } = render(
+        <Alert variant={AlertVariant.danger}>Test Alert Text</Alert>
+      );
 
       expect(container.firstChild).toHaveStyleRule(
         'background-color',
@@ -116,27 +120,31 @@ describe('Alert', () => {
 
   describe('Dismissable', () => {
     it('should render a dismissable icon button', () => {
-      const { getByLabelText } = renderAlert({ dismissable: true });
+      const { getByLabelText } = render(
+        <Alert dismissable>Test Alert Text</Alert>
+      );
       const dismissableIconButton = getByLabelText('Close this message');
 
       expect(dismissableIconButton).toBeInTheDocument();
     });
 
     it('should render a dismissable icon button with custom close label text', () => {
-      const { getByLabelText } = renderAlert({
-        closeLabel: 'Test',
-        dismissable: true
-      });
+      const { getByLabelText } = render(
+        <Alert dismissable closeLabel="Test">
+          Test Alert Text
+        </Alert>
+      );
       const dismissableIconButton = getByLabelText('Test');
 
       expect(dismissableIconButton).toBeInTheDocument();
     });
 
     it('should render a dismissable icon button with the warning variant', () => {
-      const { getByLabelText } = renderAlert({
-        dismissable: true,
-        variant: 'warning'
-      });
+      const { getByLabelText } = render(
+        <Alert dismissable variant={AlertVariant.warning}>
+          Test Alert Text
+        </Alert>
+      );
 
       const button = getByLabelText('Close this message');
       button.setAttribute('id', 'ignoreButton');
@@ -148,30 +156,33 @@ describe('Alert', () => {
     });
 
     it('should call passed in onDismiss when dismissable icon button is clicked', () => {
-      const onDismissSpy = jest.fn();
-      const { getByLabelText } = renderAlert({
-        dismissable: true,
-        onDismiss: onDismissSpy
-      });
+      const onDismiss = jest.fn();
+      const { getByLabelText } = render(
+        <Alert dismissable onDismiss={onDismiss}>
+          Test Alert Text
+        </Alert>
+      );
       const dismissableIconButton = getByLabelText('Close this message');
 
       fireEvent.click(dismissableIconButton);
 
       setTimeout(() => {
-        expect(onDismissSpy).toHaveBeenCalled();
+        expect(onDismiss).toHaveBeenCalled();
       }, 500);
     });
   });
 
   it('should render custom styles', () => {
     const color = '#cccccc';
-    const { container } = renderAlert({ style: { color } });
+    const { container } = render(
+      <Alert style={{ color }}>Test Alert Text</Alert>
+    );
 
     expect(container.firstChild).toHaveStyle(`color: ${color}`);
   });
 
   it('Does not violate accessibility standards', () => {
-    const { container } = renderAlert();
+    const { container } = render(<Alert>Test Alert Text</Alert>);
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });
