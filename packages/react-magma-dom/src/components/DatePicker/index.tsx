@@ -67,7 +67,8 @@ export class DatePicker extends React.Component<DatePickerProps> {
 
   handleInputBlur(
     onDateChange: (day: Date) => void,
-    updateFocusedDate: (day: Date) => void
+    updateFocusedDate: (day: Date) => void,
+    reset: () => void
   ) {
     return (event: React.FocusEvent) => {
       const { value } = this.inputRef.current;
@@ -77,6 +78,9 @@ export class DatePicker extends React.Component<DatePickerProps> {
 
       if (isValidDateFormat && isValidDate) {
         this.handleDateChange(day, event, onDateChange, updateFocusedDate);
+      } else {
+        console.log('hello there');
+        reset && typeof reset === 'function' && reset();
       }
 
       this.props.onInputBlur &&
@@ -126,7 +130,6 @@ export class DatePicker extends React.Component<DatePickerProps> {
         }
       } else {
         if (event.key === 'Escape') {
-          console.log('we are here');
           toggleCalendar(false);
           this.inputRef.current.focus();
         }
@@ -202,7 +205,8 @@ export class DatePicker extends React.Component<DatePickerProps> {
           onPrevMonthClick,
           onNextMonthClick,
           updateFocusedDate,
-          onDateChange
+          onDateChange,
+          reset
         }) => {
           const dateFormat = 'MM/DD/YYYY';
           const inputValue = chosenDate ? format(chosenDate, dateFormat) : '';
@@ -259,7 +263,11 @@ export class DatePicker extends React.Component<DatePickerProps> {
                   ref={this.inputRef}
                   labelText={labelText}
                   onChange={this.handleInputChange(toggleCalendar)}
-                  onBlur={this.handleInputBlur(onDateChange, updateFocusedDate)}
+                  onBlur={this.handleInputBlur(
+                    onDateChange,
+                    updateFocusedDate,
+                    reset
+                  )}
                   onKeyDown={this.handleInputKeyDown(
                     openHelperInformation,
                     toggleCalendar
@@ -274,7 +282,13 @@ export class DatePicker extends React.Component<DatePickerProps> {
                       opened={calendarOpened}
                       theme={theme}
                     >
-                      <CalendarMonth />
+                      <CalendarMonth
+                        focusOnOpen={
+                          calendarOpened && focusedDate && chosenDate
+                        }
+                        calendarOpened={calendarOpened}
+                        toggleDateFocus={toggleDateFocus}
+                      />
                     </DatePickerCalendar>
                   )}
                 </ThemeContext.Consumer>

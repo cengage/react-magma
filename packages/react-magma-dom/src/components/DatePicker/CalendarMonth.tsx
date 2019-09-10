@@ -8,6 +8,12 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
 import { HelperInformation } from './HelperInformation';
 
+interface CalendarMonthProps {
+  calendarOpened?: boolean;
+  focusOnOpen?: boolean;
+  toggleDateFocus?: (value: boolean) => void;
+}
+
 interface CalendarMonthState {
   dayFocusable?: boolean;
 }
@@ -46,7 +52,10 @@ const HelperButton = styled.span`
   z-index: 2;
 `;
 
-export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
+export class CalendarMonth extends React.Component<
+  CalendarMonthProps,
+  CalendarMonthState
+> {
   constructor(props) {
     super(props);
 
@@ -56,6 +65,16 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
     this.state = {
       dayFocusable: false
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.calendarOpened !== this.props.calendarOpened &&
+      this.props.focusOnOpen
+    ) {
+      this.setState({ dayFocusable: true });
+      this.props.toggleDateFocus(true);
+    }
   }
 
   onCalendarTableFocus() {

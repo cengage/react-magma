@@ -120,6 +120,38 @@ describe('Date Picker', () => {
     );
   });
 
+  it('should focus the chosen date when the calendar is opened', () => {
+    const defaultDate = new Date('January 17, 2019');
+    const { getByLabelText, getByText } = render(
+      <DatePicker defaultDate={defaultDate} labelText="Date Picker Label" />
+    );
+    fireEvent.click(getByLabelText('Calendar'));
+
+    expect(getByText('17')).toBe(document.activeElement);
+  });
+
+  it('should take focus off of chosen date when none valid date in input', () => {
+    const defaultDate = new Date('January 17, 2019');
+    const now = new Date();
+    const labelText = 'Date Picker Label';
+    const { getByLabelText, getByText, getByTestId, debug } = render(
+      <DatePicker defaultDate={defaultDate} labelText={labelText} />
+    );
+
+    getByLabelText(labelText).focus();
+
+    fireEvent.change(getByLabelText(labelText), {
+      target: { value: '12' }
+    });
+
+    getByLabelText('Calendar').focus();
+
+    fireEvent.click(getByLabelText('Calendar'));
+
+    expect(getByText(format(now, 'MMMM YYYY'))).not.toBeNull();
+    expect(getByText(format(now, 'DD'))).not.toBe(document.activeElement);
+  });
+
   it('should close the calendar when there is an input change', () => {
     const { getByLabelText, getByTestId } = render(
       <DatePicker labelText="Date Picker Label" />
