@@ -55,6 +55,24 @@ describe('Date Picker', () => {
     );
   });
 
+  it('should render a helper message on the date picker input', () => {
+    const helperMessage = 'Help information';
+    const { getByText } = render(
+      <DatePicker labelText="Date Picker Label" helperMessage={helperMessage} />
+    );
+
+    expect(getByText(helperMessage)).not.toBeNull();
+  });
+
+  it('should render an error message on the date picker input', () => {
+    const errorMessage = 'Help information';
+    const { getByText } = render(
+      <DatePicker labelText="Date Picker Label" errorMessage={errorMessage} />
+    );
+
+    expect(getByText(errorMessage)).not.toBeNull();
+  });
+
   it('should watch for input change', () => {
     const onInputChange = jest.fn();
     const labelText = 'Date Picker Label';
