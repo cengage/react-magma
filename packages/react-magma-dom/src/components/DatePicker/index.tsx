@@ -253,9 +253,8 @@ export class DatePicker extends React.Component<DatePickerProps> {
                 <Announce>
                   {calendarOpened && (
                     <VisuallyHidden>
-                      Calendar widget is now open. Press the tab key to interact
-                      with the calendar and select a date. Press the question
-                      mark key to get the keyboard shortcuts for changing dates.
+                      Calendar widget is now open. Press the question mark key
+                      to get the keyboard shortcuts for changing dates.
                     </VisuallyHidden>
                   )}
                 </Announce>
