@@ -89,11 +89,14 @@ const StyledAlert = styled.div<AlertProps>`
     color: inherit;
     font-weight: 600;
     text-decoration: underline;
-  }
 
-  &:focus {
-    outline: 2px dotted;
-    outline-offset: 2px;
+    &:focus {
+      outline: 2px dotted ${props =>
+        props.variant === 'warning'
+          ? props.theme.colors.neutral02
+          : props.theme.colors.neutral08};
+      }
+    }
   }
 `;
 
@@ -120,31 +123,41 @@ const DismissableIconWrapper = styled.span<AlertProps>`
     height: 13px;
     width: 13px;
   }
+`;
 
-  button:focus,
-  button:hover {
+const DismissButton = styled(Button)<{ alertVariant?: AlertVariant }>`
+  border-radius: 0 3px 3px 0;
+  color: inherit;
+  height: calc(100% - 6px);
+  margin: 3px;
+  padding: 0 15px;
+  width: auto;
+  
+  &&:focus:not(:disabled) {
+    outline: 2px dotted ${props =>
+      props.alertVariant === 'warning'
+        ? props.theme.colors.neutral02
+        : props.theme.colors.neutral08};
+    };
+    outline-offset: 0!important;
+  }
+
+  &:hover,
+  &:focus {
     :not(:disabled):before {
       background: ${props =>
-        props.variant === 'warning'
+        props.alertVariant === 'warning'
           ? props.theme.colors.neutral02
           : props.theme.colors.neutral08};
       opacity: 0.15;
     }
-  }
 
-  button: after {
-    display: none;
+    &:after {
+      display: none;
+    }
   }
+  
 `;
-
-const DismissButtonStyles = {
-  borderRadius: '0 3px 3px 0',
-  color: 'inherit',
-  height: '100%',
-  margin: 0,
-  padding: ' 0 15px',
-  width: 'auto'
-};
 
 function renderIcon(variant = 'info') {
   const Icon = VARIANT_ICON[variant];
@@ -190,12 +203,12 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
               <AlertContents>{children}</AlertContents>
               {dismissable && (
                 <DismissableIconWrapper variant={variant} theme={theme}>
-                  <Button
+                  <DismissButton
+                    alertVariant={variant}
                     aria-label={closeLabel ? closeLabel : 'Close this message'}
                     icon={<CrossIcon />}
                     inverse
                     onClick={handleDismiss}
-                    style={DismissButtonStyles}
                     theme={theme}
                     variant={ButtonVariant.link}
                   />

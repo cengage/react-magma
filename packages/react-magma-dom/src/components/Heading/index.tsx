@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
+  inverse?: boolean;
   level: number;
   ref?: any;
   testId?: string;
@@ -12,14 +13,17 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
 
 export const baseHeadingStyles = props => css`
   border-bottom: 2px solid transparent;
-  color: ${props.theme.colors.foundation01};
+  color: ${props.inverse
+    ? props.theme.colors.neutral08
+    : props.theme.colors.foundation01};
   font-family: ${props.theme.headingFont};
   font-weight: 300;
   line-height: 1.2;
   margin: 20px 0 10px;
 
   &:focus {
-    border-bottom: 2px dotted ${props.theme.colors.pop02};
+    border-bottom: 2px dotted
+      ${props.inverse ? props.theme.colors.neutral08 : props.theme.colors.pop02};
     outline: 0;
     transition: border 0.1s linear;
   }
@@ -75,7 +79,10 @@ function renderHeading(level: number) {
 }
 
 export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
-  ({ level, testId, tabIndex, children, ...other }: HeadingProps, ref: any) => {
+  (
+    { inverse, level, testId, tabIndex, children, ...other }: HeadingProps,
+    ref: any
+  ) => {
     const HeadingComponent = renderHeading(level);
 
     return (
@@ -84,6 +91,7 @@ export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
           <HeadingComponent
             {...other}
             css={baseHeadingStyles({ theme })}
+            inverse={inverse}
             ref={ref}
             data-testid={testId}
             tabIndex={tabIndex}
