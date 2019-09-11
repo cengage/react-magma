@@ -138,6 +138,17 @@ describe('Date Picker', () => {
     );
   });
 
+  it('should focus the calendar header when the calendar is opened with no chosen date', () => {
+    const now = new Date();
+    const monthYear = format(now, 'MMMM YYYY');
+    const { getByLabelText, getByText } = render(
+      <DatePicker labelText="Date Picker Label" />
+    );
+    fireEvent.click(getByLabelText('Calendar'));
+
+    expect(getByText(monthYear)).toBe(document.activeElement);
+  });
+
   it('should focus the chosen date when the calendar is opened', () => {
     const defaultDate = new Date('January 17, 2019');
     const { getByLabelText, getByText } = render(
