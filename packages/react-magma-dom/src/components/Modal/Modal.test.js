@@ -58,7 +58,7 @@ describe('Modal', () => {
     expect(getByTestId('modal-content')).toHaveStyleRule('max-width', '900px');
   });
 
-  it('should render a header', () => {
+  it('should render a header if one is passed in', () => {
     const headerText = 'Hello';
     const { getByText } = render(
       <Modal header={headerText} open={true}>
@@ -67,6 +67,12 @@ describe('Modal', () => {
     );
 
     expect(getByText(headerText)).toBeInTheDocument();
+  });
+
+  it('should not render a header if one is not passed in', () => {
+    const { container } = render(<Modal open={true}>Modal Content</Modal>);
+
+    expect(container.querySelector('h1')).not.toBeInTheDocument();
   });
 
   it('should render a close button', () => {
@@ -371,11 +377,11 @@ describe('Modal', () => {
   });
 
   describe('focus trap', () => {
-    it('should not focus an element if there is nothing in the modal that can be focused', () => {
+    it('should focus the header element upon opening the modal', () => {
       const { rerender, getByText } = render(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={false} onClose={jest.fn()} hideEscButton>
+          <Modal header="Hello" open={false} onClose={jest.fn()}>
             Modal Content
           </Modal>
         </>,
@@ -387,7 +393,59 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={true} onClose={jest.fn()} hideEscButton>
+          <Modal header="Hello" open={true} onClose={jest.fn()}>
+            Modal Content
+          </Modal>
+        </>,
+        { container: document.body }
+      );
+
+      expect(getByText('Hello')).toHaveFocus();
+    });
+
+    it('should focus the first actionable element element upon opening the modal if there is no header', () => {
+      const { rerender, getByText, getByTestId } = render(
+        <>
+          <button>Open</button>
+          <Modal open={false} onClose={jest.fn()}>
+            <button data-testid="closeButton">Close</button>
+          </Modal>
+        </>,
+        { container: document.body }
+      );
+
+      fireEvent.focus(getByText('Open'));
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal open={true} onClose={jest.fn()}>
+            <button data-testid="closeButton">Close</button>
+          </Modal>
+        </>,
+        { container: document.body }
+      );
+
+      expect(getByTestId('closeButton')).toHaveFocus();
+    });
+
+    it('should not focus the modal if there is nothing to focus', () => {
+      const { rerender, getByText } = render(
+        <>
+          <button>Open</button>
+          <Modal open={false} onClose={jest.fn()} hideEscButton>
+            Modal Content
+          </Modal>
+        </>,
+        { container: document.body }
+      );
+
+      fireEvent.focus(getByText('Open'));
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal open={true} onClose={jest.fn()} hideEscButton>
             Modal Content
           </Modal>
         </>,

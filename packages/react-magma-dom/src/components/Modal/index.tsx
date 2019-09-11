@@ -141,7 +141,6 @@ const H1 = styled(Heading)`
   font-weight: 600;
   margin: 0;
   padding-right: 50px;
-  text-transform: uppercase;
 `;
 
 const CloseBtn = styled.span`
@@ -161,6 +160,7 @@ const ModalBody = styled.div`
 
 class ModalComponent extends React.Component<ModalProps, ModalState> {
   private lastFocus = React.createRef<any>();
+  private headingRef = React.createRef<any>();
   private focusTrapElement = React.createRef<any>();
 
   constructor(props) {
@@ -178,9 +178,19 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
     if (!prevProps.open && this.props.open) {
       // @ts-ignore: CreateRef only gives back a immutable ref
       this.lastFocus.current = document.activeElement;
-      this.setState({
-        focusableElements: getTrapElements(this.focusTrapElement)
-      });
+
+      if (this.props.header) {
+        this.setState({
+          focusableElements: getTrapElements(
+            this.focusTrapElement,
+            this.headingRef
+          )
+        });
+      } else {
+        this.setState({
+          focusableElements: getTrapElements(this.focusTrapElement)
+        });
+      }
     }
   }
 
@@ -254,6 +264,7 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
               } = this.props;
 
               const CloseIcon = <CrossIcon color={theme.colors.neutral04} />;
+              const headingId = `${id}_heading`;
 
               return open
                 ? ReactDOM.createPortal(
@@ -267,6 +278,7 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                       />
 
                       <ModalContainer
+                        aria-labelledby={headingId}
                         aria-modal={true}
                         data-testid="modal-container"
                         id={id}
@@ -298,13 +310,21 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                           theme={theme}
                           {...other}
                         >
-                          <ModalHeader theme={theme}>
-                            {header && (
-                              <H1 level={1} theme={theme}>
-                                {header}
-                              </H1>
-                            )}
-                          </ModalHeader>
+                          {header && (
+                            <ModalHeader theme={theme}>
+                              {header && (
+                                <H1
+                                  id={headingId}
+                                  level={1}
+                                  ref={this.headingRef}
+                                  tabIndex={-1}
+                                  theme={theme}
+                                >
+                                  {header}
+                                </H1>
+                              )}
+                            </ModalHeader>
+                          )}
                           <ModalBody>{children}</ModalBody>
                           {!hideEscButton && (
                             <CloseBtn>
