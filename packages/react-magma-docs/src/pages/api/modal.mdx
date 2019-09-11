@@ -60,7 +60,7 @@ import { SimplePropsTable } from '../../components/props-table'
 
 The modal header prop is optional. It can accept a node or a string, and will be rendered inside an H1.
 If there is a header passed in, the focus will be placed on the header when the modal opens. If not, the focus wiill be placed on
-the first actionable element.
+the first actionable element.  If there are no actionable elements, the focus will just go on the first child, although it is best practice to always include something actionable within the modal.
 
 ```.jsx
 
@@ -69,7 +69,8 @@ the first actionable element.
         super(props)
         this.state = {
           showModal: false,
-          showModalHeader: false
+          showModalHeader: false,
+          showModalNoFocus: false
         }
 
         this.onModalShow = this.onModalShow.bind(this);
@@ -77,6 +78,9 @@ the first actionable element.
 
         this.onModalHeaderShow = this.onModalHeaderShow.bind(this);
         this.onModalHeaderClose = this.onModalHeaderClose.bind(this);
+        
+        this.onModalNoFocusShow = this.onModalNoFocusShow.bind(this);
+        this.onModalNoFocusClose = this.onModalNoFocusClose.bind(this);
       }
 
       onModalShow() {
@@ -95,8 +99,16 @@ the first actionable element.
         this.setState({showModalHeader: false})
       }
 
+      onModalNoFocusShow() {
+        this.setState({showModalNoFocus: true})
+      }
+
+      onModalNoFocusClose() {
+        this.setState({showModalNoFocus: false})
+      }
+
       render() {
-        const { showModal,  showModalHeader } = this.state;
+        const { showModal,  showModalHeader, showModalNoFocus } = this.state;
 
         return (<>
             <Modal size="small" onClose={this.onModalClose} open={showModal}>
@@ -113,7 +125,13 @@ the first actionable element.
                     <Button onClick={this.onModalHeaderClose}>OK</Button>
                 </div>
             </Modal>
-          <Button onClick={this.onModalHeaderShow}>Show Modal with header</Button>
+          <Button onClick={this.onModalHeaderShow}>Show modal with header</Button>
+
+          <Modal size="small" hideEscButton onClose={this.onModalNoFocusClose} open={showModalNoFocus}>
+                <p>This modal has no header and nothing focusable.</p>
+                <p>Consider the usability implications before implementing a modal like this this. A modal should have something actionable inside it.</p>
+            </Modal>
+          <Button onClick={this.onModalNoFocusShow}>Show Modal with nothing focusable</Button>
         </>)
       }
     }

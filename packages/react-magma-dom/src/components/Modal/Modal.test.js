@@ -429,12 +429,12 @@ describe('Modal', () => {
       expect(getByTestId('closeButton')).toHaveFocus();
     });
 
-    it('should not focus the modal if there is nothing to focus', () => {
+    it('should not focus the first element if there is no heading and nothing else to focus', () => {
       const { rerender, getByText } = render(
         <>
           <button>Open</button>
           <Modal open={false} onClose={jest.fn()} hideEscButton>
-            Modal Content
+            <p>Modal Content</p>
           </Modal>
         </>,
         { container: document.body }
@@ -446,13 +446,13 @@ describe('Modal', () => {
         <>
           <button>Open</button>
           <Modal open={true} onClose={jest.fn()} hideEscButton>
-            Modal Content
+            <p>Modal Content</p>
           </Modal>
         </>,
         { container: document.body }
       );
 
-      expect(getByText('Modal Content')).not.toHaveFocus();
+      expect(getByText('Modal Content')).toHaveFocus();
     });
 
     it('should handle tab and loop it through the modal', () => {

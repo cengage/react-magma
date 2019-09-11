@@ -161,6 +161,7 @@ const ModalBody = styled.div`
 class ModalComponent extends React.Component<ModalProps, ModalState> {
   private lastFocus = React.createRef<any>();
   private headingRef = React.createRef<any>();
+  private bodyRef = React.createRef<any>();
   private focusTrapElement = React.createRef<any>();
 
   constructor(props) {
@@ -183,12 +184,16 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
         this.setState({
           focusableElements: getTrapElements(
             this.focusTrapElement,
+            this.bodyRef,
             this.headingRef
           )
         });
       } else {
         this.setState({
-          focusableElements: getTrapElements(this.focusTrapElement)
+          focusableElements: getTrapElements(
+            this.focusTrapElement,
+            this.bodyRef
+          )
         });
       }
     }
@@ -325,7 +330,7 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                               )}
                             </ModalHeader>
                           )}
-                          <ModalBody>{children}</ModalBody>
+                          <ModalBody ref={this.bodyRef}>{children}</ModalBody>
                           {!hideEscButton && (
                             <CloseBtn>
                               <Button
