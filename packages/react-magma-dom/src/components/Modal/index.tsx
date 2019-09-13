@@ -16,23 +16,25 @@ export enum ModalSize {
 }
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
-  id?: string;
   closeLabel?: string;
   disableBackdropClick?: boolean;
   disableEscKeyDown?: boolean;
   header?: React.ReactNode;
   hideEscButton?: boolean;
+  id?: string;
+  innerRef?: React.Ref<HTMLDivElement>;
   isExiting?: boolean;
   onClose?: () => void;
   onEscKeyDown?: (event: React.KeyboardEvent) => void;
   open?: boolean;
   size?: ModalSize;
   testId?: string;
-  innerRef?: React.Ref<HTMLDivElement>;
 }
 
 interface ModalState {
   focusableElements: Array<HTMLElement>;
+  isExiting?: boolean;
+  isModalOpen?: boolean;
 }
 
 const ModalContainer = styled.div`
@@ -175,8 +177,13 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
     this.handleClose = this.handleClose.bind(this);
   }
 
-  componentDidUpdate(prevProps: ModalProps) {
+  componentDidUpdate(prevProps: ModalProps, prevState: ModalState) {
     if (!prevProps.open && this.props.open) {
+      this.setState({ isModalOpen: true });
+    } else if (prevProps.open && !this.props.open) {
+      this.handleClose();
+    }
+    if (!prevState.isModalOpen && this.state.isModalOpen) {
       // @ts-ignore: CreateRef only gives back a immutable ref
       this.lastFocus.current = document.activeElement;
 
@@ -199,7 +206,7 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
     }
   }
 
-  handleKeyDown(onClose: (callback: () => void) => void) {
+  handleKeyDown() {
     return event => {
       const { keyCode, shiftKey } = event;
 
@@ -210,7 +217,7 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
           typeof this.props.onEscKeyDown === 'function' &&
           this.props.onEscKeyDown(event);
 
-        this.handleClose(onClose)();
+        this.handleClose();
       } else if (shiftKey && keyCode === 9) {
         const index = getFocusedElementIndex(
           this.state.focusableElements,
@@ -239,25 +246,32 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
     };
   }
 
-  handleClose(onClose: (callback: () => void) => void) {
-    return () => {
-      onClose(() => {
-        this.lastFocus.current.focus();
-        this.setState({ focusableElements: [] });
+  handleClose() {
+    this.setState({ isExiting: true });
 
-        this.props.onClose &&
-          typeof this.props.onClose === 'function' &&
-          this.props.onClose();
+    setTimeout(() => {
+      this.setState({
+        isExiting: false,
+        focusableElements: [],
+        isModalOpen: false
       });
-    };
+
+      if (this.lastFocus.current) {
+        this.lastFocus.current.focus();
+      }
+
+      this.props.onClose &&
+        typeof this.props.onClose === 'function' &&
+        this.props.onClose();
+    }, 300);
   }
 
   render() {
     return (
       <ThemeContext.Consumer>
         {theme => (
-          <ModalCore id={this.props.id} open={this.props.open}>
-            {({ id, isExiting, onClose }) => {
+          <ModalCore id={this.props.id} open={this.state.isModalOpen}>
+            {({ id }) => {
               const {
                 children,
                 closeLabel,
@@ -273,8 +287,9 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
 
               const CloseIcon = <CrossIcon color={theme.colors.neutral04} />;
               const headingId = `${id}_heading`;
+              const { isExiting } = this.state;
 
-              return open
+              return this.state.isModalOpen
                 ? ReactDOM.createPortal(
                     <>
                       <Global
@@ -291,7 +306,7 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                         data-testid="modal-container"
                         id={id}
                         onKeyDown={
-                          disableEscKeyDown ? null : this.handleKeyDown(onClose)
+                          disableEscKeyDown ? null : this.handleKeyDown()
                         }
                         ref={this.focusTrapElement}
                         role="dialog"
@@ -305,9 +320,7 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                               : null
                           }
                           onClick={
-                            disableBackdropClick
-                              ? null
-                              : this.handleClose(onClose)
+                            disableBackdropClick ? null : this.handleClose
                           }
                         />
                         <ModalContent
@@ -340,7 +353,7 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                                 aria-label={closeLabel ? closeLabel : 'Close'}
                                 color={ButtonColor.secondary}
                                 icon={CloseIcon}
-                                onClick={this.handleClose(onClose)}
+                                onClick={this.handleClose}
                                 testId="modal-closebtn"
                                 variant={ButtonVariant.link}
                               />

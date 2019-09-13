@@ -16,7 +16,13 @@ describe('Modal', () => {
 
   it('should render children when open is true', () => {
     const modalContent = 'Modal content';
-    const { getByText } = render(
+    const { getByText, rerender } = render(
+      <Modal header="Hello" open={false}>
+        {modalContent}
+      </Modal>
+    );
+
+    rerender(
       <Modal header="Hello" open={true}>
         {modalContent}
       </Modal>
@@ -27,7 +33,11 @@ describe('Modal', () => {
 
   it('should render the modal with the default medium size', () => {
     const modalContent = 'Modal content';
-    const { getByTestId } = render(
+    const { getByTestId, rerender } = render(
+      <Modal header="Hello">{modalContent}</Modal>
+    );
+
+    rerender(
       <Modal header="Hello" open={true}>
         {modalContent}
       </Modal>
@@ -38,7 +48,13 @@ describe('Modal', () => {
 
   it('should render the modal with the small size', () => {
     const modalContent = 'Modal content';
-    const { getByTestId } = render(
+    const { getByTestId, rerender } = render(
+      <Modal header="Hello" size="small">
+        {modalContent}
+      </Modal>
+    );
+
+    rerender(
       <Modal header="Hello" open={true} size="small">
         {modalContent}
       </Modal>
@@ -49,7 +65,13 @@ describe('Modal', () => {
 
   it('should render the modal with the large size', () => {
     const modalContent = 'Modal content';
-    const { getByTestId } = render(
+    const { getByTestId, rerender } = render(
+      <Modal header="Hello" size="large">
+        {modalContent}
+      </Modal>
+    );
+
+    rerender(
       <Modal header="Hello" open={true} size="large">
         {modalContent}
       </Modal>
@@ -60,7 +82,11 @@ describe('Modal', () => {
 
   it('should render a header if one is passed in', () => {
     const headerText = 'Hello';
-    const { getByText } = render(
+    const { getByText, rerender } = render(
+      <Modal header={headerText}>Modal Content</Modal>
+    );
+
+    rerender(
       <Modal header={headerText} open={true}>
         Modal Content
       </Modal>
@@ -76,7 +102,11 @@ describe('Modal', () => {
   });
 
   it('should render a close button', () => {
-    const { getByTestId } = render(
+    const { getByTestId, rerender } = render(
+      <Modal header="Hello">Modal Content</Modal>
+    );
+
+    rerender(
       <Modal header="Hello" open={true}>
         Modal Content
       </Modal>
@@ -90,7 +120,13 @@ describe('Modal', () => {
   });
 
   it('should render a close button with custom label', () => {
-    const { getByTestId } = render(
+    const { getByTestId, rerender } = render(
+      <Modal header="Hello" closeLabel="Goodbye">
+        Modal Content
+      </Modal>
+    );
+
+    rerender(
       <Modal header="Hello" open={true} closeLabel="Goodbye">
         Modal Content
       </Modal>
@@ -103,7 +139,13 @@ describe('Modal', () => {
   });
 
   it('should not render a close button if the hideEscButton prop is true', () => {
-    const { queryByTestId } = render(
+    const { queryByTestId, rerender } = render(
+      <Modal header="Hello" hideEscButton>
+        Modal Content
+      </Modal>
+    );
+
+    rerender(
       <Modal header="Hello" open={true} hideEscButton>
         Modal Content
       </Modal>
@@ -250,6 +292,30 @@ describe('Modal', () => {
 
       jest.runAllTimers();
 
+      expect(onCloseSpy).toHaveBeenCalled();
+    });
+
+    it('should fire the close event when the open prop changes from true to false', () => {
+      const onCloseSpy = jest.fn();
+      const { rerender } = render(
+        <Modal header="Hello" open={false} onClose={onCloseSpy}>
+          Modal Content
+        </Modal>
+      );
+
+      rerender(
+        <Modal header="Hello" open={true} onClose={onCloseSpy}>
+          Modal Content
+        </Modal>
+      );
+
+      rerender(
+        <Modal header="Hello" open={false} onClose={onCloseSpy}>
+          Modal Content
+        </Modal>
+      );
+
+      jest.runAllTimers();
       expect(onCloseSpy).toHaveBeenCalled();
     });
 
