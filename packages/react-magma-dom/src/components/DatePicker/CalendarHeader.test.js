@@ -3,8 +3,48 @@ import { render, fireEvent } from 'react-testing-library';
 import { CalendarHeader } from './CalendarHeader';
 import { CalendarContext } from './CalendarContext';
 import { DatePickerCore } from 'react-magma-core';
+import { format } from 'date-fns';
 
 describe('Calendar Header', () => {
+  it('should focus the calendar header text', () => {
+    const now = new Date();
+    const monthYear = format(now, 'MMMM YYYY');
+
+    const { getByText, rerender } = render(
+      <DatePickerCore>
+        {({ onPrevMonthClick, onNextMonthClick, focusedDate }) => (
+          <CalendarContext.Provider
+            value={{
+              onPrevMonthClick,
+              onNextMonthClick,
+              focusedDate
+            }}
+          >
+            <CalendarHeader focusHeader={false} />
+          </CalendarContext.Provider>
+        )}
+      </DatePickerCore>
+    );
+
+    rerender(
+      <DatePickerCore>
+        {({ onPrevMonthClick, onNextMonthClick, focusedDate }) => (
+          <CalendarContext.Provider
+            value={{
+              onPrevMonthClick,
+              onNextMonthClick,
+              focusedDate
+            }}
+          >
+            <CalendarHeader focusHeader={true} />
+          </CalendarContext.Provider>
+        )}
+      </DatePickerCore>
+    );
+
+    expect(getByText(monthYear)).toBe(document.activeElement);
+  });
+
   it('should move forward a month when clicking the next month button', () => {
     const defaultDate = new Date('January 17, 2019');
     const { getByLabelText, getByText } = render(

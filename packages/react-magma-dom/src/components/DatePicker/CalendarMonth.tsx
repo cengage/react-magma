@@ -16,6 +16,7 @@ interface CalendarMonthProps {
 
 interface CalendarMonthState {
   dayFocusable?: boolean;
+  focusHeader?: boolean;
 }
 
 const CalendarContainer = styled.div`
@@ -75,6 +76,18 @@ export class CalendarMonth extends React.Component<
       this.setState({ dayFocusable: true });
       this.props.toggleDateFocus(true);
     }
+
+    if (
+      this.props.calendarOpened &&
+      !this.props.focusOnOpen &&
+      !this.state.focusHeader
+    ) {
+      this.setState({ focusHeader: true });
+    }
+
+    if (prevProps.calendarOpened && !this.props.calendarOpened) {
+      this.setState({ focusHeader: false });
+    }
   }
 
   onCalendarTableFocus() {
@@ -98,7 +111,7 @@ export class CalendarMonth extends React.Component<
                   onKeyDown={context.onKeyDown}
                 >
                   <MonthContainer data-visible="true" theme={theme}>
-                    <CalendarHeader />
+                    <CalendarHeader focusHeader={this.state.focusHeader} />
                     <Table
                       role="presentation"
                       onBlur={() => {
