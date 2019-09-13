@@ -231,7 +231,9 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
 
         if (index === this.state.focusableElements.length - 1) {
           event.preventDefault();
-          this.state.focusableElements[0].focus();
+          if (this.state.focusableElements.length > 0) {
+            this.state.focusableElements[0].focus();
+          }
         }
       }
     };
@@ -242,6 +244,7 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
       onClose(() => {
         this.lastFocus.current.focus();
         this.setState({ focusableElements: [] });
+
         this.props.onClose &&
           typeof this.props.onClose === 'function' &&
           this.props.onClose();

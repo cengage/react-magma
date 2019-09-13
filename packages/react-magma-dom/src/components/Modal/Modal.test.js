@@ -499,6 +499,34 @@ describe('Modal', () => {
       expect(getByTestId('closeButton')).toHaveFocus();
     });
 
+    it('should not attempt to loop through the modal if there are no tabbable elements', () => {
+      const { getByText, rerender } = render(
+        <>
+          <button>Open</button>
+          <Modal open={false} onClose={jest.fn()} hideEscButton>
+            <p>Modal Content </p>
+          </Modal>
+        </>
+      );
+
+      fireEvent.focus(getByText('Open'));
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal open={true} onClose={jest.fn()} hideEscButton>
+            <p>Modal Content </p>
+          </Modal>
+        </>
+      );
+
+      fireEvent.keyDown(getByText('Modal Content'), {
+        keyCode: 9
+      });
+
+      expect(getByText('Modal Content')).toHaveFocus();
+    });
+
     it('should handle shift + tab and loop it through the modal', () => {
       const { getByTestId, getByText, rerender } = render(
         <>
