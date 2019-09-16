@@ -1,4 +1,4 @@
-const candidateSelectors = [
+export const candidateSelectors = [
   'input',
   'select',
   'textarea',
@@ -10,7 +10,7 @@ const candidateSelectors = [
   '[contenteditable]:not([contenteditable="false"])'
 ].join(',');
 
-export function getTrapElements(container, body, header?) {
+export function getTrapElements(container, body?, header?) {
   const inContainer: Array<HTMLElement> = Array.from(
     container.current.querySelectorAll(candidateSelectors)
   );

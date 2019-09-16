@@ -7,6 +7,7 @@ import { CalendarDay } from './CalendarDay';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
 import { HelperInformation } from './HelperInformation';
+import { getTrapElements, getFocusedElementIndex } from '../Modal/utils';
 
 interface CalendarMonthProps {
   calendarOpened?: boolean;
@@ -16,6 +17,7 @@ interface CalendarMonthProps {
 
 interface CalendarMonthState {
   dayFocusable?: boolean;
+  focusableElements: Array<HTMLElement>;
   focusHeader?: boolean;
 }
 
@@ -57,24 +59,35 @@ export class CalendarMonth extends React.Component<
   CalendarMonthProps,
   CalendarMonthState
 > {
+  private lastFocus = React.createRef<any>();
+  private focusTrapElement = React.createRef<any>();
+
   constructor(props) {
     super(props);
 
     this.onCalendarTableFocus = this.onCalendarTableFocus.bind(this);
     this.onCalendarTableBlur = this.onCalendarTableBlur.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
 
     this.state = {
-      dayFocusable: false
+      dayFocusable: false,
+      focusableElements: []
     };
   }
 
   componentDidUpdate(prevProps) {
-    if (
-      prevProps.calendarOpened !== this.props.calendarOpened &&
-      this.props.focusOnOpen
-    ) {
-      this.setState({ dayFocusable: true });
-      this.props.toggleDateFocus(true);
+    if (!prevProps.calendarOpened && this.props.calendarOpened) {
+      // @ts-ignore: CreateRef only gives back a immutable ref
+      this.lastFocus.current = document.activeElement;
+
+      const focusableElements = getTrapElements(this.focusTrapElement);
+
+      if (this.props.focusOnOpen) {
+        this.setState({ dayFocusable: true, focusableElements });
+        this.props.toggleDateFocus(true);
+      } else {
+        this.setState({ focusableElements });
+      }
     }
 
     if (
@@ -86,7 +99,11 @@ export class CalendarMonth extends React.Component<
     }
 
     if (prevProps.calendarOpened && !this.props.calendarOpened) {
-      this.setState({ focusHeader: false });
+      this.setState({ focusHeader: false, focusableElements: [] });
+
+      if (this.lastFocus.current) {
+        this.lastFocus.current.focus();
+      }
     }
   }
 
@@ -96,6 +113,36 @@ export class CalendarMonth extends React.Component<
 
   onCalendarTableBlur() {
     this.setState({ dayFocusable: false });
+  }
+
+  handleKeyDown(event) {
+    const { keyCode, shiftKey } = event;
+
+    if (shiftKey && keyCode === 9) {
+      const index = getFocusedElementIndex(
+        this.state.focusableElements,
+        event.target
+      );
+
+      if (index === 0) {
+        event.preventDefault();
+        this.state.focusableElements[
+          this.state.focusableElements.length - 1
+        ].focus();
+      }
+    } else if (keyCode === 9) {
+      const index = getFocusedElementIndex(
+        this.state.focusableElements,
+        event.target
+      );
+
+      if (index === this.state.focusableElements.length - 1) {
+        event.preventDefault();
+        if (this.state.focusableElements.length > 0) {
+          this.state.focusableElements[0].focus();
+        }
+      }
+    }
   }
 
   render() {
@@ -109,8 +156,15 @@ export class CalendarMonth extends React.Component<
                   tabIndex={-1}
                   theme={theme}
                   onKeyDown={context.onKeyDown}
+                  ref={this.focusTrapElement}
                 >
-                  <MonthContainer data-visible="true" theme={theme}>
+                  <MonthContainer
+                    data-testid="monthContainer"
+                    data-visible="true"
+                    theme={theme}
+                    ref={this.focusTrapElement}
+                    onKeyDown={this.handleKeyDown}
+                  >
                     <CalendarHeader focusHeader={this.state.focusHeader} />
                     <Table
                       role="presentation"
