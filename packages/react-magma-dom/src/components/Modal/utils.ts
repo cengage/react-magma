@@ -1,4 +1,4 @@
-export const candidateSelectors = [
+const candidateSelectors = [
   'input',
   'select',
   'textarea',
