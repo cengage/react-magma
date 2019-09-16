@@ -71,6 +71,10 @@ describe('Calendar Month', () => {
         keyCode: 9
       });
 
+      fireEvent.keyDown(getByLabelText(/close calendar/i), {
+        keyCode: 9
+      });
+
       expect(getByLabelText(/previous month/i)).toHaveFocus();
     });
 
@@ -170,7 +174,7 @@ describe('Calendar Month', () => {
         shiftKey: true
       });
 
-      expect(getByLabelText(/calendar help/i)).toHaveFocus();
+      expect(getByLabelText(/close calendar/i)).toHaveFocus();
     });
   });
 });

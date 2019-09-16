@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { Button, ButtonVariant } from '../Button';
+import { Button, ButtonColor, ButtonSize, ButtonVariant } from '../Button';
 import { QuestionCircleOIcon } from '../Icon/types/QuestionCircleOIcon';
+import { CrossIcon } from '../Icon/types/CrossIcon';
+
 import { CalendarContext } from './CalendarContext';
 import { CalendarHeader } from './CalendarHeader';
 import { CalendarDay } from './CalendarDay';
@@ -52,6 +54,13 @@ const HelperButton = styled.span`
   bottom: 0px;
   position: absolute;
   right: 0px;
+  z-index: 2;
+`;
+
+const CloseButton = styled.span`
+  position: absolute;
+  right: 0px;
+  top: 0px;
   z-index: 2;
 `;
 
@@ -213,6 +222,16 @@ export class CalendarMonth extends React.Component<
                         onClose={context.closeHelperInformation}
                       />
                     </HelperButton>
+                    <CloseButton>
+                      <Button
+                        aria-label="Close Calendar"
+                        color={ButtonColor.secondary}
+                        icon={<CrossIcon />}
+                        onClick={() => {}}
+                        size={ButtonSize.small}
+                        variant={ButtonVariant.link}
+                      />
+                    </CloseButton>
                   </MonthContainer>
                 </CalendarContainer>
               )
