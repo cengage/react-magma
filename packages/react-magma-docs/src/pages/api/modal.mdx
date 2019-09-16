@@ -8,8 +8,9 @@ import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
 
-<DocsHeading to="/design/modals/" type="design">Modals</DocsHeading>
-
+<DocsHeading to="/design/modals/" type="design">
+  Modals
+</DocsHeading>
 
 ## Basic Usage
 
@@ -50,6 +51,87 @@ import { SimplePropsTable } from '../../components/props-table'
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </Modal>
           <Button onClick={this.onModalShow}>Show Modal</Button>
+        </>)
+      }
+    }
+```
+
+## Modal Header
+
+The modal header prop is optional. It can accept a node or a string, and will be rendered inside an H1.
+If there is a header passed in, the focus will be placed on the header when the modal opens. If not, the focus wiill be placed on
+the first actionable element.  If there are no actionable elements, the focus will just go on the first child, although it is best practice to always include something actionable within the modal.
+
+```.jsx
+
+    class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          showModal: false,
+          showModalHeader: false,
+          showModalNoFocus: false
+        }
+
+        this.onModalShow = this.onModalShow.bind(this);
+        this.onModalClose = this.onModalClose.bind(this);
+
+        this.onModalHeaderShow = this.onModalHeaderShow.bind(this);
+        this.onModalHeaderClose = this.onModalHeaderClose.bind(this);
+        
+        this.onModalNoFocusShow = this.onModalNoFocusShow.bind(this);
+        this.onModalNoFocusClose = this.onModalNoFocusClose.bind(this);
+      }
+
+      onModalShow() {
+        this.setState({showModal: true})
+      }
+
+      onModalClose() {
+        this.setState({showModal: false})
+      }
+
+       onModalHeaderShow() {
+        this.setState({showModalHeader: true})
+      }
+
+      onModalHeaderClose() {
+        this.setState({showModalHeader: false})
+      }
+
+      onModalNoFocusShow() {
+        this.setState({showModalNoFocus: true})
+      }
+
+      onModalNoFocusClose() {
+        this.setState({showModalNoFocus: false})
+      }
+
+      render() {
+        const { showModal,  showModalHeader, showModalNoFocus } = this.state;
+
+        return (<>
+            <Modal size="small" onClose={this.onModalClose} open={showModal}>
+                <p>This modal has no header.</p>
+                <div style={{textAlign: 'center'}}>
+                    <Button onClick={this.onModalClose} >OK</Button>
+                </div>
+            </Modal>
+          <Button onClick={this.onModalShow}>Show Modal with no header</Button>
+
+          <Modal header={<>Header with <em>markup</em></>} onClose={this.onModalHeaderClose} open={showModalHeader}>
+                <p>This modal has a header with an `em` tag inside it.</p>
+                <div style={{textAlign: 'center'}}>
+                    <Button onClick={this.onModalHeaderClose}>OK</Button>
+                </div>
+            </Modal>
+          <Button onClick={this.onModalHeaderShow}>Show modal with header</Button>
+
+          <Modal size="small" hideEscButton onClose={this.onModalNoFocusClose} open={showModalNoFocus}>
+                <p>This modal has no header and nothing focusable.</p>
+                <p>Consider the usability implications before implementing a modal like this this. A modal should have something actionable inside it.</p>
+            </Modal>
+          <Button onClick={this.onModalNoFocusShow}>Show Modal with nothing focusable</Button>
         </>)
       }
     }
@@ -143,7 +225,7 @@ Sizes for modals include `small`, `medium`, and `large`, with `medium` being the
       type: {
         name: 'node',
       },
-      required: true,
+      required: false,
       description: 'The content of the modal header',
     },
     hideEscButton: {
