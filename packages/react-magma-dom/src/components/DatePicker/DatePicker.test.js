@@ -181,6 +181,18 @@ describe('Date Picker', () => {
     expect(getByText(format(now, 'DD'))).not.toBe(document.activeElement);
   });
 
+  it('should close the calendar when the close button is clicked', () => {
+    const { getByLabelText, getByTestId } = render(
+      <DatePicker labelText="Date Picker Label" />
+    );
+
+    fireEvent.click(getByLabelText('Calendar'));
+
+    fireEvent.click(getByLabelText(/close calendar/i));
+
+    expect(getByTestId('calendarContainer')).toHaveStyleRule('display', 'none');
+  });
+
   it('should close the calendar when there is an input change', () => {
     const { getByLabelText, getByTestId } = render(
       <DatePicker labelText="Date Picker Label" />

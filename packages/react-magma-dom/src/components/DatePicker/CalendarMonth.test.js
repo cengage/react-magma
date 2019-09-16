@@ -177,4 +177,37 @@ describe('Calendar Month', () => {
       expect(getByLabelText(/close calendar/i)).toHaveFocus();
     });
   });
+
+  it('should close the calendar when the close button is clicked', () => {
+    const handleCloseButtonClick = jest.fn();
+    const { getByLabelText, getByText } = render(
+      <DatePickerCore>
+        {({
+          onPrevMonthClick,
+          onNextMonthClick,
+          focusedDate,
+          buildCalendarMonth
+        }) => (
+          <CalendarContext.Provider
+            value={{
+              onPrevMonthClick,
+              onNextMonthClick,
+              focusedDate,
+              buildCalendarMonth
+            }}
+          >
+            <button>Open</button>
+            <CalendarMonth
+              handleCloseButtonClick={handleCloseButtonClick}
+              calendarOpened={true}
+            />
+          </CalendarContext.Provider>
+        )}
+      </DatePickerCore>
+    );
+
+    fireEvent.click(getByLabelText(/close calendar/i));
+
+    expect(handleCloseButtonClick).toHaveBeenCalled();
+  });
 });

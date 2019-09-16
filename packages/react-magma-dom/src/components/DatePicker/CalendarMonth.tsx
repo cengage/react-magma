@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Button, ButtonColor, ButtonSize, ButtonVariant } from '../Button';
 import { QuestionCircleOIcon } from '../Icon/types/QuestionCircleOIcon';
 import { CrossIcon } from '../Icon/types/CrossIcon';
-
 import { CalendarContext } from './CalendarContext';
 import { CalendarHeader } from './CalendarHeader';
 import { CalendarDay } from './CalendarDay';
@@ -14,6 +13,7 @@ import { getTrapElements, getFocusedElementIndex } from '../Modal/utils';
 interface CalendarMonthProps {
   calendarOpened?: boolean;
   focusOnOpen?: boolean;
+  handleCloseButtonClick: (event: React.SyntheticEvent) => void;
   toggleDateFocus?: (value: boolean) => void;
 }
 
@@ -227,7 +227,7 @@ export class CalendarMonth extends React.Component<
                         aria-label="Close Calendar"
                         color={ButtonColor.secondary}
                         icon={<CrossIcon />}
-                        onClick={() => {}}
+                        onClick={this.props.handleCloseButtonClick}
                         size={ButtonSize.small}
                         variant={ButtonVariant.link}
                       />

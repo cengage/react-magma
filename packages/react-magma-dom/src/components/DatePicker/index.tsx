@@ -53,6 +53,7 @@ export class DatePicker extends React.Component<DatePickerProps> {
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleDaySelection = this.handleDaySelection.bind(this);
     this.handleCalendarBlur = this.handleCalendarBlur.bind(this);
+    this.handleCloseButtonClick = this.handleCloseButtonClick.bind(this);
   }
 
   inputRef = React.createRef<any>();
@@ -185,6 +186,12 @@ export class DatePicker extends React.Component<DatePickerProps> {
     };
   }
 
+  handleCloseButtonClick(toggleCalendar: (calendarOpended: boolean) => void) {
+    return (event: React.SyntheticEvent) => {
+      toggleCalendar(false);
+    };
+  }
+
   render() {
     const {
       defaultDate,
@@ -295,6 +302,9 @@ export class DatePicker extends React.Component<DatePickerProps> {
                         focusOnOpen={
                           calendarOpened && focusedDate && chosenDate
                         }
+                        handleCloseButtonClick={this.handleCloseButtonClick(
+                          toggleCalendar
+                        )}
                         calendarOpened={calendarOpened}
                         toggleDateFocus={toggleDateFocus}
                       />
