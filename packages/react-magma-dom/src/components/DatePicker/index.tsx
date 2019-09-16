@@ -189,6 +189,7 @@ export class DatePicker extends React.Component<DatePickerProps> {
 
   handleCloseButtonClick(toggleCalendar: (calendarOpended: boolean) => void) {
     return (event: React.SyntheticEvent) => {
+      this.inputRef.current.focus();
       toggleCalendar(false);
     };
   }
