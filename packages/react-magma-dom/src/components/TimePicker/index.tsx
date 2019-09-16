@@ -18,7 +18,12 @@ function renderTimePicker(props) {
     <ThemeContext.Consumer>
       {theme => (
         <TimePickerContainer id={id} theme={theme}>
-          <Input icon={<Clock2Icon />} labelText={labelText} />
+          <Input
+            icon={<Clock2Icon />}
+            labelText={labelText}
+            inputStyle={{ width: '125px' }}
+            value="11:59 PM"
+          />
         </TimePickerContainer>
       )}
     </ThemeContext.Consumer>

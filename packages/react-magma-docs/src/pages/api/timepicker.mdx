@@ -2,20 +2,22 @@
 title: 'Time Pickers'
 ---
 
-import { TimePicker } from 'react-magma-dom'
 import { ScopeableLayout } from '../../components/layout'
+import { TimePicker, Heading, Button } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { SimplePropsTable } from '../../components/props-table'
 
-<DocsHeading>Time Pickers</DocsHeading>
+<DocsHeading>
+  TimePicker
+</DocsHeading>
 
 ## Basic Usage
 
 ```.jsx
-    <TimePicker labelText="Time Due" />
+  <TimePicker labelText="Time Due" />
 ```
 
-## Time Picker Props
+## TimePicker Props
 
 <SimplePropsTable
   props={{
@@ -24,7 +26,11 @@ import { SimplePropsTable } from '../../components/props-table'
         name: 'string',
       },
       required: true,
-      description: 'Text for label',
-    },
+      description: 'The label text of the component',
+    }
   }}
 />
+
+export default props => (
+  <ScopeableLayout {...props} components={{ TimePicker}} />
+)
