@@ -109,10 +109,6 @@ export class CalendarMonth extends React.Component<
 
     if (prevProps.calendarOpened && !this.props.calendarOpened) {
       this.setState({ focusHeader: false, focusableElements: [] });
-
-      if (this.lastFocus.current) {
-        this.lastFocus.current.focus();
-      }
     }
   }
 

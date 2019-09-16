@@ -152,6 +152,7 @@ export class DatePicker extends React.Component<DatePickerProps> {
     this.props.onDateChange &&
       typeof this.props.onDateChange === 'function' &&
       this.props.onDateChange(day, event);
+
     onDateChange(day);
 
     updateFocusedDate &&
