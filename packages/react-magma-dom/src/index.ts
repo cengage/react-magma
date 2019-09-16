@@ -33,7 +33,7 @@ export { Toggle } from './components/Toggle';
 export { Tooltip, EnumTooltipPosition } from './components/Tooltip';
 export { VisuallyHidden } from './components/VisuallyHidden';
 export { DatePicker } from './components/DatePicker';
-export { Modal } from './components/Modal';
+export { Modal, ModalSize } from './components/Modal';
 export { HyperLink } from './components/HyperLink';
 export { TimePicker } from './components/TimePicker';
 
@@ -59,6 +59,7 @@ export { ArrowUp2Icon } from './components/Icon/types/ArrowUp2Icon';
 export { ArrowUp3Icon } from './components/Icon/types/ArrowUp3Icon';
 export { ArticleIcon } from './components/Icon/types/ArticleIcon';
 export { AssignIcon } from './components/Icon/types/AssignIcon';
+export { AsteriskIcon } from './components/Icon/types/AsteriskIcon';
 export { AttachmentIcon } from './components/Icon/types/AttachmentIcon';
 export { BackwardIcon } from './components/Icon/types/BackwardIcon';
 export { Backward2Icon } from './components/Icon/types/Backward2Icon';

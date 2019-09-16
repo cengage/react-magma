@@ -2,6 +2,8 @@
 title: 'Buttons'
 ---
 
+import { ScopeableLayout } from '../../components/layout'
+import { Button, LinkButton, Input } from 'react-magma-dom'
 import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
 import DocsHeading from '../../components/docs-heading'
@@ -277,7 +279,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
         name: 'boolean',
       },
       required: false,
-      description: 'If true, the button will take up the full width of its container',
+      description:
+        'If true, the button will take up the full width of its container',
       defaultValue: 'false',
     },
     children: {
@@ -285,12 +288,18 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
         name: 'node',
       },
       required: true,
-      description: 'The content of the component'
+      description: 'The content of the component',
     },
     color: {
       type: {
         name: 'enum',
-        options: ['ButtonColor.primary', 'ButtonColor.secondary', 'ButtonColor.success',  'ButtonColor.danger', 'ButtonColor.marketing']
+        options: [
+          'ButtonColor.primary',
+          'ButtonColor.secondary',
+          'ButtonColor.success',
+          'ButtonColor.danger',
+          'ButtonColor.marketing',
+        ],
       },
       required: false,
       description: 'The color of the button, indicating its function in the UI',
@@ -309,7 +318,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
         name: 'boolean',
       },
       required: false,
-      description: 'If true, the component will have inverse styling to better appear on a dark background',
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
     onClick: {
@@ -317,12 +327,16 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
         name: 'function',
       },
       required: true,
-      description: 'Action that fires when the button is clicked'
+      description: 'Action that fires when the button is clicked',
     },
     shape: {
       type: {
         name: 'enum',
-        options: ['ButtonShape.fill', 'ButtonShape.leftCap', 'ButtonShape.rightCap']
+        options: [
+          'ButtonShape.fill',
+          'ButtonShape.leftCap',
+          'ButtonShape.rightCap',
+        ],
       },
       required: false,
       description: 'Defines the border radius',
@@ -331,7 +345,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
     size: {
       type: {
         name: 'enum',
-        options: ['ButtonSize.large', 'ButtonSize.medium', 'ButtonSize.small']
+        options: ['ButtonSize.large', 'ButtonSize.medium', 'ButtonSize.small'],
       },
       required: false,
       description: 'The relative size of the button',
@@ -348,7 +362,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
     textTransform: {
       type: {
         name: 'enum',
-        options: ['ButtonTextTransform.uppercase', 'ButtonTextTransform.none']
+        options: ['ButtonTextTransform.uppercase', 'ButtonTextTransform.none'],
       },
       required: false,
       description: 'Determines whether the button appears in all-caps',
@@ -357,7 +371,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
     type: {
       type: {
         name: 'enum',
-        options: ['ButtonType.button', 'ButtonType.submit', 'ButtonType.reset']
+        options: ['ButtonType.button', 'ButtonType.submit', 'ButtonType.reset'],
       },
       required: false,
       description: 'The type attribute of the button',
@@ -366,7 +380,11 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
     variant: {
       type: {
         name: 'enum',
-        options: ['ButtonVariant.solid', 'ButtonVariant.outline', 'ButtonVariant.link']
+        options: [
+          'ButtonVariant.solid',
+          'ButtonVariant.outline',
+          'ButtonVariant.link',
+        ],
       },
       required: false,
       description: 'The variant of the button',
@@ -375,3 +393,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
   }}
 />
 
+export default props => (
+  <ScopeableLayout {...props} components={{ Button, LinkButton, Input }} />
+)

@@ -2,6 +2,8 @@
 title: 'Toggles'
 ---
 
+import { ScopeableLayout } from '../../components/layout'
+import { Toggle } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
@@ -183,10 +185,10 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description: 'ID used for testing purposes',
       defaultValue: '',
     },
-     textPosition: {
+    textPosition: {
       type: {
         name: 'enum',
-        options: ['ToggleTextPosition.left', 'ToggleTextPosition.right']
+        options: ['ToggleTextPosition.left', 'ToggleTextPosition.right'],
       },
       required: false,
       description:
@@ -207,14 +209,16 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
         name: 'React.CSSProperties',
       },
       required: false,
-      description: 'Style properties for the part of the component that slides back and forth on the track',
+      description:
+        'Style properties for the part of the component that slides back and forth on the track',
     },
     trackStyle: {
       type: {
         name: 'React.CSSProperties',
       },
       required: false,
-      description: 'Style properties for track on which the toggle thumb slides',
+      description:
+        'Style properties for track on which the toggle thumb slides',
     },
     value: {
       type: {
@@ -226,3 +230,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
     },
   }}
 />
+
+export default props => (
+  <ScopeableLayout {...props} components={{ Toggle }} />
+)

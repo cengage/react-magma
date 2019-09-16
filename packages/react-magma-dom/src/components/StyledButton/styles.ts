@@ -221,6 +221,17 @@ export function buildAfterBackground(props) {
   return props.theme.colors.neutral08;
 }
 
+export function buildAfterTopPosition(props) {
+  switch (props.size) {
+    case 'small':
+      return '14px';
+    case 'large':
+      return '22px';
+    default:
+      return '18px';
+  }
+}
+
 export function buildActiveBackground(props) {
   if (props.color === 'marketing') {
     return lighten(0.2, props.theme.colors.pop04);

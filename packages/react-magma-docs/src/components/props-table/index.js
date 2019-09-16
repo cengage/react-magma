@@ -1,5 +1,6 @@
 import React from 'react'
 import './styles.css'
+import { AsteriskIcon, magma } from 'react-magma-dom'
 
 export const SimplePropsTable = ({ props }) => {
   if (props === undefined) {
@@ -12,6 +13,10 @@ export const SimplePropsTable = ({ props }) => {
 
   return (
     <div>
+      <div className="legend">
+        <AsteriskIcon size="12" color={magma.colors.foundation02} /> = required
+        prop
+      </div>
       <table className="props-table" cellSpacing="0" cellPadding="0">
         <thead
           style={{
@@ -37,15 +42,32 @@ export const SimplePropsTable = ({ props }) => {
               return (
                 <tr key={name}>
                   <td>
-                    {name}
-                    {prop.required ? <span className="required">required</span> :''}
+                    <span className="prop-name">
+                      {name}
+                      {prop.required && (
+                        <span aria-label="Required" className="required">
+                          <AsteriskIcon
+                            size="12"
+                            color={magma.colors.foundation02}
+                          />
+                        </span>
+                      )}
+                    </span>
                   </td>
                   <td>
-                    {prop.type.name === 'enum' ? 'enum, one of:' : prop.type.name}
-                    <br/>
-                    {prop.type.options && Object.keys(prop.type.options).map(i => {
-                      return <><code>{prop.type.options[i]}</code><br/></>
-                    })}
+                    {prop.type.name === 'enum'
+                      ? 'enum, one of:'
+                      : prop.type.name}
+                    <br />
+                    {prop.type.options &&
+                      Object.keys(prop.type.options).map(i => {
+                        return (
+                          <div key={i}>
+                            <code>{prop.type.options[i]}</code>
+                            <br />
+                          </div>
+                        )
+                      })}
                   </td>
                   {!prop.defaultValue ? (
                     <td>

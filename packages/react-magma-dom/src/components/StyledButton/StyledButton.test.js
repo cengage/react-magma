@@ -32,9 +32,28 @@ describe('Styled Button', () => {
 
   it('should disable a button when the passed disabled', () => {
     const text = 'test text';
-    const { getByText } = render(<StyledButton disabled>{text}</StyledButton>);
+    const { getByText } = render(
+      <StyledButton disabled variant="solid">
+        {text}
+      </StyledButton>
+    );
 
     expect(getByText(text)).toBeDisabled();
+    expect(getByText(text)).toHaveStyleRule(
+      'background',
+      magma.colors.neutral06
+    );
+  });
+
+  it('should render correct styled for disabled outline button when the passed disabled', () => {
+    const text = 'test text';
+    const { getByText } = render(
+      <StyledButton disabled variant="outline">
+        {text}
+      </StyledButton>
+    );
+
+    expect(getByText(text)).toHaveStyleRule('background', 'rgba(0,0,0,0)');
   });
 
   describe('Button classes', () => {
@@ -275,6 +294,9 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule('font-size', '.875rem');
         expect(button).toHaveStyleRule('padding', '0 15px');
+        expect(button).toHaveStyleRule('top', '18px', {
+          target: ':after'
+        });
       });
 
       it('small button', () => {
@@ -286,6 +308,9 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule('font-size', '.750rem');
         expect(button).toHaveStyleRule('padding', '0 10px');
+        expect(button).toHaveStyleRule('top', '14px', {
+          target: ':after'
+        });
       });
 
       it('large button', () => {
@@ -297,6 +322,9 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule('font-size', '1.125rem');
         expect(button).toHaveStyleRule('padding', '0 20px');
+        expect(button).toHaveStyleRule('top', '22px', {
+          target: ':after'
+        });
       });
 
       it('disabled inverse outline button', () => {

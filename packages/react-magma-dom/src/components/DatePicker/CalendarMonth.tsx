@@ -8,8 +8,15 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
 import { HelperInformation } from './HelperInformation';
 
+interface CalendarMonthProps {
+  calendarOpened?: boolean;
+  focusOnOpen?: boolean;
+  toggleDateFocus?: (value: boolean) => void;
+}
+
 interface CalendarMonthState {
   dayFocusable?: boolean;
+  focusHeader?: boolean;
 }
 
 const CalendarContainer = styled.div`
@@ -46,7 +53,10 @@ const HelperButton = styled.span`
   z-index: 2;
 `;
 
-export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
+export class CalendarMonth extends React.Component<
+  CalendarMonthProps,
+  CalendarMonthState
+> {
   constructor(props) {
     super(props);
 
@@ -56,6 +66,28 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
     this.state = {
       dayFocusable: false
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.calendarOpened !== this.props.calendarOpened &&
+      this.props.focusOnOpen
+    ) {
+      this.setState({ dayFocusable: true });
+      this.props.toggleDateFocus(true);
+    }
+
+    if (
+      this.props.calendarOpened &&
+      !this.props.focusOnOpen &&
+      !this.state.focusHeader
+    ) {
+      this.setState({ focusHeader: true });
+    }
+
+    if (prevProps.calendarOpened && !this.props.calendarOpened) {
+      this.setState({ focusHeader: false });
+    }
   }
 
   onCalendarTableFocus() {
@@ -79,7 +111,7 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
                   onKeyDown={context.onKeyDown}
                 >
                   <MonthContainer data-visible="true" theme={theme}>
-                    <CalendarHeader />
+                    <CalendarHeader focusHeader={this.state.focusHeader} />
                     <Table
                       role="presentation"
                       onBlur={() => {
@@ -107,7 +139,7 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
                                   key={dayOfWeek}
                                   day={day}
                                   dayFocusable={this.state.dayFocusable}
-                                  onDayClick={context.onDayClick}
+                                  onDateChange={context.onDateChange}
                                 />
                               ))}
                             </tr>

@@ -2,6 +2,8 @@
 title: 'Inputs'
 ---
 
+import { ScopeableLayout } from '../../components/layout'
+import { Input, Button, CalendarIcon, Search2Icon } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { SimplePropsTable } from '../../components/props-table'
 
@@ -109,29 +111,38 @@ display a help link to the right of the input field. The text can be customized 
 
 ## Input with Icon
 
-To include an icon both the `icon` and `iconPosition` props must be passed in. Icon position can either be `left` or `right`.
+An `icon` may be included with the input, by passing in the `icon` prop. An aria-label may be added using the `iconAriaLabel` prop.
+
+Functionality can be added to the icon by using the `onIconClick` and `onIconKeyDown` props. All clickable input icons will appear on the right.
+
+The `iconPosition` position prop is optional and takes the values `left` and `right`, with `left` being the default for non-clickable icons.
 
 ```.jsx
     <div>
       <Input
-        iconPosition='left'
-        id='inputIcon'
-        labelText='Input with Icon Left'
+        labelText='Input with Icon on Left'
         placeholder='Type in here'
-        icon={<CalendarIcon />} />
+        icon={<EnvelopeOIcon />}
+        type="email" />
 
       <Input
         iconPosition='right'
-        id='inputIconRight'
-        labelText='Input with Icon Right'
+        labelText='Input with Icon on Right'
         placeholder='Type in here'
         icon={<Search2Icon />} />
+
+      <Input
+        labelText='Input with Clickable Icon on Right'
+        iconAriaLabel="Calendar"
+        onIconClick={()=>{alert('Icon clicked')}}
+        placeholder='Type in here'
+        icon={<CalendarIcon />} />
     </div>
 ```
 
 ## Input Sizes
 
-The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default.  Input size does not affect multiline textareas.
+The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default. Input size does not affect multiline textareas.
 
 ```.jsx
     <div>
@@ -400,15 +411,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description: 'Aria-label for the help icon',
       defaultValue: "What's this?",
     },
-    hidePasswordMaskButton: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, label text will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
-    },
     hiddenPasswordAnnounceText: {
       type: {
         name: 'string',
@@ -433,12 +435,45 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description: 'Text displayed on screen for the "Hide Password" button',
       defaultValue: 'Hide',
     },
+    hidePasswordMaskButton: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
+    },
     icon: {
       type: {
         name: 'React Element',
       },
       required: false,
       description: 'Icon to display within the component',
+    },
+    iconAriaLabel: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text for the aria-label attribute for an icon, if provided',
+      defaultValue: '',
+    },
+    onIconClick: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Action that will fire when icon is clicked.',
+      defaultValue: '',
+    },
+    onIconKeyDown: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Action that will fire when icon is receives keypress.',
+      defaultValue: '',
     },
     iconPosition: {
       type: {
@@ -448,6 +483,15 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       required: false,
       description: 'Position within the component for the icon to appear',
       defaultValue: 'right',
+    },
+    inputSize: {
+      type: {
+        name: 'enum',
+        options: ['InputSize.large', 'InputSize.medium'],
+      },
+      required: false,
+      description: 'Relative size of the component',
+      defaultValue: 'medium',
     },
     inputStyle: {
       type: {
@@ -521,14 +565,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description: 'Text displayed on screen for the "Show Password" button',
       defaultValue: 'Show',
     },
-    size: {
-      type: {
-        name: 'enum',
-        options: ['inputSize.medium', 'inputSize.large']
-      },
-      description: 'The relative size of the component',
-      defaultValue: 'medium'
-    },
     testId: {
       type: {
         name: 'string',
@@ -536,6 +572,20 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       required: false,
       description: 'ID used for testing purposes',
       defaultValue: '',
+    },
+    type: {
+      type: {
+        name: 'enum',
+        options: [
+          'InputType.email',
+          'InputType.number',
+          'InputType.password',
+          'InputType.text',
+        ],
+      },
+      required: false,
+      description: 'The type attribute of the form field',
+      defaultValue: 'text',
     },
     value: {
       type: {
@@ -547,3 +597,10 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
     },
   }}
 />
+
+export default props => (
+  <ScopeableLayout
+    {...props}
+    components={{ Input, Button, CalendarIcon, Search2Icon }}
+  />
+)

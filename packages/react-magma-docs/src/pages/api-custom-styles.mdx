@@ -1,0 +1,105 @@
+---
+title: Custom Styles
+order: 3
+---
+
+import { Link } from 'gatsby'
+import { Button } from 'react-magma-dom'
+import { ExtendedButton } from '../components/extended-button'
+
+# Custom Styles for React Magma Components
+
+The React Magma component library has been intentionally designed for use across multiple platforms.
+It is recommended to use the default styles that come with any component whenever possible.
+However, there may be occassions where overriding the default styles is required, and this can be accomplished in a number of ways.
+
+## Using the Style Prop
+
+Custom styles can be passed to components using the `style` prop.
+
+```.jsx
+  <>
+    <Button style={{borderRadius: '40px', minWidth: '300px'}}>Custom Styles</Button>
+  </>
+```
+
+## Style Props for Complex Components
+
+Some non-atomic components support styling of individual elements within the component via use of specific props.
+For example, the <Link to="/api/checkbox">Checkbox</Link> supports the following properties: `containerStyle`, `inputStyle`
+and `labelStyle`. In these cases, the `style` prop would have no effect because there is more than one element to target.
+
+```.jsx
+  <>
+    <Checkbox
+        checked
+        containerStyle={{ 'border': '1px dotted purple'}}
+        inputStyle={{ 'boxShadow': '3px 3px 3px rgba(0, 0 , 0, .6)'}}
+        labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
+        labelText='Custom Styles' />
+  </>
+```
+
+## Extending Styles with Emotion
+
+React Magma styles are built with the [Emotion library](https://emotion.sh/docs/styled) using styled-components.  
+If you are using Emotion in your app, you can extend the styles of React Magma components`. This is useful if you want to add custom styles that do not fit into the`style` prop, such as styles for pseduo elements, pseudo classes, and media queries.
+
+Note: If the styles in your app are injected before the React Magma styles, your styles might not get applied if the specificity is the same.
+To ensure your styles are applied, you can use use the ampersand (&) character, as shown in this example.
+
+```.js
+    import React from 'react'
+    import { Button } from 'react-magma-dom'
+    import styled from '@emotion/styled'
+
+    const StyledButton = styled(Button)`
+    && {
+        background: purple;
+
+        &&:hover,
+        &&:focus {
+            background: green;
+        }
+    }
+`
+
+export function ExtendedButton() {
+  return <StyledButton>Demo button</StyledButton>
+
+```
+
+Renders as:
+
+<ExtendedButton>Demo button</ExtendedButton>
+
+## Creating Custom Themes
+
+Custom themes can be created by extending the Magma theme with your own values.
+The complete Magma theme can be found in the [Stash repository](http://stash.corp.web:7990/projects/FRONT/repos/react-magma/browse/packages/react-magma-dom/src/theme/magma.ts).
+
+```.js
+  import { magma } from './magma';
+
+  export const myCustomTheme = {
+    ...magma,
+    headingFont: 'Papyrus, sans-serif',
+
+    colors: {
+      ...magma.colors,
+
+      primary: '#0000FF',
+      foundation01: '#FF0000',
+    }
+};
+```
+
+To apply the custom theme, use the <Link to="/api/theme/">ThemeContext.Provider</Link>, passing in your custom theme as the value property.
+Any descendants of the context provider will receive the theme that is passed in.
+
+```.js
+  <ThemeContext.Provider value={myCustomTheme}>
+    <div>....</div>
+  </ThemeContext.Provider>
+};
+```

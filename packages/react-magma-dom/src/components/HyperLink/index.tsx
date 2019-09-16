@@ -36,14 +36,12 @@ const linkStyles = props => css`
       color: ${props.inverse
         ? props.theme.colors.neutral07
         : props.theme.colors.foundation01};
-      text-decoration: none;
     }
 
     &:focus {
       outline: 2px dotted
         ${props.inverse ? props.theme.neutral08 : props.theme.colors.pop02};
       outline-offset: 3px;
-      transition: outline 0.1s linear;
     }
   }
 `;

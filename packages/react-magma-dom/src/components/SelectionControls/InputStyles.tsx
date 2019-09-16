@@ -42,6 +42,5 @@ export const DisplayInputActiveStyles = css`
 export const DisplayInputFocusStyles = css`
   height: 30px;
   position: absolute;
-  transition: outline 0.1s linear;
   width: 30px;
 `;

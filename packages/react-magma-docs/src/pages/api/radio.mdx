@@ -2,6 +2,8 @@
 title: 'Radio Buttons'
 ---
 
+import { ScopeableLayout } from '../../components/layout'
+import { Radio, RadioGroup, Button, magma } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
@@ -308,7 +310,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
         name: 'string',
       },
       required: false,
-      description: 'ID of the element that labels the radio group, used in the aria-labelledby attribute for the group.  Alertnatively, the labelText prop can be used.',
+      description:
+        'ID of the element that labels the radio group, used in the aria-labelledby attribute for the group.  Alertnatively, the labelText prop can be used.',
       defaultValue: '',
     },
     labelStyle: {
@@ -323,7 +326,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
         name: 'string',
       },
       required: true,
-      description: 'Text for label of the radio group. Alertnatively, the labelledById prop can be used.',
+      description:
+        'Text for label of the radio group. Alertnatively, the labelledById prop can be used.',
     },
     onBlur: {
       type: {
@@ -378,7 +382,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
         name: 'string',
       },
       required: false,
-      description: 'Value of the radio button that is the default selected value for the group',
+      description:
+        'Value of the radio button that is the default selected value for the group',
       defaultValue: '',
     },
   }}
@@ -476,3 +481,10 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
     },
   }}
 />
+
+export default props => (
+  <ScopeableLayout
+    {...props}
+    components={{ Radio, RadioGroup, Button, magma }}
+  />
+)

@@ -9,7 +9,6 @@
 *:focus {
   outline: 2px dotted #fa6600;
   outline-offset: 3px;
-  transition: outline .1s linear;
 }
 
 html {
@@ -41,7 +40,6 @@ a {
 a:hover,
 a:focus {
   color: #003865;
-  text-decoration: none;
 }
 
 h1,

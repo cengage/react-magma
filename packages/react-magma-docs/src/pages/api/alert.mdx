@@ -2,11 +2,15 @@
 title: 'Alerts'
 ---
 
+import { ScopeableLayout } from '../../components/layout'
+import { Alert, Button } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
 
-# Alerts
+<DocsHeading to="/design/alerts/" type="design">
+  Alerts
+</DocsHeading>
 
 ## Basic Usage
 
@@ -112,7 +116,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
         name: 'node',
       },
       required: true,
-      description: 'The content of the component'
+      description: 'The content of the component',
     },
     closeLabel: {
       type: {
@@ -120,22 +124,24 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       },
       required: false,
       description: 'The text read by screen readers for the close button',
-      defaultValue: '"Close this message"'
+      defaultValue: '"Close this message"',
     },
     dismissable: {
       type: {
         name: 'boolean',
       },
       required: false,
-      description: 'If true, the component will be able to be dismissed and will include a close button',
-      defaultValue: 'false'
+      description:
+        'If true, the component will be able to be dismissed and will include a close button',
+      defaultValue: 'false',
     },
     onDimiss: {
       type: {
         name: 'function',
       },
       required: false,
-      description: 'Action that fires when the close button is clicked (required when dismissable is true)'
+      description:
+        'Action that fires when the close button is clicked (required when dismissable is true)',
     },
     testId: {
       type: {
@@ -148,10 +154,21 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
     variant: {
       type: {
         name: 'enum',
-        options: ['AlertVariant.info', 'AlertVariant.success', 'AlertVariant.warning', 'AlertVariant.danger']
+        options: [
+          'AlertVariant.info',
+          'AlertVariant.success',
+          'AlertVariant.warning',
+          'AlertVariant.danger',
+        ],
       },
       required: false,
-      description: 'The variant of the alert, indicating its function in the UI',
+      description:
+        'The variant of the alert, indicating its function in the UI',
       defaultValue: 'info',
     },
-  }} />
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout {...props} components={{ Alert, Button }} />
+)

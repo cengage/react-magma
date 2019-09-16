@@ -2,6 +2,8 @@
 title: 'Checkboxes'
 ---
 
+import { ScopeableLayout } from '../../components/layout'
+import { Checkbox, magma } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
@@ -92,9 +94,9 @@ In addition to being checked or unchecked, checkboxes also support an indetermin
     </div>
 ```
 
-## Inverse colors
+## Inverse styling
 
-Inverse is an optional boolean prop, that may be passed in when checkboxes are to be displayed on a dark background.
+Inverse is an optional boolean prop, that may be passed in when the component is to be displayed on a dark background.
 
 ```.jsx
   <div style={{ background : '#00263E', padding: '10px' }}>
@@ -273,7 +275,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
     },
     labelText: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: true,
       description: 'Text for label',
@@ -283,8 +285,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
         name: 'boolean',
       },
       required: false,
-      description:
-        'If true, the form field is required',
+      description: 'If true, the form field is required',
       defaultValue: 'false',
     },
     testId: {
@@ -306,3 +307,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
     },
   }}
 />
+
+export default props => (
+  <ScopeableLayout {...props} components={{ Checkbox, magma }} />
+)

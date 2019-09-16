@@ -21,6 +21,7 @@ const StyledLabel = styled.label<LabelProps>`
   font-weight: 600;
   margin-bottom: 5px;
   max-width: 100%;
+  text-align: left;
 `;
 
 function renderLabel(props) {

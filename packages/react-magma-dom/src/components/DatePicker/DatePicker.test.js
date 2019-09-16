@@ -3,7 +3,6 @@ import { axe } from 'jest-axe';
 import { render, fireEvent } from 'react-testing-library';
 import {
   format,
-  getDate,
   subWeeks,
   subDays,
   startOfWeek,
@@ -23,6 +22,10 @@ describe('Date Picker', () => {
     );
 
     expect(getByLabelText('Date Picker Label')).not.toBeNull();
+    expect(getByLabelText('Date Picker Label')).toHaveAttribute(
+      'placeholder',
+      'MM/DD/YYYY'
+    );
   });
 
   it('should render with a default date', () => {
@@ -37,15 +40,185 @@ describe('Date Picker', () => {
     );
   });
 
-  it('should open the calendar month', () => {
+  it('should render custom placeholder text', () => {
+    const customPlaceholder = 'Custom text';
+    const { getByLabelText } = render(
+      <DatePicker
+        placeholderText={customPlaceholder}
+        labelText="Date Picker Label"
+      />
+    );
+
+    expect(getByLabelText('Date Picker Label')).toHaveAttribute(
+      'placeholder',
+      customPlaceholder
+    );
+  });
+
+  it('should render a helper message on the date picker input', () => {
+    const helperMessage = 'Help information';
+    const { getByText } = render(
+      <DatePicker labelText="Date Picker Label" helperMessage={helperMessage} />
+    );
+
+    expect(getByText(helperMessage)).not.toBeNull();
+  });
+
+  it('should render an error message on the date picker input', () => {
+    const errorMessage = 'Help information';
+    const { getByText } = render(
+      <DatePicker labelText="Date Picker Label" errorMessage={errorMessage} />
+    );
+
+    expect(getByText(errorMessage)).not.toBeNull();
+  });
+
+  it('should watch for input change', () => {
+    const onInputChange = jest.fn();
+    const labelText = 'Date Picker Label';
+    const { getByLabelText } = render(
+      <DatePicker labelText={labelText} onInputChange={onInputChange} />
+    );
+
+    fireEvent.change(getByLabelText(labelText), {
+      target: { value: 'new value' }
+    });
+
+    expect(onInputChange).toHaveBeenCalled();
+  });
+
+  it('should call passed in handle blur function', () => {
+    const onInputBlur = jest.fn();
+    const labelText = 'Date Picker Label';
+    const { getByLabelText } = render(
+      <DatePicker labelText={labelText} onInputBlur={onInputBlur} />
+    );
+
+    getByLabelText(labelText).focus();
+
+    getByLabelText('Calendar').focus();
+
+    expect(onInputBlur).toHaveBeenCalled();
+  });
+
+  it('should change the focused date on blur if the typed in date is a valid date', () => {
+    const labelText = 'Date Picker Label';
+    const { getByLabelText, getByText } = render(
+      <DatePicker labelText={labelText} />
+    );
+
+    getByLabelText(labelText).focus();
+
+    fireEvent.change(getByLabelText(labelText), {
+      target: { value: '1/1/1991' }
+    });
+
+    getByLabelText('Calendar').focus();
+
+    fireEvent.click(getByLabelText('Calendar'));
+
+    expect(
+      getByText(new Date('1/1/1991').getDate().toString())
+    ).not.toHaveStyleRule('border-color', 'transparent');
+  });
+
+  it('should open the calendar month when the icon button is clicked', () => {
+    const defaultDate = new Date('January 17, 2019');
+    const { getByLabelText, getByTestId } = render(
+      <DatePicker defaultDate={defaultDate} labelText="Date Picker Label" />
+    );
+
+    expect(getByTestId('calendarContainer')).toHaveStyleRule('display', 'none');
+
+    fireEvent.click(getByLabelText('Calendar'));
+
+    expect(getByTestId('calendarContainer')).toHaveStyleRule(
+      'display',
+      'block'
+    );
+  });
+
+  it('should focus the calendar header when the calendar is opened with no chosen date', () => {
+    const now = new Date();
+    const monthYear = format(now, 'MMMM YYYY');
+    const { getByLabelText, getByText } = render(
+      <DatePicker labelText="Date Picker Label" />
+    );
+    fireEvent.click(getByLabelText('Calendar'));
+
+    expect(getByText(monthYear)).toBe(document.activeElement);
+  });
+
+  it('should focus the chosen date when the calendar is opened', () => {
     const defaultDate = new Date('January 17, 2019');
     const { getByLabelText, getByText } = render(
       <DatePicker defaultDate={defaultDate} labelText="Date Picker Label" />
     );
+    fireEvent.click(getByLabelText('Calendar'));
 
-    fireEvent.focus(getByLabelText('Date Picker Label'));
+    expect(getByText('17')).toBe(document.activeElement);
+  });
 
-    expect(getByText(getDate(defaultDate).toString())).toBeInTheDocument();
+  it('should take focus off of chosen date when none valid date in input', () => {
+    const defaultDate = new Date('January 17, 2019');
+    const now = new Date();
+    const labelText = 'Date Picker Label';
+    const { getByLabelText, getByText } = render(
+      <DatePicker defaultDate={defaultDate} labelText={labelText} />
+    );
+
+    getByLabelText(labelText).focus();
+
+    fireEvent.change(getByLabelText(labelText), {
+      target: { value: '12' }
+    });
+
+    getByLabelText('Calendar').focus();
+
+    fireEvent.click(getByLabelText('Calendar'));
+
+    expect(getByText(format(now, 'MMMM YYYY'))).not.toBeNull();
+    expect(getByText(format(now, 'DD'))).not.toBe(document.activeElement);
+  });
+
+  it('should close the calendar when there is an input change', () => {
+    const { getByLabelText, getByTestId } = render(
+      <DatePicker labelText="Date Picker Label" />
+    );
+
+    fireEvent.click(getByLabelText('Calendar'));
+
+    expect(getByTestId('calendarContainer')).not.toHaveStyleRule(
+      'display',
+      'none'
+    );
+
+    fireEvent.change(getByLabelText('Date Picker Label'), {
+      target: { value: '12' }
+    });
+
+    expect(getByTestId('calendarContainer')).toHaveStyleRule('display', 'none');
+  });
+
+  it('should close the calendar month when the escape key is pressed', () => {
+    const defaultDate = new Date('January 17, 2019');
+    const { getByLabelText, getByTestId } = render(
+      <DatePicker defaultDate={defaultDate} labelText="Date Picker Label" />
+    );
+
+    fireEvent.click(getByLabelText('Calendar'));
+
+    expect(getByTestId('calendarContainer')).toHaveStyleRule(
+      'display',
+      'block'
+    );
+
+    fireEvent.keyDown(getByLabelText('Calendar'), {
+      key: 'Escape',
+      code: 27
+    });
+
+    expect(getByTestId('calendarContainer')).toHaveStyleRule('display', 'none');
   });
 
   it('should open the helper information on ? press', () => {
@@ -67,14 +240,14 @@ describe('Date Picker', () => {
   });
 
   it('should handle a day click', () => {
-    const onDayClick = jest.fn();
+    const onDateChange = jest.fn();
     const defaultDate = new Date();
     const labelText = 'Date picker label';
     const { getByText, container } = render(
       <DatePicker
         defaultDate={defaultDate}
         labelText={labelText}
-        onDayClick={onDayClick}
+        onDateChange={onDateChange}
       />
     );
 
@@ -82,7 +255,7 @@ describe('Date Picker', () => {
 
     fireEvent.click(getByText(defaultDate.getDate().toString()));
 
-    expect(onDayClick).toHaveBeenCalled();
+    expect(onDateChange).toHaveBeenCalled();
   });
 
   describe('on key down press', () => {
@@ -360,6 +533,7 @@ describe('Date Picker', () => {
       });
 
       expect(container.querySelector('table')).not.toBeVisible();
+      expect(document.activeElement).toBe(container.querySelector('input'));
     });
 
     it('?', () => {

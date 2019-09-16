@@ -1,16 +1,16 @@
 module.exports = {
-  pathPrefix: process.env.PATH_PREFIX,
+  pathPrefix: process.env.PATH_PREFIX || '/',
   siteMetadata: {
     title: 'React Magma Docs',
   },
   plugins: [
     {
-      resolve: "gatsby-plugin-react-svg",
+      resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
-          include: /images/ 
-        }
-      }
+          include: /images/,
+        },
+      },
     },
     'gatsby-plugin-react-helmet',
     {
@@ -65,6 +65,6 @@ module.exports = {
         icon: 'src/images/react-magma-icon.png', // This path is relative to the root of the site.
       },
     },
-    'gatsby-plugin-offline'
+    'gatsby-plugin-offline',
   ],
 }

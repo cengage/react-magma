@@ -15,11 +15,11 @@ function getStyles(theme) {
     *:focus {
       outline: 2px dotted ${theme.colors.pop02};
       outline-offset: 3px;
-      transition: outline 0.1s linear;
     }
 
     html {
       scroll-behavior: smooth;
+      font-size: 15px;
     }
 
     html,
@@ -46,7 +46,6 @@ function getStyles(theme) {
       &:hover,
       &:focus {
         color: ${theme.colors.foundation01};
-        text-decoration: none;
       }
     }
   `;

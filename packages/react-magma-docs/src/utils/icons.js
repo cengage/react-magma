@@ -17,6 +17,7 @@ export default [
   'ArrowUp3Icon',
   'ArticleIcon',
   'AssignIcon',
+  'AsteriskIcon',
   'AttachmentIcon',
   'BackwardIcon',
   'Backward2Icon',

@@ -17,7 +17,7 @@ function renderTimePicker(props) {
   return (
     <ThemeContext.Consumer>
       {theme => (
-        <TimePickerContainer id={id}>
+        <TimePickerContainer id={id} theme={theme}>
           <Input icon={<Clock2Icon />} labelText={labelText} />
         </TimePickerContainer>
       )}

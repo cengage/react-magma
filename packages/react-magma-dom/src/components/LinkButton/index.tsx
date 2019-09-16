@@ -26,7 +26,6 @@ const LinkButtonComponent = styled.button<LinkButtonProps>`
         props.inverse
           ? props.theme.colors.neutral07
           : props.theme.colors.foundation01};
-      text-decoration: none;
     }
 
     &:focus {
@@ -36,7 +35,6 @@ const LinkButtonComponent = styled.button<LinkButtonProps>`
             ? props.theme.colors.neutral08
             : props.theme.colors.pop02};
       outline-offset: 3px;
-      transition: outline 0.1s linear;
     }
   }
 `;

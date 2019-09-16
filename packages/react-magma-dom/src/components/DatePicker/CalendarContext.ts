@@ -8,7 +8,7 @@ export interface CalendarContextInterface {
   buildCalendarMonth: (date: Date, endableOutsideDates?: boolean) => [[]];
   openHelperInformation: () => void;
   closeHelperInformation: () => void;
-  onDayClick: (day: Date, event: React.SyntheticEvent) => void;
+  onDateChange: (day: Date, event: React.SyntheticEvent) => void;
   onKeyDown: (event: React.KeyboardEvent) => void;
   onPrevMonthClick: () => void;
   onNextMonthClick: () => void;
