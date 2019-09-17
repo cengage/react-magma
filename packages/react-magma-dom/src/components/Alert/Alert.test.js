@@ -6,6 +6,7 @@ import { Info2Icon } from '../Icon/types/Info2Icon';
 import { CheckIcon } from '../Icon/types/CheckIcon';
 import { NotificationIcon } from '../Icon/types/NotificationIcon';
 import { BlockedIcon } from '../Icon/types/BlockedIcon';
+import { magma } from '../../theme/magma';
 
 const MOCK_ID = 'abc123';
 
@@ -38,6 +39,18 @@ describe('Alert', () => {
     const expectedIcon = iconContainer.querySelector('svg');
 
     expect(alertIcon).toEqual(expectedIcon);
+  });
+
+  it('should render an alert with inverse focus style', () => {
+    const { container } = render(<Alert inverse>Test Alert Text</Alert>);
+
+    expect(container.firstChild).toHaveStyleRule(
+      'outline',
+      `2px dotted ${magma.colors.neutral08}`,
+      {
+        target: ':focus'
+      }
+    );
   });
 
   describe('Variants', () => {

@@ -163,7 +163,7 @@ describe('Date Picker', () => {
     const defaultDate = new Date('January 17, 2019');
     const now = new Date();
     const labelText = 'Date Picker Label';
-    const { getByLabelText, getByText, getByTestId, debug } = render(
+    const { getByLabelText, getByText } = render(
       <DatePicker defaultDate={defaultDate} labelText={labelText} />
     );
 
