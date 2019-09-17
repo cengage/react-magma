@@ -30,8 +30,6 @@ export function buildCalloutBackground(props) {
       return props.theme.colors.danger;
     case 'success':
       return props.theme.colors.success01;
-    case 'primary':
-      return props.theme.colors.primary;
     case 'warning':
       return props.theme.colors.pop04;
     default:
