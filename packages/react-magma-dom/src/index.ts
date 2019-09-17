@@ -11,6 +11,13 @@ export {
   ButtonIconPosition
 } from './components/Button';
 export { Checkbox } from './components/Checkbox';
+export {
+  Card,
+  CardBody,
+  CardHeading,
+  CardAlignment,
+  CardCalloutType
+} from './components/Card';
 export { Heading } from './components/Heading';
 export {
   Input,
