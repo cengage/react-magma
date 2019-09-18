@@ -104,6 +104,26 @@ describe('Card', () => {
     expect(card).toHaveStyleRule('width', '300px');
   });
 
+  it('should render the card component with a custom background', () => {
+    const { getByText } = render(<Card background="red">{TEXT}</Card>);
+
+    const card = getByText(TEXT);
+
+    expect(card).toHaveStyleRule('background', 'red');
+  });
+
+  it('should render the card component with inverse styles', () => {
+    const { getByText } = render(
+      <Card background="red" inverse>
+        {TEXT}
+      </Card>
+    );
+
+    const card = getByText(TEXT);
+
+    expect(card).toHaveStyleRule('color', '#FFFFFF');
+  });
+
   it('should render a card with right alignment', () => {
     const { getByText } = render(<Card align="right">{TEXT}</Card>);
 

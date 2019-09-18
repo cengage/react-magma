@@ -3,7 +3,7 @@ title: 'Cards'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { Card, CardBody, CardHeading } from 'react-magma-dom'
+import { Card, CardBody, CardHeading, magma } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 
 # Card
@@ -134,6 +134,23 @@ To get an image to take up the full width of a card, without padding, place it o
         </Card>
 ```
 
+## Background and Inverse
+
+A string for a background color may be passed in using the `background` prop.
+
+If the background color is dark, the `inverse` boolean prop can be used to render content in a light color.
+
+```.jsx
+        <Card background={magma.colors.success01} inverse>
+            <CardHeading inverse>
+                Card heading
+            </CardHeading>
+            <CardBody>
+                Some content
+            </CardBody>
+        </Card>
+```
+
 <SimplePropsTable
   props={{
     align: {
@@ -148,6 +165,13 @@ To get an image to take up the full width of a card, without padding, place it o
       required: false,
       description: 'Sets the alignment of the card content',
       defaultValue: 'left',
+    },
+    background: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Color for the background and border-color, set by CSS.',
     },
     calloutType: {
       type: {
@@ -179,6 +203,15 @@ To get an image to take up the full width of a card, without padding, place it o
       description: 'If true, card will render with a box-shadow',
       defaultValue: 'false',
     },
+    inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
     width: {
       type: {
         name: 'string',
@@ -191,5 +224,8 @@ To get an image to take up the full width of a card, without padding, place it o
 />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ Card, CardBody, CardHeading }} />
+  <ScopeableLayout
+    {...props}
+    components={{ Card, CardBody, CardHeading, magma }}
+  />
 )

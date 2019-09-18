@@ -6,8 +6,10 @@ import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface CardProps extends React.LabelHTMLAttributes<HTMLDivElement> {
   align?: CardAlignment;
+  background?: boolean;
   calloutType?: CardCalloutType;
   hasDropShadow?: boolean;
+  inverse?: boolean;
   width?: string;
 }
 
@@ -38,12 +40,18 @@ export function buildCalloutBackground(props) {
 }
 
 const StyledCard = styled.div<CardProps>`
-  background: ${props => props.theme.colors.neutral08};
-  border: 1px solid ${props => props.theme.colors.neutral06};
+  background: ${props =>
+    props.background ? props.background : props.theme.colors.neutral08};
+  border: 1px solid
+    ${props =>
+      props.background ? props.background : props.theme.colors.neutral06};
   border-radius: 5px;
   box-shadow: ${props =>
     props.hasDropShadow ? '0 2px 6px 0 rgba(0,0,0,0.18)' : '0 0 0'};
-  color: ${props => props.theme.colors.neutral02};
+  color: ${props =>
+    props.inverse
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral02};
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -71,9 +79,11 @@ const StyledCard = styled.div<CardProps>`
 function renderCard(props) {
   const {
     align,
+    background,
     children,
     calloutType,
     hasDropShadow,
+    inverse,
     testId,
     width,
     ...other
@@ -85,9 +95,11 @@ function renderCard(props) {
         <StyledCard
           {...other}
           align={align ? align : CardAlignment.left}
+          background={background}
           data-testid={testId}
           calloutType={calloutType}
           hasDropShadow={hasDropShadow}
+          inverse={inverse}
           width={width ? width : 'auto'}
           theme={theme}
         >
@@ -123,9 +135,13 @@ const StyledCardHeading = styled(Heading)<{ align?: CardAlignment }>`
 `;
 
 function renderCardHeading(props) {
-  const { children } = props;
+  const { inverse, children } = props;
 
-  return <StyledCardHeading level={4}>{children}</StyledCardHeading>;
+  return (
+    <StyledCardHeading level={4} inverse={inverse}>
+      {children}
+    </StyledCardHeading>
+  );
 }
 
 export const CardHeading: React.FunctionComponent<CardProps> = (
