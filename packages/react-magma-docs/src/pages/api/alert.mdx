@@ -135,6 +135,15 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
         'If true, the component will be able to be dismissed and will include a close button',
       defaultValue: 'false',
     },
+     inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the focus state of the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
     onDimiss: {
       type: {
         name: 'function',

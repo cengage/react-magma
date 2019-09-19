@@ -26,12 +26,13 @@ export enum AlertVariant {
 
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   closeLabel?: string;
-  testId?: string;
   dismissable?: boolean;
-  variant?: AlertVariant;
-  onDismiss?: () => void;
   isExiting?: boolean;
+  inverse?: boolean;
+  onDismiss?: () => void;
   ref?: any;
+  testId?: string;
+  variant?: AlertVariant;
 }
 
 export const transitionDuration = 500;
@@ -66,6 +67,12 @@ const StyledAlert = styled.div<AlertProps>`
     props.isExiting
       ? `fadeout ${transitionDuration}ms`
       : `fadein ${transitionDuration}ms`};
+
+  &:focus {
+    outline: 2px dotted ${props =>
+      props.inverse ? props.theme.colors.neutral08 : props.theme.colors.pop02};
+    }
+  }
 
   @keyframes fadein {
     from {
@@ -177,8 +184,9 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
       variant,
       children,
       dismissable,
-      onDismiss,
       isExiting,
+      inverse,
+      onDismiss,
       ...other
     }: AlertProps,
     ref: any
@@ -195,6 +203,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
               data-testid={testId}
               ref={ref}
               tabIndex={-1}
+              inverse={inverse}
               isExiting={isExiting || coreIsExiting}
               variant={variant}
               theme={theme}
