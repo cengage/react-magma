@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from '.';
-import { render, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from '@testing-library/react';
 
 describe('Modal', () => {
   it('should render nothing if open is false', () => {

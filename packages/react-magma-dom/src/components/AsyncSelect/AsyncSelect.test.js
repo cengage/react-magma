@@ -2,7 +2,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { AsyncSelect } from '.';
-import { render, fireEvent, waitForElement } from 'react-testing-library';
+import { render, fireEvent, waitForElement } from '@testing-library/react';
 const mockPromise = require('promise');
 
 const colourOptions = [
@@ -73,11 +73,11 @@ describe('Async', () => {
         }
       });
 
-      jest.runAllTimers();
+      jest.runOnlyPendingTimers();
 
-      await waitForElement(() => getByText(/red/i));
+      await waitForElement(() => getByText('Red'));
 
-      expect(getByText(/red/i)).toBeInTheDocument();
+      expect(getByText('Red')).toBeInTheDocument();
     });
 
     it('should have default options', async () => {
@@ -103,11 +103,11 @@ describe('Async', () => {
       );
       fireEvent.mouseDown(listControl);
 
-      jest.runAllTimers();
+      jest.runOnlyPendingTimers();
 
-      await waitForElement(() => getByText(/pink/i));
+      await waitForElement(() => getByText('Pink'));
 
-      expect(getByText(/pink/i)).toBeInTheDocument();
+      expect(getByText('Pink')).toBeInTheDocument();
     });
   });
 });

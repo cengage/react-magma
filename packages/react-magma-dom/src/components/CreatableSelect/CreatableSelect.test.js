@@ -2,7 +2,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { CreatableSelect } from '.';
-import { render, fireEvent, waitForElement } from 'react-testing-library';
+import { render, fireEvent, waitForElement } from '@testing-library/react';
 
 const colourOptions = [
   {
@@ -46,8 +46,8 @@ describe('Creatable', () => {
       }
     });
 
-    await waitForElement(() => getByText(/create "pink"/i));
+    await waitForElement(() => getByText('Create "pink"'));
 
-    expect(getByText(/create "pink"/i)).toBeInTheDocument();
+    expect(getByText('Create "pink"')).toBeInTheDocument();
   });
 });

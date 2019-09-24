@@ -2,7 +2,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { AsyncCreatableSelect } from '.';
-import { render, fireEvent, waitForElement } from 'react-testing-library';
+import { render, fireEvent, waitForElement } from '@testing-library/react';
 const mockPromise = require('promise');
 
 const colourOptions = [
@@ -76,11 +76,11 @@ describe('Async Creatable', () => {
         }
       });
 
-      jest.runAllTimers();
+      jest.runOnlyPendingTimers();
 
-      await waitForElement(() => getByText(/red/i));
+      await waitForElement(() => getByText('Red'));
 
-      expect(getByText(/red/i)).toBeInTheDocument();
+      expect(getByText('Red')).toBeInTheDocument();
     });
 
     it('should have default options', async () => {
@@ -106,11 +106,11 @@ describe('Async Creatable', () => {
       );
       fireEvent.mouseDown(listControl);
 
-      jest.runAllTimers();
+      jest.runOnlyPendingTimers();
 
-      await waitForElement(() => getByText(/pink/i));
+      await waitForElement(() => getByText('Pink'));
 
-      expect(getByText(/pink/i)).toBeInTheDocument();
+      expect(getByText('Pink')).toBeInTheDocument();
     });
 
     it('should call onChange with the newly created option', async () => {
@@ -133,11 +133,11 @@ describe('Async Creatable', () => {
         }
       });
 
-      jest.runAllTimers();
+      jest.runOnlyPendingTimers();
 
-      await waitForElement(() => getByText(/create "pink"/i));
+      await waitForElement(() => getByText('Create "pink"'));
 
-      expect(getByText(/create "pink"/i)).toBeInTheDocument();
+      expect(getByText('Create "pink"')).toBeInTheDocument();
     });
   });
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from '@testing-library/react';
 import { CalendarDay } from './CalendarDay';
 import { CalendarContext } from './CalendarContext';
 import { DatePickerCore } from 'react-magma-core';
