@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { VisuallyHidden } from '.';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 
 const TEXT = 'Test Text';
 

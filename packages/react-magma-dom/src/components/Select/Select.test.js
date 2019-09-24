@@ -2,7 +2,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Select, getStyles } from '.';
-import { render, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 
 describe('Select', () => {
@@ -38,19 +38,21 @@ describe('Select', () => {
   it('should render a select with a default value passed through', () => {
     const defaultValue = { value: 'red', label: 'Red' };
     const inputName = 'Test';
-    const { getByValue } = render(
+    const { getByDisplayValue } = render(
       <Select name={inputName} defaultValue={defaultValue} />
     );
 
-    expect(getByValue('red')).toBeInTheDocument();
+    expect(getByDisplayValue('red')).toBeInTheDocument();
   });
 
   it('should render a select with a value passed through', () => {
     const value = { value: 'red', label: 'Red' };
     const inputName = 'Test';
-    const { getByValue } = render(<Select name={inputName} value={value} />);
+    const { getByDisplayValue } = render(
+      <Select name={inputName} value={value} />
+    );
 
-    expect(getByValue('red')).toBeInTheDocument();
+    expect(getByDisplayValue('red')).toBeInTheDocument();
   });
 
   it('should render a multi-select with a multiple values passed through', () => {
@@ -65,13 +67,13 @@ describe('Select', () => {
       }
     ];
     const inputName = 'Test';
-    const { getByValue, getByText } = render(
+    const { getByDisplayValue, getByText } = render(
       <Select defaultValue={[...options]} name={inputName} multi />
     );
-    expect(getByValue('red')).toBeInTheDocument();
+    expect(getByDisplayValue('red')).toBeInTheDocument();
     expect(getByText('Red')).toBeInTheDocument();
 
-    expect(getByValue('blue')).toBeInTheDocument();
+    expect(getByDisplayValue('blue')).toBeInTheDocument();
     expect(getByText('Blue')).toBeInTheDocument();
   });
 

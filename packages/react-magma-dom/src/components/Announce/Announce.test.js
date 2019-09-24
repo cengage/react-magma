@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Announce } from '.';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 
 const TEXT = 'Test Text';
 

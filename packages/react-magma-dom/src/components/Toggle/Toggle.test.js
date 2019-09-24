@@ -1,7 +1,7 @@
 import React from 'react';
 import { Toggle } from '.';
 import { axe } from 'jest-axe';
-import { render, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from '@testing-library/react';
 
 describe('Toggle', () => {
   it('should find element by testId', () => {
