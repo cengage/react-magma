@@ -46,7 +46,7 @@ describe('Async', () => {
     });
 
     it('should load options', async () => {
-      const { container, getByLabelText, getAllByText } = render(
+      const { container, getByLabelText, getByText } = render(
         <AsyncSelect
           id="colorsSelect"
           labelText="Colors"
@@ -75,13 +75,13 @@ describe('Async', () => {
 
       jest.runOnlyPendingTimers();
 
-      await waitForElement(() => getAllByText(/red/i));
+      await waitForElement(() => getByText('Red'));
 
-      expect(getAllByText(/red/i)[1]).toBeInTheDocument();
+      expect(getByText('Red')).toBeInTheDocument();
     });
 
     it('should have default options', async () => {
-      const { container, getByLabelText, getAllByText } = render(
+      const { container, getByLabelText, getByText } = render(
         <AsyncSelect
           id="colorsSelect"
           labelText="Colors"
@@ -105,9 +105,9 @@ describe('Async', () => {
 
       jest.runOnlyPendingTimers();
 
-      await waitForElement(() => getAllByText(/pink/i));
+      await waitForElement(() => getByText('Pink'));
 
-      expect(getAllByText(/pink/i)[1]).toBeInTheDocument();
+      expect(getByText('Pink')).toBeInTheDocument();
     });
   });
 });

@@ -28,7 +28,7 @@ it('Does not violate accessibility standards', async () => {
 describe('Creatable', () => {
   it('should call onChange with the new option', async () => {
     const handleChange = jest.fn();
-    const { container, getAllByText } = render(
+    const { container, getByText } = render(
       <CreatableSelect
         id="colorsSelect"
         labelText="Colors"
@@ -46,8 +46,8 @@ describe('Creatable', () => {
       }
     });
 
-    await waitForElement(() => getAllByText(/create "pink"/i));
+    await waitForElement(() => getByText('Create "pink"'));
 
-    expect(getAllByText(/create "pink"/i)[1]).toBeInTheDocument();
+    expect(getByText('Create "pink"')).toBeInTheDocument();
   });
 });

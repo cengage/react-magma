@@ -49,7 +49,7 @@ describe('Async Creatable', () => {
     });
 
     it('should load options', async () => {
-      const { container, getByLabelText, getAllByText } = render(
+      const { container, getByLabelText, getByText } = render(
         <AsyncCreatableSelect
           id="colorsSelect"
           labelText="Colors"
@@ -78,13 +78,13 @@ describe('Async Creatable', () => {
 
       jest.runOnlyPendingTimers();
 
-      await waitForElement(() => getAllByText(/red/i));
+      await waitForElement(() => getByText('Red'));
 
-      expect(getAllByText(/red/i)[1]).toBeInTheDocument();
+      expect(getByText('Red')).toBeInTheDocument();
     });
 
     it('should have default options', async () => {
-      const { container, getByLabelText, getAllByText } = render(
+      const { container, getByLabelText, getByText } = render(
         <AsyncCreatableSelect
           id="colorsSelect"
           labelText="Colors"
@@ -108,14 +108,14 @@ describe('Async Creatable', () => {
 
       jest.runOnlyPendingTimers();
 
-      await waitForElement(() => getAllByText(/pink/i));
+      await waitForElement(() => getByText('Pink'));
 
-      expect(getAllByText(/pink/i)[1]).toBeInTheDocument();
+      expect(getByText('Pink')).toBeInTheDocument();
     });
 
     it('should call onChange with the newly created option', async () => {
       const handleChange = jest.fn();
-      const { container, getAllByText } = render(
+      const { container, getByText } = render(
         <AsyncCreatableSelect
           id="colorsSelect"
           labelText="Colors"
@@ -135,9 +135,9 @@ describe('Async Creatable', () => {
 
       jest.runOnlyPendingTimers();
 
-      await waitForElement(() => getAllByText(/create "pink"/i));
+      await waitForElement(() => getByText('Create "pink"'));
 
-      expect(getAllByText(/create "pink"/i)[1]).toBeInTheDocument();
+      expect(getByText('Create "pink"')).toBeInTheDocument();
     });
   });
 });
