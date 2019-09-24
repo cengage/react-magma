@@ -35,6 +35,20 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `design-intro`,
+        path: `${__dirname}/src/pages/design-intro`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `api-intro`,
+        path: `${__dirname}/src/pages/api-intro`,
+      },
+    },
+    {
       resolve: 'gatsby-mdx',
       options: {
         gatsbyRemarkPlugins: [

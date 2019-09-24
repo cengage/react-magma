@@ -100,6 +100,22 @@ const MainNav = ({ ...props }) => (
             ...navFields
           }
         }
+        designIntro: allMdx(
+          filter: { fileAbsolutePath: { glob: "**/src/pages/design-intro/**" } }
+          sort: { order: ASC, fields: frontmatter___title }
+        ) {
+          edges {
+            ...navFields
+          }
+        }
+        apiIntro: allMdx(
+          filter: { fileAbsolutePath: { glob: "**/src/pages/api-intro/**" } }
+          sort: { order: ASC, fields: frontmatter___order }
+        ) {
+          edges {
+            ...navFields
+          }
+        }
       }
     `}
     render={data => (
@@ -125,33 +141,24 @@ const MainNav = ({ ...props }) => (
                 </AccordionItemTitle>
                 <AccordionItemBody>
                   <ul>
-                    <li>
-                      <Link
-                        activeStyle={activeStyle}
-                        onClick={props.handleClick}
-                        to="/api-introduction"
-                      >
-                        Installation
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        activeStyle={activeStyle}
-                        onClick={props.handleClick}
-                        to="/api-usage"
-                      >
-                        Usage
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        activeStyle={activeStyle}
-                        onClick={props.handleClick}
-                        to="/api-custom-styles"
-                      >
-                        Custom Styles
-                      </Link>
-                    </li>
+                    {data.apiIntro.edges.map(({ node }) => (
+                      <li key={node.fields.slug}>
+                        <Link
+                          activeStyle={activeStyle}
+                          onClick={props.handleClick}
+                          to={node.fields.slug}
+                        >
+                          {node.frontmatter.title}
+                        </Link>
+                        <Router>
+                          <SubMenu
+                            path={node.fields.slug}
+                            headings={node.headings}
+                            handleClick={props.handleClick}
+                          />
+                        </Router>
+                      </li>
+                    ))}
                   </ul>
                   <h3>Component API</h3>
                   <ul>
@@ -186,15 +193,24 @@ const MainNav = ({ ...props }) => (
                 </AccordionItemTitle>
                 <AccordionItemBody>
                   <ul>
-                    <li>
-                      <Link
-                        activeStyle={activeStyle}
-                        onClick={props.handleClick}
-                        to="/design-introduction"
-                      >
-                        Introduction
-                      </Link>
-                    </li>
+                    {data.designIntro.edges.map(({ node }) => (
+                      <li key={node.fields.slug}>
+                        <Link
+                          activeStyle={activeStyle}
+                          onClick={props.handleClick}
+                          to={node.fields.slug}
+                        >
+                          {node.frontmatter.title}
+                        </Link>
+                        <Router>
+                          <SubMenu
+                            path={node.fields.slug}
+                            headings={node.headings}
+                            handleClick={props.handleClick}
+                          />
+                        </Router>
+                      </li>
+                    ))}
                     {data.designDocs.edges.map(({ node }) => (
                       <li key={node.fields.slug}>
                         <Link
