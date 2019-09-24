@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Radio } from '.';
 import { RadioContext } from '../RadioGroup';
-import { render, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 
 describe('Radio', () => {

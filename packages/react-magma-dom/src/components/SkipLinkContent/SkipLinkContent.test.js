@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { SkipLinkContent } from '.';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 
 describe('Skip Link Content', () => {
   it('should render the visually hidden component', () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { axe } from 'jest-axe';
-import { render, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from '@testing-library/react';
 import {
   format,
   subWeeks,

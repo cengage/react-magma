@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Input, InputType } from '.';
-import { render, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 import { CheckIcon } from '../Icon/types/CheckIcon';
 
@@ -256,16 +256,20 @@ describe('Input', () => {
   });
 
   it('should render the a help link button', () => {
-    const { getByRole } = render(<Input onHelpLinkClick={() => {}} />);
-    expect(getByRole('tooltip')).toHaveTextContent("What's this?");
+    const { container } = render(<Input onHelpLinkClick={() => {}} />);
+    expect(container.querySelector('div[role="tooltip"]')).toHaveTextContent(
+      "What's this?"
+    );
   });
 
   it('should render the a help link button with custom text', () => {
     const helpText = 'Custom text';
-    const { getByRole } = render(
+    const { container } = render(
       <Input onHelpLinkClick={() => {}} helpLinkText={helpText} />
     );
-    expect(getByRole('tooltip')).toHaveTextContent(helpText);
+    expect(container.querySelector('div[role="tooltip"]')).toHaveTextContent(
+      helpText
+    );
   });
 
   describe('password input', () => {

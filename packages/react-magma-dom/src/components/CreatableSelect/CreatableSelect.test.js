@@ -2,7 +2,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { CreatableSelect } from '.';
-import { render, fireEvent, waitForElement } from 'react-testing-library';
+import { render, fireEvent, waitForElement } from '@testing-library/react';
 
 const colourOptions = [
   {
@@ -28,7 +28,7 @@ it('Does not violate accessibility standards', async () => {
 describe('Creatable', () => {
   it('should call onChange with the new option', async () => {
     const handleChange = jest.fn();
-    const { container, getByText } = render(
+    const { container, getAllByText } = render(
       <CreatableSelect
         id="colorsSelect"
         labelText="Colors"
@@ -46,8 +46,8 @@ describe('Creatable', () => {
       }
     });
 
-    await waitForElement(() => getByText(/create "pink"/i));
+    await waitForElement(() => getAllByText(/create "pink"/i));
 
-    expect(getByText(/create "pink"/i)).toBeInTheDocument();
+    expect(getAllByText(/create "pink"/i)[1]).toBeInTheDocument();
   });
 });

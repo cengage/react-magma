@@ -2,7 +2,7 @@ import React from 'react';
 import { DatePickerCore } from 'react-magma-core';
 import { CalendarContext } from './CalendarContext';
 import { CalendarMonth } from './CalendarMonth';
-import { render, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from '@testing-library/react';
 
 describe('Calendar Month', () => {
   describe('focus trap', () => {
@@ -180,7 +180,7 @@ describe('Calendar Month', () => {
 
   it('should close the calendar when the close button is clicked', () => {
     const handleCloseButtonClick = jest.fn();
-    const { getByLabelText, getByText } = render(
+    const { getByLabelText } = render(
       <DatePickerCore>
         {({
           onPrevMonthClick,

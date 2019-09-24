@@ -3,7 +3,7 @@ import { axe } from 'jest-axe';
 import { SkipLink } from '.';
 import { SkipLinkContent } from '../SkipLinkContent';
 
-import { render, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from '@testing-library/react';
 
 describe('SkipLink', () => {
   it('should render the skip link component', () => {

@@ -2,7 +2,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { AsyncSelect } from '.';
-import { render, fireEvent, waitForElement } from 'react-testing-library';
+import { render, fireEvent, waitForElement } from '@testing-library/react';
 const mockPromise = require('promise');
 
 const colourOptions = [
@@ -46,7 +46,7 @@ describe('Async', () => {
     });
 
     it('should load options', async () => {
-      const { container, getByLabelText, getByText } = render(
+      const { container, getByLabelText, getAllByText } = render(
         <AsyncSelect
           id="colorsSelect"
           labelText="Colors"
@@ -73,15 +73,15 @@ describe('Async', () => {
         }
       });
 
-      jest.runAllTimers();
+      jest.runOnlyPendingTimers();
 
-      await waitForElement(() => getByText(/red/i));
+      await waitForElement(() => getAllByText(/red/i));
 
-      expect(getByText(/red/i)).toBeInTheDocument();
+      expect(getAllByText(/red/i)[1]).toBeInTheDocument();
     });
 
     it('should have default options', async () => {
-      const { container, getByLabelText, getByText } = render(
+      const { container, getByLabelText, getAllByText } = render(
         <AsyncSelect
           id="colorsSelect"
           labelText="Colors"
@@ -103,11 +103,11 @@ describe('Async', () => {
       );
       fireEvent.mouseDown(listControl);
 
-      jest.runAllTimers();
+      jest.runOnlyPendingTimers();
 
-      await waitForElement(() => getByText(/pink/i));
+      await waitForElement(() => getAllByText(/pink/i));
 
-      expect(getByText(/pink/i)).toBeInTheDocument();
+      expect(getAllByText(/pink/i)[1]).toBeInTheDocument();
     });
   });
 });

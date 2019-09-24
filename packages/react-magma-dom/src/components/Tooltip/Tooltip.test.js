@@ -2,7 +2,7 @@ import React from 'react';
 import { axe } from 'jest-axe';
 import { Tooltip } from '.';
 
-import { render, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from '@testing-library/react';
 
 const CONTENT_TEXT = 'Test Content';
 const TRIGGER_ELEMENT = <button>Test trigger</button>;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { StyledButton } from '.';
-import { render, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 import { darken, lighten } from 'polished';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { SelectCore } from './Select';
-import { render, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from '@testing-library/react';
 
 describe('SelectCore', () => {
   afterEach(() => {

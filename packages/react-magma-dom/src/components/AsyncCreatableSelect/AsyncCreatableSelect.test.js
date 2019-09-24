@@ -2,7 +2,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { AsyncCreatableSelect } from '.';
-import { render, fireEvent, waitForElement } from 'react-testing-library';
+import { render, fireEvent, waitForElement } from '@testing-library/react';
 const mockPromise = require('promise');
 
 const colourOptions = [
@@ -49,7 +49,7 @@ describe('Async Creatable', () => {
     });
 
     it('should load options', async () => {
-      const { container, getByLabelText, getByText } = render(
+      const { container, getByLabelText, getAllByText } = render(
         <AsyncCreatableSelect
           id="colorsSelect"
           labelText="Colors"
@@ -76,15 +76,15 @@ describe('Async Creatable', () => {
         }
       });
 
-      jest.runAllTimers();
+      jest.runOnlyPendingTimers();
 
-      await waitForElement(() => getByText(/red/i));
+      await waitForElement(() => getAllByText(/red/i));
 
-      expect(getByText(/red/i)).toBeInTheDocument();
+      expect(getAllByText(/red/i)[1]).toBeInTheDocument();
     });
 
     it('should have default options', async () => {
-      const { container, getByLabelText, getByText } = render(
+      const { container, getByLabelText, getAllByText } = render(
         <AsyncCreatableSelect
           id="colorsSelect"
           labelText="Colors"
@@ -106,16 +106,16 @@ describe('Async Creatable', () => {
       );
       fireEvent.mouseDown(listControl);
 
-      jest.runAllTimers();
+      jest.runOnlyPendingTimers();
 
-      await waitForElement(() => getByText(/pink/i));
+      await waitForElement(() => getAllByText(/pink/i));
 
-      expect(getByText(/pink/i)).toBeInTheDocument();
+      expect(getAllByText(/pink/i)[1]).toBeInTheDocument();
     });
 
     it('should call onChange with the newly created option', async () => {
       const handleChange = jest.fn();
-      const { container, getByText } = render(
+      const { container, getAllByText } = render(
         <AsyncCreatableSelect
           id="colorsSelect"
           labelText="Colors"
@@ -133,11 +133,11 @@ describe('Async Creatable', () => {
         }
       });
 
-      jest.runAllTimers();
+      jest.runOnlyPendingTimers();
 
-      await waitForElement(() => getByText(/create "pink"/i));
+      await waitForElement(() => getAllByText(/create "pink"/i));
 
-      expect(getByText(/create "pink"/i)).toBeInTheDocument();
+      expect(getAllByText(/create "pink"/i)[1]).toBeInTheDocument();
     });
   });
 });

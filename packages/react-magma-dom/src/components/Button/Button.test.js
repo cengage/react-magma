@@ -10,7 +10,7 @@ import {
   ButtonVariant,
   ButtonIconPosition
 } from '.';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import { CheckIcon } from '../Icon/types/CheckIcon';
 
 describe('Button', () => {
