@@ -2,7 +2,7 @@ import * as React from 'react';
 import { axe } from 'jest-axe';
 import { RadioGroup } from '.';
 import { Radio } from '../Radio';
-import { render, fireEvent, wait } from 'react-testing-library';
+import { render, fireEvent, wait } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 
 describe('Radio Group', () => {
@@ -26,14 +26,13 @@ describe('Radio Group', () => {
   });
 
   it('should render children under radiogroup', () => {
-    const { getByRole } = render(
+    const { container } = render(
       <RadioGroup>
         <Radio id="colorRadio" labelText="Default Color" value="default" />
       </RadioGroup>
     );
-    const radiogroup = getByRole('radiogroup');
 
-    expect(radiogroup.firstChild).not.toBeNull();
+    expect(container.querySelector('input[type="radio"]')).not.toBeNull();
   });
 
   it('should render a radio group with hidden label text with the correct styles', () => {

@@ -62,7 +62,6 @@ const Layout = ({ children }) => (
       <article className="content-article">
         <SkipLinkContent>{children}</SkipLinkContent>
       </article>
-      )}
     </MDXProvider>
   </LayoutComponent>
 )

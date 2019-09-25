@@ -1,6 +1,6 @@
 import React from 'react';
 import { ICONS } from '.';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import { renderIcon as renderIconUtil } from './utils';
 
 describe('Icon', () => {
