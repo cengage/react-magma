@@ -200,6 +200,11 @@ export const Select: React.FunctionComponent<SelectProps> = (
         style
       } = props;
 
+      const ariaLabelText =
+        errorMessage || helperMessage
+          ? `${labelText}, ${errorMessage ? errorMessage : helperMessage}`
+          : labelText;
+
       return (
         <ThemeContext.Consumer>
           {theme => (
@@ -212,7 +217,7 @@ export const Select: React.FunctionComponent<SelectProps> = (
               testId={testId}
             >
               <ReactSelect
-                aria-label={labelText}
+                aria-label={ariaLabelText}
                 classNamePrefix="magma"
                 components={{
                   ClearIndicator,
