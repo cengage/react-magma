@@ -24,15 +24,6 @@ The label/select association will be handled via the passed in `id` if one is su
 
 This component is built upon [React Select by Jed Watson](https://react-select.com/home).
 
-### Known issues
-
-The React Select component by Jed Watson currently does _not_ support the `aria-describedby` attribute.  A few issues have been logged, 
-but the workarounds suggested have not worked.  As a result, the error messages and helper messages for Select components are _not accessible_.
-
-* https://github.com/JedWatson/react-select/issues/1787
-* https://github.com/JedWatson/react-select/issues/1570
-* https://github.com/JedWatson/react-select/pull/3273
-
 ```.jsx
   <>
     <Select
@@ -157,9 +148,6 @@ The optional `clearable` prop allows the user to clear the field once a selectio
 If a select has an `errorMessage`, the select will be styled to highlight it's error state and the error message will appear below the field.
 If an error message is present, it will replace the helper text.
 
-*NOTE:*  This feature is currently *not accessible*.  The error message will appear on screen, but will not be associated with the select field for screen readers.
-Please avoid using select boxes in ways that may trigger an error.  For example, if a field is required, provide a default value.
-
 ```.jsx
   <>
     <Select
@@ -184,8 +172,6 @@ Please avoid using select boxes in ways that may trigger an error.  For example,
 ## Helper message
 
 The `helperMessage` appears underneath the select field. It will not appear if an error message is present.
-
-*NOTE:*  This feature is currently *not accessible*.  The helper message will appear on screen, but will not be associated with the select field for screen readers.
 
 ```.jsx
   <>
