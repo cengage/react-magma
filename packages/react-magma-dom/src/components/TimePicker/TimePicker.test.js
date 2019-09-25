@@ -1,9 +1,9 @@
 import React from 'react';
 import { TimePicker } from '.';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 
-describe('GlobalStyles', () => {
-  it('should render the global styles', () => {
+describe('TimePicker', () => {
+  it('should render the timepicker', () => {
     const { container } = render(<TimePicker />);
 
     expect(container).toBeInTheDocument();
