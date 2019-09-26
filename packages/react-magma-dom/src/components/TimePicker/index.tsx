@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { TimePickerCore } from 'react-magma-core';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Input } from '../Input';
@@ -73,54 +74,70 @@ const AmPmToggle = styled.button`
 `;
 
 function renderTimePicker(props) {
-  const { errorMessage, helperMessage, id, inverse, labelText } = props;
+  const { errorMessage, helperMessage, inverse, labelText } = props;
 
   return (
     <ThemeContext.Consumer>
       {theme => (
-        <TimePickerContainer id={id} inverse={inverse} theme={theme}>
-          <Input
-            disabled
-            errorMessage={errorMessage}
-            helperMessage={helperMessage}
-            icon={<Clock2Icon />}
-            inverse={inverse}
-            labelText={labelText}
-            inputStyle={{
-              background: `${theme.colors.neutral08}`,
-              borderColor: `${
-                errorMessage
-                  ? theme.colors.danger
-                  : inverse
-                  ? theme.colors.neutral08
-                  : theme.colors.neutral04
-              }`,
-              width: '125px'
-            }}
-          />
-          <InputsContainer>
-            <StyledNumInput
-              aria-label="Hours"
-              maxLength={2}
-              max="12"
-              min="1"
-              placeholder="--"
-              theme={theme}
-              type="number"
-            />
-            <Divider> : </Divider>
-            <StyledNumInput
-              aria-label="Minutes"
-              maxLength={2}
-              max="59"
-              min="0"
-              placeholder="--"
-              theme={theme}
-              type="number"
-            />
-            <AmPmToggle theme={theme}>AM</AmPmToggle>
-          </InputsContainer>
-        </TimePickerContainer>
+        <TimePickerCore id={props.id}>
+          {({ id }) => {
+            const hourId = `${id}__hour`;
+            const minuteId = `${id}__minute`;
+            const descriptionId =
+              errorMessage || helperMessage ? `${id}__desc` : null;
+
+            return (
+              <TimePickerContainer inverse={inverse} theme={theme}>
+                <Input
+                  disabled
+                  errorMessage={errorMessage}
+                  helperMessage={helperMessage}
+                  icon={<Clock2Icon />}
+                  id={id}
+                  inverse={inverse}
+                  labelText={labelText}
+                  inputStyle={{
+                    background: `${theme.colors.neutral08}`,
+                    borderColor: `${
+                      errorMessage
+                        ? theme.colors.danger
+                        : inverse
+                        ? theme.colors.neutral08
+                        : theme.colors.neutral04
+                    }`,
+                    cursor: 'default',
+                    width: '125px'
+                  }}
+                />
+                <InputsContainer>
+                  <StyledNumInput
+                    aria-label="Hours"
+                    aria-describedby={descriptionId}
+                    id={hourId}
+                    maxLength={2}
+                    max="12"
+                    min="1"
+                    placeholder="--"
+                    theme={theme}
+                    type="number"
+                  />
+                  <Divider> : </Divider>
+                  <StyledNumInput
+                    aria-label="Minutes"
+                    id={minuteId}
+                    maxLength={2}
+                    max="59"
+                    min="0"
+                    placeholder="--"
+                    theme={theme}
+                    type="number"
+                  />
+                  <AmPmToggle theme={theme}>AM</AmPmToggle>
+                </InputsContainer>
+              </TimePickerContainer>
+            );
+          }}
+        </TimePickerCore>
       )}
     </ThemeContext.Consumer>
   );
