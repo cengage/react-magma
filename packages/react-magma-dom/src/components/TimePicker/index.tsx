@@ -5,9 +5,11 @@ import { Input } from '../Input';
 import { Clock2Icon } from '../Icon/types/Clock2Icon';
 
 export interface TimePickerProps {
+  errorMessage?: string;
   id?: string;
   inverse?: boolean;
   labelText: string;
+  helperMessage?: string;
 }
 
 const TimePickerContainer = styled.div<{ inverse?: boolean }>`
@@ -71,7 +73,7 @@ const AmPmToggle = styled.button`
 `;
 
 function renderTimePicker(props) {
-  const { id, inverse, labelText } = props;
+  const { errorMessage, helperMessage, id, inverse, labelText } = props;
 
   return (
     <ThemeContext.Consumer>
@@ -79,17 +81,26 @@ function renderTimePicker(props) {
         <TimePickerContainer id={id} inverse={inverse} theme={theme}>
           <Input
             disabled
+            errorMessage={errorMessage}
+            helperMessage={helperMessage}
             icon={<Clock2Icon />}
             inverse={inverse}
             labelText={labelText}
             inputStyle={{
               background: `${theme.colors.neutral08}`,
-              borderColor: `${theme.colors.neutral04}`,
+              borderColor: `${
+                errorMessage
+                  ? theme.colors.danger
+                  : inverse
+                  ? theme.colors.neutral08
+                  : theme.colors.neutral04
+              }`,
               width: '125px'
             }}
           />
           <InputsContainer>
             <StyledNumInput
+              aria-label="Hours"
               maxLength={2}
               max="12"
               min="1"
@@ -99,6 +110,7 @@ function renderTimePicker(props) {
             />
             <Divider> : </Divider>
             <StyledNumInput
+              aria-label="Minutes"
               maxLength={2}
               max="59"
               min="0"
