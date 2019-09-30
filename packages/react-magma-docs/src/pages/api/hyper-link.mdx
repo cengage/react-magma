@@ -13,12 +13,12 @@ import { SimplePropsTable } from '../../components/props-table'
 ## Basic Usage
 
 ```.jsx
-    <>
-      <HyperLink target="_blank" to="https://www.google.com">Google</HyperLink>
-    </>
+    <HyperLink target="_blank" to="https://www.google.com">Google</HyperLink>
 ```
 
 ## StyledAs
+
+The `styledAs` prop can be used to let the `HyperLink` compoennt 
 
 ```.jsx
     <>
@@ -35,11 +35,11 @@ import { SimplePropsTable } from '../../components/props-table'
 Use this when you want to render something that is from another library. For example, the `Link` component from `react-router`.
 
 ```.jsx
-  <>
-    <HyperLink styledAs="Button" to="https://www.google.com">{({to, stylesClass}) => (
-      <a className={stylesClass} href={to}>Render Props Google</a>
-    )}</HyperLink>
-  </>
+    <HyperLink styledAs="Button" to="https://www.google.com">
+      {({to, stylesClass}) => (
+        <a className={stylesClass} href={to}>Render Props Google</a>
+      )}
+    </HyperLink>
 ```
 
 ## Inverse Colors
@@ -49,6 +49,8 @@ Inverse is an optional boolean prop, that may be passed in when the hyper link i
 ```.jsx
     <div style={{ background : '#00263E', padding: '10px' }}>
       <HyperLink inverse target="_blank" to="https://www.google.com">Google inverse link</HyperLink>
+      <br />
+      <HyperLink inverse styledAs="Button" target="_blank" to="https://www.google.com">Inverse link styled as button</HyperLink>
     </div>
 ```
 

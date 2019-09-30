@@ -354,7 +354,9 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                           {!hideEscButton && (
                             <CloseBtn>
                               <Button
-                                aria-label={closeLabel ? closeLabel : 'Close'}
+                                aria-label={
+                                  closeLabel ? closeLabel : 'Close dialog'
+                                }
                                 color={ButtonColor.secondary}
                                 icon={CloseIcon}
                                 onClick={this.handleClose}

@@ -115,7 +115,7 @@ describe('Modal', () => {
     expect(getByTestId('modal-closebtn')).toBeInTheDocument();
     expect(getByTestId('modal-closebtn')).toHaveAttribute(
       'aria-label',
-      'Close'
+      'Close dialog'
     );
   });
 
