@@ -5,7 +5,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   inverse?: boolean;
-  level: number;
+  level: 1 | 2 | 3 | 4 | 5 | 6;
   ref?: any;
   testId?: string;
   tabIndex?: number;

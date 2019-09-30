@@ -3,15 +3,16 @@ title: Custom Styles
 order: 3
 ---
 
+import { ScopeableLayout } from '../../components/layout'
 import { Link } from 'gatsby'
-import { Button } from 'react-magma-dom'
+import { Button, Checkbox } from 'react-magma-dom'
 import { ExtendedButton } from '../../components/extended-button'
 
 # Custom Styles for React Magma Components
 
 The React Magma component library has been intentionally designed for use across multiple platforms.
 It is recommended to use the default styles that come with any component whenever possible.
-However, there may be occassions where overriding the default styles is required, and this can be accomplished in a number of ways.
+However, there may be occasions where overriding the default styles is required, and this can be accomplished in a number of ways.
 
 ## Style Prop
 
@@ -43,7 +44,7 @@ and `labelStyle`. In these cases, the `style` prop would have no effect because 
 ## Extending Styles with Emotion
 
 React Magma styles are built with the [Emotion library](https://emotion.sh/docs/styled) using styled-components.  
-If you are using Emotion in your app, you can extend the styles of React Magma components`. This is useful if you want to add custom styles that do not fit into the`style` prop, such as styles for pseduo elements, pseudo classes, and media queries.
+If you are using Emotion in your app, you can extend the styles of React Magma components. This is useful if you want to add custom styles that do not fit into the `style` prop, such as styles for pseduo elements, pseudo classes, and media queries.
 
 Note: If the styles in your app are injected before the React Magma styles, your styles might not get applied if the specificity is the same.
 To ensure your styles are applied, you can use use the ampersand (&) character, as shown in this example.
@@ -103,3 +104,7 @@ Any descendants of the context provider will receive the theme that is passed in
   </ThemeContext.Provider>
 };
 ```
+
+export default props => (
+  <ScopeableLayout {...props} components={{ Button, Checkbox }} />
+)

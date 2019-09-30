@@ -13,6 +13,8 @@ import { SimplePropsTable } from '../../components/props-table'
 
 ## Basic Usage
 
+The `Heading` component can be used with the `level` prop to render the HTML heading elements, levels 1-6. 
+
 ```.jsx
   <>
     <Heading level={1}>Heading 1</Heading>
@@ -94,7 +96,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
     },
     level: {
       type: {
-        name: 'number',
+        name: 'number (1-6)',
       },
       required: true,
       description:

@@ -175,10 +175,8 @@ Or you can use the `labelledById` prop, which also takes a string. This string s
 This id will become the value of the `aria-labelledby` attribute for the group.
 
 ```.jsx
-  <div>
-
+  <>
     <RadioGroup
-        id='labelledByGroup'
         labelText="Labelled by labelText"
         name='labelledByGroup'>
           <Radio
@@ -189,7 +187,6 @@ This id will become the value of the `aria-labelledby` attribute for the group.
 
 
     <RadioGroup
-        id='labelledByGroup'
         labelledById="h3Label"
         name='labelledByGroup'>
           <h3 id="h3Label">Labelled by h3 with labelledById prop</h3>
@@ -198,7 +195,7 @@ This id will become the value of the `aria-labelledby` attribute for the group.
           <Radio
               labelText='Label' />
       </RadioGroup>
-  </div>
+  </>
 ```
 
 ## Visually Hidden Label
@@ -325,7 +322,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       type: {
         name: 'string',
       },
-      required: true,
+      required: false,
       description:
         'Text for label of the radio group. Alertnatively, the labelledById prop can be used.',
     },

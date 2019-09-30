@@ -105,6 +105,23 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
       required: false,
       description: 'Default selected date value',
     },
+    errorMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Text of the error message.  If a value is provided, the error message will be styled as an error state.',
+      defaultValue: '',
+    },
+    helperMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text of the helper message.',
+      defaultValue: '',
+    },
     labelText: {
       type: {
         name: 'string',
