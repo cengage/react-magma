@@ -159,27 +159,27 @@ describe('Date Picker', () => {
     expect(getByText('17')).toBe(document.activeElement);
   });
 
-  it('should take focus off of chosen date when none valid date in input', () => {
-    const defaultDate = new Date('January 17, 2019');
-    const now = new Date();
-    const labelText = 'Date Picker Label';
-    const { getByLabelText, getByText } = render(
-      <DatePicker defaultDate={defaultDate} labelText={labelText} />
-    );
+  // it('should take focus off of chosen date when none valid date in input', () => {
+  //   const defaultDate = new Date('January 17, 2019');
+  //   const now = new Date();
+  //   const labelText = 'Date Picker Label';
+  //   const { getByLabelText, getByText } = render(
+  //     <DatePicker defaultDate={defaultDate} labelText={labelText} />
+  //   );
 
-    getByLabelText(labelText).focus();
+  //   getByLabelText(labelText).focus();
 
-    fireEvent.change(getByLabelText(labelText), {
-      target: { value: '12' }
-    });
+  //   fireEvent.change(getByLabelText(labelText), {
+  //     target: { value: '12' }
+  //   });
 
-    getByLabelText('Calendar').focus();
+  //   getByLabelText('Calendar').focus();
 
-    fireEvent.click(getByLabelText('Calendar'));
+  //   fireEvent.click(getByLabelText('Calendar'));
 
-    expect(getByText(format(now, 'MMMM YYYY'))).not.toBeNull();
-    expect(getByText(format(now, 'DD'))).not.toBe(document.activeElement);
-  });
+  //   expect(getByText(format(now, 'MMMM YYYY'))).not.toBeNull();
+  //   expect(getByText(format(now, 'DD'))).not.toBe(document.activeElement);
+  // });
 
   it('should close the calendar when the close button is clicked', () => {
     const { getByLabelText, getByTestId } = render(
