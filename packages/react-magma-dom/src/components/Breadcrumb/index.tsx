@@ -5,10 +5,20 @@ import { BreadcrumbItemProps, renderBreadcrumbItem } from './Item';
 
 export interface BreadcrumbProps
   extends React.HTMLAttributes<HTMLOListElement> {
+  ariaLabel?: string;
   inverse?: boolean;
+  minWidthToShow?: number;
 }
 
-const StyledBreadcrumb = styled.ol<BreadcrumbProps>`
+const StyledNav = styled.nav<{ breakpoint?: string }>`
+  display: none;
+
+  @media (min-width: ${props => props.breakpoint}) {
+    display: block;
+  }
+`;
+
+const StyledList = styled.ol<BreadcrumbProps>`
   display: flex;
   flex-wrap: wrap;
   list-style: none;
@@ -18,17 +28,27 @@ const StyledBreadcrumb = styled.ol<BreadcrumbProps>`
 
 export const Breadcrumb: React.FunctionComponent<
   BreadcrumbProps
-> = React.forwardRef(({ children, inverse }: BreadcrumbProps, ref: any) => {
-  return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <StyledBreadcrumb inverse={inverse} ref={ref} theme={theme}>
-          {children}
-        </StyledBreadcrumb>
-      )}
-    </ThemeContext.Consumer>
-  );
-});
+> = React.forwardRef(
+  (
+    { ariaLabel, children, inverse, minWidthToShow }: BreadcrumbProps,
+    ref: any
+  ) => {
+    return (
+      <ThemeContext.Consumer>
+        {theme => (
+          <StyledNav
+            aria-label={ariaLabel ? ariaLabel : 'Breadcrumb'}
+            breakpoint={minWidthToShow ? `${minWidthToShow}px` : '0'}
+          >
+            <StyledList inverse={inverse} ref={ref} theme={theme}>
+              {children}
+            </StyledList>
+          </StyledNav>
+        )}
+      </ThemeContext.Consumer>
+    );
+  }
+);
 
 export const BreadcrumbItem: React.FunctionComponent<BreadcrumbItemProps> = (
   props: BreadcrumbItemProps

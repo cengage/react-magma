@@ -48,10 +48,38 @@ Inverse is an optional boolean prop, that may be used when the breadcrumb menu t
     </div>
 ```
 
+## Min-width
+
+The `minWidthToShow` prop can be used to suppress the navigation menu when it is under the breakpoint at the specified number of pixels.
+
+
+```.jsx
+        <Breadcrumb minWidthToShow={900}>
+            <BreadcrumbItem to="#">
+                Home
+            </BreadcrumbItem>
+             <BreadcrumbItem to="#">
+                Library
+            </BreadcrumbItem>
+             <BreadcrumbItem>
+                Data
+            </BreadcrumbItem>
+        </Breadcrumb>
+```
+
 ## Breadcrumb props
 
 <SimplePropsTable
   props={{
+    ariaLabel: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'The aria-label of the container element',
+      defaultValue: 'Breadcrumb',
+    },
     children: {
       type: {
         name: 'node',
@@ -68,6 +96,15 @@ Inverse is an optional boolean prop, that may be used when the breadcrumb menu t
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
+    minWidthToShow: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description:
+        'Number of pixels used as the min-width breakpoint where the breadcrumb is shown',
+      defaultValue: '0',
+    },
   }}
 />
 
@@ -80,7 +117,7 @@ Inverse is an optional boolean prop, that may be used when the breadcrumb menu t
         name: 'node',
       },
       required: true,
-      description: 'The content of the component',
+      description: 'The content of the component, i.e the name of the page',
     },
     inverse: {
       type: {
@@ -97,7 +134,7 @@ Inverse is an optional boolean prop, that may be used when the breadcrumb menu t
       },
       required: false,
       description:
-        'The href value of the link.  If left blank, the breadcrumb item will render as a span with `aria-current="page"` on it.',
+        'The href value of the link.  If left blank, the breadcrumb item will render as a span with aria-current="page" on it.',
       defaultValue: '',
     },
   }}
