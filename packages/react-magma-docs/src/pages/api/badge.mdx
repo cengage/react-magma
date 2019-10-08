@@ -1,0 +1,113 @@
+---
+title: 'Badges'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { Badge } from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
+
+# Badges
+
+Badges are a small labeling component, used to highlight key pieces of information.
+
+## Basic usage
+
+```.jsx
+    <Badge>Badge</Badge>
+```
+
+## Counter
+
+Adding the prop `isCounter` will render the component with a slightly differnt style, and is intended to be used to display counter info.
+
+```.jsx
+    <Badge isCounter>99+</Badge>
+```
+
+## Colors
+
+Five colors of badges are available, `primary`, `secondary`, `success`, `danger`, and `light`. The default color is `secondary`.`
+
+```.jsx
+    <>
+        <Badge color='primary'>Badge</Badge> <span />
+        <Badge color='secondary'>Badge</Badge> <span />
+        <Badge color='light'>Badge</Badge> <span />
+        <Badge color='danger'>Badge</Badge> <span />
+        <Badge color='success'>Badge</Badge>
+    </>
+```
+
+## Event handling
+
+Badges may be actionable, or they may be just just text. To make a badge actionable, use the `onClick` prop.
+The `onClick` event will fire when the badge is clicked, or when the enter or space bar key is pressed.
+
+```.jsx
+   class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          counter: 0
+        }
+      }
+
+      render() {
+        return <>
+        <p><strong>Counter: </strong> <Badge isCounter>{this.state.counter}</Badge></p>
+        <Badge
+          color='light'
+          onClick={() => {
+            this.setState(state => ({counter: state.counter + 1}))
+          }}>Click me</Badge>
+        </>
+      }
+    }
+```
+
+## Badge props
+
+<SimplePropsTable
+  props={{
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
+    },
+    color: {
+      type: {
+        name: 'enum',
+        options: [
+            'BadgeColor.danger',
+            'BadgeColor.primary',
+            'BadgeColor.secondary',
+            'BadgeColor.success',
+            'BadgeColor.warning'
+        ]
+      },
+      required: false,
+      description: 'The color variant of the badge',
+      defaultValue: 'secondary',
+    },
+    isCounter: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'Indicates whether component should have counter style',
+      defaultValue: 'false'
+    },
+    onClick: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description:
+        'Action that fires when the badge is clicked.  Causes the Badge to render as a button instead of a span.',
+    },
+}}
+/>
+
+export default props => <ScopeableLayout {...props} components={{ Badge }} />

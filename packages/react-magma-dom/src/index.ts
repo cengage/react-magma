@@ -1,5 +1,6 @@
 export { Alert, AlertVariant } from './components/Alert';
 export { Announce } from './components/Announce';
+export { Badge, BadgeColor } from './components/Badge';
 export { Breadcrumb, BreadcrumbItem } from './components/Breadcrumb';
 export {
   Button,
