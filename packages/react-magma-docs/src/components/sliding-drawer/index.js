@@ -37,6 +37,10 @@ export class SlidingDrawer extends React.Component {
     }
   }
 
+  componentWillUnmount = () => {
+    document.removeEventListener('keydown', this.handleKeypress, false)
+  }
+
   openMenu = () => {
     document.getElementsByTagName('html')[0].style.overflow = 'hidden'
     this.setState({ isOpen: true, isActivated: true })

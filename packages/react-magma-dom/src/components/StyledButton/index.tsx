@@ -50,7 +50,7 @@ export const buttonStyles = props => css`
   touch-action: manipulation;
   white-space: nowrap;
   font-size: ${buttonFontSize[props.size]};
-  font-weight: ${props.size === 'large' ? 500 : 600};
+  font-weight: 600;
   height: ${props.iconOnly
     ? buttonIconOnlyHeight[props.size]
     : buttonBaseHeight[props.size]};

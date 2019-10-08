@@ -8,6 +8,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { Button, ButtonColor, ButtonVariant } from '../Button';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { Heading } from '../Heading';
+import { omit } from '../utils';
 
 export enum ModalSize {
   large = 'large',
@@ -283,8 +284,10 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                 open,
                 size,
                 innerRef,
-                ...other
+                ...rest
               } = this.props;
+
+              const other = omit(['onEscKeyDown'], rest);
 
               const CloseIcon = <CrossIcon color={theme.colors.neutral04} />;
               const headingId = `${id}_heading`;
@@ -351,7 +354,9 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                           {!hideEscButton && (
                             <CloseBtn>
                               <Button
-                                aria-label={closeLabel ? closeLabel : 'Close'}
+                                aria-label={
+                                  closeLabel ? closeLabel : 'Close dialog'
+                                }
                                 color={ButtonColor.secondary}
                                 icon={CloseIcon}
                                 onClick={this.handleClose}

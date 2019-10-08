@@ -204,6 +204,14 @@ Sizes for modals include `small`, `medium`, and `large`, with `medium` being the
       required: true,
       description: 'The content of the component',
     },
+    closeLabel: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'The text read by screen readers for the close button',
+      defaultValue: 'Close dialog',
+    },
     disableBackdropClick: {
       type: {
         name: 'boolean',
@@ -236,6 +244,14 @@ Sizes for modals include `small`, `medium`, and `large`, with `medium` being the
       description: 'If true, the close button the the modal will be supressed',
       defaultValue: 'false',
     },
+    innerRef: {
+      type: {
+        name: 'React.Ref',
+      },
+      required: false,
+      description: 'Reference to the element containing the modal content',
+    
+    },
     onClose: {
       type: {
         name: 'function',
@@ -243,7 +259,7 @@ Sizes for modals include `small`, `medium`, and `large`, with `medium` being the
       required: true,
       description: 'Action that fires when the close button is clicked',
     },
-    onClose: {
+     onEscKeyDown: {
       type: {
         name: 'function',
       },

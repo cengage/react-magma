@@ -23,11 +23,11 @@ When used with icons, the Button component takes a slightly different set of pro
 Sizes for buttons include `small`, `medium`, and `large`, with `medium` being the default value.
 
 ```.jsx
-    <div>
+    <>
         <Button size="small">Small</Button>
         <Button>Default</Button>
         <Button size="large">Large</Button>
-    </div>
+    </>
 ```
 
 ## Colors
@@ -35,13 +35,13 @@ Sizes for buttons include `small`, `medium`, and `large`, with `medium` being th
 Colors for buttons include `primary`, `secondary`, `success`, `danger`, and `marketing` with `primary` being the default value.
 
 ```.jsx
-    <div>
+    <>
         <Button color="primary">Primary (default)</Button>
         <Button color="secondary">Secondary</Button>
         <Button color="success" >Success</Button>
         <Button color="danger">Danger</Button>
         <Button color="marketing">Marketing</Button>
-    </div>
+    </>
 ```
 
 ## Variants
@@ -51,7 +51,7 @@ Variants for buttons include `solid`, `outline`, and `link`, with `solid` being 
 The `marketing` buttons do not have `outline` and `link` variants, and will render as solid buttons.
 
 ```.jsx
-    <div>
+    <>
       <p>
           <Button color="primary" variant="solid">Solid (default)</Button>
           <Button color="primary" variant="outline">Outline</Button>
@@ -72,7 +72,7 @@ The `marketing` buttons do not have `outline` and `link` variants, and will rend
           <Button color="danger" variant="outline">Outline</Button>
           <Button color="danger" variant="link">Link</Button>
       </p>
-    </div>
+    </>
 ```
 
 ## Link Buttons
@@ -81,9 +81,9 @@ Using the `LinkButton` will render a button that is styled exactly like a link. 
 the `LinkButton` will render as inline text, the way an `a` element would.
 
 ```.jsx
-    <div>
+    <>
         This is a <LinkButton>link button</LinkButton>.
-    </div>
+    </>
 ```
 
 ## Shapes
@@ -91,11 +91,11 @@ the `LinkButton` will render as inline text, the way an `a` element would.
 Shapes for buttons include `fill`, `leftCap`, and `rightCap`, with `fill` being the default value.
 
 ```.jsx
-    <div>
+    <>
         <Button color="primary">Fill (default)</Button>
         <Button color="primary" shape="leftCap">Left Cap</Button>
         <Button color="primary" shape="rightCap">Right Cap</Button>
-    </div>
+    </>
 ```
 
 ## Inverse
@@ -141,11 +141,11 @@ Options for the `textTransform` prop for buttons include `uppercase` and `none`,
 This sets the CSS `text-transform` property.
 
 ```.jsx
-    <div>
+    <>
         <Button>All caps</Button>
         <Button textTransform="none">No text tranform</Button>
         <Button textTransform="uppercase">Uppercase tranform</Button>
-    </div>
+    </>
 ```
 
 ## Block Buttons
@@ -153,21 +153,21 @@ This sets the CSS `text-transform` property.
 Passing the `block` property will set the button to display full-width.
 
 ```.jsx
-    <div>
+    <>
         <Button block>Block button</Button>
         <Button block color="secondary">Block button</Button>
-    </div>
+    </>
 ```
 
 ## Disabled
 
 ```.jsx
-    <div>
+    <>
         <Button disabled>Disabled</Button>
         <Button disabled variant="outline">Disabled</Button>
         <Button disabled variant="link">Disabled</Button>
         <p>This is a <LinkButton disabled>disabled link button</LinkButton>.</p>
-    </div>
+    </>
 ```
 
 ## Types
