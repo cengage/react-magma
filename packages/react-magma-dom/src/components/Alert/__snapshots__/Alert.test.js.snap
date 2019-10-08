@@ -4,7 +4,7 @@ exports[`Alert Dismissable should render a dismissable icon button with the warn
 <button
   alertvariant="warning"
   aria-label="Close this message"
-  class="e1i9bore4 css-1ioiba3-DismissButton"
+  class="e1i9bore4 css-1i6moe9-DismissButton"
   icon="[object Object]"
   id="ignoreButton"
 >

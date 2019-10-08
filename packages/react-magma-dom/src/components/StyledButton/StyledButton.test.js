@@ -292,7 +292,7 @@ describe('Styled Button', () => {
         );
         const button = getByText(text);
 
-        expect(button).toHaveStyleRule('font-size', '.875rem');
+        expect(button).toHaveStyleRule('font-size', '14px');
         expect(button).toHaveStyleRule('padding', '0 15px');
         expect(button).toHaveStyleRule('top', '18px', {
           target: ':after'
@@ -306,7 +306,7 @@ describe('Styled Button', () => {
         );
         const button = getByText(text);
 
-        expect(button).toHaveStyleRule('font-size', '.750rem');
+        expect(button).toHaveStyleRule('font-size', '12px');
         expect(button).toHaveStyleRule('padding', '0 10px');
         expect(button).toHaveStyleRule('top', '14px', {
           target: ':after'
@@ -320,7 +320,7 @@ describe('Styled Button', () => {
         );
         const button = getByText(text);
 
-        expect(button).toHaveStyleRule('font-size', '1.125rem');
+        expect(button).toHaveStyleRule('font-size', '18px');
         expect(button).toHaveStyleRule('padding', '0 20px');
         expect(button).toHaveStyleRule('top', '22px', {
           target: ':after'

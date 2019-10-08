@@ -3,7 +3,7 @@
 exports[`Button Base Button Snapshot should render with large size 1`] = `
 <div>
   <button
-    class="css-cq75bt"
+    class="css-g6evc3"
     id="testId"
   >
     Test Text
@@ -14,7 +14,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 exports[`Button Base Button Snapshot should render with small size 1`] = `
 <div>
   <button
-    class="css-c0zouf"
+    class="css-grushl"
     id="testId"
   >
     Test Text
@@ -25,7 +25,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
 exports[`Button Base Button Snapshot should render with updated color 1`] = `
 <div>
   <button
-    class="css-140lgkh"
+    class="css-6e8zn2"
     id="testId"
   >
     Test Text
@@ -36,7 +36,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 <div>
   <button
-    class="css-wjxycg"
+    class="css-1uh14c7"
     id="testId"
   >
     Test Text
@@ -47,7 +47,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 exports[`Button Base Button Snapshot should render with updated textTransform 1`] = `
 <div>
   <button
-    class="css-1yq9yqh"
+    class="css-19h6w2s"
     id="testId"
   >
     Test Text
@@ -58,7 +58,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 <div>
   <button
-    class="css-k9i13r"
+    class="css-1klcon5"
     id="testId"
   >
     Test Text
@@ -70,7 +70,7 @@ exports[`Button Icon Only Button Snapshot should render with large size 1`] = `
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1072zye"
+    class="css-do4zis"
     icon="[object Object]"
     id="testId"
   >
@@ -99,7 +99,7 @@ exports[`Button Icon Only Button Snapshot should render with small size 1`] = `
 <div>
   <button
     aria-label="Check Icon"
-    class="css-12g5r5a"
+    class="css-f4p49l"
     icon="[object Object]"
     id="testId"
   >
@@ -128,7 +128,7 @@ exports[`Button Icon Only Button Snapshot should render with updated color 1`] =
 <div>
   <button
     aria-label="Check Icon"
-    class="css-pd5hq6"
+    class="css-11irqno"
     icon="[object Object]"
     id="testId"
   >
@@ -157,7 +157,7 @@ exports[`Button Icon Only Button Snapshot should render with updated shape 1`] =
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1yt41l3"
+    class="css-tbfnzz"
     icon="[object Object]"
     id="testId"
   >
@@ -186,7 +186,7 @@ exports[`Button Icon Only Button Snapshot should render with updated variant 1`]
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1kidzu4"
+    class="css-zzrhkf"
     icon="[object Object]"
     id="testId"
   >
@@ -215,7 +215,7 @@ exports[`Button Icon With Text Button Snapshot should render with large size 1`]
 <div>
   <button
     aria-label="Check Icon"
-    class="css-cq75bt"
+    class="css-g6evc3"
     icon="[object Object]"
     id="testId"
   >
@@ -250,7 +250,7 @@ exports[`Button Icon With Text Button Snapshot should render with medium size 1`
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1d1yfz1"
+    class="css-19z46wd"
     icon="[object Object]"
     id="testId"
   >
@@ -285,7 +285,7 @@ exports[`Button Icon With Text Button Snapshot should render with small size 1`]
 <div>
   <button
     aria-label="Check Icon"
-    class="css-c0zouf"
+    class="css-grushl"
     icon="[object Object]"
     id="testId"
   >
@@ -320,7 +320,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated color 
 <div>
   <button
     aria-label="Check Icon"
-    class="css-140lgkh"
+    class="css-6e8zn2"
     icon="[object Object]"
     id="testId"
   >
@@ -355,7 +355,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated shape 
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1d1yfz1"
+    class="css-19z46wd"
     icon="[object Object]"
     id="testId"
   >
@@ -390,7 +390,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated text t
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1yq9yqh"
+    class="css-19h6w2s"
     icon="[object Object]"
     id="testId"
   >
@@ -425,7 +425,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated varian
 <div>
   <button
     aria-label="Check Icon"
-    class="css-k9i13r"
+    class="css-1klcon5"
     icon="[object Object]"
     id="testId"
   >

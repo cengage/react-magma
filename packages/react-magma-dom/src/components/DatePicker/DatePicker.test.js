@@ -178,7 +178,7 @@ describe('Date Picker', () => {
     fireEvent.click(getByLabelText('Calendar'));
 
     expect(getByText(format(now, 'MMMM YYYY'))).not.toBeNull();
-    expect(getByText(format(now, 'DD'))).not.toBe(document.activeElement);
+    expect(getByText(format(now, 'D'))).not.toBe(document.activeElement);
   });
 
   it('should close the calendar when the close button is clicked', () => {
