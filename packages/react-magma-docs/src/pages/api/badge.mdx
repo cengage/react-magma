@@ -18,11 +18,12 @@ Badges are a small labeling component, used to highlight key pieces of informati
 
 ## Variants
 
-Badges have two variants, `label` and `counter`. The `label` is the default varint and is used for general text.  
+Badges have two variants, `label` and `counter`. The `label` is the default variant and is used for general text.  
 The `counter` is for displaying a numeric count, and can be used inside a button.
 
 ```.jsx
     <>
+      <Badge variant='label'>Label</Badge>
       <Badge variant='counter'>99+</Badge>
       <Button>Messages<Badge variant='counter' color='light'>99+</Badge></Button>
       <Button color='secondary'>Messages<Badge variant='counter' color='primary'>99+</Badge></Button>
