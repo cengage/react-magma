@@ -52,6 +52,18 @@ describe('Card', () => {
     expect(heading).toBeInTheDocument();
   });
 
+  it('should render the card heading component with a custom heading level', () => {
+    const { container } = render(
+      <Card>
+        <CardHeading headingLevel={2}>{TEXT}</CardHeading>
+      </Card>
+    );
+
+    const heading = container.querySelector('h2');
+
+    expect(heading).toBeInTheDocument();
+  });
+
   it('should render the card component styled as a danger callout', () => {
     const { getByText } = render(<Card calloutType="danger">{TEXT}</Card>);
 

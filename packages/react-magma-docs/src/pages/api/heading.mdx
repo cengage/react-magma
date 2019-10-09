@@ -11,9 +11,9 @@ import { SimplePropsTable } from '../../components/props-table'
   Headings
 </DocsHeading>
 
-## Basic Usage
+## Basic usage
 
-The `Heading` component can be used with the `level` prop to render the HTML heading elements, levels 1-6. 
+The `Heading` component can be used with the `level` prop to render the HTML heading elements, levels 1-6.
 
 ```.jsx
   <>
@@ -36,7 +36,7 @@ Inverse is an optional boolean prop, that may be passed in when the component is
   </div>
 ```
 
-## Forward Ref
+## Forward ref
 
 Using React's `forwardRef` feature you can gain access to the reference of the internal heading.
 
@@ -74,7 +74,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
 <h1 data-testid="test-id">Heading 1</h1>
 ```
 
-## Heading Props
+## Heading props
 
 <SimplePropsTable
   props={{
@@ -85,7 +85,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
       required: true,
       description: 'The content of the component',
     },
-     inverse: {
+    inverse: {
       type: {
         name: 'boolean',
       },

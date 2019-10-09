@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { Heading } from '../Heading';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { renderCardHeading, CardHeadingProps } from './CardHeading';
+import { renderCardBody } from './CardBody';
 
 export interface CardProps extends React.LabelHTMLAttributes<HTMLDivElement> {
   align?: CardAlignment;
@@ -113,37 +114,10 @@ function renderCard(props) {
 export const Card: React.FunctionComponent<CardProps> = (props: CardProps) =>
   renderCard(props);
 
-const StyledCardBody = styled.div<CardProps>`
-  padding: 20px;
-  text-align: ${props => props.align};
-`;
-
-function renderCardBody(props) {
-  const { children } = props;
-
-  return <StyledCardBody>{children}</StyledCardBody>;
-}
-
 export const CardBody: React.FunctionComponent<CardProps> = (
   props: CardProps
 ) => renderCardBody(props);
 
-const StyledCardHeading = styled(Heading)<{ align?: CardAlignment }>`
-  margin: 0;
-  padding: 15px 20px 0;
-  text-align: ${props => props.align};
-`;
-
-function renderCardHeading(props) {
-  const { inverse, children } = props;
-
-  return (
-    <StyledCardHeading level={4} inverse={inverse}>
-      {children}
-    </StyledCardHeading>
-  );
-}
-
-export const CardHeading: React.FunctionComponent<CardProps> = (
+export const CardHeading: React.FunctionComponent<CardHeadingProps> = (
   props: CardProps
 ) => renderCardHeading(props);

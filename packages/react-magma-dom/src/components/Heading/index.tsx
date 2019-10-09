@@ -47,7 +47,7 @@ const StyledH3 = styled.h3`
 const StyledH4 = styled.h4`
   ${baseHeadingStyles};
   font-size: 1.467em;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.4;
 `;
 
