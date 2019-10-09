@@ -15,7 +15,7 @@ describe('Badge', () => {
   });
 
   it('should render the badge component with counter styles', () => {
-    const { getByText } = render(<Badge isCounter>{TEXT}</Badge>);
+    const { getByText } = render(<Badge variant="counter">{TEXT}</Badge>);
 
     expect(getByText(TEXT)).toHaveStyleRule('border-radius', '10px');
     expect(getByText(TEXT)).toHaveStyleRule('font-size', '14px');
@@ -140,18 +140,18 @@ describe('Badge', () => {
 
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        magma.colors.neutral06
+        magma.colors.neutral07
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        lighten(0.05, magma.colors.neutral06),
+        lighten(0.05, magma.colors.neutral07),
         {
           target: ':focus'
         }
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        lighten(0.1, magma.colors.neutral06),
+        lighten(0.1, magma.colors.neutral07),
         {
           target: ':active'
         }

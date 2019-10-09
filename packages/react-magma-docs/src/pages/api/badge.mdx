@@ -3,7 +3,7 @@ title: 'Badges'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { Badge } from 'react-magma-dom'
+import { Badge, Button } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 
 # Badges
@@ -16,12 +16,17 @@ Badges are a small labeling component, used to highlight key pieces of informati
     <Badge>Badge</Badge>
 ```
 
-## Counter
+## Variants
 
-Adding the prop `isCounter` will render the component with a slightly differnt style, and is intended to be used to display counter info.
+Badges have two variants, `label` and `counter`. The `label` is the default varint and is used for general text.  
+The `counter` is for displaying a numeric count, and can be used inside a button.
 
 ```.jsx
-    <Badge isCounter>99+</Badge>
+    <>
+      <Badge variant='counter'>99+</Badge>
+      <Button>Messages<Badge variant='counter' color='light'>99+</Badge></Button>
+      <Button color='secondary'>Messages<Badge variant='counter' color='primary'>99+</Badge></Button>
+    </>
 ```
 
 ## Colors
@@ -30,11 +35,11 @@ Five colors of badges are available, `primary`, `secondary`, `success`, `danger`
 
 ```.jsx
     <>
-        <Badge color='primary'>Badge</Badge> <span />
-        <Badge color='secondary'>Badge</Badge> <span />
-        <Badge color='light'>Badge</Badge> <span />
-        <Badge color='danger'>Badge</Badge> <span />
-        <Badge color='success'>Badge</Badge>
+        <Badge color='primary'>Primary</Badge>
+        <Badge color='secondary'>Secondary</Badge>
+        <Badge color='light'>Light</Badge>
+        <Badge color='danger'>Danger</Badge>
+        <Badge color='success'>Success</Badge>
     </>
 ```
 
@@ -54,12 +59,17 @@ The `onClick` event will fire when the badge is clicked, or when the enter or sp
 
       render() {
         return <>
-        <p><strong>Counter: </strong> <Badge isCounter>{this.state.counter}</Badge></p>
+        <p><strong>Counter: </strong> <Badge variant='counter'>{this.state.counter}</Badge></p>
         <Badge
           color='light'
           onClick={() => {
             this.setState(state => ({counter: state.counter + 1}))
           }}>Click me</Badge>
+        <Badge
+          color='primary'
+          onClick={() => {
+            this.setState(state => ({counter: state.counter + 1}))
+          }}>Click me too</Badge>
         </>
       }
     }
@@ -80,24 +90,16 @@ The `onClick` event will fire when the badge is clicked, or when the enter or sp
       type: {
         name: 'enum',
         options: [
-            'BadgeColor.danger',
-            'BadgeColor.primary',
-            'BadgeColor.secondary',
-            'BadgeColor.success',
-            'BadgeColor.warning'
-        ]
+          'BadgeColor.danger',
+          'BadgeColor.primary',
+          'BadgeColor.secondary',
+          'BadgeColor.success',
+          'BadgeColor.warning',
+        ],
       },
       required: false,
       description: 'The color variant of the badge',
       defaultValue: 'secondary',
-    },
-    isCounter: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'Indicates whether component should have counter style',
-      defaultValue: 'false'
     },
     onClick: {
       type: {
@@ -107,7 +109,19 @@ The `onClick` event will fire when the badge is clicked, or when the enter or sp
       description:
         'Action that fires when the badge is clicked.  Causes the Badge to render as a button instead of a span.',
     },
-}}
+    variant: {
+      type: {
+        name: 'enum',
+        options: ['BadgeVariant.counter', 'BadgeVariant.label'],
+      },
+      required: false,
+      description:
+        'Indicates the style variant of the component (counter or label)',
+      defaultValue: 'label',
+    },
+  }}
 />
 
-export default props => <ScopeableLayout {...props} components={{ Badge }} />
+export default props => (
+  <ScopeableLayout {...props} components={{ Badge, Button }} />
+)

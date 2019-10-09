@@ -6,7 +6,7 @@ import { darken, lighten } from 'polished';
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLButtonElement> {
   color?: BadgeColor;
-  isCounter?: boolean;
+  variant?: BadgeVariant;
   onClick?: () => void;
 }
 
@@ -18,12 +18,17 @@ export enum BadgeColor {
   light = 'light'
 }
 
+export enum BadgeVariant {
+  counter = 'counter',
+  label = 'label' // default
+}
+
 export function buildBadgeBackground(props) {
   switch (props.color) {
     case 'danger':
       return props.theme.colors.danger;
     case 'light':
-      return props.theme.colors.neutral06;
+      return props.theme.colors.neutral07;
     case 'primary':
       return props.theme.colors.primary;
     case 'secondary':
@@ -41,7 +46,7 @@ export function buildBadgeFocusBackground(props) {
     case 'danger':
       return darken(0.1, props.theme.colors.danger);
     case 'light':
-      return lighten(0.05, props.theme.colors.neutral06);
+      return lighten(0.05, props.theme.colors.neutral07);
     case 'primary':
       return darken(0.1, props.theme.colors.primary);
     case 'secondary':
@@ -59,7 +64,7 @@ export function buildBadgeActiveBackground(props) {
     case 'danger':
       return darken(0.2, props.theme.colors.danger);
     case 'light':
-      return lighten(0.1, props.theme.colors.neutral06);
+      return lighten(0.1, props.theme.colors.neutral07);
     case 'primary':
       return darken(0.2, props.theme.colors.primary);
     case 'secondary':
@@ -74,14 +79,17 @@ export function buildBadgeActiveBackground(props) {
 
 export const baseBadgeStyles = props => css`
   background: ${buildBadgeBackground(props)};
-  border-radius: ${props.isCounter ? '10px' : '3px'};
+  border-radius: ${props.variant === BadgeVariant.counter ? '10px' : '3px'};
   color: ${props.color === 'light'
     ? props.theme.colors.neutral02
     : props.theme.colors.neutral08};
   display: inline-block;
   font-weight: bold;
-  font-size: ${props.isCounter ? '14px' : '12px'};
-  line-height: ${props.isCounter ? '20px' : '23px'};
+  font-size: ${props.variant === BadgeVariant.counter ? '14px' : '12px'};
+  line-height: ${props.variant === BadgeVariant.counter ? '20px' : '23px'};
+  margin: ${props.variant === BadgeVariant.counter
+    ? '0 0 0 10px'
+    : '0 10px 0 0'};
   padding: 0 6px;
 `;
 
@@ -110,22 +118,22 @@ function renderBadge(isClickable: boolean) {
 }
 
 export const Badge: React.FunctionComponent<BadgeProps> = React.forwardRef(
-  ({ children, color, isCounter, onClick, ...other }: BadgeProps, ref: any) => {
-    const HeadingComponent = renderBadge(!!onClick);
+  ({ children, color, onClick, variant, ...other }: BadgeProps, ref: any) => {
+    const BadgeComponent = renderBadge(!!onClick);
 
     return (
       <ThemeContext.Consumer>
         {theme => (
-          <HeadingComponent
+          <BadgeComponent
             {...other}
             color={color}
-            isCounter={isCounter}
+            variant={variant ? variant : BadgeVariant.label}
             onClick={onClick}
             ref={ref}
             theme={theme}
           >
             {children}
-          </HeadingComponent>
+          </BadgeComponent>
         )}
       </ThemeContext.Consumer>
     );
