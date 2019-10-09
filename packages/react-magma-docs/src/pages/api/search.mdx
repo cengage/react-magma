@@ -1,0 +1,55 @@
+---
+title: 'Search'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { Search } from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
+
+# Search
+
+The `Search` component is the standardized use of the `Input` component with `type='search'`.
+
+## Basic usage
+
+```.jsx
+    <Search />
+```
+
+## Input size
+
+The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default.
+
+```.jsx
+    <>
+    <Search />
+    <Search inputSize='large' />
+    </>
+```
+
+## Search props
+
+<SimplePropsTable
+  props={{
+    inputSize: {
+      type: {
+        name: 'enum',
+        options: ['InputSize.large', 'InputSize.medium'],
+      },
+      required: false,
+      description: 'Relative size of the component',
+      defaultValue: 'medium',
+    },
+    inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+  }}
+/>
+
+export default props => <ScopeableLayout {...props} components={{ Search }} />

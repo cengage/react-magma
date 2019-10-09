@@ -33,6 +33,7 @@ export enum InputType {
   email = 'email',
   number = 'number',
   password = 'password',
+  search = 'search',
   text = 'text' // default
 }
 
@@ -403,7 +404,17 @@ class InputComponent extends React.Component<InputProps> {
                         onClick={onIconClick}
                         onKeyDown={onIconKeyDown}
                         shape={ButtonShape.fill}
-                        size={ButtonSize.small}
+                        size={
+                          inputSize === InputSize.large && !multiline
+                            ? ButtonSize.large
+                            : ButtonSize.small
+                        }
+                        style={{
+                          top:
+                            inputSize === InputSize.large && !multiline
+                              ? '2px'
+                              : '-1px'
+                        }}
                         theme={theme}
                         variant={ButtonVariant.link}
                       />
