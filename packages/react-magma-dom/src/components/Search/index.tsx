@@ -10,6 +10,7 @@ export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
   inverse?: boolean;
   labelText?: string;
   placeholderText?: string;
+  onSearch: () => void;
 }
 
 export const Search: React.FunctionComponent<SearchProps> = ({
@@ -19,7 +20,8 @@ export const Search: React.FunctionComponent<SearchProps> = ({
   inverse,
   inputSize,
   labelText,
-  placeholderText
+  placeholderText,
+  onSearch
 }: SearchProps) => {
   const SEARCH = 'Search';
 
@@ -27,7 +29,7 @@ export const Search: React.FunctionComponent<SearchProps> = ({
     <Input
       errorMessage={errorMessage}
       icon={<Search2Icon />}
-      onIconClick={() => {}}
+      onIconClick={onSearch}
       iconAriaLabel={iconAriaLabel ? iconAriaLabel : SEARCH}
       iconPosition={InputIconPosition.right}
       id={id}

@@ -161,15 +161,21 @@ const IconWrapper = styled.span<IconWrapperProps>`
     `}
 `;
 
-const IconButton = styled(Button)`
+const IconButton = styled(Button)<{ size: ButtonSize }>`
   position: absolute;
   bottom: 0;
   right: 0;
 
-  svg {
-    height: 17px;
-    width: 17px;
-  }
+  ${props =>
+    props.size === 'large' &&
+    css`
+      bottom: 2px;
+
+      svg {
+        height: 21px;
+        width: 21px;
+      }
+    `}
 `;
 
 const PasswordMaskWrapper = styled.span`
@@ -409,12 +415,6 @@ class InputComponent extends React.Component<InputProps> {
                             ? ButtonSize.large
                             : ButtonSize.small
                         }
-                        style={{
-                          top:
-                            inputSize === InputSize.large && !multiline
-                              ? '2px'
-                              : '-1px'
-                        }}
                         theme={theme}
                         variant={ButtonVariant.link}
                       />

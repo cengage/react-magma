@@ -2,18 +2,33 @@
 title: 'Search'
 ---
 
+import { Link } from 'gatsby'
 import { ScopeableLayout } from '../../components/layout'
 import { Search } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 
 # Search
 
-The `Search` component is the standardized use of the `Input` component with `type='search'`.
+The `Search` component is the standardized use of the <Link to='/api/inputs/'>Input</Link> component with `type='search'`.
+
+The `onSearch` prop is required and takes a function and fires when the user clicks or presses Enter on the search icon. It also fires if the user is focused on the input and presses Enter.
 
 ## Basic usage
 
 ```.jsx
-    <Search />
+    <Search onSearch={() => {alert('search')}} />
+```
+
+## Label and placeholder text
+
+The `Search` component supports three text string props: `iconAriaLabel`, `labelText`, and `placeholderText`.
+
+The `iconAriaLabel` refers to the aria-label of the search icon, which will be read by screen readers. The `labelText` refers to the aria-label of the input itself, which will also be read by screen readers. The `placeholderText` refers to the placeholder attribute of the input, which will display when the input is empty.
+
+The default value of all of these is `Search`.
+
+```.jsx
+    <Search iconAriaLabel='Submit search' labelText="Search for articles and books" onSearch={() => {}} placeholderText="Search our library" />
 ```
 
 ## Input size
@@ -22,15 +37,50 @@ The `inputSize` prop can be used to control the input size. Options are `medium`
 
 ```.jsx
     <>
-    <Search />
-    <Search inputSize='large' />
+    <Search onSearch={() => {}} />
+    <Search inputSize='large' onSearch={() => {}} />
     </>
+```
+
+## Inverse
+
+Inverse is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
+
+```.jsx
+    <div style={{ background : '#00263E', padding: '20px' }}>
+      <Search inverse onSearch={() => {}} />
+    </div>
+```
+
+## Error message
+
+If a search input has an `errorMessage`, the input will be styled to highlight it's error state and the error message will appear below the input field.
+
+```.jsx
+    <Search errorMessage='Please correct this error' onSearch={() => {}} />
 ```
 
 ## Search props
 
 <SimplePropsTable
   props={{
+    errorMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Text of the error message.  If a value is provided, the input will be styled as an error state, and the error message will display.',
+      defaultValue: '',
+    },
+    iconAriaLabel: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text for icon button aria-label',
+      defaultValue: 'Search',
+    },
     inputSize: {
       type: {
         name: 'enum',
@@ -48,6 +98,30 @@ The `inputSize` prop can be used to control the input size. Options are `medium`
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
+    },
+    labelText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text for input aria-label',
+      defaultValue: 'Search',
+    },
+    onSearch: {
+      type: {
+        name: 'function',
+      },
+      required: true,
+      description: 'Action that will fire when search icon button is clicked.',
+      defaultValue: '',
+    },
+    placeholderText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text for input aria-label placeholder',
+      defaultValue: 'Search',
     },
   }}
 />
