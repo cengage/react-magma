@@ -1,0 +1,76 @@
+---
+title: 'Spinner'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { Spinner, magma } from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
+
+# Spinner
+
+Spinners indicate the loading state of a component or page.
+
+## Basic Usage
+
+```.jsx
+    <Spinner />
+```
+
+## Aria-label
+
+By default, the aria-label for the spinner is "Loading", but this can be customized using the `ariaLabel` prop.
+
+```.jsx
+    <Spinner ariaLabel="Custom aria label" />
+```
+
+## Color
+
+The default is `magma.colors.primary` (`#006298`), but can be customized using the `color` prop, which takes a string.
+
+```.jsx
+    <Spinner color={magma.colors.danger} />
+```
+
+## Size
+
+The default size is 15px, but can be customized using the `size` prop, which takes a number of pixels.
+
+```.jsx
+    <Spinner size={30} />
+```
+
+## Spinner Props
+
+<SimplePropsTable
+  props={{
+    ariaLabel: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'The read by the screen reader',
+      defaultValue: 'Loading',
+    },
+    color: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'The color of the spinner border',
+      defaultValue: '#006298',
+    },
+    size: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'The height and width of the spinner in pixels',
+      defaultValue: '15',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout {...props} components={{ Spinner, magma }} />
+)
