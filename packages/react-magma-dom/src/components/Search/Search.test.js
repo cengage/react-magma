@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Search } from '.';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
 const onSearchSpy = jest.fn();
 
@@ -36,6 +36,22 @@ describe('Search', () => {
       'aria-label',
       'Test input label'
     );
+  });
+
+  it('should fire the onSearch event when enter is pressed', () => {
+    const { container } = render(<Search onSearch={onSearchSpy} />);
+
+    fireEvent.keyDown(container.querySelector('input'), {
+      keyCode: 27
+    });
+
+    expect(onSearchSpy).not.toHaveBeenCalled();
+
+    fireEvent.keyDown(container.querySelector('input'), {
+      keyCode: 13
+    });
+
+    expect(onSearchSpy).toHaveBeenCalled();
   });
 
   it('Does not violate accessibility standards', () => {

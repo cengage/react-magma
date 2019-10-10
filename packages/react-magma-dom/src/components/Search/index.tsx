@@ -25,6 +25,13 @@ export const Search: React.FunctionComponent<SearchProps> = ({
 }: SearchProps) => {
   const SEARCH = 'Search';
 
+  // handle search on enter
+  const handleKeyPress = e => {
+    if (e.keyCode === 13) {
+      onSearch();
+    }
+  };
+
   return (
     <Input
       errorMessage={errorMessage}
@@ -37,8 +44,10 @@ export const Search: React.FunctionComponent<SearchProps> = ({
       inverse={inverse}
       labelText={labelText ? labelText : SEARCH}
       labelVisuallyHidden
+      onKeyDown={handleKeyPress}
       placeholder={placeholderText ? placeholderText : SEARCH}
       type={InputType.search}
+      value=""
     />
   );
 };
