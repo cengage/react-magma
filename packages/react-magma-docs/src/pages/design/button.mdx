@@ -37,16 +37,16 @@ A button’s action and state should be clear.
 <hr class="article-divider" />
 
 ## Types
-### Text button (low emphasis)
-Text buttons are typically used for less important actions
+### Text Button (low emphasis)
+Text buttons are typically used for less important actions.
 <Button color="primary" variant="link">Text Button</Button>
 
 ### Outlined Button (medium emphasis)
-Outlined buttons are used for more emphasis than text buttons due to the stroke
+Outlined buttons are used for more emphasis than text buttons due to the stroke.
 <Button color="primary" variant="outline">Outlined Button</Button>
 
-### Solid button (high emphasis)
-Solid buttons have more emphasis, as they use use a color fill
+### Solid Button (high emphasis)
+Solid buttons have more emphasis, as they use use a color fill.
 <Button>Solid Button</Button>
 <span class="horizontal-spacer"></span>
 
@@ -55,16 +55,10 @@ Solid buttons have more emphasis, as they use use a color fill
 ## Anatomy
 ### Text Label
 Almost all buttons use text labels, which describe the action that will occur if a user taps a button.
-#### All caps or sentence case?
-**By default Magma uses all caps text labels.** This is to distinguish the text label from surrounding text.
+#### All Caps or Title Case?
+**By default Magma uses all caps text labels.** This is to provide a greater contrast between buttons and surrounding text, therefore making buttons easier to find. This is especially helpful for buttons that don't have a visible container.
 
-Text labels should always be short and have clear purpose.  If a button requires a text label with three or more words, try really hard to shorten it.  If you can’t, you may use sentence case to help reduce the size of the button’s footprint.  We recommend buttons using sentence case also have an outline or solid container, to help differentiate the button from the text around it.
-
-**Sentence Case Rules**
-
-1. Capitalize the first word of the label
-2. Capitalize any proper nouns, names, etc.
-3. Use lowercase for everything else
+Text labels should always be short and have clear purpose.  If a button requires a text label with three or more words, try really hard to shorten it.  If you can’t, you may use title case to help reduce the size of the button’s footprint.  We recommend buttons using title case also have an outline or solid container, to help differentiate the button from the text around it.
 
 <div class="two-col">
   <div class="row">
@@ -82,7 +76,7 @@ Text labels should always be short and have clear purpose.  If a button requires
         <img src="../../images/buttons/ex_4_2.png" alt="" />
         <figcaption>
           <p class="title title-incorrect">Incorrect</p>
-          <p>Don’t wrap text. For maximum legibility, a text label should remain on a single line.</p>
+          <p>Don’t wrap text. For maximum legibility and recognition as a button, a text label should never wrap to multiple lines.</p>
         </figcaption>
       </figure>
     </div>
@@ -93,7 +87,7 @@ Text labels should always be short and have clear purpose.  If a button requires
         <img src="../../images/buttons/ex_4_3.png" alt="" />
         <figcaption>
           <p class="title title-correct">Correct</p>
-          <p>Text labels can be written in sentence case, as long as the button is clearly distinguishable from elements around it.</p>
+          <p>Text labels can be written in title case if all efforts to make the label less than three words have been exhausted, or if the button simply won't fit in the space without making it smaller.</p>
         </figcaption>
       </figure>
     </div>
@@ -275,9 +269,9 @@ The dotted outline is 2px, and the color is #F2A900 ($accent06).  Both of these 
 
 ## Hierarchy and Placement
 ### Hierarchy
-#### A single, prominent button
+#### Single Prominent Button
 A layout should contain a single prominent button that makes it clear that other buttons have less visual importance in the hierarchy. This high-emphasis button commands the most attention.
-#### Other buttons
+#### Other Buttons
 An app can show more than one button in a layout at a time, so a high-emphasis button can be accompanied by medium- and low-emphasis buttons that perform less important actions. When using multiple buttons, ensure the available state of one button doesn’t look like the disabled state of another.
 ### Placement
 Multiple button types can be used to express different emphasis levels.  When using buttons that are contextually connected to left-to-right content, the buttons should also be left aligned, with the most important action coming first.  When the buttons are positioned as actions for a larger context, like an entire modal or page, then the buttons will typically be right aligned, with the most important action on the far right.
