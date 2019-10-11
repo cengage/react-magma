@@ -16,7 +16,7 @@ import { SimplePropsTable } from '../../components/props-table'
 
 # Tooltip
 
-## Basic usage
+## Basic Usage
 
 The `content` prop can take a string or a react node, and determines the content inside of the tooltip bubble.
 
@@ -68,7 +68,7 @@ The `Tooltip` component takes an optional `inverse` prop, for when the tooltip i
 
       render() {
         return <div>
-          <Tooltip ref={this.tooltipRef} position="right" content="Ref tooltip" trigger={<Button aria-label="Question Icon" icon={<QuestionCircleIcon />} variant="link" />} />
+          <Tooltip ref={this.tooltipRef} position="top" content="Ref tooltip" trigger={<Button aria-label="Question Icon" icon={<QuestionCircleIcon />} variant="link" />} />
           <Button
           onClick={() => {
             this.tooltipRef.current.focus();
