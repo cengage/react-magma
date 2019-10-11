@@ -11,15 +11,15 @@ import { SimplePropsTable } from '../../components/props-table'
 
 The `Search` component is the standardized use of the <Link to='/api/inputs/'>Input</Link> component with `type='search'`.
 
-The `onSearch` prop is required and takes a function and fires when the user clicks or presses Enter when focus is on the search icon or the search input. It also fires if the user is focused on the input and presses Enter.
+## Basic Usage
 
-## Basic usage
+The `onSearch` prop is required and takes a function and fires when the user clicks or presses Enter when focus is on the search icon or the search input. It also fires if the user is focused on the input and presses Enter.
 
 ```.jsx
     <Search onSearch={() => {alert('search')}} />
 ```
 
-## Label and placeholder text
+## Label and Placeholder Text
 
 The `Search` component supports three text string props: `iconAriaLabel`, `labelText`, and `placeholderText`.
 
@@ -28,17 +28,28 @@ The `iconAriaLabel` refers to the aria-label of the search icon, which will be r
 The default value of all of these is `Search`.
 
 ```.jsx
-    <Search iconAriaLabel='Submit search' labelText="Search for articles and books" onSearch={() => {}} placeholderText="Search our library" />
+    <Search iconAriaLabel='Submit Search' labelText="Search for Articles and Books" onSearch={() => {}} placeholderText="Search our Library" />
 ```
 
-## Input size
+## Input Size
 
 The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default.
 
 ```.jsx
     <>
-    <Search onSearch={() => {}} />
-    <Search inputSize='large' onSearch={() => {}} />
+      <Search onSearch={() => {}} />
+      <Search inputSize='large' onSearch={() => {}} />
+    </>
+```
+
+## IsLoading
+
+The `isLoading` boolean prop will determine if a loading animation is shown. The loading animation will replace the search icon button.
+
+```.jsx
+    <>
+      <Search onSearch={() => {}} isLoading />
+      <Search inputSize='large' onSearch={() => {}} isLoading />
     </>
 ```
 
@@ -52,7 +63,7 @@ Inverse is an optional boolean prop, that may be passed in when inputs are to be
     </div>
 ```
 
-## Error message
+## Error Message
 
 If a search input has an `errorMessage`, the input will be styled to highlight it's error state and the error message will appear below the input field.
 
@@ -60,7 +71,7 @@ If a search input has an `errorMessage`, the input will be styled to highlight i
     <Search errorMessage='Please correct this error' onSearch={() => {}} />
 ```
 
-## Search props
+## Search Props
 
 <SimplePropsTable
   props={{

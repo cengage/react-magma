@@ -3,6 +3,7 @@ import { InputCore } from 'react-magma-core';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import { IconProps } from '../Icon/utils';
+import { Spinner } from '../Spinner';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 import { Announce } from '../Announce';
@@ -50,18 +51,19 @@ export interface InputProps
   hidePasswordMaskButton?: boolean;
   icon?: React.ReactElement<IconProps>;
   iconAriaLabel?: string;
-  onIconClick?: () => void;
-  onIconKeyDown?: (event) => void;
   iconPosition?: InputIconPosition;
+  innerRef?: React.Ref<HTMLInputElement>;
   inputSize?: InputSize;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
+  isLoading?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
   labelVisuallyHidden?: boolean;
   multiline?: boolean;
   onHelpLinkClick?: () => void;
-  innerRef?: React.Ref<HTMLInputElement>;
+  onIconClick?: () => void;
+  onIconKeyDown?: (event) => void;
   shownPasswordAnnounceText?: string;
   showPasswordButtonAriaLabel?: string;
   showPasswordButtonText?: string;
@@ -186,6 +188,12 @@ const PasswordMaskWrapper = styled.span`
   top: 50%;
 `;
 
+const SpinnerWrapper = styled.span<{ inputSize?: InputSize }>`
+  position: absolute;
+  right: 10px;
+  top: ${props => (props.inputSize === 'large' ? '20px' : '10px')};
+`;
+
 function getIconSize(size) {
   switch (size) {
     case 'large':
@@ -227,6 +235,7 @@ class InputComponent extends React.Component<InputProps> {
             hidePasswordButtonText,
             icon,
             iconAriaLabel,
+            isLoading,
             onIconClick,
             onIconKeyDown,
             inputSize,
@@ -327,7 +336,7 @@ class InputComponent extends React.Component<InputProps> {
                       onChange={this.handleChange(onChange)}
                       onFocus={this.props.onFocus}
                     />
-                    {icon && !onIconClick && (
+                    {icon && !onIconClick && !isLoading && (
                       <IconWrapper
                         aria-label={iconAriaLabel}
                         iconPosition={iconPosition}
@@ -347,6 +356,13 @@ class InputComponent extends React.Component<InputProps> {
                         )}
                       </IconWrapper>
                     )}
+
+                    {isLoading && (
+                      <SpinnerWrapper inputSize={inputSize}>
+                        <Spinner size={20} />
+                      </SpinnerWrapper>
+                    )}
+
                     {type === InputType.password && !hidePasswordMaskButton && (
                       <PasswordMaskWrapper>
                         <Button
@@ -403,7 +419,7 @@ class InputComponent extends React.Component<InputProps> {
                       />
                     )}
 
-                    {onIconClick && (
+                    {onIconClick && !isLoading && (
                       <IconButton
                         aria-label={iconAriaLabel}
                         icon={icon}

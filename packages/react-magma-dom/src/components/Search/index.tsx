@@ -8,6 +8,7 @@ export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
   id?: string;
   inputSize?: InputSize;
   inverse?: boolean;
+  isLoading?: boolean;
   labelText?: string;
   placeholderText?: string;
   onSearch: () => void;
@@ -19,6 +20,7 @@ export const Search: React.FunctionComponent<SearchProps> = ({
   id,
   inverse,
   inputSize,
+  isLoading,
   labelText,
   placeholderText,
   onSearch
@@ -42,6 +44,7 @@ export const Search: React.FunctionComponent<SearchProps> = ({
       id={id}
       inputSize={inputSize}
       inverse={inverse}
+      isLoading={isLoading}
       labelText={labelText ? labelText : SEARCH}
       labelVisuallyHidden
       onKeyDown={handleKeyPress}

@@ -19,7 +19,7 @@ import { SimplePropsTable } from '../../components/props-table'
 
 Input fields are used in a number of ways for both collecting and displaying data from the user.
 
-## Basic usage
+## Basic Usage
 
 The label/input association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
 
@@ -78,7 +78,7 @@ The following option props can be used to override various text strings that app
         disabled />
 ```
 
-## Error message
+## Error Message
 
 If an input has an `errorMessage`, the input will be styled to highlight it's error state and the error message will appear below the input field.
 If an error message is present, it will replace the helper text.
@@ -92,7 +92,7 @@ If an error message is present, it will replace the helper text.
         placeholder='Type in here' />
 ```
 
-## Helper message
+## Helper Message
 
 The `helperMessage` appears underneath the input field. It will not appear if an error message is present.
 
@@ -104,7 +104,7 @@ The `helperMessage` appears underneath the input field. It will not appear if an
         placeholder='Type in here' />
 ```
 
-## Help link
+## Help Link
 
 Some inputs require a bit of explanation to the user. Passing in a function to the `onHelpLinkClick` prop, will
 display a help link to the right of the input field. The text can be customized using the optional `helpLinkText` prop.
@@ -115,7 +115,7 @@ display a help link to the right of the input field. The text can be customized 
       onHelpLinkClick={()=> {alert('Help link clicked!')}} />
 ```
 
-## Input with icon
+## Input With Icon
 
 An `icon` may be included with the input, by passing in the `icon` prop. An aria-label may be added using the `iconAriaLabel` prop.
 
@@ -146,7 +146,7 @@ The `iconPosition` position prop is optional and takes the values `left` and `ri
     </>
 ```
 
-## Input size
+## Input Size
 
 The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default. Input size does not affect multiline textareas.
 
@@ -165,22 +165,33 @@ The `inputSize` prop can be used to control the input size. Options are `medium`
         icon={<Search2Icon />} />
       <Input
           errorMessage='Error'
-          labelText='Medium Input with Error' />
+          labelText='Medium Input With Error' />
       <Input
           errorMessage='Error'
           inputSize='large'
-          labelText='Large Input with Error' />
+          labelText='Large Input With Error' />
       <Input
           onHelpLinkClick={()=> {alert('Help link clicked!')}}
-          labelText='Medium Input with Help Link' />
+          labelText='Medium Input With Help Link' />
       <Input
           onHelpLinkClick={()=> {alert('Help link clicked!')}}
           inputSize='large'
-          labelText='Large Input with Help Link' />
+          labelText='Large Input With Help Link' />
     </>
 ```
 
-## Inverse inputs
+## IsLoading
+
+The `isLoading` boolean prop will determine if a loading animation is shown. The loading animation will replace any icon displayed on the right.
+
+```.jsx
+    <>
+      <Input labelText='Loading' isLoading />
+      <Input labelText='Loading Large' inputSize='large' isLoading />
+    </>
+```
+
+## Inverse
 
 Inverse is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
 
