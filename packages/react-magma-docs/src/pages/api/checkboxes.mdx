@@ -23,15 +23,15 @@ See also: <Link to="/api/radio">Radio Buttons</Link>, <Link to="/api/toggle">Tog
     <Checkbox
         checked
         id='checkbox0'
-        labelText='Checkbox Label' />
+        labelText='Checkbox label' />
 
     <Checkbox
         id='checkbox1'
-        labelText='Checkbox Label' />
+        labelText='Checkbox label' />
 
     <Checkbox
         id='checkbox2'
-        labelText='Checkbox Label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines' />
+        labelText='Checkbox label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines' />
     </div>
 ```
 
@@ -44,22 +44,22 @@ By default, the checkboxes use the theme's primary color. But any other color ma
     <Checkbox
         checked
         id='colorCheckbox'
-        labelText='Default Color' />
+        labelText='Default color' />
     <Checkbox
         checked
         color={magma.colors.success01}
         id='primaryColorCheckbox'
-        labelText='Success Color' />
+        labelText='Success color' />
     <Checkbox
         checked
         color={magma.colors.danger}
         id='dangerColorCheckbox'
-        labelText='Danger Color' />
+        labelText='Danger color' />
     <Checkbox
         checked
         color={magma.colors.pop02}
         id='popColorCheckbox'
-        labelText='Pop Color' />
+        labelText='Pop color' />
     </div>
 ```
 
@@ -72,7 +72,7 @@ Adding the optional boolean prop `disabled` will apply disabled styles and add t
     <Checkbox
         disabled
         id='disabledCheckbox'
-        labelText='Disabled Checkbox' />
+        labelText='Disabled checkbox' />
     </div>
 ```
 
@@ -85,12 +85,12 @@ In addition to being checked or unchecked, checkboxes also support an indetermin
     <Checkbox
         id='indeterminateCheckbox'
         indeterminate
-        labelText='Indeterminate Checkbox' />
+        labelText='Indeterminate checkbox' />
     <Checkbox
         color={magma.colors.success01}
         id='indeterminateSuccessCheckbox'
         indeterminate
-        labelText='Indeterminate Checkbox' />
+        labelText='Indeterminate checkbox' />
     </div>
 ```
 
@@ -110,29 +110,29 @@ Inverse is an optional boolean prop, that may be passed in when the component is
         color={magma.colors.success01}
         id='successInverseCheckbox'
         inverse
-        labelText='Success Inverse' />
+        labelText='Success inverse' />
     <Checkbox
         checked
         color={magma.colors.danger}
         id='dangerInverseCheckbox'
         inverse
-        labelText='Danger Inverse' />
+        labelText='Danger inverse' />
     <Checkbox
         checked
         color={magma.colors.pop02}
         id='popInverseCheckbox'
         inverse
-        labelText='Pop Inverse' />
+        labelText='Pop inverse' />
       <Checkbox
           disabled
           id='disabledInverseCheckbox'
           inverse
-          labelText='Disabled Inverse' />
+          labelText='Disabled inverse' />
       <Checkbox
           id='indeterminateInverseCheckbox'
           indeterminate
           inverse
-          labelText='Indeterminate Checkbox' />
+          labelText='Indeterminate checkbox' />
     </div>
 ```
 
@@ -144,7 +144,7 @@ Adding the `textVisuallyHidden` prop will make the label text available to scree
   <div>
     <Checkbox
         id='visuallyHiddenCheckbox'
-        labelText='Disabled Checkbox'
+        labelText='Disabled checkbox'
         textVisuallyHidden />
     </div>
 ```
@@ -161,11 +161,11 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
         containerStyle={{ 'border': '1px dotted purple'}}
         inputStyle={{ 'boxShadow': '3px 3px 3px rgba(0, 0 , 0, .6)'}}
         labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
-        labelText='Custom Styles' />
+        labelText='Custom styles' />
 
     <Checkbox
         checked
-        labelText='No Custom Styles' />
+        labelText='No custom styles' />
   </div>
 ```
 
