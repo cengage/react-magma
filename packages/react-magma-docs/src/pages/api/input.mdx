@@ -3,7 +3,13 @@ title: 'Inputs'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { Input, Button, CalendarIcon, EnvelopeOIcon, Search2Icon } from 'react-magma-dom'
+import {
+  Input,
+  Button,
+  CalendarIcon,
+  EnvelopeOIcon,
+  Search2Icon,
+} from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { SimplePropsTable } from '../../components/props-table'
 
@@ -109,7 +115,7 @@ display a help link to the right of the input field. The text can be customized 
       onHelpLinkClick={()=> {alert('Help link clicked!')}} />
 ```
 
-## Input with Icon
+## Input With Icon
 
 An `icon` may be included with the input, by passing in the `icon` prop. An aria-label may be added using the `iconAriaLabel` prop.
 
@@ -140,7 +146,7 @@ The `iconPosition` position prop is optional and takes the values `left` and `ri
     </div>
 ```
 
-## Input Sizes
+## Input Size
 
 The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default. Input size does not affect multiline textareas.
 
@@ -174,7 +180,7 @@ The `inputSize` prop can be used to control the input size. Options are `medium`
     </div>
 ```
 
-## Inverse inputs
+## Inverse
 
 Inverse is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
 
@@ -206,7 +212,7 @@ Inverse is an optional boolean prop, that may be passed in when inputs are to be
     </div>
 ```
 
-## Input with hidden label
+## Input With Hidden Label
 
 The `labelVisuallyHidden` prop can be used to visually hide the text label, while still making the text available to screen readers.
 

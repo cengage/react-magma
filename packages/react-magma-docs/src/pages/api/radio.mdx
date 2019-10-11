@@ -97,7 +97,7 @@ By default, the radio buttons use the theme's primary color. But any other color
     </RadioGroup>
 ```
 
-## Inverse Colors
+## Inverse
 
 Inverse is an optional boolean prop, that may be passed in when radio buttons are to be displayed on a dark background.
 
@@ -177,7 +177,7 @@ This id will become the value of the `aria-labelledby` attribute for the group.
 ```.jsx
   <>
     <RadioGroup
-        labelText="Labelled by labelText"
+        labelText="Labelled by Label"
         name='labelledByGroup'>
           <Radio
               labelText='Label' />
@@ -189,7 +189,7 @@ This id will become the value of the `aria-labelledby` attribute for the group.
     <RadioGroup
         labelledById="h3Label"
         name='labelledByGroup'>
-          <h3 id="h3Label">Labelled by h3 with labelledById prop</h3>
+          <h3 id="h3Label">Labelled by H3</h3>
           <Radio
               labelText='Label' />
           <Radio
@@ -232,7 +232,7 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 
       render() {
         return <div>
-        <RadioGroup labelText='ForwardRef Usage' id='forwardRefGroup' name='forwardRef'>
+        <RadioGroup labelText='Forward Ref Usage' id='forwardRefGroup' name='forwardRef'>
           <Radio
             ref={this.radioRef}
             id='forwardRefRadio1'
