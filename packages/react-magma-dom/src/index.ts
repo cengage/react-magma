@@ -13,8 +13,8 @@ export {
 } from './components/Button';
 export { Checkbox } from './components/Checkbox';
 export { Card, CardAlignment, CardCalloutType } from './components/Card';
-export { CardBody } from './components/CardBody';
-export { CardHeading } from './components/CardHeading';
+export { CardBody } from './components/Card/CardBody';
+export { CardHeading } from './components/Card/CardHeading';
 export { Heading } from './components/Heading';
 export {
   Input,

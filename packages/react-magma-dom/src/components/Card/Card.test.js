@@ -1,8 +1,8 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Card } from '.';
-import { CardBody } from '../CardBody';
-import { CardHeading } from '../CardHeading';
+import { CardBody } from './CardBody';
+import { CardHeading } from './CardHeading';
 import { magma } from '../../theme/magma';
 import { render } from '@testing-library/react';
 
