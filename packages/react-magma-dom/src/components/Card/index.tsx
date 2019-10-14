@@ -2,8 +2,6 @@ import * as React from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { renderCardHeading, CardHeadingProps } from './CardHeading';
-import { renderCardBody } from './CardBody';
 
 export interface CardProps extends React.LabelHTMLAttributes<HTMLDivElement> {
   align?: CardAlignment;
@@ -113,11 +111,3 @@ function renderCard(props) {
 
 export const Card: React.FunctionComponent<CardProps> = (props: CardProps) =>
   renderCard(props);
-
-export const CardBody: React.FunctionComponent<CardProps> = (
-  props: CardProps
-) => renderCardBody(props);
-
-export const CardHeading: React.FunctionComponent<CardHeadingProps> = (
-  props: CardProps
-) => renderCardHeading(props);
