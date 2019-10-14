@@ -12,13 +12,13 @@ import { SimplePropsTable } from '../../components/props-table'
   Date pickers
 </DocsHeading>
 
-## Basic usage
+## Basic Usage
 
 ```.jsx
     <DatePicker labelText="Date" />
 ```
 
-## Default date
+## Default Date
 
 By default, no date value is selected. You can add a default date, by using the `defaultDate` prop.
 
@@ -26,7 +26,7 @@ By default, no date value is selected. You can add a default date, by using the 
     <DatePicker defaultDate='07/23/2019' labelText="Date" />
 ```
 
-## Placeholder text
+## Placeholder Text
 
 By default, the placeholder text of the input is 'MM/DD/YYYY'. You can override this by using the `placeholderText` prop.
 Note: the expected date format should appear somewhere in either the labelText or the placeholderText.
@@ -35,19 +35,19 @@ Note: the expected date format should appear somewhere in either the labelText o
     <DatePicker placeholderText='Your birthday (format MM/DD/YYYY)' labelText="Birthday" />
 ```
 
-## Helper message
+## Helper Message
 
 ```.jsx
     <DatePicker labelText="Help Me" helperMessage="This is your help" />
 ```
 
-## Error message
+## Error Message
 
 ```.jsx
     <DatePicker labelText="Error" errorMessage="You made an error" />
 ```
 
-## Date change event
+## Date Change Event
 
 ```.jsx
   class Example extends React.Component {
@@ -86,7 +86,7 @@ Note: the expected date format should appear somewhere in either the labelText o
   }
 ```
 
-## Keyboard navigation
+## Keyboard Navigation
 
 The `DatePicker` is keyboard navigable for allowing the user to navigte between days, weeks, and months. If you would like to see all of the options for keyboard navigation click on the `?` button in the bottom right corner of the `DatePicker` or press the `?` key.
 
@@ -94,7 +94,7 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
     <DatePicker labelText="Date" />
 ```
 
-## Datepicker props
+## Date Picker Props
 
 <SimplePropsTable
   props={{

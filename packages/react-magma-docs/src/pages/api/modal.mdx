@@ -39,7 +39,7 @@ import { SimplePropsTable } from '../../components/props-table'
         const { showModal } = this.state;
 
         return (<>
-            <Modal header="Modal title" onClose={this.onModalClose} open={showModal}>
+            <Modal header="Modal Title" onClose={this.onModalClose} open={showModal}>
                 <p>This is a modal, doing modal things.</p>
                 <p>This is <a href="#">linked text</a> in the modal</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -60,7 +60,7 @@ import { SimplePropsTable } from '../../components/props-table'
 
 The modal header prop is optional. It can accept a node or a string, and will be rendered inside an H1.
 If there is a header passed in, the focus will be placed on the header when the modal opens. If not, the focus wiill be placed on
-the first actionable element.  If there are no actionable elements, the focus will just go on the first child, although it is best practice to always include something actionable within the modal.
+the first actionable element. If there are no actionable elements, the focus will just go on the first child, although it is best practice to always include something actionable within the modal.
 
 ```.jsx
 
@@ -78,7 +78,7 @@ the first actionable element.  If there are no actionable elements, the focus wi
 
         this.onModalHeaderShow = this.onModalHeaderShow.bind(this);
         this.onModalHeaderClose = this.onModalHeaderClose.bind(this);
-        
+
         this.onModalNoFocusShow = this.onModalNoFocusShow.bind(this);
         this.onModalNoFocusClose = this.onModalNoFocusClose.bind(this);
       }
@@ -119,7 +119,7 @@ the first actionable element.  If there are no actionable elements, the focus wi
             </Modal>
           <Button onClick={this.onModalShow}>Show Modal with no header</Button>
 
-          <Modal header={<>Header with <em>markup</em></>} onClose={this.onModalHeaderClose} open={showModalHeader}>
+          <Modal header={<>Header With <em>Markup</em></>} onClose={this.onModalHeaderClose} open={showModalHeader}>
                 <p>This modal has a header with an `em` tag inside it.</p>
                 <div style={{textAlign: 'center'}}>
                     <Button onClick={this.onModalHeaderClose}>OK</Button>
@@ -250,7 +250,6 @@ Sizes for modals include `small`, `medium`, and `large`, with `medium` being the
       },
       required: false,
       description: 'Reference to the element containing the modal content',
-    
     },
     onClose: {
       type: {
@@ -259,7 +258,7 @@ Sizes for modals include `small`, `medium`, and `large`, with `medium` being the
       required: true,
       description: 'Action that fires when the close button is clicked',
     },
-     onEscKeyDown: {
+    onEscKeyDown: {
       type: {
         name: 'function',
       },
