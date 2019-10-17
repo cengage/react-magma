@@ -24,14 +24,13 @@ Input fields are used in a number of ways for both collecting and displaying dat
 The label/input association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
 
 ```.jsx
-    <div>
+    <>
       <Input
-          id='input1'
-          labelText='Label'
-          placeholder='This is a placeholder'
-          required={false}
-          value='Default Value' />
-    </div>
+          labelText='Label' />
+      <Input
+          id="myCustomId"
+          labelText='Label' />
+    </>
 ```
 
 ## Password
@@ -45,15 +44,11 @@ The following option props can be used to override various text strings that app
 ```.jsx
   <>
     <Input
-      id='inputPw'
       labelText='Password'
-      placeholder='Enter your password'
       type='password' />
     <Input
       hidePasswordMaskButton
-      id='inputPwWithNoMask'
       labelText='Password With No Unmask Button'
-      placeholder='Enter your password'
       type='password' />
   </>
 ```
@@ -62,9 +57,7 @@ The following option props can be used to override various text strings that app
 
 ```.jsx
     <Input
-        id='inputNum'
         labelText='Number'
-        placeholder='Enter a number'
         type='number' />
 ```
 
@@ -72,10 +65,30 @@ The following option props can be used to override various text strings that app
 
 ```.jsx
     <Input
-        id='inputDisabled'
         labelText='Disabled'
-        placeholder='The input is disabled'
         disabled />
+```
+
+## Value
+
+The `value` of an input can be set using the `value` prop.
+
+```.jsx
+    <Input
+        labelText='Default value'
+        value='abc123' />
+```
+
+## Placeholder
+
+The `placeholder` text of an input can be set using the `placeholder` prop.
+Placeholder text should be used to provide supplemental information about the input field. It should not be
+relied upon to take the place of the label text.
+
+```.jsx
+    <Input
+        labelText='Email Address'
+        value='yourname@example.com' />
 ```
 
 ## Error Message
@@ -85,11 +98,9 @@ If an error message is present, it will replace the helper text.
 
 ```.jsx
     <Input
-        id='inputError'
         errorMessage='Please correct this error'
         helperMessage='Helper text'
-        labelText='Error Message'
-        placeholder='Type in here' />
+        labelText='Error Message' />
 ```
 
 ## Helper Message
@@ -98,10 +109,8 @@ The `helperMessage` appears underneath the input field. It will not appear if an
 
 ```.jsx
     <Input
-        id='inputHelper'
         helperMessage='Helper text goes here'
-        labelText='Helper Message'
-        placeholder='Type in here' />
+        labelText='Helper Message' />
 ```
 
 ## Help Link
@@ -127,21 +136,18 @@ The `iconPosition` position prop is optional and takes the values `left` and `ri
     <div>
       <Input
         labelText='Input with Icon on Left'
-        placeholder='Type in here'
         icon={<EnvelopeOIcon />}
         type="email" />
 
       <Input
         iconPosition='right'
         labelText='Input with Icon on Right'
-        placeholder='Type in here'
         icon={<Search2Icon />} />
 
       <Input
         labelText='Input with Clickable Icon on Right'
         iconAriaLabel="Calendar"
         onIconClick={()=>{alert('Icon clicked')}}
-        placeholder='Type in here'
         icon={<CalendarIcon />} />
     </div>
 ```
@@ -155,13 +161,11 @@ The `inputSize` prop can be used to control the input size. Options are `medium`
       <Input
         iconPosition='right'
         labelText='Medium Input'
-        placeholder='Type in here'
         icon={<Search2Icon />} />
       <Input
         iconPosition='right'
         inputSize='large'
         labelText='Large Input'
-        placeholder='Type in here'
         icon={<Search2Icon />} />
       <Input
           errorMessage='Error'
@@ -194,17 +198,13 @@ Inverse is an optional boolean prop, that may be passed in when inputs are to be
 
       <Input
           helperMessage='Helper text'
-          id='inputInverseHelper'
           inverse
-          labelText='Inverse Input with Helper Text'
-          placeholder='Type in here' />
+          labelText='Inverse Input with Helper Text' />
 
       <Input
           errorMessage='Please correct your error'
-          id='inputInverseError'
           inverse
-          labelText='Inverse Input with Error Message'
-          placeholder='Type in here' />
+          labelText='Inverse Input with Error Message' />
       <Input
           inverse
           labelText='Help Link'
@@ -219,7 +219,6 @@ The `labelVisuallyHidden` prop can be used to visually hide the text label, whil
 ```.jsx
     <Input
       iconPosition='right'
-      id='inputLabelHidden'
       labelVisuallyHidden
       labelText='Search'
       placeholder='Search'
@@ -259,10 +258,8 @@ The optional `multiline` boolean prop will cause the component to render a texta
       return <div>
         <p><strong>Changed Value: </strong> <span id="changedValue">{this.state.message}</span></p>
         <Input
-          id='inputChanged'
           labelText='Test Value'
           value=''
-          placeholder='Type in here'
           onChange={this.changeValueMessage} />
       </div>
     }
