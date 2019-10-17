@@ -1,5 +1,6 @@
 export { InputCore } from './components/Input/Input';
 export { CheckboxCore } from './components/Checkbox/Checkbox';
+export { FormGroupCore } from './components/FormGroup/FormGroup';
 export { RadioCore } from './components/Radio/Radio';
 export { SelectCore, Options } from './components/Select/Select';
 export { AlertCore } from './components/Alert/Alert';
