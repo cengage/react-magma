@@ -66,9 +66,18 @@ Inverse is an optional boolean prop, that may be passed in when inputs are to be
 ## Error Message
 
 If a search input has an `errorMessage`, the input will be styled to highlight it's error state and the error message will appear below the input field.
+If an error message is present, it will replace the helper text.
 
 ```.jsx
     <Search errorMessage='Please correct this error' onSearch={() => {}} />
+```
+
+## Helper Message
+
+The `helperMessage` appears underneath the search field. It will not appear if an error message is present.
+
+```.jsx
+    <Search helperMessage='Helper text goes here' onSearch={() => {}} />
 ```
 
 ## Search Props
@@ -82,6 +91,14 @@ If a search input has an `errorMessage`, the input will be styled to highlight i
       required: false,
       description:
         'Text of the error message.  If a value is provided, the input will be styled as an error state, and the error message will display.',
+      defaultValue: '',
+    },
+    helperMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text of the helper message.',
       defaultValue: '',
     },
     iconAriaLabel: {
