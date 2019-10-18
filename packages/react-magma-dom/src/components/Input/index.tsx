@@ -188,10 +188,13 @@ const PasswordMaskWrapper = styled.span`
   top: 50%;
 `;
 
-const SpinnerWrapper = styled.span<{ inputSize?: InputSize }>`
+const SpinnerWrapper = styled.span`
+  align-items: center;
+  bottom: 0;
+  display: flex;
   position: absolute;
   right: 10px;
-  top: ${props => (props.inputSize === 'large' ? '20px' : '10px')};
+  top: 0;
 `;
 
 function getIconSize(size) {
@@ -358,8 +361,8 @@ class InputComponent extends React.Component<InputProps> {
                     )}
 
                     {isLoading && (
-                      <SpinnerWrapper inputSize={inputSize}>
-                        <Spinner size={20} />
+                      <SpinnerWrapper>
+                        <Spinner size={19} />
                       </SpinnerWrapper>
                     )}
 
