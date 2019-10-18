@@ -1,6 +1,8 @@
 import React from 'react';
 import { axe } from 'jest-axe';
-import { Card, CardBody, CardHeading } from '.';
+import { Card } from '.';
+import { CardBody } from './CardBody';
+import { CardHeading } from './CardHeading';
 import { magma } from '../../theme/magma';
 import { render } from '@testing-library/react';
 
@@ -48,6 +50,18 @@ describe('Card', () => {
     );
 
     const heading = container.querySelector('h4');
+
+    expect(heading).toBeInTheDocument();
+  });
+
+  it('should render the card heading component with a custom heading level', () => {
+    const { container } = render(
+      <Card>
+        <CardHeading headingLevel={2}>{TEXT}</CardHeading>
+      </Card>
+    );
+
+    const heading = container.querySelector('h2');
 
     expect(heading).toBeInTheDocument();
   });
