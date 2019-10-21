@@ -1,0 +1,121 @@
+---
+title: 'Progress Bars'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { ProgressBar, magma } from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
+
+# Progress Bars
+
+A progress bar can be used to show a user how far along they are in a process.
+
+## Basic Usage
+
+The `percentage` prop is used to display how much of the bar should be filled in. The default value is 0.
+
+```.jsx
+    <ProgressBar percentage={25} />
+```
+
+## Animated
+
+```.jsx
+    <ProgressBar animated percentage={25} />
+```
+
+## Background Color
+
+The `bgColor` prop can be used to set the background color of the progress bar. The default value is `#006298`, or `magma.colors.primary`.
+
+```.jsx
+    <ProgressBar bgColor={magma.colors.danger} percentage={25} />
+```
+
+## Height
+
+The `height` prop can be used to set the height of the progress bar in pixels. The default value is 16.
+
+```.jsx
+    <ProgressBar height={10} percentage={25} />
+```
+
+## Inverse
+
+Inverse is an optional boolean prop, that may be passed in when the component is to be displayed on a dark background. When the `inverse` prop is used,
+the default backgronud color of the progress bar is `#00A9E0` or `magma.colors.foundation03`.
+
+```.jsx
+    <div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
+        <ProgressBar inverse percentage={25} />
+    </div>
+```
+
+## Percentage Visible
+
+If the `percentageVisible` prop is true, the percentage value will display to the right of the progress bar.
+
+```.jsx
+        <ProgressBar percentageVisible percentage={25} />
+```
+
+## Progress Bar Props
+
+<SimplePropsTable
+  props={{
+    animated: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the progress bar with have a shimmer animation',
+      defaultValue: 'false',
+    },
+    bgColor: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Background color for the progress bar',
+      defaultValue: '#006298',
+    },
+    height: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'The height in pixels of the progress bar',
+      defaultValue: '16',
+    },
+    inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    percentage: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'The percentage of which the bar is filled',
+      defaultValue: '0',
+    },
+    percentageVisible: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the percentage value will display to the right of the progress bar',
+      defaultValue: 'false',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout {...props} components={{ ProgressBar, magma }} />
+)
