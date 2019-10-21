@@ -54,10 +54,8 @@ describe('ProgressBar', () => {
     );
   });
 
-  it('should render the progress bar with the percentage displayed', () => {
-    const { getByText } = render(
-      <ProgressBar percentage={50} percentageVisible />
-    );
+  it('should render the progress bar with the percentage label displayed', () => {
+    const { getByText } = render(<ProgressBar percentage={50} labelVisible />);
 
     expect(getByText('50%')).toBeInTheDocument();
   });

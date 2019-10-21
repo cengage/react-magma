@@ -8,8 +8,8 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   bgColor?: string;
   height?: number;
   inverse?: boolean;
+  labelVisible?: boolean;
   percentage?: number;
-  percentageVisible?: boolean;
 }
 
 const Container = styled.div`
@@ -25,6 +25,7 @@ const Track = styled.div<ProgressBarProps>`
       props.inverse ? props.theme.colors.neutral08 : props.theme.colors.a11y01};
   display: flex;
   height: ${props => props.height}px;
+  padding: 1px;
   width: 100%;
 `;
 
@@ -77,11 +78,11 @@ export const ProgressBar: React.FunctionComponent<
 > = React.forwardRef(
   (
     {
+      animated,
       bgColor,
       height,
       inverse,
-      animated,
-      percentageVisible,
+      labelVisible,
       percentage
     }: ProgressBarProps,
     ref: any
@@ -116,7 +117,7 @@ export const ProgressBar: React.FunctionComponent<
                 theme={theme}
               />
             </Track>
-            {percentageVisible && <Percentage>{percentageValue}%</Percentage>}
+            {labelVisible && <Percentage>{percentageValue}%</Percentage>}
           </Container>
         )}
       </ThemeContext.Consumer>
