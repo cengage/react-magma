@@ -14,6 +14,12 @@ import { SimplePropsTable } from '../../components/props-table'
 
 ## Basic Usage
 
+The `Modal` component renders its `children` node in front of a backdrop component. It also disables scrolling of the page content while open,
+properly manages focus; moving to the modal content, and keeping it there until the modal is closed, and adds the appropriate ARIA roles automatically.
+
+The modal will _only_ render if the `open` prop is set to true. For that reason, it is redundant to show the modal using the following anti-pattern: `{flag && <Modal open={flag} />`. Instead,
+simply use `<Modal open={flag} />`
+
 ```.jsx
 
     class Example extends React.Component {
@@ -59,7 +65,7 @@ import { SimplePropsTable } from '../../components/props-table'
 ## Modal Header
 
 The modal header prop is optional. It can accept a node or a string, and will be rendered inside an H1.
-If there is a header passed in, the focus will be placed on the header when the modal opens. If not, the focus wiill be placed on
+If there is a header passed in, the focus will be placed on the header when the modal opens. If not, the focus will be placed on
 the first actionable element. If there are no actionable elements, the focus will just go on the first child, although it is best practice to always include something actionable within the modal.
 
 ```.jsx
@@ -132,6 +138,52 @@ the first actionable element. If there are no actionable elements, the focus wil
                 <p>Consider the usability implications before implementing a modal like this this. A modal should have something actionable inside it.</p>
             </Modal>
           <Button onClick={this.onModalNoFocusShow}>Show Modal with nothing focusable</Button>
+        </>)
+      }
+    }
+```
+
+## On Close Behavior
+
+My default when a modal closes, it will return the focus to the element that had previously had focus before the modal focused.
+
+If that element no longer exists in the dom, that action will fail silently and nothing will become focused. In those cases, you can use the `onClose` prop to put the focus on annother element.
+
+```.jsx
+
+    class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          showModal: false,
+          showButton: true
+        }
+
+        this.buttonRef = React.createRef();
+
+
+        this.onModalShow = this.onModalShow.bind(this);
+        this.onModalClose = this.onModalClose.bind(this);
+      }
+
+      onModalShow() {
+        this.setState({showModal: true, showButton: false})
+      }
+
+      onModalClose() {
+        this.setState({showModal: false});
+        this.buttonRef.current.focus();
+      }
+
+      render() {
+        const { showModal, showButton } = this.state;
+
+        return (<>
+            <Modal header="Modal Title" onClose={this.onModalClose} open={showModal}>
+                <p>This is a modal, doing modal things.</p>
+            </Modal>
+          {showButton && <Button onClick={this.onModalShow}>Show Modal</Button>}
+          <Button color="secondary" ref={this.buttonRef}>Another Button</Button>
         </>)
       }
     }
