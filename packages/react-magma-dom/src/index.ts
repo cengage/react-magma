@@ -31,6 +31,7 @@ export { Select } from './components/Select';
 export { AsyncSelect } from './components/AsyncSelect';
 export { CreatableSelect } from './components/CreatableSelect';
 export { AsyncCreatableSelect } from './components/AsyncCreatableSelect';
+export { Search } from './components/Search';
 export { SkipLink } from './components/SkipLink';
 export { SkipLinkContent } from './components/SkipLinkContent';
 export { Spinner } from './components/Spinner';

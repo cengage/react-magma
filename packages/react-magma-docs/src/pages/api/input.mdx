@@ -133,7 +133,7 @@ Functionality can be added to the icon by using the `onIconClick` and `onIconKey
 The `iconPosition` position prop is optional and takes the values `left` and `right`, with `left` being the default for non-clickable icons.
 
 ```.jsx
-    <div>
+    <>
       <Input
         labelText='Input with Icon on Left'
         icon={<EnvelopeOIcon />}
@@ -149,7 +149,7 @@ The `iconPosition` position prop is optional and takes the values `left` and `ri
         iconAriaLabel="Calendar"
         onIconClick={()=>{alert('Icon clicked')}}
         icon={<CalendarIcon />} />
-    </div>
+    </>
 ```
 
 ## Input Size
@@ -157,7 +157,7 @@ The `iconPosition` position prop is optional and takes the values `left` and `ri
 The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default. Input size does not affect multiline textareas.
 
 ```.jsx
-    <div>
+    <>
       <Input
         iconPosition='right'
         labelText='Medium Input'
@@ -169,19 +169,30 @@ The `inputSize` prop can be used to control the input size. Options are `medium`
         icon={<Search2Icon />} />
       <Input
           errorMessage='Error'
-          labelText='Medium Input with Error' />
+          labelText='Medium Input With Error' />
       <Input
           errorMessage='Error'
           inputSize='large'
-          labelText='Large Input with Error' />
+          labelText='Large Input With Error' />
       <Input
           onHelpLinkClick={()=> {alert('Help link clicked!')}}
-          labelText='Medium Input with Help Link' />
+          labelText='Medium Input With Help Link' />
       <Input
           onHelpLinkClick={()=> {alert('Help link clicked!')}}
           inputSize='large'
-          labelText='Large Input with Help Link' />
-    </div>
+          labelText='Large Input With Help Link' />
+    </>
+```
+
+## IsLoading
+
+The `isLoading` boolean prop will determine if a loading animation is shown. The loading animation will replace any icon displayed on the right.
+
+```.jsx
+    <>
+      <Input labelText='Loading' isLoading />
+      <Input labelText='Loading Large' inputSize='large' isLoading />
+    </>
 ```
 
 ## Inverse
@@ -237,7 +248,7 @@ The optional `multiline` boolean prop will cause the component to render a texta
         placeholder='Type in here' />
 ```
 
-## Change Events
+## Change events
 
 ```.jsx
   class ChangedInput extends React.Component {
@@ -266,7 +277,7 @@ The optional `multiline` boolean prop will cause the component to render a texta
   }
 ```
 
-## Focus Events
+## Focus events
 
 ```.jsx
   class FocusedInput extends React.Component {
@@ -302,7 +313,7 @@ The optional `multiline` boolean prop will cause the component to render a texta
   }
 ```
 
-## Forward Ref
+## Forward ref
 
 Using React's `forwardRef` feature you can gain access to the reference of the internal input.
 
@@ -329,7 +340,7 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
     }
 ```
 
-## Custom Styles
+## Custom styles
 
 Custom styles can be passed into the Input component. The `containerStyle` property will apply to the container.
 Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
@@ -370,7 +381,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 </div>
 ```
 
-## Input Props
+## Input props
 
 <SimplePropsTable
   props={{
@@ -395,7 +406,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       },
       required: false,
       description:
-        'Text of the error message.  If a value is provided, the error message will be styled as an error state.',
+        'Text of the error message.  If a value is provided, the input will be styled as an error state and the error message will display.',
       defaultValue: '',
     },
     helperMessage: {
@@ -583,6 +594,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
           'InputType.email',
           'InputType.number',
           'InputType.password',
+          'InputType.search',
           'InputType.text',
         ],
       },
