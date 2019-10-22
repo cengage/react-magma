@@ -25,6 +25,37 @@ describe('Form Group', () => {
     expect(label).toBeInTheDocument();
   });
 
+  it('should auto assign an id if none is passed in', () => {
+    const labelText = 'Colors';
+    const { getByText } = render(<FormGroup labelText={labelText} />);
+
+    expect(getByText('Colors').id).not.toBeNull();
+  });
+
+  it('should persist id between renders', () => {
+    const labelText = 'Colors';
+    const { rerender, getByText } = render(<FormGroup labelText={labelText} />);
+
+    const label = getByText('Colors');
+    const initialId = label.id;
+
+    rerender(<FormGroup labelText={labelText} />);
+
+    expect(label.id).toEqual(initialId);
+  });
+
+  it('should update the id on rerender with change to prop id', () => {
+    const labelText = 'Colors';
+    const { rerender, getByText } = render(<FormGroup labelText={labelText} />);
+
+    const label = getByText('Colors');
+    const initialId = label.id;
+
+    rerender(<FormGroup labelText={labelText} id="differentId" />);
+
+    expect(label.id).not.toEqual(initialId);
+  });
+
   it('should render children under FormGroup', () => {
     const { container } = render(
       <FormGroup>
