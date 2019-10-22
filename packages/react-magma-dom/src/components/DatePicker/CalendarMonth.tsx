@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { Button, ButtonColor, ButtonSize, ButtonVariant } from '../Button';
+import {
+  Button,
+  ButtonColor,
+  ButtonSize,
+  ButtonType,
+  ButtonVariant
+} from '../Button';
 import { QuestionCircleOIcon } from '../Icon/types/QuestionCircleOIcon';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { CalendarContext } from './CalendarContext';
@@ -211,6 +217,7 @@ export class CalendarMonth extends React.Component<
                         icon={<QuestionCircleOIcon />}
                         onClick={context.openHelperInformation}
                         onFocus={context.onHelperFocus}
+                        type={ButtonType.button}
                         variant={ButtonVariant.link}
                       />
                       <HelperInformation
@@ -225,6 +232,7 @@ export class CalendarMonth extends React.Component<
                         icon={<CrossIcon />}
                         onClick={this.props.handleCloseButtonClick}
                         size={ButtonSize.small}
+                        type={ButtonType.button}
                         variant={ButtonVariant.link}
                       />
                     </CloseButton>
