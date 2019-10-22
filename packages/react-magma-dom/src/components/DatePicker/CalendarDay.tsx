@@ -165,6 +165,7 @@ export class CalendarDay extends React.Component<
                       }}
                       ref={this.dayRef}
                       tabIndex={sameDateAsFocusedDate ? 0 : -1}
+                      type="button"
                       theme={theme}
                     >
                       {format(day, 'D')}
