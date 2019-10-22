@@ -389,6 +389,7 @@ class InputComponent extends React.Component<InputProps> {
                                 : ButtonSize.medium
                             }
                             style={{ margin: '0 0 0 7px' }}
+                            type={ButtonType.button}
                             title={HELP_LINK_TEXT}
                             variant={ButtonVariant.link}
                           />
@@ -405,6 +406,7 @@ class InputComponent extends React.Component<InputProps> {
                         shape={ButtonShape.fill}
                         size={ButtonSize.small}
                         theme={theme}
+                        type={ButtonType.button}
                         variant={ButtonVariant.link}
                       />
                     )}

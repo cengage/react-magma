@@ -58,6 +58,7 @@ export const magma = {
     neutral06: '#DFDFDF',
     neutral07: '#F7F7F7',
     neutral08: '#FFFFFF', // white
+    a11y01: '#8f8f8f', // lightest gray that meets 3:1 contrast ratio
     disabledText: 'rgba(114, 114, 114, 0.6)',
     disabledInverseText: 'rgba(255, 255, 255, 0.25)',
     toggleBoxShadow:
