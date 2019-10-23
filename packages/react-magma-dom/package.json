@@ -1,6 +1,6 @@
 {
   "name": "react-magma-dom",
-  "version": "0.1.0-beta.60",
+  "version": "0.1.0-beta.61",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/react-magma-dom.esm.js",
@@ -41,7 +41,7 @@
     "date-fns": "^1.30.1",
     "focus-visible": "^4.1.5",
     "polished": "^3.2.0",
-    "react-magma-core": "0.1.0-beta.60",
+    "react-magma-core": "0.1.0-beta.61",
     "react-select": "2.4.4",
     "uuid": "^3.3.2"
   },
