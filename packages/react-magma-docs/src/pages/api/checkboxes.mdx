@@ -3,7 +3,7 @@ title: 'Checkboxes'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { Checkbox, magma } from 'react-magma-dom'
+import { Checkbox, FormGroup, magma } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
@@ -14,25 +14,27 @@ import { SimplePropsTable } from '../../components/props-table'
 
 ## Basic Usage
 
-Checkboxes are form elements used to select one or multiple items from a list. The label/checkbox association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
+Checkboxes are form elements used to select one or multiple items from a list.
+
+Related checkboxes should be grouped within the `FormGroup` control.
+
+The label/checkbox association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
 
 See also: <Link to="/api/radio">Radio Buttons</Link>, <Link to="/api/toggle">Toggle Switches</Link>, and the <Link to="/design/selection-controls">Design Guidelines</Link> for selection controls in general.
 
 ```.jsx
-  <div>
+  <FormGroup labelText="Choose One or More">
     <Checkbox
         checked
-        id='checkbox0'
         labelText='Checkbox label' />
 
     <Checkbox
-        id='checkbox1'
+        id='customId'
         labelText='Checkbox label' />
 
     <Checkbox
-        id='checkbox2'
         labelText='Checkbox label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines' />
-    </div>
+    </FormGroup>
 ```
 
 ## Colors
@@ -40,27 +42,23 @@ See also: <Link to="/api/radio">Radio Buttons</Link>, <Link to="/api/toggle">Tog
 By default, the checkboxes use the theme's primary color. But any other color may be passed in.
 
 ```.jsx
-  <div>
+  <FormGroup labelText="Choose One or More Colors">
     <Checkbox
         checked
-        id='colorCheckbox'
         labelText='Default color' />
     <Checkbox
         checked
         color={magma.colors.success01}
-        id='primaryColorCheckbox'
         labelText='Success color' />
     <Checkbox
         checked
         color={magma.colors.danger}
-        id='dangerColorCheckbox'
         labelText='Danger color' />
     <Checkbox
         checked
         color={magma.colors.pop02}
-        id='popColorCheckbox'
         labelText='Pop color' />
-    </div>
+    </FormGroup>
 ```
 
 ## Disabled
@@ -68,12 +66,9 @@ By default, the checkboxes use the theme's primary color. But any other color ma
 Adding the optional boolean prop `disabled` will apply disabled styles and add the disabled attribute to the underlying HTML element.
 
 ```.jsx
-  <div>
     <Checkbox
         disabled
-        id='disabledCheckbox'
         labelText='Disabled checkbox' />
-    </div>
 ```
 
 ## Indeterminate
@@ -81,17 +76,15 @@ Adding the optional boolean prop `disabled` will apply disabled styles and add t
 In addition to being checked or unchecked, checkboxes also support an indeterminate or mixed state, but using the optional `indeterminate` boolean prop.
 
 ```.jsx
-  <div>
+  <>
     <Checkbox
-        id='indeterminateCheckbox'
         indeterminate
         labelText='Indeterminate checkbox' />
     <Checkbox
         color={magma.colors.success01}
-        id='indeterminateSuccessCheckbox'
         indeterminate
         labelText='Indeterminate checkbox' />
-    </div>
+    </>
 ```
 
 ## Inverse
@@ -99,41 +92,35 @@ In addition to being checked or unchecked, checkboxes also support an indetermin
 Inverse is an optional boolean prop, that may be passed in when the component is to be displayed on a dark background.
 
 ```.jsx
-  <div style={{ background : '#00263E', padding: '10px' }}>
+  <FormGroup containerStyle={{ background : '#00263E',color: '#FFFFFF', padding: '10px' }} labelText="Choose Inverse Options">
     <Checkbox
         checked
-        id='inverseCheckbox'
         inverse
       labelText='Inverse' />
     <Checkbox
         checked
         color={magma.colors.success01}
-        id='successInverseCheckbox'
         inverse
         labelText='Success inverse' />
     <Checkbox
         checked
         color={magma.colors.danger}
-        id='dangerInverseCheckbox'
         inverse
         labelText='Danger inverse' />
     <Checkbox
         checked
         color={magma.colors.pop02}
-        id='popInverseCheckbox'
         inverse
         labelText='Pop inverse' />
       <Checkbox
           disabled
-          id='disabledInverseCheckbox'
           inverse
           labelText='Disabled inverse' />
       <Checkbox
-          id='indeterminateInverseCheckbox'
           indeterminate
           inverse
           labelText='Indeterminate checkbox' />
-    </div>
+    </FormGroup>
 ```
 
 ## Visually Hidden Label
@@ -141,12 +128,9 @@ Inverse is an optional boolean prop, that may be passed in when the component is
 Adding the `textVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
 
 ```.jsx
-  <div>
     <Checkbox
-        id='visuallyHiddenCheckbox'
         labelText='Disabled checkbox'
         textVisuallyHidden />
-    </div>
 ```
 
 ## Custom Styles
@@ -155,7 +139,7 @@ Custom styles can be passed into the Checkbox component. The `containerStyle` pr
 Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
 
 ```.jsx
-  <div>
+  <>
     <Checkbox
         checked
         containerStyle={{ 'border': '1px dotted purple'}}
@@ -166,7 +150,7 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
     <Checkbox
         checked
         labelText='No custom styles' />
-  </div>
+  </>
 ```
 
 ## Testing
@@ -309,5 +293,5 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ Checkbox, magma }} />
+  <ScopeableLayout {...props} components={{ Checkbox, FormGroup, magma }} />
 )
