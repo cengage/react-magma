@@ -94,7 +94,7 @@ export const ProgressBar: React.FunctionComponent<
         {theme => (
           <Container>
             <Track
-              height={height ? height : 16}
+              height={height ? height : 15}
               inverse={inverse}
               ref={ref}
               theme={theme}

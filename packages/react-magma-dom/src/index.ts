@@ -26,6 +26,7 @@ export {
 } from './components/Input';
 export { Label } from './components/Label';
 export { LinkButton } from './components/LinkButton';
+export { LoadingIndicator } from './components/LoadingIndicator';
 export { RadioGroup } from './components/RadioGroup';
 export { Radio } from './components/Radio';
 export { Select } from './components/Select';
