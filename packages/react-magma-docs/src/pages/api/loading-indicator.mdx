@@ -14,9 +14,45 @@ import { SimplePropsTable } from '../../components/props-table'
     <LoadingIndicator />
 ```
 
+## Custom Messages
+
+```.jsx
+    <LoadingIndicator
+      message1="Custom message"
+      message2="An additional custom message"
+      message3="Third and final custom message" />
+```
+
 ## Loading Indicator Props
 
-<SimplePropsTable props={{}} />
+<SimplePropsTable
+  props={{
+    message1: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Message displayed for the first five seconds',
+      defaultValue: 'Loading...',
+    },
+    message2: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Message displayed between 5 and 15 seconds',
+      defaultValue: 'Thank you for your patience. Still loading...',
+    },
+    message3: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Message displayed after 15 seconds',
+      defaultValue: 'Sorry for the delay. This is taking longer than expected.',
+    },
+  }}
+/>
 
 export default props => (
   <ScopeableLayout {...props} components={{ LoadingIndicator }} />

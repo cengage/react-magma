@@ -3,7 +3,7 @@ title: 'Progress Bars'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { ProgressBar, magma } from 'react-magma-dom'
+import { ProgressBar, Button } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 
 # Progress Bars
@@ -12,10 +12,51 @@ A progress bar can be used to show a user how far along they are in a process.
 
 ## Basic Usage
 
-The `percentage` prop is used to display how much of the bar should be filled in. The default value is 0.
-
 ```.jsx
     <ProgressBar percentage={25} />
+```
+
+## Percentage
+
+The `percentage` prop is used to display how much of the bar should be filled in. The default value is 0. This value can be adjusted dynamically.
+
+```.jsx
+
+    class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          percentage: 0
+        }
+        this.increasePercentage = this.increasePercentage.bind(this);
+        this.decreasePercentage = this.decreasePercentage.bind(this);
+
+      }
+
+      increasePercentage() {
+        this.setState({percentage: this.state.percentage + 10})
+      }
+
+       decreasePercentage() {
+        this.setState({percentage: this.state.percentage - 10})
+      }
+
+      render() {
+        const { percentage } = this.state;
+
+
+        return (
+          <>
+            <ProgressBar percentage={percentage} />
+            <p/>
+            <p>
+              <Button disabled={percentage >= 100} onClick={this.increasePercentage}>Increase</Button>
+              <Button disabled={percentage <= 0} onClick={this.decreasePercentage}>Decrease</Button>
+            </p>
+          </>
+        )
+      }
+    }
 ```
 
 ## Animated
@@ -131,5 +172,5 @@ If the `labelVisible` prop is true, the percentage value will display to the rig
 />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ ProgressBar, magma }} />
+  <ScopeableLayout {...props} components={{ ProgressBar, Button }} />
 )
