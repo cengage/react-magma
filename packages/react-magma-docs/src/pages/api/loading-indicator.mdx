@@ -3,10 +3,13 @@ title: 'Loading Indicators'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { LoadingIndicator } from 'react-magma-dom'
+import { LoadingIndicator, Announce, Button } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
+import { Link } from 'gatsby'
 
 # Loading Indicators
+
+When content is loading, the `LoadingIndicator` component can be used to communicate to users that the wait is expected and everything is normal.
 
 ## Basic Usage
 
@@ -16,11 +19,55 @@ import { SimplePropsTable } from '../../components/props-table'
 
 ## Custom Messages
 
+The `LoadingIndicator`, supports three levels of messages. One displays immediately, the second one appears after five seconds, and the third appears after 15 seconds.
+These messages can be customized by using the `message1`, `message2` and `message3` props.
+
 ```.jsx
     <LoadingIndicator
       message1="Custom message"
       message2="An additional custom message"
       message3="Third and final custom message" />
+```
+
+## Accessibility Considerations
+
+Loading Indicators are indended to alert users to the fact that wait time is expected, so when a `LoadingIndixator` component is added to a UI, it is important that screen readers read the new content.
+One way to do this is to the use the <Link to="/api/announce">Announce component</Link>, which employs the `aria-live` attribute. Be sure to place
+the conditional logic to display the `LoadingIndicator` _inside_ the `Announce` component.
+
+```.jsx
+    class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          showLoader: false
+        }
+
+        this.onLoaderShow = this.onLoaderShow.bind(this);
+        this.onLoaderClose = this.onLoaderClose.bind(this);
+      }
+
+      onLoaderShow() {
+        this.setState({showLoader: true})
+      }
+
+      onLoaderClose() {
+        this.setState({showLoader: false})
+      }
+
+      render() {
+        const { showLoader } = this.state;
+
+        return (<>
+          <p>
+            <Button onClick={this.onLoaderShow}>Show Loading Indicator</Button>
+          </p>
+          <Announce>
+            {showLoader && <LoadingIndicator />}
+          </Announce>
+        </>)
+      }
+    }
 ```
 
 ## Loading Indicator Props
@@ -55,5 +102,8 @@ import { SimplePropsTable } from '../../components/props-table'
 />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ LoadingIndicator }} />
+  <ScopeableLayout
+    {...props}
+    components={{ LoadingIndicator, Announce, Button }}
+  />
 )

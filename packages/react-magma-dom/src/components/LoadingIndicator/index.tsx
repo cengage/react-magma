@@ -67,18 +67,18 @@ class LoadingIndicatorComponent extends React.Component<
     const { messageLevel } = this.state;
 
     return (
-      <StyledLoadingIndicator ref={ref}>
+      <StyledLoadingIndicator aria-busy="true" ref={ref}>
         <Spinner size={50} />
         <MessageContainer>
-          <Message hide={messageLevel !== 1}>
+          <Message aria-hidden={messageLevel !== 1} hide={messageLevel !== 1}>
             {message1 ? message1 : 'Loading...'}
           </Message>
-          <Message hide={messageLevel !== 2}>
+          <Message aria-hidden={messageLevel !== 2} hide={messageLevel !== 2}>
             {message2
               ? message2
               : 'Thank you for your patience. Still loading...'}
           </Message>
-          <Message hide={messageLevel !== 3}>
+          <Message aria-hidden={messageLevel !== 3} hide={messageLevel !== 3}>
             {message3
               ? message3
               : 'Sorry for the delay. This is taking longer than expected.'}

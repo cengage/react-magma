@@ -1,9 +1,18 @@
 import React from 'react';
-import { axe } from 'jest-axe';
 import { LoadingIndicator } from '.';
 import { render } from '@testing-library/react';
 
 describe('Loading Indicator', () => {
+  jest.setTimeout(20000);
+
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
   it('should render the element', () => {
     const { container } = render(<LoadingIndicator />);
 
@@ -39,27 +48,27 @@ describe('Loading Indicator', () => {
     );
 
     expect(getByText(text1)).toHaveStyleRule('opacity', '1');
-    expect(getByText(text2)).toHaveStyleRule('opacity', '0');
-    expect(getByText(text3)).toHaveStyleRule('opacity', '0');
+    expect(getByText(text1)).toHaveAttribute('aria-hidden', 'false');
 
+    expect(getByText(text2)).toHaveStyleRule('opacity', '0');
+    expect(getByText(text2)).toHaveAttribute('aria-hidden', 'true');
+
+    expect(getByText(text3)).toHaveStyleRule('opacity', '0');
+    expect(getByText(text3)).toHaveAttribute('aria-hidden', 'true');
+
+    jest.runAllTimers();
     setTimeout(() => {
       expect(getByText(text1)).toHaveStyleRule('opacity', '0');
-      expect(getByText(text2)).toHaveStyleRule('opacity', '1');
-      expect(getByText(text3)).toHaveStyleRule('opacity', '0');
+      expect(getByText(text1)).toHaveAttribute('aria-hidden', 'true');
     }, 6000);
 
+    jest.runAllTimers();
     setTimeout(() => {
       expect(getByText(text1)).toHaveStyleRule('opacity', '0');
-      expect(getByText(text2)).toHaveStyleRule('opacity', '1');
-      expect(getByText(text3)).toHaveStyleRule('opacity', '0');
+      expect(getByText(text1)).toHaveAttribute('aria-hidden', 'true');
+
+      expect(getByText(text3)).toHaveStyleRule('opacity', '1');
+      expect(getByText(text3)).toHaveAttribute('aria-hidden', 'false');
     }, 16000);
-  });
-
-  it('Does not violate accessibility standards', () => {
-    const { container } = render(<LoadingIndicator />);
-
-    return axe(container.innerHTML).then(result => {
-      return expect(result).toHaveNoViolations();
-    });
   });
 });
