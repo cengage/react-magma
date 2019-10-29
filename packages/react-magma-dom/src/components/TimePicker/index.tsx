@@ -2,6 +2,8 @@ import * as React from 'react';
 import { TimePickerCore } from 'react-magma-core';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { AmPmToggle } from './AmPmToggle';
+
 import { Input } from '../Input';
 import { Clock2Icon } from '../Icon/types/Clock2Icon';
 
@@ -30,7 +32,7 @@ const TimePickerContainer = styled.div<{ inverse?: boolean }>`
 
 const InputsContainer = styled.div`
   bottom: 46px;
-  left: 29px;
+  left: 31px;
   position: absolute;
 `;
 
@@ -53,20 +55,6 @@ const StyledNumInput = styled.input`
   }
 
   -moz-appearance: textfield;
-
-  &:focus {
-    outline: 0;
-    background: ${props => props.theme.colors.foundation01};
-    color: ${props => props.theme.colors.neutral08};
-  }
-`;
-
-const AmPmToggle = styled.button`
-  background: none;
-  border: 0;
-  border-radius: 3px;
-  margin-left: 3px;
-  padding: 0 3px;
 
   &:focus {
     outline: 0;
@@ -134,7 +122,7 @@ function renderTimePicker(props) {
                     theme={theme}
                     type="number"
                   />
-                  <AmPmToggle theme={theme}>AM</AmPmToggle>
+                  <AmPmToggle />
                 </InputsContainer>
               </TimePickerContainer>
             );
