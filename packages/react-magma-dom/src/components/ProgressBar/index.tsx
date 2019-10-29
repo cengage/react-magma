@@ -66,10 +66,10 @@ const Bar = styled.div<ProgressBarProps>`
     css`
       background-image: linear-gradient(
         to right,
-        ${props.bgColor} 0%,
+        ${buildProgressBarBackground(props)} 0%,
         rgba(255, 255, 255, 0.5) 20%,
-        ${props.bgColor} 40%,
-        ${props.bgColor} 100%
+        ${buildProgressBarBackground(props)} 40%,
+        ${buildProgressBarBackground(props)} 100%
       );
       background-repeat: no-repeat;
       background-size: 800px 104px;

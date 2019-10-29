@@ -38,6 +38,14 @@ describe('Loading Indicator', () => {
     expect(getByText(text3)).toHaveStyleRule('opacity', '0');
   });
 
+  it('should render the element with different messages for progress bar', () => {
+    const { getByText } = render(<LoadingIndicator type="progressbar" />);
+
+    expect(getByText(/Please be patient/)).toBeInTheDocument();
+    expect(getByText(/Thank you for your patience/)).toBeInTheDocument();
+    expect(getByText(/Thank you for waiting/)).toBeInTheDocument();
+  });
+
   it('should change the message after 5 and 15 seconds', () => {
     const text1 = 'test 1';
     const text2 = 'test 2';
@@ -71,4 +79,37 @@ describe('Loading Indicator', () => {
       expect(getByText(text3)).toHaveAttribute('aria-hidden', 'false');
     }, 16000);
   });
+
+  // it('should change the message after 10 and 30 seconds for progress bars', () => {
+  //   const { getByText } = render(<LoadingIndicator type="progressbar" />);
+
+  //   expect(getByText(/Please be patient/)).toHaveAttribute(
+  //     'aria-hidden',
+  //     'false'
+  //   );
+  //   expect(getByText(/Thank you for your patience/)).toHaveAttribute(
+  //     'aria-hidden',
+  //     'true'
+  //   );
+  //   expect(getByText(/Thank you for waiting/)).toHaveAttribute(
+  //     'aria-hidden',
+  //     'true'
+  //   );
+
+  //   jest.runAllTimers();
+  //   setTimeout(() => {
+  //     expect(getByText(/Please be patient/)).toHaveAttribute(
+  //       'aria-hidden',
+  //       'true'
+  //     );
+  //   }, 11000);
+
+  //   jest.runAllTimers();
+  //   setTimeout(() => {
+  //     expect(getByText(/Please be patient/)).toHaveAttribute(
+  //       'aria-hidden',
+  //       'true'
+  //     );
+  //   }, 16000);
+  // });
 });
