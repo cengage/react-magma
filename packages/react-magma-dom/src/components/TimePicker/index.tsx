@@ -35,6 +35,8 @@ const InputsContainer = styled.div`
 `;
 
 const Divider = styled.span`
+  display: inline-block;
+  margin: 0 1px;
   position: relative;
   top: -1px;
 `;

@@ -23,17 +23,30 @@ The `CardBody` component can be placed inside, and will give the content padding
 
 ## Heading
 
-Any content can be included in a card. To maintain a consistent heading style, the `CardHeading` component may be used, which will render as an `h4`.
+Any content can be included in a card. To maintain a consistent heading style, the `CardHeading` component may be used.
+By default, the heading will render as an `h4`, however you may use the `headingLevel` prop to change that to a different level heading.
+The heading will always render with the same style, no matter what heading level is use.
 
 ```.jsx
+      <>
         <Card>
-            <CardHeading>
-                Card heading
-            </CardHeading>
             <CardBody>
+                <CardHeading>
+                    Card Heading Level 4 (default)
+                </CardHeading>
                 Some content
             </CardBody>
         </Card>
+        <p />
+        <Card>
+            <CardBody>
+              <CardHeading headingLevel={5}>
+                  Card Heading Level 5
+              </CardHeading>
+                Some content
+            </CardBody>
+        </Card>
+      </>
 ```
 
 ## Drop Shadow
@@ -55,20 +68,20 @@ By default, content aligns to the left. However, the `align` prop can be specifi
 ```.jsx
     <>
         <Card align='right'>
-            <CardHeading>
-                Card heading
-            </CardHeading>
             <CardBody>
-                Some content
+              <CardHeading>
+                  Card Heading
+              </CardHeading>
+              Some content
             </CardBody>
         </Card>
         <p></p>
         <Card align='center'>
-            <CardHeading>
-                Card heading
-            </CardHeading>
             <CardBody>
-                Some content
+              <CardHeading>
+                  Card Heading
+              </CardHeading>
+              Some content
             </CardBody>
         </Card>
     </>
@@ -82,20 +95,20 @@ with a left border of the appropriate color.
 ```.jsx
     <>
         <Card calloutType='success'>
-            <CardHeading>
-                Card heading
-            </CardHeading>
             <CardBody>
-                Some content
+              <CardHeading>
+                  Card Heading
+              </CardHeading>
+              Some content
             </CardBody>
         </Card>
         <p></p>
         <Card calloutType='danger'>
-            <CardHeading>
-                Card heading
-            </CardHeading>
             <CardBody>
-                Some content
+              <CardHeading>
+                Card Heading
+              </CardHeading>
+              Some content
             </CardBody>
         </Card>
     </>
@@ -142,14 +155,16 @@ If the background color is dark, the `inverse` boolean prop can be used to rende
 
 ```.jsx
         <Card background={magma.colors.success01} inverse>
-            <CardHeading inverse>
-                Card heading
-            </CardHeading>
             <CardBody>
+              <CardHeading inverse>
+                  Card Heading
+              </CardHeading>
                 Some content
             </CardBody>
         </Card>
 ```
+
+## Card Props
 
 <SimplePropsTable
   props={{
@@ -219,6 +234,38 @@ If the background color is dark, the `inverse` boolean prop can be used to rende
       required: false,
       description: 'Width of the component, set by CSS.',
       defaultValue: 'auto',
+    },
+  }}
+/>
+
+## Card Heading Props
+
+<SimplePropsTable
+  props={{
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
+    },
+    inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    headingLevel: {
+      type: {
+        name: 'number (1-6)',
+      },
+      required: false,
+      description:
+        'Number to indicate which level heading will render (e.g. h1, h2 etc.)',
+      defaultValue: '4',
     },
   }}
 />

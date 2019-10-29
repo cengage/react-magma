@@ -5,7 +5,7 @@ order: 1
 
 import './design-guidelines-styles.css'
 
-# Selection controls
+# Selection Controls
 Selection controls allow the user to select options.
 
 <figure>
@@ -17,12 +17,13 @@ Selection controls allow the user to select options.
   </figcaption>
 </figure>
 
-## 1. Usage
+## Usage
 Selection controls allow users to complete tasks that involve making choices such as selecting options, or switching settings on or off. Selection controls are found on screens that ask users to make decisions or declare preferences such as settings or dialogs.
 
+<span class="horizontal-spacer"></span>
 <hr class="article-divider" />
 
-## 2. Principles
+## Principles
 ### Familiar
 Selection controls have been in user interfaces for a long time and should be used as expected.
 ### Scannable
@@ -30,16 +31,16 @@ It should be visible at a glance if a selection control has been selected, and s
 ### Efficient
 Selection controls make it easy to compare available options.
 
+<span class="horizontal-spacer"></span>
 <hr class="article-divider" />
 
-## 3. Types
-Selection controls are radio buttons, checkboxes, and switches.
+## Checkboxes
 
-### When to use checkboxes
+### When to Use Checkboxes
 Use checkboxes to:
 * Select one or multiple items from a list
 * Present a list containing sub-selections
-* Turn an option on or off in desktop environment
+* Turn an option/setting on or off
 
 <figure>
   <div class="image-container">
@@ -50,54 +51,7 @@ Use checkboxes to:
   </figcaption>
 </figure>
 
-### When to use radio buttons
-Use radio buttons to select a single option from a list.  Radio buttons should be used instead of checkboxes if only one item can be selected from a list.
-
-<figure>
-  <div class="image-container">
-    <img src="../../images/selection-controls/Radio-buttons-example.png" alt="" />
-  </div>
-  <figcaption>
-    <p>Radio buttons</p>
-  </figcaption>
-</figure>
-
-If available options can be collapsed, consider using a dropdown menu instead, as it uses less space.
-
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
-      <figure>
-        <img src="../../images/selection-controls/Radio-select-only-one.png" alt="" />
-        <figcaption>
-          <p class="title title-correct">Correct</p>
-          <p>Use radio buttons when only one item can be selected from a list.</p>
-        </figcaption>
-      </figure>
-    </div>
-    <div class="col col-2">
-      <figure>
-        <img src="../../images/selection-controls/Radio-select-only-one-incorrect.png" alt="" />
-        <figcaption>
-          <p class="title title-incorrect">Incorrect</p>
-          <p>Don’t use checkboxes when only one item can be selected from a list. Use radio buttons instead.</p>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-</div>
-
-### When to use switches
-IN PROGRESS...
-
-<hr class="article-divider" />
-
-## 4. Checkboxes
-
-### Usage
-Checkboxes allow the user to select one or more items from a set. Checkboxes can be used to turn an option on or off.
-
-#### Parent and child checkboxes
+### Parent and Child Checkboxes
 Checkboxes can have a parent-child relationship with other checkboxes.
 * When the parent checkbox is checked, all child checkboxes are checked
 * If a parent checkbox is unchecked, all child checkboxes are unchecked
@@ -125,7 +79,7 @@ Checkboxes can be selected, unselected, or indeterminate. Checkboxes have enable
 </figure>
 
 ### Colors
-#### Alternate Colors
+
 The default color used for checked checkboxes is the "primary" color in the Magma palette, but sometimes a special scenario or specific UI can benefit from using one of the other colors from the palette.  Colors like Success Green, Danger Red, or just one of the "Pop" colors, when used responsibly and consistently, can help add context to your checkbox or just add some visual interest.
 
 <figure>
@@ -137,7 +91,8 @@ The default color used for checked checkboxes is the "primary" color in the Magm
   </figcaption>
 </figure>
 
-#### Inverse checkboxes
+### Inverse Checkboxes
+
 Sometimes you have to put those checkboxes on a dark background, and that's when you'll want to use the inverse version.  You can also still use alternate colors like Success Green and Danger Red if you wish.
 
 <figure>
@@ -172,14 +127,44 @@ Sometimes you have to put those checkboxes on a dark background, and that's when
   </div>
 </div>
 
-
 <hr class="article-divider" />
 
-## 5. Radio Buttons
+## Radio Buttons
 
-### Usage
+### When to Use Radio Buttons
+Use radio buttons to select a single option from a list.  Radio buttons should be used instead of checkboxes if only one item can be selected from a list.
 
-Radio buttons allow the user to select one option from a set. Use radio buttons when the user needs to see all available options. If available options can be collapsed, consider using a dropdown menu because it uses less space.
+<figure>
+  <div class="image-container">
+    <img src="../../images/selection-controls/Radio-buttons-example.png" alt="" />
+  </div>
+  <figcaption>
+    <p>Radio buttons</p>
+  </figcaption>
+</figure>
+
+<div class="two-col">
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img src="../../images/selection-controls/Radio-select-only-one.png" alt="" />
+        <figcaption>
+          <p class="title title-correct">Correct</p>
+          <p>Use radio buttons when only one item can be selected from a list.</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="col col-2">
+      <figure>
+        <img src="../../images/selection-controls/Radio-select-only-one-incorrect.png" alt="" />
+        <figcaption>
+          <p class="title title-incorrect">Incorrect</p>
+          <p>Don’t use checkboxes when only one item can be selected from a list. Use radio buttons instead.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
 
 <figure>
   <div class="image-container">
@@ -203,7 +188,7 @@ Radio buttons can be off or on. Radio buttons have enabled, focused and pressed 
 </figure>
 
 ### Colors
-#### Alternate Colors
+
 The default color used for radio buttons is the "primary" color in the Magma palette, but sometimes a special scenario or specific UI can benefit from using one of the other colors from the palette.  Colors like Success Green, Danger Red, or just one of the "Pop" colors, when used responsibly and consistently, can help add context to your radio button or just add some visual interest.
 
 <figure>
@@ -215,7 +200,8 @@ The default color used for radio buttons is the "primary" color in the Magma pal
   </figcaption>
 </figure>
 
-#### Inverse checkboxes
+### Inverse Radio Buttons
+
 Sometimes you have to put those radio buttons on a dark background, and that's when you'll want to use the inverse version.  You can also still use alternate colors like Success Green and Danger Red if you wish.
 
 <figure>
@@ -229,6 +215,31 @@ Sometimes you have to put those radio buttons on a dark background, and that's w
 
 <hr class="article-divider" />
 
-## 6. Switches
+## Toggle Switches
 
-IN PROGRESS...
+### When to Use Toggle Switches
+Use toggle switches to toggle the state of a single setting on or off.  You may use toggle switches within a web application, but keep in mind that they are most common within mobile appliations.
+
+<figure>
+  <div class="image-container">
+    <img src="../../images/selection-controls/Toggle-switch-example.png" alt="" />
+  </div>
+  <figcaption>
+    <p>Toggle switches</p>
+  </figcaption>
+</figure>
+
+### States
+The state of a toggle switch is changed by tapping or clicking on it, and the handle slides over to the other side of the track.
+
+### Text Label
+The setting that the switch controls is made clear by the inline text label.
+
+<figure>
+  <div class="image-container">
+    <img src="../../images/selection-controls/Toggle-switch-states.png" alt="" />
+  </div>
+  <figcaption>
+    <p>Toggle switch states</p>
+  </figcaption>
+</figure>

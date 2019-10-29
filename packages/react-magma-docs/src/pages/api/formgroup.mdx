@@ -1,0 +1,173 @@
+---
+title: 'Form Groups'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { FormGroup, Checkbox, Heading, Toggle, magma } from 'react-magma-dom'
+import { Link } from 'gatsby'
+import { SimplePropsTable } from '../../components/props-table'
+
+# Form Groups
+
+`FormGroup` components wrap controls such as the <Link to="/api/checkbox">Checkbox</Link> and <Link to="/api/toggle">Toggle</Link> components.
+For <Link to="/api/radio">Radio Buttons</Link>, you should use the <Link to="/api/radio/#labeling_radio%20groups">Radio Group</Link> component.
+
+Form groups are not necessary when displaying only a single checkbox or toggle. However, if more than one checkbox or toggle fit together to answer a single question,
+form groups should be used to make that association, both visually and for users of assistive technology.
+
+The label/group association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
+
+## Basic Usage
+
+```.jsx
+  <>
+    <FormGroup
+        labelText="Choose One or More Colors">
+          <Checkbox
+              labelText='Red' />
+          <Checkbox
+              labelText='Blue' />
+          <Checkbox
+              labelText='Purple' />
+    </FormGroup>
+    <p></p>
+    <FormGroup
+       id="myCustomId"
+       labelText="Turn on Notifications for the Following">
+          <Toggle
+              labelText='Product updates' />
+          <Toggle
+              labelText='Promotions and sales' />
+      </FormGroup>
+  </>
+```
+
+## Labeling Form Groups
+
+To meet accessibility requirements, a form group _must_ have a label. You can provide a label in one of two ways.
+
+You can use the `labelText` prop, which takes a string. This string will be displayed on screen inside a `<label>` element and be associated with your form group.
+
+Or you can use the `labelledById` prop, which also takes a string. This string should refer to an ID of an element that exists somewhere else on the page.
+This id will become the value of the `aria-labelledby` attribute for the group.
+
+```.jsx
+  <>
+    <FormGroup
+        labelText="Labelled by Label"
+        name='labelledByGroup'>
+          <Checkbox
+              labelText='Label' />
+          <Checkbox
+              labelText='Label' />
+    </FormGroup>
+    <FormGroup
+        labelledById="h3Label"
+        name='labelledByGroup'>
+          <h3 id="h3Label">Labelled by H3</h3>
+          <Checkbox
+              labelText='Label' />
+          <Checkbox
+              labelText='Label' />
+      </FormGroup>
+  </>
+```
+
+## Custom Styles
+
+Custom styles can be applied by using the `containerStyle` and `labelStyle` props.
+
+```.jsx
+    <FormGroup
+        containerStyle={{ border: '1px solid gray', padding: '10px' }}
+        labelStyle={{ fontWeight: '500', color: 'red' }}
+        labelText="Group Label"
+        name='labelledByGroup'>
+          <Checkbox
+              labelText='Checkbox label' />
+          <Checkbox
+              labelText='Checkbox label' />
+    </FormGroup>
+```
+
+## Visually Hidden Label
+
+The ;abel text for the form group can be hidden visually, but still be read by assistive technology, by using the `textVisuallyHidden` prop.
+
+```.jsx
+    <FormGroup
+        labelText="Group Label"
+        name='labelledByGroup'
+        textVisuallyHidden>
+          <Checkbox
+              labelText='Checkbox label' />
+          <Checkbox
+              labelText='Checkbox label' />
+    </FormGroup>
+```
+
+## Form Group Props
+
+<SimplePropsTable
+  props={{
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
+    },
+    containerStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the component container element',
+    },
+    labelledById: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'ID of the element that labels the form group, used in the aria-labelledby attribute for the group.  Alertnatively, the labelText prop can be used.',
+      defaultValue: '',
+    },
+    labelStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the label of the form group',
+    },
+    labelText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Text for label of the form group. Alertnatively, the labelledById prop can be used.',
+    },
+    textVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text for the form group will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'ID used for testing purposes',
+      defaultValue: '',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout {...props} components={{ FormGroup, Checkbox, Toggle }} />
+)

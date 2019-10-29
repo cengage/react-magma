@@ -31,6 +31,17 @@ describe('Modal', () => {
     expect(getByText(modalContent)).toBeInTheDocument();
   });
 
+  it('should render the modal when open has always been true', () => {
+    const modalContent = 'Modal content';
+    const { getByText } = render(
+      <Modal header="Hello" open>
+        {modalContent}
+      </Modal>
+    );
+
+    expect(getByText(modalContent)).toBeInTheDocument();
+  });
+
   it('should render the modal with the default medium size', () => {
     const modalContent = 'Modal content';
     const { getByTestId, rerender } = render(

@@ -8,7 +8,7 @@ import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
 
-<DocsHeading to="/design/selection-controls/#5._radio%20buttons" type="design">
+<DocsHeading to="/design/selection-controls" type="design">
   Radio Buttons
 </DocsHeading>
 
@@ -24,12 +24,12 @@ The label/radio association will be handled via the passed in `id` if one is sup
   <RadioGroup labelText='Basic Usage' id='basicGroup' name='basic'>
     <Radio
         id='radio1'
-        labelText='Option One Label'
+        labelText='Option one label'
         value='1' />
 
     <Radio
         id='radio2'
-        labelText='Option Two Label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines'
+        labelText='Option two label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines'
         value='2' />
     </RadioGroup>
 ```
@@ -42,12 +42,12 @@ To set a selected value by default, use the `value` prop on the `RadioGroup` to 
   <RadioGroup labelText='Default Selected Value' id='defaultSelectedGroup' name='defaultSelected' value='selectedOption'>
     <Radio
         id='radioSelected'
-        labelText='Selected Option'
+        labelText='Selected option'
         value='selectedOption' />
 
     <Radio
         id='radioUnselected'
-        labelText='Unselected Option'
+        labelText='Unselected option'
         value='unselectedOption' />
     </RadioGroup>
 ```
@@ -60,22 +60,22 @@ By default, the radio buttons use the theme's primary color. But any other color
   <RadioGroup labelText='Colors' id='colorsGroup' name='colors'>
     <Radio
         id='colorRadio'
-        labelText='Default Color'
+        labelText='Default color'
         value='default' />
       <Radio
           color={magma.colors.success01}
           id='successColorRadio'
-          labelText='Success Color'
+          labelText='Success color'
           value='success' />
       <Radio
           color={magma.colors.danger}
           id='dangerColorRadio'
-          labelText='Danger Color'
+          labelText='Danger color'
           value='danger' />
       <Radio
           color={magma.colors.pop02}
           id='popColorRadio'
-          labelText='Pop Color'
+          labelText='Pop color'
           value='pop' />
     </RadioGroup>
 ```
@@ -87,17 +87,17 @@ By default, the radio buttons use the theme's primary color. But any other color
     <Radio
         disabled
         id='disabledRadio'
-        labelText='Disabled Radio 1'
+        labelText='Disabled radio 1'
         value='1' />
     <Radio
         disabled
         id='disabledRadio2'
-        labelText='Disabled Radio 2'
+        labelText='Disabled radio 2'
         value='2' />
     </RadioGroup>
 ```
 
-## Inverse Colors
+## Inverse
 
 Inverse is an optional boolean prop, that may be passed in when radio buttons are to be displayed on a dark background.
 
@@ -116,25 +116,25 @@ Inverse is an optional boolean prop, that may be passed in when radio buttons ar
           color={magma.colors.success01}
           id='successInverseRadio'
           inverse
-          labelText='Success Inverse'
+          labelText='Success inverse'
           value='success' />
       <Radio
           color={magma.colors.danger}
           id='dangerInverseRadio'
           inverse
-          labelText='Danger Inverse'
+          labelText='Danger inverse'
           value='danger' />
       <Radio
           color={magma.colors.pop02}
           id='popInverseRadio'
           inverse
-          labelText='Pop Inverse'
+          labelText='Pop inverse'
           value='pop' />
         <Radio
             disabled
             id='disabledInverseRadio'
             inverse
-            labelText='Disabled Inverse'
+            labelText='Disabled inverse'
             value='disabled' />
     </RadioGroup>
 ```
@@ -155,19 +155,19 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
         containerStyle={{ 'border': '1px dotted purple'}}
         inputStyle={{ 'boxShadow': '3px 3px 3px rgba(0, 0 , 0, .6)'}}
         labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
-        labelText='Custom Styles'
+        labelText='Custom styles'
         value='1' />
 
     <Radio
         id='custom2'
-        labelText='No Custom Styles'
+        labelText='No custom styles'
         value='2' />
   </RadioGroup>
 ```
 
 ## Labeling Radio Groups
 
-To meet accessibilty requirements, a radio group _must_ have a label. You can provide a label in one of two ways.
+To meet accessibility requirements, a radio group _must_ have a label. You can provide a label in one of two ways.
 
 You can use the `labelText` prop, which takes a string. This string will be displayed on screen inside a `<label>` element and be associated with your radio group.
 
@@ -177,7 +177,7 @@ This id will become the value of the `aria-labelledby` attribute for the group.
 ```.jsx
   <>
     <RadioGroup
-        labelText="Labelled by labelText"
+        labelText="Labelled by Label"
         name='labelledByGroup'>
           <Radio
               labelText='Label' />
@@ -189,7 +189,7 @@ This id will become the value of the `aria-labelledby` attribute for the group.
     <RadioGroup
         labelledById="h3Label"
         name='labelledByGroup'>
-          <h3 id="h3Label">Labelled by h3 with labelledById prop</h3>
+          <h3 id="h3Label">Labelled by H3</h3>
           <Radio
               labelText='Label' />
           <Radio
@@ -210,11 +210,11 @@ Adding the `textVisuallyHidden` prop will make the label text for either the rad
       textVisuallyHidden>
         <Radio
             id='visuallyHiddenRadio1'
-            labelText='Hidden Label'
+            labelText='Hidden label'
             textVisuallyHidden />
         <Radio
             id='visuallyHiddenRadio2'
-            labelText='Hidden Label'
+            labelText='Hidden label'
             textVisuallyHidden />
     </RadioGroup>
 ```
@@ -232,16 +232,16 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 
       render() {
         return <div>
-        <RadioGroup labelText='ForwardRef Usage' id='forwardRefGroup' name='forwardRef'>
+        <RadioGroup labelText='Forward Ref Usage' id='forwardRefGroup' name='forwardRef'>
           <Radio
             ref={this.radioRef}
             id='forwardRefRadio1'
-            labelText='Option One Label'
+            labelText='Option one label'
             value='1' />
 
           <Radio
             id='forwardRefRadio2'
-            labelText='Option Two Label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines'
+            labelText='Option two label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines'
             value='2' />
         </RadioGroup>
 
@@ -278,7 +278,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       value="1"
     />
     <label for="radio1">
-      <span> <span color=""></span> </span> Option One Label
+      <span> <span color=""></span> </span> Option one label
     </label>
   </div>
 </div>
@@ -308,7 +308,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       },
       required: false,
       description:
-        'ID of the element that labels the radio group, used in the aria-labelledby attribute for the group.  Alertnatively, the labelText prop can be used.',
+        'ID of the element that labels the radio group, used in the aria-labelledby attribute for the group.  Alternatively, the labelText prop can be used.',
       defaultValue: '',
     },
     labelStyle: {
@@ -324,7 +324,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       },
       required: false,
       description:
-        'Text for label of the radio group. Alertnatively, the labelledById prop can be used.',
+        'Text for label of the radio group. Alternatively, the labelledById prop can be used.',
     },
     onBlur: {
       type: {

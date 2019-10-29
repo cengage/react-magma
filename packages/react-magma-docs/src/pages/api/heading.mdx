@@ -13,7 +13,7 @@ import { SimplePropsTable } from '../../components/props-table'
 
 ## Basic Usage
 
-The `Heading` component can be used with the `level` prop to render the HTML heading elements, levels 1-6. 
+The `Heading` component can be used with the `level` prop to render the HTML heading elements, levels 1-6.
 
 ```.jsx
   <>
@@ -26,7 +26,7 @@ The `Heading` component can be used with the `level` prop to render the HTML hea
   </>
 ```
 
-## Inverse styling
+## Inverse
 
 Inverse is an optional boolean prop, that may be passed in when the component is to be displayed on a dark background.
 
@@ -52,7 +52,7 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
         <Heading
           ref={this.headingRef}
           level={1}>
-          Heading to be focused
+          Heading to Be Focused
         </Heading>
 
         <Button
@@ -85,7 +85,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
       required: true,
       description: 'The content of the component',
     },
-     inverse: {
+    inverse: {
       type: {
         name: 'boolean',
       },

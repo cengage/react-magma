@@ -208,6 +208,12 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
     }
   }
 
+  componentDidMount() {
+    if (this.props.open) {
+      this.setState({ isModalOpen: true });
+    }
+  }
+
   handleKeyDown() {
     return event => {
       const { keyCode, shiftKey } = event;

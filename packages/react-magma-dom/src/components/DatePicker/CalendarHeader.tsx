@@ -2,7 +2,7 @@ import * as React from 'react';
 import { CalendarContext } from './CalendarContext';
 import { ArrowLeft2Icon } from '../Icon/types/ArrowLeft2Icon';
 import { ArrowRight2Icon } from '../Icon/types/ArrowRight2Icon';
-import { Button, ButtonVariant } from '../Button';
+import { Button, ButtonType, ButtonVariant } from '../Button';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { format, addMonths, subMonths } from 'date-fns';
 import styled from '@emotion/styled';
@@ -66,6 +66,7 @@ export class CalendarHeader extends React.Component<CalendarHeaderProps> {
                         'MMMM YYYY'
                       )}`}
                       icon={<ArrowLeft2Icon />}
+                      type={ButtonType.button}
                       variant={ButtonVariant.link}
                       onClick={context.onPrevMonthClick}
                     />
@@ -77,6 +78,7 @@ export class CalendarHeader extends React.Component<CalendarHeaderProps> {
                         'MMMM YYYY'
                       )}`}
                       icon={<ArrowRight2Icon />}
+                      type={ButtonType.button}
                       variant={ButtonVariant.link}
                       onClick={context.onNextMonthClick}
                     />

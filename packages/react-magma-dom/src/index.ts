@@ -1,5 +1,6 @@
 export { Alert, AlertVariant } from './components/Alert';
 export { Announce } from './components/Announce';
+export { Badge, BadgeColor } from './components/Badge';
 export { Breadcrumb, BreadcrumbItem } from './components/Breadcrumb';
 export {
   Button,
@@ -12,13 +13,10 @@ export {
   ButtonIconPosition
 } from './components/Button';
 export { Checkbox } from './components/Checkbox';
-export {
-  Card,
-  CardBody,
-  CardHeading,
-  CardAlignment,
-  CardCalloutType
-} from './components/Card';
+export { Card, CardAlignment, CardCalloutType } from './components/Card';
+export { CardBody } from './components/Card/CardBody';
+export { CardHeading } from './components/Card/CardHeading';
+export { FormGroup } from './components/FormGroup';
 export { Heading } from './components/Heading';
 export {
   Input,
@@ -34,8 +32,10 @@ export { Select } from './components/Select';
 export { AsyncSelect } from './components/AsyncSelect';
 export { CreatableSelect } from './components/CreatableSelect';
 export { AsyncCreatableSelect } from './components/AsyncCreatableSelect';
+export { Search } from './components/Search';
 export { SkipLink } from './components/SkipLink';
 export { SkipLinkContent } from './components/SkipLinkContent';
+export { Spinner } from './components/Spinner';
 export { Toast } from './components/Toast';
 export { Toggle } from './components/Toggle';
 export { Tooltip, EnumTooltipPosition } from './components/Tooltip';
@@ -44,6 +44,7 @@ export { DatePicker } from './components/DatePicker';
 export { Modal, ModalSize } from './components/Modal';
 export { HyperLink } from './components/HyperLink';
 export { TimePicker } from './components/TimePicker';
+export { ProgressBar } from './components/ProgressBar';
 
 export { magma } from './theme/magma';
 export { GlobalStyles } from './theme/GlobalStyles';
