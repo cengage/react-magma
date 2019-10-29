@@ -102,7 +102,12 @@ class LoadingIndicatorComponent extends React.Component<
     return (
       <StyledLoadingIndicator aria-busy="true" ref={ref}>
         {type === LoadingIndicatorType.progressbar ? (
-          <ProgressBar animated height={10} percentage={percentage} />
+          <ProgressBar
+            animated
+            height={10}
+            labelVisible
+            percentage={percentage}
+          />
         ) : (
           <Spinner size={50} />
         )}
