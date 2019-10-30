@@ -62,6 +62,65 @@ simply use `<Modal open={flag} />`
     }
 ```
 
+## Modal Content Update
+
+```.jsx
+
+    class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          showModal: false,
+          page: 1
+        }
+
+        this.onModalShow = this.onModalShow.bind(this);
+        this.onModalClose = this.onModalClose.bind(this);
+
+        this.goToPage1 = this.goToPage1.bind(this);
+        this.goToPage2 = this.goToPage2.bind(this);
+
+      }
+
+      onModalShow() {
+        this.setState({showModal: true})
+      }
+
+      onModalClose() {
+        this.setState({showModal: false})
+      }
+
+      goToPage1() {
+        this.setState({page: 1})
+      }
+
+      goToPage2() {
+        this.setState({page: 2})
+      }
+
+      render() {
+        const { showModal, page } = this.state;
+
+        return (<>
+            <Modal header="Modal Title" onClose={this.onModalClose} open={showModal}>
+                { page === 1 && <>
+                  <p>Page one</p>
+                  <p>This is <a href="#">linked text</a> in the modal</p>
+                  <Button onClick={this.goToPage2}>Go to Page 2</Button>
+                </>}
+
+                { page === 2 && <>
+                  <p>Page two</p>
+                  <p><Button color="secondary">Random button 1</Button> <Button  color="secondary">Random button 2</Button></p>
+                  <Button onClick={this.goToPage1}>Go to Page 1</Button>
+                </>}
+              </Modal>
+          <Button onClick={this.onModalShow}>Show Modal</Button>
+        </>)
+      }
+    }
+```
+
 ## Modal Header
 
 The modal header prop is optional. It can accept a node or a string, and will be rendered inside an H1.
