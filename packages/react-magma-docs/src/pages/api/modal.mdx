@@ -2,8 +2,9 @@
 title: 'Modals'
 ---
 
+import ReactDOM from 'react-dom'
 import { ScopeableLayout } from '../../components/layout'
-import { Modal, Button } from 'react-magma-dom'
+import { Modal, Button, Toggle } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
@@ -71,7 +72,9 @@ simply use `<Modal open={flag} />`
         super(props)
         this.state = {
           showModal: false,
-          page: 1
+          page: 1,
+          showHidden: false,
+          goToNextPageEnabled: true
         }
 
         this.onModalShow = this.onModalShow.bind(this);
@@ -80,6 +83,8 @@ simply use `<Modal open={flag} />`
         this.goToPage1 = this.goToPage1.bind(this);
         this.goToPage2 = this.goToPage2.bind(this);
 
+        this.toggleHiddenStuff = this.toggleHiddenStuff.bind(this);
+        this.toggleGoToNextPageEnabled = this.toggleGoToNextPageEnabled.bind(this);
       }
 
       onModalShow() {
@@ -98,22 +103,44 @@ simply use `<Modal open={flag} />`
         this.setState({page: 2})
       }
 
+      toggleHiddenStuff() {
+        this.setState({showHidden: !this.state.showHidden})
+      }
+
+      toggleGoToNextPageEnabled() {
+        this.setState({goToNextPageEnabled: !this.state.goToNextPageEnabled})
+      }
+
       render() {
-        const { showModal, page } = this.state;
+        const { showModal, page, showHidden, goToNextPageEnabled } = this.state;
 
         return (<>
             <Modal header="Modal Title" onClose={this.onModalClose} open={showModal}>
+              <div id="attachToMe">
                 { page === 1 && <>
                   <p>Page one</p>
                   <p>This is <a href="#">linked text</a> in the modal</p>
-                  <Button onClick={this.goToPage2}>Go to Page 2</Button>
+                  <Toggle
+                    checked={!goToNextPageEnabled}
+                    id='goToNextPageEnabled'
+                    labelText='Disable Go To Next Page'
+                    onClick={this.toggleGoToNextPageEnabled} />
+                  <Toggle
+                    checked={showHidden}
+                    id='showHiddenToggle'
+                    labelText='Show Hidden Stuff'
+                    onClick={this.toggleHiddenStuff} />
+
+                  { showHidden && <Button>Hidden Button</Button> }
+                  <Button disabled={!goToNextPageEnabled} onClick={this.goToPage2}>Go to Page 2</Button>
                 </>}
 
                 { page === 2 && <>
                   <p>Page two</p>
                   <p><Button color="secondary">Random button 1</Button> <Button  color="secondary">Random button 2</Button></p>
                   <Button onClick={this.goToPage1}>Go to Page 1</Button>
-                </>}
+                </> }
+              </div>
               </Modal>
           <Button onClick={this.onModalShow}>Show Modal</Button>
         </>)
@@ -405,5 +432,8 @@ Sizes for modals include `small`, `medium`, and `large`, with `medium` being the
 />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ Modal, Button }} />
+  <ScopeableLayout
+    {...props}
+    components={{ Modal, Button, Toggle, ReactDOM }}
+  />
 )

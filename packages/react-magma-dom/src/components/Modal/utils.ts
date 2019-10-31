@@ -10,10 +10,8 @@ const candidateSelectors = [
   '[contenteditable]:not([contenteditable="false"])'
 ].join(',');
 
-export function getTrapElements(container, body?, header?) {
-  const inContainer: Array<HTMLElement> = Array.from(
-    container.current.querySelectorAll(candidateSelectors)
-  );
+export function getTrapElementsAndFocus(container, body?, header?) {
+  const inContainer: Array<HTMLElement> = getTrapElements(container);
 
   if (header) {
     header.current.focus();
@@ -29,6 +27,10 @@ export function getTrapElements(container, body?, header?) {
   }
 
   return inContainer;
+}
+
+export function getTrapElements(container): Array<HTMLElement> {
+  return Array.from(container.current.querySelectorAll(candidateSelectors));
 }
 
 export function getFocusedElementIndex(focusedElements, elementToFind) {
