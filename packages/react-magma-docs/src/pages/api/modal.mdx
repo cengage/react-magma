@@ -2,7 +2,6 @@
 title: 'Modals'
 ---
 
-import ReactDOM from 'react-dom'
 import { ScopeableLayout } from '../../components/layout'
 import { Modal, Button, Toggle } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
@@ -432,8 +431,5 @@ Sizes for modals include `small`, `medium`, and `large`, with `medium` being the
 />
 
 export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{ Modal, Button, Toggle, ReactDOM }}
-  />
+  <ScopeableLayout {...props} components={{ Modal, Button, Toggle }} />
 )
