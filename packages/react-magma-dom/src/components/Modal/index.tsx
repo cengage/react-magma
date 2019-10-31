@@ -3,7 +3,11 @@ import ReactDOM from 'react-dom';
 import styled from '@emotion/styled';
 import { Global, css } from '@emotion/core';
 import { ModalCore } from 'react-magma-core';
-import { getTrapElements, getFocusedElementIndex } from './utils';
+import {
+  getTrapElements,
+  getTrapElementsAndFocus,
+  getFocusedElementIndex
+} from './utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Button, ButtonColor, ButtonVariant } from '../Button';
 import { CrossIcon } from '../Icon/types/CrossIcon';
@@ -191,7 +195,7 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
 
       if (this.props.header) {
         this.setState({
-          focusableElements: getTrapElements(
+          focusableElements: getTrapElementsAndFocus(
             this.focusTrapElement,
             this.bodyRef,
             this.headingRef
@@ -199,12 +203,21 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
         });
       } else {
         this.setState({
-          focusableElements: getTrapElements(
+          focusableElements: getTrapElementsAndFocus(
             this.focusTrapElement,
             this.bodyRef
           )
         });
       }
+    }
+
+    if (this.state.isModalOpen && this.props.children !== prevProps.children) {
+      const focusableElements: Array<HTMLElement> =
+        document.activeElement.nodeName === 'BODY'
+          ? getTrapElementsAndFocus(this.focusTrapElement, this.bodyRef)
+          : getTrapElements(this.focusTrapElement);
+
+      this.setState({ focusableElements });
     }
   }
 

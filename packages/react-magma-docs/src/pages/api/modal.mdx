@@ -3,7 +3,7 @@ title: 'Modals'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { Modal, Button } from 'react-magma-dom'
+import { Modal, Button, Toggle } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
@@ -56,6 +56,91 @@ simply use `<Modal open={flag} />`
                 <p><Button>This is a button</Button></p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </Modal>
+          <Button onClick={this.onModalShow}>Show Modal</Button>
+        </>)
+      }
+    }
+```
+
+## Modal Content Update
+
+```.jsx
+
+    class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          showModal: false,
+          page: 1,
+          showHidden: false,
+          goToNextPageEnabled: true
+        }
+
+        this.onModalShow = this.onModalShow.bind(this);
+        this.onModalClose = this.onModalClose.bind(this);
+
+        this.goToPage1 = this.goToPage1.bind(this);
+        this.goToPage2 = this.goToPage2.bind(this);
+
+        this.toggleHiddenStuff = this.toggleHiddenStuff.bind(this);
+        this.toggleGoToNextPageEnabled = this.toggleGoToNextPageEnabled.bind(this);
+      }
+
+      onModalShow() {
+        this.setState({showModal: true})
+      }
+
+      onModalClose() {
+        this.setState({showModal: false})
+      }
+
+      goToPage1() {
+        this.setState({page: 1})
+      }
+
+      goToPage2() {
+        this.setState({page: 2})
+      }
+
+      toggleHiddenStuff() {
+        this.setState({showHidden: !this.state.showHidden})
+      }
+
+      toggleGoToNextPageEnabled() {
+        this.setState({goToNextPageEnabled: !this.state.goToNextPageEnabled})
+      }
+
+      render() {
+        const { showModal, page, showHidden, goToNextPageEnabled } = this.state;
+
+        return (<>
+            <Modal header="Modal Title" onClose={this.onModalClose} open={showModal}>
+              <div id="attachToMe">
+                { page === 1 && <>
+                  <p>Page one</p>
+                  <p>This is <a href="#">linked text</a> in the modal</p>
+                  <Toggle
+                    checked={!goToNextPageEnabled}
+                    id='goToNextPageEnabled'
+                    labelText='Disable Go To Next Page'
+                    onClick={this.toggleGoToNextPageEnabled} />
+                  <Toggle
+                    checked={showHidden}
+                    id='showHiddenToggle'
+                    labelText='Show Hidden Stuff'
+                    onClick={this.toggleHiddenStuff} />
+
+                  { showHidden && <Button>Hidden Button</Button> }
+                  <Button disabled={!goToNextPageEnabled} onClick={this.goToPage2}>Go to Page 2</Button>
+                </>}
+
+                { page === 2 && <>
+                  <p>Page two</p>
+                  <p><Button color="secondary">Random button 1</Button> <Button  color="secondary">Random button 2</Button></p>
+                  <Button onClick={this.goToPage1}>Go to Page 1</Button>
+                </> }
+              </div>
+              </Modal>
           <Button onClick={this.onModalShow}>Show Modal</Button>
         </>)
       }
@@ -147,7 +232,7 @@ the first actionable element. If there are no actionable elements, the focus wil
 
 By default when a modal closes, it will return the focus to the element that had previously had focus before the modal focused.
 
-If that element no longer exists in the dom, that action will fail silently and nothing will become focused. In those cases, you can use the `onClose` prop to put the focus on annother element.
+If that element no longer exists in the dom, that action will fail silently and nothing will become focused. In those cases, you can use the `onClose` prop to put the focus on another element.
 
 ```.jsx
 
@@ -293,7 +378,7 @@ Sizes for modals include `small`, `medium`, and `large`, with `medium` being the
         name: 'boolean',
       },
       required: false,
-      description: 'If true, the close button the the modal will be supressed',
+      description: 'If true, the close button the the modal will be suppressed',
       defaultValue: 'false',
     },
     innerRef: {
@@ -346,5 +431,5 @@ Sizes for modals include `small`, `medium`, and `large`, with `medium` being the
 />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ Modal, Button }} />
+  <ScopeableLayout {...props} components={{ Modal, Button, Toggle }} />
 )

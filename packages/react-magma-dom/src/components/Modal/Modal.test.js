@@ -646,6 +646,81 @@ describe('Modal', () => {
       expect(getByTestId('passwordInput')).toHaveFocus();
     });
 
+    it('should focus the first focusable element when the active element is the body on rerender of modal', () => {
+      const { container, getByTestId, rerender } = render(
+        <>
+          <button>Open</button>
+          <Modal open={true} onClose={jest.fn()} hideEscButton>
+            <>
+              <button data-testid="closeButton">Close</button>
+              <input data-testid="emailInput" type="text" name="email" />
+              <input data-testid="passwordInput" type="text" name="password" />
+            </>
+          </Modal>
+        </>
+      );
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal open={true} onClose={jest.fn()} hideEscButton>
+            <>
+              <input data-testid="addressInput" type="text" name="address" />
+              <input data-testid="stateInput" type="text" name="state" />
+            </>
+          </Modal>
+        </>
+      );
+
+      expect(getByTestId('addressInput')).toHaveFocus();
+    });
+
+    it('should update the focusable elements to tab through when the modal content is changed', () => {
+      const { getByTestId, getByText, rerender } = render(
+        <>
+          <button>Open</button>
+          <Modal open={true} onClose={jest.fn()} hideEscButton>
+            <>
+              <button data-testid="closeButton">Close</button>
+              <input data-testid="emailInput" type="text" name="email" />
+              <input data-testid="passwordInput" type="text" name="password" />
+            </>
+          </Modal>
+        </>
+      );
+
+      fireEvent.focus(getByText('Open'));
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal open={true} onClose={jest.fn()} hideEscButton>
+            <>
+              <button data-testid="closeButton">Close</button>
+              <input data-testid="addressInput" type="text" name="address" />
+              <input data-testid="stateInput" type="text" name="state" />
+            </>
+          </Modal>
+        </>
+      );
+
+      expect(getByTestId('closeButton')).toHaveFocus();
+
+      fireEvent.keyDown(getByTestId('closeButton'), {
+        keyCode: 9
+      });
+
+      fireEvent.keyDown(getByTestId('addressInput'), {
+        keyCode: 9
+      });
+
+      fireEvent.keyDown(getByTestId('stateInput'), {
+        keyCode: 9
+      });
+
+      expect(getByTestId('closeButton')).toHaveFocus();
+    });
+
     it('should not break if a different key is pressed', () => {
       const { getByTestId, getByText, rerender } = render(
         <>
