@@ -8,7 +8,7 @@ import { NotificationIcon } from '../Icon/types/NotificationIcon';
 import { BlockedIcon } from '../Icon/types/BlockedIcon';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { Button, ButtonVariant } from '../Button';
-import { AlertCore } from 'react-magma-core';
+// import { AlertCore } from 'react-magma-core';
 
 const VARIANT_ICON = {
   info: Info2Icon,
@@ -184,49 +184,57 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
       variant,
       children,
       dismissable,
-      isExiting,
+      isExiting: externalIsExiting,
       inverse,
       onDismiss,
       ...other
     }: AlertProps,
     ref: any
-  ) => (
-    <ThemeContext.Consumer>
-      {theme => (
-        <AlertCore
-          transitionDuration={transitionDuration}
-          onDismiss={onDismiss}
-        >
-          {({ handleDismiss, isExiting: coreIsExiting }) => (
-            <StyledAlert
-              {...other}
-              data-testid={testId}
-              ref={ref}
-              tabIndex={-1}
-              inverse={inverse}
-              isExiting={isExiting || coreIsExiting}
-              variant={variant}
-              theme={theme}
-            >
-              {renderIcon(variant)}
-              <AlertContents>{children}</AlertContents>
-              {dismissable && (
-                <DismissableIconWrapper variant={variant} theme={theme}>
-                  <DismissButton
-                    alertVariant={variant}
-                    aria-label={closeLabel ? closeLabel : 'Close this message'}
-                    icon={<CrossIcon />}
-                    inverse
-                    onClick={handleDismiss}
-                    theme={theme}
-                    variant={ButtonVariant.link}
-                  />
-                </DismissableIconWrapper>
-              )}
-            </StyledAlert>
-          )}
-        </AlertCore>
-      )}
-    </ThemeContext.Consumer>
-  )
+  ) => {
+    const [isExiting, updateIsExiting] = React.useState(externalIsExiting);
+
+    React.useEffect(() => {
+      setTimeout(() => {
+        updateIsExiting(false);
+        onDismiss && typeof onDismiss === 'function' && onDismiss();
+      }, transitionDuration - 300);
+    }, [isExiting]);
+
+    function handleDismiss() {
+      updateIsExiting(true);
+    }
+
+    return (
+      <ThemeContext.Consumer>
+        {theme => (
+          <StyledAlert
+            {...other}
+            data-testid={testId}
+            ref={ref}
+            tabIndex={-1}
+            inverse={inverse}
+            isExiting={isExiting}
+            variant={variant}
+            theme={theme}
+          >
+            {renderIcon(variant)}
+            <AlertContents>{children}</AlertContents>
+            {dismissable && (
+              <DismissableIconWrapper variant={variant} theme={theme}>
+                <DismissButton
+                  alertVariant={variant}
+                  aria-label={closeLabel ? closeLabel : 'Close this message'}
+                  icon={<CrossIcon />}
+                  inverse
+                  onClick={handleDismiss}
+                  theme={theme}
+                  variant={ButtonVariant.link}
+                />
+              </DismissableIconWrapper>
+            )}
+          </StyledAlert>
+        )}
+      </ThemeContext.Consumer>
+    );
+  }
 );
