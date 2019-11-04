@@ -34,14 +34,47 @@ describe('ProgressBar', () => {
     );
   });
 
-  it('should render the progress bar component with custom background color', () => {
+  it('should render the progress bar component with danger color', () => {
     const { container } = render(
-      <ProgressBar percentage={50} bgColor="#bada55" />
+      <ProgressBar percentage={50} bgColor="danger" />
     );
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      '#bada55'
+      '#E70000'
+    );
+  });
+
+  it('should render the progress bar component with pop01 color', () => {
+    const { container } = render(
+      <ProgressBar percentage={50} bgColor="pop01" />
+    );
+
+    expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
+      'background',
+      '#E0004D'
+    );
+  });
+
+  it('should render the progress bar component with pop02 color', () => {
+    const { container } = render(
+      <ProgressBar percentage={50} bgColor="pop02" />
+    );
+
+    expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
+      'background',
+      '#FA6600'
+    );
+  });
+
+  it('should render the progress bar component with success color', () => {
+    const { container } = render(
+      <ProgressBar percentage={50} bgColor="success" />
+    );
+
+    expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
+      'background',
+      '#3A8200'
     );
   });
 

@@ -3,7 +3,7 @@ title: 'Progress Bars'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { ProgressBar, magma } from 'react-magma-dom'
+import { ProgressBar, Button } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 import DocsHeading from '../../components/docs-heading'
 
@@ -15,10 +15,51 @@ A progress bar can be used to show a user how far along they are in a process.
 
 ## Basic Usage
 
-The `percentage` prop is used to display how much of the bar should be filled in. The default value is 0.
-
 ```.jsx
     <ProgressBar percentage={25} />
+```
+
+## Percentage
+
+The `percentage` prop is used to display how much of the bar should be filled in. The default value is 0. This value can be adjusted dynamically.
+
+```.jsx
+
+    class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          percentage: 0
+        }
+        this.increasePercentage = this.increasePercentage.bind(this);
+        this.decreasePercentage = this.decreasePercentage.bind(this);
+
+      }
+
+      increasePercentage() {
+        this.setState({percentage: this.state.percentage + 10})
+      }
+
+       decreasePercentage() {
+        this.setState({percentage: this.state.percentage - 10})
+      }
+
+      render() {
+        const { percentage } = this.state;
+
+
+        return (
+          <>
+            <ProgressBar percentage={percentage} />
+            <p/>
+            <p>
+              <Button disabled={percentage >= 100} onClick={this.increasePercentage}>Increase</Button>
+              <Button disabled={percentage <= 0} onClick={this.decreasePercentage}>Decrease</Button>
+            </p>
+          </>
+        )
+      }
+    }
 ```
 
 ## Animated
@@ -29,15 +70,22 @@ The `percentage` prop is used to display how much of the bar should be filled in
 
 ## Background Color
 
-The `bgColor` prop can be used to set the background color of the progress bar. The default value is `#006298`, or `magma.colors.primary`.
+The `bgColor` prop can be used to set the background color of the progress bar. This prop takes the following values: `danger`, `primary`, `pop01`, `pop02`, `success`.
+The default value is `primary` which renders as `#006298`, or `magma.colors.primary`.
 
 ```.jsx
-    <ProgressBar bgColor={magma.colors.danger} percentage={25} />
+    <>
+      <ProgressBar bgColor='danger' percentage={25} /><br/>
+      <ProgressBar bgColor='pop01' percentage={25} /><br/>
+      <ProgressBar bgColor='pop02' percentage={25} /><br/>
+      <ProgressBar bgColor='primary' percentage={25} /><br/>
+      <ProgressBar bgColor='success' percentage={25} /><br/>
+    </>
 ```
 
 ## Height
 
-The `height` prop can be used to set the height of the progress bar in pixels. The default value is 16.
+The `height` prop can be used to set the height of the progress bar in pixels. The default value is 15.
 
 ```.jsx
     <ProgressBar height={10} percentage={25} />
@@ -76,11 +124,18 @@ If the `labelVisible` prop is true, the percentage value will display to the rig
     },
     bgColor: {
       type: {
-        name: 'string',
+        name: 'enum',
+        options: [
+          'ProgressBarColor.danger',
+          'ProgressBarColor.primary',
+          'ProgressBarColor.pop01',
+          'ProgressBarColor.po02',
+          'ProgressBarColor.success',
+        ],
       },
       required: false,
-      description: 'Background color for the progress bar',
-      defaultValue: '#006298',
+      description: 'The color variant of the progress var',
+      defaultValue: 'primary',
     },
     height: {
       type: {
@@ -88,7 +143,7 @@ If the `labelVisible` prop is true, the percentage value will display to the rig
       },
       required: false,
       description: 'The height in pixels of the progress bar',
-      defaultValue: '16',
+      defaultValue: '15',
     },
     inverse: {
       type: {
@@ -120,5 +175,5 @@ If the `labelVisible` prop is true, the percentage value will display to the rig
 />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ ProgressBar, magma }} />
+  <ScopeableLayout {...props} components={{ ProgressBar, Button }} />
 )

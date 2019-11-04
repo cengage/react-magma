@@ -26,6 +26,7 @@ export {
 } from './components/Input';
 export { Label } from './components/Label';
 export { LinkButton } from './components/LinkButton';
+export { LoadingIndicator } from './components/LoadingIndicator';
 export { RadioGroup } from './components/RadioGroup';
 export { Radio } from './components/Radio';
 export { Select } from './components/Select';
@@ -43,7 +44,7 @@ export { VisuallyHidden } from './components/VisuallyHidden';
 export { DatePicker } from './components/DatePicker';
 export { Modal, ModalSize } from './components/Modal';
 export { HyperLink } from './components/HyperLink';
-export { ProgressBar } from './components/ProgressBar';
+export { ProgressBar, ProgressBarColor } from './components/ProgressBar';
 
 export { magma } from './theme/magma';
 export { GlobalStyles } from './theme/GlobalStyles';
