@@ -22,6 +22,9 @@ export interface LoadingIndicatorState {
   messageLevel: number;
 }
 
+let timeout = null;
+let timeout2 = null;
+
 const StyledLoadingIndicator = styled.div`
   max-width: 230px;
   text-align: center;
@@ -61,15 +64,20 @@ class LoadingIndicatorComponent extends React.Component<
     this.setTimer(this.props.type);
   }
 
+  componentWillUnmount() {
+    window.clearTimeout(timeout);
+    window.clearTimeout(timeout2);
+  }
+
   setTimer(type) {
-    setTimeout(
+    timeout = setTimeout(
       () => {
         this.setState({ messageLevel: 2 });
       },
       type === LoadingIndicatorType.progressbar ? 10000 : 5000
     );
 
-    setTimeout(
+    timeout2 = setTimeout(
       () => {
         this.setState({ messageLevel: 3 });
       },

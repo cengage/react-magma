@@ -129,6 +129,7 @@ the conditional logic to display the `LoadingIndicator` _inside_ the `Announce` 
         return (<>
           <p>
             <Button onClick={this.onLoaderShow}>Show Loading Indicator</Button>
+            <Button onClick={this.onLoaderClose}>Hide Loading Indicator</Button>
           </p>
           <Announce>
             {showLoader && <LoadingIndicator />}
@@ -165,6 +166,18 @@ the conditional logic to display the `LoadingIndicator` _inside_ the `Announce` 
       required: false,
       description: 'Message displayed after 15 seconds',
       defaultValue: 'Sorry for the delay. This is taking longer than expected.',
+    },
+    type: {
+      type: {
+        name: 'enum',
+        options: [
+          'LoadingIndicatorType.progressbar, LoadingIndicatorType.spinner',
+        ],
+      },
+      required: false,
+      description:
+        'Type of loading indictor to display, can be progress bar or spinner.',
+      defaultValue: 'spinner',
     },
   }}
 />
