@@ -65,8 +65,8 @@ class LoadingIndicatorComponent extends React.Component<
   }
 
   componentWillUnmount() {
-    window.clearTimeout(this.messageLevel2Timeout);
-    window.clearTimeout(this.messageLevel3Timeout);
+    clearTimeout(this.messageLevel2Timeout);
+    clearTimeout(this.messageLevel3Timeout);
   }
 
   setTimer(type) {
