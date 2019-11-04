@@ -3,9 +3,12 @@ import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 
 const SwatchContainer = styled.div`
-    width: 150px;
-    margin: 0 10px 10px 0;
+    width: 200px;
+    margin: 0 20px 20px 0;
     border: 1px solid #dfdfdf;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 6px 0px;
 
     @media (max-width: 400px) {
         width: 100%;
@@ -16,15 +19,14 @@ const SwatchContainer = styled.div`
 const SwatchColor = styled.div`
     background: ${props => props.color};
     height: 100px;
+
 `;
 
 const ColorDetails = styled.div`
-    height: 116px;
-    background: #fff;
     color: #3f3f3f;
     border-top: 1px solid #dfdfdf;
     font-size: 13px;
-    padding: 5px 10px;
+    padding: 10px 20px;
     display: flex;
     flex-direction: column;
 
