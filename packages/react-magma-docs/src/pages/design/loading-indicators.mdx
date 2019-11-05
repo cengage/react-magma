@@ -19,11 +19,11 @@ React Magma loading indicators range from small circular spinners, to larger com
 
 ## Principles
 
-### Clear
-Loading indicators look and animate in ways that reflect the status of a process. They are never simply decorative.
-
 ### Relevant
-Loading indicators should have a clear and helpful relationship to the content or task they represent.
+Loading indicators should have a clear and helpful relationship to the content or task they represent. They are never simply decorative.  This will inspire confidence that the application isn't frozen or not working.
+
+### Clear
+Loading indicators look and animate in ways that reflect the status of a process.  We keep the component intentionally simple so the user can quickly understand what is being communicated.
 
 <span class="horizontal-spacer"></span>
 <hr class="article-divider" />
@@ -85,15 +85,17 @@ If you know that it will take less than a second to complete an action, then no 
 
 If you are loading large amounts of data like an entire page or large areas of data, the amount of time it takes to load can vary greatly.  We need to effectively communicate with the user what is happening, but that takes some informed decisions on our part.
 
-1. If there is no way of measuring how long it will take in real-time, but you know from testing that it typically takes 1 - 5 seconds, you should use the component that uses the circular spinner plus message.  The component allows for three messages in case the loading takes longer than expected.  It will automatically transition to the second message after 5 seconds, and then to the third message after 15 seconds.  These messages can be customized to simply let the user know that it's still loading and everything is fine, or to prepare them for something possibly being wrong.
-
 <figure>
   <img src="../../images/loading-indicators/mindtap-loading.png" alt="" />
   <figcaption>
     <p>In this example, we are using a loading indicator while the Learning Path in MindTap loads.  You could also do this when switching from one view to the other.</p>
   </figcaption>
 </figure>
-<span class="horizontal-spacer"></span>
+
+
+#### Spinner + Message
+
+If there is no way of measuring how long it will take in real-time, but you know from testing that it typically takes 1 - 15 seconds, you should use the component that uses the circular spinner plus message.  The component will automatically transition through three custom messages at the following intervals.
 <figure>
   <img src="../../images/loading-indicators/example-spinner-message.png" alt="" />
   <figcaption>
@@ -101,17 +103,33 @@ If you are loading large amounts of data like an entire page or large areas of d
   </figcaption>
 </figure>
 
-<span class="horizontal-spacer"></span>
+1. **1-5 seconds -** The first message is used to simply tell the user what is happening.  This could be as simple as "Loading..." or slightly more descriptive if necessary.
+1. **5-15 seconds -** The second message is used to tell the user that the data is still loading.
+1. **Greater than 15 seconds -** The third message is used to either comfort the user because everything is still loading but OK, or to prepare the user for a possible problem.
 
-2. If you know from testing that it typically takes more than 15 seconds to load, **AND** you can measure the progress in real-time, you should use the component that uses the progress bar plus message.  This component also allows for three messages, although at different intervals.  The second message appears after 15 seconds, and the third message appears after 30 seconds.
-
+#### Progress Bar + Message
+If you know from testing that it typically takes more than 15 seconds to load, **AND** you can measure the progress in real-time, you should use the component that uses the progress bar plus message.
 <figure>
   <div class="image-container">
     <img src="../../images/progress-bars/Progress-bar-dynamic.png" alt="Illustration of dynamic progress bar" />
   </div>
   <figcaption>
-    <p>In this example, testing shows that it always takes at least 15 seconds to load, and can track progress, so we use the progress bar with message to let the user know what to expect.</p>
+    <p>In this example, testing shows that it always takes at least 15 seconds to load, and we can track the progress, so we use the progress bar with message to let the user know what to expect.</p>
   </figcaption>
 </figure>
+
+<span class="horizontal-spacer"></span>
+
+This component also allows for three messages, although at different intervals than the variant with the spinner above.
+<figure>
+  <img src="../../images/loading-indicators/example-progress-bar-message.png" alt="" />
+  <figcaption>
+    <p>Messaging should tell the user what is happening and what to expect.</p>
+  </figcaption>
+</figure>
+
+1. **1-15 seconds -** The first message is used to simply tell the user what is happening.  This could be as simple as "Loading..." or slightly more descriptive if necessary.
+1. **15-30 seconds -** The second message is used to tell the user that the data is still loading.
+1. **Greater than 30 seconds -** The third message is used to either comfort the user because everything is still loading but OK, or to prepare the user for a possible problem.
 
 <span class="horizontal-spacer"></span>
