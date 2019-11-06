@@ -2,11 +2,11 @@
 
 exports[`Alert Dismissable should render a dismissable icon button with the warning variant 1`] = `
 <button
-  alertvariant="warning"
   aria-label="Close this message"
-  class="e1i9bore4 css-1i6moe9-DismissButton"
+  class="e1i9bore4 css-q8cffb-DismissButton"
   icon="[object Object]"
   id="ignoreButton"
+  theme="[object Object]"
 >
   <svg
     aria-labelledby="ignoreButton"

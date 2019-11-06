@@ -1,6 +1,6 @@
 import React from 'react';
 import { Toast } from '.';
-import { render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent } from '@testing-library/react';
 
 describe('Toast', () => {
   beforeEach(() => {
@@ -27,14 +27,15 @@ describe('Toast', () => {
     expect(getByText(toastContent)).toBeInTheDocument();
   });
 
-  it('should call passed in onDismiss when timer runs out', () => {
+  it('should call passed in onDismiss when timer runs out', async () => {
     const onDismiss = jest.fn();
     render(<Toast onDismiss={onDismiss}>Toast Content</Toast>);
 
-    jest.runAllTimers();
-    setTimeout(() => {
-      expect(onDismiss).toHaveBeenCalled();
-    }, 500);
+    await act(async () => {
+      jest.runAllTimers();
+    });
+
+    expect(onDismiss).toHaveBeenCalled();
   });
 
   it('should use passed in timeout duration', () => {
@@ -49,7 +50,7 @@ describe('Toast', () => {
     expect(container.querySelector('button')).toBeInTheDocument();
   });
 
-  it('should call onDismiss if the dismiss button is clicked', () => {
+  it('should call onDismiss if the dismiss button is clicked', async () => {
     const onDismiss = jest.fn();
     const { container } = render(
       <Toast dismissable onDismiss={onDismiss}>
@@ -60,12 +61,15 @@ describe('Toast', () => {
     const button = container.querySelector('button');
 
     fireEvent.click(button);
-    jest.runAllTimers();
+
+    await act(async () => {
+      jest.runAllTimers();
+    });
 
     expect(onDismiss).toHaveBeenCalled();
   });
 
-  it('should keep the toast up when hovering over the toast and dismiss when mouse leaves', () => {
+  it('should keep the toast up when hovering over the toast and dismiss when mouse leaves', async () => {
     const onDismiss = jest.fn();
     const toastContent = 'I am a toast';
     const { getByText } = render(
@@ -75,17 +79,23 @@ describe('Toast', () => {
     const toast = getByText(toastContent);
 
     fireEvent.mouseOver(toast);
-    jest.runAllTimers();
+
+    await act(async () => {
+      jest.runAllTimers();
+    });
 
     expect(onDismiss).not.toHaveBeenCalled();
 
     fireEvent.mouseLeave(toast);
-    jest.runAllTimers();
+
+    await act(async () => {
+      jest.runAllTimers();
+    });
 
     expect(onDismiss).toHaveBeenCalled();
   });
 
-  it('calls passed in onMouseEnter and onMouseLeave', () => {
+  it('calls passed in onMouseEnter and onMouseLeave', async () => {
     const onDismiss = jest.fn();
     const onMouseEnter = jest.fn();
     const onMouseLeave = jest.fn();
@@ -103,12 +113,18 @@ describe('Toast', () => {
     const toast = getByText(toastContent);
 
     fireEvent.mouseOver(toast);
-    jest.runAllTimers();
+
+    await act(async () => {
+      jest.runAllTimers();
+    });
 
     expect(onMouseEnter).toHaveBeenCalled();
 
     fireEvent.mouseLeave(toast);
-    jest.runAllTimers();
+
+    await act(async () => {
+      jest.runAllTimers();
+    });
 
     expect(onMouseLeave).toHaveBeenCalled();
   });

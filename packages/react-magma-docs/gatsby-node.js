@@ -23,3 +23,13 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     })
   }
 }
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        react: path.resolve('./node_modules/react'),
+      },
+    },
+  })
+}

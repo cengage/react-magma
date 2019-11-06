@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
+import isPropValid from '@emotion/is-prop-valid';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Info2Icon } from '../Icon/types/Info2Icon';
 import { CheckIcon } from '../Icon/types/CheckIcon';
@@ -8,7 +9,6 @@ import { NotificationIcon } from '../Icon/types/NotificationIcon';
 import { BlockedIcon } from '../Icon/types/BlockedIcon';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { Button, ButtonVariant } from '../Button';
-// import { AlertCore } from 'react-magma-core';
 
 const VARIANT_ICON = {
   info: Info2Icon,
@@ -132,30 +132,38 @@ const DismissableIconWrapper = styled.span<AlertProps>`
   }
 `;
 
-const DismissButton = styled(Button)<{ alertVariant?: AlertVariant }>`
+const whitelistProps = ['icon', 'inverse', 'theme', 'variant'];
+
+const shouldForwardProp = prop => {
+  return isPropValid(prop) || whitelistProps.includes(prop);
+};
+
+const DismissButton = styled(Button, { shouldForwardProp })<{
+  alertVariant?: AlertVariant;
+}>`
   border-radius: 0 3px 3px 0;
   color: inherit;
   height: calc(100% - 6px);
   margin: 3px;
   padding: 0 15px;
   width: auto;
-  
+
   &&:focus:not(:disabled) {
-    outline: 2px dotted ${props =>
-      props.alertVariant === 'warning'
-        ? props.theme.colors.neutral02
-        : props.theme.colors.neutral08};
-    };
-    outline-offset: 0!important;
+    outline: 2px dotted
+      ${({ alertVariant, theme }) =>
+        alertVariant === 'warning'
+          ? theme.colors.neutral02
+          : theme.colors.neutral08};
+    outline-offset: 0 !important;
   }
 
   &:hover,
   &:focus {
     :not(:disabled):before {
-      background: ${props =>
-        props.alertVariant === 'warning'
-          ? props.theme.colors.neutral02
-          : props.theme.colors.neutral08};
+      background: ${({ alertVariant, theme }) =>
+        alertVariant === 'warning'
+          ? theme.colors.neutral02
+          : theme.colors.neutral08};
       opacity: 0.15;
     }
 
@@ -163,7 +171,6 @@ const DismissButton = styled(Button)<{ alertVariant?: AlertVariant }>`
       display: none;
     }
   }
-  
 `;
 
 function renderIcon(variant = 'info') {
@@ -194,10 +201,12 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
     const [isExiting, updateIsExiting] = React.useState(externalIsExiting);
 
     React.useEffect(() => {
-      setTimeout(() => {
-        updateIsExiting(false);
-        onDismiss && typeof onDismiss === 'function' && onDismiss();
-      }, transitionDuration - 300);
+      if (isExiting) {
+        setTimeout(() => {
+          updateIsExiting(false);
+          onDismiss && typeof onDismiss === 'function' && onDismiss();
+        }, transitionDuration - 300);
+      }
     }, [isExiting]);
 
     function handleDismiss() {

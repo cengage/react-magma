@@ -35,7 +35,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-3xtpuq-IconWrapper-IconWrapperStyles e1i9bore2"
+      class="css-yfu1ja-IconWrapper-IconWrapperStyles e1i9bore2"
     >
       <svg
         aria-labelledby="auto-generated-id"
@@ -91,7 +91,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-3xtpuq-IconWrapper-IconWrapperStyles e1i9bore2"
+      class="css-yfu1ja-IconWrapper-IconWrapperStyles e1i9bore2"
     >
       <svg
         aria-labelledby="auto-generated-id"
@@ -134,7 +134,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-3xtpuq-IconWrapper-IconWrapperStyles e1i9bore2"
+      class="css-yfu1ja-IconWrapper-IconWrapperStyles e1i9bore2"
     >
       <svg
         aria-labelledby="auto-generated-id"
@@ -177,7 +177,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-3xtpuq-IconWrapper-IconWrapperStyles e1i9bore2"
+      class="css-yfu1ja-IconWrapper-IconWrapperStyles e1i9bore2"
     >
       <svg
         aria-labelledby="auto-generated-id"
@@ -219,7 +219,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-3xtpuq-IconWrapper-IconWrapperStyles e1i9bore2"
+      class="css-yfu1ja-IconWrapper-IconWrapperStyles e1i9bore2"
     >
       <svg
         aria-labelledby="auto-generated-id"
