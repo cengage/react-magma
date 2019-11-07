@@ -7,12 +7,8 @@ const StyledCardBody = styled.div<CardProps>`
   text-align: ${props => props.align};
 `;
 
-function renderCardBody(props) {
-  const { children } = props;
-
+export const CardBody: React.FunctionComponent<CardProps> = ({
+  children
+}: CardProps) => {
   return <StyledCardBody>{children}</StyledCardBody>;
-}
-
-export const CardBody: React.FunctionComponent<CardProps> = (
-  props: CardProps
-) => renderCardBody(props);
+};
