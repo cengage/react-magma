@@ -224,15 +224,8 @@ The default value is `false`.
 The `loadOptions` property allows for loading from a remote source as the user types.
 
 ```.jsx
-class Select extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.filterColors = this.filterColors.bind(this);
-    this.promiseOptions = this.promiseOptions.bind(this);
-  }
-
-  filterColors(inputValue) {
+(props) => {
+  function filterColors(inputValue) {
     return [
       {
         label: "Red",
@@ -247,21 +240,17 @@ class Select extends React.Component {
     );
   }
 
-  promiseOptions(inputValue) {
+  function promiseOptions(inputValue) {
     return new Promise(resolve => {
       setTimeout(() => {
-        resolve(this.filterColors(inputValue));
+        resolve(filterColors(inputValue));
       }, 1000);
     });
   }
 
-  render() {
-    return (
-      <>
-        <AsyncSelect labelText="Async Select" loadOptions={this.promiseOptions} />
-      </>
-    );
-  }
+  return (
+    <AsyncSelect labelText="Async Select" loadOptions={promiseOptions} />
+  );
 }
 ```
 
@@ -270,53 +259,46 @@ class Select extends React.Component {
 The `CreatableSelect` allows for the creation of a new option if that option is not found.
 
 ```.jsx
-class Select extends React.Component {
-  constructor(props) {
-    super(props);
+(props) => {
+  const [options, updateOptions] = React.useState([
+    {
+      label: "Red",
+      value: "red"
+    },
+    {
+      label: "Blue",
+      value: "blue"
+    }
+  ])
 
-    this.state = {
-      options: [
-        {
-          label: "Red",
-          value: "red"
-        },
-        {
-          label: "Blue",
-          value: "blue"
-        }
-      ]
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
-  }
-
-  handleChange(value, action) {
+  function handleChange(value, action) {
     if (value.__isNew__) {
-      this.state.options.push({
-        label: value.label,
-        value: value.value
+      updateOptions(options => {
+        options.push({
+          label: value.label,
+          value: value.value
+        });
+
+        return options;
       })
     }
   }
 
-  handleInputChange(value, action) {
+  function handleInputChange(value, action) {
     console.group('Input Changed');
     console.log(value);
     console.groupEnd();
   };
 
-  render() {
-    return (
-      <CreatableSelect
-        labelText="Creatable Select"
-        isClearable
-        onChange={this.handleChange}
-        onInputChange={this.handleInputChange}
-        options={this.state.options}
-      />
-    );
-  }
+  return (
+    <CreatableSelect
+      labelText="Creatable Select"
+      isClearable
+      onChange={handleChange}
+      onInputChange={handleInputChange}
+      options={options}
+    />
+  );
 }
 ```
 
@@ -325,200 +307,153 @@ class Select extends React.Component {
 The `AsyncCreatableSelect` combines both the creation of a new option and the loading from a remote source.
 
 ```.jsx
-class Select extends React.Component {
-  constructor(props) {
-    super(props);
+(props) => {
+  const [options, updateOptions] = React.useState([
+    {
+      label: "Red",
+      value: "red"
+    },
+    {
+      label: "Blue",
+      value: "blue"
+    }
+  ]);
 
-    this.state = {
-      options: [
-        {
-          label: "Red",
-          value: "red"
-        },
-        {
-          label: "Blue",
-          value: "blue"
-        }
-      ]
-    };
-
-    this.filterColors = this.filterColors.bind(this);
-    this.promiseOptions = this.promiseOptions.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  filterColors(inputValue) {
-    return this.state.options.filter(i =>
+  function filterColors(inputValue) {
+    return options.filter(i =>
       i.label.toLowerCase().includes(inputValue.toLowerCase())
     );
   }
 
-  promiseOptions(inputValue) {
+  function promiseOptions(inputValue) {
     return new Promise(resolve => {
       setTimeout(() => {
-        resolve(this.filterColors(inputValue));
+        resolve(filterColors(inputValue));
       }, 1000);
     });
   }
 
-  handleChange(value, action) {
+  function handleChange(value, action) {
     if (value.__isNew__) {
-      this.state.options.push({
-        label: value.label,
-        value: value.value
+      updateOptions(options => {
+        options.push({
+          label: value.label,
+          value: value.value
+        });
+
+        return options;
       })
     }
   }
 
-  render() {
-    return (
-      <>
-        <AsyncCreatableSelect labelText="Async Creatable Select" loadOptions={this.promiseOptions} onChange={this.handleChange} />
-      </>
-    );
-  }
+  return (
+    <AsyncCreatableSelect labelText="Async Creatable Select" loadOptions={promiseOptions} onChange={handleChange} />
+  );
 }
 ```
 
 ## Controlled
 
 ```.jsx
-  class SelectInput extends React.Component {
-    constructor(props) {
-      super(props)
-      this.state = {
-        value: null
-      };
+(props) => {
+  const [value, updateValue] = React.useState(null)
 
-      this.changeValue = this.changeValue.bind(this);
-    }
-
-    changeValue(value) {
-      this.setState(state => ({
-        value
-      }));
-    }
-
-    render() {
-      return <>
-        <p>
-          <strong>Value: </strong>
-          <span id="value">{this.state.value ? this.state.value.value : 'No Value Set'}</span>
-        </p>
-        <Select
-          id="valueSelectId"
-          name="value"
-          labelText="Value"
-          options={[{
-            value: 'red',
-            label: 'Red'
-          }, {
-            value: 'blue',
-            label: 'Blue'
-          }, {
-            value: 'green',
-            label: 'Green'
-          }]}
-          onChange={this.changeValue}
-        />
-      </>
-    }
-  }
+  return (<>
+    <p>
+      <strong>Value: </strong>
+      <span id="value">{value ? value.value : 'No Value Set'}</span>
+    </p>
+    <Select
+      id="valueSelectId"
+      name="value"
+      labelText="Value"
+      options={[{
+        value: 'red',
+        label: 'Red'
+      }, {
+        value: 'blue',
+        label: 'Blue'
+      }, {
+        value: 'green',
+        label: 'Green'
+      }]}
+      onChange={updateValue}
+    />
+  </>)
+}
 ```
 
 ## Focus Events
 
 ```.jsx
-  class SelectInput extends React.Component {
-    constructor(props) {
-      super(props)
-      this.state = {
-        focused: false,
-        message: 'No'
-      };
+  (props) => {
+    const [focused, updateFocused] = React.useState(false);
+    const [message, updateMessage] = React.useState('No');
 
-      this.changeFocusedMessage = this.changeFocusedMessage.bind(this);
+    function changeFocusedMessage() {
+      const updatedFocused = !focused;
+
+      updateFocused(updatedFocused)
+      updateMessage(updatedFocused ? 'Yes' : 'No')
     }
 
-    changeFocusedMessage() {
-      const focused = !this.state.focused;
-
-      this.setState(state => ({
-        focused,
-        message: focused ? 'Yes' : 'No',
-      }));
-    }
-
-    render() {
-      return <>
-        <p><strong>Focused: </strong> <span id="focused">{this.state.message}</span></p>
-        <Select
-          id="focusedSelectId"
-          name="focused"
-          labelText="Focused?"
-          options={[{
-            value: 'red',
-            label: 'Red'
-          }, {
-            value: 'blue',
-            label: 'Blue'
-          }, {
-            value: 'green',
-            label: 'Green'
-          }]}
-          onFocus={this.changeFocusedMessage}
-          onBlur={this.changeFocusedMessage}
-        />
-      </>
-    }
+    return (<>
+      <p><strong>Focused: </strong> <span id="focused">{message}</span></p>
+      <Select
+        id="focusedSelectId"
+        name="focused"
+        labelText="Focused?"
+        options={[{
+          value: 'red',
+          label: 'Red'
+        }, {
+          value: 'blue',
+          label: 'Blue'
+        }, {
+          value: 'green',
+          label: 'Green'
+        }]}
+        onFocus={changeFocusedMessage}
+        onBlur={changeFocusedMessage}
+      />
+    </>)
   }
 ```
 
 ## Open and Close Events
 
 ```.jsx
-  class SelectInput extends React.Component {
-    constructor(props) {
-      super(props)
-      this.state = {
-        opened: false,
-        message: 'No'
-      };
+  (props) => {
+    const [opened, updateOpened] = React.useState(false);
+    const [message, updateMessage] = React.useState('No');
 
-      this.changeOpenedMessage = this.changeOpenedMessage.bind(this);
+    function changeOpenedMessage() {
+      const updatedOpened = !opened;
+
+      updateOpened(updatedOpened)
+      updateMessage(updatedOpened ? 'Yes' : 'No')
     }
 
-    changeOpenedMessage() {
-      const opened = !this.state.opened;
-
-      this.setState(state => ({
-        opened,
-        message: opened ? 'Yes' : 'No',
-      }));
-    }
-
-    render() {
-      return <>
-      <p><strong>Opened: </strong> <span id="opened">{this.state.message}</span></p>
-        <Select
-          id="openedSelectId"
-          name="opened"
-          labelText="Opened?"
-          options={[{
-            value: 'red',
-            label: 'Red'
-          }, {
-            value: 'blue',
-            label: 'Blue'
-          }, {
-            value: 'green',
-            label: 'Green'
-          }]}
-          onOpen={this.changeOpenedMessage}
-          onClose={this.changeOpenedMessage}
-        />
-      </>
-    }
+    return (<>
+      <p><strong>Opened: </strong> <span id="opened">{message}</span></p>
+      <Select
+        id="openedSelectId"
+        name="opened"
+        labelText="Opened?"
+        options={[{
+          value: 'red',
+          label: 'Red'
+        }, {
+          value: 'blue',
+          label: 'Blue'
+        }, {
+          value: 'green',
+          label: 'Green'
+        }]}
+        onOpen={changeOpenedMessage}
+        onClose={changeOpenedMessage}
+      />
+    </>)
   }
 ```
 
