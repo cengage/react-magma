@@ -35,6 +35,7 @@ const StyledTooltip = styled.div<{
 }>`
   display: ${props => (props.visible ? 'block' : 'none')};
   font-size: 12px;
+  line-height: 1.3em;
   font-weight: 600;
   position: absolute;
   text-align: center;
@@ -92,7 +93,7 @@ const StyledTooltipInner = styled.div<{
       ? props.theme.colors.neutral02
       : props.theme.colors.neutral08};
   display: inline-block;
-  padding: 3px 5px;
+  padding: 7px 10px;
   position: relative;
 
   &:before,

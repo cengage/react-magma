@@ -5,10 +5,11 @@ title: 'Spinner'
 import { ScopeableLayout } from '../../components/layout'
 import { Spinner, magma } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
+import { Link } from 'gatsby'
 
 # Spinner
 
-Spinners indicate the loading state of a component or page.
+Spinners indicate the loading state of a component or page. Spinners are used within the <Link to="/api/loading-indicator">Loading Indicator</Link> component.
 
 ## Basic Usage
 
@@ -16,7 +17,7 @@ Spinners indicate the loading state of a component or page.
     <Spinner />
 ```
 
-## Aria-label
+## Aria-Label
 
 By default, the aria-label for the spinner is "Loading", but this can be customized using the `ariaLabel` prop.
 

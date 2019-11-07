@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { CheckboxCore } from 'react-magma-core';
 import {
   DisplayInputStyles,
   DisplayInputActiveStyles,
@@ -10,7 +9,10 @@ import { HiddenStyles } from '../UtilityStyles';
 import { CheckIcon } from '../Icon/types/CheckIcon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
-import styled from '../../theme/styled';
+// Using the base `styled` from `emotion` until import mapping is fixed: https://github.com/emotion-js/emotion/pull/1220
+// import styled from '../../theme/styled';
+import styled from '@emotion/styled';
+import { generateId } from '../utils';
 
 export interface CheckboxProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -143,106 +145,90 @@ const IndeterminateIcon = styled.span<{ color?: string }>`
   }
 `;
 
-export class Checkbox extends React.Component<CheckboxProps> {
-  constructor(props) {
-    super(props);
+export const Checkbox: React.FunctionComponent<CheckboxProps> = (
+  props: CheckboxProps
+) => {
+  const checkboxInput = React.useRef<HTMLInputElement>();
+  const [id, updateId] = React.useState(generateId(props.id));
+  const [checked, updateChecked] = React.useState(props.checked);
 
-    this.setIndeterminate = this.setIndeterminate.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+  React.useEffect(() => {
+    updateId(generateId(props.id));
+  }, [props.id]);
+
+  React.useEffect(() => {
+    updateChecked(props.checked);
+  }, [props.checked]);
+
+  React.useEffect(() => {
+    setIndeterminate();
+  });
+
+  function setIndeterminate() {
+    checkboxInput.current.indeterminate = props.indeterminate;
   }
 
-  readonly checkboxInput = React.createRef<any>();
-
-  componentDidMount() {
-    this.setIndeterminate();
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const { checked: targetChecked } = event.target;
+    props.onChange &&
+      typeof props.onChange === 'function' &&
+      props.onChange(event);
+    updateChecked(targetChecked);
   }
 
-  componentDidUpdate() {
-    this.setIndeterminate();
-  }
+  const {
+    onBlur,
+    onFocus,
+    color,
+    containerStyle,
+    disabled,
+    indeterminate,
+    inputStyle,
+    inverse,
+    labelStyle,
+    labelText,
+    textVisuallyHidden,
+    testId,
+    ...other
+  } = props;
 
-  setIndeterminate() {
-    this.checkboxInput.current.indeterminate = this.props.indeterminate;
-  }
-
-  handleChange(onChange: (checked: boolean) => void) {
-    return (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { checked } = event.target;
-      this.props.onChange &&
-        typeof this.props.onChange === 'function' &&
-        this.props.onChange(event);
-      onChange(checked);
-    };
-  }
-
-  render() {
-    return (
-      <CheckboxCore id={this.props.id} checked={this.props.checked}>
-        {({ id, onChange, checked }) => {
-          const {
-            onBlur,
-            onFocus,
-            color,
-            containerStyle,
-            disabled,
-            indeterminate,
-            inputStyle,
-            inverse,
-            labelStyle,
-            labelText,
-            textVisuallyHidden,
-            testId,
-            ...other
-          } = this.props;
-
-          return (
-            <ThemeContext.Consumer>
-              {theme => (
-                <StyledContainer style={containerStyle}>
-                  <HiddenInput
-                    {...other}
-                    id={id}
-                    data-testid={testId}
-                    checked={checked}
-                    disabled={disabled}
-                    indeterminate={indeterminate}
-                    ref={this.checkboxInput}
-                    type="checkbox"
-                    onBlur={onBlur}
-                    onChange={this.handleChange(onChange)}
-                    onFocus={onFocus}
-                  />
-                  <StyledLabel
-                    htmlFor={id}
-                    inverse={inverse}
-                    style={labelStyle}
-                  >
-                    <StyledFakeInput
-                      checked={checked}
-                      color={color ? color : ''}
-                      disabled={disabled}
-                      inverse={inverse}
-                      style={inputStyle}
-                      theme={theme}
-                    >
-                      <IndeterminateIcon
-                        color={color ? color : ''}
-                        theme={theme}
-                      />
-                      <CheckIcon size={12} />
-                    </StyledFakeInput>
-                    {textVisuallyHidden ? (
-                      <HiddenLabelText>{labelText}</HiddenLabelText>
-                    ) : (
-                      labelText
-                    )}
-                  </StyledLabel>
-                </StyledContainer>
-              )}
-            </ThemeContext.Consumer>
-          );
-        }}
-      </CheckboxCore>
-    );
-  }
-}
+  return (
+    <ThemeContext.Consumer>
+      {theme => (
+        <StyledContainer style={containerStyle}>
+          <HiddenInput
+            {...other}
+            id={id}
+            data-testid={testId}
+            checked={checked}
+            disabled={disabled}
+            indeterminate={indeterminate}
+            ref={checkboxInput}
+            type="checkbox"
+            onBlur={onBlur}
+            onChange={handleChange}
+            onFocus={onFocus}
+          />
+          <StyledLabel htmlFor={id} inverse={inverse} style={labelStyle}>
+            <StyledFakeInput
+              checked={checked}
+              color={color ? color : ''}
+              disabled={disabled}
+              inverse={inverse}
+              style={inputStyle}
+              theme={theme}
+            >
+              <IndeterminateIcon color={color ? color : ''} theme={theme} />
+              <CheckIcon size={12} />
+            </StyledFakeInput>
+            {textVisuallyHidden ? (
+              <HiddenLabelText>{labelText}</HiddenLabelText>
+            ) : (
+              labelText
+            )}
+          </StyledLabel>
+        </StyledContainer>
+      )}
+    </ThemeContext.Consumer>
+  );
+};
