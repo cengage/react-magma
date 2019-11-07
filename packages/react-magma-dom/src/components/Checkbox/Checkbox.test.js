@@ -66,7 +66,7 @@ describe('Checkbox', () => {
 
   it('should render a passed in color', () => {
     const color = '#FFFFFF';
-    const { container } = render(<Checkbox color={color} />);
+    const { container } = render(<Checkbox checked color={color} />);
     const span = container.querySelector('span');
 
     expect(span).toHaveStyleRule('background', color);
