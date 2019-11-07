@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { format, isSameDay } from 'date-fns';
 
 // must import CalendarContextInterface for typescript compiler to build types file

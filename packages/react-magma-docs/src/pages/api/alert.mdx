@@ -50,33 +50,14 @@ you must also include a function in the `onDimiss` prop to handle the dismiss be
 The aria-label, by default is `Close this message` but can be overridden using the optional `closeLabel` prop.
 
 ```.jsx
-  class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          showAlert: false
-        }
 
-        this.onAlertShow = this.onAlertShow.bind(this);
-        this.onAlertDismiss = this.onAlertDismiss.bind(this);
-      }
+    (props) => {
+      const [showAlert, updateShowAlert] = React.useState(false);
 
-      onAlertShow() {
-        this.setState({showAlert: true})
-      }
-
-      onAlertDismiss() {
-        this.setState({showAlert: false})
-      }
-
-      render() {
-        const { showAlert } = this.state;
-
-        return (<>
-          {showAlert && <Alert dismissable onDismiss={this.onAlertDismiss}>Dismiss Me<br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Alert>}
-          <Button onClick={this.onAlertShow}>Show Alert</Button>
-        </>)
-      }
+      return (<>
+        {showAlert && <Alert dismissable onDismiss={() => updateShowAlert(false)}>Dismiss Me<br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Alert>}
+        <Button onClick={() => updateShowAlert(true)}>Show Alert</Button>
+      </>)
     }
 ```
 
@@ -135,7 +116,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
         'If true, the component will be able to be dismissed and will include a close button',
       defaultValue: 'false',
     },
-     inverse: {
+    inverse: {
       type: {
         name: 'boolean',
       },

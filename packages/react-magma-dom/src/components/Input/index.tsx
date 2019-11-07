@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { InputCore } from 'react-magma-core';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { css } from '@emotion/core';
 import { IconProps } from '../Icon/utils';
 import { Spinner } from '../Spinner';

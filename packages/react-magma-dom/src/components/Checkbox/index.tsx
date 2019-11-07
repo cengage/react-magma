@@ -10,7 +10,7 @@ import { HiddenStyles } from '../UtilityStyles';
 import { CheckIcon } from '../Icon/types/CheckIcon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 
 export interface CheckboxProps
   extends React.InputHTMLAttributes<HTMLInputElement> {

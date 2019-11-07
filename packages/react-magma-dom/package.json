@@ -42,7 +42,7 @@
     "focus-visible": "^4.1.5",
     "polished": "^3.2.0",
     "react-magma-core": "0.1.0-beta.61",
-    "react-select": "2.4.4",
+    "react-select": "^3.0.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
@@ -92,7 +92,7 @@
     "tslint-config-cengage": "^0.1.0",
     "tslint-config-prettier": "^1.15.0",
     "tslint-react-a11y": "^1.0.0",
-    "typescript": "3.3.3333"
+    "typescript": "^3.7.2"
   },
   "lint-staged": {
     "*.{ts,tsx,js,json,css,md}": [

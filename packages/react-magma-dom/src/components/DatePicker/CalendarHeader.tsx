@@ -5,7 +5,7 @@ import { ArrowRight2Icon } from '../Icon/types/ArrowRight2Icon';
 import { Button, ButtonType, ButtonVariant } from '../Button';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { format, addMonths, subMonths } from 'date-fns';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 
 interface CalendarHeaderProps {
   focusHeader?: boolean;

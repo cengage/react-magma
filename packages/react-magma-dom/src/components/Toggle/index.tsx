@@ -5,7 +5,7 @@ import { CheckIcon } from '../Icon/types/CheckIcon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 enum ToggleTextPosition {

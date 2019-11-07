@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import isPropValid from '@emotion/is-prop-valid';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Info2Icon } from '../Icon/types/Info2Icon';

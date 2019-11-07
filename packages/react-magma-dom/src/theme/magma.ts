@@ -19,8 +19,10 @@ export interface Colors {
   neutral06: string;
   neutral07: string;
   neutral08: string;
+  a11y01: string;
   disabledText: string;
   disabledInverseText: string;
+  toggleBoxShadow: string;
 }
 
 export interface ThemeInterface {

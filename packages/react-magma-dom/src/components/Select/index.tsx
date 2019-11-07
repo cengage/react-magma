@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { SelectCore, Options } from 'react-magma-core';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 import ReactSelect, { components } from 'react-select';
+import { useSelectValue, Options } from '../Select/shared';
 import { SelectWrapper } from './SelectWrapper';
 
 export interface SelectProps {
@@ -25,7 +25,7 @@ export interface SelectProps {
   style?: ReactSelectStyles;
   onBlur?: () => void;
   onFocus?: () => void;
-  onChange?: (option: Options) => void;
+  onChange?: (option: Options[] | Options) => void;
   onOpen?: () => void;
   onClose?: () => void;
   onInputChange?: (value: string) => void;
@@ -171,81 +171,79 @@ export const MultiValueRemove = props => {
 
 export const Select: React.FunctionComponent<SelectProps> = (
   props: SelectProps
-) => (
-  <SelectCore
-    defaultValue={props.defaultValue}
-    value={props.value}
-    onChange={props.onChange}
-  >
-    {({ value, onChange }) => {
-      const {
-        defaultValue,
-        id,
-        testId,
-        name,
-        labelText,
-        options,
-        disabled,
-        onBlur,
-        onFocus,
-        onOpen,
-        onClose,
-        onInputChange,
-        required,
-        clearable,
-        errorMessage,
-        helperMessage,
-        inverse,
-        multi,
-        style
-      } = props;
+) => {
+  const [value, onChange] = useSelectValue(
+    props.value,
+    props.defaultValue,
+    props.onChange
+  );
 
-      const ariaLabelText =
-        errorMessage || helperMessage
-          ? `${labelText}, ${errorMessage ? errorMessage : helperMessage}`
-          : labelText;
+  const {
+    defaultValue,
+    id,
+    testId,
+    name,
+    labelText,
+    options,
+    disabled,
+    onBlur,
+    onFocus,
+    onOpen,
+    onClose,
+    onInputChange,
+    required,
+    clearable,
+    errorMessage,
+    helperMessage,
+    inverse,
+    multi,
+    style
+  } = props;
 
-      return (
-        <ThemeContext.Consumer>
-          {theme => (
-            <SelectWrapper
-              errorMessage={errorMessage}
-              helperMessage={helperMessage}
-              id={id}
-              inverse={inverse}
-              labelText={labelText}
-              testId={testId}
-            >
-              <ReactSelect
-                aria-label={ariaLabelText}
-                classNamePrefix="magma"
-                components={{
-                  ClearIndicator,
-                  DropdownIndicator,
-                  MultiValueRemove
-                }}
-                defaultValue={defaultValue}
-                id={id}
-                inverse={inverse}
-                isClearable={clearable}
-                isDisabled={disabled}
-                isMulti={multi}
-                name={name}
-                onBlur={onBlur}
-                onChange={onChange}
-                onFocus={onFocus}
-                onInputChange={onInputChange}
-                onMenuClose={onClose}
-                onMenuOpen={onOpen}
-                options={options}
-                required={required}
-                styles={getStyles(style, theme, errorMessage, inverse)}
-                value={value}
-              />
-            </SelectWrapper>
-          )}
-        </ThemeContext.Consumer>
-      );
-    }}
-  </SelectCore>
-);
+  const ariaLabelText =
+    errorMessage || helperMessage
+      ? `${labelText}, ${errorMessage ? errorMessage : helperMessage}`
+      : labelText;
+
+  return (
+    <ThemeContext.Consumer>
+      {theme => (
+        <SelectWrapper
+          errorMessage={errorMessage}
+          helperMessage={helperMessage}
+          id={id}
+          inverse={inverse}
+          labelText={labelText}
+          testId={testId}
+        >
+          <ReactSelect
+            aria-label={ariaLabelText}
+            classNamePrefix="magma"
+            components={{
+              ClearIndicator,
+              DropdownIndicator,
+              MultiValueRemove
+            }}
+            defaultValue={defaultValue}
+            id={id}
+            inverse={inverse}
+            isClearable={clearable}
+            isDisabled={disabled}
+            isMulti={multi}
+            name={name}
+            onBlur={onBlur}
+            onChange={onChange}
+            onFocus={onFocus}
+            onInputChange={onInputChange}
+            onMenuClose={onClose}
+            onMenuOpen={onOpen}
+            options={options}
+            required={required}
+            styles={getStyles(style, theme, errorMessage, inverse)}
+            value={value}
+          />
+        </SelectWrapper>
+      )}
+    </ThemeContext.Consumer>
+  );
+};

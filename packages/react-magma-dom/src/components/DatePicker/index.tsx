@@ -6,7 +6,7 @@ import { Announce } from '../Announce';
 import { Input } from '../Input';
 import { format, isValid } from 'date-fns';
 import { ThemeContext } from '../../theme/ThemeContext';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { CalendarIcon } from '../Icon/types/CalendarIcon';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { handleKeyPress } from './utils';

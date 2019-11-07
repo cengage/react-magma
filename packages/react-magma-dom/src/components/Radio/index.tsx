@@ -8,7 +8,7 @@ import { HiddenStyles } from '../UtilityStyles';
 import { RadioContext } from '../RadioGroup';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { generateId } from '../utils';
 

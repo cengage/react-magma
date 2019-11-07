@@ -2,7 +2,7 @@ import * as React from 'react';
 import { RadioCore } from 'react-magma-core';
 import { FormGroupLabel } from '../FormGroup';
 import { HiddenStyles } from '../UtilityStyles';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { omit } from '../utils';
 
 const HiddenLabel = styled.label`
