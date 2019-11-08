@@ -3,7 +3,7 @@ title: 'Modals'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { Modal, Button, Toggle } from 'react-magma-dom'
+import { Modal, Button, Radio, RadioGroup, Toggle } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
@@ -55,6 +55,50 @@ simply use `<Modal open={flag} />`
                 <p>This is a modal, doing modal things.</p>
                 <p><Button>This is a button</Button></p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </Modal>
+          <Button onClick={this.onModalShow}>Show Modal</Button>
+        </>)
+      }
+    }
+```
+
+## Radio Button Example
+
+```.jsx
+
+    class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          showModal: false
+        }
+
+        this.onModalShow = this.onModalShow.bind(this);
+        this.onModalClose = this.onModalClose.bind(this);
+      }
+
+      onModalShow() {
+        this.setState({showModal: true})
+      }
+
+      onModalClose() {
+        this.setState({showModal: false})
+      }
+
+      render() {
+        const { showModal } = this.state;
+
+        return (<>
+            <Modal header="Modal Title" onClose={this.onModalClose} open={showModal}>
+                <RadioGroup labelText='Radio Buttons in Modal' name='modalExample'>
+                  <Radio
+                      labelText='Option one label'
+                      value='1' />
+
+                  <Radio
+                      labelText='Option two label'
+                      value='2' />
+                  </RadioGroup>
             </Modal>
           <Button onClick={this.onModalShow}>Show Modal</Button>
         </>)
@@ -431,5 +475,8 @@ Sizes for modals include `small`, `medium`, and `large`, with `medium` being the
 />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ Modal, Button, Toggle }} />
+  <ScopeableLayout
+    {...props}
+    components={{ Modal, Button, Radio, RadioGroup, Toggle }}
+  />
 )

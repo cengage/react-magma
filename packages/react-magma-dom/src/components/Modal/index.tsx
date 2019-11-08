@@ -231,6 +231,8 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
     return event => {
       const { keyCode, shiftKey } = event;
 
+      console.log('handleKeyDown', event.target);
+
       if (keyCode === 27) {
         event.preventDefault();
         event.stopPropagation();
@@ -245,11 +247,16 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
           event.target
         );
 
-        if (index === 0) {
+        if (index <= 0) {
           event.preventDefault();
           this.state.focusableElements[
             this.state.focusableElements.length - 1
           ].focus();
+        } else {
+          // if (element is a radio button) {
+          //check how many other radio buttons have the same name
+          // if the first radio button with that name is index === 0, then prevent default and move foucs
+          // }
         }
       } else if (keyCode === 9) {
         const index = getFocusedElementIndex(
