@@ -646,8 +646,45 @@ describe('Modal', () => {
       expect(getByTestId('passwordInput')).toHaveFocus();
     });
 
+    it('should handle shift + tab and loop it through the modal if the first element is a set of radio buttons', () => {
+      const { getByTestId, getByText, rerender } = render(
+        <>
+          <button>Open</button>
+          <Modal header="Hello" open={false} onClose={jest.fn()} hideEscButton>
+            <>
+              <input data-testid="yesInput" type="radio" name="radios" />
+              <input data-testid="noInput" type="radio" name="radios" />
+              <button data-testid="closeButton">Close</button>
+            </>
+          </Modal>
+        </>
+      );
+
+      fireEvent.focus(getByText('Open'));
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal header="Hello" open={true} onClose={jest.fn()} hideEscButton>
+            <>
+              <input data-testid="yesInput" type="radio" name="radios" />
+              <input data-testid="noInput" type="radio" name="radios" />
+              <button data-testid="closeButton">Close</button>
+            </>
+          </Modal>
+        </>
+      );
+
+      fireEvent.keyDown(getByTestId('noInput'), {
+        keyCode: 9,
+        shiftKey: true
+      });
+
+      expect(getByTestId('closeButton')).toHaveFocus();
+    });
+
     it('should focus the first focusable element when the active element is the body on rerender of modal', () => {
-      const { container, getByTestId, rerender } = render(
+      const { getByTestId, rerender } = render(
         <>
           <button>Open</button>
           <Modal open={true} onClose={jest.fn()} hideEscButton>
