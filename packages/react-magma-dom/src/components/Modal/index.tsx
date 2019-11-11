@@ -55,10 +55,12 @@ const ModalContainer = styled.div`
 const ModalBackdrop = styled.div<{ isExiting?: boolean }>`
   animation: ${props => (props.isExiting ? 'fadeout 500ms' : 'fadein 500ms')};
   background: rgba(0, 0, 0, 0.6);
-  height: 100%;
+  bottom: 0;
+  left: 0;
   position: fixed;
-  width: 100%;
-  z-index: 999;
+  right: 0;
+  top: 0;
+  z-index: 997;
 
   @keyframes fadein {
     from {
@@ -339,18 +341,6 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                         ref={this.focusTrapElement}
                         role="dialog"
                       >
-                        <ModalBackdrop
-                          data-testid="modal-backdrop"
-                          isExiting={isExiting}
-                          onMouseDown={
-                            disableBackdropClick
-                              ? event => event.preventDefault()
-                              : null
-                          }
-                          onClick={
-                            disableBackdropClick ? null : this.handleClose
-                          }
-                        />
                         <ModalContent
                           data-testid="modal-content"
                           isExiting={isExiting}
@@ -391,6 +381,16 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                           )}
                         </ModalContent>
                       </ModalContainer>
+                      <ModalBackdrop
+                        data-testid="modal-backdrop"
+                        isExiting={isExiting}
+                        onMouseDown={
+                          disableBackdropClick
+                            ? event => event.preventDefault()
+                            : null
+                        }
+                        onClick={disableBackdropClick ? null : this.handleClose}
+                      />
                     </>,
                     document.getElementsByTagName('body')[0]
                   )
