@@ -244,8 +244,13 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
           this.state.focusableElements,
           event.target
         );
-
-        if (index === 0) {
+        if (
+          index <= 0 ||
+          (event.target.getAttribute('type') === 'radio' &&
+            event.target.hasAttribute('name') &&
+            event.target.getAttribute('name') ===
+              this.state.focusableElements[0].getAttribute('name'))
+        ) {
           event.preventDefault();
           this.state.focusableElements[
             this.state.focusableElements.length - 1
