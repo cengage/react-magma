@@ -183,6 +183,7 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
 
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleEscapeKeyDown = this.handleEscapeKeyDown.bind(this);
   }
 
   componentDidUpdate(prevProps: ModalProps, prevState: ModalState) {
@@ -211,6 +212,14 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
           )
         });
       }
+
+      if (!this.props.disableEscKeyDown) {
+        document.body.addEventListener(
+          'keydown',
+          this.handleEscapeKeyDown,
+          false
+        );
+      }
     }
 
     if (this.state.isModalOpen && this.props.children !== prevProps.children) {
@@ -237,19 +246,24 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
     };
   }
 
+  handleEscapeKeyDown(event) {
+    if (event.keyCode === 27) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      this.props.onEscKeyDown &&
+        typeof this.props.onEscKeyDown === 'function' &&
+        this.props.onEscKeyDown(event);
+
+      this.handleClose();
+    }
+  }
+
   handleKeyDown() {
     return event => {
       const { keyCode, shiftKey } = event;
 
-      if (keyCode === 27) {
-        event.preventDefault();
-        event.stopPropagation();
-        this.props.onEscKeyDown &&
-          typeof this.props.onEscKeyDown === 'function' &&
-          this.props.onEscKeyDown(event);
-
-        this.handleClose();
-      } else if (shiftKey && keyCode === 9) {
+      if (shiftKey && keyCode === 9) {
         const index = getFocusedElementIndex(
           this.state.focusableElements,
           event.target
@@ -284,6 +298,12 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
 
   handleClose() {
     this.setState({ isExiting: true });
+
+    document.body.removeEventListener(
+      'keydown',
+      this.handleEscapeKeyDown,
+      false
+    );
 
     setTimeout(() => {
       this.setState({
