@@ -299,11 +299,40 @@ describe('Modal', () => {
         </>
       );
 
-      fireEvent.click(getByTestId('modal-backdrop'));
+      fireEvent.click(getByTestId('modal-container'));
 
       jest.runAllTimers();
 
       expect(onCloseSpy).toHaveBeenCalled();
+    });
+
+    it('should not close when clicking in the modal', () => {
+      const onCloseSpy = jest.fn();
+      const { rerender, getByText, getByTestId } = render(
+        <>
+          <button>Open</button>
+          <Modal header="Hello" open={false} onClose={onCloseSpy}>
+            Modal Content
+          </Modal>
+        </>
+      );
+
+      fireEvent.focus(getByText('Open'));
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal header="Hello" open={true} onClose={onCloseSpy}>
+            Modal Content
+          </Modal>
+        </>
+      );
+
+      fireEvent.click(getByTestId('modal-content'));
+
+      jest.runAllTimers();
+
+      expect(onCloseSpy).not.toHaveBeenCalled();
     });
 
     it('should fire the close event when the open prop changes from true to false', () => {

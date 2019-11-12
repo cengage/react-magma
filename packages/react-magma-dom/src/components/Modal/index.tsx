@@ -229,6 +229,14 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
     }
   }
 
+  handleModalClick(contentId) {
+    return event => {
+      if (!document.getElementById(contentId).contains(event.target as Node)) {
+        this.handleClose();
+      }
+    };
+  }
+
   handleKeyDown() {
     return event => {
       const { keyCode, shiftKey } = event;
@@ -317,6 +325,8 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
 
               const CloseIcon = <CrossIcon color={theme.colors.neutral04} />;
               const headingId = `${id}_heading`;
+              const contentId = `${id}_content`;
+
               const { isExiting } = this.state;
 
               return this.state.isModalOpen
@@ -338,11 +348,18 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                         onKeyDown={
                           disableEscKeyDown ? null : this.handleKeyDown()
                         }
+                        onClick={
+                          disableBackdropClick
+                            ? null
+                            : this.handleModalClick(contentId)
+                        }
                         ref={this.focusTrapElement}
                         role="dialog"
+                        data-test-id="modal-container"
                       >
                         <ModalContent
                           data-testid="modal-content"
+                          id={contentId}
                           isExiting={isExiting}
                           ref={innerRef}
                           size={size}
@@ -389,7 +406,6 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                             ? event => event.preventDefault()
                             : null
                         }
-                        onClick={disableBackdropClick ? null : this.handleClose}
                       />
                     </>,
                     document.getElementsByTagName('body')[0]
