@@ -290,9 +290,13 @@ If that element no longer exists in the dom, that action will fail silently and 
 
         this.buttonRef = React.createRef();
 
-
+        this.onButtonShow = this.onButtonShow.bind(this);
         this.onModalShow = this.onModalShow.bind(this);
         this.onModalClose = this.onModalClose.bind(this);
+      }
+
+      onButtonShow() {
+        this.setState({showButton: true})
       }
 
       onModalShow() {
@@ -311,8 +315,8 @@ If that element no longer exists in the dom, that action will fail silently and 
             <Modal header="Modal Title" onClose={this.onModalClose} open={showModal}>
                 <p>This is a modal, doing modal things.</p>
             </Modal>
-          {showButton && <Button onClick={this.onModalShow}>Show Modal</Button>}
-          <Button color="secondary" ref={this.buttonRef}>Another Button</Button>
+          {showButton && <Button onClick={this.onModalShow}>Show Modal and Hide Button</Button>}
+          <Button color="secondary" ref={this.buttonRef} onClick={this.onButtonShow}>Reset</Button>
         </>)
       }
     }

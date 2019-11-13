@@ -183,6 +183,7 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
 
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleEscapeKeyDown = this.handleEscapeKeyDown.bind(this);
   }
 
   componentDidUpdate(prevProps: ModalProps, prevState: ModalState) {
@@ -211,6 +212,14 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
           )
         });
       }
+
+      if (!this.props.disableEscKeyDown) {
+        document.body.addEventListener(
+          'keydown',
+          this.handleEscapeKeyDown,
+          false
+        );
+      }
     }
 
     if (this.state.isModalOpen && this.props.children !== prevProps.children) {
@@ -229,19 +238,32 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
     }
   }
 
+  handleModalClick(contentId) {
+    return event => {
+      if (!document.getElementById(contentId).contains(event.target as Node)) {
+        this.handleClose();
+      }
+    };
+  }
+
+  handleEscapeKeyDown(event) {
+    if (event.keyCode === 27) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      this.props.onEscKeyDown &&
+        typeof this.props.onEscKeyDown === 'function' &&
+        this.props.onEscKeyDown(event);
+
+      this.handleClose();
+    }
+  }
+
   handleKeyDown() {
     return event => {
       const { keyCode, shiftKey } = event;
 
-      if (keyCode === 27) {
-        event.preventDefault();
-        event.stopPropagation();
-        this.props.onEscKeyDown &&
-          typeof this.props.onEscKeyDown === 'function' &&
-          this.props.onEscKeyDown(event);
-
-        this.handleClose();
-      } else if (shiftKey && keyCode === 9) {
+      if (shiftKey && keyCode === 9) {
         const index = getFocusedElementIndex(
           this.state.focusableElements,
           event.target
@@ -276,6 +298,12 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
 
   handleClose() {
     this.setState({ isExiting: true });
+
+    document.body.removeEventListener(
+      'keydown',
+      this.handleEscapeKeyDown,
+      false
+    );
 
     setTimeout(() => {
       this.setState({
@@ -317,6 +345,8 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
 
               const CloseIcon = <CrossIcon color={theme.colors.neutral04} />;
               const headingId = `${id}_heading`;
+              const contentId = `${id}_content`;
+
               const { isExiting } = this.state;
 
               return this.state.isModalOpen
@@ -338,11 +368,18 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                         onKeyDown={
                           disableEscKeyDown ? null : this.handleKeyDown()
                         }
+                        onClick={
+                          disableBackdropClick
+                            ? null
+                            : this.handleModalClick(contentId)
+                        }
                         ref={this.focusTrapElement}
                         role="dialog"
+                        data-test-id="modal-container"
                       >
                         <ModalContent
                           data-testid="modal-content"
+                          id={contentId}
                           isExiting={isExiting}
                           ref={innerRef}
                           size={size}
@@ -389,7 +426,6 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                             ? event => event.preventDefault()
                             : null
                         }
-                        onClick={disableBackdropClick ? null : this.handleClose}
                       />
                     </>,
                     document.getElementsByTagName('body')[0]
