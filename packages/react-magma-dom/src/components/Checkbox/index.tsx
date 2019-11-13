@@ -12,7 +12,7 @@ import { StyledContainer } from '../SelectionControls/StyledContainer';
 // Using the base `styled` from `emotion` until import mapping is fixed: https://github.com/emotion-js/emotion/pull/1220
 // import styled from '../../theme/styled';
 import styled from '@emotion/styled';
-import { generateId } from '../utils';
+import { useGenerateId } from '../utils';
 
 export interface CheckboxProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -23,6 +23,7 @@ export interface CheckboxProps
   inverse?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
+  onIndeterminateClick?: (event: React.SyntheticEvent) => void;
   testId?: string;
   textVisuallyHidden?: boolean;
 }
@@ -117,63 +118,39 @@ const StyledFakeInput = styled.span<{
       ${DisplayInputActiveStyles}
     }
   }
-
-  ${HiddenInput}:indeterminate + label & {
-    background: ${props => props.theme.colors.neutral08};
-    border-color: ${props =>
-      props.inverse
-        ? props.theme.colors.neutral08
-        : props.color
-        ? props.color
-        : props.theme.colors.primary};
-
-    svg {
-      display: none;
-    }
-  }
 `;
 
 const IndeterminateIcon = styled.span<{ color?: string }>`
   background: ${props =>
     props.color ? props.color : props.theme.colors.primary};
-  display: none;
   height: 2px;
   width: 10px;
-
-  ${HiddenInput}:indeterminate + label & {
-    display: block;
-  }
+  display: block;
 `;
 
 export const Checkbox: React.FunctionComponent<CheckboxProps> = (
   props: CheckboxProps
 ) => {
-  const checkboxInput = React.useRef<HTMLInputElement>();
-  const [id, updateId] = React.useState(generateId(props.id));
-  const [checked, updateChecked] = React.useState(props.checked);
+  const [checked, updateChecked] = React.useState(
+    props.indeterminate ? false : Boolean(props.checked)
+  );
+
+  const id = useGenerateId(props.id);
 
   React.useEffect(() => {
-    updateId(generateId(props.id));
-  }, [props.id]);
-
-  React.useEffect(() => {
-    updateChecked(props.checked);
+    updateChecked(props.indeterminate ? false : Boolean(props.checked));
   }, [props.checked]);
-
-  React.useEffect(() => {
-    setIndeterminate();
-  });
-
-  function setIndeterminate() {
-    checkboxInput.current.indeterminate = props.indeterminate;
-  }
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { checked: targetChecked } = event.target;
+
     props.onChange &&
       typeof props.onChange === 'function' &&
       props.onChange(event);
-    updateChecked(targetChecked);
+
+    if (!indeterminate) {
+      updateChecked(targetChecked);
+    }
   }
 
   const {
@@ -203,7 +180,6 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = (
             checked={checked}
             disabled={disabled}
             indeterminate={indeterminate}
-            ref={checkboxInput}
             type="checkbox"
             onBlur={onBlur}
             onChange={handleChange}
@@ -214,11 +190,18 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = (
               checked={checked}
               color={color ? color : ''}
               disabled={disabled}
+              indeterminate={indeterminate}
               inverse={inverse}
               style={inputStyle}
               theme={theme}
             >
-              <IndeterminateIcon color={color ? color : ''} theme={theme} />
+              {indeterminate && (
+                <IndeterminateIcon
+                  data-testid="indeterminateIcon"
+                  color={color ? color : ''}
+                  theme={theme}
+                />
+              )}
               <CheckIcon size={12} />
             </StyledFakeInput>
             {textVisuallyHidden ? (

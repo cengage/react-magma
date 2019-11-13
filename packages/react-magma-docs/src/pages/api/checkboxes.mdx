@@ -76,15 +76,20 @@ Adding the optional boolean prop `disabled` will apply disabled styles and add t
 In addition to being checked or unchecked, checkboxes also support an indeterminate or mixed state, but using the optional `indeterminate` boolean prop.
 
 ```.jsx
-  <>
+() => {
+  const [indeterminate, setIndeterminate] = React.useState(true);
+
+  return (<>
     <Checkbox
-        indeterminate
-        labelText='Indeterminate checkbox' />
-    <Checkbox
-        color={magma.colors.success01}
-        indeterminate
-        labelText='Indeterminate checkbox' />
-    </>
+        indeterminate={indeterminate}
+        labelText='Indeterminate checkbox'
+        onChange={() => {
+          if (indeterminate) {
+            setIndeterminate(false)
+          }
+        }} />
+  </>)
+}
 ```
 
 ## Inverse
