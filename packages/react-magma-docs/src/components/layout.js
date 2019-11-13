@@ -4,10 +4,9 @@ import { MDXProvider } from '@mdx-js/tag'
 import { SkipLinkContent } from 'react-magma-dom'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import { convertTextToId } from '../utils'
-import './app.css'
 import './layout.css'
-import './syntax.css'
 import LayoutComponent from './layout-component'
+import editorTheme from './editorTheme'
 
 const PreComponent = ({ className, components, ...props }) => {
   const hideCode = props.children.props.props.hideCode
@@ -19,6 +18,7 @@ const PreComponent = ({ className, components, ...props }) => {
       mountStylesheet={false}
       code={props.children.props.children}
       scope={components}
+      theme={editorTheme}
     >
       <div
         className="pre-container"
