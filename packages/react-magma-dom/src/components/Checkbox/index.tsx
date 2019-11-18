@@ -46,7 +46,7 @@ const StyledFakeInput = styled.span<{
   ${DisplayInputStyles};
   background: ${props => {
     if (props.inverse) {
-      if (props.checked) {
+      if (props.checked || props.indeterminate) {
         return props.theme.colors.neutral08;
       }
       return 'none';
