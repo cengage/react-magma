@@ -6,6 +6,7 @@ import { Button, ButtonType, ButtonVariant } from '../Button';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { format, addMonths, subMonths } from 'date-fns';
 import styled from '../../theme/styled';
+import { usePrevious } from '../utils';
 
 interface CalendarHeaderProps {
   focusHeader?: boolean;
@@ -35,60 +36,54 @@ const CalendarHeaderText = styled.div`
   flex-basis: 75%;
 `;
 
-export class CalendarHeader extends React.Component<CalendarHeaderProps> {
-  private calendarHeader = React.createRef<any>();
+export const CalendarHeader: React.FunctionComponent<CalendarHeaderProps> = (
+  props: CalendarHeaderProps
+) => {
+  const calendarHeader = React.useRef<HTMLDivElement>();
+  const { focusedDate, onPrevMonthClick, onNextMonthClick } = React.useContext(
+    CalendarContext
+  );
+  const prevFocusHeader = usePrevious(props.focusHeader);
 
-  componentDidUpdate(prevProps) {
-    if (!prevProps.focusHeader && this.props.focusHeader) {
-      this.calendarHeader.current.focus();
+  React.useEffect(() => {
+    if (!prevFocusHeader && props.focusHeader) {
+      calendarHeader.current.focus();
     }
-  }
+  }, [props.focusHeader]);
 
-  render() {
-    return (
-      <CalendarContext.Consumer>
-        {context =>
-          context && (
-            <ThemeContext.Consumer>
-              {theme => (
-                <CalendarHeaderContainer>
-                  <CalendarHeaderText
-                    tabIndex={-1}
-                    theme={theme}
-                    ref={this.calendarHeader}
-                  >
-                    {format(context.focusedDate, 'MMMM YYYY')}
-                  </CalendarHeaderText>
-                  <CalendarIconButton>
-                    <Button
-                      aria-label={`Previous Month ${format(
-                        subMonths(context.focusedDate, 1),
-                        'MMMM YYYY'
-                      )}`}
-                      icon={<ArrowLeft2Icon />}
-                      type={ButtonType.button}
-                      variant={ButtonVariant.link}
-                      onClick={context.onPrevMonthClick}
-                    />
-                  </CalendarIconButton>
-                  <CalendarIconButton next>
-                    <Button
-                      aria-label={`Next Month ${format(
-                        addMonths(context.focusedDate, 1),
-                        'MMMM YYYY'
-                      )}`}
-                      icon={<ArrowRight2Icon />}
-                      type={ButtonType.button}
-                      variant={ButtonVariant.link}
-                      onClick={context.onNextMonthClick}
-                    />
-                  </CalendarIconButton>
-                </CalendarHeaderContainer>
-              )}
-            </ThemeContext.Consumer>
-          )
-        }
-      </CalendarContext.Consumer>
-    );
-  }
-}
+  return (
+    <ThemeContext.Consumer>
+      {theme => (
+        <CalendarHeaderContainer>
+          <CalendarHeaderText tabIndex={-1} theme={theme} ref={calendarHeader}>
+            {format(focusedDate, 'MMMM YYYY')}
+          </CalendarHeaderText>
+          <CalendarIconButton>
+            <Button
+              aria-label={`Previous Month ${format(
+                subMonths(focusedDate, 1),
+                'MMMM YYYY'
+              )}`}
+              icon={<ArrowLeft2Icon />}
+              type={ButtonType.button}
+              variant={ButtonVariant.link}
+              onClick={onPrevMonthClick}
+            />
+          </CalendarIconButton>
+          <CalendarIconButton next>
+            <Button
+              aria-label={`Next Month ${format(
+                addMonths(focusedDate, 1),
+                'MMMM YYYY'
+              )}`}
+              icon={<ArrowRight2Icon />}
+              type={ButtonType.button}
+              variant={ButtonVariant.link}
+              onClick={onNextMonthClick}
+            />
+          </CalendarIconButton>
+        </CalendarHeaderContainer>
+      )}
+    </ThemeContext.Consumer>
+  );
+};

@@ -15,18 +15,13 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '../../theme/styled';
 import { HelperInformation } from './HelperInformation';
 import { getTrapElements, getFocusedElementIndex } from '../Modal/utils';
+import { usePrevious } from '../utils';
 
 interface CalendarMonthProps {
   calendarOpened?: boolean;
   focusOnOpen?: boolean;
   handleCloseButtonClick: (event: React.SyntheticEvent) => void;
-  toggleDateFocus?: (value: boolean) => void;
-}
-
-interface CalendarMonthState {
-  dayFocusable?: boolean;
-  focusableElements: Array<HTMLElement>;
-  focusHeader?: boolean;
+  setDateFocused?: (value: boolean) => void;
 }
 
 const CalendarContainer = styled.div`
@@ -70,179 +65,153 @@ const CloseButton = styled.span`
   z-index: 2;
 `;
 
-export class CalendarMonth extends React.Component<
-  CalendarMonthProps,
-  CalendarMonthState
-> {
-  private lastFocus = React.createRef<any>();
-  private focusTrapElement = React.createRef<any>();
+export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
+  props: CalendarMonthProps
+) => {
+  const lastFocus = React.useRef<any>();
+  const focusTrapElement = React.useRef<any>();
+  const context = React.useContext(CalendarContext);
+  const [dayFocusable, setDayFocusable] = React.useState<boolean>(false);
+  const [focusableElements, setFocusableElements] = React.useState<
+    HTMLElement[]
+  >([]);
+  const [focusHeader, setFocusHeader] = React.useState(false);
+  const prevCalendarOpened = usePrevious(props.calendarOpened);
 
-  constructor(props) {
-    super(props);
+  React.useEffect(() => {
+    if (!prevCalendarOpened && props.calendarOpened) {
+      lastFocus.current = document.activeElement;
 
-    this.onCalendarTableFocus = this.onCalendarTableFocus.bind(this);
-    this.onCalendarTableBlur = this.onCalendarTableBlur.bind(this);
-    this.handleKeyDown = this.handleKeyDown.bind(this);
+      const newFocusableElements = getTrapElements(focusTrapElement);
 
-    this.state = {
-      dayFocusable: false,
-      focusableElements: []
-    };
-  }
-
-  componentDidUpdate(prevProps) {
-    if (!prevProps.calendarOpened && this.props.calendarOpened) {
-      // @ts-ignore: CreateRef only gives back a immutable ref
-      this.lastFocus.current = document.activeElement;
-
-      const focusableElements = getTrapElements(this.focusTrapElement);
-
-      if (this.props.focusOnOpen) {
-        this.setState({ dayFocusable: true, focusableElements });
-        this.props.toggleDateFocus(true);
+      if (props.focusOnOpen) {
+        setDayFocusable(true);
+        setFocusableElements(newFocusableElements);
+        context.setDateFocused(true);
       } else {
-        this.setState({ focusableElements });
+        setFocusableElements(newFocusableElements);
       }
     }
 
-    if (
-      this.props.calendarOpened &&
-      !this.props.focusOnOpen &&
-      !this.state.focusHeader
-    ) {
-      this.setState({ focusHeader: true });
+    if (props.calendarOpened && !props.focusOnOpen && !focusHeader) {
+      setFocusHeader(true);
     }
 
-    if (prevProps.calendarOpened && !this.props.calendarOpened) {
-      this.setState({ focusHeader: false, focusableElements: [] });
+    if (prevCalendarOpened && !props.calendarOpened) {
+      setFocusHeader(false);
+      setFocusableElements([]);
     }
+  }, [props]);
+
+  function onCalendarTableFocus() {
+    setDayFocusable(true);
   }
 
-  onCalendarTableFocus() {
-    this.setState({ dayFocusable: true });
+  function onCalendarTableBlur() {
+    setDayFocusable(false);
   }
 
-  onCalendarTableBlur() {
-    this.setState({ dayFocusable: false });
-  }
-
-  handleKeyDown(event) {
+  function handleKeyDown(event: React.KeyboardEvent) {
     const { keyCode, shiftKey } = event;
 
     if (shiftKey && keyCode === 9) {
-      const index = getFocusedElementIndex(
-        this.state.focusableElements,
-        event.target
-      );
+      const index = getFocusedElementIndex(focusableElements, event.target);
 
       if (index === 0) {
         event.preventDefault();
-        this.state.focusableElements[
-          this.state.focusableElements.length - 1
-        ].focus();
+        focusableElements[focusableElements.length - 1].focus();
       }
     } else if (keyCode === 9) {
-      const index = getFocusedElementIndex(
-        this.state.focusableElements,
-        event.target
-      );
+      const index = getFocusedElementIndex(focusableElements, event.target);
 
-      if (index === this.state.focusableElements.length - 1) {
+      if (index === focusableElements.length - 1) {
         event.preventDefault();
-        if (this.state.focusableElements.length > 0) {
-          this.state.focusableElements[0].focus();
+        if (focusableElements.length > 0) {
+          focusableElements[0].focus();
         }
       }
     }
   }
 
-  render() {
-    return (
-      <ThemeContext.Consumer>
-        {theme => (
-          <CalendarContext.Consumer>
-            {context =>
-              context && (
-                <CalendarContainer
-                  tabIndex={-1}
-                  theme={theme}
-                  onKeyDown={context.onKeyDown}
-                  ref={this.focusTrapElement}
-                >
-                  <MonthContainer
-                    data-testid="monthContainer"
-                    data-visible="true"
-                    theme={theme}
-                    ref={this.focusTrapElement}
-                    onKeyDown={this.handleKeyDown}
-                  >
-                    <CalendarHeader focusHeader={this.state.focusHeader} />
-                    <Table
-                      role="presentation"
-                      onBlur={() => {
-                        this.onCalendarTableBlur();
-                        context.toggleDateFocus(false);
-                      }}
-                      onFocus={this.onCalendarTableFocus}
-                    >
-                      <tbody>
-                        <tr>
-                          <Th theme={theme}>S</Th>
-                          <Th theme={theme}>M</Th>
-                          <Th theme={theme}>T</Th>
-                          <Th theme={theme}>W</Th>
-                          <Th theme={theme}>T</Th>
-                          <Th theme={theme}>F</Th>
-                          <Th theme={theme}>S</Th>
-                        </tr>
-                        {context
-                          .buildCalendarMonth(context.focusedDate)
-                          .map((week, i) => (
-                            <tr key={i}>
-                              {week.map((day, dayOfWeek) => (
-                                <CalendarDay
-                                  key={dayOfWeek}
-                                  day={day}
-                                  dayFocusable={this.state.dayFocusable}
-                                  onDateChange={context.onDateChange}
-                                />
-                              ))}
-                            </tr>
-                          ))}
-                      </tbody>
-                    </Table>
-                    <HelperButton>
-                      <Button
-                        aria-label="Calendar Help"
-                        icon={<QuestionCircleOIcon />}
-                        onClick={context.openHelperInformation}
-                        onFocus={context.onHelperFocus}
-                        type={ButtonType.button}
-                        variant={ButtonVariant.link}
-                      />
-                      <HelperInformation
-                        open={context.showHelperInformation}
-                        onClose={context.closeHelperInformation}
-                      />
-                    </HelperButton>
-                    <CloseButton>
-                      <Button
-                        aria-label="Close Calendar"
-                        color={ButtonColor.secondary}
-                        icon={<CrossIcon />}
-                        onClick={this.props.handleCloseButtonClick}
-                        size={ButtonSize.small}
-                        type={ButtonType.button}
-                        variant={ButtonVariant.link}
-                      />
-                    </CloseButton>
-                  </MonthContainer>
-                </CalendarContainer>
-              )
-            }
-          </CalendarContext.Consumer>
-        )}
-      </ThemeContext.Consumer>
-    );
-  }
-}
+  return (
+    <ThemeContext.Consumer>
+      {theme => (
+        <CalendarContainer
+          tabIndex={-1}
+          theme={theme}
+          onKeyDown={context.onKeyDown}
+          ref={focusTrapElement}
+        >
+          <MonthContainer
+            data-testid="monthContainer"
+            data-visible="true"
+            theme={theme}
+            ref={focusTrapElement}
+            onKeyDown={handleKeyDown}
+          >
+            <CalendarHeader focusHeader={focusHeader} />
+            <Table
+              role="presentation"
+              onBlur={() => {
+                onCalendarTableBlur();
+                context.setDateFocused(false);
+              }}
+              onFocus={onCalendarTableFocus}
+            >
+              <tbody>
+                <tr>
+                  <Th theme={theme}>S</Th>
+                  <Th theme={theme}>M</Th>
+                  <Th theme={theme}>T</Th>
+                  <Th theme={theme}>W</Th>
+                  <Th theme={theme}>T</Th>
+                  <Th theme={theme}>F</Th>
+                  <Th theme={theme}>S</Th>
+                </tr>
+                {context
+                  .buildCalendarMonth(context.focusedDate)
+                  .map((week, i) => (
+                    <tr key={i}>
+                      {week.map((day, dayOfWeek) => (
+                        <CalendarDay
+                          key={dayOfWeek}
+                          day={day}
+                          dayFocusable={dayFocusable}
+                          onDateChange={context.onDateChange}
+                        />
+                      ))}
+                    </tr>
+                  ))}
+              </tbody>
+            </Table>
+            <HelperButton>
+              <Button
+                aria-label="Calendar Help"
+                icon={<QuestionCircleOIcon />}
+                onClick={() => context.setShowHelperInformation(true)}
+                onFocus={() => context.setDateFocused(false)}
+                type={ButtonType.button}
+                variant={ButtonVariant.link}
+              />
+              <HelperInformation
+                open={context.showHelperInformation}
+                onClose={() => context.setShowHelperInformation(false)}
+              />
+            </HelperButton>
+            <CloseButton>
+              <Button
+                aria-label="Close Calendar"
+                color={ButtonColor.secondary}
+                icon={<CrossIcon />}
+                onClick={props.handleCloseButtonClick}
+                size={ButtonSize.small}
+                type={ButtonType.button}
+                variant={ButtonVariant.link}
+              />
+            </CloseButton>
+          </MonthContainer>
+        </CalendarContainer>
+      )}
+    </ThemeContext.Consumer>
+  );
+};

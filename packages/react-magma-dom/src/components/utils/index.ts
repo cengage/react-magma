@@ -23,3 +23,11 @@ export function omit(props, obj) {
 }
 
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+
+export function usePrevious(value) {
+  const ref = React.useRef();
+  React.useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}

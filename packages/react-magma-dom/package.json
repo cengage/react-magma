@@ -19,6 +19,7 @@
     "compiler-checks": "tsc --noEmit --project './tsconfig.json'",
     "test": "jest",
     "test-watch": "jest --watch",
+    "test-watch-no-covg": "jest --watch --coverage=false",
     "covg": "open coverage/lcov-report/index.html",
     "prebuild": "rimraf 'dist'",
     "build": "tsdx build",

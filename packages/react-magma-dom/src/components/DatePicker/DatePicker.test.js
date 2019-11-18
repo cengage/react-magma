@@ -181,6 +181,38 @@ describe('Date Picker', () => {
     expect(getByText(format(now, 'D'))).not.toBe(document.activeElement);
   });
 
+  it('should go to the previous month when the previous month button is clicked', () => {
+    const defaultDate = new Date('January 17, 2019');
+    const labelText = 'Date Picker Label';
+    const { getByLabelText, getByText } = render(
+      <DatePicker defaultDate={defaultDate} labelText={labelText} />
+    );
+
+    fireEvent.click(getByLabelText('Calendar'));
+
+    expect(getByText(/january/i)).toBeInTheDocument();
+
+    fireEvent.click(getByLabelText(/previous month/i));
+
+    expect(getByText(/december/i)).toBeInTheDocument();
+  });
+
+  it('should go to the next month when the next month button is clicked', () => {
+    const defaultDate = new Date('January 17, 2019');
+    const labelText = 'Date Picker Label';
+    const { getByLabelText, getByText } = render(
+      <DatePicker defaultDate={defaultDate} labelText={labelText} />
+    );
+
+    fireEvent.click(getByLabelText('Calendar'));
+
+    expect(getByText(/january/i)).toBeInTheDocument();
+
+    fireEvent.click(getByLabelText(/next month/i));
+
+    expect(getByText(/february/i)).toBeInTheDocument();
+  });
+
   it('should close the calendar when the close button is clicked', () => {
     const { getByLabelText, getByTestId } = render(
       <DatePicker labelText="Date Picker Label" />
@@ -531,13 +563,23 @@ describe('Date Picker', () => {
     it('Escape', () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-      const { getByText, container } = render(
+      const { getByLabelText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      fireEvent.focus(container.querySelector('table'));
+      fireEvent.click(getByLabelText('Calendar'));
 
-      getByText(defaultDate.getDate().toString()).focus();
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'Tab'
+      });
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'Tab'
+      });
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'Tab'
+      });
 
       fireEvent.keyDown(container.querySelector('table'), {
         key: 'Escape',
