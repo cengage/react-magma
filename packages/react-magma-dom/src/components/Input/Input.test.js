@@ -133,6 +133,16 @@ describe('Input', () => {
     expect(errorMessage).toHaveStyleRule('color', magma.colors.neutral08);
   });
 
+  it('should render an input with a right-aligned icon by default', () => {
+    const icon = <CheckIcon />;
+    const { container } = render(<Input icon={icon} />);
+
+    const span = container.querySelector('span');
+
+    expect(span).toHaveStyleRule('left', '10px');
+    expect(span).toHaveStyleRule('right', 'auto');
+  });
+
   it('should render an input with a right-aligned icon in the correct position', () => {
     const icon = <CheckIcon />;
     const { container } = render(<Input icon={icon} iconPosition="right" />);
@@ -183,6 +193,28 @@ describe('Input', () => {
 
     expect(input).toHaveStyleRule('padding-left', '50px');
     expect(input).toHaveStyleRule('padding-right', '15px');
+  });
+
+  it('should show a spinner when loading', () => {
+    const icon = <CheckIcon />;
+    const { getByTestId } = render(<Input icon={icon} isLoading />);
+
+    expect(getByTestId('spinnerWrapper')).toBeInTheDocument();
+  });
+
+  it('should render a clickable icon', () => {
+    const icon = <CheckIcon />;
+    const iconAriaLabel = 'clickable icon label';
+    const { getByLabelText } = render(
+      <Input
+        icon={icon}
+        onIconClick={jest.fn()}
+        inputSize="large"
+        iconAriaLabel={iconAriaLabel}
+      />
+    );
+
+    expect(getByLabelText(iconAriaLabel)).toBeInTheDocument();
   });
 
   it('should render an input with a value passed through', () => {
@@ -442,6 +474,7 @@ describe('Input', () => {
       const icon = <CheckIcon />;
       const { container, getByLabelText } = render(
         <Input
+          // onIconClick={jest.fn()}
           labelText={labelText}
           inputSize="large"
           icon={icon}

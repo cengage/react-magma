@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { InputCore } from 'react-magma-core';
 import styled from '../../theme/styled';
 import { css } from '@emotion/core';
 import { IconProps } from '../Icon/utils';
 import { Spinner } from '../Spinner';
 import { ThemeContext } from '../../theme/ThemeContext';
-
 import { Announce } from '../Announce';
 import {
   Button,
@@ -19,6 +17,7 @@ import { Label } from '../Label';
 import { QuestionCircleIcon } from '../Icon/types/QuestionCircleIcon';
 import { Tooltip } from '../Tooltip';
 import { VisuallyHidden } from '../VisuallyHidden';
+import { useGenerateId, usePrevious } from '../utils';
 
 export enum InputIconPosition {
   left = 'left',
@@ -206,260 +205,250 @@ function getIconSize(size) {
   }
 }
 
-class InputComponent extends React.Component<InputProps> {
-  constructor(props) {
-    super(props);
+export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
+  (props: InputProps, ref: any) => {
+    const id = useGenerateId(props.id);
+    const [value, setValue] = React.useState(props.value);
+    const [passwordShown, setPasswordShown] = React.useState<boolean>(false);
+    const prevValue = usePrevious(props.value);
 
-    this.handleChange = this.handleChange.bind(this);
-  }
+    React.useEffect(() => {
+      if (prevValue !== props.value) {
+        setValue(props.value);
+      }
+    }, [props.value]);
 
-  handleChange(onChange: (value: string) => void) {
-    return (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { value } = event.target;
-      this.props.onChange &&
-        typeof this.props.onChange === 'function' &&
-        this.props.onChange(event);
-      onChange(value);
-    };
-  }
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+      props.onChange &&
+        typeof props.onChange === 'function' &&
+        props.onChange(event);
+      setValue(event.target.value);
+    }
 
-  render() {
+    function togglePasswordShown() {
+      setPasswordShown(prevPasswordShown => !prevPasswordShown);
+    }
+
+    const {
+      containerStyle,
+      errorMessage,
+      helperMessage,
+      helpLinkText,
+      hidePasswordMaskButton,
+      hiddenPasswordAnnounceText,
+      hidePasswordButtonAriaLabel,
+      hidePasswordButtonText,
+      icon,
+      iconAriaLabel,
+      isLoading,
+      onIconClick,
+      onIconKeyDown,
+      inputSize,
+      inputStyle,
+      inverse,
+      labelStyle,
+      labelText,
+      labelVisuallyHidden,
+      multiline,
+      onHelpLinkClick,
+      shownPasswordAnnounceText,
+      showPasswordButtonAriaLabel,
+      showPasswordButtonText,
+      type,
+      testId,
+      innerRef,
+      ...other
+    } = props;
+
+    const iconPosition =
+      icon && onIconClick
+        ? InputIconPosition.right
+        : icon && !props.iconPosition
+        ? InputIconPosition.left
+        : props.iconPosition;
+
+    const HIDDEN_PASSWORD_ANNOUCNE_TEXT = hiddenPasswordAnnounceText
+        ? hiddenPasswordAnnounceText
+        : 'Password is now hidden',
+      HIDE_PASSWORD_BUTTON_ARIA_LABEL = hidePasswordButtonAriaLabel
+        ? hidePasswordButtonAriaLabel
+        : 'Hide password',
+      HIDE_PASSWORD_BUTTON_TEXT = hidePasswordButtonText
+        ? hidePasswordButtonText
+        : 'Hide',
+      SHOWN_PASSWORD_ANNOUCNE_TEXT = shownPasswordAnnounceText
+        ? shownPasswordAnnounceText
+        : 'Password is now visible',
+      SHOW_PASSWORD_BUTTON_ARIA_LABEL = showPasswordButtonAriaLabel
+        ? showPasswordButtonAriaLabel
+        : 'Show password. Note: this will visually expose your password on the screen',
+      SHOW_PASSWORD_BUTTON_TEXT = showPasswordButtonText
+        ? showPasswordButtonText
+        : 'Show',
+      HELP_LINK_TEXT = helpLinkText ? helpLinkText : "What's this?";
+
+    const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+
     return (
-      <InputCore id={this.props.id} value={this.props.value}>
-        {({ id, onChange, value, togglePasswordShown, passwordShown }) => {
-          const {
-            containerStyle,
-            errorMessage,
-            helperMessage,
-            helpLinkText,
-            hidePasswordMaskButton,
-            hiddenPasswordAnnounceText,
-            hidePasswordButtonAriaLabel,
-            hidePasswordButtonText,
-            icon,
-            iconAriaLabel,
-            isLoading,
-            onIconClick,
-            onIconKeyDown,
-            inputSize,
-            inputStyle,
-            inverse,
-            labelStyle,
-            labelText,
-            labelVisuallyHidden,
-            multiline,
-            onHelpLinkClick,
-            shownPasswordAnnounceText,
-            showPasswordButtonAriaLabel,
-            showPasswordButtonText,
-            type,
-            testId,
-            innerRef,
-            ...other
-          } = this.props;
-
-          const iconPosition =
-            icon && onIconClick
-              ? InputIconPosition.right
-              : icon && !this.props.iconPosition
-              ? InputIconPosition.left
-              : this.props.iconPosition;
-
-          const HIDDEN_PASSWORD_ANNOUCNE_TEXT = hiddenPasswordAnnounceText
-              ? hiddenPasswordAnnounceText
-              : 'Password is now hidden',
-            HIDE_PASSWORD_BUTTON_ARIA_LABEL = hidePasswordButtonAriaLabel
-              ? hidePasswordButtonAriaLabel
-              : 'Hide password',
-            HIDE_PASSWORD_BUTTON_TEXT = hidePasswordButtonText
-              ? hidePasswordButtonText
-              : 'Hide',
-            SHOWN_PASSWORD_ANNOUCNE_TEXT = shownPasswordAnnounceText
-              ? shownPasswordAnnounceText
-              : 'Password is now visible',
-            SHOW_PASSWORD_BUTTON_ARIA_LABEL = showPasswordButtonAriaLabel
-              ? showPasswordButtonAriaLabel
-              : 'Show password. Note: this will visually expose your password on the screen',
-            SHOW_PASSWORD_BUTTON_TEXT = showPasswordButtonText
-              ? showPasswordButtonText
-              : 'Show',
-            HELP_LINK_TEXT = helpLinkText ? helpLinkText : "What's this?";
-
-          const descriptionId =
-            errorMessage || helperMessage ? `${id}__desc` : null;
-          return (
-            <ThemeContext.Consumer>
-              {theme => (
-                <Container style={containerStyle}>
-                  {!labelVisuallyHidden && (
-                    <Label
-                      inverse={inverse}
-                      htmlFor={id}
-                      size={
+      <ThemeContext.Consumer>
+        {theme => (
+          <Container style={containerStyle}>
+            {!labelVisuallyHidden && (
+              <Label
+                inverse={inverse}
+                htmlFor={id}
+                size={inputSize && !multiline ? inputSize : InputSize.medium}
+                style={labelStyle}
+              >
+                {labelText}
+              </Label>
+            )}
+            <InputWrapper>
+              <StyledInput
+                {...other}
+                aria-describedby={
+                  descriptionId ? descriptionId : props['aria-describedby']
+                }
+                aria-invalid={!!errorMessage}
+                aria-label={labelVisuallyHidden ? labelText : null}
+                as={multiline ? 'textarea' : null}
+                id={id}
+                data-testid={testId}
+                errorMessage={errorMessage}
+                iconPosition={iconPosition}
+                inputSize={
+                  inputSize && !multiline ? inputSize : InputSize.medium
+                }
+                inverse={inverse}
+                labelText={labelText}
+                multiline={multiline}
+                ref={ref}
+                style={inputStyle}
+                theme={theme}
+                type={
+                  type
+                    ? type === InputType.password && passwordShown
+                      ? InputType.text
+                      : type
+                    : InputType.text
+                }
+                value={value}
+                onBlur={props.onBlur}
+                onChange={handleChange}
+                onFocus={props.onFocus}
+              />
+              {icon && !onIconClick && !isLoading && (
+                <IconWrapper
+                  aria-label={iconAriaLabel}
+                  iconPosition={iconPosition}
+                  inputSize={
+                    inputSize && !multiline ? inputSize : InputSize.medium
+                  }
+                  theme={theme}
+                >
+                  {React.Children.only(
+                    React.cloneElement(icon, {
+                      size: getIconSize(
                         inputSize && !multiline ? inputSize : InputSize.medium
-                      }
-                      style={labelStyle}
-                    >
-                      {labelText}
-                    </Label>
+                      )
+                    })
                   )}
-                  <InputWrapper>
-                    <StyledInput
-                      {...other}
-                      aria-describedby={
-                        descriptionId
-                          ? descriptionId
-                          : this.props['aria-describedby']
-                      }
-                      aria-invalid={!!errorMessage}
-                      aria-label={labelVisuallyHidden ? labelText : null}
-                      as={multiline ? 'textarea' : null}
-                      id={id}
-                      data-testid={testId}
-                      errorMessage={errorMessage}
-                      iconPosition={iconPosition}
-                      inputSize={
-                        inputSize && !multiline ? inputSize : InputSize.medium
-                      }
-                      inverse={inverse}
-                      labelText={labelText}
-                      multiline={multiline}
-                      ref={innerRef}
-                      style={inputStyle}
-                      theme={theme}
-                      type={
-                        type
-                          ? type === InputType.password && passwordShown
-                            ? InputType.text
-                            : type
-                          : InputType.text
-                      }
-                      value={value}
-                      onBlur={this.props.onBlur}
-                      onChange={this.handleChange(onChange)}
-                      onFocus={this.props.onFocus}
-                    />
-                    {icon && !onIconClick && !isLoading && (
-                      <IconWrapper
-                        aria-label={iconAriaLabel}
-                        iconPosition={iconPosition}
-                        inputSize={
-                          inputSize && !multiline ? inputSize : InputSize.medium
-                        }
-                        theme={theme}
-                      >
-                        {React.Children.only(
-                          React.cloneElement(icon, {
-                            size: getIconSize(
-                              inputSize && !multiline
-                                ? inputSize
-                                : InputSize.medium
-                            )
-                          })
-                        )}
-                      </IconWrapper>
-                    )}
-
-                    {isLoading && (
-                      <SpinnerWrapper>
-                        <Spinner size={19} />
-                      </SpinnerWrapper>
-                    )}
-
-                    {type === InputType.password && !hidePasswordMaskButton && (
-                      <PasswordMaskWrapper>
-                        <Button
-                          aria-label={
-                            passwordShown
-                              ? HIDE_PASSWORD_BUTTON_ARIA_LABEL
-                              : SHOW_PASSWORD_BUTTON_ARIA_LABEL
-                          }
-                          onClick={togglePasswordShown}
-                          style={{
-                            height: '30px',
-                            marginTop: '8px',
-                            marginRight: '0',
-                            left: '7px',
-                            borderRadius: '3px'
-                          }}
-                          type={ButtonType.button}
-                          variant={ButtonVariant.link}
-                        >
-                          {passwordShown
-                            ? HIDE_PASSWORD_BUTTON_TEXT
-                            : SHOW_PASSWORD_BUTTON_TEXT}
-                        </Button>
-                        <VisuallyHidden>
-                          <Announce>
-                            {passwordShown
-                              ? SHOWN_PASSWORD_ANNOUCNE_TEXT
-                              : HIDDEN_PASSWORD_ANNOUCNE_TEXT}
-                          </Announce>
-                        </VisuallyHidden>
-                      </PasswordMaskWrapper>
-                    )}
-
-                    {onHelpLinkClick && (
-                      <Tooltip
-                        content={HELP_LINK_TEXT}
-                        inverse={inverse}
-                        trigger={
-                          <Button
-                            aria-label={HELP_LINK_TEXT}
-                            icon={<QuestionCircleIcon />}
-                            inverse={inverse}
-                            onClick={onHelpLinkClick}
-                            size={
-                              inputSize === InputSize.large && !multiline
-                                ? ButtonSize.large
-                                : ButtonSize.medium
-                            }
-                            style={{ margin: '0 0 0 7px' }}
-                            type={ButtonType.button}
-                            title={HELP_LINK_TEXT}
-                            variant={ButtonVariant.link}
-                          />
-                        }
-                      />
-                    )}
-
-                    {onIconClick && !isLoading && (
-                      <IconButton
-                        aria-label={iconAriaLabel}
-                        icon={icon}
-                        onClick={onIconClick}
-                        onKeyDown={onIconKeyDown}
-                        shape={ButtonShape.fill}
-                        size={
-                          inputSize === InputSize.large && !multiline
-                            ? ButtonSize.large
-                            : ButtonSize.small
-                        }
-                        theme={theme}
-                        type={ButtonType.button}
-                        variant={ButtonVariant.link}
-                      />
-                    )}
-                  </InputWrapper>
-                  <InputMessage
-                    inverse={inverse}
-                    id={descriptionId}
-                    isError={!!errorMessage}
-                  >
-                    {(errorMessage || helperMessage) && (
-                      <>{errorMessage ? errorMessage : helperMessage}</>
-                    )}
-                  </InputMessage>
-                </Container>
+                </IconWrapper>
               )}
-            </ThemeContext.Consumer>
-          );
-        }}
-      </InputCore>
+
+              {isLoading && (
+                <SpinnerWrapper data-testid="spinnerWrapper">
+                  <Spinner size={19} />
+                </SpinnerWrapper>
+              )}
+
+              {type === InputType.password && !hidePasswordMaskButton && (
+                <PasswordMaskWrapper>
+                  <Button
+                    aria-label={
+                      passwordShown
+                        ? HIDE_PASSWORD_BUTTON_ARIA_LABEL
+                        : SHOW_PASSWORD_BUTTON_ARIA_LABEL
+                    }
+                    onClick={togglePasswordShown}
+                    style={{
+                      height: '30px',
+                      marginTop: '8px',
+                      marginRight: '0',
+                      left: '7px',
+                      borderRadius: '3px'
+                    }}
+                    type={ButtonType.button}
+                    variant={ButtonVariant.link}
+                  >
+                    {passwordShown
+                      ? HIDE_PASSWORD_BUTTON_TEXT
+                      : SHOW_PASSWORD_BUTTON_TEXT}
+                  </Button>
+                  <VisuallyHidden>
+                    <Announce>
+                      {passwordShown
+                        ? SHOWN_PASSWORD_ANNOUCNE_TEXT
+                        : HIDDEN_PASSWORD_ANNOUCNE_TEXT}
+                    </Announce>
+                  </VisuallyHidden>
+                </PasswordMaskWrapper>
+              )}
+
+              {onHelpLinkClick && (
+                <Tooltip
+                  content={HELP_LINK_TEXT}
+                  inverse={inverse}
+                  trigger={
+                    <Button
+                      aria-label={HELP_LINK_TEXT}
+                      icon={<QuestionCircleIcon />}
+                      inverse={inverse}
+                      onClick={onHelpLinkClick}
+                      size={
+                        inputSize === InputSize.large && !multiline
+                          ? ButtonSize.large
+                          : ButtonSize.medium
+                      }
+                      style={{ margin: '0 0 0 7px' }}
+                      type={ButtonType.button}
+                      title={HELP_LINK_TEXT}
+                      variant={ButtonVariant.link}
+                    />
+                  }
+                />
+              )}
+
+              {onIconClick && !isLoading && (
+                <IconButton
+                  aria-label={iconAriaLabel}
+                  icon={icon}
+                  onClick={onIconClick}
+                  onKeyDown={onIconKeyDown}
+                  shape={ButtonShape.fill}
+                  size={
+                    inputSize === InputSize.large && !multiline
+                      ? ButtonSize.large
+                      : ButtonSize.small
+                  }
+                  theme={theme}
+                  type={ButtonType.button}
+                  variant={ButtonVariant.link}
+                />
+              )}
+            </InputWrapper>
+            <InputMessage
+              inverse={inverse}
+              id={descriptionId}
+              isError={!!errorMessage}
+            >
+              {(errorMessage || helperMessage) && (
+                <>{errorMessage ? errorMessage : helperMessage}</>
+              )}
+            </InputMessage>
+          </Container>
+        )}
+      </ThemeContext.Consumer>
     );
   }
-}
-
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  (props, ref) => <InputComponent innerRef={ref} {...props} />
 );
