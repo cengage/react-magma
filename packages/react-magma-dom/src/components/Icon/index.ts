@@ -2,9 +2,13 @@ import { AddPersonIcon } from './types/AddPersonIcon';
 import { AlertIcon } from './types/AlertIcon';
 import { AndroidIcon } from './types/AndroidIcon';
 import { AngleDownIcon } from './types/AngleDownIcon';
+import { AngleDownDoubleIcon } from './types/AngleDownDoubleIcon';
 import { AngleLeftIcon } from './types/AngleLeftIcon';
+import { AngleLeftDoubleIcon } from './types/AngleLeftDoubleIcon';
 import { AngleRightIcon } from './types/AngleRightIcon';
+import { AngleRightDoubleIcon } from './types/AngleRightDoubleIcon';
 import { AngleUpIcon } from './types/AngleUpIcon';
+import { AngleUpDoubleIcon } from './types/AngleUpDoubleIcon';
 import { AppleIcon } from './types/AppleIcon';
 import { ArrowDown2Icon } from './types/ArrowDown2Icon';
 import { ArrowDown3Icon } from './types/ArrowDown3Icon';
@@ -46,7 +50,6 @@ import { CircleDownIcon } from './types/CircleDownIcon';
 import { CircleLeftIcon } from './types/CircleLeftIcon';
 import { CircleRightIcon } from './types/CircleRightIcon';
 import { CircleUpIcon } from './types/CircleUpIcon';
-import { Clock2Icon } from './types/Clock2Icon';
 import { ClockIcon } from './types/ClockIcon';
 import { Cloud2Icon } from './types/Cloud2Icon';
 import { CnyIcon } from './types/CnyIcon';
@@ -57,6 +60,7 @@ import { CompassIcon } from './types/CompassIcon';
 import { ConnectionIcon } from './types/ConnectionIcon';
 import { CopyIcon } from './types/CopyIcon';
 import { CountsTowardsGradeIcon } from './types/CountsTowardsGradeIcon';
+import { CourseIcon } from './types/CourseIcon';
 import { CreditNoCreditIcon } from './types/CreditNoCreditIcon';
 import { CrossIcon } from './types/CrossIcon';
 import { CubeIcon } from './types/CubeIcon';
@@ -108,6 +112,7 @@ import { GoogleDriveIcon } from './types/GoogleDriveIcon';
 import { GooglePlusIcon } from './types/GooglePlusIcon';
 import { GoogleplayIcon } from './types/GoogleplayIcon';
 import { GraduationCapIcon } from './types/GraduationCapIcon';
+import { GroupIcon } from './types/GroupIcon';
 import { HighlightIcon } from './types/HighlightIcon';
 import { Home32Icon } from './types/Home32Icon';
 import { ImageIcon } from './types/ImageIcon';
@@ -215,6 +220,7 @@ import { TimedIcon } from './types/TimedIcon';
 import { TimerIcon } from './types/TimerIcon';
 import { TrashOIcon } from './types/TrashOIcon';
 import { TruckIcon } from './types/TruckIcon';
+import { TuneIcon } from './types/TuneIcon';
 import { TwitterIcon } from './types/TwitterIcon';
 import { UnarchiveIcon } from './types/UnarchiveIcon';
 import { UndoIcon } from './types/UndoIcon';
@@ -249,9 +255,13 @@ export const ICONS: IconsCollection = {
   AlertIcon,
   AndroidIcon,
   AngleDownIcon,
+  AngleDownDoubleIcon,
   AngleLeftIcon,
+  AngleLeftDoubleIcon,
   AngleRightIcon,
+  AngleRightDoubleIcon,
   AngleUpIcon,
+  AngleUpDoubleIcon,
   AppleIcon,
   ArrowDown2Icon,
   ArrowDown3Icon,
@@ -293,7 +303,6 @@ export const ICONS: IconsCollection = {
   CircleLeftIcon,
   CircleRightIcon,
   CircleUpIcon,
-  Clock2Icon,
   ClockIcon,
   Cloud2Icon,
   CnyIcon,
@@ -304,6 +313,7 @@ export const ICONS: IconsCollection = {
   ConnectionIcon,
   CopyIcon,
   CountsTowardsGradeIcon,
+  CourseIcon,
   CreditNoCreditIcon,
   CrossIcon,
   CubeIcon,
@@ -355,6 +365,7 @@ export const ICONS: IconsCollection = {
   GooglePlusIcon,
   GoogleplayIcon,
   GraduationCapIcon,
+  GroupIcon,
   HighlightIcon,
   Home32Icon,
   ImageIcon,
@@ -462,6 +473,7 @@ export const ICONS: IconsCollection = {
   TimerIcon,
   TrashOIcon,
   TruckIcon,
+  TuneIcon,
   TwitterIcon,
   UnarchiveIcon,
   UndoIcon,
