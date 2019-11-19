@@ -24,7 +24,7 @@ const PreComponent = ({ className, components, ...props }) => {
         className="pre-container"
         style={hideCode ? { display: 'none' } : null}
       >
-        <LiveEditor tabIndex="-1" />
+        <LiveEditor ignoreTabKey tabIndex="-1" />
       </div>
       <LiveError />
       <div style={hidePreview ? { display: 'none' } : null}>
