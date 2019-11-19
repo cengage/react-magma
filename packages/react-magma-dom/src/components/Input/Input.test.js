@@ -474,7 +474,6 @@ describe('Input', () => {
       const icon = <CheckIcon />;
       const { container, getByLabelText } = render(
         <Input
-          // onIconClick={jest.fn()}
           labelText={labelText}
           inputSize="large"
           icon={icon}
