@@ -20,49 +20,7 @@ properly manages focus; moving to the modal content, and keeping it there until 
 The modal will _only_ render if the `open` prop is set to true. For that reason, it is redundant to show the modal using the following anti-pattern: `{flag && <Modal open={flag} />`. Instead,
 simply use `<Modal open={flag} />`
 
-```.jsx
-
-    class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          showModal: false
-        }
-
-        this.onModalShow = this.onModalShow.bind(this);
-        this.onModalClose = this.onModalClose.bind(this);
-      }
-
-      onModalShow() {
-        this.setState({showModal: true})
-      }
-
-      onModalClose() {
-        this.setState({showModal: false})
-      }
-
-      render() {
-        const { showModal } = this.state;
-
-        return (<>
-            <Modal header="Modal Title" onClose={this.onModalClose} open={showModal}>
-                <p>This is a modal, doing modal things.</p>
-                <p>This is <a href="#">linked text</a> in the modal</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p>This is a modal, doing modal things.</p>
-                <p>This is <a href="#"> some more linked text</a> in the modal</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p>This is a modal, doing modal things.</p>
-                <p><Button>This is a button</Button></p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </Modal>
-          <Button onClick={this.onModalShow}>Show Modal</Button>
-        </>)
-      }
-    }
-```
-
-## Radio Button Example
+More examples of modals can be found on the <Link to="/examples/modal">More Modal Examples</Link> page.
 
 ```.jsx
 
@@ -90,233 +48,12 @@ simply use `<Modal open={flag} />`
 
         return (<>
             <Modal header="Modal Title" onClose={this.onModalClose} open={showModal}>
-                <RadioGroup labelText='Radio Buttons in Modal' name='modalExample'>
-                  <Radio
-                      labelText='Option one label'
-                      value='1' />
-
-                  <Radio
-                      labelText='Option two label'
-                      value='2' />
-                  </RadioGroup>
+              <p>This is a modal, doing modal things.</p>
+              <p>This is <a href="#">linked text</a> in the modal</p>
+              <p><Button>This is a button</Button></p>
+              <p>This is <a href="#"> some more linked text</a> in the modal</p>
             </Modal>
           <Button onClick={this.onModalShow}>Show Modal</Button>
-        </>)
-      }
-    }
-```
-
-## Modal Content Update
-
-```.jsx
-
-    class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          showModal: false,
-          page: 1,
-          showHidden: false,
-          goToNextPageEnabled: true
-        }
-
-        this.onModalShow = this.onModalShow.bind(this);
-        this.onModalClose = this.onModalClose.bind(this);
-
-        this.goToPage1 = this.goToPage1.bind(this);
-        this.goToPage2 = this.goToPage2.bind(this);
-
-        this.toggleHiddenStuff = this.toggleHiddenStuff.bind(this);
-        this.toggleGoToNextPageEnabled = this.toggleGoToNextPageEnabled.bind(this);
-      }
-
-      onModalShow() {
-        this.setState({showModal: true})
-      }
-
-      onModalClose() {
-        this.setState({showModal: false})
-      }
-
-      goToPage1() {
-        this.setState({page: 1})
-      }
-
-      goToPage2() {
-        this.setState({page: 2})
-      }
-
-      toggleHiddenStuff() {
-        this.setState({showHidden: !this.state.showHidden})
-      }
-
-      toggleGoToNextPageEnabled() {
-        this.setState({goToNextPageEnabled: !this.state.goToNextPageEnabled})
-      }
-
-      render() {
-        const { showModal, page, showHidden, goToNextPageEnabled } = this.state;
-
-        return (<>
-            <Modal header="Modal Title" onClose={this.onModalClose} open={showModal}>
-              <div id="attachToMe">
-                { page === 1 && <>
-                  <p>Page one</p>
-                  <p>This is <a href="#">linked text</a> in the modal</p>
-                  <Toggle
-                    checked={!goToNextPageEnabled}
-                    id='goToNextPageEnabled'
-                    labelText='Disable Go To Next Page'
-                    onClick={this.toggleGoToNextPageEnabled} />
-                  <Toggle
-                    checked={showHidden}
-                    id='showHiddenToggle'
-                    labelText='Show Hidden Stuff'
-                    onClick={this.toggleHiddenStuff} />
-
-                  { showHidden && <Button>Hidden Button</Button> }
-                  <Button disabled={!goToNextPageEnabled} onClick={this.goToPage2}>Go to Page 2</Button>
-                </>}
-
-                { page === 2 && <>
-                  <p>Page two</p>
-                  <p><Button color="secondary">Random button 1</Button> <Button  color="secondary">Random button 2</Button></p>
-                  <Button onClick={this.goToPage1}>Go to Page 1</Button>
-                </> }
-              </div>
-              </Modal>
-          <Button onClick={this.onModalShow}>Show Modal</Button>
-        </>)
-      }
-    }
-```
-
-## Modal Header
-
-The modal header prop is optional. It can accept a node or a string, and will be rendered inside an H1.
-If there is a header passed in, the focus will be placed on the header when the modal opens. If not, the focus will be placed on
-the first actionable element. If there are no actionable elements, the focus will just go on the first child, although it is best practice to always include something actionable within the modal.
-
-```.jsx
-
-    class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          showModal: false,
-          showModalHeader: false,
-          showModalNoFocus: false
-        }
-
-        this.onModalShow = this.onModalShow.bind(this);
-        this.onModalClose = this.onModalClose.bind(this);
-
-        this.onModalHeaderShow = this.onModalHeaderShow.bind(this);
-        this.onModalHeaderClose = this.onModalHeaderClose.bind(this);
-
-        this.onModalNoFocusShow = this.onModalNoFocusShow.bind(this);
-        this.onModalNoFocusClose = this.onModalNoFocusClose.bind(this);
-      }
-
-      onModalShow() {
-        this.setState({showModal: true})
-      }
-
-      onModalClose() {
-        this.setState({showModal: false})
-      }
-
-       onModalHeaderShow() {
-        this.setState({showModalHeader: true})
-      }
-
-      onModalHeaderClose() {
-        this.setState({showModalHeader: false})
-      }
-
-      onModalNoFocusShow() {
-        this.setState({showModalNoFocus: true})
-      }
-
-      onModalNoFocusClose() {
-        this.setState({showModalNoFocus: false})
-      }
-
-      render() {
-        const { showModal,  showModalHeader, showModalNoFocus } = this.state;
-
-        return (<>
-            <Modal size="small" onClose={this.onModalClose} open={showModal}>
-                <p>This modal has no header.</p>
-                <div style={{textAlign: 'center'}}>
-                    <Button onClick={this.onModalClose} >OK</Button>
-                </div>
-            </Modal>
-          <Button onClick={this.onModalShow}>Show Modal with no header</Button>
-
-          <Modal header={<>Header With <em>Markup</em></>} onClose={this.onModalHeaderClose} open={showModalHeader}>
-                <p>This modal has a header with an `em` tag inside it.</p>
-                <div style={{textAlign: 'center'}}>
-                    <Button onClick={this.onModalHeaderClose}>OK</Button>
-                </div>
-            </Modal>
-          <Button onClick={this.onModalHeaderShow}>Show modal with header</Button>
-
-          <Modal size="small" hideEscButton onClose={this.onModalNoFocusClose} open={showModalNoFocus}>
-                <p>This modal has no header and nothing focusable.</p>
-                <p>Consider the usability implications before implementing a modal like this this. A modal should have something actionable inside it.</p>
-            </Modal>
-          <Button onClick={this.onModalNoFocusShow}>Show Modal with nothing focusable</Button>
-        </>)
-      }
-    }
-```
-
-## On Close Behavior
-
-By default when a modal closes, it will return the focus to the element that had previously had focus before the modal focused.
-
-If that element no longer exists in the dom, that action will fail silently and nothing will become focused. In those cases, you can use the `onClose` prop to put the focus on another element.
-
-```.jsx
-
-    class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          showModal: false,
-          showButton: true
-        }
-
-        this.buttonRef = React.createRef();
-
-        this.onButtonShow = this.onButtonShow.bind(this);
-        this.onModalShow = this.onModalShow.bind(this);
-        this.onModalClose = this.onModalClose.bind(this);
-      }
-
-      onButtonShow() {
-        this.setState({showButton: true})
-      }
-
-      onModalShow() {
-        this.setState({showModal: true, showButton: false})
-      }
-
-      onModalClose() {
-        this.setState({showModal: false});
-        this.buttonRef.current.focus();
-      }
-
-      render() {
-        const { showModal, showButton } = this.state;
-
-        return (<>
-            <Modal header="Modal Title" onClose={this.onModalClose} open={showModal}>
-                <p>This is a modal, doing modal things.</p>
-            </Modal>
-          {showButton && <Button onClick={this.onModalShow}>Show Modal and Hide Button</Button>}
-          <Button color="secondary" ref={this.buttonRef} onClick={this.onButtonShow}>Reset</Button>
         </>)
       }
     }
@@ -373,6 +110,100 @@ Sizes for modals include `small`, `medium`, and `large`, with `medium` being the
 
           <Button size="small" onClick={this.onModalSmallShow}>Show Small Modal</Button>
           <Button size="large" onClick={this.onModalLargeShow}>Show Large Modal</Button>
+        </>)
+      }
+    }
+```
+
+## Modal Header
+
+The modal header prop is optional. It can accept a node or a string, and will be rendered inside an H1.
+If there is a header passed in, the focus will be placed on the header when the modal opens. If not, the focus will be placed on
+the first actionable element.
+
+```.jsx
+
+    class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          showModal: false,
+          showModalHeader: false
+        }
+
+        this.onModalShow = this.onModalShow.bind(this);
+        this.onModalClose = this.onModalClose.bind(this);
+
+        this.onModalHeaderShow = this.onModalHeaderShow.bind(this);
+        this.onModalHeaderClose = this.onModalHeaderClose.bind(this);
+      }
+
+      onModalShow() {
+        this.setState({showModal: true})
+      }
+
+      onModalClose() {
+        this.setState({showModal: false})
+      }
+
+       onModalHeaderShow() {
+        this.setState({showModalHeader: true})
+      }
+
+      onModalHeaderClose() {
+        this.setState({showModalHeader: false})
+      }
+
+      render() {
+        const { showModal,  showModalHeader } = this.state;
+
+        return (<>
+            <Modal size="small" onClose={this.onModalClose} open={showModal}>
+                <p>This modal has no header.</p>
+                <div style={{textAlign: 'center'}}>
+                    <Button onClick={this.onModalClose} >OK</Button>
+                </div>
+            </Modal>
+          <Button onClick={this.onModalShow}>Show Modal with no header</Button>
+        </>)
+      }
+    }
+```
+
+## Hide Escape Button
+
+The close button can be hidden by using the `hideEscButton` prop. If this prop is used, it is best to provide another way to close the modal.
+
+```.jsx
+
+    class Example extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          showModal: false
+        }
+
+        this.onModalShow = this.onModalShow.bind(this);
+        this.onModalClose = this.onModalClose.bind(this);
+      }
+
+      onModalShow() {
+        this.setState({showModal: true})
+      }
+
+      onModalClose() {
+        this.setState({showModal: false})
+      }
+
+      render() {
+        const { showModal } = this.state;
+
+        return (<>
+            <Modal header="Modal Title" hideEscButton onClose={this.onModalClose} open={showModal}>
+              <p>The standard modal close button is hidden.</p>
+              <Button onClick={this.onModalClose}>Close this Dialog</Button>
+            </Modal>
+          <Button onClick={this.onModalShow}>Show Modal</Button>
         </>)
       }
     }
