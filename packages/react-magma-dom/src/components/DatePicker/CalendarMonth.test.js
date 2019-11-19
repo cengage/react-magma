@@ -69,7 +69,7 @@ describe('Calendar Month', () => {
     });
 
     it('should not attempt to loop through the modal if there are no tabbable elements', () => {
-      const { getByLabelText, getByText } = render(
+      const { getByLabelText } = render(
         <CalendarContext.Provider
           value={{
             buildCalendarMonth: getCalendarMonthWeeks,
@@ -91,7 +91,7 @@ describe('Calendar Month', () => {
 
     it('should handle shift + tab and loop it through the modal', () => {
       const focusedDate = new Date('January 18, 2019');
-      const { getByLabelText, getByText, rerender } = render(
+      const { getByLabelText, rerender } = render(
         <CalendarContext.Provider
           value={{
             buildCalendarMonth: getCalendarMonthWeeks,
@@ -160,7 +160,7 @@ describe('Calendar Month', () => {
 
   it('should focus a date on open', () => {
     const setDateFocused = jest.fn();
-    const { getByLabelText } = render(
+    render(
       <CalendarContext.Provider
         value={{
           buildCalendarMonth: getCalendarMonthWeeks,
@@ -200,7 +200,7 @@ describe('Calendar Month', () => {
 
   it('should call the close helper information', async () => {
     const setShowHelperInformation = jest.fn();
-    const { getByLabelText, rerender } = render(
+    const { rerender } = render(
       <CalendarContext.Provider
         value={{
           buildCalendarMonth: getCalendarMonthWeeks,
