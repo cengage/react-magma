@@ -30,12 +30,12 @@ describe('Alert', () => {
     expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-1u3zgza-StyledAlert e1i9bore0"
+    class="css-bbulru"
     id="defaultVariant"
     tabindex="-1"
   >
     <span
-      class="css-yfu1ja-IconWrapper-IconWrapperStyles e1i9bore2"
+      class="css-puenap-IconWrapperStyles"
     >
       <svg
         class="icon"
@@ -52,7 +52,7 @@ describe('Alert', () => {
       </svg>
     </span>
     <div
-      class="css-zlsewa-AlertContents e1i9bore1"
+      class="css-1yy0nb0"
     >
       Test Alert Text
     </div>
@@ -83,11 +83,11 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-1u3zgza-StyledAlert e1i9bore0"
+    class="css-bbulru"
     tabindex="-1"
   >
     <span
-      class="css-yfu1ja-IconWrapper-IconWrapperStyles e1i9bore2"
+      class="css-puenap-IconWrapperStyles"
     >
       <svg
         class="icon"
@@ -104,7 +104,7 @@ describe('Alert', () => {
       </svg>
     </span>
     <div
-      class="css-zlsewa-AlertContents e1i9bore1"
+      class="css-1yy0nb0"
     >
       Test Alert Text
     </div>
@@ -122,11 +122,11 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-ueh4n7-StyledAlert e1i9bore0"
+    class="css-yx90xq"
     tabindex="-1"
   >
     <span
-      class="css-yfu1ja-IconWrapper-IconWrapperStyles e1i9bore2"
+      class="css-puenap-IconWrapperStyles"
     >
       <svg
         class="icon"
@@ -143,7 +143,7 @@ describe('Alert', () => {
       </svg>
     </span>
     <div
-      class="css-zlsewa-AlertContents e1i9bore1"
+      class="css-1yy0nb0"
     >
       Test Alert Text
     </div>
@@ -161,11 +161,11 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-c3282f-StyledAlert e1i9bore0"
+    class="css-1ujmdpa"
     tabindex="-1"
   >
     <span
-      class="css-yfu1ja-IconWrapper-IconWrapperStyles e1i9bore2"
+      class="css-puenap-IconWrapperStyles"
     >
       <svg
         class="icon"
@@ -181,7 +181,7 @@ describe('Alert', () => {
       </svg>
     </span>
     <div
-      class="css-zlsewa-AlertContents e1i9bore1"
+      class="css-1yy0nb0"
     >
       Test Alert Text
     </div>
@@ -199,11 +199,11 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-e90d2a-StyledAlert e1i9bore0"
+    class="css-1w8zhb"
     tabindex="-1"
   >
     <span
-      class="css-yfu1ja-IconWrapper-IconWrapperStyles e1i9bore2"
+      class="css-puenap-IconWrapperStyles"
     >
       <svg
         class="icon"
@@ -220,7 +220,7 @@ describe('Alert', () => {
       </svg>
     </span>
     <div
-      class="css-zlsewa-AlertContents e1i9bore1"
+      class="css-1yy0nb0"
     >
       Test Alert Text
     </div>

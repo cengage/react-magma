@@ -200,7 +200,7 @@ exports[`Button Icon With Text Button Snapshot should render with large size 1`]
     id="testId"
   >
     <span
-      class="css-1apg407-SpanTextLeft e1cefif80"
+      class="css-1pwkqkn"
     >
       Test Text
        
@@ -231,7 +231,7 @@ exports[`Button Icon With Text Button Snapshot should render with medium size 1`
     id="testId"
   >
     <span
-      class="css-4fhr0b-SpanTextLeft e1cefif80"
+      class="css-1jsubav"
     >
       Test Text
        
@@ -262,7 +262,7 @@ exports[`Button Icon With Text Button Snapshot should render with small size 1`]
     id="testId"
   >
     <span
-      class="css-4fhr0b-SpanTextLeft e1cefif80"
+      class="css-1jsubav"
     >
       Test Text
        
@@ -293,7 +293,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated color 
     id="testId"
   >
     <span
-      class="css-4fhr0b-SpanTextLeft e1cefif80"
+      class="css-1jsubav"
     >
       Test Text
        
@@ -324,7 +324,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated shape 
     id="testId"
   >
     <span
-      class="css-4fhr0b-SpanTextLeft e1cefif80"
+      class="css-1jsubav"
     >
       Test Text
        
@@ -355,7 +355,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated text t
     id="testId"
   >
     <span
-      class="css-4fhr0b-SpanTextLeft e1cefif80"
+      class="css-1jsubav"
     >
       Test Text
        
@@ -386,7 +386,7 @@ exports[`Button Icon With Text Button Snapshot should render with updated varian
     id="testId"
   >
     <span
-      class="css-4fhr0b-SpanTextLeft e1cefif80"
+      class="css-1jsubav"
     >
       Test Text
        

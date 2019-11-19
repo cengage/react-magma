@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { generateId } from '../utils';
+import { useGenerateId } from '../utils';
 
 const defaultSize = 24;
 
@@ -18,45 +18,32 @@ interface SvgIconProps {
   size?: number;
 }
 
-interface SvgIconState {
-  id?: string;
-}
-
 function renderPaths(paths) {
   return paths.map(({ d, transform }, index) => (
     <path key={index} d={d} transform={transform} />
   ));
 }
 
-export class SvgIcon extends React.Component<SvgIconProps, SvgIconState> {
-  state: SvgIconState = {
-    id: generateId(this.props.id)
-  };
+export const SvgIcon: React.FunctionComponent<SvgIconProps> = (
+  props: SvgIconProps
+) => {
+  const id = useGenerateId(props.id);
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.id !== this.props.id) {
-      this.setState({ id: generateId(this.props.id) });
-    }
-  }
+  const { color, size, title, testId, viewBox, paths } = props;
 
-  render() {
-    const { id } = this.state;
-    const { color, size, title, testId, viewBox, paths } = this.props;
-
-    return (
-      <svg
-        className="icon"
-        height={size || defaultSize}
-        width={size || defaultSize}
-        fill={color || 'currentColor'}
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox={viewBox}
-        aria-labelledby={title ? id : null}
-        data-testid={testId}
-      >
-        {title && <title id={id}>{title}</title>}
-        {renderPaths(paths)}
-      </svg>
-    );
-  }
-}
+  return (
+    <svg
+      className="icon"
+      height={size || defaultSize}
+      width={size || defaultSize}
+      fill={color || 'currentColor'}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox={viewBox}
+      aria-labelledby={title ? id : null}
+      data-testid={testId}
+    >
+      {title && <title id={id}>{title}</title>}
+      {renderPaths(paths)}
+    </svg>
+  );
+};
