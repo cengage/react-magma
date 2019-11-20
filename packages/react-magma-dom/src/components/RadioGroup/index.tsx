@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { RadioCore } from 'react-magma-core';
 import { FormGroupLabel } from '../FormGroup';
 import { HiddenStyles } from '../UtilityStyles';
 import styled from '../../theme/styled';
-import { omit } from '../utils';
+import { omit, useGenerateId } from '../utils';
 
 const HiddenLabel = styled.label`
   ${HiddenStyles};
@@ -35,72 +34,65 @@ export const RadioContext = React.createContext<RadioContextInterface | null>(
   null
 );
 
-export class RadioGroup extends React.Component<RadioGroupProps> {
-  constructor(props) {
-    super(props);
+export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
+  props: RadioGroupProps
+) => {
+  const id = useGenerateId(props.id);
+  const [selectedValue, setSelectedValue] = React.useState(props.value);
 
-    this.handleChange = this.handleChange.bind(this);
+  React.useEffect(() => {
+    setSelectedValue(props.value);
+  }, [props.value]);
+
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const { value: newSelectedValue } = event.target;
+    props.onChange &&
+      typeof props.onChange === 'function' &&
+      props.onChange(event);
+    setSelectedValue(newSelectedValue);
   }
 
-  handleChange(onChange: (selectedValue: string) => void) {
-    return (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { value: selectedValue } = event.target;
-      this.props.onChange &&
-        typeof this.props.onChange === 'function' &&
-        this.props.onChange(event);
-      onChange(selectedValue);
-    };
-  }
+  const {
+    containerStyle,
+    labelledById,
+    labelStyle,
+    labelText,
+    textVisuallyHidden,
+    testId,
+    name,
+    children,
+    ...rest
+  } = props;
+  const other = omit(['onBlur', 'onChange', 'onFocus', 'id'], rest);
 
-  render() {
-    return (
-      <RadioCore id={this.props.id} value={this.props.value}>
-        {({ id, onChange, selectedValue }) => {
-          const {
-            containerStyle,
-            labelledById,
-            labelStyle,
-            labelText,
-            textVisuallyHidden,
-            testId,
-            name,
-            children,
-            ...rest
-          } = this.props;
-          const other = omit(['onBlur', 'onChange', 'onFocus', 'id'], rest);
-
-          return (
-            <div
-              {...other}
-              aria-labelledby={labelledById ? labelledById : id}
-              style={containerStyle}
-              data-testid={testId}
-              role="radiogroup"
-            >
-              <RadioContext.Provider
-                value={{
-                  name: name,
-                  selectedValue: selectedValue,
-                  onBlur: this.props.onBlur,
-                  onChange: this.handleChange(onChange),
-                  onFocus: this.props.onFocus
-                }}
-              >
-                {textVisuallyHidden ? (
-                  <HiddenLabel id={id} style={labelStyle}>
-                    {labelText}
-                  </HiddenLabel>
-                ) : (
-                  <FormGroupLabel id={id} style={labelStyle}>
-                    {labelText}
-                  </FormGroupLabel>
-                )}
-                {children}
-              </RadioContext.Provider>
-            </div>
-          );
+  return (
+    <div
+      {...other}
+      aria-labelledby={labelledById ? labelledById : id}
+      style={containerStyle}
+      data-testid={testId}
+      role="radiogroup"
+    >
+      <RadioContext.Provider
+        value={{
+          name,
+          selectedValue,
+          onBlur: props.onBlur,
+          onChange: handleChange,
+          onFocus: props.onFocus
         }}
-      </RadioCore>
-    );
-  }
-}
+      >
+        {textVisuallyHidden ? (
+          <HiddenLabel id={id} style={labelStyle}>
+            {labelText}
+          </HiddenLabel>
+        ) : (
+          <FormGroupLabel id={id} style={labelStyle}>
+            {labelText}
+          </FormGroupLabel>
+        )}
+        {children}
+      </RadioContext.Provider>
+    </div>
+  );
+};
