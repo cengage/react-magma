@@ -259,6 +259,14 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
     }
   }
 
+  isElementHeader(el: any) {
+    if (!this.headingRef.current) {
+      return false;
+    }
+
+    return this.headingRef.current.id === el.id;
+  }
+
   handleKeyDown() {
     return event => {
       const { keyCode, shiftKey } = event;
@@ -268,8 +276,10 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
           this.state.focusableElements,
           event.target
         );
+
         if (
-          index <= 0 ||
+          index === 0 ||
+          this.isElementHeader(event.target) ||
           (event.target.getAttribute('type') === 'radio' &&
             event.target.hasAttribute('name') &&
             event.target.getAttribute('name') ===
