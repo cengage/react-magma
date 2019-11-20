@@ -1,7 +1,8 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import styled from '../../theme/styled';
+import styled from '@emotion/styled';
 import { Global, css } from '@emotion/core';
+import { ModalCore } from 'react-magma-core';
 import {
   getTrapElements,
   getTrapElementsAndFocus,
@@ -11,7 +12,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { Button, ButtonColor, ButtonVariant } from '../Button';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { Heading } from '../Heading';
-import { omit, useGenerateId, usePrevious } from '../utils';
+import { omit } from '../utils';
 
 export enum ModalSize {
   large = 'large',
@@ -35,6 +36,12 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   testId?: string;
 }
 
+interface ModalState {
+  focusableElements: Array<HTMLElement>;
+  isExiting?: boolean;
+  isModalOpen?: boolean;
+}
+
 const ModalContainer = styled.div`
   bottom: 0;
   left: 0;
@@ -48,10 +55,12 @@ const ModalContainer = styled.div`
 const ModalBackdrop = styled.div<{ isExiting?: boolean }>`
   animation: ${props => (props.isExiting ? 'fadeout 500ms' : 'fadein 500ms')};
   background: rgba(0, 0, 0, 0.6);
-  height: 100%;
+  bottom: 0;
+  left: 0;
   position: fixed;
-  width: 100%;
-  z-index: 999;
+  right: 0;
+  top: 0;
+  z-index: 997;
 
   @keyframes fadein {
     from {
@@ -159,253 +168,287 @@ const ModalBody = styled.div`
   padding: 20px;
 `;
 
-export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
-  (props: ModalProps, ref: any) => {
-    const lastFocus = React.useRef<any>();
-    const headingRef = React.useRef<any>();
-    const bodyRef = React.useRef<any>();
-    const focusTrapElement = React.useRef<any>();
-    const id = useGenerateId(props.id);
-    const [focusableElements, setFocusableElements] = React.useState<
-      HTMLElement[]
-    >([]);
-    const [isModalOpen, setIsModalOpen] = React.useState<boolean>(props.open);
-    const [isExiting, setIsExiting] = React.useState<boolean>(false);
-    const prevOpen: boolean = usePrevious(props.open);
-    const prevIsModalOpen: boolean = usePrevious(isModalOpen);
+class ModalComponent extends React.Component<ModalProps, ModalState> {
+  private lastFocus = React.createRef<any>();
+  private headingRef = React.createRef<any>();
+  private bodyRef = React.createRef<any>();
+  private focusTrapElement = React.createRef<any>();
 
-    // constructor(props) {
-    //   super(props);
+  constructor(props) {
+    super(props);
 
-    //   this.state = {
-    //     focusableElements: []
-    //   };
+    this.state = {
+      focusableElements: []
+    };
 
-    //   this.handleKeyDown = this.handleKeyDown.bind(this);
-    //   this.handleClose = this.handleClose.bind(this);
-    // }
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleEscapeKeyDown = this.handleEscapeKeyDown.bind(this);
+  }
 
-    React.useEffect(() => {
-      if (!prevOpen && props.open) {
-        setIsModalOpen(true);
-      } else if (prevOpen && !props.open) {
-        handleClose();
-      }
-    }, [props.open]);
+  componentDidUpdate(prevProps: ModalProps, prevState: ModalState) {
+    if (!prevProps.open && this.props.open) {
+      this.setState({ isModalOpen: true });
+    } else if (prevProps.open && !this.props.open) {
+      this.handleClose();
+    }
+    if (!prevState.isModalOpen && this.state.isModalOpen) {
+      // @ts-ignore: CreateRef only gives back a immutable ref
+      this.lastFocus.current = document.activeElement;
 
-    React.useEffect(() => {
-      if (!prevIsModalOpen && isModalOpen) {
-        lastFocus.current = document.activeElement;
-
-        setFocusableElements(
-          getTrapElementsAndFocus(
-            focusTrapElement,
-            bodyRef,
-            props.header ? headingRef : null
+      if (this.props.header) {
+        this.setState({
+          focusableElements: getTrapElementsAndFocus(
+            this.focusTrapElement,
+            this.bodyRef,
+            this.headingRef
           )
+        });
+      } else {
+        this.setState({
+          focusableElements: getTrapElementsAndFocus(
+            this.focusTrapElement,
+            this.bodyRef
+          )
+        });
+      }
+
+      if (!this.props.disableEscKeyDown) {
+        document.body.addEventListener(
+          'keydown',
+          this.handleEscapeKeyDown,
+          false
         );
       }
-    }, [isModalOpen]);
+    }
 
-    React.useEffect(() => {
-      if (isModalOpen) {
-        const newFocusableElements: Array<HTMLElement> =
-          document.activeElement.nodeName === 'BODY'
-            ? getTrapElementsAndFocus(focusTrapElement, bodyRef)
-            : getTrapElements(focusTrapElement);
+    if (this.state.isModalOpen && this.props.children !== prevProps.children) {
+      const focusableElements: Array<HTMLElement> =
+        document.activeElement.nodeName === 'BODY'
+          ? getTrapElementsAndFocus(this.focusTrapElement, this.bodyRef)
+          : getTrapElements(this.focusTrapElement);
 
-        setFocusableElements(newFocusableElements);
+      this.setState({ focusableElements });
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.open) {
+      this.setState({ isModalOpen: true });
+    }
+  }
+
+  handleModalClick(contentId) {
+    return event => {
+      if (!document.getElementById(contentId).contains(event.target as Node)) {
+        this.handleClose();
       }
-    }, [props.children]);
+    };
+  }
 
-    // componentDidUpdate(prevProps: ModalProps, prevState: ModalState) {
-    //   if (!prevProps.open && props.open) {
-    //     this.setState({ isModalOpen: true });
-    //   } else if (prevProps.open && !this.props.open) {
-    //     this.handleClose();
-    //   }
-    //   if (!prevState.isModalOpen && this.state.isModalOpen) {
-    //     // @ts-ignore: CreateRef only gives back a immutable ref
-    //     this.lastFocus.current = document.activeElement;
+  handleEscapeKeyDown(event) {
+    if (event.keyCode === 27) {
+      event.preventDefault();
+      event.stopPropagation();
 
-    //     if (this.props.header) {
-    //       this.setState({
-    //         focusableElements: getTrapElementsAndFocus(
-    //           this.focusTrapElement,
-    //           this.bodyRef,
-    //           this.headingRef
-    //         )
-    //       });
-    //     } else {
-    //       this.setState({
-    //         focusableElements: getTrapElementsAndFocus(
-    //           this.focusTrapElement,
-    //           this.bodyRef
-    //         )
-    //       });
-    //     }
-    //   }
+      this.props.onEscKeyDown &&
+        typeof this.props.onEscKeyDown === 'function' &&
+        this.props.onEscKeyDown(event);
 
-    //   if (this.state.isModalOpen && this.props.children !== prevProps.children) {
-    //     const focusableElements: Array<HTMLElement> =
-    //       document.activeElement.nodeName === 'BODY'
-    //         ? getTrapElementsAndFocus(this.focusTrapElement, this.bodyRef)
-    //         : getTrapElements(this.focusTrapElement);
+      this.handleClose();
+    }
+  }
 
-    //     this.setState({ focusableElements });
-    //   }
-    // }
+  isElementHeader(el: any) {
+    if (!this.headingRef.current) {
+      return false;
+    }
 
-    // componentDidMount() {
-    //   if (this.props.open) {
-    //     this.setState({ isModalOpen: true });
-    //   }
-    // }
+    return this.headingRef.current.id === el.id;
+  }
 
-    function handleKeyDown(event: React.KeyboardEvent) {
+  handleKeyDown() {
+    return event => {
       const { keyCode, shiftKey } = event;
 
-      if (keyCode === 27) {
-        event.preventDefault();
-        event.stopPropagation();
-        props.onEscKeyDown &&
-          typeof props.onEscKeyDown === 'function' &&
-          props.onEscKeyDown(event);
+      if (shiftKey && keyCode === 9) {
+        const index = getFocusedElementIndex(
+          this.state.focusableElements,
+          event.target
+        );
 
-        handleClose();
-      } else if (shiftKey && keyCode === 9) {
-        const index = getFocusedElementIndex(focusableElements, event.target);
-
-        if (index === 0) {
+        if (
+          index === 0 ||
+          this.isElementHeader(event.target) ||
+          (event.target.getAttribute('type') === 'radio' &&
+            event.target.hasAttribute('name') &&
+            event.target.getAttribute('name') ===
+              this.state.focusableElements[0].getAttribute('name'))
+        ) {
           event.preventDefault();
-          focusableElements[focusableElements.length - 1].focus();
+          this.state.focusableElements[
+            this.state.focusableElements.length - 1
+          ].focus();
         }
       } else if (keyCode === 9) {
-        const index = getFocusedElementIndex(focusableElements, event.target);
+        const index = getFocusedElementIndex(
+          this.state.focusableElements,
+          event.target
+        );
 
-        if (index === focusableElements.length - 1) {
+        if (index === this.state.focusableElements.length - 1) {
           event.preventDefault();
-          if (focusableElements.length > 0) {
-            focusableElements[0].focus();
+          if (this.state.focusableElements.length > 0) {
+            this.state.focusableElements[0].focus();
           }
         }
       }
-    }
+    };
+  }
 
-    function handleClose() {
-      setIsExiting(true);
+  handleClose() {
+    this.setState({ isExiting: true });
 
-      setTimeout(() => {
-        setIsExiting(false);
-        setFocusableElements([]);
-        setIsModalOpen(false);
+    document.body.removeEventListener(
+      'keydown',
+      this.handleEscapeKeyDown,
+      false
+    );
 
-        if (lastFocus.current) {
-          lastFocus.current.focus();
-        }
+    setTimeout(() => {
+      this.setState({
+        isExiting: false,
+        focusableElements: [],
+        isModalOpen: false
+      });
 
-        props.onClose && typeof props.onClose === 'function' && props.onClose();
-      }, 300);
-    }
+      if (this.lastFocus.current) {
+        this.lastFocus.current.focus();
+      }
 
-    const {
-      children,
-      closeLabel,
-      disableBackdropClick,
-      disableEscKeyDown,
-      header,
-      hideEscButton,
-      open,
-      size,
-      innerRef,
-      ...rest
-    } = props;
+      this.props.onClose &&
+        typeof this.props.onClose === 'function' &&
+        this.props.onClose();
+    }, 300);
+  }
 
-    const other = omit(['onEscKeyDown'], rest);
-
-    const headingId = `${id}_heading`;
-
+  render() {
     return (
       <ThemeContext.Consumer>
-        {theme => {
-          const CloseIcon = <CrossIcon color={theme.colors.neutral04} />;
+        {theme => (
+          <ModalCore id={this.props.id} open={this.state.isModalOpen}>
+            {({ id }) => {
+              const {
+                children,
+                closeLabel,
+                disableBackdropClick,
+                disableEscKeyDown,
+                header,
+                hideEscButton,
+                open,
+                size,
+                innerRef,
+                ...rest
+              } = this.props;
 
-          return isModalOpen
-            ? ReactDOM.createPortal(
-                <>
-                  <Global
-                    styles={css`
-                      html {
-                        overflow: hidden;
-                      }
-                    `}
-                  />
+              const other = omit(['onEscKeyDown'], rest);
 
-                  <ModalContainer
-                    aria-labelledby={headingId}
-                    aria-modal={true}
-                    data-testid="modal-container"
-                    id={id}
-                    onKeyDown={disableEscKeyDown ? null : handleKeyDown}
-                    ref={focusTrapElement}
-                    role="dialog"
-                  >
-                    <ModalBackdrop
-                      data-testid="modal-backdrop"
-                      isExiting={isExiting}
-                      onMouseDown={
-                        disableBackdropClick
-                          ? event => event.preventDefault()
-                          : null
-                      }
-                      onClick={disableBackdropClick ? null : handleClose}
-                    />
-                    <ModalContent
-                      data-testid="modal-content"
-                      isExiting={isExiting}
-                      ref={ref}
-                      size={size}
-                      theme={theme}
-                      {...other}
-                    >
-                      {header && (
-                        <ModalHeader theme={theme}>
+              const CloseIcon = <CrossIcon color={theme.colors.neutral04} />;
+              const headingId = `${id}_heading`;
+              const contentId = `${id}_content`;
+
+              const { isExiting } = this.state;
+
+              return this.state.isModalOpen
+                ? ReactDOM.createPortal(
+                    <>
+                      <Global
+                        styles={css`
+                          html {
+                            overflow: hidden;
+                          }
+                        `}
+                      />
+
+                      <ModalContainer
+                        aria-labelledby={headingId}
+                        aria-modal={true}
+                        data-testid="modal-container"
+                        id={id}
+                        onKeyDown={
+                          disableEscKeyDown ? null : this.handleKeyDown()
+                        }
+                        onClick={
+                          disableBackdropClick
+                            ? null
+                            : this.handleModalClick(contentId)
+                        }
+                        ref={this.focusTrapElement}
+                        role="dialog"
+                        data-test-id="modal-container"
+                      >
+                        <ModalContent
+                          data-testid="modal-content"
+                          id={contentId}
+                          isExiting={isExiting}
+                          ref={innerRef}
+                          size={size}
+                          theme={theme}
+                          {...other}
+                        >
                           {header && (
-                            <H1
-                              id={headingId}
-                              level={1}
-                              ref={headingRef}
-                              tabIndex={-1}
-                              theme={theme}
-                            >
-                              {header}
-                            </H1>
+                            <ModalHeader theme={theme}>
+                              {header && (
+                                <H1
+                                  id={headingId}
+                                  level={1}
+                                  ref={this.headingRef}
+                                  tabIndex={-1}
+                                  theme={theme}
+                                >
+                                  {header}
+                                </H1>
+                              )}
+                            </ModalHeader>
                           )}
-                        </ModalHeader>
-                      )}
-                      <ModalBody ref={bodyRef}>{children}</ModalBody>
-                      {!hideEscButton && (
-                        <CloseBtn>
-                          <Button
-                            aria-label={
-                              closeLabel ? closeLabel : 'Close dialog'
-                            }
-                            color={ButtonColor.secondary}
-                            icon={CloseIcon}
-                            onClick={handleClose}
-                            testId="modal-closebtn"
-                            variant={ButtonVariant.link}
-                          />
-                        </CloseBtn>
-                      )}
-                    </ModalContent>
-                  </ModalContainer>
-                </>,
-                document.getElementsByTagName('body')[0]
-              )
-            : null;
-        }}
+                          <ModalBody ref={this.bodyRef}>{children}</ModalBody>
+                          {!hideEscButton && (
+                            <CloseBtn>
+                              <Button
+                                aria-label={
+                                  closeLabel ? closeLabel : 'Close dialog'
+                                }
+                                color={ButtonColor.secondary}
+                                icon={CloseIcon}
+                                onClick={this.handleClose}
+                                testId="modal-closebtn"
+                                variant={ButtonVariant.link}
+                              />
+                            </CloseBtn>
+                          )}
+                        </ModalContent>
+                      </ModalContainer>
+                      <ModalBackdrop
+                        data-testid="modal-backdrop"
+                        isExiting={isExiting}
+                        onMouseDown={
+                          disableBackdropClick
+                            ? event => event.preventDefault()
+                            : null
+                        }
+                      />
+                    </>,
+                    document.getElementsByTagName('body')[0]
+                  )
+                : null;
+            }}
+          </ModalCore>
+        )}
       </ThemeContext.Consumer>
     );
   }
+}
+
+export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
+  (props, ref) => <ModalComponent innerRef={ref} {...props} />
 );
