@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from '.';
-import { render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent } from '@testing-library/react';
 
 describe('Modal', () => {
   it('should render nothing if open is false', () => {
@@ -172,9 +172,10 @@ describe('Modal', () => {
 
     afterEach(() => {
       jest.useRealTimers();
+      jest.resetAllMocks();
     });
 
-    it('should close when clicking the close button', () => {
+    it('should close when clicking the close button', async () => {
       const onCloseSpy = jest.fn();
       const { rerender, getByText, getByTestId } = render(
         <>
@@ -198,12 +199,14 @@ describe('Modal', () => {
 
       fireEvent.click(getByTestId('modal-closebtn'));
 
-      jest.runAllTimers();
+      await act(async () => {
+        jest.runAllTimers();
+      });
 
       expect(onCloseSpy).toHaveBeenCalled();
     });
 
-    it('should close when pressing the escape button', () => {
+    it('should close when pressing the escape button', async () => {
       const onCloseSpy = jest.fn();
       const { rerender, getByText } = render(
         <>
@@ -230,12 +233,14 @@ describe('Modal', () => {
         keyCode: 27
       });
 
-      jest.runAllTimers();
+      await act(async () => {
+        jest.runAllTimers();
+      });
 
       expect(onCloseSpy).toHaveBeenCalled();
     });
 
-    it('should call the passed in onEscKeyDown function', () => {
+    it('should call the passed in onEscKeyDown function', async () => {
       const onEscKeyDown = jest.fn();
       const { rerender, getByText } = render(
         <>
@@ -272,12 +277,14 @@ describe('Modal', () => {
         keyCode: 27
       });
 
-      jest.runAllTimers();
+      await act(async () => {
+        jest.runAllTimers();
+      });
 
       expect(onEscKeyDown).toHaveBeenCalled();
     });
 
-    it('should close when clicking on the backdrop', () => {
+    it('should close when clicking on the backdrop', async () => {
       const onCloseSpy = jest.fn();
       const { rerender, getByText, getByTestId } = render(
         <>
@@ -301,12 +308,14 @@ describe('Modal', () => {
 
       fireEvent.click(getByTestId('modal-container'));
 
-      jest.runAllTimers();
+      await act(async () => {
+        jest.runAllTimers();
+      });
 
       expect(onCloseSpy).toHaveBeenCalled();
     });
 
-    it('should not close when clicking in the modal', () => {
+    it('should not close when clicking in the modal', async () => {
       const onCloseSpy = jest.fn();
       const { rerender, getByText, getByTestId } = render(
         <>
@@ -330,12 +339,14 @@ describe('Modal', () => {
 
       fireEvent.click(getByTestId('modal-content'));
 
-      jest.runAllTimers();
+      await act(async () => {
+        jest.runAllTimers();
+      });
 
       expect(onCloseSpy).not.toHaveBeenCalled();
     });
 
-    it('should fire the close event when the open prop changes from true to false', () => {
+    it('should fire the close event when the open prop changes from true to false', async () => {
       const onCloseSpy = jest.fn();
       const { rerender } = render(
         <Modal header="Hello" open={false} onClose={onCloseSpy}>
@@ -355,11 +366,14 @@ describe('Modal', () => {
         </Modal>
       );
 
-      jest.runAllTimers();
+      await act(async () => {
+        jest.runAllTimers();
+      });
+
       expect(onCloseSpy).toHaveBeenCalled();
     });
 
-    it('should not close when clicking the escape button if the disableEscKeyDown prop is true', () => {
+    it('should not close when clicking the escape button if the disableEscKeyDown prop is true', async () => {
       const onCloseSpy = jest.fn();
       const { rerender, getByText } = render(
         <>
@@ -396,12 +410,14 @@ describe('Modal', () => {
         keyCode: 27
       });
 
-      jest.runAllTimers();
+      await act(async () => {
+        jest.runAllTimers();
+      });
 
       expect(onCloseSpy).not.toHaveBeenCalled();
     });
 
-    it('should not close when clicking on the backdrop if the disableBackdropClick prop is true', () => {
+    it('should not close when clicking on the backdrop if the disableBackdropClick prop is true', async () => {
       const onCloseSpy = jest.fn();
       const { rerender, getByText, getByTestId } = render(
         <>
@@ -435,12 +451,14 @@ describe('Modal', () => {
 
       fireEvent.click(getByTestId('modal-backdrop'));
 
-      jest.runAllTimers();
+      await act(async () => {
+        jest.runAllTimers();
+      });
 
       expect(onCloseSpy).not.toHaveBeenCalled();
     });
 
-    it('should prevent default on mouse down on the backdrop if the disableBackdropClick prop is true', () => {
+    it('should prevent default on mouse down on the backdrop if the disableBackdropClick prop is true', async () => {
       const onCloseSpy = jest.fn();
       const { rerender, getByText, getByTestId } = render(
         <>
@@ -476,7 +494,9 @@ describe('Modal', () => {
 
       fireEvent.mouseDown(getByTestId('modal-backdrop'));
 
-      jest.runAllTimers();
+      await act(async () => {
+        jest.runAllTimers();
+      });
 
       expect(getByTestId('modal-content')).toBeInTheDocument();
     });

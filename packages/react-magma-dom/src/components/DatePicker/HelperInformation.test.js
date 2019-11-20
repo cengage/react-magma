@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent } from '@testing-library/react';
 import { HelperInformation } from './HelperInformation';
 
 describe('Calendar Month', () => {
@@ -25,7 +25,7 @@ describe('Calendar Month', () => {
     expect(queryByText(/keyboard shortcuts/i)).not.toBeInTheDocument();
   });
 
-  it('should call the onClose method when the helper information is closed', () => {
+  it('should call the onClose method when the helper information is closed', async () => {
     const onCloseSpy = jest.fn();
     const { getByLabelText, getByText, rerender } = render(
       <>
@@ -45,7 +45,9 @@ describe('Calendar Month', () => {
 
     fireEvent.click(getByLabelText(/close/i));
 
-    jest.runAllTimers();
+    await act(async () => {
+      jest.runAllTimers();
+    });
 
     expect(onCloseSpy).toHaveBeenCalled();
   });

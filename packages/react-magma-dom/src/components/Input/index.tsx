@@ -63,6 +63,7 @@ export interface InputProps
   onHelpLinkClick?: () => void;
   onIconClick?: () => void;
   onIconKeyDown?: (event) => void;
+  ref?: any;
   shownPasswordAnnounceText?: string;
   showPasswordButtonAriaLabel?: string;
   showPasswordButtonText?: string;
