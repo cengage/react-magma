@@ -12,7 +12,7 @@ export const LiveProviderComponent = props => {
         className="pre-container"
         style={props.children.props.props.hideCode ? { display: 'none' } : null}
       >
-        <LiveEditor tabIndex="-1" />
+        <LiveEditor ignoreTabKey tabIndex="-1" />
       </div>
       <LiveError />
       <LivePreview />
