@@ -130,6 +130,7 @@ const SelectedIcon = styled.span<{ color: string }>`
 export const Radio: React.FunctionComponent<RadioProps> = React.forwardRef(
   (props: RadioProps, ref: any) => {
     const id = useGenerateId(props.id);
+    const context = React.useContext(RadioContext);
     const {
       color,
       containerStyle,
@@ -146,53 +147,43 @@ export const Radio: React.FunctionComponent<RadioProps> = React.forwardRef(
     } = props;
 
     return (
-      <RadioContext.Consumer>
-        {context =>
-          context && (
-            <ThemeContext.Consumer>
-              {theme => (
-                <StyledContainer style={containerStyle}>
-                  <HiddenInput
-                    {...other}
-                    id={id}
-                    ref={ref}
-                    checked={context.selectedValue === value}
-                    data-testid={testId}
-                    disabled={disabled}
-                    name={context.name}
-                    required={required}
-                    type="radio"
-                    value={value}
-                    onBlur={context.onBlur}
-                    onChange={context.onChange}
-                    onFocus={context.onFocus}
-                  />
-                  <StyledLabel
-                    htmlFor={id}
-                    inverse={inverse}
-                    style={labelStyle}
-                  >
-                    <StyledFakeInput
-                      color={color ? color : ''}
-                      disabled={disabled}
-                      inverse={inverse}
-                      style={inputStyle}
-                      theme={theme}
-                    >
-                      <SelectedIcon color={color ? color : ''} theme={theme} />
-                    </StyledFakeInput>
-                    {textVisuallyHidden ? (
-                      <HiddenLabelText>{labelText}</HiddenLabelText>
-                    ) : (
-                      labelText
-                    )}
-                  </StyledLabel>
-                </StyledContainer>
+      <ThemeContext.Consumer>
+        {theme => (
+          <StyledContainer style={containerStyle}>
+            <HiddenInput
+              {...other}
+              id={id}
+              ref={ref}
+              checked={context.selectedValue === value}
+              data-testid={testId}
+              disabled={disabled}
+              name={context.name}
+              required={required}
+              type="radio"
+              value={value}
+              onBlur={context.onBlur}
+              onChange={context.onChange}
+              onFocus={context.onFocus}
+            />
+            <StyledLabel htmlFor={id} inverse={inverse} style={labelStyle}>
+              <StyledFakeInput
+                color={color ? color : ''}
+                disabled={disabled}
+                inverse={inverse}
+                style={inputStyle}
+                theme={theme}
+              >
+                <SelectedIcon color={color ? color : ''} theme={theme} />
+              </StyledFakeInput>
+              {textVisuallyHidden ? (
+                <HiddenLabelText>{labelText}</HiddenLabelText>
+              ) : (
+                labelText
               )}
-            </ThemeContext.Consumer>
-          )
-        }
-      </RadioContext.Consumer>
+            </StyledLabel>
+          </StyledContainer>
+        )}
+      </ThemeContext.Consumer>
     );
   }
 );
