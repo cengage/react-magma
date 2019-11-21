@@ -30,12 +30,12 @@ export const Search: React.FunctionComponent<SearchProps> = ({
   const SEARCH = 'Search';
 
   // handle search on enter
-  const handleKeyPress = e => {
-    if (e.keyCode === 13) {
-      e.preventDefault();
+  function handleKeyPress(event: React.KeyboardEvent) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
       onSearch();
     }
-  };
+  }
 
   return (
     <Input

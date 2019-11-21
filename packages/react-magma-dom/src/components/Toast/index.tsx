@@ -1,8 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { AlertCore, ToastCore } from 'react-magma-core';
-import { Alert, AlertProps, transitionDuration } from '../Alert';
+import { Alert, AlertProps, AlertHandles } from '../Alert';
 
 export interface ToastProps extends AlertProps {
   alertStyle?: React.CSSProperties;
@@ -43,85 +42,96 @@ const ToastWrapper = styled.div`
   }
 `;
 
-export class Toast extends React.Component<ToastProps> {
-  constructor(props) {
-    super(props);
+const DEFAULT_TOAST_DURATION = 5000;
 
-    this.handleMouseEnter = this.handleMouseEnter.bind(this);
-    this.handleMouseLeave = this.handleMouseLeave.bind(this);
-  }
+export const Toast: React.FunctionComponent<ToastProps> = (
+  props: ToastProps
+) => {
+  let timerAutoHide;
+  const alertRef = React.useRef<AlertHandles>();
 
-  handleMouseEnter(handlePause: () => void) {
-    return (event: React.SyntheticEvent) => {
-      this.props.onMouseEnter &&
-        typeof this.props.onMouseEnter === 'function' &&
-        this.props.onMouseEnter(event);
+  React.useEffect(() => {
+    if (!props.disableAutoDismiss) {
+      setAutoHideTimer(props.toastDuration);
+    }
 
-      handlePause();
+    return () => {
+      clearTimeout(timerAutoHide);
     };
+  }, []);
+
+  function clearTimeoutAndDismiss() {
+    clearTimeout(timerAutoHide);
+    if (alertRef.current) {
+      alertRef.current.callDismiss();
+    }
   }
 
-  handleMouseLeave(handleResume: () => void) {
-    return (event: React.SyntheticEvent) => {
-      this.props.onMouseLeave &&
-        typeof this.props.onMouseLeave === 'function' &&
-        this.props.onMouseLeave(event);
-
-      handleResume();
-    };
+  function setAutoHideTimer(duration = DEFAULT_TOAST_DURATION) {
+    clearTimeout(timerAutoHide);
+    timerAutoHide = setTimeout(() => {
+      if (alertRef.current) {
+        alertRef.current.callDismiss();
+      }
+    }, duration);
   }
 
-  render() {
-    const {
-      alertStyle,
-      id,
-      testId,
-      variant,
-      dismissable,
-      children,
-      containerStyle,
-      onDismiss,
-      toastDuration,
-      disableAutoDismiss
-    } = this.props;
+  function handlePause() {
+    clearTimeout(timerAutoHide);
+  }
 
-    return (
-      <ThemeContext.Consumer>
-        {theme => (
-          <AlertCore
-            transitionDuration={transitionDuration}
-            onDismiss={onDismiss}
+  function handleResume() {
+    setAutoHideTimer((props.toastDuration || DEFAULT_TOAST_DURATION) * 0.5);
+  }
+
+  function handleMouseEnter(event: React.SyntheticEvent) {
+    props.onMouseEnter &&
+      typeof props.onMouseEnter === 'function' &&
+      props.onMouseEnter(event);
+
+    handlePause();
+  }
+
+  function handleMouseLeave(event: React.SyntheticEvent) {
+    props.onMouseLeave &&
+      typeof props.onMouseLeave === 'function' &&
+      props.onMouseLeave(event);
+
+    handleResume();
+  }
+
+  const {
+    alertStyle,
+    id,
+    testId,
+    variant,
+    dismissable,
+    children,
+    containerStyle
+  } = props;
+
+  return (
+    <ThemeContext.Consumer>
+      {theme => (
+        <ToastWrapper
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          style={containerStyle}
+        >
+          <Alert
+            id={id}
+            testId={testId}
+            style={alertStyle}
+            dismissable={dismissable}
+            imperativeRef={alertRef}
+            variant={variant}
+            forceDismiss={clearTimeoutAndDismiss}
+            onDismiss={props.onDismiss}
           >
-            {({ handleDismiss, isExiting }) => (
-              <ToastCore
-                toastDuration={toastDuration}
-                disableAutoDismiss={disableAutoDismiss}
-                onDismiss={handleDismiss}
-              >
-                {({ handlePause, handleResume, clearTimeoutAndDismiss }) => (
-                  <ToastWrapper
-                    onMouseEnter={this.handleMouseEnter(handlePause)}
-                    onMouseLeave={this.handleMouseLeave(handleResume)}
-                    style={containerStyle}
-                  >
-                    <Alert
-                      id={id}
-                      testId={testId}
-                      style={alertStyle}
-                      isExiting={isExiting}
-                      dismissable={dismissable}
-                      variant={variant}
-                      onDismiss={clearTimeoutAndDismiss}
-                    >
-                      {children}
-                    </Alert>
-                  </ToastWrapper>
-                )}
-              </ToastCore>
-            )}
-          </AlertCore>
-        )}
-      </ThemeContext.Consumer>
-    );
-  }
-}
+            {children}
+          </Alert>
+        </ToastWrapper>
+      )}
+    </ThemeContext.Consumer>
+  );
+};

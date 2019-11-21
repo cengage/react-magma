@@ -27,12 +27,18 @@ export enum AlertVariant {
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   closeLabel?: string;
   dismissable?: boolean;
+  forceDismiss?: () => void;
   isExiting?: boolean;
+  imperativeRef?: any;
   inverse?: boolean;
   onDismiss?: () => void;
   ref?: any;
   testId?: string;
   variant?: AlertVariant;
+}
+
+export interface AlertHandles {
+  callDismiss: () => void;
 }
 
 export const transitionDuration = 500;
@@ -183,7 +189,10 @@ function renderIcon(variant = 'info') {
   );
 }
 
-export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
+export const Alert: React.RefForwardingComponent<
+  AlertHandles,
+  AlertProps
+> = React.forwardRef(
   (
     {
       closeLabel,
@@ -191,6 +200,8 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
       variant,
       children,
       dismissable,
+      forceDismiss,
+      imperativeRef,
       isExiting: externalIsExiting,
       inverse,
       onDismiss,
@@ -198,7 +209,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
     }: AlertProps,
     ref: any
   ) => {
-    const [isExiting, updateIsExiting] = React.useState(externalIsExiting);
+    const [isExiting, updateIsExiting] = React.useState(false);
 
     React.useEffect(() => {
       if (isExiting) {
@@ -212,6 +223,12 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
     function handleDismiss() {
       updateIsExiting(true);
     }
+
+    React.useImperativeHandle(imperativeRef, () => ({
+      callDismiss() {
+        handleDismiss();
+      }
+    }));
 
     return (
       <ThemeContext.Consumer>
@@ -235,7 +252,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
                   aria-label={closeLabel ? closeLabel : 'Close this message'}
                   icon={<CrossIcon />}
                   inverse
-                  onClick={handleDismiss}
+                  onClick={forceDismiss || handleDismiss}
                   theme={theme}
                   variant={ButtonVariant.link}
                 />
