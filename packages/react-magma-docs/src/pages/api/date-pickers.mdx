@@ -50,18 +50,11 @@ Note: the expected date format should appear somewhere in either the labelText o
 ## Date Change Event
 
 ```.jsx
-  class Example extends React.Component {
-    constructor(props) {
-      super(props)
-      this.state = {
-        chosenDate: 0,
-        inputValue: ''
-      }
-    }
+  (props) => {
+    const [chosenDate, setChosenDate] = React.useState(0);
+    const [inputValue, setInputValue] = React.useState('');
 
-    render() {
-      const { chosenDate, inputValue } = this.state;
-      return <div>
+    return (<div>
       <p>
         <strong>Chosen Date: </strong>
         {chosenDate &&
@@ -73,16 +66,15 @@ Note: the expected date format should appear somewhere in either the labelText o
       <p><strong>Input Value: </strong>{inputValue}</p>
       <DatePicker
         onInputChange={(event) => {
-          this.setState({inputValue: event.target.value});
+          setInputValue(event.target.value);
         }}
-        onDateChange={(chosenDate) => {
-          this.setState(state => ({chosenDate}))
+        onDateChange={(newChosenDate) => {
+          setChosenDate(newChosenDate);
         }}
         onInputBlur={(chosenDate) => {
           console.log('blurred')
         }} />
-      </div>
-    }
+    </div>);
   }
 ```
 

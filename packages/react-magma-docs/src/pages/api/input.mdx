@@ -251,65 +251,41 @@ The optional `multiline` boolean prop will cause the component to render a texta
 ## Change events
 
 ```.jsx
-  class ChangedInput extends React.Component {
-    constructor(props) {
-      super(props)
-      this.state = {
-        message: ''
-      };
+  (props) => {
+    const [message, setMessage] = React.useState('');
 
-      this.changeValueMessage = this.changeValueMessage.bind(this);
-    }
-
-    changeValueMessage(event) {
-      this.setState({message: event.target.value})
-    }
-
-    render() {
-      return <div>
-        <p><strong>Changed Value: </strong> <span id="changedValue">{this.state.message}</span></p>
-        <Input
-          labelText='Test Value'
-          value=''
-          onChange={this.changeValueMessage} />
-      </div>
-    }
+    return (<div>
+      <p><strong>Changed Value: </strong> <span id="changedValue">{message}</span></p>
+      <Input
+        labelText='Test Value'
+        value=''
+        onChange={(event) => setMessage(event.target.value)} />
+    </div>)
   }
 ```
 
 ## Focus events
 
 ```.jsx
-  class FocusedInput extends React.Component {
-    constructor(props) {
-      super(props)
-      this.state = {
-        focused: false,
-        message: 'No'
-      };
+  (props) => {
+    const [focused, setFocused] = React.useState(false);
+    const [message, setMessage] = React.useState('');
 
-      this.changeFocusedMessage = this.changeFocusedMessage.bind(this);
+    function changeFocusedMessage() {
+      setFocused(prevFocused => {
+        setMessage(!prevFocused ? 'Yes' : 'No');
+        return !prevFocused
+      });
     }
 
-    changeFocusedMessage() {
-      const focused = !this.state.focused;
-
-      this.setState(state => ({
-        focused,
-        message: focused ? 'Yes' : 'No',
-      }));
-    }
-
-    render() {
-      return <div>
-        <p><strong>Focused: </strong> <span id="focused">{this.state.message}</span></p>
-        <Input
-          id='inputFocused'
-          labelText='Focused?'
-          onFocus={this.changeFocusedMessage}
-          onBlur={this.changeFocusedMessage} />
-      </div>
-    }
+    return (<div>
+      <p><strong>Focused: </strong> <span id="focused">{message}</span></p>
+      <Input
+        id='inputFocused'
+        labelText='Focused?'
+        onFocus={changeFocusedMessage}
+        onBlur={changeFocusedMessage} />
+    </div>)
   }
 ```
 
@@ -318,26 +294,22 @@ The optional `multiline` boolean prop will cause the component to render a texta
 Using React's `forwardRef` feature you can gain access to the reference of the internal input.
 
 ```.jsx
-  class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.inputRef = React.createRef();
-      }
+  (props) => {
+    const inputRef = React.useRef();
 
-      render() {
-        return <div>
-        <Input
-          ref={this.inputRef}
-          labelText='Input to be focused' />
+    return (<div>
+      <Input
+        defaultValue=''
+        ref={inputRef}
+        labelText='Input to be focused' />
 
-        <Button
-          onClick={() => {
-            this.inputRef.current.focus();
-          }}>Click to focus input
-        </Button>
-        </div>
-      }
-    }
+      <Button
+        onClick={() => {
+          inputRef.current.focus();
+        }}>Click to focus input
+      </Button>
+    </div>)
+  }
 ```
 
 ## Custom styles

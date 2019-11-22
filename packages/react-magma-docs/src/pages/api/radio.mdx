@@ -224,17 +224,14 @@ Adding the `textVisuallyHidden` prop will make the label text for either the rad
 Using React's `forwardRef` feature you can gain access to the reference of the internal radio.
 
 ```.jsx
-  class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.radioRef = React.createRef();
-      }
+  (props) => {
+    const radioRef = React.useRef();
 
-      render() {
-        return <div>
+    return (
+      <div>
         <RadioGroup labelText='Forward Ref Usage' id='forwardRefGroup' name='forwardRef'>
           <Radio
-            ref={this.radioRef}
+            ref={radioRef}
             id='forwardRefRadio1'
             labelText='Option one label'
             value='1' />
@@ -247,19 +244,19 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 
         <Button
           onClick={() => {
-            this.radioRef.current.checked = !this.radioRef.current.checked
+            radioRef.current.checked = !radioRef.current.checked
           }}>Toggle option 1
         </Button>
 
-         <Button
+          <Button
           color="secondary"
           onClick={() => {
-            this.radioRef.current.focus()
+            radioRef.current.focus()
           }}>Focus option 1
         </Button>
-        </div>
-      }
-    }
+      </div>
+    )
+  }
 ```
 
 ## Testing

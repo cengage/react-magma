@@ -47,7 +47,7 @@ const DEFAULT_TOAST_DURATION = 5000;
 export const Toast: React.FunctionComponent<ToastProps> = (
   props: ToastProps
 ) => {
-  let timerAutoHide;
+  const timerAutoHide = React.useRef<any>();
   const alertRef = React.useRef<AlertHandles>();
 
   React.useEffect(() => {
@@ -56,20 +56,20 @@ export const Toast: React.FunctionComponent<ToastProps> = (
     }
 
     return () => {
-      clearTimeout(timerAutoHide);
+      clearTimeout(timerAutoHide.current);
     };
   }, []);
 
   function clearTimeoutAndDismiss() {
-    clearTimeout(timerAutoHide);
+    clearTimeout(timerAutoHide.current);
     if (alertRef.current) {
       alertRef.current.callDismiss();
     }
   }
 
   function setAutoHideTimer(duration = DEFAULT_TOAST_DURATION) {
-    clearTimeout(timerAutoHide);
-    timerAutoHide = setTimeout(() => {
+    clearTimeout(timerAutoHide.current);
+    timerAutoHide.current = setTimeout(() => {
       if (alertRef.current) {
         alertRef.current.callDismiss();
       }
@@ -77,7 +77,7 @@ export const Toast: React.FunctionComponent<ToastProps> = (
   }
 
   function handlePause() {
-    clearTimeout(timerAutoHide);
+    clearTimeout(timerAutoHide.current);
   }
 
   function handleResume() {

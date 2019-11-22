@@ -50,30 +50,23 @@ Badges may also be actionable. To make a badge actionable, use the `onClick` pro
 The `onClick` event will fire when the badge is clicked, or when the enter or space bar key is pressed.
 
 ```.jsx
-   class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          counter: 0
-        }
-      }
+  (props) => {
+    const [counter, setCounter] = React.useState(0);
 
-      render() {
-        return <>
-        <p><strong>Counter: </strong> <Badge variant='counter'>{this.state.counter}</Badge></p>
-        <Badge
-          color='light'
-          onClick={() => {
-            this.setState(state => ({counter: state.counter + 1}))
-          }}>Click me</Badge>
-        <Badge
-          color='primary'
-          onClick={() => {
-            this.setState(state => ({counter: state.counter + 1}))
-          }}>Click me too</Badge>
-        </>
-      }
-    }
+    return (<>
+      <p><strong>Counter: </strong> <Badge variant='counter'>{counter}</Badge></p>
+      <Badge
+        color='light'
+        onClick={() => {
+          setCounter(count => count + 1)
+        }}>Click me</Badge>
+      <Badge
+        color='primary'
+        onClick={() => {
+          setCounter(count => count + 1)
+        }}>Click me too</Badge>
+    </>);
+  }
 ```
 
 ## Badge Props

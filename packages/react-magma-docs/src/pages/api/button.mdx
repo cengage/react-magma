@@ -172,37 +172,32 @@ Passing the `block` property will set the button to display full-width.
 
 ## Types
 
+The button types `sumbit` and `reset` are able to be passed in to change the buttons behavior in forms.
+By default, buttons will have a type of `button`.
+
 ```.jsx
-  class Example extends React.Component {
-      constructor(props) {
-        super(props);
-        this.onFormSubmit = this.onFormSubmit.bind(this);
-        this.onFormReset = this.onFormReset.bind(this);
+  (props) => {
+    const inputRef = React.useRef();
 
-        this.inputRef = React.createRef();
-      }
-
-      onFormSubmit(event) {
-        event.preventDefault();
-        alert('Form Submitted');
-      }
-
-      onFormReset(event) {
-        event.preventDefault();
-        this.inputRef.current.value = '';
-      }
-
-      render() {
-        return <form onSubmit={this.onFormSubmit} onReset={this.onFormReset}>
-          <Input
-            ref={this.inputRef}
-            labelText='Form Field'
-            value='' />
-          <Button type="submit">Submit</Button>
-          <Button type="reset">Reset</Button>
-        </form>
-      }
+    function onFormSubmit(event) {
+      event.preventDefault();
+      alert('Form Submitted')
     }
+
+    function onFormReset(event) {
+      event.preventDefault();
+      inputRef.current.value = '';
+    }
+
+    return (<form onSubmit={onFormSubmit} onReset={onFormReset}>
+      <Input
+        ref={inputRef}
+        labelText='Form Field'
+        value='' />
+      <Button type="submit">Submit</Button>
+      <Button type="reset">Reset</Button>
+    </form>)
+  }
 ```
 
 ## Event Handling
@@ -211,30 +206,23 @@ The `onClick` event will fire when the button is clicked, or when the enter or s
 Events do not fire on disabled buttons.
 
 ```.jsx
-  class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          counter: 0
-        }
-      }
+  (props) => {
+    const [counter, setCounter] = React.useState(0);
 
-      render() {
-        return <div>
-        <p><strong>Counter: </strong> <span id="counter">{this.state.counter}</span></p>
-        <Button
-          onClick={() => {
-            this.setState(state => ({counter: state.counter + 1}))
-          }}>Click me</Button>
+    return <div>
+      <p><strong>Counter: </strong> <span id="counter">{counter}</span></p>
+      <Button
+        onClick={() => {
+          setCounter(count => count + 1)
+        }}>Click me</Button>
 
-        <Button
-          disabled
-          onClick={() => {
-            this.setState(state => ({counter: state.counter + 1}))
-          }}>Click me</Button>
-        </div>
-      }
-    }
+      <Button
+        disabled
+        onClick={() => {
+          setCounter(count => count + 1)
+        }}>Click me</Button>
+    </div>
+  }
 ```
 
 ## Forward Ref
@@ -242,24 +230,19 @@ Events do not fire on disabled buttons.
 Using React's `forwardRef` feature you can gain access to the reference of the internal button.
 
 ```.jsx
-  class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.buttonRef = React.createRef();
-      }
+  (props) => {
+    const buttonRef = React.useRef();
 
-      render() {
-        return <div>
-        <Button
-          ref={this.buttonRef}>Button to be focused</Button>
+    return <div>
+      <Button
+        ref={buttonRef}>Button to be focused</Button>
 
-        <Button
-          onClick={() => {
-            this.buttonRef.current.focus();
-          }}>Click to focus other button</Button>
-        </div>
-      }
-    }
+      <Button
+        onClick={() => {
+          buttonRef.current.focus();
+        }}>Click to focus other button</Button>
+    </div>
+  }
 ```
 
 ## Testing
