@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { CheckboxCore } from 'react-magma-core';
 import { HiddenStyles } from '../UtilityStyles';
 import { CheckIcon } from '../Icon/types/CheckIcon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
@@ -9,6 +8,7 @@ import { css } from '@emotion/core';
 // import styled from '../../theme/styled';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { useGenerateId } from '../utils';
 
 enum ToggleTextPosition {
   left = 'left',
@@ -164,98 +164,88 @@ const renderLabelText = (
   );
 };
 
-export class Toggle extends React.Component<ToggleProps> {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
+export const Toggle: React.FunctionComponent<ToggleProps> = (
+  props: ToggleProps
+) => {
+  const id = useGenerateId(props.id);
+  const [checked, setChecked] = React.useState(Boolean(props.checked));
+
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    props.onChange &&
+      typeof props.onChange === 'function' &&
+      props.onChange(event);
+    setChecked(event.target.checked);
   }
 
-  handleChange(onChange: (checked: boolean) => void) {
-    return (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { checked } = event.target;
-      this.props.onChange &&
-        typeof this.props.onChange === 'function' &&
-        this.props.onChange(event);
-      onChange(checked);
-    };
-  }
+  const {
+    onBlur,
+    onFocus,
+    containerStyle,
+    disabled,
+    inverse,
+    labelStyle,
+    labelText,
+    textPosition,
+    textVisuallyHidden,
+    testId,
+    trackStyle,
+    thumbStyle,
+    ...other
+  } = props;
 
-  render() {
-    return (
-      <CheckboxCore id={this.props.id} checked={this.props.checked}>
-        {({ id, onChange, checked }) => {
-          const {
-            onBlur,
-            onFocus,
-            containerStyle,
-            disabled,
-            inverse,
-            labelStyle,
-            labelText,
-            textPosition,
-            textVisuallyHidden,
-            testId,
-            trackStyle,
-            thumbStyle,
-            ...other
-          } = this.props;
-
-          return (
-            <ThemeContext.Consumer>
-              {theme => (
-                <StyledContainer>
-                  <HiddenInput
-                    {...other}
-                    aria-checked={!!checked}
-                    id={id}
-                    data-testid={testId}
-                    disabled={disabled}
-                    checked={checked}
-                    type="checkbox"
-                    onBlur={onBlur}
-                    onChange={this.handleChange(onChange)}
-                    onFocus={onFocus}
-                    role="switch"
-                  />
-                  <StyledLabel htmlFor={id} style={containerStyle}>
-                    {textPosition !== ToggleTextPosition.right &&
-                      renderLabelText(
-                        textVisuallyHidden,
-                        labelText,
-                        ToggleTextPosition.left,
-                        labelStyle
-                      )}
-                    <Track
-                      checked={checked}
-                      disabled={disabled}
-                      inverse={inverse}
-                      style={trackStyle}
-                      theme={theme}
-                    >
-                      <IconContainer theme={theme}>
-                        <CheckIcon size={11} />
-                      </IconContainer>
-                      <Thumb
-                        checked={checked}
-                        disabled={disabled}
-                        style={thumbStyle}
-                        theme={theme}
-                      />
-                    </Track>
-                    {textPosition === ToggleTextPosition.right &&
-                      renderLabelText(
-                        textVisuallyHidden,
-                        labelText,
-                        ToggleTextPosition.right,
-                        labelStyle
-                      )}
-                  </StyledLabel>
-                </StyledContainer>
+  return (
+    <ThemeContext.Consumer>
+      {theme => (
+        <StyledContainer>
+          <HiddenInput
+            {...other}
+            aria-checked={!!checked}
+            id={id}
+            data-testid={testId}
+            disabled={disabled}
+            checked={checked}
+            type="checkbox"
+            onBlur={onBlur}
+            onChange={handleChange}
+            onFocus={onFocus}
+            role="switch"
+          />
+          <StyledLabel htmlFor={id} style={containerStyle}>
+            {textPosition !== ToggleTextPosition.right &&
+              renderLabelText(
+                textVisuallyHidden,
+                labelText,
+                ToggleTextPosition.left,
+                labelStyle
               )}
-            </ThemeContext.Consumer>
-          );
-        }}
-      </CheckboxCore>
-    );
-  }
-}
+            <Track
+              checked={checked}
+              data-testid="toggle-track"
+              disabled={disabled}
+              inverse={inverse}
+              style={trackStyle}
+              theme={theme}
+            >
+              <IconContainer theme={theme}>
+                <CheckIcon size={11} />
+              </IconContainer>
+              <Thumb
+                checked={checked}
+                disabled={disabled}
+                style={thumbStyle}
+                theme={theme}
+              />
+            </Track>
+            {textPosition === ToggleTextPosition.right &&
+              renderLabelText(
+                textVisuallyHidden,
+                labelText,
+                ToggleTextPosition.right,
+                labelStyle
+              )}
+          </StyledLabel>
+        </StyledContainer>
+      )}
+    </ThemeContext.Consumer>
+  );
+};
