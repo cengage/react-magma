@@ -289,167 +289,160 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
       HELP_LINK_TEXT = helpLinkText ? helpLinkText : "What's this?";
 
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+    const theme = React.useContext(ThemeContext);
 
     return (
-      <ThemeContext.Consumer>
-        {theme => (
-          <Container style={containerStyle}>
-            {!labelVisuallyHidden && (
-              <Label
-                inverse={inverse}
-                htmlFor={id}
-                size={inputSize && !multiline ? inputSize : InputSize.medium}
-                style={labelStyle}
-              >
-                {labelText}
-              </Label>
-            )}
-            <InputWrapper>
-              <StyledInput
-                {...other}
-                aria-describedby={
-                  descriptionId ? descriptionId : props['aria-describedby']
-                }
-                aria-invalid={!!errorMessage}
-                aria-label={labelVisuallyHidden ? labelText : null}
-                as={multiline ? 'textarea' : null}
-                id={id}
-                data-testid={testId}
-                errorMessage={errorMessage}
-                iconPosition={iconPosition}
-                inputSize={
-                  inputSize && !multiline ? inputSize : InputSize.medium
-                }
-                inverse={inverse}
-                labelText={labelText}
-                multiline={multiline}
-                ref={ref}
-                style={inputStyle}
-                theme={theme}
-                type={
-                  type
-                    ? type === InputType.password && passwordShown
-                      ? InputType.text
-                      : type
-                    : InputType.text
-                }
-                value={value}
-                onBlur={props.onBlur}
-                onChange={handleChange}
-                onFocus={props.onFocus}
-              />
-              {icon && !onIconClick && !isLoading && (
-                <IconWrapper
-                  aria-label={iconAriaLabel}
-                  iconPosition={iconPosition}
-                  inputSize={
+      <Container style={containerStyle}>
+        {!labelVisuallyHidden && (
+          <Label
+            inverse={inverse}
+            htmlFor={id}
+            size={inputSize && !multiline ? inputSize : InputSize.medium}
+            style={labelStyle}
+          >
+            {labelText}
+          </Label>
+        )}
+        <InputWrapper>
+          <StyledInput
+            {...other}
+            aria-describedby={
+              descriptionId ? descriptionId : props['aria-describedby']
+            }
+            aria-invalid={!!errorMessage}
+            aria-label={labelVisuallyHidden ? labelText : null}
+            as={multiline ? 'textarea' : null}
+            id={id}
+            data-testid={testId}
+            errorMessage={errorMessage}
+            iconPosition={iconPosition}
+            inputSize={inputSize && !multiline ? inputSize : InputSize.medium}
+            inverse={inverse}
+            labelText={labelText}
+            multiline={multiline}
+            ref={ref}
+            style={inputStyle}
+            theme={theme}
+            type={
+              type
+                ? type === InputType.password && passwordShown
+                  ? InputType.text
+                  : type
+                : InputType.text
+            }
+            value={value}
+            onBlur={props.onBlur}
+            onChange={handleChange}
+            onFocus={props.onFocus}
+          />
+          {icon && !onIconClick && !isLoading && (
+            <IconWrapper
+              aria-label={iconAriaLabel}
+              iconPosition={iconPosition}
+              inputSize={inputSize && !multiline ? inputSize : InputSize.medium}
+              theme={theme}
+            >
+              {React.Children.only(
+                React.cloneElement(icon, {
+                  size: getIconSize(
                     inputSize && !multiline ? inputSize : InputSize.medium
-                  }
-                  theme={theme}
-                >
-                  {React.Children.only(
-                    React.cloneElement(icon, {
-                      size: getIconSize(
-                        inputSize && !multiline ? inputSize : InputSize.medium
-                      )
-                    })
-                  )}
-                </IconWrapper>
+                  )
+                })
               )}
+            </IconWrapper>
+          )}
 
-              {isLoading && (
-                <SpinnerWrapper data-testid="spinnerWrapper">
-                  <Spinner size={19} />
-                </SpinnerWrapper>
-              )}
+          {isLoading && (
+            <SpinnerWrapper data-testid="spinnerWrapper">
+              <Spinner size={19} />
+            </SpinnerWrapper>
+          )}
 
-              {type === InputType.password && !hidePasswordMaskButton && (
-                <PasswordMaskWrapper>
-                  <Button
-                    aria-label={
-                      passwordShown
-                        ? HIDE_PASSWORD_BUTTON_ARIA_LABEL
-                        : SHOW_PASSWORD_BUTTON_ARIA_LABEL
-                    }
-                    onClick={togglePasswordShown}
-                    style={{
-                      height: '30px',
-                      marginTop: '8px',
-                      marginRight: '0',
-                      left: '7px',
-                      borderRadius: '3px'
-                    }}
-                    type={ButtonType.button}
-                    variant={ButtonVariant.link}
-                  >
-                    {passwordShown
-                      ? HIDE_PASSWORD_BUTTON_TEXT
-                      : SHOW_PASSWORD_BUTTON_TEXT}
-                  </Button>
-                  <VisuallyHidden>
-                    <Announce>
-                      {passwordShown
-                        ? SHOWN_PASSWORD_ANNOUCNE_TEXT
-                        : HIDDEN_PASSWORD_ANNOUCNE_TEXT}
-                    </Announce>
-                  </VisuallyHidden>
-                </PasswordMaskWrapper>
-              )}
+          {type === InputType.password && !hidePasswordMaskButton && (
+            <PasswordMaskWrapper>
+              <Button
+                aria-label={
+                  passwordShown
+                    ? HIDE_PASSWORD_BUTTON_ARIA_LABEL
+                    : SHOW_PASSWORD_BUTTON_ARIA_LABEL
+                }
+                onClick={togglePasswordShown}
+                style={{
+                  height: '30px',
+                  marginTop: '8px',
+                  marginRight: '0',
+                  left: '7px',
+                  borderRadius: '3px'
+                }}
+                type={ButtonType.button}
+                variant={ButtonVariant.link}
+              >
+                {passwordShown
+                  ? HIDE_PASSWORD_BUTTON_TEXT
+                  : SHOW_PASSWORD_BUTTON_TEXT}
+              </Button>
+              <VisuallyHidden>
+                <Announce>
+                  {passwordShown
+                    ? SHOWN_PASSWORD_ANNOUCNE_TEXT
+                    : HIDDEN_PASSWORD_ANNOUCNE_TEXT}
+                </Announce>
+              </VisuallyHidden>
+            </PasswordMaskWrapper>
+          )}
 
-              {onHelpLinkClick && (
-                <Tooltip
-                  content={HELP_LINK_TEXT}
+          {onHelpLinkClick && (
+            <Tooltip
+              content={HELP_LINK_TEXT}
+              inverse={inverse}
+              trigger={
+                <Button
+                  aria-label={HELP_LINK_TEXT}
+                  icon={<QuestionCircleIcon />}
                   inverse={inverse}
-                  trigger={
-                    <Button
-                      aria-label={HELP_LINK_TEXT}
-                      icon={<QuestionCircleIcon />}
-                      inverse={inverse}
-                      onClick={onHelpLinkClick}
-                      size={
-                        inputSize === InputSize.large && !multiline
-                          ? ButtonSize.large
-                          : ButtonSize.medium
-                      }
-                      style={{ margin: '0 0 0 7px' }}
-                      type={ButtonType.button}
-                      title={HELP_LINK_TEXT}
-                      variant={ButtonVariant.link}
-                    />
-                  }
-                />
-              )}
-
-              {onIconClick && !isLoading && (
-                <IconButton
-                  aria-label={iconAriaLabel}
-                  icon={icon}
-                  onClick={onIconClick}
-                  onKeyDown={onIconKeyDown}
-                  shape={ButtonShape.fill}
+                  onClick={onHelpLinkClick}
                   size={
                     inputSize === InputSize.large && !multiline
                       ? ButtonSize.large
-                      : ButtonSize.small
+                      : ButtonSize.medium
                   }
-                  theme={theme}
+                  style={{ margin: '0 0 0 7px' }}
                   type={ButtonType.button}
+                  title={HELP_LINK_TEXT}
                   variant={ButtonVariant.link}
                 />
-              )}
-            </InputWrapper>
-            <InputMessage
-              inverse={inverse}
-              id={descriptionId}
-              isError={!!errorMessage}
-            >
-              {(errorMessage || helperMessage) && (
-                <>{errorMessage ? errorMessage : helperMessage}</>
-              )}
-            </InputMessage>
-          </Container>
-        )}
-      </ThemeContext.Consumer>
+              }
+            />
+          )}
+
+          {onIconClick && !isLoading && (
+            <IconButton
+              aria-label={iconAriaLabel}
+              icon={icon}
+              onClick={onIconClick}
+              onKeyDown={onIconKeyDown}
+              shape={ButtonShape.fill}
+              size={
+                inputSize === InputSize.large && !multiline
+                  ? ButtonSize.large
+                  : ButtonSize.small
+              }
+              theme={theme}
+              type={ButtonType.button}
+              variant={ButtonVariant.link}
+            />
+          )}
+        </InputWrapper>
+        <InputMessage
+          inverse={inverse}
+          id={descriptionId}
+          isError={!!errorMessage}
+        >
+          {(errorMessage || helperMessage) && (
+            <>{errorMessage ? errorMessage : helperMessage}</>
+          )}
+        </InputMessage>
+      </Container>
     );
   }
 );

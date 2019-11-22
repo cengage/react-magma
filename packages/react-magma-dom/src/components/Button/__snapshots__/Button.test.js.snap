@@ -70,7 +70,7 @@ exports[`Button Icon Only Button Snapshot should render with large size 1`] = `
 <div>
   <button
     aria-label="Check Icon"
-    class="css-do4zis"
+    class="css-8qxu9c"
     icon="[object Object]"
     id="testId"
   >
@@ -95,7 +95,7 @@ exports[`Button Icon Only Button Snapshot should render with small size 1`] = `
 <div>
   <button
     aria-label="Check Icon"
-    class="css-f4p49l"
+    class="css-f04tip"
     icon="[object Object]"
     id="testId"
   >
@@ -120,7 +120,7 @@ exports[`Button Icon Only Button Snapshot should render with updated color 1`] =
 <div>
   <button
     aria-label="Check Icon"
-    class="css-11irqno"
+    class="css-1bqvi2h"
     icon="[object Object]"
     id="testId"
   >
@@ -145,7 +145,7 @@ exports[`Button Icon Only Button Snapshot should render with updated shape 1`] =
 <div>
   <button
     aria-label="Check Icon"
-    class="css-tbfnzz"
+    class="css-k4513b"
     icon="[object Object]"
     id="testId"
   >
@@ -170,7 +170,7 @@ exports[`Button Icon Only Button Snapshot should render with updated variant 1`]
 <div>
   <button
     aria-label="Check Icon"
-    class="css-zzrhkf"
+    class="css-1jn6tyx"
     icon="[object Object]"
     id="testId"
   >

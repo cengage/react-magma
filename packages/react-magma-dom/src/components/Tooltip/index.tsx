@@ -237,6 +237,7 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
     }
 
     const { content, inverse, position, trigger } = props;
+    const theme = React.useContext(ThemeContext);
 
     return (
       <ToolTipContainer>
@@ -249,24 +250,21 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
           onMouseEnter: showTooltip,
           ref: ref
         })}
-        <ThemeContext.Consumer>
-          {theme => (
-            <StyledTooltip
-              id={id}
-              position={position ? position : EnumTooltipPosition.top}
-              role="tooltip"
-              visible={isVisible}
-            >
-              <StyledTooltipInner
-                inverse={inverse}
-                position={position ? position : EnumTooltipPosition.top}
-                theme={theme}
-              >
-                {content}
-              </StyledTooltipInner>
-            </StyledTooltip>
-          )}
-        </ThemeContext.Consumer>
+
+        <StyledTooltip
+          id={id}
+          position={position ? position : EnumTooltipPosition.top}
+          role="tooltip"
+          visible={isVisible}
+        >
+          <StyledTooltipInner
+            inverse={inverse}
+            position={position ? position : EnumTooltipPosition.top}
+            theme={theme}
+          >
+            {content}
+          </StyledTooltipInner>
+        </StyledTooltip>
       </ToolTipContainer>
     );
   }

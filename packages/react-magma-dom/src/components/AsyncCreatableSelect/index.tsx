@@ -58,54 +58,52 @@ export const AsyncCreatableSelect: React.FunctionComponent<
     style
   } = props;
 
+  const theme = React.useContext(ThemeContext);
+
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <SelectWrapper
-          errorMessage={errorMessage}
-          helperMessage={helperMessage}
-          id={id}
-          inverse={inverse}
-          labelText={labelText}
-          testId={testId}
-        >
-          <ReactAsyncCreatableSelect
-            id={id}
-            inverse={inverse}
-            components={{
-              ClearIndicator,
-              DropdownIndicator,
-              MultiValueRemove
-            }}
-            aria-label={labelText}
-            name={name}
-            defaultValue={defaultValue}
-            value={value}
-            cacheOptions={cacheOptions}
-            defaultOptions={defaultOptions}
-            loadOptions={loadOptions}
-            required={required}
-            isDisabled={disabled}
-            isMulti={multi}
-            isClearable={clearable}
-            onBlur={onBlur}
-            onFocus={onFocus}
-            onChange={onChange}
-            onInputChange={onInputChange}
-            onMenuOpen={onOpen}
-            onMenuClose={onClose}
-            styles={getStyles(style, theme, errorMessage)}
-            classNamePrefix="magma"
-            allowCreateWhileLoading={allowCreateWhileLoading}
-            createOptionPosition={createOptionPosition}
-            formatCreateLabel={formatCreateLabel}
-            getNewOptionData={getNewOptionData}
-            isLoading={isLoading}
-            isValidNewOption={isValidNewOption}
-            onCreateOption={onCreateOption}
-          />
-        </SelectWrapper>
-      )}
-    </ThemeContext.Consumer>
+    <SelectWrapper
+      errorMessage={errorMessage}
+      helperMessage={helperMessage}
+      id={id}
+      inverse={inverse}
+      labelText={labelText}
+      testId={testId}
+    >
+      <ReactAsyncCreatableSelect
+        id={id}
+        inverse={inverse}
+        components={{
+          ClearIndicator,
+          DropdownIndicator,
+          MultiValueRemove
+        }}
+        aria-label={labelText}
+        name={name}
+        defaultValue={defaultValue}
+        value={value}
+        cacheOptions={cacheOptions}
+        defaultOptions={defaultOptions}
+        loadOptions={loadOptions}
+        required={required}
+        isDisabled={disabled}
+        isMulti={multi}
+        isClearable={clearable}
+        onBlur={onBlur}
+        onFocus={onFocus}
+        onChange={onChange}
+        onInputChange={onInputChange}
+        onMenuOpen={onOpen}
+        onMenuClose={onClose}
+        styles={getStyles(style, theme, errorMessage)}
+        classNamePrefix="magma"
+        allowCreateWhileLoading={allowCreateWhileLoading}
+        createOptionPosition={createOptionPosition}
+        formatCreateLabel={formatCreateLabel}
+        getNewOptionData={getNewOptionData}
+        isLoading={isLoading}
+        isValidNewOption={isValidNewOption}
+        onCreateOption={onCreateOption}
+      />
+    </SelectWrapper>
   );
 };

@@ -118,6 +118,7 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
   }
 
   const { day, dayFocusable } = props;
+  const theme = React.useContext(ThemeContext);
 
   return (
     <CalendarContext.Consumer>
@@ -128,35 +129,25 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
           const sameDateAsToday = isSameDay(day, new Date());
 
           return (
-            <ThemeContext.Consumer>
-              {theme => (
-                <CalendarDayCell
-                  onFocus={() => setDateFocused(true)}
-                  theme={theme}
-                >
-                  <CalendarDayInner
-                    aria-label={format(day, 'MMMM Do YYYY')}
-                    isChosen={sameDateAsChosenDate}
-                    isFocused={dayFocusable && sameDateAsFocusedDate}
-                    onClick={e => {
-                      onDateChange(day, e);
-                    }}
-                    ref={dayRef}
-                    tabIndex={sameDateAsFocusedDate ? 0 : -1}
-                    type="button"
-                    theme={theme}
-                  >
-                    {format(day, 'D')}
-                  </CalendarDayInner>
-                  {sameDateAsToday && (
-                    <TodayIndicator
-                      data-testid="todayIndicator"
-                      theme={theme}
-                    />
-                  )}
-                </CalendarDayCell>
+            <CalendarDayCell onFocus={() => setDateFocused(true)} theme={theme}>
+              <CalendarDayInner
+                aria-label={format(day, 'MMMM Do YYYY')}
+                isChosen={sameDateAsChosenDate}
+                isFocused={dayFocusable && sameDateAsFocusedDate}
+                onClick={e => {
+                  onDateChange(day, e);
+                }}
+                ref={dayRef}
+                tabIndex={sameDateAsFocusedDate ? 0 : -1}
+                type="button"
+                theme={theme}
+              >
+                {format(day, 'D')}
+              </CalendarDayInner>
+              {sameDateAsToday && (
+                <TodayIndicator data-testid="todayIndicator" theme={theme} />
               )}
-            </ThemeContext.Consumer>
+            </CalendarDayCell>
           );
         } else {
           return <EmptyCell />;

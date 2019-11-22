@@ -62,51 +62,49 @@ export const CreatableSelect: React.FunctionComponent<CreatableSelectProps> = (
     style
   } = props;
 
+  const theme = React.useContext(ThemeContext);
+
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <SelectWrapper
-          errorMessage={errorMessage}
-          id={id}
-          inverse={inverse}
-          labelText={labelText}
-          testId={testId}
-        >
-          <ReactCreatableSelect
-            id={id}
-            inverse={inverse}
-            components={{
-              ClearIndicator,
-              DropdownIndicator,
-              MultiValueRemove
-            }}
-            aria-label={labelText}
-            name={name}
-            defaultValue={defaultValue}
-            value={value}
-            options={options}
-            required={required}
-            isDisabled={disabled}
-            isMulti={multi}
-            isClearable={clearable}
-            onBlur={onBlur}
-            onFocus={onFocus}
-            onChange={onChange}
-            onInputChange={onInputChange}
-            onMenuOpen={onOpen}
-            onMenuClose={onClose}
-            styles={getStyles(style, theme, errorMessage)}
-            classNamePrefix="magma"
-            allowCreateWhileLoading={allowCreateWhileLoading}
-            createOptionPosition={createOptionPosition}
-            formatCreateLabel={formatCreateLabel}
-            getNewOptionData={getNewOptionData}
-            isLoading={isLoading}
-            isValidNewOption={isValidNewOption}
-            onCreateOption={onCreateOption}
-          />
-        </SelectWrapper>
-      )}
-    </ThemeContext.Consumer>
+    <SelectWrapper
+      errorMessage={errorMessage}
+      id={id}
+      inverse={inverse}
+      labelText={labelText}
+      testId={testId}
+    >
+      <ReactCreatableSelect
+        id={id}
+        inverse={inverse}
+        components={{
+          ClearIndicator,
+          DropdownIndicator,
+          MultiValueRemove
+        }}
+        aria-label={labelText}
+        name={name}
+        defaultValue={defaultValue}
+        value={value}
+        options={options}
+        required={required}
+        isDisabled={disabled}
+        isMulti={multi}
+        isClearable={clearable}
+        onBlur={onBlur}
+        onFocus={onFocus}
+        onChange={onChange}
+        onInputChange={onInputChange}
+        onMenuOpen={onOpen}
+        onMenuClose={onClose}
+        styles={getStyles(style, theme, errorMessage)}
+        classNamePrefix="magma"
+        allowCreateWhileLoading={allowCreateWhileLoading}
+        createOptionPosition={createOptionPosition}
+        formatCreateLabel={formatCreateLabel}
+        getNewOptionData={getNewOptionData}
+        isLoading={isLoading}
+        isValidNewOption={isValidNewOption}
+        onCreateOption={onCreateOption}
+      />
+    </SelectWrapper>
   );
 };

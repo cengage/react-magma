@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { Alert, AlertProps, AlertHandles } from '../Alert';
 
 export interface ToastProps extends AlertProps {
@@ -111,27 +110,23 @@ export const Toast: React.FunctionComponent<ToastProps> = (
   } = props;
 
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <ToastWrapper
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          style={containerStyle}
-        >
-          <Alert
-            id={id}
-            testId={testId}
-            style={alertStyle}
-            dismissable={dismissable}
-            imperativeRef={alertRef}
-            variant={variant}
-            forceDismiss={clearTimeoutAndDismiss}
-            onDismiss={props.onDismiss}
-          >
-            {children}
-          </Alert>
-        </ToastWrapper>
-      )}
-    </ThemeContext.Consumer>
+    <ToastWrapper
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={containerStyle}
+    >
+      <Alert
+        id={id}
+        testId={testId}
+        style={alertStyle}
+        dismissable={dismissable}
+        imperativeRef={alertRef}
+        variant={variant}
+        forceDismiss={clearTimeoutAndDismiss}
+        onDismiss={props.onDismiss}
+      >
+        {children}
+      </Alert>
+    </ToastWrapper>
   );
 };

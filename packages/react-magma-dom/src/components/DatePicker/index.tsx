@@ -209,6 +209,8 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
   const dateFormat = 'MM/DD/YYYY';
   const inputValue = chosenDate ? format(chosenDate, dateFormat) : '';
 
+  const theme = React.useContext(ThemeContext);
+
   return (
     <CalendarContext.Provider
       value={{
@@ -251,24 +253,21 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
           placeholder={placeholderText ? placeholderText : dateFormat}
           value={inputValue}
         />
-        <ThemeContext.Consumer>
-          {theme => (
-            <DatePickerCalendar
-              data-testid="calendarContainer"
-              opened={calendarOpened}
-              theme={theme}
-            >
-              <CalendarMonth
-                focusOnOpen={
-                  calendarOpened && Boolean(focusedDate) && Boolean(chosenDate)
-                }
-                handleCloseButtonClick={handleCloseButtonClick}
-                calendarOpened={calendarOpened}
-                setDateFocused={setDateFocused}
-              />
-            </DatePickerCalendar>
-          )}
-        </ThemeContext.Consumer>
+
+        <DatePickerCalendar
+          data-testid="calendarContainer"
+          opened={calendarOpened}
+          theme={theme}
+        >
+          <CalendarMonth
+            focusOnOpen={
+              calendarOpened && Boolean(focusedDate) && Boolean(chosenDate)
+            }
+            handleCloseButtonClick={handleCloseButtonClick}
+            calendarOpened={calendarOpened}
+            setDateFocused={setDateFocused}
+          />
+        </DatePickerCalendar>
       </DatePickerContainer>
     </CalendarContext.Provider>
   );

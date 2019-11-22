@@ -132,86 +132,81 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
       }
     }
   }
+  const theme = React.useContext(ThemeContext);
 
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <CalendarContainer
-          tabIndex={-1}
-          theme={theme}
-          onKeyDown={context.onKeyDown}
-          ref={focusTrapElement}
+    <CalendarContainer
+      tabIndex={-1}
+      theme={theme}
+      onKeyDown={context.onKeyDown}
+      ref={focusTrapElement}
+    >
+      <MonthContainer
+        data-testid="monthContainer"
+        data-visible="true"
+        theme={theme}
+        ref={focusTrapElement}
+        onKeyDown={handleKeyDown}
+      >
+        <CalendarHeader focusHeader={focusHeader} />
+        <Table
+          role="presentation"
+          onBlur={() => {
+            onCalendarTableBlur();
+            context.setDateFocused(false);
+          }}
+          onFocus={onCalendarTableFocus}
         >
-          <MonthContainer
-            data-testid="monthContainer"
-            data-visible="true"
-            theme={theme}
-            ref={focusTrapElement}
-            onKeyDown={handleKeyDown}
-          >
-            <CalendarHeader focusHeader={focusHeader} />
-            <Table
-              role="presentation"
-              onBlur={() => {
-                onCalendarTableBlur();
-                context.setDateFocused(false);
-              }}
-              onFocus={onCalendarTableFocus}
-            >
-              <tbody>
-                <tr>
-                  <Th theme={theme}>S</Th>
-                  <Th theme={theme}>M</Th>
-                  <Th theme={theme}>T</Th>
-                  <Th theme={theme}>W</Th>
-                  <Th theme={theme}>T</Th>
-                  <Th theme={theme}>F</Th>
-                  <Th theme={theme}>S</Th>
-                </tr>
-                {context
-                  .buildCalendarMonth(context.focusedDate)
-                  .map((week, i) => (
-                    <tr key={i}>
-                      {week.map((day, dayOfWeek) => (
-                        <CalendarDay
-                          key={dayOfWeek}
-                          day={day}
-                          dayFocusable={dayFocusable}
-                          onDateChange={context.onDateChange}
-                        />
-                      ))}
-                    </tr>
-                  ))}
-              </tbody>
-            </Table>
-            <HelperButton>
-              <Button
-                aria-label="Calendar Help"
-                icon={<QuestionCircleOIcon />}
-                onClick={() => context.setShowHelperInformation(true)}
-                onFocus={() => context.setDateFocused(false)}
-                type={ButtonType.button}
-                variant={ButtonVariant.link}
-              />
-              <HelperInformation
-                open={context.showHelperInformation}
-                onClose={() => context.setShowHelperInformation(false)}
-              />
-            </HelperButton>
-            <CloseButton>
-              <Button
-                aria-label="Close Calendar"
-                color={ButtonColor.secondary}
-                icon={<CrossIcon />}
-                onClick={props.handleCloseButtonClick}
-                size={ButtonSize.small}
-                type={ButtonType.button}
-                variant={ButtonVariant.link}
-              />
-            </CloseButton>
-          </MonthContainer>
-        </CalendarContainer>
-      )}
-    </ThemeContext.Consumer>
+          <tbody>
+            <tr>
+              <Th theme={theme}>S</Th>
+              <Th theme={theme}>M</Th>
+              <Th theme={theme}>T</Th>
+              <Th theme={theme}>W</Th>
+              <Th theme={theme}>T</Th>
+              <Th theme={theme}>F</Th>
+              <Th theme={theme}>S</Th>
+            </tr>
+            {context.buildCalendarMonth(context.focusedDate).map((week, i) => (
+              <tr key={i}>
+                {week.map((day, dayOfWeek) => (
+                  <CalendarDay
+                    key={dayOfWeek}
+                    day={day}
+                    dayFocusable={dayFocusable}
+                    onDateChange={context.onDateChange}
+                  />
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+        <HelperButton>
+          <Button
+            aria-label="Calendar Help"
+            icon={<QuestionCircleOIcon />}
+            onClick={() => context.setShowHelperInformation(true)}
+            onFocus={() => context.setDateFocused(false)}
+            type={ButtonType.button}
+            variant={ButtonVariant.link}
+          />
+          <HelperInformation
+            open={context.showHelperInformation}
+            onClose={() => context.setShowHelperInformation(false)}
+          />
+        </HelperButton>
+        <CloseButton>
+          <Button
+            aria-label="Close Calendar"
+            color={ButtonColor.secondary}
+            icon={<CrossIcon />}
+            onClick={props.handleCloseButtonClick}
+            size={ButtonSize.small}
+            type={ButtonType.button}
+            variant={ButtonVariant.link}
+          />
+        </CloseButton>
+      </MonthContainer>
+    </CalendarContainer>
   );
 };

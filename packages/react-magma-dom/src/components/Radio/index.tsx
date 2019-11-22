@@ -146,44 +146,42 @@ export const Radio: React.FunctionComponent<RadioProps> = React.forwardRef(
       ...other
     } = props;
 
+    const theme = React.useContext(ThemeContext);
+
     return (
-      <ThemeContext.Consumer>
-        {theme => (
-          <StyledContainer style={containerStyle}>
-            <HiddenInput
-              {...other}
-              id={id}
-              ref={ref}
-              checked={context.selectedValue === value}
-              data-testid={testId}
-              disabled={disabled}
-              name={context.name}
-              required={required}
-              type="radio"
-              value={value}
-              onBlur={context.onBlur}
-              onChange={context.onChange}
-              onFocus={context.onFocus}
-            />
-            <StyledLabel htmlFor={id} inverse={inverse} style={labelStyle}>
-              <StyledFakeInput
-                color={color ? color : ''}
-                disabled={disabled}
-                inverse={inverse}
-                style={inputStyle}
-                theme={theme}
-              >
-                <SelectedIcon color={color ? color : ''} theme={theme} />
-              </StyledFakeInput>
-              {textVisuallyHidden ? (
-                <HiddenLabelText>{labelText}</HiddenLabelText>
-              ) : (
-                labelText
-              )}
-            </StyledLabel>
-          </StyledContainer>
-        )}
-      </ThemeContext.Consumer>
+      <StyledContainer style={containerStyle}>
+        <HiddenInput
+          {...other}
+          id={id}
+          ref={ref}
+          checked={context.selectedValue === value}
+          data-testid={testId}
+          disabled={disabled}
+          name={context.name}
+          required={required}
+          type="radio"
+          value={value}
+          onBlur={context.onBlur}
+          onChange={context.onChange}
+          onFocus={context.onFocus}
+        />
+        <StyledLabel htmlFor={id} inverse={inverse} style={labelStyle}>
+          <StyledFakeInput
+            color={color ? color : ''}
+            disabled={disabled}
+            inverse={inverse}
+            style={inputStyle}
+            theme={theme}
+          >
+            <SelectedIcon color={color ? color : ''} theme={theme} />
+          </StyledFakeInput>
+          {textVisuallyHidden ? (
+            <HiddenLabelText>{labelText}</HiddenLabelText>
+          ) : (
+            labelText
+          )}
+        </StyledLabel>
+      </StyledContainer>
     );
   }
 );

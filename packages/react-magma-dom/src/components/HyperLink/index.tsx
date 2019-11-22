@@ -53,32 +53,27 @@ export const HyperLink: React.FunctionComponent<
   const { children, to, styledAs, inverse, ...rest } = props;
 
   const other = omit(['textTransform', 'positionTop', 'positionLeft'], rest);
+  const theme = React.useContext(ThemeContext);
 
-  return (
-    <ThemeContext.Consumer>
-      {theme => {
-        const composedStyle =
-          styledAs === 'Button'
-            ? buttonStyles({ ...composedProps, theme })
-            : linkStyles({ ...props, theme });
+  const composedStyle =
+    styledAs === 'Button'
+      ? buttonStyles({ ...composedProps, theme })
+      : linkStyles({ ...props, theme });
 
-        if (typeof children === 'function') {
-          return (
-            <ClassNames>
-              {({ css: composedCss }) => {
-                const stylesClass = composedCss(composedStyle);
-                return children({ to, stylesClass });
-              }}
-            </ClassNames>
-          );
-        } else {
-          return (
-            <a {...other} href={to} css={composedStyle}>
-              {children}
-            </a>
-          );
-        }
-      }}
-    </ThemeContext.Consumer>
-  );
+  if (typeof children === 'function') {
+    return (
+      <ClassNames>
+        {({ css: composedCss }) => {
+          const stylesClass = composedCss(composedStyle);
+          return children({ to, stylesClass });
+        }}
+      </ClassNames>
+    );
+  } else {
+    return (
+      <a {...other} href={to} css={composedStyle}>
+        {children}
+      </a>
+    );
+  }
 });

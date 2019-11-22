@@ -135,18 +135,17 @@ export const StyledButton: React.FunctionComponent<
     variant,
     ...other
   } = props;
+
+  const theme = React.useContext(ThemeContext);
+
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <button
-          css={buttonStyles({ ...props, theme })}
-          {...other}
-          data-testid={testId}
-          ref={ref}
-        >
-          {children}
-        </button>
-      )}
-    </ThemeContext.Consumer>
+    <button
+      css={buttonStyles({ ...props, theme })}
+      {...other}
+      data-testid={testId}
+      ref={ref}
+    >
+      {children}
+    </button>
   );
 });

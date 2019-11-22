@@ -26,21 +26,18 @@ const StyledLabel = styled.label<LabelProps>`
 
 function renderLabel(props) {
   const { children, inverse, size, testId, ...other } = props;
+  const theme = React.useContext(ThemeContext);
 
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <StyledLabel
-          {...other}
-          data-testid={testId}
-          inverse={inverse}
-          size={size ? size : InputSize.medium}
-          theme={theme}
-        >
-          {children}
-        </StyledLabel>
-      )}
-    </ThemeContext.Consumer>
+    <StyledLabel
+      {...other}
+      data-testid={testId}
+      inverse={inverse}
+      size={size ? size : InputSize.medium}
+      theme={theme}
+    >
+      {children}
+    </StyledLabel>
   );
 }
 

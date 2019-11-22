@@ -153,6 +153,8 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = (
     }
   }
 
+  const theme = React.useContext(ThemeContext);
+
   const {
     onBlur,
     onFocus,
@@ -170,48 +172,44 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = (
   } = props;
 
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <StyledContainer style={containerStyle}>
-          <HiddenInput
-            {...other}
-            id={id}
-            data-testid={testId}
-            checked={checked}
-            disabled={disabled}
-            indeterminate={indeterminate}
-            type="checkbox"
-            onBlur={onBlur}
-            onChange={handleChange}
-            onFocus={onFocus}
-          />
-          <StyledLabel htmlFor={id} inverse={inverse} style={labelStyle}>
-            <StyledFakeInput
-              checked={checked}
+    <StyledContainer style={containerStyle}>
+      <HiddenInput
+        {...other}
+        id={id}
+        data-testid={testId}
+        checked={checked}
+        disabled={disabled}
+        indeterminate={indeterminate}
+        type="checkbox"
+        onBlur={onBlur}
+        onChange={handleChange}
+        onFocus={onFocus}
+      />
+      <StyledLabel htmlFor={id} inverse={inverse} style={labelStyle}>
+        <StyledFakeInput
+          checked={checked}
+          color={color ? color : ''}
+          disabled={disabled}
+          indeterminate={indeterminate}
+          inverse={inverse}
+          style={inputStyle}
+          theme={theme}
+        >
+          {indeterminate && (
+            <IndeterminateIcon
+              data-testid="indeterminateIcon"
               color={color ? color : ''}
-              disabled={disabled}
-              indeterminate={indeterminate}
-              inverse={inverse}
-              style={inputStyle}
               theme={theme}
-            >
-              {indeterminate && (
-                <IndeterminateIcon
-                  data-testid="indeterminateIcon"
-                  color={color ? color : ''}
-                  theme={theme}
-                />
-              )}
-              <CheckIcon size={12} />
-            </StyledFakeInput>
-            {textVisuallyHidden ? (
-              <HiddenLabelText>{labelText}</HiddenLabelText>
-            ) : (
-              labelText
-            )}
-          </StyledLabel>
-        </StyledContainer>
-      )}
-    </ThemeContext.Consumer>
+            />
+          )}
+          <CheckIcon size={12} />
+        </StyledFakeInput>
+        {textVisuallyHidden ? (
+          <HiddenLabelText>{labelText}</HiddenLabelText>
+        ) : (
+          labelText
+        )}
+      </StyledLabel>
+    </StyledContainer>
   );
 };

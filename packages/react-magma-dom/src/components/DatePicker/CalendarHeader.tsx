@@ -51,39 +51,37 @@ export const CalendarHeader: React.FunctionComponent<CalendarHeaderProps> = (
     }
   }, [props.focusHeader]);
 
+  const theme = React.useContext(ThemeContext);
+
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <CalendarHeaderContainer>
-          <CalendarHeaderText tabIndex={-1} theme={theme} ref={calendarHeader}>
-            {format(focusedDate, 'MMMM YYYY')}
-          </CalendarHeaderText>
-          <CalendarIconButton>
-            <Button
-              aria-label={`Previous Month ${format(
-                subMonths(focusedDate, 1),
-                'MMMM YYYY'
-              )}`}
-              icon={<ArrowLeft2Icon />}
-              type={ButtonType.button}
-              variant={ButtonVariant.link}
-              onClick={onPrevMonthClick}
-            />
-          </CalendarIconButton>
-          <CalendarIconButton next>
-            <Button
-              aria-label={`Next Month ${format(
-                addMonths(focusedDate, 1),
-                'MMMM YYYY'
-              )}`}
-              icon={<ArrowRight2Icon />}
-              type={ButtonType.button}
-              variant={ButtonVariant.link}
-              onClick={onNextMonthClick}
-            />
-          </CalendarIconButton>
-        </CalendarHeaderContainer>
-      )}
-    </ThemeContext.Consumer>
+    <CalendarHeaderContainer>
+      <CalendarHeaderText tabIndex={-1} theme={theme} ref={calendarHeader}>
+        {format(focusedDate, 'MMMM YYYY')}
+      </CalendarHeaderText>
+      <CalendarIconButton>
+        <Button
+          aria-label={`Previous Month ${format(
+            subMonths(focusedDate, 1),
+            'MMMM YYYY'
+          )}`}
+          icon={<ArrowLeft2Icon />}
+          type={ButtonType.button}
+          variant={ButtonVariant.link}
+          onClick={onPrevMonthClick}
+        />
+      </CalendarIconButton>
+      <CalendarIconButton next>
+        <Button
+          aria-label={`Next Month ${format(
+            addMonths(focusedDate, 1),
+            'MMMM YYYY'
+          )}`}
+          icon={<ArrowRight2Icon />}
+          type={ButtonType.button}
+          variant={ButtonVariant.link}
+          onClick={onNextMonthClick}
+        />
+      </CalendarIconButton>
+    </CalendarHeaderContainer>
   );
 };
