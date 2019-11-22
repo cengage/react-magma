@@ -89,23 +89,21 @@ export const Card: React.FunctionComponent<CardProps> = (props: CardProps) => {
     ...other
   } = props;
 
+  const theme = React.useContext(ThemeContext);
+
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <StyledCard
-          {...other}
-          align={align ? align : CardAlignment.left}
-          background={background}
-          data-testid={testId}
-          calloutType={calloutType}
-          hasDropShadow={hasDropShadow}
-          inverse={inverse}
-          width={width ? width : 'auto'}
-          theme={theme}
-        >
-          {children}
-        </StyledCard>
-      )}
-    </ThemeContext.Consumer>
+    <StyledCard
+      {...other}
+      align={align ? align : CardAlignment.left}
+      background={background}
+      data-testid={testId}
+      calloutType={calloutType}
+      hasDropShadow={hasDropShadow}
+      inverse={inverse}
+      width={width ? width : 'auto'}
+      theme={theme}
+    >
+      {children}
+    </StyledCard>
   );
 };

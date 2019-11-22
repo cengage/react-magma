@@ -121,21 +121,19 @@ export const Badge: React.FunctionComponent<BadgeProps> = React.forwardRef(
   ({ children, color, onClick, variant, ...other }: BadgeProps, ref: any) => {
     const BadgeComponent = renderBadge(!!onClick);
 
+    const theme = React.useContext(ThemeContext);
+
     return (
-      <ThemeContext.Consumer>
-        {theme => (
-          <BadgeComponent
-            {...other}
-            color={color}
-            variant={variant ? variant : BadgeVariant.label}
-            onClick={onClick}
-            ref={ref}
-            theme={theme}
-          >
-            {children}
-          </BadgeComponent>
-        )}
-      </ThemeContext.Consumer>
+      <BadgeComponent
+        {...other}
+        color={color}
+        variant={variant ? variant : BadgeVariant.label}
+        onClick={onClick}
+        ref={ref}
+        theme={theme}
+      >
+        {children}
+      </BadgeComponent>
     );
   }
 );

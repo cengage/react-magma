@@ -85,22 +85,20 @@ export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
   ) => {
     const HeadingComponent = renderHeading(level);
 
+    const theme = React.useContext(ThemeContext);
+
     return (
-      <ThemeContext.Consumer>
-        {theme => (
-          <HeadingComponent
-            {...other}
-            css={baseHeadingStyles({ theme })}
-            inverse={inverse}
-            ref={ref}
-            data-testid={testId}
-            tabIndex={tabIndex}
-            theme={theme}
-          >
-            {children}
-          </HeadingComponent>
-        )}
-      </ThemeContext.Consumer>
+      <HeadingComponent
+        {...other}
+        css={baseHeadingStyles({ theme })}
+        inverse={inverse}
+        ref={ref}
+        data-testid={testId}
+        tabIndex={tabIndex}
+        theme={theme}
+      >
+        {children}
+      </HeadingComponent>
     );
   }
 );

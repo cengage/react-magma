@@ -193,59 +193,57 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
     ...other
   } = props;
 
+  const theme = React.useContext(ThemeContext);
+
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <StyledContainer>
-          <HiddenInput
-            {...other}
-            aria-checked={!!checked}
-            id={id}
-            data-testid={testId}
-            disabled={disabled}
+    <StyledContainer>
+      <HiddenInput
+        {...other}
+        aria-checked={!!checked}
+        id={id}
+        data-testid={testId}
+        disabled={disabled}
+        checked={checked}
+        type="checkbox"
+        onBlur={onBlur}
+        onChange={handleChange}
+        onFocus={onFocus}
+        role="switch"
+      />
+      <StyledLabel htmlFor={id} style={containerStyle}>
+        {textPosition !== ToggleTextPosition.right &&
+          renderLabelText(
+            textVisuallyHidden,
+            labelText,
+            ToggleTextPosition.left,
+            labelStyle
+          )}
+        <Track
+          checked={checked}
+          data-testid="toggle-track"
+          disabled={disabled}
+          inverse={inverse}
+          style={trackStyle}
+          theme={theme}
+        >
+          <IconContainer theme={theme}>
+            <CheckIcon size={11} />
+          </IconContainer>
+          <Thumb
             checked={checked}
-            type="checkbox"
-            onBlur={onBlur}
-            onChange={handleChange}
-            onFocus={onFocus}
-            role="switch"
+            disabled={disabled}
+            style={thumbStyle}
+            theme={theme}
           />
-          <StyledLabel htmlFor={id} style={containerStyle}>
-            {textPosition !== ToggleTextPosition.right &&
-              renderLabelText(
-                textVisuallyHidden,
-                labelText,
-                ToggleTextPosition.left,
-                labelStyle
-              )}
-            <Track
-              checked={checked}
-              data-testid="toggle-track"
-              disabled={disabled}
-              inverse={inverse}
-              style={trackStyle}
-              theme={theme}
-            >
-              <IconContainer theme={theme}>
-                <CheckIcon size={11} />
-              </IconContainer>
-              <Thumb
-                checked={checked}
-                disabled={disabled}
-                style={thumbStyle}
-                theme={theme}
-              />
-            </Track>
-            {textPosition === ToggleTextPosition.right &&
-              renderLabelText(
-                textVisuallyHidden,
-                labelText,
-                ToggleTextPosition.right,
-                labelStyle
-              )}
-          </StyledLabel>
-        </StyledContainer>
-      )}
-    </ThemeContext.Consumer>
+        </Track>
+        {textPosition === ToggleTextPosition.right &&
+          renderLabelText(
+            textVisuallyHidden,
+            labelText,
+            ToggleTextPosition.right,
+            labelStyle
+          )}
+      </StyledLabel>
+    </StyledContainer>
   );
 };

@@ -28,27 +28,24 @@ const StyledSpan = styled.span<BreadcrumbItemProps>`
 
 export function renderBreadcrumbItem(props) {
   const { inverse, children, ref, to } = props;
+  const theme = React.useContext(ThemeContext);
 
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <StyledItem ref={ref}>
-          {to ? (
-            <>
-              <HyperLink to={to} inverse={inverse}>
-                {children}
-              </HyperLink>
-              <StyledSpan inverse={inverse} theme={theme}>
-                <AngleRightIcon size={10} />
-              </StyledSpan>
-            </>
-          ) : (
-            <StyledSpan aria-current="page" inverse={inverse} theme={theme}>
-              {children}
-            </StyledSpan>
-          )}
-        </StyledItem>
+    <StyledItem ref={ref}>
+      {to ? (
+        <>
+          <HyperLink to={to} inverse={inverse}>
+            {children}
+          </HyperLink>
+          <StyledSpan inverse={inverse} theme={theme}>
+            <AngleRightIcon size={10} />
+          </StyledSpan>
+        </>
+      ) : (
+        <StyledSpan aria-current="page" inverse={inverse} theme={theme}>
+          {children}
+        </StyledSpan>
       )}
-    </ThemeContext.Consumer>
+    </StyledItem>
   );
 }

@@ -230,37 +230,35 @@ export const Alert: React.RefForwardingComponent<
       }
     }));
 
+    const theme = React.useContext(ThemeContext);
+
     return (
-      <ThemeContext.Consumer>
-        {theme => (
-          <StyledAlert
-            {...other}
-            data-testid={testId}
-            ref={ref}
-            tabIndex={-1}
-            inverse={inverse}
-            isExiting={isExiting}
-            variant={variant}
-            theme={theme}
-          >
-            {renderIcon(variant)}
-            <AlertContents>{children}</AlertContents>
-            {dismissable && (
-              <DismissableIconWrapper variant={variant} theme={theme}>
-                <DismissButton
-                  alertVariant={variant}
-                  aria-label={closeLabel ? closeLabel : 'Close this message'}
-                  icon={<CrossIcon />}
-                  inverse
-                  onClick={forceDismiss || handleDismiss}
-                  theme={theme}
-                  variant={ButtonVariant.link}
-                />
-              </DismissableIconWrapper>
-            )}
-          </StyledAlert>
+      <StyledAlert
+        {...other}
+        data-testid={testId}
+        ref={ref}
+        tabIndex={-1}
+        inverse={inverse}
+        isExiting={isExiting}
+        variant={variant}
+        theme={theme}
+      >
+        {renderIcon(variant)}
+        <AlertContents>{children}</AlertContents>
+        {dismissable && (
+          <DismissableIconWrapper variant={variant} theme={theme}>
+            <DismissButton
+              alertVariant={variant}
+              aria-label={closeLabel ? closeLabel : 'Close this message'}
+              icon={<CrossIcon />}
+              inverse
+              onClick={forceDismiss || handleDismiss}
+              theme={theme}
+              variant={ButtonVariant.link}
+            />
+          </DismissableIconWrapper>
         )}
-      </ThemeContext.Consumer>
+      </StyledAlert>
     );
   }
 );

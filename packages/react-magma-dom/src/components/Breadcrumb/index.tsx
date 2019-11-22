@@ -33,19 +33,17 @@ export const Breadcrumb: React.FunctionComponent<
     { ariaLabel, children, inverse, minWidthToShow }: BreadcrumbProps,
     ref: any
   ) => {
+    const theme = React.useContext(ThemeContext);
+
     return (
-      <ThemeContext.Consumer>
-        {theme => (
-          <StyledNav
-            aria-label={ariaLabel ? ariaLabel : 'Breadcrumb'}
-            breakpoint={minWidthToShow ? `${minWidthToShow}px` : '0'}
-          >
-            <StyledList inverse={inverse} ref={ref} theme={theme}>
-              {children}
-            </StyledList>
-          </StyledNav>
-        )}
-      </ThemeContext.Consumer>
+      <StyledNav
+        aria-label={ariaLabel ? ariaLabel : 'Breadcrumb'}
+        breakpoint={minWidthToShow ? `${minWidthToShow}px` : '0'}
+      >
+        <StyledList inverse={inverse} ref={ref} theme={theme}>
+          {children}
+        </StyledList>
+      </StyledNav>
     );
   }
 );

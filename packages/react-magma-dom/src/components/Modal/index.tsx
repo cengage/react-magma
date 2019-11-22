@@ -232,7 +232,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
     }
 
     function handleEscapeKeyDown(event: KeyboardEvent) {
-      if (event.keyCode === 27) {
+      if (event.key === 'Escape') {
         event.preventDefault();
         event.stopPropagation();
 
@@ -307,90 +307,81 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
     } = props;
 
     const other = omit(['onEscKeyDown'], rest);
+    const theme = React.useContext(ThemeContext);
 
-    return (
-      <ThemeContext.Consumer>
-        {theme => {
-          const CloseIcon = <CrossIcon color={theme.colors.neutral04} />;
+    const CloseIcon = <CrossIcon color={theme.colors.neutral04} />;
 
-          return isModalOpen
-            ? ReactDOM.createPortal(
-                <>
-                  <Global
-                    styles={css`
-                      html {
-                        overflow: hidden;
-                      }
-                    `}
-                  />
+    return isModalOpen
+      ? ReactDOM.createPortal(
+          <>
+            <Global
+              styles={css`
+                html {
+                  overflow: hidden;
+                }
+              `}
+            />
 
-                  <ModalContainer
-                    aria-labelledby={headingId}
-                    aria-modal={true}
-                    data-testid="modal-container"
-                    id={id}
-                    onKeyDown={disableEscKeyDown ? null : handleKeyDown}
-                    onClick={disableBackdropClick ? null : handleModalClick}
-                    ref={focusTrapElement}
-                    role="dialog"
-                    data-test-id="modal-container"
-                  >
-                    <ModalContent
-                      data-testid="modal-content"
-                      id={contentId}
-                      isExiting={isExiting}
-                      ref={ref}
-                      size={size}
-                      theme={theme}
-                      {...other}
-                    >
-                      {header && (
-                        <ModalHeader theme={theme}>
-                          {header && (
-                            <H1
-                              id={headingId}
-                              level={1}
-                              ref={headingRef}
-                              tabIndex={-1}
-                              theme={theme}
-                            >
-                              {header}
-                            </H1>
-                          )}
-                        </ModalHeader>
-                      )}
-                      <ModalBody ref={bodyRef}>{children}</ModalBody>
-                      {!hideEscButton && (
-                        <CloseBtn>
-                          <Button
-                            aria-label={
-                              closeLabel ? closeLabel : 'Close dialog'
-                            }
-                            color={ButtonColor.secondary}
-                            icon={CloseIcon}
-                            onClick={handleClose}
-                            testId="modal-closebtn"
-                            variant={ButtonVariant.link}
-                          />
-                        </CloseBtn>
-                      )}
-                    </ModalContent>
-                  </ModalContainer>
-                  <ModalBackdrop
-                    data-testid="modal-backdrop"
-                    isExiting={isExiting}
-                    onMouseDown={
-                      disableBackdropClick
-                        ? event => event.preventDefault()
-                        : null
-                    }
-                  />
-                </>,
-                document.getElementsByTagName('body')[0]
-              )
-            : null;
-        }}
-      </ThemeContext.Consumer>
-    );
+            <ModalContainer
+              aria-labelledby={headingId}
+              aria-modal={true}
+              data-testid="modal-container"
+              id={id}
+              onKeyDown={disableEscKeyDown ? null : handleKeyDown}
+              onClick={disableBackdropClick ? null : handleModalClick}
+              ref={focusTrapElement}
+              role="dialog"
+              data-test-id="modal-container"
+            >
+              <ModalContent
+                data-testid="modal-content"
+                id={contentId}
+                isExiting={isExiting}
+                ref={ref}
+                size={size}
+                theme={theme}
+                {...other}
+              >
+                {header && (
+                  <ModalHeader theme={theme}>
+                    {header && (
+                      <H1
+                        id={headingId}
+                        level={1}
+                        ref={headingRef}
+                        tabIndex={-1}
+                        theme={theme}
+                      >
+                        {header}
+                      </H1>
+                    )}
+                  </ModalHeader>
+                )}
+                <ModalBody ref={bodyRef}>{children}</ModalBody>
+                {!hideEscButton && (
+                  <CloseBtn>
+                    <Button
+                      aria-label={closeLabel ? closeLabel : 'Close dialog'}
+                      color={ButtonColor.secondary}
+                      icon={CloseIcon}
+                      onClick={handleClose}
+                      testId="modal-closebtn"
+                      variant={ButtonVariant.link}
+                    />
+                  </CloseBtn>
+                )}
+              </ModalContent>
+            </ModalContainer>
+            <ModalBackdrop
+              data-testid="modal-backdrop"
+              isExiting={isExiting}
+              onMouseDown={
+                disableBackdropClick ? event => event.preventDefault() : null
+              }
+            />
+          </>,
+          document.getElementsByTagName('body')[0]
+        )
+      : null;
   }
 );

@@ -36,24 +36,22 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
   isError,
   ...other
 }: InputMessageProps) => {
+  const theme = React.useContext(ThemeContext);
+
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <Message
-          {...other}
-          id={id}
-          inverse={inverse}
-          isError={isError}
-          theme={theme}
-        >
-          {isError && (
-            <>
-              <Notification2Icon aria-label="Error" size={18} /> &nbsp;
-            </>
-          )}
-          {children}
-        </Message>
+    <Message
+      {...other}
+      id={id}
+      inverse={inverse}
+      isError={isError}
+      theme={theme}
+    >
+      {isError && (
+        <>
+          <Notification2Icon aria-label="Error" size={18} /> &nbsp;
+        </>
       )}
-    </ThemeContext.Consumer>
+      {children}
+    </Message>
   );
 };

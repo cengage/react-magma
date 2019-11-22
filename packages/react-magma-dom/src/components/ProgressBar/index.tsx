@@ -115,32 +115,30 @@ export const ProgressBar: React.FunctionComponent<
   ) => {
     const percentageValue = percentage ? percentage : 0;
 
+    const theme = React.useContext(ThemeContext);
+
     return (
-      <ThemeContext.Consumer>
-        {theme => (
-          <Container>
-            <Track
-              height={height ? height : 15}
-              inverse={inverse}
-              ref={ref}
-              theme={theme}
-            >
-              <Bar
-                animated={animated}
-                aria-valuenow={percentageValue}
-                aria-valuemin={0}
-                aria-valuemax={100}
-                bgColor={bgColor}
-                inverse={inverse}
-                percentage={percentageValue}
-                role="progressbar"
-                theme={theme}
-              />
-            </Track>
-            {labelVisible && <Percentage>{percentageValue}%</Percentage>}
-          </Container>
-        )}
-      </ThemeContext.Consumer>
+      <Container>
+        <Track
+          height={height ? height : 15}
+          inverse={inverse}
+          ref={ref}
+          theme={theme}
+        >
+          <Bar
+            animated={animated}
+            aria-valuenow={percentageValue}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            bgColor={bgColor}
+            inverse={inverse}
+            percentage={percentageValue}
+            role="progressbar"
+            theme={theme}
+          />
+        </Track>
+        {labelVisible && <Percentage>{percentageValue}%</Percentage>}
+      </Container>
     );
   }
 );

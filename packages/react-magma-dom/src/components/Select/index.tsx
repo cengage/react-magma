@@ -205,45 +205,43 @@ export const Select: React.FunctionComponent<SelectProps> = (
       ? `${labelText}, ${errorMessage ? errorMessage : helperMessage}`
       : labelText;
 
+  const theme = React.useContext(ThemeContext);
+
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <SelectWrapper
-          errorMessage={errorMessage}
-          helperMessage={helperMessage}
-          id={id}
-          inverse={inverse}
-          labelText={labelText}
-          testId={testId}
-        >
-          <ReactSelect
-            aria-label={ariaLabelText}
-            classNamePrefix="magma"
-            components={{
-              ClearIndicator,
-              DropdownIndicator,
-              MultiValueRemove
-            }}
-            defaultValue={defaultValue}
-            id={id}
-            inverse={inverse}
-            isClearable={clearable}
-            isDisabled={disabled}
-            isMulti={multi}
-            name={name}
-            onBlur={onBlur}
-            onChange={onChange}
-            onFocus={onFocus}
-            onInputChange={onInputChange}
-            onMenuClose={onClose}
-            onMenuOpen={onOpen}
-            options={options}
-            required={required}
-            styles={getStyles(style, theme, errorMessage, inverse)}
-            value={value}
-          />
-        </SelectWrapper>
-      )}
-    </ThemeContext.Consumer>
+    <SelectWrapper
+      errorMessage={errorMessage}
+      helperMessage={helperMessage}
+      id={id}
+      inverse={inverse}
+      labelText={labelText}
+      testId={testId}
+    >
+      <ReactSelect
+        aria-label={ariaLabelText}
+        classNamePrefix="magma"
+        components={{
+          ClearIndicator,
+          DropdownIndicator,
+          MultiValueRemove
+        }}
+        defaultValue={defaultValue}
+        id={id}
+        inverse={inverse}
+        isClearable={clearable}
+        isDisabled={disabled}
+        isMulti={multi}
+        name={name}
+        onBlur={onBlur}
+        onChange={onChange}
+        onFocus={onFocus}
+        onInputChange={onInputChange}
+        onMenuClose={onClose}
+        onMenuOpen={onOpen}
+        options={options}
+        required={required}
+        styles={getStyles(style, theme, errorMessage, inverse)}
+        value={value}
+      />
+    </SelectWrapper>
   );
 };
