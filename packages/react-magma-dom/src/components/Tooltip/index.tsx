@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { css } from '@emotion/core';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { TooltipCore } from 'react-magma-core';
+import { useGenerateId } from '../utils';
 
 export enum EnumTooltipPosition {
   bottom = 'bottom',
@@ -16,7 +16,7 @@ export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   inverse?: boolean;
   position?: EnumTooltipPosition;
   trigger: React.ReactElement;
-  innerRef?: React.Ref<HTMLDivElement>;
+  ref?: React.Ref<HTMLDivElement>;
 }
 
 export interface ITooltipState {
@@ -217,64 +217,57 @@ const StyledTooltipInner = styled.div<{
     `}
 `;
 
-class TooltipComponent extends React.Component<TooltipProps> {
-  constructor(props) {
-    super(props);
+export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
+  (props: TooltipProps, ref: any) => {
+    const id = useGenerateId(props.id);
+    const [isVisible, setIsVisible] = React.useState(false);
 
-    this.handleKeyDown = this.handleKeyDown.bind(this);
-  }
-
-  handleKeyDown(hideTooltip: () => void) {
-    return (event: React.KeyboardEvent) => {
+    function handleKeyDown(event: React.KeyboardEvent) {
       if (event.key === 'Escape') {
-        hideTooltip();
+        setIsVisible(false);
       }
-    };
-  }
+    }
 
-  render() {
+    function showTooltip() {
+      setIsVisible(true);
+    }
+
+    function hideTooltip() {
+      setIsVisible(false);
+    }
+
+    const { content, inverse, position, trigger } = props;
+
     return (
-      <TooltipCore id={this.props.id}>
-        {({ id, hideTooltip, showTooltip, isVisible }) => {
-          const { content, inverse, position, trigger, innerRef } = this.props;
-
-          return (
-            <ToolTipContainer>
-              {React.cloneElement(trigger, {
-                'aria-describedby': id,
-                onKeyDown: this.handleKeyDown(hideTooltip),
-                onBlur: hideTooltip,
-                onFocus: showTooltip,
-                onMouseLeave: hideTooltip,
-                onMouseEnter: showTooltip,
-                ref: innerRef
-              })}
-              <ThemeContext.Consumer>
-                {theme => (
-                  <StyledTooltip
-                    id={id}
-                    position={position ? position : EnumTooltipPosition.top}
-                    role="tooltip"
-                    visible={isVisible}
-                  >
-                    <StyledTooltipInner
-                      inverse={inverse}
-                      position={position ? position : EnumTooltipPosition.top}
-                      theme={theme}
-                    >
-                      {content}
-                    </StyledTooltipInner>
-                  </StyledTooltip>
-                )}
-              </ThemeContext.Consumer>
-            </ToolTipContainer>
-          );
-        }}
-      </TooltipCore>
+      <ToolTipContainer>
+        {React.cloneElement(trigger, {
+          'aria-describedby': id,
+          onKeyDown: handleKeyDown,
+          onBlur: hideTooltip,
+          onFocus: showTooltip,
+          onMouseLeave: hideTooltip,
+          onMouseEnter: showTooltip,
+          ref: ref
+        })}
+        <ThemeContext.Consumer>
+          {theme => (
+            <StyledTooltip
+              id={id}
+              position={position ? position : EnumTooltipPosition.top}
+              role="tooltip"
+              visible={isVisible}
+            >
+              <StyledTooltipInner
+                inverse={inverse}
+                position={position ? position : EnumTooltipPosition.top}
+                theme={theme}
+              >
+                {content}
+              </StyledTooltipInner>
+            </StyledTooltip>
+          )}
+        </ThemeContext.Consumer>
+      </ToolTipContainer>
     );
   }
-}
-
-export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
-  (props, ref) => <TooltipComponent innerRef={ref} {...props} />
 );
