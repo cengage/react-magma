@@ -277,6 +277,10 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
           event.target
         );
 
+        if (this.state.focusableElements.length === 0) {
+          event.preventDefault();
+        }
+
         if (
           index === 0 ||
           this.isElementHeader(event.target) ||
