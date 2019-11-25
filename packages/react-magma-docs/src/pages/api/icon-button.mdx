@@ -18,7 +18,7 @@ import { SimplePropsTable } from '../../components/props-table'
 
 **Icon Buttons use the <Link to="/api/button">Buttons component</Link> to render. It is not a separate component, just different props.**
 
-## Basic usage
+## Basic Usage
 
 Icon buttons have an icon included in them. If children are included with these buttons (such as text), then they render in a style similar to the non-icon buttons.
 If no children are included, then they render in the icon-only style.
@@ -65,7 +65,7 @@ If you find JSX being passed in as a prop directly ugly, you can assign an icon 
 
 For icon only buttons you _MUST_ pass in an `aria-label` property to satisfy accessibility standards.
 
-## Aria Label
+## Aria-Label
 
 ```.jsx
     <>
@@ -73,7 +73,7 @@ For icon only buttons you _MUST_ pass in an `aria-label` property to satisfy acc
     </>
 ```
 
-## Icon position
+## Icon Position
 
 Use the optional prop `iconPosition` to position the icon of the button on either side of the text.
 The `iconPosition` property takes the values `left` and `right`.
@@ -104,7 +104,7 @@ Sizes for `IconButtons` include `small`, `medium`, and `large`, with `medium` be
     </>
 ```
 
-## Round vs square
+## Shape
 
 Icon only buttons have `shape = round`, by default.
 

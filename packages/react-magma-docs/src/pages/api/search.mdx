@@ -1,0 +1,157 @@
+---
+title: 'Search'
+---
+
+import { Link } from 'gatsby'
+import { ScopeableLayout } from '../../components/layout'
+import { Search } from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
+
+# Search
+
+The `Search` component is the standardized use of the <Link to='/api/inputs/'>Input</Link> component with `type='search'`.
+
+## Basic Usage
+
+The `onSearch` prop is required and takes a function and fires when the user clicks or presses Enter when focus is on the search icon or the search input. It also fires if the user is focused on the input and presses Enter.
+
+```.jsx
+    <Search onSearch={() => {alert('search')}} />
+```
+
+## Label and Placeholder Text
+
+The `Search` component supports three text string props: `iconAriaLabel`, `labelText`, and `placeholderText`.
+
+The `iconAriaLabel` refers to the aria-label of the search icon, which will be read by screen readers. The `labelText` refers to the aria-label of the input itself, which will also be read by screen readers. The `placeholderText` refers to the placeholder attribute of the input, which will display when the input is empty.
+
+The default value of all of these is `Search`.
+
+```.jsx
+    <Search iconAriaLabel='Submit Search' labelText="Search for Articles and Books" onSearch={() => {}} placeholderText="Search our Library" />
+```
+
+## Input Size
+
+The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default.
+
+```.jsx
+    <>
+      <Search onSearch={() => {}} />
+      <Search inputSize='large' onSearch={() => {}} />
+    </>
+```
+
+## IsLoading
+
+The `isLoading` boolean prop will determine if a loading animation is shown. The loading animation will replace the search icon button.
+
+```.jsx
+    <>
+      <Search onSearch={() => {}} isLoading />
+      <Search inputSize='large' onSearch={() => {}} isLoading />
+    </>
+```
+
+## Inverse
+
+Inverse is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
+
+```.jsx
+    <div style={{ background : '#00263E', padding: '20px' }}>
+      <Search inverse onSearch={() => {}} />
+    </div>
+```
+
+## Error Message
+
+If a search input has an `errorMessage`, the input will be styled to highlight it's error state and the error message will appear below the input field.
+If an error message is present, it will replace the helper text.
+
+```.jsx
+    <Search errorMessage='Please correct this error' onSearch={() => {}} />
+```
+
+## Helper Message
+
+The `helperMessage` appears underneath the search field. It will not appear if an error message is present.
+
+```.jsx
+    <Search helperMessage='Helper text goes here' onSearch={() => {}} />
+```
+
+## Search Props
+
+<SimplePropsTable
+  props={{
+    errorMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Text of the error message.  If a value is provided, the input will be styled as an error state, and the error message will display.',
+      defaultValue: '',
+    },
+    helperMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text of the helper message.',
+      defaultValue: '',
+    },
+    iconAriaLabel: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text for icon button aria-label',
+      defaultValue: 'Search',
+    },
+    inputSize: {
+      type: {
+        name: 'enum',
+        options: ['InputSize.large', 'InputSize.medium'],
+      },
+      required: false,
+      description: 'Relative size of the component',
+      defaultValue: 'medium',
+    },
+    inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    labelText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text for input aria-label',
+      defaultValue: 'Search',
+    },
+    onSearch: {
+      type: {
+        name: 'function',
+      },
+      required: true,
+      description: 'Action that will fire when search icon button is clicked.',
+      defaultValue: '',
+    },
+    placeholderText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text for input aria-label placeholder',
+      defaultValue: 'Search',
+    },
+  }}
+/>
+
+export default props => <ScopeableLayout {...props} components={{ Search }} />

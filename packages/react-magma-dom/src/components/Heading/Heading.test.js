@@ -1,7 +1,8 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Heading } from '.';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
+import { magma } from '../../theme/magma';
 
 describe('Heading', () => {
   it('should find element by testId', () => {
@@ -73,6 +74,41 @@ describe('Heading', () => {
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
     expect(heading).toHaveStyleRule('font-size', '0.867em');
+  });
+
+  it('should render default styles', () => {
+    const headingText = 'test';
+    const { getByText } = render(<Heading level={1}>{headingText}</Heading>);
+    const heading = getByText(headingText);
+
+    expect(heading).toHaveStyleRule('color', magma.colors.foundation01);
+    expect(heading).toHaveStyleRule(
+      'border-bottom',
+      `2px dotted ${magma.colors.pop02}`,
+      {
+        target: ':focus'
+      }
+    );
+  });
+
+  it('should render inverse styles', () => {
+    const headingText = 'test';
+    const { getByText } = render(
+      <Heading inverse level={1}>
+        {headingText}
+      </Heading>
+    );
+    const heading = getByText(headingText);
+
+    expect(heading).toHaveStyleRule('color', magma.colors.neutral08);
+
+    expect(heading).toHaveStyleRule(
+      'border-bottom',
+      `2px dotted ${magma.colors.neutral08}`,
+      {
+        target: ':focus'
+      }
+    );
   });
 
   it('should render custom styles', () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ToastCore } from './Toast';
-import { render, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from '@testing-library/react';
 
 describe('ToastCore', () => {
   beforeEach(() => {

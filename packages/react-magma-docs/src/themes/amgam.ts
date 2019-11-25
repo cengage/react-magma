@@ -1,11 +1,7 @@
-import { magma } from 'react-magma-dom';
+import { magma } from 'react-magma-dom'
 
-export const amgam = {
-  ...magma,
-
-  colors: {
-    ...magma.colors,
-
+export const amgam = Object.assign({}, magma, {
+  colors: Object.assign({}, magma.colors, {
     primary: '#FF9D67', // link color
     foundation01: '#FFC79A',
     foundation02: '#FF9D67',
@@ -17,6 +13,6 @@ export const amgam = {
     pop04: '#0038D3',
     success01: '#C57DFF',
     success02: '#AC44FF',
-    danger: '#18FFFF'
-  }
-};
+    danger: '#18FFFF',
+  }),
+})

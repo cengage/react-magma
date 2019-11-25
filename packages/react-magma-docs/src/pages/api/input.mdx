@@ -3,7 +3,13 @@ title: 'Inputs'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { Input, Button, CalendarIcon, Search2Icon } from 'react-magma-dom'
+import {
+  Input,
+  Button,
+  CalendarIcon,
+  EnvelopeOIcon,
+  Search2Icon,
+} from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { SimplePropsTable } from '../../components/props-table'
 
@@ -18,14 +24,13 @@ Input fields are used in a number of ways for both collecting and displaying dat
 The label/input association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
 
 ```.jsx
-    <div>
+    <>
       <Input
-          id='input1'
-          labelText='Label'
-          placeholder='This is a placeholder'
-          required={false}
-          value='Default Value' />
-    </div>
+          labelText='Label' />
+      <Input
+          id="myCustomId"
+          labelText='Label' />
+    </>
 ```
 
 ## Password
@@ -39,15 +44,11 @@ The following option props can be used to override various text strings that app
 ```.jsx
   <>
     <Input
-      id='inputPw'
       labelText='Password'
-      placeholder='Enter your password'
       type='password' />
     <Input
       hidePasswordMaskButton
-      id='inputPwWithNoMask'
       labelText='Password With No Unmask Button'
-      placeholder='Enter your password'
       type='password' />
   </>
 ```
@@ -56,9 +57,7 @@ The following option props can be used to override various text strings that app
 
 ```.jsx
     <Input
-        id='inputNum'
         labelText='Number'
-        placeholder='Enter a number'
         type='number' />
 ```
 
@@ -66,10 +65,30 @@ The following option props can be used to override various text strings that app
 
 ```.jsx
     <Input
-        id='inputDisabled'
         labelText='Disabled'
-        placeholder='The input is disabled'
         disabled />
+```
+
+## Value
+
+The `value` of an input can be set using the `value` prop.
+
+```.jsx
+    <Input
+        labelText='Default value'
+        value='abc123' />
+```
+
+## Placeholder
+
+The `placeholder` text of an input can be set using the `placeholder` prop.
+Placeholder text should be used to provide supplemental information about the input field. It should not be
+relied upon to take the place of the label text.
+
+```.jsx
+    <Input
+        labelText='Email Address'
+        value='yourname@example.com' />
 ```
 
 ## Error Message
@@ -79,11 +98,9 @@ If an error message is present, it will replace the helper text.
 
 ```.jsx
     <Input
-        id='inputError'
         errorMessage='Please correct this error'
         helperMessage='Helper text'
-        labelText='Error Message'
-        placeholder='Type in here' />
+        labelText='Error Message' />
 ```
 
 ## Helper Message
@@ -92,10 +109,8 @@ The `helperMessage` appears underneath the input field. It will not appear if an
 
 ```.jsx
     <Input
-        id='inputHelper'
         helperMessage='Helper text goes here'
-        labelText='Helper Message'
-        placeholder='Type in here' />
+        labelText='Helper Message' />
 ```
 
 ## Help Link
@@ -109,7 +124,7 @@ display a help link to the right of the input field. The text can be customized 
       onHelpLinkClick={()=> {alert('Help link clicked!')}} />
 ```
 
-## Input with Icon
+## Input With Icon
 
 An `icon` may be included with the input, by passing in the `icon` prop. An aria-label may be added using the `iconAriaLabel` prop.
 
@@ -118,63 +133,69 @@ Functionality can be added to the icon by using the `onIconClick` and `onIconKey
 The `iconPosition` position prop is optional and takes the values `left` and `right`, with `left` being the default for non-clickable icons.
 
 ```.jsx
-    <div>
+    <>
       <Input
         labelText='Input with Icon on Left'
-        placeholder='Type in here'
         icon={<EnvelopeOIcon />}
         type="email" />
 
       <Input
         iconPosition='right'
         labelText='Input with Icon on Right'
-        placeholder='Type in here'
         icon={<Search2Icon />} />
 
       <Input
         labelText='Input with Clickable Icon on Right'
         iconAriaLabel="Calendar"
         onIconClick={()=>{alert('Icon clicked')}}
-        placeholder='Type in here'
         icon={<CalendarIcon />} />
-    </div>
+    </>
 ```
 
-## Input Sizes
+## Input Size
 
 The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default. Input size does not affect multiline textareas.
 
 ```.jsx
-    <div>
+    <>
       <Input
         iconPosition='right'
         labelText='Medium Input'
-        placeholder='Type in here'
         icon={<Search2Icon />} />
       <Input
         iconPosition='right'
         inputSize='large'
         labelText='Large Input'
-        placeholder='Type in here'
         icon={<Search2Icon />} />
       <Input
           errorMessage='Error'
-          labelText='Medium Input with Error' />
+          labelText='Medium Input With Error' />
       <Input
           errorMessage='Error'
           inputSize='large'
-          labelText='Large Input with Error' />
+          labelText='Large Input With Error' />
       <Input
           onHelpLinkClick={()=> {alert('Help link clicked!')}}
-          labelText='Medium Input with Help Link' />
+          labelText='Medium Input With Help Link' />
       <Input
           onHelpLinkClick={()=> {alert('Help link clicked!')}}
           inputSize='large'
-          labelText='Large Input with Help Link' />
-    </div>
+          labelText='Large Input With Help Link' />
+    </>
 ```
 
-## Inverse inputs
+## IsLoading
+
+The `isLoading` boolean prop will determine if a loading animation is shown. The loading animation will replace any icon displayed on the right.
+
+```.jsx
+    <>
+      <Input labelText='Loading' isLoading />
+      <Input labelText='Loading Large' inputSize='large' isLoading />
+    </>
+```
+
+## Inverse
 
 Inverse is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
 
@@ -188,17 +209,13 @@ Inverse is an optional boolean prop, that may be passed in when inputs are to be
 
       <Input
           helperMessage='Helper text'
-          id='inputInverseHelper'
           inverse
-          labelText='Inverse Input with Helper Text'
-          placeholder='Type in here' />
+          labelText='Inverse Input with Helper Text' />
 
       <Input
           errorMessage='Please correct your error'
-          id='inputInverseError'
           inverse
-          labelText='Inverse Input with Error Message'
-          placeholder='Type in here' />
+          labelText='Inverse Input with Error Message' />
       <Input
           inverse
           labelText='Help Link'
@@ -206,14 +223,13 @@ Inverse is an optional boolean prop, that may be passed in when inputs are to be
     </div>
 ```
 
-## Input with hidden label
+## Input With Hidden Label
 
 The `labelVisuallyHidden` prop can be used to visually hide the text label, while still making the text available to screen readers.
 
 ```.jsx
     <Input
       iconPosition='right'
-      id='inputLabelHidden'
       labelVisuallyHidden
       labelText='Search'
       placeholder='Search'
@@ -232,7 +248,7 @@ The optional `multiline` boolean prop will cause the component to render a texta
         placeholder='Type in here' />
 ```
 
-## Change Events
+## Change events
 
 ```.jsx
   class ChangedInput extends React.Component {
@@ -253,17 +269,15 @@ The optional `multiline` boolean prop will cause the component to render a texta
       return <div>
         <p><strong>Changed Value: </strong> <span id="changedValue">{this.state.message}</span></p>
         <Input
-          id='inputChanged'
           labelText='Test Value'
           value=''
-          placeholder='Type in here'
           onChange={this.changeValueMessage} />
       </div>
     }
   }
 ```
 
-## Focus Events
+## Focus events
 
 ```.jsx
   class FocusedInput extends React.Component {
@@ -299,7 +313,7 @@ The optional `multiline` boolean prop will cause the component to render a texta
   }
 ```
 
-## Forward Ref
+## Forward ref
 
 Using React's `forwardRef` feature you can gain access to the reference of the internal input.
 
@@ -326,7 +340,7 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
     }
 ```
 
-## Custom Styles
+## Custom styles
 
 Custom styles can be passed into the Input component. The `containerStyle` property will apply to the container.
 Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
@@ -367,7 +381,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 </div>
 ```
 
-## Input Props
+## Input props
 
 <SimplePropsTable
   props={{
@@ -392,7 +406,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       },
       required: false,
       description:
-        'Text of the error message.  If a value is provided, the error message will be styled as an error state.',
+        'Text of the error message.  If a value is provided, the input will be styled as an error state and the error message will display.',
       defaultValue: '',
     },
     helperMessage: {
@@ -580,6 +594,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
           'InputType.email',
           'InputType.number',
           'InputType.password',
+          'InputType.search',
           'InputType.text',
         ],
       },
@@ -601,6 +616,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 export default props => (
   <ScopeableLayout
     {...props}
-    components={{ Input, Button, CalendarIcon, Search2Icon }}
+    components={{ Input, Button, CalendarIcon, EnvelopeOIcon, Search2Icon }}
   />
 )

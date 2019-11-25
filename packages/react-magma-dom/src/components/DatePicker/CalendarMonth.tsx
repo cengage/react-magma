@@ -1,15 +1,32 @@
 import * as React from 'react';
-import { Button, ButtonVariant } from '../Button';
+import {
+  Button,
+  ButtonColor,
+  ButtonSize,
+  ButtonType,
+  ButtonVariant
+} from '../Button';
 import { QuestionCircleOIcon } from '../Icon/types/QuestionCircleOIcon';
+import { CrossIcon } from '../Icon/types/CrossIcon';
 import { CalendarContext } from './CalendarContext';
 import { CalendarHeader } from './CalendarHeader';
 import { CalendarDay } from './CalendarDay';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
 import { HelperInformation } from './HelperInformation';
+import { getTrapElements, getFocusedElementIndex } from '../Modal/utils';
+
+interface CalendarMonthProps {
+  calendarOpened?: boolean;
+  focusOnOpen?: boolean;
+  handleCloseButtonClick: (event: React.SyntheticEvent) => void;
+  toggleDateFocus?: (value: boolean) => void;
+}
 
 interface CalendarMonthState {
   dayFocusable?: boolean;
+  focusableElements: Array<HTMLElement>;
+  focusHeader?: boolean;
 }
 
 const CalendarContainer = styled.div`
@@ -46,16 +63,59 @@ const HelperButton = styled.span`
   z-index: 2;
 `;
 
-export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
+const CloseButton = styled.span`
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  z-index: 2;
+`;
+
+export class CalendarMonth extends React.Component<
+  CalendarMonthProps,
+  CalendarMonthState
+> {
+  private lastFocus = React.createRef<any>();
+  private focusTrapElement = React.createRef<any>();
+
   constructor(props) {
     super(props);
 
     this.onCalendarTableFocus = this.onCalendarTableFocus.bind(this);
     this.onCalendarTableBlur = this.onCalendarTableBlur.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
 
     this.state = {
-      dayFocusable: false
+      dayFocusable: false,
+      focusableElements: []
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.calendarOpened && this.props.calendarOpened) {
+      // @ts-ignore: CreateRef only gives back a immutable ref
+      this.lastFocus.current = document.activeElement;
+
+      const focusableElements = getTrapElements(this.focusTrapElement);
+
+      if (this.props.focusOnOpen) {
+        this.setState({ dayFocusable: true, focusableElements });
+        this.props.toggleDateFocus(true);
+      } else {
+        this.setState({ focusableElements });
+      }
+    }
+
+    if (
+      this.props.calendarOpened &&
+      !this.props.focusOnOpen &&
+      !this.state.focusHeader
+    ) {
+      this.setState({ focusHeader: true });
+    }
+
+    if (prevProps.calendarOpened && !this.props.calendarOpened) {
+      this.setState({ focusHeader: false, focusableElements: [] });
+    }
   }
 
   onCalendarTableFocus() {
@@ -64,6 +124,36 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
 
   onCalendarTableBlur() {
     this.setState({ dayFocusable: false });
+  }
+
+  handleKeyDown(event) {
+    const { keyCode, shiftKey } = event;
+
+    if (shiftKey && keyCode === 9) {
+      const index = getFocusedElementIndex(
+        this.state.focusableElements,
+        event.target
+      );
+
+      if (index === 0) {
+        event.preventDefault();
+        this.state.focusableElements[
+          this.state.focusableElements.length - 1
+        ].focus();
+      }
+    } else if (keyCode === 9) {
+      const index = getFocusedElementIndex(
+        this.state.focusableElements,
+        event.target
+      );
+
+      if (index === this.state.focusableElements.length - 1) {
+        event.preventDefault();
+        if (this.state.focusableElements.length > 0) {
+          this.state.focusableElements[0].focus();
+        }
+      }
+    }
   }
 
   render() {
@@ -77,9 +167,16 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
                   tabIndex={-1}
                   theme={theme}
                   onKeyDown={context.onKeyDown}
+                  ref={this.focusTrapElement}
                 >
-                  <MonthContainer data-visible="true" theme={theme}>
-                    <CalendarHeader />
+                  <MonthContainer
+                    data-testid="monthContainer"
+                    data-visible="true"
+                    theme={theme}
+                    ref={this.focusTrapElement}
+                    onKeyDown={this.handleKeyDown}
+                  >
+                    <CalendarHeader focusHeader={this.state.focusHeader} />
                     <Table
                       role="presentation"
                       onBlur={() => {
@@ -120,6 +217,7 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
                         icon={<QuestionCircleOIcon />}
                         onClick={context.openHelperInformation}
                         onFocus={context.onHelperFocus}
+                        type={ButtonType.button}
                         variant={ButtonVariant.link}
                       />
                       <HelperInformation
@@ -127,6 +225,17 @@ export class CalendarMonth extends React.Component<{}, CalendarMonthState> {
                         onClose={context.closeHelperInformation}
                       />
                     </HelperButton>
+                    <CloseButton>
+                      <Button
+                        aria-label="Close Calendar"
+                        color={ButtonColor.secondary}
+                        icon={<CrossIcon />}
+                        onClick={this.props.handleCloseButtonClick}
+                        size={ButtonSize.small}
+                        type={ButtonType.button}
+                        variant={ButtonVariant.link}
+                      />
+                    </CloseButton>
                   </MonthContainer>
                 </CalendarContainer>
               )

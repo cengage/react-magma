@@ -13,8 +13,11 @@ import { handleKeyPress } from './utils';
 
 interface DatePickerProps {
   defaultDate?: Date;
+  errorMessage?: string;
+  helperMessage?: string;
   id?: string;
   inputRef?: React.RefObject<{}>;
+  inverse?: boolean;
   labelText: string;
   placeholderText?: string;
   onDateChange?: (day: Date, event: React.SyntheticEvent) => void;
@@ -51,6 +54,7 @@ export class DatePicker extends React.Component<DatePickerProps> {
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleDaySelection = this.handleDaySelection.bind(this);
     this.handleCalendarBlur = this.handleCalendarBlur.bind(this);
+    this.handleCloseButtonClick = this.handleCloseButtonClick.bind(this);
   }
 
   inputRef = React.createRef<any>();
@@ -67,7 +71,8 @@ export class DatePicker extends React.Component<DatePickerProps> {
 
   handleInputBlur(
     onDateChange: (day: Date) => void,
-    updateFocusedDate: (day: Date) => void
+    updateFocusedDate: (day: Date) => void,
+    reset: () => void
   ) {
     return (event: React.FocusEvent) => {
       const { value } = this.inputRef.current;
@@ -77,6 +82,8 @@ export class DatePicker extends React.Component<DatePickerProps> {
 
       if (isValidDateFormat && isValidDate) {
         this.handleDateChange(day, event, onDateChange, updateFocusedDate);
+      } else {
+        reset && typeof reset === 'function' && reset();
       }
 
       this.props.onInputBlur &&
@@ -126,7 +133,6 @@ export class DatePicker extends React.Component<DatePickerProps> {
         }
       } else {
         if (event.key === 'Escape') {
-          console.log('we are here');
           toggleCalendar(false);
           this.inputRef.current.focus();
         }
@@ -147,6 +153,7 @@ export class DatePicker extends React.Component<DatePickerProps> {
     this.props.onDateChange &&
       typeof this.props.onDateChange === 'function' &&
       this.props.onDateChange(day, event);
+
     onDateChange(day);
 
     updateFocusedDate &&
@@ -181,8 +188,23 @@ export class DatePicker extends React.Component<DatePickerProps> {
     };
   }
 
+  handleCloseButtonClick(toggleCalendar: (calendarOpended: boolean) => void) {
+    return (event: React.SyntheticEvent) => {
+      this.inputRef.current.focus();
+      toggleCalendar(false);
+    };
+  }
+
   render() {
-    const { defaultDate, id, labelText, placeholderText } = this.props;
+    const {
+      defaultDate,
+      errorMessage,
+      helperMessage,
+      id,
+      inverse,
+      labelText,
+      placeholderText
+    } = this.props;
 
     return (
       <DatePickerCore id={id} defaultDate={defaultDate}>
@@ -202,7 +224,8 @@ export class DatePicker extends React.Component<DatePickerProps> {
           onPrevMonthClick,
           onNextMonthClick,
           updateFocusedDate,
-          onDateChange
+          onDateChange,
+          reset
         }) => {
           const dateFormat = 'MM/DD/YYYY';
           const inputValue = chosenDate ? format(chosenDate, dateFormat) : '';
@@ -241,13 +264,14 @@ export class DatePicker extends React.Component<DatePickerProps> {
                 <Announce>
                   {calendarOpened && (
                     <VisuallyHidden>
-                      Calendar widget is now open. Press the tab key to interact
-                      with the calendar and select a date. Press the question
-                      mark key to get the keyboard shortcuts for changing dates.
+                      Calendar widget is now open. Press the question mark key
+                      to get the keyboard shortcuts for changing dates.
                     </VisuallyHidden>
                   )}
                 </Announce>
                 <Input
+                  errorMessage={errorMessage}
+                  helperMessage={helperMessage}
                   icon={<CalendarIcon />}
                   iconAriaLabel="Calendar"
                   onIconClick={onIconClick}
@@ -256,10 +280,15 @@ export class DatePicker extends React.Component<DatePickerProps> {
                     toggleCalendar
                   )}
                   id={id}
+                  inverse={inverse}
                   ref={this.inputRef}
                   labelText={labelText}
                   onChange={this.handleInputChange(toggleCalendar)}
-                  onBlur={this.handleInputBlur(onDateChange, updateFocusedDate)}
+                  onBlur={this.handleInputBlur(
+                    onDateChange,
+                    updateFocusedDate,
+                    reset
+                  )}
                   onKeyDown={this.handleInputKeyDown(
                     openHelperInformation,
                     toggleCalendar
@@ -274,7 +303,16 @@ export class DatePicker extends React.Component<DatePickerProps> {
                       opened={calendarOpened}
                       theme={theme}
                     >
-                      <CalendarMonth />
+                      <CalendarMonth
+                        focusOnOpen={
+                          calendarOpened && focusedDate && chosenDate
+                        }
+                        handleCloseButtonClick={this.handleCloseButtonClick(
+                          toggleCalendar
+                        )}
+                        calendarOpened={calendarOpened}
+                        toggleDateFocus={toggleDateFocus}
+                      />
                     </DatePickerCalendar>
                   )}
                 </ThemeContext.Consumer>

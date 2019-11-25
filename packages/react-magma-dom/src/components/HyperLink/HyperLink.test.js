@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import { HyperLink } from '.';
 
 describe('Hyper Link', () => {
@@ -46,7 +46,7 @@ describe('Hyper Link', () => {
 
     const element = getByText(/google/i);
 
-    expect(element).toHaveStyleRule('font-size', '.875rem');
+    expect(element).toHaveStyleRule('font-size', '14px');
     expect(element).toHaveStyleRule('border-radius', '5px');
     expect(element).toHaveStyleRule('height', '37px');
   });
@@ -65,7 +65,7 @@ describe('Hyper Link', () => {
 
     const element = getByText(/google/i);
 
-    expect(element).toHaveStyleRule('font-size', '1.125rem');
+    expect(element).toHaveStyleRule('font-size', '18px');
     expect(element).toHaveStyleRule('border-radius', '100%');
     expect(element).toHaveStyleRule('height', '45px');
   });

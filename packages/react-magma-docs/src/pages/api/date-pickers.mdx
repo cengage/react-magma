@@ -19,18 +19,32 @@ import { SimplePropsTable } from '../../components/props-table'
 ```
 
 ## Default Date
-By default, no date value is selected.  You can add a default date, by using the `defaultDate` prop.
+
+By default, no date value is selected. You can add a default date, by using the `defaultDate` prop.
 
 ```.jsx
     <DatePicker defaultDate='07/23/2019' labelText="Date" />
 ```
 
 ## Placeholder Text
-By default, the placeholder text of the input is 'MM/DD/YYYY'.  You can override this by using the `placeholderText` prop.
+
+By default, the placeholder text of the input is 'MM/DD/YYYY'. You can override this by using the `placeholderText` prop.
 Note: the expected date format should appear somewhere in either the labelText or the placeholderText.
 
 ```.jsx
     <DatePicker placeholderText='Your birthday (format MM/DD/YYYY)' labelText="Birthday" />
+```
+
+## Helper Message
+
+```.jsx
+    <DatePicker labelText="Help Me" helperMessage="This is your help" />
+```
+
+## Error Message
+
+```.jsx
+    <DatePicker labelText="Error" errorMessage="You made an error" />
 ```
 
 ## Date Change Event
@@ -80,7 +94,7 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
     <DatePicker labelText="Date" />
 ```
 
-## Datepicker Props
+## Date Picker Props
 
 <SimplePropsTable
   props={{
@@ -90,6 +104,32 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
       },
       required: false,
       description: 'Default selected date value',
+    },
+    errorMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Text of the error message.  If a value is provided, the error message will be styled as an error state.',
+      defaultValue: '',
+    },
+    helperMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text of the helper message.',
+      defaultValue: '',
+    },
+    inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
     },
     labelText: {
       type: {
@@ -111,7 +151,7 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
       },
       required: false,
       description: 'Text for input placeholder',
-      defaultValue: 'MM/DD/YYYY'
+      defaultValue: 'MM/DD/YYYY',
     },
   }}
 />

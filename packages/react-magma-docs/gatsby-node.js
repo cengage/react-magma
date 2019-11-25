@@ -1,7 +1,14 @@
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 
-const getPathPrefix = path => (/design/.test(path) ? 'design' : 'api')
+const getPathPrefix = path =>
+  /design/.test(path)
+    ? /intro/.test(path)
+      ? 'design-intro'
+      : 'design'
+    : /intro/.test(path)
+    ? 'api-intro'
+    : 'api'
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions

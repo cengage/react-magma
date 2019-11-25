@@ -1,7 +1,7 @@
 import React from 'react';
 import { Toggle } from '.';
 import { axe } from 'jest-axe';
-import { render } from 'react-testing-library';
+import { render, fireEvent } from '@testing-library/react';
 
 describe('Toggle', () => {
   it('should find element by testId', () => {
@@ -118,6 +118,19 @@ describe('Toggle', () => {
     const span = getByText(testLabel);
 
     expect(span).toHaveStyleRule('clip', 'rect(1px,1px,1px,1px)');
+  });
+
+  it('should handle the onChange event', () => {
+    const testLabel = 'test label';
+    const testId = 'abc123';
+    const onChangeSpy = jest.fn();
+    const { getByTestId } = render(
+      <Toggle labelText={testLabel} onChange={onChangeSpy} testId={testId} />
+    );
+
+    fireEvent.click(getByTestId(testId));
+
+    expect(onChangeSpy).toHaveBeenCalledTimes(1);
   });
 
   it('Does not violate accessibility standards', () => {

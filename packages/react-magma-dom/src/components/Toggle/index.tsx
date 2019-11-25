@@ -16,6 +16,7 @@ enum ToggleTextPosition {
 export interface ToggleProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   containerStyle?: React.CSSProperties;
+  inverse?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
   testId?: string;
@@ -34,7 +35,11 @@ const HiddenInput = styled.input`
   ${HiddenStyles};
 `;
 
-const Track = styled.span<{ checked?: boolean; disabled?: boolean }>`
+const Track = styled.span<{
+  checked?: boolean;
+  disabled?: boolean;
+  inverse?: boolean;
+}>`
   background: ${props => props.theme.colors.neutral07};
   border: 2px solid;
   border-color: ${props => props.theme.colors.neutral05};
@@ -60,7 +65,8 @@ const Track = styled.span<{ checked?: boolean; disabled?: boolean }>`
     `}
 
   ${HiddenInput}:focus + label & {
-    outline: 2px dotted ${props => props.theme.colors.pop02};
+    outline: 2px dotted ${props =>
+      props.inverse ? props.theme.colors.neutral08 : props.theme.colors.pop02};
     outline-offset: 3px;
   }
 
@@ -181,6 +187,7 @@ export class Toggle extends React.Component<ToggleProps> {
             onFocus,
             containerStyle,
             disabled,
+            inverse,
             labelStyle,
             labelText,
             textPosition,
@@ -219,6 +226,7 @@ export class Toggle extends React.Component<ToggleProps> {
                     <Track
                       checked={checked}
                       disabled={disabled}
+                      inverse={inverse}
                       style={trackStyle}
                       theme={theme}
                     >

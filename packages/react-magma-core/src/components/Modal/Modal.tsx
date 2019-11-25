@@ -10,7 +10,6 @@ export interface ModalCoreProps {
 
 interface ModalCoreState {
   id?: string;
-  isExiting?: boolean;
 }
 
 export class ModalCore extends React.Component<ModalCoreProps, ModalCoreState> {
@@ -20,8 +19,6 @@ export class ModalCore extends React.Component<ModalCoreProps, ModalCoreState> {
     this.state = {
       id: generateId(this.props.id)
     };
-
-    this.onClose = this.onClose.bind(this);
   }
 
   componentDidUpdate(prevProps: ModalCoreProps) {
@@ -30,22 +27,10 @@ export class ModalCore extends React.Component<ModalCoreProps, ModalCoreState> {
     }
   }
 
-  onClose(callback: () => void) {
-    this.setState({ isExiting: true }, () => {
-      setTimeout(() => {
-        this.setState({ isExiting: false });
-
-        callback && typeof callback === 'function' && callback();
-      }, 300);
-    });
-  }
-
   render() {
     return this.props.children({
       ...this.props,
-      id: this.state.id,
-      onClose: this.onClose,
-      isExiting: this.state.isExiting
+      id: this.state.id
     });
   }
 }

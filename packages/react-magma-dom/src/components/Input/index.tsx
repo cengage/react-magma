@@ -3,6 +3,7 @@ import { InputCore } from 'react-magma-core';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import { IconProps } from '../Icon/utils';
+import { Spinner } from '../Spinner';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 import { Announce } from '../Announce';
@@ -33,6 +34,7 @@ export enum InputType {
   email = 'email',
   number = 'number',
   password = 'password',
+  search = 'search',
   text = 'text' // default
 }
 
@@ -49,18 +51,19 @@ export interface InputProps
   hidePasswordMaskButton?: boolean;
   icon?: React.ReactElement<IconProps>;
   iconAriaLabel?: string;
-  onIconClick?: () => void;
-  onIconKeyDown?: (event) => void;
   iconPosition?: InputIconPosition;
+  innerRef?: React.Ref<HTMLInputElement>;
   inputSize?: InputSize;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
+  isLoading?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
   labelVisuallyHidden?: boolean;
   multiline?: boolean;
   onHelpLinkClick?: () => void;
-  innerRef?: React.Ref<HTMLInputElement>;
+  onIconClick?: () => void;
+  onIconKeyDown?: (event) => void;
   shownPasswordAnnounceText?: string;
   showPasswordButtonAriaLabel?: string;
   showPasswordButtonText?: string;
@@ -160,15 +163,21 @@ const IconWrapper = styled.span<IconWrapperProps>`
     `}
 `;
 
-const IconButton = styled(Button)`
+const IconButton = styled(Button)<{ size: ButtonSize }>`
   position: absolute;
   bottom: 0;
   right: 0;
 
-  svg {
-    height: 17px;
-    width: 17px;
-  }
+  ${props =>
+    props.size === 'large' &&
+    css`
+      bottom: 2px;
+
+      svg {
+        height: 21px;
+        width: 21px;
+      }
+    `}
 `;
 
 const PasswordMaskWrapper = styled.span`
@@ -177,6 +186,15 @@ const PasswordMaskWrapper = styled.span`
   position: absolute;
   margin-top: -23px;
   top: 50%;
+`;
+
+const SpinnerWrapper = styled.span`
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  position: absolute;
+  right: 10px;
+  top: 0;
 `;
 
 function getIconSize(size) {
@@ -220,6 +238,7 @@ class InputComponent extends React.Component<InputProps> {
             hidePasswordButtonText,
             icon,
             iconAriaLabel,
+            isLoading,
             onIconClick,
             onIconKeyDown,
             inputSize,
@@ -320,7 +339,7 @@ class InputComponent extends React.Component<InputProps> {
                       onChange={this.handleChange(onChange)}
                       onFocus={this.props.onFocus}
                     />
-                    {icon && !onIconClick && (
+                    {icon && !onIconClick && !isLoading && (
                       <IconWrapper
                         aria-label={iconAriaLabel}
                         iconPosition={iconPosition}
@@ -340,6 +359,13 @@ class InputComponent extends React.Component<InputProps> {
                         )}
                       </IconWrapper>
                     )}
+
+                    {isLoading && (
+                      <SpinnerWrapper>
+                        <Spinner size={19} />
+                      </SpinnerWrapper>
+                    )}
+
                     {type === InputType.password && !hidePasswordMaskButton && (
                       <PasswordMaskWrapper>
                         <Button
@@ -389,6 +415,7 @@ class InputComponent extends React.Component<InputProps> {
                                 : ButtonSize.medium
                             }
                             style={{ margin: '0 0 0 7px' }}
+                            type={ButtonType.button}
                             title={HELP_LINK_TEXT}
                             variant={ButtonVariant.link}
                           />
@@ -396,15 +423,20 @@ class InputComponent extends React.Component<InputProps> {
                       />
                     )}
 
-                    {onIconClick && (
+                    {onIconClick && !isLoading && (
                       <IconButton
                         aria-label={iconAriaLabel}
                         icon={icon}
                         onClick={onIconClick}
                         onKeyDown={onIconKeyDown}
                         shape={ButtonShape.fill}
-                        size={ButtonSize.small}
+                        size={
+                          inputSize === InputSize.large && !multiline
+                            ? ButtonSize.large
+                            : ButtonSize.small
+                        }
                         theme={theme}
+                        type={ButtonType.button}
                         variant={ButtonVariant.link}
                       />
                     )}

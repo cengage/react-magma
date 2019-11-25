@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import * as React from 'react';
-import { render, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from '@testing-library/react';
 import { DatePickerCore } from './DatePicker';
 import {
   isSameDay,
@@ -156,6 +156,59 @@ describe('DatePickerCore', () => {
       fireEvent.click(getByTestId('close'));
 
       expect(getByTestId('helperInformation').checked).toBeFalsy();
+    });
+
+    it('should reset date picker options data', () => {
+      const defaultDate = new Date('January 1, 2019');
+      const formattedDate = format(defaultDate, 'MMMM Do YYYY');
+      const { getByTestId, getByText } = render(
+        <DatePickerCore defaultDate={defaultDate}>
+          {({
+            dateFocused,
+            focusedDate,
+            chosenDate,
+            reset,
+            toggleDateFocus
+          }) => {
+            return (
+              <>
+                <button onClick={() => toggleDateFocus(true)}>
+                  Change Date Focus
+                </button>
+                <button onClick={() => reset()}>Reset</button>
+                <span data-testid="focusedDate">
+                  {format(focusedDate, 'MMMM Do YYYY')}
+                </span>
+                <span data-testid="chosenDate">
+                  {format(chosenDate, 'MMMM Do YYYY')}
+                </span>
+                <input
+                  type="checkbox"
+                  checked={dateFocused}
+                  data-testId="dateFocused"
+                />
+              </>
+            );
+          }}
+        </DatePickerCore>
+      );
+
+      fireEvent.click(getByText('Change Date Focus'));
+
+      expect(getByTestId('focusedDate')).toHaveTextContent(formattedDate);
+      expect(getByTestId('chosenDate')).toHaveTextContent(formattedDate);
+      expect(getByTestId('dateFocused').checked).toBeTruthy();
+
+      fireEvent.click(getByText('Reset'));
+
+      const resetDate = new Date();
+      const formattedResetDate = format(resetDate, 'MMMM Do YYYY');
+
+      expect(getByTestId('focusedDate')).toHaveTextContent(formattedResetDate);
+      expect(getByTestId('chosenDate')).not.toHaveTextContent(
+        formattedResetDate
+      );
+      expect(getByTestId('dateFocused').checked).toBeFalsy();
     });
   });
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from '@testing-library/react';
 import { HelperInformation } from './HelperInformation';
 
 describe('Calendar Month', () => {
@@ -12,7 +12,9 @@ describe('Calendar Month', () => {
   });
 
   it('helper information should be visible when open', async () => {
-    const { getByText } = render(<HelperInformation open={true} />);
+    const { getByText, rerender } = render(<HelperInformation />);
+
+    rerender(<HelperInformation open={true} />);
 
     expect(getByText(/keyboard shortcuts/i)).toBeInTheDocument();
   });

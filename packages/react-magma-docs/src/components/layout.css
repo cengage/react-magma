@@ -201,14 +201,8 @@ body {
 }
 img {
   max-width: 100%;
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.45rem;
+  margin: 0;
+  padding: 0;
 }
 hgroup {
   margin-left: 0;
@@ -597,16 +591,6 @@ pre tt:after {
 .content-article h2 {
   margin-top: -60px;
   padding-top: 85px;
-}
-
-.content-article h1,
-.content-article h2 {
-  border-bottom: 2px solid transparent;
-}
-
-.content-article h1:focus,
-.content-article h2:focus {
-  border-bottom: 2px dotted #FA6600;
 }
 
 .pre-container {

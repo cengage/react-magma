@@ -1,22 +1,6 @@
 import React from 'react';
 import { Toast } from '.';
-import { render, fireEvent } from 'react-testing-library';
-
-const TOAST_CONTENT = 'Toast content';
-const onDismiss = jest.fn();
-
-const TOAST_PROPS = {
-  onDismiss
-};
-
-const renderToast = (myProps = {}) => {
-  const props = {
-    ...TOAST_PROPS,
-    ...myProps
-  };
-
-  return render(<Toast {...props}>{TOAST_CONTENT}</Toast>);
-};
+import { render, fireEvent } from '@testing-library/react';
 
 describe('Toast', () => {
   beforeEach(() => {
@@ -25,7 +9,6 @@ describe('Toast', () => {
 
   afterEach(() => {
     jest.useRealTimers();
-    onDismiss.mockReset();
   });
 
   it('should find element by testId', () => {
@@ -131,9 +114,11 @@ describe('Toast', () => {
   });
 
   it('should change the variant of the toast when passed in different variant', () => {
-    const { getByText } = renderToast({ variant: 'success' });
+    const { getByText } = render(
+      <Toast variant="success">Toast Content</Toast>
+    );
 
-    expect(getByText(TOAST_CONTENT).parentElement).toHaveStyleRule(
+    expect(getByText('Toast Content').parentElement).toHaveStyleRule(
       'background-color',
       '#3A8200'
     );

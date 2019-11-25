@@ -13,9 +13,9 @@ export function buildPropsWithDefaultButtonStyles(props) {
 }
 
 export const buttonFontSize = {
-  small: '.750rem',
-  medium: '.875rem',
-  large: '1.125rem'
+  small: '12px',
+  medium: '14px',
+  large: '18px'
 };
 
 export const buttonBorderRadius = {

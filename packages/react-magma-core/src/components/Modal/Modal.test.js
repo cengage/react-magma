@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import { ModalCore } from './Modal';
 import uuid from 'uuid/v4';
 
@@ -52,50 +52,5 @@ describe('ModalCore', () => {
 
     const newId = getByTestId(/target/i).getAttribute('id');
     expect(newId).toEqual('differentId');
-  });
-
-  it('should handle close', () => {
-    const onClose = jest.fn();
-    const onCloseCallback = jest.fn();
-    const { getByText, getByTestId, rerender } = render(
-      <>
-        <button>Open</button>
-        <ModalCore>
-          {({ isExiting, onClose }) => (
-            <button onClick={onClose} data-testid="target">
-              {isExiting ? 'Exiting' : 'Not Exiting'}
-            </button>
-          )}
-        </ModalCore>
-      </>
-    );
-
-    fireEvent.focus(getByText('Open'));
-
-    rerender(
-      <>
-        <button>Open</button>
-        <ModalCore onClose={onClose} open={true}>
-          {({ isExiting, onClose, focusTrapElement }) => (
-            <div ref={focusTrapElement}>
-              <button
-                onClick={() => onClose(onCloseCallback)}
-                data-testid="target"
-              >
-                {isExiting ? 'Exiting' : 'Not Exiting'}
-              </button>
-            </div>
-          )}
-        </ModalCore>
-      </>
-    );
-
-    expect(getByText(/not/i)).toBeInTheDocument();
-
-    fireEvent.click(getByTestId('target'));
-    jest.runAllTimers();
-
-    expect(getByText(/exiting/i)).toBeInTheDocument();
-    expect(onCloseCallback).toHaveBeenCalled();
   });
 });

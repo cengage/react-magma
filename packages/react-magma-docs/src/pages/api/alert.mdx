@@ -47,7 +47,7 @@ The `dismissable` prop is optional, and if provided the Alert will render a dism
 Providing this property only causes the dismiss button to render; it does not control the dismiss behavior itself. If you include the `dismissable` prop,
 you must also include a function in the `onDimiss` prop to handle the dismiss behavior.
 
-The aria-label, by default is `Close this message` but can be overriden using the optional `closeLabel` prop.
+The aria-label, by default is `Close this message` but can be overridden using the optional `closeLabel` prop.
 
 ```.jsx
   class Example extends React.Component {
@@ -133,6 +133,15 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       required: false,
       description:
         'If true, the component will be able to be dismissed and will include a close button',
+      defaultValue: 'false',
+    },
+     inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the focus state of the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
     onDimiss: {
