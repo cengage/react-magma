@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-react-magma-dom",
-  "version": "0.1.0-beta.77",
+  "version": "0.1.0-beta.78",
   "description": "convert react-magma-dom imports",
   "files": [
     "lib"
