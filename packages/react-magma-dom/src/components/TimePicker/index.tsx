@@ -5,7 +5,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { AmPmToggle } from './AmPmToggle';
 
 import { Input } from '../Input';
-import { Clock2Icon } from '../Icon/types/Clock2Icon';
+import { ClockIcon } from '../Icon/types/ClockIcon';
 
 export interface TimePickerProps {
   errorMessage?: string;
@@ -82,7 +82,7 @@ function renderTimePicker(props) {
                   disabled
                   errorMessage={errorMessage}
                   helperMessage={helperMessage}
-                  icon={<Clock2Icon />}
+                  icon={<ClockIcon />}
                   id={id}
                   inverse={inverse}
                   labelText={labelText}

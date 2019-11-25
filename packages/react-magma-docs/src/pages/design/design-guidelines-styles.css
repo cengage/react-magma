@@ -238,6 +238,10 @@ blockquote footer  {
   margin-right: 10px;
 }
 
+.color-hex {
+  text-transform: uppercase;
+}
+
 
 
 
