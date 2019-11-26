@@ -37,22 +37,24 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const transitionDuration = 500;
 
+function buildAlertBackground(props) {
+  switch (props.variant) {
+    case 'info':
+      return props.theme.colors.neutral03;
+    case 'success':
+      return props.theme.colors.success01;
+    case 'warning':
+      return props.theme.colors.pop04;
+    case 'danger':
+      return props.theme.colors.danger;
+    default:
+      return props.theme.colors.neutral03;
+  }
+}
+
 const StyledAlert = styled.div<AlertProps>`
   align-items: stretch;
-  background-color: ${props => {
-    switch (props.variant) {
-      case 'info':
-        return props.theme.colors.neutral03;
-      case 'success':
-        return props.theme.colors.success01;
-      case 'warning':
-        return props.theme.colors.pop04;
-      case 'danger':
-        return props.theme.colors.danger;
-      default:
-        return props.theme.colors.neutral03;
-    }
-  }};
+  background-color: ${props => buildAlertBackground(props)};
   border-radius: 3px;
   color: ${props =>
     props.variant === 'warning'
