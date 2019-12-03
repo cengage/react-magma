@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { BreadcrumbItemProps, renderBreadcrumbItem } from './Item';
 
 export interface BreadcrumbProps
   extends React.HTMLAttributes<HTMLOListElement> {
@@ -49,7 +48,3 @@ export const Breadcrumb: React.FunctionComponent<
     );
   }
 );
-
-export const BreadcrumbItem: React.FunctionComponent<BreadcrumbItemProps> = (
-  props: BreadcrumbItemProps
-) => renderBreadcrumbItem(props);

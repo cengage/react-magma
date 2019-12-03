@@ -15,7 +15,9 @@ const StyledCardHeading = styled(Heading)`
   margin: 0 0 20px;
 `;
 
-function renderCardHeading(props) {
+export const CardHeading: React.FunctionComponent<CardHeadingProps> = (
+  props: CardHeadingProps
+) => {
   const { inverse, headingLevel, children } = props;
 
   return (
@@ -26,8 +28,4 @@ function renderCardHeading(props) {
       {children}
     </StyledCardHeading>
   );
-}
-
-export const CardHeading: React.FunctionComponent<CardHeadingProps> = (
-  props: CardHeadingProps
-) => renderCardHeading(props);
+};
