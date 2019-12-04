@@ -198,6 +198,10 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
     setCalendarOpened(false);
   }
 
+  function toggleCalendarOpened() {
+    setCalendarOpened(opened => !opened);
+  }
+
   const {
     errorMessage,
     helperMessage,
@@ -241,7 +245,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
           helperMessage={helperMessage}
           icon={<CalendarIcon />}
           iconAriaLabel="Calendar"
-          onIconClick={() => setCalendarOpened(opened => !opened)}
+          onIconClick={toggleCalendarOpened}
           onIconKeyDown={handleInputKeyDown}
           id={id}
           inverse={inverse}

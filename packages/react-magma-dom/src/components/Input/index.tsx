@@ -17,7 +17,7 @@ import { Label } from '../Label';
 import { QuestionCircleIcon } from '../Icon/types/QuestionCircleIcon';
 import { Tooltip } from '../Tooltip';
 import { VisuallyHidden } from '../VisuallyHidden';
-import { useGenerateId, usePrevious } from '../utils';
+import { useGenerateId } from '../utils';
 
 export enum InputIconPosition {
   left = 'left',
@@ -209,14 +209,11 @@ function getIconSize(size) {
 export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
   (props: InputProps, ref: any) => {
     const id = useGenerateId(props.id);
-    const [value, setValue] = React.useState(props.value);
+    const [value, setValue] = React.useState<string>(props.value);
     const [passwordShown, setPasswordShown] = React.useState<boolean>(false);
-    const prevValue = usePrevious(props.value);
 
     React.useEffect(() => {
-      if (prevValue !== props.value) {
-        setValue(props.value);
-      }
+      setValue(props.value);
     }, [props.value]);
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -268,7 +265,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
         ? InputIconPosition.left
         : props.iconPosition;
 
-    const HIDDEN_PASSWORD_ANNOUCNE_TEXT = hiddenPasswordAnnounceText
+    const HIDDEN_PASSWORD_ANNOUNCE_TEXT = hiddenPasswordAnnounceText
         ? hiddenPasswordAnnounceText
         : 'Password is now hidden',
       HIDE_PASSWORD_BUTTON_ARIA_LABEL = hidePasswordButtonAriaLabel
@@ -277,7 +274,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
       HIDE_PASSWORD_BUTTON_TEXT = hidePasswordButtonText
         ? hidePasswordButtonText
         : 'Hide',
-      SHOWN_PASSWORD_ANNOUCNE_TEXT = shownPasswordAnnounceText
+      SHOWN_PASSWORD_ANNOUNCE_TEXT = shownPasswordAnnounceText
         ? shownPasswordAnnounceText
         : 'Password is now visible',
       SHOW_PASSWORD_BUTTON_ARIA_LABEL = showPasswordButtonAriaLabel
@@ -384,8 +381,8 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
               <VisuallyHidden>
                 <Announce>
                   {passwordShown
-                    ? SHOWN_PASSWORD_ANNOUCNE_TEXT
-                    : HIDDEN_PASSWORD_ANNOUCNE_TEXT}
+                    ? SHOWN_PASSWORD_ANNOUNCE_TEXT
+                    : HIDDEN_PASSWORD_ANNOUNCE_TEXT}
                 </Announce>
               </VisuallyHidden>
             </PasswordMaskWrapper>

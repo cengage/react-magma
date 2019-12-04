@@ -39,7 +39,7 @@ describe('Calendar Header', () => {
   it('should call to move forward a month when clicking the next month button', () => {
     const focusedDate = new Date('January 17, 2019');
     const onNextMonthClick = jest.fn();
-    const { getByLabelText, getByText } = render(
+    const { getByLabelText } = render(
       <CalendarContext.Provider
         value={{
           onPrevMonthClick: jest.fn(),
@@ -59,7 +59,7 @@ describe('Calendar Header', () => {
   it('should call to move backward a month when clicking the previous month button', () => {
     const focusedDate = new Date('January 17, 2019');
     const onPrevMonthClick = jest.fn();
-    const { getByLabelText, getByText } = render(
+    const { getByLabelText } = render(
       <CalendarContext.Provider
         value={{
           onPrevMonthClick,

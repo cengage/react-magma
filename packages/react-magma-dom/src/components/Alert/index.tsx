@@ -211,19 +211,19 @@ export const Alert: React.RefForwardingComponent<
     }: AlertProps,
     ref: any
   ) => {
-    const [isExiting, updateIsExiting] = React.useState(false);
+    const [isExiting, setIsExiting] = React.useState(false);
 
     React.useEffect(() => {
       if (isExiting) {
         setTimeout(() => {
-          updateIsExiting(false);
+          setIsExiting(false);
           onDismiss && typeof onDismiss === 'function' && onDismiss();
         }, transitionDuration - 300);
       }
     }, [isExiting]);
 
     function handleDismiss() {
-      updateIsExiting(true);
+      setIsExiting(true);
     }
 
     React.useImperativeHandle(imperativeRef, () => ({

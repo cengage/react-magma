@@ -110,14 +110,14 @@ const IndeterminateIcon = styled.span<{ color?: string }>`
 export const Checkbox: React.FunctionComponent<CheckboxProps> = (
   props: CheckboxProps
 ) => {
-  const [checked, updateChecked] = React.useState(
+  const [isChecked, updateIsChecked] = React.useState(
     props.indeterminate ? false : Boolean(props.checked)
   );
 
   const id = useGenerateId(props.id);
 
   React.useEffect(() => {
-    updateChecked(props.indeterminate ? false : Boolean(props.checked));
+    updateIsChecked(props.indeterminate ? false : Boolean(props.checked));
   }, [props.checked]);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -128,7 +128,7 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = (
       props.onChange(event);
 
     if (!indeterminate) {
-      updateChecked(targetChecked);
+      updateIsChecked(targetChecked);
     }
   }
 
@@ -156,7 +156,7 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = (
         {...other}
         id={id}
         data-testid={testId}
-        checked={checked}
+        checked={isChecked}
         disabled={disabled}
         indeterminate={indeterminate}
         type="checkbox"
@@ -166,7 +166,7 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = (
       />
       <StyledLabel htmlFor={id} inverse={inverse} style={labelStyle}>
         <StyledFakeInput
-          checked={checked}
+          checked={isChecked}
           color={color ? color : ''}
           disabled={disabled}
           indeterminate={indeterminate}

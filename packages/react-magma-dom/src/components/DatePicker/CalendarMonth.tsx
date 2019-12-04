@@ -109,6 +109,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
 
   function onCalendarTableBlur() {
     setDayFocusable(false);
+    context.setDateFocused(false);
   }
 
   function handleKeyDown(event: React.KeyboardEvent) {
@@ -132,6 +133,19 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
       }
     }
   }
+
+  function turnOffDateFocused() {
+    context.setDateFocused(false);
+  }
+
+  function openHelperInformation() {
+    context.setShowHelperInformation(true);
+  }
+
+  function closeHelperInformation() {
+    context.setShowHelperInformation(false);
+  }
+
   const theme = React.useContext(ThemeContext);
 
   return (
@@ -151,10 +165,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
         <CalendarHeader focusHeader={focusHeader} />
         <Table
           role="presentation"
-          onBlur={() => {
-            onCalendarTableBlur();
-            context.setDateFocused(false);
-          }}
+          onBlur={onCalendarTableBlur}
           onFocus={onCalendarTableFocus}
         >
           <tbody>
@@ -185,14 +196,14 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
           <Button
             aria-label="Calendar Help"
             icon={<QuestionCircleOIcon />}
-            onClick={() => context.setShowHelperInformation(true)}
-            onFocus={() => context.setDateFocused(false)}
+            onClick={openHelperInformation}
+            onFocus={turnOffDateFocused}
             type={ButtonType.button}
             variant={ButtonVariant.link}
           />
           <HelperInformation
             open={context.showHelperInformation}
-            onClose={() => context.setShowHelperInformation(false)}
+            onClose={closeHelperInformation}
           />
         </HelperButton>
         <CloseButton>

@@ -5,7 +5,7 @@ export interface CalendarContextInterface {
   focusedDate: Date;
   dateFocused?: boolean;
   showHelperInformation?: boolean;
-  buildCalendarMonth: (date: Date, endableOutsideDates?: boolean) => Date[][];
+  buildCalendarMonth: (date: Date, enableOutsideDates?: boolean) => Date[][];
   setShowHelperInformation: (value: boolean) => void;
   onDateChange: (day: Date, event: React.SyntheticEvent) => void;
   onKeyDown: (event: React.KeyboardEvent) => void;

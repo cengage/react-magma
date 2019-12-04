@@ -103,10 +103,6 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
   const [focused, setFocused] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    focusCurrentDay();
-  }, [focusedDate, dateFocused]);
-
-  function focusCurrentDay() {
     if (dateFocused && isSameDay(props.day, focusedDate)) {
       dayRef.current.focus();
       setFocused(true);
@@ -115,44 +111,42 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
         setFocused(false);
       }
     }
+  }, [focusedDate, dateFocused]);
+
+  function onCalendarDayFocus() {
+    setDateFocused(true);
   }
 
   const { day, dayFocusable } = props;
   const theme = React.useContext(ThemeContext);
 
-  return (
-    <CalendarContext.Consumer>
-      {context => {
-        if (context && day) {
-          const sameDateAsFocusedDate = isSameDay(day, focusedDate);
-          const sameDateAsChosenDate = isSameDay(day, chosenDate);
-          const sameDateAsToday = isSameDay(day, new Date());
+  if (day) {
+    const sameDateAsFocusedDate = isSameDay(day, focusedDate);
+    const sameDateAsChosenDate = isSameDay(day, chosenDate);
+    const sameDateAsToday = isSameDay(day, new Date());
 
-          return (
-            <CalendarDayCell onFocus={() => setDateFocused(true)} theme={theme}>
-              <CalendarDayInner
-                aria-label={format(day, 'MMMM Do YYYY')}
-                isChosen={sameDateAsChosenDate}
-                isFocused={dayFocusable && sameDateAsFocusedDate}
-                onClick={e => {
-                  onDateChange(day, e);
-                }}
-                ref={dayRef}
-                tabIndex={sameDateAsFocusedDate ? 0 : -1}
-                type="button"
-                theme={theme}
-              >
-                {format(day, 'D')}
-              </CalendarDayInner>
-              {sameDateAsToday && (
-                <TodayIndicator data-testid="todayIndicator" theme={theme} />
-              )}
-            </CalendarDayCell>
-          );
-        } else {
-          return <EmptyCell />;
-        }
-      }}
-    </CalendarContext.Consumer>
-  );
+    return (
+      <CalendarDayCell onFocus={onCalendarDayFocus} theme={theme}>
+        <CalendarDayInner
+          aria-label={format(day, 'MMMM Do YYYY')}
+          isChosen={sameDateAsChosenDate}
+          isFocused={dayFocusable && sameDateAsFocusedDate}
+          onClick={e => {
+            onDateChange(day, e);
+          }}
+          ref={dayRef}
+          tabIndex={sameDateAsFocusedDate ? 0 : -1}
+          type="button"
+          theme={theme}
+        >
+          {format(day, 'D')}
+        </CalendarDayInner>
+        {sameDateAsToday && (
+          <TodayIndicator data-testid="todayIndicator" theme={theme} />
+        )}
+      </CalendarDayCell>
+    );
+  } else {
+    return <EmptyCell />;
+  }
 };
