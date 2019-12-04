@@ -177,24 +177,28 @@ This id will become the value of the `aria-labelledby` attribute for the group.
 ```.jsx
   <>
     <RadioGroup
-        labelText="Labelled by Label"
-        name='labelledByGroup'>
-          <Radio
-              labelText='Label' />
-          <Radio
-              labelText='Label' />
-      </RadioGroup>
+      labelText="Labelled by Label"
+      name='labelledByProp'>
+      <Radio
+        value='1'
+        labelText='Label' />
+      <Radio
+        value='2'
+        labelText='Label' />
+    </RadioGroup>
 
 
     <RadioGroup
-        labelledById="h3Label"
-        name='labelledByGroup'>
-          <h3 id="h3Label">Labelled by H3</h3>
-          <Radio
-              labelText='Label' />
-          <Radio
-              labelText='Label' />
-      </RadioGroup>
+      labelledById="h3Label"
+      name='labelledByChildren'>
+      <h3 id="h3Label">Labelled by H3</h3>
+      <Radio
+        value='3'
+        labelText='Label' />
+      <Radio
+        value='4'
+        labelText='Label' />
+    </RadioGroup>
   </>
 ```
 
@@ -204,18 +208,20 @@ Adding the `textVisuallyHidden` prop will make the label text for either the rad
 
 ```.jsx
   <RadioGroup
-      labelText='Hidden Label'
-      id='visuallyHiddenRadioGroup'
-      name='visuallyHiddenRadioGroup'
-      textVisuallyHidden>
-        <Radio
-            id='visuallyHiddenRadio1'
-            labelText='Hidden label'
-            textVisuallyHidden />
-        <Radio
-            id='visuallyHiddenRadio2'
-            labelText='Hidden label'
-            textVisuallyHidden />
+    labelText='Hidden Label'
+    id='visuallyHiddenRadioGroup'
+    name='visuallyHiddenRadioGroup'
+    textVisuallyHidden>
+      <Radio
+        value='1'
+        id='visuallyHiddenRadio1'
+        labelText='Hidden label'
+        textVisuallyHidden />
+      <Radio
+        value='2'
+        id='visuallyHiddenRadio2'
+        labelText='Hidden label'
+        textVisuallyHidden />
     </RadioGroup>
 ```
 

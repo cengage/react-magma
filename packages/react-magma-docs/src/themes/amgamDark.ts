@@ -1,11 +1,9 @@
-import { magma } from 'react-magma-dom';
+import { magma } from 'react-magma-dom'
 
-export const amgamDark = {
-  ...magma,
+// Can not spread props because there is no babel transpiling and Edge/Safari does not currently support the spread operator
 
-  colors: {
-    ...magma.colors,
-
+export const amgamDark = Object.assign({}, magma, {
+  colors: Object.assign({}, magma.colors, {
     primary: '#FF9D67', // link color
     foundation01: '#FFC79A',
     foundation02: '#FF9D67',
@@ -29,6 +27,6 @@ export const amgamDark = {
     disabledText: 'rgba(114, 114, 114, 0.6)',
     disabledInverseText: 'rgba(255, 255, 255, 0.25)',
     toggleBoxShadow:
-      '0 2px 2px -1px rgba(255,255,255, 0.3), 0 0 4px 0 rgba(255,255,255, 0.24),0 0 5px 0 rgba(255,255,255, 0.22)'
-  }
-};
+      '0 2px 2px -1px rgba(255,255,255, 0.3), 0 0 4px 0 rgba(255,255,255, 0.24),0 0 5px 0 rgba(255,255,255, 0.22)',
+  }),
+})

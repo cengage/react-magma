@@ -49,11 +49,7 @@ describe('Button', () => {
     describe('Snapshot', () => {
       it('should render with updated color', () => {
         const { container } = render(
-          <Button
-            id="testId"
-            onClick={jest.fn()}
-            color={ButtonColor.secondary}
-          >
+          <Button id="testId" onClick={jest.fn()} color={ButtonColor.secondary}>
             Test Text
           </Button>
         );

@@ -3,7 +3,9 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import {
   DisplayInputStyles,
   DisplayInputActiveStyles,
-  DisplayInputFocusStyles
+  buildDisplayInputActiveBackground,
+  buildDisplayInputBorderColor,
+  buildDisplayInputFocusStyles
 } from '../SelectionControls/InputStyles';
 import { HiddenStyles } from '../UtilityStyles';
 import { CheckIcon } from '../Icon/types/CheckIcon';
@@ -36,6 +38,22 @@ const HiddenInput = styled.input<{ indeterminate?: boolean }>`
   ${HiddenStyles};
 `;
 
+export function buildCheckboxBackground(props) {
+  if (props.inverse) {
+    if (props.checked || props.indeterminate) {
+      return props.theme.colors.neutral08;
+    }
+    return 'none';
+  }
+  if (props.disabled) {
+    return props.theme.colors.neutral06;
+  }
+  if (props.checked) {
+    return props.color ? props.color : props.theme.colors.primary;
+  }
+  return props.theme.colors.neutral08;
+}
+
 const StyledFakeInput = styled.span<{
   inverse: boolean;
   checked: boolean;
@@ -44,36 +62,8 @@ const StyledFakeInput = styled.span<{
   indeterminate?: boolean;
 }>`
   ${DisplayInputStyles};
-  background: ${props => {
-    if (props.inverse) {
-      if (props.checked || props.indeterminate) {
-        return props.theme.colors.neutral08;
-      }
-      return 'none';
-    }
-    if (props.disabled) {
-      return props.theme.colors.neutral06;
-    }
-    if (props.checked) {
-      return props.color ? props.color : props.theme.colors.primary;
-    }
-    return props.theme.colors.neutral08;
-  }};
-  border-color: ${props => {
-    if (props.inverse) {
-      if (props.disabled) {
-        return props.theme.colors.disabledInverseText;
-      }
-      return props.theme.colors.neutral08;
-    }
-    if (props.disabled) {
-      return props.theme.colors.neutral05;
-    }
-    if (!props.checked && !props.indeterminate) {
-      return props.theme.colors.neutral03;
-    }
-    return props.color ? props.color : props.theme.colors.primary;
-  }};
+  background: ${props => buildCheckboxBackground(props)};
+  border-color: ${props => buildDisplayInputBorderColor(props)};
   border-radius: 3px;
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
 
@@ -92,24 +82,13 @@ const StyledFakeInput = styled.span<{
 
   ${HiddenInput}:focus + label & {
     &:before {
-      ${DisplayInputFocusStyles};
-      outline: 2px dotted ${props =>
-        props.inverse
-          ? props.theme.colors.neutral08
-          : props.theme.colors.pop02};
-      top: -7px;
-      left: -7px;
+      ${props => buildDisplayInputFocusStyles(props)};
     }
   }
 
   &:after {
     // active state
-    background: ${props =>
-      props.inverse
-        ? props.theme.colors.neutral08
-        : props.color
-        ? props.color
-        : props.theme.colors.primary};
+    background: ${props => buildDisplayInputActiveBackground(props)};
   }
 
   /* prettier-ignore */

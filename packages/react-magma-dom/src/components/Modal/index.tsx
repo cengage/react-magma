@@ -254,6 +254,10 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
       if (shiftKey && keyCode === 9) {
         const index = getFocusedElementIndex(focusableElements, event.target);
 
+        if (focusableElements.length === 0) {
+          event.preventDefault();
+        }
+
         if (
           index === 0 ||
           isElementHeader(event.target) ||
