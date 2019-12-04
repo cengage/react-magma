@@ -51,7 +51,7 @@ const CalendarDayInner = styled.button<{
   overflow: hidden;
   outline-offset: 0;
   position: relative;
-  transition: background 0.5s ease-in-out 0s, outline 0.1s linear;
+  transition: background 0.5s ease-in-out 0s;
   width: 35px;
 
   &:before {
@@ -165,6 +165,7 @@ export class CalendarDay extends React.Component<
                       }}
                       ref={this.dayRef}
                       tabIndex={sameDateAsFocusedDate ? 0 : -1}
+                      type="button"
                       theme={theme}
                     >
                       {format(day, 'D')}

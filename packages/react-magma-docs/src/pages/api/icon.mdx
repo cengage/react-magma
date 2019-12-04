@@ -9,9 +9,13 @@ import {
   AlertIcon,
   AndroidIcon,
   AngleDownIcon,
+  AngleDownDoubleIcon,
   AngleLeftIcon,
+  AngleLeftDoubleIcon,
   AngleRightIcon,
+  AngleRightDoubleIcon,
   AngleUpIcon,
+  AngleUpDoubleIcon,
   AppleIcon,
   ArrowDown2Icon,
   ArrowDown3Icon,
@@ -52,7 +56,6 @@ import {
   CircleLeftIcon,
   CircleRightIcon,
   CircleUpIcon,
-  Clock2Icon,
   ClockIcon,
   Cloud2Icon,
   CnyIcon,
@@ -63,6 +66,7 @@ import {
   ConnectionIcon,
   CopyIcon,
   CountsTowardsGradeIcon,
+  CourseIcon,
   CreditNoCreditIcon,
   CrossIcon,
   CubeIcon,
@@ -115,6 +119,7 @@ import {
   GooglePlusIcon,
   GoogleplayIcon,
   GraduationCapIcon,
+  GroupIcon,
   HighlightIcon,
   Home32Icon,
   ImageIcon,
@@ -222,6 +227,7 @@ import {
   TimerIcon,
   TrashOIcon,
   TruckIcon,
+  TuneIcon,
   TwitterIcon,
   UnarchiveIcon,
   UndoIcon,
@@ -257,7 +263,25 @@ import { SimplePropsTable } from '../../components/props-table'
 ```.jsx
   <p>
     <span className='demo-icon-container'>
-      <InfoIcon id="infoBasic" title="Info Available" />
+      <GroupIcon />
+    </span>
+  </p>
+```
+
+## Title
+
+The `title` prop can be used to set the `<title>` element within the SVG.
+
+The title/svg association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied. The `id` of the title is linked to the SVG with `aria-labelledby`,
+so it will be read screen readers.
+
+```.jsx
+  <p>
+    <span className='demo-icon-container'>
+      <CrossIcon title="Close This Message" />
+    </span>
+    <span className='demo-icon-container'>
+      <InfoIcon id="infoIcon" title="Info Available" />
     </span>
   </p>
 ```
@@ -267,10 +291,10 @@ import { SimplePropsTable } from '../../components/props-table'
 ```.jsx
   <p>
     <span className='demo-icon-container'>
-      <AngleDownIcon id="smallSize" size={20} title="Small Size" />
+      <AngleDownIcon size={20} title="Small Size" />
     </span>
     <span className='demo-icon-container'>
-      <AngleDownIcon id="largeSize" size={50} title="Large Size" />
+      <AngleDownIcon size={50} title="Large Size" />
     </span>
   </p>
 ```
@@ -280,10 +304,10 @@ import { SimplePropsTable } from '../../components/props-table'
 ```.jsx
   <p>
     <span className='demo-icon-container'>
-      <AngleDownIcon id="noColor" title="No Color" />
+      <AngleDownIcon title="No Color" />
     </span>
     <span className='demo-icon-container'>
-      <AngleDownIcon id="someColor" color="green" title="Some Color" />
+      <AngleDownIcon color="green" title="Some Color" />
     </span>
   </p>
 ```
@@ -297,7 +321,7 @@ import { SimplePropsTable } from '../../components/props-table'
       const Icon = ICONS[icon];
 
       return <span className='demo-icon-container' key={id} >
-        <Icon id={id} title={title} /><br />
+        <Icon title={title} /><br />
         {icon}
       </span>
     })}</div>
@@ -354,6 +378,14 @@ Passing in the `testId` prop will add the `data-testid` attribute to the svg ele
       description: 'ID used for testing purposes',
       defaultValue: '',
     },
+    title: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'The title of the svg element, to be read by screen readers',
+      defaultValue: '',
+    },
   }}
 />
 
@@ -367,9 +399,13 @@ export default props => (
       AlertIcon,
       AndroidIcon,
       AngleDownIcon,
+      AngleDownDoubleIcon,
       AngleLeftIcon,
+      AngleLeftDoubleIcon,
       AngleRightIcon,
+      AngleRightDoubleIcon,
       AngleUpIcon,
+      AngleUpDoubleIcon,
       AppleIcon,
       ArrowDown2Icon,
       ArrowDown3Icon,
@@ -410,7 +446,6 @@ export default props => (
       CircleLeftIcon,
       CircleRightIcon,
       CircleUpIcon,
-      Clock2Icon,
       ClockIcon,
       Cloud2Icon,
       CnyIcon,
@@ -421,6 +456,7 @@ export default props => (
       ConnectionIcon,
       CopyIcon,
       CountsTowardsGradeIcon,
+      CourseIcon,
       CreditNoCreditIcon,
       CrossIcon,
       CubeIcon,
@@ -473,6 +509,7 @@ export default props => (
       GooglePlusIcon,
       GoogleplayIcon,
       GraduationCapIcon,
+      GroupIcon,
       HighlightIcon,
       Home32Icon,
       ImageIcon,
@@ -580,6 +617,7 @@ export default props => (
       TimerIcon,
       TrashOIcon,
       TruckIcon,
+      TuneIcon,
       TwitterIcon,
       UnarchiveIcon,
       UndoIcon,

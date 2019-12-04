@@ -94,7 +94,7 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
     <DatePicker labelText="Date" />
 ```
 
-## Datepicker Props
+## Date Picker Props
 
 <SimplePropsTable
   props={{
@@ -104,6 +104,32 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
       },
       required: false,
       description: 'Default selected date value',
+    },
+    errorMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Text of the error message.  If a value is provided, the error message will be styled as an error state.',
+      defaultValue: '',
+    },
+    helperMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text of the helper message.',
+      defaultValue: '',
+    },
+    inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
     },
     labelText: {
       type: {

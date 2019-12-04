@@ -5,7 +5,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   inverse?: boolean;
-  level: number;
+  level: 1 | 2 | 3 | 4 | 5 | 6;
   ref?: any;
   testId?: string;
   tabIndex?: number;
@@ -47,7 +47,7 @@ const StyledH3 = styled.h3`
 const StyledH4 = styled.h4`
   ${baseHeadingStyles};
   font-size: 1.467em;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.4;
 `;
 

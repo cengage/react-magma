@@ -1,0 +1,143 @@
+---
+title: 'Breadcrumbs'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { Breadcrumb, BreadcrumbItem } from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
+
+# Breadcrumbs
+
+## Basic Usage
+
+The breadcrumb menu consists of two components: `Breadcrumb` and `BreadcrumbItem`. The `Breadcrumb` is the wrapper for the entire menu; the `BreadcrumbItem`
+should be used multiple times within it, and refers to each node in the menu. A `BreadcrumbItem` takes a `to` prop, which determines the href of that item. If that prop is left blank,
+the item will be rendered as a span and will have `aria-current="page"` on it. All items in a breadcrumb menu should have the `to` prop, except for the last one, which represents the current page.
+
+```.jsx
+        <Breadcrumb>
+            <BreadcrumbItem to="#">
+                Home
+            </BreadcrumbItem>
+             <BreadcrumbItem to="#">
+                Library
+            </BreadcrumbItem>
+             <BreadcrumbItem>
+                Data
+            </BreadcrumbItem>
+        </Breadcrumb>
+```
+
+## Inverse
+
+Inverse is an optional boolean prop, that may be used when the breadcrumb menu to be displayed on a dark background.
+
+```.jsx
+    <div style={{background: '#003865', padding: '10px'}}>
+        <Breadcrumb inverse>
+            <BreadcrumbItem inverse to="#">
+                Home
+            </BreadcrumbItem>
+             <BreadcrumbItem inverse to="#">
+                Library
+            </BreadcrumbItem>
+             <BreadcrumbItem inverse>
+                Data
+            </BreadcrumbItem>
+        </Breadcrumb>
+    </div>
+```
+
+## Min-Width
+
+The `minWidthToShow` prop can be used to suppress the navigation menu when it is under the breakpoint at the specified number of pixels.
+
+```.jsx
+        <Breadcrumb minWidthToShow={900}>
+            <BreadcrumbItem to="#">
+                Home
+            </BreadcrumbItem>
+             <BreadcrumbItem to="#">
+                Library
+            </BreadcrumbItem>
+             <BreadcrumbItem>
+                Data
+            </BreadcrumbItem>
+        </Breadcrumb>
+```
+
+## Breadcrumb Props
+
+<SimplePropsTable
+  props={{
+    ariaLabel: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'The aria-label of the container element',
+      defaultValue: 'Breadcrumb',
+    },
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
+    },
+    inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    minWidthToShow: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description:
+        'Number of pixels used as the min-width breakpoint where the breadcrumb is shown',
+      defaultValue: '0',
+    },
+  }}
+/>
+
+## Breadcrumb Item Props
+
+<SimplePropsTable
+  props={{
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component, i.e the name of the page',
+    },
+    inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    to: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'The href value of the link.  If left blank, the breadcrumb item will render as a span with aria-current="page" on it.',
+      defaultValue: '',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout {...props} components={{ Breadcrumb, BreadcrumbItem }} />
+)

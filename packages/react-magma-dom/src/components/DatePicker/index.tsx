@@ -17,6 +17,7 @@ interface DatePickerProps {
   helperMessage?: string;
   id?: string;
   inputRef?: React.RefObject<{}>;
+  inverse?: boolean;
   labelText: string;
   placeholderText?: string;
   onDateChange?: (day: Date, event: React.SyntheticEvent) => void;
@@ -200,6 +201,7 @@ export class DatePicker extends React.Component<DatePickerProps> {
       errorMessage,
       helperMessage,
       id,
+      inverse,
       labelText,
       placeholderText
     } = this.props;
@@ -278,6 +280,7 @@ export class DatePicker extends React.Component<DatePickerProps> {
                     toggleCalendar
                   )}
                   id={id}
+                  inverse={inverse}
                   ref={this.inputRef}
                   labelText={labelText}
                   onChange={this.handleInputChange(toggleCalendar)}

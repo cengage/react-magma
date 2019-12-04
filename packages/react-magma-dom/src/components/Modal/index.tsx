@@ -3,11 +3,16 @@ import ReactDOM from 'react-dom';
 import styled from '@emotion/styled';
 import { Global, css } from '@emotion/core';
 import { ModalCore } from 'react-magma-core';
-import { getTrapElements, getFocusedElementIndex } from './utils';
+import {
+  getTrapElements,
+  getTrapElementsAndFocus,
+  getFocusedElementIndex
+} from './utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Button, ButtonColor, ButtonVariant } from '../Button';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { Heading } from '../Heading';
+import { omit } from '../utils';
 
 export enum ModalSize {
   large = 'large',
@@ -50,10 +55,12 @@ const ModalContainer = styled.div`
 const ModalBackdrop = styled.div<{ isExiting?: boolean }>`
   animation: ${props => (props.isExiting ? 'fadeout 500ms' : 'fadein 500ms')};
   background: rgba(0, 0, 0, 0.6);
-  height: 100%;
+  bottom: 0;
+  left: 0;
   position: fixed;
-  width: 100%;
-  z-index: 999;
+  right: 0;
+  top: 0;
+  z-index: 997;
 
   @keyframes fadein {
     from {
@@ -176,6 +183,7 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
 
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleEscapeKeyDown = this.handleEscapeKeyDown.bind(this);
   }
 
   componentDidUpdate(prevProps: ModalProps, prevState: ModalState) {
@@ -190,7 +198,7 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
 
       if (this.props.header) {
         this.setState({
-          focusableElements: getTrapElements(
+          focusableElements: getTrapElementsAndFocus(
             this.focusTrapElement,
             this.bodyRef,
             this.headingRef
@@ -198,34 +206,89 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
         });
       } else {
         this.setState({
-          focusableElements: getTrapElements(
+          focusableElements: getTrapElementsAndFocus(
             this.focusTrapElement,
             this.bodyRef
           )
         });
       }
+
+      if (!this.props.disableEscKeyDown) {
+        document.body.addEventListener(
+          'keydown',
+          this.handleEscapeKeyDown,
+          false
+        );
+      }
     }
+
+    if (this.state.isModalOpen && this.props.children !== prevProps.children) {
+      const focusableElements: Array<HTMLElement> =
+        document.activeElement.nodeName === 'BODY'
+          ? getTrapElementsAndFocus(this.focusTrapElement, this.bodyRef)
+          : getTrapElements(this.focusTrapElement);
+
+      this.setState({ focusableElements });
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.open) {
+      this.setState({ isModalOpen: true });
+    }
+  }
+
+  handleModalClick(contentId) {
+    return event => {
+      if (!document.getElementById(contentId).contains(event.target as Node)) {
+        this.handleClose();
+      }
+    };
+  }
+
+  handleEscapeKeyDown(event) {
+    if (event.keyCode === 27) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      this.props.onEscKeyDown &&
+        typeof this.props.onEscKeyDown === 'function' &&
+        this.props.onEscKeyDown(event);
+
+      this.handleClose();
+    }
+  }
+
+  isElementHeader(el: any) {
+    if (!this.headingRef.current) {
+      return false;
+    }
+
+    return this.headingRef.current.id === el.id;
   }
 
   handleKeyDown() {
     return event => {
       const { keyCode, shiftKey } = event;
 
-      if (keyCode === 27) {
-        event.preventDefault();
-        event.stopPropagation();
-        this.props.onEscKeyDown &&
-          typeof this.props.onEscKeyDown === 'function' &&
-          this.props.onEscKeyDown(event);
-
-        this.handleClose();
-      } else if (shiftKey && keyCode === 9) {
+      if (shiftKey && keyCode === 9) {
         const index = getFocusedElementIndex(
           this.state.focusableElements,
           event.target
         );
 
-        if (index === 0) {
+        if (this.state.focusableElements.length === 0) {
+          event.preventDefault();
+        }
+
+        if (
+          index === 0 ||
+          this.isElementHeader(event.target) ||
+          (event.target.getAttribute('type') === 'radio' &&
+            event.target.hasAttribute('name') &&
+            event.target.getAttribute('name') ===
+              this.state.focusableElements[0].getAttribute('name'))
+        ) {
           event.preventDefault();
           this.state.focusableElements[
             this.state.focusableElements.length - 1
@@ -249,6 +312,12 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
 
   handleClose() {
     this.setState({ isExiting: true });
+
+    document.body.removeEventListener(
+      'keydown',
+      this.handleEscapeKeyDown,
+      false
+    );
 
     setTimeout(() => {
       this.setState({
@@ -283,11 +352,15 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                 open,
                 size,
                 innerRef,
-                ...other
+                ...rest
               } = this.props;
+
+              const other = omit(['onEscKeyDown'], rest);
 
               const CloseIcon = <CrossIcon color={theme.colors.neutral04} />;
               const headingId = `${id}_heading`;
+              const contentId = `${id}_content`;
+
               const { isExiting } = this.state;
 
               return this.state.isModalOpen
@@ -309,23 +382,18 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                         onKeyDown={
                           disableEscKeyDown ? null : this.handleKeyDown()
                         }
+                        onClick={
+                          disableBackdropClick
+                            ? null
+                            : this.handleModalClick(contentId)
+                        }
                         ref={this.focusTrapElement}
                         role="dialog"
+                        data-test-id="modal-container"
                       >
-                        <ModalBackdrop
-                          data-testid="modal-backdrop"
-                          isExiting={isExiting}
-                          onMouseDown={
-                            disableBackdropClick
-                              ? event => event.preventDefault()
-                              : null
-                          }
-                          onClick={
-                            disableBackdropClick ? null : this.handleClose
-                          }
-                        />
                         <ModalContent
                           data-testid="modal-content"
+                          id={contentId}
                           isExiting={isExiting}
                           ref={innerRef}
                           size={size}
@@ -351,7 +419,9 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                           {!hideEscButton && (
                             <CloseBtn>
                               <Button
-                                aria-label={closeLabel ? closeLabel : 'Close'}
+                                aria-label={
+                                  closeLabel ? closeLabel : 'Close dialog'
+                                }
                                 color={ButtonColor.secondary}
                                 icon={CloseIcon}
                                 onClick={this.handleClose}
@@ -362,6 +432,15 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                           )}
                         </ModalContent>
                       </ModalContainer>
+                      <ModalBackdrop
+                        data-testid="modal-backdrop"
+                        isExiting={isExiting}
+                        onMouseDown={
+                          disableBackdropClick
+                            ? event => event.preventDefault()
+                            : null
+                        }
+                      />
                     </>,
                     document.getElementsByTagName('body')[0]
                   )

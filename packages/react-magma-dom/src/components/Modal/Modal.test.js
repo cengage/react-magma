@@ -31,6 +31,17 @@ describe('Modal', () => {
     expect(getByText(modalContent)).toBeInTheDocument();
   });
 
+  it('should render the modal when open has always been true', () => {
+    const modalContent = 'Modal content';
+    const { getByText } = render(
+      <Modal header="Hello" open>
+        {modalContent}
+      </Modal>
+    );
+
+    expect(getByText(modalContent)).toBeInTheDocument();
+  });
+
   it('should render the modal with the default medium size', () => {
     const modalContent = 'Modal content';
     const { getByTestId, rerender } = render(
@@ -115,7 +126,7 @@ describe('Modal', () => {
     expect(getByTestId('modal-closebtn')).toBeInTheDocument();
     expect(getByTestId('modal-closebtn')).toHaveAttribute(
       'aria-label',
-      'Close'
+      'Close dialog'
     );
   });
 
@@ -288,11 +299,40 @@ describe('Modal', () => {
         </>
       );
 
-      fireEvent.click(getByTestId('modal-backdrop'));
+      fireEvent.click(getByTestId('modal-container'));
 
       jest.runAllTimers();
 
       expect(onCloseSpy).toHaveBeenCalled();
+    });
+
+    it('should not close when clicking in the modal', () => {
+      const onCloseSpy = jest.fn();
+      const { rerender, getByText, getByTestId } = render(
+        <>
+          <button>Open</button>
+          <Modal header="Hello" open={false} onClose={onCloseSpy}>
+            Modal Content
+          </Modal>
+        </>
+      );
+
+      fireEvent.focus(getByText('Open'));
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal header="Hello" open={true} onClose={onCloseSpy}>
+            Modal Content
+          </Modal>
+        </>
+      );
+
+      fireEvent.click(getByTestId('modal-content'));
+
+      jest.runAllTimers();
+
+      expect(onCloseSpy).not.toHaveBeenCalled();
     });
 
     it('should fire the close event when the open prop changes from true to false', () => {
@@ -633,6 +673,118 @@ describe('Modal', () => {
       });
 
       expect(getByTestId('passwordInput')).toHaveFocus();
+    });
+
+    it('should handle shift + tab and loop it through the modal if the first element is a set of radio buttons', () => {
+      const { getByTestId, getByText, rerender } = render(
+        <>
+          <button>Open</button>
+          <Modal header="Hello" open={false} onClose={jest.fn()} hideEscButton>
+            <>
+              <input data-testid="yesInput" type="radio" name="radios" />
+              <input data-testid="noInput" type="radio" name="radios" />
+              <button data-testid="closeButton">Close</button>
+            </>
+          </Modal>
+        </>
+      );
+
+      fireEvent.focus(getByText('Open'));
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal header="Hello" open={true} onClose={jest.fn()} hideEscButton>
+            <>
+              <input data-testid="yesInput" type="radio" name="radios" />
+              <input data-testid="noInput" type="radio" name="radios" />
+              <button data-testid="closeButton">Close</button>
+            </>
+          </Modal>
+        </>
+      );
+
+      fireEvent.keyDown(getByTestId('noInput'), {
+        keyCode: 9,
+        shiftKey: true
+      });
+
+      expect(getByTestId('closeButton')).toHaveFocus();
+    });
+
+    it('should focus the first focusable element when the active element is the body on rerender of modal', () => {
+      const { getByTestId, rerender } = render(
+        <>
+          <button>Open</button>
+          <Modal open={true} onClose={jest.fn()} hideEscButton>
+            <>
+              <button data-testid="closeButton">Close</button>
+              <input data-testid="emailInput" type="text" name="email" />
+              <input data-testid="passwordInput" type="text" name="password" />
+            </>
+          </Modal>
+        </>
+      );
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal open={true} onClose={jest.fn()} hideEscButton>
+            <>
+              <input data-testid="addressInput" type="text" name="address" />
+              <input data-testid="stateInput" type="text" name="state" />
+            </>
+          </Modal>
+        </>
+      );
+
+      expect(getByTestId('addressInput')).toHaveFocus();
+    });
+
+    it('should update the focusable elements to tab through when the modal content is changed', () => {
+      const { getByTestId, getByText, rerender } = render(
+        <>
+          <button>Open</button>
+          <Modal open={true} onClose={jest.fn()} hideEscButton>
+            <>
+              <button data-testid="closeButton">Close</button>
+              <input data-testid="emailInput" type="text" name="email" />
+              <input data-testid="passwordInput" type="text" name="password" />
+            </>
+          </Modal>
+        </>
+      );
+
+      fireEvent.focus(getByText('Open'));
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal open={true} onClose={jest.fn()} hideEscButton>
+            <>
+              <button data-testid="closeButton">Close</button>
+              <input data-testid="addressInput" type="text" name="address" />
+              <input data-testid="stateInput" type="text" name="state" />
+            </>
+          </Modal>
+        </>
+      );
+
+      expect(getByTestId('closeButton')).toHaveFocus();
+
+      fireEvent.keyDown(getByTestId('closeButton'), {
+        keyCode: 9
+      });
+
+      fireEvent.keyDown(getByTestId('addressInput'), {
+        keyCode: 9
+      });
+
+      fireEvent.keyDown(getByTestId('stateInput'), {
+        keyCode: 9
+      });
+
+      expect(getByTestId('closeButton')).toHaveFocus();
     });
 
     it('should not break if a different key is pressed', () => {

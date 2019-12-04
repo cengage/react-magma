@@ -1,15 +1,9 @@
 import * as React from 'react';
 import { RadioCore } from 'react-magma-core';
+import { FormGroupLabel } from '../FormGroup';
 import { HiddenStyles } from '../UtilityStyles';
 import styled from '@emotion/styled';
 import { omit } from '../utils';
-
-const StyledLabel = styled.label`
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-  width: 100%;
-`;
 
 const HiddenLabel = styled.label`
   ${HiddenStyles};
@@ -97,9 +91,9 @@ export class RadioGroup extends React.Component<RadioGroupProps> {
                     {labelText}
                   </HiddenLabel>
                 ) : (
-                  <StyledLabel id={id} style={labelStyle}>
+                  <FormGroupLabel id={id} style={labelStyle}>
                     {labelText}
-                  </StyledLabel>
+                  </FormGroupLabel>
                 )}
                 {children}
               </RadioContext.Provider>

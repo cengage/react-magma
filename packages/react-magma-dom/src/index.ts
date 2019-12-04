@@ -1,5 +1,7 @@
 export { Alert, AlertVariant } from './components/Alert';
 export { Announce } from './components/Announce';
+export { Badge, BadgeColor } from './components/Badge';
+export { Breadcrumb, BreadcrumbItem } from './components/Breadcrumb';
 export {
   Button,
   ButtonColor,
@@ -11,13 +13,10 @@ export {
   ButtonIconPosition
 } from './components/Button';
 export { Checkbox } from './components/Checkbox';
-export {
-  Card,
-  CardBody,
-  CardHeading,
-  CardAlignment,
-  CardCalloutType
-} from './components/Card';
+export { Card, CardAlignment, CardCalloutType } from './components/Card';
+export { CardBody } from './components/Card/CardBody';
+export { CardHeading } from './components/Card/CardHeading';
+export { FormGroup } from './components/FormGroup';
 export { Heading } from './components/Heading';
 export {
   Input,
@@ -27,14 +26,17 @@ export {
 } from './components/Input';
 export { Label } from './components/Label';
 export { LinkButton } from './components/LinkButton';
+export { LoadingIndicator } from './components/LoadingIndicator';
 export { RadioGroup } from './components/RadioGroup';
 export { Radio } from './components/Radio';
 export { Select } from './components/Select';
 export { AsyncSelect } from './components/AsyncSelect';
 export { CreatableSelect } from './components/CreatableSelect';
 export { AsyncCreatableSelect } from './components/AsyncCreatableSelect';
+export { Search } from './components/Search';
 export { SkipLink } from './components/SkipLink';
 export { SkipLinkContent } from './components/SkipLinkContent';
+export { Spinner } from './components/Spinner';
 export { Toast } from './components/Toast';
 export { Toggle } from './components/Toggle';
 export { Tooltip, EnumTooltipPosition } from './components/Tooltip';
@@ -43,6 +45,7 @@ export { DatePicker } from './components/DatePicker';
 export { Modal, ModalSize } from './components/Modal';
 export { HyperLink } from './components/HyperLink';
 export { TimePicker } from './components/TimePicker';
+export { ProgressBar, ProgressBarColor } from './components/ProgressBar';
 
 export { magma } from './theme/magma';
 export { GlobalStyles } from './theme/GlobalStyles';
@@ -52,9 +55,19 @@ export { AddPersonIcon } from './components/Icon/types/AddPersonIcon';
 export { AlertIcon } from './components/Icon/types/AlertIcon';
 export { AndroidIcon } from './components/Icon/types/AndroidIcon';
 export { AngleDownIcon } from './components/Icon/types/AngleDownIcon';
+export {
+  AngleDownDoubleIcon
+} from './components/Icon/types/AngleDownDoubleIcon';
 export { AngleLeftIcon } from './components/Icon/types/AngleLeftIcon';
+export {
+  AngleLeftDoubleIcon
+} from './components/Icon/types/AngleLeftDoubleIcon';
 export { AngleRightIcon } from './components/Icon/types/AngleRightIcon';
+export {
+  AngleRightDoubleIcon
+} from './components/Icon/types/AngleRightDoubleIcon';
 export { AngleUpIcon } from './components/Icon/types/AngleUpIcon';
+export { AngleUpDoubleIcon } from './components/Icon/types/AngleUpDoubleIcon';
 export { AppleIcon } from './components/Icon/types/AppleIcon';
 export { ArrowDown2Icon } from './components/Icon/types/ArrowDown2Icon';
 export { ArrowDown3Icon } from './components/Icon/types/ArrowDown3Icon';
@@ -96,7 +109,6 @@ export { CircleDownIcon } from './components/Icon/types/CircleDownIcon';
 export { CircleLeftIcon } from './components/Icon/types/CircleLeftIcon';
 export { CircleRightIcon } from './components/Icon/types/CircleRightIcon';
 export { CircleUpIcon } from './components/Icon/types/CircleUpIcon';
-export { Clock2Icon } from './components/Icon/types/Clock2Icon';
 export { ClockIcon } from './components/Icon/types/ClockIcon';
 export { Cloud2Icon } from './components/Icon/types/Cloud2Icon';
 export { CnyIcon } from './components/Icon/types/CnyIcon';
@@ -109,6 +121,7 @@ export { CopyIcon } from './components/Icon/types/CopyIcon';
 export {
   CountsTowardsGradeIcon
 } from './components/Icon/types/CountsTowardsGradeIcon';
+export { CourseIcon } from './components/Icon/types/CourseIcon';
 export { CreditNoCreditIcon } from './components/Icon/types/CreditNoCreditIcon';
 export { CrossIcon } from './components/Icon/types/CrossIcon';
 export { CubeIcon } from './components/Icon/types/CubeIcon';
@@ -162,6 +175,7 @@ export { GoogleDriveIcon } from './components/Icon/types/GoogleDriveIcon';
 export { GooglePlusIcon } from './components/Icon/types/GooglePlusIcon';
 export { GoogleplayIcon } from './components/Icon/types/GoogleplayIcon';
 export { GraduationCapIcon } from './components/Icon/types/GraduationCapIcon';
+export { GroupIcon } from './components/Icon/types/GroupIcon';
 export { HighlightIcon } from './components/Icon/types/HighlightIcon';
 export { Home32Icon } from './components/Icon/types/Home32Icon';
 export { ImageIcon } from './components/Icon/types/ImageIcon';
@@ -279,6 +293,7 @@ export { TimedIcon } from './components/Icon/types/TimedIcon';
 export { TimerIcon } from './components/Icon/types/TimerIcon';
 export { TrashOIcon } from './components/Icon/types/TrashOIcon';
 export { TruckIcon } from './components/Icon/types/TruckIcon';
+export { TuneIcon } from './components/Icon/types/TuneIcon';
 export { TwitterIcon } from './components/Icon/types/TwitterIcon';
 export { UnarchiveIcon } from './components/Icon/types/UnarchiveIcon';
 export { UndoIcon } from './components/Icon/types/UndoIcon';
