@@ -35,7 +35,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-3xtpuq-IconWrapper-IconWrapperStyles e1i9bore2"
+      class="css-rysqwo-IconWrapper-IconWrapperStyles e1i9bore2"
     >
       <svg
         class="icon"
@@ -87,7 +87,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-3xtpuq-IconWrapper-IconWrapperStyles e1i9bore2"
+      class="css-rysqwo-IconWrapper-IconWrapperStyles e1i9bore2"
     >
       <svg
         class="icon"
@@ -126,7 +126,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-3xtpuq-IconWrapper-IconWrapperStyles e1i9bore2"
+      class="css-rysqwo-IconWrapper-IconWrapperStyles e1i9bore2"
     >
       <svg
         class="icon"
@@ -165,7 +165,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-3xtpuq-IconWrapper-IconWrapperStyles e1i9bore2"
+      class="css-rysqwo-IconWrapper-IconWrapperStyles e1i9bore2"
     >
       <svg
         class="icon"
@@ -203,7 +203,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-3xtpuq-IconWrapper-IconWrapperStyles e1i9bore2"
+      class="css-rysqwo-IconWrapper-IconWrapperStyles e1i9bore2"
     >
       <svg
         class="icon"

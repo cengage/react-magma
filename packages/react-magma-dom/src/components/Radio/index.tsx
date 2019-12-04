@@ -2,7 +2,9 @@ import * as React from 'react';
 import {
   DisplayInputStyles,
   DisplayInputActiveStyles,
-  DisplayInputFocusStyles
+  buildDisplayInputActiveBackground,
+  buildDisplayInputBorderColor,
+  buildDisplayInputFocusStyles
 } from '../SelectionControls/InputStyles';
 import { HiddenStyles } from '../UtilityStyles';
 import { RadioContext } from '../RadioGroup';
@@ -54,18 +56,7 @@ const StyledFakeInput = styled.span<{
     }
     return props.theme.colors.neutral08;
   }};
-  border-color: ${props => {
-    if (props.inverse) {
-      if (props.disabled) {
-        return props.theme.colors.disabledInverseText;
-      }
-      return props.theme.colors.neutral08;
-    }
-    if (props.disabled) {
-      return props.theme.colors.neutral05;
-    }
-    return props.theme.colors.neutral03;
-  }};
+  border-color: ${props => buildDisplayInputBorderColor(props)};
   border-radius: 100%;
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
 
@@ -75,39 +66,18 @@ const StyledFakeInput = styled.span<{
         return props.theme.colors.neutral08;
       }
     }};
-    border-color: ${props => {
-      if (props.inverse) {
-        return props.theme.colors.neutral08;
-      }
-      if (props.disabled) {
-        return props.theme.colors.disabledInverseText;
-      }
-      return props.color ? props.color : props.theme.colors.primary;
-    }};
   }
 
   ${HiddenInput}:focus + label & {
     // focus state
     &:before {
-      ${DisplayInputFocusStyles};
-      outline: 2px dotted
-        ${props =>
-          props.inverse
-            ? props.theme.colors.neutral08
-            : props.theme.colors.pop02};
-      top: -7px;
-      left: -7px;
+      ${props => buildDisplayInputFocusStyles(props)};
     }
   }
 
   &:after {
     // active state
-    background: ${props =>
-      props.inverse
-        ? props.theme.colors.neutral08
-        : props.color
-        ? props.color
-        : props.theme.colors.primary};
+    background: ${props => buildDisplayInputActiveBackground(props)};
   }
 
   ${HiddenInput}:not(:disabled):active + label & {

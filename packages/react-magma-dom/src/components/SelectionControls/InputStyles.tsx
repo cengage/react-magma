@@ -39,8 +39,38 @@ export const DisplayInputActiveStyles = css`
   transition: transform 0s;
 `;
 
-export const DisplayInputFocusStyles = css`
-  height: 30px;
-  position: absolute;
-  width: 30px;
-`;
+export function buildDisplayInputActiveBackground(props) {
+  return props.inverse
+    ? props.theme.colors.neutral08
+    : props.color
+    ? props.color
+    : props.theme.colors.primary;
+}
+
+export function buildDisplayInputBorderColor(props) {
+  if (props.inverse) {
+    if (props.disabled) {
+      return props.theme.colors.disabledInverseText;
+    }
+    return props.theme.colors.neutral08;
+  }
+  if (props.disabled) {
+    return props.theme.colors.neutral05;
+  }
+  if (!props.checked && !props.indeterminate) {
+    return props.theme.colors.neutral03;
+  }
+  return props.color ? props.color : props.theme.colors.primary;
+}
+
+export function buildDisplayInputFocusStyles(props) {
+  return css`
+    height: 30px;
+    position: absolute;
+    width: 30px;
+    outline: 2px dotted
+      ${props.inverse ? props.theme.colors.neutral08 : props.theme.colors.pop02};
+    top: -7px;
+    left: -7px;
+  `;
+}
