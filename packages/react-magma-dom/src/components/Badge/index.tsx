@@ -119,7 +119,7 @@ function getStyledBadgeComponent(isClickable: boolean) {
 
 export const Badge: React.FunctionComponent<BadgeProps> = React.forwardRef(
   ({ children, color, onClick, variant, ...other }: BadgeProps, ref: any) => {
-    const BadgeComponent = getStyledBadgeComponent(!!onClick);
+    const BadgeComponent = getStyledBadgeComponent(Boolean(onClick));
 
     return (
       <ThemeContext.Consumer>

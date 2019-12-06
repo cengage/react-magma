@@ -187,7 +187,7 @@ export class IndexPageContent extends React.Component {
                     {({ stylesClass }) => (
                       <Link
                         className={stylesClass}
-                        to="//api-intro/introduction"
+                        to="/api-intro/introduction"
                         style={{ marginBottom: '20px' }}
                       >
                         <CodeIcon size="16" />
