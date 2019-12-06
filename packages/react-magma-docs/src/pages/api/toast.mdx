@@ -55,7 +55,7 @@ markup, to ensure that they have the expected tab order.
     return (<>
       <Button onClick={() => setShowAlert(true)}>Show Toast in Announce</Button>
       <Announce>
-        {showAlert && <Toast dismissable onDismiss={() => setShowAlert(false)}>Dismissable Toast with <a href="#">linked text</a></Toast>}
+        {showAlert && <Toast dismissible onDismiss={() => setShowAlert(false)}>Dismissible Toast with <a href="#">linked text</a></Toast>}
       </Announce>
     </>)
   }
@@ -74,15 +74,15 @@ markup, to ensure that they have the expected tab order.
   }
 ```
 
-## Dismissable
+## Dismissible
 
 ```.jsx
   (props) => {
     const [showAlert, setShowAlert] = React.useState(false);
 
     return (<>
-      <Button onClick={() => setShowAlert(true)}>Show Dismissable Toast</Button>
-      {showAlert && <Toast dismissable onDismiss={() => setShowAlert(false)}>Dismissable Toast</Toast>}
+      <Button onClick={() => setShowAlert(true)}>Show Dismissible Toast</Button>
+      {showAlert && <Toast dismissible onDismiss={() => setShowAlert(false)}>Dismissible Toast</Toast>}
     </>)
   }
 ```
@@ -95,7 +95,7 @@ markup, to ensure that they have the expected tab order.
 
     return (<>
       <Button onClick={() => setShowAlert(true)}>Show Toast</Button>
-      {showAlert && <Toast dismissable disableAutoDismiss={true} onDismiss={() => setShowAlert(false)}>Non-Auto Hiding Dismissable Toast</Toast>}
+      {showAlert && <Toast dismissible disableAutoDismiss={true} onDismiss={() => setShowAlert(false)}>Non-Auto Hiding Dismissible Toast</Toast>}
     </>)
   }
 ```
@@ -202,7 +202,7 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
       required: false,
       description: 'CSS properties for the component container',
     },
-    dismissable: {
+    dismissible: {
       type: {
         name: 'boolean',
       },
@@ -217,7 +217,7 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
       },
       required: false,
       description:
-        'Action that fires when the close button is clicked (required when dismissable is true)',
+        'Action that fires when the close button is clicked (required when dismissible is true)',
     },
     onMouseEnter: {
       type: {
@@ -273,7 +273,7 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
 | children       | node                                                           |                      | &#10003; |
 | closeLabel     | string                                                         | 'Close this message' |          |
 | containerStyle | React.CSSProperties                                            |                      |          |
-| dismissable    | boolean                                                        |                      |          |
+| dismissible    | boolean                                                        |                      |          |
 | id             | string                                                         |                      |          |
 | onDismiss      | func                                                           |                      | &#10003; |
 | onMouseEnter   | func                                                           |                      |          |

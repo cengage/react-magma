@@ -26,7 +26,7 @@ export enum AlertVariant {
 
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   closeLabel?: string;
-  dismissable?: boolean;
+  dismissible?: boolean;
   forceDismiss?: () => void;
   isExiting?: boolean;
   isDismissed?: boolean;
@@ -194,7 +194,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
       testId,
       variant,
       children,
-      dismissable,
+      dismissible,
       forceDismiss,
       isDismissed,
       isExiting: externalIsExiting,
@@ -240,7 +240,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
       >
         {renderIcon(variant)}
         <AlertContents>{children}</AlertContents>
-        {dismissable && (
+        {dismissible && (
           <DismissableIconWrapper variant={variant} theme={theme}>
             <DismissButton
               alertVariant={variant}

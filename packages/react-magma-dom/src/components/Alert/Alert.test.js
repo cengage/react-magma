@@ -230,19 +230,19 @@ describe('Alert', () => {
     });
   });
 
-  describe('Dismissable', () => {
-    it('should render a dismissable icon button', () => {
+  describe('Dismissible', () => {
+    it('should render a dismissible icon button', () => {
       const { getByLabelText } = render(
-        <Alert dismissable>Test Alert Text</Alert>
+        <Alert dismissible>Test Alert Text</Alert>
       );
       const dismissableIconButton = getByLabelText('Close this message');
 
       expect(dismissableIconButton).toBeInTheDocument();
     });
 
-    it('should render a dismissable icon button with custom close label text', () => {
+    it('should render a dismissible icon button with custom close label text', () => {
       const { getByLabelText } = render(
-        <Alert dismissable closeLabel="Test">
+        <Alert dismissible closeLabel="Test">
           Test Alert Text
         </Alert>
       );
@@ -251,9 +251,9 @@ describe('Alert', () => {
       expect(dismissableIconButton).toBeInTheDocument();
     });
 
-    it('should render a dismissable icon button with the warning variant', () => {
+    it('should render a dismissible icon button with the warning variant', () => {
       const { getByLabelText } = render(
-        <Alert dismissable variant={AlertVariant.warning}>
+        <Alert dismissible variant={AlertVariant.warning}>
           Test Alert Text
         </Alert>
       );
@@ -267,10 +267,10 @@ describe('Alert', () => {
       expect(button).toMatchSnapshot();
     });
 
-    it('should call passed in onDismiss when dismissable icon button is clicked', () => {
+    it('should call passed in onDismiss when dismissible icon button is clicked', () => {
       const onDismiss = jest.fn();
       const { getByLabelText } = render(
-        <Alert dismissable onDismiss={onDismiss}>
+        <Alert dismissible onDismiss={onDismiss}>
           Test Alert Text
         </Alert>
       );

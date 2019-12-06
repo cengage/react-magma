@@ -100,7 +100,7 @@ export const Toast: React.FunctionComponent<ToastProps> = (
     id,
     testId,
     variant,
-    dismissable,
+    dismissible,
     children,
     containerStyle
   } = props;
@@ -115,7 +115,7 @@ export const Toast: React.FunctionComponent<ToastProps> = (
         id={id}
         testId={testId}
         style={alertStyle}
-        dismissable={dismissable}
+        dismissible={dismissible}
         isDismissed={isDismissed}
         variant={variant}
         forceDismiss={clearTimeoutAndDismiss}
