@@ -29,16 +29,12 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   dismissable?: boolean;
   forceDismiss?: () => void;
   isExiting?: boolean;
-  imperativeRef?: any;
+  isDismissed?: boolean;
   inverse?: boolean;
   onDismiss?: () => void;
   ref?: any;
   testId?: string;
   variant?: AlertVariant;
-}
-
-export interface AlertHandles {
-  callDismiss: () => void;
 }
 
 export const transitionDuration = 500;
@@ -191,10 +187,7 @@ function renderIcon(variant = 'info') {
   );
 }
 
-export const Alert: React.RefForwardingComponent<
-  AlertHandles,
-  AlertProps
-> = React.forwardRef(
+export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
   (
     {
       closeLabel,
@@ -203,7 +196,7 @@ export const Alert: React.RefForwardingComponent<
       children,
       dismissable,
       forceDismiss,
-      imperativeRef,
+      isDismissed,
       isExiting: externalIsExiting,
       inverse,
       onDismiss,
@@ -222,15 +215,15 @@ export const Alert: React.RefForwardingComponent<
       }
     }, [isExiting]);
 
+    React.useEffect(() => {
+      if (isDismissed) {
+        handleDismiss();
+      }
+    }, [isDismissed]);
+
     function handleDismiss() {
       setIsExiting(true);
     }
-
-    React.useImperativeHandle(imperativeRef, () => ({
-      callDismiss() {
-        handleDismiss();
-      }
-    }));
 
     const theme = React.useContext(ThemeContext);
 

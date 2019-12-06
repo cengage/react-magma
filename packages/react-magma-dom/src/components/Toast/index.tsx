@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { Alert, AlertProps, AlertHandles } from '../Alert';
+import { Alert, AlertProps } from '../Alert';
 
 export interface ToastProps extends AlertProps {
   alertStyle?: React.CSSProperties;
@@ -47,7 +47,7 @@ export const Toast: React.FunctionComponent<ToastProps> = (
   props: ToastProps
 ) => {
   const timerAutoHide = React.useRef<any>();
-  const alertRef = React.useRef<AlertHandles>();
+  const [isDismissed, setIsDismissed] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     if (!props.disableAutoDismiss) {
@@ -61,17 +61,13 @@ export const Toast: React.FunctionComponent<ToastProps> = (
 
   function clearTimeoutAndDismiss() {
     clearTimeout(timerAutoHide.current);
-    if (alertRef.current) {
-      alertRef.current.callDismiss();
-    }
+    setIsDismissed(true);
   }
 
   function setAutoHideTimer(duration = DEFAULT_TOAST_DURATION) {
     clearTimeout(timerAutoHide.current);
     timerAutoHide.current = setTimeout(() => {
-      if (alertRef.current) {
-        alertRef.current.callDismiss();
-      }
+      setIsDismissed(true);
     }, duration);
   }
 
@@ -120,7 +116,7 @@ export const Toast: React.FunctionComponent<ToastProps> = (
         testId={testId}
         style={alertStyle}
         dismissable={dismissable}
-        imperativeRef={alertRef}
+        isDismissed={isDismissed}
         variant={variant}
         forceDismiss={clearTimeoutAndDismiss}
         onDismiss={props.onDismiss}
