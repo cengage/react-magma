@@ -104,6 +104,7 @@ import { FlashcardsIcon } from './types/FlashcardsIcon';
 import { FolderOIcon } from './types/FolderOIcon';
 import { FolderOpenOIcon } from './types/FolderOpenOIcon';
 import { ForwardIcon } from './types/ForwardIcon';
+import { FontSizeIcon } from './types/FontSizeIcon';
 import { Forward2Icon } from './types/Forward2Icon';
 import { Forward3Icon } from './types/Forward3Icon';
 import { GbpIcon } from './types/GbpIcon';
@@ -356,6 +357,7 @@ export const ICONS: IconsCollection = {
   FlashcardsIcon,
   FolderOIcon,
   FolderOpenOIcon,
+  FontSizeIcon,
   ForwardIcon,
   Forward2Icon,
   Forward3Icon,

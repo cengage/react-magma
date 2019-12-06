@@ -104,6 +104,7 @@ export default [
   'FlashcardsIcon',
   'FolderOIcon',
   'FolderOpenOIcon',
+  'FontSizeIcon',
   'ForwardIcon',
   'Forward2Icon',
   'Forward3Icon',
