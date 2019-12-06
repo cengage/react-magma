@@ -1,6 +1,6 @@
 {
   "name": "react-magma",
-  "version": "1.0.0",
+  "version": "1.0.1-beta.0",
   "private": true,
   "scripts": {
     "postinstall": "lerna bootstrap && npm run build && npm run createStaticFile",
