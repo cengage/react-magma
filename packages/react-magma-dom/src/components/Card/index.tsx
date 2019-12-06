@@ -9,6 +9,7 @@ export interface CardProps extends React.LabelHTMLAttributes<HTMLDivElement> {
   calloutType?: CardCalloutType;
   hasDropShadow?: boolean;
   inverse?: boolean;
+  testId?: string;
   width?: string;
 }
 
@@ -75,7 +76,7 @@ const StyledCard = styled.div<CardProps>`
     `}
 `;
 
-function renderCard(props) {
+export const Card: React.FunctionComponent<CardProps> = (props: CardProps) => {
   const {
     align,
     background,
@@ -107,7 +108,4 @@ function renderCard(props) {
       )}
     </ThemeContext.Consumer>
   );
-}
-
-export const Card: React.FunctionComponent<CardProps> = (props: CardProps) =>
-  renderCard(props);
+};
