@@ -75,7 +75,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
   const [focusableElements, setFocusableElements] = React.useState<
     HTMLElement[]
   >([]);
-  const [focusHeader, setFocusHeader] = React.useState(false);
+  const [focusHeader, setFocusHeader] = React.useState<boolean>(false);
   const prevCalendarOpened = usePrevious(props.calendarOpened);
 
   React.useEffect(() => {
@@ -101,7 +101,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
       setFocusHeader(false);
       setFocusableElements([]);
     }
-  }, [props]);
+  }, [props.calendarOpened, props.focusOnOpen]);
 
   function onCalendarTableFocus() {
     setDayFocusable(true);

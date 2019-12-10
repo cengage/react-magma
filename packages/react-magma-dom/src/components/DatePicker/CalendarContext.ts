@@ -14,6 +14,16 @@ export interface CalendarContextInterface {
   setDateFocused: (value: boolean) => void;
 }
 
-export const CalendarContext = React.createContext<CalendarContextInterface | null>(
-  null
-);
+export const CalendarContext = React.createContext<CalendarContextInterface>({
+  chosenDate: new Date(),
+  focusedDate: new Date(),
+  buildCalendarMonth: (newDate: Date, enableOutsideDates: boolean) => [
+    [newDate]
+  ],
+  setShowHelperInformation: (value: boolean) => {},
+  onDateChange: (newDate: Date, {}) => {},
+  onKeyDown: ({}) => {},
+  onPrevMonthClick: () => {},
+  onNextMonthClick: () => {},
+  setDateFocused: (value: boolean) => {}
+});

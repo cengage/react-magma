@@ -220,7 +220,7 @@ const StyledTooltipInner = styled.div<{
 export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
   (props: TooltipProps, ref: any) => {
     const id = useGenerateId(props.id);
-    const [isVisible, setIsVisible] = React.useState(false);
+    const [isVisible, setIsVisible] = React.useState<boolean>(false);
 
     function handleKeyDown(event: React.KeyboardEvent) {
       if (event.key === 'Escape') {

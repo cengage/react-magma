@@ -65,27 +65,22 @@ const StyledH6 = styled.h6`
   line-height: 1.5;
 `;
 
-function renderHeading(level: number) {
-  const headingLevels = {
-    1: StyledH1,
-    2: StyledH2,
-    3: StyledH3,
-    4: StyledH4,
-    5: StyledH5,
-    6: StyledH6
-  };
-
-  return headingLevels[level];
-}
-
 export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
   (
     { inverse, level, testId, tabIndex, children, ...other }: HeadingProps,
     ref: any
   ) => {
-    const HeadingComponent = renderHeading(level);
-
     const theme = React.useContext(ThemeContext);
+    const headingLevels = {
+      1: StyledH1,
+      2: StyledH2,
+      3: StyledH3,
+      4: StyledH4,
+      5: StyledH5,
+      6: StyledH6
+    };
+
+    const HeadingComponent = headingLevels[level];
 
     return (
       <HeadingComponent

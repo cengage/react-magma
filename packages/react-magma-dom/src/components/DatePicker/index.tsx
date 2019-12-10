@@ -76,15 +76,11 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
   }
 
   function onPrevMonthClick() {
-    setFocusedDate(currentFocusedDate =>
-      getPrevMonthFromDate(currentFocusedDate)
-    );
+    setFocusedDate(getPrevMonthFromDate);
   }
 
   function onNextMonthClick() {
-    setFocusedDate(currentFocusedDate =>
-      getNextMonthFromDate(currentFocusedDate)
-    );
+    setFocusedDate(getNextMonthFromDate);
   }
 
   function onDateChange(day: Date) {

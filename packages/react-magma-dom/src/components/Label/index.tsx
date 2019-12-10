@@ -24,7 +24,9 @@ const StyledLabel = styled.label<LabelProps>`
   text-align: left;
 `;
 
-function renderLabel(props) {
+export const Label: React.FunctionComponent<LabelProps> = (
+  props: LabelProps
+) => {
   const { children, inverse, size, testId, ...other } = props;
   const theme = React.useContext(ThemeContext);
 
@@ -39,7 +41,4 @@ function renderLabel(props) {
       {children}
     </StyledLabel>
   );
-}
-
-export const Label: React.FunctionComponent<LabelProps> = (props: LabelProps) =>
-  renderLabel(props);
+};

@@ -1,7 +1,8 @@
 export { Alert, AlertVariant } from './components/Alert';
 export { Announce } from './components/Announce';
 export { Badge, BadgeColor } from './components/Badge';
-export { Breadcrumb, BreadcrumbItem } from './components/Breadcrumb';
+export { Breadcrumb } from './components/Breadcrumb';
+export { BreadcrumbItem } from './components/Breadcrumb/Item';
 export {
   Button,
   ButtonColor,
@@ -165,6 +166,7 @@ export { Flag3Icon } from './components/Icon/types/Flag3Icon';
 export { FlashcardsIcon } from './components/Icon/types/FlashcardsIcon';
 export { FolderOIcon } from './components/Icon/types/FolderOIcon';
 export { FolderOpenOIcon } from './components/Icon/types/FolderOpenOIcon';
+export { FontSizeIcon } from './components/Icon/types/FontSizeIcon';
 export { ForwardIcon } from './components/Icon/types/ForwardIcon';
 export { Forward2Icon } from './components/Icon/types/Forward2Icon';
 export { Forward3Icon } from './components/Icon/types/Forward3Icon';

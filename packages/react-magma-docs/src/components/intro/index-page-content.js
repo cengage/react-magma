@@ -182,10 +182,14 @@ export class IndexPageContent extends React.Component {
                   <HyperLink
                     styledAs="Button"
                     inverse
-                    to="/api-introduction"
+                    to="/api-intro/introduction"
                   >
                     {({ stylesClass }) => (
-                      <Link className={stylesClass} to="/api-introduction" style={{ marginBottom: '20px' }}>
+                      <Link
+                        className={stylesClass}
+                        to="/api-intro/introduction"
+                        style={{ marginBottom: '20px' }}
+                      >
                         <CodeIcon size="16" />
                         <span>Develop with React Magma</span>
                       </Link>
@@ -195,10 +199,13 @@ export class IndexPageContent extends React.Component {
                   <HyperLink
                     styledAs="Button"
                     inverse
-                    to="/design-introduction"
+                    to="/design-intro/introduction"
                   >
                     {({ stylesClass }) => (
-                      <Link className={stylesClass} to="/design-introduction">
+                      <Link
+                        className={stylesClass}
+                        to="/design-intro/introduction"
+                      >
                         <PaletteIcon size="16" />
                         <span>Design with React Magma</span>
                       </Link>

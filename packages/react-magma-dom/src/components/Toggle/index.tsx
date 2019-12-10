@@ -168,7 +168,7 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
   props: ToggleProps
 ) => {
   const id = useGenerateId(props.id);
-  const [checked, setChecked] = React.useState(Boolean(props.checked));
+  const [checked, setChecked] = React.useState<boolean>(Boolean(props.checked));
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     props.onChange &&

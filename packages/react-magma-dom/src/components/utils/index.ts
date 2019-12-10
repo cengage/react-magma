@@ -6,7 +6,7 @@ export function generateId(id?: string) {
 }
 
 export function useGenerateId(newId?: string) {
-  const [id, updateId] = React.useState(generateId(newId));
+  const [id, updateId] = React.useState<string>(generateId(newId));
 
   React.useEffect(() => {
     updateId(generateId(newId));

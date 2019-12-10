@@ -30,15 +30,15 @@ export interface RadioContextInterface {
   onFocus?: () => void;
 }
 
-export const RadioContext = React.createContext<RadioContextInterface | null>(
-  null
-);
+export const RadioContext = React.createContext<RadioContextInterface>({
+  name: 'defaultName'
+});
 
 export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
   props: RadioGroupProps
 ) => {
   const id = useGenerateId(props.id);
-  const [selectedValue, setSelectedValue] = React.useState(props.value);
+  const [selectedValue, setSelectedValue] = React.useState<string>(props.value);
 
   React.useEffect(() => {
     setSelectedValue(props.value);

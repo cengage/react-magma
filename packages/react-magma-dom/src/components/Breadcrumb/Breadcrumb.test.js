@@ -1,6 +1,8 @@
 import React from 'react';
 import { axe } from 'jest-axe';
-import { Breadcrumb, BreadcrumbItem } from '.';
+import { Breadcrumb } from '.';
+import { BreadcrumbItem } from './Item';
+
 import { render } from '@testing-library/react';
 
 const LINK_TEXT = 'Test link';

@@ -6,6 +6,7 @@ import { AngleRightIcon } from '../Icon/types/AngleRightIcon';
 
 export interface BreadcrumbItemProps extends React.HTMLAttributes<HTMLElement> {
   inverse?: boolean;
+  ref?: any;
   to?: string;
 }
 
@@ -26,7 +27,9 @@ const StyledSpan = styled.span<BreadcrumbItemProps>`
   }
 `;
 
-export function renderBreadcrumbItem(props) {
+export const BreadcrumbItem: React.FunctionComponent<BreadcrumbItemProps> = (
+  props: BreadcrumbItemProps
+) => {
   const { inverse, children, ref, to } = props;
   const theme = React.useContext(ThemeContext);
 
@@ -48,4 +51,4 @@ export function renderBreadcrumbItem(props) {
       )}
     </StyledItem>
   );
-}
+};

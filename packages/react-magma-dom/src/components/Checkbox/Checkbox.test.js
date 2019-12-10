@@ -96,7 +96,10 @@ describe('Checkbox', () => {
     const span = container.querySelector('span');
 
     expect(span).toHaveStyleRule('background', 'none');
-    expect(span).toHaveStyleRule('border-color', 'rgba(255,255,255,0.25)');
+    expect(span).toHaveStyleRule(
+      'border-color',
+      magma.colors.disabledInverseText
+    );
   });
 
   it('should render an inverse, checked checkbox with the correct styles', () => {

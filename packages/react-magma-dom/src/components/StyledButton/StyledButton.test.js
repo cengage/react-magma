@@ -338,9 +338,12 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule(
           'border-color',
-          'rgba(255,255,255,0.25)'
+          magma.colors.disabledInverseText
         );
-        expect(button).toHaveStyleRule('color', 'rgba(255,255,255,0.25)');
+        expect(button).toHaveStyleRule(
+          'color',
+          magma.colors.disabledInverseText
+        );
       });
     });
 

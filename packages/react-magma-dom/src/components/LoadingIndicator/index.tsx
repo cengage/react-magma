@@ -47,7 +47,7 @@ export const LoadingIndicator = React.forwardRef<
   HTMLDivElement,
   LoadingIndicatorProps
 >((props, ref) => {
-  const [messageLevel, setMessageLevel] = React.useState(1);
+  const [messageLevel, setMessageLevel] = React.useState<1 | 2 | 3>(1);
 
   React.useEffect(() => {
     const { type: loadingIndicatorType } = props;
