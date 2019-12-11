@@ -42,7 +42,7 @@ export const transitionDuration = 500;
 function buildAlertBackground(props) {
   switch (props.variant) {
     case 'info':
-      return props.theme.colors.neutral03;
+      return props.theme.colors.neutral02;
     case 'success':
       return props.theme.colors.success01;
     case 'warning':
@@ -50,7 +50,7 @@ function buildAlertBackground(props) {
     case 'danger':
       return props.theme.colors.danger;
     default:
-      return props.theme.colors.neutral03;
+      return props.theme.colors.neutral02;
   }
 }
 
@@ -60,7 +60,7 @@ const StyledAlert = styled.div<AlertProps>`
   border-radius: 3px;
   color: ${props =>
     props.variant === 'warning'
-      ? props.theme.colors.neutral02
+      ? props.theme.colors.neutral01
       : props.theme.colors.neutral08};
   display: flex;
   position: relative;
@@ -104,7 +104,7 @@ const StyledAlert = styled.div<AlertProps>`
     &:focus {
       outline: 2px dotted ${props =>
         props.variant === 'warning'
-          ? props.theme.colors.neutral02
+          ? props.theme.colors.neutral01
           : props.theme.colors.neutral08};
       }
     }
@@ -156,7 +156,7 @@ const DismissButton = styled(Button, { shouldForwardProp })<{
     outline: 2px dotted
       ${({ alertVariant, theme }) =>
         alertVariant === 'warning'
-          ? theme.colors.neutral02
+          ? theme.colors.neutral01
           : theme.colors.neutral08};
     outline-offset: 0 !important;
   }
@@ -166,7 +166,7 @@ const DismissButton = styled(Button, { shouldForwardProp })<{
     :not(:disabled):before {
       background: ${({ alertVariant, theme }) =>
         alertVariant === 'warning'
-          ? theme.colors.neutral02
+          ? theme.colors.neutral01
           : theme.colors.neutral08};
       opacity: 0.15;
     }

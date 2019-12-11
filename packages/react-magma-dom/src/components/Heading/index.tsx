@@ -15,7 +15,7 @@ export const baseHeadingStyles = props => css`
   border-bottom: 2px solid transparent;
   color: ${props.inverse
     ? props.theme.colors.neutral08
-    : props.theme.colors.foundation01};
+    : props.theme.colors.foundation02};
   font-family: ${props.theme.headingFont};
   font-weight: 300;
   line-height: 1.2;

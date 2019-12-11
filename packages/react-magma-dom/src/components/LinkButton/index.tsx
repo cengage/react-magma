@@ -25,7 +25,7 @@ const LinkButtonComponent = styled.button<LinkButtonProps>`
       color: ${props =>
         props.inverse
           ? props.theme.colors.neutral07
-          : props.theme.colors.foundation01};
+          : props.theme.colors.foundation02};
     }
 
     &:focus {

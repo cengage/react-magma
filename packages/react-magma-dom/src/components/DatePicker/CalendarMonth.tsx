@@ -44,7 +44,7 @@ const Table = styled.table`
 
 const Th = styled.th`
   border: 0;
-  color: $ ${props => props.theme.colors.neutral02};
+  color: $ ${props => props.theme.colors.neutral01};
   font-size: 13px;
   font-weight: normal;
   padding: 0;

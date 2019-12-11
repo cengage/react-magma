@@ -13,7 +13,7 @@ interface CalendarDayProps {
 
 const CalendarDayCell = styled.td`
   border: 1px solid ${props => props.theme.colors.neutral06};
-  color: ${props => props.theme.colors.neutral02};
+  color: ${props => props.theme.colors.neutral01};
   font-size: 15px;
   height: 40px;
   padding: 0;
@@ -29,14 +29,14 @@ const CalendarDayInner = styled.button<{
   align-items: center;
   background: ${props =>
     props.isChosen
-      ? props.theme.colors.foundation01
+      ? props.theme.colors.foundation02
       : props.theme.colors.neutral08};
   border: 2px solid transparent;
   border-radius: 100%;
   color: ${props =>
     props.isChosen
       ? props.theme.colors.neutral08
-      : props.theme.colors.neutral02};
+      : props.theme.colors.neutral01};
   cursor: pointer;
   display: flex;
   height: 35px;
@@ -49,7 +49,7 @@ const CalendarDayInner = styled.button<{
   width: 35px;
 
   &:before {
-    background: ${props => props.theme.colors.neutral02};
+    background: ${props => props.theme.colors.neutral01};
     content: '';
     height: 200%;
     left: 0;

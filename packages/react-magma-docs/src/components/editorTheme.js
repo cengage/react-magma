@@ -3,7 +3,7 @@ import { magma } from 'react-magma-dom'
 const editorTheme = {
   plain: {
     backgroundColor: magma.colors.neutral07,
-    color: magma.colors.neutral02,
+    color: magma.colors.neutral01,
   },
   styles: [
     {
@@ -21,19 +21,19 @@ const editorTheme = {
     {
       types: ['tag', 'operator', 'number'],
       style: {
-        color: magma.colors.foundation01,
+        color: magma.colors.foundation02,
       },
     },
     {
       types: ['punctuation'],
       style: {
-        color: magma.colors.neutral04,
+        color: magma.colors.neutral03,
       },
     },
     {
       types: ['property', 'function'],
       style: {
-        color: magma.colors.foundation01,
+        color: magma.colors.foundation02,
       },
     },
     {
@@ -45,7 +45,7 @@ const editorTheme = {
     {
       types: ['attr-name'],
       style: {
-        color: magma.colors.foundation02,
+        color: magma.colors.primary,
       },
     },
     {

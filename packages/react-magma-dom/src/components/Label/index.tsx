@@ -15,7 +15,7 @@ const StyledLabel = styled.label<LabelProps>`
   color: ${props =>
     props.inverse
       ? props.theme.colors.neutral08
-      : props.theme.colors.neutral02};
+      : props.theme.colors.neutral01};
   display: inline-block;
   font-size: ${props => (props.size === InputSize.large ? '16px' : '13px')};
   font-weight: 600;

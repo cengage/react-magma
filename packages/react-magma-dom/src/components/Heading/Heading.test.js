@@ -81,7 +81,7 @@ describe('Heading', () => {
     const { getByText } = render(<Heading level={1}>{headingText}</Heading>);
     const heading = getByText(headingText);
 
-    expect(heading).toHaveStyleRule('color', magma.colors.foundation01);
+    expect(heading).toHaveStyleRule('color', magma.colors.foundation02);
     expect(heading).toHaveStyleRule(
       'border-bottom',
       `2px dotted ${magma.colors.pop02}`,

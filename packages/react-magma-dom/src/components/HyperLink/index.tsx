@@ -35,7 +35,7 @@ const linkStyles = props => css`
     &:focus {
       color: ${props.inverse
         ? props.theme.colors.neutral07
-        : props.theme.colors.foundation01};
+        : props.theme.colors.foundation02};
     }
 
     &:focus {

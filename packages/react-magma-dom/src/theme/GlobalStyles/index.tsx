@@ -30,7 +30,7 @@ function getStyles(theme) {
 
     body {
       background: ${theme.colors.neutral08};
-      color: ${theme.colors.neutral02};
+      color: ${theme.colors.neutral01};
       font-family: ${theme.bodyFont};
       font-style: normal;
       font-weight: 400;
@@ -45,7 +45,7 @@ function getStyles(theme) {
 
       &:hover,
       &:focus {
-        color: ${theme.colors.foundation01};
+        color: ${theme.colors.foundation02};
       }
     }
   `;
