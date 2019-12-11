@@ -63,7 +63,7 @@ export function getStyles(
       outline: isFocused
         ? inverse
           ? `2px dotted ${theme.colors.neutral08}`
-          : `2px dotted ${theme.colors.pop02}`
+          : `2px dotted ${theme.colors.focus}`
         : '0',
       outlineOffset: '2px',
       padding: '0 8px 0 0',

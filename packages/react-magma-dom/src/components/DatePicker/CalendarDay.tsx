@@ -67,7 +67,7 @@ const CalendarDayInner = styled.button<{
   }
 
   &:focus {
-    outline: 2px dotted ${props => props.theme.colors.pop02};
+    outline: 2px dotted ${props => props.theme.colors.focus};
   }
 `;
 

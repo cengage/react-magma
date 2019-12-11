@@ -73,7 +73,7 @@ export const buttonStyles = props => css`
       outline: 2px dotted
         ${props.inverse
           ? props.theme.colors.neutral08
-          : props.theme.colors.pop02};
+          : props.theme.colors.focus};
       outline-offset: 3px;
     }
 

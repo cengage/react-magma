@@ -13,7 +13,7 @@ function getStyles(theme) {
     }
 
     *:focus {
-      outline: 2px dotted ${theme.colors.pop02};
+      outline: 2px dotted ${theme.colors.focus};
       outline-offset: 3px;
     }
 

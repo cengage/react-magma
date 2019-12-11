@@ -84,7 +84,7 @@ describe('Heading', () => {
     expect(heading).toHaveStyleRule('color', magma.colors.foundation02);
     expect(heading).toHaveStyleRule(
       'border-bottom',
-      `2px dotted ${magma.colors.pop02}`,
+      `2px dotted ${magma.colors.focus}`,
       {
         target: ':focus'
       }

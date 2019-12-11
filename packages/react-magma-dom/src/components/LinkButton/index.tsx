@@ -33,7 +33,7 @@ const LinkButtonComponent = styled.button<LinkButtonProps>`
         ${props =>
           props.inverse
             ? props.theme.colors.neutral08
-            : props.theme.colors.pop02};
+            : props.theme.colors.focus};
       outline-offset: 3px;
     }
   }

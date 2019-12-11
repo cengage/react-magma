@@ -13,5 +13,6 @@ export const amgam = Object.assign({}, magma, {
     success01: '#C57DFF',
     success02: '#AC44FF',
     danger: '#18FFFF',
+    focus: '#0599FF',
   }),
 })

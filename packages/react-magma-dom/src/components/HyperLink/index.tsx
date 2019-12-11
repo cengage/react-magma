@@ -40,7 +40,7 @@ const linkStyles = props => css`
 
     &:focus {
       outline: 2px dotted
-        ${props.inverse ? props.theme.neutral08 : props.theme.colors.pop02};
+        ${props.inverse ? props.theme.neutral08 : props.theme.colors.focus};
       outline-offset: 3px;
     }
   }
