@@ -95,11 +95,11 @@ const StyledInput = styled.input<InputProps>`
       ? props.theme.colors.danger
       : props.inverse
       ? props.theme.colors.neutral08
-      : props.theme.colors.neutral04};
+      : props.theme.colors.neutral03};
   border-radius: 5px;
   box-shadow: ${props =>
     props.errorMessage ? `0 0 0 1px ${props.theme.colors.neutral08}` : '0 0 0'};
-  color: ${props => props.theme.colors.neutral02};
+  color: ${props => props.theme.colors.neutral01};
   display: block;
   font-size: 1rem;
   height: ${props => (props.multiline ? '4.5em' : '37px')};
@@ -122,7 +122,7 @@ const StyledInput = styled.input<InputProps>`
     `}
 
   &::placeholder {
-    color: ${props => props.theme.colors.neutral04};
+    color: ${props => props.theme.colors.neutral03};
     opacity: 1;
   }
 
@@ -149,7 +149,7 @@ const StyledInput = styled.input<InputProps>`
 const IconWrapper = styled.span<IconWrapperProps>`
   left: ${props => (props.iconPosition === 'left' ? '10px' : 'auto')};
   right: ${props => (props.iconPosition === 'right' ? '10px' : 'auto')};
-  color: ${props => props.theme.colors.neutral02};
+  color: ${props => props.theme.colors.neutral01};
   position: absolute;
   margin-top: -9px;
   top: 50%;

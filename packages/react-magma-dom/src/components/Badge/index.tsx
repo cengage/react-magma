@@ -32,12 +32,12 @@ export function buildBadgeBackground(props) {
     case 'primary':
       return props.theme.colors.primary;
     case 'secondary':
-      return props.theme.colors.neutral03;
+      return props.theme.colors.neutral02;
     case 'success':
       return props.theme.colors.success01;
 
     default:
-      return props.theme.colors.neutral03;
+      return props.theme.colors.neutral02;
   }
 }
 
@@ -50,12 +50,12 @@ export function buildBadgeFocusBackground(props) {
     case 'primary':
       return darken(0.1, props.theme.colors.primary);
     case 'secondary':
-      return darken(0.1, props.theme.colors.neutral03);
+      return darken(0.1, props.theme.colors.neutral02);
     case 'success':
       return darken(0.1, props.theme.colors.success01);
 
     default:
-      return darken(0.1, props.theme.colors.neutral03);
+      return darken(0.1, props.theme.colors.neutral02);
   }
 }
 
@@ -68,12 +68,12 @@ export function buildBadgeActiveBackground(props) {
     case 'primary':
       return darken(0.2, props.theme.colors.primary);
     case 'secondary':
-      return darken(0.2, props.theme.colors.neutral03);
+      return darken(0.2, props.theme.colors.neutral02);
     case 'success':
       return darken(0.2, props.theme.colors.success01);
 
     default:
-      return darken(0.2, props.theme.colors.neutral03);
+      return darken(0.2, props.theme.colors.neutral02);
   }
 }
 
@@ -81,7 +81,7 @@ export const baseBadgeStyles = props => css`
   background: ${buildBadgeBackground(props)};
   border-radius: ${props.variant === BadgeVariant.counter ? '10px' : '3px'};
   color: ${props.color === 'light'
-    ? props.theme.colors.neutral02
+    ? props.theme.colors.neutral01
     : props.theme.colors.neutral08};
   display: inline-block;
   font-weight: bold;

@@ -48,7 +48,9 @@ const Track = styled.div<ProgressBarProps>`
     props.inverse ? 'rgba(0,0,0,0.25)' : props.theme.colors.neutral08};
   border: 1px solid
     ${props =>
-      props.inverse ? props.theme.colors.neutral08 : props.theme.colors.a11y01};
+      props.inverse
+        ? props.theme.colors.neutral08
+        : props.theme.colors.neutral04};
   display: flex;
   height: ${props => props.height}px;
   padding: 1px;

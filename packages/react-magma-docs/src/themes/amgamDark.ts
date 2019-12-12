@@ -5,8 +5,9 @@ import { magma } from 'react-magma-dom'
 export const amgamDark = Object.assign({}, magma, {
   colors: Object.assign({}, magma.colors, {
     primary: '#FF9D67', // link color
-    foundation01: '#FFC79A',
-    foundation02: '#FF9D67',
+    focus: '#0599FF',
+    foundation01: '#00263E',
+    foundation02: '#FFC79A',
     foundation03: '#ff9d67',
     foundation04: '#006298',
     pop01: '#1FFFB2',
@@ -16,10 +17,9 @@ export const amgamDark = Object.assign({}, magma, {
     success01: '#C57DFF',
     success02: '#AC44FF',
     danger: '#18FFFF',
-    neutral01: '#00263E',
-    neutral02: '#C0C0C0',
-    neutral03: '#A8A8A8',
-    neutral04: '#8D8D8D',
+    neutral01: '#C0C0C0',
+    neutral02: '#A8A8A8',
+    neutral03: '#8D8D8D',
     neutral05: '#404040',
     neutral06: '#202020',
     neutral07: '#080808',

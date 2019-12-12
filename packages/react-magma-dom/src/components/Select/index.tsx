@@ -54,33 +54,33 @@ export function getStyles(
       backgroundColor: isDisabled
         ? theme.colors.neutral07
         : theme.colors.neutral08,
-      borderColor: errorMessage ? theme.colors.danger : theme.colors.neutral04,
+      borderColor: errorMessage ? theme.colors.danger : theme.colors.neutral03,
       borderRadius: '5px',
       boxShadow: errorMessage ? `0 0 0 1px ${theme.colors.neutral08}` : '0 0 0',
-      color: theme.colors.neutral02,
+      color: theme.colors.neutral01,
       cursor: isDisabled ? 'not-allowed' : 'pointer',
       height: '37px',
       outline: isFocused
         ? inverse
           ? `2px dotted ${theme.colors.neutral08}`
-          : `2px dotted ${theme.colors.pop02}`
+          : `2px dotted ${theme.colors.focus}`
         : '0',
       outlineOffset: '2px',
       padding: '0 8px 0 0',
 
       '&:hover': {
-        borderColor: isFocused ? theme.colors.pop02 : theme.colors.neutral04
+        borderColor: isFocused ? theme.colors.pop02 : theme.colors.neutral03
       },
       ...customStyles.control
     }),
     dropdownIndicator: styles => ({
       ...styles,
-      color: theme.colors.neutral02,
+      color: theme.colors.neutral01,
       ...customStyles.dropdownIndicator
     }),
     clearIndicator: styles => ({
       ...styles,
-      color: theme.colors.neutral03,
+      color: theme.colors.neutral02,
 
       '&:hover': {
         backgroundColor: theme.colors.neutral07
@@ -97,24 +97,24 @@ export function getStyles(
       border: `1px solid ${theme.colors.neutral06}`,
       borderRadius: '3px',
       boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)',
-      color: theme.colors.neutral02,
+      color: theme.colors.neutral01,
       zIndex: 999,
       ...customStyles.menu
     }),
     multiValue: styles => ({
       ...styles,
       backgroundColor: theme.colors.neutral06,
-      color: theme.colors.neutral02,
+      color: theme.colors.neutral01,
       ...customStyles.multiValue
     }),
     multiValueRemove: styles => ({
       ...styles,
       backgroundColor: theme.colors.neutral06,
-      color: theme.colors.neutral02,
+      color: theme.colors.neutral01,
 
       '&:hover': {
         backgroundColor: theme.colors.neutral05,
-        color: theme.colors.neutral02
+        color: theme.colors.neutral01
       },
       ...customStyles.multiValueRemove
     }),
@@ -125,16 +125,16 @@ export function getStyles(
         : isSelected
         ? theme.colors.neutral07
         : theme.colors.neutral08,
-      color: theme.colors.neutral02,
+      color: theme.colors.neutral01,
       ...customStyles.option
     }),
     placeholder: styles => ({
       ...styles,
-      color: theme.colors.neutral04
+      color: theme.colors.neutral03
     }),
     singleValue: styles => ({
       ...styles,
-      color: theme.colors.neutral02
+      color: theme.colors.neutral01
     })
   };
 }

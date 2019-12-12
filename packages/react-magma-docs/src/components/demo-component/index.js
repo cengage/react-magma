@@ -15,8 +15,8 @@ import { ThemeContext } from 'react-magma-dom'
 
 const StyledDiv = styled.div`
   background: ${props => props.theme.colors.neutral08};
-  border: 1px solid ${props => props.theme.colors.neutral04};
-  color: ${props => props.theme.colors.neutral02};
+  border: 1px solid ${props => props.theme.colors.neutral03};
+  color: ${props => props.theme.colors.neutral01};
   margin: 10px 0;
   padding: 20px;
 `

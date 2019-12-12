@@ -20,7 +20,7 @@ const StyledSpan = styled.span<BreadcrumbItemProps>`
   color: ${props =>
     props.inverse
       ? props.theme.colors.neutral08
-      : props.theme.colors.neutral04};
+      : props.theme.colors.neutral03};
 
   svg {
     margin: 0 10px;

@@ -35,7 +35,7 @@ const List = styled.ol`
   display: none;
 
   @media (min-width: ${props => props.theme.sizeSm}) {
-    background-color: ${props => props.theme.colors.neutral01};
+    background-color: ${props => props.theme.colors.foundation01};
     display: flex;
     left: 0;
     list-style: none;
@@ -70,7 +70,7 @@ const ButtonContainer = styled.div`
 `
 
 const Footer = styled.footer`
-  background: ${props => props.theme.colors.neutral01};
+  background: ${props => props.theme.colors.foundation01};
   padding: 80px 10%;
   position: relative;
   text-align: center;

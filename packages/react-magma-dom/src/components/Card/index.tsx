@@ -51,7 +51,7 @@ const StyledCard = styled.div<CardProps>`
   color: ${props =>
     props.inverse
       ? props.theme.colors.neutral08
-      : props.theme.colors.neutral02};
+      : props.theme.colors.neutral01};
   display: flex;
   flex-direction: column;
   overflow: hidden;

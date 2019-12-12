@@ -30,7 +30,7 @@ describe('Alert', () => {
     expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-bbulru"
+    class="css-e3152"
     id="defaultVariant"
     tabindex="-1"
   >
@@ -83,7 +83,7 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-bbulru"
+    class="css-e3152"
     tabindex="-1"
   >
     <span
@@ -122,7 +122,7 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-yx90xq"
+    class="css-d3aqyd"
     tabindex="-1"
   >
     <span
@@ -161,7 +161,7 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-1ujmdpa"
+    class="css-tajpk"
     tabindex="-1"
   >
     <span
@@ -199,7 +199,7 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-1w8zhb"
+    class="css-6349ll"
     tabindex="-1"
   >
     <span

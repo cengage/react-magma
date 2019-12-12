@@ -20,7 +20,7 @@ const Message = styled.div<InputMessageProps>`
       ? props.theme.colors.neutral08
       : props.isError
       ? props.theme.colors.danger
-      : props.theme.colors.neutral04};
+      : props.theme.colors.neutral03};
   display: flex;
   font-size: 13px;
   margin-top: 5px;

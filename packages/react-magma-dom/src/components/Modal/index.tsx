@@ -84,7 +84,7 @@ const ModalContent = styled.div<ModalProps>`
   border-color: ${props => props.theme.colors.neutral06};
   border-radius: 3px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  color: ${props => props.theme.colors.neutral02};
+  color: ${props => props.theme.colors.neutral01};
   margin: 10px;
   position: relative;
   z-index: 1000;
@@ -313,7 +313,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
     const other = omit(['onEscKeyDown'], rest);
     const theme = React.useContext(ThemeContext);
 
-    const CloseIcon = <CrossIcon color={theme.colors.neutral04} />;
+    const CloseIcon = <CrossIcon color={theme.colors.neutral03} />;
 
     return isModalOpen
       ? ReactDOM.createPortal(

@@ -110,20 +110,20 @@ export function buildColor(props) {
     return props.theme.colors.disabledText;
   }
   if (props.color === 'marketing') {
-    return props.theme.colors.foundation01;
+    return props.theme.colors.foundation02;
   }
   if (
     (!props.inverse && props.variant === 'solid') ||
     (props.inverse && props.variant !== 'solid')
   ) {
     if (props.color === 'secondary' && !props.inverse) {
-      return props.theme.colors.neutral02;
+      return props.theme.colors.neutral01;
     }
     return props.theme.colors.neutral08;
   }
   switch (props.color) {
     case 'secondary':
-      return props.theme.colors.neutral02;
+      return props.theme.colors.neutral01;
     case 'success':
       return props.theme.colors.success01;
     case 'danger':
@@ -143,7 +143,7 @@ export function buildFocusBackground(props) {
   ) {
     switch (props.color) {
       case 'secondary':
-        return tint(0.9, props.theme.colors.neutral02);
+        return tint(0.9, props.theme.colors.neutral01);
       case 'success':
         return tint(0.9, props.theme.colors.success01);
       case 'danger':
@@ -169,7 +169,7 @@ export function buildFocusBackground(props) {
 
 export function buildFocusColor(props) {
   if (props.color === 'marketing') {
-    return props.theme.colors.foundation01;
+    return props.theme.colors.foundation02;
   }
   if (
     (props.variant !== 'solid' && !props.inverse) ||
@@ -177,7 +177,7 @@ export function buildFocusColor(props) {
   ) {
     switch (props.color) {
       case 'secondary':
-        return props.theme.colors.neutral02;
+        return props.theme.colors.neutral01;
       case 'success':
         return darken(0.1, props.theme.colors.success01);
       case 'danger':
@@ -190,7 +190,7 @@ export function buildFocusColor(props) {
     return props.theme.colors.neutral08;
   }
   if (props.color === 'secondary' && !props.inverse) {
-    return props.theme.colors.neutral02;
+    return props.theme.colors.neutral01;
   }
   return props.theme.colors.neutral08;
 }
@@ -202,7 +202,7 @@ export function buildAfterBackground(props) {
   ) {
     switch (props.color) {
       case 'secondary':
-        return props.theme.colors.neutral02;
+        return props.theme.colors.neutral01;
       case 'success':
         return props.theme.colors.success01;
       case 'danger':
@@ -216,7 +216,7 @@ export function buildAfterBackground(props) {
     !props.inverse &&
     props.color === 'secondary'
   ) {
-    return props.theme.colors.neutral02;
+    return props.theme.colors.neutral01;
   }
   return props.theme.colors.neutral08;
 }
@@ -242,7 +242,7 @@ export function buildActiveBackground(props) {
   ) {
     switch (props.color) {
       case 'secondary':
-        return tint(0.7, props.theme.colors.neutral02);
+        return tint(0.7, props.theme.colors.neutral01);
       case 'success':
         return tint(0.7, props.theme.colors.success01);
       case 'danger':
@@ -268,7 +268,7 @@ export function buildActiveBackground(props) {
 
 export function buildActiveColor(props) {
   if (props.color === 'marketing') {
-    return props.theme.colors.foundation01;
+    return props.theme.colors.foundation02;
   }
   if (
     (props.variant !== 'solid' && !props.inverse) ||
@@ -276,7 +276,7 @@ export function buildActiveColor(props) {
   ) {
     switch (props.color) {
       case 'secondary':
-        return props.theme.colors.neutral02;
+        return props.theme.colors.neutral01;
       case 'success':
         return darken(0.2, props.theme.colors.success01);
       case 'danger':
@@ -289,7 +289,7 @@ export function buildActiveColor(props) {
     return props.theme.colors.neutral08;
   }
   if (props.color === 'secondary' && !props.inverse) {
-    return props.theme.colors.neutral02;
+    return props.theme.colors.neutral01;
   }
   return props.theme.colors.neutral08;
 }

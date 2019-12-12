@@ -14,8 +14,7 @@ export const SimplePropsTable = ({ props }) => {
   return (
     <div>
       <div className="legend">
-        <AsteriskIcon size="12" color={magma.colors.foundation02} /> = required
-        prop
+        <AsteriskIcon size="12" color={magma.colors.primary} /> = required prop
       </div>
       <table className="props-table" cellSpacing="0" cellPadding="0">
         <thead
@@ -48,7 +47,7 @@ export const SimplePropsTable = ({ props }) => {
                         <span aria-label="Required" className="required">
                           <AsteriskIcon
                             size="12"
-                            color={magma.colors.foundation02}
+                            color={magma.colors.primary}
                           />
                         </span>
                       )}

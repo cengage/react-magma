@@ -152,7 +152,7 @@ describe('Styled Button', () => {
           { target: ':active' }
         );
         expect(button).toHaveStyleRule('border-color', magma.colors.neutral05);
-        expect(button).toHaveStyleRule('color', magma.colors.neutral02);
+        expect(button).toHaveStyleRule('color', magma.colors.neutral01);
       });
 
       it('success button', () => {
@@ -222,7 +222,7 @@ describe('Styled Button', () => {
           { target: ':active' }
         );
         expect(button).toHaveStyleRule('border-color', magma.colors.pop04);
-        expect(button).toHaveStyleRule('color', magma.colors.foundation01);
+        expect(button).toHaveStyleRule('color', magma.colors.foundation02);
       });
     });
 
@@ -252,7 +252,7 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule('background', magma.colors.neutral08);
         expect(button).toHaveStyleRule('border-color', magma.colors.neutral08);
-        expect(button).toHaveStyleRule('color', magma.colors.neutral02);
+        expect(button).toHaveStyleRule('color', magma.colors.neutral01);
       });
 
       it('success button', () => {
