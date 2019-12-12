@@ -85,6 +85,28 @@ describe('Toast', () => {
     expect(onDismiss).toHaveBeenCalled();
   });
 
+  it('should not pause and resume a timer when the disableAutoDismiss flag is set to true', () => {
+    const onDismiss = jest.fn();
+    const toastContent = 'I am a toast';
+    const { getByText } = render(
+      <Toast onDismiss={onDismiss} disableAutoDismiss>
+        {toastContent}
+      </Toast>
+    );
+
+    const toast = getByText(toastContent);
+
+    fireEvent.mouseOver(toast);
+    jest.runAllTimers();
+
+    expect(onDismiss).not.toHaveBeenCalled();
+
+    fireEvent.mouseLeave(toast);
+    jest.runAllTimers();
+
+    expect(onDismiss).not.toHaveBeenCalled();
+  });
+
   it('calls passed in onMouseEnter and onMouseLeave', () => {
     const onDismiss = jest.fn();
     const onMouseEnter = jest.fn();

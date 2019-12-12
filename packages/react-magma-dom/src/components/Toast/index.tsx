@@ -57,7 +57,9 @@ export class Toast extends React.Component<ToastProps> {
         typeof this.props.onMouseEnter === 'function' &&
         this.props.onMouseEnter(event);
 
-      handlePause();
+      if (!this.props.disableAutoDismiss) {
+        handlePause();
+      }
     };
   }
 
@@ -67,7 +69,9 @@ export class Toast extends React.Component<ToastProps> {
         typeof this.props.onMouseLeave === 'function' &&
         this.props.onMouseLeave(event);
 
-      handleResume();
+      if (!this.props.disableAutoDismiss) {
+        handleResume();
+      }
     };
   }
 
