@@ -17,8 +17,8 @@
     "cm": "git-cz",
     "cm-retry": "git-cz --retry",
     "bump:patch": "lerna version --conventional-commits",
-    "bump:pre": "lerna version --conventional-commits --conventional-prerelease",
-    "bump:release": "lerna version --conventional-commits --conventional-graduate",
+    "bump:pre": "lerna version --conventional-commits --conventional-prerelease --yes",
+    "bump:release": "lerna version --conventional-commits --conventional-graduate --yes",
     "publish-all": "lerna exec --scope react-magma-dom 'npm publish'"
   },
   "husky": {
