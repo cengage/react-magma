@@ -73,6 +73,15 @@ describe('Date Picker', () => {
     expect(getByText(errorMessage)).not.toBeNull();
   });
 
+  it('should require the date picker input', () => {
+    const labelText = 'Date Picker Label';
+    const { getByLabelText } = render(
+      <DatePicker labelText={labelText} required />
+    );
+
+    expect(getByLabelText(labelText)).toHaveAttribute('required');
+  });
+
   it('should watch for input change', () => {
     const onInputChange = jest.fn();
     const labelText = 'Date Picker Label';
