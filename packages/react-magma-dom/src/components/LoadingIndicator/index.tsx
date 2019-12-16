@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 
 export interface LoadingIndicatorProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  css?: any; // Adding css prop to fix emotion error
   message1?: string;
   message2?: string;
   message3?: string;
