@@ -22,7 +22,7 @@
     "build": "tsdx build",
     "build-watch": "tsdx watch",
     "build:types": "tsc --project './tsconfig.types.json'",
-    "lint": "npm run tsc && npm run tslint",
+    "xlint": "npm run tsc && npm run tslint",
     "tsc": "tsc --noEmit",
     "tslint": "lint-staged"
   },
