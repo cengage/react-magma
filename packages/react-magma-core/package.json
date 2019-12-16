@@ -22,7 +22,7 @@
     "build": "tsdx build",
     "build-watch": "tsdx watch",
     "build:types": "tsc --project './tsconfig.types.json'",
-    "lint": "npm run tsc && npm run tslint",
+    "xlint": "npm run tsc && npm run tslint",
     "tsc": "tsc --noEmit",
     "tslint": "lint-staged"
   },
@@ -71,7 +71,7 @@
     "tslint-config-cengage": "^0.1.0",
     "tslint-config-prettier": "^1.15.0",
     "tslint-react-a11y": "^1.0.0",
-    "typescript": "3.3.3333"
+    "typescript": "^3.7.2"
   },
   "lint-staged": {
     "*.{ts,tsx,js,json,css,md}": [

@@ -10,16 +10,17 @@ import { HiddenStyles } from '../UtilityStyles';
 import { RadioContext } from '../RadioGroup';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
+// Using the base `styled` from `emotion` until import mapping is fixed: https://github.com/emotion-js/emotion/pull/1220
+// import styled from '../../theme/styled';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { generateId } from '../utils';
+import { useGenerateId } from '../utils';
 
 export interface RadioProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   css?: any; // Adding css prop to fix emotion error
   color?: string;
   containerStyle?: React.CSSProperties;
-  innerRef?: React.Ref<HTMLInputElement>;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
   labelStyle?: React.CSSProperties;
@@ -27,10 +28,6 @@ export interface RadioProps
   ref?: any;
   testId?: string;
   textVisuallyHidden?: boolean;
-}
-
-interface RadioState {
-  id?: string;
 }
 
 const HiddenLabelText = styled.span`
@@ -100,24 +97,14 @@ const SelectedIcon = styled.span<{ color: string }>`
   }
 `;
 
-export class RadioComponent extends React.Component<RadioProps, RadioState> {
-  state: RadioState = {
-    id: generateId(this.props.id)
-  };
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.id !== this.props.id) {
-      this.setState({ id: generateId(this.props.id) });
-    }
-  }
-
-  render() {
-    const { id } = this.state;
+export const Radio: React.FunctionComponent<RadioProps> = React.forwardRef(
+  (props: RadioProps, ref: any) => {
+    const id = useGenerateId(props.id);
+    const context = React.useContext(RadioContext);
     const {
       color,
       containerStyle,
       disabled,
-      innerRef,
       inputStyle,
       inverse,
       labelStyle,
@@ -127,59 +114,44 @@ export class RadioComponent extends React.Component<RadioProps, RadioState> {
       testId,
       value,
       ...other
-    } = this.props;
+    } = props;
+
+    const theme = React.useContext(ThemeContext);
+
     return (
-      <RadioContext.Consumer>
-        {context =>
-          context && (
-            <ThemeContext.Consumer>
-              {theme => (
-                <StyledContainer style={containerStyle}>
-                  <HiddenInput
-                    {...other}
-                    id={id}
-                    ref={innerRef}
-                    checked={context.selectedValue === value}
-                    data-testid={testId}
-                    disabled={disabled}
-                    name={context.name}
-                    required={required}
-                    type="radio"
-                    value={value}
-                    onBlur={context.onBlur}
-                    onChange={context.onChange}
-                    onFocus={context.onFocus}
-                  />
-                  <StyledLabel
-                    htmlFor={id}
-                    inverse={inverse}
-                    style={labelStyle}
-                  >
-                    <StyledFakeInput
-                      color={color ? color : ''}
-                      disabled={disabled}
-                      inverse={inverse}
-                      style={inputStyle}
-                      theme={theme}
-                    >
-                      <SelectedIcon color={color ? color : ''} theme={theme} />
-                    </StyledFakeInput>
-                    {textVisuallyHidden ? (
-                      <HiddenLabelText>{labelText}</HiddenLabelText>
-                    ) : (
-                      labelText
-                    )}
-                  </StyledLabel>
-                </StyledContainer>
-              )}
-            </ThemeContext.Consumer>
-          )
-        }
-      </RadioContext.Consumer>
+      <StyledContainer style={containerStyle}>
+        <HiddenInput
+          {...other}
+          id={id}
+          ref={ref}
+          checked={context.selectedValue === value}
+          data-testid={testId}
+          disabled={disabled}
+          name={context.name}
+          required={required}
+          type="radio"
+          value={value}
+          onBlur={context.onBlur}
+          onChange={context.onChange}
+          onFocus={context.onFocus}
+        />
+        <StyledLabel htmlFor={id} inverse={inverse} style={labelStyle}>
+          <StyledFakeInput
+            color={color ? color : ''}
+            disabled={disabled}
+            inverse={inverse}
+            style={inputStyle}
+            theme={theme}
+          >
+            <SelectedIcon color={color ? color : ''} theme={theme} />
+          </StyledFakeInput>
+          {textVisuallyHidden ? (
+            <HiddenLabelText>{labelText}</HiddenLabelText>
+          ) : (
+            labelText
+          )}
+        </StyledLabel>
+      </StyledContainer>
     );
   }
-}
-
-export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
-  (props, ref) => <RadioComponent innerRef={ref} {...props} />
 );

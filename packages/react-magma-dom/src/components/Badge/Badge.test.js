@@ -59,18 +59,18 @@ describe('Badge', () => {
 
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        magma.colors.neutral03
+        magma.colors.neutral02
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        darken(0.1, magma.colors.neutral03),
+        darken(0.1, magma.colors.neutral02),
         {
           target: ':focus'
         }
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        darken(0.2, magma.colors.neutral03),
+        darken(0.2, magma.colors.neutral02),
         {
           target: ':active'
         }
@@ -163,18 +163,18 @@ describe('Badge', () => {
 
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        magma.colors.neutral03
+        magma.colors.neutral02
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        darken(0.1, magma.colors.neutral03),
+        darken(0.1, magma.colors.neutral02),
         {
           target: ':focus'
         }
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        darken(0.2, magma.colors.neutral03),
+        darken(0.2, magma.colors.neutral02),
         {
           target: ':active'
         }

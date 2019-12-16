@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface CardProps extends React.LabelHTMLAttributes<HTMLDivElement> {
@@ -51,7 +51,7 @@ const StyledCard = styled.div<CardProps>`
   color: ${props =>
     props.inverse
       ? props.theme.colors.neutral08
-      : props.theme.colors.neutral02};
+      : props.theme.colors.neutral01};
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -89,23 +89,21 @@ export const Card: React.FunctionComponent<CardProps> = (props: CardProps) => {
     ...other
   } = props;
 
+  const theme = React.useContext(ThemeContext);
+
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <StyledCard
-          {...other}
-          align={align ? align : CardAlignment.left}
-          background={background}
-          data-testid={testId}
-          calloutType={calloutType}
-          hasDropShadow={hasDropShadow}
-          inverse={inverse}
-          width={width ? width : 'auto'}
-          theme={theme}
-        >
-          {children}
-        </StyledCard>
-      )}
-    </ThemeContext.Consumer>
+    <StyledCard
+      {...other}
+      align={align ? align : CardAlignment.left}
+      background={background}
+      data-testid={testId}
+      calloutType={calloutType}
+      hasDropShadow={hasDropShadow}
+      inverse={inverse}
+      width={width ? width : 'auto'}
+      theme={theme}
+    >
+      {children}
+    </StyledCard>
   );
 };

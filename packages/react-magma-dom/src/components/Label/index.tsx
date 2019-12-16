@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { InputSize } from '../Input';
 
@@ -15,7 +15,7 @@ const StyledLabel = styled.label<LabelProps>`
   color: ${props =>
     props.inverse
       ? props.theme.colors.neutral08
-      : props.theme.colors.neutral02};
+      : props.theme.colors.neutral01};
   display: inline-block;
   font-size: ${props => (props.size === InputSize.large ? '16px' : '13px')};
   font-weight: 600;
@@ -28,20 +28,17 @@ export const Label: React.FunctionComponent<LabelProps> = (
   props: LabelProps
 ) => {
   const { children, inverse, size, testId, ...other } = props;
+  const theme = React.useContext(ThemeContext);
 
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <StyledLabel
-          {...other}
-          data-testid={testId}
-          inverse={inverse}
-          size={size ? size : InputSize.medium}
-          theme={theme}
-        >
-          {children}
-        </StyledLabel>
-      )}
-    </ThemeContext.Consumer>
+    <StyledLabel
+      {...other}
+      data-testid={testId}
+      inverse={inverse}
+      size={size ? size : InputSize.medium}
+      theme={theme}
+    >
+      {children}
+    </StyledLabel>
   );
 };

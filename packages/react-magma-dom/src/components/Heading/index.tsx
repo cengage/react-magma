@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
@@ -15,7 +15,7 @@ export const baseHeadingStyles = props => css`
   border-bottom: 2px solid transparent;
   color: ${props.inverse
     ? props.theme.colors.neutral08
-    : props.theme.colors.foundation01};
+    : props.theme.colors.foundation02};
   font-family: ${props.theme.headingFont};
   font-weight: 300;
   line-height: 1.2;
@@ -23,7 +23,7 @@ export const baseHeadingStyles = props => css`
 
   &:focus {
     border-bottom: 2px dotted
-      ${props.inverse ? props.theme.colors.neutral08 : props.theme.colors.pop02};
+      ${props.inverse ? props.theme.colors.neutral08 : props.theme.colors.focus};
     outline: 0;
     transition: border 0.1s linear;
   }
@@ -65,42 +65,35 @@ const StyledH6 = styled.h6`
   line-height: 1.5;
 `;
 
-function renderHeading(level: number) {
-  const headingLevels = {
-    1: StyledH1,
-    2: StyledH2,
-    3: StyledH3,
-    4: StyledH4,
-    5: StyledH5,
-    6: StyledH6
-  };
-
-  return headingLevels[level];
-}
-
 export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
   (
     { inverse, level, testId, tabIndex, children, ...other }: HeadingProps,
     ref: any
   ) => {
-    const HeadingComponent = renderHeading(level);
+    const theme = React.useContext(ThemeContext);
+    const headingLevels = {
+      1: StyledH1,
+      2: StyledH2,
+      3: StyledH3,
+      4: StyledH4,
+      5: StyledH5,
+      6: StyledH6
+    };
+
+    const HeadingComponent = headingLevels[level];
 
     return (
-      <ThemeContext.Consumer>
-        {theme => (
-          <HeadingComponent
-            {...other}
-            css={baseHeadingStyles({ theme })}
-            inverse={inverse}
-            ref={ref}
-            data-testid={testId}
-            tabIndex={tabIndex}
-            theme={theme}
-          >
-            {children}
-          </HeadingComponent>
-        )}
-      </ThemeContext.Consumer>
+      <HeadingComponent
+        {...other}
+        css={baseHeadingStyles({ theme })}
+        inverse={inverse}
+        ref={ref}
+        data-testid={testId}
+        tabIndex={tabIndex}
+        theme={theme}
+      >
+        {children}
+      </HeadingComponent>
     );
   }
 );

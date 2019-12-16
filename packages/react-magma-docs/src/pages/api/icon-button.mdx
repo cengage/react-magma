@@ -54,13 +54,11 @@ If no children are included, then they render in the icon-only style.
 If you find JSX being passed in as a prop directly ugly, you can assign an icon to a variable and pass that in as the prop.
 
 ```.jsx
-  class Example extends React.Component {
-      render() {
-        const icon = <BellIcon />;
+  (props) => {
+    const icon = <BellIcon />
 
-        return <Button aria-label="Icon" icon={icon} />
-      }
-    }
+    return <Button aria-label="Icon" icon={icon} />
+  }
 ```
 
 For icon only buttons you _MUST_ pass in an `aria-label` property to satisfy accessibility standards.
@@ -135,38 +133,31 @@ The `onClick` event will fire when the button is clicked, or when the enter or s
 Events do not fire on disabled buttons.
 
 ```.jsx
-  class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          iconButtonCounter: 0,
-          textIconButtonCounter: 0
-        }
-      }
+  (props) => {
+    const [iconButtonCounter, setIconButtonCounter] = React.useState(0);
+    const [textIconButtonCounter, setTextIconButtonCounter] = React.useState(0);
 
-      render() {
-        return <>
-          <p><strong>Icon Counter: </strong> {this.state.iconButtonCounter} | <strong>Text Icon Counter: </strong> {this.state.textIconButtonCounter}</p>
-          <Button
-            icon={<BellIcon />}
-            onClick={() => {
-              this.setState(state => ({iconButtonCounter: state.iconButtonCounter + 1}))
-            }}>Click me</Button>
-          <Button
-            icon={<BellIcon />}
-            textPosition="left"
-            onClick={() => {
-              this.setState(state => ({textIconButtonCounter: state.textIconButtonCounter + 1}))
-            }}>Click me</Button>
-          <Button
-            disabled
-            icon={<BellIcon />}
-            onClick={() => {
-              this.setState(state => ({iconButtonCounter: state.iconButtonCounter + 1}))
-            }}>Click me if you can</Button>
-        </>
-      }
-    }
+    return <>
+      <p><strong>Icon Counter: </strong> {iconButtonCounter} | <strong>Text Icon Counter: </strong> {textIconButtonCounter}</p>
+      <Button
+        icon={<BellIcon />}
+        onClick={() => {
+          setIconButtonCounter(count => count + 1)
+        }}>Click me</Button>
+      <Button
+        icon={<BellIcon />}
+        textPosition="left"
+        onClick={() => {
+          setTextIconButtonCounter(count => count + 1)
+        }}>Click me</Button>
+      <Button
+        disabled
+        icon={<BellIcon />}
+        onClick={() => {
+          setIconButtonCounter(count => count + 1)
+        }}>Click me if you can</Button>
+    </>
+  }
 ```
 
 ## Testing

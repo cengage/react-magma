@@ -18,46 +18,31 @@ and passing in your custom theme as the `value` property. Any descendants of the
 Use the dropdown to change theme for the demo component.
 
 ```.jsx
-  class Example extends React.Component {
-    constructor(props) {
-      super(props)
-      this.state = {
-        theme: magma
-      }
+  (props) => {
+    const [theme, setTheme] = React.useState(magma);
 
-      this.changeTheme = this.changeTheme.bind(this);
-    }
+    return (
+      <div>
+        <Select
+          id="themeSwitcher"
+          labelText="Select Theme"
+          onChange={({value}) => setTheme(value)}
+          options={[{
+            value: magma,
+            label: 'Magma (default)'
+          }, {
+            value: amgam,
+            label: 'Amgam'
+          }, {
+            value: amgamDark,
+            label: 'Amgam Dark'
+          }]} />
 
-      changeTheme(theme) {
-        this.setState(state => ({
-          theme: theme.value
-        }));
-    }
-
-    render() {
-      return (
-        <div>
-          <Select
-            id="themeSwitcher"
-            labelText="Select Theme"
-            onChange={this.changeTheme}
-            options={[{
-              value: magma,
-              label: 'Magma (default)'
-            }, {
-              value: amgam,
-              label: 'Amgam'
-            }, {
-              value: amgamDark,
-              label: 'Amgam Dark'
-            }]} />
-
-          <ThemeContext.Provider value={this.state.theme}>
-            <DemoComponent idPrefix="theme1" />
-          </ThemeContext.Provider>
-        </div>
-      )
-    }
+        <ThemeContext.Provider value={theme}>
+          <DemoComponent idPrefix="theme1" />
+        </ThemeContext.Provider>
+      </div>
+    )
   }
 ```
 

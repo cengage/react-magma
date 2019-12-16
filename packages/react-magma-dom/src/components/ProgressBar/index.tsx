@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -48,7 +48,9 @@ const Track = styled.div<ProgressBarProps>`
     props.inverse ? 'rgba(0,0,0,0.25)' : props.theme.colors.neutral08};
   border: 1px solid
     ${props =>
-      props.inverse ? props.theme.colors.neutral08 : props.theme.colors.a11y01};
+      props.inverse
+        ? props.theme.colors.neutral08
+        : props.theme.colors.neutral04};
   display: flex;
   height: ${props => props.height}px;
   padding: 1px;
@@ -115,32 +117,30 @@ export const ProgressBar: React.FunctionComponent<
   ) => {
     const percentageValue = percentage ? percentage : 0;
 
+    const theme = React.useContext(ThemeContext);
+
     return (
-      <ThemeContext.Consumer>
-        {theme => (
-          <Container>
-            <Track
-              height={height ? height : 15}
-              inverse={inverse}
-              ref={ref}
-              theme={theme}
-            >
-              <Bar
-                animated={animated}
-                aria-valuenow={percentageValue}
-                aria-valuemin={0}
-                aria-valuemax={100}
-                bgColor={bgColor}
-                inverse={inverse}
-                percentage={percentageValue}
-                role="progressbar"
-                theme={theme}
-              />
-            </Track>
-            {labelVisible && <Percentage>{percentageValue}%</Percentage>}
-          </Container>
-        )}
-      </ThemeContext.Consumer>
+      <Container>
+        <Track
+          height={height ? height : 15}
+          inverse={inverse}
+          ref={ref}
+          theme={theme}
+        >
+          <Bar
+            animated={animated}
+            aria-valuenow={percentageValue}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            bgColor={bgColor}
+            inverse={inverse}
+            percentage={percentageValue}
+            role="progressbar"
+            theme={theme}
+          />
+        </Track>
+        {labelVisible && <Percentage>{percentageValue}%</Percentage>}
+      </Container>
     );
   }
 );

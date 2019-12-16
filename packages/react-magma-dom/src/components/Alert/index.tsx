@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
+import isPropValid from '@emotion/is-prop-valid';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Info2Icon } from '../Icon/types/Info2Icon';
 import { CheckIcon } from '../Icon/types/CheckIcon';
@@ -8,7 +9,6 @@ import { NotificationIcon } from '../Icon/types/NotificationIcon';
 import { BlockedIcon } from '../Icon/types/BlockedIcon';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { Button, ButtonVariant } from '../Button';
-import { AlertCore } from 'react-magma-core';
 
 const VARIANT_ICON = {
   info: Info2Icon,
@@ -21,13 +21,16 @@ export enum AlertVariant {
   info = 'info', //default
   success = 'success',
   warning = 'warning',
-  danger = 'danger'
+  danger = 'danger',
+  silly = 'silly'
 }
 
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   closeLabel?: string;
-  dismissable?: boolean;
+  dismissible?: boolean;
+  forceDismiss?: () => void;
   isExiting?: boolean;
+  isDismissed?: boolean;
   inverse?: boolean;
   onDismiss?: () => void;
   ref?: any;
@@ -40,7 +43,7 @@ export const transitionDuration = 500;
 function buildAlertBackground(props) {
   switch (props.variant) {
     case 'info':
-      return props.theme.colors.neutral03;
+      return props.theme.colors.neutral02;
     case 'success':
       return props.theme.colors.success01;
     case 'warning':
@@ -48,7 +51,7 @@ function buildAlertBackground(props) {
     case 'danger':
       return props.theme.colors.danger;
     default:
-      return props.theme.colors.neutral03;
+      return props.theme.colors.neutral02;
   }
 }
 
@@ -58,7 +61,7 @@ const StyledAlert = styled.div<AlertProps>`
   border-radius: 3px;
   color: ${props =>
     props.variant === 'warning'
-      ? props.theme.colors.neutral02
+      ? props.theme.colors.neutral01
       : props.theme.colors.neutral08};
   display: flex;
   position: relative;
@@ -72,7 +75,7 @@ const StyledAlert = styled.div<AlertProps>`
 
   &:focus {
     outline: 2px dotted ${props =>
-      props.inverse ? props.theme.colors.neutral08 : props.theme.colors.pop02};
+      props.inverse ? props.theme.colors.neutral08 : props.theme.colors.focus};
     }
   }
 
@@ -102,7 +105,7 @@ const StyledAlert = styled.div<AlertProps>`
     &:focus {
       outline: 2px dotted ${props =>
         props.variant === 'warning'
-          ? props.theme.colors.neutral02
+          ? props.theme.colors.neutral01
           : props.theme.colors.neutral08};
       }
     }
@@ -134,30 +137,38 @@ const DismissableIconWrapper = styled.span<AlertProps>`
   }
 `;
 
-const DismissButton = styled(Button)<{ alertVariant?: AlertVariant }>`
+const whitelistProps = ['icon', 'inverse', 'theme', 'variant'];
+
+const shouldForwardProp = prop => {
+  return isPropValid(prop) || whitelistProps.includes(prop);
+};
+
+const DismissButton = styled(Button, { shouldForwardProp })<{
+  alertVariant?: AlertVariant;
+}>`
   border-radius: 0 3px 3px 0;
   color: inherit;
   height: calc(100% - 6px);
   margin: 3px;
   padding: 0 15px;
   width: auto;
-  
+
   &&:focus:not(:disabled) {
-    outline: 2px dotted ${props =>
-      props.alertVariant === 'warning'
-        ? props.theme.colors.neutral02
-        : props.theme.colors.neutral08};
-    };
-    outline-offset: 0!important;
+    outline: 2px dotted
+      ${({ alertVariant, theme }) =>
+        alertVariant === 'warning'
+          ? theme.colors.neutral01
+          : theme.colors.neutral08};
+    outline-offset: 0 !important;
   }
 
   &:hover,
   &:focus {
     :not(:disabled):before {
-      background: ${props =>
-        props.alertVariant === 'warning'
-          ? props.theme.colors.neutral02
-          : props.theme.colors.neutral08};
+      background: ${({ alertVariant, theme }) =>
+        alertVariant === 'warning'
+          ? theme.colors.neutral01
+          : theme.colors.neutral08};
       opacity: 0.15;
     }
 
@@ -165,7 +176,6 @@ const DismissButton = styled(Button)<{ alertVariant?: AlertVariant }>`
       display: none;
     }
   }
-  
 `;
 
 function renderIcon(variant = 'info') {
@@ -185,50 +195,66 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
       testId,
       variant,
       children,
-      dismissable,
-      isExiting,
+      dismissible,
+      forceDismiss,
+      isDismissed,
+      isExiting: externalIsExiting,
       inverse,
       onDismiss,
       ...other
     }: AlertProps,
     ref: any
-  ) => (
-    <ThemeContext.Consumer>
-      {theme => (
-        <AlertCore
-          transitionDuration={transitionDuration}
-          onDismiss={onDismiss}
-        >
-          {({ handleDismiss, isExiting: coreIsExiting }) => (
-            <StyledAlert
-              {...other}
-              data-testid={testId}
-              ref={ref}
-              tabIndex={-1}
-              inverse={inverse}
-              isExiting={isExiting || coreIsExiting}
-              variant={variant}
+  ) => {
+    const [isExiting, setIsExiting] = React.useState(false);
+
+    React.useEffect(() => {
+      if (isExiting) {
+        setTimeout(() => {
+          setIsExiting(false);
+          onDismiss && typeof onDismiss === 'function' && onDismiss();
+        }, transitionDuration - 300);
+      }
+    }, [isExiting]);
+
+    React.useEffect(() => {
+      if (isDismissed) {
+        handleDismiss();
+      }
+    }, [isDismissed]);
+
+    function handleDismiss() {
+      setIsExiting(true);
+    }
+
+    const theme = React.useContext(ThemeContext);
+
+    return (
+      <StyledAlert
+        {...other}
+        data-testid={testId}
+        ref={ref}
+        tabIndex={-1}
+        inverse={inverse}
+        isExiting={isExiting}
+        variant={variant}
+        theme={theme}
+      >
+        {renderIcon(variant)}
+        <AlertContents>{children}</AlertContents>
+        {dismissible && (
+          <DismissableIconWrapper variant={variant} theme={theme}>
+            <DismissButton
+              alertVariant={variant}
+              aria-label={closeLabel ? closeLabel : 'Close this message'}
+              icon={<CrossIcon />}
+              inverse
+              onClick={forceDismiss || handleDismiss}
               theme={theme}
-            >
-              {renderIcon(variant)}
-              <AlertContents>{children}</AlertContents>
-              {dismissable && (
-                <DismissableIconWrapper variant={variant} theme={theme}>
-                  <DismissButton
-                    alertVariant={variant}
-                    aria-label={closeLabel ? closeLabel : 'Close this message'}
-                    icon={<CrossIcon />}
-                    inverse
-                    onClick={handleDismiss}
-                    theme={theme}
-                    variant={ButtonVariant.link}
-                  />
-                </DismissableIconWrapper>
-              )}
-            </StyledAlert>
-          )}
-        </AlertCore>
-      )}
-    </ThemeContext.Consumer>
-  )
+              variant={ButtonVariant.link}
+            />
+          </DismissableIconWrapper>
+        )}
+      </StyledAlert>
+    );
+  }
 );

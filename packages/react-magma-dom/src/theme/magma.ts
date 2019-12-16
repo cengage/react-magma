@@ -1,5 +1,6 @@
 export interface Colors {
   primary: string;
+  focus: string;
   foundation01: string;
   foundation02: string;
   foundation03: string;
@@ -21,6 +22,7 @@ export interface Colors {
   neutral08: string;
   disabledText: string;
   disabledInverseText: string;
+  toggleBoxShadow: string;
 }
 
 export interface ThemeInterface {
@@ -39,8 +41,9 @@ export const magma = {
 
   colors: {
     primary: '#006298', // link color blue
-    foundation01: '#003865',
-    foundation02: '#006298',
+    focus: '#D75800',
+    foundation01: '#00263E',
+    foundation02: '#003865',
     foundation03: '#00A9E0',
     foundation04: '#71C5E8',
     pop01: '#E0004D',
@@ -50,17 +53,16 @@ export const magma = {
     success01: '#3A8200',
     success02: '#48A200',
     danger: '#E70000',
-    neutral01: '#00263E',
-    neutral02: '#3F3F3F', // main dark grey text color
-    neutral03: '#575757',
-    neutral04: '#727272',
+    neutral01: '#3F3F3F', // main dark grey text color
+    neutral02: '#575757',
+    neutral03: '#727272',
+    neutral04: '#8f8f8f', // lightest gray that meets 3:1 contrast ratio
     neutral05: '#BFBFBF',
     neutral06: '#DFDFDF',
     neutral07: '#F7F7F7',
     neutral08: '#FFFFFF', // white
-    a11y01: '#8f8f8f', // lightest gray that meets 3:1 contrast ratio
     disabledText: 'rgba(114, 114, 114, 0.6)',
-    disabledInverseText: 'rgba(255, 255, 255, 0.25)',
+    disabledInverseText: 'rgba(255,255,255,0.25)',
     toggleBoxShadow:
       '0 2px 2px -1px rgba(0, 0, 0, 0.3), 0 0 4px 0 rgba(0, 0, 0, 0.24),0 0 5px 0 rgba(0, 0, 0, 0.22)'
   },

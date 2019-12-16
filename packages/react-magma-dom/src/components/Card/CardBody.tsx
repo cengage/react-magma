@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { CardProps } from '.';
 
 const StyledCardBody = styled.div<CardProps>`
@@ -7,10 +7,8 @@ const StyledCardBody = styled.div<CardProps>`
   text-align: ${props => props.align};
 `;
 
-export const CardBody: React.FunctionComponent<CardProps> = (
-  props: CardProps
-) => {
-  const { children } = props;
-
+export const CardBody: React.FunctionComponent<CardProps> = ({
+  children
+}: CardProps) => {
   return <StyledCardBody>{children}</StyledCardBody>;
 };

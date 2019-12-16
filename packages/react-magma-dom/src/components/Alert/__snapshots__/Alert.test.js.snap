@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Alert Dismissable should render a dismissable icon button with the warning variant 1`] = `
+exports[`Alert Dismissible should render a dismissible icon button with the warning variant 1`] = `
 <button
-  alertvariant="warning"
   aria-label="Close this message"
-  class="e1i9bore4 css-1i6moe9-DismissButton"
+  class="css-z76571"
   icon="[object Object]"
   id="ignoreButton"
+  theme="[object Object]"
 >
   <svg
     aria-labelledby="ignoreButton"

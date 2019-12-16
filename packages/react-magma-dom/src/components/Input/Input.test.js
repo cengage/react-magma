@@ -43,7 +43,7 @@ describe('Input', () => {
     const input = getByTestId(testId);
 
     expect(input).toHaveStyleRule('background', magma.colors.neutral08);
-    expect(input).toHaveStyleRule('border-color', magma.colors.neutral04);
+    expect(input).toHaveStyleRule('border-color', magma.colors.neutral03);
     expect(input).toHaveStyleRule('box-shadow', '0 0 0');
   });
 
@@ -87,7 +87,7 @@ describe('Input', () => {
 
     const helperMessage = getByText(testMessage);
 
-    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral04);
+    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral03);
   });
 
   it('should render an inverse input with a correctly styled helper message', () => {
@@ -131,6 +131,16 @@ describe('Input', () => {
 
     expect(errorMessage).toHaveStyleRule('background', magma.colors.danger);
     expect(errorMessage).toHaveStyleRule('color', magma.colors.neutral08);
+  });
+
+  it('should render an input with a right-aligned icon by default', () => {
+    const icon = <CheckIcon />;
+    const { container } = render(<Input icon={icon} />);
+
+    const span = container.querySelector('span');
+
+    expect(span).toHaveStyleRule('left', '10px');
+    expect(span).toHaveStyleRule('right', 'auto');
   });
 
   it('should render an input with a right-aligned icon in the correct position', () => {
@@ -183,6 +193,28 @@ describe('Input', () => {
 
     expect(input).toHaveStyleRule('padding-left', '50px');
     expect(input).toHaveStyleRule('padding-right', '15px');
+  });
+
+  it('should show a spinner when loading', () => {
+    const icon = <CheckIcon />;
+    const { getByTestId } = render(<Input icon={icon} isLoading />);
+
+    expect(getByTestId('spinnerWrapper')).toBeInTheDocument();
+  });
+
+  it('should render a clickable icon', () => {
+    const icon = <CheckIcon />;
+    const iconAriaLabel = 'clickable icon label';
+    const { getByLabelText } = render(
+      <Input
+        icon={icon}
+        onIconClick={jest.fn()}
+        inputSize="large"
+        iconAriaLabel={iconAriaLabel}
+      />
+    );
+
+    expect(getByLabelText(iconAriaLabel)).toBeInTheDocument();
   });
 
   it('should render an input with a value passed through', () => {

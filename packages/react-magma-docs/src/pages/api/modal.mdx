@@ -23,40 +23,19 @@ simply use `<Modal open={flag} />`
 More examples of modals can be found on the <Link to="/examples/modal">More Modal Examples</Link> page.
 
 ```.jsx
+  (props) => {
+    const [showModal, setShowModal] = React.useState(false);
 
-    class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          showModal: false
-        }
-
-        this.onModalShow = this.onModalShow.bind(this);
-        this.onModalClose = this.onModalClose.bind(this);
-      }
-
-      onModalShow() {
-        this.setState({showModal: true})
-      }
-
-      onModalClose() {
-        this.setState({showModal: false})
-      }
-
-      render() {
-        const { showModal } = this.state;
-
-        return (<>
-            <Modal header="Modal Title" onClose={this.onModalClose} open={showModal}>
-              <p>This is a modal, doing modal things.</p>
-              <p>This is <a href="#">linked text</a> in the modal</p>
-              <p><Button>This is a button</Button></p>
-              <p>This is <a href="#"> some more linked text</a> in the modal</p>
-            </Modal>
-          <Button onClick={this.onModalShow}>Show Modal</Button>
-        </>)
-      }
-    }
+    return (<>
+      <Modal header="Modal Title" onClose={() => setShowModal(false)} open={showModal}>
+        <p>This is a modal, doing modal things.</p>
+        <p>This is <a href="#">linked text</a> in the modal</p>
+        <p><Button>This is a button</Button></p>
+        <p>This is <a href="#"> some more linked text</a> in the modal</p>
+      </Modal>
+    <Button onClick={() => setShowModal(true)}>Show Modal</Button>
+    </>)
+  }
 ```
 
 ## Sizes
@@ -64,55 +43,23 @@ More examples of modals can be found on the <Link to="/examples/modal">More Moda
 Sizes for modals include `small`, `medium`, and `large`, with `medium` being the default value.
 
 ```.jsx
+  (props) => {
+    const [showSmallModal, setShowSmallModal] = React.useState(false);
+    const [showLargeModal, setShowLargeModal] = React.useState(false);
 
-    class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          showSmallModal: false,
-          showLargeModal: false
-        }
+    return (<>
+      <Modal size="small" header="Modal Small" onClose={() => setShowSmallModal(false)} open={showSmallModal}>
+        <p>This is a small modal, doing small modal things.</p>
+      </Modal>
 
-        this.onModalSmallShow = this.onModalSmallShow.bind(this);
-        this.onModalSmallClose = this.onModalSmallClose.bind(this);
-        this.onModalLargeShow = this.onModalLargeShow.bind(this);
-        this.onModalLargeClose = this.onModalLargeClose.bind(this);
-      }
+      <Modal size="large" header="Modal Large" onClose={() => setShowLargeModal(false)} open={showLargeModal}>
+        <p>This is a large modal, doing large modal things.</p>
+      </Modal>
 
-      onModalSmallShow() {
-        this.setState({showSmallModal: true})
-      }
-
-      onModalSmallClose() {
-        this.setState({showSmallModal: false})
-      }
-
-      onModalLargeShow() {
-        this.setState({showLargeModal: true})
-      }
-
-      onModalLargeClose() {
-        this.setState({showLargeModal: false})
-      }
-
-
-      render() {
-        const { showSmallModal, showLargeModal } = this.state;
-
-        return (<>
-            <Modal size="small" header="Modal Small" onClose={this.onModalSmallClose} open={showSmallModal}>
-                <p>This is a small modal, doing small modal things.</p>
-            </Modal>
-
-            <Modal size="large" header="Modal Large" onClose={this.onModalLargeClose} open={showLargeModal}>
-                <p>This is a large modal, doing large modal things.</p>
-            </Modal>
-
-          <Button size="small" onClick={this.onModalSmallShow}>Show Small Modal</Button>
-          <Button size="large" onClick={this.onModalLargeShow}>Show Large Modal</Button>
-        </>)
-      }
-    }
+      <Button size="small" onClick={() => setShowSmallModal(true)}>Show Small Modal</Button>
+      <Button size="large" onClick={() => setShowLargeModal(true)}>Show Large Modal</Button>
+    </>)
+  }
 ```
 
 ## Modal Header
@@ -122,52 +69,27 @@ If there is a header passed in, the focus will be placed on the header when the 
 the first actionable element.
 
 ```.jsx
+  (props) => {
+    const [showModal, setShowModal] = React.useState(false);
+    const [showModalHeader, setShowModalHeader] = React.useState(false);
 
-    class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          showModal: false,
-          showModalHeader: false
-        }
-
-        this.onModalShow = this.onModalShow.bind(this);
-        this.onModalClose = this.onModalClose.bind(this);
-
-        this.onModalHeaderShow = this.onModalHeaderShow.bind(this);
-        this.onModalHeaderClose = this.onModalHeaderClose.bind(this);
-      }
-
-      onModalShow() {
-        this.setState({showModal: true})
-      }
-
-      onModalClose() {
-        this.setState({showModal: false})
-      }
-
-       onModalHeaderShow() {
-        this.setState({showModalHeader: true})
-      }
-
-      onModalHeaderClose() {
-        this.setState({showModalHeader: false})
-      }
-
-      render() {
-        const { showModal,  showModalHeader } = this.state;
-
-        return (<>
-            <Modal size="small" onClose={this.onModalClose} open={showModal}>
-                <p>This modal has no header.</p>
-                <div style={{textAlign: 'center'}}>
-                    <Button onClick={this.onModalClose} >OK</Button>
-                </div>
-            </Modal>
-          <Button onClick={this.onModalShow}>Show Modal with no header</Button>
-        </>)
-      }
-    }
+    return (<>
+      <Modal size="small" onClose={() => setShowModal(false)} open={showModal}>
+        <p>This modal has no header.</p>
+        <div style={{textAlign: 'center'}}>
+            <Button onClick={() => setShowModal(false)} >OK</Button>
+        </div>
+      </Modal>
+      <Modal header="This modal has a header" size="small" onClose={() => setShowModalHeader(false)} open={showModalHeader}>
+        <p>This modal has no header.</p>
+        <div style={{textAlign: 'center'}}>
+            <Button onClick={() => setShowModalHeader(false)} >OK</Button>
+        </div>
+      </Modal>
+      <Button onClick={() => setShowModal(true)}>Show Modal with no header</Button>
+      <Button onClick={() => setShowModalHeader(true)}>Show Modal with header</Button>
+    </>)
+  }
 ```
 
 ## Hide Escape Button
@@ -175,38 +97,17 @@ the first actionable element.
 The close button can be hidden by using the `hideEscButton` prop. If this prop is used, it is best to provide another way to close the modal.
 
 ```.jsx
+  (props) => {
+    const [showModal, setShowModal] = React.useState(false);
 
-    class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          showModal: false
-        }
-
-        this.onModalShow = this.onModalShow.bind(this);
-        this.onModalClose = this.onModalClose.bind(this);
-      }
-
-      onModalShow() {
-        this.setState({showModal: true})
-      }
-
-      onModalClose() {
-        this.setState({showModal: false})
-      }
-
-      render() {
-        const { showModal } = this.state;
-
-        return (<>
-            <Modal header="Modal Title" hideEscButton onClose={this.onModalClose} open={showModal}>
-              <p>The standard modal close button is hidden.</p>
-              <Button onClick={this.onModalClose}>Close this Dialog</Button>
-            </Modal>
-          <Button onClick={this.onModalShow}>Show Modal</Button>
-        </>)
-      }
-    }
+    return (<>
+      <Modal header="Modal Title" hideEscButton onClose={() => setShowModal(false)} open={showModal}>
+        <p>The standard modal close button is hidden.</p>
+        <Button onClick={() => setShowModal(false)}>Close this Dialog</Button>
+      </Modal>
+      <Button onClick={() => setShowModal(true)}>Show Modal</Button>
+    </>)
+  }
 ```
 
 ## Modal Props

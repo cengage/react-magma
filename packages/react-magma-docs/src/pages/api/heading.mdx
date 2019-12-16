@@ -41,29 +41,24 @@ Inverse is an optional boolean prop, that may be passed in when the component is
 Using React's `forwardRef` feature you can gain access to the reference of the internal heading.
 
 ```.jsx
-  class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.headingRef = React.createRef();
-      }
+  (props) => {
+    const headingRef = React.useRef();
 
-      render() {
-        return <div>
-        <Heading
-          ref={this.headingRef}
-          level={1}>
-          Heading to Be Focused
-        </Heading>
+    return <div>
+      <Heading
+        ref={headingRef}
+        level={1}>
+        Heading to Be Focused
+      </Heading>
 
-        <Button
-          onClick={() => {
-            this.headingRef.current.tabIndex = -1
-            this.headingRef.current.focus();
-          }}>Click to focus heading
-        </Button>
-        </div>
-      }
-    }
+      <Button
+        onClick={() => {
+          headingRef.current.tabIndex = -1
+          headingRef.current.focus();
+        }}>Click to focus heading
+      </Button>
+    </div>
+  }
 ```
 
 ## Testing

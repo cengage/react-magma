@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import { magma } from 'react-magma-dom'
 
 const StyledHeader = styled.header`
-    background: ${magma.colors.foundation01};
+    background: ${magma.colors.foundation02};
     box-shadow: 0 2px 3px 0 rgba(0,0,0,0.37);
     color: #fff;
     font-size: 16px;

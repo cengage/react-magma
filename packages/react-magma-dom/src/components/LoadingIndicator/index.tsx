@@ -44,100 +44,77 @@ const Message = styled.div<{ hide?: boolean }>`
   width: 100%;
 `;
 
-class LoadingIndicatorComponent extends React.Component<
-  LoadingIndicatorProps,
-  LoadingIndicatorState
-> {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      messageLevel: 1
-    };
-
-    this.setTimer = this.setTimer.bind(this);
-  }
-
-  private messageLevel2Timeout;
-  private messageLevel3Timeout;
-
-  componentDidMount() {
-    this.setTimer(this.props.type);
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.messageLevel2Timeout);
-    clearTimeout(this.messageLevel3Timeout);
-  }
-
-  setTimer(type) {
-    this.messageLevel2Timeout = setTimeout(
-      () => {
-        this.setState({ messageLevel: 2 });
-      },
-      type === LoadingIndicatorType.progressbar ? 10000 : 5000
-    );
-
-    this.messageLevel3Timeout = setTimeout(
-      () => {
-        this.setState({ messageLevel: 3 });
-      },
-      type === LoadingIndicatorType.progressbar ? 30000 : 15000
-    );
-  }
-
-  render() {
-    const { ref, percentage, type } = this.props;
-    let { message1, message2, message3 } = this.props;
-
-    message1 = message1
-      ? message1
-      : type === LoadingIndicatorType.progressbar
-      ? 'Please be patient as this could take up to a minute to load.'
-      : 'Loading...';
-
-    message2 = message2
-      ? message2
-      : 'Thank you for your patience. Still loading...';
-
-    message3 = message3
-      ? message3
-      : type === LoadingIndicatorType.progressbar
-      ? 'Thank you for waiting.  We’re almost there!'
-      : 'Sorry for the delay. This is taking longer than expected.';
-
-    const { messageLevel } = this.state;
-
-    return (
-      <StyledLoadingIndicator aria-busy="true" ref={ref}>
-        {type === LoadingIndicatorType.progressbar ? (
-          <ProgressBar
-            animated
-            height={10}
-            labelVisible
-            percentage={percentage}
-          />
-        ) : (
-          <Spinner size={50} />
-        )}
-
-        <MessageContainer>
-          <Message aria-hidden={messageLevel !== 1} hide={messageLevel !== 1}>
-            {message1}
-          </Message>
-          <Message aria-hidden={messageLevel !== 2} hide={messageLevel !== 2}>
-            {message2}
-          </Message>
-          <Message aria-hidden={messageLevel !== 3} hide={messageLevel !== 3}>
-            {message3}
-          </Message>
-        </MessageContainer>
-      </StyledLoadingIndicator>
-    );
-  }
-}
-
 export const LoadingIndicator = React.forwardRef<
   HTMLDivElement,
   LoadingIndicatorProps
->((props, ref) => <LoadingIndicatorComponent ref={ref} {...props} />);
+>((props, ref) => {
+  const [messageLevel, setMessageLevel] = React.useState<1 | 2 | 3>(1);
+
+  React.useEffect(() => {
+    const { type: loadingIndicatorType } = props;
+    const messageLevel2Timeout = setTimeout(
+      () => {
+        setMessageLevel(2);
+      },
+      loadingIndicatorType === LoadingIndicatorType.progressbar ? 10000 : 5000
+    );
+
+    const messageLevel3Timeout = setTimeout(
+      () => {
+        setMessageLevel(3);
+      },
+      loadingIndicatorType === LoadingIndicatorType.progressbar ? 30000 : 15000
+    );
+
+    return () => {
+      clearTimeout(messageLevel2Timeout);
+      clearTimeout(messageLevel3Timeout);
+    };
+  }, []);
+
+  const { percentage, type } = props;
+  let { message1, message2, message3 } = props;
+
+  message1 = message1
+    ? message1
+    : type === LoadingIndicatorType.progressbar
+    ? 'Please be patient as this could take up to a minute to load.'
+    : 'Loading...';
+
+  message2 = message2
+    ? message2
+    : 'Thank you for your patience. Still loading...';
+
+  message3 = message3
+    ? message3
+    : type === LoadingIndicatorType.progressbar
+    ? 'Thank you for waiting.  We’re almost there!'
+    : 'Sorry for the delay. This is taking longer than expected.';
+
+  return (
+    <StyledLoadingIndicator aria-busy="true" ref={ref}>
+      {type === LoadingIndicatorType.progressbar ? (
+        <ProgressBar
+          animated
+          height={10}
+          labelVisible
+          percentage={percentage}
+        />
+      ) : (
+        <Spinner size={50} />
+      )}
+
+      <MessageContainer>
+        <Message aria-hidden={messageLevel !== 1} hide={messageLevel !== 1}>
+          {message1}
+        </Message>
+        <Message aria-hidden={messageLevel !== 2} hide={messageLevel !== 2}>
+          {message2}
+        </Message>
+        <Message aria-hidden={messageLevel !== 3} hide={messageLevel !== 3}>
+          {message3}
+        </Message>
+      </MessageContainer>
+    </StyledLoadingIndicator>
+  );
+});

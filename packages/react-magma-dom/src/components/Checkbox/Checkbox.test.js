@@ -66,7 +66,7 @@ describe('Checkbox', () => {
 
   it('should render a passed in color', () => {
     const color = '#FFFFFF';
-    const { container } = render(<Checkbox color={color} />);
+    const { container } = render(<Checkbox checked color={color} />);
     const span = container.querySelector('span');
 
     expect(span).toHaveStyleRule('background', color);
@@ -96,7 +96,10 @@ describe('Checkbox', () => {
     const span = container.querySelector('span');
 
     expect(span).toHaveStyleRule('background', 'none');
-    expect(span).toHaveStyleRule('border-color', 'rgba(255,255,255,0.25)');
+    expect(span).toHaveStyleRule(
+      'border-color',
+      magma.colors.disabledInverseText
+    );
   });
 
   it('should render an inverse, checked checkbox with the correct styles', () => {
@@ -129,33 +132,23 @@ describe('Checkbox', () => {
   });
 
   it('should update indeterminate on rerender', () => {
-    const testId = 'abc123';
-    const { getByTestId, rerender } = render(<Checkbox testId={testId} />);
-    const checkbox = getByTestId(testId);
+    const { queryByTestId, rerender } = render(<Checkbox />);
 
-    expect(checkbox).toHaveProperty('indeterminate', false);
+    expect(queryByTestId('indeterminateIcon')).not.toBeInTheDocument();
 
-    rerender(<Checkbox testId={testId} indeterminate={true} />);
+    rerender(<Checkbox indeterminate={true} />);
 
-    expect(checkbox).toHaveProperty('indeterminate', true);
+    expect(queryByTestId('indeterminateIcon')).toBeInTheDocument();
   });
 
-  it('should give the checkbox an indeterminate value', () => {
-    const testId = 'abc123';
-    const { getByTestId } = render(<Checkbox indeterminate testId={testId} />);
-    expect(getByTestId(testId)).toHaveProperty('indeterminate');
-  });
+  it('should give the indeterminate icon the passed in color', () => {
+    const color = 'whitesmoke';
+    const { queryByTestId } = render(<Checkbox indeterminate color={color} />);
 
-  it('should update indeterminate on rerender', () => {
-    const testId = 'abc123';
-    const { getByTestId, rerender } = render(<Checkbox testId={testId} />);
-    const checkbox = getByTestId(testId);
-
-    expect(checkbox).toHaveProperty('indeterminate', false);
-
-    rerender(<Checkbox testId={testId} indeterminate />);
-
-    expect(checkbox).toHaveProperty('indeterminate', true);
+    expect(queryByTestId('indeterminateIcon')).toHaveStyleRule(
+      'background',
+      color
+    );
   });
 
   describe('events', () => {
@@ -187,6 +180,18 @@ describe('Checkbox', () => {
       fireEvent.click(getByTestId(testId));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should not change checkbox value if checkbox is clicked while indeterminate is true', () => {
+      const testId = 'abc123';
+      const { getByTestId } = render(
+        <Checkbox testId={testId} indeterminate />
+      );
+
+      fireEvent.click(getByTestId(testId));
+
+      expect(getByTestId(testId).checked).toBeFalsy();
+      expect(getByTestId('indeterminateIcon')).toBeInTheDocument();
     });
 
     it('should trigger the passed in onFocus when focused', () => {

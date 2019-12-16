@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 interface LinkButtonProps
@@ -25,7 +25,7 @@ const LinkButtonComponent = styled.button<LinkButtonProps>`
       color: ${props =>
         props.inverse
           ? props.theme.colors.neutral07
-          : props.theme.colors.foundation01};
+          : props.theme.colors.foundation02};
     }
 
     &:focus {
@@ -33,7 +33,7 @@ const LinkButtonComponent = styled.button<LinkButtonProps>`
         ${props =>
           props.inverse
             ? props.theme.colors.neutral08
-            : props.theme.colors.pop02};
+            : props.theme.colors.focus};
       outline-offset: 3px;
     }
   }

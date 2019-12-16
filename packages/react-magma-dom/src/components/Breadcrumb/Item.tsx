@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { HyperLink } from '../HyperLink';
 import { AngleRightIcon } from '../Icon/types/AngleRightIcon';
@@ -20,7 +20,7 @@ const StyledSpan = styled.span<BreadcrumbItemProps>`
   color: ${props =>
     props.inverse
       ? props.theme.colors.neutral08
-      : props.theme.colors.neutral04};
+      : props.theme.colors.neutral03};
 
   svg {
     margin: 0 10px;
@@ -31,27 +31,24 @@ export const BreadcrumbItem: React.FunctionComponent<BreadcrumbItemProps> = (
   props: BreadcrumbItemProps
 ) => {
   const { inverse, children, ref, to } = props;
+  const theme = React.useContext(ThemeContext);
 
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <StyledItem ref={ref}>
-          {to ? (
-            <>
-              <HyperLink to={to} inverse={inverse}>
-                {children}
-              </HyperLink>
-              <StyledSpan inverse={inverse} theme={theme}>
-                <AngleRightIcon size={10} />
-              </StyledSpan>
-            </>
-          ) : (
-            <StyledSpan aria-current="page" inverse={inverse} theme={theme}>
-              {children}
-            </StyledSpan>
-          )}
-        </StyledItem>
+    <StyledItem ref={ref}>
+      {to ? (
+        <>
+          <HyperLink to={to} inverse={inverse}>
+            {children}
+          </HyperLink>
+          <StyledSpan inverse={inverse} theme={theme}>
+            <AngleRightIcon size={10} />
+          </StyledSpan>
+        </>
+      ) : (
+        <StyledSpan aria-current="page" inverse={inverse} theme={theme}>
+          {children}
+        </StyledSpan>
       )}
-    </ThemeContext.Consumer>
+    </StyledItem>
   );
 };

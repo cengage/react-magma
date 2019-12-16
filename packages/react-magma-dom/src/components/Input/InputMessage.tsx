@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Notification2Icon } from '../Icon/types/Notification2Icon';
 
@@ -20,7 +20,7 @@ const Message = styled.div<InputMessageProps>`
       ? props.theme.colors.neutral08
       : props.isError
       ? props.theme.colors.danger
-      : props.theme.colors.neutral04};
+      : props.theme.colors.neutral03};
   display: flex;
   font-size: 13px;
   margin-top: 5px;
@@ -36,24 +36,22 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
   isError,
   ...other
 }: InputMessageProps) => {
+  const theme = React.useContext(ThemeContext);
+
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <Message
-          {...other}
-          id={id}
-          inverse={inverse}
-          isError={isError}
-          theme={theme}
-        >
-          {isError && (
-            <>
-              <Notification2Icon aria-label="Error" size={18} /> &nbsp;
-            </>
-          )}
-          {children}
-        </Message>
+    <Message
+      {...other}
+      id={id}
+      inverse={inverse}
+      isError={isError}
+      theme={theme}
+    >
+      {isError && (
+        <>
+          <Notification2Icon aria-label="Error" size={18} /> &nbsp;
+        </>
       )}
-    </ThemeContext.Consumer>
+      {children}
+    </Message>
   );
 };

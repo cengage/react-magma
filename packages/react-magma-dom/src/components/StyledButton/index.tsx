@@ -73,7 +73,7 @@ export const buttonStyles = props => css`
       outline: 2px dotted
         ${props.inverse
           ? props.theme.colors.neutral08
-          : props.theme.colors.pop02};
+          : props.theme.colors.focus};
       outline-offset: 3px;
     }
 
@@ -135,18 +135,17 @@ export const StyledButton: React.FunctionComponent<
     variant,
     ...other
   } = props;
+
+  const theme = React.useContext(ThemeContext);
+
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <button
-          css={buttonStyles({ ...props, theme })}
-          {...other}
-          data-testid={testId}
-          ref={ref}
-        >
-          {children}
-        </button>
-      )}
-    </ThemeContext.Consumer>
+    <button
+      css={buttonStyles({ ...props, theme })}
+      {...other}
+      data-testid={testId}
+      ref={ref}
+    >
+      {children}
+    </button>
   );
 });

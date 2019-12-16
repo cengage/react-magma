@@ -30,12 +30,12 @@ describe('Alert', () => {
     expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-1u3zgza-StyledAlert e1i9bore0"
+    class="css-e3152"
     id="defaultVariant"
     tabindex="-1"
   >
     <span
-      class="css-rysqwo-IconWrapper-IconWrapperStyles e1i9bore2"
+      class="css-puenap-IconWrapperStyles"
     >
       <svg
         class="icon"
@@ -52,7 +52,7 @@ describe('Alert', () => {
       </svg>
     </span>
     <div
-      class="css-zlsewa-AlertContents e1i9bore1"
+      class="css-1yy0nb0"
     >
       Test Alert Text
     </div>
@@ -83,11 +83,11 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-1u3zgza-StyledAlert e1i9bore0"
+    class="css-e3152"
     tabindex="-1"
   >
     <span
-      class="css-rysqwo-IconWrapper-IconWrapperStyles e1i9bore2"
+      class="css-puenap-IconWrapperStyles"
     >
       <svg
         class="icon"
@@ -104,7 +104,7 @@ describe('Alert', () => {
       </svg>
     </span>
     <div
-      class="css-zlsewa-AlertContents e1i9bore1"
+      class="css-1yy0nb0"
     >
       Test Alert Text
     </div>
@@ -122,11 +122,11 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-ueh4n7-StyledAlert e1i9bore0"
+    class="css-d3aqyd"
     tabindex="-1"
   >
     <span
-      class="css-rysqwo-IconWrapper-IconWrapperStyles e1i9bore2"
+      class="css-puenap-IconWrapperStyles"
     >
       <svg
         class="icon"
@@ -143,7 +143,7 @@ describe('Alert', () => {
       </svg>
     </span>
     <div
-      class="css-zlsewa-AlertContents e1i9bore1"
+      class="css-1yy0nb0"
     >
       Test Alert Text
     </div>
@@ -161,11 +161,11 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-c3282f-StyledAlert e1i9bore0"
+    class="css-tajpk"
     tabindex="-1"
   >
     <span
-      class="css-rysqwo-IconWrapper-IconWrapperStyles e1i9bore2"
+      class="css-puenap-IconWrapperStyles"
     >
       <svg
         class="icon"
@@ -181,7 +181,7 @@ describe('Alert', () => {
       </svg>
     </span>
     <div
-      class="css-zlsewa-AlertContents e1i9bore1"
+      class="css-1yy0nb0"
     >
       Test Alert Text
     </div>
@@ -199,11 +199,11 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-e90d2a-StyledAlert e1i9bore0"
+    class="css-6349ll"
     tabindex="-1"
   >
     <span
-      class="css-rysqwo-IconWrapper-IconWrapperStyles e1i9bore2"
+      class="css-puenap-IconWrapperStyles"
     >
       <svg
         class="icon"
@@ -220,7 +220,7 @@ describe('Alert', () => {
       </svg>
     </span>
     <div
-      class="css-zlsewa-AlertContents e1i9bore1"
+      class="css-1yy0nb0"
     >
       Test Alert Text
     </div>
@@ -230,19 +230,19 @@ describe('Alert', () => {
     });
   });
 
-  describe('Dismissable', () => {
-    it('should render a dismissable icon button', () => {
+  describe('Dismissible', () => {
+    it('should render a dismissible icon button', () => {
       const { getByLabelText } = render(
-        <Alert dismissable>Test Alert Text</Alert>
+        <Alert dismissible>Test Alert Text</Alert>
       );
       const dismissableIconButton = getByLabelText('Close this message');
 
       expect(dismissableIconButton).toBeInTheDocument();
     });
 
-    it('should render a dismissable icon button with custom close label text', () => {
+    it('should render a dismissible icon button with custom close label text', () => {
       const { getByLabelText } = render(
-        <Alert dismissable closeLabel="Test">
+        <Alert dismissible closeLabel="Test">
           Test Alert Text
         </Alert>
       );
@@ -251,9 +251,9 @@ describe('Alert', () => {
       expect(dismissableIconButton).toBeInTheDocument();
     });
 
-    it('should render a dismissable icon button with the warning variant', () => {
+    it('should render a dismissible icon button with the warning variant', () => {
       const { getByLabelText } = render(
-        <Alert dismissable variant={AlertVariant.warning}>
+        <Alert dismissible variant={AlertVariant.warning}>
           Test Alert Text
         </Alert>
       );
@@ -267,10 +267,10 @@ describe('Alert', () => {
       expect(button).toMatchSnapshot();
     });
 
-    it('should call passed in onDismiss when dismissable icon button is clicked', () => {
+    it('should call passed in onDismiss when dismissible icon button is clicked', () => {
       const onDismiss = jest.fn();
       const { getByLabelText } = render(
-        <Alert dismissable onDismiss={onDismiss}>
+        <Alert dismissible onDismiss={onDismiss}>
           Test Alert Text
         </Alert>
       );

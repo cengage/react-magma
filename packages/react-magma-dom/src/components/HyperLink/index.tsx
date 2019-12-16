@@ -35,12 +35,12 @@ const linkStyles = props => css`
     &:focus {
       color: ${props.inverse
         ? props.theme.colors.neutral07
-        : props.theme.colors.foundation01};
+        : props.theme.colors.foundation02};
     }
 
     &:focus {
       outline: 2px dotted
-        ${props.inverse ? props.theme.neutral08 : props.theme.colors.pop02};
+        ${props.inverse ? props.theme.neutral08 : props.theme.colors.focus};
       outline-offset: 3px;
     }
   }
@@ -53,32 +53,27 @@ export const HyperLink: React.FunctionComponent<
   const { children, to, styledAs, inverse, ...rest } = props;
 
   const other = omit(['textTransform', 'positionTop', 'positionLeft'], rest);
+  const theme = React.useContext(ThemeContext);
 
-  return (
-    <ThemeContext.Consumer>
-      {theme => {
-        const composedStyle =
-          styledAs === 'Button'
-            ? buttonStyles({ ...composedProps, theme })
-            : linkStyles({ ...props, theme });
+  const composedStyle =
+    styledAs === 'Button'
+      ? buttonStyles({ ...composedProps, theme })
+      : linkStyles({ ...props, theme });
 
-        if (typeof children === 'function') {
-          return (
-            <ClassNames>
-              {({ css: composedCss }) => {
-                const stylesClass = composedCss(composedStyle);
-                return children({ to, stylesClass });
-              }}
-            </ClassNames>
-          );
-        } else {
-          return (
-            <a {...other} href={to} css={composedStyle}>
-              {children}
-            </a>
-          );
-        }
-      }}
-    </ThemeContext.Consumer>
-  );
+  if (typeof children === 'function') {
+    return (
+      <ClassNames>
+        {({ css: composedCss }) => {
+          const stylesClass = composedCss(composedStyle);
+          return children({ to, stylesClass });
+        }}
+      </ClassNames>
+    );
+  } else {
+    return (
+      <a {...other} href={to} css={composedStyle}>
+        {children}
+      </a>
+    );
+  }
 });

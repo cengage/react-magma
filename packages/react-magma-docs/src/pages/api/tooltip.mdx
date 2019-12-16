@@ -63,22 +63,19 @@ The `Tooltip` component takes an optional `inverse` prop, for when the tooltip i
 ## Refs
 
 ```.jsx
-  class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.tooltipRef = React.createRef();
-      }
+  (props) => {
+    const tooltipRef = React.useRef();
 
-      render() {
-        return <div>
-          <Tooltip ref={this.tooltipRef} position="top" content="Ref tooltip" trigger={<Button aria-label="Question Icon" icon={<QuestionCircleIcon />} variant="link" />} />
-          <Button
-          onClick={() => {
-            this.tooltipRef.current.focus();
-          }}>Click to focus the tooltip</Button>
-        </div>
-      }
-    }
+    return (
+      <div>
+        <Tooltip ref={tooltipRef} position="top" content="Ref tooltip" trigger={<Button aria-label="Question Icon" icon={<QuestionCircleIcon />} variant="link" />} />
+        <Button
+        onClick={() => {
+          tooltipRef.current.focus();
+        }}>Click to focus the tooltip</Button>
+      </div>
+    )
+  }
 ```
 
 ## Tooltip Props

@@ -4,24 +4,22 @@
   "private": true,
   "scripts": {
     "postinstall": "lerna bootstrap && npm run build && npm run createStaticFile",
-    "test": "lerna run test --scope react-magma-dom --scope react-magma-core && npm run report",
-    "test-watch": "lerna exec --scope react-magma-dom --scope react-magma-core 'npm t -- --watch'",
+    "test": "lerna run test --scope react-magma-dom && npm run report",
+    "test-watch": "lerna exec --scope react-magma-dom 'npm t -- --watch'",
     "test-dom": "lerna exec --scope react-magma-dom 'npm t -- --watch --coverage=false'",
     "test-core": "lerna exec --scope react-magma-core 'npm t -- --watch --coverage=false'",
     "report": "mkdir -p .nyc_output && istanbul-merge ./packages/*/coverage/*.json --out .nyc_output/coverage.json && nyc report --reporter=lcov --reporter=text",
-    "build": "lerna run build --scope react-magma-core --scope react-magma-dom --scope react-magma-docs --scope babel-plugin-react-magma-dom",
+    "build": "lerna run build --scope react-magma-dom --scope react-magma-docs",
     "bootstrap": "lerna bootstrap",
     "lint": "lerna run lint",
     "docs": "lerna exec --scope react-magma-docs gatsby develop",
     "createStaticFile": "echo 'pushstate: enabled' >| packages/react-magma-docs/public/Staticfile",
     "cm": "git-cz",
     "cm-retry": "git-cz --retry",
-    "bump": "standard-version -a",
-    "bump:major": "standard-version -a --release-as major",
-    "bump:minor": "standard-version -a --release-as minor",
-    "bump:patch": "standard-version -a --release-as patch",
-    "bump:beta": "standard-version -a --prerelease beta --release-as patch",
-    "publish-all": "lerna exec --scope react-magma-core --scope react-magma-dom --scope babel-plugin-react-magma-dom 'npm publish'"
+    "bump:patch": "lerna version --conventional-commits",
+    "bump:pre": "lerna version --conventional-commits --conventional-prerelease",
+    "bump:release": "lerna version --conventional-commits --conventional-graduate",
+    "publish-all": "lerna exec --scope react-magma-dom 'npm publish'"
   },
   "husky": {
     "hooks": {
@@ -29,23 +27,17 @@
       "pre-commit": "lerna run lint && npm run test"
     }
   },
-  "standard-version": {
-    "scripts": {
-      "postbump": "node ./tools/sync-versions && git add ."
-    }
-  },
   "devDependencies": {
     "@commitlint/cli": "^7.1.2",
     "@commitlint/config-conventional": "^7.1.2",
     "commitizen": "^2.10.1",
     "cz-conventional-changelog": "^2.1.0",
-    "husky": "^1.0.0-rc.14",
+    "husky": "^3.0.9",
     "istanbul-merge": "^1.1.1",
     "jest": "^23.6.0",
     "jest-watch-typeahead": "^0.2.0",
     "lerna": "^3.1.4",
     "nyc": "^13.0.1",
-    "standard-version": "^6.0.1",
     "terser": "^4.0.2"
   },
   "config": {

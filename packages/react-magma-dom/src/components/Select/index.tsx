@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { SelectCore, Options } from 'react-magma-core';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 import ReactSelect, { components } from 'react-select';
+import { useSelectValue, Options } from '../Select/shared';
 import { SelectWrapper } from './SelectWrapper';
 
 export interface SelectProps {
@@ -25,7 +25,7 @@ export interface SelectProps {
   style?: ReactSelectStyles;
   onBlur?: () => void;
   onFocus?: () => void;
-  onChange?: (option: Options) => void;
+  onChange?: (option: Options[] | Options) => void;
   onOpen?: () => void;
   onClose?: () => void;
   onInputChange?: (value: string) => void;
@@ -54,33 +54,33 @@ export function getStyles(
       backgroundColor: isDisabled
         ? theme.colors.neutral07
         : theme.colors.neutral08,
-      borderColor: errorMessage ? theme.colors.danger : theme.colors.neutral04,
+      borderColor: errorMessage ? theme.colors.danger : theme.colors.neutral03,
       borderRadius: '5px',
       boxShadow: errorMessage ? `0 0 0 1px ${theme.colors.neutral08}` : '0 0 0',
-      color: theme.colors.neutral02,
+      color: theme.colors.neutral01,
       cursor: isDisabled ? 'not-allowed' : 'pointer',
       height: '37px',
       outline: isFocused
         ? inverse
           ? `2px dotted ${theme.colors.neutral08}`
-          : `2px dotted ${theme.colors.pop02}`
+          : `2px dotted ${theme.colors.focus}`
         : '0',
       outlineOffset: '2px',
       padding: '0 8px 0 0',
 
       '&:hover': {
-        borderColor: isFocused ? theme.colors.pop02 : theme.colors.neutral04
+        borderColor: isFocused ? theme.colors.pop02 : theme.colors.neutral03
       },
       ...customStyles.control
     }),
     dropdownIndicator: styles => ({
       ...styles,
-      color: theme.colors.neutral02,
+      color: theme.colors.neutral01,
       ...customStyles.dropdownIndicator
     }),
     clearIndicator: styles => ({
       ...styles,
-      color: theme.colors.neutral03,
+      color: theme.colors.neutral02,
 
       '&:hover': {
         backgroundColor: theme.colors.neutral07
@@ -97,24 +97,24 @@ export function getStyles(
       border: `1px solid ${theme.colors.neutral06}`,
       borderRadius: '3px',
       boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)',
-      color: theme.colors.neutral02,
+      color: theme.colors.neutral01,
       zIndex: 999,
       ...customStyles.menu
     }),
     multiValue: styles => ({
       ...styles,
       backgroundColor: theme.colors.neutral06,
-      color: theme.colors.neutral02,
+      color: theme.colors.neutral01,
       ...customStyles.multiValue
     }),
     multiValueRemove: styles => ({
       ...styles,
       backgroundColor: theme.colors.neutral06,
-      color: theme.colors.neutral02,
+      color: theme.colors.neutral01,
 
       '&:hover': {
         backgroundColor: theme.colors.neutral05,
-        color: theme.colors.neutral02
+        color: theme.colors.neutral01
       },
       ...customStyles.multiValueRemove
     }),
@@ -125,16 +125,16 @@ export function getStyles(
         : isSelected
         ? theme.colors.neutral07
         : theme.colors.neutral08,
-      color: theme.colors.neutral02,
+      color: theme.colors.neutral01,
       ...customStyles.option
     }),
     placeholder: styles => ({
       ...styles,
-      color: theme.colors.neutral04
+      color: theme.colors.neutral03
     }),
     singleValue: styles => ({
       ...styles,
-      color: theme.colors.neutral02
+      color: theme.colors.neutral01
     })
   };
 }
@@ -171,81 +171,77 @@ export const MultiValueRemove = props => {
 
 export const Select: React.FunctionComponent<SelectProps> = (
   props: SelectProps
-) => (
-  <SelectCore
-    defaultValue={props.defaultValue}
-    value={props.value}
-    onChange={props.onChange}
-  >
-    {({ value, onChange }) => {
-      const {
-        defaultValue,
-        id,
-        testId,
-        name,
-        labelText,
-        options,
-        disabled,
-        onBlur,
-        onFocus,
-        onOpen,
-        onClose,
-        onInputChange,
-        required,
-        clearable,
-        errorMessage,
-        helperMessage,
-        inverse,
-        multi,
-        style
-      } = props;
+) => {
+  const [value, onChange] = useSelectValue(
+    props.value,
+    props.defaultValue,
+    props.onChange
+  );
 
-      const ariaLabelText =
-        errorMessage || helperMessage
-          ? `${labelText}, ${errorMessage ? errorMessage : helperMessage}`
-          : labelText;
+  const {
+    defaultValue,
+    id,
+    testId,
+    name,
+    labelText,
+    options,
+    disabled,
+    onBlur,
+    onFocus,
+    onOpen,
+    onClose,
+    onInputChange,
+    required,
+    clearable,
+    errorMessage,
+    helperMessage,
+    inverse,
+    multi,
+    style
+  } = props;
 
-      return (
-        <ThemeContext.Consumer>
-          {theme => (
-            <SelectWrapper
-              errorMessage={errorMessage}
-              helperMessage={helperMessage}
-              id={id}
-              inverse={inverse}
-              labelText={labelText}
-              testId={testId}
-            >
-              <ReactSelect
-                aria-label={ariaLabelText}
-                classNamePrefix="magma"
-                components={{
-                  ClearIndicator,
-                  DropdownIndicator,
-                  MultiValueRemove
-                }}
-                defaultValue={defaultValue}
-                id={id}
-                inverse={inverse}
-                isClearable={clearable}
-                isDisabled={disabled}
-                isMulti={multi}
-                name={name}
-                onBlur={onBlur}
-                onChange={onChange}
-                onFocus={onFocus}
-                onInputChange={onInputChange}
-                onMenuClose={onClose}
-                onMenuOpen={onOpen}
-                options={options}
-                required={required}
-                styles={getStyles(style, theme, errorMessage, inverse)}
-                value={value}
-              />
-            </SelectWrapper>
-          )}
-        </ThemeContext.Consumer>
-      );
-    }}
-  </SelectCore>
-);
+  const ariaLabelText =
+    errorMessage || helperMessage
+      ? `${labelText}, ${errorMessage ? errorMessage : helperMessage}`
+      : labelText;
+
+  const theme = React.useContext(ThemeContext);
+
+  return (
+    <SelectWrapper
+      errorMessage={errorMessage}
+      helperMessage={helperMessage}
+      id={id}
+      inverse={inverse}
+      labelText={labelText}
+      testId={testId}
+    >
+      <ReactSelect
+        aria-label={ariaLabelText}
+        classNamePrefix="magma"
+        components={{
+          ClearIndicator,
+          DropdownIndicator,
+          MultiValueRemove
+        }}
+        defaultValue={defaultValue}
+        id={id}
+        inverse={inverse}
+        isClearable={clearable}
+        isDisabled={disabled}
+        isMulti={multi}
+        name={name}
+        onBlur={onBlur}
+        onChange={onChange}
+        onFocus={onFocus}
+        onInputChange={onInputChange}
+        onMenuClose={onClose}
+        onMenuOpen={onOpen}
+        options={options}
+        required={required}
+        styles={getStyles(style, theme, errorMessage, inverse)}
+        value={value}
+      />
+    </SelectWrapper>
+  );
+};
