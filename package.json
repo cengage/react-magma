@@ -16,6 +16,7 @@
     "createStaticFile": "echo 'pushstate: enabled' >| packages/react-magma-docs/public/Staticfile",
     "cm": "git-cz",
     "cm-retry": "git-cz --retry",
+    "bump:patch": "lerna version --conventional-commits",
     "bump:pre": "lerna version --conventional-commits --conventional-prerelease",
     "bump:release": "lerna version --conventional-commits --conventional-graduate",
     "publish-all": "lerna exec --scope react-magma-dom 'npm publish'"
