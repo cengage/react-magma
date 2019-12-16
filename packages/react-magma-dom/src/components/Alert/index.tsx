@@ -21,7 +21,8 @@ export enum AlertVariant {
   info = 'info', //default
   success = 'success',
   warning = 'warning',
-  danger = 'danger'
+  danger = 'danger',
+  silly = 'silly'
 }
 
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
