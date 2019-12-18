@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tab } from '../Tab';
 import { CheckIcon } from '../../Icon/types/CheckIcon';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
 
 expect.extend(toHaveNoViolations);
@@ -12,24 +12,6 @@ describe('Tab', () => {
     const { getByTestId } = render(<Tab testId={testId} ariaLabel="test" />);
 
     expect(getByTestId(testId)).toBeInTheDocument();
-  });
-
-  it('calls handleClick prop on button click', () => {
-    const defaultChangeHandler = jest.fn();
-
-    Element.prototype.scrollIntoView = jest.fn();
-
-    const { getByTestId } = render(
-      <Tab
-        testId={testId}
-        ariaLabel="test"
-        defaultChangeHandler={defaultChangeHandler}
-      />
-    );
-
-    fireEvent.click(getByTestId(testId));
-
-    expect(defaultChangeHandler).toHaveBeenCalled();
   });
 
   it('should be disabled', () => {

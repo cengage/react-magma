@@ -78,7 +78,10 @@ export const Tabs: React.FC<ITabsProps & Orientation> = forwardRef(
 
     // eslint-disable-next-line no-unused-vars
     const defaultChangeHandler = useCallback(
-      (newActiveIndex: number, event?: React.MouseEvent<HTMLElement>): void => {
+      (
+        newActiveIndex: number,
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>
+      ): void => {
         if (
           (!state || !dispatch) &&
           (!activeIndex || !onChange) &&
@@ -91,6 +94,16 @@ export const Tabs: React.FC<ITabsProps & Orientation> = forwardRef(
           return undefined;
         }
 
+        if (
+          (event.target as HTMLInputElement).children[0] &&
+          (event.target as HTMLInputElement).children[0].hasAttribute(
+            'disabled'
+          )
+        ) {
+          event.preventDefault();
+          return undefined;
+        }
+
         setPreviousActiveTab(state.activeTabIndex);
 
         if (onChange) {
@@ -100,6 +113,12 @@ export const Tabs: React.FC<ITabsProps & Orientation> = forwardRef(
         dispatch({
           type: 'setActiveTabIndex',
           payload: { activeTabIndex: newActiveIndex }
+        });
+
+        (event.target as HTMLButtonElement).scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'start'
         });
       },
       [activeIndex, dispatch, onChange, state]
@@ -250,10 +269,11 @@ export const Tabs: React.FC<ITabsProps & Orientation> = forwardRef(
                   (activeIndex
                     ? activeIndex
                     : (state && state.activeTabIndex) || 0);
+
                 const child: any = React.cloneElement(childItem, {
+                  isActive,
                   defaultChangeHandler,
-                  index,
-                  isActive
+                  index
                 });
 
                 return (
@@ -264,11 +284,13 @@ export const Tabs: React.FC<ITabsProps & Orientation> = forwardRef(
                     isActive={isActive}
                     length={arrChildren.length}
                     orientation={orientation}
+                    onClick={e => defaultChangeHandler(index, e)}
                   >
                     {child}
                   </StyledTabsChild>
                 );
               })}
+
               <BottomLineStyled
                 theme={activeTheme}
                 length={arrChildren.length}
