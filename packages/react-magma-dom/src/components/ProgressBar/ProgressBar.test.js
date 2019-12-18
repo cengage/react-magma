@@ -36,7 +36,7 @@ describe('ProgressBar', () => {
 
   it('should render the progress bar component with danger color', () => {
     const { container } = render(
-      <ProgressBar percentage={50} bgColor="danger" />
+      <ProgressBar percentage={50} color="danger" />
     );
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
@@ -46,9 +46,7 @@ describe('ProgressBar', () => {
   });
 
   it('should render the progress bar component with pop01 color', () => {
-    const { container } = render(
-      <ProgressBar percentage={50} bgColor="pop01" />
-    );
+    const { container } = render(<ProgressBar percentage={50} color="pop01" />);
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
@@ -57,9 +55,7 @@ describe('ProgressBar', () => {
   });
 
   it('should render the progress bar component with pop02 color', () => {
-    const { container } = render(
-      <ProgressBar percentage={50} bgColor="pop02" />
-    );
+    const { container } = render(<ProgressBar percentage={50} color="pop02" />);
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
@@ -69,7 +65,7 @@ describe('ProgressBar', () => {
 
   it('should render the progress bar component with success color', () => {
     const { container } = render(
-      <ProgressBar percentage={50} bgColor="success" />
+      <ProgressBar percentage={50} color="success" />
     );
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
