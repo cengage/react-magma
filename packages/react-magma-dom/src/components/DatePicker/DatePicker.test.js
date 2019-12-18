@@ -44,7 +44,7 @@ describe('Date Picker', () => {
     const customPlaceholder = 'Custom text';
     const { getByLabelText } = render(
       <DatePicker
-        placeholderText={customPlaceholder}
+        placeholder={customPlaceholder}
         labelText="Date Picker Label"
       />
     );
