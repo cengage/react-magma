@@ -16,7 +16,7 @@ The `Search` component is the standardized use of the <Link to='/api/inputs/'>In
 The `onSearch` prop is required and takes a function and fires when the user clicks or presses Enter when focus is on the search icon or the search input. It also fires if the user is focused on the input and presses Enter.
 
 ```.jsx
-    <Search onSearch={() => {alert('search')}} />
+    <Search onSearch={(term) => {alert(term)}} />
 ```
 
 ## Label and Placeholder Text

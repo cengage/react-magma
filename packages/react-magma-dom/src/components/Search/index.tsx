@@ -12,7 +12,7 @@ export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
   isLoading?: boolean;
   labelText?: string;
   placeholderText?: string;
-  onSearch: () => void;
+  onSearch: (term: string) => void;
 }
 
 export const Search: React.FunctionComponent<SearchProps> = ({
@@ -29,12 +29,18 @@ export const Search: React.FunctionComponent<SearchProps> = ({
 }: SearchProps) => {
   const SEARCH = 'Search';
 
+  const inputRef = React.createRef();
+
   // handle search on enter
   function handleKeyPress(event: React.KeyboardEvent) {
     if (event.keyCode === 13) {
       event.preventDefault();
-      onSearch();
+      handleSearch();
     }
+  }
+
+  function handleSearch() {
+    onSearch(inputRef.current['value']);
   }
 
   return (
@@ -42,10 +48,11 @@ export const Search: React.FunctionComponent<SearchProps> = ({
       errorMessage={errorMessage}
       helperMessage={helperMessage}
       icon={<Search2Icon />}
-      onIconClick={onSearch}
+      onIconClick={handleSearch}
       iconAriaLabel={iconAriaLabel ? iconAriaLabel : SEARCH}
       iconPosition={InputIconPosition.right}
       id={id}
+      ref={inputRef}
       inputSize={inputSize}
       inverse={inverse}
       isLoading={isLoading}
