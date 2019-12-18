@@ -84,7 +84,9 @@ export const Toast: React.FunctionComponent<ToastProps> = (
       typeof props.onMouseEnter === 'function' &&
       props.onMouseEnter(event);
 
-    handlePause();
+    if (!props.disableAutoDismiss) {
+      handlePause();
+    }
   }
 
   function handleMouseLeave(event: React.SyntheticEvent) {
@@ -92,7 +94,9 @@ export const Toast: React.FunctionComponent<ToastProps> = (
       typeof props.onMouseLeave === 'function' &&
       props.onMouseLeave(event);
 
-    handleResume();
+    if (!props.disableAutoDismiss) {
+      handleResume();
+    }
   }
 
   const {
