@@ -39,11 +39,9 @@ describe('Search', () => {
   });
 
   it('should fire the onSearch event when enter is pressed', () => {
-    const { container } = render(<Search onSearch={onSearchSpy} />);
-
-    fireEvent.keyDown(container.querySelector('input'), {
-      keyCode: 27
-    });
+    const { container } = render(
+      <Search onSearch={onSearchSpy} value="test value" />
+    );
 
     expect(onSearchSpy).not.toHaveBeenCalled();
 
@@ -51,7 +49,7 @@ describe('Search', () => {
       keyCode: 13
     });
 
-    expect(onSearchSpy).toHaveBeenCalled();
+    expect(onSearchSpy).toBeCalledWith('test value');
   });
 
   it('Does not violate accessibility standards', () => {

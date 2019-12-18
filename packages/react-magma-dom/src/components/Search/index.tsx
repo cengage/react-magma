@@ -13,23 +13,36 @@ export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
   labelText?: string;
   placeholderText?: string;
   onSearch: (term: string) => void;
+  value?: string;
 }
 
-export const Search: React.FunctionComponent<SearchProps> = ({
-  errorMessage,
-  helperMessage,
-  iconAriaLabel,
-  id,
-  inverse,
-  inputSize,
-  isLoading,
-  labelText,
-  placeholderText,
-  onSearch
-}: SearchProps) => {
+export const Search: React.FunctionComponent<SearchProps> = (
+  props: SearchProps
+) => {
+  const {
+    errorMessage,
+    helperMessage,
+    iconAriaLabel,
+    id,
+    inverse,
+    inputSize,
+    isLoading,
+    labelText,
+    placeholderText,
+    onSearch
+  } = props;
+
   const SEARCH = 'Search';
 
-  const inputRef = React.createRef();
+  const [value, setValue] = React.useState<string>(props.value);
+
+  React.useEffect(() => {
+    setValue(props.value);
+  }, [props.value]);
+
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setValue(event.target.value);
+  }
 
   // handle search on enter
   function handleKeyPress(event: React.KeyboardEvent) {
@@ -40,7 +53,7 @@ export const Search: React.FunctionComponent<SearchProps> = ({
   }
 
   function handleSearch() {
-    onSearch(inputRef.current['value']);
+    onSearch(value);
   }
 
   return (
@@ -52,16 +65,16 @@ export const Search: React.FunctionComponent<SearchProps> = ({
       iconAriaLabel={iconAriaLabel ? iconAriaLabel : SEARCH}
       iconPosition={InputIconPosition.right}
       id={id}
-      ref={inputRef}
       inputSize={inputSize}
       inverse={inverse}
       isLoading={isLoading}
       labelText={labelText ? labelText : SEARCH}
       labelVisuallyHidden
+      onChange={handleChange}
       onKeyDown={handleKeyPress}
       placeholder={placeholderText ? placeholderText : SEARCH}
       type={InputType.search}
-      value=""
+      value={value}
     />
   );
 };
