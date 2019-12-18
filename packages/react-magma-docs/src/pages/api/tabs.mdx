@@ -1,0 +1,789 @@
+---
+title: 'Tabs'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import {
+  magma,
+  Tab,
+  Tabs,
+  TabPanel,
+  TabsContainer,
+  GraduationCapIcon,
+  BellIcon,
+  AndroidIcon,
+} from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
+
+# Using Tabs
+
+## Simple example
+
+This is a simple example of Tab Components
+
+```.jsx
+      function TabComponent() {
+        const wrapperStyles = {
+          backgroundColor: '#e6e6e6',
+          padding: '25px'
+        }
+
+        const panelStyles = {
+          height: '100px',
+          padding: '5px'
+        }
+
+        return (
+          <div id="example wrapper" style={wrapperStyles}>
+            <TabsContainer>
+                <Tabs
+                  orientation='horizontal'
+                >
+                  <Tab ariaLabel='first-tab'>Main page</Tab>
+                  <Tab ariaLabel='second-tab'>FAQ</Tab>
+                  <Tab ariaLabel='third-tab'>About us</Tab>
+                </Tabs>
+
+                <TabPanel index={0}>
+                  <div style={panelStyles}>Main page</div>
+                </TabPanel>
+                <TabPanel index={1}>
+                  <div style={panelStyles}>FAQ</div>
+                </TabPanel>
+                <TabPanel index={2}>
+                  <div style={panelStyles}>About us</div>
+                </TabPanel>
+            </TabsContainer>
+          </div>
+    )}
+```
+
+## Custom logic
+
+This is a simple example of Tab Components with custom switching logic
+
+```.jsx
+      class TabComponent extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            activeIndex: 0,
+          }
+
+          this.wrapperStyles = {
+            backgroundColor: '#e6e6e6',
+            padding: '25px'
+          }
+
+          this.panelStyles = {
+            height: '100px',
+            padding: '5px'
+          }
+
+          this.handleChange = this.handleChange.bind(this)
+        }
+
+        handleChange(index) {
+          this.setState(() => ({
+            activeIndex: index,
+          }))
+        }
+
+        render() {
+          return (
+              <div id="example wrapper" style={this.wrapperStyles}>
+                <TabsContainer>
+                    <Tabs
+                      activeIndex={this.state.activeIndex}
+                      onChange={this.handleChange}
+                    >
+                      <Tab index={0}>First item</Tab>
+                      <Tab index={1}>Second item</Tab>
+                      <Tab index={2}>Third item</Tab>
+                    </Tabs>
+
+                    <TabPanel index={0} activeIndex={this.state.activeIndex}>
+                      <div style={this.panelStyles}>First item</div>
+                    </TabPanel>
+                    <TabPanel index={1} activeIndex={this.state.activeIndex}>
+                      <div style={this.panelStyles}>Second item</div>
+                    </TabPanel>
+                    <TabPanel index={2} activeIndex={this.state.activeIndex}>
+                      <div style={this.panelStyles}>Third item</div>
+                    </TabPanel>
+                </TabsContainer>
+              </div>
+          )
+        }
+      }
+
+```
+
+## Disabled tabs
+
+This is an example of Tab Components with disabled Tab
+
+```.jsx
+      function TabComponent() {
+        const wrapperStyles = {
+          backgroundColor: '#e6e6e6',
+          padding: '25px'
+        }
+
+        const panelStyles = {
+          height: '100px',
+          padding: '5px'
+        }
+
+        return (
+          <div id="example wrapper" style={wrapperStyles}>
+            <TabsContainer>
+                <Tabs
+                  orientation='horizontal'
+                >
+                  <Tab ariaLabel='first-tab'>Main page</Tab>
+                  <Tab ariaLabel='second-tab' disabled>FAQ</Tab>
+                  <Tab ariaLabel='third-tab'>About us</Tab>
+                </Tabs>
+
+                <TabPanel index={0}>
+                  <div style={panelStyles}>Main page</div>
+                </TabPanel>
+                <TabPanel index={1}>
+                  <div style={panelStyles}>FAQ</div>
+                </TabPanel>
+                <TabPanel index={2}>
+                  <div style={panelStyles}>About us</div>
+                </TabPanel>
+            </TabsContainer>
+          </div>
+    )}
+```
+
+## Centered tabs
+
+This is an example with centered Tabs
+
+```.jsx
+      function TabComponent() {
+        const wrapperStyles = {
+          backgroundColor: '#e6e6e6',
+          padding: '25px'
+        }
+
+        const panelStyles = {
+          height: '100px',
+          padding: '5px'
+        }
+
+        return (
+          <div id="example wrapper" style={wrapperStyles}>
+            <TabsContainer>
+                <Tabs
+                  orientation='horizontal'
+                  centered
+                >
+                  <Tab ariaLabel='first-tab'>Main page</Tab>
+                  <Tab ariaLabel='second-tab'>FAQ</Tab>
+                  <Tab ariaLabel='third-tab'>About us</Tab>
+                </Tabs>
+
+                <TabPanel index={0}>
+                  <div style={panelStyles}>Main page</div>
+                </TabPanel>
+                <TabPanel index={1}>
+                  <div style={panelStyles}>FAQ</div>
+                </TabPanel>
+                <TabPanel index={2}>
+                  <div style={panelStyles}>About us</div>
+                </TabPanel>
+            </TabsContainer>
+          </div>
+    )}
+```
+
+## Scrollable tabs with buttons
+
+This is an example of scrollable Tabs with buttons
+
+```.jsx
+      function TabComponent() {
+        const wrapperStyles = {
+          backgroundColor: '#e6e6e6',
+          padding: '25px'
+        }
+
+        const panelStyles = {
+          height: '100px',
+          padding: '5px'
+        }
+
+        return (
+          <div id="example wrapper" style={wrapperStyles}>
+            <TabsContainer>
+                <Tabs
+                  orientation='horizontal'
+                  scrollButtons
+                >
+                  <Tab ariaLabel='first-tab'>First item</Tab>
+                  <Tab ariaLabel='second-tab'>Second item</Tab>
+                  <Tab ariaLabel='third-tab'>Third item</Tab>
+                  <Tab ariaLabel='fourth-tab'>Fourth item</Tab>
+                  <Tab ariaLabel='fifth-tab'>Fifth item</Tab>
+                  <Tab ariaLabel='sixth-tab'>Sixth item</Tab>
+                </Tabs>
+
+                <TabPanel index={0}>
+                  <div style={panelStyles}>First item</div>
+                </TabPanel>
+                <TabPanel index={1}>
+                  <div style={panelStyles}>Second item</div>
+                </TabPanel>
+                <TabPanel index={2}>
+                  <div style={panelStyles}>Third item</div>
+                </TabPanel>
+                <TabPanel index={3}>
+                  <div style={panelStyles}>Fourth item</div>
+                </TabPanel>
+                <TabPanel index={4}>
+                  <div style={panelStyles}>Fifth item</div>
+                </TabPanel>
+                <TabPanel index={5}>
+                  <div style={panelStyles}>Sixth item</div>
+                </TabPanel>
+            </TabsContainer>
+          </div>
+    )}
+```
+
+## Scrollable tabs without buttons
+
+This is an example of scrollable Tabs without buttons
+
+```.jsx
+      function TabComponent() {
+        const wrapperStyles = {
+          backgroundColor: '#e6e6e6',
+          padding: '25px'
+        }
+
+        const panelStyles = {
+          height: '100px',
+          padding: '5px'
+        }
+
+        return (
+          <div id="example wrapper" style={wrapperStyles}>
+            <TabsContainer>
+                <Tabs
+                  orientation='horizontal'
+                >
+                  <Tab ariaLabel='first-tab'>First item</Tab>
+                  <Tab ariaLabel='second-tab'>Second item</Tab>
+                  <Tab ariaLabel='third-tab'>Third item</Tab>
+                  <Tab ariaLabel='fourth-tab'>Fourth item</Tab>
+                  <Tab ariaLabel='fifth-tab'>Fifth item</Tab>
+                  <Tab ariaLabel='sixth-tab'>Sixth item</Tab>
+                </Tabs>
+
+                <TabPanel index={0}>
+                  <div style={panelStyles}>First item</div>
+                </TabPanel>
+                <TabPanel index={1}>
+                  <div style={panelStyles}>Second item</div>
+                </TabPanel>
+                <TabPanel index={2}>
+                  <div style={panelStyles}>Third item</div>
+                </TabPanel>
+                <TabPanel index={3}>
+                  <div style={panelStyles}>Fourth item</div>
+                </TabPanel>
+                <TabPanel index={4}>
+                  <div style={panelStyles}>Fifth item</div>
+                </TabPanel>
+                <TabPanel index={5}>
+                  <div style={panelStyles}>Sixth item</div>
+                </TabPanel>
+            </TabsContainer>
+          </div>
+    )}
+```
+
+## Vertical tabs
+
+This is an example with vertical Tabs
+
+```.jsx
+      function TabComponent() {
+        const wrapperStyles = {
+          backgroundColor: '#e6e6e6',
+          padding: '25px'
+        }
+
+        const panelStyles = {
+          height: '100px',
+          padding: '5px'
+        }
+
+        return (
+          <div id="example wrapper" style={wrapperStyles}>
+            <TabsContainer>
+                <Tabs
+                  orientation='vertical'
+                >
+                  <Tab ariaLabel='first-tab'>Main page</Tab>
+                  <Tab ariaLabel='second-tab'>FAQ</Tab>
+                  <Tab ariaLabel='third-tab'>About us</Tab>
+                </Tabs>
+
+                <TabPanel index={0}>
+                  <div style={panelStyles}>Main page</div>
+                </TabPanel>
+                <TabPanel index={1}>
+                  <div style={panelStyles}>FAQ</div>
+                </TabPanel>
+                <TabPanel index={2}>
+                  <div style={panelStyles}>About us</div>
+                </TabPanel>
+            </TabsContainer>
+          </div>
+    )}
+```
+
+## Nav tabs
+
+This is an example with custom element in Tabs
+By default we use "button" element in Tabs, but you can throw your custom element inside Tab component
+Please in this case put all childrens inside "component" prop instead of direct throwing in Tabs
+
+```.jsx
+      function TabComponent() {
+        const wrapperStyles = {
+          backgroundColor: '#e6e6e6',
+          padding: '25px'
+        }
+
+        const panelStyles = {
+          height: '100px',
+          padding: '5px'
+        }
+
+        return (
+          <div id="example wrapper" style={wrapperStyles}>
+            <TabsContainer>
+                <Tabs
+                  orientation='horizontal'
+                >
+                  <Tab ariaLabel='first-tab' component={<a href="/api/tabs">Main page</a>}></Tab>
+                  <Tab ariaLabel='second-tab'>FAQ</Tab>
+                  <Tab ariaLabel='third-tab'>About us</Tab>
+                </Tabs>
+
+                <TabPanel index={0}>
+                  <div style={panelStyles}>Main page</div>
+                </TabPanel>
+                <TabPanel index={1}>
+                  <div style={panelStyles}>FAQ</div>
+                </TabPanel>
+                <TabPanel index={2}>
+                  <div style={panelStyles}>About us</div>
+                </TabPanel>
+            </TabsContainer>
+          </div>
+    )}
+```
+
+## Icon tabs
+
+This is an example with icon Tabs
+
+```.jsx
+      function TabComponent() {
+        const wrapperStyles = {
+          backgroundColor: '#e6e6e6',
+          padding: '25px'
+        }
+
+        const panelStyles = {
+          height: '100px',
+          padding: '5px'
+        }
+
+        return (
+          <div id="example wrapper" style={wrapperStyles}>
+            <TabsContainer>
+                <Tabs
+                  orientation='horizontal'
+                >
+                 <Tab ariaLabel='first-tab' icon={<GraduationCapIcon/>}></Tab>
+                  <Tab ariaLabel='second-tab' icon={<AndroidIcon/>}></Tab>
+                  <Tab ariaLabel='third-tab' icon={<BellIcon/>}></Tab>
+                </Tabs>
+
+                <TabPanel index={0}>
+                  <div style={panelStyles}>Main page</div>
+                </TabPanel>
+                <TabPanel index={1}>
+                  <div style={panelStyles}>FAQ</div>
+                </TabPanel>
+                <TabPanel index={2}>
+                  <div style={panelStyles}>About us</div>
+                </TabPanel>
+            </TabsContainer>
+          </div>
+    )}
+```
+
+```.jsx
+      function TabComponent() {
+        const wrapperStyles = {
+          backgroundColor: '#e6e6e6',
+          padding: '25px'
+        }
+
+        const panelStyles = {
+          height: '100px',
+          padding: '5px'
+        }
+
+        return (
+          <div id="example wrapper" style={wrapperStyles}>
+            <TabsContainer>
+                <Tabs
+                  orientation='horizontal'
+                >
+                  <Tab ariaLabel='first-tab' icon={<GraduationCapIcon/>}>First item</Tab>
+                  <Tab ariaLabel='second-tab' icon={<AndroidIcon/>}>Second item</Tab>
+                  <Tab ariaLabel='third-tab' icon={<BellIcon/>}>Third item</Tab>
+                </Tabs>
+
+                <TabPanel index={0}>
+                  <div style={panelStyles}>First item</div>
+                </TabPanel>
+                <TabPanel index={1}>
+                  <div style={panelStyles}>Second item</div>
+                </TabPanel>
+                <TabPanel index={2}>
+                  <div style={panelStyles}>Third item</div>
+                </TabPanel>
+            </TabsContainer>
+          </div>
+    )}
+```
+
+## Color themes
+
+This is an examples with different themes for Tabs
+
+### Dark
+
+```.jsx
+      function TabComponent() {
+        const wrapperStyles = {
+          backgroundColor: '#e6e6e6',
+          padding: '25px'
+        }
+
+        const panelStyles = {
+          height: '100px',
+          padding: '5px'
+        }
+
+        return (
+          <div id="example wrapper" style={wrapperStyles}>
+            <TabsContainer theme="dark">
+                <Tabs
+                  orientation='horizontal'
+                >
+                 <Tab ariaLabel='first-tab'>First item</Tab>
+                  <Tab ariaLabel='second-tab'>Second item</Tab>
+                  <Tab ariaLabel='third-tab'>Third item</Tab>
+                </Tabs>
+            </TabsContainer>
+          </div>
+    )}
+```
+
+### Blue
+
+```.jsx
+      function TabComponent() {
+        const wrapperStyles = {
+          backgroundColor: '#e6e6e6',
+          padding: '25px'
+        }
+
+        const panelStyles = {
+          height: '100px',
+          padding: '5px'
+        }
+
+        return (
+          <div id="example wrapper" style={wrapperStyles}>
+            <TabsContainer theme="blue">
+                <Tabs
+                  orientation='horizontal'
+                >
+                 <Tab ariaLabel='first-tab'>First item</Tab>
+                  <Tab ariaLabel='second-tab'>Second item</Tab>
+                  <Tab ariaLabel='third-tab'>Third item</Tab>
+                </Tabs>
+            </TabsContainer>
+          </div>
+    )}
+```
+
+### Dark blue
+
+```.jsx
+      function TabComponent() {
+        const wrapperStyles = {
+          backgroundColor: '#e6e6e6',
+          padding: '25px'
+        }
+
+        const panelStyles = {
+          height: '100px',
+          padding: '5px'
+        }
+
+        return (
+          <div id="example wrapper" style={wrapperStyles}>
+            <TabsContainer theme="darkBlue">
+                <Tabs
+                  orientation='horizontal'
+                >
+                 <Tab ariaLabel='first-tab'>First item</Tab>
+                  <Tab ariaLabel='second-tab'>Second item</Tab>
+                  <Tab ariaLabel='third-tab'>Third item</Tab>
+                </Tabs>
+            </TabsContainer>
+          </div>
+    )}
+```
+
+### Grey
+
+```.jsx
+      function TabComponent() {
+        const wrapperStyles = {
+          backgroundColor: '#e6e6e6',
+          padding: '25px'
+        }
+
+        const panelStyles = {
+          height: '100px',
+          padding: '5px'
+        }
+
+        return (
+          <div id="example wrapper" style={wrapperStyles}>
+            <TabsContainer theme="grey">
+                <Tabs
+                  orientation='horizontal'
+                >
+                 <Tab ariaLabel='first-tab'>First item</Tab>
+                  <Tab ariaLabel='second-tab'>Second item</Tab>
+                  <Tab ariaLabel='third-tab'>Third item</Tab>
+                </Tabs>
+            </TabsContainer>
+          </div>
+    )}
+```
+
+## Tabs Container API
+
+<SimplePropsTable
+  props={{
+    theme: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Theme of Tabs component.',
+      defaultValue: 'light',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'The id for react-testing-library.',
+    },
+  }}
+/>
+
+## Tabs API
+
+<SimplePropsTable
+  props={{
+    activeId: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description:
+        'The id of current active tab. You can use this for managing state of tabs component by your custom logic.',
+    },
+    scrollButtons: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'The prop for turning on/off buttons for scrolling Tabs component.',
+    },
+    ariaLabel: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Custom aria label for Tabs component.',
+    },
+    onChange: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description:
+        'The onChange handler for managing state of Tabs component by your custom logic.',
+    },
+    styles: {
+      type: {
+        name: 'object',
+      },
+      required: false,
+      description: 'The custom styles object.',
+    },
+    centered: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'The prop for turning on/off centered mode.',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'The id for react-testing-library.',
+    },
+  }}
+/>
+
+## Tab API
+
+<SimplePropsTable
+  props={{
+    disabled: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'The prop for disabling Tab.',
+    },
+    component: {
+      type: {
+        name: 'React.ReactElement<any>',
+      },
+      required: false,
+      description: 'The prop for custom component instead of <button> in Tab.',
+    },
+    iconOrientation: {
+      type: {
+        name: '"left" | "top"',
+      },
+      required: false,
+      description: 'The orientation of icon on Tab.',
+    },
+    ariaLabel: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Custom aria label for Tab component.',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'The id for react-testing-library.',
+    },
+    index: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'The index of your Tab.',
+    },
+    isActive: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'The activity state of Tab component for your custom logic.',
+    },
+    styles: {
+      type: {
+        name: 'object',
+      },
+      required: false,
+      description: 'The custom styles object.',
+    },
+    path: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: `The path link. It's needed in case you are using Link component for example by React Router library. 
+        Path must be equal to expected route.`,
+    },
+  }}
+/>
+
+## TabPanel API
+
+<SimplePropsTable
+  props={{
+    activeIndex: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description:
+        'The index of current active tab. You can use this for managing state of tabs component by your custom logic.',
+    },
+    index: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'The index of your Tab.',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'The id for react-testing-library',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout
+    {...props}
+    components={{
+      Tab,
+      Tabs,
+      TabPanel,
+      TabsContainer,
+      magma,
+      GraduationCapIcon,
+      BellIcon,
+      AndroidIcon,
+    }}
+  />
+)
