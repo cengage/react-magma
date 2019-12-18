@@ -454,7 +454,7 @@ describe('Styled Button', () => {
     });
   });
 
-  describe('Block', () => {
+  describe('Full Width', () => {
     it('default button', () => {
       const text = 'test text';
       const { getByText } = render(<StyledButton>{text}</StyledButton>);
@@ -464,9 +464,11 @@ describe('Styled Button', () => {
       expect(button).toHaveStyleRule('width', 'auto');
     });
 
-    it('block button', () => {
+    it('Full Width button', () => {
       const text = 'test text';
-      const { getByText } = render(<StyledButton block>{text}</StyledButton>);
+      const { getByText } = render(
+        <StyledButton fullWidth>{text}</StyledButton>
+      );
       const button = getByText(text);
 
       expect(button).toHaveStyleRule('display', 'flex');
