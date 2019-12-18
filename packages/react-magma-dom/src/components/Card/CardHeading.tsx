@@ -6,6 +6,7 @@ export interface CardHeadingProps
   extends React.LabelHTMLAttributes<HTMLHeadingElement> {
   headingLevel?: 1 | 2 | 3 | 4 | 5 | 6;
   inverse?: boolean;
+  testId?: string;
 }
 
 const StyledCardHeading = styled(Heading)`
@@ -24,6 +25,7 @@ export const CardHeading: React.FunctionComponent<CardHeadingProps> = (
     <StyledCardHeading
       level={headingLevel ? headingLevel : 4}
       inverse={inverse}
+      testId={props.testId}
     >
       {children}
     </StyledCardHeading>

@@ -13,6 +13,13 @@ describe('Loading Indicator', () => {
     jest.useRealTimers();
   });
 
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(<LoadingIndicator testId={testId} />);
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should render the element', () => {
     const { container } = render(<LoadingIndicator />);
 

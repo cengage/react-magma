@@ -16,6 +16,15 @@ import {
 import { DatePicker } from '.';
 
 describe('Date Picker', () => {
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <DatePicker labelText="Date Picker Label" testId={testId} />
+    );
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should render an input', () => {
     const { getByLabelText } = render(
       <DatePicker labelText="Date Picker Label" />

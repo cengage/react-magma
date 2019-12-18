@@ -113,6 +113,14 @@ The `Tooltip` component takes an optional `inverse` prop, for when the tooltip i
       description: 'Position the tooltip appears in relation to its trigger',
       defaultValue: 'top',
     },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
     trigger: {
       type: {
         name: 'element',

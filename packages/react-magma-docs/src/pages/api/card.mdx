@@ -227,6 +227,14 @@ If the background color is dark, the `inverse` boolean prop can be used to rende
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
     width: {
       type: {
         name: 'string',
@@ -266,6 +274,36 @@ If the background color is dark, the `inverse` boolean prop can be used to rende
       description:
         'Number to indicate which level heading will render (e.g. h1, h2 etc.)',
       defaultValue: '4',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+  }}
+/>
+
+## Card Body Props
+
+<SimplePropsTable
+  props={{
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
   }}
 />

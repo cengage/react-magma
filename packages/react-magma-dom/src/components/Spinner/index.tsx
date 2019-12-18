@@ -6,6 +6,7 @@ export interface SpinnerProps {
   ariaLabel?: string;
   color?: string;
   size?: number;
+  testId?: string;
 }
 
 const StyledSpinner = styled.span<SpinnerProps>`
@@ -27,13 +28,15 @@ const StyledSpinner = styled.span<SpinnerProps>`
 export const Spinner: React.FunctionComponent<SpinnerProps> = ({
   ariaLabel,
   color,
-  size
+  size,
+  testId
 }: SpinnerProps) => (
   <ThemeContext.Consumer>
     {theme => (
       <StyledSpinner
         aria-label={ariaLabel ? ariaLabel : 'Loading...'}
         color={color ? color : theme.colors.primary}
+        data-testid={testId}
         size={size ? size : 15}
       />
     )}

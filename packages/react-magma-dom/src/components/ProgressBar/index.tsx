@@ -10,6 +10,7 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   inverse?: boolean;
   labelVisible?: boolean;
   percentage?: number;
+  testId?: string;
 }
 
 export enum ProgressBarColor {
@@ -111,7 +112,8 @@ export const ProgressBar: React.FunctionComponent<
       height,
       inverse,
       labelVisible,
-      percentage
+      percentage,
+      testId
     }: ProgressBarProps,
     ref: any
   ) => {
@@ -122,6 +124,7 @@ export const ProgressBar: React.FunctionComponent<
     return (
       <Container>
         <Track
+          data-testid={testId}
           height={height ? height : 15}
           inverse={inverse}
           ref={ref}

@@ -11,6 +11,7 @@ export interface LoadingIndicatorProps
   message3?: string;
   percentage?: number;
   ref?: any;
+  testId?: string;
   type?: LoadingIndicatorType;
 }
 
@@ -72,7 +73,7 @@ export const LoadingIndicator = React.forwardRef<
     };
   }, []);
 
-  const { percentage, type } = props;
+  const { percentage, testId, type } = props;
   let { message1, message2, message3 } = props;
 
   message1 = message1
@@ -92,7 +93,7 @@ export const LoadingIndicator = React.forwardRef<
     : 'Sorry for the delay. This is taking longer than expected.';
 
   return (
-    <StyledLoadingIndicator aria-busy="true" ref={ref}>
+    <StyledLoadingIndicator aria-busy="true" data-testid={testId} ref={ref}>
       {type === LoadingIndicatorType.progressbar ? (
         <ProgressBar
           animated

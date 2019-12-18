@@ -25,6 +25,7 @@ interface DatePickerProps {
   inverse?: boolean;
   labelText: string;
   placeholderText?: string;
+  testId?: string;
   onDateChange?: (day: Date, event: React.SyntheticEvent) => void;
   onInputBlur?: (event: React.FocusEvent) => void;
   onInputChange?: (event: React.ChangeEvent) => void;
@@ -203,7 +204,8 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
     helperMessage,
     inverse,
     labelText,
-    placeholderText
+    placeholderText,
+    testId
   } = props;
 
   const dateFormat = 'MM/DD/YYYY';
@@ -227,7 +229,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
         setDateFocused
       }}
     >
-      <DatePickerContainer onBlur={handleCalendarBlur}>
+      <DatePickerContainer data-testid={testId} onBlur={handleCalendarBlur}>
         <Announce>
           {calendarOpened && (
             <VisuallyHidden>

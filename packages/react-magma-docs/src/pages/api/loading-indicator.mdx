@@ -152,6 +152,14 @@ the conditional logic to display the `LoadingIndicator` _inside_ the `Announce` 
       description: 'Message displayed after 15 seconds',
       defaultValue: 'Sorry for the delay. This is taking longer than expected.',
     },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
     type: {
       type: {
         name: 'enum',
