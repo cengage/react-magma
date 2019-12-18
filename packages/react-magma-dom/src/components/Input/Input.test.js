@@ -297,7 +297,7 @@ describe('Input', () => {
   it('should render the a help link button with custom text', () => {
     const helpText = 'Custom text';
     const { container } = render(
-      <Input onHelpLinkClick={() => {}} helpLinkText={helpText} />
+      <Input onHelpLinkClick={() => {}} helpLinkAriaLabel={helpText} />
     );
     expect(container.querySelector('div[role="tooltip"]')).toHaveTextContent(
       helpText
