@@ -49,16 +49,16 @@ The `percentage` prop is used to display how much of the bar should be filled in
 
 ## Background Color
 
-The `bgColor` prop can be used to set the background color of the progress bar. This prop takes the following values: `danger`, `primary`, `pop01`, `pop02`, `success`.
+The `color` prop can be used to set the background color of the progress bar. This prop takes the following values: `danger`, `primary`, `pop01`, `pop02`, `success`.
 The default value is `primary` which renders as `#006298`, or `magma.colors.primary`.
 
 ```.jsx
     <>
-      <ProgressBar bgColor='danger' percentage={25} /><br/>
-      <ProgressBar bgColor='pop01' percentage={25} /><br/>
-      <ProgressBar bgColor='pop02' percentage={25} /><br/>
-      <ProgressBar bgColor='primary' percentage={25} /><br/>
-      <ProgressBar bgColor='success' percentage={25} /><br/>
+      <ProgressBar color='danger' percentage={25} /><br/>
+      <ProgressBar color='pop01' percentage={25} /><br/>
+      <ProgressBar color='pop02' percentage={25} /><br/>
+      <ProgressBar color='primary' percentage={25} /><br/>
+      <ProgressBar color='success' percentage={25} /><br/>
     </>
 ```
 
@@ -101,7 +101,7 @@ If the `labelVisible` prop is true, the percentage value will display to the rig
       description: 'If true, the progress bar with have a shimmer animation',
       defaultValue: 'false',
     },
-    bgColor: {
+    color: {
       type: {
         name: 'enum',
         options: [
@@ -149,6 +149,14 @@ If the `labelVisible` prop is true, the percentage value will display to the rig
       required: false,
       description: 'The percentage of which the bar is filled',
       defaultValue: '0',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
   }}
 />

@@ -42,7 +42,7 @@ export interface InputProps
   as?: string;
   containerStyle?: React.CSSProperties;
   errorMessage?: string;
-  helpLinkText?: string;
+  helpLinkAriaLabel?: string;
   helperMessage?: string;
   hiddenPasswordAnnounceText?: string;
   hidePasswordButtonAriaLabel?: string;
@@ -231,7 +231,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
       containerStyle,
       errorMessage,
       helperMessage,
-      helpLinkText,
+      helpLinkAriaLabel,
       hidePasswordMaskButton,
       hiddenPasswordAnnounceText,
       hidePasswordButtonAriaLabel,
@@ -283,7 +283,9 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
       SHOW_PASSWORD_BUTTON_TEXT = showPasswordButtonText
         ? showPasswordButtonText
         : 'Show',
-      HELP_LINK_TEXT = helpLinkText ? helpLinkText : "What's this?";
+      HELP_LINK_ARIA_LABEL = helpLinkAriaLabel
+        ? helpLinkAriaLabel
+        : "What's this?";
 
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
     const theme = React.useContext(ThemeContext);
@@ -390,11 +392,11 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
 
           {onHelpLinkClick && (
             <Tooltip
-              content={HELP_LINK_TEXT}
+              content={HELP_LINK_ARIA_LABEL}
               inverse={inverse}
               trigger={
                 <Button
-                  aria-label={HELP_LINK_TEXT}
+                  aria-label={HELP_LINK_ARIA_LABEL}
                   icon={<QuestionCircleIcon />}
                   inverse={inverse}
                   onClick={onHelpLinkClick}
@@ -405,7 +407,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                   }
                   style={{ margin: '0 0 0 7px' }}
                   type={ButtonType.button}
-                  title={HELP_LINK_TEXT}
+                  title={HELP_LINK_ARIA_LABEL}
                   variant={ButtonVariant.link}
                 />
               }

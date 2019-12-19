@@ -92,16 +92,16 @@ the first actionable element.
   }
 ```
 
-## Hide Escape Button
+## Hide Close Button
 
-The close button can be hidden by using the `hideEscButton` prop. If this prop is used, it is best to provide another way to close the modal.
+The close button can be hidden by using the `hideCloseButton` prop. If this prop is used, it is best to provide another way to close the modal.
 
 ```.jsx
   (props) => {
     const [showModal, setShowModal] = React.useState(false);
 
     return (<>
-      <Modal header="Modal Title" hideEscButton onClose={() => setShowModal(false)} open={showModal}>
+      <Modal header="Modal Title" hideCloseButton onClose={() => setShowModal(false)} open={showModal}>
         <p>The standard modal close button is hidden.</p>
         <Button onClick={() => setShowModal(false)}>Close this Dialog</Button>
       </Modal>
@@ -121,7 +121,7 @@ The close button can be hidden by using the `hideEscButton` prop. If this prop i
       required: true,
       description: 'The content of the component',
     },
-    closeLabel: {
+    closeAriaLabel: {
       type: {
         name: 'string',
       },
@@ -153,7 +153,7 @@ The close button can be hidden by using the `hideEscButton` prop. If this prop i
       required: false,
       description: 'The content of the modal header',
     },
-    hideEscButton: {
+    hideCloseButton: {
       type: {
         name: 'boolean',
       },
@@ -204,8 +204,8 @@ The close button can be hidden by using the `hideEscButton` prop. If this prop i
         name: 'string',
       },
       required: false,
-      description: 'ID used for testing purposes',
-      defaultValue: '',
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
   }}
 />

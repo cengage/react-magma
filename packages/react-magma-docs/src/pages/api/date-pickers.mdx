@@ -28,11 +28,11 @@ By default, no date value is selected. You can add a default date, by using the 
 
 ## Placeholder Text
 
-By default, the placeholder text of the input is 'MM/DD/YYYY'. You can override this by using the `placeholderText` prop.
-Note: the expected date format should appear somewhere in either the labelText or the placeholderText.
+By default, the placeholder text of the input is 'MM/DD/YYYY'. You can override this by using the `placeholder` prop.
+Note: the expected date format should appear somewhere in either the labelText or the placeholder.
 
 ```.jsx
-    <DatePicker placeholderText='Your birthday (format MM/DD/YYYY)' labelText="Birthday" />
+    <DatePicker placeholder='Your birthday (format MM/DD/YYYY)' labelText="Birthday" />
 ```
 
 ## Helper Message
@@ -44,7 +44,7 @@ Note: the expected date format should appear somewhere in either the labelText o
 ## Error Message
 
 ```.jsx
-    <DatePicker labelText="Error" errorMessage="You made an error" />
+    <DatePicker labelText="Error *" errorMessage="You made an error" required />
 ```
 
 ## Date Change Event
@@ -137,13 +137,29 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
       required: false,
       description: 'Event that will fire when day is changed',
     },
-    placeholderText: {
+    placeholder: {
       type: {
         name: 'string',
       },
       required: false,
       description: 'Text for input placeholder',
       defaultValue: 'MM/DD/YYYY',
+    },
+    required: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the form field is required',
+      defaultValue: 'false',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
   }}
 />

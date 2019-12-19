@@ -8,6 +8,19 @@ const CONTENT_TEXT = 'Test Content';
 const TRIGGER_ELEMENT = <button>Test trigger</button>;
 
 describe('Tooltip', () => {
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <Tooltip
+        content="Tooltip Content"
+        trigger={<button>Trigger</button>}
+        testId={testId}
+      />
+    );
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should render the tooltip component, positioned top by default', () => {
     const { container, getByText } = render(
       <Tooltip

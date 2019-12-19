@@ -103,6 +103,14 @@ The `onClick` event will fire when the badge is clicked, or when the enter or sp
       description:
         'Action that fires when the badge is clicked.  Causes the Badge to render as a button instead of a span.',
     },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
     variant: {
       type: {
         name: 'enum',

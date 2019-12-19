@@ -33,12 +33,12 @@ export const buttonStyles = props => css`
   align-items: center;
   border-radius: ${buttonBorderRadius[props.shape]};
   cursor: ${props.disabled ? 'not-allowed' : 'pointer'};
-  display: ${props.block ? 'flex' : 'inline-flex'};
+  display: ${props.fullWidth ? 'flex' : 'inline-flex'};
   flex-shrink: 0;
   font-family: ${props.theme.bodyFont};
   justify-content: center;
   line-height: 1;
-  margin: ${props.block ? '5px 0' : '5px'};
+  margin: ${props.fullWidth ? '5px 0' : '5px'};
   min-width: 5.625em;
   overflow: hidden;
   position: relative;
@@ -57,7 +57,7 @@ export const buttonStyles = props => css`
   padding: ${buttonPadding[props.size]};
   width: ${props.iconOnly
     ? buttonIconOnlyWidth[props.size]
-    : props.block
+    : props.fullWidth
     ? '100%'
     : 'auto'};
   background: ${buildButtonBackground(props)};
@@ -123,7 +123,7 @@ export const StyledButton: React.FunctionComponent<
   StyledButtonProps
 > = React.forwardRef((props, ref: any) => {
   const {
-    block,
+    fullWidth,
     children,
     iconOnly,
     testId,

@@ -8,6 +8,13 @@ import { darken, lighten } from 'polished';
 const TEXT = 'Test Text';
 
 describe('Badge', () => {
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(<Badge testId={testId}>Test Badge</Badge>);
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should render the badge component', () => {
     const { container } = render(<Badge>{TEXT}</Badge>);
 

@@ -4,6 +4,13 @@ import { Spinner } from '.';
 import { render } from '@testing-library/react';
 
 describe('Spinner', () => {
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(<Spinner testId={testId} />);
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should render the spinner component', () => {
     const { container } = render(<Spinner />);
 

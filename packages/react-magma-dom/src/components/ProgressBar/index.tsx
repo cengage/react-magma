@@ -5,11 +5,12 @@ import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   animated?: boolean;
-  bgColor?: ProgressBarColor;
+  color?: ProgressBarColor;
   height?: number;
   inverse?: boolean;
   labelVisible?: boolean;
   percentage?: number;
+  testId?: string;
 }
 
 export enum ProgressBarColor {
@@ -21,7 +22,7 @@ export enum ProgressBarColor {
 }
 
 function buildProgressBarBackground(props) {
-  switch (props.bgColor) {
+  switch (props.color) {
     case 'danger':
       return props.theme.colors.danger;
     case 'pop01':
@@ -107,11 +108,12 @@ export const ProgressBar: React.FunctionComponent<
   (
     {
       animated,
-      bgColor,
+      color,
       height,
       inverse,
       labelVisible,
-      percentage
+      percentage,
+      testId
     }: ProgressBarProps,
     ref: any
   ) => {
@@ -122,6 +124,7 @@ export const ProgressBar: React.FunctionComponent<
     return (
       <Container>
         <Track
+          data-testid={testId}
           height={height ? height : 15}
           inverse={inverse}
           ref={ref}
@@ -132,7 +135,7 @@ export const ProgressBar: React.FunctionComponent<
             aria-valuenow={percentageValue}
             aria-valuemin={0}
             aria-valuemax={100}
-            bgColor={bgColor}
+            color={color}
             inverse={inverse}
             percentage={percentageValue}
             role="progressbar"

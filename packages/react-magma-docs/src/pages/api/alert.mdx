@@ -47,7 +47,7 @@ The `dismissible` prop is optional, and if provided the Alert will render a dism
 Providing this property only causes the dismiss button to render; it does not control the dismiss behavior itself. If you include the `dismissible` prop,
 you must also include a function in the `onDimiss` prop to handle the dismiss behavior.
 
-The aria-label, by default is `Close this message` but can be overridden using the optional `closeLabel` prop.
+The aria-label, by default is `Close this message` but can be overridden using the optional `closeAriaLabel` prop.
 
 ```.jsx
     (props) => {
@@ -98,7 +98,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       required: true,
       description: 'The content of the component',
     },
-    closeLabel: {
+    closeAriaLabel: {
       type: {
         name: 'string',
       },
@@ -137,8 +137,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
         name: 'string',
       },
       required: false,
-      description: 'ID used for testing purposes',
-      defaultValue: '',
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     variant: {
       type: {

@@ -3,12 +3,15 @@ import * as React from 'react';
 import { TARGET_ID } from '../SkipLink';
 
 export interface SkipLinkContentProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
+  extends React.HTMLAttributes<HTMLDivElement> {
+  testId?: string;
+}
 
 export const SkipLinkContent: React.FunctionComponent<SkipLinkContentProps> = ({
-  children
+  children,
+  testId
 }: SkipLinkContentProps) => (
-  <div id={TARGET_ID} tabIndex={-1} style={{ outline: 0 }}>
+  <div data-testid={testId} id={TARGET_ID} tabIndex={-1} style={{ outline: 0 }}>
     {children}
   </div>
 );

@@ -3,6 +3,17 @@ import { Modal } from '.';
 import { act, render, fireEvent } from '@testing-library/react';
 
 describe('Modal', () => {
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <Modal testId={testId} open>
+        Modal Text
+      </Modal>
+    );
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should render nothing if open is false', () => {
     const modalContent = 'Modal content';
     const { queryByText } = render(
@@ -132,13 +143,13 @@ describe('Modal', () => {
 
   it('should render a close button with custom label', () => {
     const { getByTestId, rerender } = render(
-      <Modal header="Hello" closeLabel="Goodbye">
+      <Modal header="Hello" closeAriaLabel="Goodbye">
         Modal Content
       </Modal>
     );
 
     rerender(
-      <Modal header="Hello" open={true} closeLabel="Goodbye">
+      <Modal header="Hello" open={true} closeAriaLabel="Goodbye">
         Modal Content
       </Modal>
     );
@@ -149,15 +160,15 @@ describe('Modal', () => {
     );
   });
 
-  it('should not render a close button if the hideEscButton prop is true', () => {
+  it('should not render a close button if the hideCloseButton prop is true', () => {
     const { queryByTestId, rerender } = render(
-      <Modal header="Hello" hideEscButton>
+      <Modal header="Hello" hideCloseButton>
         Modal Content
       </Modal>
     );
 
     rerender(
-      <Modal header="Hello" open={true} hideEscButton>
+      <Modal header="Hello" open={true} hideCloseButton>
         Modal Content
       </Modal>
     );
@@ -300,7 +311,12 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={true} onClose={onCloseSpy}>
+          <Modal
+            header="Hello"
+            open={true}
+            onClose={onCloseSpy}
+            testId="modal-container"
+          >
             Modal Content
           </Modal>
         </>
@@ -559,7 +575,7 @@ describe('Modal', () => {
       const { rerender, getByText } = render(
         <>
           <button>Open</button>
-          <Modal open={false} onClose={jest.fn()} hideEscButton>
+          <Modal open={false} onClose={jest.fn()} hideCloseButton>
             <p>Modal Content</p>
           </Modal>
         </>,
@@ -571,7 +587,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal open={true} onClose={jest.fn()} hideEscButton>
+          <Modal open={true} onClose={jest.fn()} hideCloseButton>
             <p>Modal Content</p>
           </Modal>
         </>,
@@ -585,7 +601,12 @@ describe('Modal', () => {
       const { getByTestId, getByText, rerender } = render(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={false} onClose={jest.fn()} hideEscButton>
+          <Modal
+            header="Hello"
+            open={false}
+            onClose={jest.fn()}
+            hideCloseButton
+          >
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="emailInput" type="text" name="email" />
@@ -600,7 +621,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={true} onClose={jest.fn()} hideEscButton>
+          <Modal header="Hello" open={true} onClose={jest.fn()} hideCloseButton>
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="emailInput" type="text" name="email" />
@@ -629,7 +650,7 @@ describe('Modal', () => {
       const { getByText, rerender } = render(
         <>
           <button>Open</button>
-          <Modal open={false} onClose={jest.fn()} hideEscButton>
+          <Modal open={false} onClose={jest.fn()} hideCloseButton>
             <p>Modal Content </p>
           </Modal>
         </>
@@ -640,7 +661,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal open={true} onClose={jest.fn()} hideEscButton>
+          <Modal open={true} onClose={jest.fn()} hideCloseButton>
             <p>Modal Content </p>
           </Modal>
         </>
@@ -657,7 +678,12 @@ describe('Modal', () => {
       const { getByTestId, getByText, rerender } = render(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={false} onClose={jest.fn()} hideEscButton>
+          <Modal
+            header="Hello"
+            open={false}
+            onClose={jest.fn()}
+            hideCloseButton
+          >
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="emailInput" type="text" name="email" />
@@ -672,7 +698,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={true} onClose={jest.fn()} hideEscButton>
+          <Modal header="Hello" open={true} onClose={jest.fn()} hideCloseButton>
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="emailInput" type="text" name="email" />
@@ -699,7 +725,12 @@ describe('Modal', () => {
       const { getByTestId, getByText, rerender } = render(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={false} onClose={jest.fn()} hideEscButton>
+          <Modal
+            header="Hello"
+            open={false}
+            onClose={jest.fn()}
+            hideCloseButton
+          >
             <>
               <input data-testid="yesInput" type="radio" name="radios" />
               <input data-testid="noInput" type="radio" name="radios" />
@@ -714,7 +745,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={true} onClose={jest.fn()} hideEscButton>
+          <Modal header="Hello" open={true} onClose={jest.fn()} hideCloseButton>
             <>
               <input data-testid="yesInput" type="radio" name="radios" />
               <input data-testid="noInput" type="radio" name="radios" />
@@ -736,7 +767,7 @@ describe('Modal', () => {
       const { getByTestId, rerender } = render(
         <>
           <button>Open</button>
-          <Modal open={true} onClose={jest.fn()} hideEscButton>
+          <Modal open={true} onClose={jest.fn()} hideCloseButton>
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="emailInput" type="text" name="email" />
@@ -749,7 +780,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal open={true} onClose={jest.fn()} hideEscButton>
+          <Modal open={true} onClose={jest.fn()} hideCloseButton>
             <>
               <input data-testid="addressInput" type="text" name="address" />
               <input data-testid="stateInput" type="text" name="state" />
@@ -765,7 +796,7 @@ describe('Modal', () => {
       const { getByTestId, getByText, rerender } = render(
         <>
           <button>Open</button>
-          <Modal open={true} onClose={jest.fn()} hideEscButton>
+          <Modal open={true} onClose={jest.fn()} hideCloseButton>
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="emailInput" type="text" name="email" />
@@ -780,7 +811,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal open={true} onClose={jest.fn()} hideEscButton>
+          <Modal open={true} onClose={jest.fn()} hideCloseButton>
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="addressInput" type="text" name="address" />
@@ -811,7 +842,12 @@ describe('Modal', () => {
       const { getByTestId, getByText, rerender } = render(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={false} onClose={jest.fn()} hideEscButton>
+          <Modal
+            header="Hello"
+            open={false}
+            onClose={jest.fn()}
+            hideCloseButton
+          >
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="emailInput" type="text" name="email" />
@@ -826,7 +862,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={true} onClose={jest.fn()} hideEscButton>
+          <Modal header="Hello" open={true} onClose={jest.fn()} hideCloseButton>
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="emailInput" type="text" name="email" />

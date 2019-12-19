@@ -20,11 +20,11 @@ export enum ModalSize {
 }
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
-  closeLabel?: string;
+  closeAriaLabel?: string;
   disableBackdropClick?: boolean;
   disableEscKeyDown?: boolean;
   header?: React.ReactNode;
-  hideEscButton?: boolean;
+  hideCloseButton?: boolean;
   id?: string;
   innerRef?: React.Ref<HTMLDivElement>;
   isExiting?: boolean;
@@ -299,14 +299,15 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
 
     const {
       children,
-      closeLabel,
+      closeAriaLabel,
       disableBackdropClick,
       disableEscKeyDown,
       header,
-      hideEscButton,
+      hideCloseButton,
       open,
       size,
       innerRef,
+      testId,
       ...rest
     } = props;
 
@@ -329,13 +330,12 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
             <ModalContainer
               aria-labelledby={headingId}
               aria-modal={true}
-              data-testid="modal-container"
+              data-testid={testId}
               id={id}
               onKeyDown={disableEscKeyDown ? null : handleKeyDown}
               onClick={disableBackdropClick ? null : handleModalClick}
               ref={focusTrapElement}
               role="dialog"
-              data-test-id="modal-container"
             >
               <ModalContent
                 data-testid="modal-content"
@@ -362,10 +362,12 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
                   </ModalHeader>
                 )}
                 <ModalBody ref={bodyRef}>{children}</ModalBody>
-                {!hideEscButton && (
+                {!hideCloseButton && (
                   <CloseBtn>
                     <Button
-                      aria-label={closeLabel ? closeLabel : 'Close dialog'}
+                      aria-label={
+                        closeAriaLabel ? closeAriaLabel : 'Close dialog'
+                      }
                       color={ButtonColor.secondary}
                       icon={CloseIcon}
                       onClick={handleClose}

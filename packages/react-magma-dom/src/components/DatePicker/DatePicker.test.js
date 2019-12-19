@@ -16,6 +16,15 @@ import {
 import { DatePicker } from '.';
 
 describe('Date Picker', () => {
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <DatePicker labelText="Date Picker Label" testId={testId} />
+    );
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should render an input', () => {
     const { getByLabelText } = render(
       <DatePicker labelText="Date Picker Label" />
@@ -44,7 +53,7 @@ describe('Date Picker', () => {
     const customPlaceholder = 'Custom text';
     const { getByLabelText } = render(
       <DatePicker
-        placeholderText={customPlaceholder}
+        placeholder={customPlaceholder}
         labelText="Date Picker Label"
       />
     );
@@ -71,6 +80,15 @@ describe('Date Picker', () => {
     );
 
     expect(getByText(errorMessage)).not.toBeNull();
+  });
+
+  it('should require the date picker input', () => {
+    const labelText = 'Date Picker Label';
+    const { getByLabelText } = render(
+      <DatePicker labelText={labelText} required />
+    );
+
+    expect(getByLabelText(labelText)).toHaveAttribute('required');
   });
 
   it('should watch for input change', () => {
