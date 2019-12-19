@@ -26,6 +26,16 @@ const StyledList = styled.ol<BreadcrumbProps>`
   padding: 0;
 `;
 
+export interface BreadCrumbContextInterface {
+  inverse?: boolean;
+}
+
+export const BreadCrumbContext = React.createContext<
+  BreadCrumbContextInterface
+>({
+  inverse: false
+});
+
 export const Breadcrumb: React.FunctionComponent<
   BreadcrumbProps
 > = React.forwardRef(
@@ -36,15 +46,17 @@ export const Breadcrumb: React.FunctionComponent<
     const theme = React.useContext(ThemeContext);
 
     return (
-      <StyledNav
-        data-testid={testId}
-        aria-label={ariaLabel ? ariaLabel : 'Breadcrumb'}
-        breakpoint={minWidthToShow ? `${minWidthToShow}px` : '0'}
-      >
-        <StyledList inverse={inverse} ref={ref} theme={theme}>
-          {children}
-        </StyledList>
-      </StyledNav>
+      <BreadCrumbContext.Provider value={{ inverse }}>
+        <StyledNav
+          aria-label={ariaLabel ? ariaLabel : 'Breadcrumb'}
+          breakpoint={minWidthToShow ? `${minWidthToShow}px` : '0'}
+          data-testid={testId}
+        >
+          <StyledList inverse={inverse} ref={ref} theme={theme}>
+            {children}
+          </StyledList>
+        </StyledNav>
+      </BreadCrumbContext.Provider>
     );
   }
 );
