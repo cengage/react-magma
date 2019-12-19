@@ -15,6 +15,7 @@ export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   content: React.ReactNode;
   inverse?: boolean;
   position?: EnumTooltipPosition;
+  testId?: string;
   trigger: React.ReactElement;
   ref?: React.Ref<HTMLDivElement>;
 }
@@ -236,11 +237,11 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
       setIsVisible(false);
     }
 
-    const { content, inverse, position, trigger } = props;
+    const { content, inverse, position, testId, trigger } = props;
     const theme = React.useContext(ThemeContext);
 
     return (
-      <ToolTipContainer>
+      <ToolTipContainer data-testid={testId}>
         {React.cloneElement(trigger, {
           'aria-describedby': id,
           onKeyDown: handleKeyDown,

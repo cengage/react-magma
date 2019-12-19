@@ -8,7 +8,8 @@ const StyledCardBody = styled.div<CardProps>`
 `;
 
 export const CardBody: React.FunctionComponent<CardProps> = ({
-  children
+  children,
+  testId
 }: CardProps) => {
-  return <StyledCardBody>{children}</StyledCardBody>;
+  return <StyledCardBody data-testid={testId}>{children}</StyledCardBody>;
 };

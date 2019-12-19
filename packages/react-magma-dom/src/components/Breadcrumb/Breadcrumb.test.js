@@ -9,6 +9,19 @@ const LINK_TEXT = 'Test link';
 const SPAN_TEXT = 'Test span';
 
 describe('Breadcrumb', () => {
+  it('should find elements by testId', () => {
+    const testId = 'test-id';
+    const testId2 = 'test-id2';
+    const { getByTestId } = render(
+      <Breadcrumb testId={testId}>
+        <BreadcrumbItem testId={testId2}>Item Text</BreadcrumbItem>
+      </Breadcrumb>
+    );
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+    expect(getByTestId(testId2)).toBeInTheDocument();
+  });
+
   it('should render the breadcrumb component', () => {
     const { container, getByLabelText } = render(
       <Breadcrumb>

@@ -3,6 +3,17 @@ import { Modal } from '.';
 import { act, render, fireEvent } from '@testing-library/react';
 
 describe('Modal', () => {
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <Modal testId={testId} open>
+        Modal Text
+      </Modal>
+    );
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should render nothing if open is false', () => {
     const modalContent = 'Modal content';
     const { queryByText } = render(
@@ -300,7 +311,12 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={true} onClose={onCloseSpy}>
+          <Modal
+            header="Hello"
+            open={true}
+            onClose={onCloseSpy}
+            testId="modal-container"
+          >
             Modal Content
           </Modal>
         </>

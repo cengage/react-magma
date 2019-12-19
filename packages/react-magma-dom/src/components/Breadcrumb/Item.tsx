@@ -8,6 +8,7 @@ import { AngleRightIcon } from '../Icon/types/AngleRightIcon';
 
 export interface BreadcrumbItemProps extends React.HTMLAttributes<HTMLElement> {
   ref?: any;
+  testId?: string;
   to?: string;
 }
 
@@ -31,12 +32,12 @@ const StyledSpan = styled.span<{ inverse?: boolean }>`
 export const BreadcrumbItem: React.FunctionComponent<BreadcrumbItemProps> = (
   props: BreadcrumbItemProps
 ) => {
-  const { children, ref, to } = props;
+  const { children, ref, to, testId } = props;
   const theme = React.useContext(ThemeContext);
   const { inverse } = React.useContext(BreadCrumbContext);
 
   return (
-    <StyledItem ref={ref}>
+    <StyledItem data-testid={testId} ref={ref}>
       {to ? (
         <>
           <HyperLink to={to} inverse={inverse}>

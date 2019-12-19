@@ -4,6 +4,13 @@ import { SkipLinkContent } from '.';
 import { render } from '@testing-library/react';
 
 describe('Skip Link Content', () => {
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(<SkipLinkContent testId={testId} />);
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should render the visually hidden component', () => {
     const { container } = render(<SkipLinkContent />);
 
