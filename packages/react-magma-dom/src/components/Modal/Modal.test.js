@@ -132,13 +132,13 @@ describe('Modal', () => {
 
   it('should render a close button with custom label', () => {
     const { getByTestId, rerender } = render(
-      <Modal header="Hello" closeLabel="Goodbye">
+      <Modal header="Hello" closeAriaLabel="Goodbye">
         Modal Content
       </Modal>
     );
 
     rerender(
-      <Modal header="Hello" open={true} closeLabel="Goodbye">
+      <Modal header="Hello" open={true} closeAriaLabel="Goodbye">
         Modal Content
       </Modal>
     );

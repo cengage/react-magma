@@ -242,7 +242,7 @@ describe('Alert', () => {
 
     it('should render a dismissible icon button with custom close label text', () => {
       const { getByLabelText } = render(
-        <Alert dismissible closeLabel="Test">
+        <Alert dismissible closeAriaLabel="Test">
           Test Alert Text
         </Alert>
       );
