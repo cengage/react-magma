@@ -158,6 +158,14 @@ This would render the button 25px from the top, and 25px from the left of the br
       description: 'ID of the element the skip link will navigate to',
       defaultValue: '',
     },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
     variant: {
       type: {
         name: 'enum',

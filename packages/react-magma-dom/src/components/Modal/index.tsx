@@ -307,6 +307,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
       open,
       size,
       innerRef,
+      testId,
       ...rest
     } = props;
 
@@ -329,13 +330,12 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
             <ModalContainer
               aria-labelledby={headingId}
               aria-modal={true}
-              data-testid="modal-container"
+              data-testid={testId}
               id={id}
               onKeyDown={disableEscKeyDown ? null : handleKeyDown}
               onClick={disableBackdropClick ? null : handleModalClick}
               ref={focusTrapElement}
               role="dialog"
-              data-test-id="modal-container"
             >
               <ModalContent
                 data-testid="modal-content"

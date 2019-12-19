@@ -103,6 +103,14 @@ The `minWidthToShow` prop can be used to suppress the navigation menu when it is
         'Number of pixels used as the min-width breakpoint where the breadcrumb is shown',
       defaultValue: '0',
     },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
   }}
 />
 
@@ -116,6 +124,14 @@ The `minWidthToShow` prop can be used to suppress the navigation menu when it is
       },
       required: true,
       description: 'The content of the component, i.e the name of the page',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     to: {
       type: {

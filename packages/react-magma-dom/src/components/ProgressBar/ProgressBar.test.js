@@ -4,6 +4,13 @@ import { ProgressBar } from '.';
 import { render } from '@testing-library/react';
 
 describe('ProgressBar', () => {
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(<ProgressBar testId={testId} />);
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should render the progress bar component', () => {
     const { container } = render(<ProgressBar />);
 

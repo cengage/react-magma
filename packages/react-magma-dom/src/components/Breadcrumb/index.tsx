@@ -7,6 +7,7 @@ export interface BreadcrumbProps
   ariaLabel?: string;
   inverse?: boolean;
   minWidthToShow?: number;
+  testId?: string;
 }
 
 const StyledNav = styled.nav<{ breakpoint?: string }>`
@@ -39,7 +40,7 @@ export const Breadcrumb: React.FunctionComponent<
   BreadcrumbProps
 > = React.forwardRef(
   (
-    { ariaLabel, children, inverse, minWidthToShow }: BreadcrumbProps,
+    { ariaLabel, children, inverse, minWidthToShow, testId }: BreadcrumbProps,
     ref: any
   ) => {
     const theme = React.useContext(ThemeContext);
@@ -49,6 +50,7 @@ export const Breadcrumb: React.FunctionComponent<
         <StyledNav
           aria-label={ariaLabel ? ariaLabel : 'Breadcrumb'}
           breakpoint={minWidthToShow ? `${minWidthToShow}px` : '0'}
+          data-testid={testId}
         >
           <StyledList inverse={inverse} ref={ref} theme={theme}>
             {children}
