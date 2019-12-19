@@ -392,7 +392,6 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
 
           {onHelpLinkClick && (
             <Tooltip
-              content={HELP_LINK_ARIA_LABEL}
               inverse={inverse}
               trigger={
                 <Button
@@ -411,7 +410,9 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                   variant={ButtonVariant.link}
                 />
               }
-            />
+            >
+              {HELP_LINK_ARIA_LABEL}
+            </Tooltip>
           )}
 
           {onIconClick && !isLoading && (
