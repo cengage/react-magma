@@ -267,21 +267,6 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
   }}
 />
 
-| Prop           | Type                                                           | Default              | Required |
-| -------------- | -------------------------------------------------------------- | -------------------- | :------: |
-| alertStyle     | React.CSSProperties                                            |                      |          |
-| children       | node                                                           |                      | &#10003; |
-| closeAriaLabel     | string                                                         | 'Close this message' |          |
-| containerStyle | React.CSSProperties                                            |                      |          |
-| dismissible    | boolean                                                        |                      |          |
-| id             | string                                                         |                      |          |
-| onDismiss      | func                                                           |                      | &#10003; |
-| onMouseEnter   | func                                                           |                      |          |
-| onMouseLeave   | func                                                           |                      |          |
-| toastDuration  | number                                                         | 5000                 |          |
-| variant        | enum: 'info' &#124; 'success' &#124; 'warning' &#124; 'danger' |                      |          |
-| testId         | string                                                         |                      |          |
-
 export default props => (
   <ScopeableLayout {...props} components={{ Button, Toast, Announce }} />
 )
