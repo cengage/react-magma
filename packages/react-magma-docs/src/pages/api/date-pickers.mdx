@@ -92,7 +92,7 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
   props={{
     defaultDate: {
       type: {
-        name: 'Date',
+        name: 'Date or string',
       },
       required: false,
       description: 'Default selected date value',
@@ -136,6 +136,20 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
       },
       required: false,
       description: 'Event that will fire when day is changed',
+    },
+    onInputBlur: {
+      type: {
+        name: '(event: React.FocusEvent) => void',
+      },
+      required: false,
+      description: 'Event that will fire when the text input loses focus',
+    },
+    onInputChange: {
+      type: {
+        name: '(event: React.ChangeEvent) => void;',
+      },
+      required: false,
+      description: 'Event that will fire when the text input is changed',
     },
     placeholder: {
       type: {
