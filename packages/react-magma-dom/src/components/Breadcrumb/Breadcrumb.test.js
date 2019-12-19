@@ -24,10 +24,8 @@ describe('Breadcrumb', () => {
   it('should render the breadcrumb component with inverse styles', () => {
     const { getByText } = render(
       <Breadcrumb inverse>
-        <BreadcrumbItem inverse to="#">
-          {LINK_TEXT}
-        </BreadcrumbItem>
-        <BreadcrumbItem inverse>{SPAN_TEXT}</BreadcrumbItem>
+        <BreadcrumbItem to="#">{LINK_TEXT}</BreadcrumbItem>
+        <BreadcrumbItem>{SPAN_TEXT}</BreadcrumbItem>
       </Breadcrumb>
     );
 

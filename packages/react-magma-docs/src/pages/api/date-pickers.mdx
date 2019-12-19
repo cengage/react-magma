@@ -44,7 +44,7 @@ Note: the expected date format should appear somewhere in either the labelText o
 ## Error Message
 
 ```.jsx
-    <DatePicker labelText="Error" errorMessage="You made an error" />
+    <DatePicker labelText="Error *" errorMessage="You made an error" required />
 ```
 
 ## Date Change Event
@@ -144,6 +144,14 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
       required: false,
       description: 'Text for input placeholder',
       defaultValue: 'MM/DD/YYYY',
+    },
+    required: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the form field is required',
+      defaultValue: 'false',
     },
   }}
 />
