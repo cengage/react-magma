@@ -35,13 +35,13 @@ Inverse is an optional boolean prop, that may be used when the breadcrumb menu t
 ```.jsx
     <div style={{background: '#003865', padding: '10px'}}>
         <Breadcrumb inverse>
-            <BreadcrumbItem inverse to="#">
+            <BreadcrumbItem to="#">
                 Home
             </BreadcrumbItem>
-             <BreadcrumbItem inverse to="#">
+             <BreadcrumbItem to="#">
                 Library
             </BreadcrumbItem>
-             <BreadcrumbItem inverse>
+             <BreadcrumbItem>
                 Data
             </BreadcrumbItem>
         </Breadcrumb>
@@ -116,15 +116,6 @@ The `minWidthToShow` prop can be used to suppress the navigation menu when it is
       },
       required: true,
       description: 'The content of the component, i.e the name of the page',
-    },
-    inverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
     },
     to: {
       type: {
