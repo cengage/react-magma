@@ -45,7 +45,7 @@ export const Breadcrumb: React.FunctionComponent<
     const theme = React.useContext(ThemeContext);
 
     return (
-      <BreadCrumbContext.Provider value={{ inverse: inverse }}>
+      <BreadCrumbContext.Provider value={{ inverse }}>
         <StyledNav
           aria-label={ariaLabel ? ariaLabel : 'Breadcrumb'}
           breakpoint={minWidthToShow ? `${minWidthToShow}px` : '0'}

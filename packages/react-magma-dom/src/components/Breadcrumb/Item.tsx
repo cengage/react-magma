@@ -33,9 +33,7 @@ export const BreadcrumbItem: React.FunctionComponent<BreadcrumbItemProps> = (
 ) => {
   const { children, ref, to } = props;
   const theme = React.useContext(ThemeContext);
-  const context = React.useContext(BreadCrumbContext);
-
-  const inverse = context.inverse;
+  const { inverse } = React.useContext(BreadCrumbContext);
 
   return (
     <StyledItem ref={ref}>
