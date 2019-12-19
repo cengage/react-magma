@@ -215,7 +215,7 @@ This is a design anti-pattern; it is always include something actionable within 
         const { showModalNoFocus } = this.state;
 
         return (<>
-          <Modal size="small" hideEscButton onClose={this.onModalNoFocusClose} open={showModalNoFocus}>
+          <Modal size="small" hideCloseButton onClose={this.onModalNoFocusClose} open={showModalNoFocus}>
                 <p>This modal has no header and nothing focusable.</p>
                 <p>Consider the usability implications before implementing a modal like this this. A modal should have something actionable inside it.</p>
             </Modal>

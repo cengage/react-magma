@@ -26,7 +26,7 @@ export enum AlertVariant {
 }
 
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
-  closeLabel?: string;
+  closeAriaLabel?: string;
   dismissible?: boolean;
   forceDismiss?: () => void;
   isExiting?: boolean;
@@ -191,7 +191,7 @@ function renderIcon(variant = 'info') {
 export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
   (
     {
-      closeLabel,
+      closeAriaLabel,
       testId,
       variant,
       children,
@@ -245,7 +245,9 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
           <DismissableIconWrapper variant={variant} theme={theme}>
             <DismissButton
               alertVariant={variant}
-              aria-label={closeLabel ? closeLabel : 'Close this message'}
+              aria-label={
+                closeAriaLabel ? closeAriaLabel : 'Close this message'
+              }
               icon={<CrossIcon />}
               inverse
               onClick={forceDismiss || handleDismiss}

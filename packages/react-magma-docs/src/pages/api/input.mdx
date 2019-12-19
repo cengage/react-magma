@@ -116,10 +116,11 @@ The `helperMessage` appears underneath the input field. It will not appear if an
 ## Help Link
 
 Some inputs require a bit of explanation to the user. Passing in a function to the `onHelpLinkClick` prop, will
-display a help link to the right of the input field. The text can be customized using the optional `helpLinkText` prop.
+display a help link to the right of the input field. The text can be customized using the optional `helpLinkAriaLabel` prop.
 
 ```.jsx
    <Input
+      helpLinkAriaLabel='Learn more about help links'
       labelText='Help Link'
       onHelpLinkClick={()=> {alert('Help link clicked!')}} />
 ```
@@ -389,7 +390,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description: 'Text of the helper message.',
       defaultValue: '',
     },
-    helpLinkText: {
+    helpLinkAriaLabel: {
       type: {
         name: 'string',
       },
@@ -517,6 +518,14 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description:
         'If true, label text will be hidden visually, but will still be read by assistive technology',
       defaultValue: 'false',
+    },
+    placeholder: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text for input placeholder',
+      defaultValue: 'Search',
     },
     required: {
       type: {

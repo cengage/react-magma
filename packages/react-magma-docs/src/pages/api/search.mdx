@@ -21,14 +21,14 @@ The `onSearch` prop is required and takes a function and fires when the user cli
 
 ## Label and Placeholder Text
 
-The `Search` component supports three text string props: `iconAriaLabel`, `labelText`, and `placeholderText`.
+The `Search` component supports three text string props: `iconAriaLabel`, `labelText`, and `placeholder`.
 
-The `iconAriaLabel` refers to the aria-label of the search icon, which will be read by screen readers. The `labelText` refers to the aria-label of the input itself, which will also be read by screen readers. The `placeholderText` refers to the placeholder attribute of the input, which will display when the input is empty.
+The `iconAriaLabel` refers to the aria-label of the search icon, which will be read by screen readers. The `labelText` refers to the aria-label of the input itself, which will also be read by screen readers. The `placeholder` refers to the placeholder attribute of the input, which will display when the input is empty.
 
 The default value of all of these is `Search`.
 
 ```.jsx
-    <Search iconAriaLabel='Submit Search' labelText="Search for Articles and Books" onSearch={() => {}} placeholderText="Search our Library" />
+    <Search iconAriaLabel='Submit Search' labelText="Search for Articles and Books" onSearch={() => {}} placeholder="Search our Library" />
 ```
 
 ## Input Size
@@ -143,12 +143,12 @@ The `helperMessage` appears underneath the search field. It will not appear if a
       description: 'Action that will fire when search icon button is clicked.',
       defaultValue: '',
     },
-    placeholderText: {
+    placeholder: {
       type: {
         name: 'string',
       },
       required: false,
-      description: 'Text for input aria-label placeholder',
+      description: 'Text for input placeholder',
       defaultValue: 'Search',
     },
     testId: {

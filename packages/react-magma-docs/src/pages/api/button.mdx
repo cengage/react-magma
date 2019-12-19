@@ -148,14 +148,14 @@ This sets the CSS `text-transform` property.
     </>
 ```
 
-## Block Buttons
+## Full Width
 
-Passing the `block` property will set the button to display full-width.
+Passing the `fullWidth` property will set the button to display full-width.
 
 ```.jsx
     <>
-        <Button block>Block button</Button>
-        <Button block color="secondary">Block button</Button>
+        <Button fullWidth>Full Width button</Button>
+        <Button fullWidth color="secondary">Full Width button</Button>
     </>
 ```
 
@@ -257,15 +257,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
 
 <SimplePropsTable
   props={{
-    block: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the button will take up the full width of its container',
-      defaultValue: 'false',
-    },
     children: {
       type: {
         name: 'node',
@@ -294,6 +285,15 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
       },
       required: false,
       description: 'If true, element is disabled',
+      defaultValue: 'false',
+    },
+    fullWidth: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the button will take up the full width of its container',
       defaultValue: 'false',
     },
     inverse: {

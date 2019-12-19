@@ -18,7 +18,7 @@ describe('Search', () => {
         iconAriaLabel="Test icon label"
         labelText="Test input label"
         onSearch={onSearchSpy}
-        placeholderText="Test placeholder"
+        placeholder="Test placeholder"
       />
     );
 
