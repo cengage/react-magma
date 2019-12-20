@@ -8,11 +8,12 @@ export const darkTheme = (tabsTheme: any) => {
     activeColor: tabsTheme.colors.neutral08,
     disabledColor: tabsTheme.colors.neutral04,
     colorBorder: '#f46603',
-    bgHoverColor: 'rgba(0,0,0,.5)',
+    bgHoverColor: tabsTheme.colors.shade02,
     font: tabsTheme.bodyFont,
     boxShadow: '0px 5px 13px 1px rgba(0,0,0,0.10)',
     border: 'none',
-    colorOfArrows: tabsTheme.colors.neutral08
+    colorOfArrows: tabsTheme.colors.neutral08,
+    focusColor: tabsTheme.colors.focus
   };
 };
 
@@ -21,14 +22,15 @@ export const greyTheme = (tabsTheme: any) => {
     bgColor: tabsTheme.colors.neutral07,
     color: 'rgb(114, 114, 111)',
     hoverColor: '#737373',
-    activeColor: tabsTheme.colors.foundation02,
-    colorBorder: tabsTheme.colors.foundation02,
+    activeColor: tabsTheme.colors.primary,
+    colorBorder: tabsTheme.colors.primary,
     disabledColor: tabsTheme.colors.neutral05,
-    bgHoverColor: 'rgba(0,0,0,.05)',
+    bgHoverColor: tabsTheme.colors.shade01,
     font: tabsTheme.bodyFont,
     boxShadow: '0px 5px 13px 1px rgba(0,0,0,0.10)',
     border: 'none',
-    colorOfArrows: tabsTheme.colors.neutral02
+    colorOfArrows: tabsTheme.colors.neutral02,
+    focusColor: tabsTheme.colors.focus
   };
 };
 
@@ -37,14 +39,15 @@ export const lightTheme = (tabsTheme: any) => {
     bgColor: tabsTheme.colors.neutral08,
     color: 'rgb(114, 114, 111)',
     hoverColor: '#737373',
-    activeColor: tabsTheme.colors.foundation02,
-    colorBorder: tabsTheme.colors.foundation02,
+    activeColor: tabsTheme.colors.primary,
+    colorBorder: tabsTheme.colors.primary,
     disabledColor: tabsTheme.colors.neutral05,
-    bgHoverColor: 'rgba(0,0,0,.05)',
+    bgHoverColor: tabsTheme.colors.shade01,
     font: tabsTheme.bodyFont,
     boxShadow: 'none',
     border: `1px solid ${tabsTheme.colors.neutral06}`,
-    colorOfArrows: tabsTheme.colors.neutral02
+    colorOfArrows: tabsTheme.colors.neutral02,
+    focusColor: tabsTheme.colors.focus
   };
 };
 
@@ -56,11 +59,12 @@ export const blueTheme = (tabsTheme: any) => {
     hoverColor: tabsTheme.colors.neutral08,
     colorBorder: '#f46603',
     disabledColor: '#6587a1',
-    bgHoverColor: 'rgba(0,0,0,.5)',
+    bgHoverColor: tabsTheme.colors.shade01,
     font: tabsTheme.bodyFont,
     boxShadow: '0px 5px 13px 1px rgba(0,0,0,0.10)',
     border: 'none',
-    colorOfArrows: tabsTheme.colors.neutral08
+    colorOfArrows: tabsTheme.colors.neutral08,
+    focusColor: tabsTheme.colors.focus
   };
 };
 
@@ -72,10 +76,11 @@ export const darkBlueTheme = (tabsTheme: any) => {
     hoverColor: tabsTheme.colors.neutral08,
     colorBorder: '#f46603',
     disabledColor: '#6587a1',
-    bgHoverColor: 'rgba(0,0,0,.5)',
+    bgHoverColor: tabsTheme.colors.shade01,
     font: tabsTheme.bodyFont,
     boxShadow: '0px 5px 13px 1px rgba(0,0,0,0.10);',
-    colorOfArrows: tabsTheme.colors.neutral08
+    colorOfArrows: tabsTheme.colors.neutral08,
+    focusColor: tabsTheme.colors.focus
   };
 };
 

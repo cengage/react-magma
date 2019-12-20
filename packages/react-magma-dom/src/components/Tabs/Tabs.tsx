@@ -8,7 +8,6 @@ import React, {
   forwardRef
 } from 'react';
 import { defineTheme } from './themes';
-import { Global, css } from '@emotion/core';
 import { useTabsContext } from './TabsContainer';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { AngleRightIcon } from '../../components/Icon/types/AngleRightIcon';
@@ -29,7 +28,7 @@ export type TabsVariant = 'scrollable';
 export type TabsAriaLabel = string;
 export type TabsOrientationVertical = 'vertical';
 export type TabsOrientationHorizontal = 'horizontal';
-export type TabsBorderPositionVertical = 'left' | 'right';
+export type TabsBorderPositionVertical = 'left';
 export type TabsBorderPositionHorizontal = 'top' | 'bottom';
 
 export interface IVertical {
@@ -50,6 +49,7 @@ export interface ITabsProps {
   onChange?: (newActiveIndex: number) => void;
   styles?: { [key: string]: any };
   centered?: boolean;
+  fullWidth?: boolean;
   testId?: string;
 }
 
@@ -65,6 +65,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = forwardRef(
       onChange,
       styles,
       centered,
+      fullWidth,
       testId
     } = props;
     // {state} and {dispatch} from the TabsContainer context
@@ -225,32 +226,13 @@ export const Tabs: React.FC<ITabsProps & Orientation> = forwardRef(
         theme={activeTheme}
         data-testid={testId}
       >
-        <Global
-          styles={css`
-            button {
-              border: 0;
-              background: transparent;
-              text-transform: uppercase;
-            }
-            * {
-              color: inherit;
-            }
-            a {
-              text-decoration: none;
-            }
-            body,
-            html {
-              height: 100%;
-            }
-          `}
-        />
         {scrollButtons && orientation === 'horizontal' ? (
           <StyledButtonPrev
             onClick={handleClickPrev}
             buttonVisible={buttonVisiblePrev}
             data-testid="buttonPrev"
           >
-            <AngleLeftIcon size={20} color={activeTheme.colorOfArrows} />
+            <AngleLeftIcon size={16} color={activeTheme.colorOfArrows} />
           </StyledButtonPrev>
         ) : null}
 
@@ -260,9 +242,14 @@ export const Tabs: React.FC<ITabsProps & Orientation> = forwardRef(
             handleScroll(event)
           }
           orientation={orientation}
+          centered={centered}
         >
-          <StyledTabsLayer centered={centered}>
-            <StyledTabs aria-label={ariaLabel} orientation={orientation}>
+          <StyledTabsLayer fullWidth={fullWidth}>
+            <StyledTabs
+              aria-label={ariaLabel}
+              orientation={orientation}
+              role="tablist"
+            >
               {arrChildren.map((childItem: any, index) => {
                 const isActive =
                   index ===
@@ -285,6 +272,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = forwardRef(
                     length={arrChildren.length}
                     orientation={orientation}
                     onClick={e => defaultChangeHandler(index, e)}
+                    role="tab"
                   >
                     {child}
                   </StyledTabsChild>
@@ -314,7 +302,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = forwardRef(
             buttonVisible={buttonVisibleNext}
             data-testid="buttonNext"
           >
-            <AngleRightIcon size={20} color={activeTheme.colorOfArrows} />
+            <AngleRightIcon size={16} color={activeTheme.colorOfArrows} />
           </StyledButtonNext>
         ) : null}
       </StyledContainer>

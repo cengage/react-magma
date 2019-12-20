@@ -23,6 +23,8 @@ export interface Colors {
   disabledText: string;
   disabledInverseText: string;
   toggleBoxShadow: string;
+  shade01: string;
+  shade02: string;
 }
 
 export interface ThemeInterface {
@@ -64,7 +66,9 @@ export const magma = {
     disabledText: 'rgba(114, 114, 114, 0.6)',
     disabledInverseText: 'rgba(255,255,255,0.25)',
     toggleBoxShadow:
-      '0 2px 2px -1px rgba(0, 0, 0, 0.3), 0 0 4px 0 rgba(0, 0, 0, 0.24),0 0 5px 0 rgba(0, 0, 0, 0.22)'
+      '0 2px 2px -1px rgba(0, 0, 0, 0.3), 0 0 4px 0 rgba(0, 0, 0, 0.24),0 0 5px 0 rgba(0, 0, 0, 0.22)',
+    shade01: 'rgba(0,0,0,0.05)',
+    shade02: 'rgba(0,0,0,0.3)'
   },
 
   // screen sizes

@@ -10,7 +10,7 @@ export const StyledTab = styled.button<{
   isActive: boolean;
   styles: { [key: string]: any };
 }>(
-  ({ styles }) => ({
+  ({ styles, theme }) => ({
     display: 'flex',
     justifyContent: 'center',
     minHeight: '50px',
@@ -19,10 +19,14 @@ export const StyledTab = styled.button<{
     width: '100%',
     height: '100%',
     padding: '10px',
+    border: 0,
+    background: 'transparent',
+    textTransform: 'uppercase',
+    color: 'inherit',
     ...styles,
     ['&:focus']: {
       outlineOffset: '-2px',
-      outline: 'rgb(229, 151, 0) dotted 2px'
+      outline: `${theme.focusColor} dotted 2px`
     }
   }),
   ({ disabled }) =>
@@ -143,7 +147,5 @@ export const StyledIcon = styled.div<{
     ? {
         marginRight: '10px'
       }
-    : {
-        marginBottom: '5px'
-      }
+    : {}
 );

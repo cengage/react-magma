@@ -37,11 +37,53 @@ This is a simple example of Tab Components
           <div id="example wrapper" style={wrapperStyles}>
             <TabsContainer>
                 <Tabs
+                fullWidth
                   orientation='horizontal'
                 >
-                  <Tab ariaLabel='first-tab'>Main page</Tab>
-                  <Tab ariaLabel='second-tab'>FAQ</Tab>
-                  <Tab ariaLabel='third-tab'>About us</Tab>
+                  <Tab>Main page</Tab>
+                  <Tab>FAQ</Tab>
+                  <Tab>About us</Tab>
+                </Tabs>
+
+                <TabPanel index={0}>
+                  <div style={panelStyles}>Main page</div>
+                </TabPanel>
+                <TabPanel index={1}>
+                  <div style={panelStyles}>FAQ</div>
+                </TabPanel>
+                <TabPanel index={2}>
+                  <div style={panelStyles}>About us</div>
+                </TabPanel>
+            </TabsContainer>
+          </div>
+    )}
+
+```
+#
+This is an example of Tab Components with Tab indicator on top
+
+```.jsx
+      function TabComponent() {
+        const wrapperStyles = {
+          backgroundColor: '#e6e6e6',
+          padding: '25px'
+        }
+
+        const panelStyles = {
+          height: '100px',
+          padding: '5px'
+        }
+
+        return (
+          <div id="example wrapper" style={wrapperStyles}>
+            <TabsContainer>
+                <Tabs
+                  orientation='horizontal'
+                  borderPosition='top'
+                >
+                  <Tab>Main page</Tab>
+                  <Tab>FAQ</Tab>
+                  <Tab>About us</Tab>
                 </Tabs>
 
                 <TabPanel index={0}>
@@ -141,9 +183,9 @@ This is an example of Tab Components with disabled Tab
                 <Tabs
                   orientation='horizontal'
                 >
-                  <Tab ariaLabel='first-tab'>Main page</Tab>
-                  <Tab ariaLabel='second-tab' disabled>FAQ</Tab>
-                  <Tab ariaLabel='third-tab'>About us</Tab>
+                  <Tab>Main page</Tab>
+                  <Tab disabled>FAQ</Tab>
+                  <Tab>About us</Tab>
                 </Tabs>
 
                 <TabPanel index={0}>
@@ -183,9 +225,51 @@ This is an example with centered Tabs
                   orientation='horizontal'
                   centered
                 >
-                  <Tab ariaLabel='first-tab'>Main page</Tab>
-                  <Tab ariaLabel='second-tab'>FAQ</Tab>
-                  <Tab ariaLabel='third-tab'>About us</Tab>
+                  <Tab>Main page</Tab>
+                  <Tab>FAQ</Tab>
+                  <Tab>About us</Tab>
+                </Tabs>
+
+                <TabPanel index={0}>
+                  <div style={panelStyles}>Main page</div>
+                </TabPanel>
+                <TabPanel index={1}>
+                  <div style={panelStyles}>FAQ</div>
+                </TabPanel>
+                <TabPanel index={2}>
+                  <div style={panelStyles}>About us</div>
+                </TabPanel>
+            </TabsContainer>
+          </div>
+    )}
+```
+
+## Full-width tabs
+
+This is an example with full-width Tabs
+
+```.jsx
+      function TabComponent() {
+        const wrapperStyles = {
+          backgroundColor: '#e6e6e6',
+          padding: '25px'
+        }
+
+        const panelStyles = {
+          height: '100px',
+          padding: '5px'
+        }
+
+        return (
+          <div id="example wrapper" style={wrapperStyles}>
+            <TabsContainer>
+                <Tabs
+                  orientation='horizontal'
+                  fullWidth
+                >
+                  <Tab>Main page</Tab>
+                  <Tab>FAQ</Tab>
+                  <Tab>About us</Tab>
                 </Tabs>
 
                 <TabPanel index={0}>
@@ -225,12 +309,12 @@ This is an example of scrollable Tabs with buttons
                   orientation='horizontal'
                   scrollButtons
                 >
-                  <Tab ariaLabel='first-tab'>First item</Tab>
-                  <Tab ariaLabel='second-tab'>Second item</Tab>
-                  <Tab ariaLabel='third-tab'>Third item</Tab>
-                  <Tab ariaLabel='fourth-tab'>Fourth item</Tab>
-                  <Tab ariaLabel='fifth-tab'>Fifth item</Tab>
-                  <Tab ariaLabel='sixth-tab'>Sixth item</Tab>
+                  <Tab>First item</Tab>
+                  <Tab>Second item</Tab>
+                  <Tab>Third item</Tab>
+                  <Tab>Fourth item</Tab>
+                  <Tab>Fifth item</Tab>
+                  <Tab>Sixth item</Tab>
                 </Tabs>
 
                 <TabPanel index={0}>
@@ -278,12 +362,12 @@ This is an example of scrollable Tabs without buttons
                 <Tabs
                   orientation='horizontal'
                 >
-                  <Tab ariaLabel='first-tab'>First item</Tab>
+                  <Tab>First item</Tab>
                   <Tab ariaLabel='second-tab'>Second item</Tab>
-                  <Tab ariaLabel='third-tab'>Third item</Tab>
-                  <Tab ariaLabel='fourth-tab'>Fourth item</Tab>
-                  <Tab ariaLabel='fifth-tab'>Fifth item</Tab>
-                  <Tab ariaLabel='sixth-tab'>Sixth item</Tab>
+                  <Tab>Third item</Tab>
+                  <Tab>Fourth item</Tab>
+                  <Tab>Fifth item</Tab>
+                  <Tab>Sixth item</Tab>
                 </Tabs>
 
                 <TabPanel index={0}>
@@ -331,9 +415,9 @@ This is an example with vertical Tabs
                 <Tabs
                   orientation='vertical'
                 >
-                  <Tab ariaLabel='first-tab'>Main page</Tab>
-                  <Tab ariaLabel='second-tab'>FAQ</Tab>
-                  <Tab ariaLabel='third-tab'>About us</Tab>
+                  <Tab>Main page</Tab>
+                  <Tab>FAQ</Tab>
+                  <Tab>About us</Tab>
                 </Tabs>
 
                 <TabPanel index={0}>
@@ -418,9 +502,9 @@ This is an example with icon Tabs
                 <Tabs
                   orientation='horizontal'
                 >
-                 <Tab ariaLabel='first-tab' icon={<GraduationCapIcon/>}></Tab>
-                  <Tab ariaLabel='second-tab' icon={<AndroidIcon/>}></Tab>
-                  <Tab ariaLabel='third-tab' icon={<BellIcon/>}></Tab>
+                 <Tab ariaLabel='first-tab' icon={<GraduationCapIcon size={17}/>}></Tab>
+                  <Tab ariaLabel='second-tab' icon={<AndroidIcon size={17}/>}></Tab>
+                  <Tab ariaLabel='third-tab' icon={<BellIcon size={17}/>}></Tab>
                 </Tabs>
 
                 <TabPanel index={0}>
@@ -455,9 +539,9 @@ This is an example with icon Tabs
                 <Tabs
                   orientation='horizontal'
                 >
-                  <Tab ariaLabel='first-tab' icon={<GraduationCapIcon/>}>First item</Tab>
-                  <Tab ariaLabel='second-tab' icon={<AndroidIcon/>}>Second item</Tab>
-                  <Tab ariaLabel='third-tab' icon={<BellIcon/>}>Third item</Tab>
+                  <Tab icon={<GraduationCapIcon size={17}/>}>First item</Tab>
+                  <Tab icon={<AndroidIcon size={17}/>}>Second item</Tab>
+                  <Tab icon={<BellIcon size={17}/>}>Third item</Tab>
                 </Tabs>
 
                 <TabPanel index={0}>
@@ -498,9 +582,9 @@ This is an examples with different themes for Tabs
                 <Tabs
                   orientation='horizontal'
                 >
-                 <Tab ariaLabel='first-tab'>First item</Tab>
-                  <Tab ariaLabel='second-tab'>Second item</Tab>
-                  <Tab ariaLabel='third-tab'>Third item</Tab>
+                 <Tab>First item</Tab>
+                  <Tab>Second item</Tab>
+                  <Tab>Third item</Tab>
                 </Tabs>
             </TabsContainer>
           </div>
@@ -527,9 +611,9 @@ This is an examples with different themes for Tabs
                 <Tabs
                   orientation='horizontal'
                 >
-                 <Tab ariaLabel='first-tab'>First item</Tab>
-                  <Tab ariaLabel='second-tab'>Second item</Tab>
-                  <Tab ariaLabel='third-tab'>Third item</Tab>
+                 <Tab>First item</Tab>
+                  <Tab>Second item</Tab>
+                  <Tab>Third item</Tab>
                 </Tabs>
             </TabsContainer>
           </div>
@@ -556,9 +640,9 @@ This is an examples with different themes for Tabs
                 <Tabs
                   orientation='horizontal'
                 >
-                 <Tab ariaLabel='first-tab'>First item</Tab>
-                  <Tab ariaLabel='second-tab'>Second item</Tab>
-                  <Tab ariaLabel='third-tab'>Third item</Tab>
+                 <Tab>First item</Tab>
+                  <Tab>Second item</Tab>
+                  <Tab>Third item</Tab>
                 </Tabs>
             </TabsContainer>
           </div>
@@ -585,9 +669,9 @@ This is an examples with different themes for Tabs
                 <Tabs
                   orientation='horizontal'
                 >
-                 <Tab ariaLabel='first-tab'>First item</Tab>
-                  <Tab ariaLabel='second-tab'>Second item</Tab>
-                  <Tab ariaLabel='third-tab'>Third item</Tab>
+                 <Tab>First item</Tab>
+                  <Tab>Second item</Tab>
+                  <Tab>Third item</Tab>
                 </Tabs>
             </TabsContainer>
           </div>

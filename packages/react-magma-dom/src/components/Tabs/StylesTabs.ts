@@ -51,7 +51,8 @@ export const StyledTabsChild = styled.div<{
     alignItems: 'center',
     justifyContent: 'center',
     color: 'inherit',
-    tabIndex: 1
+    fontSize: '14px',
+    fontWeight: 600
   }),
   ({ orientation, theme, length }): any =>
     orientation === 'vertical'
@@ -124,22 +125,20 @@ export const BottomLineStyled = styled.div<{
           top: `${(100 / length) * activeTabIndex}%`,
           height: `${100 / length}%`,
           minHeight: `${100 / length}%`,
-          width: '3px'
+          width: '4px'
         }
       : {
           left: `${(100 / length) * activeTabIndex}%`,
-          height: 3,
+          height: '4px',
           width: `${100 / length}%`,
           minWidth: '85px'
         },
-  ({ orientation, borderPosition }) =>
-    orientation === 'vertical' && borderPosition === 'left'
+  ({ orientation }) =>
+    orientation === 'vertical'
       ? {
           left: 0
         }
-      : {
-          right: 0
-        },
+      : {},
   ({ orientation, borderPosition }) =>
     orientation === 'horizontal' && borderPosition === 'top'
       ? {
@@ -152,6 +151,7 @@ export const BottomLineStyled = styled.div<{
 
 export const StyledTabsWrapper = styled.div<{
   orientation: TabsOrientationVertical | TabsOrientationHorizontal;
+  centered: boolean;
 }>(
   ({ orientation }) =>
     orientation === 'vertical'
@@ -171,8 +171,14 @@ export const StyledTabsWrapper = styled.div<{
       width: '0',
       height: '0'
     },
-    overflow: '-moz-scrollbars-none'
-  }
+    scrollbarWidth: 'none'
+  },
+  ({ centered }): any =>
+    centered
+      ? {
+          justifyContent: 'center'
+        }
+      : {}
 );
 
 export const StyledButtonNext = styled.div<{
@@ -244,14 +250,14 @@ export const StyledContainer = styled.div<{
 );
 
 export const StyledTabsLayer = styled.div<{
-  centered: boolean;
+  fullWidth: boolean;
 }>(
   {
     display: 'flex',
     alignItems: 'stretch'
   },
-  ({ centered }): any =>
-    centered
+  ({ fullWidth }): any =>
+    fullWidth
       ? {
           width: '100%'
         }
