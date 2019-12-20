@@ -27,6 +27,7 @@ interface DatePickerProps {
   placeholder?: string;
   required?: boolean;
   testId?: string;
+  value?: Date;
   onDateChange?: (day: Date, event: React.SyntheticEvent) => void;
   onInputBlur?: (event: React.FocusEvent) => void;
   onInputChange?: (event: React.ChangeEvent) => void;
@@ -60,6 +61,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
   >(false);
   const [calendarOpened, setCalendarOpened] = React.useState<boolean>(false);
   const [dateFocused, setDateFocused] = React.useState<boolean>(false);
+
   const [focusedDate, setFocusedDate] = React.useState<Date>(
     props.defaultDate || new Date()
   );
@@ -72,6 +74,13 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
       setDateFocused(false);
     }
   }, [calendarOpened]);
+
+  React.useEffect(() => {
+    if (props.value) {
+      setChosenDate(props.value);
+      setFocusedDate(props.value);
+    }
+  }, [props.value]);
 
   function buildCalendarMonth(date: Date, enableOutsideDates: boolean) {
     return getCalendarMonthWeeks(date, enableOutsideDates);
