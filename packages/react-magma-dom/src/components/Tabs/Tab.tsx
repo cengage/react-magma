@@ -64,7 +64,7 @@ export const Tab: React.FC<ITabProps> = forwardRef(
           disabled={disabled}
           data-testid={testId}
           aria-label={ariaLabel}
-          aria-pressed={isActive}
+          aria-selected={isActive}
         >
           {children}
         </StyledCustomTab>
@@ -81,7 +81,7 @@ export const Tab: React.FC<ITabProps> = forwardRef(
             aria-label={ariaLabel}
             isActive={isActive}
             styles={styles}
-            aria-pressed={isActive}
+            aria-selected={isActive}
           >
             <StyledIcon iconOrientation={iconOrientation!}>{icon}</StyledIcon>
             {children}
@@ -98,7 +98,7 @@ export const Tab: React.FC<ITabProps> = forwardRef(
             data-testid={testId}
             isActive={isActive}
             styles={styles}
-            aria-pressed={isActive}
+            aria-selected={isActive}
           >
             {children}
           </StyledTab>
