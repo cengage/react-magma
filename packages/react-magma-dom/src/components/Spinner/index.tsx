@@ -2,8 +2,7 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 
-export interface SpinnerProps {
-  ariaLabel?: string;
+export interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {
   color?: string;
   size?: number;
   testId?: string;
@@ -26,14 +25,16 @@ const StyledSpinner = styled.span<SpinnerProps>`
 `;
 
 export const Spinner: React.FunctionComponent<SpinnerProps> = ({
-  ariaLabel,
+  'aria-label': ariaLabel,
   color,
   size,
-  testId
+  testId,
+  ...other
 }: SpinnerProps) => (
   <ThemeContext.Consumer>
     {theme => (
       <StyledSpinner
+        {...other}
         aria-label={ariaLabel ? ariaLabel : 'Loading...'}
         color={color ? color : theme.colors.primary}
         data-testid={testId}

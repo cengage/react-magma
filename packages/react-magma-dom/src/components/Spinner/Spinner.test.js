@@ -18,7 +18,7 @@ describe('Spinner', () => {
   });
 
   it('should render the spinner component with a custom aria-label', () => {
-    const { container } = render(<Spinner ariaLabel="Hello" />);
+    const { container } = render(<Spinner aria-label="Hello" />);
 
     expect(container.querySelector('span')).toHaveAttribute(
       'aria-label',

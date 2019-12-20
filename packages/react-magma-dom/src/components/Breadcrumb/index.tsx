@@ -4,7 +4,6 @@ import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface BreadcrumbProps
   extends React.HTMLAttributes<HTMLOListElement> {
-  ariaLabel?: string;
   inverse?: boolean;
   minWidthToShow?: number;
   testId?: string;
@@ -40,7 +39,14 @@ export const Breadcrumb: React.FunctionComponent<
   BreadcrumbProps
 > = React.forwardRef(
   (
-    { ariaLabel, children, inverse, minWidthToShow, testId }: BreadcrumbProps,
+    {
+      'aria-label': ariaLabel,
+      children,
+      inverse,
+      minWidthToShow,
+      testId,
+      ...other
+    }: BreadcrumbProps,
     ref: any
   ) => {
     const theme = React.useContext(ThemeContext);
@@ -48,6 +54,7 @@ export const Breadcrumb: React.FunctionComponent<
     return (
       <BreadCrumbContext.Provider value={{ inverse }}>
         <StyledNav
+          {...other}
           aria-label={ariaLabel ? ariaLabel : 'Breadcrumb'}
           breakpoint={minWidthToShow ? `${minWidthToShow}px` : '0'}
           data-testid={testId}
