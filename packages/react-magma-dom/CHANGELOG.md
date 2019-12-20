@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.3](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2019-12-20)
+
+
+### Code Refactoring
+
+* **breadcrumb, spinner:** renamed ariaLabel prop to aria-label ([df23d35](http://stash.corp.web:7999/FRONT/react-magma/commits/df23d35))
+* **tooltip:** remove content prop, use children instead ([b0316e9](http://stash.corp.web:7999/FRONT/react-magma/commits/b0316e9))
+
+
+### BREAKING CHANGES
+
+* **breadcrumb, spinner:** prop name changed in breadcrumb and spinner components -- ariaLabel changed to
+aria-label
+
+MAGMA-193
+* **tooltip:** removed the content prop from Tooltip component, uses children instead
+
+MAGMA-208
+
+
+
+
+
 # [2.0.0-beta.1](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2019-12-19)
 
 
