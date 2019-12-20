@@ -5,7 +5,7 @@ title: 'Skip Link'
 import { ScopeableLayout } from '../../components/layout'
 import { SkipLink, SkipLinkContent } from 'react-magma-dom'
 import { Link } from 'gatsby'
-import { Button } from 'react-magma-dom'
+import { HyperLink } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 
 # Skip Link
@@ -46,7 +46,7 @@ Or
 
 When the user tabs to the first element, a button with this appearace will display in focus:
 
-<Button>Skip Navigation</Button>
+<HyperLink styledAs="Button">Skip Navigation</HyperLink>
 
 ## Button Variations
 
@@ -66,9 +66,9 @@ For more information, see the <Link to="/api/button">Button Component documentat
 
 This would render the button as:
 
-<Button color="success" variant="outline">
+<HyperLink color="success" styledAs="Button" variant="outline">
   Skip Navigation
-</Button>
+</HyperLink>
 
 ## Button Text
 
@@ -81,7 +81,7 @@ By default, the text inside the button says "Skip Navigation". This can be overr
 
 This would render the button as:
 
-<Button>Skip to main content</Button>
+<HyperLink styledAs="Button">Skip to main content</HyperLink>
 
 ## Positioning
 
