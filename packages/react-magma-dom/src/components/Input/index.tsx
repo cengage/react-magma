@@ -406,7 +406,6 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                   }
                   style={{ margin: '0 0 0 7px' }}
                   type={ButtonType.button}
-                  title={HELP_LINK_ARIA_LABEL}
                   variant={ButtonVariant.link}
                 />
               }
