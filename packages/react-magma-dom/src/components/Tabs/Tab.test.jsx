@@ -1,6 +1,6 @@
 import React from 'react';
-import { Tab } from '../Tab';
-import { CheckIcon } from '../../Icon/types/CheckIcon';
+import { Tab } from './Tab';
+import { CheckIcon } from '../Icon/types/CheckIcon';
 import { render } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
 
@@ -46,11 +46,11 @@ describe('Tab', () => {
     );
     const component = getByTestId(testId);
 
-    expect(component).toHaveAttribute('aria-pressed', 'true');
+    expect(component).toHaveAttribute('aria-selected', 'true');
 
     rerender(<Tab testId={testId} ariaLabel="test" isActive={false}></Tab>);
 
-    expect(component).toHaveAttribute('aria-pressed', 'false');
+    expect(component).toHaveAttribute('aria-selected', 'false');
   });
 
   it('should render text', () => {

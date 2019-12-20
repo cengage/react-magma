@@ -1,6 +1,6 @@
 import React from 'react';
-import { TabPanel } from '../TabPanel';
-import { TabsContext } from '../TabsContainer';
+import { TabPanel } from './TabPanel';
+import { TabsContext } from './TabsContainer';
 import { render } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Tabs } from '../Tabs';
-import { TabsContext } from '../TabsContainer';
+import { Tabs } from './Tabs';
+import { TabsContext } from './TabsContainer';
 import { render, fireEvent } from '@testing-library/react';
 const { axe, toHaveNoViolations } = require('jest-axe');
 
@@ -99,11 +99,7 @@ describe('Tabs', () => {
   it('should render scroll buttons if orientation horizontal', () => {
     const { getByTestId } = render(
       <TabsContext.Provider value={{ theme, state, dispatch }}>
-        <Tabs
-          testId={testId}
-          scrollButtons={true}
-          orientation="horizontal"
-        />
+        <Tabs testId={testId} scrollButtons={true} orientation="horizontal" />
       </TabsContext.Provider>
     );
     expect(getByTestId('buttonNext')).toBeDefined();
@@ -151,8 +147,8 @@ describe('Tabs', () => {
     expect(getByTestId('bottom-line')).toHaveStyleRule('bottom', '0');
   });
 
-  it('should render line left/right if orientation vertical', () => {
-    const { getByTestId, rerender } = render(
+  it('should render line left if orientation vertical', () => {
+    const { getByTestId } = render(
       <TabsContext.Provider value={{ theme, state, dispatch }}>
         <Tabs testId={testId} borderPosition="left" orientation="vertical">
           <div></div>
@@ -161,15 +157,6 @@ describe('Tabs', () => {
     );
     expect(getByTestId('bottom-line')).toBeDefined();
     expect(getByTestId('bottom-line')).toHaveStyleRule('left', '0');
-
-    rerender(
-      <TabsContext.Provider value={{ theme, state, dispatch }}>
-        <Tabs testId={testId} borderPosition="right" orientation="vertical" />
-      </TabsContext.Provider>
-    );
-
-    expect(getByTestId('bottom-line')).toBeDefined();
-    expect(getByTestId('bottom-line')).toHaveStyleRule('right', '0');
   });
 
   it('should change the variant of the themes when passed in different variant', () => {
