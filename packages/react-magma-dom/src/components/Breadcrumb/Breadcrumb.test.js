@@ -47,7 +47,7 @@ describe('Breadcrumb', () => {
 
   it('should render the breadcrumb component with custom aria-label', () => {
     const { queryByLabelText, getByLabelText } = render(
-      <Breadcrumb ariaLabel="Test label">
+      <Breadcrumb aria-label="Test label">
         <BreadcrumbItem to="#">{LINK_TEXT}</BreadcrumbItem>
         <BreadcrumbItem>{SPAN_TEXT}</BreadcrumbItem>
       </Breadcrumb>
