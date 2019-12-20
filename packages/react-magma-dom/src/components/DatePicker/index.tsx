@@ -63,10 +63,10 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
   const [dateFocused, setDateFocused] = React.useState<boolean>(false);
 
   const [focusedDate, setFocusedDate] = React.useState<Date>(
-    props.defaultDate || new Date()
+    props.value || props.defaultDate || new Date()
   );
   const [chosenDate, setChosenDate] = React.useState<Date | null>(
-    props.defaultDate
+    props.value || props.defaultDate
   );
 
   React.useEffect(() => {
