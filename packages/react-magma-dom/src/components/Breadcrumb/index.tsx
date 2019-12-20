@@ -3,7 +3,6 @@ import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
-  ariaLabel?: string;
   inverse?: boolean;
   minWidthToShow?: number;
   testId?: string;
@@ -40,7 +39,7 @@ export const Breadcrumb: React.FunctionComponent<
 > = React.forwardRef(
   (
     {
-      ariaLabel,
+      'aria-label': ariaLabel,
       children,
       inverse,
       minWidthToShow,

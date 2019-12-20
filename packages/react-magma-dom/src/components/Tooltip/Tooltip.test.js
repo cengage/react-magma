@@ -11,11 +11,9 @@ describe('Tooltip', () => {
   it('should find element by testId', () => {
     const testId = 'test-id';
     const { getByTestId } = render(
-      <Tooltip
-        content="Tooltip Content"
-        trigger={<button>Trigger</button>}
-        testId={testId}
-      />
+      <Tooltip trigger={<button>Trigger</button>} testId={testId}>
+        Tooltip Content
+      </Tooltip>
     );
 
     expect(getByTestId(testId)).toBeInTheDocument();
@@ -23,11 +21,9 @@ describe('Tooltip', () => {
 
   it('should render the tooltip component, positioned top by default', () => {
     const { container, getByText } = render(
-      <Tooltip
-        content={CONTENT_TEXT}
-        id="testTooltipId"
-        trigger={TRIGGER_ELEMENT}
-      />
+      <Tooltip id="tooltipID" trigger={TRIGGER_ELEMENT}>
+        {CONTENT_TEXT}
+      </Tooltip>
     );
     const tooltip = container.querySelector('div[role="tooltip"]');
     const tooltipInner = getByText('Test Content');
@@ -61,11 +57,9 @@ describe('Tooltip', () => {
 
   it('should render the tooltip component with the correct styles when positioned left', () => {
     const { container, getByText } = render(
-      <Tooltip
-        content={CONTENT_TEXT}
-        position="left"
-        trigger={TRIGGER_ELEMENT}
-      />
+      <Tooltip position="left" trigger={TRIGGER_ELEMENT}>
+        {CONTENT_TEXT}
+      </Tooltip>
     );
     const tooltip = container.querySelector('div[role="tooltip"]');
     const tooltipInner = getByText('Test Content');
@@ -87,11 +81,9 @@ describe('Tooltip', () => {
 
   it('should render the tooltip component with the correct styles when positioned right', () => {
     const { container } = render(
-      <Tooltip
-        content={CONTENT_TEXT}
-        position="right"
-        trigger={TRIGGER_ELEMENT}
-      />
+      <Tooltip position="right" trigger={TRIGGER_ELEMENT}>
+        {CONTENT_TEXT}
+      </Tooltip>
     );
     const tooltip = container.querySelector('div[role="tooltip"]');
 
@@ -100,11 +92,9 @@ describe('Tooltip', () => {
 
   it('should render the tooltip component with the correct styles when positioned bottom', () => {
     const { container } = render(
-      <Tooltip
-        content={CONTENT_TEXT}
-        position="bottom"
-        trigger={TRIGGER_ELEMENT}
-      />
+      <Tooltip position="bottom" trigger={TRIGGER_ELEMENT}>
+        {CONTENT_TEXT}
+      </Tooltip>
     );
     const tooltip = container.querySelector('div[role="tooltip"]');
 
@@ -113,7 +103,7 @@ describe('Tooltip', () => {
 
   it('should show the tooltip on focus and hide it on blur', () => {
     const { container, getByText } = render(
-      <Tooltip content={CONTENT_TEXT} trigger={TRIGGER_ELEMENT} />
+      <Tooltip trigger={TRIGGER_ELEMENT}>{CONTENT_TEXT}</Tooltip>
     );
     const trigger = getByText('Test trigger');
     const tooltip = container.querySelector('div[role="tooltip"]');
@@ -129,7 +119,7 @@ describe('Tooltip', () => {
 
   it('should show the tooltip on mouseenter and hide it on mouseleave', () => {
     const { container, getByText } = render(
-      <Tooltip content={CONTENT_TEXT} trigger={TRIGGER_ELEMENT} />
+      <Tooltip trigger={TRIGGER_ELEMENT}>{CONTENT_TEXT}</Tooltip>
     );
     const trigger = getByText('Test trigger');
     const tooltip = container.querySelector('div[role="tooltip"]');
@@ -145,7 +135,7 @@ describe('Tooltip', () => {
 
   it('should hide the tooltip when the escape key is pressed', () => {
     const { container, getByText } = render(
-      <Tooltip content={CONTENT_TEXT} trigger={TRIGGER_ELEMENT} />
+      <Tooltip trigger={TRIGGER_ELEMENT}>{CONTENT_TEXT}</Tooltip>
     );
     const trigger = getByText('Test trigger');
     const tooltip = container.querySelector('div[role="tooltip"]');
@@ -172,7 +162,9 @@ describe('Tooltip', () => {
 
   it('should render the tooltip component with the correct styles for the inverse prop', () => {
     const { getByText } = render(
-      <Tooltip content={CONTENT_TEXT} inverse trigger={TRIGGER_ELEMENT} />
+      <Tooltip inverse trigger={TRIGGER_ELEMENT}>
+        {CONTENT_TEXT}
+      </Tooltip>
     );
     const tooltipInner = getByText('Test Content');
 
@@ -189,12 +181,9 @@ describe('Tooltip', () => {
 
   it('should render the tooltip component with the correct styles for the inverse prop, positioned left or right', () => {
     const { getByText } = render(
-      <Tooltip
-        content={CONTENT_TEXT}
-        inverse
-        position="left"
-        trigger={TRIGGER_ELEMENT}
-      />
+      <Tooltip inverse position="left" trigger={TRIGGER_ELEMENT}>
+        {CONTENT_TEXT}
+      </Tooltip>
     );
     const tooltipInner = getByText('Test Content');
 
@@ -208,7 +197,7 @@ describe('Tooltip', () => {
 
   it('Does not violate accessibility standards', () => {
     const { container } = render(
-      <Tooltip content={CONTENT_TEXT} trigger={TRIGGER_ELEMENT} />
+      <Tooltip trigger={TRIGGER_ELEMENT}>{CONTENT_TEXT}</Tooltip>
     );
 
     return axe(container.innerHTML).then(result => {

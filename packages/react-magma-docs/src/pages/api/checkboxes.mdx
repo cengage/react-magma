@@ -271,6 +271,14 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       required: true,
       description: 'Text for label',
     },
+    onChange: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description:
+        'Action that fires when selected value of the checkbox changes',
+    },
     required: {
       type: {
         name: 'boolean',

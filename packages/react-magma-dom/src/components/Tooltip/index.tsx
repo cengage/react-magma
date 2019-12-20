@@ -12,7 +12,6 @@ export enum EnumTooltipPosition {
 }
 
 export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
-  content: React.ReactNode;
   inverse?: boolean;
   position?: EnumTooltipPosition;
   testId?: string;
@@ -237,7 +236,7 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
     }
 
     const {
-      content,
+      children,
       id: defaultId,
       inverse,
       position,
@@ -273,7 +272,7 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
             position={position ? position : EnumTooltipPosition.top}
             theme={theme}
           >
-            {content}
+            {children}
           </StyledTooltipInner>
         </StyledTooltip>
       </ToolTipContainer>
