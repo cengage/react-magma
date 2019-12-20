@@ -26,11 +26,11 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   header?: React.ReactNode;
   hideCloseButton?: boolean;
   id?: string;
-  innerRef?: React.Ref<HTMLDivElement>;
   isExiting?: boolean;
   onClose?: () => void;
   onEscKeyDown?: (event: KeyboardEvent) => void;
   open?: boolean;
+  ref?: React.Ref<HTMLDivElement>;
   size?: ModalSize;
   testId?: string;
 }
@@ -305,8 +305,6 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
       header,
       hideCloseButton,
       open,
-      size,
-      innerRef,
       testId,
       ...rest
     } = props;
@@ -338,13 +336,12 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
               role="dialog"
             >
               <ModalContent
+                {...other}
                 data-testid="modal-content"
                 id={contentId}
                 isExiting={isExiting}
                 ref={ref}
-                size={size}
                 theme={theme}
-                {...other}
               >
                 {header && (
                   <ModalHeader theme={theme}>

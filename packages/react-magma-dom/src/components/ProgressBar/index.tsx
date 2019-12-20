@@ -113,7 +113,8 @@ export const ProgressBar: React.FunctionComponent<
       inverse,
       labelVisible,
       percentage,
-      testId
+      testId,
+      ...other
     }: ProgressBarProps,
     ref: any
   ) => {
@@ -122,7 +123,7 @@ export const ProgressBar: React.FunctionComponent<
     const theme = React.useContext(ThemeContext);
 
     return (
-      <Container>
+      <Container {...other}>
         <Track
           data-testid={testId}
           height={height ? height : 15}

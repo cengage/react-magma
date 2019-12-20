@@ -1,17 +1,14 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { ButtonColor, ButtonVariant } from '../Button';
-import { HyperLink } from '../HyperLink';
+import { HyperLink, HyperLinkProps } from '../HyperLink';
 
 export const TARGET_ID = 'reactMagmaMainContent';
 
-export interface SkipLinkProps {
+export interface SkipLinkProps extends HyperLinkProps {
   buttonText?: string;
-  className?: string;
   color?: ButtonColor;
   inverse?: boolean;
-  positionLeft?: number;
-  positionTop?: number;
   testId?: string;
   variant?: ButtonVariant;
 }
@@ -53,20 +50,18 @@ const StyledSkipLink = styled(HyperLink)<{
 
 export const SkipLink: React.FunctionComponent<SkipLinkProps> = ({
   buttonText,
-  className,
   color,
-  inverse,
   positionLeft,
   positionTop,
   testId,
-  variant
+  variant,
+  ...other
 }: SkipLinkProps) => {
   return (
     <StyledSkipLink
-      className={className}
+      {...other}
       color={color ? color : ButtonColor.primary}
       testId={testId}
-      inverse={inverse}
       onClick={e => {
         handleClick(e);
       }}
