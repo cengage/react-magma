@@ -1,9 +1,7 @@
-/* eslint-disable no-unused-vars */
-import React, { useContext, useEffect, forwardRef } from 'react';
+import React from 'react';
 import { defineTheme } from './themes';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useTabsContext } from './TabsContainer';
-// eslint-disable-next-line no-unused-vars
 import {
   StyledCustomTab,
   StyledTab,
@@ -18,14 +16,14 @@ export interface ITabProps {
   iconOrientation?: IconOrientation;
   ariaLabel?: string;
   testId?: string;
-  defaultChangeHandler?: (index: number) => void;
+  changeHandler?: (index: number) => void;
   index?: number;
   isActive?: boolean;
   styles?: { [key: string]: any };
   path?: string;
 }
 
-export const Tab: React.FC<ITabProps> = forwardRef(
+export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
   (props, ref: React.Ref<any>) => {
     const {
       children,
@@ -35,26 +33,19 @@ export const Tab: React.FC<ITabProps> = forwardRef(
       iconOrientation,
       ariaLabel,
       testId,
-      defaultChangeHandler,
+      changeHandler,
       index,
       isActive,
       styles,
       path
     } = props;
 
-    const tabsThemeContext = useContext(ThemeContext);
+    const tabsThemeContext = React.useContext(ThemeContext);
     const { theme } = useTabsContext();
 
-    useEffect(() => {
-      path && path === window.location.pathname && defaultChangeHandler(index);
+    React.useEffect(() => {
+      path && path === window.location.pathname && changeHandler(index);
     }, [path]);
-
-    if (children && component && process.env.NODE_ENV !== 'production') {
-      // eslint-disable-next-line no-console
-      console.log(
-        "REACT MAGMA: Don't throw children inside Tab component, do it inside your custom component instead"
-      );
-    }
 
     if (component) {
       return (
@@ -83,7 +74,7 @@ export const Tab: React.FC<ITabProps> = forwardRef(
             styles={styles}
             aria-selected={isActive}
           >
-            <StyledIcon iconOrientation={iconOrientation!}>{icon}</StyledIcon>
+            <StyledIcon iconOrientation={iconOrientation}>{icon}</StyledIcon>
             {children}
           </StyledTab>
         );
@@ -91,9 +82,9 @@ export const Tab: React.FC<ITabProps> = forwardRef(
         return (
           <StyledTab
             ref={ref}
-            theme={defineTheme(tabsThemeContext, theme!)}
+            theme={defineTheme(tabsThemeContext, theme)}
             aria-label={ariaLabel}
-            iconOrientation={iconOrientation!}
+            iconOrientation={iconOrientation}
             disabled={disabled}
             data-testid={testId}
             isActive={isActive}

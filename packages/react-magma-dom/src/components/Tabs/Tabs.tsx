@@ -1,12 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback,
-  useRef,
-  createRef,
-  useContext,
-  forwardRef
-} from 'react';
+import React from 'react';
 import { defineTheme } from './themes';
 import { useTabsContext } from './TabsContainer';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -53,7 +45,7 @@ export interface ITabsProps {
   testId?: string;
 }
 
-export const Tabs: React.FC<ITabsProps & Orientation> = forwardRef(
+export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
   (props, ref: React.Ref<any>) => {
     const {
       children,
@@ -68,33 +60,19 @@ export const Tabs: React.FC<ITabsProps & Orientation> = forwardRef(
       fullWidth,
       testId
     } = props;
-    // {state} and {dispatch} from the TabsContainer context
     const { state, dispatch, theme } = useTabsContext();
-    const [previousActiveTab, setPreviousActiveTab] = useState(
+    const [previousActiveTab, setPreviousActiveTab] = React.useState(
       state.activeTabIndex
     );
-    const [buttonVisiblePrev, setButtonPrevState] = useState(false);
-    const [buttonVisibleNext, setButtonNextState] = useState(false);
+    const [buttonVisiblePrev, setButtonPrevState] = React.useState(false);
+    const [buttonVisibleNext, setButtonNextState] = React.useState(false);
     const arrChildren = React.Children.toArray(children);
 
-    // eslint-disable-next-line no-unused-vars
-    const defaultChangeHandler = useCallback(
+    const changeHandler = React.useCallback(
       (
         newActiveIndex: number,
         event: React.MouseEvent<HTMLDivElement, MouseEvent>
       ): void => {
-        if (
-          (!state || !dispatch) &&
-          (!activeIndex || !onChange) &&
-          process.env.NODE_ENV !== 'production'
-        ) {
-          // eslint-disable-next-line no-console
-          console.log(
-            "REACT MAGMA: Tabs component didn't get props from TabsContainer context properly."
-          );
-          return undefined;
-        }
-
         if (
           (event.target as HTMLInputElement).children[0] &&
           (event.target as HTMLInputElement).children[0].hasAttribute(
@@ -112,7 +90,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = forwardRef(
         }
 
         dispatch({
-          type: 'setActiveTabIndex',
+          type: 'SET_ACTIVE_TAB_INDEX',
           payload: { activeTabIndex: newActiveIndex }
         });
 
@@ -125,10 +103,10 @@ export const Tabs: React.FC<ITabsProps & Orientation> = forwardRef(
       [activeIndex, dispatch, onChange, state]
     );
 
-    useEffect(() => {
+    React.useEffect(() => {
       if (arrChildren.length !== state.numberOfTabs)
         dispatch({
-          type: 'setNumberOfTabs',
+          type: 'SET_NUMBER_OF_TABS',
           payload: { numberOfTabs: arrChildren.length }
         });
     }, [arrChildren.length, dispatch, state.numberOfTabs]);
@@ -136,14 +114,14 @@ export const Tabs: React.FC<ITabsProps & Orientation> = forwardRef(
     //Logic for Scroll
 
     const buttonRefArray = arrChildren.reduce(
-      (accum: any, currentValue: any, index: number) => {
-        accum[index] = createRef();
+      (accum: any, _, index: number) => {
+        accum[index] = React.createRef();
         return accum;
       },
       {}
     );
 
-    const divRef: any = useRef<HTMLDivElement>();
+    const divRef: any = React.useRef<HTMLDivElement>();
 
     const handleClickNext = () => {
       const scrollPositionSize = divRef.current.scrollLeft;
@@ -189,7 +167,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = forwardRef(
           });
     };
 
-    useEffect(() => {
+    React.useEffect(() => {
       const scrollPositionSize = divRef.current.scrollLeft;
       const scrollSize = divRef.current.scrollWidth;
       const offsetBoxSize = divRef.current.offsetWidth;
@@ -199,7 +177,6 @@ export const Tabs: React.FC<ITabsProps & Orientation> = forwardRef(
         : setButtonNextState(true);
     }, []);
 
-    // eslint-disable-next-line no-unused-vars
     const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
       const scrollPositionSize = divRef.current.scrollLeft;
       const scrollSize = divRef.current.scrollWidth;
@@ -214,7 +191,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = forwardRef(
         : setButtonPrevState(false);
     };
 
-    const tabsThemeContext = useContext(ThemeContext);
+    const tabsThemeContext = React.useContext(ThemeContext);
 
     const activeTheme = defineTheme(tabsThemeContext, theme);
 
@@ -259,7 +236,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = forwardRef(
 
                 const child: any = React.cloneElement(childItem, {
                   isActive,
-                  defaultChangeHandler,
+                  changeHandler,
                   index
                 });
 
@@ -271,7 +248,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = forwardRef(
                     isActive={isActive}
                     length={arrChildren.length}
                     orientation={orientation}
-                    onClick={e => defaultChangeHandler(index, e)}
+                    onClick={e => changeHandler(index, e)}
                     role="tab"
                   >
                     {child}

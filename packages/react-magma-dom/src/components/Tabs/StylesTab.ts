@@ -76,13 +76,9 @@ export interface IStyledCustomTabProps {
   ref: React.Ref<any>;
 }
 
-export const StyledCustomTab: React.FC<IStyledCustomTabProps> = ({
-  component,
-  disabled,
-  style,
-  onClick,
-  ref
-}) => {
+export const StyledCustomTab: React.FunctionComponent<
+  IStyledCustomTabProps
+> = ({ component, disabled, style, onClick, ref }) => {
   if (React.isValidElement(component) && React.isValidElement(component)) {
     return React.cloneElement(component, {
       style: disabled
@@ -131,12 +127,6 @@ export const StyledCustomTab: React.FC<IStyledCustomTabProps> = ({
     });
   }
 
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line no-console
-    console.log(
-      'REACT MAGMA: invalid children or custom component was given to Tab component'
-    );
-  }
   return null;
 };
 

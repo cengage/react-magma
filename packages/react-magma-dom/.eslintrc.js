@@ -3,6 +3,13 @@ module.exports = {
     jest: true
   },
   extends: 'cengage/react',
-  parser: '@typescript-eslint/parser',
+  parser: 'babel-eslint',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true
+    },
+    ecmaVersion: 2018,
+    sourceType: 'module'
+  },
   plugins: ['react']
 };

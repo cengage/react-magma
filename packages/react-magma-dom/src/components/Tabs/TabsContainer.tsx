@@ -1,15 +1,13 @@
-// eslint-disable-next-line no-unused-vars
-import React, {
-  useContext,
-  createContext,
-  useReducer,
-  Dispatch,
-  useMemo,
-  forwardRef
-} from 'react';
+import React from 'react';
 import { StyledTabsContainer } from './StylesTabsContainer';
 
-export type TabsTheme = 'dark' | 'light' | 'blue' | 'darkBlue' | 'grey';
+export enum TabsTheme {
+  dark = 'dark',
+  light = 'light',
+  blue = 'blue',
+  darkBlue = 'darkBlue',
+  grey = 'grey'
+}
 
 interface ITabsContainer {
   theme?: TabsTheme;
@@ -29,10 +27,10 @@ interface Action {
   };
 }
 
-export const TabsContext = createContext({} as {
+export const TabsContext = React.createContext({} as {
   theme: TabsTheme;
   state: State;
-  dispatch: Dispatch<Action>;
+  dispatch: React.Dispatch<Action>;
 });
 
 const initialState = {
@@ -42,12 +40,12 @@ const initialState = {
 
 function tabReducer(state: State, action: Action) {
   switch (action.type) {
-    case 'setActiveTabIndex':
+    case 'SET_ACTIVE_TAB_INDEX':
       return {
         ...state,
         activeTabIndex: action.payload.activeTabIndex
       };
-    case 'setNumberOfTabs':
+    case 'SET_NUMBER_OF_TABS':
       return {
         ...state,
         numberOfTabs: action.payload.numberOfTabs
@@ -57,26 +55,29 @@ function tabReducer(state: State, action: Action) {
   }
 }
 
-export const TabsContainer: React.FC<ITabsContainer> = forwardRef(
-  (props, ref: React.Ref<any>) => {
-    const { children, theme, testId } = props;
+export const TabsContainer: React.FunctionComponent<
+  ITabsContainer
+> = React.forwardRef((props, ref: React.Ref<any>) => {
+  const { children, theme, testId } = props;
 
-    const [stateWithoutMemo, dispatch] = useReducer(tabReducer, initialState);
+  const [stateWithoutMemo, dispatch] = React.useReducer(
+    tabReducer,
+    initialState
+  );
 
-    const state = useMemo(() => {
-      return stateWithoutMemo;
-    }, [stateWithoutMemo]);
+  const state = React.useMemo(() => {
+    return stateWithoutMemo;
+  }, [stateWithoutMemo]);
 
-    return (
-      <TabsContext.Provider value={{ theme, state, dispatch }}>
-        <StyledTabsContainer ref={ref} data-testid={testId}>
-          {children}
-        </StyledTabsContainer>
-      </TabsContext.Provider>
-    );
-  }
-);
+  return (
+    <TabsContext.Provider value={{ theme, state, dispatch }}>
+      <StyledTabsContainer ref={ref} data-testid={testId}>
+        {children}
+      </StyledTabsContainer>
+    </TabsContext.Provider>
+  );
+});
 
 TabsContainer.displayName = 'TabsContainer';
 
-export const useTabsContext = () => useContext(TabsContext);
+export const useTabsContext = () => React.useContext(TabsContext);
