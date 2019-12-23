@@ -1,6 +1,10 @@
 import React from 'react';
 import { useTabsContext } from './TabsContainer';
-import { StyledTabPanel } from './StylesTabPanel';
+import styled from '@emotion/styled';
+
+const StyledTabPanel = styled.div({
+  height: '100%'
+});
 
 export interface ITabPanelProps {
   activeIndex?: number;

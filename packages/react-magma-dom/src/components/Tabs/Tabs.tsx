@@ -1,19 +1,273 @@
 import React from 'react';
-import { defineTheme } from './themes';
-import { useTabsContext } from './TabsContainer';
+import styled from '@emotion/styled';
+import { defineTheme, useTabsContext, TabsTheme } from './TabsContainer';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { AngleRightIcon } from '../../components/Icon/types/AngleRightIcon';
 import { AngleLeftIcon } from '../../components/Icon/types/AngleLeftIcon';
-import {
-  StyledTabs,
-  StyledTabsChild,
-  BottomLineStyled,
-  StyledTabsWrapper,
-  StyledButtonNext,
-  StyledButtonPrev,
-  StyledContainer,
-  StyledTabsLayer
-} from './StylesTabs';
+import { magma } from '../../theme/magma';
+
+const StyledTabs = styled.div<{
+  ['aria-label']: TabsAriaLabel;
+  orientation: TabsOrientationVertical | TabsOrientationHorizontal;
+}>(
+  {
+    textTransform: 'uppercase',
+    display: 'flex',
+    flexDirection: 'column',
+    padding: 0,
+    position: 'relative',
+    height: 'auto',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  ({ orientation }) =>
+    orientation === 'vertical'
+      ? {
+          flexBasis: '100%'
+        }
+      : {
+          flexBasis: '100%',
+          flexDirection: 'row'
+        }
+);
+
+const StyledTabsChild = styled.div<{
+  length: number;
+  orientation: TabsOrientationVertical | TabsOrientationHorizontal;
+  theme: any;
+}>(
+  ({ length }) => ({
+    display: 'flex',
+    flexGrow: 0,
+    flexBasis: `${100 / length}%`,
+    textAlign: 'center',
+    listStyle: 'none',
+    alignSelf: 'center',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: 'inherit',
+    fontSize: '14px',
+    fontWeight: 600
+  }),
+  ({ orientation, theme, length }): any =>
+    orientation === 'vertical'
+      ? {
+          display: 'flex',
+          justifyContent: 'center',
+          flexBasis: `${100 / length}%`,
+          height: 'auto',
+          zIndex: '0',
+          position: 'relative',
+          minHeight: '50px',
+          color: theme.color,
+          maxHeight: '60px',
+          width: '100%'
+        }
+      : {
+          display: 'flex',
+          position: 'relative',
+          justifyContent: 'center',
+          zIndex: '0',
+          flexBasis: `${100 / length}%`,
+          width: `${100 / length}%`,
+          minWidth: '150px',
+          color: theme.color,
+          height: '100%'
+        }
+);
+
+const getTransitionSpeed = (index: number, activeTabIndex: number) => {
+  let speed = 0.3;
+  let indexDifference = 0;
+
+  index < activeTabIndex
+    ? (indexDifference = (activeTabIndex - index) / 2)
+    : (indexDifference = (index - activeTabIndex) / 2);
+
+  // 4 = 4 tab components
+  // For each step in 4 tab components speed will be increased
+  speed -= (indexDifference / 4) * 0.05;
+
+  if (speed < 0.2) {
+    return 0.2;
+  } else {
+    return speed;
+  }
+};
+
+const BottomLineStyled = styled.div<{
+  length: number;
+  previousActiveTab: number;
+  activeTabIndex: number;
+  orientation: TabsOrientationVertical | TabsOrientationHorizontal;
+  borderPosition: TabsBorderPositionVertical | TabsBorderPositionHorizontal;
+  theme: any;
+}>(
+  ({ previousActiveTab, activeTabIndex, theme }) => ({
+    position: 'absolute',
+    border: 'none',
+    backgroundColor: theme.colorBorder,
+    transition: `${getTransitionSpeed(
+      previousActiveTab,
+      activeTabIndex
+    )}s ease-in-out`,
+    zIndex: 0,
+    borderRadius: '8px'
+  }),
+  ({ length, activeTabIndex, orientation }) =>
+    orientation === 'vertical'
+      ? {
+          top: `${(100 / length) * activeTabIndex}%`,
+          height: `${100 / length}%`,
+          minHeight: `${100 / length}%`,
+          width: '4px'
+        }
+      : {
+          left: `${(100 / length) * activeTabIndex}%`,
+          height: '4px',
+          width: `${100 / length}%`,
+          minWidth: '85px'
+        },
+  ({ orientation }) =>
+    orientation === 'vertical'
+      ? {
+          left: 0
+        }
+      : {},
+  ({ orientation, borderPosition }) =>
+    orientation === 'horizontal' && borderPosition === 'top'
+      ? {
+          top: 0
+        }
+      : {
+          bottom: 0
+        }
+);
+
+const StyledTabsWrapper = styled.div<{
+  orientation: TabsOrientationVertical | TabsOrientationHorizontal;
+  centered: boolean;
+}>(
+  ({ orientation }) =>
+    orientation === 'vertical'
+      ? {
+          overflow: 'hidden'
+        }
+      : {
+          overflowX: 'auto'
+        },
+  {
+    display: 'flex',
+    overflowY: 'hidden',
+    height: 'auto',
+    position: 'relative',
+    flexBasis: '100%',
+    ['&::-webkit-scrollbar']: {
+      width: '0',
+      height: '0'
+    },
+    scrollbarWidth: 'none'
+  },
+  ({ centered }): any =>
+    centered
+      ? {
+          justifyContent: 'center'
+        }
+      : {}
+);
+
+const StyledButtonNext = styled.div<{
+  buttonVisible: boolean;
+}>(
+  {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    width: '50px',
+    height: 'auto'
+  },
+  ({ buttonVisible }) =>
+    buttonVisible
+      ? {
+          visibility: 'visible'
+        }
+      : {
+          visibility: 'hidden'
+        }
+);
+
+const StyledButtonPrev = styled.div<{
+  buttonVisible: boolean;
+}>(
+  {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    width: '50px',
+    height: 'auto'
+  },
+  ({ buttonVisible }) =>
+    buttonVisible
+      ? {
+          visibility: 'visible'
+        }
+      : {
+          visibility: 'hidden'
+        }
+);
+
+const StyledContainer = styled.div<{
+  orientation: TabsOrientationVertical | TabsOrientationHorizontal;
+  theme: any;
+  styles: { [key: string]: any };
+  inverse: boolean;
+  themeDefined: TabsTheme;
+}>(
+  ({ styles, theme, themeDefined, inverse }): any => ({
+    display: 'flex',
+    overflowX: 'auto',
+    backgroundColor:
+      themeDefined === 'blue'
+        ? inverse
+          ? '#08263e'
+          : theme.bgColor
+        : theme.bgColor || themeDefined === 'light'
+        ? inverse
+          ? magma.colors.neutral07
+          : theme.bgColor
+        : theme.bgColor,
+    boxShadow: theme.boxShadow,
+    border: theme.border,
+    ...styles
+  }),
+  ({ orientation }) =>
+    orientation === 'vertical'
+      ? {}
+      : {
+          flexBasis: '100%',
+          flexDirection: 'row'
+        }
+);
+
+const StyledTabsLayer = styled.div<{
+  fullWidth: boolean;
+}>(
+  {
+    display: 'flex',
+    alignItems: 'stretch'
+  },
+  ({ fullWidth }): any =>
+    fullWidth
+      ? {
+          width: '100%'
+        }
+      : {
+          width: 'auto'
+        }
+);
 
 export type TabsActiveIndex = number;
 export type TabsVariant = 'scrollable';
@@ -43,6 +297,7 @@ export interface ITabsProps {
   centered?: boolean;
   fullWidth?: boolean;
   testId?: string;
+  inverse?: boolean;
 }
 
 export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
@@ -58,6 +313,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
       styles,
       centered,
       fullWidth,
+      inverse,
       testId
     } = props;
     const { state, dispatch, theme } = useTabsContext();
@@ -177,7 +433,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
         : setButtonNextState(true);
     }, []);
 
-    const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
+    const handleScroll = () => {
       const scrollPositionSize = divRef.current.scrollLeft;
       const scrollSize = divRef.current.scrollWidth;
       const offsetBoxSize = divRef.current.offsetWidth;
@@ -201,6 +457,8 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
         styles={styles}
         orientation={orientation || 'horizontal'}
         theme={activeTheme}
+        themeDefined={theme}
+        inverse={inverse}
         data-testid={testId}
       >
         {scrollButtons && orientation === 'horizontal' ? (
@@ -215,9 +473,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
 
         <StyledTabsWrapper
           ref={divRef}
-          onScroll={(event: React.UIEvent<HTMLDivElement>) =>
-            handleScroll(event)
-          }
+          onScroll={handleScroll}
           orientation={orientation}
           centered={centered}
         >
@@ -245,7 +501,6 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
                     theme={activeTheme}
                     key={index}
                     ref={buttonRefArray[index]}
-                    isActive={isActive}
                     length={arrChildren.length}
                     orientation={orientation}
                     onClick={e => changeHandler(index, e)}

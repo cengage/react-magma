@@ -1,13 +1,140 @@
 import React from 'react';
-import { defineTheme } from './themes';
+import { defineTheme, useTabsContext } from './TabsContainer';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { useTabsContext } from './TabsContainer';
-import {
-  StyledCustomTab,
-  StyledTab,
-  StyledIcon,
-  IconOrientation
-} from './StylesTab';
+import { magma } from '../../theme/magma';
+import styled from '@emotion/styled';
+
+export type IconOrientation = 'left' | 'top';
+
+const StyledTab = styled.button<{
+  disabled?: boolean;
+  iconOrientation: IconOrientation;
+  theme: any;
+  isActive: boolean;
+  styles: { [key: string]: any };
+}>(
+  ({ styles }) => ({
+    display: 'flex',
+    justifyContent: 'center',
+    minHeight: '50px',
+    minWidth: '150px',
+    fontSize: 'inherit',
+    width: '100%',
+    height: '100%',
+    padding: '10px',
+    border: 0,
+    background: 'transparent',
+    textTransform: 'uppercase',
+    color: 'inherit',
+    ...styles,
+    ['&:focus']: {
+      outlineOffset: '-2px',
+      outline: `${magma.colors.focus} dotted 2px`
+    }
+  }),
+  ({ disabled, theme }) =>
+    disabled
+      ? {
+          position: 'absolute',
+          bottom: 0,
+          top: 0,
+          overflow: 'hidden',
+          pointerEvents: 'none',
+          cursor: 'auto',
+          margin: 'auto',
+          opacity: 0.4
+        }
+      : {
+          cursor: 'pointer',
+          opacity: theme.opacity
+        },
+  ({ iconOrientation }) =>
+    iconOrientation === 'left'
+      ? {}
+      : {
+          flexDirection: 'column',
+          alignItems: 'center'
+        },
+  ({ isActive, theme }) =>
+    isActive
+      ? {
+          color: theme.activeColor,
+          opacity: 1,
+          ['&:active']: {
+            color: theme.activeColor
+          }
+        }
+      : {
+          ['&:hover']: {
+            backgroundColor: theme.bgHoverColor,
+            color: theme.hoverColor,
+            opacity: theme.hoverOpacity
+          }
+        }
+);
+
+export interface IStyledCustomTabProps {
+  component: React.ReactNode;
+  disabled?: boolean;
+  style?: { [key: string]: any };
+  onClick?: any;
+  ref: React.Ref<any>;
+}
+
+export const StyledCustomTab: React.FunctionComponent<
+  IStyledCustomTabProps
+> = ({ component, disabled, style, onClick, ref }) => {
+  if (React.isValidElement(component) && React.isValidElement(component)) {
+    return React.cloneElement(component, {
+      style: disabled
+        ? {
+            display: 'flex',
+            position: 'absolute',
+            bottom: 0,
+            top: 0,
+            overflow: 'hidden',
+            pointerEvents: 'none',
+            cursor: 'auto',
+            minHeight: '50px',
+            height: '100%',
+            margin: 'auto',
+            justifyContent: 'center',
+            opacity: 0.4,
+            padding: '10px',
+            boxSizing: 'border-box'
+          }
+        : {
+            display: 'flex',
+            color: 'inherit',
+            fontSize: 'inherit',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            minWidth: '150px',
+            minHeight: '50px',
+            width: '100%',
+            height: '100%',
+            alignItems: 'center',
+            padding: '10px',
+            boxSizing: 'border-box'
+          },
+      ...style,
+      onClick,
+      ref
+    });
+  }
+
+  return null;
+};
+
+export const StyledIcon = styled.div<{
+  iconOrientation: string;
+}>(({ iconOrientation }) =>
+  iconOrientation && iconOrientation === 'left'
+    ? {
+        marginRight: '10px'
+      }
+    : {}
+);
 
 export interface ITabProps {
   disabled?: boolean;
