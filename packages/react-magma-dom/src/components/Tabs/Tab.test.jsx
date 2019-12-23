@@ -5,31 +5,36 @@ import { render } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
 
 expect.extend(toHaveNoViolations);
-const testId = 'test-id';
 
 describe('Tab', () => {
   it('Should correctly apply the testId', () => {
+    const testId = 'test-id';
+
     const { getByTestId } = render(<Tab testId={testId} ariaLabel="test" />);
 
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should be disabled', () => {
+    const testId = 'test-id';
+
     const { getByTestId, rerender } = render(
-      <Tab testId={'testId'} ariaLabel="test" disabled={true} />
+      <Tab testId={testId} ariaLabel="test" disabled={true} />
     );
-    const component = getByTestId('testId');
+    const component = getByTestId(testId);
 
     expect(component).toHaveProperty('disabled', true);
     expect(component).toBeDisabled();
 
-    rerender(<Tab testId={'testId'} ariaLabel="test" disabled={false} />);
+    rerender(<Tab testId={testId} ariaLabel="test" disabled={false} />);
 
     expect(component).toHaveProperty('disabled', false);
     expect(component).not.toBeDisabled();
   });
 
   it('should render children', () => {
+    const testId = 'test-id';
+
     const { getByTestId } = render(
       <Tab testId={testId} ariaLabel="test">
         <div data-testid="child" />
@@ -41,6 +46,8 @@ describe('Tab', () => {
   });
 
   it('should be aria attribute if tab is active', () => {
+    const testId = 'test-id';
+
     const { getByTestId, rerender } = render(
       <Tab testId={testId} ariaLabel="test" isActive={true}></Tab>
     );
@@ -54,6 +61,8 @@ describe('Tab', () => {
   });
 
   it('should render text', () => {
+    const testId = 'test-id';
+
     const { getByText } = render(
       <Tab testId={testId} path="/test" ariaLabel="test">
         Test
@@ -63,6 +72,8 @@ describe('Tab', () => {
   });
 
   it('should render component', () => {
+    const testId = 'test-id';
+
     const { getByTestId } = render(
       <Tab
         testId={testId}
@@ -74,6 +85,8 @@ describe('Tab', () => {
   });
 
   it('should render component link', () => {
+    const testId = 'test-id';
+
     const { container } = render(
       <Tab
         testId={testId}
@@ -91,14 +104,14 @@ describe('Tab', () => {
   });
 
   it('should render icon', () => {
+    const testId = 'test-id';
+
     const icon = <CheckIcon id="testId" size={18} />;
     const { container, rerender } = render(
       <Tab testId={testId} icon={icon}></Tab>
     );
 
     expect(container.querySelector('svg')).toBeInTheDocument();
-    expect(container.querySelector('svg')).toHaveAttribute('height', '18');
-    expect(container.querySelector('svg')).toHaveAttribute('width', '18');
 
     rerender(<Tab testId={testId}></Tab>);
 
@@ -106,6 +119,8 @@ describe('Tab', () => {
   });
 
   it('should show icon in left/top position', () => {
+    const testId = 'test-id';
+
     const icon = <CheckIcon id="testId" size={18} />;
     const { container, getByTestId, rerender } = render(
       <Tab testId={testId} icon={icon} iconOrientation="top"></Tab>
@@ -123,6 +138,7 @@ describe('Tab', () => {
 
 describe('Test for accessibility', () => {
   it('Does not violate accessibility standards', () => {
+    const testId = 'test-id';
     const { container } = render(<Tab testId={testId} ariaLabel="test" />);
 
     return axe(container.innerHTML).then(result => {

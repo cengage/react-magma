@@ -6,18 +6,18 @@ import { axe, toHaveNoViolations } from 'jest-axe';
 
 expect.extend(toHaveNoViolations);
 
-const dispatch = jest.fn();
-
-const state = {
-  activeTabIndex: 1,
-  numberOfTabs: 5
-};
-
-const theme = 'dark';
-const testId = 'test-id';
-
 describe('TabPanel', () => {
   it('should correctly apply the testId', () => {
+    const dispatch = jest.fn();
+
+    const state = {
+      activeTabIndex: 1,
+      numberOfTabs: 5
+    };
+
+    const theme = 'dark';
+    const testId = 'test-id';
+
     const { getByTestId } = render(
       <TabsContext.Provider value={{ theme, state, dispatch }}>
         <TabPanel testId={testId} index={1}></TabPanel>
@@ -28,6 +28,15 @@ describe('TabPanel', () => {
   });
 
   it('should require text in the tabpanel', () => {
+    const dispatch = jest.fn();
+
+    const state = {
+      activeTabIndex: 1,
+      numberOfTabs: 5
+    };
+
+    const theme = 'dark';
+    const testId = 'test-id';
     const text = 'test';
     const { getByTestId } = render(
       <TabsContext.Provider value={{ theme, state, dispatch }}>
@@ -42,6 +51,16 @@ describe('TabPanel', () => {
   });
 
   it('TabsContextProvider/TabsContextConsumer shows activeTabIndex', () => {
+    const dispatch = jest.fn();
+
+    const state = {
+      activeTabIndex: 1,
+      numberOfTabs: 5
+    };
+
+    const theme = 'dark';
+    const testId = 'test-id';
+
     const { getByTestId } = render(
       <TabsContext.Provider value={{ theme, state, dispatch }}>
         <TabsContext.Consumer>
@@ -55,6 +74,16 @@ describe('TabPanel', () => {
   });
 
   it('should render children', () => {
+    const dispatch = jest.fn();
+
+    const state = {
+      activeTabIndex: 1,
+      numberOfTabs: 5
+    };
+
+    const theme = 'dark';
+    const testId = 'test-id';
+
     const { getByTestId } = render(
       <TabsContext.Provider value={{ theme, state, dispatch }}>
         <TabPanel index={1} testId={testId}>
@@ -69,6 +98,16 @@ describe('TabPanel', () => {
 
 describe('Test for accessibility', () => {
   it('Does not violate accessibility standards', () => {
+    const dispatch = jest.fn();
+
+    const state = {
+      activeTabIndex: 1,
+      numberOfTabs: 5
+    };
+
+    const theme = 'dark';
+    const testId = 'test-id';
+
     const { container } = render(
       <TabsContext.Provider value={{ theme, state, dispatch }}>
         <TabPanel index={1} testId={testId} />

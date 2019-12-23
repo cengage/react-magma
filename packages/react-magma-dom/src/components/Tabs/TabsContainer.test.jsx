@@ -4,10 +4,11 @@ import { TabsContainer } from './TabsContainer';
 const { axe, toHaveNoViolations } = require('jest-axe');
 
 expect.extend(toHaveNoViolations);
-const testId = 'test-id';
 
 describe('Tab', () => {
   it('should correctly apply the testId', () => {
+    const testId = 'test-id';
+
     const { getByTestId } = render(
       <TabsContainer testId={testId} theme="dark" />
     );
@@ -17,6 +18,8 @@ describe('Tab', () => {
 });
 
 it('should render children', () => {
+  const testId = 'test-id';
+
   const { getByTestId } = render(
     <TabsContainer testId={testId} theme="dark">
       <div data-testid="child" />
@@ -28,6 +31,8 @@ it('should render children', () => {
 
 describe('Test for accessibility', () => {
   it('Does not violate accessibility standards', () => {
+    const testId = 'test-id';
+
     const { container } = render(
       <TabsContainer testId={testId} theme="dark" />
     );
