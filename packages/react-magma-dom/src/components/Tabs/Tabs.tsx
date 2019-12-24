@@ -377,50 +377,46 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
       {}
     );
 
-    const divRef: any = React.useRef<HTMLDivElement>();
+    const divRef = React.useRef<HTMLDivElement>();
 
-    const handleClickNext = () => {
-      const scrollPositionSize = divRef.current.scrollLeft;
-      const offsetBoxSize = divRef.current.offsetWidth;
-      const offsetTabSize = buttonRefArray[0].current.offsetWidth;
+    const handleClick = (direction: 'prev' | 'next') => {
+      const scrollPositionSize: number = divRef.current.scrollLeft;
+      const offsetBoxSize: number = divRef.current.offsetWidth;
+      const offsetTabSize: number = buttonRefArray[0].current.offsetWidth;
 
-      const currentTabIndex = Math.round(
-        (Number(offsetBoxSize) + Number(scrollPositionSize)) / offsetTabSize
-      );
+      const options = {
+        scrollOptions: {
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'start'
+        },
+        prev: {
+          index: 0,
+          currentTabIndex: Math.round(
+            scrollPositionSize / offsetTabSize - offsetBoxSize / offsetTabSize
+          ),
+          scrollToVisibleTab: function() {
+            return options.prev.currentTabIndex >= options.prev.index;
+          }
+        },
+        next: {
+          index: arrChildren.length - 1,
+          currentTabIndex: Math.round(
+            offsetBoxSize + scrollPositionSize / offsetTabSize
+          ),
+          scrollToVisibleTab: function() {
+            return options.next.currentTabIndex <= options.next.index;
+          }
+        }
+      };
 
-      currentTabIndex <= arrChildren.length - 1
-        ? buttonRefArray[currentTabIndex].current.scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest',
-            inline: 'start'
-          })
-        : buttonRefArray[arrChildren.length - 1].current.scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest',
-            inline: 'start'
-          });
-    };
-
-    const handleClickPrev = () => {
-      const scrollPositionSize = divRef.current.scrollLeft;
-      const offsetBoxSize = divRef.current.offsetWidth;
-      const offsetTabSize = buttonRefArray[1].current.offsetWidth;
-
-      const currentTabIndex = Math.round(
-        scrollPositionSize / offsetTabSize - offsetBoxSize / offsetTabSize
-      );
-
-      currentTabIndex >= 0
-        ? buttonRefArray[currentTabIndex].current.scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest',
-            inline: 'start'
-          })
-        : buttonRefArray[0].current.scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest',
-            inline: 'start'
-          });
+      options[direction].scrollToVisibleTab()
+        ? buttonRefArray[
+            options[direction].currentTabIndex
+          ].current.scrollIntoView(options.scrollOptions)
+        : buttonRefArray[options[direction].index].current.scrollIntoView(
+            options.scrollOptions
+          );
     };
 
     React.useEffect(() => {
@@ -463,7 +459,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
       >
         {scrollButtons && orientation === 'horizontal' ? (
           <StyledButtonPrev
-            onClick={handleClickPrev}
+            onClick={() => handleClick('prev')}
             buttonVisible={buttonVisiblePrev}
             data-testid="buttonPrev"
           >
@@ -530,7 +526,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
 
         {scrollButtons && orientation === 'horizontal' ? (
           <StyledButtonNext
-            onClick={handleClickNext}
+            onClick={() => handleClick('next')}
             buttonVisible={buttonVisibleNext}
             data-testid="buttonNext"
           >
