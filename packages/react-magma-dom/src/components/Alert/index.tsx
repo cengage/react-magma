@@ -27,10 +27,10 @@ export enum AlertVariant {
 
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   closeAriaLabel?: string;
-  dismissible?: boolean;
   forceDismiss?: () => void;
   isExiting?: boolean;
   isDismissed?: boolean;
+  isDismissible?: boolean;
   inverse?: boolean;
   onDismiss?: () => void;
   ref?: any;
@@ -128,7 +128,7 @@ const IconWrapper = styled.span`
   padding: 0 10px 0 15px;
 `;
 
-const DismissableIconWrapper = styled.span<AlertProps>`
+const DismissibleIconWrapper = styled.span<AlertProps>`
   ${IconWrapperStyles}
 
   svg {
@@ -195,9 +195,9 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
       testId,
       variant,
       children,
-      dismissible,
       forceDismiss,
       isDismissed,
+      isDismissible,
       isExiting: externalIsExiting,
       inverse,
       onDismiss,
@@ -241,8 +241,8 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
       >
         {renderIcon(variant)}
         <AlertContents>{children}</AlertContents>
-        {dismissible && (
-          <DismissableIconWrapper variant={variant} theme={theme}>
+        {isDismissible && (
+          <DismissibleIconWrapper variant={variant} theme={theme}>
             <DismissButton
               alertVariant={variant}
               aria-label={
@@ -254,7 +254,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
               theme={theme}
               variant={ButtonVariant.link}
             />
-          </DismissableIconWrapper>
+          </DismissibleIconWrapper>
         )}
       </StyledAlert>
     );

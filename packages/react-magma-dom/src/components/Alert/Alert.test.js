@@ -233,7 +233,7 @@ describe('Alert', () => {
   describe('Dismissible', () => {
     it('should render a dismissible icon button', () => {
       const { getByLabelText } = render(
-        <Alert dismissible>Test Alert Text</Alert>
+        <Alert isDismissible>Test Alert Text</Alert>
       );
       const dismissableIconButton = getByLabelText('Close this message');
 
@@ -242,7 +242,7 @@ describe('Alert', () => {
 
     it('should render a dismissible icon button with custom close label text', () => {
       const { getByLabelText } = render(
-        <Alert dismissible closeAriaLabel="Test">
+        <Alert isDismissible closeAriaLabel="Test">
           Test Alert Text
         </Alert>
       );
@@ -253,7 +253,7 @@ describe('Alert', () => {
 
     it('should render a dismissible icon button with the warning variant', () => {
       const { getByLabelText } = render(
-        <Alert dismissible variant={AlertVariant.warning}>
+        <Alert isDismissible variant={AlertVariant.warning}>
           Test Alert Text
         </Alert>
       );
@@ -270,7 +270,7 @@ describe('Alert', () => {
     it('should call passed in onDismiss when dismissible icon button is clicked', () => {
       const onDismiss = jest.fn();
       const { getByLabelText } = render(
-        <Alert dismissible onDismiss={onDismiss}>
+        <Alert isDismissible onDismiss={onDismiss}>
           Test Alert Text
         </Alert>
       );
