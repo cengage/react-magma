@@ -12,7 +12,7 @@ export enum EnumTooltipPosition {
 }
 
 export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
-  inverse?: boolean;
+  isInverse?: boolean;
   position?: EnumTooltipPosition;
   testId?: string;
   trigger: React.ReactElement;
@@ -80,16 +80,16 @@ const StyledTooltip = styled.div<{
 `;
 
 const StyledTooltipInner = styled.div<{
-  inverse: boolean;
+  isInverse: boolean;
   position: EnumTooltipPosition;
 }>`
   background: ${props =>
-    props.inverse
+    props.isInverse
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral01};
   border-radius: 3px;
   color: ${props =>
-    props.inverse
+    props.isInverse
       ? props.theme.colors.neutral01
       : props.theme.colors.neutral08};
   display: inline-block;
@@ -100,26 +100,26 @@ const StyledTooltipInner = styled.div<{
   &:after {
     border-left-color: ${props =>
       props.position === 'left' || props.position === 'right'
-        ? props.inverse
+        ? props.isInverse
           ? props.theme.colors.neutral08
           : props.theme.colors.neutral01
         : 'transparent'};
     border-right-color: ${props =>
       props.position === 'left' || props.position === 'right'
-        ? props.inverse
+        ? props.isInverse
           ? props.theme.colors.neutral08
           : props.theme.colors.neutral01
         : 'transparent'};
     border-top-color: ${props =>
       props.position === 'left' || props.position === 'right'
         ? 'transparent'
-        : props.inverse
+        : props.isInverse
         ? props.theme.colors.neutral08
         : props.theme.colors.neutral01};
     border-bottom-color: ${props =>
       props.position === 'left' || props.position === 'right'
         ? 'transparent'
-        : props.inverse
+        : props.isInverse
         ? props.theme.colors.neutral08
         : props.theme.colors.neutral01};
     border-style: solid;
@@ -236,7 +236,7 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
       setIsVisible(false);
     }
 
-    const { children, inverse, position, testId, trigger } = props;
+    const { children, isInverse, position, testId, trigger } = props;
     const theme = React.useContext(ThemeContext);
 
     return (
@@ -258,7 +258,7 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
           visible={isVisible}
         >
           <StyledTooltipInner
-            inverse={inverse}
+            isInverse={isInverse}
             position={position ? position : EnumTooltipPosition.top}
             theme={theme}
           >

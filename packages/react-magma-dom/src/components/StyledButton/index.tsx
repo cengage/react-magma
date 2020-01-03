@@ -62,7 +62,7 @@ export const buttonStyles = props => css`
     : 'auto'};
   background: ${buildButtonBackground(props)};
   border: ${props.variant === 'outline' ||
-  (props.variant === 'solid' && props.color === 'secondary' && !props.inverse)
+  (props.variant === 'solid' && props.color === 'secondary' && !props.isInverse)
     ? '2px solid'
     : '0'};
   border-color: ${buildBorderColor(props)};
@@ -71,7 +71,7 @@ export const buttonStyles = props => css`
   &:not(:disabled) {
     &:focus {
       outline: 2px dotted
-        ${props.inverse
+        ${props.isInverse
           ? props.theme.colors.neutral08
           : props.theme.colors.focus};
       outline-offset: 3px;
@@ -127,7 +127,7 @@ export const StyledButton: React.FunctionComponent<
     children,
     iconOnly,
     testId,
-    inverse,
+    isInverse,
     color,
     shape,
     size,

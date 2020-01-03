@@ -8,7 +8,7 @@ export interface CardProps extends React.LabelHTMLAttributes<HTMLDivElement> {
   background?: boolean;
   calloutType?: CardCalloutType;
   hasDropShadow?: boolean;
-  inverse?: boolean;
+  isInverse?: boolean;
   testId?: string;
   width?: string;
 }
@@ -49,7 +49,7 @@ const StyledCard = styled.div<CardProps>`
   box-shadow: ${props =>
     props.hasDropShadow ? '0 2px 6px 0 rgba(0,0,0,0.18)' : '0 0 0'};
   color: ${props =>
-    props.inverse
+    props.isInverse
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral01};
   display: flex;
@@ -83,7 +83,7 @@ export const Card: React.FunctionComponent<CardProps> = (props: CardProps) => {
     children,
     calloutType,
     hasDropShadow,
-    inverse,
+    isInverse,
     testId,
     width,
     ...other
@@ -99,7 +99,7 @@ export const Card: React.FunctionComponent<CardProps> = (props: CardProps) => {
       data-testid={testId}
       calloutType={calloutType}
       hasDropShadow={hasDropShadow}
-      inverse={inverse}
+      isInverse={isInverse}
       width={width ? width : 'auto'}
       theme={theme}
     >

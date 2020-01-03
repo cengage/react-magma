@@ -5,7 +5,7 @@ import { InputSize } from '../Input';
 
 export interface LabelProps
   extends React.LabelHTMLAttributes<HTMLLabelElement> {
-  inverse?: boolean;
+  isInverse?: boolean;
   size?: InputSize;
   theme?: any;
   testId?: string;
@@ -13,7 +13,7 @@ export interface LabelProps
 
 const StyledLabel = styled.label<LabelProps>`
   color: ${props =>
-    props.inverse
+    props.isInverse
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral01};
   display: inline-block;
@@ -27,14 +27,14 @@ const StyledLabel = styled.label<LabelProps>`
 export const Label: React.FunctionComponent<LabelProps> = (
   props: LabelProps
 ) => {
-  const { children, inverse, size, testId, ...other } = props;
+  const { children, isInverse, size, testId, ...other } = props;
   const theme = React.useContext(ThemeContext);
 
   return (
     <StyledLabel
       {...other}
       data-testid={testId}
-      inverse={inverse}
+      isInverse={isInverse}
       size={size ? size : InputSize.medium}
       theme={theme}
     >

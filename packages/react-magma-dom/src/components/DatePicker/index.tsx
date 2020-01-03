@@ -22,7 +22,7 @@ interface DatePickerProps {
   helperMessage?: string;
   id?: string;
   inputRef?: React.RefObject<{}>;
-  inverse?: boolean;
+  isInverse?: boolean;
   labelText: string;
   placeholder?: string;
   required?: boolean;
@@ -203,7 +203,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
   const {
     errorMessage,
     helperMessage,
-    inverse,
+    isInverse,
     labelText,
     placeholder,
     required,
@@ -248,7 +248,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
           onIconClick={toggleCalendarOpened}
           onIconKeyDown={handleInputKeyDown}
           id={id}
-          inverse={inverse}
+          isInverse={isInverse}
           ref={inputRef}
           labelText={labelText}
           onChange={handleInputChange}

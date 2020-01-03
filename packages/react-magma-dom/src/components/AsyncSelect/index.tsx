@@ -46,7 +46,7 @@ export const AsyncSelect: React.FunctionComponent<AsyncSelectProps> = (
     clearable,
     errorMessage,
     helperMessage,
-    inverse,
+    isInverse,
     multi,
     style
   } = props;
@@ -58,13 +58,13 @@ export const AsyncSelect: React.FunctionComponent<AsyncSelectProps> = (
           errorMessage={errorMessage}
           helperMessage={helperMessage}
           id={id}
-          inverse={inverse}
+          isInverse={isInverse}
           labelText={labelText}
           testId={testId}
         >
           <ReactAsyncSelect
             id={id}
-            inverse={inverse}
+            isInverse={isInverse}
             components={{
               ClearIndicator,
               DropdownIndicator,

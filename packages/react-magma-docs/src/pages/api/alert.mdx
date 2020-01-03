@@ -106,15 +106,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       description: 'The text read by screen readers for the close button',
       defaultValue: '"Close this message"',
     },
-    inverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the focus state of the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
     isDismissible: {
       type: {
         name: 'boolean',
@@ -122,6 +113,15 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       required: false,
       description:
         'If true, the component will be able to be dismissed and will include a close button',
+      defaultValue: 'false',
+    },
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the focus state of the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
     onDimiss: {

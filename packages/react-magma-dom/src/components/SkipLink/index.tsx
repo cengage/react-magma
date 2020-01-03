@@ -9,7 +9,7 @@ export interface SkipLinkProps {
   buttonText?: string;
   className?: string;
   color?: ButtonColor;
-  inverse?: boolean;
+  isInverse?: boolean;
   positionLeft?: number;
   positionTop?: number;
   testId?: string;
@@ -55,7 +55,7 @@ export const SkipLink: React.FunctionComponent<SkipLinkProps> = ({
   buttonText,
   className,
   color,
-  inverse,
+  isInverse,
   positionLeft,
   positionTop,
   testId,
@@ -66,7 +66,7 @@ export const SkipLink: React.FunctionComponent<SkipLinkProps> = ({
       className={className}
       color={color ? color : ButtonColor.primary}
       testId={testId}
-      inverse={inverse}
+      isInverse={isInverse}
       onClick={e => {
         handleClick(e);
       }}

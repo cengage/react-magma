@@ -22,7 +22,7 @@ export interface RadioProps
   color?: string;
   containerStyle?: React.CSSProperties;
   inputStyle?: React.CSSProperties;
-  inverse?: boolean;
+  isInverse?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
   ref?: any;
@@ -39,13 +39,13 @@ const HiddenInput = styled.input<{ indeterminate?: boolean }>`
 `;
 
 const StyledFakeInput = styled.span<{
-  inverse: boolean;
+  isInverse: boolean;
   disabled: boolean;
   color: string;
 }>`
   ${DisplayInputStyles};
   background: ${props => {
-    if (props.inverse) {
+    if (props.isInverse) {
       return 'none';
     }
     if (props.disabled) {
@@ -59,7 +59,7 @@ const StyledFakeInput = styled.span<{
 
   ${HiddenInput}:checked:not(:disabled) + label & {
     background: ${props => {
-      if (props.inverse) {
+      if (props.isInverse) {
         return props.theme.colors.neutral08;
       }
     }};
@@ -106,7 +106,7 @@ export const Radio: React.FunctionComponent<RadioProps> = React.forwardRef(
       containerStyle,
       disabled,
       inputStyle,
-      inverse,
+      isInverse,
       labelStyle,
       labelText,
       required,
@@ -135,11 +135,11 @@ export const Radio: React.FunctionComponent<RadioProps> = React.forwardRef(
           onChange={context.onChange}
           onFocus={context.onFocus}
         />
-        <StyledLabel htmlFor={id} inverse={inverse} style={labelStyle}>
+        <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
           <StyledFakeInput
             color={color ? color : ''}
             disabled={disabled}
-            inverse={inverse}
+            isInverse={isInverse}
             style={inputStyle}
             theme={theme}
           >

@@ -144,7 +144,7 @@ describe('Card', () => {
 
   it('should render the card component with inverse styles', () => {
     const { getByText } = render(
-      <Card background="red" inverse>
+      <Card background="red" isInverse>
         {TEXT}
       </Card>
     );

@@ -50,11 +50,11 @@ When the user tabs to the first element, a button with this appearace will displ
 
 ## Button Variations
 
-By default, the `SkipLink` looks like a standard button with `color` as`primary`, `variant` as `solid`, and `inverse` as false.
+By default, the `SkipLink` looks like a standard button with `color` as`primary`, `variant` as `solid`, and `isInverse` as false.
 
 Variants for buttons include `solid`, `outline`, and `link`.
 Colors for buttons include `primary`, `secondary`, `success`, and `danger`.
-Inverse is can be either `true` or `false`, and is used when the SkipLink is to appear on a dark background.
+IsInverse is can be either `true` or `false`, and is used when the SkipLink is to appear on a dark background.
 
 For more information, see the <Link to="/api/button">Button Component documentation</Link>.
 
@@ -123,7 +123,7 @@ This would render the button 25px from the top, and 25px from the left of the br
       description: 'The color of the button',
       defaultValue: 'primary',
     },
-    inverse: {
+    isInverse: {
       type: {
         name: 'boolean',
       },

@@ -230,7 +230,7 @@ describe('Styled Button', () => {
       it('primary button', () => {
         const text = 'test text';
         const { getByText } = render(
-          <StyledButton inverse color="primary" theme="magma" variant="solid">
+          <StyledButton isInverse color="primary" theme="magma" variant="solid">
             {text}
           </StyledButton>
         );
@@ -244,7 +244,12 @@ describe('Styled Button', () => {
       it('secondary button', () => {
         const text = 'test text';
         const { getByText } = render(
-          <StyledButton inverse color="secondary" theme="magma" variant="solid">
+          <StyledButton
+            isInverse
+            color="secondary"
+            theme="magma"
+            variant="solid"
+          >
             {text}
           </StyledButton>
         );
@@ -258,7 +263,7 @@ describe('Styled Button', () => {
       it('success button', () => {
         const text = 'test text';
         const { getByText } = render(
-          <StyledButton inverse color="success" theme="magma" variant="solid">
+          <StyledButton isInverse color="success" theme="magma" variant="solid">
             {text}
           </StyledButton>
         );
@@ -272,7 +277,7 @@ describe('Styled Button', () => {
       it('danger button', () => {
         const text = 'test text';
         const { getByText } = render(
-          <StyledButton inverse color="danger" theme="magma" variant="solid">
+          <StyledButton isInverse color="danger" theme="magma" variant="solid">
             {text}
           </StyledButton>
         );
@@ -330,7 +335,7 @@ describe('Styled Button', () => {
       it('disabled inverse outline button', () => {
         const text = 'test text';
         const { getByText } = render(
-          <StyledButton disabled inverse variant="outline">
+          <StyledButton disabled isInverse variant="outline">
             {text}
           </StyledButton>
         );

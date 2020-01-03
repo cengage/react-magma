@@ -18,9 +18,9 @@ const StyledItem = styled.li`
   padding: 0;
 `;
 
-const StyledSpan = styled.span<{ inverse?: boolean }>`
+const StyledSpan = styled.span<{ isInverse?: boolean }>`
   color: ${props =>
-    props.inverse
+    props.isInverse
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral03};
 
@@ -34,21 +34,21 @@ export const BreadcrumbItem: React.FunctionComponent<BreadcrumbItemProps> = (
 ) => {
   const { children, ref, to, testId } = props;
   const theme = React.useContext(ThemeContext);
-  const { inverse } = React.useContext(BreadCrumbContext);
+  const { isInverse } = React.useContext(BreadCrumbContext);
 
   return (
     <StyledItem data-testid={testId} ref={ref}>
       {to ? (
         <>
-          <HyperLink to={to} inverse={inverse}>
+          <HyperLink to={to} isInverse={isInverse}>
             {children}
           </HyperLink>
-          <StyledSpan inverse={inverse} theme={theme}>
+          <StyledSpan isInverse={isInverse} theme={theme}>
             <AngleRightIcon size={10} />
           </StyledSpan>
         </>
       ) : (
-        <StyledSpan aria-current="page" inverse={inverse} theme={theme}>
+        <StyledSpan aria-current="page" isInverse={isInverse} theme={theme}>
           {children}
         </StyledSpan>
       )}

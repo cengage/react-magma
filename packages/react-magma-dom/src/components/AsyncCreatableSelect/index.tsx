@@ -53,7 +53,7 @@ export const AsyncCreatableSelect: React.FunctionComponent<
     clearable,
     errorMessage,
     helperMessage,
-    inverse,
+    isInverse,
     multi,
     style
   } = props;
@@ -65,13 +65,13 @@ export const AsyncCreatableSelect: React.FunctionComponent<
       errorMessage={errorMessage}
       helperMessage={helperMessage}
       id={id}
-      inverse={inverse}
+      isInverse={isInverse}
       labelText={labelText}
       testId={testId}
     >
       <ReactAsyncCreatableSelect
         id={id}
-        inverse={inverse}
+        isInverse={isInverse}
         components={{
           ClearIndicator,
           DropdownIndicator,

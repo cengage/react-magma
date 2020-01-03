@@ -162,7 +162,7 @@ describe('Tooltip', () => {
 
   it('should render the tooltip component with the correct styles for the inverse prop', () => {
     const { getByText } = render(
-      <Tooltip inverse trigger={TRIGGER_ELEMENT}>
+      <Tooltip isInverse trigger={TRIGGER_ELEMENT}>
         {CONTENT_TEXT}
       </Tooltip>
     );
@@ -181,7 +181,7 @@ describe('Tooltip', () => {
 
   it('should render the tooltip component with the correct styles for the inverse prop, positioned left or right', () => {
     const { getByText } = render(
-      <Tooltip inverse position="left" trigger={TRIGGER_ELEMENT}>
+      <Tooltip isInverse position="left" trigger={TRIGGER_ELEMENT}>
         {CONTENT_TEXT}
       </Tooltip>
     );

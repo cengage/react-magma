@@ -85,7 +85,7 @@ describe('SkipLink', () => {
   });
 
   it('should render the skip link button the correct colors for an inverse button', () => {
-    const { container } = render(<SkipLink inverse />);
+    const { container } = render(<SkipLink isInverse />);
     const link = container.querySelector('a');
 
     expect(link).toHaveStyleRule('background', '#FFFFFF');

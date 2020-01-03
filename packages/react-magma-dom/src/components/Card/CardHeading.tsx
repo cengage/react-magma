@@ -5,7 +5,7 @@ import { Heading } from '../Heading';
 export interface CardHeadingProps
   extends React.LabelHTMLAttributes<HTMLHeadingElement> {
   headingLevel?: 1 | 2 | 3 | 4 | 5 | 6;
-  inverse?: boolean;
+  isInverse?: boolean;
   testId?: string;
 }
 
@@ -19,12 +19,12 @@ const StyledCardHeading = styled(Heading)`
 export const CardHeading: React.FunctionComponent<CardHeadingProps> = (
   props: CardHeadingProps
 ) => {
-  const { inverse, headingLevel, children } = props;
+  const { isInverse, headingLevel, children } = props;
 
   return (
     <StyledCardHeading
       level={headingLevel ? headingLevel : 4}
-      inverse={inverse}
+      isInverse={isInverse}
       testId={props.testId}
     >
       {children}

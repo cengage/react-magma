@@ -54,7 +54,7 @@ export interface InputProps
   innerRef?: React.Ref<HTMLInputElement>;
   inputSize?: InputSize;
   inputStyle?: React.CSSProperties;
-  inverse?: boolean;
+  isInverse?: boolean;
   isLoading?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
@@ -93,7 +93,7 @@ const StyledInput = styled.input<InputProps>`
   border-color: ${props =>
     props.errorMessage
       ? props.theme.colors.danger
-      : props.inverse
+      : props.isInverse
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral03};
   border-radius: 5px;
@@ -129,7 +129,7 @@ const StyledInput = styled.input<InputProps>`
   &:focus {
     outline: 2px dotted
       ${props =>
-        props.inverse
+        props.isInverse
           ? props.theme.colors.neutral08
           : props.theme.colors.pop02};
     outline-offset: 2px;
@@ -243,7 +243,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
       onIconKeyDown,
       inputSize,
       inputStyle,
-      inverse,
+      isInverse,
       labelStyle,
       labelText,
       labelVisuallyHidden,
@@ -294,7 +294,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
       <Container style={containerStyle}>
         {!labelVisuallyHidden && (
           <Label
-            inverse={inverse}
+            isInverse={isInverse}
             htmlFor={id}
             size={inputSize && !multiline ? inputSize : InputSize.medium}
             style={labelStyle}
@@ -316,7 +316,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
             errorMessage={errorMessage}
             iconPosition={iconPosition}
             inputSize={inputSize && !multiline ? inputSize : InputSize.medium}
-            inverse={inverse}
+            isInverse={isInverse}
             labelText={labelText}
             multiline={multiline}
             ref={ref}
@@ -392,12 +392,12 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
 
           {onHelpLinkClick && (
             <Tooltip
-              inverse={inverse}
+              isInverse={isInverse}
               trigger={
                 <Button
                   aria-label={HELP_LINK_ARIA_LABEL}
                   icon={<QuestionCircleIcon />}
-                  inverse={inverse}
+                  isInverse={isInverse}
                   onClick={onHelpLinkClick}
                   size={
                     inputSize === InputSize.large && !multiline
@@ -433,7 +433,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
           )}
         </InputWrapper>
         <InputMessage
-          inverse={inverse}
+          isInverse={isInverse}
           id={descriptionId}
           isError={!!errorMessage}
         >

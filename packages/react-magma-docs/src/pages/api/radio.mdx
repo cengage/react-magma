@@ -99,7 +99,7 @@ By default, the radio buttons use the theme's primary color. But any other color
 
 ## Inverse
 
-Inverse is an optional boolean prop, that may be passed in when radio buttons are to be displayed on a dark background.
+`isInverse` is an optional boolean prop, that may be passed in when radio buttons are to be displayed on a dark background.
 
 ```.jsx
   <RadioGroup
@@ -109,31 +109,31 @@ Inverse is an optional boolean prop, that may be passed in when radio buttons ar
     name='inverse'>
     <Radio
         id='inverseRadio'
-        inverse
+        isInverse
         labelText='Inverse'
         value='default' />
       <Radio
           color={magma.colors.success01}
           id='successInverseRadio'
-          inverse
+          isInverse
           labelText='Success inverse'
           value='success' />
       <Radio
           color={magma.colors.danger}
           id='dangerInverseRadio'
-          inverse
+          isInverse
           labelText='Danger inverse'
           value='danger' />
       <Radio
           color={magma.colors.pop02}
           id='popInverseRadio'
-          inverse
+          isInverse
           labelText='Pop inverse'
           value='pop' />
         <Radio
             disabled
             id='disabledInverseRadio'
-            inverse
+            isInverse
             labelText='Disabled inverse'
             value='disabled' />
     </RadioGroup>
@@ -423,7 +423,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       required: false,
       description: 'Style properties for the radio button element',
     },
-    inverse: {
+    isInverse: {
       type: {
         name: 'boolean',
       },

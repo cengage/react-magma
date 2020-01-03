@@ -4,7 +4,7 @@ import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
-  inverse?: boolean;
+  isInverse?: boolean;
   level: 1 | 2 | 3 | 4 | 5 | 6;
   ref?: any;
   testId?: string;
@@ -13,7 +13,7 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
 
 export const baseHeadingStyles = props => css`
   border-bottom: 2px solid transparent;
-  color: ${props.inverse
+  color: ${props.isInverse
     ? props.theme.colors.neutral08
     : props.theme.colors.foundation02};
   font-family: ${props.theme.headingFont};
@@ -23,7 +23,9 @@ export const baseHeadingStyles = props => css`
 
   &:focus {
     border-bottom: 2px dotted
-      ${props.inverse ? props.theme.colors.neutral08 : props.theme.colors.focus};
+      ${props.isInverse
+        ? props.theme.colors.neutral08
+        : props.theme.colors.focus};
     outline: 0;
     transition: border 0.1s linear;
   }
@@ -67,7 +69,7 @@ const StyledH6 = styled.h6`
 
 export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
   (
-    { inverse, level, testId, tabIndex, children, ...other }: HeadingProps,
+    { isInverse, level, testId, tabIndex, children, ...other }: HeadingProps,
     ref: any
   ) => {
     const theme = React.useContext(ThemeContext);
@@ -86,7 +88,7 @@ export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
       <HeadingComponent
         {...other}
         css={baseHeadingStyles({ theme })}
-        inverse={inverse}
+        isInverse={isInverse}
         ref={ref}
         data-testid={testId}
         tabIndex={tabIndex}

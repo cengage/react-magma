@@ -4,7 +4,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface BreadcrumbProps
   extends React.HTMLAttributes<HTMLOListElement> {
-  inverse?: boolean;
+  isInverse?: boolean;
   minWidthToShow?: number;
   testId?: string;
 }
@@ -26,13 +26,13 @@ const StyledList = styled.ol<BreadcrumbProps>`
 `;
 
 export interface BreadCrumbContextInterface {
-  inverse?: boolean;
+  isInverse?: boolean;
 }
 
 export const BreadCrumbContext = React.createContext<
   BreadCrumbContextInterface
 >({
-  inverse: false
+  isInverse: false
 });
 
 export const Breadcrumb: React.FunctionComponent<
@@ -42,7 +42,7 @@ export const Breadcrumb: React.FunctionComponent<
     {
       'aria-label': ariaLabel,
       children,
-      inverse,
+      isInverse,
       minWidthToShow,
       testId,
       ...other
@@ -52,14 +52,14 @@ export const Breadcrumb: React.FunctionComponent<
     const theme = React.useContext(ThemeContext);
 
     return (
-      <BreadCrumbContext.Provider value={{ inverse }}>
+      <BreadCrumbContext.Provider value={{ isInverse }}>
         <StyledNav
           {...other}
           aria-label={ariaLabel ? ariaLabel : 'Breadcrumb'}
           breakpoint={minWidthToShow ? `${minWidthToShow}px` : '0'}
           data-testid={testId}
         >
-          <StyledList inverse={inverse} ref={ref} theme={theme}>
+          <StyledList isInverse={isInverse} ref={ref} theme={theme}>
             {children}
           </StyledList>
         </StyledNav>

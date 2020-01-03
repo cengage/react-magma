@@ -94,36 +94,36 @@ In addition to being checked or unchecked, checkboxes also support an indetermin
 
 ## Inverse
 
-Inverse is an optional boolean prop, that may be passed in when the component is to be displayed on a dark background.
+`isInverse` is an optional boolean prop, that may be passed in when the component is to be displayed on a dark background.
 
 ```.jsx
   <FormGroup containerStyle={{ background : '#00263E',color: '#FFFFFF', padding: '10px' }} labelText="Choose Inverse Options">
     <Checkbox
         checked
-        inverse
+        isInverse
       labelText='Inverse' />
     <Checkbox
         checked
         color={magma.colors.success01}
-        inverse
+        isInverse
         labelText='Success inverse' />
     <Checkbox
         checked
         color={magma.colors.danger}
-        inverse
+        isInverse
         labelText='Danger inverse' />
     <Checkbox
         checked
         color={magma.colors.pop02}
-        inverse
+        isInverse
         labelText='Pop inverse' />
       <Checkbox
           disabled
-          inverse
+          isInverse
           labelText='Disabled inverse' />
       <Checkbox
           indeterminate
-          inverse
+          isInverse
           labelText='Indeterminate checkbox' />
     </FormGroup>
 ```
@@ -246,7 +246,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       required: false,
       description: 'Style properties for the checkbox element',
     },
-    inverse: {
+    isInverse: {
       type: {
         name: 'boolean',
       },

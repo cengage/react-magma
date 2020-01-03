@@ -30,11 +30,11 @@ the item will be rendered as a span and will have `aria-current="page"` on it. A
 
 ## Inverse
 
-Inverse is an optional boolean prop, that may be used when the breadcrumb menu to be displayed on a dark background.
+IsInverse is an optional boolean prop, that may be used when the breadcrumb menu to be displayed on a dark background.
 
 ```.jsx
     <div style={{background: '#003865', padding: '10px'}}>
-        <Breadcrumb inverse>
+        <Breadcrumb isInverse>
             <BreadcrumbItem to="#">
                 Home
             </BreadcrumbItem>
@@ -103,7 +103,7 @@ By default, the `aria-label` of the Breadcrumb component is `Breadcrumb`. This c
       required: true,
       description: 'The content of the component',
     },
-    inverse: {
+    isInverse: {
       type: {
         name: 'boolean',
       },

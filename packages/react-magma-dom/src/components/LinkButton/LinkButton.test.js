@@ -27,7 +27,9 @@ describe('Link Button', () => {
 
   it('should render an inverse link button with the correct styles', () => {
     const buttonText = 'test';
-    const { getByText } = render(<LinkButton inverse>{buttonText}</LinkButton>);
+    const { getByText } = render(
+      <LinkButton isInverse>{buttonText}</LinkButton>
+    );
     const button = getByText(buttonText);
 
     expect(button).toHaveStyleRule('color', magma.colors.neutral08);

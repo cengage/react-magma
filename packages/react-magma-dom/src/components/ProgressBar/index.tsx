@@ -7,7 +7,7 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   animated?: boolean;
   color?: ProgressBarColor;
   height?: number;
-  inverse?: boolean;
+  isInverse?: boolean;
   labelVisible?: boolean;
   percentage?: number;
   testId?: string;
@@ -33,7 +33,7 @@ function buildProgressBarBackground(props) {
       return props.theme.colors.success01;
 
     default:
-      return props.inverse
+      return props.isInverse
         ? props.theme.colors.foundation03
         : props.theme.colors.primary;
   }
@@ -46,10 +46,10 @@ const Container = styled.div`
 
 const Track = styled.div<ProgressBarProps>`
   background: ${props =>
-    props.inverse ? 'rgba(0,0,0,0.25)' : props.theme.colors.neutral08};
+    props.isInverse ? 'rgba(0,0,0,0.25)' : props.theme.colors.neutral08};
   border: 1px solid
     ${props =>
-      props.inverse
+      props.isInverse
         ? props.theme.colors.neutral08
         : props.theme.colors.neutral04};
   display: flex;
@@ -110,7 +110,7 @@ export const ProgressBar: React.FunctionComponent<
       animated,
       color,
       height,
-      inverse,
+      isInverse,
       labelVisible,
       percentage,
       testId
@@ -126,7 +126,7 @@ export const ProgressBar: React.FunctionComponent<
         <Track
           data-testid={testId}
           height={height ? height : 15}
-          inverse={inverse}
+          isInverse={isInverse}
           ref={ref}
           theme={theme}
         >
@@ -136,7 +136,7 @@ export const ProgressBar: React.FunctionComponent<
             aria-valuemin={0}
             aria-valuemax={100}
             color={color}
-            inverse={inverse}
+            isInverse={isInverse}
             percentage={percentageValue}
             role="progressbar"
             theme={theme}

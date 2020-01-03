@@ -20,7 +20,7 @@ export interface SelectProps {
   clearable?: boolean;
   errorMessage?: string;
   helperMessage?: string;
-  inverse?: boolean;
+  isInverse?: boolean;
   multi?: boolean;
   style?: ReactSelectStyles;
   onBlur?: () => void;
@@ -46,7 +46,7 @@ export function getStyles(
   customStyles: ReactSelectStyles = {},
   theme: any,
   errorMessage?: string,
-  inverse?: boolean
+  isInverse?: boolean
 ) {
   return {
     control: (styles, { isFocused, isDisabled }) => ({
@@ -61,7 +61,7 @@ export function getStyles(
       cursor: isDisabled ? 'not-allowed' : 'pointer',
       height: '37px',
       outline: isFocused
-        ? inverse
+        ? isInverse
           ? `2px dotted ${theme.colors.neutral08}`
           : `2px dotted ${theme.colors.focus}`
         : '0',
@@ -195,7 +195,7 @@ export const Select: React.FunctionComponent<SelectProps> = (
     clearable,
     errorMessage,
     helperMessage,
-    inverse,
+    isInverse,
     multi,
     style
   } = props;
@@ -212,7 +212,7 @@ export const Select: React.FunctionComponent<SelectProps> = (
       errorMessage={errorMessage}
       helperMessage={helperMessage}
       id={id}
-      inverse={inverse}
+      isInverse={isInverse}
       labelText={labelText}
       testId={testId}
     >
@@ -226,7 +226,7 @@ export const Select: React.FunctionComponent<SelectProps> = (
         }}
         defaultValue={defaultValue}
         id={id}
-        inverse={inverse}
+        isInverse={isInverse}
         isClearable={clearable}
         isDisabled={disabled}
         isMulti={multi}
@@ -239,7 +239,7 @@ export const Select: React.FunctionComponent<SelectProps> = (
         onMenuOpen={onOpen}
         options={options}
         required={required}
-        styles={getStyles(style, theme, errorMessage, inverse)}
+        styles={getStyles(style, theme, errorMessage, isInverse)}
         value={value}
       />
     </SelectWrapper>

@@ -31,7 +31,7 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   isExiting?: boolean;
   isDismissed?: boolean;
   isDismissible?: boolean;
-  inverse?: boolean;
+  isInverse?: boolean;
   onDismiss?: () => void;
   ref?: any;
   testId?: string;
@@ -75,7 +75,9 @@ const StyledAlert = styled.div<AlertProps>`
 
   &:focus {
     outline: 2px dotted ${props =>
-      props.inverse ? props.theme.colors.neutral08 : props.theme.colors.focus};
+      props.isInverse
+        ? props.theme.colors.neutral08
+        : props.theme.colors.focus};
     }
   }
 
@@ -137,7 +139,7 @@ const DismissibleIconWrapper = styled.span<AlertProps>`
   }
 `;
 
-const whitelistProps = ['icon', 'inverse', 'theme', 'variant'];
+const whitelistProps = ['icon', 'isInverse', 'theme', 'variant'];
 
 const shouldForwardProp = prop => {
   return isPropValid(prop) || whitelistProps.includes(prop);
@@ -199,7 +201,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
       isDismissed,
       isDismissible,
       isExiting: externalIsExiting,
-      inverse,
+      isInverse,
       onDismiss,
       ...other
     }: AlertProps,
@@ -234,7 +236,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
         data-testid={testId}
         ref={ref}
         tabIndex={-1}
-        inverse={inverse}
+        isInverse={isInverse}
         isExiting={isExiting}
         variant={variant}
         theme={theme}
@@ -249,7 +251,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
                 closeAriaLabel ? closeAriaLabel : 'Close this message'
               }
               icon={<CrossIcon />}
-              inverse
+              isInverse
               onClick={forceDismiss || handleDismiss}
               theme={theme}
               variant={ButtonVariant.link}

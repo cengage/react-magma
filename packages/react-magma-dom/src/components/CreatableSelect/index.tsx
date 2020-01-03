@@ -57,7 +57,7 @@ export const CreatableSelect: React.FunctionComponent<CreatableSelectProps> = (
     required,
     clearable,
     errorMessage,
-    inverse,
+    isInverse,
     multi,
     style
   } = props;
@@ -68,13 +68,13 @@ export const CreatableSelect: React.FunctionComponent<CreatableSelectProps> = (
     <SelectWrapper
       errorMessage={errorMessage}
       id={id}
-      inverse={inverse}
+      isInverse={isInverse}
       labelText={labelText}
       testId={testId}
     >
       <ReactCreatableSelect
         id={id}
-        inverse={inverse}
+        isInverse={isInverse}
         components={{
           ClearIndicator,
           DropdownIndicator,

@@ -42,7 +42,7 @@ export default props => (
           <html lang="en" />
         </Helmet>
         <StyledSkipLink
-          inverse
+          isInverse
           positionLeft={275}
           positionTop={16}
           variant="outline"

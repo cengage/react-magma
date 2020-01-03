@@ -73,7 +73,7 @@ describe('Input', () => {
 
   it('should render an inverse input with the correct styles', () => {
     const labelText = 'test label';
-    const { getByText } = render(<Input labelText={labelText} inverse />);
+    const { getByText } = render(<Input labelText={labelText} isInverse />);
 
     expect(getByText(labelText)).toHaveStyleRule(
       'color',
@@ -92,7 +92,9 @@ describe('Input', () => {
 
   it('should render an inverse input with a correctly styled helper message', () => {
     const testMessage = 'Test message';
-    const { getByText } = render(<Input helperMessage={testMessage} inverse />);
+    const { getByText } = render(
+      <Input helperMessage={testMessage} isInverse />
+    );
 
     const helperMessage = getByText(testMessage);
 
@@ -121,7 +123,7 @@ describe('Input', () => {
     const labelText = 'test label';
     const testMessage = 'Test error message';
     const { getByText, getByLabelText } = render(
-      <Input errorMessage={testMessage} inverse labelText={labelText} />
+      <Input errorMessage={testMessage} isInverse labelText={labelText} />
     );
 
     const input = getByLabelText(labelText);

@@ -44,13 +44,13 @@ Use this when you want to render something that is from another library. For exa
 
 ## Inverse
 
-Inverse is an optional boolean prop, that may be passed in when the hyper link is to be displayed on a dark background.
+`isInverse` is an optional boolean prop, that may be passed in when the hyper link is to be displayed on a dark background.
 
 ```.jsx
     <div style={{ background : '#00263E', padding: '10px' }}>
-      <HyperLink inverse target="_blank" to="https://www.google.com">Google inverse link</HyperLink>
+      <HyperLink isInverse target="_blank" to="https://www.google.com">Google inverse link</HyperLink>
       <br />
-      <HyperLink inverse styledAs="Button" target="_blank" to="https://www.google.com">Inverse link styled as button</HyperLink>
+      <HyperLink isInverse styledAs="Button" target="_blank" to="https://www.google.com">Inverse link styled as button</HyperLink>
     </div>
 ```
 
@@ -90,7 +90,7 @@ Inverse is an optional boolean prop, that may be passed in when the hyper link i
         'If the link is styled as a button, the color of the component, indicating its function in the UI',
       defaultValue: 'primary',
     },
-    inverse: {
+    isInverse: {
       type: {
         name: 'boolean',
       },

@@ -18,7 +18,7 @@ describe('ProgressBar', () => {
   });
 
   it('should render the progress bar component with inverse styles', () => {
-    const { container } = render(<ProgressBar inverse />);
+    const { container } = render(<ProgressBar isInverse />);
 
     expect(container.firstChild.firstChild).toHaveStyleRule(
       'background',
