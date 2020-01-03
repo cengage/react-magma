@@ -23,11 +23,11 @@ export interface CheckboxProps
   indeterminate?: boolean;
   inputStyle?: React.CSSProperties;
   isInverse?: boolean;
+  isTextVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
   onIndeterminateClick?: (event: React.SyntheticEvent) => void;
   testId?: string;
-  textVisuallyHidden?: boolean;
 }
 
 const HiddenLabelText = styled.span`
@@ -145,7 +145,7 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = (
     isInverse,
     labelStyle,
     labelText,
-    textVisuallyHidden,
+    isTextVisuallyHidden,
     testId,
     ...other
   } = props;
@@ -183,7 +183,7 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = (
           )}
           <CheckIcon size={12} />
         </StyledFakeInput>
-        {textVisuallyHidden ? (
+        {isTextVisuallyHidden ? (
           <HiddenLabelText>{labelText}</HiddenLabelText>
         ) : (
           labelText

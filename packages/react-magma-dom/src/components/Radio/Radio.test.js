@@ -246,7 +246,12 @@ describe('Radio', () => {
           onChange: jest.fn()
         }}
       >
-        <Radio labelText="blue" name="colors" value="blue" textVisuallyHidden />
+        <Radio
+          labelText="blue"
+          name="colors"
+          value="blue"
+          isTextVisuallyHidden
+        />
       </RadioContext.Provider>
     );
     const span = getByLabelText('blue');

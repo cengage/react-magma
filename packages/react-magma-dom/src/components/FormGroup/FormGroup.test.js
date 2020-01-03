@@ -69,7 +69,7 @@ describe('Form Group', () => {
   it('should render a form group with hidden label text with the correct styles', () => {
     const labelText = 'Color';
     const { getByText } = render(
-      <FormGroup textVisuallyHidden labelText={labelText}>
+      <FormGroup isTextVisuallyHidden labelText={labelText}>
         <Checkbox labelText="Default Color" value="default" />
       </FormGroup>
     );

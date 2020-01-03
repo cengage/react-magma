@@ -130,12 +130,12 @@ In addition to being checked or unchecked, checkboxes also support an indetermin
 
 ## Visually Hidden Label
 
-Adding the `textVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
+Adding the `isTextVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
 
 ```.jsx
     <Checkbox
         labelText='Disabled checkbox'
-        textVisuallyHidden />
+        isTextVisuallyHidden />
 ```
 
 ## Custom Styles
@@ -255,6 +255,15 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
+    isTextVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
+    },
     labelStyle: {
       type: {
         name: 'React.CSSProperties',
@@ -292,15 +301,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       required: false,
       description:
         'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    textVisuallyHidden: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, label text will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
     },
   }}
 />

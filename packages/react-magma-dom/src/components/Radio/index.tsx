@@ -23,11 +23,11 @@ export interface RadioProps
   containerStyle?: React.CSSProperties;
   inputStyle?: React.CSSProperties;
   isInverse?: boolean;
+  isTextVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
   ref?: any;
   testId?: string;
-  textVisuallyHidden?: boolean;
 }
 
 const HiddenLabelText = styled.span`
@@ -110,7 +110,7 @@ export const Radio: React.FunctionComponent<RadioProps> = React.forwardRef(
       labelStyle,
       labelText,
       required,
-      textVisuallyHidden,
+      isTextVisuallyHidden,
       testId,
       value,
       ...other
@@ -145,7 +145,7 @@ export const Radio: React.FunctionComponent<RadioProps> = React.forwardRef(
           >
             <SelectedIcon color={color ? color : ''} theme={theme} />
           </StyledFakeInput>
-          {textVisuallyHidden ? (
+          {isTextVisuallyHidden ? (
             <HiddenLabelText>{labelText}</HiddenLabelText>
           ) : (
             labelText

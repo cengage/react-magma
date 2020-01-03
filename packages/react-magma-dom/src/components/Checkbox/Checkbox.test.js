@@ -113,7 +113,7 @@ describe('Checkbox', () => {
   it('should render a checkbox with hidden label text with the correct styles', () => {
     const label = 'test label';
     const { getByLabelText } = render(
-      <Checkbox labelText={label} textVisuallyHidden />
+      <Checkbox labelText={label} isTextVisuallyHidden />
     );
 
     expect(getByLabelText(label)).toHaveStyleRule(
