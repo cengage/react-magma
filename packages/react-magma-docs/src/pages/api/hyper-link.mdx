@@ -58,15 +58,6 @@ Use this when you want to render something that is from another library. For exa
 
 <SimplePropsTable
   props={{
-    block: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, and if the link is styled as a button, the link will take up the full width of its container',
-      defaultValue: 'false',
-    },
     children: {
       type: {
         name: 'node',
@@ -89,6 +80,15 @@ Use this when you want to render something that is from another library. For exa
       description:
         'If the link is styled as a button, the color of the component, indicating its function in the UI',
       defaultValue: 'primary',
+    },
+    isFullWidth: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, and if the link is styled as a button, the link will take up the full width of its container',
+      defaultValue: 'false',
     },
     isInverse: {
       type: {

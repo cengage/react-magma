@@ -472,7 +472,7 @@ describe('Styled Button', () => {
     it('Full Width button', () => {
       const text = 'test text';
       const { getByText } = render(
-        <StyledButton fullWidth>{text}</StyledButton>
+        <StyledButton isFullWidth>{text}</StyledButton>
       );
       const button = getByText(text);
 
