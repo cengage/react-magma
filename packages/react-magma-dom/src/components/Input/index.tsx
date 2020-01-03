@@ -47,7 +47,6 @@ export interface InputProps
   hiddenPasswordAnnounceText?: string;
   hidePasswordButtonAriaLabel?: string;
   hidePasswordButtonText?: string;
-  hidePasswordMaskButton?: boolean;
   icon?: React.ReactElement<IconProps>;
   iconAriaLabel?: string;
   iconPosition?: InputIconPosition;
@@ -56,6 +55,7 @@ export interface InputProps
   inputStyle?: React.CSSProperties;
   isInverse?: boolean;
   isLoading?: boolean;
+  isPasswordMaskButtonHidden?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
   labelVisuallyHidden?: boolean;
@@ -232,13 +232,13 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
       errorMessage,
       helperMessage,
       helpLinkAriaLabel,
-      hidePasswordMaskButton,
       hiddenPasswordAnnounceText,
       hidePasswordButtonAriaLabel,
       hidePasswordButtonText,
       icon,
       iconAriaLabel,
       isLoading,
+      isPasswordMaskButtonHidden,
       onIconClick,
       onIconKeyDown,
       inputSize,
@@ -357,7 +357,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
             </SpinnerWrapper>
           )}
 
-          {type === InputType.password && !hidePasswordMaskButton && (
+          {type === InputType.password && !isPasswordMaskButtonHidden && (
             <PasswordMaskWrapper>
               <Button
                 aria-label={

@@ -37,7 +37,7 @@ The label/input association will be handled via the passed in `id` if one is sup
 
 When the `type` prop is set to `password`, the input field that is rendered also have the `type` set to password, meaning that the text is obscured so that it cannot be read, usually by replacing each character with a symbol such as the asterisk ("\*") or a dot ("•").
 
-By default, users can show the password, by pressing a toggle button. To prevent users from showing the password, the optional boolean `hidePasswordMaskButton` can be used.
+By default, users can show the password, by pressing a toggle button. To prevent users from showing the password, the optional boolean `isPasswordMaskButtonHidden` can be used.
 
 The following option props can be used to override various text strings that appear on the UI or to users using assistive technology: `hiddenPasswordAnnounceText`, `hidePasswordButtonAriaLabel`, `hidePasswordButtonText`, `shownPasswordAnnounceText`, `showPasswordButtonAriaLabel`, `showPasswordButtonText`.
 
@@ -47,7 +47,7 @@ The following option props can be used to override various text strings that app
       labelText='Password'
       type='password' />
     <Input
-      hidePasswordMaskButton
+      isPasswordMaskButtonHidden
       labelText='Password With No Unmask Button'
       type='password' />
   </>
@@ -422,15 +422,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description: 'Text displayed on screen for the "Hide Password" button',
       defaultValue: 'Hide',
     },
-    hidePasswordMaskButton: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, label text will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
-    },
     icon: {
       type: {
         name: 'React Element',
@@ -444,22 +435,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       },
       required: false,
       description: 'Text for the aria-label attribute for an icon, if provided',
-      defaultValue: '',
-    },
-    onIconClick: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description: 'Action that will fire when icon is clicked.',
-      defaultValue: '',
-    },
-    onIconKeyDown: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description: 'Action that will fire when icon is receives keypress.',
       defaultValue: '',
     },
     iconPosition: {
@@ -496,6 +471,15 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
+    isPasswordMaskButtonHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
+    },
     labelStyle: {
       type: {
         name: 'React.CSSProperties',
@@ -518,6 +502,22 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description:
         'If true, label text will be hidden visually, but will still be read by assistive technology',
       defaultValue: 'false',
+    },
+    onIconClick: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Action that will fire when icon is clicked.',
+      defaultValue: '',
+    },
+    onIconKeyDown: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Action that will fire when icon is receives keypress.',
+      defaultValue: '',
     },
     placeholder: {
       type: {

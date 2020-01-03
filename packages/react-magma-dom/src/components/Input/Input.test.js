@@ -336,9 +336,9 @@ describe('Input', () => {
       expect(getByText('Test announce text')).toBeInTheDocument();
     });
 
-    it('does not render a show/hide button when hidePasswordMaskButton is set to true', () => {
+    it('does not render a show/hide button when isPasswordMaskButtonHidden is set to true', () => {
       const { queryByText } = render(
-        <Input type={InputType.password} hidePasswordMaskButton />
+        <Input type={InputType.password} isPasswordMaskButtonHidden />
       );
 
       expect(queryByText('Show')).not.toBeInTheDocument();
