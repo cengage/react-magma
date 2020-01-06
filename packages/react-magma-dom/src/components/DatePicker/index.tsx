@@ -14,9 +14,10 @@ import {
   getPrevMonthFromDate,
   getNextMonthFromDate
 } from './utils';
-import { useGenerateId } from '../utils';
+import { useGenerateId, Omit } from '../utils';
 
-interface DatePickerProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface DatePickerProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value'> {
   defaultDate?: Date;
   errorMessage?: string;
   helperMessage?: string;
