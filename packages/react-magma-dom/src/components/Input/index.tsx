@@ -54,11 +54,11 @@ export interface InputProps
   inputSize?: InputSize;
   inputStyle?: React.CSSProperties;
   isInverse?: boolean;
+  isLabelVisuallyHidden?: boolean;
   isLoading?: boolean;
   isPasswordMaskButtonHidden?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
-  labelVisuallyHidden?: boolean;
   multiline?: boolean;
   onHelpLinkClick?: () => void;
   onIconClick?: () => void;
@@ -246,7 +246,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
       isInverse,
       labelStyle,
       labelText,
-      labelVisuallyHidden,
+      isLabelVisuallyHidden,
       multiline,
       onHelpLinkClick,
       shownPasswordAnnounceText,
@@ -292,7 +292,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
 
     return (
       <Container style={containerStyle}>
-        {!labelVisuallyHidden && (
+        {!isLabelVisuallyHidden && (
           <Label
             isInverse={isInverse}
             htmlFor={id}
@@ -309,7 +309,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
               descriptionId ? descriptionId : props['aria-describedby']
             }
             aria-invalid={!!errorMessage}
-            aria-label={labelVisuallyHidden ? labelText : null}
+            aria-label={isLabelVisuallyHidden ? labelText : null}
             as={multiline ? 'textarea' : null}
             id={id}
             data-testid={testId}

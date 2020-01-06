@@ -226,12 +226,12 @@ The `isLoading` boolean prop will determine if a loading animation is shown. The
 
 ## Input With Hidden Label
 
-The `labelVisuallyHidden` prop can be used to visually hide the text label, while still making the text available to screen readers.
+The `isLabelVisuallyHidden` prop can be used to visually hide the text label, while still making the text available to screen readers.
 
 ```.jsx
     <Input
       iconPosition='right'
-      labelVisuallyHidden
+      isLabelVisuallyHidden
       labelText='Search'
       placeholder='Search'
       icon={<Search2Icon />} />
@@ -471,6 +471,15 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
+    isLabelVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
+    },
     isPasswordMaskButtonHidden: {
       type: {
         name: 'boolean',
@@ -493,15 +502,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       },
       required: true,
       description: 'Text for label',
-    },
-    labelVisuallyHidden: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, label text will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
     },
     onIconClick: {
       type: {

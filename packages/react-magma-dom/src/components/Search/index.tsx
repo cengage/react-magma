@@ -47,9 +47,9 @@ export const Search: React.FunctionComponent<SearchProps> = ({
       id={id}
       inputSize={inputSize}
       isInverse={isInverse}
+      isLabelVisuallyHidden
       isLoading={isLoading}
       labelText={labelText ? labelText : SEARCH}
-      labelVisuallyHidden
       onKeyDown={handleKeyPress}
       placeholder={placeholder ? placeholder : SEARCH}
       type={InputType.search}

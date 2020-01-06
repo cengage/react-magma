@@ -282,7 +282,7 @@ describe('Input', () => {
   it('should render the input with visually hidden label text', () => {
     const labelText = 'test label';
     const { getByLabelText } = render(
-      <Input labelText={labelText} labelVisuallyHidden />
+      <Input labelText={labelText} isLabelVisuallyHidden />
     );
     const input = getByLabelText(labelText);
 
