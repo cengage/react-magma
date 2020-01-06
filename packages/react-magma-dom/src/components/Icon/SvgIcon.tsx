@@ -8,7 +8,7 @@ interface Path {
   transform?: string;
 }
 
-interface SvgIconProps {
+interface SvgIconProps extends React.HTMLAttributes<HTMLOrSVGElement> {
   id: string;
   testId?: string;
   title?: string;
@@ -27,18 +27,17 @@ function renderPaths(paths) {
 export const SvgIcon: React.FunctionComponent<SvgIconProps> = (
   props: SvgIconProps
 ) => {
-  const id = useGenerateId(props.id);
-
-  const { color, size, title, testId, viewBox, paths } = props;
+  const { color, id: defaultId, size, title, testId, paths, ...other } = props;
+  const id = useGenerateId(defaultId);
 
   return (
     <svg
+      {...other}
       className="icon"
       height={size || defaultSize}
       width={size || defaultSize}
       fill={color || 'currentColor'}
       xmlns="http://www.w3.org/2000/svg"
-      viewBox={viewBox}
       aria-labelledby={title ? id : null}
       data-testid={testId}
     >

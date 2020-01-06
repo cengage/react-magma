@@ -3,6 +3,15 @@ import { HiddenStyles } from '../UtilityStyles';
 import styled from '../../theme/styled';
 import { omit, useGenerateId } from '../utils';
 
+export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+  containerStyle?: React.CSSProperties;
+  labelledById?: string;
+  labelStyle?: React.CSSProperties;
+  labelText?: string;
+  testId?: string;
+  textVisuallyHidden?: boolean;
+}
+
 export const FormGroupLabel = styled.label`
   display: block;
   font-weight: bold;
@@ -13,15 +22,6 @@ export const FormGroupLabel = styled.label`
 const HiddenLabel = styled.label`
   ${HiddenStyles};
 `;
-
-export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
-  containerStyle?: React.CSSProperties;
-  labelledById?: string;
-  labelStyle?: React.CSSProperties;
-  labelText?: string;
-  testId?: string;
-  textVisuallyHidden?: boolean;
-}
 
 export const FormGroup: React.FunctionComponent<FormGroupProps> = (
   props: FormGroupProps

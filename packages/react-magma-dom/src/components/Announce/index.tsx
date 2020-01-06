@@ -15,9 +15,10 @@ export enum AnnouncePoliteness {
 export const Announce: React.FunctionComponent<
   AnnounceProps
 > = React.forwardRef(
-  ({ children, politeness, testId }: AnnounceProps, ref: any) => {
+  ({ children, politeness, testId, ...other }: AnnounceProps, ref: any) => {
     return (
       <div
+        {...other}
         aria-live={politeness ? politeness : AnnouncePoliteness.polite}
         ref={ref}
         data-testid={testId}

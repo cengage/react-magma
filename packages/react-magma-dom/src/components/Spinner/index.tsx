@@ -30,16 +30,15 @@ export const Spinner: React.FunctionComponent<SpinnerProps> = ({
   size,
   testId,
   ...other
-}: SpinnerProps) => (
-  <ThemeContext.Consumer>
-    {theme => (
-      <StyledSpinner
-        {...other}
-        aria-label={ariaLabel ? ariaLabel : 'Loading...'}
-        color={color ? color : theme.colors.primary}
-        data-testid={testId}
-        size={size ? size : 15}
-      />
-    )}
-  </ThemeContext.Consumer>
-);
+}: SpinnerProps) => {
+  const theme = React.useContext(ThemeContext);
+  return (
+    <StyledSpinner
+      {...other}
+      aria-label={ariaLabel ? ariaLabel : 'Loading...'}
+      color={color ? color : theme.colors.primary}
+      data-testid={testId}
+      size={size ? size : 15}
+    />
+  );
+};
