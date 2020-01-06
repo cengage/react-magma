@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { Alert, AlertProps } from '../Alert';
+import { useGenerateId } from '../utils';
 
 export interface ToastProps extends AlertProps {
   alertStyle?: React.CSSProperties;
@@ -101,13 +102,16 @@ export const Toast: React.FunctionComponent<ToastProps> = (
 
   const {
     alertStyle,
-    id,
+    id: defaultId,
     testId,
     variant,
     dismissible,
     children,
-    containerStyle
+    containerStyle,
+    ...other
   } = props;
+
+  const id = useGenerateId(defaultId);
 
   return (
     <ToastWrapper
@@ -116,6 +120,7 @@ export const Toast: React.FunctionComponent<ToastProps> = (
       style={containerStyle}
     >
       <Alert
+        {...other}
         id={id}
         testId={testId}
         style={alertStyle}

@@ -84,6 +84,7 @@ describe('Alert', () => {
 <div>
   <div
     class="css-e3152"
+    id="auto-generated-id"
     tabindex="-1"
   >
     <span
@@ -123,6 +124,7 @@ describe('Alert', () => {
 <div>
   <div
     class="css-d3aqyd"
+    id="auto-generated-id"
     tabindex="-1"
   >
     <span
@@ -162,6 +164,7 @@ describe('Alert', () => {
 <div>
   <div
     class="css-tajpk"
+    id="auto-generated-id"
     tabindex="-1"
   >
     <span
@@ -200,6 +203,7 @@ describe('Alert', () => {
 <div>
   <div
     class="css-6349ll"
+    id="auto-generated-id"
     tabindex="-1"
   >
     <span
