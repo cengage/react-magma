@@ -75,8 +75,18 @@ The `value` of an input can be set using the `value` prop.
 
 ```.jsx
     <Input
-        labelText='Default value'
+        labelText='Value'
         value='abc123' />
+```
+
+## Default Value
+
+The `value` of an input can be initially set using the `defaultValue` prop.
+
+```.jsx
+    <Input
+        labelText='Default value'
+        defaultValue='Default Value' />
 ```
 
 ## Placeholder
@@ -367,6 +377,14 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       required: false,
       description: 'Style properties for the component container element',
     },
+    defaultValue: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Default value for the form field',
+      defaultValue: '',
+    },
     disabled: {
       type: {
         name: 'boolean',
@@ -590,7 +608,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
         name: 'string',
       },
       required: false,
-      description: 'Default value for the form field',
+      description: 'Value for the form field',
       defaultValue: '',
     },
   }}

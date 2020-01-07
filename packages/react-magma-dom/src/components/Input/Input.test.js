@@ -19,6 +19,17 @@ describe('Input', () => {
     expect(getByLabelText(label)).toBeInTheDocument();
   });
 
+  it('should render an input with a default value', () => {
+    const testId = 'test-id';
+    const defaultValue = 'Default';
+
+    const { getByTestId } = render(
+      <Input testId={testId} defaultValue={defaultValue} />
+    );
+
+    expect(getByTestId(testId)).toHaveAttribute('value', defaultValue);
+  });
+
   it('should render a input text with desired attributes', () => {
     const testId = 'test-id';
     const id = 'abc123';

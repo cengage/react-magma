@@ -68,7 +68,6 @@ export interface InputProps
   showPasswordButtonText?: string;
   testId?: string;
   type?: InputType;
-  value?: string;
 }
 
 interface IconWrapperProps {
@@ -207,7 +206,9 @@ function getIconSize(size) {
 
 export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
   (props: InputProps, ref: any) => {
-    const [value, setValue] = React.useState<string>(props.value);
+    const [value, setValue] = React.useState<string | string[] | number>(
+      props.defaultValue || props.value
+    );
     const [passwordShown, setPasswordShown] = React.useState<boolean>(false);
 
     React.useEffect(() => {
