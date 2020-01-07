@@ -19,10 +19,10 @@ Spinners indicate the loading state of a component or page. Spinners are used wi
 
 ## Aria-Label
 
-By default, the aria-label for the spinner is "Loading", but this can be customized using the `ariaLabel` prop.
+By default, the aria-label for the spinner is "Loading", but this can be customized using the `aria-label` prop.
 
 ```.jsx
-    <Spinner ariaLabel="Custom aria label" />
+    <Spinner aria-label="Custom aria label" />
 ```
 
 ## Color
@@ -43,9 +43,11 @@ The default size is 15px, but can be customized using the `size` prop, which tak
 
 ## Spinner Props
 
+**Any other props supplied will be provided to the wrapping `span` element.**
+
 <SimplePropsTable
   props={{
-    ariaLabel: {
+    'aria-label': {
       type: {
         name: 'string',
       },

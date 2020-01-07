@@ -66,11 +66,31 @@ The `minWidthToShow` prop can be used to suppress the navigation menu when it is
         </Breadcrumb>
 ```
 
+## Aria-label
+
+By default, the `aria-label` of the Breadcrumb component is `Breadcrumb`. This can be overridden by passing in the `aria-label` prop.
+
+```.jsx
+        <Breadcrumb aria-label="Hello world">
+            <BreadcrumbItem to="#">
+                Home
+            </BreadcrumbItem>
+             <BreadcrumbItem to="#">
+                Library
+            </BreadcrumbItem>
+             <BreadcrumbItem>
+                Data
+            </BreadcrumbItem>
+        </Breadcrumb>
+```
+
 ## Breadcrumb Props
+
+**Any other props supplied will be provided to the wrapping `nav` element.**
 
 <SimplePropsTable
   props={{
-    ariaLabel: {
+    'aria-label': {
       type: {
         name: 'string',
       },
@@ -115,6 +135,8 @@ The `minWidthToShow` prop can be used to suppress the navigation menu when it is
 />
 
 ## Breadcrumb Item Props
+
+**Any other props supplied will be provided to the wrapping `li` element.**
 
 <SimplePropsTable
   props={{

@@ -9,6 +9,7 @@ import { NotificationIcon } from '../Icon/types/NotificationIcon';
 import { BlockedIcon } from '../Icon/types/BlockedIcon';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { Button, ButtonVariant } from '../Button';
+import { useGenerateId } from '../utils';
 
 const VARIANT_ICON = {
   info: Info2Icon,
@@ -128,7 +129,7 @@ const IconWrapper = styled.span`
   padding: 0 10px 0 15px;
 `;
 
-const DismissableIconWrapper = styled.span<AlertProps>`
+const DismissibleIconWrapper = styled.span<AlertProps>`
   ${IconWrapperStyles}
 
   svg {
@@ -192,6 +193,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
   (
     {
       closeAriaLabel,
+      id: defaultId,
       testId,
       variant,
       children,
@@ -199,12 +201,12 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
       forceDismiss,
       isDismissed,
       isExiting: externalIsExiting,
-      inverse,
       onDismiss,
       ...other
     }: AlertProps,
     ref: any
   ) => {
+    const id = useGenerateId(defaultId);
     const [isExiting, setIsExiting] = React.useState(false);
 
     React.useEffect(() => {
@@ -231,10 +233,10 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
     return (
       <StyledAlert
         {...other}
+        id={id}
         data-testid={testId}
         ref={ref}
         tabIndex={-1}
-        inverse={inverse}
         isExiting={isExiting}
         variant={variant}
         theme={theme}
@@ -242,7 +244,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
         {renderIcon(variant)}
         <AlertContents>{children}</AlertContents>
         {dismissible && (
-          <DismissableIconWrapper variant={variant} theme={theme}>
+          <DismissibleIconWrapper variant={variant} theme={theme}>
             <DismissButton
               alertVariant={variant}
               aria-label={
@@ -254,7 +256,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
               theme={theme}
               variant={ButtonVariant.link}
             />
-          </DismissableIconWrapper>
+          </DismissibleIconWrapper>
         )}
       </StyledAlert>
     );

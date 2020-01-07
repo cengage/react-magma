@@ -49,6 +49,24 @@ describe('Date Picker', () => {
     );
   });
 
+  it('should set the value to the date iin the value prop', () => {
+    const defaultDate = new Date('January 17, 2019');
+    const valueDate = new Date('January 23, 2019');
+
+    const { getByLabelText } = render(
+      <DatePicker
+        defaultDate={defaultDate}
+        labelText="Date Picker Label"
+        value={valueDate}
+      />
+    );
+
+    expect(getByLabelText('Date Picker Label')).toHaveAttribute(
+      'value',
+      format(valueDate, 'MM/DD/YYYY')
+    );
+  });
+
   it('should render custom placeholder text', () => {
     const customPlaceholder = 'Custom text';
     const { getByLabelText } = render(

@@ -26,6 +26,14 @@ By default, no date value is selected. You can add a default date, by using the 
     <DatePicker defaultDate='07/23/2019' labelText="Date" />
 ```
 
+## Value
+
+The `value` prop can also be used so set the date value externally. It will override the `defaultDate` if both are passed.
+
+```.jsx
+    <DatePicker defaultDate='07/23/2019' labelText="Date" value='03/12/2019' />
+```
+
 ## Placeholder Text
 
 By default, the placeholder text of the input is 'MM/DD/YYYY'. You can override this by using the `placeholder` prop.
@@ -88,11 +96,13 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
 
 ## Date Picker Props
 
+**Any other props supplied will be provided to the `input` element.**
+
 <SimplePropsTable
   props={{
     defaultDate: {
       type: {
-        name: 'Date',
+        name: 'Date or string',
       },
       required: false,
       description: 'Default selected date value',
@@ -137,6 +147,20 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
       required: false,
       description: 'Event that will fire when day is changed',
     },
+    onInputBlur: {
+      type: {
+        name: '(event: React.FocusEvent) => void',
+      },
+      required: false,
+      description: 'Event that will fire when the text input loses focus',
+    },
+    onInputChange: {
+      type: {
+        name: '(event: React.ChangeEvent) => void;',
+      },
+      required: false,
+      description: 'Event that will fire when the text input is changed',
+    },
     placeholder: {
       type: {
         name: 'string',
@@ -160,6 +184,14 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
       required: false,
       description:
         'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+    value: {
+      type: {
+        name: 'Date or string',
+      },
+      required: false,
+      description:
+        'Value of the date input, used when setting the date value externally.',
     },
   }}
 />

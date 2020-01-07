@@ -12,7 +12,6 @@ export enum EnumTooltipPosition {
 }
 
 export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
-  content: React.ReactNode;
   inverse?: boolean;
   position?: EnumTooltipPosition;
   testId?: string;
@@ -220,7 +219,6 @@ const StyledTooltipInner = styled.div<{
 
 export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
   (props: TooltipProps, ref: any) => {
-    const id = useGenerateId(props.id);
     const [isVisible, setIsVisible] = React.useState<boolean>(false);
 
     function handleKeyDown(event: React.KeyboardEvent) {
@@ -237,7 +235,17 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
       setIsVisible(false);
     }
 
-    const { content, inverse, position, testId, trigger } = props;
+    const {
+      children,
+      id: defaultId,
+      inverse,
+      position,
+      testId,
+      trigger,
+      ...other
+    } = props;
+
+    const id = useGenerateId(defaultId);
     const theme = React.useContext(ThemeContext);
 
     return (
@@ -253,6 +261,7 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
         })}
 
         <StyledTooltip
+          {...other}
           id={id}
           position={position ? position : EnumTooltipPosition.top}
           role="tooltip"
@@ -263,7 +272,7 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
             position={position ? position : EnumTooltipPosition.top}
             theme={theme}
           >
-            {content}
+            {children}
           </StyledTooltipInner>
         </StyledTooltip>
       </ToolTipContainer>
