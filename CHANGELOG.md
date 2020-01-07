@@ -3,6 +3,56 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.11](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.10...v2.0.0-beta.11) (2020-01-07)
+
+
+### Features
+
+* **alert, toast:** change dismissible prop name to isDismissible ([99d6786](http://stash.corp.web:7999/FRONT/react-magma/commits/99d6786))
+* rename inverse prop to isInverse ([6a95471](http://stash.corp.web:7999/FRONT/react-magma/commits/6a95471))
+* **button:** change fullWidth prop to isFullWidth ([3b4477b](http://stash.corp.web:7999/FRONT/react-magma/commits/3b4477b))
+* **input:** rename hidePasswordMaskButton to isPasswordMaskButtonHidden ([4968f74](http://stash.corp.web:7999/FRONT/react-magma/commits/4968f74))
+* **input:** rename labelVisuallyHidden prop to isLabelVisuallyHidden ([3939dd7](http://stash.corp.web:7999/FRONT/react-magma/commits/3939dd7))
+* **modal:** change boolean prop names ([2723ed7](http://stash.corp.web:7999/FRONT/react-magma/commits/2723ed7))
+* **progressbar:** change boolean prop names ([0788dd0](http://stash.corp.web:7999/FRONT/react-magma/commits/0788dd0))
+* **radio, checkbox, toggle, formgroup:** textVisuallyHidden prop ([4bd2115](http://stash.corp.web:7999/FRONT/react-magma/commits/4bd2115))
+
+
+### BREAKING CHANGES
+
+* **modal:** change prop names in modal component - open to isOpen, disableBackdropClick to
+isBackgroundClickDisabled, disableEscKeyDown to isEscKeyDisabled and hideCloseButton to
+isCloseButtonHidden
+
+MAGMA-212
+* **progressbar:** prop name changes in progressbar component - animated to isAnimated and
+labelVisible to isLabelVisible
+
+MAGMA-212
+* **input:** prop name change in input component labelVisuallyHidden to isLabelVisuallyHidden
+* **input:** rename prop in input component hidePasswordMaskButton to isPasswordMaskButtonHidden
+
+MAGMA-212
+* **radio, checkbox, toggle, formgroup:** renamed textVisuallyHidden prop to isTextVisuallyHidden in checkbox, formgroup,
+radio, radiogroup and toggle components
+
+MAGMA-212
+* **button:** prop name in button changed from fullWidth, to isFullWidth. It was previously named
+block
+
+MAGMA-212
+* Across many components, the inverse prop has been renamed to isInverse.  Affects
+Alert, Breadcrumb, Button, Card, Checkbox, Datepicker, Heading, HyperLink, Input, ProgressBar,
+Radio, Search, Select, SkipLinik, Toast, Toggle, Tooltip
+
+MAGMA-212
+* **alert, toast:** prop name changed in alert, toast components.  Was dismissible, now is
+isDismissible
+
+
+
+
+
 # [2.0.0-beta.10](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.9...v2.0.0-beta.10) (2020-01-07)
 
 
