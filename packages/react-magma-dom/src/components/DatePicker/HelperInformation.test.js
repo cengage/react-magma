@@ -14,13 +14,13 @@ describe('Calendar Month', () => {
   it('helper information should be visible when open', async () => {
     const { getByText, rerender } = render(<HelperInformation />);
 
-    rerender(<HelperInformation open={true} />);
+    rerender(<HelperInformation isOpen={true} />);
 
     expect(getByText(/keyboard shortcuts/i)).toBeInTheDocument();
   });
 
   it('helper information should not be visible when not open', () => {
-    const { queryByText } = render(<HelperInformation open={false} />);
+    const { queryByText } = render(<HelperInformation isOpen={false} />);
 
     expect(queryByText(/keyboard shortcuts/i)).not.toBeInTheDocument();
   });
@@ -30,7 +30,7 @@ describe('Calendar Month', () => {
     const { getByLabelText, getByText, rerender } = render(
       <>
         <button>Click</button>
-        <HelperInformation open={false} onClose={onCloseSpy} />
+        <HelperInformation isOpen={false} onClose={onCloseSpy} />
       </>
     );
 
@@ -39,7 +39,7 @@ describe('Calendar Month', () => {
     rerender(
       <>
         <button>Click</button>
-        <HelperInformation open={true} onClose={onCloseSpy} />
+        <HelperInformation isOpen={true} onClose={onCloseSpy} />
       </>
     );
 
