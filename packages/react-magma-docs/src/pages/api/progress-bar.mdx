@@ -83,10 +83,10 @@ the default background color of the progress bar is `#00A9E0` or `magma.colors.f
 
 ## Label Visible
 
-If the `islabelVisible` prop is true, the percentage value will display to the right of the progress bar.
+If the `isLabelVisible` prop is true, the percentage value will display to the right of the progress bar.
 
 ```.jsx
-        <ProgressBar islabelVisible percentage={25} />
+        <ProgressBar isLabelVisible percentage={25} />
 ```
 
 ## Progress Bar Props
@@ -135,7 +135,7 @@ If the `islabelVisible` prop is true, the percentage value will display to the r
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
-    islabelVisible: {
+    isLabelVisible: {
       type: {
         name: 'boolean',
       },
