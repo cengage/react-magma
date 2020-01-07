@@ -92,13 +92,13 @@ Custom styles can be applied by using the `containerStyle` and `labelStyle` prop
 
 ## Visually Hidden Label
 
-The ;abel text for the form group can be hidden visually, but still be read by assistive technology, by using the `textVisuallyHidden` prop.
+The ;abel text for the form group can be hidden visually, but still be read by assistive technology, by using the `isTextVisuallyHidden` prop.
 
 ```.jsx
     <FormGroup
         labelText="Group Label"
         name='labelledByGroup'
-        textVisuallyHidden>
+        isTextVisuallyHidden>
           <Checkbox
               labelText='Checkbox label' />
           <Checkbox
@@ -126,6 +126,15 @@ The ;abel text for the form group can be hidden visually, but still be read by a
       required: false,
       description: 'Style properties for the component container element',
     },
+    isTextVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text for the form group will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
+    },
     labelledById: {
       type: {
         name: 'string',
@@ -149,15 +158,6 @@ The ;abel text for the form group can be hidden visually, but still be read by a
       required: false,
       description:
         'Text for label of the form group. Alertnatively, the labelledById prop can be used.',
-    },
-    textVisuallyHidden: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, label text for the form group will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
     },
     testId: {
       type: {

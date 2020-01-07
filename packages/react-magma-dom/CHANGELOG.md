@@ -21,24 +21,21 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [2.0.0-beta.9](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.8...v2.0.0-beta.9) (2020-01-07)
 
-
 ### Features
 
-* **input:** add default value prop ([4aa61de](http://stash.corp.web:7999/FRONT/react-magma/commits/4aa61de))
-
-
-
-
+- **input:** add default value prop ([4aa61de](http://stash.corp.web:7999/FRONT/react-magma/commits/4aa61de))
 
 # [2.0.0-beta.7](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.6...v2.0.0-beta.7) (2020-01-07)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 # [2.0.0-beta.5](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.4...v2.0.0-beta.5) (2020-01-06)
+
+<<<<<<< HEAD
+
+### Bug Fixes
+
+=======
 
 ### Code Refactoring
 
@@ -57,11 +54,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
+> > > > > > > dev
+
 - **datepicker:** omit value from default html props ([dd4def9](http://stash.corp.web:7999/FRONT/react-magma/commits/dd4def9))
 
 ### Features
 
 - **datepicker:** add value prop ([430f5c8](http://stash.corp.web:7999/FRONT/react-magma/commits/430f5c8))
+  <<<<<<< HEAD
+  =======
 
 * **breadcrumb:** removed inverse prop from BreadcrumbItem, now inherits prop from Breadcrumb
 
@@ -77,9 +78,15 @@ MAGMA-207
 MAGMA-204
 
 - **modal:** prop name change in modal from hideEscButton to hideCloseButton
+  > > > > > > > dev
 
 MAGMA-203
 
+<<<<<<< HEAD
+
+### Features
+
+- # **all:** pass through base html attributes as props ([4715e2c](http://stash.corp.web:7999/FRONT/react-magma/commits/4715e2c))
 - **input:** renamed prop in input from helpLinkText to helpLinkAriaLabel
 
 MAGMA-202
@@ -98,6 +105,8 @@ MAGMA-191
   placeholderText to placeholder
 
 MAGMA-190
+
+> > > > > > > dev
 
 # [2.0.0-beta.3](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2019-12-20)
 

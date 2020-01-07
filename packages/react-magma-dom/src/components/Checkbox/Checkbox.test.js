@@ -73,7 +73,7 @@ describe('Checkbox', () => {
   });
 
   it('should render an inverse checkbox with the correct styles', () => {
-    const { container } = render(<Checkbox inverse />);
+    const { container } = render(<Checkbox isInverse />);
     const span = container.querySelector('span');
 
     expect(span).toHaveStyleRule('background', 'none');
@@ -82,7 +82,7 @@ describe('Checkbox', () => {
 
   it('should render inverse with a passed in color', () => {
     const color = '#FFFFFF';
-    const { container } = render(<Checkbox color={color} inverse />);
+    const { container } = render(<Checkbox color={color} isInverse />);
     const span = container.querySelector('span');
     const svg = container.querySelector('svg');
 
@@ -92,7 +92,7 @@ describe('Checkbox', () => {
   });
 
   it('should render an inverse, disabled checkbox with the correct styles', () => {
-    const { container } = render(<Checkbox disabled inverse />);
+    const { container } = render(<Checkbox disabled isInverse />);
     const span = container.querySelector('span');
 
     expect(span).toHaveStyleRule('background', 'none');
@@ -103,7 +103,7 @@ describe('Checkbox', () => {
   });
 
   it('should render an inverse, checked checkbox with the correct styles', () => {
-    const { container } = render(<Checkbox checked inverse />);
+    const { container } = render(<Checkbox checked isInverse />);
     const span = container.querySelector('span');
 
     expect(span).toHaveStyleRule('background', magma.colors.neutral08);
@@ -113,7 +113,7 @@ describe('Checkbox', () => {
   it('should render a checkbox with hidden label text with the correct styles', () => {
     const label = 'test label';
     const { getByLabelText } = render(
-      <Checkbox labelText={label} textVisuallyHidden />
+      <Checkbox labelText={label} isTextVisuallyHidden />
     );
 
     expect(getByLabelText(label)).toHaveStyleRule(

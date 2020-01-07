@@ -28,11 +28,11 @@ export enum AlertVariant {
 
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   closeAriaLabel?: string;
-  dismissible?: boolean;
   forceDismiss?: () => void;
   isExiting?: boolean;
   isDismissed?: boolean;
-  inverse?: boolean;
+  isDismissible?: boolean;
+  isInverse?: boolean;
   onDismiss?: () => void;
   ref?: any;
   testId?: string;
@@ -76,7 +76,9 @@ const StyledAlert = styled.div<AlertProps>`
 
   &:focus {
     outline: 2px dotted ${props =>
-      props.inverse ? props.theme.colors.neutral08 : props.theme.colors.focus};
+      props.isInverse
+        ? props.theme.colors.neutral08
+        : props.theme.colors.focus};
     }
   }
 
@@ -138,7 +140,7 @@ const DismissibleIconWrapper = styled.span<AlertProps>`
   }
 `;
 
-const whitelistProps = ['icon', 'inverse', 'theme', 'variant'];
+const whitelistProps = ['icon', 'isInverse', 'theme', 'variant'];
 
 const shouldForwardProp = prop => {
   return isPropValid(prop) || whitelistProps.includes(prop);
@@ -197,10 +199,11 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
       testId,
       variant,
       children,
-      dismissible,
       forceDismiss,
       isDismissed,
+      isDismissible,
       isExiting: externalIsExiting,
+      isInverse,
       onDismiss,
       ...other
     }: AlertProps,
@@ -237,13 +240,14 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
         data-testid={testId}
         ref={ref}
         tabIndex={-1}
+        isInverse={isInverse}
         isExiting={isExiting}
         variant={variant}
         theme={theme}
       >
         {renderIcon(variant)}
         <AlertContents>{children}</AlertContents>
-        {dismissible && (
+        {isDismissible && (
           <DismissibleIconWrapper variant={variant} theme={theme}>
             <DismissButton
               alertVariant={variant}
@@ -251,7 +255,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
                 closeAriaLabel ? closeAriaLabel : 'Close this message'
               }
               icon={<CrossIcon />}
-              inverse
+              isInverse
               onClick={forceDismiss || handleDismiss}
               theme={theme}
               variant={ButtonVariant.link}

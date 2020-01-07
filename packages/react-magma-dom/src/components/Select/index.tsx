@@ -28,7 +28,7 @@ export const Select: React.FunctionComponent<SelectProps> = (
     labelText,
     errorMessage,
     helperMessage,
-    inverse,
+    isInverse,
     styles,
     ...other
   } = props;
@@ -41,7 +41,7 @@ export const Select: React.FunctionComponent<SelectProps> = (
     <SelectWrapper
       errorMessage={errorMessage}
       helperMessage={helperMessage}
-      inverse={inverse}
+      isInverse={isInverse}
       labelText={labelText}
       testId={testId}
     >
@@ -55,7 +55,7 @@ export const Select: React.FunctionComponent<SelectProps> = (
           MultiValueRemove
         }}
         onChange={onChange}
-        styles={getStyles(styles, theme, errorMessage, inverse)}
+        styles={getStyles(styles, theme, errorMessage, isInverse)}
         value={value}
       />
     </SelectWrapper>

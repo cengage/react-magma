@@ -28,11 +28,11 @@ The `Heading` component can be used with the `level` prop to render the HTML hea
 
 ## Inverse
 
-Inverse is an optional boolean prop, that may be passed in when the component is to be displayed on a dark background.
+`isInverse` is an optional boolean prop, that may be passed in when the component is to be displayed on a dark background.
 
 ```.jsx
   <div style={{ background : '#00263E', padding: '10px' }}>
-    <Heading inverse level={2}>Heading 2</Heading>
+    <Heading isInverse level={2}>Heading 2</Heading>
   </div>
 ```
 
@@ -82,7 +82,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
       required: true,
       description: 'The content of the component',
     },
-    inverse: {
+    isInverse: {
       type: {
         name: 'boolean',
       },

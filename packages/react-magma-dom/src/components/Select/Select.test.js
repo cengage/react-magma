@@ -183,7 +183,9 @@ describe('Select', () => {
   it('should render the error message on an inverse component with the correct styles', () => {
     const errorString = 'Please fix this error';
 
-    const { getByText } = render(<Select errorMessage={errorString} inverse />);
+    const { getByText } = render(
+      <Select errorMessage={errorString} isInverse />
+    );
     const errorMessage = getByText(errorString);
 
     expect(errorMessage).toBeInTheDocument();

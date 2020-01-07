@@ -32,7 +32,7 @@ export const CreatableSelect: React.FunctionComponent<CreatableSelectProps> = (
     labelText,
     errorMessage,
     helperMessage,
-    inverse,
+    isInverse,
     styles,
     ...other
   } = props;
@@ -44,7 +44,7 @@ export const CreatableSelect: React.FunctionComponent<CreatableSelectProps> = (
   return (
     <SelectWrapper
       errorMessage={errorMessage}
-      inverse={inverse}
+      isInverse={isInverse}
       labelText={labelText}
       testId={testId}
     >
@@ -58,7 +58,7 @@ export const CreatableSelect: React.FunctionComponent<CreatableSelectProps> = (
           MultiValueRemove
         }}
         onChange={onChange}
-        inverse={inverse}
+        isInverse={isInverse}
         styles={getStyles(styles, theme, errorMessage)}
         value={value}
       />

@@ -52,11 +52,11 @@ The `Tooltip` component takes a `position` property, that accepts the following 
 
 ## Inverse
 
-The `Tooltip` component takes an optional `inverse` prop, for when the tooltip is to appear on a dark background.
+The `Tooltip` component takes an optional `isInverse` prop, for when the tooltip is to appear on a dark background.
 
 ```.jsx
     <div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
-        <Tooltip inverse position="right" trigger={<Button aria-label="Question Icon" icon={<QuestionCircleIcon />} inverse variant="link" />}>Inverse tooltip</Tooltip>
+        <Tooltip isInverse position="right" trigger={<Button aria-label="Question Icon" icon={<QuestionCircleIcon />} isInverse variant="link" />}>Inverse tooltip</Tooltip>
     </div>
 ```
 
@@ -91,7 +91,7 @@ The `Tooltip` component takes an optional `inverse` prop, for when the tooltip i
       required: true,
       description: 'The content of the tooltiip',
     },
-    inverse: {
+    isInverse: {
       type: {
         name: 'boolean',
       },

@@ -8,7 +8,7 @@ export interface CardProps extends React.LabelHTMLAttributes<HTMLDivElement> {
   background?: boolean;
   calloutType?: CardCalloutType;
   hasDropShadow?: boolean;
-  inverse?: boolean;
+  isInverse?: boolean;
   testId?: string;
   width?: string;
 }
@@ -49,7 +49,7 @@ const StyledCard = styled.div<CardProps>`
   box-shadow: ${props =>
     props.hasDropShadow ? '0 2px 6px 0 rgba(0,0,0,0.18)' : '0 0 0'};
   color: ${props =>
-    props.inverse
+    props.isInverse
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral01};
   display: flex;

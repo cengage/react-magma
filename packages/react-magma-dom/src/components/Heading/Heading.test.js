@@ -94,7 +94,7 @@ describe('Heading', () => {
   it('should render inverse styles', () => {
     const headingText = 'test';
     const { getByText } = render(
-      <Heading inverse level={1}>
+      <Heading isInverse level={1}>
         {headingText}
       </Heading>
     );

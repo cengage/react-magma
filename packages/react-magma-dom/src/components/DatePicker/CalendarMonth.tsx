@@ -202,7 +202,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
             variant={ButtonVariant.link}
           />
           <HelperInformation
-            open={context.showHelperInformation}
+            isOpen={context.showHelperInformation}
             onClose={closeHelperInformation}
           />
         </HelperButton>

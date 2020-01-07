@@ -97,10 +97,10 @@ export const LoadingIndicator = React.forwardRef<
       {type === LoadingIndicatorType.progressbar ? (
         <ProgressBar
           {...other}
-          animated
           color={color as ProgressBarColor}
           height={10}
-          labelVisible
+          isAnimated
+          isLabelVisible
         />
       ) : (
         <Spinner {...other} size={50} />

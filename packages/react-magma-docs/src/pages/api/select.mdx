@@ -195,14 +195,14 @@ The `helperMessage` appears underneath the select field. It will not appear if a
 
 ## Inverse styles
 
-The `inverse` property is an optional boolean, that reverses the colors so that the select can better appear on a dark background.
+The `isInverse` property is an optional boolean, that reverses the colors so that the select can better appear on a dark background.
 The default value is `false`.
 
 ```.jsx
   <div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
     <Select
       errorMessage="Please select a color"
-      inverse
+      isInverse
       name="inverse"
       labelText="Error Message"
       options={[{
@@ -515,6 +515,15 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       required: false,
       description: 'Text of the helper message.',
       defaultValue: '',
+    },
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
     },
     labelText: {
       type: {

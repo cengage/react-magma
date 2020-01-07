@@ -198,15 +198,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
       description:
         'The text the screen reader will announce.  Very important for icon-only buttons',
     },
-    block: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the button will take up the full width of its container',
-      defaultValue: 'false',
-    },
     children: {
       type: {
         name: 'node',
@@ -254,7 +245,16 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
       description: 'Position within the button for the icon to appear',
       defaultValue: 'right',
     },
-    inverse: {
+    isFullWidth: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the button will take up the full width of its container',
+      defaultValue: 'false',
+    },
+    isInverse: {
       type: {
         name: 'boolean',
       },

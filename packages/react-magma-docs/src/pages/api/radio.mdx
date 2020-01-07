@@ -99,7 +99,7 @@ By default, the radio buttons use the theme's primary color. But any other color
 
 ## Inverse
 
-Inverse is an optional boolean prop, that may be passed in when radio buttons are to be displayed on a dark background.
+`isInverse` is an optional boolean prop, that may be passed in when radio buttons are to be displayed on a dark background.
 
 ```.jsx
   <RadioGroup
@@ -109,31 +109,31 @@ Inverse is an optional boolean prop, that may be passed in when radio buttons ar
     name='inverse'>
     <Radio
         id='inverseRadio'
-        inverse
+        isInverse
         labelText='Inverse'
         value='default' />
       <Radio
           color={magma.colors.success01}
           id='successInverseRadio'
-          inverse
+          isInverse
           labelText='Success inverse'
           value='success' />
       <Radio
           color={magma.colors.danger}
           id='dangerInverseRadio'
-          inverse
+          isInverse
           labelText='Danger inverse'
           value='danger' />
       <Radio
           color={magma.colors.pop02}
           id='popInverseRadio'
-          inverse
+          isInverse
           labelText='Pop inverse'
           value='pop' />
         <Radio
             disabled
             id='disabledInverseRadio'
-            inverse
+            isInverse
             labelText='Disabled inverse'
             value='disabled' />
     </RadioGroup>
@@ -204,24 +204,24 @@ This id will become the value of the `aria-labelledby` attribute for the group.
 
 ## Visually Hidden Label
 
-Adding the `textVisuallyHidden` prop will make the label text for either the radio group or the radio button available to screen readers, but will hide it visually.
+Adding the `isTextVisuallyHidden` prop will make the label text for either the radio group or the radio button available to screen readers, but will hide it visually.
 
 ```.jsx
   <RadioGroup
     labelText='Hidden Label'
     id='visuallyHiddenRadioGroup'
     name='visuallyHiddenRadioGroup'
-    textVisuallyHidden>
+    isTextVisuallyHidden>
       <Radio
         value='1'
         id='visuallyHiddenRadio1'
         labelText='Hidden label'
-        textVisuallyHidden />
+        isTextVisuallyHidden />
       <Radio
         value='2'
         id='visuallyHiddenRadio2'
         labelText='Hidden label'
-        textVisuallyHidden />
+        isTextVisuallyHidden />
     </RadioGroup>
 ```
 
@@ -307,6 +307,15 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       required: false,
       description: 'Style properties for the component container element',
     },
+    isTextVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text for the radio group will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
+    },
     labelledById: {
       type: {
         name: 'string',
@@ -361,15 +370,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       required: false,
       description: 'Name attribute the radio group',
       defaultValue: '',
-    },
-    textVisuallyHidden: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, label text for the radio group will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
     },
     testId: {
       type: {
@@ -427,13 +427,22 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       required: false,
       description: 'Style properties for the radio button element',
     },
-    inverse: {
+    isInverse: {
       type: {
         name: 'boolean',
       },
       required: false,
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    isTextVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
       defaultValue: 'false',
     },
     labelStyle: {
@@ -465,15 +474,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       required: false,
       description:
         'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    textVisuallyHidden: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, label text will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
     },
     value: {
       type: {

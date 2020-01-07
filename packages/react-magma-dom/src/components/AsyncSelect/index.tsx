@@ -33,7 +33,7 @@ export const AsyncSelect: React.FunctionComponent<AsyncSelectProps> = (
     labelText,
     errorMessage,
     helperMessage,
-    inverse,
+    isInverse,
     styles,
     ...other
   } = props;
@@ -46,7 +46,7 @@ export const AsyncSelect: React.FunctionComponent<AsyncSelectProps> = (
     <SelectWrapper
       errorMessage={errorMessage}
       helperMessage={helperMessage}
-      inverse={inverse}
+      isInverse={isInverse}
       labelText={labelText}
       testId={testId}
     >
@@ -60,7 +60,7 @@ export const AsyncSelect: React.FunctionComponent<AsyncSelectProps> = (
           MultiValueRemove
         }}
         onChange={onChange}
-        styles={getStyles(styles, theme, errorMessage, inverse)}
+        styles={getStyles(styles, theme, errorMessage, isInverse)}
         value={value}
       />
     </SelectWrapper>

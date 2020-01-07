@@ -7,7 +7,7 @@ export class DemoModal extends React.Component {
     super(props)
 
     this.state = {
-      isModalOpen: false
+      isModalOpen: false,
     }
 
     this.closeModal = this.closeModal.bind(this)
@@ -29,7 +29,7 @@ export class DemoModal extends React.Component {
 
         <Modal
           header="Demo Modal"
-          open={this.state.isModalOpen}
+          isOpen={this.state.isModalOpen}
           onClose={this.closeModal}
           size={this.props.size}
         >

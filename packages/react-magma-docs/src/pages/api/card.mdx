@@ -151,12 +151,12 @@ To get an image to take up the full width of a card, without padding, place it o
 
 A string for a background color may be passed in using the `background` prop.
 
-If the background color is dark, the `inverse` boolean prop can be used to render content in a light color.
+If the background color is dark, the `isInverse` boolean prop can be used to render content in a light color.
 
 ```.jsx
-        <Card background={magma.colors.success01} inverse>
+        <Card background={magma.colors.success01} isInverse>
             <CardBody>
-              <CardHeading inverse>
+              <CardHeading isInverse>
                   Card Heading
               </CardHeading>
                 Some content
@@ -220,7 +220,7 @@ If the background color is dark, the `inverse` boolean prop can be used to rende
       description: 'If true, card will render with a box-shadow',
       defaultValue: 'false',
     },
-    inverse: {
+    isInverse: {
       type: {
         name: 'boolean',
       },
@@ -261,7 +261,7 @@ If the background color is dark, the `inverse` boolean prop can be used to rende
       required: true,
       description: 'The content of the component',
     },
-    inverse: {
+    isInverse: {
       type: {
         name: 'boolean',
       },

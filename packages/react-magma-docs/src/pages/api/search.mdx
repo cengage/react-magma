@@ -59,7 +59,7 @@ Inverse is an optional boolean prop, that may be passed in when inputs are to be
 
 ```.jsx
     <div style={{ background : '#00263E', padding: '20px' }}>
-      <Search inverse onSearch={(term) => {}} />
+      <Search isInverse onSearch={(term) => {}} />
     </div>
 ```
 
@@ -135,7 +135,7 @@ The `helperMessage` appears underneath the search field. It will not appear if a
       description: 'Relative size of the component',
       defaultValue: 'medium',
     },
-    inverse: {
+    isInverse: {
       type: {
         name: 'boolean',
       },

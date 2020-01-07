@@ -5,14 +5,16 @@ import { ThemeContext } from '../../theme/ThemeContext';
 interface LinkButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   testId?: string;
-  inverse?: boolean;
+  isInverse?: boolean;
 }
 
 const LinkButtonComponent = styled.button<LinkButtonProps>`
   background: none;
   border: 0;
   color: ${props =>
-    props.inverse ? props.theme.colors.neutral08 : props.theme.colors.primary};
+    props.isInverse
+      ? props.theme.colors.neutral08
+      : props.theme.colors.primary};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   display: inline;
   padding: 0;
@@ -23,7 +25,7 @@ const LinkButtonComponent = styled.button<LinkButtonProps>`
     &:hover,
     &:focus {
       color: ${props =>
-        props.inverse
+        props.isInverse
           ? props.theme.colors.neutral07
           : props.theme.colors.foundation02};
     }
@@ -31,7 +33,7 @@ const LinkButtonComponent = styled.button<LinkButtonProps>`
     &:focus {
       outline: 2px dotted
         ${props =>
-          props.inverse
+          props.isInverse
             ? props.theme.colors.neutral08
             : props.theme.colors.focus};
       outline-offset: 3px;

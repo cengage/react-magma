@@ -5,11 +5,11 @@ import { omit, useGenerateId } from '../utils';
 
 export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   containerStyle?: React.CSSProperties;
+  isTextVisuallyHidden?: boolean;
   labelledById?: string;
   labelStyle?: React.CSSProperties;
   labelText?: string;
   testId?: string;
-  textVisuallyHidden?: boolean;
 }
 
 export const FormGroupLabel = styled.label`
@@ -33,7 +33,7 @@ export const FormGroup: React.FunctionComponent<FormGroupProps> = (
     labelledById,
     labelStyle,
     labelText,
-    textVisuallyHidden,
+    isTextVisuallyHidden,
     testId,
     children,
     ...rest
@@ -48,7 +48,7 @@ export const FormGroup: React.FunctionComponent<FormGroupProps> = (
       role="group"
       style={containerStyle}
     >
-      {textVisuallyHidden ? (
+      {isTextVisuallyHidden ? (
         <HiddenLabel id={id} style={labelStyle}>
           {labelText}
         </HiddenLabel>

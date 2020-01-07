@@ -22,12 +22,12 @@ export interface CheckboxProps
   containerStyle?: React.CSSProperties;
   indeterminate?: boolean;
   inputStyle?: React.CSSProperties;
-  inverse?: boolean;
+  isInverse?: boolean;
+  isTextVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
   onIndeterminateClick?: (event: React.SyntheticEvent) => void;
   testId?: string;
-  textVisuallyHidden?: boolean;
 }
 
 const HiddenLabelText = styled.span`
@@ -39,7 +39,7 @@ const HiddenInput = styled.input<{ indeterminate?: boolean }>`
 `;
 
 export function buildCheckboxBackground(props) {
-  if (props.inverse) {
+  if (props.isInverse) {
     if (props.checked || props.indeterminate) {
       return props.theme.colors.neutral08;
     }
@@ -55,7 +55,7 @@ export function buildCheckboxBackground(props) {
 }
 
 const StyledFakeInput = styled.span<{
-  inverse: boolean;
+  isInverse: boolean;
   checked: boolean;
   disabled: boolean;
   color: string;
@@ -70,7 +70,7 @@ const StyledFakeInput = styled.span<{
   svg {
     display: ${props => (props.checked && !props.disabled ? 'block' : 'none')};
     fill: ${props =>
-      props.inverse
+      props.isInverse
         ? props.color
           ? props.color
           : props.theme.colors.primary
@@ -140,10 +140,10 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = (
     disabled,
     indeterminate,
     inputStyle,
-    inverse,
+    isInverse,
     labelStyle,
     labelText,
-    textVisuallyHidden,
+    isTextVisuallyHidden,
     testId,
     ...other
   } = props;
@@ -160,13 +160,13 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = (
         type="checkbox"
         onChange={handleChange}
       />
-      <StyledLabel htmlFor={id} inverse={inverse} style={labelStyle}>
+      <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
         <StyledFakeInput
           checked={isChecked}
           color={color ? color : ''}
           disabled={disabled}
           indeterminate={indeterminate}
-          inverse={inverse}
+          isInverse={isInverse}
           style={inputStyle}
           theme={theme}
         >
@@ -179,7 +179,7 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = (
           )}
           <CheckIcon size={12} />
         </StyledFakeInput>
-        {textVisuallyHidden ? (
+        {isTextVisuallyHidden ? (
           <HiddenLabelText>{labelText}</HiddenLabelText>
         ) : (
           labelText

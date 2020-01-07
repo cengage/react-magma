@@ -5,7 +5,7 @@ import { Heading } from '../Heading';
 export interface CardHeadingProps
   extends React.LabelHTMLAttributes<HTMLHeadingElement> {
   headingLevel?: 1 | 2 | 3 | 4 | 5 | 6;
-  inverse?: boolean;
+  isInverse?: boolean;
   testId?: string;
 }
 

@@ -40,7 +40,7 @@ export const DisplayInputActiveStyles = css`
 `;
 
 export function buildDisplayInputActiveBackground(props) {
-  return props.inverse
+  return props.isInverse
     ? props.theme.colors.neutral08
     : props.color
     ? props.color
@@ -48,7 +48,7 @@ export function buildDisplayInputActiveBackground(props) {
 }
 
 export function buildDisplayInputBorderColor(props) {
-  if (props.inverse) {
+  if (props.isInverse) {
     if (props.disabled) {
       return props.theme.colors.disabledInverseText;
     }
@@ -69,7 +69,9 @@ export function buildDisplayInputFocusStyles(props) {
     position: absolute;
     width: 30px;
     outline: 2px dotted
-      ${props.inverse ? props.theme.colors.neutral08 : props.theme.colors.focus};
+      ${props.isInverse
+        ? props.theme.colors.neutral08
+        : props.theme.colors.focus};
     top: -7px;
     left: -7px;
   `;

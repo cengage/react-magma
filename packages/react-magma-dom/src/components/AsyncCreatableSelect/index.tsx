@@ -33,7 +33,7 @@ export const AsyncCreatableSelect: React.FunctionComponent<
     labelText,
     errorMessage,
     helperMessage,
-    inverse,
+    isInverse,
     styles,
     ...other
   } = props;
@@ -46,7 +46,7 @@ export const AsyncCreatableSelect: React.FunctionComponent<
     <SelectWrapper
       errorMessage={errorMessage}
       helperMessage={helperMessage}
-      inverse={inverse}
+      isInverse={isInverse}
       labelText={labelText}
       testId={testId}
     >

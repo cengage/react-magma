@@ -207,7 +207,7 @@ describe('Radio', () => {
           onChange: jest.fn()
         }}
       >
-        <Radio labelText="blue" name="colors" value="blue" inverse />
+        <Radio labelText="blue" name="colors" value="blue" isInverse />
       </RadioContext.Provider>
     );
     const span = container.querySelector('span');
@@ -225,7 +225,7 @@ describe('Radio', () => {
           onChange: jest.fn()
         }}
       >
-        <Radio labelText="blue" name="colors" value="blue" inverse disabled />
+        <Radio labelText="blue" name="colors" value="blue" isInverse disabled />
       </RadioContext.Provider>
     );
     const span = container.querySelector('span');
@@ -246,7 +246,12 @@ describe('Radio', () => {
           onChange: jest.fn()
         }}
       >
-        <Radio labelText="blue" name="colors" value="blue" textVisuallyHidden />
+        <Radio
+          labelText="blue"
+          name="colors"
+          value="blue"
+          isTextVisuallyHidden
+        />
       </RadioContext.Provider>
     );
     const span = getByLabelText('blue');

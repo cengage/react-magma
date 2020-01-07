@@ -23,7 +23,7 @@ interface DatePickerProps
   helperMessage?: string;
   id?: string;
   inputRef?: React.RefObject<{}>;
-  inverse?: boolean;
+  isInverse?: boolean;
   labelText: string;
   placeholder?: string;
   required?: boolean;

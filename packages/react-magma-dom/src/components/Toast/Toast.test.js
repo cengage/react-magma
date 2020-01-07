@@ -45,7 +45,7 @@ describe('Toast', () => {
   });
 
   it('should have a dismissible toast', () => {
-    const { container } = render(<Toast dismissible>Toast Content</Toast>);
+    const { container } = render(<Toast isDismissible>Toast Content</Toast>);
 
     expect(container.querySelector('button')).toBeInTheDocument();
   });
@@ -53,7 +53,7 @@ describe('Toast', () => {
   it('should call onDismiss if the dismiss button is clicked', async () => {
     const onDismiss = jest.fn();
     const { container } = render(
-      <Toast dismissible onDismiss={onDismiss}>
+      <Toast isDismissible onDismiss={onDismiss}>
         Toast Content
       </Toast>
     );

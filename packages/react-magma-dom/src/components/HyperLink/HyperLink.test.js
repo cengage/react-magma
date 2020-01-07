@@ -38,7 +38,7 @@ describe('Hyper Link', () => {
 
   it('should render an inverse anchor element', () => {
     const { getByText } = render(
-      <HyperLink inverse to="https://www.google.com">
+      <HyperLink isInverse to="https://www.google.com">
         Google
       </HyperLink>
     );

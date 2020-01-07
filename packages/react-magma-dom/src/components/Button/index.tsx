@@ -49,8 +49,8 @@ export enum ButtonType {
 
 export interface ButtonStyles {
   color?: ButtonColor;
-  fullWidth?: boolean;
-  inverse?: boolean;
+  isFullWidth?: boolean;
+  isInverse?: boolean;
   shape?: ButtonShape;
   size?: ButtonSize;
   textTransform?: ButtonTextTransform;

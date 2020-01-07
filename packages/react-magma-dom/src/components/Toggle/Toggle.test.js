@@ -113,7 +113,7 @@ describe('Toggle', () => {
   it('should render a toggle with hidden label text with the correct styles', () => {
     const testLabel = 'test label';
     const { getByText } = render(
-      <Toggle labelText={testLabel} textVisuallyHidden />
+      <Toggle labelText={testLabel} isTextVisuallyHidden />
     );
     const span = getByText(testLabel);
 
@@ -136,7 +136,7 @@ describe('Toggle', () => {
   it('Does not violate accessibility standards', () => {
     const testLabel = 'test label';
     const { container } = render(
-      <Toggle labelText={testLabel} textVisuallyHidden />
+      <Toggle labelText={testLabel} isTextVisuallyHidden />
     );
 
     return axe(container.innerHTML).then(result => {

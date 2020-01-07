@@ -6,8 +6,8 @@ import { useGenerateId } from '../utils';
 export interface ToastProps extends AlertProps {
   alertStyle?: React.CSSProperties;
   containerStyle?: React.CSSProperties;
-  toastDuration?: number;
   disableAutoDismiss?: boolean;
+  toastDuration?: number;
   onDismiss: () => void;
   onMouseEnter?: (event: React.SyntheticEvent) => void;
   onMouseLeave?: (event: React.SyntheticEvent) => void;
@@ -105,7 +105,7 @@ export const Toast: React.FunctionComponent<ToastProps> = (
     id: defaultId,
     testId,
     variant,
-    dismissible,
+    isDismissible,
     children,
     containerStyle,
     ...other
@@ -124,7 +124,7 @@ export const Toast: React.FunctionComponent<ToastProps> = (
         id={id}
         testId={testId}
         style={alertStyle}
-        dismissible={dismissible}
+        isDismissible={isDismissible}
         isDismissed={isDismissed}
         variant={variant}
         forceDismiss={clearTimeoutAndDismiss}

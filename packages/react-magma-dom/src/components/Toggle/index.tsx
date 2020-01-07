@@ -18,12 +18,12 @@ enum ToggleTextPosition {
 export interface ToggleProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   containerStyle?: React.CSSProperties;
-  inverse?: boolean;
+  isInverse?: boolean;
+  isTextVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
   testId?: string;
   textPosition?: ToggleTextPosition;
-  textVisuallyHidden?: boolean;
   theme?: any;
   thumbStyle?: React.CSSProperties;
   trackStyle?: React.CSSProperties;
@@ -40,7 +40,7 @@ const HiddenInput = styled.input`
 const Track = styled.span<{
   checked?: boolean;
   disabled?: boolean;
-  inverse?: boolean;
+  isInverse?: boolean;
 }>`
   background: ${props => props.theme.colors.neutral07};
   border: 2px solid;
@@ -68,7 +68,9 @@ const Track = styled.span<{
 
   ${HiddenInput}:focus + label & {
     outline: 2px dotted ${props =>
-      props.inverse ? props.theme.colors.neutral08 : props.theme.colors.focus};
+      props.isInverse
+        ? props.theme.colors.neutral08
+        : props.theme.colors.focus};
     outline-offset: 3px;
   }
 
@@ -148,12 +150,12 @@ const SpanTextRight = styled.span`
 `;
 
 const renderLabelText = (
-  textVisuallyHidden: boolean,
+  isTextVisuallyHidden: boolean,
   labelText: string,
   textPosition: ToggleTextPosition,
   labelStyle: React.CSSProperties
 ) => {
-  if (textVisuallyHidden) {
+  if (isTextVisuallyHidden) {
     return <HiddenLabelText>{labelText}</HiddenLabelText>;
   }
 
@@ -180,11 +182,11 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
     containerStyle,
     disabled,
     id: defaultId,
-    inverse,
+    isInverse,
+    isTextVisuallyHidden,
     labelStyle,
     labelText,
     textPosition,
-    textVisuallyHidden,
     testId,
     trackStyle,
     thumbStyle,
@@ -211,7 +213,7 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
       <StyledLabel htmlFor={id} style={containerStyle}>
         {textPosition !== ToggleTextPosition.right &&
           renderLabelText(
-            textVisuallyHidden,
+            isTextVisuallyHidden,
             labelText,
             ToggleTextPosition.left,
             labelStyle
@@ -220,7 +222,7 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
           checked={checked}
           data-testid="toggle-track"
           disabled={disabled}
-          inverse={inverse}
+          isInverse={isInverse}
           style={trackStyle}
           theme={theme}
         >
@@ -236,7 +238,7 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
         </Track>
         {textPosition === ToggleTextPosition.right &&
           renderLabelText(
-            textVisuallyHidden,
+            isTextVisuallyHidden,
             labelText,
             ToggleTextPosition.right,
             labelStyle

@@ -82,7 +82,7 @@ markup, to ensure that they have the expected tab order.
 
     return (<>
       <Button onClick={() => setShowAlert(true)}>Show Dismissible Toast</Button>
-      {showAlert && <Toast dismissible onDismiss={() => setShowAlert(false)}>Dismissible Toast</Toast>}
+      {showAlert && <Toast isDismissible onDismiss={() => setShowAlert(false)}>Dismissible Toast</Toast>}
     </>)
   }
 ```
@@ -95,7 +95,7 @@ markup, to ensure that they have the expected tab order.
 
     return (<>
       <Button onClick={() => setShowAlert(true)}>Show Toast</Button>
-      {showAlert && <Toast dismissible disableAutoDismiss={true} onDismiss={() => setShowAlert(false)}>Non-Auto Hiding Dismissible Toast</Toast>}
+      {showAlert && <Toast isDismissible disableAutoDismiss={true} onDismiss={() => setShowAlert(false)}>Non-Auto Hiding Dismissible Toast</Toast>}
     </>)
   }
 ```
@@ -204,7 +204,7 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
       required: false,
       description: 'CSS properties for the component container',
     },
-    dismissible: {
+    isDismissible: {
       type: {
         name: 'boolean',
       },

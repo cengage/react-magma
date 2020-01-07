@@ -44,7 +44,7 @@ The `percentage` prop is used to display how much of the bar should be filled in
 ## Animated
 
 ```.jsx
-    <ProgressBar animated percentage={25} />
+    <ProgressBar isAnimated percentage={25} />
 ```
 
 ## Background Color
@@ -72,21 +72,21 @@ The `height` prop can be used to set the height of the progress bar in pixels. T
 
 ## Inverse
 
-Inverse is an optional boolean prop, that may be passed in when the component is to be displayed on a dark background. When the `inverse` prop is used,
-the default backgronud color of the progress bar is `#00A9E0` or `magma.colors.foundation03`.
+`isInverse` is an optional boolean prop, that may be passed in when the component is to be displayed on a dark background. When the `isInverse` prop is used,
+the default background color of the progress bar is `#00A9E0` or `magma.colors.foundation03`.
 
 ```.jsx
     <div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
-        <ProgressBar inverse percentage={25} />
+        <ProgressBar isInverse percentage={25} />
     </div>
 ```
 
 ## Label Visible
 
-If the `labelVisible` prop is true, the percentage value will display to the right of the progress bar.
+If the `isLabelVisible` prop is true, the percentage value will display to the right of the progress bar.
 
 ```.jsx
-        <ProgressBar labelVisible percentage={25} />
+        <ProgressBar isLabelVisible percentage={25} />
 ```
 
 ## Progress Bar Props
@@ -95,14 +95,6 @@ If the `labelVisible` prop is true, the percentage value will display to the rig
 
 <SimplePropsTable
   props={{
-    animated: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, the progress bar with have a shimmer animation',
-      defaultValue: 'false',
-    },
     color: {
       type: {
         name: 'enum',
@@ -126,7 +118,15 @@ If the `labelVisible` prop is true, the percentage value will display to the rig
       description: 'The height in pixels of the progress bar',
       defaultValue: '15',
     },
-    inverse: {
+    isAnimated: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the progress bar with have a shimmer animation',
+      defaultValue: 'false',
+    },
+    isInverse: {
       type: {
         name: 'boolean',
       },
@@ -135,7 +135,7 @@ If the `labelVisible` prop is true, the percentage value will display to the rig
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
-    labelVisible: {
+    isLabelVisible: {
       type: {
         name: 'boolean',
       },

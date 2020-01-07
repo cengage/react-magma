@@ -17,8 +17,8 @@ import { SimplePropsTable } from '../../components/props-table'
 The `Modal` component renders its `children` node in front of a backdrop component. It also disables scrolling of the page content while open,
 properly manages focus; moving to the modal content, and keeping it there until the modal is closed, and adds the appropriate ARIA roles automatically.
 
-The modal will _only_ render if the `open` prop is set to true. For that reason, it is redundant to show the modal using the following anti-pattern: `{flag && <Modal open={flag} />`. Instead,
-simply use `<Modal open={flag} />`
+The modal will _only_ render if the `isOpen` prop is set to true. For that reason, it is redundant to show the modal using the following anti-pattern: `{flag && <Modal isOpen={flag} />`. Instead,
+simply use `<Modal isOpen={flag} />`
 
 More examples of modals can be found on the <Link to="/examples/modal">More Modal Examples</Link> page.
 
@@ -27,7 +27,7 @@ More examples of modals can be found on the <Link to="/examples/modal">More Moda
     const [showModal, setShowModal] = React.useState(false);
 
     return (<>
-      <Modal header="Modal Title" onClose={() => setShowModal(false)} open={showModal}>
+      <Modal header="Modal Title" onClose={() => setShowModal(false)} isOpen={showModal}>
         <p>This is a modal, doing modal things.</p>
         <p>This is <a href="#">linked text</a> in the modal</p>
         <p><Button>This is a button</Button></p>
@@ -48,11 +48,11 @@ Sizes for modals include `small`, `medium`, and `large`, with `medium` being the
     const [showLargeModal, setShowLargeModal] = React.useState(false);
 
     return (<>
-      <Modal size="small" header="Modal Small" onClose={() => setShowSmallModal(false)} open={showSmallModal}>
+      <Modal size="small" header="Modal Small" onClose={() => setShowSmallModal(false)} isOpen={showSmallModal}>
         <p>This is a small modal, doing small modal things.</p>
       </Modal>
 
-      <Modal size="large" header="Modal Large" onClose={() => setShowLargeModal(false)} open={showLargeModal}>
+      <Modal size="large" header="Modal Large" onClose={() => setShowLargeModal(false)} isOpen={showLargeModal}>
         <p>This is a large modal, doing large modal things.</p>
       </Modal>
 
@@ -74,13 +74,13 @@ the first actionable element.
     const [showModalHeader, setShowModalHeader] = React.useState(false);
 
     return (<>
-      <Modal size="small" onClose={() => setShowModal(false)} open={showModal}>
+      <Modal size="small" onClose={() => setShowModal(false)} isOpen={showModal}>
         <p>This modal has no header.</p>
         <div style={{textAlign: 'center'}}>
             <Button onClick={() => setShowModal(false)} >OK</Button>
         </div>
       </Modal>
-      <Modal header="This modal has a header" size="small" onClose={() => setShowModalHeader(false)} open={showModalHeader}>
+      <Modal header="This modal has a header" size="small" onClose={() => setShowModalHeader(false)} isOpen={showModalHeader}>
         <p>This modal has no header.</p>
         <div style={{textAlign: 'center'}}>
             <Button onClick={() => setShowModalHeader(false)} >OK</Button>
@@ -94,14 +94,14 @@ the first actionable element.
 
 ## Hide Close Button
 
-The close button can be hidden by using the `hideCloseButton` prop. If this prop is used, it is best to provide another way to close the modal.
+The close button can be hidden by using the `isCloseButtonHidden` prop. If this prop is used, it is best to provide another way to close the modal.
 
 ```.jsx
   (props) => {
     const [showModal, setShowModal] = React.useState(false);
 
     return (<>
-      <Modal header="Modal Title" hideCloseButton onClose={() => setShowModal(false)} open={showModal}>
+      <Modal header="Modal Title" isCloseButtonHidden onClose={() => setShowModal(false)} isOpen={showModal}>
         <p>The standard modal close button is hidden.</p>
         <Button onClick={() => setShowModal(false)}>Close this Dialog</Button>
       </Modal>
@@ -131,7 +131,7 @@ The close button can be hidden by using the `hideCloseButton` prop. If this prop
       description: 'The text read by screen readers for the close button',
       defaultValue: 'Close dialog',
     },
-    disableBackdropClick: {
+    isBackgroundClickDisabled: {
       type: {
         name: 'boolean',
       },
@@ -139,7 +139,15 @@ The close button can be hidden by using the `hideCloseButton` prop. If this prop
       description: 'If true, clicking the backdrop will not dismiss the modal',
       defaultValue: 'false',
     },
-    disableEscKeyDown: {
+    isCloseButtonHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the close button the the modal will be suppressed',
+      defaultValue: 'false',
+    },
+    isEscKeyDownDisabled: {
       type: {
         name: 'boolean',
       },
@@ -148,20 +156,20 @@ The close button can be hidden by using the `hideCloseButton` prop. If this prop
         'If true, pressing the Escape key will not dismiss the modal',
       defaultValue: 'false',
     },
+    isOpen: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the modal will be visible',
+      defaultValue: 'false',
+    },
     header: {
       type: {
         name: 'node',
       },
       required: false,
       description: 'The content of the modal header',
-    },
-    hideCloseButton: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, the close button the the modal will be suppressed',
-      defaultValue: 'false',
     },
     innerRef: {
       type: {
@@ -183,14 +191,6 @@ The close button can be hidden by using the `hideCloseButton` prop. If this prop
       },
       required: true,
       description: 'Action that fires when the Escape key is pressed',
-    },
-    open: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, the modal will be visible',
-      defaultValue: 'false',
     },
     size: {
       type: {
