@@ -50,7 +50,6 @@ export interface InputProps
   icon?: React.ReactElement<IconProps>;
   iconAriaLabel?: string;
   iconPosition?: InputIconPosition;
-  innerRef?: React.Ref<HTMLInputElement>;
   inputSize?: InputSize;
   inputStyle?: React.CSSProperties;
   isInverse?: boolean;
@@ -208,7 +207,6 @@ function getIconSize(size) {
 
 export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
   (props: InputProps, ref: any) => {
-    const id = useGenerateId(props.id);
     const [value, setValue] = React.useState<string>(props.value);
     const [passwordShown, setPasswordShown] = React.useState<boolean>(false);
 
@@ -241,6 +239,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
       isPasswordMaskButtonHidden,
       onIconClick,
       onIconKeyDown,
+      id: defaultId,
       inputSize,
       inputStyle,
       isInverse,
@@ -254,9 +253,10 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
       showPasswordButtonText,
       type,
       testId,
-      innerRef,
       ...other
     } = props;
+
+    const id = useGenerateId(defaultId);
 
     const iconPosition =
       icon && onIconClick
@@ -330,9 +330,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                 : InputType.text
             }
             value={value}
-            onBlur={props.onBlur}
             onChange={handleChange}
-            onFocus={props.onFocus}
           />
           {icon && !onIconClick && !isLoading && (
             <IconWrapper

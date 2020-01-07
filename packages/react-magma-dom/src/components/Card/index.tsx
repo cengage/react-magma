@@ -77,17 +77,7 @@ const StyledCard = styled.div<CardProps>`
 `;
 
 export const Card: React.FunctionComponent<CardProps> = (props: CardProps) => {
-  const {
-    align,
-    background,
-    children,
-    calloutType,
-    hasDropShadow,
-    isInverse,
-    testId,
-    width,
-    ...other
-  } = props;
+  const { align, children, testId, width, ...other } = props;
 
   const theme = React.useContext(ThemeContext);
 
@@ -95,11 +85,7 @@ export const Card: React.FunctionComponent<CardProps> = (props: CardProps) => {
     <StyledCard
       {...other}
       align={align ? align : CardAlignment.left}
-      background={background}
       data-testid={testId}
-      calloutType={calloutType}
-      hasDropShadow={hasDropShadow}
-      isInverse={isInverse}
       width={width ? width : 'auto'}
       theme={theme}
     >

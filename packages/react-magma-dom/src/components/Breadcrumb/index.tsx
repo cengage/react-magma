@@ -2,8 +2,7 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 
-export interface BreadcrumbProps
-  extends React.HTMLAttributes<HTMLOListElement> {
+export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
   isInverse?: boolean;
   minWidthToShow?: number;
   testId?: string;

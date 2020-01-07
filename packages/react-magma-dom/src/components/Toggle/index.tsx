@@ -169,7 +169,6 @@ const renderLabelText = (
 export const Toggle: React.FunctionComponent<ToggleProps> = (
   props: ToggleProps
 ) => {
-  const id = useGenerateId(props.id);
   const [checked, setChecked] = React.useState<boolean>(Boolean(props.checked));
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -180,10 +179,9 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
   }
 
   const {
-    onBlur,
-    onFocus,
     containerStyle,
     disabled,
+    id: defaultId,
     isInverse,
     isTextVisuallyHidden,
     labelStyle,
@@ -194,6 +192,8 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
     thumbStyle,
     ...other
   } = props;
+
+  const id = useGenerateId(defaultId);
 
   const theme = React.useContext(ThemeContext);
 
@@ -207,9 +207,7 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
         disabled={disabled}
         checked={checked}
         type="checkbox"
-        onBlur={onBlur}
         onChange={handleChange}
-        onFocus={onFocus}
         role="switch"
       />
       <StyledLabel htmlFor={id} style={containerStyle}>

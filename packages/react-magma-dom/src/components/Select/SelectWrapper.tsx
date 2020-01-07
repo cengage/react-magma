@@ -4,10 +4,8 @@ import { InputMessage } from '../Input/InputMessage';
 
 interface SelectWrapperProps {
   children: React.ReactNode;
-  descriptionId?: string;
   errorMessage?: string;
   helperMessage?: string;
-  id: string;
   isInverse?: boolean;
   labelText: string;
   testId?: string;
@@ -15,10 +13,8 @@ interface SelectWrapperProps {
 
 export const SelectWrapper: React.FunctionComponent<SelectWrapperProps> = ({
   children,
-  descriptionId,
   errorMessage,
   helperMessage,
-  id,
   isInverse,
   labelText,
   testId
@@ -26,11 +22,7 @@ export const SelectWrapper: React.FunctionComponent<SelectWrapperProps> = ({
   <div data-testid={testId}>
     <Label isInverse={isInverse}>{labelText}</Label>
     {children}
-    <InputMessage
-      isInverse={isInverse}
-      id={descriptionId}
-      isError={!!errorMessage}
-    >
+    <InputMessage isInverse={isInverse} isError={!!errorMessage}>
       {(errorMessage || helperMessage) && (
         <>{errorMessage ? errorMessage : helperMessage}</>
       )}

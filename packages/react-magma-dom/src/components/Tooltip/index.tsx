@@ -219,7 +219,6 @@ const StyledTooltipInner = styled.div<{
 
 export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
   (props: TooltipProps, ref: any) => {
-    const id = useGenerateId(props.id);
     const [isVisible, setIsVisible] = React.useState<boolean>(false);
 
     function handleKeyDown(event: React.KeyboardEvent) {
@@ -236,7 +235,17 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
       setIsVisible(false);
     }
 
-    const { children, isInverse, position, testId, trigger } = props;
+    const {
+      children,
+      id: defaultId,
+      isInverse,
+      position,
+      testId,
+      trigger,
+      ...other
+    } = props;
+
+    const id = useGenerateId(defaultId);
     const theme = React.useContext(ThemeContext);
 
     return (
@@ -252,6 +261,7 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
         })}
 
         <StyledTooltip
+          {...other}
           id={id}
           position={position ? position : EnumTooltipPosition.top}
           role="tooltip"

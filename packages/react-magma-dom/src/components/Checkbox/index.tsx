@@ -135,8 +135,6 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = (
   const theme = React.useContext(ThemeContext);
 
   const {
-    onBlur,
-    onFocus,
     color,
     containerStyle,
     disabled,
@@ -160,9 +158,7 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = (
         disabled={disabled}
         indeterminate={indeterminate}
         type="checkbox"
-        onBlur={onBlur}
         onChange={handleChange}
-        onFocus={onFocus}
       />
       <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
         <StyledFakeInput

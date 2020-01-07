@@ -9,6 +9,7 @@ import { NotificationIcon } from '../Icon/types/NotificationIcon';
 import { BlockedIcon } from '../Icon/types/BlockedIcon';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { Button, ButtonVariant } from '../Button';
+import { useGenerateId } from '../utils';
 
 const VARIANT_ICON = {
   info: Info2Icon,
@@ -194,6 +195,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
   (
     {
       closeAriaLabel,
+      id: defaultId,
       testId,
       variant,
       children,
@@ -207,6 +209,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
     }: AlertProps,
     ref: any
   ) => {
+    const id = useGenerateId(defaultId);
     const [isExiting, setIsExiting] = React.useState(false);
 
     React.useEffect(() => {
@@ -233,6 +236,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
     return (
       <StyledAlert
         {...other}
+        id={id}
         data-testid={testId}
         ref={ref}
         tabIndex={-1}

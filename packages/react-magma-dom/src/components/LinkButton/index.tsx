@@ -44,17 +44,11 @@ const LinkButtonComponent = styled.button<LinkButtonProps>`
 export const LinkButton: React.FunctionComponent<LinkButtonProps> = ({
   children,
   testId,
-  isInverse,
   ...other
 }: LinkButtonProps) => (
   <ThemeContext.Consumer>
     {theme => (
-      <LinkButtonComponent
-        {...other}
-        data-testid={testId}
-        isInverse={isInverse}
-        theme={theme}
-      >
+      <LinkButtonComponent {...other} data-testid={testId} theme={theme}>
         {children}
       </LinkButtonComponent>
     )}

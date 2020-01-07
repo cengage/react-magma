@@ -19,12 +19,12 @@ const StyledCardHeading = styled(Heading)`
 export const CardHeading: React.FunctionComponent<CardHeadingProps> = (
   props: CardHeadingProps
 ) => {
-  const { isInverse, headingLevel, children } = props;
+  const { headingLevel, children, ...other } = props;
 
   return (
     <StyledCardHeading
+      {...other}
       level={headingLevel ? headingLevel : 4}
-      isInverse={isInverse}
       testId={props.testId}
     >
       {children}

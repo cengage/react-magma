@@ -68,10 +68,7 @@ const StyledH6 = styled.h6`
 `;
 
 export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
-  (
-    { isInverse, level, testId, tabIndex, children, ...other }: HeadingProps,
-    ref: any
-  ) => {
+  ({ level, testId, children, ...other }: HeadingProps, ref: any) => {
     const theme = React.useContext(ThemeContext);
     const headingLevels = {
       1: StyledH1,
@@ -88,10 +85,8 @@ export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
       <HeadingComponent
         {...other}
         css={baseHeadingStyles({ theme })}
-        isInverse={isInverse}
         ref={ref}
         data-testid={testId}
-        tabIndex={tabIndex}
         theme={theme}
       >
         {children}
