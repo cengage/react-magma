@@ -4,11 +4,11 @@ import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
-  animated?: boolean;
   color?: ProgressBarColor;
   height?: number;
+  isAnimated?: boolean;
   isInverse?: boolean;
-  labelVisible?: boolean;
+  isLabelVisible?: boolean;
   percentage?: number;
   testId?: string;
 }
@@ -65,7 +65,7 @@ const Bar = styled.div<ProgressBarProps>`
   width: ${props => props.percentage}%;
 
   ${props =>
-    props.animated &&
+    props.isAnimated &&
     css`
       background-image: linear-gradient(
         to right,
@@ -107,11 +107,11 @@ export const ProgressBar: React.FunctionComponent<
 > = React.forwardRef(
   (
     {
-      animated,
       color,
       height,
+      isAnimated,
       isInverse,
-      labelVisible,
+      isLabelVisible,
       percentage,
       testId,
       ...other
@@ -132,18 +132,18 @@ export const ProgressBar: React.FunctionComponent<
           theme={theme}
         >
           <Bar
-            animated={animated}
             aria-valuenow={percentageValue}
             aria-valuemin={0}
             aria-valuemax={100}
             color={color}
+            isAnimated={isAnimated}
             isInverse={isInverse}
             percentage={percentageValue}
             role="progressbar"
             theme={theme}
           />
         </Track>
-        {labelVisible && <Percentage>{percentageValue}%</Percentage>}
+        {isLabelVisible && <Percentage>{percentageValue}%</Percentage>}
       </Container>
     );
   }

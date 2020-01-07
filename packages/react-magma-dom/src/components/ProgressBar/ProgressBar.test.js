@@ -82,7 +82,7 @@ describe('ProgressBar', () => {
   });
 
   it('should render the progress bar component shimmer animation', () => {
-    const { container } = render(<ProgressBar percentage={50} animated />);
+    const { container } = render(<ProgressBar percentage={50} isAnimated />);
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'animation-name',
@@ -91,7 +91,9 @@ describe('ProgressBar', () => {
   });
 
   it('should render the progress bar with the percentage label displayed', () => {
-    const { getByText } = render(<ProgressBar percentage={50} labelVisible />);
+    const { getByText } = render(
+      <ProgressBar percentage={50} isLabelVisible />
+    );
 
     expect(getByText('50%')).toBeInTheDocument();
   });
