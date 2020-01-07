@@ -80,6 +80,23 @@ The `helperMessage` appears underneath the search field. It will not appear if a
     <Search helperMessage='Helper text goes here' onSearch={(term) => {}} />
 ```
 
+## Change Events
+
+```.jsx
+  (props) => {
+    const [message, setMessage] = React.useState('');
+
+    return (<div>
+      <p><strong>Changed Value: </strong> <span id="changedValue">{message}</span></p>
+      <Search
+        labelText='Test Value'
+        value=''
+        onChange={(event) => setMessage(event.target.value)}
+        onSearch={(term) => {}} />
+    </div>)
+  }
+```
+
 ## Search Props
 
 <SimplePropsTable

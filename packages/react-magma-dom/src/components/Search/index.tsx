@@ -40,6 +40,9 @@ export const Search: React.FunctionComponent<SearchProps> = (
   }, [props.value]);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    props.onChange &&
+      typeof props.onChange === 'function' &&
+      props.onChange(event);
     setValue(event.target.value);
   }
 

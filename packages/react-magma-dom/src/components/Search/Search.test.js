@@ -52,6 +52,21 @@ describe('Search', () => {
     expect(onSearchSpy).toBeCalledWith('test value');
   });
 
+  it('should trigger the passed in onChange when value of the input is changed', () => {
+    const targetValue = 'Change';
+    const onChangeSpy = jest.fn();
+    const labelText = 'test label';
+    const { getByLabelText } = render(
+      <Search labelText={labelText} onChange={onChangeSpy} value="" />
+    );
+
+    fireEvent.change(getByLabelText(labelText), {
+      target: { value: targetValue }
+    });
+
+    expect(onChangeSpy).toHaveBeenCalledTimes(1);
+  });
+
   it('Does not violate accessibility standards', () => {
     const { container } = render(<Search onSearch={onSearchSpy} />);
 
