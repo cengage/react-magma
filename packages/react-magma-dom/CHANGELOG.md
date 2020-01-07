@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.10](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.9...v2.0.0-beta.10) (2020-01-07)
+
+
+### Bug Fixes
+
+* **search:** pass search value to onsearch function ([9f7c9a2](http://stash.corp.web:7999/FRONT/react-magma/commits/9f7c9a2))
+
+
+### Features
+
+* **search:** call onchange event if passed as prop ([76ea4eb](http://stash.corp.web:7999/FRONT/react-magma/commits/76ea4eb))
+
+
+
+
+
 # [2.0.0-beta.9](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.8...v2.0.0-beta.9) (2020-01-07)
 
 
