@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.9](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.8...v2.0.0-beta.9) (2020-01-07)
+
+
+### Features
+
+* **input:** add default value prop ([4aa61de](http://stash.corp.web:7999/FRONT/react-magma/commits/4aa61de))
+
+
+
+
+
+# [2.0.0-beta.8](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.7...v2.0.0-beta.8) (2020-01-07)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
 # [2.0.0-beta.7](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.6...v2.0.0-beta.7) (2020-01-07)
 
 **Note:** Version bump only for package react-magma

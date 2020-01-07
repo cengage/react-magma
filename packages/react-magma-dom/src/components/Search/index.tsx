@@ -11,29 +11,51 @@ export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
   isInverse?: boolean;
   isLoading?: boolean;
   labelText?: string;
-  onSearch: () => void;
+  onSearch: (term: string) => void;
+  value?: string;
 }
 
-export const Search: React.FunctionComponent<SearchProps> = ({
-  errorMessage,
-  helperMessage,
-  iconAriaLabel,
-  id,
-  inputSize,
-  isInverse,
-  isLoading,
-  labelText,
-  placeholder,
-  onSearch
-}: SearchProps) => {
+export const Search: React.FunctionComponent<SearchProps> = (
+  props: SearchProps
+) => {
+  const {
+    errorMessage,
+    helperMessage,
+    iconAriaLabel,
+    id,
+    isInverse,
+    inputSize,
+    isLoading,
+    labelText,
+    placeholder,
+    onSearch
+  } = props;
+
   const SEARCH = 'Search';
+
+  const [value, setValue] = React.useState<string>(props.value);
+
+  React.useEffect(() => {
+    setValue(props.value);
+  }, [props.value]);
+
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    props.onChange &&
+      typeof props.onChange === 'function' &&
+      props.onChange(event);
+    setValue(event.target.value);
+  }
 
   // handle search on enter
   function handleKeyPress(event: React.KeyboardEvent) {
     if (event.keyCode === 13) {
       event.preventDefault();
-      onSearch();
+      handleSearch();
     }
+  }
+
+  function handleSearch() {
+    onSearch(value);
   }
 
   return (
@@ -41,7 +63,7 @@ export const Search: React.FunctionComponent<SearchProps> = ({
       errorMessage={errorMessage}
       helperMessage={helperMessage}
       icon={<Search2Icon />}
-      onIconClick={onSearch}
+      onIconClick={handleSearch}
       iconAriaLabel={iconAriaLabel ? iconAriaLabel : SEARCH}
       iconPosition={InputIconPosition.right}
       id={id}
@@ -50,10 +72,11 @@ export const Search: React.FunctionComponent<SearchProps> = ({
       isLabelVisuallyHidden
       isLoading={isLoading}
       labelText={labelText ? labelText : SEARCH}
+      onChange={handleChange}
       onKeyDown={handleKeyPress}
       placeholder={placeholder ? placeholder : SEARCH}
       type={InputType.search}
-      value=""
+      value={value}
     />
   );
 };
