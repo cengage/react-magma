@@ -42,23 +42,22 @@ export interface InputProps
   as?: string;
   containerStyle?: React.CSSProperties;
   errorMessage?: string;
-  helpLinkText?: string;
+  helpLinkAriaLabel?: string;
   helperMessage?: string;
   hiddenPasswordAnnounceText?: string;
   hidePasswordButtonAriaLabel?: string;
   hidePasswordButtonText?: string;
-  hidePasswordMaskButton?: boolean;
   icon?: React.ReactElement<IconProps>;
   iconAriaLabel?: string;
   iconPosition?: InputIconPosition;
-  innerRef?: React.Ref<HTMLInputElement>;
   inputSize?: InputSize;
   inputStyle?: React.CSSProperties;
-  inverse?: boolean;
+  isInverse?: boolean;
+  isLabelVisuallyHidden?: boolean;
   isLoading?: boolean;
+  isPasswordMaskButtonHidden?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
-  labelVisuallyHidden?: boolean;
   multiline?: boolean;
   onHelpLinkClick?: () => void;
   onIconClick?: () => void;
@@ -69,7 +68,6 @@ export interface InputProps
   showPasswordButtonText?: string;
   testId?: string;
   type?: InputType;
-  value?: string;
 }
 
 interface IconWrapperProps {
@@ -93,7 +91,7 @@ const StyledInput = styled.input<InputProps>`
   border-color: ${props =>
     props.errorMessage
       ? props.theme.colors.danger
-      : props.inverse
+      : props.isInverse
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral03};
   border-radius: 5px;
@@ -129,7 +127,7 @@ const StyledInput = styled.input<InputProps>`
   &:focus {
     outline: 2px dotted
       ${props =>
-        props.inverse
+        props.isInverse
           ? props.theme.colors.neutral08
           : props.theme.colors.pop02};
     outline-offset: 2px;
@@ -208,8 +206,9 @@ function getIconSize(size) {
 
 export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
   (props: InputProps, ref: any) => {
-    const id = useGenerateId(props.id);
-    const [value, setValue] = React.useState<string>(props.value);
+    const [value, setValue] = React.useState<string | string[] | number>(
+      props.defaultValue || props.value
+    );
     const [passwordShown, setPasswordShown] = React.useState<boolean>(false);
 
     React.useEffect(() => {
@@ -231,22 +230,23 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
       containerStyle,
       errorMessage,
       helperMessage,
-      helpLinkText,
-      hidePasswordMaskButton,
+      helpLinkAriaLabel,
       hiddenPasswordAnnounceText,
       hidePasswordButtonAriaLabel,
       hidePasswordButtonText,
       icon,
       iconAriaLabel,
       isLoading,
+      isPasswordMaskButtonHidden,
       onIconClick,
       onIconKeyDown,
+      id: defaultId,
       inputSize,
       inputStyle,
-      inverse,
+      isInverse,
       labelStyle,
       labelText,
-      labelVisuallyHidden,
+      isLabelVisuallyHidden,
       multiline,
       onHelpLinkClick,
       shownPasswordAnnounceText,
@@ -254,9 +254,10 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
       showPasswordButtonText,
       type,
       testId,
-      innerRef,
       ...other
     } = props;
+
+    const id = useGenerateId(defaultId);
 
     const iconPosition =
       icon && onIconClick
@@ -283,16 +284,18 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
       SHOW_PASSWORD_BUTTON_TEXT = showPasswordButtonText
         ? showPasswordButtonText
         : 'Show',
-      HELP_LINK_TEXT = helpLinkText ? helpLinkText : "What's this?";
+      HELP_LINK_ARIA_LABEL = helpLinkAriaLabel
+        ? helpLinkAriaLabel
+        : "What's this?";
 
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
     const theme = React.useContext(ThemeContext);
 
     return (
       <Container style={containerStyle}>
-        {!labelVisuallyHidden && (
+        {!isLabelVisuallyHidden && (
           <Label
-            inverse={inverse}
+            isInverse={isInverse}
             htmlFor={id}
             size={inputSize && !multiline ? inputSize : InputSize.medium}
             style={labelStyle}
@@ -307,14 +310,14 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
               descriptionId ? descriptionId : props['aria-describedby']
             }
             aria-invalid={!!errorMessage}
-            aria-label={labelVisuallyHidden ? labelText : null}
+            aria-label={isLabelVisuallyHidden ? labelText : null}
             as={multiline ? 'textarea' : null}
             id={id}
             data-testid={testId}
             errorMessage={errorMessage}
             iconPosition={iconPosition}
             inputSize={inputSize && !multiline ? inputSize : InputSize.medium}
-            inverse={inverse}
+            isInverse={isInverse}
             labelText={labelText}
             multiline={multiline}
             ref={ref}
@@ -328,9 +331,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                 : InputType.text
             }
             value={value}
-            onBlur={props.onBlur}
             onChange={handleChange}
-            onFocus={props.onFocus}
           />
           {icon && !onIconClick && !isLoading && (
             <IconWrapper
@@ -355,7 +356,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
             </SpinnerWrapper>
           )}
 
-          {type === InputType.password && !hidePasswordMaskButton && (
+          {type === InputType.password && !isPasswordMaskButtonHidden && (
             <PasswordMaskWrapper>
               <Button
                 aria-label={
@@ -390,13 +391,12 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
 
           {onHelpLinkClick && (
             <Tooltip
-              content={HELP_LINK_TEXT}
-              inverse={inverse}
+              isInverse={isInverse}
               trigger={
                 <Button
-                  aria-label={HELP_LINK_TEXT}
+                  aria-label={HELP_LINK_ARIA_LABEL}
                   icon={<QuestionCircleIcon />}
-                  inverse={inverse}
+                  isInverse={isInverse}
                   onClick={onHelpLinkClick}
                   size={
                     inputSize === InputSize.large && !multiline
@@ -405,11 +405,12 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
                   }
                   style={{ margin: '0 0 0 7px' }}
                   type={ButtonType.button}
-                  title={HELP_LINK_TEXT}
                   variant={ButtonVariant.link}
                 />
               }
-            />
+            >
+              {HELP_LINK_ARIA_LABEL}
+            </Tooltip>
           )}
 
           {onIconClick && !isLoading && (
@@ -431,7 +432,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
           )}
         </InputWrapper>
         <InputMessage
-          inverse={inverse}
+          isInverse={isInverse}
           id={descriptionId}
           isError={!!errorMessage}
         >

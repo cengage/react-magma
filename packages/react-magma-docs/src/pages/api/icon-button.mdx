@@ -186,6 +186,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
 
 ## Icon Button Props
 
+**Any other props supplied will be provided to the `button` element.**
+
 <SimplePropsTable
   props={{
     'aria-label': {
@@ -195,15 +197,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
       required: false,
       description:
         'The text the screen reader will announce.  Very important for icon-only buttons',
-    },
-    block: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the button will take up the full width of its container',
-      defaultValue: 'false',
     },
     children: {
       type: {
@@ -252,7 +245,16 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
       description: 'Position within the button for the icon to appear',
       defaultValue: 'right',
     },
-    inverse: {
+    isFullWidth: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the button will take up the full width of its container',
+      defaultValue: 'false',
+    },
+    isInverse: {
       type: {
         name: 'boolean',
       },
@@ -296,8 +298,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
         name: 'string',
       },
       required: false,
-      description: 'ID used for testing purposes',
-      defaultValue: '',
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     textTransform: {
       type: {

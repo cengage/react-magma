@@ -5,8 +5,11 @@ title: 'Badges'
 import { ScopeableLayout } from '../../components/layout'
 import { Badge, Button } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
+import DocsHeading from '../../components/docs-heading'
 
-# Badges
+<DocsHeading to="/design/badges/" type="design">
+  Badges
+</DocsHeading>
 
 Badges are a small labeling component, used to highlight key pieces of information.
 
@@ -18,7 +21,7 @@ Badges are a small labeling component, used to highlight key pieces of informati
 
 ## Variants
 
-Badges have two variants, `label` and `counter`. The `label` is the default variant and is used for general text.  
+Badges have two variants, `label` and `counter`. The `label` is the default variant and is used for general text.
 The `counter` is for displaying a numeric count, and can be used inside a button.
 
 ```.jsx
@@ -71,6 +74,8 @@ The `onClick` event will fire when the badge is clicked, or when the enter or sp
 
 ## Badge Props
 
+**Any other props supplied will be provided to the wrapping element. The wrapping element will be either a `button` or a `span` depending on if the `isClickable` prop is truthy or falsy.**
+
 <SimplePropsTable
   props={{
     children: {
@@ -102,6 +107,14 @@ The `onClick` event will fire when the badge is clicked, or when the enter or sp
       required: false,
       description:
         'Action that fires when the badge is clicked.  Causes the Badge to render as a button instead of a span.',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     variant: {
       type: {

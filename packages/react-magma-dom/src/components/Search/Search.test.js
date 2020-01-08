@@ -18,7 +18,7 @@ describe('Search', () => {
         iconAriaLabel="Test icon label"
         labelText="Test input label"
         onSearch={onSearchSpy}
-        placeholderText="Test placeholder"
+        placeholder="Test placeholder"
       />
     );
 
@@ -39,11 +39,9 @@ describe('Search', () => {
   });
 
   it('should fire the onSearch event when enter is pressed', () => {
-    const { container } = render(<Search onSearch={onSearchSpy} />);
-
-    fireEvent.keyDown(container.querySelector('input'), {
-      keyCode: 27
-    });
+    const { container } = render(
+      <Search onSearch={onSearchSpy} value="test value" />
+    );
 
     expect(onSearchSpy).not.toHaveBeenCalled();
 
@@ -51,7 +49,22 @@ describe('Search', () => {
       keyCode: 13
     });
 
-    expect(onSearchSpy).toHaveBeenCalled();
+    expect(onSearchSpy).toBeCalledWith('test value');
+  });
+
+  it('should trigger the passed in onChange when value of the input is changed', () => {
+    const targetValue = 'Change';
+    const onChangeSpy = jest.fn();
+    const labelText = 'test label';
+    const { getByLabelText } = render(
+      <Search labelText={labelText} onChange={onChangeSpy} value="" />
+    );
+
+    fireEvent.change(getByLabelText(labelText), {
+      target: { value: targetValue }
+    });
+
+    expect(onChangeSpy).toHaveBeenCalledTimes(1);
   });
 
   it('Does not violate accessibility standards', () => {

@@ -6,6 +6,15 @@ import { render } from '@testing-library/react';
 const TEXT = 'Test Text';
 
 describe('Announce', () => {
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <Announce testId={testId}>Test Announce</Announce>
+    );
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should render the announce component', () => {
     const { container, getByText } = render(<Announce>{TEXT}</Announce>);
 

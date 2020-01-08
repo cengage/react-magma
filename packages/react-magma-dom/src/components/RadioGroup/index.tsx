@@ -13,12 +13,12 @@ export interface RadioGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
   containerStyle?: React.CSSProperties;
+  isTextVisuallyHidden?: boolean;
   labelledById?: string;
   labelStyle?: React.CSSProperties;
   labelText?: string;
   name: string;
   testId?: string;
-  textVisuallyHidden?: boolean;
   value?: string;
 }
 
@@ -57,7 +57,7 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
     labelledById,
     labelStyle,
     labelText,
-    textVisuallyHidden,
+    isTextVisuallyHidden,
     testId,
     name,
     children,
@@ -82,7 +82,7 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
           onFocus: props.onFocus
         }}
       >
-        {textVisuallyHidden ? (
+        {isTextVisuallyHidden ? (
           <HiddenLabel id={id} style={labelStyle}>
             {labelText}
           </HiddenLabel>

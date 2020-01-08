@@ -12,9 +12,9 @@ export enum EnumTooltipPosition {
 }
 
 export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
-  content: React.ReactNode;
-  inverse?: boolean;
+  isInverse?: boolean;
   position?: EnumTooltipPosition;
+  testId?: string;
   trigger: React.ReactElement;
   ref?: React.Ref<HTMLDivElement>;
 }
@@ -80,16 +80,16 @@ const StyledTooltip = styled.div<{
 `;
 
 const StyledTooltipInner = styled.div<{
-  inverse: boolean;
+  isInverse: boolean;
   position: EnumTooltipPosition;
 }>`
   background: ${props =>
-    props.inverse
+    props.isInverse
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral01};
   border-radius: 3px;
   color: ${props =>
-    props.inverse
+    props.isInverse
       ? props.theme.colors.neutral01
       : props.theme.colors.neutral08};
   display: inline-block;
@@ -100,26 +100,26 @@ const StyledTooltipInner = styled.div<{
   &:after {
     border-left-color: ${props =>
       props.position === 'left' || props.position === 'right'
-        ? props.inverse
+        ? props.isInverse
           ? props.theme.colors.neutral08
           : props.theme.colors.neutral01
         : 'transparent'};
     border-right-color: ${props =>
       props.position === 'left' || props.position === 'right'
-        ? props.inverse
+        ? props.isInverse
           ? props.theme.colors.neutral08
           : props.theme.colors.neutral01
         : 'transparent'};
     border-top-color: ${props =>
       props.position === 'left' || props.position === 'right'
         ? 'transparent'
-        : props.inverse
+        : props.isInverse
         ? props.theme.colors.neutral08
         : props.theme.colors.neutral01};
     border-bottom-color: ${props =>
       props.position === 'left' || props.position === 'right'
         ? 'transparent'
-        : props.inverse
+        : props.isInverse
         ? props.theme.colors.neutral08
         : props.theme.colors.neutral01};
     border-style: solid;
@@ -219,7 +219,6 @@ const StyledTooltipInner = styled.div<{
 
 export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
   (props: TooltipProps, ref: any) => {
-    const id = useGenerateId(props.id);
     const [isVisible, setIsVisible] = React.useState<boolean>(false);
 
     function handleKeyDown(event: React.KeyboardEvent) {
@@ -236,11 +235,21 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
       setIsVisible(false);
     }
 
-    const { content, inverse, position, trigger } = props;
+    const {
+      children,
+      id: defaultId,
+      isInverse,
+      position,
+      testId,
+      trigger,
+      ...other
+    } = props;
+
+    const id = useGenerateId(defaultId);
     const theme = React.useContext(ThemeContext);
 
     return (
-      <ToolTipContainer>
+      <ToolTipContainer data-testid={testId}>
         {React.cloneElement(trigger, {
           'aria-describedby': id,
           onKeyDown: handleKeyDown,
@@ -252,17 +261,18 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
         })}
 
         <StyledTooltip
+          {...other}
           id={id}
           position={position ? position : EnumTooltipPosition.top}
           role="tooltip"
           visible={isVisible}
         >
           <StyledTooltipInner
-            inverse={inverse}
+            isInverse={isInverse}
             position={position ? position : EnumTooltipPosition.top}
             theme={theme}
           >
-            {content}
+            {children}
           </StyledTooltipInner>
         </StyledTooltip>
       </ToolTipContainer>

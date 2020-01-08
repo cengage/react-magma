@@ -6,8 +6,9 @@ import { darken, lighten } from 'polished';
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLButtonElement> {
   color?: BadgeColor;
-  variant?: BadgeVariant;
   onClick?: () => void;
+  testId?: string;
+  variant?: BadgeVariant;
 }
 
 export enum BadgeColor {
@@ -118,7 +119,7 @@ function getStyledBadgeComponent(isClickable: boolean) {
 }
 
 export const Badge: React.FunctionComponent<BadgeProps> = React.forwardRef(
-  ({ children, color, onClick, variant, ...other }: BadgeProps, ref: any) => {
+  ({ children, onClick, testId, variant, ...other }: BadgeProps, ref: any) => {
     const BadgeComponent = getStyledBadgeComponent(Boolean(onClick));
 
     const theme = React.useContext(ThemeContext);
@@ -126,7 +127,7 @@ export const Badge: React.FunctionComponent<BadgeProps> = React.forwardRef(
     return (
       <BadgeComponent
         {...other}
-        color={color}
+        data-testid={testId}
         variant={variant ? variant : BadgeVariant.label}
         onClick={onClick}
         ref={ref}

@@ -1,12 +1,13 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { Alert, AlertProps } from '../Alert';
+import { useGenerateId } from '../utils';
 
 export interface ToastProps extends AlertProps {
   alertStyle?: React.CSSProperties;
   containerStyle?: React.CSSProperties;
-  toastDuration?: number;
   disableAutoDismiss?: boolean;
+  toastDuration?: number;
   onDismiss: () => void;
   onMouseEnter?: (event: React.SyntheticEvent) => void;
   onMouseLeave?: (event: React.SyntheticEvent) => void;
@@ -101,13 +102,16 @@ export const Toast: React.FunctionComponent<ToastProps> = (
 
   const {
     alertStyle,
-    id,
+    id: defaultId,
     testId,
     variant,
-    dismissible,
+    isDismissible,
     children,
-    containerStyle
+    containerStyle,
+    ...other
   } = props;
+
+  const id = useGenerateId(defaultId);
 
   return (
     <ToastWrapper
@@ -116,10 +120,11 @@ export const Toast: React.FunctionComponent<ToastProps> = (
       style={containerStyle}
     >
       <Alert
+        {...other}
         id={id}
         testId={testId}
         style={alertStyle}
-        dismissible={dismissible}
+        isDismissible={isDismissible}
         isDismissed={isDismissed}
         variant={variant}
         forceDismiss={clearTimeoutAndDismiss}

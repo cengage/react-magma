@@ -6,6 +6,13 @@ import { SkipLinkContent } from '../SkipLinkContent';
 import { render, fireEvent } from '@testing-library/react';
 
 describe('SkipLink', () => {
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(<SkipLink testId={testId} />);
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should render the skip link component', () => {
     const { container } = render(<SkipLink />);
     const link = container.querySelector('a');
@@ -78,7 +85,7 @@ describe('SkipLink', () => {
   });
 
   it('should render the skip link button the correct colors for an inverse button', () => {
-    const { container } = render(<SkipLink inverse />);
+    const { container } = render(<SkipLink isInverse />);
     const link = container.querySelector('a');
 
     expect(link).toHaveStyleRule('background', '#FFFFFF');

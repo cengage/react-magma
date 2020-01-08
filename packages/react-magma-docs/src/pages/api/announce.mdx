@@ -64,6 +64,8 @@ possibly interrupting the current task. Using `off` will silence these updates, 
 
 ## Announce Props
 
+**Any other props supplied will be provided to the wrapping `div` element.**
+
 <SimplePropsTable
   props={{
     children: {
@@ -81,6 +83,14 @@ possibly interrupting the current task. Using `off` will silence these updates, 
       required: false,
       description: 'Value of the `aria-live` attribute',
       defaultValue: 'polite',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
   }}
 />

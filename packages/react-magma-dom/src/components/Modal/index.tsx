@@ -20,17 +20,17 @@ export enum ModalSize {
 }
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
-  closeLabel?: string;
-  disableBackdropClick?: boolean;
-  disableEscKeyDown?: boolean;
+  closeAriaLabel?: string;
   header?: React.ReactNode;
-  hideEscButton?: boolean;
   id?: string;
-  innerRef?: React.Ref<HTMLDivElement>;
+  isCloseButtonHidden?: boolean;
+  isBackgroundClickDisabled?: boolean;
+  isEscKeyDownDisabled?: boolean;
   isExiting?: boolean;
+  isOpen?: boolean;
   onClose?: () => void;
   onEscKeyDown?: (event: KeyboardEvent) => void;
-  open?: boolean;
+  ref?: React.Ref<HTMLDivElement>;
   size?: ModalSize;
   testId?: string;
 }
@@ -175,18 +175,18 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
     const [focusableElements, setFocusableElements] = React.useState<
       HTMLElement[]
     >([]);
-    const [isModalOpen, setIsModalOpen] = React.useState<boolean>(props.open);
+    const [isModalOpen, setIsModalOpen] = React.useState<boolean>(props.isOpen);
     const [isExiting, setIsExiting] = React.useState<boolean>(false);
 
-    const prevOpen = usePrevious(props.open);
+    const prevOpen = usePrevious(props.isOpen);
 
     React.useEffect(() => {
-      if (!prevOpen && props.open) {
+      if (!prevOpen && props.isOpen) {
         setIsModalOpen(true);
-      } else if (prevOpen && !props.open) {
+      } else if (prevOpen && !props.isOpen) {
         handleClose();
       }
-    }, [props.open]);
+    }, [props.isOpen]);
 
     React.useEffect(() => {
       if (isModalOpen) {
@@ -200,7 +200,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
           )
         );
 
-        if (!props.disableEscKeyDown) {
+        if (!props.isEscKeyDownDisabled) {
           document.body.addEventListener('keydown', handleEscapeKeyDown, false);
         }
       }
@@ -299,14 +299,13 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
 
     const {
       children,
-      closeLabel,
-      disableBackdropClick,
-      disableEscKeyDown,
+      closeAriaLabel,
+      isBackgroundClickDisabled,
+      isEscKeyDownDisabled,
       header,
-      hideEscButton,
-      open,
-      size,
-      innerRef,
+      isCloseButtonHidden,
+      isOpen,
+      testId,
       ...rest
     } = props;
 
@@ -329,22 +328,20 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
             <ModalContainer
               aria-labelledby={headingId}
               aria-modal={true}
-              data-testid="modal-container"
+              data-testid={testId}
               id={id}
-              onKeyDown={disableEscKeyDown ? null : handleKeyDown}
-              onClick={disableBackdropClick ? null : handleModalClick}
+              onKeyDown={isEscKeyDownDisabled ? null : handleKeyDown}
+              onClick={isBackgroundClickDisabled ? null : handleModalClick}
               ref={focusTrapElement}
               role="dialog"
-              data-test-id="modal-container"
             >
               <ModalContent
+                {...other}
                 data-testid="modal-content"
                 id={contentId}
                 isExiting={isExiting}
                 ref={ref}
-                size={size}
                 theme={theme}
-                {...other}
               >
                 {header && (
                   <ModalHeader theme={theme}>
@@ -362,10 +359,12 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
                   </ModalHeader>
                 )}
                 <ModalBody ref={bodyRef}>{children}</ModalBody>
-                {!hideEscButton && (
+                {!isCloseButtonHidden && (
                   <CloseBtn>
                     <Button
-                      aria-label={closeLabel ? closeLabel : 'Close dialog'}
+                      aria-label={
+                        closeAriaLabel ? closeAriaLabel : 'Close dialog'
+                      }
                       color={ButtonColor.secondary}
                       icon={CloseIcon}
                       onClick={handleClose}
@@ -380,7 +379,9 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
               data-testid="modal-backdrop"
               isExiting={isExiting}
               onMouseDown={
-                disableBackdropClick ? event => event.preventDefault() : null
+                isBackgroundClickDisabled
+                  ? event => event.preventDefault()
+                  : null
               }
             />
           </>,

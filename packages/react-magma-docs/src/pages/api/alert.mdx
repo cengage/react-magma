@@ -43,18 +43,18 @@ This prop determines the icon and color scheme used to style the Alert.
 
 ## Dismissible
 
-The `dismissible` prop is optional, and if provided the Alert will render a dismiss button.
-Providing this property only causes the dismiss button to render; it does not control the dismiss behavior itself. If you include the `dismissible` prop,
+The `isDismissible` prop is optional, and if provided the Alert will render a dismiss button.
+Providing this property only causes the dismiss button to render; it does not control the dismiss behavior itself. If you include the `isDismissible` prop,
 you must also include a function in the `onDimiss` prop to handle the dismiss behavior.
 
-The aria-label, by default is `Close this message` but can be overridden using the optional `closeLabel` prop.
+The aria-label, by default is `Close this message` but can be overridden using the optional `closeAriaLabel` prop.
 
 ```.jsx
     (props) => {
       const [showAlert, updateShowAlert] = React.useState(false);
 
       return (<>
-        {showAlert && <Alert dismissible onDismiss={() => updateShowAlert(false)}>Dismiss Me<br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Alert>}
+        {showAlert && <Alert isDismissible onDismiss={() => updateShowAlert(false)}>Dismiss Me<br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Alert>}
         <Button onClick={() => updateShowAlert(true)}>Show Alert</Button>
       </>)
     }
@@ -89,6 +89,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 
 ## Alert Props
 
+**Any other props supplied will be provided to the wrapping `div` element.**
+
 <SimplePropsTable
   props={{
     children: {
@@ -98,7 +100,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       required: true,
       description: 'The content of the component',
     },
-    closeLabel: {
+    closeAriaLabel: {
       type: {
         name: 'string',
       },
@@ -106,7 +108,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       description: 'The text read by screen readers for the close button',
       defaultValue: '"Close this message"',
     },
-    dismissible: {
+    isDismissible: {
       type: {
         name: 'boolean',
       },
@@ -115,7 +117,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
         'If true, the component will be able to be dismissed and will include a close button',
       defaultValue: 'false',
     },
-    inverse: {
+    isInverse: {
       type: {
         name: 'boolean',
       },
@@ -130,15 +132,15 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       },
       required: false,
       description:
-        'Action that fires when the close button is clicked (required when dismissible is true)',
+        'Action that fires when the close button is clicked (required when isDismissible is true)',
     },
     testId: {
       type: {
         name: 'string',
       },
       required: false,
-      description: 'ID used for testing purposes',
-      defaultValue: '',
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     variant: {
       type: {

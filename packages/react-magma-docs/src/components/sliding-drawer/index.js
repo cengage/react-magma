@@ -159,7 +159,7 @@ export class SlidingDrawer extends React.Component {
               aria-label="Open navigation menu"
               aria-expanded={isOpen}
               icon={<MenuIcon />}
-              inverse
+              isInverse
               onClick={this.openMenu}
               ref={this.toggleButtonRef}
               size="large"

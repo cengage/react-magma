@@ -92,13 +92,13 @@ Custom styles can be applied by using the `containerStyle` and `labelStyle` prop
 
 ## Visually Hidden Label
 
-The ;abel text for the form group can be hidden visually, but still be read by assistive technology, by using the `textVisuallyHidden` prop.
+The ;abel text for the form group can be hidden visually, but still be read by assistive technology, by using the `isTextVisuallyHidden` prop.
 
 ```.jsx
     <FormGroup
         labelText="Group Label"
         name='labelledByGroup'
-        textVisuallyHidden>
+        isTextVisuallyHidden>
           <Checkbox
               labelText='Checkbox label' />
           <Checkbox
@@ -107,6 +107,8 @@ The ;abel text for the form group can be hidden visually, but still be read by a
 ```
 
 ## Form Group Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
 
 <SimplePropsTable
   props={{
@@ -123,6 +125,15 @@ The ;abel text for the form group can be hidden visually, but still be read by a
       },
       required: false,
       description: 'Style properties for the component container element',
+    },
+    isTextVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text for the form group will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
     },
     labelledById: {
       type: {
@@ -148,22 +159,13 @@ The ;abel text for the form group can be hidden visually, but still be read by a
       description:
         'Text for label of the form group. Alertnatively, the labelledById prop can be used.',
     },
-    textVisuallyHidden: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, label text for the form group will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
-    },
     testId: {
       type: {
         name: 'string',
       },
       required: false,
-      description: 'ID used for testing purposes',
-      defaultValue: '',
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
   }}
 />

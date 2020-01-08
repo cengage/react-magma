@@ -2,7 +2,7 @@ import * as React from 'react';
 import { CalendarContext } from './CalendarContext';
 import { CalendarMonth } from './CalendarMonth';
 import { Announce } from '../Announce';
-import { Input } from '../Input';
+import { Input, InputType } from '../Input';
 import { format, isValid } from 'date-fns';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '../../theme/styled';
@@ -14,17 +14,21 @@ import {
   getPrevMonthFromDate,
   getNextMonthFromDate
 } from './utils';
-import { useGenerateId } from '../utils';
+import { useGenerateId, Omit } from '../utils';
 
-interface DatePickerProps {
+interface DatePickerProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value'> {
   defaultDate?: Date;
   errorMessage?: string;
   helperMessage?: string;
   id?: string;
   inputRef?: React.RefObject<{}>;
-  inverse?: boolean;
+  isInverse?: boolean;
   labelText: string;
-  placeholderText?: string;
+  placeholder?: string;
+  required?: boolean;
+  testId?: string;
+  value?: Date;
   onDateChange?: (day: Date, event: React.SyntheticEvent) => void;
   onInputBlur?: (event: React.FocusEvent) => void;
   onInputChange?: (event: React.ChangeEvent) => void;
@@ -58,11 +62,12 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
   >(false);
   const [calendarOpened, setCalendarOpened] = React.useState<boolean>(false);
   const [dateFocused, setDateFocused] = React.useState<boolean>(false);
+
   const [focusedDate, setFocusedDate] = React.useState<Date>(
-    props.defaultDate || new Date()
+    props.value || props.defaultDate || new Date()
   );
   const [chosenDate, setChosenDate] = React.useState<Date | null>(
-    props.defaultDate
+    props.value || props.defaultDate
   );
 
   React.useEffect(() => {
@@ -70,6 +75,13 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
       setDateFocused(false);
     }
   }, [calendarOpened]);
+
+  React.useEffect(() => {
+    if (props.value) {
+      setChosenDate(props.value);
+      setFocusedDate(props.value);
+    }
+  }, [props.value]);
 
   function buildCalendarMonth(date: Date, enableOutsideDates: boolean) {
     return getCalendarMonthWeeks(date, enableOutsideDates);
@@ -198,13 +210,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
     setCalendarOpened(opened => !opened);
   }
 
-  const {
-    errorMessage,
-    helperMessage,
-    inverse,
-    labelText,
-    placeholderText
-  } = props;
+  const { placeholder, testId, ...other } = props;
 
   const dateFormat = 'MM/DD/YYYY';
   const inputValue = chosenDate ? format(chosenDate, dateFormat) : '';
@@ -227,7 +233,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
         setDateFocused
       }}
     >
-      <DatePickerContainer onBlur={handleCalendarBlur}>
+      <DatePickerContainer data-testid={testId} onBlur={handleCalendarBlur}>
         <Announce>
           {calendarOpened && (
             <VisuallyHidden>
@@ -237,20 +243,18 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
           )}
         </Announce>
         <Input
-          errorMessage={errorMessage}
-          helperMessage={helperMessage}
+          {...other}
           icon={<CalendarIcon />}
           iconAriaLabel="Calendar"
           onIconClick={toggleCalendarOpened}
           onIconKeyDown={handleInputKeyDown}
           id={id}
-          inverse={inverse}
           ref={inputRef}
-          labelText={labelText}
           onChange={handleInputChange}
           onBlur={handleInputBlur}
           onKeyDown={handleInputKeyDown}
-          placeholder={placeholderText ? placeholderText : dateFormat}
+          placeholder={placeholder ? placeholder : dateFormat}
+          type={InputType.text}
           value={inputValue}
         />
 

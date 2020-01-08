@@ -39,7 +39,7 @@ Long content for scrolling
         const { showModal } = this.state;
 
         return (<>
-            <Modal header="Modal Title" onClose={this.onModalClose} open={showModal}>
+            <Modal header="Modal Title" onClose={this.onModalClose} isOpen={showModal}>
                 <p>This is a modal, doing modal things.</p>
                 <p>This is <a href="#">linked text</a> in the modal</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -83,7 +83,7 @@ Long content for scrolling
         const { showModal } = this.state;
 
         return (<>
-            <Modal header="Modal Title" onClose={this.onModalClose} open={showModal}>
+            <Modal header="Modal Title" onClose={this.onModalClose} isOpen={showModal}>
                 <RadioGroup labelText='Radio Buttons in Modal' name='modalExample'>
                   <Radio
                       labelText='Option one label'
@@ -152,7 +152,7 @@ Long content for scrolling
         const { showModal, page, showHidden, goToNextPageEnabled } = this.state;
 
         return (<>
-            <Modal header="Modal Title" onClose={this.onModalClose} open={showModal}>
+            <Modal header="Modal Title" onClose={this.onModalClose} isOpen={showModal}>
               <div id="attachToMe">
                 { page === 1 && <>
                   <p>Page one</p>
@@ -215,7 +215,7 @@ This is a design anti-pattern; it is always include something actionable within 
         const { showModalNoFocus } = this.state;
 
         return (<>
-          <Modal size="small" hideEscButton onClose={this.onModalNoFocusClose} open={showModalNoFocus}>
+          <Modal size="small" isCloseButtonHidden onClose={this.onModalNoFocusClose} isOpen={showModalNoFocus}>
                 <p>This modal has no header and nothing focusable.</p>
                 <p>Consider the usability implications before implementing a modal like this this. A modal should have something actionable inside it.</p>
             </Modal>
@@ -265,7 +265,7 @@ If that element no longer exists in the dom, that action will fail silently and 
         const { showModal, showButton } = this.state;
 
         return (<>
-            <Modal header="Modal Title" onClose={this.onModalClose} open={showModal}>
+            <Modal header="Modal Title" onClose={this.onModalClose} isOpen={showModal}>
                 <p>This is a modal, doing modal things.</p>
             </Modal>
           {showButton && <Button onClick={this.onModalShow}>Show Modal and Hide Button</Button>}

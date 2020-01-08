@@ -33,12 +33,12 @@ export const buttonStyles = props => css`
   align-items: center;
   border-radius: ${buttonBorderRadius[props.shape]};
   cursor: ${props.disabled ? 'not-allowed' : 'pointer'};
-  display: ${props.block ? 'flex' : 'inline-flex'};
+  display: ${props.isFullWidth ? 'flex' : 'inline-flex'};
   flex-shrink: 0;
   font-family: ${props.theme.bodyFont};
   justify-content: center;
   line-height: 1;
-  margin: ${props.block ? '5px 0' : '5px'};
+  margin: ${props.isFullWidth ? '5px 0' : '5px'};
   min-width: 5.625em;
   overflow: hidden;
   position: relative;
@@ -57,12 +57,12 @@ export const buttonStyles = props => css`
   padding: ${buttonPadding[props.size]};
   width: ${props.iconOnly
     ? buttonIconOnlyWidth[props.size]
-    : props.block
+    : props.isFullWidth
     ? '100%'
     : 'auto'};
   background: ${buildButtonBackground(props)};
   border: ${props.variant === 'outline' ||
-  (props.variant === 'solid' && props.color === 'secondary' && !props.inverse)
+  (props.variant === 'solid' && props.color === 'secondary' && !props.isInverse)
     ? '2px solid'
     : '0'};
   border-color: ${buildBorderColor(props)};
@@ -71,7 +71,7 @@ export const buttonStyles = props => css`
   &:not(:disabled) {
     &:focus {
       outline: 2px dotted
-        ${props.inverse
+        ${props.isInverse
           ? props.theme.colors.neutral08
           : props.theme.colors.focus};
       outline-offset: 3px;
@@ -123,11 +123,11 @@ export const StyledButton: React.FunctionComponent<
   StyledButtonProps
 > = React.forwardRef((props, ref: any) => {
   const {
-    block,
+    isFullWidth,
     children,
     iconOnly,
     testId,
-    inverse,
+    isInverse,
     color,
     shape,
     size,

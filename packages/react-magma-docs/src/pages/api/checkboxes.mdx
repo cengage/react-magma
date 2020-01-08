@@ -94,48 +94,48 @@ In addition to being checked or unchecked, checkboxes also support an indetermin
 
 ## Inverse
 
-Inverse is an optional boolean prop, that may be passed in when the component is to be displayed on a dark background.
+`isInverse` is an optional boolean prop, that may be passed in when the component is to be displayed on a dark background.
 
 ```.jsx
   <FormGroup containerStyle={{ background : '#00263E',color: '#FFFFFF', padding: '10px' }} labelText="Choose Inverse Options">
     <Checkbox
         checked
-        inverse
+        isInverse
       labelText='Inverse' />
     <Checkbox
         checked
         color={magma.colors.success01}
-        inverse
+        isInverse
         labelText='Success inverse' />
     <Checkbox
         checked
         color={magma.colors.danger}
-        inverse
+        isInverse
         labelText='Danger inverse' />
     <Checkbox
         checked
         color={magma.colors.pop02}
-        inverse
+        isInverse
         labelText='Pop inverse' />
       <Checkbox
           disabled
-          inverse
+          isInverse
           labelText='Disabled inverse' />
       <Checkbox
           indeterminate
-          inverse
+          isInverse
           labelText='Indeterminate checkbox' />
     </FormGroup>
 ```
 
 ## Visually Hidden Label
 
-Adding the `textVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
+Adding the `isTextVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
 
 ```.jsx
     <Checkbox
         labelText='Disabled checkbox'
-        textVisuallyHidden />
+        isTextVisuallyHidden />
 ```
 
 ## Custom Styles
@@ -197,6 +197,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 
 ## Checkbox Props
 
+**Any other props supplied will be provided to the `input` element.**
+
 <SimplePropsTable
   props={{
     checked: {
@@ -246,13 +248,22 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       required: false,
       description: 'Style properties for the checkbox element',
     },
-    inverse: {
+    isInverse: {
       type: {
         name: 'boolean',
       },
       required: false,
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    isTextVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
       defaultValue: 'false',
     },
     labelStyle: {
@@ -269,6 +280,14 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       required: true,
       description: 'Text for label',
     },
+    onChange: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description:
+        'Action that fires when selected value of the checkbox changes',
+    },
     required: {
       type: {
         name: 'boolean',
@@ -282,17 +301,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
         name: 'string',
       },
       required: false,
-      description: 'ID used for testing purposes',
-      defaultValue: '',
-    },
-    textVisuallyHidden: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
       description:
-        'If true, label text will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
   }}
 />

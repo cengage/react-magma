@@ -1,7 +1,8 @@
 /// <reference types="jest-dom/extend-expect"/>
 import React from 'react';
 import { axe } from 'jest-axe';
-import { Select, getStyles } from '.';
+import { Select } from '.';
+import { getStyles } from './shared';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 
@@ -28,11 +29,84 @@ describe('Select', () => {
     expect(input).toHaveAttribute('aria-label', labelText);
   });
 
-  it('should render custom styles', () => {
-    const color = '#cccccc';
-    const styles = getStyles({ multiValue: { color } }, magma);
+  describe('Custom Styles', () => {
+    it('control', () => {
+      const color = '#cccccc';
+      const styles = getStyles({ control: () => ({ color }) }, magma);
 
-    expect(styles.multiValue({})).toContainKey('color', color);
+      expect(
+        styles.control({}, { isDisabled: false, isFocused: false })
+      ).toContainKey('color', color);
+    });
+
+    it('dropdownIndicator', () => {
+      const color = '#cccccc';
+      const styles = getStyles({ dropdownIndicator: () => ({ color }) }, magma);
+
+      expect(styles.dropdownIndicator({})).toContainKey('color', color);
+    });
+
+    it('clearIndicator', () => {
+      const color = '#cccccc';
+      const styles = getStyles({ clearIndicator: () => ({ color }) }, magma);
+
+      expect(styles.clearIndicator({})).toContainKey('color', color);
+    });
+
+    it('indicatorSeparator', () => {
+      const color = '#cccccc';
+      const styles = getStyles(
+        { indicatorSeparator: () => ({ color }) },
+        magma
+      );
+
+      expect(styles.indicatorSeparator({})).toContainKey('color', color);
+    });
+
+    it('menu', () => {
+      const color = '#cccccc';
+      const styles = getStyles({ menu: () => ({ color }) }, magma);
+
+      expect(styles.menu({})).toContainKey('color', color);
+    });
+
+    it('multiValue', () => {
+      const color = '#cccccc';
+      const styles = getStyles({ multiValue: () => ({ color }) }, magma);
+
+      expect(styles.multiValue({})).toContainKey('color', color);
+    });
+
+    it('multiValueRemove', () => {
+      const color = '#cccccc';
+      const styles = getStyles({ multiValueRemove: () => ({ color }) }, magma);
+
+      expect(styles.multiValueRemove({})).toContainKey('color', color);
+    });
+
+    it('option', () => {
+      const color = '#cccccc';
+      const styles = getStyles({ option: () => ({ color }) }, magma);
+
+      expect(styles.option({}, { isFocused: false })).toContainKey(
+        'color',
+        color
+      );
+    });
+
+    it('placeholder', () => {
+      const color = '#cccccc';
+      const styles = getStyles({ placeholder: () => ({ color }) }, magma);
+
+      expect(styles.placeholder({})).toContainKey('color', color);
+    });
+
+    it('singleValue', () => {
+      const color = '#cccccc';
+      const styles = getStyles({ singleValue: () => ({ color }) }, magma);
+
+      expect(styles.singleValue({})).toContainKey('color', color);
+    });
   });
 
   it('should render a select with a default value passed through', () => {
@@ -68,7 +142,7 @@ describe('Select', () => {
     ];
     const inputName = 'Test';
     const { getByDisplayValue, getByText } = render(
-      <Select defaultValue={[...options]} name={inputName} multi />
+      <Select defaultValue={[...options]} name={inputName} isMulti />
     );
     expect(getByDisplayValue('red')).toBeInTheDocument();
     expect(getByText('Red')).toBeInTheDocument();
@@ -78,7 +152,7 @@ describe('Select', () => {
   });
 
   it('should disable the select', () => {
-    const { container } = render(<Select disabled />);
+    const { container } = render(<Select isDisabled />);
     const input = container.querySelector('input');
 
     expect(input).toBeDisabled();
@@ -109,7 +183,9 @@ describe('Select', () => {
   it('should render the error message on an inverse component with the correct styles', () => {
     const errorString = 'Please fix this error';
 
-    const { getByText } = render(<Select errorMessage={errorString} inverse />);
+    const { getByText } = render(
+      <Select errorMessage={errorString} isInverse />
+    );
     const errorMessage = getByText(errorString);
 
     expect(errorMessage).toBeInTheDocument();
@@ -144,7 +220,10 @@ describe('Select', () => {
       code: 13
     });
 
-    expect(onChangeSpy).toHaveBeenCalledWith(options[0]);
+    expect(onChangeSpy).toHaveBeenCalledWith(
+      options[0],
+      expect.objectContaining({ action: 'select-option' })
+    );
   });
 
   it('should trigger the passed in onBlur when focus is removed', () => {

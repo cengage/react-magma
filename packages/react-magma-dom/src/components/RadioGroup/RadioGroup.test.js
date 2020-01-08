@@ -38,7 +38,7 @@ describe('Radio Group', () => {
   it('should render a radio group with hidden label text with the correct styles', () => {
     const labelText = 'Color';
     const { getByText } = render(
-      <RadioGroup textVisuallyHidden labelText={labelText}>
+      <RadioGroup isTextVisuallyHidden labelText={labelText}>
         <Radio id="colorRadio" labelText="Default Color" value="default" />
       </RadioGroup>
     );

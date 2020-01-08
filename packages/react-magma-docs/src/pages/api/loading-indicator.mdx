@@ -126,6 +126,8 @@ the conditional logic to display the `LoadingIndicator` _inside_ the `Announce` 
 
 ## Loading Indicator Props
 
+**Any other props supplied will be provided to the internal element. The internal element will be either a `div` when using the `ProgressBar` or a `span` when using the `Spinner`. This is controlled by the passed in `type` prop.**
+
 <SimplePropsTable
   props={{
     message1: {
@@ -151,6 +153,14 @@ the conditional logic to display the `LoadingIndicator` _inside_ the `Announce` 
       required: false,
       description: 'Message displayed after 15 seconds',
       defaultValue: 'Sorry for the delay. This is taking longer than expected.',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     type: {
       type: {

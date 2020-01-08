@@ -353,6 +353,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the svg ele
 
 ## Icon Props
 
+**Any other props supplied will be provided to the `svg` element.**
+
 <SimplePropsTable
   props={{
     color: {
@@ -376,8 +378,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the svg ele
         name: 'string',
       },
       required: false,
-      description: 'ID used for testing purposes',
-      defaultValue: '',
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     title: {
       type: {

@@ -3,7 +3,7 @@
 exports[`Tooltip should render the tooltip component, positioned top by default 1`] = `
 <div
   class="css-z8xdwe-StyledTooltip"
-  id="testTooltipId"
+  id="tooltipID"
   role="tooltip"
 >
   <div

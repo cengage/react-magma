@@ -4,12 +4,13 @@ import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
-  animated?: boolean;
-  bgColor?: ProgressBarColor;
+  color?: ProgressBarColor;
   height?: number;
-  inverse?: boolean;
-  labelVisible?: boolean;
+  isAnimated?: boolean;
+  isInverse?: boolean;
+  isLabelVisible?: boolean;
   percentage?: number;
+  testId?: string;
 }
 
 export enum ProgressBarColor {
@@ -21,7 +22,7 @@ export enum ProgressBarColor {
 }
 
 function buildProgressBarBackground(props) {
-  switch (props.bgColor) {
+  switch (props.color) {
     case 'danger':
       return props.theme.colors.danger;
     case 'pop01':
@@ -32,7 +33,7 @@ function buildProgressBarBackground(props) {
       return props.theme.colors.success01;
 
     default:
-      return props.inverse
+      return props.isInverse
         ? props.theme.colors.foundation03
         : props.theme.colors.primary;
   }
@@ -45,10 +46,10 @@ const Container = styled.div`
 
 const Track = styled.div<ProgressBarProps>`
   background: ${props =>
-    props.inverse ? 'rgba(0,0,0,0.25)' : props.theme.colors.neutral08};
+    props.isInverse ? 'rgba(0,0,0,0.25)' : props.theme.colors.neutral08};
   border: 1px solid
     ${props =>
-      props.inverse
+      props.isInverse
         ? props.theme.colors.neutral08
         : props.theme.colors.neutral04};
   display: flex;
@@ -64,7 +65,7 @@ const Bar = styled.div<ProgressBarProps>`
   width: ${props => props.percentage}%;
 
   ${props =>
-    props.animated &&
+    props.isAnimated &&
     css`
       background-image: linear-gradient(
         to right,
@@ -106,12 +107,14 @@ export const ProgressBar: React.FunctionComponent<
 > = React.forwardRef(
   (
     {
-      animated,
-      bgColor,
+      color,
       height,
-      inverse,
-      labelVisible,
-      percentage
+      isAnimated,
+      isInverse,
+      isLabelVisible,
+      percentage,
+      testId,
+      ...other
     }: ProgressBarProps,
     ref: any
   ) => {
@@ -120,26 +123,27 @@ export const ProgressBar: React.FunctionComponent<
     const theme = React.useContext(ThemeContext);
 
     return (
-      <Container>
+      <Container {...other}>
         <Track
+          data-testid={testId}
           height={height ? height : 15}
-          inverse={inverse}
+          isInverse={isInverse}
           ref={ref}
           theme={theme}
         >
           <Bar
-            animated={animated}
             aria-valuenow={percentageValue}
             aria-valuemin={0}
             aria-valuemax={100}
-            bgColor={bgColor}
-            inverse={inverse}
+            color={color}
+            isAnimated={isAnimated}
+            isInverse={isInverse}
             percentage={percentageValue}
             role="progressbar"
             theme={theme}
           />
         </Track>
-        {labelVisible && <Percentage>{percentageValue}%</Percentage>}
+        {isLabelVisible && <Percentage>{percentageValue}%</Percentage>}
       </Container>
     );
   }

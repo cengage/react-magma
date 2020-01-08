@@ -37,7 +37,7 @@ The label/input association will be handled via the passed in `id` if one is sup
 
 When the `type` prop is set to `password`, the input field that is rendered also have the `type` set to password, meaning that the text is obscured so that it cannot be read, usually by replacing each character with a symbol such as the asterisk ("\*") or a dot ("•").
 
-By default, users can show the password, by pressing a toggle button. To prevent users from showing the password, the optional boolean `hidePasswordMaskButton` can be used.
+By default, users can show the password, by pressing a toggle button. To prevent users from showing the password, the optional boolean `isPasswordMaskButtonHidden` can be used.
 
 The following option props can be used to override various text strings that appear on the UI or to users using assistive technology: `hiddenPasswordAnnounceText`, `hidePasswordButtonAriaLabel`, `hidePasswordButtonText`, `shownPasswordAnnounceText`, `showPasswordButtonAriaLabel`, `showPasswordButtonText`.
 
@@ -47,7 +47,7 @@ The following option props can be used to override various text strings that app
       labelText='Password'
       type='password' />
     <Input
-      hidePasswordMaskButton
+      isPasswordMaskButtonHidden
       labelText='Password With No Unmask Button'
       type='password' />
   </>
@@ -75,8 +75,18 @@ The `value` of an input can be set using the `value` prop.
 
 ```.jsx
     <Input
-        labelText='Default value'
+        labelText='Value'
         value='abc123' />
+```
+
+## Default Value
+
+The `value` of an input can be initially set using the `defaultValue` prop.
+
+```.jsx
+    <Input
+        labelText='Default value'
+        defaultValue='Default Value' />
 ```
 
 ## Placeholder
@@ -116,10 +126,11 @@ The `helperMessage` appears underneath the input field. It will not appear if an
 ## Help Link
 
 Some inputs require a bit of explanation to the user. Passing in a function to the `onHelpLinkClick` prop, will
-display a help link to the right of the input field. The text can be customized using the optional `helpLinkText` prop.
+display a help link to the right of the input field. The text can be customized using the optional `helpLinkAriaLabel` prop.
 
 ```.jsx
    <Input
+      helpLinkAriaLabel='Learn more about help links'
       labelText='Help Link'
       onHelpLinkClick={()=> {alert('Help link clicked!')}} />
 ```
@@ -197,27 +208,27 @@ The `isLoading` boolean prop will determine if a loading animation is shown. The
 
 ## Inverse
 
-Inverse is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
+`isInverse` is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
 
 ```.jsx
     <div style={{ background : '#00263E', padding: '20px' }}>
       <Input
           id='inputInverse'
-          inverse
+          isInverse
           labelText='Inverse Input'
           placeholder='Type in here' />
 
       <Input
           helperMessage='Helper text'
-          inverse
+          isInverse
           labelText='Inverse Input with Helper Text' />
 
       <Input
           errorMessage='Please correct your error'
-          inverse
+          isInverse
           labelText='Inverse Input with Error Message' />
       <Input
-          inverse
+          isInverse
           labelText='Help Link'
           onHelpLinkClick={()=> {alert('Help link clicked!')}} />
     </div>
@@ -225,12 +236,12 @@ Inverse is an optional boolean prop, that may be passed in when inputs are to be
 
 ## Input With Hidden Label
 
-The `labelVisuallyHidden` prop can be used to visually hide the text label, while still making the text available to screen readers.
+The `isLabelVisuallyHidden` prop can be used to visually hide the text label, while still making the text available to screen readers.
 
 ```.jsx
     <Input
       iconPosition='right'
-      labelVisuallyHidden
+      isLabelVisuallyHidden
       labelText='Search'
       placeholder='Search'
       icon={<Search2Icon />} />
@@ -248,7 +259,7 @@ The optional `multiline` boolean prop will cause the component to render a texta
         placeholder='Type in here' />
 ```
 
-## Change events
+## Change Events
 
 ```.jsx
   (props) => {
@@ -264,7 +275,7 @@ The optional `multiline` boolean prop will cause the component to render a texta
   }
 ```
 
-## Focus events
+## Focus Events
 
 ```.jsx
   (props) => {
@@ -289,7 +300,7 @@ The optional `multiline` boolean prop will cause the component to render a texta
   }
 ```
 
-## Forward ref
+## Forward Ref
 
 Using React's `forwardRef` feature you can gain access to the reference of the internal input.
 
@@ -312,7 +323,7 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
   }
 ```
 
-## Custom styles
+## Custom Styles
 
 Custom styles can be passed into the Input component. The `containerStyle` property will apply to the container.
 Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
@@ -353,7 +364,9 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 </div>
 ```
 
-## Input props
+## Input Props
+
+**Any other props supplied will be provided to the `input` element.**
 
 <SimplePropsTable
   props={{
@@ -363,6 +376,14 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       },
       required: false,
       description: 'Style properties for the component container element',
+    },
+    defaultValue: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Default value for the form field',
+      defaultValue: '',
     },
     disabled: {
       type: {
@@ -389,7 +410,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description: 'Text of the helper message.',
       defaultValue: '',
     },
-    helpLinkText: {
+    helpLinkAriaLabel: {
       type: {
         name: 'string',
       },
@@ -421,15 +442,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description: 'Text displayed on screen for the "Hide Password" button',
       defaultValue: 'Hide',
     },
-    hidePasswordMaskButton: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, label text will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
-    },
     icon: {
       type: {
         name: 'React Element',
@@ -443,22 +455,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       },
       required: false,
       description: 'Text for the aria-label attribute for an icon, if provided',
-      defaultValue: '',
-    },
-    onIconClick: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description: 'Action that will fire when icon is clicked.',
-      defaultValue: '',
-    },
-    onIconKeyDown: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description: 'Action that will fire when icon is receives keypress.',
       defaultValue: '',
     },
     iconPosition: {
@@ -486,13 +482,31 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       required: false,
       description: 'Style properties for the input element',
     },
-    inverse: {
+    isInverse: {
       type: {
         name: 'boolean',
       },
       required: false,
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    isLabelVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
+    },
+    isPasswordMaskButtonHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
       defaultValue: 'false',
     },
     labelStyle: {
@@ -509,14 +523,29 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       required: true,
       description: 'Text for label',
     },
-    labelVisuallyHidden: {
+    onIconClick: {
       type: {
-        name: 'boolean',
+        name: 'function',
       },
       required: false,
-      description:
-        'If true, label text will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
+      description: 'Action that will fire when icon is clicked.',
+      defaultValue: '',
+    },
+    onIconKeyDown: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Action that will fire when icon is receives keypress.',
+      defaultValue: '',
+    },
+    placeholder: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text for input placeholder',
+      defaultValue: 'Search',
     },
     required: {
       type: {
@@ -556,8 +585,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
         name: 'string',
       },
       required: false,
-      description: 'ID used for testing purposes',
-      defaultValue: '',
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     type: {
       type: {
@@ -579,7 +608,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
         name: 'string',
       },
       required: false,
-      description: 'Default value for the form field',
+      description: 'Value for the form field',
       defaultValue: '',
     },
   }}

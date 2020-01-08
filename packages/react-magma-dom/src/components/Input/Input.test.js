@@ -19,6 +19,17 @@ describe('Input', () => {
     expect(getByLabelText(label)).toBeInTheDocument();
   });
 
+  it('should render an input with a default value', () => {
+    const testId = 'test-id';
+    const defaultValue = 'Default';
+
+    const { getByTestId } = render(
+      <Input testId={testId} defaultValue={defaultValue} />
+    );
+
+    expect(getByTestId(testId)).toHaveAttribute('value', defaultValue);
+  });
+
   it('should render a input text with desired attributes', () => {
     const testId = 'test-id';
     const id = 'abc123';
@@ -73,7 +84,7 @@ describe('Input', () => {
 
   it('should render an inverse input with the correct styles', () => {
     const labelText = 'test label';
-    const { getByText } = render(<Input labelText={labelText} inverse />);
+    const { getByText } = render(<Input labelText={labelText} isInverse />);
 
     expect(getByText(labelText)).toHaveStyleRule(
       'color',
@@ -92,7 +103,9 @@ describe('Input', () => {
 
   it('should render an inverse input with a correctly styled helper message', () => {
     const testMessage = 'Test message';
-    const { getByText } = render(<Input helperMessage={testMessage} inverse />);
+    const { getByText } = render(
+      <Input helperMessage={testMessage} isInverse />
+    );
 
     const helperMessage = getByText(testMessage);
 
@@ -121,7 +134,7 @@ describe('Input', () => {
     const labelText = 'test label';
     const testMessage = 'Test error message';
     const { getByText, getByLabelText } = render(
-      <Input errorMessage={testMessage} inverse labelText={labelText} />
+      <Input errorMessage={testMessage} isInverse labelText={labelText} />
     );
 
     const input = getByLabelText(labelText);
@@ -280,7 +293,7 @@ describe('Input', () => {
   it('should render the input with visually hidden label text', () => {
     const labelText = 'test label';
     const { getByLabelText } = render(
-      <Input labelText={labelText} labelVisuallyHidden />
+      <Input labelText={labelText} isLabelVisuallyHidden />
     );
     const input = getByLabelText(labelText);
 
@@ -297,7 +310,7 @@ describe('Input', () => {
   it('should render the a help link button with custom text', () => {
     const helpText = 'Custom text';
     const { container } = render(
-      <Input onHelpLinkClick={() => {}} helpLinkText={helpText} />
+      <Input onHelpLinkClick={() => {}} helpLinkAriaLabel={helpText} />
     );
     expect(container.querySelector('div[role="tooltip"]')).toHaveTextContent(
       helpText
@@ -334,9 +347,9 @@ describe('Input', () => {
       expect(getByText('Test announce text')).toBeInTheDocument();
     });
 
-    it('does not render a show/hide button when hidePasswordMaskButton is set to true', () => {
+    it('does not render a show/hide button when isPasswordMaskButtonHidden is set to true', () => {
       const { queryByText } = render(
-        <Input type={InputType.password} hidePasswordMaskButton />
+        <Input type={InputType.password} isPasswordMaskButtonHidden />
       );
 
       expect(queryByText('Show')).not.toBeInTheDocument();

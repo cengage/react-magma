@@ -1,16 +1,17 @@
 import * as React from 'react';
-import { ProgressBar } from '../ProgressBar';
+import { ProgressBar, ProgressBarColor } from '../ProgressBar';
 import { Spinner } from '../Spinner';
 import styled from '@emotion/styled';
 
 export interface LoadingIndicatorProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+  extends React.HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
   css?: any; // Adding css prop to fix emotion error
   message1?: string;
   message2?: string;
   message3?: string;
   percentage?: number;
   ref?: any;
+  testId?: string;
   type?: LoadingIndicatorType;
 }
 
@@ -72,7 +73,7 @@ export const LoadingIndicator = React.forwardRef<
     };
   }, []);
 
-  const { percentage, type } = props;
+  const { color, testId, type, ...other } = props;
   let { message1, message2, message3 } = props;
 
   message1 = message1
@@ -92,16 +93,17 @@ export const LoadingIndicator = React.forwardRef<
     : 'Sorry for the delay. This is taking longer than expected.';
 
   return (
-    <StyledLoadingIndicator aria-busy="true" ref={ref}>
+    <StyledLoadingIndicator aria-busy="true" data-testid={testId} ref={ref}>
       {type === LoadingIndicatorType.progressbar ? (
         <ProgressBar
-          animated
+          {...other}
+          color={color as ProgressBarColor}
           height={10}
-          labelVisible
-          percentage={percentage}
+          isAnimated
+          isLabelVisible
         />
       ) : (
-        <Spinner size={50} />
+        <Spinner {...other} size={50} />
       )}
 
       <MessageContainer>

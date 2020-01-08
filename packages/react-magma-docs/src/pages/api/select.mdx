@@ -64,7 +64,7 @@ The optional `multi` prop allows the user to select more than one item.
         value: 'green',
         label: 'Green'
       }]}
-      multi
+      isMulti
     />
   </>
 ```
@@ -89,7 +89,7 @@ The optional `clearable` prop allows the user to clear the field once a selectio
         value: 'green',
         label: 'Green'
       }]}
-      clearable
+      isClearable
     />
   </>
 ```
@@ -138,7 +138,7 @@ The optional `clearable` prop allows the user to clear the field once a selectio
         value: 'green',
         label: 'Green'
       }]}
-      disabled
+      isDisabled
     />
   </>
 ```
@@ -195,14 +195,14 @@ The `helperMessage` appears underneath the select field. It will not appear if a
 
 ## Inverse styles
 
-The `inverse` property is an optional boolean, that reverses the colors so that the select can better appear on a dark background.
+The `isInverse` property is an optional boolean, that reverses the colors so that the select can better appear on a dark background.
 The default value is `false`.
 
 ```.jsx
   <div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
     <Select
       errorMessage="Please select a color"
-      inverse
+      isInverse
       name="inverse"
       labelText="Error Message"
       options={[{
@@ -493,50 +493,12 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 
 ## Select Props
 
+**Any other props supplied will be provided to the `Select` element from [react-select](https://react-select.com/home).**
+
+**A list of the props that they accept for each component can be found here: [react-select props](https://react-select.com/props).**
+
 <SimplePropsTable
   props={{
-    cacheOptions: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: '',
-      defaultValue: 'false',
-    },
-    clearable: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the user may clear the field once a selection has been made',
-      defaultValue: 'false',
-    },
-    defaultOptions: {
-      type: {
-        name: 'object[]:',
-        options: ['{ label, text }'],
-      },
-      required: false,
-      description: 'Default options that appear in the select menu',
-      defaultValue: '',
-    },
-    defaultValue: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: '',
-      defaultValue: '',
-    },
-    disabled: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: '',
-      defaultValue: 'false',
-    },
     errorMessage: {
       type: {
         name: 'string',
@@ -554,6 +516,15 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       description: 'Text of the helper message.',
       defaultValue: '',
     },
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
     labelText: {
       type: {
         name: 'string',
@@ -561,108 +532,25 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       required: true,
       description: 'Text for label',
     },
-    loadOptions: {
-      type: {
-        name: 'function(value: string)',
-      },
-      required: true,
-      description: '',
-    },
-    multi: {
+    inverse: {
       type: {
         name: 'boolean',
       },
       required: false,
-      description: '',
-      defaultValue: 'false',
-    },
-    name: {
-      type: {
-        name: 'string',
-      },
-      required: true,
-      description: '',
-      defaultValue: '',
-    },
-    onBlur: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description: 'Action that fires when the component loses focus',
-    },
-    onChange: {
-      type: {
-        name: 'function',
-      },
-      required: false,
       description:
-        'Action that fires when selected value of the component changes',
-    },
-    onClose: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description: 'Action that fires when the select menu closes',
-    },
-    onFocus: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description: 'Action that fires when the component receives focus',
-    },
-    onOpen: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description: 'Action that fires when the select menu opens',
-    },
-    required: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, the form field is required',
+        'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
-    },
-    style: {
-      type: {
-        name: 'ReactSelect.Styles',
-      },
-      required: false,
-      description:
-        'Custom styles for the component using the style interface below',
-      defaultValue: '',
     },
     testId: {
       type: {
         name: 'string',
       },
       required: false,
-      description: 'ID used for testing purposes',
-      defaultValue: '',
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
   }}
 />
-
-### Style Interface
-
-```
-interface ReactSelectStyles {
-control?: React.CSSProperties;
-dropdownIndicator?: React.CSSProperties;
-clearIndicator?: React.CSSProperties;
-indicatorSeparator?: React.CSSProperties;
-menu?: React.CSSProperties;
-multiValue?: React.CSSProperties;
-multiValueRemove?: React.CSSProperties;
-option?: React.CSSProperties;
-}
-
-```
 
 export default props => (
   <ScopeableLayout

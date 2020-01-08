@@ -5,8 +5,11 @@ title: 'Breadcrumbs'
 import { ScopeableLayout } from '../../components/layout'
 import { Breadcrumb, BreadcrumbItem } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
+import DocsHeading from '../../components/docs-heading'
 
-# Breadcrumbs
+<DocsHeading to="/design/breadcrumb/" type="design">
+  Breadcrumbs
+</DocsHeading>
 
 ## Basic Usage
 
@@ -30,18 +33,18 @@ the item will be rendered as a span and will have `aria-current="page"` on it. A
 
 ## Inverse
 
-Inverse is an optional boolean prop, that may be used when the breadcrumb menu to be displayed on a dark background.
+IsInverse is an optional boolean prop, that may be used when the breadcrumb menu to be displayed on a dark background.
 
 ```.jsx
     <div style={{background: '#003865', padding: '10px'}}>
-        <Breadcrumb inverse>
-            <BreadcrumbItem inverse to="#">
+        <Breadcrumb isInverse>
+            <BreadcrumbItem to="#">
                 Home
             </BreadcrumbItem>
-             <BreadcrumbItem inverse to="#">
+             <BreadcrumbItem to="#">
                 Library
             </BreadcrumbItem>
-             <BreadcrumbItem inverse>
+             <BreadcrumbItem>
                 Data
             </BreadcrumbItem>
         </Breadcrumb>
@@ -66,11 +69,31 @@ The `minWidthToShow` prop can be used to suppress the navigation menu when it is
         </Breadcrumb>
 ```
 
+## Aria-label
+
+By default, the `aria-label` of the Breadcrumb component is `Breadcrumb`. This can be overridden by passing in the `aria-label` prop.
+
+```.jsx
+        <Breadcrumb aria-label="Hello world">
+            <BreadcrumbItem to="#">
+                Home
+            </BreadcrumbItem>
+             <BreadcrumbItem to="#">
+                Library
+            </BreadcrumbItem>
+             <BreadcrumbItem>
+                Data
+            </BreadcrumbItem>
+        </Breadcrumb>
+```
+
 ## Breadcrumb Props
+
+**Any other props supplied will be provided to the wrapping `nav` element.**
 
 <SimplePropsTable
   props={{
-    ariaLabel: {
+    'aria-label': {
       type: {
         name: 'string',
       },
@@ -85,7 +108,7 @@ The `minWidthToShow` prop can be used to suppress the navigation menu when it is
       required: true,
       description: 'The content of the component',
     },
-    inverse: {
+    isInverse: {
       type: {
         name: 'boolean',
       },
@@ -103,10 +126,20 @@ The `minWidthToShow` prop can be used to suppress the navigation menu when it is
         'Number of pixels used as the min-width breakpoint where the breadcrumb is shown',
       defaultValue: '0',
     },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
   }}
 />
 
 ## Breadcrumb Item Props
+
+**Any other props supplied will be provided to the wrapping `li` element.**
 
 <SimplePropsTable
   props={{
@@ -117,14 +150,13 @@ The `minWidthToShow` prop can be used to suppress the navigation menu when it is
       required: true,
       description: 'The content of the component, i.e the name of the page',
     },
-    inverse: {
+    testId: {
       type: {
-        name: 'boolean',
+        name: 'string',
       },
       required: false,
       description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     to: {
       type: {

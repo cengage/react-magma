@@ -151,12 +151,12 @@ To get an image to take up the full width of a card, without padding, place it o
 
 A string for a background color may be passed in using the `background` prop.
 
-If the background color is dark, the `inverse` boolean prop can be used to render content in a light color.
+If the background color is dark, the `isInverse` boolean prop can be used to render content in a light color.
 
 ```.jsx
-        <Card background={magma.colors.success01} inverse>
+        <Card background={magma.colors.success01} isInverse>
             <CardBody>
-              <CardHeading inverse>
+              <CardHeading isInverse>
                   Card Heading
               </CardHeading>
                 Some content
@@ -165,6 +165,8 @@ If the background color is dark, the `inverse` boolean prop can be used to rende
 ```
 
 ## Card Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
 
 <SimplePropsTable
   props={{
@@ -218,7 +220,7 @@ If the background color is dark, the `inverse` boolean prop can be used to rende
       description: 'If true, card will render with a box-shadow',
       defaultValue: 'false',
     },
-    inverse: {
+    isInverse: {
       type: {
         name: 'boolean',
       },
@@ -226,6 +228,14 @@ If the background color is dark, the `inverse` boolean prop can be used to rende
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     width: {
       type: {
@@ -240,6 +250,8 @@ If the background color is dark, the `inverse` boolean prop can be used to rende
 
 ## Card Heading Props
 
+**Any other props supplied will be provided to the `heading` element.**
+
 <SimplePropsTable
   props={{
     children: {
@@ -249,7 +261,7 @@ If the background color is dark, the `inverse` boolean prop can be used to rende
       required: true,
       description: 'The content of the component',
     },
-    inverse: {
+    isInverse: {
       type: {
         name: 'boolean',
       },
@@ -266,6 +278,38 @@ If the background color is dark, the `inverse` boolean prop can be used to rende
       description:
         'Number to indicate which level heading will render (e.g. h1, h2 etc.)',
       defaultValue: '4',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+  }}
+/>
+
+## Card Body Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<SimplePropsTable
+  props={{
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
   }}
 />

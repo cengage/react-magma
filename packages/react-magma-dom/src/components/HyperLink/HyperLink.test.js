@@ -3,6 +3,17 @@ import { render } from '@testing-library/react';
 import { HyperLink } from '.';
 
 describe('Hyper Link', () => {
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <HyperLink to="https://www.google.com" testId={testId}>
+        Google
+      </HyperLink>
+    );
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should render a basic anchor element', () => {
     const { getByText } = render(
       <HyperLink to="https://www.google.com">Google</HyperLink>
@@ -27,7 +38,7 @@ describe('Hyper Link', () => {
 
   it('should render an inverse anchor element', () => {
     const { getByText } = render(
-      <HyperLink inverse to="https://www.google.com">
+      <HyperLink isInverse to="https://www.google.com">
         Google
       </HyperLink>
     );

@@ -16,6 +16,15 @@ import {
 import { DatePicker } from '.';
 
 describe('Date Picker', () => {
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <DatePicker labelText="Date Picker Label" testId={testId} />
+    );
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should render an input', () => {
     const { getByLabelText } = render(
       <DatePicker labelText="Date Picker Label" />
@@ -40,11 +49,29 @@ describe('Date Picker', () => {
     );
   });
 
+  it('should set the value to the date iin the value prop', () => {
+    const defaultDate = new Date('January 17, 2019');
+    const valueDate = new Date('January 23, 2019');
+
+    const { getByLabelText } = render(
+      <DatePicker
+        defaultDate={defaultDate}
+        labelText="Date Picker Label"
+        value={valueDate}
+      />
+    );
+
+    expect(getByLabelText('Date Picker Label')).toHaveAttribute(
+      'value',
+      format(valueDate, 'MM/DD/YYYY')
+    );
+  });
+
   it('should render custom placeholder text', () => {
     const customPlaceholder = 'Custom text';
     const { getByLabelText } = render(
       <DatePicker
-        placeholderText={customPlaceholder}
+        placeholder={customPlaceholder}
         labelText="Date Picker Label"
       />
     );
@@ -71,6 +98,15 @@ describe('Date Picker', () => {
     );
 
     expect(getByText(errorMessage)).not.toBeNull();
+  });
+
+  it('should require the date picker input', () => {
+    const labelText = 'Date Picker Label';
+    const { getByLabelText } = render(
+      <DatePicker labelText={labelText} required />
+    );
+
+    expect(getByLabelText(labelText)).toHaveAttribute('required');
   });
 
   it('should watch for input change', () => {

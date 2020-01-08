@@ -66,14 +66,14 @@ The `textPosition` property takes the values `left` and `right`. The default val
 
 ## Visually Hidden Label
 
-Adding the `textVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
+Adding the `isTextVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
 
 ```.jsx
   <div>
     <Toggle
         id='visuallyHiddenToggle'
         labelText='Label is hidden'
-        textVisuallyHidden />
+        isTextVisuallyHidden />
     </div>
 ```
 
@@ -129,6 +129,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 
 ## Toggle Props
 
+**Any other props supplied will be provided to the `input` element.**
+
 <SimplePropsTable
   props={{
     containerStyle: {
@@ -146,13 +148,22 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description: 'If true, element is disabled',
       defaultValue: 'false',
     },
-    inverse: {
+    isInverse: {
       type: {
         name: 'boolean',
       },
       required: false,
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    isTextVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
       defaultValue: 'false',
     },
     labelStyle: {
@@ -182,8 +193,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
         name: 'string',
       },
       required: false,
-      description: 'ID used for testing purposes',
-      defaultValue: '',
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     textPosition: {
       type: {
@@ -194,15 +205,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description:
         'Whether the label appears to the left of the right of the toggle switch',
       defaultValue: 'left',
-    },
-    textVisuallyHidden: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, label text will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
     },
     thumbStyle: {
       type: {

@@ -3,10 +3,21 @@ import { Modal } from '.';
 import { act, render, fireEvent } from '@testing-library/react';
 
 describe('Modal', () => {
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <Modal testId={testId} isOpen>
+        Modal Text
+      </Modal>
+    );
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should render nothing if open is false', () => {
     const modalContent = 'Modal content';
     const { queryByText } = render(
-      <Modal header="Hello" open={false}>
+      <Modal header="Hello" isOpen={false}>
         {modalContent}
       </Modal>
     );
@@ -17,13 +28,13 @@ describe('Modal', () => {
   it('should render children when open is true', () => {
     const modalContent = 'Modal content';
     const { getByText, rerender } = render(
-      <Modal header="Hello" open={false}>
+      <Modal header="Hello" isOpen={false}>
         {modalContent}
       </Modal>
     );
 
     rerender(
-      <Modal header="Hello" open={true}>
+      <Modal header="Hello" isOpen={true}>
         {modalContent}
       </Modal>
     );
@@ -34,7 +45,7 @@ describe('Modal', () => {
   it('should render the modal when open has always been true', () => {
     const modalContent = 'Modal content';
     const { getByText } = render(
-      <Modal header="Hello" open>
+      <Modal header="Hello" isOpen>
         {modalContent}
       </Modal>
     );
@@ -49,7 +60,7 @@ describe('Modal', () => {
     );
 
     rerender(
-      <Modal header="Hello" open={true}>
+      <Modal header="Hello" isOpen={true}>
         {modalContent}
       </Modal>
     );
@@ -66,7 +77,7 @@ describe('Modal', () => {
     );
 
     rerender(
-      <Modal header="Hello" open={true} size="small">
+      <Modal header="Hello" isOpen={true} size="small">
         {modalContent}
       </Modal>
     );
@@ -83,7 +94,7 @@ describe('Modal', () => {
     );
 
     rerender(
-      <Modal header="Hello" open={true} size="large">
+      <Modal header="Hello" isOpen={true} size="large">
         {modalContent}
       </Modal>
     );
@@ -98,7 +109,7 @@ describe('Modal', () => {
     );
 
     rerender(
-      <Modal header={headerText} open={true}>
+      <Modal header={headerText} isOpen={true}>
         Modal Content
       </Modal>
     );
@@ -107,7 +118,7 @@ describe('Modal', () => {
   });
 
   it('should not render a header if one is not passed in', () => {
-    const { container } = render(<Modal open={true}>Modal Content</Modal>);
+    const { container } = render(<Modal isOpen={true}>Modal Content</Modal>);
 
     expect(container.querySelector('h1')).not.toBeInTheDocument();
   });
@@ -118,7 +129,7 @@ describe('Modal', () => {
     );
 
     rerender(
-      <Modal header="Hello" open={true}>
+      <Modal header="Hello" isOpen={true}>
         Modal Content
       </Modal>
     );
@@ -132,13 +143,13 @@ describe('Modal', () => {
 
   it('should render a close button with custom label', () => {
     const { getByTestId, rerender } = render(
-      <Modal header="Hello" closeLabel="Goodbye">
+      <Modal header="Hello" closeAriaLabel="Goodbye">
         Modal Content
       </Modal>
     );
 
     rerender(
-      <Modal header="Hello" open={true} closeLabel="Goodbye">
+      <Modal header="Hello" isOpen={true} closeAriaLabel="Goodbye">
         Modal Content
       </Modal>
     );
@@ -149,15 +160,15 @@ describe('Modal', () => {
     );
   });
 
-  it('should not render a close button if the hideEscButton prop is true', () => {
+  it('should not render a close button if the isCloseButtonHidden prop is true', () => {
     const { queryByTestId, rerender } = render(
-      <Modal header="Hello" hideEscButton>
+      <Modal header="Hello" isCloseButtonHidden>
         Modal Content
       </Modal>
     );
 
     rerender(
-      <Modal header="Hello" open={true} hideEscButton>
+      <Modal header="Hello" isOpen={true} isCloseButtonHidden>
         Modal Content
       </Modal>
     );
@@ -180,7 +191,7 @@ describe('Modal', () => {
       const { rerender, getByText, getByTestId } = render(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={false} onClose={onCloseSpy}>
+          <Modal header="Hello" isOpen={false} onClose={onCloseSpy}>
             Modal Content
           </Modal>
         </>
@@ -191,7 +202,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={true} onClose={onCloseSpy}>
+          <Modal header="Hello" isOpen={true} onClose={onCloseSpy}>
             Modal Content
           </Modal>
         </>
@@ -211,7 +222,7 @@ describe('Modal', () => {
       const { rerender, getByText } = render(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={false} onClose={onCloseSpy}>
+          <Modal header="Hello" isOpen={false} onClose={onCloseSpy}>
             Modal Content
           </Modal>
         </>
@@ -222,7 +233,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={true} onClose={onCloseSpy}>
+          <Modal header="Hello" isOpen={true} onClose={onCloseSpy}>
             Modal Content
           </Modal>
         </>
@@ -247,7 +258,7 @@ describe('Modal', () => {
           <button>Open</button>
           <Modal
             header="Hello"
-            open={false}
+            isOpen={false}
             onEscKeyDown={onEscKeyDown}
             onClose={jest.fn()}
           >
@@ -263,7 +274,7 @@ describe('Modal', () => {
           <button>Open</button>
           <Modal
             header="Hello"
-            open={true}
+            isOpen={true}
             onEscKeyDown={onEscKeyDown}
             onClose={jest.fn()}
           >
@@ -289,7 +300,7 @@ describe('Modal', () => {
       const { rerender, getByText, getByTestId } = render(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={false} onClose={onCloseSpy}>
+          <Modal header="Hello" isOpen={false} onClose={onCloseSpy}>
             Modal Content
           </Modal>
         </>
@@ -300,7 +311,12 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={true} onClose={onCloseSpy}>
+          <Modal
+            header="Hello"
+            isOpen={true}
+            onClose={onCloseSpy}
+            testId="modal-container"
+          >
             Modal Content
           </Modal>
         </>
@@ -320,7 +336,7 @@ describe('Modal', () => {
       const { rerender, getByText, getByTestId } = render(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={false} onClose={onCloseSpy}>
+          <Modal header="Hello" isOpen={false} onClose={onCloseSpy}>
             Modal Content
           </Modal>
         </>
@@ -331,7 +347,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={true} onClose={onCloseSpy}>
+          <Modal header="Hello" isOpen={true} onClose={onCloseSpy}>
             Modal Content
           </Modal>
         </>
@@ -349,19 +365,19 @@ describe('Modal', () => {
     it('should fire the close event when the open prop changes from true to false', async () => {
       const onCloseSpy = jest.fn();
       const { rerender } = render(
-        <Modal header="Hello" open={false} onClose={onCloseSpy}>
+        <Modal header="Hello" isOpen={false} onClose={onCloseSpy}>
           Modal Content
         </Modal>
       );
 
       rerender(
-        <Modal header="Hello" open={true} onClose={onCloseSpy}>
+        <Modal header="Hello" isOpen={true} onClose={onCloseSpy}>
           Modal Content
         </Modal>
       );
 
       rerender(
-        <Modal header="Hello" open={false} onClose={onCloseSpy}>
+        <Modal header="Hello" isOpen={false} onClose={onCloseSpy}>
           Modal Content
         </Modal>
       );
@@ -373,16 +389,16 @@ describe('Modal', () => {
       expect(onCloseSpy).toHaveBeenCalled();
     });
 
-    it('should not close when clicking the escape button if the disableEscKeyDown prop is true', async () => {
+    it('should not close when clicking the escape button if the isEscKeyDownDisabled prop is true', async () => {
       const onCloseSpy = jest.fn();
       const { rerender, getByText } = render(
         <>
           <button>Open</button>
           <Modal
             header="Hello"
-            open={false}
+            isOpen={false}
             onClose={onCloseSpy}
-            disableEscKeyDown
+            isEscKeyDownDisabled
           >
             Modal Content
           </Modal>
@@ -396,9 +412,9 @@ describe('Modal', () => {
           <button>Open</button>
           <Modal
             header="Hello"
-            open={true}
+            isOpen={true}
             onClose={onCloseSpy}
-            disableEscKeyDown
+            isEscKeyDownDisabled
           >
             Modal Content
           </Modal>
@@ -417,16 +433,16 @@ describe('Modal', () => {
       expect(onCloseSpy).not.toHaveBeenCalled();
     });
 
-    it('should not close when clicking on the backdrop if the disableBackdropClick prop is true', async () => {
+    it('should not close when clicking on the backdrop if the isBackgroundClickDisabled prop is true', async () => {
       const onCloseSpy = jest.fn();
       const { rerender, getByText, getByTestId } = render(
         <>
           <button>Open</button>
           <Modal
             header="Hello"
-            open={false}
+            isOpen={false}
             onClose={onCloseSpy}
-            disableBackdropClick
+            isBackgroundClickDisabled
           >
             Modal Content
           </Modal>
@@ -440,9 +456,9 @@ describe('Modal', () => {
           <button>Open</button>
           <Modal
             header="Hello"
-            open={true}
+            isOpen={true}
             onClose={onCloseSpy}
-            disableBackdropClick
+            isBackgroundClickDisabled
           >
             Modal Content
           </Modal>
@@ -458,16 +474,16 @@ describe('Modal', () => {
       expect(onCloseSpy).not.toHaveBeenCalled();
     });
 
-    it('should prevent default on mouse down on the backdrop if the disableBackdropClick prop is true', async () => {
+    it('should prevent default on mouse down on the backdrop if the isBackgroundClickDisabled prop is true', async () => {
       const onCloseSpy = jest.fn();
       const { rerender, getByText, getByTestId } = render(
         <>
           <button>Open</button>
           <Modal
             header="Hello"
-            open={false}
+            isOpen={false}
             onClose={onCloseSpy}
-            disableBackdropClick
+            isBackgroundClickDisabled
           >
             Modal Content
           </Modal>
@@ -482,9 +498,9 @@ describe('Modal', () => {
           <button>Open</button>
           <Modal
             header="Hello"
-            open={true}
+            isOpen={true}
             onClose={onCloseSpy}
-            disableBackdropClick
+            isBackgroundClickDisabled
           >
             Modal Content
           </Modal>
@@ -507,7 +523,7 @@ describe('Modal', () => {
       const { rerender, getByText } = render(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={false} onClose={jest.fn()}>
+          <Modal header="Hello" isOpen={false} onClose={jest.fn()}>
             Modal Content
           </Modal>
         </>,
@@ -519,7 +535,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={true} onClose={jest.fn()}>
+          <Modal header="Hello" isOpen={true} onClose={jest.fn()}>
             Modal Content
           </Modal>
         </>,
@@ -533,7 +549,7 @@ describe('Modal', () => {
       const { rerender, getByText, getByTestId } = render(
         <>
           <button>Open</button>
-          <Modal open={false} onClose={jest.fn()}>
+          <Modal isOpen={false} onClose={jest.fn()}>
             <button data-testid="closeButton">Close</button>
           </Modal>
         </>,
@@ -545,7 +561,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal open={true} onClose={jest.fn()}>
+          <Modal isOpen={true} onClose={jest.fn()}>
             <button data-testid="closeButton">Close</button>
           </Modal>
         </>,
@@ -559,7 +575,7 @@ describe('Modal', () => {
       const { rerender, getByText } = render(
         <>
           <button>Open</button>
-          <Modal open={false} onClose={jest.fn()} hideEscButton>
+          <Modal isOpen={false} onClose={jest.fn()} isCloseButtonHidden>
             <p>Modal Content</p>
           </Modal>
         </>,
@@ -571,7 +587,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal open={true} onClose={jest.fn()} hideEscButton>
+          <Modal isOpen={true} onClose={jest.fn()} isCloseButtonHidden>
             <p>Modal Content</p>
           </Modal>
         </>,
@@ -585,7 +601,12 @@ describe('Modal', () => {
       const { getByTestId, getByText, rerender } = render(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={false} onClose={jest.fn()} hideEscButton>
+          <Modal
+            header="Hello"
+            isOpen={false}
+            onClose={jest.fn()}
+            isCloseButtonHidden
+          >
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="emailInput" type="text" name="email" />
@@ -600,7 +621,12 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={true} onClose={jest.fn()} hideEscButton>
+          <Modal
+            header="Hello"
+            isOpen={true}
+            onClose={jest.fn()}
+            isCloseButtonHidden
+          >
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="emailInput" type="text" name="email" />
@@ -629,7 +655,7 @@ describe('Modal', () => {
       const { getByText, rerender } = render(
         <>
           <button>Open</button>
-          <Modal open={false} onClose={jest.fn()} hideEscButton>
+          <Modal isOpen={false} onClose={jest.fn()} isCloseButtonHidden>
             <p>Modal Content </p>
           </Modal>
         </>
@@ -640,7 +666,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal open={true} onClose={jest.fn()} hideEscButton>
+          <Modal isOpen={true} onClose={jest.fn()} isCloseButtonHidden>
             <p>Modal Content </p>
           </Modal>
         </>
@@ -657,7 +683,12 @@ describe('Modal', () => {
       const { getByTestId, getByText, rerender } = render(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={false} onClose={jest.fn()} hideEscButton>
+          <Modal
+            header="Hello"
+            isOpen={false}
+            onClose={jest.fn()}
+            isCloseButtonHidden
+          >
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="emailInput" type="text" name="email" />
@@ -672,7 +703,12 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={true} onClose={jest.fn()} hideEscButton>
+          <Modal
+            header="Hello"
+            isOpen={true}
+            onClose={jest.fn()}
+            isCloseButtonHidden
+          >
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="emailInput" type="text" name="email" />
@@ -699,7 +735,12 @@ describe('Modal', () => {
       const { getByTestId, getByText, rerender } = render(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={false} onClose={jest.fn()} hideEscButton>
+          <Modal
+            header="Hello"
+            isOpen={false}
+            onClose={jest.fn()}
+            isCloseButtonHidden
+          >
             <>
               <input data-testid="yesInput" type="radio" name="radios" />
               <input data-testid="noInput" type="radio" name="radios" />
@@ -714,7 +755,12 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={true} onClose={jest.fn()} hideEscButton>
+          <Modal
+            header="Hello"
+            isOpen={true}
+            onClose={jest.fn()}
+            isCloseButtonHidden
+          >
             <>
               <input data-testid="yesInput" type="radio" name="radios" />
               <input data-testid="noInput" type="radio" name="radios" />
@@ -736,7 +782,7 @@ describe('Modal', () => {
       const { getByTestId, rerender } = render(
         <>
           <button>Open</button>
-          <Modal open={true} onClose={jest.fn()} hideEscButton>
+          <Modal isOpen={true} onClose={jest.fn()} isCloseButtonHidden>
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="emailInput" type="text" name="email" />
@@ -749,7 +795,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal open={true} onClose={jest.fn()} hideEscButton>
+          <Modal isOpen={true} onClose={jest.fn()} isCloseButtonHidden>
             <>
               <input data-testid="addressInput" type="text" name="address" />
               <input data-testid="stateInput" type="text" name="state" />
@@ -765,7 +811,7 @@ describe('Modal', () => {
       const { getByTestId, getByText, rerender } = render(
         <>
           <button>Open</button>
-          <Modal open={true} onClose={jest.fn()} hideEscButton>
+          <Modal isOpen={true} onClose={jest.fn()} isCloseButtonHidden>
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="emailInput" type="text" name="email" />
@@ -780,7 +826,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal open={true} onClose={jest.fn()} hideEscButton>
+          <Modal isOpen={true} onClose={jest.fn()} isCloseButtonHidden>
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="addressInput" type="text" name="address" />
@@ -811,7 +857,12 @@ describe('Modal', () => {
       const { getByTestId, getByText, rerender } = render(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={false} onClose={jest.fn()} hideEscButton>
+          <Modal
+            header="Hello"
+            isOpen={false}
+            onClose={jest.fn()}
+            isCloseButtonHidden
+          >
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="emailInput" type="text" name="email" />
@@ -826,7 +877,12 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal header="Hello" open={true} onClose={jest.fn()} hideEscButton>
+          <Modal
+            header="Hello"
+            isOpen={true}
+            onClose={jest.fn()}
+            isCloseButtonHidden
+          >
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="emailInput" type="text" name="email" />

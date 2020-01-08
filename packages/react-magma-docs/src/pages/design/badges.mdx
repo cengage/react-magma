@@ -1,0 +1,64 @@
+---
+title: Badges
+order: 1
+---
+
+import { Link } from 'gatsby'
+import './design-guidelines-styles.css'
+import DocsHeading from '../../components/docs-heading'
+
+<DocsHeading to="/api/badge/" type="code">
+  Badges
+</DocsHeading>
+
+Badges are a small labeling component, used to highlight key pieces of information.
+
+## Usage
+
+Badges are used as a form of inline feedback and labeling. They are typically used to provide additional context to components already on the page.
+
+<figure>
+  <img src="../../images/badges/Badges.png" alt="Various examples of badges" />
+</figure>
+
+<span class="horizontal-spacer"></span>
+<hr class="article-divider" />
+
+## Text Badges
+
+<figure>
+  <img src="../../images/badges/label-example.png" alt="Example showing text labels" />
+</figure>
+
+Text badges provide a way to provide feedback or label pieces of data.
+
+Note that badges may be confusing for users of screen readers and similar assistive technologies. While the styling and placement of badges provide a visual cue as to their purpose, these users will simply be presented with the content of the badge. These badges may seem like random additional words or numbers at the end of a sentence, link, or button.
+
+Unless the context is clear, consider including additional context with a visually hidden piece of additional text.
+
+<span class="horizontal-spacer"></span>
+<hr class="article-divider" />
+
+## Counters
+<figure>
+  <img src="../../images/badges/counter-example.png" alt="Examples of counter badges" />
+</figure>
+
+Counters can be used as part of links or buttons, or simply in a context that conveys the count of something to the user.  When space is limited, and if the exact count isn't important, you may consider limiting the count to "99+".
+
+<span class="horizontal-spacer"></span>
+<hr class="article-divider" />
+
+## Color
+
+<figure>
+  <img src="../../images/badges/label-colors.png" alt="Various colors of labels" />
+</figure>
+
+There are multiple colors available for badges, but they should be used with purpose.  The colors that should be used most commonly are primary, secondary, and light.  The best color to use will most likely be determined by which one gives the appropriate level of emphasis with the surrounding content.
+
+The success and danger colors should be used when trying to convey the appropriate meaning behind the badge.
+
+Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text visible only to screen readers.
+
+<span class="horizontal-spacer"></span>

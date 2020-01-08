@@ -82,7 +82,7 @@ markup, to ensure that they have the expected tab order.
 
     return (<>
       <Button onClick={() => setShowAlert(true)}>Show Dismissible Toast</Button>
-      {showAlert && <Toast dismissible onDismiss={() => setShowAlert(false)}>Dismissible Toast</Toast>}
+      {showAlert && <Toast isDismissible onDismiss={() => setShowAlert(false)}>Dismissible Toast</Toast>}
     </>)
   }
 ```
@@ -95,7 +95,7 @@ markup, to ensure that they have the expected tab order.
 
     return (<>
       <Button onClick={() => setShowAlert(true)}>Show Toast</Button>
-      {showAlert && <Toast dismissible disableAutoDismiss={true} onDismiss={() => setShowAlert(false)}>Non-Auto Hiding Dismissible Toast</Toast>}
+      {showAlert && <Toast isDismissible disableAutoDismiss={true} onDismiss={() => setShowAlert(false)}>Non-Auto Hiding Dismissible Toast</Toast>}
     </>)
   }
 ```
@@ -170,6 +170,8 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
 
 ## Toast Props
 
+**Any other props supplied will be provided to the `div` element wrapping the `Alert` component.**
+
 <SimplePropsTable
   props={{
     alertStyle: {
@@ -187,7 +189,7 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
       required: true,
       description: 'The content of the component',
     },
-    closeLabel: {
+    closeAriaLabel: {
       type: {
         name: 'string',
       },
@@ -202,7 +204,7 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
       required: false,
       description: 'CSS properties for the component container',
     },
-    dismissible: {
+    isDismissible: {
       type: {
         name: 'boolean',
       },
@@ -238,8 +240,8 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
         name: 'string',
       },
       required: false,
-      description: 'ID used for testing purposes',
-      defaultValue: '',
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     toastDuration: {
       type: {
@@ -266,21 +268,6 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
     },
   }}
 />
-
-| Prop           | Type                                                           | Default              | Required |
-| -------------- | -------------------------------------------------------------- | -------------------- | :------: |
-| alertStyle     | React.CSSProperties                                            |                      |          |
-| children       | node                                                           |                      | &#10003; |
-| closeLabel     | string                                                         | 'Close this message' |          |
-| containerStyle | React.CSSProperties                                            |                      |          |
-| dismissible    | boolean                                                        |                      |          |
-| id             | string                                                         |                      |          |
-| onDismiss      | func                                                           |                      | &#10003; |
-| onMouseEnter   | func                                                           |                      |          |
-| onMouseLeave   | func                                                           |                      |          |
-| toastDuration  | number                                                         | 5000                 |          |
-| variant        | enum: 'info' &#124; 'success' &#124; 'warning' &#124; 'danger' |                      |          |
-| testId         | string                                                         |                      |          |
 
 export default props => (
   <ScopeableLayout {...props} components={{ Button, Toast, Announce }} />

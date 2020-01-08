@@ -100,37 +100,37 @@ Shapes for buttons include `fill`, `leftCap`, and `rightCap`, with `fill` being 
 
 ## Inverse
 
-The `inverse` property is an optional boolean, that reverses the colors so that the buttons can better appear on a dark background.
+The `isInverse` property is an optional boolean, that reverses the colors so that the buttons can better appear on a dark background.
 The default value is `false`.
 
-While `outline inverse buttons` and `link inverse buttons` still accept the `color` property, the `color` property
-online affects `solid inverse buttons`.
+While `outline isInverse buttons` and `link isInverse buttons` still accept the `color` property, the `color` property
+online affects `solid isInverse buttons`.
 
 The `marketing` button does not have an inverse state, as it already is styled to appear well against a dark background.
 
 ```.jsx
     <div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
       <p>
-          <Button inverse>Solid inverse</Button>
-          <Button color="secondary" inverse>Solid inverse</Button>
-          <Button color="success" inverse>Solid inverse</Button>
-          <Button color="danger" inverse>Solid inverse</Button>
-          <Button color="marketing" inverse>Marketing inverse</Button>
+          <Button isInverse>Solid inverse</Button>
+          <Button color="secondary" isInverse>Solid inverse</Button>
+          <Button color="success" isInverse>Solid inverse</Button>
+          <Button color="danger" isInverse>Solid inverse</Button>
+          <Button color="marketing" isInverse>Marketing inverse</Button>
       </p>
       <p>
-          <Button variant="outline" inverse>Outline inverse</Button>
-          <Button variant="link" inverse>Link inverse</Button>
+          <Button variant="outline" isInverse>Outline inverse</Button>
+          <Button variant="link" isInverse>Link inverse</Button>
       </p>
       <p>
-          <Button disabled inverse>Disabled inverse</Button>
-          <Button disabled inverse variant="outline">Disabled outline inverse</Button>
-          <Button disabled inverse variant="link">Disabled link inverse</Button>
+          <Button disabled isInverse>Disabled inverse</Button>
+          <Button disabled isInverse variant="outline">Disabled outline inverse</Button>
+          <Button disabled isInverse variant="link">Disabled link inverse</Button>
       </p>
       <p>
-        This is a <LinkButton inverse>link button</LinkButton>.
+        This is a <LinkButton isInverse>link button</LinkButton>.
       </p>
       <p>
-        This is a <LinkButton disabled inverse>disabled link button</LinkButton>.
+        This is a <LinkButton disabled isInverse>disabled link button</LinkButton>.
       </p>
     </div>
 ```
@@ -148,14 +148,14 @@ This sets the CSS `text-transform` property.
     </>
 ```
 
-## Block Buttons
+## Full Width
 
-Passing the `block` property will set the button to display full-width.
+Passing the `isFullWidth` property will set the button to display full-width.
 
 ```.jsx
     <>
-        <Button block>Block button</Button>
-        <Button block color="secondary">Block button</Button>
+        <Button isFullWidth>Full Width button</Button>
+        <Button isFullWidth color="secondary">Full Width button</Button>
     </>
 ```
 
@@ -255,17 +255,10 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
 
 ## Button Props
 
+**Any other props supplied will be provided to the `button` element.**
+
 <SimplePropsTable
   props={{
-    block: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the button will take up the full width of its container',
-      defaultValue: 'false',
-    },
     children: {
       type: {
         name: 'node',
@@ -296,7 +289,16 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
       description: 'If true, element is disabled',
       defaultValue: 'false',
     },
-    inverse: {
+    fullWidth: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the button will take up the full width of its container',
+      defaultValue: 'false',
+    },
+    isInverse: {
       type: {
         name: 'boolean',
       },
@@ -339,8 +341,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
         name: 'string',
       },
       required: false,
-      description: 'ID used for testing purposes',
-      defaultValue: '',
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     textTransform: {
       type: {

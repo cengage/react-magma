@@ -25,7 +25,7 @@ export interface HyperLinkProps
 }
 
 const linkStyles = props => css`
-  color: ${props.inverse
+  color: ${props.isInverse
     ? props.theme.colors.neutral08
     : props.theme.colors.primary};
   text-decoration: underline;
@@ -33,14 +33,14 @@ const linkStyles = props => css`
   &:not([disabled]) {
     &:hover,
     &:focus {
-      color: ${props.inverse
+      color: ${props.isInverse
         ? props.theme.colors.neutral07
         : props.theme.colors.foundation02};
     }
 
     &:focus {
       outline: 2px dotted
-        ${props.inverse ? props.theme.neutral08 : props.theme.colors.focus};
+        ${props.isInverse ? props.theme.neutral08 : props.theme.colors.focus};
       outline-offset: 3px;
     }
   }
@@ -50,7 +50,7 @@ export const HyperLink: React.FunctionComponent<
   HyperLinkProps
 > = React.forwardRef((props: HyperLinkProps, ref: any) => {
   const composedProps = buildPropsWithDefaultButtonStyles(props);
-  const { children, to, styledAs, inverse, ...rest } = props;
+  const { children, to, styledAs, isInverse, testId, ...rest } = props;
 
   const other = omit(['textTransform', 'positionTop', 'positionLeft'], rest);
   const theme = React.useContext(ThemeContext);
@@ -71,7 +71,7 @@ export const HyperLink: React.FunctionComponent<
     );
   } else {
     return (
-      <a {...other} href={to} css={composedStyle}>
+      <a {...other} data-testid={testId} href={to} css={composedStyle}>
         {children}
       </a>
     );

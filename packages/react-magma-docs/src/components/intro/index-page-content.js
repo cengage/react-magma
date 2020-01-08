@@ -181,7 +181,7 @@ export class IndexPageContent extends React.Component {
                 <ButtonContainer theme={theme}>
                   <HyperLink
                     styledAs="Button"
-                    inverse
+                    isInverse
                     to="/api-intro/introduction"
                   >
                     {({ stylesClass }) => (
@@ -198,7 +198,7 @@ export class IndexPageContent extends React.Component {
                   <br />
                   <HyperLink
                     styledAs="Button"
-                    inverse
+                    isInverse
                     to="/design-intro/introduction"
                   >
                     {({ stylesClass }) => (

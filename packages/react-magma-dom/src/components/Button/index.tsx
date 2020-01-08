@@ -48,9 +48,9 @@ export enum ButtonType {
 }
 
 export interface ButtonStyles {
-  block?: boolean;
   color?: ButtonColor;
-  inverse?: boolean;
+  isFullWidth?: boolean;
+  isInverse?: boolean;
   shape?: ButtonShape;
   size?: ButtonSize;
   textTransform?: ButtonTextTransform;
@@ -132,17 +132,7 @@ export const Button: React.FunctionComponent<
   let icon;
   let iconPosition;
   let children;
-  const {
-    inverse,
-    block,
-    color,
-    testId,
-    shape,
-    size,
-    variant,
-    textTransform,
-    ...rest
-  } = props;
+  const { color, shape, size, textTransform, variant, ...rest } = props;
 
   if (instanceOfIconOnly(props)) {
     icon = props.icon;
@@ -160,11 +150,8 @@ export const Button: React.FunctionComponent<
     return (
       <StyledButton
         {...other}
-        testId={testId}
         ref={ref}
-        block={block}
         color={color ? color : ButtonColor.primary}
-        inverse={inverse}
         shape={shape ? shape : ButtonShape.fill}
         size={size ? size : ButtonSize.medium}
         textTransform={
@@ -187,11 +174,9 @@ export const Button: React.FunctionComponent<
     return (
       <StyledButton
         {...other}
-        testId={testId}
         ref={ref}
         color={color ? color : ButtonColor.primary}
         iconOnly
-        inverse={inverse}
         shape={shape ? shape : ButtonShape.round}
         size={size ? size : ButtonSize.medium}
         variant={variant ? variant : ButtonVariant.solid}
@@ -206,11 +191,8 @@ export const Button: React.FunctionComponent<
   return (
     <StyledButton
       {...other}
-      testId={testId}
       ref={ref}
-      block={block}
       color={color ? color : ButtonColor.primary}
-      inverse={inverse}
       shape={shape ? shape : ButtonShape.fill}
       size={size ? size : ButtonSize.medium}
       textTransform={

@@ -1,12 +1,15 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { BreadCrumbContext } from './';
+
 import { HyperLink } from '../HyperLink';
 import { AngleRightIcon } from '../Icon/types/AngleRightIcon';
 
-export interface BreadcrumbItemProps extends React.HTMLAttributes<HTMLElement> {
-  inverse?: boolean;
+export interface BreadcrumbItemProps
+  extends React.HTMLAttributes<HTMLLIElement> {
   ref?: any;
+  testId?: string;
   to?: string;
 }
 
@@ -16,9 +19,9 @@ const StyledItem = styled.li`
   padding: 0;
 `;
 
-const StyledSpan = styled.span<BreadcrumbItemProps>`
+const StyledSpan = styled.span<{ isInverse?: boolean }>`
   color: ${props =>
-    props.inverse
+    props.isInverse
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral03};
 
@@ -30,22 +33,23 @@ const StyledSpan = styled.span<BreadcrumbItemProps>`
 export const BreadcrumbItem: React.FunctionComponent<BreadcrumbItemProps> = (
   props: BreadcrumbItemProps
 ) => {
-  const { inverse, children, ref, to } = props;
+  const { children, ref, to, testId, ...other } = props;
   const theme = React.useContext(ThemeContext);
+  const { isInverse } = React.useContext(BreadCrumbContext);
 
   return (
-    <StyledItem ref={ref}>
+    <StyledItem {...other} data-testid={testId} ref={ref}>
       {to ? (
         <>
-          <HyperLink to={to} inverse={inverse}>
+          <HyperLink to={to} isInverse={isInverse}>
             {children}
           </HyperLink>
-          <StyledSpan inverse={inverse} theme={theme}>
+          <StyledSpan isInverse={isInverse} theme={theme}>
             <AngleRightIcon size={10} />
           </StyledSpan>
         </>
       ) : (
-        <StyledSpan aria-current="page" inverse={inverse} theme={theme}>
+        <StyledSpan aria-current="page" isInverse={isInverse} theme={theme}>
           {children}
         </StyledSpan>
       )}

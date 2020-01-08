@@ -9,6 +9,22 @@ import { render } from '@testing-library/react';
 const TEXT = 'Test Text';
 
 describe('Card', () => {
+  it('should find elements by testId', () => {
+    const testId = 'test-id';
+    const testId2 = 'test-id2';
+    const testId3 = 'test-id3';
+    const { getByTestId } = render(
+      <Card testId={testId}>
+        <CardHeading testId={testId2}>Card Heading</CardHeading>
+        <CardBody testId={testId3}>Card Body</CardBody>
+      </Card>
+    );
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+    expect(getByTestId(testId2)).toBeInTheDocument();
+    expect(getByTestId(testId3)).toBeInTheDocument();
+  });
+
   it('should render the card component with default styles', () => {
     const { getByText } = render(<Card>{TEXT}</Card>);
 
@@ -128,7 +144,7 @@ describe('Card', () => {
 
   it('should render the card component with inverse styles', () => {
     const { getByText } = render(
-      <Card background="red" inverse>
+      <Card background="red" isInverse>
         {TEXT}
       </Card>
     );

@@ -9,6 +9,7 @@ import { NotificationIcon } from '../Icon/types/NotificationIcon';
 import { BlockedIcon } from '../Icon/types/BlockedIcon';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { Button, ButtonVariant } from '../Button';
+import { useGenerateId } from '../utils';
 
 const VARIANT_ICON = {
   info: Info2Icon,
@@ -26,12 +27,12 @@ export enum AlertVariant {
 }
 
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
-  closeLabel?: string;
-  dismissible?: boolean;
+  closeAriaLabel?: string;
   forceDismiss?: () => void;
   isExiting?: boolean;
   isDismissed?: boolean;
-  inverse?: boolean;
+  isDismissible?: boolean;
+  isInverse?: boolean;
   onDismiss?: () => void;
   ref?: any;
   testId?: string;
@@ -75,7 +76,9 @@ const StyledAlert = styled.div<AlertProps>`
 
   &:focus {
     outline: 2px dotted ${props =>
-      props.inverse ? props.theme.colors.neutral08 : props.theme.colors.focus};
+      props.isInverse
+        ? props.theme.colors.neutral08
+        : props.theme.colors.focus};
     }
   }
 
@@ -128,7 +131,7 @@ const IconWrapper = styled.span`
   padding: 0 10px 0 15px;
 `;
 
-const DismissableIconWrapper = styled.span<AlertProps>`
+const DismissibleIconWrapper = styled.span<AlertProps>`
   ${IconWrapperStyles}
 
   svg {
@@ -137,7 +140,7 @@ const DismissableIconWrapper = styled.span<AlertProps>`
   }
 `;
 
-const whitelistProps = ['icon', 'inverse', 'theme', 'variant'];
+const whitelistProps = ['icon', 'isInverse', 'theme', 'variant'];
 
 const shouldForwardProp = prop => {
   return isPropValid(prop) || whitelistProps.includes(prop);
@@ -191,20 +194,22 @@ function renderIcon(variant = 'info') {
 export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
   (
     {
-      closeLabel,
+      closeAriaLabel,
+      id: defaultId,
       testId,
       variant,
       children,
-      dismissible,
       forceDismiss,
       isDismissed,
+      isDismissible,
       isExiting: externalIsExiting,
-      inverse,
+      isInverse,
       onDismiss,
       ...other
     }: AlertProps,
     ref: any
   ) => {
+    const id = useGenerateId(defaultId);
     const [isExiting, setIsExiting] = React.useState(false);
 
     React.useEffect(() => {
@@ -231,28 +236,31 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
     return (
       <StyledAlert
         {...other}
+        id={id}
         data-testid={testId}
         ref={ref}
         tabIndex={-1}
-        inverse={inverse}
+        isInverse={isInverse}
         isExiting={isExiting}
         variant={variant}
         theme={theme}
       >
         {renderIcon(variant)}
         <AlertContents>{children}</AlertContents>
-        {dismissible && (
-          <DismissableIconWrapper variant={variant} theme={theme}>
+        {isDismissible && (
+          <DismissibleIconWrapper variant={variant} theme={theme}>
             <DismissButton
               alertVariant={variant}
-              aria-label={closeLabel ? closeLabel : 'Close this message'}
+              aria-label={
+                closeAriaLabel ? closeAriaLabel : 'Close this message'
+              }
               icon={<CrossIcon />}
-              inverse
+              isInverse
               onClick={forceDismiss || handleDismiss}
               theme={theme}
               variant={ButtonVariant.link}
             />
-          </DismissableIconWrapper>
+          </DismissibleIconWrapper>
         )}
       </StyledAlert>
     );
