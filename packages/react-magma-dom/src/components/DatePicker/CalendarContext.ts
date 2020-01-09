@@ -4,6 +4,8 @@ export interface CalendarContextInterface {
   chosenDate: Date;
   focusedDate: Date;
   dateFocused?: boolean;
+  maxDate?: Date;
+  minDate?: Date;
   showHelperInformation?: boolean;
   buildCalendarMonth: (date: Date, enableOutsideDates?: boolean) => Date[][];
   setShowHelperInformation: (value: boolean) => void;

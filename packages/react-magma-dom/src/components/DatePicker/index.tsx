@@ -3,7 +3,7 @@ import { CalendarContext } from './CalendarContext';
 import { CalendarMonth } from './CalendarMonth';
 import { Announce } from '../Announce';
 import { Input, InputType } from '../Input';
-import { format, isValid } from 'date-fns';
+import { format, isAfter, isBefore, isValid } from 'date-fns';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '../../theme/styled';
 import { CalendarIcon } from '../Icon/types/CalendarIcon';
@@ -19,12 +19,16 @@ import { useGenerateId, Omit } from '../utils';
 interface DatePickerProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value'> {
   defaultDate?: Date;
+  disableFutureDates?: boolean;
+  disablePastDates?: boolean;
   errorMessage?: string;
   helperMessage?: string;
   id?: string;
   inputRef?: React.RefObject<{}>;
   isInverse?: boolean;
   labelText: string;
+  maxDate?: Date;
+  minDate?: Date;
   placeholder?: string;
   required?: boolean;
   testId?: string;
@@ -64,10 +68,11 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
   const [dateFocused, setDateFocused] = React.useState<boolean>(false);
 
   const [focusedDate, setFocusedDate] = React.useState<Date>(
-    props.value || props.defaultDate || new Date()
+    setDateFromConsumer(props.value || props.defaultDate) ||
+      setDefaultFocusedDate()
   );
   const [chosenDate, setChosenDate] = React.useState<Date | null>(
-    props.value || props.defaultDate
+    setDateFromConsumer(props.value || props.defaultDate)
   );
 
   React.useEffect(() => {
@@ -78,10 +83,36 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
 
   React.useEffect(() => {
     if (props.value) {
-      setChosenDate(props.value);
-      setFocusedDate(props.value);
+      setChosenDate(setDateFromConsumer(props.value));
+      setFocusedDate(
+        setDateFromConsumer(props.value) || setDefaultFocusedDate()
+      );
     }
   }, [props.value]);
+
+  function setDateFromConsumer(date: Date): Date {
+    return inDateRange(date, props.minDate, props.maxDate) ? date : null;
+  }
+
+  function setDefaultFocusedDate(): Date {
+    const newDate = new Date();
+    if (inDateRange(newDate, props.minDate, props.maxDate)) {
+      return newDate;
+    } else if (props.maxDate || props.minDate) {
+      return isBefore(props.minDate, newDate) ? props.minDate : props.maxDate;
+    }
+  }
+
+  function inDateRange(
+    date: Date,
+    minDateValue?: Date,
+    maxDateValue?: Date
+  ): boolean {
+    return (
+      (maxDateValue ? isBefore(date, maxDateValue) : true) &&
+      (minDateValue ? isAfter(date, minDateValue) : true)
+    );
+  }
 
   function buildCalendarMonth(date: Date, enableOutsideDates: boolean) {
     return getCalendarMonthWeeks(date, enableOutsideDates);
@@ -210,7 +241,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
     setCalendarOpened(opened => !opened);
   }
 
-  const { placeholder, testId, ...other } = props;
+  const { maxDate, minDate, placeholder, testId, ...other } = props;
 
   const dateFormat = 'MM/DD/YYYY';
   const inputValue = chosenDate ? format(chosenDate, dateFormat) : '';
@@ -223,6 +254,8 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
         chosenDate,
         focusedDate,
         dateFocused,
+        maxDate,
+        minDate,
         showHelperInformation,
         buildCalendarMonth,
         setShowHelperInformation,
