@@ -31,7 +31,8 @@ This is a simple example of Tab Components
 
         const panelStyles = {
           height: '100px',
-          padding: '5px'
+          padding: '5px',
+          backgroundColor: '#fff'
         }
 
         return (
@@ -71,7 +72,8 @@ This is a simple example of Tab Components
 
         const panelStyles = {
           height: '100px',
-          padding: '5px'
+          padding: '5px',
+          backgroundColor: '#fff'
         }
 
         return (
@@ -119,7 +121,8 @@ This is a simple example of Tab Components with custom switching logic
 
           this.panelStyles = {
             height: '100px',
-            padding: '5px'
+            padding: '5px',
+            backgroundColor: '#fff'
           }
 
           this.handleChange = this.handleChange.bind(this)
@@ -136,6 +139,7 @@ This is a simple example of Tab Components with custom switching logic
               <div id="example wrapper" style={this.wrapperStyles}>
                 <TabsContainer>
                     <Tabs
+                      orientation='horizontal'
                       activeIndex={this.state.activeIndex}
                       onChange={this.handleChange}
                     >
@@ -174,7 +178,8 @@ This is an example of Tab Components with disabled Tab
 
         const panelStyles = {
           height: '100px',
-          padding: '5px'
+          padding: '5px',
+          backgroundColor: '#fff'
         }
 
         return (
@@ -215,7 +220,8 @@ This is an example with centered Tabs
 
         const panelStyles = {
           height: '100px',
-          padding: '5px'
+          padding: '5px',
+          backgroundColor: '#fff'
         }
 
         return (
@@ -257,7 +263,8 @@ This is an example with full-width Tabs
 
         const panelStyles = {
           height: '100px',
-          padding: '5px'
+          padding: '5px',
+          backgroundColor: '#fff'
         }
 
         return (
@@ -299,7 +306,8 @@ This is an example of scrollable Tabs with buttons
 
         const panelStyles = {
           height: '100px',
-          padding: '5px'
+          padding: '5px',
+          backgroundColor: '#fff'
         }
 
         return (
@@ -353,7 +361,8 @@ This is an example of scrollable Tabs without buttons
 
         const panelStyles = {
           height: '100px',
-          padding: '5px'
+          padding: '5px',
+          backgroundColor: '#fff'
         }
 
         return (
@@ -401,12 +410,13 @@ This is an example with vertical Tabs
       function TabComponent() {
         const wrapperStyles = {
           backgroundColor: '#e6e6e6',
-          padding: '25px'
+          padding: '25px',
         }
 
         const panelStyles = {
-          height: '100px',
-          padding: '5px'
+          height: '100%',
+          padding: '5px',
+          backgroundColor: '#fff'
         }
 
         return (
@@ -446,11 +456,6 @@ If you would like to use Tab like an route switcher keep "path" prop in Tab equa
         const wrapperStyles = {
           backgroundColor: '#e6e6e6',
           padding: '25px'
-        }
-
-        const panelStyles = {
-          height: '100px',
-          padding: '5px'
         }
 
         const Link = ({children}) => {
@@ -495,7 +500,8 @@ This is an example with icon Tabs
 
         const panelStyles = {
           height: '100px',
-          padding: '5px'
+          padding: '5px',
+          backgroundColor: '#fff'
         }
 
         return (
@@ -532,7 +538,8 @@ This is an example with icon Tabs
 
         const panelStyles = {
           height: '100px',
-          padding: '5px'
+          padding: '5px',
+          backgroundColor: '#fff'
         }
 
         return (
@@ -560,90 +567,23 @@ This is an example with icon Tabs
     )}
 ```
 
-## Color Themes
-
-This is an examples with different themes for Tabs
-
-### Dark
-
-```.jsx
-      function TabComponent() {
-        const wrapperStyles = {
-          backgroundColor: '#e6e6e6',
-          padding: '25px'
-        }
-
-        const panelStyles = {
-          height: '100px',
-          padding: '5px'
-        }
-
-        return (
-          <div id="example wrapper" style={wrapperStyles}>
-            <TabsContainer theme="dark">
-                <Tabs
-                  orientation='horizontal'
-                >
-                 <Tab>First item</Tab>
-                  <Tab>Second item</Tab>
-                  <Tab>Third item</Tab>
-                </Tabs>
-            </TabsContainer>
-          </div>
-    )}
-```
-
-### Blue
-
-```.jsx
-      function TabComponent() {
-        const wrapperStyles = {
-          backgroundColor: '#e6e6e6',
-          padding: '25px'
-        }
-
-        const panelStyles = {
-          height: '100px',
-          padding: '5px'
-        }
-
-        return (
-          <div id="example wrapper" style={wrapperStyles}>
-            <TabsContainer theme="blue">
-                <Tabs
-                  orientation='horizontal'
-                >
-                 <Tab>First item</Tab>
-                  <Tab>Second item</Tab>
-                  <Tab>Third item</Tab>
-                </Tabs>
-            </TabsContainer>
-          </div>
-    )}
-```
-
 ## Inverse
 
-The inverse property is an optional boolean, that reverses the colors so that the buttons can better appear on a dark background with light and blue theme.
+The inverse property is an optional boolean, that reverses the colors so that the tabs can better appear on a dark background.
 The default value is false.
 
-### With blue theme
+### With blue Background
 
 ```.jsx
       function TabComponent() {
         const wrapperStyles = {
-          backgroundColor: '#e6e6e6',
+          backgroundColor: '#0f3765',
           padding: '25px'
-        }
-
-        const panelStyles = {
-          height: '100px',
-          padding: '5px'
         }
 
         return (
           <div id="example wrapper" style={wrapperStyles}>
-            <TabsContainer theme="blue">
+            <TabsContainer>
                 <Tabs
                   orientation='horizontal'
                   inverse={true}
@@ -657,23 +597,18 @@ The default value is false.
     )}
 ```
 
-### With Light Theme
+### With Dark Background
 
 ```.jsx
       function TabComponent() {
         const wrapperStyles = {
-          backgroundColor: '#e6e6e6',
+          backgroundColor: '#3f3f3f',
           padding: '25px'
-        }
-
-        const panelStyles = {
-          height: '100px',
-          padding: '5px'
         }
 
         return (
           <div id="example wrapper" style={wrapperStyles}>
-            <TabsContainer theme="light">
+            <TabsContainer>
                 <Tabs
                   orientation='horizontal'
                   inverse={true}
@@ -691,14 +626,6 @@ The default value is false.
 
 <SimplePropsTable
   props={{
-    theme: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Theme of Tabs component.',
-      defaultValue: 'light',
-    },
     testId: {
       type: {
         name: 'string',
@@ -743,13 +670,6 @@ The default value is false.
       required: false,
       description:
         'The onChange handler for managing state of Tabs component by your custom logic.',
-    },
-    styles: {
-      type: {
-        name: 'object',
-      },
-      required: false,
-      description: 'The custom styles object.',
     },
     centered: {
       type: {
@@ -820,13 +740,6 @@ The default value is false.
       },
       required: false,
       description: 'The activity state of Tab component for your custom logic.',
-    },
-    styles: {
-      type: {
-        name: 'object',
-      },
-      required: false,
-      description: 'The custom styles object.',
     },
     path: {
       type: {
