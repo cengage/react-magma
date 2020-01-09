@@ -1,77 +1,70 @@
 import React from 'react';
-import { defineTheme, useTabsContext } from './TabsContainer';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { magma } from '../../theme/magma';
 import styled from '@emotion/styled';
 
 export type IconOrientation = 'left' | 'top';
 
-const StyledTab = styled.button<{
-  disabled?: boolean;
+interface StyledTabProps {
+  disabled: boolean;
   iconOrientation: IconOrientation;
-  theme: any;
   isActive: boolean;
-  styles: { [key: string]: any };
-}>(
-  ({ styles }) => ({
-    display: 'flex',
-    justifyContent: 'center',
-    minHeight: '50px',
-    minWidth: '150px',
-    fontSize: 'inherit',
-    width: '100%',
-    height: '100%',
-    padding: '10px',
-    border: 0,
-    background: 'transparent',
-    textTransform: 'uppercase',
-    color: 'inherit',
-    ...styles,
-    ['&:focus']: {
-      outlineOffset: '-2px',
-      outline: `${magma.colors.focus} dotted 2px`
-    }
-  }),
-  ({ disabled, theme }) =>
-    disabled
-      ? {
-          position: 'absolute',
-          bottom: 0,
-          top: 0,
-          overflow: 'hidden',
-          pointerEvents: 'none',
-          cursor: 'auto',
-          margin: 'auto',
-          opacity: 0.4
-        }
-      : {
-          cursor: 'pointer',
-          opacity: theme.opacity
-        },
-  ({ iconOrientation }) =>
-    iconOrientation === 'left'
-      ? {}
-      : {
-          flexDirection: 'column',
-          alignItems: 'center'
-        },
-  ({ isActive, theme }) =>
-    isActive
-      ? {
-          color: theme.activeColor,
-          opacity: 1,
-          ['&:active']: {
-            color: theme.activeColor
-          }
-        }
-      : {
-          ['&:hover']: {
-            backgroundColor: theme.bgHoverColor,
-            color: theme.hoverColor,
-            opacity: theme.hoverOpacity
-          }
-        }
-);
+  inverse: boolean;
+}
+
+const StyledTab = styled.button<StyledTabProps>`
+  display: flex;
+  justify-content: center;
+  min-height: 50px;
+  min-width: 150px;
+  font-size: inherit;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border: 0;
+  background: transparent;
+  text-transform: uppercase;
+  color: inherit;
+  &:focus {
+    outline-offset: -2px;
+    outline: ${props =>
+        props.inverse ? magma.colors.neutral08 : magma.colors.focus}
+      dotted 2px;
+  }
+  position: ${props => (props.disabled ? 'absolute' : '')};
+  bottom: ${props => (props.disabled ? 0 : '')};
+  top: ${props => (props.disabled ? 0 : '')};
+  overflow: ${props => (props.disabled ? 'hidden' : '')};
+  pointer-events: ${props => (props.disabled ? 'none' : '')};
+  cursor: ${props => (props.disabled ? 'auto' : 'pointer')};
+  margin: ${props => (props.disabled ? 'auto' : '')};
+  flex-direction: ${props =>
+    props.iconOrientation === 'left' ? '' : 'column'};
+  align-items: ${props => (props.iconOrientation === 'left' ? '' : 'center')};
+  opacity: ${props => (props.isActive ? 1 : props.disabled ? 0.4 : '70%')};
+  color: ${props =>
+    props.isActive && !props.inverse
+      ? magma.colors.primary
+      : props.inverse
+      ? magma.colors.neutral08
+      : magma.colors.neutral01};
+  &:active {
+    color: ${props => (props.isActive ? magma.colors.primary : '')};
+  }
+  &:hover {
+    background-color: ${props =>
+      props.isActive
+        ? ''
+        : props.inverse
+        ? magma.colors.shade02
+        : magma.colors.shade01};
+    color: ${props =>
+      props.inverse
+        ? magma.colors.neutral08
+        : props.isActive && !props.inverse
+        ? magma.colors.primary
+        : magma.colors.neutral01};
+  }
+`;
 
 export interface IStyledCustomTabProps {
   component: React.ReactNode;
@@ -126,15 +119,11 @@ export const StyledCustomTab: React.FunctionComponent<
   return null;
 };
 
-export const StyledIcon = styled.div<{
-  iconOrientation: string;
-}>(({ iconOrientation }) =>
-  iconOrientation && iconOrientation === 'left'
-    ? {
-        marginRight: '10px'
-      }
-    : {}
-);
+const StyledIcon = styled.div<{
+  iconOrientation: IconOrientation;
+}>`
+  margin-right: ${props => (props.iconOrientation === 'left' ? '10px' : '')};
+`;
 
 export interface ITabProps {
   disabled?: boolean;
@@ -146,8 +135,8 @@ export interface ITabProps {
   changeHandler?: (index: number) => void;
   index?: number;
   isActive?: boolean;
-  styles?: { [key: string]: any };
   path?: string;
+  inverse?: boolean;
 }
 
 export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
@@ -163,12 +152,9 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
       changeHandler,
       index,
       isActive,
-      styles,
-      path
+      path,
+      inverse
     } = props;
-
-    const tabsThemeContext = React.useContext(ThemeContext);
-    const { theme } = useTabsContext();
 
     React.useEffect(() => {
       path && path === window.location.pathname && changeHandler(index);
@@ -191,14 +177,13 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
       if (icon) {
         return (
           <StyledTab
+            inverse={inverse}
             ref={ref}
-            theme={defineTheme(tabsThemeContext, theme)}
             disabled={disabled}
             iconOrientation={iconOrientation}
             data-testid={testId}
             aria-label={ariaLabel}
             isActive={isActive}
-            styles={styles}
             aria-selected={isActive}
           >
             <StyledIcon iconOrientation={iconOrientation}>{icon}</StyledIcon>
@@ -208,14 +193,13 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
       } else {
         return (
           <StyledTab
+            inverse={inverse}
             ref={ref}
-            theme={defineTheme(tabsThemeContext, theme)}
             aria-label={ariaLabel}
             iconOrientation={iconOrientation}
             disabled={disabled}
             data-testid={testId}
             isActive={isActive}
-            styles={styles}
             aria-selected={isActive}
           >
             {children}

@@ -2,9 +2,10 @@ import React from 'react';
 import { useTabsContext } from './TabsContainer';
 import styled from '@emotion/styled';
 
-const StyledTabPanel = styled.div({
-  height: '100%'
-});
+const StyledTabPanel = styled.div`
+  width: 100%;
+  flex: 1;
+`;
 
 export interface ITabPanelProps {
   activeIndex?: number;
