@@ -15,11 +15,10 @@ describe('TabPanel', () => {
       numberOfTabs: 5
     };
 
-    const theme = 'dark';
     const testId = 'test-id';
 
     const { getByTestId } = render(
-      <TabsContext.Provider value={{ theme, state, dispatch }}>
+      <TabsContext.Provider value={{ state, dispatch }}>
         <TabPanel testId={testId} index={1}></TabPanel>
       </TabsContext.Provider>
     );
@@ -35,11 +34,10 @@ describe('TabPanel', () => {
       numberOfTabs: 5
     };
 
-    const theme = 'dark';
     const testId = 'test-id';
     const text = 'test';
     const { getByTestId } = render(
-      <TabsContext.Provider value={{ theme, state, dispatch }}>
+      <TabsContext.Provider value={{ state, dispatch }}>
         <TabPanel index={1} testId={testId}>
           {text}
         </TabPanel>
@@ -58,11 +56,10 @@ describe('TabPanel', () => {
       numberOfTabs: 5
     };
 
-    const theme = 'dark';
     const testId = 'test-id';
 
     const { getByTestId } = render(
-      <TabsContext.Provider value={{ theme, state, dispatch }}>
+      <TabsContext.Provider value={{ state, dispatch }}>
         <TabsContext.Consumer>
           {value => (
             <div data-testid={testId}>{value.state.activeTabIndex}</div>
@@ -81,11 +78,10 @@ describe('TabPanel', () => {
       numberOfTabs: 5
     };
 
-    const theme = 'dark';
     const testId = 'test-id';
 
     const { getByTestId } = render(
-      <TabsContext.Provider value={{ theme, state, dispatch }}>
+      <TabsContext.Provider value={{ state, dispatch }}>
         <TabPanel index={1} testId={testId}>
           <div data-testid="child" />
         </TabPanel>
@@ -105,11 +101,10 @@ describe('Test for accessibility', () => {
       numberOfTabs: 5
     };
 
-    const theme = 'dark';
     const testId = 'test-id';
 
     const { container } = render(
-      <TabsContext.Provider value={{ theme, state, dispatch }}>
+      <TabsContext.Provider value={{ state, dispatch }}>
         <TabPanel index={1} testId={testId} />
       </TabsContext.Provider>
     );

@@ -3,6 +3,7 @@ import { Tab } from './Tab';
 import { CheckIcon } from '../Icon/types/CheckIcon';
 import { render } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
+import { magma } from '../../theme/magma';
 
 expect.extend(toHaveNoViolations);
 
@@ -117,6 +118,32 @@ describe('Tab', () => {
 
     expect(container.querySelector('svg')).not.toBeInTheDocument();
   });
+
+  it('should color is defined', () => {
+    const testId = 'test-id';
+
+    const { getByTestId } = render(
+      <Tab testId={testId}></Tab>
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'color',
+      magma.colors.neutral01
+    );
+  })
+
+  it('should change color when inverse prop is defined', () => {
+    const testId = 'test-id';
+
+    const { getByTestId } = render(
+      <Tab testId={testId} inverse={true}></Tab>
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'color',
+      magma.colors.neutral08
+    );
+  })
 
   it('should show icon in left/top position', () => {
     const testId = 'test-id';
