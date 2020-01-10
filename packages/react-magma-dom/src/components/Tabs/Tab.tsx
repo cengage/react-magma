@@ -125,7 +125,8 @@ const StyledIcon = styled.div<{
   margin-right: ${props => (props.iconOrientation === 'left' ? '10px' : '')};
 `;
 
-export interface ITabProps {
+export interface ITabProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
   component?: React.ReactElement<any> | React.ReactElement<any>[];
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
