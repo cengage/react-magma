@@ -7,7 +7,8 @@ const StyledTabPanel = styled.div`
   flex: 1;
 `;
 
-export interface ITabPanelProps {
+export interface ITabPanelProps
+  extends React.ButtonHTMLAttributes<HTMLDivElement> {
   activeIndex?: number;
   index: number;
   testId?: string;
@@ -16,7 +17,7 @@ export interface ITabPanelProps {
 export const TabPanel: React.FunctionComponent<
   ITabPanelProps
 > = React.forwardRef((props, ref: React.Ref<any>) => {
-  const { activeIndex, index, testId, children } = props;
+  const { activeIndex, index, testId, children, ...rest } = props;
 
   const {
     state: { activeTabIndex }
@@ -25,7 +26,7 @@ export const TabPanel: React.FunctionComponent<
 
   if (!activeIndex && activeTabIndex >= 0)
     return activeTabIndex === index ? (
-      <StyledTabPanel ref={ref} data-testid={testId}>
+      <StyledTabPanel ref={ref} data-testid={testId} {...rest}>
         {children}
       </StyledTabPanel>
     ) : null;

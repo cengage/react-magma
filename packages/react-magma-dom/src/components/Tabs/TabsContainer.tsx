@@ -7,7 +7,7 @@ const StyledTabsContainer = styled.div`
   position: relative;
 `;
 
-interface ITabsContainer {
+interface ITabsContainer extends React.ButtonHTMLAttributes<HTMLDivElement> {
   testId?: string;
 }
 
@@ -67,7 +67,7 @@ export const TabsContainer: React.FunctionComponent<
 
   return (
     <TabsContext.Provider value={{ state, dispatch }}>
-      <StyledTabsContainer ref={ref} data-testid={testId}>
+      <StyledTabsContainer ref={ref} data-testid={testId} {...props}>
         {children}
       </StyledTabsContainer>
     </TabsContext.Provider>

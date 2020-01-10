@@ -187,7 +187,11 @@ export interface IHorizontal {
 
 declare type Orientation = IHorizontal | IVertical;
 
-export interface ITabsProps {
+export interface ITabsProps
+  extends Exclude<
+    React.ButtonHTMLAttributes<HTMLDivElement>['onChange'],
+    React.ButtonHTMLAttributes<HTMLDivElement>
+  > {
   activeIndex?: TabsActiveIndex;
   scrollButtons?: boolean;
   ariaLabel?: TabsAriaLabel;
@@ -213,7 +217,8 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
       fullWidth,
       isInverse,
       testId,
-      backgroundColor
+      backgroundColor,
+      ...rest
     } = props;
     const { state, dispatch } = useTabsContext();
     const [previousActiveTab, setPreviousActiveTab] = React.useState(
@@ -345,6 +350,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
         isInverse={isInverse}
         data-testid={testId}
         backgroundColor={backgroundColor}
+        {...rest}
       >
         {scrollButtons && orientation === 'horizontal' ? (
           <StyledButtonPrev

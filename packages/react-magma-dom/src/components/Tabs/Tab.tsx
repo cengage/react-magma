@@ -154,7 +154,8 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
       index,
       isActive,
       path,
-      isInverse
+      isInverse,
+      ...rest
     } = props;
 
     React.useEffect(() => {
@@ -170,6 +171,7 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
           data-testid={testId}
           aria-label={ariaLabel}
           aria-selected={isActive}
+          {...rest}
         >
           {children}
         </StyledCustomTab>
