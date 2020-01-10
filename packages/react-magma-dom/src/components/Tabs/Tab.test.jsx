@@ -136,7 +136,7 @@ describe('Tab', () => {
     const testId = 'test-id';
 
     const { getByTestId } = render(
-      <Tab testId={testId} inverse={true}></Tab>
+      <Tab testId={testId} isInverse={true}></Tab>
     );
 
     expect(getByTestId(testId)).toHaveStyleRule(
