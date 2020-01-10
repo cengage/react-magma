@@ -586,7 +586,7 @@ The default value is false.
             <TabsContainer>
                 <Tabs
                   orientation='horizontal'
-                  inverse={true}
+                  isInverse={true}
                 >
                  <Tab>First item</Tab>
                   <Tab>Second item</Tab>
@@ -611,7 +611,7 @@ The default value is false.
             <TabsContainer>
                 <Tabs
                   orientation='horizontal'
-                  inverse={true}
+                  isInverse={true}
                 >
                  <Tab>First item</Tab>
                   <Tab>Second item</Tab>
@@ -662,6 +662,14 @@ The default value is false.
       },
       required: false,
       description: 'Custom aria label for Tabs component.',
+    },
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the component will have inverse styling to better appear on a dark background.',
+      defaultValue: 'false',
     },
     onChange: {
       type: {
