@@ -19,8 +19,6 @@ import { useGenerateId, Omit } from '../utils';
 interface DatePickerProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value'> {
   defaultDate?: Date;
-  disableFutureDates?: boolean;
-  disablePastDates?: boolean;
   errorMessage?: string;
   helperMessage?: string;
   id?: string;

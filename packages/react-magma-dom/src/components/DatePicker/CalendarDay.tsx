@@ -67,11 +67,9 @@ const CalendarDayInner = styled.button<{
     width: 200%;
   }
 
-  &:not(:disabled) {
-    &:hover {
-      &:before {
-        opacity: ${props => (props.isDisabled ? 0.1 : 1)};
-      }
+  &:hover {
+    &:before {
+      opacity: ${props => (props.isDisabled ? 0 : 0.1)};
     }
   }
 `;
@@ -149,7 +147,10 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
       <CalendarDayCell onFocus={onCalendarDayFocus} theme={theme}>
         <CalendarDayInner
           aria-disabled={isDisabled}
-          aria-label={format(day, 'MMMM Do YYYY')}
+          aria-label={`${isDisabled ? 'Not Available. ' : ''}${format(
+            day,
+            'MMMM Do YYYY'
+          )}`}
           isDisabled={isDisabled}
           isChosen={sameDateAsChosenDate}
           isFocused={dayFocusable && sameDateAsFocusedDate}
