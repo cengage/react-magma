@@ -72,11 +72,11 @@ const BottomLineStyled = styled.div<{
   activeTabIndex: number;
   orientation: TabsOrientationVertical | TabsOrientationHorizontal;
   borderPosition: TabsBorderPositionVertical | TabsBorderPositionHorizontal;
-  inverse: boolean;
+  isInverse: boolean;
 }>`
   position: absolute;
   background-color: ${props =>
-    props.inverse ? magma.colors.pop02 : magma.colors.primary};
+    props.isInverse ? magma.colors.pop02 : magma.colors.primary};
   transition: ${props =>
       getTransitionSpeed(props.previousActiveTab, props.activeTabIndex)}s
     ease-in-out;
@@ -126,7 +126,7 @@ const StyledTabsWrapper = styled.div<{
 const StyledButtonNext = styled.div<{
   buttonVisible: boolean;
 }>`
-  display: flex;
+  display: flex,
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -149,7 +149,7 @@ const StyledButtonPrev = styled.div<{
 
 const StyledContainer = styled.div<{
   orientation: TabsOrientationVertical | TabsOrientationHorizontal;
-  inverse: boolean;
+  isInverse: boolean;
   backgroundColor: string;
 }>`
   display: flex;
@@ -195,7 +195,7 @@ export interface ITabsProps {
   centered?: boolean;
   fullWidth?: boolean;
   testId?: string;
-  inverse?: boolean;
+  isInverse?: boolean;
   backgroundColor: string;
 }
 
@@ -211,7 +211,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
       onChange,
       centered,
       fullWidth,
-      inverse,
+      isInverse,
       testId,
       backgroundColor
     } = props;
@@ -342,7 +342,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
       <StyledContainer
         ref={ref}
         orientation={orientation || 'horizontal'}
-        inverse={inverse}
+        isInverse={isInverse}
         data-testid={testId}
         backgroundColor={backgroundColor}
       >
@@ -354,7 +354,9 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
           >
             <AngleLeftIcon
               size={16}
-              color={inverse ? magma.colors.neutral08 : magma.colors.neutral02}
+              color={
+                isInverse ? magma.colors.neutral08 : magma.colors.neutral02
+              }
             />
           </StyledButtonPrev>
         ) : null}
@@ -382,7 +384,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
                   isActive,
                   changeHandler,
                   index,
-                  inverse
+                  isInverse
                 });
 
                 return (
@@ -410,7 +412,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
                 orientation={orientation}
                 borderPosition={borderPosition}
                 data-testid="bottom-line"
-                inverse={inverse}
+                isInverse={isInverse}
               />
             </StyledTabs>
           </StyledTabsLayer>
@@ -424,7 +426,9 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
           >
             <AngleRightIcon
               size={16}
-              color={inverse ? magma.colors.neutral08 : magma.colors.neutral02}
+              color={
+                isInverse ? magma.colors.neutral08 : magma.colors.neutral02
+              }
             />
           </StyledButtonNext>
         ) : null}

@@ -8,7 +8,7 @@ interface StyledTabProps {
   disabled: boolean;
   iconOrientation: IconOrientation;
   isActive: boolean;
-  inverse: boolean;
+  isInverse: boolean;
 }
 
 const StyledTab = styled.button<StyledTabProps>`
@@ -27,7 +27,7 @@ const StyledTab = styled.button<StyledTabProps>`
   &:focus {
     outline-offset: -2px;
     outline: ${props =>
-        props.inverse ? magma.colors.neutral08 : magma.colors.focus}
+        props.isInverse ? magma.colors.neutral08 : magma.colors.focus}
       dotted 2px;
   }
   position: ${props => (props.disabled ? 'absolute' : '')};
@@ -42,9 +42,9 @@ const StyledTab = styled.button<StyledTabProps>`
   align-items: ${props => (props.iconOrientation === 'left' ? '' : 'center')};
   opacity: ${props => (props.isActive ? 1 : props.disabled ? 0.4 : '70%')};
   color: ${props =>
-    props.isActive && !props.inverse
+    props.isActive && !props.isInverse
       ? magma.colors.primary
-      : props.inverse
+      : props.isInverse
       ? magma.colors.neutral08
       : magma.colors.neutral01};
   &:active {
@@ -54,13 +54,13 @@ const StyledTab = styled.button<StyledTabProps>`
     background-color: ${props =>
       props.isActive
         ? ''
-        : props.inverse
+        : props.isInverse
         ? magma.colors.shade02
         : magma.colors.shade01};
     color: ${props =>
-      props.inverse
+      props.isInverse
         ? magma.colors.neutral08
-        : props.isActive && !props.inverse
+        : props.isActive && !props.isInverse
         ? magma.colors.primary
         : magma.colors.neutral01};
   }
@@ -136,7 +136,7 @@ export interface ITabProps {
   index?: number;
   isActive?: boolean;
   path?: string;
-  inverse?: boolean;
+  isInverse?: boolean;
 }
 
 export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
@@ -153,7 +153,7 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
       index,
       isActive,
       path,
-      inverse
+      isInverse
     } = props;
 
     React.useEffect(() => {
@@ -177,7 +177,7 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
       if (icon) {
         return (
           <StyledTab
-            inverse={inverse}
+            isInverse={isInverse}
             ref={ref}
             disabled={disabled}
             iconOrientation={iconOrientation}
@@ -193,7 +193,7 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
       } else {
         return (
           <StyledTab
-            inverse={inverse}
+            isInverse={isInverse}
             ref={ref}
             aria-label={ariaLabel}
             iconOrientation={iconOrientation}
