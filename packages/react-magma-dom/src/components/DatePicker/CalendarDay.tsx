@@ -25,7 +25,7 @@ const CalendarDayCell = styled.td`
 const CalendarDayInner = styled.button<{
   isChosen?: boolean;
   isFocused?: boolean;
-  disabled?: boolean;
+  isDisabled?: boolean;
 }>`
   align-items: center;
   background: ${props =>
@@ -37,10 +37,10 @@ const CalendarDayInner = styled.button<{
   color: ${props =>
     props.isChosen
       ? props.theme.colors.neutral08
-      : props.disabled
+      : props.isDisabled
       ? props.theme.colors.disabledText
       : props.theme.colors.neutral01};
-  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+  cursor: ${props => (props.isDisabled ? 'not-allowed' : 'pointer')};
   display: flex;
   height: 35px;
   justify-content: center;
@@ -51,27 +51,27 @@ const CalendarDayInner = styled.button<{
   transition: background 0.5s ease-in-out 0s;
   width: 35px;
 
-  &:not(:disabled) {
-    &:before {
-      background: ${props => props.theme.colors.neutral01};
-      content: '';
-      height: 200%;
-      left: 0;
-      opacity: 0;
-      position: absolute;
-      top: -50%;
-      transition: 0.2s;
-      width: 200%;
-    }
+  &:focus {
+    outline: 2px dotted ${props => props.theme.colors.focus};
+  }
 
+  &:before {
+    background: ${props => props.theme.colors.neutral01};
+    content: '';
+    height: 200%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: -50%;
+    transition: 0.2s;
+    width: 200%;
+  }
+
+  &:not(:disabled) {
     &:hover {
       &:before {
-        opacity: 0.1;
+        opacity: ${props => (props.isDisabled ? 0.1 : 1)};
       }
-    }
-
-    &:focus {
-      outline: 2px dotted ${props => props.theme.colors.focus};
     }
   }
 `;
@@ -108,6 +108,7 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
     onDateChange
   } = React.useContext(CalendarContext);
   const [focused, setFocused] = React.useState<boolean>(false);
+  const { day, dayFocusable } = props;
 
   React.useEffect(() => {
     if (dateFocused && isSameDay(props.day, focusedDate)) {
@@ -124,11 +125,19 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
     setDateFocused(true);
   }
 
+  function onDayClick(event: React.SyntheticEvent) {
+    if (isDisabled) {
+      event.preventDefault();
+      return;
+    }
+
+    onDateChange(day, event);
+  }
+
   const isDisabled: boolean =
     (maxDate ? isAfter(props.day, maxDate) : false) ||
     (minDate ? isBefore(props.day, minDate) : false);
 
-  const { day, dayFocusable } = props;
   const theme = React.useContext(ThemeContext);
 
   if (day) {
@@ -139,13 +148,12 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
     return (
       <CalendarDayCell onFocus={onCalendarDayFocus} theme={theme}>
         <CalendarDayInner
+          aria-disabled={isDisabled}
           aria-label={format(day, 'MMMM Do YYYY')}
-          disabled={isDisabled}
+          isDisabled={isDisabled}
           isChosen={sameDateAsChosenDate}
           isFocused={dayFocusable && sameDateAsFocusedDate}
-          onClick={e => {
-            onDateChange(day, e);
-          }}
+          onClick={onDayClick}
           ref={dayRef}
           tabIndex={sameDateAsFocusedDate ? 0 : -1}
           type="button"

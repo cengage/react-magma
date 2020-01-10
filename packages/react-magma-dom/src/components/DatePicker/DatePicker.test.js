@@ -111,8 +111,8 @@ describe('Date Picker', () => {
 
     fireEvent.focus(container.querySelector('table'));
 
-    expect(getByText('1')).toHaveAttribute('disabled');
-    expect(getByText('12')).toHaveAttribute('disabled');
+    expect(getByText('1')).toHaveAttribute('aria-disabled');
+    expect(getByText('12')).toHaveAttribute('aria-disabled');
   });
 
   it('should render custom placeholder text', () => {
