@@ -1,0 +1,77 @@
+---
+title: 'Time Pickers'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { TimePicker, Heading, Button } from 'react-magma-dom'
+import DocsHeading from '../../components/docs-heading'
+import { SimplePropsTable } from '../../components/props-table'
+
+<DocsHeading>TimePicker</DocsHeading>
+
+## Basic Usage
+
+```.jsx
+  <TimePicker labelText="Time Due" />
+```
+
+## Error Message
+
+If an input has an `errorMessage`, the input will be styled to highlight it's error state and the error message will appear below the input field.
+If an error message is present, it will replace the helper text.
+
+```.jsx
+  <TimePicker errorMessage="Invalid time" labelText="Time Due" />
+```
+
+## Helper Message
+
+The `helperMessage` appears underneath the input field. It will not appear if an error message is present.
+
+```.jsx
+  <TimePicker  helperMessage="Helper text" labelText="Time Due" />
+```
+
+## TimePicker Props
+
+<SimplePropsTable
+  props={{
+    errorMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Text of the error message.  If a value is provided, the error message will be styled as an error state.',
+      defaultValue: '',
+    },
+    helperMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text of the helper message.',
+      defaultValue: '',
+    },
+    labelText: {
+      type: {
+        name: 'string',
+      },
+      required: true,
+      description: 'The label text of the component',
+    },
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the focus state of the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout {...props} components={{ TimePicker }} />
+)
