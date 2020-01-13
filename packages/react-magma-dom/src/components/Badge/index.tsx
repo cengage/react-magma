@@ -80,6 +80,10 @@ export function buildBadgeActiveBackground(props) {
 
 export const baseBadgeStyles = props => css`
   background: ${buildBadgeBackground(props)};
+  border: 1px solid;
+  border-color: ${props.color === BadgeColor.light
+    ? props.theme.colors.neutral06
+    : 'transparent'};
   border-radius: ${props.variant === BadgeVariant.counter ? '10px' : '3px'};
   color: ${props.color === 'light'
     ? props.theme.colors.neutral01
@@ -87,11 +91,11 @@ export const baseBadgeStyles = props => css`
   display: inline-block;
   font-weight: bold;
   font-size: ${props.variant === BadgeVariant.counter ? '14px' : '12px'};
-  line-height: ${props.variant === BadgeVariant.counter ? '20px' : '23px'};
+  line-height: ${props.variant === BadgeVariant.counter ? '18px' : '21px'};
   margin: ${props.variant === BadgeVariant.counter
     ? '0 0 0 10px'
     : '0 10px 0 0'};
-  padding: 0 6px;
+  padding: 0 5px;
 `;
 
 const StyledSpan = styled.span<BadgeProps>`
@@ -100,7 +104,6 @@ const StyledSpan = styled.span<BadgeProps>`
 
 const StyledButton = styled.button<BadgeProps>`
   ${baseBadgeStyles};
-  border: 0;
   cursor: pointer;
   transition: background 0.35s;
 
