@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.15](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.14...v2.0.0-beta.15) (2020-01-13)
+
+
+### Features
+
+* **checkbox:** separate indeterminate checkbox ([fea93c1](http://stash.corp.web:7999/FRONT/react-magma/commits/fea93c1))
+
+
+### BREAKING CHANGES
+
+* **checkbox:** removed indeterminiate prop from checkbox, put in separate component
+
+MAGMA-196
+
+
+
+
+
 # [2.0.0-beta.14](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.13...v2.0.0-beta.14) (2020-01-13)
 
 **Note:** Version bump only for package react-magma-docs
