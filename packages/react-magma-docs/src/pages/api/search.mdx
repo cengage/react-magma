@@ -42,15 +42,33 @@ The `inputSize` prop can be used to control the input size. Options are `medium`
     </>
 ```
 
-## IsLoading
+## Loading
 
 The `isLoading` boolean prop will determine if a loading animation is shown. The loading animation will replace the search icon button.
 
 ```.jsx
-    <>
-      <Search onSearch={(term) => {}} isLoading />
-      <Search inputSize='large' onSearch={() => {term}} isLoading />
-    </>
+  (props) => {
+    const [searchValue, setSearchValue] = React.useState('');
+    const [isLoading, setIsLoading] = React.useState(false);
+
+    function handleSearch(term) {
+      setIsLoading(true);
+      setTimeout(() => {
+        setSearchValue(`Search value set to ${term}`);
+        setIsLoading(false);
+      }, 2500)
+    }
+
+    return (<div>
+      <p><strong>Search Value: </strong> <span id="changedValue">{searchValue}</span></p>
+      <Search
+        labelText='Test Value'
+        isLoading={isLoading}
+        value=''
+        onChange={(event) => setSearchValue(event.target.value)}
+        onSearch={handleSearch} />
+    </div>)
+  }
 ```
 
 ## Inverse
@@ -142,6 +160,14 @@ The `helperMessage` appears underneath the search field. It will not appear if a
       required: false,
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    isLoading: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the spinner icon will replace the search icon',
       defaultValue: 'false',
     },
     labelText: {
