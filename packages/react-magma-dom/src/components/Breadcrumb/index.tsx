@@ -19,6 +19,7 @@ const StyledNav = styled.nav<{ breakpoint?: string }>`
 const StyledList = styled.ol<BreadcrumbProps>`
   display: flex;
   flex-wrap: wrap;
+  font-size: 13px;
   list-style: none;
   margin: 0;
   padding: 0;
