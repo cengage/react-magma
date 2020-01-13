@@ -52,7 +52,7 @@ export const IndeterminateCheckbox: React.FunctionComponent<
         ? false
         : Boolean(props.status === 'checked')
     );
-  }, [props.status === 'checked']);
+  }, [props.status]);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { checked: targetChecked } = event.target;
