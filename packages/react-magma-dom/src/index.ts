@@ -19,6 +19,7 @@ export { CardBody } from './components/Card/CardBody';
 export { CardHeading } from './components/Card/CardHeading';
 export { FormGroup } from './components/FormGroup';
 export { Heading } from './components/Heading';
+export { IndeterminateCheckbox } from './components/IndeterminateCheckbox';
 export {
   Input,
   InputSize,

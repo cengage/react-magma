@@ -3,7 +3,13 @@ title: 'Checkboxes'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { Checkbox, FormGroup, magma } from 'react-magma-dom'
+import {
+  Button,
+  Checkbox,
+  FormGroup,
+  IndeterminateCheckbox,
+  magma,
+} from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
@@ -61,35 +67,71 @@ By default, the checkboxes use the theme's primary color. But any other color ma
     </FormGroup>
 ```
 
+## Indeterminate
+
+The `IndterminateCheckbox` component is similar to the `Checkbox` component, except that instead of accepting a boolean `checked` value,
+it takes the `status` prop, with three possible statuses: `indeterminate`, `checked` and `unchecked`. The default status is `unchecked`.
+
+```.jsx
+<>
+    <IndeterminateCheckbox
+        labelText='Indeterminate indeterminate'
+        status='indeterminate' />
+    <IndeterminateCheckbox
+        labelText='Indeterminate unchecked'
+        status='unchecked' />
+    <IndeterminateCheckbox
+        labelText='Indeterminate checked'
+        status='checked' />
+  </>
+```
+
+### Updating Indeterminate Status
+
+The `indeterminate` status cannot be changed by direct user action, it can only be changed by updating the prop.
+
+```.jsx
+() => {
+  const [status, setStatus] = React.useState('indeterminate');
+
+  return (<>
+    <IndeterminateCheckbox
+        color={magma.colors.success01}
+        labelText='Indeterminate checkbox'
+        status={status}
+        onChange={() => {
+          if (status === 'indeterminate') {
+            setStatus('checked')
+          }
+        }} />
+        <br />
+        <Button color="secondary" onClick={()=>{setStatus('indeterminate')}} >Reset to Indeterminate</Button>
+  </>)
+}
+```
+
 ## Disabled
 
 Adding the optional boolean prop `disabled` will apply disabled styles and add the disabled attribute to the underlying HTML element.
 
 ```.jsx
-    <Checkbox
-        disabled
-        labelText='Disabled checkbox' />
-```
-
-## Indeterminate
-
-In addition to being checked or unchecked, checkboxes also support an indeterminate or mixed state, but using the optional `indeterminate` boolean prop.
-
-```.jsx
-() => {
-  const [indeterminate, setIndeterminate] = React.useState(true);
-
-  return (<>
-    <Checkbox
-        indeterminate={indeterminate}
-        labelText='Indeterminate checkbox'
-        onChange={() => {
-          if (indeterminate) {
-            setIndeterminate(false)
-          }
-        }} />
-  </>)
-}
+    <>
+      <Checkbox
+          color={magma.colors.success01}
+          disabled
+          labelText='Disabled checkbox' />
+      <Checkbox
+          checked
+          color={magma.colors.success01}
+          disabled
+          labelText='Disabled checked checkbox' />
+        <IndeterminateCheckbox
+          color={magma.colors.success01}
+          disabled
+          labelText='Disabled indeterminate checkbox'
+          status='indeterminate'
+       />
+    </>
 ```
 
 ## Inverse
@@ -99,9 +141,12 @@ In addition to being checked or unchecked, checkboxes also support an indetermin
 ```.jsx
   <FormGroup containerStyle={{ background : '#00263E',color: '#FFFFFF', padding: '10px' }} labelText="Choose Inverse Options">
     <Checkbox
-        checked
         isInverse
       labelText='Inverse' />
+    <Checkbox
+        checked
+        isInverse
+      labelText='Inverse checked' />
     <Checkbox
         checked
         color={magma.colors.success01}
@@ -117,14 +162,24 @@ In addition to being checked or unchecked, checkboxes also support an indetermin
         color={magma.colors.pop02}
         isInverse
         labelText='Pop inverse' />
+    <IndeterminateCheckbox
+          status='indeterminate'
+          isInverse
+          labelText='Indeterminate inverse' />
       <Checkbox
           disabled
           isInverse
           labelText='Disabled inverse' />
       <Checkbox
-          indeterminate
+          checked
+          disabled
           isInverse
-          labelText='Indeterminate checkbox' />
+          labelText='Disabled checked inverse' />
+      <IndeterminateCheckbox
+          disabled
+          isInverse
+          labelText='Disabled indeterminate inverse'
+          status='indeterminate' />
     </FormGroup>
 ```
 
@@ -232,15 +287,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description: 'If true, element is disabled',
       defaultValue: 'false',
     },
-    indeterminate: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, element is will show indeterminate (or mixed) state',
-      defaultValue: 'false',
-    },
     inputStyle: {
       type: {
         name: 'React.CSSProperties',
@@ -307,6 +353,32 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
   }}
 />
 
+## Indeterminate Checkbox Props
+
+**Any other props supplied will be provided to the `Checkbox` Component, except for the `checked` prop.**
+
+<SimplePropsTable
+  props={{
+    status: {
+      type: {
+        name: 'enum',
+        options: [
+          'IndeterminateCheckboxStatus.checked',
+          'IndeterminateCheckboxStatus.indeterminate',
+          'IndeterminateCheckboxStatus.unchecked',
+        ],
+      },
+      required: false,
+      description:
+        'Status of the indeterminate, three-state checkbox, which includes and indeterminate (e.g. mixed) option.',
+      defaultValue: 'unchecked',
+    },
+  }}
+/>
+
 export default props => (
-  <ScopeableLayout {...props} components={{ Checkbox, FormGroup, magma }} />
+  <ScopeableLayout
+    {...props}
+    components={{ Button, Checkbox, FormGroup, IndeterminateCheckbox, magma }}
+  />
 )
