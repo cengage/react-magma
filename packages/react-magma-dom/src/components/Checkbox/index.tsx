@@ -39,7 +39,7 @@ export function buildCheckboxBackground(props) {
   if (props.isInverse) {
     if (
       (props.checked && !props.disabled) ||
-      (props.indeterminate && !props.disabled)
+      (props.isIndeterminate && !props.disabled)
     ) {
       return props.theme.colors.neutral08;
     }
@@ -71,7 +71,7 @@ export const StyledFakeInput = styled.span<{
   checked?: boolean;
   color: string;
   disabled?: boolean;
-  indeterminate?: boolean;
+  isIndeterminate?: boolean;
   isInverse?: boolean;
 }>`
   ${DisplayInputStyles};

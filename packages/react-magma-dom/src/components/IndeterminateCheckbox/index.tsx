@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
 import {
-  Checkbox,
   CheckboxProps,
   HiddenLabelText,
   HiddenInput,
   StyledFakeInput
 } from '../Checkbox';
+import { CheckIcon } from '../Icon/types/CheckIcon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';
@@ -37,7 +37,7 @@ const IndeterminateIcon = styled.span<{ color?: string; disabled?: boolean }>`
 
 export const IndeterminateCheckbox: React.FunctionComponent<
   IndeterminateCheckboxProps
-> = React.forwardRef((props: IndeterminateCheckboxProps) => {
+> = React.forwardRef((props: IndeterminateCheckboxProps, ref: any) => {
   const [isChecked, updateIsChecked] = React.useState(
     props.status === 'indeterminate'
       ? false
@@ -45,7 +45,6 @@ export const IndeterminateCheckbox: React.FunctionComponent<
   );
 
   const id = useGenerateId(props.id);
-  const ref = React.useRef<HTMLInputElement>();
 
   React.useEffect(() => {
     updateIsChecked(
@@ -57,7 +56,6 @@ export const IndeterminateCheckbox: React.FunctionComponent<
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { checked: targetChecked } = event.target;
-    const isFocused = ref.current === document.activeElement ? true : false;
 
     props.onChange &&
       typeof props.onChange === 'function' &&
@@ -65,12 +63,6 @@ export const IndeterminateCheckbox: React.FunctionComponent<
 
     if (props.status !== 'indeterminate') {
       updateIsChecked(targetChecked);
-    }
-
-    if (isFocused) {
-      setTimeout(() => {
-        ref.current.focus();
-      }, 0);
     }
   }
 
@@ -90,33 +82,37 @@ export const IndeterminateCheckbox: React.FunctionComponent<
     ...other
   } = props;
 
-  return status === 'indeterminate' ? (
+  return (
     <StyledContainer style={containerStyle}>
       <HiddenInput
         {...other}
-        checked={false}
-        id={id}
+        checked={isChecked}
         data-testid={testId}
         disabled={disabled}
+        id={id}
         ref={ref}
         type="checkbox"
         onChange={handleChange}
       />
       <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
         <StyledFakeInput
+          checked={isChecked}
           color={color ? color : ''}
           disabled={disabled}
-          indeterminate
+          isIndeterminate={status === 'indeterminate'}
           isInverse={isInverse}
           style={inputStyle}
           theme={theme}
         >
-          <IndeterminateIcon
-            data-testid="indeterminateIcon"
-            color={color ? color : ''}
-            disabled={disabled}
-            theme={theme}
-          />
+          {status === 'indeterminate' && (
+            <IndeterminateIcon
+              data-testid="indeterminateIcon"
+              color={color ? color : ''}
+              disabled={disabled}
+              theme={theme}
+            />
+          )}
+          {isChecked && <CheckIcon size={12} />}
         </StyledFakeInput>
         {isTextVisuallyHidden ? (
           <HiddenLabelText>{labelText}</HiddenLabelText>
@@ -125,19 +121,5 @@ export const IndeterminateCheckbox: React.FunctionComponent<
         )}
       </StyledLabel>
     </StyledContainer>
-  ) : (
-    <Checkbox
-      {...other}
-      checked={isChecked}
-      color={color ? color : ''}
-      disabled={disabled}
-      labelText={labelText}
-      id={id}
-      isInverse={isInverse}
-      onChange={handleChange}
-      ref={ref}
-      style={inputStyle}
-      testId={testId}
-    />
   );
 });
