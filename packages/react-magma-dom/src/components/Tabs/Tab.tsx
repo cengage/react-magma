@@ -14,8 +14,6 @@ interface StyledTabProps {
 const StyledTab = styled.button<StyledTabProps>`
   display: flex;
   justify-content: center;
-  min-height: 50px;
-  min-width: 150px;
   font-size: inherit;
   width: 100%;
   height: 100%;

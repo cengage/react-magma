@@ -41,9 +41,10 @@ const StyledTabsChild = styled.div<{
   flex-basis: ${props => 100 / props.length}%;
   height: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
   width: ${props =>
-    props.orientation === 'vertical' ? '100%' : `100 / ${props.length}%`};
-  min-height: ${props => (props.orientation === 'vertical' ? '50px' : '')};
-  min-width: ${props => (props.orientation === 'horizontal' ? '150px' : '')};
+    props.orientation === 'vertical' ? '100%' : `${100 / props.length}%`};
+  max-width: 264px;
+  min-height: 50px;
+  min-width: 150px;
   color: ${magma.colors.neutral01};
 `;
 
@@ -95,7 +96,7 @@ const BottomLineStyled = styled.div<{
     props.orientation === 'vertical' ? `${100 / props.length}%` : '4px'};
   min-height: ${props =>
     props.orientation === 'vertical' ? `${100 / props.length}%` : ''};
-  min-width: ${props => (props.orientation === 'vertical' ? '' : '85px')};
+  min-width: ${props => (props.orientation === 'vertical' ? '4px' : '150px')};
   width: ${props =>
     props.orientation === 'vertical' ? '4px' : `${100 / props.length}%`};
   bottom: ${props =>
@@ -126,7 +127,7 @@ const StyledTabsWrapper = styled.div<{
 const StyledButtonNext = styled.div<{
   buttonVisible: boolean;
 }>`
-  display: flex,
+  display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
