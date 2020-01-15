@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.16](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.15...v2.0.0-beta.16) (2020-01-15)
+
+
+### Features
+
+* **date-picker:** adding in allowable dates ([6565fe8](http://stash.corp.web:7999/FRONT/react-magma/commits/6565fe8))
+
+
+
+
+
 # [2.0.0-beta.15](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.14...v2.0.0-beta.15) (2020-01-13)
 
 
