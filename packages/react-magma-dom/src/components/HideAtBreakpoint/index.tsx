@@ -21,8 +21,6 @@ const Container = styled.div<HideAtBreakpointProps>`
 
 export const HideAtBreakpoint: React.FunctionComponent<
   HideAtBreakpointProps
-> = React.forwardRef(
-  ({ children, ...other }: HideAtBreakpointProps, ref: any) => {
-    return <Container {...other}>{children}</Container>;
-  }
-);
+> = ({ children, ...other }: HideAtBreakpointProps) => {
+  return <Container {...other}>{children}</Container>;
+};

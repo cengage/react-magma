@@ -3,10 +3,9 @@ import { axe } from 'jest-axe';
 import { HideAtBreakpoint } from '.';
 import { render } from '@testing-library/react';
 
-const TEXT = 'Test Text';
-
 describe('Hide at Breakpoint', () => {
   it('should render the HideAtBreakpoint component', () => {
+    const TEXT = 'Test Text';
     const { container, getByText } = render(
       <HideAtBreakpoint>{TEXT}</HideAtBreakpoint>
     );
@@ -16,7 +15,7 @@ describe('Hide at Breakpoint', () => {
   });
 
   it('Does not violate accessibility standards', () => {
-    const { container } = render(<HideAtBreakpoint>{TEXT}</HideAtBreakpoint>);
+    const { container } = render(<HideAtBreakpoint>hello</HideAtBreakpoint>);
 
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();

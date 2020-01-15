@@ -53,10 +53,10 @@ IsInverse is an optional boolean prop, that may be used when the breadcrumb menu
 
 ## Min-Width
 
-Link to `HideAtBreakPoint` component.
+The `minWidthToShow` prop can be used to suppress the navigation menu when it is under the breakpoint at the specified number of pixels.
 
 ```.jsx
-        <Breadcrumb>
+        <Breadcrumb minWidthToShow={900}>
             <BreadcrumbItem to="#">
                 Home
             </BreadcrumbItem>
