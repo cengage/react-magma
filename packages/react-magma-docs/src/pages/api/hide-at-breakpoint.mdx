@@ -3,7 +3,7 @@ title: 'Hide at Breakpoint'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { HideAtBreakpoint } from 'react-magma-dom'
+import { magma, Card, CardBody, HideAtBreakpoint } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 
 # Hide at Breakpoint
@@ -16,13 +16,19 @@ It takes two props, `minWidth` and `maxWidth` for the minimum and maximum widths
 ```.jsx
     <>
      <HideAtBreakpoint maxWidth={600}>
-            <p>This text will be visible when the browser width is 600px or wider.</p>
+            <Card isInverse background={magma.colors.foundation02}>
+              <CardBody><strong>Max-Width:</strong> This text will be visible when the browser width is greater than 600px.</CardBody>
+            </Card><br/>
         </HideAtBreakpoint>
-        <HideAtBreakpoint minWidth={600}>
-             <p>This text will be visible when the browser width is 600px or smaller.</p>
+        <HideAtBreakpoint minWidth={600} background={magma.colors.pop01}>
+             <Card isInverse background={magma.colors.pop01}>
+              <CardBody><strong>Min-Width:</strong> This text will be visible when the browser width is smaller than 600px.</CardBody>
+        </Card><br/>
         </HideAtBreakpoint>
         <HideAtBreakpoint>
-             <p>This text will always be visible.</p>
+             <Card isInverse background={magma.colors.success01}>
+              <CardBody>This text will always be visible.</CardBody>
+             </Card>
         </HideAtBreakpoint>
     </>
 ```
@@ -58,5 +64,8 @@ It takes two props, `minWidth` and `maxWidth` for the minimum and maximum widths
 />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ HideAtBreakpoint }} />
+  <ScopeableLayout
+    {...props}
+    components={{ magma, Card, CardBody, HideAtBreakpoint }}
+  />
 )
