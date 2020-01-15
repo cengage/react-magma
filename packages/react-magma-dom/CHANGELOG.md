@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.17](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.16...v2.0.0-beta.17) (2020-01-15)
+
+
+### Features
+
+* **hide at breakponit:** new component to hide at specified breakpoinit ([786eeec](http://stash.corp.web:7999/FRONT/react-magma/commits/786eeec))
+* **hideatbreakpoint:** remove ref, update tests ([7a932a3](http://stash.corp.web:7999/FRONT/react-magma/commits/7a932a3))
+
+
+
+
+
 # [2.0.0-beta.16](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.15...v2.0.0-beta.16) (2020-01-15)
 
 
