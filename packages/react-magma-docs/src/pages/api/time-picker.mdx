@@ -15,6 +15,14 @@ import { SimplePropsTable } from '../../components/props-table'
   <TimePicker labelText="Time Due" />
 ```
 
+## Value
+
+There are multiple formats you can send in through the `value` prop. You can do `##:## AM/PM` and `##:##` (which will default to 'AM' when the hour is less than 13 and 'PM' when between the hours of 13 and 23).
+
+```.jsx
+  <TimePicker value='01:15 PM' labelText='Value Set Time' />
+```
+
 ## Error Message
 
 If an input has an `errorMessage`, the input will be styled to highlight it's error state and the error message will appear below the input field.

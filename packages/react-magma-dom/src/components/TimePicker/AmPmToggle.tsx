@@ -2,6 +2,12 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 
+interface AmPmToggleProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: 'AM' | 'PM';
+  ref: any;
+}
+
 const StyledAmPmToggle = styled.button`
   background: none;
   border: 0;
@@ -16,9 +22,15 @@ const StyledAmPmToggle = styled.button`
   }
 `;
 
-export const AmPmToggle: React.FunctionComponent = props => {
-  const { children } = props;
+export const AmPmToggle: React.FunctionComponent<
+  AmPmToggleProps
+> = React.forwardRef((props: AmPmToggleProps, ref: any) => {
+  const { children, ...other } = props;
   const theme = React.useContext(ThemeContext);
 
-  return <StyledAmPmToggle theme={theme}>{children}</StyledAmPmToggle>;
-};
+  return (
+    <StyledAmPmToggle {...other} ref={ref} theme={theme}>
+      {children}
+    </StyledAmPmToggle>
+  );
+});
