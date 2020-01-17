@@ -12,7 +12,7 @@ export interface TimePickerProps {
   isInverse?: boolean;
   labelText: string;
   helperMessage?: string;
-  value: string;
+  value?: string;
   onChange?: (value: string) => void;
 }
 
@@ -32,6 +32,7 @@ const TimePickerContainer = styled.div<{ isInverse?: boolean }>`
 `;
 
 const InputsContainer = styled.div`
+  background: ${props => props.theme.colors.neutral08};
   bottom: 46px;
   left: 31px;
   position: absolute;
@@ -64,9 +65,9 @@ const StyledNumInput = styled.input`
   }
 `;
 
-export const TimePicker: React.FunctionComponent<
-  TimePickerProps
-> = React.forwardRef((props: TimePickerProps, ref: any) => {
+export const TimePicker: React.FunctionComponent<TimePickerProps> = (
+  props: TimePickerProps
+) => {
   const theme = React.useContext(ThemeContext);
   const {
     errorMessage,
@@ -231,7 +232,7 @@ export const TimePicker: React.FunctionComponent<
         }}
         value={time}
       />
-      <InputsContainer>
+      <InputsContainer theme={theme}>
         <StyledNumInput
           aria-label="Hours"
           aria-describedby={descriptionId}
@@ -274,4 +275,4 @@ export const TimePicker: React.FunctionComponent<
       </InputsContainer>
     </TimePickerContainer>
   );
-});
+};
