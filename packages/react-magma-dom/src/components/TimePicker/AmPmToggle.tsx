@@ -29,7 +29,12 @@ export const AmPmToggle: React.FunctionComponent<
   const theme = React.useContext(ThemeContext);
 
   return (
-    <StyledAmPmToggle {...other} ref={ref} theme={theme}>
+    <StyledAmPmToggle
+      {...other}
+      data-testid="amPmTimeButton"
+      ref={ref}
+      theme={theme}
+    >
       {children}
     </StyledAmPmToggle>
   );

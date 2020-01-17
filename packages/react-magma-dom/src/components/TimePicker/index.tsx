@@ -112,7 +112,7 @@ export const TimePicker: React.FunctionComponent<
     const timeAmPm =
       Number(timeHour) > 12
         ? 'PM'
-        : timeMinute.length > 2
+        : timeMinuteAndAmPm.length > 2
         ? (timeMinuteAndAmPm.split(' ')[1].toUpperCase() as 'AM' | 'PM')
         : 'AM';
 
@@ -125,6 +125,9 @@ export const TimePicker: React.FunctionComponent<
   function calculateHour(newHour: number): string {
     if (newHour >= 13 && newHour <= 23) {
       newHour = newHour - 12;
+      setAmPm('PM');
+    } else {
+      setAmPm('AM');
     }
 
     if (newHour < 10) {
@@ -232,6 +235,7 @@ export const TimePicker: React.FunctionComponent<
         <StyledNumInput
           aria-label="Hours"
           aria-describedby={descriptionId}
+          data-testid="hoursTimeInput"
           id={hourId}
           maxLength={2}
           max="12"
@@ -247,6 +251,7 @@ export const TimePicker: React.FunctionComponent<
         <Divider> : </Divider>
         <StyledNumInput
           aria-label="Minutes"
+          data-testid="minutesTimeInput"
           id={minuteId}
           maxLength={2}
           max="59"
