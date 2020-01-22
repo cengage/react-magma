@@ -221,7 +221,7 @@ This is an example with centered Tabs
             <TabsContainer>
                 <Tabs
                   orientation='horizontal'
-                  centered
+                  isCentered
                 >
                   <Tab>Main page</Tab>
                   <Tab>FAQ</Tab>
@@ -258,11 +258,11 @@ This is an example with full-width Tabs
           <TabsContainer>
             <Tabs
               orientation='horizontal'
-              fullWidth
+              isFullWidth
             >
-              <Tab fullWidth>Main Page</Tab>
-              <Tab fullWidth>FAQ</Tab>
-              <Tab fullWidth>About Us</Tab>
+              <Tab isFullWidth>Main Page</Tab>
+              <Tab isFullWidth>FAQ</Tab>
+              <Tab isFullWidth>About Us</Tab>
             </Tabs>
 
             <TabPanel index={0}>
@@ -300,7 +300,7 @@ This is an example of scrollable Tabs with buttons
             <TabsContainer>
                 <Tabs
                   orientation='horizontal'
-                  scrollButtons
+                  hasScrollButtons
                 >
                   <Tab>First item</Tab>
                   <Tab>Second item</Tab>
@@ -653,7 +653,7 @@ The default value is false.
       description: 'Position of the current tab indicator border.',
       defaultValue: 'bottom or left',
     },
-    centered: {
+    isCentered: {
       type: {
         name: 'boolean',
       },
@@ -669,6 +669,14 @@ The default value is false.
         'If true, the component will have inverse styling to better appear on a dark background.',
       defaultValue: 'false',
     },
+    hasScrollButtons: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'The prop for turning on/off buttons for scrolling Tabs component.',
+    },
     onChange: {
       type: {
         name: 'function',
@@ -676,14 +684,6 @@ The default value is false.
       required: false,
       description:
         'The onChange handler for managing state of Tabs component by your custom logic.',
-    },
-    scrollButtons: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'The prop for turning on/off buttons for scrolling Tabs component.',
     },
     testId: {
       type: {

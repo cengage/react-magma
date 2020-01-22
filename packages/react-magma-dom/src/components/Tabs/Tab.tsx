@@ -6,9 +6,9 @@ export type IconOrientation = 'left' | 'top';
 
 interface StyledTabProps {
   disabled?: boolean;
-  fullWidth?: boolean;
   iconOrientation: IconOrientation;
   isActive?: boolean;
+  isFullWidth?: boolean;
   isInverse?: boolean;
   orientation?: any;
 }
@@ -41,7 +41,7 @@ const StyledTab = styled.button<StyledTabProps>`
   text-transform: uppercase;
   top: ${props => (props.disabled ? 0 : '')};
   width: ${props =>
-    props.fullWidth || props.orientation === 'vertical' ? '100%' : 'auto'};
+    props.isFullWidth || props.orientation === 'vertical' ? '100%' : 'auto'};
 
   &:hover,
   &:focus {
@@ -134,7 +134,7 @@ export interface ITabProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
   component?: React.ReactElement<any> | React.ReactElement<any>[];
-  fullWidth?: boolean;
+  isFullWidth?: boolean;
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
   iconOrientation?: IconOrientation;
   ariaLabel?: string;
@@ -161,7 +161,7 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
       isActive,
       path,
       isInverse,
-      fullWidth,
+      isFullWidth,
       ...rest
     } = props;
 
@@ -211,7 +211,7 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
             data-testid={testId}
             isActive={isActive}
             aria-selected={isActive}
-            fullWidth={fullWidth}
+            isFullWidth={isFullWidth}
           >
             {children}
           </StyledTab>

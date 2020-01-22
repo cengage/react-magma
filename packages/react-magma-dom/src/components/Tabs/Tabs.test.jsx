@@ -145,7 +145,11 @@ describe('Tabs', () => {
 
     const { getByTestId } = render(
       <TabsContext.Provider value={{ state, dispatch }}>
-        <Tabs testId={testId} scrollButtons={true} orientation="horizontal" />
+        <Tabs
+          testId={testId}
+          hasScrollButtons={true}
+          orientation="horizontal"
+        />
       </TabsContext.Provider>
     );
     expect(getByTestId('buttonNext')).toBeDefined();
@@ -165,7 +169,7 @@ describe('Tabs', () => {
 
     const { getByTestId } = render(
       <TabsContext.Provider value={{ state, dispatch }}>
-        <Tabs testId={'dd'} scrollButtons={true} orientation="horizontal">
+        <Tabs testId={'dd'} hasScrollButtons={true} orientation="horizontal">
           <div>Test</div>
         </Tabs>
       </TabsContext.Provider>

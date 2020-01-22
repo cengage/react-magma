@@ -34,35 +34,35 @@ const StyledTabsWrapper = styled.div<{
 `;
 
 const StyledTabs = styled.div<{
-  centered?: boolean;
+  isCentered?: boolean;
   orientation: TabsOrientationVertical | TabsOrientationHorizontal;
 }>`
   align-items: center;
   display: flex;
   flex-direction: ${props =>
     props.orientation === 'vertical' ? 'column' : 'row'};
-  justify-content: ${props => (props.centered ? 'center' : '')};
+  justify-content: ${props => (props.isCentered ? 'center' : '')};
   width: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
 `;
 
 const StyledTabsChild = styled.div<{
   borderPosition?: TabsBorderPositionHorizontal | TabsBorderPositionVertical;
-  fullWidth?: boolean;
+  isFullWidth?: boolean;
   isActive?: boolean;
   isInverse?: boolean;
   orientation: TabsOrientationVertical | TabsOrientationHorizontal;
 }>`
   flex-grow: 0;
-  flex-shrink: ${props => (props.fullWidth ? '1' : '0')};
+  flex-shrink: ${props => (props.isFullWidth ? '1' : '0')};
   height: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
   font-size: 14px;
   font-weight: 600;
-  max-width: ${props => (props.fullWidth ? '100%' : '250px')};
+  max-width: ${props => (props.isFullWidth ? '100%' : '250px')};
   position: relative;
   text-transform: uppercase;
   white-space: normal;
   width: ${props =>
-    props.fullWidth || props.orientation === 'vertical' ? '100%' : 'auto'};
+    props.isFullWidth || props.orientation === 'vertical' ? '100%' : 'auto'};
 
   &:after {
     background: ${props => (props.isActive ? magma.colors.primary : '')};
@@ -132,10 +132,10 @@ export interface ITabsProps
   activeIndex?: TabsActiveIndex;
   ariaLabel?: string;
   backgroundColor: string;
-  centered?: boolean;
-  fullWidth?: boolean;
+  isCentered?: boolean;
+  isFullWidth?: boolean;
   isInverse?: boolean;
-  scrollButtons?: boolean;
+  hasScrollButtons?: boolean;
   onChange?: (newActiveIndex: number) => void;
   testId?: string;
 }
@@ -145,13 +145,13 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
     const {
       children,
       activeIndex,
-      scrollButtons,
+      hasScrollButtons,
       ariaLabel,
       orientation,
       borderPosition,
       onChange,
-      centered,
-      fullWidth,
+      isCentered,
+      isFullWidth,
       isInverse,
       testId,
       backgroundColor,
@@ -284,7 +284,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
         backgroundColor={backgroundColor}
         {...rest}
       >
-        {scrollButtons && orientation === 'horizontal' ? (
+        {hasScrollButtons && orientation === 'horizontal' ? (
           <StyledButtonPrev
             onClick={handleClickPrev}
             buttonVisible={buttonVisiblePrev}
@@ -306,7 +306,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
         >
           <StyledTabs
             aria-label={ariaLabel}
-            centered={centered}
+            isCentered={isCentered}
             orientation={orientation}
             role="tablist"
           >
@@ -327,7 +327,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
               return (
                 <StyledTabsChild
                   borderPosition={borderPosition}
-                  fullWidth={fullWidth}
+                  isFullWidth={isFullWidth}
                   isActive={isActive}
                   key={index}
                   ref={buttonRefArray[index]}
@@ -342,7 +342,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
           </StyledTabs>
         </StyledTabsWrapper>
 
-        {scrollButtons && orientation === 'horizontal' ? (
+        {hasScrollButtons && orientation === 'horizontal' ? (
           <StyledButtonNext
             onClick={handleClickNext}
             buttonVisible={buttonVisibleNext}
