@@ -16,11 +16,45 @@ import {
 } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 
-# Using Tabs
+# Tabs
 
-## Simple Example
+## Basic Usage
 
-This is a simple example of Tab Components
+```.jsx
+      function TabComponent() {
+        const panelStyles = {
+          height: '100px',
+          padding: '5px',
+        }
+
+        return (
+          <TabsContainer>
+              <Tabs
+                orientation='horizontal'
+              >
+                <Tab>Main page with a longer text label</Tab>
+                <Tab>FAQ</Tab>
+                <Tab>About us</Tab>
+              </Tabs>
+
+              <TabPanel index={0}>
+                <div style={panelStyles}>Main page</div>
+              </TabPanel>
+              <TabPanel index={1}>
+                <div style={panelStyles}>FAQ</div>
+              </TabPanel>
+              <TabPanel index={2}>
+                <div style={panelStyles}>About us</div>
+              </TabPanel>
+          </TabsContainer>
+    )}
+```
+
+# Border Position
+
+By default, horizontal tabs have the inidicator placed underneath the tabs.
+However, there are times you may want to place the indicator above the tabs, such as when the tab menu is displayed below its content.
+The `borderPosition` prop is an enum and accepts `top` or `bottom` for horizontal tabs. The border position for vertical tabs is always `left`.
 
 ```.jsx
       function TabComponent() {
@@ -38,15 +72,7 @@ This is a simple example of Tab Components
         return (
           <div id="example wrapper" style={wrapperStyles}>
             <TabsContainer>
-                <Tabs
-                  orientation='horizontal'
-                >
-                  <Tab>Main page</Tab>
-                  <Tab>FAQ</Tab>
-                  <Tab>About us</Tab>
-                </Tabs>
-
-                <TabPanel index={0}>
+              <TabPanel index={0}>
                   <div style={panelStyles}>Main page</div>
                 </TabPanel>
                 <TabPanel index={1}>
@@ -55,30 +81,6 @@ This is a simple example of Tab Components
                 <TabPanel index={2}>
                   <div style={panelStyles}>About us</div>
                 </TabPanel>
-            </TabsContainer>
-          </div>
-    )}
-
-```
-
-# This Is An Example Of Tab Components With Tab Indicator On Top
-
-```.jsx
-      function TabComponent() {
-        const wrapperStyles = {
-          backgroundColor: '#e6e6e6',
-          padding: '25px'
-        }
-
-        const panelStyles = {
-          height: '100px',
-          padding: '5px',
-          backgroundColor: '#fff'
-        }
-
-        return (
-          <div id="example wrapper" style={wrapperStyles}>
-            <TabsContainer>
                 <Tabs
                   orientation='horizontal'
                   borderPosition='top'
@@ -87,16 +89,6 @@ This is a simple example of Tab Components
                   <Tab>FAQ</Tab>
                   <Tab>About us</Tab>
                 </Tabs>
-
-                <TabPanel index={0}>
-                  <div style={panelStyles}>Main page</div>
-                </TabPanel>
-                <TabPanel index={1}>
-                  <div style={panelStyles}>FAQ</div>
-                </TabPanel>
-                <TabPanel index={2}>
-                  <div style={panelStyles}>About us</div>
-                </TabPanel>
             </TabsContainer>
           </div>
     )}
@@ -256,11 +248,6 @@ This is an example with full-width Tabs
 
 ```.jsx
       function TabComponent() {
-        const wrapperStyles = {
-          backgroundColor: '#e6e6e6',
-          padding: '25px'
-        }
-
         const panelStyles = {
           height: '100px',
           padding: '5px',
@@ -268,32 +255,30 @@ This is an example with full-width Tabs
         }
 
         return (
-          <div id="example wrapper" style={wrapperStyles}>
-            <TabsContainer>
-                <Tabs
-                  orientation='horizontal'
-                  fullWidth
-                >
-                  <Tab>Main page</Tab>
-                  <Tab>FAQ</Tab>
-                  <Tab>About us</Tab>
-                </Tabs>
+          <TabsContainer>
+            <Tabs
+              orientation='horizontal'
+              fullWidth
+            >
+              <Tab fullWidth>Main Page</Tab>
+              <Tab fullWidth>FAQ</Tab>
+              <Tab fullWidth>About Us</Tab>
+            </Tabs>
 
-                <TabPanel index={0}>
-                  <div style={panelStyles}>Main page</div>
-                </TabPanel>
-                <TabPanel index={1}>
-                  <div style={panelStyles}>FAQ</div>
-                </TabPanel>
-                <TabPanel index={2}>
-                  <div style={panelStyles}>About us</div>
-                </TabPanel>
-            </TabsContainer>
-          </div>
+            <TabPanel index={0}>
+              <div style={panelStyles}>Main page</div>
+            </TabPanel>
+            <TabPanel index={1}>
+              <div style={panelStyles}>FAQ</div>
+            </TabPanel>
+            <TabPanel index={2}>
+              <div style={panelStyles}>About us</div>
+            </TabPanel>
+        </TabsContainer>
     )}
 ```
 
-## Scrollable Tabs With Buttons
+## Scrollable Tabs with Buttons
 
 This is an example of scrollable Tabs with buttons
 
@@ -425,9 +410,9 @@ This is an example with vertical Tabs
                 <Tabs
                   orientation='vertical'
                 >
-                  <Tab>Main page</Tab>
-                  <Tab>FAQ</Tab>
-                  <Tab>About us</Tab>
+                  <Tab orientation='vertical'>Main page</Tab>
+                  <Tab orientation='vertical'>FAQ</Tab>
+                  <Tab orientation='vertical'>About us</Tab>
                 </Tabs>
 
                 <TabPanel index={0}>
@@ -447,9 +432,9 @@ This is an example with vertical Tabs
 ## Nav Tabs
 
 This is an example with custom element in Tabs.
-By default we use "button" element in Tabs, but you can throw your custom element inside Tab component.
-Please in this case put all children inside "component" prop instead of direct throwing in Tabs.
-If you would like to use Tab like an route switcher keep "path" prop in Tab equal to desired path.
+By default we use `button` element in Tabs, but you can include your custom element inside a `Tab` component.
+In this case, please put all children inside the `component` prop instead of putting the content directly inside each `Tab`.
+If you would like to use `Tab` like an route switcher, keep the `path` prop in `Tab` equal to desired path.
 
 ```.jsx
       function TabComponent() {
@@ -648,14 +633,6 @@ The default value is false.
       description:
         'The id of current active tab. You can use this for managing state of tabs component by your custom logic.',
     },
-    scrollButtons: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'The prop for turning on/off buttons for scrolling Tabs component.',
-    },
     ariaLabel: {
       type: {
         name: 'string',
@@ -663,12 +640,33 @@ The default value is false.
       required: false,
       description: 'Custom aria label for Tabs component.',
     },
+    borderPosition: {
+      type: {
+        name: 'enum',
+        options: [
+          'TabsBorderPositionHorizontal.bottom',
+          'TabsBorderPositionHorizontal.top',
+          'TabsBorderPositionVertical.left',
+        ],
+      },
+      required: false,
+      description: 'Position of the current tab indicator border.',
+      defaultValue: 'bottom or left',
+    },
+    centered: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'The prop for turning on/off centered mode.',
+    },
     isInverse: {
       type: {
         name: 'boolean',
       },
       required: false,
-      description: 'If true, the component will have inverse styling to better appear on a dark background.',
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background.',
       defaultValue: 'false',
     },
     onChange: {
@@ -679,12 +677,13 @@ The default value is false.
       description:
         'The onChange handler for managing state of Tabs component by your custom logic.',
     },
-    centered: {
+    scrollButtons: {
       type: {
         name: 'boolean',
       },
       required: false,
-      description: 'The prop for turning on/off centered mode.',
+      description:
+        'The prop for turning on/off buttons for scrolling Tabs component.',
     },
     testId: {
       type: {

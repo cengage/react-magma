@@ -5,50 +5,46 @@ import styled from '@emotion/styled';
 export type IconOrientation = 'left' | 'top';
 
 interface StyledTabProps {
-  disabled: boolean;
+  disabled?: boolean;
+  fullWidth?: boolean;
   iconOrientation: IconOrientation;
-  isActive: boolean;
-  isInverse: boolean;
+  isActive?: boolean;
+  isInverse?: boolean;
+  orientation?: any;
 }
 
 const StyledTab = styled.button<StyledTabProps>`
-  display: flex;
-  justify-content: center;
-  font-size: inherit;
-  width: 100%;
-  height: 100%;
-  padding: 10px;
-  border: 0;
-  background: transparent;
-  text-transform: uppercase;
-  color: inherit;
-  &:focus {
-    outline-offset: -2px;
-    outline: ${props =>
-        props.isInverse ? magma.colors.neutral08 : magma.colors.focus}
-      dotted 2px;
-  }
-  position: ${props => (props.disabled ? 'absolute' : '')};
-  bottom: ${props => (props.disabled ? 0 : '')};
-  top: ${props => (props.disabled ? 0 : '')};
-  overflow: ${props => (props.disabled ? 'hidden' : '')};
-  pointer-events: ${props => (props.disabled ? 'none' : '')};
-  cursor: ${props => (props.disabled ? 'auto' : 'pointer')};
-  margin: ${props => (props.disabled ? 'auto' : '')};
-  flex-direction: ${props =>
-    props.iconOrientation === 'left' ? '' : 'column'};
   align-items: ${props => (props.iconOrientation === 'left' ? '' : 'center')};
-  opacity: ${props => (props.isActive ? 1 : props.disabled ? 0.4 : '70%')};
+  background: transparent;
+  border: 0;
+  bottom: ${props => (props.disabled ? 0 : '')};
   color: ${props =>
     props.isActive && !props.isInverse
       ? magma.colors.primary
       : props.isInverse
       ? magma.colors.neutral08
       : magma.colors.neutral01};
-  &:active {
-    color: ${props => (props.isActive ? magma.colors.primary : '')};
-  }
-  &:hover {
+  cursor: ${props => (props.disabled ? 'auto' : 'pointer')};
+  display: flex;
+  flex-direction: ${props =>
+    props.iconOrientation === 'left' ? '' : 'column'};
+  font-size: inherit;
+  justify-content: center;
+  height: 100%;
+  margin: ${props => (props.disabled ? 'auto' : '')};
+  min-width: 0;
+  opacity: ${props => (props.isActive ? 1 : props.disabled ? 0.4 : '70%')};
+  overflow: ${props => (props.disabled ? 'hidden' : '')};
+  padding: 10px 20px;
+  position: relative;
+  pointer-events: ${props => (props.disabled ? 'none' : '')};
+  text-transform: uppercase;
+  top: ${props => (props.disabled ? 0 : '')};
+  width: ${props =>
+    props.fullWidth || props.orientation === 'vertical' ? '100%' : 'auto'};
+
+  &:hover,
+  &:focus {
     background-color: ${props =>
       props.isActive
         ? ''
@@ -61,6 +57,17 @@ const StyledTab = styled.button<StyledTabProps>`
         : props.isActive && !props.isInverse
         ? magma.colors.primary
         : magma.colors.neutral01};
+  }
+
+  &:focus {
+    outline-offset: -2px;
+    outline: ${props =>
+        props.isInverse ? magma.colors.neutral08 : magma.colors.focus}
+      dotted 2px;
+  }
+
+  &:active {
+    color: ${props => (props.isActive ? magma.colors.primary : '')};
   }
 `;
 
@@ -127,6 +134,7 @@ export interface ITabProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
   component?: React.ReactElement<any> | React.ReactElement<any>[];
+  fullWidth?: boolean;
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
   iconOrientation?: IconOrientation;
   ariaLabel?: string;
@@ -153,6 +161,7 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
       isActive,
       path,
       isInverse,
+      fullWidth,
       ...rest
     } = props;
 
@@ -202,6 +211,7 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
             data-testid={testId}
             isActive={isActive}
             aria-selected={isActive}
+            fullWidth={fullWidth}
           >
             {children}
           </StyledTab>

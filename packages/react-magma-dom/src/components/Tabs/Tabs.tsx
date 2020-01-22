@@ -5,123 +5,81 @@ import { AngleLeftIcon } from '../../components/Icon/types/AngleLeftIcon';
 import { magma } from '../../theme/magma';
 import { useTabsContext } from './TabsContainer';
 
-const StyledTabs = styled.div<{
-  ['aria-label']: TabsAriaLabel;
+const StyledContainer = styled.div<{
   orientation: TabsOrientationVertical | TabsOrientationHorizontal;
-}>`
-  text-transform: uppercase;
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  position: relative;
-  height: auto;
-  align-items: center;
-  justify-content: space-between;
-  flex-basis: 100%;
-  flex-direction: ${props => (props.orientation === 'vertical' ? '' : 'row')};
-`;
-
-const StyledTabsChild = styled.div<{
-  length: number;
-  orientation: TabsOrientationVertical | TabsOrientationHorizontal;
-}>`
-  display: flex;
-  flex-grow: 0;
-  text-align: center;
-  list-style: none;
-  align-self: center;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  color: inherit;
-  font-size: 14px;
-  font-weight: 600;
-  position: relative;
-  justify-content: center;
-  flex-basis: ${props => 100 / props.length}%;
-  height: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
-  width: ${props =>
-    props.orientation === 'vertical' ? '100%' : `${100 / props.length}%`};
-  max-width: 264px;
-  min-height: 50px;
-  min-width: 150px;
-  color: ${magma.colors.neutral01};
-`;
-
-const getTransitionSpeed = (index: number, activeTabIndex: number) => {
-  let speed = 0.3;
-  let indexDifference = 0;
-
-  index < activeTabIndex
-    ? (indexDifference = (activeTabIndex - index) / 2)
-    : (indexDifference = (index - activeTabIndex) / 2);
-
-  // 4 = 4 tab components
-  // For each step in 4 tab components speed will be increased
-  speed -= (indexDifference / 4) * 0.05;
-
-  if (speed < 0.2) {
-    return 0.2;
-  } else {
-    return speed;
-  }
-};
-
-const BottomLineStyled = styled.div<{
-  length: number;
-  previousActiveTab: number;
-  activeTabIndex: number;
-  orientation: TabsOrientationVertical | TabsOrientationHorizontal;
-  borderPosition: TabsBorderPositionVertical | TabsBorderPositionHorizontal;
   isInverse: boolean;
+  backgroundColor: string;
 }>`
-  position: absolute;
   background-color: ${props =>
-    props.isInverse ? magma.colors.pop02 : magma.colors.primary};
-  transition: ${props =>
-      getTransitionSpeed(props.previousActiveTab, props.activeTabIndex)}s
-    ease-in-out;
-  border-radius: 8px;
-  left: ${props =>
-    props.orientation === 'vertical'
-      ? 0
-      : `${(100 / props.length) * props.activeTabIndex}%`};
-  top: ${props =>
-    props.orientation === 'vertical'
-      ? `${(100 / props.length) * props.activeTabIndex}%`
-      : props.orientation === 'horizontal' && props.borderPosition === 'top'
-      ? 0
-      : ''};
-  height: ${props =>
-    props.orientation === 'vertical' ? `${100 / props.length}%` : '4px'};
-  min-height: ${props =>
-    props.orientation === 'vertical' ? `${100 / props.length}%` : ''};
-  min-width: ${props => (props.orientation === 'vertical' ? '4px' : '150px')};
-  width: ${props =>
-    props.orientation === 'vertical' ? '4px' : `${100 / props.length}%`};
-  bottom: ${props =>
-    props.orientation === 'horizontal' && props.borderPosition === 'top'
-      ? ''
-      : 0};
+    props.backgroundColor ? props.backgroundColor : 'transparent'};
+  display: flex;
+  width: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
 `;
 
 const StyledTabsWrapper = styled.div<{
   orientation: TabsOrientationVertical | TabsOrientationHorizontal;
-  centered: boolean;
 }>`
   display: flex;
+  flex-grow: 1;
   overflow-y: hidden;
-  height: auto;
+  overflow: ${props => (props.orientation === 'vertical' ? 'hidden' : '')};
+  overflow-x: ${props => (props.orientation === 'vertical' ? '' : 'auto')};
   position: relative;
-  flex-basis: 100%;
+
   &::-webkit-scrollbar {
     width: 0;
     height: 0;
   }
   scrollbar-width: none;
-  overflow: ${props => (props.orientation === 'vertical' ? 'hidden' : '')};
-  overflow-x: ${props => (props.orientation === 'vertical' ? '' : 'auto')};
+`;
+
+const StyledTabs = styled.div<{
+  centered?: boolean;
+  orientation: TabsOrientationVertical | TabsOrientationHorizontal;
+}>`
+  align-items: center;
+  display: flex;
+  flex-direction: ${props =>
+    props.orientation === 'vertical' ? 'column' : 'row'};
   justify-content: ${props => (props.centered ? 'center' : '')};
+  width: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
+`;
+
+const StyledTabsChild = styled.div<{
+  borderPosition?: TabsBorderPositionHorizontal | TabsBorderPositionVertical;
+  fullWidth?: boolean;
+  isActive?: boolean;
+  isInverse?: boolean;
+  orientation: TabsOrientationVertical | TabsOrientationHorizontal;
+}>`
+  flex-grow: 0;
+  flex-shrink: ${props => (props.fullWidth ? '1' : '0')};
+  height: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
+  font-size: 14px;
+  font-weight: 600;
+  max-width: ${props => (props.fullWidth ? '100%' : '250px')};
+  position: relative;
+  text-transform: uppercase;
+  white-space: normal;
+  width: ${props =>
+    props.fullWidth || props.orientation === 'vertical' ? '100%' : 'auto'};
+
+  &:after {
+    background: ${props => (props.isActive ? magma.colors.primary : '')};
+    border-radius: 2px;
+    bottom: ${props => (props.borderPosition === 'top' ? 'auto' : '0')};
+    content: '';
+    display: block;
+    height: ${props => (props.orientation === 'vertical' ? 'auto' : '4px')};
+    left: 0;
+    position: absolute;
+    right: ${props => (props.orientation === 'vertical' ? 'auto' : '0')};
+    top: ${props =>
+      props.orientation === 'vertical' || props.borderPosition === 'top'
+        ? '0'
+        : 'auto'};
+    width: ${props => (props.orientation === 'vertical' ? '4px' : 'auto')};
+  }
 `;
 
 const StyledButtonNext = styled.div<{
@@ -148,30 +106,8 @@ const StyledButtonPrev = styled.div<{
   visibility: ${props => (props.buttonVisible ? 'visible' : 'hidden')};
 `;
 
-const StyledContainer = styled.div<{
-  orientation: TabsOrientationVertical | TabsOrientationHorizontal;
-  isInverse: boolean;
-  backgroundColor: string;
-}>`
-  display: flex;
-  overflow-x: auto;
-  background-color: 'transparent';
-  box-shadow: none;
-  flex-basis: ${props => (props.orientation === 'horizontal' ? '100%' : '')};
-  flex-direction: ${props => (props.orientation === 'horizontal' ? 'row' : '')};
-`;
-
-const StyledTabsLayer = styled.div<{
-  fullWidth: boolean;
-}>`
-  display: flex;
-  align-items: stretch;
-  width: ${props => (props.fullWidth ? '100%' : 'auto')};
-`;
-
 export type TabsActiveIndex = number;
 export type TabsVariant = 'scrollable';
-export type TabsAriaLabel = string;
 export type TabsOrientationVertical = 'vertical';
 export type TabsOrientationHorizontal = 'horizontal';
 export type TabsBorderPositionVertical = 'left';
@@ -194,14 +130,14 @@ export interface ITabsProps
     React.ButtonHTMLAttributes<HTMLDivElement>
   > {
   activeIndex?: TabsActiveIndex;
-  scrollButtons?: boolean;
-  ariaLabel?: TabsAriaLabel;
-  onChange?: (newActiveIndex: number) => void;
+  ariaLabel?: string;
+  backgroundColor: string;
   centered?: boolean;
   fullWidth?: boolean;
-  testId?: string;
   isInverse?: boolean;
-  backgroundColor: string;
+  scrollButtons?: boolean;
+  onChange?: (newActiveIndex: number) => void;
+  testId?: string;
 }
 
 export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
@@ -222,9 +158,6 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
       ...rest
     } = props;
     const { state, dispatch } = useTabsContext();
-    const [previousActiveTab, setPreviousActiveTab] = React.useState(
-      state.activeTabIndex
-    );
     const [buttonVisiblePrev, setButtonPrevState] = React.useState(false);
     const [buttonVisibleNext, setButtonNextState] = React.useState(false);
     const arrChildren = React.Children.toArray(children);
@@ -243,8 +176,6 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
           event.preventDefault();
           return undefined;
         }
-
-        setPreviousActiveTab(state.activeTabIndex);
 
         if (onChange) {
           onChange(newActiveIndex);
@@ -372,57 +303,43 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
           ref={divRef}
           onScroll={handleScroll}
           orientation={orientation}
-          centered={centered}
         >
-          <StyledTabsLayer fullWidth={fullWidth}>
-            <StyledTabs
-              aria-label={ariaLabel}
-              orientation={orientation}
-              role="tablist"
-            >
-              {arrChildren.map((childItem: any, index) => {
-                const isActive =
-                  index ===
-                  (activeIndex
-                    ? activeIndex
-                    : (state && state.activeTabIndex) || 0);
+          <StyledTabs
+            aria-label={ariaLabel}
+            centered={centered}
+            orientation={orientation}
+            role="tablist"
+          >
+            {arrChildren.map((childItem: any, index) => {
+              const isActive =
+                index ===
+                (activeIndex
+                  ? activeIndex
+                  : (state && state.activeTabIndex) || 0);
 
-                const child: any = React.cloneElement(childItem, {
-                  isActive,
-                  changeHandler,
-                  index,
-                  isInverse
-                });
+              const child: any = React.cloneElement(childItem, {
+                isActive,
+                changeHandler,
+                index,
+                isInverse
+              });
 
-                return (
-                  <StyledTabsChild
-                    key={index}
-                    ref={buttonRefArray[index]}
-                    length={arrChildren.length}
-                    orientation={orientation}
-                    onClick={e => changeHandler(index, e)}
-                    role="tab"
-                  >
-                    {child}
-                  </StyledTabsChild>
-                );
-              })}
-
-              <BottomLineStyled
-                length={arrChildren.length}
-                previousActiveTab={previousActiveTab}
-                activeTabIndex={
-                  activeIndex
-                    ? activeIndex
-                    : (state && state.activeTabIndex) || 0
-                }
-                orientation={orientation}
-                borderPosition={borderPosition}
-                data-testid="bottom-line"
-                isInverse={isInverse}
-              />
-            </StyledTabs>
-          </StyledTabsLayer>
+              return (
+                <StyledTabsChild
+                  borderPosition={borderPosition}
+                  fullWidth={fullWidth}
+                  isActive={isActive}
+                  key={index}
+                  ref={buttonRefArray[index]}
+                  orientation={orientation}
+                  onClick={e => changeHandler(index, e)}
+                  role="tab"
+                >
+                  {child}
+                </StyledTabsChild>
+              );
+            })}
+          </StyledTabs>
         </StyledTabsWrapper>
 
         {scrollButtons && orientation === 'horizontal' ? (

@@ -3,7 +3,6 @@ import { useTabsContext } from './TabsContainer';
 import styled from '@emotion/styled';
 
 const StyledTabPanel = styled.div`
-  width: 100%;
   flex: 1;
 `;
 
