@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { AngleRightIcon } from '../../components/Icon/types/AngleRightIcon';
 import { AngleLeftIcon } from '../../components/Icon/types/AngleLeftIcon';
-import { magma } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { useTabsContext } from './TabsContainer';
 
 const StyledContainer = styled.div<{
@@ -65,13 +65,15 @@ const StyledTabsChild = styled.div<{
     props.isFullWidth || props.orientation === 'vertical' ? '100%' : 'auto'};
 
   &:after {
-    background: ${props => (props.isActive ? magma.colors.primary : '')};
+    background: ${props =>
+      props.isInverse ? props.theme.colors.pop02 : props.theme.colors.primary};
     border-radius: 2px;
     bottom: ${props => (props.borderPosition === 'top' ? 'auto' : '0')};
     content: '';
     display: block;
     height: ${props => (props.orientation === 'vertical' ? 'auto' : '4px')};
     left: 0;
+    opacity: ${props => (props.isActive ? '1' : '0')};
     position: absolute;
     right: ${props => (props.orientation === 'vertical' ? 'auto' : '0')};
     top: ${props =>
@@ -275,6 +277,8 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
         : setButtonPrevState(false);
     };
 
+    const theme = React.useContext(ThemeContext);
+
     return (
       <StyledContainer
         ref={ref}
@@ -282,6 +286,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
         isInverse={isInverse}
         data-testid={testId}
         backgroundColor={backgroundColor}
+        theme={theme}
         {...rest}
       >
         {hasScrollButtons && orientation === 'horizontal' ? (
@@ -293,7 +298,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
             <AngleLeftIcon
               size={16}
               color={
-                isInverse ? magma.colors.neutral08 : magma.colors.neutral02
+                isInverse ? theme.colors.neutral08 : theme.colors.neutral02
               }
             />
           </StyledButtonPrev>
@@ -329,11 +334,13 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
                   borderPosition={borderPosition}
                   isFullWidth={isFullWidth}
                   isActive={isActive}
+                  isInverse={isInverse}
                   key={index}
                   ref={buttonRefArray[index]}
                   orientation={orientation}
                   onClick={e => changeHandler(index, e)}
                   role="tab"
+                  theme={theme}
                 >
                   {child}
                 </StyledTabsChild>
@@ -351,7 +358,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
             <AngleRightIcon
               size={16}
               color={
-                isInverse ? magma.colors.neutral08 : magma.colors.neutral02
+                isInverse ? theme.colors.neutral08 : theme.colors.neutral02
               }
             />
           </StyledButtonNext>

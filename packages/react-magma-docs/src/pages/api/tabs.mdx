@@ -15,6 +15,7 @@ import {
   HyperLink,
 } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
+import { Link } from 'gatsby'
 
 # Tabs
 
@@ -22,13 +23,19 @@ import { SimplePropsTable } from '../../components/props-table'
 
 ```.jsx
       function TabComponent() {
+
+        const wrapperStyles = {
+          backgroundColor: '#e6e6e6',
+          padding: '25px'
+        }
+
         const panelStyles = {
           height: '100px',
           padding: '5px',
         }
 
         return (
-          <TabsContainer>
+          <TabsContainer style={wrapperStyles}>
               <Tabs
                 orientation='horizontal'
               >
@@ -70,10 +77,10 @@ The `borderPosition` prop is an enum and accepts `top` or `bottom` for horizonta
         }
 
         return (
-          <div id="example wrapper" style={wrapperStyles}>
+          <div style={wrapperStyles}>
             <TabsContainer>
               <TabPanel index={0}>
-                  <div style={panelStyles}>Main page</div>
+                  <div style={panelStyles}>Main page with a longer text label</div>
                 </TabPanel>
                 <TabPanel index={1}>
                   <div style={panelStyles}>FAQ</div>
@@ -128,14 +135,14 @@ This is a simple example of Tab Components with custom switching logic
 
         render() {
           return (
-              <div id="example wrapper" style={this.wrapperStyles}>
+              <div style={this.wrapperStyles}>
                 <TabsContainer>
                     <Tabs
                       orientation='horizontal'
                       activeIndex={this.state.activeIndex}
                       onChange={this.handleChange}
                     >
-                      <Tab index={0}>First item</Tab>
+                      <Tab index={0}>First item </Tab>
                       <Tab index={1}>Second item</Tab>
                       <Tab index={2}>Third item</Tab>
                     </Tabs>
@@ -175,7 +182,7 @@ This is an example of Tab Components with disabled Tab
         }
 
         return (
-          <div id="example wrapper" style={wrapperStyles}>
+          <div style={wrapperStyles}>
             <TabsContainer>
                 <Tabs
                   orientation='horizontal'
@@ -201,79 +208,40 @@ This is an example of Tab Components with disabled Tab
 
 ## Centered Tabs
 
-This is an example with centered Tabs
+The `isCentered` prop is an optional boolean that will style the tabs in the center of their container.
 
 ```.jsx
       function TabComponent() {
-        const wrapperStyles = {
-          backgroundColor: '#e6e6e6',
-          padding: '25px'
-        }
-
-        const panelStyles = {
-          height: '100px',
-          padding: '5px',
-          backgroundColor: '#fff'
-        }
-
         return (
-          <div id="example wrapper" style={wrapperStyles}>
-            <TabsContainer>
-                <Tabs
-                  orientation='horizontal'
-                  isCentered
-                >
-                  <Tab>Main page</Tab>
-                  <Tab>FAQ</Tab>
-                  <Tab>About us</Tab>
-                </Tabs>
-
-                <TabPanel index={0}>
-                  <div style={panelStyles}>Main page</div>
-                </TabPanel>
-                <TabPanel index={1}>
-                  <div style={panelStyles}>FAQ</div>
-                </TabPanel>
-                <TabPanel index={2}>
-                  <div style={panelStyles}>About us</div>
-                </TabPanel>
-            </TabsContainer>
-          </div>
+          <TabsContainer>
+              <Tabs
+                orientation='horizontal'
+                isCentered
+              >
+                <Tab>Main page</Tab>
+                <Tab>FAQ</Tab>
+                <Tab>About us</Tab>
+              </Tabs>
+          </TabsContainer>
     )}
 ```
 
 ## Full-Width Tabs
 
-This is an example with full-width Tabs
+The `isFullWidth` prop is an optional boolean that will cause the tabs to take up the full width of their container.
 
 ```.jsx
       function TabComponent() {
-        const panelStyles = {
-          height: '100px',
-          padding: '5px',
-          backgroundColor: '#fff'
-        }
-
         return (
           <TabsContainer>
             <Tabs
               orientation='horizontal'
               isFullWidth
             >
-              <Tab isFullWidth>Main Page</Tab>
+              <Tab isFullWidth>Main Page with a longer text label</Tab>
               <Tab isFullWidth>FAQ</Tab>
               <Tab isFullWidth>About Us</Tab>
             </Tabs>
-
-            <TabPanel index={0}>
-              <div style={panelStyles}>Main page</div>
-            </TabPanel>
-            <TabPanel index={1}>
-              <div style={panelStyles}>FAQ</div>
-            </TabPanel>
-            <TabPanel index={2}>
-              <div style={panelStyles}>About us</div>
-            </TabPanel>
         </TabsContainer>
     )}
 ```
@@ -296,13 +264,13 @@ This is an example of scrollable Tabs with buttons
         }
 
         return (
-          <div id="example wrapper" style={wrapperStyles}>
+          <div style={wrapperStyles}>
             <TabsContainer>
                 <Tabs
                   orientation='horizontal'
                   hasScrollButtons
                 >
-                  <Tab>First item</Tab>
+                  <Tab>First item with a longer text label</Tab>
                   <Tab>Second item</Tab>
                   <Tab>Third item</Tab>
                   <Tab>Fourth item</Tab>
@@ -351,7 +319,7 @@ This is an example of scrollable Tabs without buttons
         }
 
         return (
-          <div id="example wrapper" style={wrapperStyles}>
+          <div style={wrapperStyles}>
             <TabsContainer>
                 <Tabs
                   orientation='horizontal'
@@ -405,12 +373,12 @@ This is an example with vertical Tabs
         }
 
         return (
-          <div id="example wrapper" style={wrapperStyles}>
+          <div style={wrapperStyles}>
             <TabsContainer>
                 <Tabs
                   orientation='vertical'
                 >
-                  <Tab orientation='vertical'>Main page</Tab>
+                  <Tab orientation='vertical'>Main page with a longer text label</Tab>
                   <Tab orientation='vertical'>FAQ</Tab>
                   <Tab orientation='vertical'>About us</Tab>
                 </Tabs>
@@ -437,137 +405,77 @@ In this case, please put all children inside the `component` prop instead of put
 If you would like to use `Tab` like an route switcher, keep the `path` prop in `Tab` equal to desired path.
 
 ```.jsx
-      function TabComponent() {
-        const wrapperStyles = {
-          backgroundColor: '#e6e6e6',
-          padding: '25px'
-        }
-
-        const Link = ({children}) => {
-          // This is just example of route component
-          return <HyperLink style={{
-            minWidth: '150px',
-            fontSize: 'inherit',
-            width: '100%',
-            height: '100%',
-            padding: '10px',
-            color: 'inherit',
-            opacity: 0.7,
-            textDecoration: 'none'
-          }}>{children}</HyperLink>
-        }
-
-        return (
-          <div id="example wrapper" style={wrapperStyles}>
-            <TabsContainer>
-                <Tabs
-                  orientation='horizontal'
-                >
-                  <Tab path="/main" component={<Link to="/main">Main page</Link>}/>
-                  <Tab path="/faq" component={<Link to="/faq">FAQ</Link>}/>
-                  <Tab path="/about" component={<Link to="/about">About us</Link>}/>
-                </Tabs>
-            </TabsContainer>
-          </div>
-    )}
+    <Tabs orientation='horizontal'>
+      <Tab path="/main" component={<Link to="/main">Main page</Link>}/>
+      <Tab path="/faq" component={<Link to="/faq">FAQ</Link>}/>
+      <Tab path="/about" component={<Link to="/about">About us</Link>}/>
+    </Tabs>
 ```
 
 ## Icon Tabs
 
-This is an example with icon Tabs
+### Icon Only Tabs
+
+Be sure to include an `ariaLabel` for each tab, when using an icon only for tabs.
 
 ```.jsx
       function TabComponent() {
-        const wrapperStyles = {
-          backgroundColor: '#e6e6e6',
-          padding: '25px'
-        }
-
-        const panelStyles = {
-          height: '100px',
-          padding: '5px',
-          backgroundColor: '#fff'
-        }
-
         return (
-          <div id="example wrapper" style={wrapperStyles}>
-            <TabsContainer>
-                <Tabs
-                  orientation='horizontal'
-                >
-                 <Tab ariaLabel='first-tab' icon={<GraduationCapIcon size={17}/>}></Tab>
-                  <Tab ariaLabel='second-tab' icon={<AndroidIcon size={17}/>}></Tab>
-                  <Tab ariaLabel='third-tab' icon={<BellIcon size={17}/>}></Tab>
-                </Tabs>
-
-                <TabPanel index={0}>
-                  <div style={panelStyles}>Main page</div>
-                </TabPanel>
-                <TabPanel index={1}>
-                  <div style={panelStyles}>FAQ</div>
-                </TabPanel>
-                <TabPanel index={2}>
-                  <div style={panelStyles}>About us</div>
-                </TabPanel>
-            </TabsContainer>
-          </div>
+          <TabsContainer>
+              <Tabs orientation='horizontal'>
+                <Tab ariaLabel='Graduation' icon={<GraduationCapIcon />} />
+                <Tab ariaLabel='Android' icon={<AndroidIcon />} />
+                <Tab ariaLabel='Bell' icon={<BellIcon />} />
+              </Tabs>
+          </TabsContainer>
     )}
 ```
 
+### Icon With Text
+
 ```.jsx
       function TabComponent() {
-        const wrapperStyles = {
-          backgroundColor: '#e6e6e6',
-          padding: '25px'
-        }
-
-        const panelStyles = {
-          height: '100px',
-          padding: '5px',
-          backgroundColor: '#fff'
-        }
-
         return (
-          <div id="example wrapper" style={wrapperStyles}>
-            <TabsContainer>
-                <Tabs
-                  orientation='horizontal'
-                >
-                  <Tab icon={<GraduationCapIcon size={17}/>}>First item</Tab>
-                  <Tab icon={<AndroidIcon size={17}/>}>Second item</Tab>
-                  <Tab icon={<BellIcon size={17}/>}>Third item</Tab>
-                </Tabs>
+          <TabsContainer>
+              <Tabs orientation='horizontal'>
+                <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
+                <Tab icon={<AndroidIcon />}>Second item</Tab>
+                <Tab icon={<BellIcon />}>Third item</Tab>
+              </Tabs>
+          </TabsContainer>
+    )}
+```
 
-                <TabPanel index={0}>
-                  <div style={panelStyles}>First item</div>
-                </TabPanel>
-                <TabPanel index={1}>
-                  <div style={panelStyles}>Second item</div>
-                </TabPanel>
-                <TabPanel index={2}>
-                  <div style={panelStyles}>Third item</div>
-                </TabPanel>
-            </TabsContainer>
-          </div>
+### Icon With Text, Icon Left-Aligned
+
+```.jsx
+      function TabComponent() {
+        return (
+          <TabsContainer>
+              <Tabs orientation='horizontal'>
+                <Tab icon={<GraduationCapIcon />} iconOrientation="left">First item with a longer text label</Tab>
+                <Tab icon={<AndroidIcon />} iconOrientation="left">Second item</Tab>
+                <Tab icon={<BellIcon />} iconOrientation="left">Third item</Tab>
+              </Tabs>
+          </TabsContainer>
     )}
 ```
 
 ## Inverse
 
-The inverse property is an optional boolean, that reverses the colors so that the tabs can better appear on a dark background.
+The `isInverse` property is an optional boolean, that reverses the colors so that the tabs can better appear on a dark background.
 The default value is false.
 
-### With blue Background
+### With Blue Background
 
 ```.jsx
       function TabComponent() {
         const wrapperStyles = {
-          backgroundColor: '#0f3765',
-          padding: '25px'
+          backgroundColor: '#0f3765'
         }
 
         return (
-          <div id="example wrapper" style={wrapperStyles}>
+          <div style={wrapperStyles}>
             <TabsContainer>
                 <Tabs
                   orientation='horizontal'
@@ -587,8 +495,7 @@ The default value is false.
 ```.jsx
       function TabComponent() {
         const wrapperStyles = {
-          backgroundColor: '#3f3f3f',
-          padding: '25px'
+          backgroundColor: '#3f3f3f'
         }
 
         return (
@@ -801,6 +708,7 @@ export default props => (
       BellIcon,
       AndroidIcon,
       HyperLink,
+      Link,
     }}
   />
 )

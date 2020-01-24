@@ -1,6 +1,6 @@
 import React from 'react';
-import { magma } from '../../theme/magma';
 import styled from '@emotion/styled';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 export type IconOrientation = 'left' | 'top';
 
@@ -17,13 +17,12 @@ const StyledTab = styled.button<StyledTabProps>`
   align-items: ${props => (props.iconOrientation === 'left' ? '' : 'center')};
   background: transparent;
   border: 0;
-  bottom: ${props => (props.disabled ? 0 : '')};
   color: ${props =>
     props.isActive && !props.isInverse
-      ? magma.colors.primary
+      ? props.theme.colors.primary
       : props.isInverse
-      ? magma.colors.neutral08
-      : magma.colors.neutral01};
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral01};
   cursor: ${props => (props.disabled ? 'auto' : 'pointer')};
   display: flex;
   flex-direction: ${props =>
@@ -32,14 +31,13 @@ const StyledTab = styled.button<StyledTabProps>`
   justify-content: center;
   height: 100%;
   margin: ${props => (props.disabled ? 'auto' : '')};
-  min-width: 0;
   opacity: ${props => (props.isActive ? 1 : props.disabled ? 0.4 : '70%')};
-  overflow: ${props => (props.disabled ? 'hidden' : '')};
   padding: 10px 20px;
   position: relative;
   pointer-events: ${props => (props.disabled ? 'none' : '')};
+  text-align: ${props =>
+    props.orientation === 'vertical' ? 'left' : 'center'};
   text-transform: uppercase;
-  top: ${props => (props.disabled ? 0 : '')};
   width: ${props =>
     props.isFullWidth || props.orientation === 'vertical' ? '100%' : 'auto'};
 
@@ -49,25 +47,30 @@ const StyledTab = styled.button<StyledTabProps>`
       props.isActive
         ? ''
         : props.isInverse
-        ? magma.colors.shade02
-        : magma.colors.shade01};
+        ? props.theme.colors.shade02
+        : props.theme.colors.shade01};
     color: ${props =>
       props.isInverse
-        ? magma.colors.neutral08
-        : props.isActive && !props.isInverse
-        ? magma.colors.primary
-        : magma.colors.neutral01};
+        ? props.theme.colors.neutral08
+        : props.theme.isActive && !props.isInverse
+        ? props.theme.colors.primary
+        : props.theme.colors.neutral01};
   }
 
   &:focus {
     outline-offset: -2px;
     outline: ${props =>
-        props.isInverse ? magma.colors.neutral08 : magma.colors.focus}
+        props.isInverse
+          ? props.theme.colors.neutral08
+          : props.theme.colors.focus}
       dotted 2px;
   }
 
   &:active {
-    color: ${props => (props.isActive ? magma.colors.primary : '')};
+    color: ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral08
+        : props.theme.colors.primary};
   }
 `;
 
@@ -83,42 +86,44 @@ export const StyledCustomTab: React.FunctionComponent<
   IStyledCustomTabProps
 > = ({ component, disabled, style, onClick, ref }) => {
   if (React.isValidElement(component) && React.isValidElement(component)) {
-    return React.cloneElement(component, {
-      style: disabled
-        ? {
-            display: 'flex',
-            position: 'absolute',
-            bottom: 0,
-            top: 0,
-            overflow: 'hidden',
-            pointerEvents: 'none',
-            cursor: 'auto',
-            minHeight: '50px',
-            height: '100%',
-            margin: 'auto',
-            justifyContent: 'center',
-            opacity: 0.4,
-            padding: '10px',
-            boxSizing: 'border-box'
-          }
-        : {
-            display: 'flex',
-            color: 'inherit',
-            fontSize: 'inherit',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            minWidth: '150px',
-            minHeight: '50px',
-            width: '100%',
-            height: '100%',
-            alignItems: 'center',
-            padding: '10px',
-            boxSizing: 'border-box'
-          },
-      ...style,
-      onClick,
-      ref
-    });
+    return (
+      <>
+        {React.cloneElement(component, {
+          style: disabled
+            ? {
+                alignItems: 'center',
+                background: 'transparent',
+                border: 0,
+                color: 'inherit',
+                display: 'flex',
+                cursor: 'auto',
+                height: '100%',
+                margin: 'auto',
+                justifyContent: 'center',
+                padding: '10px 20px',
+                position: 'relative',
+                pointerEvents: 'none',
+                opacity: 0.4
+              }
+            : {
+                alignItems: 'center',
+                background: 'transparent',
+                border: '0',
+                display: 'flex',
+                color: 'inherit',
+                cursor: 'pointer',
+                height: '100%',
+                justifyContent: 'center',
+                padding: '10px 20px',
+                textDecoration: 'none',
+                width: '100%'
+              },
+          ...style,
+          onClick,
+          ref
+        })}
+      </>
+    );
   }
 
   return null;
@@ -169,6 +174,8 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
       path && path === window.location.pathname && changeHandler(index);
     }, [path]);
 
+    const theme = React.useContext(ThemeContext);
+
     if (component) {
       return (
         <StyledCustomTab
@@ -195,6 +202,7 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
             aria-label={ariaLabel}
             isActive={isActive}
             aria-selected={isActive}
+            theme={theme}
           >
             <StyledIcon iconOrientation={iconOrientation}>{icon}</StyledIcon>
             {children}
@@ -212,6 +220,7 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
             isActive={isActive}
             aria-selected={isActive}
             isFullWidth={isFullWidth}
+            theme={theme}
           >
             {children}
           </StyledTab>
