@@ -13,14 +13,12 @@ interface ITabsContainer extends React.ButtonHTMLAttributes<HTMLDivElement> {
 
 export type State = {
   activeTabIndex?: number;
-  numberOfTabs?: number;
 };
 
 interface Action {
   type: string;
   payload: {
     activeTabIndex?: number;
-    numberOfTabs?: number;
   };
 }
 
@@ -30,8 +28,7 @@ export const TabsContext = React.createContext({} as {
 });
 
 const initialState = {
-  activeTabIndex: 0,
-  numberOfTabs: 0
+  activeTabIndex: 0
 };
 
 function tabReducer(state: State, action: Action) {
@@ -41,11 +38,7 @@ function tabReducer(state: State, action: Action) {
         ...state,
         activeTabIndex: action.payload.activeTabIndex
       };
-    case 'SET_NUMBER_OF_TABS':
-      return {
-        ...state,
-        numberOfTabs: action.payload.numberOfTabs
-      };
+
     default:
       return initialState;
   }

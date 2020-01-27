@@ -14,7 +14,10 @@ interface StyledTabProps {
 }
 
 const StyledTab = styled.button<StyledTabProps>`
-  align-items: ${props => (props.iconOrientation === 'left' ? '' : 'center')};
+  align-items: ${props =>
+    props.iconOrientation === 'left' || props.orientation === 'vertical'
+      ? 'left'
+      : 'center'};
   background: transparent;
   border: 0;
   color: ${props =>
@@ -149,6 +152,7 @@ export interface ITabProps
   isActive?: boolean;
   path?: string;
   isInverse?: boolean;
+  orientation?: any;
 }
 
 export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
@@ -167,6 +171,7 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
       path,
       isInverse,
       isFullWidth,
+      orientation,
       ...rest
     } = props;
 
@@ -194,14 +199,15 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
       if (icon) {
         return (
           <StyledTab
-            isInverse={isInverse}
-            ref={ref}
-            disabled={disabled}
-            iconOrientation={iconOrientation}
-            data-testid={testId}
             aria-label={ariaLabel}
-            isActive={isActive}
             aria-selected={isActive}
+            data-testid={testId}
+            disabled={disabled}
+            isActive={isActive}
+            isInverse={isInverse}
+            iconOrientation={iconOrientation}
+            orientation={orientation}
+            ref={ref}
             theme={theme}
           >
             <StyledIcon iconOrientation={iconOrientation}>{icon}</StyledIcon>
@@ -211,15 +217,16 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
       } else {
         return (
           <StyledTab
-            isInverse={isInverse}
-            ref={ref}
             aria-label={ariaLabel}
-            iconOrientation={iconOrientation}
-            disabled={disabled}
-            data-testid={testId}
-            isActive={isActive}
             aria-selected={isActive}
+            data-testid={testId}
+            disabled={disabled}
+            iconOrientation={iconOrientation}
+            isActive={isActive}
             isFullWidth={isFullWidth}
+            isInverse={isInverse}
+            orientation={orientation}
+            ref={ref}
             theme={theme}
           >
             {children}

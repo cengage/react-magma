@@ -11,8 +11,7 @@ describe('TabPanel', () => {
     const dispatch = jest.fn();
 
     const state = {
-      activeTabIndex: 1,
-      numberOfTabs: 5
+      activeTabIndex: 1
     };
 
     const testId = 'test-id';
@@ -30,8 +29,7 @@ describe('TabPanel', () => {
     const dispatch = jest.fn();
 
     const state = {
-      activeTabIndex: 1,
-      numberOfTabs: 5
+      activeTabIndex: 1
     };
 
     const testId = 'test-id';
@@ -52,8 +50,7 @@ describe('TabPanel', () => {
     const dispatch = jest.fn();
 
     const state = {
-      activeTabIndex: 1,
-      numberOfTabs: 5
+      activeTabIndex: 1
     };
 
     const testId = 'test-id';
@@ -74,8 +71,7 @@ describe('TabPanel', () => {
     const dispatch = jest.fn();
 
     const state = {
-      activeTabIndex: 1,
-      numberOfTabs: 5
+      activeTabIndex: 1
     };
 
     const testId = 'test-id';
@@ -97,8 +93,7 @@ describe('Test for accessibility', () => {
     const dispatch = jest.fn();
 
     const state = {
-      activeTabIndex: 1,
-      numberOfTabs: 5
+      activeTabIndex: 1
     };
 
     const testId = 'test-id';

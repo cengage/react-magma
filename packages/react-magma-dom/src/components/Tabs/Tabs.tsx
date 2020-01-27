@@ -72,14 +72,17 @@ const StyledTabsChild = styled.div<{
     content: '';
     display: block;
     height: ${props => (props.orientation === 'vertical' ? 'auto' : '4px')};
-    left: 0;
+    left: ${props =>
+      props.isActive || props.orientation === 'vertical' ? '0' : '50%'};
     opacity: ${props => (props.isActive ? '1' : '0')};
     position: absolute;
-    right: ${props => (props.orientation === 'vertical' ? 'auto' : '0')};
+    right: ${props =>
+      props.orientation === 'vertical' ? 'auto' : props.isActive ? '0' : '50%'};
     top: ${props =>
       props.orientation === 'vertical' || props.borderPosition === 'top'
         ? '0'
         : 'auto'};
+    transition: 0.2s all;
     width: ${props => (props.orientation === 'vertical' ? '4px' : 'auto')};
   }
 `;
@@ -160,6 +163,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
       ...rest
     } = props;
     const { state, dispatch } = useTabsContext();
+
     const [buttonVisiblePrev, setButtonPrevState] = React.useState(false);
     const [buttonVisibleNext, setButtonNextState] = React.useState(false);
     const arrChildren = React.Children.toArray(children);
@@ -196,14 +200,6 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
       },
       [activeIndex, dispatch, onChange, state]
     );
-
-    React.useEffect(() => {
-      if (arrChildren.length !== state.numberOfTabs)
-        dispatch({
-          type: 'SET_NUMBER_OF_TABS',
-          payload: { numberOfTabs: arrChildren.length }
-        });
-    }, [arrChildren.length, dispatch, state.numberOfTabs]);
 
     //Logic for Scroll
 

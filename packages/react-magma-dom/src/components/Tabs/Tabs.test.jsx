@@ -10,8 +10,7 @@ describe('Tabs', () => {
   it('should correctly apply the testId', () => {
     const dispatch = jest.fn();
     const state = {
-      activeTabIndex: 1,
-      numberOfTabs: 5
+      activeTabIndex: 1
     };
     const testId = 'test-id';
 
@@ -29,8 +28,7 @@ describe('Tabs', () => {
   it('should render a button with the passed in text', () => {
     const dispatch = jest.fn();
     const state = {
-      activeTabIndex: 1,
-      numberOfTabs: 5
+      activeTabIndex: 1
     };
 
     const testId = 'test-id';
@@ -51,8 +49,7 @@ describe('Tabs', () => {
   it('should require orientation the tabs', () => {
     const dispatch = jest.fn();
     const state = {
-      activeTabIndex: 1,
-      numberOfTabs: 5
+      activeTabIndex: 1
     };
 
     const testId = 'test-id';
@@ -77,8 +74,7 @@ describe('Tabs', () => {
   it('TabsContextProvider/TabsContextConsumer shows activeTabIndex', () => {
     const dispatch = jest.fn();
     const state = {
-      activeTabIndex: 1,
-      numberOfTabs: 5
+      activeTabIndex: 1
     };
 
     const testId = 'test-id';
@@ -95,30 +91,10 @@ describe('Tabs', () => {
     expect(getByTestId(testId).textContent).toBe('1');
   });
 
-  it('TabsContextProvider/TabsContextConsumer shows numberOfIndex', () => {
-    const dispatch = jest.fn();
-    const state = {
-      activeTabIndex: 1,
-      numberOfTabs: 5
-    };
-
-    const testId = 'test-id';
-
-    const { getByTestId } = render(
-      <TabsContext.Provider value={{ state, dispatch }}>
-        <TabsContext.Consumer>
-          {value => <div data-testid={testId}>{value.state.numberOfTabs}</div>}
-        </TabsContext.Consumer>
-      </TabsContext.Provider>
-    );
-    expect(getByTestId(testId).textContent).toBe('5');
-  });
-
   it('should render children', () => {
     const dispatch = jest.fn();
     const state = {
-      activeTabIndex: 1,
-      numberOfTabs: 5
+      activeTabIndex: 1
     };
 
     const testId = 'test-id';
@@ -137,8 +113,7 @@ describe('Tabs', () => {
   it('should render scroll buttons if orientation horizontal', () => {
     const dispatch = jest.fn();
     const state = {
-      activeTabIndex: 1,
-      numberOfTabs: 5
+      activeTabIndex: 1
     };
 
     const testId = 'test-id';
@@ -159,8 +134,7 @@ describe('Tabs', () => {
   it('calls scrollIntoView on click by arrow button ', () => {
     const dispatch = jest.fn();
     const state = {
-      activeTabIndex: 1,
-      numberOfTabs: 5
+      activeTabIndex: 1
     };
 
     const scrollIntoViewMock = jest.fn();
@@ -179,57 +153,6 @@ describe('Tabs', () => {
 
     expect(scrollIntoViewMock).toHaveBeenCalled();
   });
-
-  // it('should render line bottom/top if orientation horizontal', () => {
-  //   const dispatch = jest.fn();
-  //   const state = {
-  //     activeTabIndex: 1,
-  //     numberOfTabs: 5
-  //   };
-
-  //   const testId = 'test-id';
-
-  //   const { getByTestId, rerender } = render(
-  //     <TabsContext.Provider value={{ state, dispatch }}>
-  //       <Tabs testId={testId} borderPosition="top" orientation="horizontal">
-  //         <div></div>
-  //       </Tabs>
-  //     </TabsContext.Provider>
-  //   );
-  //   expect(getByTestId('bottom-line')).toBeDefined();
-  //   expect(getByTestId('bottom-line')).toHaveStyleRule('top', '0');
-
-  //   rerender(
-  //     <TabsContext.Provider value={{ state, dispatch }}>
-  //       <Tabs testId={testId} borderPosition="bottom" orientation="horizontal">
-  //         <div></div>
-  //       </Tabs>
-  //     </TabsContext.Provider>
-  //   );
-
-  //   expect(getByTestId('bottom-line')).toBeDefined();
-  //   expect(getByTestId('bottom-line')).toHaveStyleRule('bottom', '0');
-  // });
-
-  // it('should render line left if orientation vertical', () => {
-  //   const dispatch = jest.fn();
-  //   const state = {
-  //     activeTabIndex: 1,
-  //     numberOfTabs: 5
-  //   };
-
-  //   const testId = 'test-id';
-
-  //   const { getByTestId } = render(
-  //     <TabsContext.Provider value={{ state, dispatch }}>
-  //       <Tabs testId={testId} borderPosition="left" orientation="vertical">
-  //         <div></div>
-  //       </Tabs>
-  //     </TabsContext.Provider>
-  //   );
-  //   expect(getByTestId('bottom-line')).toBeDefined();
-  //   expect(getByTestId('bottom-line')).toHaveStyleRule('left', '0');
-  // });
 });
 
 describe('Test for accessibility', () => {
