@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.19](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.18...v2.0.0-beta.19) (2020-01-28)
+
+
+### Bug Fixes
+
+* **ref:** Fix references for Search/Input components ([4eace40](http://stash.corp.web:7999/FRONT/react-magma/commits/4eace40))
+
+
+
+
+
 # [2.0.0-beta.17](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.16...v2.0.0-beta.17) (2020-01-15)
 
 
