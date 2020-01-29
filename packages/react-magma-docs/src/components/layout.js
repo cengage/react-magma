@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { MDXProvider } from '@mdx-js/tag'
+import { MDXProvider } from '@mdx-js/react'
 import { SkipLinkContent } from 'react-magma-dom'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import { convertTextToId } from '../utils'
@@ -9,11 +9,11 @@ import LayoutComponent from './layout-component'
 import editorTheme from './editorTheme'
 
 const PreComponent = ({ className, components, ...props }) => {
-  const hideCode = props.children.props.props.hideCode
-  const hidePreview = props.children.props.props.hidePreview
+  const hideCode = props.children.props.hideCode
+  const hidePreview = props.children.props.hidePreview
 
-  return props.children.props.props &&
-    props.children.props.props.className === 'language-.jsx' ? (
+  return props.children.props &&
+    props.children.props.className === 'language-.jsx' ? (
     <LiveProvider
       mountStylesheet={false}
       code={props.children.props.children}

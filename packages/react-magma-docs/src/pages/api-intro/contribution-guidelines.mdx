@@ -1,0 +1,34 @@
+---
+title: Contribution Guidelines
+order: 3
+---
+
+# Contribution Guidelines
+
+## Convention
+
+We have spent a lot of time making various decisions to make sure that our code looks and feels the same across the entire repository. Before starting on your first PR please make sure to have a look at other components to see the different convention choices and structure. If you do see something that you believe should be changed, added, or was the wrong choice, please bring it up with the team before making that change in your new component or fix.
+
+## Stay focused
+
+If, while you're looking through the repository, you see something outside of your component that you are focused on that you believe should be changed / fixed please let the team know. For your PR, make sure you stay focused on what you were originally intending on working on. That does not mean that we can't make changes outside of your component, but we want to make sure it's the right choice and if it is, we will create a separate PR as there may be side effects.
+
+## Pull Request Rigor
+
+We appreciate the help with anything that comes in through a pull request, but please realize that we will not be rushing anything through and any developer should expect a decent amount of feedback on any pull request. Being a library that is used across multiple teams means that we need to make sure we are thinking of as many situations as possible, so even if you believe the component is ready for your team there could be more that we ask for to allow for the component to be used in a broader scenario.
+
+## Accessibility (a11y) and performance
+
+We want to make sure that a11y and performance are in the front of our minds in everything we develop. As we are a library being used in multiple products, we would like to make sure that we build in the best practices to ensure quality across the board. When implementing your PR, please keep these in mind as we will not accept any PRs that do not meet these standards.
+
+## Theme
+
+We have a base theme built out and allow for the consumer to use their own, separate theme if need be. Make sure not to hard code any colors or refer directly to the `magma` theme in those implementations. Instead, components should use the `ThemeContext`, which will the `magma` theme. If you do not see a color that you are needing to use as part of the `magma` theme, please talk to the team and we can find out where that color should.
+
+## Respect
+
+Just as we respect your suggestions and your hard work in helping make this library better, please respect our final decisions. A lot of thought has gone in to this library and even if you don't fully agree with some of the decisions, we would appreciate the respect of following our conventions when asked to.
+
+## Communication
+
+Communicate often. Make sure you are giving progress updates for any PR. With more communication we can catch things earlier and help you develop using the conventions and practices that we have built in. This will also ensure a much faster PR approval if we are on the same page the whole time.

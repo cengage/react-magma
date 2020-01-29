@@ -5,142 +5,111 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [2.0.0-beta.17](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.16...v2.0.0-beta.17) (2020-01-15)
 
-
 ### Features
 
-* **hide at breakponit:** new component to hide at specified breakpoinit ([786eeec](http://stash.corp.web:7999/FRONT/react-magma/commits/786eeec))
-* **hideatbreakpoint:** remove ref, update tests ([7a932a3](http://stash.corp.web:7999/FRONT/react-magma/commits/7a932a3))
-
-
-
-
+- **hide at breakponit:** new component to hide at specified breakpoinit ([786eeec](http://stash.corp.web:7999/FRONT/react-magma/commits/786eeec))
+- **hideatbreakpoint:** remove ref, update tests ([7a932a3](http://stash.corp.web:7999/FRONT/react-magma/commits/7a932a3))
 
 # [2.0.0-beta.16](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.15...v2.0.0-beta.16) (2020-01-15)
 
-
 ### Features
 
-* **date-picker:** add aria label for disabled day state ([7fe8184](http://stash.corp.web:7999/FRONT/react-magma/commits/7fe8184))
-* **date-picker:** adding in allowable dates ([6565fe8](http://stash.corp.web:7999/FRONT/react-magma/commits/6565fe8))
-* **date-picker:** allow navigation but not selection of disabled dates ([e4930a4](http://stash.corp.web:7999/FRONT/react-magma/commits/e4930a4))
-
-
-
-
+- **date-picker:** add aria label for disabled day state ([7fe8184](http://stash.corp.web:7999/FRONT/react-magma/commits/7fe8184))
+- **date-picker:** adding in allowable dates ([6565fe8](http://stash.corp.web:7999/FRONT/react-magma/commits/6565fe8))
+- **date-picker:** allow navigation but not selection of disabled dates ([e4930a4](http://stash.corp.web:7999/FRONT/react-magma/commits/e4930a4))
 
 # [2.0.0-beta.15](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.14...v2.0.0-beta.15) (2020-01-13)
 
-
 ### Features
 
-* **checkbox:** separate indeterminate checkbox ([fea93c1](http://stash.corp.web:7999/FRONT/react-magma/commits/fea93c1))
-* **checkbox:** share styles between indeterminate checkbox and checkbox ([03f692e](http://stash.corp.web:7999/FRONT/react-magma/commits/03f692e))
-* **checkbox:** use effect after all status updates ([cbb1a2a](http://stash.corp.web:7999/FRONT/react-magma/commits/cbb1a2a))
-
+- **checkbox:** separate indeterminate checkbox ([fea93c1](http://stash.corp.web:7999/FRONT/react-magma/commits/fea93c1))
+- **checkbox:** share styles between indeterminate checkbox and checkbox ([03f692e](http://stash.corp.web:7999/FRONT/react-magma/commits/03f692e))
+- **checkbox:** use effect after all status updates ([cbb1a2a](http://stash.corp.web:7999/FRONT/react-magma/commits/cbb1a2a))
 
 ### BREAKING CHANGES
 
-* **checkbox:** removed indeterminiate prop from checkbox, put in separate component
+- **checkbox:** removed indeterminiate prop from checkbox, put in separate component
 
 MAGMA-196
 
-
-
-
-
 # [2.0.0-beta.14](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.13...v2.0.0-beta.14) (2020-01-13)
-
 
 ### Features
 
-* **badge:** add 1px border to light badge ([d086865](http://stash.corp.web:7999/FRONT/react-magma/commits/d086865))
-
-
-
-
+- **badge:** add 1px border to light badge ([d086865](http://stash.corp.web:7999/FRONT/react-magma/commits/d086865))
 
 # [2.0.0-beta.13](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.12...v2.0.0-beta.13) (2020-01-13)
 
-
 ### Features
 
-* **breadcrumb:** update font size ([a8d053d](http://stash.corp.web:7999/FRONT/react-magma/commits/a8d053d))
-
-
-
-
+- **breadcrumb:** update font size ([a8d053d](http://stash.corp.web:7999/FRONT/react-magma/commits/a8d053d))
 
 # [2.0.0-beta.11](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.10...v2.0.0-beta.11) (2020-01-07)
 
-
 ### Features
 
-* **alert, toast:** change dismissible prop name to isDismissible ([99d6786](http://stash.corp.web:7999/FRONT/react-magma/commits/99d6786))
-* rename inverse prop to isInverse ([6a95471](http://stash.corp.web:7999/FRONT/react-magma/commits/6a95471))
-* **button:** change fullWidth prop to isFullWidth ([3b4477b](http://stash.corp.web:7999/FRONT/react-magma/commits/3b4477b))
-* **input:** rename hidePasswordMaskButton to isPasswordMaskButtonHidden ([4968f74](http://stash.corp.web:7999/FRONT/react-magma/commits/4968f74))
-* **input:** rename labelVisuallyHidden prop to isLabelVisuallyHidden ([3939dd7](http://stash.corp.web:7999/FRONT/react-magma/commits/3939dd7))
-* **modal:** change boolean prop names ([2723ed7](http://stash.corp.web:7999/FRONT/react-magma/commits/2723ed7))
-* **modal:** update boolean prop names ([cc27b7e](http://stash.corp.web:7999/FRONT/react-magma/commits/cc27b7e))
-* **progressbar:** change boolean prop names ([0788dd0](http://stash.corp.web:7999/FRONT/react-magma/commits/0788dd0))
-* **radio, checkbox, toggle, formgroup:** textVisuallyHidden prop ([4bd2115](http://stash.corp.web:7999/FRONT/react-magma/commits/4bd2115))
-
+- **alert, toast:** change dismissible prop name to isDismissible ([99d6786](http://stash.corp.web:7999/FRONT/react-magma/commits/99d6786))
+- rename inverse prop to isInverse ([6a95471](http://stash.corp.web:7999/FRONT/react-magma/commits/6a95471))
+- **button:** change fullWidth prop to isFullWidth ([3b4477b](http://stash.corp.web:7999/FRONT/react-magma/commits/3b4477b))
+- **input:** rename hidePasswordMaskButton to isPasswordMaskButtonHidden ([4968f74](http://stash.corp.web:7999/FRONT/react-magma/commits/4968f74))
+- **input:** rename labelVisuallyHidden prop to isLabelVisuallyHidden ([3939dd7](http://stash.corp.web:7999/FRONT/react-magma/commits/3939dd7))
+- **modal:** change boolean prop names ([2723ed7](http://stash.corp.web:7999/FRONT/react-magma/commits/2723ed7))
+- **modal:** update boolean prop names ([cc27b7e](http://stash.corp.web:7999/FRONT/react-magma/commits/cc27b7e))
+- **progressbar:** change boolean prop names ([0788dd0](http://stash.corp.web:7999/FRONT/react-magma/commits/0788dd0))
+- **radio, checkbox, toggle, formgroup:** textVisuallyHidden prop ([4bd2115](http://stash.corp.web:7999/FRONT/react-magma/commits/4bd2115))
 
 ### BREAKING CHANGES
 
-* **modal:** change prop names in modal component - open to isOpen, disableBackdropClick to
-isBackgroundClickDisabled, disableEscKeyDown to isEscKeyDisabled and hideCloseButton to
-isCloseButtonHidden
+- **modal:** change prop names in modal component - open to isOpen, disableBackdropClick to
+  isBackgroundClickDisabled, disableEscKeyDown to isEscKeyDisabled and hideCloseButton to
+  isCloseButtonHidden
 
 MAGMA-212
-* **progressbar:** prop name changes in progressbar component - animated to isAnimated and
-labelVisible to isLabelVisible
+
+- **progressbar:** prop name changes in progressbar component - animated to isAnimated and
+  labelVisible to isLabelVisible
 
 MAGMA-212
-* **modal:** update props names for modal - disableBackdropClick, disableEscKeyDown,
-hideCloseButton, open to isBackgroundClickDisabled, isEscKeyDownDisabled, isCloseButtonHidden and
-isOpen
+
+- **modal:** update props names for modal - disableBackdropClick, disableEscKeyDown,
+  hideCloseButton, open to isBackgroundClickDisabled, isEscKeyDownDisabled, isCloseButtonHidden and
+  isOpen
 
 MAGMA-212
-* **input:** prop name change in input component labelVisuallyHidden to isLabelVisuallyHidden
-* **input:** rename prop in input component hidePasswordMaskButton to isPasswordMaskButtonHidden
+
+- **input:** prop name change in input component labelVisuallyHidden to isLabelVisuallyHidden
+- **input:** rename prop in input component hidePasswordMaskButton to isPasswordMaskButtonHidden
 
 MAGMA-212
-* **radio, checkbox, toggle, formgroup:** renamed textVisuallyHidden prop to isTextVisuallyHidden in checkbox, formgroup,
-radio, radiogroup and toggle components
+
+- **radio, checkbox, toggle, formgroup:** renamed textVisuallyHidden prop to isTextVisuallyHidden in checkbox, formgroup,
+  radio, radiogroup and toggle components
 
 MAGMA-212
-* **button:** prop name in button changed from fullWidth, to isFullWidth. It was previously named
-block
+
+- **button:** prop name in button changed from fullWidth, to isFullWidth. It was previously named
+  block
 
 MAGMA-212
-* Across many components, the inverse prop has been renamed to isInverse.  Affects
-Alert, Breadcrumb, Button, Card, Checkbox, Datepicker, Heading, HyperLink, Input, ProgressBar,
-Radio, Search, Select, SkipLinik, Toast, Toggle, Tooltip
+
+- Across many components, the inverse prop has been renamed to isInverse. Affects
+  Alert, Breadcrumb, Button, Card, Checkbox, Datepicker, Heading, HyperLink, Input, ProgressBar,
+  Radio, Search, Select, SkipLinik, Toast, Toggle, Tooltip
 
 MAGMA-212
-* **alert, toast:** prop name changed in alert, toast components.  Was dismissible, now is
-isDismissible
 
-
-
-
+- **alert, toast:** prop name changed in alert, toast components. Was dismissible, now is
+  isDismissible
 
 # [2.0.0-beta.10](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.9...v2.0.0-beta.10) (2020-01-07)
 
-
 ### Bug Fixes
 
-* **search:** pass search value to onsearch function ([9f7c9a2](http://stash.corp.web:7999/FRONT/react-magma/commits/9f7c9a2))
-
+- **search:** pass search value to onsearch function ([9f7c9a2](http://stash.corp.web:7999/FRONT/react-magma/commits/9f7c9a2))
 
 ### Features
 
-* **search:** call onchange event if passed as prop ([76ea4eb](http://stash.corp.web:7999/FRONT/react-magma/commits/76ea4eb))
-
-
-
-
+- **search:** call onchange event if passed as prop ([76ea4eb](http://stash.corp.web:7999/FRONT/react-magma/commits/76ea4eb))
 
 # [2.0.0-beta.9](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.8...v2.0.0-beta.9) (2020-01-07)
 
@@ -154,11 +123,7 @@ isDismissible
 
 # [2.0.0-beta.5](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.4...v2.0.0-beta.5) (2020-01-06)
 
-<<<<<<< HEAD
-
 ### Bug Fixes
-
-=======
 
 ### Code Refactoring
 
@@ -177,15 +142,11 @@ isDismissible
 
 ### Bug Fixes
 
-> > > > > > > dev
-
 - **datepicker:** omit value from default html props ([dd4def9](http://stash.corp.web:7999/FRONT/react-magma/commits/dd4def9))
 
 ### Features
 
 - **datepicker:** add value prop ([430f5c8](http://stash.corp.web:7999/FRONT/react-magma/commits/430f5c8))
-  <<<<<<< HEAD
-  =======
 
 * **breadcrumb:** removed inverse prop from BreadcrumbItem, now inherits prop from Breadcrumb
 
@@ -201,11 +162,8 @@ MAGMA-207
 MAGMA-204
 
 - **modal:** prop name change in modal from hideEscButton to hideCloseButton
-  > > > > > > > dev
 
 MAGMA-203
-
-<<<<<<< HEAD
 
 ### Features
 
@@ -228,8 +186,6 @@ MAGMA-191
   placeholderText to placeholder
 
 MAGMA-190
-
-> > > > > > > dev
 
 # [2.0.0-beta.3](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2019-12-20)
 
