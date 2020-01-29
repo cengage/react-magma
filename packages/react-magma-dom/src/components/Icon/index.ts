@@ -177,7 +177,6 @@ import { QuestionCircleOIcon } from './types/QuestionCircleOIcon';
 import { QuestionCircleIcon } from './types/QuestionCircleIcon';
 import { Reading2Icon } from './types/Reading2Icon';
 import { RedoIcon } from './types/RedoIcon';
-import { Redo2Icon } from './types/Redo2Icon';
 import { RefreshIcon } from './types/RefreshIcon';
 import { ReplyIcon } from './types/ReplyIcon';
 import { RoubleIcon } from './types/RoubleIcon';
@@ -190,11 +189,17 @@ import { SignInIcon } from './types/SignInIcon';
 import { SnapchatIcon } from './types/SnapchatIcon';
 import { SpotifyIcon } from './types/SpotifyIcon';
 import { StackIcon } from './types/StackIcon';
+import { StarEmptyIcon } from './types/StarEmptyIcon';
 import { StarFullIcon } from './types/StarFullIcon';
 import { StarHalfIcon } from './types/StarHalfIcon';
 import { StatsBarsIcon } from './types/StatsBarsIcon';
 import { StatsBars2Icon } from './types/StatsBars2Icon';
+import { StatsBars3Icon } from './types/StatsBars3Icon';
+import { StatsBoxPlotIcon } from './types/StatsBoxPlotIcon';
 import { StatsDotsIcon } from './types/StatsDotsIcon';
+import { StatsDotPlotIcon } from './types/StatsDotPlotIcon';
+import { StatsPieChartIcon } from './types/StatsPieChartIcon';
+import { StatsScatterIcon } from './types/StatsScatterIcon';
 import { StopIcon } from './types/StopIcon';
 import { Stop2Icon } from './types/Stop2Icon';
 import { SwapHorizIcon } from './types/SwapHorizIcon';
@@ -209,7 +214,6 @@ import { TuneIcon } from './types/TuneIcon';
 import { TwitterIcon } from './types/TwitterIcon';
 import { UnarchiveIcon } from './types/UnarchiveIcon';
 import { UndoIcon } from './types/UndoIcon';
-import { Undo2Icon } from './types/Undo2Icon';
 import { UnlockedIcon } from './types/UnlockedIcon';
 import { Upload2Icon } from './types/Upload2Icon';
 import { VideoCameraIcon } from './types/VideoCameraIcon';
@@ -413,7 +417,6 @@ export const ICONS: IconsCollection = {
   QuestionCircleIcon,
   Reading2Icon,
   RedoIcon,
-  Redo2Icon,
   RefreshIcon,
   ReplyIcon,
   RoubleIcon,
@@ -426,11 +429,17 @@ export const ICONS: IconsCollection = {
   SnapchatIcon,
   SpotifyIcon,
   StackIcon,
+  StarEmptyIcon,
   StarFullIcon,
   StarHalfIcon,
   StatsBarsIcon,
   StatsBars2Icon,
+  StatsBars3Icon,
+  StatsBoxPlotIcon,
+  StatsDotPlotIcon,
   StatsDotsIcon,
+  StatsPieChartIcon,
+  StatsScatterIcon,
   StopIcon,
   Stop2Icon,
   SwapHorizIcon,
@@ -445,7 +454,6 @@ export const ICONS: IconsCollection = {
   TwitterIcon,
   UnarchiveIcon,
   UndoIcon,
-  Undo2Icon,
   UnlockedIcon,
   Upload2Icon,
   VideoCameraIcon,
