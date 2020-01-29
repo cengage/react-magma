@@ -316,30 +316,6 @@ exports[`Icon Snapshot Tests should render ArrowDown2Icon icon 1`] = `
 </div>
 `;
 
-exports[`Icon Snapshot Tests should render ArrowDown3Icon icon 1`] = `
-<div>
-  <svg
-    aria-labelledby="ArrowDown3IconAvailable"
-    class="icon"
-    fill="currentColor"
-    height="24"
-    viewBox="0 0 24.34 23.17"
-    width="24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <title
-      id="ArrowDown3IconAvailable"
-    >
-      ArrowDown3Icon Title
-    </title>
-    <path
-      d="M25.17,13.41a1.93,1.93,0,0,1-.57,1.41L14.42,25a2,2,0,0,1-1.42.57A1.91,1.91,0,0,1,11.6,25L1.42,14.82a1.86,1.86,0,0,1-.59-1.41A2,2,0,0,1,1.42,12l1.16-1.17A2,2,0,0,1,4,10.24a1.92,1.92,0,0,1,1.41.58L10,15.41v-11A1.89,1.89,0,0,1,10.6,3a1.89,1.89,0,0,1,1.4-.6h2a1.93,1.93,0,0,1,1.41.6A1.92,1.92,0,0,1,16,4.41v11l4.6-4.59a1.88,1.88,0,0,1,1.4-.58,2,2,0,0,1,1.42.58L24.6,12A2,2,0,0,1,25.17,13.41Z"
-      transform="translate(-0.83 -2.41)"
-    />
-  </svg>
-</div>
-`;
-
 exports[`Icon Snapshot Tests should render ArrowLeft2Icon icon 1`] = `
 <div>
   <svg
@@ -359,30 +335,6 @@ exports[`Icon Snapshot Tests should render ArrowLeft2Icon icon 1`] = `
     <path
       d="M11.1,24,2.35,15.24a1.74,1.74,0,0,1,0-2.48L11.1,4a1.75,1.75,0,1,1,2.47,2.48L7.81,12.25H24.58a1.75,1.75,0,0,1,0,3.5H7.81l5.76,5.76a1.76,1.76,0,0,1,.52,1.24A1.72,1.72,0,0,1,13.57,24,1.75,1.75,0,0,1,11.1,24Z"
       transform="translate(-1.84 -3.5)"
-    />
-  </svg>
-</div>
-`;
-
-exports[`Icon Snapshot Tests should render ArrowLeft3Icon icon 1`] = `
-<div>
-  <svg
-    aria-labelledby="ArrowLeft3IconAvailable"
-    class="icon"
-    fill="currentColor"
-    height="24"
-    viewBox="0 0 23 24.34"
-    width="24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <title
-      id="ArrowLeft3IconAvailable"
-    >
-      ArrowLeft3Icon Title
-    </title>
-    <path
-      d="M23.5,13v2A2.07,2.07,0,0,1,23,16.41a1.67,1.67,0,0,1-1.32.59h-11l4.58,4.59a2,2,0,0,1,0,2.82l-1.17,1.18a1.92,1.92,0,0,1-1.41.58,2,2,0,0,1-1.42-.58L1.08,15.41A1.92,1.92,0,0,1,.5,14a2,2,0,0,1,.58-1.42L11.25,2.42a2,2,0,0,1,2.83,0l1.17,1.16A1.91,1.91,0,0,1,15.84,5a1.91,1.91,0,0,1-.59,1.42L10.67,11h11a1.67,1.67,0,0,1,1.32.59A2.07,2.07,0,0,1,23.5,13Z"
-      transform="translate(-0.5 -1.83)"
     />
   </svg>
 </div>
@@ -412,30 +364,6 @@ exports[`Icon Snapshot Tests should render ArrowRight2Icon icon 1`] = `
 </div>
 `;
 
-exports[`Icon Snapshot Tests should render ArrowRight3Icon icon 1`] = `
-<div>
-  <svg
-    aria-labelledby="ArrowRight3IconAvailable"
-    class="icon"
-    fill="currentColor"
-    height="24"
-    viewBox="0 0 23 24.34"
-    width="24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <title
-      id="ArrowRight3IconAvailable"
-    >
-      ArrowRight3Icon Title
-    </title>
-    <path
-      d="M23.5,14a1.91,1.91,0,0,1-.58,1.42L12.75,25.59a2,2,0,0,1-2.83,0L8.75,24.42a2,2,0,0,1,0-2.84L13.33,17h-11A1.67,1.67,0,0,1,1,16.41,2.07,2.07,0,0,1,.5,15V13A2.07,2.07,0,0,1,1,11.59,1.67,1.67,0,0,1,2.33,11h11L8.75,6.41A1.86,1.86,0,0,1,8.16,5a1.86,1.86,0,0,1,.59-1.41L9.92,2.42a2,2,0,0,1,2.83,0L22.92,12.59A1.86,1.86,0,0,1,23.5,14Z"
-      transform="translate(-0.5 -1.83)"
-    />
-  </svg>
-</div>
-`;
-
 exports[`Icon Snapshot Tests should render ArrowUp2Icon icon 1`] = `
 <div>
   <svg
@@ -455,30 +383,6 @@ exports[`Icon Snapshot Tests should render ArrowUp2Icon icon 1`] = `
     <path
       d="M24,11.1,15.24,2.35a1.74,1.74,0,0,0-2.48,0L4,11.1a1.75,1.75,0,1,0,2.48,2.47l5.76-5.76V24.58a1.75,1.75,0,0,0,3.5,0V7.81l5.76,5.76a1.76,1.76,0,0,0,1.24.52A1.72,1.72,0,0,0,24,13.57,1.75,1.75,0,0,0,24,11.1Z"
       transform="translate(-3.5 -1.84)"
-    />
-  </svg>
-</div>
-`;
-
-exports[`Icon Snapshot Tests should render ArrowUp3Icon icon 1`] = `
-<div>
-  <svg
-    aria-labelledby="ArrowUp3IconAvailable"
-    class="icon"
-    fill="currentColor"
-    height="24"
-    viewBox="0 0 24.34 23"
-    width="24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <title
-      id="ArrowUp3IconAvailable"
-    >
-      ArrowUp3Icon Title
-    </title>
-    <path
-      d="M25.17,14.67a2,2,0,0,1-.57,1.41l-1.18,1.17a1.91,1.91,0,0,1-1.42.59,1.82,1.82,0,0,1-1.4-.59L16,12.67v11A1.67,1.67,0,0,1,15.42,25,2.1,2.1,0,0,1,14,25.5H12A2.07,2.07,0,0,1,10.59,25,1.67,1.67,0,0,1,10,23.67v-11L5.41,17.25A1.86,1.86,0,0,1,4,17.84a1.82,1.82,0,0,1-1.4-.59L1.42,16.08a2,2,0,0,1,0-2.83L11.6,3.08A1.82,1.82,0,0,1,13,2.5a1.91,1.91,0,0,1,1.42.58L24.6,13.25A2,2,0,0,1,25.17,14.67Z"
-      transform="translate(-0.83 -2.5)"
     />
   </svg>
 </div>
@@ -2047,30 +1951,6 @@ exports[`Icon Snapshot Tests should render ExamIcon icon 1`] = `
 </div>
 `;
 
-exports[`Icon Snapshot Tests should render ExclamationIcon icon 1`] = `
-<div>
-  <svg
-    aria-labelledby="ExclamationIconAvailable"
-    class="icon"
-    fill="currentColor"
-    height="24"
-    viewBox="0 0 6.94 22"
-    width="24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <title
-      id="ExclamationIconAvailable"
-    >
-      ExclamationIcon Title
-    </title>
-    <path
-      d="M8,20.5V24a.94.94,0,0,1-.29.7A1,1,0,0,1,7,25H3a1,1,0,0,1-.7-.3A1,1,0,0,1,2,24V20.5a1,1,0,0,1,.3-.7,1,1,0,0,1,.7-.3H7a1,1,0,0,1,.71.3A.94.94,0,0,1,8,20.5ZM8.47,4,8,16a1,1,0,0,1-.32.7A1,1,0,0,1,7,17H3a1,1,0,0,1-.71-.3A1,1,0,0,1,2,16L1.53,4a.92.92,0,0,1,.28-.7A.92.92,0,0,1,2.5,3h5a.94.94,0,0,1,.7.3.91.91,0,0,1,.27.7Z"
-      transform="translate(-1.53 -3)"
-    />
-  </svg>
-</div>
-`;
-
 exports[`Icon Snapshot Tests should render ExternalLinkIcon icon 1`] = `
 <div>
   <svg
@@ -2718,7 +2598,7 @@ exports[`Icon Snapshot Tests should render ForwardIcon icon 1`] = `
       ForwardIcon Title
     </title>
     <path
-      d="M8.3,0C5.19,5.63,4.66,14.23,16.88,13.94V7l10.5,10.5L16.88,28V21.21C2.25,21.59.62,8.3,8.3,0Z"
+      d="M16.88,6.79V0l10.5,10.5L16.88,21V14.06C4.66,13.77,5.19,22.37,8.3,28,.62,19.7,2.25,6.41,16.88,6.79Z"
       transform="translate(-3.78)"
     />
   </svg>
@@ -3433,29 +3313,6 @@ exports[`Icon Snapshot Tests should render List2Icon icon 1`] = `
 </div>
 `;
 
-exports[`Icon Snapshot Tests should render List3Icon icon 1`] = `
-<div>
-  <svg
-    aria-labelledby="List3IconAvailable"
-    class="icon"
-    fill="currentColor"
-    height="24"
-    viewBox="0 0 28 28"
-    width="24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <title
-      id="List3IconAvailable"
-    >
-      List3Icon Title
-    </title>
-    <path
-      d="M0,0H7V7H0ZM10.5,1.75H28v3.5H10.5ZM0,10.5H7v7H0Zm10.5,1.75H28v3.5H10.5ZM0,21H7v7H0Zm10.5,1.75H28v3.5H10.5Z"
-    />
-  </svg>
-</div>
-`;
-
 exports[`Icon Snapshot Tests should render ListIcon icon 1`] = `
 <div>
   <svg
@@ -3722,94 +3579,6 @@ exports[`Icon Snapshot Tests should render MarketIcon icon 1`] = `
     <path
       d="M24.4,4,28,9.4v.8c0,1.2-1,2-2.4,2a2.54,2.54,0,0,1-1.2-.2V25.2H4V11.8a3.77,3.77,0,0,1-1.6.4c-1.4,0-2.4-.8-2.4-2V9.4L3.8,4V3.6a1.07,1.07,0,0,1,1-1H23.2a1.07,1.07,0,0,1,1,1V4ZM6.2,5.6v3a2.48,2.48,0,0,0,2.4,2.6c1.4,0,1.8-1.2,2-2.6a24.83,24.83,0,0,1,.2-3Zm11,0c.2,1.4.6,3,.6,3,0,1.4.6,2.6,1.8,2.6A2.78,2.78,0,0,0,22,8.6a24.83,24.83,0,0,0-.2-3ZM6,11v7.2H22.6V10.6a3.14,3.14,0,0,1-2.8,1.8,2.24,2.24,0,0,1-2.4-2s.6.2.2.2h-.2c0,1-2.2,1-3.6,1s-3.4,0-3.4-1h.2c-.4,0,0-.6,0-.6.2.6-1,2-2.4,2A1.9,1.9,0,0,1,6,11Z"
       transform="translate(0 -2.6)"
-    />
-  </svg>
-</div>
-`;
-
-exports[`Icon Snapshot Tests should render Menu2Icon icon 1`] = `
-<div>
-  <svg
-    aria-labelledby="Menu2IconAvailable"
-    class="icon"
-    fill="currentColor"
-    height="24"
-    viewBox="0 0 37.63 19.25"
-    width="24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <title
-      id="Menu2IconAvailable"
-    >
-      Menu2Icon Title
-    </title>
-    <path
-      d="M.44,4.38h24.5V9.62H.44Zm0,7h24.5v5.24H.44Zm0,7h24.5v5.24H.44Z"
-      transform="translate(-0.44 -4.38)"
-    />
-    <path
-      d="M27.56,14.88l5.25,5.24,5.25-5.24Z"
-      transform="translate(-0.44 -4.38)"
-    />
-    <path
-      d="M38.06,13.12,32.81,7.88l-5.25,5.24Z"
-      transform="translate(-0.44 -4.38)"
-    />
-  </svg>
-</div>
-`;
-
-exports[`Icon Snapshot Tests should render Menu3Icon icon 1`] = `
-<div>
-  <svg
-    aria-labelledby="Menu3IconAvailable"
-    class="icon"
-    fill="currentColor"
-    height="24"
-    viewBox="0 0 37.63 19.25"
-    width="24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <title
-      id="Menu3IconAvailable"
-    >
-      Menu3Icon Title
-    </title>
-    <path
-      d="M.44,4.38h24.5V9.62H.44Zm0,7h24.5v5.24H.44Zm0,7h24.5v5.24H.44Z"
-      transform="translate(-0.44 -4.38)"
-    />
-    <path
-      d="M27.56,11.38l5.25,5.24,5.25-5.24Z"
-      transform="translate(-0.44 -4.38)"
-    />
-  </svg>
-</div>
-`;
-
-exports[`Icon Snapshot Tests should render Menu4Icon icon 1`] = `
-<div>
-  <svg
-    aria-labelledby="Menu4IconAvailable"
-    class="icon"
-    fill="currentColor"
-    height="24"
-    viewBox="0 0 37.63 19.25"
-    width="24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <title
-      id="Menu4IconAvailable"
-    >
-      Menu4Icon Title
-    </title>
-    <path
-      d="M.44,4.38h24.5V9.62H.44Zm0,7h24.5v5.24H.44Zm0,7h24.5v5.24H.44Z"
-      transform="translate(-0.44 -4.38)"
-    />
-    <path
-      d="M27.56,16.62l5.25-5.24,5.25,5.24Z"
-      transform="translate(-0.44 -4.38)"
     />
   </svg>
 </div>
@@ -4376,29 +4145,6 @@ exports[`Icon Snapshot Tests should render PhoneIcon icon 1`] = `
 </div>
 `;
 
-exports[`Icon Snapshot Tests should render PieChartIcon icon 1`] = `
-<div>
-  <svg
-    aria-labelledby="PieChartIconAvailable"
-    class="icon"
-    fill="currentColor"
-    height="24"
-    viewBox="0 0 24.96 28"
-    width="24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <title
-      id="PieChartIconAvailable"
-    >
-      PieChartIcon Title
-    </title>
-    <path
-      d="M12.25,15.75V3.5a12.24,12.24,0,1,0,11,6.77ZM25,6.77A12.25,12.25,0,0,0,14,0V12.25Z"
-    />
-  </svg>
-</div>
-`;
-
 exports[`Icon Snapshot Tests should render PinIcon icon 1`] = `
 <div>
   <svg
@@ -4641,30 +4387,6 @@ exports[`Icon Snapshot Tests should render ProfileIcon icon 1`] = `
 </div>
 `;
 
-exports[`Icon Snapshot Tests should render Question2Icon icon 1`] = `
-<div>
-  <svg
-    aria-labelledby="Question2IconAvailable"
-    class="icon"
-    fill="currentColor"
-    height="24"
-    viewBox="0 0 14.44 20"
-    width="24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <title
-      id="Question2IconAvailable"
-    >
-      Question2Icon Title
-    </title>
-    <path
-      d="M10.29,19.62v3.76a.57.57,0,0,1-.19.43.58.58,0,0,1-.44.19H5.91a.61.61,0,0,1-.44-.19.6.6,0,0,1-.18-.43V19.62a.6.6,0,0,1,.18-.43A.61.61,0,0,1,5.91,19H9.66a.58.58,0,0,1,.44.19A.57.57,0,0,1,10.29,19.62Zm4.94-9.37A4.8,4.8,0,0,1,15,11.83,4.93,4.93,0,0,1,14.44,13a4.56,4.56,0,0,1-.86.93,7,7,0,0,1-.9.68l-.95.56a3,3,0,0,0-1.07,1,2.11,2.11,0,0,0-.43,1.05.85.85,0,0,1-.19.51A.54.54,0,0,1,9.6,18H5.85a.49.49,0,0,1-.4-.29,1.16,1.16,0,0,1-.16-.58v-.71a3.62,3.62,0,0,1,1-2.44,6.57,6.57,0,0,1,2.23-1.7,3.89,3.89,0,0,0,1.31-.87,1.76,1.76,0,0,0,.39-1.19,1.43,1.43,0,0,0-.72-1.16,2.94,2.94,0,0,0-1.68-.5A3,3,0,0,0,6.15,9a11,11,0,0,0-1.67,1.79.61.61,0,0,1-.49.25.79.79,0,0,1-.39-.12L1,9A.68.68,0,0,1,.8,8.6a.57.57,0,0,1,.09-.44A8,8,0,0,1,8.14,4a6.83,6.83,0,0,1,2.51.49,8.36,8.36,0,0,1,2.28,1.29,6.54,6.54,0,0,1,1.66,2,5.12,5.12,0,0,1,.64,2.48Z"
-      transform="translate(-0.79 -4)"
-    />
-  </svg>
-</div>
-`;
-
 exports[`Icon Snapshot Tests should render QuestionCircleIcon icon 1`] = `
 <div>
   <svg
@@ -4708,29 +4430,6 @@ exports[`Icon Snapshot Tests should render QuestionCircleOIcon icon 1`] = `
     <path
       d="M16,19.54v2.92a.55.55,0,0,1-.58.58H12.54a.55.55,0,0,1-.58-.58V19.54a.55.55,0,0,1,.58-.58h2.92a.55.55,0,0,1,.58.58Zm4.67-9a4.48,4.48,0,0,1-.28,1.64,3.24,3.24,0,0,1-.82,1.26,8.58,8.58,0,0,1-.95.8c-.26.18-.63.4-1.09.66s-.67.39-.85.51a2.38,2.38,0,0,0-.47.43.83.83,0,0,0-.21.53v.59a.57.57,0,0,1-.16.42.61.61,0,0,1-.42.16H12.54a.61.61,0,0,1-.42-.16.57.57,0,0,1-.16-.42V15.68a3.44,3.44,0,0,1,.19-1.18,3.2,3.2,0,0,1,.44-.87A3,3,0,0,1,13.3,13a6.75,6.75,0,0,1,.75-.47c.18-.1.45-.22.81-.38a7.08,7.08,0,0,0,1.36-.79,1.06,1.06,0,0,0,.4-.89,1.55,1.55,0,0,0-.79-1.3,3,3,0,0,0-1.74-.54,2.94,2.94,0,0,0-1.73.49,8.62,8.62,0,0,0-1.46,1.52.55.55,0,0,1-.46.21.57.57,0,0,1-.34-.1l-2-1.5a.51.51,0,0,1-.22-.36A.6.6,0,0,1,8,8.46,7.09,7.09,0,0,1,14.36,5a6.71,6.71,0,0,1,4.35,1.63,4.91,4.91,0,0,1,2,3.91ZM14,2.33a11.34,11.34,0,0,0-4.53.93A11.52,11.52,0,0,0,3.26,9.47a11.5,11.5,0,0,0,0,9.06,11.52,11.52,0,0,0,6.21,6.21,11.5,11.5,0,0,0,9.06,0,11.52,11.52,0,0,0,6.21-6.21,11.5,11.5,0,0,0,0-9.06,11.52,11.52,0,0,0-6.21-6.21A11.34,11.34,0,0,0,14,2.33ZM28,14a13.74,13.74,0,0,1-1.88,7A14,14,0,0,1,21,26.12,13.74,13.74,0,0,1,14,28a13.74,13.74,0,0,1-7-1.88A14,14,0,0,1,1.88,21,13.74,13.74,0,0,1,0,14,13.74,13.74,0,0,1,1.88,7,14,14,0,0,1,7,1.88,13.74,13.74,0,0,1,14,0a13.74,13.74,0,0,1,7,1.88A14,14,0,0,1,26.12,7,13.74,13.74,0,0,1,28,14Z"
       transform="translate(0 0)"
-    />
-  </svg>
-</div>
-`;
-
-exports[`Icon Snapshot Tests should render QuestionIcon icon 1`] = `
-<div>
-  <svg
-    aria-labelledby="QuestionIconAvailable"
-    class="icon"
-    fill="currentColor"
-    height="24"
-    viewBox="0 0 28 28"
-    width="24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <title
-      id="QuestionIconAvailable"
-    >
-      QuestionIcon Title
-    </title>
-    <path
-      d="M12.25,19.25h3.5v3.5h-3.5ZM19.25,7A1.75,1.75,0,0,1,21,8.75V14l-5.25,3.5h-3.5V15.75l5.25-3.5V10.5H8.75V7ZM14,2.62A11.37,11.37,0,0,0,6,22,11.37,11.37,0,1,0,22,6,11.29,11.29,0,0,0,14,2.62ZM14,0h0A14,14,0,1,1,0,14,14,14,0,0,1,14,0Z"
     />
   </svg>
 </div>
@@ -4873,7 +4572,7 @@ exports[`Icon Snapshot Tests should render ReplyIcon icon 1`] = `
       ReplyIcon Title
     </title>
     <path
-      d="M11.12,21.21V28L.62,17.5,11.12,7v6.94C23.34,14.23,22.81,5.63,19.7,0,27.38,8.3,25.75,21.59,11.12,21.21Z"
+      d="M19.7,28c3.11-5.63,3.64-14.23-8.58-13.94V21L.62,10.5,11.12,0V6.79C25.75,6.41,27.38,19.7,19.7,28Z"
       transform="translate(-0.62)"
     />
   </svg>
@@ -5079,30 +4778,6 @@ exports[`Icon Snapshot Tests should render SnapchatIcon icon 1`] = `
 </div>
 `;
 
-exports[`Icon Snapshot Tests should render Spinner2Icon icon 1`] = `
-<div>
-  <svg
-    aria-labelledby="Spinner2IconAvailable"
-    class="icon"
-    fill="currentColor"
-    height="24"
-    viewBox="0 0 27.13 26.26"
-    width="24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <title
-      id="Spinner2IconAvailable"
-    >
-      Spinner2Icon Title
-    </title>
-    <path
-      d="M27.58,14.44A13.78,13.78,0,0,0,18.82,1.81,13.44,13.44,0,0,0,1.35,9.37a13.24,13.24,0,0,0,.2,10.05,13,13,0,0,0,2.91,4.14,12.71,12.71,0,0,0,9.12,3.56,12.48,12.48,0,0,0,4.82-1.06,12.6,12.6,0,0,0,4-2.81,12.36,12.36,0,0,0,3.33-6.92h.1a1.75,1.75,0,0,0,1.75-1.75v-.14ZM24.8,19.08a12.07,12.07,0,0,1-6.65,6.37A11.76,11.76,0,0,1,5.38,22.64,11.63,11.63,0,0,1,3,18.83a11.38,11.38,0,0,1-.76-4.39,11.15,11.15,0,0,1,1-4.31A11.28,11.28,0,0,1,5.69,6.55,11.1,11.1,0,0,1,9.35,4.23,10.83,10.83,0,0,1,21.16,6.86a10.69,10.69,0,0,1,2.23,3.52,10.43,10.43,0,0,1,.69,4.06h0c0,.05,0,.09,0,.14a1.75,1.75,0,0,0,1.56,1.74A11.77,11.77,0,0,1,24.8,19.08Z"
-      transform="translate(-0.45 -0.87)"
-    />
-  </svg>
-</div>
-`;
-
 exports[`Icon Snapshot Tests should render SpotifyIcon icon 1`] = `
 <div>
   <svg
@@ -5194,30 +4869,6 @@ exports[`Icon Snapshot Tests should render StarHalfIcon icon 1`] = `
     <path
       d="M28,10.86,18.33,9.45,14,.69,9.67,9.45,0,10.86l7,6.82L5.35,27.32,14,22.77l8.65,4.55L21,17.68ZM14,20.6l0,0L14,5l3.06,6.19,6.83,1L18.94,17l1.17,6.81L14,20.61Z"
       transform="translate(0 -0.69)"
-    />
-  </svg>
-</div>
-`;
-
-exports[`Icon Snapshot Tests should render StarIcon icon 1`] = `
-<div>
-  <svg
-    aria-labelledby="StarIconAvailable"
-    class="icon"
-    fill="currentColor"
-    height="24"
-    viewBox="0 0 26 24.8"
-    width="24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <title
-      id="StarIconAvailable"
-    >
-      StarIcon Title
-    </title>
-    <path
-      d="M26,11.21a1.12,1.12,0,0,1-.4.75l-5.68,5.53,1.35,7.81a2.82,2.82,0,0,1,0,.32.9.9,0,0,1-.16.55.56.56,0,0,1-.48.23,1.23,1.23,0,0,1-.62-.19l-7-3.69L6,26.21a1.29,1.29,0,0,1-.63.19.57.57,0,0,1-.49-.23.9.9,0,0,1-.16-.55,2.67,2.67,0,0,1,0-.32l1.34-7.81L.39,12A1.19,1.19,0,0,1,0,11.21c0-.38.29-.62.88-.72L8.72,9.35l3.52-7.11c.19-.43.45-.64.76-.64s.57.21.77.64l3.51,7.11,7.85,1.14q.87.15.87.72Z"
-      transform="translate(0 -1.6)"
     />
   </svg>
 </div>
@@ -5417,30 +5068,6 @@ exports[`Icon Snapshot Tests should render ThIcon icon 1`] = `
 </div>
 `;
 
-exports[`Icon Snapshot Tests should render ThListIcon icon 1`] = `
-<div>
-  <svg
-    aria-labelledby="ThListIconAvailable"
-    class="icon"
-    fill="currentColor"
-    height="24"
-    viewBox="0 0 28 22"
-    width="24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <title
-      id="ThListIconAvailable"
-    >
-      ThListIcon Title
-    </title>
-    <path
-      d="M8,20.5v3A1.5,1.5,0,0,1,6.5,25h-5a1.44,1.44,0,0,1-1.06-.44A1.44,1.44,0,0,1,0,23.5v-3a1.44,1.44,0,0,1,.44-1.06A1.44,1.44,0,0,1,1.5,19h5A1.5,1.5,0,0,1,8,20.5Zm0-8v3A1.5,1.5,0,0,1,6.5,17h-5a1.44,1.44,0,0,1-1.06-.44A1.44,1.44,0,0,1,0,15.5v-3a1.44,1.44,0,0,1,.44-1.06A1.44,1.44,0,0,1,1.5,11h5A1.5,1.5,0,0,1,8,12.5Zm20,8v3A1.5,1.5,0,0,1,26.5,25h-15A1.5,1.5,0,0,1,10,23.5v-3A1.5,1.5,0,0,1,11.5,19h15A1.5,1.5,0,0,1,28,20.5ZM8,4.5v3A1.5,1.5,0,0,1,6.5,9h-5A1.44,1.44,0,0,1,.44,8.56,1.44,1.44,0,0,1,0,7.5v-3A1.44,1.44,0,0,1,.44,3.44,1.44,1.44,0,0,1,1.5,3h5A1.5,1.5,0,0,1,8,4.5Zm20,8v3A1.5,1.5,0,0,1,26.5,17h-15A1.5,1.5,0,0,1,10,15.5v-3A1.5,1.5,0,0,1,11.5,11h15A1.5,1.5,0,0,1,28,12.5Zm0-8v3A1.5,1.5,0,0,1,26.5,9h-15A1.5,1.5,0,0,1,10,7.5v-3A1.5,1.5,0,0,1,11.5,3h15A1.5,1.5,0,0,1,28,4.5Z"
-      transform="translate(0 -3)"
-    />
-  </svg>
-</div>
-`;
-
 exports[`Icon Snapshot Tests should render ThumbsODownIcon icon 1`] = `
 <div>
   <svg
@@ -5484,34 +5111,6 @@ exports[`Icon Snapshot Tests should render ThumbsOUpIcon icon 1`] = `
     <path
       d="M4,22a1,1,0,0,0-.3-.7,1,1,0,0,0-1.4,0,1,1,0,0,0,0,1.4,1,1,0,0,0,1.4,0A1,1,0,0,0,4,22Zm18-9a1.9,1.9,0,0,0-.61-1.4A1.92,1.92,0,0,0,20,11H14.5a6.4,6.4,0,0,1,.75-2.49A6.42,6.42,0,0,0,16,6a4.13,4.13,0,0,0-.5-2.27,2.27,2.27,0,0,0-2-.73,2.54,2.54,0,0,0-.59,1.33c-.13.61-.29,1.27-.48,2A3.94,3.94,0,0,1,11.5,8c-.23.24-.63.71-1.2,1.42-.05.05-.17.21-.36.47s-.36.48-.5.64l-.53.67a9,9,0,0,1-.63.68c-.19.19-.39.37-.6.56a2.31,2.31,0,0,1-.63.42A1.35,1.35,0,0,1,6.5,13H6V23h.5a3.38,3.38,0,0,1,.49.05c.19,0,.37.06.52.1s.35.09.59.17l.55.18.55.2.46.16A17.24,17.24,0,0,0,15,25h1.89q3,0,3-2.61a5.52,5.52,0,0,0-.08-.87,1.77,1.77,0,0,0,.75-.82,2.65,2.65,0,0,0,.27-1.15,2.29,2.29,0,0,0-.28-1.08,2.48,2.48,0,0,0,.83-1.86,2.87,2.87,0,0,0-.16-.86,2,2,0,0,0-.39-.74c.33,0,.61-.26.83-.74A3,3,0,0,0,22,13Zm2,0a4.53,4.53,0,0,1-.77,2.55,3.86,3.86,0,0,1,.15,1.08,4.46,4.46,0,0,1-.6,2.25,4.91,4.91,0,0,1,0,.67,4.37,4.37,0,0,1-.94,2.78,4.41,4.41,0,0,1-1.33,3.43A5,5,0,0,1,17,27H15a12.81,12.81,0,0,1-3-.35c-1-.24-2.1-.58-3.38-1A12,12,0,0,0,6.5,25H2a1.93,1.93,0,0,1-1.41-.59A1.89,1.89,0,0,1,0,23V13a1.89,1.89,0,0,1,.59-1.41A1.93,1.93,0,0,1,2,11H6.28A14.08,14.08,0,0,0,8.42,8.58c.61-.78,1.16-1.45,1.67-2a2.67,2.67,0,0,0,.56-1.34c.12-.63.28-1.29.48-2a3.7,3.7,0,0,1,1-1.69A2,2,0,0,1,13.5,1a5.31,5.31,0,0,1,2.36.51,3.43,3.43,0,0,1,1.59,1.58A6.42,6.42,0,0,1,18,6a6.85,6.85,0,0,1-.75,3H20a4.07,4.07,0,0,1,4,4Z"
       transform="translate(0 -1)"
-    />
-  </svg>
-</div>
-`;
-
-exports[`Icon Snapshot Tests should render TimedIcon icon 1`] = `
-<div>
-  <svg
-    aria-labelledby="TimedIconAvailable"
-    class="icon"
-    fill="currentColor"
-    height="24"
-    viewBox="0 0 25.6 22.04"
-    width="24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <title
-      id="TimedIconAvailable"
-    >
-      TimedIcon Title
-    </title>
-    <path
-      d="M15.4,3a11,11,0,0,0-11,11H.82l4.42,4.42L9.66,14H6a9.4,9.4,0,0,1,8.42-9.35V7.19h2V4.65A9.42,9.42,0,0,1,24.75,13H22.21V15h2.54a9.43,9.43,0,0,1-8.38,8.38V20.81h-2V25c.32,0,.65,0,1,0a11,11,0,1,0,0-22Z"
-      transform="translate(-0.82 -2.98)"
-    />
-    <path
-      d="M14.42,9.24v5.17l5.13,5.12,1.38-1.38L16.37,13.6V9.24Z"
-      transform="translate(-0.82 -2.98)"
     />
   </svg>
 </div>
@@ -5715,30 +5314,6 @@ exports[`Icon Snapshot Tests should render UndoIcon icon 1`] = `
     <path
       d="M14,1.75a14,14,0,0,0-9.9,4.1L0,1.75v10.5H10.5L6.57,8.33A10.5,10.5,0,1,1,20.94,23.62l2.32,2.63A14,14,0,0,0,14,1.75Z"
       transform="translate(0 -1.75)"
-    />
-  </svg>
-</div>
-`;
-
-exports[`Icon Snapshot Tests should render UnlockIcon icon 1`] = `
-<div>
-  <svg
-    aria-labelledby="UnlockIconAvailable"
-    class="icon"
-    fill="currentColor"
-    height="24"
-    viewBox="0 0 26 22"
-    width="24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <title
-      id="UnlockIconAvailable"
-    >
-      UnlockIcon Title
-    </title>
-    <path
-      d="M26,9v4a.94.94,0,0,1-.3.7,1,1,0,0,1-.7.3H24a1,1,0,0,1-.7-.3A.94.94,0,0,1,23,13V9a4,4,0,0,0-4-4,4,4,0,0,0-4,4v3h1.5A1.5,1.5,0,0,1,18,13.5v9A1.5,1.5,0,0,1,16.5,24H1.5a1.44,1.44,0,0,1-1.06-.44A1.44,1.44,0,0,1,0,22.5v-9a1.44,1.44,0,0,1,.44-1.06A1.44,1.44,0,0,1,1.5,12H12V9a6.75,6.75,0,0,1,2.06-4.95A6.76,6.76,0,0,1,19,2a6.72,6.72,0,0,1,4.94,2.05A6.73,6.73,0,0,1,26,9Z"
-      transform="translate(0 -2)"
     />
   </svg>
 </div>
@@ -6116,30 +5691,6 @@ exports[`Icon Snapshot Tests should render WlUseItIcon icon 1`] = `
 </div>
 `;
 
-exports[`Icon Snapshot Tests should render Wrench3Icon icon 1`] = `
-<div>
-  <svg
-    aria-labelledby="Wrench3IconAvailable"
-    class="icon"
-    fill="currentColor"
-    height="24"
-    viewBox="0 0 25.64 25.67"
-    width="24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <title
-      id="Wrench3IconAvailable"
-    >
-      Wrench3Icon Title
-    </title>
-    <path
-      d="M5.85,22.16a1,1,0,0,0-1-1,1,1,0,0,0-1,1,1,1,0,0,0,.3.71.94.94,0,0,0,.7.29,1,1,0,0,0,1-1ZM15.92,15.6,5.26,26.26a1.94,1.94,0,0,1-1.41.58,2,2,0,0,1-1.42-.58L.78,24.57a1.84,1.84,0,0,1-.6-1.41,1.94,1.94,0,0,1,.6-1.42L11.42,11.1a7.77,7.77,0,0,0,1.79,2.71,7.77,7.77,0,0,0,2.71,1.79Zm9.9-6.79a5.48,5.48,0,0,1-.36,1.65,6.82,6.82,0,0,1-2.57,3.4,6.81,6.81,0,0,1-4,1.3,6.74,6.74,0,0,1-4.94-2.05,6.75,6.75,0,0,1-2.06-4.95,6.75,6.75,0,0,1,2.06-4.94,6.75,6.75,0,0,1,4.94-2.06,7.61,7.61,0,0,1,1.9.26,5.4,5.4,0,0,1,1.68.73.5.5,0,0,1,0,.87L17.85,5.67v3.5l3,1.67,1.23-.76c.77-.47,1.48-.9,2.12-1.27a5,5,0,0,1,1.1-.55.47.47,0,0,1,.37.15.6.6,0,0,1,.13.4Z"
-      transform="translate(-0.18 -1.16)"
-    />
-  </svg>
-</div>
-`;
-
 exports[`Icon Snapshot Tests should render WrenchIcon icon 1`] = `
 <div>
   <svg
@@ -6147,7 +5698,7 @@ exports[`Icon Snapshot Tests should render WrenchIcon icon 1`] = `
     class="icon"
     fill="currentColor"
     height="24"
-    viewBox="0 0 25.11 25"
+    viewBox="0 0 25.64 25.67"
     width="24"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -6157,12 +5708,8 @@ exports[`Icon Snapshot Tests should render WrenchIcon icon 1`] = `
       WrenchIcon Title
     </title>
     <path
-      d="M13.15,15.14a9,9,0,0,1-1.8-2.55L2.27,21.66a2.44,2.44,0,0,0,0,3.45l.86.86a2.43,2.43,0,0,0,3.44,0l9.06-9.06A9.4,9.4,0,0,1,13.15,15.14ZM4.66,23.58a1.35,1.35,0,1,1,1.91,0A1.36,1.36,0,0,1,4.66,23.58Z"
-      transform="translate(-1.55 -1.68)"
-    />
-    <path
-      d="M26.66,8.87l-5.22,3.31a2.43,2.43,0,0,1-3.36-.76l-.66-1A2.43,2.43,0,0,1,18.18,7L24,3.34a7.26,7.26,0,1,0,2.65,5.53Z"
-      transform="translate(-1.55 -1.68)"
+      d="M5.85,22.16a1,1,0,0,0-1-1,1,1,0,0,0-1,1,1,1,0,0,0,.3.71.94.94,0,0,0,.7.29,1,1,0,0,0,1-1ZM15.92,15.6,5.26,26.26a1.94,1.94,0,0,1-1.41.58,2,2,0,0,1-1.42-.58L.78,24.57a1.84,1.84,0,0,1-.6-1.41,1.94,1.94,0,0,1,.6-1.42L11.42,11.1a7.77,7.77,0,0,0,1.79,2.71,7.77,7.77,0,0,0,2.71,1.79Zm9.9-6.79a5.48,5.48,0,0,1-.36,1.65,6.82,6.82,0,0,1-2.57,3.4,6.81,6.81,0,0,1-4,1.3,6.74,6.74,0,0,1-4.94-2.05,6.75,6.75,0,0,1-2.06-4.95,6.75,6.75,0,0,1,2.06-4.94,6.75,6.75,0,0,1,4.94-2.06,7.61,7.61,0,0,1,1.9.26,5.4,5.4,0,0,1,1.68.73.5.5,0,0,1,0,.87L17.85,5.67v3.5l3,1.67,1.23-.76c.77-.47,1.48-.9,2.12-1.27a5,5,0,0,1,1.1-.55.47.47,0,0,1,.37.15.6.6,0,0,1,.13.4Z"
+      transform="translate(-0.18 -1.16)"
     />
   </svg>
 </div>
