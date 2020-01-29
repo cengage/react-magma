@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.20](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.19...v2.0.0-beta.20) (2020-01-29)
+
+
+### Features
+
+* Icons audit ([52444cd](http://stash.corp.web:7999/FRONT/react-magma/commits/52444cd))
+
+
+### BREAKING CHANGES
+
+* Resolved redundant icons. Remove unnecessary icons: ArrowUp3, ArrowDown3,
+ArrowLeft3, ArrowRight3, Exclamation, List3, Menu2, Menu3, Menu4, PieChart, Question2, Question,
+Spinner2, Star, ThList, Timed, Unlock, Wrench3
+
+
+
+
+
 # [2.0.0-beta.19](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.18...v2.0.0-beta.19) (2020-01-28)
 
 **Note:** Version bump only for package react-magma-docs
