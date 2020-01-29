@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.21](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.20...v2.0.0-beta.21) (2020-01-29)
+
+
+### Features
+
+* New and updated icons ([e204ef3](http://stash.corp.web:7999/FRONT/react-magma/commits/e204ef3))
+
+
+### BREAKING CHANGES
+
+* Added new stats icons. Added new empty star icon. Updated reply and forward icons.
+
+
+
+
+
 # [2.0.0-beta.20](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.19...v2.0.0-beta.20) (2020-01-29)
 
 
