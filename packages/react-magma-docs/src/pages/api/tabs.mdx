@@ -32,13 +32,12 @@ import { Link } from 'gatsby'
         const panelStyles = {
           height: '100px',
           padding: '5px',
+          backgroundColor: '#fff'
         }
 
         return (
           <TabsContainer style={wrapperStyles}>
-              <Tabs
-                orientation='horizontal'
-              >
+              <Tabs>
                 <Tab>Main page with a longer text label</Tab>
                 <Tab>FAQ</Tab>
                 <Tab>About us</Tab>
@@ -80,7 +79,7 @@ The `borderPosition` prop is an enum and accepts `top` or `bottom` for horizonta
           <div style={wrapperStyles}>
             <TabsContainer>
               <TabPanel index={0}>
-                  <div style={panelStyles}>Main page with a longer text label</div>
+                  <div style={panelStyles}>Main page</div>
                 </TabPanel>
                 <TabPanel index={1}>
                   <div style={panelStyles}>FAQ</div>
@@ -88,10 +87,7 @@ The `borderPosition` prop is an enum and accepts `top` or `bottom` for horizonta
                 <TabPanel index={2}>
                   <div style={panelStyles}>About us</div>
                 </TabPanel>
-                <Tabs
-                  orientation='horizontal'
-                  borderPosition='top'
-                >
+                <Tabs borderPosition='top'>
                   <Tab>Main page</Tab>
                   <Tab>FAQ</Tab>
                   <Tab>About us</Tab>
@@ -138,11 +134,10 @@ This is a simple example of Tab Components with custom switching logic
               <div style={this.wrapperStyles}>
                 <TabsContainer>
                     <Tabs
-                      orientation='horizontal'
                       activeIndex={this.state.activeIndex}
                       onChange={this.handleChange}
                     >
-                      <Tab index={0}>First item </Tab>
+                      <Tab index={0}>First item</Tab>
                       <Tab index={1}>Second item</Tab>
                       <Tab index={2}>Third item</Tab>
                     </Tabs>
@@ -184,9 +179,7 @@ This is an example of Tab Components with disabled Tab
         return (
           <div style={wrapperStyles}>
             <TabsContainer>
-                <Tabs
-                  orientation='horizontal'
-                >
+                <Tabs>
                   <Tab>Main page</Tab>
                   <Tab disabled>FAQ</Tab>
                   <Tab>About us</Tab>
@@ -214,10 +207,7 @@ The `isCentered` prop is an optional boolean that will style the tabs in the cen
       function TabComponent() {
         return (
           <TabsContainer>
-              <Tabs
-                orientation='horizontal'
-                isCentered
-              >
+              <Tabs isCentered>
                 <Tab>Main page</Tab>
                 <Tab>FAQ</Tab>
                 <Tab>About us</Tab>
@@ -234,13 +224,10 @@ The `isFullWidth` prop is an optional boolean that will cause the tabs to take u
       function TabComponent() {
         return (
           <TabsContainer>
-            <Tabs
-              orientation='horizontal'
-              isFullWidth
-            >
-              <Tab isFullWidth>Main Page with a longer text label</Tab>
-              <Tab isFullWidth>FAQ</Tab>
-              <Tab isFullWidth>About Us</Tab>
+            <Tabs isFullWidth>
+              <Tab>Main Page with a longer text label</Tab>
+              <Tab>FAQ</Tab>
+              <Tab>About Us</Tab>
             </Tabs>
         </TabsContainer>
     )}
@@ -266,10 +253,7 @@ This is an example of scrollable Tabs with buttons
         return (
           <div style={wrapperStyles}>
             <TabsContainer>
-                <Tabs
-                  orientation='horizontal'
-                  hasScrollButtons
-                >
+                <Tabs hasScrollButtons>
                   <Tab>First item with a longer text label</Tab>
                   <Tab>Second item</Tab>
                   <Tab>Third item</Tab>
@@ -321,11 +305,9 @@ This is an example of scrollable Tabs without buttons
         return (
           <div style={wrapperStyles}>
             <TabsContainer>
-                <Tabs
-                  orientation='horizontal'
-                >
+                <Tabs>
                   <Tab>First item</Tab>
-                  <Tab ariaLabel='second-tab'>Second item</Tab>
+                  <Tab>Second item</Tab>
                   <Tab>Third item</Tab>
                   <Tab>Fourth item</Tab>
                   <Tab>Fifth item</Tab>
@@ -375,12 +357,10 @@ This is an example with vertical Tabs
         return (
           <div style={wrapperStyles}>
             <TabsContainer>
-                <Tabs
-                  orientation='vertical'
-                >
-                  <Tab orientation='vertical'>Main page with a longer text label</Tab>
-                  <Tab orientation='vertical'>FAQ</Tab>
-                  <Tab orientation='vertical'>About us</Tab>
+                <Tabs orientation='vertical'>
+                  <Tab>Main page with a longer text label</Tab>
+                  <Tab>FAQ</Tab>
+                  <Tab>About us</Tab>
                 </Tabs>
 
                 <TabPanel index={0}>
@@ -422,7 +402,7 @@ Be sure to include an `ariaLabel` for each tab, when using an icon only for tabs
       function TabComponent() {
         return (
           <TabsContainer>
-              <Tabs orientation='horizontal'>
+              <Tabs>
                 <Tab ariaLabel='Graduation' icon={<GraduationCapIcon />} />
                 <Tab ariaLabel='Android' icon={<AndroidIcon />} />
                 <Tab ariaLabel='Bell' icon={<BellIcon />} />
@@ -437,7 +417,7 @@ Be sure to include an `ariaLabel` for each tab, when using an icon only for tabs
       function TabComponent() {
         return (
           <TabsContainer>
-              <Tabs orientation='horizontal'>
+              <Tabs>
                 <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
                 <Tab icon={<AndroidIcon />}>Second item</Tab>
                 <Tab icon={<BellIcon />}>Third item</Tab>
@@ -452,12 +432,49 @@ Be sure to include an `ariaLabel` for each tab, when using an icon only for tabs
       function TabComponent() {
         return (
           <TabsContainer>
-              <Tabs orientation='horizontal'>
-                <Tab icon={<GraduationCapIcon />} iconOrientation="left">First item with a longer text label</Tab>
-                <Tab icon={<AndroidIcon />} iconOrientation="left">Second item</Tab>
-                <Tab icon={<BellIcon />} iconOrientation="left">Third item</Tab>
+              <Tabs iconOrientation="left">
+                <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
+                <Tab icon={<AndroidIcon />}>Second item</Tab>
+                <Tab icon={<BellIcon />}>Third item</Tab>
               </Tabs>
           </TabsContainer>
+    )}
+```
+
+## Vertical Tabs with Icons
+
+```.jsx
+      function TabComponent() {
+        const wrapperStyles = {
+          backgroundColor: '#e6e6e6',
+          padding: '25px',
+        }
+
+        const panelStyles = {
+          height: '100%',
+          padding: '5px',
+          backgroundColor: '#fff'
+        }
+
+        return (
+          <div style={wrapperStyles}>
+            <TabsContainer>
+                <Tabs iconOrientation="left" orientation='vertical'>
+                  <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
+                  <Tab icon={<AndroidIcon />}>Second item</Tab>
+                  <Tab icon={<BellIcon />}>Third item</Tab>
+                </Tabs>
+                <TabPanel index={0}>
+                  <div style={panelStyles}>Main page</div>
+                </TabPanel>
+                <TabPanel index={1}>
+                  <div style={panelStyles}>FAQ</div>
+                </TabPanel>
+                <TabPanel index={2}>
+                  <div style={panelStyles}>About us</div>
+                </TabPanel>
+            </TabsContainer>
+          </div>
     )}
 ```
 
@@ -477,11 +494,8 @@ The default value is false.
         return (
           <div style={wrapperStyles}>
             <TabsContainer>
-                <Tabs
-                  orientation='horizontal'
-                  isInverse={true}
-                >
-                 <Tab>First item</Tab>
+                <Tabs isInverse={true}>
+                  <Tab>First item</Tab>
                   <Tab>Second item</Tab>
                   <Tab>Third item</Tab>
                 </Tabs>
@@ -501,11 +515,8 @@ The default value is false.
         return (
           <div id="example wrapper" style={wrapperStyles}>
             <TabsContainer>
-                <Tabs
-                  orientation='horizontal'
-                  isInverse={true}
-                >
-                 <Tab>First item</Tab>
+                <Tabs isInverse={true}>
+                  <Tab>First item</Tab>
                   <Tab>Second item</Tab>
                   <Tab>Third item</Tab>
                 </Tabs>
@@ -559,6 +570,13 @@ The default value is false.
       required: false,
       description: 'Position of the current tab indicator border.',
       defaultValue: 'bottom or left',
+    },
+    iconOrientation: {
+      type: {
+        name: '"left" | "top"',
+      },
+      required: false,
+      description: 'The orientation of icon on Tab.',
     },
     isCentered: {
       type: {
@@ -619,13 +637,6 @@ The default value is false.
       },
       required: false,
       description: 'The prop for custom component instead of <button> in Tab.',
-    },
-    iconOrientation: {
-      type: {
-        name: '"left" | "top"',
-      },
-      required: false,
-      description: 'The orientation of icon on Tab.',
     },
     ariaLabel: {
       type: {

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 import { AngleRightIcon } from '../../components/Icon/types/AngleRightIcon';
 import { AngleLeftIcon } from '../../components/Icon/types/AngleLeftIcon';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -47,19 +48,17 @@ const StyledTabs = styled.div<{
 
 const StyledTabsChild = styled.div<{
   borderPosition?: TabsBorderPositionHorizontal | TabsBorderPositionVertical;
-  isFullWidth?: boolean;
+  iconOrientation: IconOrientation;
   isActive?: boolean;
+  isFullWidth?: boolean;
   isInverse?: boolean;
   orientation: TabsOrientationVertical | TabsOrientationHorizontal;
 }>`
   flex-grow: 0;
   flex-shrink: ${props => (props.isFullWidth ? '1' : '0')};
   height: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
-  font-size: 14px;
-  font-weight: 600;
   max-width: ${props => (props.isFullWidth ? '100%' : '250px')};
   position: relative;
-  text-transform: uppercase;
   white-space: normal;
   width: ${props =>
     props.isFullWidth || props.orientation === 'vertical' ? '100%' : 'auto'};
@@ -68,22 +67,29 @@ const StyledTabsChild = styled.div<{
     background: ${props =>
       props.isInverse ? props.theme.colors.pop02 : props.theme.colors.primary};
     border-radius: 2px;
-    bottom: ${props => (props.borderPosition === 'top' ? 'auto' : '0')};
     content: '';
     display: block;
-    height: ${props => (props.orientation === 'vertical' ? 'auto' : '4px')};
-    left: ${props =>
-      props.isActive || props.orientation === 'vertical' ? '0' : '50%'};
+    height: 4px;
     opacity: ${props => (props.isActive ? '1' : '0')};
     position: absolute;
-    right: ${props =>
-      props.orientation === 'vertical' ? 'auto' : props.isActive ? '0' : '50%'};
-    top: ${props =>
-      props.orientation === 'vertical' || props.borderPosition === 'top'
-        ? '0'
-        : 'auto'};
-    transition: 0.2s all;
-    width: ${props => (props.orientation === 'vertical' ? '4px' : 'auto')};
+    transition: 0.4s all;
+    width: auto;
+
+    bottom: ${props => (props.borderPosition === 'top' ? 'auto' : '0')};
+    left: ${props => (props.isActive ? '0' : '50%')};
+    right: ${props => (props.isActive ? '0' : '50%')};
+    top: ${props => (props.borderPosition === 'top' ? '0' : 'auto')};
+
+    ${props =>
+      props.orientation === 'vertical' &&
+      css`
+        height: auto;
+        bottom: ${props.isActive ? '0' : '50%'};
+        left: 0;
+        right: auto;
+        top: ${props.isActive ? '0' : '50%'};
+        width: 4px;
+      `}
   }
 `;
 
@@ -117,6 +123,7 @@ export type TabsOrientationVertical = 'vertical';
 export type TabsOrientationHorizontal = 'horizontal';
 export type TabsBorderPositionVertical = 'left';
 export type TabsBorderPositionHorizontal = 'top' | 'bottom';
+export type IconOrientation = 'left' | 'top';
 
 export interface IVertical {
   orientation?: TabsOrientationVertical;
@@ -137,6 +144,7 @@ export interface ITabsProps
   activeIndex?: TabsActiveIndex;
   ariaLabel?: string;
   backgroundColor: string;
+  iconOrientation?: IconOrientation;
   isCentered?: boolean;
   isFullWidth?: boolean;
   isInverse?: boolean;
@@ -148,18 +156,19 @@ export interface ITabsProps
 export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
   (props, ref: React.Ref<any>) => {
     const {
-      children,
       activeIndex,
-      hasScrollButtons,
       ariaLabel,
-      orientation,
+      backgroundColor,
       borderPosition,
-      onChange,
+      children,
       isCentered,
       isFullWidth,
       isInverse,
+      hasScrollButtons,
+      orientation,
+      onChange,
+      iconOrientation,
       testId,
-      backgroundColor,
       ...rest
     } = props;
     const { state, dispatch } = useTabsContext();
@@ -321,15 +330,19 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
               const child: any = React.cloneElement(childItem, {
                 isActive,
                 changeHandler,
+                iconOrientation,
                 index,
-                isInverse
+                isInverse,
+                isFullWidth,
+                orientation
               });
 
               return (
                 <StyledTabsChild
                   borderPosition={borderPosition}
-                  isFullWidth={isFullWidth}
+                  iconOrientation={iconOrientation}
                   isActive={isActive}
+                  isFullWidth={isFullWidth}
                   isInverse={isInverse}
                   key={index}
                   ref={buttonRefArray[index]}

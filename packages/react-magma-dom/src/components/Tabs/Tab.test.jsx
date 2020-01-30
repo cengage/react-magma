@@ -122,15 +122,13 @@ describe('Tab', () => {
   it('should color is defined', () => {
     const testId = 'test-id';
 
-    const { getByTestId } = render(
-      <Tab testId={testId}></Tab>
-    );
+    const { getByTestId } = render(<Tab testId={testId}></Tab>);
 
     expect(getByTestId(testId)).toHaveStyleRule(
       'color',
       magma.colors.neutral01
     );
-  })
+  });
 
   it('should change color when inverse prop is defined', () => {
     const testId = 'test-id';
@@ -143,7 +141,7 @@ describe('Tab', () => {
       'color',
       magma.colors.neutral08
     );
-  })
+  });
 
   it('should show icon in left/top position', () => {
     const testId = 'test-id';
@@ -159,7 +157,6 @@ describe('Tab', () => {
     rerender(<Tab testId={testId} icon={icon} iconOrientation="left"></Tab>);
 
     expect(getByTestId(testId)).not.toHaveStyleRule('flex-direction', 'column');
-    expect(getByTestId(testId)).not.toHaveStyleRule('align-items', 'center');
   });
 });
 
