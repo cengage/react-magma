@@ -16,51 +16,6 @@ describe('Tab', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
-  it('should be disabled', () => {
-    const testId = 'test-id';
-
-    const { getByTestId, rerender } = render(
-      <Tab testId={testId} ariaLabel="test" disabled={true} />
-    );
-    const component = getByTestId(testId);
-
-    expect(component).toHaveProperty('disabled', true);
-    expect(component).toBeDisabled();
-
-    rerender(<Tab testId={testId} ariaLabel="test" disabled={false} />);
-
-    expect(component).toHaveProperty('disabled', false);
-    expect(component).not.toBeDisabled();
-  });
-
-  it('should render children', () => {
-    const testId = 'test-id';
-
-    const { getByTestId } = render(
-      <Tab testId={testId} ariaLabel="test">
-        <div data-testid="child" />
-      </Tab>
-    );
-    const component = getByTestId(testId);
-    expect(component.children.length).toBe(1);
-    expect(getByTestId('child')).toBeDefined();
-  });
-
-  it('should be aria attribute if tab is active', () => {
-    const testId = 'test-id';
-
-    const { getByTestId, rerender } = render(
-      <Tab testId={testId} ariaLabel="test" isActive={true}></Tab>
-    );
-    const component = getByTestId(testId);
-
-    expect(component).toHaveAttribute('aria-selected', 'true');
-
-    rerender(<Tab testId={testId} ariaLabel="test" isActive={false}></Tab>);
-
-    expect(component).toHaveAttribute('aria-selected', 'false');
-  });
-
   it('should render text', () => {
     const testId = 'test-id';
 
@@ -83,6 +38,51 @@ describe('Tab', () => {
       ></Tab>
     );
     expect(getByTestId('child')).toBeDefined();
+  });
+
+  it('should render children', () => {
+    const testId = 'test-id';
+
+    const { getByTestId } = render(
+      <Tab testId={testId} ariaLabel="test">
+        <div data-testid="child" />
+      </Tab>
+    );
+    const component = getByTestId(testId);
+    expect(component.children.length).toBe(1);
+    expect(getByTestId('child')).toBeDefined();
+  });
+
+  it('should have aria-selected attribute if tab is active', () => {
+    const testId = 'test-id';
+
+    const { getByTestId, rerender } = render(
+      <Tab testId={testId} ariaLabel="test" isActive={true}></Tab>
+    );
+    const component = getByTestId(testId);
+
+    expect(component).toHaveAttribute('aria-selected', 'true');
+
+    rerender(<Tab testId={testId} ariaLabel="test" isActive={false}></Tab>);
+
+    expect(component).toHaveAttribute('aria-selected', 'false');
+  });
+
+  it('should be disabled', () => {
+    const testId = 'test-id';
+
+    const { getByTestId, rerender } = render(
+      <Tab testId={testId} ariaLabel="test" disabled={true} />
+    );
+    const component = getByTestId(testId);
+
+    expect(component).toHaveProperty('disabled', true);
+    expect(component).toBeDisabled();
+
+    rerender(<Tab testId={testId} ariaLabel="test" disabled={false} />);
+
+    expect(component).toHaveProperty('disabled', false);
+    expect(component).not.toBeDisabled();
   });
 
   it('should render component link', () => {
@@ -113,10 +113,12 @@ describe('Tab', () => {
     );
 
     expect(container.querySelector('svg')).toBeInTheDocument();
+    expect(container.querySelector('span')).toBeInTheDocument();
 
     rerender(<Tab testId={testId}></Tab>);
 
     expect(container.querySelector('svg')).not.toBeInTheDocument();
+    expect(container.querySelector('span')).not.toBeInTheDocument();
   });
 
   it('should color is defined', () => {
@@ -130,7 +132,7 @@ describe('Tab', () => {
     );
   });
 
-  it('should change color when inverse prop is defined', () => {
+  it('should change color when isInverse prop is defined', () => {
     const testId = 'test-id';
 
     const { getByTestId } = render(
@@ -141,6 +143,26 @@ describe('Tab', () => {
       'color',
       magma.colors.neutral08
     );
+  });
+
+  it('should render a vertical tab with the correct styles', () => {
+    const testId = 'test-id';
+
+    const { getByTestId } = render(
+      <Tab testId={testId} orientation="vertical" />
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule('align-items', 'flex-start');
+    expect(getByTestId(testId)).toHaveStyleRule('text-align', 'left');
+    expect(getByTestId(testId)).toHaveStyleRule('width', '100%');
+  });
+
+  it('should render a fullWidth tab with the correct styles', () => {
+    const testId = 'test-id';
+
+    const { getByTestId } = render(<Tab testId={testId} isFullWidth />);
+
+    expect(getByTestId(testId)).toHaveStyleRule('flex-shrink', '1');
   });
 
   it('should show icon in left/top position', () => {

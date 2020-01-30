@@ -294,7 +294,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
         theme={theme}
         {...rest}
       >
-        {hasScrollButtons && orientation === 'horizontal' ? (
+        {hasScrollButtons && orientation !== 'vertical' ? (
           <StyledButtonPrev
             onClick={handleClickPrev}
             buttonVisible={buttonVisiblePrev}
@@ -358,7 +358,7 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
           </StyledTabs>
         </StyledTabsWrapper>
 
-        {hasScrollButtons && orientation === 'horizontal' ? (
+        {hasScrollButtons && orientation !== 'vertical' ? (
           <StyledButtonNext
             onClick={handleClickNext}
             buttonVisible={buttonVisibleNext}

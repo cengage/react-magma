@@ -5,7 +5,7 @@ const { axe, toHaveNoViolations } = require('jest-axe');
 
 expect.extend(toHaveNoViolations);
 
-describe('Tab', () => {
+describe('Tabs Container', () => {
   it('should correctly apply the testId', () => {
     const testId = 'test-id';
 

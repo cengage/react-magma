@@ -120,8 +120,6 @@ export const StyledCustomTab: React.FunctionComponent<StyledTabProps> = ({
       </>
     );
   }
-
-  return null;
 };
 
 const StyledIcon = styled.span<{
