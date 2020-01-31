@@ -48,7 +48,6 @@ const StyledTabs = styled.div<{
 
 const StyledTabsChild = styled.div<{
   borderPosition?: TabsBorderPositionHorizontal | TabsBorderPositionVertical;
-  iconOrientation: IconOrientation;
   isActive?: boolean;
   isFullWidth?: boolean;
   isInverse?: boolean;
@@ -330,7 +329,8 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
               const child: any = React.cloneElement(childItem, {
                 isActive,
                 changeHandler,
-                iconOrientation,
+                iconOrientation:
+                  orientation === 'vertical' ? 'left' : iconOrientation,
                 index,
                 isInverse,
                 isFullWidth,
@@ -340,7 +340,6 @@ export const Tabs: React.FC<ITabsProps & Orientation> = React.forwardRef(
               return (
                 <StyledTabsChild
                   borderPosition={borderPosition}
-                  iconOrientation={iconOrientation}
                   isActive={isActive}
                   isFullWidth={isFullWidth}
                   isInverse={isInverse}

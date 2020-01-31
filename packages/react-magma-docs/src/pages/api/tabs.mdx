@@ -41,7 +41,7 @@ The tab system is made up of four components:
 
         return (
           <TabsContainer style={wrapperStyles}>
-              <Tabs>
+              <Tabs activeIndex={1}>
                 <Tab>Main page with a longer text label</Tab>
                 <Tab>FAQ</Tab>
                 <Tab>About us</Tab>
@@ -393,10 +393,10 @@ In this case, please put all children inside the `component` prop instead of put
 If you would like to use `Tab` like an route switcher, keep the `path` prop in `Tab` equal to desired path.
 
 ```.jsx
-    <Tabs orientation='horizontal'>
-      <Tab path="/main" component={<Link to="/api/tabs/#nav_tabs">Main page</Link>}/>
-      <Tab path="/faq" component={<Link to="/api/tabs/#nav_tabs">FAQ</Link>}/>
-      <Tab path="/about" component={<Link to="/api/tabs/#nav_tabs">About us</Link>}/>
+    <Tabs>
+      <Tab path="/main" component={<Link to="#">Main page</Link>}/>
+      <Tab path="/faq" component={<Link to="#">FAQ</Link>}/>
+      <Tab path="/about" component={<Link to="#">About us</Link>}/>
     </Tabs>
 ```
 
@@ -478,7 +478,7 @@ Vertical tabs with icons always display with the icon to the left of the text.
         return (
           <div style={wrapperStyles}>
             <TabsContainer>
-                <Tabs iconOrientation="left" orientation='vertical'>
+                <Tabs orientation='vertical'>
                   <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
                   <Tab icon={<AndroidIcon />}>Second item</Tab>
                   <Tab icon={<BellIcon />}>Third item</Tab>
@@ -495,6 +495,16 @@ Vertical tabs with icons always display with the icon to the left of the text.
             </TabsContainer>
           </div>
     )}
+```
+
+## Vertical Nav Tabs with Icons
+
+```.jsx
+    <Tabs orientation='vertical'>
+      <Tab path="/main" icon={<GraduationCapIcon />}  component={<Link to="#">Main page</Link>}/>
+      <Tab path="/faq" icon={<AndroidIcon />}  component={<Link to="#">FAQ</Link>}/>
+      <Tab path="/about" icon={<BellIcon />}  component={<Link to="#">About us</Link>}/>
+    </Tabs>
 ```
 
 ## Inverse
@@ -562,14 +572,6 @@ The default value is false.
 
 <SimplePropsTable
   props={{
-    activeId: {
-      type: {
-        name: 'number',
-      },
-      required: false,
-      description:
-        'The id of current active tab. You can use this for managing state of tabs component by your custom logic.',
-    },
     ariaLabel: {
       type: {
         name: 'string',

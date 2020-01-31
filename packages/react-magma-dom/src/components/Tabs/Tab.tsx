@@ -26,6 +26,7 @@ interface StyledTabProps {
   component?: React.ReactNode;
   disabled?: boolean;
   isActive?: boolean;
+  icon?: any;
   iconOrientation?: IconOrientation;
   isFullWidth?: boolean;
   isInverse?: boolean;
@@ -95,7 +96,9 @@ const StyledTab = styled.button<StyledTabProps>`
 `;
 
 export const StyledCustomTab: React.FunctionComponent<StyledTabProps> = ({
+  children,
   component,
+  icon,
   style,
   onClick,
   ref,
@@ -116,7 +119,8 @@ export const StyledCustomTab: React.FunctionComponent<StyledTabProps> = ({
           css: TabStyles(props),
           ...style,
           onClick,
-          ref
+          ref,
+          children: [icon, component.props.children]
         })}
       </>
     );
@@ -172,18 +176,15 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
           component={component}
           data-testid={testId}
           iconOrientation={iconOrientation}
+          icon={
+            icon && (
+              <StyledIcon iconOrientation={iconOrientation}>{icon}</StyledIcon>
+            )
+          }
           isActive={isActive}
           ref={ref}
           theme={theme}
         >
-          {icon && (
-            <StyledIcon
-              iconOrientation={iconOrientation}
-              isIconOnly={!children}
-            >
-              {icon}
-            </StyledIcon>
-          )}
           {children}
         </StyledCustomTab>
       );
