@@ -170,14 +170,28 @@ describe('Tab', () => {
 
     const icon = <CheckIcon id="testId" size={18} />;
     const { container, getByTestId, rerender } = render(
-      <Tab testId={testId} icon={icon} iconOrientation="top"></Tab>
+      <Tab testId={testId} icon={icon} iconOrientation="top">
+        Tab
+      </Tab>
     );
     expect(container.querySelector('svg')).toBeInTheDocument();
+    expect(container.querySelector('span')).toHaveStyleRule(
+      'margin',
+      '0 0 5px'
+    );
     expect(getByTestId(testId)).toHaveStyleRule('flex-direction', 'column');
     expect(getByTestId(testId)).toHaveStyleRule('align-items', 'center');
 
-    rerender(<Tab testId={testId} icon={icon} iconOrientation="left"></Tab>);
+    rerender(
+      <Tab testId={testId} icon={icon} iconOrientation="left">
+        Tab
+      </Tab>
+    );
 
+    expect(container.querySelector('span')).toHaveStyleRule(
+      'margin',
+      '0 15px 0 0'
+    );
     expect(getByTestId(testId)).not.toHaveStyleRule('flex-direction', 'column');
   });
 });

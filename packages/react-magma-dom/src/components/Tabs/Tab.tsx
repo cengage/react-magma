@@ -59,6 +59,7 @@ const TabStyles = props => css`
   props.orientation === 'vertical'
     ? 'flex-start'
     : 'center'};
+  line-height: 1.5;
   height: 100%;
   opacity: ${props.disabled ? 0.4 : props.isActive ? 1 : 0.7};
   padding: 13px 20px;
@@ -124,9 +125,15 @@ export const StyledCustomTab: React.FunctionComponent<StyledTabProps> = ({
 
 const StyledIcon = styled.span<{
   iconOrientation: IconOrientation;
+  isIconOnly?: boolean;
 }>`
   display: flex;
-  margin-right: ${props => (props.iconOrientation === 'left' ? '10px' : '')};
+  margin: ${props =>
+    props.isIconOnly
+      ? '3px 0'
+      : props.iconOrientation === 'left'
+      ? '0 15px 0 0'
+      : '0 0 5px'}};
 
   svg {
     height: 17px;
@@ -170,7 +177,12 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
           theme={theme}
         >
           {icon && (
-            <StyledIcon iconOrientation={iconOrientation}>{icon}</StyledIcon>
+            <StyledIcon
+              iconOrientation={iconOrientation}
+              isIconOnly={!children}
+            >
+              {icon}
+            </StyledIcon>
           )}
           {children}
         </StyledCustomTab>
@@ -188,7 +200,9 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
         theme={theme}
       >
         {icon && (
-          <StyledIcon iconOrientation={iconOrientation}>{icon}</StyledIcon>
+          <StyledIcon iconOrientation={iconOrientation} isIconOnly={!children}>
+            {icon}
+          </StyledIcon>
         )}
         {children}
       </StyledTab>
