@@ -25,6 +25,8 @@ fs.copyFile(
       '$1diff?targetBranch=refs%2Ftags%2F$2&sourceBranch=refs%2Ftags%2F$3'
     )
 
+    textData = textData.replace(/(#)( \[.*)/g, '##$2')
+
     const newBufferData = Buffer.from(textData)
 
     fs.writeSync(fd, buffer, 0, buffer.length, 0)

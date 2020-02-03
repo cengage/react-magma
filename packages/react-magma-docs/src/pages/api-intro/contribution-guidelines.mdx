@@ -7,7 +7,7 @@ order: 3
 
 ## Convention
 
-We have spent a lot of time making various decisions to make sure that our code looks and feels the same across the entire repository. Before starting on your first PR please make sure to have a look at other components to see the different convention choices and structure. If you do see something that you believe should be changed, added, or was the wrong choice, please bring it up with the team before making that change in your new component or fix.
+The react-magma team puts a lot of time, effort, and thought into making decisions around all aspects of the implementation of this component library. That effort includes ensuring that the react-magma code maintains a consistent look and feel across the entire repository. Before starting on your first PR please make sure to have a look at other components to see the different convention choices and structure. If you do see something that you believe should be changed, added, or might benefit from your unique perspective, please bring it to the react-magma team for discussion before making that change in your new component or fix.
 
 Similarly, the docs pages should follow the existing conventions as well. Each component should have a corresponding `mdx` page to appear within the docs site with relevant examples. Look at the docs pages for other components as examples, and please try to stay as consistent as possible with wording and writing style.
 
@@ -25,11 +25,11 @@ We want to make sure that a11y and performance are in the front of our minds in 
 
 ## Theme
 
-We have a base theme built out and allow for the consumer to use their own, separate theme if need be. Make sure not to hard code any colors or refer directly to the `magma` theme in those implementations. Instead, components should use the `ThemeContext`, which will the `magma` theme. If you do not see a color that you are needing to use as part of the `magma` theme, please talk to the team and we can find out where that color should.
+We have a base theme built out and allow for the consumer to use their own, separate theme if need be. Make sure not to hard code any colors or refer directly to the `magma` theme in those implementations. Instead, components should use the `ThemeContext`, which will use the `magma` theme by default. If you do not see a color that you need to use as part of the `magma` theme, please talk to the team and we can find out where that color should live.
 
-## Respect
+## Collaboration and Final Decisions
 
-Just as we respect your suggestions and your hard work in helping make this library better, please respect our final decisions. A lot of thought has gone in to this library and even if you don't fully agree with some of the decisions, we would appreciate the respect of following our conventions when asked to.
+The react-magma team welcomes your suggestions and contributions. This project works best as an open, cross-organization collaboration. Please bring your ideas and constructive criticism to the team and we can brainstorm, engage in healthy debate, and work together towards the best possible solution. Because the react-magma team is ultimately responsible for the ongoing development and support of these components, the core team will make (and own) final decisions regarding public API, internal implementation details, build tools, coding style, and which work is the priority. Once a decision has been made, everyone involved needs to be willing to disagree and commit in the interest of moving forward.
 
 ## Communication
 
