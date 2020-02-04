@@ -184,7 +184,6 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
       if (!prevOpen && props.isOpen) {
         setIsModalOpen(true);
       } else if (prevOpen && !props.isOpen && isModalOpen) {
-        console.log('effect closing');
         handleClose();
       }
     }, [props.isOpen]);
