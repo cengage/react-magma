@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.22](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.21...v2.0.0-beta.22) (2020-02-04)
+
+
+### Documentation
+
+* **select:** upgrade docs to reflect react-select props change ([2de8b50](http://stash.corp.web:7999/FRONT/react-magma/commits/2de8b50))
+
+
+### BREAKING CHANGES
+
+* **select:** react-select props api breaking change
+
+
+
+
+
 # [2.0.0-beta.21](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.20...v2.0.0-beta.21) (2020-01-29)
 
 
