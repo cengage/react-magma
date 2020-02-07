@@ -35,7 +35,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-puenap-IconWrapperStyles"
+      class="css-oks55s-IconWrapperStyles"
     >
       <svg
         class="icon"
@@ -88,7 +88,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-puenap-IconWrapperStyles"
+      class="css-oks55s-IconWrapperStyles"
     >
       <svg
         class="icon"
@@ -128,7 +128,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-puenap-IconWrapperStyles"
+      class="css-oks55s-IconWrapperStyles"
     >
       <svg
         class="icon"
@@ -168,7 +168,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-puenap-IconWrapperStyles"
+      class="css-oks55s-IconWrapperStyles"
     >
       <svg
         class="icon"
@@ -207,7 +207,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-puenap-IconWrapperStyles"
+      class="css-oks55s-IconWrapperStyles"
     >
       <svg
         class="icon"

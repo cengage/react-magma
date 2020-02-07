@@ -2,7 +2,7 @@
 
 exports[`SkipLink should render the skip link component 1`] = `
 <a
-  class="css-10q4f1d"
+  class="css-10gp724"
   color="primary"
   href="#reactMagmaMainContent"
   variant="solid"
