@@ -7,66 +7,41 @@ const StyledTabsContainer = styled.div`
   position: relative;
 `;
 
-interface ITabsContainer extends React.ButtonHTMLAttributes<HTMLDivElement> {
+interface TabsContainerProps extends React.HTMLAttributes<HTMLDivElement> {
+  activeIndex?: number;
   testId?: string;
 }
 
-export type State = {
-  activeTabIndex?: number;
-};
-
-interface Action {
-  type: string;
-  payload: {
-    activeTabIndex?: number;
-  };
+interface TabContextInterface {
+  activeTabIndex: number;
+  setActiveTabIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const TabsContext = React.createContext({} as {
-  state: State;
-  dispatch: React.Dispatch<Action>;
+export const TabsContext = React.createContext<TabContextInterface>({
+  activeTabIndex: 0,
+  setActiveTabIndex: () => 0
 });
 
-const initialState = {
-  activeTabIndex: 0
-};
-
-function tabReducer(state: State, action: Action) {
-  switch (action.type) {
-    case 'SET_ACTIVE_TAB_INDEX':
-      return {
-        ...state,
-        activeTabIndex: action.payload.activeTabIndex
-      };
-
-    default:
-      return initialState;
-  }
-}
-
 export const TabsContainer: React.FunctionComponent<
-  ITabsContainer
+  TabsContainerProps
 > = React.forwardRef((props, ref: React.Ref<any>) => {
-  const { children, testId } = props;
+  const { activeIndex, children, testId } = props;
 
-  const [stateWithoutMemo, dispatch] = React.useReducer(
-    tabReducer,
-    initialState
-  );
+  React.useEffect(() => {
+    if (activeIndex >= 0) {
+      setActiveTabIndex(activeIndex);
+    }
+  }, [activeIndex]);
 
-  const state = React.useMemo(() => {
-    return stateWithoutMemo;
-  }, [stateWithoutMemo]);
+  const [activeTabIndex, setActiveTabIndex] = React.useState(activeIndex || 0);
 
   return (
-    <TabsContext.Provider value={{ state, dispatch }}>
+    <TabsContext.Provider value={{ activeTabIndex, setActiveTabIndex }}>
       <StyledTabsContainer ref={ref} data-testid={testId} {...props}>
         {children}
       </StyledTabsContainer>
     </TabsContext.Provider>
   );
 });
-
-TabsContainer.displayName = 'TabsContainer';
 
 export const useTabsContext = () => React.useContext(TabsContext);

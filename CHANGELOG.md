@@ -3,6 +3,150 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.22](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.21...v2.0.0-beta.22) (2020-02-04)
+
+
+### Documentation
+
+* **select:** upgrade docs to reflect react-select props change ([2de8b50](http://stash.corp.web:7999/FRONT/react-magma/commits/2de8b50))
+
+
+### BREAKING CHANGES
+
+* **select:** react-select props api breaking change
+
+
+
+
+
+# [2.0.0-beta.21](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.20...v2.0.0-beta.21) (2020-01-29)
+
+
+### Features
+
+* New and updated icons ([e204ef3](http://stash.corp.web:7999/FRONT/react-magma/commits/e204ef3))
+
+
+### BREAKING CHANGES
+
+* Added new stats icons. Added new empty star icon. Updated reply and forward icons.
+
+
+
+
+
+# [2.0.0-beta.20](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.19...v2.0.0-beta.20) (2020-01-29)
+
+
+### Features
+
+* Icons audit ([52444cd](http://stash.corp.web:7999/FRONT/react-magma/commits/52444cd))
+
+
+### BREAKING CHANGES
+
+* Resolved redundant icons. Remove unnecessary icons: ArrowUp3, ArrowDown3,
+ArrowLeft3, ArrowRight3, Exclamation, List3, Menu2, Menu3, Menu4, PieChart, Question2, Question,
+Spinner2, Star, ThList, Timed, Unlock, Wrench3
+
+
+
+
+
+# [2.0.0-beta.19](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.18...v2.0.0-beta.19) (2020-01-28)
+
+
+### Bug Fixes
+
+* **ref:** Fix references for Search/Input components ([4eace40](http://stash.corp.web:7999/FRONT/react-magma/commits/4eace40))
+
+
+
+
+
+# [2.0.0-beta.18](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.17...v2.0.0-beta.18) (2020-01-21)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.17](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.16...v2.0.0-beta.17) (2020-01-15)
+
+
+### Features
+
+* **hide at breakponit:** new component to hide at specified breakpoinit ([786eeec](http://stash.corp.web:7999/FRONT/react-magma/commits/786eeec))
+* **hideatbreakpoint:** remove ref, update tests ([7a932a3](http://stash.corp.web:7999/FRONT/react-magma/commits/7a932a3))
+
+
+
+
+
+# [2.0.0-beta.16](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.15...v2.0.0-beta.16) (2020-01-15)
+
+
+### Features
+
+* **date-picker:** add aria label for disabled day state ([7fe8184](http://stash.corp.web:7999/FRONT/react-magma/commits/7fe8184))
+* **date-picker:** adding in allowable dates ([6565fe8](http://stash.corp.web:7999/FRONT/react-magma/commits/6565fe8))
+* **date-picker:** allow navigation but not selection of disabled dates ([e4930a4](http://stash.corp.web:7999/FRONT/react-magma/commits/e4930a4))
+
+
+
+
+
+# [2.0.0-beta.15](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.14...v2.0.0-beta.15) (2020-01-13)
+
+
+### Features
+
+* **checkbox:** separate indeterminate checkbox ([fea93c1](http://stash.corp.web:7999/FRONT/react-magma/commits/fea93c1))
+* **checkbox:** share styles between indeterminate checkbox and checkbox ([03f692e](http://stash.corp.web:7999/FRONT/react-magma/commits/03f692e))
+* **checkbox:** use effect after all status updates ([cbb1a2a](http://stash.corp.web:7999/FRONT/react-magma/commits/cbb1a2a))
+
+
+### BREAKING CHANGES
+
+* **checkbox:** removed indeterminiate prop from checkbox, put in separate component
+
+MAGMA-196
+
+
+
+
+
+# [2.0.0-beta.14](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.13...v2.0.0-beta.14) (2020-01-13)
+
+
+### Features
+
+* **badge:** add 1px border to light badge ([d086865](http://stash.corp.web:7999/FRONT/react-magma/commits/d086865))
+
+
+
+
+
+# [2.0.0-beta.13](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.12...v2.0.0-beta.13) (2020-01-13)
+
+
+### Features
+
+* **breadcrumb:** update font size ([a8d053d](http://stash.corp.web:7999/FRONT/react-magma/commits/a8d053d))
+
+
+
+
+
+# [2.0.0-beta.12](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.11...v2.0.0-beta.12) (2020-01-13)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
 # [2.0.0-beta.11](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.10...v2.0.0-beta.11) (2020-01-07)
 
 

@@ -26,7 +26,7 @@ describe('Badge', () => {
 
     expect(getByText(TEXT)).toHaveStyleRule('border-radius', '10px');
     expect(getByText(TEXT)).toHaveStyleRule('font-size', '14px');
-    expect(getByText(TEXT)).toHaveStyleRule('line-height', '20px');
+    expect(getByText(TEXT)).toHaveStyleRule('line-height', '18px');
   });
 
   describe('color variants', () => {

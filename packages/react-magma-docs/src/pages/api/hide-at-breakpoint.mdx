@@ -1,0 +1,71 @@
+---
+title: 'Hide at Breakpoint'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { magma, Card, CardBody, HideAtBreakpoint } from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
+
+# Hide at Breakpoint
+
+The `HideAtBreakpoint` component can be used to quickly hide a component at a particular breakpoint.
+It takes two props, `minWidth` and `maxWidth` for the minimum and maximum widths, specified in pixels.
+
+## Basic Usage
+
+```.jsx
+    <>
+     <HideAtBreakpoint maxWidth={600}>
+            <Card isInverse background={magma.colors.foundation02}>
+              <CardBody><strong>Max-Width:</strong> This text will be visible when the browser width is greater than 600px.</CardBody>
+            </Card><br/>
+        </HideAtBreakpoint>
+        <HideAtBreakpoint minWidth={600} background={magma.colors.pop01}>
+             <Card isInverse background={magma.colors.pop01}>
+              <CardBody><strong>Min-Width:</strong> This text will be visible when the browser width is smaller than 600px.</CardBody>
+        </Card><br/>
+        </HideAtBreakpoint>
+        <HideAtBreakpoint>
+             <Card isInverse background={magma.colors.success01}>
+              <CardBody>This text will always be visible.</CardBody>
+             </Card>
+        </HideAtBreakpoint>
+    </>
+```
+
+## Hide at Breakpoint Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<SimplePropsTable
+  propertyValues={{
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
+    },
+    maxWidth: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'Maximum width at which to hide the content',
+    },
+    minWidth: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'Minimum width at which to hide the content',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout
+    {...props}
+    components={{ magma, Card, CardBody, HideAtBreakpoint }}
+  />
+)

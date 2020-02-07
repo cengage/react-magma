@@ -170,7 +170,7 @@ describe('Tab', () => {
 
     const icon = <CheckIcon id="testId" size={18} />;
     const { container, getByTestId, rerender } = render(
-      <Tab testId={testId} icon={icon} iconOrientation="top">
+      <Tab testId={testId} icon={icon} iconPosition="top">
         Tab
       </Tab>
     );
@@ -183,7 +183,7 @@ describe('Tab', () => {
     expect(getByTestId(testId)).toHaveStyleRule('align-items', 'center');
 
     rerender(
-      <Tab testId={testId} icon={icon} iconOrientation="left">
+      <Tab testId={testId} icon={icon} iconPosition="left">
         Tab
       </Tab>
     );

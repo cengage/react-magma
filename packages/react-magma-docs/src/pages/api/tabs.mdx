@@ -40,8 +40,8 @@ The tab system is made up of four components:
         }
 
         return (
-          <TabsContainer style={wrapperStyles}>
-              <Tabs activeIndex={1}>
+          <TabsContainer activeIndex={1} style={wrapperStyles}>
+              <Tabs>
                 <Tab>Main page with a longer text label</Tab>
                 <Tab>FAQ</Tab>
                 <Tab>About us</Tab>
@@ -138,9 +138,8 @@ This is a simple example of Tab Components with custom switching logic
         render() {
           return (
               <div style={this.wrapperStyles}>
-                <TabsContainer>
+                <TabsContainer activeIndex={this.state.activeIndex}>
                     <Tabs
-                      activeIndex={this.state.activeIndex}
                       onChange={this.handleChange}
                     >
                       <Tab index={0}>First item</Tab>
@@ -148,13 +147,13 @@ This is a simple example of Tab Components with custom switching logic
                       <Tab index={2}>Third item</Tab>
                     </Tabs>
 
-                    <TabPanel index={0} activeIndex={this.state.activeIndex}>
+                    <TabPanel index={0}>
                       <div style={this.panelStyles}>First item</div>
                     </TabPanel>
-                    <TabPanel index={1} activeIndex={this.state.activeIndex}>
+                    <TabPanel index={1}>
                       <div style={this.panelStyles}>Second item</div>
                     </TabPanel>
-                    <TabPanel index={2} activeIndex={this.state.activeIndex}>
+                    <TabPanel index={2}>
                       <div style={this.panelStyles}>Third item</div>
                     </TabPanel>
                 </TabsContainer>
@@ -441,15 +440,15 @@ By default, the icons appear above the children.
 
 ### Icon With Text, Icon Left-Aligned
 
-The `iconOrientation` prop can be used to position the icon to the left of the children.  
-The `iconOrientation` prop is an enum that accepts either `left` or `top` with `top` being the default for horizontal tabs.
+The `iconPosition` prop can be used to position the icon to the left of the children.  
+The `iconPosition` prop is an enum that accepts either `left` or `top` with `top` being the default for horizontal tabs.
 This prop is specified on the `Tabs` component.
 
 ```.jsx
       function TabComponent() {
         return (
           <TabsContainer>
-              <Tabs iconOrientation="left">
+              <Tabs iconPosition="left">
                 <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
                 <Tab icon={<AndroidIcon />}>Second item</Tab>
                 <Tab icon={<BellIcon />}>Third item</Tab>
@@ -557,7 +556,15 @@ The default value is false.
 ## Tabs Container API
 
 <SimplePropsTable
-  props={{
+  propertyValues={{
+    activeIndex: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description:
+        'The index of current active tab. You can use this for managing state of tabs component by your custom logic.',
+    },
     testId: {
       type: {
         name: 'string',
@@ -571,7 +578,7 @@ The default value is false.
 ## Tabs API
 
 <SimplePropsTable
-  props={{
+  propertyValues={{
     ariaLabel: {
       type: {
         name: 'string',
@@ -592,7 +599,7 @@ The default value is false.
       description: 'Position of the current tab indicator border.',
       defaultValue: 'bottom or left',
     },
-    iconOrientation: {
+    iconPosition: {
       type: {
         name: '"left" | "top"',
       },
@@ -644,7 +651,7 @@ The default value is false.
 ## Tab API
 
 <SimplePropsTable
-  props={{
+  propertyValues={{
     ariaLabel: {
       type: {
         name: 'string',
@@ -701,15 +708,7 @@ The default value is false.
 ## TabPanel API
 
 <SimplePropsTable
-  props={{
-    activeIndex: {
-      type: {
-        name: 'number',
-      },
-      required: false,
-      description:
-        'The index of current active tab. You can use this for managing state of tabs component by your custom logic.',
-    },
+  propertyValues={{
     index: {
       type: {
         name: 'number',

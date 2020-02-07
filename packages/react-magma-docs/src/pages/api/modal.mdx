@@ -110,12 +110,44 @@ The close button can be hidden by using the `isCloseButtonHidden` prop. If this 
   }
 ```
 
+## Custom Close Button
+
+If you would like to add a custom close button to the `Modal` be sure not to use the same `onClose` function as it will mean that the function will be called twice (once internally and once by `react-magma`).
+
+```.jsx
+  (props) => {
+    const [showModal, setShowModal] = React.useState(false);
+    const [magmaCloseCalledTimes, setMagmaCloseCalledTimes] = React.useState(0)
+    const [internalCloseCalledTimes, setInternalCloseCalledTimes] = React.useState(0)
+
+    function closeModal() {
+      setMagmaCloseCalledTimes(magmaCloseCalledTimes + 1)
+      setShowModal(false)
+    }
+
+    function customCloseModal() {
+      setInternalCloseCalledTimes(internalCloseCalledTimes + 1)
+      setShowModal(false)
+    }
+
+    return (<>
+      <Modal header="Modal Title" onClose={closeModal} isOpen={showModal}>
+        Blah
+        <Button onClick={customCloseModal}>Show Modal</Button>
+      </Modal>
+      <p><strong>Magma Close Called Times:</strong> {magmaCloseCalledTimes}</p>
+      <p><strong>Internal Close Called Times:</strong> {internalCloseCalledTimes}</p>
+      <Button onClick={() => setShowModal(true)}>Show Modal</Button>
+    </>)
+  }
+```
+
 ## Modal Props
 
 **Any other props supplied will be provided to the `div` element that wraps the modal content.**
 
 <SimplePropsTable
-  props={{
+  propertyValues={{
     children: {
       type: {
         name: 'node',

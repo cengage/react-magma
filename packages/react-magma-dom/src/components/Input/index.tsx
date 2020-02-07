@@ -62,7 +62,7 @@ export interface InputProps
   onHelpLinkClick?: () => void;
   onIconClick?: () => void;
   onIconKeyDown?: (event) => void;
-  ref?: any;
+  ref?: React.Ref<HTMLInputElement>;
   shownPasswordAnnounceText?: string;
   showPasswordButtonAriaLabel?: string;
   showPasswordButtonText?: string;
@@ -205,7 +205,7 @@ function getIconSize(size) {
 }
 
 export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
-  (props: InputProps, ref: any) => {
+  (props: InputProps, ref: React.Ref<HTMLInputElement>) => {
     const [value, setValue] = React.useState<string | string[] | number>(
       props.defaultValue || props.value
     );

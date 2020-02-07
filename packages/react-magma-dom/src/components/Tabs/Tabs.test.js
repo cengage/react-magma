@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tab } from './Tab';
-import { Tabs } from './Tabs';
+import { Tabs } from '.';
 import { TabsContext } from './TabsContainer';
 import { magma } from '../../theme/magma';
 import { render, fireEvent } from '@testing-library/react';

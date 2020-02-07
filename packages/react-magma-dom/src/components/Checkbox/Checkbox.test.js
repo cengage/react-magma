@@ -2,6 +2,7 @@ import React from 'react';
 import { Checkbox } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
+import { axe } from 'jest-axe';
 
 describe('Checkbox', () => {
   it('should find element by testId', () => {
@@ -122,35 +123,6 @@ describe('Checkbox', () => {
     );
   });
 
-  it('should give the checkbox an indeterminate value', () => {
-    const label = 'test label';
-    const { getByLabelText } = render(
-      <Checkbox labelText={label} indeterminate />
-    );
-
-    expect(getByLabelText(label)).toHaveProperty('indeterminate');
-  });
-
-  it('should update indeterminate on rerender', () => {
-    const { queryByTestId, rerender } = render(<Checkbox />);
-
-    expect(queryByTestId('indeterminateIcon')).not.toBeInTheDocument();
-
-    rerender(<Checkbox indeterminate={true} />);
-
-    expect(queryByTestId('indeterminateIcon')).toBeInTheDocument();
-  });
-
-  it('should give the indeterminate icon the passed in color', () => {
-    const color = 'whitesmoke';
-    const { queryByTestId } = render(<Checkbox indeterminate color={color} />);
-
-    expect(queryByTestId('indeterminateIcon')).toHaveStyleRule(
-      'background',
-      color
-    );
-  });
-
   describe('events', () => {
     it('should trigger the passed in onBlur when focus is removed', () => {
       const onBlurSpy = jest.fn();
@@ -182,18 +154,6 @@ describe('Checkbox', () => {
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('should not change checkbox value if checkbox is clicked while indeterminate is true', () => {
-      const testId = 'abc123';
-      const { getByTestId } = render(
-        <Checkbox testId={testId} indeterminate />
-      );
-
-      fireEvent.click(getByTestId(testId));
-
-      expect(getByTestId(testId).checked).toBeFalsy();
-      expect(getByTestId('indeterminateIcon')).toBeInTheDocument();
-    });
-
     it('should trigger the passed in onFocus when focused', () => {
       const onFocusSpy = jest.fn();
       const testId = 'abc123';
@@ -210,6 +170,14 @@ describe('Checkbox', () => {
       );
 
       expect(onFocusSpy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  it('Does not violate accessibility standards', () => {
+    const { container } = render(<Checkbox labelText="label" />);
+
+    return axe(container.innerHTML).then(result => {
+      return expect(result).toHaveNoViolations();
     });
   });
 });

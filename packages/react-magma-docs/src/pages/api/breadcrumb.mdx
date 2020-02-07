@@ -51,24 +51,6 @@ IsInverse is an optional boolean prop, that may be used when the breadcrumb menu
     </div>
 ```
 
-## Min-Width
-
-The `minWidthToShow` prop can be used to suppress the navigation menu when it is under the breakpoint at the specified number of pixels.
-
-```.jsx
-        <Breadcrumb minWidthToShow={900}>
-            <BreadcrumbItem to="#">
-                Home
-            </BreadcrumbItem>
-             <BreadcrumbItem to="#">
-                Library
-            </BreadcrumbItem>
-             <BreadcrumbItem>
-                Data
-            </BreadcrumbItem>
-        </Breadcrumb>
-```
-
 ## Aria-label
 
 By default, the `aria-label` of the Breadcrumb component is `Breadcrumb`. This can be overridden by passing in the `aria-label` prop.
@@ -92,7 +74,7 @@ By default, the `aria-label` of the Breadcrumb component is `Breadcrumb`. This c
 **Any other props supplied will be provided to the wrapping `nav` element.**
 
 <SimplePropsTable
-  props={{
+  propertyValues={{
     'aria-label': {
       type: {
         name: 'string',
@@ -142,7 +124,7 @@ By default, the `aria-label` of the Breadcrumb component is `Breadcrumb`. This c
 **Any other props supplied will be provided to the wrapping `li` element.**
 
 <SimplePropsTable
-  props={{
+  propertyValues={{
     children: {
       type: {
         name: 'node',

@@ -150,6 +150,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
 
   return (
     <CalendarContainer
+      data-testid="calendarMonthContainer"
       tabIndex={-1}
       theme={theme}
       onKeyDown={context.onKeyDown}

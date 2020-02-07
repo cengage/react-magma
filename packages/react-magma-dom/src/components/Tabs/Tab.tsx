@@ -2,20 +2,17 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { css, jsx } from '@emotion/core';
-import {
-  IconOrientation,
-  TabsOrientationHorizontal,
-  TabsBorderPositionVertical
-} from './Tabs';
+import isPropValid from '@emotion/is-prop-valid';
+import { TabsIconPosition, TabsOrientation } from '.';
 
-export interface ITabProps
+export interface TabProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   ariaLabel?: string;
   changeHandler?: (index: number) => void;
   component?: React.ReactElement<any> | React.ReactElement<any>[];
   disabled?: boolean;
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
-  iconOrientation?: IconOrientation;
+  iconPosition?: TabsIconPosition;
   isActive?: boolean;
   index?: number;
   path?: string;
@@ -27,18 +24,18 @@ interface StyledTabProps {
   disabled?: boolean;
   isActive?: boolean;
   icon?: any;
-  iconOrientation?: IconOrientation;
+  iconPosition?: TabsIconPosition;
   isFullWidth?: boolean;
   isInverse?: boolean;
   onClick?: (event: React.SyntheticEvent) => void;
-  orientation?: TabsOrientationHorizontal | TabsBorderPositionVertical;
+  orientation?: TabsOrientation;
   ref?: React.Ref<any>;
   style?: { [key: string]: any };
   theme?: any;
 }
 
 const TabStyles = props => css`
-  align-items: ${props.iconOrientation !== 'left' &&
+  align-items: ${props.iconPosition !== 'left' &&
   props.orientation === 'vertical'
     ? 'flex-start'
     : 'center'};
@@ -51,12 +48,12 @@ const TabStyles = props => css`
     : props.theme.colors.neutral01};
   cursor: ${props.disabled ? 'auto' : 'pointer'};
   display: flex;
-  flex-direction: ${props.iconOrientation === 'left' ? '' : 'column'};
+  flex-direction: ${props.iconPosition === 'left' ? '' : 'column'};
   flex-grow: 0;
   flex-shrink: ${props.isFullWidth ? '1' : '0'};
   font-size: 14px;
   font-weight: 600;
-  justify-content: ${props.iconOrientation === 'left' ||
+  justify-content: ${props.iconPosition === 'left' ||
   props.orientation === 'vertical'
     ? 'flex-start'
     : 'center'};
@@ -91,7 +88,9 @@ const TabStyles = props => css`
   }
 `;
 
-const StyledTab = styled.button<StyledTabProps>`
+const StyledTab = styled('button', { shouldForwardProp: isPropValid })<
+  StyledTabProps
+>`
   ${TabStyles}
 `;
 
@@ -128,14 +127,14 @@ export const StyledCustomTab: React.FunctionComponent<StyledTabProps> = ({
 };
 
 const StyledIcon = styled.span<{
-  iconOrientation: IconOrientation;
+  iconPosition: TabsIconPosition;
   isIconOnly?: boolean;
 }>`
   display: flex;
   margin: ${props =>
     props.isIconOnly
       ? '3px 0'
-      : props.iconOrientation === 'left'
+      : props.iconPosition === 'left'
       ? '0 15px 0 0'
       : '0 0 5px'}};
 
@@ -145,7 +144,7 @@ const StyledIcon = styled.span<{
   }
 `;
 
-export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
+export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
   (props, ref: React.Ref<any>) => {
     const {
       ariaLabel,
@@ -153,7 +152,7 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
       children,
       component,
       icon,
-      iconOrientation,
+      iconPosition,
       index,
       isActive,
       path,
@@ -175,11 +174,9 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
           aria-selected={isActive}
           component={component}
           data-testid={testId}
-          iconOrientation={iconOrientation}
+          iconPosition={iconPosition}
           icon={
-            icon && (
-              <StyledIcon iconOrientation={iconOrientation}>{icon}</StyledIcon>
-            )
+            icon && <StyledIcon iconPosition={iconPosition}>{icon}</StyledIcon>
           }
           isActive={isActive}
           ref={ref}
@@ -189,19 +186,20 @@ export const Tab: React.FunctionComponent<ITabProps> = React.forwardRef(
         </StyledCustomTab>
       );
     }
+
     return (
       <StyledTab
         {...rest}
         aria-label={ariaLabel}
         aria-selected={isActive}
         data-testid={testId}
-        iconOrientation={iconOrientation}
+        iconPosition={iconPosition}
         isActive={isActive}
         ref={ref}
         theme={theme}
       >
         {icon && (
-          <StyledIcon iconOrientation={iconOrientation} isIconOnly={!children}>
+          <StyledIcon iconPosition={iconPosition} isIconOnly={!children}>
             {icon}
           </StyledIcon>
         )}

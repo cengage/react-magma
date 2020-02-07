@@ -8,16 +8,10 @@ expect.extend(toHaveNoViolations);
 
 describe('TabPanel', () => {
   it('should correctly apply the testId', () => {
-    const dispatch = jest.fn();
-
-    const state = {
-      activeTabIndex: 1
-    };
-
     const testId = 'test-id';
 
     const { getByTestId } = render(
-      <TabsContext.Provider value={{ state, dispatch }}>
+      <TabsContext.Provider value={{ activeTabIndex: 1 }}>
         <TabPanel testId={testId} index={1}></TabPanel>
       </TabsContext.Provider>
     );
@@ -26,16 +20,10 @@ describe('TabPanel', () => {
   });
 
   it('should require text in the tabpanel', () => {
-    const dispatch = jest.fn();
-
-    const state = {
-      activeTabIndex: 1
-    };
-
     const testId = 'test-id';
     const text = 'test';
     const { getByTestId } = render(
-      <TabsContext.Provider value={{ state, dispatch }}>
+      <TabsContext.Provider value={{ activeTabIndex: 1 }}>
         <TabPanel index={1} testId={testId}>
           {text}
         </TabPanel>
@@ -47,16 +35,10 @@ describe('TabPanel', () => {
   });
 
   it('should render children', () => {
-    const dispatch = jest.fn();
-
-    const state = {
-      activeTabIndex: 1
-    };
-
     const testId = 'test-id';
 
     const { getByTestId } = render(
-      <TabsContext.Provider value={{ state, dispatch }}>
+      <TabsContext.Provider value={{ activeTabIndex: 1 }}>
         <TabPanel index={1} testId={testId}>
           <div data-testid="child" />
         </TabPanel>
@@ -68,16 +50,12 @@ describe('TabPanel', () => {
 });
 
 it('TabsContextProvider/TabsContextConsumer shows activeTabIndex', () => {
-  const dispatch = jest.fn();
-
-  const state = { activeTabIndex: 1 };
-
   const testId = 'test-id';
 
   const { getByTestId } = render(
-    <TabsContext.Provider value={{ state, dispatch }}>
+    <TabsContext.Provider value={{ activeTabIndex: 1 }}>
       <TabsContext.Consumer>
-        {value => <div data-testid={testId}>{value.state.activeTabIndex}</div>}
+        {value => <div data-testid={testId}>{value.activeTabIndex}</div>}
       </TabsContext.Consumer>
     </TabsContext.Provider>
   );
@@ -85,16 +63,10 @@ it('TabsContextProvider/TabsContextConsumer shows activeTabIndex', () => {
 });
 
 it('should not render tab not active', () => {
-  const dispatch = jest.fn();
-
-  const state = {
-    activeTabIndex: 1
-  };
-
   const testId = 'test-id';
 
   const { getByTestId, queryByTestId } = render(
-    <TabsContext.Provider value={{ state, dispatch }}>
+    <TabsContext.Provider value={{ activeTabIndex: 1 }}>
       <TabPanel index={1} testId={testId}>
         <div data-testid="child" />
       </TabPanel>
@@ -109,16 +81,10 @@ it('should not render tab not active', () => {
 
 describe('Test for accessibility', () => {
   it('Does not violate accessibility standards', () => {
-    const dispatch = jest.fn();
-
-    const state = {
-      activeTabIndex: 1
-    };
-
     const testId = 'test-id';
 
     const { container } = render(
-      <TabsContext.Provider value={{ state, dispatch }}>
+      <TabsContext.Provider value={{ activeTabIndex: 1 }}>
         <TabPanel index={1} testId={testId} />
       </TabsContext.Provider>
     );

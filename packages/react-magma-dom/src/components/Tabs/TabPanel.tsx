@@ -6,35 +6,22 @@ const StyledTabPanel = styled.div`
   flex: 1;
 `;
 
-export interface ITabPanelProps
-  extends React.ButtonHTMLAttributes<HTMLDivElement> {
-  activeIndex?: number;
+export interface TabPanelProps extends React.HTMLAttributes<HTMLDivElement> {
   index: number;
   testId?: string;
 }
 
 export const TabPanel: React.FunctionComponent<
-  ITabPanelProps
+  TabPanelProps
 > = React.forwardRef((props, ref: React.Ref<any>) => {
-  const { activeIndex, index, testId, children, ...rest } = props;
+  const { index, testId, children, ...other } = props;
 
-  const {
-    state: { activeTabIndex }
-  } = useTabsContext();
-  const activeTab = activeIndex === index;
-
-  if (!activeIndex && activeTabIndex >= 0)
-    return activeTabIndex === index ? (
-      <StyledTabPanel ref={ref} data-testid={testId} {...rest}>
-        {children}
-      </StyledTabPanel>
-    ) : null;
+  const { activeTabIndex } = useTabsContext();
+  const activeTab = activeTabIndex === index;
 
   return activeTab ? (
-    <StyledTabPanel ref={ref} data-testid={testId}>
+    <StyledTabPanel ref={ref} data-testid={testId} {...other}>
       {children}
     </StyledTabPanel>
   ) : null;
 });
-
-TabPanel.displayName = 'TabPanel';

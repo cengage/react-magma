@@ -2,13 +2,13 @@ import React from 'react'
 import './styles.css'
 import { AsteriskIcon, magma } from 'react-magma-dom'
 
-export const SimplePropsTable = ({ props }) => {
-  if (props === undefined) {
+export const SimplePropsTable = ({ propertyValues }) => {
+  if (propertyValues === undefined) {
     return null
   }
 
-  const hasDescription = Object.keys(props).some(name => {
-    return Boolean(props[name].description)
+  const hasDescription = Object.keys(propertyValues).some(name => {
+    return Boolean(propertyValues[name].description)
   })
 
   return (
@@ -30,9 +30,9 @@ export const SimplePropsTable = ({ props }) => {
           </tr>
         </thead>
         <tbody>
-          {props &&
-            Object.keys(props).map(name => {
-              const prop = props[name]
+          {propertyValues &&
+            Object.keys(propertyValues).map(name => {
+              const prop = propertyValues[name]
 
               if (!prop.type.name) {
                 return null
