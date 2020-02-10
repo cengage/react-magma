@@ -1,7 +1,8 @@
 import React from 'react';
 import { Tab } from './Tab';
 import { Tabs } from '.';
-import { TabsContext } from './TabsContainer';
+import { TabsContainer, TabsContext } from './TabsContainer';
+import { TabPanel } from './TabPanel';
 import { magma } from '../../theme/magma';
 import { render, fireEvent } from '@testing-library/react';
 const { axe, toHaveNoViolations } = require('jest-axe');
@@ -223,27 +224,30 @@ describe('Tabs', () => {
     );
   });
 
-  it('calls scrollIntoView on click by arrow button ', () => {
-    const dispatch = jest.fn();
-    const state = {
-      activeTabIndex: 1
-    };
-
-    const scrollIntoViewMock = jest.fn();
-
-    Element.prototype.scrollIntoView = scrollIntoViewMock;
-
-    const { getByTestId } = render(
-      <TabsContext.Provider value={{ state, dispatch }}>
+  it('should change panels on tab button click', () => {
+    const { getByText, queryByText } = render(
+      <TabsContainer activeIndex={0}>
         <Tabs testId={'dd'} hasScrollButtons={true} orientation="horizontal">
-          <div>Test</div>
+          <Tab index={0}>This is tab 1</Tab>
+          <Tab index={1}>This is tab 2</Tab>
+          <Tab index={2}>This is tab 3</Tab>
         </Tabs>
-      </TabsContext.Provider>
+
+        <TabPanel index={0}>Tab 1 Info</TabPanel>
+        <TabPanel index={1}>Tab 2 Info</TabPanel>
+        <TabPanel index={2}>Tab 3 Info</TabPanel>
+      </TabsContainer>
     );
 
-    fireEvent.click(getByTestId('buttonNext'));
+    expect(getByText('Tab 1 Info')).toBeVisible();
+    expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
 
-    expect(scrollIntoViewMock).toHaveBeenCalled();
+    fireEvent.click(getByText('This is tab 2'), {
+      target: { scrollIntoView: jest.fn() }
+    });
+
+    expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
+    expect(getByText('Tab 2 Info')).toBeVisible();
   });
 });
 
