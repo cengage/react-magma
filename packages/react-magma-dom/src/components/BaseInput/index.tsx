@@ -26,7 +26,6 @@ export enum InputType {
 
 export interface BaseInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  as?: string;
   containerStyle?: React.CSSProperties;
   hasError?: boolean;
   icon?: React.ReactElement<IconProps>;
@@ -54,15 +53,16 @@ const InputWrapper = styled.div`
   position: relative;
 `;
 
-const StyledInput = styled.input<BaseInputProps>`
-  background: ${props => props.theme.colors.neutral08};
+export const baseInputStyles = props => css`
+  background: ${props.theme.colors.neutral08};
   border: 1px solid;
-  border-color: ${props =>
+  border-color: ${
     props.isInverse
       ? props.theme.colors.neutral08
-      : props.theme.colors.neutral03};
+      : props.theme.colors.neutral03
+  };
   border-radius: 5px;
-  color: ${props => props.theme.colors.neutral01};
+  color: ${props.theme.colors.neutral01};
   display: block;
   font-size: 1rem;
   height: 37px;
@@ -70,20 +70,17 @@ const StyledInput = styled.input<BaseInputProps>`
   padding: 0 8px;
   width: 100%;
 
-  ${props =>
-    props.iconPosition === 'left' &&
+  ${props.iconPosition === 'left' &&
     css`
       padding-left: 35px;
     `}
 
-    ${props =>
-      props.iconPosition === 'right' &&
+    ${props.iconPosition === 'right' &&
       css`
         padding-right: 35px;
       `}
   
-  ${props =>
-    props.hasError &&
+  ${props.hasError &&
     css`
       border-color: ${props.theme.colors.danger};
       box-shadow: 0 0 0 1px
@@ -92,8 +89,7 @@ const StyledInput = styled.input<BaseInputProps>`
           : props.theme.colors.danger};
     `}
 
-  ${props =>
-    props.inputSize === 'large' &&
+  ${props.inputSize === 'large' &&
     css`
       font-size: 22px;
       height: 58px;
@@ -101,43 +97,46 @@ const StyledInput = styled.input<BaseInputProps>`
       padding: 0 15px;
     `}
 
-    ${props =>
-      props.iconPosition === 'left' &&
+    ${props.iconPosition === 'left' &&
       props.inputSize === 'large' &&
       css`
         padding-left: 50px;
       `}
   
-      ${props =>
-        props.iconPosition === 'right' &&
+      ${props.iconPosition === 'right' &&
         props.inputSize === 'large' &&
         css`
           padding-right: 50px;
         `}
 
   &::placeholder {
-    color: ${props => props.theme.colors.neutral03};
+    color: ${props.theme.colors.neutral03};
     opacity: 1;
   }
 
   &:focus {
     outline: 2px dotted
-      ${props =>
+      ${
         props.isInverse
           ? props.theme.colors.neutral08
-          : props.theme.colors.pop02};
+          : props.theme.colors.pop02
+      };
     outline-offset: 2px;
   }
 
   &[disabled] {
-    background: ${props => props.theme.colors.neutral07};
-    border-color: ${props => props.theme.colors.neutral05};
-    color: ${props => props.theme.colors.disabledText};
+    background: ${props.theme.colors.neutral07};
+    border-color: ${props.theme.colors.neutral05};
+    color: ${props.theme.colors.disabledText};
     cursor: not-allowed;
 
     &::placeholder {
-      color: ${props => props.theme.colors.disabledText};
+      color: ${props.theme.colors.disabledText};
   }
+`;
+
+const StyledInput = styled.input<BaseInputProps>`
+  ${baseInputStyles}
 `;
 
 const IconWrapper = styled.span<{
@@ -216,11 +215,13 @@ export const BaseInput: React.FunctionComponent<
         : props.iconPosition;
 
     const [value, setValue] = React.useState<string | string[] | number>(
-      props.defaultValue || props.value
+      props.defaultValue || props.value || ''
     );
 
     React.useEffect(() => {
-      setValue(props.value);
+      if (props.value) {
+        setValue(props.value);
+      }
     }, [props.value]);
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -233,35 +234,20 @@ export const BaseInput: React.FunctionComponent<
 
     return (
       <InputWrapper style={containerStyle}>
-        {props.as === 'textarea' ? (
-          <StyledInput
-            {...other}
-            aria-invalid={hasError}
-            data-testid={testId}
-            hasError={hasError}
-            ref={ref}
-            onChange={handleChange}
-            style={inputStyle}
-            theme={theme}
-          >
-            {value}
-          </StyledInput>
-        ) : (
-          <StyledInput
-            {...other}
-            aria-invalid={hasError}
-            data-testid={testId}
-            hasError={hasError}
-            iconPosition={iconPosition}
-            inputSize={inputSize ? inputSize : InputSize.medium}
-            ref={ref}
-            onChange={handleChange}
-            style={inputStyle}
-            theme={theme}
-            type={type ? type : InputType.text}
-            value={value}
-          />
-        )}
+        <StyledInput
+          {...other}
+          aria-invalid={hasError}
+          data-testid={testId}
+          hasError={hasError}
+          iconPosition={iconPosition}
+          inputSize={inputSize ? inputSize : InputSize.medium}
+          ref={ref}
+          onChange={handleChange}
+          style={inputStyle}
+          theme={theme}
+          type={type ? type : InputType.text}
+          value={value}
+        />
         {icon && !onIconClick && (
           <IconWrapper
             aria-label={iconAriaLabel}

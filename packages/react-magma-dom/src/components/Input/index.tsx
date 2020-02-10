@@ -37,22 +37,6 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
 
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
-    const [value, setValue] = React.useState<string | string[] | number>(
-      props.defaultValue || props.value
-    );
-
-    React.useEffect(() => {
-      setValue(props.value);
-    }, [props.value]);
-
-    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-      props.onChange &&
-        typeof props.onChange === 'function' &&
-        props.onChange(event);
-
-      setValue(event.target.value);
-    }
-
     return (
       <Container style={containerStyle}>
         {!isLabelVisuallyHidden && (
@@ -76,9 +60,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
           id={id}
           inputSize={inputSize ? inputSize : InputSize.medium}
           isInverse={isInverse}
-          onChange={handleChange}
           ref={ref}
-          value={value ? value : ''}
         >
           {children}
         </BaseInput>

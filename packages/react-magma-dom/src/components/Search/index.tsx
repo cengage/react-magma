@@ -10,7 +10,6 @@ import { Search2Icon } from '../Icon/types/Search2Icon';
 
 export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
   iconAriaLabel?: string;
-  id?: string;
   inputSize?: InputSize;
   inputStyle?: React.CSSProperties;
   isInverse?: boolean;

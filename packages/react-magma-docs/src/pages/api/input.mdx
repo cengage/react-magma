@@ -54,6 +54,16 @@ The label/input association will be handled via the passed in `id` if one is sup
         disabled />
 ```
 
+## Default Value
+
+The `defaultValue` of an input can be set using the `defaultValue` prop.
+
+```.jsx
+    <Input
+        labelText='Default value'
+        defaultValue='default' />
+```
+
 ## Value
 
 The `value` of an input can be set using the `value` prop.
@@ -73,7 +83,7 @@ relied upon to take the place of the label text.
 ```.jsx
     <Input
         labelText='Email Address'
-        value='yourname@example.com' />
+        placeholder='yourname@example.com' />
 ```
 
 ## Error Message

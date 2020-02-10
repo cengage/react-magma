@@ -16,8 +16,33 @@ import { SimplePropsTable } from '../../components/props-table'
 
 ## Textarea Props
 
+**Any other props supplied will be provided to the `textarea` element.**
+
 <SimplePropsTable
   propertyValues={{
+    containerStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the component container element',
+    },
+    defaultValue: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Default value for the form field',
+      defaultValue: '',
+    },
+    disabled: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, element is disabled',
+      defaultValue: 'false',
+    },
     errorMessage: {
       type: {
         name: 'string',
@@ -44,6 +69,22 @@ import { SimplePropsTable } from '../../components/props-table'
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
+    isLabelVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
+    },
+    labelStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the label element',
+    },
     labelText: {
       type: {
         name: 'string',
@@ -67,6 +108,13 @@ import { SimplePropsTable } from '../../components/props-table'
       required: false,
       description:
         'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+    textareaStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the textarea element',
     },
   }}
 />

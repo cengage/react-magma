@@ -49,21 +49,7 @@ export const PasswordInput: React.FunctionComponent<
   PasswordInputProps
 > = React.forwardRef(
   (props: PasswordInputProps, ref: React.Ref<HTMLInputElement>) => {
-    const [value, setValue] = React.useState<string | string[] | number>(
-      props.defaultValue || props.value
-    );
     const [passwordShown, setPasswordShown] = React.useState<boolean>(false);
-
-    React.useEffect(() => {
-      setValue(props.value);
-    }, [props.value]);
-
-    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-      props.onChange &&
-        typeof props.onChange === 'function' &&
-        props.onChange(event);
-      setValue(event.target.value);
-    }
 
     function togglePasswordShown() {
       setPasswordShown(prevPasswordShown => !prevPasswordShown);
@@ -140,8 +126,6 @@ export const PasswordInput: React.FunctionComponent<
           ref={ref}
           theme={theme}
           type={passwordShown ? InputType.text : InputType.password}
-          value={value}
-          onChange={handleChange}
         >
           {!isPasswordMaskButtonHidden && (
             <PasswordMaskWrapper>

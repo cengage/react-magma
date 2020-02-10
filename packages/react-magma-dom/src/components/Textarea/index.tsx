@@ -1,56 +1,72 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { BaseInputProps, BaseInput } from '../BaseInput';
+import { baseInputStyles } from '../BaseInput';
 import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { useGenerateId } from '../utils';
 
-export interface TextareaProps extends BaseInputProps {
+export interface TextareaProps
+  extends React.HtmlHTMLAttributes<HTMLTextAreaElement> {
+  containerStyle?: React.CSSProperties;
   errorMessage?: string;
+  hasError?: boolean;
   helperMessage?: string;
+  isInverse?: boolean;
   isLabelVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
   labelText?: string;
+  testId?: string;
+  textareaStyle?: React.CSSProperties;
 }
 
 const Container = styled.div`
   margin-bottom: 10px;
 `;
 
+const StyledTextArea = styled.textarea<TextareaProps>`
+  ${baseInputStyles}
+`;
+
 export const Textarea: React.FunctionComponent<
   TextareaProps
 > = React.forwardRef(
-  (props: TextareaProps, ref: React.Ref<HTMLInputElement>) => {
+  (props: TextareaProps, ref: React.Ref<HTMLTextAreaElement>) => {
     const {
       children,
       containerStyle,
       errorMessage,
       helperMessage,
       id: defaultId,
-      inputStyle,
+      isLabelVisuallyHidden,
       isInverse,
       labelStyle,
       labelText,
-      isLabelVisuallyHidden,
-      type,
+      testId,
+      textareaStyle,
       ...other
     } = props;
+
+    const theme = React.useContext(ThemeContext);
 
     const id = useGenerateId(defaultId);
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
-    const [value, setValue] = React.useState<string | string[] | number>(
-      props.defaultValue || props.value
+    const [value, setValue] = React.useState<{} | string[] | number>(
+      props.defaultValue || props.children || ''
     );
 
     React.useEffect(() => {
-      setValue(props.value);
-    }, [props.value]);
+      if (props.children) {
+        setValue(props.children);
+      }
+    }, [props.children]);
 
-    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
       props.onChange &&
         typeof props.onChange === 'function' &&
         props.onChange(event);
+
       setValue(event.target.value);
     }
 
@@ -61,24 +77,24 @@ export const Textarea: React.FunctionComponent<
             {labelText}
           </Label>
         )}
-        <BaseInput
+        <StyledTextArea
           {...other}
           aria-describedby={
             descriptionId ? descriptionId : props['aria-describedby']
           }
           aria-invalid={!!errorMessage}
           aria-label={isLabelVisuallyHidden ? labelText : null}
-          as="textarea"
+          data-testid={testId}
           hasError={!!errorMessage}
           id={id}
-          inputStyle={{ height: '4.5em', padding: '5px 8px 0', ...inputStyle }}
           isInverse={isInverse}
           onChange={handleChange}
           ref={ref}
-          value={value ? value : ''}
+          style={{ height: '4.5em', padding: '5px 8px 0', ...textareaStyle }}
+          theme={theme}
         >
-          {children}
-        </BaseInput>
+          {value}
+        </StyledTextArea>
 
         <InputMessage
           isInverse={isInverse}
