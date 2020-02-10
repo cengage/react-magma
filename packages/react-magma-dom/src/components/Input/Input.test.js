@@ -1,6 +1,6 @@
 import React from 'react';
 import { axe } from 'jest-axe';
-import { Input, InputType } from '.';
+import { Input } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 import { CheckIcon } from '../Icon/types/CheckIcon';
@@ -17,17 +17,6 @@ describe('Input', () => {
     const label = 'test label';
     const { getByLabelText } = render(<Input labelText={label} />);
     expect(getByLabelText(label)).toBeInTheDocument();
-  });
-
-  it('should render an input with a default value', () => {
-    const testId = 'test-id';
-    const defaultValue = 'Default';
-
-    const { getByTestId } = render(
-      <Input testId={testId} defaultValue={defaultValue} />
-    );
-
-    expect(getByTestId(testId)).toHaveAttribute('value', defaultValue);
   });
 
   it('should render a input text with desired attributes', () => {
@@ -55,7 +44,6 @@ describe('Input', () => {
 
     expect(input).toHaveStyleRule('background', magma.colors.neutral08);
     expect(input).toHaveStyleRule('border-color', magma.colors.neutral03);
-    expect(input).toHaveStyleRule('box-shadow', '0 0 0');
   });
 
   it('should render custom styles', () => {
@@ -179,7 +167,6 @@ describe('Input', () => {
     expect(span).toHaveStyleRule('right', '15px');
 
     expect(input).toHaveStyleRule('padding-right', '50px');
-    expect(input).toHaveStyleRule('padding-left', '15px');
   });
 
   it('should render an input with a left-aligned icon in the correct position', () => {
@@ -205,14 +192,6 @@ describe('Input', () => {
     expect(span).toHaveStyleRule('right', 'auto');
 
     expect(input).toHaveStyleRule('padding-left', '50px');
-    expect(input).toHaveStyleRule('padding-right', '15px');
-  });
-
-  it('should show a spinner when loading', () => {
-    const icon = <CheckIcon />;
-    const { getByTestId } = render(<Input icon={icon} isLoading />);
-
-    expect(getByTestId('spinnerWrapper')).toBeInTheDocument();
   });
 
   it('should render a clickable icon', () => {
@@ -281,15 +260,6 @@ describe('Input', () => {
     expect(getByLabelText(labelText)).toBeDisabled();
   });
 
-  it('should render a textarea for multiline prop', () => {
-    const labelText = 'test label';
-    const { container } = render(<Input labelText={labelText} multiline />);
-    const textarea = container.querySelector('textarea');
-
-    expect(textarea).toBeInTheDocument();
-    expect(textarea).toHaveStyleRule('height', '4.5em');
-  });
-
   it('should render the input with visually hidden label text', () => {
     const labelText = 'test label';
     const { getByLabelText } = render(
@@ -300,278 +270,106 @@ describe('Input', () => {
     expect(input).toHaveAttribute('aria-label', labelText);
   });
 
-  it('should render the a help link button', () => {
-    const { container } = render(<Input onHelpLinkClick={() => {}} />);
-    expect(container.querySelector('div[role="tooltip"]')).toHaveTextContent(
-      "What's this?"
-    );
-  });
-
-  it('should render the a help link button with custom text', () => {
-    const helpText = 'Custom text';
-    const { container } = render(
-      <Input onHelpLinkClick={() => {}} helpLinkAriaLabel={helpText} />
-    );
-    expect(container.querySelector('div[role="tooltip"]')).toHaveTextContent(
-      helpText
-    );
-  });
-
-  describe('password input', () => {
-    it('renders a show/hide button on password inputs', () => {
-      const { getByText } = render(<Input type={InputType.password} />);
-      const showText = getByText('Show');
-      expect(showText).toBeInTheDocument();
-      expect(showText).toHaveAttribute(
-        'aria-label',
-        'Show password. Note: this will visually expose your password on the screen'
-      );
-      expect(getByText('Password is now hidden')).toBeInTheDocument();
-    });
-
-    it('renders a show/hide button on password inputs with custom text', () => {
-      const { getByText } = render(
-        <Input
-          showPasswordButtonAriaLabel="Test button aria label"
-          showPasswordButtonText="Test button text"
-          hiddenPasswordAnnounceText="Test announce text"
-          type={InputType.password}
-        />
-      );
-
-      expect(getByText('Test button text')).toBeInTheDocument();
-      expect(getByText('Test button text')).toHaveAttribute(
-        'aria-label',
-        'Test button aria label'
-      );
-      expect(getByText('Test announce text')).toBeInTheDocument();
-    });
-
-    it('does not render a show/hide button when isPasswordMaskButtonHidden is set to true', () => {
-      const { queryByText } = render(
-        <Input type={InputType.password} isPasswordMaskButtonHidden />
-      );
-
-      expect(queryByText('Show')).not.toBeInTheDocument();
-    });
-
-    it('unmasks password when show button is clicked', () => {
-      const labelText = 'test label';
-      const { getByText, getByLabelText } = render(
-        <Input labelText={labelText} type={InputType.password} />
-      );
-      const button = getByText('Show');
-      const input = getByLabelText(labelText);
-
-      fireEvent.click(button);
-
-      expect(input).toHaveProperty('type', 'text');
-      expect(button).toHaveTextContent('Hide');
-      expect(button).toHaveAttribute('aria-label', 'Hide password');
-      expect(getByText('Password is now visible')).toBeInTheDocument();
-    });
-
-    it('unmasks password when show button is clicked with custom text', () => {
-      const labelText = 'test label';
-      const { getByText, getByLabelText } = render(
-        <Input
-          labelText={labelText}
-          type={InputType.password}
-          hidePasswordButtonAriaLabel="Test button aria label"
-          hidePasswordButtonText="Test button text"
-          shownPasswordAnnounceText="Test announce text"
-        />
-      );
-      const button = getByText('Show');
-      const input = getByLabelText(labelText);
-
-      fireEvent.click(button);
-
-      expect(input).toHaveProperty('type', 'text');
-      expect(button).toHaveTextContent('Test button text');
-      expect(button).toHaveAttribute('aria-label', 'Test button aria label');
-      expect(getByText('Test announce text')).toBeInTheDocument();
-    });
-
-    it('masks password when the hide button is clicked', () => {
-      const labelText = 'test label';
-      const { getByText, getByLabelText } = render(
-        <Input labelText={labelText} type={InputType.password} />
-      );
-      const button = getByText('Show');
-      const input = getByLabelText(labelText);
-
-      fireEvent.click(button);
-
-      expect(button).toHaveTextContent('Hide');
-
-      fireEvent.click(button);
-
-      expect(button).toHaveTextContent('Show');
-      expect(input).toHaveProperty('type', 'password');
-    });
-  });
-
   describe('sizes', () => {
     it('should render a default input with correct styles', () => {
       const labelText = 'test label';
       const icon = <CheckIcon />;
       const { container, getByLabelText } = render(
-        <Input
-          labelText={labelText}
-          icon={icon}
-          iconPosition="left"
-          onHelpLinkClick={() => {}}
-        />
+        <Input labelText={labelText} icon={icon} iconPosition="left" />
       );
 
       const label = container.querySelector('label');
       const input = getByLabelText(labelText);
       const iconWrapper = container.querySelector('span');
       const svg = container.querySelector('svg');
-      const helpButton = container.querySelector('button');
 
       expect(label).toHaveStyleRule('font-size', '13px');
 
       expect(input).toHaveStyleRule('font-size', '1rem');
       expect(input).toHaveStyleRule('height', '37px');
       expect(input).toHaveStyleRule('padding-left', '35px');
-      expect(input).toHaveStyleRule('padding-right', '8px');
 
       expect(iconWrapper).toHaveStyleRule('margin-top', '-9px');
       expect(iconWrapper).toHaveStyleRule('left', '10px');
       expect(iconWrapper).toHaveStyleRule('right', 'auto');
 
       expect(svg).toHaveAttribute('height', '17');
-
-      expect(helpButton).toHaveStyleRule('height', '37px');
     });
 
     it('should render a large input with correct styles', () => {
       const labelText = 'test label';
-      const icon = <CheckIcon />;
       const { container, getByLabelText } = render(
-        <Input
-          labelText={labelText}
-          inputSize="large"
-          icon={icon}
-          iconPosition="left"
-          onHelpLinkClick={() => {}}
-        />
+        <Input labelText={labelText} inputSize="large" />
       );
 
       const label = container.querySelector('label');
       const input = getByLabelText(labelText);
-      const iconWrapper = container.querySelector('span');
-      const svg = container.querySelector('svg');
-      const helpButton = container.querySelector('button');
 
       expect(label).toHaveStyleRule('font-size', '16px');
 
       expect(input).toHaveStyleRule('font-size', '22px');
       expect(input).toHaveStyleRule('height', '58px');
-      expect(input).toHaveStyleRule('padding-left', '50px');
-      expect(input).toHaveStyleRule('padding-right', '15px');
-
-      expect(iconWrapper).toHaveStyleRule('margin-top', '-10px');
-      expect(iconWrapper).toHaveStyleRule('left', '15px');
-      expect(iconWrapper).toHaveStyleRule('right', 'auto');
-
-      expect(svg).toHaveAttribute('height', '21');
-
-      expect(helpButton).toHaveStyleRule('height', '44px');
+      expect(input).toHaveStyleRule('padding', '0 15px');
     });
 
-    it('should render a large input with multline attribue as a medium textarea', () => {
-      const labelText = 'test label';
-      const icon = <CheckIcon />;
-      const { container, getByLabelText } = render(
-        <Input
-          labelText={labelText}
-          inputSize="large"
-          icon={icon}
-          iconPosition="left"
-          multiline
-        />
-      );
+    describe('events', () => {
+      it('should trigger the passed in onBlur when focus is removed', () => {
+        const onBlurSpy = jest.fn();
+        const labelText = 'test label';
+        const { getByLabelText } = render(
+          <Input labelText={labelText} onBlur={onBlurSpy} />
+        );
 
-      const label = container.querySelector('label');
-      const input = getByLabelText(labelText);
-      const iconWrapper = container.querySelector('span');
-      const svg = container.querySelector('svg');
+        fireEvent(
+          getByLabelText(labelText),
+          new MouseEvent('blur', {
+            bubbles: true,
+            cancelable: true
+          })
+        );
 
-      expect(label).toHaveStyleRule('font-size', '13px');
-
-      expect(input).toHaveStyleRule('font-size', '1rem');
-      expect(input).toHaveStyleRule('height', '4.5em');
-      expect(input).toHaveStyleRule('padding-left', '35px');
-      expect(input).toHaveStyleRule('padding-right', '8px');
-
-      expect(iconWrapper).toHaveStyleRule('margin-top', '-9px');
-      expect(iconWrapper).toHaveStyleRule('left', '10px');
-      expect(iconWrapper).toHaveStyleRule('right', 'auto');
-
-      expect(svg).toHaveAttribute('height', '17');
-    });
-  });
-
-  describe('events', () => {
-    it('should trigger the passed in onBlur when focus is removed', () => {
-      const onBlurSpy = jest.fn();
-      const labelText = 'test label';
-      const { getByLabelText } = render(
-        <Input labelText={labelText} onBlur={onBlurSpy} />
-      );
-
-      fireEvent(
-        getByLabelText(labelText),
-        new MouseEvent('blur', {
-          bubbles: true,
-          cancelable: true
-        })
-      );
-
-      expect(onBlurSpy).toHaveBeenCalledTimes(1);
-    });
-
-    it('should trigger the passed in onChange when value of the input is changed', () => {
-      const targetValue = 'Change';
-      const onChangeSpy = jest.fn();
-      const labelText = 'test label';
-      const { getByLabelText } = render(
-        <Input labelText={labelText} onChange={onChangeSpy} value="" />
-      );
-
-      fireEvent.change(getByLabelText(labelText), {
-        target: { value: targetValue }
+        expect(onBlurSpy).toHaveBeenCalledTimes(1);
       });
 
-      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      it('should trigger the passed in onChange when value of the input is changed', () => {
+        const targetValue = 'Change';
+        const onChangeSpy = jest.fn();
+        const labelText = 'test label';
+        const { getByLabelText } = render(
+          <Input labelText={labelText} onChange={onChangeSpy} value="" />
+        );
+
+        fireEvent.change(getByLabelText(labelText), {
+          target: { value: targetValue }
+        });
+
+        expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      });
+
+      it('should trigger the passed in onFocus when focused', () => {
+        const onFocusSpy = jest.fn();
+        const labelText = 'test label';
+        const { getByLabelText } = render(
+          <Input labelText={labelText} onFocus={onFocusSpy} />
+        );
+
+        fireEvent(
+          getByLabelText(labelText),
+          new MouseEvent('focus', {
+            bubbles: true,
+            cancelable: true
+          })
+        );
+
+        expect(onFocusSpy).toHaveBeenCalledTimes(1);
+      });
     });
 
-    it('should trigger the passed in onFocus when focused', () => {
-      const onFocusSpy = jest.fn();
-      const labelText = 'test label';
-      const { getByLabelText } = render(
-        <Input labelText={labelText} onFocus={onFocusSpy} />
-      );
-
-      fireEvent(
-        getByLabelText(labelText),
-        new MouseEvent('focus', {
-          bubbles: true,
-          cancelable: true
-        })
-      );
-
-      expect(onFocusSpy).toHaveBeenCalledTimes(1);
-    });
-  });
-
-  it('Does not violate accessibility standards', () => {
-    const { container } = render(<Input labelText="test label" />);
-    return axe(container.innerHTML).then(result => {
-      return expect(result).toHaveNoViolations();
+    it('Does not violate accessibility standards', () => {
+      const { container } = render(<Input labelText="test label" />);
+      return axe(container.innerHTML).then(result => {
+        return expect(result).toHaveNoViolations();
+      });
     });
   });
 });

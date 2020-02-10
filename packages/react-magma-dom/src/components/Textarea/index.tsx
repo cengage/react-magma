@@ -1,11 +1,11 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { BaseInput, BaseInputProps, InputSize } from '../BaseInput';
-import { InputMessage } from './InputMessage';
+import { BaseInputProps, BaseInput } from '../BaseInput';
+import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';
 import { useGenerateId } from '../utils';
 
-export interface InputProps extends BaseInputProps {
+export interface TextareaProps extends BaseInputProps {
   errorMessage?: string;
   helperMessage?: string;
   isLabelVisuallyHidden?: boolean;
@@ -17,24 +17,26 @@ const Container = styled.div`
   margin-bottom: 10px;
 `;
 
-export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
-  (props: InputProps, ref: React.Ref<HTMLInputElement>) => {
+export const Textarea: React.FunctionComponent<
+  TextareaProps
+> = React.forwardRef(
+  (props: TextareaProps, ref: React.Ref<HTMLInputElement>) => {
     const {
       children,
       containerStyle,
       errorMessage,
       helperMessage,
       id: defaultId,
-      inputSize,
+      inputStyle,
       isInverse,
       labelStyle,
       labelText,
       isLabelVisuallyHidden,
+      type,
       ...other
     } = props;
 
     const id = useGenerateId(defaultId);
-
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
     const [value, setValue] = React.useState<string | string[] | number>(
@@ -49,19 +51,13 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
       props.onChange &&
         typeof props.onChange === 'function' &&
         props.onChange(event);
-
       setValue(event.target.value);
     }
 
     return (
       <Container style={containerStyle}>
         {!isLabelVisuallyHidden && (
-          <Label
-            isInverse={isInverse}
-            htmlFor={id}
-            size={inputSize ? inputSize : InputSize.medium}
-            style={labelStyle}
-          >
+          <Label isInverse={isInverse} htmlFor={id} style={labelStyle}>
             {labelText}
           </Label>
         )}
@@ -72,9 +68,10 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
           }
           aria-invalid={!!errorMessage}
           aria-label={isLabelVisuallyHidden ? labelText : null}
+          as="textarea"
           hasError={!!errorMessage}
           id={id}
-          inputSize={inputSize ? inputSize : InputSize.medium}
+          inputStyle={{ height: '4.5em', padding: '5px 8px 0', ...inputStyle }}
           isInverse={isInverse}
           onChange={handleChange}
           ref={ref}

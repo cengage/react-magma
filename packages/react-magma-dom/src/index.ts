@@ -1,6 +1,12 @@
 export { Alert, AlertVariant } from './components/Alert';
 export { Announce } from './components/Announce';
 export { Badge, BadgeColor } from './components/Badge';
+export {
+  BaseInput,
+  InputIconPosition,
+  InputSize,
+  InputType
+} from './components/BaseInput';
 export { Breadcrumb } from './components/Breadcrumb';
 export { BreadcrumbItem } from './components/Breadcrumb/Item';
 export {
@@ -21,12 +27,7 @@ export { FormGroup } from './components/FormGroup';
 export { Heading } from './components/Heading';
 export { HideAtBreakpoint } from './components/HideAtBreakpoint';
 export { IndeterminateCheckbox } from './components/IndeterminateCheckbox';
-export {
-  Input,
-  InputSize,
-  InputType,
-  InputIconPosition
-} from './components/Input';
+export { Input } from './components/Input';
 export { Label } from './components/Label';
 export { LinkButton } from './components/LinkButton';
 export { LoadingIndicator } from './components/LoadingIndicator';
@@ -49,6 +50,7 @@ export { DatePicker } from './components/DatePicker';
 export { Modal, ModalSize } from './components/Modal';
 export { HyperLink } from './components/HyperLink';
 export { ProgressBar, ProgressBarColor } from './components/ProgressBar';
+export { Textarea } from './components/Textarea';
 
 export { magma } from './theme/magma';
 export { GlobalStyles } from './theme/GlobalStyles';
@@ -58,11 +60,17 @@ export { AddPersonIcon } from './components/Icon/types/AddPersonIcon';
 export { AlertIcon } from './components/Icon/types/AlertIcon';
 export { AndroidIcon } from './components/Icon/types/AndroidIcon';
 export { AngleDownIcon } from './components/Icon/types/AngleDownIcon';
-export { AngleDownDoubleIcon } from './components/Icon/types/AngleDownDoubleIcon';
+export {
+  AngleDownDoubleIcon
+} from './components/Icon/types/AngleDownDoubleIcon';
 export { AngleLeftIcon } from './components/Icon/types/AngleLeftIcon';
-export { AngleLeftDoubleIcon } from './components/Icon/types/AngleLeftDoubleIcon';
+export {
+  AngleLeftDoubleIcon
+} from './components/Icon/types/AngleLeftDoubleIcon';
 export { AngleRightIcon } from './components/Icon/types/AngleRightIcon';
-export { AngleRightDoubleIcon } from './components/Icon/types/AngleRightDoubleIcon';
+export {
+  AngleRightDoubleIcon
+} from './components/Icon/types/AngleRightDoubleIcon';
 export { AngleUpIcon } from './components/Icon/types/AngleUpIcon';
 export { AngleUpDoubleIcon } from './components/Icon/types/AngleUpDoubleIcon';
 export { AppleIcon } from './components/Icon/types/AppleIcon';
@@ -111,7 +119,9 @@ export { CommentsIcon } from './components/Icon/types/CommentsIcon';
 export { CompassIcon } from './components/Icon/types/CompassIcon';
 export { ConnectionIcon } from './components/Icon/types/ConnectionIcon';
 export { CopyIcon } from './components/Icon/types/CopyIcon';
-export { CountsTowardsGradeIcon } from './components/Icon/types/CountsTowardsGradeIcon';
+export {
+  CountsTowardsGradeIcon
+} from './components/Icon/types/CountsTowardsGradeIcon';
 export { CourseIcon } from './components/Icon/types/CourseIcon';
 export { CreditNoCreditIcon } from './components/Icon/types/CreditNoCreditIcon';
 export { CrossIcon } from './components/Icon/types/CrossIcon';
@@ -145,7 +155,9 @@ export { FileImageOIcon } from './components/Icon/types/FileImageOIcon';
 export { FileMovieOIcon } from './components/Icon/types/FileMovieOIcon';
 export { FileOIcon } from './components/Icon/types/FileOIcon';
 export { FilePdfOIcon } from './components/Icon/types/FilePdfOIcon';
-export { FilePowerpointOIcon } from './components/Icon/types/FilePowerpointOIcon';
+export {
+  FilePowerpointOIcon
+} from './components/Icon/types/FilePowerpointOIcon';
 export { FileWordOIcon } from './components/Icon/types/FileWordOIcon';
 export { Filter2Icon } from './components/Icon/types/Filter2Icon';
 export { FirstIcon } from './components/Icon/types/FirstIcon';
@@ -195,7 +207,9 @@ export { MapMarkerIcon } from './components/Icon/types/MapMarkerIcon';
 export { MarketIcon } from './components/Icon/types/MarketIcon';
 export { MenuSteppedIcon } from './components/Icon/types/MenuSteppedIcon';
 export { MenuIcon } from './components/Icon/types/MenuIcon';
-export { MicrophoneSlashIcon } from './components/Icon/types/MicrophoneSlashIcon';
+export {
+  MicrophoneSlashIcon
+} from './components/Icon/types/MicrophoneSlashIcon';
 export { MicrophoneIcon } from './components/Icon/types/MicrophoneIcon';
 export { MinusCircleIcon } from './components/Icon/types/MinusCircleIcon';
 export { MinusIcon } from './components/Icon/types/MinusIcon';
@@ -206,12 +220,18 @@ export { MtIcon } from './components/Icon/types/MtIcon';
 export { Music2Icon } from './components/Icon/types/Music2Icon';
 export { NextIcon } from './components/Icon/types/NextIcon';
 export { Next2Icon } from './components/Icon/types/Next2Icon';
-export { NonMindtapActivityIcon } from './components/Icon/types/NonMindtapActivityIcon';
+export {
+  NonMindtapActivityIcon
+} from './components/Icon/types/NonMindtapActivityIcon';
 export { NotificationIcon } from './components/Icon/types/NotificationIcon';
 export { Notification2Icon } from './components/Icon/types/Notification2Icon';
 export { PaletteIcon } from './components/Icon/types/PaletteIcon';
-export { ParagraphCenterIcon } from './components/Icon/types/ParagraphCenterIcon';
-export { ParagraphJustifyIcon } from './components/Icon/types/ParagraphJustifyIcon';
+export {
+  ParagraphCenterIcon
+} from './components/Icon/types/ParagraphCenterIcon';
+export {
+  ParagraphJustifyIcon
+} from './components/Icon/types/ParagraphJustifyIcon';
 export { ParagraphLeftIcon } from './components/Icon/types/ParagraphLeftIcon';
 export { ParagraphRightIcon } from './components/Icon/types/ParagraphRightIcon';
 export { PauseIcon } from './components/Icon/types/PauseIcon';
@@ -229,7 +249,9 @@ export { PreviousIcon } from './components/Icon/types/PreviousIcon';
 export { Previous2Icon } from './components/Icon/types/Previous2Icon';
 export { PrintIcon } from './components/Icon/types/PrintIcon';
 export { ProfileIcon } from './components/Icon/types/ProfileIcon';
-export { QuestionCircleOIcon } from './components/Icon/types/QuestionCircleOIcon';
+export {
+  QuestionCircleOIcon
+} from './components/Icon/types/QuestionCircleOIcon';
 export { QuestionCircleIcon } from './components/Icon/types/QuestionCircleIcon';
 export { Reading2Icon } from './components/Icon/types/Reading2Icon';
 export { RedoIcon } from './components/Icon/types/RedoIcon';

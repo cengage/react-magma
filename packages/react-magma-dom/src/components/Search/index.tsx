@@ -1,35 +1,28 @@
 import * as React from 'react';
-import { Input, InputIconPosition, InputSize, InputType } from '../Input';
+import {
+  BaseInput,
+  InputIconPosition,
+  InputSize,
+  InputType
+} from '../BaseInput';
+
 import { Search2Icon } from '../Icon/types/Search2Icon';
 
 export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
-  errorMessage?: string;
-  helperMessage?: string;
   iconAriaLabel?: string;
   id?: string;
   inputSize?: InputSize;
+  inputStyle?: React.CSSProperties;
   isInverse?: boolean;
-  isLoading?: boolean;
   labelText?: string;
   onSearch: (term: string) => void;
-  value?: string;
   ref?: React.Ref<HTMLInputElement>;
+  value?: string;
 }
 
 export const Search: React.FunctionComponent<SearchProps> = React.forwardRef(
   (props: SearchProps, ref: React.Ref<HTMLInputElement>) => {
-    const {
-      errorMessage,
-      helperMessage,
-      iconAriaLabel,
-      id,
-      isInverse,
-      inputSize,
-      isLoading,
-      labelText,
-      placeholder,
-      onSearch
-    } = props;
+    const { iconAriaLabel, labelText, placeholder, onSearch, ...other } = props;
 
     const SEARCH = 'Search';
 
@@ -59,20 +52,14 @@ export const Search: React.FunctionComponent<SearchProps> = React.forwardRef(
     }
 
     return (
-      <Input
-        errorMessage={errorMessage}
-        helperMessage={helperMessage}
+      <BaseInput
+        {...other}
+        aria-label={labelText ? labelText : SEARCH}
         icon={<Search2Icon />}
-        onIconClick={handleSearch}
         iconAriaLabel={iconAriaLabel ? iconAriaLabel : SEARCH}
         iconPosition={InputIconPosition.right}
-        id={id}
-        inputSize={inputSize}
-        isInverse={isInverse}
-        isLabelVisuallyHidden
-        isLoading={isLoading}
-        labelText={labelText ? labelText : SEARCH}
         onChange={handleChange}
+        onIconClick={handleSearch}
         onKeyDown={handleKeyPress}
         placeholder={placeholder ? placeholder : SEARCH}
         type={InputType.search}

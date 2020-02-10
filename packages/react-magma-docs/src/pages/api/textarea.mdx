@@ -1,0 +1,74 @@
+---
+title: 'Textarea'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { Textarea } from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
+
+# Textarea
+
+## Basic Usage
+
+```.jsx
+    <Textarea labelText="Text area" value="Hello"/>
+```
+
+## Textarea Props
+
+<SimplePropsTable
+  propertyValues={{
+    errorMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Text of the error message.  If a value is provided, the input will be styled as an error state, and the error message will display.',
+      defaultValue: '',
+    },
+    helperMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text of the helper message.',
+      defaultValue: '',
+    },
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    labelText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text for input aria-label',
+      defaultValue: 'Search',
+    },
+    placeholder: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text for input placeholder',
+      defaultValue: 'Search',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+  }}
+/>
+
+export default props => <ScopeableLayout {...props} components={{ Textarea }} />

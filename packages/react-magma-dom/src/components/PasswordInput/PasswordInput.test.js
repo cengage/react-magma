@@ -2,6 +2,7 @@ import React from 'react';
 import { axe } from 'jest-axe';
 import { PasswordInput } from '.';
 import { render, fireEvent } from '@testing-library/react';
+import { magma } from '../../theme/magma';
 
 describe('PasswordInput', () => {
   it('should find element by testId', () => {
@@ -100,6 +101,102 @@ describe('PasswordInput', () => {
 
     expect(button).toHaveTextContent('Show');
     expect(input).toHaveProperty('type', 'password');
+  });
+});
+
+it('should trigger the passed in onChange when value of the input is changed', () => {
+  const targetValue = 'Change';
+  const onChangeSpy = jest.fn();
+  const labelText = 'test label';
+  const { getByLabelText } = render(
+    <PasswordInput labelText={labelText} onChange={onChangeSpy} value="" />
+  );
+
+  fireEvent.change(getByLabelText(labelText), {
+    target: { value: targetValue }
+  });
+
+  expect(onChangeSpy).toHaveBeenCalledTimes(1);
+});
+
+it('should render an input with a correctly styled helper message', () => {
+  const testMessage = 'Test message';
+  const { getByText } = render(<PasswordInput helperMessage={testMessage} />);
+
+  const helperMessage = getByText(testMessage);
+
+  expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral03);
+});
+
+it('should render an input with a correctly styled error message', () => {
+  const labelText = 'test label';
+  const testHelperMessage = 'Test helper message';
+  const testErrorMessage = 'Test error message';
+  const { getByText, getByLabelText, queryByText } = render(
+    <PasswordInput
+      errorMessage={testErrorMessage}
+      helperMessage={testHelperMessage}
+      labelText={labelText}
+    />
+  );
+
+  const errorMessage = getByText(testErrorMessage);
+
+  expect(errorMessage).toBeInTheDocument();
+
+  expect(getByLabelText(labelText)).toHaveStyleRule(
+    'border-color',
+    magma.colors.danger
+  );
+
+  expect(errorMessage).toHaveStyleRule('background', 'none');
+  expect(errorMessage).toHaveStyleRule('color', magma.colors.danger);
+
+  const helperMessage = queryByText(testHelperMessage);
+
+  expect(helperMessage).not.toBeInTheDocument();
+});
+
+it('should render the input with visually hidden label text', () => {
+  const labelText = 'test label';
+  const { getByLabelText } = render(
+    <PasswordInput labelText={labelText} isLabelVisuallyHidden />
+  );
+  const pwordinput = getByLabelText(labelText);
+
+  expect(pwordinput).toHaveAttribute('aria-label', labelText);
+});
+
+describe('sizes', () => {
+  it('should render a default input with correct styles', () => {
+    const labelText = 'test label';
+    const { container, getByLabelText } = render(
+      <PasswordInput labelText={labelText} />
+    );
+
+    const label = container.querySelector('label');
+    const input = getByLabelText(labelText);
+
+    expect(label).toHaveStyleRule('font-size', '13px');
+
+    expect(input).toHaveStyleRule('font-size', '1rem');
+    expect(input).toHaveStyleRule('height', '37px');
+  });
+
+  it('should render a large input with correct styles', () => {
+    const labelText = 'test label';
+    const { container, getByLabelText } = render(
+      <PasswordInput labelText={labelText} inputSize="large" />
+    );
+
+    const label = container.querySelector('label');
+    const input = getByLabelText(labelText);
+
+    expect(label).toHaveStyleRule('font-size', '16px');
+
+    expect(input).toHaveStyleRule('font-size', '22px');
+    expect(input).toHaveStyleRule('height', '58px');
+    expect(input).toHaveStyleRule('padding', '0 15px');
   });
 });
 
