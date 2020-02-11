@@ -390,26 +390,21 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
           )}
 
           {onHelpLinkClick && (
-            <Tooltip
-              isInverse={isInverse}
-              trigger={
-                <Button
-                  aria-label={HELP_LINK_ARIA_LABEL}
-                  icon={<QuestionCircleIcon />}
-                  isInverse={isInverse}
-                  onClick={onHelpLinkClick}
-                  size={
-                    inputSize === InputSize.large && !multiline
-                      ? ButtonSize.large
-                      : ButtonSize.medium
-                  }
-                  style={{ margin: '0 0 0 7px' }}
-                  type={ButtonType.button}
-                  variant={ButtonVariant.link}
-                />
-              }
-            >
-              {HELP_LINK_ARIA_LABEL}
+            <Tooltip isInverse={isInverse} content={HELP_LINK_ARIA_LABEL}>
+              <Button
+                aria-label={HELP_LINK_ARIA_LABEL}
+                icon={<QuestionCircleIcon />}
+                isInverse={isInverse}
+                onClick={onHelpLinkClick}
+                size={
+                  inputSize === InputSize.large && !multiline
+                    ? ButtonSize.large
+                    : ButtonSize.medium
+                }
+                style={{ margin: '0 0 0 7px' }}
+                type={ButtonType.button}
+                variant={ButtonVariant.link}
+              />
             </Tooltip>
           )}
 
