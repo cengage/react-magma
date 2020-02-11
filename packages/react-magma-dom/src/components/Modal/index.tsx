@@ -33,6 +33,7 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   ref?: React.Ref<HTMLDivElement>;
   size?: ModalSize;
   testId?: string;
+  theme?: any;
 }
 
 const ModalContainer = styled.div`

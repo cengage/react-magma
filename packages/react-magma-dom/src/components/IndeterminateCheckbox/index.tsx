@@ -23,7 +23,11 @@ export enum IndeterminateCheckboxStatus {
   unchecked = 'unchecked' //default
 }
 
-const IndeterminateIcon = styled.span<{ color?: string; disabled?: boolean }>`
+const IndeterminateIcon = styled.span<{
+  color?: string;
+  disabled?: boolean;
+  theme?: any;
+}>`
   background: ${props =>
     props.disabled
       ? props.theme.colors.disabledText

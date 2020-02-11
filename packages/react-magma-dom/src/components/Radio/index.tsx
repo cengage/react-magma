@@ -42,6 +42,7 @@ const StyledFakeInput = styled.span<{
   isInverse: boolean;
   disabled: boolean;
   color: string;
+  theme?: any;
 }>`
   ${DisplayInputStyles};
   background: ${props => {
@@ -84,7 +85,7 @@ const StyledFakeInput = styled.span<{
   }
 `;
 
-const SelectedIcon = styled.span<{ color: string }>`
+const SelectedIcon = styled.span<{ color: string; theme?: any }>`
   background: ${props =>
     props.color ? props.color : props.theme.colors.primary};
   border-radius: 100%;

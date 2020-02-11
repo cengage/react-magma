@@ -41,6 +41,7 @@ const Track = styled.span<{
   checked?: boolean;
   disabled?: boolean;
   isInverse?: boolean;
+  theme?: any;
 }>`
   background: ${props => props.theme.colors.neutral07};
   border: 2px solid;
@@ -107,7 +108,11 @@ const Track = styled.span<{
   }
 `;
 
-const Thumb = styled.span<{ checked?: boolean; disabled?: boolean }>`
+const Thumb = styled.span<{
+  checked?: boolean;
+  disabled?: boolean;
+  theme?: any;
+}>`
   background: ${props => props.theme.colors.neutral08};
   box-shadow: ${props => props.theme.colors.toggleBoxShadow};
   border-radius: 100%;
@@ -133,7 +138,7 @@ const Thumb = styled.span<{ checked?: boolean; disabled?: boolean }>`
     `}
 `;
 
-const IconContainer = styled.span`
+const IconContainer = styled.span<{ theme?: any }>`
   color: ${props => props.theme.colors.neutral08};
   left: 7px;
   position: absolute;

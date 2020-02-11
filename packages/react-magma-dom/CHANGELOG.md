@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.23](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.22...v2.0.0-beta.23) (2020-02-07)
+
+### Bug Fixes
+
+- **modal:** remove console log ([cb0113c](http://stash.corp.web:7999/FRONT/react-magma/commits/cb0113c))
+- **modal:** Stop multiple onClose function calls ([d159b00](http://stash.corp.web:7999/FRONT/react-magma/commits/d159b00))
+- type error when theme is passed to styled component ([3e1d95b](http://stash.corp.web:7999/FRONT/react-magma/commits/3e1d95b))
+
 # [2.0.0-beta.21](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.20...v2.0.0-beta.21) (2020-01-29)
 
 ### Features
