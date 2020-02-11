@@ -67,6 +67,14 @@ describe('Search', () => {
     expect(onChangeSpy).toHaveBeenCalledTimes(1);
   });
 
+  it('should render the spinner if isLoading is true component', () => {
+    const { getByLabelText } = render(
+      <Search isLoading onSearch={onSearchSpy} />
+    );
+
+    expect(getByLabelText('Loading...')).toBeInTheDocument();
+  });
+
   it('Does not violate accessibility standards', () => {
     const { container } = render(<Search onSearch={onSearchSpy} />);
 

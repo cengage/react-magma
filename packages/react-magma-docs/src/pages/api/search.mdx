@@ -51,6 +51,37 @@ Inverse is an optional boolean prop, that may be passed in when inputs are to be
     </div>
 ```
 
+## Loading
+
+The isLoading boolean prop will determine if a loading animation is shown. The loading animation will replace the search icon button.
+
+```.jsx
+    (props) => {
+      const [searchValue, setSearchValue] = React.useState('');
+      const [isLoading, setIsLoading] = React.useState(false);
+
+      function handleSearch(term) {
+        setIsLoading(true);
+        setTimeout(() => {
+          setSearchValue(`Search value set to ${term}`);
+          setIsLoading(false);
+        }, 2500)
+      }
+
+    return (
+      <div>
+        <p><strong>Search Value: </strong> <span id="changedValue">{searchValue}</span></p>
+        <Search
+          labelText='Test Value'
+          isLoading={isLoading}
+          value=''
+          onChange={(event) => setSearchValue(event.target.value)}
+          onSearch={handleSearch} />
+      </div>
+    )
+  }
+```
+
 ## Change Events
 
 ```.jsx

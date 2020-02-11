@@ -10,6 +10,7 @@ import {
   EnvelopeOIcon,
   QuestionCircleIcon,
   Search2Icon,
+  Spinner,
   Tooltip,
 } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
@@ -126,7 +127,8 @@ The `iconPosition` position prop is optional and takes the values `left` and `ri
       <Input
         iconPosition='right'
         labelText='Input with Icon on Right'
-        icon={<Search2Icon />} />
+        icon={<Spinner />}
+        iconAriaLabel="Loading..." />
 
       <Input
         labelText='Input with Clickable Icon on Right'
@@ -509,6 +511,7 @@ export default props => (
       EnvelopeOIcon,
       QuestionCircleIcon,
       Search2Icon,
+      Spinner,
       Tooltip,
     }}
   />
