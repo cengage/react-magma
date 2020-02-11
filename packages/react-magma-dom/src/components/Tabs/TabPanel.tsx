@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 
 const StyledTabPanel = styled.div`
   flex: 1;
+  padding: 20px;
 `;
 
 export interface TabPanelProps extends React.HTMLAttributes<HTMLDivElement> {

@@ -31,7 +31,7 @@ The tab system is made up of four components:
         return (
           <TabsContainer activeIndex={1}>
             <Tabs backgroundColor='#F7F7F7'>
-              <Tab>Main page with a longer text label</Tab>
+              <Tab>Main page</Tab>
               <Tab>FAQ</Tab>
               <Tab>About us</Tab>
             </Tabs>
@@ -49,7 +49,7 @@ The tab system is made up of four components:
     )}
 ```
 
-# Border Position
+## Border Position
 
 By default, horizontal tabs have the inidicator placed underneath the tabs.
 However, there are times you may want to place the indicator above the tabs, such as when the tab menu is displayed below its content.
@@ -64,13 +64,13 @@ The `borderPosition` prop is specified on the `Tabs` component and will apply to
           <div>
             <TabsContainer>
               <TabPanel index={0}>
-                  <div>Main page <br/><br/></div>
+                  <div>Main page</div>
                 </TabPanel>
                 <TabPanel index={1}>
-                  <div>FAQ <br/><br/></div>
+                  <div>FAQ</div>
                 </TabPanel>
                 <TabPanel index={2}>
-                  <div>About us <br/><br/></div>
+                  <div>About us</div>
                 </TabPanel>
                 <Tabs backgroundColor='#F7F7F7' borderPosition='top'>
                   <Tab>Main page</Tab>
