@@ -72,6 +72,7 @@
     "eslint-config-cengage": "^0.5.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^2.3.0",
     "eslint-plugin-unicorn": "^8.0.2",
     "fs-extra": "^7.0.1",
     "glob": "^7.1.3",
