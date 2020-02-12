@@ -596,13 +596,18 @@ pre tt:after {
 .pre-container {
   border: 1px solid rgba(0, 0, 0, 0.1);
   display: grid;
-  margin: 10px 0;
+  margin: 10px 0 0;
   max-width: 100%;
 }
 
 .horizontal-spacer {
   height: 20px;
   display: block;
+}
+
+.demo-container {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 10px;
 }
 
 /* Demo styles for specific components */
