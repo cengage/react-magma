@@ -26,7 +26,7 @@ The tab system is made up of four components:
 `Tab`, which is each individual menu item within the tabs navigation bar. And `TabPanel`, which contains the indivdual content sections for each tab.
 
 ```.jsx
-      function TabComponent() {
+      () => {
 
         return (
           <TabsContainer activeIndex={1}>
@@ -58,7 +58,7 @@ The `borderPosition` prop is an enum and accepts `top` or `bottom` for horizonta
 The `borderPosition` prop is specified on the `Tabs` component and will apply to each individual tab.
 
 ```.jsx
-      function TabComponent() {
+      () => {
 
         return (
           <div>
@@ -87,47 +87,36 @@ The `borderPosition` prop is specified on the `Tabs` component and will apply to
 This is a simple example of Tab Components with custom switching logic
 
 ```.jsx
-      class TabComponent extends React.Component {
-        constructor(props) {
-          super(props);
-          this.state = {
-            activeIndex: 0,
-          }
-          this.handleChange = this.handleChange.bind(this)
-        }
+  () => {
+    const [activeIndex, setActiveIndex] = React.useState(0);
 
-        handleChange(index) {
-          this.setState(() => ({
-            activeIndex: index,
-          }))
-        }
+    function handleChange(index) {
+      setActiveIndex(index);
+    }
 
-        render() {
-          return (
-            <TabsContainer activeIndex={this.state.activeIndex}>
-                <Tabs
-                  backgroundColor='#F7F7F7'
-                  onChange={this.handleChange}
-                >
-                  <Tab index={0}>First item</Tab>
-                  <Tab index={1}>Second item</Tab>
-                  <Tab index={2}>Third item</Tab>
-                </Tabs>
+    return (
+      <TabsContainer activeIndex={activeIndex}>
+        <Tabs
+          backgroundColor='#F7F7F7'
+          onChange={handleChange}
+        >
+          <Tab index={0}>First item</Tab>
+          <Tab index={1}>Second item</Tab>
+          <Tab index={2}>Third item</Tab>
+        </Tabs>
 
-                <TabPanel index={0}>
-                  <div>First item</div>
-                </TabPanel>
-                <TabPanel index={1}>
-                  <div>Second item</div>
-                </TabPanel>
-                <TabPanel index={2}>
-                  <div>Third item</div>
-                </TabPanel>
-            </TabsContainer>
-          )
-        }
-      }
-
+        <TabPanel index={0}>
+          <div>First item</div>
+        </TabPanel>
+        <TabPanel index={1}>
+          <div>Second item</div>
+        </TabPanel>
+        <TabPanel index={2}>
+          <div>Third item</div>
+        </TabPanel>
+      </TabsContainer>
+    )
+  }
 ```
 
 ## Disabled Tabs
@@ -160,7 +149,7 @@ If a `Tab` is `disabled`, it will not be actionable. It will still appear in the
 The `isCentered` prop is an optional boolean that will style the tabs in the center of their container.
 
 ```.jsx
-      function TabComponent() {
+      () => {
         return (
           <TabsContainer>
               <Tabs isCentered>
@@ -177,7 +166,7 @@ The `isCentered` prop is an optional boolean that will style the tabs in the cen
 The `isFullWidth` prop is an optional boolean that will cause the tabs to take up the full width of their container. The `isFullWidth` prop is specified on the `Tabs` component.
 
 ```.jsx
-      function TabComponent() {
+      () => {
         return (
           <TabsContainer>
             <Tabs isFullWidth>
@@ -194,7 +183,7 @@ The `isFullWidth` prop is an optional boolean that will cause the tabs to take u
 The `hasScrollButtons` prop can be used to display navigation buttons for when the tabs do not fit within the visual display area.
 
 ```.jsx
-      function TabComponent() {
+      () => {
         return (
           <div>
             <TabsContainer>
@@ -273,7 +262,7 @@ The `orientation` prop is an enum that accepts either `horizontal` or `vertical`
 This prop is specified on the `Tabs` component.
 
 ```.jsx
-      function TabComponent() {
+      () => {
         return (
           <div>
             <TabsContainer>
@@ -323,7 +312,7 @@ The `icon` prop can be used to display an icon inside the individual `Tab` compo
 `Tab` components without children can be used to display an icon only version of the tabs. Be sure to include an `ariaLabel` for each tab, when using this pattern.
 
 ```.jsx
-      function TabComponent() {
+      () => {
         return (
           <TabsContainer>
               <Tabs>
@@ -341,7 +330,7 @@ The `icon` prop can be used to display an icon inside the individual `Tab` compo
 By default, the icons appear above the children.
 
 ```.jsx
-      function TabComponent() {
+      () => {
         return (
           <TabsContainer>
               <Tabs>
@@ -413,7 +402,7 @@ The default value is false.
 ### With Blue Background
 
 ```.jsx
-      function TabComponent() {
+      () => {
         const wrapperStyles = {
           backgroundColor: '#0f3765'
         }
@@ -432,7 +421,7 @@ The default value is false.
 ### With Dark Background
 
 ```.jsx
-function TabComponent() {
+() => {
 
   const wrapperStyles = {
     backgroundColor: '#3F3F3F'
@@ -541,63 +530,6 @@ function TabComponent() {
       required: false,
       description:
         'The onChange handler for managing state of Tabs component by your custom logic.',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'The id for react-testing-library.',
-    },
-  }}
-/>
-
-## Tab API
-
-<SimplePropsTable
-  propertyValues={{
-    ariaLabel: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Custom aria label for Tab component.',
-    },
-    component: {
-      type: {
-        name: 'React.ReactElement<any>',
-      },
-      required: false,
-      description: 'The prop for custom component instead of <button> in Tab.',
-    },
-    disabled: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'The prop for disabling Tab.',
-    },
-    index: {
-      type: {
-        name: 'number',
-      },
-      required: false,
-      description: 'The index of your Tab.',
-    },
-    isActive: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'The activity state of Tab component for your custom logic.',
-    },
-    path: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: `The path link. It's needed in case you are using Link component for example by React Router library.
-        Path must be equal to expected route.`,
     },
     testId: {
       type: {
