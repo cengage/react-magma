@@ -2,7 +2,8 @@ import * as React from 'react';
 import { CalendarContext } from './CalendarContext';
 import { ArrowLeft2Icon } from '../Icon/types/ArrowLeft2Icon';
 import { ArrowRight2Icon } from '../Icon/types/ArrowRight2Icon';
-import { Button, ButtonType, ButtonVariant } from '../Button';
+import { ButtonType, ButtonVariant } from '../Button';
+import { IconButton } from '../IconButton';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { format, addMonths, subMonths } from 'date-fns';
 import styled from '../../theme/styled';
@@ -59,7 +60,7 @@ export const CalendarHeader: React.FunctionComponent<CalendarHeaderProps> = (
         {format(focusedDate, 'MMMM YYYY')}
       </CalendarHeaderText>
       <CalendarIconButton>
-        <Button
+        <IconButton
           aria-label={`Previous Month ${format(
             subMonths(focusedDate, 1),
             'MMMM YYYY'
@@ -71,7 +72,7 @@ export const CalendarHeader: React.FunctionComponent<CalendarHeaderProps> = (
         />
       </CalendarIconButton>
       <CalendarIconButton next>
-        <Button
+        <IconButton
           aria-label={`Next Month ${format(
             addMonths(focusedDate, 1),
             'MMMM YYYY'

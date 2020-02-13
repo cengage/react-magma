@@ -12,6 +12,7 @@ import {
   ButtonSize,
   ButtonShape
 } from '../Button';
+import { IconButton } from '../IconButton';
 import { InputMessage } from './InputMessage';
 import { Label } from '../Label';
 import { QuestionCircleIcon } from '../Icon/types/QuestionCircleIcon';
@@ -161,7 +162,7 @@ const IconWrapper = styled.span<IconWrapperProps>`
     `}
 `;
 
-const IconButton = styled(Button)<{ size: ButtonSize }>`
+const StyledIconButton = styled(IconButton)<{ size: ButtonSize }>`
   position: absolute;
   bottom: 0;
   right: 0;
@@ -393,7 +394,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
             <Tooltip
               isInverse={isInverse}
               trigger={
-                <Button
+                <IconButton
                   aria-label={HELP_LINK_ARIA_LABEL}
                   icon={<QuestionCircleIcon />}
                   isInverse={isInverse}
@@ -414,7 +415,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
           )}
 
           {onIconClick && !isLoading && (
-            <IconButton
+            <StyledIconButton
               aria-label={iconAriaLabel}
               icon={icon}
               onClick={onIconClick}

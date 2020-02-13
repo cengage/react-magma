@@ -8,7 +8,8 @@ import {
   getFocusedElementIndex
 } from './utils';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { Button, ButtonColor, ButtonVariant } from '../Button';
+import { ButtonColor, ButtonVariant } from '../Button';
+import { IconButton } from '../IconButton';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { Heading } from '../Heading';
 import { omit, useGenerateId, usePrevious } from '../utils';
@@ -362,7 +363,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
                 <ModalBody ref={bodyRef}>{children}</ModalBody>
                 {!isCloseButtonHidden && (
                   <CloseBtn>
-                    <Button
+                    <IconButton
                       aria-label={
                         closeAriaLabel ? closeAriaLabel : 'Close dialog'
                       }
