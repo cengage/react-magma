@@ -48,6 +48,7 @@ export { DatePicker } from './components/DatePicker';
 export { Modal, ModalSize } from './components/Modal';
 export { HyperLink } from './components/HyperLink';
 export { ProgressBar, ProgressBarColor } from './components/ProgressBar';
+export { TimePicker } from './components/TimePicker';
 
 export { magma } from './theme/magma';
 export { GlobalStyles } from './theme/GlobalStyles';

@@ -5,61 +5,39 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [2.0.0-beta.23](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.22...v2.0.0-beta.23) (2020-02-07)
 
-
 ### Bug Fixes
 
-* **modal:** remove console log ([cb0113c](http://stash.corp.web:7999/FRONT/react-magma/commits/cb0113c))
-* **modal:** Stop multiple onClose function calls ([d159b00](http://stash.corp.web:7999/FRONT/react-magma/commits/d159b00))
-* type error when theme is passed to styled component ([3e1d95b](http://stash.corp.web:7999/FRONT/react-magma/commits/3e1d95b))
-
-
-
-
+- **modal:** remove console log ([cb0113c](http://stash.corp.web:7999/FRONT/react-magma/commits/cb0113c))
+- **modal:** Stop multiple onClose function calls ([d159b00](http://stash.corp.web:7999/FRONT/react-magma/commits/d159b00))
+- type error when theme is passed to styled component ([3e1d95b](http://stash.corp.web:7999/FRONT/react-magma/commits/3e1d95b))
 
 # [2.0.0-beta.21](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.20...v2.0.0-beta.21) (2020-01-29)
 
-
 ### Features
 
-* New and updated icons ([e204ef3](http://stash.corp.web:7999/FRONT/react-magma/commits/e204ef3))
-
+- New and updated icons ([e204ef3](http://stash.corp.web:7999/FRONT/react-magma/commits/e204ef3))
 
 ### BREAKING CHANGES
 
-* Added new stats icons. Added new empty star icon. Updated reply and forward icons.
-
-
-
-
+- Added new stats icons. Added new empty star icon. Updated reply and forward icons.
 
 # [2.0.0-beta.20](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.19...v2.0.0-beta.20) (2020-01-29)
 
-
 ### Features
 
-* Icons audit ([52444cd](http://stash.corp.web:7999/FRONT/react-magma/commits/52444cd))
-
+- Icons audit ([52444cd](http://stash.corp.web:7999/FRONT/react-magma/commits/52444cd))
 
 ### BREAKING CHANGES
 
-* Resolved redundant icons. Remove unnecessary icons: ArrowUp3, ArrowDown3,
-ArrowLeft3, ArrowRight3, Exclamation, List3, Menu2, Menu3, Menu4, PieChart, Question2, Question,
-Spinner2, Star, ThList, Timed, Unlock, Wrench3
-
-
-
-
+- Resolved redundant icons. Remove unnecessary icons: ArrowUp3, ArrowDown3,
+  ArrowLeft3, ArrowRight3, Exclamation, List3, Menu2, Menu3, Menu4, PieChart, Question2, Question,
+  Spinner2, Star, ThList, Timed, Unlock, Wrench3
 
 # [2.0.0-beta.19](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.18...v2.0.0-beta.19) (2020-01-28)
 
-
 ### Bug Fixes
 
-* **ref:** Fix references for Search/Input components ([4eace40](http://stash.corp.web:7999/FRONT/react-magma/commits/4eace40))
-
-
-
-
+- **ref:** Fix references for Search/Input components ([4eace40](http://stash.corp.web:7999/FRONT/react-magma/commits/4eace40))
 
 # [2.0.0-beta.17](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.16...v2.0.0-beta.17) (2020-01-15)
 
