@@ -7,3 +7,4 @@ export { ToastCore } from './components/Toast/Toast';
 export { DatePickerCore } from './components/DatePicker/DatePicker';
 export { ModalCore } from './components/Modal/Modal';
 export { TooltipCore } from './components/Tooltip/Tooltip';
+export { TimePickerCore } from './components/TimePicker/TimePicker';
