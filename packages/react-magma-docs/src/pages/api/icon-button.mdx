@@ -4,7 +4,7 @@ title: 'Icon Buttons'
 
 import { ScopeableLayout } from '../../components/layout'
 import {
-  Button,
+  IconButton,
   AlertIcon,
   BellIcon,
   Cog2Icon,
@@ -16,8 +16,6 @@ import { SimplePropsTable } from '../../components/props-table'
 
 # Icon Buttons
 
-**Icon Buttons use the <Link to="/api/button">Buttons component</Link> to render. It is not a separate component, just different props.**
-
 ## Basic Usage
 
 Icon buttons have an icon included in them. If children are included with these buttons (such as text), then they render in a style similar to the non-icon buttons.
@@ -26,25 +24,25 @@ If no children are included, then they render in the icon-only style.
 ```.jsx
     <>
         <p>
-          <Button aria-label="Icon" icon={<BellIcon />} />
-          <Button aria-label="Icon" icon={<BellIcon />} />
-          <Button aria-label="Icon" variant="outline" icon={<BellIcon />} />
-          <Button aria-label="Icon" variant="link" icon={<BellIcon />} />
-          <Button aria-label="Icon" color="secondary" icon={<Cog2Icon />} />
-          <Button aria-label="Icon" color="secondary" variant="outline" icon={<Cog2Icon />} />
-          <Button aria-label="Icon" color="secondary" variant="link" icon={<Cog2Icon />} />
-          <Button aria-label="Icon" color="success" icon={<CheckIcon />} />
-          <Button aria-label="Icon" color="success"variant="outline" icon={<CheckIcon />} />
-          <Button aria-label="Icon" color="success" variant="link" icon={<CheckIcon />} />
-          <Button aria-label="Icon" color="danger" icon={<AlertIcon />} />
-          <Button aria-label="Icon" color="danger" variant="outline" icon={<AlertIcon />} />
-          <Button aria-label="Icon" color="danger" variant="link" icon={<AlertIcon />} />
-          <Button aria-label="Icon" disabled icon={<BellIcon />} />
+          <IconButton aria-label="Icon" icon={<BellIcon />} />
+          <IconButton aria-label="Icon" icon={<BellIcon />} />
+          <IconButton aria-label="Icon" variant="outline" icon={<BellIcon />} />
+          <IconButton aria-label="Icon" variant="link" icon={<BellIcon />} />
+          <IconButton aria-label="Icon" color="secondary" icon={<Cog2Icon />} />
+          <IconButton aria-label="Icon" color="secondary" variant="outline" icon={<Cog2Icon />} />
+          <IconButton aria-label="Icon" color="secondary" variant="link" icon={<Cog2Icon />} />
+          <IconButton aria-label="Icon" color="success" icon={<CheckIcon />} />
+          <IconButton aria-label="Icon" color="success"variant="outline" icon={<CheckIcon />} />
+          <IconButton aria-label="Icon" color="success" variant="link" icon={<CheckIcon />} />
+          <IconButton aria-label="Icon" color="danger" icon={<AlertIcon />} />
+          <IconButton aria-label="Icon" color="danger" variant="outline" icon={<AlertIcon />} />
+          <IconButton aria-label="Icon" color="danger" variant="link" icon={<AlertIcon />} />
+          <IconButton aria-label="Icon" disabled icon={<BellIcon />} />
         </p>
          <p>
-          <Button icon={<BellIcon />}>Button with text</Button>
-          <Button icon={<BellIcon />} color="secondary" variant="outline" >Button with text</Button>
-          <Button icon={<BellIcon />} color="success" variant="link" >Button with text</Button>
+          <IconButton icon={<BellIcon />}>Button with text</IconButton>
+          <IconButton icon={<BellIcon />} color="secondary" variant="outline" >Button with text</IconButton>
+          <IconButton icon={<BellIcon />} color="success" variant="link" >Button with text</IconButton>
         </p>
     </>
 ```
@@ -57,7 +55,7 @@ If you find JSX being passed in as a prop directly ugly, you can assign an icon 
   (props) => {
     const icon = <BellIcon />
 
-    return <Button aria-label="Icon" icon={icon} />
+    return <IconButton aria-label="Icon" icon={icon} />
   }
 ```
 
@@ -67,7 +65,7 @@ For icon only buttons you _MUST_ pass in an `aria-label` property to satisfy acc
 
 ```.jsx
     <>
-        <Button aria-label="Icon" icon={<BellIcon />} />
+        <IconButton aria-label="Icon" icon={<BellIcon />} />
     </>
 ```
 
@@ -78,8 +76,8 @@ The `iconPosition` property takes the values `left` and `right`.
 
 ```.jsx
     <>
-        <Button icon={<BellIcon />}>Icon Left</Button>
-        <Button color="secondary" icon={<InfoIcon />} iconPosition="right">Icon Right</Button>
+        <IconButton icon={<BellIcon />}>Icon Left</IconButton>
+        <IconButton color="secondary" icon={<InfoIcon />} iconPosition="right">Icon Right</IconButton>
     </>
 ```
 
@@ -90,14 +88,14 @@ Sizes for `IconButtons` include `small`, `medium`, and `large`, with `medium` be
 ```.jsx
     <>
       <p>
-          <Button icon={<BellIcon />} size="small" />
-          <Button icon={<BellIcon />} />
-          <Button icon={<BellIcon />} size="large" />
+          <IconButton icon={<BellIcon />} size="small" />
+          <IconButton icon={<BellIcon />} />
+          <IconButton icon={<BellIcon />} size="large" />
       </p>
       <p>
-          <Button icon={<BellIcon />} size="small" iconPosition="left">Small</Button>
-          <Button icon={<BellIcon />} iconPosition="left">Medium</Button>
-          <Button icon={<BellIcon />} size="large" iconPosition="left">Large</Button>
+          <IconButton icon={<BellIcon />} size="small" iconPosition="left">Small</IconButton>
+          <IconButton icon={<BellIcon />} iconPosition="left">Medium</IconButton>
+          <IconButton icon={<BellIcon />} size="large" iconPosition="left">Large</IconButton>
       </p>
     </>
 ```
@@ -108,10 +106,10 @@ Icon only buttons have `shape = round`, by default.
 
 ```.jsx
     <>
-      <Button icon={<BellIcon />} />
-      <Button icon={<BellIcon />} shape="fill" />
-      <Button icon={<BellIcon />} shape="rightCap" />
-      <Button icon={<BellIcon />} shape="leftCap" />
+      <IconButton icon={<BellIcon />} />
+      <IconButton icon={<BellIcon />} shape="fill" />
+      <IconButton icon={<BellIcon />} shape="rightCap" />
+      <IconButton icon={<BellIcon />} shape="leftCap" />
     </>
 ```
 
@@ -122,8 +120,8 @@ Block buttons only work when the `icon` property is set to `false` or not define
 
 ```.jsx
     <>
-        <Button icon={<BellIcon />} block iconPosition="left">Block button</Button>
-        <Button icon={<BellIcon />} color="secondary" block iconPosition="right">Block button</Button>
+        <IconButton icon={<BellIcon />} block iconPosition="left">Block button</IconButton>
+        <IconButton icon={<BellIcon />} color="secondary" block iconPosition="right">Block button</IconButton>
     </>
 ```
 
@@ -139,23 +137,23 @@ Events do not fire on disabled buttons.
 
     return <>
       <p><strong>Icon Counter: </strong> {iconButtonCounter} | <strong>Text Icon Counter: </strong> {textIconButtonCounter}</p>
-      <Button
+      <IconButton
         icon={<BellIcon />}
         onClick={() => {
           setIconButtonCounter(count => count + 1)
-        }}>Click me</Button>
-      <Button
+        }}>Click me</IconButton>
+      <IconButton
         icon={<BellIcon />}
         textPosition="left"
         onClick={() => {
           setTextIconButtonCounter(count => count + 1)
-        }}>Click me</Button>
-      <Button
+        }}>Click me</IconButton>
+      <IconButton
         disabled
         icon={<BellIcon />}
         onClick={() => {
           setIconButtonCounter(count => count + 1)
-        }}>Click me if you can</Button>
+        }}>Click me if you can</IconButton>
     </>
   }
 ```
@@ -165,7 +163,7 @@ Events do not fire on disabled buttons.
 Passing in the `testId` prop will add the `data-testid` attribute to the button element for easier querying in tests.
 
 ```html
-<button data-testid="test-id" aria-label="Icon">
+<IconButton data-testid="test-id" aria-label="Icon">
   <svg
     class="icon"
     height="18"
@@ -181,7 +179,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
       transform="translate(-4.98 -2.22)"
     ></path>
   </svg>
-</button>
+</IconButton>
 ```
 
 ## Icon Button Props
@@ -338,6 +336,13 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
 export default props => (
   <ScopeableLayout
     {...props}
-    components={{ Button, AlertIcon, BellIcon, Cog2Icon, CheckIcon, InfoIcon }}
+    components={{
+      IconButton,
+      AlertIcon,
+      BellIcon,
+      Cog2Icon,
+      CheckIcon,
+      InfoIcon,
+    }}
   />
 )

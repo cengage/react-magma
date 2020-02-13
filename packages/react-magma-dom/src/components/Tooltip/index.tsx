@@ -249,6 +249,10 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
     const id = useGenerateId(defaultId);
     const theme = React.useContext(ThemeContext);
 
+    if (Array.isArray(children)) {
+      throw new Error('Tooltip children can only be one element.');
+    }
+
     const tooltipTrigger = React.cloneElement(children, {
       'aria-describedby': id,
       onKeyDown: handleKeyDown,

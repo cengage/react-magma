@@ -195,6 +195,20 @@ describe('Tooltip', () => {
     });
   });
 
+  it('should throw an error if the tooltip children is more than one element', () => {
+    const renderComponent = () =>
+      render(
+        <Tooltip content="Tooltip content">
+          <div>1 child</div>
+          <div>2 child</div>
+        </Tooltip>
+      );
+
+    expect(renderComponent).toThrowError(
+      'Tooltip children can only be one element.'
+    );
+  });
+
   it('Does not violate accessibility standards', () => {
     const { container } = render(
       <Tooltip content={CONTENT_TEXT}>{TRIGGER_ELEMENT}</Tooltip>

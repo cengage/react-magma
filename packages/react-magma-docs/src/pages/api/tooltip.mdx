@@ -5,7 +5,7 @@ title: 'Tooltips'
 import { ScopeableLayout } from '../../components/layout'
 import {
   Tooltip,
-  Button,
+  IconButton,
   CircleDownIcon,
   CircleLeftIcon,
   CircleRightIcon,
@@ -26,15 +26,21 @@ The children of the tooltip, determines the content inside of the tooltip bubble
 The `trigger` prop must take a react element (not just a string), and determines the content that tiggers the tooltip on hover or on focus. Note: in order to trigger the content on focus (a requirement for accessibility), the `trigger` should be a focusable element.
 
 ```.jsx
-    <>
-        <Tooltip content="What's this?">
-          <Button icon={<QuestionCircleIcon />} variant="link" />
-        </Tooltip>
+  () => {
+    const tooltipNodeContent = <>Lorem ipsum <i>dolor sit amet</i>, mutat utroque. Vel molestie invidunt dissentiet no, ut vim iriure.</>
 
-        <Tooltip content={<>Lorem ipsum <i>dolor sit amet</i>, mutat utroque. Vel molestie invidunt dissentiet no, ut vim iriure.</>}>
-          <Button icon={<QuestionCircleIcon />} variant="link" />
-        </Tooltip>
-    </>
+    return (
+      <>
+          <Tooltip content="What's this?">
+            <IconButton icon={<QuestionCircleIcon />} variant="link" />
+          </Tooltip>
+
+          <Tooltip content={tooltipNodeContent}>
+            <IconButton icon={<QuestionCircleIcon />} variant="link" />
+          </Tooltip>
+      </>
+    )
+  }
 ```
 
 ## Position
@@ -44,19 +50,19 @@ The `Tooltip` component takes a `position` property, that accepts the following 
 ```.jsx
     <>
         <Tooltip position='bottom' content='Tooltip bottom'>
-          <Button aria-label="Bottom" icon={<CircleDownIcon />} variant="link" />
+          <IconButton aria-label="Bottom" icon={<CircleDownIcon />} variant="link" />
         </Tooltip>
 
         <Tooltip position='left' content='Tooltip left'>
-          <Button aria-label="Left" icon={<CircleLeftIcon />} variant="link" />
+          <IconButton aria-label="Left" icon={<CircleLeftIcon />} variant="link" />
         </Tooltip>
 
         <Tooltip position='right' content='Tooltip right'>
-          <Button aria-label="Right" icon={<CircleRightIcon />} variant="link" />
+          <IconButton aria-label="Right" icon={<CircleRightIcon />} variant="link" />
         </Tooltip>
 
          <Tooltip position='top' content='Tooltip top'>
-          <Button aria-label="Top" icon={<CircleUpIcon />} variant="link" />
+          <IconButton aria-label="Top" icon={<CircleUpIcon />} variant="link" />
         </Tooltip>
     </>
 ```
@@ -69,7 +75,7 @@ The default value is `false`.
 ```.jsx
     <div style={{ background: '#00263E', color: '#fff'}}>
         <Tooltip isInverse position='right' content='Inverse tooltip'>
-          <Button aria-label="Question Icon" icon={<QuestionCircleIcon />} isInverse variant="link" />
+          <IconButton aria-label="Question Icon" icon={<QuestionCircleIcon />} isInverse variant="link" />
         </Tooltip>
     </div>
 ```
@@ -134,7 +140,7 @@ export default props => (
     {...props}
     components={{
       Tooltip,
-      Button,
+      IconButton,
       CircleDownIcon,
       CircleLeftIcon,
       CircleRightIcon,
