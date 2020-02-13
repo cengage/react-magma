@@ -8,7 +8,8 @@ import {
   getFocusedElementIndex
 } from './utils';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { Button, ButtonColor, ButtonVariant } from '../Button';
+import { ButtonColor, ButtonVariant } from '../Button';
+import { IconButton } from '../IconButton';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { Heading } from '../Heading';
 import { omit, useGenerateId, usePrevious } from '../utils';
@@ -33,6 +34,7 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   ref?: React.Ref<HTMLDivElement>;
   size?: ModalSize;
   testId?: string;
+  theme?: any;
 }
 
 const ModalContainer = styled.div`
@@ -183,7 +185,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
     React.useEffect(() => {
       if (!prevOpen && props.isOpen) {
         setIsModalOpen(true);
-      } else if (prevOpen && !props.isOpen) {
+      } else if (prevOpen && !props.isOpen && isModalOpen) {
         handleClose();
       }
     }, [props.isOpen]);
@@ -361,7 +363,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
                 <ModalBody ref={bodyRef}>{children}</ModalBody>
                 {!isCloseButtonHidden && (
                   <CloseBtn>
-                    <Button
+                    <IconButton
                       aria-label={
                         closeAriaLabel ? closeAriaLabel : 'Close dialog'
                       }

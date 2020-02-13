@@ -1,11 +1,6 @@
 import * as React from 'react';
-import {
-  Button,
-  ButtonColor,
-  ButtonSize,
-  ButtonType,
-  ButtonVariant
-} from '../Button';
+import { ButtonColor, ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { IconButton } from '../IconButton';
 import { QuestionCircleOIcon } from '../Icon/types/QuestionCircleOIcon';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { CalendarContext } from './CalendarContext';
@@ -150,6 +145,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
 
   return (
     <CalendarContainer
+      data-testid="calendarMonthContainer"
       tabIndex={-1}
       theme={theme}
       onKeyDown={context.onKeyDown}
@@ -193,7 +189,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
           </tbody>
         </Table>
         <HelperButton>
-          <Button
+          <IconButton
             aria-label="Calendar Help"
             icon={<QuestionCircleOIcon />}
             onClick={openHelperInformation}
@@ -207,7 +203,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
           />
         </HelperButton>
         <CloseButton>
-          <Button
+          <IconButton
             aria-label="Close Calendar"
             color={ButtonColor.secondary}
             icon={<CrossIcon />}

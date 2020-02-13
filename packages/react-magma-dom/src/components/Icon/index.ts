@@ -11,13 +11,9 @@ import { AngleUpIcon } from './types/AngleUpIcon';
 import { AngleUpDoubleIcon } from './types/AngleUpDoubleIcon';
 import { AppleIcon } from './types/AppleIcon';
 import { ArrowDown2Icon } from './types/ArrowDown2Icon';
-import { ArrowDown3Icon } from './types/ArrowDown3Icon';
 import { ArrowLeft2Icon } from './types/ArrowLeft2Icon';
-import { ArrowLeft3Icon } from './types/ArrowLeft3Icon';
 import { ArrowRight2Icon } from './types/ArrowRight2Icon';
-import { ArrowRight3Icon } from './types/ArrowRight3Icon';
 import { ArrowUp2Icon } from './types/ArrowUp2Icon';
-import { ArrowUp3Icon } from './types/ArrowUp3Icon';
 import { ArticleIcon } from './types/ArticleIcon';
 import { AssignIcon } from './types/AssignIcon';
 import { AsteriskIcon } from './types/AsteriskIcon';
@@ -79,7 +75,6 @@ import { EnvelopeIcon } from './types/EnvelopeIcon';
 import { ErrorBlackIcon } from './types/ErrorBlackIcon';
 import { EurIcon } from './types/EurIcon';
 import { ExamIcon } from './types/ExamIcon';
-import { ExclamationIcon } from './types/ExclamationIcon';
 import { ExternalLinkIcon } from './types/ExternalLinkIcon';
 import { Extracredit2Icon } from './types/Extracredit2Icon';
 import { EyeSlashIcon } from './types/EyeSlashIcon';
@@ -138,16 +133,12 @@ import { LinkedinIcon } from './types/LinkedinIcon';
 import { ListNumberedIcon } from './types/ListNumberedIcon';
 import { ListIcon } from './types/ListIcon';
 import { List2Icon } from './types/List2Icon';
-import { List3Icon } from './types/List3Icon';
 import { LockIcon } from './types/LockIcon';
 import { ManualGradedIcon } from './types/ManualGradedIcon';
 import { MapMarkerIcon } from './types/MapMarkerIcon';
 import { MarketIcon } from './types/MarketIcon';
 import { MenuSteppedIcon } from './types/MenuSteppedIcon';
 import { MenuIcon } from './types/MenuIcon';
-import { Menu2Icon } from './types/Menu2Icon';
-import { Menu3Icon } from './types/Menu3Icon';
-import { Menu4Icon } from './types/Menu4Icon';
 import { MicrophoneSlashIcon } from './types/MicrophoneSlashIcon';
 import { MicrophoneIcon } from './types/MicrophoneIcon';
 import { MinusCircleIcon } from './types/MinusCircleIcon';
@@ -172,7 +163,6 @@ import { Pause2Icon } from './types/Pause2Icon';
 import { Pencil3Icon } from './types/Pencil3Icon';
 import { PhoneHangUpIcon } from './types/PhoneHangUpIcon';
 import { PhoneIcon } from './types/PhoneIcon';
-import { PieChartIcon } from './types/PieChartIcon';
 import { PinIcon } from './types/PinIcon';
 import { PinterestIcon } from './types/PinterestIcon';
 import { Play2Icon } from './types/Play2Icon';
@@ -185,11 +175,8 @@ import { PrintIcon } from './types/PrintIcon';
 import { ProfileIcon } from './types/ProfileIcon';
 import { QuestionCircleOIcon } from './types/QuestionCircleOIcon';
 import { QuestionCircleIcon } from './types/QuestionCircleIcon';
-import { QuestionIcon } from './types/QuestionIcon';
-import { Question2Icon } from './types/Question2Icon';
 import { Reading2Icon } from './types/Reading2Icon';
 import { RedoIcon } from './types/RedoIcon';
-import { Redo2Icon } from './types/Redo2Icon';
 import { RefreshIcon } from './types/RefreshIcon';
 import { ReplyIcon } from './types/ReplyIcon';
 import { RoubleIcon } from './types/RoubleIcon';
@@ -200,24 +187,26 @@ import { ShrinkIcon } from './types/ShrinkIcon';
 import { Shrink2Icon } from './types/Shrink2Icon';
 import { SignInIcon } from './types/SignInIcon';
 import { SnapchatIcon } from './types/SnapchatIcon';
-import { Spinner2Icon } from './types/Spinner2Icon';
 import { SpotifyIcon } from './types/SpotifyIcon';
 import { StackIcon } from './types/StackIcon';
+import { StarEmptyIcon } from './types/StarEmptyIcon';
 import { StarFullIcon } from './types/StarFullIcon';
 import { StarHalfIcon } from './types/StarHalfIcon';
-import { StarIcon } from './types/StarIcon';
 import { StatsBarsIcon } from './types/StatsBarsIcon';
 import { StatsBars2Icon } from './types/StatsBars2Icon';
+import { StatsBars3Icon } from './types/StatsBars3Icon';
+import { StatsBoxPlotIcon } from './types/StatsBoxPlotIcon';
 import { StatsDotsIcon } from './types/StatsDotsIcon';
+import { StatsDotPlotIcon } from './types/StatsDotPlotIcon';
+import { StatsPieChartIcon } from './types/StatsPieChartIcon';
+import { StatsScatterIcon } from './types/StatsScatterIcon';
 import { StopIcon } from './types/StopIcon';
 import { Stop2Icon } from './types/Stop2Icon';
 import { SwapHorizIcon } from './types/SwapHorizIcon';
 import { TargetIcon } from './types/TargetIcon';
-import { ThListIcon } from './types/ThListIcon';
 import { ThIcon } from './types/ThIcon';
 import { ThumbsODownIcon } from './types/ThumbsODownIcon';
 import { ThumbsOUpIcon } from './types/ThumbsOUpIcon';
-import { TimedIcon } from './types/TimedIcon';
 import { TimerIcon } from './types/TimerIcon';
 import { TrashOIcon } from './types/TrashOIcon';
 import { TruckIcon } from './types/TruckIcon';
@@ -225,8 +214,6 @@ import { TuneIcon } from './types/TuneIcon';
 import { TwitterIcon } from './types/TwitterIcon';
 import { UnarchiveIcon } from './types/UnarchiveIcon';
 import { UndoIcon } from './types/UndoIcon';
-import { Undo2Icon } from './types/Undo2Icon';
-import { UnlockIcon } from './types/UnlockIcon';
 import { UnlockedIcon } from './types/UnlockedIcon';
 import { Upload2Icon } from './types/Upload2Icon';
 import { VideoCameraIcon } from './types/VideoCameraIcon';
@@ -243,7 +230,6 @@ import { WlPracticeItIcon } from './types/WlPracticeItIcon';
 import { WlReadyIcon } from './types/WlReadyIcon';
 import { WlUseItIcon } from './types/WlUseItIcon';
 import { WrenchIcon } from './types/WrenchIcon';
-import { Wrench3Icon } from './types/Wrench3Icon';
 import { YoutubeIcon } from './types/YoutubeIcon';
 import { IconProps } from './utils';
 
@@ -265,13 +251,9 @@ export const ICONS: IconsCollection = {
   AngleUpDoubleIcon,
   AppleIcon,
   ArrowDown2Icon,
-  ArrowDown3Icon,
   ArrowLeft2Icon,
-  ArrowLeft3Icon,
   ArrowRight2Icon,
-  ArrowRight3Icon,
   ArrowUp2Icon,
-  ArrowUp3Icon,
   ArticleIcon,
   AssignIcon,
   AsteriskIcon,
@@ -333,7 +315,6 @@ export const ICONS: IconsCollection = {
   ErrorBlackIcon,
   EurIcon,
   ExamIcon,
-  ExclamationIcon,
   ExternalLinkIcon,
   Extracredit2Icon,
   EyeSlashIcon,
@@ -392,16 +373,12 @@ export const ICONS: IconsCollection = {
   ListNumberedIcon,
   ListIcon,
   List2Icon,
-  List3Icon,
   LockIcon,
   ManualGradedIcon,
   MapMarkerIcon,
   MarketIcon,
   MenuSteppedIcon,
   MenuIcon,
-  Menu2Icon,
-  Menu3Icon,
-  Menu4Icon,
   MicrophoneSlashIcon,
   MicrophoneIcon,
   MinusCircleIcon,
@@ -426,7 +403,6 @@ export const ICONS: IconsCollection = {
   Pencil3Icon,
   PhoneHangUpIcon,
   PhoneIcon,
-  PieChartIcon,
   PinIcon,
   PinterestIcon,
   Play2Icon,
@@ -439,11 +415,8 @@ export const ICONS: IconsCollection = {
   ProfileIcon,
   QuestionCircleOIcon,
   QuestionCircleIcon,
-  QuestionIcon,
-  Question2Icon,
   Reading2Icon,
   RedoIcon,
-  Redo2Icon,
   RefreshIcon,
   ReplyIcon,
   RoubleIcon,
@@ -454,24 +427,26 @@ export const ICONS: IconsCollection = {
   Shrink2Icon,
   SignInIcon,
   SnapchatIcon,
-  Spinner2Icon,
   SpotifyIcon,
   StackIcon,
+  StarEmptyIcon,
   StarFullIcon,
   StarHalfIcon,
-  StarIcon,
   StatsBarsIcon,
   StatsBars2Icon,
+  StatsBars3Icon,
+  StatsBoxPlotIcon,
+  StatsDotPlotIcon,
   StatsDotsIcon,
+  StatsPieChartIcon,
+  StatsScatterIcon,
   StopIcon,
   Stop2Icon,
   SwapHorizIcon,
   TargetIcon,
-  ThListIcon,
   ThIcon,
   ThumbsODownIcon,
   ThumbsOUpIcon,
-  TimedIcon,
   TimerIcon,
   TrashOIcon,
   TruckIcon,
@@ -479,8 +454,6 @@ export const ICONS: IconsCollection = {
   TwitterIcon,
   UnarchiveIcon,
   UndoIcon,
-  Undo2Icon,
-  UnlockIcon,
   UnlockedIcon,
   Upload2Icon,
   VideoCameraIcon,
@@ -497,6 +470,5 @@ export const ICONS: IconsCollection = {
   WlReadyIcon,
   WlUseItIcon,
   WrenchIcon,
-  Wrench3Icon,
   YoutubeIcon
 };

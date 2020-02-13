@@ -49,7 +49,7 @@ describe('Date Picker', () => {
     );
   });
 
-  it('should set the value to the date iin the value prop', () => {
+  it('should set the value to the date in the value prop', () => {
     const defaultDate = new Date('January 17, 2019');
     const valueDate = new Date('January 23, 2019');
 
@@ -65,6 +65,54 @@ describe('Date Picker', () => {
       'value',
       format(valueDate, 'MM/DD/YYYY')
     );
+  });
+
+  it('should not set the value to the date if it is before the minDate', () => {
+    const valueDate = new Date('January 23, 2019');
+    const minDate = new Date('January 10, 2020');
+
+    const { getByLabelText } = render(
+      <DatePicker
+        labelText="Date Picker Label"
+        value={valueDate}
+        minDate={minDate}
+      />
+    );
+
+    expect(getByLabelText('Date Picker Label')).toHaveAttribute('value', '');
+  });
+
+  it('should not set the value to the date if it is after the maxDate', () => {
+    const valueDate = new Date('January 23, 2020');
+    const maxDate = new Date('January 10, 2020');
+
+    const { getByLabelText } = render(
+      <DatePicker
+        labelText="Date Picker Label"
+        value={valueDate}
+        maxDate={maxDate}
+      />
+    );
+
+    expect(getByLabelText('Date Picker Label')).toHaveAttribute('value', '');
+  });
+
+  it('should disable a date the does not fall in the min and max date range', () => {
+    const minDate = new Date('January 5, 2020');
+    const maxDate = new Date('January 10, 2020');
+
+    const { container, getByText } = render(
+      <DatePicker
+        labelText="Date Picker Label"
+        minDate={minDate}
+        maxDate={maxDate}
+      />
+    );
+
+    fireEvent.focus(container.querySelector('table'));
+
+    expect(getByText('1')).toHaveAttribute('aria-disabled');
+    expect(getByText('12')).toHaveAttribute('aria-disabled');
   });
 
   it('should render custom placeholder text', () => {

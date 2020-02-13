@@ -1,0 +1,343 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconButton Icon Only Button Snapshot should render with large size 1`] = `
+<div>
+  <button
+    aria-label="Check Icon"
+    class="css-jxizg9"
+    icon="[object Object]"
+    id="testId"
+  >
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="24"
+      viewBox="0 0 29.37 21.88"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`IconButton Icon Only Button Snapshot should render with small size 1`] = `
+<div>
+  <button
+    aria-label="Check Icon"
+    class="css-194jz7x"
+    icon="[object Object]"
+    id="testId"
+  >
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="14"
+      viewBox="0 0 29.37 21.88"
+      width="14"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`IconButton Icon Only Button Snapshot should render with updated color 1`] = `
+<div>
+  <button
+    aria-label="Check Icon"
+    class="css-phsa7g"
+    icon="[object Object]"
+    id="testId"
+  >
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="18"
+      viewBox="0 0 29.37 21.88"
+      width="18"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`IconButton Icon Only Button Snapshot should render with updated shape 1`] = `
+<div>
+  <button
+    aria-label="Check Icon"
+    class="css-e9oou7"
+    icon="[object Object]"
+    id="testId"
+  >
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="18"
+      viewBox="0 0 29.37 21.88"
+      width="18"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`IconButton Icon Only Button Snapshot should render with updated variant 1`] = `
+<div>
+  <button
+    aria-label="Check Icon"
+    class="css-4in4l5"
+    icon="[object Object]"
+    id="testId"
+  >
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="18"
+      viewBox="0 0 29.37 21.88"
+      width="18"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`IconButton Icon With Text Button Snapshot should render with large size 1`] = `
+<div>
+  <button
+    aria-label="Check Icon"
+    class="css-1pgtik7"
+    icon="[object Object]"
+    id="testId"
+  >
+    <span
+      class="css-1pwkqkn"
+    >
+      Test Text
+       
+    </span>
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="20"
+      viewBox="0 0 29.37 21.88"
+      width="20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`IconButton Icon With Text Button Snapshot should render with medium size 1`] = `
+<div>
+  <button
+    aria-label="Check Icon"
+    class="css-7n2ufd"
+    icon="[object Object]"
+    id="testId"
+  >
+    <span
+      class="css-1jsubav"
+    >
+      Test Text
+       
+    </span>
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="16"
+      viewBox="0 0 29.37 21.88"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`IconButton Icon With Text Button Snapshot should render with small size 1`] = `
+<div>
+  <button
+    aria-label="Check Icon"
+    class="css-bl58ye"
+    icon="[object Object]"
+    id="testId"
+  >
+    <span
+      class="css-1jsubav"
+    >
+      Test Text
+       
+    </span>
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="12"
+      viewBox="0 0 29.37 21.88"
+      width="12"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`IconButton Icon With Text Button Snapshot should render with updated color 1`] = `
+<div>
+  <button
+    aria-label="Check Icon"
+    class="css-18myfl8"
+    icon="[object Object]"
+    id="testId"
+  >
+    <span
+      class="css-1jsubav"
+    >
+      Test Text
+       
+    </span>
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="16"
+      viewBox="0 0 29.37 21.88"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`IconButton Icon With Text Button Snapshot should render with updated shape 1`] = `
+<div>
+  <button
+    aria-label="Check Icon"
+    class="css-7n2ufd"
+    icon="[object Object]"
+    id="testId"
+  >
+    <span
+      class="css-1jsubav"
+    >
+      Test Text
+       
+    </span>
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="16"
+      viewBox="0 0 29.37 21.88"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`IconButton Icon With Text Button Snapshot should render with updated text transform 1`] = `
+<div>
+  <button
+    aria-label="Check Icon"
+    class="css-xf1vbq"
+    icon="[object Object]"
+    id="testId"
+  >
+    <span
+      class="css-1jsubav"
+    >
+      Test Text
+       
+    </span>
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="16"
+      viewBox="0 0 29.37 21.88"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`IconButton Icon With Text Button Snapshot should render with updated variant 1`] = `
+<div>
+  <button
+    aria-label="Check Icon"
+    class="css-ebgli1"
+    icon="[object Object]"
+    id="testId"
+  >
+    <span
+      class="css-1jsubav"
+    >
+      Test Text
+       
+    </span>
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="16"
+      viewBox="0 0 29.37 21.88"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;

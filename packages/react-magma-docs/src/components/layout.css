@@ -596,7 +596,7 @@ pre tt:after {
 .pre-container {
   border: 1px solid rgba(0, 0, 0, 0.1);
   display: grid;
-  margin: 10px 0;
+  margin: 10px 0 0;
   max-width: 100%;
 }
 
@@ -605,10 +605,15 @@ pre tt:after {
   display: block;
 }
 
+.demo-container {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
 /* Demo styles for specific components */
 .demo-icon-container {
   margin: 10px;
-  min-width: 150px;
+  min-width: 200px;
   padding: 20px;
   text-align: center;
 }
@@ -616,5 +621,17 @@ pre tt:after {
 .demo-icon-list-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+}
+
+.demo-icon-list-container .demo-icon-container {
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+@media (max-width: 550px) {
+  .demo-icon-list-container .demo-icon-container {
+    margin: 5px 0;
+    width: 100%;
+  }
 }

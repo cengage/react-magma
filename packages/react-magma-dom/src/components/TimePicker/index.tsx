@@ -145,7 +145,7 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
       return `00`;
     } else if (newMinute < 10) {
       return `0${newMinute}`;
-    } else if (newMinute > 60) {
+    } else if (newMinute > 59) {
       return `0${newMinute.toString().substring(0, 1)}`;
     }
 

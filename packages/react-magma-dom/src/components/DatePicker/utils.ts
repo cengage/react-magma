@@ -24,7 +24,9 @@ export function handleKeyPress(
   const { key } = e;
 
   if (key === 'Enter' || key === ' ') {
-    onDateChange(prevDate);
+    if (!(e.target as HTMLElement).getAttribute('aria-disabled')) {
+      onDateChange(prevDate);
+    }
   }
 
   switch (key) {
