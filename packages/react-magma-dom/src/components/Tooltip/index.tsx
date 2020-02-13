@@ -12,10 +12,11 @@ export enum EnumTooltipPosition {
 }
 
 export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactElement;
+  content: React.ReactNode;
   isInverse?: boolean;
   position?: EnumTooltipPosition;
   testId?: string;
-  trigger: React.ReactElement;
   ref?: React.Ref<HTMLDivElement>;
 }
 
@@ -237,29 +238,34 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
 
     const {
       children,
+      content,
       id: defaultId,
       isInverse,
       position,
       testId,
-      trigger,
       ...other
     } = props;
 
     const id = useGenerateId(defaultId);
     const theme = React.useContext(ThemeContext);
 
+    if (Array.isArray(children)) {
+      throw new Error('Tooltip children can only be one element.');
+    }
+
+    const tooltipTrigger = React.cloneElement(children, {
+      'aria-describedby': id,
+      onKeyDown: handleKeyDown,
+      onBlur: hideTooltip,
+      onFocus: showTooltip,
+      onMouseLeave: hideTooltip,
+      onMouseEnter: showTooltip,
+      ref: ref
+    });
+
     return (
       <ToolTipContainer data-testid={testId}>
-        {React.cloneElement(trigger, {
-          'aria-describedby': id,
-          onKeyDown: handleKeyDown,
-          onBlur: hideTooltip,
-          onFocus: showTooltip,
-          onMouseLeave: hideTooltip,
-          onMouseEnter: showTooltip,
-          ref: ref
-        })}
-
+        {tooltipTrigger}
         <StyledTooltip
           {...other}
           id={id}
@@ -272,7 +278,7 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
             position={position ? position : EnumTooltipPosition.top}
             theme={theme}
           >
-            {children}
+            {content}
           </StyledTooltipInner>
         </StyledTooltip>
       </ToolTipContainer>
