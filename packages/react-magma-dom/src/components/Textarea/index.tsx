@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { baseInputStyles } from '../BaseInput';
+
 import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -25,7 +26,9 @@ const Container = styled.div`
 `;
 
 const StyledTextArea = styled.textarea<TextareaProps>`
-  ${baseInputStyles}
+  ${baseInputStyles};
+  height: 4.5em;
+  padding: 5px 8px 0;
 `;
 
 export const Textarea: React.FunctionComponent<
@@ -90,7 +93,7 @@ export const Textarea: React.FunctionComponent<
           isInverse={isInverse}
           onChange={handleChange}
           ref={ref}
-          style={{ height: '4.5em', padding: '5px 8px 0', ...textareaStyle }}
+          style={textareaStyle}
           theme={theme}
         >
           {value}

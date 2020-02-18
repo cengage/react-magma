@@ -6,11 +6,7 @@ import { fireEvent } from '@testing-library/dom';
 describe('TimePicker', () => {
   it('should render the timepicker', () => {
     const label = 'test label';
-    const { container, getByLabelText } = render(
-      <TimePicker labelText={label} />
-    );
-
-    expect(getByLabelText(label)).toHaveStyleRule('border-color', '#727272');
+    const { container } = render(<TimePicker labelText={label} />);
 
     expect(container).toBeInTheDocument();
   });
@@ -360,20 +356,17 @@ describe('TimePicker', () => {
   it('should render the timepicker with a error message', () => {
     const message = 'test error';
     const label = 'test label';
-    const { getByLabelText, getByText } = render(
+    const { getByText } = render(
       <TimePicker errorMessage={message} labelText={label} />
     );
 
     expect(getByText(message)).toBeInTheDocument();
-    expect(getByLabelText(label)).toHaveStyleRule('border-color', '#E70000');
   });
 
   it('should render the timepicker with inverse styles', () => {
     const label = 'test label';
-    const { getByLabelText } = render(
-      <TimePicker isInverse labelText={label} />
-    );
+    const { getByText } = render(<TimePicker isInverse labelText={label} />);
 
-    expect(getByLabelText(label)).toHaveStyleRule('border-color', '#FFFFFF');
+    expect(getByText(label)).toHaveStyleRule('color', '#FFFFFF');
   });
 });

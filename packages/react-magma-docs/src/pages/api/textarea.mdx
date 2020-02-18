@@ -11,7 +11,34 @@ import { SimplePropsTable } from '../../components/props-table'
 ## Basic Usage
 
 ```.jsx
-    <Textarea labelText="Text area" value="Hello"/>
+    <Textarea labelText="Textarea">Some text</Textarea>
+```
+
+## Error Message
+
+```.jsx
+    <Textarea errorMessage="Please fix this error" labelText="Textarea with Error" />
+```
+
+## Helper Message
+
+```.jsx
+    <Textarea helperMessage="Helper text goes here" labelText="Textarea with Helper" />
+```
+
+## Disabled
+
+```.jsx
+    <Textarea disabled labelText="Disabled Textarea" />
+```
+
+## Inverse
+
+```.jsx
+    <div style={{ background : '#00263E', padding: '10px' }}>
+      <Textarea isInverse labelText="Inverse Textarea" />
+      <Textarea errorMessage="Please fix this error" isInverse labelText="Inverse Textarea with Error" />
+    </div>
 ```
 
 ## Textarea Props
