@@ -30,6 +30,7 @@ interface StyledTabProps {
   onClick?: (event: React.SyntheticEvent) => void;
   orientation?: TabsOrientation;
   ref?: React.Ref<any>;
+  role: string;
   style?: { [key: string]: any };
   theme?: any;
 }
@@ -180,6 +181,7 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
           }
           isActive={isActive}
           ref={ref}
+          role="tab"
           theme={theme}
         >
           {children}
@@ -196,6 +198,7 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
         iconPosition={iconPosition}
         isActive={isActive}
         ref={ref}
+        role="tab"
         theme={theme}
       >
         {icon && (

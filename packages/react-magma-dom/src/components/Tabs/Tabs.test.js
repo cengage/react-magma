@@ -5,22 +5,16 @@ import { TabsContainer, TabsContext } from './TabsContainer';
 import { TabPanel } from './TabPanel';
 import { magma } from '../../theme/magma';
 import { render, fireEvent } from '@testing-library/react';
-const { axe, toHaveNoViolations } = require('jest-axe');
-
-expect.extend(toHaveNoViolations);
+import { axe } from 'jest-axe';
 
 describe('Tabs', () => {
   it('should correctly apply the testId', () => {
-    const dispatch = jest.fn();
-    const state = {
-      activeTabIndex: 1
-    };
     const testId = 'test-id';
 
     const { getByTestId } = render(
-      <TabsContext.Provider value={{ state, dispatch }}>
+      <TabsContext.Provider value={{ activeTabIndex: 1 }}>
         <Tabs testId={testId}>
-          <button aria-label="test" data-testid="1" />
+          <Tab>Tab Text</Tab>
         </Tabs>
       </TabsContext.Provider>
     );
@@ -28,100 +22,68 @@ describe('Tabs', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
-  it('should render a button with the passed in text', () => {
-    const dispatch = jest.fn();
-    const state = {
-      activeTabIndex: 1
-    };
-
-    const testId = 'test-id';
-    const buttonText = 'Click me';
+  it('should render the children tabs', () => {
     const { getByText } = render(
-      <TabsContext.Provider value={{ state, dispatch }}>
-        <Tabs testId={testId}>
-          <button aria-label="test" data-testid="1">
-            {buttonText}
-          </button>
+      <TabsContext.Provider value={{ activeTabIndex: 1 }}>
+        <Tabs>
+          <Tab>Tab 1</Tab>
+          <Tab>Tab 2</Tab>
         </Tabs>
       </TabsContext.Provider>
     );
 
-    expect(getByText(buttonText)).toBeInTheDocument();
+    expect(getByText('Tab 1')).toBeInTheDocument();
+    expect(getByText('Tab 2')).toBeInTheDocument();
   });
 
-  it('should require orientation the tabs and display tabs with the correct style', () => {
-    const dispatch = jest.fn();
-    const state = {
-      activeTabIndex: 1
-    };
-
+  it('should render the tabs horizontally', () => {
     const testId = 'test-id';
 
-    const { getByTestId, rerender } = render(
-      <TabsContext.Provider value={{ state, dispatch }}>
+    const { getByTestId } = render(
+      <TabsContext.Provider value={{ activeTabIndex: 1 }}>
         <Tabs testId={testId} orientation="horizontal">
-          <Tab />
+          <Tab>Tab 1</Tab>
+          <Tab>Tab 2</Tab>
         </Tabs>
       </TabsContext.Provider>
     );
-    const component = getByTestId(testId);
-    expect(component).toHaveAttribute('orientation', 'horizontal');
-    expect(component).toHaveStyleRule('width', '100%');
-    expect(component.querySelector("[role='tab']")).toHaveStyleRule(
+    const tabsContainer = getByTestId(testId);
+    expect(tabsContainer).toHaveAttribute('orientation', 'horizontal');
+    expect(tabsContainer).toHaveStyleRule('width', '100%');
+    expect(tabsContainer.querySelector("[role='tab']")).toHaveStyleRule(
       'height',
       '100%'
     );
+  });
 
-    rerender(
-      <TabsContext.Provider value={{ state, dispatch }}>
+  it('should render the tabs horizontally', () => {
+    const testId = 'test-id';
+
+    const { getByTestId } = render(
+      <TabsContext.Provider value={{ activeTabIndex: 1 }}>
         <Tabs testId={testId} orientation="vertical">
-          <Tab />
+          <Tab>Tab 1</Tab>
+          <Tab>Tab 2</Tab>
         </Tabs>
       </TabsContext.Provider>
     );
 
-    expect(component).toHaveAttribute('orientation', 'vertical');
-    expect(component).toHaveStyleRule('width', 'auto');
-    expect(component.querySelector("[role='tab']")).toHaveStyleRule(
+    const tabsContainer = getByTestId(testId);
+
+    expect(tabsContainer).toHaveAttribute('orientation', 'vertical');
+    expect(tabsContainer).toHaveStyleRule('width', 'auto');
+    expect(tabsContainer.querySelector("[role='tab']")).toHaveStyleRule(
       'height',
       'auto'
     );
   });
 
-  it('should render children', () => {
-    const dispatch = jest.fn();
-    const state = {
-      activeTabIndex: 1
-    };
-
-    const testId = 'test-id';
-
+  it('should render scroll buttons if orientation horizontal and hasScrollButtons is true', () => {
     const { getByTestId } = render(
-      <TabsContext.Provider value={{ state, dispatch }}>
-        <Tabs testId={testId}>
-          <div data-testid="child" />
+      <TabsContext.Provider value={{ activeTabIndex: 1 }}>
+        <Tabs hasScrollButtons={true} orientation="horizontal">
+          <Tab>Tab 1</Tab>
         </Tabs>
-      </TabsContext.Provider>
-    );
-    expect(getByTestId(testId).children.length).toBe(1);
-    expect(getByTestId('child')).toBeDefined();
-  });
-
-  it('should render scroll buttons if orientation horizontal', () => {
-    const dispatch = jest.fn();
-    const state = {
-      activeTabIndex: 1
-    };
-
-    const testId = 'test-id';
-
-    const { getByTestId } = render(
-      <TabsContext.Provider value={{ state, dispatch }}>
-        <Tabs
-          testId={testId}
-          hasScrollButtons={true}
-          orientation="horizontal"
-        />
       </TabsContext.Provider>
     );
     expect(getByTestId('buttonNext')).toBeDefined();
@@ -129,7 +91,11 @@ describe('Tabs', () => {
   });
 
   it('should render centered tabs', () => {
-    const { container } = render(<Tabs isCentered />);
+    const { container } = render(
+      <Tabs isCentered>
+        <Tab>Tab 1</Tab>
+      </Tabs>
+    );
 
     expect(container.querySelector("[role='tablist']")).toHaveStyleRule(
       'justify-content',
@@ -137,85 +103,88 @@ describe('Tabs', () => {
     );
   });
 
-  it('should render tabs with specified background color', () => {
+  it('should render tabs with passed in background color', () => {
+    const testId = 'test-id';
     const bgColor = '#FF0000';
-    const { container } = render(<Tabs backgroundColor={bgColor} />);
-
-    expect(container.querySelector('div')).toHaveStyleRule(
-      'background-color',
-      bgColor
-    );
-  });
-
-  it('should render full width tabs with the correct style', () => {
-    const { container } = render(
-      <Tabs isFullWidth>
-        <Tab />
+    const { getByTestId } = render(
+      <Tabs testId={testId} backgroundColor={bgColor}>
+        <Tab>Tab 1</Tab>
       </Tabs>
     );
 
-    expect(container.querySelector("[role='tab']")).toHaveStyleRule(
+    expect(getByTestId(testId)).toHaveStyleRule('background-color', bgColor);
+  });
+
+  it('should render full width tabs with the correct style', () => {
+    const { getByText } = render(
+      <Tabs isFullWidth>
+        <Tab>Tab 1</Tab>
+      </Tabs>
+    );
+
+    expect(getByText('Tab 1').parentElement).toHaveStyleRule(
       'flex-shrink',
       '1'
     );
-    expect(container.querySelector("[role='tab']")).toHaveStyleRule(
+    expect(getByText('Tab 1').parentElement).toHaveStyleRule(
       'max-width',
       '100%'
     );
   });
 
-  it('should render the active tab with the correct style', () => {
-    const { container, rerender } = render(
-      <Tabs>
-        <Tab />
-      </Tabs>
+  it('should render default active tab styles', () => {
+    const { getByText } = render(
+      <TabsContainer activeIndex={0}>
+        <Tabs>
+          <Tab>Tab 1</Tab>
+          <Tab>Tab 2</Tab>
+        </Tabs>
+      </TabsContainer>
     );
 
-    expect(container.querySelector("[role='tab']")).toHaveStyleRule(
-      'bottom',
-      '0',
-      {
-        target: ':after'
-      }
+    expect(getByText('Tab 1').parentElement).toHaveStyleRule('bottom', '0', {
+      target: ':after'
+    });
+  });
+
+  it('should render active tab styles for top border position', () => {
+    const { getByText } = render(
+      <TabsContainer activeIndex={0}>
+        <Tabs borderPosition="top">
+          <Tab>Tab 1</Tab>
+          <Tab>Tab 2</Tab>
+        </Tabs>
+      </TabsContainer>
     );
 
-    rerender(
-      <Tabs borderPosition="top">
-        <Tab />
-      </Tabs>
+    expect(getByText('Tab 1').parentElement).toHaveStyleRule('bottom', 'auto', {
+      target: ':after'
+    });
+  });
+
+  it('should render active tab styles for vertical tabs', () => {
+    const { getByText } = render(
+      <TabsContainer activeIndex={0}>
+        <Tabs orientation="vertical">
+          <Tab>Tab 1</Tab>
+          <Tab>Tab 2</Tab>
+        </Tabs>
+      </TabsContainer>
     );
 
-    expect(container.querySelector("[role='tab']")).toHaveStyleRule(
-      'bottom',
-      'auto',
-      {
-        target: ':after'
-      }
-    );
-
-    rerender(
-      <Tabs orientation="vertical">
-        <Tab />
-      </Tabs>
-    );
-
-    expect(container.querySelector("[role='tab']")).toHaveStyleRule(
-      'bottom',
-      '0',
-      {
-        target: ':after'
-      }
-    );
+    expect(getByText('Tab 1').parentElement).toHaveStyleRule('bottom', '0', {
+      target: ':after'
+    });
   });
 
   it('should render the inverse tabs with the correct styles', () => {
-    const { container } = render(
-      <Tabs isInverse hasScrollButtons>
-        <Tab />
+    const { getByText } = render(
+      <Tabs isInverse>
+        <Tab>Tab 1</Tab>
       </Tabs>
     );
 
-    expect(container.querySelector("[role='tab']")).toHaveStyleRule(
+    expect(getByText('Tab 1').parentElement).toHaveStyleRule(
       'background',
       magma.colors.pop02,
       {
@@ -253,20 +222,18 @@ describe('Tabs', () => {
 
 describe('Test for accessibility', () => {
   it('Does not violate accessibility standards', () => {
-    const dispatch = jest.fn();
-    const state = {
-      activeTabIndex: 1,
-      numberOfTabs: 5
-    };
-
-    const testId = 'test-id';
-
     const { container } = render(
-      <TabsContext.Provider value={{ state, dispatch }}>
-        <Tabs testId={testId}>
-          <button aria-label="test" data-testid="1" />
+      <TabsContainer activeIndex={0}>
+        <Tabs testId={'dd'} hasScrollButtons={true} orientation="horizontal">
+          <Tab index={0}>This is tab 1</Tab>
+          <Tab index={1}>This is tab 2</Tab>
+          <Tab index={2}>This is tab 3</Tab>
         </Tabs>
-      </TabsContext.Provider>
+
+        <TabPanel index={0}>Tab 1 Info</TabPanel>
+        <TabPanel index={1}>Tab 2 Info</TabPanel>
+        <TabPanel index={2}>Tab 3 Info</TabPanel>
+      </TabsContainer>
     );
 
     return axe(container.innerHTML).then(result => {

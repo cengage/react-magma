@@ -1,16 +1,27 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { Tab } from './Tab';
+import { Tabs } from '.';
 import { TabsContainer } from './TabsContainer';
-const { axe, toHaveNoViolations } = require('jest-axe');
-
-expect.extend(toHaveNoViolations);
+import { TabPanel } from './TabPanel';
+import { axe } from 'jest-axe';
 
 describe('Tabs Container', () => {
   it('should correctly apply the testId', () => {
     const testId = 'test-id';
 
     const { getByTestId } = render(
-      <TabsContainer testId={testId} theme="dark" />
+      <TabsContainer activeIndex={0} testId={testId}>
+        <Tabs>
+          <Tab index={0}>This is tab 1</Tab>
+          <Tab index={1}>This is tab 2</Tab>
+          <Tab index={2}>This is tab 3</Tab>
+        </Tabs>
+
+        <TabPanel index={0}>Tab 1 Info</TabPanel>
+        <TabPanel index={1}>Tab 2 Info</TabPanel>
+        <TabPanel index={2}>Tab 3 Info</TabPanel>
+      </TabsContainer>
     );
 
     expect(getByTestId(testId)).toBeInTheDocument();
@@ -18,23 +29,40 @@ describe('Tabs Container', () => {
 });
 
 it('should render children', () => {
-  const testId = 'test-id';
+  const { getByText, queryByText } = render(
+    <TabsContainer activeIndex={0}>
+      <Tabs>
+        <Tab index={0}>This is tab 1</Tab>
+        <Tab index={1}>This is tab 2</Tab>
+        <Tab index={2}>This is tab 3</Tab>
+      </Tabs>
 
-  const { getByTestId } = render(
-    <TabsContainer testId={testId} theme="dark">
-      <div data-testid="child" />
+      <TabPanel index={0}>Tab 1 Info</TabPanel>
+      <TabPanel index={1}>Tab 2 Info</TabPanel>
+      <TabPanel index={2}>Tab 3 Info</TabPanel>
     </TabsContainer>
   );
-  expect(getByTestId(testId).children.length).toBe(1);
-  expect(getByTestId('child')).toBeDefined();
+
+  expect(getByText('This is tab 1')).toBeInTheDocument();
+  expect(getByText('This is tab 2')).toBeInTheDocument();
+  expect(getByText('Tab 1 Info')).toBeInTheDocument();
+  expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
 });
 
 describe('Test for accessibility', () => {
   it('Does not violate accessibility standards', () => {
-    const testId = 'test-id';
-
     const { container } = render(
-      <TabsContainer testId={testId} theme="dark" />
+      <TabsContainer activeIndex={0}>
+        <Tabs>
+          <Tab index={0}>This is tab 1</Tab>
+          <Tab index={1}>This is tab 2</Tab>
+          <Tab index={2}>This is tab 3</Tab>
+        </Tabs>
+
+        <TabPanel index={0}>Tab 1 Info</TabPanel>
+        <TabPanel index={1}>Tab 2 Info</TabPanel>
+        <TabPanel index={2}>Tab 3 Info</TabPanel>
+      </TabsContainer>
     );
 
     return axe(container.innerHTML).then(result => {
