@@ -5,7 +5,7 @@ title: 'Tooltips'
 import { ScopeableLayout } from '../../components/layout'
 import {
   Tooltip,
-  Button,
+  IconButton,
   CircleDownIcon,
   CircleLeftIcon,
   CircleRightIcon,
@@ -26,10 +26,21 @@ The children of the tooltip, determines the content inside of the tooltip bubble
 The `trigger` prop must take a react element (not just a string), and determines the content that tiggers the tooltip on hover or on focus. Note: in order to trigger the content on focus (a requirement for accessibility), the `trigger` should be a focusable element.
 
 ```.jsx
-    <>
-        <Tooltip trigger={<Button icon={<QuestionCircleIcon />} variant="link" />}>What's this?</Tooltip>
-        <Tooltip trigger={<Button icon={<QuestionCircleIcon />} variant="link" />}>Lorem ipsum dolor sit amet, mutat utroque cu quo. Vel molestie invidunt dissentiet no, ut vim iriure eloquentiam.</Tooltip>
-    </>
+  () => {
+    const tooltipNodeContent = <>Lorem ipsum <i>dolor sit amet</i>, mutat utroque. Vel molestie invidunt dissentiet no, ut vim iriure.</>
+
+    return (
+      <>
+          <Tooltip content="What's this?">
+            <IconButton icon={<QuestionCircleIcon />} variant="link" />
+          </Tooltip>
+
+          <Tooltip content={tooltipNodeContent}>
+            <IconButton icon={<QuestionCircleIcon />} variant="link" />
+          </Tooltip>
+      </>
+    )
+  }
 ```
 
 ## Position
@@ -38,44 +49,35 @@ The `Tooltip` component takes a `position` property, that accepts the following 
 
 ```.jsx
     <>
-        <Tooltip position='bottom' trigger={<Button aria-label="Question Icon" icon={<CircleDownIcon />} variant="link" />}>Tooltip bottom</Tooltip>
-        <Tooltip position='left' trigger={<Button icon={<CircleLeftIcon />} variant="link" />}>Tooltip left</Tooltip>
-        <Tooltip position='right' trigger={<Button icon={<CircleRightIcon />} variant="link" />}>Tooltip right</Tooltip>
-        <Tooltip position='top' trigger={<Button icon={<CircleUpIcon />} variant="link" />}>Tooltip top</Tooltip>
-        <br/>
-        <Tooltip position='bottom' trigger={<Button aria-label="Question Icon" icon={<CircleDownIcon />} variant="link" />}>Lorem ipsum dolor sit amet, mutat utroque cu quo. Vel molestie invidunt dissentiet no, ut vim iriure eloquentiam.</Tooltip>
-        <Tooltip position='left' trigger={<Button icon={<CircleLeftIcon />} variant="link" />}>Lorem ipsum dolor sit amet, mutat utroque cu quo. Vel molestie invidunt dissentiet no, ut vim iriure eloquentiam.</Tooltip>
-        <Tooltip position='right' trigger={<Button icon={<CircleRightIcon />} variant="link" />}>Lorem ipsum dolor sit amet, mutat utroque cu quo. Vel molestie invidunt dissentiet no, ut vim iriure eloquentiam.</Tooltip>
-        <Tooltip position='top' trigger={<Button icon={<CircleUpIcon />} variant="link" />}>Lorem ipsum dolor sit amet, mutat utroque cu quo. Vel molestie invidunt dissentiet no, ut vim iriure eloquentiam.</Tooltip>
+        <Tooltip position='bottom' content='Tooltip bottom'>
+          <IconButton aria-label="Bottom" icon={<CircleDownIcon />} variant="link" />
+        </Tooltip>
+
+        <Tooltip position='left' content='Tooltip left'>
+          <IconButton aria-label="Left" icon={<CircleLeftIcon />} variant="link" />
+        </Tooltip>
+
+        <Tooltip position='right' content='Tooltip right'>
+          <IconButton aria-label="Right" icon={<CircleRightIcon />} variant="link" />
+        </Tooltip>
+
+         <Tooltip position='top' content='Tooltip top'>
+          <IconButton aria-label="Top" icon={<CircleUpIcon />} variant="link" />
+        </Tooltip>
     </>
 ```
 
 ## Inverse
 
-The `Tooltip` component takes an optional `isInverse` prop, for when the tooltip is to appear on a dark background.
+The `isInverse` property is an optional boolean, that reverses the colors so that the component can better appear on a dark background.
+The default value is `false`.
 
 ```.jsx
-    <div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
-        <Tooltip isInverse position="right" trigger={<Button aria-label="Question Icon" icon={<QuestionCircleIcon />} isInverse variant="link" />}>Inverse tooltip</Tooltip>
+    <div style={{ background: '#00263E', color: '#fff'}}>
+        <Tooltip isInverse position='right' content='Inverse tooltip'>
+          <IconButton aria-label="Question Icon" icon={<QuestionCircleIcon />} isInverse variant="link" />
+        </Tooltip>
     </div>
-```
-
-## Refs
-
-```.jsx
-  (props) => {
-    const tooltipRef = React.useRef();
-
-    return (
-      <div>
-        <Tooltip ref={tooltipRef} position="top" trigger={<Button aria-label="Question Icon" icon={<QuestionCircleIcon />} variant="link" />}>Ref tooltip</Tooltip>
-        <Button
-        onClick={() => {
-          tooltipRef.current.focus();
-        }}>Click to focus the tooltip</Button>
-      </div>
-    )
-  }
 ```
 
 ## Tooltip Props
@@ -89,7 +91,15 @@ The `Tooltip` component takes an optional `isInverse` prop, for when the tooltip
         name: 'node',
       },
       required: true,
-      description: 'The content of the tooltiip',
+      description:
+        'The element that triggers the tooltip when it is hovered or focused.  Must be a react element (not a string) and should be a focusable element to meet a11y requirements',
+    },
+    content: {
+      type: {
+        name: 'element',
+      },
+      required: true,
+      description: 'The content of the tooltip',
     },
     isInverse: {
       type: {
@@ -122,14 +132,6 @@ The `Tooltip` component takes an optional `isInverse` prop, for when the tooltip
       description:
         'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
-    trigger: {
-      type: {
-        name: 'element',
-      },
-      required: true,
-      description:
-        'The element that triggers the tooltip when it is hovered or focused.  Must be a react element (not a string) and should be a focusable element to meet a11y requirements',
-    },
   }}
 />
 
@@ -138,7 +140,7 @@ export default props => (
     {...props}
     components={{
       Tooltip,
-      Button,
+      IconButton,
       CircleDownIcon,
       CircleLeftIcon,
       CircleRightIcon,

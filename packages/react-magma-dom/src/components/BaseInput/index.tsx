@@ -2,13 +2,8 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { css } from '@emotion/core';
 import { ThemeContext } from '../../theme/ThemeContext';
-import {
-  Button,
-  ButtonVariant,
-  ButtonType,
-  ButtonSize,
-  ButtonShape
-} from '../Button';
+import { ButtonVariant, ButtonType, ButtonSize, ButtonShape } from '../Button';
+import { IconButton } from '../IconButton';
 import { IconProps } from '../Icon/utils';
 
 export enum InputSize {
@@ -159,7 +154,7 @@ const IconWrapper = styled.span<{
     `}
 `;
 
-const IconButton = styled(Button)<{ size: ButtonSize }>`
+const StyledIconButton = styled(IconButton)<{ size: ButtonSize }>`
   position: absolute;
   bottom: 0;
   right: 0;
@@ -264,7 +259,7 @@ export const BaseInput: React.FunctionComponent<
         )}
 
         {onIconClick && (
-          <IconButton
+          <StyledIconButton
             aria-label={iconAriaLabel}
             icon={icon}
             onClick={onIconClick}

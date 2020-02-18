@@ -16,8 +16,7 @@ export {
   ButtonSize,
   ButtonVariant,
   ButtonTextTransform,
-  ButtonType,
-  ButtonIconPosition
+  ButtonType
 } from './components/Button';
 export { Checkbox } from './components/Checkbox';
 export { Card, CardAlignment, CardCalloutType } from './components/Card';
@@ -26,6 +25,7 @@ export { CardHeading } from './components/Card/CardHeading';
 export { FormGroup } from './components/FormGroup';
 export { Heading } from './components/Heading';
 export { HideAtBreakpoint } from './components/HideAtBreakpoint';
+export { IconButton, ButtonIconPosition } from './components/IconButton';
 export { IndeterminateCheckbox } from './components/IndeterminateCheckbox';
 export { Input } from './components/Input';
 export { Label } from './components/Label';
@@ -51,6 +51,7 @@ export { Modal, ModalSize } from './components/Modal';
 export { HyperLink } from './components/HyperLink';
 export { ProgressBar, ProgressBarColor } from './components/ProgressBar';
 export { Textarea } from './components/Textarea';
+export { TimePicker } from './components/TimePicker';
 
 export { magma } from './theme/magma';
 export { GlobalStyles } from './theme/GlobalStyles';

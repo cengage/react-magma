@@ -1,8 +1,5 @@
 import * as React from 'react';
 import { StyledButton } from '../StyledButton';
-import styled from '../../theme/styled';
-import { IconProps } from '../Icon/utils';
-import { omit, Omit } from '../utils';
 
 export enum ButtonVariant {
   solid = 'solid', //default
@@ -36,11 +33,6 @@ export enum ButtonTextTransform {
   none = 'none'
 }
 
-export enum ButtonIconPosition {
-  left = 'left',
-  right = 'right'
-}
-
 export enum ButtonType {
   button = 'button',
   submit = 'submit',
@@ -68,88 +60,21 @@ interface BaseButtonProps
 
 export type ButtonProps = BaseButtonProps & ButtonStyles;
 
-export interface IconOnlyButtonProps extends Omit<ButtonProps, 'children'> {
-  icon: React.ReactElement<IconProps>;
-  'aria-label': string;
-}
+export const Button: React.FunctionComponent<ButtonProps> = React.forwardRef(
+  (props: ButtonProps, ref: any) => {
+    const {
+      children,
+      color,
+      shape,
+      size,
+      textTransform,
+      variant,
+      ...rest
+    } = props;
 
-interface IconTextButtonProps extends ButtonProps {
-  icon: React.ReactElement<IconProps>;
-  children: React.ReactChild | React.ReactChild[];
-  iconPosition?: ButtonIconPosition;
-}
-
-export type MergedButtonProps =
-  | ButtonProps
-  | IconTextButtonProps
-  | IconOnlyButtonProps;
-
-export interface SpanProps {
-  size?: ButtonSize;
-}
-
-const SpanTextLeft = styled.span<SpanProps>`
-  padding-right: ${props => (props.size === 'large' ? '15px' : '10px')};
-`;
-
-const SpanTextRight = styled.span<SpanProps>`
-  padding-left: ${props => (props.size === 'large' ? '15px' : '10px')};
-`;
-
-function getIconSize(size) {
-  switch (size) {
-    case 'large':
-      return 24;
-    case 'small':
-      return 14;
-    default:
-      return 18;
-  }
-}
-
-function getIconWithTextSize(size) {
-  switch (size) {
-    case 'large':
-      return 20;
-    case 'small':
-      return 12;
-    default:
-      return 16;
-  }
-}
-
-function instanceOfIconText(object: any): object is IconTextButtonProps {
-  return 'icon' in object && 'children' in object;
-}
-
-function instanceOfIconOnly(object: any): object is IconOnlyButtonProps {
-  return 'icon' in object && !('children' in object);
-}
-
-export const Button: React.FunctionComponent<
-  MergedButtonProps
-> = React.forwardRef((props: MergedButtonProps, ref: any) => {
-  let icon;
-  let iconPosition;
-  let children;
-  const { color, shape, size, textTransform, variant, ...rest } = props;
-
-  if (instanceOfIconOnly(props)) {
-    icon = props.icon;
-  } else if (instanceOfIconText(props)) {
-    icon = props.icon;
-    iconPosition = props.iconPosition;
-    children = props.children;
-  } else {
-    children = props.children;
-  }
-
-  const other = omit(['iconPosition', 'textPosition'], rest);
-
-  if (icon && children) {
     return (
       <StyledButton
-        {...other}
+        {...rest}
         ref={ref}
         color={color ? color : ButtonColor.primary}
         shape={shape ? shape : ButtonShape.fill}
@@ -159,48 +84,8 @@ export const Button: React.FunctionComponent<
         }
         variant={variant ? variant : ButtonVariant.solid}
       >
-        {iconPosition === ButtonIconPosition.right && (
-          <SpanTextLeft size={size}>{children} </SpanTextLeft>
-        )}
-        {React.Children.only(
-          React.cloneElement(icon, { size: getIconWithTextSize(size) })
-        )}
-        {iconPosition !== ButtonIconPosition.right && (
-          <SpanTextRight size={size}>{children}</SpanTextRight>
-        )}
-      </StyledButton>
-    );
-  } else if (icon && !children) {
-    return (
-      <StyledButton
-        {...other}
-        ref={ref}
-        color={color ? color : ButtonColor.primary}
-        iconOnly
-        shape={shape ? shape : ButtonShape.round}
-        size={size ? size : ButtonSize.medium}
-        variant={variant ? variant : ButtonVariant.solid}
-      >
-        {React.Children.only(
-          React.cloneElement(icon, { size: getIconSize(size) })
-        )}
+        {children}
       </StyledButton>
     );
   }
-
-  return (
-    <StyledButton
-      {...other}
-      ref={ref}
-      color={color ? color : ButtonColor.primary}
-      shape={shape ? shape : ButtonShape.fill}
-      size={size ? size : ButtonSize.medium}
-      textTransform={
-        textTransform ? textTransform : ButtonTextTransform.uppercase
-      }
-      variant={variant ? variant : ButtonVariant.solid}
-    >
-      {children}
-    </StyledButton>
-  );
-});
+);

@@ -8,6 +8,7 @@ import {
   Button,
   CalendarIcon,
   EnvelopeOIcon,
+  IconButton,
   QuestionCircleIcon,
   Search2Icon,
   Spinner,
@@ -205,8 +206,8 @@ will appear to the right of the field.
     return(
     <Input labelText='Help Link'>
       <Tooltip
-        trigger={
-          <Button
+        content={helpLinkLabel}>
+        <IconButton
             aria-label={helpLinkLabel}
             icon={<QuestionCircleIcon />}
             onClick={onHelpLinkClick}
@@ -214,9 +215,6 @@ will appear to the right of the field.
             type='button'
             variant='link'
           />
-        }
-      >
-        {helpLinkLabel}
       </Tooltip>
     </Input>
   )};
@@ -509,6 +507,7 @@ export default props => (
       Button,
       CalendarIcon,
       EnvelopeOIcon,
+      IconButton,
       QuestionCircleIcon,
       Search2Icon,
       Spinner,
