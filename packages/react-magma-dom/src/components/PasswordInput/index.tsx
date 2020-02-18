@@ -13,8 +13,8 @@ import { useGenerateId } from '../utils';
 export interface PasswordInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   containerStyle?: React.CSSProperties;
-  errorMessage?: string;
-  helperMessage?: string;
+  errorMessage?: React.ReactNode;
+  helperMessage?: React.ReactNode;
   hiddenPasswordAnnounceText?: string;
   hidePasswordButtonAriaLabel?: string;
   hidePasswordButtonText?: string;

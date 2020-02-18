@@ -41,6 +41,7 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
   return (
     <Message
       {...other}
+      data-testid="inputMessage"
       id={id}
       isInverse={isInverse}
       isError={isError}
@@ -51,7 +52,7 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
           <Notification2Icon aria-label="Error" size={18} /> &nbsp;
         </>
       )}
-      {children}
+      <div>{children}</div>
     </Message>
   );
 };

@@ -20,8 +20,8 @@ import { useGenerateId, Omit } from '../utils';
 interface DatePickerProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value'> {
   defaultDate?: Date;
-  errorMessage?: string;
-  helperMessage?: string;
+  errorMessage?: React.ReactNode;
+  helperMessage?: React.ReactNode;
   id?: string;
   inputRef?: React.RefObject<{}>;
   isInverse?: boolean;

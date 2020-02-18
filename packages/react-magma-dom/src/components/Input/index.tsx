@@ -6,8 +6,8 @@ import { Label } from '../Label';
 import { useGenerateId } from '../utils';
 
 export interface InputProps extends BaseInputProps {
-  errorMessage?: string;
-  helperMessage?: string;
+  errorMessage?: React.ReactNode;
+  helperMessage?: React.ReactNode;
   isLabelVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
   labelText?: string;

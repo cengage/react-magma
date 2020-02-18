@@ -4,8 +4,8 @@ import { InputMessage } from '../Input/InputMessage';
 
 interface SelectWrapperProps {
   children: React.ReactNode;
-  errorMessage?: string;
-  helperMessage?: string;
+  errorMessage?: React.ReactNode;
+  helperMessage?: React.ReactNode;
   isInverse?: boolean;
   labelText: string;
   testId?: string;

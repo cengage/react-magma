@@ -91,7 +91,7 @@ relied upon to take the place of the label text.
 ## Error Message
 
 If an input has an `errorMessage`, the input will be styled to highlight it's error state and the error message will appear below the input field.
-If an error message is present, it will replace the helper text.
+If an error message is present, it will replace the helper text. Can be a node or a string.
 
 ```.jsx
     <Input
@@ -102,12 +102,18 @@ If an error message is present, it will replace the helper text.
 
 ## Helper Message
 
-The `helperMessage` appears underneath the input field. It will not appear if an error message is present.
+The `helperMessage` appears underneath the input field. It will not appear if an error message is present. Can be a node or a string.
 
 ```.jsx
-    <Input
-        helperMessage='Helper text goes here'
-        labelText='Helper Message' />
+  () => {
+    const helperMessage = <>Helper text goes here. <a href="#">Learn more</a></>;
+
+    return(
+      <Input
+          helperMessage={helperMessage}
+          labelText='Helper Message' />
+    )
+  }
 ```
 
 ## Input With Icon
@@ -346,19 +352,19 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
     },
     errorMessage: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: false,
       description:
-        'Text of the error message.  If a value is provided, the input will be styled as an error state and the error message will display.',
+        'Content of the errror message.  If a value is provided, the input will be styled as an error state and the error message will display.',
       defaultValue: '',
     },
     helperMessage: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: false,
-      description: 'Text of the helper message.',
+      description: 'Content of the helper message.',
       defaultValue: '',
     },
     icon: {

@@ -10,9 +10,9 @@ import { useGenerateId } from '../utils';
 export interface TextareaProps
   extends React.HtmlHTMLAttributes<HTMLTextAreaElement> {
   containerStyle?: React.CSSProperties;
-  errorMessage?: string;
+  errorMessage?: React.ReactNode;
   hasError?: boolean;
-  helperMessage?: string;
+  helperMessage?: React.ReactNode;
   isInverse?: boolean;
   isLabelVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;

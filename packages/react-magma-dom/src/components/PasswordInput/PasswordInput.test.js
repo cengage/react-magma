@@ -121,9 +121,9 @@ it('should trigger the passed in onChange when value of the input is changed', (
 
 it('should render an input with a correctly styled helper message', () => {
   const testMessage = 'Test message';
-  const { getByText } = render(<PasswordInput helperMessage={testMessage} />);
+  const { getByTestId } = render(<PasswordInput helperMessage={testMessage} />);
 
-  const helperMessage = getByText(testMessage);
+  const helperMessage = getByTestId('inputMessage');
 
   expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral03);
 });
@@ -132,7 +132,7 @@ it('should render an input with a correctly styled error message', () => {
   const labelText = 'test label';
   const testHelperMessage = 'Test helper message';
   const testErrorMessage = 'Test error message';
-  const { getByText, getByLabelText, queryByText } = render(
+  const { getByTestId, getByLabelText, queryByText } = render(
     <PasswordInput
       errorMessage={testErrorMessage}
       helperMessage={testHelperMessage}
@@ -140,7 +140,7 @@ it('should render an input with a correctly styled error message', () => {
     />
   );
 
-  const errorMessage = getByText(testErrorMessage);
+  const errorMessage = getByTestId('inputMessage');
 
   expect(errorMessage).toBeInTheDocument();
 

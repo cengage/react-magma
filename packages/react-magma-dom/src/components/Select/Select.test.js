@@ -161,8 +161,8 @@ describe('Select', () => {
   it('should render the helper message with the correct styles', () => {
     const helperString = 'Helper text';
 
-    const { getByText } = render(<Select helperMessage={helperString} />);
-    const helperMessage = getByText(helperString);
+    const { getByTestId } = render(<Select helperMessage={helperString} />);
+    const helperMessage = getByTestId('inputMessage');
 
     expect(helperMessage).toBeInTheDocument();
     expect(helperMessage).toHaveStyleRule('color', '#727272');
@@ -172,8 +172,8 @@ describe('Select', () => {
   it('should render the error message with the correct styles', () => {
     const errorString = 'Please fix this error';
 
-    const { getByText } = render(<Select errorMessage={errorString} />);
-    const errorMessage = getByText(errorString);
+    const { getByTestId } = render(<Select errorMessage={errorString} />);
+    const errorMessage = getByTestId('inputMessage');
 
     expect(errorMessage).toBeInTheDocument();
     expect(errorMessage).toHaveStyleRule('background', 'none');
@@ -183,10 +183,10 @@ describe('Select', () => {
   it('should render the error message on an inverse component with the correct styles', () => {
     const errorString = 'Please fix this error';
 
-    const { getByText } = render(
+    const { getByTestId } = render(
       <Select errorMessage={errorString} isInverse />
     );
-    const errorMessage = getByText(errorString);
+    const errorMessage = getByTestId('inputMessage');
 
     expect(errorMessage).toBeInTheDocument();
     expect(errorMessage).toHaveStyleRule('background', '#E70000');
