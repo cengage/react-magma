@@ -144,21 +144,32 @@ If a `Tab` is `disabled`, it will not be actionable. It will still appear in the
 
 ```
 
-## Centered Tabs
+## Alignment
 
-The `isCentered` prop is an optional boolean that will style the tabs in the center of their container.
+The `alignment` prop determines whether the tabs are aligned `left`, `right` or `center`. `Left` is the default.
 
 ```.jsx
-      () => {
-        return (
-          <TabsContainer>
-              <Tabs isCentered>
-                <Tab>Main page</Tab>
-                <Tab>FAQ</Tab>
-                <Tab>About us</Tab>
-              </Tabs>
-          </TabsContainer>
-    )}
+<>
+  <TabsContainer>
+      <Tabs alignment='center'>
+        <Tab>Main page</Tab>
+        <Tab>FAQ</Tab>
+        <Tab>About us</Tab>
+      </Tabs>
+  </TabsContainer>
+
+  <br />
+  <hr />
+  <br />
+
+  <TabsContainer>
+      <Tabs alignment='right'>
+        <Tab>Main page</Tab>
+        <Tab>FAQ</Tab>
+        <Tab>About us</Tab>
+      </Tabs>
+  </TabsContainer>
+</>
 ```
 
 ## Full-Width Tabs
@@ -465,6 +476,19 @@ The default value is false.
 
 <SimplePropsTable
   propertyValues={{
+    alignement: {
+      type: {
+        name: 'enum',
+        options: [
+          'TabsAlignment.center',
+          'TabsAlignment.left',
+          'TabsAlignment.riight',
+        ],
+      },
+      required: false,
+      description: 'Alignment of the tabs menu',
+      defaultValue: 'left',
+    },
     ariaLabel: {
       type: {
         name: 'string',
@@ -498,13 +522,6 @@ The default value is false.
       },
       required: false,
       description: 'The orientation of icon on Tab.',
-    },
-    isCentered: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'The prop for turning on/off centered mode.',
     },
     isInverse: {
       type: {

@@ -36,14 +36,19 @@ const StyledTabsWrapper = styled('div', { shouldForwardProp: isPropValid })<{
 `;
 
 const StyledTabs = styled('div', { shouldForwardProp: isPropValid })<{
-  isCentered?: boolean;
+  alignment?: TabsAlignment;
   orientation: TabsOrientation;
 }>`
   align-items: center;
   display: flex;
   flex-direction: ${props =>
     props.orientation === 'vertical' ? 'column' : 'row'};
-  justify-content: ${props => (props.isCentered ? 'center' : '')};
+  justify-content: ${props =>
+    props.alignment === 'center'
+      ? 'center'
+      : props.alignment === 'right'
+      ? 'flex-end'
+      : ''};
   width: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
 `;
 
@@ -117,6 +122,12 @@ const StyledButtonPrev = styled.div<{
   visibility: ${props => (props.buttonVisible ? 'visible' : 'hidden')};
 `;
 
+export enum TabsAlignment {
+  center = 'center',
+  left = 'left',
+  right = 'right'
+}
+
 export enum TabsOrientation {
   horizontal = 'horizontal',
   vertical = 'vertical'
@@ -149,10 +160,10 @@ export interface TabsProps
     React.ButtonHTMLAttributes<HTMLDivElement>['onChange'],
     React.ButtonHTMLAttributes<HTMLDivElement>
   > {
+  alignment: TabsAlignment;
   ariaLabel?: string;
   backgroundColor: string;
   iconPosition?: 'left' | 'top';
-  isCentered?: boolean;
   isFullWidth?: boolean;
   isInverse?: boolean;
   hasScrollButtons?: boolean;
@@ -163,11 +174,11 @@ export interface TabsProps
 export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
   (props, ref: React.Ref<any>) => {
     const {
+      alignment,
       ariaLabel,
       backgroundColor,
       borderPosition,
       children,
-      isCentered,
       isFullWidth,
       isInverse,
       hasScrollButtons,
@@ -318,7 +329,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
         >
           <StyledTabs
             aria-label={ariaLabel}
-            isCentered={isCentered}
+            alignment={alignment ? alignment : TabsAlignment.left}
             orientation={orientation}
             role="tablist"
           >

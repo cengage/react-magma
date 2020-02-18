@@ -92,7 +92,7 @@ describe('Tabs', () => {
 
   it('should render centered tabs', () => {
     const { container } = render(
-      <Tabs isCentered>
+      <Tabs alignment="center">
         <Tab>Tab 1</Tab>
       </Tabs>
     );
@@ -100,6 +100,19 @@ describe('Tabs', () => {
     expect(container.querySelector("[role='tablist']")).toHaveStyleRule(
       'justify-content',
       'center'
+    );
+  });
+
+  it('should render right-aligned tabs', () => {
+    const { container } = render(
+      <Tabs alignment="right">
+        <Tab>Tab 1</Tab>
+      </Tabs>
+    );
+
+    expect(container.querySelector("[role='tablist']")).toHaveStyleRule(
+      'justify-content',
+      'flex-end'
     );
   });
 

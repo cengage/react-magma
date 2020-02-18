@@ -183,9 +183,7 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
           ref={ref}
           role="tab"
           theme={theme}
-        >
-          {children}
-        </StyledCustomTab>
+        />
       );
     }
 
