@@ -23,7 +23,9 @@ The `onSearch` prop is required and takes a function and fires when the user cli
 
 The `Search` component supports three text string props: `iconAriaLabel`, `labelText`, and `placeholder`.
 
-The `iconAriaLabel` refers to the aria-label of the search icon, which will be read by screen readers. The `labelText` refers to the aria-label of the input itself, which will also be read by screen readers. The `placeholder` refers to the placeholder attribute of the input, which will display when the input is empty.
+The `iconAriaLabel` refers to the aria-label of the search icon, which will be read by screen readers.
+The `labelText` refers to the aria-label of the input itself, which will also be read by screen readers.
+The `placeholder` refers to the placeholder attribute of the input, which will display when the input is empty.
 
 The default value of all of these is `Search`.
 
@@ -36,39 +38,7 @@ The default value of all of these is `Search`.
 The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default.
 
 ```.jsx
-    <>
-      <Search onSearch={(term) => {}} />
       <Search inputSize='large' onSearch={() => {}} />
-    </>
-```
-
-## Loading
-
-The `isLoading` boolean prop will determine if a loading animation is shown. The loading animation will replace the search icon button.
-
-```.jsx
-  (props) => {
-    const [searchValue, setSearchValue] = React.useState('');
-    const [isLoading, setIsLoading] = React.useState(false);
-
-    function handleSearch(term) {
-      setIsLoading(true);
-      setTimeout(() => {
-        setSearchValue(`Search value set to ${term}`);
-        setIsLoading(false);
-      }, 2500)
-    }
-
-    return (<div>
-      <p><strong>Search Value: </strong> <span id="changedValue">{searchValue}</span></p>
-      <Search
-        labelText='Test Value'
-        isLoading={isLoading}
-        value=''
-        onChange={(event) => setSearchValue(event.target.value)}
-        onSearch={handleSearch} />
-    </div>)
-  }
 ```
 
 ## Inverse
@@ -81,21 +51,35 @@ Inverse is an optional boolean prop, that may be passed in when inputs are to be
     </div>
 ```
 
-## Error Message
+## Loading
 
-If a search input has an `errorMessage`, the input will be styled to highlight it's error state and the error message will appear below the input field.
-If an error message is present, it will replace the helper text.
-
-```.jsx
-    <Search errorMessage='Please correct this error' onSearch={(term) => {}} />
-```
-
-## Helper Message
-
-The `helperMessage` appears underneath the search field. It will not appear if an error message is present.
+The isLoading boolean prop will determine if a loading animation is shown. The loading animation will replace the search icon button.
 
 ```.jsx
-    <Search helperMessage='Helper text goes here' onSearch={(term) => {}} />
+    (props) => {
+      const [searchValue, setSearchValue] = React.useState('');
+      const [isLoading, setIsLoading] = React.useState(false);
+
+      function handleSearch(term) {
+        setIsLoading(true);
+        setTimeout(() => {
+          setSearchValue(`Search value set to ${term}`);
+          setIsLoading(false);
+        }, 2500)
+      }
+
+    return (
+      <div>
+        <p><strong>Search Value: </strong> <span id="changedValue">{searchValue}</span></p>
+        <Search
+          labelText='Test Value'
+          isLoading={isLoading}
+          value=''
+          onChange={(event) => setSearchValue(event.target.value)}
+          onSearch={handleSearch} />
+      </div>
+    )
+  }
 ```
 
 ## Change Events
@@ -119,23 +103,6 @@ The `helperMessage` appears underneath the search field. It will not appear if a
 
 <SimplePropsTable
   propertyValues={{
-    errorMessage: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Text of the error message.  If a value is provided, the input will be styled as an error state, and the error message will display.',
-      defaultValue: '',
-    },
-    helperMessage: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Text of the helper message.',
-      defaultValue: '',
-    },
     iconAriaLabel: {
       type: {
         name: 'string',
@@ -160,14 +127,6 @@ The `helperMessage` appears underneath the search field. It will not appear if a
       required: false,
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    isLoading: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, the spinner icon will replace the search icon',
       defaultValue: 'false',
     },
     labelText: {

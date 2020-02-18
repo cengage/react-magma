@@ -1,6 +1,12 @@
 export { Alert, AlertVariant } from './components/Alert';
 export { Announce } from './components/Announce';
 export { Badge, BadgeColor } from './components/Badge';
+export {
+  BaseInput,
+  InputIconPosition,
+  InputSize,
+  InputType
+} from './components/BaseInput';
 export { Breadcrumb } from './components/Breadcrumb';
 export { BreadcrumbItem } from './components/Breadcrumb/Item';
 export {
@@ -21,12 +27,7 @@ export { Heading } from './components/Heading';
 export { HideAtBreakpoint } from './components/HideAtBreakpoint';
 export { IconButton, ButtonIconPosition } from './components/IconButton';
 export { IndeterminateCheckbox } from './components/IndeterminateCheckbox';
-export {
-  Input,
-  InputSize,
-  InputType,
-  InputIconPosition
-} from './components/Input';
+export { Input } from './components/Input';
 export { Label } from './components/Label';
 export { LinkButton } from './components/LinkButton';
 export { LoadingIndicator } from './components/LoadingIndicator';
@@ -36,6 +37,7 @@ export { Select } from './components/Select';
 export { AsyncSelect } from './components/AsyncSelect';
 export { CreatableSelect } from './components/CreatableSelect';
 export { AsyncCreatableSelect } from './components/AsyncCreatableSelect';
+export { PasswordInput } from './components/PasswordInput';
 export { Search } from './components/Search';
 export { SkipLink } from './components/SkipLink';
 export { SkipLinkContent } from './components/SkipLinkContent';
@@ -48,6 +50,7 @@ export { DatePicker } from './components/DatePicker';
 export { Modal, ModalSize } from './components/Modal';
 export { HyperLink } from './components/HyperLink';
 export { ProgressBar, ProgressBarColor } from './components/ProgressBar';
+export { Textarea } from './components/Textarea';
 export { TimePicker } from './components/TimePicker';
 
 export { magma } from './theme/magma';

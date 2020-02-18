@@ -217,6 +217,7 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
         helperMessage={helperMessage}
         icon={<ClockIcon />}
         isInverse={isInverse}
+        id={id}
         labelText={labelText}
         inputStyle={{
           background: `${theme.colors.neutral08}`,

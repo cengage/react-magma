@@ -1,39 +1,42 @@
 import * as React from 'react';
-import { Input, InputIconPosition, InputSize, InputType } from '../Input';
+import {
+  BaseInput,
+  InputIconPosition,
+  InputSize,
+  InputType
+} from '../BaseInput';
+
 import { Search2Icon } from '../Icon/types/Search2Icon';
+import { Spinner } from '../Spinner';
 
 export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
-  errorMessage?: string;
-  helperMessage?: string;
   iconAriaLabel?: string;
-  id?: string;
   inputSize?: InputSize;
-  isInverse?: boolean;
+  inputStyle?: React.CSSProperties;
   isLoading?: boolean;
+  isInverse?: boolean;
   labelText?: string;
   onSearch: (term: string) => void;
-  value?: string;
   ref?: React.Ref<HTMLInputElement>;
+  value?: string;
 }
 
 export const Search: React.FunctionComponent<SearchProps> = React.forwardRef(
   (props: SearchProps, ref: React.Ref<HTMLInputElement>) => {
     const {
-      errorMessage,
-      helperMessage,
       iconAriaLabel,
-      id,
-      isInverse,
-      inputSize,
       isLoading,
       labelText,
       placeholder,
-      onSearch
+      onSearch,
+      ...other
     } = props;
 
     const SEARCH = 'Search';
 
     const [value, setValue] = React.useState<string>(props.value);
+
+    const icon = isLoading ? <Spinner /> : <Search2Icon />;
 
     React.useEffect(() => {
       setValue(props.value);
@@ -59,20 +62,14 @@ export const Search: React.FunctionComponent<SearchProps> = React.forwardRef(
     }
 
     return (
-      <Input
-        errorMessage={errorMessage}
-        helperMessage={helperMessage}
-        icon={<Search2Icon />}
-        onIconClick={handleSearch}
+      <BaseInput
+        {...other}
+        aria-label={labelText ? labelText : SEARCH}
+        icon={icon}
         iconAriaLabel={iconAriaLabel ? iconAriaLabel : SEARCH}
         iconPosition={InputIconPosition.right}
-        id={id}
-        inputSize={inputSize}
-        isInverse={isInverse}
-        isLabelVisuallyHidden
-        isLoading={isLoading}
-        labelText={labelText ? labelText : SEARCH}
         onChange={handleChange}
+        onIconClick={isLoading ? null : handleSearch}
         onKeyDown={handleKeyPress}
         placeholder={placeholder ? placeholder : SEARCH}
         type={InputType.search}

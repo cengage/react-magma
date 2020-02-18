@@ -8,9 +8,14 @@ import {
   Button,
   CalendarIcon,
   EnvelopeOIcon,
+  IconButton,
+  QuestionCircleIcon,
   Search2Icon,
+  Spinner,
+  Tooltip,
 } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
+import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
 
 <DocsHeading to="/design/inputs/" type="design">
@@ -18,6 +23,8 @@ import { SimplePropsTable } from '../../components/props-table'
 </DocsHeading>
 
 Input fields are used in a number of ways for both collecting and displaying data from the user.
+
+See also: <Link to='/api/password-input'>Password Input</Link>, <Link to='/api/search'>Search</Link> and <Link to='/api/textarea'>Textarea</Link>.
 
 ## Basic Usage
 
@@ -31,26 +38,6 @@ The label/input association will be handled via the passed in `id` if one is sup
           id="myCustomId"
           labelText='Label' />
     </>
-```
-
-## Password
-
-When the `type` prop is set to `password`, the input field that is rendered also have the `type` set to password, meaning that the text is obscured so that it cannot be read, usually by replacing each character with a symbol such as the asterisk ("\*") or a dot ("•").
-
-By default, users can show the password, by pressing a toggle button. To prevent users from showing the password, the optional boolean `isPasswordMaskButtonHidden` can be used.
-
-The following option props can be used to override various text strings that appear on the UI or to users using assistive technology: `hiddenPasswordAnnounceText`, `hidePasswordButtonAriaLabel`, `hidePasswordButtonText`, `shownPasswordAnnounceText`, `showPasswordButtonAriaLabel`, `showPasswordButtonText`.
-
-```.jsx
-  <>
-    <Input
-      labelText='Password'
-      type='password' />
-    <Input
-      isPasswordMaskButtonHidden
-      labelText='Password With No Unmask Button'
-      type='password' />
-  </>
 ```
 
 ## Number
@@ -69,6 +56,16 @@ The following option props can be used to override various text strings that app
         disabled />
 ```
 
+## Default Value
+
+The `defaultValue` of an input can be set using the `defaultValue` prop.
+
+```.jsx
+    <Input
+        labelText='Default value'
+        defaultValue='default' />
+```
+
 ## Value
 
 The `value` of an input can be set using the `value` prop.
@@ -77,16 +74,6 @@ The `value` of an input can be set using the `value` prop.
     <Input
         labelText='Value'
         value='abc123' />
-```
-
-## Default Value
-
-The `value` of an input can be initially set using the `defaultValue` prop.
-
-```.jsx
-    <Input
-        labelText='Default value'
-        defaultValue='Default Value' />
 ```
 
 ## Placeholder
@@ -98,7 +85,7 @@ relied upon to take the place of the label text.
 ```.jsx
     <Input
         labelText='Email Address'
-        value='yourname@example.com' />
+        placeholder='yourname@example.com' />
 ```
 
 ## Error Message
@@ -123,18 +110,6 @@ The `helperMessage` appears underneath the input field. It will not appear if an
         labelText='Helper Message' />
 ```
 
-## Help Link
-
-Some inputs require a bit of explanation to the user. Passing in a function to the `onHelpLinkClick` prop, will
-display a help link to the right of the input field. The text can be customized using the optional `helpLinkAriaLabel` prop.
-
-```.jsx
-   <Input
-      helpLinkAriaLabel='Learn more about help links'
-      labelText='Help Link'
-      onHelpLinkClick={()=> {alert('Help link clicked!')}} />
-```
-
 ## Input With Icon
 
 An `icon` may be included with the input, by passing in the `icon` prop. An aria-label may be added using the `iconAriaLabel` prop.
@@ -153,7 +128,8 @@ The `iconPosition` position prop is optional and takes the values `left` and `ri
       <Input
         iconPosition='right'
         labelText='Input with Icon on Right'
-        icon={<Search2Icon />} />
+        icon={<Spinner />}
+        iconAriaLabel="Loading..." />
 
       <Input
         labelText='Input with Clickable Icon on Right'
@@ -171,38 +147,13 @@ The `inputSize` prop can be used to control the input size. Options are `medium`
     <>
       <Input
         iconPosition='right'
-        labelText='Medium Input'
-        icon={<Search2Icon />} />
-      <Input
-        iconPosition='right'
         inputSize='large'
         labelText='Large Input'
         icon={<Search2Icon />} />
       <Input
           errorMessage='Error'
-          labelText='Medium Input With Error' />
-      <Input
-          errorMessage='Error'
           inputSize='large'
           labelText='Large Input With Error' />
-      <Input
-          onHelpLinkClick={()=> {alert('Help link clicked!')}}
-          labelText='Medium Input With Help Link' />
-      <Input
-          onHelpLinkClick={()=> {alert('Help link clicked!')}}
-          inputSize='large'
-          labelText='Large Input With Help Link' />
-    </>
-```
-
-## IsLoading
-
-The `isLoading` boolean prop will determine if a loading animation is shown. The loading animation will replace any icon displayed on the right.
-
-```.jsx
-    <>
-      <Input labelText='Loading' isLoading />
-      <Input labelText='Loading Large' inputSize='large' isLoading />
     </>
 ```
 
@@ -227,10 +178,6 @@ The `isLoading` boolean prop will determine if a loading animation is shown. The
           errorMessage='Please correct your error'
           isInverse
           labelText='Inverse Input with Error Message' />
-      <Input
-          isInverse
-          labelText='Help Link'
-          onHelpLinkClick={()=> {alert('Help link clicked!')}} />
     </div>
 ```
 
@@ -240,23 +187,37 @@ The `isLabelVisuallyHidden` prop can be used to visually hide the text label, wh
 
 ```.jsx
     <Input
-      iconPosition='right'
       isLabelVisuallyHidden
-      labelText='Search'
-      placeholder='Search'
-      icon={<Search2Icon />} />
+      labelText='This is the aria-label'
+      placeholder='This is placeholder' />
 ```
 
-## Multi-line (textarea)
+## Additional Children (e.g. Help Link)
 
-The optional `multiline` boolean prop will cause the component to render a textarea, rather than a text input.
+Some inputs require more content next to the form field, such as a help link to proviide a bit of explanation to the user.
+If you pass children to the input field, it will render immediately after the input. The container is displayed flex, so the content
+will appear to the right of the field.
 
 ```.jsx
-    <Input
-        id='textarea'
-        labelText='Multi-line Textarea'
-        multiline
-        placeholder='Type in here' />
+  (props) => {
+    const helpLinkLabel = 'Learn more';
+    const onHelpLinkClick= ()=> {alert('Help link clicked!')};
+
+    return(
+    <Input labelText='Help Link'>
+      <Tooltip
+        content={helpLinkLabel}>
+        <IconButton
+            aria-label={helpLinkLabel}
+            icon={<QuestionCircleIcon />}
+            onClick={onHelpLinkClick}
+            style={{ margin: '0 0 0 7px' }}
+            type='button'
+            variant='link'
+          />
+      </Tooltip>
+    </Input>
+  )};
 ```
 
 ## Change Events
@@ -310,7 +271,6 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 
     return (<div>
       <Input
-        defaultValue=''
         ref={inputRef}
         labelText='Input to be focused' />
 
@@ -329,20 +289,11 @@ Custom styles can be passed into the Input component. The `containerStyle` prope
 Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
 
 ```.jsx
-  <div>
-    <Input
-        containerStyle={{ 'border': '1px dotted purple', 'padding': '5px'}}
-        inputStyle={{ 'borderRadius': '0'}}
-        labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
-        labelText='Custom Styles for input' />
-
-    <Input
-        containerStyle={{ 'border': '1px dotted purple', 'padding': '5px'}}
-        inputStyle={{ 'width': '200px', 'height': '50px'}}
-        labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
-        labelText='Custom Styles for textarea (multiline)'
-        multiline />
-  </div>
+  <Input
+      containerStyle={{ 'border': '1px dotted purple', 'padding': '5px'}}
+      inputStyle={{ 'borderRadius': '0'}}
+      labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
+      labelText='Custom Styles for input' />
 ```
 
 ## Testing
@@ -410,38 +361,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description: 'Text of the helper message.',
       defaultValue: '',
     },
-    helpLinkAriaLabel: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Aria-label for the help icon',
-      defaultValue: "What's this?",
-    },
-    hiddenPasswordAnnounceText: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Text read by screen reader when the password is hidden',
-      defaultValue: 'Password is now hidden',
-    },
-    hidePasswordButtonAriaLabel: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Aria-label for the "Hide Password" button',
-      defaultValue: 'Hide password',
-    },
-    hidePasswordButtonText: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Text displayed on screen for the "Hide Password" button',
-      defaultValue: 'Hide',
-    },
     icon: {
       type: {
         name: 'React Element',
@@ -500,15 +419,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
         'If true, label text will be hidden visually, but will still be read by assistive technology',
       defaultValue: 'false',
     },
-    isPasswordMaskButtonHidden: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, label text will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
-    },
     labelStyle: {
       type: {
         name: 'React.CSSProperties',
@@ -555,31 +465,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description: 'If true, the form field is required',
       defaultValue: 'false',
     },
-    shownPasswordAnnounceText: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Text read by screen reader when the password is hidden',
-      defaultValue: 'Password is now hidden',
-    },
-    showPasswordButtonAriaLabel: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Aria-label for the "Show Password" button',
-      defaultValue:
-        'Show password. Note: this will visually expose your password on the screen',
-    },
-    showPasswordButtonText: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Text displayed on screen for the "Show Password" button',
-      defaultValue: 'Show',
-    },
     testId: {
       type: {
         name: 'string',
@@ -617,6 +502,16 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 export default props => (
   <ScopeableLayout
     {...props}
-    components={{ Input, Button, CalendarIcon, EnvelopeOIcon, Search2Icon }}
+    components={{
+      Input,
+      Button,
+      CalendarIcon,
+      EnvelopeOIcon,
+      IconButton,
+      QuestionCircleIcon,
+      Search2Icon,
+      Spinner,
+      Tooltip,
+    }}
   />
 )

@@ -1,0 +1,149 @@
+---
+title: 'Textarea'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { Textarea } from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
+
+# Textarea
+
+## Basic Usage
+
+```.jsx
+    <Textarea labelText="Textarea">Some text</Textarea>
+```
+
+## Error Message
+
+```.jsx
+    <Textarea errorMessage="Please fix this error" labelText="Textarea with Error" />
+```
+
+## Helper Message
+
+```.jsx
+    <Textarea helperMessage="Helper text goes here" labelText="Textarea with Helper" />
+```
+
+## Disabled
+
+```.jsx
+    <Textarea disabled labelText="Disabled Textarea" />
+```
+
+## Inverse
+
+```.jsx
+    <div style={{ background : '#00263E', padding: '10px' }}>
+      <Textarea isInverse labelText="Inverse Textarea" />
+      <Textarea errorMessage="Please fix this error" isInverse labelText="Inverse Textarea with Error" />
+    </div>
+```
+
+## Textarea Props
+
+**Any other props supplied will be provided to the `textarea` element.**
+
+<SimplePropsTable
+  propertyValues={{
+    containerStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the component container element',
+    },
+    defaultValue: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Default value for the form field',
+      defaultValue: '',
+    },
+    disabled: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, element is disabled',
+      defaultValue: 'false',
+    },
+    errorMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Text of the error message.  If a value is provided, the input will be styled as an error state, and the error message will display.',
+      defaultValue: '',
+    },
+    helperMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text of the helper message.',
+      defaultValue: '',
+    },
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    isLabelVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
+    },
+    labelStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the label element',
+    },
+    labelText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text for input aria-label',
+      defaultValue: 'Search',
+    },
+    placeholder: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text for input placeholder',
+      defaultValue: 'Search',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+    textareaStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the textarea element',
+    },
+  }}
+/>
+
+export default props => <ScopeableLayout {...props} components={{ Textarea }} />
