@@ -8,7 +8,8 @@ import { CheckIcon } from '../Icon/types/CheckIcon';
 import { NotificationIcon } from '../Icon/types/NotificationIcon';
 import { BlockedIcon } from '../Icon/types/BlockedIcon';
 import { CrossIcon } from '../Icon/types/CrossIcon';
-import { Button, ButtonVariant } from '../Button';
+import { ButtonVariant } from '../Button';
+import { IconButton } from '../IconButton';
 import { useGenerateId } from '../utils';
 
 const VARIANT_ICON = {
@@ -146,7 +147,7 @@ const shouldForwardProp = prop => {
   return isPropValid(prop) || whitelistProps.includes(prop);
 };
 
-const DismissButton = styled(Button, { shouldForwardProp })<{
+const DismissButton = styled(IconButton, { shouldForwardProp })<{
   alertVariant?: AlertVariant;
 }>`
   border-radius: 0 3px 3px 0;

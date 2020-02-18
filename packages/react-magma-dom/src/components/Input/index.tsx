@@ -12,6 +12,7 @@ import {
   ButtonSize,
   ButtonShape
 } from '../Button';
+import { IconButton } from '../IconButton';
 import { InputMessage } from './InputMessage';
 import { Label } from '../Label';
 import { QuestionCircleIcon } from '../Icon/types/QuestionCircleIcon';
@@ -161,7 +162,7 @@ const IconWrapper = styled.span<IconWrapperProps>`
     `}
 `;
 
-const IconButton = styled(Button)<{ size: ButtonSize }>`
+const StyledIconButton = styled(IconButton)<{ size: ButtonSize }>`
   position: absolute;
   bottom: 0;
   right: 0;
@@ -390,31 +391,26 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
           )}
 
           {onHelpLinkClick && (
-            <Tooltip
-              isInverse={isInverse}
-              trigger={
-                <Button
-                  aria-label={HELP_LINK_ARIA_LABEL}
-                  icon={<QuestionCircleIcon />}
-                  isInverse={isInverse}
-                  onClick={onHelpLinkClick}
-                  size={
-                    inputSize === InputSize.large && !multiline
-                      ? ButtonSize.large
-                      : ButtonSize.medium
-                  }
-                  style={{ margin: '0 0 0 7px' }}
-                  type={ButtonType.button}
-                  variant={ButtonVariant.link}
-                />
-              }
-            >
-              {HELP_LINK_ARIA_LABEL}
+            <Tooltip isInverse={isInverse} content={HELP_LINK_ARIA_LABEL}>
+              <IconButton
+                aria-label={HELP_LINK_ARIA_LABEL}
+                icon={<QuestionCircleIcon />}
+                isInverse={isInverse}
+                onClick={onHelpLinkClick}
+                size={
+                  inputSize === InputSize.large && !multiline
+                    ? ButtonSize.large
+                    : ButtonSize.medium
+                }
+                style={{ margin: '0 0 0 7px' }}
+                type={ButtonType.button}
+                variant={ButtonVariant.link}
+              />
             </Tooltip>
           )}
 
           {onIconClick && !isLoading && (
-            <IconButton
+            <StyledIconButton
               aria-label={iconAriaLabel}
               icon={icon}
               onClick={onIconClick}

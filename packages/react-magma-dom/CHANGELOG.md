@@ -42,6 +42,8 @@ MAGMA-212
 
 # [2.0.0-beta.10](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.9...v2.0.0-beta.10) (2020-01-07)
 
+# [2.0.0-beta.19](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.18...v2.0.0-beta.19) (2020-01-28)
+
 ### Bug Fixes
 
 - **ref:** Fix references for Search/Input components ([4eace40](http://stash.corp.web:7999/FRONT/react-magma/commits/4eace40))
