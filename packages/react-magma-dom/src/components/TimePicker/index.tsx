@@ -12,6 +12,7 @@ export interface TimePickerProps {
   isInverse?: boolean;
   labelText: string;
   helperMessage?: React.ReactNode;
+  messageStyle?: React.CSSProperties;
   value?: string;
   onChange?: (value: string) => void;
 }

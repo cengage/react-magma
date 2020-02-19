@@ -85,6 +85,13 @@ The `helperMessage` appears underneath the input field. It will not appear if an
         'If true, the focus state of the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
+    messageStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the helper or error message',
+    },
     value: {
       type: {
         name: 'string',
