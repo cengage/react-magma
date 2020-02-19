@@ -27,11 +27,20 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - Icons audit ([52444cd](http://stash.corp.web:7999/FRONT/react-magma/commits/52444cd))
 
+* **button:** prop name in button changed from fullWidth, to isFullWidth. It was previously named
+  block
+
 ### BREAKING CHANGES
 
 - Resolved redundant icons. Remove unnecessary icons: ArrowUp3, ArrowDown3,
   ArrowLeft3, ArrowRight3, Exclamation, List3, Menu2, Menu3, Menu4, PieChart, Question2, Question,
   Spinner2, Star, ThList, Timed, Unlock, Wrench3
+
+MAGMA-212
+
+# [2.0.0-beta.19](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.18...v2.0.0-beta.19) (2020-01-28)
+
+# [2.0.0-beta.10](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.9...v2.0.0-beta.10) (2020-01-07)
 
 # [2.0.0-beta.19](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.18...v2.0.0-beta.19) (2020-01-28)
 
