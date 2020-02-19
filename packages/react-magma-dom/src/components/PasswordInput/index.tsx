@@ -25,7 +25,7 @@ export interface PasswordInputProps
   isPasswordMaskButtonHidden?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
-  multiline?: boolean;
+  messageStyle?: React.CSSProperties;
   ref?: React.Ref<HTMLInputElement>;
   shownPasswordAnnounceText?: string;
   showPasswordButtonAriaLabel?: string;
@@ -69,6 +69,7 @@ export const PasswordInput: React.FunctionComponent<
       labelStyle,
       labelText,
       isLabelVisuallyHidden,
+      messageStyle,
       shownPasswordAnnounceText,
       showPasswordButtonAriaLabel,
       showPasswordButtonText,
@@ -164,6 +165,7 @@ export const PasswordInput: React.FunctionComponent<
           isInverse={isInverse}
           id={descriptionId}
           isError={!!errorMessage}
+          style={messageStyle}
         >
           {(errorMessage || helperMessage) && (
             <>{errorMessage ? errorMessage : helperMessage}</>

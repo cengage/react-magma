@@ -541,6 +541,13 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
+    messageStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the helper or error message',
+    },
     testId: {
       type: {
         name: 'string',

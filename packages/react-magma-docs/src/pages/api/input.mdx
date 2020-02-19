@@ -147,7 +147,7 @@ The `iconPosition` position prop is optional and takes the values `left` and `ri
 
 ## Input Size
 
-The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default. Input size does not affect multiline textareas.
+The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default.
 
 ```.jsx
     <>
@@ -297,9 +297,11 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
 ```.jsx
   <Input
       containerStyle={{ 'border': '1px dotted purple', 'padding': '5px'}}
+      errorMessage="Styled errror message"
       inputStyle={{ 'borderRadius': '0'}}
       labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
-      labelText='Custom Styles for input' />
+      labelText='Custom Styles for input'
+      messageStyle={{ 'color' : 'green'}} />
 ```
 
 ## Testing
@@ -438,6 +440,13 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       },
       required: true,
       description: 'Text for label',
+    },
+    messageStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the helper or error message',
     },
     onIconClick: {
       type: {

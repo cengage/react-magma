@@ -4,12 +4,15 @@ order: 1
 ---
 
 import DocsHeading from '../../components/docs-heading'
-import { Input } from 'react-magma-dom'
+import { Input, PasswordInput, Textarea } from 'react-magma-dom'
 
-<DocsHeading to="/api/input/" type="code">Inputs</DocsHeading>
+<DocsHeading to="/api/input/" type="code">
+  Inputs
+</DocsHeading>
 
 ## Usage
-Text fields let users enter and edit text.  This includes text fields, text areas, password fields, and number inputs.  They typically appear in forms and dialogs.
+
+Text fields let users enter and edit text. This includes text fields, text areas, password fields, and number inputs. They typically appear in forms and dialogs.
 
 <span class="horizontal-spacer"></span>
 <hr class="article-divider" />
@@ -17,12 +20,15 @@ Text fields let users enter and edit text.  This includes text fields, text area
 ## Principles
 
 ### Discoverable
+
 Inputs should stand out and indicate that users can input information.
 
 ### Clear
+
 Input states should be clearly differentiated from one another.
 
 ### Efficient
+
 Text fields should make it easy to understand the requested information and to address any errors.
 
 <span class="horizontal-spacer"></span>
@@ -31,23 +37,38 @@ Text fields should make it easy to understand the requested information and to a
 ## Types
 
 ### Text Field
-<Input id='input1' labelText='Email' placeholder='john.doe@gmail.com' required={false} />
+
+<Input
+  id="input1"
+  labelText="Email"
+  placeholder="john.doe@gmail.com"
+  required={false}
+/>
 
 ### Text Area
-<Input id='textarea' labelText='Comments' multiline />
+
+<Textarea id="textarea" labelText="Comments" />
 
 ### Password
-<Input id='inputPw' labelText='Password' placeholder='Enter your password' type='password' />
 
-### Number
-<Input id='inputNum' labelText='Number' type='number' inputStyle={{width: '80px'}} />
+<PasswordInput labelText="Password" placeholder="Enter your password" />
 
+### Number<Input
+id="inputNum"
+labelText="Number"
+type="number"
+inputStyle={{ width: '80px' }}
+/>
 <hr class="article-divider" />
 
 ## Anatomy
+
 <figure>
   <div class="image-container">
-    <img src="../../images/inputs/Input-anatomy.png" alt="Illustration showing the anatomy of an input" />
+    <img
+      src="../../images/inputs/Input-anatomy.png"
+      alt="Illustration showing the anatomy of an input"
+    />
   </div>
 </figure>
 
@@ -59,9 +80,10 @@ Text fields should make it easy to understand the requested information and to a
 1. Helper text
 
 ### Field Label
-The field label tells the user what information is being requested.  Most inputs should have a field label, unless you make sure the placeholder text, and other text available to screen readers, very clear about what the input is asking for from the user.  For example, search fields don't typically have a visible field label, but instead rely on the placeholder text to make it clear what you're searching.
 
-Do not truncate text labels.  Try to keep text labels as short and clear as possible to avoid wrapping to multiple lines.
+The field label tells the user what information is being requested. Most inputs should have a field label, unless you make sure the placeholder text, and other text available to screen readers, very clear about what the input is asking for from the user. For example, search fields don't typically have a visible field label, but instead rely on the placeholder text to make it clear what you're searching.
+
+Do not truncate text labels. Try to keep text labels as short and clear as possible to avoid wrapping to multiple lines.
 
 <div class="two-col">
   <div class="row">
@@ -79,7 +101,11 @@ Do not truncate text labels.  Try to keep text labels as short and clear as poss
         <img src="../../images/inputs/caution-wrap-label.png" alt="" />
         <figcaption>
           <p class="title title-caution">Caution</p>
-          <p>Wrapping long field labels is acceptable, but try to avoid at all costs.  Labels are best kept simple and short enough to fit on a single line.</p>
+          <p>
+            Wrapping long field labels is acceptable, but try to avoid at all
+            costs. Labels are best kept simple and short enough to fit on a
+            single line.
+          </p>
         </figcaption>
       </figure>
     </div>
@@ -87,7 +113,8 @@ Do not truncate text labels.  Try to keep text labels as short and clear as poss
 </div>
 
 #### Required Text Indicator
-Required fields should be indicated by putting an asterisk (*) at the end of the label.  If there are very few required inputs in the form, you can use the helper text to inform the user what the asterisk means.  If there are a relatively large number of required fields in the form, you can put a legend at the top of the form and just tell them once.
+
+Required fields should be indicated by putting an asterisk (\*) at the end of the label. If there are very few required inputs in the form, you can use the helper text to inform the user what the asterisk means. If there are a relatively large number of required fields in the form, you can put a legend at the top of the form and just tell them once.
 
 <div class="two-col">
   <div class="row">
@@ -96,7 +123,11 @@ Required fields should be indicated by putting an asterisk (*) at the end of the
         <img src="../../images/inputs/single-required-field.png" alt="" />
         <figcaption>
           <p class="title title-correct">Correct</p>
-          <p>A required field is indicated with an asterisk.  If there aren't many required fields, you may use the Helper Text to tell the user what the  asterisk means.</p>
+          <p>
+            A required field is indicated with an asterisk. If there aren't many
+            required fields, you may use the Helper Text to tell the user what
+            the asterisk means.
+          </p>
         </figcaption>
       </figure>
     </div>
@@ -105,7 +136,10 @@ Required fields should be indicated by putting an asterisk (*) at the end of the
         <img src="../../images/inputs/multiple-required-fields.png" alt="" />
         <figcaption>
           <p class="title title-correct">Correct</p>
-          <p>If there are multiple required fields, you may explain the meaning of the asterisk one time above the form.</p>
+          <p>
+            If there are multiple required fields, you may explain the meaning
+            of the asterisk one time above the form.
+          </p>
         </figcaption>
       </figure>
     </div>
@@ -116,21 +150,24 @@ Required fields should be indicated by putting an asterisk (*) at the end of the
         <img src="../../images/inputs/wrong-optional-field.png" alt="" />
         <figcaption>
           <p class="title title-incorrect">Incorrect</p>
-          <p>Only required fields are called out as such.  Do not mark optional fields.</p>
+          <p>
+            Only required fields are called out as such. Do not mark optional
+            fields.
+          </p>
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
-    </div>
+    <div class="col col-2"></div>
   </div>
 </div>
 
 ### Container
+
 Containers improve the discoverability of inputs by creating enough contrast between the input and the surrounding content.
 
 #### Fill and Border
 
-Inputs have a white fill which provides optimal visibility on dark backgrounds.  The border of inputs on a white background are 1px wide and use the color neutral03 (#727272).  The border of inputs on a white background is 1px wide and white.
+Inputs have a white fill which provides optimal visibility on dark backgrounds. The border of inputs on a white background are 1px wide and use the color neutral03 (#727272). The border of inputs on a white background is 1px wide and white.
 
 #### Rounded Corners
 
@@ -146,13 +183,13 @@ Inputs have a 5px border radius to be consistent with buttons, which often accom
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
-    </div>
+    <div class="col col-2"></div>
   </div>
 </div>
 
 ### Input Text
-Input text is text the user has entered into a text field.  You can also use placeholder text to help inform the user how their input should be formatted.
+
+Input text is text the user has entered into a text field. You can also use placeholder text to help inform the user how their input should be formatted.
 
 <div class="two-col">
   <div class="row">
@@ -164,8 +201,7 @@ Input text is text the user has entered into a text field.  You can also use pla
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
-    </div>
+    <div class="col col-2"></div>
   </div>
 </div>
 
@@ -173,7 +209,7 @@ Input text is text the user has entered into a text field.  You can also use pla
 
 #### Helper Text
 
-Helper text is extra guidance for the input such as how the input will be used.  Try to keep helper text limited to a single line.
+Helper text is extra guidance for the input such as how the input will be used. Try to keep helper text limited to a single line.
 
 <div class="two-col">
   <div class="row">
@@ -185,14 +221,13 @@ Helper text is extra guidance for the input such as how the input will be used. 
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
-    </div>
+    <div class="col col-2"></div>
   </div>
 </div>
 
 #### Error Message
 
-When the input provided is invalid, an error message should be used to provide instructions on how to fix the error.  The error message will replace the helper text until it is fixed.
+When the input provided is invalid, an error message should be used to provide instructions on how to fix the error. The error message will replace the helper text until it is fixed.
 
 <div class="two-col">
   <div class="row">
@@ -204,14 +239,13 @@ When the input provided is invalid, an error message should be used to provide i
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
-    </div>
+    <div class="col col-2"></div>
   </div>
 </div>
 
 #### Icons
 
-Icons can be used to help provide clarity or functionality.  Leading icons are typically used to help clarify the type of input, such as email or phone.  Trailing icons are typically also buttons that can be used to clear the input or trigger something else like a calendar component.
+Icons can be used to help provide clarity or functionality. Leading icons are typically used to help clarify the type of input, such as email or phone. Trailing icons are typically also buttons that can be used to clear the input or trigger something else like a calendar component.
 
 <div class="two-col">
   <div class="row">
@@ -219,7 +253,10 @@ Icons can be used to help provide clarity or functionality.  Leading icons are t
       <figure>
         <img src="../../images/inputs/input-leading-icon.png" alt="" />
         <figcaption>
-          <p>Example of input with leading icon.  The Visa icon helps identify the specific kind of credit card entered.</p>
+          <p>
+            Example of input with leading icon. The Visa icon helps identify the
+            specific kind of credit card entered.
+          </p>
         </figcaption>
       </figure>
     </div>
@@ -227,7 +264,10 @@ Icons can be used to help provide clarity or functionality.  Leading icons are t
       <figure>
         <img src="../../images/inputs/input-trailing-icon.png" alt="" />
         <figcaption>
-          <p>Example of input with trailing icon.  The calendar icon is a button that opens a calendar widget.</p>
+          <p>
+            Example of input with trailing icon. The calendar icon is a button
+            that opens a calendar widget.
+          </p>
         </figcaption>
       </figure>
     </div>
@@ -235,7 +275,8 @@ Icons can be used to help provide clarity or functionality.  Leading icons are t
 </div>
 
 #### What is This?
-The “What is this?” icon can be used for inputs that might require even more explanation or clarification to the user.  The icon can be configured to trigger actions like opening a modal or navigating to another location.
+
+The “What is this?” icon can be used for inputs that might require even more explanation or clarification to the user. The icon can be configured to trigger actions like opening a modal or navigating to another location.
 
 <div class="two-col">
   <div class="row">
@@ -247,11 +288,9 @@ The “What is this?” icon can be used for inputs that might require even more
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
-    </div>
+    <div class="col col-2"></div>
   </div>
 </div>
-
 <hr class="article-divider" />
 
 ## States
@@ -262,12 +301,14 @@ The “What is this?” icon can be used for inputs that might require even more
       <figure>
         <img src="../../images/inputs/input-states.png" alt="" />
         <figcaption>
-          <p>Inputs can display the following states: active, disabled, focused, and error.</p>
+          <p>
+            Inputs can display the following states: active, disabled, focused,
+            and error.
+          </p>
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
-    </div>
+    <div class="col col-2"></div>
   </div>
 </div>
 
@@ -283,14 +324,16 @@ The “What is this?” icon can be used for inputs that might require even more
 
 <figure>
   <div class="image-container">
-    <img src="../../images/inputs/input-sizes.png" alt="Illustration showing regular and large inputs" />
+    <img
+      src="../../images/inputs/input-sizes.png"
+      alt="Illustration showing regular and large inputs"
+    />
   </div>
 </figure>
 
 1. Regular
 1. Large
 
-The regular sized inputs should be used in all cases, unless you are creating an interface that justifies the use of the large input.  One example could be a page focusing entirely on search.  Inputs should not be customized outside of these two standards without review and approval by the UX Department.
-
+The regular sized inputs should be used in all cases, unless you are creating an interface that justifies the use of the large input. One example could be a page focusing entirely on search. Inputs should not be customized outside of these two standards without review and approval by the UX Department.
 
 <span class="horizontal-spacer"></span>

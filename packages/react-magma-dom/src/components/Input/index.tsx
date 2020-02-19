@@ -10,6 +10,7 @@ export interface InputProps extends BaseInputProps {
   helperMessage?: React.ReactNode;
   isLabelVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
+  messageStyle?: React.CSSProperties;
   labelText?: string;
 }
 
@@ -27,9 +28,10 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
       id: defaultId,
       inputSize,
       isInverse,
+      isLabelVisuallyHidden,
       labelStyle,
       labelText,
-      isLabelVisuallyHidden,
+      messageStyle,
       ...other
     } = props;
 
@@ -69,6 +71,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
           isInverse={isInverse}
           id={descriptionId}
           isError={!!errorMessage}
+          style={messageStyle}
         >
           {(errorMessage || helperMessage) && (
             <>{errorMessage ? errorMessage : helperMessage}</>

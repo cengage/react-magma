@@ -17,6 +17,7 @@ export interface TextareaProps
   isLabelVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
   labelText?: string;
+  messageStyle?: React.CSSProperties;
   testId?: string;
   textareaStyle?: React.CSSProperties;
 }
@@ -45,6 +46,7 @@ export const Textarea: React.FunctionComponent<
       isInverse,
       labelStyle,
       labelText,
+      messageStyle,
       testId,
       textareaStyle,
       ...other
@@ -103,6 +105,7 @@ export const Textarea: React.FunctionComponent<
           isInverse={isInverse}
           id={descriptionId}
           isError={!!errorMessage}
+          style={messageStyle}
         >
           {(errorMessage || helperMessage) && (
             <>{errorMessage ? errorMessage : helperMessage}</>
