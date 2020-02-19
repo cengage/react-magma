@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.24](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.23...v2.0.0-beta.24) (2020-02-19)
+
+
+### Bug Fixes
+
+* **tabs:** custom tab component fixes and examples for in in docs ([d9f5ea3](http://stash.corp.web:7999/FRONT/react-magma/commits/d9f5ea3))
+* **tabs:** fix styles ([aafed31](http://stash.corp.web:7999/FRONT/react-magma/commits/aafed31))
+* **tabs:** fix styles and themes ([41810c9](http://stash.corp.web:7999/FRONT/react-magma/commits/41810c9))
+* **tabs:** important names in tab docs is capitalized ([8384990](http://stash.corp.web:7999/FRONT/react-magma/commits/8384990))
+
+
+### Code Refactoring
+
+* **tooltip:** make trigger children, make content a prop ([b082bc0](http://stash.corp.web:7999/FRONT/react-magma/commits/b082bc0))
+
+
+### Features
+
+* **date and timepickers:** allow custom message styles ([e9f4d35](http://stash.corp.web:7999/FRONT/react-magma/commits/e9f4d35))
+* **icon-button:** Make IconButton a separate component from Button ([d7b3767](http://stash.corp.web:7999/FRONT/react-magma/commits/d7b3767))
+* **input message:** allow custom styles on input message ([7cf75a4](http://stash.corp.web:7999/FRONT/react-magma/commits/7cf75a4))
+* **input message:** allow input message to take node ([50961f8](http://stash.corp.web:7999/FRONT/react-magma/commits/50961f8))
+* **inputs:** New separate components for inputs, inc pword, textarea ([b39b3ec](http://stash.corp.web:7999/FRONT/react-magma/commits/b39b3ec))
+* **password:** create separate password component ([566f11b](http://stash.corp.web:7999/FRONT/react-magma/commits/566f11b))
+* **search:** isLoading prop for search, docs for spinner as icon ([f0a051e](http://stash.corp.web:7999/FRONT/react-magma/commits/f0a051e))
+* **tabs:** Add in typing for component vs children tab ([eb15ce1](http://stash.corp.web:7999/FRONT/react-magma/commits/eb15ce1))
+* **tabs:** add padding to tabPanel, minor doc updates ([8650ba0](http://stash.corp.web:7999/FRONT/react-magma/commits/8650ba0))
+* **tabs:** added tabs component ([0dc0439](http://stash.corp.web:7999/FRONT/react-magma/commits/0dc0439))
+* **tabs:** allow for flexible widths ([8e29e15](http://stash.corp.web:7999/FRONT/react-magma/commits/8e29e15))
+* **tabs:** allow nav tabs to show icon ([8b12fd6](http://stash.corp.web:7999/FRONT/react-magma/commits/8b12fd6))
+* **tabs:** make alignment an enum, remove children from custom tabs ([57f7dee](http://stash.corp.web:7999/FRONT/react-magma/commits/57f7dee))
+* **tabs:** more styles, move props to container, not tabs ([1a467d7](http://stash.corp.web:7999/FRONT/react-magma/commits/1a467d7))
+* **tabs:** refer to theme instead of magma directly ([6d6d241](http://stash.corp.web:7999/FRONT/react-magma/commits/6d6d241))
+* **tabs:** rename boolean props ([93cb9fd](http://stash.corp.web:7999/FRONT/react-magma/commits/93cb9fd))
+* **time-picker:** allow typed input and passed in value ([90ffbe8](http://stash.corp.web:7999/FRONT/react-magma/commits/90ffbe8))
+* **timepicker:** docs page and basic style ([f07bf06](http://stash.corp.web:7999/FRONT/react-magma/commits/f07bf06))
+* **timepicker:** docs update, fix bg color, remove unused ref ([af45728](http://stash.corp.web:7999/FRONT/react-magma/commits/af45728))
+* **timepicker:** error and helper messages ([3d2f22a](http://stash.corp.web:7999/FRONT/react-magma/commits/3d2f22a))
+* **timepicker:** start of timepicker ([6b40a8d](http://stash.corp.web:7999/FRONT/react-magma/commits/6b40a8d))
+* **timepicker:** timepicker! ([5e20d02](http://stash.corp.web:7999/FRONT/react-magma/commits/5e20d02))
+* **tooltip:** throw error if children is more than one element ([eb59fe1](http://stash.corp.web:7999/FRONT/react-magma/commits/eb59fe1))
+
+
+### BREAKING CHANGES
+
+* **icon-button:** Button component no longer accepts the icon props. IconButton provides the
+functionality now
+* **tooltip:** Removed the trigger prop from tooltip and we are now using the children to provide
+* **inputs:** Many props removed from Input component.  Password related props have been moved to
+PasswordInput.  HelpLink related props removed and replaced with simply passing children. Multiline
+prop removed and replaced with separate Textarea component.  Error and help messaging removed from
+search.  New BaseInput component created.
+
+
+
+
+
 # [2.0.0-beta.23](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.22...v2.0.0-beta.23) (2020-02-07)
 
 
