@@ -51,9 +51,9 @@ describe('Textarea', () => {
 
   it('should render a textarea with a correctly styled helper message', () => {
     const testMessage = 'Test message';
-    const { getByText } = render(<Textarea helperMessage={testMessage} />);
+    const { getByTestId } = render(<Textarea helperMessage={testMessage} />);
 
-    const helperMessage = getByText(testMessage);
+    const helperMessage = getByTestId('inputMessage');
 
     expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral03);
   });
@@ -62,7 +62,7 @@ describe('Textarea', () => {
     const labelText = 'test label';
     const testHelperMessage = 'Test helper message';
     const testErrorMessage = 'Test error message';
-    const { getByText, getByLabelText, queryByText } = render(
+    const { getByTestId, getByLabelText, queryByText } = render(
       <Textarea
         errorMessage={testErrorMessage}
         helperMessage={testHelperMessage}
@@ -70,7 +70,7 @@ describe('Textarea', () => {
       />
     );
 
-    const errorMessage = getByText(testErrorMessage);
+    const errorMessage = getByTestId('inputMessage');
 
     expect(errorMessage).toBeInTheDocument();
 

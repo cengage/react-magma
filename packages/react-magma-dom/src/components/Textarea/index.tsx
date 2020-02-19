@@ -10,13 +10,14 @@ import { useGenerateId } from '../utils';
 export interface TextareaProps
   extends React.HtmlHTMLAttributes<HTMLTextAreaElement> {
   containerStyle?: React.CSSProperties;
-  errorMessage?: string;
+  errorMessage?: React.ReactNode;
   hasError?: boolean;
-  helperMessage?: string;
+  helperMessage?: React.ReactNode;
   isInverse?: boolean;
   isLabelVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
   labelText?: string;
+  messageStyle?: React.CSSProperties;
   testId?: string;
   textareaStyle?: React.CSSProperties;
 }
@@ -45,6 +46,7 @@ export const Textarea: React.FunctionComponent<
       isInverse,
       labelStyle,
       labelText,
+      messageStyle,
       testId,
       textareaStyle,
       ...other
@@ -103,6 +105,7 @@ export const Textarea: React.FunctionComponent<
           isInverse={isInverse}
           id={descriptionId}
           isError={!!errorMessage}
+          style={messageStyle}
         >
           {(errorMessage || helperMessage) && (
             <>{errorMessage ? errorMessage : helperMessage}</>

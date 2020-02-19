@@ -7,11 +7,12 @@ import { Input } from '../Input';
 import { useGenerateId } from '../utils';
 
 export interface TimePickerProps {
-  errorMessage?: string;
+  errorMessage?: React.ReactNode;
   id?: string;
   isInverse?: boolean;
   labelText: string;
-  helperMessage?: string;
+  helperMessage?: React.ReactNode;
+  messageStyle?: React.CSSProperties;
   value?: string;
   onChange?: (value: string) => void;
 }

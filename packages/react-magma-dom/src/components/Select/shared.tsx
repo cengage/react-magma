@@ -11,8 +11,8 @@ import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
 export interface BaseSelectProps {
   testId?: string;
   labelText: string;
-  errorMessage?: string;
-  helperMessage?: string;
+  errorMessage?: React.ReactNode;
+  helperMessage?: React.ReactNode;
   inverse?: boolean;
 }
 
@@ -54,7 +54,7 @@ export const MultiValueRemove = props => {
 export function getStyles(
   customStyles: ReactSelectStyles = {},
   theme: any,
-  errorMessage?: string,
+  errorMessage?: React.ReactNode,
   inverse?: boolean
 ) {
   return {
@@ -229,8 +229,8 @@ export function useSelectValue(
 
 export function getAriaLabel(
   labelText: string,
-  errorMessage?: string,
-  helperMessage?: string
+  errorMessage?: React.ReactNode,
+  helperMessage?: React.ReactNode
 ) {
   return errorMessage || helperMessage
     ? `${labelText}, ${errorMessage ? errorMessage : helperMessage}`

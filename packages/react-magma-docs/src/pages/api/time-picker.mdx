@@ -26,7 +26,7 @@ There are multiple formats you can send in through the `value` prop. You can do 
 ## Error Message
 
 If an input has an `errorMessage`, the input will be styled to highlight it's error state and the error message will appear below the input field.
-If an error message is present, it will replace the helper text.
+If an error message is present, it will replace the helper text. Can be a node or a string.
 
 ```.jsx
   <TimePicker errorMessage="Invalid time" labelText="Time Due" />
@@ -34,7 +34,7 @@ If an error message is present, it will replace the helper text.
 
 ## Helper Message
 
-The `helperMessage` appears underneath the input field. It will not appear if an error message is present.
+The `helperMessage` appears underneath the input field. It will not appear if an error message is present. Can be a node or a string.
 
 ```.jsx
   <TimePicker  helperMessage="Helper text" labelText="Time Due" />
@@ -54,19 +54,19 @@ The `helperMessage` appears underneath the input field. It will not appear if an
   propertyValues={{
     errorMessage: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: false,
       description:
-        'Text of the error message.  If a value is provided, the error message will be styled as an error state.',
+        'Content of the errror message.  If a value is provided, the error message will be styled as an error state.',
       defaultValue: '',
     },
     helperMessage: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: false,
-      description: 'Text of the helper message.',
+      description: 'Content of the helper message.',
       defaultValue: '',
     },
     labelText: {
@@ -84,6 +84,13 @@ The `helperMessage` appears underneath the input field. It will not appear if an
       description:
         'If true, the focus state of the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
+    },
+    messageStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the helper or error message',
     },
     value: {
       type: {

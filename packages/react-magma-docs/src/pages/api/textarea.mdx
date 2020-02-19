@@ -72,19 +72,19 @@ import { SimplePropsTable } from '../../components/props-table'
     },
     errorMessage: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: false,
       description:
-        'Text of the error message.  If a value is provided, the input will be styled as an error state, and the error message will display.',
+        'Content of the errror message.  If a value is provided, the input will be styled as an error state, and the error message will display.',
       defaultValue: '',
     },
     helperMessage: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: false,
-      description: 'Text of the helper message.',
+      description: 'Content of the helper message.',
       defaultValue: '',
     },
     isInverse: {
@@ -119,6 +119,13 @@ import { SimplePropsTable } from '../../components/props-table'
       required: false,
       description: 'Text for input aria-label',
       defaultValue: 'Search',
+    },
+    messageStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the helper or error message',
     },
     placeholder: {
       type: {

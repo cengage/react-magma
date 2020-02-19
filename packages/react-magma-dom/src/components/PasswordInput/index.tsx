@@ -13,8 +13,8 @@ import { useGenerateId } from '../utils';
 export interface PasswordInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   containerStyle?: React.CSSProperties;
-  errorMessage?: string;
-  helperMessage?: string;
+  errorMessage?: React.ReactNode;
+  helperMessage?: React.ReactNode;
   hiddenPasswordAnnounceText?: string;
   hidePasswordButtonAriaLabel?: string;
   hidePasswordButtonText?: string;
@@ -25,7 +25,7 @@ export interface PasswordInputProps
   isPasswordMaskButtonHidden?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
-  multiline?: boolean;
+  messageStyle?: React.CSSProperties;
   ref?: React.Ref<HTMLInputElement>;
   shownPasswordAnnounceText?: string;
   showPasswordButtonAriaLabel?: string;
@@ -69,6 +69,7 @@ export const PasswordInput: React.FunctionComponent<
       labelStyle,
       labelText,
       isLabelVisuallyHidden,
+      messageStyle,
       shownPasswordAnnounceText,
       showPasswordButtonAriaLabel,
       showPasswordButtonText,
@@ -164,6 +165,7 @@ export const PasswordInput: React.FunctionComponent<
           isInverse={isInverse}
           id={descriptionId}
           isError={!!errorMessage}
+          style={messageStyle}
         >
           {(errorMessage || helperMessage) && (
             <>{errorMessage ? errorMessage : helperMessage}</>

@@ -117,19 +117,19 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
     },
     errorMessage: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: false,
       description:
-        'Text of the error message.  If a value is provided, the error message will be styled as an error state.',
+        'Content of the errror message.  If a value is provided, the error message will be styled as an error state.',
       defaultValue: '',
     },
     helperMessage: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: false,
-      description: 'Text of the helper message.',
+      description: 'Content of the helper message.',
       defaultValue: '',
     },
     isInverse: {
@@ -154,6 +154,13 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
       },
       required: false,
       description: 'Maximum date allowed to be chosen in the calendar',
+    },
+    messageStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the helper or error message',
     },
     minDate: {
       type: {

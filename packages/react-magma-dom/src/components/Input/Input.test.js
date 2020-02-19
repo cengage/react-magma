@@ -82,20 +82,20 @@ describe('Input', () => {
 
   it('should render an input with a correctly styled helper message', () => {
     const testMessage = 'Test message';
-    const { getByText } = render(<Input helperMessage={testMessage} />);
+    const { getByTestId } = render(<Input helperMessage={testMessage} />);
 
-    const helperMessage = getByText(testMessage);
+    const helperMessage = getByTestId('inputMessage');
 
     expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral03);
   });
 
   it('should render an inverse input with a correctly styled helper message', () => {
     const testMessage = 'Test message';
-    const { getByText } = render(
+    const { getByTestId } = render(
       <Input helperMessage={testMessage} isInverse />
     );
 
-    const helperMessage = getByText(testMessage);
+    const helperMessage = getByTestId('inputMessage');
 
     expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral08);
   });
@@ -103,11 +103,11 @@ describe('Input', () => {
   it('should render an input with a correctly styled error message', () => {
     const labelText = 'test label';
     const testMessage = 'Test error message';
-    const { getByText, getByLabelText } = render(
+    const { getByTestId, getByLabelText } = render(
       <Input errorMessage={testMessage} labelText={labelText} />
     );
 
-    const errorMessage = getByText(testMessage);
+    const errorMessage = getByTestId('inputMessage');
 
     expect(getByLabelText(labelText)).toHaveStyleRule(
       'border-color',
@@ -121,12 +121,12 @@ describe('Input', () => {
   it('should render an inverse input with a correctly styled error message', () => {
     const labelText = 'test label';
     const testMessage = 'Test error message';
-    const { getByText, getByLabelText } = render(
+    const { getByTestId, getByLabelText } = render(
       <Input errorMessage={testMessage} isInverse labelText={labelText} />
     );
 
     const input = getByLabelText(labelText);
-    const errorMessage = getByText(testMessage);
+    const errorMessage = getByTestId('inputMessage');
 
     expect(input).toHaveStyleRule('border-color', magma.colors.danger);
 

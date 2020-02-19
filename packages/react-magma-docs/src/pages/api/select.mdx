@@ -146,7 +146,7 @@ The optional `clearable` prop allows the user to clear the field once a selectio
 ## Error Message
 
 If a select has an `errorMessage`, the select will be styled to highlight it's error state and the error message will appear below the field.
-If an error message is present, it will replace the helper text.
+If an error message is present, it will replace the helper text. Can be a node or a string.
 
 ```.jsx
   <>
@@ -171,7 +171,7 @@ If an error message is present, it will replace the helper text.
 
 ## Helper Message
 
-The `helperMessage` appears underneath the select field. It will not appear if an error message is present.
+The `helperMessage` appears underneath the select field. It will not appear if an error message is present. Can be a node or a string.
 
 ```.jsx
   <>
@@ -501,19 +501,19 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
   propertyValues={{
     errorMessage: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: false,
       description:
-        'Text of the error message.  If a value is provided, the error message will be styled as an error state.',
+        'Content of the errror message.  If a value is provided, the error message will be styled as an error state.',
       defaultValue: '',
     },
     helperMessage: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: false,
-      description: 'Text of the helper message.',
+      description: 'Content of the helper message.',
       defaultValue: '',
     },
     isInverse: {
@@ -540,6 +540,13 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
+    },
+    messageStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the helper or error message',
     },
     testId: {
       type: {
