@@ -34,8 +34,9 @@ describe('Tab', () => {
             Test Component
           </a>
         }
-      ></Tab>
+      />
     );
+
     expect(getByText('Test Component')).toBeInTheDocument();
   });
 

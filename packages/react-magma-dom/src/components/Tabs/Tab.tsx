@@ -5,11 +5,10 @@ import { css, jsx } from '@emotion/core';
 import isPropValid from '@emotion/is-prop-valid';
 import { TabsIconPosition, TabsOrientation } from '.';
 
-export interface TabProps
+export interface BaseTabProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   ariaLabel?: string;
   changeHandler?: (index: number) => void;
-  component?: React.ReactElement<any> | React.ReactElement<any>[];
   disabled?: boolean;
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
   iconPosition?: TabsIconPosition;
@@ -18,6 +17,16 @@ export interface TabProps
   path?: string;
   testId?: string;
 }
+
+interface TabChildrenProps extends BaseTabProps {
+  children: React.ReactElement<any>;
+}
+
+interface TabComponentProps extends Omit<BaseTabProps, 'children'> {
+  component: React.ReactElement<any> | React.ReactElement<any>[];
+}
+
+export type TabProps = TabChildrenProps | TabComponentProps;
 
 interface StyledTabProps {
   component?: React.ReactNode;
@@ -145,13 +154,17 @@ const StyledIcon = styled.span<{
   }
 `;
 
+function instanceOfComponentTab(object: any): object is TabComponentProps {
+  return 'component' in object && !('children' in object);
+}
+
 export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
   (props, ref: React.Ref<any>) => {
+    let component;
     const {
       ariaLabel,
       changeHandler,
       children,
-      component,
       icon,
       iconPosition,
       index,
@@ -160,6 +173,10 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
       testId,
       ...rest
     } = props;
+
+    if (instanceOfComponentTab(props)) {
+      component = props.component;
+    }
 
     React.useEffect(() => {
       path && path === window.location.pathname && changeHandler(index);

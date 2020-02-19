@@ -558,6 +558,64 @@ The default value is false.
   }}
 />
 
+## Tab API
+
+<SimplePropsTable
+  propertyValues={{
+    ariaLabel: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Custom aria label for Tab component.',
+    },
+    component: {
+      type: {
+        name: 'React.ReactElement',
+      },
+      required: false,
+      description:
+        'The prop for custom component instead of `button` in Tab. When using this prop the `children` of the component is not used.',
+    },
+    disabled: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'The prop for disabling Tab.',
+    },
+    index: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'The index of your Tab.',
+    },
+    isActive: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'The activity state of Tab component for your custom logic.',
+    },
+    path: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        "The path link. It's needed in case you are using Link component for example by React Router library. Path must be equal to expected route.",
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'The id for react-testing-library.',
+    },
+  }}
+/>
+
 ## TabPanel API
 
 <SimplePropsTable
