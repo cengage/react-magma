@@ -115,7 +115,7 @@ export const baseInputStyles = props => css`
       ${
         props.isInverse
           ? props.theme.colors.neutral08
-          : props.theme.colors.pop02
+          : props.theme.colors.focus
       };
     outline-offset: 2px;
   }
