@@ -1,0 +1,125 @@
+---
+title: 'Breakpoints Container'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import {
+  magma,
+  Breakpoint,
+  BreakpointsContainer,
+  Card,
+  CardBody,
+} from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
+
+# Breakpoints Container
+
+## Basic Usage
+
+```.jsx
+    <BreakpointsContainer>
+         <Breakpoint size="xs">
+            <Card background={magma.colors.pop04}>
+                <CardBody><strong>Extra-Small: </strong>This will be shown from 0 pixels, up to 599px.</CardBody>
+            </Card>
+        </Breakpoint>
+
+
+        <Breakpoint size="small">
+            <Card isInverse background={magma.colors.foundation02}>
+                <CardBody><strong>Small: </strong>This will be shown from 600px pixels up to 959px.</CardBody>
+            </Card>
+        </Breakpoint>
+
+        <Breakpoint size="medium">
+            <Card isInverse background={magma.colors.pop01}>
+                <CardBody><strong>Medium: </strong>This text will be visible when the browser width is 960px and up to 1279px.</CardBody>
+            </Card>
+        </Breakpoint>
+
+        <Breakpoint size="large">
+            <Card isInverse background={magma.colors.success01}>
+                <CardBody><strong>Large: </strong>This text will be visible when the browser width is 1280px and greater.</CardBody>
+            </Card>
+        </Breakpoint>
+
+        <p>This text will always be visible, as it is not part of a breakpoint.</p>
+
+    </BreakpointsContainer>
+```
+
+## Custom Breakpoints
+
+```.jsx
+    ()=> {
+
+    const customBreakpoints = {
+    xs: 0,
+    small: 400,
+    medium: 760,
+    large: 1080
+  };
+
+    return(
+        <BreakpointsContainer breakpoints={customBreakpoints}>
+            <Breakpoint size="xs">
+                <Card background={magma.colors.pop04}>
+                    <CardBody><strong>Extra-Small: </strong>This will be shown from 0 pixels, up to 499px.</CardBody>
+                </Card>
+            </Breakpoint>
+
+
+            <Breakpoint size="small">
+                <Card isInverse background={magma.colors.foundation02}>
+                    <CardBody><strong>Small: </strong>This will be shown from 400px pixels up to 759px.</CardBody>
+                </Card>
+            </Breakpoint>
+
+            <Breakpoint size="medium">
+                <Card isInverse background={magma.colors.pop01}>
+                    <CardBody><strong>Medium: </strong>This text will be visible when the browser width is 760px and up to 1079px.</CardBody>
+                </Card>
+            </Breakpoint>
+
+            <Breakpoint size="large">
+                <Card isInverse background={magma.colors.success01}>
+                    <CardBody><strong>Large: </strong>This text will be visible when the browser width is 1080px and greater.</CardBody>
+                </Card>
+            </Breakpoint>
+
+            <p>This text will always be visible, as it is not part of a breakpoint.</p>
+
+        </BreakpointsContainer>
+    )
+}
+```
+
+## Breakpoints Container Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<SimplePropsTable
+  propertyValues={{
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
+    },
+    breakpoints: {
+      type: {
+        name: 'object',
+      },
+      required: false,
+      description: '',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout
+    {...props}
+    components={{ magma, Breakpoint, BreakpointsContainer, Card, CardBody }}
+  />
+)

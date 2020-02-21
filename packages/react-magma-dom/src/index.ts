@@ -10,6 +10,10 @@ export {
 export { Breadcrumb } from './components/Breadcrumb';
 export { BreadcrumbItem } from './components/Breadcrumb/Item';
 export {
+  BreakpointsContainer,
+  Breakpoint
+} from './components/BreakpointsContainer';
+export {
   Button,
   ButtonColor,
   ButtonShape,
