@@ -1,6 +1,13 @@
 import * as React from 'react';
 import { HideAtBreakpoint } from '../HideAtBreakpoint';
 
+export enum BreakpointScreenSize {
+  xs = 'xs', //default
+  small = 'small',
+  medium = 'medium',
+  large = 'large'
+}
+
 export interface BreakpointsContainerProps
   extends React.HTMLAttributes<HTMLDivElement> {
   breakpoints?: object;
@@ -8,7 +15,7 @@ export interface BreakpointsContainerProps
 
 export interface BreakpointProps extends React.HTMLAttributes<HTMLDivElement> {
   breakpoints?: object;
-  size?: string;
+  screenSize?: BreakpointScreenSize;
 }
 
 export const Breakpoint: React.FunctionComponent<BreakpointsContainerProps> = ({
@@ -18,31 +25,32 @@ export const Breakpoint: React.FunctionComponent<BreakpointsContainerProps> = ({
   return <div {...other}>{children}</div>;
 };
 
-function getMinWidth(size, breakpoints) {
-  switch (size) {
+function getMinWidth(
+  screenSize: BreakpointScreenSize,
+  breakpointValues: object,
+  definedBreakpoints: any
+) {
+  switch (screenSize) {
     case 'xs':
-      return breakpoints.small;
+      if (definedBreakpoints.includes(BreakpointScreenSize.small)) {
+        return breakpointValues[BreakpointScreenSize.small];
+      } else if (definedBreakpoints.includes(BreakpointScreenSize.medium)) {
+        return breakpointValues[BreakpointScreenSize.medium];
+      } else if (definedBreakpoints.includes(BreakpointScreenSize.large)) {
+        return breakpointValues[BreakpointScreenSize.large];
+      } else return null;
     case 'small':
-      return breakpoints.medium;
+      if (definedBreakpoints.includes(BreakpointScreenSize.medium)) {
+        return breakpointValues[BreakpointScreenSize.medium];
+      } else if (definedBreakpoints.includes(BreakpointScreenSize.large)) {
+        return breakpointValues[BreakpointScreenSize.large];
+      } else return null;
     case 'medium':
-      return breakpoints.large;
+      if (definedBreakpoints.includes(BreakpointScreenSize.large)) {
+        return breakpointValues[BreakpointScreenSize.large];
+      } else return null;
     case 'large':
       return null;
-    default:
-      return breakpoints.small;
-  }
-}
-
-function getMaxWidth(size, breakpoints) {
-  switch (size) {
-    case 'xs':
-      return null;
-    case 'small':
-      return breakpoints.small - 1;
-    case 'medium':
-      return breakpoints.medium - 1;
-    case 'large':
-      return breakpoints.large - 1;
     default:
       return null;
   }
@@ -51,11 +59,11 @@ function getMaxWidth(size, breakpoints) {
 export const BreakpointsContainer: React.FunctionComponent<
   BreakpointsContainerProps
 > = ({ children, breakpoints, ...other }: BreakpointsContainerProps) => {
-  // let sizes = [];
+  const definedBreakpoints = [];
 
-  // React.Children.map(children, (child: React.ReactElement) => {
-  //   sizes.push(child.props.size);
-  // });
+  React.Children.map(children, (child: React.ReactElement) => {
+    definedBreakpoints.push(child.props.screenSize);
+  });
 
   const defaultBreakpoints = {
     xs: 0,
@@ -64,18 +72,18 @@ export const BreakpointsContainer: React.FunctionComponent<
     large: 1280
   };
 
+  const breakpointValues = breakpoints ? breakpoints : defaultBreakpoints;
+
   return (
     <div {...other}>
       {React.Children.map(children, (child: React.ReactElement) => {
-        return child.props.size ? (
+        return child.props.screenSize ? (
           <HideAtBreakpoint
-            maxWidth={getMaxWidth(
-              child.props.size,
-              breakpoints ? breakpoints : defaultBreakpoints
-            )}
+            maxWidth={breakpointValues[child.props.screenSize] - 1}
             minWidth={getMinWidth(
-              child.props.size,
-              breakpoints ? breakpoints : defaultBreakpoints
+              child.props.screenSize,
+              breakpointValues,
+              definedBreakpoints
             )}
           >
             {child}

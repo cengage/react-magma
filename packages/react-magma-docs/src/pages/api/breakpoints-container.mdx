@@ -14,41 +14,71 @@ import { SimplePropsTable } from '../../components/props-table'
 
 # Breakpoints Container
 
+The `BreakpointsContainer` component can be used to hide/show content at different screen sizes. Breakpoint values are defined in the theme.
+
+By placing multiple `Breakpoint` components inside the container, you can should multiple versions of the content to be displayed.
+
+Content will be shown for the scpecfied breakpoint, up to the next largest breakpoint.
+
 ## Basic Usage
 
 ```.jsx
     <BreakpointsContainer>
-         <Breakpoint size="xs">
+         <Breakpoint screenSize="xs">
             <Card background={magma.colors.pop04}>
                 <CardBody><strong>Extra-Small: </strong>This will be shown from 0 pixels, up to 599px.</CardBody>
             </Card>
         </Breakpoint>
 
 
-        <Breakpoint size="small">
+        <Breakpoint screenSize="small">
             <Card isInverse background={magma.colors.foundation02}>
                 <CardBody><strong>Small: </strong>This will be shown from 600px pixels up to 959px.</CardBody>
             </Card>
         </Breakpoint>
 
-        <Breakpoint size="medium">
+        <Breakpoint screenSize="medium">
             <Card isInverse background={magma.colors.pop01}>
                 <CardBody><strong>Medium: </strong>This text will be visible when the browser width is 960px and up to 1279px.</CardBody>
             </Card>
         </Breakpoint>
 
-        <Breakpoint size="large">
+        <Breakpoint screenSize="large">
             <Card isInverse background={magma.colors.success01}>
                 <CardBody><strong>Large: </strong>This text will be visible when the browser width is 1280px and greater.</CardBody>
             </Card>
         </Breakpoint>
 
-        <p>This text will always be visible, as it is not part of a breakpoint.</p>
+        <br/>
+        <Card>
+            <CardBody>This text will always be visible, as it is not part of a breakpoint.</CardBody>
+        </Card>
+    </BreakpointsContainer>
+```
 
+## Using Fewer Breakpoints
+
+It is not neccessarry to use all of the breakpoints. If only two are used, the default breakpoint component will show content up to the first breakpoint. The next one will show content up to the next one, and so on.
+
+```.jsx
+    <BreakpointsContainer>
+         <Breakpoint screenSize="xs">
+            <Card background={magma.colors.pop04}>
+                <CardBody><strong>Extra-Small: </strong>This will be shown from 0 pixels, up to 959px.</CardBody>
+            </Card>
+        </Breakpoint>
+
+        <Breakpoint screenSize="medium">
+            <Card isInverse background={magma.colors.pop01}>
+                <CardBody><strong>Medium: </strong>This text will be visible when the browser width is 960px and larger.</CardBody>
+            </Card>
+        </Breakpoint>
     </BreakpointsContainer>
 ```
 
 ## Custom Breakpoints
+
+Custom breakpoints can be shown by using the `breakpoints` object prop.
 
 ```.jsx
     ()=> {
@@ -62,33 +92,30 @@ import { SimplePropsTable } from '../../components/props-table'
 
     return(
         <BreakpointsContainer breakpoints={customBreakpoints}>
-            <Breakpoint size="xs">
+            <Breakpoint screenSize="xs">
                 <Card background={magma.colors.pop04}>
                     <CardBody><strong>Extra-Small: </strong>This will be shown from 0 pixels, up to 499px.</CardBody>
                 </Card>
             </Breakpoint>
 
 
-            <Breakpoint size="small">
+            <Breakpoint screenSize="small">
                 <Card isInverse background={magma.colors.foundation02}>
                     <CardBody><strong>Small: </strong>This will be shown from 400px pixels up to 759px.</CardBody>
                 </Card>
             </Breakpoint>
 
-            <Breakpoint size="medium">
+            <Breakpoint screenSize="medium">
                 <Card isInverse background={magma.colors.pop01}>
                     <CardBody><strong>Medium: </strong>This text will be visible when the browser width is 760px and up to 1079px.</CardBody>
                 </Card>
             </Breakpoint>
 
-            <Breakpoint size="large">
+            <Breakpoint screenSize="large">
                 <Card isInverse background={magma.colors.success01}>
                     <CardBody><strong>Large: </strong>This text will be visible when the browser width is 1080px and greater.</CardBody>
                 </Card>
             </Breakpoint>
-
-            <p>This text will always be visible, as it is not part of a breakpoint.</p>
-
         </BreakpointsContainer>
     )
 }
@@ -100,16 +127,34 @@ import { SimplePropsTable } from '../../components/props-table'
 
 <SimplePropsTable
   propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
     breakpoints: {
       type: {
         name: 'object',
+      },
+      required: false,
+      description:
+        'Object that defines the pixel size of individual breakpoints',
+      defaultValue: '{ xs: 0, small: 600, medium: 960, large: 1280 }',
+    },
+  }}
+/>
+
+## Breakpoint Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<SimplePropsTable
+  propertyValues={{
+    screenSize: {
+      type: {
+        name: 'enum',
+        options: [
+          'BreakpointScreenSize.xs',
+          'BreakpointScreenSize.small',
+          'BreakpointScreenSize.medium',
+          'BreakpointScreenSize.large',
+          'BreakpointScreenSize.xl',
+        ],
       },
       required: false,
       description: '',
