@@ -23,7 +23,7 @@ const Message = styled.div<InputMessageProps>`
       : props.theme.colors.neutral03};
   display: flex;
   font-size: 13px;
-  line-height: 1.1;
+  line-height: 1.3;
   margin-top: 5px;
   min-height: 20px;
   padding: ${props => (props.isInverse && props.isError ? '5px 10px' : '0')};
