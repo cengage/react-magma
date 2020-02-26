@@ -9,6 +9,7 @@ export interface Colors {
   pop02: string;
   pop03: string;
   pop04: string;
+  pop05: string;
   success01: string;
   success02: string;
   danger: string;
@@ -57,6 +58,7 @@ export const magma = {
     pop02: '#FA6600',
     pop03: '#F2A900',
     pop04: '#FFC72C',
+    pop05: '#92278F',
     success01: '#3A8200',
     success02: '#48A200',
     danger: '#E70000',
