@@ -20,6 +20,7 @@ export interface TextareaProps
   messageStyle?: React.CSSProperties;
   testId?: string;
   textareaStyle?: React.CSSProperties;
+  value?: string | string[] | number;
 }
 
 const Container = styled.div`
@@ -37,7 +38,6 @@ export const Textarea: React.FunctionComponent<
 > = React.forwardRef(
   (props: TextareaProps, ref: React.Ref<HTMLTextAreaElement>) => {
     const {
-      children,
       containerStyle,
       errorMessage,
       helperMessage,
@@ -57,16 +57,15 @@ export const Textarea: React.FunctionComponent<
     const id = useGenerateId(defaultId);
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
-    const [value, setValue] = React.useState<{} | string[] | number>(
-      props.defaultValue || props.children || ''
+    const [value, setValue] = React.useState<string | string[] | number>(
+      props.defaultValue || props.value || ''
     );
 
     React.useEffect(() => {
-      if (props.children) {
-        setValue(props.children);
+      if (props.value) {
+        setValue(props.value);
       }
-    }, [props.children]);
-
+    }, [props.value]);
     function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
       props.onChange &&
         typeof props.onChange === 'function' &&
@@ -97,9 +96,8 @@ export const Textarea: React.FunctionComponent<
           ref={ref}
           style={textareaStyle}
           theme={theme}
-        >
-          {value}
-        </StyledTextArea>
+          value={value}
+        />
 
         <InputMessage
           isInverse={isInverse}
