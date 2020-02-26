@@ -60,6 +60,7 @@ export const baseInputStyles = props => css`
   color: ${props.theme.colors.neutral01};
   display: block;
   font-size: 1rem;
+  font-family: ${props.theme.bodyFont};
   height: 37px;
   line-height: 1.25rem;
   padding: 0 8px;
@@ -114,7 +115,7 @@ export const baseInputStyles = props => css`
       ${
         props.isInverse
           ? props.theme.colors.neutral08
-          : props.theme.colors.pop02
+          : props.theme.colors.focus
       };
     outline-offset: 2px;
   }
