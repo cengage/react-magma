@@ -34,9 +34,9 @@ const TimePickerContainer = styled.div<{ isInverse?: boolean }>`
 
 const InputsContainer = styled.div`
   background: ${props => props.theme.colors.neutral08};
-  bottom: 46px;
   left: 31px;
   position: absolute;
+  top: 7px;
 `;
 
 const Divider = styled.span`
@@ -233,48 +233,49 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
           width: '125px'
         }}
         value={time}
-      />
-      <InputsContainer theme={theme}>
-        <StyledNumInput
-          aria-label="Hours"
-          aria-describedby={descriptionId}
-          data-testid="hoursTimeInput"
-          id={hourId}
-          maxLength={2}
-          max="12"
-          min="1"
-          onChange={handleHourChange}
-          onKeyDown={handleHourKeyDown}
-          placeholder="--"
-          ref={hourRef}
-          theme={theme}
-          type="number"
-          value={hour}
-        />
-        <Divider> : </Divider>
-        <StyledNumInput
-          aria-label="Minutes"
-          data-testid="minutesTimeInput"
-          id={minuteId}
-          maxLength={2}
-          max="59"
-          min="0"
-          onChange={handleMinuteChange}
-          onKeyDown={handleMinuteKeyDown}
-          placeholder="--"
-          ref={minuteRef}
-          theme={theme}
-          type="number"
-          value={minute}
-        />
-        <AmPmToggle
-          ref={amPmRef}
-          onClick={toggleAmPm}
-          onKeyDown={handleAmPmKeyDown}
-        >
-          {amPm}
-        </AmPmToggle>
-      </InputsContainer>
+      >
+        <InputsContainer theme={theme}>
+          <StyledNumInput
+            aria-label="Hours"
+            aria-describedby={descriptionId}
+            data-testid="hoursTimeInput"
+            id={hourId}
+            maxLength={2}
+            max="12"
+            min="1"
+            onChange={handleHourChange}
+            onKeyDown={handleHourKeyDown}
+            placeholder="--"
+            ref={hourRef}
+            theme={theme}
+            type="number"
+            value={hour}
+          />
+          <Divider> : </Divider>
+          <StyledNumInput
+            aria-label="Minutes"
+            data-testid="minutesTimeInput"
+            id={minuteId}
+            maxLength={2}
+            max="59"
+            min="0"
+            onChange={handleMinuteChange}
+            onKeyDown={handleMinuteKeyDown}
+            placeholder="--"
+            ref={minuteRef}
+            theme={theme}
+            type="number"
+            value={minute}
+          />
+          <AmPmToggle
+            ref={amPmRef}
+            onClick={toggleAmPm}
+            onKeyDown={handleAmPmKeyDown}
+          >
+            {amPm}
+          </AmPmToggle>
+        </InputsContainer>
+      </Input>
     </TimePickerContainer>
   );
 };
