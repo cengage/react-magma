@@ -23,10 +23,17 @@ const Message = styled.div<InputMessageProps>`
       : props.theme.colors.neutral03};
   display: flex;
   font-size: 13px;
+  line-height: 1.1;
   margin-top: 5px;
-  min-height: 2.5em;
+  min-height: 20px;
   padding: ${props => (props.isInverse && props.isError ? '5px 10px' : '0')};
   text-align: left;
+`;
+
+const IconWrapper = styled.span`
+  display: inline-flex;
+  flex-shrink: 0;
+  padding-right: 5px;
 `;
 
 export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
@@ -48,9 +55,9 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
       theme={theme}
     >
       {isError && (
-        <>
-          <Notification2Icon aria-label="Error" size={18} /> &nbsp;
-        </>
+        <IconWrapper>
+          <Notification2Icon aria-label="Error" size={18} />
+        </IconWrapper>
       )}
       <div>{children}</div>
     </Message>
