@@ -23,8 +23,9 @@ const Message = styled.div<InputMessageProps>`
       : props.theme.colors.neutral03};
   display: flex;
   font-size: 13px;
+  line-height: 1.3;
   margin-top: 5px;
-  min-height: 2.5em;
+  min-height: 20px;
   padding: ${props => (props.isInverse && props.isError ? '5px 10px' : '0')};
   text-align: left;
 `;
@@ -32,7 +33,7 @@ const Message = styled.div<InputMessageProps>`
 const IconWrapper = styled.span`
   display: inline-flex;
   flex-shrink: 0;
-  padding-right: 10px;
+  padding-right: 5px;
 `;
 
 export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
