@@ -29,6 +29,12 @@ const Message = styled.div<InputMessageProps>`
   text-align: left;
 `;
 
+const IconWrapper = styled.span`
+  display: inline-flex;
+  flex-shrink: 0;
+  padding-right: 10px;
+`;
+
 export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
   children,
   id,
@@ -48,9 +54,9 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
       theme={theme}
     >
       {isError && (
-        <>
-          <Notification2Icon aria-label="Error" size={18} /> &nbsp;
-        </>
+        <IconWrapper>
+          <Notification2Icon aria-label="Error" size={18} />
+        </IconWrapper>
       )}
       <div>{children}</div>
     </Message>
