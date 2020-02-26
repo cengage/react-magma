@@ -22,6 +22,7 @@ export { Checkbox } from './components/Checkbox';
 export { Card, CardAlignment, CardCalloutType } from './components/Card';
 export { CardBody } from './components/Card/CardBody';
 export { CardHeading } from './components/Card/CardHeading';
+export { Dropdown } from './components/Dropdown';
 export { FormGroup } from './components/FormGroup';
 export { Heading } from './components/Heading';
 export { HideAtBreakpoint } from './components/HideAtBreakpoint';

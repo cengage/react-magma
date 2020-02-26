@@ -1,0 +1,34 @@
+---
+title: 'Dropdown'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { Dropdown } from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
+
+# Dropdown
+
+## Basic Usage
+
+```.jsx
+      <Dropdown>testing</Dropdown>
+```
+
+## Dropdown Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<SimplePropsTable
+  propertyValues={{
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+  }}
+/>
+
+export default props => <ScopeableLayout {...props} components={{ Dropdown }} />
