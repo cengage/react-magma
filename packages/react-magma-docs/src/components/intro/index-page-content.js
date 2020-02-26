@@ -22,11 +22,11 @@ const Heading = styled.h1`
   text-align: center;
   text-transform: uppercase;
 
-  @media (min-width: ${props => props.theme.sizeSm}) {
+  @media (min-width: ${props => props.theme.breakpoints.medium}px) {
     font-size: 6.4em;
   }
 
-  @media (min-width: ${props => props.theme.sizeXs}) {
+  @media (min-width: ${props => props.theme.breakpoints.small}px) {
     text-align: left;
   }
 `
@@ -34,7 +34,7 @@ const Heading = styled.h1`
 const List = styled.ol`
   display: none;
 
-  @media (min-width: ${props => props.theme.sizeSm}) {
+  @media (min-width: ${props => props.theme.breakpoints.medium}px) {
     background-color: ${props => props.theme.colors.foundation01};
     display: flex;
     left: 0;
@@ -48,7 +48,7 @@ const List = styled.ol`
     z-index: 2;
   }
 
-  @media (min-width: ${props => props.theme.sizeMd}) {
+  @media (min-width: ${props => props.theme.breakpoints.large}px) {
     left: 280px;
   }
 `
@@ -64,7 +64,7 @@ const ButtonContainer = styled.div`
     }
   }
 
-  @media (min-width: ${props => props.theme.sizeXs}) {
+  @media (min-width: ${props => props.theme.breakpoints.small}px) {
     text-align: left;
   }
 `

@@ -27,14 +27,19 @@ export interface Colors {
   shade02: string;
 }
 
+export interface Breakpoints {
+  xs: number;
+  small: number;
+  medium: number;
+  large: number;
+  xl: number;
+}
+
 export interface ThemeInterface {
   bodyFont: string;
   headingFont: string;
   colors: Colors;
-  sizeXs: string;
-  sizeSm: string;
-  sizeMd: string;
-  sizeLg: string;
+  breakpoints: object;
 }
 
 export const magma = {
@@ -71,9 +76,12 @@ export const magma = {
     shade02: 'rgba(0,0,0,0.3)'
   },
 
-  // screen sizes
-  sizeXs: '600px',
-  sizeSm: '768px',
-  sizeMd: '1024px',
-  sizeLg: '1200px'
+  // breakpoints
+  breakpoints: {
+    xs: 0,
+    small: 600,
+    medium: 768,
+    large: 1024,
+    xl: 1200
+  }
 };

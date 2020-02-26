@@ -6,13 +6,14 @@ import { render } from '@testing-library/react';
 describe('Breakpoints Container', () => {
   it('should render the BreakpointsContainer component', () => {
     const TEXT = 'Test Text';
-    const { container } = render(
+    const { container, getByText } = render(
       <BreakpointsContainer>
         <Breakpoint>{TEXT}</Breakpoint>
       </BreakpointsContainer>
     );
 
     expect(container).toBeInTheDocument();
+    expect(getByText(TEXT)).toBeInTheDocument();
   });
 
   it('Does not violate accessibility standards', () => {

@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { HideAtBreakpoint } from '../HideAtBreakpoint';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 export enum BreakpointScreenSize {
   xs = 'xs', //default
   small = 'small',
   medium = 'medium',
-  large = 'large'
+  large = 'large',
+  xl = 'xl'
 }
 
 export interface BreakpointsContainerProps
@@ -38,18 +40,28 @@ function getMinWidth(
         return breakpointValues[BreakpointScreenSize.medium];
       } else if (definedBreakpoints.includes(BreakpointScreenSize.large)) {
         return breakpointValues[BreakpointScreenSize.large];
+      } else if (definedBreakpoints.includes(BreakpointScreenSize.xl)) {
+        return breakpointValues[BreakpointScreenSize.xl];
       } else return null;
     case 'small':
       if (definedBreakpoints.includes(BreakpointScreenSize.medium)) {
         return breakpointValues[BreakpointScreenSize.medium];
       } else if (definedBreakpoints.includes(BreakpointScreenSize.large)) {
         return breakpointValues[BreakpointScreenSize.large];
+      } else if (definedBreakpoints.includes(BreakpointScreenSize.xl)) {
+        return breakpointValues[BreakpointScreenSize.xl];
       } else return null;
     case 'medium':
       if (definedBreakpoints.includes(BreakpointScreenSize.large)) {
         return breakpointValues[BreakpointScreenSize.large];
+      } else if (definedBreakpoints.includes(BreakpointScreenSize.xl)) {
+        return breakpointValues[BreakpointScreenSize.xl];
       } else return null;
     case 'large':
+      if (definedBreakpoints.includes(BreakpointScreenSize.xl)) {
+        return breakpointValues[BreakpointScreenSize.xl];
+      }
+    case 'xl':
       return null;
     default:
       return null;
@@ -65,12 +77,9 @@ export const BreakpointsContainer: React.FunctionComponent<
     definedBreakpoints.push(child.props.screenSize);
   });
 
-  const defaultBreakpoints = {
-    xs: 0,
-    small: 600,
-    medium: 960,
-    large: 1280
-  };
+  const theme = React.useContext(ThemeContext);
+
+  const defaultBreakpoints = theme.breakpoints;
 
   const breakpointValues = breakpoints ? breakpoints : defaultBreakpoints;
 
