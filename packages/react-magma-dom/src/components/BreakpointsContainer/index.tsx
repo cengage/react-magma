@@ -16,14 +16,16 @@ export interface BreakpointsContainerProps
 }
 
 export interface BreakpointProps extends React.HTMLAttributes<HTMLDivElement> {
-  breakpoints?: object;
   screenSize?: BreakpointScreenSize;
+  testId?: string;
 }
 
-export const Breakpoint: React.FunctionComponent<BreakpointsContainerProps> = ({
+export const Breakpoint: React.FunctionComponent<BreakpointProps> = ({
   children,
+  screenSize,
+  testId,
   ...other
-}: BreakpointsContainerProps) => {
+}: BreakpointProps) => {
   return <div {...other}>{children}</div>;
 };
 
@@ -84,16 +86,18 @@ export const BreakpointsContainer: React.FunctionComponent<
   const breakpointValues = breakpoints ? breakpoints : defaultBreakpoints;
 
   return (
-    <div {...other}>
+    <>
       {React.Children.map(children, (child: React.ReactElement) => {
         return child.props.screenSize ? (
           <HideAtBreakpoint
+            {...other}
             maxWidth={breakpointValues[child.props.screenSize] - 1}
             minWidth={getMinWidth(
               child.props.screenSize,
               breakpointValues,
               definedBreakpoints
             )}
+            testId={child.props.testId}
           >
             {child}
           </HideAtBreakpoint>
@@ -101,6 +105,6 @@ export const BreakpointsContainer: React.FunctionComponent<
           child
         );
       })}
-    </div>
+    </>
   );
 };
