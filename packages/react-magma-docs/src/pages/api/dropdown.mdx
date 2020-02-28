@@ -14,12 +14,42 @@ import { SimplePropsTable } from '../../components/props-table'
       <Dropdown>testing</Dropdown>
 ```
 
+## Drop Direction
+
+```.jsx
+      <Dropdown dropDirection='up'>testing</Dropdown>
+```
+
+## Alignment
+
+```.jsx
+      <Dropdown alignment='right'>testing</Dropdown>
+```
+
 ## Dropdown Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**
 
 <SimplePropsTable
   propertyValues={{
+    alignment: {
+      type: {
+        name: 'enum',
+        options: ['DropdownAlignment.left, DropdownAlignment.right'],
+      },
+      required: false,
+      description: 'Alignment of the dropdown menu',
+      defaultValue: 'left',
+    },
+    dropDirection: {
+      type: {
+        name: 'enum',
+        options: ['DropdownDropDirection.down, DropdownDropDirection.up'],
+      },
+      required: false,
+      description: 'Position of the dropdown menu',
+      defaultValue: 'down',
+    },
     testId: {
       type: {
         name: 'string',
