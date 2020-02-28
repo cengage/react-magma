@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useGenerateId } from '../utils';
+import { useGenerateId } from '../../utils';
 
 const defaultSize = 24;
 

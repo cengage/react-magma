@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { Alert, AlertProps } from '../Alert';
-import { useGenerateId } from '../utils';
+import { useGenerateId } from '../../utils';
 
 export interface ToastProps extends AlertProps {
   alertStyle?: React.CSSProperties;

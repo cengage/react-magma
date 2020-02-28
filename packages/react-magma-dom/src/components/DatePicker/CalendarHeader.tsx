@@ -7,7 +7,7 @@ import { IconButton } from '../IconButton';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { format, addMonths, subMonths } from 'date-fns';
 import styled from '../../theme/styled';
-import { usePrevious } from '../utils';
+import { usePrevious } from '../../utils';
 
 interface CalendarHeaderProps {
   focusHeader?: boolean;

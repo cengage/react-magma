@@ -4,7 +4,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { AmPmToggle } from './AmPmToggle';
 import { ClockIcon } from '../Icon/types/ClockIcon';
 import { Input } from '../Input';
-import { useGenerateId } from '../utils';
+import { useGenerateId } from '../../utils';
 
 export interface TimePickerProps {
   errorMessage?: React.ReactNode;

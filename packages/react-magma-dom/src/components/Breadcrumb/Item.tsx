@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { BreadCrumbContext } from './';
+import { BreadCrumbContext } from '.';
 
 import { HyperLink } from '../HyperLink';
 import { AngleRightIcon } from '../Icon/types/AngleRightIcon';
