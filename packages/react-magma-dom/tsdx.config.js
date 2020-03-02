@@ -88,7 +88,14 @@ module.exports = {
         dir: 'dist',
         entryFileNames: 'esm/[name].js'
       },
-      external: ['react', 'react-dom', 'date-fns', 'react-select']
+      external: [
+        'react',
+        'react-dom',
+        'date-fns',
+        'react-select',
+        '@emotion/core',
+        '@emotion/styled'
+      ]
     };
 
     return { ...config, ...overrides };
