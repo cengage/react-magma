@@ -2,9 +2,6 @@ import * as React from 'react';
 import { css } from '@emotion/core';
 import styled from '../../theme/styled';
 import { Card } from '../Card';
-import { DropdownMenu } from './DropdownMenu';
-import { DropdownMenuItem } from './DropdownMenuItem';
-import { DropdownToggle } from './DropdownToggle';
 
 export enum DropdownDropDirection {
   down = 'down', //default
@@ -21,6 +18,7 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
   dropDirection?: DropdownDropDirection;
   ref?: any;
   testId?: string;
+  width?: string;
 }
 
 const Container = styled.div`
@@ -32,11 +30,18 @@ const StyledCard = styled(Card)<{
   alignment?: DropdownAlignment;
   dropDirection?: DropdownDropDirection;
   isOpen?: boolean;
+  width?: string;
 }>`
   display: ${props => (props.isOpen ? 'block' : 'none')};
   left: 5px;
   position: absolute;
   z-index: 999;
+
+  ${props =>
+    props.width &&
+    css`
+      width: ${props.width};
+    `}
 
   ${props =>
     props.dropDirection === 'up' &&
@@ -53,11 +58,28 @@ const StyledCard = styled(Card)<{
     `}
 `;
 
+export interface DropdownContextInterface {
+  dropDirection?: DropdownDropDirection;
+  isFixedWidth?: boolean;
+  toggleDropdown?: () => void;
+}
+
+export const DropdownContext = React.createContext<DropdownContextInterface>(
+  {}
+);
+
 export const Dropdown: React.FunctionComponent<
   DropdownProps
 > = React.forwardRef(
   (
-    { children, alignment, dropDirection, testId, ...other }: DropdownProps,
+    {
+      children,
+      alignment,
+      dropDirection,
+      testId,
+      width,
+      ...other
+    }: DropdownProps,
     ref: any
   ) => {
     const [isOpen, setIsOpen] = React.useState<boolean>(false);
@@ -66,21 +88,45 @@ export const Dropdown: React.FunctionComponent<
       setIsOpen(!isOpen);
     }
 
+    function handleMenuBlur(event: React.SyntheticEvent) {
+      const { currentTarget } = event;
+
+      setTimeout(() => {
+        const isInMenu = currentTarget.contains(document.activeElement);
+
+        if (!isInMenu && isOpen) {
+          setIsOpen(false);
+        }
+      }, 0);
+    }
+
     return (
-      <Container {...other} ref={ref} data-testid={testId}>
-        <DropdownToggle onClick={toggleDropdown}>Toggle me</DropdownToggle>
-        <StyledCard
-          alignment={alignment}
-          dropDirection={dropDirection}
-          isOpen={isOpen}
-          testId="dropdownMenu"
+      <DropdownContext.Provider
+        value={{
+          dropDirection: dropDirection,
+          isFixedWidth: !!width,
+          toggleDropdown: toggleDropdown
+        }}
+      >
+        <Container
+          {...other}
+          ref={ref}
+          data-testid={testId}
+          onBlur={handleMenuBlur}
         >
-          <DropdownMenu>
-            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
-          </DropdownMenu>
-        </StyledCard>
-      </Container>
+          {children[0]}
+
+          <StyledCard
+            alignment={alignment}
+            dropDirection={dropDirection}
+            isOpen={isOpen}
+            testId="dropdownMenu"
+            width={width}
+          >
+            {children[1]}
+          </StyledCard>
+        </Container>
+      </DropdownContext.Provider>
     );
   }
 );

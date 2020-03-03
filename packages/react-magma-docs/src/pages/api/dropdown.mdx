@@ -3,7 +3,15 @@ title: 'Dropdown'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { Dropdown } from 'react-magma-dom'
+import {
+  AsteriskIcon,
+  BellIcon,
+  Checkbox,
+  Dropdown,
+  DropdownMenu,
+  DropdownMenuItem,
+  DropdownToggle,
+} from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 
 # Dropdown
@@ -11,19 +19,75 @@ import { SimplePropsTable } from '../../components/props-table'
 ## Basic Usage
 
 ```.jsx
-      <Dropdown>testing</Dropdown>
+      <Dropdown>
+         <DropdownToggle>Basic Dropdown</DropdownToggle>
+          <DropdownMenu>
+            <DropdownMenuItem onClick={()=>{}}>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem onClick={()=>{}}>Menu item number two</DropdownMenuItem>
+          </DropdownMenu>
+      </Dropdown>
 ```
 
 ## Drop Direction
 
 ```.jsx
-      <Dropdown dropDirection='up'>testing</Dropdown>
+      <Dropdown dropDirection='up'>
+          <DropdownToggle>Drop up</DropdownToggle>
+          <DropdownMenu>
+            <DropdownMenuItem onClick={()=>{}}>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem onClick={()=>{}}>Menu item number two</DropdownMenuItem>
+          </DropdownMenu>
+      </Dropdown>
 ```
 
 ## Alignment
 
 ```.jsx
-      <Dropdown alignment='right'>testing</Dropdown>
+      <Dropdown alignment='right'>
+        <DropdownToggle>Right Aligned</DropdownToggle>
+        <DropdownMenu>
+          <DropdownMenuItem onClick={()=>{}}>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem onClick={()=>{}}>Menu item number two</DropdownMenuItem>
+        </DropdownMenu>
+      </Dropdown>
+```
+
+## Fixed Width
+
+By default, a dropdown menu will be as wide as the largest item. However, you may limit the width using the `width` prop, in which case items will wrap if needed.
+
+```.jsx
+      <Dropdown width="250px">
+        <DropdownToggle>Fixed Width</DropdownToggle>
+        <DropdownMenu>
+          <DropdownMenuItem>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tellus turpis, finibus et bibendum eget, rhoncus ut risus. Proin nec nisi ut eros aliquam interdum.</DropdownMenuItem>
+          <DropdownMenuItem>Nunc egestas ullamcorper finibus. Phasellus non risus id mauris dignissim molestie in sit amet enim. In condimentum fringilla sodales.</DropdownMenuItem>
+        </DropdownMenu>
+      </Dropdown>
+```
+
+## Disabled Item
+
+```.jsx
+      <Dropdown>
+        <DropdownToggle>Disabled Item</DropdownToggle>
+        <DropdownMenu>
+          <DropdownMenuItem disabled>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+        </DropdownMenu>
+      </Dropdown>
+```
+
+## Leading Icons
+
+```.jsx
+      <Dropdown>
+        <DropdownToggle>Leading Icons</DropdownToggle>
+        <DropdownMenu>
+          <DropdownMenuItem icon={<AsteriskIcon />}>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem icon={<BellIcon />}>Menu item 2</DropdownMenuItem>
+        </DropdownMenu>
+      </Dropdown>
 ```
 
 ## Dropdown Props
@@ -58,7 +122,28 @@ import { SimplePropsTable } from '../../components/props-table'
       description:
         'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
+    width: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Width of menu',
+      defaultValue: 'Width of longest menu item',
+    },
   }}
 />
 
-export default props => <ScopeableLayout {...props} components={{ Dropdown }} />
+export default props => (
+  <ScopeableLayout
+    {...props}
+    components={{
+      AsteriskIcon,
+      BellIcon,
+      Checkbox,
+      Dropdown,
+      DropdownMenu,
+      DropdownMenuItem,
+      DropdownToggle,
+    }}
+  />
+)
