@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { HideAtBreakpoint } from '../HideAtBreakpoint';
+import {
+  HideAtBreakpoint,
+  HideAtBreakpointImplementation
+} from '../HideAtBreakpoint';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 export enum BreakpointScreenSize {
@@ -13,6 +16,7 @@ export enum BreakpointScreenSize {
 export interface BreakpointsContainerProps
   extends React.HTMLAttributes<HTMLDivElement> {
   breakpoints?: object;
+  implementation?: HideAtBreakpointImplementation;
 }
 
 export interface BreakpointProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -72,7 +76,12 @@ function getMinWidth(
 
 export const BreakpointsContainer: React.FunctionComponent<
   BreakpointsContainerProps
-> = ({ children, breakpoints, ...other }: BreakpointsContainerProps) => {
+> = ({
+  children,
+  implementation,
+  breakpoints,
+  ...other
+}: BreakpointsContainerProps) => {
   const definedBreakpoints = [];
 
   React.Children.map(children, (child: React.ReactElement) => {
@@ -91,6 +100,11 @@ export const BreakpointsContainer: React.FunctionComponent<
         return child.props.screenSize ? (
           <HideAtBreakpoint
             {...other}
+            implementation={
+              implementation
+                ? implementation
+                : HideAtBreakpointImplementation.js
+            }
             maxWidth={breakpointValues[child.props.screenSize] - 1}
             minWidth={getMinWidth(
               child.props.screenSize,

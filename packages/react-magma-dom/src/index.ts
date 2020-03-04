@@ -318,3 +318,5 @@ export { WlReadyIcon } from './components/Icon/types/WlReadyIcon';
 export { WlUseItIcon } from './components/Icon/types/WlUseItIcon';
 export { WrenchIcon } from './components/Icon/types/WrenchIcon';
 export { YoutubeIcon } from './components/Icon/types/YoutubeIcon';
+
+export { useMediaQuery } from './components/utils';
