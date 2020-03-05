@@ -160,9 +160,9 @@ export interface TabsProps
     React.ButtonHTMLAttributes<HTMLDivElement>['onChange'],
     React.ButtonHTMLAttributes<HTMLDivElement>
   > {
-  alignment: TabsAlignment;
+  alignment?: TabsAlignment;
   ariaLabel?: string;
-  backgroundColor: string;
+  backgroundColor?: string;
   iconPosition?: 'left' | 'top';
   isFullWidth?: boolean;
   isInverse?: boolean;
