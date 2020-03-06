@@ -1,5 +1,6 @@
 import React from 'react';
 import { axe } from 'jest-axe';
+import { AsteriskIcon } from '../Icon/types/AsteriskIcon';
 import { Dropdown } from '.';
 import { DropdownMenu } from './DropdownMenu';
 import { DropdownMenuItem } from './DropdownMenuItem';
@@ -44,6 +45,38 @@ describe('Dropdown', () => {
     fireEvent.click(getByText('Toggle me'));
 
     expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'block');
+  });
+
+  it('should render a dropdown menu item with an icon', () => {
+    const { container } = render(
+      <DropdownMenuItem icon={<AsteriskIcon />}>Menu item</DropdownMenuItem>
+    );
+
+    expect(container.querySelector('svg')).toBeInTheDocument();
+  });
+
+  it('should render a dropdown menu item with correct styles when fixed width', () => {
+    const { getByText } = render(
+      <Dropdown width="100px">
+        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownMenu>
+          <DropdownMenuItem>Menu item</DropdownMenuItem>
+        </DropdownMenu>
+      </Dropdown>
+    );
+
+    expect(getByText('Menu item')).toHaveStyleRule('white-space', 'normal');
+  });
+
+  it('should fire the onclick event for an item when clicked', () => {
+    const onClick = jest.fn();
+
+    const { getByText } = render(
+      <DropdownMenuItem onClick={onClick}>Menu item</DropdownMenuItem>
+    );
+
+    fireEvent.click(getByText('Menu item'));
+    expect(onClick).toHaveBeenCalled();
   });
 
   it('Does not violate accessibility standards', () => {

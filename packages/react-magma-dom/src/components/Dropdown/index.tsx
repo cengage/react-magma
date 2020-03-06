@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { css } from '@emotion/core';
 import styled from '../../theme/styled';
-import { Card } from '../Card';
 
 export enum DropdownDropDirection {
   down = 'down', //default
@@ -26,47 +24,22 @@ const Container = styled.div`
   position: relative;
 `;
 
-const StyledCard = styled(Card)<{
+interface DropdownContextInterface {
   alignment?: DropdownAlignment;
   dropDirection?: DropdownDropDirection;
-  isOpen?: boolean;
-  width?: string;
-}>`
-  display: ${props => (props.isOpen ? 'block' : 'none')};
-  left: 5px;
-  position: absolute;
-  z-index: 999;
-
-  ${props =>
-    props.width &&
-    css`
-      width: ${props.width};
-    `}
-
-  ${props =>
-    props.dropDirection === 'up' &&
-    css`
-      top: auto;
-      bottom: 100%;
-    `}
-
-  ${props =>
-    props.alignment === 'right' &&
-    css`
-      left: auto;
-      right: 5px;
-    `}
-`;
-
-export interface DropdownContextInterface {
-  dropDirection?: DropdownDropDirection;
   isFixedWidth?: boolean;
+  isOpen?: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   toggleDropdown?: () => void;
+  width?: string;
 }
 
-export const DropdownContext = React.createContext<DropdownContextInterface>(
-  {}
-);
+export const DropdownContext = React.createContext<DropdownContextInterface>({
+  isOpen: false,
+  setIsOpen: () => false
+});
+
+export const useDropdownContext = () => React.useContext(DropdownContext);
 
 export const Dropdown: React.FunctionComponent<
   DropdownProps
@@ -103,9 +76,13 @@ export const Dropdown: React.FunctionComponent<
     return (
       <DropdownContext.Provider
         value={{
+          alignment: alignment,
           dropDirection: dropDirection,
           isFixedWidth: !!width,
-          toggleDropdown: toggleDropdown
+          isOpen: isOpen,
+          setIsOpen: setIsOpen,
+          toggleDropdown: toggleDropdown,
+          width: width
         }}
       >
         <Container
@@ -114,17 +91,7 @@ export const Dropdown: React.FunctionComponent<
           data-testid={testId}
           onBlur={handleMenuBlur}
         >
-          {children[0]}
-
-          <StyledCard
-            alignment={alignment}
-            dropDirection={dropDirection}
-            isOpen={isOpen}
-            testId="dropdownMenu"
-            width={width}
-          >
-            {children[1]}
-          </StyledCard>
+          {children}
         </Container>
       </DropdownContext.Provider>
     );
