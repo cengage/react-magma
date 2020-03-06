@@ -93,7 +93,6 @@
     "react-dom": "^16.10.0",
     "react-select": "^3.0.0",
     "rimraf": "^2.6.2",
-    "rollup-plugin-commonjs": "^10.1.0",
     "tsdx": "^0.12.3",
     "tslint": "^5.11.0",
     "tslint-config-cengage": "^0.1.0",

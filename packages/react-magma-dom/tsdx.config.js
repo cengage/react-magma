@@ -1,5 +1,4 @@
 const fs = require('fs');
-const commonjs = require('rollup-plugin-commonjs');
 
 module.exports = {
   rollup(config) {
@@ -8,11 +7,6 @@ module.exports = {
     }
 
     let input = {};
-    config.plugins.push(
-      commonjs({
-        include: 'node_modules/**'
-      })
-    );
 
     const components = fs.readdirSync('src/components');
     const icons = fs.readdirSync('src/components/Icon/types');
@@ -20,14 +14,12 @@ module.exports = {
     const utilsFiles = fs.readdirSync('src/utils');
 
     components.forEach(component => {
-      if (component === 'SelectionControls') {
-        return;
+      if (component !== 'SelectionControls') {
+        input[`components/${component}/index`] =
+          component === 'Icon'
+            ? `src/components/${component}/index.ts`
+            : `src/components/${component}/index.tsx`;
       }
-
-      input[`components/${component}/index`] =
-        component === 'Icon'
-          ? `src/components/${component}/index.ts`
-          : `src/components/${component}/index.tsx`;
 
       const files = fs.readdirSync(`src/components/${component}`);
 
@@ -94,7 +86,11 @@ module.exports = {
         'date-fns',
         'react-select',
         '@emotion/core',
-        '@emotion/styled'
+        '@emotion/styled',
+        '@emotion/styled-base',
+        '@emotion/serialize',
+        'prop-types',
+        'react-input-autosize'
       ]
     };
 
