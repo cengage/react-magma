@@ -22,8 +22,8 @@ import { SimplePropsTable } from '../../components/props-table'
       <Dropdown>
          <DropdownToggle>Basic Dropdown</DropdownToggle>
           <DropdownMenu>
-            <DropdownMenuItem onClick={()=>{}}>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem onClick={()=>{}}>Menu item number two</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
           </DropdownMenu>
       </Dropdown>
 ```
@@ -34,8 +34,8 @@ import { SimplePropsTable } from '../../components/props-table'
       <Dropdown dropDirection='up'>
           <DropdownToggle>Drop up</DropdownToggle>
           <DropdownMenu>
-            <DropdownMenuItem onClick={()=>{}}>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem onClick={()=>{}}>Menu item number two</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
           </DropdownMenu>
       </Dropdown>
 ```
@@ -46,8 +46,8 @@ import { SimplePropsTable } from '../../components/props-table'
       <Dropdown alignment='right'>
         <DropdownToggle>Right Aligned</DropdownToggle>
         <DropdownMenu>
-          <DropdownMenuItem onClick={()=>{}}>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem onClick={()=>{}}>Menu item number two</DropdownMenuItem>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
         </DropdownMenu>
       </Dropdown>
 ```
@@ -72,8 +72,8 @@ By default, a dropdown menu will be as wide as the largest item. However, you ma
       <Dropdown>
         <DropdownToggle>Disabled Item</DropdownToggle>
         <DropdownMenu>
-          <DropdownMenuItem disabled>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+          <DropdownMenuItem isDisabled onClick={()=>{alert('Item 1 clicked')}}>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem  onClick={()=>{alert('Item 2 clicked')}}>Menu item 2</DropdownMenuItem>
         </DropdownMenu>
       </Dropdown>
 ```

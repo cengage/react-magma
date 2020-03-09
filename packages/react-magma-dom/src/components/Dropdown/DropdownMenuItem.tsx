@@ -7,12 +7,16 @@ import { IconProps } from '../Icon/utils';
 export interface DropdownMenuItemProps
   extends React.HTMLAttributes<HTMLLIElement> {
   icon?: React.ReactElement<IconProps>;
+  isDisabled?: boolean;
   onClick?: () => void;
 }
 
-const StyledItem = styled.li<{ isFixedWidth?: boolean }>`
-  color: ${props => props.theme.colors.neutral02};
-  cursor: pointer;
+const StyledItem = styled.li<{ isDisabled?: boolean; isFixedWidth?: boolean }>`
+  color: ${props =>
+    props.isDisabled
+      ? props.theme.colors.disabledText
+      : props.theme.colors.neutral02};
+  cursor: ${props => (props.isDisabled ? 'not-allowed' : 'pointer')};
   display: flex;
   line-height: 18px;
   list-style: none;
@@ -42,18 +46,22 @@ const IconWrapper = styled.span`
 
 export const DropdownMenuItem: React.FunctionComponent<
   DropdownMenuItemProps
-> = ({ children, icon, onClick, ...other }) => {
+> = ({ children, isDisabled, icon, onClick, ...other }) => {
   const theme = React.useContext(ThemeContext);
   const context = React.useContext(DropdownContext);
 
   function handleClick() {
     console.log('CLICK IT');
-    onClick();
+
+    if (onClick && !isDisabled) {
+      onClick();
+    }
   }
 
   return (
     <StyledItem
       {...other}
+      isDisabled={isDisabled}
       isFixedWidth={context.isFixedWidth}
       onClick={handleClick}
       role="menuitem"

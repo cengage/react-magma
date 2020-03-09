@@ -5,6 +5,7 @@ import { Dropdown } from '.';
 import { DropdownMenu } from './DropdownMenu';
 import { DropdownMenuItem } from './DropdownMenuItem';
 import { DropdownToggle } from './DropdownToggle';
+import { magma } from '../../theme/magma';
 
 import { render, fireEvent } from '@testing-library/react';
 
@@ -68,14 +69,31 @@ describe('Dropdown', () => {
     expect(getByText('Menu item')).toHaveStyleRule('white-space', 'normal');
   });
 
-  it('should fire the onclick event for an item when clicked', () => {
+  it('should render a disabled dropdown item', () => {
     const onClick = jest.fn();
+    const text = 'menu item';
 
     const { getByText } = render(
-      <DropdownMenuItem onClick={onClick}>Menu item</DropdownMenuItem>
+      <DropdownMenuItem isDisabled onClick={onClick}>
+        {text}
+      </DropdownMenuItem>
     );
 
-    fireEvent.click(getByText('Menu item'));
+    fireEvent.click(getByText(text));
+    expect(onClick).not.toHaveBeenCalled();
+    expect(getByText(text)).toHaveStyleRule('cursor', 'not-allowed');
+    expect(getByText(text)).toHaveStyleRule('color', magma.colors.disabledText);
+  });
+
+  it('should fire the onclick event for an item when clicked', () => {
+    const onClick = jest.fn();
+    const text = 'menu item';
+
+    const { getByText } = render(
+      <DropdownMenuItem onClick={onClick}>{text}</DropdownMenuItem>
+    );
+
+    fireEvent.click(getByText(text));
     expect(onClick).toHaveBeenCalled();
   });
 
