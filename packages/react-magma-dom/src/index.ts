@@ -24,6 +24,8 @@ export { CardBody } from './components/Card/CardBody';
 export { CardHeading } from './components/Card/CardHeading';
 export { Dropdown } from './components/Dropdown';
 export { DropdownMenu } from './components/Dropdown/DropdownMenu';
+export { DropdownMenuDivider } from './components/Dropdown/DropdownMenuDivider';
+export { DropdownMenuHeader } from './components/Dropdown/DropdownMenuHeader';
 export { DropdownMenuItem } from './components/Dropdown/DropdownMenuItem';
 export { DropdownToggle } from './components/Dropdown/DropdownToggle';
 export { FormGroup } from './components/FormGroup';

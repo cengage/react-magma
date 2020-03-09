@@ -16,13 +16,14 @@ export const DropdownToggle: React.FunctionComponent<DropdownToggleProps> = ({
 
   const buttonIcon =
     context.dropDirection === DropdownDropDirection.up ? (
-      <CaretUpIcon />
+      <CaretUpIcon size={10} />
     ) : (
-      <CaretDownIcon />
+      <CaretDownIcon size={10} />
     );
 
   return (
     <IconButton
+      aria-expanded={context.isOpen}
       aria-haspopup="true"
       icon={buttonIcon}
       onClick={context.toggleDropdown}

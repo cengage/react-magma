@@ -6,7 +6,7 @@ import { DropdownContext, DropdownAlignment, DropdownDropDirection } from '.';
 
 const StyledMenu = styled.ul`
   margin: 0;
-  padding: 0;
+  padding: 5px 0;
 `;
 
 const StyledCard = styled(Card)<{
@@ -18,7 +18,7 @@ const StyledCard = styled(Card)<{
   display: ${props => (props.isOpen ? 'block' : 'none')};
   left: 5px;
   position: absolute;
-  z-index: 999;
+  z-index: 2;
 
   ${props =>
     props.width &&
@@ -51,6 +51,7 @@ export const DropdownMenu: React.FunctionComponent = ({
     <StyledCard
       alignment={context.alignment}
       dropDirection={context.dropDirection}
+      hasDropShadow
       isOpen={context.isOpen}
       testId="dropdownMenu"
       width={context.width}

@@ -61,6 +61,12 @@ export const Dropdown: React.FunctionComponent<
       setIsOpen(!isOpen);
     }
 
+    function handleKeyDown(event: React.KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    }
+
     function handleMenuBlur(event: React.SyntheticEvent) {
       const { currentTarget } = event;
 
@@ -90,6 +96,7 @@ export const Dropdown: React.FunctionComponent<
           ref={ref}
           data-testid={testId}
           onBlur={handleMenuBlur}
+          onKeyDown={isOpen ? handleKeyDown : null}
         >
           {children}
         </Container>

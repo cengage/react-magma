@@ -18,7 +18,7 @@ const StyledItem = styled.li<{ isDisabled?: boolean; isFixedWidth?: boolean }>`
       : props.theme.colors.neutral02};
   cursor: ${props => (props.isDisabled ? 'not-allowed' : 'pointer')};
   display: flex;
-  line-height: 18px;
+  line-height: 20px;
   list-style: none;
   margin: 0;
   padding: 10px 20px;
@@ -51,8 +51,6 @@ export const DropdownMenuItem: React.FunctionComponent<
   const context = React.useContext(DropdownContext);
 
   function handleClick() {
-    console.log('CLICK IT');
-
     if (onClick && !isDisabled) {
       onClick();
     }

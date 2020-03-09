@@ -9,6 +9,8 @@ import {
   Checkbox,
   Dropdown,
   DropdownMenu,
+  DropdownMenuDivider,
+  DropdownMenuHeader,
   DropdownMenuItem,
   DropdownToggle,
 } from 'react-magma-dom'
@@ -90,6 +92,38 @@ By default, a dropdown menu will be as wide as the largest item. However, you ma
       </Dropdown>
 ```
 
+## Divider
+
+```.jsx
+      <Dropdown>
+        <DropdownToggle>Divider</DropdownToggle>
+        <DropdownMenu>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+          <DropdownMenuDivider />
+          <DropdownMenuItem>Log out</DropdownMenuItem>
+        </DropdownMenu>
+      </Dropdown>
+```
+
+## Divider with headings
+
+```.jsx
+      <Dropdown>
+        <DropdownToggle>Divider and headings</DropdownToggle>
+        <DropdownMenu>
+          <DropdownMenuHeader>Section title A</DropdownMenuHeader>
+
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+          <DropdownMenuDivider />
+          <DropdownMenuHeader>Section title B</DropdownMenuHeader>
+          <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+          <DropdownMenuItem>Menu item 4</DropdownMenuItem>
+        </DropdownMenu>
+      </Dropdown>
+```
+
 ## Dropdown Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**
@@ -142,6 +176,8 @@ export default props => (
       Checkbox,
       Dropdown,
       DropdownMenu,
+      DropdownMenuDivider,
+      DropdownMenuHeader,
       DropdownMenuItem,
       DropdownToggle,
     }}
