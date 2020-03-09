@@ -3,7 +3,7 @@ import styled from '../../theme/styled';
 import { BaseInput, BaseInputProps, InputSize } from '../BaseInput';
 import { InputMessage } from './InputMessage';
 import { Label } from '../Label';
-import { useGenerateId } from '../utils';
+import { useGenerateId } from '../../utils';
 
 export interface InputProps extends BaseInputProps {
   errorMessage?: React.ReactNode;

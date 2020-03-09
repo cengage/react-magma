@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { ButtonStyles } from '../Button';
 import { css, jsx, ClassNames } from '@emotion/core';
-import { omit, Omit } from '../utils';
+import { omit, Omit } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { buttonStyles } from '../StyledButton';
 import { buildPropsWithDefaultButtonStyles } from '../StyledButton/styles';

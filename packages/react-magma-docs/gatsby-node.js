@@ -27,6 +27,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     resolve: {
+      mainFields: ['main'],
       alias: {
         react: path.resolve('./node_modules/react'),
       },

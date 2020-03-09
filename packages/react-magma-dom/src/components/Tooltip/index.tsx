@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { css } from '@emotion/core';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { useGenerateId } from '../utils';
+import { useGenerateId } from '../../utils';
 
 export enum EnumTooltipPosition {
   bottom = 'bottom',

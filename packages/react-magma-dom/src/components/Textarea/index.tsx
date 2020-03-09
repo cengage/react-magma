@@ -5,7 +5,7 @@ import { baseInputStyles } from '../BaseInput';
 import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { useGenerateId } from '../utils';
+import { useGenerateId } from '../../utils';
 
 export interface TextareaProps
   extends React.HtmlHTMLAttributes<HTMLTextAreaElement> {

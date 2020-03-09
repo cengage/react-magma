@@ -10,7 +10,7 @@ import {
   ButtonTextTransform
 } from '../Button';
 import { IconProps } from '../Icon/utils';
-import { omit, Omit } from '../utils';
+import { omit, Omit } from '../../utils';
 
 export enum ButtonIconPosition {
   left = 'left',

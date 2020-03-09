@@ -6,7 +6,7 @@ import {
   buildDisplayInputBorderColor,
   buildDisplayInputFocusStyles
 } from '../SelectionControls/InputStyles';
-import { HiddenStyles } from '../UtilityStyles';
+import { HiddenStyles } from '../../utils/UtilityStyles';
 import { RadioContext } from '../RadioGroup';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
@@ -14,7 +14,7 @@ import { StyledContainer } from '../SelectionControls/StyledContainer';
 // import styled from '../../theme/styled';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { useGenerateId } from '../utils';
+import { useGenerateId } from '../../utils';
 
 export interface RadioProps
   extends React.InputHTMLAttributes<HTMLInputElement> {

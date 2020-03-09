@@ -1,13 +1,5 @@
 {
-  "plugins": [
-    ["emotion", { "autoLabel": true }],
-    [
-      "@babel/plugin-proposal-class-properties",
-      {
-        "loose": false
-      }
-    ]
-  ],
+  "plugins": [["emotion", { "autoLabel": true }]],
   "env": {
     "test": {
       "plugins": ["dynamic-import-node"],
