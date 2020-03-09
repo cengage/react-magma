@@ -11,7 +11,6 @@ module.exports = {
     const components = fs.readdirSync('src/components');
     const icons = fs.readdirSync('src/components/Icon/types');
     const themeFiles = fs.readdirSync('src/theme');
-    // const utilsFiles = fs.readdirSync('src/utils');
 
     components.forEach(component => {
       if (component === 'UtilityStyles.tsx') {
@@ -68,14 +67,6 @@ module.exports = {
         input[`theme/${splitThemeFile[0]}`] = `src/theme/${themeFile}`;
       }
     });
-
-    // utilsFiles.forEach(utilFile => {
-    //   const splitUtilFile = utilFile.split('.');
-
-    //   if (splitUtilFile[1] === 'tsx' || splitUtilFile[1] === 'ts') {
-    //     input[`utils/${splitUtilFile[0]}`] = `src/utils/${utilFile}`;
-    //   }
-    // });
 
     const overrides = {
       input,
