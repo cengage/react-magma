@@ -59,9 +59,21 @@ If you find JSX being passed in as a prop directly ugly, you can assign an icon 
   }
 ```
 
-For icon only buttons you _MUST_ pass in an `aria-label` property to satisfy accessibility standards.
+## Custom Size
+
+Icon buttons have default sizes for small, medium and large icon buttons respectively. However, if a pixel size is specified for an icon itself, that size will take take precedence.
+
+```.jsx
+  (props) => {
+    const icon = <BellIcon size={10} />
+
+    return <IconButton aria-label="Icon" icon={icon}>Custom Icon Size</IconButton>
+  }
+```
 
 ## Aria-Label
+
+For icon only buttons you _MUST_ pass in an `aria-label` property to satisfy accessibility standards.
 
 ```.jsx
     <>

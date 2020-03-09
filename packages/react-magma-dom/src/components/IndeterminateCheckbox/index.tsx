@@ -10,7 +10,7 @@ import { CheckIcon } from '../Icon/types/CheckIcon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';
-import { useGenerateId, Omit } from '../utils';
+import { useGenerateId, Omit } from '../../utils';
 
 export interface IndeterminateCheckboxProps
   extends Omit<CheckboxProps, 'checked'> {

@@ -10,7 +10,7 @@ import { BlockedIcon } from '../Icon/types/BlockedIcon';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
-import { useGenerateId } from '../utils';
+import { useGenerateId } from '../../utils';
 
 const VARIANT_ICON = {
   info: Info2Icon,

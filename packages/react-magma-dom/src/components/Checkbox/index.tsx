@@ -7,12 +7,12 @@ import {
   buildDisplayInputBorderColor,
   buildDisplayInputFocusStyles
 } from '../SelectionControls/InputStyles';
-import { HiddenStyles } from '../UtilityStyles';
+import { HiddenStyles } from '../../utils/UtilityStyles';
 import { CheckIcon } from '../Icon/types/CheckIcon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';
-import { useGenerateId } from '../utils';
+import { useGenerateId } from '../../utils';
 
 export interface CheckboxProps
   extends React.InputHTMLAttributes<HTMLInputElement> {

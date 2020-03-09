@@ -8,7 +8,7 @@ import { Label } from '../Label';
 import { InputMessage } from '../Input/InputMessage';
 import { VisuallyHidden } from '../VisuallyHidden';
 
-import { useGenerateId } from '../utils';
+import { useGenerateId } from '../../utils';
 
 export interface PasswordInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
