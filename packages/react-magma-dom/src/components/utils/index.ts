@@ -24,6 +24,12 @@ export function omit(props, obj) {
 
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
+type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
+
+export type XOR<T, U> = (T | U) extends object
+  ? (Without<T, U> & U) | (Without<U, T> & T)
+  : T | U;
+
 export function usePrevious(value) {
   const ref = React.useRef();
   React.useEffect(() => {

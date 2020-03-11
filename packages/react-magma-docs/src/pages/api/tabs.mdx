@@ -320,16 +320,16 @@ The `icon` prop can be used to display an icon inside the individual `Tab` compo
 
 ### Icon Only Tabs
 
-`Tab` components without children can be used to display an icon only version of the tabs. Be sure to include an `ariaLabel` for each tab, when using this pattern.
+`Tab` components without children can be used to display an icon only version of the tabs. Be sure to include an `aria-label` for each tab, when using this pattern.
 
 ```.jsx
       () => {
         return (
           <TabsContainer>
               <Tabs>
-                <Tab ariaLabel='Graduation' icon={<GraduationCapIcon />} />
-                <Tab ariaLabel='Android' icon={<AndroidIcon />} />
-                <Tab ariaLabel='Bell' icon={<BellIcon />} />
+                <Tab aria-label='Graduation' icon={<GraduationCapIcon />} />
+                <Tab aria-label='Android' icon={<AndroidIcon />} />
+                <Tab aria-label='Bell' icon={<BellIcon />} />
               </Tabs>
           </TabsContainer>
     )}
@@ -450,6 +450,10 @@ The default value is false.
 }
 ```
 
+### Custom Component Disclaimer
+
+When using the `component` props in the `Tab` component we will disregard anything passed in as children. If you are using Typescript and try to put a `component` prop and give the `Tab` children, you will get a TypeError that looks something like this: `Types of property 'component' are incompatible. Type 'Element' is not assignable to type 'never'.`. This comes from a custom `XOR` type utitility that was created, but we do not have the ability to make the error message clearer.
+
 ## Tabs Container API
 
 <SimplePropsTable
@@ -488,13 +492,6 @@ The default value is false.
       required: false,
       description: 'Alignment of the tabs menu',
       defaultValue: 'left',
-    },
-    ariaLabel: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Custom aria label for Tabs component.',
     },
     backgroundColor: {
       type: {
@@ -562,13 +559,6 @@ The default value is false.
 
 <SimplePropsTable
   propertyValues={{
-    ariaLabel: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Custom aria label for Tab component.',
-    },
     component: {
       type: {
         name: 'React.ReactElement',

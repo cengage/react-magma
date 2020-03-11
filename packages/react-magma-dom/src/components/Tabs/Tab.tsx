@@ -4,36 +4,34 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { css, jsx } from '@emotion/core';
 import isPropValid from '@emotion/is-prop-valid';
 import { TabsIconPosition, TabsOrientation } from '.';
+import { Omit, XOR } from '../utils';
 
-export interface TabProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  ariaLabel?: string;
+export interface BaseTabProps
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
   changeHandler?: (index: number) => void;
-  component?: React.ReactElement<any> | React.ReactElement<any>[];
   disabled?: boolean;
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
   iconPosition?: TabsIconPosition;
-  isActive?: boolean;
   index?: number;
-  path?: string;
-  testId?: string;
-}
-
-interface StyledTabProps {
-  component?: React.ReactNode;
-  disabled?: boolean;
   isActive?: boolean;
-  icon?: any;
-  iconPosition?: TabsIconPosition;
   isFullWidth?: boolean;
   isInverse?: boolean;
-  onClick?: (event: React.SyntheticEvent) => void;
   orientation?: TabsOrientation;
-  ref?: React.Ref<any>;
-  role: string;
-  style?: { [key: string]: any };
+  path?: string;
+  ref?: any;
+  testId?: string;
   theme?: any;
 }
+
+interface TabChildrenProps extends BaseTabProps {
+  children: JSX.Element | string;
+}
+
+interface TabComponentProps extends BaseTabProps {
+  component: React.ReactNode;
+}
+
+export type TabProps = XOR<TabChildrenProps, TabComponentProps>;
 
 const TabStyles = props => css`
   align-items: ${props.iconPosition !== 'left' &&
@@ -90,12 +88,12 @@ const TabStyles = props => css`
 `;
 
 const StyledTab = styled('button', { shouldForwardProp: isPropValid })<
-  StyledTabProps
+  BaseTabProps
 >`
   ${TabStyles}
 `;
 
-export const StyledCustomTab: React.FunctionComponent<StyledTabProps> = ({
+export const StyledCustomTab: React.FunctionComponent<TabComponentProps> = ({
   children,
   component,
   icon,
@@ -145,13 +143,23 @@ const StyledIcon = styled.span<{
   }
 `;
 
+function instanceOfComponentTab(object: any): object is TabComponentProps {
+  return 'component' in object && !('children' in object);
+}
+
+function instanceOfChildrenTab(object: any): object is TabChildrenProps {
+  return !('component' in object) && 'children' in object;
+}
+
 export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
-  (props, ref: React.Ref<any>) => {
+  (
+    props: Omit<React.PropsWithChildren<TabProps>, 'children'>,
+    ref: React.Ref<any>
+  ) => {
+    let component;
+    let children;
     const {
-      ariaLabel,
       changeHandler,
-      children,
-      component,
       icon,
       iconPosition,
       index,
@@ -160,6 +168,12 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
       testId,
       ...rest
     } = props;
+
+    if (instanceOfComponentTab(props)) {
+      component = props.component;
+    } else if (instanceOfChildrenTab(props)) {
+      children = props.children;
+    }
 
     React.useEffect(() => {
       path && path === window.location.pathname && changeHandler(index);
@@ -171,7 +185,6 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
       return (
         <StyledCustomTab
           {...rest}
-          aria-label={ariaLabel}
           aria-selected={isActive}
           component={component}
           data-testid={testId}
@@ -190,7 +203,6 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
     return (
       <StyledTab
         {...rest}
-        aria-label={ariaLabel}
         aria-selected={isActive}
         data-testid={testId}
         iconPosition={iconPosition}
