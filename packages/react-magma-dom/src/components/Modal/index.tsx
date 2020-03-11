@@ -12,7 +12,7 @@ import { ButtonColor, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { Heading } from '../Heading';
-import { omit, useGenerateId, usePrevious } from '../utils';
+import { omit, useGenerateId, usePrevious } from '../../utils';
 
 export enum ModalSize {
   large = 'large',

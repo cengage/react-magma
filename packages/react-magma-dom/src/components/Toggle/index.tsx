@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { HiddenStyles } from '../UtilityStyles';
+import { HiddenStyles } from '../../utils/UtilityStyles';
 import { CheckIcon } from '../Icon/types/CheckIcon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
@@ -8,7 +8,7 @@ import { css } from '@emotion/core';
 // import styled from '../../theme/styled';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { useGenerateId } from '../utils';
+import { useGenerateId } from '../../utils';
 
 enum ToggleTextPosition {
   left = 'left',

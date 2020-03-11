@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { HiddenStyles } from '../UtilityStyles';
+import { HiddenStyles } from '../../utils/UtilityStyles';
 import styled from '../../theme/styled';
-import { omit, useGenerateId } from '../utils';
+import { omit, useGenerateId } from '../../utils';
 
 export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   containerStyle?: React.CSSProperties;

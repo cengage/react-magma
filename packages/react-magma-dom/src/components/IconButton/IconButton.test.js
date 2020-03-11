@@ -157,6 +157,17 @@ describe('IconButton', () => {
         expect(container).toMatchSnapshot();
       });
     });
+
+    it('should render an icon  with custom size', () => {
+      const icon = <CheckIcon size={5} />;
+      const { container } = render(
+        <IconButton icon={icon} size={ButtonSize.medium} />
+      );
+
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', '5');
+      expect(svg).toHaveAttribute('width', '5');
+    });
   });
 
   describe('Icon With Text Button', () => {
@@ -328,11 +339,6 @@ describe('IconButton', () => {
       });
 
       it('should render with large size', () => {
-        // const { container } = renderIconWithTextButton({
-        //   size: ButtonSize.small
-        // });
-
-        // expect(container).toMatchSnapshot();
         const icon = <CheckIcon id="testId" />;
         const { container } = render(
           <IconButton
@@ -382,6 +388,19 @@ describe('IconButton', () => {
 
         expect(container).toMatchSnapshot();
       });
+    });
+
+    it('should render an icon  with custom size', () => {
+      const icon = <CheckIcon size={5} />;
+      const { container } = render(
+        <IconButton icon={icon} size={ButtonSize.medium}>
+          click
+        </IconButton>
+      );
+
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', '5');
+      expect(svg).toHaveAttribute('width', '5');
     });
   });
 });

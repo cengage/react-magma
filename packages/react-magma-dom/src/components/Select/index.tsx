@@ -9,7 +9,7 @@ import {
   useSelectValue,
   getAriaLabel,
   BaseSelectProps
-} from '../Select/shared';
+} from './shared';
 import { SelectWrapper } from './SelectWrapper';
 
 export interface SelectProps extends BaseSelectProps, ReactSelectProps {}

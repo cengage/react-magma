@@ -10,7 +10,7 @@ import {
   ButtonTextTransform
 } from '../Button';
 import { IconProps } from '../Icon/utils';
-import { omit, Omit } from '../utils';
+import { omit, Omit } from '../../utils';
 
 export enum ButtonIconPosition {
   left = 'left',
@@ -98,7 +98,9 @@ export const IconButton: React.FunctionComponent<
         variant={variant ? variant : ButtonVariant.solid}
       >
         {React.Children.only(
-          React.cloneElement(icon, { size: getIconSize(size) })
+          React.cloneElement(icon, {
+            size: icon.props.size ? icon.props.size : getIconSize(size)
+          })
         )}
       </StyledButton>
     );
@@ -119,7 +121,9 @@ export const IconButton: React.FunctionComponent<
         <SpanTextLeft size={size}>{children} </SpanTextLeft>
       )}
       {React.Children.only(
-        React.cloneElement(icon, { size: getIconWithTextSize(size) })
+        React.cloneElement(icon, {
+          size: icon.props.size ? icon.props.size : getIconWithTextSize(size)
+        })
       )}
       {iconPosition !== ButtonIconPosition.right && (
         <SpanTextRight size={size}>{children}</SpanTextRight>

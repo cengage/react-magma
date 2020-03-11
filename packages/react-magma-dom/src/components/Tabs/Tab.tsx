@@ -4,7 +4,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { css, jsx } from '@emotion/core';
 import isPropValid from '@emotion/is-prop-valid';
 import { TabsIconPosition, TabsOrientation } from '.';
-import { Omit, XOR } from '../utils';
+import { Omit, XOR } from '../../utils';
 
 export interface BaseTabProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
@@ -176,7 +176,10 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
     }
 
     React.useEffect(() => {
-      path && path === window.location.pathname && changeHandler(index);
+      path &&
+        window &&
+        path === window.location.pathname &&
+        changeHandler(index);
     }, [path]);
 
     const theme = React.useContext(ThemeContext);

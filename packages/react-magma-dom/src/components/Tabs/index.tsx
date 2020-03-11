@@ -6,7 +6,7 @@ import { AngleLeftIcon } from '../Icon/types/AngleLeftIcon';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useTabsContext } from './TabsContainer';
 import isPropValid from '@emotion/is-prop-valid';
-import { Omit } from '../utils';
+import { Omit } from '../../utils';
 
 const StyledContainer = styled('div', { shouldForwardProp: isPropValid })<{
   orientation: TabsOrientation;
