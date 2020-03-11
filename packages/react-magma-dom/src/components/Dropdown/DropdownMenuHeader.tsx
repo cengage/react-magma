@@ -13,8 +13,10 @@ const StyledItem = styled.li`
   text-transform: uppercase;
 `;
 
-export const DropdownMenuHeader: React.FunctionComponent = () => {
+export const DropdownMenuHeader: React.FunctionComponent<{
+  children: React.ReactNode;
+}> = ({ children }) => {
   const theme = React.useContext(ThemeContext);
 
-  return <StyledItem theme={theme}>Section Title</StyledItem>;
+  return <StyledItem theme={theme}>{children}</StyledItem>;
 };

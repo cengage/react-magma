@@ -6,6 +6,7 @@ import { ScopeableLayout } from '../../components/layout'
 import {
   AsteriskIcon,
   BellIcon,
+  MenuIcon,
   Checkbox,
   Dropdown,
   DropdownMenu,
@@ -15,6 +16,7 @@ import {
   DropdownToggle,
 } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
+import { Link } from 'gatsby'
 
 # Dropdown
 
@@ -80,6 +82,27 @@ By default, a dropdown menu will be as wide as the largest item. However, you ma
       </Dropdown>
 ```
 
+## Extra Toggle Button Props
+
+```.jsx
+      <>
+        <Dropdown>
+          <DropdownToggle size="small" color="success" variant='outline'>Extra Props Example 1</DropdownToggle>
+            <DropdownMenu>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownMenu>
+        </Dropdown>
+        <Dropdown>
+          <DropdownToggle aria-label="Extra props example 2" size='large' variant='link' icon={<MenuIcon />} />
+            <DropdownMenu>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownMenu>
+        </Dropdown>
+      </>
+```
+
 ## Leading Icons
 
 ```.jsx
@@ -106,7 +129,7 @@ By default, a dropdown menu will be as wide as the largest item. However, you ma
       </Dropdown>
 ```
 
-## Divider with headings
+## Divider with Headings
 
 ```.jsx
       <Dropdown>
@@ -167,12 +190,53 @@ By default, a dropdown menu will be as wide as the largest item. However, you ma
   }}
 />
 
+## Dropdown Toggle Props
+
+**Dropwdown Toggle accepts the same props as the <Link to="/api/icon-button">Icon Button</Link> component.**
+
+## Dropdown Menu Props
+
+**Props supplied will be provided to the wrapping `div` element.**
+
+## Dropdown Menu Item
+
+**Any other props supplied will be provided to the wrapping `li` element.**
+
+<SimplePropsTable
+  propertyValues={{
+    icon: {
+      type: {
+        name: 'React.ReactElement',
+      },
+      required: false,
+      description: 'Leading icon for the menu item',
+    },
+    isDisabled: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, item will appear dimmed and onClick event will not fire',
+      defaultValue: 'false',
+    },
+    onClick: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Action that fires when the menu item is clicked.',
+    },
+  }}
+/>
+
 export default props => (
   <ScopeableLayout
     {...props}
     components={{
       AsteriskIcon,
       BellIcon,
+      MenuIcon,
       Checkbox,
       Dropdown,
       DropdownMenu,

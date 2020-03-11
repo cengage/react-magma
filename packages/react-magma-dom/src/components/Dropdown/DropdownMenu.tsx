@@ -17,7 +17,9 @@ const StyledCard = styled(Card)<{
 }>`
   display: ${props => (props.isOpen ? 'block' : 'none')};
   left: 5px;
+  opacity: ${props => (props.isOpen ? '1' : '0')};
   position: absolute;
+  transition: opacity 0.3s;
   z-index: 2;
 
   ${props =>
@@ -53,12 +55,11 @@ export const DropdownMenu: React.FunctionComponent = ({
       dropDirection={context.dropDirection}
       hasDropShadow
       isOpen={context.isOpen}
+      {...other}
       testId="dropdownMenu"
       width={context.width}
     >
-      <StyledMenu {...other} role="menu">
-        {children}
-      </StyledMenu>
+      <StyledMenu role="menu">{children}</StyledMenu>
     </StyledCard>
   );
 };

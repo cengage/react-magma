@@ -31,6 +31,7 @@ interface DropdownContextInterface {
   isOpen?: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   toggleDropdown?: () => void;
+  toggleRef?: any;
   width?: string;
 }
 
@@ -57,6 +58,8 @@ export const Dropdown: React.FunctionComponent<
   ) => {
     const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
+    const toggleRef = React.useRef<HTMLButtonElement>();
+
     function toggleDropdown() {
       setIsOpen(!isOpen);
     }
@@ -64,6 +67,7 @@ export const Dropdown: React.FunctionComponent<
     function handleKeyDown(event: React.KeyboardEvent) {
       if (event.key === 'Escape') {
         setIsOpen(false);
+        toggleRef.current.focus();
       }
     }
 
@@ -88,6 +92,7 @@ export const Dropdown: React.FunctionComponent<
           isOpen: isOpen,
           setIsOpen: setIsOpen,
           toggleDropdown: toggleDropdown,
+          toggleRef: toggleRef,
           width: width
         }}
       >

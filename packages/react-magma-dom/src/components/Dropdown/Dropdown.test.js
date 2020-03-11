@@ -3,6 +3,8 @@ import { axe } from 'jest-axe';
 import { AsteriskIcon } from '../Icon/types/AsteriskIcon';
 import { Dropdown } from '.';
 import { DropdownMenu } from './DropdownMenu';
+import { DropdownMenuDivider } from './DropdownMenuDivider';
+import { DropdownMenuHeader } from './DropdownMenuHeader';
 import { DropdownMenuItem } from './DropdownMenuItem';
 import { DropdownToggle } from './DropdownToggle';
 import { magma } from '../../theme/magma';
@@ -28,16 +30,36 @@ describe('Dropdown', () => {
     expect(getByTestId('dropdownMenu')).toBeInTheDocument();
   });
 
+  it('should render a dropup', () => {
+    const { getByTestId } = render(
+      <Dropdown dropDirection="up">
+        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownMenu />
+      </Dropdown>
+    );
+
+    expect(getByTestId('caretUp')).toBeInTheDocument();
+    expect(getByTestId('dropdownMenu')).toHaveStyleRule('top', 'auto');
+    expect(getByTestId('dropdownMenu')).toHaveStyleRule('bottom', '100%');
+  });
+
+  it('should render a right aligned menu', () => {
+    const { getByTestId } = render(
+      <Dropdown alignment="right">
+        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownMenu />
+      </Dropdown>
+    );
+
+    expect(getByTestId('dropdownMenu')).toHaveStyleRule('left', 'auto');
+    expect(getByTestId('dropdownMenu')).toHaveStyleRule('right', '5px');
+  });
+
   it('should toggle the menu when the button is clicked', () => {
     const { getByText, getByTestId } = render(
       <Dropdown>
         <DropdownToggle>Toggle me</DropdownToggle>
-        <DropdownMenu>
-          <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem onClick={() => {}}>
-            Menu item number two
-          </DropdownMenuItem>
-        </DropdownMenu>
+        <DropdownMenu />
       </Dropdown>
     );
 
@@ -46,6 +68,49 @@ describe('Dropdown', () => {
     fireEvent.click(getByText('Toggle me'));
 
     expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'block');
+  });
+
+  it('should close the menu when blurred', () => {
+    const { getByText, getByTestId } = render(
+      <Dropdown testId="dropdown">
+        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownMenu />
+      </Dropdown>
+    );
+
+    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'none');
+
+    fireEvent.click(getByText('Toggle me'));
+
+    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'block');
+
+    fireEvent.focus(getByTestId('dropdown'));
+    fireEvent.blur(getByTestId('dropdown'));
+    setTimeout(() => {
+      expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'none');
+    }, 1);
+  });
+
+  it('should close the menu when escape key is pressed', () => {
+    const { getByText, getByTestId } = render(
+      <Dropdown testId="dropdown">
+        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownMenu />
+      </Dropdown>
+    );
+
+    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'none');
+
+    fireEvent.click(getByText('Toggle me'));
+
+    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'block');
+
+    fireEvent.keyDown(getByTestId('dropdown'), {
+      key: 'Escape',
+      code: 27
+    });
+
+    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'none');
   });
 
   it('should render a dropdown menu item with an icon', () => {
@@ -95,6 +160,22 @@ describe('Dropdown', () => {
 
     fireEvent.click(getByText(text));
     expect(onClick).toHaveBeenCalled();
+  });
+
+  it('should render a dropdown header', () => {
+    const text = 'header item';
+
+    const { getByText } = render(
+      <DropdownMenuHeader>{text}</DropdownMenuHeader>
+    );
+
+    expect(getByText(text)).toBeInTheDocument();
+  });
+
+  it('should render a dropdown menu divider', () => {
+    const { container } = render(<DropdownMenuDivider />);
+
+    expect(container.querySelector('hr')).toBeInTheDocument();
   });
 
   it('Does not violate accessibility standards', () => {

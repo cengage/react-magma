@@ -22,7 +22,7 @@ export interface IconOnlyButtonProps extends Omit<ButtonProps, 'children'> {
   'aria-label': string;
 }
 
-interface IconTextButtonProps extends ButtonProps {
+export interface IconTextButtonProps extends ButtonProps {
   icon: React.ReactElement<IconProps>;
   children: React.ReactChild | React.ReactChild[];
   iconPosition?: ButtonIconPosition;
