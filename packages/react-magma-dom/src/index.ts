@@ -27,6 +27,7 @@ export { DropdownMenu } from './components/Dropdown/DropdownMenu';
 export { DropdownMenuDivider } from './components/Dropdown/DropdownMenuDivider';
 export { DropdownMenuHeader } from './components/Dropdown/DropdownMenuHeader';
 export { DropdownMenuItem } from './components/Dropdown/DropdownMenuItem';
+export { DropdownSplitToggle } from './components/Dropdown/DropdownSplitToggle';
 export { DropdownToggle } from './components/Dropdown/DropdownToggle';
 export { FormGroup } from './components/FormGroup';
 export { Heading } from './components/Heading';

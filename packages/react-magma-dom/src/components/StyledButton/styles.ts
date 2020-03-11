@@ -32,9 +32,9 @@ export const buttonBaseHeight = {
 };
 
 export const buttonIconOnlyHeight = {
-  small: '28px',
+  small: '29px',
   medium: '37px',
-  large: '44px'
+  large: '45px'
 };
 
 export const buttonPadding = {
@@ -44,9 +44,9 @@ export const buttonPadding = {
 };
 
 export const buttonIconOnlyWidth = {
-  small: '28px',
+  small: '29px',
   medium: '37px',
-  large: '44px'
+  large: '45px'
 };
 
 export function buildButtonBackground(props) {

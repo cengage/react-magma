@@ -6,6 +6,7 @@ import { DropdownMenu } from './DropdownMenu';
 import { DropdownMenuDivider } from './DropdownMenuDivider';
 import { DropdownMenuHeader } from './DropdownMenuHeader';
 import { DropdownMenuItem } from './DropdownMenuItem';
+import { DropdownSplitToggle } from './DropdownSplitToggle';
 import { DropdownToggle } from './DropdownToggle';
 import { magma } from '../../theme/magma';
 
@@ -53,6 +54,40 @@ describe('Dropdown', () => {
 
     expect(getByTestId('dropdownMenu')).toHaveStyleRule('left', 'auto');
     expect(getByTestId('dropdownMenu')).toHaveStyleRule('right', '5px');
+  });
+
+  it('should render a split dropdown', () => {
+    const { getByTestId, container } = render(
+      <Dropdown>
+        <DropdownSplitToggle>Toggle me</DropdownSplitToggle>
+        <DropdownMenu />
+      </Dropdown>
+    );
+
+    expect(getByTestId('caretDown')).toBeInTheDocument();
+    expect(container.querySelectorAll('button').length).toBe(2);
+  });
+
+  it('should render a split dropup', () => {
+    const { getByTestId } = render(
+      <Dropdown dropDirection="up">
+        <DropdownSplitToggle>Toggle me</DropdownSplitToggle>
+      </Dropdown>
+    );
+
+    expect(getByTestId('caretUp')).toBeInTheDocument();
+  });
+
+  it('should render a toggle with custom icon', () => {
+    const { queryByTestId } = render(
+      <Dropdown>
+        <DropdownToggle icon={<AsteriskIcon />}>Toggle me</DropdownToggle>
+        <DropdownMenu />
+      </Dropdown>
+    );
+
+    expect(queryByTestId('caretUp')).not.toBeInTheDocument();
+    expect(queryByTestId('caretDown')).not.toBeInTheDocument();
   });
 
   it('should toggle the menu when the button is clicked', () => {

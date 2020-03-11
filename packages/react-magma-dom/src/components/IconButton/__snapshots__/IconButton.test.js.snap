@@ -4,7 +4,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
 <div>
   <button
     aria-label="Check Icon"
-    class="css-jxizg9"
+    class="css-u3n56g"
     icon="[object Object]"
     id="testId"
   >
@@ -29,7 +29,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
 <div>
   <button
     aria-label="Check Icon"
-    class="css-194jz7x"
+    class="css-16woset"
     icon="[object Object]"
     id="testId"
   >

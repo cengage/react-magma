@@ -13,6 +13,7 @@ import {
   DropdownMenuDivider,
   DropdownMenuHeader,
   DropdownMenuItem,
+  DropdownSplitToggle,
   DropdownToggle,
 } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
@@ -21,6 +22,10 @@ import { Link } from 'gatsby'
 # Dropdown
 
 ## Basic Usage
+
+The `Dropdown` component should container two children: the `DropdownToggle` component, and the `DropdownMenu` component.  
+The `DropdownToggle` is a button that handles the opening and closing of the menu. The `DropdownMenu` component contains individual menu items,
+represented in `DropdownMenuItem` components.
 
 ```.jsx
       <Dropdown>
@@ -32,7 +37,23 @@ import { Link } from 'gatsby'
       </Dropdown>
 ```
 
+## Split Toggle
+
+Instead of using the `DropdownToggle`, a `DropdownSplitToggle` can be used instead. When using this, the larger part of the button will accept an `onClick` event, and only the caret icon will open and close the menu.
+
+```.jsx
+      <Dropdown>
+         <DropdownSplitToggle onClick={()=>{alert('Button Clicked!')}}>Split Toggle</DropdownSplitToggle>
+          <DropdownMenu>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownMenu>
+      </Dropdown>
+```
+
 ## Drop Direction
+
+Using the `dropDirection` prop will change where the menu appears. Options are `down` and `up`, with `down` being default.
 
 ```.jsx
       <Dropdown dropDirection='up'>
@@ -45,6 +66,8 @@ import { Link } from 'gatsby'
 ```
 
 ## Alignment
+
+Using the `alignment` prop will the alignment of the menu. Options are `left` and `right`, with `left` being default.
 
 ```.jsx
       <Dropdown alignment='right'>
@@ -95,6 +118,13 @@ By default, a dropdown menu will be as wide as the largest item. However, you ma
         </Dropdown>
         <Dropdown>
           <DropdownToggle aria-label="Extra props example 2" size='large' variant='link' icon={<MenuIcon />} />
+            <DropdownMenu>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownMenu>
+        </Dropdown>
+        <Dropdown>
+          <DropdownSplitToggle size='large' variant='outline' color='danger'>Extra Props Split</DropdownSplitToggle>
             <DropdownMenu>
               <DropdownMenuItem>Menu item 1</DropdownMenuItem>
               <DropdownMenuItem>Menu item number two</DropdownMenuItem>
@@ -243,6 +273,7 @@ export default props => (
       DropdownMenuDivider,
       DropdownMenuHeader,
       DropdownMenuItem,
+      DropdownSplitToggle,
       DropdownToggle,
     }}
   />
