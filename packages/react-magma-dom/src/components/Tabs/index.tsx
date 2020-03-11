@@ -324,6 +324,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
           orientation={orientation}
         >
           <StyledTabs
+            aria-label={rest['aria-label']}
             alignment={alignment ? alignment : TabsAlignment.left}
             orientation={orientation}
             role="tablist"
