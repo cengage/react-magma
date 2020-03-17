@@ -64,10 +64,10 @@ export const DropdownMenuItem: React.FunctionComponent<
         isDisabled={isDisabled}
         isFixedWidth={context.isFixedWidth}
         onClick={handleClick}
-        ref={ref}
+        ref={isDisabled ? null : ref}
         role="menuitem"
         theme={theme}
-        tabIndex={-1}
+        tabIndex={isDisabled ? null : -1}
       >
         {icon && <IconWrapper>{icon}</IconWrapper>}
         {children}

@@ -99,8 +99,9 @@ By default, a dropdown menu will be as wide as the largest item. However, you ma
       <Dropdown>
         <DropdownToggle>Disabled Item</DropdownToggle>
         <DropdownMenu>
-          <DropdownMenuItem isDisabled onClick={()=>{alert('Item 1 clicked')}}>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem  onClick={()=>{alert('Item 2 clicked')}}>Menu item 2</DropdownMenuItem>
+          <DropdownMenuItem  onClick={()=>{alert('Item 1 clicked')}}>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem  isDisabled onClick={()=>{alert('Item 2 clicked')}}>Menu item 2</DropdownMenuItem>
+          <DropdownMenuItem  onClick={()=>{alert('Item 3 clicked')}}>Menu item 3</DropdownMenuItem>
         </DropdownMenu>
       </Dropdown>
 ```
