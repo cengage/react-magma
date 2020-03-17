@@ -69,31 +69,15 @@ export const Dropdown: React.FunctionComponent<
       setIsOpen(!isOpen);
     }
 
-    function focusNextItem(filteredItemIndex: number) {
-      const nextItemIndex = filteredItemIndex + 1;
-      if (!itemRefArray.current[nextItemIndex]) {
-        return;
-      }
+    function useFilteredItems(): [any, number] {
+      const filteredItems = itemRefArray.current.filter(
+        itemRef => itemRef.current
+      );
+      const filteredItemIndex = filteredItems
+        .map(filteredItem => filteredItem.current)
+        .indexOf(document.activeElement);
 
-      if (itemRefArray.current[nextItemIndex].current) {
-        itemRefArray.current[nextItemIndex].current.focus();
-      } else {
-        focusNextItem(nextItemIndex);
-      }
-    }
-
-    function focusPrevItem(filteredItemIndex: number) {
-      const prevItemIndex = filteredItemIndex - 1;
-
-      if (!itemRefArray.current[prevItemIndex]) {
-        return;
-      }
-
-      if (itemRefArray.current[prevItemIndex].current) {
-        itemRefArray.current[prevItemIndex].current.focus();
-      } else {
-        focusPrevItem(prevItemIndex);
-      }
+      return [filteredItems, filteredItemIndex];
     }
 
     function handleKeyDown(event: React.KeyboardEvent) {
@@ -105,35 +89,27 @@ export const Dropdown: React.FunctionComponent<
       if (event.key === 'ArrowDown') {
         event.preventDefault();
 
-        const filteredItemIndex = itemRefArray.current
-          .map(filteredItem => filteredItem.current)
-          .indexOf(document.activeElement);
+        const [filteredItems, filteredItemIndex] = useFilteredItems();
 
         if (
           filteredItemIndex === -1 ||
-          filteredItemIndex === itemRefArray.current.length - 1
+          filteredItemIndex === filteredItems.length - 1
         ) {
-          itemRefArray.current
-            .filter(itemRef => itemRef.current)[0]
-            .current.focus();
+          filteredItems[0].current.focus();
         } else {
-          focusNextItem(filteredItemIndex);
+          filteredItems[filteredItemIndex + 1].current.focus();
         }
       }
 
       if (event.key === 'ArrowUp') {
         event.preventDefault();
 
-        const filteredItemIndex = itemRefArray.current
-          .map(filteredItem => filteredItem.current)
-          .indexOf(document.activeElement);
+        const [filteredItems, filteredItemIndex] = useFilteredItems();
 
         if (filteredItemIndex === -1 || filteredItemIndex === 0) {
-          itemRefArray.current
-            .filter(itemRef => itemRef.current)
-            [itemRefArray.current.length - 1].current.focus();
+          filteredItems[filteredItems.length - 1].current.focus();
         } else {
-          focusPrevItem(filteredItemIndex);
+          filteredItems[filteredItemIndex - 1].current.focus();
         }
       }
     }
