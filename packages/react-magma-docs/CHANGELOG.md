@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.25](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.24...v2.0.0-beta.25) (2020-03-09)
+
+
+### Bug Fixes
+
+* **textarea:** use value not children ([e6326f4](http://stash.corp.web:7999/FRONT/react-magma/commits/e6326f4))
+* **timepicker:** allow timepicker to display well in flex div ([136cc93](http://stash.corp.web:7999/FRONT/react-magma/commits/136cc93))
+
+
+### Features
+
+* **icon button:** allow custom icon size ([c62c62e](http://stash.corp.web:7999/FRONT/react-magma/commits/c62c62e))
+* **magma palette:** add purple to palette, also change order of docs ([6606932](http://stash.corp.web:7999/FRONT/react-magma/commits/6606932))
+
+
+
+
+
 # [2.0.0-beta.24](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.23...v2.0.0-beta.24) (2020-02-19)
 
 
