@@ -148,6 +148,67 @@ describe('Dropdown', () => {
     expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'none');
   });
 
+  it('go to the first or nextitem when the down arrow key is pressed', () => {
+    const { getByText, getByTestId } = render(
+      <Dropdown testId="dropdown">
+        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownMenu>
+          <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+          <DropdownMenuDivider />
+          <DropdownMenuItem onClick={() => {}}>Menu item 2</DropdownMenuItem>
+        </DropdownMenu>
+      </Dropdown>
+    );
+
+    fireEvent.click(getByText('Toggle me'));
+
+    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'block');
+
+    fireEvent.keyDown(getByTestId('dropdown'), {
+      key: 'ArrowDown',
+      code: 40
+    });
+
+    expect(getByText('Menu item 1')).toHaveFocus();
+
+    fireEvent.keyDown(getByTestId('dropdown'), {
+      key: 'ArrowDown',
+      code: 40
+    });
+
+    expect(getByText('Menu item 2')).toHaveFocus();
+  });
+
+  it('go to the last or previous item when the up arrow key is pressed', () => {
+    const { getByText, getByTestId } = render(
+      <Dropdown testId="dropdown">
+        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownMenu>
+          <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => {}}>Menu item 2</DropdownMenuItem>
+        </DropdownMenu>
+      </Dropdown>
+    );
+
+    fireEvent.click(getByText('Toggle me'));
+
+    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'block');
+
+    fireEvent.keyDown(getByTestId('dropdown'), {
+      key: 'ArrowUp',
+      code: 38
+    });
+
+    expect(getByText('Menu item 2')).toHaveFocus();
+
+    fireEvent.keyDown(getByTestId('dropdown'), {
+      key: 'ArrowUp',
+      code: 38
+    });
+
+    expect(getByText('Menu item 1')).toHaveFocus();
+  });
+
   it('should render a dropdown menu item with an icon', () => {
     const { container } = render(
       <DropdownMenuItem icon={<AsteriskIcon />}>Menu item</DropdownMenuItem>

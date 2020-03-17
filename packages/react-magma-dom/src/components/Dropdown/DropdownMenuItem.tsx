@@ -46,28 +46,34 @@ const IconWrapper = styled.span`
 
 export const DropdownMenuItem: React.FunctionComponent<
   DropdownMenuItemProps
-> = ({ children, isDisabled, icon, onClick, ...other }) => {
-  const theme = React.useContext(ThemeContext);
-  const context = React.useContext(DropdownContext);
+> = React.forwardRef(
+  ({ children, isDisabled, icon, onClick, ...other }, ref: React.Ref<any>) => {
+    const theme = React.useContext(ThemeContext);
+    const context = React.useContext(DropdownContext);
 
-  function handleClick() {
-    if (onClick && !isDisabled) {
-      onClick();
+    function handleClick() {
+      if (onClick && !isDisabled) {
+        onClick();
+      }
     }
-  }
 
-  return (
-    <StyledItem
-      {...other}
-      isDisabled={isDisabled}
-      isFixedWidth={context.isFixedWidth}
-      onClick={handleClick}
-      role="menuitem"
-      theme={theme}
-      tabIndex={-1}
-    >
-      {icon && <IconWrapper>{icon}</IconWrapper>}
-      {children}
-    </StyledItem>
-  );
-};
+    return (
+      <StyledItem
+        {...other}
+        aria-disabled={isDisabled}
+        isDisabled={isDisabled}
+        isFixedWidth={context.isFixedWidth}
+        onClick={handleClick}
+        ref={ref}
+        role="menuitem"
+        theme={theme}
+        tabIndex={-1}
+      >
+        {icon && <IconWrapper>{icon}</IconWrapper>}
+        {children}
+      </StyledItem>
+    );
+  }
+);
+
+DropdownMenuItem.displayName = 'DropdownMenuItem';

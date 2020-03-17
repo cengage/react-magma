@@ -27,8 +27,10 @@ const Container = styled.div`
 interface DropdownContextInterface {
   alignment?: DropdownAlignment;
   dropDirection?: DropdownDropDirection;
+  itemRefArray?: any;
   isFixedWidth?: boolean;
   isOpen?: boolean;
+  menuRef?: any;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   toggleDropdown?: () => void;
   toggleRef?: any;
@@ -58,16 +60,81 @@ export const Dropdown: React.FunctionComponent<
   ) => {
     const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
+    const itemRefArray = React.useRef([]);
+
     const toggleRef = React.useRef<HTMLButtonElement>();
+    const menuRef = React.useRef<any>([]);
 
     function toggleDropdown() {
       setIsOpen(!isOpen);
+    }
+
+    function focusNextItem(filteredItemIndex: number) {
+      const nextItemIndex = filteredItemIndex + 1;
+      if (!itemRefArray.current[nextItemIndex]) {
+        return;
+      }
+
+      if (itemRefArray.current[nextItemIndex].current) {
+        itemRefArray.current[nextItemIndex].current.focus();
+      } else {
+        focusNextItem(nextItemIndex);
+      }
+    }
+
+    function focusPrevItem(filteredItemIndex: number) {
+      const prevItemIndex = filteredItemIndex - 1;
+
+      if (!itemRefArray.current[prevItemIndex]) {
+        return;
+      }
+
+      if (itemRefArray.current[prevItemIndex].current) {
+        itemRefArray.current[prevItemIndex].current.focus();
+      } else {
+        focusPrevItem(prevItemIndex);
+      }
     }
 
     function handleKeyDown(event: React.KeyboardEvent) {
       if (event.key === 'Escape') {
         setIsOpen(false);
         toggleRef.current.focus();
+      }
+
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+
+        const filteredItemIndex = itemRefArray.current
+          .map(filteredItem => filteredItem.current)
+          .indexOf(document.activeElement);
+
+        if (
+          filteredItemIndex === -1 ||
+          filteredItemIndex === itemRefArray.current.length - 1
+        ) {
+          itemRefArray.current
+            .filter(itemRef => itemRef.current)[0]
+            .current.focus();
+        } else {
+          focusNextItem(filteredItemIndex);
+        }
+      }
+
+      if (event.key === 'ArrowUp') {
+        event.preventDefault();
+
+        const filteredItemIndex = itemRefArray.current
+          .map(filteredItem => filteredItem.current)
+          .indexOf(document.activeElement);
+
+        if (filteredItemIndex === -1 || filteredItemIndex === 0) {
+          itemRefArray.current
+            .filter(itemRef => itemRef.current)
+            [itemRefArray.current.length - 1].current.focus();
+        } else {
+          focusPrevItem(filteredItemIndex);
+        }
       }
     }
 
@@ -86,14 +153,16 @@ export const Dropdown: React.FunctionComponent<
     return (
       <DropdownContext.Provider
         value={{
-          alignment: alignment,
-          dropDirection: dropDirection,
+          alignment,
+          dropDirection,
+          itemRefArray,
           isFixedWidth: !!width,
-          isOpen: isOpen,
-          setIsOpen: setIsOpen,
-          toggleDropdown: toggleDropdown,
-          toggleRef: toggleRef,
-          width: width
+          isOpen,
+          menuRef,
+          setIsOpen,
+          toggleDropdown,
+          toggleRef,
+          width
         }}
       >
         <Container

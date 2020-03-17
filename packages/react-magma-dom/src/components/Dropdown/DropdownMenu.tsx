@@ -3,6 +3,7 @@ import styled from '../../theme/styled';
 import { css } from '@emotion/core';
 import { Card } from '../Card';
 import { DropdownContext, DropdownAlignment, DropdownDropDirection } from '.';
+import { DropdownMenuItem } from './DropdownMenuItem';
 
 const StyledMenu = styled.ul`
   margin: 0;
@@ -48,6 +49,15 @@ export const DropdownMenu: React.FunctionComponent = ({
   ...other
 }) => {
   const context = React.useContext(DropdownContext);
+  const { itemRefArray } = context;
+
+  const childrenLength = React.Children.toArray(children).length;
+
+  if (itemRefArray.current.length !== childrenLength) {
+    itemRefArray.current = Array(childrenLength)
+      .fill(null)
+      .map((_, i) => itemRefArray.current[i] || React.createRef());
+  }
 
   return (
     <StyledCard
@@ -59,7 +69,14 @@ export const DropdownMenu: React.FunctionComponent = ({
       testId="dropdownMenu"
       width={context.width}
     >
-      <StyledMenu role="menu">{children}</StyledMenu>
+      <StyledMenu ref={context.menuRef} role="menu">
+        {context.itemRefArray &&
+          React.Children.toArray(children).map((child: any, index) => {
+            return child.type === DropdownMenuItem
+              ? React.cloneElement(child, { ref: itemRefArray.current[index] })
+              : child;
+          })}
+      </StyledMenu>
     </StyledCard>
   );
 };
