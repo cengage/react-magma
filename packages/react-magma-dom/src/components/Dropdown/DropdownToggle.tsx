@@ -23,6 +23,14 @@ export const DropdownToggle: React.FunctionComponent<IconTextButtonProps> = ({
       <CaretDownIcon size={10} testId="caretDown" />
     );
 
+  function handleClick() {
+    if (context.isOpen) {
+      context.closeDropdown();
+    } else {
+      context.openDropdown();
+    }
+  }
+
   return (
     <IconButton
       {...other}
@@ -30,7 +38,7 @@ export const DropdownToggle: React.FunctionComponent<IconTextButtonProps> = ({
       aria-haspopup="true"
       icon={icon ? icon : buttonIcon}
       iconPosition={ButtonIconPosition.right}
-      onClick={context.toggleDropdown}
+      onClick={handleClick}
       ref={context.toggleRef}
     >
       {children}

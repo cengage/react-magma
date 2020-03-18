@@ -26,13 +26,14 @@ const Container = styled.div`
 
 interface DropdownContextInterface {
   alignment?: DropdownAlignment;
+  closeDropdown?: () => void;
   dropDirection?: DropdownDropDirection;
   itemRefArray?: any;
   isFixedWidth?: boolean;
   isOpen?: boolean;
   menuRef?: any;
+  openDropdown?: () => void;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  toggleDropdown?: () => void;
   toggleRef?: any;
   width?: string;
 }
@@ -65,8 +66,16 @@ export const Dropdown: React.FunctionComponent<
     const toggleRef = React.useRef<HTMLButtonElement>();
     const menuRef = React.useRef<any>([]);
 
-    function toggleDropdown() {
-      setIsOpen(!isOpen);
+    function openDropdown() {
+      setIsOpen(true);
+    }
+
+    function closeDropdown() {
+      setIsOpen(false);
+
+      setTimeout(() => {
+        toggleRef.current.focus();
+      }, 0);
     }
 
     function useFilteredItems(): [any, number] {
@@ -82,8 +91,7 @@ export const Dropdown: React.FunctionComponent<
 
     function handleKeyDown(event: React.KeyboardEvent) {
       if (event.key === 'Escape') {
-        setIsOpen(false);
-        toggleRef.current.focus();
+        closeDropdown();
       }
 
       if (event.key === 'ArrowDown') {
@@ -130,13 +138,14 @@ export const Dropdown: React.FunctionComponent<
       <DropdownContext.Provider
         value={{
           alignment,
+          closeDropdown,
           dropDirection,
           itemRefArray,
           isFixedWidth: !!width,
           isOpen,
           menuRef,
+          openDropdown,
           setIsOpen,
-          toggleDropdown,
           toggleRef,
           width
         }}

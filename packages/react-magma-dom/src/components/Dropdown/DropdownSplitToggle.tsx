@@ -26,6 +26,14 @@ export const DropdownSplitToggle: React.FunctionComponent<
       <CaretDownIcon size={10} testId="caretDown" />
     );
 
+  function handleClick() {
+    if (context.isOpen) {
+      context.closeDropdown();
+    } else {
+      context.openDropdown();
+    }
+  }
+
   return (
     <>
       <Button
@@ -42,7 +50,7 @@ export const DropdownSplitToggle: React.FunctionComponent<
         aria-label="Toggle menu"
         aria-haspopup="true"
         icon={buttonIcon}
-        onClick={context.toggleDropdown}
+        onClick={handleClick}
         shape={ButtonShape.rightCap}
         style={{ marginLeft: 0 }}
         ref={context.toggleRef}

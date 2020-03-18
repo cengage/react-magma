@@ -1,5 +1,4 @@
 import React from 'react';
-import { axe } from 'jest-axe';
 import { AsteriskIcon } from '../Icon/types/AsteriskIcon';
 import { Dropdown } from '.';
 import { DropdownMenu } from './DropdownMenu';
@@ -29,6 +28,7 @@ describe('Dropdown', () => {
 
     expect(getByTestId(testId)).toBeInTheDocument();
     expect(getByTestId('dropdownMenu')).toBeInTheDocument();
+    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'none');
   });
 
   it('should render a dropup', () => {
@@ -91,6 +91,8 @@ describe('Dropdown', () => {
   });
 
   it('should toggle the menu when the button is clicked', () => {
+    const toggleText = 'Toggle me';
+
     const { getByText, getByTestId } = render(
       <Dropdown>
         <DropdownToggle>Toggle me</DropdownToggle>
@@ -100,9 +102,35 @@ describe('Dropdown', () => {
 
     expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'none');
 
-    fireEvent.click(getByText('Toggle me'));
+    fireEvent.click(getByText(toggleText));
 
     expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'block');
+
+    fireEvent.click(getByText(toggleText));
+
+    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'none');
+  });
+
+  it('should toggle the menu when the button is clicked in a split dropdown', () => {
+    const toggleText = 'Toggle me';
+    const labelText = 'Toggle menu';
+
+    const { getByLabelText, getByTestId } = render(
+      <Dropdown>
+        <DropdownSplitToggle>{toggleText}</DropdownSplitToggle>
+        <DropdownMenu />
+      </Dropdown>
+    );
+
+    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'none');
+
+    fireEvent.click(getByLabelText(labelText));
+
+    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'block');
+
+    fireEvent.click(getByLabelText(labelText));
+
+    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'none');
   });
 
   it('should close the menu when blurred', () => {
@@ -185,6 +213,7 @@ describe('Dropdown', () => {
         <DropdownToggle>Toggle me</DropdownToggle>
         <DropdownMenu>
           <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+          <DropdownMenuDivider />
           <DropdownMenuItem onClick={() => {}}>Menu item 2</DropdownMenuItem>
         </DropdownMenu>
       </Dropdown>
@@ -235,9 +264,14 @@ describe('Dropdown', () => {
     const text = 'menu item';
 
     const { getByText } = render(
-      <DropdownMenuItem isDisabled onClick={onClick}>
-        {text}
-      </DropdownMenuItem>
+      <Dropdown alignment="right">
+        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownMenu>
+          <DropdownMenuItem isDisabled onClick={onClick}>
+            {text}
+          </DropdownMenuItem>
+        </DropdownMenu>
+      </Dropdown>
     );
 
     fireEvent.click(getByText(text));
@@ -246,23 +280,18 @@ describe('Dropdown', () => {
     expect(getByText(text)).toHaveStyleRule('color', magma.colors.disabledText);
   });
 
-  it('should fire the onclick event for an item when clicked', () => {
-    const onClick = jest.fn();
-    const text = 'menu item';
-
-    const { getByText } = render(
-      <DropdownMenuItem onClick={onClick}>{text}</DropdownMenuItem>
-    );
-
-    fireEvent.click(getByText(text));
-    expect(onClick).toHaveBeenCalled();
-  });
-
   it('should render a dropdown header', () => {
     const text = 'header item';
+    const onClick = jest.fn();
 
     const { getByText } = render(
-      <DropdownMenuHeader>{text}</DropdownMenuHeader>
+      <Dropdown>
+        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownMenu>
+          <DropdownMenuHeader>{text}</DropdownMenuHeader>
+          <DropdownMenuItem onClick={onClick}>blah</DropdownMenuItem>
+        </DropdownMenu>
+      </Dropdown>
     );
 
     expect(getByText(text)).toBeInTheDocument();
@@ -274,21 +303,24 @@ describe('Dropdown', () => {
     expect(container.querySelector('hr')).toBeInTheDocument();
   });
 
-  it('Does not violate accessibility standards', () => {
-    const { container } = render(
+  it('should fire the onclick event for an item when enter is pressed', () => {
+    const onClick = jest.fn();
+    const itemText = 'item';
+
+    const { getByText } = render(
       <Dropdown>
-        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownToggle>Toggle</DropdownToggle>
         <DropdownMenu>
-          <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem onClick={() => {}}>
-            Menu item number two
-          </DropdownMenuItem>
+          <DropdownMenuItem onClick={onClick}>{itemText}</DropdownMenuItem>
         </DropdownMenu>
       </Dropdown>
     );
 
-    return axe(container.innerHTML).then(result => {
-      return expect(result).toHaveNoViolations();
+    fireEvent.keyDown(getByText(itemText), {
+      key: 'Enter',
+      code: 13
     });
+
+    expect(onClick).toHaveBeenCalled();
   });
 });

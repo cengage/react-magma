@@ -55,6 +55,16 @@ export const DropdownMenuItem: React.FunctionComponent<
       if (onClick && !isDisabled) {
         onClick();
       }
+
+      if (!isDisabled) {
+        context.closeDropdown();
+      }
+    }
+
+    function handleKeyDown(event: React.KeyboardEvent) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        handleClick();
+      }
     }
 
     return (
@@ -64,6 +74,7 @@ export const DropdownMenuItem: React.FunctionComponent<
         isDisabled={isDisabled}
         isFixedWidth={context.isFixedWidth}
         onClick={handleClick}
+        onKeyDown={handleKeyDown}
         ref={isDisabled ? null : ref}
         role="menuitem"
         theme={theme}
