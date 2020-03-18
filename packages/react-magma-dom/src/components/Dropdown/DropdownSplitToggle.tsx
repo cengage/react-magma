@@ -7,7 +7,7 @@ import { CaretUpIcon } from '../Icon/types/CaretUpIcon';
 import { DropdownContext, DropdownDropDirection } from '.';
 
 export interface DropdownSplitToggleProps extends ButtonStyles {
-  ariaLabel?: string;
+  'aria-label': string;
   children?: any;
   icon?: React.ReactElement<IconButtonProps>;
   isDisabled?: boolean;
@@ -16,7 +16,13 @@ export interface DropdownSplitToggleProps extends ButtonStyles {
 
 export const DropdownSplitToggle: React.FunctionComponent<
   DropdownSplitToggleProps
-> = ({ children, icon, onClick, ...other }: DropdownSplitToggleProps) => {
+> = ({
+  'aria-label': ariaLabel,
+  children,
+  icon,
+  onClick,
+  ...other
+}: DropdownSplitToggleProps) => {
   const context = React.useContext(DropdownContext);
 
   const buttonIcon =
@@ -47,7 +53,7 @@ export const DropdownSplitToggle: React.FunctionComponent<
       <IconButton
         {...other}
         aria-expanded={context.isOpen}
-        aria-label="Toggle menu"
+        aria-label={ariaLabel ? ariaLabel : 'Toggle menu'}
         aria-haspopup="true"
         icon={buttonIcon}
         onClick={handleClick}
