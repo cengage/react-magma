@@ -323,4 +323,28 @@ describe('Dropdown', () => {
 
     expect(onClick).toHaveBeenCalled();
   });
+
+  it('should render a dropdown with an active item', () => {
+    const { container, getByText } = render(
+      <Dropdown activeIndex={1}>
+        <DropdownToggle>Toggle</DropdownToggle>
+        <DropdownMenu>
+          <DropdownMenuItem index={0} onClick={() => {}}>
+            aaa
+          </DropdownMenuItem>
+          <DropdownMenuItem index={1} onClick={() => {}}>
+            bbb
+          </DropdownMenuItem>
+        </DropdownMenu>
+      </Dropdown>
+    );
+
+    expect(getByText('aaa')).toHaveStyleRule('padding', '10px 20px 10px 55px');
+    expect(getByText('bbb')).toHaveStyleRule('padding', '10px 20px');
+    expect(container.querySelector('svg')).toBeInTheDocument();
+
+    fireEvent.click(getByText('aaa'));
+    expect(getByText('aaa')).toHaveStyleRule('padding', '10px 20px');
+    expect(getByText('bbb')).toHaveStyleRule('padding', '10px 20px 10px 55px');
+  });
 });

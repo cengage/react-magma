@@ -12,6 +12,7 @@ export enum DropdownAlignment {
 }
 
 export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
+  activeIndex?: number;
   alignment?: DropdownAlignment;
   dropDirection?: DropdownDropDirection;
   ref?: any;
@@ -25,6 +26,7 @@ const Container = styled.div`
 `;
 
 interface DropdownContextInterface {
+  activeItemIndex?: number;
   alignment?: DropdownAlignment;
   closeDropdown?: () => void;
   dropDirection?: DropdownDropDirection;
@@ -33,6 +35,7 @@ interface DropdownContextInterface {
   isOpen?: boolean;
   menuRef?: any;
   openDropdown?: () => void;
+  setActiveItemIndex?: React.Dispatch<React.SetStateAction<number>>;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   toggleRef?: any;
   width?: string;
@@ -50,8 +53,9 @@ export const Dropdown: React.FunctionComponent<
 > = React.forwardRef(
   (
     {
-      children,
+      activeIndex,
       alignment,
+      children,
       dropDirection,
       testId,
       width,
@@ -61,10 +65,20 @@ export const Dropdown: React.FunctionComponent<
   ) => {
     const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
+    const [activeItemIndex, setActiveItemIndex] = React.useState<number>(
+      activeIndex || -1
+    );
+
     const itemRefArray = React.useRef([]);
 
     const toggleRef = React.useRef<HTMLButtonElement>();
     const menuRef = React.useRef<any>([]);
+
+    React.useEffect(() => {
+      if (activeIndex >= 0) {
+        setActiveItemIndex(activeIndex);
+      }
+    }, [activeIndex]);
 
     function openDropdown() {
       setIsOpen(true);
@@ -137,6 +151,7 @@ export const Dropdown: React.FunctionComponent<
     return (
       <DropdownContext.Provider
         value={{
+          activeItemIndex,
           alignment,
           closeDropdown,
           dropDirection,
@@ -145,6 +160,7 @@ export const Dropdown: React.FunctionComponent<
           isOpen,
           menuRef,
           openDropdown,
+          setActiveItemIndex,
           setIsOpen,
           toggleRef,
           width

@@ -3,15 +3,22 @@ import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { DropdownContext } from '.';
 import { IconProps } from '../Icon/utils';
+import { CheckIcon } from '../Icon/types/CheckIcon';
 
 export interface DropdownMenuItemProps
   extends React.HTMLAttributes<HTMLLIElement> {
   icon?: React.ReactElement<IconProps>;
+  index?: number;
+  isActive?: boolean;
   isDisabled?: boolean;
   onClick?: () => void;
 }
 
-const StyledItem = styled.li<{ isDisabled?: boolean; isFixedWidth?: boolean }>`
+const StyledItem = styled.li<{
+  isDisabled?: boolean;
+  isFixedWidth?: boolean;
+  isInactive?: boolean;
+}>`
   color: ${props =>
     props.isDisabled
       ? props.theme.colors.disabledText
@@ -21,7 +28,7 @@ const StyledItem = styled.li<{ isDisabled?: boolean; isFixedWidth?: boolean }>`
   line-height: 20px;
   list-style: none;
   margin: 0;
-  padding: 10px 20px;
+  padding: ${props => (props.isInactive ? '10px 20px 10px 55px' : '10px 20px')};
   white-space: ${props => (props.isFixedWidth ? 'normal' : 'nowrap')};
 
   &:hover,
@@ -47,16 +54,23 @@ const IconWrapper = styled.span`
 export const DropdownMenuItem: React.FunctionComponent<
   DropdownMenuItemProps
 > = React.forwardRef(
-  ({ children, isDisabled, icon, onClick, ...other }, ref: React.Ref<any>) => {
+  (
+    { children, index, isDisabled, icon, onClick, ...other },
+    ref: React.Ref<any>
+  ) => {
     const theme = React.useContext(ThemeContext);
     const context = React.useContext(DropdownContext);
 
     function handleClick() {
+      if (context.activeItemIndex >= 0) {
+        context.setActiveItemIndex(index);
+      }
+
       if (onClick && !isDisabled) {
         onClick();
       }
 
-      if (!isDisabled) {
+      if (!isDisabled && context.activeItemIndex < 0) {
         context.closeDropdown();
       }
     }
@@ -67,12 +81,19 @@ export const DropdownMenuItem: React.FunctionComponent<
       }
     }
 
+    const isActive =
+      context.activeItemIndex >= 0 && context.activeItemIndex === index;
+
+    const isInactive =
+      context.activeItemIndex >= 0 && context.activeItemIndex !== index;
+
     return (
       <StyledItem
         {...other}
         aria-disabled={isDisabled}
         isDisabled={isDisabled}
         isFixedWidth={context.isFixedWidth}
+        isInactive={isInactive}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         ref={isDisabled ? null : ref}
@@ -81,6 +102,11 @@ export const DropdownMenuItem: React.FunctionComponent<
         tabIndex={isDisabled ? null : -1}
       >
         {icon && <IconWrapper>{icon}</IconWrapper>}
+        {isActive && (
+          <IconWrapper>
+            <CheckIcon />
+          </IconWrapper>
+        )}
         {children}
       </StyledItem>
     );
