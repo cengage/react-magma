@@ -46,7 +46,7 @@ The label/group association will be handled via the passed in `id` if one is sup
 
 To meet accessibility requirements, a form group _must_ have a label. You can provide a label in one of two ways.
 
-You can use the `labelText` prop, which takes a string. This string will be displayed on screen inside a `<label>` element and be associated with your form group.
+You can use the `labelText` prop, which takes a string or a React Node. This will be displayed on screen inside a `<label>` element and be associated with your form group.
 
 Or you can use the `labelledById` prop, which also takes a string. This string should refer to an ID of an element that exists somewhere else on the page.
 This id will become the value of the `aria-labelledby` attribute for the group.
@@ -54,7 +54,7 @@ This id will become the value of the `aria-labelledby` attribute for the group.
 ```.jsx
   <>
     <FormGroup
-        labelText="Labelled by Label"
+        labelText={<>Labelled by <i>Label</i></>}
         name='labelledByGroup'>
           <Checkbox
               labelText='Label' />
@@ -153,11 +153,11 @@ The ;abel text for the form group can be hidden visually, but still be read by a
     },
     labelText: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: false,
       description:
-        'Text for label of the form group. Alertnatively, the labelledById prop can be used.',
+        'Content of label for form group; can be a node or a string. Alertnatively, the labelledById prop can be used.',
     },
     testId: {
       type: {
