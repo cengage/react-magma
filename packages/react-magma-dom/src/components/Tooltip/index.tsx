@@ -12,11 +12,13 @@ export enum EnumTooltipPosition {
 }
 
 export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
+  containerStyle?: React.CSSProperties;
   content: React.ReactNode;
+  innerRef?: React.Ref<HTMLDivElement>;
   inverse?: boolean;
   position?: EnumTooltipPosition;
   trigger: React.ReactElement;
-  innerRef?: React.Ref<HTMLDivElement>;
+  tooltipStyle?: React.CSSProperties;
 }
 
 export interface ITooltipState {
@@ -236,10 +238,18 @@ class TooltipComponent extends React.Component<TooltipProps> {
     return (
       <TooltipCore id={this.props.id}>
         {({ id, hideTooltip, showTooltip, isVisible }) => {
-          const { content, inverse, position, trigger, innerRef } = this.props;
+          const {
+            containerStyle,
+            content,
+            inverse,
+            position,
+            trigger,
+            innerRef,
+            tooltipStyle
+          } = this.props;
 
           return (
-            <ToolTipContainer>
+            <ToolTipContainer style={containerStyle}>
               {React.cloneElement(trigger, {
                 'aria-describedby': id,
                 onKeyDown: this.handleKeyDown(hideTooltip),
@@ -260,6 +270,7 @@ class TooltipComponent extends React.Component<TooltipProps> {
                     <StyledTooltipInner
                       inverse={inverse}
                       position={position ? position : EnumTooltipPosition.top}
+                      style={tooltipStyle}
                       theme={theme}
                     >
                       {content}
