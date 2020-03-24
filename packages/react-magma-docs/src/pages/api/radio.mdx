@@ -173,18 +173,20 @@ The `labelText` prop can either be a string, or it can be a React Node.
 ```.jsx
       () => {
 
-        const myLabel = <span style={{  border: '1px solid #3f3f3f', borderRadius: '3px', display: 'inline-block', padding: '10px' }}><strong>Node </strong> as <i>label</i></span>;
+        const labelStyles = {  border: '1px solid #3f3f3f', borderRadius: '3px', display: 'inline-block', padding: '10px' };
 
         return (
           <RadioGroup labelText='Nodes for labels'>
 
           <Radio
-              labelText={myLabel}
-              inputStyle={{ alignSelf: 'center' }} />
+              labelText={<span style={labelStyles}>Option 1</span>}
+              inputStyle={{ alignSelf: 'center' }}
+              value="1" />
 
            <Radio
-              labelText={myLabel}
-              inputStyle={{ alignSelf: 'center' }} />
+              labelText={<span style={labelStyles}>Option 2</span>}
+              inputStyle={{ alignSelf: 'center' }}
+              value="2"  />
 
           </RadioGroup>
         );
