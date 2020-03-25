@@ -29,6 +29,7 @@ export const AsyncSelect: React.FunctionComponent<AsyncSelectProps> = (
     {({ value, onChange }) => {
       const {
         cacheOptions,
+        components: customComponents,
         defaultOptions,
         defaultValue,
         id,
@@ -67,7 +68,8 @@ export const AsyncSelect: React.FunctionComponent<AsyncSelectProps> = (
                 components={{
                   ClearIndicator,
                   DropdownIndicator,
-                  MultiValueRemove
+                  MultiValueRemove,
+                  ...customComponents
                 }}
                 aria-label={labelText}
                 name={name}

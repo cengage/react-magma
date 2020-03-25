@@ -37,6 +37,7 @@ export const CreatableSelect: React.FunctionComponent<CreatableSelectProps> = (
       const {
         allowCreateWhileLoading,
         createOptionPosition,
+        components: customComponents,
         defaultValue,
         formatCreateLabel,
         getNewOptionData,
@@ -77,7 +78,8 @@ export const CreatableSelect: React.FunctionComponent<CreatableSelectProps> = (
                 components={{
                   ClearIndicator,
                   DropdownIndicator,
-                  MultiValueRemove
+                  MultiValueRemove,
+                  ...customComponents
                 }}
                 aria-label={labelText}
                 name={name}

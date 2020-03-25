@@ -4,6 +4,8 @@ import { axe } from 'jest-axe';
 import { AsyncCreatableSelect } from '.';
 import { render, fireEvent, waitForElement } from '@testing-library/react';
 const mockPromise = require('promise');
+import { Search2Icon } from '../Icon/types/Search2Icon';
+import { components as ReactSelectComponents } from 'react-select';
 
 const colourOptions = [
   {
@@ -111,6 +113,31 @@ describe('Async Creatable', () => {
       await waitForElement(() => getByText('Pink'));
 
       expect(getByText('Pink')).toBeInTheDocument();
+    });
+
+    it('should allow for the passing in of custom components', () => {
+      const DropdownIndicator = props => {
+        return (
+          ReactSelectComponents.DropdownIndicator && (
+            <ReactSelectComponents.DropdownIndicator {...props}>
+              <Search2Icon testId="custom-dropdown-indicator" size={10} />
+            </ReactSelectComponents.DropdownIndicator>
+          )
+        );
+      };
+
+      const { getByTestId } = render(
+        <AsyncCreatableSelect
+          id="customSelect"
+          labelText="Custom"
+          loadOptions={promiseOptions}
+          components={{
+            DropdownIndicator
+          }}
+        />
+      );
+
+      expect(getByTestId('custom-dropdown-indicator')).toBeInTheDocument();
     });
 
     it('should call onChange with the newly created option', async () => {
