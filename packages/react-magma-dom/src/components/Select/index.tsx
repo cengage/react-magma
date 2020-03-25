@@ -4,10 +4,10 @@ import { CrossIcon } from '../Icon/types/CrossIcon';
 import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
 import { ThemeContext } from '../../theme/ThemeContext';
 
-import ReactSelect, { components } from 'react-select';
+import ReactSelect, { components, SelectComponents } from 'react-select';
 import { SelectWrapper } from './SelectWrapper';
-
 export interface SelectProps {
+  components?: SelectComponents;
   id?: string;
   testId?: string;
   name: string;
@@ -179,6 +179,7 @@ export const Select: React.FunctionComponent<SelectProps> = (
   >
     {({ value, onChange }) => {
       const {
+        components: customComponents,
         defaultValue,
         id,
         testId,
@@ -222,7 +223,8 @@ export const Select: React.FunctionComponent<SelectProps> = (
                 components={{
                   ClearIndicator,
                   DropdownIndicator,
-                  MultiValueRemove
+                  MultiValueRemove,
+                  ...customComponents
                 }}
                 defaultValue={defaultValue}
                 id={id}

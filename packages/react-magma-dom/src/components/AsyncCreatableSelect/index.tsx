@@ -31,6 +31,7 @@ export const AsyncCreatableSelect: React.FunctionComponent<
         allowCreateWhileLoading,
         createOptionPosition,
         cacheOptions,
+        components: customComponents,
         defaultOptions,
         defaultValue,
         formatCreateLabel,
@@ -74,7 +75,8 @@ export const AsyncCreatableSelect: React.FunctionComponent<
                 components={{
                   ClearIndicator,
                   DropdownIndicator,
-                  MultiValueRemove
+                  MultiValueRemove,
+                  ...customComponents
                 }}
                 aria-label={labelText}
                 name={name}
