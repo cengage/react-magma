@@ -214,6 +214,28 @@ When another item is clicked, that item will become active and the menu will rem
 }
 ```
 
+## Max-Height
+
+By default, the max-height of a dropdown menu is 250px. That can be change by using the `maxHeight` prop.
+
+```.jsx
+      <Dropdown maxHeight='150px'>
+        <DropdownToggle>Max-Height</DropdownToggle>
+        <DropdownMenu>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 4</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 5</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 6</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 7</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 8</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 9</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 10</DropdownMenuItem>
+        </DropdownMenu>
+      </Dropdown>
+```
+
 ## Dropdown with Form
 
 ```.jsx
@@ -272,6 +294,14 @@ When another item is clicked, that item will become active and the menu will rem
       required: false,
       description: 'Position of the dropdown menu',
       defaultValue: 'down',
+    },
+    maxHeight: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Max-height of menu',
+      defaultValue: '250px',
     },
     testId: {
       type: {

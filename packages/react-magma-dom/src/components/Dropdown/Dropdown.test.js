@@ -272,6 +272,19 @@ describe('Dropdown', () => {
     expect(getByText('Menu item')).toHaveStyleRule('white-space', 'normal');
   });
 
+  it('should render a dropdown menu item with correct styles with custom max-height', () => {
+    const { getByTestId } = render(
+      <Dropdown maxHeight="100px">
+        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownMenu>
+          <DropdownMenuItem>Menu item</DropdownMenuItem>
+        </DropdownMenu>
+      </Dropdown>
+    );
+
+    expect(getByTestId('dropdownMenu')).toHaveStyleRule('max-height', '100px');
+  });
+
   it('should render a disabled dropdown item', () => {
     const onClick = jest.fn();
     const text = 'menu item';

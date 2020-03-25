@@ -14,11 +14,14 @@ const StyledCard = styled(Card)<{
   alignment?: DropdownAlignment;
   dropDirection?: DropdownDropDirection;
   isOpen?: boolean;
+  maxHeight?: string;
   width?: string;
 }>`
   display: ${props => (props.isOpen ? 'block' : 'none')};
   left: 5px;
+  max-height: ${props => (props.maxHeight ? props.maxHeight : '250px')};
   opacity: ${props => (props.isOpen ? '1' : '0')};
+  overflow-y: auto;
   position: absolute;
   transition: opacity 0.3s;
   z-index: 2;
@@ -61,11 +64,12 @@ export const DropdownMenu: React.FunctionComponent = ({
 
   return (
     <StyledCard
+      {...other}
       alignment={context.alignment}
       dropDirection={context.dropDirection}
       hasDropShadow
       isOpen={context.isOpen}
-      {...other}
+      maxHeight={context.maxHeight}
       testId="dropdownMenu"
       width={context.width}
     >

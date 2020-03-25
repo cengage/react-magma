@@ -15,6 +15,7 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
   activeIndex?: number;
   alignment?: DropdownAlignment;
   dropDirection?: DropdownDropDirection;
+  maxHeight?: string;
   ref?: any;
   testId?: string;
   width?: string;
@@ -33,6 +34,7 @@ interface DropdownContextInterface {
   itemRefArray?: any;
   isFixedWidth?: boolean;
   isOpen?: boolean;
+  maxHeight?: string;
   menuRef?: any;
   openDropdown?: () => void;
   setActiveItemIndex?: React.Dispatch<React.SetStateAction<number>>;
@@ -57,6 +59,7 @@ export const Dropdown: React.FunctionComponent<
       alignment,
       children,
       dropDirection,
+      maxHeight,
       testId,
       width,
       ...other
@@ -160,6 +163,7 @@ export const Dropdown: React.FunctionComponent<
           itemRefArray,
           isFixedWidth: !!width,
           isOpen,
+          maxHeight,
           menuRef,
           openDropdown,
           setActiveItemIndex,
