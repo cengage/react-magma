@@ -4,14 +4,16 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { DropdownContext } from '.';
 import { IconProps } from '../Icon/utils';
 import { CheckIcon } from '../Icon/types/CheckIcon';
+import { Omit } from '../../utils';
 
 export interface DropdownMenuItemProps
-  extends React.HTMLAttributes<HTMLLIElement> {
+  extends Omit<React.HTMLAttributes<HTMLLIElement>, 'onClick'> {
   icon?: React.ReactElement<IconProps>;
   index?: number;
   isActive?: boolean;
   isDisabled?: boolean;
-  onClick?: () => void;
+  onClick?: (value?: string) => void;
+  value?: string;
 }
 
 const StyledItem = styled.li<{
@@ -55,7 +57,7 @@ export const DropdownMenuItem: React.FunctionComponent<
   DropdownMenuItemProps
 > = React.forwardRef(
   (
-    { children, index, isDisabled, icon, onClick, ...other },
+    { children, index, isDisabled, icon, onClick, value, ...other },
     ref: React.Ref<any>
   ) => {
     const theme = React.useContext(ThemeContext);
@@ -67,7 +69,7 @@ export const DropdownMenuItem: React.FunctionComponent<
       }
 
       if (onClick && !isDisabled) {
-        onClick();
+        onClick(value);
       }
 
       if (!isDisabled && context.activeItemIndex < 0) {
@@ -77,6 +79,7 @@ export const DropdownMenuItem: React.FunctionComponent<
 
     function handleKeyDown(event: React.KeyboardEvent) {
       if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
         handleClick();
       }
     }
@@ -100,6 +103,7 @@ export const DropdownMenuItem: React.FunctionComponent<
         role="menuitem"
         theme={theme}
         tabIndex={isDisabled ? null : -1}
+        value={value}
       >
         {icon && <IconWrapper>{icon}</IconWrapper>}
         {isActive && (

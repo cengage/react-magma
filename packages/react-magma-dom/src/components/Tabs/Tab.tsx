@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { css, jsx } from '@emotion/core';
 import isPropValid from '@emotion/is-prop-valid';
+import { Omit } from '../../utils';
 import { TabsIconPosition, TabsOrientation } from '../Tabs';
 
 export interface BaseTabProps

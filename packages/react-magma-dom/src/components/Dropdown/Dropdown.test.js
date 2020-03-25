@@ -68,6 +68,19 @@ describe('Dropdown', () => {
     expect(container.querySelectorAll('button').length).toBe(2);
   });
 
+  it('should render a split dropdown with custom label', () => {
+    const { getByLabelText } = render(
+      <Dropdown>
+        <DropdownSplitToggle aria-label="Custom label">
+          Toggle me
+        </DropdownSplitToggle>
+        <DropdownMenu />
+      </Dropdown>
+    );
+
+    expect(getByLabelText('Custom label')).toBeInTheDocument();
+  });
+
   it('should render a split dropup', () => {
     const { getByTestId } = render(
       <Dropdown dropDirection="up">
@@ -319,6 +332,27 @@ describe('Dropdown', () => {
     fireEvent.keyDown(getByText(itemText), {
       key: 'Enter',
       code: 13
+    });
+
+    expect(onClick).toHaveBeenCalled();
+  });
+
+  it('should fire the onclick event for an item when space bar is pressed', () => {
+    const onClick = jest.fn();
+    const itemText = 'item';
+
+    const { getByText } = render(
+      <Dropdown>
+        <DropdownToggle>Toggle</DropdownToggle>
+        <DropdownMenu>
+          <DropdownMenuItem onClick={onClick}>{itemText}</DropdownMenuItem>
+        </DropdownMenu>
+      </Dropdown>
+    );
+
+    fireEvent.keyDown(getByText(itemText), {
+      key: ' ',
+      code: 32
     });
 
     expect(onClick).toHaveBeenCalled();

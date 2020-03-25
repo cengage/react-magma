@@ -88,7 +88,9 @@ export const Dropdown: React.FunctionComponent<
       setIsOpen(false);
 
       setTimeout(() => {
-        toggleRef.current.focus();
+        if (toggleRef.current) {
+          toggleRef.current.focus();
+        }
       }, 0);
     }
 
