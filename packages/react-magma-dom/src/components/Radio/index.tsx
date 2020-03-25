@@ -25,7 +25,7 @@ export interface RadioProps
   isInverse?: boolean;
   isTextVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
-  labelText: string;
+  labelText: React.ReactNode;
   ref?: any;
   testId?: string;
 }

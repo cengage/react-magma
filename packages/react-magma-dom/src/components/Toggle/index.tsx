@@ -21,7 +21,7 @@ export interface ToggleProps
   isInverse?: boolean;
   isTextVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
-  labelText: string;
+  labelText: React.ReactNode;
   testId?: string;
   textPosition?: ToggleTextPosition;
   theme?: any;
@@ -156,7 +156,7 @@ const SpanTextRight = styled.span`
 
 const renderLabelText = (
   isTextVisuallyHidden: boolean,
-  labelText: string,
+  labelText: React.ReactNode,
   textPosition: ToggleTextPosition,
   labelStyle: React.CSSProperties
 ) => {

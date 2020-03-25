@@ -25,7 +25,7 @@ interface DatePickerProps
   id?: string;
   inputRef?: React.RefObject<{}>;
   isInverse?: boolean;
-  labelText: string;
+  labelText: React.ReactNode;
   maxDate?: Date;
   messageStyle?: React.CSSProperties;
   minDate?: Date;
