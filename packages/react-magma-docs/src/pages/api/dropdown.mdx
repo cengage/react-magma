@@ -6,6 +6,7 @@ import { ScopeableLayout } from '../../components/layout'
 import {
   AsteriskIcon,
   BellIcon,
+  Button,
   MenuIcon,
   Checkbox,
   Dropdown,
@@ -15,6 +16,8 @@ import {
   DropdownMenuItem,
   DropdownSplitToggle,
   DropdownToggle,
+  Input,
+  PasswordInput,
   Radio,
   RadioGroup,
 } from 'react-magma-dom'
@@ -211,6 +214,32 @@ When another item is clicked, that item will become active and the menu will rem
 }
 ```
 
+## Dropdown with Form
+
+```.jsx
+      <Dropdown width='300px'>
+        <DropdownToggle>Dropdown with Form</DropdownToggle>
+        <DropdownMenu>
+          <form style={{padding: '20px'}}>
+              <Input type="email" labelText="Email Address" />
+              <PasswordInput labelText="Password" />
+              <div style={{textAlign: 'center'}}>
+                <p>By signing in, you agree to our <a href="#">Terms of use</a>.</p>
+                <Button isFullWidth>Sign In</Button>
+                <p><a>Forgot password?</a></p>
+              </div>
+          </form>
+          <DropdownMenuDivider />
+          <div style={{textAlign: 'center', padding: '20px'}}>
+            <p>
+              Don't have an account? <br/>
+              <a href="#">Register today!</a>
+            </p>
+          </div>
+        </DropdownMenu>
+      </Dropdown>
+```
+
 ## Dropdown Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**
@@ -326,6 +355,7 @@ export default props => (
       AsteriskIcon,
       BellIcon,
       MenuIcon,
+      Button,
       Checkbox,
       Dropdown,
       DropdownMenu,
@@ -334,6 +364,8 @@ export default props => (
       DropdownMenuItem,
       DropdownSplitToggle,
       DropdownToggle,
+      Input,
+      PasswordInput,
       Radio,
       RadioGroup,
     }}
