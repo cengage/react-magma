@@ -114,9 +114,13 @@ export const Dropdown: React.FunctionComponent<
       }
 
       if (event.key === 'ArrowDown') {
-        event.preventDefault();
-
         const [filteredItems, filteredItemIndex] = useFilteredItems();
+
+        if (filteredItems.length === 0) {
+          return;
+        }
+
+        event.preventDefault();
 
         if (
           filteredItemIndex === -1 ||
@@ -129,9 +133,13 @@ export const Dropdown: React.FunctionComponent<
       }
 
       if (event.key === 'ArrowUp') {
-        event.preventDefault();
-
         const [filteredItems, filteredItemIndex] = useFilteredItems();
+
+        if (filteredItems.length === 0) {
+          return;
+        }
+
+        event.preventDefault();
 
         if (filteredItemIndex === -1 || filteredItemIndex === 0) {
           filteredItems[filteredItems.length - 1].current.focus();

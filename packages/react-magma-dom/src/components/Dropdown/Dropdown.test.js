@@ -189,7 +189,7 @@ describe('Dropdown', () => {
     expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'none');
   });
 
-  it('go to the first or nextitem when the down arrow key is pressed', () => {
+  it('go to the first or next item when the down arrow key is pressed', () => {
     const { getByText, getByTestId } = render(
       <Dropdown testId="dropdown">
         <DropdownToggle>Toggle me</DropdownToggle>

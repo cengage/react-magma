@@ -7,7 +7,6 @@ import {
   AsteriskIcon,
   BellIcon,
   Button,
-  MenuIcon,
   Checkbox,
   Dropdown,
   DropdownMenu,
@@ -16,7 +15,9 @@ import {
   DropdownMenuItem,
   DropdownSplitToggle,
   DropdownToggle,
+  FormGroup,
   Input,
+  MenuIcon,
   PasswordInput,
   Radio,
   RadioGroup,
@@ -172,7 +173,6 @@ By default, a dropdown menu will be as wide as the largest item. However, you ma
         <DropdownToggle>Divider and headings</DropdownToggle>
         <DropdownMenu>
           <DropdownMenuHeader>Section title A</DropdownMenuHeader>
-
           <DropdownMenuItem>Menu item 1</DropdownMenuItem>
           <DropdownMenuItem>Menu item 2</DropdownMenuItem>
           <DropdownMenuDivider />
@@ -239,7 +239,7 @@ By default, the max-height of a dropdown menu is 250px. That can be change by us
 ## Dropdown with Form
 
 ```.jsx
-      <Dropdown width='300px'>
+      <Dropdown width='300px' maxHeight='600px'>
         <DropdownToggle>Dropdown with Form</DropdownToggle>
         <DropdownMenu>
           <form style={{padding: '20px'}}>
@@ -258,6 +258,31 @@ By default, the max-height of a dropdown menu is 250px. That can be change by us
               <a href="#">Register today!</a>
             </p>
           </div>
+        </DropdownMenu>
+      </Dropdown>
+```
+
+## Dropdown with Form 2
+
+```.jsx
+      <Dropdown width='300px' maxHeight='600px'>
+        <DropdownToggle>Dropdown with Form 2</DropdownToggle>
+        <DropdownMenu>
+          <form>
+             <DropdownMenuHeader id='checkboxGroup'>Checkbox Group Label</DropdownMenuHeader>
+             <FormGroup labelledById='checkboxGroup'>
+                <Checkbox labelText='Option 1' />
+                <Checkbox labelText='Option 2' />
+                <Checkbox labelText='Option 3' />
+             </FormGroup>
+             <DropdownMenuDivider />
+             <DropdownMenuHeader id='radioGroup'>Radio Group Label</DropdownMenuHeader>
+             <RadioGroup labelledById='radioGroup' name='radioGroupExample' value='1'>
+                <Radio labelText='Option 1' value='1' />
+                <Radio labelText='Option 2' value='2' />
+                <Radio labelText='Option 3' value='3' />
+             </RadioGroup>
+          </form>
         </DropdownMenu>
       </Dropdown>
 ```
@@ -384,7 +409,6 @@ export default props => (
     components={{
       AsteriskIcon,
       BellIcon,
-      MenuIcon,
       Button,
       Checkbox,
       Dropdown,
@@ -394,7 +418,9 @@ export default props => (
       DropdownMenuItem,
       DropdownSplitToggle,
       DropdownToggle,
+      FormGroup,
       Input,
+      MenuIcon,
       PasswordInput,
       Radio,
       RadioGroup,
