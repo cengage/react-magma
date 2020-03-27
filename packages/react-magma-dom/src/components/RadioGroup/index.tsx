@@ -16,7 +16,7 @@ export interface RadioGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   isTextVisuallyHidden?: boolean;
   labelledById?: string;
   labelStyle?: React.CSSProperties;
-  labelText?: string;
+  labelText?: React.ReactNode;
   name: string;
   testId?: string;
   value?: string;

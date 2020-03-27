@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.27](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.26...v2.0.0-beta.27) (2020-03-25)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.26](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.25...v2.0.0-beta.26) (2020-03-25)
+
+
+### Bug Fixes
+
+* **input labels:** allow react node not just string ([a95f9b8](http://stash.corp.web:7999/FRONT/react-magma/commits/a95f9b8))
+* **tooltip:** allow custom styling of tooltip container and element ([e7b3083](http://stash.corp.web:7999/FRONT/react-magma/commits/e7b3083))
+
+
+
+
+
 # [2.0.0-beta.25](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.24...v2.0.0-beta.25) (2020-03-09)
 
 

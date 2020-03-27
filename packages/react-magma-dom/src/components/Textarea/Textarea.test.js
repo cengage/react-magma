@@ -89,12 +89,11 @@ describe('Textarea', () => {
 
   it('should render the textarea with visually hidden label text', () => {
     const labelText = 'test label';
-    const { getByLabelText } = render(
+    const { getByText } = render(
       <Textarea labelText={labelText} isLabelVisuallyHidden />
     );
-    const textarea = getByLabelText(labelText);
 
-    expect(textarea).toHaveAttribute('aria-label', labelText);
+    expect(getByText(labelText)).toHaveStyleRule('height', '1px');
   });
 
   it('Does not violate accessibility standards', () => {

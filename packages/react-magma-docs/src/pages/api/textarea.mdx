@@ -118,13 +118,12 @@ import { SimplePropsTable } from '../../components/props-table'
       required: false,
       description: 'Style properties for the label element',
     },
-    labelText: {
+     labelText: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: false,
-      description: 'Text for input aria-label',
-      defaultValue: 'Search',
+      description: 'Content for label; can be a node or a string'
     },
     messageStyle: {
       type: {

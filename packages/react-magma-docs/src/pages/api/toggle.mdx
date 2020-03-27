@@ -23,7 +23,7 @@ The label/toggle association will be handled via the passed in `id` if one is su
   <div>
     <Toggle
         id='Toggle0'
-        labelText='Toggle label' />
+        labelText='Toggle label off' />
     <Toggle
         checked
         id='Toggle1'
@@ -175,10 +175,10 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
     },
     labelText: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: true,
-      description: 'Text for label',
+      description: 'Content for label; can be a node or a string',
     },
     required: {
       type: {

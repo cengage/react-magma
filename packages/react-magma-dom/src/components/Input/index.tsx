@@ -4,6 +4,7 @@ import { BaseInput, BaseInputProps, InputSize } from '../BaseInput';
 import { InputMessage } from './InputMessage';
 import { Label } from '../Label';
 import { useGenerateId } from '../../utils';
+import { HiddenStyles } from '../../utils/UtilityStyles';
 
 export interface InputProps extends BaseInputProps {
   errorMessage?: React.ReactNode;
@@ -11,11 +12,15 @@ export interface InputProps extends BaseInputProps {
   isLabelVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
   messageStyle?: React.CSSProperties;
-  labelText?: string;
+  labelText?: React.ReactNode;
 }
 
 const Container = styled.div`
   margin-bottom: 10px;
+`;
+
+export const HiddenLabelText = styled.span`
+  ${HiddenStyles};
 `;
 
 export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
@@ -41,23 +46,24 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
 
     return (
       <Container style={containerStyle}>
-        {!isLabelVisuallyHidden && (
-          <Label
-            isInverse={isInverse}
-            htmlFor={id}
-            size={inputSize ? inputSize : InputSize.medium}
-            style={labelStyle}
-          >
-            {labelText}
-          </Label>
-        )}
+        <Label
+          isInverse={isInverse}
+          htmlFor={id}
+          size={inputSize ? inputSize : InputSize.medium}
+          style={labelStyle}
+        >
+          {isLabelVisuallyHidden ? (
+            <HiddenLabelText>{labelText}</HiddenLabelText>
+          ) : (
+            labelText
+          )}
+        </Label>
         <BaseInput
           {...other}
           aria-describedby={
             descriptionId ? descriptionId : props['aria-describedby']
           }
           aria-invalid={!!errorMessage}
-          aria-label={isLabelVisuallyHidden ? labelText : null}
           hasError={!!errorMessage}
           id={id}
           inputSize={inputSize ? inputSize : InputSize.medium}

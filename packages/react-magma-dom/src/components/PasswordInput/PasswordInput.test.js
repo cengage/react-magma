@@ -159,12 +159,10 @@ it('should render an input with a correctly styled error message', () => {
 
 it('should render the input with visually hidden label text', () => {
   const labelText = 'test label';
-  const { getByLabelText } = render(
+  const { getByText } = render(
     <PasswordInput labelText={labelText} isLabelVisuallyHidden />
   );
-  const pwordinput = getByLabelText(labelText);
-
-  expect(pwordinput).toHaveAttribute('aria-label', labelText);
+  expect(getByText(labelText)).toHaveStyleRule('height', '1px');
 });
 
 describe('sizes', () => {
