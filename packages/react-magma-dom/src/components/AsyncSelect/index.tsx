@@ -29,6 +29,7 @@ export const AsyncSelect: React.FunctionComponent<AsyncSelectProps> = (
   );
 
   const {
+    components,
     testId,
     labelText,
     errorMessage,
@@ -57,7 +58,8 @@ export const AsyncSelect: React.FunctionComponent<AsyncSelectProps> = (
         components={{
           ClearIndicator,
           DropdownIndicator,
-          MultiValueRemove
+          MultiValueRemove,
+          ...components
         }}
         onChange={onChange}
         styles={getStyles(styles, theme, errorMessage, isInverse)}
