@@ -238,6 +238,8 @@ By default, the max-height of a dropdown menu is 250px. That can be change by us
 
 ## Dropdown with Form
 
+Dropdowns can contain elements other than Dropdown Menu Items. The standard keyboard behavior would apply in these cases.
+
 ```.jsx
       <Dropdown width='300px' maxHeight='600px'>
         <DropdownToggle>Dropdown with Form</DropdownToggle>
@@ -264,27 +266,34 @@ By default, the max-height of a dropdown menu is 250px. That can be change by us
 
 ## Dropdown with Form 2
 
+Another example of form elements in a dropdown.
+
 ```.jsx
-      <Dropdown width='300px' maxHeight='600px'>
-        <DropdownToggle>Dropdown with Form 2</DropdownToggle>
-        <DropdownMenu>
-          <form>
-             <DropdownMenuHeader id='checkboxGroup'>Checkbox Group Label</DropdownMenuHeader>
-             <FormGroup labelledById='checkboxGroup'>
-                <Checkbox labelText='Option 1' />
-                <Checkbox labelText='Option 2' />
-                <Checkbox labelText='Option 3' />
-             </FormGroup>
-             <DropdownMenuDivider />
-             <DropdownMenuHeader id='radioGroup'>Radio Group Label</DropdownMenuHeader>
-             <RadioGroup labelledById='radioGroup' name='radioGroupExample' value='1'>
-                <Radio labelText='Option 1' value='1' />
-                <Radio labelText='Option 2' value='2' />
-                <Radio labelText='Option 3' value='3' />
-             </RadioGroup>
-          </form>
-        </DropdownMenu>
-      </Dropdown>
+      () => {
+        const labelStyle = { justifyContent: 'space-between', width: '100%' };
+
+        return (
+            <Dropdown maxHeight='600px'>
+              <DropdownToggle>Dropdown with Form 2</DropdownToggle>
+              <DropdownMenu>
+                <form style={{margin: 0}}>
+                  <DropdownMenuHeader id='checkboxGroup'>Checkbox Group Label</DropdownMenuHeader>
+                  <FormGroup labelledById='checkboxGroup'>
+                      <Checkbox labelText={<><AsteriskIcon size={20} />Option 1</>} labelStyle={labelStyle} textPosition="left" />
+                      <Checkbox labelText={<><BellIcon size={20} />Option 2</>} labelStyle={labelStyle} textPosition="left"  />
+                  </FormGroup>
+                  <DropdownMenuDivider />
+                  <DropdownMenuHeader id='radioGroup'>Radio Group Label</DropdownMenuHeader>
+                  <RadioGroup labelledById='radioGroup' name='radioGroupExample' value='1'>
+                      <Radio labelText='Option 1' value='1' labelStyle={labelStyle} textPosition="left" />
+                      <Radio labelText='Option 2' value='2' labelStyle={labelStyle} textPosition="left" />
+                      <Radio labelText='Option 3' value='3' labelStyle={labelStyle} textPosition="left"  />
+                  </RadioGroup>
+                </form>
+              </DropdownMenu>
+            </Dropdown>
+        )
+      }
 ```
 
 ## Dropdown Props

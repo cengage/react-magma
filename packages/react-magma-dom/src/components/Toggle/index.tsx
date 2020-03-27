@@ -10,8 +10,8 @@ import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useGenerateId } from '../../utils';
 
-enum ToggleTextPosition {
-  left = 'left',
+export enum ToggleTextPosition {
+  left = 'left', // default
   right = 'right'
 }
 
