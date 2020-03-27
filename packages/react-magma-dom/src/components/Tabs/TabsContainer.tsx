@@ -12,12 +12,14 @@ interface TabsContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   testId?: string;
 }
 
-interface TabContextInterface {
+interface TabsContainerContextInterface {
   activeTabIndex: number;
   setActiveTabIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const TabsContext = React.createContext<TabContextInterface>({
+export const TabsContainerContext = React.createContext<
+  TabsContainerContextInterface
+>({
   activeTabIndex: 0,
   setActiveTabIndex: () => 0
 });
@@ -36,12 +38,12 @@ export const TabsContainer: React.FunctionComponent<
   const [activeTabIndex, setActiveTabIndex] = React.useState(activeIndex || 0);
 
   return (
-    <TabsContext.Provider value={{ activeTabIndex, setActiveTabIndex }}>
+    <TabsContainerContext.Provider
+      value={{ activeTabIndex, setActiveTabIndex }}
+    >
       <StyledTabsContainer ref={ref} data-testid={testId} {...props}>
         {children}
       </StyledTabsContainer>
-    </TabsContext.Provider>
+    </TabsContainerContext.Provider>
   );
 });
-
-export const useTabsContext = () => React.useContext(TabsContext);

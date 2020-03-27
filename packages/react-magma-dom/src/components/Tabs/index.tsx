@@ -7,6 +7,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { useTabsContext } from './TabsContainer';
 import isPropValid from '@emotion/is-prop-valid';
 import { Omit } from '../../utils';
+import { Tab } from './Tab';
 
 const StyledContainer = styled('div', { shouldForwardProp: isPropValid })<{
   orientation: TabsOrientation;
@@ -188,17 +189,18 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
 
     const [buttonVisiblePrev, setButtonPrevState] = React.useState(false);
     const [buttonVisibleNext, setButtonNextState] = React.useState(false);
-    const arrChildren = React.Children.toArray(children);
 
-    const buttonRefArray = arrChildren.reduce(
-      (accum: any, _, index: number) => {
-        accum[index] = React.createRef();
-        return accum;
-      },
-      {}
-    );
+    const buttonRefArray = React.useRef([]);
 
-    const divRef = React.useRef<HTMLDivElement>();
+    const childrenLength = React.Children.toArray(children).length;
+
+    if (buttonRefArray.current.length !== childrenLength) {
+      buttonRefArray.current = Array(childrenLength)
+        .fill(null)
+        .map((_, i) => buttonRefArray.current[i] || React.createRef());
+    }
+
+    const tabsWrapperRef = React.useRef<HTMLDivElement>();
 
     const scrollOptions = {
       behavior: 'smooth',
@@ -211,7 +213,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
         scrollLeft: scrollPositionSize,
         scrollWidth: scrollSize,
         offsetWidth: offsetBoxSize
-      } = divRef.current;
+      } = tabsWrapperRef.current;
 
       scrollSize - scrollPositionSize === offsetBoxSize
         ? setButtonNextState(false)
@@ -245,34 +247,38 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
       const {
         scrollLeft: scrollPositionSize,
         offsetWidth: offsetBoxSize
-      } = divRef.current;
-      const offsetTabSize = buttonRefArray[0].current.offsetWidth;
+      } = tabsWrapperRef.current;
+      const offsetTabSize = buttonRefArray.current[0].current.offsetWidth;
 
       const currentTabIndex = Math.round(
         (Number(offsetBoxSize) + Number(scrollPositionSize)) / offsetTabSize
       );
 
-      currentTabIndex <= arrChildren.length - 1
-        ? buttonRefArray[currentTabIndex].current.scrollIntoView(scrollOptions)
-        : buttonRefArray[arrChildren.length - 1].current.scrollIntoView(
+      currentTabIndex <= buttonRefArray.current.length - 1
+        ? buttonRefArray.current[currentTabIndex].current.scrollIntoView(
             scrollOptions
-          );
+          )
+        : buttonRefArray.current[
+            buttonRefArray.current.length - 1
+          ].current.scrollIntoView(scrollOptions);
     }
 
     function handleClickPrev() {
       const {
         scrollLeft: scrollPositionSize,
         offsetWidth: offsetBoxSize
-      } = divRef.current;
-      const offsetTabSize = buttonRefArray[1].current.offsetWidth;
+      } = tabsWrapperRef.current;
+      const offsetTabSize = buttonRefArray.current[1].current.offsetWidth;
 
       const currentTabIndex = Math.round(
         scrollPositionSize / offsetTabSize - offsetBoxSize / offsetTabSize
       );
 
       currentTabIndex >= 0
-        ? buttonRefArray[currentTabIndex].current.scrollIntoView(scrollOptions)
-        : buttonRefArray[0].current.scrollIntoView(scrollOptions);
+        ? buttonRefArray.current[currentTabIndex].current.scrollIntoView(
+            scrollOptions
+          )
+        : buttonRefArray.current[0].current.scrollIntoView(scrollOptions);
     }
 
     function handleScroll() {
@@ -280,7 +286,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
         scrollLeft: scrollPositionSize,
         scrollWidth: scrollSize,
         offsetWidth: offsetBoxSize
-      } = divRef.current;
+      } = tabsWrapperRef.current;
 
       scrollSize - scrollPositionSize === offsetBoxSize
         ? setButtonNextState(false)
@@ -319,7 +325,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
         ) : null}
 
         <StyledTabsWrapper
-          ref={divRef}
+          ref={tabsWrapperRef}
           onScroll={handleScroll}
           orientation={orientation}
         >
@@ -329,39 +335,42 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
             orientation={orientation}
             role="tablist"
           >
-            {arrChildren.map((childItem: any, index) => {
-              const isActive = index === activeTabIndex;
+            {buttonRefArray.current.length &&
+              React.Children.toArray(children).map((childItem: any, index) => {
+                const isActive = index === activeTabIndex;
 
-              const child: any = React.cloneElement(childItem, {
-                isActive,
-                changeHandler,
-                iconPosition:
-                  orientation === TabsOrientation.vertical
-                    ? TabsIconPosition.left
-                    : iconPosition,
-                index,
-                isInverse,
-                isFullWidth,
-                orientation
-              });
+                const child: any = React.cloneElement(childItem, {
+                  isActive,
+                  changeHandler,
+                  iconPosition:
+                    orientation === TabsOrientation.vertical
+                      ? TabsIconPosition.left
+                      : iconPosition,
+                  index,
+                  isInverse,
+                  isFullWidth,
+                  orientation
+                });
 
-              return (
-                <StyledTabsChild
-                  borderPosition={borderPosition}
-                  isActive={isActive}
-                  isFullWidth={isFullWidth}
-                  isInverse={isInverse}
-                  key={index}
-                  ref={buttonRefArray[index]}
-                  orientation={orientation}
-                  onClick={e => changeHandler(index, e)}
-                  role="tab"
-                  theme={theme}
-                >
-                  {child}
-                </StyledTabsChild>
-              );
-            })}
+                return (
+                  childItem.type === Tab && (
+                    <StyledTabsChild
+                      borderPosition={borderPosition}
+                      isActive={isActive}
+                      isFullWidth={isFullWidth}
+                      isInverse={isInverse}
+                      key={index}
+                      ref={buttonRefArray.current[index]}
+                      orientation={orientation}
+                      onClick={e => changeHandler(index, e)}
+                      role="tab"
+                      theme={theme}
+                    >
+                      {child}
+                    </StyledTabsChild>
+                  )
+                );
+              })}
           </StyledTabs>
         </StyledTabsWrapper>
 
