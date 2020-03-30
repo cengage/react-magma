@@ -150,10 +150,10 @@ export const Dropdown: React.FunctionComponent<
     }
 
     function handleMenuBlur(event: React.SyntheticEvent) {
-      const { currentTarget, target } = event;
+      const { currentTarget } = event;
 
       setTimeout(() => {
-        const isInMenu = currentTarget.contains(target as Node);
+        const isInMenu = currentTarget.contains(document.activeElement);
 
         if (!isInMenu && isOpen) {
           setIsOpen(false);

@@ -21,6 +21,7 @@ const StyledCard = styled(Card)<{
   left: 5px;
   max-height: ${props => (props.maxHeight ? props.maxHeight : '250px')};
   opacity: ${props => (props.isOpen ? '1' : '0')};
+  outline: 0;
   overflow-y: auto;
   position: absolute;
   transition: opacity 0.3s;
@@ -70,6 +71,7 @@ export const DropdownMenu: React.FunctionComponent = ({
       hasDropShadow
       isOpen={context.isOpen}
       maxHeight={context.maxHeight}
+      tabIndex={-1}
       testId="dropdownMenu"
       width={context.width}
     >
