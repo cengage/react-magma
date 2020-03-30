@@ -57,7 +57,7 @@ export function buildDisplayInputBorderColor(props) {
   if (props.disabled) {
     return props.theme.colors.neutral05;
   }
-  if (!props.checked && !props.indeterminate) {
+  if (!props.checked && !props.isIndeterminate) {
     return props.theme.colors.neutral02;
   }
   return props.color ? props.color : props.theme.colors.primary;
