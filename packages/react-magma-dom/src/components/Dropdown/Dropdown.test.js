@@ -376,12 +376,8 @@ describe('Dropdown', () => {
       <Dropdown activeIndex={1}>
         <DropdownToggle>Toggle</DropdownToggle>
         <DropdownMenu>
-          <DropdownMenuItem index={0} onClick={() => {}}>
-            aaa
-          </DropdownMenuItem>
-          <DropdownMenuItem index={1} onClick={() => {}}>
-            bbb
-          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => {}}>aaa</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => {}}>bbb</DropdownMenuItem>
         </DropdownMenu>
       </Dropdown>
     );

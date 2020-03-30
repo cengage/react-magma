@@ -185,8 +185,8 @@ By default, a dropdown menu will be as wide as the largest item. However, you ma
 
 ## Active Item Index
 
-To set a dropdown item as active, provide each `DropdownMenuItem` with an `index` prop, and provide the `Dropdown` with an `activeIndex` prop.
-When another item is clicked, that item will become active and the menu will remain open, rather than closing as usual.
+The `activeIndex` prop can be used to set an item within the dropdown as active.
+When another item is selected, that item will become active and the menu will remain open, rather than closing as usual.
 
 ```.jsx
     (props) => {
@@ -200,13 +200,12 @@ When another item is clicked, that item will become active and the menu will rem
       return (
         <>
         <p><strong>Active Value: </strong> <span>{activeValue}</span></p>
-
-        <Dropdown activeIndex={1}>
+         <Dropdown activeIndex={1}>
           <DropdownToggle>Selected Item</DropdownToggle>
           <DropdownMenu>
-            <DropdownMenuItem index={0} onClick={changeActiveValue} value='one'>Dropdown Item 1</DropdownMenuItem>
-            <DropdownMenuItem index={1} onClick={changeActiveValue} value='two'>Dropdown Item 2</DropdownMenuItem>
-            <DropdownMenuItem index={2} onClick={changeActiveValue} value='three'>Dropdown Item 3</DropdownMenuItem>
+            <DropdownMenuItem onClick={changeActiveValue} value='one'>Dropdown Item 1</DropdownMenuItem>
+            <DropdownMenuItem onClick={changeActiveValue} value='two'>Dropdown Item 2</DropdownMenuItem>
+            <DropdownMenuItem onClick={changeActiveValue} value='three'>Dropdown Item 3</DropdownMenuItem>
           </DropdownMenu>
         </Dropdown>
         </>
@@ -376,14 +375,6 @@ Another example of form elements in a dropdown.
       },
       required: false,
       description: 'Leading icon for the menu item',
-    },
-    index: {
-      type: {
-        name: 'number',
-      },
-      required: false,
-      description:
-        'The index of the dropdown item; needed to set an item as active.',
     },
     isDisabled: {
       type: {

@@ -78,7 +78,8 @@ export const DropdownMenu: React.FunctionComponent = ({
           React.Children.toArray(children).map((child: any, index) => {
             return child.type === DropdownMenuItem && !child.props.isDisabled
               ? React.cloneElement(child, {
-                  ref: itemRefArray.current[index]
+                  ref: itemRefArray.current[index],
+                  index: index
                 })
               : child;
           })}
