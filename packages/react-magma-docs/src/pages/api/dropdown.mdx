@@ -8,6 +8,7 @@ import {
   BellIcon,
   Button,
   Checkbox,
+  Cog2Icon,
   Dropdown,
   DropdownMenu,
   DropdownMenuDivider,
@@ -24,6 +25,9 @@ import {
 } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 import { Link } from 'gatsby'
+
+import { ButtonProps } from './props/button'
+import { IconButtonProps } from './props/icon-button'
 
 # Dropdown
 
@@ -73,7 +77,7 @@ Using the `dropDirection` prop will change where the menu appears. Options are `
 
 ## Alignment
 
-Using the `alignment` prop will the alignment of the menu. Options are `left` and `right`, with `left` being default.
+Using the `alignment` prop will set the alignment of the menu. Options are `left` and `right`, with `left` being default.
 
 ```.jsx
       <Dropdown alignment='right'>
@@ -112,19 +116,14 @@ By default, a dropdown menu will be as wide as the largest item. However, you ma
       </Dropdown>
 ```
 
-## Extra Toggle Button Props
+## Custom Toggle Button
+
+Both the `DropdownToggle` and ``DropdownSplitToggle`can be customized by using any of the props that the <Link to="/api/button">Button</Link> component accepts. If no`icon`property is provided to the`DropdownToggle`, the caret icon will appear.
 
 ```.jsx
       <>
         <Dropdown>
-          <DropdownToggle size="small" color="success" variant='outline'>Extra Props Example 1</DropdownToggle>
-            <DropdownMenu>
-              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-            </DropdownMenu>
-        </Dropdown>
-        <Dropdown>
-          <DropdownToggle aria-label="Extra props example 2" size='large' variant='link' icon={<MenuIcon />} />
+          <DropdownToggle size="small" color='marketing'>Extra Props Example 1</DropdownToggle>
             <DropdownMenu>
               <DropdownMenuItem>Menu item 1</DropdownMenuItem>
               <DropdownMenuItem>Menu item number two</DropdownMenuItem>
@@ -132,6 +131,36 @@ By default, a dropdown menu will be as wide as the largest item. However, you ma
         </Dropdown>
         <Dropdown>
           <DropdownSplitToggle size='large' variant='outline' color='danger'>Extra Props Split</DropdownSplitToggle>
+            <DropdownMenu>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownMenu>
+        </Dropdown>
+      </>
+```
+
+## Custom Toggle Icon Button
+
+Similarly, the `DropdownToggle` can be customized by using any of the props that the <Link to="/api/icon-button">Icon Button</Link> component accepts, to create a button with an icon.
+
+```.jsx
+      <>
+        <Dropdown>
+          <DropdownToggle aria-label="Extra icon example" color='secondary' size='large' variant='link' icon={<Cog2Icon />} />
+            <DropdownMenu>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownMenu>
+        </Dropdown>
+        <Dropdown>
+          <DropdownToggle aria-label="Extra icon example"  color='success' size='large' icon={<MenuIcon />} />
+            <DropdownMenu>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownMenu>
+        </Dropdown>
+         <Dropdown>
+          <DropdownToggle variant="outline" size='small' icon={<Cog2Icon />}>Icon with Text</DropdownToggle>
             <DropdownMenu>
               <DropdownMenuItem>Menu item 1</DropdownMenuItem>
               <DropdownMenuItem>Menu item number two</DropdownMenuItem>
@@ -152,21 +181,9 @@ By default, a dropdown menu will be as wide as the largest item. However, you ma
       </Dropdown>
 ```
 
-## Divider
+## Breaking a Menu Into Sections
 
-```.jsx
-      <Dropdown>
-        <DropdownToggle>Divider</DropdownToggle>
-        <DropdownMenu>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item 2</DropdownMenuItem>
-          <DropdownMenuDivider />
-          <DropdownMenuItem>Log out</DropdownMenuItem>
-        </DropdownMenu>
-      </Dropdown>
-```
-
-## Divider with Headings
+A `DropdownMenu` can be broken into multiple sections, by using the `DropdownMenuHeader` and `DropdownMenuDivider` components.
 
 ```.jsx
       <Dropdown>
@@ -179,6 +196,8 @@ By default, a dropdown menu will be as wide as the largest item. However, you ma
           <DropdownMenuHeader>Section title B</DropdownMenuHeader>
           <DropdownMenuItem>Menu item 3</DropdownMenuItem>
           <DropdownMenuItem>Menu item 4</DropdownMenuItem>
+          <DropdownMenuDivider />
+          <DropdownMenuItem>Log out</DropdownMenuItem>
         </DropdownMenu>
       </Dropdown>
 ```
@@ -215,7 +234,7 @@ When another item is selected, that item will become active and the menu will re
 
 ## Max-Height
 
-By default, the max-height of a dropdown menu is 250px. That can be change by using the `maxHeight` prop.
+By default, the max-height of a dropdown menu is 250px. That can be changed by using the `maxHeight` prop.
 
 ```.jsx
       <Dropdown maxHeight='150px'>
@@ -355,10 +374,6 @@ Another example of form elements in a dropdown.
   }}
 />
 
-## Dropdown Toggle Props
-
-**Dropwdown Toggle accepts the same props as the <Link to="/api/icon-button">Icon Button</Link> component.**
-
 ## Dropdown Menu Props
 
 **Props supplied will be provided to the wrapping `div` element.**
@@ -391,7 +406,7 @@ Another example of form elements in a dropdown.
       },
       required: false,
       description:
-        'Action that fires when the menu item is clicked, accepts optionial value (string)',
+        'Action that fires when the menu item is clicked, accepts optional value (string)',
     },
     value: {
       type: {
@@ -403,6 +418,16 @@ Another example of form elements in a dropdown.
   }}
 />
 
+## Dropdown Toggle Props
+
+**DropdownToggle and the DropdownSplitToggle accept the same props as the <Link to="/api/button">Button</Link> component.**
+
+<ButtonProps />
+
+**The DropdownToggle can also accept an `icon` property, as in the <Link to="/api/icon-button">Icon Button</Link> component.**
+
+<IconButtonProps />
+
 export default props => (
   <ScopeableLayout
     {...props}
@@ -411,6 +436,7 @@ export default props => (
       BellIcon,
       Button,
       Checkbox,
+      Cog2Icon,
       Dropdown,
       DropdownMenu,
       DropdownMenuDivider,
