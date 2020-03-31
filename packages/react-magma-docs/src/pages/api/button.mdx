@@ -6,7 +6,7 @@ import { ScopeableLayout } from '../../components/layout'
 import { Button, LinkButton, Input } from 'react-magma-dom'
 import { Link } from 'gatsby'
 import DocsHeading from '../../components/docs-heading'
-import { ButtonProps } from './props/button'
+import { ButtonProps } from '../../components/button-props'
 
 <DocsHeading to="/design/button/" type="design">
   Buttons
@@ -256,6 +256,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
 ## Button Props
 
 **Any other props supplied will be provided to the `button` element.**
+
+<ButtonProps />
 
 export default props => (
   <ScopeableLayout {...props} components={{ Button, LinkButton, Input }} />

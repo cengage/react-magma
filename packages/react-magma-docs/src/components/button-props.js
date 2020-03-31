@@ -1,8 +1,8 @@
 import React from 'react'
-import { SimplePropsTable } from '../../../components/props-table'
+import { SimplePropsTable } from './props-table'
 
-export function ButtonProps() {
-  return (
+export const ButtonProps = () => (
+  <>
     <SimplePropsTable
       propertyValues={{
         children: {
@@ -135,5 +135,5 @@ export function ButtonProps() {
         },
       }}
     />
-  )
-}
+  </>
+)

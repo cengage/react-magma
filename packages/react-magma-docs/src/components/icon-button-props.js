@@ -1,5 +1,5 @@
 import React from 'react'
-import { SimplePropsTable } from '../../../components/props-table'
+import { SimplePropsTable } from './props-table'
 
 export function IconButtonProps() {
   return (
