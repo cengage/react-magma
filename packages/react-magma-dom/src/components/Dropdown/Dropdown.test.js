@@ -5,8 +5,8 @@ import { DropdownMenu } from './DropdownMenu';
 import { DropdownMenuDivider } from './DropdownMenuDivider';
 import { DropdownMenuHeader } from './DropdownMenuHeader';
 import { DropdownMenuItem } from './DropdownMenuItem';
-import { DropdownSplitToggle } from './DropdownSplitToggle';
-import { DropdownToggle } from './DropdownToggle';
+import { DropdownSplitButton } from './DropdownSplitButton';
+import { DropdownButton } from './DropdownButton';
 import { magma } from '../../theme/magma';
 
 import { render, fireEvent } from '@testing-library/react';
@@ -16,7 +16,7 @@ describe('Dropdown', () => {
     const testId = 'test-id';
     const { getByTestId } = render(
       <Dropdown testId={testId}>
-        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownButton>Toggle me</DropdownButton>
         <DropdownMenu>
           <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
           <DropdownMenuItem onClick={() => {}}>
@@ -34,7 +34,7 @@ describe('Dropdown', () => {
   it('should render a dropup', () => {
     const { getByTestId } = render(
       <Dropdown dropDirection="up">
-        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownButton>Toggle me</DropdownButton>
         <DropdownMenu />
       </Dropdown>
     );
@@ -47,7 +47,7 @@ describe('Dropdown', () => {
   it('should render a right aligned menu', () => {
     const { getByTestId } = render(
       <Dropdown alignment="right">
-        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownButton>Toggle me</DropdownButton>
         <DropdownMenu />
       </Dropdown>
     );
@@ -59,7 +59,7 @@ describe('Dropdown', () => {
   it('should render a split dropdown', () => {
     const { getByTestId, container } = render(
       <Dropdown>
-        <DropdownSplitToggle>Toggle me</DropdownSplitToggle>
+        <DropdownSplitButton>Toggle me</DropdownSplitButton>
         <DropdownMenu />
       </Dropdown>
     );
@@ -71,9 +71,9 @@ describe('Dropdown', () => {
   it('should render a split dropdown with custom label', () => {
     const { getByLabelText } = render(
       <Dropdown>
-        <DropdownSplitToggle aria-label="Custom label">
+        <DropdownSplitButton aria-label="Custom label">
           Toggle me
-        </DropdownSplitToggle>
+        </DropdownSplitButton>
         <DropdownMenu />
       </Dropdown>
     );
@@ -84,17 +84,17 @@ describe('Dropdown', () => {
   it('should render a split dropup', () => {
     const { getByTestId } = render(
       <Dropdown dropDirection="up">
-        <DropdownSplitToggle>Toggle me</DropdownSplitToggle>
+        <DropdownSplitButton>Toggle me</DropdownSplitButton>
       </Dropdown>
     );
 
     expect(getByTestId('caretUp')).toBeInTheDocument();
   });
 
-  it('should render a toggle with custom icon', () => {
+  it('should render a button with custom icon', () => {
     const { queryByTestId } = render(
       <Dropdown>
-        <DropdownToggle icon={<AsteriskIcon />}>Toggle me</DropdownToggle>
+        <DropdownButton icon={<AsteriskIcon />}>Toggle me</DropdownButton>
         <DropdownMenu />
       </Dropdown>
     );
@@ -108,7 +108,7 @@ describe('Dropdown', () => {
 
     const { getByText, getByTestId } = render(
       <Dropdown>
-        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownButton>Toggle me</DropdownButton>
         <DropdownMenu />
       </Dropdown>
     );
@@ -130,7 +130,7 @@ describe('Dropdown', () => {
 
     const { getByLabelText, getByTestId } = render(
       <Dropdown>
-        <DropdownSplitToggle>{toggleText}</DropdownSplitToggle>
+        <DropdownSplitButton>{toggleText}</DropdownSplitButton>
         <DropdownMenu />
       </Dropdown>
     );
@@ -149,7 +149,7 @@ describe('Dropdown', () => {
   it('should close the menu when blurred', () => {
     const { getByText, getByTestId } = render(
       <Dropdown testId="dropdown">
-        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownButton>Toggle me</DropdownButton>
         <DropdownMenu />
       </Dropdown>
     );
@@ -170,7 +170,7 @@ describe('Dropdown', () => {
   it('should close the menu when escape key is pressed', () => {
     const { getByText, getByTestId } = render(
       <Dropdown testId="dropdown">
-        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownButton>Toggle me</DropdownButton>
         <DropdownMenu />
       </Dropdown>
     );
@@ -192,7 +192,7 @@ describe('Dropdown', () => {
   it('go to the first or next item when the down arrow key is pressed', () => {
     const { getByText, getByTestId } = render(
       <Dropdown testId="dropdown">
-        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownButton>Toggle me</DropdownButton>
         <DropdownMenu>
           <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
           <DropdownMenuDivider />
@@ -223,7 +223,7 @@ describe('Dropdown', () => {
   it('go to the last or previous item when the up arrow key is pressed', () => {
     const { getByText, getByTestId } = render(
       <Dropdown testId="dropdown">
-        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownButton>Toggle me</DropdownButton>
         <DropdownMenu>
           <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
           <DropdownMenuDivider />
@@ -262,7 +262,7 @@ describe('Dropdown', () => {
   it('should render a dropdown menu item with correct styles when fixed width', () => {
     const { getByText } = render(
       <Dropdown width="100px">
-        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownButton>Toggle me</DropdownButton>
         <DropdownMenu>
           <DropdownMenuItem>Menu item</DropdownMenuItem>
         </DropdownMenu>
@@ -275,7 +275,7 @@ describe('Dropdown', () => {
   it('should render a dropdown menu item with correct styles with custom max-height', () => {
     const { getByTestId } = render(
       <Dropdown maxHeight="100px">
-        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownButton>Toggle me</DropdownButton>
         <DropdownMenu>
           <DropdownMenuItem>Menu item</DropdownMenuItem>
         </DropdownMenu>
@@ -291,7 +291,7 @@ describe('Dropdown', () => {
 
     const { getByText } = render(
       <Dropdown alignment="right">
-        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownButton>Toggle me</DropdownButton>
         <DropdownMenu>
           <DropdownMenuItem isDisabled onClick={onClick}>
             {text}
@@ -312,7 +312,7 @@ describe('Dropdown', () => {
 
     const { getByText } = render(
       <Dropdown>
-        <DropdownToggle>Toggle me</DropdownToggle>
+        <DropdownButton>Toggle me</DropdownButton>
         <DropdownMenu>
           <DropdownMenuHeader>{text}</DropdownMenuHeader>
           <DropdownMenuItem onClick={onClick}>blah</DropdownMenuItem>
@@ -335,7 +335,7 @@ describe('Dropdown', () => {
 
     const { getByText } = render(
       <Dropdown>
-        <DropdownToggle>Toggle</DropdownToggle>
+        <DropdownButton>Toggle</DropdownButton>
         <DropdownMenu>
           <DropdownMenuItem onClick={onClick}>{itemText}</DropdownMenuItem>
         </DropdownMenu>
@@ -356,7 +356,7 @@ describe('Dropdown', () => {
 
     const { getByText } = render(
       <Dropdown>
-        <DropdownToggle>Toggle</DropdownToggle>
+        <DropdownButton>Toggle</DropdownButton>
         <DropdownMenu>
           <DropdownMenuItem onClick={onClick}>{itemText}</DropdownMenuItem>
         </DropdownMenu>
@@ -374,7 +374,7 @@ describe('Dropdown', () => {
   it('should render a dropdown with an active item', () => {
     const { container, getByText } = render(
       <Dropdown activeIndex={1}>
-        <DropdownToggle>Toggle</DropdownToggle>
+        <DropdownButton>Toggle</DropdownButton>
         <DropdownMenu>
           <DropdownMenuItem onClick={() => {}}>aaa</DropdownMenuItem>
           <DropdownMenuItem onClick={() => {}}>bbb</DropdownMenuItem>

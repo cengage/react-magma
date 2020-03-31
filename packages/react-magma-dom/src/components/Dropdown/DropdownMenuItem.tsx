@@ -7,7 +7,7 @@ import { CheckIcon } from '../Icon/types/CheckIcon';
 import { Omit } from '../../utils';
 
 export interface DropdownMenuItemProps
-  extends Omit<React.HTMLAttributes<HTMLLIElement>, 'onClick'> {
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'> {
   icon?: React.ReactElement<IconProps>;
   index?: number;
   isActive?: boolean;
@@ -16,19 +16,19 @@ export interface DropdownMenuItemProps
   value?: string;
 }
 
-const StyledItem = styled.li<{
+const StyledItem = styled.div<{
   isDisabled?: boolean;
   isFixedWidth?: boolean;
   isInactive?: boolean;
+  value?: string;
 }>`
   color: ${props =>
     props.isDisabled
       ? props.theme.colors.disabledText
-      : props.theme.colors.neutral02};
+      : props.theme.colors.neutral01};
   cursor: ${props => (props.isDisabled ? 'not-allowed' : 'pointer')};
   display: flex;
   line-height: 20px;
-  list-style: none;
   margin: 0;
   padding: ${props => (props.isInactive ? '10px 20px 10px 55px' : '10px 20px')};
   white-space: ${props => (props.isFixedWidth ? 'normal' : 'nowrap')};
@@ -44,6 +44,7 @@ const StyledItem = styled.li<{
 `;
 
 const IconWrapper = styled.span`
+  color: ${props => props.theme.colors.neutral03};
   display: inline-flex;
   margin-right: 15px;
 
@@ -106,9 +107,9 @@ export const DropdownMenuItem: React.FunctionComponent<
         tabIndex={isDisabled ? null : -1}
         value={value}
       >
-        {icon && <IconWrapper>{icon}</IconWrapper>}
+        {icon && <IconWrapper theme={theme}>{icon}</IconWrapper>}
         {isActive && (
-          <IconWrapper>
+          <IconWrapper theme={theme}>
             <CheckIcon />
           </IconWrapper>
         )}

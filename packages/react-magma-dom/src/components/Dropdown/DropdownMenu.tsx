@@ -5,7 +5,7 @@ import { Card } from '../Card';
 import { DropdownContext, DropdownAlignment, DropdownDropDirection } from '.';
 import { DropdownMenuItem } from './DropdownMenuItem';
 
-const StyledMenu = styled.ul`
+const StyledMenu = styled.div`
   margin: 0;
   padding: 5px 0;
 `;

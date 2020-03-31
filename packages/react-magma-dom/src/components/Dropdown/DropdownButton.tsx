@@ -9,7 +9,7 @@ import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
 import { CaretUpIcon } from '../Icon/types/CaretUpIcon';
 import { DropdownContext, DropdownDropDirection } from '.';
 
-export const DropdownToggle: React.FunctionComponent<IconTextButtonProps> = ({
+export const DropdownButton: React.FunctionComponent<IconTextButtonProps> = ({
   children,
   icon,
   ...other

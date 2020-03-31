@@ -14,8 +14,8 @@ import {
   DropdownMenuDivider,
   DropdownMenuHeader,
   DropdownMenuItem,
-  DropdownSplitToggle,
-  DropdownToggle,
+  DropdownSplitButton,
+  DropdownButton,
   FormGroup,
   Input,
   MenuIcon,
@@ -33,13 +33,13 @@ import { IconButtonProps } from './props/icon-button'
 
 ## Basic Usage
 
-The `Dropdown` component should contain two children: the `DropdownToggle` component, and the `DropdownMenu` component.
-The `DropdownToggle` is a button that handles the opening and closing of the menu. The `DropdownMenu` component contains individual menu items,
+The `Dropdown` component should contain two children: the `DropdownButton` component, and the `DropdownMenu` component.
+The `DropdownButton` is a button that handles the opening and closing of the menu. The `DropdownMenu` component contains individual menu items,
 represented in `DropdownMenuItem` components.
 
 ```.jsx
       <Dropdown>
-         <DropdownToggle>Basic Dropdown</DropdownToggle>
+         <DropdownButton>Basic Dropdown</DropdownButton>
           <DropdownMenu>
             <DropdownMenuItem>Menu item 1</DropdownMenuItem>
             <DropdownMenuItem>Menu item number two</DropdownMenuItem>
@@ -47,13 +47,13 @@ represented in `DropdownMenuItem` components.
       </Dropdown>
 ```
 
-## Split Toggle
+## Split Button
 
-Instead of using the `DropdownToggle`, a `DropdownSplitToggle` can be used instead. When using this, the larger part of the button will accept an `onClick` event, and only the caret icon will open and close the menu.
+Instead of using the `DropdownButton`, a `DropdownSplitButton` can be used instead. When using this, the larger part of the button will accept an `onClick` event, and only the caret icon will open and close the menu.
 
 ```.jsx
       <Dropdown>
-         <DropdownSplitToggle onClick={()=>{alert('Button Clicked!')}}>Split Toggle</DropdownSplitToggle>
+         <DropdownSplitButton onClick={()=>{alert('Button Clicked!')}}>Split Button</DropdownSplitButton>
           <DropdownMenu>
             <DropdownMenuItem>Menu item 1</DropdownMenuItem>
             <DropdownMenuItem>Menu item number two</DropdownMenuItem>
@@ -67,7 +67,7 @@ Using the `dropDirection` prop will change where the menu appears. Options are `
 
 ```.jsx
       <Dropdown dropDirection='up'>
-          <DropdownToggle>Drop up</DropdownToggle>
+          <DropdownButton>Drop up</DropdownButton>
           <DropdownMenu>
             <DropdownMenuItem>Menu item 1</DropdownMenuItem>
             <DropdownMenuItem>Menu item number two</DropdownMenuItem>
@@ -81,7 +81,7 @@ Using the `alignment` prop will set the alignment of the menu. Options are `left
 
 ```.jsx
       <Dropdown alignment='right'>
-        <DropdownToggle>Right Aligned</DropdownToggle>
+        <DropdownButton>Right Aligned</DropdownButton>
         <DropdownMenu>
           <DropdownMenuItem>Menu item 1</DropdownMenuItem>
           <DropdownMenuItem>Menu item number two</DropdownMenuItem>
@@ -95,7 +95,7 @@ By default, a dropdown menu will be as wide as the largest item. However, you ma
 
 ```.jsx
       <Dropdown width="250px">
-        <DropdownToggle>Fixed Width</DropdownToggle>
+        <DropdownButton>Fixed Width</DropdownButton>
         <DropdownMenu>
           <DropdownMenuItem>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tellus turpis, finibus et bibendum eget, rhoncus ut risus. Proin nec nisi ut eros aliquam interdum.</DropdownMenuItem>
           <DropdownMenuItem>Nunc egestas ullamcorper finibus. Phasellus non risus id mauris dignissim molestie in sit amet enim. In condimentum fringilla sodales.</DropdownMenuItem>
@@ -107,7 +107,7 @@ By default, a dropdown menu will be as wide as the largest item. However, you ma
 
 ```.jsx
       <Dropdown>
-        <DropdownToggle>Disabled Item</DropdownToggle>
+        <DropdownButton>Disabled Item</DropdownButton>
         <DropdownMenu>
           <DropdownMenuItem  onClick={()=>{alert('Item 1 clicked')}}>Menu item 1</DropdownMenuItem>
           <DropdownMenuItem  isDisabled onClick={()=>{alert('Item 2 clicked')}}>Menu item 2</DropdownMenuItem>
@@ -116,21 +116,21 @@ By default, a dropdown menu will be as wide as the largest item. However, you ma
       </Dropdown>
 ```
 
-## Custom Toggle Button
+## Custom Button
 
-Both the `DropdownToggle` and ``DropdownSplitToggle`can be customized by using any of the props that the <Link to="/api/button">Button</Link> component accepts. If no`icon`property is provided to the`DropdownToggle`, the caret icon will appear.
+Both the `DropdownButton` and ``DropdownSplitButton`can be customized by using any of the props that the <Link to="/api/button">Button</Link> component accepts. If no`icon`property is provided to the`DropdownButton`, the caret icon will appear.
 
 ```.jsx
       <>
         <Dropdown>
-          <DropdownToggle size="small" color='marketing'>Extra Props Example 1</DropdownToggle>
+          <DropdownButton size="small" color='marketing'>Extra Props Example 1</DropdownButton>
             <DropdownMenu>
               <DropdownMenuItem>Menu item 1</DropdownMenuItem>
               <DropdownMenuItem>Menu item number two</DropdownMenuItem>
             </DropdownMenu>
         </Dropdown>
         <Dropdown>
-          <DropdownSplitToggle size='large' variant='outline' color='danger'>Extra Props Split</DropdownSplitToggle>
+          <DropdownSplitButton size='large' variant='outline' color='danger'>Extra Props Split</DropdownSplitButton>
             <DropdownMenu>
               <DropdownMenuItem>Menu item 1</DropdownMenuItem>
               <DropdownMenuItem>Menu item number two</DropdownMenuItem>
@@ -139,28 +139,28 @@ Both the `DropdownToggle` and ``DropdownSplitToggle`can be customized by using a
       </>
 ```
 
-## Custom Toggle Icon Button
+## Custom Icon Button
 
-Similarly, the `DropdownToggle` can be customized by using any of the props that the <Link to="/api/icon-button">Icon Button</Link> component accepts, to create a button with an icon.
+Similarly, the `DropdownButton` can be customized by using any of the props that the <Link to="/api/icon-button">Icon Button</Link> component accepts, to create a button with an icon.
 
 ```.jsx
       <>
         <Dropdown>
-          <DropdownToggle aria-label="Extra icon example" color='secondary' size='large' variant='link' icon={<Cog2Icon />} />
+          <DropdownButton aria-label="Extra icon example" color='secondary' size='large' variant='link' icon={<Cog2Icon />} />
             <DropdownMenu>
               <DropdownMenuItem>Menu item 1</DropdownMenuItem>
               <DropdownMenuItem>Menu item number two</DropdownMenuItem>
             </DropdownMenu>
         </Dropdown>
         <Dropdown>
-          <DropdownToggle aria-label="Extra icon example"  color='success' size='large' icon={<MenuIcon />} />
+          <DropdownButton aria-label="Extra icon example"  color='success' size='large' icon={<MenuIcon />} />
             <DropdownMenu>
               <DropdownMenuItem>Menu item 1</DropdownMenuItem>
               <DropdownMenuItem>Menu item number two</DropdownMenuItem>
             </DropdownMenu>
         </Dropdown>
          <Dropdown>
-          <DropdownToggle variant="outline" size='small' icon={<Cog2Icon />}>Icon with Text</DropdownToggle>
+          <DropdownButton variant="outline" size='small' icon={<Cog2Icon />}>Icon with Text</DropdownButton>
             <DropdownMenu>
               <DropdownMenuItem>Menu item 1</DropdownMenuItem>
               <DropdownMenuItem>Menu item number two</DropdownMenuItem>
@@ -173,7 +173,7 @@ Similarly, the `DropdownToggle` can be customized by using any of the props that
 
 ```.jsx
       <Dropdown>
-        <DropdownToggle>Leading Icons</DropdownToggle>
+        <DropdownButton>Leading Icons</DropdownButton>
         <DropdownMenu>
           <DropdownMenuItem icon={<AsteriskIcon />}>Menu item 1</DropdownMenuItem>
           <DropdownMenuItem icon={<BellIcon />}>Menu item 2</DropdownMenuItem>
@@ -187,7 +187,7 @@ A `DropdownMenu` can be broken into multiple sections, by using the `DropdownMen
 
 ```.jsx
       <Dropdown>
-        <DropdownToggle>Divider and headings</DropdownToggle>
+        <DropdownButton>Divider and headings</DropdownButton>
         <DropdownMenu>
           <DropdownMenuHeader>Section title A</DropdownMenuHeader>
           <DropdownMenuItem>Menu item 1</DropdownMenuItem>
@@ -220,7 +220,7 @@ When another item is selected, that item will become active and the menu will re
         <>
         <p><strong>Active Value: </strong> <span>{activeValue}</span></p>
          <Dropdown activeIndex={1}>
-          <DropdownToggle>Selected Item</DropdownToggle>
+          <DropdownButton>Selected Item</DropdownButton>
           <DropdownMenu>
             <DropdownMenuItem onClick={changeActiveValue} value='one'>Dropdown Item 1</DropdownMenuItem>
             <DropdownMenuItem onClick={changeActiveValue} value='two'>Dropdown Item 2</DropdownMenuItem>
@@ -238,7 +238,7 @@ By default, the max-height of a dropdown menu is 250px. That can be changed by u
 
 ```.jsx
       <Dropdown maxHeight='150px'>
-        <DropdownToggle>Max-Height</DropdownToggle>
+        <DropdownButton>Max-Height</DropdownButton>
         <DropdownMenu>
             <DropdownMenuItem>Menu item 1</DropdownMenuItem>
             <DropdownMenuItem>Menu item 2</DropdownMenuItem>
@@ -260,7 +260,7 @@ Dropdowns can contain elements other than Dropdown Menu Items. The standard keyb
 
 ```.jsx
       <Dropdown width='300px' maxHeight='600px'>
-        <DropdownToggle>Dropdown with Form</DropdownToggle>
+        <DropdownButton>Dropdown with Form</DropdownButton>
         <DropdownMenu>
           <form style={{padding: '20px'}}>
               <Input type="email" labelText="Email Address" />
@@ -292,7 +292,7 @@ Another example of form elements in a dropdown.
 
         return (
             <Dropdown maxHeight='600px'>
-              <DropdownToggle>Dropdown with Form 2</DropdownToggle>
+              <DropdownButton>Dropdown with Form 2</DropdownButton>
               <DropdownMenu>
                 <form style={{margin: 0}}>
                   <DropdownMenuHeader id='checkboxGroup'>Checkbox Group Label</DropdownMenuHeader>
@@ -418,13 +418,13 @@ Another example of form elements in a dropdown.
   }}
 />
 
-## Dropdown Toggle Props
+## Dropdown Button Props
 
-**DropdownToggle and the DropdownSplitToggle accept the same props as the <Link to="/api/button">Button</Link> component.**
+**DropdownButton and the DropdownSplitButton accept the same props as the <Link to="/api/button">Button</Link> component.**
 
 <ButtonProps />
 
-**The DropdownToggle can also accept an `icon` property, as in the <Link to="/api/icon-button">Icon Button</Link> component.**
+**The DropdownButton can also accept an `icon` property, as in the <Link to="/api/icon-button">Icon Button</Link> component.**
 
 <IconButtonProps />
 
@@ -442,8 +442,8 @@ export default props => (
       DropdownMenuDivider,
       DropdownMenuHeader,
       DropdownMenuItem,
-      DropdownSplitToggle,
-      DropdownToggle,
+      DropdownSplitButton,
+      DropdownButton,
       FormGroup,
       Input,
       MenuIcon,

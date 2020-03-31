@@ -6,7 +6,7 @@ import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
 import { CaretUpIcon } from '../Icon/types/CaretUpIcon';
 import { DropdownContext, DropdownDropDirection } from '.';
 
-export interface DropdownSplitToggleProps extends ButtonStyles {
+export interface DropdownSplitButtonProps extends ButtonStyles {
   'aria-label': string;
   children?: any;
   icon?: React.ReactElement<IconButtonProps>;
@@ -14,15 +14,15 @@ export interface DropdownSplitToggleProps extends ButtonStyles {
   onClick?: () => void;
 }
 
-export const DropdownSplitToggle: React.FunctionComponent<
-  DropdownSplitToggleProps
+export const DropdownSplitButton: React.FunctionComponent<
+  DropdownSplitButtonProps
 > = ({
   'aria-label': ariaLabel,
   children,
   icon,
   onClick,
   ...other
-}: DropdownSplitToggleProps) => {
+}: DropdownSplitButtonProps) => {
   const context = React.useContext(DropdownContext);
 
   const buttonIcon =
