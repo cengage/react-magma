@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTabsContext } from './TabsContainer';
+import { TabsContainerContext } from './TabsContainer';
 import styled from '@emotion/styled';
 
 const StyledTabPanel = styled.div`
@@ -17,7 +17,7 @@ export const TabPanel: React.FunctionComponent<
 > = React.forwardRef((props, ref: React.Ref<any>) => {
   const { index, testId, children, ...other } = props;
 
-  const { activeTabIndex } = useTabsContext();
+  const { activeTabIndex } = React.useContext(TabsContainerContext);
   const activeTab = activeTabIndex === index;
 
   return activeTab ? (

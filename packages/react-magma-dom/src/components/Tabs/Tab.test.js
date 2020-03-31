@@ -5,6 +5,7 @@ import { render } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import { magma } from '../../theme/magma';
 import { Tabs } from '.';
+import { TabsContainer } from './TabsContainer';
 
 describe('Tab', () => {
   it('Should correctly apply the testId', () => {
@@ -41,21 +42,23 @@ describe('Tab', () => {
   });
 
   it('should have aria-selected attribute if tab is active', () => {
-    const testId = 'test-id';
-
     const { getByTestId, rerender } = render(
-      <Tab testId={testId} ariaLabel="test" isActive={true}>
-        Tab Text
-      </Tab>
+      <TabsContainer activeIndex={0}>
+        <Tabs>
+          <Tab ariaLabel="test">Tab Text</Tab>
+        </Tabs>
+      </TabsContainer>
     );
-    const component = getByTestId(testId);
+    const component = getByTestId('tabContainer');
 
     expect(component).toHaveAttribute('aria-selected', 'true');
 
     rerender(
-      <Tab testId={testId} ariaLabel="test" isActive={false}>
-        Tab Text
-      </Tab>
+      <TabsContainer activeIndex={1}>
+        <Tabs>
+          <Tab ariaLabel="test">Tab Text</Tab>
+        </Tabs>
+      </TabsContainer>
     );
 
     expect(component).toHaveAttribute('aria-selected', 'false');
@@ -96,9 +99,9 @@ describe('Tab', () => {
     const testId = 'test-id';
 
     const { getByTestId } = render(
-      <Tab testId={testId} isInverse={true}>
-        Inverse Tab
-      </Tab>
+      <Tabs isInverse>
+        <Tab testId={testId}>Inverse Tab</Tab>
+      </Tabs>
     );
 
     expect(getByTestId(testId)).toHaveStyleRule(
@@ -111,12 +114,12 @@ describe('Tab', () => {
     const testId = 'test-id';
 
     const { getByTestId } = render(
-      <Tab testId={testId} orientation="vertical">
-        Vertical Tab
-      </Tab>
+      <Tabs orientation="vertical">
+        <Tab testId={testId}>Vertical Tab</Tab>
+      </Tabs>
     );
 
-    expect(getByTestId(testId)).toHaveStyleRule('align-items', 'flex-start');
+    expect(getByTestId(testId)).toHaveStyleRule('align-items', 'center');
     expect(getByTestId(testId)).toHaveStyleRule('text-align', 'left');
     expect(getByTestId(testId)).toHaveStyleRule('width', '100%');
   });
@@ -125,9 +128,9 @@ describe('Tab', () => {
     const testId = 'test-id';
 
     const { getByTestId } = render(
-      <Tab testId={testId} isFullWidth>
-        Full Width Tab
-      </Tab>
+      <Tabs isFullWidth>
+        <Tab testId={testId}>Full Width Tab</Tab>
+      </Tabs>
     );
 
     expect(getByTestId(testId)).toHaveStyleRule('flex-shrink', '1');
@@ -138,9 +141,11 @@ describe('Tab', () => {
 
     const icon = <CheckIcon size={18} />;
     const { container, getByTestId, rerender } = render(
-      <Tab testId={testId} icon={icon} iconPosition="top">
-        Tab
-      </Tab>
+      <Tabs iconPosition="top">
+        <Tab testId={testId} icon={icon}>
+          Tab
+        </Tab>
+      </Tabs>
     );
     expect(container.querySelector('svg')).toBeInTheDocument();
     expect(container.querySelector('span')).toHaveStyleRule(

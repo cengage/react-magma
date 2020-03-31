@@ -8,6 +8,7 @@ import {
   Tab,
   Tabs,
   TabPanel,
+  TabPanelsContainer,
   TabsContainer,
   GraduationCapIcon,
   BellIcon,
@@ -21,9 +22,10 @@ import { Link } from 'gatsby'
 
 ## Basic Usage
 
-The tab system is made up of four components:
+The tab system is made up of five components:
 `TabContainer`, which contains both the tabs navigation and the respective content. `Tabs`, which contains the tabs navigation bar.
-`Tab`, which is each individual menu item within the tabs navigation bar. And `TabPanel`, which contains the indivdual content sections for each tab.
+`Tab`, which is each individual menu item within the tabs navigation bar. `TabPanelsContainer`, which contains the tab panels and internally handles the index relationship with `Tabs`.
+And `TabPanel`, which contains the indivdual content sections for each tab.
 
 ```.jsx
       () => {
@@ -36,15 +38,17 @@ The tab system is made up of four components:
               <Tab>About us</Tab>
             </Tabs>
 
-            <TabPanel index={0}>
-              <div>Main page</div>
-            </TabPanel>
-            <TabPanel index={1}>
-              <div>FAQ</div>
-            </TabPanel>
-            <TabPanel index={2}>
-              <div>About us</div>
-            </TabPanel>
+            <TabPanelsContainer>
+              <TabPanel>
+                <div>Main page</div>
+              </TabPanel>
+              <TabPanel>
+                <div>FAQ</div>
+              </TabPanel>
+              <TabPanel>
+                <div>About us</div>
+              </TabPanel>
+            </TabPanelsContainer>
           </TabsContainer>
     )}
 ```
@@ -63,20 +67,22 @@ The `borderPosition` prop is specified on the `Tabs` component and will apply to
         return (
           <div>
             <TabsContainer>
-              <TabPanel index={0}>
+              <TabPanelsContainer>
+                <TabPanel>
                   <div>Main page</div>
                 </TabPanel>
-                <TabPanel index={1}>
+                <TabPanel>
                   <div>FAQ</div>
                 </TabPanel>
-                <TabPanel index={2}>
+                <TabPanel>
                   <div>About us</div>
                 </TabPanel>
-                <Tabs backgroundColor='#F7F7F7' borderPosition='top'>
-                  <Tab>Main page</Tab>
-                  <Tab>FAQ</Tab>
-                  <Tab>About us</Tab>
-                </Tabs>
+              </TabPanelsContainer>
+              <Tabs backgroundColor='#F7F7F7' borderPosition='top'>
+                <Tab>Main page</Tab>
+                <Tab>FAQ</Tab>
+                <Tab>About us</Tab>
+              </Tabs>
             </TabsContainer>
           </div>
     )}
@@ -100,20 +106,22 @@ This is a simple example of Tab Components with custom switching logic
           backgroundColor='#F7F7F7'
           onChange={handleChange}
         >
-          <Tab index={0}>First item</Tab>
-          <Tab index={1}>Second item</Tab>
-          <Tab index={2}>Third item</Tab>
+          <Tab>First item</Tab>
+          <Tab>Second item</Tab>
+          <Tab>Third item</Tab>
         </Tabs>
 
-        <TabPanel index={0}>
-          <div>First item</div>
-        </TabPanel>
-        <TabPanel index={1}>
-          <div>Second item</div>
-        </TabPanel>
-        <TabPanel index={2}>
-          <div>Third item</div>
-        </TabPanel>
+        <TabPanelsContainer>
+          <TabPanel>
+            <div>First item</div>
+          </TabPanel>
+          <TabPanel>
+            <div>Second item</div>
+          </TabPanel>
+          <TabPanel>
+            <div>Third item</div>
+          </TabPanel>
+        </TabPanelsContainer>
       </TabsContainer>
     )
   }
@@ -125,21 +133,23 @@ If a `Tab` is `disabled`, it will not be actionable. It will still appear in the
 
 ```.jsx
     <TabsContainer>
-        <Tabs backgroundColor='#F7F7F7'>
-          <Tab>Main page</Tab>
-          <Tab disabled>FAQ</Tab>
-          <Tab>About us</Tab>
-        </Tabs>
+      <Tabs backgroundColor='#F7F7F7'>
+        <Tab>Main page</Tab>
+        <Tab disabled>FAQ</Tab>
+        <Tab>About us</Tab>
+      </Tabs>
 
-        <TabPanel index={0}>
+      <TabPanelsContainer>
+        <TabPanel>
           <div>Main page</div>
         </TabPanel>
-        <TabPanel index={1}>
+        <TabPanel>
           <div>FAQ</div>
         </TabPanel>
-        <TabPanel index={2}>
+        <TabPanel>
           <div>About us</div>
         </TabPanel>
+      </TabPanelsContainer>
     </TabsContainer>
 
 ```
@@ -151,11 +161,22 @@ The `alignment` prop determines whether the tabs are aligned `left`, `right` or 
 ```.jsx
 <>
   <TabsContainer>
-      <Tabs alignment='center'>
-        <Tab>Main page</Tab>
-        <Tab>FAQ</Tab>
-        <Tab>About us</Tab>
-      </Tabs>
+    <Tabs alignment='center'>
+      <Tab>Main page</Tab>
+      <Tab>FAQ</Tab>
+      <Tab>About us</Tab>
+    </Tabs>
+    <TabPanelsContainer>
+      <TabPanel>
+        <div>Main page</div>
+      </TabPanel>
+      <TabPanel>
+        <div>FAQ</div>
+      </TabPanel>
+      <TabPanel>
+        <div>About us</div>
+      </TabPanel>
+    </TabPanelsContainer>
   </TabsContainer>
 
   <br />
@@ -163,11 +184,22 @@ The `alignment` prop determines whether the tabs are aligned `left`, `right` or 
   <br />
 
   <TabsContainer>
-      <Tabs alignment='right'>
-        <Tab>Main page</Tab>
-        <Tab>FAQ</Tab>
-        <Tab>About us</Tab>
-      </Tabs>
+    <Tabs alignment='right'>
+      <Tab>Main page</Tab>
+      <Tab>FAQ</Tab>
+      <Tab>About us</Tab>
+    </Tabs>
+    <TabPanelsContainer>
+      <TabPanel>
+        <div>Main page</div>
+      </TabPanel>
+      <TabPanel>
+        <div>FAQ</div>
+      </TabPanel>
+      <TabPanel>
+        <div>About us</div>
+      </TabPanel>
+    </TabPanelsContainer>
   </TabsContainer>
 </>
 ```
@@ -185,6 +217,17 @@ The `isFullWidth` prop is an optional boolean that will cause the tabs to take u
               <Tab>FAQ</Tab>
               <Tab>About Us</Tab>
             </Tabs>
+            <TabPanelsContainer>
+              <TabPanel>
+                <div>Main page</div>
+              </TabPanel>
+              <TabPanel>
+                <div>FAQ</div>
+              </TabPanel>
+              <TabPanel>
+                <div>About us</div>
+              </TabPanel>
+            </TabPanelsContainer>
         </TabsContainer>
     )}
 ```
@@ -207,24 +250,26 @@ The `hasScrollButtons` prop can be used to display navigation buttons for when t
                   <Tab>Sixth item</Tab>
                 </Tabs>
 
-                <TabPanel index={0}>
-                  <div>First item</div>
-                </TabPanel>
-                <TabPanel index={1}>
-                  <div>Second item</div>
-                </TabPanel>
-                <TabPanel index={2}>
-                  <div>Third item</div>
-                </TabPanel>
-                <TabPanel index={3}>
-                  <div>Fourth item</div>
-                </TabPanel>
-                <TabPanel index={4}>
-                  <div>Fifth item</div>
-                </TabPanel>
-                <TabPanel index={5}>
-                  <div>Sixth item</div>
-                </TabPanel>
+                <TabPanelsContainer>
+                  <TabPanel>
+                    <div>First item</div>
+                  </TabPanel>
+                  <TabPanel>
+                    <div>Second item</div>
+                  </TabPanel>
+                  <TabPanel>
+                    <div>Third item</div>
+                  </TabPanel>
+                  <TabPanel>
+                    <div>Fourth item</div>
+                  </TabPanel>
+                  <TabPanel>
+                    <div>Fifth item</div>
+                  </TabPanel>
+                  <TabPanel>
+                    <div>Sixth item</div>
+                  </TabPanel>
+                </TabPanelsContainer>
             </TabsContainer>
           </div>
     )}
@@ -245,24 +290,26 @@ This is an example of scrollable Tabs without buttons
           <Tab>Sixth item</Tab>
         </Tabs>
 
-        <TabPanel index={0}>
-          <div>First item</div>
-        </TabPanel>
-        <TabPanel index={1}>
-          <div>Second item</div>
-        </TabPanel>
-        <TabPanel index={2}>
-          <div>Third item</div>
-        </TabPanel>
-        <TabPanel index={3}>
-          <div>Fourth item</div>
-        </TabPanel>
-        <TabPanel index={4}>
-          <div>Fifth item</div>
-        </TabPanel>
-        <TabPanel index={5}>
-          <div>Sixth item</div>
-        </TabPanel>
+        <TabPanelsContainer>
+          <TabPanel>
+            <div>First item</div>
+          </TabPanel>
+          <TabPanel>
+            <div>Second item</div>
+          </TabPanel>
+          <TabPanel>
+            <div>Third item</div>
+          </TabPanel>
+          <TabPanel>
+            <div>Fourth item</div>
+          </TabPanel>
+          <TabPanel>
+            <div>Fifth item</div>
+          </TabPanel>
+          <TabPanel>
+            <div>Sixth item</div>
+          </TabPanel>
+        </TabPanelsContainer>
     </TabsContainer>
 ```
 
@@ -283,17 +330,17 @@ This prop is specified on the `Tabs` component.
                   <Tab>About us</Tab>
                 </Tabs>
 
-                <div style={{padding: '10px'}}>
-                <TabPanel index={0}>
-                  <div>Main page</div>
-                </TabPanel>
-                <TabPanel index={1}>
-                  <div>FAQ</div>
-                </TabPanel>
-                <TabPanel index={2}>
-                  <div>About us</div>
-                </TabPanel>
-                </div>
+                <TabPanelsContainer style={{padding: '10px'}}>
+                  <TabPanel>
+                    <div>Main page</div>
+                  </TabPanel>
+                  <TabPanel>
+                    <div>FAQ</div>
+                  </TabPanel>
+                  <TabPanel>
+                    <div>About us</div>
+                  </TabPanel>
+                </TabPanelsContainer>
             </TabsContainer>
           </div>
     )}
@@ -307,11 +354,13 @@ In this case, please put all children inside the `component` prop instead of put
 If you would like to use `Tab` like an route switcher, keep the `path` prop in `Tab` equal to desired path.
 
 ```.jsx
+  <TabsContainer>
     <Tabs>
-      <Tab path="/main" component={<Link to="#">Main page</Link>}/>
-      <Tab path="/faq" component={<Link to="#">FAQ</Link>}/>
-      <Tab path="/about" component={<Link to="#">About us</Link>}/>
+      <Tab path="/main" component={<Link to="/api/tabs">Main page</Link>}/>
+      <Tab path="/faq" component={<Link to="/api/tabs#nav_tabs">FAQ</Link>}/>
+      <Tab path="/about" component={<Link to="/api/tabs#vertical_nav_tabs">About us</Link>}/>
     </Tabs>
+  </TabsContainer>
 ```
 
 ## Icon Tabs
@@ -326,11 +375,22 @@ The `icon` prop can be used to display an icon inside the individual `Tab` compo
       () => {
         return (
           <TabsContainer>
-              <Tabs>
-                <Tab aria-label='Graduation' icon={<GraduationCapIcon />} />
-                <Tab aria-label='Android' icon={<AndroidIcon />} />
-                <Tab aria-label='Bell' icon={<BellIcon />} />
-              </Tabs>
+            <Tabs>
+              <Tab aria-label='Graduation' icon={<GraduationCapIcon />} />
+              <Tab aria-label='Android' icon={<AndroidIcon />} />
+              <Tab aria-label='Bell' icon={<BellIcon />} />
+            </Tabs>
+            <TabPanelsContainer>
+              <TabPanel>
+                <div>Graduation</div>
+              </TabPanel>
+              <TabPanel>
+                <div>Android</div>
+              </TabPanel>
+              <TabPanel>
+                <div>Bell</div>
+              </TabPanel>
+            </TabPanelsContainer>
           </TabsContainer>
     )}
 ```
@@ -344,11 +404,22 @@ By default, the icons appear above the children.
       () => {
         return (
           <TabsContainer>
-              <Tabs>
-                <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
-                <Tab icon={<AndroidIcon />}>Second item</Tab>
-                <Tab icon={<BellIcon />}>Third item</Tab>
-              </Tabs>
+            <Tabs>
+              <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
+              <Tab icon={<AndroidIcon />}>Second item</Tab>
+              <Tab icon={<BellIcon />}>Third item</Tab>
+            </Tabs>
+            <TabPanelsContainer>
+              <TabPanel>
+                <div>Graduation</div>
+              </TabPanel>
+              <TabPanel>
+                <div>Android</div>
+              </TabPanel>
+              <TabPanel>
+                <div>Bell</div>
+              </TabPanel>
+            </TabPanelsContainer>
           </TabsContainer>
     )}
 ```
@@ -361,11 +432,22 @@ This prop is specified on the `Tabs` component.
 
 ```.jsx
     <TabsContainer>
-        <Tabs iconPosition="left" backgroundColor='#F7F7F7'>
-          <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
-          <Tab icon={<AndroidIcon />}>Second item</Tab>
-          <Tab icon={<BellIcon />}>Third item</Tab>
-        </Tabs>
+      <Tabs iconPosition="left" backgroundColor='#F7F7F7'>
+        <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
+        <Tab icon={<AndroidIcon />}>Second item</Tab>
+        <Tab icon={<BellIcon />}>Third item</Tab>
+      </Tabs>
+      <TabPanelsContainer>
+        <TabPanel>
+          <div>Graduation</div>
+        </TabPanel>
+        <TabPanel>
+          <div>Android</div>
+        </TabPanel>
+        <TabPanel>
+          <div>Bell</div>
+        </TabPanel>
+      </TabPanelsContainer>
     </TabsContainer>
 ```
 
@@ -381,7 +463,7 @@ Vertical tabs with icons always display with the icon to the left of the text.
             <Tab icon={<BellIcon />}>Third item</Tab>
           </Tabs>
 
-          <div style={{padding: '10px'}}>
+          <TabPanelsContainer style={{padding: '10px'}}>
             <TabPanel index={0}>
               <div>Main page</div>
             </TabPanel>
@@ -391,18 +473,20 @@ Vertical tabs with icons always display with the icon to the left of the text.
             <TabPanel index={2}>
               <div>About us</div>
             </TabPanel>
-          </div>
+          </TabPanelsContainer>
       </TabsContainer>
 ```
 
 ## Vertical Nav Tabs with Icons
 
 ```.jsx
+  <TabsContainer>
     <Tabs orientation='vertical'>
-      <Tab path="/main" icon={<GraduationCapIcon />}  component={<Link to="#">Main page</Link>}/>
-      <Tab path="/faq" icon={<AndroidIcon />}  component={<Link to="#">FAQ</Link>}/>
-      <Tab path="/about" icon={<BellIcon />}  component={<Link to="#">About us</Link>}/>
+      <Tab path="/main" icon={<GraduationCapIcon />}  component={<Link to="/api/tabs">Main page</Link>}/>
+      <Tab path="/faq" icon={<AndroidIcon />}  component={<Link to="/api/tabs#nav_tabs">FAQ</Link>}/>
+      <Tab path="/about" icon={<BellIcon />}  component={<Link to="/api/tabs#vertical_nav_tabs">About us</Link>}/>
     </Tabs>
+  </TabsContainer>
 ```
 
 ## Inverse
@@ -413,20 +497,31 @@ The default value is false.
 ### With Blue Background
 
 ```.jsx
-      () => {
-        const wrapperStyles = {
-          backgroundColor: '#0f3765'
-        }
+  () => {
+    const wrapperStyles = {
+      backgroundColor: '#0f3765'
+    }
 
-        return (
-          <TabsContainer style={wrapperStyles}>
-              <Tabs isInverse={true}>
-                <Tab>First item</Tab>
-                <Tab>Second item</Tab>
-                <Tab>Third item</Tab>
-              </Tabs>
-          </TabsContainer>
-    )}
+    return (
+      <TabsContainer style={wrapperStyles}>
+        <Tabs isInverse={true}>
+          <Tab>First item</Tab>
+          <Tab>Second item</Tab>
+          <Tab>Third item</Tab>
+        </Tabs>
+        <TabPanelsContainer>
+          <TabPanel>
+            <div>First</div>
+          </TabPanel>
+          <TabPanel>
+            <div>Second</div>
+          </TabPanel>
+          <TabPanel>
+            <div>Third</div>
+          </TabPanel>
+        </TabPanelsContainer>
+      </TabsContainer>
+  )}
 ```
 
 ### With Dark Background
@@ -440,11 +535,22 @@ The default value is false.
 
   return (
     <TabsContainer style={wrapperStyles}>
-        <Tabs isInverse={true}>
-          <Tab>First item</Tab>
-          <Tab>Second item</Tab>
-          <Tab>Third item</Tab>
-        </Tabs>
+      <Tabs isInverse={true}>
+        <Tab>First item</Tab>
+        <Tab>Second item</Tab>
+        <Tab>Third item</Tab>
+      </Tabs>
+      <TabPanelsContainer>
+        <TabPanel>
+          <div>First</div>
+        </TabPanel>
+        <TabPanel>
+          <div>Second</div>
+        </TabPanel>
+        <TabPanel>
+          <div>Third</div>
+        </TabPanel>
+      </TabPanelsContainer>
     </TabsContainer>
   )
 }
@@ -455,6 +561,8 @@ The default value is false.
 When using the `component` props in the `Tab` component we will disregard anything passed in as children. If you are using Typescript and try to put a `component` prop and give the `Tab` children, you will get a TypeError that looks something like this: `Types of property 'component' are incompatible. Type 'Element' is not assignable to type 'never'.`. This comes from a custom `XOR` type utitility that was created, but we do not have the ability to make the error message clearer.
 
 ## Tabs Container API
+
+**Any other props supplied will be provided to the `div` element that wraps the tabs and tab panels.**
 
 <SimplePropsTable
   propertyValues={{
@@ -477,6 +585,8 @@ When using the `component` props in the `Tab` component we will disregard anythi
 />
 
 ## Tabs API
+
+**Any other props supplied will be provided to the `div` element that wraps the tabs.**
 
 <SimplePropsTable
   propertyValues={{
@@ -557,6 +667,8 @@ When using the `component` props in the `Tab` component we will disregard anythi
 
 ## Tab API
 
+**Any other props supplied will be provided to the `div` element that wraps the tab content.**
+
 <SimplePropsTable
   propertyValues={{
     component: {
@@ -581,13 +693,6 @@ When using the `component` props in the `Tab` component we will disregard anythi
       required: false,
       description: 'The index of your Tab.',
     },
-    isActive: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'The activity state of Tab component for your custom logic.',
-    },
     path: {
       type: {
         name: 'string',
@@ -606,17 +711,28 @@ When using the `component` props in the `Tab` component we will disregard anythi
   }}
 />
 
-## TabPanel API
+## TabPanelsContainer API
+
+**Any other props supplied will be provided to the `div` element that wraps the tab panels.**
 
 <SimplePropsTable
   propertyValues={{
-    index: {
+    testId: {
       type: {
-        name: 'number',
+        name: 'string',
       },
       required: false,
-      description: 'The index of your Tab.',
+      description: 'The id for react-testing-library',
     },
+  }}
+/>
+
+## TabPanel API
+
+**Any other props supplied will be provided to the `div` element that wraps the tab panel content.**
+
+<SimplePropsTable
+  propertyValues={{
     testId: {
       type: {
         name: 'string',
@@ -634,6 +750,7 @@ export default props => (
       Tab,
       Tabs,
       TabPanel,
+      TabPanelsContainer,
       TabsContainer,
       magma,
       GraduationCapIcon,
