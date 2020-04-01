@@ -53,11 +53,44 @@ And `TabPanel`, which contains the indivdual content sections for each tab.
     )}
 ```
 
+## Vertical Tabs
+
+The `orientation` prop can be used to display tabs vertically, instead of horizontalally.  
+The `orientation` prop is an enum that accepts either `horizontal` or `vertical` with `horizontal` being the default.
+This prop is specified on the `Tabs` component.
+
+```.jsx
+      () => {
+        return (
+          <div>
+            <TabsContainer>
+                <Tabs orientation='vertical' backgroundColor='#F7F7F7'>
+                  <Tab>Main page with a longer text label</Tab>
+                  <Tab>FAQ</Tab>
+                  <Tab>About us</Tab>
+                </Tabs>
+
+                <TabPanelsContainer style={{padding: '10px'}}>
+                  <TabPanel>
+                    <div>Main page</div>
+                  </TabPanel>
+                  <TabPanel>
+                    <div>FAQ</div>
+                  </TabPanel>
+                  <TabPanel>
+                    <div>About us</div>
+                  </TabPanel>
+                </TabPanelsContainer>
+            </TabsContainer>
+          </div>
+    )}
+```
+
 ## Border Position
 
 By default, horizontal tabs have the inidicator placed underneath the tabs.
 However, there are times you may want to place the indicator above the tabs, such as when the tab menu is displayed below its content.
-The `borderPosition` prop is an enum and accepts `top` or `bottom` for horizontal tabs. The border position for vertical tabs is always `left`.
+The `borderPosition` prop is an enum and accepts `top` or `bottom` for horizontal tabs.
 
 The `borderPosition` prop is specified on the `Tabs` component and will apply to each individual tab.
 
@@ -65,26 +98,57 @@ The `borderPosition` prop is specified on the `Tabs` component and will apply to
       () => {
 
         return (
-          <div>
-            <TabsContainer>
-              <TabPanelsContainer>
-                <TabPanel>
-                  <div>Main page</div>
-                </TabPanel>
-                <TabPanel>
-                  <div>FAQ</div>
-                </TabPanel>
-                <TabPanel>
-                  <div>About us</div>
-                </TabPanel>
-              </TabPanelsContainer>
-              <Tabs backgroundColor='#F7F7F7' borderPosition='top'>
-                <Tab>Main page</Tab>
-                <Tab>FAQ</Tab>
-                <Tab>About us</Tab>
-              </Tabs>
-            </TabsContainer>
-          </div>
+        <TabsContainer>
+          <TabPanelsContainer>
+            <TabPanel>
+              <div>Main page</div>
+            </TabPanel>
+            <TabPanel>
+              <div>FAQ</div>
+            </TabPanel>
+            <TabPanel>
+              <div>About us</div>
+            </TabPanel>
+          </TabPanelsContainer>
+          <Tabs backgroundColor='#F7F7F7' borderPosition='top'>
+            <Tab>Main page</Tab>
+            <Tab>FAQ</Tab>
+            <Tab>About us</Tab>
+          </Tabs>
+        </TabsContainer>
+    )}
+```
+
+## Border Position (vertical)
+
+By default, vertical tabs have the inidicator placed underneath the tabs.
+However, there are times you may want to place the indicator to the right the tabs, such as when the tab menu is displayed to the left of its content.
+The `borderPosition` prop is an enum and accepts `left` or `right` for horizontal tabs.
+
+The `borderPosition` prop is specified on the `Tabs` component and will apply to each individual tab.
+
+```.jsx
+      () => {
+
+        return (
+          <TabsContainer>
+            <TabPanelsContainer>
+              <TabPanel>
+                <div>Main page</div>
+              </TabPanel>
+              <TabPanel>
+                <div>FAQ</div>
+              </TabPanel>
+              <TabPanel>
+                <div>About us</div>
+              </TabPanel>
+            </TabPanelsContainer>
+            <Tabs backgroundColor='#F7F7F7' borderPosition='right' orientation='vertical'>
+              <Tab>Main page</Tab>
+              <Tab>FAQ</Tab>
+              <Tab>About us</Tab>
+            </Tabs>
+          </TabsContainer>
     )}
 ```
 
@@ -313,39 +377,6 @@ This is an example of scrollable Tabs without buttons
     </TabsContainer>
 ```
 
-## Vertical Tabs
-
-The `orientation` prop can be used to display tabs vertically, instead of horizontalally.  
-The `orientation` prop is an enum that accepts either `horizontal` or `vertical` with `horizontal` being the default.
-This prop is specified on the `Tabs` component.
-
-```.jsx
-      () => {
-        return (
-          <div>
-            <TabsContainer>
-                <Tabs orientation='vertical' backgroundColor='#F7F7F7'>
-                  <Tab>Main page with a longer text label</Tab>
-                  <Tab>FAQ</Tab>
-                  <Tab>About us</Tab>
-                </Tabs>
-
-                <TabPanelsContainer style={{padding: '10px'}}>
-                  <TabPanel>
-                    <div>Main page</div>
-                  </TabPanel>
-                  <TabPanel>
-                    <div>FAQ</div>
-                  </TabPanel>
-                  <TabPanel>
-                    <div>About us</div>
-                  </TabPanel>
-                </TabPanelsContainer>
-            </TabsContainer>
-          </div>
-    )}
-```
-
 ## Nav Tabs
 
 This is an example with custom element in Tabs.
@@ -424,40 +455,11 @@ By default, the icons appear above the children.
     )}
 ```
 
-### Icon With Text, Icon Left-Aligned
-
-The `iconPosition` prop can be used to position the icon to the left of the children.  
-The `iconPosition` prop is an enum that accepts either `left` or `top` with `top` being the default for horizontal tabs.
-This prop is specified on the `Tabs` component.
-
-```.jsx
-    <TabsContainer>
-      <Tabs iconPosition="left" backgroundColor='#F7F7F7'>
-        <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
-        <Tab icon={<AndroidIcon />}>Second item</Tab>
-        <Tab icon={<BellIcon />}>Third item</Tab>
-      </Tabs>
-      <TabPanelsContainer>
-        <TabPanel>
-          <div>Graduation</div>
-        </TabPanel>
-        <TabPanel>
-          <div>Android</div>
-        </TabPanel>
-        <TabPanel>
-          <div>Bell</div>
-        </TabPanel>
-      </TabPanelsContainer>
-    </TabsContainer>
-```
-
-## Vertical Tabs with Icons
-
-Vertical tabs with icons always display with the icon to the left of the text.
+### Vertical Tabs with Icons
 
 ```.jsx
       <TabsContainer>
-          <Tabs orientation='vertical' backgroundColor='#F7F7F7'>
+          <Tabs backgroundColor='#F7F7F7' orientation='vertical'>
             <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
             <Tab icon={<AndroidIcon />}>Second item</Tab>
             <Tab icon={<BellIcon />}>Third item</Tab>
@@ -477,7 +479,76 @@ Vertical tabs with icons always display with the icon to the left of the text.
       </TabsContainer>
 ```
 
-## Vertical Nav Tabs with Icons
+### Icon Position
+
+The `iconPosition` prop can be used to position the icon relative to the children.  
+The `iconPosition` prop is an enum that accepts `left`, `top`, `right` or `bottom` with `top` being the default for horizontal tabs.
+This prop is specified on the `Tabs` component.
+
+```.jsx
+    <>
+      <TabsContainer>
+        <Tabs iconPosition="left" backgroundColor='#F7F7F7'>
+          <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
+          <Tab icon={<AndroidIcon />}>Second item</Tab>
+          <Tab icon={<BellIcon />}>Third item</Tab>
+        </Tabs>
+      </TabsContainer>
+
+      <br />
+      <br />
+      <br />
+
+      <TabsContainer>
+        <Tabs iconPosition="bottom" backgroundColor='#F7F7F7'>
+          <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
+          <Tab icon={<AndroidIcon />}>Second item</Tab>
+          <Tab icon={<BellIcon />}>Third item</Tab>
+        </Tabs>
+      </TabsContainer>
+
+      <br />
+      <br />
+      <br />
+
+      <TabsContainer>
+        <Tabs iconPosition="right" backgroundColor='#F7F7F7'>
+          <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
+          <Tab icon={<AndroidIcon />}>Second item</Tab>
+          <Tab icon={<BellIcon />}>Third item</Tab>
+        </Tabs>
+      </TabsContainer>
+    </>
+```
+
+### Icon Position (vertical)
+
+Vertical tabs only accept `left` or `right` for the the `iconPosition` prop, with `left` being default.
+This prop is specified on the `Tabs` component.
+
+```.jsx
+      <TabsContainer>
+          <Tabs backgroundColor='#F7F7F7' iconPosition='right' orientation='vertical'>
+            <Tab icon={<GraduationCapIcon />}>First item</Tab>
+            <Tab icon={<AndroidIcon />}>Second item</Tab>
+            <Tab icon={<BellIcon />}>Third item</Tab>
+          </Tabs>
+
+          <TabPanelsContainer style={{padding: '10px'}}>
+            <TabPanel index={0}>
+              <div>Main page</div>
+            </TabPanel>
+            <TabPanel index={1}>
+              <div>FAQ</div>
+            </TabPanel>
+            <TabPanel index={2}>
+              <div>About us</div>
+            </TabPanel>
+          </TabPanelsContainer>
+      </TabsContainer>
+```
+
+### Vertical Nav Tabs with Icons
 
 ```.jsx
   <TabsContainer>

@@ -175,6 +175,21 @@ describe('Tabs', () => {
     });
   });
 
+  it('should render active tab styles for right border position', () => {
+    const { getByText } = render(
+      <TabsContainer activeIndex={0}>
+        <Tabs borderPosition="right" orientation="vertical">
+          <Tab>Tab 1</Tab>
+          <Tab>Tab 2</Tab>
+        </Tabs>
+      </TabsContainer>
+    );
+
+    expect(getByText('Tab 1').parentElement).toHaveStyleRule('left', 'auto', {
+      target: ':after'
+    });
+  });
+
   it('should render active tab styles for vertical tabs', () => {
     const { getByText } = render(
       <TabsContainer activeIndex={0}>

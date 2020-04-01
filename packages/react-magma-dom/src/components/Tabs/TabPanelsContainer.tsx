@@ -8,7 +8,7 @@ interface TabPanelContainerProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const StyledContainer = styled.div`
-  width: 100%;
+  flex-grow: 1;
 `;
 
 export const TabPanelsContainer: React.FunctionComponent<

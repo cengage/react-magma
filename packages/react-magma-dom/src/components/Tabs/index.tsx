@@ -95,17 +95,20 @@ export enum TabsOrientation {
 export enum TabsBorderPosition {
   bottom = 'bottom',
   left = 'left',
+  right = 'right',
   top = 'top'
 }
 
 export enum TabsIconPosition {
+  bottom = 'bottom',
   left = 'left',
+  right = 'right',
   top = 'top'
 }
 
 export interface VerticalTabsProps {
   orientation?: TabsOrientation.vertical;
-  borderPosition?: TabsBorderPosition.left;
+  borderPosition?: TabsBorderPosition.left | TabsBorderPosition.right;
 }
 export interface HorizontalTabsProps {
   orientation?: TabsOrientation.horizontal;
@@ -341,10 +344,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
                 value={{
                   borderPosition,
                   changeHandler,
-                  iconPosition:
-                    orientation === TabsOrientation.vertical
-                      ? TabsIconPosition.left
-                      : iconPosition,
+                  iconPosition,
                   isInverse,
                   isFullWidth,
                   orientation
