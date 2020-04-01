@@ -14,7 +14,11 @@ const StyledContainer = styled('div', { shouldForwardProp: isPropValid })<{
   backgroundColor: string;
 }>`
   background-color: ${props =>
-    props.backgroundColor ? props.backgroundColor : 'transparent'};
+    props.backgroundColor
+      ? props.backgroundColor
+      : props.isInverse
+      ? props.theme.colors.foundation01
+      : 'transparent'};
   display: flex;
   width: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
 `;
@@ -176,7 +180,6 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
       borderPosition,
       children,
       isFullWidth,
-      isInverse,
       hasScrollButtons,
       orientation,
       onChange,
@@ -184,7 +187,11 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
       testId,
       ...rest
     } = props;
-    const { activeTabIndex, setActiveTabIndex } = useTabsContext();
+    const {
+      activeTabIndex,
+      setActiveTabIndex,
+      isInverseContainer
+    } = useTabsContext();
 
     const [buttonVisiblePrev, setButtonPrevState] = React.useState(false);
     const [buttonVisibleNext, setButtonNextState] = React.useState(false);
@@ -292,6 +299,11 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
     }
 
     const theme = React.useContext(ThemeContext);
+
+    const isInverse =
+      typeof props.isInverse !== 'undefined'
+        ? Boolean(props.isInverse)
+        : isInverseContainer;
 
     return (
       <StyledContainer

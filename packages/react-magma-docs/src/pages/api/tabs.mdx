@@ -30,7 +30,7 @@ The tab system is made up of four components:
 
         return (
           <TabsContainer activeIndex={1}>
-            <Tabs backgroundColor='#F7F7F7'>
+            <Tabs>
               <Tab>Main page</Tab>
               <Tab>FAQ</Tab>
               <Tab>About us</Tab>
@@ -408,46 +408,69 @@ Vertical tabs with icons always display with the icon to the left of the text.
 ## Inverse
 
 The `isInverse` property is an optional boolean, that reverses the colors so that the tabs can better appear on a dark background.
-The default value is false.
+The default value is false. It can be applies just to the `Tabs` (just the navigation), or to the `TabsContainer` (navigation plus panel content).
+It can also be applied to indivdual `TabPanel`.
 
 ### With Blue Background
 
 ```.jsx
-      () => {
-        const wrapperStyles = {
-          backgroundColor: '#0f3765'
-        }
-
-        return (
-          <TabsContainer style={wrapperStyles}>
-              <Tabs isInverse={true}>
-                <Tab>First item</Tab>
-                <Tab>Second item</Tab>
-                <Tab>Third item</Tab>
-              </Tabs>
-          </TabsContainer>
-    )}
-```
-
-### With Dark Background
-
-```.jsx
-() => {
-
-  const wrapperStyles = {
-    backgroundColor: '#3F3F3F'
-  }
-
-  return (
-    <TabsContainer style={wrapperStyles}>
-        <Tabs isInverse={true}>
+    <TabsContainer>
+        <Tabs isInverse>
           <Tab>First item</Tab>
           <Tab>Second item</Tab>
           <Tab>Third item</Tab>
         </Tabs>
     </TabsContainer>
-  )
-}
+```
+
+### With Dark Grey Background
+
+```.jsx
+  <TabsContainer>
+      <Tabs isInverse backgroundColor='#3f3f3f'>
+        <Tab>First item</Tab>
+        <Tab>Second item</Tab>
+        <Tab>Third item</Tab>
+      </Tabs>
+  </TabsContainer>
+```
+
+### Applied to Container
+
+```.jsx
+      () => {
+      return (
+        <TabsContainer isInverse>
+            <Tabs>
+              <Tab>First item</Tab>
+              <Tab>Second item</Tab>
+              <Tab>Third item</Tab>
+            </Tabs>
+            <TabPanel index={0}>Panel one</TabPanel>
+            <TabPanel index={1}>Panel two</TabPanel>
+            <TabPanel index={2} isInverse={false}>Panel three</TabPanel>
+        </TabsContainer>
+      )
+    }
+```
+
+### Applied to Panel
+
+```.jsx
+    () => {
+      return (
+        <TabsContainer>
+            <Tabs>
+              <Tab>First item</Tab>
+              <Tab>Second item</Tab>
+              <Tab>Third item</Tab>
+            </Tabs>
+            <TabPanel isInverse index={0}>Panel one</TabPanel>
+            <TabPanel index={1}>Panel two</TabPanel>
+            <TabPanel index={2}>Panel three</TabPanel>
+        </TabsContainer>
+      )
+    }
 ```
 
 ### Custom Component Disclaimer

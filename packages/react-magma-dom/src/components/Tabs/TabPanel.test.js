@@ -3,6 +3,7 @@ import { TabPanel } from './TabPanel';
 import { TabsContext } from './TabsContainer';
 import { render } from '@testing-library/react';
 import { axe } from 'jest-axe';
+import { magma } from '../../theme/magma';
 
 describe('TabPanel', () => {
   it('should correctly apply the testId', () => {
@@ -49,6 +50,23 @@ it('should render active tab', () => {
   );
   expect(getByText('Tab Panel 1 Text')).toBeInTheDocument();
   expect(queryByText('Tab Panel 2 Text')).not.toBeInTheDocument();
+});
+
+it('should render with inverse styles', () => {
+  const testId = 'test-id';
+
+  const { getByTestId } = render(
+    <TabsContext.Provider value={{ activeTabIndex: 1 }}>
+      <TabPanel testId={testId} isInverse index={1}>
+        Tab Panel Text
+      </TabPanel>
+    </TabsContext.Provider>
+  );
+
+  expect(getByTestId(testId)).toHaveStyleRule(
+    'background',
+    magma.colors.foundation02
+  );
 });
 
 describe('Test for accessibility', () => {
