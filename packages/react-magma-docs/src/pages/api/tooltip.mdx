@@ -80,6 +80,16 @@ The default value is `false`.
     </div>
 ```
 
+## Custom Styles
+
+The containing div for the tooltip, and the tooltip component itself can have custom styles applied to it, using the `containerStyle` and `tooltipStyle` props respectively.
+
+```.jsx
+        <Tooltip content='Styled tooltip' containerStyle={{background: 'pink', padding: '10px' }} tooltipStyle={{ border: '1px solid red', background: 'yellow', color: 'black', padding: '10px' }}>
+          <IconButton aria-label="Question Icon" icon={<QuestionCircleIcon />} variant="link" />
+        </Tooltip>
+```
+
 ## Tooltip Props
 
 **Any other props supplied will be provided to the `div` element wrapping the tooltip content.**
@@ -93,6 +103,13 @@ The default value is `false`.
       required: true,
       description:
         'The element that triggers the tooltip when it is hovered or focused.  Must be a react element (not a string) and should be a focusable element to meet a11y requirements',
+    },
+    containerStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the component container element',
     },
     content: {
       type: {
@@ -131,6 +148,13 @@ The default value is `false`.
       required: false,
       description:
         'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+    tooltipStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the tooltip',
     },
   }}
 />

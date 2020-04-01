@@ -8,7 +8,7 @@ export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   isTextVisuallyHidden?: boolean;
   labelledById?: string;
   labelStyle?: React.CSSProperties;
-  labelText?: string;
+  labelText?: React.ReactNode;
   testId?: string;
 }
 
