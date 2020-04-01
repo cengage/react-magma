@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tab } from './Tab';
 import { Tabs } from '.';
-import { TabsContainer, TabsContext } from './TabsContainer';
+import { TabsContainer, TabsContainerContext } from './TabsContainer';
 import { TabPanel } from './TabPanel';
 import { magma } from '../../theme/magma';
 import { render, fireEvent } from '@testing-library/react';
@@ -12,11 +12,11 @@ describe('Tabs', () => {
     const testId = 'test-id';
 
     const { getByTestId } = render(
-      <TabsContext.Provider value={{ activeTabIndex: 1 }}>
+      <TabsContainerContext.Provider value={{ activeTabIndex: 1 }}>
         <Tabs testId={testId}>
           <Tab>Tab Text</Tab>
         </Tabs>
-      </TabsContext.Provider>
+      </TabsContainerContext.Provider>
     );
 
     expect(getByTestId(testId)).toBeInTheDocument();
@@ -24,12 +24,12 @@ describe('Tabs', () => {
 
   it('should render the children tabs', () => {
     const { getByText } = render(
-      <TabsContext.Provider value={{ activeTabIndex: 1 }}>
+      <TabsContainerContext.Provider value={{ activeTabIndex: 1 }}>
         <Tabs>
           <Tab>Tab 1</Tab>
           <Tab>Tab 2</Tab>
         </Tabs>
-      </TabsContext.Provider>
+      </TabsContainerContext.Provider>
     );
 
     expect(getByText('Tab 1')).toBeInTheDocument();
@@ -40,12 +40,12 @@ describe('Tabs', () => {
     const testId = 'test-id';
 
     const { getByTestId } = render(
-      <TabsContext.Provider value={{ activeTabIndex: 1 }}>
+      <TabsContainerContext.Provider value={{ activeTabIndex: 1 }}>
         <Tabs testId={testId} orientation="horizontal">
           <Tab>Tab 1</Tab>
           <Tab>Tab 2</Tab>
         </Tabs>
-      </TabsContext.Provider>
+      </TabsContainerContext.Provider>
     );
     const tabsContainer = getByTestId(testId);
     expect(tabsContainer).toHaveAttribute('orientation', 'horizontal');
@@ -60,12 +60,12 @@ describe('Tabs', () => {
     const testId = 'test-id';
 
     const { getByTestId } = render(
-      <TabsContext.Provider value={{ activeTabIndex: 1 }}>
+      <TabsContainerContext.Provider value={{ activeTabIndex: 1 }}>
         <Tabs testId={testId} orientation="vertical">
           <Tab>Tab 1</Tab>
           <Tab>Tab 2</Tab>
         </Tabs>
-      </TabsContext.Provider>
+      </TabsContainerContext.Provider>
     );
 
     const tabsContainer = getByTestId(testId);
@@ -80,11 +80,11 @@ describe('Tabs', () => {
 
   it('should render scroll buttons if orientation horizontal and hasScrollButtons is true', () => {
     const { getByTestId } = render(
-      <TabsContext.Provider value={{ activeTabIndex: 1 }}>
+      <TabsContainerContext.Provider value={{ activeTabIndex: 1 }}>
         <Tabs hasScrollButtons={true} orientation="horizontal">
           <Tab>Tab 1</Tab>
         </Tabs>
-      </TabsContext.Provider>
+      </TabsContainerContext.Provider>
     );
     expect(getByTestId('buttonNext')).toBeDefined();
     expect(getByTestId('buttonPrev')).toBeDefined();

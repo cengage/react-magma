@@ -3,12 +3,17 @@ import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { css, jsx } from '@emotion/core';
 import isPropValid from '@emotion/is-prop-valid';
-import { TabsIconPosition, TabsOrientation } from '.';
+import {
+  TabsIconPosition,
+  TabsOrientation,
+  TabsBorderPosition,
+  TabsContext
+} from '.';
 import { Omit, XOR } from '../../utils';
+import { TabsContainerContext } from './TabsContainer';
 
 export interface BaseTabProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
-  changeHandler?: (index: number) => void;
   disabled?: boolean;
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
   iconPosition?: TabsIconPosition;
@@ -32,6 +37,52 @@ interface TabComponentProps extends BaseTabProps {
 }
 
 export type TabProps = XOR<TabChildrenProps, TabComponentProps>;
+
+const StyledTabsChild = styled('div', { shouldForwardProp: isPropValid })<{
+  borderPosition?: TabsBorderPosition;
+  isActive?: boolean;
+  isFullWidth?: boolean;
+  isInverse?: boolean;
+  orientation: TabsOrientation;
+}>`
+  flex-grow: 0;
+  flex-shrink: ${props => (props.isFullWidth ? '1' : '0')};
+  height: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
+  max-width: ${props => (props.isFullWidth ? '100%' : '250px')};
+  position: relative;
+  white-space: normal;
+  width: ${props =>
+    props.isFullWidth || props.orientation === 'vertical' ? '100%' : 'auto'};
+
+  &:after {
+    background: ${props =>
+      props.isInverse ? props.theme.colors.pop02 : props.theme.colors.primary};
+    border-radius: 2px;
+    content: '';
+    display: block;
+    height: 4px;
+    opacity: ${props => (props.isActive ? '1' : '0')};
+    position: absolute;
+    transition: 0.4s all;
+    width: auto;
+
+    bottom: ${props => (props.borderPosition === 'top' ? 'auto' : '0')};
+    left: ${props => (props.isActive ? '0' : '50%')};
+    right: ${props => (props.isActive ? '0' : '50%')};
+    top: ${props => (props.borderPosition === 'top' ? '0' : 'auto')};
+
+    ${props =>
+      props.orientation === 'vertical' &&
+      css`
+        height: auto;
+        bottom: ${props.isActive ? '0' : '50%'};
+        left: 0;
+        right: auto;
+        top: ${props.isActive ? '0' : '50%'};
+        width: 4px;
+      `}
+  }
+`;
 
 const TabStyles = props => css`
   align-items: ${props.iconPosition !== 'left' &&
@@ -97,31 +148,34 @@ export const StyledCustomTab: React.FunctionComponent<TabComponentProps> = ({
   children,
   component,
   icon,
+  index,
   style,
   onClick,
   ref,
   ...props
 }) => {
   if (React.isValidElement(component) && React.isValidElement(component)) {
-    const cloneElement = (element, newProps) =>
-      jsx(element.type, {
+    const cloneElement = (element, newProps) => {
+      return jsx(element.type, {
         key: element.key,
         ref: element.ref,
         ...element.props,
         ...newProps
       });
+    };
 
-    return (
-      <>
-        {cloneElement(component, {
-          css: TabStyles(props),
-          ...style,
-          onClick,
-          ref,
-          children: [icon, component.props.children]
-        })}
-      </>
-    );
+    return cloneElement(component, {
+      css: TabStyles(props),
+      ...style,
+      onClick,
+      ref,
+      children: (
+        <>
+          {icon}
+          {component.props.children}
+        </>
+      )
+    });
   }
 };
 
@@ -158,16 +212,18 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
   ) => {
     let component;
     let children;
+    const { icon, index, path, testId, ...rest } = props;
+    const { activeTabIndex } = React.useContext(TabsContainerContext);
+    const isActive = index === activeTabIndex;
+
     const {
       changeHandler,
-      icon,
       iconPosition,
-      index,
-      isActive,
-      path,
-      testId,
-      ...rest
-    } = props;
+      orientation,
+      borderPosition,
+      isInverse,
+      isFullWidth
+    } = React.useContext(TabsContext);
 
     if (instanceOfComponentTab(props)) {
       component = props.component;
@@ -183,46 +239,60 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
     }, [path]);
 
     const theme = React.useContext(ThemeContext);
-
-    if (component) {
-      return (
-        <StyledCustomTab
-          {...rest}
-          aria-selected={isActive}
-          component={component}
-          data-testid={testId}
-          iconPosition={iconPosition}
-          icon={
-            icon && <StyledIcon iconPosition={iconPosition}>{icon}</StyledIcon>
-          }
-          isActive={isActive}
-          ref={ref}
-          role="tab"
-          theme={theme}
-        />
-      );
-    }
+    const isIconOnly = !children;
 
     return (
-      <StyledTab
-        {...rest}
+      <StyledTabsChild
         aria-selected={isActive}
-        data-testid={testId}
-        iconPosition={iconPosition}
+        borderPosition={borderPosition}
+        data-testId="tabContainer"
         isActive={isActive}
+        isFullWidth={isFullWidth}
+        isInverse={isInverse}
         ref={ref}
+        orientation={orientation}
+        onClick={e => changeHandler(index, e)}
         role="tab"
         theme={theme}
       >
-        {icon && (
-          <StyledIcon iconPosition={iconPosition} isIconOnly={!children}>
-            {icon}
-          </StyledIcon>
+        {component ? (
+          <StyledCustomTab
+            {...rest}
+            component={component}
+            data-testid={testId}
+            iconPosition={iconPosition}
+            icon={
+              icon && (
+                <StyledIcon iconPosition={iconPosition}>{icon}</StyledIcon>
+              )
+            }
+            index={index}
+            isActive={isActive}
+            isInverse={isInverse}
+            isFullWidth={isFullWidth}
+            orientation={orientation}
+            theme={theme}
+          />
+        ) : (
+          <StyledTab
+            {...rest}
+            data-testid={testId}
+            iconPosition={iconPosition}
+            isActive={isActive}
+            isInverse={isInverse}
+            isFullWidth={isFullWidth}
+            orientation={orientation}
+            theme={theme}
+          >
+            {icon && (
+              <StyledIcon iconPosition={iconPosition} isIconOnly={isIconOnly}>
+                {icon}
+              </StyledIcon>
+            )}
+            {children}
+          </StyledTab>
         )}
-        {children}
-      </StyledTab>
+      </StyledTabsChild>
     );
   }
 );
-
-Tab.displayName = 'Tab';

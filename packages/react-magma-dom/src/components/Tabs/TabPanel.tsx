@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTabsContext } from './TabsContainer';
+import { TabsContainerContext } from './TabsContainer';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
 
@@ -29,7 +29,9 @@ export const TabPanel: React.FunctionComponent<
 
   const theme = React.useContext(ThemeContext);
 
-  const { activeTabIndex, isInverseContainer } = useTabsContext();
+  const { activeTabIndex, isInverseContainer } = React.useContext(
+    TabsContainerContext
+  );
   const activeTab = activeTabIndex === index;
 
   const isInverse =
