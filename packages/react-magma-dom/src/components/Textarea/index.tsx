@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { baseInputStyles } from '../BaseInput';
-
+import { HiddenLabelText } from '../Input';
 import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -16,7 +16,7 @@ export interface TextareaProps
   isInverse?: boolean;
   isLabelVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
-  labelText?: string;
+  labelText?: React.ReactNode;
   messageStyle?: React.CSSProperties;
   testId?: string;
   textareaStyle?: React.CSSProperties;
@@ -76,18 +76,19 @@ export const Textarea: React.FunctionComponent<
 
     return (
       <Container style={containerStyle}>
-        {!isLabelVisuallyHidden && (
-          <Label isInverse={isInverse} htmlFor={id} style={labelStyle}>
-            {labelText}
-          </Label>
-        )}
+        <Label isInverse={isInverse} htmlFor={id} style={labelStyle}>
+          {isLabelVisuallyHidden ? (
+            <HiddenLabelText>{labelText}</HiddenLabelText>
+          ) : (
+            labelText
+          )}
+        </Label>
         <StyledTextArea
           {...other}
           aria-describedby={
             descriptionId ? descriptionId : props['aria-describedby']
           }
           aria-invalid={!!errorMessage}
-          aria-label={isLabelVisuallyHidden ? labelText : null}
           data-testid={testId}
           hasError={!!errorMessage}
           id={id}

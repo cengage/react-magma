@@ -3,6 +3,8 @@ import React from 'react';
 import { axe } from 'jest-axe';
 import { CreatableSelect } from '.';
 import { render, fireEvent, waitForElement } from '@testing-library/react';
+import { Search2Icon } from '../Icon/types/Search2Icon';
+import { components as ReactSelectComponents } from 'react-select';
 
 const colourOptions = [
   {
@@ -49,5 +51,29 @@ describe('Creatable', () => {
     await waitForElement(() => getByText('Create "pink"'));
 
     expect(getByText('Create "pink"')).toBeInTheDocument();
+  });
+
+  it('should allow for the passing in of custom components', () => {
+    const DropdownIndicator = props => {
+      return (
+        ReactSelectComponents.DropdownIndicator && (
+          <ReactSelectComponents.DropdownIndicator {...props}>
+            <Search2Icon testId="custom-dropdown-indicator" size={10} />
+          </ReactSelectComponents.DropdownIndicator>
+        )
+      );
+    };
+
+    const { getByTestId } = render(
+      <CreatableSelect
+        id="customSelect"
+        labelText="Custom"
+        components={{
+          DropdownIndicator
+        }}
+      />
+    );
+
+    expect(getByTestId('custom-dropdown-indicator')).toBeInTheDocument();
   });
 });
