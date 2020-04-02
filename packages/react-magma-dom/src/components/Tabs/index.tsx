@@ -326,6 +326,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
         ) : null}
 
         <StyledTabsWrapper
+          data-testid="tabsWrapper"
           ref={tabsWrapperRef}
           onScroll={handleScroll}
           orientation={orientation}

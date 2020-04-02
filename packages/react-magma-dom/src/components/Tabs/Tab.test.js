@@ -41,6 +41,22 @@ describe('Tab', () => {
     expect(getByText('Test Component')).toBeInTheDocument();
   });
 
+  it('should render a tab with a component and an icon', () => {
+    const { getByTestId } = render(
+      <Tab
+        component={
+          <a href="google.com" data-testid="component">
+            Test Component
+          </a>
+        }
+        icon={<CheckIcon testId="icon" />}
+      />
+    );
+
+    expect(getByTestId('component')).toBeInTheDocument();
+    expect(getByTestId('icon')).toBeInTheDocument();
+  });
+
   it('should have aria-selected attribute if tab is active', () => {
     const { getByTestId, rerender } = render(
       <TabsContainer activeIndex={0}>

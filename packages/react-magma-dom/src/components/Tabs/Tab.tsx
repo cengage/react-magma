@@ -245,7 +245,7 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
       <StyledTabsChild
         aria-selected={isActive}
         borderPosition={borderPosition}
-        data-testId="tabContainer"
+        data-testid="tabContainer"
         isActive={isActive}
         isFullWidth={isFullWidth}
         isInverse={isInverse}
