@@ -8,9 +8,11 @@ import {
   AsyncSelect,
   CreatableSelect,
   AsyncCreatableSelect,
+  Search2Icon,
 } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { SimplePropsTable } from '../../components/props-table'
+import { components as ReactSelectComponents } from 'react-select'
 
 <DocsHeading to="/design/select/" type="design">
   Selects
@@ -217,6 +219,49 @@ The default value is `false`.
       }]}
     />
   </div>
+```
+
+## Custom components
+
+`react-select` allows for the passing of custom components to override the building blocks of a `select`. The explanation and a full list of components that you can override can be found [here](https://react-select.com/components).
+
+For this example I am importing `components` from `react-select` and renaming the import to `ReactSelectComponents`. In practice you should not have a component defined inside of your `select` component, but it is there in this example to allow you to see how to build a custom component.
+
+```.jsx
+  () => {
+    const DropdownIndicator = props => {
+      return (
+        ReactSelectComponents.DropdownIndicator && (
+          <ReactSelectComponents.DropdownIndicator {...props}>
+            <Search2Icon size={10} />
+          </ReactSelectComponents.DropdownIndicator>
+        )
+      );
+    };
+
+    return (
+      <>
+        <Select
+          id="customComponentId"
+          name="custom"
+          labelText="Custom Component"
+          options={[{
+            value: 'red',
+            label: 'Red'
+          }, {
+            value: 'blue',
+            label: 'Blue'
+          }, {
+            value: 'green',
+            label: 'Green'
+          }]}
+          components={{
+            DropdownIndicator
+          }}
+        />
+      </>
+    )
+  }
 ```
 
 ## AsyncSelect
@@ -527,7 +572,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
     },
     labelText: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: true,
       description: 'Text for label',
@@ -567,6 +612,8 @@ export default props => (
       AsyncSelect,
       CreatableSelect,
       AsyncCreatableSelect,
+      ReactSelectComponents,
+      Search2Icon,
     }}
   />
 )

@@ -202,6 +202,43 @@ describe('Tab', () => {
   });
 });
 
+it('should show icon in bottom position', () => {
+  const testId = 'test-id';
+
+  const icon = <CheckIcon size={18} />;
+  const { container, getByTestId } = render(
+    <Tabs iconPosition="bottom">
+      <Tab testId={testId} icon={icon}>
+        Tab
+      </Tab>
+    </Tabs>
+  );
+  expect(container.querySelector('span')).toHaveStyleRule('margin', '5px 0 0');
+  expect(getByTestId(testId)).toHaveStyleRule(
+    'flex-direction',
+    'column-reverse'
+  );
+});
+
+it('should show icon in right position', () => {
+  const testId = 'test-id';
+
+  const icon = <CheckIcon size={18} />;
+  const { container, getByTestId } = render(
+    <Tabs iconPosition="right">
+      <Tab testId={testId} icon={icon}>
+        Tab
+      </Tab>
+    </Tabs>
+  );
+
+  expect(container.querySelector('span')).toHaveStyleRule(
+    'margin',
+    '0 0 0 15px'
+  );
+  expect(getByTestId(testId)).toHaveStyleRule('flex-direction', 'row-reverse');
+});
+
 describe('Test for accessibility', () => {
   it('Does not violate accessibility standards', () => {
     const testId = 'test-id';

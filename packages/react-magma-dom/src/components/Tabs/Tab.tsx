@@ -75,20 +75,34 @@ const StyledTabsChild = styled('div', { shouldForwardProp: isPropValid })<{
       props.orientation === 'vertical' &&
       css`
         height: auto;
+
         bottom: ${props.isActive ? '0' : '50%'};
-        left: 0;
-        right: auto;
+        left: ${props.borderPosition === 'right' ? 'auto' : '0'};
+        right: ${props.borderPosition === 'right' ? '0' : 'auto'};
         top: ${props.isActive ? '0' : '50%'};
+
         width: 4px;
       `}
   }
 `;
 
+function getFlexDirection(position: TabsIconPosition) {
+  switch (position) {
+    case TabsIconPosition.left:
+      return 'row';
+    case TabsIconPosition.right:
+      return 'row-reverse';
+    case TabsIconPosition.top:
+      return 'column';
+    case TabsIconPosition.bottom:
+      return 'column-reverse';
+    default:
+      return 'column';
+  }
+}
+
 const TabStyles = props => css`
-  align-items: ${props.iconPosition !== 'left' &&
-  props.orientation === 'vertical'
-    ? 'flex-start'
-    : 'center'};
+  align-items: center;
   background: transparent;
   border: 0;
   color: ${props.isActive && !props.isInverse
@@ -98,27 +112,34 @@ const TabStyles = props => css`
     : props.theme.colors.neutral01};
   cursor: ${props.disabled ? 'auto' : 'pointer'};
   display: flex;
-  flex-direction: ${props.iconPosition === 'left' ? '' : 'column'};
+  flex-direction: ${getFlexDirection(props.iconPosition)};
   flex-grow: 0;
   flex-shrink: ${props.isFullWidth ? '1' : '0'};
   font-size: 14px;
   font-weight: 600;
-  justify-content: ${props.iconPosition === 'left' ||
-  props.orientation === 'vertical'
-    ? 'flex-start'
-    : 'center'};
   line-height: 1.5;
   height: 100%;
+  justify-content: ${props.iconPosition === 'left' ? 'flex-start' : 'center'};
   opacity: ${props.disabled ? 0.4 : props.isActive ? 1 : 0.7};
   padding: 13px 20px;
   position: relative;
   pointer-events: ${props.disabled ? 'none' : ''};
-  text-align: ${props.orientation === 'vertical' ? 'left' : 'center'};
+  text-align: center;
   text-decoration: none;
   text-transform: uppercase;
-  width: ${props.isFullWidth || props.orientation === 'vertical'
-    ? '100%'
-    : 'auto'};
+  width: ${props.isFullWidth ? '100%' : 'auto'};
+
+  ${props.orientation === 'vertical' &&
+    css`
+      align-items: flex-start;
+      justify-content: ${props.iconPosition === 'left'
+        ? 'flex-start'
+        : 'flex-end'};
+      text-align: left;
+      width: 100%;
+
+      align-items: center;
+    `}
 
   &:hover,
   &:focus {
@@ -179,17 +200,31 @@ export const StyledCustomTab: React.FunctionComponent<TabComponentProps> = ({
   }
 };
 
+function getIconMargin(props) {
+  if (props.isIconOnly) {
+    return '3px 0';
+  }
+
+  switch (props.iconPosition) {
+    case TabsIconPosition.left:
+      return '0 15px 0 0';
+    case TabsIconPosition.right:
+      return '0 0 0 15px';
+    case TabsIconPosition.top:
+      return '0 0 5px';
+    case TabsIconPosition.bottom:
+      return '5px 0 0';
+    default:
+      return '0 0 5px';
+  }
+}
+
 const StyledIcon = styled.span<{
   iconPosition: TabsIconPosition;
   isIconOnly?: boolean;
 }>`
   display: flex;
-  margin: ${props =>
-    props.isIconOnly
-      ? '3px 0'
-      : props.iconPosition === 'left'
-      ? '0 15px 0 0'
-      : '0 0 5px'}};
+  margin: ${props => getIconMargin(props)};
 
   svg {
     height: 17px;
@@ -218,9 +253,9 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
 
     const {
       changeHandler,
-      iconPosition,
       orientation,
       borderPosition,
+      iconPosition,
       isInverse,
       isFullWidth
     } = React.useContext(TabsContext);
@@ -241,6 +276,12 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
     const theme = React.useContext(ThemeContext);
     const isIconOnly = !children;
 
+    const tabIconPosition = iconPosition
+      ? iconPosition
+      : orientation === 'vertical'
+      ? TabsIconPosition.left
+      : TabsIconPosition.top;
+
     return (
       <StyledTabsChild
         aria-selected={isActive}
@@ -260,10 +301,10 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
             {...rest}
             component={component}
             data-testid={testId}
-            iconPosition={iconPosition}
+            iconPosition={tabIconPosition}
             icon={
               icon && (
-                <StyledIcon iconPosition={iconPosition}>{icon}</StyledIcon>
+                <StyledIcon iconPosition={tabIconPosition}>{icon}</StyledIcon>
               )
             }
             index={index}
@@ -277,7 +318,7 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
           <StyledTab
             {...rest}
             data-testid={testId}
-            iconPosition={iconPosition}
+            iconPosition={tabIconPosition}
             isActive={isActive}
             isInverse={isInverse}
             isFullWidth={isFullWidth}
@@ -285,7 +326,10 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
             theme={theme}
           >
             {icon && (
-              <StyledIcon iconPosition={iconPosition} isIconOnly={isIconOnly}>
+              <StyledIcon
+                iconPosition={tabIconPosition}
+                isIconOnly={isIconOnly}
+              >
                 {icon}
               </StyledIcon>
             )}

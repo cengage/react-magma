@@ -189,7 +189,7 @@ Adding the `isTextVisuallyHidden` prop will make the label text available to scr
 
 ```.jsx
     <Checkbox
-        labelText='Disabled checkbox'
+        labelText='Hidden checkbox'
         isTextVisuallyHidden />
 ```
 
@@ -211,6 +211,22 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
         checked
         labelText='No custom styles' />
   </>
+```
+
+## Node as labelText
+
+The `labelText` prop can either be a string, or it can be a React Node.
+
+```.jsx
+      () => {
+        const myLabel = <span style={{  border: '1px solid #3f3f3f', borderRadius: '3px', display: 'inline-block', padding: '10px' }}><strong>Node </strong> as <i>label</i></span>;
+
+        return (
+          <Checkbox
+              labelText={myLabel}
+              inputStyle={{ alignSelf: 'center' }} />
+        );
+      }
 ```
 
 ## Testing
@@ -321,10 +337,10 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
     },
     labelText: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: true,
-      description: 'Text for label',
+      description: 'Content of label; can be node or string',
     },
     onChange: {
       type: {
