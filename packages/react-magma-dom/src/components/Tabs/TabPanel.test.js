@@ -4,16 +4,17 @@ import { TabsContainerContext } from './TabsContainer';
 import { render } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import { magma } from '../../theme/magma';
+import { TabPanelsContainer } from './TabPanelsContainer';
 
 describe('TabPanel', () => {
   it('should correctly apply the testId', () => {
     const testId = 'test-id';
 
     const { getByTestId } = render(
-      <TabsContainerContext.Provider value={{ activeTabIndex: 1 }}>
-        <TabPanel testId={testId} index={1}>
-          Tab Panel Text
-        </TabPanel>
+      <TabsContainerContext.Provider value={{ activeTabIndex: 0 }}>
+        <TabPanelsContainer>
+          <TabPanel testId={testId}>Tab Panel Text</TabPanel>
+        </TabPanelsContainer>
       </TabsContainerContext.Provider>
     );
 
@@ -24,10 +25,10 @@ describe('TabPanel', () => {
     const testId = 'test-id';
 
     const { getByText } = render(
-      <TabsContainerContext.Provider value={{ activeTabIndex: 1 }}>
-        <TabPanel index={1} testId={testId}>
-          Tab Panel Text
-        </TabPanel>
+      <TabsContainerContext.Provider value={{ activeTabIndex: 0 }}>
+        <TabPanelsContainer>
+          <TabPanel testId={testId}>Tab Panel Text</TabPanel>
+        </TabPanelsContainer>
       </TabsContainerContext.Provider>
     );
 
@@ -36,30 +37,28 @@ describe('TabPanel', () => {
 });
 
 it('should render active tab', () => {
-  const testId = 'test-id';
-
   const { getByText, queryByText } = render(
     <TabsContainerContext.Provider value={{ activeTabIndex: 1 }}>
-      <TabPanel index={1} testId={testId}>
-        Tab Panel 1 Text
-      </TabPanel>
-      <TabPanel index={2} testId={testId}>
-        Tab Panel 2 Text
-      </TabPanel>
+      <TabPanelsContainer>
+        <TabPanel>Tab Panel 1 Text</TabPanel>
+        <TabPanel>Tab Panel 2 Text</TabPanel>
+      </TabPanelsContainer>
     </TabsContainerContext.Provider>
   );
-  expect(getByText('Tab Panel 1 Text')).toBeInTheDocument();
-  expect(queryByText('Tab Panel 2 Text')).not.toBeInTheDocument();
+  expect(queryByText('Tab Panel 1 Text')).not.toBeInTheDocument();
+  expect(getByText('Tab Panel 2 Text')).toBeInTheDocument();
 });
 
 it('should render with inverse styles', () => {
   const testId = 'test-id';
 
   const { getByTestId } = render(
-    <TabsContainerContext.Provider value={{ activeTabIndex: 1 }}>
-      <TabPanel testId={testId} isInverse index={1}>
-        Tab Panel Text
-      </TabPanel>
+    <TabsContainerContext.Provider value={{ activeTabIndex: 0 }}>
+      <TabPanelsContainer>
+        <TabPanel testId={testId} isInverse>
+          Tab Panel Text
+        </TabPanel>
+      </TabPanelsContainer>
     </TabsContainerContext.Provider>
   );
 
@@ -74,10 +73,10 @@ describe('Test for accessibility', () => {
     const testId = 'test-id';
 
     const { container } = render(
-      <TabsContainerContext.Provider value={{ activeTabIndex: 1 }}>
-        <TabPanel index={1} testId={testId}>
-          Tab Panel Text
-        </TabPanel>
+      <TabsContainerContext.Provider value={{ activeTabIndex: 0 }}>
+        <TabPanelsContainer>
+          <TabPanel testId={testId}>Tab Panel Text</TabPanel>
+        </TabPanelsContainer>
       </TabsContainerContext.Provider>
     );
 

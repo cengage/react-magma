@@ -111,6 +111,13 @@ describe('Tab', () => {
     expect(container.querySelector('span')).toBeInTheDocument();
   });
 
+  it('should render an icon only tab', () => {
+    const icon = <CheckIcon testId="icon" />;
+    const { getByTestId } = render(<Tab icon={icon} />);
+
+    expect(getByTestId('icon')).toBeInTheDocument();
+  });
+
   it('should change color when isInverse prop is true', () => {
     const testId = 'test-id';
 
