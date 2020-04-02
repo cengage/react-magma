@@ -17,8 +17,8 @@ const StyledTabPanel = styled.div<{ isInverse?: boolean }>`
 `;
 
 export interface TabPanelProps extends React.HTMLAttributes<HTMLDivElement> {
-  index: number;
-  isInverse: boolean;
+  index?: number;
+  isInverse?: boolean;
   testId?: string;
 }
 
