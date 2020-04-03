@@ -45,6 +45,7 @@ const HiddenInput = styled.input<{ indeterminate?: boolean }>`
 `;
 
 const StyledFakeInput = styled.span<{
+  checked?: boolean;
   isInverse: boolean;
   disabled: boolean;
   color: string;
@@ -147,6 +148,7 @@ export const Radio: React.FunctionComponent<RadioProps> = React.forwardRef(
             labelText}
 
           <StyledFakeInput
+            checked={context.selectedValue === value}
             color={color ? color : ''}
             disabled={disabled}
             isInverse={isInverse}

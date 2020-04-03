@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.29](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.28...v2.0.0-beta.29) (2020-03-30)
+
+
+### Features
+
+* **select:** allow for custom components to be passed in ([dc8cffd](http://stash.corp.web:7999/FRONT/react-magma/commits/dc8cffd))
+
+
+
+
+
+# [2.0.0-beta.28](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.27...v2.0.0-beta.28) (2020-03-30)
+
+
+### Bug Fixes
+
+* **radio, checkbox:** border color on checked and indeterminate ([6f0436e](http://stash.corp.web:7999/FRONT/react-magma/commits/6f0436e))
+
+
+
+
+
 # [2.0.0-beta.26](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.25...v2.0.0-beta.26) (2020-03-25)
 
 

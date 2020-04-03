@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.31](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.30...v2.0.0-beta.31) (2020-04-03)
+
+**Note:** Version bump only for package react-magma-docs
+
+
+
+
+
+# [2.0.0-beta.30](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.29...v2.0.0-beta.30) (2020-04-01)
+
+**Note:** Version bump only for package react-magma-docs
+
+
+
+
+
+# [2.0.0-beta.29](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.28...v2.0.0-beta.29) (2020-03-30)
+
+**Note:** Version bump only for package react-magma-docs
+
+
+
+
+
+# [2.0.0-beta.28](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.27...v2.0.0-beta.28) (2020-03-30)
+
+**Note:** Version bump only for package react-magma-docs
+
+
+
+
+
 # [2.0.0-beta.27](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.26...v2.0.0-beta.27) (2020-03-25)
 
 **Note:** Version bump only for package react-magma-docs
