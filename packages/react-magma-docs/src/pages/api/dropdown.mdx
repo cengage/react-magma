@@ -22,6 +22,7 @@ import {
   PasswordInput,
   Radio,
   RadioGroup,
+  magma,
 } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 import { Link } from 'gatsby'
@@ -34,12 +35,14 @@ import { IconButtonProps } from '../../components/icon-button-props'
 ## Basic Usage
 
 The `Dropdown` component should contain two children: the `DropdownButton` component, and the `DropdownMenu` component.
-The `DropdownButton` is a button that handles the opening and closing of the menu. The `DropdownMenu` component contains individual menu items,
-represented in `DropdownMenuItem` components.
+
+The `DropdownButton` is a button that handles the opening and closing of the menu.
+
+The `DropdownMenu` component contains the content that appears when the button is clicked. That content may contain individual menu items, represented in `DropdownMenuItem` components, or it may contain other markup.
 
 ```.jsx
       <Dropdown>
-         <DropdownButton>Basic Dropdown</DropdownButton>
+         <DropdownButton>Basic Dropdown Menu</DropdownButton>
           <DropdownMenu>
             <DropdownMenuItem>Menu item 1</DropdownMenuItem>
             <DropdownMenuItem>Menu item number two</DropdownMenuItem>
@@ -103,17 +106,111 @@ By default, a dropdown menu will be as wide as the largest item. However, you ma
       </Dropdown>
 ```
 
-## Disabled Item
+## Max-Height
+
+By default, the max-height of a dropdown menu is 250px. That can be changed by using the `maxHeight` prop.
+
+```.jsx
+      <Dropdown maxHeight='150px'>
+        <DropdownButton>Max-Height</DropdownButton>
+        <DropdownMenu id="hello">
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 4</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 5</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 6</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 7</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 8</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 9</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 10</DropdownMenuItem>
+        </DropdownMenu>
+      </Dropdown>
+```
+
+## DropdownMenuItem
+
+The `DropdownMenuItem` component can be used within the `DropdownMenu` to indicate individual menu items, which will render as buttons.
+The items accept an `onClick` event. The `isDisabled` prop can be used on an item to disable that action. These items can be navigated by using the up and down arrow keys.
 
 ```.jsx
       <Dropdown>
-        <DropdownButton>Disabled Item</DropdownButton>
+        <DropdownButton>Dropdown Menu Items</DropdownButton>
         <DropdownMenu>
           <DropdownMenuItem  onClick={()=>{alert('Item 1 clicked')}}>Menu item 1</DropdownMenuItem>
           <DropdownMenuItem  isDisabled onClick={()=>{alert('Item 2 clicked')}}>Menu item 2</DropdownMenuItem>
           <DropdownMenuItem  onClick={()=>{alert('Item 3 clicked')}}>Menu item 3</DropdownMenuItem>
         </DropdownMenu>
       </Dropdown>
+```
+
+### Leading Icons
+
+The `icon` prop can be used to specify a icon for the `DropdownMenuItem` elements.
+
+```.jsx
+      <Dropdown>
+        <DropdownButton>Leading Icons</DropdownButton>
+        <DropdownMenu>
+          <DropdownMenuItem icon={<AsteriskIcon />}>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem icon={<BellIcon />}>Menu item 2</DropdownMenuItem>
+        </DropdownMenu>
+      </Dropdown>
+```
+
+## Dropdown with Form
+
+Dropdowns can contain elements other than Dropdown Menu Items. The standard keyboard behavior would apply in these cases.
+
+```.jsx
+      () => {
+        const iconStyle = { marginRight: '10px' };
+
+        return (
+          <>
+            <Dropdown width='300px' maxHeight='600px'>
+              <DropdownButton>Dropdown with Login Form</DropdownButton>
+              <DropdownMenu>
+                <form style={{padding: '20px'}}>
+                    <Input type="email" labelText="Email Address" />
+                    <PasswordInput labelText="Password" />
+                    <div style={{textAlign: 'center'}}>
+                      <p>By signing in, you agree to our <a href="#">Terms of use</a>.</p>
+                      <Button isFullWidth>Sign In</Button>
+                      <p><a>Forgot password?</a></p>
+                    </div>
+                </form>
+                <DropdownMenuDivider />
+                <div style={{textAlign: 'center', padding: '20px'}}>
+                  <p>
+                    Don't have an account? <br/>
+                    <a href="#">Register today!</a>
+                  </p>
+                </div>
+              </DropdownMenu>
+            </Dropdown>
+                <Dropdown maxHeight='600px' maxWidth='300px'>
+                  <DropdownButton>Dropdown with Form 2</DropdownButton>
+                  <DropdownMenu>
+                    <form style={{margin: 0, color: magma.colors.neutral03}}>
+                      <DropdownMenuHeader id='checkboxGroup'>Checkbox Group Label</DropdownMenuHeader>
+                      <FormGroup labelledById='checkboxGroup'>
+                          <Checkbox labelText={<><span style={iconStyle}><AsteriskIcon size={20} /></span> Option Number One with a Longer Label</>} textPosition="left" />
+                          <Checkbox labelText={<><span style={iconStyle}><BellIcon size={20} style={iconStyle} /></span> Option 2</>} textPosition="left"  />
+                      </FormGroup>
+                      <DropdownMenuDivider />
+                      <DropdownMenuHeader id='radioGroup'>Radio Group Label</DropdownMenuHeader>
+                      <RadioGroup labelledById='radioGroup' name='radioGroupExample' value='1'>
+                          <Radio labelText='Option 1' value='1' textPosition="left" />
+                          <Radio labelText='Option 2' value='2' textPosition="left" />
+                          <Radio labelText='Option 3' value='3' textPosition="left"  />
+                      </RadioGroup>
+                    </form>
+                  </DropdownMenu>
+                </Dropdown>
+            </>
+        )
+      }
 ```
 
 ## Custom Button
@@ -169,18 +266,6 @@ Similarly, the `DropdownButton` can be customized by using any of the props that
       </>
 ```
 
-## Leading Icons
-
-```.jsx
-      <Dropdown>
-        <DropdownButton>Leading Icons</DropdownButton>
-        <DropdownMenu>
-          <DropdownMenuItem icon={<AsteriskIcon />}>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem icon={<BellIcon />}>Menu item 2</DropdownMenuItem>
-        </DropdownMenu>
-      </Dropdown>
-```
-
 ## Breaking a Menu Into Sections
 
 A `DropdownMenu` can be broken into multiple sections, by using the `DropdownMenuHeader` and `DropdownMenuDivider` components.
@@ -230,88 +315,6 @@ When another item is selected, that item will become active and the menu will re
         </>
     )
 }
-```
-
-## Max-Height
-
-By default, the max-height of a dropdown menu is 250px. That can be changed by using the `maxHeight` prop.
-
-```.jsx
-      <Dropdown maxHeight='150px'>
-        <DropdownButton>Max-Height</DropdownButton>
-        <DropdownMenu>
-            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 4</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 5</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 6</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 7</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 8</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 9</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 10</DropdownMenuItem>
-        </DropdownMenu>
-      </Dropdown>
-```
-
-## Dropdown with Form
-
-Dropdowns can contain elements other than Dropdown Menu Items. The standard keyboard behavior would apply in these cases.
-
-```.jsx
-      <Dropdown width='300px' maxHeight='600px'>
-        <DropdownButton>Dropdown with Form</DropdownButton>
-        <DropdownMenu>
-          <form style={{padding: '20px'}}>
-              <Input type="email" labelText="Email Address" />
-              <PasswordInput labelText="Password" />
-              <div style={{textAlign: 'center'}}>
-                <p>By signing in, you agree to our <a href="#">Terms of use</a>.</p>
-                <Button isFullWidth>Sign In</Button>
-                <p><a>Forgot password?</a></p>
-              </div>
-          </form>
-          <DropdownMenuDivider />
-          <div style={{textAlign: 'center', padding: '20px'}}>
-            <p>
-              Don't have an account? <br/>
-              <a href="#">Register today!</a>
-            </p>
-          </div>
-        </DropdownMenu>
-      </Dropdown>
-```
-
-## Dropdown with Form 2
-
-Another example of form elements in a dropdown.
-
-```.jsx
-      () => {
-        const labelStyle = { justifyContent: 'space-between', width: '100%' };
-
-        return (
-            <Dropdown maxHeight='600px'>
-              <DropdownButton>Dropdown with Form 2</DropdownButton>
-              <DropdownMenu>
-                <form style={{margin: 0}}>
-                  <DropdownMenuHeader id='checkboxGroup'>Checkbox Group Label</DropdownMenuHeader>
-                  <FormGroup labelledById='checkboxGroup'>
-                      <Checkbox labelText={<><AsteriskIcon size={20} />Option 1</>} labelStyle={labelStyle} textPosition="left" />
-                      <Checkbox labelText={<><BellIcon size={20} />Option 2</>} labelStyle={labelStyle} textPosition="left"  />
-                  </FormGroup>
-                  <DropdownMenuDivider />
-                  <DropdownMenuHeader id='radioGroup'>Radio Group Label</DropdownMenuHeader>
-                  <RadioGroup labelledById='radioGroup' name='radioGroupExample' value='1'>
-                      <Radio labelText='Option 1' value='1' labelStyle={labelStyle} textPosition="left" />
-                      <Radio labelText='Option 2' value='2' labelStyle={labelStyle} textPosition="left" />
-                      <Radio labelText='Option 3' value='3' labelStyle={labelStyle} textPosition="left"  />
-                  </RadioGroup>
-                </form>
-              </DropdownMenu>
-            </Dropdown>
-        )
-      }
 ```
 
 ## Dropdown Props
@@ -378,6 +381,8 @@ Another example of form elements in a dropdown.
 
 **Props supplied will be provided to the wrapping `div` element.**
 
+Examples may include an id, a title, event handlers or various aria attribiutes. It is unlikely that it will be neccessary to provivde additional props.
+
 ## Dropdown Menu Item
 
 **Any other props supplied will be provided to the wrapping `li` element.**
@@ -397,7 +402,7 @@ Another example of form elements in a dropdown.
       },
       required: false,
       description:
-        'If true, item will appear dimmed and onClick event will not fire',
+        'If true, item will be disabled; it will appear dimmed and onClick event (or any other events) will not fire',
       defaultValue: 'false',
     },
     onClick: {
@@ -450,6 +455,7 @@ export default props => (
       PasswordInput,
       Radio,
       RadioGroup,
+      magma,
     }}
   />
 )

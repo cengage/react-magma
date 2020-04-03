@@ -25,11 +25,13 @@ const StyledCard = styled(Card)<{
   overflow-y: auto;
   position: absolute;
   transition: opacity 0.3s;
+  white-space: nowrap;
   z-index: 2;
 
   ${props =>
     props.width &&
     css`
+      white-space: normal;
       width: ${props.width};
     `}
 
