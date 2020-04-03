@@ -78,7 +78,7 @@ const StyledAlert = styled.div<AlertProps>`
   &:focus {
     outline: 2px dotted ${props =>
       props.isInverse
-        ? props.theme.colors.neutral08
+        ? props.theme.colors.focusInverse
         : props.theme.colors.focus};
     }
   }
@@ -109,8 +109,8 @@ const StyledAlert = styled.div<AlertProps>`
     &:focus {
       outline: 2px dotted ${props =>
         props.variant === 'warning'
-          ? props.theme.colors.neutral01
-          : props.theme.colors.neutral08};
+          ? props.theme.colors.focus
+          : props.theme.colors.focusInverse};
       }
     }
   }
@@ -161,8 +161,8 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
     outline: 2px dotted
       ${({ alertVariant, theme }) =>
         alertVariant === 'warning'
-          ? theme.colors.neutral01
-          : theme.colors.neutral08};
+          ? theme.colors.focus
+          : theme.colors.focusInverse};
     outline-offset: 0 !important;
   }
 
@@ -171,8 +171,8 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
     :not(:disabled):before {
       background: ${({ alertVariant, theme }) =>
         alertVariant === 'warning'
-          ? theme.colors.neutral01
-          : theme.colors.neutral08};
+          ? theme.colors.focus
+          : theme.colors.focusInverse};
       opacity: 0.15;
     }
 

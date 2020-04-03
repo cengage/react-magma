@@ -30,7 +30,7 @@ describe('Alert', () => {
     expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-e3152"
+    class="css-1nmgfvc"
     id="defaultVariant"
     tabindex="-1"
   >
@@ -66,7 +66,7 @@ describe('Alert', () => {
 
     expect(container.firstChild).toHaveStyleRule(
       'outline',
-      `2px dotted ${magma.colors.neutral08}`,
+      `2px dotted ${magma.colors.focusInverse}`,
       {
         target: ':focus'
       }
@@ -83,7 +83,7 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-e3152"
+    class="css-1nmgfvc"
     id="auto-generated-id"
     tabindex="-1"
   >
@@ -123,7 +123,7 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-d3aqyd"
+    class="css-8uzsvs"
     id="auto-generated-id"
     tabindex="-1"
   >
@@ -163,7 +163,7 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-tajpk"
+    class="css-7xzsa8"
     id="auto-generated-id"
     tabindex="-1"
   >
@@ -202,7 +202,7 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-6349ll"
+    class="css-173awl7"
     id="auto-generated-id"
     tabindex="-1"
   >
