@@ -5,11 +5,6 @@ import { Card } from '../Card';
 import { DropdownContext, DropdownAlignment, DropdownDropDirection } from '.';
 import { DropdownMenuItem } from './DropdownMenuItem';
 
-const StyledMenu = styled.div`
-  margin: 0;
-  padding: 5px 0;
-`;
-
 const StyledCard = styled(Card)<{
   alignment?: DropdownAlignment;
   dropDirection?: DropdownDropDirection;
@@ -50,7 +45,11 @@ const StyledCard = styled(Card)<{
     `}
 `;
 
-export const DropdownMenu: React.FunctionComponent = ({
+const StyledDiv = styled.div`
+  padding: 5px 0;
+`;
+
+export const DropdownContent: React.FunctionComponent = ({
   children,
   ...other
 }) => {
@@ -74,10 +73,10 @@ export const DropdownMenu: React.FunctionComponent = ({
       isOpen={context.isOpen}
       maxHeight={context.maxHeight}
       tabIndex={-1}
-      testId="dropdownMenu"
+      testId="dropdownContent"
       width={context.width}
     >
-      <StyledMenu ref={context.menuRef} role="menu">
+      <StyledDiv ref={context.menuRef} role="menu">
         {context.itemRefArray &&
           React.Children.toArray(children).map((child: any, index) => {
             return child.type === DropdownMenuItem && !child.props.isDisabled
@@ -87,7 +86,7 @@ export const DropdownMenu: React.FunctionComponent = ({
                 })
               : child;
           })}
-      </StyledMenu>
+      </StyledDiv>
     </StyledCard>
   );
 };

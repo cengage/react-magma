@@ -8,7 +8,7 @@ const StyledHr = styled.hr`
   margin: 5px 0;
 `;
 
-export const DropdownMenuDivider: React.FunctionComponent = () => {
+export const DropdownDivider: React.FunctionComponent = () => {
   const theme = React.useContext(ThemeContext);
 
   return <StyledHr theme={theme} />;

@@ -1,9 +1,9 @@
 import React from 'react';
 import { AsteriskIcon } from '../Icon/types/AsteriskIcon';
 import { Dropdown } from '.';
-import { DropdownMenu } from './DropdownMenu';
-import { DropdownMenuDivider } from './DropdownMenuDivider';
-import { DropdownMenuHeader } from './DropdownMenuHeader';
+import { DropdownContent } from './DropdownContent';
+import { DropdownDivider } from './DropdownDivider';
+import { DropdownHeader } from './DropdownHeader';
 import { DropdownMenuItem } from './DropdownMenuItem';
 import { DropdownSplitButton } from './DropdownSplitButton';
 import { DropdownButton } from './DropdownButton';
@@ -17,50 +17,50 @@ describe('Dropdown', () => {
     const { getByTestId } = render(
       <Dropdown testId={testId}>
         <DropdownButton>Toggle me</DropdownButton>
-        <DropdownMenu>
+        <DropdownContent>
           <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
           <DropdownMenuItem onClick={() => {}}>
             Menu item number two
           </DropdownMenuItem>
-        </DropdownMenu>
+        </DropdownContent>
       </Dropdown>
     );
 
     expect(getByTestId(testId)).toBeInTheDocument();
-    expect(getByTestId('dropdownMenu')).toBeInTheDocument();
-    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'none');
+    expect(getByTestId('dropdownContent')).toBeInTheDocument();
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
   it('should render a dropup', () => {
     const { getByTestId } = render(
       <Dropdown dropDirection="up">
         <DropdownButton>Toggle me</DropdownButton>
-        <DropdownMenu />
+        <DropdownContent />
       </Dropdown>
     );
 
     expect(getByTestId('caretUp')).toBeInTheDocument();
-    expect(getByTestId('dropdownMenu')).toHaveStyleRule('top', 'auto');
-    expect(getByTestId('dropdownMenu')).toHaveStyleRule('bottom', '100%');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('top', 'auto');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('bottom', '100%');
   });
 
   it('should render a right aligned menu', () => {
     const { getByTestId } = render(
       <Dropdown alignment="right">
         <DropdownButton>Toggle me</DropdownButton>
-        <DropdownMenu />
+        <DropdownContent />
       </Dropdown>
     );
 
-    expect(getByTestId('dropdownMenu')).toHaveStyleRule('left', 'auto');
-    expect(getByTestId('dropdownMenu')).toHaveStyleRule('right', '5px');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('left', 'auto');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('right', '5px');
   });
 
   it('should render a split dropdown', () => {
     const { getByTestId, container } = render(
       <Dropdown>
         <DropdownSplitButton>Toggle me</DropdownSplitButton>
-        <DropdownMenu />
+        <DropdownContent />
       </Dropdown>
     );
 
@@ -74,7 +74,7 @@ describe('Dropdown', () => {
         <DropdownSplitButton aria-label="Custom label">
           Toggle me
         </DropdownSplitButton>
-        <DropdownMenu />
+        <DropdownContent />
       </Dropdown>
     );
 
@@ -95,7 +95,7 @@ describe('Dropdown', () => {
     const { queryByTestId } = render(
       <Dropdown>
         <DropdownButton icon={<AsteriskIcon />}>Toggle me</DropdownButton>
-        <DropdownMenu />
+        <DropdownContent />
       </Dropdown>
     );
 
@@ -109,19 +109,19 @@ describe('Dropdown', () => {
     const { getByText, getByTestId } = render(
       <Dropdown>
         <DropdownButton>Toggle me</DropdownButton>
-        <DropdownMenu />
+        <DropdownContent />
       </Dropdown>
     );
 
-    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'none');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
     fireEvent.click(getByText(toggleText));
 
-    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'block');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
 
     fireEvent.click(getByText(toggleText));
 
-    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'none');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
   it('should toggle the menu when the button is clicked in a split dropdown', () => {
@@ -131,39 +131,39 @@ describe('Dropdown', () => {
     const { getByLabelText, getByTestId } = render(
       <Dropdown>
         <DropdownSplitButton>{toggleText}</DropdownSplitButton>
-        <DropdownMenu />
+        <DropdownContent />
       </Dropdown>
     );
 
-    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'none');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
     fireEvent.click(getByLabelText(labelText));
 
-    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'block');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
 
     fireEvent.click(getByLabelText(labelText));
 
-    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'none');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
   it('should close the menu when blurred', () => {
     const { getByText, getByTestId } = render(
       <Dropdown testId="dropdown">
         <DropdownButton>Toggle me</DropdownButton>
-        <DropdownMenu />
+        <DropdownContent />
       </Dropdown>
     );
 
-    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'none');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
     fireEvent.click(getByText('Toggle me'));
 
-    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'block');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
 
     fireEvent.focus(getByTestId('dropdown'));
     fireEvent.blur(getByTestId('dropdown'));
     setTimeout(() => {
-      expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'none');
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
     }, 1);
   });
 
@@ -171,39 +171,39 @@ describe('Dropdown', () => {
     const { getByText, getByTestId } = render(
       <Dropdown testId="dropdown">
         <DropdownButton>Toggle me</DropdownButton>
-        <DropdownMenu />
+        <DropdownContent />
       </Dropdown>
     );
 
-    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'none');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
     fireEvent.click(getByText('Toggle me'));
 
-    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'block');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
 
     fireEvent.keyDown(getByTestId('dropdown'), {
       key: 'Escape',
       code: 27
     });
 
-    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'none');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
   it('go to the first or next item when the down arrow key is pressed', () => {
     const { getByText, getByTestId } = render(
       <Dropdown testId="dropdown">
         <DropdownButton>Toggle me</DropdownButton>
-        <DropdownMenu>
+        <DropdownContent>
           <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
-          <DropdownMenuDivider />
+          <DropdownDivider />
           <DropdownMenuItem onClick={() => {}}>Menu item 2</DropdownMenuItem>
-        </DropdownMenu>
+        </DropdownContent>
       </Dropdown>
     );
 
     fireEvent.click(getByText('Toggle me'));
 
-    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'block');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
 
     fireEvent.keyDown(getByTestId('dropdown'), {
       key: 'ArrowDown',
@@ -224,17 +224,17 @@ describe('Dropdown', () => {
     const { getByText, getByTestId } = render(
       <Dropdown testId="dropdown">
         <DropdownButton>Toggle me</DropdownButton>
-        <DropdownMenu>
+        <DropdownContent>
           <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
-          <DropdownMenuDivider />
+          <DropdownDivider />
           <DropdownMenuItem onClick={() => {}}>Menu item 2</DropdownMenuItem>
-        </DropdownMenu>
+        </DropdownContent>
       </Dropdown>
     );
 
     fireEvent.click(getByText('Toggle me'));
 
-    expect(getByTestId('dropdownMenu')).toHaveStyleRule('display', 'block');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
 
     fireEvent.keyDown(getByTestId('dropdown'), {
       key: 'ArrowUp',
@@ -263,9 +263,9 @@ describe('Dropdown', () => {
     const { getByText } = render(
       <Dropdown width="100px">
         <DropdownButton>Toggle me</DropdownButton>
-        <DropdownMenu>
+        <DropdownContent>
           <DropdownMenuItem>Menu item</DropdownMenuItem>
-        </DropdownMenu>
+        </DropdownContent>
       </Dropdown>
     );
 
@@ -276,13 +276,16 @@ describe('Dropdown', () => {
     const { getByTestId } = render(
       <Dropdown maxHeight="100px">
         <DropdownButton>Toggle me</DropdownButton>
-        <DropdownMenu>
+        <DropdownContent>
           <DropdownMenuItem>Menu item</DropdownMenuItem>
-        </DropdownMenu>
+        </DropdownContent>
       </Dropdown>
     );
 
-    expect(getByTestId('dropdownMenu')).toHaveStyleRule('max-height', '100px');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule(
+      'max-height',
+      '100px'
+    );
   });
 
   it('should render a disabled dropdown item', () => {
@@ -292,11 +295,11 @@ describe('Dropdown', () => {
     const { getByText } = render(
       <Dropdown alignment="right">
         <DropdownButton>Toggle me</DropdownButton>
-        <DropdownMenu>
+        <DropdownContent>
           <DropdownMenuItem isDisabled onClick={onClick}>
             {text}
           </DropdownMenuItem>
-        </DropdownMenu>
+        </DropdownContent>
       </Dropdown>
     );
 
@@ -313,10 +316,10 @@ describe('Dropdown', () => {
     const { getByText } = render(
       <Dropdown>
         <DropdownButton>Toggle me</DropdownButton>
-        <DropdownMenu>
-          <DropdownMenuHeader>{text}</DropdownMenuHeader>
+        <DropdownContent>
+          <DropdownHeader>{text}</DropdownHeader>
           <DropdownMenuItem onClick={onClick}>blah</DropdownMenuItem>
-        </DropdownMenu>
+        </DropdownContent>
       </Dropdown>
     );
 
@@ -324,7 +327,7 @@ describe('Dropdown', () => {
   });
 
   it('should render a dropdown menu divider', () => {
-    const { container } = render(<DropdownMenuDivider />);
+    const { container } = render(<DropdownDivider />);
 
     expect(container.querySelector('hr')).toBeInTheDocument();
   });
@@ -336,9 +339,9 @@ describe('Dropdown', () => {
     const { getByText } = render(
       <Dropdown>
         <DropdownButton>Toggle</DropdownButton>
-        <DropdownMenu>
+        <DropdownContent>
           <DropdownMenuItem onClick={onClick}>{itemText}</DropdownMenuItem>
-        </DropdownMenu>
+        </DropdownContent>
       </Dropdown>
     );
 
@@ -357,9 +360,9 @@ describe('Dropdown', () => {
     const { getByText } = render(
       <Dropdown>
         <DropdownButton>Toggle</DropdownButton>
-        <DropdownMenu>
+        <DropdownContent>
           <DropdownMenuItem onClick={onClick}>{itemText}</DropdownMenuItem>
-        </DropdownMenu>
+        </DropdownContent>
       </Dropdown>
     );
 
@@ -375,10 +378,10 @@ describe('Dropdown', () => {
     const { container, getByText } = render(
       <Dropdown activeIndex={1}>
         <DropdownButton>Toggle</DropdownButton>
-        <DropdownMenu>
+        <DropdownContent>
           <DropdownMenuItem onClick={() => {}}>aaa</DropdownMenuItem>
           <DropdownMenuItem onClick={() => {}}>bbb</DropdownMenuItem>
-        </DropdownMenu>
+        </DropdownContent>
       </Dropdown>
     );
 
