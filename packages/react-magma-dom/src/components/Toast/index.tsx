@@ -14,31 +14,18 @@ export interface ToastProps extends AlertProps {
 }
 
 const ToastWrapper = styled.div`
-  z-index: 999;
-  position: fixed;
-  display: flex;
-  left: 25px;
-  right: auto;
-  bottom: 25px;
-  justify-content: flex-start;
   align-items: center;
+  bottom: 20px;
+  display: flex;
+  left: 20px;
+  justify-content: flex-start;
+  position: fixed;
+  right: auto;
+  z-index: 999;
 
-  @keyframes fadein {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes fadeout {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
+  @media (max-width: 600px) {
+    left: 10px;
+    right: 10px;
   }
 `;
 
@@ -122,8 +109,9 @@ export const Toast: React.FunctionComponent<ToastProps> = (
       <Alert
         {...other}
         id={id}
+        isToast
         testId={testId}
-        style={alertStyle}
+        style={{ margin: 0, ...alertStyle }}
         isDismissible={isDismissible}
         isDismissed={isDismissed}
         variant={variant}

@@ -34,6 +34,7 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   isDismissed?: boolean;
   isDismissible?: boolean;
   isInverse?: boolean;
+  isToast?: boolean;
   onDismiss?: () => void;
   ref?: any;
   testId?: string;
@@ -45,7 +46,7 @@ export const transitionDuration = 500;
 function buildAlertBackground(props) {
   switch (props.variant) {
     case 'info':
-      return props.theme.colors.neutral02;
+      return props.theme.colors.neutral01;
     case 'success':
       return props.theme.colors.success01;
     case 'warning':
@@ -53,12 +54,16 @@ function buildAlertBackground(props) {
     case 'danger':
       return props.theme.colors.danger;
     default:
-      return props.theme.colors.neutral02;
+      return props.theme.colors.neutral01;
   }
 }
 
 const StyledAlert = styled.div<AlertProps>`
   align-items: stretch;
+  animation: ${props =>
+    props.isExiting
+      ? `fadeout ${transitionDuration}ms`
+      : `fadein ${transitionDuration}ms`};
   background-color: ${props => buildAlertBackground(props)};
   border-radius: 3px;
   color: ${props =>
@@ -70,10 +75,6 @@ const StyledAlert = styled.div<AlertProps>`
   padding: 0;
   margin-bottom: 20px;
   max-width: 100%;
-  animation: ${props =>
-    props.isExiting
-      ? `fadeout ${transitionDuration}ms`
-      : `fadein ${transitionDuration}ms`};
 
   &:focus {
     outline: 2px dotted ${props =>
@@ -82,6 +83,23 @@ const StyledAlert = styled.div<AlertProps>`
         : props.theme.colors.focus};
     }
   }
+
+  ${props =>
+    props.isToast &&
+    css`
+      animation: ${props.isExiting
+        ? `slideout ${transitionDuration}ms`
+        : `slidein ${transitionDuration}ms`};
+      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      min-width: 375px;
+
+      @media (max-width: 600px) {
+        font-size: 13px;
+        padding-left: 10px;
+        width: 100%;
+      }
+    `}
 
   @keyframes fadein {
     from {
@@ -98,6 +116,24 @@ const StyledAlert = styled.div<AlertProps>`
     }
     to {
       opacity: 0;
+    }
+  }
+
+  @keyframes slidein {
+    from {
+      bottom: -500px;
+    }
+    to {
+      bottom: 0;
+    }
+  }
+
+  @keyframes slideout {
+    from {
+      bottom: -500px;
+    }
+    to {
+      bottom: -500px;
     }
   }
 
@@ -127,9 +163,17 @@ const IconWrapperStyles = css`
   flex-shrink: 0;
 `;
 
-const IconWrapper = styled.span`
+const IconWrapper = styled.span<{ isToast?: boolean }>`
   ${IconWrapperStyles}
   padding: 0 10px 0 15px;
+
+  ${props =>
+    props.isToast &&
+    css`
+      @media (max-width: 600px) {
+        display: none;
+      }
+    `}
 `;
 
 const DismissibleIconWrapper = styled.span<AlertProps>`
@@ -182,11 +226,11 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
   }
 `;
 
-function renderIcon(variant = 'info') {
+function renderIcon(variant = 'info', isToast?: boolean) {
   const Icon = VARIANT_ICON[variant];
 
   return (
-    <IconWrapper>
+    <IconWrapper isToast>
       <Icon size={20} />
     </IconWrapper>
   );
@@ -205,6 +249,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
       isDismissible,
       isExiting: externalIsExiting,
       isInverse,
+      isToast,
       onDismiss,
       ...other
     }: AlertProps,
@@ -243,10 +288,11 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
         tabIndex={-1}
         isInverse={isInverse}
         isExiting={isExiting}
+        isToast={isToast}
         variant={variant}
         theme={theme}
       >
-        {renderIcon(variant)}
+        {renderIcon(variant, isToast)}
         <AlertContents>{children}</AlertContents>
         {isDismissible && (
           <DismissibleIconWrapper variant={variant} theme={theme}>

@@ -30,12 +30,12 @@ describe('Alert', () => {
     expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-e3152"
+    class="css-k96o6v"
     id="defaultVariant"
     tabindex="-1"
   >
     <span
-      class="css-puenap-IconWrapperStyles"
+      class="css-2j7dqj-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
@@ -83,12 +83,12 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-e3152"
+    class="css-k96o6v"
     id="auto-generated-id"
     tabindex="-1"
   >
     <span
-      class="css-puenap-IconWrapperStyles"
+      class="css-2j7dqj-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
@@ -123,12 +123,12 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-d3aqyd"
+    class="css-d8oer9"
     id="auto-generated-id"
     tabindex="-1"
   >
     <span
-      class="css-puenap-IconWrapperStyles"
+      class="css-2j7dqj-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
@@ -163,12 +163,12 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-tajpk"
+    class="css-2alkiv"
     id="auto-generated-id"
     tabindex="-1"
   >
     <span
-      class="css-puenap-IconWrapperStyles"
+      class="css-2j7dqj-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
@@ -202,12 +202,12 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-6349ll"
+    class="css-d2eupn"
     id="auto-generated-id"
     tabindex="-1"
   >
     <span
-      class="css-puenap-IconWrapperStyles"
+      class="css-2j7dqj-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
