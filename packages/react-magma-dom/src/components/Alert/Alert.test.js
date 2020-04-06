@@ -30,12 +30,12 @@ describe('Alert', () => {
     expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-k96o6v"
+    class="css-2endn5"
     id="defaultVariant"
     tabindex="-1"
   >
     <span
-      class="css-2j7dqj-IconWrapperStyles-IconWrapper"
+      class="css-1ohmigf-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
@@ -66,7 +66,7 @@ describe('Alert', () => {
 
     expect(container.firstChild).toHaveStyleRule(
       'outline',
-      `2px dotted ${magma.colors.neutral08}`,
+      `2px dotted ${magma.colors.focusInverse}`,
       {
         target: ':focus'
       }
@@ -83,12 +83,12 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-k96o6v"
+    class="css-2endn5"
     id="auto-generated-id"
     tabindex="-1"
   >
     <span
-      class="css-2j7dqj-IconWrapperStyles-IconWrapper"
+      class="css-1ohmigf-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
@@ -123,12 +123,12 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-d8oer9"
+    class="css-1weoway"
     id="auto-generated-id"
     tabindex="-1"
   >
     <span
-      class="css-2j7dqj-IconWrapperStyles-IconWrapper"
+      class="css-1ohmigf-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
@@ -163,12 +163,12 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-2alkiv"
+    class="css-x3vcca"
     id="auto-generated-id"
     tabindex="-1"
   >
     <span
-      class="css-2j7dqj-IconWrapperStyles-IconWrapper"
+      class="css-1ohmigf-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
@@ -202,12 +202,12 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-d2eupn"
+    class="css-14rseox"
     id="auto-generated-id"
     tabindex="-1"
   >
     <span
-      class="css-2j7dqj-IconWrapperStyles-IconWrapper"
+      class="css-1ohmigf-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"

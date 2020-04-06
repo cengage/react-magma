@@ -25,9 +25,9 @@ const TimePickerContainer = styled.div<{ isInverse?: boolean }>`
       outline: 2px dotted
         ${props =>
           props.isInverse
-            ? props.theme.colors.neutral08
+            ? props.theme.colors.focusInverse
             : props.theme.colors.focus};
-      outline-offset: 2px;
+      outline-offset: 4px;
     }
   }
 `;
