@@ -4,7 +4,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
 <div>
   <button
     aria-label="Check Icon"
-    class="css-u3n56g"
+    class="css-8l942k"
     icon="[object Object]"
     id="testId"
   >
@@ -29,7 +29,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
 <div>
   <button
     aria-label="Check Icon"
-    class="css-16woset"
+    class="css-1cdi8eh"
     icon="[object Object]"
     id="testId"
   >
@@ -54,7 +54,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 <div>
   <button
     aria-label="Check Icon"
-    class="css-phsa7g"
+    class="css-1q6czy"
     icon="[object Object]"
     id="testId"
   >
@@ -79,7 +79,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
 <div>
   <button
     aria-label="Check Icon"
-    class="css-e9oou7"
+    class="css-be4w7n"
     icon="[object Object]"
     id="testId"
   >
@@ -104,7 +104,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 <div>
   <button
     aria-label="Check Icon"
-    class="css-4in4l5"
+    class="css-yr7odq"
     icon="[object Object]"
     id="testId"
   >
@@ -129,7 +129,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 <div>
   <button
     aria-label="Check Icon"
-    class="css-1pgtik7"
+    class="css-13oxh5w"
     icon="[object Object]"
     id="testId"
   >
@@ -160,7 +160,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 <div>
   <button
     aria-label="Check Icon"
-    class="css-7n2ufd"
+    class="css-62y5z8"
     icon="[object Object]"
     id="testId"
   >
@@ -191,7 +191,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
 <div>
   <button
     aria-label="Check Icon"
-    class="css-bl58ye"
+    class="css-1s2zxv3"
     icon="[object Object]"
     id="testId"
   >
@@ -222,7 +222,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 <div>
   <button
     aria-label="Check Icon"
-    class="css-18myfl8"
+    class="css-1uh7nkc"
     icon="[object Object]"
     id="testId"
   >
@@ -253,7 +253,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 <div>
   <button
     aria-label="Check Icon"
-    class="css-7n2ufd"
+    class="css-62y5z8"
     icon="[object Object]"
     id="testId"
   >
@@ -284,7 +284,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 <div>
   <button
     aria-label="Check Icon"
-    class="css-xf1vbq"
+    class="css-1xi61ix"
     icon="[object Object]"
     id="testId"
   >
@@ -315,7 +315,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 <div>
   <button
     aria-label="Check Icon"
-    class="css-ebgli1"
+    class="css-fz1x08"
     icon="[object Object]"
     id="testId"
   >

@@ -3,7 +3,7 @@
 exports[`Heading Snapshot should render heading 1 correctly 1`] = `
 <div>
   <h1
-    class="css-ajt0u1"
+    class="css-1hsxf28"
     id="testId"
   >
     Heading 1
@@ -14,7 +14,7 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
 exports[`Heading Snapshot should render heading 2 correctly 1`] = `
 <div>
   <h2
-    class="css-doiz5i"
+    class="css-rf0vuc"
   >
     Heading 2
   </h2>
@@ -24,7 +24,7 @@ exports[`Heading Snapshot should render heading 2 correctly 1`] = `
 exports[`Heading Snapshot should render heading 3 correctly 1`] = `
 <div>
   <h3
-    class="css-1xn196l"
+    class="css-jmneww"
   >
     Heading 3
   </h3>
@@ -34,7 +34,7 @@ exports[`Heading Snapshot should render heading 3 correctly 1`] = `
 exports[`Heading Snapshot should render heading 4 correctly 1`] = `
 <div>
   <h4
-    class="css-1uwb1d6"
+    class="css-vne70y"
   >
     Heading 4
   </h4>
@@ -44,7 +44,7 @@ exports[`Heading Snapshot should render heading 4 correctly 1`] = `
 exports[`Heading Snapshot should render heading 5 correctly 1`] = `
 <div>
   <h5
-    class="css-1guuppu"
+    class="css-160mc6z"
   >
     Heading 5
   </h5>
@@ -54,7 +54,7 @@ exports[`Heading Snapshot should render heading 5 correctly 1`] = `
 exports[`Heading Snapshot should render heading 6 correctly 1`] = `
 <div>
   <h6
-    class="css-13vs25p"
+    class="css-1l11wy7"
   >
     Heading 6
   </h6>

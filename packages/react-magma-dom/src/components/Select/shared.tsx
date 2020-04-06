@@ -78,7 +78,7 @@ export function getStyles(
         height: '37px',
         outline: state.isFocused
           ? inverse
-            ? `2px dotted ${theme.colors.neutral08}`
+            ? `2px dotted ${theme.colors.focusInverse}`
             : `2px dotted ${theme.colors.focus}`
           : '0',
         outlineOffset: '2px',

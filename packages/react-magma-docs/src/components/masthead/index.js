@@ -54,7 +54,7 @@ const LogoLink = styled(Link)`
   }
 
   &:focus {
-    outline: 2px dotted ${magma.colors.neutral08};
+    outline: 2px dotted ${magma.colors.focusInverse};
   }
 `
 

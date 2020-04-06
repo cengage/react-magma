@@ -104,7 +104,7 @@ describe('Heading', () => {
 
     expect(heading).toHaveStyleRule(
       'border-bottom',
-      `2px dotted ${magma.colors.neutral08}`,
+      `2px dotted ${magma.colors.focusInverse}`,
       {
         target: ':focus'
       }

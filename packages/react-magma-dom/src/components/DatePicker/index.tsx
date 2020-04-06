@@ -277,7 +277,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
         </Announce>
         <Input
           {...other}
-          icon={<CalendarIcon />}
+          icon={<CalendarIcon size={17} />}
           iconAriaLabel="Calendar"
           onIconClick={toggleCalendarOpened}
           onIconKeyDown={handleInputKeyDown}
