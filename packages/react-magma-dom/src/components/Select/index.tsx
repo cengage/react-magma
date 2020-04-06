@@ -4,8 +4,37 @@ import { CrossIcon } from '../Icon/types/CrossIcon';
 import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
 import { ThemeContext } from '../../theme/ThemeContext';
 
-import ReactSelect, { components, SelectComponents } from 'react-select';
+import ReactSelect, { components } from 'react-select';
 import { SelectWrapper } from './SelectWrapper';
+
+interface SelectComponents {
+  ClearIndicator: any;
+  Control: any;
+  DropdownIndicator: any;
+  DownChevron: any;
+  CrossIcon: any;
+  Group: any;
+  GroupHeading: any;
+  IndicatorsContainer: any;
+  IndicatorSeparator: any;
+  Input: any;
+  LoadingIndicator: any;
+  Menu: any;
+  MenuList: any;
+  MenuPortal: any;
+  LoadingMessage: any;
+  NoOptionsMessage: any;
+  MultiValue: any;
+  MultiValueContainer: any;
+  MultiValueLabel: any;
+  MultiValueRemove: any;
+  Option: any;
+  Placeholder: any;
+  SelectContainer: any;
+  SingleValue: any;
+  ValueContainer: any;
+}
+
 export interface SelectProps {
   components?: SelectComponents;
   id?: string;
