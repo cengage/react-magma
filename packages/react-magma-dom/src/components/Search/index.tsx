@@ -36,7 +36,7 @@ export const Search: React.FunctionComponent<SearchProps> = React.forwardRef(
 
     const [value, setValue] = React.useState<string>(props.value);
 
-    const icon = isLoading ? <Spinner /> : <Search2Icon />;
+    const icon = isLoading ? <Spinner /> : <Search2Icon size={17} />;
 
     React.useEffect(() => {
       setValue(props.value);
