@@ -1,6 +1,7 @@
 export interface Colors {
   primary: string;
   focus: string;
+  focusInverse: string;
   foundation01: string;
   foundation02: string;
   foundation03: string;
@@ -44,7 +45,8 @@ export const magma = {
 
   colors: {
     primary: '#006298', // link color blue
-    focus: '#D75800',
+    focus: '#027EE1',
+    focusInverse: 'rgba(255,255,255,0.7)',
     foundation01: '#00263E',
     foundation02: '#003865',
     foundation03: '#00A9E0',
