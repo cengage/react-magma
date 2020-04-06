@@ -1,5 +1,5 @@
 ---
-title: 'Dropdown'
+title: 'Dropdowns'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
@@ -189,21 +189,21 @@ Dropdowns can contain elements other than Dropdown Menu Items. The standard keyb
                 </div>
               </DropdownContent>
             </Dropdown>
-                <Dropdown maxHeight='600px' maxWidth='300px'>
+                <Dropdown maxHeight='600px' width='300px'>
                   <DropdownButton>Dropdown with Form 2</DropdownButton>
                   <DropdownContent>
-                    <form style={{margin: 0, color: magma.colors.neutral03}}>
+                    <form style={{margin: '0 0 5px', color: magma.colors.neutral03}}>
                       <DropdownHeader id='checkboxGroup'>Checkbox Group Label</DropdownHeader>
                       <FormGroup labelledById='checkboxGroup'>
-                          <Checkbox labelText={<><span style={iconStyle}><AsteriskIcon size={20} /></span> Option Number One with a Longer Label</>} textPosition="left" />
-                          <Checkbox labelText={<><span style={iconStyle}><BellIcon size={20} style={iconStyle} /></span> Option 2</>} textPosition="left"  />
+                          <Checkbox labelText='Option number one with a longer label' />
+                          <Checkbox labelText='Option 2' />
                       </FormGroup>
                       <DropdownDivider />
                       <DropdownHeader id='radioGroup'>Radio Group Label</DropdownHeader>
                       <RadioGroup labelledById='radioGroup' name='radioGroupExample' value='1'>
-                          <Radio labelText='Option 1' value='1' textPosition="left" />
-                          <Radio labelText='Option 2' value='2' textPosition="left" />
-                          <Radio labelText='Option 3' value='3' textPosition="left"  />
+                          <Radio labelText='Option 1' value='1' />
+                          <Radio labelText='Option 2' value='2' />
+                          <Radio labelText='Option 3' value='3' />
                       </RadioGroup>
                     </form>
                   </DropdownContent>
