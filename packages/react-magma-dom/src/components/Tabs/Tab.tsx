@@ -3,7 +3,8 @@ import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { css, jsx } from '@emotion/core';
 import isPropValid from '@emotion/is-prop-valid';
-import { TabsIconPosition, TabsOrientation } from '.';
+import { TabsIconPosition, TabsOrientation } from '../Tabs';
+import { Omit } from '../../utils';
 
 export interface BaseTabProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -92,7 +93,7 @@ const TabStyles = props => css`
   &:focus {
     outline-offset: -2px;
     outline: ${props.isInverse
-        ? props.theme.colors.neutral08
+        ? props.theme.colors.focusInverse
         : props.theme.colors.focus}
       dotted 2px;
   }
@@ -179,7 +180,10 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
     }
 
     React.useEffect(() => {
-      path && path === window.location.pathname && changeHandler(index);
+      path &&
+        window &&
+        path === window.location.pathname &&
+        changeHandler(index);
     }, [path]);
 
     const theme = React.useContext(ThemeContext);

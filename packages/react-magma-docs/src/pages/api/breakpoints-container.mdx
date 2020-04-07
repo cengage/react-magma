@@ -5,8 +5,10 @@ title: 'Breakpoints Container'
 import { ScopeableLayout } from '../../components/layout'
 import {
   magma,
+  useMediaQuery,
   Breakpoint,
   BreakpointsContainer,
+  Button,
   Card,
   CardBody,
 } from 'react-magma-dom'
@@ -85,7 +87,7 @@ It is not neccessary to use all of the breakpoints. If only two are used, the de
     </BreakpointsContainer>
 ```
 
-## Implementation
+## Implementation Type
 
 The `implementation` prop can be used to determine whether the browser uses CSS or JavaScript to determine what is shown.  
 When `css` is used, the hidden content is simply hidden using CSS `display: none`. When `js` is used, the content to be hidden does not render in the DOM.  
@@ -105,6 +107,19 @@ The default implementation is `js`.
             </Card>
         </Breakpoint>
     </BreakpointsContainer>
+```
+
+## useMediaQuery Hook
+
+The `useMediaQuery` can be used to set a prop based on screen size.
+
+```.jsx
+    () => {
+      const isSmallerScreen = useMediaQuery(`(max-width:${magma.breakpoints.large}px)`);
+
+      return (
+            <Button isFullWidth={isSmallerScreen}>Full Width at Small Screens</Button>
+      )}
 ```
 
 ## Custom Breakpoints
@@ -211,6 +226,14 @@ Custom breakpoints can be shown by using the `breakpoints` object prop.
 export default props => (
   <ScopeableLayout
     {...props}
-    components={{ magma, Breakpoint, BreakpointsContainer, Card, CardBody }}
+    components={{
+      magma,
+      useMediaQuery,
+      Breakpoint,
+      BreakpointsContainer,
+      Button,
+      Card,
+      CardBody,
+    }}
   />
 )

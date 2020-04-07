@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { HiddenStyles } from '../UtilityStyles';
+import { HiddenStyles } from '../../utils/UtilityStyles';
 
 export interface VisuallyHiddenProps
   extends React.HTMLAttributes<HTMLDivElement> {}

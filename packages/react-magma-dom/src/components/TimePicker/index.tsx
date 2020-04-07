@@ -4,13 +4,13 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { AmPmToggle } from './AmPmToggle';
 import { ClockIcon } from '../Icon/types/ClockIcon';
 import { Input } from '../Input';
-import { useGenerateId } from '../utils';
+import { useGenerateId } from '../../utils';
 
 export interface TimePickerProps {
   errorMessage?: React.ReactNode;
   id?: string;
   isInverse?: boolean;
-  labelText: string;
+  labelText: React.ReactNode;
   helperMessage?: React.ReactNode;
   messageStyle?: React.CSSProperties;
   value?: string;
@@ -25,9 +25,9 @@ const TimePickerContainer = styled.div<{ isInverse?: boolean }>`
       outline: 2px dotted
         ${props =>
           props.isInverse
-            ? props.theme.colors.neutral08
+            ? props.theme.colors.focusInverse
             : props.theme.colors.focus};
-      outline-offset: 2px;
+      outline-offset: 4px;
     }
   }
 `;

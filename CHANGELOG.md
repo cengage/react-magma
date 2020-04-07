@@ -3,6 +3,86 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.31](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.30...v2.0.0-beta.31) (2020-04-03)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.30](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.29...v2.0.0-beta.30) (2020-04-01)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.29](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.28...v2.0.0-beta.29) (2020-03-30)
+
+
+### Features
+
+* **select:** allow for custom components to be passed in ([dc8cffd](http://stash.corp.web:7999/FRONT/react-magma/commits/dc8cffd))
+
+
+
+
+
+# [2.0.0-beta.28](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.27...v2.0.0-beta.28) (2020-03-30)
+
+
+### Bug Fixes
+
+* **radio, checkbox:** border color on checked and indeterminate ([6f0436e](http://stash.corp.web:7999/FRONT/react-magma/commits/6f0436e))
+
+
+
+
+
+# [2.0.0-beta.27](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.26...v2.0.0-beta.27) (2020-03-25)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.26](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.25...v2.0.0-beta.26) (2020-03-25)
+
+
+### Bug Fixes
+
+* **input labels:** allow react node not just string ([a95f9b8](http://stash.corp.web:7999/FRONT/react-magma/commits/a95f9b8))
+* **tooltip:** allow custom styling of tooltip container and element ([e7b3083](http://stash.corp.web:7999/FRONT/react-magma/commits/e7b3083))
+
+
+
+
+
+# [2.0.0-beta.25](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.24...v2.0.0-beta.25) (2020-03-09)
+
+
+### Bug Fixes
+
+* **input message:** increase line-height ([c9eb328](http://stash.corp.web:7999/FRONT/react-magma/commits/c9eb328))
+* **input message:** tighten spacing ([3b0d7ca](http://stash.corp.web:7999/FRONT/react-magma/commits/3b0d7ca))
+* **inputs:** explicitly set font family ([560e870](http://stash.corp.web:7999/FRONT/react-magma/commits/560e870))
+* **inputs:** fix focus color ([28d6233](http://stash.corp.web:7999/FRONT/react-magma/commits/28d6233))
+* **textarea:** use value not children ([e6326f4](http://stash.corp.web:7999/FRONT/react-magma/commits/e6326f4))
+* **timepicker:** allow timepicker to display well in flex div ([136cc93](http://stash.corp.web:7999/FRONT/react-magma/commits/136cc93))
+
+
+### Features
+
+* **icon button:** allow custom icon size ([c62c62e](http://stash.corp.web:7999/FRONT/react-magma/commits/c62c62e))
+* **magma palette:** add purple to palette, also change order of docs ([6606932](http://stash.corp.web:7999/FRONT/react-magma/commits/6606932))
+
+
+
+
+
 # [2.0.0-beta.24](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.23...v2.0.0-beta.24) (2020-02-19)
 
 

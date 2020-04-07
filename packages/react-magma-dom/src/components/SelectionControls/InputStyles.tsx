@@ -57,7 +57,7 @@ export function buildDisplayInputBorderColor(props) {
   if (props.disabled) {
     return props.theme.colors.neutral05;
   }
-  if (!props.checked && !props.indeterminate) {
+  if (!props.checked && !props.isIndeterminate) {
     return props.theme.colors.neutral02;
   }
   return props.color ? props.color : props.theme.colors.primary;
@@ -70,7 +70,7 @@ export function buildDisplayInputFocusStyles(props) {
     width: 30px;
     outline: 2px dotted
       ${props.isInverse
-        ? props.theme.colors.neutral08
+        ? props.theme.colors.focusInverse
         : props.theme.colors.focus};
     top: -7px;
     left: -7px;

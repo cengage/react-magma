@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { HiddenStyles } from '../UtilityStyles';
+import { HiddenStyles } from '../../utils/UtilityStyles';
 import { CheckIcon } from '../Icon/types/CheckIcon';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
@@ -8,7 +8,7 @@ import { css } from '@emotion/core';
 // import styled from '../../theme/styled';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { useGenerateId } from '../utils';
+import { useGenerateId } from '../../utils';
 
 enum ToggleTextPosition {
   left = 'left',
@@ -21,7 +21,7 @@ export interface ToggleProps
   isInverse?: boolean;
   isTextVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
-  labelText: string;
+  labelText: React.ReactNode;
   testId?: string;
   textPosition?: ToggleTextPosition;
   theme?: any;
@@ -70,7 +70,7 @@ const Track = styled.span<{
   ${HiddenInput}:focus + label & {
     outline: 2px dotted ${props =>
       props.isInverse
-        ? props.theme.colors.neutral08
+        ? props.theme.colors.focusInverse
         : props.theme.colors.focus};
     outline-offset: 3px;
   }
@@ -156,7 +156,7 @@ const SpanTextRight = styled.span`
 
 const renderLabelText = (
   isTextVisuallyHidden: boolean,
-  labelText: string,
+  labelText: React.ReactNode,
   textPosition: ToggleTextPosition,
   labelStyle: React.CSSProperties
 ) => {

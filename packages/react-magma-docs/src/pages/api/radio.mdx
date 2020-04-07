@@ -165,6 +165,34 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
   </RadioGroup>
 ```
 
+
+## Node as labelText
+
+The `labelText` prop can either be a string, or it can be a React Node.
+
+```.jsx
+      () => {
+
+        const labelStyles = {  border: '1px solid #3f3f3f', borderRadius: '3px', display: 'inline-block', padding: '10px' };
+
+        return (
+          <RadioGroup labelText='Nodes for labels'>
+
+          <Radio
+              labelText={<span style={labelStyles}>Option 1</span>}
+              inputStyle={{ alignSelf: 'center' }}
+              value="1" />
+
+           <Radio
+              labelText={<span style={labelStyles}>Option 2</span>}
+              inputStyle={{ alignSelf: 'center' }}
+              value="2"  />
+
+          </RadioGroup>
+        );
+      }
+```
+
 ## Labeling Radio Groups
 
 To meet accessibility requirements, a radio group _must_ have a label. You can provide a label in one of two ways.
@@ -338,7 +366,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       },
       required: false,
       description:
-        'Text for label of the radio group. Alternatively, the labelledById prop can be used.',
+        'Content of label of the radio group; can be node or string. Alternatively, the labelledById prop can be used.',
     },
     onBlur: {
       type: {
@@ -457,7 +485,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
         name: 'string',
       },
       required: true,
-      description: 'Text for label',
+      description: 'Content of label; can be node or string',
     },
     required: {
       type: {

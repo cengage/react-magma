@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { CardProps } from '.';
+import { CardProps } from '../Card';
 
 const StyledCardBody = styled.div<CardProps>`
   padding: 20px;

@@ -6,7 +6,7 @@ import {
   buildDisplayInputBorderColor,
   buildDisplayInputFocusStyles
 } from '../SelectionControls/InputStyles';
-import { HiddenStyles } from '../UtilityStyles';
+import { HiddenStyles } from '../../utils/UtilityStyles';
 import { RadioContext } from '../RadioGroup';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
@@ -14,7 +14,7 @@ import { StyledContainer } from '../SelectionControls/StyledContainer';
 // import styled from '../../theme/styled';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { useGenerateId } from '../utils';
+import { useGenerateId } from '../../utils';
 
 export interface RadioProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -25,7 +25,7 @@ export interface RadioProps
   isInverse?: boolean;
   isTextVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
-  labelText: string;
+  labelText: React.ReactNode;
   ref?: any;
   testId?: string;
 }
@@ -39,6 +39,7 @@ const HiddenInput = styled.input<{ indeterminate?: boolean }>`
 `;
 
 const StyledFakeInput = styled.span<{
+  checked?: boolean;
   isInverse: boolean;
   disabled: boolean;
   color: string;
@@ -136,6 +137,7 @@ export const Radio: React.FunctionComponent<RadioProps> = React.forwardRef(
         />
         <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
           <StyledFakeInput
+            checked={context.selectedValue === value}
             color={color ? color : ''}
             disabled={disabled}
             isInverse={isInverse}

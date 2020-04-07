@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { FormGroupLabel } from '../FormGroup';
-import { HiddenStyles } from '../UtilityStyles';
+import { HiddenStyles } from '../../utils/UtilityStyles';
 import styled from '../../theme/styled';
-import { omit, useGenerateId } from '../utils';
+import { omit, useGenerateId } from '../../utils';
 
 const HiddenLabel = styled.label`
   ${HiddenStyles};
@@ -16,7 +16,7 @@ export interface RadioGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   isTextVisuallyHidden?: boolean;
   labelledById?: string;
   labelStyle?: React.CSSProperties;
-  labelText?: string;
+  labelText?: React.ReactNode;
   name: string;
   testId?: string;
   value?: string;

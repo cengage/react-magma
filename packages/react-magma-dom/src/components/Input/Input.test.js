@@ -262,12 +262,11 @@ describe('Input', () => {
 
   it('should render the input with visually hidden label text', () => {
     const labelText = 'test label';
-    const { getByLabelText } = render(
+    const { getByText } = render(
       <Input labelText={labelText} isLabelVisuallyHidden />
     );
-    const input = getByLabelText(labelText);
 
-    expect(input).toHaveAttribute('aria-label', labelText);
+    expect(getByText(labelText)).toHaveStyleRule('height', '1px');
   });
 
   describe('sizes', () => {

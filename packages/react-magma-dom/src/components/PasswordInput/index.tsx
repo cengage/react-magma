@@ -4,11 +4,12 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { Announce } from '../Announce';
 import { BaseInput, InputSize, InputType } from '../BaseInput';
 import { Button, ButtonVariant, ButtonType } from '../Button';
-import { Label } from '../Label';
+import { HiddenLabelText } from '../Input';
 import { InputMessage } from '../Input/InputMessage';
+import { Label } from '../Label';
 import { VisuallyHidden } from '../VisuallyHidden';
 
-import { useGenerateId } from '../utils';
+import { useGenerateId } from '../../utils';
 
 export interface PasswordInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -24,7 +25,7 @@ export interface PasswordInputProps
   isLabelVisuallyHidden?: boolean;
   isPasswordMaskButtonHidden?: boolean;
   labelStyle?: React.CSSProperties;
-  labelText: string;
+  labelText: React.ReactNode;
   messageStyle?: React.CSSProperties;
   ref?: React.Ref<HTMLInputElement>;
   shownPasswordAnnounceText?: string;
@@ -103,23 +104,24 @@ export const PasswordInput: React.FunctionComponent<
 
     return (
       <Container style={containerStyle}>
-        {!isLabelVisuallyHidden && (
-          <Label
-            isInverse={isInverse}
-            htmlFor={id}
-            size={inputSize ? inputSize : InputSize.medium}
-            style={labelStyle}
-          >
-            {labelText}
-          </Label>
-        )}
+        <Label
+          isInverse={isInverse}
+          htmlFor={id}
+          size={inputSize ? inputSize : InputSize.medium}
+          style={labelStyle}
+        >
+          {isLabelVisuallyHidden ? (
+            <HiddenLabelText>{labelText}</HiddenLabelText>
+          ) : (
+            labelText
+          )}
+        </Label>
         <BaseInput
           {...other}
           aria-describedby={
             descriptionId ? descriptionId : props['aria-describedby']
           }
           aria-invalid={!!errorMessage}
-          aria-label={isLabelVisuallyHidden ? labelText : null}
           id={id}
           hasError={!!errorMessage}
           inputSize={inputSize ? inputSize : InputSize.medium}

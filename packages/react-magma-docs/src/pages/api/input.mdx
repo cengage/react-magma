@@ -30,16 +30,19 @@ See also: <Link to='/api/password-input'>Password Input</Link>, <Link to='/api/s
 
 The label/input association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
 
+Label text can be a string or a react node.
+
 ```.jsx
     <>
       <Input
           labelText='Label' />
       <Input
           id="myCustomId"
-          labelText='Label' />
+          isLabelVisuallyHidden
+          labelText={<span>Label <i>with node</i></span>} />
     </>
 ```
-
+<!-- 
 ## Number
 
 ```.jsx
@@ -323,7 +326,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 </div>
 ```
 
-## Input Props
+## Input Props -->
 
 **Any other props supplied will be provided to the `input` element.**
 
@@ -436,10 +439,10 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
     },
     labelText: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: true,
-      description: 'Text for label',
+      description: 'Content for label; can be a node or a string',
     },
     messageStyle: {
       type: {

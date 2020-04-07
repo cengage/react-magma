@@ -9,7 +9,7 @@ import {
   useSelectValue,
   getAriaLabel,
   BaseSelectProps
-} from '../Select/shared';
+} from './shared';
 import { SelectWrapper } from './SelectWrapper';
 
 export interface SelectProps extends BaseSelectProps, ReactSelectProps {}
@@ -24,6 +24,7 @@ export const Select: React.FunctionComponent<SelectProps> = (
   );
 
   const {
+    components,
     testId,
     labelText,
     errorMessage,
@@ -52,7 +53,8 @@ export const Select: React.FunctionComponent<SelectProps> = (
         components={{
           ClearIndicator,
           DropdownIndicator,
-          MultiValueRemove
+          MultiValueRemove,
+          ...components
         }}
         onChange={onChange}
         styles={getStyles(styles, theme, errorMessage, isInverse)}

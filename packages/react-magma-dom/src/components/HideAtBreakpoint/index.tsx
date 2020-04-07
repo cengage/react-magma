@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { useMediaQuery } from '../utils';
+import { useMediaQuery } from '../../utils';
 
 export enum HideAtBreakpointImplementation {
   css = 'css',

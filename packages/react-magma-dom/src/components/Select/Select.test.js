@@ -5,6 +5,8 @@ import { Select } from '.';
 import { getStyles } from './shared';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
+import { Search2Icon } from '../Icon/types/Search2Icon';
+import { components as ReactSelectComponents } from 'react-select';
 
 describe('Select', () => {
   it('should find element by testId', () => {
@@ -191,6 +193,28 @@ describe('Select', () => {
     expect(errorMessage).toBeInTheDocument();
     expect(errorMessage).toHaveStyleRule('background', '#E70000');
     expect(errorMessage).toHaveStyleRule('color', '#FFFFFF');
+  });
+
+  it('should allow for the passing in of custom components', () => {
+    const DropdownIndicator = props => {
+      return (
+        ReactSelectComponents.DropdownIndicator && (
+          <ReactSelectComponents.DropdownIndicator {...props}>
+            <Search2Icon testId="custom-dropdown-indicator" size={10} />
+          </ReactSelectComponents.DropdownIndicator>
+        )
+      );
+    };
+
+    const { getByTestId } = render(
+      <Select
+        components={{
+          DropdownIndicator
+        }}
+      />
+    );
+
+    expect(getByTestId('custom-dropdown-indicator')).toBeInTheDocument();
   });
 
   it('should trigger the passed in onChange when option is changed', () => {

@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { ButtonStyles } from '../Button';
 import { css, jsx, ClassNames } from '@emotion/core';
-import { omit, Omit } from '../utils';
+import { omit, Omit } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { buttonStyles } from '../StyledButton';
 import { buildPropsWithDefaultButtonStyles } from '../StyledButton/styles';
@@ -40,7 +40,7 @@ const linkStyles = props => css`
 
     &:focus {
       outline: 2px dotted
-        ${props.isInverse ? props.theme.neutral08 : props.theme.colors.focus};
+        ${props.isInverse ? props.theme.focusInverse : props.theme.colors.focus};
       outline-offset: 3px;
     }
   }

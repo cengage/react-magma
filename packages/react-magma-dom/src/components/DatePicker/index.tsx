@@ -15,7 +15,7 @@ import {
   getPrevMonthFromDate,
   getNextMonthFromDate
 } from './utils';
-import { useGenerateId, Omit } from '../utils';
+import { useGenerateId, Omit } from '../../utils';
 
 interface DatePickerProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value'> {
@@ -25,7 +25,7 @@ interface DatePickerProps
   id?: string;
   inputRef?: React.RefObject<{}>;
   isInverse?: boolean;
-  labelText: string;
+  labelText: React.ReactNode;
   maxDate?: Date;
   messageStyle?: React.CSSProperties;
   minDate?: Date;
@@ -277,7 +277,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
         </Announce>
         <Input
           {...other}
-          icon={<CalendarIcon />}
+          icon={<CalendarIcon size={17} />}
           iconAriaLabel="Calendar"
           onIconClick={toggleCalendarOpened}
           onIconKeyDown={handleInputKeyDown}
