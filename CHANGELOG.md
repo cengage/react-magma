@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](http://stash.corp.web:7999/front/react-magma/compare/v1.0.0...v1.1.0) (2020-04-07)
+
+
+### Bug Fixes
+
+* **loading indicator:** add css prop to get rid of emotion error ([1033c0e](http://stash.corp.web:7999/front/react-magma/commit/1033c0e))
+* **select:** change to custom type for custom components ([e00592c](http://stash.corp.web:7999/front/react-magma/commit/e00592c))
+* **tooltip:** allow custom styles ([0beb125](http://stash.corp.web:7999/front/react-magma/commit/0beb125))
+
+
+### Build System
+
+* **treeshaking:** tsdx config for treeshaking dom ([1697719](http://stash.corp.web:7999/front/react-magma/commit/1697719))
+* **tsdx:** remove commented out code ([87ef106](http://stash.corp.web:7999/front/react-magma/commit/87ef106))
+
+
+### Features
+
+* **selects:** allow custom components for all selects ([9a30128](http://stash.corp.web:7999/front/react-magma/commit/9a30128))
+
+
+
 ## 1.0.0 (2019-11-26)
 
 
