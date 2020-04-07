@@ -80,10 +80,28 @@ The `helperMessage` appears underneath the search field. It will not appear if a
     <Search helperMessage='Helper text goes here' onSearch={() => {}} />
 ```
 
+## Custom Styles
+
+Custom styles can be passed into the Search component. The `containerStyle` prop will apply to the container; the `inputStyle` prop will apply to the input field.
+Please use discretion when adding custom styles.
+
+```.jsx
+      <Search
+        containerStyle={{ border: '2px solid green', maxWidth:  '300px', padding: '2px' }}
+        inputStyle={{ border: '1px dashed purple', borderRadius: '0' }} />
+```
+
 ## Search Props
 
 <SimplePropsTable
   props={{
+    containerStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the component container element',
+    },
     errorMessage: {
       type: {
         name: 'string',
@@ -118,6 +136,13 @@ The `helperMessage` appears underneath the search field. It will not appear if a
       description: 'Relative size of the component',
       defaultValue: 'medium',
     },
+    inputStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the input element',
+    },
     inverse: {
       type: {
         name: 'boolean',
@@ -150,6 +175,14 @@ The `helperMessage` appears underneath the search field. It will not appear if a
       required: false,
       description: 'Text for input aria-label placeholder',
       defaultValue: 'Search',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'ID used for testing purposes',
+      defaultValue: '',
     },
   }}
 />
