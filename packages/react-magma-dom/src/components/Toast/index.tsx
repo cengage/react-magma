@@ -20,10 +20,11 @@ const ToastWrapper = styled.div`
   left: 20px;
   justify-content: flex-start;
   position: fixed;
-  right: auto;
+  right: 20px;
   z-index: 999;
 
   @media (max-width: 600px) {
+    bottom: 10px;
     left: 10px;
     right: 10px;
   }
@@ -111,7 +112,7 @@ export const Toast: React.FunctionComponent<ToastProps> = (
         id={id}
         isToast
         testId={testId}
-        style={{ margin: 0, ...alertStyle }}
+        style={{ ...alertStyle }}
         isDismissible={isDismissible}
         isDismissed={isDismissed}
         variant={variant}

@@ -35,7 +35,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-1ohmigf-IconWrapperStyles-IconWrapper"
+      class="css-17dvi5h-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
@@ -52,7 +52,7 @@ describe('Alert', () => {
       </svg>
     </span>
     <div
-      class="css-1yy0nb0"
+      class="css-1lmow5h"
     >
       Test Alert Text
     </div>
@@ -88,7 +88,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-1ohmigf-IconWrapperStyles-IconWrapper"
+      class="css-17dvi5h-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
@@ -105,7 +105,7 @@ describe('Alert', () => {
       </svg>
     </span>
     <div
-      class="css-1yy0nb0"
+      class="css-1lmow5h"
     >
       Test Alert Text
     </div>
@@ -128,7 +128,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-1ohmigf-IconWrapperStyles-IconWrapper"
+      class="css-17dvi5h-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
@@ -145,7 +145,7 @@ describe('Alert', () => {
       </svg>
     </span>
     <div
-      class="css-1yy0nb0"
+      class="css-1lmow5h"
     >
       Test Alert Text
     </div>
@@ -168,7 +168,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-1ohmigf-IconWrapperStyles-IconWrapper"
+      class="css-17dvi5h-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
@@ -184,7 +184,7 @@ describe('Alert', () => {
       </svg>
     </span>
     <div
-      class="css-1yy0nb0"
+      class="css-1lmow5h"
     >
       Test Alert Text
     </div>
@@ -207,7 +207,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-1ohmigf-IconWrapperStyles-IconWrapper"
+      class="css-17dvi5h-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
@@ -224,7 +224,7 @@ describe('Alert', () => {
       </svg>
     </span>
     <div
-      class="css-1yy0nb0"
+      class="css-1lmow5h"
     >
       Test Alert Text
     </div>

@@ -90,13 +90,15 @@ const StyledAlert = styled.div<AlertProps>`
       animation: ${props.isExiting
         ? `slideout ${transitionDuration}ms`
         : `slidein ${transitionDuration}ms`};
+      border: 1px solid ${props.theme.colors.neutral08};
+      border-radius: 5px;
       box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.7);
       min-width: 375px;
+      margin: 0 auto;
 
       @media (max-width: 600px) {
         font-size: 13px;
-        padding-left: 10px;
+        padding-left: 15px;
         width: 100%;
       }
     `}
@@ -154,7 +156,7 @@ const StyledAlert = styled.div<AlertProps>`
 
 const AlertContents = styled.div`
   flex-grow: 1;
-  padding: 10px 15px 10px 0;
+  padding: 13px 15px 13px 0;
 `;
 
 const IconWrapperStyles = css`
