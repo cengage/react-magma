@@ -1,0 +1,69 @@
+---
+title: 'Banners'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { Banner } from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
+
+# Banner
+
+## Basic Usage
+
+```.jsx
+      <>
+        <Banner >Default (info) banner</Banner>
+        <Banner variant='success'>Success banner</Banner>
+        <Banner variant='warning'>Warning banner</Banner>
+        <Banner variant='danger'>Danger banner</Banner>
+      </>
+```
+
+## Dismissable
+
+```.jsx
+      <Banner isDismissible variant='success'>Success banner</Banner>
+```
+
+## Banner Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<SimplePropsTable
+  propertyValues={{
+    isDismissible: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will be able to be dismissed and will include a close button',
+      defaultValue: 'false',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+    variant: {
+      type: {
+        name: 'enum',
+        options: [
+          'AlertVariant.info',
+          'AlertVariant.success',
+          'AlertVariant.warning',
+          'AlertVariant.danger',
+        ],
+      },
+      required: false,
+      description:
+        'The variant of the alert, indicating its function in the UI',
+      defaultValue: 'info',
+    },
+  }}
+/>
+
+export default props => <ScopeableLayout {...props} components={{ Banner }} />

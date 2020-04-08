@@ -42,7 +42,7 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const transitionDuration = 500;
 
-function buildAlertBackground(props) {
+export function buildAlertBackground(props) {
   switch (props.variant) {
     case 'info':
       return props.theme.colors.neutral02;
