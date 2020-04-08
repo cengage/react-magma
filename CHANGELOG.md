@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.33](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.32...v2.0.0-beta.33) (2020-04-08)
+
+
+### Features
+
+* **toast:** upadted animation, mobile styles ([96e4519](http://stash.corp.web:7999/FRONT/react-magma/commits/96e4519))
+* **toasts:** update styles based on orion feedback ([79f6660](http://stash.corp.web:7999/FRONT/react-magma/commits/79f6660))
+
+
+
+
+
 # [2.0.0-beta.32](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.31...v2.0.0-beta.32) (2020-04-07)
 
 
