@@ -80,7 +80,6 @@ export const DropdownMenuItem: React.FunctionComponent<
 
     function handleKeyDown(event: React.KeyboardEvent) {
       if (event.key === 'Enter' || event.key === ' ') {
-        console.log('handleKeyDown');
         event.preventDefault();
         handleClick();
       }

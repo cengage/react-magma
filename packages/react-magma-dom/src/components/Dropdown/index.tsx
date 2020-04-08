@@ -15,10 +15,10 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
   activeIndex?: number;
   alignment?: DropdownAlignment;
   dropDirection?: DropdownDropDirection;
-  maxHeight?: string;
+  maxHeight?: string | number;
   ref?: any;
   testId?: string;
-  width?: string;
+  width?: string | number;
 }
 
 const Container = styled.div`
@@ -161,6 +161,11 @@ export const Dropdown: React.FunctionComponent<
       }, 0);
     }
 
+    const maxHeightString =
+      typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight;
+
+    const widthString = typeof width === 'number' ? `${width}px` : width;
+
     return (
       <DropdownContext.Provider
         value={{
@@ -171,13 +176,13 @@ export const Dropdown: React.FunctionComponent<
           itemRefArray,
           isFixedWidth: !!width,
           isOpen,
-          maxHeight,
+          maxHeight: maxHeightString,
           menuRef,
           openDropdown,
           setActiveItemIndex,
           setIsOpen,
           toggleRef,
-          width
+          width: widthString
         }}
       >
         <Container
