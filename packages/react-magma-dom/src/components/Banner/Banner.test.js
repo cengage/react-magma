@@ -13,15 +13,21 @@ describe('Banner', () => {
   });
 
   it('should render with correct warning variant styles', () => {
-    const text = 'test';
-    const { getByText } = render(<Banner variant="warning">{text}</Banner>);
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <Banner testId={testId} variant="warning">
+        Test
+      </Banner>
+    );
 
-    expect(getByText(text)).toHaveStyleRule('background', magma.colors.pop04);
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'background',
+      magma.colors.pop04
+    );
   });
 
   it('should render a close button when isDismissible is true', () => {
-    const text = 'test';
-    const { container } = render(<Banner isDismissible>{text}</Banner>);
+    const { container } = render(<Banner isDismissible>Text</Banner>);
 
     expect(container.querySelector('button')).toBeInTheDocument();
   });

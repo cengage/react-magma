@@ -134,11 +134,6 @@ const IconWrapper = styled.span`
 
 const DismissibleIconWrapper = styled.span<AlertProps>`
   ${IconWrapperStyles}
-
-  svg {
-    height: 13px;
-    width: 13px;
-  }
 `;
 
 const whitelistProps = ['icon', 'isInverse', 'theme', 'variant'];
@@ -255,7 +250,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
               aria-label={
                 closeAriaLabel ? closeAriaLabel : 'Close this message'
               }
-              icon={<CrossIcon />}
+              icon={<CrossIcon size={13} />}
               isInverse
               onClick={forceDismiss || handleDismiss}
               theme={theme}
