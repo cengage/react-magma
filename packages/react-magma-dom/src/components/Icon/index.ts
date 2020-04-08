@@ -71,6 +71,8 @@ import { EnlargeIcon } from './types/EnlargeIcon';
 import { Enlarge2Icon } from './types/Enlarge2Icon';
 import { EntypoIcon } from './types/EntypoIcon';
 import { EnvelopeOIcon } from './types/EnvelopeOIcon';
+import { EnvelopeOpenIcon } from './types/EnvelopeOpenIcon';
+import { EnvelopeOpenOIcon } from './types/EnvelopeOpenOIcon';
 import { EnvelopeIcon } from './types/EnvelopeIcon';
 import { ErrorBlackIcon } from './types/ErrorBlackIcon';
 import { EurIcon } from './types/EurIcon';
@@ -186,6 +188,7 @@ import { Search2Icon } from './types/Search2Icon';
 import { ShrinkIcon } from './types/ShrinkIcon';
 import { Shrink2Icon } from './types/Shrink2Icon';
 import { SignInIcon } from './types/SignInIcon';
+import { SignOutIcon } from './types/SignOutIcon';
 import { SnapchatIcon } from './types/SnapchatIcon';
 import { SpotifyIcon } from './types/SpotifyIcon';
 import { StackIcon } from './types/StackIcon';
@@ -311,6 +314,8 @@ export const ICONS: IconsCollection = {
   Enlarge2Icon,
   EntypoIcon,
   EnvelopeOIcon,
+  EnvelopeOpenIcon,
+  EnvelopeOpenOIcon,
   EnvelopeIcon,
   ErrorBlackIcon,
   EurIcon,
@@ -426,6 +431,7 @@ export const ICONS: IconsCollection = {
   ShrinkIcon,
   Shrink2Icon,
   SignInIcon,
+  SignOutIcon,
   SnapchatIcon,
   SpotifyIcon,
   StackIcon,
