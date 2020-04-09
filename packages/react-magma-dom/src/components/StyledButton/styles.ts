@@ -12,42 +12,79 @@ export function buildPropsWithDefaultButtonStyles(props) {
   return { ...DEFAULT_STYLE_PROPS, ...props };
 }
 
-export const buttonFontSize = {
-  small: '12px',
-  medium: '14px',
-  large: '18px'
-};
+export function buildButtonBorderRadius(props) {
+  switch (props.shape) {
+    case 'round':
+      return '100%';
+    case 'leftCap':
+      return '5px 0 0 5px';
+    case 'rightCap':
+      return '0 5px 5px 0';
+    default:
+      //fill
+      return '5px';
+  }
+}
 
-export const buttonBorderRadius = {
-  fill: '5px',
-  round: '100%',
-  leftCap: '5px 0 0 5px',
-  rightCap: '0 5px 5px 0'
-};
+export function buildButtonFontSize(props) {
+  switch (props.size) {
+    case 'small':
+      return '12px';
+    case 'large':
+      return '18px';
+    default:
+      //medium
+      return '14px';
+  }
+}
 
-export const buttonBaseHeight = {
-  small: '29px',
-  medium: '37px',
-  large: '45px'
-};
+export function buildButtonBaseHeight(props) {
+  switch (props.size) {
+    case 'small':
+      return '29px';
+    case 'large':
+      return '45px';
+    default:
+      //medium
+      return '37px';
+  }
+}
 
-export const buttonIconOnlyHeight = {
-  small: '29px',
-  medium: '37px',
-  large: '45px'
-};
+export function buildButtonIconOnlyHeight(props) {
+  switch (props.size) {
+    case 'small':
+      return '29px';
+    case 'large':
+      return '45px';
+    default:
+      //medium
+      return '37px';
+  }
+}
 
-export const buttonPadding = {
-  small: '0 10px',
-  medium: '0 15px',
-  large: '0 20px'
-};
+export function buildButtonIconOnlyWidth(props) {
+  switch (props.size) {
+    case 'small':
+      return '29px';
+    case 'large':
+      return '45px';
+    default:
+      //medium
+      return '37px';
+  }
+}
 
-export const buttonIconOnlyWidth = {
-  small: '29px',
-  medium: '37px',
-  large: '45px'
-};
+export function buildButtonPadding(props) {
+  switch (props.size) {
+    case 'small':
+      return '0 10px';
+    case 'large':
+      return '0 20px';
+    default:
+      //medium
+      return '0 15px';
+  }
+}
 
 export function buildButtonBackground(props) {
   if (props.variant !== 'solid' && props.color !== 'marketing') {
