@@ -6,6 +6,7 @@ import { AngleLeftIcon } from '../Icon/types/AngleLeftIcon';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useTabsContext } from './TabsContainer';
 import isPropValid from '@emotion/is-prop-valid';
+import { Omit } from '../../utils';
 
 const StyledContainer = styled('div', { shouldForwardProp: isPropValid })<{
   orientation: TabsOrientation;
@@ -156,10 +157,7 @@ export interface HorizontalTabsProps {
 declare type Orientation = HorizontalTabsProps | VerticalTabsProps;
 
 export interface TabsProps
-  extends Exclude<
-    React.ButtonHTMLAttributes<HTMLDivElement>['onChange'],
-    React.ButtonHTMLAttributes<HTMLDivElement>
-  > {
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   alignment: TabsAlignment;
   ariaLabel?: string;
   backgroundColor: string;

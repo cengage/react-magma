@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.34](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.33...v2.0.0-beta.34) (2020-04-09)
+
+
+### Bug Fixes
+
+* **search:** add and document style and testid props ([ce089c6](http://stash.corp.web:7999/FRONT/react-magma/commits/ce089c6))
+* **tabs:** fix TabsProps interface ([acd9e41](http://stash.corp.web:7999/FRONT/react-magma/commits/acd9e41))
+
+
+
+
+
 # [2.0.0-beta.33](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.32...v2.0.0-beta.33) (2020-04-08)
 
 
