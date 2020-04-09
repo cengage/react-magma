@@ -10,6 +10,7 @@ import { Search2Icon } from '../Icon/types/Search2Icon';
 import { Spinner } from '../Spinner';
 
 export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
+  containerStyle?: React.CSSProperties;
   iconAriaLabel?: string;
   inputSize?: InputSize;
   inputStyle?: React.CSSProperties;
@@ -18,6 +19,7 @@ export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
   labelText?: string;
   onSearch: (term: string) => void;
   ref?: React.Ref<HTMLInputElement>;
+  testId?: string;
   value?: string;
 }
 
