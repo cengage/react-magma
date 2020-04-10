@@ -1,6 +1,11 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { AlertProps, AlertVariant, buildAlertBackground } from '../Alert';
+import {
+  AlertProps,
+  AlertVariant,
+  buildAlertBackground,
+  VARIANT_ICON
+} from '../Alert';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
@@ -24,7 +29,10 @@ const StyledBanner = styled.div<AlertProps>`
 `;
 
 const BannerContents = styled.div`
+  align-items: center;
+  display: flex;
   flex-grow: 1;
+  justify-content: center;
   padding: 10px 15px 10px 0;
 `;
 
@@ -69,6 +77,21 @@ const DismissButton = styled(IconButton)<{
   }
 `;
 
+const IconWrapper = styled.span`
+  display: inline-flex;
+  padding-right: 10px;
+`;
+
+function renderIcon(variant = 'info') {
+  const Icon = VARIANT_ICON[variant];
+
+  return (
+    <IconWrapper>
+      <Icon size={20} />
+    </IconWrapper>
+  );
+}
+
 export const Banner: React.FunctionComponent<BannerProps> = React.forwardRef(
   (
     { children, isDismissible, variant, testId, ...other }: BannerProps,
@@ -84,7 +107,11 @@ export const Banner: React.FunctionComponent<BannerProps> = React.forwardRef(
         theme={theme}
         variant={variant}
       >
-        <BannerContents>{children}</BannerContents>
+        <BannerContents>
+          {renderIcon(variant)}
+          {children}
+        </BannerContents>
+
         {isDismissible && (
           <ButtonWrapper>
             <DismissButton

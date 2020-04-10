@@ -12,7 +12,7 @@ import { ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { useGenerateId } from '../../utils';
 
-const VARIANT_ICON = {
+export const VARIANT_ICON = {
   info: Info2Icon,
   success: CheckIcon,
   warning: NotificationIcon,
