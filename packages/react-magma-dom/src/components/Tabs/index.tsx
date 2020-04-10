@@ -270,7 +270,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
       moveTabsScroll(tabsWrapperRef.current[clientSize]);
     }
 
-    function handleScrollbarSizeChange(scrollbarHeight) {
+    function handleTabsWrapperSizeChange(scrollbarHeight) {
       setScrollerStyle({
         overflow: null,
         marginBottom: -scrollbarHeight
@@ -292,9 +292,11 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
         scroll(nextScrollStart);
       } else if (tabMeta[end] > tabsMeta[end]) {
         // right side of button is out of view
+        console.log('right side out of view');
         const nextScrollStart =
           Number(tabsMeta[scrollStart]) +
           (Number(tabMeta[end]) - Number(tabsMeta[end]));
+        console.log('nextScrollStart', nextScrollStart);
         scroll(nextScrollStart);
       }
     }
@@ -348,9 +350,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
     }, [updateScrollButtonState]);
 
     const handleTabsScroll = React.useCallback(
-      debounce(() => {
-        updateScrollButtonState();
-      }, 100),
+      debounce(updateScrollButtonState, 100),
       [updateScrollButtonState]
     );
 
@@ -360,13 +360,11 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
       };
     }, [handleTabsScroll]);
 
-    React.useEffect(() => {
-      updateScrollButtonState();
-    });
+    React.useEffect(updateScrollButtonState);
 
-    React.useEffect(() => {
-      scrollSelectedIntoView();
-    }, []);
+    React.useEffect(scrollSelectedIntoView, []);
+
+    React.useEffect(scrollSelectedIntoView, [activeTabIndex]);
 
     function findAndAddIndexToTab(baseChild, fn) {
       return React.Children.map(baseChild, (child: React.ReactChild, index) => {
@@ -399,12 +397,6 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
 
       onChange && typeof onChange === 'function' && onChange(newActiveIndex);
       setActiveTabIndex(newActiveIndex);
-
-      (event.target as HTMLButtonElement).scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'start'
-      });
     }
 
     return (
@@ -432,7 +424,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
           data-testid="tabsWrapper"
           ref={tabsWrapperRef}
           onScroll={handleTabsScroll}
-          onChange={handleScrollbarSizeChange}
+          onChange={handleTabsWrapperSizeChange}
           orientation={orientation}
           style={scrollerStyle}
         >
@@ -464,7 +456,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
                         key: index,
                         ref: buttonRefArray.current[index]
                       });
-                    } else if (baseChild.props.children) {
+                    } else if (baseChild.props && baseChild.props.children) {
                       return findAndAddIndexToTab(baseChild, newChild => {
                         if (newChild.type === Tab) {
                           const index = baseChild.props.index || baseIndex;
@@ -477,6 +469,13 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
 
                         return newChild;
                       });
+                    } else {
+                      if (process.env.NODE_ENV !== 'production') {
+                        console.error(
+                          'React-Magma: you should pass in a Tab or another component/element that wraps a Tab'
+                        );
+                      }
+                      return baseChild;
                     }
                   }
                 )}
