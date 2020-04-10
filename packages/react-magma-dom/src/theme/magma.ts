@@ -41,6 +41,7 @@ export interface ThemeInterface {
 export const magma = {
   bodyFont: '"Open Sans", sans-serif',
   headingFont: '"Open Sans", sans-serif',
+  direction: 'ltr',
 
   colors: {
     primary: '#006298', // link color blue

@@ -82,7 +82,7 @@ describe('Tabs', () => {
   it('should render scroll buttons if orientation horizontal and hasScrollButtons is true', () => {
     const { getByTestId } = render(
       <TabsContainerContext.Provider value={{ activeTabIndex: 1 }}>
-        <Tabs hasScrollButtons orientation="horizontal">
+        <Tabs orientation="horizontal">
           <Tab>Tab 1</Tab>
         </Tabs>
       </TabsContainerContext.Provider>

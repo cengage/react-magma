@@ -5,7 +5,13 @@ import { AngleLeftIcon } from '../Icon/types/AngleLeftIcon';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { TabsContainerContext } from './TabsContainer';
 import isPropValid from '@emotion/is-prop-valid';
-import { Omit } from '../../utils';
+import {
+  animate,
+  Omit,
+  debounce,
+  getNormalizedScrollLeft,
+  detectScrollType
+} from '../../utils';
 import { Tab } from './Tab';
 
 const StyledContainer = styled('div', { shouldForwardProp: isPropValid })<{
@@ -124,7 +130,6 @@ export interface TabsProps
   iconPosition?: TabsIconPosition;
   isFullWidth?: boolean;
   isInverse?: boolean;
-  hasScrollButtons?: boolean;
   onChange?: (newActiveIndex: number) => void;
   testId?: string;
 }
@@ -158,7 +163,6 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
       borderPosition,
       children,
       isFullWidth,
-      hasScrollButtons,
       orientation,
       onChange,
       iconPosition,
@@ -166,12 +170,34 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
       ...rest
     } = props;
 
-    const { setActiveTabIndex, isInverseContainer } = React.useContext(
-      TabsContainerContext
-    );
+    const theme = React.useContext(ThemeContext);
 
-    const [buttonVisiblePrev, setButtonPrevState] = React.useState(false);
-    const [buttonVisibleNext, setButtonNextState] = React.useState(false);
+    const isRtl = theme.direction === 'rtl';
+    const vertical = orientation === TabsOrientation.vertical;
+    const scrollStart = vertical ? 'scrollTop' : 'scrollLeft';
+    const start = vertical ? 'top' : 'left';
+    const end = vertical ? 'bottom' : 'right';
+    const clientSize = vertical ? 'clientHeight' : 'clientWidth';
+
+    const {
+      activeTabIndex,
+      setActiveTabIndex,
+      isInverseContainer
+    } = React.useContext(TabsContainerContext);
+
+    const isInverse =
+      typeof props.isInverse !== 'undefined'
+        ? Boolean(props.isInverse)
+        : isInverseContainer;
+
+    const [displayScroll, setDisplayScroll] = React.useState({
+      start: false,
+      end: false
+    });
+    const [scrollerStyle, setScrollerStyle] = React.useState({
+      overflow: 'hidden',
+      marginBottom: null
+    });
 
     const buttonRefArray = React.useRef([]);
 
@@ -184,23 +210,162 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
     }
 
     const tabsWrapperRef = React.useRef<HTMLDivElement>();
+    const childrenWrapperRef = React.useRef<HTMLDivElement>();
 
-    const scrollOptions = {
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'start'
-    };
+    function getTabsMeta() {
+      const tabsNode = tabsWrapperRef.current;
+      let tabsMeta;
+      if (tabsNode) {
+        const rect = tabsNode.getBoundingClientRect();
+        tabsMeta = {
+          clientWidth: tabsNode.clientWidth,
+          scrollLeft: tabsNode.scrollLeft,
+          scrollTop: tabsNode.scrollTop,
+          scrollLeftNormalized: getNormalizedScrollLeft(
+            tabsNode,
+            theme.direction
+          ),
+          scrollWidth: tabsNode.scrollWidth,
+          top: rect.top,
+          bottom: rect.bottom,
+          left: rect.left,
+          right: rect.right
+        };
+      }
+
+      let tabMeta;
+      if (tabsNode) {
+        const childrenArray = childrenWrapperRef.current.children;
+        if (childrenArray.length > 0) {
+          const tab = childrenArray[activeTabIndex];
+          tabMeta = tab ? (tab as any).getBoundingClientRect() : null;
+        }
+      }
+      return { tabsMeta, tabMeta };
+    }
+
+    function scroll(scrollValue) {
+      animate(scrollStart, tabsWrapperRef.current, scrollValue);
+    }
+
+    function moveTabsScroll(delta) {
+      let scrollValue = tabsWrapperRef.current[scrollStart];
+
+      if (vertical) {
+        scrollValue += delta;
+      } else {
+        scrollValue += delta * (isRtl ? -1 : 1);
+        // Fix for Edge
+        scrollValue *= isRtl && detectScrollType() === 'reverse' ? -1 : 1;
+      }
+
+      scroll(scrollValue);
+    }
+
+    function handleStartScrollClick() {
+      moveTabsScroll(-tabsWrapperRef.current[clientSize]);
+    }
+
+    function handleEndScrollClick() {
+      moveTabsScroll(tabsWrapperRef.current[clientSize]);
+    }
+
+    function handleScrollbarSizeChange(scrollbarHeight) {
+      setScrollerStyle({
+        overflow: null,
+        marginBottom: -scrollbarHeight
+      });
+    }
+
+    function scrollSelectedIntoView() {
+      const { tabsMeta, tabMeta } = getTabsMeta();
+
+      if (!tabMeta || !tabsMeta) {
+        return;
+      }
+
+      if (tabMeta[start] < tabsMeta[start]) {
+        // left side of button is out of view
+        const nextScrollStart =
+          Number(tabsMeta[scrollStart]) +
+          (Number(tabMeta[start]) - Number(tabsMeta[start]));
+        scroll(nextScrollStart);
+      } else if (tabMeta[end] > tabsMeta[end]) {
+        // right side of button is out of view
+        const nextScrollStart =
+          Number(tabsMeta[scrollStart]) +
+          (Number(tabMeta[end]) - Number(tabsMeta[end]));
+        scroll(nextScrollStart);
+      }
+    }
+
+    function updateScrollButtonState() {
+      const {
+        scrollTop,
+        scrollHeight,
+        clientHeight,
+        scrollWidth,
+        clientWidth
+      } = tabsWrapperRef.current;
+      let showStartScroll;
+      let showEndScroll;
+
+      if (vertical) {
+        showStartScroll = scrollTop > 1;
+        showEndScroll = scrollTop < scrollHeight - clientHeight - 1;
+      } else {
+        const scrollLeft = getNormalizedScrollLeft(
+          tabsWrapperRef.current,
+          theme.direction
+        );
+        // use 1 for the potential rounding error with browser zooms.
+        showStartScroll = isRtl
+          ? scrollLeft < scrollWidth - clientWidth - 1
+          : scrollLeft > 1;
+        showEndScroll = !isRtl
+          ? scrollLeft < scrollWidth - clientWidth - 1
+          : scrollLeft > 1;
+      }
+
+      if (
+        showStartScroll !== displayScroll.start ||
+        showEndScroll !== displayScroll.end
+      ) {
+        setDisplayScroll({ start: showStartScroll, end: showEndScroll });
+      }
+    }
 
     React.useEffect(() => {
-      const {
-        scrollLeft: scrollPositionSize,
-        scrollWidth: scrollSize,
-        offsetWidth: offsetBoxSize
-      } = tabsWrapperRef.current;
+      const handleResize = debounce(() => {
+        updateScrollButtonState();
+      }, 100);
 
-      scrollSize - scrollPositionSize === offsetBoxSize
-        ? setButtonNextState(false)
-        : setButtonNextState(true);
+      window.addEventListener('resize', handleResize);
+      return () => {
+        handleResize.clear();
+        window.removeEventListener('resize', handleResize);
+      };
+    }, [updateScrollButtonState]);
+
+    const handleTabsScroll = React.useCallback(
+      debounce(() => {
+        updateScrollButtonState();
+      }, 100),
+      [updateScrollButtonState]
+    );
+
+    React.useEffect(() => {
+      return () => {
+        handleTabsScroll.clear();
+      };
+    }, [handleTabsScroll]);
+
+    React.useEffect(() => {
+      updateScrollButtonState();
+    });
+
+    React.useEffect(() => {
+      scrollSelectedIntoView();
     }, []);
 
     function findAndAddIndexToTab(baseChild, fn) {
@@ -242,67 +407,6 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
       });
     }
 
-    function handleClickNext() {
-      const {
-        scrollLeft: scrollPositionSize,
-        offsetWidth: offsetBoxSize
-      } = tabsWrapperRef.current;
-      const offsetTabSize = buttonRefArray.current[0].current.offsetWidth;
-
-      const currentTabIndex = Math.round(
-        (Number(offsetBoxSize) + Number(scrollPositionSize)) / offsetTabSize
-      );
-
-      currentTabIndex <= buttonRefArray.current.length - 1
-        ? buttonRefArray.current[currentTabIndex].current.scrollIntoView(
-            scrollOptions
-          )
-        : buttonRefArray.current[
-            buttonRefArray.current.length - 1
-          ].current.scrollIntoView(scrollOptions);
-    }
-
-    function handleClickPrev() {
-      const {
-        scrollLeft: scrollPositionSize,
-        offsetWidth: offsetBoxSize
-      } = tabsWrapperRef.current;
-      const offsetTabSize = buttonRefArray.current[1].current.offsetWidth;
-
-      const currentTabIndex = Math.round(
-        scrollPositionSize / offsetTabSize - offsetBoxSize / offsetTabSize
-      );
-
-      currentTabIndex >= 0
-        ? buttonRefArray.current[currentTabIndex].current.scrollIntoView(
-            scrollOptions
-          )
-        : buttonRefArray.current[0].current.scrollIntoView(scrollOptions);
-    }
-
-    function handleScroll() {
-      const {
-        scrollLeft: scrollPositionSize,
-        scrollWidth: scrollSize,
-        offsetWidth: offsetBoxSize
-      } = tabsWrapperRef.current;
-
-      scrollSize - scrollPositionSize === offsetBoxSize
-        ? setButtonNextState(false)
-        : setButtonNextState(true);
-
-      scrollPositionSize > 0
-        ? setButtonPrevState(true)
-        : setButtonPrevState(false);
-    }
-
-    const theme = React.useContext(ThemeContext);
-
-    const isInverse =
-      typeof props.isInverse !== 'undefined'
-        ? Boolean(props.isInverse)
-        : isInverseContainer;
-
     return (
       <StyledContainer
         ref={ref}
@@ -313,31 +417,30 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
         theme={theme}
         {...rest}
       >
-        {hasScrollButtons && orientation !== TabsOrientation.vertical ? (
-          <StyledButtonPrev
-            onClick={handleClickPrev}
-            buttonVisible={buttonVisiblePrev}
-            data-testid="buttonPrev"
-          >
-            <AngleLeftIcon
-              size={16}
-              color={
-                isInverse ? theme.colors.neutral08 : theme.colors.neutral02
-              }
-            />
-          </StyledButtonPrev>
-        ) : null}
+        <StyledButtonPrev
+          onClick={handleStartScrollClick}
+          buttonVisible={displayScroll.start}
+          data-testid="buttonPrev"
+        >
+          <AngleLeftIcon
+            size={16}
+            color={isInverse ? theme.colors.neutral08 : theme.colors.neutral02}
+          />
+        </StyledButtonPrev>
 
         <StyledTabsWrapper
           data-testid="tabsWrapper"
           ref={tabsWrapperRef}
-          onScroll={handleScroll}
+          onScroll={handleTabsScroll}
+          onChange={handleScrollbarSizeChange}
           orientation={orientation}
+          style={scrollerStyle}
         >
           <StyledTabs
             aria-label={rest['aria-label']}
             alignment={alignment ? alignment : TabsAlignment.left}
             orientation={orientation}
+            ref={childrenWrapperRef}
             role="tablist"
           >
             {buttonRefArray.current.length && (
@@ -382,20 +485,16 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
           </StyledTabs>
         </StyledTabsWrapper>
 
-        {hasScrollButtons && orientation !== 'vertical' ? (
-          <StyledButtonNext
-            onClick={handleClickNext}
-            buttonVisible={buttonVisibleNext}
-            data-testid="buttonNext"
-          >
-            <AngleRightIcon
-              size={16}
-              color={
-                isInverse ? theme.colors.neutral08 : theme.colors.neutral02
-              }
-            />
-          </StyledButtonNext>
-        ) : null}
+        <StyledButtonNext
+          onClick={handleEndScrollClick}
+          buttonVisible={displayScroll.end}
+          data-testid="buttonNext"
+        >
+          <AngleRightIcon
+            size={16}
+            color={isInverse ? theme.colors.neutral08 : theme.colors.neutral02}
+          />
+        </StyledButtonNext>
       </StyledContainer>
     );
   }
