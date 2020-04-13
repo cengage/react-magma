@@ -259,10 +259,6 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
       start: false,
       end: false
     });
-    const [scrollerStyle, setScrollerStyle] = React.useState({
-      overflow: 'hidden',
-      marginBottom: null
-    });
 
     const buttonRefArray = React.useRef([]);
 
@@ -335,13 +331,6 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
       moveTabsScroll(tabsWrapperRef.current[clientSize]);
     }
 
-    function handleTabsWrapperSizeChange(scrollbarHeight) {
-      setScrollerStyle({
-        overflow: null,
-        marginBottom: -scrollbarHeight
-      });
-    }
-
     function scrollSelectedIntoView() {
       const { tabsMeta, tabMeta } = getTabsMeta();
 
@@ -401,9 +390,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
     }
 
     React.useEffect(() => {
-      const handleResize = debounce(() => {
-        updateScrollButtonState();
-      }, 100);
+      const handleResize = debounce(updateScrollButtonState, 100);
 
       window.addEventListener('resize', handleResize);
       return () => {
@@ -490,10 +477,8 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
         <StyledTabsWrapper
           data-testid="tabsWrapper"
           onScroll={handleTabsScroll}
-          onChange={handleTabsWrapperSizeChange}
           orientation={orientation}
           ref={tabsWrapperRef}
-          style={scrollerStyle}
         >
           <StyledTabs
             aria-label={rest['aria-label']}
