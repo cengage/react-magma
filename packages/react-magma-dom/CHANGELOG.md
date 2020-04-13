@@ -3,39 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.0.0-beta.29](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.28...v2.0.0-beta.29) (2020-03-30)
+# [2.0.0-beta.34](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.33...v2.0.0-beta.34) (2020-04-09)
 
+### Bug Fixes
+
+- **search:** add and document style and testid props ([ce089c6](http://stash.corp.web:7999/FRONT/react-magma/commits/ce089c6))
+- **tabs:** fix TabsProps interface ([acd9e41](http://stash.corp.web:7999/FRONT/react-magma/commits/acd9e41))
+
+# [2.0.0-beta.33](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.32...v2.0.0-beta.33) (2020-04-08)
 
 ### Features
 
-* **select:** allow for custom components to be passed in ([dc8cffd](http://stash.corp.web:7999/FRONT/react-magma/commits/dc8cffd))
+- **toast:** some new toast/alert styles ([ffa180f](http://stash.corp.web:7999/FRONT/react-magma/commits/ffa180f))
+- **toast:** upadted animation, mobile styles ([96e4519](http://stash.corp.web:7999/FRONT/react-magma/commits/96e4519))
+- **toasts:** update styles based on orion feedback ([79f6660](http://stash.corp.web:7999/FRONT/react-magma/commits/79f6660))
 
+# [2.0.0-beta.32](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.31...v2.0.0-beta.32) (2020-04-07)
 
+### Features
 
+- **calendar,search icon:** update calendar icon, update icon sizes ([444c08e](http://stash.corp.web:7999/FRONT/react-magma/commits/444c08e))
+- **focus:** update color ([7bd022c](http://stash.corp.web:7999/FRONT/react-magma/commits/7bd022c))
+- **icons:** new icons -- open envelopes and signout ([4d8c2e7](http://stash.corp.web:7999/FRONT/react-magma/commits/4d8c2e7))
 
+# [2.0.0-beta.29](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.28...v2.0.0-beta.29) (2020-03-30)
+
+### Features
+
+- **select:** allow for custom components to be passed in ([dc8cffd](http://stash.corp.web:7999/FRONT/react-magma/commits/dc8cffd))
 
 # [2.0.0-beta.28](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.27...v2.0.0-beta.28) (2020-03-30)
 
-
 ### Bug Fixes
 
-* **radio, checkbox:** border color on checked and indeterminate ([6f0436e](http://stash.corp.web:7999/FRONT/react-magma/commits/6f0436e))
-
-
-
-
+- **radio, checkbox:** border color on checked and indeterminate ([6f0436e](http://stash.corp.web:7999/FRONT/react-magma/commits/6f0436e))
 
 # [2.0.0-beta.26](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.25...v2.0.0-beta.26) (2020-03-25)
 
-
 ### Bug Fixes
 
-* **input labels:** allow react node not just string ([a95f9b8](http://stash.corp.web:7999/FRONT/react-magma/commits/a95f9b8))
-* **tooltip:** allow custom styling of tooltip container and element ([e7b3083](http://stash.corp.web:7999/FRONT/react-magma/commits/e7b3083))
-
-
-
-
+- **input labels:** allow react node not just string ([a95f9b8](http://stash.corp.web:7999/FRONT/react-magma/commits/a95f9b8))
+- **tooltip:** allow custom styling of tooltip container and element ([e7b3083](http://stash.corp.web:7999/FRONT/react-magma/commits/e7b3083))
 
 # [2.0.0-beta.25](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.24...v2.0.0-beta.25) (2020-03-09)
 

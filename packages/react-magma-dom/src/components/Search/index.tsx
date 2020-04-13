@@ -10,6 +10,7 @@ import { Search2Icon } from '../Icon/types/Search2Icon';
 import { Spinner } from '../Spinner';
 
 export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
+  containerStyle?: React.CSSProperties;
   iconAriaLabel?: string;
   inputSize?: InputSize;
   inputStyle?: React.CSSProperties;
@@ -18,6 +19,7 @@ export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
   labelText?: string;
   onSearch: (term: string) => void;
   ref?: React.Ref<HTMLInputElement>;
+  testId?: string;
   value?: string;
 }
 
@@ -36,7 +38,7 @@ export const Search: React.FunctionComponent<SearchProps> = React.forwardRef(
 
     const [value, setValue] = React.useState<string>(props.value);
 
-    const icon = isLoading ? <Spinner /> : <Search2Icon />;
+    const icon = isLoading ? <Spinner /> : <Search2Icon size={17} />;
 
     React.useEffect(() => {
       setValue(props.value);

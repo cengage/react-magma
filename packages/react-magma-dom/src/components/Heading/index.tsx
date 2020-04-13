@@ -24,7 +24,7 @@ export const baseHeadingStyles = props => css`
   &:focus {
     border-bottom: 2px dotted
       ${props.isInverse
-        ? props.theme.colors.neutral08
+        ? props.theme.colors.focusInverse
         : props.theme.colors.focus};
     outline: 0;
     transition: border 0.1s linear;

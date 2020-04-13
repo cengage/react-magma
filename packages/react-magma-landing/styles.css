@@ -7,7 +7,7 @@
 }
 
 *:focus {
-  outline: 2px dotted #d75800;
+  outline: 2px dotted #027ee1;
   outline-offset: 3px;
 }
 
@@ -83,7 +83,7 @@ header {
   text-align: center;
   text-transform: uppercase;
   top: 0;
-  z-index: 2;
+  z-index: 10;
 }
 
 .header-inner {

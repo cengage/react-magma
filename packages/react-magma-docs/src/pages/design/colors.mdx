@@ -35,7 +35,8 @@ The primary color is the main brand color. A brand color can be used in key mome
 
 ### Focus
 
-The focus color is used to visually highlight elements that are in focus on the UI. This color compliments the palette, while standing out against light colors to make the focus states visually distinct. This color will meet the 3:1 contrast ratio required as long as you use neutral07 or neutral08 as your background. If you are using dark backgrounds, then the foucs color should use neutral08 instead.
+The focus color is used to visually highlight elements that are in focus on the UI. This color compliments the palette, while standing out against light colors to make the focus states visually distinct. This color will meet the 3:1 contrast ratio required as long as you use neutral07 or neutral08 as your background. 
+If you are using dark backgrounds, then the foucs color should use the focusInverse color instead, which is a semi-transparent white.
 
 <div class="swatch-rows">
   <ColorSwatch color={magma.colors.focus}>
@@ -43,10 +44,18 @@ The focus color is used to visually highlight elements that are in focus on the 
       <strong>focus</strong>
     </span>
     <span class="color-hex">{magma.colors.focus}</span>
-    <span>rgb(215,88,0)</span>
-    <span>4:1</span>
+    <span>rgb(2, 126, 225)</span>
+    <span>4.1:1</span>
+  </ColorSwatch>
+
+  <ColorSwatch color={magma.colors.focusInverse}>
+    <span>
+      <strong>focusInverse</strong>
+    </span>
+    <span>rgba(255, 255, 255, 0.7)</span>
   </ColorSwatch>
 </div>
+
 
 ### Foundation
 
