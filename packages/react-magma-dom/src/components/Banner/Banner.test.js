@@ -14,8 +14,8 @@ describe('Banner', () => {
 
   it('should render with correct warning variant styles', () => {
     const testId = 'test-id';
-    const { getByTestId } = render(
-      <Banner testId={testId} variant="warning">
+    const { getByTestId, getByLabelText } = render(
+      <Banner isDismissible testId={testId} variant="warning">
         Test
       </Banner>
     );
@@ -24,12 +24,35 @@ describe('Banner', () => {
       'background',
       magma.colors.pop04
     );
+
+    const closeBtn = getByLabelText('Close this message');
+
+    expect(closeBtn).toHaveStyleRule('color', magma.colors.neutral01);
+
+    expect(closeBtn).toHaveStyleRule(
+      'outline',
+      `2px dotted ${magma.colors.neutral01}`,
+      {
+        target: ':focus'
+      }
+    );
   });
 
   it('should render a close button when isDismissible is true', () => {
-    const { container } = render(<Banner isDismissible>Text</Banner>);
+    const { getByLabelText } = render(<Banner isDismissible>Text</Banner>);
 
-    expect(container.querySelector('button')).toBeInTheDocument();
+    expect(getByLabelText('Close this message')).toBeInTheDocument();
+  });
+
+  it('should render a close button with custom aria label', () => {
+    const { getByLabelText } = render(
+      <Banner isDismissible closeAriaLabel="Test">
+        Text
+      </Banner>
+    );
+
+    const dismissableIconButton = getByLabelText('Test');
+    expect(dismissableIconButton).toBeInTheDocument();
   });
 
   it('Does not violate accessibility standards', () => {

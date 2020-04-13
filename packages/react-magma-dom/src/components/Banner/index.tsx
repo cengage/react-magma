@@ -26,6 +26,11 @@ const StyledBanner = styled.div<AlertProps>`
   display: flex;
   position: relative;
   text-align: center;
+
+  @media (max-width: 600px) {
+    text-align: left;
+    font-size: 13px;
+  }
 `;
 
 const BannerContents = styled.div`
@@ -33,7 +38,11 @@ const BannerContents = styled.div`
   display: flex;
   flex-grow: 1;
   justify-content: center;
-  padding: 10px 15px 10px 0;
+  padding: 10px 15px;
+
+  @media (max-width: 600px) {
+    justify-content: flex-start;
+  }
 `;
 
 const ButtonWrapper = styled.span`
@@ -46,7 +55,10 @@ const DismissButton = styled(IconButton)<{
   alertVariant?: AlertVariant;
 }>`
   border-radius: 0;
-  color: inherit;
+  color: ${({ alertVariant, theme }) =>
+    alertVariant === 'warning'
+      ? theme.colors.neutral01
+      : theme.colors.neutral08};
   height: calc(100% - 6px);
   margin: 3px;
   padding: 0 15px;
@@ -56,23 +68,25 @@ const DismissButton = styled(IconButton)<{
     outline: 2px dotted
       ${({ alertVariant, theme }) =>
         alertVariant === 'warning'
-          ? theme.colors.focus
-          : theme.colors.focusInverse};
+          ? theme.colors.neutral01
+          : theme.colors.neutral08};
     outline-offset: 0 !important;
   }
 
   &:hover,
   &:focus {
-    :not(:disabled):before {
-      background: ${({ alertVariant, theme }) =>
-        alertVariant === 'warning'
-          ? theme.colors.focus
-          : theme.colors.focusInverse};
-      opacity: 0.15;
-    }
+    :not(:disabled) {
+      &:before {
+        background: ${({ alertVariant, theme }) =>
+          alertVariant === 'warning'
+            ? theme.colors.neutral01
+            : theme.colors.neutral08};
+        opacity: 0.15;
+      }
 
-    &:after {
-      display: none;
+      &:after {
+        display: none;
+      }
     }
   }
 `;
@@ -80,6 +94,10 @@ const DismissButton = styled(IconButton)<{
 const IconWrapper = styled.span`
   display: inline-flex;
   padding-right: 10px;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 
 function renderIcon(variant = 'info') {
@@ -94,7 +112,15 @@ function renderIcon(variant = 'info') {
 
 export const Banner: React.FunctionComponent<BannerProps> = React.forwardRef(
   (
-    { children, isDismissible, variant, testId, ...other }: BannerProps,
+    {
+      children,
+      closeAriaLabel,
+      isDismissible,
+      onDismiss,
+      testId,
+      variant,
+      ...other
+    }: BannerProps,
     ref: any
   ) => {
     const theme = React.useContext(ThemeContext);
@@ -116,9 +142,12 @@ export const Banner: React.FunctionComponent<BannerProps> = React.forwardRef(
           <ButtonWrapper>
             <DismissButton
               alertVariant={variant}
-              aria-label="Close this message"
+              aria-label={
+                closeAriaLabel ? closeAriaLabel : 'Close this message'
+              }
               icon={<CrossIcon size={13} />}
               isInverse
+              onClick={onDismiss}
               theme={theme}
               variant={ButtonVariant.link}
             />

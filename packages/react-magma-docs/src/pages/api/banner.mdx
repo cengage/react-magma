@@ -1,28 +1,46 @@
 ---
-title: 'Banners'
+title: 'Banner Alerts'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { Banner } from 'react-magma-dom'
+import { Banner, Button } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 
-# Banner
+# Banner Alerts
+
+Banner alerts are typically used for for system or application level alerts. They fill the full width of their container and are intended to be used without margins.
 
 ## Basic Usage
+
+The `variant` prop accepts the following values: `info`, `success`, `warning` and `danger`, with info being the default value.
+This prop determines the icon and color scheme used to style the Banner.
 
 ```.jsx
       <>
         <Banner >Default (info) banner</Banner>
         <Banner variant='success'>Success banner</Banner>
-        <Banner variant='warning'>Warning banner</Banner>
-        <Banner variant='danger'>Danger banner</Banner>
+        <Banner variant='warning' isDismissible>Warning banner</Banner>
+        <Banner variant='danger'>Danger banner.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus rutrum nisl id justo placerat ullamcorper. Maecenas gravida ut velit sagittis lacinia.</Banner>
       </>
 ```
 
 ## Dismissable
 
+The isDismissible prop is optional, and if provided the Banner will render a dismiss button. Providing this property only causes the dismiss button to render; it does not control the dismiss behavior itself. If you include the isDismissible prop, you must also include a function in the onDimiss prop to handle the dismiss behavior.
+
+The aria-label, by default is Close this message but can be overridden using the optional closeAriaLabel prop.
+
 ```.jsx
-      <Banner isDismissible variant='success'>Success banner</Banner>
+(props) => {
+      const [showBanner, updateShowBanner] = React.useState(true);
+
+      return (<>
+        { showBanner && <Banner isDismissible onDismiss={() => updateShowBanner(false)} variant="success">Success!  You may now dismiss this banner</Banner>}
+        { !showBanner && <Button onClick={() => updateShowBanner(true)} size="small" color="secondary">Show Banner Again</Button>}
+      </>)
+    }
+
+
 ```
 
 ## Banner Props
@@ -66,4 +84,6 @@ import { SimplePropsTable } from '../../components/props-table'
   }}
 />
 
-export default props => <ScopeableLayout {...props} components={{ Banner }} />
+export default props => (
+  <ScopeableLayout {...props} components={{ Banner, Button }} />
+)
