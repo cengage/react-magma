@@ -14,7 +14,7 @@ const StyledHeader = styled.header`
   position: sticky;
   text-transform: uppercase;
   top: 0;
-  z-index: 2;
+  z-index: 10;
 
   @media (min-width: 600px) {
     font-size: 20px;
