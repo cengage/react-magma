@@ -89,13 +89,13 @@ const StyledScrollButton = styled.div<{
 
   bottom: 0;
   top: 0;
-  width: 50px;
+  width: 44px;
 
   ${props =>
     props.orientation === 'vertical' &&
     css`
       left: 0;
-      height: 50px;
+      height: 44px;
       right: 0;
       width: auto;
     `}
