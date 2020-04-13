@@ -220,12 +220,12 @@ describe('Tabs', () => {
         target: ':after'
       }
     );
-    expect(getByTestId('buttonPrev').children[0]).toHaveAttribute(
-      'fill',
+    expect(getByTestId('buttonPrev')).toHaveStyleRule(
+      'color',
       magma.colors.neutral08
     );
-    expect(getByTestId('buttonNext').children[0]).toHaveAttribute(
-      'fill',
+    expect(getByTestId('buttonNext')).toHaveStyleRule(
+      'color',
       magma.colors.neutral08
     );
   });

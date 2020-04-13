@@ -36,12 +36,6 @@ And `TabPanel`, which contains the indivdual content sections for each tab.
               <Tab>Main page</Tab>
               <Tab>FAQ</Tab>
               <Tab>About us</Tab>
-              <Tab>Main page</Tab>
-              <Tab>FAQ</Tab>
-              <Tab>About us</Tab>
-              <Tab>Main page</Tab>
-              <Tab>FAQ</Tab>
-              <Tab>About us</Tab>
             </Tabs>
 
             <TabPanelsContainer>
@@ -302,16 +296,14 @@ The `isFullWidth` prop is an optional boolean that will cause the tabs to take u
     )}
 ```
 
-## Scrollable Tabs with Buttons
-
-The `hasScrollButtons` prop can be used to display navigation buttons for when the tabs do not fit within the visual display area.
+## Scrollable Tabs
 
 ```.jsx
       () => {
         return (
           <div>
             <TabsContainer>
-                <Tabs hasScrollButtons backgroundColor='#F7F7F7'>
+                <Tabs backgroundColor='#F7F7F7'>
                   <Tab>First item with a longer text label</Tab>
                   <Tab>Second item</Tab>
                   <Tab>Third item</Tab>
@@ -345,13 +337,11 @@ The `hasScrollButtons` prop can be used to display navigation buttons for when t
     )}
 ```
 
-## Scrollable Tabs Without Buttons
-
-This is an example of scrollable Tabs without buttons
+## Scrollable Veritical Tabs
 
 ```.jsx
-    <TabsContainer>
-        <Tabs backgroundColor='#F7F7F7'>
+    <TabsContainer style={{ height: '200px', overflow: 'hidden'  }}>
+        <Tabs backgroundColor='#F7F7F7' orientation='vertical'>
           <Tab>First item</Tab>
           <Tab>Second item</Tab>
           <Tab>Third item</Tab>
