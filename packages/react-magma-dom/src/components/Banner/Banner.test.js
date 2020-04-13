@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Banner } from '.';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 
 describe('Banner', () => {
@@ -53,6 +53,71 @@ describe('Banner', () => {
 
     const dismissableIconButton = getByLabelText('Test');
     expect(dismissableIconButton).toBeInTheDocument();
+  });
+
+  it('should render an action button with an action that fires when clicked', () => {
+    const actionBtnClick = jest.fn();
+
+    const { getByText } = render(
+      <Banner actionButtonText="btn text" actionButtonOnClick={actionBtnClick}>
+        Test
+      </Banner>
+    );
+
+    const btn = getByText('btn text');
+
+    expect(btn).toHaveStyleRule('color', magma.colors.primary);
+
+    fireEvent.click(btn);
+    expect(actionBtnClick).toHaveBeenCalled();
+  });
+
+  it('should render an action button with danger styles', () => {
+    const { getByText } = render(
+      <Banner
+        actionButtonText="btn text"
+        actionButtonOnClick={() => {}}
+        variant="danger"
+      >
+        Test
+      </Banner>
+    );
+
+    expect(getByText('btn text')).toHaveStyleRule('color', magma.colors.danger);
+  });
+
+  it('should render an action button with success styles', () => {
+    const { getByText } = render(
+      <Banner
+        actionButtonText="btn text"
+        actionButtonOnClick={() => {}}
+        variant="success"
+      >
+        Test
+      </Banner>
+    );
+
+    expect(getByText('btn text')).toHaveStyleRule(
+      'color',
+      magma.colors.success01
+    );
+  });
+
+  it('should render an action button with warning styles', () => {
+    const { getByText } = render(
+      <Banner
+        actionButtonText="btn text"
+        actionButtonOnClick={() => {}}
+        variant="warning"
+      >
+        Test
+      </Banner>
+    );
+
+    expect(getByText('btn text')).toHaveStyleRule(
+      'color',
+      magma.colors.neutral01
+    );
   });
 
   it('Does not violate accessibility standards', () => {

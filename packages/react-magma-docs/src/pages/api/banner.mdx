@@ -19,7 +19,7 @@ This prop determines the icon and color scheme used to style the Banner.
       <>
         <Banner >Default (info) banner</Banner>
         <Banner variant='success'>Success banner</Banner>
-        <Banner variant='warning' isDismissible>Warning banner</Banner>
+        <Banner variant='warning'>Warning banner</Banner>
         <Banner variant='danger'>Danger banner.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus rutrum nisl id justo placerat ullamcorper. Maecenas gravida ut velit sagittis lacinia.</Banner>
       </>
 ```
@@ -39,8 +39,12 @@ The aria-label, by default is Close this message but can be overridden using the
         { !showBanner && <Button onClick={() => updateShowBanner(true)} size="small" color="secondary">Show Banner Again</Button>}
       </>)
     }
+```
 
+## Action Button
 
+```.jsx
+        <Banner actionButtonText='Action' actionButtonOnClick={()=>{}}>Default banner</Banner>
 ```
 
 ## Banner Props

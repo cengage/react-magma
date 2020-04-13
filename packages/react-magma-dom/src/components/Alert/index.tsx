@@ -45,8 +45,6 @@ export const transitionDuration = 500;
 
 export function buildAlertBackground(props) {
   switch (props.variant) {
-    case 'info':
-      return props.theme.colors.neutral01;
     case 'success':
       return props.theme.colors.success01;
     case 'warning':

@@ -7,11 +7,13 @@ import {
   VARIANT_ICON
 } from '../Alert';
 import { CrossIcon } from '../Icon/types/CrossIcon';
-import { ButtonVariant } from '../Button';
+import { Button, ButtonSize, ButtonVariant, ButtonColor } from '../Button';
 import { IconButton } from '../IconButton';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface BannerProps extends AlertProps {
+  actionButtonText?: string;
+  actionButtonOnClick?: () => void;
   isDismissible?: boolean;
   testId?: string;
 }
@@ -110,9 +112,24 @@ function renderIcon(variant = 'info') {
   );
 }
 
+function getButtonColor(variant: AlertVariant) {
+  switch (variant) {
+    case 'success':
+      return ButtonColor.success;
+    case 'warning':
+      return ButtonColor.secondary;
+    case 'danger':
+      return ButtonColor.danger;
+    default:
+      return ButtonColor.primary;
+  }
+}
+
 export const Banner: React.FunctionComponent<BannerProps> = React.forwardRef(
   (
     {
+      actionButtonText,
+      actionButtonOnClick,
       children,
       closeAriaLabel,
       isDismissible,
@@ -136,6 +153,17 @@ export const Banner: React.FunctionComponent<BannerProps> = React.forwardRef(
         <BannerContents>
           {renderIcon(variant)}
           {children}
+          {actionButtonText && actionButtonOnClick && (
+            <Button
+              color={getButtonColor(variant)}
+              isInverse
+              onClick={actionButtonOnClick}
+              style={{ margin: '0 0 0 30px' }}
+              size={ButtonSize.small}
+            >
+              {actionButtonText}
+            </Button>
+          )}
         </BannerContents>
 
         {isDismissible && (
