@@ -104,6 +104,7 @@ const StyledScrollButton = styled.div<{
 const StyledButtonPrev = styled(StyledScrollButton)<{
   backgroundColor?: string;
   orientation?: TabsOrientation;
+  ref?: any;
 }>`
   background: ${props => `linear-gradient(
     90deg,
@@ -127,6 +128,7 @@ const StyledButtonPrev = styled(StyledScrollButton)<{
 const StyledButtonNext = styled(StyledScrollButton)<{
   backgroundColor?: string;
   orientation?: TabsOrientation;
+  ref?: any;
 }>`
   background: ${props => `linear-gradient(
     90deg,
@@ -272,6 +274,8 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
 
     const tabsWrapperRef = React.useRef<HTMLDivElement>();
     const childrenWrapperRef = React.useRef<HTMLDivElement>();
+    const prevButtonRef = React.useRef<HTMLDivElement>();
+    const nextButtonRef = React.useRef<HTMLDivElement>();
 
     function getTabsMeta() {
       const tabsNode = tabsWrapperRef.current;
@@ -340,15 +344,19 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
 
       if (tabMeta[start] < tabsMeta[start]) {
         // left side of button is out of view
+        const prevButtonWidth = Number(prevButtonRef.current.offsetWidth);
         const nextScrollStart =
           Number(tabsMeta[scrollStart]) +
-          (Number(tabMeta[start]) - Number(tabsMeta[start]));
+          (Number(tabMeta[start]) - Number(tabsMeta[start])) -
+          prevButtonWidth;
         scroll(nextScrollStart);
       } else if (tabMeta[end] > tabsMeta[end]) {
         // right side of button is out of view
+        const nextButtonWidth = Number(nextButtonRef.current.offsetWidth);
         const nextScrollStart =
           Number(tabsMeta[scrollStart]) +
-          (Number(tabMeta[end]) - Number(tabsMeta[end]));
+          (Number(tabMeta[end]) - Number(tabsMeta[end])) +
+          nextButtonWidth;
         scroll(nextScrollStart);
       }
     }
@@ -446,7 +454,10 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
       }
 
       onChange && typeof onChange === 'function' && onChange(newActiveIndex);
-      setActiveTabIndex(newActiveIndex);
+
+      newActiveIndex === activeTabIndex
+        ? scrollSelectedIntoView()
+        : setActiveTabIndex(newActiveIndex);
     }
 
     return (
@@ -466,6 +477,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
           isInverse={isInverse}
           onClick={handleStartScrollClick}
           orientation={orientation || TabsOrientation.horizontal}
+          ref={prevButtonRef}
           theme={theme}
         >
           {orientation === TabsOrientation.vertical ? (
@@ -542,6 +554,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
           isInverse={isInverse}
           onClick={handleEndScrollClick}
           orientation={orientation || TabsOrientation.horizontal}
+          ref={nextButtonRef}
           theme={theme}
         >
           {orientation === TabsOrientation.vertical ? (
