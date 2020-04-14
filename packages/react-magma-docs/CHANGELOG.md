@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.35](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.34...v2.0.0-beta.35) (2020-04-14)
+
+
+### Features
+
+* **banner:** start of banner alert ([d32805e](http://stash.corp.web:7999/FRONT/react-magma/commits/d32805e))
+* **banner alerrt:** action buttons ([e685812](http://stash.corp.web:7999/FRONT/react-magma/commits/e685812))
+* **banner alert:** close button and icons ([fd2b980](http://stash.corp.web:7999/FRONT/react-magma/commits/fd2b980))
+
+
+
+
+
 # [2.0.0-beta.34](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.33...v2.0.0-beta.34) (2020-04-09)
 
 

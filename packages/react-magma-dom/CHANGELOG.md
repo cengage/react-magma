@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.35](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.34...v2.0.0-beta.35) (2020-04-14)
+
+
+### Bug Fixes
+
+* **banners:** fix padding ([1fc6cc1](http://stash.corp.web:7999/FRONT/react-magma/commits/1fc6cc1))
+
+
+### Features
+
+* **alert:** close button styles ([b64acc9](http://stash.corp.web:7999/FRONT/react-magma/commits/b64acc9))
+* **banner:** add icon ([6e6102d](http://stash.corp.web:7999/FRONT/react-magma/commits/6e6102d))
+* **banner:** start of banner alert ([d32805e](http://stash.corp.web:7999/FRONT/react-magma/commits/d32805e))
+* **banner alerrt:** action buttons ([e685812](http://stash.corp.web:7999/FRONT/react-magma/commits/e685812))
+* **banner alert:** close button and icons ([fd2b980](http://stash.corp.web:7999/FRONT/react-magma/commits/fd2b980))
+* **modal:** add backdrop blur ([adc33be](http://stash.corp.web:7999/FRONT/react-magma/commits/adc33be))
+
+
+
+
+
 # [2.0.0-beta.34](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.33...v2.0.0-beta.34) (2020-04-09)
 
 
