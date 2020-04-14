@@ -14,6 +14,11 @@ import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';
 import { useGenerateId } from '../../utils';
 
+export enum CheckboxTextPosition {
+  left = 'left',
+  right = 'right' // default
+}
+
 export interface CheckboxProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   color?: string;
@@ -25,6 +30,7 @@ export interface CheckboxProps
   labelText: React.ReactNode;
   ref?: any;
   testId?: string;
+  textPosition?: CheckboxTextPosition;
 }
 
 export const HiddenLabelText = styled.span`
@@ -140,6 +146,7 @@ export const Checkbox: React.FunctionComponent<
     labelText,
     isTextVisuallyHidden,
     testId,
+    textPosition,
     ...other
   } = props;
 
@@ -156,6 +163,10 @@ export const Checkbox: React.FunctionComponent<
         onChange={handleChange}
       />
       <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
+        {!isTextVisuallyHidden &&
+          textPosition === CheckboxTextPosition.left &&
+          labelText}
+
         <StyledFakeInput
           checked={isChecked}
           color={color ? color : ''}
@@ -166,10 +177,11 @@ export const Checkbox: React.FunctionComponent<
         >
           <CheckIcon size={12} />
         </StyledFakeInput>
+
         {isTextVisuallyHidden ? (
           <HiddenLabelText>{labelText}</HiddenLabelText>
         ) : (
-          labelText
+          textPosition !== CheckboxTextPosition.left && labelText && labelText
         )}
       </StyledLabel>
     </StyledContainer>

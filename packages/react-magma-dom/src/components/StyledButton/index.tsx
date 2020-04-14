@@ -6,17 +6,17 @@ import {
   buildActiveColor,
   buildAfterBackground,
   buildAfterTopPosition,
+  buildButtonBaseHeight,
+  buildButtonBorderRadius,
+  buildButtonFontSize,
+  buildButtonIconOnlyHeight,
+  buildButtonIconOnlyWidth,
+  buildButtonPadding,
   buildBorderColor,
   buildButtonBackground,
   buildColor,
   buildFocusBackground,
-  buildFocusColor,
-  buttonBaseHeight,
-  buttonBorderRadius,
-  buttonFontSize,
-  buttonIconOnlyHeight,
-  buttonIconOnlyWidth,
-  buttonPadding
+  buildFocusColor
 } from './styles';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonProps } from '../Button';
@@ -31,7 +31,7 @@ interface StyledButtonProps extends ButtonProps {
 
 export const buttonStyles = props => css`
   align-items: center;
-  border-radius: ${buttonBorderRadius[props.shape]};
+  border-radius: ${buildButtonBorderRadius(props)};
   cursor: ${props.disabled ? 'not-allowed' : 'pointer'};
   display: ${props.isFullWidth ? 'flex' : 'inline-flex'};
   flex-shrink: 0;
@@ -49,14 +49,14 @@ export const buttonStyles = props => css`
   vertical-align: middle;
   touch-action: manipulation;
   white-space: nowrap;
-  font-size: ${buttonFontSize[props.size]};
+  font-size: ${buildButtonFontSize(props)};
   font-weight: 600;
   height: ${props.iconOnly
-    ? buttonIconOnlyHeight[props.size]
-    : buttonBaseHeight[props.size]};
-  padding: ${buttonPadding[props.size]};
+    ? buildButtonIconOnlyHeight(props)
+    : buildButtonBaseHeight(props)};
+  padding: ${buildButtonPadding(props)};
   width: ${props.iconOnly
-    ? buttonIconOnlyWidth[props.size]
+    ? buildButtonIconOnlyWidth(props)
     : props.isFullWidth
     ? '100%'
     : 'auto'};
