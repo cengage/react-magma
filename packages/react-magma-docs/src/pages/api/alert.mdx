@@ -45,7 +45,7 @@ This prop determines the icon and color scheme used to style the Alert.
 
 The `isDismissible` prop is optional, and if provided the Alert will render a dismiss button.
 Providing this property only causes the dismiss button to render; it does not control the dismiss behavior itself. If you include the `isDismissible` prop,
-you must also include a function in the `onDimiss` prop to handle the dismiss behavior.
+you must also include a function in the `onDismiss` prop to handle the dismiss behavior.
 
 The aria-label, by default is `Close this message` but can be overridden using the optional `closeAriaLabel` prop.
 
@@ -126,7 +126,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
         'If true, the focus state of the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
-    onDimiss: {
+    onDismiss: {
       type: {
         name: 'function',
       },
