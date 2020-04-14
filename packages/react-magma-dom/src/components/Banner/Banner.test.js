@@ -51,8 +51,8 @@ describe('Banner', () => {
       </Banner>
     );
 
-    const dismissableIconButton = getByLabelText('Test');
-    expect(dismissableIconButton).toBeInTheDocument();
+    const dismissibleIconButton = getByLabelText('Test');
+    expect(dismissibleIconButton).toBeInTheDocument();
   });
 
   it('should render an action button with an action that fires when clicked', () => {

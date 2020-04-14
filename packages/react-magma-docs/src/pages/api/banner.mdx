@@ -8,7 +8,7 @@ import { SimplePropsTable } from '../../components/props-table'
 
 # Banner Alerts
 
-Banner alerts are typically used for for system or application level alerts. They fill the full width of their container and are intended to be used without margins.
+Banner alerts are typically used for system or application level alerts. They fill the full width of their container and are intended to be used without margins.
 
 ## Basic Usage
 
@@ -20,13 +20,13 @@ This prop determines the icon and color scheme used to style the Banner.
         <Banner >Default (info) banner</Banner>
         <Banner variant='success'>Success banner</Banner>
         <Banner variant='warning'>Warning banner</Banner>
-        <Banner variant='danger'>Danger banner.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus rutrum nisl id justo placerat ullamcorper. Maecenas gravida ut velit sagittis lacinia.</Banner>
+        <Banner variant='danger'>Danger banner. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus rutrum nisl idjusto placerat ullamcorper. Maecenas gravida ut velit sagittis lacinia.</Banner>
       </>
 ```
 
-## Dismissable
+## Dismissible
 
-The isDismissible prop is optional, and if provided the Banner will render a dismiss button. Providing this property only causes the dismiss button to render; it does not control the dismiss behavior itself. If you include the isDismissible prop, you must also include a function in the onDimiss prop to handle the dismiss behavior.
+The isDismissible prop is optional, and if provided the Banner will render a dismiss button. Providing this property only causes the dismiss button to render; it does not control the dismiss behavior itself. If you include the isDismissible prop, you must also include a function in the onDismiss prop to handle the dismiss behavior.
 
 The aria-label, by default is Close this message but can be overridden using the optional closeAriaLabel prop.
 
@@ -43,8 +43,11 @@ The aria-label, by default is Close this message but can be overridden using the
 
 ## Action Button
 
+A single button can be added to a Banner Alert to provide the user with an action to take. The `actionButtonText` prop is a string that sets the text of the button.
+The `actionButtonOnClick` prop takes a function and fires when the action button is clicked. Both props must be present for the button to appear.
+
 ```.jsx
-        <Banner actionButtonText='Action' actionButtonOnClick={()=>{}}>Default banner</Banner>
+        <Banner actionButtonText='Action' actionButtonOnClick={()=>{alert('action button clicked!')}}>Default banner</Banner>
 ```
 
 ## Banner Props
@@ -53,6 +56,30 @@ The aria-label, by default is Close this message but can be overridden using the
 
 <SimplePropsTable
   propertyValues={{
+    actionButtonText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'The text of the action button.  Must be present for button to appear.',
+    },
+    actionButtonText: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description:
+        'Action that fires when the action button is clicked. Must be present for button to appear.',
+    },
+    closeAriaLabel: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'The text read by screen readers for the close button',
+      defaultValue: '"Close this message"',
+    },
     isDismissible: {
       type: {
         name: 'boolean',
@@ -61,6 +88,14 @@ The aria-label, by default is Close this message but can be overridden using the
       description:
         'If true, the component will be able to be dismissed and will include a close button',
       defaultValue: 'false',
+    },
+    onDismiss: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description:
+        'Action that fires when the close button is clicked (required when isDismissible is true)',
     },
     testId: {
       type: {
