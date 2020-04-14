@@ -40,7 +40,7 @@ const BannerContents = styled.div`
   display: flex;
   flex-grow: 1;
   justify-content: center;
-  padding: 10px 15px;
+  padding: 13px 15px;
 
   @media (max-width: 600px) {
     justify-content: flex-start;
