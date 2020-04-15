@@ -378,14 +378,13 @@ The `isFullWidth` prop is an optional boolean that will cause the tabs to take u
 This is an example with custom element in Tabs.
 By default we use `button` element in Tabs, but you can include your custom element inside a `Tab` component.
 In this case, please put all children inside the `component` prop instead of putting the content directly inside each `Tab`.
-If you would like to use `Tab` like an route switcher, keep the `path` prop in `Tab` equal to desired path.
 
 ```.jsx
   <TabsContainer>
     <Tabs>
-      <Tab path="/main" component={<Link to="/api/tabs">Main page</Link>}/>
-      <Tab path="/faq" component={<Link to="/api/tabs#nav_tabs">FAQ</Link>}/>
-      <Tab path="/about" component={<Link to="/api/tabs#vertical_nav_tabs">About us</Link>}/>
+      <Tab component={<Link to="/api/tabs">Main page</Link>}/>
+      <Tab component={<Link to="/api/tabs#nav_tabs">FAQ</Link>}/>
+      <Tab component={<Link to="/api/tabs#vertical_nav_tabs">About us</Link>}/>
     </Tabs>
   </TabsContainer>
 ```
@@ -549,9 +548,9 @@ This prop is specified on the `Tabs` component.
 ```.jsx
   <TabsContainer>
     <Tabs orientation='vertical'>
-      <Tab path="/main" icon={<GraduationCapIcon />}  component={<Link to="/api/tabs">Main page</Link>}/>
-      <Tab path="/faq" icon={<AndroidIcon />}  component={<Link to="/api/tabs#nav_tabs">FAQ</Link>}/>
-      <Tab path="/about" icon={<BellIcon />}  component={<Link to="/api/tabs#vertical_nav_tabs">About us</Link>}/>
+      <Tab icon={<GraduationCapIcon />}  component={<Link to="/api/tabs">Main page</Link>}/>
+      <Tab icon={<AndroidIcon />}  component={<Link to="/api/tabs#nav_tabs">FAQ</Link>}/>
+      <Tab icon={<BellIcon />}  component={<Link to="/api/tabs#vertical_nav_tabs">About us</Link>}/>
     </Tabs>
   </TabsContainer>
 ```
@@ -805,14 +804,6 @@ When using the `component` props in the `Tab` component we will disregard anythi
       },
       required: false,
       description: 'The index of your Tab.',
-    },
-    path: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        "The path link. It's needed in case you are using Link component for example by React Router library. Path must be equal to expected route.",
     },
     testId: {
       type: {

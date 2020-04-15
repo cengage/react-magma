@@ -44,12 +44,9 @@ describe('Tab', () => {
   it('should render a tab with a component and an icon', () => {
     const { getByTestId } = render(
       <Tab
-        component={
-          <a href="google.com" data-testid="component">
-            Test Component
-          </a>
-        }
+        component={<a href="google.com">Test Component</a>}
         icon={<CheckIcon testId="icon" />}
+        testId="component"
       />
     );
 

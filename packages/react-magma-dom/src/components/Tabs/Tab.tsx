@@ -22,7 +22,6 @@ export interface BaseTabProps
   isFullWidth?: boolean;
   isInverse?: boolean;
   orientation?: TabsOrientation;
-  path?: string;
   ref?: any;
   testId?: string;
   theme?: any;
@@ -186,6 +185,7 @@ export const StyledCustomTab: React.FunctionComponent<TabComponentProps> = ({
     };
 
     return cloneElement(component, {
+      ...props,
       css: TabStyles(props),
       ...style,
       onClick,
@@ -247,7 +247,7 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
   ) => {
     let component;
     let children;
-    const { icon, index, path, testId, ...rest } = props;
+    const { icon, index, testId, ...rest } = props;
     const { activeTabIndex } = React.useContext(TabsContainerContext);
     const isActive = index === activeTabIndex;
 
@@ -265,13 +265,6 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
     } else if (instanceOfChildrenTab(props)) {
       children = props.children;
     }
-
-    React.useEffect(() => {
-      path &&
-        window &&
-        path === window.location.pathname &&
-        changeHandler(index);
-    }, [path]);
 
     const theme = React.useContext(ThemeContext);
     const isIconOnly = !children;
