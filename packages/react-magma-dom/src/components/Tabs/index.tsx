@@ -342,21 +342,26 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
         return;
       }
 
-      if (tabMeta[start] < tabsMeta[start]) {
+      const prevButtonOffset = vertical
+        ? Number(prevButtonRef.current.offsetHeight)
+        : Number(prevButtonRef.current.offsetWidth);
+      const nextButtonOffset = vertical
+        ? Number(nextButtonRef.current.offsetHeight)
+        : Number(nextButtonRef.current.offsetWidth);
+
+      if (tabMeta[start] < Number(tabsMeta[start]) + prevButtonOffset) {
         // left side of button is out of view
-        const prevButtonWidth = Number(prevButtonRef.current.offsetWidth);
         const nextScrollStart =
           Number(tabsMeta[scrollStart]) +
           (Number(tabMeta[start]) - Number(tabsMeta[start])) -
-          prevButtonWidth;
+          prevButtonOffset;
         scroll(nextScrollStart);
-      } else if (tabMeta[end] > tabsMeta[end]) {
+      } else if (tabMeta[end] > Number(tabsMeta[end]) - nextButtonOffset) {
         // right side of button is out of view
-        const nextButtonWidth = Number(nextButtonRef.current.offsetWidth);
         const nextScrollStart =
           Number(tabsMeta[scrollStart]) +
           (Number(tabMeta[end]) - Number(tabsMeta[end])) +
-          nextButtonWidth;
+          nextButtonOffset;
         scroll(nextScrollStart);
       }
     }
