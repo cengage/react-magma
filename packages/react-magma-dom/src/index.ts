@@ -1,6 +1,7 @@
 export { Alert, AlertVariant } from './components/Alert';
 export { Announce } from './components/Announce';
 export { Badge, BadgeColor } from './components/Badge';
+export { Banner } from './components/Banner';
 export {
   BaseInput,
   InputIconPosition,

@@ -12,7 +12,7 @@ import { ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { useGenerateId } from '../../utils';
 
-const VARIANT_ICON = {
+export const VARIANT_ICON = {
   info: Info2Icon,
   success: CheckIcon,
   warning: NotificationIcon,
@@ -43,10 +43,8 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const transitionDuration = 500;
 
-function buildAlertBackground(props) {
+export function buildAlertBackground(props) {
   switch (props.variant) {
-    case 'info':
-      return props.theme.colors.neutral01;
     case 'success':
       return props.theme.colors.success01;
     case 'warning':
@@ -180,11 +178,6 @@ const IconWrapper = styled.span<{ isToast?: boolean }>`
 
 const DismissibleIconWrapper = styled.span<AlertProps>`
   ${IconWrapperStyles}
-
-  svg {
-    height: 13px;
-    width: 13px;
-  }
 `;
 
 const whitelistProps = ['icon', 'isInverse', 'theme', 'variant'];
@@ -303,7 +296,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
               aria-label={
                 closeAriaLabel ? closeAriaLabel : 'Close this message'
               }
-              icon={<CrossIcon />}
+              icon={<CrossIcon size={13} />}
               isInverse
               onClick={forceDismiss || handleDismiss}
               theme={theme}
