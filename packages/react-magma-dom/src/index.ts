@@ -1,6 +1,7 @@
 export { Alert, AlertVariant } from './components/Alert';
 export { Announce } from './components/Announce';
 export { Badge, BadgeColor } from './components/Badge';
+export { Banner } from './components/Banner';
 export {
   BaseInput,
   InputIconPosition,
@@ -18,10 +19,17 @@ export {
   ButtonTextTransform,
   ButtonType
 } from './components/Button';
-export { Checkbox } from './components/Checkbox';
+export { Checkbox, CheckboxTextPosition } from './components/Checkbox';
 export { Card, CardAlignment, CardCalloutType } from './components/Card';
 export { CardBody } from './components/Card/CardBody';
 export { CardHeading } from './components/Card/CardHeading';
+export { Dropdown } from './components/Dropdown';
+export { DropdownContent } from './components/Dropdown/DropdownContent';
+export { DropdownDivider } from './components/Dropdown/DropdownDivider';
+export { DropdownHeader } from './components/Dropdown/DropdownHeader';
+export { DropdownMenuItem } from './components/Dropdown/DropdownMenuItem';
+export { DropdownSplitButton } from './components/Dropdown/DropdownSplitButton';
+export { DropdownButton } from './components/Dropdown/DropdownButton';
 export { FormGroup } from './components/FormGroup';
 export { Heading } from './components/Heading';
 export { HideAtBreakpoint } from './components/HideAtBreakpoint';
@@ -32,7 +40,7 @@ export { Label } from './components/Label';
 export { LinkButton } from './components/LinkButton';
 export { LoadingIndicator } from './components/LoadingIndicator';
 export { RadioGroup } from './components/RadioGroup';
-export { Radio } from './components/Radio';
+export { Radio, RadioTextPosition } from './components/Radio';
 export { Select } from './components/Select';
 export { AsyncSelect } from './components/AsyncSelect';
 export { CreatableSelect } from './components/CreatableSelect';
@@ -43,7 +51,7 @@ export { SkipLink } from './components/SkipLink';
 export { SkipLinkContent } from './components/SkipLinkContent';
 export { Spinner } from './components/Spinner';
 export { Toast } from './components/Toast';
-export { Toggle } from './components/Toggle';
+export { Toggle, ToggleTextPosition } from './components/Toggle';
 export { Tooltip, EnumTooltipPosition } from './components/Tooltip';
 export { VisuallyHidden } from './components/VisuallyHidden';
 export { DatePicker } from './components/DatePicker';

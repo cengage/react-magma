@@ -49,6 +49,7 @@ const ModalContainer = styled.div`
 
 const ModalBackdrop = styled.div<{ isExiting?: boolean }>`
   animation: ${props => (props.isExiting ? 'fadeout 500ms' : 'fadein 500ms')};
+  backdrop-filter: blur(3px);
   background: rgba(0, 0, 0, 0.6);
   bottom: 0;
   left: 0;

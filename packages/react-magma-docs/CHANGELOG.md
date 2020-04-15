@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.37](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.36...v2.0.0-beta.37) (2020-04-15)
+
+**Note:** Version bump only for package react-magma-docs
+
+
+
+
+
+# [2.0.0-beta.36](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.35...v2.0.0-beta.36) (2020-04-14)
+
+
+### Features
+
+* **dropdown:** active item ([529d123](http://stash.corp.web:7999/FRONT/react-magma/commits/529d123))
+* **dropdown:** add examples with checkboxes, add textposition prop ([f843e38](http://stash.corp.web:7999/FRONT/react-magma/commits/f843e38))
+* **dropdown:** add max-height to menu ([ff59fea](http://stash.corp.web:7999/FRONT/react-magma/commits/ff59fea))
+* **dropdown:** add value prop for active items ([fc697ec](http://stash.corp.web:7999/FRONT/react-magma/commits/fc697ec))
+* **dropdown:** allow maxHeight and width props to be numbers ([f406cf5](http://stash.corp.web:7999/FRONT/react-magma/commits/f406cf5))
+* **dropdown:** auto-assign index to dropdown ([532577b](http://stash.corp.web:7999/FRONT/react-magma/commits/532577b))
+* **dropdown:** disabled item ([4eb23b3](http://stash.corp.web:7999/FRONT/react-magma/commits/4eb23b3))
+* **dropdown:** dividers and headings ([89c371b](http://stash.corp.web:7999/FRONT/react-magma/commits/89c371b))
+* **dropdown:** more examples, tests, focus button on esc ([32b077f](http://stash.corp.web:7999/FRONT/react-magma/commits/32b077f))
+* **dropdown:** more form examples ([1dc9d00](http://stash.corp.web:7999/FRONT/react-magma/commits/1dc9d00))
+* **dropdown:** move menu, toggle to independant components ([3f203a7](http://stash.corp.web:7999/FRONT/react-magma/commits/3f203a7))
+* **dropdown:** rename component, remove list markup, style fix ([04512aa](http://stash.corp.web:7999/FRONT/react-magma/commits/04512aa))
+* **dropdown:** renamed components ([ca81543](http://stash.corp.web:7999/FRONT/react-magma/commits/ca81543))
+* **dropdown:** skip focusing disabled item ([79e046a](http://stash.corp.web:7999/FRONT/react-magma/commits/79e046a))
+* **dropdown:** split button ([247e9ba](http://stash.corp.web:7999/FRONT/react-magma/commits/247e9ba))
+* **dropdown:** start component and basic styles ([9947056](http://stash.corp.web:7999/FRONT/react-magma/commits/9947056))
+* **dropdown:** very start of dropdown component ([4e15f75](http://stash.corp.web:7999/FRONT/react-magma/commits/4e15f75))
+
+
+
+
+
+# [2.0.0-beta.35](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.34...v2.0.0-beta.35) (2020-04-14)
+
+
+### Features
+
+* **banner:** start of banner alert ([d32805e](http://stash.corp.web:7999/FRONT/react-magma/commits/d32805e))
+* **banner alerrt:** action buttons ([e685812](http://stash.corp.web:7999/FRONT/react-magma/commits/e685812))
+* **banner alert:** close button and icons ([fd2b980](http://stash.corp.web:7999/FRONT/react-magma/commits/fd2b980))
+
+
+
+
+
 # [2.0.0-beta.34](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.33...v2.0.0-beta.34) (2020-04-09)
 
 

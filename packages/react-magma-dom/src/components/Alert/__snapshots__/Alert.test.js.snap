@@ -3,7 +3,7 @@
 exports[`Alert Dismissible should render a dismissible icon button with the warning variant 1`] = `
 <button
   aria-label="Close this message"
-  class="css-1g512hy"
+  class="css-o5nfe3"
   icon="[object Object]"
   id="ignoreButton"
   theme="[object Object]"
@@ -12,10 +12,10 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
     aria-labelledby="ignoreButton"
     class="icon"
     fill="currentColor"
-    height="18"
+    height="13"
     id="ignoreSvg"
     viewBox="0 0 28 28"
-    width="18"
+    width="13"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path

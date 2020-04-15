@@ -1,0 +1,128 @@
+---
+title: 'Banner Alerts'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { Banner, Button } from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
+
+# Banner Alerts
+
+Banner alerts are typically used for system or application level alerts. They fill the full width of their container and are intended to be used without margins.
+
+## Basic Usage
+
+The `variant` prop accepts the following values: `info`, `success`, `warning` and `danger`, with info being the default value.
+This prop determines the icon and color scheme used to style the Banner.
+
+```.jsx
+      <>
+        <Banner >Default (info) banner</Banner>
+        <Banner variant='success'>Success banner</Banner>
+        <Banner variant='warning'>Warning banner</Banner>
+        <Banner variant='danger'>Danger banner. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus rutrum nisl idjusto placerat ullamcorper. Maecenas gravida ut velit sagittis lacinia.</Banner>
+      </>
+```
+
+## Dismissible
+
+The isDismissible prop is optional, and if provided the Banner will render a dismiss button. Providing this property only causes the dismiss button to render; it does not control the dismiss behavior itself. If you include the isDismissible prop, you must also include a function in the onDismiss prop to handle the dismiss behavior.
+
+The aria-label, by default is Close this message but can be overridden using the optional closeAriaLabel prop.
+
+```.jsx
+(props) => {
+      const [showBanner, updateShowBanner] = React.useState(true);
+
+      return (<>
+        { showBanner && <Banner isDismissible onDismiss={() => updateShowBanner(false)} variant="success">Success!  You may now dismiss this banner</Banner>}
+        { !showBanner && <Button onClick={() => updateShowBanner(true)} size="small" color="secondary">Show Banner Again</Button>}
+      </>)
+    }
+```
+
+## Action Button
+
+A single button can be added to a Banner Alert to provide the user with an action to take. The `actionButtonText` prop is a string that sets the text of the button.
+The `actionButtonOnClick` prop takes a function and fires when the action button is clicked. Both props must be present for the button to appear.
+
+```.jsx
+        <Banner actionButtonText='Action' actionButtonOnClick={()=>{alert('action button clicked!')}}>Default banner</Banner>
+```
+
+## Banner Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<SimplePropsTable
+  propertyValues={{
+    actionButtonText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'The text of the action button.  Must be present for button to appear.',
+    },
+    actionButtonText: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description:
+        'Action that fires when the action button is clicked. Must be present for button to appear.',
+    },
+    closeAriaLabel: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'The text read by screen readers for the close button',
+      defaultValue: '"Close this message"',
+    },
+    isDismissible: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will be able to be dismissed and will include a close button',
+      defaultValue: 'false',
+    },
+    onDismiss: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description:
+        'Action that fires when the close button is clicked (required when isDismissible is true)',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+    variant: {
+      type: {
+        name: 'enum',
+        options: [
+          'AlertVariant.info',
+          'AlertVariant.success',
+          'AlertVariant.warning',
+          'AlertVariant.danger',
+        ],
+      },
+      required: false,
+      description:
+        'The variant of the alert, indicating its function in the UI',
+      defaultValue: 'info',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout {...props} components={{ Banner, Button }} />
+)
