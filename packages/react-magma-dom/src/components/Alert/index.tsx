@@ -30,6 +30,7 @@ export enum AlertVariant {
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   closeAriaLabel?: string;
   forceDismiss?: () => void;
+  headerText?: string;
   isExiting?: boolean;
   isDismissed?: boolean;
   isDismissible?: boolean;
@@ -38,6 +39,7 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   onDismiss?: () => void;
   ref?: any;
   testId?: string;
+  toastCount?: number;
   variant?: AlertVariant;
 }
 
@@ -62,17 +64,13 @@ const StyledAlert = styled.div<AlertProps>`
     props.isExiting
       ? `fadeout ${transitionDuration}ms`
       : `fadein ${transitionDuration}ms`};
-  background-color: ${props => buildAlertBackground(props)};
-  border-radius: 3px;
-  color: ${props =>
-    props.variant === 'warning'
-      ? props.theme.colors.neutral01
-      : props.theme.colors.neutral08};
+  
   display: flex;
-  position: relative;
-  padding: 0;
+  flex-direction: column;
   margin-bottom: 20px;
   max-width: 100%;
+  padding: 0;
+  position: relative;
 
   &:focus {
     outline: 2px dotted ${props =>
@@ -82,15 +80,29 @@ const StyledAlert = styled.div<AlertProps>`
     }
   }
 
+
+  ${props =>
+    props.isToast &&
+    props.toastCount > 1 &&
+    css`
+      &:before {
+        background: ${props.theme.colors.neutral05};
+        border-radius: 5px;
+        content: '';
+        height: 100%;
+        position: absolute;
+        top: -5px;
+        left: 5px;
+        right: 5px;
+      }
+    `}
+
   ${props =>
     props.isToast &&
     css`
       animation: ${props.isExiting
         ? `slideout ${transitionDuration}ms`
         : `slidein ${transitionDuration}ms`};
-      border: 1px solid ${props.theme.colors.neutral08};
-      border-radius: 5px;
-      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.4);
       min-width: 375px;
       margin: 0 auto;
 
@@ -150,6 +162,30 @@ const StyledAlert = styled.div<AlertProps>`
       }
     }
   }
+`;
+
+const StyledAlertInner = styled.div<AlertProps>`
+  background-color: ${props => buildAlertBackground(props)};
+  border-radius: 3px;
+  border: 1px solid ${props => props.theme.colors.neutral08};
+  border-radius: 5px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.4);
+  color: ${props =>
+    props.variant === 'warning'
+      ? props.theme.colors.neutral01
+      : props.theme.colors.neutral08};
+  position: relative;
+  z-index: 2;
+`;
+
+const AlertHeader = styled.div`
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 11px;
+  padding: 5px 15px;
+`;
+
+const AlertBody = styled.div`
+  display: flex;
 `;
 
 const AlertContents = styled.div`
@@ -234,18 +270,19 @@ function renderIcon(variant = 'info', isToast?: boolean) {
 export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
   (
     {
-      closeAriaLabel,
-      id: defaultId,
-      testId,
-      variant,
       children,
+      closeAriaLabel,
       forceDismiss,
+      headerText,
+      id: defaultId,
       isDismissed,
       isDismissible,
       isExiting: externalIsExiting,
       isInverse,
       isToast,
       onDismiss,
+      testId,
+      variant,
       ...other
     }: AlertProps,
     ref: any
@@ -277,33 +314,38 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
     return (
       <StyledAlert
         {...other}
-        id={id}
         data-testid={testId}
-        ref={ref}
+        id={id}
         tabIndex={-1}
         isInverse={isInverse}
         isExiting={isExiting}
         isToast={isToast}
-        variant={variant}
+        ref={ref}
         theme={theme}
       >
-        {renderIcon(variant, isToast)}
-        <AlertContents>{children}</AlertContents>
-        {isDismissible && (
-          <DismissibleIconWrapper variant={variant} theme={theme}>
-            <DismissButton
-              alertVariant={variant}
-              aria-label={
-                closeAriaLabel ? closeAriaLabel : 'Close this message'
-              }
-              icon={<CrossIcon size={13} />}
-              isInverse
-              onClick={forceDismiss || handleDismiss}
-              theme={theme}
-              variant={ButtonVariant.link}
-            />
-          </DismissibleIconWrapper>
-        )}
+        <StyledAlertInner theme={theme} variant={variant}>
+          {headerText && <AlertHeader>{headerText}</AlertHeader>}
+
+          <AlertBody>
+            {renderIcon(variant, isToast)}
+            <AlertContents>{children}</AlertContents>
+            {isDismissible && (
+              <DismissibleIconWrapper variant={variant} theme={theme}>
+                <DismissButton
+                  alertVariant={variant}
+                  aria-label={
+                    closeAriaLabel ? closeAriaLabel : 'Close this message'
+                  }
+                  icon={<CrossIcon size={13} />}
+                  isInverse
+                  onClick={forceDismiss || handleDismiss}
+                  theme={theme}
+                  variant={ButtonVariant.link}
+                />
+              </DismissibleIconWrapper>
+            )}
+          </AlertBody>
+        </StyledAlertInner>
       </StyledAlert>
     );
   }

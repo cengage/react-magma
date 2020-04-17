@@ -30,31 +30,39 @@ describe('Alert', () => {
     expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-2endn5"
+    class="css-1k7y0kd"
     id="defaultVariant"
     tabindex="-1"
   >
-    <span
-      class="css-10b97rj-IconWrapperStyles-IconWrapper"
-    >
-      <svg
-        class="icon"
-        fill="currentColor"
-        height="20"
-        viewBox="0 0 27.3 27.3"
-        width="20"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M12.65,9.9V7.14h2.7V9.9ZM14,25A11,11,0,1,0,3,14,11,11,0,0,0,14,25ZM14,.35A13.65,13.65,0,1,1,.35,14,13.62,13.62,0,0,1,14,.35ZM12.65,20.86V12.65h2.7v8.21Z"
-          transform="translate(-0.35 -0.35)"
-        />
-      </svg>
-    </span>
     <div
-      class="css-1lmow5h"
+      class="css-1vllxzk"
     >
-      Test Alert Text
+      <div
+        class="css-ov1ktg"
+      >
+        <span
+          class="css-n0a44h-IconWrapperStyles-IconWrapper"
+        >
+          <svg
+            class="icon"
+            fill="currentColor"
+            height="20"
+            viewBox="0 0 27.3 27.3"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12.65,9.9V7.14h2.7V9.9ZM14,25A11,11,0,1,0,3,14,11,11,0,0,0,14,25ZM14,.35A13.65,13.65,0,1,1,.35,14,13.62,13.62,0,0,1,14,.35ZM12.65,20.86V12.65h2.7v8.21Z"
+              transform="translate(-0.35 -0.35)"
+            />
+          </svg>
+        </span>
+        <div
+          class="css-1lmow5h"
+        >
+          Test Alert Text
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -83,31 +91,39 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-2endn5"
+    class="css-1k7y0kd"
     id="auto-generated-id"
     tabindex="-1"
   >
-    <span
-      class="css-10b97rj-IconWrapperStyles-IconWrapper"
-    >
-      <svg
-        class="icon"
-        fill="currentColor"
-        height="20"
-        viewBox="0 0 27.3 27.3"
-        width="20"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M12.65,9.9V7.14h2.7V9.9ZM14,25A11,11,0,1,0,3,14,11,11,0,0,0,14,25ZM14,.35A13.65,13.65,0,1,1,.35,14,13.62,13.62,0,0,1,14,.35ZM12.65,20.86V12.65h2.7v8.21Z"
-          transform="translate(-0.35 -0.35)"
-        />
-      </svg>
-    </span>
     <div
-      class="css-1lmow5h"
+      class="css-1vllxzk"
     >
-      Test Alert Text
+      <div
+        class="css-ov1ktg"
+      >
+        <span
+          class="css-n0a44h-IconWrapperStyles-IconWrapper"
+        >
+          <svg
+            class="icon"
+            fill="currentColor"
+            height="20"
+            viewBox="0 0 27.3 27.3"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12.65,9.9V7.14h2.7V9.9ZM14,25A11,11,0,1,0,3,14,11,11,0,0,0,14,25ZM14,.35A13.65,13.65,0,1,1,.35,14,13.62,13.62,0,0,1,14,.35ZM12.65,20.86V12.65h2.7v8.21Z"
+              transform="translate(-0.35 -0.35)"
+            />
+          </svg>
+        </span>
+        <div
+          class="css-1lmow5h"
+        >
+          Test Alert Text
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -123,31 +139,39 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-1weoway"
+    class="css-1k7y0kd"
     id="auto-generated-id"
     tabindex="-1"
   >
-    <span
-      class="css-10b97rj-IconWrapperStyles-IconWrapper"
-    >
-      <svg
-        class="icon"
-        fill="currentColor"
-        height="20"
-        viewBox="0 0 29.37 21.88"
-        width="20"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-          transform="translate(-0.87 -3.06)"
-        />
-      </svg>
-    </span>
     <div
-      class="css-1lmow5h"
+      class="css-k9e234"
     >
-      Test Alert Text
+      <div
+        class="css-ov1ktg"
+      >
+        <span
+          class="css-n0a44h-IconWrapperStyles-IconWrapper"
+        >
+          <svg
+            class="icon"
+            fill="currentColor"
+            height="20"
+            viewBox="0 0 29.37 21.88"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+              transform="translate(-0.87 -3.06)"
+            />
+          </svg>
+        </span>
+        <div
+          class="css-1lmow5h"
+        >
+          Test Alert Text
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -163,30 +187,38 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-x3vcca"
+    class="css-1k7y0kd"
     id="auto-generated-id"
     tabindex="-1"
   >
-    <span
-      class="css-10b97rj-IconWrapperStyles-IconWrapper"
-    >
-      <svg
-        class="icon"
-        fill="currentColor"
-        height="20"
-        viewBox="0 0 40 40"
-        width="20"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M20,4.5625 C15.877,4.5625 11.9998125,6.168 9.0845,9.0845 C6.1691875,12.001 4.5625,15.877 4.5625,20 C4.5625,24.123 6.168,28.0001875 9.0845,30.9155 C12.001,33.8308125 15.877,35.4375 20,35.4375 C24.123,35.4375 28.0001875,33.832 30.9155,30.9155 C33.8308125,27.999 35.4375,24.123 35.4375,20 C35.4375,15.877 33.832,11.9998125 30.9155,9.0845 C27.999,6.1691875 24.123,4.5625 20,4.5625 Z M20,1 L20,1 C30.4939375,1 39,9.5060625 39,20 C39,30.4939375 30.4939375,39 20,39 C9.5060625,39 1,30.4939375 1,20 C1,9.5060625 9.5060625,1 20,1 Z M17.625,27.125 L22.375,27.125 L22.375,31.875 L17.625,31.875 L17.625,27.125 Z M17.625,8.125 L22.375,8.125 L22.375,22.375 L17.625,22.375 L17.625,8.125 Z"
-        />
-      </svg>
-    </span>
     <div
-      class="css-1lmow5h"
+      class="css-1xn213x"
     >
-      Test Alert Text
+      <div
+        class="css-ov1ktg"
+      >
+        <span
+          class="css-n0a44h-IconWrapperStyles-IconWrapper"
+        >
+          <svg
+            class="icon"
+            fill="currentColor"
+            height="20"
+            viewBox="0 0 40 40"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20,4.5625 C15.877,4.5625 11.9998125,6.168 9.0845,9.0845 C6.1691875,12.001 4.5625,15.877 4.5625,20 C4.5625,24.123 6.168,28.0001875 9.0845,30.9155 C12.001,33.8308125 15.877,35.4375 20,35.4375 C24.123,35.4375 28.0001875,33.832 30.9155,30.9155 C33.8308125,27.999 35.4375,24.123 35.4375,20 C35.4375,15.877 33.832,11.9998125 30.9155,9.0845 C27.999,6.1691875 24.123,4.5625 20,4.5625 Z M20,1 L20,1 C30.4939375,1 39,9.5060625 39,20 C39,30.4939375 30.4939375,39 20,39 C9.5060625,39 1,30.4939375 1,20 C1,9.5060625 9.5060625,1 20,1 Z M17.625,27.125 L22.375,27.125 L22.375,31.875 L17.625,31.875 L17.625,27.125 Z M17.625,8.125 L22.375,8.125 L22.375,22.375 L17.625,22.375 L17.625,8.125 Z"
+            />
+          </svg>
+        </span>
+        <div
+          class="css-1lmow5h"
+        >
+          Test Alert Text
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -202,31 +234,39 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-14rseox"
+    class="css-1k7y0kd"
     id="auto-generated-id"
     tabindex="-1"
   >
-    <span
-      class="css-10b97rj-IconWrapperStyles-IconWrapper"
-    >
-      <svg
-        class="icon"
-        fill="currentColor"
-        height="20"
-        viewBox="0 0 28 28"
-        width="20"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M23.9,4.1A14,14,0,0,0,4.1,23.9,14,14,0,0,0,23.9,4.1Zm.6,9.9a10.48,10.48,0,0,1-1.94,6.08L7.92,5.44A10.5,10.5,0,0,1,24.5,14Zm-21,0A10.48,10.48,0,0,1,5.44,7.92L20.08,22.56A10.5,10.5,0,0,1,3.5,14Z"
-          transform="translate(0)"
-        />
-      </svg>
-    </span>
     <div
-      class="css-1lmow5h"
+      class="css-c2z4ar"
     >
-      Test Alert Text
+      <div
+        class="css-ov1ktg"
+      >
+        <span
+          class="css-n0a44h-IconWrapperStyles-IconWrapper"
+        >
+          <svg
+            class="icon"
+            fill="currentColor"
+            height="20"
+            viewBox="0 0 28 28"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M23.9,4.1A14,14,0,0,0,4.1,23.9,14,14,0,0,0,23.9,4.1Zm.6,9.9a10.48,10.48,0,0,1-1.94,6.08L7.92,5.44A10.5,10.5,0,0,1,24.5,14Zm-21,0A10.48,10.48,0,0,1,5.44,7.92L20.08,22.56A10.5,10.5,0,0,1,3.5,14Z"
+              transform="translate(0)"
+            />
+          </svg>
+        </span>
+        <div
+          class="css-1lmow5h"
+        >
+          Test Alert Text
+        </div>
+      </div>
     </div>
   </div>
 </div>

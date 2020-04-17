@@ -101,6 +101,9 @@ export const Toast: React.FunctionComponent<ToastProps> = (
 
   const id = useGenerateId(defaultId);
 
+  const toastCount = 1;
+  const headerText = toastCount > 1 ? `1 of ${toastCount} messages` : null;
+
   return (
     <ToastWrapper
       onMouseEnter={handleMouseEnter}
@@ -109,15 +112,17 @@ export const Toast: React.FunctionComponent<ToastProps> = (
     >
       <Alert
         {...other}
+        forceDismiss={clearTimeoutAndDismiss}
+        headerText={headerText}
         id={id}
-        isToast
-        testId={testId}
-        style={{ ...alertStyle }}
         isDismissible={isDismissible}
         isDismissed={isDismissed}
-        variant={variant}
-        forceDismiss={clearTimeoutAndDismiss}
+        isToast
         onDismiss={props.onDismiss}
+        style={{ ...alertStyle }}
+        testId={testId}
+        toastCount={toastCount}
+        variant={variant}
       >
         {children}
       </Alert>

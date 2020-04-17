@@ -152,11 +152,13 @@ describe('Toast', () => {
   });
 
   it('should change the variant of the toast when passed in different variant', () => {
-    const { getByText } = render(
-      <Toast variant="success">Toast Content</Toast>
+    const { getByTestId } = render(
+      <Toast testId="test" variant="success">
+        Toast Content
+      </Toast>
     );
 
-    expect(getByText('Toast Content').parentElement).toHaveStyleRule(
+    expect(getByTestId('test').firstChild).toHaveStyleRule(
       'background-color',
       '#3A8200'
     );
