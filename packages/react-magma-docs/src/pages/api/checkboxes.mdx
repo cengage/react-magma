@@ -183,6 +183,21 @@ Adding the optional boolean prop `disabled` will apply disabled styles and add t
     </FormGroup>
 ```
 
+## Text Position
+
+Use the optional prop `textPosition` to position the label text on either side of the checkbox.
+The `textPosition` property takes the values `left` and `right`. The default value is `right`.
+
+```.jsx
+  <div>
+    <Checkbox
+        labelText='Text left'
+        textPosition='left' />
+    <Checkbox
+        labelText='Text right' />
+    </div>
+```
+
 ## Visually Hidden Label
 
 Adding the `isTextVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
@@ -365,6 +380,16 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       required: false,
       description:
         'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+    textPosition: {
+      type: {
+        name: 'enum',
+        options: ['CheckboxTextPosition.left', 'CheckboxTextPosition.right'],
+      },
+      required: false,
+      description:
+        'Whether the label appears to the left of the right of the checkbox',
+      defaultValue: 'right',
     },
   }}
 />

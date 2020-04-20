@@ -10,7 +10,7 @@ export interface CardProps extends React.LabelHTMLAttributes<HTMLDivElement> {
   hasDropShadow?: boolean;
   isInverse?: boolean;
   testId?: string;
-  width?: string;
+  width?: string | number;
 }
 
 export enum CardAlignment {
@@ -81,12 +81,18 @@ export const Card: React.FunctionComponent<CardProps> = (props: CardProps) => {
 
   const theme = React.useContext(ThemeContext);
 
+  const widthString = width
+    ? typeof width === 'number'
+      ? `${width}px`
+      : width
+    : 'auto';
+
   return (
     <StyledCard
       {...other}
       align={align ? align : CardAlignment.left}
       data-testid={testId}
-      width={width ? width : 'auto'}
+      width={widthString}
       theme={theme}
     >
       {children}

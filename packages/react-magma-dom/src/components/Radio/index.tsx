@@ -16,6 +16,11 @@ import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useGenerateId } from '../../utils';
 
+export enum RadioTextPosition {
+  left = 'left',
+  right = 'right' // default
+}
+
 export interface RadioProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   css?: any; // Adding css prop to fix emotion error
@@ -28,6 +33,7 @@ export interface RadioProps
   labelText: React.ReactNode;
   ref?: any;
   testId?: string;
+  textPosition?: RadioTextPosition;
 }
 
 const HiddenLabelText = styled.span`
@@ -113,6 +119,7 @@ export const Radio: React.FunctionComponent<RadioProps> = React.forwardRef(
       labelStyle,
       labelText,
       testId,
+      textPosition,
       value,
       ...other
     } = props;
@@ -136,6 +143,10 @@ export const Radio: React.FunctionComponent<RadioProps> = React.forwardRef(
           onFocus={context.onFocus}
         />
         <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
+          {!isTextVisuallyHidden &&
+            textPosition === RadioTextPosition.left &&
+            labelText}
+
           <StyledFakeInput
             checked={context.selectedValue === value}
             color={color ? color : ''}
@@ -149,7 +160,7 @@ export const Radio: React.FunctionComponent<RadioProps> = React.forwardRef(
           {isTextVisuallyHidden ? (
             <HiddenLabelText>{labelText}</HiddenLabelText>
           ) : (
-            labelText
+            textPosition !== RadioTextPosition.left && labelText && labelText
           )}
         </StyledLabel>
       </StyledContainer>
