@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { Alert, AlertProps } from '../Alert';
 import { useGenerateId } from '../../utils';
+import { ToastsContext } from './ToastsContainer';
 
 export interface ToastProps extends AlertProps {
   alertStyle?: React.CSSProperties;
@@ -48,15 +49,23 @@ export const Toast: React.FunctionComponent<ToastProps> = (
     };
   }, []);
 
+  function dismissToast() {
+    setIsDismissed(true);
+
+    if (setToastCount) {
+      setToastCount(toastCount - 1);
+    }
+  }
+
   function clearTimeoutAndDismiss() {
     clearTimeout(timerAutoHide.current);
-    setIsDismissed(true);
+    dismissToast();
   }
 
   function setAutoHideTimer(duration = DEFAULT_TOAST_DURATION) {
     clearTimeout(timerAutoHide.current);
     timerAutoHide.current = setTimeout(() => {
-      setIsDismissed(true);
+      dismissToast();
     }, duration);
   }
 
@@ -101,8 +110,16 @@ export const Toast: React.FunctionComponent<ToastProps> = (
 
   const id = useGenerateId(defaultId);
 
-  const toastCount = 1;
+  const toastsContext = React.useContext(ToastsContext);
+
+  const { toastCount, setToastCount } = toastsContext;
   const headerText = toastCount > 1 ? `1 of ${toastCount} messages` : null;
+
+  React.useEffect(() => {
+    if (setToastCount) {
+      setToastCount(toastCount + 1);
+    }
+  }, []);
 
   return (
     <ToastWrapper
