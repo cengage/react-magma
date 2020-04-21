@@ -28,7 +28,12 @@ const Container = styled.div<HideAtBreakpointProps>`
 `;
 
 function matchesMediaQuery(minWidth?: number, maxWidth?: number) {
+  console.log('minWidth', minWidth);
+  console.log('maxWidth', maxWidth);
   if (minWidth && maxWidth) {
+    console.log(
+      useMediaQuery(`(min-width:${minWidth}px), (max-width:${maxWidth}px)`)
+    );
     return useMediaQuery(
       `(min-width:${minWidth}px), (max-width:${maxWidth}px)`
     );
@@ -61,5 +66,7 @@ export const HideAtBreakpoint: React.FunctionComponent<
       </Container>
     );
   }
-  return matchesMediaQuery(minWidth, maxWidth) ? null : <>{children}</>;
+  return matchesMediaQuery(minWidth, maxWidth) ? null : (
+    <div data-testid={testId}>{children}</div>
+  );
 };

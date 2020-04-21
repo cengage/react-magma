@@ -35,8 +35,16 @@ export function usePrevious(value) {
 export function useMediaQuery(queryInput, options = {}) {
   const query = queryInput.replace(/^@media( ?)/m, '');
 
+  console.log('query', query);
+
+  console.log('window', typeof window !== 'undefined');
+
+  console.log('window.matchMedia', window.matchMedia);
+
   const supportMatchMedia =
     typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined';
+
+  console.log('supportMatchMedia', supportMatchMedia);
 
   const {
     defaultMatches = false,
