@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.38](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.37...v2.0.0-beta.38) (2020-04-21)
+
+
+### Bug Fixes
+
+* **tabs:** scroll button size, header z-index ([58ec54c](http://stash.corp.web:7999/FRONT/react-magma/commits/58ec54c))
+
+
+### Features
+
+* **tab-props:** make component and children mutually exclusive in Tab ([3e2bc01](http://stash.corp.web:7999/FRONT/react-magma/commits/3e2bc01))
+* **tabs:** add isInverse to TabsPanelsContainer ([ad5bf7e](http://stash.corp.web:7999/FRONT/react-magma/commits/ad5bf7e))
+* **tabs:** inverse styles on container, panels ([9ab5438](http://stash.corp.web:7999/FRONT/react-magma/commits/9ab5438))
+* **tabs:** next and prev tab button styles ([e37b2bf](http://stash.corp.web:7999/FRONT/react-magma/commits/e37b2bf))
+* **tabs:** remove path prop and passthrough props to component ([cecaa23](http://stash.corp.web:7999/FRONT/react-magma/commits/cecaa23))
+* **tabs:** support all directions for borderPosition, iconPosition ([d8b01aa](http://stash.corp.web:7999/FRONT/react-magma/commits/d8b01aa))
+
+
+
+
+
 # [2.0.0-beta.37](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.36...v2.0.0-beta.37) (2020-04-15)
 
 **Note:** Version bump only for package react-magma-docs
