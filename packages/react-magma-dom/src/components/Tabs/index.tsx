@@ -1,12 +1,23 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
+import { transparentize } from 'polished';
+
 import { AngleRightIcon } from '../Icon/types/AngleRightIcon';
 import { AngleLeftIcon } from '../Icon/types/AngleLeftIcon';
+import { AngleUpIcon } from '../Icon/types/AngleUpIcon';
+import { AngleDownIcon } from '../Icon/types/AngleDownIcon';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { useTabsContext } from './TabsContainer';
+import { TabsContainerContext } from './TabsContainer';
 import isPropValid from '@emotion/is-prop-valid';
-import { Omit } from '../../utils';
+import {
+  animate,
+  Omit,
+  debounce,
+  getNormalizedScrollLeft,
+  detectScrollType
+} from '../../utils';
+import { Tab } from './Tab';
 
 const StyledContainer = styled('div', { shouldForwardProp: isPropValid })<{
   orientation: TabsOrientation;
@@ -14,8 +25,16 @@ const StyledContainer = styled('div', { shouldForwardProp: isPropValid })<{
   backgroundColor: string;
 }>`
   background-color: ${props =>
-    props.backgroundColor ? props.backgroundColor : 'transparent'};
+    props.backgroundColor
+      ? props.backgroundColor
+      : props.isInverse
+      ? props.theme.colors.foundation01
+      : 'transparent'};
+  background: backgroundColor;
   display: flex;
+  height: ${props => (props.orientation === 'vertical' ? '100%' : 'auto')};
+
+  position: relative;
   width: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
 `;
 
@@ -24,10 +43,8 @@ const StyledTabsWrapper = styled('div', { shouldForwardProp: isPropValid })<{
 }>`
   display: flex;
   flex-grow: 1;
-  overflow-y: hidden;
-  overflow: ${props => (props.orientation === 'vertical' ? 'hidden' : '')};
   overflow-x: ${props => (props.orientation === 'vertical' ? '' : 'auto')};
-  position: relative;
+  overflow-y: ${props => (props.orientation === 'vertical' ? 'auto' : '')};
 
   &::-webkit-scrollbar {
     width: 0;
@@ -53,74 +70,82 @@ const StyledTabs = styled('div', { shouldForwardProp: isPropValid })<{
   width: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
 `;
 
-const StyledTabsChild = styled('div', { shouldForwardProp: isPropValid })<{
-  borderPosition?: TabsBorderPosition;
-  isActive?: boolean;
-  isFullWidth?: boolean;
+const StyledScrollButton = styled.div<{
+  buttonVisible: boolean;
   isInverse?: boolean;
-  orientation: TabsOrientation;
+  orientation?: TabsOrientation;
 }>`
-  flex-grow: 0;
-  flex-shrink: ${props => (props.isFullWidth ? '1' : '0')};
-  height: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
-  max-width: ${props => (props.isFullWidth ? '100%' : '250px')};
-  position: relative;
-  white-space: normal;
-  width: ${props =>
-    props.isFullWidth || props.orientation === 'vertical' ? '100%' : 'auto'};
+  align-items: center;
+  backdrop-filter: blur(1px);
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral01};
+  cursor: pointer;
+  display: ${props => (props.buttonVisible ? 'flex' : 'none')};
+  justify-content: center;
+  position: absolute;
+  z-index: 2;
 
-  &:after {
-    background: ${props =>
-      props.isInverse ? props.theme.colors.pop02 : props.theme.colors.primary};
-    border-radius: 2px;
-    content: '';
-    display: block;
-    height: 4px;
-    opacity: ${props => (props.isActive ? '1' : '0')};
-    position: absolute;
-    transition: 0.4s all;
-    width: auto;
+  bottom: 0;
+  top: 0;
+  width: 44px;
 
-    bottom: ${props => (props.borderPosition === 'top' ? 'auto' : '0')};
-    left: ${props => (props.isActive ? '0' : '50%')};
-    right: ${props => (props.isActive ? '0' : '50%')};
-    top: ${props => (props.borderPosition === 'top' ? '0' : 'auto')};
-
-    ${props =>
-      props.orientation === 'vertical' &&
-      css`
-        height: auto;
-        bottom: ${props.isActive ? '0' : '50%'};
-        left: 0;
-        right: auto;
-        top: ${props.isActive ? '0' : '50%'};
-        width: 4px;
-      `}
-  }
+  ${props =>
+    props.orientation === 'vertical' &&
+    css`
+      left: 0;
+      height: 44px;
+      right: 0;
+      width: auto;
+    `}
 `;
 
-const StyledButtonNext = styled.div<{
-  buttonVisible: boolean;
+const StyledButtonPrev = styled(StyledScrollButton)<{
+  backgroundColor?: string;
+  orientation?: TabsOrientation;
+  ref?: any;
 }>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  width: 50px;
-  height: auto;
-  visibility: ${props => (props.buttonVisible ? 'visible' : 'hidden')};
+  background: ${props => `linear-gradient(
+    90deg,
+    ${props.backgroundColor} 0%,
+    ${transparentize(0.5, props.backgroundColor)} 100%
+  )`};
+  left: 0;
+
+  ${props =>
+    props.orientation === 'vertical' &&
+    css`
+      background: ${`linear-gradient(
+        ${props.backgroundColor} 0%,
+        ${transparentize(0.5, props.backgroundColor)} 100%
+      )`};
+
+      bottom: auto;
+    `}
 `;
 
-const StyledButtonPrev = styled.div<{
-  buttonVisible: boolean;
+const StyledButtonNext = styled(StyledScrollButton)<{
+  backgroundColor?: string;
+  orientation?: TabsOrientation;
+  ref?: any;
 }>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  width: 50px;
-  height: auto;
-  visibility: ${props => (props.buttonVisible ? 'visible' : 'hidden')};
+  background: ${props => `linear-gradient(
+    90deg,
+    ${transparentize(0.5, props.backgroundColor)} 0%,
+    ${props.backgroundColor} 100%
+  )`};
+  right: 0;
+
+  ${props =>
+    props.orientation === 'vertical' &&
+    css`
+      background: linear-gradient(
+        ${transparentize(0.5, props.backgroundColor)} 0%,
+        ${props.backgroundColor} 100%
+      );
+      top: auto;
+    `}
 `;
 
 export enum TabsAlignment {
@@ -137,17 +162,20 @@ export enum TabsOrientation {
 export enum TabsBorderPosition {
   bottom = 'bottom',
   left = 'left',
+  right = 'right',
   top = 'top'
 }
 
 export enum TabsIconPosition {
+  bottom = 'bottom',
   left = 'left',
+  right = 'right',
   top = 'top'
 }
 
 export interface VerticalTabsProps {
   orientation?: TabsOrientation.vertical;
-  borderPosition?: TabsBorderPosition.left;
+  borderPosition?: TabsBorderPosition.left | TabsBorderPosition.right;
 }
 export interface HorizontalTabsProps {
   orientation?: TabsOrientation.horizontal;
@@ -158,71 +186,269 @@ declare type Orientation = HorizontalTabsProps | VerticalTabsProps;
 
 export interface TabsProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
-  alignment: TabsAlignment;
-  ariaLabel?: string;
-  backgroundColor: string;
-  iconPosition?: 'left' | 'top';
+  alignment?: TabsAlignment;
+  backgroundColor?: string;
+  iconPosition?: TabsIconPosition;
   isFullWidth?: boolean;
   isInverse?: boolean;
-  hasScrollButtons?: boolean;
   onChange?: (newActiveIndex: number) => void;
   testId?: string;
 }
+
+interface TabsContextInterface {
+  borderPosition?: TabsBorderPosition;
+  changeHandler: (
+    newActiveIndex: number,
+    event?: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => void;
+  iconPosition?: TabsIconPosition;
+  isInverse?: boolean;
+  isFullWidth?: boolean;
+  orientation?: TabsOrientation;
+}
+
+export const TabsContext = React.createContext<TabsContextInterface>({
+  borderPosition: TabsBorderPosition.bottom,
+  changeHandler: (index, event) => {},
+  iconPosition: TabsIconPosition.left,
+  isInverse: false,
+  isFullWidth: false,
+  orientation: TabsOrientation.horizontal
+});
 
 export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
   (props, ref: React.Ref<any>) => {
     const {
       alignment,
-      ariaLabel,
       backgroundColor,
       borderPosition,
       children,
       isFullWidth,
-      isInverse,
-      hasScrollButtons,
       orientation,
       onChange,
       iconPosition,
       testId,
       ...rest
     } = props;
-    const { activeTabIndex, setActiveTabIndex } = useTabsContext();
 
-    const [buttonVisiblePrev, setButtonPrevState] = React.useState(false);
-    const [buttonVisibleNext, setButtonNextState] = React.useState(false);
-    const arrChildren = React.Children.toArray(children);
+    const theme = React.useContext(ThemeContext);
 
-    const buttonRefArray = arrChildren.reduce(
-      (accum: any, _, index: number) => {
-        accum[index] = React.createRef();
-        return accum;
-      },
-      {}
-    );
+    const isRtl = theme.direction === 'rtl';
+    const vertical = orientation === TabsOrientation.vertical;
+    const scrollStart = vertical ? 'scrollTop' : 'scrollLeft';
+    const start = vertical ? 'top' : 'left';
+    const end = vertical ? 'bottom' : 'right';
+    const clientSize = vertical ? 'clientHeight' : 'clientWidth';
 
-    const divRef = React.useRef<HTMLDivElement>();
+    const {
+      activeTabIndex,
+      setActiveTabIndex,
+      isInverseContainer
+    } = React.useContext(TabsContainerContext);
 
-    const scrollOptions = {
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'start'
-    };
+    const isInverse =
+      typeof props.isInverse !== 'undefined'
+        ? Boolean(props.isInverse)
+        : isInverseContainer;
+
+    const background = backgroundColor
+      ? backgroundColor
+      : isInverse
+      ? theme.colors.foundation01
+      : theme.colors.neutral08;
+
+    const [displayScroll, setDisplayScroll] = React.useState({
+      start: false,
+      end: false
+    });
+
+    const buttonRefArray = React.useRef([]);
+
+    const childrenLength = React.Children.toArray(children).length;
+
+    if (buttonRefArray.current.length !== childrenLength) {
+      buttonRefArray.current = Array(childrenLength)
+        .fill(null)
+        .map((_, i) => buttonRefArray.current[i] || React.createRef());
+    }
+
+    const tabsWrapperRef = React.useRef<HTMLDivElement>();
+    const childrenWrapperRef = React.useRef<HTMLDivElement>();
+    const prevButtonRef = React.useRef<HTMLDivElement>();
+    const nextButtonRef = React.useRef<HTMLDivElement>();
+
+    function getTabsMeta() {
+      const tabsNode = tabsWrapperRef.current;
+      let tabsMeta;
+      if (tabsNode) {
+        const rect = tabsNode.getBoundingClientRect();
+        tabsMeta = {
+          clientWidth: tabsNode.clientWidth,
+          scrollLeft: tabsNode.scrollLeft,
+          scrollTop: tabsNode.scrollTop,
+          scrollLeftNormalized: getNormalizedScrollLeft(
+            tabsNode,
+            theme.direction
+          ),
+          scrollWidth: tabsNode.scrollWidth,
+          top: rect.top,
+          bottom: rect.bottom,
+          left: rect.left,
+          right: rect.right
+        };
+      }
+
+      let tabMeta;
+      if (tabsNode) {
+        const childrenArray = childrenWrapperRef.current.children;
+        if (childrenArray.length > 0) {
+          const tab = childrenArray[activeTabIndex];
+          tabMeta = tab ? (tab as any).getBoundingClientRect() : null;
+        }
+      }
+      return { tabsMeta, tabMeta };
+    }
+
+    function scroll(scrollValue) {
+      animate(scrollStart, tabsWrapperRef.current, scrollValue);
+    }
+
+    function moveTabsScroll(delta) {
+      let scrollValue = tabsWrapperRef.current[scrollStart];
+
+      if (vertical) {
+        scrollValue += delta;
+      } else {
+        scrollValue += delta * (isRtl ? -1 : 1);
+        // Fix for Edge
+        scrollValue *= isRtl && detectScrollType() === 'reverse' ? -1 : 1;
+      }
+
+      scroll(scrollValue);
+    }
+
+    function handleStartScrollClick() {
+      moveTabsScroll(-tabsWrapperRef.current[clientSize]);
+    }
+
+    function handleEndScrollClick() {
+      moveTabsScroll(tabsWrapperRef.current[clientSize]);
+    }
+
+    function scrollSelectedIntoView() {
+      const { tabsMeta, tabMeta } = getTabsMeta();
+
+      if (!tabMeta || !tabsMeta) {
+        return;
+      }
+
+      const prevButtonOffset = vertical
+        ? Number(prevButtonRef.current.offsetHeight)
+        : Number(prevButtonRef.current.offsetWidth);
+      const nextButtonOffset = vertical
+        ? Number(nextButtonRef.current.offsetHeight)
+        : Number(nextButtonRef.current.offsetWidth);
+
+      if (tabMeta[start] < Number(tabsMeta[start]) + prevButtonOffset) {
+        // left side of button is out of view
+        const nextScrollStart =
+          Number(tabsMeta[scrollStart]) +
+          (Number(tabMeta[start]) - Number(tabsMeta[start])) -
+          prevButtonOffset;
+        scroll(nextScrollStart);
+      } else if (tabMeta[end] > Number(tabsMeta[end]) - nextButtonOffset) {
+        // right side of button is out of view
+        const nextScrollStart =
+          Number(tabsMeta[scrollStart]) +
+          (Number(tabMeta[end]) - Number(tabsMeta[end])) +
+          nextButtonOffset;
+        scroll(nextScrollStart);
+      }
+    }
+
+    function updateScrollButtonState() {
+      const {
+        scrollTop,
+        scrollHeight,
+        clientHeight,
+        scrollWidth,
+        clientWidth
+      } = tabsWrapperRef.current;
+      let showStartScroll;
+      let showEndScroll;
+
+      if (vertical) {
+        showStartScroll = scrollTop > 1;
+        showEndScroll = scrollTop < scrollHeight - clientHeight - 1;
+      } else {
+        const scrollLeft = getNormalizedScrollLeft(
+          tabsWrapperRef.current,
+          theme.direction
+        );
+        // use 1 for the potential rounding error with browser zooms.
+        showStartScroll = isRtl
+          ? scrollLeft < scrollWidth - clientWidth - 1
+          : scrollLeft > 1;
+        showEndScroll = !isRtl
+          ? scrollLeft < scrollWidth - clientWidth - 1
+          : scrollLeft > 1;
+      }
+
+      if (
+        showStartScroll !== displayScroll.start ||
+        showEndScroll !== displayScroll.end
+      ) {
+        setDisplayScroll({ start: showStartScroll, end: showEndScroll });
+      }
+    }
 
     React.useEffect(() => {
-      const {
-        scrollLeft: scrollPositionSize,
-        scrollWidth: scrollSize,
-        offsetWidth: offsetBoxSize
-      } = divRef.current;
+      const handleResize = debounce(updateScrollButtonState, 100);
 
-      scrollSize - scrollPositionSize === offsetBoxSize
-        ? setButtonNextState(false)
-        : setButtonNextState(true);
-    }, []);
+      window.addEventListener('resize', handleResize);
+      return () => {
+        handleResize.clear();
+        window.removeEventListener('resize', handleResize);
+      };
+    }, [updateScrollButtonState]);
+
+    const handleTabsScroll = React.useCallback(
+      debounce(updateScrollButtonState, 100),
+      [updateScrollButtonState]
+    );
+
+    React.useEffect(() => {
+      return () => {
+        handleTabsScroll.clear();
+      };
+    }, [handleTabsScroll]);
+
+    React.useEffect(updateScrollButtonState);
+
+    React.useEffect(scrollSelectedIntoView, []);
+
+    React.useEffect(scrollSelectedIntoView, [activeTabIndex]);
+
+    function findAndAddIndexToTab(baseChild, fn) {
+      return React.Children.map(baseChild, (child: React.ReactChild, index) => {
+        if (!React.isValidElement(child)) {
+          return child;
+        }
+
+        if (child.props.children) {
+          child = React.cloneElement(child, {
+            children: findAndAddIndexToTab(child.props.children, fn),
+            key: index
+          });
+        }
+
+        return fn(child);
+      });
+    }
 
     function changeHandler(
       newActiveIndex: number,
-      event: React.MouseEvent<HTMLDivElement, MouseEvent>
+      event?: React.MouseEvent<HTMLDivElement, MouseEvent>
     ): void {
       if (
         (event.target as HTMLInputElement).children[0] &&
@@ -234,66 +460,10 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
 
       onChange && typeof onChange === 'function' && onChange(newActiveIndex);
 
-      setActiveTabIndex(newActiveIndex);
-
-      (event.target as HTMLButtonElement).scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'start'
-      });
+      newActiveIndex === activeTabIndex
+        ? scrollSelectedIntoView()
+        : setActiveTabIndex(newActiveIndex);
     }
-
-    function handleClickNext() {
-      const {
-        scrollLeft: scrollPositionSize,
-        offsetWidth: offsetBoxSize
-      } = divRef.current;
-      const offsetTabSize = buttonRefArray[0].current.offsetWidth;
-
-      const currentTabIndex = Math.round(
-        (Number(offsetBoxSize) + Number(scrollPositionSize)) / offsetTabSize
-      );
-
-      currentTabIndex <= arrChildren.length - 1
-        ? buttonRefArray[currentTabIndex].current.scrollIntoView(scrollOptions)
-        : buttonRefArray[arrChildren.length - 1].current.scrollIntoView(
-            scrollOptions
-          );
-    }
-
-    function handleClickPrev() {
-      const {
-        scrollLeft: scrollPositionSize,
-        offsetWidth: offsetBoxSize
-      } = divRef.current;
-      const offsetTabSize = buttonRefArray[1].current.offsetWidth;
-
-      const currentTabIndex = Math.round(
-        scrollPositionSize / offsetTabSize - offsetBoxSize / offsetTabSize
-      );
-
-      currentTabIndex >= 0
-        ? buttonRefArray[currentTabIndex].current.scrollIntoView(scrollOptions)
-        : buttonRefArray[0].current.scrollIntoView(scrollOptions);
-    }
-
-    function handleScroll() {
-      const {
-        scrollLeft: scrollPositionSize,
-        scrollWidth: scrollSize,
-        offsetWidth: offsetBoxSize
-      } = divRef.current;
-
-      scrollSize - scrollPositionSize === offsetBoxSize
-        ? setButtonNextState(false)
-        : setButtonNextState(true);
-
-      scrollPositionSize > 0
-        ? setButtonPrevState(true)
-        : setButtonPrevState(false);
-    }
-
-    const theme = React.useContext(ThemeContext);
 
     return (
       <StyledContainer
@@ -301,86 +471,103 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
         orientation={orientation || TabsOrientation.horizontal}
         isInverse={isInverse}
         data-testid={testId}
-        backgroundColor={backgroundColor}
+        backgroundColor={background}
         theme={theme}
         {...rest}
       >
-        {hasScrollButtons && orientation !== TabsOrientation.vertical ? (
-          <StyledButtonPrev
-            onClick={handleClickPrev}
-            buttonVisible={buttonVisiblePrev}
-            data-testid="buttonPrev"
-          >
-            <AngleLeftIcon
-              size={16}
-              color={
-                isInverse ? theme.colors.neutral08 : theme.colors.neutral02
-              }
-            />
-          </StyledButtonPrev>
-        ) : null}
-
+        <StyledButtonPrev
+          backgroundColor={background}
+          buttonVisible={displayScroll.start}
+          data-testid="buttonPrev"
+          isInverse={isInverse}
+          onClick={handleStartScrollClick}
+          orientation={orientation || TabsOrientation.horizontal}
+          ref={prevButtonRef}
+          theme={theme}
+        >
+          {orientation === TabsOrientation.vertical ? (
+            <AngleUpIcon size={16} />
+          ) : (
+            <AngleLeftIcon size={16} />
+          )}
+        </StyledButtonPrev>
         <StyledTabsWrapper
-          ref={divRef}
-          onScroll={handleScroll}
+          data-testid="tabsWrapper"
+          onScroll={handleTabsScroll}
           orientation={orientation}
+          ref={tabsWrapperRef}
         >
           <StyledTabs
-            aria-label={ariaLabel}
+            aria-label={rest['aria-label']}
             alignment={alignment ? alignment : TabsAlignment.left}
             orientation={orientation}
+            ref={childrenWrapperRef}
             role="tablist"
           >
-            {arrChildren.map((childItem: any, index) => {
-              const isActive = index === activeTabIndex;
+            {buttonRefArray.current.length && (
+              <TabsContext.Provider
+                value={{
+                  borderPosition,
+                  changeHandler,
+                  iconPosition,
+                  isInverse,
+                  isFullWidth,
+                  orientation
+                }}
+              >
+                {React.Children.map(
+                  props.children,
+                  (baseChild: any, baseIndex) => {
+                    if (baseChild.type === Tab) {
+                      const index = baseChild.props.index || baseIndex;
+                      return React.cloneElement(baseChild, {
+                        index,
+                        key: index,
+                        ref: buttonRefArray.current[index]
+                      });
+                    } else if (baseChild.props && baseChild.props.children) {
+                      return findAndAddIndexToTab(baseChild, newChild => {
+                        if (newChild.type === Tab) {
+                          const index = baseChild.props.index || baseIndex;
+                          return React.cloneElement(newChild, {
+                            index,
+                            key: index,
+                            ref: buttonRefArray.current[index]
+                          });
+                        }
 
-              const child: any = React.cloneElement(childItem, {
-                isActive,
-                changeHandler,
-                iconPosition:
-                  orientation === TabsOrientation.vertical
-                    ? TabsIconPosition.left
-                    : iconPosition,
-                index,
-                isInverse,
-                isFullWidth,
-                orientation
-              });
-
-              return (
-                <StyledTabsChild
-                  borderPosition={borderPosition}
-                  isActive={isActive}
-                  isFullWidth={isFullWidth}
-                  isInverse={isInverse}
-                  key={index}
-                  ref={buttonRefArray[index]}
-                  orientation={orientation}
-                  onClick={e => changeHandler(index, e)}
-                  role="tab"
-                  theme={theme}
-                >
-                  {child}
-                </StyledTabsChild>
-              );
-            })}
+                        return newChild;
+                      });
+                    } else {
+                      if (process.env.NODE_ENV !== 'production') {
+                        console.error(
+                          'React-Magma: you should pass in a Tab or another component/element that wraps a Tab'
+                        );
+                      }
+                      return baseChild;
+                    }
+                  }
+                )}
+              </TabsContext.Provider>
+            )}
           </StyledTabs>
         </StyledTabsWrapper>
-
-        {hasScrollButtons && orientation !== 'vertical' ? (
-          <StyledButtonNext
-            onClick={handleClickNext}
-            buttonVisible={buttonVisibleNext}
-            data-testid="buttonNext"
-          >
-            <AngleRightIcon
-              size={16}
-              color={
-                isInverse ? theme.colors.neutral08 : theme.colors.neutral02
-              }
-            />
-          </StyledButtonNext>
-        ) : null}
+        <StyledButtonNext
+          backgroundColor={background}
+          buttonVisible={displayScroll.end}
+          data-testid="buttonNext"
+          isInverse={isInverse}
+          onClick={handleEndScrollClick}
+          orientation={orientation || TabsOrientation.horizontal}
+          ref={nextButtonRef}
+          theme={theme}
+        >
+          {orientation === TabsOrientation.vertical ? (
+            <AngleDownIcon size={16} />
+          ) : (
+            <AngleRightIcon size={16} />
+          )}
+        </StyledButtonNext>
       </StyledContainer>
     );
   }

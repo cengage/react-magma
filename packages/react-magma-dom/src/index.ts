@@ -296,6 +296,7 @@ export { SwapHorizIcon } from './components/Icon/types/SwapHorizIcon';
 export { TabsContainer } from './components/Tabs/TabsContainer';
 export { Tabs } from './components/Tabs';
 export { Tab } from './components/Tabs/Tab';
+export { TabPanelsContainer } from './components/Tabs/TabPanelsContainer';
 export { TabPanel } from './components/Tabs/TabPanel';
 export { TargetIcon } from './components/Icon/types/TargetIcon';
 export { ThIcon } from './components/Icon/types/ThIcon';
