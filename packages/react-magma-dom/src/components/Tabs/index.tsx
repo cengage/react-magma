@@ -19,39 +19,6 @@ import {
 } from '../../utils';
 import { Tab } from './Tab';
 
-// () => {
-//   const SpNav = ({feature}) => (
-//     <>
-//       {feature ? <Tab>Hello There</Tab> : null}
-//     </>
-//   )
-
-//   return (
-//     <TabsContainer activeIndex={1}>
-//       <Tabs>
-//         <Tab>Main page</Tab>
-//         <Tab>FAQ</Tab>
-//         <Tab>About us</Tab>
-//         <SpNav feature />
-//       </Tabs>
-
-//       <TabPanelsContainer>
-//         <TabPanel>
-//           <div>Main page</div>
-//         </TabPanel>
-//         <TabPanel>
-//           <div>FAQ</div>
-//         </TabPanel>
-//         <TabPanel>
-//           <div>About us</div>
-//         </TabPanel>
-//         <TabPanel>
-//           <div>SP Nav</div>
-//         </TabPanel>
-//       </TabPanelsContainer>
-//     </TabsContainer>
-// )}
-
 const StyledContainer = styled('div', { shouldForwardProp: isPropValid })<{
   orientation: TabsOrientation;
   isInverse: boolean;
