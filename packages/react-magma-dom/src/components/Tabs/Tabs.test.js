@@ -37,6 +37,45 @@ describe('Tabs', () => {
     expect(getByText('Tab 2')).toBeInTheDocument();
   });
 
+  it('should render a custom wrapped tab', () => {
+    // eslint-disable-next-line react/prop-types
+    const OptionalTab = ({ toggle, tabProps }) => {
+      return toggle ? <Tab {...tabProps}>Hello There</Tab> : null;
+    };
+
+    const { getByText } = render(
+      <TabsContainer activeIndex={0}>
+        <Tabs>
+          <Tab>Main page</Tab>
+          <OptionalTab toggle />
+          <div>
+            <Tab>FAQ</Tab>
+          </div>
+        </Tabs>
+
+        <TabPanelsContainer>
+          <TabPanel>
+            <div>Main page</div>
+          </TabPanel>
+          <TabPanel>
+            <div>Optional</div>
+          </TabPanel>
+          <TabPanel>
+            <div>FAQ</div>
+          </TabPanel>
+        </TabPanelsContainer>
+      </TabsContainer>
+    );
+
+    const renderedOptionalTab = getByText('Hello There');
+
+    expect(renderedOptionalTab).toBeInTheDocument();
+
+    fireEvent.click(renderedOptionalTab);
+
+    expect(getByText('Optional')).toBeInTheDocument();
+  });
+
   it('should render the tabs horizontally', () => {
     const testId = 'test-id';
 

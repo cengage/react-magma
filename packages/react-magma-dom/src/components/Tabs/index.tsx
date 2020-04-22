@@ -19,6 +19,39 @@ import {
 } from '../../utils';
 import { Tab } from './Tab';
 
+// () => {
+//   const SpNav = ({feature}) => (
+//     <>
+//       {feature ? <Tab>Hello There</Tab> : null}
+//     </>
+//   )
+
+//   return (
+//     <TabsContainer activeIndex={1}>
+//       <Tabs>
+//         <Tab>Main page</Tab>
+//         <Tab>FAQ</Tab>
+//         <Tab>About us</Tab>
+//         <SpNav feature />
+//       </Tabs>
+
+//       <TabPanelsContainer>
+//         <TabPanel>
+//           <div>Main page</div>
+//         </TabPanel>
+//         <TabPanel>
+//           <div>FAQ</div>
+//         </TabPanel>
+//         <TabPanel>
+//           <div>About us</div>
+//         </TabPanel>
+//         <TabPanel>
+//           <div>SP Nav</div>
+//         </TabPanel>
+//       </TabPanelsContainer>
+//     </TabsContainer>
+// )}
+
 const StyledContainer = styled('div', { shouldForwardProp: isPropValid })<{
   orientation: TabsOrientation;
   isInverse: boolean;
@@ -518,14 +551,18 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
                 {React.Children.map(
                   props.children,
                   (baseChild: any, baseIndex) => {
-                    if (baseChild.type === Tab) {
+                    if (baseChild && baseChild.type === Tab) {
                       const index = baseChild.props.index || baseIndex;
                       return React.cloneElement(baseChild, {
                         index,
                         key: index,
                         ref: buttonRefArray.current[index]
                       });
-                    } else if (baseChild.props && baseChild.props.children) {
+                    } else if (
+                      baseChild &&
+                      baseChild.props &&
+                      baseChild.props.children
+                    ) {
                       return findAndAddIndexToTab(baseChild, newChild => {
                         if (newChild.type === Tab) {
                           const index = baseChild.props.index || baseIndex;
@@ -538,13 +575,17 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
 
                         return newChild;
                       });
+                    } else if (baseChild) {
+                      const index = baseChild.props.index || baseIndex;
+                      return React.cloneElement(baseChild, {
+                        tabProps: {
+                          index,
+                          key: index,
+                          ref: buttonRefArray.current[index]
+                        }
+                      });
                     } else {
-                      if (process.env.NODE_ENV !== 'production') {
-                        console.error(
-                          'React-Magma: you should pass in a Tab or another component/element that wraps a Tab'
-                        );
-                      }
-                      return baseChild;
+                      return null;
                     }
                   }
                 )}

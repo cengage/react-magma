@@ -28,29 +28,28 @@ The tab system is made up of five components:
 And `TabPanel`, which contains the indivdual content sections for each tab.
 
 ```.jsx
-      () => {
+  () => {
+    return (
+      <TabsContainer activeIndex={1}>
+        <Tabs>
+          <Tab>Main page</Tab>
+          <Tab>FAQ</Tab>
+          <Tab>About us</Tab>
+        </Tabs>
 
-        return (
-          <TabsContainer activeIndex={1}>
-            <Tabs>
-              <Tab>Main page</Tab>
-              <Tab>FAQ</Tab>
-              <Tab>About us</Tab>
-            </Tabs>
-
-            <TabPanelsContainer>
-              <TabPanel>
-                <div>Main page</div>
-              </TabPanel>
-              <TabPanel>
-                <div>FAQ</div>
-              </TabPanel>
-              <TabPanel>
-                <div>About us</div>
-              </TabPanel>
-            </TabPanelsContainer>
-          </TabsContainer>
-    )}
+        <TabPanelsContainer>
+          <TabPanel>
+            <div>Main page</div>
+          </TabPanel>
+          <TabPanel>
+            <div>FAQ</div>
+          </TabPanel>
+          <TabPanel>
+            <div>About us</div>
+          </TabPanel>
+        </TabPanelsContainer>
+      </TabsContainer>
+  )}
 ```
 
 ## Vertical Tabs
@@ -150,6 +149,44 @@ The `borderPosition` prop is specified on the `Tabs` component and will apply to
             </Tabs>
           </TabsContainer>
     )}
+```
+
+## Custom Tab Wrappers
+
+`Tabs` expects it's children to be of type `Tab`, be an element in which it's lowest child is of type `Tab`, or a custom component
+that returns a `Tab`.
+
+For a custom component you'll receive a `tabsProps` prop that you must spread in to the `Tab` component in your renderer.
+
+```.jsx
+ () => {
+  const OptionalTab = ({toggle, tabProps}) => {
+    return toggle ? <Tab {...tabProps}>Hello There</Tab> : null
+  }
+
+   return (
+     <TabsContainer activeIndex={0}>
+       <Tabs>
+         <Tab>Main page</Tab>
+         <OptionalTab toggle />
+         <div>
+           <Tab>FAQ</Tab>
+         </div>
+       </Tabs>
+
+       <TabPanelsContainer>
+         <TabPanel>
+           <div>Main page</div>
+         </TabPanel>
+         <TabPanel>
+           <div>Optional</div>
+         </TabPanel>
+         <TabPanel>
+           <div>FAQ</div>
+         </TabPanel>
+       </TabPanelsContainer>
+     </TabsContainer>
+ )}
 ```
 
 ## Custom Logic
