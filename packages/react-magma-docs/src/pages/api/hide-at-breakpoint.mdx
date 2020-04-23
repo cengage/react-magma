@@ -33,27 +33,6 @@ It takes two props, `minWidth` and `maxWidth` for the minimum and maximum widths
     </>
 ```
 
-## Implementation
-
-The `implementation` prop can be used to determine whether the browser uses CSS or JavaScript to determine what is shown.  
-When `css` is used, the hidden content is simply hidden using CSS `display: none`. When `js` is used, the content to be hidden does not render in the DOM.  
-The default implementation is `js`.
-
-```.jsx
-    <>
-     <HideAtBreakpoint maxWidth={599} implemenation='css'>
-            <Card isInverse background={magma.colors.foundation02}>
-              <CardBody><strong>Max-Width:</strong> This text will be visible when the browser width is greater than or equal to 600px.</CardBody>
-            </Card><br/>
-        </HideAtBreakpoint>
-        <HideAtBreakpoint minWidth={600} background={magma.colors.pop01} implemenation='css'>
-             <Card isInverse background={magma.colors.pop01}>
-              <CardBody><strong>Min-Width:</strong> This text will be visible when the browser width is less than 600px.</CardBody>
-        </Card><br/>
-        </HideAtBreakpoint>
-    </>
-```
-
 ## Hide at Breakpoint Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**
@@ -66,19 +45,6 @@ The default implementation is `js`.
       },
       required: true,
       description: 'The content of the component',
-    },
-    implemenation: {
-      type: {
-        name: 'enum',
-        options: [
-          'HideAtBreakpointImplementation.css',
-          'HideAtBreakpointImplementation.js',
-        ],
-      },
-      required: false,
-      description:
-        'Determins whether the component uses CSS or JavaScript to hide/show content',
-      defaultValue: 'js',
     },
     maxWidth: {
       type: {
