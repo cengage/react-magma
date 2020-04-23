@@ -69,13 +69,29 @@ Instead of using the `DropdownButton`, a `DropdownSplitButton` can be used inste
 Using the `dropDirection` prop will change where the menu appears. Options are `down` and `up`, with `down` being default.
 
 ```.jsx
-      <Dropdown dropDirection='up'>
-          <DropdownButton>Drop up</DropdownButton>
-          <DropdownContent>
-            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-          </DropdownContent>
-      </Dropdown>
+      <>
+        <Dropdown dropDirection='left'>
+            <DropdownButton>Drop Left</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownContent>
+        </Dropdown>
+         <Dropdown dropDirection='up'>
+            <DropdownButton>Drop Up</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownContent>
+        </Dropdown>
+        <Dropdown dropDirection='right'>
+            <DropdownButton>Drop Right</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownContent>
+        </Dropdown>
+      </>
 ```
 
 ## Alignment
@@ -346,7 +362,9 @@ When another item is selected, that item will become active and the menu will re
     dropDirection: {
       type: {
         name: 'enum',
-        options: ['DropdownDropDirection.down, DropdownDropDirection.up'],
+        options: [
+          'DropdownDropDirection.down, DropdownDropDirection.left, DropdownDropDirection.right, DropdownDropDirection.up',
+        ],
       },
       required: false,
       description: 'Position of the dropdown content',

@@ -3,6 +3,8 @@ import styled from '../../theme/styled';
 
 export enum DropdownDropDirection {
   down = 'down', //default
+  left = 'left',
+  right = 'right',
   up = 'up'
 }
 

@@ -44,6 +44,32 @@ describe('Dropdown', () => {
     expect(getByTestId('dropdownContent')).toHaveStyleRule('bottom', '100%');
   });
 
+  it('should render a dropleft', () => {
+    const { getByTestId } = render(
+      <Dropdown dropDirection="left">
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    expect(getByTestId('caretLeft')).toBeInTheDocument();
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('top', '5px');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('right', '100%');
+  });
+
+  it('should render a dropright', () => {
+    const { getByTestId } = render(
+      <Dropdown dropDirection="right">
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    expect(getByTestId('caretRight')).toBeInTheDocument();
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('top', '5px');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('left', '100%');
+  });
+
   it('should render a right aligned menu', () => {
     const { getByTestId } = render(
       <Dropdown alignment="right">
