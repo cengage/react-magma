@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.39](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.38...v2.0.0-beta.39) (2020-04-23)
+
+
+### Bug Fixes
+
+* **dropdown-button:** fix types for dropdown button ([27dfa3d](http://stash.corp.web:7999/FRONT/react-magma/commits/27dfa3d))
+
+
+### Features
+
+* **tabs:** allow custom wrapped tab components ([db5c288](http://stash.corp.web:7999/FRONT/react-magma/commits/db5c288))
+
+
+
+
+
 # [2.0.0-beta.38](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.37...v2.0.0-beta.38) (2020-04-21)
 
 
