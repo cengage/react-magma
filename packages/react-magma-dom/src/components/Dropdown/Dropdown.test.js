@@ -82,6 +82,18 @@ describe('Dropdown', () => {
     expect(getByTestId('dropdownContent')).toHaveStyleRule('right', '5px');
   });
 
+  it('should render a top-aligned menu', () => {
+    const { getByTestId } = render(
+      <Dropdown alignment="top" dropDirection="right">
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('top', 'auto');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('bottom', '5px');
+  });
+
   it('should render a split dropdown', () => {
     const { getByTestId, container } = render(
       <Dropdown>

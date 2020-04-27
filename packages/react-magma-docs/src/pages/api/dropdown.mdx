@@ -96,16 +96,47 @@ Using the `dropDirection` prop will change where the menu appears. Options are `
 
 ## Alignment
 
-Using the `alignment` prop will set the alignment of the menu. Options are `left` and `right`, with `left` being default.
+Using the `alignment` prop will set the alignment of the menu.
+
+When the dropDirection is `down` or `up`, `alignment` options are `left` and `right`, with `left` being default.
+When the dropDirection is `left` or `right`, `alignment` options are `bottom` and `top`, with `bottom` being default.
 
 ```.jsx
-      <Dropdown alignment='right'>
-        <DropdownButton>Right Aligned</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
+      <>
+         <Dropdown alignment='top' dropDirection='left'>
+          <DropdownButton>Top-Aligned Dropleft</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+
+        <Dropdown alignment='top' dropDirection='right'>
+          <DropdownButton>Top-Aligned Dropright</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+
+        <br/>
+
+        <Dropdown alignment='right'>
+          <DropdownButton>Right-Aligned Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+
+         <Dropdown alignment='right' dropDirection='up'>
+          <DropdownButton>Right-Aligned Dropup</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </>
 ```
 
 ## Fixed Width
@@ -353,7 +384,11 @@ When another item is selected, that item will become active and the menu will re
     alignment: {
       type: {
         name: 'enum',
-        options: ['DropdownAlignment.left, DropdownAlignment.right'],
+        options: [
+          'DropdownAlignment.left, DropdownAlignment.right',
+          ' DropdownAlignment.top',
+          'DropdownAlignment.bottom',
+        ],
       },
       required: false,
       description: 'Alignment of the dropdown content',
