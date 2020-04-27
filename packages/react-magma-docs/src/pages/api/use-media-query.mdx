@@ -11,7 +11,9 @@ The `useMediaQuery` custom hook can be used to set a prop based on screen size.
 
 ```.jsx
     () => {
+
       const isSmallerScreen = useMediaQuery(`(max-width:${magma.breakpoints.large}px)`);
+
 
       return (
             <Button isFullWidth={isSmallerScreen}>Full Width at Small Screens</Button>
