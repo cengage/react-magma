@@ -5,6 +5,8 @@ import { Tabs } from '.';
 import { TabsContainer } from './TabsContainer';
 import { TabPanel } from './TabPanel';
 import { axe } from 'jest-axe';
+import { magma } from '../../theme/magma';
+import { TabPanelsContainer } from './TabPanelsContainer';
 
 describe('Tabs Container', () => {
   it('should correctly apply the testId', () => {
@@ -13,14 +15,16 @@ describe('Tabs Container', () => {
     const { getByTestId } = render(
       <TabsContainer activeIndex={0} testId={testId}>
         <Tabs>
-          <Tab index={0}>This is tab 1</Tab>
-          <Tab index={1}>This is tab 2</Tab>
-          <Tab index={2}>This is tab 3</Tab>
+          <Tab>This is tab 1</Tab>
+          <Tab>This is tab 2</Tab>
+          <Tab>This is tab 3</Tab>
         </Tabs>
 
-        <TabPanel index={0}>Tab 1 Info</TabPanel>
-        <TabPanel index={1}>Tab 2 Info</TabPanel>
-        <TabPanel index={2}>Tab 3 Info</TabPanel>
+        <TabPanelsContainer>
+          <TabPanel>Tab 1 Info</TabPanel>
+          <TabPanel>Tab 2 Info</TabPanel>
+          <TabPanel>Tab 3 Info</TabPanel>
+        </TabPanelsContainer>
       </TabsContainer>
     );
 
@@ -32,14 +36,16 @@ it('should render children', () => {
   const { getByText, queryByText } = render(
     <TabsContainer activeIndex={0}>
       <Tabs>
-        <Tab index={0}>This is tab 1</Tab>
-        <Tab index={1}>This is tab 2</Tab>
-        <Tab index={2}>This is tab 3</Tab>
+        <Tab>This is tab 1</Tab>
+        <Tab>This is tab 2</Tab>
+        <Tab>This is tab 3</Tab>
       </Tabs>
 
-      <TabPanel index={0}>Tab 1 Info</TabPanel>
-      <TabPanel index={1}>Tab 2 Info</TabPanel>
-      <TabPanel index={2}>Tab 3 Info</TabPanel>
+      <TabPanelsContainer>
+        <TabPanel>Tab 1 Info</TabPanel>
+        <TabPanel>Tab 2 Info</TabPanel>
+        <TabPanel>Tab 3 Info</TabPanel>
+      </TabPanelsContainer>
     </TabsContainer>
   );
 
@@ -49,19 +55,47 @@ it('should render children', () => {
   expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
 });
 
+it('should render with inverse styles', () => {
+  const testId = 'test-id';
+
+  const { getByTestId } = render(
+    <TabsContainer isInverse testId={testId}>
+      <Tabs>
+        <Tab>This is tab 1</Tab>
+        <Tab>This is tab 2</Tab>
+        <Tab>This is tab 3</Tab>
+      </Tabs>
+
+      <TabPanelsContainer>
+        <TabPanel>Tab 1 Info</TabPanel>
+        <TabPanel>Tab 2 Info</TabPanel>
+        <TabPanel>Tab 3 Info</TabPanel>
+      </TabPanelsContainer>
+    </TabsContainer>
+  );
+
+  expect(getByTestId(testId)).toHaveStyleRule(
+    'background',
+    magma.colors.foundation02
+  );
+  expect(getByTestId(testId)).toHaveStyleRule('color', magma.colors.neutral08);
+});
+
 describe('Test for accessibility', () => {
   it('Does not violate accessibility standards', () => {
     const { container } = render(
       <TabsContainer activeIndex={0}>
         <Tabs>
-          <Tab index={0}>This is tab 1</Tab>
-          <Tab index={1}>This is tab 2</Tab>
-          <Tab index={2}>This is tab 3</Tab>
+          <Tab>This is tab 1</Tab>
+          <Tab>This is tab 2</Tab>
+          <Tab>This is tab 3</Tab>
         </Tabs>
 
-        <TabPanel index={0}>Tab 1 Info</TabPanel>
-        <TabPanel index={1}>Tab 2 Info</TabPanel>
-        <TabPanel index={2}>Tab 3 Info</TabPanel>
+        <TabPanelsContainer>
+          <TabPanel>Tab 1 Info</TabPanel>
+          <TabPanel>Tab 2 Info</TabPanel>
+          <TabPanel>Tab 3 Info</TabPanel>
+        </TabPanelsContainer>
       </TabsContainer>
     );
 

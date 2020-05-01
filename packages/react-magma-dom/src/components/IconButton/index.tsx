@@ -10,7 +10,7 @@ import {
   ButtonTextTransform
 } from '../Button';
 import { IconProps } from '../Icon/utils';
-import { omit, Omit } from '../../utils';
+import { omit, Omit, XOR } from '../../utils';
 
 export enum ButtonIconPosition {
   left = 'left',
@@ -22,13 +22,13 @@ export interface IconOnlyButtonProps extends Omit<ButtonProps, 'children'> {
   'aria-label': string;
 }
 
-interface IconTextButtonProps extends ButtonProps {
+export interface IconTextButtonProps extends ButtonProps {
   icon: React.ReactElement<IconProps>;
   children: React.ReactChild | React.ReactChild[];
   iconPosition?: ButtonIconPosition;
 }
 
-export type IconButtonProps = IconTextButtonProps | IconOnlyButtonProps;
+export type IconButtonProps = XOR<IconOnlyButtonProps, IconTextButtonProps>;
 
 export interface SpanProps {
   size?: ButtonSize;
@@ -64,7 +64,7 @@ function getIconWithTextSize(size) {
   }
 }
 
-function instanceOfIconOnly(object: any): object is IconOnlyButtonProps {
+export function instanceOfIconOnly(object: any): object is IconOnlyButtonProps {
   return 'icon' in object && !('children' in object);
 }
 

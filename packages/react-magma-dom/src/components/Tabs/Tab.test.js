@@ -5,6 +5,7 @@ import { render } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import { magma } from '../../theme/magma';
 import { Tabs } from '.';
+import { TabsContainer } from './TabsContainer';
 
 describe('Tab', () => {
   it('Should correctly apply the testId', () => {
@@ -40,22 +41,37 @@ describe('Tab', () => {
     expect(getByText('Test Component')).toBeInTheDocument();
   });
 
-  it('should have aria-selected attribute if tab is active', () => {
-    const testId = 'test-id';
-
-    const { getByTestId, rerender } = render(
-      <Tab testId={testId} ariaLabel="test" isActive={true}>
-        Tab Text
-      </Tab>
+  it('should render a tab with a component and an icon', () => {
+    const { getByTestId } = render(
+      <Tab
+        component={<a href="google.com">Test Component</a>}
+        icon={<CheckIcon testId="icon" />}
+        testId="component"
+      />
     );
-    const component = getByTestId(testId);
+
+    expect(getByTestId('component')).toBeInTheDocument();
+    expect(getByTestId('icon')).toBeInTheDocument();
+  });
+
+  it('should have aria-selected attribute if tab is active', () => {
+    const { getByTestId, rerender } = render(
+      <TabsContainer activeIndex={0}>
+        <Tabs>
+          <Tab ariaLabel="test">Tab Text</Tab>
+        </Tabs>
+      </TabsContainer>
+    );
+    const component = getByTestId('tabContainer');
 
     expect(component).toHaveAttribute('aria-selected', 'true');
 
     rerender(
-      <Tab testId={testId} ariaLabel="test" isActive={false}>
-        Tab Text
-      </Tab>
+      <TabsContainer activeIndex={1}>
+        <Tabs>
+          <Tab ariaLabel="test">Tab Text</Tab>
+        </Tabs>
+      </TabsContainer>
     );
 
     expect(component).toHaveAttribute('aria-selected', 'false');
@@ -92,13 +108,20 @@ describe('Tab', () => {
     expect(container.querySelector('span')).toBeInTheDocument();
   });
 
+  it('should render an icon only tab', () => {
+    const icon = <CheckIcon testId="icon" />;
+    const { getByTestId } = render(<Tab icon={icon} />);
+
+    expect(getByTestId('icon')).toBeInTheDocument();
+  });
+
   it('should change color when isInverse prop is true', () => {
     const testId = 'test-id';
 
     const { getByTestId } = render(
-      <Tab testId={testId} isInverse={true}>
-        Inverse Tab
-      </Tab>
+      <Tabs isInverse>
+        <Tab testId={testId}>Inverse Tab</Tab>
+      </Tabs>
     );
 
     expect(getByTestId(testId)).toHaveStyleRule(
@@ -111,12 +134,12 @@ describe('Tab', () => {
     const testId = 'test-id';
 
     const { getByTestId } = render(
-      <Tab testId={testId} orientation="vertical">
-        Vertical Tab
-      </Tab>
+      <Tabs orientation="vertical">
+        <Tab testId={testId}>Vertical Tab</Tab>
+      </Tabs>
     );
 
-    expect(getByTestId(testId)).toHaveStyleRule('align-items', 'flex-start');
+    expect(getByTestId(testId)).toHaveStyleRule('align-items', 'center');
     expect(getByTestId(testId)).toHaveStyleRule('text-align', 'left');
     expect(getByTestId(testId)).toHaveStyleRule('width', '100%');
   });
@@ -125,9 +148,9 @@ describe('Tab', () => {
     const testId = 'test-id';
 
     const { getByTestId } = render(
-      <Tab testId={testId} isFullWidth>
-        Full Width Tab
-      </Tab>
+      <Tabs isFullWidth>
+        <Tab testId={testId}>Full Width Tab</Tab>
+      </Tabs>
     );
 
     expect(getByTestId(testId)).toHaveStyleRule('flex-shrink', '1');
@@ -138,9 +161,11 @@ describe('Tab', () => {
 
     const icon = <CheckIcon size={18} />;
     const { container, getByTestId, rerender } = render(
-      <Tab testId={testId} icon={icon} iconPosition="top">
-        Tab
-      </Tab>
+      <Tabs iconPosition="top">
+        <Tab testId={testId} icon={icon}>
+          Tab
+        </Tab>
+      </Tabs>
     );
     expect(container.querySelector('svg')).toBeInTheDocument();
     expect(container.querySelector('span')).toHaveStyleRule(
@@ -179,6 +204,43 @@ describe('Tab', () => {
     );
     expect(getByTestId(testId)).not.toHaveStyleRule('flex-direction', 'column');
   });
+});
+
+it('should show icon in bottom position', () => {
+  const testId = 'test-id';
+
+  const icon = <CheckIcon size={18} />;
+  const { container, getByTestId } = render(
+    <Tabs iconPosition="bottom">
+      <Tab testId={testId} icon={icon}>
+        Tab
+      </Tab>
+    </Tabs>
+  );
+  expect(container.querySelector('span')).toHaveStyleRule('margin', '5px 0 0');
+  expect(getByTestId(testId)).toHaveStyleRule(
+    'flex-direction',
+    'column-reverse'
+  );
+});
+
+it('should show icon in right position', () => {
+  const testId = 'test-id';
+
+  const icon = <CheckIcon size={18} />;
+  const { container, getByTestId } = render(
+    <Tabs iconPosition="right">
+      <Tab testId={testId} icon={icon}>
+        Tab
+      </Tab>
+    </Tabs>
+  );
+
+  expect(container.querySelector('span')).toHaveStyleRule(
+    'margin',
+    '0 0 0 15px'
+  );
+  expect(getByTestId(testId)).toHaveStyleRule('flex-direction', 'row-reverse');
 });
 
 describe('Test for accessibility', () => {

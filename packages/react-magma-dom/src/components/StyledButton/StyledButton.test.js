@@ -426,8 +426,8 @@ describe('Styled Button', () => {
       const button = getByText(text);
 
       expect(button).toHaveStyleRule('display', 'inline-flex');
-      expect(button).toHaveStyleRule('height', '28px');
-      expect(button).toHaveStyleRule('width', '28px');
+      expect(button).toHaveStyleRule('height', '29px');
+      expect(button).toHaveStyleRule('width', '29px');
     });
 
     it('icon medium', () => {
@@ -454,8 +454,8 @@ describe('Styled Button', () => {
       const button = getByText(text);
 
       expect(button).toHaveStyleRule('display', 'inline-flex');
-      expect(button).toHaveStyleRule('height', '44px');
-      expect(button).toHaveStyleRule('width', '44px');
+      expect(button).toHaveStyleRule('height', '45px');
+      expect(button).toHaveStyleRule('width', '45px');
     });
   });
 

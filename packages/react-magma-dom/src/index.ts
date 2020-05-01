@@ -23,10 +23,17 @@ export {
   ButtonTextTransform,
   ButtonType
 } from './components/Button';
-export { Checkbox } from './components/Checkbox';
+export { Checkbox, CheckboxTextPosition } from './components/Checkbox';
 export { Card, CardAlignment, CardCalloutType } from './components/Card';
 export { CardBody } from './components/Card/CardBody';
 export { CardHeading } from './components/Card/CardHeading';
+export { Dropdown } from './components/Dropdown';
+export { DropdownContent } from './components/Dropdown/DropdownContent';
+export { DropdownDivider } from './components/Dropdown/DropdownDivider';
+export { DropdownHeader } from './components/Dropdown/DropdownHeader';
+export { DropdownMenuItem } from './components/Dropdown/DropdownMenuItem';
+export { DropdownSplitButton } from './components/Dropdown/DropdownSplitButton';
+export { DropdownButton } from './components/Dropdown/DropdownButton';
 export { FormGroup } from './components/FormGroup';
 export { Heading } from './components/Heading';
 export { HideAtBreakpoint } from './components/HideAtBreakpoint';
@@ -37,7 +44,7 @@ export { Label } from './components/Label';
 export { LinkButton } from './components/LinkButton';
 export { LoadingIndicator } from './components/LoadingIndicator';
 export { RadioGroup } from './components/RadioGroup';
-export { Radio } from './components/Radio';
+export { Radio, RadioTextPosition } from './components/Radio';
 export { Select } from './components/Select';
 export { AsyncSelect } from './components/AsyncSelect';
 export { CreatableSelect } from './components/CreatableSelect';
@@ -48,7 +55,7 @@ export { SkipLink } from './components/SkipLink';
 export { SkipLinkContent } from './components/SkipLinkContent';
 export { Spinner } from './components/Spinner';
 export { Toast } from './components/Toast';
-export { Toggle } from './components/Toggle';
+export { Toggle, ToggleTextPosition } from './components/Toggle';
 export { Tooltip, EnumTooltipPosition } from './components/Tooltip';
 export { VisuallyHidden } from './components/VisuallyHidden';
 export { DatePicker } from './components/DatePicker';
@@ -291,8 +298,15 @@ export { StopIcon } from './components/Icon/types/StopIcon';
 export { Stop2Icon } from './components/Icon/types/Stop2Icon';
 export { SwapHorizIcon } from './components/Icon/types/SwapHorizIcon';
 export { TabsContainer } from './components/Tabs/TabsContainer';
-export { Tabs } from './components/Tabs';
+export {
+  Tabs,
+  TabsAlignment,
+  TabsBorderPosition,
+  TabsIconPosition,
+  TabsOrientation
+} from './components/Tabs';
 export { Tab } from './components/Tabs/Tab';
+export { TabPanelsContainer } from './components/Tabs/TabPanelsContainer';
 export { TabPanel } from './components/Tabs/TabPanel';
 export { TargetIcon } from './components/Icon/types/TargetIcon';
 export { ThIcon } from './components/Icon/types/ThIcon';

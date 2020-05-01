@@ -165,7 +165,6 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
   </RadioGroup>
 ```
 
-
 ## Node as labelText
 
 The `labelText` prop can either be a string, or it can be a React Node.
@@ -228,6 +227,23 @@ This id will become the value of the `aria-labelledby` attribute for the group.
         labelText='Label' />
     </RadioGroup>
   </>
+```
+
+## Text Position
+
+Use the optional prop `textPosition` to position the label text on either side of the radio button.
+The `textPosition` property takes the values `left` and `right`. The default value is `right`.
+
+```.jsx
+  <RadioGroup labelText='Text Position' name='textPosition'>
+    <Radio
+        labelText='Text left'
+        textPosition='left'
+        value='1' />
+    <Radio
+        labelText='Text right'
+        value='1' />
+    </RadioGroup>
 ```
 
 ## Visually Hidden Label
@@ -502,6 +518,16 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       required: false,
       description:
         'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+    textPosition: {
+      type: {
+        name: 'enum',
+        options: ['RadioTextPosition.left', 'RadioTextPosition.right'],
+      },
+      required: false,
+      description:
+        'Whether the label appears to the left of the right of the radio button',
+      defaultValue: 'right',
     },
     value: {
       type: {
