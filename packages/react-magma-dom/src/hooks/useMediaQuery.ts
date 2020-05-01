@@ -1,29 +1,19 @@
 import React from 'react';
 
-export function useMediaQuery(queryInput, options = {}) {
+export function useMediaQuery(queryInput) {
   const query = queryInput.replace(/^@media( ?)/m, '');
 
   const supportMatchMedia =
     typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined';
 
-  const {
-    defaultMatches = false,
-    matchMedia = supportMatchMedia ? window.matchMedia : null,
-    noSsr = false,
-    ssrMatchMedia = null
-  } = {
-    ...options
-  };
+  const matchMedia = supportMatchMedia ? window.matchMedia : null;
 
   const [match, setMatch] = React.useState(() => {
-    if (noSsr && supportMatchMedia) {
+    if (supportMatchMedia) {
       return matchMedia(query).matches;
     }
-    if (ssrMatchMedia) {
-      return ssrMatchMedia(query).matches;
-    }
 
-    return defaultMatches;
+    return false;
   });
 
   React.useEffect(() => {
