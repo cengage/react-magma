@@ -50,7 +50,7 @@ export const BreakpointsContainer: React.FunctionComponent<
 > = ({ children, breakpoints, ...other }: BreakpointsContainerProps) => {
   const definedBreakpoints = [];
 
-  React.Children.map(children, (child: React.ReactElement) => {
+  React.Children.forEach(children, (child: React.ReactElement) => {
     definedBreakpoints.push(child.props.screenSize);
   });
 
