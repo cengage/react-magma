@@ -34,40 +34,15 @@ function getMinWidth(
   breakpointValues: object,
   definedBreakpoints: any
 ) {
-  switch (screenSize) {
-    case 'xs':
-      if (definedBreakpoints.includes(BreakpointScreenSize.small)) {
-        return breakpointValues[BreakpointScreenSize.small];
-      } else if (definedBreakpoints.includes(BreakpointScreenSize.medium)) {
-        return breakpointValues[BreakpointScreenSize.medium];
-      } else if (definedBreakpoints.includes(BreakpointScreenSize.large)) {
-        return breakpointValues[BreakpointScreenSize.large];
-      } else if (definedBreakpoints.includes(BreakpointScreenSize.xl)) {
-        return breakpointValues[BreakpointScreenSize.xl];
-      } else return null;
-    case 'small':
-      if (definedBreakpoints.includes(BreakpointScreenSize.medium)) {
-        return breakpointValues[BreakpointScreenSize.medium];
-      } else if (definedBreakpoints.includes(BreakpointScreenSize.large)) {
-        return breakpointValues[BreakpointScreenSize.large];
-      } else if (definedBreakpoints.includes(BreakpointScreenSize.xl)) {
-        return breakpointValues[BreakpointScreenSize.xl];
-      } else return null;
-    case 'medium':
-      if (definedBreakpoints.includes(BreakpointScreenSize.large)) {
-        return breakpointValues[BreakpointScreenSize.large];
-      } else if (definedBreakpoints.includes(BreakpointScreenSize.xl)) {
-        return breakpointValues[BreakpointScreenSize.xl];
-      } else return null;
-    case 'large':
-      if (definedBreakpoints.includes(BreakpointScreenSize.xl)) {
-        return breakpointValues[BreakpointScreenSize.xl];
-      }
-    case 'xl':
-      return null;
-    default:
-      return null;
-  }
+  const sizes = Object.keys(breakpointValues);
+
+  const newSizes = sizes.slice(sizes.indexOf(screenSize) + 1);
+
+  const nextSize = newSizes.find(newSize =>
+    definedBreakpoints.includes(newSize)
+  );
+
+  return breakpointValues[nextSize];
 }
 
 export const BreakpointsContainer: React.FunctionComponent<
