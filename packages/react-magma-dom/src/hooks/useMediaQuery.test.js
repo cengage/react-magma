@@ -1,12 +1,16 @@
 import { renderHook } from '@testing-library/react-hooks';
 import { useMediaQuery } from './useMediaQuery';
 
-const mockedScreenWidth = 1200;
-
 const mockMatches = query => {
-  const reg = /\d+/;
-  const querySize = query.match(reg)[0];
-  return parseInt(querySize) > mockedScreenWidth;
+  const mockScreenWidth = 1200;
+
+  const reg = /\d+/g;
+  const maxSize = query.match(reg)[0];
+  const minSize = query.match(reg)[1];
+
+  return (
+    mockScreenWidth <= parseInt(maxSize) && mockScreenWidth >= parseInt(minSize)
+  );
 };
 
 function defineMatchMedia() {
@@ -36,16 +40,29 @@ describe('useMediaQuery', () => {
 
   it('should return false if screen-size is greater than max-width', () => {
     defineMatchMedia();
-    const { result } = renderHook(() => useMediaQuery('(max-width:1024px)'));
+    const { result } = renderHook(() =>
+      useMediaQuery('(max-width:1024px) and (min-width: 600px)')
+    );
 
     expect(result.current).toEqual(false);
   });
 
-  it('should return true if screen-size is less than max-width', () => {
+  it('should return true if screen-size is less than max-width and greater than the min-width', () => {
     defineMatchMedia();
-    const { result } = renderHook(() => useMediaQuery('(max-width:1331px)'));
+    const { result } = renderHook(() =>
+      useMediaQuery('(max-width:1300px) and (min-width: 600px)')
+    );
 
     expect(result.current).toEqual(true);
+  });
+
+  it('should return false if screen-size is less than the min-width', () => {
+    defineMatchMedia();
+    const { result } = renderHook(() =>
+      useMediaQuery('(max-width:1500px) and (min-width: 1300px)')
+    );
+
+    expect(result.current).toEqual(false);
   });
 
   it('should return false if window does not support matchMedia', () => {

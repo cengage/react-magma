@@ -24,13 +24,16 @@ export function useMediaQuery(queryInput) {
     }
 
     const queryList = matchMedia(query);
+
     const updateMatch = () => {
       if (active) {
         setMatch(queryList.matches);
       }
     };
+
     updateMatch();
     queryList.addEventListener('change', updateMatch);
+
     return () => {
       active = false;
       queryList.removeEventListener('change', updateMatch);
