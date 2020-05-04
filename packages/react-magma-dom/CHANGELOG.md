@@ -3,54 +3,114 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.0.0-beta.36](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.35...v2.0.0-beta.36) (2020-04-14)
+# [2.0.0-beta.40](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.39...v2.0.0-beta.40) (2020-04-24)
+
+
+### Features
+
+* **tabs:** export enums for Tabs component ([a1ca8c0](http://stash.corp.web:7999/FRONT/react-magma/commits/a1ca8c0))
+
+
+
+
+
+# [2.0.0-beta.39](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.38...v2.0.0-beta.39) (2020-04-23)
 
 
 ### Bug Fixes
+
+* **dropdown-button:** fix types for dropdown button ([27dfa3d](http://stash.corp.web:7999/FRONT/react-magma/commits/27dfa3d))
+
+
+### Features
+
+* **tabs:** allow custom wrapped tab components ([db5c288](http://stash.corp.web:7999/FRONT/react-magma/commits/db5c288))
+
+
+
+
+
+# [2.0.0-beta.38](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.37...v2.0.0-beta.38) (2020-04-21)
+
+
+### Bug Fixes
+
+* **tabs:** allow scrolling without buttons ([f0e256b](http://stash.corp.web:7999/FRONT/react-magma/commits/f0e256b))
+* **tabs:** clean up tab and tabs props ([c4fb082](http://stash.corp.web:7999/FRONT/react-magma/commits/c4fb082))
+* **tabs:** scroll button size, header z-index ([58ec54c](http://stash.corp.web:7999/FRONT/react-magma/commits/58ec54c))
+
+
+### Features
+
+* **tab-props:** make component and children mutually exclusive in Tab ([3e2bc01](http://stash.corp.web:7999/FRONT/react-magma/commits/3e2bc01))
+* **tabs:** add aria-label from props to tabs container ([c46da40](http://stash.corp.web:7999/FRONT/react-magma/commits/c46da40))
+* **tabs:** add isInverse to TabsPanelsContainer ([ad5bf7e](http://stash.corp.web:7999/FRONT/react-magma/commits/ad5bf7e))
+* **tabs:** hovering buttons no longer overlap selected tab ([0b95a44](http://stash.corp.web:7999/FRONT/react-magma/commits/0b95a44))
+* **tabs:** inverse styles on container, panels ([9ab5438](http://stash.corp.web:7999/FRONT/react-magma/commits/9ab5438))
+* **tabs:** next and prev tab button styles ([e37b2bf](http://stash.corp.web:7999/FRONT/react-magma/commits/e37b2bf))
+* **tabs:** remove path prop and passthrough props to component ([cecaa23](http://stash.corp.web:7999/FRONT/react-magma/commits/cecaa23))
+* **tabs:** scroll in to view on tab selection ([4cff42a](http://stash.corp.web:7999/FRONT/react-magma/commits/4cff42a))
+* **tabs:** scroll into view when covered by buttons ([cd86d92](http://stash.corp.web:7999/FRONT/react-magma/commits/cd86d92))
+* **tabs:** support all directions for borderPosition, iconPosition ([d8b01aa](http://stash.corp.web:7999/FRONT/react-magma/commits/d8b01aa))
+* **tabs:** tab panel props optional ([e35f57f](http://stash.corp.web:7999/FRONT/react-magma/commits/e35f57f))
+
+
+
+
+
+# [2.0.0-beta.36](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.35...v2.0.0-beta.36) (2020-04-14)
+
+### Bug Fixes
+
+- **search:** add and document style and testid props ([ce089c6](http://stash.corp.web:7999/FRONT/react-magma/commits/ce089c6))
+- **tabs:** fix TabsProps interface ([acd9e41](http://stash.corp.web:7999/FRONT/react-magma/commits/acd9e41))
 
 * **buttons:** provide default styles for unknown props ([b4cdefe](http://stash.corp.web:7999/FRONT/react-magma/commits/b4cdefe))
 
+### Features
+
+- **dropdown:** active item ([529d123](http://stash.corp.web:7999/FRONT/react-magma/commits/529d123))
+- **dropdown:** add examples with checkboxes, add textposition prop ([f843e38](http://stash.corp.web:7999/FRONT/react-magma/commits/f843e38))
+- **dropdown:** add max-height to menu ([ff59fea](http://stash.corp.web:7999/FRONT/react-magma/commits/ff59fea))
+- **dropdown:** add value prop for active items ([fc697ec](http://stash.corp.web:7999/FRONT/react-magma/commits/fc697ec))
+- **dropdown:** allow custom aria-label on split toggle ([2ebdc55](http://stash.corp.web:7999/FRONT/react-magma/commits/2ebdc55))
+- **dropdown:** allow maxHeight and width props to be numbers ([f406cf5](http://stash.corp.web:7999/FRONT/react-magma/commits/f406cf5))
+- **dropdown:** arrow up functionality and cleanup of arrow keypress ([04aa0f6](http://stash.corp.web:7999/FRONT/react-magma/commits/04aa0f6))
+- **dropdown:** auto-assign index to dropdown ([532577b](http://stash.corp.web:7999/FRONT/react-magma/commits/532577b))
+- **dropdown:** disabled item ([4eb23b3](http://stash.corp.web:7999/FRONT/react-magma/commits/4eb23b3))
+- **dropdown:** dividers and headings ([89c371b](http://stash.corp.web:7999/FRONT/react-magma/commits/89c371b))
+- **dropdown:** fix handleblur ([c02cf9e](http://stash.corp.web:7999/FRONT/react-magma/commits/c02cf9e))
+- **dropdown:** keyboard behavior ([1cdaa20](http://stash.corp.web:7999/FRONT/react-magma/commits/1cdaa20))
+- **dropdown:** keydown behavior for items ([343fe93](http://stash.corp.web:7999/FRONT/react-magma/commits/343fe93))
+- **dropdown:** more examples, tests, focus button on esc ([32b077f](http://stash.corp.web:7999/FRONT/react-magma/commits/32b077f))
+- **dropdown:** more form examples ([1dc9d00](http://stash.corp.web:7999/FRONT/react-magma/commits/1dc9d00))
+- **dropdown:** move menu, toggle to independant components ([3f203a7](http://stash.corp.web:7999/FRONT/react-magma/commits/3f203a7))
+- **dropdown:** move more into context, add tests ([e74da40](http://stash.corp.web:7999/FRONT/react-magma/commits/e74da40))
+- **dropdown:** rename component, remove list markup, style fix ([04512aa](http://stash.corp.web:7999/FRONT/react-magma/commits/04512aa))
+- **dropdown:** renamed components ([ca81543](http://stash.corp.web:7999/FRONT/react-magma/commits/ca81543))
+- **dropdown:** skip focusing disabled item ([79e046a](http://stash.corp.web:7999/FRONT/react-magma/commits/79e046a))
+- **dropdown:** split button ([247e9ba](http://stash.corp.web:7999/FRONT/react-magma/commits/247e9ba))
+- **dropdown:** start component and basic styles ([9947056](http://stash.corp.web:7999/FRONT/react-magma/commits/9947056))
+- **dropdown:** stop blur when clicking inside dropdown ([bd03344](http://stash.corp.web:7999/FRONT/react-magma/commits/bd03344))
+- **dropdown:** very start of dropdown component ([4e15f75](http://stash.corp.web:7999/FRONT/react-magma/commits/4e15f75))
 
 ### Features
 
-* **dropdown:** active item ([529d123](http://stash.corp.web:7999/FRONT/react-magma/commits/529d123))
-* **dropdown:** add examples with checkboxes, add textposition prop ([f843e38](http://stash.corp.web:7999/FRONT/react-magma/commits/f843e38))
-* **dropdown:** add max-height to menu ([ff59fea](http://stash.corp.web:7999/FRONT/react-magma/commits/ff59fea))
-* **dropdown:** add value prop for active items ([fc697ec](http://stash.corp.web:7999/FRONT/react-magma/commits/fc697ec))
-* **dropdown:** allow custom aria-label on split toggle ([2ebdc55](http://stash.corp.web:7999/FRONT/react-magma/commits/2ebdc55))
-* **dropdown:** allow maxHeight and width props to be numbers ([f406cf5](http://stash.corp.web:7999/FRONT/react-magma/commits/f406cf5))
-* **dropdown:** arrow up functionality and cleanup of arrow keypress ([04aa0f6](http://stash.corp.web:7999/FRONT/react-magma/commits/04aa0f6))
-* **dropdown:** auto-assign index to dropdown ([532577b](http://stash.corp.web:7999/FRONT/react-magma/commits/532577b))
-* **dropdown:** disabled item ([4eb23b3](http://stash.corp.web:7999/FRONT/react-magma/commits/4eb23b3))
-* **dropdown:** dividers and headings ([89c371b](http://stash.corp.web:7999/FRONT/react-magma/commits/89c371b))
-* **dropdown:** fix handleblur ([c02cf9e](http://stash.corp.web:7999/FRONT/react-magma/commits/c02cf9e))
-* **dropdown:** keyboard behavior ([1cdaa20](http://stash.corp.web:7999/FRONT/react-magma/commits/1cdaa20))
-* **dropdown:** keydown behavior for items ([343fe93](http://stash.corp.web:7999/FRONT/react-magma/commits/343fe93))
-* **dropdown:** more examples, tests, focus button on esc ([32b077f](http://stash.corp.web:7999/FRONT/react-magma/commits/32b077f))
-* **dropdown:** more form examples ([1dc9d00](http://stash.corp.web:7999/FRONT/react-magma/commits/1dc9d00))
-* **dropdown:** move menu, toggle to independant components ([3f203a7](http://stash.corp.web:7999/FRONT/react-magma/commits/3f203a7))
-* **dropdown:** move more into context, add tests ([e74da40](http://stash.corp.web:7999/FRONT/react-magma/commits/e74da40))
-* **dropdown:** rename component, remove list markup, style fix ([04512aa](http://stash.corp.web:7999/FRONT/react-magma/commits/04512aa))
-* **dropdown:** renamed components ([ca81543](http://stash.corp.web:7999/FRONT/react-magma/commits/ca81543))
-* **dropdown:** skip focusing disabled item ([79e046a](http://stash.corp.web:7999/FRONT/react-magma/commits/79e046a))
-* **dropdown:** split button ([247e9ba](http://stash.corp.web:7999/FRONT/react-magma/commits/247e9ba))
-* **dropdown:** start component and basic styles ([9947056](http://stash.corp.web:7999/FRONT/react-magma/commits/9947056))
-* **dropdown:** stop blur when clicking inside dropdown ([bd03344](http://stash.corp.web:7999/FRONT/react-magma/commits/bd03344))
-* **dropdown:** very start of dropdown component ([4e15f75](http://stash.corp.web:7999/FRONT/react-magma/commits/4e15f75))
-
-
-
-
+- **toast:** some new toast/alert styles ([ffa180f](http://stash.corp.web:7999/FRONT/react-magma/commits/ffa180f))
+- **toast:** upadted animation, mobile styles ([96e4519](http://stash.corp.web:7999/FRONT/react-magma/commits/96e4519))
+- **toasts:** update styles based on orion feedback ([79f6660](http://stash.corp.web:7999/FRONT/react-magma/commits/79f6660))
 
 # [2.0.0-beta.35](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.34...v2.0.0-beta.35) (2020-04-14)
 
-
 ### Bug Fixes
 
-* **banners:** fix padding ([1fc6cc1](http://stash.corp.web:7999/FRONT/react-magma/commits/1fc6cc1))
-
+- **banners:** fix padding ([1fc6cc1](http://stash.corp.web:7999/FRONT/react-magma/commits/1fc6cc1))
 
 ### Features
+
+- **calendar,search icon:** update calendar icon, update icon sizes ([444c08e](http://stash.corp.web:7999/FRONT/react-magma/commits/444c08e))
+- **focus:** update color ([7bd022c](http://stash.corp.web:7999/FRONT/react-magma/commits/7bd022c))
+- **icons:** new icons -- open envelopes and signout ([4d8c2e7](http://stash.corp.web:7999/FRONT/react-magma/commits/4d8c2e7))
 
 * **alert:** close button styles ([b64acc9](http://stash.corp.web:7999/FRONT/react-magma/commits/b64acc9))
 * **banner:** add icon ([6e6102d](http://stash.corp.web:7999/FRONT/react-magma/commits/6e6102d))
@@ -59,23 +119,22 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **banner alert:** close button and icons ([fd2b980](http://stash.corp.web:7999/FRONT/react-magma/commits/fd2b980))
 * **modal:** add backdrop blur ([adc33be](http://stash.corp.web:7999/FRONT/react-magma/commits/adc33be))
 
-
-
-
-
 # [2.0.0-beta.34](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.33...v2.0.0-beta.34) (2020-04-09)
 
+### Features
+
+- **select:** allow for custom components to be passed in ([dc8cffd](http://stash.corp.web:7999/FRONT/react-magma/commits/dc8cffd))
 
 ### Bug Fixes
 
-* **search:** add and document style and testid props ([ce089c6](http://stash.corp.web:7999/FRONT/react-magma/commits/ce089c6))
-* **tabs:** fix TabsProps interface ([acd9e41](http://stash.corp.web:7999/FRONT/react-magma/commits/acd9e41))
-
-
-
-
+- **search:** add and document style and testid props ([ce089c6](http://stash.corp.web:7999/FRONT/react-magma/commits/ce089c6))
+- **tabs:** fix TabsProps interface ([acd9e41](http://stash.corp.web:7999/FRONT/react-magma/commits/acd9e41))
 
 # [2.0.0-beta.33](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.32...v2.0.0-beta.33) (2020-04-08)
+
+### Bug Fixes
+
+- **radio, checkbox:** border color on checked and indeterminate ([6f0436e](http://stash.corp.web:7999/FRONT/react-magma/commits/6f0436e))
 
 ### Features
 
