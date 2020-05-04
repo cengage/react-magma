@@ -294,7 +294,13 @@ export { StopIcon } from './components/Icon/types/StopIcon';
 export { Stop2Icon } from './components/Icon/types/Stop2Icon';
 export { SwapHorizIcon } from './components/Icon/types/SwapHorizIcon';
 export { TabsContainer } from './components/Tabs/TabsContainer';
-export { Tabs } from './components/Tabs';
+export {
+  Tabs,
+  TabsAlignment,
+  TabsBorderPosition,
+  TabsIconPosition,
+  TabsOrientation
+} from './components/Tabs';
 export { Tab } from './components/Tabs/Tab';
 export { TabPanelsContainer } from './components/Tabs/TabPanelsContainer';
 export { TabPanel } from './components/Tabs/TabPanel';
