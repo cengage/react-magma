@@ -30,7 +30,7 @@ describe('Alert', () => {
     expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-1k7y0kd"
+    class="css-1m74vlr"
     id="defaultVariant"
     tabindex="-1"
   >
@@ -41,7 +41,7 @@ describe('Alert', () => {
         class="css-ov1ktg"
       >
         <span
-          class="css-n0a44h-IconWrapperStyles-IconWrapper"
+          class="css-1e27nxf-IconWrapperStyles-IconWrapper"
         >
           <svg
             class="icon"
@@ -91,7 +91,7 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-1k7y0kd"
+    class="css-1m74vlr"
     id="auto-generated-id"
     tabindex="-1"
   >
@@ -102,7 +102,7 @@ describe('Alert', () => {
         class="css-ov1ktg"
       >
         <span
-          class="css-n0a44h-IconWrapperStyles-IconWrapper"
+          class="css-1e27nxf-IconWrapperStyles-IconWrapper"
         >
           <svg
             class="icon"
@@ -139,7 +139,7 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-1k7y0kd"
+    class="css-1m74vlr"
     id="auto-generated-id"
     tabindex="-1"
   >
@@ -150,7 +150,7 @@ describe('Alert', () => {
         class="css-ov1ktg"
       >
         <span
-          class="css-n0a44h-IconWrapperStyles-IconWrapper"
+          class="css-1e27nxf-IconWrapperStyles-IconWrapper"
         >
           <svg
             class="icon"
@@ -187,7 +187,7 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-1k7y0kd"
+    class="css-1m74vlr"
     id="auto-generated-id"
     tabindex="-1"
   >
@@ -198,7 +198,7 @@ describe('Alert', () => {
         class="css-ov1ktg"
       >
         <span
-          class="css-n0a44h-IconWrapperStyles-IconWrapper"
+          class="css-1e27nxf-IconWrapperStyles-IconWrapper"
         >
           <svg
             class="icon"
@@ -234,7 +234,7 @@ describe('Alert', () => {
       expect(container).toMatchInlineSnapshot(`
 <div>
   <div
-    class="css-1k7y0kd"
+    class="css-1m74vlr"
     id="auto-generated-id"
     tabindex="-1"
   >
@@ -245,7 +245,7 @@ describe('Alert', () => {
         class="css-ov1ktg"
       >
         <span
-          class="css-n0a44h-IconWrapperStyles-IconWrapper"
+          class="css-1e27nxf-IconWrapperStyles-IconWrapper"
         >
           <svg
             class="icon"

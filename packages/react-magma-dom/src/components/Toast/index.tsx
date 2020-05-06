@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
+import { css } from '@emotion/core';
 import { Alert, AlertProps } from '../Alert';
 import { useGenerateId } from '../../utils';
 import { ToastsContext } from './ToastsContainer';
@@ -14,7 +15,9 @@ export interface ToastProps extends AlertProps {
   onMouseLeave?: (event: React.SyntheticEvent) => void;
 }
 
-const ToastWrapper = styled.div`
+const ToastWrapper = styled.div<{
+  isToastInBackground?: boolean;
+}>`
   align-items: center;
   bottom: 20px;
   display: flex;
@@ -23,6 +26,13 @@ const ToastWrapper = styled.div`
   position: fixed;
   right: 20px;
   z-index: 999;
+
+  ${props =>
+    props.isToastInBackground &&
+    css`
+      opacity: 0;
+      z-index: -1;
+    `}
 
   @media (max-width: 600px) {
     bottom: 10px;
@@ -52,8 +62,9 @@ export const Toast: React.FunctionComponent<ToastProps> = (
   function dismissToast() {
     setIsDismissed(true);
 
-    if (setToastCount) {
-      setToastCount(toastCount - 1);
+    if (setToastsArray) {
+      const newToastsArray = toastsArray.filter(toastId => toastId !== id);
+      setToastsArray(newToastsArray);
     }
   }
 
@@ -112,20 +123,26 @@ export const Toast: React.FunctionComponent<ToastProps> = (
 
   const toastsContext = React.useContext(ToastsContext);
 
-  const { toastCount, setToastCount } = toastsContext;
-  const headerText = toastCount > 1 ? `1 of ${toastCount} messages` : null;
+  const { toastsArray, setToastsArray } = toastsContext;
+  const headerText =
+    toastsArray.length > 1 ? `1 of ${toastsArray.length} messages` : null;
+
+  const isToastInBackground =
+    typeof toastsArray[0] !== 'undefined' && toastsArray[0] !== id;
 
   React.useEffect(() => {
-    if (setToastCount) {
-      setToastCount(toastCount + 1);
+    if (setToastsArray) {
+      setToastsArray(toastsArray.concat([id]));
     }
   }, []);
 
   return (
     <ToastWrapper
+      isToastInBackground={isToastInBackground}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={containerStyle}
+      data-testid={testId}
     >
       <Alert
         {...other}
@@ -137,8 +154,7 @@ export const Toast: React.FunctionComponent<ToastProps> = (
         isToast
         onDismiss={props.onDismiss}
         style={{ ...alertStyle }}
-        testId={testId}
-        toastCount={toastCount}
+        toastCount={toastsArray.length}
         variant={variant}
       >
         {children}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Toast } from '.';
+import { ToastsContext } from './ToastsContainer';
 import { act, render, fireEvent } from '@testing-library/react';
 
 describe('Toast', () => {
@@ -25,6 +26,22 @@ describe('Toast', () => {
     const { getByText } = render(<Toast>{toastContent}</Toast>);
 
     expect(getByText(toastContent)).toBeInTheDocument();
+  });
+
+  it('should render a toast with correct styles if toast is in background', () => {
+    const { getByTestId } = render(
+      <ToastsContext.Provider value={{ toastsArray: ['toast1', 'toast2'] }}>
+        <Toast id="toast1" testId="toast1">
+          toast
+        </Toast>
+        <Toast id="toast2" testId="toast2">
+          toast
+        </Toast>
+      </ToastsContext.Provider>
+    );
+
+    expect(getByTestId('toast1')).toHaveStyleRule('z-index', '999');
+    expect(getByTestId('toast2')).toHaveStyleRule('z-index', '-1');
   });
 
   it('should call passed in onDismiss when timer runs out', async () => {
@@ -158,7 +175,7 @@ describe('Toast', () => {
       </Toast>
     );
 
-    expect(getByTestId('test').firstChild).toHaveStyleRule(
+    expect(getByTestId('test').firstChild.firstChild).toHaveStyleRule(
       'background-color',
       '#3A8200'
     );

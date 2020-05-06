@@ -85,7 +85,10 @@ const StyledAlert = styled.div<AlertProps>`
     props.isToast &&
     props.toastCount > 1 &&
     css`
-      &:before {
+      &:after {
+        animation: ${props.isExiting
+          ? `fadeout ${transitionDuration}ms`
+          : `slideinFromToast ${transitionDuration}ms`};
         background: ${props.theme.colors.neutral05};
         border-radius: 5px;
         content: '';
@@ -96,6 +99,25 @@ const StyledAlert = styled.div<AlertProps>`
         right: 5px;
       }
     `}
+
+    ${props =>
+      props.isToast &&
+      props.toastCount > 2 &&
+      css`
+        &:before {
+          animation: ${props.isExiting
+            ? `fadeout ${transitionDuration}ms`
+            : `slideinFromToast2 ${transitionDuration}ms`};
+          background: ${props.theme.colors.neutral06};
+          border-radius: 5px;
+          content: '';
+          height: 100%;
+          position: absolute;
+          top: -10px;
+          left: 10px;
+          right: 10px;
+        }
+      `}
 
   ${props =>
     props.isToast &&
@@ -128,6 +150,24 @@ const StyledAlert = styled.div<AlertProps>`
     }
     to {
       opacity: 0;
+    }
+  }
+
+  @keyframes slideinFromToast {
+    from {
+      top: 0;
+    }
+    to {
+      top: -5px;
+    }
+  }
+
+  @keyframes slideinFromToast2 {
+    from {
+      top: 0;
+    }
+    to {
+      top: -10px;
     }
   }
 

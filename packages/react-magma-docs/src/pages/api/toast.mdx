@@ -61,6 +61,31 @@ markup, to ensure that they have the expected tab order.
   }
 ```
 
+## Toasts Container (handling multiple toasts)
+
+To handle multiple toasts, add the `ToastsContainer` component around all of the the content that will contain the toasts. This may be the entire application.
+Only one toast will be displayed at a time, but a "ghost" toast will appear behind the visiable toast to show that the toasts are stacking, and a header will appear to indicate how many toasts are in the queue.
+
+```.jsx
+  (props) => {
+    const [showAlert, setShowAlert] = React.useState(false);
+    const [showAlert2, setShowAlert2] = React.useState(false);
+    const [showAlert3, setShowAlert3] = React.useState(false);
+
+    return (<ToastsContainer>
+      <Button onClick={() => setShowAlert(true)} color="success">Show Toast</Button>
+      <Button onClick={() => setShowAlert2(true)} color="secondary">Show Toast 2</Button>
+      <Button onClick={() => setShowAlert3(true)} color="danger">Show Toast 3</Button>
+
+      <Announce>
+        {showAlert && <Toast isDismissible disableAutoDismiss={true} id="toast1" onDismiss={() => setShowAlert(false)} variant="success">Toast 1</Toast>}
+        {showAlert2 && <Toast isDismissible id="toast2" disableAutoDismiss={true} onDismiss={() => setShowAlert2(false)}>This is the second toast which is longer than toast one or three</Toast>}
+        {showAlert3 && <Toast isDismissible id="toast3" variant="danger" disableAutoDismiss={true} onDismiss={() => setShowAlert3(false)}>Toast three</Toast>}
+      </Announce>
+    </ToastsContainer>)
+  }
+```
+
 ## Toast Duration
 
 ```.jsx
@@ -97,31 +122,6 @@ markup, to ensure that they have the expected tab order.
       <Button onClick={() => setShowAlert(true)}>Show Toast</Button>
       {showAlert && <Toast isDismissible disableAutoDismiss={true} onDismiss={() => setShowAlert(false)}>Non-Auto Hiding Dismissible Toast</Toast>}
     </>)
-  }
-```
-
-## Toasts Container (handling multiple toasts)
-
-To handle multiple toasts, add the `ToastsContainer` component around all of the the content that will contain the toasts. This may be the entire application.
-Only one toast will be displayed at a time, but a "ghost" toast will appear behind the visiable toast to show that the toasts are stacking, and a header will appear to indicate how many toasts are in the queue.
-
-```.jsx
-  (props) => {
-    const [showAlert, setShowAlert] = React.useState(false);
-    const [showAlert2, setShowAlert2] = React.useState(false);
-    const [showAlert3, setShowAlert3] = React.useState(false);
-
-
-    return (<ToastsContainer>
-      <Button onClick={() => setShowAlert(true)}>Show Toast</Button>
-      {showAlert && <Toast isDismissible disableAutoDismiss={true} onDismiss={() => setShowAlert(false)}>Non-Auto Hiding Dismissible Toast</Toast>}
-
-      <Button onClick={() => setShowAlert2(true)} color="success">Show Toast 2</Button>
-      {showAlert2 && <Toast isDismissible variant="success" disableAutoDismiss={true} onDismiss={() => setShowAlert2(false)}>Non-Auto Hiding Dismissible Toast.</Toast>}
-
-      <Button onClick={() => setShowAlert3(true)} color="danger">Show Toast 3</Button>
-      {showAlert3 && <Toast isDismissible variant="danger" disableAutoDismiss={true} onDismiss={() => setShowAlert3(false)}>Non-Auto Hiding Dismissible Toast</Toast>}
-    </ToastsContainer>)
   }
 ```
 
