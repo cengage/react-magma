@@ -9,10 +9,8 @@ export enum DropdownDropDirection {
 }
 
 export enum DropdownAlignment {
-  bottom = 'bottom',
-  left = 'left', //default
-  right = 'right',
-  top = 'top'
+  start = 'start', //default
+  end = 'end'
 }
 
 export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {

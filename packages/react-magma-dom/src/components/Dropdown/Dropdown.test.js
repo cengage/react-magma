@@ -72,7 +72,7 @@ describe('Dropdown', () => {
 
   it('should render a right aligned menu', () => {
     const { getByTestId } = render(
-      <Dropdown alignment="right">
+      <Dropdown alignment="end">
         <DropdownButton>Toggle me</DropdownButton>
         <DropdownContent />
       </Dropdown>
@@ -84,7 +84,7 @@ describe('Dropdown', () => {
 
   it('should render a top-aligned menu', () => {
     const { getByTestId } = render(
-      <Dropdown alignment="top" dropDirection="right">
+      <Dropdown alignment="end" dropDirection="right">
         <DropdownButton>Toggle me</DropdownButton>
         <DropdownContent />
       </Dropdown>
