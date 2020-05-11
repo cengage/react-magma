@@ -4,6 +4,8 @@ import { Breadcrumb } from '.';
 import { BreadcrumbItem } from './Item';
 
 import { render } from '@testing-library/react';
+import { I18nContext } from '../../i18n';
+import { defaultI18n } from '../../i18n/default';
 
 const LINK_TEXT = 'Test link';
 const SPAN_TEXT = 'Test span';
@@ -55,6 +57,28 @@ describe('Breadcrumb', () => {
 
     expect(queryByLabelText('Breadcrumb')).not.toBeInTheDocument();
     expect(getByLabelText('Test label')).toBeInTheDocument();
+  });
+
+  describe('i18n', () => {
+    it('should use the nav aria-label', () => {
+      const navAriaLabel = 'test aria label';
+      const { getByLabelText } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            breadcrumb: {
+              navAriaLabel
+            }
+          }}
+        >
+          <Breadcrumb>
+            <BreadcrumbItem>Item Text</BreadcrumbItem>
+          </Breadcrumb>
+        </I18nContext.Provider>
+      );
+
+      expect(getByLabelText(navAriaLabel)).toBeInTheDocument();
+    });
   });
 
   it('Does not violate accessibility standards', () => {

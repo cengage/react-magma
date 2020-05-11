@@ -3,10 +3,13 @@ title: 'Date Pickers'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { DatePicker } from 'react-magma-dom'
+import { DatePicker, I18nContext, defaultI18n } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
+import * as esAll from 'date-fns/locale/es'
+import { es } from 'date-fns/locale'
+import { format } from 'date-fns'
 
 <DocsHeading to="/design/date-pickers/" type="design">
   Date Pickers
@@ -100,6 +103,21 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
 
 ```.jsx
     <DatePicker labelText="Date" />
+```
+
+## Internationalization
+
+```.jsx
+() => {
+  console.log('es', es)
+  console.log('esAll', esAll)
+  return (<I18nContext.Provider value={{
+    ...defaultI18n,
+    locale: es
+  }}>
+    <DatePicker labelText="Spanish" />
+  </I18nContext.Provider>)
+}
 ```
 
 ## Date Picker Props
@@ -226,5 +244,8 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
 />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ DatePicker }} />
+  <ScopeableLayout
+    {...props}
+    components={{ DatePicker, I18nContext, defaultI18n, es, esAll, format }}
+  />
 )

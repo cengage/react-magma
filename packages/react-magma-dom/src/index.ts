@@ -64,6 +64,8 @@ export { TimePicker } from './components/TimePicker';
 export { magma } from './theme/magma';
 export { GlobalStyles } from './theme/GlobalStyles';
 export { ThemeContext } from './theme/ThemeContext';
+export { I18nContext } from './i18n';
+export { defaultI18n, I18nInterface } from './i18n/default';
 export { ICONS } from './components/Icon';
 export { AddPersonIcon } from './components/Icon/types/AddPersonIcon';
 export { AlertIcon } from './components/Icon/types/AlertIcon';

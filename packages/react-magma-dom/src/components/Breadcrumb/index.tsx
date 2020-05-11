@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { I18nContext } from '../../i18n';
 
 export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
   isInverse?: boolean;
@@ -40,12 +41,13 @@ export const Breadcrumb: React.FunctionComponent<
     ref: any
   ) => {
     const theme = React.useContext(ThemeContext);
+    const i18n = React.useContext(I18nContext);
 
     return (
       <BreadCrumbContext.Provider value={{ isInverse }}>
         <nav
           {...other}
-          aria-label={ariaLabel ? ariaLabel : 'Breadcrumb'}
+          aria-label={ariaLabel ? ariaLabel : i18n.breadcrumb.navAriaLabel}
           data-testid={testId}
         >
           <StyledList isInverse={isInverse} ref={ref} theme={theme}>

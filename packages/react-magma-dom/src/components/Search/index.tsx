@@ -5,7 +5,7 @@ import {
   InputSize,
   InputType
 } from '../BaseInput';
-
+import { I18nContext } from '../../i18n';
 import { Search2Icon } from '../Icon/types/Search2Icon';
 import { Spinner } from '../Spinner';
 
@@ -34,7 +34,7 @@ export const Search: React.FunctionComponent<SearchProps> = React.forwardRef(
       ...other
     } = props;
 
-    const SEARCH = 'Search';
+    const i18n = React.useContext(I18nContext);
 
     const [value, setValue] = React.useState<string>(props.value);
 
@@ -66,14 +66,16 @@ export const Search: React.FunctionComponent<SearchProps> = React.forwardRef(
     return (
       <BaseInput
         {...other}
-        aria-label={labelText ? labelText : SEARCH}
+        aria-label={labelText ? labelText : i18n.search.input.ariaLabel}
         icon={icon}
-        iconAriaLabel={iconAriaLabel ? iconAriaLabel : SEARCH}
+        iconAriaLabel={
+          iconAriaLabel ? iconAriaLabel : i18n.search.iconAriaLabel
+        }
         iconPosition={InputIconPosition.right}
         onChange={handleChange}
         onIconClick={isLoading ? null : handleSearch}
         onKeyDown={handleKeyPress}
-        placeholder={placeholder ? placeholder : SEARCH}
+        placeholder={placeholder ? placeholder : i18n.search.input.placeholder}
         type={InputType.search}
         value={value}
         ref={ref}

@@ -11,6 +11,7 @@ import styled from '../../theme/styled';
 import { HelperInformation } from './HelperInformation';
 import { getTrapElements, getFocusedElementIndex } from '../Modal/utils';
 import { usePrevious } from '../../utils';
+import { I18nContext } from '../../i18n';
 
 interface CalendarMonthProps {
   calendarOpened?: boolean;
@@ -142,6 +143,24 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
   }
 
   const theme = React.useContext(ThemeContext);
+  const i18n = React.useContext(I18nContext);
+
+  const days = [
+    'sunday',
+    'monday',
+    'tuesday',
+    'wednesday',
+    'thursday',
+    'friday',
+    'saturday'
+  ];
+  const startOfWeek = days.indexOf(i18n.datePicker.startOfWeek);
+  const sortedDays = days.slice(startOfWeek).concat(days.slice(0, startOfWeek));
+  const tableDaysHeaders = sortedDays.map((day, index) => (
+    <Th key={index} theme={theme}>
+      {i18n.days.min[day]}
+    </Th>
+  ));
 
   return (
     <CalendarContainer
@@ -165,15 +184,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
           onFocus={onCalendarTableFocus}
         >
           <tbody>
-            <tr>
-              <Th theme={theme}>S</Th>
-              <Th theme={theme}>M</Th>
-              <Th theme={theme}>T</Th>
-              <Th theme={theme}>W</Th>
-              <Th theme={theme}>T</Th>
-              <Th theme={theme}>F</Th>
-              <Th theme={theme}>S</Th>
-            </tr>
+            <tr>{tableDaysHeaders}</tr>
             {context.buildCalendarMonth(context.focusedDate).map((week, i) => (
               <tr key={i}>
                 {week.map((day, dayOfWeek) => (
@@ -190,7 +201,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
         </Table>
         <HelperButton>
           <IconButton
-            aria-label="Calendar Help"
+            aria-label={i18n.datePicker.helpModal.helpButtonAriaLabel}
             icon={<QuestionCircleOIcon />}
             onClick={openHelperInformation}
             onFocus={turnOffDateFocused}
@@ -204,7 +215,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
         </HelperButton>
         <CloseButton>
           <IconButton
-            aria-label="Close Calendar"
+            aria-label={i18n.datePicker.calendarCloseAriaLabel}
             color={ButtonColor.secondary}
             icon={<CrossIcon />}
             onClick={props.handleCloseButtonClick}
