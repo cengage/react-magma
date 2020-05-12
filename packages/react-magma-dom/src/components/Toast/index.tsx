@@ -71,6 +71,10 @@ export const Toast: React.FunctionComponent<ToastProps> = (
   function clearTimeoutAndDismiss() {
     clearTimeout(timerAutoHide.current);
     dismissToast();
+
+    if (lastFocus.current) {
+      lastFocus.current.focus();
+    }
   }
 
   function setAutoHideTimer(duration = DEFAULT_TOAST_DURATION) {
@@ -121,6 +125,8 @@ export const Toast: React.FunctionComponent<ToastProps> = (
 
   const id = useGenerateId(defaultId);
 
+  const lastFocus = React.useRef<any>();
+
   const toastsContext = React.useContext(ToastsContext);
 
   const { toastsArray, setToastsArray } = toastsContext;
@@ -131,6 +137,8 @@ export const Toast: React.FunctionComponent<ToastProps> = (
     typeof toastsArray[0] !== 'undefined' && toastsArray[0] !== id;
 
   React.useEffect(() => {
+    lastFocus.current = document.activeElement;
+
     if (setToastsArray) {
       setToastsArray(toastsArray.concat([id]));
     }
