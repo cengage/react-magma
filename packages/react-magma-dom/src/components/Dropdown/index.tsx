@@ -3,12 +3,14 @@ import styled from '../../theme/styled';
 
 export enum DropdownDropDirection {
   down = 'down', //default
+  left = 'left',
+  right = 'right',
   up = 'up'
 }
 
 export enum DropdownAlignment {
-  left = 'left', //default
-  right = 'right'
+  start = 'start', //default
+  end = 'end'
 }
 
 export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
