@@ -64,6 +64,7 @@ export const baseInputStyles = props => css`
   height: 37px;
   line-height: 1.25rem;
   padding: 0 8px;
+  -webkit-appearance: none;
   width: 100%;
 
   ${props.iconPosition === 'left' &&
