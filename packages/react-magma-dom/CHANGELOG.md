@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.43](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.42...v2.0.0-beta.43) (2020-05-12)
+
+
+### Bug Fixes
+
+* **search:** border radius ios ([1979723](http://stash.corp.web:7999/FRONT/react-magma/commits/1979723))
+
+
+
+
+
 # [2.0.0-beta.42](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.41...v2.0.0-beta.42) (2020-05-12)
 
 
