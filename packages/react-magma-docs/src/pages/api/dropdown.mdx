@@ -69,27 +69,77 @@ Instead of using the `DropdownButton`, a `DropdownSplitButton` can be used inste
 Using the `dropDirection` prop will change where the menu appears. Options are `down` and `up`, with `down` being default.
 
 ```.jsx
-      <Dropdown dropDirection='up'>
-          <DropdownButton>Drop up</DropdownButton>
-          <DropdownContent>
-            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-          </DropdownContent>
-      </Dropdown>
+      <>
+        <Dropdown dropDirection='left'>
+            <DropdownButton>Drop Left</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownContent>
+        </Dropdown>
+         <Dropdown dropDirection='up'>
+            <DropdownButton>Drop Up</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownContent>
+        </Dropdown>
+        <Dropdown dropDirection='right'>
+            <DropdownButton>Drop Right</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownContent>
+        </Dropdown>
+      </>
 ```
 
 ## Alignment
 
-Using the `alignment` prop will set the alignment of the menu. Options are `left` and `right`, with `left` being default.
+Using the `alignment` prop will set the alignment of the content in relationship to the button.
+
+The default value is `start`, meaning that a drop-down or a drop-up, will have the dropdown content aligned to the left side of the button,
+and a drop-left or a drop-right will have the content aligned to the top of the button.
+
+The other option is `end`, meaning that a drop-down or a drop-up, will have the dropdown content aligned to the right side of the button,
+and a drop-left or a drop-right will have the content aligned to the bottom of the button.
 
 ```.jsx
-      <Dropdown alignment='right'>
-        <DropdownButton>Right Aligned</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
+      <>
+         <Dropdown alignment='end' dropDirection='left'>
+          <DropdownButton>Top-Aligned Dropleft</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+
+        <Dropdown alignment='end' dropDirection='right'>
+          <DropdownButton>Top-Aligned Dropright</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+
+        <br/>
+
+        <Dropdown alignment='end' dropDirection='down'>
+          <DropdownButton>Right-Aligned Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+
+         <Dropdown alignment='end' dropDirection='up'>
+          <DropdownButton>Right-Aligned Dropup</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </>
 ```
 
 ## Fixed Width
@@ -337,16 +387,18 @@ When another item is selected, that item will become active and the menu will re
     alignment: {
       type: {
         name: 'enum',
-        options: ['DropdownAlignment.left, DropdownAlignment.right'],
+        options: ['DropdownAlignment.start, DropdownAlignment.end'],
       },
       required: false,
       description: 'Alignment of the dropdown content',
-      defaultValue: 'left',
+      defaultValue: 'start',
     },
     dropDirection: {
       type: {
         name: 'enum',
-        options: ['DropdownDropDirection.down, DropdownDropDirection.up'],
+        options: [
+          'DropdownDropDirection.down, DropdownDropDirection.left, DropdownDropDirection.right, DropdownDropDirection.up',
+        ],
       },
       required: false,
       description: 'Position of the dropdown content',

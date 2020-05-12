@@ -37,12 +37,38 @@ const StyledCard = styled(Card)<{
       bottom: 100%;
     `}
 
+
   ${props =>
-    props.alignment === 'right' &&
+    props.dropDirection === 'left' &&
+    css`
+      left: auto;
+      right: 100%;
+      top: 5px;
+    `}
+
+
+  ${props =>
+    props.dropDirection === 'right' &&
+    css`
+      left: 100%;
+      top: 5px;
+    `}
+
+  ${props =>
+    props.alignment === 'end' &&
+    (props.dropDirection !== 'left' && props.dropDirection !== 'right') &&
     css`
       left: auto;
       right: 5px;
     `}
+
+    ${props =>
+      props.alignment === 'end' &&
+      (props.dropDirection === 'left' || props.dropDirection === 'right') &&
+      css`
+        bottom: 5px;
+        top: auto;
+      `}
 `;
 
 const StyledDiv = styled.div`

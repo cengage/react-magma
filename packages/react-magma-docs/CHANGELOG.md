@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.42](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.41...v2.0.0-beta.42) (2020-05-12)
+
+
+### Features
+
+* **dropdown:** allow left and right for dropdirection ([ec46ea7](http://stash.corp.web:7999/FRONT/react-magma/commits/ec46ea7))
+* **dropdown:** change alignment enum to accept start and end ([54b25f3](http://stash.corp.web:7999/FRONT/react-magma/commits/54b25f3))
+* **dropdown:** option for dropleft and dropright ([7b7cd47](http://stash.corp.web:7999/FRONT/react-magma/commits/7b7cd47))
+
+
+
+
+
+# [2.0.0-beta.41](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.40...v2.0.0-beta.41) (2020-05-11)
+
+**Note:** Version bump only for package react-magma-docs
+
+
+
+
+
 # [2.0.0-beta.40](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.39...v2.0.0-beta.40) (2020-04-24)
 
 **Note:** Version bump only for package react-magma-docs
