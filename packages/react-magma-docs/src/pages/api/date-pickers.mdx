@@ -7,7 +7,6 @@ import { DatePicker, I18nContext, defaultI18n } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
-import * as esAll from 'date-fns/locale/es'
 import { es } from 'date-fns/locale'
 import { format } from 'date-fns'
 
@@ -107,15 +106,16 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
 
 ## Internationalization
 
+To use a separate `locale` import a `date-fns` locale object (`import { es } from 'date-fns/locale'`) and pass it in
+to the `I18nContext` provider.
+
 ```.jsx
 () => {
-  console.log('es', es)
-  console.log('esAll', esAll)
   return (<I18nContext.Provider value={{
     ...defaultI18n,
     locale: es
   }}>
-    <DatePicker labelText="Spanish" />
+    <DatePicker labelText="Español" />
   </I18nContext.Provider>)
 }
 ```
@@ -246,6 +246,6 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
 export default props => (
   <ScopeableLayout
     {...props}
-    components={{ DatePicker, I18nContext, defaultI18n, es, esAll, format }}
+    components={{ DatePicker, I18nContext, defaultI18n, es, format }}
   />
 )

@@ -5,6 +5,8 @@ import { AmPmToggle } from './AmPmToggle';
 import { ClockIcon } from '../Icon/types/ClockIcon';
 import { Input } from '../Input';
 import { useGenerateId } from '../../utils';
+import { I18nContext } from '../../i18n';
+import { enUS } from 'date-fns/locale';
 
 export interface TimePickerProps {
   errorMessage?: React.ReactNode;
@@ -70,6 +72,7 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
   props: TimePickerProps
 ) => {
   const theme = React.useContext(ThemeContext);
+  const i18n = React.useContext(I18nContext);
   const {
     errorMessage,
     helperMessage,
@@ -79,9 +82,13 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
     ...other
   } = props;
 
+  const locale = i18n.locale || enUS;
+  const am = locale.localize.dayPeriod('am', { width: 'abbreviated' });
+  const pm = locale.localize.dayPeriod('pm', { width: 'abbreviated' });
+
   const [hour, setHour] = React.useState<string>('');
   const [minute, setMinute] = React.useState<string>('');
-  const [amPm, setAmPm] = React.useState<'AM' | 'PM'>('AM');
+  const [amPm, setAmPm] = React.useState<string>(am);
   const [time, setTime] = React.useState<string>('');
   const hourRef = React.useRef<HTMLInputElement>();
   const minuteRef = React.useRef<HTMLInputElement>();
@@ -104,7 +111,12 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
   }
 
   function validTime(passedInTime: string) {
-    return /^([01]?[0-9]|2[0-3]):[0-5][0-9]( [AaPp][Mm])?$/.test(passedInTime);
+    const amPmRegex = `${am}|${am.toLowerCase()}|${pm}|${pm.toLowerCase()}`;
+    const timeRegex = new RegExp(
+      `^([01]?[0-9]|2[0-3]):[0-5][0-9]( (${amPmRegex}))?$`,
+      'g'
+    );
+    return timeRegex.test(passedInTime);
   }
 
   function convertPassedInTime(passedInTime: string) {
@@ -113,10 +125,10 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
 
     const timeAmPm =
       Number(timeHour) > 12
-        ? 'PM'
+        ? pm
         : timeMinuteAndAmPm.length > 2
-        ? (timeMinuteAndAmPm.split(' ')[1].toUpperCase() as 'AM' | 'PM')
-        : 'AM';
+        ? timeMinuteAndAmPm.split(' ')[1].toUpperCase()
+        : am;
 
     setHour(calculateHour(Number(timeHour)));
     setMinute(timeMinute);
@@ -127,9 +139,9 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
   function calculateHour(newHour: number): string {
     if (newHour >= 13 && newHour <= 23) {
       newHour = newHour - 12;
-      setAmPm('PM');
+      setAmPm(pm);
     } else {
-      setAmPm('AM');
+      setAmPm(am);
     }
 
     if (newHour < 10) {
@@ -168,7 +180,7 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
   }
 
   function toggleAmPm() {
-    const newAmPm = amPm === 'AM' ? 'PM' : 'AM';
+    const newAmPm = amPm === am ? pm : am;
 
     setAmPm(newAmPm);
     updateTime(`${hour}:${minute} ${newAmPm}`);
@@ -236,7 +248,7 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
       >
         <InputsContainer theme={theme}>
           <StyledNumInput
-            aria-label="Hours"
+            aria-label={i18n.timePicker.hoursAriaLabel}
             aria-describedby={descriptionId}
             data-testid="hoursTimeInput"
             id={hourId}
@@ -253,7 +265,7 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
           />
           <Divider> : </Divider>
           <StyledNumInput
-            aria-label="Minutes"
+            aria-label={i18n.timePicker.minutesAriaLabel}
             data-testid="minutesTimeInput"
             id={minuteId}
             maxLength={2}

@@ -81,7 +81,7 @@ export const HelperInformation: React.FunctionComponent<
               i18n.datePicker.helpModal.pageUpAndPageDownKeys.ariaLabel
             }
           >
-            PgUp/PgDn
+            {i18n.datePicker.helpModal.pageUpAndPageDownKeys.displayValue}
           </KeyboardShortcutButtonWrapper>
           <div>
             {i18n.datePicker.helpModal.pageUpAndPageDownKeys.explanation}
@@ -92,7 +92,7 @@ export const HelperInformation: React.FunctionComponent<
             role="img"
             aria-label={i18n.datePicker.helpModal.homeAndEndKeys.ariaLabel}
           >
-            Home/End
+            {i18n.datePicker.helpModal.homeAndEndKeys.displayValue}
           </KeyboardShortcutButtonWrapper>
           <div>{i18n.datePicker.helpModal.homeAndEndKeys.explanation}</div>
         </Item>
@@ -101,7 +101,7 @@ export const HelperInformation: React.FunctionComponent<
             role="img"
             aria-label={i18n.datePicker.helpModal.escape.ariaLabel}
           >
-            Esc
+            {i18n.datePicker.helpModal.escape.displayValue}
           </KeyboardShortcutButtonWrapper>
           <div>{i18n.datePicker.helpModal.escape.explanation}</div>
         </Item>

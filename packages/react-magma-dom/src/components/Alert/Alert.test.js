@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Alert, AlertVariant } from '.';
-import { render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
@@ -274,6 +274,7 @@ describe('Alert', () => {
     });
 
     it('should call passed in onDismiss when dismissible icon button is clicked', () => {
+      jest.useFakeTimers();
       const onDismiss = jest.fn();
       const { getByLabelText } = render(
         <Alert isDismissible onDismiss={onDismiss}>
@@ -284,9 +285,10 @@ describe('Alert', () => {
 
       fireEvent.click(dismissableIconButton);
 
-      setTimeout(() => {
-        expect(onDismiss).toHaveBeenCalled();
-      }, 500);
+      act(jest.runAllTimers);
+
+      expect(onDismiss).toHaveBeenCalled();
+      jest.useRealTimers();
     });
   });
 

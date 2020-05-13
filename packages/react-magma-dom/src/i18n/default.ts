@@ -97,11 +97,16 @@ export interface I18nInterface {
   timePicker: {
     hoursAriaLabel: string;
     minutesAriaLabel: string;
-    am: string;
-    pm: string;
   };
   datePicker: {
-    startOfWeek: string;
+    startOfWeek:
+      | 'sunday'
+      | 'monday'
+      | 'tuesday'
+      | 'wednesday'
+      | 'thursday'
+      | 'friday'
+      | 'saturday';
     calendarIconAriaLabel: string;
     calendarOpenAnnounce: string;
     calendarCloseAriaLabel: string;
@@ -125,14 +130,17 @@ export interface I18nInterface {
       };
       pageUpAndPageDownKeys: {
         ariaLabel: string;
+        displayValue: string;
         explanation: string;
       };
       homeAndEndKeys: {
         ariaLabel: string;
+        displayValue: string;
         explanation: string;
       };
       escape: {
         ariaLabel: string;
+        displayValue: string;
         explanation: string;
       };
       questionMark: {
@@ -142,10 +150,19 @@ export interface I18nInterface {
     };
   };
   loadingIndicator: {
-    messages: {
-      first: string;
-      second: string;
-      third: string;
+    progressBar: {
+      messages: {
+        first: string;
+        second: string;
+        third: string;
+      };
+    };
+    spinner: {
+      messages: {
+        first: string;
+        second: string;
+        third: string;
+      };
     };
   };
   skipLink: {
@@ -249,10 +266,8 @@ export const defaultI18n: I18nInterface = {
     ariaLabel: 'Loading'
   },
   timePicker: {
-    hoursAriaLabel: 'Hours Aria Label',
-    minutesAriaLabel: 'Minutes Aria Label',
-    am: 'AM',
-    pm: 'PM'
+    hoursAriaLabel: 'Hours',
+    minutesAriaLabel: 'Minutes'
   },
   datePicker: {
     startOfWeek: 'sunday',
@@ -280,14 +295,17 @@ export const defaultI18n: I18nInterface = {
       },
       pageUpAndPageDownKeys: {
         ariaLabel: 'page up and page down keys',
+        displayValue: 'PGUP/PGDN',
         explanation: 'Switch months.'
       },
       homeAndEndKeys: {
         ariaLabel: 'Home and end keys',
+        displayValue: 'HOME/END',
         explanation: 'Go to the first or last day of a week.'
       },
       escape: {
         ariaLabel: 'Escape key',
+        displayValue: 'ESC',
         explanation: 'Return to the date input field.'
       },
       questionMark: {
@@ -297,13 +315,22 @@ export const defaultI18n: I18nInterface = {
     }
   },
   loadingIndicator: {
-    messages: {
-      first: 'Message One',
-      second: 'Message Two',
-      third: 'Message Three'
+    progressBar: {
+      messages: {
+        first: 'Please be patient as this could take up to a minute to load.',
+        second: 'Thank you for your patience. Still loading...',
+        third: 'Thank you for waiting.  We’re almost there!'
+      }
+    },
+    spinner: {
+      messages: {
+        first: 'Loading...',
+        second: 'Thank you for your patience. Still loading...',
+        third: 'Sorry for the delay. This is taking longer than expected.'
+      }
     }
   },
   skipLink: {
-    buttonText: 'Skip Link Button Text'
+    buttonText: 'Skip Navigation'
   }
 };
