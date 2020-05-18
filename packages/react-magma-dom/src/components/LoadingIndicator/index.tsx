@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ProgressBar, ProgressBarColor } from '../ProgressBar';
 import { Spinner } from '../Spinner';
 import styled from '@emotion/styled';
+import { I18nContext } from '../../i18n';
 
 export interface LoadingIndicatorProps
   extends React.HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
@@ -51,6 +52,8 @@ export const LoadingIndicator = React.forwardRef<
 >((props, ref) => {
   const [messageLevel, setMessageLevel] = React.useState<1 | 2 | 3>(1);
 
+  const i18n = React.useContext(I18nContext);
+
   React.useEffect(() => {
     const { type: loadingIndicatorType } = props;
     const messageLevel2Timeout = setTimeout(
@@ -79,18 +82,20 @@ export const LoadingIndicator = React.forwardRef<
   message1 = message1
     ? message1
     : type === LoadingIndicatorType.progressbar
-    ? 'Please be patient as this could take up to a minute to load.'
-    : 'Loading...';
+    ? i18n.loadingIndicator.progressBar.messages.first
+    : i18n.loadingIndicator.spinner.messages.first;
 
   message2 = message2
     ? message2
-    : 'Thank you for your patience. Still loading...';
+    : type === LoadingIndicatorType.progressbar
+    ? i18n.loadingIndicator.progressBar.messages.second
+    : i18n.loadingIndicator.spinner.messages.second;
 
   message3 = message3
     ? message3
     : type === LoadingIndicatorType.progressbar
-    ? 'Thank you for waiting.  We’re almost there!'
-    : 'Sorry for the delay. This is taking longer than expected.';
+    ? i18n.loadingIndicator.progressBar.messages.third
+    : i18n.loadingIndicator.spinner.messages.third;
 
   return (
     <StyledLoadingIndicator aria-busy="true" data-testid={testId} ref={ref}>

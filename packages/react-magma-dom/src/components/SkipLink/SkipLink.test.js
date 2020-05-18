@@ -4,6 +4,8 @@ import { SkipLink } from '.';
 import { SkipLinkContent } from '../SkipLinkContent';
 
 import { render, fireEvent } from '@testing-library/react';
+import { I18nContext } from '../../i18n';
+import { defaultI18n } from '../../i18n/default';
 
 describe('SkipLink', () => {
   it('should find element by testId', () => {
@@ -103,6 +105,26 @@ describe('SkipLink', () => {
     });
     expect(link).toHaveStyleRule('top', '99px', {
       target: ':focus'
+    });
+  });
+
+  describe('i18n', () => {
+    it('uses the context override for button text', () => {
+      const buttonText = 'test button text';
+      const { getByText } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            skipLink: {
+              buttonText
+            }
+          }}
+        >
+          <SkipLink />
+        </I18nContext.Provider>
+      );
+
+      expect(getByText(buttonText)).toBeInTheDocument();
     });
   });
 

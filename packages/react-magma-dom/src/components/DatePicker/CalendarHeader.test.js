@@ -7,7 +7,7 @@ import { format } from 'date-fns';
 describe('Calendar Header', () => {
   it('should focus the calendar header text', () => {
     const now = new Date();
-    const monthYear = format(now, 'MMMM YYYY');
+    const monthYear = format(now, 'MMMM yyyy');
 
     const { getByText, rerender } = render(
       <CalendarContext.Provider

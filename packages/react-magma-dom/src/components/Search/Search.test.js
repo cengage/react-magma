@@ -1,6 +1,8 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Search } from '.';
+import { I18nContext } from '../../i18n';
+import { defaultI18n } from '../../i18n/default';
 import { render, fireEvent } from '@testing-library/react';
 
 const onSearchSpy = jest.fn();
@@ -72,7 +74,53 @@ describe('Search', () => {
       <Search isLoading onSearch={onSearchSpy} />
     );
 
-    expect(getByLabelText('Loading...')).toBeInTheDocument();
+    expect(getByLabelText(defaultI18n.spinner.ariaLabel)).toBeInTheDocument();
+  });
+
+  describe('i18n', () => {
+    it('should use the input overrides', () => {
+      const input = {
+        ariaLabel: 'search ariaLabel',
+        placeholder: 'search placeholder'
+      };
+      const { getByLabelText } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            search: {
+              ...defaultI18n.search,
+              input
+            }
+          }}
+        >
+          <Search />
+        </I18nContext.Provider>
+      );
+
+      const searchInput = getByLabelText(input.ariaLabel);
+
+      expect(searchInput).toBeInTheDocument();
+      expect(searchInput).toHaveAttribute('placeholder', input.placeholder);
+    });
+
+    it('should use the icon ariaLabel override', () => {
+      const iconAriaLabel = 'test icon ariaLabel';
+      const { getByLabelText } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            search: {
+              ...defaultI18n.search,
+              iconAriaLabel
+            }
+          }}
+        >
+          <Search />
+        </I18nContext.Provider>
+      );
+
+      expect(getByLabelText(iconAriaLabel)).toBeInTheDocument();
+    });
   });
 
   it('Does not violate accessibility standards', () => {

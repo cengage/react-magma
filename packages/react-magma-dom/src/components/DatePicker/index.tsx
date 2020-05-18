@@ -4,7 +4,7 @@ import { CalendarMonth } from './CalendarMonth';
 import { Announce } from '../Announce';
 import { Input } from '../Input';
 import { InputType } from '../BaseInput';
-import { format, isAfter, isBefore, isValid } from 'date-fns';
+import { isAfter, isBefore, isValid } from 'date-fns';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '../../theme/styled';
 import { CalendarIcon } from '../Icon/types/CalendarIcon';
@@ -13,9 +13,12 @@ import {
   handleKeyPress,
   getCalendarMonthWeeks,
   getPrevMonthFromDate,
-  getNextMonthFromDate
+  getNextMonthFromDate,
+  i18nFormat as format,
+  getDateFromString
 } from './utils';
 import { useGenerateId, Omit } from '../../utils';
+import { I18nContext } from '../../i18n';
 
 interface DatePickerProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value'> {
@@ -59,6 +62,8 @@ const DatePickerCalendar = styled.div<{ opened: boolean }>`
 export const DatePicker: React.FunctionComponent<DatePickerProps> = (
   props: DatePickerProps
 ) => {
+  const theme = React.useContext(ThemeContext);
+  const i18n = React.useContext(I18nContext);
   const inputRef = React.useRef<HTMLInputElement>();
   const id: string = useGenerateId(props.id);
   const [showHelperInformation, setShowHelperInformation] = React.useState<
@@ -91,15 +96,27 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
   }, [props.value]);
 
   function setDateFromConsumer(date: Date): Date {
-    return inDateRange(date, props.minDate, props.maxDate) ? date : null;
+    const convertedDate = getDateFromString(date);
+    const convertedMinDate = getDateFromString(props.minDate);
+    const convertedMaxDate = getDateFromString(props.maxDate);
+
+    return date &&
+      inDateRange(convertedDate, convertedMinDate, convertedMaxDate)
+      ? convertedDate
+      : null;
   }
 
   function setDefaultFocusedDate(): Date {
     const newDate = new Date();
-    if (inDateRange(newDate, props.minDate, props.maxDate)) {
+    const convertedMinDate = getDateFromString(props.minDate);
+    const convertedMaxDate = getDateFromString(props.maxDate);
+
+    if (inDateRange(newDate, convertedMinDate, convertedMaxDate)) {
       return newDate;
-    } else if (props.maxDate || props.minDate) {
-      return isBefore(props.minDate, newDate) ? props.minDate : props.maxDate;
+    } else if (convertedMaxDate || convertedMinDate) {
+      return isBefore(convertedMinDate, newDate)
+        ? convertedMinDate
+        : convertedMaxDate;
     }
   }
 
@@ -115,7 +132,21 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
   }
 
   function buildCalendarMonth(date: Date, enableOutsideDates: boolean) {
-    return getCalendarMonthWeeks(date, enableOutsideDates);
+    const days = [
+      'sunday',
+      'monday',
+      'tuesday',
+      'wednesday',
+      'thursday',
+      'friday',
+      'saturday'
+    ];
+    const { startOfWeek } = i18n.datePicker;
+    return getCalendarMonthWeeks(
+      date,
+      enableOutsideDates,
+      days.indexOf(startOfWeek)
+    );
   }
 
   function onPrevMonthClick() {
@@ -241,12 +272,13 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
     setCalendarOpened(opened => !opened);
   }
 
-  const { maxDate, minDate, placeholder, testId, ...other } = props;
+  const { placeholder, testId, ...other } = props;
+  const minDate = getDateFromString(props.minDate);
+  const maxDate = getDateFromString(props.maxDate);
 
-  const dateFormat = 'MM/DD/YYYY';
+  const dateFormat = i18n.dateFormat;
+
   const inputValue = chosenDate ? format(chosenDate, dateFormat) : '';
-
-  const theme = React.useContext(ThemeContext);
 
   return (
     <CalendarContext.Provider
@@ -270,15 +302,14 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
         <Announce>
           {calendarOpened && (
             <VisuallyHidden>
-              Calendar widget is now open. Press the question mark key to get
-              the keyboard shortcuts for changing dates.
+              {i18n.datePicker.calendarOpenAnnounce}
             </VisuallyHidden>
           )}
         </Announce>
         <Input
           {...other}
           icon={<CalendarIcon size={17} />}
-          iconAriaLabel="Calendar"
+          iconAriaLabel={i18n.datePicker.calendarIconAriaLabel}
           onIconClick={toggleCalendarOpened}
           onIconKeyDown={handleInputKeyDown}
           id={id}

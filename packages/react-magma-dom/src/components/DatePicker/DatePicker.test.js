@@ -5,15 +5,20 @@ import {
   format,
   subWeeks,
   subDays,
+  startOfMonth,
   startOfWeek,
   subMonths,
   addMonths,
   addWeeks,
   addDays,
   endOfWeek,
-  isSameDay
+  isSameDay,
+  getDay
 } from 'date-fns';
+import * as es from 'date-fns/locale/es';
 import { DatePicker } from '.';
+import { I18nContext } from '../../i18n';
+import { defaultI18n } from '../../i18n/default';
 
 describe('Date Picker', () => {
   it('should find element by testId', () => {
@@ -33,7 +38,7 @@ describe('Date Picker', () => {
     expect(getByLabelText('Date Picker Label')).not.toBeNull();
     expect(getByLabelText('Date Picker Label')).toHaveAttribute(
       'placeholder',
-      'MM/DD/YYYY'
+      'MM/dd/yyyy'
     );
   });
 
@@ -45,7 +50,7 @@ describe('Date Picker', () => {
 
     expect(getByLabelText('Date Picker Label')).toHaveAttribute(
       'value',
-      format(defaultDate, 'MM/DD/YYYY')
+      format(defaultDate, 'MM/dd/yyyy')
     );
   });
 
@@ -63,7 +68,7 @@ describe('Date Picker', () => {
 
     expect(getByLabelText('Date Picker Label')).toHaveAttribute(
       'value',
-      format(valueDate, 'MM/DD/YYYY')
+      format(valueDate, 'MM/dd/yyyy')
     );
   });
 
@@ -224,7 +229,7 @@ describe('Date Picker', () => {
 
   it('should focus the calendar header when the calendar is opened with no chosen date', () => {
     const now = new Date();
-    const monthYear = format(now, 'MMMM YYYY');
+    const monthYear = format(now, 'MMMM yyyy');
     const { getByLabelText, getByText } = render(
       <DatePicker labelText="Date Picker Label" />
     );
@@ -261,8 +266,8 @@ describe('Date Picker', () => {
 
     fireEvent.click(getByLabelText('Calendar'));
 
-    expect(getByText(format(now, 'MMMM YYYY'))).not.toBeNull();
-    expect(getByText(format(now, 'D'))).not.toBe(document.activeElement);
+    expect(getByText(format(now, 'MMMM yyyy'))).not.toBeNull();
+    expect(getByText(format(now, 'd'))).not.toBe(document.activeElement);
   });
 
   it('should go to the previous month when the previous month button is clicked', () => {
@@ -741,7 +746,7 @@ describe('Date Picker', () => {
       });
 
       expect(
-        isSameDay(container.querySelector('input').value, defaultDate)
+        isSameDay(new Date(container.querySelector('input').value), defaultDate)
       ).toBeTruthy();
     });
 
@@ -762,7 +767,7 @@ describe('Date Picker', () => {
       });
 
       expect(
-        isSameDay(container.querySelector('input').value, defaultDate)
+        isSameDay(new Date(container.querySelector('input').value), defaultDate)
       ).toBeTruthy();
     });
 
@@ -786,6 +791,149 @@ describe('Date Picker', () => {
         'border-color',
         'transparent'
       );
+    });
+  });
+
+  describe('i18n', () => {
+    it('formats dates with the locale', () => {
+      const { getByText, getByLabelText } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            locale: es
+          }}
+        >
+          <DatePicker
+            labelText="Spanish"
+            defaultDate={new Date('April 10, 2020')}
+          />
+        </I18nContext.Provider>
+      );
+
+      expect(getByText('Abril 2020')).toBeInTheDocument();
+      expect(getByLabelText(`Previous Month marzo 2020`)).toBeInTheDocument();
+      expect(getByLabelText(`Next Month mayo 2020`)).toBeInTheDocument();
+    });
+
+    it('min days string in the i18n context', () => {
+      const min = {
+        sunday: 'i18nSu',
+        monday: 'i18nMo',
+        tuesday: 'i18nTu',
+        wednesday: 'i18nWe',
+        thursday: 'i18nTh',
+        friday: 'i18nFr',
+        saturday: 'i18nSa'
+      };
+      const { getByText } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            days: {
+              ...defaultI18n.days,
+              min
+            }
+          }}
+        >
+          <DatePicker labelText="Spanish" />
+        </I18nContext.Provider>
+      );
+
+      expect(getByText(min.sunday)).toBeInTheDocument();
+      expect(getByText(min.monday)).toBeInTheDocument();
+      expect(getByText(min.tuesday)).toBeInTheDocument();
+      expect(getByText(min.wednesday)).toBeInTheDocument();
+      expect(getByText(min.thursday)).toBeInTheDocument();
+      expect(getByText(min.friday)).toBeInTheDocument();
+      expect(getByText(min.saturday)).toBeInTheDocument();
+    });
+
+    it('previous and next month aria labels override', () => {
+      const { getByLabelText } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            datePicker: {
+              ...defaultI18n.datePicker,
+              previousMonthAriaLabel: 'I am previous',
+              nextMonthAriaLabel: 'I am next'
+            }
+          }}
+        >
+          <DatePicker labelText="Spanish" />
+        </I18nContext.Provider>
+      );
+
+      expect(getByLabelText(/i am previous/i)).toBeInTheDocument();
+      expect(getByLabelText(/i am next/i)).toBeInTheDocument();
+    });
+
+    it('help button aria label override', () => {
+      const { getByLabelText } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            datePicker: {
+              ...defaultI18n.datePicker,
+              helpModal: {
+                ...defaultI18n.datePicker.helpModal,
+                helpButtonAriaLabel: 'I am the help button'
+              }
+            }
+          }}
+        >
+          <DatePicker labelText="Spanish" />
+        </I18nContext.Provider>
+      );
+
+      expect(getByLabelText(/i am the help button/i)).toBeInTheDocument();
+    });
+
+    it('calendar close aria label override', () => {
+      const { getByLabelText } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            datePicker: {
+              ...defaultI18n.datePicker,
+              calendarCloseAriaLabel: 'I am the close button'
+            }
+          }}
+        >
+          <DatePicker labelText="Spanish" />
+        </I18nContext.Provider>
+      );
+
+      expect(getByLabelText(/i am the close button/i)).toBeInTheDocument();
+    });
+
+    it('start of week override', () => {
+      const { container } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            datePicker: {
+              ...defaultI18n.datePicker,
+              startOfWeek: 'wednesday'
+            }
+          }}
+        >
+          <DatePicker labelText="Spanish" />
+        </I18nContext.Provider>
+      );
+
+      const startOfMonthDate = startOfMonth(new Date('January 10, 2020'), {
+        startOfMonth: 4
+      });
+      const firstDayOfMonthDayOfWeek = getDay(startOfMonthDate);
+
+      const allRows = container.querySelectorAll('tr');
+      const dayRow = allRows[0];
+      const firstDayOfMonthElement =
+        allRows[1].children[firstDayOfMonthDayOfWeek - 1];
+
+      expect(dayRow.children[0].textContent).toEqual('W');
+      expect(firstDayOfMonthElement.textContent).toEqual('1');
     });
   });
 

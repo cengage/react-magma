@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { I18nContext } from '../../i18n';
 
 export interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {
   color?: string;
@@ -32,10 +33,11 @@ export const Spinner: React.FunctionComponent<SpinnerProps> = ({
   ...other
 }: SpinnerProps) => {
   const theme = React.useContext(ThemeContext);
+  const i18n = React.useContext(I18nContext);
   return (
     <StyledSpinner
       {...other}
-      aria-label={ariaLabel ? ariaLabel : 'Loading...'}
+      aria-label={ariaLabel ? ariaLabel : i18n.spinner.ariaLabel}
       color={color ? color : theme.colors.primary}
       data-testid={testId}
       size={size ? size : 15}

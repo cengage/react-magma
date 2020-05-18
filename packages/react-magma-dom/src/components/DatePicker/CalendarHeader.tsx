@@ -5,9 +5,12 @@ import { ArrowRight2Icon } from '../Icon/types/ArrowRight2Icon';
 import { ButtonType, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { format, addMonths, subMonths } from 'date-fns';
+import { addMonths, subMonths } from 'date-fns';
+import { enUS } from 'date-fns/locale';
 import styled from '../../theme/styled';
 import { usePrevious } from '../../utils';
+import { i18nFormat as format } from './utils';
+import { I18nContext } from '../../i18n';
 
 interface CalendarHeaderProps {
   focusHeader?: boolean;
@@ -53,17 +56,26 @@ export const CalendarHeader: React.FunctionComponent<CalendarHeaderProps> = (
   }, [props.focusHeader]);
 
   const theme = React.useContext(ThemeContext);
+  const i18n = React.useContext(I18nContext);
+
+  const locale = i18n.locale || enUS;
+
+  const currentMonth = format(focusedDate, 'MMMM yyyy', locale);
+
+  const capitalizeCurrentMonth =
+    currentMonth.charAt(0).toUpperCase() + currentMonth.slice(1);
 
   return (
     <CalendarHeaderContainer>
       <CalendarHeaderText tabIndex={-1} theme={theme} ref={calendarHeader}>
-        {format(focusedDate, 'MMMM YYYY')}
+        {capitalizeCurrentMonth}
       </CalendarHeaderText>
       <CalendarIconButton>
         <IconButton
-          aria-label={`Previous Month ${format(
-            subMonths(focusedDate, 1),
-            'MMMM YYYY'
+          aria-label={`${i18n.datePicker.previousMonthAriaLabel} ${format(
+            subMonths(new Date(focusedDate), 1),
+            'MMMM yyyy',
+            locale
           )}`}
           icon={<ArrowLeft2Icon />}
           type={ButtonType.button}
@@ -73,9 +85,10 @@ export const CalendarHeader: React.FunctionComponent<CalendarHeaderProps> = (
       </CalendarIconButton>
       <CalendarIconButton next>
         <IconButton
-          aria-label={`Next Month ${format(
-            addMonths(focusedDate, 1),
-            'MMMM YYYY'
+          aria-label={`${i18n.datePicker.nextMonthAriaLabel} ${format(
+            addMonths(new Date(focusedDate), 1),
+            'MMMM yyyy',
+            locale
           )}`}
           icon={<ArrowRight2Icon />}
           type={ButtonType.button}

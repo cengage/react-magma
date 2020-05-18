@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { I18nContext } from '../../i18n';
 import { Announce } from '../Announce';
 import { BaseInput, InputSize, InputType } from '../BaseInput';
 import { Button, ButtonVariant, ButtonType } from '../Button';
@@ -78,26 +79,28 @@ export const PasswordInput: React.FunctionComponent<
       ...other
     } = props;
 
+    const i18n = React.useContext(I18nContext);
+
     const id = useGenerateId(defaultId);
 
     const HIDDEN_PASSWORD_ANNOUNCE_TEXT = hiddenPasswordAnnounceText
         ? hiddenPasswordAnnounceText
-        : 'Password is now hidden',
+        : i18n.password.hidden.announce,
       HIDE_PASSWORD_BUTTON_ARIA_LABEL = hidePasswordButtonAriaLabel
         ? hidePasswordButtonAriaLabel
-        : 'Hide password',
+        : i18n.password.hidden.ariaLabel,
       HIDE_PASSWORD_BUTTON_TEXT = hidePasswordButtonText
         ? hidePasswordButtonText
-        : 'Hide',
+        : i18n.password.hidden.buttonText,
       SHOWN_PASSWORD_ANNOUNCE_TEXT = shownPasswordAnnounceText
         ? shownPasswordAnnounceText
-        : 'Password is now visible',
+        : i18n.password.shown.announce,
       SHOW_PASSWORD_BUTTON_ARIA_LABEL = showPasswordButtonAriaLabel
         ? showPasswordButtonAriaLabel
-        : 'Show password. Note: this will visually expose your password on the screen',
+        : i18n.password.shown.ariaLabel,
       SHOW_PASSWORD_BUTTON_TEXT = showPasswordButtonText
         ? showPasswordButtonText
-        : 'Show';
+        : i18n.password.shown.buttonText;
 
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
     const theme = React.useContext(ThemeContext);

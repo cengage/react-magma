@@ -3,6 +3,8 @@ import { axe } from 'jest-axe';
 import { PasswordInput } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
+import { I18nContext } from '../../i18n';
+import { defaultI18n } from '../../i18n/default';
 
 describe('PasswordInput', () => {
   it('should find element by testId', () => {
@@ -195,6 +197,45 @@ describe('sizes', () => {
     expect(input).toHaveStyleRule('font-size', '22px');
     expect(input).toHaveStyleRule('height', '58px');
     expect(input).toHaveStyleRule('padding', '0 15px');
+  });
+});
+
+describe('i18n', () => {
+  it('should use overrides', () => {
+    const labelText = 'test label';
+    const hidden = {
+      announce: 'hidden password announce',
+      ariaLabel: 'hidden password ariaLabel',
+      buttonText: 'hidden password buttonText'
+    };
+    const shown = {
+      announce: 'shown password announce',
+      ariaLabel: 'shown password ariaLabel',
+      buttonText: 'shown password buttonText'
+    };
+    const { getByLabelText, getByText } = render(
+      <I18nContext.Provider
+        value={{
+          ...defaultI18n,
+          password: {
+            hidden,
+            shown
+          }
+        }}
+      >
+        <PasswordInput labelText={labelText} inputSize="large" />
+      </I18nContext.Provider>
+    );
+
+    expect(getByText(hidden.announce)).toBeInTheDocument();
+    expect(getByLabelText(shown.ariaLabel)).toBeInTheDocument();
+    expect(getByText(shown.buttonText)).toBeInTheDocument();
+
+    fireEvent.click(getByText(shown.buttonText));
+
+    expect(getByText(shown.announce)).toBeInTheDocument();
+    expect(getByLabelText(hidden.ariaLabel)).toBeInTheDocument();
+    expect(getByText(hidden.buttonText)).toBeInTheDocument();
   });
 });
 
