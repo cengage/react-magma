@@ -27,7 +27,7 @@ and `datePicker.startOfWeek`. These keys have specific types listed below, while
 
   <Alert variant="warning">
     The locale in the default object is null to prevent the date-fns library
-    from being bundled in your project when you are not using any of it's
+    from being bundled in your project when you are not using any of its
     funcationality. When you use a component that depends on the date-fns
     library, React Magma will default your locale to enUS.
   </Alert>
@@ -38,7 +38,7 @@ and `datePicker.startOfWeek`. These keys have specific types listed below, while
 
 - `datePicker.startOfWeek` is the string of the day of the week that you want your week to start on: `'sunday' | 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday'`
 
-## Default context object
+## Default Context Object
 
 <pre>
   <code>{JSON.stringify(defaultI18n, null, 2)}</code>
@@ -63,49 +63,49 @@ and `datePicker.startOfWeek`. These keys have specific types listed below, while
       }
     },
     datePicker: {
-    "startOfWeek": "monday",
-    "calendarIconAriaLabel": "Calendario",
-    "calendarOpenAnnounce": "El widget de calendario ahora está abierto. Presione la tecla de signo de interrogación para obtener los atajos de teclado para cambiar las fechas.",
-    "calendarCloseAriaLabel": "Cerrar calendario",
-    previousMonthAriaLabel: 'Mes Anterior',
-    nextMonthAriaLabel: 'Próximo Mes',
-    "disabledDayAriaLabel": "No disponible. ",
-    "helpModal": {
-      "header": "Atajos de teclado",
-      "helpButtonAriaLabel": "Ayuda de calendario",
-      "enter": {
-        "ariaLabel": "Introducir clave",
-        "explanation": "Seleccione la fecha en foco."
-      },
-      "rightAndLeftArrowKeys": {
-        "ariaLabel": "Teclas de flecha derecha e izquierda",
-        "explanation": "Muévase hacia atrás (izquierda) y hacia adelante (derecha) un día."
-      },
-      "upAndDownArrowKeys": {
-        "ariaLabel": "teclas de flecha arriba y abajo",
-        "explanation": "Muévase hacia atrás (arriba) y hacia adelante (abajo) una semana."
-      },
-      "pageUpAndPageDownKeys": {
-        "ariaLabel": "teclas de página arriba y página abajo",
-        "displayValue": 'PGAR/PGAB',
-        "explanation": "Cambiar de mes."
-      },
-      "homeAndEndKeys": {
-        "ariaLabel": "Teclas de inicio y fin",
-        "displayValue": 'CASA/FINAL',
-        "explanation": "Ir al primer o último día de una semana."
-      },
-      "escape": {
-        "ariaLabel": "Tecla de escape",
-        "displayValue": 'ESCAPAR',
-        "explanation": "Regresar al campo de entrada de fecha."
-      },
-      "questionMark": {
-        "ariaLabel": "Signo de interrogación",
-        "explanation": "Abre este panel."
+      "startOfWeek": "monday",
+      "calendarIconAriaLabel": "Calendario",
+      "calendarOpenAnnounce": "El widget de calendario ahora está abierto. Presione la tecla de signo de interrogación para obtener los atajos de teclado para cambiar las fechas.",
+      "calendarCloseAriaLabel": "Cerrar calendario",
+      previousMonthAriaLabel: 'Mes Anterior',
+      nextMonthAriaLabel: 'Próximo Mes',
+      "disabledDayAriaLabel": "No disponible. ",
+      "helpModal": {
+        "header": "Atajos de teclado",
+        "helpButtonAriaLabel": "Ayuda de calendario",
+        "enter": {
+          "ariaLabel": "Introducir clave",
+          "explanation": "Seleccione la fecha en foco."
+        },
+        "rightAndLeftArrowKeys": {
+          "ariaLabel": "Teclas de flecha derecha e izquierda",
+          "explanation": "Muévase hacia atrás (izquierda) y hacia adelante (derecha) un día."
+        },
+        "upAndDownArrowKeys": {
+          "ariaLabel": "teclas de flecha arriba y abajo",
+          "explanation": "Muévase hacia atrás (arriba) y hacia adelante (abajo) una semana."
+        },
+        "pageUpAndPageDownKeys": {
+          "ariaLabel": "teclas de página arriba y página abajo",
+          "displayValue": 'PGAR/PGAB',
+          "explanation": "Cambiar de mes."
+        },
+        "homeAndEndKeys": {
+          "ariaLabel": "Teclas de inicio y fin",
+          "displayValue": 'CASA/FINAL',
+          "explanation": "Ir al primer o último día de una semana."
+        },
+        "escape": {
+          "ariaLabel": "Tecla de escape",
+          "displayValue": 'ESCAPAR',
+          "explanation": "Regresar al campo de entrada de fecha."
+        },
+        "questionMark": {
+          "ariaLabel": "Signo de interrogación",
+          "explanation": "Abre este panel."
+        }
       }
-    }
-  },
+    },
     locale: es
   }}>
     <DatePicker labelText="Español" />

@@ -109,10 +109,33 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
 To use a separate `locale` import a `date-fns` locale object (`import { es } from 'date-fns/locale'`) and pass it in
 to the `I18nContext` provider.
 
+<Link to="/api/internationalization">Full example of internationalization override options</Link>
+
 ```.jsx
 () => {
   return (<I18nContext.Provider value={{
     ...defaultI18n,
+    days: {
+      ...defaultI18n.days,
+      min: {
+        sunday: 'D',
+        monday: 'L',
+        tuesday: 'M',
+        wednesday: 'M',
+        thursday: 'J',
+        friday: 'V',
+        saturday: 'S'
+      }
+    },
+    datePicker: {
+      ...defaultI18n.datePicker,
+      "calendarIconAriaLabel": "Calendario",
+      "calendarOpenAnnounce": "El widget de calendario ahora está abierto. Presione la tecla de signo de interrogación para obtener los atajos de teclado para cambiar las fechas.",
+      "calendarCloseAriaLabel": "Cerrar calendario",
+      previousMonthAriaLabel: 'Mes Anterior',
+      nextMonthAriaLabel: 'Próximo Mes',
+      "disabledDayAriaLabel": "No disponible. "
+    },
     locale: es
   }}>
     <DatePicker labelText="Español" />
