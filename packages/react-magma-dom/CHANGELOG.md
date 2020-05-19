@@ -133,10 +133,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [2.0.0-beta.34](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.33...v2.0.0-beta.34) (2020-04-09)
 
-### Features
-
-<<<<<<< HEAD
-
 ### Bug Fixes
 
 - **input message:** increase line-height ([c9eb328](http://stash.corp.web:7999/FRONT/react-magma/commits/c9eb328))
@@ -179,13 +175,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [2.0.0-beta.29](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.28...v2.0.0-beta.29) (2020-03-30)
 
-> > > > > > > dev
-
 ### Features
 
 - **select:** allow for custom components to be passed in ([dc8cffd](http://stash.corp.web:7999/FRONT/react-magma/commits/dc8cffd))
-
-<<<<<<< HEAD
 
 ### Bug Fixes
 
@@ -212,12 +204,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - **radio, checkbox:** border color on checked and indeterminate ([6f0436e](http://stash.corp.web:7999/FRONT/react-magma/commits/6f0436e))
 
 # [2.0.0-beta.26](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.25...v2.0.0-beta.26) (2020-03-25)
-
-> > > > > > > dev
-
-### Bug Fixes
-
-<<<<<<< HEAD
 
 - **tooltip:** make trigger children, make content a prop ([b082bc0](http://stash.corp.web:7999/FRONT/react-magma/commits/b082bc0))
 
@@ -266,8 +252,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [2.0.0-beta.24](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.23...v2.0.0-beta.24) (2020-02-19)
 
-> > > > > > > dev
-
 ### Bug Fixes
 
 - **tabs:** change inverse prop to isInverse ([3371d7f](http://stash.corp.web:7999/FRONT/react-magma/commits/3371d7f))
@@ -287,8 +271,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - **tabs:** use template literal syntax for styled components ([7901c80](http://stash.corp.web:7999/FRONT/react-magma/commits/7901c80))
 
 ### Code Refactoring
-
-# <<<<<<< HEAD
 
 - **tooltip:** make trigger children, make content a prop ([b082bc0](http://stash.corp.web:7999/FRONT/react-magma/commits/b082bc0))
 
@@ -318,8 +300,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - **tooltip:** throw error if children is more than one element ([eb59fe1](http://stash.corp.web:7999/FRONT/react-magma/commits/eb59fe1))
 
 ### BREAKING CHANGES
-
-> > > > > > > dev
 
 - **icon-button:** Button component no longer accepts the icon props. IconButton provides the
   functionality now
