@@ -14,6 +14,7 @@ import {
   BellIcon,
   AndroidIcon,
   HyperLink,
+  useMediaQuery,
 } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 import { Link } from 'gatsby'
@@ -309,11 +310,16 @@ The `alignment` prop determines whether the tabs are aligned `left`, `right` or 
 
 The `isFullWidth` prop is an optional boolean that will cause the tabs to take up the full width of their container. The `isFullWidth` prop is specified on the `Tabs` component.
 
+Full width tabs work best when inside a smaller container. This example uses the `useMediaQuery` hook to set this prop only on devices with smaller browser widths.
+
 ```.jsx
       () => {
+
+        const isSmallerScreen = useMediaQuery(`(max-width:${magma.breakpoints.large}px)`);
+
         return (
           <TabsContainer>
-            <Tabs isFullWidth>
+            <Tabs isFullWidth={isSmallerScreen}>
               <Tab>Main Page with a longer text label</Tab>
               <Tab>FAQ</Tab>
               <Tab>About Us</Tab>
@@ -899,6 +905,7 @@ export default props => (
       AndroidIcon,
       HyperLink,
       Link,
+      useMediaQuery,
     }}
   />
 )

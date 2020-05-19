@@ -11,6 +11,10 @@ export {
 export { Breadcrumb } from './components/Breadcrumb';
 export { BreadcrumbItem } from './components/Breadcrumb/Item';
 export {
+  BreakpointsContainer,
+  Breakpoint
+} from './components/BreakpointsContainer';
+export {
   Button,
   ButtonColor,
   ButtonShape,
@@ -334,3 +338,5 @@ export { WlReadyIcon } from './components/Icon/types/WlReadyIcon';
 export { WlUseItIcon } from './components/Icon/types/WlUseItIcon';
 export { WrenchIcon } from './components/Icon/types/WrenchIcon';
 export { YoutubeIcon } from './components/Icon/types/YoutubeIcon';
+
+export { useMediaQuery } from './hooks/useMediaQuery';
