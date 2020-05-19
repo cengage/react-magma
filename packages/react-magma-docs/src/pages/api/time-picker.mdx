@@ -3,9 +3,16 @@ title: 'Time Pickers'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { TimePicker, Heading, Button } from 'react-magma-dom'
+import {
+  TimePicker,
+  Heading,
+  Button,
+  I18nContext,
+  defaultI18n,
+} from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { SimplePropsTable } from '../../components/props-table'
+import { zhCN } from 'date-fns/locale'
 
 <DocsHeading>TimePicker</DocsHeading>
 
@@ -46,6 +53,20 @@ The `helperMessage` appears underneath the input field. It will not appear if an
     <div style={{background: '#003865', display: 'flex', padding: '10px'}}>
       <TimePicker isInverse labelText="Time Due" />
     </div>
+```
+
+## Internationalization
+
+```.jsx
+() => {
+  return (<I18nContext.Provider value={{
+    ...defaultI18n,
+    locale: zhCN
+  }}>
+    <TimePicker labelText="International Time" />
+    <TimePicker labelText="International Time with Passed in Value" value="01:30 下午" />
+  </I18nContext.Provider>)
+}
 ```
 
 ## TimePicker Props
@@ -104,5 +125,8 @@ The `helperMessage` appears underneath the input field. It will not appear if an
 />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ TimePicker }} />
+  <ScopeableLayout
+    {...props}
+    components={{ TimePicker, I18nContext, defaultI18n, zhCN }}
+  />
 )

@@ -1,6 +1,8 @@
 import React from 'react';
 import { LoadingIndicator } from '.';
 import { render, act } from '@testing-library/react';
+import { I18nContext } from '../../i18n';
+import { defaultI18n } from '../../i18n/default';
 
 describe('Loading Indicator', () => {
   jest.setTimeout(20000);
@@ -130,5 +132,87 @@ describe('Loading Indicator', () => {
       'aria-hidden',
       'false'
     );
+  });
+
+  describe('i18n', () => {
+    it('should use the messages from the i18n context for progessbar', async () => {
+      const { getByText } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            loadingIndicator: {
+              progressBar: {
+                messages: {
+                  first: 'first test',
+                  second: 'second test',
+                  third: 'third test'
+                }
+              },
+              ...defaultI18n.loadingIndicator.spinner
+            }
+          }}
+        >
+          <LoadingIndicator type="progressbar" />
+        </I18nContext.Provider>
+      );
+
+      expect(getByText(/first test/)).toHaveAttribute('aria-hidden', 'false');
+      expect(getByText(/second test/)).toHaveAttribute('aria-hidden', 'true');
+      expect(getByText(/third test/)).toHaveAttribute('aria-hidden', 'true');
+
+      await act(async () => {
+        jest.advanceTimersByTime(11000);
+      });
+
+      expect(getByText(/first test/)).toHaveAttribute('aria-hidden', 'true');
+      expect(getByText(/second test/)).toHaveAttribute('aria-hidden', 'false');
+
+      await act(async () => {
+        jest.advanceTimersByTime(21000);
+      });
+
+      expect(getByText(/second test/)).toHaveAttribute('aria-hidden', 'true');
+      expect(getByText(/third test/)).toHaveAttribute('aria-hidden', 'false');
+    });
+
+    it('should use the messages from the i18n context for spinner', async () => {
+      const { getByText } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            loadingIndicator: {
+              spinner: {
+                messages: {
+                  first: 'first test',
+                  second: 'second test',
+                  third: 'third test'
+                }
+              },
+              ...defaultI18n.loadingIndicator.progressBar
+            }
+          }}
+        >
+          <LoadingIndicator />
+        </I18nContext.Provider>
+      );
+
+      expect(getByText(/first test/)).toHaveAttribute('aria-hidden', 'false');
+      expect(getByText(/second test/)).toHaveAttribute('aria-hidden', 'true');
+      expect(getByText(/third test/)).toHaveAttribute('aria-hidden', 'true');
+
+      await act(async () => {
+        jest.advanceTimersByTime(11000);
+      });
+
+      expect(getByText(/first test/)).toHaveAttribute('aria-hidden', 'true');
+      expect(getByText(/second test/)).toHaveAttribute('aria-hidden', 'false');
+
+      await act(async () => {
+        jest.advanceTimersByTime(21000);
+      });
+
+      expect(getByText(/second test/)).toHaveAttribute('aria-hidden', 'true');
+      expect(getByText(/third test/)).toHaveAttribute('aria-hidden', 'false');
+    });
   });
 });

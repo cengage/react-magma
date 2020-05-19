@@ -2,6 +2,9 @@ import React from 'react';
 import { TimePicker } from '.';
 import { render } from '@testing-library/react';
 import { fireEvent } from '@testing-library/dom';
+import { I18nContext } from '../../i18n';
+import { defaultI18n } from '../../i18n/default';
+import { zhCN } from 'date-fns/locale';
 
 describe('TimePicker', () => {
   it('should render the timepicker', () => {
@@ -350,6 +353,32 @@ describe('TimePicker', () => {
       render(<TimePicker label="label" onChange={onChange} value={value} />);
 
       expect(onChange).toHaveBeenCalledWith(value);
+    });
+  });
+
+  describe('i18n', () => {
+    it('should allow for am/pm localization strings', () => {
+      const value = '01:30 下午';
+      const { getByTestId } = render(
+        <I18nContext.Provider value={{ ...defaultI18n, locale: zhCN }}>
+          <TimePicker label="label" value={value} />
+        </I18nContext.Provider>
+      );
+
+      expect(getByTestId('hoursTimeInput').value).toEqual('01');
+      expect(getByTestId('minutesTimeInput').value).toEqual('30');
+      expect(getByTestId('amPmTimeButton')).toHaveTextContent('下午');
+    });
+
+    it('should use the i18n context defaults', () => {
+      const { getByLabelText } = render(<TimePicker label="label" />);
+
+      expect(
+        getByLabelText(defaultI18n.timePicker.hoursAriaLabel)
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText(defaultI18n.timePicker.minutesAriaLabel)
+      ).toBeInTheDocument();
     });
   });
 

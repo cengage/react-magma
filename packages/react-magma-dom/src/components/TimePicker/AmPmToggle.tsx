@@ -4,7 +4,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 
 interface AmPmToggleProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: 'AM' | 'PM';
+  children: string;
   ref: any;
 }
 

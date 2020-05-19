@@ -11,6 +11,7 @@ import { CrossIcon } from '../Icon/types/CrossIcon';
 import { ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { useGenerateId } from '../../utils';
+import { I18nContext } from '../../i18n';
 
 export const VARIANT_ICON = {
   info: Info2Icon,
@@ -273,6 +274,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
     }
 
     const theme = React.useContext(ThemeContext);
+    const i18n = React.useContext(I18nContext);
 
     return (
       <StyledAlert
@@ -294,7 +296,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
             <DismissButton
               alertVariant={variant}
               aria-label={
-                closeAriaLabel ? closeAriaLabel : 'Close this message'
+                closeAriaLabel ? closeAriaLabel : i18n.alert.dismissAriaLabel
               }
               icon={<CrossIcon size={13} />}
               isInverse

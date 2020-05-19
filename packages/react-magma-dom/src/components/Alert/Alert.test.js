@@ -1,8 +1,10 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Alert, AlertVariant } from '.';
-import { render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
+import { I18nContext } from '../../i18n';
+import { defaultI18n } from '../../i18n/default';
 import uuid from 'uuid/v4';
 
 jest.mock('uuid/v4');
@@ -35,7 +37,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-10b97rj-IconWrapperStyles-IconWrapper"
+      class="css-1bakrd5-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
@@ -88,7 +90,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-10b97rj-IconWrapperStyles-IconWrapper"
+      class="css-1bakrd5-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
@@ -128,7 +130,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-10b97rj-IconWrapperStyles-IconWrapper"
+      class="css-1bakrd5-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
@@ -168,7 +170,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-10b97rj-IconWrapperStyles-IconWrapper"
+      class="css-1bakrd5-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
@@ -207,7 +209,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-10b97rj-IconWrapperStyles-IconWrapper"
+      class="css-1bakrd5-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
@@ -272,6 +274,7 @@ describe('Alert', () => {
     });
 
     it('should call passed in onDismiss when dismissible icon button is clicked', () => {
+      jest.useFakeTimers();
       const onDismiss = jest.fn();
       const { getByLabelText } = render(
         <Alert isDismissible onDismiss={onDismiss}>
@@ -282,9 +285,10 @@ describe('Alert', () => {
 
       fireEvent.click(dismissableIconButton);
 
-      setTimeout(() => {
-        expect(onDismiss).toHaveBeenCalled();
-      }, 500);
+      act(jest.runAllTimers);
+
+      expect(onDismiss).toHaveBeenCalled();
+      jest.useRealTimers();
     });
   });
 
@@ -295,6 +299,26 @@ describe('Alert', () => {
     );
 
     expect(container.firstChild).toHaveStyle(`color: ${color}`);
+  });
+
+  describe('i18n', () => {
+    it('should use the nav aria-label', () => {
+      const dismissAriaLabel = 'test aria label';
+      const { getByLabelText } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            alert: {
+              dismissAriaLabel
+            }
+          }}
+        >
+          <Alert isDismissible>Test Alert Text</Alert>
+        </I18nContext.Provider>
+      );
+
+      expect(getByLabelText(dismissAriaLabel)).toBeInTheDocument();
+    });
   });
 
   it('Does not violate accessibility standards', () => {

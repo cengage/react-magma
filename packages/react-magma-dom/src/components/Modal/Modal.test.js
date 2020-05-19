@@ -1,6 +1,8 @@
 import React from 'react';
 import { Modal } from '.';
 import { act, render, fireEvent } from '@testing-library/react';
+import { I18nContext } from '../../i18n';
+import { defaultI18n } from '../../i18n/default';
 
 describe('Modal', () => {
   it('should find element by testId', () => {
@@ -897,6 +899,26 @@ describe('Modal', () => {
       });
 
       expect(getByTestId('closeButton')).toBeInTheDocument();
+    });
+  });
+
+  describe('i18n', () => {
+    it('should use the close aria-label', () => {
+      const closeAriaLabel = 'test aria label';
+      const { getByLabelText } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            modal: {
+              closeAriaLabel
+            }
+          }}
+        >
+          <Modal isOpen>Modal Text</Modal>
+        </I18nContext.Provider>
+      );
+
+      expect(getByLabelText(closeAriaLabel)).toBeInTheDocument();
     });
   });
 });

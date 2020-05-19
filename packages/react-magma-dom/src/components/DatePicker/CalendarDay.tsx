@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '../../theme/styled';
-import { format, isAfter, isBefore, isSameDay } from 'date-fns';
-
+import { isAfter, isBefore, isSameDay } from 'date-fns';
+import { enUS } from 'date-fns/locale';
 import { CalendarContext } from './CalendarContext';
+import { I18nContext } from '../../i18n';
+import { i18nFormat as format } from './utils';
 
 interface CalendarDayProps {
   day: Date;
@@ -137,20 +139,21 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
     (minDate ? isBefore(props.day, minDate) : false);
 
   const theme = React.useContext(ThemeContext);
+  const i18n = React.useContext(I18nContext);
 
   if (day) {
     const sameDateAsFocusedDate = isSameDay(day, focusedDate);
     const sameDateAsChosenDate = isSameDay(day, chosenDate);
     const sameDateAsToday = isSameDay(day, new Date());
+    const locale = i18n.locale || enUS;
 
     return (
       <CalendarDayCell onFocus={onCalendarDayFocus} theme={theme}>
         <CalendarDayInner
           aria-disabled={isDisabled}
-          aria-label={`${isDisabled ? 'Not Available. ' : ''}${format(
-            day,
-            'MMMM Do YYYY'
-          )}`}
+          aria-label={`${
+            isDisabled ? i18n.datePicker.disabledDayAriaLabel : ''
+          }${format(day, 'MMMM do yyyy', locale)}`}
           isDisabled={isDisabled}
           isChosen={sameDateAsChosenDate}
           isFocused={dayFocusable && sameDateAsFocusedDate}
@@ -160,7 +163,7 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
           type="button"
           theme={theme}
         >
-          {format(day, 'D')}
+          {format(day, 'd', locale)}
         </CalendarDayInner>
         {sameDateAsToday && (
           <TodayIndicator data-testid="todayIndicator" theme={theme} />

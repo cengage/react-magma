@@ -100,37 +100,43 @@ figure img {
   flex-wrap: wrap;
 }
 
-.typo-details-table ul,
-.typo-details-table li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.type-details-table {
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
 }
 
-.typo-details-table li {
-  border-bottom: 1px solid #bfbfbf;
-  padding: 20px 10px;
+.type-example {
+  border-bottom: 1px solid #dfdfdf;
+  padding: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
-.typo-details-table div {
-  width: 50%;
+.type-example:last-of-type {
+  border-bottom: none;
 }
 
-.typo-example h1,
-.typo-example h2,
-.typo-example h3,
-.typo-example h4,
-.typo-example h5,
-.typo-example h6 {
+.type-example h1,
+.type-example h2,
+.type-example h3,
+.type-example h4,
+.type-example h5,
+.type-example h6 {
   margin: 0;
   padding: 0;
 }
 
-.typo-specs {
+.type-specs {
+  display: flex;
+  flex-direction: column;
+}
+
+.type-specs p {
+  font-size: 13px;
+  color: #727272;
+  margin: 0 0 10px 0;
   text-align: right;
 }
 
@@ -242,25 +248,6 @@ blockquote footer  {
   text-transform: uppercase;
 }
 
-
-
-
-@media only screen and (max-width: 768px) {
-
-  .typo-details-table li {
-    flex-direction: column;
-  }
-
-  .typo-details-table div {
-    width: 100%;
-  }
-
-  .typo-specs {
-    text-align: left;
-  }
-
-}
-
 @media only screen and (max-width: 680px) {
   figure .image-container {
     padding-top: 10px;
@@ -274,6 +261,24 @@ blockquote footer  {
     width: 100%;
     max-width: 100%;
   }
+}
+
+@media only screen and (max-width: 600px) {
+
+  .type-example {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .type-specs {
+    margin-top: 10px;
+  }
+
+  .type-specs p {
+    margin: 0 0 10px 0;
+    text-align: left;
+  }
+
 }
 
 @media only screen and (max-width: 480px) {

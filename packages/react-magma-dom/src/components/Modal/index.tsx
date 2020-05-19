@@ -8,6 +8,7 @@ import {
   getFocusedElementIndex
 } from './utils';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { I18nContext } from '../../i18n';
 import { ButtonColor, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { CrossIcon } from '../Icon/types/CrossIcon';
@@ -314,6 +315,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
 
     const other = omit(['onEscKeyDown'], rest);
     const theme = React.useContext(ThemeContext);
+    const i18n = React.useContext(I18nContext);
 
     const CloseIcon = <CrossIcon color={theme.colors.neutral03} />;
 
@@ -366,7 +368,9 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
                   <CloseBtn>
                     <IconButton
                       aria-label={
-                        closeAriaLabel ? closeAriaLabel : 'Close dialog'
+                        closeAriaLabel
+                          ? closeAriaLabel
+                          : i18n.modal.closeAriaLabel
                       }
                       color={ButtonColor.secondary}
                       icon={CloseIcon}

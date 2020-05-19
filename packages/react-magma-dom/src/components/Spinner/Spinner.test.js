@@ -2,6 +2,8 @@ import React from 'react';
 import { axe } from 'jest-axe';
 import { Spinner } from '.';
 import { render } from '@testing-library/react';
+import { I18nContext } from '../../i18n';
+import { defaultI18n } from '../../i18n/default';
 
 describe('Spinner', () => {
   it('should find element by testId', () => {
@@ -39,6 +41,26 @@ describe('Spinner', () => {
       'border',
       '2px solid #bada55'
     );
+  });
+
+  describe('i18n', () => {
+    it('should use the spinner ariaLabel', () => {
+      const ariaLabel = 'test spinner ariaLabel';
+      const { getByLabelText } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            spinner: {
+              ariaLabel
+            }
+          }}
+        >
+          <Spinner />
+        </I18nContext.Provider>
+      );
+
+      expect(getByLabelText(ariaLabel)).toBeInTheDocument();
+    });
   });
 
   it('Does not violate accessibility standards', () => {

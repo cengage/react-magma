@@ -69,10 +69,12 @@ describe('Calendar Month', () => {
     });
 
     it('should not attempt to loop through the modal if there are no tabbable elements', () => {
+      const focusedDate = new Date('January 18, 2019');
       const { getByLabelText } = render(
         <CalendarContext.Provider
           value={{
             buildCalendarMonth: getCalendarMonthWeeks,
+            focusedDate,
             setDateFocused: jest.fn(),
             onPrevMonthClick: jest.fn(),
             onNextMonthClick: jest.fn()
@@ -139,10 +141,12 @@ describe('Calendar Month', () => {
 
   it('should open helper information when clicking the helper information button', () => {
     const setShowHelperInformation = jest.fn();
+    const focusedDate = new Date('January 18, 2019');
     const { getByLabelText } = render(
       <CalendarContext.Provider
         value={{
           buildCalendarMonth: getCalendarMonthWeeks,
+          focusedDate,
           setDateFocused: jest.fn(),
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn(),
@@ -160,10 +164,12 @@ describe('Calendar Month', () => {
 
   it('should focus a date on open', () => {
     const setDateFocused = jest.fn();
+    const focusedDate = new Date('January 18, 2019');
     render(
       <CalendarContext.Provider
         value={{
           buildCalendarMonth: getCalendarMonthWeeks,
+          focusedDate,
           setDateFocused,
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn(),
@@ -179,10 +185,12 @@ describe('Calendar Month', () => {
 
   it('should open helper information when clicking the helper information button', () => {
     const setDateFocused = jest.fn();
+    const focusedDate = new Date('January 18, 2019');
     const { getByLabelText } = render(
       <CalendarContext.Provider
         value={{
           buildCalendarMonth: getCalendarMonthWeeks,
+          focusedDate,
           setDateFocused,
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn(),
@@ -200,10 +208,12 @@ describe('Calendar Month', () => {
 
   it('should call the close helper information', async () => {
     const setShowHelperInformation = jest.fn();
+    const focusedDate = new Date('January 18, 2019');
     const { rerender } = render(
       <CalendarContext.Provider
         value={{
           buildCalendarMonth: getCalendarMonthWeeks,
+          focusedDate,
           setDateFocused: jest.fn(),
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn(),
@@ -219,6 +229,7 @@ describe('Calendar Month', () => {
       <CalendarContext.Provider
         value={{
           buildCalendarMonth: getCalendarMonthWeeks,
+          focusedDate,
           setDateFocused: jest.fn(),
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn(),
@@ -239,10 +250,12 @@ describe('Calendar Month', () => {
 
   it('should call to close the calendar when the close button is clicked', () => {
     const handleCloseButtonClick = jest.fn();
+    const focusedDate = new Date('January 18, 2019');
     const { getByLabelText } = render(
       <CalendarContext.Provider
         value={{
           buildCalendarMonth: getCalendarMonthWeeks,
+          focusedDate,
           setDateFocused: jest.fn(),
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn()
