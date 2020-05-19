@@ -11,9 +11,10 @@ import {
   BaseSelectProps,
   OptionType
 } from '../Select/shared';
-import ReactCreatableSelect, {
-  Props as CreatableReactSelectProps
-} from 'react-select/creatable';
+import { Props as CreatableReactSelectProps } from 'react-select/creatable';
+
+const Loader = () => <div>Loading</div>;
+
 export interface CreatableSelectProps
   extends BaseSelectProps,
     CreatableReactSelectProps<OptionType> {}
@@ -26,6 +27,22 @@ export const CreatableSelect: React.FunctionComponent<CreatableSelectProps> = (
     props.defaultValue,
     props.onChange
   );
+  const [ReactCreatableSelect, updateReactCreatableSelect] = React.useState<
+    any
+  >(() => Loader);
+
+  React.useEffect(() => {
+    import('react-select/creatable')
+      .then(module => updateReactCreatableSelect(() => module.default))
+      .catch(err => {
+        if (process.env.NODE_ENV !== 'production') {
+          console.warn(
+            'React-Magma: Unable to import component from react-select'
+          );
+        }
+        throw new Error(err);
+      });
+  }, []);
 
   const {
     components,

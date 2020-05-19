@@ -536,6 +536,21 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 </div>
 ```
 
+For all of the select variants you will have to wrap your render functions in an asynchronous function to allow it to load.
+Here is an example of a basic test for `Select`:
+
+```
+  it('should render a label for the select', async () => {
+    let getByText;
+    const labelText = 'Test';
+    await act(async () => {
+      ({ getByText } = render(<Select labelText={labelText} />));
+    });
+
+    expect(getByText(labelText)).toBeInTheDocument();
+  });
+```
+
 ## Select Props
 
 **Any other props supplied will be provided to the `Select` element from [react-select](https://react-select.com/home).**

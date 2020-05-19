@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
-import ReactSelect, { Props as ReactSelectProps } from 'react-select';
+import { Props as ReactSelectProps } from 'react-select';
 import {
   ClearIndicator,
   DropdownIndicator,
@@ -12,6 +12,8 @@ import {
 } from './shared';
 import { SelectWrapper } from './SelectWrapper';
 
+const Loader = () => <div>Loading</div>;
+
 export interface SelectProps extends BaseSelectProps, ReactSelectProps {}
 
 export const Select: React.FunctionComponent<SelectProps> = (
@@ -22,6 +24,20 @@ export const Select: React.FunctionComponent<SelectProps> = (
     props.defaultValue,
     props.onChange
   );
+  const [ReactSelect, updateReactSelect] = React.useState<any>(() => Loader);
+
+  React.useEffect(() => {
+    import('react-select')
+      .then(module => updateReactSelect(() => module.default))
+      .catch(err => {
+        if (process.env.NODE_ENV !== 'production') {
+          console.warn(
+            'React-Magma: Unable to import component from react-select'
+          );
+        }
+        throw new Error(err);
+      });
+  }, []);
 
   const {
     components,

@@ -11,9 +11,9 @@ import {
   BaseSelectProps,
   OptionType
 } from '../Select/shared';
-import ReactAsyncSelect, {
-  Props as AsyncReactSelectProps
-} from 'react-select/async';
+import { Props as AsyncReactSelectProps } from 'react-select/async';
+
+const Loader = () => <div>Loading</div>;
 
 export interface AsyncSelectProps
   extends BaseSelectProps,
@@ -27,6 +27,22 @@ export const AsyncSelect: React.FunctionComponent<AsyncSelectProps> = (
     props.defaultValue,
     props.onChange
   );
+  const [ReactAsyncSelect, updateReactAsyncSelect] = React.useState<any>(
+    () => Loader
+  );
+
+  React.useEffect(() => {
+    import('react-select/async')
+      .then(module => updateReactAsyncSelect(() => module.default))
+      .catch(err => {
+        if (process.env.NODE_ENV !== 'production') {
+          console.warn(
+            'React-Magma: Unable to import component from react-select'
+          );
+        }
+        throw new Error(err);
+      });
+  }, []);
 
   const {
     components,

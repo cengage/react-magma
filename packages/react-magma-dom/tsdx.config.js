@@ -11,6 +11,7 @@ module.exports = {
     const components = fs.readdirSync('src/components');
     const icons = fs.readdirSync('src/components/Icon/types');
     const themeFiles = fs.readdirSync('src/theme');
+    const i18nFiles = fs.readdirSync('src/i18n');
     const utilsFiles = fs.readdirSync('src/utils');
 
     components.forEach(component => {
@@ -64,11 +65,19 @@ module.exports = {
       }
     });
 
-    utilsFiles.forEach(utilFile => {
-      const splitUtilFile = utilFile.split('.');
+    i18nFiles.forEach(i18nFile => {
+      const [fileName, extension] = i18nFile.split('.');
 
-      if (splitUtilFile[1] === 'tsx' || splitUtilFile[1] === 'ts') {
-        input[`utils/${splitUtilFile[0]}`] = `src/utils/${utilFile}`;
+      if (extension === 'ts') {
+        input[`i18n/${fileName}`] = `src/i18n/${i18nFile}`;
+      }
+    });
+
+    utilsFiles.forEach(utilFile => {
+      const [fileName, extension] = utilFile.split('.');
+
+      if (extension === 'tsx' || extension === 'ts') {
+        input[`utils/${fileName}`] = `src/utils/${utilFile}`;
       }
     });
 
@@ -90,7 +99,8 @@ module.exports = {
         '@emotion/styled-base',
         '@emotion/serialize',
         'prop-types',
-        'react-input-autosize'
+        'react-input-autosize',
+        'react-loadable'
       ]
     };
 
