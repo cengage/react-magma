@@ -13,7 +13,7 @@ import {
 } from '../Select/shared';
 import { Props as CreatableReactSelectProps } from 'react-select/creatable';
 
-const Loader = () => <div>Loading</div>;
+const Loader = () => null;
 
 export interface CreatableSelectProps
   extends BaseSelectProps,

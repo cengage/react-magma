@@ -13,7 +13,7 @@ import {
 } from '../Select/shared';
 import { Props as AsyncReactSelectProps } from 'react-select/async';
 
-const Loader = () => <div>Loading</div>;
+const Loader = () => null;
 
 export interface AsyncSelectProps
   extends BaseSelectProps,

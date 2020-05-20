@@ -13,7 +13,7 @@ import {
 } from '../Select/shared';
 import { Props as AsyncCreatableReactSelectProps } from 'react-select/async-creatable';
 
-const Loader = () => <div>Loading</div>;
+const Loader = () => null;
 
 export interface AsyncCreatableSelectProps
   extends BaseSelectProps,

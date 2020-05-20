@@ -12,7 +12,7 @@ import {
 } from './shared';
 import { SelectWrapper } from './SelectWrapper';
 
-const Loader = () => <div>Loading</div>;
+const Loader = () => null;
 
 export interface SelectProps extends BaseSelectProps, ReactSelectProps {}
 
