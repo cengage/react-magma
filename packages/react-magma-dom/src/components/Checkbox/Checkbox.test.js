@@ -39,6 +39,54 @@ describe('Checkbox', () => {
     expect(getByTestId(testId)).toHaveAttribute('value', value);
   });
 
+  it('should not change the checked value if checkbox is in controlled state', () => {
+    const checked = true;
+    const testId = 'abc123';
+    const { getByTestId } = render(
+      <Checkbox testId={testId} checked={checked} />
+    );
+
+    const checkbox = getByTestId(testId);
+
+    expect(checkbox).toHaveProperty('checked', checked);
+
+    fireEvent.click(checkbox);
+
+    expect(checkbox).toHaveProperty('checked', checked);
+  });
+
+  it('should change the checked value if checkbox is in controlled state and the checked prop is updated', () => {
+    const checked = true;
+    const testId = 'abc123';
+    const { rerender, getByTestId } = render(
+      <Checkbox testId={testId} checked={checked} />
+    );
+
+    const checkbox = getByTestId(testId);
+
+    expect(checkbox).toHaveProperty('checked', checked);
+
+    rerender(<Checkbox testId={testId} checked={!checked} />);
+
+    expect(checkbox).toHaveProperty('checked', !checked);
+  });
+
+  it('should use the defaultChecked prop for initial render and then handle internally if not controlled', () => {
+    const defaultChecked = true;
+    const testId = 'abc123';
+    const { getByTestId } = render(
+      <Checkbox testId={testId} defaultChecked={defaultChecked} />
+    );
+
+    const checkbox = getByTestId(testId);
+
+    expect(checkbox).toHaveProperty('checked', defaultChecked);
+
+    fireEvent.click(checkbox);
+
+    expect(checkbox).toHaveProperty('checked', !defaultChecked);
+  });
+
   it('should auto focus your checkbox', () => {
     const testId = 'abc123';
     // eslint-disable-next-line jsx-a11y/no-autofocus

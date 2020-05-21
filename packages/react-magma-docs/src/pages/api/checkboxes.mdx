@@ -26,21 +26,29 @@ Related checkboxes should be grouped within the `FormGroup` control.
 
 The label/checkbox association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
 
+Checkboxes can either be controlled or  uncontrolled. If you pass in a `checked` prop, it is a controlled input. That means that to change the checkbox's state, you must updated the `checked` prop's value.
+If you do not want to have your checkbox be in a controlled state, but need the inital checked value to be set, pass in the `defaultChecked` prop with the value you would like on intial render.
+
 See also: <Link to="/api/radio">Radio Buttons</Link>, <Link to="/api/toggle">Toggle Switches</Link>, and the <Link to="/design/selection-controls">Design Guidelines</Link> for selection controls in general.
 
 ```.jsx
-  <FormGroup labelText="Choose One or More">
-    <Checkbox
-        checked
-        labelText='Checkbox label' />
+  () => {
+    const [checked, updateChecked] = React.useState(false)
+    return (<FormGroup labelText="Choose One or More">
+      <Checkbox
+          checked={checked}
+          onChange={() => updateChecked(!checked)}
+          labelText='Checkbox label' />
 
-    <Checkbox
-        id='customId'
-        labelText='Checkbox label' />
+      <Checkbox
+          defaultChecked={true}
+          id='customId'
+          labelText='Checkbox label' />
 
-    <Checkbox
-        labelText='Checkbox label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines' />
-    </FormGroup>
+      <Checkbox
+          labelText='Checkbox label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines' />
+    </FormGroup>)
+  }
 ```
 
 ## Colors
