@@ -11,6 +11,7 @@ module.exports = {
     const components = fs.readdirSync('src/components');
     const icons = fs.readdirSync('src/components/Icon/types');
     const themeFiles = fs.readdirSync('src/theme');
+    const hooksFiles = fs.readdirSync('src/hooks');
     const i18nFiles = fs.readdirSync('src/i18n');
     const utilsFiles = fs.readdirSync('src/utils');
 
@@ -62,6 +63,14 @@ module.exports = {
 
       if (splitThemeFile[1] === 'tsx' || splitThemeFile[1] === 'ts') {
         input[`theme/${splitThemeFile[0]}`] = `src/theme/${themeFile}`;
+      }
+    });
+
+    hooksFiles.forEach(hookFile => {
+      const [fileName, extension] = hookFile.split('.');
+
+      if (extension === 'ts') {
+        input[`hooks/${fileName}`] = `src/hooks/${hookFile}`;
       }
     });
 
