@@ -2,8 +2,12 @@ import React from 'react';
 import { TabsContainerContext } from './TabsContainer';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
+import { ThemeInterface } from '../../theme/magma';
 
-const StyledTabPanel = styled.div<{ isInverse?: boolean }>`
+const StyledTabPanel = styled.div<{
+  isInverse?: boolean;
+  theme: ThemeInterface;
+}>`
   background: ${props =>
     props.isInverse
       ? props.theme.colors.foundation02

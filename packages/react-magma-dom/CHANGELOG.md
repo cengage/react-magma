@@ -3,24 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.0.0-beta.44](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.43...v2.0.0-beta.44) (2020-05-19)
-
+# [2.0.0-beta.46](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.45...v2.0.0-beta.46) (2020-05-26)
 
 ### Features
 
-* **breakpoints:** add useMediaQuery for js implementation ([b2f4da7](http://stash.corp.web:7999/FRONT/react-magma/commits/b2f4da7))
-* **breakpoints:** remove js implementation, move hook ([fb71533](http://stash.corp.web:7999/FRONT/react-magma/commits/fb71533))
-* **breakpoints:** take breakpoints from theme ([cc59586](http://stash.corp.web:7999/FRONT/react-magma/commits/cc59586))
-* **breakpoints container:** new container to hold multiple breakpoints ([9a94fbf](http://stash.corp.web:7999/FRONT/react-magma/commits/9a94fbf))
-* **breakpoints container:** support test id, add more tests ([1801d87](http://stash.corp.web:7999/FRONT/react-magma/commits/1801d87))
-* **breakpoints-container:** support just a few breakpoints ([1931031](http://stash.corp.web:7999/FRONT/react-magma/commits/1931031))
-* **i18n:** adding in i18n context for overrides ([e29c238](http://stash.corp.web:7999/FRONT/react-magma/commits/e29c238))
-* **i18n:** setup i18n context and implement overrides ([185a601](http://stash.corp.web:7999/FRONT/react-magma/commits/185a601))
-* **usemediaquery, bpcontainer:** tests ([a4e1ea7](http://stash.corp.web:7999/FRONT/react-magma/commits/a4e1ea7))
+- **checkbox:** control checkbox based on checked prop ([de4a422](http://stash.corp.web:7999/FRONT/react-magma/commits/de4a422))
 
+# [2.0.0-beta.45](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.44...v2.0.0-beta.45) (2020-05-26)
 
+### Features
 
+- **ssr:** return null while loading selects ([6fe700f](http://stash.corp.web:7999/FRONT/react-magma/commits/6fe700f))
 
+# [2.0.0-beta.44](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.43...v2.0.0-beta.44) (2020-05-19)
+
+### Features
+
+- **breakpoints:** add useMediaQuery for js implementation ([b2f4da7](http://stash.corp.web:7999/FRONT/react-magma/commits/b2f4da7))
+- **breakpoints:** remove js implementation, move hook ([fb71533](http://stash.corp.web:7999/FRONT/react-magma/commits/fb71533))
+- **breakpoints:** take breakpoints from theme ([cc59586](http://stash.corp.web:7999/FRONT/react-magma/commits/cc59586))
+- **breakpoints container:** new container to hold multiple breakpoints ([9a94fbf](http://stash.corp.web:7999/FRONT/react-magma/commits/9a94fbf))
+- **breakpoints container:** support test id, add more tests ([1801d87](http://stash.corp.web:7999/FRONT/react-magma/commits/1801d87))
+- **breakpoints-container:** support just a few breakpoints ([1931031](http://stash.corp.web:7999/FRONT/react-magma/commits/1931031))
+- **i18n:** adding in i18n context for overrides ([e29c238](http://stash.corp.web:7999/FRONT/react-magma/commits/e29c238))
+- **i18n:** setup i18n context and implement overrides ([185a601](http://stash.corp.web:7999/FRONT/react-magma/commits/185a601))
+- **usemediaquery, bpcontainer:** tests ([a4e1ea7](http://stash.corp.web:7999/FRONT/react-magma/commits/a4e1ea7))
 
 # [2.0.0-beta.43](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.42...v2.0.0-beta.43) (2020-05-12)
 

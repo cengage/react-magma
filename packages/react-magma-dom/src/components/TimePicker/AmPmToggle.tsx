@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { ThemeInterface } from '../../theme/magma';
 
 interface AmPmToggleProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -8,7 +9,7 @@ interface AmPmToggleProps
   ref: any;
 }
 
-const StyledAmPmToggle = styled.button`
+const StyledAmPmToggle = styled.button<{ theme: ThemeInterface }>`
   background: none;
   border: 0;
   border-radius: 3px;

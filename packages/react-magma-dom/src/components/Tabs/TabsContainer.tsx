@@ -1,8 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { ThemeInterface } from '../../theme/magma';
 
-const StyledTabsContainer = styled.div<{ isInverse?: boolean }>`
+const StyledTabsContainer = styled.div<{
+  isInverse?: boolean;
+  theme: ThemeInterface;
+}>`
   background: ${props =>
     props.isInverse ? props.theme.colors.foundation02 : 'none'};
   color: ${props =>

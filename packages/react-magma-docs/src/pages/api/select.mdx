@@ -536,6 +536,22 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 </div>
 ```
 
+​We use `react-select` under the hood and on its own, react-select and its sub-dependencies reference browser objects such as `window` and `document` without checking for them first. Because of this, using `react-magma-dom` in server side rendering (SSR) scenarios didn't work by default. In order to work around this issue, we've implemented dynamic imports of `react-select` inside our component to avoid those issues while taking advantage of SSR. Because of this, you need to account for this in your test code.
+
+​For all of the select variants you will have to wrap your render functions in an asynchronous function, called inside `act` to allow it to load properly before making assertions against it.
+
+```
+  it('should render a label for the select', async () => {
+    let getByText;
+    const labelText = 'Test';
+    await act(async () => {
+      ({ getByText } = render(<Select labelText={labelText} />));
+    });
+
+    expect(getByText(labelText)).toBeInTheDocument();
+  });
+```
+
 ## Select Props
 
 **Any other props supplied will be provided to the `Select` element from [react-select](https://react-select.com/home).**

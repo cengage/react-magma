@@ -2,7 +2,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { CreatableSelect } from '.';
-import { render, fireEvent, waitForElement } from '@testing-library/react';
+import { act, render, fireEvent, waitForElement } from '@testing-library/react';
 import { Search2Icon } from '../Icon/types/Search2Icon';
 import { components as ReactSelectComponents } from 'react-select';
 
@@ -18,9 +18,13 @@ const colourOptions = [
 ];
 
 it('Does not violate accessibility standards', async () => {
-  const { container } = render(
-    <CreatableSelect labelText="test label" options={colourOptions} />
-  );
+  let container;
+
+  await act(async () => {
+    ({ container } = render(
+      <CreatableSelect labelText="test label" options={colourOptions} />
+    ));
+  });
   await waitForElement(() => container.querySelector('input'));
   return axe(container.innerHTML).then(result => {
     return expect(result).toHaveNoViolations();
@@ -29,15 +33,20 @@ it('Does not violate accessibility standards', async () => {
 
 describe('Creatable', () => {
   it('should call onChange with the new option', async () => {
+    let container;
+    let getByText;
     const handleChange = jest.fn();
-    const { container, getByText } = render(
-      <CreatableSelect
-        id="colorsSelect"
-        labelText="Colors"
-        options={colourOptions}
-        onChange={handleChange}
-      />
-    );
+
+    await act(async () => {
+      ({ container, getByText } = render(
+        <CreatableSelect
+          id="colorsSelect"
+          labelText="Colors"
+          options={colourOptions}
+          onChange={handleChange}
+        />
+      ));
+    });
 
     const input = container.querySelector('input');
     fireEvent.focus(input);
@@ -53,7 +62,8 @@ describe('Creatable', () => {
     expect(getByText('Create "pink"')).toBeInTheDocument();
   });
 
-  it('should allow for the passing in of custom components', () => {
+  it('should allow for the passing in of custom components', async () => {
+    let getByTestId;
     const DropdownIndicator = props => {
       return (
         ReactSelectComponents.DropdownIndicator && (
@@ -64,15 +74,17 @@ describe('Creatable', () => {
       );
     };
 
-    const { getByTestId } = render(
-      <CreatableSelect
-        id="customSelect"
-        labelText="Custom"
-        components={{
-          DropdownIndicator
-        }}
-      />
-    );
+    await act(async () => {
+      ({ getByTestId } = render(
+        <CreatableSelect
+          id="customSelect"
+          labelText="Custom"
+          components={{
+            DropdownIndicator
+          }}
+        />
+      ));
+    });
 
     expect(getByTestId('custom-dropdown-indicator')).toBeInTheDocument();
   });

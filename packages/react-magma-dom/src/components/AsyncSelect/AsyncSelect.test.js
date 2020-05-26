@@ -2,7 +2,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { AsyncSelect } from '.';
-import { render, fireEvent, waitForElement } from '@testing-library/react';
+import { act, render, fireEvent, waitForElement } from '@testing-library/react';
 import { Search2Icon } from '../Icon/types/Search2Icon';
 import { components as ReactSelectComponents } from 'react-select';
 const mockPromise = require('promise');
@@ -28,9 +28,16 @@ const promiseOptions = inputValue =>
   mockPromise.resolve(filterColors(inputValue));
 
 it('Does not violate accessibility standards', async () => {
-  const { container } = render(
-    <AsyncSelect labelText="test label" loadOptions={mockPromise.resolve(42)} />
-  );
+  let container;
+
+  await act(async () => {
+    ({ container } = render(
+      <AsyncSelect
+        labelText="test label"
+        loadOptions={mockPromise.resolve(42)}
+      />
+    ));
+  });
   await waitForElement(() => container.querySelector('input'));
   return axe(container.innerHTML).then(result => {
     return expect(result).toHaveNoViolations();
@@ -48,13 +55,19 @@ describe('Async', () => {
     });
 
     it('should load options', async () => {
-      const { container, getByLabelText, getByText } = render(
-        <AsyncSelect
-          id="colorsSelect"
-          labelText="Colors"
-          loadOptions={promiseOptions}
-        />
-      );
+      let container;
+      let getByLabelText;
+      let getByText;
+
+      await act(async () => {
+        ({ container, getByLabelText, getByText } = render(
+          <AsyncSelect
+            id="colorsSelect"
+            labelText="Colors"
+            loadOptions={promiseOptions}
+          />
+        ));
+      });
 
       const input = container.querySelector('input');
       fireEvent.focus(input);
@@ -83,14 +96,20 @@ describe('Async', () => {
     });
 
     it('should have default options', async () => {
-      const { container, getByLabelText, getByText } = render(
-        <AsyncSelect
-          id="colorsSelect"
-          labelText="Colors"
-          loadOptions={promiseOptions}
-          defaultOptions={[{ label: 'Pink', value: 'pink' }]}
-        />
-      );
+      let container;
+      let getByLabelText;
+      let getByText;
+
+      await act(async () => {
+        ({ container, getByLabelText, getByText } = render(
+          <AsyncSelect
+            id="colorsSelect"
+            labelText="Colors"
+            loadOptions={promiseOptions}
+            defaultOptions={[{ label: 'Pink', value: 'pink' }]}
+          />
+        ));
+      });
 
       const input = container.querySelector('input');
       fireEvent.focus(input);
@@ -112,7 +131,8 @@ describe('Async', () => {
       expect(getByText('Pink')).toBeInTheDocument();
     });
 
-    it('should allow for the passing in of custom components', () => {
+    it('should allow for the passing in of custom components', async () => {
+      let getByTestId;
       const DropdownIndicator = props => {
         return (
           ReactSelectComponents.DropdownIndicator && (
@@ -123,16 +143,18 @@ describe('Async', () => {
         );
       };
 
-      const { getByTestId } = render(
-        <AsyncSelect
-          id="customSelect"
-          labelText="Custom"
-          loadOptions={promiseOptions}
-          components={{
-            DropdownIndicator
-          }}
-        />
-      );
+      await act(async () => {
+        ({ getByTestId } = render(
+          <AsyncSelect
+            id="customSelect"
+            labelText="Custom"
+            loadOptions={promiseOptions}
+            components={{
+              DropdownIndicator
+            }}
+          />
+        ));
+      });
 
       expect(getByTestId('custom-dropdown-indicator')).toBeInTheDocument();
     });
