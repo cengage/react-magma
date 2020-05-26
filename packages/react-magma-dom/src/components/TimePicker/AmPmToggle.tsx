@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { ThemeInterface } from '../../theme/magma';
 
 interface AmPmToggleProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -8,7 +9,7 @@ interface AmPmToggleProps
   ref: any;
 }
 
-const StyledAmPmToggle = styled.button`
+const StyledAmPmToggle = styled.button<{ theme: ThemeInterface }>`
   background: none;
   border: 0;
   border-radius: 3px;
@@ -22,20 +23,20 @@ const StyledAmPmToggle = styled.button`
   }
 `;
 
-export const AmPmToggle: React.FunctionComponent<
-  AmPmToggleProps
-> = React.forwardRef((props: AmPmToggleProps, ref: any) => {
-  const { children, ...other } = props;
-  const theme = React.useContext(ThemeContext);
+export const AmPmToggle: React.FunctionComponent<AmPmToggleProps> = React.forwardRef(
+  (props: AmPmToggleProps, ref: any) => {
+    const { children, ...other } = props;
+    const theme = React.useContext(ThemeContext);
 
-  return (
-    <StyledAmPmToggle
-      {...other}
-      data-testid="amPmTimeButton"
-      ref={ref}
-      theme={theme}
-    >
-      {children}
-    </StyledAmPmToggle>
-  );
-});
+    return (
+      <StyledAmPmToggle
+        {...other}
+        data-testid="amPmTimeButton"
+        ref={ref}
+        theme={theme}
+      >
+        {children}
+      </StyledAmPmToggle>
+    );
+  }
+);

@@ -7,6 +7,7 @@ import { Input } from '../Input';
 import { useGenerateId } from '../../utils';
 import { I18nContext } from '../../i18n';
 import { enUS } from 'date-fns/locale';
+import { ThemeInterface } from '../../theme/magma';
 
 export interface TimePickerProps {
   errorMessage?: React.ReactNode;
@@ -19,7 +20,10 @@ export interface TimePickerProps {
   onChange?: (value: string) => void;
 }
 
-const TimePickerContainer = styled.div<{ isInverse?: boolean }>`
+const TimePickerContainer = styled.div<{
+  isInverse?: boolean;
+  theme: ThemeInterface;
+}>`
   position: relative;
 
   &:focus-within {
@@ -34,7 +38,7 @@ const TimePickerContainer = styled.div<{ isInverse?: boolean }>`
   }
 `;
 
-const InputsContainer = styled.div`
+const InputsContainer = styled.div<{ theme: ThemeInterface }>`
   background: ${props => props.theme.colors.neutral08};
   left: 31px;
   position: absolute;
@@ -48,7 +52,7 @@ const Divider = styled.span`
   top: -1px;
 `;
 
-const StyledNumInput = styled.input`
+const StyledNumInput = styled.input<{ theme: ThemeInterface }>`
   border: 0;
   border-radius: 3px;
   padding: 0 3px;

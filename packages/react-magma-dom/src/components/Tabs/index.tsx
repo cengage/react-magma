@@ -18,11 +18,13 @@ import {
   detectScrollType
 } from '../../utils';
 import { Tab } from './Tab';
+import { ThemeInterface } from '../../theme/magma';
 
 const StyledContainer = styled('div', { shouldForwardProp: isPropValid })<{
   orientation: TabsOrientation;
   isInverse: boolean;
   backgroundColor: string;
+  theme: ThemeInterface;
 }>`
   background-color: ${props =>
     props.backgroundColor
@@ -74,6 +76,7 @@ const StyledScrollButton = styled.div<{
   buttonVisible: boolean;
   isInverse?: boolean;
   orientation?: TabsOrientation;
+  theme: ThemeInterface;
 }>`
   align-items: center;
   backdrop-filter: blur(1px);

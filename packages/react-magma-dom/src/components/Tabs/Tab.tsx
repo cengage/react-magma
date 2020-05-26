@@ -11,6 +11,7 @@ import {
 } from '.';
 import { Omit, XOR } from '../../utils';
 import { TabsContainerContext } from './TabsContainer';
+import { ThemeInterface } from '../../theme/magma';
 
 export interface BaseTabProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
@@ -43,6 +44,7 @@ const StyledTabsChild = styled('div', { shouldForwardProp: isPropValid })<{
   isFullWidth?: boolean;
   isInverse?: boolean;
   orientation: TabsOrientation;
+  theme: ThemeInterface;
 }>`
   flex-grow: 0;
   flex-shrink: ${props => (props.isFullWidth ? '1' : '0')};

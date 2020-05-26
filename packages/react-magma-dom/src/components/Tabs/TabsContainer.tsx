@@ -1,8 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { ThemeInterface } from '../../theme/magma';
 
-const StyledTabsContainer = styled.div<{ isInverse?: boolean }>`
+const StyledTabsContainer = styled.div<{
+  isInverse?: boolean;
+  theme: ThemeInterface;
+}>`
   background: ${props =>
     props.isInverse ? props.theme.colors.foundation02 : 'none'};
   color: ${props =>
@@ -34,41 +38,43 @@ export const TabsContainerContext = React.createContext<
   setActiveTabIndex: () => 0
 });
 
-export const TabsContainer: React.FunctionComponent<
-  TabsContainerProps
-> = React.forwardRef((props, ref: React.Ref<any>) => {
-  const { activeIndex, children, testId } = props;
+export const TabsContainer: React.FunctionComponent<TabsContainerProps> = React.forwardRef(
+  (props, ref: React.Ref<any>) => {
+    const { activeIndex, children, testId } = props;
 
-  React.useEffect(() => {
-    if (activeIndex >= 0) {
-      setActiveTabIndex(activeIndex);
-    }
-  }, [activeIndex]);
+    React.useEffect(() => {
+      if (activeIndex >= 0) {
+        setActiveTabIndex(activeIndex);
+      }
+    }, [activeIndex]);
 
-  const [activeTabIndex, setActiveTabIndex] = React.useState(activeIndex || 0);
+    const [activeTabIndex, setActiveTabIndex] = React.useState(
+      activeIndex || 0
+    );
 
-  React.useEffect(() => {
-    setIsInverseContainer(Boolean(props.isInverse));
-  }, [props.isInverse]);
+    React.useEffect(() => {
+      setIsInverseContainer(Boolean(props.isInverse));
+    }, [props.isInverse]);
 
-  const [isInverseContainer, setIsInverseContainer] = React.useState(
-    Boolean(props.isInverse)
-  );
+    const [isInverseContainer, setIsInverseContainer] = React.useState(
+      Boolean(props.isInverse)
+    );
 
-  const theme = React.useContext(ThemeContext);
+    const theme = React.useContext(ThemeContext);
 
-  return (
-    <TabsContainerContext.Provider
-      value={{ activeTabIndex, setActiveTabIndex, isInverseContainer }}
-    >
-      <StyledTabsContainer
-        ref={ref}
-        data-testid={testId}
-        theme={theme}
-        {...props}
+    return (
+      <TabsContainerContext.Provider
+        value={{ activeTabIndex, setActiveTabIndex, isInverseContainer }}
       >
-        {children}
-      </StyledTabsContainer>
-    </TabsContainerContext.Provider>
-  );
-});
+        <StyledTabsContainer
+          ref={ref}
+          data-testid={testId}
+          theme={theme}
+          {...props}
+        >
+          {children}
+        </StyledTabsContainer>
+      </TabsContainerContext.Provider>
+    );
+  }
+);
