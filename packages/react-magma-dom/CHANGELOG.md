@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.45](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.44...v2.0.0-beta.45) (2020-05-26)
+
+
+### Features
+
+* **ssr:** return null while loading selects ([6fe700f](http://stash.corp.web:7999/FRONT/react-magma/commits/6fe700f))
+
+
+
+
+
 # [2.0.0-beta.44](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.43...v2.0.0-beta.44) (2020-05-19)
 
 ### Features
