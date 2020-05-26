@@ -24,6 +24,7 @@ export interface CheckboxProps
   color?: string;
   containerStyle?: React.CSSProperties;
   inputStyle?: React.CSSProperties;
+  defaultChecked?: boolean;
   isInverse?: boolean;
   isTextVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
@@ -116,22 +117,28 @@ export const StyledFakeInput = styled.span<{
 export const Checkbox: React.FunctionComponent<
   CheckboxProps
 > = React.forwardRef((props: CheckboxProps, ref: any) => {
-  const [isChecked, updateIsChecked] = React.useState(Boolean(props.checked));
+  const { checked, id: defaultId, defaultChecked, onChange } = props;
+  const [isChecked, updateIsChecked] = React.useState(
+    Boolean(defaultChecked) || Boolean(checked)
+  );
 
-  const id = useGenerateId(props.id);
+  const id = useGenerateId(defaultId);
+  const isControlled = typeof checked === 'boolean' ? true : false;
 
   React.useEffect(() => {
-    updateIsChecked(Boolean(props.checked));
-  }, [props.checked]);
+    if (typeof checked === 'boolean') {
+      updateIsChecked(checked);
+    }
+  }, [checked]);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { checked: targetChecked } = event.target;
 
-    props.onChange &&
-      typeof props.onChange === 'function' &&
-      props.onChange(event);
+    onChange && typeof onChange === 'function' && onChange(event);
 
-    updateIsChecked(targetChecked);
+    if (!isControlled) {
+      updateIsChecked(targetChecked);
+    }
   }
 
   const theme = React.useContext(ThemeContext);
