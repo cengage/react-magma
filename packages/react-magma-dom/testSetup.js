@@ -4,7 +4,10 @@ require('jest-extended');
 require('@testing-library/jest-dom/extend-expect');
 require('jest-axe/extend-expect');
 
-import { matchers } from 'jest-emotion';
+import * as emotion from '@emotion/core';
+import { createSerializer, matchers } from 'jest-emotion';
+
+expect.addSnapshotSerializer(createSerializer(emotion));
 expect.extend(matchers);
 
 // this is just a little hack to silence a warning that we'll get until we
