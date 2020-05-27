@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.49](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.48...v2.0.0-beta.49) (2020-05-27)
+
+
+### Features
+
+* **global:** base font size ([2c176e8](http://stash.corp.web:7999/FRONT/react-magma/commits/2c176e8))
+* base line-height ([ab0b4be](http://stash.corp.web:7999/FRONT/react-magma/commits/ab0b4be))
+* **global styles:** body line-height ([ec16142](http://stash.corp.web:7999/FRONT/react-magma/commits/ec16142))
+* **headings:** font-sizes ([5cd55f5](http://stash.corp.web:7999/FRONT/react-magma/commits/5cd55f5))
+
+
+
+
+
 # [2.0.0-beta.48](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.47...v2.0.0-beta.48) (2020-05-27)
 
 
