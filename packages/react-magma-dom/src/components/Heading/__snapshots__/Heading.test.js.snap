@@ -1,9 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Heading Snapshot should render heading 1 correctly 1`] = `
+.emotion-0 {
+  border-bottom: 2px solid transparent;
+  color: #003865;
+  font-family: "Open Sans",sans-serif;
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 20px 0 10px;
+  font-size: 42px;
+}
+
+.emotion-0:focus {
+  border-bottom: 2px dotted #027EE1;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
 <div>
   <h1
-    class="css-m2fetm"
+    class="emotion-0"
     id="testId"
   >
     Heading 1
@@ -12,9 +29,26 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
 `;
 
 exports[`Heading Snapshot should render heading 2 correctly 1`] = `
+.emotion-0 {
+  border-bottom: 2px solid transparent;
+  color: #003865;
+  font-family: "Open Sans",sans-serif;
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 20px 0 10px;
+  font-size: 36px;
+}
+
+.emotion-0:focus {
+  border-bottom: 2px dotted #027EE1;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
 <div>
   <h2
-    class="css-1ydema7"
+    class="emotion-0"
   >
     Heading 2
   </h2>
@@ -22,9 +56,26 @@ exports[`Heading Snapshot should render heading 2 correctly 1`] = `
 `;
 
 exports[`Heading Snapshot should render heading 3 correctly 1`] = `
+.emotion-0 {
+  border-bottom: 2px solid transparent;
+  color: #003865;
+  font-family: "Open Sans",sans-serif;
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 20px 0 10px;
+  font-size: 28px;
+}
+
+.emotion-0:focus {
+  border-bottom: 2px dotted #027EE1;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
 <div>
   <h3
-    class="css-1pd9mgo"
+    class="emotion-0"
   >
     Heading 3
   </h3>
@@ -32,9 +83,28 @@ exports[`Heading Snapshot should render heading 3 correctly 1`] = `
 `;
 
 exports[`Heading Snapshot should render heading 4 correctly 1`] = `
+.emotion-0 {
+  border-bottom: 2px solid transparent;
+  color: #003865;
+  font-family: "Open Sans",sans-serif;
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 20px 0 10px;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.emotion-0:focus {
+  border-bottom: 2px dotted #027EE1;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
 <div>
   <h4
-    class="css-19ya31k"
+    class="emotion-0"
   >
     Heading 4
   </h4>
@@ -42,9 +112,28 @@ exports[`Heading Snapshot should render heading 4 correctly 1`] = `
 `;
 
 exports[`Heading Snapshot should render heading 5 correctly 1`] = `
+.emotion-0 {
+  border-bottom: 2px solid transparent;
+  color: #003865;
+  font-family: "Open Sans",sans-serif;
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 20px 0 10px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.emotion-0:focus {
+  border-bottom: 2px dotted #027EE1;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
 <div>
   <h5
-    class="css-1x4kbkg"
+    class="emotion-0"
   >
     Heading 5
   </h5>
@@ -52,9 +141,28 @@ exports[`Heading Snapshot should render heading 5 correctly 1`] = `
 `;
 
 exports[`Heading Snapshot should render heading 6 correctly 1`] = `
+.emotion-0 {
+  border-bottom: 2px solid transparent;
+  color: #003865;
+  font-family: "Open Sans",sans-serif;
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 20px 0 10px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.emotion-0:focus {
+  border-bottom: 2px dotted #027EE1;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
 <div>
   <h6
-    class="css-te4tim"
+    class="emotion-0"
   >
     Heading 6
   </h6>

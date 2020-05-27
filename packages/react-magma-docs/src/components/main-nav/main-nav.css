@@ -12,7 +12,9 @@
 }
 
 .main-nav h3 {
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 20px;
 }
 
 .main-nav hr {
@@ -44,6 +46,11 @@
 .main-nav li a:focus {
     background: #f7f7f7;
     text-decoration: none;
+}
+
+.main-nav ul .submenu {
+  background: #F7F7F7;
+  padding: 0 0 10px 0;
 }
 
 .submenu > li {
