@@ -37,7 +37,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-zn6fvw-IconWrapperStyles-IconWrapper"
+      class="css-1tifzmt-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
@@ -90,7 +90,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-zn6fvw-IconWrapperStyles-IconWrapper"
+      class="css-1tifzmt-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
@@ -130,7 +130,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-zn6fvw-IconWrapperStyles-IconWrapper"
+      class="css-1tifzmt-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
@@ -170,7 +170,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-zn6fvw-IconWrapperStyles-IconWrapper"
+      class="css-1tifzmt-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"
@@ -209,7 +209,7 @@ describe('Alert', () => {
     tabindex="-1"
   >
     <span
-      class="css-zn6fvw-IconWrapperStyles-IconWrapper"
+      class="css-1tifzmt-IconWrapperStyles-IconWrapper"
     >
       <svg
         class="icon"

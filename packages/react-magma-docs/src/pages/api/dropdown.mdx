@@ -196,6 +196,34 @@ The items accept an `onClick` event. The `isDisabled` prop can be used on an ite
       </Dropdown>
 ```
 
+## Custom DropdownMenuItem Wrappers
+
+`DropdownContent` expects it's children to be of type `DropdownMenuItem`, be an element in which it's lowest child is of type `DropdownMenuItem`, or a custom component
+that returns a `DropdownMenuItem`.
+
+For a custom component you'll receive a `dropdownMenuItemProps` prop that you must spread in to the `DropdownMenuItem` component in your renderer.
+
+```.jsx
+ () => {
+  const OptionalDropdownMenuItem = ({toggle, dropdownMenuItemProps}) => {
+    console.log('dropdownMenuItemProps', dropdownMenuItemProps)
+    return toggle ? <DropdownMenuItem {...dropdownMenuItemProps}>Hello There</DropdownMenuItem> : null
+  }
+
+   return (
+     <Dropdown>
+        <DropdownButton>Dropdown Menu Items</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem  onClick={()=>{alert('Item 1 clicked')}}>Menu item 1</DropdownMenuItem>
+          <OptionalDropdownMenuItem toggle onClick={()=>{alert('Item 2 clicked')}}>Menu item 2</OptionalDropdownMenuItem>
+          <div>
+            <DropdownMenuItem  onClick={()=>{alert('Item 3 clicked')}}>Menu item 3</DropdownMenuItem>
+          </div>
+        </DropdownContent>
+      </Dropdown>
+ )}
+```
+
 ### Leading Icons
 
 The `icon` prop can be used to specify an icon for the `DropdownMenuItem` elements.

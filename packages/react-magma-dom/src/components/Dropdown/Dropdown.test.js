@@ -31,6 +31,35 @@ describe('Dropdown', () => {
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
+  it('should render a custom wrapped dropdown item', () => {
+    // eslint-disable-next-line react/prop-types
+    const OptionalDropdownItem = ({ toggle, dropdownMenuItemProps }) => {
+      return toggle ? (
+        <DropdownMenuItem {...dropdownMenuItemProps}>
+          Hello There
+        </DropdownMenuItem>
+      ) : null;
+    };
+
+    const { getByText } = render(
+      <Dropdown>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+          <OptionalDropdownItem onClick={() => {}} toggle />
+          <div>
+            <DropdownMenuItem onClick={() => {}}>FAQ</DropdownMenuItem>
+          </div>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    const renderedOptionalTab = getByText('Hello There');
+
+    expect(renderedOptionalTab).toBeInTheDocument();
+    expect(getByText('FAQ')).toBeInTheDocument();
+  });
+
   it('should render a dropup', () => {
     const { getByTestId } = render(
       <Dropdown dropDirection="up">
