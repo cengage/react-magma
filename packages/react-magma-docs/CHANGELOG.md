@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.48](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.47...v2.0.0-beta.48) (2020-05-27)
+
+
+### Features
+
+* **dropdown:** allow for wrapped menu items ([4d995c6](http://stash.corp.web:7999/FRONT/react-magma/commits/4d995c6))
+
+
+
+
+
 # [2.0.0-beta.47](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.46...v2.0.0-beta.47) (2020-05-27)
 
 **Note:** Version bump only for package react-magma-docs
