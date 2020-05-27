@@ -1,13 +1,68 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Tooltip should render the tooltip component, positioned top by default 1`] = `
+.emotion-1 {
+  display: none;
+  font-size: 12px;
+  line-height: 1.3em;
+  font-weight: 600;
+  position: absolute;
+  text-align: center;
+  width: 300px;
+  z-index: 999;
+  bottom: 100%;
+  margin-bottom: 10px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.emotion-0 {
+  background: #3F3F3F;
+  border-radius: 3px;
+  color: #FFFFFF;
+  display: inline-block;
+  padding: 7px 10px;
+  position: relative;
+}
+
+.emotion-0:before,
+.emotion-0:after {
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top-color: #3F3F3F;
+  border-bottom-color: #3F3F3F;
+  border-style: solid;
+  content: '';
+  height: 0;
+  left: 50%;
+  position: absolute;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 0;
+}
+
+.emotion-0:after {
+  bottom: -5px;
+  top: auto;
+  border-width: 5px 5px 0 5px;
+}
+
+.emotion-0:before {
+  bottom: -7px;
+  top: auto;
+  border-width: 7px 7px 0 7px;
+}
+
 <div
-  class="css-1qh968q-StyledTooltip"
+  class="emotion-1"
   id="tooltipID"
   role="tooltip"
 >
   <div
-    class="css-1v7h5n6-StyledTooltipInner"
+    class="emotion-0"
   >
     Test Content
   </div>

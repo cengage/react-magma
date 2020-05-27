@@ -30,14 +30,78 @@ describe('Alert', () => {
     );
 
     expect(container).toMatchInlineSnapshot(`
+.emotion-2 {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-animation: fadein 500ms;
+  animation: fadein 500ms;
+  background-color: #3F3F3F;
+  border-radius: 3px;
+  color: #FFFFFF;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  padding: 0;
+  margin-bottom: 20px;
+  max-width: 100%;
+}
+
+.emotion-2:focus {
+  outline: 2px dotted #027EE1;
+}
+
+.emotion-2 a {
+  color: inherit;
+  font-weight: 600;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.emotion-2 a:focus {
+  outline: 2px dotted rgba(255,255,255,0.7);
+}
+
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  padding: 0 10px 0 15px;
+}
+
+@media (max-width:600px) {
+  .emotion-0 {
+    display: none;
+  }
+}
+
+.emotion-1 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  padding: 13px 15px 13px 0;
+}
+
 <div>
   <div
-    class="css-2endn5"
+    class="emotion-2"
     id="defaultVariant"
     tabindex="-1"
   >
     <span
-      class="css-1tifzmt-IconWrapperStyles-IconWrapper"
+      class="emotion-0"
     >
       <svg
         class="icon"
@@ -54,7 +118,7 @@ describe('Alert', () => {
       </svg>
     </span>
     <div
-      class="css-1lmow5h"
+      class="emotion-1"
     >
       Test Alert Text
     </div>
@@ -83,14 +147,78 @@ describe('Alert', () => {
       );
 
       expect(container).toMatchInlineSnapshot(`
+.emotion-2 {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-animation: fadein 500ms;
+  animation: fadein 500ms;
+  background-color: #3F3F3F;
+  border-radius: 3px;
+  color: #FFFFFF;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  padding: 0;
+  margin-bottom: 20px;
+  max-width: 100%;
+}
+
+.emotion-2:focus {
+  outline: 2px dotted #027EE1;
+}
+
+.emotion-2 a {
+  color: inherit;
+  font-weight: 600;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.emotion-2 a:focus {
+  outline: 2px dotted rgba(255,255,255,0.7);
+}
+
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  padding: 0 10px 0 15px;
+}
+
+@media (max-width:600px) {
+  .emotion-0 {
+    display: none;
+  }
+}
+
+.emotion-1 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  padding: 13px 15px 13px 0;
+}
+
 <div>
   <div
-    class="css-2endn5"
+    class="emotion-2"
     id="auto-generated-id"
     tabindex="-1"
   >
     <span
-      class="css-1tifzmt-IconWrapperStyles-IconWrapper"
+      class="emotion-0"
     >
       <svg
         class="icon"
@@ -107,7 +235,7 @@ describe('Alert', () => {
       </svg>
     </span>
     <div
-      class="css-1lmow5h"
+      class="emotion-1"
     >
       Test Alert Text
     </div>
@@ -123,14 +251,78 @@ describe('Alert', () => {
       );
 
       expect(container).toMatchInlineSnapshot(`
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  padding: 0 10px 0 15px;
+}
+
+@media (max-width:600px) {
+  .emotion-0 {
+    display: none;
+  }
+}
+
+.emotion-1 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  padding: 13px 15px 13px 0;
+}
+
+.emotion-2 {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-animation: fadein 500ms;
+  animation: fadein 500ms;
+  background-color: #3A8200;
+  border-radius: 3px;
+  color: #FFFFFF;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  padding: 0;
+  margin-bottom: 20px;
+  max-width: 100%;
+}
+
+.emotion-2:focus {
+  outline: 2px dotted #027EE1;
+}
+
+.emotion-2 a {
+  color: inherit;
+  font-weight: 600;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.emotion-2 a:focus {
+  outline: 2px dotted rgba(255,255,255,0.7);
+}
+
 <div>
   <div
-    class="css-1weoway"
+    class="emotion-2"
     id="auto-generated-id"
     tabindex="-1"
   >
     <span
-      class="css-1tifzmt-IconWrapperStyles-IconWrapper"
+      class="emotion-0"
     >
       <svg
         class="icon"
@@ -147,7 +339,7 @@ describe('Alert', () => {
       </svg>
     </span>
     <div
-      class="css-1lmow5h"
+      class="emotion-1"
     >
       Test Alert Text
     </div>
@@ -163,14 +355,78 @@ describe('Alert', () => {
       );
 
       expect(container).toMatchInlineSnapshot(`
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  padding: 0 10px 0 15px;
+}
+
+@media (max-width:600px) {
+  .emotion-0 {
+    display: none;
+  }
+}
+
+.emotion-1 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  padding: 13px 15px 13px 0;
+}
+
+.emotion-2 {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-animation: fadein 500ms;
+  animation: fadein 500ms;
+  background-color: #FFC72C;
+  border-radius: 3px;
+  color: #3F3F3F;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  padding: 0;
+  margin-bottom: 20px;
+  max-width: 100%;
+}
+
+.emotion-2:focus {
+  outline: 2px dotted #027EE1;
+}
+
+.emotion-2 a {
+  color: inherit;
+  font-weight: 600;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.emotion-2 a:focus {
+  outline: 2px dotted #027EE1;
+}
+
 <div>
   <div
-    class="css-x3vcca"
+    class="emotion-2"
     id="auto-generated-id"
     tabindex="-1"
   >
     <span
-      class="css-1tifzmt-IconWrapperStyles-IconWrapper"
+      class="emotion-0"
     >
       <svg
         class="icon"
@@ -186,7 +442,7 @@ describe('Alert', () => {
       </svg>
     </span>
     <div
-      class="css-1lmow5h"
+      class="emotion-1"
     >
       Test Alert Text
     </div>
@@ -202,14 +458,78 @@ describe('Alert', () => {
       );
 
       expect(container).toMatchInlineSnapshot(`
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  padding: 0 10px 0 15px;
+}
+
+@media (max-width:600px) {
+  .emotion-0 {
+    display: none;
+  }
+}
+
+.emotion-1 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  padding: 13px 15px 13px 0;
+}
+
+.emotion-2 {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-animation: fadein 500ms;
+  animation: fadein 500ms;
+  background-color: #E70000;
+  border-radius: 3px;
+  color: #FFFFFF;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  padding: 0;
+  margin-bottom: 20px;
+  max-width: 100%;
+}
+
+.emotion-2:focus {
+  outline: 2px dotted #027EE1;
+}
+
+.emotion-2 a {
+  color: inherit;
+  font-weight: 600;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.emotion-2 a:focus {
+  outline: 2px dotted rgba(255,255,255,0.7);
+}
+
 <div>
   <div
-    class="css-14rseox"
+    class="emotion-2"
     id="auto-generated-id"
     tabindex="-1"
   >
     <span
-      class="css-1tifzmt-IconWrapperStyles-IconWrapper"
+      class="emotion-0"
     >
       <svg
         class="icon"
@@ -226,7 +546,7 @@ describe('Alert', () => {
       </svg>
     </span>
     <div
-      class="css-1lmow5h"
+      class="emotion-1"
     >
       Test Alert Text
     </div>
