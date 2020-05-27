@@ -19,7 +19,7 @@ function getStyles(theme) {
 
     html {
       scroll-behavior: smooth;
-      font-size: 15px;
+      font-size: 16px;
     }
 
     html,
@@ -34,8 +34,8 @@ function getStyles(theme) {
       font-family: ${theme.bodyFont};
       font-style: normal;
       font-weight: 400;
-      font-size: 15px;
-      line-height: 22px;
+      font-size: 16px;
+      line-height: 1.75em;
     }
 
     a {

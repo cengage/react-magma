@@ -23,20 +23,20 @@ const StyledAmPmToggle = styled.button<{ theme: ThemeInterface }>`
   }
 `;
 
-export const AmPmToggle: React.FunctionComponent<AmPmToggleProps> = React.forwardRef(
-  (props: AmPmToggleProps, ref: any) => {
-    const { children, ...other } = props;
-    const theme = React.useContext(ThemeContext);
+export const AmPmToggle: React.FunctionComponent<
+  AmPmToggleProps
+> = React.forwardRef((props: AmPmToggleProps, ref: any) => {
+  const { children, ...other } = props;
+  const theme = React.useContext(ThemeContext);
 
-    return (
-      <StyledAmPmToggle
-        {...other}
-        data-testid="amPmTimeButton"
-        ref={ref}
-        theme={theme}
-      >
-        {children}
-      </StyledAmPmToggle>
-    );
-  }
-);
+  return (
+    <StyledAmPmToggle
+      {...other}
+      data-testid="amPmTimeButton"
+      ref={ref}
+      theme={theme}
+    >
+      {children}
+    </StyledAmPmToggle>
+  );
+});

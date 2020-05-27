@@ -23,7 +23,7 @@ describe('Heading', () => {
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
-    expect(heading).toHaveStyleRule('font-size', '2.8em');
+    expect(heading).toHaveStyleRule('font-size', '42px');
   });
 
   it('should render an h2', () => {
@@ -33,7 +33,7 @@ describe('Heading', () => {
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
-    expect(heading).toHaveStyleRule('font-size', '2.4em');
+    expect(heading).toHaveStyleRule('font-size', '36px');
   });
 
   it('should render an h3', () => {
@@ -43,7 +43,7 @@ describe('Heading', () => {
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
-    expect(heading).toHaveStyleRule('font-size', '1.867em');
+    expect(heading).toHaveStyleRule('font-size', '28px');
   });
 
   it('should render an h4', () => {
@@ -53,7 +53,7 @@ describe('Heading', () => {
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
-    expect(heading).toHaveStyleRule('font-size', '1.467em');
+    expect(heading).toHaveStyleRule('font-size', '22px');
   });
 
   it('should render an h5', () => {
@@ -63,7 +63,7 @@ describe('Heading', () => {
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
-    expect(heading).toHaveStyleRule('font-size', '1.067em');
+    expect(heading).toHaveStyleRule('font-size', '16px');
   });
 
   it('should render an h6', () => {
@@ -73,7 +73,7 @@ describe('Heading', () => {
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
-    expect(heading).toHaveStyleRule('font-size', '0.867em');
+    expect(heading).toHaveStyleRule('font-size', '13px');
   });
 
   it('should render default styles', () => {

@@ -16,25 +16,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [2.0.0-beta.46](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.45...v2.0.0-beta.46) (2020-05-26)
 
-
 ### Features
 
-* **checkbox:** control checkbox based on checked prop ([de4a422](http://stash.corp.web:7999/FRONT/react-magma/commits/de4a422))
-
-
-
-
+- **checkbox:** control checkbox based on checked prop ([de4a422](http://stash.corp.web:7999/FRONT/react-magma/commits/de4a422))
 
 # [2.0.0-beta.45](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.44...v2.0.0-beta.45) (2020-05-26)
 
-
 ### Features
 
-* **ssr:** return null while loading selects ([6fe700f](http://stash.corp.web:7999/FRONT/react-magma/commits/6fe700f))
-
-
-
-
+- **ssr:** return null while loading selects ([6fe700f](http://stash.corp.web:7999/FRONT/react-magma/commits/6fe700f))
 
 # [2.0.0-beta.44](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.43...v2.0.0-beta.44) (2020-05-19)
 
