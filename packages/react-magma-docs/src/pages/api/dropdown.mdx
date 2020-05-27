@@ -198,7 +198,7 @@ The items accept an `onClick` event. The `isDisabled` prop can be used on an ite
 
 ## Custom DropdownMenuItem Wrappers
 
-`DropdownContent` expects it's children to be of type `DropdownMenuItem`, be an element in which it's lowest child is of type `DropdownMenuItem`, or a custom component
+`DropdownContent` expects its children to be of type `DropdownMenuItem`, be an element in which it's lowest child is of type `DropdownMenuItem`, or a custom component
 that returns a `DropdownMenuItem`.
 
 For a custom component you'll receive a `dropdownMenuItemProps` prop that you must spread in to the `DropdownMenuItem` component in your renderer.
@@ -206,7 +206,6 @@ For a custom component you'll receive a `dropdownMenuItemProps` prop that you mu
 ```.jsx
  () => {
   const OptionalDropdownMenuItem = ({toggle, dropdownMenuItemProps}) => {
-    console.log('dropdownMenuItemProps', dropdownMenuItemProps)
     return toggle ? <DropdownMenuItem {...dropdownMenuItemProps}>Hello There</DropdownMenuItem> : null
   }
 
