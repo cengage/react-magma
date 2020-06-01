@@ -6,12 +6,15 @@ import {
   addWeeks,
   addMonths,
   getDay,
+  format,
   startOfWeek,
   endOfWeek,
   startOfMonth,
   endOfMonth,
-  differenceInDays
+  differenceInDays,
+  parseISO
 } from 'date-fns';
+import { enUS } from 'date-fns/locale';
 
 export function handleKeyPress(
   e: React.KeyboardEvent,
@@ -118,4 +121,29 @@ export function getPrevMonthFromDate(prevDate) {
 
 export function getNextMonthFromDate(prevDate) {
   return startOfMonth(addMonths(prevDate, 1));
+}
+
+export function i18nFormat(date, formatStr = 'PP', locale = enUS) {
+  return (
+    date &&
+    format(convertToUtc(date), formatStr, {
+      locale
+    })
+  );
+}
+
+export function getDateFromString(date) {
+  return date ? (date instanceof Date ? date : new Date(date)) : null;
+}
+
+export function convertToUtc(date) {
+  date = getDateFromString(date);
+
+  const utcDate = parseISO(
+    `${date.getFullYear()}-${('0' + String(Number(date.getMonth()) + 1)).slice(
+      -2
+    )}-${('0' + String(date.getDate())).slice(-2)}`
+  );
+
+  return utcDate;
 }

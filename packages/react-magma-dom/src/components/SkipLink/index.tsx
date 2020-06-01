@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { ButtonColor, ButtonVariant } from '../Button';
 import { HyperLink, HyperLinkProps } from '../HyperLink';
+import { I18nContext } from '../../i18n';
 
 export const TARGET_ID = 'reactMagmaMainContent';
 
@@ -56,6 +57,8 @@ export const SkipLink: React.FunctionComponent<SkipLinkProps> = ({
   variant,
   ...other
 }: SkipLinkProps) => {
+  const i18n = React.useContext(I18nContext);
+
   return (
     <StyledSkipLink
       {...other}
@@ -70,7 +73,7 @@ export const SkipLink: React.FunctionComponent<SkipLinkProps> = ({
       to={`#${TARGET_ID}`}
       variant={variant ? variant : ButtonVariant.solid}
     >
-      {buttonText ? buttonText : 'Skip Navigation'}
+      {buttonText ? buttonText : i18n.skipLink.buttonText}
     </StyledSkipLink>
   );
 };

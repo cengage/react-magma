@@ -306,13 +306,18 @@ Buttons have clear states to provide feedback to the user.
 
 ### Hover and Active
 
-For the best scalability, we use pseudo elements as overlays with varying opacities so we don’t have to find specific color values for each state. Solid buttons typically use a white overlay at 10% opacity (hover) and 25% opacity (active). For outline buttons we use the color of the text label as the overlay at the same opacity levels.
+The background color of the Hover and Active button states are automatically calculated based on the base color.  This frees designers from having to choose multiple colors to represent the various states of a button. Additionally, if the colors of the buttons ever need to change, due to a rebranding event or the creation of a new theme,  this automatic calculation will make this task much easier to complete and will reinforce consistency in what colors should be used.
+
+Here's how it works in more detail. If you have a solid button with a white text label, the background is darkened by 10% on hover, and then 20% on the active or pressed state.  If you have a solid button with dark label, the background is lightened by 10% on hover, and then 20% on the active or pressed state.  This ensures the button's background and text label will always have the necessary 4.5:1 contrast ratio for accessibility.
+
+Outline and link buttons are a little different since they don't have a background color or fill in their default state.  On hover, the text label and/or border are darkened by 10%, and then 20% on the active or pressed state.  For the background color on hover, we take the original color value of the text label and lighten it by 90%. On the active or pressed state, we change the value to 70% darkened.
+
 
 ### Focus
 
 It’s important for users to clearly see when the browser’s focus is on a button. This is especially important for users who can’t use a mouse, but instead have to rely on a keyboard or other means for navigating through the elements on the page. The default focus presentation built into the browsers are not consistent, and have varying success in visibility depending on what’s behind the button. For this reason, we are putting our own custom focus effect on Magma components.
 
-The dotted outline is 2px thick with at least a 4px offset, and the color is #027EE1 ($focus). These properties ensure the outline is visible on a light background.  The color changes to white for optimal visibility on dark backgrounds.
+The dotted outline is 2px thick with at least a 4px offset, and the color is #027EE1 ($focus). These properties ensure the outline is visible on a light background.  The color changes to semi-transparent-white for optimal visibility on dark backgrounds.
 
 <div class="two-col">
   <div class="row">

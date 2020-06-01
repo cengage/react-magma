@@ -64,6 +64,7 @@ export const baseInputStyles = props => css`
   height: 37px;
   line-height: 1.25rem;
   padding: 0 8px;
+  -webkit-appearance: none;
   width: 100%;
 
   ${props.iconPosition === 'left' &&
@@ -183,9 +184,7 @@ function getIconSize(size) {
   }
 }
 
-export const BaseInput: React.FunctionComponent<
-  BaseInputProps
-> = React.forwardRef(
+export const BaseInput: React.FunctionComponent<BaseInputProps> = React.forwardRef(
   (props: BaseInputProps, ref: React.Ref<HTMLInputElement>) => {
     const {
       children,

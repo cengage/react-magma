@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { CalendarDay } from './CalendarDay';
 import { CalendarContext } from './CalendarContext';
 import { format } from 'date-fns';
@@ -21,7 +21,7 @@ describe('Calendar Day', () => {
       </CalendarContext.Provider>
     );
 
-    expect(getByText(format(defaultDate, 'D'))).toBeInTheDocument();
+    expect(getByText(format(defaultDate, 'd'))).toBeInTheDocument();
   });
 
   it('focuses if current day', () => {
@@ -42,7 +42,7 @@ describe('Calendar Day', () => {
 
     expect(container.querySelector(':focus')).toHaveAttribute(
       'aria-label',
-      format(defaultDate, 'MMMM Do YYYY')
+      format(defaultDate, 'MMMM do yyyy')
     );
   });
 
@@ -101,5 +101,30 @@ describe('Calendar Day', () => {
     );
 
     expect(queryByTestId('todayIndicator')).not.toBeInTheDocument();
+  });
+
+  it('does not click on the day if it is disabled', () => {
+    const defaultDate = new Date('January 17, 2019');
+    const maxDate = new Date('January 16, 2019');
+    const onDateChange = jest.fn();
+
+    const { getByText } = render(
+      <CalendarContext.Provider
+        value={{
+          dateFocused: true,
+          focusedDate: defaultDate,
+          maxDate,
+          setDateFocused: jest.fn(),
+          onDateChange,
+          chosenDate: defaultDate
+        }}
+      >
+        <CalendarDay day={defaultDate} />
+      </CalendarContext.Provider>
+    );
+
+    fireEvent.click(getByText('17'));
+
+    expect(onDateChange).not.toHaveBeenCalled();
   });
 });

@@ -11,22 +11,39 @@ import {
   BaseSelectProps,
   OptionType
 } from '../Select/shared';
-import ReactAsyncCreatableSelect, {
-  Props as AsyncCreatableReactSelectProps
-} from 'react-select/async-creatable';
+import { Props as AsyncCreatableReactSelectProps } from 'react-select/async-creatable';
+
+const Loader = () => null;
 
 export interface AsyncCreatableSelectProps
   extends BaseSelectProps,
     AsyncCreatableReactSelectProps<OptionType> {}
 
-export const AsyncCreatableSelect: React.FunctionComponent<
-  AsyncCreatableSelectProps
-> = (props: AsyncCreatableSelectProps) => {
+export const AsyncCreatableSelect: React.FunctionComponent<AsyncCreatableSelectProps> = (
+  props: AsyncCreatableSelectProps
+) => {
   const [value, onChange] = useSelectValue(
     props.value,
     props.defaultValue,
     props.onChange
   );
+  const [
+    ReactAsyncCreatableSelect,
+    updateReactAsyncCreatableSelect
+  ] = React.useState<any>(() => Loader);
+
+  React.useEffect(() => {
+    import('react-select/async-creatable')
+      .then(module => updateReactAsyncCreatableSelect(() => module.default))
+      .catch(err => {
+        if (process.env.NODE_ENV !== 'production') {
+          console.warn(
+            'React-Magma: Unable to import component from react-select'
+          );
+        }
+        throw new Error(err);
+      });
+  }, []);
 
   const {
     components,

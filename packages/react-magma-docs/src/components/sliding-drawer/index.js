@@ -2,7 +2,7 @@ import React from 'react'
 import { css, keyframes } from '@emotion/core'
 import styled from '@emotion/styled'
 import FocusLock from 'react-focus-lock'
-import { Button, MenuIcon, CrossIcon, magma } from 'react-magma-dom'
+import { IconButton, MenuIcon, CrossIcon, magma } from 'react-magma-dom'
 import MainNav from '../main-nav'
 
 export class SlidingDrawer extends React.Component {
@@ -96,7 +96,7 @@ export class SlidingDrawer extends React.Component {
         css`
           animation: 0.2s ${slidein};
           transform: translateX(0);
-          z-index: 4;
+          z-index: 11;
         `};
 
       @media (min-width: 1024px) {
@@ -129,7 +129,7 @@ export class SlidingDrawer extends React.Component {
       position: fixed;
       top: 0;
       left: 0;
-      z-index: 3;
+      z-index: 11;
 
       @media (min-width: 600px) {
         top: 15px;
@@ -155,7 +155,7 @@ export class SlidingDrawer extends React.Component {
       <FocusLock disabled={!isOpen}>
         <nav>
           <MenuButton>
-            <Button
+            <IconButton
               aria-label="Open navigation menu"
               aria-expanded={isOpen}
               icon={<MenuIcon />}
@@ -169,7 +169,7 @@ export class SlidingDrawer extends React.Component {
           <Panel isOpen={isOpen} isActivated={isActivated}>
             <PanelInner isOpen={isOpen}>
               <CloseButton>
-                <Button
+                <IconButton
                   aria-label="Close navigation menu"
                   color="secondary"
                   icon={<CrossIcon />}

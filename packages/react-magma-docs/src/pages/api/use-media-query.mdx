@@ -1,0 +1,32 @@
+---
+title: 'useMediaQuery Hook'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { magma, useMediaQuery, Button } from 'react-magma-dom'
+
+## useMediaQuery Hook
+
+The `useMediaQuery` custom hook can be used to set a prop based on screen size.
+
+```.jsx
+    () => {
+
+      const isSmallerScreen = useMediaQuery(`(max-width:${magma.breakpoints.large}px)`);
+
+
+      return (
+            <Button isFullWidth={isSmallerScreen}>Full Width at Small Screens</Button>
+      )}
+```
+
+export default props => (
+  <ScopeableLayout
+    {...props}
+    components={{
+      magma,
+      useMediaQuery,
+      Button,
+    }}
+  />
+)

@@ -3,6 +3,82 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.49](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.48...v2.0.0-beta.49) (2020-05-27)
+
+**Note:** Version bump only for package react-magma-docs
+
+
+
+
+
+# [2.0.0-beta.48](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.47...v2.0.0-beta.48) (2020-05-27)
+
+
+### Features
+
+* **dropdown:** allow for wrapped menu items ([4d995c6](http://stash.corp.web:7999/FRONT/react-magma/commits/4d995c6))
+
+
+
+
+
+# [2.0.0-beta.47](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.46...v2.0.0-beta.47) (2020-05-27)
+
+**Note:** Version bump only for package react-magma-docs
+
+
+
+
+
+# [2.0.0-beta.46](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.45...v2.0.0-beta.46) (2020-05-26)
+
+
+### Features
+
+* **checkbox:** control checkbox based on checked prop ([de4a422](http://stash.corp.web:7999/FRONT/react-magma/commits/de4a422))
+
+
+
+
+
+# [2.0.0-beta.45](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.44...v2.0.0-beta.45) (2020-05-26)
+
+
+### Features
+
+* **ssr:** return null while loading selects ([6fe700f](http://stash.corp.web:7999/FRONT/react-magma/commits/6fe700f))
+
+
+
+
+
+# [2.0.0-beta.44](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.43...v2.0.0-beta.44) (2020-05-19)
+
+
+### Features
+
+* **breakpoints:** add useMediaQuery for js implementation ([b2f4da7](http://stash.corp.web:7999/FRONT/react-magma/commits/b2f4da7))
+* **breakpoints:** remove js implementation, move hook ([fb71533](http://stash.corp.web:7999/FRONT/react-magma/commits/fb71533))
+* **breakpoints:** take breakpoints from theme ([cc59586](http://stash.corp.web:7999/FRONT/react-magma/commits/cc59586))
+* **breakpoints container:** new container to hold multiple breakpoints ([9a94fbf](http://stash.corp.web:7999/FRONT/react-magma/commits/9a94fbf))
+* **breakpoints-container:** support just a few breakpoints ([1931031](http://stash.corp.web:7999/FRONT/react-magma/commits/1931031))
+* **i18n:** add more to docs for date picker ([904de39](http://stash.corp.web:7999/FRONT/react-magma/commits/904de39))
+* **i18n:** adding in i18n context for overrides ([e29c238](http://stash.corp.web:7999/FRONT/react-magma/commits/e29c238))
+* **i18n:** setup i18n context and implement overrides ([185a601](http://stash.corp.web:7999/FRONT/react-magma/commits/185a601))
+* **usemediaquery, bpcontainer:** tests ([a4e1ea7](http://stash.corp.web:7999/FRONT/react-magma/commits/a4e1ea7))
+
+
+
+
+
+# [2.0.0-beta.43](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.42...v2.0.0-beta.43) (2020-05-12)
+
+**Note:** Version bump only for package react-magma-docs
+
+
+
+
+
 # [2.0.0-beta.42](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.41...v2.0.0-beta.42) (2020-05-12)
 
 

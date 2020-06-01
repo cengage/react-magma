@@ -24,6 +24,7 @@ export interface CheckboxProps
   color?: string;
   containerStyle?: React.CSSProperties;
   inputStyle?: React.CSSProperties;
+  defaultChecked?: boolean;
   isInverse?: boolean;
   isTextVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
@@ -113,77 +114,83 @@ export const StyledFakeInput = styled.span<{
   }
 `;
 
-export const Checkbox: React.FunctionComponent<
-  CheckboxProps
-> = React.forwardRef((props: CheckboxProps, ref: any) => {
-  const [isChecked, updateIsChecked] = React.useState(Boolean(props.checked));
+export const Checkbox: React.FunctionComponent<CheckboxProps> = React.forwardRef(
+  (props: CheckboxProps, ref: any) => {
+    const { checked, id: defaultId, defaultChecked, onChange } = props;
+    const [isChecked, updateIsChecked] = React.useState(
+      Boolean(defaultChecked) || Boolean(checked)
+    );
 
-  const id = useGenerateId(props.id);
+    const id = useGenerateId(defaultId);
+    const isControlled = typeof checked === 'boolean' ? true : false;
 
-  React.useEffect(() => {
-    updateIsChecked(Boolean(props.checked));
-  }, [props.checked]);
+    React.useEffect(() => {
+      if (typeof checked === 'boolean') {
+        updateIsChecked(checked);
+      }
+    }, [checked]);
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { checked: targetChecked } = event.target;
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+      const { checked: targetChecked } = event.target;
 
-    props.onChange &&
-      typeof props.onChange === 'function' &&
-      props.onChange(event);
+      onChange && typeof onChange === 'function' && onChange(event);
 
-    updateIsChecked(targetChecked);
-  }
+      if (!isControlled) {
+        updateIsChecked(targetChecked);
+      }
+    }
 
-  const theme = React.useContext(ThemeContext);
+    const theme = React.useContext(ThemeContext);
 
-  const {
-    color,
-    containerStyle,
-    disabled,
-    inputStyle,
-    isInverse,
-    labelStyle,
-    labelText,
-    isTextVisuallyHidden,
-    testId,
-    textPosition,
-    ...other
-  } = props;
+    const {
+      color,
+      containerStyle,
+      disabled,
+      inputStyle,
+      isInverse,
+      labelStyle,
+      labelText,
+      isTextVisuallyHidden,
+      testId,
+      textPosition,
+      ...other
+    } = props;
 
-  return (
-    <StyledContainer style={containerStyle}>
-      <HiddenInput
-        {...other}
-        id={id}
-        data-testid={testId}
-        checked={isChecked}
-        disabled={disabled}
-        ref={ref}
-        type="checkbox"
-        onChange={handleChange}
-      />
-      <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
-        {!isTextVisuallyHidden &&
-          textPosition === CheckboxTextPosition.left &&
-          labelText}
-
-        <StyledFakeInput
+    return (
+      <StyledContainer style={containerStyle}>
+        <HiddenInput
+          {...other}
+          id={id}
+          data-testid={testId}
           checked={isChecked}
-          color={color ? color : ''}
           disabled={disabled}
-          isInverse={isInverse}
-          style={inputStyle}
-          theme={theme}
-        >
-          <CheckIcon size={12} />
-        </StyledFakeInput>
+          ref={ref}
+          type="checkbox"
+          onChange={handleChange}
+        />
+        <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
+          {!isTextVisuallyHidden &&
+            textPosition === CheckboxTextPosition.left &&
+            labelText}
 
-        {isTextVisuallyHidden ? (
-          <HiddenLabelText>{labelText}</HiddenLabelText>
-        ) : (
-          textPosition !== CheckboxTextPosition.left && labelText && labelText
-        )}
-      </StyledLabel>
-    </StyledContainer>
-  );
-});
+          <StyledFakeInput
+            checked={isChecked}
+            color={color ? color : ''}
+            disabled={disabled}
+            isInverse={isInverse}
+            style={inputStyle}
+            theme={theme}
+          >
+            <CheckIcon size={12} />
+          </StyledFakeInput>
+
+          {isTextVisuallyHidden ? (
+            <HiddenLabelText>{labelText}</HiddenLabelText>
+          ) : (
+            textPosition !== CheckboxTextPosition.left && labelText && labelText
+          )}
+        </StyledLabel>
+      </StyledContainer>
+    );
+  }
+);

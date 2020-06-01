@@ -56,7 +56,8 @@ const StyledCard = styled(Card)<{
 
   ${props =>
     props.alignment === 'end' &&
-    (props.dropDirection !== 'left' && props.dropDirection !== 'right') &&
+    props.dropDirection !== 'left' &&
+    props.dropDirection !== 'right' &&
     css`
       left: auto;
       right: 5px;
@@ -90,6 +91,23 @@ export const DropdownContent: React.FunctionComponent = ({
       .map((_, i) => itemRefArray.current[i] || React.createRef());
   }
 
+  function findAndAddIndexToDropdownItem(baseChild, fn) {
+    return React.Children.map(baseChild, (child: React.ReactChild, index) => {
+      if (!React.isValidElement(child)) {
+        return child;
+      }
+
+      if (child.props.children) {
+        child = React.cloneElement(child, {
+          children: findAndAddIndexToDropdownItem(child.props.children, fn),
+          key: index
+        });
+      }
+
+      return fn(child);
+    });
+  }
+
   return (
     <StyledCard
       {...other}
@@ -105,12 +123,43 @@ export const DropdownContent: React.FunctionComponent = ({
       <StyledDiv ref={context.menuRef} role="menu">
         {context.itemRefArray &&
           React.Children.map(children, (child: any, index) => {
-            return child.type === DropdownMenuItem && !child.props.isDisabled
-              ? React.cloneElement(child, {
-                  ref: itemRefArray.current[index],
-                  index: index
-                })
-              : child;
+            if (child.type === DropdownMenuItem && !child.props.isDisabled) {
+              return React.cloneElement(child, {
+                index,
+                key: index,
+                ref: itemRefArray.current[index]
+              });
+            } else if (
+              child &&
+              child.props &&
+              child.props.children &&
+              !(typeof child.props.children === 'string')
+            ) {
+              return findAndAddIndexToDropdownItem(child, newChild => {
+                if (
+                  newChild.type === DropdownMenuItem &&
+                  !child.props.isDisabled
+                ) {
+                  return React.cloneElement(newChild, {
+                    index,
+                    key: index,
+                    ref: itemRefArray.current[index]
+                  });
+                }
+
+                return newChild;
+              });
+            } else if (child) {
+              return React.cloneElement(child, {
+                dropdownMenuItemProps: {
+                  index,
+                  key: index,
+                  ref: itemRefArray.current[index]
+                }
+              });
+            } else {
+              return null;
+            }
           })}
       </StyledDiv>
     </StyledCard>
