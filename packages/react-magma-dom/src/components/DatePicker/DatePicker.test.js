@@ -5,15 +5,15 @@ import {
   format,
   subWeeks,
   subDays,
-  // startOfMonth,
+  startOfMonth,
   startOfWeek,
   subMonths,
   addMonths,
   addWeeks,
   addDays,
   endOfWeek,
-  isSameDay
-  //  getDay
+  isSameDay,
+  getDay
 } from 'date-fns';
 import * as es from 'date-fns/locale/es';
 import { DatePicker } from '.';
@@ -918,22 +918,23 @@ describe('Date Picker', () => {
             }
           }}
         >
-          <DatePicker labelText="Spanish" />
+          <DatePicker
+            defaultDate={new Date('January 10, 2020')}
+            labelText="Start of Week"
+          />
         </I18nContext.Provider>
       );
 
-      // const startOfMonthDate = startOfMonth(new Date('January 10, 2020'), {
-      //   startOfMonth: 4
-      // });
-      //const firstDayOfMonthDayOfWeek = getDay(startOfMonthDate);
+      const startOfMonthDate = startOfMonth(new Date('January 10, 2020'));
+      const firstDayOfMonthDayOfWeek = getDay(startOfMonthDate);
 
       const allRows = container.querySelectorAll('tr');
       const dayRow = allRows[0];
-      // const firstDayOfMonthElement =
-      //   allRows[1].children[firstDayOfMonthDayOfWeek - 1];
+      const firstDayOfMonthElement =
+        allRows[1].children[firstDayOfMonthDayOfWeek - 3];
 
       expect(dayRow.children[0].textContent).toEqual('W');
-      //expect(firstDayOfMonthElement.textContent).toEqual('1');
+      expect(firstDayOfMonthElement.textContent).toEqual('1');
     });
   });
 
