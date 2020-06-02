@@ -28,7 +28,7 @@ describe('Toast', () => {
     expect(getByText(toastContent)).toBeInTheDocument();
   });
 
-  it('should render a toast with correct styles if toast is in background', () => {
+  it('should render a toast with position if multiple toasts', () => {
     const { getByTestId } = render(
       <ToastsContext.Provider value={{ toastsArray: ['toast1', 'toast2'] }}>
         <Toast id="toast1" testId="toast1">
@@ -40,8 +40,7 @@ describe('Toast', () => {
       </ToastsContext.Provider>
     );
 
-    expect(getByTestId('toast1')).toHaveStyleRule('z-index', '999');
-    expect(getByTestId('toast2')).toHaveStyleRule('z-index', '-1');
+    expect(getByTestId('toast2')).toHaveStyleRule('bottom', '90px');
   });
 
   it('should call passed in onDismiss when timer runs out', async () => {

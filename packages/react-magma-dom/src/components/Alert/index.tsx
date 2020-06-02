@@ -31,7 +31,6 @@ export enum AlertVariant {
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   closeAriaLabel?: string;
   forceDismiss?: () => void;
-  headerText?: string;
   isExiting?: boolean;
   isDismissed?: boolean;
   isDismissible?: boolean;
@@ -68,6 +67,7 @@ const StyledAlert = styled.div<AlertProps>`
   
   display: flex;
   flex-direction: column;
+  line-height: 20px;
   margin-bottom: 20px;
   max-width: 100%;
   padding: 0;
@@ -80,45 +80,6 @@ const StyledAlert = styled.div<AlertProps>`
         : props.theme.colors.focus};
     }
   }
-
-
-  ${props =>
-    props.isToast &&
-    props.toastCount > 1 &&
-    css`
-      &:after {
-        animation: ${props.isExiting
-          ? `fadeout ${transitionDuration}ms`
-          : `slideinFromToast ${transitionDuration}ms`};
-        background: ${props.theme.colors.neutral05};
-        border-radius: 5px;
-        content: '';
-        height: 100%;
-        position: absolute;
-        top: -5px;
-        left: 5px;
-        right: 5px;
-      }
-    `}
-
-    ${props =>
-      props.isToast &&
-      props.toastCount > 2 &&
-      css`
-        &:before {
-          animation: ${props.isExiting
-            ? `fadeout ${transitionDuration}ms`
-            : `slideinFromToast2 ${transitionDuration}ms`};
-          background: ${props.theme.colors.neutral06};
-          border-radius: 5px;
-          content: '';
-          height: 100%;
-          position: absolute;
-          top: -10px;
-          left: 10px;
-          right: 10px;
-        }
-      `}
 
   ${props =>
     props.isToast &&
@@ -154,39 +115,22 @@ const StyledAlert = styled.div<AlertProps>`
     }
   }
 
-  @keyframes slideinFromToast {
-    from {
-      top: 0;
-    }
-    to {
-      top: -5px;
-    }
-  }
-
-  @keyframes slideinFromToast2 {
-    from {
-      top: 0;
-    }
-    to {
-      top: -10px;
-    }
-  }
-
+ 
   @keyframes slidein {
     from {
-      bottom: -500px;
+      left: -500px;
     }
     to {
-      bottom: 0;
+      left: 0;
     }
   }
 
   @keyframes slideout {
     from {
-      bottom: -500px;
+      left: 0;
     }
     to {
-      bottom: -500px;
+      left: -500px;
     }
   }
 
@@ -219,17 +163,13 @@ const StyledAlertInner = styled.div<AlertProps>`
   z-index: 2;
 `;
 
-const AlertHeader = styled.div`
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  font-size: 11px;
-  padding: 5px 15px;
-`;
-
 const AlertBody = styled.div`
   display: flex;
+  height: 56px;
 `;
 
 const AlertContents = styled.div`
+  align-self: center;
   flex-grow: 1;
   padding: 13px 15px 13px 0;
 `;
@@ -314,7 +254,6 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
       children,
       closeAriaLabel,
       forceDismiss,
-      headerText,
       id: defaultId,
       isDismissed,
       isDismissible,
@@ -366,8 +305,6 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
         theme={theme}
       >
         <StyledAlertInner theme={theme} variant={variant}>
-          {headerText && <AlertHeader>{headerText}</AlertHeader>}
-
           <AlertBody>
             {renderIcon(variant, isToast)}
             <AlertContents>{children}</AlertContents>

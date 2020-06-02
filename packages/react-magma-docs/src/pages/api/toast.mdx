@@ -78,7 +78,7 @@ Only one toast will be displayed at a time, but a "ghost" toast will appear behi
         {showAlert && <Toast isDismissible disableAutoDismiss={true} onDismiss={() => setShowAlert(false)} variant="success">Toast 1</Toast>}
 
         <Button onClick={() => setShowAlert2(true)} color="secondary">Show Toast 2</Button>
-        {showAlert2 && <Toast isDismissible disableAutoDismiss={true} onDismiss={() => setShowAlert2(false)}>This is the second toast which is longer than toast one or three</Toast>}
+        {showAlert2 && <Toast isDismissible disableAutoDismiss={true} onDismiss={() => setShowAlert2(false)}>This is the second toast which is longer than either toast one or three</Toast>}
 
         <Button onClick={() => setShowAlert3(true)} color="danger">Show Toast 3</Button>
         {showAlert3 && <Toast isDismissible variant="danger" disableAutoDismiss={true} onDismiss={() => setShowAlert3(false)}>Toast three</Toast>}

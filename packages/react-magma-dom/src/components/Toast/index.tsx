@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { css } from '@emotion/core';
 import { Alert, AlertProps } from '../Alert';
 import { useGenerateId } from '../../utils';
 import { ToastsContext } from './ToastsContainer';
@@ -16,26 +15,20 @@ export interface ToastProps extends AlertProps {
 }
 
 const ToastWrapper = styled.div<{
-  isToastInBackground?: boolean;
+  bottomOffset?: number;
 }>`
-  align-items: center;
-  bottom: 20px;
+  bottom: ${props => props.bottomOffset + 20}px;
   display: flex;
   left: 20px;
   justify-content: flex-start;
+  max-width: 600px;
+  min-width: 320px;
   position: fixed;
-  right: 20px;
+  transition: bottom 0.3s;
   z-index: 999;
 
-  ${props =>
-    props.isToastInBackground &&
-    css`
-      opacity: 0;
-      z-index: -1;
-    `}
-
   @media (max-width: 600px) {
-    bottom: 10px;
+    bottom: ${props => props.bottomOffset + 10}px;
     left: 10px;
     right: 10px;
   }
@@ -130,11 +123,6 @@ export const Toast: React.FunctionComponent<ToastProps> = (
   const toastsContext = React.useContext(ToastsContext);
 
   const { toastsArray, setToastsArray } = toastsContext;
-  const headerText =
-    toastsArray.length > 1 ? `1 of ${toastsArray.length} messages` : null;
-
-  const isToastInBackground =
-    typeof toastsArray[0] !== 'undefined' && toastsArray[0] !== id;
 
   React.useEffect(() => {
     lastFocus.current = document.activeElement;
@@ -144,9 +132,12 @@ export const Toast: React.FunctionComponent<ToastProps> = (
     }
   }, []);
 
+  const bottomOffset =
+    typeof toastsArray[0] === 'undefined' ? 0 : toastsArray.indexOf(id) * 70;
+
   return (
     <ToastWrapper
-      isToastInBackground={isToastInBackground}
+      bottomOffset={bottomOffset}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={containerStyle}
@@ -155,7 +146,6 @@ export const Toast: React.FunctionComponent<ToastProps> = (
       <Alert
         {...other}
         forceDismiss={clearTimeoutAndDismiss}
-        headerText={headerText}
         id={id}
         isDismissible={isDismissible}
         isDismissed={isDismissed}

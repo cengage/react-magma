@@ -44,6 +44,7 @@ describe('Alert', () => {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  line-height: 20px;
   margin-bottom: 20px;
   max-width: 100%;
   padding: 0;
@@ -81,6 +82,7 @@ describe('Alert', () => {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  height: 56px;
 }
 
 .emotion-0 {
@@ -105,6 +107,9 @@ describe('Alert', () => {
 }
 
 .emotion-1 {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -187,6 +192,7 @@ describe('Alert', () => {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  line-height: 20px;
   margin-bottom: 20px;
   max-width: 100%;
   padding: 0;
@@ -224,6 +230,7 @@ describe('Alert', () => {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  height: 56px;
 }
 
 .emotion-0 {
@@ -248,6 +255,9 @@ describe('Alert', () => {
 }
 
 .emotion-1 {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -317,6 +327,7 @@ describe('Alert', () => {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  line-height: 20px;
   margin-bottom: 20px;
   max-width: 100%;
   padding: 0;
@@ -343,6 +354,7 @@ describe('Alert', () => {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  height: 56px;
 }
 
 .emotion-0 {
@@ -367,6 +379,9 @@ describe('Alert', () => {
 }
 
 .emotion-1 {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -447,6 +462,7 @@ describe('Alert', () => {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  line-height: 20px;
   margin-bottom: 20px;
   max-width: 100%;
   padding: 0;
@@ -473,6 +489,7 @@ describe('Alert', () => {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  height: 56px;
 }
 
 .emotion-0 {
@@ -497,6 +514,9 @@ describe('Alert', () => {
 }
 
 .emotion-1 {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -576,6 +596,7 @@ describe('Alert', () => {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  line-height: 20px;
   margin-bottom: 20px;
   max-width: 100%;
   padding: 0;
@@ -602,6 +623,7 @@ describe('Alert', () => {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  height: 56px;
 }
 
 .emotion-0 {
@@ -626,6 +648,9 @@ describe('Alert', () => {
 }
 
 .emotion-1 {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
