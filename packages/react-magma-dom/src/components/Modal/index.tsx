@@ -22,6 +22,7 @@ export enum ModalSize {
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   closeLabel?: string;
+  containerStyle?: React.CSSProperties;
   disableBackdropClick?: boolean;
   disableEscKeyDown?: boolean;
   header?: React.ReactNode;
@@ -189,7 +190,7 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
   componentDidUpdate(prevProps: ModalProps, prevState: ModalState) {
     if (!prevProps.open && this.props.open) {
       this.setState({ isModalOpen: true });
-    } else if (prevProps.open && !this.props.open) {
+    } else if (prevProps.open && !this.props.open && this.state.isModalOpen) {
       this.handleClose();
     }
     if (!prevState.isModalOpen && this.state.isModalOpen) {
@@ -345,6 +346,7 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
               const {
                 children,
                 closeLabel,
+                containerStyle,
                 disableBackdropClick,
                 disableEscKeyDown,
                 header,
@@ -389,6 +391,7 @@ class ModalComponent extends React.Component<ModalProps, ModalState> {
                         }
                         ref={this.focusTrapElement}
                         role="dialog"
+                        style={containerStyle}
                         data-test-id="modal-container"
                       >
                         <ModalContent
