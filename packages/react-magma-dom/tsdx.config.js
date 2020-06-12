@@ -102,6 +102,7 @@ module.exports = {
         'react',
         'react-dom',
         'date-fns',
+        'downshift',
         'react-select',
         '@emotion/core',
         '@emotion/styled',

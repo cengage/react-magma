@@ -1,0 +1,116 @@
+---
+title: 'Downshift Selects'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { DownshiftSelect } from 'react-magma-dom'
+import DocsHeading from '../../components/docs-heading'
+import { SimplePropsTable } from '../../components/props-table'
+
+<DocsHeading to="/design/select/" type="design">
+  Downshift Selects
+</DocsHeading>
+
+## Basic Usage
+
+```.jsx
+  <>
+    <DownshiftSelect
+      id="basicSelectId"
+      name="basic"
+      labelText="Basic"
+      items={['Red', 'Blue', 'Green']}
+    />
+  </>
+```
+
+## Combobox
+
+```.jsx
+  <>
+    <DownshiftSelect
+      id="comboboxId"
+      name="combobox"
+      labelText="Combobox"
+      items={['Red', 'Blue', 'Green']}
+      type='combo'
+    />
+  </>
+```
+
+## Select Props
+
+**Any other props supplied will be provided to the `Select` element from [react-select](https://react-select.com/home).**
+
+**A list of the props that they accept for each component can be found here: [react-select props](https://react-select.com/props).**
+
+<SimplePropsTable
+  propertyValues={{
+    errorMessage: {
+      type: {
+        name: 'ReactNode',
+      },
+      required: false,
+      description:
+        'Content of the errror message.  If a value is provided, the error message will be styled as an error state.',
+      defaultValue: '',
+    },
+    helperMessage: {
+      type: {
+        name: 'ReactNode',
+      },
+      required: false,
+      description: 'Content of the helper message.',
+      defaultValue: '',
+    },
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    labelText: {
+      type: {
+        name: 'ReactNode',
+      },
+      required: true,
+      description: 'Text for label',
+    },
+    inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    messageStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the helper or error message',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout
+    {...props}
+    components={{
+      DownshiftSelect,
+    }}
+  />
+)
