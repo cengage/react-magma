@@ -39,7 +39,6 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   onDismiss?: () => void;
   ref?: any;
   testId?: string;
-  toastCount?: number;
   variant?: AlertVariant;
 }
 

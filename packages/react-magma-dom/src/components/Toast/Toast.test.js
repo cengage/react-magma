@@ -1,6 +1,6 @@
 import React from 'react';
 import { Toast } from '.';
-import { ToastsContext } from './ToastsContainer';
+//import { ToastsContext } from './ToastsContainer';
 import { act, render, fireEvent } from '@testing-library/react';
 
 describe('Toast', () => {
@@ -28,20 +28,20 @@ describe('Toast', () => {
     expect(getByText(toastContent)).toBeInTheDocument();
   });
 
-  it('should render a toast with position if multiple toasts', () => {
-    const { getByTestId } = render(
-      <ToastsContext.Provider value={{ toastsArray: ['toast1', 'toast2'] }}>
-        <Toast id="toast1" testId="toast1">
-          toast
-        </Toast>
-        <Toast id="toast2" testId="toast2">
-          toast
-        </Toast>
-      </ToastsContext.Provider>
-    );
+  // it('should render a toast with position if multiple toasts', () => {
+  //   const { getByTestId } = render(
+  //     <ToastsContext.Provider value={{ toastsArray: ['toast1', 'toast2'] }}>
+  //       <Toast id="toast1" testId="toast1">
+  //         toast
+  //       </Toast>
+  //       <Toast id="toast2" testId="toast2">
+  //         toast
+  //       </Toast>
+  //     </ToastsContext.Provider>
+  //   );
 
-    expect(getByTestId('toast2')).toHaveStyleRule('bottom', '90px');
-  });
+  //   expect(getByTestId('toast2')).toHaveStyleRule('bottom', '90px');
+  // });
 
   it('should call passed in onDismiss when timer runs out', async () => {
     const onDismiss = jest.fn();

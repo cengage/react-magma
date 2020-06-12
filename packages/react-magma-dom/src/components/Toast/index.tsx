@@ -35,6 +35,7 @@ const ToastWrapper = styled.div<{
 `;
 
 const DEFAULT_TOAST_DURATION = 5000;
+const TOAST_HEIGHT = 70;
 
 export const Toast: React.FunctionComponent<ToastProps> = (
   props: ToastProps
@@ -42,28 +43,39 @@ export const Toast: React.FunctionComponent<ToastProps> = (
   const timerAutoHide = React.useRef<any>();
   const [isDismissed, setIsDismissed] = React.useState<boolean>(false);
 
-  React.useEffect(() => {
-    if (!props.disableAutoDismiss) {
-      setAutoHideTimer(props.toastDuration);
-    }
+  const {
+    alertStyle,
+    id: defaultId,
+    testId,
+    variant,
+    isDismissible,
+    children,
+    containerStyle,
+    ...other
+  } = props;
 
-    return () => {
-      clearTimeout(timerAutoHide.current);
-    };
-  }, []);
+  const id = useGenerateId(defaultId);
+
+  const lastFocus = React.useRef<any>();
+
+  const { toastsArray } = React.useContext(ToastsContext);
 
   function dismissToast() {
     setIsDismissed(true);
 
-    if (setToastsArray) {
-      const newToastsArray = toastsArray.filter(toastId => toastId !== id);
-      setToastsArray(newToastsArray);
+    if (toastsArray.current) {
+      toastsArray.current = toastsArray.current.filter(
+        toastId => toastId !== id
+      );
     }
   }
 
   function clearTimeoutAndDismiss() {
     clearTimeout(timerAutoHide.current);
-    dismissToast();
+
+    setTimeout(() => {
+      dismissToast();
+    }, 0);
 
     if (lastFocus.current) {
       lastFocus.current.focus();
@@ -72,6 +84,7 @@ export const Toast: React.FunctionComponent<ToastProps> = (
 
   function setAutoHideTimer(duration = DEFAULT_TOAST_DURATION) {
     clearTimeout(timerAutoHide.current);
+
     timerAutoHide.current = setTimeout(() => {
       dismissToast();
     }, duration);
@@ -105,35 +118,30 @@ export const Toast: React.FunctionComponent<ToastProps> = (
     }
   }
 
-  const {
-    alertStyle,
-    id: defaultId,
-    testId,
-    variant,
-    isDismissible,
-    children,
-    containerStyle,
-    ...other
-  } = props;
-
-  const id = useGenerateId(defaultId);
-
-  const lastFocus = React.useRef<any>();
-
-  const toastsContext = React.useContext(ToastsContext);
-
-  const { toastsArray, setToastsArray } = toastsContext;
-
   React.useEffect(() => {
     lastFocus.current = document.activeElement;
 
-    if (setToastsArray) {
-      setToastsArray(toastsArray.concat([id]));
+    if (!props.disableAutoDismiss) {
+      setAutoHideTimer(props.toastDuration);
     }
+
+    return () => {
+      clearTimeout(timerAutoHide.current);
+    };
   }, []);
 
-  const bottomOffset =
-    typeof toastsArray[0] === 'undefined' ? 0 : toastsArray.indexOf(id) * 70;
+  let bottomOffset = 0;
+
+  if (toastsArray) {
+    toastsArray.current = toastsArray.current.includes(id)
+      ? toastsArray.current
+      : toastsArray.current.concat([id]);
+
+    bottomOffset =
+      typeof toastsArray.current[0] === 'undefined'
+        ? 0
+        : toastsArray.current.indexOf(id) * TOAST_HEIGHT;
+  }
 
   return (
     <ToastWrapper
@@ -152,7 +160,6 @@ export const Toast: React.FunctionComponent<ToastProps> = (
         isToast
         onDismiss={props.onDismiss}
         style={{ ...alertStyle }}
-        toastCount={toastsArray.length}
         variant={variant}
       >
         {children}

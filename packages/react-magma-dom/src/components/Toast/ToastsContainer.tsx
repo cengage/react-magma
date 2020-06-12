@@ -1,29 +1,28 @@
 import * as React from 'react';
 
 interface ToastsContainerProps extends React.HTMLAttributes<HTMLDivElement> {
-  toastsArray?: Array<string>;
+  toastsArray?: any;
   testId?: string;
 }
 
 export interface ToastsContextInterface {
-  toastsArray?: Array<string>;
-  setToastsArray?: any;
+  toastsArray?: any;
 }
 
 export const ToastsContext = React.createContext<ToastsContextInterface>({
-  toastsArray: []
+  toastsArray: { current: [] }
 });
 
-export const ToastsContainer: React.FunctionComponent<
-  ToastsContainerProps
-> = React.forwardRef(({ children, testId }: ToastsContainerProps, ref: any) => {
-  const [toastsArray, setToastsArray] = React.useState([]);
+export const ToastsContainer: React.FunctionComponent<ToastsContainerProps> = React.forwardRef(
+  ({ children, testId }: ToastsContainerProps, ref: any) => {
+    const toastsArray = React.useRef([]);
 
-  return (
-    <ToastsContext.Provider value={{ toastsArray, setToastsArray }}>
-      <div ref={ref} data-testid={testId}>
-        {children}
-      </div>
-    </ToastsContext.Provider>
-  );
-});
+    return (
+      <ToastsContext.Provider value={{ toastsArray }}>
+        <div ref={ref} data-testid={testId}>
+          {children}
+        </div>
+      </ToastsContext.Provider>
+    );
+  }
+);
