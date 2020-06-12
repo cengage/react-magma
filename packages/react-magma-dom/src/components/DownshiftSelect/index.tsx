@@ -6,6 +6,15 @@ import {
   UseComboboxProps
 } from 'downshift';
 import { XOR } from '../../utils';
+import styled from '../../theme/styled';
+
+import { baseInputStyles } from '../BaseInput';
+import { ButtonVariant, ButtonShape } from '../Button';
+import { Card } from '../Card';
+import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
+import { IconButton } from '../IconButton';
+import { Label } from '../Label';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 export type DownshiftOption = string;
 
@@ -36,9 +45,54 @@ export function instanceOfCombobox(
   return 'type' in object && object.type === 'combo';
 }
 
+const SelectContainer = styled.div`
+  position: relative;
+`;
+
+const StyledButton = styled.button`
+  ${baseInputStyles}
+
+  align-items: center;
+  display: flex;
+  text-align: left;
+`;
+
+const StyledInput = styled.input`
+  ${baseInputStyles}
+
+  border-radius: 5px 0 0 5px;
+`;
+
+const StyledIconButton = styled(IconButton)`
+  border: 1px solid ${props => props.theme.colors.neutral03};
+  border-left: 0;
+  color: ${props => props.theme.colors.neutral01};
+  margin: 0;
+`;
+
+const SelectText = styled.span`
+  flex-grow: 1;
+  padding-right: 10px;
+`;
+
+const StyledCard = styled(Card)<{}>`
+  position: absolute;
+  left: 5px;
+  margin-top: 5px;
+  padding: 10px 20px 0;
+  right: 5px;
+  z-index: 2;
+`;
+
+const StyledList = styled.ul`
+  list-style: none;
+  margin: 0;
+`;
+
 export const DownshiftSelect = (props: SelectInterface) => {
   const { items, labelText } = props;
   const [inputItems, setInputItems] = React.useState(items);
+  const theme = React.useContext(ThemeContext);
 
   function renderSelect() {
     const {
@@ -51,28 +105,34 @@ export const DownshiftSelect = (props: SelectInterface) => {
       getItemProps
     } = useSelect(props as DownshiftSelectInterface);
     return (
-      <div>
-        <label {...getLabelProps()}>{labelText}</label>
-        <button {...getToggleButtonProps()}>
-          {selectedItem || 'Select...'}
-        </button>
-        <ul {...getMenuProps()}>
-          {isOpen &&
-            items.map((item, index) => (
-              <li
-                style={
-                  highlightedIndex === index
-                    ? { backgroundColor: '#bde4ff' }
-                    : {}
-                }
-                key={`${item}${index}`}
-                {...getItemProps({ item, index })}
-              >
-                {item}
-              </li>
-            ))}
-        </ul>
-      </div>
+      <SelectContainer>
+        <Label {...getLabelProps()}>{labelText}</Label>
+
+        <StyledButton {...getToggleButtonProps()} theme={theme}>
+          <SelectText>{selectedItem || 'Select...'}</SelectText>
+
+          <CaretDownIcon size={10} testId="caretDown" />
+        </StyledButton>
+        {isOpen && (
+          <StyledCard hasDropShadow>
+            <StyledList {...getMenuProps()}>
+              {items.map((item, index) => (
+                <li
+                  style={
+                    highlightedIndex === index
+                      ? { backgroundColor: '#bde4ff' }
+                      : {}
+                  }
+                  key={`${item}${index}`}
+                  {...getItemProps({ item, index })}
+                >
+                  {item}
+                </li>
+              ))}
+            </StyledList>
+          </StyledCard>
+        )}
+      </SelectContainer>
     );
   }
 
@@ -97,31 +157,39 @@ export const DownshiftSelect = (props: SelectInterface) => {
       }
     });
     return (
-      <div>
-        <label {...getLabelProps()}>Choose an element:</label>
-        <div {...getComboboxProps()}>
-          <input {...getInputProps()} />
-          <button {...getToggleButtonProps()} aria-label="toggle menu">
-            &#8595;
-          </button>
+      <SelectContainer>
+        <Label {...getLabelProps()}>Choose an element:</Label>
+        <div {...getComboboxProps()} style={{ display: 'flex' }}>
+          <StyledInput {...getInputProps()} theme={theme} />
+          <StyledIconButton
+            {...getToggleButtonProps()}
+            aria-label="toggle menu"
+            icon={<CaretDownIcon size={10} />}
+            shape={ButtonShape.rightCap}
+            theme={theme}
+            variant={ButtonVariant.link}
+          />
         </div>
-        <ul {...getMenuProps()}>
-          {isOpen &&
-            inputItems.map((item, index) => (
-              <li
-                style={
-                  highlightedIndex === index
-                    ? { backgroundColor: '#bde4ff' }
-                    : {}
-                }
-                key={`${item}${index}`}
-                {...getItemProps({ item, index })}
-              >
-                {item}
-              </li>
-            ))}
-        </ul>
-      </div>
+        {isOpen && (
+          <StyledCard hasDropShadow>
+            <StyledList {...getMenuProps()}>
+              {items.map((item, index) => (
+                <li
+                  style={
+                    highlightedIndex === index
+                      ? { backgroundColor: '#bde4ff' }
+                      : {}
+                  }
+                  key={`${item}${index}`}
+                  {...getItemProps({ item, index })}
+                >
+                  {item}
+                </li>
+              ))}
+            </StyledList>
+          </StyledCard>
+        )}
+      </SelectContainer>
     );
   }
 
