@@ -63,19 +63,19 @@ export const Toast: React.FunctionComponent<ToastProps> = (
   function dismissToast() {
     setIsDismissed(true);
 
-    if (toastsArray.current) {
-      toastsArray.current = toastsArray.current.filter(
-        toastId => toastId !== id
-      );
-    }
+    setTimeout(() => {
+      if (toastsArray.current) {
+        toastsArray.current = toastsArray.current.filter(
+          toastId => toastId !== id
+        );
+      }
+    }, 0);
   }
 
   function clearTimeoutAndDismiss() {
     clearTimeout(timerAutoHide.current);
 
-    setTimeout(() => {
-      dismissToast();
-    }, 0);
+    dismissToast();
 
     if (lastFocus.current) {
       lastFocus.current.focus();
