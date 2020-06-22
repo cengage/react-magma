@@ -336,7 +336,14 @@ Similarly, the `DropdownButton` can be customized by using any of the props that
             </DropdownContent>
         </Dropdown>
          <Dropdown>
-          <DropdownButton variant="outline" size='small' icon={<Cog2Icon />}>Icon with Text</DropdownButton>
+          <DropdownButton variant="outline" size='small'  iconPosition='right' icon={<Cog2Icon />}>Icon Right with Text</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton variant="outline" size='small' iconPosition='left' icon={<Cog2Icon />}>Icon Left with Text</DropdownButton>
             <DropdownContent>
               <DropdownMenuItem>Menu item 1</DropdownMenuItem>
               <DropdownMenuItem>Menu item number two</DropdownMenuItem>
