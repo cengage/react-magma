@@ -1,6 +1,6 @@
 import React from 'react';
 import { Toast } from '.';
-//import { ToastsContext } from './ToastsContainer';
+import { ToastsContext } from './ToastsContainer';
 import { act, render, fireEvent } from '@testing-library/react';
 
 describe('Toast', () => {
@@ -19,29 +19,33 @@ describe('Toast', () => {
     );
 
     expect(getByTestId(testId)).toBeInTheDocument();
+    expect(getByTestId(testId)).toHaveStyleRule('bottom', '20px');
   });
 
-  it('should render a toast', () => {
+  it('should render toast content', () => {
     const toastContent = 'Toast Content';
     const { getByText } = render(<Toast>{toastContent}</Toast>);
 
     expect(getByText(toastContent)).toBeInTheDocument();
   });
 
-  // it('should render a toast with position if multiple toasts', () => {
-  //   const { getByTestId } = render(
-  //     <ToastsContext.Provider value={{ toastsArray: ['toast1', 'toast2'] }}>
-  //       <Toast id="toast1" testId="toast1">
-  //         toast
-  //       </Toast>
-  //       <Toast id="toast2" testId="toast2">
-  //         toast
-  //       </Toast>
-  //     </ToastsContext.Provider>
-  //   );
+  it('should render a toast with position if multiple toasts', () => {
+    const toastsArray = React.createRef([]);
+    toastsArray.current = ['toast1', 'toast2'];
 
-  //   expect(getByTestId('toast2')).toHaveStyleRule('bottom', '90px');
-  // });
+    const { getByTestId } = render(
+      <ToastsContext.Provider value={{ toastsArray: toastsArray }}>
+        <Toast id="toast1" testId="toast1">
+          toast
+        </Toast>
+        <Toast id="toast2" testId="toast2">
+          toast
+        </Toast>
+      </ToastsContext.Provider>
+    );
+    expect(getByTestId('toast1')).toHaveStyleRule('bottom', '20px');
+    expect(getByTestId('toast2')).toHaveStyleRule('bottom', '90px');
+  });
 
   it('should call passed in onDismiss when timer runs out', async () => {
     const onDismiss = jest.fn();
