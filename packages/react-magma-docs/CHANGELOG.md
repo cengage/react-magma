@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.51](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.50...v2.0.0-beta.51) (2020-06-24)
+
+
+### Bug Fixes
+
+* **dropdownbutton:** allow iconPosition to be specified on custom btn ([5b203d8](http://stash.corp.web:7999/FRONT/react-magma/commits/5b203d8))
+
+
+
+
+
 # [2.0.0-beta.50](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.49...v2.0.0-beta.50) (2020-06-01)
 
 **Note:** Version bump only for package react-magma-docs
