@@ -159,15 +159,36 @@ describe('Dropdown', () => {
   });
 
   it('should render a button with custom icon', () => {
-    const { queryByTestId } = render(
+    const { container, queryByTestId } = render(
       <Dropdown>
         <DropdownButton icon={<AsteriskIcon />}>Toggle me</DropdownButton>
         <DropdownContent />
       </Dropdown>
     );
 
+    expect(container.querySelector('span')).toHaveStyleRule(
+      'padding-left',
+      '10px'
+    );
+
     expect(queryByTestId('caretUp')).not.toBeInTheDocument();
     expect(queryByTestId('caretDown')).not.toBeInTheDocument();
+  });
+
+  it('should render a button with custom icon with specified icon position', () => {
+    const { container } = render(
+      <Dropdown>
+        <DropdownButton icon={<AsteriskIcon />} iconPosition="right">
+          Toggle me
+        </DropdownButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    expect(container.querySelector('span')).toHaveStyleRule(
+      'padding-right',
+      '10px'
+    );
   });
 
   it('should toggle the menu when the button is clicked', () => {
