@@ -18,6 +18,7 @@ export interface IconOnlyDropdownButtonProps
 
 export interface IconTextDropdownButtonProps extends ButtonProps {
   icon?: React.ReactElement<IconProps>;
+  iconPosition?: ButtonIconPosition;
   children: React.ReactChild | React.ReactChild[];
 }
 
@@ -54,7 +55,7 @@ export const DropdownButton: React.FunctionComponent<DropdownButtonProps> = (
   const buttonIcon = getButtonIcon(context.dropDirection);
 
   let children;
-  const { icon = buttonIcon, ...other } = props;
+  const { icon = buttonIcon, iconPosition, ...other } = props;
 
   if (!instanceOfIconOnlyDropdownButton(props)) {
     children = props.children;
@@ -68,17 +69,21 @@ export const DropdownButton: React.FunctionComponent<DropdownButtonProps> = (
     }
   }
 
+  const iconPositionToUse = props.icon
+    ? iconPosition
+      ? iconPosition
+      : ButtonIconPosition.left
+    : context.dropDirection === DropdownDropDirection.left
+    ? ButtonIconPosition.left
+    : ButtonIconPosition.right;
+
   return (
     <IconButton
       {...other}
       aria-expanded={context.isOpen}
       aria-haspopup="true"
       icon={icon}
-      iconPosition={
-        context.dropDirection === DropdownDropDirection.left
-          ? ButtonIconPosition.left
-          : ButtonIconPosition.right
-      }
+      iconPosition={iconPositionToUse}
       onClick={handleClick}
       ref={context.toggleRef}
     >
