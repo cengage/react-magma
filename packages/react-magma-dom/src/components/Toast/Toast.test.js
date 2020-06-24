@@ -44,7 +44,26 @@ describe('Toast', () => {
       </ToastsContext.Provider>
     );
     expect(getByTestId('toast1')).toHaveStyleRule('bottom', '20px');
-    expect(getByTestId('toast2')).toHaveStyleRule('bottom', '90px');
+    expect(getByTestId('toast2')).toHaveStyleRule('bottom', '85px');
+  });
+
+  it('should render a toast with bottom offset', () => {
+    const toastsArray = React.createRef([]);
+    toastsArray.current = ['toast1'];
+
+    const { getByTestId } = render(
+      <ToastsContext.Provider
+        value={{ bottomOffset: 50, toastsArray: toastsArray }}
+      >
+        <Toast id="toast1" testId="toast1">
+          toast
+        </Toast>
+      </ToastsContext.Provider>
+    );
+    expect(getByTestId('toast1')).toHaveStyleRule(
+      'transform',
+      'translateY(-50px)'
+    );
   });
 
   it('should call passed in onDismiss when timer runs out', async () => {

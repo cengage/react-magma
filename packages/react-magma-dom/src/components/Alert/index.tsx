@@ -91,7 +91,6 @@ const StyledAlert = styled.div<AlertProps>`
 
       @media (max-width: 600px) {
         font-size: 13px;
-        padding-left: 15px;
         width: 100%;
       }
     `}
@@ -158,19 +157,20 @@ const StyledAlertInner = styled.div<AlertProps>`
     props.variant === 'warning'
       ? props.theme.colors.neutral01
       : props.theme.colors.neutral08};
+  display: flex;
+  height: ${props => (props.isToast ? '56px' : 'auto')};
   position: relative;
   z-index: 2;
-`;
-
-const AlertBody = styled.div`
-  display: flex;
-  height: 56px;
 `;
 
 const AlertContents = styled.div`
   align-self: center;
   flex-grow: 1;
   padding: 13px 15px 13px 0;
+
+  @media (max-width: 600px) {
+    padding-left: 15px;
+  }
 `;
 
 const IconWrapperStyles = css`
@@ -183,13 +183,9 @@ const IconWrapper = styled.span<{ isToast?: boolean }>`
   ${IconWrapperStyles}
   padding: 0 10px 0 15px;
 
-  ${props =>
-    props.isToast &&
-    css`
-      @media (max-width: 600px) {
-        display: none;
-      }
-    `}
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 
 const DismissibleIconWrapper = styled.span<AlertProps>`
@@ -241,7 +237,7 @@ function renderIcon(variant = 'info', isToast?: boolean) {
   const Icon = VARIANT_ICON[variant];
 
   return (
-    <IconWrapper isToast>
+    <IconWrapper>
       <Icon size={20} />
     </IconWrapper>
   );
@@ -303,28 +299,24 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
         ref={ref}
         theme={theme}
       >
-        <StyledAlertInner theme={theme} variant={variant}>
-          <AlertBody>
-            {renderIcon(variant, isToast)}
-            <AlertContents>{children}</AlertContents>
-            {isDismissible && (
-              <DismissibleIconWrapper variant={variant} theme={theme}>
-                <DismissButton
-                  alertVariant={variant}
-                  aria-label={
-                    closeAriaLabel
-                      ? closeAriaLabel
-                      : i18n.alert.dismissAriaLabel
-                  }
-                  icon={<CrossIcon size={13} />}
-                  isInverse
-                  onClick={forceDismiss || handleDismiss}
-                  theme={theme}
-                  variant={ButtonVariant.link}
-                />
-              </DismissibleIconWrapper>
-            )}
-          </AlertBody>
+        <StyledAlertInner isToast={isToast} theme={theme} variant={variant}>
+          {renderIcon(variant, isToast)}
+          <AlertContents>{children}</AlertContents>
+          {isDismissible && (
+            <DismissibleIconWrapper variant={variant} theme={theme}>
+              <DismissButton
+                alertVariant={variant}
+                aria-label={
+                  closeAriaLabel ? closeAriaLabel : i18n.alert.dismissAriaLabel
+                }
+                icon={<CrossIcon size={13} />}
+                isInverse
+                onClick={forceDismiss || handleDismiss}
+                theme={theme}
+                variant={ButtonVariant.link}
+              />
+            </DismissibleIconWrapper>
+          )}
         </StyledAlertInner>
       </StyledAlert>
     );

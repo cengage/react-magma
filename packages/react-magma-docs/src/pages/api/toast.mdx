@@ -72,7 +72,7 @@ Only one toast will be displayed at a time, but a "ghost" toast will appear behi
     const [showAlert2, setShowAlert2] = React.useState(false);
     const [showAlert3, setShowAlert3] = React.useState(false);
 
-    return (<ToastsContainer>
+    return (<ToastsContainer bottomOffset={50}>
       <Announce>
         <Button onClick={() => setShowAlert(true)} color="success">Show Toast</Button>
         {showAlert && <Toast id="toast1" isDismissible onDismiss={() => setShowAlert(false)} variant="success">Toast 1</Toast>}
@@ -83,6 +83,23 @@ Only one toast will be displayed at a time, but a "ghost" toast will appear behi
         <Button onClick={() => setShowAlert3(true)} color="danger">Show Toast 3</Button>
         {showAlert3 && <Toast id="toast3" isDismissible variant="danger" onDismiss={() => setShowAlert3(false)}>Toast three</Toast>}
       </Announce>
+    </ToastsContainer>)
+  }
+
+```
+
+## Bottom Offset
+
+The `ToastsContainer` component takes an optional `bottomOffset` prop, that indicates the additional number of pixels from the bottom the toasts will render.
+This is useful in cases where toasts are intended to display above a component, such as a toolbar.
+
+```.jsx
+  (props) => {
+    const [showAlert, setShowAlert] = React.useState(false);
+
+    return (<ToastsContainer bottomOffset={100}>
+        <Button onClick={() => setShowAlert(true)} color="success">Show Toast with Bottom Offset</Button>
+        {showAlert && <Toast onDismiss={() => setShowAlert(false)} variant="success">Toast Container has bottomOffset of 100</Toast>}
     </ToastsContainer>)
   }
 ```
@@ -193,6 +210,21 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
   <div>Quick Toast</div>
 </div>
 ```
+
+## ToastsContainer Props
+
+<SimplePropsTable
+  propertyValues={{
+    bottomOffset: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'Number of additional pixels from bottom of screen',
+      defaultValue: '0',
+    },
+  }}
+/>
 
 ## Toast Props
 

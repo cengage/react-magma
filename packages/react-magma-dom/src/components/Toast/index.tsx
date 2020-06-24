@@ -15,27 +15,29 @@ export interface ToastProps extends AlertProps {
 }
 
 const ToastWrapper = styled.div<{
-  bottomOffset?: number;
+  bottomOffsetForContainer?: number;
+  bottomOffsetForToast?: number;
 }>`
-  bottom: ${props => props.bottomOffset + 20}px;
+  bottom: ${props => props.bottomOffsetForToast + 20}px;
   display: flex;
   left: 20px;
   justify-content: flex-start;
   max-width: 600px;
   min-width: 320px;
   position: fixed;
+  transform: translateY(${props => 0 - props.bottomOffsetForContainer}px);
   transition: bottom 0.3s;
   z-index: 999;
 
   @media (max-width: 600px) {
-    bottom: ${props => props.bottomOffset + 10}px;
+    bottom: ${props => props.bottomOffsetForToast + 10}px;
     left: 10px;
     right: 10px;
   }
 `;
 
 const DEFAULT_TOAST_DURATION = 5000;
-const TOAST_HEIGHT = 70;
+const TOAST_HEIGHT = 65;
 
 export const Toast: React.FunctionComponent<ToastProps> = (
   props: ToastProps
@@ -58,7 +60,7 @@ export const Toast: React.FunctionComponent<ToastProps> = (
 
   const lastFocus = React.useRef<any>();
 
-  const { toastsArray } = React.useContext(ToastsContext);
+  const { bottomOffset, toastsArray } = React.useContext(ToastsContext);
 
   function dismissToast() {
     setIsDismissed(true);
@@ -130,14 +132,14 @@ export const Toast: React.FunctionComponent<ToastProps> = (
     };
   }, []);
 
-  let bottomOffset = 0;
+  let bottomOffsetForToast = 0;
 
   if (toastsArray) {
     toastsArray.current = toastsArray.current.includes(id)
       ? toastsArray.current
       : toastsArray.current.concat([id]);
 
-    bottomOffset =
+    bottomOffsetForToast =
       typeof toastsArray.current[0] === 'undefined'
         ? 0
         : toastsArray.current.indexOf(id) * TOAST_HEIGHT;
@@ -145,7 +147,8 @@ export const Toast: React.FunctionComponent<ToastProps> = (
 
   return (
     <ToastWrapper
-      bottomOffset={bottomOffset}
+      bottomOffsetForToast={bottomOffsetForToast}
+      bottomOffsetForContainer={bottomOffset}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={containerStyle}
