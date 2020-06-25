@@ -91,6 +91,7 @@ const StyledAlert = styled.div<AlertProps>`
 
       @media (max-width: 600px) {
         font-size: 13px;
+        min-width: 0;
         width: 100%;
       }
     `}

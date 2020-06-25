@@ -72,7 +72,7 @@ Only one toast will be displayed at a time, but a "ghost" toast will appear behi
     const [showAlert2, setShowAlert2] = React.useState(false);
     const [showAlert3, setShowAlert3] = React.useState(false);
 
-    return (<ToastsContainer bottomOffset={50}>
+    return (<ToastsContainer>
       <Announce>
         <Button onClick={() => setShowAlert(true)} color="success">Show Toast</Button>
         {showAlert && <Toast id="toast1" isDismissible onDismiss={() => setShowAlert(false)} variant="success">Toast 1</Toast>}
