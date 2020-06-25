@@ -72,6 +72,10 @@ const StyledAlert = styled.div<AlertProps>`
   padding: 0;
   position: relative;
 
+  @media (max-width: ${props => props.theme.breakpoints.small}px) {
+    font-size: 14px;
+  }
+
   &:focus {
     outline: 2px dotted ${props =>
       props.isInverse
@@ -89,8 +93,7 @@ const StyledAlert = styled.div<AlertProps>`
       min-width: 375px;
       margin: 0 auto;
 
-      @media (max-width: 600px) {
-        font-size: 13px;
+      @media (max-width: ${props.theme.breakpoints.small}px) {
         min-width: 0;
         width: 100%;
       }
@@ -151,17 +154,22 @@ const StyledAlert = styled.div<AlertProps>`
 const StyledAlertInner = styled.div<AlertProps>`
   background-color: ${props => buildAlertBackground(props)};
   border-radius: 3px;
-  border: 1px solid ${props => props.theme.colors.neutral08};
   border-radius: 5px;
-  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.4);
   color: ${props =>
     props.variant === 'warning'
       ? props.theme.colors.neutral01
       : props.theme.colors.neutral08};
   display: flex;
-  height: ${props => (props.isToast ? '56px' : 'auto')};
   position: relative;
   z-index: 2;
+
+  ${props =>
+    props.isToast &&
+    css`
+      border: 1px solid ${props.theme.colors.neutral08};
+      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.4);
+      height: 56px;
+    `}
 `;
 
 const AlertContents = styled.div`
@@ -169,7 +177,7 @@ const AlertContents = styled.div`
   flex-grow: 1;
   padding: 13px 15px 13px 0;
 
-  @media (max-width: 600px) {
+  @media (max-width: ${props => props.theme.breakpoints.small}px) {
     padding-left: 15px;
   }
 `;
@@ -302,7 +310,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
       >
         <StyledAlertInner isToast={isToast} theme={theme} variant={variant}>
           {renderIcon(variant, isToast)}
-          <AlertContents>{children}</AlertContents>
+          <AlertContents theme={theme}>{children}</AlertContents>
           {isDismissible && (
             <DismissibleIconWrapper variant={variant} theme={theme}>
               <DismissButton

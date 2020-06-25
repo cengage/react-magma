@@ -51,6 +51,12 @@ describe('Alert', () => {
   position: relative;
 }
 
+@media (max-width:600px) {
+  .emotion-3 {
+    font-size: 14px;
+  }
+}
+
 .emotion-3:focus {
   outline: 2px dotted #027EE1;
 }
@@ -69,15 +75,12 @@ describe('Alert', () => {
 .emotion-2 {
   background-color: #3F3F3F;
   border-radius: 3px;
-  border: 1px solid #FFFFFF;
   border-radius: 5px;
-  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.4);
   color: #FFFFFF;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  height: auto;
   position: relative;
   z-index: 2;
 }
@@ -198,6 +201,12 @@ describe('Alert', () => {
   position: relative;
 }
 
+@media (max-width:600px) {
+  .emotion-3 {
+    font-size: 14px;
+  }
+}
+
 .emotion-3:focus {
   outline: 2px dotted #027EE1;
 }
@@ -216,15 +225,12 @@ describe('Alert', () => {
 .emotion-2 {
   background-color: #3F3F3F;
   border-radius: 3px;
-  border: 1px solid #FFFFFF;
   border-radius: 5px;
-  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.4);
   color: #FFFFFF;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  height: auto;
   position: relative;
   z-index: 2;
 }
@@ -332,6 +338,12 @@ describe('Alert', () => {
   position: relative;
 }
 
+@media (max-width:600px) {
+  .emotion-3 {
+    font-size: 14px;
+  }
+}
+
 .emotion-3:focus {
   outline: 2px dotted #027EE1;
 }
@@ -388,15 +400,12 @@ describe('Alert', () => {
 .emotion-2 {
   background-color: #3A8200;
   border-radius: 3px;
-  border: 1px solid #FFFFFF;
   border-radius: 5px;
-  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.4);
   color: #FFFFFF;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  height: auto;
   position: relative;
   z-index: 2;
 }
@@ -466,6 +475,12 @@ describe('Alert', () => {
   position: relative;
 }
 
+@media (max-width:600px) {
+  .emotion-3 {
+    font-size: 14px;
+  }
+}
+
 .emotion-3:focus {
   outline: 2px dotted #027EE1;
 }
@@ -522,15 +537,12 @@ describe('Alert', () => {
 .emotion-2 {
   background-color: #FFC72C;
   border-radius: 3px;
-  border: 1px solid #FFFFFF;
   border-radius: 5px;
-  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.4);
   color: #3F3F3F;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  height: auto;
   position: relative;
   z-index: 2;
 }
@@ -599,6 +611,12 @@ describe('Alert', () => {
   position: relative;
 }
 
+@media (max-width:600px) {
+  .emotion-3 {
+    font-size: 14px;
+  }
+}
+
 .emotion-3:focus {
   outline: 2px dotted #027EE1;
 }
@@ -655,15 +673,12 @@ describe('Alert', () => {
 .emotion-2 {
   background-color: #E70000;
   border-radius: 3px;
-  border: 1px solid #FFFFFF;
   border-radius: 5px;
-  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.4);
   color: #FFFFFF;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  height: auto;
   position: relative;
   z-index: 2;
 }
