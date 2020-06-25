@@ -26,12 +26,13 @@ const StyledBanner = styled.div<AlertProps>`
       ? props.theme.colors.neutral01
       : props.theme.colors.neutral08};
   display: flex;
+  line-height: 20px;
   position: relative;
   text-align: center;
 
-  @media (max-width: 600px) {
+  @media (max-width: ${props => props.theme.breakpoints.small}px) {
     text-align: left;
-    font-size: 13px;
+    font-size: 14px;
   }
 `;
 
@@ -42,7 +43,7 @@ const BannerContents = styled.div`
   justify-content: center;
   padding: 13px 15px;
 
-  @media (max-width: 600px) {
+  @media (max-width: ${props => props.theme.breakpoints.small}px) {
     justify-content: flex-start;
   }
 `;
@@ -150,7 +151,7 @@ export const Banner: React.FunctionComponent<BannerProps> = React.forwardRef(
         theme={theme}
         variant={variant}
       >
-        <BannerContents>
+        <BannerContents theme={theme}>
           {renderIcon(variant)}
           {children}
           {actionButtonText && actionButtonOnClick && (
