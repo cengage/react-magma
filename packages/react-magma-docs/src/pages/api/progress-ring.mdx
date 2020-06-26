@@ -1,0 +1,36 @@
+---
+title: 'Progress Ring'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { ProgressRing } from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
+
+# Progress Ring
+
+## Basic Usage
+
+```.jsx
+ <ProgressRing radius={30} progress={20} stroke={5} />
+```
+
+## Progress Ring Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<SimplePropsTable
+  propertyValues={{
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout {...props} components={{ ProgressRing }} />
+)
