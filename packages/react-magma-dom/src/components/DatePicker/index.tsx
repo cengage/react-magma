@@ -22,12 +22,15 @@ import { I18nContext } from '../../i18n';
 
 interface DatePickerProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value'> {
+  containerStyle?: React.CSSProperties;
   defaultDate?: Date;
   errorMessage?: React.ReactNode;
   helperMessage?: React.ReactNode;
   id?: string;
   inputRef?: React.RefObject<{}>;
+  inputStyle?: React.CSSProperties;
   isInverse?: boolean;
+  labelStyle?: React.CSSProperties;
   labelText: React.ReactNode;
   maxDate?: Date;
   messageStyle?: React.CSSProperties;

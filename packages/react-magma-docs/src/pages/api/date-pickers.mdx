@@ -104,6 +104,24 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
     <DatePicker labelText="Date" />
 ```
 
+## Custom Styles
+
+Custom styles can be passed into the datePicker component. The `containerStyle` prop will apply to the container; the `inputStyle` prop will apply to the input field.
+The `labelStyle` prop will apply to the field's label; the `messageStyle` prop will apply to the helper/error message.
+Please use discretion when adding custom styles.
+
+
+
+```.jsx
+    <DatePicker 
+      containerStyle={{ border: '2px solid green', maxWidth:  '300px', padding: '2px' }}
+      errorMessage="Please fix the error"
+      inputStyle={{ border: '1px dashed purple', borderRadius: '0' }}
+      labelStyle={{ border: '1px dotted blue' }}
+      labelText="Date"
+      messageStyle={{ border: '1px solid black', padding: '20px' }} />
+```
+
 ## Internationalization
 
 To use a separate `locale` import a `date-fns` locale object (`import { es } from 'date-fns/locale'`) and pass it in
@@ -149,6 +167,13 @@ to the `I18nContext` provider.
 
 <SimplePropsTable
   propertyValues={{
+    containerStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the component container element',
+    },
     defaultDate: {
       type: {
         name: 'Date or string',
@@ -173,6 +198,13 @@ to the `I18nContext` provider.
       description: 'Content of the helper message.',
       defaultValue: '',
     },
+    inputStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the input element',
+    },
     isInverse: {
       type: {
         name: 'boolean',
@@ -181,6 +213,13 @@ to the `I18nContext` provider.
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
+    },
+     labelStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the label element',
     },
     labelText: {
       type: {
