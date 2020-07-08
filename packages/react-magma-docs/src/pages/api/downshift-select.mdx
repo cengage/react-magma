@@ -6,6 +6,8 @@ import { ScopeableLayout } from '../../components/layout'
 import { DownshiftSelect } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { SimplePropsTable } from '../../components/props-table'
+import { useSelect } from 'downshift'
+import { Link } from 'gatsby'
 
 <DocsHeading to="/design/select/" type="design">
   Downshift Selects
@@ -14,14 +16,244 @@ import { SimplePropsTable } from '../../components/props-table'
 ## Basic Usage
 
 ```.jsx
-  <>
-    <DownshiftSelect
-      id="basicSelectId"
-      name="basic"
-      labelText="Basic"
-      items={['Red', 'Blue', 'Green']}
-    />
-  </>
+  () => {
+    const [selectedItem, updateSelectedItem] = React.useState(undefined);
+
+    function onSelectedItemChange(changes) {
+      updateSelectedItem(changes.selectedItem);
+    }
+
+    return <>
+      <DownshiftSelect
+        id="basicSelectId"
+        name="basic"
+        labelText="Basic"
+        items={['Red', 'Blue', 'Green']}
+        selectedItem={selectedItem}
+        onSelectedItemChange={onSelectedItemChange}
+      />
+    </>
+  }
+```
+
+## Inital State
+
+Set inital state using the `initialIsOpen`, `initalSelectedItem`, and `initialHighlightedIndex` props.
+
+```.jsx
+  () => {
+    return <>
+      <DownshiftSelect
+        id="initialSelectedSelectId"
+        name="initialSelected"
+        labelText="Initial Selected"
+        items={['Red', 'Blue', 'Green']}
+        initialIsOpen
+        initialHighlightedIndex={2}
+        initialSelectedItem={'Green'}
+      />
+    </>
+  }
+```
+
+## State Changes
+
+You can track changes made to the internal state of the `select` using the following functions: `onHighlightedIndexChange`,
+`onIsOpenChange`, `onSelectedItemChange`, and `onStateChange`. Each of these functions will have a `changes` object as a parameter that
+includes the changes made to state from each action as well as a `type` that describes the action.
+
+`onStateChange` is best used when using the `select` in a controlled state because it is called on every state change.
+
+```.jsx
+  () => {
+    const [highlightedIndexChangeCount, updateHighlightedIndexChangeCount] = React.useState(0);
+    const [isOpenChangeCount, updateIsOpenChangeCount] = React.useState(0);
+    const [selectedItem, updateSelectedItem] = React.useState(undefined);
+    const [changes, updateChanges] = React.useState({});
+
+    function onHighlightedIndexChange(changes) {
+      updateHighlightedIndexChangeCount(highlightedIndexChangeCount + 1);
+    }
+
+    function onIsOpenChange(changes) {
+      updateIsOpenChangeCount(isOpenChangeCount + 1)
+    }
+
+    function onSelectedItemChange(changes) {
+      updateSelectedItem(changes.selectedItem);
+    }
+
+    function onStateChange(newChanges) {
+      updateChanges(newChanges)
+    }
+
+    return <>
+      <p><strong>Selected Item: </strong>{selectedItem}</p>
+      <p><strong>Highlighted Index Change Count: </strong>{highlightedIndexChangeCount}</p>
+      <p><strong>Is Open Change Count: </strong>{isOpenChangeCount}</p>
+
+      <DownshiftSelect
+        id="stateChangesId"
+        name="stateChanges"
+        labelText="State Changes"
+        items={['Red', 'Blue', 'Green']}
+        onHighlightedIndexChange={onHighlightedIndexChange}
+        onIsOpenChange={onIsOpenChange}
+        onSelectedItemChange={onSelectedItemChange}
+      />
+
+      <pre>{JSON.stringify(changes, null, 2)}</pre>
+
+      <DownshiftSelect
+        id="stateChangesId"
+        name="stateChanges"
+        labelText="State Changes"
+        items={['Red', 'Blue', 'Green']}
+        onStateChange={onStateChange}
+      />
+    </>
+  }
+```
+
+## Controlled
+
+If you wish to control the state rather than having it handled internally you can use the control props
+provided. These props are `isOpen`, `selectedItem`, and `highlightedIndex`. If you are using these control props
+you will have to use the handlers mentioned above in the <Link to="/api/downshift-select/#state_changes">State Changes</Link> section.
+
+```.jsx
+  () => {
+    const [highlightedIndex, updateHighlightedIndex] = React.useState(0);
+    const [isOpen, updateIsOpen] = React.useState(false);
+    const [selectedItem, updateSelectedItem] = React.useState(undefined);
+
+    function onHighlightedIndexChange(changes) {
+      updateHighlightedIndex(changes.highlightedIndex);
+    }
+
+    function onIsOpenChange(changes) {
+      updateIsOpen(changes.isOpen)
+    }
+
+    function onSelectedItemChange(changes) {
+      updateSelectedItem(changes.selectedItem);
+    }
+
+    return <>
+      <p><strong>Selected Item: </strong>{selectedItem}</p>
+      <p><strong>Highlighted Index: </strong>{highlightedIndex}</p>
+      <p><strong>Is Open: </strong>{isOpen.toString()}</p>
+
+      <DownshiftSelect
+        id="controlledId"
+        name="controlled"
+        labelText="Controlled"
+        items={['Red', 'Blue', 'Green']}
+        isOpen={isOpen}
+        highlightedIndex={highlightedIndex}
+        selectedItem={selectedItem}
+        onHighlightedIndexChange={onHighlightedIndexChange}
+        onIsOpenChange={onIsOpenChange}
+        onSelectedItemChange={onSelectedItemChange}
+      />
+    </>
+  }
+```
+
+## Clearable
+
+The optional `isClearable` prop allows the user to clear the field once a selection has been made.
+
+When using the `isClearable` prop you can set default values to be set once the `select` is cleared.
+These props are `defaultIsOpen`, `defaultSelectedItem`, and `defaultHighlightedIndex`.
+
+```.jsx
+  () => {
+    return <>
+      <DownshiftSelect
+        id="clearableSelectId"
+        name="clearable"
+        labelText="Clearable"
+        items={['Red', 'Blue', 'Green']}
+        initialSelectedItem={'Green'}
+        isClearable
+      />
+
+      <DownshiftSelect
+        id="clearableWithDefaultsId"
+        name="clearableWithDefaults"
+        labelText="Clearable With Defaults"
+        items={['Red', 'Blue', 'Green']}
+        isClearable
+        defaultIsOpen
+        defaultHighlightedIndex={1}
+        defaultSelectedItem={'Blue'}
+      />
+    </>
+  }
+```
+
+## Error Message
+
+If a select has an `errorMessage`, the select will be styled to highlight it's error state and the error message will appear below the field.
+If an error message is present, it will replace the helper text. Can be a node or a string.
+
+```.jsx
+  () => (
+    <>
+      <DownshiftSelect
+        id="errorMessage"
+        name="error"
+        labelText="Error Message"
+        items={['Red', 'Blue', 'Green']}
+        errorMessage="Please select a color"
+      />
+    </>
+  )
+```
+
+## Helper Message
+
+The `helperMessage` appears underneath the select field. It will not appear if an error message is present. Can be a node or a string.
+
+```.jsx
+  () => (
+    <>
+      <DownshiftSelect
+        id="helperMessage"
+        name="helper"
+        labelText="Helper Message"
+        items={['Red', 'Blue', 'Green']}
+        helperMessage="Helper text goes here"
+      />
+    </>
+  )
+```
+
+## A11y
+
+The `getA11yStatusMessage` prop is a passed in function that allows for cusomization of the a11y message whenever the following props
+are changes: `items`, `highlightedIndex`, `inputValue` or `isOpen`.
+
+The `getA11ySelectionMessage` prop is a passed in function that allows for customization of the a11y message
+whenever an item has been selected.
+
+For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions there is an
+[object passed with internal state data](https://github.com/downshift-js/downshift/tree/master/src/hooks/useSelect#geta11yselectionmessage).
+
+```.jsx
+  () => {
+    return <>
+      <DownshiftSelect
+        id="newA11yStatusMessageId"
+        name="newA11yStatusMessage"
+        labelText="New A11y Status Message"
+        items={['Red', 'Blue', 'Green']}
+        getA11yStatusMessage={({highlightedItem}) => `${highlightedItem} is highlighted`}
+        getA11ySelectionMessage={({selectedItem}) => `${selectedItem} is now selected`}
+      />
+    </>
+  }
 ```
 
 ## Combobox
@@ -111,6 +343,7 @@ export default props => (
     {...props}
     components={{
       DownshiftSelect,
+      useSelect,
     }}
   />
 )
