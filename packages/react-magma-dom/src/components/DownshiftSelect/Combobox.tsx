@@ -5,15 +5,12 @@ import styled from '@emotion/styled';
 
 import { baseInputStyles } from '../BaseInput';
 import { ButtonShape, ButtonVariant } from '../Button';
-import { Card } from '../Card';
 import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
 import { Label } from '../Label';
 import { IconButton } from '../IconButton';
 import { ThemeContext } from '../../theme/ThemeContext';
 
-const SelectContainer = styled.div`
-  position: relative;
-`;
+import { SelectContainer, StyledCard, StyledList, StyledItem } from './shared';
 
 const StyledInput = styled.input`
   ${baseInputStyles}
@@ -25,20 +22,6 @@ const StyledIconButton = styled(IconButton)`
   border: 1px solid ${props => props.theme.colors.neutral03};
   border-left: 0;
   color: ${props => props.theme.colors.neutral01};
-  margin: 0;
-`;
-
-const StyledCard = styled(Card)<{}>`
-  position: absolute;
-  left: 5px;
-  margin-top: 5px;
-  padding: 10px 20px 0;
-  right: 5px;
-  z-index: 2;
-`;
-
-const StyledList = styled.ul`
-  list-style: none;
   margin: 0;
 `;
 
@@ -81,25 +64,20 @@ export const Combobox = (props: DownshiftComboboxInterface) => {
           variant={ButtonVariant.link}
         />
       </div>
-      {isOpen && (
-        <StyledCard hasDropShadow>
-          <StyledList {...getMenuProps()}>
-            {items.map((item, index) => (
-              <li
-                style={
-                  highlightedIndex === index
-                    ? { backgroundColor: '#bde4ff' }
-                    : {}
-                }
-                key={`${item}${index}`}
-                {...getItemProps({ item, index })}
-              >
-                {item}
-              </li>
-            ))}
-          </StyledList>
-        </StyledCard>
-      )}
+      <StyledCard isOpen={isOpen} hasDropShadow>
+        <StyledList isOpen={isOpen} {...getMenuProps()}>
+          {items.map((item, index) => (
+            <StyledItem
+              key={`${item}${index}`}
+              isFocused={highlightedIndex === index}
+              {...getItemProps({ item, index })}
+              theme={theme}
+            >
+              {item}
+            </StyledItem>
+          ))}
+        </StyledList>
+      </StyledCard>
     </SelectContainer>
   );
 };
