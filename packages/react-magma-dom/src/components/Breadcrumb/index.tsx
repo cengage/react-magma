@@ -27,9 +27,7 @@ export const BreadCrumbContext = React.createContext<
   isInverse: false
 });
 
-export const Breadcrumb: React.FunctionComponent<
-  BreadcrumbProps
-> = React.forwardRef(
+export const Breadcrumb: React.FunctionComponent<BreadcrumbProps> = React.forwardRef(
   (
     {
       'aria-label': ariaLabel,

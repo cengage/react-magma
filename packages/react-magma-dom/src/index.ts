@@ -56,6 +56,7 @@ export { Search } from './components/Search';
 export { SkipLink } from './components/SkipLink';
 export { SkipLinkContent } from './components/SkipLinkContent';
 export { Spinner } from './components/Spinner';
+export { ToastsContainer } from './components/Toast/ToastsContainer';
 export { Toast } from './components/Toast';
 export { Toggle, ToggleTextPosition } from './components/Toggle';
 export { Tooltip, EnumTooltipPosition } from './components/Tooltip';

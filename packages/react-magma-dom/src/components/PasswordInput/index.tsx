@@ -47,9 +47,7 @@ const PasswordMaskWrapper = styled.span`
   top: 50%;
 `;
 
-export const PasswordInput: React.FunctionComponent<
-  PasswordInputProps
-> = React.forwardRef(
+export const PasswordInput: React.FunctionComponent<PasswordInputProps> = React.forwardRef(
   (props: PasswordInputProps, ref: React.Ref<HTMLInputElement>) => {
     const [passwordShown, setPasswordShown] = React.useState<boolean>(false);
 

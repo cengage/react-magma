@@ -20,9 +20,7 @@ const Container = styled.div<HideAtBreakpointProps>`
   }
 `;
 
-export const HideAtBreakpoint: React.FunctionComponent<
-  HideAtBreakpointProps
-> = ({
+export const HideAtBreakpoint: React.FunctionComponent<HideAtBreakpointProps> = ({
   children,
   minWidth,
   maxWidth,

@@ -19,9 +19,9 @@ export interface AsyncCreatableSelectProps
   extends BaseSelectProps,
     AsyncCreatableReactSelectProps<OptionType> {}
 
-export const AsyncCreatableSelect: React.FunctionComponent<
-  AsyncCreatableSelectProps
-> = (props: AsyncCreatableSelectProps) => {
+export const AsyncCreatableSelect: React.FunctionComponent<AsyncCreatableSelectProps> = (
+  props: AsyncCreatableSelectProps
+) => {
   const [value, onChange] = useSelectValue(
     props.value,
     props.defaultValue,

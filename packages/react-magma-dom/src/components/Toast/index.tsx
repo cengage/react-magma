@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { Alert, AlertProps } from '../Alert';
 import { useGenerateId } from '../../utils';
+import { ToastsContext } from './ToastsContainer';
 
 export interface ToastProps extends AlertProps {
   alertStyle?: React.CSSProperties;
@@ -13,24 +14,30 @@ export interface ToastProps extends AlertProps {
   onMouseLeave?: (event: React.SyntheticEvent) => void;
 }
 
-const ToastWrapper = styled.div`
-  align-items: center;
-  bottom: 20px;
+const ToastWrapper = styled.div<{
+  bottomOffsetForContainer?: number;
+  bottomOffsetForToast?: number;
+}>`
+  bottom: ${props => props.bottomOffsetForToast + 20}px;
   display: flex;
   left: 20px;
   justify-content: flex-start;
+  max-width: 600px;
+  min-width: 320px;
   position: fixed;
-  right: 20px;
+  transform: translateY(${props => 0 - props.bottomOffsetForContainer}px);
+  transition: bottom 0.3s;
   z-index: 999;
 
   @media (max-width: 600px) {
-    bottom: 10px;
+    bottom: ${props => props.bottomOffsetForToast + 10}px;
     left: 10px;
     right: 10px;
   }
 `;
 
 const DEFAULT_TOAST_DURATION = 5000;
+const TOAST_HEIGHT = 65;
 
 export const Toast: React.FunctionComponent<ToastProps> = (
   props: ToastProps
@@ -38,25 +45,50 @@ export const Toast: React.FunctionComponent<ToastProps> = (
   const timerAutoHide = React.useRef<any>();
   const [isDismissed, setIsDismissed] = React.useState<boolean>(false);
 
-  React.useEffect(() => {
-    if (!props.disableAutoDismiss) {
-      setAutoHideTimer(props.toastDuration);
-    }
+  const {
+    alertStyle,
+    id: defaultId,
+    testId,
+    variant,
+    isDismissible,
+    children,
+    containerStyle,
+    ...other
+  } = props;
 
-    return () => {
-      clearTimeout(timerAutoHide.current);
-    };
-  }, []);
+  const id = useGenerateId(defaultId);
+
+  const lastFocus = React.useRef<any>();
+
+  const { bottomOffset, toastsArray } = React.useContext(ToastsContext);
+
+  function dismissToast() {
+    setIsDismissed(true);
+
+    setTimeout(() => {
+      if (toastsArray.current) {
+        toastsArray.current = toastsArray.current.filter(
+          toastId => toastId !== id
+        );
+      }
+    }, 0);
+  }
 
   function clearTimeoutAndDismiss() {
     clearTimeout(timerAutoHide.current);
-    setIsDismissed(true);
+
+    dismissToast();
+
+    if (lastFocus.current) {
+      lastFocus.current.focus();
+    }
   }
 
   function setAutoHideTimer(duration = DEFAULT_TOAST_DURATION) {
     clearTimeout(timerAutoHide.current);
+
     timerAutoHide.current = setTimeout(() => {
-      setIsDismissed(true);
+      dismissToast();
     }, duration);
   }
 
@@ -88,36 +120,50 @@ export const Toast: React.FunctionComponent<ToastProps> = (
     }
   }
 
-  const {
-    alertStyle,
-    id: defaultId,
-    testId,
-    variant,
-    isDismissible,
-    children,
-    containerStyle,
-    ...other
-  } = props;
+  React.useEffect(() => {
+    lastFocus.current = document.activeElement;
 
-  const id = useGenerateId(defaultId);
+    if (!props.disableAutoDismiss) {
+      setAutoHideTimer(props.toastDuration);
+    }
+
+    return () => {
+      clearTimeout(timerAutoHide.current);
+    };
+  }, []);
+
+  let bottomOffsetForToast = 0;
+
+  if (toastsArray) {
+    toastsArray.current = toastsArray.current.includes(id)
+      ? toastsArray.current
+      : toastsArray.current.concat([id]);
+
+    bottomOffsetForToast =
+      typeof toastsArray.current[0] === 'undefined'
+        ? 0
+        : toastsArray.current.indexOf(id) * TOAST_HEIGHT;
+  }
 
   return (
     <ToastWrapper
+      bottomOffsetForToast={bottomOffsetForToast}
+      bottomOffsetForContainer={bottomOffset}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={containerStyle}
+      data-testid={testId}
     >
       <Alert
         {...other}
+        forceDismiss={clearTimeoutAndDismiss}
         id={id}
-        isToast
-        testId={testId}
-        style={{ ...alertStyle }}
         isDismissible={isDismissible}
         isDismissed={isDismissed}
-        variant={variant}
-        forceDismiss={clearTimeoutAndDismiss}
+        isToast
         onDismiss={props.onDismiss}
+        style={{ ...alertStyle }}
+        variant={variant}
       >
         {children}
       </Alert>

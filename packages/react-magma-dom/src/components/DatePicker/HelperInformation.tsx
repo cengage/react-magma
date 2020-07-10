@@ -29,9 +29,10 @@ const KeyboardShortcutButtonWrapper = styled.span`
   text-transform: uppercase;
 `;
 
-export const HelperInformation: React.FunctionComponent<
-  HelperInformationProps
-> = ({ isOpen, onClose }) => {
+export const HelperInformation: React.FunctionComponent<HelperInformationProps> = ({
+  isOpen,
+  onClose
+}) => {
   const i18n = React.useContext(I18nContext);
 
   return (

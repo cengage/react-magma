@@ -45,9 +45,11 @@ function getMinWidth(
   return breakpointValues[nextSize];
 }
 
-export const BreakpointsContainer: React.FunctionComponent<
-  BreakpointsContainerProps
-> = ({ children, breakpoints, ...other }: BreakpointsContainerProps) => {
+export const BreakpointsContainer: React.FunctionComponent<BreakpointsContainerProps> = ({
+  children,
+  breakpoints,
+  ...other
+}: BreakpointsContainerProps) => {
   const definedBreakpoints = [];
 
   React.Children.forEach(children, (child: React.ReactElement) => {
