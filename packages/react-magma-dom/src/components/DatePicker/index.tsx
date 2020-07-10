@@ -4,7 +4,7 @@ import { CalendarMonth } from './CalendarMonth';
 import { Announce } from '../Announce';
 import { Input } from '../Input';
 import { InputType } from '../BaseInput';
-import { isAfter, isBefore, isValid } from 'date-fns';
+import { isAfter, isBefore, isValid, isSameDay } from 'date-fns';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '../../theme/styled';
 import { CalendarIcon } from '../Icon/types/CalendarIcon';
@@ -22,12 +22,15 @@ import { I18nContext } from '../../i18n';
 
 interface DatePickerProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value'> {
+  containerStyle?: React.CSSProperties;
   defaultDate?: Date;
   errorMessage?: React.ReactNode;
   helperMessage?: React.ReactNode;
   id?: string;
   inputRef?: React.RefObject<{}>;
+  inputStyle?: React.CSSProperties;
   isInverse?: boolean;
+  labelStyle?: React.CSSProperties;
   labelText: React.ReactNode;
   maxDate?: Date;
   messageStyle?: React.CSSProperties;
@@ -126,8 +129,12 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
     maxDateValue?: Date
   ): boolean {
     return (
-      (maxDateValue ? isBefore(date, maxDateValue) : true) &&
-      (minDateValue ? isAfter(date, minDateValue) : true)
+      (maxDateValue
+        ? isBefore(date, maxDateValue) || isSameDay(date, maxDateValue)
+        : true) &&
+      (minDateValue
+        ? isAfter(date, minDateValue) || isSameDay(date, minDateValue)
+        : true)
     );
   }
 
@@ -163,7 +170,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
   }
 
   function reset() {
-    setFocusedDate(new Date());
+    setFocusedDate(setDefaultFocusedDate());
     setChosenDate(null);
     setDateFocused(false);
   }
@@ -181,8 +188,14 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
     const day = new Date(value);
     const isValidDateFormat = /^\d{1,2}\/\d{1,2}\/\d{4}$/.test(value);
     const isValidDate = isValid(day);
+    const convertedMinDate = getDateFromString(props.minDate);
+    const convertedMaxDate = getDateFromString(props.maxDate);
 
-    if (isValidDateFormat && isValidDate) {
+    if (
+      isValidDateFormat &&
+      isValidDate &&
+      inDateRange(day, convertedMinDate, convertedMaxDate)
+    ) {
       handleDateChange(day, event);
     } else {
       reset && typeof reset === 'function' && reset();
