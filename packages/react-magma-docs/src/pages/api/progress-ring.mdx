@@ -11,7 +11,43 @@ import { SimplePropsTable } from '../../components/props-table'
 ## Basic Usage
 
 ```.jsx
- <ProgressRing radius={30} progress={20} stroke={5} />
+(props) => {
+    const [percentage, setPercentage] = React.useState(0);
+
+    React.useEffect(() => {
+       const timer1 = setTimeout(() => {
+        setPercentage(20);
+      }, 2000);
+
+      const timer2 = setTimeout(() => {
+        setPercentage(40);
+      }, 4000);
+
+      const timer3 = setTimeout(() => {
+        setPercentage(60);
+      }, 6000);
+
+      const timer4 = setTimeout(() => {
+        setPercentage(80);
+      }, 8000);
+
+      const timer5 = setTimeout(() => {
+        setPercentage(100);
+      }, 10000);
+
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+        clearTimeout(timer3);
+        clearTimeout(timer4);
+        clearTimeout(timer5);
+      }
+    }, [])
+
+    return (
+        <ProgressRing percentage={percentage} />
+      )
+  }
 ```
 
 ## Progress Ring Props
@@ -20,6 +56,38 @@ import { SimplePropsTable } from '../../components/props-table'
 
 <SimplePropsTable
   propertyValues={{
+    color: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Color of the ring outline',
+      defaultValue: 'primary',
+    },
+    percentage: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'The percentage of which the ring is filled',
+      defaultValue: '0',
+    },
+    size: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'Radius of the ring in pixels',
+      defaultValue: '30',
+    },
+    strokeWidth: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'Thickness of the ring outline in pixels',
+      defaultValue: '3',
+    },
     testId: {
       type: {
         name: 'string',
