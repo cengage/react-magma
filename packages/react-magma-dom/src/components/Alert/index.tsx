@@ -308,34 +308,19 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
     const [percentage, setPercentage] = React.useState(0);
 
     React.useEffect(() => {
-      const timer1 = setTimeout(() => {
-        setPercentage(20);
-      }, 1000);
+      if (hasTimerRing && toastDuration) {
+        const intervalDuration = toastDuration / 10;
+        const interval = setInterval(() => {
+          setPercentage(percentage + 10);
+        }, intervalDuration);
 
-      const timer2 = setTimeout(() => {
-        setPercentage(40);
-      }, 2000);
+        if (percentage >= 100) {
+          clearInterval(interval);
+        }
 
-      const timer3 = setTimeout(() => {
-        setPercentage(60);
-      }, 3000);
-
-      const timer4 = setTimeout(() => {
-        setPercentage(80);
-      }, 4000);
-
-      const timer5 = setTimeout(() => {
-        setPercentage(100);
-      }, 5000);
-
-      return () => {
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-        clearTimeout(timer3);
-        clearTimeout(timer4);
-        clearTimeout(timer5);
-      };
-    }, []);
+        return () => clearInterval(interval);
+      }
+    }, [percentage]);
 
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);

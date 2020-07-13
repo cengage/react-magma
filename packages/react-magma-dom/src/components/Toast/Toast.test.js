@@ -71,16 +71,16 @@ describe('Toast', () => {
     render(<Toast onDismiss={onDismiss}>Toast Content</Toast>);
 
     await act(async () => {
-      jest.runAllTimers();
+      jest.advanceTimersByTime(6000);
     });
 
     expect(onDismiss).toHaveBeenCalled();
   });
 
-  it('should use passed in timeout duration', () => {
+  it('should use passed in timeout duration plus the transition time', () => {
     render(<Toast toastDuration={1000}>Toast Content</Toast>);
 
-    expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 1000);
+    expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 1500);
   });
 
   it('should have a dismissible toast', () => {
@@ -102,7 +102,7 @@ describe('Toast', () => {
     fireEvent.click(button);
 
     await act(async () => {
-      jest.runAllTimers();
+      jest.runOnlyPendingTimers();
     });
 
     expect(onDismiss).toHaveBeenCalled();
@@ -120,7 +120,7 @@ describe('Toast', () => {
     fireEvent.mouseOver(toast);
 
     await act(async () => {
-      jest.runAllTimers();
+      jest.advanceTimersByTime(6000);
     });
 
     expect(onDismiss).not.toHaveBeenCalled();
@@ -128,7 +128,7 @@ describe('Toast', () => {
     fireEvent.mouseLeave(toast);
 
     await act(async () => {
-      jest.runAllTimers();
+      jest.advanceTimersByTime(6000);
     });
 
     expect(onDismiss).toHaveBeenCalled();
@@ -146,12 +146,12 @@ describe('Toast', () => {
     const toast = getByText(toastContent);
 
     fireEvent.mouseOver(toast);
-    jest.runAllTimers();
+    jest.runOnlyPendingTimers();
 
     expect(onDismiss).not.toHaveBeenCalled();
 
     fireEvent.mouseLeave(toast);
-    jest.runAllTimers();
+    jest.runOnlyPendingTimers();
 
     expect(onDismiss).not.toHaveBeenCalled();
   });
@@ -176,7 +176,7 @@ describe('Toast', () => {
     fireEvent.mouseOver(toast);
 
     await act(async () => {
-      jest.runAllTimers();
+      jest.runOnlyPendingTimers();
     });
 
     expect(onMouseEnter).toHaveBeenCalled();
@@ -184,7 +184,7 @@ describe('Toast', () => {
     fireEvent.mouseLeave(toast);
 
     await act(async () => {
-      jest.runAllTimers();
+      jest.runOnlyPendingTimers();
     });
 
     expect(onMouseLeave).toHaveBeenCalled();
