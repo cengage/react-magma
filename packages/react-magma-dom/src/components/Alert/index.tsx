@@ -200,7 +200,7 @@ const IconWrapper = styled.span<{ isToast?: boolean }>`
   }
 `;
 
-const ProgressRingWrapper = styled.div<{ isToast?: boolean }>`
+const ProgressRingWrapper = styled.div`
   opacity: 0.7;
   position: absolute;
   top: 6px;
@@ -358,7 +358,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
           {isDismissible && (
             <DismissibleIconWrapper variant={variant} theme={theme}>
               {hasTimerRing && (
-                <ProgressRingWrapper isToast={isToast}>
+                <ProgressRingWrapper>
                   <ProgressRing
                     color={
                       variant === AlertVariant.warning

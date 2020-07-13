@@ -172,6 +172,34 @@ describe('Alert', () => {
     );
   });
 
+  it('should render a close button with a progress ring', () => {
+    const { container } = render(
+      <Alert hasTimerRing isDismissible>
+        Test Alert Text
+      </Alert>
+    );
+
+    expect(container.querySelector('circle')).toBeInTheDocument();
+    expect(container.querySelector('circle')).toHaveAttribute(
+      'stroke',
+      magma.colors.neutral08
+    );
+  });
+
+  it('should render a close button with a progress ring with the warning style', () => {
+    const { container } = render(
+      <Alert hasTimerRing isDismissible variant="warning">
+        Test Alert Text
+      </Alert>
+    );
+
+    expect(container.querySelector('circle')).toBeInTheDocument();
+    expect(container.querySelector('circle')).toHaveAttribute(
+      'stroke',
+      magma.colors.neutral01
+    );
+  });
+
   describe('Variants', () => {
     it('should render an alert with info variant', () => {
       uuid.mockReturnValue('auto-generated-id');
