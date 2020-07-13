@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { Alert, AlertProps } from '../Alert';
+import { Alert, AlertProps, transitionDuration } from '../Alert';
 import { useGenerateId } from '../../utils';
 import { ToastsContext } from './ToastsContainer';
 
@@ -50,9 +50,10 @@ export const Toast: React.FunctionComponent<ToastProps> = (
     id: defaultId,
     testId,
     variant,
-    isDismissible,
+    disableAutoDismiss,
     children,
     containerStyle,
+    toastDuration,
     ...other
   } = props;
 
@@ -86,10 +87,11 @@ export const Toast: React.FunctionComponent<ToastProps> = (
 
   function setAutoHideTimer(duration = DEFAULT_TOAST_DURATION) {
     clearTimeout(timerAutoHide.current);
+    const totalDuration = duration + transitionDuration;
 
     timerAutoHide.current = setTimeout(() => {
       dismissToast();
-    }, duration);
+    }, totalDuration);
   }
 
   function handlePause() {
@@ -157,12 +159,14 @@ export const Toast: React.FunctionComponent<ToastProps> = (
       <Alert
         {...other}
         forceDismiss={clearTimeoutAndDismiss}
+        hasTimerRing={!disableAutoDismiss}
         id={id}
-        isDismissible={isDismissible}
+        isDismissible
         isDismissed={isDismissed}
         isToast
         onDismiss={props.onDismiss}
         style={{ ...alertStyle }}
+        toastDuration={toastDuration ? toastDuration : DEFAULT_TOAST_DURATION}
         variant={variant}
       >
         {children}

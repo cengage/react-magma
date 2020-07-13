@@ -10,6 +10,7 @@ import { BlockedIcon } from '../Icon/types/BlockedIcon';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
+import { ProgressRing } from '../ProgressRing';
 import { useGenerateId } from '../../utils';
 import { I18nContext } from '../../i18n';
 
@@ -31,6 +32,7 @@ export enum AlertVariant {
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   closeAriaLabel?: string;
   forceDismiss?: () => void;
+  hasTimerRing?: boolean;
   isExiting?: boolean;
   isDismissed?: boolean;
   isDismissible?: boolean;
@@ -39,6 +41,7 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   onDismiss?: () => void;
   ref?: any;
   testId?: string;
+  toastDuration?: number;
   variant?: AlertVariant;
 }
 
@@ -197,6 +200,13 @@ const IconWrapper = styled.span<{ isToast?: boolean }>`
   }
 `;
 
+const ProgressRingWrapper = styled.div<{ isToast?: boolean }>`
+  opacity: 0.7;
+  position: absolute;
+  top: 6px;
+  right: 2px;
+`;
+
 const DismissibleIconWrapper = styled.span<AlertProps>`
   ${IconWrapperStyles}
 `;
@@ -258,6 +268,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
       children,
       closeAriaLabel,
       forceDismiss,
+      hasTimerRing,
       id: defaultId,
       isDismissed,
       isDismissible,
@@ -266,6 +277,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
       isToast,
       onDismiss,
       testId,
+      toastDuration,
       variant,
       ...other
     }: AlertProps,
@@ -293,6 +305,38 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
       setIsExiting(true);
     }
 
+    const [percentage, setPercentage] = React.useState(0);
+
+    React.useEffect(() => {
+      const timer1 = setTimeout(() => {
+        setPercentage(20);
+      }, 1000);
+
+      const timer2 = setTimeout(() => {
+        setPercentage(40);
+      }, 2000);
+
+      const timer3 = setTimeout(() => {
+        setPercentage(60);
+      }, 3000);
+
+      const timer4 = setTimeout(() => {
+        setPercentage(80);
+      }, 4000);
+
+      const timer5 = setTimeout(() => {
+        setPercentage(100);
+      }, 5000);
+
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+        clearTimeout(timer3);
+        clearTimeout(timer4);
+        clearTimeout(timer5);
+      };
+    }, []);
+
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
 
@@ -313,12 +357,25 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
           <AlertContents theme={theme}>{children}</AlertContents>
           {isDismissible && (
             <DismissibleIconWrapper variant={variant} theme={theme}>
+              {hasTimerRing && (
+                <ProgressRingWrapper isToast={isToast}>
+                  <ProgressRing
+                    color={
+                      variant === AlertVariant.warning
+                        ? theme.colors.neutral01
+                        : theme.colors.neutral08
+                    }
+                    size={21}
+                    percentage={percentage}
+                  />
+                </ProgressRingWrapper>
+              )}
               <DismissButton
                 alertVariant={variant}
                 aria-label={
                   closeAriaLabel ? closeAriaLabel : i18n.alert.dismissAriaLabel
                 }
-                icon={<CrossIcon size={13} />}
+                icon={<CrossIcon size={hasTimerRing ? 10 : 13} />}
                 isInverse
                 onClick={forceDismiss || handleDismiss}
                 theme={theme}

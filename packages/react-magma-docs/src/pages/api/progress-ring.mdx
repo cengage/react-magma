@@ -3,12 +3,20 @@ title: 'Progress Ring'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { ProgressRing } from 'react-magma-dom'
+import { ProgressRing, magma } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 
 # Progress Ring
 
 ## Basic Usage
+
+```.jsx
+    <ProgressRing percentage={40} />
+```
+
+## Percentage
+
+The `percentage` prop is used to display how much of the Ring should be filled in. The default value is 0. This value can be adjusted dynamically.
 
 ```.jsx
 (props) => {
@@ -17,23 +25,23 @@ import { SimplePropsTable } from '../../components/props-table'
     React.useEffect(() => {
        const timer1 = setTimeout(() => {
         setPercentage(20);
-      }, 2000);
+      }, 1000);
 
       const timer2 = setTimeout(() => {
         setPercentage(40);
-      }, 4000);
+      }, 2000);
 
       const timer3 = setTimeout(() => {
         setPercentage(60);
-      }, 6000);
+      }, 3000);
 
       const timer4 = setTimeout(() => {
         setPercentage(80);
-      }, 8000);
+      }, 4000);
 
       const timer5 = setTimeout(() => {
         setPercentage(100);
-      }, 10000);
+      }, 5000);
 
       return () => {
         clearTimeout(timer1);
@@ -48,6 +56,12 @@ import { SimplePropsTable } from '../../components/props-table'
         <ProgressRing percentage={percentage} />
       )
   }
+```
+
+## Custom Appearance
+
+```.jsx
+    <ProgressRing color={magma.colors.success} size={50} percentage={40} strokeWidth={5} />
 ```
 
 ## Progress Ring Props
@@ -100,5 +114,5 @@ import { SimplePropsTable } from '../../components/props-table'
 />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ ProgressRing }} />
+  <ScopeableLayout {...props} components={{ ProgressRing, magma }} />
 )
