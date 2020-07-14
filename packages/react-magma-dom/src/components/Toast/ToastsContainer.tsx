@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-interface ToastsContainerProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ToastsContainerProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   bottomOffset?: number;
   toastsArray?: any;
   testId?: string;
