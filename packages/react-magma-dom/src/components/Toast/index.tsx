@@ -44,6 +44,8 @@ export const Toast: React.FunctionComponent<ToastProps> = (
 ) => {
   const timerAutoHide = React.useRef<any>();
   const [isDismissed, setIsDismissed] = React.useState<boolean>(false);
+  const [isPaused, setIsPaused] = React.useState<boolean>(false);
+  const [timerTimeRemaining, setTimerTimeRemaining] = React.useState<number>();
 
   const {
     alertStyle,
@@ -62,6 +64,8 @@ export const Toast: React.FunctionComponent<ToastProps> = (
   const lastFocus = React.useRef<any>();
 
   const { bottomOffset, toastsArray } = React.useContext(ToastsContext);
+
+  const timerStartTime = Date.now();
 
   function dismissToast() {
     setIsDismissed(true);
@@ -95,11 +99,23 @@ export const Toast: React.FunctionComponent<ToastProps> = (
   }
 
   function handlePause() {
+    console.log('handle Pause timerTimeRemaining', timerTimeRemaining);
+    const duration = timerTimeRemaining
+      ? timerTimeRemaining
+      : toastDuration
+      ? toastDuration
+      : DEFAULT_TOAST_DURATION;
+    const timeRemaining = duration - (Date.now() - timerStartTime);
+
     clearTimeout(timerAutoHide.current);
+    setTimerTimeRemaining(timeRemaining);
+
+    setIsPaused(true);
   }
 
   function handleResume() {
-    setAutoHideTimer((props.toastDuration || DEFAULT_TOAST_DURATION) * 0.5);
+    setAutoHideTimer(timerTimeRemaining);
+    setIsPaused(false);
   }
 
   function handleMouseEnter(event: React.SyntheticEvent) {
@@ -163,6 +179,7 @@ export const Toast: React.FunctionComponent<ToastProps> = (
         id={id}
         isDismissible
         isDismissed={isDismissed}
+        isPaused={isPaused}
         isToast
         onDismiss={props.onDismiss}
         style={{ ...alertStyle }}

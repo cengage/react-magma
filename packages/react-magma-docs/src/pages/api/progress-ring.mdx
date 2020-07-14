@@ -11,68 +11,25 @@ import { SimplePropsTable } from '../../components/props-table'
 ## Basic Usage
 
 ```.jsx
-    <ProgressRing percentage={40} />
-```
+  (props) =>{
+    const [isActive, setIsActive] = React.useState(false);
 
-## Percentage
-
-The `percentage` prop is used to display how much of the Ring should be filled in. The default value is 0. This value can be adjusted dynamically.
-
-```.jsx
-(props) => {
-    const [percentage, setPercentage] = React.useState(0);
-
-    function runTimers() {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
-      clearTimeout(timer3);
-      clearTimeout(timer4);
-      clearTimeout(timer5);
-
-      setPercentage(0);
-
-     const timer1 = setTimeout(() => {
-        setPercentage(20);
-      }, 1000);
-
-      const timer2 = setTimeout(() => {
-        setPercentage(40);
-      }, 2000);
-
-      const timer3 = setTimeout(() => {
-        setPercentage(60);
-      }, 3000);
-
-      const timer4 = setTimeout(() => {
-        setPercentage(80);
-      }, 4000);
-
-      const timer5 = setTimeout(() => {
-        setPercentage(100);
-      }, 5000);
-
-      return () => {
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-        clearTimeout(timer3);
-        clearTimeout(timer4);
-        clearTimeout(timer5);
-      }
+    function toggleTimer() {
+      setIsActive(!isActive)
     }
 
     return (
-        <>
-          <Button onClick={runTimers}>Start Progress Ring</Button>
-          <ProgressRing percentage={percentage} />
-        </>
-      )
-  }
+      <>
+        <Button onClick={toggleTimer}>{isActive ? 'Pause' : 'Start'} Timer</Button>
+        <ProgressRing isActive={isActive} />
+      </>
+    )}
 ```
 
 ## Custom Appearance
 
 ```.jsx
-    <ProgressRing color={magma.colors.success01} size={50} percentage={40} strokeWidth={5} />
+    <ProgressRing color={magma.colors.success01} size={50} strokeWidth={5} />
 ```
 
 ## Progress Ring Props

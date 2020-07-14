@@ -5,6 +5,8 @@ import { ThemeContext } from '../../theme/ThemeContext';
 export interface ProgressRingProps
   extends React.HTMLAttributes<HTMLDivElement> {
   color?: string;
+  duration?: number;
+  isActive?: boolean;
   percentage?: number;
   size?: number;
   strokeWidth?: number;
@@ -21,7 +23,8 @@ export const ProgressRing: React.FunctionComponent<ProgressRingProps> = React.fo
   (
     {
       color,
-      percentage,
+      duration = 5000,
+      isActive,
       size,
       strokeWidth,
       testId,
@@ -31,6 +34,27 @@ export const ProgressRing: React.FunctionComponent<ProgressRingProps> = React.fo
   ) => {
     const radius = size ? size : 30;
     const strokeW = strokeWidth ? strokeWidth : 3;
+    const [percentage, setPercentage] = React.useState(100);
+
+    React.useEffect(() => {
+      const intervalDuration = duration / 50;
+
+      let interval = null;
+
+      if (isActive) {
+        interval = setInterval(() => {
+          setPercentage(percentage - 2);
+        }, intervalDuration);
+
+        if (percentage <= 0) {
+          clearInterval(interval);
+        }
+      } else {
+        clearInterval(interval);
+      }
+
+      return () => clearInterval(interval);
+    }, [percentage, isActive]);
 
     const normalizedRadius = radius - strokeW * 2;
     const circumference = normalizedRadius * 2 * Math.PI;
@@ -42,14 +66,14 @@ export const ProgressRing: React.FunctionComponent<ProgressRingProps> = React.fo
       <div {...other} ref={ref} data-testid={testId}>
         <svg height={radius * 2} width={radius * 2}>
           <Circle
-            stroke={color ? color : theme.colors.neutral01}
+            cx={radius}
+            cy={radius}
             fill="transparent"
+            r={normalizedRadius}
+            stroke={color ? color : theme.colors.neutral01}
             strokeWidth={strokeW}
             strokeDasharray={`${circumference} ${circumference}`}
             style={{ strokeDashoffset }}
-            r={normalizedRadius}
-            cx={radius}
-            cy={radius}
           />
         </svg>
       </div>

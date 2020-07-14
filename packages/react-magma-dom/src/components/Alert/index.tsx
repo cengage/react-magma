@@ -37,6 +37,7 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   isDismissed?: boolean;
   isDismissible?: boolean;
   isInverse?: boolean;
+  isPaused?: boolean;
   isToast?: boolean;
   onDismiss?: () => void;
   ref?: any;
@@ -274,6 +275,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
       isDismissible,
       isExiting: externalIsExiting,
       isInverse,
+      isPaused,
       isToast,
       onDismiss,
       testId,
@@ -305,23 +307,6 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
       setIsExiting(true);
     }
 
-    const [percentage, setPercentage] = React.useState(0);
-
-    React.useEffect(() => {
-      if (hasTimerRing && toastDuration) {
-        const intervalDuration = toastDuration / 50;
-        const interval = setInterval(() => {
-          setPercentage(percentage + 2);
-        }, intervalDuration);
-
-        if (percentage >= 100) {
-          clearInterval(interval);
-        }
-
-        return () => clearInterval(interval);
-      }
-    }, [percentage]);
-
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
 
@@ -350,8 +335,8 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
                         ? theme.colors.neutral01
                         : theme.colors.neutral08
                     }
+                    isActive={!isPaused}
                     size={21}
-                    percentage={100 - percentage}
                   />
                 </ProgressRingWrapper>
               )}
