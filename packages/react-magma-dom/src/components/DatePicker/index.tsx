@@ -20,7 +20,7 @@ import {
 import { useGenerateId, Omit } from '../../utils';
 import { I18nContext } from '../../i18n';
 
-interface DatePickerProps
+export interface DatePickerProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value'> {
   containerStyle?: React.CSSProperties;
   defaultDate?: Date;
