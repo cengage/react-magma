@@ -309,9 +309,9 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
 
     React.useEffect(() => {
       if (hasTimerRing && toastDuration) {
-        const intervalDuration = toastDuration / 10;
+        const intervalDuration = toastDuration / 50;
         const interval = setInterval(() => {
-          setPercentage(percentage + 10);
+          setPercentage(percentage + 2);
         }, intervalDuration);
 
         if (percentage >= 100) {
@@ -351,7 +351,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
                         : theme.colors.neutral08
                     }
                     size={21}
-                    percentage={percentage}
+                    percentage={100 - percentage}
                   />
                 </ProgressRingWrapper>
               )}
