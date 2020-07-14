@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.54](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.53...v2.0.0-beta.54) (2020-07-14)
+
+
+### Bug Fixes
+
+* **datepicker:** do not focus a typed date if out of range ([6e03fe5](http://stash.cengage.com:7999/FRONT/react-magma/commits/6e03fe5))
+* **generateid:** fix issue with id generating twice ([8ac508d](http://stash.cengage.com:7999/FRONT/react-magma/commits/8ac508d))
+* **toast:** fix extra bottom offset, remove min width for small screen ([0dd4355](http://stash.cengage.com:7999/FRONT/react-magma/commits/0dd4355))
+
+
+### Features
+
+* **datepicker:** add styles props ([252d1eb](http://stash.cengage.com:7999/FRONT/react-magma/commits/252d1eb))
+* **toast:** queue of multiple toasts ([63e3600](http://stash.cengage.com:7999/FRONT/react-magma/commits/63e3600))
+* **toast container:** create toast container to hold multiple toasts ([a772963](http://stash.cengage.com:7999/FRONT/react-magma/commits/a772963))
+* **toasts:** multiple toasts stacked vertically ([28a6cd0](http://stash.cengage.com:7999/FRONT/react-magma/commits/28a6cd0))
+* **toasts:** stack toasts vertically using ref for toastarray ([784bea2](http://stash.cengage.com:7999/FRONT/react-magma/commits/784bea2))
+* **toasts:** style tweaks for small screen toasts, bottom offset ([0513855](http://stash.cengage.com:7999/FRONT/react-magma/commits/0513855))
+
+
+
+
+
 # [2.0.0-beta.53](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.52...v2.0.0-beta.53) (2020-07-01)
 
 **Note:** Version bump only for package react-magma-docs

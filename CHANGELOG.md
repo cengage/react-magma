@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.54](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.53...v2.0.0-beta.54) (2020-07-14)
+
+
+### Bug Fixes
+
+* **datepicker:** do not focus a typed date if out of range ([6e03fe5](http://stash.cengage.com:7999/FRONT/react-magma/commits/6e03fe5))
+* **generateid:** fix issue with id generating twice ([8ac508d](http://stash.cengage.com:7999/FRONT/react-magma/commits/8ac508d))
+* **toast:** fix extra bottom offset, remove min width for small screen ([0dd4355](http://stash.cengage.com:7999/FRONT/react-magma/commits/0dd4355))
+
+
+### Features
+
+* **alert:** font size 14px on sm screen, fix alert style ([4991141](http://stash.cengage.com:7999/FRONT/react-magma/commits/4991141))
+* **banner:** banner styles ([b12d5e9](http://stash.cengage.com:7999/FRONT/react-magma/commits/b12d5e9))
+* **datepicker:** add styles props ([252d1eb](http://stash.cengage.com:7999/FRONT/react-magma/commits/252d1eb))
+* **toast:** header, visual for multiple toasts ([7d67d78](http://stash.cengage.com:7999/FRONT/react-magma/commits/7d67d78))
+* **toast:** queue of multiple toasts ([63e3600](http://stash.cengage.com:7999/FRONT/react-magma/commits/63e3600))
+* **toast:** return focus to triggered element if still in dom ([fab93fa](http://stash.cengage.com:7999/FRONT/react-magma/commits/fab93fa))
+* **toast container:** create toast container to hold multiple toasts ([a772963](http://stash.cengage.com:7999/FRONT/react-magma/commits/a772963))
+* **toasts:** multiple toasts stacked vertically ([28a6cd0](http://stash.cengage.com:7999/FRONT/react-magma/commits/28a6cd0))
+* **toasts:** stack toasts vertically using ref for toastarray ([784bea2](http://stash.cengage.com:7999/FRONT/react-magma/commits/784bea2))
+* **toasts:** style tweaks for small screen toasts, bottom offset ([0513855](http://stash.cengage.com:7999/FRONT/react-magma/commits/0513855))
+
+
+
+
+
 # [2.0.0-beta.53](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.52...v2.0.0-beta.53) (2020-07-01)
 
 **Note:** Version bump only for package react-magma
