@@ -11,10 +11,13 @@ import { SimplePropsTable } from '../../components/props-table'
 # Toasts
 
 `Toast` components use the <Link to="/api/alert">Alert component</Link> internally for it's content and styles. Any props that can be passed to an `Alert` can be passed to a `Toast` component.
+Toasts are used to display non-critical information to users.
 
 ## Basic Usage
 
 Variants for toasts include `info`, `success`, `warning`, and `danger`, with `info` being the default value.
+
+It is recommended that `warning` and `danger` toasts do not auto-dismiss, so that users have time to process the information in them.
 
 ```.jsx
   (props) => {
@@ -33,8 +36,8 @@ Variants for toasts include `info`, `success`, `warning`, and `danger`, with `in
       {showDefaultToast && <Toast onDismiss={() => setShowDefaultToast(false)}>Default Toast</Toast>}
       {showInfoToast && <Toast variant="info" onDismiss={() => setShowInfoToast(false)}>Info Toast</Toast>}
       {showSuccessToast && <Toast variant="success" onDismiss={() => setShowSuccessToast(false)}>Success Toast</Toast>}
-      {showWarningToast && <Toast variant="warning" onDismiss={() => setShowWarningToast(false)}>Warning Toast</Toast>}
-      {showDangerToast && <Toast variant="danger" onDismiss={() => setShowDangerToast(false)}>Danger Toast</Toast>}
+      {showWarningToast && <Toast disableAutoDismiss variant="warning" onDismiss={() => setShowWarningToast(false)}>Warning Toast</Toast>}
+      {showDangerToast && <Toast disableAutoDismiss variant="danger" onDismiss={() => setShowDangerToast(false)}>Danger Toast</Toast>}
       </>)
   }
 ```
@@ -83,7 +86,7 @@ appearing on screen at once as much as possible.
         {showToast2 && <Toast id="toast2" onDismiss={() => setShowToast2(false)}>This is the second toast which is longer than either toast one or three</Toast>}
 
         <Button onClick={() => setShowToast3(true)} color="danger">Show Toast 3</Button>
-        {showToast3 && <Toast id="toast3" variant="danger" onDismiss={() => setShowToast3(false)}>Toast three</Toast>}
+        {showToast3 && <Toast disableAutoDismiss id="toast3" variant="danger" onDismiss={() => setShowToast3(false)}>Toast three</Toast>}
       </Announce>
     </ToastsContainer>)
   }
