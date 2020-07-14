@@ -49,35 +49,62 @@ export { DropdownButton } from './components/Dropdown/DropdownButton';
 export { FormGroup, FormGroupProps } from './components/FormGroup';
 export { Heading, HeadingProps } from './components/Heading';
 export { HideAtBreakpoint } from './components/HideAtBreakpoint';
-export { IconButton, ButtonIconPosition } from './components/IconButton';
-export { IndeterminateCheckbox } from './components/IndeterminateCheckbox';
-export { Input } from './components/Input';
+export { HyperLink, HyperLinkProps } from './components/HyperLink';
+export {
+  IconButton,
+  ButtonIconPosition,
+  IconButtonProps
+} from './components/IconButton';
+export {
+  IndeterminateCheckbox,
+  IndeterminateCheckboxProps
+} from './components/IndeterminateCheckbox';
+export { Input, InputProps } from './components/Input';
 export { Label } from './components/Label';
 export { LinkButton } from './components/LinkButton';
-export { LoadingIndicator } from './components/LoadingIndicator';
-export { RadioGroup } from './components/RadioGroup';
-export { Radio, RadioTextPosition } from './components/Radio';
+export {
+  LoadingIndicator,
+  LoadingIndicatorProps
+} from './components/LoadingIndicator';
+export { PasswordInput, PasswordInputProps } from './components/PasswordInput';
+export {
+  ProgressBar,
+  ProgressBarColor,
+  ProgressBarProps
+} from './components/ProgressBar';
+export { RadioGroup, RadioGroupProps } from './components/RadioGroup';
+export { Radio, RadioTextPosition, RadioProps } from './components/Radio';
+export { Modal, ModalSize, ModalProps } from './components/Modal';
+export { Search, SearchProps } from './components/Search';
 
 export { Select } from './components/Select';
 export { AsyncSelect } from './components/AsyncSelect';
 export { CreatableSelect } from './components/CreatableSelect';
 export { AsyncCreatableSelect } from './components/AsyncCreatableSelect';
 
-export { PasswordInput } from './components/PasswordInput';
-export { Search } from './components/Search';
-export { SkipLink } from './components/SkipLink';
-export { SkipLinkContent } from './components/SkipLinkContent';
-export { Spinner } from './components/Spinner';
-export { ToastsContainer } from './components/Toast/ToastsContainer';
-export { Toast } from './components/Toast';
-export { Toggle, ToggleTextPosition } from './components/Toggle';
-export { Tooltip, EnumTooltipPosition } from './components/Tooltip';
-export { VisuallyHidden } from './components/VisuallyHidden';
-export { Modal, ModalSize } from './components/Modal';
-export { HyperLink } from './components/HyperLink';
-export { ProgressBar, ProgressBarColor } from './components/ProgressBar';
-export { Textarea } from './components/Textarea';
-export { TimePicker } from './components/TimePicker';
+export { SkipLink, SkipLinkProps } from './components/SkipLink';
+export {
+  SkipLinkContent,
+  SkipLinkContentProps
+} from './components/SkipLinkContent';
+export { Spinner, SpinnerProps } from './components/Spinner';
+export {
+  ToastsContainer,
+  ToastsContainerProps
+} from './components/Toast/ToastsContainer';
+export { Toast, ToastProps } from './components/Toast';
+export { Toggle, ToggleTextPosition, ToggleProps } from './components/Toggle';
+export {
+  Tooltip,
+  EnumTooltipPosition,
+  TooltipProps
+} from './components/Tooltip';
+export { Textarea, TextareaProps } from './components/Textarea';
+export { TimePicker, TimePickerProps } from './components/TimePicker';
+export {
+  VisuallyHidden,
+  VisuallyHiddenProps
+} from './components/VisuallyHidden';
 
 export { magma } from './theme/magma';
 export { GlobalStyles } from './theme/GlobalStyles';
