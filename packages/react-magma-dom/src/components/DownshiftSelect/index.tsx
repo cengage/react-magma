@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { UseSelectProps, UseComboboxProps } from 'downshift';
+import { UseSelectProps, UseComboboxProps, UseComboboxState } from 'downshift';
 import { XOR } from '../../utils';
 
 import { Select } from './Select';
 import { Combobox } from './Combobox';
 import { InputMessage } from '../Input/InputMessage';
 
-export type DownshiftOption = string;
+export type DownshiftOption = string | { item: string; label: string };
 
 interface InternalSelectInterface {
   errorMessage?: React.ReactNode;
@@ -27,6 +27,12 @@ export interface DownshiftSelectInterface
 export interface DownshiftComboboxInterface
   extends UseComboboxProps<DownshiftOption>,
     InternalSelectInterface {
+  isLoading?: boolean;
+  onInputChange?: (changes: Partial<UseComboboxState<DownshiftOption>>) => void;
+  onInputValueChange?: (
+    changes: Partial<UseComboboxState<DownshiftOption>>,
+    updateInputItems?: React.Dispatch<React.SetStateAction<DownshiftOption[]>>
+  ) => void;
   type: 'combo';
 }
 
@@ -43,12 +49,21 @@ export function instanceOfCombobox(
 
 export const DownshiftSelect = (props: SelectInterface) => {
   const { isInverse, errorMessage, messageStyle, helperMessage } = props;
+
+  function itemToString(item: DownshiftOption) {
+    return item && typeof item === 'string'
+      ? item
+      : item && typeof item === 'object'
+      ? item.label
+      : '';
+  }
+
   return (
     <>
       {instanceOfCombobox(props) ? (
-        <Combobox {...props} />
+        <Combobox itemToString={itemToString} {...props} />
       ) : (
-        <Select {...props} />
+        <Select itemToString={itemToString} {...props} />
       )}
       <InputMessage
         isInverse={isInverse}

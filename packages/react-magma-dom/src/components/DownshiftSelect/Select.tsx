@@ -19,7 +19,7 @@ import {
 } from './shared';
 
 export const Select = (props: DownshiftSelectInterface) => {
-  const { items, labelText, isClearable, isDisabled } = props;
+  const { itemToString, items, labelText, isClearable, isDisabled } = props;
   const {
     isOpen,
     selectedItem,
@@ -52,7 +52,7 @@ export const Select = (props: DownshiftSelectInterface) => {
         tabIndex={0}
       >
         <SelectText data-testid="selectedItemText">
-          {selectedItem || 'Select...'}
+          {itemToString(selectedItem) || 'Select...'}
         </SelectText>
         {isClearable && selectedItem && (
           <IconButton
@@ -71,16 +71,19 @@ export const Select = (props: DownshiftSelectInterface) => {
       <StyledCard hasDropShadow isOpen={isOpen}>
         <StyledList isOpen={isOpen} {...getMenuProps()}>
           {isOpen &&
-            items.map((item, index) => (
-              <StyledItem
-                key={`${item}${index}`}
-                isFocused={highlightedIndex === index}
-                {...getItemProps({ item, index })}
-                theme={theme}
-              >
-                {item}
-              </StyledItem>
-            ))}
+            items.map((item, index) => {
+              const itemString = itemToString(item);
+              return (
+                <StyledItem
+                  key={`${itemString}${index}`}
+                  isFocused={highlightedIndex === index}
+                  {...getItemProps({ item, index })}
+                  theme={theme}
+                >
+                  {itemString}
+                </StyledItem>
+              );
+            })}
         </StyledList>
       </StyledCard>
     </SelectContainer>

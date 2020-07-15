@@ -36,6 +36,44 @@ import { Link } from 'gatsby'
   }
 ```
 
+## Custom Items
+
+By default each component accepts an array of `items` with either a `string` or an `object` with the shape `{item: string; label: string;}`
+for each `item`. If you need to pass in a custom shape for your `items` you can pass in an additional prop named `itemToString`
+which is a function that returns the string representation of your `item`.
+
+**WARNING** Your function must include a `null` check.
+
+```.jsx
+  () => {
+    function itemToString(item) {
+      return item ? item.representation : ''
+    }
+
+    return <>
+      <DownshiftSelect
+        id="itemToStringId"
+        name="itemToString"
+        labelText="Item to String"
+        items={[{
+          id: 1,
+          actual: 'red',
+          representation: 'Red'
+        }, {
+          id: 2,
+          actual: 'blue',
+          representation: 'Blue'
+        }, {
+          id: 3,
+          actual: 'green',
+          representation: 'Green'
+        }]}
+        itemToString={itemToString}
+      />
+    </>
+  }
+```
+
 ## Inital State
 
 Set inital state using the `initialIsOpen`, `initalSelectedItem`, and `initialHighlightedIndex` props.
@@ -268,6 +306,45 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
       type='combo'
     />
   </>
+```
+
+## Async
+
+```.jsx
+  () => {
+    const [isLoading, updateIsLoading] = React.useState(false);
+
+    function loadItems(inputValue) {
+      return new Promise(resolve => resolve(['Yellow', 'Pink', 'Perrywinkle']))
+    }
+
+    function handleInputValueChange(changes, setInputItems) {
+      const { inputValue } = changes;
+
+      updateIsLoading(true);
+
+      setTimeout(() => {
+        updateIsLoading(false);
+        loadItems(inputValue).then((items) => {
+          setInputItems(items.filter(item =>
+            item
+              .toLowerCase()
+              .startsWith(inputValue.toLowerCase())
+          ))
+        })
+      }, 1000)
+    }
+
+    return <DownshiftSelect
+      id="asyncId"
+      name="async"
+      labelText="Async"
+      isLoading={isLoading}
+      items={['Red', 'Blue', 'Green']}
+      type='combo'
+      onInputValueChange={handleInputValueChange}
+    />
+  }
 ```
 
 ## Select Props
