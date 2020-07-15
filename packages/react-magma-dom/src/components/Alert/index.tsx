@@ -336,7 +336,6 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
                         : theme.colors.neutral08
                     }
                     isActive={!isPaused}
-                    size={21}
                   />
                 </ProgressRingWrapper>
               )}

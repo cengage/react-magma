@@ -146,12 +146,12 @@ describe('Toast', () => {
     const toast = getByText(toastContent);
 
     fireEvent.mouseOver(toast);
-    jest.runOnlyPendingTimers();
+    jest.advanceTimersByTime(6000);
 
     expect(onDismiss).not.toHaveBeenCalled();
 
     fireEvent.mouseLeave(toast);
-    jest.runOnlyPendingTimers();
+    jest.advanceTimersByTime(6000);
 
     expect(onDismiss).not.toHaveBeenCalled();
   });

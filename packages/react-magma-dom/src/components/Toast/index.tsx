@@ -99,7 +99,6 @@ export const Toast: React.FunctionComponent<ToastProps> = (
   }
 
   function handlePause() {
-    console.log('handle Pause timerTimeRemaining', timerTimeRemaining);
     const duration = timerTimeRemaining
       ? timerTimeRemaining
       : toastDuration

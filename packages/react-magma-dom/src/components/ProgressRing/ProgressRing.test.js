@@ -30,8 +30,8 @@ describe('ProgressRing', () => {
     );
   });
 
-  it('should render the progress ring component with a custom size', () => {
-    const { container } = render(<ProgressRing percentage={50} size={80} />);
+  it('should render the progress ring component with a custom radius', () => {
+    const { container } = render(<ProgressRing percentage={50} radius={80} />);
 
     expect(container.querySelector('circle')).toHaveAttribute('cx', '80');
   });

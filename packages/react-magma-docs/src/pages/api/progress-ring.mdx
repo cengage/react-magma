@@ -8,7 +8,14 @@ import { SimplePropsTable } from '../../components/props-table'
 
 # Progress Ring
 
+A Progress Ring can be used to indicate to users how much time is left during a process or until something will take place. Visually, the component is a ring that starts out as full and animates as it empties.
+
+Progress Rings are used within the close button on the `Toast` component to indicate how long until the component will auto dismiss.
+
 ## Basic Usage
+
+The Progress Ring will start out as full. If the `isActive` prop is true, it will show the animation of the ring emptying out.  
+If the `isActive` prop is false, the animation will stop.
 
 ```.jsx
   (props) =>{
@@ -28,8 +35,23 @@ import { SimplePropsTable } from '../../components/props-table'
 
 ## Custom Appearance
 
+The Progress Ring can be customized by using the `color`, `radius` and `strokeWidth` props. The `color` prop is a string and changes the color of the ring.
+The `radius` prop is a number and determines the radius of the ring in pixels. The `strokeWidth` prop is a number and determines the thickness of the ring outline in pixels.
+
 ```.jsx
-    <ProgressRing color={magma.colors.success01} size={50} strokeWidth={5} />
+  (props) =>{
+    const [isActive, setIsActive] = React.useState(false);
+
+    function toggleTimer() {
+      setIsActive(!isActive)
+    }
+
+    return (
+      <>
+        <Button onClick={toggleTimer}>{isActive ? 'Pause' : 'Start'} Timer</Button>
+        <ProgressRing color={magma.colors.success01} radius={50} strokeWidth={5} isActive={isActive} />
+      </>
+    )}
 ```
 
 ## Progress Ring Props
@@ -46,21 +68,13 @@ import { SimplePropsTable } from '../../components/props-table'
       description: 'Color of the ring outline',
       defaultValue: 'primary',
     },
-    percentage: {
-      type: {
-        name: 'number',
-      },
-      required: false,
-      description: 'The percentage of which the ring is filled',
-      defaultValue: '0',
-    },
-    size: {
+    radius: {
       type: {
         name: 'number',
       },
       required: false,
       description: 'Radius of the ring in pixels',
-      defaultValue: '30',
+      defaultValue: '21',
     },
     strokeWidth: {
       type: {

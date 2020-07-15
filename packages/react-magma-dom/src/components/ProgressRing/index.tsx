@@ -8,7 +8,7 @@ export interface ProgressRingProps
   duration?: number;
   isActive?: boolean;
   percentage?: number;
-  size?: number;
+  radius?: number;
   strokeWidth?: number;
   testId?: string;
 }
@@ -25,15 +25,13 @@ export const ProgressRing: React.FunctionComponent<ProgressRingProps> = React.fo
       color,
       duration = 5000,
       isActive,
-      size,
-      strokeWidth,
+      radius = 21,
+      strokeWidth = 3,
       testId,
       ...other
     }: ProgressRingProps,
     ref: any
   ) => {
-    const radius = size ? size : 30;
-    const strokeW = strokeWidth ? strokeWidth : 3;
     const [percentage, setPercentage] = React.useState(100);
 
     React.useEffect(() => {
@@ -56,7 +54,7 @@ export const ProgressRing: React.FunctionComponent<ProgressRingProps> = React.fo
       return () => clearInterval(interval);
     }, [percentage, isActive]);
 
-    const normalizedRadius = radius - strokeW * 2;
+    const normalizedRadius = radius - strokeWidth * 2;
     const circumference = normalizedRadius * 2 * Math.PI;
     const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
@@ -71,7 +69,7 @@ export const ProgressRing: React.FunctionComponent<ProgressRingProps> = React.fo
             fill="transparent"
             r={normalizedRadius}
             stroke={color ? color : theme.colors.neutral01}
-            strokeWidth={strokeW}
+            strokeWidth={strokeWidth}
             strokeDasharray={`${circumference} ${circumference}`}
             style={{ strokeDashoffset }}
           />
