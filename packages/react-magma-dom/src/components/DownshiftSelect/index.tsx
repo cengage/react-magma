@@ -5,10 +5,12 @@ import { XOR } from '../../utils';
 import { Select } from './Select';
 import { Combobox } from './Combobox';
 import { InputMessage } from '../Input/InputMessage';
+import { DownshiftComponents } from './components';
 
 export type DownshiftOption = string | { item: string; label: string };
 
 interface InternalSelectInterface {
+  components?: DownshiftComponents;
   errorMessage?: React.ReactNode;
   helperMessage?: React.ReactNode;
   labelText: string;

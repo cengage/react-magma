@@ -215,6 +215,9 @@ These props are `defaultIsOpen`, `defaultSelectedItem`, and `defaultHighlightedI
         items={['Red', 'Blue', 'Green']}
         initialSelectedItem={'Green'}
         isClearable
+        components={{
+          ClearIndicator: (props) => <button onClick={props.onClick}>Clear</button>
+        }}
       />
 
       <DownshiftSelect

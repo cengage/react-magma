@@ -5,9 +5,6 @@ import { useSelect } from 'downshift';
 import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
 import { Label } from '../Label';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { CrossIcon } from '../Icon/types/CrossIcon';
-import { IconButton } from '../IconButton';
-import { ButtonSize, ButtonVariant } from '../Button';
 
 import {
   SelectContainer,
@@ -17,9 +14,18 @@ import {
   StyledList,
   StyledItem
 } from './shared';
+import { defaultComponents } from './components';
+import { CrossIcon, ButtonSize, ButtonVariant } from '../..';
 
 export const Select = (props: DownshiftSelectInterface) => {
-  const { itemToString, items, labelText, isClearable, isDisabled } = props;
+  const {
+    components: customComponents,
+    itemToString,
+    items,
+    labelText,
+    isClearable,
+    isDisabled
+  } = props;
   const {
     isOpen,
     selectedItem,
@@ -33,6 +39,13 @@ export const Select = (props: DownshiftSelectInterface) => {
   } = useSelect(props);
 
   const theme = React.useContext(ThemeContext);
+  const { ClearIndicator } = defaultComponents({ ...customComponents });
+
+  function defaultHandleClearIndicatorClick(event: React.SyntheticEvent) {
+    event.stopPropagation();
+
+    reset();
+  }
 
   return (
     <SelectContainer>
@@ -55,13 +68,10 @@ export const Select = (props: DownshiftSelectInterface) => {
           {itemToString(selectedItem) || 'Select...'}
         </SelectText>
         {isClearable && selectedItem && (
-          <IconButton
+          <ClearIndicator
             aria-label="reset"
             icon={<CrossIcon size={10} />}
-            onClick={e => {
-              e.stopPropagation();
-              reset();
-            }}
+            onClick={defaultHandleClearIndicatorClick}
             size={ButtonSize.small}
             variant={ButtonVariant.link}
           />
