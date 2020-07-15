@@ -134,6 +134,32 @@ describe('Toast', () => {
     expect(onDismiss).toHaveBeenCalled();
   });
 
+  it('should keep the toast up when focusing on an element in the toast and dismiss when element is blurred', async () => {
+    const onDismiss = jest.fn();
+    const toastContent = 'I am a toast';
+    const { container } = render(
+      <Toast onDismiss={onDismiss}>{toastContent}</Toast>
+    );
+
+    const closeBtn = container.querySelector('button');
+
+    fireEvent.focus(closeBtn);
+
+    await act(async () => {
+      jest.advanceTimersByTime(6000);
+    });
+
+    expect(onDismiss).not.toHaveBeenCalled();
+
+    fireEvent.blur(closeBtn);
+
+    await act(async () => {
+      jest.advanceTimersByTime(6000);
+    });
+
+    expect(onDismiss).toHaveBeenCalled();
+  });
+
   it('should not pause and resume a timer when the disableAutoDismiss flag is set to true', () => {
     const onDismiss = jest.fn();
     const toastContent = 'I am a toast';

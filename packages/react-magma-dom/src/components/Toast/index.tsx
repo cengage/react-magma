@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { Alert, AlertProps, transitionDuration } from '../Alert';
+import { getTrapElements } from '../Modal/utils';
 import { useGenerateId } from '../../utils';
 import { ToastsContext } from './ToastsContainer';
 
@@ -66,6 +67,8 @@ export const Toast: React.FunctionComponent<ToastProps> = (
   const { bottomOffset, toastsArray } = React.useContext(ToastsContext);
 
   const timerStartTime = Date.now();
+
+  const containerElement = React.useRef<any>();
 
   function dismissToast() {
     setIsDismissed(true);
@@ -162,12 +165,23 @@ export const Toast: React.FunctionComponent<ToastProps> = (
         : toastsArray.current.indexOf(id) * TOAST_HEIGHT;
   }
 
+  React.useEffect(() => {
+    if (!disableAutoDismiss) {
+      const focusableElements = getTrapElements(containerElement);
+      focusableElements.forEach(element => {
+        element.addEventListener('focus', handlePause);
+        element.addEventListener('blur', handleResume);
+      });
+    }
+  }, []);
+
   return (
     <ToastWrapper
       bottomOffsetForToast={bottomOffsetForToast}
       bottomOffsetForContainer={bottomOffset}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      ref={containerElement}
       style={containerStyle}
       data-testid={testId}
     >

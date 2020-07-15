@@ -34,7 +34,7 @@ It is recommended that `warning` and `danger` toasts do not auto-dismiss, so tha
       <Button size="small" onClick={() => setShowWarningToast(true)}>Show Warning Toast</Button>
       <Button size="small" onClick={() => setShowDangerToast(true)}>Show Danger Toast</Button>
       {showDefaultToast && <Toast onDismiss={() => setShowDefaultToast(false)}>Default Toast</Toast>}
-      {showInfoToast && <Toast variant="info" onDismiss={() => setShowInfoToast(false)}>Info Toast</Toast>}
+      {showInfoToast && <Toast variant="info" onDismiss={() => setShowInfoToast(false)}>Info Toast with <a href="#">linked element</a></Toast>}
       {showSuccessToast && <Toast variant="success" onDismiss={() => setShowSuccessToast(false)}>Success Toast</Toast>}
       {showWarningToast && <Toast disableAutoDismiss variant="warning" onDismiss={() => setShowWarningToast(false)}>Warning Toast</Toast>}
       {showDangerToast && <Toast disableAutoDismiss variant="danger" onDismiss={() => setShowDangerToast(false)}>Danger Toast</Toast>}
