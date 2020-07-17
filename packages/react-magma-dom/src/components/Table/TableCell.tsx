@@ -12,9 +12,11 @@ export interface TableCellProps
 const StyledCell = styled.td<{
   hasVerticalBorders?: boolean;
   density?: TableDensity;
+  isInverse?: boolean;
 }>`
   border-right: ${props => (props.hasVerticalBorders ? '1px solid' : 0)};
-  border-color: ${props => props.theme.colors.neutral06};
+  border-color: ${props =>
+    props.isInverse ? 'rgba(255,255,255,0.4)' : props.theme.colors.neutral06};
   display: table-cell;
   padding: ${props => {
     switch (props.density) {
@@ -46,6 +48,7 @@ export const TableCell: React.FunctionComponent<TableCellProps> = React.forwardR
         data-testid={testId}
         density={tableContext.paddingDensity}
         hasVerticalBorders={tableContext.hasVertBorders}
+        isInverse={tableContext.isInverseContainer}
         theme={theme}
       >
         {children}

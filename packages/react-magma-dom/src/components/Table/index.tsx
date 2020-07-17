@@ -1,10 +1,12 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   density?: TableDensity;
   hasVerticalBorders?: boolean;
   hasZebraStripes?: boolean;
+  isInverse?: boolean;
   ref?: any;
   testId?: string;
 }
@@ -19,17 +21,23 @@ interface TableContextInterface {
   paddingDensity?: TableDensity;
   hasVertBorders?: boolean;
   hasStripes?: boolean;
+  isInverseContainer?: boolean;
 }
 
 export const TableContext = React.createContext<TableContextInterface>({
   paddingDensity: TableDensity.normal,
   hasVertBorders: false,
-  hasStripes: false
+  hasStripes: false,
+  isInverseContainer: false
 });
 
-const StyledTable = styled.table`
+const StyledTable = styled.table<{ isInverse?: boolean }>`
   border-collapse: collapse;
   border-spacing: 0;
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral01};
   display: table;
   width: 100%;
 `;
@@ -41,6 +49,7 @@ export const Table: React.FunctionComponent<TableProps> = React.forwardRef(
       density,
       hasVerticalBorders,
       hasZebraStripes,
+      isInverse,
       testId,
       ...other
     }: TableProps,
@@ -68,11 +77,36 @@ export const Table: React.FunctionComponent<TableProps> = React.forwardRef(
       setPaddingDensity(density);
     }, [density]);
 
+    React.useEffect(() => {
+      setHasStripes(Boolean(hasZebraStripes));
+    }, [hasZebraStripes]);
+
+    const [isInverseContainer, setIsInverseContainer] = React.useState(
+      isInverse
+    );
+
+    const theme = React.useContext(ThemeContext);
+
+    React.useEffect(() => {
+      setIsInverseContainer(isInverse);
+    }, [isInverse]);
+
     return (
       <TableContext.Provider
-        value={{ hasStripes, hasVertBorders, paddingDensity }}
+        value={{
+          hasStripes,
+          hasVertBorders,
+          isInverseContainer,
+          paddingDensity
+        }}
       >
-        <StyledTable {...other} ref={ref} data-testid={testId}>
+        <StyledTable
+          {...other}
+          data-testid={testId}
+          isInverse={isInverse}
+          ref={ref}
+          theme={theme}
+        >
           {children}
         </StyledTable>
       </TableContext.Provider>

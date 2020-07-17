@@ -10,13 +10,18 @@ export interface TableHeaderCellProps
 }
 
 const StyledTableHeaderCell = styled.th<{
-  hasVerticalBorders?: boolean;
   density?: TableDensity;
+  hasVerticalBorders?: boolean;
+  isInverse?: boolean;
 }>`
-  background: ${props => props.theme.colors.neutral07};
+  background: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral02
+      : props.theme.colors.neutral07};
   border-bottom: 2px solid;
   border-right: ${props => (props.hasVerticalBorders ? '1px solid' : 0)};
-  border-color: ${props => props.theme.colors.neutral06};
+  border-color: ${props =>
+    props.isInverse ? 'rgba(255,255,255,0.4)' : props.theme.colors.neutral06};
   display: table-cell;
   font-weight: bold;
   padding: ${props => {
@@ -49,6 +54,7 @@ export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = Re
         data-testid={testId}
         density={tableContext.paddingDensity}
         hasVerticalBorders={tableContext.hasVertBorders}
+        isInverse={tableContext.isInverseContainer}
         theme={theme}
       >
         {children}

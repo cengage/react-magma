@@ -10,6 +10,7 @@ export interface TableRowProps extends React.HTMLAttributes<HTMLElement> {
 
 const StyledTableRow = styled.tr<{
   hasZebraStripes?: boolean;
+  isInverse?: boolean;
 }>`
   border-bottom: 1px solid ${props => props.theme.colors.neutral06};
   color: inherit;
@@ -19,7 +20,11 @@ const StyledTableRow = styled.tr<{
 
   &:nth-of-type(even) {
     background: ${props =>
-      props.hasZebraStripes ? props.theme.colors.neutral07 : 'none'};
+      props.hasZebraStripes
+        ? props.isInverse
+          ? props.theme.colors.neutral02
+          : props.theme.colors.neutral07
+        : 'none'};
   }
 
   &:last-of-type {
@@ -36,6 +41,7 @@ export const TableRow: React.FunctionComponent<TableRowProps> = React.forwardRef
       <StyledTableRow
         data-testid={testId}
         hasZebraStripes={tableContext.hasStripes}
+        isInverse={tableContext.isInverseContainer}
         ref={ref}
         theme={theme}
       >

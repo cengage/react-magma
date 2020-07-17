@@ -4,13 +4,16 @@ title: 'Tables'
 
 import { ScopeableLayout } from '../../components/layout'
 import {
+  Button,
   Card,
+  Input,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeaderCell,
   TableRow,
+  magma,
 } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 
@@ -194,6 +197,74 @@ import { SimplePropsTable } from '../../components/props-table'
     </>
 ```
 
+## Inverse
+
+```.jsx
+    <Card background={magma.colors.neutral01} isInverse>
+        <Table isInverse hasZebraStripes hasVerticalBorders>
+            <TableHead>
+                <TableRow>
+                    <TableHeaderCell>Column</TableHeaderCell>
+                    <TableHeaderCell>Column</TableHeaderCell>
+                    <TableHeaderCell>Column</TableHeaderCell>
+                    <TableHeaderCell>Column</TableHeaderCell>
+                </TableRow>
+            </TableHead>
+            <TableBody>
+                <TableRow>
+                    <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>Lorem ipsum dolor sit amet</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum</TableCell>
+                </TableRow>
+                 <TableRow>
+                    <TableCell>Lorem ipsum dolor sit amet</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum</TableCell>
+                </TableRow>
+            </TableBody>
+        </Table>
+    </Card>
+```
+
+## Other Content
+
+```.jsx
+    <Card>
+        <Table hasVerticalBorders>
+            <TableHead>
+                <TableRow>
+                    <TableHeaderCell>Column 1</TableHeaderCell>
+                    <TableHeaderCell>Column 2</TableHeaderCell>
+                    <TableHeaderCell>Column 3</TableHeaderCell>
+                    <TableHeaderCell>Column 4</TableHeaderCell>
+                </TableRow>
+            </TableHead>
+            <TableBody>
+                <TableRow>
+                    <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+                    <TableCell><Input label="Table input" isLabelVisuallyHidden /></TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell><Button>Button</Button></TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>Lorem ipsum dolor sit amet</TableCell>
+                    <TableCell><Input label="Table input" isLabelVisuallyHidden /></TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell><Button>Button</Button></TableCell>
+                </TableRow>
+            </TableBody>
+        </Table>
+    </Card>
+```
+
 ## Table Props
 
 **Any other props supplied will be provided to the wrapping `table` element.**
@@ -207,6 +278,37 @@ import { SimplePropsTable } from '../../components/props-table'
       required: true,
       description: 'The content of the component',
     },
+    density: {
+      type: {
+        name: 'enum',
+      },
+      required: false,
+      description: 'Relative padding of the table cells',
+      defaultValue: 'normal',
+    },
+    hasVerticalBorders: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, columns will have vertical borders',
+    },
+    hasZebraStripes: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, every other row will have a background color',
+    },
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
   }}
 />
 
@@ -214,13 +316,16 @@ export default props => (
   <ScopeableLayout
     {...props}
     components={{
+      Button,
       Card,
+      Input,
       Table,
       TableBody,
       TableCell,
       TableHead,
       TableHeaderCell,
       TableRow,
+      magma,
     }}
   />
 )

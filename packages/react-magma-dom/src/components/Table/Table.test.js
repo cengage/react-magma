@@ -108,4 +108,29 @@ describe('Table', () => {
     expect(getByText('cell 1')).toHaveStyleRule('padding', '20px 30px');
     expect(getByText('heading 1')).toHaveStyleRule('padding', '20px 30px');
   });
+
+  it('should render table with inverse styles', () => {
+    const { getByTestId } = render(
+      <Table hasZebraStripes isInverse>
+        <TableBody>
+          <TableRow testId="row1">
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+          <TableRow testId="row2">
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId('row2')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral02,
+      {
+        target: ':nth-of-type(even)'
+      }
+    );
+  });
 });
