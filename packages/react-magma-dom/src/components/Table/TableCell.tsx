@@ -1,5 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
+import { TableContext, TableDensity } from './';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface TableCellProps
   extends React.HTMLAttributes<HTMLTableCellElement> {
@@ -7,17 +9,45 @@ export interface TableCellProps
   testId?: string;
 }
 
-const StyledCell = styled.td`
+const StyledCell = styled.td<{
+  hasVerticalBorders?: boolean;
+  density?: TableDensity;
+}>`
+  border-right: ${props => (props.hasVerticalBorders ? '1px solid' : 0)};
+  border-color: ${props => props.theme.colors.neutral06};
   display: table-cell;
-  padding: 10px 20px;
+  padding: ${props => {
+    switch (props.density) {
+      case 'compact':
+        return '5px 10px';
+      case 'loose':
+        return '20px 30px';
+      default:
+        return '10px 20px';
+    }
+  }};
   text-align: left;
   vertical-align: inherit;
+
+  &:last-of-type {
+    border-right: 0;
+  }
 `;
 
 export const TableCell: React.FunctionComponent<TableCellProps> = React.forwardRef(
   ({ children, testId, ...other }: TableCellProps, ref: any) => {
+    const tableContext = React.useContext(TableContext);
+    const theme = React.useContext(ThemeContext);
+
     return (
-      <StyledCell {...other} ref={ref} data-testid={testId}>
+      <StyledCell
+        {...other}
+        ref={ref}
+        data-testid={testId}
+        density={tableContext.paddingDensity}
+        hasVerticalBorders={tableContext.hasVertBorders}
+        theme={theme}
+      >
         {children}
       </StyledCell>
     );
