@@ -1,0 +1,92 @@
+---
+title: 'Tables'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import {
+  Card,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeaderCell,
+  TableRow,
+} from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
+
+# Tables
+
+## Basic Usage
+
+```.jsx
+    <Card>
+        <Table>
+            <TableHead>
+                <TableRow>
+                    <TableHeaderCell>Column 1</TableHeaderCell>
+                    <TableHeaderCell>Column 2</TableHeaderCell>
+                    <TableHeaderCell>Column 3</TableHeaderCell>
+                    <TableHeaderCell>Column 4</TableHeaderCell>
+                </TableRow>
+            </TableHead>
+            <TableBody>
+                <TableRow>
+                    <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>Lorem ipsum dolor sit amet</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>Lorem ipsum dolor sit amet</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum</TableCell>
+                </TableRow>
+
+            </TableBody>
+        </Table>
+    </Card>
+```
+
+## Table Props
+
+**Any other props supplied will be provided to the wrapping `table` element.**
+
+<SimplePropsTable
+  propertyValues={{
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout
+    {...props}
+    components={{
+      Card,
+      Table,
+      TableBody,
+      TableCell,
+      TableHead,
+      TableHeaderCell,
+      TableRow,
+    }}
+  />
+)
