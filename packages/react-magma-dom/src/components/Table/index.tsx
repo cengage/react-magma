@@ -25,6 +25,12 @@ export enum TableCellAlign {
   right = 'right'
 }
 
+export enum TableSortDirection {
+  ascending = 'ascending',
+  descending = 'descending',
+  none = 'none' // default
+}
+
 interface TableContextInterface {
   paddingDensity?: TableDensity;
   hasVertBorders?: boolean;

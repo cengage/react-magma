@@ -1,12 +1,21 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { TableCellAlign, TableContext, TableDensity } from './';
+import {
+  TableCellAlign,
+  TableContext,
+  TableDensity,
+  TableSortDirection
+} from './';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { ArrowDown2Icon } from '../Icon/types/ArrowDown2Icon';
+import { ArrowUp2Icon } from '../Icon/types/ArrowUp2Icon';
 
 export interface TableHeaderCellProps
   extends React.HTMLAttributes<HTMLTableHeaderCellElement> {
   align?: any;
   ref?: any;
+  sortable?: boolean;
+  sortDirection?: TableSortDirection;
   testId?: string;
 }
 
@@ -38,16 +47,38 @@ const StyledTableHeaderCell = styled.th<{
   }};
   text-align: ${props => props.textAlign};
   vertical-align: inherit;
+  white-space: nowrap;
 
   &:last-of-type {
     border-right: 0;
   }
 `;
 
+const IconWrapper = styled.span`
+  padding-left: 10px;
+`;
+
 export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = React.forwardRef(
-  ({ align, children, testId, ...other }: TableHeaderCellProps, ref: any) => {
+  (
+    {
+      align,
+      children,
+      sortable,
+      sortDirection,
+      testId,
+      ...other
+    }: TableHeaderCellProps,
+    ref: any
+  ) => {
     const theme = React.useContext(ThemeContext);
     const tableContext = React.useContext(TableContext);
+
+    const sortIcon =
+      sortDirection === TableSortDirection.ascending ? (
+        <ArrowUp2Icon size={14} />
+      ) : sortDirection === TableSortDirection.descending ? (
+        <ArrowDown2Icon size={14} />
+      ) : null;
 
     return (
       <StyledTableHeaderCell
@@ -61,6 +92,7 @@ export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = Re
         theme={theme}
       >
         {children}
+        {sortable && <IconWrapper>{sortIcon}</IconWrapper>}
       </StyledTableHeaderCell>
     );
   }

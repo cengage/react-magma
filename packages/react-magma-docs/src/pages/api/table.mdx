@@ -238,7 +238,7 @@ import { SimplePropsTable } from '../../components/props-table'
 
 ```.jsx
     <Card>
-        <Table hasVerticalBorders>
+        <Table>
             <TableHead>
                 <TableRow>
                     <TableHeaderCell>Column</TableHeaderCell>
@@ -259,6 +259,43 @@ import { SimplePropsTable } from '../../components/props-table'
                     <TableCell>Lorem ipsum dolor</TableCell>
                     <TableCell>Lorem ipsum dolor</TableCell>
                     <TableCell align="right">399</TableCell>
+                </TableRow>
+            </TableBody>
+        </Table>
+    </Card>
+```
+
+## Sortable
+
+```.jsx
+    <Card>
+        <Table>
+            <TableHead>
+                <TableRow>
+                    <TableHeaderCell sortable sortDirection="ascending">Column</TableHeaderCell>
+                    <TableHeaderCell>Column</TableHeaderCell>
+                    <TableHeaderCell>Column</TableHeaderCell>
+                    <TableHeaderCell sortable align="right">Number</TableHeaderCell>
+                </TableRow>
+            </TableHead>
+            <TableBody>
+                <TableRow>
+                    <TableCell>ABC Lorem ipsum dolor sit amet consectetur</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell align="right">86</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>DEF Lorem ipsum dolor sit amet</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell align="right">399</TableCell>
+                </TableRow>
+                 <TableRow>
+                    <TableCell>GHI Lorem ipsum dolor sit amet</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell align="right">12</TableCell>
                 </TableRow>
             </TableBody>
         </Table>
