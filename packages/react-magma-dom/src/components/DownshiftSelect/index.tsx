@@ -7,7 +7,10 @@ import { Combobox } from './Combobox';
 import { InputMessage } from '../Input/InputMessage';
 import { DownshiftComponents } from './components';
 
-export type DownshiftOption = string | { item: string; label: string };
+type DownshiftOption<T> =
+  | string
+  | { value: string; label: string; [key: string]: any }
+  | T;
 
 interface InternalSelectInterface {
   components?: DownshiftComponents;
@@ -20,49 +23,65 @@ interface InternalSelectInterface {
   messageStyle?: React.CSSProperties;
 }
 
-export interface DownshiftSelectInterface
-  extends UseSelectProps<DownshiftOption>,
+export interface DownshiftSelectInterface<T>
+  extends UseSelectProps<DownshiftOption<T>>,
     InternalSelectInterface {
   type?: 'select';
 }
 
-export interface DownshiftComboboxInterface
-  extends UseComboboxProps<DownshiftOption>,
+export interface DownshiftComboboxInterface<T>
+  extends UseComboboxProps<DownshiftOption<T>>,
     InternalSelectInterface {
+  defaultItems: DownshiftOption<T>[];
   isLoading?: boolean;
-  onInputChange?: (changes: Partial<UseComboboxState<DownshiftOption>>) => void;
-  onInputValueChange?: (
-    changes: Partial<UseComboboxState<DownshiftOption>>,
-    updateInputItems?: React.Dispatch<React.SetStateAction<DownshiftOption[]>>
+  newItemTransform?: (item: {
+    label: string;
+    value: string;
+  }) => DownshiftOption<T>;
+  onInputChange?: (
+    changes: Partial<UseComboboxState<DownshiftOption<T>>>
   ) => void;
+  onInputValueChange?: (
+    changes: Partial<UseComboboxState<DownshiftOption<T>>>,
+    updateInputItems?: React.Dispatch<
+      React.SetStateAction<DownshiftOption<T>[]>
+    >
+  ) => void;
+  onItemCreated?: (newItem: DownshiftOption<T>) => void;
   type: 'combo';
 }
 
-export type SelectInterface = XOR<
-  DownshiftSelectInterface,
-  DownshiftComboboxInterface
+export type SelectInterface<T> = XOR<
+  DownshiftSelectInterface<T>,
+  DownshiftComboboxInterface<T>
 >;
 
-export function instanceOfCombobox(
+export function instanceOfCombobox<T>(
   object: any
-): object is DownshiftComboboxInterface {
+): object is DownshiftComboboxInterface<T> {
   return 'type' in object && object.type === 'combo';
 }
 
-export const DownshiftSelect = (props: SelectInterface) => {
+export function instanceOfDefaultItemObject(
+  object: any
+): object is { label: string; value: string; [key: string]: any } {
+  return object && 'label' in object;
+}
+
+export function DownshiftSelect<T>(props: SelectInterface<T>) {
   const { isInverse, errorMessage, messageStyle, helperMessage } = props;
 
-  function itemToString(item: DownshiftOption) {
+  function itemToString(item: DownshiftOption<T>) {
     return item && typeof item === 'string'
       ? item
-      : item && typeof item === 'object'
+      : item && instanceOfDefaultItemObject(item)
       ? item.label
       : '';
   }
 
   return (
     <>
-      {instanceOfCombobox(props) ? (
+      {instanceOfCombobox<T>(props) ? (
         <Combobox itemToString={itemToString} {...props} />
       ) : (
         <Select itemToString={itemToString} {...props} />
@@ -78,4 +97,4 @@ export const DownshiftSelect = (props: SelectInterface) => {
       </InputMessage>
     </>
   );
-};
+}

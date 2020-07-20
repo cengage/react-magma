@@ -215,9 +215,6 @@ These props are `defaultIsOpen`, `defaultSelectedItem`, and `defaultHighlightedI
         items={['Red', 'Blue', 'Green']}
         initialSelectedItem={'Green'}
         isClearable
-        components={{
-          ClearIndicator: (props) => <button onClick={props.onClick}>Clear</button>
-        }}
       />
 
       <DownshiftSelect
@@ -309,6 +306,119 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
       type='combo'
     />
   </>
+```
+
+## Creatable
+
+```.jsx
+  () => {
+    function newItemTransform(item) {
+      return item.value
+    }
+
+    return (
+      <>
+        <DownshiftSelect
+          id="comboboxId"
+          name="combobox"
+          labelText="Combobox"
+          defaultItems={['Red', 'Blue', 'Green']}
+          type='combo'
+          newItemTransform={newItemTransform}
+        />
+      </>
+    )
+  }
+```
+
+## Controlled Items
+
+If you would like to control your `items` and any updates to them on creation you can pass in a function to the `onItemCreated`
+prop.
+
+**NOTE**: Your created items will not be added to the `items` list internally. You will have to pass the updated `items` array to the `items` prop.
+
+```.jsx
+  () => {
+    const defaultItems = ['Red', 'Blue', 'Green'];
+    const [items, updateItems] = React.useState(defaultItems)
+
+    function newItemTransform(item) {
+      return item.value
+    }
+
+    function resetItems() {
+      updateItems([...defaultItems]);
+    }
+
+    function onItemCreated(item) {
+      updateItems([...items, item])
+    }
+
+    return (
+      <>
+        <button onClick={resetItems}>Reset Items</button>
+        <strong>Items: </strong><pre>{items.toString()}</pre>
+        <DownshiftSelect
+          id="controlledItemsId"
+          name="controlledItems"
+          labelText="Controlled Items"
+          items={items}
+          type='combo'
+          newItemTransform={newItemTransform}
+          onItemCreated={onItemCreated}
+        />
+      </>
+    )
+  }
+```
+
+## Custom Components
+
+```.jsx
+  () => {
+    const [isLoading, updateIsLoading] = React.useState(false);
+
+    function loadItems(inputValue) {
+      return new Promise(resolve => resolve(['Yellow', 'Pink', 'Perrywinkle']))
+    }
+
+    function handleInputValueChange(changes, setInputItems) {
+      const { inputValue } = changes;
+
+      updateIsLoading(true);
+
+      setTimeout(() => {
+        updateIsLoading(false);
+        loadItems(inputValue).then((items) => {
+          setInputItems(items.filter(item =>
+            item
+              .toLowerCase()
+              .startsWith(inputValue.toLowerCase())
+          ))
+        })
+      }, 1000)
+    }
+
+    return (<>
+      <DownshiftSelect
+        id="customComponentsId"
+        name="customComponents"
+        labelText="Custom Components"
+        isLoading={isLoading}
+        items={['Red', 'Blue', 'Green']}
+        type='combo'
+        isClearable
+        onInputValueChange={handleInputValueChange}
+        components={{
+          ClearIndicator: (props) => <button onClick={props.onClick}>Clear</button>,
+          DropdownIndicator: React.forwardRef((props, ref) => <button ref={ref} onClick={props.onClick}>Dropdown</button>),
+          LoadingIndicator: (props) => <>Loading</>
+        }}
+      />
+    </>)
+  }
+
 ```
 
 ## Async

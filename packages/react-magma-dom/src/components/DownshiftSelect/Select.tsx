@@ -17,7 +17,7 @@ import {
 import { defaultComponents } from './components';
 import { CrossIcon, ButtonSize, ButtonVariant } from '../..';
 
-export const Select = (props: DownshiftSelectInterface) => {
+export function Select<T>(props: DownshiftSelectInterface<T>) {
   const {
     components: customComponents,
     itemToString,
@@ -98,4 +98,4 @@ export const Select = (props: DownshiftSelectInterface) => {
       </StyledCard>
     </SelectContainer>
   );
-};
+}

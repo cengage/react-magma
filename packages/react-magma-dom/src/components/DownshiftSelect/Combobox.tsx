@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DownshiftComboboxInterface } from '.';
+import { DownshiftComboboxInterface, instanceOfDefaultItemObject } from '.';
 import { useCombobox } from 'downshift';
 import styled from '@emotion/styled';
 
@@ -7,12 +7,11 @@ import { baseInputStyles } from '../BaseInput';
 import { ButtonShape, ButtonVariant, ButtonSize } from '../Button';
 import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
 import { Label } from '../Label';
-import { IconButton } from '../IconButton';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 import { SelectContainer, StyledCard, StyledList, StyledItem } from './shared';
-import { Spinner } from '../Spinner';
 import { CrossIcon } from '../Icon/types/CrossIcon';
+import { defaultComponents } from './components';
 
 const StyledInput = styled.input`
   ${baseInputStyles}
@@ -20,37 +19,82 @@ const StyledInput = styled.input`
   border-radius: 5px 0 0 5px;
 `;
 
-const StyledIconButton = styled(IconButton)`
-  border: 1px solid ${props => props.theme.colors.neutral03};
-  border-left: 0;
-  color: ${props => props.theme.colors.neutral01};
-  margin: 0;
-`;
-
-export const Combobox = (props: DownshiftComboboxInterface) => {
+export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
   const {
+    components: customComponents,
+    defaultItems,
     labelText,
     isClearable,
     isLoading,
     items,
     itemToString,
+    newItemTransform,
     onInputChange,
-    onInputValueChange
+    onInputValueChange,
+    onItemCreated
   } = props;
-  const [inputItems, setInputItems] = React.useState(items);
+
+  const allItems = React.useRef(defaultItems || items);
+  const [displayItems, setDisplayItems] = React.useState(defaultItems || items);
   const theme = React.useContext(ThemeContext);
 
+  function updateItemsRef(newItem) {
+    allItems.current = [...allItems.current, newItem];
+  }
+
+  React.useEffect(() => {
+    if (items) {
+      allItems.current = items;
+      setDisplayItems(items);
+    }
+  }, [items]);
+
   function defaultOnInputValueChange(changes) {
-    setInputItems(
-      items.filter(item =>
+    const filteredItems = allItems.current
+      .filter(item =>
         itemToString(item)
           .toLowerCase()
           .startsWith(changes.inputValue.toLowerCase())
       )
-    );
+      .concat(
+        changes.inputValue && !allItems.current.includes(changes.inputValue)
+          ? {
+              label: `Create "${changes.inputValue}"`,
+              value: changes.inputValue,
+              react_magma__created_item: true
+            }
+          : null
+      )
+      .filter(Boolean);
+
+    setDisplayItems(filteredItems);
     onInputChange &&
       typeof onInputChange === 'function' &&
       onInputChange(changes);
+  }
+
+  function defaultOnSelectedItemChange(changes) {
+    if (
+      !(typeof changes.selectedItem === 'string') &&
+      instanceOfDefaultItemObject(changes.selectedItem) &&
+      changes.selectedItem.react_magma__created_item
+    ) {
+      const {
+        react_magma__created_item,
+        ...createdItem
+      } = changes.selectedItem;
+
+      const newItem =
+        react_magma__created_item &&
+        newItemTransform &&
+        typeof newItemTransform === 'function' &&
+        newItemTransform(createdItem);
+
+      items && onItemCreated && typeof onItemCreated === 'function'
+        ? onItemCreated(newItem || createdItem)
+        : updateItemsRef(newItem || createdItem);
+      selectItem(newItem);
+    }
   }
 
   const {
@@ -63,37 +107,51 @@ export const Combobox = (props: DownshiftComboboxInterface) => {
     highlightedIndex,
     getItemProps,
     reset,
+    selectItem,
     selectedItem
   } = useCombobox({
     ...props,
     itemToString,
-    items: inputItems,
+    items: displayItems,
     onInputValueChange:
       onInputValueChange && typeof onInputValueChange === 'function'
-        ? changes => onInputValueChange(changes, setInputItems)
-        : defaultOnInputValueChange
+        ? changes => onInputValueChange(changes, setDisplayItems)
+        : defaultOnInputValueChange,
+    onSelectedItemChange: defaultOnSelectedItemChange
   });
+
+  const {
+    ClearIndicator,
+    DropdownIndicator,
+    LoadingIndicator
+  } = defaultComponents({
+    ...customComponents
+  });
+
+  function defaultHandleClearIndicatorClick(event: React.SyntheticEvent) {
+    event.stopPropagation();
+
+    reset();
+  }
+
   return (
     <SelectContainer>
       <Label {...getLabelProps()}>{labelText}</Label>
       <div {...getComboboxProps()} style={{ display: 'flex' }}>
         <StyledInput {...getInputProps()} theme={theme} />
         {isClearable && selectedItem && (
-          <IconButton
+          <ClearIndicator
             aria-label="reset"
             icon={<CrossIcon size={10} />}
-            onClick={e => {
-              e.stopPropagation();
-              reset();
-            }}
+            onClick={defaultHandleClearIndicatorClick}
             size={ButtonSize.small}
             variant={ButtonVariant.link}
           />
         )}
         {isLoading ? (
-          <Spinner />
+          <LoadingIndicator />
         ) : (
-          <StyledIconButton
+          <DropdownIndicator
             {...getToggleButtonProps()}
             aria-label="toggle menu"
             icon={<CaretDownIcon size={10} />}
@@ -105,7 +163,7 @@ export const Combobox = (props: DownshiftComboboxInterface) => {
       </div>
       <StyledCard isOpen={isOpen} hasDropShadow>
         <StyledList isOpen={isOpen} {...getMenuProps()}>
-          {inputItems.map((item, index) => {
+          {displayItems.map((item, index) => {
             const itemString = itemToString(item);
             return (
               <StyledItem
@@ -122,4 +180,4 @@ export const Combobox = (props: DownshiftComboboxInterface) => {
       </StyledCard>
     </SelectContainer>
   );
-};
+}
