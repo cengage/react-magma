@@ -1,10 +1,11 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { TableContext, TableDensity } from './';
+import { TableCellAlign, TableContext, TableDensity } from './';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface TableHeaderCellProps
   extends React.HTMLAttributes<HTMLTableHeaderCellElement> {
+  align?: any;
   ref?: any;
   testId?: string;
 }
@@ -13,6 +14,7 @@ const StyledTableHeaderCell = styled.th<{
   density?: TableDensity;
   hasVerticalBorders?: boolean;
   isInverse?: boolean;
+  textAlign?: TableCellAlign;
 }>`
   background: ${props =>
     props.isInverse
@@ -34,7 +36,7 @@ const StyledTableHeaderCell = styled.th<{
         return '10px 20px';
     }
   }};
-  text-align: left;
+  text-align: ${props => props.textAlign};
   vertical-align: inherit;
 
   &:last-of-type {
@@ -43,7 +45,7 @@ const StyledTableHeaderCell = styled.th<{
 `;
 
 export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = React.forwardRef(
-  ({ children, testId, ...other }: TableHeaderCellProps, ref: any) => {
+  ({ align, children, testId, ...other }: TableHeaderCellProps, ref: any) => {
     const theme = React.useContext(ThemeContext);
     const tableContext = React.useContext(TableContext);
 
@@ -55,6 +57,7 @@ export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = Re
         density={tableContext.paddingDensity}
         hasVerticalBorders={tableContext.hasVertBorders}
         isInverse={tableContext.isInverseContainer}
+        textAlign={align ? align : TableCellAlign.left}
         theme={theme}
       >
         {children}

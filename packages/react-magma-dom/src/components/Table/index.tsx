@@ -17,6 +17,14 @@ export enum TableDensity {
   normal = 'normal' // default
 }
 
+export enum TableCellAlign {
+  center = 'center',
+  inherit = 'inherit',
+  justify = 'justify',
+  left = 'left', // default
+  right = 'right'
+}
+
 interface TableContextInterface {
   paddingDensity?: TableDensity;
   hasVertBorders?: boolean;

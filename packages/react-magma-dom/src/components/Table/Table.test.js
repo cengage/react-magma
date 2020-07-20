@@ -110,8 +110,14 @@ describe('Table', () => {
   });
 
   it('should render table with inverse styles', () => {
-    const { getByTestId } = render(
+    const { getByTestId, getByText } = render(
       <Table hasZebraStripes isInverse>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
         <TableBody>
           <TableRow testId="row1">
             <TableCell>cell 1</TableCell>
@@ -125,6 +131,11 @@ describe('Table', () => {
       </Table>
     );
 
+    expect(getByText('heading 1')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral02
+    );
+
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
       magma.colors.neutral02,
@@ -132,5 +143,27 @@ describe('Table', () => {
         target: ':nth-of-type(even)'
       }
     );
+  });
+
+  it('should render right aligned cells', () => {
+    const { getByText } = render(
+      <Table hasZebraStripes isInverse>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell align="right">heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell align="right">cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByText('heading 1')).toHaveStyleRule('text-align', 'right');
+    expect(getByText('cell 1')).toHaveStyleRule('text-align', 'right');
   });
 });

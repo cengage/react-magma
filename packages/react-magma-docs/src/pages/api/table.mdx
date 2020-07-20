@@ -145,10 +145,10 @@ import { SimplePropsTable } from '../../components/props-table'
             <Table density="compact">
                 <TableHead>
                     <TableRow>
-                        <TableHeaderCell>Column 1</TableHeaderCell>
-                        <TableHeaderCell>Column 2</TableHeaderCell>
-                        <TableHeaderCell>Column 3</TableHeaderCell>
-                        <TableHeaderCell>Column 4</TableHeaderCell>
+                        <TableHeaderCell>Column</TableHeaderCell>
+                        <TableHeaderCell>Column</TableHeaderCell>
+                        <TableHeaderCell>Column</TableHeaderCell>
+                        <TableHeaderCell>Column</TableHeaderCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -172,10 +172,10 @@ import { SimplePropsTable } from '../../components/props-table'
             <Table density="loose">
                 <TableHead>
                     <TableRow>
-                        <TableHeaderCell>Column 1</TableHeaderCell>
-                        <TableHeaderCell>Column 2</TableHeaderCell>
-                        <TableHeaderCell>Column 3</TableHeaderCell>
-                        <TableHeaderCell>Column 4</TableHeaderCell>
+                        <TableHeaderCell>Column</TableHeaderCell>
+                        <TableHeaderCell>Column</TableHeaderCell>
+                        <TableHeaderCell>Column</TableHeaderCell>
+                        <TableHeaderCell>Column</TableHeaderCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -234,6 +234,37 @@ import { SimplePropsTable } from '../../components/props-table'
     </Card>
 ```
 
+## Cell Alignment
+
+```.jsx
+    <Card>
+        <Table hasVerticalBorders>
+            <TableHead>
+                <TableRow>
+                    <TableHeaderCell>Column</TableHeaderCell>
+                    <TableHeaderCell>Column</TableHeaderCell>
+                    <TableHeaderCell>Column</TableHeaderCell>
+                    <TableHeaderCell align="right">Number</TableHeaderCell>
+                </TableRow>
+            </TableHead>
+            <TableBody>
+                <TableRow>
+                    <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell align="right">86</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>Lorem ipsum dolor sit amet</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell align="right">399</TableCell>
+                </TableRow>
+            </TableBody>
+        </Table>
+    </Card>
+```
+
 ## Other Content
 
 ```.jsx
@@ -281,6 +312,11 @@ import { SimplePropsTable } from '../../components/props-table'
     density: {
       type: {
         name: 'enum',
+        options: [
+          'TableDensity.compact',
+          'TableDensity.loose',
+          'TableDensity.normal',
+        ],
       },
       required: false,
       description: 'Relative padding of the table cells',
@@ -308,6 +344,38 @@ import { SimplePropsTable } from '../../components/props-table'
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
+    },
+  }}
+/>
+
+## TableCell / TableHeaderCell Props
+
+**Any other props supplied will be provided to the wrapping `th` or `td` element.**
+
+<SimplePropsTable
+  propertyValues={{
+    align: {
+      type: {
+        name: 'enum',
+        options: [
+          'TableCellAlign.center',
+          'TableCellAlign.inherit',
+          'TableCellAlign.justify',
+          'TableCellAlign.left',
+          'TableCellAlign.right',
+        ],
+      },
+      required: false,
+      description:
+        'Text alignment of the cell content.  Right alignment should be used for numeric values.',
+      defaultValue: 'left',
+    },
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
     },
   }}
 />
