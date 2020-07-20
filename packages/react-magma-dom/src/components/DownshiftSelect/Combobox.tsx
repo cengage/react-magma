@@ -13,10 +13,20 @@ import { SelectContainer, StyledCard, StyledList, StyledItem } from './shared';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { defaultComponents } from './components';
 
+const InputContainer = styled.div<{ theme?: any }>`
+  align-items: center;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid ${props => props.theme.colors.neutral03};
+  display: flex;
+  height: 37px;
+  width: 100%;
+`;
+
 const StyledInput = styled.input`
   ${baseInputStyles}
 
-  border-radius: 5px 0 0 5px;
+  height: 35px;
+  border: 0;
 `;
 
 export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
@@ -138,28 +148,27 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
     <SelectContainer>
       <Label {...getLabelProps()}>{labelText}</Label>
       <div {...getComboboxProps()} style={{ display: 'flex' }}>
-        <StyledInput {...getInputProps()} theme={theme} />
-        {isClearable && selectedItem && (
-          <ClearIndicator
-            aria-label="reset"
-            icon={<CrossIcon size={10} />}
-            onClick={defaultHandleClearIndicatorClick}
-            size={ButtonSize.small}
-            variant={ButtonVariant.link}
-          />
-        )}
-        {isLoading ? (
-          <LoadingIndicator />
-        ) : (
-          <DropdownIndicator
-            {...getToggleButtonProps()}
-            aria-label="toggle menu"
-            icon={<CaretDownIcon size={10} />}
-            shape={ButtonShape.rightCap}
-            theme={theme}
-            variant={ButtonVariant.link}
-          />
-        )}
+        <InputContainer theme={theme}>
+          <StyledInput {...getInputProps()} theme={theme} />
+          {isClearable && selectedItem && (
+            <ClearIndicator
+              aria-label="reset"
+              icon={<CrossIcon size={10} />}
+              onClick={defaultHandleClearIndicatorClick}
+              size={ButtonSize.small}
+              variant={ButtonVariant.link}
+            />
+          )}
+          {isLoading && <LoadingIndicator style={{ marginRight: '10px' }} />}
+        </InputContainer>
+        <DropdownIndicator
+          {...getToggleButtonProps()}
+          aria-label="toggle menu"
+          icon={<CaretDownIcon size={10} />}
+          shape={ButtonShape.rightCap}
+          theme={theme}
+          variant={ButtonVariant.link}
+        />
       </div>
       <StyledCard isOpen={isOpen} hasDropShadow>
         <StyledList isOpen={isOpen} {...getMenuProps()}>
