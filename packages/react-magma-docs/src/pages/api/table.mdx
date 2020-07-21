@@ -269,7 +269,7 @@ import { SimplePropsTable } from '../../components/props-table'
 
 ```.jsx
     <Card>
-        <Table>
+        <Table onSort={()=>{console.log('onSort')}}>
             <TableHead>
                 <TableRow>
                     <TableHeaderCell sortable sortDirection="ascending">Column</TableHeaderCell>

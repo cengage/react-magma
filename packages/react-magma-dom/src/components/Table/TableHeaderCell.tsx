@@ -23,6 +23,7 @@ const StyledTableHeaderCell = styled.th<{
   density?: TableDensity;
   hasVerticalBorders?: boolean;
   isInverse?: boolean;
+  sortable?: boolean;
   textAlign?: TableCellAlign;
 }>`
   background: ${props =>
@@ -54,6 +55,13 @@ const StyledTableHeaderCell = styled.th<{
   }
 `;
 
+const SortButton = styled.button`
+  background: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+`;
+
 const IconWrapper = styled.span`
   padding-left: 10px;
 `;
@@ -73,7 +81,15 @@ export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = Re
     const theme = React.useContext(ThemeContext);
     const tableContext = React.useContext(TableContext);
 
-    const sortIcon =
+    const handleSort = () => {
+      console.log('handle sort');
+
+      if (tableContext.onSortBtnClick) {
+        tableContext.onSortBtnClick();
+      }
+    };
+
+    const SortIcon =
       sortDirection === TableSortDirection.ascending ? (
         <ArrowUp2Icon size={14} />
       ) : sortDirection === TableSortDirection.descending ? (
@@ -83,16 +99,22 @@ export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = Re
     return (
       <StyledTableHeaderCell
         {...other}
-        ref={ref}
         data-testid={testId}
         density={tableContext.paddingDensity}
         hasVerticalBorders={tableContext.hasVertBorders}
         isInverse={tableContext.isInverseContainer}
+        ref={ref}
         textAlign={align ? align : TableCellAlign.left}
         theme={theme}
       >
-        {children}
-        {sortable && <IconWrapper>{sortIcon}</IconWrapper>}
+        {sortable ? (
+          <SortButton onClick={handleSort}>
+            {children}
+            <IconWrapper>{SortIcon}</IconWrapper>
+          </SortButton>
+        ) : (
+          <>{children}</>
+        )}
       </StyledTableHeaderCell>
     );
   }

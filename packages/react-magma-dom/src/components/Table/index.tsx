@@ -7,6 +7,7 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   hasVerticalBorders?: boolean;
   hasZebraStripes?: boolean;
   isInverse?: boolean;
+  onSort?: () => {};
   ref?: any;
   testId?: string;
 }
@@ -36,6 +37,7 @@ interface TableContextInterface {
   hasVertBorders?: boolean;
   hasStripes?: boolean;
   isInverseContainer?: boolean;
+  onSortBtnClick?: any;
 }
 
 export const TableContext = React.createContext<TableContextInterface>({
@@ -64,11 +66,14 @@ export const Table: React.FunctionComponent<TableProps> = React.forwardRef(
       hasVerticalBorders,
       hasZebraStripes,
       isInverse,
+      onSort,
       testId,
       ...other
     }: TableProps,
     ref: any
   ) => {
+    const theme = React.useContext(ThemeContext);
+
     const [hasVertBorders, setHasVertBorders] = React.useState(
       Boolean(hasVerticalBorders)
     );
@@ -99,11 +104,15 @@ export const Table: React.FunctionComponent<TableProps> = React.forwardRef(
       isInverse
     );
 
-    const theme = React.useContext(ThemeContext);
-
     React.useEffect(() => {
       setIsInverseContainer(isInverse);
     }, [isInverse]);
+
+    const [onSortBtnClick, setOnSortBtnClick] = React.useState(onSort);
+
+    React.useEffect(() => {
+      setOnSortBtnClick(onSort);
+    }, [onSort]);
 
     return (
       <TableContext.Provider
@@ -111,6 +120,7 @@ export const Table: React.FunctionComponent<TableProps> = React.forwardRef(
           hasStripes,
           hasVertBorders,
           isInverseContainer,
+          onSortBtnClick,
           paddingDensity
         }}
       >
