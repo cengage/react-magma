@@ -12,6 +12,7 @@ export default [
   'AngleUpDoubleIcon',
   'AppleIcon',
   'ArrowDown2Icon',
+  'ArrowDoubleIcon',
   'ArrowLeft2Icon',
   'ArrowRight2Icon',
   'ArrowUp2Icon',

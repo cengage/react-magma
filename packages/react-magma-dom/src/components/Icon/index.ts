@@ -11,6 +11,7 @@ import { AngleUpIcon } from './types/AngleUpIcon';
 import { AngleUpDoubleIcon } from './types/AngleUpDoubleIcon';
 import { AppleIcon } from './types/AppleIcon';
 import { ArrowDown2Icon } from './types/ArrowDown2Icon';
+import { ArrowDoubleIcon } from './types/ArrowDoubleIcon';
 import { ArrowLeft2Icon } from './types/ArrowLeft2Icon';
 import { ArrowRight2Icon } from './types/ArrowRight2Icon';
 import { ArrowUp2Icon } from './types/ArrowUp2Icon';
@@ -254,6 +255,7 @@ export const ICONS: IconsCollection = {
   AngleUpDoubleIcon,
   AppleIcon,
   ArrowDown2Icon,
+  ArrowDoubleIcon,
   ArrowLeft2Icon,
   ArrowRight2Icon,
   ArrowUp2Icon,
