@@ -174,7 +174,7 @@ describe('Alert', () => {
 
   it('should render a close button with a progress ring', () => {
     const { container } = render(
-      <Alert hasTimerRing isDismissible>
+      <Alert hasTimerRing isDismissible isToast>
         Test Alert Text
       </Alert>
     );
@@ -188,7 +188,7 @@ describe('Alert', () => {
 
   it('should render a close button with a progress ring with the warning style', () => {
     const { container } = render(
-      <Alert hasTimerRing isDismissible variant="warning">
+      <Alert hasTimerRing isDismissible isToast variant="warning">
         Test Alert Text
       </Alert>
     );

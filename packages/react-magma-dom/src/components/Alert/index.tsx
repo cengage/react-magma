@@ -327,7 +327,7 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
           <AlertContents theme={theme}>{children}</AlertContents>
           {isDismissible && (
             <DismissibleIconWrapper variant={variant} theme={theme}>
-              {hasTimerRing && (
+              {hasTimerRing && isToast && (
                 <ProgressRingWrapper>
                   <ProgressRing
                     color={
