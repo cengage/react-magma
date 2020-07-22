@@ -10,14 +10,15 @@ import { SimplePropsTable } from '../../components/props-table'
 
 # Toasts
 
-`Toast` components use the <Link to="/api/alert">Alert component</Link> internally for it's content and styles. Any props that can be passed to an `Alert` can be passed to a `Toast` component.
-Toasts are used to display non-critical information to users.
+`Toast` components use the <Link to="/api/alert">Alert component</Link> internally for its content and styles. Any props that can be passed to an `Alert` can be passed to a `Toast` component.
+
+**Toasts are used to display non-critical information to users.** For critical messages, designers should consider a different way of presenting the information, such as using the <Link to="/api/alert">Alert component</Link> within the context of the UI.
 
 ## Basic Usage
 
 Variants for toasts include `info`, `success`, `warning`, and `danger`, with `info` being the default value.
 
-It is recommended that `warning` and `danger` toasts do not auto-dismiss, so that users have time to process the information in them.
+**It is strongly recommended that `warning` and `danger` toasts do not auto-dismiss**, so that users have time to process the information in them.
 
 ```.jsx
   (props) => {
