@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { TableCellAlign, TableContext, TableDensity } from './';
+import { buildCellPaddingStyle } from './TableHeaderCell';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface TableCellProps
@@ -20,16 +21,8 @@ const StyledCell = styled.td<{
   border-color: ${props =>
     props.isInverse ? 'rgba(255,255,255,0.4)' : props.theme.colors.neutral06};
   display: table-cell;
-  padding: ${props => {
-    switch (props.density) {
-      case 'compact':
-        return '5px 10px';
-      case 'loose':
-        return '20px 30px';
-      default:
-        return '10px 20px';
-    }
-  }};
+  line-height: 26px;
+  padding: ${props => buildCellPaddingStyle(props.density)};
   text-align: ${props => props.textAlign};
   vertical-align: inherit;
 

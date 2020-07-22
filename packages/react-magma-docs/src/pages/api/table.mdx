@@ -199,15 +199,20 @@ import { SimplePropsTable } from '../../components/props-table'
 
 ## Sortable
 
+The `isSortable` prop will indicate that a table column is sortable -- if the prop is true, the table header will render with a button that can be clicked to fire an `onSort` function that is passed in as a prop.
+The `sortDirection` prop indicates the direction by which the column is sorted, and takes the values `ascending`, `descending` and `none` with the default value being none.
+
+These props do not handle the actual sorting of the table, just the visual appearance.
+
 ```.jsx
     <Card>
         <Table>
             <TableHead>
                 <TableRow>
-                    <TableHeaderCell  onSort={()=>{console.log('onSort')}} sortable sortDirection="ascending">Column</TableHeaderCell>
+                    <TableHeaderCell  onSort={()=>{console.log('onSort')}} isSortable sortDirection="ascending">Column</TableHeaderCell>
                     <TableHeaderCell>Column</TableHeaderCell>
                     <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell  onSort={()=>{console.log('onSort')}} sortable align="right">Number</TableHeaderCell>
+                    <TableHeaderCell  onSort={()=>{console.log('onSort')}} isSortable align="right">Number</TableHeaderCell>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -241,10 +246,10 @@ import { SimplePropsTable } from '../../components/props-table'
         <Table isInverse hasZebraStripes hasVerticalBorders>
             <TableHead>
                 <TableRow>
-                    <TableHeaderCell sortable sortDirection="ascending">Column</TableHeaderCell>
+                    <TableHeaderCell isSortable sortDirection="ascending">Column</TableHeaderCell>
                     <TableHeaderCell>Column</TableHeaderCell>
                     <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell sortable>Column</TableHeaderCell>
+                    <TableHeaderCell isSortable>Column</TableHeaderCell>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -414,6 +419,13 @@ import { SimplePropsTable } from '../../components/props-table'
       required: true,
       description: 'The content of the component',
     },
+    isSortable: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the header will render a button for sorting',
+    },
     onSort: {
       type: {
         name: 'function',
@@ -421,13 +433,6 @@ import { SimplePropsTable } from '../../components/props-table'
       required: false,
       description:
         'Event that fires when clicking the table header cell sort button',
-    },
-    sortable: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, the header will render a button for sorting',
     },
     sortDirection: {
       type: {

@@ -8,7 +8,7 @@ import { TableRow } from './TableRow';
 
 import { magma } from '../../theme/magma';
 
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
 describe('Table', () => {
   it('should find element by testId', () => {
@@ -165,5 +165,78 @@ describe('Table', () => {
 
     expect(getByText('heading 1')).toHaveStyleRule('text-align', 'right');
     expect(getByText('cell 1')).toHaveStyleRule('text-align', 'right');
+  });
+
+  it('should render sortable table header cells', () => {
+    const onSortSpy = jest.fn();
+
+    const { getByTestId, getByText } = render(
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell
+              testId="header1"
+              isSortable
+              sortDirection="ascending"
+              onSort={onSortSpy}
+            >
+              heading 1
+            </TableHeaderCell>
+            <TableHeaderCell testId="header2" isSortable onSort={onSortSpy}>
+              heading 2
+            </TableHeaderCell>
+            <TableHeaderCell testId="header3">heading 3</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+      </Table>
+    );
+
+    expect(getByTestId('header1')).toHaveStyleRule('padding', '0');
+    expect(getByTestId('header1').querySelector('button')).toBeInTheDocument();
+
+    expect(getByTestId('header3')).toHaveStyleRule('padding', '10px 20px');
+    expect(
+      getByTestId('header3').querySelector('button')
+    ).not.toBeInTheDocument();
+
+    expect(onSortSpy).not.toHaveBeenCalled();
+
+    fireEvent.click(getByText('heading 1'));
+
+    expect(onSortSpy).toHaveBeenCalled();
+  });
+
+  it('should render sortable table header cells with inverse styles', () => {
+    const { getByTestId } = render(
+      <Table isInverse>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell
+              testId="header1"
+              isSortable
+              sortDirection="descending"
+            >
+              heading 1
+            </TableHeaderCell>
+          </TableRow>
+        </TableHead>
+      </Table>
+    );
+
+    const button = getByTestId('header1').querySelector('button');
+
+    expect(button).toBeInTheDocument();
+
+    expect(button).toHaveStyleRule(
+      'outline',
+      `2px dotted ${magma.colors.focusInverse}`,
+      {
+        target: ':focus'
+      }
+    );
+
+    expect(button).toHaveStyleRule('background', magma.colors.neutral01, {
+      target: ':hover'
+    });
   });
 });

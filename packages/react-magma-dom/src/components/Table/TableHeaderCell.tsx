@@ -14,14 +14,14 @@ import { ArrowUp2Icon } from '../Icon/types/ArrowUp2Icon';
 export interface TableHeaderCellProps
   extends React.HTMLAttributes<HTMLTableHeaderCellElement> {
   align?: any;
+  isSortable?: boolean;
   onSort?: any;
   ref?: any;
-  sortable?: boolean;
   sortDirection?: TableSortDirection;
   testId?: string;
 }
 
-function buildPaddingStyle(density) {
+export function buildCellPaddingStyle(density) {
   switch (density) {
     case 'compact':
       return '5px 10px';
@@ -36,7 +36,7 @@ const StyledTableHeaderCell = styled.th<{
   density?: TableDensity;
   hasVerticalBorders?: boolean;
   isInverse?: boolean;
-  sortable?: boolean;
+  isSortable?: boolean;
   textAlign?: TableCellAlign;
 }>`
   background: ${props =>
@@ -49,8 +49,9 @@ const StyledTableHeaderCell = styled.th<{
     props.isInverse ? 'rgba(255,255,255,0.4)' : props.theme.colors.neutral06};
   display: table-cell;
   font-weight: bold;
+  line-height: 26px;
   padding: ${props =>
-    props.sortable ? '0' : buildPaddingStyle(props.density)}};
+    props.isSortable ? '0' : buildCellPaddingStyle(props.density)}};
   text-align: ${props => props.textAlign};
   vertical-align: inherit;
   white-space: nowrap;
@@ -68,7 +69,7 @@ const SortButton = styled.button<{
   border: 0;
   color: inherit;
   margin: 0;
-  padding: ${props => buildPaddingStyle(props.density)}};
+  padding: ${props => buildCellPaddingStyle(props.density)}};
   text-align: left;
   width: 100%;
 
@@ -106,8 +107,8 @@ export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = Re
     {
       align,
       children,
+      isSortable,
       onSort,
-      sortable,
       sortDirection,
       testId,
       ...other
@@ -147,11 +148,11 @@ export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = Re
         hasVerticalBorders={tableContext.hasVertBorders}
         isInverse={tableContext.isInverseContainer}
         ref={ref}
-        sortable={sortable}
+        isSortable={isSortable}
         textAlign={align ? align : TableCellAlign.left}
         theme={theme}
       >
-        {sortable ? (
+        {isSortable ? (
           <SortButton
             density={tableContext.paddingDensity}
             isInverse={tableContext.isInverseContainer}
