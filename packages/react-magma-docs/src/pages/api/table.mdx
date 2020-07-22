@@ -197,6 +197,43 @@ import { SimplePropsTable } from '../../components/props-table'
     </>
 ```
 
+## Sortable
+
+```.jsx
+    <Card>
+        <Table>
+            <TableHead>
+                <TableRow>
+                    <TableHeaderCell  onSort={()=>{console.log('onSort')}} sortable sortDirection="ascending">Column</TableHeaderCell>
+                    <TableHeaderCell>Column</TableHeaderCell>
+                    <TableHeaderCell>Column</TableHeaderCell>
+                    <TableHeaderCell  onSort={()=>{console.log('onSort')}} sortable align="right">Number</TableHeaderCell>
+                </TableRow>
+            </TableHead>
+            <TableBody>
+                <TableRow>
+                    <TableCell>ABC Lorem ipsum dolor sit amet consectetur</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell align="right">86</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>DEF Lorem ipsum dolor sit amet</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell align="right">399</TableCell>
+                </TableRow>
+                 <TableRow>
+                    <TableCell>GHI Lorem ipsum dolor sit amet</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell align="right">12</TableCell>
+                </TableRow>
+            </TableBody>
+        </Table>
+    </Card>
+```
+
 ## Inverse
 
 ```.jsx
@@ -204,10 +241,10 @@ import { SimplePropsTable } from '../../components/props-table'
         <Table isInverse hasZebraStripes hasVerticalBorders>
             <TableHead>
                 <TableRow>
+                    <TableHeaderCell sortable sortDirection="ascending">Column</TableHeaderCell>
                     <TableHeaderCell>Column</TableHeaderCell>
                     <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell>Column</TableHeaderCell>
+                    <TableHeaderCell sortable>Column</TableHeaderCell>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -259,43 +296,6 @@ import { SimplePropsTable } from '../../components/props-table'
                     <TableCell>Lorem ipsum dolor</TableCell>
                     <TableCell>Lorem ipsum dolor</TableCell>
                     <TableCell align="right">399</TableCell>
-                </TableRow>
-            </TableBody>
-        </Table>
-    </Card>
-```
-
-## Sortable
-
-```.jsx
-    <Card>
-        <Table onSort={()=>{console.log('onSort')}}>
-            <TableHead>
-                <TableRow>
-                    <TableHeaderCell sortable sortDirection="ascending">Column</TableHeaderCell>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell sortable align="right">Number</TableHeaderCell>
-                </TableRow>
-            </TableHead>
-            <TableBody>
-                <TableRow>
-                    <TableCell>ABC Lorem ipsum dolor sit amet consectetur</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell align="right">86</TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell>DEF Lorem ipsum dolor sit amet</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell align="right">399</TableCell>
-                </TableRow>
-                 <TableRow>
-                    <TableCell>GHI Lorem ipsum dolor sit amet</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell align="right">12</TableCell>
                 </TableRow>
             </TableBody>
         </Table>
@@ -385,9 +385,69 @@ import { SimplePropsTable } from '../../components/props-table'
   }}
 />
 
-## TableCell / TableHeaderCell Props
+## TableHeaderCell Props
 
-**Any other props supplied will be provided to the wrapping `th` or `td` element.**
+**Any other props supplied will be provided to the wrapping `th` element.**
+
+<SimplePropsTable
+  propertyValues={{
+    align: {
+      type: {
+        name: 'enum',
+        options: [
+          'TableCellAlign.center',
+          'TableCellAlign.inherit',
+          'TableCellAlign.justify',
+          'TableCellAlign.left',
+          'TableCellAlign.right',
+        ],
+      },
+      required: false,
+      description:
+        'Text alignment of the cell content.  Right alignment should be used for numeric values.',
+      defaultValue: 'left',
+    },
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
+    },
+    onSort: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description:
+        'Event that fires when clicking the table header cell sort button',
+    },
+    sortable: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the header will render a button for sorting',
+    },
+    sortDirection: {
+      type: {
+        name: 'enum',
+        options: [
+          'TableSortDirection.ascending',
+          'TableSortDirection.descending',
+          'TableSortDirection.none',
+        ],
+      },
+      required: false,
+      description: 'Direction by which the column is sorted',
+      defaultValue: 'none',
+    },
+  }}
+/>
+
+## TableCell Props
+
+**Any other props supplied will be provided to the wrapping `td` element.**
 
 <SimplePropsTable
   propertyValues={{

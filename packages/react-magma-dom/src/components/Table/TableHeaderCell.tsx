@@ -7,16 +7,29 @@ import {
   TableSortDirection
 } from './';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { ArrowDoubleIcon } from '../Icon/types/ArrowDoubleIcon';
 import { ArrowDown2Icon } from '../Icon/types/ArrowDown2Icon';
 import { ArrowUp2Icon } from '../Icon/types/ArrowUp2Icon';
 
 export interface TableHeaderCellProps
   extends React.HTMLAttributes<HTMLTableHeaderCellElement> {
   align?: any;
+  onSort?: any;
   ref?: any;
   sortable?: boolean;
   sortDirection?: TableSortDirection;
   testId?: string;
+}
+
+function buildPaddingStyle(density) {
+  switch (density) {
+    case 'compact':
+      return '5px 10px';
+    case 'loose':
+      return '20px 30px';
+    default:
+      return '10px 20px';
+  }
 }
 
 const StyledTableHeaderCell = styled.th<{
@@ -36,16 +49,8 @@ const StyledTableHeaderCell = styled.th<{
     props.isInverse ? 'rgba(255,255,255,0.4)' : props.theme.colors.neutral06};
   display: table-cell;
   font-weight: bold;
-  padding: ${props => {
-    switch (props.density) {
-      case 'compact':
-        return '5px 10px';
-      case 'loose':
-        return '20px 30px';
-      default:
-        return '10px 20px';
-    }
-  }};
+  padding: ${props =>
+    props.sortable ? '0' : buildPaddingStyle(props.density)}};
   text-align: ${props => props.textAlign};
   vertical-align: inherit;
   white-space: nowrap;
@@ -55,11 +60,41 @@ const StyledTableHeaderCell = styled.th<{
   }
 `;
 
-const SortButton = styled.button`
+const SortButton = styled.button<{
+  density?: TableDensity;
+  isInverse?: boolean;
+}>`
   background: none;
   border: 0;
+  color: inherit;
   margin: 0;
-  padding: 0;
+  padding: ${props => buildPaddingStyle(props.density)}};
+  text-align: left;
+  width: 100%;
+
+  &:focus {
+    outline: 2px dotted
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
+    outline-offset: -2px;
+  }
+
+  &:hover,
+  &:focus {
+    background: ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral01
+        : props.theme.colors.neutral06};
+
+    svg {
+      fill: ${props =>
+        props.isInverse
+          ? props.theme.colors.neutral08
+          : props.theme.colors.neutral01};
+    }
+  }
 `;
 
 const IconWrapper = styled.span`
@@ -71,6 +106,7 @@ export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = Re
     {
       align,
       children,
+      onSort,
       sortable,
       sortDirection,
       testId,
@@ -81,20 +117,27 @@ export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = Re
     const theme = React.useContext(ThemeContext);
     const tableContext = React.useContext(TableContext);
 
-    const handleSort = () => {
-      console.log('handle sort');
-
-      if (tableContext.onSortBtnClick) {
-        tableContext.onSortBtnClick();
+    function handleSort() {
+      if (onSort && typeof onSort === 'function') {
+        onSort();
       }
-    };
+    }
 
     const SortIcon =
       sortDirection === TableSortDirection.ascending ? (
         <ArrowUp2Icon size={14} />
       ) : sortDirection === TableSortDirection.descending ? (
         <ArrowDown2Icon size={14} />
-      ) : null;
+      ) : (
+        <ArrowDoubleIcon
+          color={
+            tableContext.isInverseContainer
+              ? theme.colors.neutral06
+              : theme.colors.neutral04
+          }
+          size={14}
+        />
+      );
 
     return (
       <StyledTableHeaderCell
@@ -104,11 +147,17 @@ export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = Re
         hasVerticalBorders={tableContext.hasVertBorders}
         isInverse={tableContext.isInverseContainer}
         ref={ref}
+        sortable={sortable}
         textAlign={align ? align : TableCellAlign.left}
         theme={theme}
       >
         {sortable ? (
-          <SortButton onClick={handleSort}>
+          <SortButton
+            density={tableContext.paddingDensity}
+            isInverse={tableContext.isInverseContainer}
+            onClick={handleSort}
+            theme={theme}
+          >
             {children}
             <IconWrapper>{SortIcon}</IconWrapper>
           </SortButton>
