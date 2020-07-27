@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.56](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.55...v2.0.0-beta.56) (2020-07-22)
+
+
+### Features
+
+* **double arrow icon:** add double arrow icon for table sort ([856c2ca](http://stash.cengage.com:7999/FRONT/react-magma/commits/856c2ca))
+
+
+
+
+
 # [2.0.0-beta.55](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.54...v2.0.0-beta.55) (2020-07-15)
 
 **Note:** Version bump only for package react-magma
