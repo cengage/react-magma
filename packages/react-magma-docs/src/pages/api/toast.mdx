@@ -10,11 +10,15 @@ import { SimplePropsTable } from '../../components/props-table'
 
 # Toasts
 
-`Toast` components use the <Link to="/api/alert">Alert component</Link> internally for it's content and styles. Any props that can be passed to an `Alert` can be passed to a `Toast` component.
+`Toast` components use the <Link to="/api/alert">Alert component</Link> internally for its content and styles. Any props that can be passed to an `Alert` can be passed to a `Toast` component.
+
+**Toasts are used to display non-critical information to users.** For critical messages, designers should consider a different way of presenting the information, such as using the <Link to="/api/alert">Alert component</Link> within the context of the UI.
 
 ## Basic Usage
 
 Variants for toasts include `info`, `success`, `warning`, and `danger`, with `info` being the default value.
+
+**It is strongly recommended that `warning` and `danger` toasts do not auto-dismiss**, so that users have time to process the information in them.
 
 ```.jsx
   (props) => {
@@ -31,10 +35,10 @@ Variants for toasts include `info`, `success`, `warning`, and `danger`, with `in
       <Button size="small" onClick={() => setShowWarningToast(true)}>Show Warning Toast</Button>
       <Button size="small" onClick={() => setShowDangerToast(true)}>Show Danger Toast</Button>
       {showDefaultToast && <Toast onDismiss={() => setShowDefaultToast(false)}>Default Toast</Toast>}
-      {showInfoToast && <Toast variant="info" onDismiss={() => setShowInfoToast(false)}>Info Toast</Toast>}
+      {showInfoToast && <Toast variant="info" onDismiss={() => setShowInfoToast(false)}>Info Toast with <a href="#">linked element</a></Toast>}
       {showSuccessToast && <Toast variant="success" onDismiss={() => setShowSuccessToast(false)}>Success Toast</Toast>}
-      {showWarningToast && <Toast variant="warning" onDismiss={() => setShowWarningToast(false)}>Warning Toast</Toast>}
-      {showDangerToast && <Toast variant="danger" onDismiss={() => setShowDangerToast(false)}>Danger Toast</Toast>}
+      {showWarningToast && <Toast disableAutoDismiss variant="warning" onDismiss={() => setShowWarningToast(false)}>Warning Toast</Toast>}
+      {showDangerToast && <Toast disableAutoDismiss variant="danger" onDismiss={() => setShowDangerToast(false)}>Danger Toast</Toast>}
       </>)
   }
 ```
@@ -77,13 +81,13 @@ appearing on screen at once as much as possible.
     return (<ToastsContainer>
       <Announce>
         <Button onClick={() => setShowToast(true)} color="success">Show Toast</Button>
-        {showToast && <Toast id="toast1" isDismissible onDismiss={() => setShowToast(false)} variant="success">Toast 1</Toast>}
+        {showToast && <Toast id="toast1" onDismiss={() => setShowToast(false)} variant="success">Toast 1</Toast>}
 
         <Button onClick={() => setShowToast2(true)} color="secondary">Show Toast 2</Button>
-        {showToast2 && <Toast id="toast2" isDismissible onDismiss={() => setShowToast2(false)}>This is the second toast which is longer than either toast one or three</Toast>}
+        {showToast2 && <Toast id="toast2" onDismiss={() => setShowToast2(false)}>This is the second toast which is longer than either toast one or three</Toast>}
 
         <Button onClick={() => setShowToast3(true)} color="danger">Show Toast 3</Button>
-        {showToast3 && <Toast id="toast3" isDismissible variant="danger" onDismiss={() => setShowToast3(false)}>Toast three</Toast>}
+        {showToast3 && <Toast disableAutoDismiss id="toast3" variant="danger" onDismiss={() => setShowToast3(false)}>Toast three</Toast>}
       </Announce>
     </ToastsContainer>)
   }
@@ -108,26 +112,16 @@ This is useful in cases where toasts are intended to display above a component, 
 
 ## Toast Duration
 
+The `toastDuration` prop can be used to set the number of milliseconds that the toast will remain on the screen before it auto-dismisses.  
+This can be useful to set a longer duration for more lengthy toasts. It is recommended that the minimum `toastDuration` is 4000ms. The default is 5000.
+
 ```.jsx
   (props) => {
     const [showToast, setShowToast] = React.useState(false);
 
     return (<>
       <Button onClick={() => setShowToast(true)}>Show Toast</Button>
-      {showToast && <Toast toastDuration={1000} onDismiss={() => setShowToast(false)}>Quick Toast</Toast>}
-    </>)
-  }
-```
-
-## Dismissible
-
-```.jsx
-  (props) => {
-    const [showToast, setShowToast] = React.useState(false);
-
-    return (<>
-      <Button onClick={() => setShowToast(true)}>Show Dismissible Toast</Button>
-      {showToast && <Toast isDismissible onDismiss={() => setShowToast(false)}>Dismissible Toast</Toast>}
+      {showToast && <Toast toastDuration={10000} onDismiss={() => setShowToast(false)}>Slow Toast</Toast>}
     </>)
   }
 ```
@@ -140,7 +134,7 @@ This is useful in cases where toasts are intended to display above a component, 
 
     return (<>
       <Button onClick={() => setShowToast(true)}>Show Toast</Button>
-      {showToast && <Toast isDismissible disableAutoDismiss onDismiss={() => setShowToast(false)}>Non-Auto Hiding Dismissible Toast</Toast>}
+      {showToast && <Toast disableAutoDismiss onDismiss={() => setShowToast(false)}>Non-Auto Hiding Dismissible Toast</Toast>}
     </>)
   }
 ```
@@ -270,8 +264,8 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
       },
       required: false,
       description:
-        'If true, the component will be able to be dismissed and will include a close button',
-      defaultValue: 'false',
+        'Depricated: If true, the component will be able to be dismissed and will include a close button.  Is now always true for a11y reasons.',
+      defaultValue: 'true',
     },
     onDismiss: {
       type: {

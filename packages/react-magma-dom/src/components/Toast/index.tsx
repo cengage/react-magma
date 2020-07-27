@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { Alert, AlertProps } from '../Alert';
+import { Alert, AlertProps, transitionDuration } from '../Alert';
+import { getTrapElements } from '../Modal/utils';
 import { useGenerateId } from '../../utils';
 import { ToastsContext } from './ToastsContainer';
 
@@ -44,15 +45,18 @@ export const Toast: React.FunctionComponent<ToastProps> = (
 ) => {
   const timerAutoHide = React.useRef<any>();
   const [isDismissed, setIsDismissed] = React.useState<boolean>(false);
+  const [isPaused, setIsPaused] = React.useState<boolean>(false);
+  const [timerTimeRemaining, setTimerTimeRemaining] = React.useState<number>();
 
   const {
     alertStyle,
     id: defaultId,
     testId,
     variant,
-    isDismissible,
+    disableAutoDismiss,
     children,
     containerStyle,
+    toastDuration,
     ...other
   } = props;
 
@@ -61,6 +65,10 @@ export const Toast: React.FunctionComponent<ToastProps> = (
   const lastFocus = React.useRef<any>();
 
   const { bottomOffset, toastsArray } = React.useContext(ToastsContext);
+
+  const timerStartTime = Date.now();
+
+  const containerElement = React.useRef<any>();
 
   function dismissToast() {
     setIsDismissed(true);
@@ -86,18 +94,30 @@ export const Toast: React.FunctionComponent<ToastProps> = (
 
   function setAutoHideTimer(duration = DEFAULT_TOAST_DURATION) {
     clearTimeout(timerAutoHide.current);
+    const totalDuration = duration + transitionDuration;
 
     timerAutoHide.current = setTimeout(() => {
       dismissToast();
-    }, duration);
+    }, totalDuration);
   }
 
   function handlePause() {
+    const duration = timerTimeRemaining
+      ? timerTimeRemaining
+      : toastDuration
+      ? toastDuration
+      : DEFAULT_TOAST_DURATION;
+    const timeRemaining = duration - (Date.now() - timerStartTime);
+
     clearTimeout(timerAutoHide.current);
+    setTimerTimeRemaining(timeRemaining);
+
+    setIsPaused(true);
   }
 
   function handleResume() {
-    setAutoHideTimer((props.toastDuration || DEFAULT_TOAST_DURATION) * 0.5);
+    setAutoHideTimer(timerTimeRemaining);
+    setIsPaused(false);
   }
 
   function handleMouseEnter(event: React.SyntheticEvent) {
@@ -145,24 +165,38 @@ export const Toast: React.FunctionComponent<ToastProps> = (
         : toastsArray.current.indexOf(id) * TOAST_HEIGHT;
   }
 
+  React.useEffect(() => {
+    if (!disableAutoDismiss) {
+      const focusableElements = getTrapElements(containerElement);
+      focusableElements.forEach(element => {
+        element.addEventListener('focus', handlePause);
+        element.addEventListener('blur', handleResume);
+      });
+    }
+  }, []);
+
   return (
     <ToastWrapper
       bottomOffsetForToast={bottomOffsetForToast}
       bottomOffsetForContainer={bottomOffset}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      ref={containerElement}
       style={containerStyle}
       data-testid={testId}
     >
       <Alert
         {...other}
         forceDismiss={clearTimeoutAndDismiss}
+        hasTimerRing={!disableAutoDismiss}
         id={id}
-        isDismissible={isDismissible}
+        isDismissible
         isDismissed={isDismissed}
+        isPaused={isPaused}
         isToast
         onDismiss={props.onDismiss}
         style={{ ...alertStyle }}
+        toastDuration={toastDuration ? toastDuration : DEFAULT_TOAST_DURATION}
         variant={variant}
       >
         {children}
