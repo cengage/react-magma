@@ -3,43 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.0.0-beta.54](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.53...v2.0.0-beta.54) (2020-07-14)
-
-
-### Bug Fixes
-
-* **datepicker:** do not focus a typed date if out of range ([6e03fe5](http://stash.cengage.com:7999/FRONT/react-magma/commits/6e03fe5))
-* **generateid:** fix issue with id generating twice ([8ac508d](http://stash.cengage.com:7999/FRONT/react-magma/commits/8ac508d))
-* **toast:** fix extra bottom offset, remove min width for small screen ([0dd4355](http://stash.cengage.com:7999/FRONT/react-magma/commits/0dd4355))
+# [2.0.0-beta.57](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.56...v2.0.0-beta.57) (2020-07-27)
 
 
 ### Features
 
-* **alert:** font size 14px on sm screen, fix alert style ([4991141](http://stash.cengage.com:7999/FRONT/react-magma/commits/4991141))
-* **banner:** banner styles ([b12d5e9](http://stash.cengage.com:7999/FRONT/react-magma/commits/b12d5e9))
-* **datepicker:** add styles props ([252d1eb](http://stash.cengage.com:7999/FRONT/react-magma/commits/252d1eb))
-* **toast:** header, visual for multiple toasts ([7d67d78](http://stash.cengage.com:7999/FRONT/react-magma/commits/7d67d78))
-* **toast:** queue of multiple toasts ([63e3600](http://stash.cengage.com:7999/FRONT/react-magma/commits/63e3600))
-* **toast:** return focus to triggered element if still in dom ([fab93fa](http://stash.cengage.com:7999/FRONT/react-magma/commits/fab93fa))
-* **toast container:** create toast container to hold multiple toasts ([a772963](http://stash.cengage.com:7999/FRONT/react-magma/commits/a772963))
-* **toasts:** multiple toasts stacked vertically ([28a6cd0](http://stash.cengage.com:7999/FRONT/react-magma/commits/28a6cd0))
-* **toasts:** stack toasts vertically using ref for toastarray ([784bea2](http://stash.cengage.com:7999/FRONT/react-magma/commits/784bea2))
-* **toasts:** style tweaks for small screen toasts, bottom offset ([0513855](http://stash.cengage.com:7999/FRONT/react-magma/commits/0513855))
+* **alert:** only show progress ring on toast ([c5cad21](http://stash.cengage.com:7999/FRONT/react-magma/commits/c5cad21))
+* **progress ring:** animate progress ring ([2b975e8](http://stash.cengage.com:7999/FRONT/react-magma/commits/2b975e8))
+* **progress ring:** change default value and prop name for radius ([7a953e6](http://stash.cengage.com:7999/FRONT/react-magma/commits/7a953e6))
+* **progress ring:** start of timer animation ([9c32790](http://stash.cengage.com:7999/FRONT/react-magma/commits/9c32790))
+* **toast:** add progress ring to toast ([7cc0bc8](http://stash.cengage.com:7999/FRONT/react-magma/commits/7cc0bc8))
+* **toast:** increase toast timer interval ([d8bde7f](http://stash.cengage.com:7999/FRONT/react-magma/commits/d8bde7f))
+* **toast:** make timer based on actual toast duration ([2a4736f](http://stash.cengage.com:7999/FRONT/react-magma/commits/2a4736f))
+* **toast:** pause dismiss timer on focus not just hover ([d486ba2](http://stash.cengage.com:7999/FRONT/react-magma/commits/d486ba2))
+* **toast:** pause toast on hover with countdown ([2afaecc](http://stash.cengage.com:7999/FRONT/react-magma/commits/2afaecc))
 
 
 
 
 
-# [2.0.0-beta.52](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.51...v2.0.0-beta.52) (2020-06-25)
+# [2.0.0-beta.56](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.55...v2.0.0-beta.56) (2020-07-22)
 
+
+### Features
+
+* **double arrow icon:** add double arrow icon for table sort ([856c2ca](http://stash.cengage.com:7999/FRONT/react-magma/commits/856c2ca))
+
+
+
+
+
+# [2.0.0-beta.54](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.53...v2.0.0-beta.54) (2020-07-14)
 
 ### Bug Fixes
 
-* **i18n:** possible fix for warning by moving interface to separate file ([e638117](http://stash.corp.web:7999/FRONT/react-magma/commits/e638117))
+- **datepicker:** do not focus a typed date if out of range ([6e03fe5](http://stash.cengage.com:7999/FRONT/react-magma/commits/6e03fe5))
+- **generateid:** fix issue with id generating twice ([8ac508d](http://stash.cengage.com:7999/FRONT/react-magma/commits/8ac508d))
+- **toast:** fix extra bottom offset, remove min width for small screen ([0dd4355](http://stash.cengage.com:7999/FRONT/react-magma/commits/0dd4355))
 
+### Features
 
+- **alert:** font size 14px on sm screen, fix alert style ([4991141](http://stash.cengage.com:7999/FRONT/react-magma/commits/4991141))
+- **banner:** banner styles ([b12d5e9](http://stash.cengage.com:7999/FRONT/react-magma/commits/b12d5e9))
+- **datepicker:** add styles props ([252d1eb](http://stash.cengage.com:7999/FRONT/react-magma/commits/252d1eb))
+- **toast:** header, visual for multiple toasts ([7d67d78](http://stash.cengage.com:7999/FRONT/react-magma/commits/7d67d78))
+- **toast:** queue of multiple toasts ([63e3600](http://stash.cengage.com:7999/FRONT/react-magma/commits/63e3600))
+- **toast:** return focus to triggered element if still in dom ([fab93fa](http://stash.cengage.com:7999/FRONT/react-magma/commits/fab93fa))
+- **toast container:** create toast container to hold multiple toasts ([a772963](http://stash.cengage.com:7999/FRONT/react-magma/commits/a772963))
+- **toasts:** multiple toasts stacked vertically ([28a6cd0](http://stash.cengage.com:7999/FRONT/react-magma/commits/28a6cd0))
+- **toasts:** stack toasts vertically using ref for toastarray ([784bea2](http://stash.cengage.com:7999/FRONT/react-magma/commits/784bea2))
+- **toasts:** style tweaks for small screen toasts, bottom offset ([0513855](http://stash.cengage.com:7999/FRONT/react-magma/commits/0513855))
 
+# [2.0.0-beta.52](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.51...v2.0.0-beta.52) (2020-06-25)
 
+### Bug Fixes
+
+- **i18n:** possible fix for warning by moving interface to separate file ([e638117](http://stash.corp.web:7999/FRONT/react-magma/commits/e638117))
 
 # [2.0.0-beta.51](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.50...v2.0.0-beta.51) (2020-06-24)
 

@@ -72,6 +72,7 @@ export {
   ProgressBarColor,
   ProgressBarProps
 } from './components/ProgressBar';
+export { ProgressRing, ProgressRingProps } from './components/ProgressRing';
 export { RadioGroup, RadioGroupProps } from './components/RadioGroup';
 export { Radio, RadioTextPosition, RadioProps } from './components/Radio';
 export { Modal, ModalSize, ModalProps } from './components/Modal';

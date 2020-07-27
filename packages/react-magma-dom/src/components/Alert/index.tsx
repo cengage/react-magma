@@ -10,6 +10,7 @@ import { BlockedIcon } from '../Icon/types/BlockedIcon';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
+import { ProgressRing } from '../ProgressRing';
 import { useGenerateId } from '../../utils';
 import { I18nContext } from '../../i18n';
 
@@ -31,14 +32,17 @@ export enum AlertVariant {
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   closeAriaLabel?: string;
   forceDismiss?: () => void;
+  hasTimerRing?: boolean;
   isExiting?: boolean;
   isDismissed?: boolean;
   isDismissible?: boolean;
   isInverse?: boolean;
+  isPaused?: boolean;
   isToast?: boolean;
   onDismiss?: () => void;
   ref?: any;
   testId?: string;
+  toastDuration?: number;
   variant?: AlertVariant;
 }
 
@@ -197,6 +201,13 @@ const IconWrapper = styled.span<{ isToast?: boolean }>`
   }
 `;
 
+const ProgressRingWrapper = styled.div`
+  opacity: 0.7;
+  position: absolute;
+  top: 6px;
+  right: 2px;
+`;
+
 const DismissibleIconWrapper = styled.span<AlertProps>`
   ${IconWrapperStyles}
 `;
@@ -258,14 +269,17 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
       children,
       closeAriaLabel,
       forceDismiss,
+      hasTimerRing,
       id: defaultId,
       isDismissed,
       isDismissible,
       isExiting: externalIsExiting,
       isInverse,
+      isPaused,
       isToast,
       onDismiss,
       testId,
+      toastDuration,
       variant,
       ...other
     }: AlertProps,
@@ -313,12 +327,24 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
           <AlertContents theme={theme}>{children}</AlertContents>
           {isDismissible && (
             <DismissibleIconWrapper variant={variant} theme={theme}>
+              {hasTimerRing && isToast && (
+                <ProgressRingWrapper>
+                  <ProgressRing
+                    color={
+                      variant === AlertVariant.warning
+                        ? theme.colors.neutral01
+                        : theme.colors.neutral08
+                    }
+                    isActive={!isPaused}
+                  />
+                </ProgressRingWrapper>
+              )}
               <DismissButton
                 alertVariant={variant}
                 aria-label={
                   closeAriaLabel ? closeAriaLabel : i18n.alert.dismissAriaLabel
                 }
-                icon={<CrossIcon size={13} />}
+                icon={<CrossIcon size={hasTimerRing ? 10 : 13} />}
                 isInverse
                 onClick={forceDismiss || handleDismiss}
                 theme={theme}
