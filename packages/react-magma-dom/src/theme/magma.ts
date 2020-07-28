@@ -41,7 +41,7 @@ export interface ThemeInterface {
   bodyFont: string;
   headingFont: string;
   colors: Colors;
-  breakpoints: object;
+  breakpoints: Breakpoints;
 }
 
 export const magma = {

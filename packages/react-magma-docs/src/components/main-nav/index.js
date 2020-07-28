@@ -63,7 +63,7 @@ const SubMenu = ({ headings, handleClick }) => {
 const activeStyle = {
   color: magma.colors.neutral01,
   fontWeight: 'bold',
-  background: magma.colors.neutral07
+  background: magma.colors.neutral07,
 }
 
 const MainNav = ({ ...props }) => (

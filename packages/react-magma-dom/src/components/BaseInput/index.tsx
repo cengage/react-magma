@@ -184,9 +184,7 @@ function getIconSize(size) {
   }
 }
 
-export const BaseInput: React.FunctionComponent<
-  BaseInputProps
-> = React.forwardRef(
+export const BaseInput: React.FunctionComponent<BaseInputProps> = React.forwardRef(
   (props: BaseInputProps, ref: React.Ref<HTMLInputElement>) => {
     const {
       children,

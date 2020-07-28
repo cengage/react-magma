@@ -10,6 +10,7 @@ import { BlockedIcon } from '../Icon/types/BlockedIcon';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
+import { ProgressRing } from '../ProgressRing';
 import { useGenerateId } from '../../utils';
 import { I18nContext } from '../../i18n';
 
@@ -31,14 +32,17 @@ export enum AlertVariant {
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   closeAriaLabel?: string;
   forceDismiss?: () => void;
+  hasTimerRing?: boolean;
   isExiting?: boolean;
   isDismissed?: boolean;
   isDismissible?: boolean;
   isInverse?: boolean;
+  isPaused?: boolean;
   isToast?: boolean;
   onDismiss?: () => void;
   ref?: any;
   testId?: string;
+  toastDuration?: number;
   variant?: AlertVariant;
 }
 
@@ -63,17 +67,18 @@ const StyledAlert = styled.div<AlertProps>`
     props.isExiting
       ? `fadeout ${transitionDuration}ms`
       : `fadein ${transitionDuration}ms`};
-  background-color: ${props => buildAlertBackground(props)};
-  border-radius: 3px;
-  color: ${props =>
-    props.variant === 'warning'
-      ? props.theme.colors.neutral01
-      : props.theme.colors.neutral08};
+  
   display: flex;
-  position: relative;
-  padding: 0;
+  flex-direction: column;
+  line-height: 20px;
   margin-bottom: 20px;
   max-width: 100%;
+  padding: 0;
+  position: relative;
+
+  @media (max-width: ${props => props.theme.breakpoints.small}px) {
+    font-size: 14px;
+  }
 
   &:focus {
     outline: 2px dotted ${props =>
@@ -89,15 +94,11 @@ const StyledAlert = styled.div<AlertProps>`
       animation: ${props.isExiting
         ? `slideout ${transitionDuration}ms`
         : `slidein ${transitionDuration}ms`};
-      border: 1px solid ${props.theme.colors.neutral08};
-      border-radius: 5px;
-      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.4);
       min-width: 375px;
       margin: 0 auto;
 
-      @media (max-width: 600px) {
-        font-size: 13px;
-        padding-left: 15px;
+      @media (max-width: ${props.theme.breakpoints.small}px) {
+        min-width: 0;
         width: 100%;
       }
     `}
@@ -120,21 +121,22 @@ const StyledAlert = styled.div<AlertProps>`
     }
   }
 
+ 
   @keyframes slidein {
     from {
-      bottom: -500px;
+      left: -500px;
     }
     to {
-      bottom: 0;
+      left: 0;
     }
   }
 
   @keyframes slideout {
     from {
-      bottom: -500px;
+      left: 0;
     }
     to {
-      bottom: -500px;
+      left: -500px;
     }
   }
 
@@ -153,9 +155,35 @@ const StyledAlert = styled.div<AlertProps>`
   }
 `;
 
+const StyledAlertInner = styled.div<AlertProps>`
+  background-color: ${props => buildAlertBackground(props)};
+  border-radius: 3px;
+  border-radius: 5px;
+  color: ${props =>
+    props.variant === 'warning'
+      ? props.theme.colors.neutral01
+      : props.theme.colors.neutral08};
+  display: flex;
+  position: relative;
+  z-index: 2;
+
+  ${props =>
+    props.isToast &&
+    css`
+      border: 1px solid ${props.theme.colors.neutral08};
+      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.4);
+      height: 56px;
+    `}
+`;
+
 const AlertContents = styled.div`
+  align-self: center;
   flex-grow: 1;
   padding: 13px 15px 13px 0;
+
+  @media (max-width: ${props => props.theme.breakpoints.small}px) {
+    padding-left: 15px;
+  }
 `;
 
 const IconWrapperStyles = css`
@@ -168,13 +196,16 @@ const IconWrapper = styled.span<{ isToast?: boolean }>`
   ${IconWrapperStyles}
   padding: 0 10px 0 15px;
 
-  ${props =>
-    props.isToast &&
-    css`
-      @media (max-width: 600px) {
-        display: none;
-      }
-    `}
+  @media (max-width: 600px) {
+    display: none;
+  }
+`;
+
+const ProgressRingWrapper = styled.div`
+  opacity: 0.7;
+  position: absolute;
+  top: 6px;
+  right: 2px;
 `;
 
 const DismissibleIconWrapper = styled.span<AlertProps>`
@@ -226,7 +257,7 @@ function renderIcon(variant = 'info', isToast?: boolean) {
   const Icon = VARIANT_ICON[variant];
 
   return (
-    <IconWrapper isToast>
+    <IconWrapper>
       <Icon size={20} />
     </IconWrapper>
   );
@@ -235,18 +266,21 @@ function renderIcon(variant = 'info', isToast?: boolean) {
 export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
   (
     {
-      closeAriaLabel,
-      id: defaultId,
-      testId,
-      variant,
       children,
+      closeAriaLabel,
       forceDismiss,
+      hasTimerRing,
+      id: defaultId,
       isDismissed,
       isDismissible,
       isExiting: externalIsExiting,
       isInverse,
+      isPaused,
       isToast,
       onDismiss,
+      testId,
+      toastDuration,
+      variant,
       ...other
     }: AlertProps,
     ref: any
@@ -279,33 +313,46 @@ export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
     return (
       <StyledAlert
         {...other}
-        id={id}
         data-testid={testId}
-        ref={ref}
+        id={id}
         tabIndex={-1}
         isInverse={isInverse}
         isExiting={isExiting}
         isToast={isToast}
-        variant={variant}
+        ref={ref}
         theme={theme}
       >
-        {renderIcon(variant, isToast)}
-        <AlertContents>{children}</AlertContents>
-        {isDismissible && (
-          <DismissibleIconWrapper variant={variant} theme={theme}>
-            <DismissButton
-              alertVariant={variant}
-              aria-label={
-                closeAriaLabel ? closeAriaLabel : i18n.alert.dismissAriaLabel
-              }
-              icon={<CrossIcon size={13} />}
-              isInverse
-              onClick={forceDismiss || handleDismiss}
-              theme={theme}
-              variant={ButtonVariant.link}
-            />
-          </DismissibleIconWrapper>
-        )}
+        <StyledAlertInner isToast={isToast} theme={theme} variant={variant}>
+          {renderIcon(variant, isToast)}
+          <AlertContents theme={theme}>{children}</AlertContents>
+          {isDismissible && (
+            <DismissibleIconWrapper variant={variant} theme={theme}>
+              {hasTimerRing && isToast && (
+                <ProgressRingWrapper>
+                  <ProgressRing
+                    color={
+                      variant === AlertVariant.warning
+                        ? theme.colors.neutral01
+                        : theme.colors.neutral08
+                    }
+                    isActive={!isPaused}
+                  />
+                </ProgressRingWrapper>
+              )}
+              <DismissButton
+                alertVariant={variant}
+                aria-label={
+                  closeAriaLabel ? closeAriaLabel : i18n.alert.dismissAriaLabel
+                }
+                icon={<CrossIcon size={hasTimerRing ? 10 : 13} />}
+                isInverse
+                onClick={forceDismiss || handleDismiss}
+                theme={theme}
+                variant={ButtonVariant.link}
+              />
+            </DismissibleIconWrapper>
+          )}
+        </StyledAlertInner>
       </StyledAlert>
     );
   }

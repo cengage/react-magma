@@ -26,25 +26,25 @@ export interface TabPanelProps extends React.HTMLAttributes<HTMLDivElement> {
   testId?: string;
 }
 
-export const TabPanel: React.FunctionComponent<
-  TabPanelProps
-> = React.forwardRef((props, ref: React.Ref<any>) => {
-  const { index, isInverse, testId, children, ...other } = props;
+export const TabPanel: React.FunctionComponent<TabPanelProps> = React.forwardRef(
+  (props, ref: React.Ref<any>) => {
+    const { index, isInverse, testId, children, ...other } = props;
 
-  const theme = React.useContext(ThemeContext);
+    const theme = React.useContext(ThemeContext);
 
-  const { activeTabIndex } = React.useContext(TabsContainerContext);
-  const activeTab = activeTabIndex === index;
+    const { activeTabIndex } = React.useContext(TabsContainerContext);
+    const activeTab = activeTabIndex === index;
 
-  return activeTab ? (
-    <StyledTabPanel
-      ref={ref}
-      data-testid={testId}
-      isInverse={isInverse}
-      theme={theme}
-      {...other}
-    >
-      {children}
-    </StyledTabPanel>
-  ) : null;
-});
+    return activeTab ? (
+      <StyledTabPanel
+        ref={ref}
+        data-testid={testId}
+        isInverse={isInverse}
+        theme={theme}
+        {...other}
+      >
+        {children}
+      </StyledTabPanel>
+    ) : null;
+  }
+);
