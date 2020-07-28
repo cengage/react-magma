@@ -65,6 +65,8 @@ import { SimplePropsTable } from '../../components/props-table'
 
 ## Vertical Borders
 
+The `hasVerticalBorders` boolean prop may be used to give table cells vertical borders between them.
+
 ```.jsx
     <Card>
         <Table hasVerticalBorders>
@@ -95,6 +97,8 @@ import { SimplePropsTable } from '../../components/props-table'
 ```
 
 ## Zebra Stripes
+
+The `hasZebraStripes` boolean prop may be used to give each alertnating row a different background color.
 
 ```.jsx
     <Card>
@@ -241,6 +245,8 @@ These props do not handle the actual sorting of the table, just the visual appea
 
 ## Inverse
 
+`IsInverse` is an optional boolean prop, that may be used when a table is displayed on a dark background.
+
 ```.jsx
     <>
     <Card background={magma.colors.foundation01} isInverse>
@@ -377,11 +383,48 @@ These props do not handle the actual sorting of the table, just the visual appea
             </TableBody>
         </Table>
     </Card>
-    <br /> <br />
-  </>
+```
+
+## Min-Width
+
+The `minWidth` prop specifies the number in pixels for the minimum width of the table.
+If the table is larger than the width of its container, it will scroll horizontally so that all of the content can be accessed.
+
+```.jsx
+    <Card>
+        <Table minWidth={700}>
+            <TableHead>
+                <TableRow>
+                    <TableHeaderCell>Column 1</TableHeaderCell>
+                    <TableHeaderCell>Column 2</TableHeaderCell>
+                    <TableHeaderCell>Column 3</TableHeaderCell>
+                    <TableHeaderCell>Column 4</TableHeaderCell>
+                    <TableHeaderCell>Column 5</TableHeaderCell>
+                </TableRow>
+            </TableHead>
+            <TableBody>
+                <TableRow>
+                    <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Sit amet</TableCell>
+                    <TableCell>Consectetur</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>Lorem ipsum dolor sit amet</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Consectetur</TableCell>
+                    <TableCell>Sit amet</TableCell>
+                </TableRow>
+            </TableBody>
+        </Table>
+    </Card>
 ```
 
 ## Other Content
+
+Content other than just text, such as buttons, inputs and other elements can be included inside a table cell.
 
 ```.jsx
     <Card>
@@ -460,6 +503,14 @@ These props do not handle the actual sorting of the table, just the visual appea
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
+    },
+    minWidth: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'Minimum width for the table in pixels',
+      defaultValue: '0',
     },
   }}
 />

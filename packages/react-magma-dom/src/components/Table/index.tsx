@@ -7,6 +7,7 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   hasVerticalBorders?: boolean;
   hasZebraStripes?: boolean;
   isInverse?: boolean;
+  minWidth?: number;
   ref?: any;
   testId?: string;
 }
@@ -45,7 +46,11 @@ export const TableContext = React.createContext<TableContextInterface>({
   isInverseContainer: false
 });
 
-const StyledTable = styled.table<{ isInverse?: boolean }>`
+const TableContainer = styled.div`
+  overflow-x: auto;
+`;
+
+const StyledTable = styled.table<{ isInverse?: boolean; minWidth: number }>`
   border-collapse: collapse;
   border-spacing: 0;
   color: ${props =>
@@ -53,6 +58,7 @@ const StyledTable = styled.table<{ isInverse?: boolean }>`
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral01};
   display: table;
+  min-width: ${props => props.minWidth}px;
   width: 100%;
 `;
 
@@ -64,6 +70,7 @@ export const Table: React.FunctionComponent<TableProps> = React.forwardRef(
       hasVerticalBorders,
       hasZebraStripes,
       isInverse,
+      minWidth = 0,
       testId,
       ...other
     }: TableProps,
@@ -114,15 +121,18 @@ export const Table: React.FunctionComponent<TableProps> = React.forwardRef(
           paddingDensity
         }}
       >
-        <StyledTable
-          {...other}
-          data-testid={testId}
-          isInverse={isInverse}
-          ref={ref}
-          theme={theme}
-        >
-          {children}
-        </StyledTable>
+        <TableContainer>
+          <StyledTable
+            {...other}
+            data-testid={testId}
+            isInverse={isInverse}
+            minWidth={minWidth}
+            ref={ref}
+            theme={theme}
+          >
+            {children}
+          </StyledTable>
+        </TableContainer>
       </TableContext.Provider>
     );
   }
