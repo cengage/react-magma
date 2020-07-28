@@ -8,6 +8,7 @@ import DocsHeading from '../../components/docs-heading'
 import { SimplePropsTable } from '../../components/props-table'
 import { useSelect } from 'downshift'
 import { Link } from 'gatsby'
+import { v4 as uuid } from 'uuid'
 
 <DocsHeading to="/design/select/" type="design">
   Downshift Selects
@@ -17,7 +18,7 @@ import { Link } from 'gatsby'
 
 ```.jsx
   () => {
-    const [selectedItem, updateSelectedItem] = React.useState(undefined);
+    const [selectedItem, updateSelectedItem] = React.useState('');
 
     function onSelectedItemChange(changes) {
       updateSelectedItem(changes.selectedItem);
@@ -82,13 +83,19 @@ Set inital state using the `initialIsOpen`, `initalSelectedItem`, and `initialHi
   () => {
     return <>
       <DownshiftSelect
-        id="initialSelectedSelectId"
-        name="initialSelected"
-        labelText="Initial Selected"
+        id="initialSelectedByItemSelectId"
+        name="initialSelectedByItem"
+        labelText="Initial Selected By Item"
         items={['Red', 'Blue', 'Green']}
-        initialIsOpen
-        initialHighlightedIndex={2}
         initialSelectedItem={'Green'}
+      />
+
+      <DownshiftSelect
+        id="initialSelectedByIndexSelectId"
+        name="initialSelectedByIndex"
+        labelText="Initial Selected By Index"
+        items={['Red', 'Blue', 'Green']}
+        initialHighlightedIndex={1}
       />
     </>
   }
@@ -163,7 +170,7 @@ you will have to use the handlers mentioned above in the <Link to="/api/downshif
   () => {
     const [highlightedIndex, updateHighlightedIndex] = React.useState(0);
     const [isOpen, updateIsOpen] = React.useState(false);
-    const [selectedItem, updateSelectedItem] = React.useState(undefined);
+    const [selectedItem, updateSelectedItem] = React.useState('');
 
     function onHighlightedIndexChange(changes) {
       updateHighlightedIndex(changes.highlightedIndex);
@@ -223,8 +230,6 @@ These props are `defaultIsOpen`, `defaultSelectedItem`, and `defaultHighlightedI
         labelText="Clearable With Defaults"
         items={['Red', 'Blue', 'Green']}
         isClearable
-        defaultIsOpen
-        defaultHighlightedIndex={1}
         defaultSelectedItem={'Blue'}
       />
     </>
@@ -287,8 +292,47 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
         name="newA11yStatusMessage"
         labelText="New A11y Status Message"
         items={['Red', 'Blue', 'Green']}
-        getA11yStatusMessage={({highlightedItem}) => `${highlightedItem} is highlighted`}
-        getA11ySelectionMessage={({selectedItem}) => `${selectedItem} is now selected`}
+        getA11yStatusMessage={({highlightedItem}) => `custom message saying that ${highlightedItem} is highlighted`}
+        getA11ySelectionMessage={({selectedItem}) => `custom message saying that ${selectedItem} is now selected`}
+      />
+    </>
+  }
+```
+
+## Multi Select
+
+```.jsx
+  () => {
+    const [selectedItems, updateSelectedItems] = React.useState([]);
+
+    function handleSelectedItemsChange(changes) {
+      updateSelectedItems(changes.selectedItems);
+    }
+
+    function handleRemoveSelectedItem(removedItem) {
+      updateSelectedItems(
+        selectedItems.filter(item => item !== removedItem)
+      )
+    }
+
+    return <>
+      <DownshiftSelect
+        id="multiSelectId"
+        isMulti
+        name="multiSelect"
+        labelText="Multi Select"
+        items={['Red', 'Blue', 'Green']}
+      />
+
+      <DownshiftSelect
+        id="multiSelectControlledId"
+        isMulti
+        name="multiSelectControlled"
+        labelText="Multi Select Controlled"
+        items={['Red', 'Blue', 'Green']}
+        selectedItems={selectedItems}
+        onSelectedItemsChange={handleSelectedItemsChange}
+        onRemoveSelectedItem={handleRemoveSelectedItem}
       />
     </>
   }
@@ -308,27 +352,57 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
   </>
 ```
 
-## Creatable
+## Creatable With Custom Items
 
 ```.jsx
   () => {
+    function itemToString(item) {
+      return item ? item.representation : ''
+    }
+
     function newItemTransform(item) {
-      return item.value
+      const { value } = item;
+
+      return {
+        id: uuid(),
+        name: value,
+        representation: value.charAt(0).toUpperCase() + value.slice(1)
+      }
     }
 
     return (
       <>
         <DownshiftSelect
-          id="comboboxId"
-          name="combobox"
-          labelText="Combobox"
-          defaultItems={['Red', 'Blue', 'Green']}
+          id="comboboxWithCustomItemsId"
+          name="comboboxWithCustomItems"
+          labelText="Combobox With Custom Items"
+          defaultItems={[
+            { id: 0, name: 'red', representation: 'Red' },
+            { id: 1, name: 'blue', representation: 'Blue' },
+            { id: 2, name: 'green', representation: 'Green' }
+          ]}
           type='combo'
           newItemTransform={newItemTransform}
+          itemToString={itemToString}
         />
       </>
     )
   }
+```
+
+## Disable Create Item
+
+```.jsx
+  <>
+    <DownshiftSelect
+      disableCreateItem
+      id="disableCreateItemId"
+      name="disableCreateItem"
+      labelText="Disable Create Item"
+      items={['Red', 'Blue', 'Green']}
+      type='combo'
+    />
+  </>
 ```
 
 ## Controlled Items
@@ -373,52 +447,47 @@ prop.
   }
 ```
 
-## Custom Components
+## Multi Combobox
 
 ```.jsx
-  () => {
-    const [isLoading, updateIsLoading] = React.useState(false);
+() => {
+  const [selectedItems, updateSelectedItems] = React.useState([]);
 
-    function loadItems(inputValue) {
-      return new Promise(resolve => resolve(['Yellow', 'Pink', 'Perrywinkle']))
-    }
-
-    function handleInputValueChange(changes, setInputItems) {
-      const { inputValue } = changes;
-
-      updateIsLoading(true);
-
-      setTimeout(() => {
-        updateIsLoading(false);
-        loadItems(inputValue).then((items) => {
-          setInputItems(items.filter(item =>
-            item
-              .toLowerCase()
-              .startsWith(inputValue.toLowerCase())
-          ))
-        })
-      }, 1000)
-    }
-
-    return (<>
-      <DownshiftSelect
-        id="customComponentsId"
-        name="customComponents"
-        labelText="Custom Components"
-        isLoading={isLoading}
-        items={['Red', 'Blue', 'Green']}
-        type='combo'
-        isClearable
-        onInputValueChange={handleInputValueChange}
-        components={{
-          ClearIndicator: (props) => <button onClick={props.onClick}>Clear</button>,
-          DropdownIndicator: React.forwardRef((props, ref) => <button ref={ref} onClick={props.onClick}>Dropdown</button>),
-          LoadingIndicator: (props) => <>Loading</>
-        }}
-      />
-    </>)
+  function handleSelectedItemsChange(changes) {
+    updateSelectedItems(changes.selectedItems);
   }
 
+  function handleRemoveSelectedItem(removedItem) {
+    updateSelectedItems(
+      selectedItems.filter(item => item !== removedItem)
+    )
+  }
+
+  return (
+    <>
+      <DownshiftSelect
+        isMulti
+        id="comboboxId"
+        name="combobox"
+        labelText="Combobox"
+        items={['Red', 'Blue', 'Green']}
+        type='combo'
+      />
+
+      <DownshiftSelect
+        id="multiComboboxControlledId"
+        isMulti
+        name="multiComboboxControlled"
+        labelText="Multi Combobox Controlled"
+        items={['Red', 'Blue', 'Green']}
+        selectedItems={selectedItems}
+        onSelectedItemsChange={handleSelectedItemsChange}
+        onRemoveSelectedItem={handleRemoveSelectedItem}
+        type='combo'
+      />
+    </>
+  )
+}
 ```
 
 ## Async
@@ -453,11 +522,59 @@ prop.
       name="async"
       labelText="Async"
       isLoading={isLoading}
-      items={['Red', 'Blue', 'Green']}
+      defaultItems={['Red', 'Blue', 'Green']}
       type='combo'
       onInputValueChange={handleInputValueChange}
     />
   }
+```
+
+## Custom Components
+
+```.jsx
+  () => {
+    const [isLoading, updateIsLoading] = React.useState(false);
+
+    function loadItems(inputValue) {
+      return new Promise(resolve => resolve(['Yellow', 'Pink', 'Perrywinkle']))
+    }
+
+    function handleInputValueChange(changes, setInputItems) {
+      const { inputValue } = changes;
+
+      updateIsLoading(true);
+
+      setTimeout(() => {
+        updateIsLoading(false);
+        loadItems(inputValue).then((items) => {
+          setInputItems(items.filter(item =>
+            item
+              .toLowerCase()
+              .startsWith(inputValue.toLowerCase())
+          ))
+        })
+      }, 1000)
+    }
+
+    return (<>
+      <DownshiftSelect
+        id="customComponentsId"
+        name="customComponents"
+        labelText="Custom Components"
+        isLoading={isLoading}
+        defaultItems={['Red', 'Blue', 'Green']}
+        type='combo'
+        isClearable
+        onInputValueChange={handleInputValueChange}
+        components={{
+          ClearIndicator: (props) => <button onClick={props.onClick}>Clear</button>,
+          DropdownIndicator: React.forwardRef((props, ref) => <button ref={ref} onClick={props.onClick}>Dropdown</button>),
+          LoadingIndicator: (props) => <>Loading</>
+        }}
+      />
+    </>)
+  }
+
 ```
 
 ## Select Props
@@ -534,6 +651,7 @@ export default props => (
     components={{
       DownshiftSelect,
       useSelect,
+      uuid,
     }}
   />
 )

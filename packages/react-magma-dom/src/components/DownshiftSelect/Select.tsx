@@ -1,21 +1,13 @@
 import * as React from 'react';
 import { DownshiftSelectInterface } from '.';
 import { useSelect } from 'downshift';
-
-import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
-import { Label } from '../Label';
-import { ThemeContext } from '../../theme/ThemeContext';
-
-import {
-  SelectContainer,
-  StyledButton,
-  SelectText,
-  StyledCard,
-  StyledList,
-  StyledItem
-} from './shared';
+import { SelectText } from './shared';
 import { defaultComponents } from './components';
-import { CrossIcon, ButtonSize, ButtonVariant } from '../..';
+import { CrossIcon } from '../Icon/types/CrossIcon';
+import { ButtonSize, ButtonVariant } from '../Button';
+import { ItemsList } from './ItemsList';
+import { DownshiftSelectContainer } from './SelectContainer';
+import { SelectTriggerButton } from './SelectTriggerButton';
 
 export function Select<T>(props: DownshiftSelectInterface<T>) {
   const {
@@ -26,6 +18,7 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
     isClearable,
     isDisabled
   } = props;
+
   const {
     isOpen,
     selectedItem,
@@ -38,7 +31,6 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
     openMenu
   } = useSelect(props);
 
-  const theme = React.useContext(ThemeContext);
   const { ClearIndicator } = defaultComponents({ ...customComponents });
 
   function defaultHandleClearIndicatorClick(event: React.SyntheticEvent) {
@@ -47,22 +39,26 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
     reset();
   }
 
+  // TODO: Figure out a11y messaging overrides
+
   return (
-    <SelectContainer>
-      <Label {...getLabelProps()}>{labelText}</Label>
-      <StyledButton
-        role="button"
-        {...getToggleButtonProps({
+    <DownshiftSelectContainer
+      getLabelProps={getLabelProps}
+      labelText={labelText}
+    >
+      <SelectTriggerButton
+        toggleButtonProps={...getToggleButtonProps({
           disabled: isDisabled,
           onKeyDown: event => {
-            if (event.key === 'Enter' || event.key === ' ') {
+            if (
+              getToggleButtonProps().id === document.activeElement.id &&
+              (event.key === 'Enter' || event.key === ' ')
+            ) {
               event.preventDefault();
               openMenu();
             }
           }
         })}
-        theme={theme}
-        tabIndex={0}
       >
         <SelectText data-testid="selectedItemText">
           {itemToString(selectedItem) || 'Select...'}
@@ -76,26 +72,15 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
             variant={ButtonVariant.link}
           />
         )}
-        <CaretDownIcon size={10} testId="caretDown" />
-      </StyledButton>
-      <StyledCard hasDropShadow isOpen={isOpen}>
-        <StyledList isOpen={isOpen} {...getMenuProps()}>
-          {isOpen &&
-            items.map((item, index) => {
-              const itemString = itemToString(item);
-              return (
-                <StyledItem
-                  key={`${itemString}${index}`}
-                  isFocused={highlightedIndex === index}
-                  {...getItemProps({ item, index })}
-                  theme={theme}
-                >
-                  {itemString}
-                </StyledItem>
-              );
-            })}
-        </StyledList>
-      </StyledCard>
-    </SelectContainer>
+      </SelectTriggerButton>
+      <ItemsList
+        getItemProps={getItemProps}
+        getMenuProps={getMenuProps}
+        highlightedIndex={highlightedIndex}
+        isOpen={isOpen}
+        items={items}
+        itemToString={itemToString}
+      />
+    </DownshiftSelectContainer>
   );
 }

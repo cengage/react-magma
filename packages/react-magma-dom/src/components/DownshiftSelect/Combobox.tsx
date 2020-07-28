@@ -1,38 +1,19 @@
 import * as React from 'react';
 import { DownshiftComboboxInterface, instanceOfDefaultItemObject } from '.';
 import { useCombobox } from 'downshift';
-import styled from '@emotion/styled';
-
-import { baseInputStyles } from '../BaseInput';
-import { ButtonShape, ButtonVariant, ButtonSize } from '../Button';
-import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
-import { Label } from '../Label';
-import { ThemeContext } from '../../theme/ThemeContext';
-
-import { SelectContainer, StyledCard, StyledList, StyledItem } from './shared';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { defaultComponents } from './components';
-
-const InputContainer = styled.div<{ theme?: any }>`
-  align-items: center;
-  border-radius: 5px 0 0 5px;
-  border: 1px solid ${props => props.theme.colors.neutral03};
-  display: flex;
-  height: 37px;
-  width: 100%;
-`;
-
-const StyledInput = styled.input`
-  ${baseInputStyles}
-
-  height: 35px;
-  border: 0;
-`;
+import { DownshiftSelectContainer } from './SelectContainer';
+import { ItemsList } from './ItemsList';
+import { ComboboxInput } from './ComboboxInput';
+import { ButtonSize, ButtonVariant } from '../Button';
+import { useComboboxItems } from './shared';
 
 export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
   const {
     components: customComponents,
     defaultItems,
+    disableCreateItem,
     labelText,
     isClearable,
     isLoading,
@@ -44,43 +25,8 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
     onItemCreated
   } = props;
 
-  const allItems = React.useRef(defaultItems || items);
-  const [displayItems, setDisplayItems] = React.useState(defaultItems || items);
-  const theme = React.useContext(ThemeContext);
-
-  function updateItemsRef(newItem) {
-    allItems.current = [...allItems.current, newItem];
-  }
-
-  React.useEffect(() => {
-    if (items) {
-      allItems.current = items;
-      setDisplayItems(items);
-    }
-  }, [items]);
-
-  function defaultOnInputValueChange(changes) {
-    const filteredItems = allItems.current
-      .filter(item =>
-        itemToString(item)
-          .toLowerCase()
-          .startsWith(changes.inputValue.toLowerCase())
-      )
-      .concat(
-        changes.inputValue && !allItems.current.includes(changes.inputValue)
-          ? {
-              label: `Create "${changes.inputValue}"`,
-              value: changes.inputValue,
-              react_magma__created_item: true
-            }
-          : null
-      )
-      .filter(Boolean);
-
-    setDisplayItems(filteredItems);
-    onInputChange &&
-      typeof onInputChange === 'function' &&
-      onInputChange(changes);
+  function defaultNewItemTransform(newItem) {
+    return newItem.value;
   }
 
   function defaultOnSelectedItemChange(changes) {
@@ -96,9 +42,9 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
 
       const newItem =
         react_magma__created_item &&
-        newItemTransform &&
-        typeof newItemTransform === 'function' &&
-        newItemTransform(createdItem);
+        newItemTransform && typeof newItemTransform === 'function'
+          ? newItemTransform(createdItem)
+          : defaultNewItemTransform(createdItem);
 
       items && onItemCreated && typeof onItemCreated === 'function'
         ? onItemCreated(newItem || createdItem)
@@ -106,6 +52,17 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
       selectItem(newItem);
     }
   }
+
+  const [
+    displayItems,
+    setDisplayItems,
+    updateItemsRef,
+    defaultOnInputValueChange
+  ] = useComboboxItems(defaultItems, items, {
+    itemToString,
+    disableCreateItem,
+    onInputChange
+  });
 
   const {
     isOpen,
@@ -130,11 +87,7 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
     onSelectedItemChange: defaultOnSelectedItemChange
   });
 
-  const {
-    ClearIndicator,
-    DropdownIndicator,
-    LoadingIndicator
-  } = defaultComponents({
+  const { ClearIndicator } = defaultComponents({
     ...customComponents
   });
 
@@ -145,48 +98,35 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
   }
 
   return (
-    <SelectContainer>
-      <Label {...getLabelProps()}>{labelText}</Label>
-      <div {...getComboboxProps()} style={{ display: 'flex' }}>
-        <InputContainer theme={theme}>
-          <StyledInput {...getInputProps()} theme={theme} />
-          {isClearable && selectedItem && (
-            <ClearIndicator
-              aria-label="reset"
-              icon={<CrossIcon size={10} />}
-              onClick={defaultHandleClearIndicatorClick}
-              size={ButtonSize.small}
-              variant={ButtonVariant.link}
-            />
-          )}
-          {isLoading && <LoadingIndicator style={{ marginRight: '10px' }} />}
-        </InputContainer>
-        <DropdownIndicator
-          {...getToggleButtonProps()}
-          aria-label="toggle menu"
-          icon={<CaretDownIcon size={10} />}
-          shape={ButtonShape.rightCap}
-          theme={theme}
-          variant={ButtonVariant.link}
-        />
-      </div>
-      <StyledCard isOpen={isOpen} hasDropShadow>
-        <StyledList isOpen={isOpen} {...getMenuProps()}>
-          {displayItems.map((item, index) => {
-            const itemString = itemToString(item);
-            return (
-              <StyledItem
-                key={`${itemString}${index}`}
-                isFocused={highlightedIndex === index}
-                {...getItemProps({ item, index })}
-                theme={theme}
-              >
-                {itemString}
-              </StyledItem>
-            );
-          })}
-        </StyledList>
-      </StyledCard>
-    </SelectContainer>
+    <DownshiftSelectContainer
+      getLabelProps={getLabelProps}
+      labelText={labelText}
+    >
+      <ComboboxInput
+        customComponents={customComponents}
+        getComboboxProps={getComboboxProps}
+        getInputProps={getInputProps}
+        getToggleButtonProps={getToggleButtonProps}
+        isLoading={isLoading}
+      >
+        {isClearable && selectedItem && (
+          <ClearIndicator
+            aria-label="reset"
+            icon={<CrossIcon size={10} />}
+            onClick={defaultHandleClearIndicatorClick}
+            size={ButtonSize.small}
+            variant={ButtonVariant.link}
+          />
+        )}
+      </ComboboxInput>
+      <ItemsList
+        getItemProps={getItemProps}
+        getMenuProps={getMenuProps}
+        highlightedIndex={highlightedIndex}
+        isOpen={isOpen}
+        items={displayItems}
+        itemToString={itemToString}
+      />
+    </DownshiftSelectContainer>
   );
 }
