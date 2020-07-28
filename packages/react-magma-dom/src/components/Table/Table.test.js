@@ -133,12 +133,12 @@ describe('Table', () => {
 
     expect(getByText('heading 1')).toHaveStyleRule(
       'background',
-      magma.colors.neutral02
+      magma.colors.tint02
     );
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      magma.colors.neutral02,
+      magma.colors.tint01,
       {
         target: ':nth-of-type(even)'
       }
@@ -235,7 +235,7 @@ describe('Table', () => {
       }
     );
 
-    expect(button).toHaveStyleRule('background', magma.colors.neutral01, {
+    expect(button).toHaveStyleRule('background', magma.colors.tint01, {
       target: ':hover'
     });
   });

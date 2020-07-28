@@ -19,7 +19,7 @@ const StyledCell = styled.td<{
 }>`
   border-right: ${props => (props.hasVerticalBorders ? '1px solid' : 0)};
   border-color: ${props =>
-    props.isInverse ? 'rgba(255,255,255,0.4)' : props.theme.colors.neutral06};
+    props.isInverse ? props.theme.colors.tint03 : props.theme.colors.neutral06};
   display: table-cell;
   line-height: 26px;
   padding: ${props => buildCellPaddingStyle(props.density)};
