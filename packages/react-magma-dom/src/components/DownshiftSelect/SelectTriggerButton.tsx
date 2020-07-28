@@ -12,6 +12,12 @@ const StyledButton = styled.div`
   text-align: left;
 `;
 
+const ChildrenContainer = styled.div`
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+`;
+
 interface SelectTriggerButtonInterface<T> {
   children: React.ReactNode[];
   toggleButtonProps: any;
@@ -28,7 +34,7 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
       theme={theme}
       tabIndex={0}
     >
-      {children}
+      <ChildrenContainer>{children}</ChildrenContainer>
       <CaretDownIcon size={10} testId="caretDown" />
     </StyledButton>
   );

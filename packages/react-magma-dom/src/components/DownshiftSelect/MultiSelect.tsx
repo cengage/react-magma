@@ -5,16 +5,30 @@ import {
   useMultipleSelection,
   UseMultipleSelectionProps
 } from 'downshift';
-import { defaultComponents } from './components';
 import { CrossIcon } from '../Icon/types/CrossIcon';
-import { ButtonSize, ButtonVariant } from '../Button';
 import { ItemsList } from './ItemsList';
 import { DownshiftSelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
+import styled from '../../theme/styled';
+import { ThemeContext } from '../../theme/ThemeContext';
+
+const SelectedItemButton = styled.button`
+  background: ${props => props.theme.colors.neutral06};
+  border-radius: 2px;
+  border: 0;
+  box-shadow: 0 0 0;
+  font-size: 12px;
+  line-height: 17px;
+  margin: 0 5px 0 0;
+  padding: 3px 5px;
+`;
+
+const IconWrapper = styled.span`
+  padding-left: 5px;
+`;
 
 export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
   const {
-    components: customComponents,
     itemToString,
     items,
     labelText,
@@ -68,7 +82,7 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
       : removeSelectedItem(selectedItem);
   }
 
-  const { ClearIndicator } = defaultComponents({ ...customComponents });
+  const theme = React.useContext(ThemeContext);
 
   return (
     <DownshiftSelectContainer
@@ -89,24 +103,23 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
       >
         {selectedItems &&
           selectedItems.map((multiSelectedItem, index) => (
-            <span
+            <SelectedItemButton
+              aria-label="reset item"
               key={`selected-item-${index}`}
               {...getSelectedItemProps({
                 selectedItem: multiSelectedItem,
                 index
               })}
+              onClick={event =>
+                handleRemoveSelectedItem(event, multiSelectedItem)
+              }
+              theme={theme}
             >
               {multiSelectedItem}
-              <ClearIndicator
-                aria-label="reset item"
-                icon={<CrossIcon size={10} />}
-                onClick={event =>
-                  handleRemoveSelectedItem(event, multiSelectedItem)
-                }
-                size={ButtonSize.small}
-                variant={ButtonVariant.link}
-              />
-            </span>
+              <IconWrapper>
+                <CrossIcon size={8} />
+              </IconWrapper>
+            </SelectedItemButton>
           ))}
       </SelectTriggerButton>
       <ItemsList
