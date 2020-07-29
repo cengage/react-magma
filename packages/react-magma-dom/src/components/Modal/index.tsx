@@ -231,7 +231,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
 
     function handleModalClick(event: React.SyntheticEvent) {
       if (!document.getElementById(contentId).contains(event.target as Node)) {
-        handleClose();
+        handleClose(event);
       }
     }
 
@@ -244,7 +244,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
           typeof props.onEscKeyDown === 'function' &&
           props.onEscKeyDown(event);
 
-        handleClose();
+        handleClose(event);
       }
     }
 
@@ -285,7 +285,10 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
       }
     }
 
-    function handleClose() {
+    function handleClose(event?) {
+      if (event) {
+        event.stopPropagation();
+      }
       setIsExiting(true);
 
       setTimeout(() => {
@@ -374,7 +377,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
                       }
                       color={ButtonColor.secondary}
                       icon={CloseIcon}
-                      onClick={handleClose}
+                      onClick={event => handleClose(event)}
                       testId="modal-closebtn"
                       variant={ButtonVariant.link}
                     />
