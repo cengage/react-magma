@@ -48,6 +48,21 @@ export const StyledItem = styled('li')<{ isFocused?: boolean }>`
   padding: 0 20px;
 `;
 
+export const SelectedItemButton = styled.button`
+  background: ${props => props.theme.colors.neutral06};
+  border-radius: 2px;
+  border: 0;
+  box-shadow: 0 0 0;
+  font-size: 12px;
+  line-height: 17px;
+  margin: 0 5px 0 0;
+  padding: 3px 5px;
+`;
+
+export const IconWrapper = styled.span`
+  padding-left: 5px;
+`;
+
 export function useComboboxItems(
   defaultItems,
   items,

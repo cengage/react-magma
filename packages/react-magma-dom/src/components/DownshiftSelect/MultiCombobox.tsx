@@ -10,12 +10,12 @@ import {
   UseMultipleSelectionProps
 } from 'downshift';
 import { CrossIcon } from '../Icon/types/CrossIcon';
-import { defaultComponents } from './components';
 import { DownshiftSelectContainer } from './SelectContainer';
 import { ItemsList } from './ItemsList';
 import { ComboboxInput } from './ComboboxInput';
-import { ButtonSize, ButtonVariant } from '../Button';
-import { useComboboxItems } from './shared';
+import { useComboboxItems, SelectedItemButton, IconWrapper } from './shared';
+
+import { ThemeContext } from '../../theme/ThemeContext';
 
 export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
   const [inputValue, setInputValue] = React.useState('');
@@ -134,9 +134,7 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
       : removeSelectedItem(selectedItem);
   }
 
-  const { ClearIndicator } = defaultComponents({
-    ...customComponents
-  });
+  const theme = React.useContext(ThemeContext);
 
   return (
     <DownshiftSelectContainer
@@ -152,24 +150,23 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
       >
         {selectedItems &&
           selectedItems.map((multiSelectedItem, index) => (
-            <span
+            <SelectedItemButton
+              aria-label="reset item"
               key={`selected-item-${index}`}
               {...getSelectedItemProps({
                 selectedItem: multiSelectedItem,
                 index
               })}
+              onClick={event =>
+                handleRemoveSelectedItem(event, multiSelectedItem)
+              }
+              theme={theme}
             >
-              {multiSelectedItem}
-              <ClearIndicator
-                aria-label="reset item"
-                icon={<CrossIcon size={10} />}
-                onClick={event =>
-                  handleRemoveSelectedItem(event, multiSelectedItem)
-                }
-                size={ButtonSize.small}
-                variant={ButtonVariant.link}
-              />
-            </span>
+              {multiSelectedItem ? multiSelectedItem : 'placeholder'}
+              <IconWrapper>
+                <CrossIcon size={9} />
+              </IconWrapper>
+            </SelectedItemButton>
           ))}
       </ComboboxInput>
       <ItemsList

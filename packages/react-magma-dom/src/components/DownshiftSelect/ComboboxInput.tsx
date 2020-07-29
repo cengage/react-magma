@@ -23,8 +23,9 @@ const InputContainer = styled.div<{ theme?: any }>`
 const StyledInput = styled.input`
   ${baseInputStyles}
 
-  height: 35px;
   border: 0;
+  height: 35px;
+  margin-right: 8px;
 `;
 
 interface ComboboxInputProps<T> {
