@@ -48,6 +48,11 @@ export const StyledItem = styled('li')<{ isFocused?: boolean }>`
   padding: 0 20px;
 `;
 
+export const SelectedItemsWrapper = styled.span`
+  display: flex;
+  padding: 0 8px;
+`;
+
 export const SelectedItemButton = styled.button`
   background: ${props => props.theme.colors.neutral06};
   border-radius: 2px;

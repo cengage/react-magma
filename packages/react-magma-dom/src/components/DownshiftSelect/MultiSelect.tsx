@@ -99,6 +99,7 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
               onClick={event =>
                 handleRemoveSelectedItem(event, multiSelectedItem)
               }
+              tabIndex={0}
               theme={theme}
             >
               {multiSelectedItem}

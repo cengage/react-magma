@@ -57,8 +57,8 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
   return (
     <div {...getComboboxProps()} style={{ display: 'flex' }}>
       <InputContainer theme={theme}>
-        <StyledInput {...getInputProps()} theme={theme} />
         {children}
+        <StyledInput {...getInputProps()} theme={theme} />
         {isLoading && <LoadingIndicator style={{ marginRight: '10px' }} />}
       </InputContainer>
       <DropdownIndicator
@@ -66,6 +66,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
         aria-label="toggle menu"
         icon={<CaretDownIcon size={10} />}
         shape={ButtonShape.rightCap}
+        tabIndex={0}
         theme={theme}
         variant={ButtonVariant.link}
       />

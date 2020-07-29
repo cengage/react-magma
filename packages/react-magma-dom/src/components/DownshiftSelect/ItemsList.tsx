@@ -30,7 +30,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
 
   const theme = React.useContext(ThemeContext);
 
-  return (
+  return items && items.length > 0 ? (
     <StyledCard hasDropShadow isOpen={isOpen}>
       <StyledList isOpen={isOpen} {...getMenuProps()}>
         {isOpen &&
@@ -51,5 +51,5 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
           })}
       </StyledList>
     </StyledCard>
-  );
+  ) : null;
 }

@@ -13,7 +13,12 @@ import { CrossIcon } from '../Icon/types/CrossIcon';
 import { DownshiftSelectContainer } from './SelectContainer';
 import { ItemsList } from './ItemsList';
 import { ComboboxInput } from './ComboboxInput';
-import { useComboboxItems, SelectedItemButton, IconWrapper } from './shared';
+import {
+  useComboboxItems,
+  SelectedItemsWrapper,
+  SelectedItemButton,
+  IconWrapper
+} from './shared';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 
@@ -148,26 +153,30 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
         getToggleButtonProps={getToggleButtonProps}
         isLoading={isLoading}
       >
-        {selectedItems &&
-          selectedItems.map((multiSelectedItem, index) => (
-            <SelectedItemButton
-              aria-label="reset item"
-              key={`selected-item-${index}`}
-              {...getSelectedItemProps({
-                selectedItem: multiSelectedItem,
-                index
-              })}
-              onClick={event =>
-                handleRemoveSelectedItem(event, multiSelectedItem)
-              }
-              theme={theme}
-            >
-              {multiSelectedItem ? multiSelectedItem : 'placeholder'}
-              <IconWrapper>
-                <CrossIcon size={9} />
-              </IconWrapper>
-            </SelectedItemButton>
-          ))}
+        {selectedItems && selectedItems.length > 0 && (
+          <SelectedItemsWrapper>
+            {selectedItems.map((multiSelectedItem, index) => (
+              <SelectedItemButton
+                aria-label="reset item"
+                key={`selected-item-${index}`}
+                {...getSelectedItemProps({
+                  selectedItem: multiSelectedItem,
+                  index
+                })}
+                onClick={event =>
+                  handleRemoveSelectedItem(event, multiSelectedItem)
+                }
+                tabIndex={0}
+                theme={theme}
+              >
+                {multiSelectedItem ? multiSelectedItem : 'placeholder'}
+                <IconWrapper>
+                  <CrossIcon size={9} />
+                </IconWrapper>
+              </SelectedItemButton>
+            ))}
+          </SelectedItemsWrapper>
+        )}
       </ComboboxInput>
       <ItemsList
         getItemProps={getItemProps}
