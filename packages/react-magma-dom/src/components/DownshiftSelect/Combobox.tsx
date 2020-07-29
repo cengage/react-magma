@@ -9,6 +9,11 @@ import { ComboboxInput } from './ComboboxInput';
 import { ButtonSize, ButtonVariant } from '../Button';
 import { useComboboxItems } from './shared';
 
+// When creating an item, without the items prop being controlled, give a console warning saying that you now have no control over the items list
+// When typing and there are no options, show no options item that can't be chosen
+// onBlur, show selectedItem
+// isDisabled
+
 export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
   const {
     components: customComponents,
@@ -42,7 +47,8 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
 
       const newItem =
         react_magma__created_item &&
-        newItemTransform && typeof newItemTransform === 'function'
+        newItemTransform &&
+        typeof newItemTransform === 'function'
           ? newItemTransform(createdItem)
           : defaultNewItemTransform(createdItem);
 
@@ -51,6 +57,10 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
         : updateItemsRef(newItem || createdItem);
       selectItem(newItem);
     }
+
+    props.onSelectedItemChange &&
+      typeof props.onSelectedItemChange === 'function' &&
+      props.onSelectedItemChange(changes);
   }
 
   const [

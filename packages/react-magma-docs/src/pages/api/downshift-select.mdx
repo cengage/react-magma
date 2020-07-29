@@ -41,7 +41,7 @@ import { v4 as uuid } from 'uuid'
 
 By default each component accepts an array of `items` with either a `string` or an `object` with the shape `{item: string; label: string;}`
 for each `item`. If you need to pass in a custom shape for your `items` you can pass in an additional prop named `itemToString`
-which is a function that returns the string representation of your `item`.
+which is a function that returns the string representation of your `item` which will be applied as the label.
 
 **WARNING** Your function must include a `null` check.
 
@@ -77,7 +77,7 @@ which is a function that returns the string representation of your `item`.
 
 ## Inital State
 
-Set inital state using the `initialIsOpen`, `initalSelectedItem`, and `initialHighlightedIndex` props.
+Set inital state using the `initalSelectedItem` and `initialHighlightedIndex` props.
 
 ```.jsx
   () => {
@@ -210,7 +210,7 @@ you will have to use the handlers mentioned above in the <Link to="/api/downshif
 The optional `isClearable` prop allows the user to clear the field once a selection has been made.
 
 When using the `isClearable` prop you can set default values to be set once the `select` is cleared.
-These props are `defaultIsOpen`, `defaultSelectedItem`, and `defaultHighlightedIndex`.
+These props are `defaultSelectedItem`, and `defaultHighlightedIndex`.
 
 ```.jsx
   () => {
@@ -346,7 +346,7 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
       id="comboboxId"
       name="combobox"
       labelText="Combobox"
-      items={['Red', 'Blue', 'Green']}
+      defaultItems={['Red', 'Blue', 'Green']}
       type='combo'
     />
   </>
@@ -356,6 +356,8 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
 
 ```.jsx
   () => {
+    const [selectedItem, updateSelectedItem] = React.useState(undefined)
+
     function itemToString(item) {
       return item ? item.representation : ''
     }
@@ -370,8 +372,13 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
       }
     }
 
+    function handleSelectedItemChange(changes) {
+      updateSelectedItem(changes.selectedItem)
+    }
+
     return (
       <>
+        { selectedItem && <pre>{JSON.stringify(selectedItem, null, 2)}</pre> }
         <DownshiftSelect
           id="comboboxWithCustomItemsId"
           name="comboboxWithCustomItems"
@@ -384,6 +391,7 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
           type='combo'
           newItemTransform={newItemTransform}
           itemToString={itemToString}
+          onSelectedItemChange={handleSelectedItemChange}
         />
       </>
     )
@@ -399,7 +407,7 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
       id="disableCreateItemId"
       name="disableCreateItem"
       labelText="Disable Create Item"
-      items={['Red', 'Blue', 'Green']}
+      defaultItems={['Red', 'Blue', 'Green']}
       type='combo'
     />
   </>
@@ -408,7 +416,7 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
 ## Controlled Items
 
 If you would like to control your `items` and any updates to them on creation you can pass in a function to the `onItemCreated`
-prop.
+prop. If no `newItemTransform` function is passed in, the created item will be the string value of what was created.
 
 **NOTE**: Your created items will not be added to the `items` list internally. You will have to pass the updated `items` array to the `items` prop.
 
@@ -471,6 +479,16 @@ prop.
         name="combobox"
         labelText="Combobox"
         defaultItems={['Red', 'Blue', 'Green']}
+        type='combo'
+      />
+
+      <DownshiftSelect
+        isMulti
+        id="comboboxId"
+        name="combobox"
+        labelText="Combobox"
+        defaultItems={['Red', 'Blue', 'Green']}
+        initialSelectedItems={['Red', 'Blue']}
         type='combo'
       />
 

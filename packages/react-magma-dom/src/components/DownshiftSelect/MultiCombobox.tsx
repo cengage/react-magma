@@ -22,6 +22,8 @@ import {
 
 import { ThemeContext } from '../../theme/ThemeContext';
 
+//TODO: Look in to initialSelectedItems
+
 export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
   const [inputValue, setInputValue] = React.useState('');
   const {
@@ -148,8 +150,6 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
   }
 
   const theme = React.useContext(ThemeContext);
-
-  console.log('selected items: ', selectedItems);
 
   return (
     <DownshiftSelectContainer

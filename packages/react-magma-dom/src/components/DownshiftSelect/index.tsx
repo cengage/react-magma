@@ -117,6 +117,10 @@ export function instanceOfToBeCreatedItemObject(
   );
 }
 
+// TODO: Focus events for everything
+// TODO: Need documentation on how to migrate from react-select to this select
+// TODO: Rename react-select to LegacySelect
+
 export function DownshiftSelect<T>(props: SelectInterface<T>) {
   const {
     isInverse,
