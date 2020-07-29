@@ -377,7 +377,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
                       }
                       color={ButtonColor.secondary}
                       icon={CloseIcon}
-                      onClick={event => handleClose(event)}
+                      onClick={handleClose}
                       testId="modal-closebtn"
                       variant={ButtonVariant.link}
                     />
