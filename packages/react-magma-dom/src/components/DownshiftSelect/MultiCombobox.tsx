@@ -57,14 +57,21 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
   }
 
   function getFilteredItems(unfilteredItems) {
-    return unfilteredItems.filter(
-      item =>
+    return unfilteredItems.filter(item => {
+      const itemString =
+        typeof item === 'object' && item.react_magma__created_item
+          ? item.value
+          : itemToString(item);
+      return (
         (selectedItems.indexOf(item) < 0 &&
-          itemToString(item)
-            .toLowerCase()
-            .startsWith(inputValue.toLowerCase())) ||
+          itemString.toLowerCase().startsWith(inputValue.toLowerCase())) ||
         isCreatedItem(item)
-    );
+      );
+    });
+  }
+
+  function defaultNewItemTransform(newItem) {
+    return newItem.value;
   }
 
   function defaultOnSelectedItemChange(changes) {
@@ -77,8 +84,9 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
       const newItem =
         react_magma__created_item &&
         newItemTransform &&
-        typeof newItemTransform === 'function' &&
-        newItemTransform(createdItem);
+        typeof newItemTransform === 'function'
+          ? newItemTransform(createdItem)
+          : defaultNewItemTransform(createdItem);
 
       items && onItemCreated && typeof onItemCreated === 'function'
         ? onItemCreated(newItem || createdItem)
@@ -141,6 +149,8 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
 
   const theme = React.useContext(ThemeContext);
 
+  console.log('selected items: ', selectedItems);
+
   return (
     <DownshiftSelectContainer
       getLabelProps={getLabelProps}
@@ -169,7 +179,7 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
                 tabIndex={0}
                 theme={theme}
               >
-                {multiSelectedItem ? multiSelectedItem : 'placeholder'}
+                {itemToString(multiSelectedItem)}
                 <IconWrapper>
                   <CrossIcon size={9} />
                 </IconWrapper>
