@@ -3,7 +3,14 @@ title: 'More Modal Examples'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { Modal, Button, Radio, RadioGroup, Toggle } from 'react-magma-dom'
+import {
+  Modal,
+  Button,
+  Radio,
+  RadioGroup,
+  Toggle,
+  DatePicker,
+} from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 
 # More Modal Examples
@@ -275,9 +282,37 @@ If that element no longer exists in the dom, that action will fail silently and 
     }
 ```
 
+## Modal in a Modal (Anti-Pattern)
+
+Modals can be placed inside other modals, though it is strongly recommended against from a user experience perspective.
+
+```.jsx
+  (props) => {
+    const [showModal, setShowModal] = React.useState(false);
+    const [showModal2, setShowModal2] = React.useState(false);
+
+    return (<>
+      <Modal header="Modal Title" onClose={() => setShowModal(false)} isOpen={showModal}>
+        <p>This is a modal, doing modal things.</p>
+        <p>This is <a href="#">linked text</a> in the modal</p>
+        <p><Button>This is a button</Button></p>
+        <p>This is <a href="#"> some more linked text</a> in the modal</p>
+        <div><DatePicker /></div>
+        <Button onClick={() => setShowModal2(true)}>Show Modal 2</Button>
+
+        <Modal size="small" header="Modal 2 Title" onClose={() => setShowModal2(false)} isOpen={showModal2}>
+          <p>This is modal 2</p>
+      </Modal>
+
+      </Modal>
+    <Button onClick={() => setShowModal(true)}>Show Modal</Button>
+    </>)
+  }
+```
+
 export default props => (
   <ScopeableLayout
     {...props}
-    components={{ Modal, Button, Radio, RadioGroup, Toggle }}
+    components={{ Modal, Button, Radio, RadioGroup, Toggle, DatePicker }}
   />
 )
