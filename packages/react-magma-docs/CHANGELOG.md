@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.58](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.57...v2.0.0-beta.58) (2020-07-30)
+
+
+### Bug Fixes
+
+* **modal:** fix close button for modal in modal ([d07490e](http://stash.cengage.com:7999/FRONT/react-magma/commits/d07490e))
+
+
+
+
+
 # [2.0.0-beta.57](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.56...v2.0.0-beta.57) (2020-07-27)
 
 
