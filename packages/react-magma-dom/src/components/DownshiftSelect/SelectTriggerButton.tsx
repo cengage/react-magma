@@ -4,7 +4,7 @@ import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '../../theme/styled';
 
-const StyledButton = styled.div`
+const StyledButton = styled.div<{ hasError?: boolean }>`
   ${baseInputStyles}
 
   align-items: center;
@@ -20,15 +20,17 @@ const ChildrenContainer = styled.div`
 
 interface SelectTriggerButtonInterface<T> {
   children: React.ReactNode[];
+  hasError?: boolean;
   toggleButtonProps: any;
 }
 
 export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
-  const { children, toggleButtonProps } = props;
+  const { children, hasError, toggleButtonProps } = props;
   const theme = React.useContext(ThemeContext);
 
   return (
     <StyledButton
+      hasError={hasError}
       role="button"
       {...toggleButtonProps}
       theme={theme}

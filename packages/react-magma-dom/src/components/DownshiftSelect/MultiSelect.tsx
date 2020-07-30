@@ -15,6 +15,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 
 export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
   const {
+    hasError,
     itemToString,
     items,
     labelText,
@@ -86,6 +87,7 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
             }
           }
         })}
+        hasError={hasError}
       >
         {selectedItems &&
           selectedItems.map((multiSelectedItem, index) => (

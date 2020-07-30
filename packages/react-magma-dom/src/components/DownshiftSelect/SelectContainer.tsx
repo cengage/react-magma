@@ -10,6 +10,7 @@ export const SelectContainer = styled.div`
 interface DownshiftSelectContainer<T> {
   children: React.ReactNode[];
   getLabelProps: (options?: UseSelectGetLabelPropsOptions) => any;
+  hasError?: boolean;
   labelText: string;
 }
 

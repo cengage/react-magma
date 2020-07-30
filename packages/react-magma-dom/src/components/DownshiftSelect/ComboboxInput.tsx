@@ -11,10 +11,28 @@ import {
 import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
 import { ButtonShape, ButtonVariant } from '../Button';
 
-const InputContainer = styled.div<{ theme?: any }>`
+const ComboBoxContainer = styled.div<{ hasError?: boolean; theme?: any }>`
+  border-radius: 5px;
+  box-shadow: ${props =>
+    props.hasError ? `0 0 0 1px ${props.theme.colors.danger}` : '0 0 0'};
+  display: flex;
+
+  > button {
+    border-color: ${props =>
+      props.hasError
+        ? props.theme.colors.danger
+        : props.theme.colors.neutral03};
+  }
+`;
+
+const InputContainer = styled.div<{ hasError?: boolean; theme?: any }>`
   align-items: center;
   border-radius: 5px 0 0 5px;
-  border: 1px solid ${props => props.theme.colors.neutral03};
+  border: 1px solid
+    ${props =>
+      props.hasError
+        ? props.theme.colors.danger
+        : props.theme.colors.neutral03};
   display: flex;
   height: 37px;
   width: 100%;
@@ -36,6 +54,7 @@ interface ComboboxInputProps<T> {
   getToggleButtonProps: (
     options?: UseComboboxGetToggleButtonPropsOptions
   ) => any;
+  hasError?: boolean;
   isLoading?: boolean;
 }
 
@@ -46,6 +65,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     getComboboxProps,
     getInputProps,
     getToggleButtonProps,
+    hasError,
     isLoading
   } = props;
   const theme = React.useContext(ThemeContext);
@@ -55,8 +75,12 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
   });
 
   return (
-    <div {...getComboboxProps()} style={{ display: 'flex' }}>
-      <InputContainer theme={theme}>
+    <ComboBoxContainer
+      {...getComboboxProps()}
+      hasError={hasError}
+      theme={theme}
+    >
+      <InputContainer hasError={hasError} theme={theme}>
         {children}
         <StyledInput {...getInputProps()} theme={theme} />
         {isLoading && <LoadingIndicator style={{ marginRight: '10px' }} />}
@@ -70,6 +94,6 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
         theme={theme}
         variant={ButtonVariant.link}
       />
-    </div>
+    </ComboBoxContainer>
   );
 }

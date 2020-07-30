@@ -44,8 +44,8 @@ export const StyledItem = styled('li')<{ isFocused?: boolean }>`
   border: 2px dotted;
   border-color: ${props =>
     props.isFocused ? props.theme.colors.focus : 'transparent'};
-  line-height: 37px;
-  padding: 0 20px;
+  line-height: 30px;
+  padding: 3px 20px;
 `;
 
 export const SelectedItemsWrapper = styled.span`

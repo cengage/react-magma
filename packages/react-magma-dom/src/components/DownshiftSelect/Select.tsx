@@ -12,6 +12,7 @@ import { SelectTriggerButton } from './SelectTriggerButton';
 export function Select<T>(props: DownshiftSelectInterface<T>) {
   const {
     components: customComponents,
+    hasError,
     itemToString,
     items,
     labelText,
@@ -59,6 +60,7 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
             }
           }
         })}
+        hasError={hasError}
       >
         <SelectText data-testid="selectedItemText">
           {itemToString(selectedItem) || 'Select...'}

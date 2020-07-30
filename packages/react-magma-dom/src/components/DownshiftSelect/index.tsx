@@ -38,6 +38,7 @@ interface InternalMultiInterface<T> {
 export interface DownshiftSelectInterface<T>
   extends UseSelectProps<DownshiftOption<T>>,
     InternalSelectInterface {
+  hasError?: boolean;
   type?: 'select';
 }
 
@@ -46,6 +47,7 @@ export interface DownshiftComboboxInterface<T>
     InternalSelectInterface {
   defaultItems?: DownshiftOption<T>[];
   disableCreateItem?: boolean;
+  hasError?: boolean;
   isLoading?: boolean;
   newItemTransform?: (item: {
     label: string;
@@ -67,12 +69,16 @@ export interface DownshiftComboboxInterface<T>
 export interface DownshiftMultiSelectInterface<T>
   extends UseMultipleSelectionProps<DownshiftOption<T>>,
     Omit<DownshiftSelectInterface<T>, 'onStateChange' | 'stateReducer'>,
-    InternalMultiInterface<T> {}
+    InternalMultiInterface<T> {
+  hasError?: boolean;
+}
 
 export interface DownshiftMultiComboboxInterface<T>
   extends UseMultipleSelectionProps<DownshiftOption<T>>,
     Omit<DownshiftComboboxInterface<T>, 'onStateChange' | 'stateReducer'>,
-    InternalMultiInterface<T> {}
+    InternalMultiInterface<T> {
+  hasError?: boolean;
+}
 
 export type SelectInterface<T> = XOR<
   DownshiftSelectInterface<T>,
@@ -142,14 +148,30 @@ export function DownshiftSelect<T>(props: SelectInterface<T>) {
     <>
       {instanceOfCombobox<T>(props) ? (
         isMulti && instanceOfMultiCombobox<T>(props) ? (
-          <MultiCombobox itemToString={itemToString} {...props} />
+          <MultiCombobox
+            itemToString={itemToString}
+            {...props}
+            hasError={!!errorMessage}
+          />
         ) : (
-          <Combobox itemToString={itemToString} {...props} />
+          <Combobox
+            itemToString={itemToString}
+            {...props}
+            hasError={!!errorMessage}
+          />
         )
       ) : isMulti && instanceOfMultiSelect<T>(props) ? (
-        <MultiSelect itemToString={itemToString} {...props} />
+        <MultiSelect
+          itemToString={itemToString}
+          {...props}
+          hasError={!!errorMessage}
+        />
       ) : (
-        <Select itemToString={itemToString} {...props} />
+        <Select
+          itemToString={itemToString}
+          {...props}
+          hasError={!!errorMessage}
+        />
       )}
       <InputMessage
         isInverse={isInverse}

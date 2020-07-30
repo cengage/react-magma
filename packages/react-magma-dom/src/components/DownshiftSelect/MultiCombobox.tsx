@@ -30,10 +30,11 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     components: customComponents,
     defaultItems,
     disableCreateItem,
-    labelText,
+    hasError,
     isLoading,
     items,
     itemToString,
+    labelText,
     newItemTransform,
     onInputChange,
     onInputValueChange,
@@ -162,6 +163,7 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
         getInputProps={options => ({ ...getInputProps(getDropdownProps()) })}
         getToggleButtonProps={getToggleButtonProps}
         isLoading={isLoading}
+        hasError={hasError}
       >
         {selectedItems && selectedItems.length > 0 && (
           <SelectedItemsWrapper>

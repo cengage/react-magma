@@ -19,11 +19,12 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
     components: customComponents,
     defaultItems,
     disableCreateItem,
-    labelText,
+    hasError,
     isClearable,
     isLoading,
     items,
     itemToString,
+    labelText,
     newItemTransform,
     onInputChange,
     onInputValueChange,
@@ -111,6 +112,7 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
     <DownshiftSelectContainer
       getLabelProps={getLabelProps}
       labelText={labelText}
+      hasError={hasError}
     >
       <ComboboxInput
         customComponents={customComponents}
@@ -118,6 +120,7 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
         getInputProps={getInputProps}
         getToggleButtonProps={getToggleButtonProps}
         isLoading={isLoading}
+        hasError={hasError}
       >
         {isClearable && selectedItem && (
           <ClearIndicator
