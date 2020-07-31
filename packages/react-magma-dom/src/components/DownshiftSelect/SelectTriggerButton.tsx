@@ -9,6 +9,8 @@ const StyledButton = styled.div<{ hasError?: boolean }>`
 
   align-items: center;
   display: flex;
+  height: auto;
+  min-height: 37px;
   text-align: left;
 `;
 
@@ -16,6 +18,7 @@ const ChildrenContainer = styled.div`
   align-items: center;
   display: flex;
   flex-grow: 1;
+  flex-wrap: wrap;
 `;
 
 interface SelectTriggerButtonInterface<T> {

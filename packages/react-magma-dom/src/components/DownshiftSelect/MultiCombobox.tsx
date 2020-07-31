@@ -152,6 +152,32 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
 
   const theme = React.useContext(ThemeContext);
 
+  const selectedItemsContent =
+    selectedItems && selectedItems.length > 0 ? (
+      <SelectedItemsWrapper>
+        {selectedItems.map((multiSelectedItem, index) => (
+          <SelectedItemButton
+            aria-label="reset item"
+            key={`selected-item-${index}`}
+            {...getSelectedItemProps({
+              selectedItem: multiSelectedItem,
+              index
+            })}
+            onClick={event =>
+              handleRemoveSelectedItem(event, multiSelectedItem)
+            }
+            tabIndex={0}
+            theme={theme}
+          >
+            {itemToString(multiSelectedItem)}
+            <IconWrapper>
+              <CrossIcon size={9} />
+            </IconWrapper>
+          </SelectedItemButton>
+        ))}
+      </SelectedItemsWrapper>
+    ) : null;
+
   return (
     <DownshiftSelectContainer
       getLabelProps={getLabelProps}
@@ -164,32 +190,8 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
         getToggleButtonProps={getToggleButtonProps}
         isLoading={isLoading}
         hasError={hasError}
-      >
-        {selectedItems && selectedItems.length > 0 && (
-          <SelectedItemsWrapper>
-            {selectedItems.map((multiSelectedItem, index) => (
-              <SelectedItemButton
-                aria-label="reset item"
-                key={`selected-item-${index}`}
-                {...getSelectedItemProps({
-                  selectedItem: multiSelectedItem,
-                  index
-                })}
-                onClick={event =>
-                  handleRemoveSelectedItem(event, multiSelectedItem)
-                }
-                tabIndex={0}
-                theme={theme}
-              >
-                {itemToString(multiSelectedItem)}
-                <IconWrapper>
-                  <CrossIcon size={9} />
-                </IconWrapper>
-              </SelectedItemButton>
-            ))}
-          </SelectedItemsWrapper>
-        )}
-      </ComboboxInput>
+        selectedItems={selectedItemsContent}
+      />
       <ItemsList
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}

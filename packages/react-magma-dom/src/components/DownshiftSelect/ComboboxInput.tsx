@@ -34,7 +34,6 @@ const InputContainer = styled.div<{ hasError?: boolean; theme?: any }>`
         ? props.theme.colors.danger
         : props.theme.colors.neutral03};
   display: flex;
-  height: 37px;
   width: 100%;
 `;
 
@@ -56,6 +55,7 @@ interface ComboboxInputProps<T> {
   ) => any;
   hasError?: boolean;
   isLoading?: boolean;
+  selectedItems?: React.ReactNode;
 }
 
 export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
@@ -66,7 +66,8 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     getInputProps,
     getToggleButtonProps,
     hasError,
-    isLoading
+    isLoading,
+    selectedItems
   } = props;
   const theme = React.useContext(ThemeContext);
 
@@ -81,15 +82,19 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
       theme={theme}
     >
       <InputContainer hasError={hasError} theme={theme}>
-        {children}
+        {selectedItems}
         <StyledInput {...getInputProps()} theme={theme} />
-        {isLoading && <LoadingIndicator style={{ marginRight: '10px' }} />}
+        {children}
+        {isLoading && (
+          <LoadingIndicator style={{ flexShrink: 0, marginRight: '10px' }} />
+        )}
       </InputContainer>
       <DropdownIndicator
         {...getToggleButtonProps()}
         aria-label="toggle menu"
         icon={<CaretDownIcon size={10} />}
         shape={ButtonShape.rightCap}
+        style={{ minHeight: '37px', height: 'auto' }}
         tabIndex={0}
         theme={theme}
         variant={ButtonVariant.link}

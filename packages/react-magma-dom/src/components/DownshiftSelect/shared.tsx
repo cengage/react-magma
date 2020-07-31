@@ -50,6 +50,7 @@ export const StyledItem = styled('li')<{ isFocused?: boolean }>`
 
 export const SelectedItemsWrapper = styled.span`
   display: flex;
+  flex-wrap: wrap;
   padding: 0 8px;
 `;
 
@@ -60,8 +61,9 @@ export const SelectedItemButton = styled.button`
   box-shadow: 0 0 0;
   font-size: 12px;
   line-height: 17px;
-  margin: 0 5px 0 0;
+  margin: 0 5px 5px 0;
   padding: 3px 5px;
+  white-space: nowrap;
 `;
 
 export const IconWrapper = styled.span`
