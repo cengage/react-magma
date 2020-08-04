@@ -3,6 +3,7 @@ import { baseInputStyles } from '../BaseInput';
 import { defaultComponents, DownshiftComponents } from './components';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 import {
   UseComboboxGetToggleButtonPropsOptions,
   UseComboboxGetComboboxPropsOptions,
@@ -25,16 +26,31 @@ const ComboBoxContainer = styled.div<{ hasError?: boolean; theme?: any }>`
   }
 `;
 
-const InputContainer = styled.div<{ hasError?: boolean; theme?: any }>`
+const InputContainer = styled.div<{
+  hasError?: boolean;
+  isInverse?: boolean;
+  theme?: any;
+}>`
   align-items: center;
+  background: #fff;
   border-radius: 5px 0 0 5px;
-  border: 1px solid
-    ${props =>
-      props.hasError
-        ? props.theme.colors.danger
-        : props.theme.colors.neutral03};
+  border: 1px solid;
+  border-color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral03};
   display: flex;
   width: 100%;
+
+  ${props =>
+    props.hasError &&
+    css`
+      border-color: ${props.theme.colors.danger};
+      box-shadow: 0 0 0 1px
+        ${props.isInverse
+          ? props.theme.colors.neutral08
+          : props.theme.colors.danger};
+    `}
 `;
 
 const StyledInput = styled.input`
@@ -43,6 +59,10 @@ const StyledInput = styled.input`
   border: 0;
   height: 35px;
   margin-right: 8px;
+
+  &:focus {
+    outline-offset: -5px;
+  }
 `;
 
 interface ComboboxInputProps<T> {
@@ -54,6 +74,7 @@ interface ComboboxInputProps<T> {
     options?: UseComboboxGetToggleButtonPropsOptions
   ) => any;
   hasError?: boolean;
+  isInverse?: boolean;
   isLoading?: boolean;
   selectedItems?: React.ReactNode;
 }
@@ -66,6 +87,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     getInputProps,
     getToggleButtonProps,
     hasError,
+    isInverse,
     isLoading,
     selectedItems
   } = props;
@@ -75,13 +97,24 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     ...customComponents
   });
 
+  function getDropDownIndicatorStyles(isInverse?: boolean, theme?: any) {
+    return {
+      background: theme.colors.neutral08,
+      borderColor: isInverse ? theme.colors.neutral08 : theme.colors.neutral01,
+      height: 'auto',
+      minHeight: '37px',
+      outlineOffset: '-5px'
+    };
+  }
+
   return (
     <ComboBoxContainer
       {...getComboboxProps()}
       hasError={hasError}
+      isInverse={isInverse}
       theme={theme}
     >
-      <InputContainer hasError={hasError} theme={theme}>
+      <InputContainer hasError={hasError} isInverse={isInverse} theme={theme}>
         {selectedItems}
         <StyledInput {...getInputProps()} theme={theme} />
         {children}
@@ -94,7 +127,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
         aria-label="toggle menu"
         icon={<CaretDownIcon size={10} />}
         shape={ButtonShape.rightCap}
-        style={{ minHeight: '37px', height: 'auto' }}
+        style={getDropDownIndicatorStyles(isInverse, theme)}
         tabIndex={0}
         theme={theme}
         variant={ButtonVariant.link}

@@ -24,16 +24,18 @@ const ChildrenContainer = styled.div`
 interface SelectTriggerButtonInterface<T> {
   children: React.ReactNode[];
   hasError?: boolean;
+  isInverse?: boolean;
   toggleButtonProps: any;
 }
 
 export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
-  const { children, hasError, toggleButtonProps } = props;
+  const { children, hasError, isInverse, toggleButtonProps } = props;
   const theme = React.useContext(ThemeContext);
 
   return (
     <StyledButton
       hasError={hasError}
+      isInverse={isInverse}
       role="button"
       {...toggleButtonProps}
       theme={theme}

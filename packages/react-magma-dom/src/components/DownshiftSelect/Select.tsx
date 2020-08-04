@@ -17,7 +17,8 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
     items,
     labelText,
     isClearable,
-    isDisabled
+    isDisabled,
+    isInverse
   } = props;
 
   const {
@@ -45,6 +46,7 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
   return (
     <DownshiftSelectContainer
       getLabelProps={getLabelProps}
+      isInverse={isInverse}
       labelText={labelText}
     >
       <SelectTriggerButton
@@ -61,6 +63,7 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
           }
         })}
         hasError={hasError}
+        isInverse={isInverse}
       >
         <SelectText data-testid="selectedItemText">
           {itemToString(selectedItem) || 'Select...'}

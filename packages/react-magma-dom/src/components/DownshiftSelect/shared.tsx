@@ -51,7 +51,7 @@ export const StyledItem = styled('li')<{ isFocused?: boolean }>`
 export const SelectedItemsWrapper = styled.span`
   display: flex;
   flex-wrap: wrap;
-  padding: 0 8px;
+  padding: 4px 8px 0;
 `;
 
 export const SelectedItemButton = styled.button`
