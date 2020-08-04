@@ -55,10 +55,14 @@ const InputContainer = styled.div<{
 
 const StyledInput = styled.input`
   ${baseInputStyles}
-
   border: 0;
-  height: 35px;
+  display: flex;
+  flex-grow: 1;
+  float: left;
+  height: 100%;
+  min-height: 35px;
   margin-right: 8px;
+  width: auto;
 
   &:focus {
     outline-offset: -5px;
