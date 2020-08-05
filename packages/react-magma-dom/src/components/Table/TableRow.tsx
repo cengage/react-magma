@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
+import { css } from '@emotion/core';
 import { TableContext } from './';
 import { ThemeContext } from '../../theme/ThemeContext';
 
@@ -9,6 +10,7 @@ export interface TableRowProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 const StyledTableRow = styled.tr<{
+  hasHoverStyles?: boolean;
   hasZebraStripes?: boolean;
   isInverse?: boolean;
 }>`
@@ -23,13 +25,22 @@ const StyledTableRow = styled.tr<{
       props.hasZebraStripes
         ? props.isInverse
           ? props.theme.colors.tint01
-          : props.theme.colors.neutral07
+          : 'rgba(63,63,63,0.07)'
         : 'none'};
   }
 
-  &:last-of-type {
+  &:last-child {
     border-bottom: 0;
   }
+
+  ${props =>
+    props.hasHoverStyles &&
+    css`
+    &:hover {
+      background: ${
+        props.isInverse ? props.theme.colors.tint01 : 'rgba(63,63,63,0.07)'
+      };
+    `}
 `;
 
 export const TableRow: React.FunctionComponent<TableRowProps> = React.forwardRef(
@@ -40,6 +51,7 @@ export const TableRow: React.FunctionComponent<TableRowProps> = React.forwardRef
     return (
       <StyledTableRow
         data-testid={testId}
+        hasHoverStyles={tableContext.hasHoverStyle}
         hasZebraStripes={tableContext.hasStripes}
         isInverse={tableContext.isInverseContainer}
         ref={ref}

@@ -1,5 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
+import { css } from '@emotion/core';
+import { baseTableCellStyle, buildCellPaddingStyle } from './TableCell';
 import {
   TableCellAlign,
   TableContext,
@@ -15,21 +17,10 @@ export interface TableHeaderCellProps
   extends React.HTMLAttributes<HTMLTableHeaderCellElement> {
   align?: any;
   isSortable?: boolean;
-  onSort?: any;
+  onSort?: () => void;
   ref?: any;
   sortDirection?: TableSortDirection;
   testId?: string;
-}
-
-export function buildCellPaddingStyle(density) {
-  switch (density) {
-    case 'compact':
-      return '5px 10px';
-    case 'loose':
-      return '20px 30px';
-    default:
-      return '10px 20px';
-  }
 }
 
 const StyledTableHeaderCell = styled.th<{
@@ -42,30 +33,27 @@ const StyledTableHeaderCell = styled.th<{
   background: ${props =>
     props.isInverse ? props.theme.colors.tint02 : props.theme.colors.neutral07};
   border-bottom: 2px solid;
-  border-right: ${props => (props.hasVerticalBorders ? '1px solid' : 0)};
-  border-color: ${props =>
-    props.isInverse ? props.theme.colors.tint03 : props.theme.colors.neutral06};
-  display: table-cell;
   font-weight: bold;
-  line-height: 26px;
-  padding: ${props =>
-    props.isSortable ? '0' : buildCellPaddingStyle(props.density)}};
-  text-align: ${props => props.textAlign};
-  vertical-align: inherit;
-  white-space: nowrap;
+  vertical-align: bottom;
 
-  &:last-of-type {
-    border-right: 0;
-  }
+  ${baseTableCellStyle}
+
+  ${props =>
+    props.isSortable &&
+    css`
+      padding: 0;
+    `}
 `;
 
 const SortButton = styled.button<{
   density?: TableDensity;
   isInverse?: boolean;
 }>`
+  align-items: flex-end;
   background: none;
   border: 0;
   color: inherit;
+  display: flex;
   margin: 0;
   padding: ${props => buildCellPaddingStyle(props.density)}};
   text-align: left;
@@ -119,6 +107,8 @@ export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = Re
     function handleSort() {
       if (onSort && typeof onSort === 'function') {
         onSort();
+
+        console.log('HANDLE SORT');
       }
     }
 
@@ -157,7 +147,7 @@ export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = Re
             onClick={handleSort}
             theme={theme}
           >
-            {children}
+            <span>{children}</span>
             <IconWrapper>{SortIcon}</IconWrapper>
           </SortButton>
         ) : (

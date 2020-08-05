@@ -4,6 +4,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   density?: TableDensity;
+  hasHoverStyles?: boolean;
   hasVerticalBorders?: boolean;
   hasZebraStripes?: boolean;
   isInverse?: boolean;
@@ -34,6 +35,7 @@ export enum TableSortDirection {
 
 interface TableContextInterface {
   paddingDensity?: TableDensity;
+  hasHoverStyle?: boolean;
   hasVertBorders?: boolean;
   hasStripes?: boolean;
   isInverseContainer?: boolean;
@@ -41,8 +43,9 @@ interface TableContextInterface {
 
 export const TableContext = React.createContext<TableContextInterface>({
   paddingDensity: TableDensity.normal,
-  hasVertBorders: false,
+  hasHoverStyle: false,
   hasStripes: false,
+  hasVertBorders: false,
   isInverseContainer: false
 });
 
@@ -67,10 +70,11 @@ export const Table: React.FunctionComponent<TableProps> = React.forwardRef(
     {
       children,
       density,
+      hasHoverStyles,
       hasVerticalBorders,
       hasZebraStripes,
       isInverse,
-      minWidth = 0,
+      minWidth,
       testId,
       ...other
     }: TableProps,
@@ -94,6 +98,14 @@ export const Table: React.FunctionComponent<TableProps> = React.forwardRef(
       setHasStripes(Boolean(hasZebraStripes));
     }, [hasZebraStripes]);
 
+    const [hasHoverStyle, setHasHoverStyle] = React.useState(
+      Boolean(hasHoverStyles)
+    );
+
+    React.useEffect(() => {
+      setHasHoverStyle(Boolean(hasHoverStyles));
+    }, [hasHoverStyles]);
+
     const [paddingDensity, setPaddingDensity] = React.useState(density);
 
     React.useEffect(() => {
@@ -115,6 +127,7 @@ export const Table: React.FunctionComponent<TableProps> = React.forwardRef(
     return (
       <TableContext.Provider
         value={{
+          hasHoverStyle,
           hasStripes,
           hasVertBorders,
           isInverseContainer,
@@ -126,7 +139,7 @@ export const Table: React.FunctionComponent<TableProps> = React.forwardRef(
             {...other}
             data-testid={testId}
             isInverse={isInverse}
-            minWidth={minWidth}
+            minWidth={minWidth ? minWidth : theme.breakpoints.small}
             ref={ref}
             theme={theme}
           >

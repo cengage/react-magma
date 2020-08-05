@@ -96,6 +96,39 @@ The `hasVerticalBorders` boolean prop may be used to give table cells vertical b
     </Card>
 ```
 
+## Hover Styles
+
+The `hasHoverStyles` boolean prop may be used to visually highlight a row when hovered over.
+
+```.jsx
+    <Card>
+        <Table hasHoverStyles>
+            <TableHead>
+                <TableRow>
+                    <TableHeaderCell>Column 1</TableHeaderCell>
+                    <TableHeaderCell>Column 2</TableHeaderCell>
+                    <TableHeaderCell>Column 3</TableHeaderCell>
+                    <TableHeaderCell>Column 4</TableHeaderCell>
+                </TableRow>
+            </TableHead>
+            <TableBody>
+                <TableRow>
+                    <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>Lorem ipsum dolor sit amet</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum dolor</TableCell>
+                    <TableCell>Lorem ipsum</TableCell>
+                </TableRow>
+            </TableBody>
+        </Table>
+    </Card>
+```
+
 ## Zebra Stripes
 
 The `hasZebraStripes` boolean prop may be used to give each alertnating row a different background color.
@@ -213,10 +246,10 @@ These props do not handle the actual sorting of the table, just the visual appea
         <Table>
             <TableHead>
                 <TableRow>
-                    <TableHeaderCell  onSort={()=>{console.log('onSort')}} isSortable sortDirection="ascending">Column</TableHeaderCell>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell  onSort={()=>{console.log('onSort')}} isSortable align="right">Number</TableHeaderCell>
+                    <TableHeaderCell onSort={()=>{console.log('onSort')}} isSortable sortDirection="ascending">Column 1</TableHeaderCell>
+                    <TableHeaderCell>Column 2</TableHeaderCell>
+                    <TableHeaderCell>Column 3</TableHeaderCell>
+                    <TableHeaderCell onSort={()=>{console.log('onSort')}} isSortable align="right">Number Column</TableHeaderCell>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -387,12 +420,12 @@ These props do not handle the actual sorting of the table, just the visual appea
 
 ## Min-Width
 
-The `minWidth` prop specifies the number in pixels for the minimum width of the table.
+The `minWidth` prop specifies the number in pixels for the minimum width of the table. By default, this is 600px.
 If the table is larger than the width of its container, it will scroll horizontally so that all of the content can be accessed.
 
 ```.jsx
     <Card>
-        <Table minWidth={700}>
+        <Table minWidth={900}>
             <TableHead>
                 <TableRow>
                     <TableHeaderCell>Column 1</TableHeaderCell>
@@ -481,6 +514,13 @@ Content other than just text, such as buttons, inputs and other elements can be 
       description: 'Relative padding of the table cells',
       defaultValue: 'normal',
     },
+    hasHoverStyles: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, row will be visualy highlighted on hover',
+    },
     hasVerticalBorders: {
       type: {
         name: 'boolean',
@@ -510,7 +550,7 @@ Content other than just text, such as buttons, inputs and other elements can be 
       },
       required: false,
       description: 'Minimum width for the table in pixels',
-      defaultValue: '0',
+      defaultValue: '600',
     },
   }}
 />

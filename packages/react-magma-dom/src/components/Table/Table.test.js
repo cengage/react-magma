@@ -58,9 +58,34 @@ describe('Table', () => {
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      magma.colors.neutral07,
+      'rgba(63,63,63,0.07)',
       {
         target: ':nth-of-type(even)'
+      }
+    );
+  });
+
+  it('should render table with hover styles', () => {
+    const { getByTestId } = render(
+      <Table hasHoverStyles>
+        <TableBody>
+          <TableRow testId="row1">
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+          <TableRow testId="row2">
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId('row2')).toHaveStyleRule(
+      'background',
+      'rgba(63,63,63,0.07)',
+      {
+        target: ':hover'
       }
     );
   });
@@ -111,7 +136,7 @@ describe('Table', () => {
 
   it('should render table with inverse styles', () => {
     const { getByTestId, getByText } = render(
-      <Table hasZebraStripes isInverse>
+      <Table hasZebraStripes hasHoverStyles isInverse>
         <TableHead>
           <TableRow>
             <TableHeaderCell>heading 1</TableHeaderCell>
@@ -134,6 +159,14 @@ describe('Table', () => {
     expect(getByText('heading 1')).toHaveStyleRule(
       'background',
       magma.colors.tint02
+    );
+
+    expect(getByTestId('row1')).toHaveStyleRule(
+      'background',
+      magma.colors.tint01,
+      {
+        target: ':hover'
+      }
     );
 
     expect(getByTestId('row2')).toHaveStyleRule(
