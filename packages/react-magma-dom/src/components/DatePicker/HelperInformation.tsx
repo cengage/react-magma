@@ -5,7 +5,7 @@ import { I18nContext } from '../../i18n';
 
 interface HelperInformationProps {
   isOpen?: boolean;
-  onClose?: () => void;
+  onClose?: (event?: React.SyntheticEvent) => void;
 }
 
 const List = styled.ul`
