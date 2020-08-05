@@ -21,6 +21,11 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
     labelText,
     isDisabled,
     isInverse,
+    onBlur,
+    onFocus,
+    onKeyDown,
+    onKeyPress,
+    onKeyUp,
     onRemoveSelectedItem
   } = props;
 
@@ -82,14 +87,21 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
         toggleButtonProps={...getToggleButtonProps({
           ...getDropdownProps(),
           disabled: isDisabled,
+          onBlur,
           onKeyDown: event => {
             if (event.key === 'Enter' || event.key === ' ') {
               event.preventDefault();
               openMenu();
             }
-          }
+
+            onKeyDown && typeof onKeyDown === 'function' && onKeyDown(event);
+          },
+          onKeyPress,
+          onKeyUp,
+          onFocus
         })}
         hasError={hasError}
+        isDisabled={isDisabled}
         isInverse={isInverse}
       >
         {selectedItems &&

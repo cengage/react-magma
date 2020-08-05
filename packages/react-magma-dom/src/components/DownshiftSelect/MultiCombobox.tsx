@@ -37,7 +37,11 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     labelText,
     newItemTransform,
     onInputBlur,
+    onInputFocus,
     onInputChange,
+    onInputKeyDown,
+    onInputKeyPress,
+    onInputKeyUp,
     onInputValueChange,
     onItemCreated,
     onRemoveSelectedItem
@@ -96,6 +100,14 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
         ? onItemCreated(newItem || createdItem)
         : updateItemsRef(newItem || createdItem);
       addSelectedItem(newItem);
+
+      if (process.env.NODE_ENV === 'development') {
+        if (!items && !disableCreateItem) {
+          console.warn(
+            'React Magma Warning: Switching from uncontrolled to controlled items. If allowing new items to be created you should handle the onItemCreated event and control the items list in your code.'
+          );
+        }
+      }
     } else if (changes.selectedItem) {
       addSelectedItem(changes.selectedItem);
     }
@@ -152,7 +164,7 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
       : removeSelectedItem(selectedItem);
   }
 
-  function handleInputBlur(event: React.SyntheticEvent) {
+  function handleInputBlur(event: React.FocusEvent) {
     reset();
     onInputBlur && typeof onInputBlur === 'function' && onInputBlur(event);
   }
@@ -203,6 +215,10 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
         isLoading={isLoading}
         hasError={hasError}
         onInputBlur={handleInputBlur}
+        onInputFocus={onInputFocus}
+        onInputKeyDown={onInputKeyDown}
+        onInputKeyPress={onInputKeyPress}
+        onInputKeyUp={onInputKeyUp}
         selectedItems={selectedItemsContent}
       />
       <ItemsList

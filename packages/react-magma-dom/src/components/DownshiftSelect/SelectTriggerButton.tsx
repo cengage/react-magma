@@ -24,12 +24,20 @@ const ChildrenContainer = styled.div`
 interface SelectTriggerButtonInterface<T> {
   children: React.ReactNode[];
   hasError?: boolean;
+  isDisabled?: boolean;
   isInverse?: boolean;
   toggleButtonProps: any;
+  tabindex?: number;
 }
 
 export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
-  const { children, hasError, isInverse, toggleButtonProps } = props;
+  const {
+    children,
+    hasError,
+    isDisabled,
+    isInverse,
+    toggleButtonProps
+  } = props;
   const theme = React.useContext(ThemeContext);
 
   return (
@@ -39,7 +47,7 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
       role="button"
       {...toggleButtonProps}
       theme={theme}
-      tabIndex={0}
+      tabIndex={isDisabled ? undefined : 0}
     >
       <ChildrenContainer>{children}</ChildrenContainer>
       <CaretDownIcon size={10} testId="caretDown" />

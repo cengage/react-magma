@@ -39,6 +39,11 @@ export interface DownshiftSelectInterface<T>
   extends UseSelectProps<DownshiftOption<T>>,
     InternalSelectInterface {
   hasError?: boolean;
+  onBlur?: (event: React.FocusEvent) => void;
+  onFocus?: (event: React.FocusEvent) => void;
+  onKeyDown?: (event: React.KeyboardEvent) => void;
+  onKeyPress?: (event: React.KeyboardEvent) => void;
+  onKeyUp?: (event: React.KeyboardEvent) => void;
   type?: 'select';
 }
 
@@ -53,10 +58,14 @@ export interface DownshiftComboboxInterface<T>
     label: string;
     value: string;
   }) => DownshiftOption<T>;
-  onInputBlur?: (event: React.SyntheticEvent) => void;
+  onInputBlur?: (event: React.FocusEvent) => void;
   onInputChange?: (
     changes: Partial<UseComboboxState<DownshiftOption<T>>>
   ) => void;
+  onInputFocus?: (event: React.FocusEvent) => void;
+  onInputKeyDown?: (event: React.KeyboardEvent) => void;
+  onInputKeyPress?: (event: React.KeyboardEvent) => void;
+  onInputKeyUp?: (event: React.KeyboardEvent) => void;
   onInputValueChange?: (
     changes: Partial<UseComboboxState<DownshiftOption<T>>>,
     updateInputItems?: React.Dispatch<
@@ -126,7 +135,6 @@ export function instanceOfToBeCreatedItemObject(
   );
 }
 
-// TODO: Focus events for everything
 // TODO: Need documentation on how to migrate from react-select to this select
 // TODO: Rename react-select to LegacySelect
 

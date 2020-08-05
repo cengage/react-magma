@@ -81,7 +81,11 @@ interface ComboboxInputProps<T> {
   isDisabled?: boolean;
   isInverse?: boolean;
   isLoading?: boolean;
-  onInputBlur?: (event: React.SyntheticEvent) => void;
+  onInputBlur?: (event: React.FocusEvent) => void;
+  onInputFocus?: (event: React.FocusEvent) => void;
+  onInputKeyDown?: (event: React.KeyboardEvent) => void;
+  onInputKeyPress?: (event: React.KeyboardEvent) => void;
+  onInputKeyUp?: (event: React.KeyboardEvent) => void;
   selectedItems?: React.ReactNode;
 }
 
@@ -97,6 +101,10 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     isInverse,
     isLoading,
     onInputBlur,
+    onInputFocus,
+    onInputKeyDown,
+    onInputKeyPress,
+    onInputKeyUp,
     selectedItems
   } = props;
   const theme = React.useContext(ThemeContext);
@@ -123,7 +131,14 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
       <InputContainer hasError={hasError} isInverse={isInverse} theme={theme}>
         {selectedItems}
         <StyledInput
-          {...getInputProps({ disabled: isDisabled, onBlur: onInputBlur })}
+          {...getInputProps({
+            disabled: isDisabled,
+            onBlur: onInputBlur,
+            onFocus: onInputFocus,
+            onKeyDown: onInputKeyDown,
+            onKeyPress: onInputKeyPress,
+            onKeyUp: onInputKeyUp
+          })}
           theme={theme}
         />
         {children}

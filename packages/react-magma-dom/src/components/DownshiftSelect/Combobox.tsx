@@ -27,6 +27,10 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
     newItemTransform,
     onInputBlur,
     onInputChange,
+    onInputFocus,
+    onInputKeyDown,
+    onInputKeyPress,
+    onInputKeyUp,
     onInputValueChange,
     onItemCreated
   } = props;
@@ -57,6 +61,14 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
         ? onItemCreated(newItem || createdItem)
         : updateItemsRef(newItem || createdItem);
       selectItem(newItem);
+
+      if (process.env.NODE_ENV === 'development') {
+        if (!items && !disableCreateItem) {
+          console.warn(
+            'React Magma Warning: Switching from uncontrolled to controlled items. If allowing new items to be created you should handle the onItemCreated event and control the items list in your code.'
+          );
+        }
+      }
     }
 
     props.onSelectedItemChange &&
@@ -108,7 +120,7 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
     reset();
   }
 
-  function handleInputBlur(event: React.SyntheticEvent) {
+  function handleInputBlur(event: React.FocusEvent) {
     selectedItem ? selectItem(selectedItem) : reset();
     onInputBlur && typeof onInputBlur === 'function' && onInputBlur(event);
   }
@@ -130,6 +142,10 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
         isLoading={isLoading}
         hasError={hasError}
         onInputBlur={handleInputBlur}
+        onInputFocus={onInputFocus}
+        onInputKeyDown={onInputKeyDown}
+        onInputKeyPress={onInputKeyPress}
+        onInputKeyUp={onInputKeyUp}
       >
         {isClearable && selectedItem && (
           <ClearIndicator

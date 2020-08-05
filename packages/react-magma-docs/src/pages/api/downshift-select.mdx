@@ -205,6 +205,18 @@ you will have to use the handlers mentioned above in the <Link to="/api/downshif
   }
 ```
 
+## Disabled
+
+```.jsx
+  <DownshiftSelect
+    id="disabledSelectId"
+    isDisabled
+    name="disabled"
+    labelText="Disabled"
+    items={['Red', 'Blue', 'Green']}
+  />
+```
+
 ## Clearable
 
 The optional `isClearable` prop allows the user to clear the field once a selection has been made.
@@ -322,6 +334,7 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
         name="multiSelect"
         labelText="Multi Select"
         items={['Red', 'Blue', 'Green', 'Orange', 'Aqua', 'Gold', 'Perriwinkle', 'Lavender', 'Marigold', 'Yellow', 'Purple', 'Dusty Rose', 'Burnt Sienna']}
+        initialSelectedItems={['Red', 'Blue']}
       />
 
       <DownshiftSelect
@@ -506,6 +519,68 @@ prop. If no `newItemTransform` function is passed in, the created item will be t
     </>
   )
 }
+```
+
+## Events
+
+```.jsx
+  () => {
+    const [currentSelectEvent, updateCurrentSelectEvent] = React.useState(undefined);
+    const [currentComboboxEvent, updateCurrentComboboxEvent] = React.useState(undefined);
+
+    function handleSelectBlur(event) {
+      updateCurrentSelectEvent('Blur')
+    }
+
+    function handleSelectFocus(event) {
+      updateCurrentSelectEvent('Focus')
+    }
+
+    function handleSelectKeyPress(event) {
+      updateCurrentSelectEvent('KeyPress')
+    }
+
+    function handleComboboxInputBlur(event) {
+      updateCurrentComboboxEvent('Blur')
+    }
+
+    function handleComboboxInputFocus(event) {
+      updateCurrentComboboxEvent('Focus')
+    }
+
+    function handleComboboxInputKeyPress(event) {
+      updateCurrentComboboxEvent('KeyPress')
+    }
+
+    return (
+      <>
+        <p><strong>{currentSelectEvent || 'No'} event was triggered</strong></p>
+
+        <DownshiftSelect
+          id="selectFocusEventId"
+          name="selectFocusEvent"
+          labelText="Select Focus Events"
+          items={['Red', 'Blue', 'Green']}
+          onBlur={handleSelectBlur}
+          onFocus={handleSelectFocus}
+          onKeyPress={handleSelectKeyPress}
+        />
+
+        <p><strong>{currentComboboxEvent || 'No'} event was triggered</strong></p>
+
+        <DownshiftSelect
+          id="comboboxFocusEventId"
+          name="comboboxFocusEvent"
+          labelText="Combobox Focus Events"
+          defaultItems={['Red', 'Blue', 'Green']}
+          type='combo'
+          onInputBlur={handleComboboxInputBlur}
+          onInputFocus={handleComboboxInputFocus}
+          onInputKeyPress={handleComboboxInputKeyPress}
+        />
+      </>
+    )
+  }
 ```
 
 ## Async

@@ -18,7 +18,12 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
     labelText,
     isClearable,
     isDisabled,
-    isInverse
+    isInverse,
+    onBlur,
+    onFocus,
+    onKeyDown,
+    onKeyPress,
+    onKeyUp
   } = props;
 
   const {
@@ -41,8 +46,6 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
     reset();
   }
 
-  // TODO: Figure out a11y messaging overrides
-
   return (
     <DownshiftSelectContainer
       getLabelProps={getLabelProps}
@@ -52,6 +55,7 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
       <SelectTriggerButton
         toggleButtonProps={...getToggleButtonProps({
           disabled: isDisabled,
+          onBlur,
           onKeyDown: event => {
             if (
               getToggleButtonProps().id === document.activeElement.id &&
@@ -60,9 +64,15 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
               event.preventDefault();
               openMenu();
             }
-          }
+
+            onKeyDown && typeof onKeyDown === 'function' && onKeyDown(event);
+          },
+          onKeyPress,
+          onKeyUp,
+          onFocus
         })}
         hasError={hasError}
+        isDisabled={isDisabled}
         isInverse={isInverse}
       >
         <SelectText data-testid="selectedItemText">
