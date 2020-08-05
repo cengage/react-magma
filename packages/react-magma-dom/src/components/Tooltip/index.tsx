@@ -271,6 +271,7 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
       <ToolTipContainer {...other} data-testid={testId} style={containerStyle}>
         {tooltipTrigger}
         <StyledTooltip
+          aria-hidden={!isVisible}
           id={id}
           position={position ? position : EnumTooltipPosition.top}
           role="tooltip"
