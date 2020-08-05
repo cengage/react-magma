@@ -1,6 +1,9 @@
 import React from 'react';
 import { baseInputStyles } from '../BaseInput';
-import { defaultComponents, DownshiftComponents } from './components';
+import {
+  defaultComponents,
+  DownshiftComponents
+} from '../DownshiftSelect/components';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';

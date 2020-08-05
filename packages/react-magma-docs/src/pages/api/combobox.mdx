@@ -1,40 +1,29 @@
 ---
-title: 'Downshift Selects'
+title: 'Combobox'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { DownshiftSelect } from 'react-magma-dom'
+import { Combobox } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { SimplePropsTable } from '../../components/props-table'
-import { useSelect } from 'downshift'
 import { Link } from 'gatsby'
 import { v4 as uuid } from 'uuid'
 
-<DocsHeading to="/design/select/" type="design">
-  Downshift Selects
+<DocsHeading to="/design/combobox/" type="design">
+  Combobox
 </DocsHeading>
 
 ## Basic Usage
 
 ```.jsx
-  () => {
-    const [selectedItem, updateSelectedItem] = React.useState('');
-
-    function onSelectedItemChange(changes) {
-      updateSelectedItem(changes.selectedItem);
-    }
-
-    return <>
-      <DownshiftSelect
-        id="basicSelectId"
-        name="basic"
-        labelText="Basic"
-        items={['Red', 'Blue', 'Green']}
-        selectedItem={selectedItem}
-        onSelectedItemChange={onSelectedItemChange}
-      />
-    </>
-  }
+  <>
+    <Combobox
+      id="comboboxId"
+      name="combobox"
+      labelText="Combobox"
+      defaultItems={['Red', 'Blue', 'Green']}
+    />
+  </>
 ```
 
 ## Custom Items
@@ -47,31 +36,44 @@ which is a function that returns the string representation of your `item` which 
 
 ```.jsx
   () => {
+    const [selectedItem, updateSelectedItem] = React.useState(undefined)
+
     function itemToString(item) {
       return item ? item.representation : ''
     }
 
-    return <>
-      <DownshiftSelect
-        id="itemToStringId"
-        name="itemToString"
-        labelText="Item to String"
-        items={[{
-          id: 1,
-          actual: 'red',
-          representation: 'Red'
-        }, {
-          id: 2,
-          actual: 'blue',
-          representation: 'Blue'
-        }, {
-          id: 3,
-          actual: 'green',
-          representation: 'Green'
-        }]}
-        itemToString={itemToString}
-      />
-    </>
+    function newItemTransform(item) {
+      const { value } = item;
+
+      return {
+        id: uuid(),
+        name: value,
+        representation: value.charAt(0).toUpperCase() + value.slice(1)
+      }
+    }
+
+    function handleSelectedItemChange(changes) {
+      updateSelectedItem(changes.selectedItem)
+    }
+
+    return (
+      <>
+        { selectedItem && <pre>{JSON.stringify(selectedItem, null, 2)}</pre> }
+        <Combobox
+          id="comboboxWithCustomItemsId"
+          name="comboboxWithCustomItems"
+          labelText="Combobox With Custom Items"
+          defaultItems={[
+            { id: 0, name: 'red', representation: 'Red' },
+            { id: 1, name: 'blue', representation: 'Blue' },
+            { id: 2, name: 'green', representation: 'Green' }
+          ]}
+          newItemTransform={newItemTransform}
+          itemToString={itemToString}
+          onSelectedItemChange={handleSelectedItemChange}
+        />
+      </>
+    )
   }
 ```
 
@@ -82,7 +84,7 @@ Set inital state using the `initalSelectedItem` and `initialHighlightedIndex` pr
 ```.jsx
   () => {
     return <>
-      <DownshiftSelect
+      <Combobox
         id="initialSelectedByItemSelectId"
         name="initialSelectedByItem"
         labelText="Initial Selected By Item"
@@ -90,7 +92,7 @@ Set inital state using the `initalSelectedItem` and `initialHighlightedIndex` pr
         initialSelectedItem={'Green'}
       />
 
-      <DownshiftSelect
+      <Combobox
         id="initialSelectedByIndexSelectId"
         name="initialSelectedByIndex"
         labelText="Initial Selected By Index"
@@ -137,7 +139,7 @@ includes the changes made to state from each action as well as a `type` that des
       <p><strong>Highlighted Index Change Count: </strong>{highlightedIndexChangeCount}</p>
       <p><strong>Is Open Change Count: </strong>{isOpenChangeCount}</p>
 
-      <DownshiftSelect
+      <Combobox
         id="stateChangesId"
         name="stateChanges"
         labelText="State Changes"
@@ -149,7 +151,7 @@ includes the changes made to state from each action as well as a `type` that des
 
       <pre>{JSON.stringify(changes, null, 2)}</pre>
 
-      <DownshiftSelect
+      <Combobox
         id="stateChangesId"
         name="stateChanges"
         labelText="State Changes"
@@ -160,55 +162,51 @@ includes the changes made to state from each action as well as a `type` that des
   }
 ```
 
-## Controlled
+## Controlled Items
 
-If you wish to control the state rather than having it handled internally you can use the control props
-provided. These props are `isOpen`, `selectedItem`, and `highlightedIndex`. If you are using these control props
-you will have to use the handlers mentioned above in the <Link to="/api/downshift-select/#state_changes">State Changes</Link> section.
+If you would like to control your `items` and any updates to them on creation you can pass in a function to the `onItemCreated`
+prop. If no `newItemTransform` function is passed in, the created item will be the string value of what was created.
+
+**NOTE**: Your created items will not be added to the `items` list internally. You will have to pass the updated `items` array to the `items` prop.
 
 ```.jsx
   () => {
-    const [highlightedIndex, updateHighlightedIndex] = React.useState(0);
-    const [isOpen, updateIsOpen] = React.useState(false);
-    const [selectedItem, updateSelectedItem] = React.useState('');
+    const defaultItems = ['Red', 'Blue', 'Green'];
+    const [items, updateItems] = React.useState(defaultItems)
 
-    function onHighlightedIndexChange(changes) {
-      updateHighlightedIndex(changes.highlightedIndex);
+    function newItemTransform(item) {
+      return item.value
     }
 
-    function onIsOpenChange(changes) {
-      updateIsOpen(changes.isOpen)
+    function resetItems() {
+      updateItems([...defaultItems]);
     }
 
-    function onSelectedItemChange(changes) {
-      updateSelectedItem(changes.selectedItem);
+    function onItemCreated(item) {
+      updateItems([...items, item])
     }
 
-    return <>
-      <p><strong>Selected Item: </strong>{selectedItem}</p>
-      <p><strong>Highlighted Index: </strong>{highlightedIndex}</p>
-      <p><strong>Is Open: </strong>{isOpen.toString()}</p>
-
-      <DownshiftSelect
-        id="controlledId"
-        name="controlled"
-        labelText="Controlled"
-        items={['Red', 'Blue', 'Green']}
-        isOpen={isOpen}
-        highlightedIndex={highlightedIndex}
-        selectedItem={selectedItem}
-        onHighlightedIndexChange={onHighlightedIndexChange}
-        onIsOpenChange={onIsOpenChange}
-        onSelectedItemChange={onSelectedItemChange}
-      />
-    </>
+    return (
+      <>
+        <button onClick={resetItems}>Reset Items</button>
+        <strong>Items: </strong><pre>{items.toString()}</pre>
+        <Combobox
+          id="controlledItemsId"
+          name="controlledItems"
+          labelText="Controlled Items"
+          items={items}
+          newItemTransform={newItemTransform}
+          onItemCreated={onItemCreated}
+        />
+      </>
+    )
   }
 ```
 
 ## Disabled
 
 ```.jsx
-  <DownshiftSelect
+  <Combobox
     id="disabledSelectId"
     isDisabled
     name="disabled"
@@ -227,7 +225,7 @@ These props are `defaultSelectedItem`, and `defaultHighlightedIndex`.
 ```.jsx
   () => {
     return <>
-      <DownshiftSelect
+      <Combobox
         id="clearableSelectId"
         name="clearable"
         labelText="Clearable"
@@ -236,7 +234,7 @@ These props are `defaultSelectedItem`, and `defaultHighlightedIndex`.
         isClearable
       />
 
-      <DownshiftSelect
+      <Combobox
         id="clearableWithDefaultsId"
         name="clearableWithDefaults"
         labelText="Clearable With Defaults"
@@ -256,7 +254,7 @@ If an error message is present, it will replace the helper text. Can be a node o
 ```.jsx
   () => (
     <>
-      <DownshiftSelect
+      <Combobox
         id="errorMessage"
         name="error"
         labelText="Error Message"
@@ -274,7 +272,7 @@ The `helperMessage` appears underneath the select field. It will not appear if a
 ```.jsx
   () => (
     <>
-      <DownshiftSelect
+      <Combobox
         id="helperMessage"
         name="helper"
         labelText="Helper Message"
@@ -299,7 +297,7 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
 ```.jsx
   () => {
     return <>
-      <DownshiftSelect
+      <Combobox
         id="newA11yStatusMessageId"
         name="newA11yStatusMessage"
         labelText="New A11y Status Message"
@@ -311,79 +309,142 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
   }
 ```
 
-## Multi Select
+## Disable Create Item
 
 ```.jsx
-  () => {
-    const [selectedItems, updateSelectedItems] = React.useState([]);
+  <>
+    <Combobox
+      disableCreateItem
+      id="disableCreateItemId"
+      name="disableCreateItem"
+      labelText="Disable Create Item"
+      defaultItems={['Red', 'Blue', 'Green']}
+    />
+  </>
+```
 
-    function handleSelectedItemsChange(changes) {
-      updateSelectedItems(changes.selectedItems);
-    }
+## Multi Combobox
 
-    function handleRemoveSelectedItem(removedItem) {
-      updateSelectedItems(
-        selectedItems.filter(item => item !== removedItem)
-      )
-    }
+```.jsx
+() => {
+  const [selectedItems, updateSelectedItems] = React.useState([]);
 
-    return <>
-      <DownshiftSelect
-        id="multiSelectId"
+  function handleSelectedItemsChange(changes) {
+    updateSelectedItems(changes.selectedItems);
+  }
+
+  function handleRemoveSelectedItem(removedItem) {
+    updateSelectedItems(
+      selectedItems.filter(item => item !== removedItem)
+    )
+  }
+
+  return (
+    <>
+      <Combobox
         isMulti
-        name="multiSelect"
-        labelText="Multi Select"
-        items={['Red', 'Blue', 'Green', 'Orange', 'Aqua', 'Gold', 'Perriwinkle', 'Lavender', 'Marigold', 'Yellow', 'Purple', 'Dusty Rose', 'Burnt Sienna']}
-        initialSelectedItems={['Red', 'Blue']}
+        id="multiComboboxId"
+        name="multiCombobox"
+        labelText="Multi Combobox"
+        defaultItems={['Red', 'Blue', 'Green']}
       />
 
-      <DownshiftSelect
-        id="multiSelectControlledId"
+      <Combobox
         isMulti
-        name="multiSelectControlled"
-        labelText="Multi Select Controlled"
-        items={['Red', 'Blue', 'Green', 'Orange', 'Aqua', 'Gold', 'Perriwinkle', 'Lavender', 'Marigold', 'Yellow', 'Purple', 'Dusty Rose', 'Burnt Sienna']}
+        id="multiComboboxId2"
+        name="multiCombobox2"
+        labelText="Multi Combobox"
+        initialSelectedItems={['Red', 'Blue', 'Green', 'Orange', 'Aqua', 'Gold', 'Perriwinkle', 'Lavender']}
+        defaultItems={['Red', 'Blue', 'Green', 'Orange', 'Aqua', 'Gold', 'Perriwinkle', 'Lavender', 'Marigold', 'Yellow', 'Purple', 'Dusty Rose', 'Burnt Sienna']}
+      />
+
+      <Combobox
+        errorMessage="Please correct this error"
+        id="multiComboboxControlledId"
+        isMulti
+        name="multiComboboxControlled"
+        labelText="Multi Combobox Controlled"
+        defaultItems={['Red', 'Blue', 'Green']}
         selectedItems={selectedItems}
         onSelectedItemsChange={handleSelectedItemsChange}
         onRemoveSelectedItem={handleRemoveSelectedItem}
       />
     </>
-  }
+  )
+}
 ```
 
 ## Events
 
 ```.jsx
   () => {
-    const [currentSelectEvent, updateCurrentSelectEvent] = React.useState(undefined);
+    const [currentComboboxEvent, updateCurrentComboboxEvent] = React.useState(undefined);
 
-    function handleSelectBlur(event) {
-      updateCurrentSelectEvent('Blur')
+    function handleComboboxInputBlur(event) {
+      updateCurrentComboboxEvent('Blur')
     }
 
-    function handleSelectFocus(event) {
-      updateCurrentSelectEvent('Focus')
+    function handleComboboxInputFocus(event) {
+      updateCurrentComboboxEvent('Focus')
     }
 
-    function handleSelectKeyPress(event) {
-      updateCurrentSelectEvent('KeyPress')
+    function handleComboboxInputKeyPress(event) {
+      updateCurrentComboboxEvent('KeyPress')
     }
 
     return (
       <>
-        <p><strong>{currentSelectEvent || 'No'} event was triggered</strong></p>
+        <p><strong>{currentComboboxEvent || 'No'} event was triggered</strong></p>
 
-        <DownshiftSelect
-          id="selectFocusEventId"
-          name="selectFocusEvent"
-          labelText="Select Focus Events"
-          items={['Red', 'Blue', 'Green']}
-          onBlur={handleSelectBlur}
-          onFocus={handleSelectFocus}
-          onKeyPress={handleSelectKeyPress}
+        <Combobox
+          id="comboboxFocusEventId"
+          name="comboboxFocusEvent"
+          labelText="Combobox Focus Events"
+          defaultItems={['Red', 'Blue', 'Green']}
+          onInputBlur={handleComboboxInputBlur}
+          onInputFocus={handleComboboxInputFocus}
+          onInputKeyPress={handleComboboxInputKeyPress}
         />
       </>
     )
+  }
+```
+
+## Async
+
+```.jsx
+  () => {
+    const [isLoading, updateIsLoading] = React.useState(false);
+
+    function loadItems(inputValue) {
+      return new Promise(resolve => resolve(['Yellow', 'Pink', 'Perrywinkle']))
+    }
+
+    function handleInputValueChange(changes, setInputItems) {
+      const { inputValue } = changes;
+
+      updateIsLoading(true);
+
+      setTimeout(() => {
+        updateIsLoading(false);
+        loadItems(inputValue).then((items) => {
+          setInputItems(items.filter(item =>
+            item
+              .toLowerCase()
+              .startsWith(inputValue.toLowerCase())
+          ))
+        })
+      }, 1000)
+    }
+
+    return <Combobox
+      id="asyncId"
+      name="async"
+      labelText="Async"
+      isLoading={isLoading}
+      defaultItems={['Red', 'Blue', 'Green']}
+      onInputValueChange={handleInputValueChange}
+    />
   }
 ```
 
@@ -411,30 +472,77 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
     }
 
     return (<div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
-      <DownshiftSelect
-        id="basicSelectInverseId"
+
+      <Combobox
+        id="comboboxInverseId"
         isInverse
-        name="basic"
-        labelText="Basic"
-        items={['Red', 'Blue', 'Green']}
-        selectedItem={selectedItem}
-        onSelectedItemChange={onSelectedItemChange}
+        name="combobox"
+        labelText="Combobox"
+        defaultItems={['Red', 'Blue', 'Green']}
       />
 
-      <DownshiftSelect
-        id="multiSelectInverseId"
-        isInverse
+      <Combobox
         isMulti
-        name="multiSelect"
-        labelText="Multi Select"
-        items={['Red', 'Blue', 'Green']}
+        id="comboboxMultiInverseId"
+        isInverse
+        labelText="Multi Combobox"
+        defaultItems={['Red', 'Blue', 'Green']}
+        initialSelectedItems={['Red', 'Green', 'Blue']}
+        name="comboboxmulti"
       />
     </div>)
 
   }
 ```
 
-## Select Props
+## Custom Components
+
+```.jsx
+  () => {
+    const [isLoading, updateIsLoading] = React.useState(false);
+
+    function loadItems(inputValue) {
+      return new Promise(resolve => resolve(['Yellow', 'Pink', 'Perrywinkle']))
+    }
+
+    function handleInputValueChange(changes, setInputItems) {
+      const { inputValue } = changes;
+
+      updateIsLoading(true);
+
+      setTimeout(() => {
+        updateIsLoading(false);
+        loadItems(inputValue).then((items) => {
+          setInputItems(items.filter(item =>
+            item
+              .toLowerCase()
+              .startsWith(inputValue.toLowerCase())
+          ))
+        })
+      }, 1000)
+    }
+
+    return (<>
+      <Combobox
+        id="customComponentsId"
+        name="customComponents"
+        labelText="Custom Components"
+        isLoading={isLoading}
+        defaultItems={['Red', 'Blue', 'Green']}
+        isClearable
+        onInputValueChange={handleInputValueChange}
+        components={{
+          ClearIndicator: (props) => <button onClick={props.onClick}>Clear</button>,
+          DropdownIndicator: React.forwardRef((props, ref) => <button ref={ref} onClick={props.onClick}>Dropdown</button>),
+          LoadingIndicator: (props) => <>Loading</>
+        }}
+      />
+    </>)
+  }
+
+```
+
+## Combobox Props
 
 **Any other props supplied will be provided to the `Select` element from [react-select](https://react-select.com/home).**
 
@@ -506,8 +614,7 @@ export default props => (
   <ScopeableLayout
     {...props}
     components={{
-      DownshiftSelect,
-      useSelect,
+      Combobox,
       uuid,
     }}
   />

@@ -79,6 +79,7 @@ export { Modal, ModalSize, ModalProps } from './components/Modal';
 export { Search, SearchProps } from './components/Search';
 
 export { DownshiftSelect } from './components/DownshiftSelect';
+export { Combobox } from './components/Combobox';
 
 export { Select } from './components/Select';
 export { AsyncSelect } from './components/AsyncSelect';

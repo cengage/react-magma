@@ -1,25 +1,17 @@
 import * as React from 'react';
-import {
-  UseSelectProps,
-  UseComboboxProps,
-  UseComboboxState,
-  UseMultipleSelectionProps
-} from 'downshift';
-import { XOR } from '../../utils';
+import { UseSelectProps, UseMultipleSelectionProps } from 'downshift';
 
 import { Select } from './Select';
 import { MultiSelect } from './MultiSelect';
-import { Combobox } from './Combobox';
 import { InputMessage } from '../Input/InputMessage';
 import { DownshiftComponents } from './components';
-import { MultiCombobox } from './MultiCombobox';
 
 export type DownshiftOption<T> =
   | string
   | { value: string; label: string; [key: string]: any }
   | T;
 
-interface InternalSelectInterface {
+export interface InternalSelectInterface {
   components?: DownshiftComponents;
   errorMessage?: React.ReactNode;
   helperMessage?: React.ReactNode;
@@ -31,7 +23,7 @@ interface InternalSelectInterface {
   messageStyle?: React.CSSProperties;
 }
 
-interface InternalMultiInterface<T> {
+export interface InternalMultiInterface<T> {
   onRemoveSelectedItem?: (removedItem: DownshiftOption<T>) => void;
 }
 
@@ -44,36 +36,6 @@ export interface DownshiftSelectInterface<T>
   onKeyDown?: (event: React.KeyboardEvent) => void;
   onKeyPress?: (event: React.KeyboardEvent) => void;
   onKeyUp?: (event: React.KeyboardEvent) => void;
-  type?: 'select';
-}
-
-export interface DownshiftComboboxInterface<T>
-  extends UseComboboxProps<DownshiftOption<T>>,
-    InternalSelectInterface {
-  defaultItems?: DownshiftOption<T>[];
-  disableCreateItem?: boolean;
-  hasError?: boolean;
-  isLoading?: boolean;
-  newItemTransform?: (item: {
-    label: string;
-    value: string;
-  }) => DownshiftOption<T>;
-  onInputBlur?: (event: React.FocusEvent) => void;
-  onInputChange?: (
-    changes: Partial<UseComboboxState<DownshiftOption<T>>>
-  ) => void;
-  onInputFocus?: (event: React.FocusEvent) => void;
-  onInputKeyDown?: (event: React.KeyboardEvent) => void;
-  onInputKeyPress?: (event: React.KeyboardEvent) => void;
-  onInputKeyUp?: (event: React.KeyboardEvent) => void;
-  onInputValueChange?: (
-    changes: Partial<UseComboboxState<DownshiftOption<T>>>,
-    updateInputItems?: React.Dispatch<
-      React.SetStateAction<DownshiftOption<T>[]>
-    >
-  ) => void;
-  onItemCreated?: (newItem: DownshiftOption<T>) => void;
-  type: 'combo';
 }
 
 export interface DownshiftMultiSelectInterface<T>
@@ -84,35 +46,10 @@ export interface DownshiftMultiSelectInterface<T>
   isInverse?: boolean;
 }
 
-export interface DownshiftMultiComboboxInterface<T>
-  extends UseMultipleSelectionProps<DownshiftOption<T>>,
-    Omit<DownshiftComboboxInterface<T>, 'onStateChange' | 'stateReducer'>,
-    InternalMultiInterface<T> {
-  hasError?: boolean;
-  isInverse?: boolean;
-}
-
-export type SelectInterface<T> = XOR<
-  DownshiftSelectInterface<T>,
-  DownshiftComboboxInterface<T>
->;
-
-export function instanceOfCombobox<T>(
-  object: any
-): object is DownshiftComboboxInterface<T> {
-  return 'type' in object && object.type === 'combo';
-}
-
 export function instanceOfMultiSelect<T>(
   object: any
 ): object is DownshiftMultiSelectInterface<T> {
   return 'isMulti' in object && object.type !== 'combo';
-}
-
-export function instanceOfMultiCombobox<T>(
-  object: any
-): object is DownshiftMultiComboboxInterface<T> {
-  return 'isMulti' in object && object.type === 'combo';
 }
 
 export function instanceOfDefaultItemObject(
@@ -138,7 +75,7 @@ export function instanceOfToBeCreatedItemObject(
 // TODO: Need documentation on how to migrate from react-select to this select
 // TODO: Rename react-select to LegacySelect
 
-export function DownshiftSelect<T>(props: SelectInterface<T>) {
+export function DownshiftSelect<T>(props: DownshiftSelectInterface<T>) {
   const {
     isInverse,
     isMulti,
@@ -159,21 +96,7 @@ export function DownshiftSelect<T>(props: SelectInterface<T>) {
 
   return (
     <>
-      {instanceOfCombobox<T>(props) ? (
-        isMulti && instanceOfMultiCombobox<T>(props) ? (
-          <MultiCombobox
-            itemToString={itemToString}
-            {...props}
-            hasError={hasError}
-          />
-        ) : (
-          <Combobox
-            itemToString={itemToString}
-            {...props}
-            hasError={hasError}
-          />
-        )
-      ) : isMulti && instanceOfMultiSelect<T>(props) ? (
+      {isMulti && instanceOfMultiSelect<T>(props) ? (
         <MultiSelect
           itemToString={itemToString}
           {...props}

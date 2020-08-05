@@ -1,26 +1,26 @@
 import * as React from 'react';
 import {
   instanceOfDefaultItemObject,
-  DownshiftOption,
-  DownshiftMultiComboboxInterface
-} from '.';
+  DownshiftOption
+} from '../DownshiftSelect';
 import {
   useCombobox,
   useMultipleSelection,
   UseMultipleSelectionProps
 } from 'downshift';
 import { CrossIcon } from '../Icon/types/CrossIcon';
-import { DownshiftSelectContainer } from './SelectContainer';
-import { ItemsList } from './ItemsList';
+import { DownshiftSelectContainer } from '../DownshiftSelect/SelectContainer';
+import { ItemsList } from '../DownshiftSelect/ItemsList';
 import { ComboboxInput } from './ComboboxInput';
 import {
   useComboboxItems,
   SelectedItemsWrapper,
   SelectedItemButton,
   IconWrapper
-} from './shared';
+} from '../DownshiftSelect/shared';
 
 import { ThemeContext } from '../../theme/ThemeContext';
+import { DownshiftMultiComboboxInterface } from '.';
 
 export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
   const [inputValue, setInputValue] = React.useState('');
@@ -55,6 +55,8 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
   } = useMultipleSelection(
     (props as unknown) as UseMultipleSelectionProps<DownshiftOption<T>>
   );
+
+  console.log('selected items: ', selectedItems);
 
   function isCreatedItem(item) {
     return (

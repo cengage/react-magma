@@ -1,17 +1,16 @@
 import * as React from 'react';
-import { DownshiftComboboxInterface, instanceOfDefaultItemObject } from '.';
+import { instanceOfDefaultItemObject } from '../DownshiftSelect';
 import { useCombobox } from 'downshift';
 import { CrossIcon } from '../Icon/types/CrossIcon';
-import { defaultComponents } from './components';
-import { DownshiftSelectContainer } from './SelectContainer';
-import { ItemsList } from './ItemsList';
+import { defaultComponents } from '../DownshiftSelect/components';
+import { DownshiftSelectContainer } from '../DownshiftSelect/SelectContainer';
+import { ItemsList } from '../DownshiftSelect/ItemsList';
 import { ComboboxInput } from './ComboboxInput';
 import { ButtonSize, ButtonVariant } from '../Button';
-import { useComboboxItems } from './shared';
+import { useComboboxItems } from '../DownshiftSelect/shared';
+import { DownshiftComboboxInterface } from '.';
 
-// When creating an item, without the items prop being controlled, give a console warning saying that you now have no control over the items list
-
-export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
+export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
   const {
     components: customComponents,
     defaultItems,
