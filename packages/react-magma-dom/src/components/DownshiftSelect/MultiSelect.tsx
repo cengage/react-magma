@@ -20,6 +20,7 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
     items,
     labelText,
     isDisabled,
+    isInverse,
     onRemoveSelectedItem
   } = props;
 
@@ -75,6 +76,7 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
     <DownshiftSelectContainer
       getLabelProps={getLabelProps}
       labelText={labelText}
+      isInverse={isInverse}
     >
       <SelectTriggerButton
         toggleButtonProps={...getToggleButtonProps({
@@ -88,6 +90,7 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
           }
         })}
         hasError={hasError}
+        isInverse={isInverse}
       >
         {selectedItems &&
           selectedItems.map((multiSelectedItem, index) => (

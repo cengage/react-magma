@@ -488,7 +488,6 @@ prop. If no `newItemTransform` function is passed in, the created item will be t
         name="combobox"
         labelText="Combobox"
         defaultItems={['Red', 'Blue', 'Green', 'Orange', 'Aqua', 'Gold', 'Perriwinkle', 'Lavender', 'Marigold', 'Yellow', 'Purple', 'Dusty Rose', 'Burnt Sienna']}
-        initialSelectedItems={['Red', 'Green', 'Blue', 'Yellow', 'Purple', 'Dusty Rose', 'Burnt Sienna', 'Gold', 'Perriwinkle', 'Lavender', 'Marigold', 'Aqua' ]}
         type='combo'
       />
 
@@ -545,6 +544,75 @@ prop. If no `newItemTransform` function is passed in, the created item will be t
       type='combo'
       onInputValueChange={handleInputValueChange}
     />
+  }
+```
+
+## Inverse
+
+```.jsx
+  () => {
+    const [selectedItem, updateSelectedItem] = React.useState('');
+
+    function onSelectedItemChange(changes) {
+      updateSelectedItem(changes.selectedItem);
+    }
+
+
+    const [selectedItems, updateSelectedItems] = React.useState([]);
+
+    function handleSelectedItemsChange(changes) {
+      updateSelectedItems(changes.selectedItems);
+    }
+
+    function handleRemoveSelectedItem(removedItem) {
+      updateSelectedItems(
+        selectedItems.filter(item => item !== removedItem)
+      )
+    }
+
+    return <div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
+
+
+      <DownshiftSelect
+        id="basicSelectInverseId"
+        isInverse
+        name="basic"
+        labelText="Basic"
+        items={['Red', 'Blue', 'Green']}
+        selectedItem={selectedItem}
+        onSelectedItemChange={onSelectedItemChange}
+      />
+
+      <DownshiftSelect
+        id="multiSelectInverseId"
+        isInverse
+        isMulti
+        name="multiSelect"
+        labelText="Multi Select"
+        items={['Red', 'Blue', 'Green']}
+      />
+
+      <DownshiftSelect
+        id="comboboxInverseId"
+        isInverse
+        name="combobox"
+        labelText="Combobox"
+        defaultItems={['Red', 'Blue', 'Green']}
+        type='combo'
+      />
+
+      <DownshiftSelect
+        isMulti
+        id="comboboxMultiInverseId"
+        isInverse
+        labelText="Multi Combobox"
+        defaultItems={['Red', 'Blue', 'Green']}
+        initialSelectedItems={['Red', 'Green', 'Blue']}
+        name="comboboxmulti"
+        type='combo'
+      />
+      </div>
+
   }
 ```
 

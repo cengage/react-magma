@@ -10,7 +10,6 @@ import { ButtonSize, ButtonVariant } from '../Button';
 import { useComboboxItems } from './shared';
 
 // When creating an item, without the items prop being controlled, give a console warning saying that you now have no control over the items list
-// onBlur, show selectedItem
 
 export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
   const {
@@ -21,6 +20,7 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
     isClearable,
     isDisabled,
     isLoading,
+    isInverse,
     items,
     itemToString,
     labelText,
@@ -116,8 +116,9 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
   return (
     <DownshiftSelectContainer
       getLabelProps={getLabelProps}
-      labelText={labelText}
       hasError={hasError}
+      isInverse={isInverse}
+      labelText={labelText}
     >
       <ComboboxInput
         customComponents={customComponents}
@@ -125,6 +126,7 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
         getInputProps={getInputProps}
         getToggleButtonProps={getToggleButtonProps}
         isDisabled={isDisabled}
+        isInverse={isInverse}
         isLoading={isLoading}
         hasError={hasError}
         onInputBlur={handleInputBlur}

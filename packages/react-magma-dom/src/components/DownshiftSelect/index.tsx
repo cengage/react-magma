@@ -72,6 +72,7 @@ export interface DownshiftMultiSelectInterface<T>
     Omit<DownshiftSelectInterface<T>, 'onStateChange' | 'stateReducer'>,
     InternalMultiInterface<T> {
   hasError?: boolean;
+  isInverse?: boolean;
 }
 
 export interface DownshiftMultiComboboxInterface<T>
@@ -79,6 +80,7 @@ export interface DownshiftMultiComboboxInterface<T>
     Omit<DownshiftComboboxInterface<T>, 'onStateChange' | 'stateReducer'>,
     InternalMultiInterface<T> {
   hasError?: boolean;
+  isInverse?: boolean;
 }
 
 export type SelectInterface<T> = XOR<
@@ -168,6 +170,7 @@ export function DownshiftSelect<T>(props: SelectInterface<T>) {
           itemToString={itemToString}
           {...props}
           hasError={hasError}
+          isInverse={isInverse}
         />
       ) : (
         <Select itemToString={itemToString} {...props} hasError={hasError} />

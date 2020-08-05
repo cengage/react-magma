@@ -11,16 +11,19 @@ interface DownshiftSelectContainer<T> {
   children: React.ReactNode[];
   getLabelProps: (options?: UseSelectGetLabelPropsOptions) => any;
   hasError?: boolean;
+  isInverse?: boolean;
   labelText: string;
 }
 
 export function DownshiftSelectContainer<T>(
   props: DownshiftSelectContainer<T>
 ) {
-  const { children, getLabelProps, labelText } = props;
+  const { children, getLabelProps, isInverse, labelText } = props;
   return (
     <SelectContainer>
-      <Label {...getLabelProps()}>{labelText}</Label>
+      <Label {...getLabelProps()} isInverse={isInverse}>
+        {labelText}
+      </Label>
       {children}
     </SelectContainer>
   );
