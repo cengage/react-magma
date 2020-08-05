@@ -54,7 +54,9 @@ interface ComboboxInputProps<T> {
     options?: UseComboboxGetToggleButtonPropsOptions
   ) => any;
   hasError?: boolean;
+  isDisabled?: boolean;
   isLoading?: boolean;
+  onInputBlur?: (event: React.SyntheticEvent) => void;
   selectedItems?: React.ReactNode;
 }
 
@@ -66,7 +68,9 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     getInputProps,
     getToggleButtonProps,
     hasError,
+    isDisabled,
     isLoading,
+    onInputBlur,
     selectedItems
   } = props;
   const theme = React.useContext(ThemeContext);
@@ -83,14 +87,17 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     >
       <InputContainer hasError={hasError} theme={theme}>
         {selectedItems}
-        <StyledInput {...getInputProps()} theme={theme} />
+        <StyledInput
+          {...getInputProps({ disabled: isDisabled, onBlur: onInputBlur })}
+          theme={theme}
+        />
         {children}
         {isLoading && (
           <LoadingIndicator style={{ flexShrink: 0, marginRight: '10px' }} />
         )}
       </InputContainer>
       <DropdownIndicator
-        {...getToggleButtonProps()}
+        {...getToggleButtonProps({ disabled: isDisabled })}
         aria-label="toggle menu"
         icon={<CaretDownIcon size={10} />}
         shape={ButtonShape.rightCap}

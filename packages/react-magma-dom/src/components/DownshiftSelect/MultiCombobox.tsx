@@ -22,8 +22,6 @@ import {
 
 import { ThemeContext } from '../../theme/ThemeContext';
 
-//TODO: Look in to initialSelectedItems
-
 export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
   const [inputValue, setInputValue] = React.useState('');
   const {
@@ -31,11 +29,13 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     defaultItems,
     disableCreateItem,
     hasError,
+    isDisabled,
     isLoading,
     items,
     itemToString,
     labelText,
     newItemTransform,
+    onInputBlur,
     onInputChange,
     onInputValueChange,
     onItemCreated,
@@ -130,6 +130,7 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     getComboboxProps,
     highlightedIndex,
     getItemProps,
+    reset,
     selectItem
   } = useCombobox({
     ...comboboxProps,
@@ -148,6 +149,11 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     onRemoveSelectedItem && typeof onRemoveSelectedItem === 'function'
       ? onRemoveSelectedItem(selectedItem)
       : removeSelectedItem(selectedItem);
+  }
+
+  function handleInputBlur(event: React.SyntheticEvent) {
+    reset();
+    onInputBlur && typeof onInputBlur === 'function' && onInputBlur(event);
   }
 
   const theme = React.useContext(ThemeContext);
@@ -186,10 +192,14 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
       <ComboboxInput
         customComponents={customComponents}
         getComboboxProps={getComboboxProps}
-        getInputProps={options => ({ ...getInputProps(getDropdownProps()) })}
+        getInputProps={options => ({
+          ...getInputProps({ ...getDropdownProps(), ...options })
+        })}
         getToggleButtonProps={getToggleButtonProps}
+        isDisabled={isDisabled}
         isLoading={isLoading}
         hasError={hasError}
+        onInputBlur={handleInputBlur}
         selectedItems={selectedItemsContent}
       />
       <ItemsList

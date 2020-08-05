@@ -10,9 +10,7 @@ import { ButtonSize, ButtonVariant } from '../Button';
 import { useComboboxItems } from './shared';
 
 // When creating an item, without the items prop being controlled, give a console warning saying that you now have no control over the items list
-// When typing and there are no options, show no options item that can't be chosen
 // onBlur, show selectedItem
-// isDisabled
 
 export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
   const {
@@ -21,11 +19,13 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
     disableCreateItem,
     hasError,
     isClearable,
+    isDisabled,
     isLoading,
     items,
     itemToString,
     labelText,
     newItemTransform,
+    onInputBlur,
     onInputChange,
     onInputValueChange,
     onItemCreated
@@ -108,6 +108,11 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
     reset();
   }
 
+  function handleInputBlur(event: React.SyntheticEvent) {
+    selectedItem ? selectItem(selectedItem) : reset();
+    onInputBlur && typeof onInputBlur === 'function' && onInputBlur(event);
+  }
+
   return (
     <DownshiftSelectContainer
       getLabelProps={getLabelProps}
@@ -119,8 +124,10 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
         getComboboxProps={getComboboxProps}
         getInputProps={getInputProps}
         getToggleButtonProps={getToggleButtonProps}
+        isDisabled={isDisabled}
         isLoading={isLoading}
         hasError={hasError}
+        onInputBlur={handleInputBlur}
       >
         {isClearable && selectedItem && (
           <ClearIndicator

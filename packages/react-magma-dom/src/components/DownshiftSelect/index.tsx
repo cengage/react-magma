@@ -53,6 +53,7 @@ export interface DownshiftComboboxInterface<T>
     label: string;
     value: string;
   }) => DownshiftOption<T>;
+  onInputBlur?: (event: React.SyntheticEvent) => void;
   onInputChange?: (
     changes: Partial<UseComboboxState<DownshiftOption<T>>>
   ) => void;
@@ -144,6 +145,8 @@ export function DownshiftSelect<T>(props: SelectInterface<T>) {
       : '';
   }
 
+  const hasError = !!errorMessage;
+
   return (
     <>
       {instanceOfCombobox<T>(props) ? (
@@ -151,31 +154,27 @@ export function DownshiftSelect<T>(props: SelectInterface<T>) {
           <MultiCombobox
             itemToString={itemToString}
             {...props}
-            hasError={!!errorMessage}
+            hasError={hasError}
           />
         ) : (
           <Combobox
             itemToString={itemToString}
             {...props}
-            hasError={!!errorMessage}
+            hasError={hasError}
           />
         )
       ) : isMulti && instanceOfMultiSelect<T>(props) ? (
         <MultiSelect
           itemToString={itemToString}
           {...props}
-          hasError={!!errorMessage}
+          hasError={hasError}
         />
       ) : (
-        <Select
-          itemToString={itemToString}
-          {...props}
-          hasError={!!errorMessage}
-        />
+        <Select itemToString={itemToString} {...props} hasError={hasError} />
       )}
       <InputMessage
         isInverse={isInverse}
-        isError={!!errorMessage}
+        isError={hasError}
         style={messageStyle}
       >
         {(errorMessage || helperMessage) && (
