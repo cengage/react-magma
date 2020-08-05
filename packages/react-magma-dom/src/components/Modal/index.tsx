@@ -5,7 +5,8 @@ import { Global, css } from '@emotion/core';
 import {
   getTrapElements,
   getTrapElementsAndFocus,
-  getFocusedElementIndex
+  getFocusedElementIndex,
+  noOp,
 } from './utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
@@ -181,6 +182,8 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
     >([]);
     const [isModalOpen, setIsModalOpen] = React.useState<boolean>(props.isOpen);
     const [isExiting, setIsExiting] = React.useState<boolean>(false);
+    const [currentTarget, setCurrentTarget] = React.useState<any>(null);
+    const [shouldClose, setShouldClose] = React.useState<any>(false);
 
     const prevOpen = usePrevious(props.isOpen);
 
@@ -229,10 +232,18 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
       }
     }, [props.children]);
 
-    function handleModalClick(event: React.SyntheticEvent) {
-      if (!document.getElementById(contentId).contains(event.target as Node)) {
+    function handleOverlayOnClick(event: React.SyntheticEvent) {
+      if (!document.getElementById(contentId).contains(event.target as Node) && shouldClose) {
         handleClose(event);
       }
+    }
+
+    function handleContentOnMouseDown(event: React.SyntheticEvent) {
+      setCurrentTarget(event.target);    
+    }
+
+    function handleContentOnMouseUp(event: React.SyntheticEvent) {
+      event.target === currentTarget ? setShouldClose(true) : setShouldClose(false);
     }
 
     function handleEscapeKeyDown(event: KeyboardEvent) {
@@ -285,7 +296,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
       }
     }
 
-    function handleClose(event?) {
+    function handleClose(event?: KeyboardEvent | React.SyntheticEvent<Element, Event>) {
       if (event) {
         event.stopPropagation();
       }
@@ -339,7 +350,9 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
               data-testid={testId}
               id={id}
               onKeyDown={isEscKeyDownDisabled ? null : handleKeyDown}
-              onClick={isBackgroundClickDisabled ? null : handleModalClick}
+              onClick={isBackgroundClickDisabled ? null : handleOverlayOnClick}
+              onMouseDown={isBackgroundClickDisabled ? noOp : handleContentOnMouseDown}
+              onMouseUp={isBackgroundClickDisabled ? noOp : handleContentOnMouseUp}
               ref={focusTrapElement}
               role="dialog"
             >
