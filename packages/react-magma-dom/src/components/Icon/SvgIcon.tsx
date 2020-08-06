@@ -8,7 +8,7 @@ interface Path {
   transform?: string;
 }
 
-interface SvgIconProps extends React.HTMLAttributes<HTMLOrSVGElement> {
+export interface SvgIconProps extends React.HTMLAttributes<HTMLOrSVGElement> {
   id: string;
   testId?: string;
   title?: string;

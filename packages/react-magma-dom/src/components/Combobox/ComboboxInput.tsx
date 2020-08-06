@@ -12,38 +12,46 @@ import {
   UseComboboxGetComboboxPropsOptions,
   UseComboboxGetInputPropsOptions
 } from 'downshift';
-import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
-import { ButtonShape, ButtonVariant } from '../Button';
 
-const ComboBoxContainer = styled.div<{ hasError?: boolean; theme?: any }>`
-  border-radius: 5px;
-  box-shadow: ${props =>
-    props.hasError ? `0 0 0 1px ${props.theme.colors.danger}` : '0 0 0'};
-  display: flex;
-
-  > button {
-    border-color: ${props =>
-      props.hasError
-        ? props.theme.colors.danger
-        : props.theme.colors.neutral03};
-  }
-`;
-
-const InputContainer = styled.div<{
+const ComboBoxContainer = styled.div<{
   hasError?: boolean;
   isInverse?: boolean;
   theme?: any;
 }>`
+  display: flex;
+`;
+
+const InputContainer = styled.div<{
+  hasError?: boolean;
+  isDisabled?: boolean;
+  isFocused?: boolean;
+  isInverse?: boolean;
+  theme?: any;
+}>`
   align-items: center;
-  background: #fff;
-  border-radius: 5px 0 0 5px;
+  background: ${props =>
+    props.isDisabled
+      ? props.theme.colors.neutral07
+      : props.theme.colors.neutral08};
   border: 1px solid;
   border-color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral03};
+  border-radius: 5px;
   display: flex;
+  padding: 0 10px;
   width: 100%;
+
+  ${props =>
+    props.isFocused &&
+    css`
+      outline: 2px dotted
+        ${props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
+      outline-offset: 5px;
+    `}
 
   ${props =>
     props.hasError &&
@@ -64,11 +72,10 @@ const StyledInput = styled.input`
   float: left;
   height: 100%;
   min-height: 35px;
-  margin-right: 8px;
   width: auto;
 
   &:focus {
-    outline-offset: -5px;
+    outline: 0;
   }
 `;
 
@@ -112,17 +119,25 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
   } = props;
   const theme = React.useContext(ThemeContext);
 
+  const [isFocused, setIsFocused] = React.useState<boolean>(false);
+
   const { DropdownIndicator, LoadingIndicator } = defaultComponents({
     ...customComponents
   });
 
-  const dropdownIndicatorStyles = {
-    background: theme.colors.neutral08,
-    borderColor: isInverse ? theme.colors.neutral08 : theme.colors.neutral01,
-    height: 'auto',
-    minHeight: '37px',
-    outlineOffset: '-5px'
-  };
+  function handleBlur(e) {
+    setIsFocused(false);
+    if (onInputBlur) {
+      onInputBlur(e);
+    }
+  }
+
+  function handleFocus(e) {
+    setIsFocused(true);
+    if (onInputFocus) {
+      onInputFocus(e);
+    }
+  }
 
   return (
     <ComboBoxContainer
@@ -131,13 +146,20 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
       isInverse={isInverse}
       theme={theme}
     >
-      <InputContainer hasError={hasError} isInverse={isInverse} theme={theme}>
+      <InputContainer
+        {...getToggleButtonProps({ disabled: isDisabled })}
+        hasError={hasError}
+        isDisabled={isDisabled}
+        isFocused={isFocused}
+        isInverse={isInverse}
+        theme={theme}
+      >
         {selectedItems}
         <StyledInput
           {...getInputProps({
             disabled: isDisabled,
-            onBlur: onInputBlur,
-            onFocus: onInputFocus,
+            onBlur: handleBlur,
+            onFocus: handleFocus,
             onKeyDown: onInputKeyDown,
             onKeyPress: onInputKeyPress,
             onKeyUp: onInputKeyUp
@@ -148,17 +170,8 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
         {isLoading && (
           <LoadingIndicator style={{ flexShrink: 0, marginRight: '10px' }} />
         )}
+        <DropdownIndicator aria-label="toggle menu" />
       </InputContainer>
-      <DropdownIndicator
-        {...getToggleButtonProps({ disabled: isDisabled })}
-        aria-label="toggle menu"
-        icon={<CaretDownIcon size={10} />}
-        shape={ButtonShape.rightCap}
-        style={dropdownIndicatorStyles}
-        tabIndex={0}
-        theme={theme}
-        variant={ButtonVariant.link}
-      />
     </ComboBoxContainer>
   );
 }
