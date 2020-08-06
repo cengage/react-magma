@@ -5,8 +5,7 @@ import { Global, css } from '@emotion/core';
 import {
   getTrapElements,
   getTrapElementsAndFocus,
-  getFocusedElementIndex,
-  noOp,
+  getFocusedElementIndex
 } from './utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
@@ -182,8 +181,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
     >([]);
     const [isModalOpen, setIsModalOpen] = React.useState<boolean>(props.isOpen);
     const [isExiting, setIsExiting] = React.useState<boolean>(false);
-    const [currentTarget, setCurrentTarget] = React.useState<any>(null);
-    const [shouldClose, setShouldClose] = React.useState<any>(false);
+    const [currentTarget, setCurrentTarget] = React.useState(null);
 
     const prevOpen = usePrevious(props.isOpen);
 
@@ -232,18 +230,17 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
       }
     }, [props.children]);
 
-    function handleOverlayOnClick(event: React.SyntheticEvent) {
-      if (!document.getElementById(contentId).contains(event.target as Node) && shouldClose) {
+    function handleModalClick(event: React.SyntheticEvent) {
+      if (
+        !document.getElementById(contentId).contains(event.target as Node) &&
+        event.target === currentTarget
+      ) {
         handleClose(event);
       }
     }
 
-    function handleContentOnMouseDown(event: React.SyntheticEvent) {
-      setCurrentTarget(event.target);    
-    }
-
-    function handleContentOnMouseUp(event: React.SyntheticEvent) {
-      event.target === currentTarget ? setShouldClose(true) : setShouldClose(false);
+    function handleModalOnMouseDown(event: React.SyntheticEvent) {
+      setCurrentTarget(event.target);
     }
 
     function handleEscapeKeyDown(event: KeyboardEvent) {
@@ -296,7 +293,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
       }
     }
 
-    function handleClose(event?: KeyboardEvent | React.SyntheticEvent<Element, Event>) {
+    function handleClose(event?) {
       if (event) {
         event.stopPropagation();
       }
@@ -350,9 +347,10 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
               data-testid={testId}
               id={id}
               onKeyDown={isEscKeyDownDisabled ? null : handleKeyDown}
-              onClick={isBackgroundClickDisabled ? null : handleOverlayOnClick}
-              onMouseDown={isBackgroundClickDisabled ? noOp : handleContentOnMouseDown}
-              onMouseUp={isBackgroundClickDisabled ? noOp : handleContentOnMouseUp}
+              onClick={isBackgroundClickDisabled ? null : handleModalClick}
+              onMouseDown={
+                isBackgroundClickDisabled ? null : handleModalOnMouseDown
+              }
               ref={focusTrapElement}
               role="dialog"
             >

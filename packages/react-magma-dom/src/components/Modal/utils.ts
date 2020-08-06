@@ -38,5 +38,3 @@ export function getFocusedElementIndex(focusedElements, elementToFind) {
     return element === elementToFind;
   });
 }
-
-export function noOp () { () => {} }
