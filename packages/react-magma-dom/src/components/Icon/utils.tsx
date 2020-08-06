@@ -2,15 +2,16 @@ import * as React from 'react';
 import { SvgIcon } from './SvgIcon';
 
 export interface IconProps {
+  color?: string;
   id?: string;
+  size?: number;
+  style?: React.CSSProperties;
   testId?: string;
   title?: string;
-  color?: string;
-  size?: number;
 }
 
 export function renderIcon(props: IconProps, iconType: any) {
-  const { id, testId, title, color, size } = props;
+  const { id, testId, title, color, size, style } = props;
 
   return iconType ? (
     <SvgIcon
@@ -19,6 +20,7 @@ export function renderIcon(props: IconProps, iconType: any) {
       title={title}
       color={color}
       size={size}
+      style={style}
       {...iconType}
     />
   ) : null;
