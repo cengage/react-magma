@@ -80,6 +80,7 @@ const StyledInput = styled.input`
 `;
 
 interface ComboboxInputProps<T> {
+  ariaDescribedBy?: string;
   children?: React.ReactNode | React.ReactNode[];
   customComponents?: DownshiftComponents;
   getComboboxProps: (options?: UseComboboxGetComboboxPropsOptions) => any;
@@ -101,6 +102,7 @@ interface ComboboxInputProps<T> {
 
 export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
   const {
+    ariaDescribedBy,
     children,
     customComponents,
     getComboboxProps,
@@ -164,6 +166,8 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
             onKeyPress: onInputKeyPress,
             onKeyUp: onInputKeyUp
           })}
+          aria-describedby={ariaDescribedBy}
+          aria-invalid={hasError}
           theme={theme}
         />
         {children}

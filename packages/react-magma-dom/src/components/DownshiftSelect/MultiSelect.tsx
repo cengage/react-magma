@@ -15,6 +15,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 
 export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
   const {
+    ariaDescribedBy,
     hasError,
     itemToString,
     items,
@@ -101,6 +102,7 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
       isInverse={isInverse}
     >
       <SelectTriggerButton
+        ariaDescribedBy={ariaDescribedBy}
         toggleButtonProps={toggleButtonProps}
         hasError={hasError}
         isDisabled={isDisabled}

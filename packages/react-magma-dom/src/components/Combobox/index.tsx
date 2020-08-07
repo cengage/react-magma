@@ -13,10 +13,12 @@ import {
 import { InternalCombobox } from './Combobox';
 import { MultiCombobox } from './MultiCombobox';
 import { InputMessage } from '../Input/InputMessage';
+import { useGenerateId } from '../../utils';
 
 export interface DownshiftComboboxInterface<T>
   extends UseComboboxProps<DownshiftOption<T>>,
     InternalSelectInterface {
+  ariaDescribedBy?: string;
   defaultItems?: DownshiftOption<T>[];
   disableCreateItem?: boolean;
   hasError?: boolean;
@@ -46,6 +48,7 @@ export interface DownshiftMultiComboboxInterface<T>
   extends UseMultipleSelectionProps<DownshiftOption<T>>,
     Omit<DownshiftComboboxInterface<T>, 'onStateChange' | 'stateReducer'>,
     InternalMultiInterface<T> {
+  ariaDescribedBy?: string;
   hasError?: boolean;
   isInverse?: boolean;
 }
@@ -60,6 +63,7 @@ export function instanceOfMultiCombobox<T>(
 
 export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
   const {
+    id: defaultId,
     isInverse,
     isMulti,
     errorMessage,
@@ -77,22 +81,29 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
 
   const hasError = !!errorMessage;
 
+  const id = useGenerateId(defaultId);
+
+  const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+
   return (
     <>
       {isMulti && instanceOfMultiCombobox<T>(props) ? (
         <MultiCombobox
+          ariaDescribedBy={descriptionId}
           itemToString={itemToString}
           {...props}
           hasError={hasError}
         />
       ) : (
         <InternalCombobox
+          ariaDescribedBy={descriptionId}
           itemToString={itemToString}
           {...props}
           hasError={hasError}
         />
       )}
       <InputMessage
+        id={descriptionId}
         isInverse={isInverse}
         isError={hasError}
         style={messageStyle}

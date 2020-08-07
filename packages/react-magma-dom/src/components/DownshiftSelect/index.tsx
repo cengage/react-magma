@@ -5,6 +5,7 @@ import { Select } from './Select';
 import { MultiSelect } from './MultiSelect';
 import { InputMessage } from '../Input/InputMessage';
 import { DownshiftComponents } from './components';
+import { useGenerateId } from '../../utils';
 
 export type DownshiftOption<T> =
   | string
@@ -30,6 +31,7 @@ export interface InternalMultiInterface<T> {
 export interface DownshiftSelectInterface<T>
   extends UseSelectProps<DownshiftOption<T>>,
     InternalSelectInterface {
+  ariaDescribedBy?: string;
   hasError?: boolean;
   onBlur?: (event: React.FocusEvent) => void;
   onFocus?: (event: React.FocusEvent) => void;
@@ -77,6 +79,7 @@ export function instanceOfToBeCreatedItemObject(
 
 export function DownshiftSelect<T>(props: DownshiftSelectInterface<T>) {
   const {
+    id: defaultId,
     isInverse,
     isMulti,
     errorMessage,
@@ -94,19 +97,32 @@ export function DownshiftSelect<T>(props: DownshiftSelectInterface<T>) {
 
   const hasError = !!errorMessage;
 
+  const id = useGenerateId(defaultId);
+
+  const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+
   return (
     <>
       {isMulti && instanceOfMultiSelect<T>(props) ? (
         <MultiSelect
+          ariaDescribedBy={descriptionId}
+          id={id}
           itemToString={itemToString}
           {...props}
           hasError={hasError}
           isInverse={isInverse}
         />
       ) : (
-        <Select itemToString={itemToString} {...props} hasError={hasError} />
+        <Select
+          ariaDescribedBy={descriptionId}
+          id={id}
+          itemToString={itemToString}
+          {...props}
+          hasError={hasError}
+        />
       )}
       <InputMessage
+        id={descriptionId}
         isInverse={isInverse}
         isError={hasError}
         style={messageStyle}

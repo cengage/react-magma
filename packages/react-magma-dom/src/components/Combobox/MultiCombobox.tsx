@@ -25,6 +25,7 @@ import { DownshiftMultiComboboxInterface } from '.';
 export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
   const [inputValue, setInputValue] = React.useState('');
   const {
+    ariaDescribedBy,
     components: customComponents,
     defaultItems,
     disableCreateItem,
@@ -206,6 +207,7 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
       labelText={labelText}
     >
       <ComboboxInput
+        ariaDescribedBy={ariaDescribedBy}
         customComponents={customComponents}
         getComboboxProps={getComboboxProps}
         getInputProps={options => ({
