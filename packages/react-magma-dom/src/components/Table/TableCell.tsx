@@ -9,6 +9,7 @@ export interface TableCellProps
   align?: TableCellAlign;
   ref?: any;
   testId?: string;
+  width?: string | number;
 }
 
 export const baseTableCellStyle = props => css`
@@ -42,14 +43,23 @@ const StyledCell = styled.td<{
   hasVerticalBorders?: boolean;
   isInverse?: boolean;
   textAlign?: TableCellAlign;
+  width?: string;
 }>`
   ${baseTableCellStyle}
+
+  ${props =>
+    props.width &&
+    css`
+      width: ${props.width};
+    `}
 `;
 
 export const TableCell: React.FunctionComponent<TableCellProps> = React.forwardRef(
-  ({ align, children, testId, ...other }: TableCellProps, ref: any) => {
+  ({ align, children, testId, width, ...other }: TableCellProps, ref: any) => {
     const tableContext = React.useContext(TableContext);
     const theme = React.useContext(ThemeContext);
+
+    const widthString = typeof width === 'number' ? `${width}px` : width;
 
     return (
       <StyledCell
@@ -61,6 +71,7 @@ export const TableCell: React.FunctionComponent<TableCellProps> = React.forwardR
         ref={ref}
         textAlign={align ? align : TableCellAlign.left}
         theme={theme}
+        width={widthString}
       >
         {children}
       </StyledCell>

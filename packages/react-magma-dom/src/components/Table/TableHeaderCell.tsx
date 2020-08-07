@@ -19,8 +19,17 @@ export interface TableHeaderCellProps
   isSortable?: boolean;
   onSort?: () => void;
   ref?: any;
+  scope?: TableHeaderCellScope;
   sortDirection?: TableSortDirection;
   testId?: string;
+  width?: string | number;
+}
+
+export enum TableHeaderCellScope {
+  col = 'col',
+  colgroup = 'colgroup',
+  row = 'row',
+  rowgroup = 'rowgroup'
 }
 
 const StyledTableHeaderCell = styled.th<{
@@ -29,6 +38,7 @@ const StyledTableHeaderCell = styled.th<{
   isInverse?: boolean;
   isSortable?: boolean;
   textAlign?: TableCellAlign;
+  width?: string;
 }>`
   background: ${props =>
     props.isInverse ? props.theme.colors.tint02 : props.theme.colors.neutral07};
@@ -43,6 +53,12 @@ const StyledTableHeaderCell = styled.th<{
     css`
       padding: 0;
     `}
+
+    ${props =>
+      props.width &&
+      css`
+        width: ${props.width};
+      `}
 `;
 
 const SortButton = styled.button<{
@@ -95,8 +111,10 @@ export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = Re
       children,
       isSortable,
       onSort,
+      scope,
       sortDirection,
       testId,
+      width,
       ...other
     }: TableHeaderCellProps,
     ref: any
@@ -128,6 +146,8 @@ export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = Re
         />
       );
 
+    const widthString = typeof width === 'number' ? `${width}px` : width;
+
     return (
       <StyledTableHeaderCell
         {...other}
@@ -137,8 +157,10 @@ export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = Re
         isInverse={tableContext.isInverseContainer}
         ref={ref}
         isSortable={isSortable}
+        scope={scope ? scope : TableHeaderCellScope.col}
         textAlign={align ? align : TableCellAlign.left}
         theme={theme}
+        width={widthString}
       >
         {isSortable ? (
           <SortButton

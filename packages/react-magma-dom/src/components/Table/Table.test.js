@@ -200,6 +200,38 @@ describe('Table', () => {
     expect(getByText('cell 1')).toHaveStyleRule('text-align', 'right');
   });
 
+  it('should render table cells with specified widths', () => {
+    const { getByText } = render(
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell width={100}>heading 1</TableHeaderCell>
+            <TableHeaderCell width="50%">heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell width={100}>cell 1</TableCell>
+            <TableCell width="50%">cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByText('heading 1')).toHaveStyleRule('width', '100px');
+    expect(getByText('cell 1')).toHaveStyleRule('width', '100px');
+    expect(getByText('heading 2')).toHaveStyleRule('width', '50%');
+    expect(getByText('cell 2')).toHaveStyleRule('width', '50%');
+  });
+
+  it('should render table header cells with specified scope', () => {
+    const { getByText } = render(
+      <TableHeaderCell scope="row">heading</TableHeaderCell>
+    );
+
+    expect(getByText('heading')).toHaveAttribute('scope', 'row');
+  });
+
   it('should render sortable table header cells', () => {
     const onSortSpy = jest.fn();
 
