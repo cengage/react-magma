@@ -77,6 +77,23 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
 
   const theme = React.useContext(ThemeContext);
 
+  const toggleButtonProps = getToggleButtonProps({
+    ...getDropdownProps(),
+    disabled: isDisabled,
+    onBlur,
+    onKeyDown: event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openMenu();
+      }
+
+      onKeyDown && typeof onKeyDown === 'function' && onKeyDown(event);
+    },
+    onKeyPress,
+    onKeyUp,
+    onFocus
+  });
+
   return (
     <DownshiftSelectContainer
       getLabelProps={getLabelProps}
@@ -84,22 +101,7 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
       isInverse={isInverse}
     >
       <SelectTriggerButton
-        toggleButtonProps={...getToggleButtonProps({
-          ...getDropdownProps(),
-          disabled: isDisabled,
-          onBlur,
-          onKeyDown: event => {
-            if (event.key === 'Enter' || event.key === ' ') {
-              event.preventDefault();
-              openMenu();
-            }
-
-            onKeyDown && typeof onKeyDown === 'function' && onKeyDown(event);
-          },
-          onKeyPress,
-          onKeyUp,
-          onFocus
-        })}
+        toggleButtonProps={toggleButtonProps}
         hasError={hasError}
         isDisabled={isDisabled}
         isInverse={isInverse}

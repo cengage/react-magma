@@ -46,6 +46,25 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
     reset();
   }
 
+  const toggleButtonProps = getToggleButtonProps({
+    disabled: isDisabled,
+    onBlur,
+    onKeyDown: event => {
+      if (
+        getToggleButtonProps().id === document.activeElement.id &&
+        (event.key === 'Enter' || event.key === ' ')
+      ) {
+        event.preventDefault();
+        openMenu();
+      }
+
+      onKeyDown && typeof onKeyDown === 'function' && onKeyDown(event);
+    },
+    onKeyPress,
+    onKeyUp,
+    onFocus
+  });
+
   return (
     <DownshiftSelectContainer
       getLabelProps={getLabelProps}
@@ -53,24 +72,7 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
       labelText={labelText}
     >
       <SelectTriggerButton
-        toggleButtonProps={...getToggleButtonProps({
-          disabled: isDisabled,
-          onBlur,
-          onKeyDown: event => {
-            if (
-              getToggleButtonProps().id === document.activeElement.id &&
-              (event.key === 'Enter' || event.key === ' ')
-            ) {
-              event.preventDefault();
-              openMenu();
-            }
-
-            onKeyDown && typeof onKeyDown === 'function' && onKeyDown(event);
-          },
-          onKeyPress,
-          onKeyUp,
-          onFocus
-        })}
+        toggleButtonProps={toggleButtonProps}
         hasError={hasError}
         isDisabled={isDisabled}
         isInverse={isInverse}
