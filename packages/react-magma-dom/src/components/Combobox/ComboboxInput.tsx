@@ -141,6 +141,15 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     }
   }
 
+  const inputProps = getInputProps({
+    disabled: isDisabled,
+    onBlur: handleBlur,
+    onFocus: handleFocus,
+    onKeyDown: onInputKeyDown,
+    onKeyPress: onInputKeyPress,
+    onKeyUp: onInputKeyUp
+  });
+
   return (
     <ComboBoxContainer
       {...getComboboxProps()}
@@ -158,17 +167,10 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
       >
         {selectedItems}
         <StyledInput
-          {...getInputProps({
-            disabled: isDisabled,
-            onBlur: handleBlur,
-            onFocus: handleFocus,
-            onKeyDown: onInputKeyDown,
-            onKeyPress: onInputKeyPress,
-            onKeyUp: onInputKeyUp
-          })}
+          {...inputProps}
+          theme={theme}
           aria-describedby={ariaDescribedBy}
           aria-invalid={hasError}
-          theme={theme}
         />
         {children}
         {isLoading && (

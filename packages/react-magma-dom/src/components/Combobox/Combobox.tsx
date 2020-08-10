@@ -7,7 +7,7 @@ import { DownshiftSelectContainer } from '../DownshiftSelect/SelectContainer';
 import { ItemsList } from '../DownshiftSelect/ItemsList';
 import { ComboboxInput } from './ComboboxInput';
 import { ButtonSize, ButtonVariant } from '../Button';
-import { useComboboxItems } from '../DownshiftSelect/shared';
+import { useComboboxItems } from './shared';
 import { DownshiftComboboxInterface } from '.';
 
 export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
@@ -76,6 +76,21 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
       props.onSelectedItemChange(changes);
   }
 
+  function stateReducer(state, actionAndChanges) {
+    const { type, changes } = actionAndChanges;
+    switch (type) {
+      case useCombobox.stateChangeTypes.InputBlur:
+        return {
+          ...changes,
+          inputValue:
+            state.inputValue && !state.selectedItem ? '' : state.selectedItem,
+          selectedItem: state.selectedItem ? state.selectedItem : ''
+        };
+      default:
+        return changes;
+    }
+  }
+
   const [
     displayItems,
     setDisplayItems,
@@ -107,7 +122,8 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
       onInputValueChange && typeof onInputValueChange === 'function'
         ? changes => onInputValueChange(changes, setDisplayItems)
         : defaultOnInputValueChange,
-    onSelectedItemChange: defaultOnSelectedItemChange
+    onSelectedItemChange: defaultOnSelectedItemChange,
+    stateReducer
   });
 
   const { ClearIndicator } = defaultComponents({
@@ -118,11 +134,6 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
     event.stopPropagation();
 
     reset();
-  }
-
-  function handleInputBlur(event: React.FocusEvent) {
-    selectedItem ? selectItem(selectedItem) : reset();
-    onInputBlur && typeof onInputBlur === 'function' && onInputBlur(event);
   }
 
   return (
@@ -142,7 +153,7 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
         isInverse={isInverse}
         isLoading={isLoading}
         hasError={hasError}
-        onInputBlur={handleInputBlur}
+        onInputBlur={onInputBlur}
         onInputFocus={onInputFocus}
         onInputKeyDown={onInputKeyDown}
         onInputKeyPress={onInputKeyPress}

@@ -13,11 +13,11 @@ import { DownshiftSelectContainer } from '../DownshiftSelect/SelectContainer';
 import { ItemsList } from '../DownshiftSelect/ItemsList';
 import { ComboboxInput } from './ComboboxInput';
 import {
-  useComboboxItems,
   SelectedItemsWrapper,
   SelectedItemButton,
   IconWrapper
 } from '../DownshiftSelect/shared';
+import { useComboboxItems } from './shared';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { DownshiftMultiComboboxInterface } from '.';
