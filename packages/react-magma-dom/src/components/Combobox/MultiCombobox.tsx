@@ -179,7 +179,7 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
       <SelectedItemsWrapper>
         {selectedItems.map((multiSelectedItem, index) => (
           <SelectedItemButton
-            aria-label="reset item"
+            aria-label={`reset item ${itemToString(multiSelectedItem)}`}
             key={`selected-item-${index}`}
             {...getSelectedItemProps({
               selectedItem: multiSelectedItem,

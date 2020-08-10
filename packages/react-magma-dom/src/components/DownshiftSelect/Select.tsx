@@ -84,10 +84,13 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
         </SelectText>
         {isClearable && selectedItem && (
           <ClearIndicator
-            aria-label="reset"
+            aria-label={`reset selection for ${labelText}.  ${itemToString(
+              selectedItem
+            )} is selected`}
             icon={<CrossIcon size={10} />}
             onClick={defaultHandleClearIndicatorClick}
             size={ButtonSize.small}
+            style={{ margin: '0 5px' }}
             variant={ButtonVariant.link}
           />
         )}

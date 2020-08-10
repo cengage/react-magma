@@ -111,7 +111,7 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
         {selectedItems &&
           selectedItems.map((multiSelectedItem, index) => (
             <SelectedItemButton
-              aria-label="reset item"
+              aria-label={`reset item ${multiSelectedItem}`}
               key={`selected-item-${index}`}
               {...getSelectedItemProps({
                 selectedItem: multiSelectedItem,
