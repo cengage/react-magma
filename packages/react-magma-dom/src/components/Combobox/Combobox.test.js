@@ -331,7 +331,7 @@ describe('Combobox', () => {
 
     expect(renderedCombobox.value).toEqual('Red');
 
-    fireEvent.click(getByLabelText('reset'));
+    fireEvent.click(getByLabelText(/reset/i));
 
     expect(renderedCombobox.value).not.toEqual('Red');
   });
