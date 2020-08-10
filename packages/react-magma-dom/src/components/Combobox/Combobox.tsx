@@ -12,6 +12,7 @@ import { DownshiftComboboxInterface } from '.';
 
 export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
   const {
+    ariaDescribedBy,
     components: customComponents,
     defaultItems,
     disableCreateItem,
@@ -143,6 +144,7 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
       labelText={labelText}
     >
       <ComboboxInput
+        ariaDescribedBy={ariaDescribedBy}
         customComponents={customComponents}
         getComboboxProps={getComboboxProps}
         getInputProps={getInputProps}

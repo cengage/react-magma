@@ -80,6 +80,7 @@ const StyledInput = styled.input`
 `;
 
 interface ComboboxInputProps<T> {
+  ariaDescribedBy?: string;
   children?: React.ReactNode | React.ReactNode[];
   customComponents?: DownshiftComponents;
   getComboboxProps: (options?: UseComboboxGetComboboxPropsOptions) => any;
@@ -99,80 +100,84 @@ interface ComboboxInputProps<T> {
   selectedItems?: React.ReactNode;
 }
 
-export const ComboboxInput = React.forwardRef(
-  <T extends {}>(props: ComboboxInputProps<T>, ref: any) => {
-    const {
-      children,
-      customComponents,
-      getComboboxProps,
-      getInputProps,
-      getToggleButtonProps,
-      hasError,
-      isDisabled,
-      isInverse,
-      isLoading,
-      onInputBlur,
-      onInputFocus,
-      onInputKeyDown,
-      onInputKeyPress,
-      onInputKeyUp,
-      selectedItems
-    } = props;
-    const theme = React.useContext(ThemeContext);
+export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
+  const {
+    ariaDescribedBy,
+    children,
+    customComponents,
+    getComboboxProps,
+    getInputProps,
+    getToggleButtonProps,
+    hasError,
+    isDisabled,
+    isInverse,
+    isLoading,
+    onInputBlur,
+    onInputFocus,
+    onInputKeyDown,
+    onInputKeyPress,
+    onInputKeyUp,
+    selectedItems
+  } = props;
+  const theme = React.useContext(ThemeContext);
 
-    const [isFocused, setIsFocused] = React.useState<boolean>(false);
+  const [isFocused, setIsFocused] = React.useState<boolean>(false);
 
-    const { DropdownIndicator, LoadingIndicator } = defaultComponents({
-      ...customComponents
-    });
+  const { DropdownIndicator, LoadingIndicator } = defaultComponents({
+    ...customComponents
+  });
 
-    function handleBlur(e) {
-      setIsFocused(false);
-      if (onInputBlur) {
-        onInputBlur(e);
-      }
+  function handleBlur(e) {
+    setIsFocused(false);
+    if (onInputBlur) {
+      onInputBlur(e);
     }
+  }
 
-    function handleFocus(e) {
-      setIsFocused(true);
-      if (onInputFocus) {
-        onInputFocus(e);
-      }
+  function handleFocus(e) {
+    setIsFocused(true);
+    if (onInputFocus) {
+      onInputFocus(e);
     }
+  }
 
-    const inputProps = getInputProps({
-      disabled: isDisabled,
-      onBlur: handleBlur,
-      onFocus: handleFocus,
-      onKeyDown: onInputKeyDown,
-      onKeyPress: onInputKeyPress,
-      onKeyUp: onInputKeyUp
-    });
+  const inputProps = getInputProps({
+    disabled: isDisabled,
+    onBlur: handleBlur,
+    onFocus: handleFocus,
+    onKeyDown: onInputKeyDown,
+    onKeyPress: onInputKeyPress,
+    onKeyUp: onInputKeyUp
+  });
 
-    return (
-      <ComboBoxContainer
-        {...getComboboxProps()}
+  return (
+    <ComboBoxContainer
+      {...getComboboxProps()}
+      hasError={hasError}
+      isInverse={isInverse}
+      theme={theme}
+    >
+      <InputContainer
+        {...getToggleButtonProps({ disabled: isDisabled })}
         hasError={hasError}
+        isDisabled={isDisabled}
+        isFocused={isFocused}
         isInverse={isInverse}
         theme={theme}
       >
-        <InputContainer
-          {...getToggleButtonProps({ disabled: isDisabled })}
-          hasError={hasError}
-          isDisabled={isDisabled}
-          isFocused={isFocused}
-          isInverse={isInverse}
+        {selectedItems}
+        <StyledInput
+          {...inputProps}
           theme={theme}
-        >
-          {selectedItems}
-          <StyledInput {...inputProps} theme={theme} />
-          {children}
-          {isLoading && (
-            <LoadingIndicator style={{ flexShrink: 0, marginRight: '10px' }} />
-          )}
-          <DropdownIndicator aria-label="toggle menu" />
-        </InputContainer>
-      </ComboBoxContainer>
-    );
-  }
-);
+          aria-describedby={ariaDescribedBy}
+          aria-invalid={hasError}
+        />
+        {children}
+        {isLoading && (
+          <LoadingIndicator style={{ flexShrink: 0, marginRight: '10px' }} />
+        )}
+        <DropdownIndicator aria-label="toggle menu" />
+      </InputContainer>
+    </ComboBoxContainer>
+  );
+}
