@@ -91,6 +91,7 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
             onClick={defaultHandleClearIndicatorClick}
             size={ButtonSize.small}
             style={{ margin: '0 5px' }}
+            testId="clearIndicator"
             variant={ButtonVariant.link}
           />
         )}
