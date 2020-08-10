@@ -1,14 +1,13 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { DownshiftSelect as Select } from '.';
+import { DownshiftSelect as MultiSelect } from '.';
 
 describe('Select', () => {
-  it('should render a select with items', () => {
+  it('should render a multi-select with items', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
-      <Select labelText={labelText} items={items} />
+      <MultiSelect isMulti labelText={labelText} items={items} />
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
@@ -28,7 +27,7 @@ describe('Select', () => {
       { label: 'Green', value: 'green' }
     ];
     const { getByLabelText, getByText } = render(
-      <Select labelText={labelText} items={items} />
+      <MultiSelect isMulti labelText={labelText} items={items} />
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
@@ -65,7 +64,12 @@ describe('Select', () => {
     ];
 
     const { getByLabelText, getByText } = render(
-      <Select labelText={labelText} items={items} itemToString={itemToString} />
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        itemToString={itemToString}
+      />
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
@@ -77,68 +81,140 @@ describe('Select', () => {
     expect(getByText(items[0].representation)).toBeInTheDocument();
   });
 
-  it('should allow for selection of an item', () => {
+  it('should allow for selection of multiple items', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
-    const { getByLabelText, getByText, getByTestId } = render(
-      <Select labelText={labelText} items={items} />
+    const { getByLabelText, getByText } = render(
+      <MultiSelect isMulti labelText={labelText} items={items} />
     );
 
     fireEvent.click(getByLabelText(labelText, { selector: 'div' }));
 
     fireEvent.click(getByText(items[0]));
 
-    expect(getByTestId('selectedItemText').textContent).toEqual(items[0]);
-  });
-
-  it('should allow for a controlled select', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
-    let selectedItem = 'Red';
-    const { getByLabelText, getByText, getByTestId, rerender } = render(
-      <Select
-        labelText={labelText}
-        items={items}
-        selectedItem={selectedItem}
-        onSelectedItemChange={changes => (selectedItem = changes.selectedItem)}
-      />
-    );
-
-    expect(getByTestId('selectedItemText').textContent).toEqual('Red');
-
     fireEvent.click(getByLabelText(labelText, { selector: 'div' }));
 
     fireEvent.click(getByText(items[1]));
 
-    expect(selectedItem).toEqual(items[1]);
+    expect(getByText(items[0], { selector: 'button' }).textContent).toEqual(
+      items[0]
+    );
+    expect(getByText(items[1], { selector: 'button' }).textContent).toEqual(
+      items[1]
+    );
+  });
 
-    rerender(
-      <Select
+  it('should allow for the removal of a selected item', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByLabelText, getByText, queryByText } = render(
+      <MultiSelect isMulti labelText={labelText} items={items} />
+    );
+
+    fireEvent.click(getByLabelText(labelText, { selector: 'div' }));
+
+    fireEvent.click(getByText(items[0]));
+
+    fireEvent.click(getByText(items[0], { selector: 'button' }));
+
+    expect(
+      queryByText(items[0], { selector: 'button' })
+    ).not.toBeInTheDocument();
+  });
+
+  it('should allow for a controlled multi-select', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    let selectedItems = ['Red', 'Blue'];
+    const { getByLabelText, getByText, queryByText, rerender } = render(
+      <MultiSelect
+        isMulti
         labelText={labelText}
         items={items}
-        selectedItem={selectedItem}
-        onSelectedItemChange={changes => (selectedItem = changes.selectedItem)}
+        selectedItems={selectedItems}
+        onSelectedItemsChange={changes =>
+          (selectedItems = changes.selectedItems)
+        }
+        onRemoveSelectedItem={removedItem =>
+          (selectedItems = selectedItems.filter(item => item !== removedItem))
+        }
       />
     );
 
-    expect(getByTestId('selectedItemText').textContent).toEqual(items[1]);
-  });
+    expect(getByText(items[0], { selector: 'button' })).toBeInTheDocument();
+    expect(getByText(items[1], { selector: 'button' })).toBeInTheDocument();
 
-  it('should have an initial selected item', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
-    const { getByTestId } = render(
-      <Select labelText={labelText} items={items} initialSelectedItem="Red" />
+    fireEvent.click(getByLabelText(labelText, { selector: 'div' }));
+
+    fireEvent.click(getByText(items[2]));
+
+    expect(selectedItems).toEqual(items);
+
+    rerender(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        selectedItems={selectedItems}
+        onSelectedItemsChange={changes =>
+          (selectedItems = changes.selectedItems)
+        }
+        onRemoveSelectedItem={removedItem =>
+          (selectedItems = selectedItems.filter(item => item !== removedItem))
+        }
+      />
     );
 
-    expect(getByTestId('selectedItemText').textContent).toEqual('Red');
+    expect(getByText(items[2], { selector: 'button' })).toBeInTheDocument();
+
+    fireEvent.click(getByText(items[0], { selector: 'button' }));
+
+    const [, ...restOfItems] = items;
+
+    expect(selectedItems).toEqual(restOfItems);
+
+    rerender(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        selectedItems={selectedItems}
+        onSelectedItemsChange={changes =>
+          (selectedItems = changes.selectedItems)
+        }
+        onRemoveSelectedItem={removedItem =>
+          (selectedItems = selectedItems.filter(item => item !== removedItem))
+        }
+      />
+    );
+
+    expect(
+      queryByText(items[0], { selector: 'button' })
+    ).not.toBeInTheDocument();
   });
 
-  it('should disable the select', () => {
+  it('should have an initial selected items', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByText } = render(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={items}
+      />
+    );
+
+    expect(getByText(items[0], { selector: 'button' })).toBeInTheDocument();
+    expect(getByText(items[1], { selector: 'button' })).toBeInTheDocument();
+    expect(getByText(items[2], { selector: 'button' })).toBeInTheDocument();
+  });
+
+  it('should disable the multi-select', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText } = render(
-      <Select labelText={labelText} items={items} isDisabled />
+      <MultiSelect isMulti labelText={labelText} items={items} isDisabled />
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
@@ -146,30 +222,11 @@ describe('Select', () => {
     expect(renderedSelect).toHaveAttribute('disabled');
   });
 
-  it('should allow a selection to be cleared', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
-    const { getByLabelText, getByTestId } = render(
-      <Select
-        labelText={labelText}
-        items={items}
-        initialSelectedItem="Red"
-        isClearable
-      />
-    );
-
-    expect(getByTestId('selectedItemText').textContent).toEqual('Red');
-
-    fireEvent.click(getByLabelText('reset'));
-
-    expect(getByTestId('selectedItemText').textContent).not.toEqual('Red');
-  });
-
   it('should open select when clicking the enter key', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
-      <Select labelText={labelText} items={items} />
+      <MultiSelect isMulti labelText={labelText} items={items} />
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
@@ -187,7 +244,7 @@ describe('Select', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
-      <Select labelText={labelText} items={items} />
+      <MultiSelect isMulti labelText={labelText} items={items} />
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
@@ -205,7 +262,7 @@ describe('Select', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, queryByText } = render(
-      <Select labelText={labelText} items={items} />
+      <MultiSelect isMulti labelText={labelText} items={items} />
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
@@ -224,7 +281,12 @@ describe('Select', () => {
     const errorMessage = 'This is an error';
     const items = ['Red', 'Blue', 'Green'];
     const { getByText } = render(
-      <Select labelText={labelText} items={items} errorMessage={errorMessage} />
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        errorMessage={errorMessage}
+      />
     );
 
     expect(getByText(errorMessage)).toBeInTheDocument();
@@ -235,7 +297,8 @@ describe('Select', () => {
     const helperMessage = 'This is an error';
     const items = ['Red', 'Blue', 'Green'];
     const { getByText } = render(
-      <Select
+      <MultiSelect
+        isMulti
         labelText={labelText}
         items={items}
         helperMessage={helperMessage}
@@ -245,28 +308,6 @@ describe('Select', () => {
     expect(getByText(helperMessage)).toBeInTheDocument();
   });
 
-  it('should allow you to send in your own components', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
-    const ClearIndicator = () => (
-      <button data-testid="customClearIndicator">Clear</button>
-    );
-
-    const { getByTestId } = render(
-      <Select
-        labelText={labelText}
-        isClearable
-        items={items}
-        selectedItem={items[0]}
-        components={{
-          ClearIndicator
-        }}
-      />
-    );
-
-    expect(getByTestId('customClearIndicator')).toBeInTheDocument();
-  });
-
   describe('events', () => {
     it('onBlur', () => {
       const labelText = 'Label';
@@ -274,7 +315,12 @@ describe('Select', () => {
       const onBlur = jest.fn();
 
       const { getByLabelText } = render(
-        <Select labelText={labelText} items={items} onBlur={onBlur} />
+        <MultiSelect
+          isMulti
+          labelText={labelText}
+          items={items}
+          onBlur={onBlur}
+        />
       );
 
       const renderedSelect = getByLabelText(labelText, { selector: 'div' });
@@ -292,7 +338,12 @@ describe('Select', () => {
       const onFocus = jest.fn();
 
       const { getByLabelText } = render(
-        <Select labelText={labelText} items={items} onFocus={onFocus} />
+        <MultiSelect
+          isMulti
+          labelText={labelText}
+          items={items}
+          onFocus={onFocus}
+        />
       );
 
       const renderedSelect = getByLabelText(labelText, { selector: 'div' });
@@ -308,7 +359,12 @@ describe('Select', () => {
       const onKeyDown = jest.fn();
 
       const { getByLabelText } = render(
-        <Select labelText={labelText} items={items} onKeyDown={onKeyDown} />
+        <MultiSelect
+          isMulti
+          labelText={labelText}
+          items={items}
+          onKeyDown={onKeyDown}
+        />
       );
 
       const renderedSelect = getByLabelText(labelText, { selector: 'div' });
@@ -324,7 +380,12 @@ describe('Select', () => {
       const onKeyUp = jest.fn();
 
       const { getByLabelText } = render(
-        <Select labelText={labelText} items={items} onKeyUp={onKeyUp} />
+        <MultiSelect
+          isMulti
+          labelText={labelText}
+          items={items}
+          onKeyUp={onKeyUp}
+        />
       );
 
       const renderedSelect = getByLabelText(labelText, { selector: 'div' });

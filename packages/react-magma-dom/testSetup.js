@@ -3,6 +3,7 @@ require('jest-emotion');
 require('jest-extended');
 require('@testing-library/jest-dom/extend-expect');
 require('jest-axe/extend-expect');
+require('regenerator-runtime/runtime');
 
 import * as emotion from '@emotion/core';
 import { createSerializer, matchers } from 'jest-emotion';
