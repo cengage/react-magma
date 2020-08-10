@@ -1,13 +1,13 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { Combobox } from '.';
+import { Combobox as MultiCombobox } from '.';
 
 describe('Combobox', () => {
-  it('should render a combobox with items', () => {
+  it('should render a multi-combobox with items', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
-      <Combobox labelText={labelText} items={items} />
+      <MultiCombobox isMulti labelText={labelText} items={items} />
     );
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
@@ -27,7 +27,7 @@ describe('Combobox', () => {
       { label: 'Green', value: 'green' }
     ];
     const { getByLabelText, getByText } = render(
-      <Combobox labelText={labelText} items={items} />
+      <MultiCombobox isMulti labelText={labelText} items={items} />
     );
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
@@ -64,7 +64,8 @@ describe('Combobox', () => {
     ];
 
     const { getByLabelText, getByText } = render(
-      <Combobox
+      <MultiCombobox
+        isMulti
         labelText={labelText}
         items={items}
         itemToString={itemToString}
@@ -80,11 +81,11 @@ describe('Combobox', () => {
     expect(getByText(items[0].representation)).toBeInTheDocument();
   });
 
-  it('should allow for selection of an item', () => {
+  it('should allow for selection of multiple items', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
-      <Combobox labelText={labelText} items={items} />
+      <MultiCombobox isMulti labelText={labelText} items={items} />
     );
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
@@ -93,49 +94,98 @@ describe('Combobox', () => {
 
     fireEvent.click(getByText(items[0]));
 
-    expect(renderedCombobox.value).toEqual(items[0]);
+    fireEvent.click(renderedCombobox);
+
+    fireEvent.click(getByText(items[1]));
+
+    expect(getByText(items[0], { selector: 'button' })).toBeInTheDocument();
+    expect(getByText(items[1], { selector: 'button' })).toBeInTheDocument();
   });
 
-  it('should allow for a controlled combobox', () => {
+  it('should allow for a controlled multi-combobox', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
-    let selectedItem = 'Red';
-    const { getByLabelText, getByText, rerender } = render(
-      <Combobox
+    let [, ...selectedItems] = items;
+    const { getByLabelText, getByText, queryByText, rerender } = render(
+      <MultiCombobox
+        isMulti
         labelText={labelText}
         items={items}
-        selectedItem={selectedItem}
-        onSelectedItemChange={changes => (selectedItem = changes.selectedItem)}
+        selectedItems={selectedItems}
+        onSelectedItemsChange={changes =>
+          (selectedItems = changes.selectedItems)
+        }
       />
     );
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    expect(renderedCombobox.value).toEqual('Red');
+    expect(
+      getByText(selectedItems[0], { selector: 'button' })
+    ).toBeInTheDocument();
+    expect(
+      getByText(selectedItems[1], { selector: 'button' })
+    ).toBeInTheDocument();
 
     fireEvent.click(renderedCombobox);
 
-    fireEvent.click(getByText(items[1]));
+    fireEvent.click(getByText(items[0]));
 
-    expect(selectedItem).toEqual(items[1]);
+    expect(selectedItems[2]).toEqual(items[0]);
 
     rerender(
-      <Combobox
+      <MultiCombobox
+        isMulti
         labelText={labelText}
         items={items}
-        selectedItem={selectedItem}
-        onSelectedItemChange={changes => (selectedItem = changes.selectedItem)}
+        selectedItems={selectedItems}
+        onSelectedItemsChange={changes =>
+          (selectedItems = changes.selectedItems)
+        }
+        onRemoveSelectedItem={removedItem => {
+          selectedItems = selectedItems.filter(item => item !== removedItem);
+        }}
       />
     );
 
-    expect(renderedCombobox.value).toEqual(items[1]);
+    expect(
+      getByText(selectedItems[2], { selector: 'button' })
+    ).toBeInTheDocument();
+
+    fireEvent.click(getByText(selectedItems[0], { selector: 'button' }));
+
+    expect(selectedItems.includes(items[1])).not.toBeTruthy();
+
+    rerender(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        selectedItems={selectedItems}
+        onSelectedItemsChange={changes =>
+          (selectedItems = changes.selectedItems)
+        }
+        onRemoveSelectedItem={removedItem => {
+          selectedItems = selectedItems.filter(item => item !== removedItem);
+        }}
+      />
+    );
+
+    expect(
+      queryByText(items[1], { selector: 'button' })
+    ).not.toBeInTheDocument();
   });
 
   it('should allow for the creation of an item', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
-      <Combobox labelText={labelText} items={items} initialSelectedItem="Red" />
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red']}
+      />
     );
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
@@ -147,7 +197,7 @@ describe('Combobox', () => {
     expect(createItem).toBeInTheDocument();
     fireEvent.click(createItem);
 
-    expect(renderedCombobox.value).toEqual('Yellow');
+    expect(getByText('Yellow', { selector: 'button' })).toBeInTheDocument();
   });
 
   it('should allow for creation of a custom item', () => {
@@ -185,7 +235,8 @@ describe('Combobox', () => {
     ];
 
     const { getByLabelText, getByText } = render(
-      <Combobox
+      <MultiCombobox
+        isMulti
         labelText={labelText}
         defaultItems={items}
         newItemTransform={newItemTransform}
@@ -202,11 +253,11 @@ describe('Combobox', () => {
     expect(createItem).toBeInTheDocument();
     fireEvent.click(createItem);
 
-    expect(renderedCombobox.value).toEqual('Yellow');
+    expect(getByText('Yellow', { selector: 'button' })).toBeInTheDocument();
   });
 
   it('should allow for creation of a custom item with controlled items', () => {
-    let selectedItem = '';
+    let selectedItems = [];
     let items = [
       {
         id: 1,
@@ -240,24 +291,25 @@ describe('Combobox', () => {
       };
     }
 
-    function handleSelectedItemChange(changes) {
-      selectedItem = changes.selectedItem;
+    function handleSelectedItemsChange(changes) {
+      selectedItems = changes.selectedItems;
     }
 
     function handleItemCreated(newItem) {
-      selectedItem = newItem;
+      selectedItems = [...selectedItems, newItem];
       items = [...items, newItem];
     }
 
     const { getByLabelText, getByText, rerender } = render(
-      <Combobox
+      <MultiCombobox
+        isMulti
         labelText={labelText}
         items={items}
         newItemTransform={newItemTransform}
         itemToString={itemToString}
         onItemCreated={handleItemCreated}
-        onSelectedItemChange={handleSelectedItemChange}
-        selectedItem={selectedItem}
+        onSelectedItemsChange={handleSelectedItemsChange}
+        selectedItems={selectedItems}
       />
     );
 
@@ -270,44 +322,65 @@ describe('Combobox', () => {
     expect(createItem).toBeInTheDocument();
     fireEvent.click(createItem);
 
-    expect(selectedItem.representation).toEqual('Yellow');
+    expect(selectedItems[0].representation).toEqual('Yellow');
 
     rerender(
-      <Combobox
+      <MultiCombobox
+        isMulti
         labelText={labelText}
         items={items}
         newItemTransform={newItemTransform}
         itemToString={itemToString}
         onItemCreated={handleItemCreated}
-        onSelectedItemChange={handleSelectedItemChange}
-        selectedItem={selectedItem}
+        onSelectedItemsChange={handleSelectedItemsChange}
+        selectedItems={selectedItems}
+        onRemoveSelectedItem={removedItem => {
+          selectedItems = selectedItems.filter(item => item !== removedItem);
+        }}
       />
     );
 
-    expect(renderedCombobox.value).toEqual('Yellow');
+    expect(getByText('Yellow', { selector: 'button' })).toBeInTheDocument();
+    fireEvent.click(getByText('Yellow', { selector: 'button' }));
+
+    rerender(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        newItemTransform={newItemTransform}
+        itemToString={itemToString}
+        onItemCreated={handleItemCreated}
+        onSelectedItemsChange={handleSelectedItemsChange}
+        selectedItems={selectedItems}
+      />
+    );
 
     fireEvent.change(renderedCombobox, { target: { value: 'Y' } });
 
-    expect(getByText('Yellow')).toBeInTheDocument();
+    expect(getByText('Yellow', { selector: 'li' })).toBeInTheDocument();
   });
 
   it('should have an initial selected item', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
-    const { getByLabelText } = render(
-      <Combobox labelText={labelText} items={items} initialSelectedItem="Red" />
+    const { getByText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red']}
+      />
     );
 
-    expect(getByLabelText(labelText, { selector: 'input' }).value).toEqual(
-      'Red'
-    );
+    expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
   });
 
   it('should disable the combobox', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText } = render(
-      <Combobox labelText={labelText} items={items} isDisabled />
+      <MultiCombobox isMulti labelText={labelText} items={items} isDisabled />
     );
 
     expect(getByLabelText(labelText, { selector: 'input' })).toHaveAttribute(
@@ -318,29 +391,29 @@ describe('Combobox', () => {
   it('should allow a selection to be cleared', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
-    const { getByLabelText } = render(
-      <Combobox
+    const { getByText, queryByText } = render(
+      <MultiCombobox
+        isMulti
         labelText={labelText}
         items={items}
-        initialSelectedItem="Red"
-        isClearable
+        initialSelectedItems={['Red']}
       />
     );
 
-    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+    const selectedItem = getByText('Red', { selector: 'button' });
 
-    expect(renderedCombobox.value).toEqual('Red');
+    expect(selectedItem).toBeInTheDocument();
 
-    fireEvent.click(getByLabelText('reset'));
+    fireEvent.click(selectedItem);
 
-    expect(renderedCombobox.value).not.toEqual('Red');
+    expect(queryByText('Red', { selector: 'button' })).not.toBeInTheDocument();
   });
 
   it('should filter items based on text in the combobox', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText, queryByText } = render(
-      <Combobox labelText={labelText} items={items} />
+      <MultiCombobox isMulti labelText={labelText} items={items} />
     );
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
@@ -358,12 +431,40 @@ describe('Combobox', () => {
     expect(getByText('Green')).toBeInTheDocument();
   });
 
+  it('should filter out selected items', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByLabelText, getByText, queryByText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        selectedItems={['Red']}
+      />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+    fireEvent.change(renderedCombobox, { target: { value: 'R' } });
+
+    expect(queryByText('Red', { selector: 'li' })).not.toBeInTheDocument();
+    expect(queryByText('Blue')).not.toBeInTheDocument();
+    expect(queryByText('Green')).not.toBeInTheDocument();
+
+    fireEvent.change(renderedCombobox, { target: { value: '' } });
+
+    expect(queryByText('Red', { selector: 'li' })).not.toBeInTheDocument();
+    expect(getByText('Blue')).toBeInTheDocument();
+    expect(getByText('Green')).toBeInTheDocument();
+  });
+
   it('should show an error message', () => {
     const labelText = 'Label';
     const errorMessage = 'This is an error';
     const items = ['Red', 'Blue', 'Green'];
     const { getByText } = render(
-      <Combobox
+      <MultiCombobox
+        isMulti
         labelText={labelText}
         items={items}
         errorMessage={errorMessage}
@@ -378,7 +479,8 @@ describe('Combobox', () => {
     const helperMessage = 'This is an error';
     const items = ['Red', 'Blue', 'Green'];
     const { getByText } = render(
-      <Combobox
+      <MultiCombobox
+        isMulti
         labelText={labelText}
         items={items}
         helperMessage={helperMessage}
@@ -391,23 +493,25 @@ describe('Combobox', () => {
   it('should allow you to send in your own components', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
-    const ClearIndicator = () => (
-      <button data-testid="customClearIndicator">Clear</button>
+    const LoadingIndicator = () => (
+      <div data-testid="customLoadingIndicator">loading</div>
     );
 
     const { getByTestId } = render(
-      <Combobox
+      <MultiCombobox
+        isMulti
+        isLoading
         labelText={labelText}
         isClearable
         items={items}
         selectedItem={items[0]}
         components={{
-          ClearIndicator
+          LoadingIndicator
         }}
       />
     );
 
-    expect(getByTestId('customClearIndicator')).toBeInTheDocument();
+    expect(getByTestId('customLoadingIndicator')).toBeInTheDocument();
   });
 
   describe('events', () => {
@@ -418,7 +522,12 @@ describe('Combobox', () => {
       ``;
 
       const { getByLabelText } = render(
-        <Combobox labelText={labelText} items={items} onInputBlur={onBlur} />
+        <MultiCombobox
+          isMulti
+          labelText={labelText}
+          items={items}
+          onInputBlur={onBlur}
+        />
       );
 
       const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
@@ -435,7 +544,7 @@ describe('Combobox', () => {
       const items = ['Red', 'Blue', 'Green'];
 
       const { getByLabelText } = render(
-        <Combobox labelText={labelText} items={items} />
+        <MultiCombobox isMulti labelText={labelText} items={items} />
       );
 
       const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
@@ -448,35 +557,18 @@ describe('Combobox', () => {
       expect(renderedCombobox.value).toEqual('');
     });
 
-    it('onBlur should give input value of selected item  after input has been changed but nothing new selected', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
-
-      const { getByLabelText, getByText } = render(
-        <Combobox labelText={labelText} items={items} />
-      );
-
-      const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
-
-      fireEvent.click(renderedCombobox);
-
-      fireEvent.click(getByText(items[0]));
-
-      renderedCombobox.focus();
-      fireEvent.change(renderedCombobox, { target: { value: 'yel' } });
-
-      fireEvent.blur(renderedCombobox);
-
-      expect(renderedCombobox.value).toEqual(items[0]);
-    });
-
     it('onFocus', () => {
       const labelText = 'Label';
       const items = ['Red', 'Blue', 'Green'];
       const onFocus = jest.fn();
 
       const { getByLabelText } = render(
-        <Combobox labelText={labelText} items={items} onInputFocus={onFocus} />
+        <MultiCombobox
+          isMulti
+          labelText={labelText}
+          items={items}
+          onInputFocus={onFocus}
+        />
       );
 
       const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
@@ -492,7 +584,8 @@ describe('Combobox', () => {
       const onKeyDown = jest.fn();
 
       const { getByLabelText } = render(
-        <Combobox
+        <MultiCombobox
+          isMulti
           labelText={labelText}
           items={items}
           onInputKeyDown={onKeyDown}
@@ -512,7 +605,12 @@ describe('Combobox', () => {
       const onKeyUp = jest.fn();
 
       const { getByLabelText } = render(
-        <Combobox labelText={labelText} items={items} onInputKeyUp={onKeyUp} />
+        <MultiCombobox
+          isMulti
+          labelText={labelText}
+          items={items}
+          onInputKeyUp={onKeyUp}
+        />
       );
 
       const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
@@ -528,7 +626,8 @@ describe('Combobox', () => {
       const onInputValueChange = jest.fn();
 
       const { getByLabelText } = render(
-        <Combobox
+        <MultiCombobox
+          isMulti
           labelText={labelText}
           items={items}
           onInputValueChange={onInputValueChange}

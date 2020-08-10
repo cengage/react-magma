@@ -28,24 +28,30 @@ export function useComboboxItems(
   }
 
   function defaultOnInputValueChange(changes) {
-    const filteredItems = allItems.current
-      .filter(item =>
-        itemToString(item)
-          .toLowerCase()
-          .startsWith(changes.inputValue.toLowerCase())
-      )
-      .concat(
-        !disableCreateItem &&
-          changes.inputValue &&
-          !inputValueInList(changes.inputValue)
-          ? {
-              label: `Create "${changes.inputValue}"`,
-              value: changes.inputValue,
-              react_magma__created_item: true
-            }
-          : null
-      )
-      .filter(Boolean);
+    const { inputValue: baseInputValue } = changes;
+    const inputValue =
+      typeof baseInputValue === 'string'
+        ? baseInputValue
+        : itemToString(baseInputValue);
+
+    const filteredItems = inputValue
+      ? allItems.current
+          .filter(item =>
+            itemToString(item)
+              .toLowerCase()
+              .startsWith(inputValue.toLowerCase())
+          )
+          .concat(
+            !disableCreateItem && inputValue && !inputValueInList(inputValue)
+              ? {
+                  label: `Create "${inputValue}"`,
+                  value: inputValue,
+                  react_magma__created_item: true
+                }
+              : null
+          )
+          .filter(Boolean)
+      : allItems.current;
 
     setDisplayItems(filteredItems);
     onInputChange &&

@@ -36,7 +36,12 @@ which is a function that returns the string representation of your `item` which 
 
 ```.jsx
   () => {
-    const [selectedItem, updateSelectedItem] = React.useState(undefined)
+    const [controlledSelectedItem, updateControlledSelectedItem] = React.useState('')
+    const [controlledItems, updateControlledItems] = React.useState([
+      { id: 0, name: 'red', representation: 'Red' },
+      { id: 1, name: 'blue', representation: 'Blue' },
+      { id: 2, name: 'green', representation: 'Green' }
+    ])
 
     function itemToString(item) {
       return item ? item.representation : ''
@@ -53,15 +58,17 @@ which is a function that returns the string representation of your `item` which 
     }
 
     function handleSelectedItemChange(changes) {
-      updateSelectedItem(changes.selectedItem)
+      updateControlledSelectedItem(changes.selectedItem)
+    }
+
+    function handleItemCreated(newItem) {
+      updateControlledSelectedItem(newItem);
+      updateControlledItems(oldItems => [...oldItems, newItem]);
     }
 
     return (
       <>
-        { selectedItem && <pre>{JSON.stringify(selectedItem, null, 2)}</pre> }
         <Combobox
-          id="comboboxWithCustomItemsId"
-          name="comboboxWithCustomItems"
           labelText="Combobox With Custom Items"
           defaultItems={[
             { id: 0, name: 'red', representation: 'Red' },
@@ -70,7 +77,22 @@ which is a function that returns the string representation of your `item` which 
           ]}
           newItemTransform={newItemTransform}
           itemToString={itemToString}
+        />
+
+
+        { controlledSelectedItem && <>
+          <p><strong>Controlled Selected Item</strong></p>
+          <pre>{JSON.stringify(controlledSelectedItem, null, 2)}</pre>
+        </>}
+
+        <Combobox
+          labelText="Controlled Combobox With Custom Items"
+          items={controlledItems}
+          newItemTransform={newItemTransform}
+          itemToString={itemToString}
+          onItemCreated={handleItemCreated}
           onSelectedItemChange={handleSelectedItemChange}
+          selectedItem={controlledSelectedItem}
         />
       </>
     )

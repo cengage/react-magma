@@ -39,7 +39,6 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     newItemTransform,
     onInputBlur,
     onInputFocus,
-    onInputChange,
     onInputKeyDown,
     onInputKeyPress,
     onInputKeyUp,
@@ -56,8 +55,6 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
   } = useMultipleSelection(
     (props as unknown) as UseMultipleSelectionProps<DownshiftOption<T>>
   );
-
-  console.log('selected items: ', selectedItems);
 
   function isCreatedItem(item) {
     return (
@@ -100,8 +97,8 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
           : defaultNewItemTransform(createdItem);
 
       items && onItemCreated && typeof onItemCreated === 'function'
-        ? onItemCreated(newItem || createdItem)
-        : updateItemsRef(newItem || createdItem);
+        ? onItemCreated(newItem)
+        : updateItemsRef(newItem);
       addSelectedItem(newItem);
 
       if (process.env.NODE_ENV === 'development') {
@@ -129,13 +126,27 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     disableCreateItem,
     onInputChange: changes => {
       setInputValue(changes.inputValue);
-      onInputChange &&
-        typeof onInputChange === 'function' &&
-        onInputChange(changes);
     }
   });
 
-  const { stateReducer, onStateChange, ...comboboxProps } = props;
+  const {
+    stateReducer: passedInStateReducer,
+    onStateChange,
+    ...comboboxProps
+  } = props;
+
+  function stateReducer(_, actionAndChanges) {
+    const { type, changes } = actionAndChanges;
+    switch (type) {
+      case useCombobox.stateChangeTypes.InputBlur:
+        return {
+          ...changes,
+          inputValue: ''
+        };
+      default:
+        return changes;
+    }
+  }
 
   const {
     isOpen,
@@ -146,7 +157,6 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     getComboboxProps,
     highlightedIndex,
     getItemProps,
-    reset,
     selectItem
   } = useCombobox({
     ...comboboxProps,
@@ -156,7 +166,8 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
       onInputValueChange && typeof onInputValueChange === 'function'
         ? changes => onInputValueChange(changes, setDisplayItems)
         : defaultOnInputValueChange,
-    onSelectedItemChange: defaultOnSelectedItemChange
+    onSelectedItemChange: defaultOnSelectedItemChange,
+    stateReducer
   });
 
   function handleRemoveSelectedItem(event: React.SyntheticEvent, selectedItem) {
@@ -165,11 +176,6 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     onRemoveSelectedItem && typeof onRemoveSelectedItem === 'function'
       ? onRemoveSelectedItem(selectedItem)
       : removeSelectedItem(selectedItem);
-  }
-
-  function handleInputBlur(event: React.FocusEvent) {
-    reset();
-    onInputBlur && typeof onInputBlur === 'function' && onInputBlur(event);
   }
 
   const theme = React.useContext(ThemeContext);
@@ -218,7 +224,7 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
         isInverse={isInverse}
         isLoading={isLoading}
         hasError={hasError}
-        onInputBlur={handleInputBlur}
+        onInputBlur={onInputBlur}
         onInputFocus={onInputFocus}
         onInputKeyDown={onInputKeyDown}
         onInputKeyPress={onInputKeyPress}

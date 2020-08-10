@@ -58,8 +58,9 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
           : defaultNewItemTransform(createdItem);
 
       items && onItemCreated && typeof onItemCreated === 'function'
-        ? onItemCreated(newItem || createdItem)
-        : updateItemsRef(newItem || createdItem);
+        ? onItemCreated(newItem)
+        : updateItemsRef(newItem);
+
       selectItem(newItem);
 
       if (process.env.NODE_ENV === 'development') {
@@ -69,11 +70,11 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
           );
         }
       }
+    } else {
+      props.onSelectedItemChange &&
+        typeof props.onSelectedItemChange === 'function' &&
+        props.onSelectedItemChange(changes);
     }
-
-    props.onSelectedItemChange &&
-      typeof props.onSelectedItemChange === 'function' &&
-      props.onSelectedItemChange(changes);
   }
 
   function stateReducer(state, actionAndChanges) {
@@ -83,7 +84,9 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
         return {
           ...changes,
           inputValue:
-            state.inputValue && !state.selectedItem ? '' : state.selectedItem,
+            state.inputValue && !state.selectedItem
+              ? ''
+              : itemToString(state.selectedItem),
           selectedItem: state.selectedItem ? state.selectedItem : ''
         };
       default:
