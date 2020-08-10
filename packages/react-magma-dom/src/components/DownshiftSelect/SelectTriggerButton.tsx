@@ -54,7 +54,7 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
       tabIndex={isDisabled ? undefined : 0}
     >
       <ChildrenContainer>{children}</ChildrenContainer>
-      <CaretDownIcon size={10} testId="caretDown" />
+      <CaretDownIcon size={10} style={{ flexShrink: 0 }} testId="caretDown" />
     </StyledButton>
   );
 }

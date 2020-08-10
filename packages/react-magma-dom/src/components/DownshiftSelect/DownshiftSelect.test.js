@@ -149,7 +149,7 @@ describe('Select', () => {
   it('should allow a selection to be cleared', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
-    const { getByLabelText, getByTestId } = render(
+    const { getByTestId } = render(
       <Select
         labelText={labelText}
         items={items}
@@ -160,7 +160,7 @@ describe('Select', () => {
 
     expect(getByTestId('selectedItemText').textContent).toEqual('Red');
 
-    fireEvent.click(getByLabelText('reset'));
+    fireEvent.click(getByTestId('clearIndicator'));
 
     expect(getByTestId('selectedItemText').textContent).not.toEqual('Red');
   });
