@@ -15,10 +15,10 @@ export interface TableCellProps
 export const baseTableCellStyle = props => css`
   border-right: ${props.hasVerticalBorders ? '1px solid' : 0};
   border-color: ${props.isInverse
-    ? props.theme.colors.tint03
+    ? props.theme.colors.tint04
     : props.theme.colors.neutral06};
   display: table-cell;
-  line-height: 26px;
+  line-height: 24px;
   padding: ${buildCellPaddingStyle(props.density)};
   text-align: ${props.textAlign};
 
@@ -30,11 +30,11 @@ export const baseTableCellStyle = props => css`
 export function buildCellPaddingStyle(density) {
   switch (density) {
     case 'compact':
-      return '5px 10px';
+      return '4px 8px';
     case 'loose':
-      return '20px 30px';
+      return '24px 36px';
     default:
-      return '10px 20px';
+      return '12px 16px';
   }
 }
 

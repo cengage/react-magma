@@ -83,7 +83,7 @@ describe('Table', () => {
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      'rgba(63,63,63,0.07)',
+      magma.colors.tone02,
       {
         target: ':hover'
       }
@@ -108,8 +108,8 @@ describe('Table', () => {
       </Table>
     );
 
-    expect(getByText('cell 1')).toHaveStyleRule('padding', '5px 10px');
-    expect(getByText('heading 1')).toHaveStyleRule('padding', '5px 10px');
+    expect(getByText('cell 1')).toHaveStyleRule('padding', '4px 8px');
+    expect(getByText('heading 1')).toHaveStyleRule('padding', '4px 8px');
   });
 
   it('should render table with loose density ', () => {
@@ -130,8 +130,8 @@ describe('Table', () => {
       </Table>
     );
 
-    expect(getByText('cell 1')).toHaveStyleRule('padding', '20px 30px');
-    expect(getByText('heading 1')).toHaveStyleRule('padding', '20px 30px');
+    expect(getByText('cell 1')).toHaveStyleRule('padding', '24px 36px');
+    expect(getByText('heading 1')).toHaveStyleRule('padding', '24px 36px');
   });
 
   it('should render table with inverse styles', () => {
@@ -158,12 +158,12 @@ describe('Table', () => {
 
     expect(getByText('heading 1')).toHaveStyleRule(
       'background',
-      magma.colors.tint02
+      magma.colors.tint03
     );
 
     expect(getByTestId('row1')).toHaveStyleRule(
       'background',
-      magma.colors.tint01,
+      magma.colors.tint02,
       {
         target: ':hover'
       }
@@ -179,12 +179,16 @@ describe('Table', () => {
   });
 
   it('should render right aligned cells', () => {
-    const { getByText } = render(
+    const { getByText, getByTestId } = render(
       <Table hasZebraStripes isInverse>
         <TableHead>
           <TableRow>
-            <TableHeaderCell align="right">heading 1</TableHeaderCell>
-            <TableHeaderCell>heading 2</TableHeaderCell>
+            <TableHeaderCell align="right" testId="heading1">
+              heading 1
+            </TableHeaderCell>
+            <TableHeaderCell align="right" isSortable testId="heading2">
+              heading 2
+            </TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -196,8 +200,12 @@ describe('Table', () => {
       </Table>
     );
 
-    expect(getByText('heading 1')).toHaveStyleRule('text-align', 'right');
+    expect(getByTestId('heading1')).toHaveStyleRule('text-align', 'right');
     expect(getByText('cell 1')).toHaveStyleRule('text-align', 'right');
+    expect(getByTestId('heading2').querySelector('button')).toHaveStyleRule(
+      'justify-content',
+      'flex-end'
+    );
   });
 
   it('should render table cells with specified widths', () => {
@@ -259,7 +267,7 @@ describe('Table', () => {
     expect(getByTestId('header1')).toHaveStyleRule('padding', '0');
     expect(getByTestId('header1').querySelector('button')).toBeInTheDocument();
 
-    expect(getByTestId('header3')).toHaveStyleRule('padding', '10px 20px');
+    expect(getByTestId('header3')).toHaveStyleRule('padding', '12px 16px');
     expect(
       getByTestId('header3').querySelector('button')
     ).not.toBeInTheDocument();

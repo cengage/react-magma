@@ -41,7 +41,7 @@ const StyledTableHeaderCell = styled.th<{
   width?: string;
 }>`
   background: ${props =>
-    props.isInverse ? props.theme.colors.tint02 : props.theme.colors.neutral07};
+    props.isInverse ? props.theme.colors.tint03 : props.theme.colors.neutral07};
   border-bottom: 2px solid;
   font-weight: bold;
   vertical-align: bottom;
@@ -64,12 +64,15 @@ const StyledTableHeaderCell = styled.th<{
 const SortButton = styled.button<{
   density?: TableDensity;
   isInverse?: boolean;
+  textAlign?: TableCellAlign;
 }>`
   align-items: flex-end;
   background: none;
   border: 0;
   color: inherit;
   display: flex;
+  justify-content: ${props =>
+    props.textAlign === TableCellAlign.right ? 'flex-end' : 'flex-start'};
   margin: 0;
   padding: ${props => buildCellPaddingStyle(props.density)}};
   text-align: left;
@@ -101,7 +104,7 @@ const SortButton = styled.button<{
 `;
 
 const IconWrapper = styled.span`
-  padding-left: 10px;
+  padding-left: 8px;
 `;
 
 export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = React.forwardRef(
@@ -125,8 +128,6 @@ export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = Re
     function handleSort() {
       if (onSort && typeof onSort === 'function') {
         onSort();
-
-        console.log('HANDLE SORT');
       }
     }
 
@@ -167,6 +168,7 @@ export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = Re
             density={tableContext.paddingDensity}
             isInverse={tableContext.isInverseContainer}
             onClick={handleSort}
+            textAlign={align ? align : TableCellAlign.left}
             theme={theme}
           >
             <span>{children}</span>

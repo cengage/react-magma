@@ -30,6 +30,8 @@ export interface Colors {
   tint01: string;
   tint02: string;
   tint03: string;
+  tone01: string;
+  tone02: string;
 }
 
 export interface Breakpoints {
@@ -84,7 +86,10 @@ export const magma = {
     shade02: 'rgba(0,0,0,0.3)',
     tint01: 'rgba(255,255,255,0.05)',
     tint02: 'rgba(255,255,255,0.1)',
-    tint03: 'rgba(255,255,255,0.4)'
+    tint03: 'rgba(255,255,255,0.1)',
+    tint04: 'rgba(255,255,255,0.4)',
+    tone01: 'rgba(63,63,63,0.07)',
+    tone02: 'rgba(63,63,63,0.1)'
   },
 
   // breakpoints

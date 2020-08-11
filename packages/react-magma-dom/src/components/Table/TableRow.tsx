@@ -25,7 +25,7 @@ const StyledTableRow = styled.tr<{
       props.hasZebraStripes
         ? props.isInverse
           ? props.theme.colors.tint01
-          : 'rgba(63,63,63,0.07)'
+          : props.theme.colors.tone01
         : 'none'};
   }
 
@@ -38,7 +38,7 @@ const StyledTableRow = styled.tr<{
     css`
     &:hover {
       background: ${
-        props.isInverse ? props.theme.colors.tint01 : 'rgba(63,63,63,0.07)'
+        props.isInverse ? props.theme.colors.tint02 : props.theme.colors.tone02
       };
     `}
 `;
@@ -50,6 +50,7 @@ export const TableRow: React.FunctionComponent<TableRowProps> = React.forwardRef
 
     return (
       <StyledTableRow
+        {...other}
         data-testid={testId}
         hasHoverStyles={tableContext.hasHoverStyle}
         hasZebraStripes={tableContext.hasStripes}
