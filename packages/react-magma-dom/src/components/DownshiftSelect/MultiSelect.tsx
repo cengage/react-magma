@@ -35,7 +35,8 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
     getDropdownProps,
     addSelectedItem,
     removeSelectedItem,
-    selectedItems
+    selectedItems,
+    setActiveIndex
   } = useMultipleSelection(
     (props as unknown) as UseMultipleSelectionProps<DownshiftOption<T>>
   );
@@ -79,20 +80,31 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
   const theme = React.useContext(ThemeContext);
 
   const toggleButtonProps = getToggleButtonProps({
-    ...getDropdownProps(),
-    disabled: isDisabled,
-    onBlur,
-    onKeyDown: event => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        openMenu();
-      }
+    ...getDropdownProps({
+      onBlur,
+      onKeyDown: event => {
+        if (
+          document.activeElement.tagName.toLowerCase() === 'button' &&
+          (event.key === 'Backspace' ||
+            event.key === 'Delete' ||
+            event.key === 'ArrowLeft')
+        ) {
+          event.nativeEvent.preventDownshiftDefault = true;
+        }
 
-      onKeyDown && typeof onKeyDown === 'function' && onKeyDown(event);
-    },
-    onKeyPress,
-    onKeyUp,
-    onFocus
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openMenu();
+        }
+
+        onKeyDown && typeof onKeyDown === 'function' && onKeyDown(event);
+      },
+      onKeyPress,
+      onKeyUp,
+      onFocus,
+      preventKeyAction: isOpen
+    }),
+    disabled: isDisabled
   });
 
   return (
@@ -120,7 +132,7 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
               onClick={event =>
                 handleRemoveSelectedItem(event, multiSelectedItem)
               }
-              tabIndex={0}
+              onFocus={() => setActiveIndex(index)}
               theme={theme}
             >
               {multiSelectedItem}

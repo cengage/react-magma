@@ -122,6 +122,84 @@ describe('Select', () => {
     ).not.toBeInTheDocument();
   });
 
+  it('should allow for the removal of selected items with the keyboard', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const selectedItems = ['Red', 'Blue', 'Green'];
+    const { getByLabelText, getByText, queryByText } = render(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={selectedItems}
+      />
+    );
+
+    const renderedMultiSelect = getByLabelText(labelText, { selector: 'div' });
+
+    renderedMultiSelect.focus();
+
+    fireEvent.keyDown(renderedMultiSelect, { key: 'Backspace' });
+
+    expect(
+      queryByText(items[2], { selector: 'button' })
+    ).not.toBeInTheDocument();
+
+    const selectedItem1 = getByText(items[1]);
+
+    selectedItem1.focus();
+
+    fireEvent.keyDown(selectedItem1, { key: 'Backspace' });
+
+    expect(
+      queryByText(items[1], { selector: 'button' })
+    ).not.toBeInTheDocument();
+
+    const selectedItem2 = getByText(items[0]);
+
+    selectedItem2.focus();
+
+    fireEvent.keyDown(selectedItem2, { key: 'Delete' });
+
+    expect(
+      queryByText(items[0], { selector: 'button' })
+    ).not.toBeInTheDocument();
+  });
+
+  it('should change the focused selected item using arrow keys', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const selectedItems = ['Red', 'Blue', 'Green'];
+    const { getByLabelText, getByText } = render(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={selectedItems}
+      />
+    );
+
+    const renderedMultiSelect = getByLabelText(labelText, { selector: 'div' });
+
+    renderedMultiSelect.focus();
+
+    fireEvent.keyDown(renderedMultiSelect, { key: 'ArrowLeft' });
+
+    expect(document.activeElement).toEqual(getByText(items[2]));
+
+    fireEvent.keyDown(getByText(items[2]), { key: 'ArrowLeft' });
+
+    expect(document.activeElement).toEqual(getByText(items[1]));
+
+    fireEvent.keyDown(getByText(items[2]), { key: 'ArrowRight' });
+
+    expect(document.activeElement).toEqual(getByText(items[2]));
+
+    fireEvent.keyDown(getByText(items[2]), { key: 'ArrowRight' });
+
+    expect(document.activeElement).toEqual(renderedMultiSelect);
+  });
+
   it('should allow for a controlled multi-select', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
