@@ -4,17 +4,18 @@ title: 'Downshift Selects'
 
 import { ScopeableLayout } from '../../components/layout'
 import { DownshiftSelect } from 'react-magma-dom'
-import DocsHeading from '../../components/docs-heading'
 import { SimplePropsTable } from '../../components/props-table'
 import { useSelect } from 'downshift'
 import { Link } from 'gatsby'
 import { v4 as uuid } from 'uuid'
 
-<DocsHeading to="/design/select/" type="design">
-  Downshift Selects
-</DocsHeading>
+# Downshift Selects
 
 ## Basic Usage
+
+Select components are used for collecting user provided information from a list of options.
+
+For combobox/autocomplete functionality, please see the <Link to="/api/comboboxes">Combobox component</Link>.
 
 ```.jsx
   () => {

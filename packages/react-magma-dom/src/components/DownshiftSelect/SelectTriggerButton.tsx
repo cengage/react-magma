@@ -4,13 +4,13 @@ import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '../../theme/styled';
 
-const StyledButton = styled.div<{ hasError?: boolean }>`
+const StyledButton = styled.div<{ isDisabled?: boolean; hasError?: boolean }>`
   ${baseInputStyles}
 
   align-items: center;
   display: flex;
   height: auto;
-  min-height: 37px;
+  min-height: 40px;
   text-align: left;
 `;
 
@@ -47,6 +47,7 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
       aria-describedby={ariaDescribedBy}
       aria-invalid={hasError}
       hasError={hasError}
+      isDisabled={isDisabled}
       isInverse={isInverse}
       role="button"
       {...toggleButtonProps}

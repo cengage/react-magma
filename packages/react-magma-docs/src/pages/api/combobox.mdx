@@ -4,16 +4,18 @@ title: 'Combobox'
 
 import { ScopeableLayout } from '../../components/layout'
 import { Combobox } from 'react-magma-dom'
-import DocsHeading from '../../components/docs-heading'
 import { SimplePropsTable } from '../../components/props-table'
 import { Link } from 'gatsby'
 import { v4 as uuid } from 'uuid'
 
-<DocsHeading to="/design/combobox/" type="design">
-  Combobox
-</DocsHeading>
+# Combobox
 
 ## Basic Usage
+
+A Combobox is similar to a Select component, in that it is used for collecting user provided information from a list of options.
+However, a combobox also allows users to type in the field, either to create their own option or to see typeahead suggestions.
+
+For simple Select functionality, please see the <Link to="/api/downshift-select">Select component</Link>.
 
 ```.jsx
   <>

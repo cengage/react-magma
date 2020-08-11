@@ -87,10 +87,10 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
             aria-label={`reset selection for ${labelText}.  ${itemToString(
               selectedItem
             )} is selected`}
-            icon={<CrossIcon size={10} />}
+            icon={<CrossIcon size={12} />}
             onClick={defaultHandleClearIndicatorClick}
             size={ButtonSize.small}
-            style={{ margin: '0 5px' }}
+            style={{ margin: '0 4px', height: '28px', width: '28px' }}
             testId="clearIndicator"
             variant={ButtonVariant.link}
           />

@@ -17,23 +17,23 @@ export const StyledButton = styled.div`
 
 export const SelectText = styled.span`
   flex-grow: 1;
-  padding-right: 10px;
+  padding-right: 8px;
 `;
 
 export const StyledCard = styled(Card)<{ isOpen?: boolean }>`
   display: ${props => (props.isOpen ? 'block' : 'none')};
-  left: 5px;
-  margin-top: 5px;
-  padding: 5px 0 0;
+  left: 4px;
+  margin-top: 4px;
+  padding: 4px 0 0;
   position: absolute;
-  right: 5px;
+  right: 4px;
   z-index: 2;
 `;
 
 export const StyledList = styled('ul')<{ isOpen?: boolean }>`
   display: ${props => (props.isOpen ? 'block' : 'none')};
   list-style: none;
-  margin: 0;
+  margin: 0 0 4px;
   outline: none;
 `;
 
@@ -43,28 +43,29 @@ export const StyledItem = styled('li')<{ isFocused?: boolean }>`
   border: 2px dotted;
   border-color: ${props =>
     props.isFocused ? props.theme.colors.focus : 'transparent'};
-  line-height: 30px;
-  padding: 3px 20px;
+  line-height: 24px;
+  margin: 0;
+  padding: 8px 16px;
 `;
 
 export const SelectedItemsWrapper = styled.span`
   display: flex;
   flex-wrap: wrap;
-  padding-top: 5px;
+  padding: 0 4px 0 8px;
 `;
 
 export const SelectedItemButton = styled.button`
   background: ${props => props.theme.colors.neutral06};
-  border-radius: 2px;
+  border-radius: 4px;
   border: 0;
   box-shadow: 0 0 0;
   font-size: 12px;
-  line-height: 17px;
-  margin: 5px 5px 5px 0;
-  padding: 3px 5px;
+  line-height: 16px;
+  margin: 2px 4px 2px 0;
+  padding: 4px 8px;
   white-space: nowrap;
 `;
 
 export const IconWrapper = styled.span`
-  padding-left: 5px;
+  padding-left: 4px;
 `;

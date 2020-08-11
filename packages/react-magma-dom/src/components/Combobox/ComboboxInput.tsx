@@ -29,18 +29,15 @@ const InputContainer = styled.div<{
   theme?: any;
 }>`
   align-items: center;
-  background: ${props =>
-    props.isDisabled
-      ? props.theme.colors.neutral07
-      : props.theme.colors.neutral08};
+  background: ${props => props.theme.colors.neutral08};
   border: 1px solid;
   border-color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral03};
-  border-radius: 5px;
+  border-radius: 4px;
   display: flex;
-  padding: 0 10px;
+  padding: 0 8px 0 0;
   width: 100%;
 
   ${props =>
@@ -50,7 +47,7 @@ const InputContainer = styled.div<{
         ${props.isInverse
           ? props.theme.colors.focusInverse
           : props.theme.colors.focus};
-      outline-offset: 5px;
+      outline-offset: 4px;
     `}
 
   ${props =>
@@ -62,6 +59,20 @@ const InputContainer = styled.div<{
           ? props.theme.colors.neutral08
           : props.theme.colors.danger};
     `}
+
+    ${props =>
+      props.isDisabled &&
+      css`
+        background: ${props.theme.colors.neutral07};
+        border-color: ${props.theme.colors.neutral05};
+        color: ${props.theme.colors.disabledText};
+        cursor: not-allowed;
+        outline: 0;
+
+        &::placeholder {
+          color: ${props.theme.colors.disabledText};
+        }
+      `}
 `;
 
 const StyledInput = styled.input`
@@ -71,7 +82,7 @@ const StyledInput = styled.input`
   flex-grow: 1;
   float: left;
   height: 100%;
-  min-height: 35px;
+  min-height: 40px;
   width: auto;
 
   &:focus {
@@ -154,6 +165,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     <ComboBoxContainer
       {...getComboboxProps()}
       hasError={hasError}
+      isDisabled={isDisabled}
       isInverse={isInverse}
       theme={theme}
     >
@@ -168,13 +180,14 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
         {selectedItems}
         <StyledInput
           {...inputProps}
-          theme={theme}
           aria-describedby={ariaDescribedBy}
           aria-invalid={hasError}
+          disabled={isDisabled}
+          theme={theme}
         />
         {children}
         {isLoading && (
-          <LoadingIndicator style={{ flexShrink: 0, marginRight: '10px' }} />
+          <LoadingIndicator style={{ flexShrink: 0, marginRight: 'px' }} />
         )}
         <DropdownIndicator aria-label="toggle menu" />
       </InputContainer>
