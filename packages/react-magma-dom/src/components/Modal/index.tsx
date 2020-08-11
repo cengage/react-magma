@@ -181,6 +181,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
     >([]);
     const [isModalOpen, setIsModalOpen] = React.useState<boolean>(props.isOpen);
     const [isExiting, setIsExiting] = React.useState<boolean>(false);
+    const [currentTarget, setCurrentTarget] = React.useState(null);
 
     const prevOpen = usePrevious(props.isOpen);
 
@@ -230,9 +231,16 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
     }, [props.children]);
 
     function handleModalClick(event: React.SyntheticEvent) {
-      if (!document.getElementById(contentId).contains(event.target as Node)) {
+      if (
+        !document.getElementById(contentId).contains(event.target as Node) &&
+        event.target === currentTarget
+      ) {
         handleClose(event);
       }
+    }
+
+    function handleModalOnMouseDown(event: React.SyntheticEvent) {
+      setCurrentTarget(event.target);
     }
 
     function handleEscapeKeyDown(event: KeyboardEvent) {
@@ -340,6 +348,9 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
               id={id}
               onKeyDown={isEscKeyDownDisabled ? null : handleKeyDown}
               onClick={isBackgroundClickDisabled ? null : handleModalClick}
+              onMouseDown={
+                isBackgroundClickDisabled ? null : handleModalOnMouseDown
+              }
               ref={focusTrapElement}
               role="dialog"
             >

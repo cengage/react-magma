@@ -298,6 +298,7 @@ describe('Modal', () => {
     });
 
     it('should close when clicking on the backdrop', async () => {
+      const testId = 'modal-container';
       const onCloseSpy = jest.fn();
       const { rerender, getByText, getByTestId } = render(
         <>
@@ -317,20 +318,60 @@ describe('Modal', () => {
             header="Hello"
             isOpen={true}
             onClose={onCloseSpy}
-            testId="modal-container"
+            testId={testId}
           >
             Modal Content
           </Modal>
         </>
       );
 
-      fireEvent.click(getByTestId('modal-container'));
+      fireEvent.mouseDown(getByTestId(testId));
+      fireEvent.click(getByTestId(testId));
 
       await act(async () => {
         jest.runAllTimers();
       });
 
       expect(onCloseSpy).toHaveBeenCalled();
+    });
+
+    it('should not close when mouse in happened inside the modal but mouse up happened on the backdrop', async () => {
+      const testId = 'modal-container';
+      const modalContent = 'Modal Content';
+      const onCloseSpy = jest.fn();
+      const { rerender, getByText, getByTestId } = render(
+        <>
+          <button>Open</button>
+          <Modal header="Hello" isOpen={false} onClose={onCloseSpy}>
+            {modalContent}
+          </Modal>
+        </>
+      );
+
+      fireEvent.focus(getByText('Open'));
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal
+            header="Hello"
+            isOpen={true}
+            onClose={onCloseSpy}
+            testId={testId}
+          >
+            {modalContent}
+          </Modal>
+        </>
+      );
+
+      fireEvent.mouseDown(getByText(modalContent));
+      fireEvent.click(getByTestId(testId));
+
+      await act(async () => {
+        jest.runAllTimers();
+      });
+
+      expect(onCloseSpy).not.toHaveBeenCalled();
     });
 
     it('should not close when clicking in the modal', async () => {
