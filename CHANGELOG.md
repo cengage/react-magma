@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.61](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.60...v2.0.0-beta.61) (2020-08-11)
+
+
+### Bug Fixes
+
+* **CU-1370:** modal usabilty with input ([4219836](http://stash.cengage.com:7999/FRONT/react-magma/commits/4219836))
+* **magma-221/modal:** update click outside behaviour ([15dc9e6](http://stash.cengage.com:7999/FRONT/react-magma/commits/15dc9e6))
+
+
+
+
+
 # [2.0.0-beta.60](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.59...v2.0.0-beta.60) (2020-08-07)
 
 
