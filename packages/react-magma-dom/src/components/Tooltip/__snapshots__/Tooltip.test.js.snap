@@ -57,6 +57,7 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
 }
 
 <div
+  aria-hidden="true"
   class="emotion-1"
   id="tooltipID"
   role="tooltip"
