@@ -133,6 +133,7 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
                 handleRemoveSelectedItem(event, multiSelectedItem)
               }
               onFocus={() => setActiveIndex(index)}
+              tabIndex={0}
               theme={theme}
             >
               {multiSelectedItem}

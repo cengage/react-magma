@@ -51,6 +51,7 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     getDropdownProps,
     addSelectedItem,
     removeSelectedItem,
+    setActiveIndex,
     selectedItems
   } = useMultipleSelection(
     (props as unknown) as UseMultipleSelectionProps<DownshiftOption<T>>
@@ -194,6 +195,7 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
             onClick={event =>
               handleRemoveSelectedItem(event, multiSelectedItem)
             }
+            onFocus={() => setActiveIndex(index)}
             tabIndex={0}
             theme={theme}
           >
@@ -217,7 +219,13 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
         customComponents={customComponents}
         getComboboxProps={getComboboxProps}
         getInputProps={options => ({
-          ...getInputProps({ ...getDropdownProps(), ...options })
+          ...getInputProps({
+            ...options,
+            ...getDropdownProps({
+              onKeyDown: onInputKeyDown,
+              preventKeyAction: isOpen
+            })
+          })
         })}
         getToggleButtonProps={getToggleButtonProps}
         isDisabled={isDisabled}
