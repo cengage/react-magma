@@ -78,3 +78,5 @@ export const TableCell: React.FunctionComponent<TableCellProps> = React.forwardR
     );
   }
 );
+
+TableCell.displayName = 'TableCell';

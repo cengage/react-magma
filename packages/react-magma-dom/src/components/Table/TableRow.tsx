@@ -48,11 +48,21 @@ export const TableRow: React.FunctionComponent<TableRowProps> = React.forwardRef
     const theme = React.useContext(ThemeContext);
     const tableContext = React.useContext(TableContext);
 
+    let isHeaderRow = false;
+
+    tableContext.hasHoverStyle &&
+      React.Children.map(children, (child: any) => {
+        if (child.type.displayName === 'TableHeaderCell') {
+          isHeaderRow = true;
+          return;
+        }
+      });
+
     return (
       <StyledTableRow
         {...other}
         data-testid={testId}
-        hasHoverStyles={tableContext.hasHoverStyle}
+        hasHoverStyles={tableContext.hasHoverStyle && !isHeaderRow}
         hasZebraStripes={tableContext.hasStripes}
         isInverse={tableContext.isInverseContainer}
         ref={ref}

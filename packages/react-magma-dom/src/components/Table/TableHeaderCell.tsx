@@ -181,3 +181,5 @@ export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = Re
     );
   }
 );
+
+TableHeaderCell.displayName = 'TableHeaderCell';
