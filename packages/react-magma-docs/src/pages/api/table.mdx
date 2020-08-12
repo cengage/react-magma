@@ -241,38 +241,50 @@ The `sortDirection` prop indicates the direction by which the column is sorted, 
 These props do not handle the actual sorting of the table, just the visual appearance.
 
 ```.jsx
-    <Card>
-        <Table>
-            <TableHead>
-                <TableRow>
-                    <TableHeaderCell onSort={()=>{console.log('onSort')}} isSortable sortDirection="ascending">Column 1</TableHeaderCell>
-                    <TableHeaderCell>Column 2</TableHeaderCell>
-                    <TableHeaderCell>Column 3</TableHeaderCell>
-                    <TableHeaderCell onSort={()=>{console.log('onSort')}} isSortable align="right">Number</TableHeaderCell>
-                </TableRow>
-            </TableHead>
-            <TableBody>
-                <TableRow>
-                    <TableCell>ABC Lorem ipsum dolor sit amet consectetur</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell align="right">86</TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell>DEF Lorem ipsum dolor sit amet</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell align="right">399</TableCell>
-                </TableRow>
-                 <TableRow>
-                    <TableCell>GHI Lorem ipsum dolor sit amet</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell align="right">12</TableCell>
-                </TableRow>
-            </TableBody>
-        </Table>
-    </Card>
+(props) => {
+    const [sortColumn, setSortColumn] = React.useState(0);
+    const [sortDirection, setSortDirection] = React.useState('ascending');
+
+    function handleSort(col){
+        setSortColumn(col);
+        setSortDirection(sortDirection === "ascending" ? "descending" : "ascending")
+    }
+
+    return (<>
+        <Card>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableHeaderCell onSort={()=>{handleSort(0)}} isSortable sortDirection={sortColumn === 0 ? sortDirection : "none"}>Column 1</TableHeaderCell>
+                        <TableHeaderCell>Column 2</TableHeaderCell>
+                        <TableHeaderCell>Column 3</TableHeaderCell>
+                        <TableHeaderCell onSort={()=>{handleSort(3)}} isSortable align="right" sortDirection={sortColumn === 3 ? sortDirection : "none"}>Number</TableHeaderCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    <TableRow>
+                        <TableCell>ABC Lorem ipsum dolor sit amet consectetur</TableCell>
+                        <TableCell>Lorem ipsum dolor</TableCell>
+                        <TableCell>Lorem ipsum dolor</TableCell>
+                        <TableCell align="right">86</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>DEF Lorem ipsum dolor sit amet</TableCell>
+                        <TableCell>Lorem ipsum dolor</TableCell>
+                        <TableCell>Lorem ipsum dolor</TableCell>
+                        <TableCell align="right">399</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>GHI Lorem ipsum dolor sit amet</TableCell>
+                        <TableCell>Lorem ipsum dolor</TableCell>
+                        <TableCell>Lorem ipsum dolor</TableCell>
+                        <TableCell align="right">12</TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
+        </Card>
+    </>)
+  }
 ```
 
 ## Inverse
