@@ -242,44 +242,52 @@ These props do not handle the actual sorting of the table, just the visual appea
 
 ```.jsx
 (props) => {
-    const [sortColumn, setSortColumn] = React.useState(0);
-    const [sortDirection, setSortDirection] = React.useState('ascending');
 
-    function handleSort(col){
-        setSortColumn(col);
-        setSortDirection(sortDirection === "ascending" ? "descending" : "ascending")
-    }
+    const products = [
+        { id: 1, name: 'Cheese', price: 5, stock: 20 },
+        { id: 2, name: 'Milk', price: 5, stock: 32 },
+        { id: 3, name: 'Yoghurt', price: 3, stock: 12 },
+        { id: 4, name: 'Heavy Cream', price: 10, stock: 9 },
+        { id: 5, name: 'Butter', price: 2, stock: 99 },
+        { id: 6, name: 'Sour Cream ', price: 5, stock: 86 },
+        { id: 7, name: 'Fancy French Cheese 🇫🇷', price: 15, stock: 12 },
+    ];
+
+    const [sortConfig, setSortConfig] = React.useState({
+        key: 'name',
+        direction: 'ascending'
+    });
+
+    const requestSort = (key) => {
+        let direction = 'ascending';
+        if (
+            sortConfig &&
+            sortConfig.key === key &&
+            sortConfig.direction === 'ascending'
+        ) {
+            direction = 'descending';
+        }
+        setSortConfig({ key, direction });
+  };
 
     return (<>
         <Card>
             <Table>
                 <TableHead>
                     <TableRow>
-                        <TableHeaderCell onSort={()=>{handleSort(0)}} isSortable sortDirection={sortColumn === 0 ? sortDirection : "none"}>Column 1</TableHeaderCell>
-                        <TableHeaderCell>Column 2</TableHeaderCell>
-                        <TableHeaderCell>Column 3</TableHeaderCell>
-                        <TableHeaderCell onSort={()=>{handleSort(3)}} isSortable align="right" sortDirection={sortColumn === 3 ? sortDirection : "none"}>Number</TableHeaderCell>
+                        <TableHeaderCell onSort={()=>{requestSort('name')}} isSortable sortDirection={sortConfig.key === 'name' ? sortConfig.direction : "none"}>Name</TableHeaderCell>
+                        <TableHeaderCell onSort={()=>{requestSort('price')}} isSortable align="right" sortDirection={sortConfig.key === 'price' ? sortConfig.direction : "none"}>Price</TableHeaderCell>
+                        <TableHeaderCell onSort={()=>{requestSort('stock')}} isSortable align="right" sortDirection={sortConfig.key === 'stock' ? sortConfig.direction : "none"}>In Stock 3</TableHeaderCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    <TableRow>
-                        <TableCell>ABC Lorem ipsum dolor sit amet consectetur</TableCell>
-                        <TableCell>Lorem ipsum dolor</TableCell>
-                        <TableCell>Lorem ipsum dolor</TableCell>
-                        <TableCell align="right">86</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell>DEF Lorem ipsum dolor sit amet</TableCell>
-                        <TableCell>Lorem ipsum dolor</TableCell>
-                        <TableCell>Lorem ipsum dolor</TableCell>
-                        <TableCell align="right">399</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell>GHI Lorem ipsum dolor sit amet</TableCell>
-                        <TableCell>Lorem ipsum dolor</TableCell>
-                        <TableCell>Lorem ipsum dolor</TableCell>
-                        <TableCell align="right">12</TableCell>
-                    </TableRow>
+                    {products.map((item) => (
+                        <TableRow key={item.id}>
+                            <TableCell>{item.name}</TableCell>
+                            <TableCell align="right">${item.price}</TableCell>
+                            <TableCell align="right">{item.stock}</TableCell>
+                        </TableRow>
+                    ))}
                 </TableBody>
             </Table>
         </Card>
