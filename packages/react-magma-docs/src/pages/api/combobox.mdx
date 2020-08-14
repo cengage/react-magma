@@ -24,6 +24,7 @@ For simple Select functionality, please see the <Link to="/api/downshift-select"
       name="combobox"
       labelText="Combobox"
       defaultItems={['Red', 'Blue', 'Green']}
+      placeholder="Hello"
     />
   </>
 ```
@@ -370,7 +371,8 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
         id="multiComboboxId"
         name="multiCombobox"
         labelText="Multi Combobox"
-        defaultItems={['Red', 'Blue', 'Green']}
+        initialSelectedItems={['Red', 'Blue']}
+        defaultItems={['Red', 'Blue', 'Green', 'Orange', 'Aqua', 'Gold', 'Perriwinkle', 'Lavender', 'Marigold', 'Yellow', 'Purple', 'Dusty Rose', 'Burnt Sienna']}
       />
 
       <Combobox
@@ -378,7 +380,7 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
         id="multiComboboxId2"
         name="multiCombobox2"
         labelText="Multi Combobox"
-        initialSelectedItems={['Red', 'Blue', 'Green', 'Orange', 'Aqua', 'Gold', 'Perriwinkle', 'Lavender']}
+        initialSelectedItems={['Red', 'Blue', 'Green', 'Orange', 'Aqua', 'Gold', 'Perriwinkle', 'Lavender', 'Burnt Sienna']}
         defaultItems={['Red', 'Blue', 'Green', 'Orange', 'Aqua', 'Gold', 'Perriwinkle', 'Lavender', 'Marigold', 'Yellow', 'Purple', 'Dusty Rose', 'Burnt Sienna']}
       />
 

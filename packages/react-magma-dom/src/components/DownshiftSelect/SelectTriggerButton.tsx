@@ -11,6 +11,7 @@ const StyledButton = styled.div<{ isDisabled?: boolean; hasError?: boolean }>`
   display: flex;
   height: auto;
   min-height: 40px;
+  padding-left: 4px;
   text-align: left;
 `;
 
@@ -27,6 +28,7 @@ interface SelectTriggerButtonInterface<T> {
   hasError?: boolean;
   isDisabled?: boolean;
   isInverse?: boolean;
+  ref?: any;
   toggleButtonProps: any;
   tabindex?: number;
 }
@@ -44,13 +46,14 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
 
   return (
     <StyledButton
+      {...toggleButtonProps}
       aria-describedby={ariaDescribedBy}
       aria-invalid={hasError}
+      data-testid="selectTriggerButton"
       hasError={hasError}
       isDisabled={isDisabled}
       isInverse={isInverse}
       role="button"
-      {...toggleButtonProps}
       theme={theme}
       tabIndex={isDisabled ? undefined : 0}
     >

@@ -12,11 +12,7 @@ import { CrossIcon } from '../Icon/types/CrossIcon';
 import { DownshiftSelectContainer } from '../DownshiftSelect/SelectContainer';
 import { ItemsList } from '../DownshiftSelect/ItemsList';
 import { ComboboxInput } from './ComboboxInput';
-import {
-  SelectedItemsWrapper,
-  SelectedItemButton,
-  IconWrapper
-} from '../DownshiftSelect/shared';
+import { SelectedItemButton, IconWrapper } from '../DownshiftSelect/shared';
 import { useComboboxItems } from './shared';
 
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -183,7 +179,7 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
 
   const selectedItemsContent =
     selectedItems && selectedItems.length > 0 ? (
-      <SelectedItemsWrapper>
+      <>
         {selectedItems.map((multiSelectedItem, index) => (
           <SelectedItemButton
             aria-label={`reset item ${itemToString(multiSelectedItem)}`}
@@ -205,7 +201,7 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
             </IconWrapper>
           </SelectedItemButton>
         ))}
-      </SelectedItemsWrapper>
+      </>
     ) : null;
 
   return (
