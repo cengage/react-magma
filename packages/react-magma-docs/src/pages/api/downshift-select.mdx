@@ -3,7 +3,7 @@ title: 'Downshift Selects'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { DownshiftSelect } from 'react-magma-dom'
+import { DownshiftSelect, Alert } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 import { useSelect } from 'downshift'
 import { Link } from 'gatsby'
@@ -44,7 +44,9 @@ By default each component accepts an array of `items` with either a `string` or 
 for each `item`. If you need to pass in a custom shape for your `items` you can pass in an additional prop named `itemToString`
 which is a function that returns the string representation of your `item` which will be applied as the label.
 
-**WARNING** Your function must include a `null` check.
+<Alert variant="warning">
+  <strong>WARNING</strong> Your function must include a <code style={{background:'rgba(0,0,0,0.1)', border: 0}}>null</code> check.
+</Alert>
 
 ```.jsx
   () => {
@@ -286,12 +288,12 @@ The `helperMessage` appears underneath the select field. It will not appear if a
   )
 ```
 
-## A11y
+## Accessibility
 
-The `getA11yStatusMessage` prop is a passed in function that allows for cusomization of the a11y message whenever the following props
+The `getA11yStatusMessage` prop is a passed in function that allows for cusomization of the screen-reader accessible message whenever the following props
 are changes: `items`, `highlightedIndex`, `inputValue` or `isOpen`.
 
-The `getA11ySelectionMessage` prop is a passed in function that allows for customization of the a11y message
+The `getA11ySelectionMessage` prop is a passed in function that allows for customization of the screen-reader accessible message
 whenever an item has been selected.
 
 For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions there is an
@@ -439,13 +441,21 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
 
 <SimplePropsTable
   propertyValues={{
+    components: {
+      type: {
+        name: 'DownshiftComponents',
+      },
+      required: false,
+      description:
+        'Custom components',
+    },
     errorMessage: {
       type: {
         name: 'ReactNode',
       },
       required: false,
       description:
-        'Content of the errror message.  If a value is provided, the error message will be styled as an error state.',
+        'Content of the error message.  If a value is provided, the component will be styled to show an error state',
       defaultValue: '',
     },
     helperMessage: {
@@ -453,8 +463,26 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
         name: 'ReactNode',
       },
       required: false,
-      description: 'Content of the helper message.',
+      description: 'Content of the helper message',
       defaultValue: '',
+    },
+    isClearable: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component include a button for clearing the field',
+      defaultValue: 'false',
+    },
+    isDisabled: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, item will be disabled; it will appear dimmed and events will not fire',
+      defaultValue: 'false',
     },
     isInverse: {
       type: {
@@ -465,21 +493,53 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
+    initialHighlightedIndex: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description:
+        'Index of the initally selected item',
+    },
+    initialSelectedItem: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Value of the initally selected item',
+    },
+    isMulti: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, multiple items may be selected',
+      defaultValue: 'false',
+    },
+    items: {
+      type: {
+        name: 'array',
+      },
+      required: false,
+      description:
+        'Selectable options.  Can be an array of strings or objects',
+    },
+    itemToString: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description:
+        'Function that returns the string representation of your item which will be applied as the label when using a custom shape for items',
+    },
     labelText: {
       type: {
         name: 'ReactNode',
       },
       required: true,
       description: 'Text for label',
-    },
-    inverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
     },
     messageStyle: {
       type: {
@@ -504,6 +564,7 @@ export default props => (
     {...props}
     components={{
       DownshiftSelect,
+      Alert,
       useSelect,
       uuid,
     }}

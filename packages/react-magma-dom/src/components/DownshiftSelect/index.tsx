@@ -16,11 +16,11 @@ export interface InternalSelectInterface {
   components?: DownshiftComponents;
   errorMessage?: React.ReactNode;
   helperMessage?: React.ReactNode;
-  labelText: string;
   isClearable?: boolean;
   isDisabled?: boolean;
   isInverse?: boolean;
   isMulti?: boolean;
+  labelText: string;
   messageStyle?: React.CSSProperties;
 }
 
