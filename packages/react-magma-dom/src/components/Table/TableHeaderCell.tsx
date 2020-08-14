@@ -133,9 +133,9 @@ export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = Re
 
     const SortIcon =
       sortDirection === TableSortDirection.ascending ? (
-        <ArrowUp2Icon size={14} />
-      ) : sortDirection === TableSortDirection.descending ? (
         <ArrowDown2Icon size={14} />
+      ) : sortDirection === TableSortDirection.descending ? (
+        <ArrowUp2Icon size={14} />
       ) : (
         <ArrowDoubleIcon
           color={
