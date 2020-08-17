@@ -133,8 +133,16 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
     ...customComponents
   });
 
+  const toggleButtonRef = React.useRef<HTMLDivElement>();
+
   function defaultHandleClearIndicatorClick(event: React.SyntheticEvent) {
     event.stopPropagation();
+
+    console.log('toggleButtonRef', toggleButtonRef.current);
+
+    if (toggleButtonRef.current) {
+      toggleButtonRef.current.focus();
+    }
 
     reset();
   }
@@ -161,6 +169,7 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
         onInputKeyDown={onInputKeyDown}
         onInputKeyPress={onInputKeyPress}
         onInputKeyUp={onInputKeyUp}
+        ref={toggleButtonRef}
       >
         {isClearable && selectedItem && (
           <ClearIndicator

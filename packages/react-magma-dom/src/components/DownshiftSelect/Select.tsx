@@ -39,6 +39,8 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
       : null;
   }
 
+  const toggleButtonRef = React.useRef<HTMLButtonElement>();
+
   const {
     isOpen,
     selectedItem,
@@ -80,12 +82,6 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
 
   const { ClearIndicator } = defaultComponents({ ...customComponents });
 
-  function defaultHandleClearIndicatorClick(event: React.SyntheticEvent) {
-    event.stopPropagation();
-
-    reset();
-  }
-
   const toggleButtonProps = getToggleButtonProps({
     disabled: isDisabled,
     onBlur,
@@ -102,9 +98,19 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
     },
     onKeyPress,
     onKeyUp,
-    onFocus
+    onFocus,
+    ref: toggleButtonRef
   });
 
+  function defaultHandleClearIndicatorClick(event: React.SyntheticEvent) {
+    event.stopPropagation();
+
+    if (toggleButtonRef.current) {
+      toggleButtonRef.current.focus();
+    }
+
+    reset();
+  }
   return (
     <DownshiftSelectContainer
       getLabelProps={getLabelProps}

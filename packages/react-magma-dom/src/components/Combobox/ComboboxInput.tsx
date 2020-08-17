@@ -13,6 +13,8 @@ import {
   UseComboboxGetInputPropsOptions
 } from 'downshift';
 
+import { SelectedItemsWrapper } from '../DownshiftSelect/shared';
+
 const ComboBoxContainer = styled.div<{
   hasError?: boolean;
   isInverse?: boolean;
@@ -80,10 +82,9 @@ const StyledInput = styled.input`
   border: 0;
   display: flex;
   flex-grow: 1;
-  float: left;
-  height: 100%;
-  min-height: 40px;
-  width: auto;
+  min-width: 30px;
+  padding-left: 4px;
+  width: 0;
 
   &:focus {
     outline: 0;
@@ -111,86 +112,93 @@ interface ComboboxInputProps<T> {
   selectedItems?: React.ReactNode;
 }
 
-export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
-  const {
-    ariaDescribedBy,
-    children,
-    customComponents,
-    getComboboxProps,
-    getInputProps,
-    getToggleButtonProps,
-    hasError,
-    isDisabled,
-    isInverse,
-    isLoading,
-    onInputBlur,
-    onInputFocus,
-    onInputKeyDown,
-    onInputKeyPress,
-    onInputKeyUp,
-    selectedItems
-  } = props;
-  const theme = React.useContext(ThemeContext);
+export const ComboboxInput = React.forwardRef(
+  <T extends {}>(props: ComboboxInputProps<T>, ref: any) => {
+    const {
+      ariaDescribedBy,
+      children,
+      customComponents,
+      getComboboxProps,
+      getInputProps,
+      getToggleButtonProps,
+      hasError,
+      isDisabled,
+      isInverse,
+      isLoading,
+      onInputBlur,
+      onInputFocus,
+      onInputKeyDown,
+      onInputKeyPress,
+      onInputKeyUp,
+      selectedItems
+    } = props;
+    const theme = React.useContext(ThemeContext);
 
-  const [isFocused, setIsFocused] = React.useState<boolean>(false);
+    const [isFocused, setIsFocused] = React.useState<boolean>(false);
 
-  const { DropdownIndicator, LoadingIndicator } = defaultComponents({
-    ...customComponents
-  });
+    const { DropdownIndicator, LoadingIndicator } = defaultComponents({
+      ...customComponents
+    });
 
-  function handleBlur(e) {
-    setIsFocused(false);
-    if (onInputBlur) {
-      onInputBlur(e);
+    function handleBlur(e) {
+      setIsFocused(false);
+      if (onInputBlur) {
+        onInputBlur(e);
+      }
     }
-  }
 
-  function handleFocus(e) {
-    setIsFocused(true);
-    if (onInputFocus) {
-      onInputFocus(e);
+    function handleFocus(e) {
+      setIsFocused(true);
+      if (onInputFocus) {
+        onInputFocus(e);
+      }
     }
-  }
 
-  const inputProps = getInputProps({
-    disabled: isDisabled,
-    onBlur: handleBlur,
-    onFocus: handleFocus,
-    onKeyDown: onInputKeyDown,
-    onKeyPress: onInputKeyPress,
-    onKeyUp: onInputKeyUp
-  });
+    const inputProps = getInputProps({
+      disabled: isDisabled,
+      onBlur: handleBlur,
+      onFocus: handleFocus,
+      onKeyDown: onInputKeyDown,
+      onKeyPress: onInputKeyPress,
+      onKeyUp: onInputKeyUp,
+      ref
+    });
 
-  return (
-    <ComboBoxContainer
-      {...getComboboxProps()}
-      hasError={hasError}
-      isDisabled={isDisabled}
-      isInverse={isInverse}
-      theme={theme}
-    >
-      <InputContainer
-        {...getToggleButtonProps({ disabled: isDisabled })}
+    return (
+      <ComboBoxContainer
+        {...getComboboxProps()}
         hasError={hasError}
         isDisabled={isDisabled}
-        isFocused={isFocused}
         isInverse={isInverse}
         theme={theme}
       >
-        {selectedItems}
-        <StyledInput
-          {...inputProps}
-          aria-describedby={ariaDescribedBy}
-          aria-invalid={hasError}
-          disabled={isDisabled}
+        <InputContainer
+          {...getToggleButtonProps({ disabled: isDisabled })}
+          hasError={hasError}
+          isDisabled={isDisabled}
+          isFocused={isFocused}
+          isInverse={isInverse}
           theme={theme}
-        />
-        {children}
-        {isLoading && (
-          <LoadingIndicator style={{ flexShrink: 0, marginRight: 'px' }} />
-        )}
-        <DropdownIndicator aria-label="toggle menu" />
-      </InputContainer>
-    </ComboBoxContainer>
-  );
-}
+        >
+          <SelectedItemsWrapper>
+            {selectedItems}
+            <StyledInput
+              {...inputProps}
+              aria-describedby={ariaDescribedBy}
+              aria-invalid={hasError}
+              disabled={isDisabled}
+              theme={theme}
+            />
+          </SelectedItemsWrapper>
+          {children}
+          {isLoading && (
+            <LoadingIndicator style={{ flexShrink: 0, marginRight: '4px' }} />
+          )}
+          <DropdownIndicator aria-label="toggle menu" />
+        </InputContainer>
+      </ComboBoxContainer>
+    );
+  }
+);
+// export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
+// }

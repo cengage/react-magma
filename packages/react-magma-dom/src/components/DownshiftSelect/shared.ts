@@ -17,7 +17,7 @@ export const StyledButton = styled.div`
 
 export const SelectText = styled.span`
   flex-grow: 1;
-  padding-right: 8px;
+  padding: 0 8px 0 4px;
 `;
 
 export const StyledCard = styled(Card)<{ isOpen?: boolean }>`
@@ -38,6 +38,7 @@ export const StyledList = styled('ul')<{ isOpen?: boolean }>`
 `;
 
 export const StyledItem = styled('li')<{ isFocused?: boolean }>`
+  align-self: center;
   background: ${props =>
     props.isFocused ? props.theme.colors.neutral06 : 'transparent'};
   border: 2px dotted;
@@ -50,22 +51,26 @@ export const StyledItem = styled('li')<{ isFocused?: boolean }>`
 
 export const SelectedItemsWrapper = styled.span`
   display: flex;
+  flex-grow: 1;
   flex-wrap: wrap;
-  padding: 0 4px 0 8px;
+  padding: 0 0 0 4px;
 `;
 
 export const SelectedItemButton = styled.button`
+  align-self: center;
   background: ${props => props.theme.colors.neutral06};
   border-radius: 4px;
   border: 0;
   box-shadow: 0 0 0;
   font-size: 12px;
   line-height: 16px;
-  margin: 2px 4px 2px 0;
+  height: 24px;
+  margin: 4px 2px 4px 4px;
   padding: 4px 8px;
+  position: relative;
   white-space: nowrap;
 `;
 
 export const IconWrapper = styled.span`
-  padding-left: 4px;
+  padding-left: 12px;
 `;

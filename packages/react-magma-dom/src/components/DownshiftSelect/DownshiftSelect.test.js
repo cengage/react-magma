@@ -163,6 +163,8 @@ describe('Select', () => {
     fireEvent.click(getByTestId('clearIndicator'));
 
     expect(getByTestId('selectedItemText').textContent).not.toEqual('Red');
+
+    expect(getByTestId('selectTriggerButton')).toHaveFocus();
   });
 
   it('should open select when clicking the enter key', () => {
