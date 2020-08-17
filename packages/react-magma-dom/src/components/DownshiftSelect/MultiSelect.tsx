@@ -17,8 +17,11 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
   const {
     ariaDescribedBy,
     hasError,
+    inputStyle,
+    isLabelVisuallyHidden,
     itemToString,
     items,
+    labelStyle,
     labelText,
     isDisabled,
     isInverse,
@@ -115,6 +118,8 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
   return (
     <DownshiftSelectContainer
       getLabelProps={getLabelProps}
+      isLabelVisuallyHidden={isLabelVisuallyHidden}
+      labelStyle={labelStyle}
       labelText={labelText}
       isInverse={isInverse}
     >
@@ -124,6 +129,7 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
         hasError={hasError}
         isDisabled={isDisabled}
         isInverse={isInverse}
+        style={inputStyle}
       >
         {selectedItems &&
           selectedItems.map((multiSelectedItem, index) => {

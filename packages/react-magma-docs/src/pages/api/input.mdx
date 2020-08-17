@@ -295,7 +295,7 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 ## Custom Styles
 
 Custom styles can be passed into the Input component. The `containerStyle` property will apply to the container.
-Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
+Additional `labelStyle`, `inputStyle` and `messageStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
 
 ```.jsx
   <Input
@@ -473,7 +473,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       },
       required: false,
       description: 'Text for input placeholder',
-      defaultValue: 'Search',
+      defaultValue: '',
     },
     required: {
       type: {

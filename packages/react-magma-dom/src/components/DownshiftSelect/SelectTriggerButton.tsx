@@ -29,6 +29,7 @@ interface SelectTriggerButtonInterface<T> {
   isDisabled?: boolean;
   isInverse?: boolean;
   ref?: any;
+  style?: React.CSSProperties;
   toggleButtonProps: any;
   tabindex?: number;
 }
@@ -40,6 +41,7 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
     hasError,
     isDisabled,
     isInverse,
+    style,
     toggleButtonProps
   } = props;
   const theme = React.useContext(ThemeContext);
@@ -54,6 +56,7 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
       isDisabled={isDisabled}
       isInverse={isInverse}
       role="button"
+      style={style}
       theme={theme}
       tabIndex={isDisabled ? undefined : 0}
     >

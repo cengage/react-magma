@@ -42,6 +42,7 @@ export interface DownshiftComboboxInterface<T>
     >
   ) => void;
   onItemCreated?: (newItem: DownshiftOption<T>) => void;
+  placeholder?: string;
 }
 
 export interface DownshiftMultiComboboxInterface<T>
@@ -63,10 +64,11 @@ export function instanceOfMultiCombobox<T>(
 
 export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
   const {
+    containerStyle,
+    errorMessage,
     id: defaultId,
     isInverse,
     isMulti,
-    errorMessage,
     messageStyle,
     helperMessage
   } = props;
@@ -86,7 +88,7 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
   const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
   return (
-    <>
+    <div style={containerStyle}>
       {isMulti && instanceOfMultiCombobox<T>(props) ? (
         <MultiCombobox
           ariaDescribedBy={descriptionId}
@@ -112,6 +114,6 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
           <>{errorMessage ? errorMessage : helperMessage}</>
         )}
       </InputMessage>
-    </>
+    </div>
   );
 }

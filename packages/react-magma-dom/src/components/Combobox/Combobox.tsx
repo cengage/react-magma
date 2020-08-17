@@ -17,12 +17,15 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
     defaultItems,
     disableCreateItem,
     hasError,
+    inputStyle,
     isClearable,
     isDisabled,
+    isLabelVisuallyHidden,
     isLoading,
     isInverse,
     items,
     itemToString,
+    labelStyle,
     labelText,
     newItemTransform,
     onInputBlur,
@@ -32,7 +35,8 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
     onInputKeyPress,
     onInputKeyUp,
     onInputValueChange,
-    onItemCreated
+    onItemCreated,
+    placeholder
   } = props;
 
   function defaultNewItemTransform(newItem) {
@@ -156,7 +160,9 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
     <DownshiftSelectContainer
       getLabelProps={getLabelProps}
       hasError={hasError}
+      isLabelVisuallyHidden={isLabelVisuallyHidden}
       isInverse={isInverse}
+      labelStyle={labelStyle}
       labelText={labelText}
     >
       <ComboboxInput
@@ -165,6 +171,7 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
         getComboboxProps={getComboboxProps}
         getInputProps={getInputProps}
         getToggleButtonProps={getToggleButtonProps}
+        inputStyle={inputStyle}
         isDisabled={isDisabled}
         isInverse={isInverse}
         isLoading={isLoading}
@@ -174,6 +181,7 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
         onInputKeyDown={onInputKeyDown}
         onInputKeyPress={onInputKeyPress}
         onInputKeyUp={onInputKeyUp}
+        placeholder={placeholder}
         ref={toggleButtonRef}
       >
         {isClearable && selectedItem && (
