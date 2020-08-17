@@ -45,7 +45,12 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
   );
 
   function getFilteredItems(unfilteredItems) {
-    return unfilteredItems.filter(item => selectedItems.indexOf(item) < 0);
+    return unfilteredItems.filter(
+      item =>
+        selectedItems.findIndex(
+          selectedItem => itemToString(selectedItem) === itemToString(item)
+        ) < 0
+    );
   }
 
   const { stateReducer, onStateChange, ...selectProps } = props;
@@ -127,27 +132,30 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
         style={inputStyle}
       >
         {selectedItems &&
-          selectedItems.map((multiSelectedItem, index) => (
-            <SelectedItemButton
-              aria-label={`reset item ${multiSelectedItem}`}
-              key={`selected-item-${index}`}
-              {...getSelectedItemProps({
-                selectedItem: multiSelectedItem,
-                index
-              })}
-              onClick={event =>
-                handleRemoveSelectedItem(event, multiSelectedItem)
-              }
-              onFocus={() => setActiveIndex(index)}
-              tabIndex={0}
-              theme={theme}
-            >
-              {multiSelectedItem}
-              <IconWrapper>
-                <CrossIcon size={8} />
-              </IconWrapper>
-            </SelectedItemButton>
-          ))}
+          selectedItems.map((multiSelectedItem, index) => {
+            const multiSelectedItemString = itemToString(multiSelectedItem);
+            return (
+              <SelectedItemButton
+                aria-label={`reset item ${multiSelectedItemString}`}
+                key={`selected-item-${index}`}
+                {...getSelectedItemProps({
+                  selectedItem: multiSelectedItem,
+                  index
+                })}
+                onClick={event =>
+                  handleRemoveSelectedItem(event, multiSelectedItem)
+                }
+                onFocus={() => setActiveIndex(index)}
+                tabIndex={0}
+                theme={theme}
+              >
+                {multiSelectedItemString}
+                <IconWrapper>
+                  <CrossIcon size={8} />
+                </IconWrapper>
+              </SelectedItemButton>
+            );
+          })}
       </SelectTriggerButton>
       <ItemsList
         getItemProps={getItemProps}

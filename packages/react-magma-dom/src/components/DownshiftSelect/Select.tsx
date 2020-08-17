@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DownshiftSelectInterface } from '.';
+import { DownshiftSelectInterface, DownshiftOption } from '.';
 import { useSelect } from 'downshift';
 import { SelectText } from './shared';
 import { defaultComponents } from './components';
@@ -16,19 +16,31 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
     hasError,
     inputStyle,
     isLabelVisuallyHidden,
+    highlightedIndex: passedInHighlightedIndex,
     itemToString,
     items,
     labelStyle,
     labelText,
+    initialSelectedItem,
     isClearable,
     isDisabled,
     isInverse,
     onBlur,
     onFocus,
+    onIsOpenChange,
     onKeyDown,
     onKeyPress,
-    onKeyUp
+    onKeyUp,
+    selectedItem: passedInSelectedItem
   } = props;
+
+  function getInitialSelectedItem(): DownshiftOption<T> {
+    return initialSelectedItem
+      ? initialSelectedItem
+      : passedInSelectedItem
+      ? passedInSelectedItem
+      : null;
+  }
 
   const toggleButtonRef = React.useRef<HTMLButtonElement>();
 
@@ -41,8 +53,35 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
     highlightedIndex,
     getItemProps,
     reset,
-    openMenu
-  } = useSelect(props);
+    openMenu,
+    setHighlightedIndex
+  } = useSelect({
+    ...props,
+    onIsOpenChange: changes => {
+      const {
+        isOpen: changedIsOpen,
+        selectedItem: changedSelectedItem
+      } = changes;
+      if (changedIsOpen) {
+        setHighlightedIndex(
+          items.findIndex(
+            i => itemToString(i) === itemToString(changedSelectedItem)
+          )
+        );
+      }
+
+      onIsOpenChange &&
+        typeof onIsOpenChange === 'function' &&
+        onIsOpenChange(changes);
+    },
+    initialHighlightedIndex: passedInHighlightedIndex
+      ? passedInHighlightedIndex
+      : passedInSelectedItem || initialSelectedItem
+      ? items.findIndex(
+          i => itemToString(i) === itemToString(getInitialSelectedItem())
+        )
+      : -1
+  });
 
   const { ClearIndicator } = defaultComponents({ ...customComponents });
 
