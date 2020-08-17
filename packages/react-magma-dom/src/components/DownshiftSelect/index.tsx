@@ -14,12 +14,16 @@ export type DownshiftOption<T> =
 
 export interface InternalSelectInterface {
   components?: DownshiftComponents;
+  containerStyle?: React.CSSProperties;
   errorMessage?: React.ReactNode;
   helperMessage?: React.ReactNode;
+  inputStyle?: React.CSSProperties;
   isClearable?: boolean;
   isDisabled?: boolean;
   isInverse?: boolean;
+  isLabelVisuallyHidden?: boolean;
   isMulti?: boolean;
+  labelStyle?: React.CSSProperties;
   labelText: string;
   messageStyle?: React.CSSProperties;
 }
@@ -79,6 +83,7 @@ export function instanceOfToBeCreatedItemObject(
 
 export function DownshiftSelect<T>(props: DownshiftSelectInterface<T>) {
   const {
+    containerStyle,
     id: defaultId,
     isInverse,
     isMulti,
@@ -102,7 +107,7 @@ export function DownshiftSelect<T>(props: DownshiftSelectInterface<T>) {
   const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
   return (
-    <>
+    <div style={containerStyle}>
       {isMulti && instanceOfMultiSelect<T>(props) ? (
         <MultiSelect
           ariaDescribedBy={descriptionId}
@@ -131,6 +136,6 @@ export function DownshiftSelect<T>(props: DownshiftSelectInterface<T>) {
           <>{errorMessage ? errorMessage : helperMessage}</>
         )}
       </InputMessage>
-    </>
+    </div>
   );
 }

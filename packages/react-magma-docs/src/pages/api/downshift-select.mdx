@@ -78,9 +78,9 @@ which is a function that returns the string representation of your `item` which 
   }
 ```
 
-## Inital State
+## Initial State
 
-Set inital state using the `initalSelectedItem` and `initialHighlightedIndex` props.
+Set initial state using the `initialSelectedItem` and `initialHighlightedIndex` props.
 
 ```.jsx
   () => {
@@ -290,8 +290,8 @@ The `helperMessage` appears underneath the select field. It will not appear if a
 
 ## Accessibility
 
-The `getA11yStatusMessage` prop is a passed in function that allows for cusomization of the screen-reader accessible message whenever the following props
-are changes: `items`, `highlightedIndex`, `inputValue` or `isOpen`.
+The `getA11yStatusMessage` prop is a passed in function that allows for customization of the screen-reader accessible message whenever the following props
+are changed: `items`, `highlightedIndex`, `inputValue` or `isOpen`.
 
 The `getA11ySelectionMessage` prop is a passed in function that allows for customization of the screen-reader accessible message
 whenever an item has been selected.
@@ -437,6 +437,50 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
   }
 ```
 
+## Custom Styles
+
+Custom styles can be passed into the Select component. The `containerStyle` property will apply to the container.
+Additional `labelStyle`, `inputStyle` and `messageStyle` properties are available to style the respective elements.
+Please use discretion when adding custom styles.
+
+
+```.jsx
+  () => {
+    const [selectedItem, updateSelectedItem] = React.useState('');
+
+    function onSelectedItemChange(changes) {
+      updateSelectedItem(changes.selectedItem);
+    }
+
+    return <>
+      <DownshiftSelect
+        containerStyle={{ marginBottom: '32px'}}
+        helperMessage="Helper message"
+        inputStyle={{ border: '2px dotted green', width: '200px'}}
+        items={['Red', 'Blue', 'Green']}
+        labelStyle={{ fontStyle: 'italic' }}
+        labelText="Basic with Custom Styles"
+        messageStyle={{ border: '1px solid blue' }}
+        selectedItem={selectedItem}
+        onSelectedItemChange={onSelectedItemChange}
+      />
+
+      <DownshiftSelect
+        containerStyle={{ marginBottom: '32px'}}
+        helperMessage="Helper message"
+        inputStyle={{ border: '2px dotted green', width: '200px'}}
+        isMulti
+        items={['Red', 'Blue', 'Green']}
+        labelStyle={{ fontStyle: 'italic' }}
+        labelText="Multi with Custom Styles"
+        messageStyle={{ border: '1px solid blue' }}
+        selectedItem={selectedItem}
+        onSelectedItemChange={onSelectedItemChange}
+      />
+    </>
+  }
+```
+
 ## Select Props
 
 <SimplePropsTable
@@ -448,6 +492,13 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
       required: false,
       description:
         'Custom components',
+    },
+    containerStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the component container',
     },
     errorMessage: {
       type: {
@@ -465,6 +516,13 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
       required: false,
       description: 'Content of the helper message',
       defaultValue: '',
+    },
+    inputStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the select input',
     },
     isClearable: {
       type: {
@@ -499,7 +557,7 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
       },
       required: false,
       description:
-        'Index of the initally selected item',
+        'Index of the initially selected item',
     },
     initialSelectedItem: {
       type: {
@@ -507,7 +565,16 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
       },
       required: false,
       description:
-        'Value of the initally selected item',
+        'Value of the initially selected item',
+    },
+    isLabelVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
     },
     isMulti: {
       type: {
@@ -533,6 +600,13 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
       required: false,
       description:
         'Function that returns the string representation of your item which will be applied as the label when using a custom shape for items',
+    },
+    labelStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the label',
     },
     labelText: {
       type: {

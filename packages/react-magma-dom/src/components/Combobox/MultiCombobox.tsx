@@ -26,11 +26,14 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     defaultItems,
     disableCreateItem,
     hasError,
+    inputStyle,
     isDisabled,
+    isLabelVisuallyHidden,
     isLoading,
     isInverse,
     items,
     itemToString,
+    labelStyle,
     labelText,
     newItemTransform,
     onInputBlur,
@@ -40,7 +43,8 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     onInputKeyUp,
     onInputValueChange,
     onItemCreated,
-    onRemoveSelectedItem
+    onRemoveSelectedItem,
+    placeholder
   } = props;
   const {
     getSelectedItemProps,
@@ -208,6 +212,8 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     <DownshiftSelectContainer
       getLabelProps={getLabelProps}
       isInverse={isInverse}
+      isLabelVisuallyHidden={isLabelVisuallyHidden}
+      labelStyle={labelStyle}
       labelText={labelText}
     >
       <ComboboxInput
@@ -224,6 +230,7 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
           })
         })}
         getToggleButtonProps={getToggleButtonProps}
+        inputStyle={inputStyle}
         isDisabled={isDisabled}
         isInverse={isInverse}
         isLoading={isLoading}
@@ -233,6 +240,7 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
         onInputKeyDown={onInputKeyDown}
         onInputKeyPress={onInputKeyPress}
         onInputKeyUp={onInputKeyUp}
+        placeholder={placeholder}
         selectedItems={selectedItemsContent}
       />
       <ItemsList

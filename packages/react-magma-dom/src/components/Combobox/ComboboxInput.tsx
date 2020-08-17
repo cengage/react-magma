@@ -39,6 +39,7 @@ const InputContainer = styled.div<{
       : props.theme.colors.neutral03};
   border-radius: 4px;
   display: flex;
+  min-height: 40px;
   padding: 0 8px 0 0;
   width: 100%;
 
@@ -82,6 +83,7 @@ const StyledInput = styled.input`
   border: 0;
   display: flex;
   flex-grow: 1;
+  height: 32px;
   min-width: 30px;
   padding-left: 4px;
   width: 0;
@@ -101,6 +103,7 @@ interface ComboboxInputProps<T> {
     options?: UseComboboxGetToggleButtonPropsOptions
   ) => any;
   hasError?: boolean;
+  inputStyle?: React.CSSProperties;
   isDisabled?: boolean;
   isInverse?: boolean;
   isLoading?: boolean;
@@ -109,6 +112,7 @@ interface ComboboxInputProps<T> {
   onInputKeyDown?: (event: React.KeyboardEvent) => void;
   onInputKeyPress?: (event: React.KeyboardEvent) => void;
   onInputKeyUp?: (event: React.KeyboardEvent) => void;
+  placeholder?: string;
   selectedItems?: React.ReactNode;
 }
 
@@ -122,6 +126,7 @@ export const ComboboxInput = React.forwardRef(
       getInputProps,
       getToggleButtonProps,
       hasError,
+      inputStyle,
       isDisabled,
       isInverse,
       isLoading,
@@ -130,6 +135,7 @@ export const ComboboxInput = React.forwardRef(
       onInputKeyDown,
       onInputKeyPress,
       onInputKeyUp,
+      placeholder,
       selectedItems
     } = props;
     const theme = React.useContext(ThemeContext);
@@ -178,6 +184,7 @@ export const ComboboxInput = React.forwardRef(
           isDisabled={isDisabled}
           isFocused={isFocused}
           isInverse={isInverse}
+          style={inputStyle}
           theme={theme}
         >
           <SelectedItemsWrapper>
@@ -187,6 +194,7 @@ export const ComboboxInput = React.forwardRef(
               aria-describedby={ariaDescribedBy}
               aria-invalid={hasError}
               disabled={isDisabled}
+              placeholder={placeholder}
               theme={theme}
             />
           </SelectedItemsWrapper>
@@ -200,5 +208,3 @@ export const ComboboxInput = React.forwardRef(
     );
   }
 );
-// export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
-// }

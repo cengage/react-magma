@@ -14,8 +14,11 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
     ariaDescribedBy,
     components: customComponents,
     hasError,
+    inputStyle,
+    isLabelVisuallyHidden,
     itemToString,
     items,
+    labelStyle,
     labelText,
     isClearable,
     isDisabled,
@@ -76,6 +79,8 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
     <DownshiftSelectContainer
       getLabelProps={getLabelProps}
       isInverse={isInverse}
+      isLabelVisuallyHidden={isLabelVisuallyHidden}
+      labelStyle={labelStyle}
       labelText={labelText}
     >
       <SelectTriggerButton
@@ -84,6 +89,7 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
         hasError={hasError}
         isDisabled={isDisabled}
         isInverse={isInverse}
+        style={inputStyle}
       >
         <SelectText data-testid="selectedItemText">
           {itemToString(selectedItem) || 'Select...'}
