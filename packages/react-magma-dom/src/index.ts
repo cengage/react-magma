@@ -81,10 +81,10 @@ export { Search, SearchProps } from './components/Search';
 export { DownshiftSelect } from './components/DownshiftSelect';
 export { Combobox } from './components/Combobox';
 
-export { Select } from './components/Select';
-export { AsyncSelect } from './components/AsyncSelect';
-export { CreatableSelect } from './components/CreatableSelect';
-export { AsyncCreatableSelect } from './components/AsyncCreatableSelect';
+export { LegacySelect } from './components/LegacySelect';
+export { LegacyAsyncSelect } from './components/LegacyAsyncSelect';
+export { LegacyCreatableSelect } from './components/LegacyCreatableSelect';
+export { LegacyAsyncCreatableSelect } from './components/LegacyAsyncCreatableSelect';
 
 export { SkipLink, SkipLinkProps } from './components/SkipLink';
 export {
