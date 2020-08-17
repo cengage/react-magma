@@ -30,7 +30,11 @@ For combobox/autocomplete functionality, please see the <Link to="/api/comboboxe
         id="basicSelectId"
         name="basic"
         labelText="Basic"
-        items={['Red', 'Blue', 'Green']}
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
         selectedItem={selectedItem}
         onSelectedItemChange={onSelectedItemChange}
       />
@@ -87,15 +91,23 @@ Set inital state using the `initalSelectedItem` and `initialHighlightedIndex` pr
         id="initialSelectedByItemSelectId"
         name="initialSelectedByItem"
         labelText="Initial Selected By Item"
-        items={['Red', 'Blue', 'Green']}
-        initialSelectedItem={'Green'}
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        initialSelectedItem={{ label: 'Green', value: 'green' }}
       />
 
       <DownshiftSelect
         id="initialSelectedByIndexSelectId"
         name="initialSelectedByIndex"
         labelText="Initial Selected By Index"
-        items={['Red', 'Blue', 'Green']}
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
         initialHighlightedIndex={1}
       />
     </>
@@ -134,7 +146,7 @@ includes the changes made to state from each action as well as a `type` that des
     }
 
     return <>
-      <p><strong>Selected Item: </strong>{selectedItem}</p>
+      <strong>Selected Item: </strong><pre>{JSON.stringify(selectedItem, null, 2)}</pre>
       <p><strong>Highlighted Index Change Count: </strong>{highlightedIndexChangeCount}</p>
       <p><strong>Is Open Change Count: </strong>{isOpenChangeCount}</p>
 
@@ -142,7 +154,11 @@ includes the changes made to state from each action as well as a `type` that des
         id="stateChangesId"
         name="stateChanges"
         labelText="State Changes"
-        items={['Red', 'Blue', 'Green']}
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
         onHighlightedIndexChange={onHighlightedIndexChange}
         onIsOpenChange={onIsOpenChange}
         onSelectedItemChange={onSelectedItemChange}
@@ -154,7 +170,11 @@ includes the changes made to state from each action as well as a `type` that des
         id="stateChangesId"
         name="stateChanges"
         labelText="State Changes"
-        items={['Red', 'Blue', 'Green']}
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
         onStateChange={onStateChange}
       />
     </>
@@ -186,7 +206,7 @@ you will have to use the handlers mentioned above in the <Link to="/api/downshif
     }
 
     return <>
-      <p><strong>Selected Item: </strong>{selectedItem}</p>
+      <strong>Selected Item: </strong><pre>{JSON.stringify(selectedItem, null, 2)}</pre>
       <p><strong>Highlighted Index: </strong>{highlightedIndex}</p>
       <p><strong>Is Open: </strong>{isOpen.toString()}</p>
 
@@ -194,7 +214,11 @@ you will have to use the handlers mentioned above in the <Link to="/api/downshif
         id="controlledId"
         name="controlled"
         labelText="Controlled"
-        items={['Red', 'Blue', 'Green']}
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
         isOpen={isOpen}
         highlightedIndex={highlightedIndex}
         selectedItem={selectedItem}
@@ -214,7 +238,11 @@ you will have to use the handlers mentioned above in the <Link to="/api/downshif
     isDisabled
     name="disabled"
     labelText="Disabled"
-    items={['Red', 'Blue', 'Green']}
+    items={[
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' }
+    ]}
   />
 ```
 
@@ -232,8 +260,12 @@ These props are `defaultSelectedItem`, and `defaultHighlightedIndex`.
         id="clearableSelectId"
         name="clearable"
         labelText="Clearable"
-        items={['Red', 'Blue', 'Green']}
-        initialSelectedItem={'Green'}
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        initialSelectedItem={{ label: 'Green', value: 'green' }}
         isClearable
       />
 
@@ -241,9 +273,13 @@ These props are `defaultSelectedItem`, and `defaultHighlightedIndex`.
         id="clearableWithDefaultsId"
         name="clearableWithDefaults"
         labelText="Clearable With Defaults"
-        items={['Red', 'Blue', 'Green']}
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
         isClearable
-        defaultSelectedItem={'Blue'}
+        defaultSelectedItem={{ label: 'Blue', value: 'blue' }}
       />
     </>
   }
@@ -261,7 +297,11 @@ If an error message is present, it will replace the helper text. Can be a node o
         id="errorMessage"
         name="error"
         labelText="Error Message"
-        items={['Red', 'Blue', 'Green']}
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
         errorMessage="Please select a color"
       />
     </>
@@ -279,7 +319,11 @@ The `helperMessage` appears underneath the select field. It will not appear if a
         id="helperMessage"
         name="helper"
         labelText="Helper Message"
-        items={['Red', 'Blue', 'Green']}
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
         helperMessage="Helper text goes here"
       />
     </>
@@ -304,7 +348,11 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
         id="newA11yStatusMessageId"
         name="newA11yStatusMessage"
         labelText="New A11y Status Message"
-        items={['Red', 'Blue', 'Green']}
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
         getA11yStatusMessage={({highlightedItem}) => `custom message saying that ${highlightedItem} is highlighted`}
         getA11ySelectionMessage={({selectedItem}) => `custom message saying that ${selectedItem} is now selected`}
       />
@@ -334,8 +382,25 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
         isMulti
         name="multiSelect"
         labelText="Multi Select"
-        items={['Red', 'Blue', 'Green', 'Orange', 'Aqua', 'Gold', 'Perriwinkle', 'Lavender', 'Marigold', 'Yellow', 'Purple', 'Dusty Rose', 'Burnt Sienna']}
-        initialSelectedItems={['Red', 'Blue']}
+        items={[
+          {label: 'Red', value: 'red'},
+          {label: 'Blue', value: 'blue'},
+          {label: 'Green', value: 'green'},
+          {label: 'Orange', value: 'orange'},
+          {label: 'Aqua', value: 'aqua'},
+          {label: 'Gold', value: 'gold'},
+          {label: 'Perriwinkle', value: 'perriwinkle'},
+          {label: 'Lavender', value: 'lavender'},
+          {label: 'Marigold', value: 'marigold'},
+          {label: 'Yellow', value: 'yellow'},
+          {label: 'Purple', value: 'purple'},
+          {label: 'Dusty Rose', value: 'dusty_rose'},
+          {label: 'Burnt Sienna', value: 'burnt_sienna'}
+        ]}
+        initialSelectedItems={[
+          {label: 'Red', value: 'red'},
+          {label: 'Blue', value: 'blue'}
+        ]}
       />
 
       <DownshiftSelect
@@ -343,7 +408,21 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
         isMulti
         name="multiSelectControlled"
         labelText="Multi Select Controlled"
-        items={['Red', 'Blue', 'Green', 'Orange', 'Aqua', 'Gold', 'Perriwinkle', 'Lavender', 'Marigold', 'Yellow', 'Purple', 'Dusty Rose', 'Burnt Sienna']}
+        items={[
+          {label: 'Red', value: 'red'},
+          {label: 'Blue', value: 'blue'},
+          {label: 'Green', value: 'green'},
+          {label: 'Orange', value: 'orange'},
+          {label: 'Aqua', value: 'aqua'},
+          {label: 'Gold', value: 'gold'},
+          {label: 'Perriwinkle', value: 'perriwinkle'},
+          {label: 'Lavender', value: 'lavender'},
+          {label: 'Marigold', value: 'marigold'},
+          {label: 'Yellow', value: 'yellow'},
+          {label: 'Purple', value: 'purple'},
+          {label: 'Dusty Rose', value: 'dusty_rose'},
+          {label: 'Burnt Sienna', value: 'burnt_sienna'}
+        ]}
         selectedItems={selectedItems}
         onSelectedItemsChange={handleSelectedItemsChange}
         onRemoveSelectedItem={handleRemoveSelectedItem}
@@ -378,7 +457,11 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
           id="selectFocusEventId"
           name="selectFocusEvent"
           labelText="Select Focus Events"
-          items={['Red', 'Blue', 'Green']}
+          items={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' }
+          ]}
           onBlur={handleSelectBlur}
           onFocus={handleSelectFocus}
           onKeyPress={handleSelectKeyPress}
@@ -417,7 +500,11 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
         isInverse
         name="basic"
         labelText="Basic"
-        items={['Red', 'Blue', 'Green']}
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
         selectedItem={selectedItem}
         onSelectedItemChange={onSelectedItemChange}
       />
@@ -428,7 +515,11 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
         isMulti
         name="multiSelect"
         labelText="Multi Select"
-        items={['Red', 'Blue', 'Green']}
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
       />
     </div>)
 
