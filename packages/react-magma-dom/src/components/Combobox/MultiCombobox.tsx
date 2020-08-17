@@ -68,7 +68,9 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
           ? item.value
           : itemToString(item);
       return (
-        (selectedItems.indexOf(item) < 0 &&
+        (selectedItems.findIndex(
+          selectedItem => itemToString(selectedItem) === itemToString(item)
+        ) < 0 &&
           itemString.toLowerCase().startsWith(inputValue.toLowerCase())) ||
         isCreatedItem(item)
       );
@@ -175,6 +177,12 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
       : removeSelectedItem(selectedItem);
   }
 
+  function handleInputFocus(event: React.FocusEvent) {
+    setActiveIndex(-1);
+
+    onInputFocus && typeof onInputFocus === 'function' && onInputFocus(event);
+  }
+
   const theme = React.useContext(ThemeContext);
 
   const selectedItemsContent =
@@ -229,7 +237,7 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
         isLoading={isLoading}
         hasError={hasError}
         onInputBlur={onInputBlur}
-        onInputFocus={onInputFocus}
+        onInputFocus={handleInputFocus}
         onInputKeyDown={onInputKeyDown}
         onInputKeyPress={onInputKeyPress}
         onInputKeyUp={onInputKeyUp}

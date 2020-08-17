@@ -23,7 +23,11 @@ For simple Select functionality, please see the <Link to="/api/downshift-select"
       id="comboboxId"
       name="combobox"
       labelText="Combobox"
-      defaultItems={['Red', 'Blue', 'Green']}
+      defaultItems={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' }
+      ]}
       placeholder="Hello"
     />
   </>
@@ -115,15 +119,23 @@ Set inital state using the `initalSelectedItem` and `initialHighlightedIndex` pr
         id="initialSelectedByItemSelectId"
         name="initialSelectedByItem"
         labelText="Initial Selected By Item"
-        items={['Red', 'Blue', 'Green']}
-        initialSelectedItem={'Green'}
+        defaultItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        initialSelectedItem={{ label: 'Green', value: 'green' }}
       />
 
       <Combobox
         id="initialSelectedByIndexSelectId"
         name="initialSelectedByIndex"
         labelText="Initial Selected By Index"
-        items={['Red', 'Blue', 'Green']}
+        defaultItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
         initialHighlightedIndex={1}
       />
     </>
@@ -162,15 +174,19 @@ includes the changes made to state from each action as well as a `type` that des
     }
 
     return <>
-      <p><strong>Selected Item: </strong>{selectedItem}</p>
+      <strong>Selected Item: </strong><pre>{JSON.stringify(selectedItem, null, 2)}</pre>
       <p><strong>Highlighted Index Change Count: </strong>{highlightedIndexChangeCount}</p>
       <p><strong>Is Open Change Count: </strong>{isOpenChangeCount}</p>
 
       <Combobox
-        id="stateChangesId"
-        name="stateChanges"
-        labelText="State Changes"
-        items={['Red', 'Blue', 'Green']}
+        id="individualStateChangesId"
+        name="individualStateChanges"
+        labelText="Individual State Changes"
+        defaultItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
         onHighlightedIndexChange={onHighlightedIndexChange}
         onIsOpenChange={onIsOpenChange}
         onSelectedItemChange={onSelectedItemChange}
@@ -182,7 +198,11 @@ includes the changes made to state from each action as well as a `type` that des
         id="stateChangesId"
         name="stateChanges"
         labelText="State Changes"
-        items={['Red', 'Blue', 'Green']}
+        defaultItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
         onStateChange={onStateChange}
       />
     </>
@@ -198,11 +218,18 @@ prop. If no `newItemTransform` function is passed in, the created item will be t
 
 ```.jsx
   () => {
-    const defaultItems = ['Red', 'Blue', 'Green'];
+    const defaultItems = [
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' }
+    ];
     const [items, updateItems] = React.useState(defaultItems)
 
     function newItemTransform(item) {
-      return item.value
+      return {
+        label: item.value,
+        value: item.value.toLowerCase()
+      }
     }
 
     function resetItems() {
@@ -216,7 +243,7 @@ prop. If no `newItemTransform` function is passed in, the created item will be t
     return (
       <>
         <button onClick={resetItems}>Reset Items</button>
-        <strong>Items: </strong><pre>{items.toString()}</pre>
+        <strong>Items: </strong><pre>{JSON.stringify(items, null, 2)}</pre>
         <Combobox
           id="controlledItemsId"
           name="controlledItems"
@@ -238,7 +265,11 @@ prop. If no `newItemTransform` function is passed in, the created item will be t
     isDisabled
     name="disabled"
     labelText="Disabled"
-    items={['Red', 'Blue', 'Green']}
+    defaultItems={[
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' }
+    ]}
   />
 ```
 
@@ -256,8 +287,12 @@ These props are `defaultSelectedItem`, and `defaultHighlightedIndex`.
         id="clearableSelectId"
         name="clearable"
         labelText="Clearable"
-        items={['Red', 'Blue', 'Green']}
-        initialSelectedItem={'Green'}
+        defaultItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        initialSelectedItem={{ label: 'Green', value: 'green' }}
         isClearable
       />
 
@@ -265,9 +300,13 @@ These props are `defaultSelectedItem`, and `defaultHighlightedIndex`.
         id="clearableWithDefaultsId"
         name="clearableWithDefaults"
         labelText="Clearable With Defaults"
-        items={['Red', 'Blue', 'Green']}
+        defaultItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
         isClearable
-        defaultSelectedItem={'Blue'}
+        defaultSelectedItem={{ label: 'Blue', value: 'blue' }}
       />
     </>
   }
@@ -285,7 +324,11 @@ If an error message is present, it will replace the helper text. Can be a node o
         id="errorMessage"
         name="error"
         labelText="Error Message"
-        items={['Red', 'Blue', 'Green']}
+        defaultItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
         errorMessage="Please select a color"
       />
     </>
@@ -303,7 +346,11 @@ The `helperMessage` appears underneath the select field. It will not appear if a
         id="helperMessage"
         name="helper"
         labelText="Helper Message"
-        items={['Red', 'Blue', 'Green']}
+        defaultItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
         helperMessage="Helper text goes here"
       />
     </>
@@ -327,10 +374,14 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
       <Combobox
         id="newA11yStatusMessageId"
         name="newA11yStatusMessage"
-        labelText="New A11y Status Message"
-        items={['Red', 'Blue', 'Green']}
-        getA11yStatusMessage={({highlightedItem}) => `custom message saying that ${highlightedItem} is highlighted`}
-        getA11ySelectionMessage={({selectedItem}) => `custom message saying that ${selectedItem} is now selected`}
+        labelText="New Accessibility Status Message"
+        defaultItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        getA11yStatusMessage={({highlightedItem}) => `custom message saying that ${highlightedItem ? highlightedItem.label : 'nothing'} is highlighted`}
+        getA11ySelectionMessage={({selectedItem}) => `custom message saying that ${selectedItem ? selectedItem.label : 'nothing'} is now selected`}
       />
     </>
   }
@@ -345,7 +396,11 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
       id="disableCreateItemId"
       name="disableCreateItem"
       labelText="Disable Create Item"
-      defaultItems={['Red', 'Blue', 'Green']}
+      defaultItems={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' }
+      ]}
     />
   </>
 ```
@@ -373,8 +428,25 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
         id="multiComboboxId"
         name="multiCombobox"
         labelText="Multi Combobox"
-        initialSelectedItems={['Red', 'Blue']}
-        defaultItems={['Red', 'Blue', 'Green', 'Orange', 'Aqua', 'Gold', 'Perriwinkle', 'Lavender', 'Marigold', 'Yellow', 'Purple', 'Dusty Rose', 'Burnt Sienna']}
+        initialSelectedItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' }
+        ]}
+        defaultItems={[
+          {label: 'Red', value: 'red'},
+          {label: 'Blue', value: 'blue'},
+          {label: 'Green', value: 'green'},
+          {label: 'Orange', value: 'orange'},
+          {label: 'Aqua', value: 'aqua'},
+          {label: 'Gold', value: 'gold'},
+          {label: 'Perriwinkle', value: 'perriwinkle'},
+          {label: 'Lavender', value: 'lavender'},
+          {label: 'Marigold', value: 'marigold'},
+          {label: 'Yellow', value: 'yellow'},
+          {label: 'Purple', value: 'purple'},
+          {label: 'Dusty Rose', value: 'dusty_rose'},
+          {label: 'Burnt Sienna', value: 'burnt_sienna'}
+        ]}
       />
 
       <Combobox
@@ -382,8 +454,36 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
         id="multiComboboxId2"
         name="multiCombobox2"
         labelText="Multi Combobox"
-        initialSelectedItems={['Red', 'Blue', 'Green', 'Orange', 'Aqua', 'Gold', 'Perriwinkle', 'Lavender', 'Burnt Sienna']}
-        defaultItems={['Red', 'Blue', 'Green', 'Orange', 'Aqua', 'Gold', 'Perriwinkle', 'Lavender', 'Marigold', 'Yellow', 'Purple', 'Dusty Rose', 'Burnt Sienna']}
+        initialSelectedItems={[
+          {label: 'Red', value: 'red'},
+          {label: 'Blue', value: 'blue'},
+          {label: 'Green', value: 'green'},
+          {label: 'Orange', value: 'orange'},
+          {label: 'Aqua', value: 'aqua'},
+          {label: 'Gold', value: 'gold'},
+          {label: 'Perriwinkle', value: 'perriwinkle'},
+          {label: 'Lavender', value: 'lavender'},
+          {label: 'Marigold', value: 'marigold'},
+          {label: 'Yellow', value: 'yellow'},
+          {label: 'Purple', value: 'purple'},
+          {label: 'Dusty Rose', value: 'dusty_rose'},
+          {label: 'Burnt Sienna', value: 'burnt_sienna'}
+        ]}
+        defaultItems={[
+          {label: 'Red', value: 'red'},
+          {label: 'Blue', value: 'blue'},
+          {label: 'Green', value: 'green'},
+          {label: 'Orange', value: 'orange'},
+          {label: 'Aqua', value: 'aqua'},
+          {label: 'Gold', value: 'gold'},
+          {label: 'Perriwinkle', value: 'perriwinkle'},
+          {label: 'Lavender', value: 'lavender'},
+          {label: 'Marigold', value: 'marigold'},
+          {label: 'Yellow', value: 'yellow'},
+          {label: 'Purple', value: 'purple'},
+          {label: 'Dusty Rose', value: 'dusty_rose'},
+          {label: 'Burnt Sienna', value: 'burnt_sienna'}
+        ]}
       />
 
       <Combobox
@@ -392,7 +492,11 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
         isMulti
         name="multiComboboxControlled"
         labelText="Multi Combobox Controlled"
-        defaultItems={['Red', 'Blue', 'Green']}
+        defaultItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
         selectedItems={selectedItems}
         onSelectedItemsChange={handleSelectedItemsChange}
         onRemoveSelectedItem={handleRemoveSelectedItem}
@@ -428,7 +532,11 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
           id="comboboxFocusEventId"
           name="comboboxFocusEvent"
           labelText="Combobox Focus Events"
-          defaultItems={['Red', 'Blue', 'Green']}
+          defaultItems={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' }
+          ]}
           onInputBlur={handleComboboxInputBlur}
           onInputFocus={handleComboboxInputFocus}
           onInputKeyPress={handleComboboxInputKeyPress}
@@ -445,11 +553,17 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
     const [isLoading, updateIsLoading] = React.useState(false);
 
     function loadItems(inputValue) {
-      return new Promise(resolve => resolve(['Yellow', 'Pink', 'Perrywinkle']))
+      return new Promise(resolve => resolve([
+        { label: 'Yellow', value: 'yellow'},
+        { label: 'Pink', value: 'pink' },
+        { label: 'Perrywinkle', value: 'perrywinkle'}
+      ]))
     }
 
     function handleInputValueChange(changes, setInputItems) {
       const { inputValue } = changes;
+
+      if (!inputValue) return
 
       updateIsLoading(true);
 
@@ -458,6 +572,7 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
         loadItems(inputValue).then((items) => {
           setInputItems(items.filter(item =>
             item
+              .label
               .toLowerCase()
               .startsWith(inputValue.toLowerCase())
           ))
@@ -470,7 +585,11 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
       name="async"
       labelText="Async"
       isLoading={isLoading}
-      defaultItems={['Red', 'Blue', 'Green']}
+      defaultItems={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' }
+      ]}
       onInputValueChange={handleInputValueChange}
     />
   }
@@ -504,9 +623,13 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
       <Combobox
         id="comboboxInverseId"
         isInverse
-        name="combobox"
+        name="comboboxInverse"
         labelText="Combobox"
-        defaultItems={['Red', 'Blue', 'Green']}
+        defaultItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
       />
 
       <Combobox
@@ -515,9 +638,17 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
         id="comboboxMultiInverseId"
         isInverse
         labelText="Multi Combobox"
-        defaultItems={['Red', 'Blue', 'Green']}
-        initialSelectedItems={['Red', 'Green', 'Blue']}
-        name="comboboxmulti"
+        defaultItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        initialSelectedItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        name="comboboxmultiInverse"
       />
     </div>)
 
@@ -531,11 +662,17 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
     const [isLoading, updateIsLoading] = React.useState(false);
 
     function loadItems(inputValue) {
-      return new Promise(resolve => resolve(['Yellow', 'Pink', 'Perrywinkle']))
+      return new Promise(resolve => resolve([
+        { label: 'Yellow', value: 'yellow'},
+        { label: 'Pink', value: 'pink' },
+        { label: 'Perrywinkle', value: 'perrywinkle'}
+      ]))
     }
 
     function handleInputValueChange(changes, setInputItems) {
       const { inputValue } = changes;
+
+      if (!inputValue) return
 
       updateIsLoading(true);
 
@@ -544,6 +681,7 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
         loadItems(inputValue).then((items) => {
           setInputItems(items.filter(item =>
             item
+              .label
               .toLowerCase()
               .startsWith(inputValue.toLowerCase())
           ))
@@ -557,7 +695,11 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
         name="customComponents"
         labelText="Custom Components"
         isLoading={isLoading}
-        defaultItems={['Red', 'Blue', 'Green']}
+        defaultItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
         isClearable
         onInputValueChange={handleInputValueChange}
         components={{

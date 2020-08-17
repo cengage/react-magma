@@ -200,5 +200,3 @@ export const ComboboxInput = React.forwardRef(
     );
   }
 );
-// export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
-// }

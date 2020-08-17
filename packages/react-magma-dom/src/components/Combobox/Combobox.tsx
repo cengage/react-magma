@@ -89,6 +89,13 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
               : itemToString(state.selectedItem),
           selectedItem: state.selectedItem ? state.selectedItem : ''
         };
+      case useCombobox.stateChangeTypes.FunctionReset:
+        return {
+          ...changes,
+          inputValue: changes.selectedItem
+            ? itemToString(changes.selectedItem)
+            : ''
+        };
       default:
         return changes;
     }
@@ -137,8 +144,6 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
 
   function defaultHandleClearIndicatorClick(event: React.SyntheticEvent) {
     event.stopPropagation();
-
-    console.log('toggleButtonRef', toggleButtonRef.current);
 
     if (toggleButtonRef.current) {
       toggleButtonRef.current.focus();
