@@ -55,7 +55,7 @@ which is a function that returns the string representation of your `item` which 
 ```.jsx
   () => {
     function itemToString(item) {
-      return item ? item.representation : ''
+      return item ? `${item.representation} (${item.hex})` : ''
     }
 
     return <>
@@ -66,15 +66,18 @@ which is a function that returns the string representation of your `item` which 
         items={[{
           id: 1,
           actual: 'red',
-          representation: 'Red'
+          representation: 'Red',
+          hex: '#FF0000'
         }, {
           id: 2,
           actual: 'blue',
-          representation: 'Blue'
+          representation: 'Blue',
+          hex: '#0000FF'
         }, {
           id: 3,
           actual: 'green',
-          representation: 'Green'
+          representation: 'Green',
+          hex: '#008000'
         }]}
         itemToString={itemToString}
       />
