@@ -928,6 +928,38 @@ Please use discretion when adding custom styles.
       required: false,
       description: 'Style properties for the helper or error message',
     },
+     onHighlightedIndexChange: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Event that fires when the highlighted index changes',
+      defaultValue: '',
+    },
+    onIsOpenChange: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Event that fires when the options menu opens or closes',
+      defaultValue: '',
+    },
+    onSelectedItemChange: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Event that fires hen the selected item changes',
+      defaultValue: '',
+    },
+    onStateChange: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Event that fires on every internal state changes',
+      defaultValue: '',
+    },
     placeholder: {
       type: {
         name: 'string',
