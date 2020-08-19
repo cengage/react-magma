@@ -13,10 +13,10 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
   const {
     ariaDescribedBy,
     components: customComponents,
+    defaultSelectedItem,
     hasError,
     inputStyle,
     isLabelVisuallyHidden,
-    highlightedIndex: passedInHighlightedIndex,
     itemToString,
     items,
     labelStyle,
@@ -34,15 +34,34 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
     selectedItem: passedInSelectedItem
   } = props;
 
-  function getInitialSelectedItem(): DownshiftOption<T> {
-    return initialSelectedItem
-      ? initialSelectedItem
-      : passedInSelectedItem
-      ? passedInSelectedItem
-      : null;
+  const toggleButtonRef = React.useRef<HTMLButtonElement>();
+
+  function getValidItem(itemToCheck: DownshiftOption<T>, key: string): object {
+    return items.findIndex(
+      i => itemToString(i) === itemToString(itemToCheck)
+    ) !== -1
+      ? { [key]: itemToCheck }
+      : { [key]: null };
   }
 
-  const toggleButtonRef = React.useRef<HTMLButtonElement>();
+  function handleOnIsOpenChange(changes) {
+    const {
+      isOpen: changedIsOpen,
+      selectedItem: changedSelectedItem
+    } = changes;
+
+    if (changedIsOpen && changedSelectedItem) {
+      setHighlightedIndex(
+        items.findIndex(
+          i => itemToString(i) === itemToString(changedSelectedItem)
+        )
+      );
+    }
+
+    onIsOpenChange &&
+      typeof onIsOpenChange === 'function' &&
+      onIsOpenChange(changes);
+  }
 
   const {
     isOpen,
@@ -55,32 +74,15 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
     reset,
     openMenu,
     setHighlightedIndex
-  } = useSelect({
+  } = useSelect<DownshiftOption<T>>({
     ...props,
-    onIsOpenChange: changes => {
-      const {
-        isOpen: changedIsOpen,
-        selectedItem: changedSelectedItem
-      } = changes;
-      if (changedIsOpen) {
-        setHighlightedIndex(
-          items.findIndex(
-            i => itemToString(i) === itemToString(changedSelectedItem)
-          )
-        );
-      }
-
-      onIsOpenChange &&
-        typeof onIsOpenChange === 'function' &&
-        onIsOpenChange(changes);
-    },
-    initialHighlightedIndex: passedInHighlightedIndex
-      ? passedInHighlightedIndex
-      : passedInSelectedItem || initialSelectedItem
-      ? items.findIndex(
-          i => itemToString(i) === itemToString(getInitialSelectedItem())
-        )
-      : -1
+    onIsOpenChange: handleOnIsOpenChange,
+    ...(defaultSelectedItem &&
+      getValidItem(defaultSelectedItem, 'defaultSelectedItem')),
+    ...(initialSelectedItem &&
+      getValidItem(initialSelectedItem, 'initialSelectedItem')),
+    ...(passedInSelectedItem &&
+      getValidItem(passedInSelectedItem, 'selectedItem'))
   });
 
   const { ClearIndicator } = defaultComponents({ ...customComponents });

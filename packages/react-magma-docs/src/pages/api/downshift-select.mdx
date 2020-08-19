@@ -17,6 +17,11 @@ Select components are used for collecting user provided information from a list 
 
 For combobox/autocomplete functionality, please see the <Link to="/api/combobox">Combobox component</Link>.
 
+By default when passing in a `selectedItem` it will be checked to make sure it is in your `items` array. The check will use the
+`itemToString` function on both the `selectedItem` and each `item` in the array. The default `itemToString` function
+is able to be used for `items` that are either `strings` or an object with the shape `{item: string; label: string;}`.
+If you are using a custom items format see the [Custom Items example](/api/downshift-select/#custom_items).
+
 ```.jsx
   () => {
     const [selectedItem, updateSelectedItem] = React.useState('');
@@ -37,6 +42,18 @@ For combobox/autocomplete functionality, please see the <Link to="/api/combobox"
         ]}
         selectedItem={selectedItem}
         onSelectedItemChange={onSelectedItemChange}
+      />
+
+      <DownshiftSelect
+        id="badSelectedItemId"
+        name="badSelectedItem"
+        labelText="Bad Selected Item"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        selectedItem={{ label: 'Purple', value: 'purple' }}
       />
     </>
   }
@@ -88,6 +105,14 @@ which is a function that returns the string representation of your `item` which 
 ## Initial State
 
 Set initial state using the `initialSelectedItem` and `initialHighlightedIndex` props.
+
+<Alert variant="info">
+  When using any of the <code>initial[prop]</code> props
+  be aware that passing in the controlled version of that prop will overwrite the initial version.
+  <br />
+  <br />
+  <strong>Ex: </strong><code>selectedItem</code> takes precedence over <code>initialSelectedItem</code>
+</Alert>
 
 ```.jsx
   () => {
@@ -404,7 +429,8 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
         ]}
         initialSelectedItems={[
           {label: 'Red', value: 'red'},
-          {label: 'Blue', value: 'blue'}
+          {label: 'Blue', value: 'blue'},
+          {label: 'Blah', value: 'blah'}
         ]}
       />
 

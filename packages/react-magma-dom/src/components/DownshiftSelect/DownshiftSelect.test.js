@@ -91,6 +91,23 @@ describe('Select', () => {
     expect(getByTestId('selectedItemText').textContent).toEqual(items[0]);
   });
 
+  it('should call the passed in onIsOpenChange function on select open', () => {
+    const onIsOpenChange = jest.fn();
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByLabelText } = render(
+      <Select
+        labelText={labelText}
+        items={items}
+        onIsOpenChange={onIsOpenChange}
+      />
+    );
+
+    fireEvent.click(getByLabelText(labelText, { selector: 'div' }));
+
+    expect(onIsOpenChange).toHaveBeenCalled();
+  });
+
   it('should allow for a controlled select', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
@@ -134,6 +151,26 @@ describe('Select', () => {
     expect(getByTestId('selectedItemText').textContent).toEqual('Red');
   });
 
+  it('should not select an item that is not in the items list', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByTestId } = render(
+      <Select labelText={labelText} items={items} selectedItem="Pink" />
+    );
+
+    expect(getByTestId('selectedItemText').textContent).not.toEqual('Pink');
+  });
+
+  it('should not use the initial selected item if it is not in the items list', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByTestId } = render(
+      <Select labelText={labelText} items={items} initialSelectedItem="Pink" />
+    );
+
+    expect(getByTestId('selectedItemText').textContent).not.toEqual('Pink');
+  });
+
   it('should disable the select', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
@@ -165,6 +202,46 @@ describe('Select', () => {
     expect(getByTestId('selectedItemText').textContent).not.toEqual('Red');
 
     expect(getByTestId('selectTriggerButton')).toHaveFocus();
+  });
+
+  it('should select the default selected item when cleared', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByTestId } = render(
+      <Select
+        labelText={labelText}
+        items={items}
+        initialSelectedItem="Red"
+        defaultSelectedItem="Blue"
+        isClearable
+      />
+    );
+
+    expect(getByTestId('selectedItemText').textContent).toEqual('Red');
+
+    fireEvent.click(getByTestId('clearIndicator'));
+
+    expect(getByTestId('selectedItemText').textContent).toEqual('Blue');
+  });
+
+  it('should not select the default selected item when cleared if it is not in the items list', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByTestId } = render(
+      <Select
+        labelText={labelText}
+        items={items}
+        initialSelectedItem="Red"
+        defaultSelectedItem="Pink"
+        isClearable
+      />
+    );
+
+    expect(getByTestId('selectedItemText').textContent).toEqual('Red');
+
+    fireEvent.click(getByTestId('clearIndicator'));
+
+    expect(getByTestId('selectedItemText').textContent).not.toEqual('Pink');
   });
 
   it('should open select when clicking the enter key', () => {

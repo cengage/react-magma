@@ -1,10 +1,6 @@
 import * as React from 'react';
-import { DownshiftOption, DownshiftMultiSelectInterface } from '.';
-import {
-  useSelect,
-  useMultipleSelection,
-  UseMultipleSelectionProps
-} from 'downshift';
+import { DownshiftMultiSelectInterface } from '.';
+import { useSelect, useMultipleSelection } from 'downshift';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { ItemsList } from './ItemsList';
 import { DownshiftSelectContainer } from './SelectContainer';
@@ -33,6 +29,12 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
     onRemoveSelectedItem
   } = props;
 
+  function checkSelectedItemValidity(itemToCheck) {
+    return (
+      items.findIndex(i => itemToString(i) === itemToString(itemToCheck)) !== -1
+    );
+  }
+
   const {
     getSelectedItemProps,
     getDropdownProps,
@@ -40,9 +42,17 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
     removeSelectedItem,
     selectedItems,
     setActiveIndex
-  } = useMultipleSelection(
-    (props as unknown) as UseMultipleSelectionProps<DownshiftOption<T>>
-  );
+  } = useMultipleSelection({
+    ...props,
+    ...(props.initialSelectedItems && {
+      initialSelectedItems: props.initialSelectedItems.filter(
+        checkSelectedItemValidity
+      )
+    }),
+    ...(props.selectedItems && {
+      selectedItems: props.selectedItems.filter(checkSelectedItemValidity)
+    })
+  });
 
   function getFilteredItems(unfilteredItems) {
     return unfilteredItems.filter(
