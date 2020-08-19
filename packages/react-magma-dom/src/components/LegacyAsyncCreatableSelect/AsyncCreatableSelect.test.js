@@ -1,7 +1,7 @@
 /// <reference types="jest-dom/extend-expect"/>
 import React from 'react';
 import { axe } from 'jest-axe';
-import { AsyncSelect } from '.';
+import { LegacyAsyncCreatableSelect } from '.';
 import { act, render, fireEvent, waitForElement } from '@testing-library/react';
 import { Search2Icon } from '../Icon/types/Search2Icon';
 import { components as ReactSelectComponents } from 'react-select';
@@ -32,7 +32,7 @@ it('Does not violate accessibility standards', async () => {
 
   await act(async () => {
     ({ container } = render(
-      <AsyncSelect
+      <LegacyAsyncCreatableSelect
         labelText="test label"
         loadOptions={mockPromise.resolve(42)}
       />
@@ -44,7 +44,7 @@ it('Does not violate accessibility standards', async () => {
   });
 });
 
-describe('Async', () => {
+describe('Async Creatable', () => {
   describe('Timers', () => {
     beforeEach(() => {
       jest.useFakeTimers();
@@ -61,7 +61,7 @@ describe('Async', () => {
 
       await act(async () => {
         ({ container, getByLabelText, getByText } = render(
-          <AsyncSelect
+          <LegacyAsyncCreatableSelect
             id="colorsSelect"
             labelText="Colors"
             loadOptions={promiseOptions}
@@ -102,7 +102,7 @@ describe('Async', () => {
 
       await act(async () => {
         ({ container, getByLabelText, getByText } = render(
-          <AsyncSelect
+          <LegacyAsyncCreatableSelect
             id="colorsSelect"
             labelText="Colors"
             loadOptions={promiseOptions}
@@ -145,7 +145,7 @@ describe('Async', () => {
 
       await act(async () => {
         ({ getByTestId } = render(
-          <AsyncSelect
+          <LegacyAsyncCreatableSelect
             id="customSelect"
             labelText="Custom"
             loadOptions={promiseOptions}
@@ -157,6 +157,38 @@ describe('Async', () => {
       });
 
       expect(getByTestId('custom-dropdown-indicator')).toBeInTheDocument();
+    });
+
+    it('should call onChange with the newly created option', async () => {
+      let container;
+      let getByText;
+      const handleChange = jest.fn();
+
+      await act(async () => {
+        ({ container, getByText } = render(
+          <LegacyAsyncCreatableSelect
+            id="colorsSelect"
+            labelText="Colors"
+            loadOptions={promiseOptions}
+            onChange={handleChange}
+          />
+        ));
+      });
+
+      const input = container.querySelector('input');
+      fireEvent.focus(input);
+
+      fireEvent.change(input, {
+        target: {
+          value: 'pink'
+        }
+      });
+
+      jest.runOnlyPendingTimers();
+
+      await waitForElement(() => getByText('Create "pink"'));
+
+      expect(getByText('Create "pink"')).toBeInTheDocument();
     });
   });
 });

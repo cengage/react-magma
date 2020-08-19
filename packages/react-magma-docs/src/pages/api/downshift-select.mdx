@@ -17,10 +17,13 @@ Select components are used for collecting user provided information from a list 
 
 For combobox/autocomplete functionality, please see the <Link to="/api/combobox">Combobox component</Link>.
 
+If you are migrating from the <Link to="/api/legacy-select">Legacy Select</Link>, please see the <Link to="/select-migration">Select Migration docs</Link> for details on how to make the transition.
+
 By default when passing in a `selectedItem` it will be checked to make sure it is in your `items` array. The check will use the
 `itemToString` function on both the `selectedItem` and each `item` in the array. The default `itemToString` function
 is able to be used for `items` that are either `strings` or an object with the shape `{item: string; label: string;}`.
 If you are using a custom items format see the [Custom Items example](/api/downshift-select/#custom_items).
+
 
 ```.jsx
   () => {
@@ -742,6 +745,38 @@ Please use discretion when adding custom styles.
       required: false,
       description: 'Style properties for the helper or error message',
     },
+    onHighlightedIndexChange: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Event that fires when the highlighted index changes',
+      defaultValue: '',
+    },
+    onIsOpenChange: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Event that fires when the options menu opens or closes',
+      defaultValue: '',
+    },
+    onSelectedItemChange: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Event that fires hen the selected item changes',
+      defaultValue: '',
+    },
+    onStateChange: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Event that fires on every internal state changes',
+      defaultValue: '',
+    },
     testId: {
       type: {
         name: 'string',
@@ -752,6 +787,7 @@ Please use discretion when adding custom styles.
     },
   }}
 />
+
 
 export default props => (
   <ScopeableLayout

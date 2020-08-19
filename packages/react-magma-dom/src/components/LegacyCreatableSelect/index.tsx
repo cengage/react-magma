@@ -1,34 +1,39 @@
 import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { Props as ReactSelectProps } from 'react-select';
+import { SelectWrapper } from '../LegacySelect/SelectWrapper';
 import {
+  getStyles,
   ClearIndicator,
   DropdownIndicator,
   MultiValueRemove,
-  getStyles,
-  useSelectValue,
   getAriaLabel,
-  BaseSelectProps
-} from './shared';
-import { SelectWrapper } from './SelectWrapper';
+  useSelectValue,
+  BaseSelectProps,
+  OptionType
+} from '../LegacySelect/shared';
+import { Props as CreatableReactSelectProps } from 'react-select/creatable';
 
 const Loader = () => null;
 
-export interface SelectProps extends BaseSelectProps, ReactSelectProps {}
+export interface LegacyCreatableSelectProps
+  extends BaseSelectProps,
+    CreatableReactSelectProps<OptionType> {}
 
-export const Select: React.FunctionComponent<SelectProps> = (
-  props: SelectProps
+export const LegacyCreatableSelect: React.FunctionComponent<LegacyCreatableSelectProps> = (
+  props: LegacyCreatableSelectProps
 ) => {
   const [value, onChange] = useSelectValue(
     props.value,
     props.defaultValue,
     props.onChange
   );
-  const [ReactSelect, updateReactSelect] = React.useState<any>(() => Loader);
+  const [ReactCreatableSelect, updateReactCreatableSelect] = React.useState<
+    any
+  >(() => Loader);
 
   React.useEffect(() => {
-    import('react-select')
-      .then(module => updateReactSelect(() => module.default))
+    import('react-select/creatable')
+      .then(module => updateReactCreatableSelect(() => module.default))
       .catch(err => {
         if (process.env.NODE_ENV !== 'production') {
           console.warn(
@@ -57,12 +62,11 @@ export const Select: React.FunctionComponent<SelectProps> = (
   return (
     <SelectWrapper
       errorMessage={errorMessage}
-      helperMessage={helperMessage}
       isInverse={isInverse}
       labelText={labelText}
       testId={testId}
     >
-      <ReactSelect
+      <ReactCreatableSelect
         {...other}
         aria-label={ariaLabelText}
         classNamePrefix="magma"
@@ -73,7 +77,8 @@ export const Select: React.FunctionComponent<SelectProps> = (
           ...components
         }}
         onChange={onChange}
-        styles={getStyles(styles, theme, errorMessage, isInverse)}
+        isInverse={isInverse}
+        styles={getStyles(styles, theme, errorMessage)}
         value={value}
       />
     </SelectWrapper>

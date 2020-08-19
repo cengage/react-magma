@@ -1,39 +1,39 @@
 import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { SelectWrapper } from '../Select/SelectWrapper';
+import { SelectWrapper } from '../LegacySelect/SelectWrapper';
 import {
-  getStyles,
   ClearIndicator,
   DropdownIndicator,
   MultiValueRemove,
-  getAriaLabel,
+  getStyles,
   useSelectValue,
+  getAriaLabel,
   BaseSelectProps,
   OptionType
-} from '../Select/shared';
-import { Props as CreatableReactSelectProps } from 'react-select/creatable';
+} from '../LegacySelect/shared';
+import { Props as AsyncReactSelectProps } from 'react-select/async';
 
 const Loader = () => null;
 
-export interface CreatableSelectProps
+export interface LegacyAsyncSelectProps
   extends BaseSelectProps,
-    CreatableReactSelectProps<OptionType> {}
+    AsyncReactSelectProps<OptionType> {}
 
-export const CreatableSelect: React.FunctionComponent<CreatableSelectProps> = (
-  props: CreatableSelectProps
+export const LegacyAsyncSelect: React.FunctionComponent<LegacyAsyncSelectProps> = (
+  props: LegacyAsyncSelectProps
 ) => {
   const [value, onChange] = useSelectValue(
     props.value,
     props.defaultValue,
     props.onChange
   );
-  const [ReactCreatableSelect, updateReactCreatableSelect] = React.useState<
+  const [ReactLegacyAsyncSelect, updateReactLegacyAsyncSelect] = React.useState<
     any
   >(() => Loader);
 
   React.useEffect(() => {
-    import('react-select/creatable')
-      .then(module => updateReactCreatableSelect(() => module.default))
+    import('react-select/async')
+      .then(module => updateReactLegacyAsyncSelect(() => module.default))
       .catch(err => {
         if (process.env.NODE_ENV !== 'production') {
           console.warn(
@@ -62,11 +62,12 @@ export const CreatableSelect: React.FunctionComponent<CreatableSelectProps> = (
   return (
     <SelectWrapper
       errorMessage={errorMessage}
+      helperMessage={helperMessage}
       isInverse={isInverse}
       labelText={labelText}
       testId={testId}
     >
-      <ReactCreatableSelect
+      <ReactLegacyAsyncSelect
         {...other}
         aria-label={ariaLabelText}
         classNamePrefix="magma"
@@ -77,8 +78,7 @@ export const CreatableSelect: React.FunctionComponent<CreatableSelectProps> = (
           ...components
         }}
         onChange={onChange}
-        isInverse={isInverse}
-        styles={getStyles(styles, theme, errorMessage)}
+        styles={getStyles(styles, theme, errorMessage, isInverse)}
         value={value}
       />
     </SelectWrapper>

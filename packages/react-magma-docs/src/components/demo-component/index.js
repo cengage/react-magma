@@ -8,7 +8,7 @@ import {
   Input,
   Radio,
   RadioGroup,
-  Select,
+  DownshiftSelect,
   Toggle,
 } from 'react-magma-dom'
 import { ThemeContext } from 'react-magma-dom'
@@ -37,11 +37,10 @@ const DemoComponent = idPrefix => (
             helperMessage="Helper text"
             errorMessage="Error message"
           />
-          <Select
-            id={`${idPrefix}-select`}
+          <DownshiftSelect
             name="basic"
-            labelText="Basic"
-            options={[
+            labelText="Select"
+            items={[
               {
                 value: 'red',
                 label: 'Red',
