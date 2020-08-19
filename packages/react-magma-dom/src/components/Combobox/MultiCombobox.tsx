@@ -1,13 +1,6 @@
 import * as React from 'react';
-import {
-  instanceOfDefaultItemObject,
-  DownshiftOption
-} from '../DownshiftSelect';
-import {
-  useCombobox,
-  useMultipleSelection,
-  UseMultipleSelectionProps
-} from 'downshift';
+import { instanceOfDefaultItemObject } from '../DownshiftSelect';
+import { useCombobox, useMultipleSelection } from 'downshift';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { DownshiftSelectContainer } from '../DownshiftSelect/SelectContainer';
 import { ItemsList } from '../DownshiftSelect/ItemsList';
@@ -42,10 +35,34 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     onInputKeyPress,
     onInputKeyUp,
     onInputValueChange,
+    onIsOpenChange,
     onItemCreated,
     onRemoveSelectedItem,
     placeholder
   } = props;
+
+  const [
+    allItems,
+    displayItems,
+    setDisplayItems,
+    updateItemsRef,
+    defaultOnInputValueChange
+  ] = useComboboxItems(defaultItems, items, {
+    itemToString,
+    disableCreateItem,
+    onInputChange: changes => {
+      setInputValue(changes.inputValue);
+    }
+  });
+
+  function checkSelectedItemValidity(itemToCheck) {
+    return (
+      allItems.current.findIndex(
+        i => itemToString(i) === itemToString(itemToCheck)
+      ) !== -1
+    );
+  }
+
   const {
     getSelectedItemProps,
     getDropdownProps,
@@ -53,9 +70,17 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     removeSelectedItem,
     setActiveIndex,
     selectedItems
-  } = useMultipleSelection(
-    (props as unknown) as UseMultipleSelectionProps<DownshiftOption<T>>
-  );
+  } = useMultipleSelection({
+    ...props,
+    ...(props.initialSelectedItems && {
+      initialSelectedItems: props.initialSelectedItems.filter(
+        checkSelectedItemValidity
+      )
+    }),
+    ...(props.selectedItems && {
+      selectedItems: props.selectedItems.filter(checkSelectedItemValidity)
+    })
+  });
 
   function isCreatedItem(item) {
     return (
@@ -119,24 +144,23 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     selectItem(null);
   }
 
-  const [
-    displayItems,
-    setDisplayItems,
-    updateItemsRef,
-    defaultOnInputValueChange
-  ] = useComboboxItems(defaultItems, items, {
-    itemToString,
-    disableCreateItem,
-    onInputChange: changes => {
-      setInputValue(changes.inputValue);
-    }
-  });
-
   const {
     stateReducer: passedInStateReducer,
     onStateChange,
     ...comboboxProps
   } = props;
+
+  function handleOnIsOpenChange(changes) {
+    const { isOpen: changedIsOpen } = changes;
+
+    if (!changedIsOpen) {
+      setDisplayItems(allItems.current);
+    }
+
+    onIsOpenChange &&
+      typeof onIsOpenChange === 'function' &&
+      onIsOpenChange(changes);
+  }
 
   function stateReducer(_, actionAndChanges) {
     const { type, changes } = actionAndChanges;
@@ -169,6 +193,7 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
       onInputValueChange && typeof onInputValueChange === 'function'
         ? changes => onInputValueChange(changes, setDisplayItems)
         : defaultOnInputValueChange,
+    onIsOpenChange: handleOnIsOpenChange,
     onSelectedItemChange: defaultOnSelectedItemChange,
     stateReducer
   });

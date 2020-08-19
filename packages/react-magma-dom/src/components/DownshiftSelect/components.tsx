@@ -11,7 +11,7 @@ export type DownshiftComponents = {
 };
 
 export const DefaultClearIndicator = props => {
-  return <IconButton {...props} />;
+  return <IconButton testId="clearIndicator" {...props} />;
 };
 
 export const DefaultDropdownIndicator = props => {
@@ -26,7 +26,7 @@ export const DefaultDropdownIndicator = props => {
 };
 
 export const DefaultLoadingIndicator = props => {
-  return <Spinner {...props} />;
+  return <Spinner testId="loadingIndicator" {...props} />;
 };
 
 export const defaultComponents = (props: DownshiftComponents) => ({

@@ -96,6 +96,23 @@ describe('Combobox', () => {
     expect(renderedCombobox.value).toEqual(items[0]);
   });
 
+  it('should call the passed in onIsOpenChange function on combobox open', () => {
+    const onIsOpenChange = jest.fn();
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByLabelText } = render(
+      <Combobox
+        labelText={labelText}
+        items={items}
+        onIsOpenChange={onIsOpenChange}
+      />
+    );
+
+    fireEvent.click(getByLabelText(labelText, { selector: 'input' }));
+
+    expect(onIsOpenChange).toHaveBeenCalled();
+  });
+
   it('should allow for a controlled combobox', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
@@ -291,6 +308,27 @@ describe('Combobox', () => {
     expect(getByText('Yellow')).toBeInTheDocument();
   });
 
+  it('should disable the creation of an item', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByLabelText, queryByText } = render(
+      <Combobox
+        disableCreateItem
+        labelText={labelText}
+        items={items}
+        initialSelectedItem="Red"
+      />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+    fireEvent.change(renderedCombobox, { target: { value: 'Yellow' } });
+
+    const createItem = queryByText('Create "Yellow"');
+
+    expect(createItem).not.toBeInTheDocument();
+  });
+
   it('should have an initial selected item', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
@@ -301,6 +339,34 @@ describe('Combobox', () => {
     expect(getByLabelText(labelText, { selector: 'input' }).value).toEqual(
       'Red'
     );
+  });
+
+  it('should not select an item that is not in the items list', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByLabelText } = render(
+      <Combobox labelText={labelText} items={items} selectedItem="Pink" />
+    );
+
+    expect(
+      getByLabelText(labelText, { selector: 'input' }).textContent
+    ).not.toEqual('Pink');
+  });
+
+  it('should not use the initial selected item if it is not in the items list', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByLabelText } = render(
+      <Combobox
+        labelText={labelText}
+        items={items}
+        initialSelectedItem="Pink"
+      />
+    );
+
+    expect(
+      getByLabelText(labelText, { selector: 'input' }).textContent
+    ).not.toEqual('Pink');
   });
 
   it('should disable the combobox', () => {
@@ -334,6 +400,54 @@ describe('Combobox', () => {
     fireEvent.click(getByLabelText(/reset/i));
 
     expect(renderedCombobox.value).not.toEqual('Red');
+  });
+
+  it('should select the default selected item when cleared', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByLabelText, getByTestId } = render(
+      <Combobox
+        labelText={labelText}
+        items={items}
+        initialSelectedItem="Red"
+        defaultSelectedItem="Blue"
+        isClearable
+      />
+    );
+
+    expect(getByLabelText(labelText, { selector: 'input' }).value).toEqual(
+      'Red'
+    );
+
+    fireEvent.click(getByTestId('clearIndicator'));
+
+    expect(getByLabelText(labelText, { selector: 'input' }).value).toEqual(
+      'Blue'
+    );
+  });
+
+  it('should not select the default selected item when cleared if it is not in the items list', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByLabelText, getByTestId } = render(
+      <Combobox
+        labelText={labelText}
+        items={items}
+        initialSelectedItem="Red"
+        defaultSelectedItem="Pink"
+        isClearable
+      />
+    );
+
+    expect(getByLabelText(labelText, { selector: 'input' }).value).toEqual(
+      'Red'
+    );
+
+    fireEvent.click(getByTestId('clearIndicator'));
+
+    expect(getByLabelText(labelText, { selector: 'input' }).value).not.toEqual(
+      'Pink'
+    );
   });
 
   it('should filter items based on text in the combobox', () => {
@@ -388,21 +502,36 @@ describe('Combobox', () => {
     expect(getByText(helperMessage)).toBeInTheDocument();
   });
 
+  it('should show loading indicator', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByTestId } = render(
+      <Combobox labelText={labelText} items={items} isLoading />
+    );
+
+    expect(getByTestId('loadingIndicator')).toBeInTheDocument();
+  });
+
   it('should allow you to send in your own components', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
     const ClearIndicator = () => (
       <button data-testid="customClearIndicator">Clear</button>
     );
+    const LoadingIndicator = () => (
+      <div data-testid="customLoadingIndicator">loading</div>
+    );
 
     const { getByTestId } = render(
       <Combobox
         labelText={labelText}
         isClearable
+        isLoading
         items={items}
         selectedItem={items[0]}
         components={{
-          ClearIndicator
+          ClearIndicator,
+          LoadingIndicator
         }}
       />
     );

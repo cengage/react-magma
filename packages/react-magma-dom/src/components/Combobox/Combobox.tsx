@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { instanceOfDefaultItemObject } from '../DownshiftSelect';
+import {
+  instanceOfDefaultItemObject,
+  DownshiftOption
+} from '../DownshiftSelect';
 import { useCombobox } from 'downshift';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { defaultComponents } from '../DownshiftSelect/components';
@@ -15,8 +18,10 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
     ariaDescribedBy,
     components: customComponents,
     defaultItems,
+    defaultSelectedItem,
     disableCreateItem,
     hasError,
+    initialSelectedItem,
     inputStyle,
     isClearable,
     isDisabled,
@@ -35,8 +40,10 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
     onInputKeyPress,
     onInputKeyUp,
     onInputValueChange,
+    onIsOpenChange,
     onItemCreated,
-    placeholder
+    placeholder,
+    selectedItem: passedInSelectedItem
   } = props;
 
   function defaultNewItemTransform(newItem) {
@@ -106,6 +113,7 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
   }
 
   const [
+    allItems,
     displayItems,
     setDisplayItems,
     updateItemsRef,
@@ -115,6 +123,37 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
     disableCreateItem,
     onInputChange
   });
+
+  function getValidItem(itemToCheck: DownshiftOption<T>, key: string): object {
+    return allItems.current.findIndex(
+      i => itemToString(i) === itemToString(itemToCheck)
+    ) !== -1
+      ? { [key]: itemToCheck }
+      : { [key]: null };
+  }
+
+  function handleOnIsOpenChange(changes) {
+    const {
+      isOpen: changedIsOpen,
+      selectedItem: changedSelectedItem
+    } = changes;
+
+    if (!changedIsOpen) {
+      setDisplayItems(allItems.current);
+    }
+
+    if (changedIsOpen && changedSelectedItem) {
+      setHighlightedIndex(
+        displayItems.findIndex(
+          i => itemToString(i) === itemToString(changedSelectedItem)
+        )
+      );
+    }
+
+    onIsOpenChange &&
+      typeof onIsOpenChange === 'function' &&
+      onIsOpenChange(changes);
+  }
 
   const {
     isOpen,
@@ -127,7 +166,8 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
     getItemProps,
     reset,
     selectItem,
-    selectedItem
+    selectedItem,
+    setHighlightedIndex
   } = useCombobox({
     ...props,
     itemToString,
@@ -136,8 +176,15 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
       onInputValueChange && typeof onInputValueChange === 'function'
         ? changes => onInputValueChange(changes, setDisplayItems)
         : defaultOnInputValueChange,
+    onIsOpenChange: handleOnIsOpenChange,
     onSelectedItemChange: defaultOnSelectedItemChange,
-    stateReducer
+    stateReducer,
+    ...(defaultSelectedItem &&
+      getValidItem(defaultSelectedItem, 'defaultSelectedItem')),
+    ...(initialSelectedItem &&
+      getValidItem(initialSelectedItem, 'initialSelectedItem')),
+    ...(passedInSelectedItem &&
+      getValidItem(passedInSelectedItem, 'selectedItem'))
   });
 
   const { ClearIndicator } = defaultComponents({

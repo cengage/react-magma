@@ -28,38 +28,43 @@ export function useComboboxItems(
   }
 
   function defaultOnInputValueChange(changes) {
-    const { inputValue: baseInputValue } = changes;
-    const inputValue =
-      typeof baseInputValue === 'string'
-        ? baseInputValue
-        : itemToString(baseInputValue);
+    const { inputValue: baseInputValue, isOpen } = changes;
 
-    const filteredItems = inputValue
-      ? allItems.current
-          .filter(item =>
-            itemToString(item)
-              .toLowerCase()
-              .startsWith(inputValue.toLowerCase())
-          )
-          .concat(
-            !disableCreateItem && inputValue && !inputValueInList(inputValue)
-              ? {
-                  label: `Create "${inputValue}"`,
-                  value: inputValue,
-                  react_magma__created_item: true
-                }
-              : null
-          )
-          .filter(Boolean)
-      : allItems.current;
+    if (isOpen) {
+      const inputValue =
+        typeof baseInputValue === 'string'
+          ? baseInputValue
+          : itemToString(baseInputValue);
 
-    setDisplayItems(filteredItems);
+      const filteredItems = inputValue
+        ? allItems.current
+            .filter(item =>
+              itemToString(item)
+                .toLowerCase()
+                .startsWith(inputValue.toLowerCase())
+            )
+            .concat(
+              !disableCreateItem && inputValue && !inputValueInList(inputValue)
+                ? {
+                    label: `Create "${inputValue}"`,
+                    value: inputValue,
+                    react_magma__created_item: true
+                  }
+                : null
+            )
+            .filter(Boolean)
+        : allItems.current;
+
+      setDisplayItems(filteredItems);
+    }
+
     onInputChange &&
       typeof onInputChange === 'function' &&
       onInputChange(changes);
   }
 
   return [
+    allItems,
     displayItems,
     setDisplayItems,
     updateItemsRef,

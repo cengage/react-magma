@@ -254,6 +254,24 @@ describe('Combobox', () => {
     ).not.toBeInTheDocument();
   });
 
+  it('should call the passed in onIsOpenChange function on multi-combobox open', () => {
+    const onIsOpenChange = jest.fn();
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByLabelText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        onIsOpenChange={onIsOpenChange}
+      />
+    );
+
+    fireEvent.click(getByLabelText(labelText, { selector: 'input' }));
+
+    expect(onIsOpenChange).toHaveBeenCalled();
+  });
+
   it('should allow for the creation of an item', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
@@ -452,6 +470,38 @@ describe('Combobox', () => {
     );
 
     expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
+  });
+
+  it('should not select an item that is not in the items list', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByText, queryByText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        selectedItems={['Red', 'Pink']}
+      />
+    );
+
+    expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
+    expect(queryByText('Pink', { selector: 'button' })).not.toBeInTheDocument();
+  });
+
+  it('should not use the initial selected item if it is not in the items list', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByText, queryByText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red', 'Pink']}
+      />
+    );
+
+    expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
+    expect(queryByText('Pink', { selector: 'button' })).not.toBeInTheDocument();
   });
 
   it('should disable the combobox', () => {
