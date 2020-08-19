@@ -524,9 +524,9 @@ code {
   font-family: monospace;
   font-size: 15px;
   line-height: 1.5em;
-  font-weight: normal!important;
+  font-weight: normal !important;
   padding: 2px 4px;
-  border: 1px solid #DFDFDF;
+  border: 1px solid #dfdfdf;
   color: #003865;
   margin: 0 0.3em 0 0.2em;
 }
@@ -586,15 +586,14 @@ pre tt:after {
   }
 }
 
-.content-article h1 {
+/* .content-article h1 {
   margin-top: 0;
 }
 
-/* fix for anchor links */
 .content-article h2 {
   margin-top: -60px;
   padding-top: 85px;
-}
+} */
 
 .pre-container {
   border: 1px solid rgba(0, 0, 0, 0.1);

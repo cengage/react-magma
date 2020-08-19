@@ -1,0 +1,153 @@
+---
+title: 'Typography'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { Typography } from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
+
+# Typography
+
+## Basic Usage
+
+```.jsx
+    <>
+        <Typography variant="headingXLarge">
+            Heading XLarge
+        </Typography>
+
+        <Typography variant="headingLarge">
+            Heading Large
+        </Typography>
+
+        <Typography variant="headingMedium">
+            Heading Medium
+        </Typography>
+
+        <Typography variant="headingSmall">
+            Heading Small
+        </Typography>
+
+        <Typography variant="headingXSmall">
+            Heading XSmall
+        </Typography>
+
+        <Typography variant="bodyLarge">
+            Body large.  Lorem ipsum dolar sit amet.
+        </Typography>
+
+        <Typography variant="bodyMedium">
+            Body medium.  Lorem ipsum dolar sit amet.
+        </Typography>
+
+        <Typography variant="bodySmall">
+            Body small.  Lorem ipsum dolar sit amet.
+        </Typography>
+
+        <Typography variant="bodyXSmall">
+            Body xsmall.  Lorem ipsum dolar sit amet.
+        </Typography>
+    </>
+```
+
+## Component
+
+```.jsx
+    <>
+        <Typography variant="headingXLarge" component="h2">
+            Heading XLarge as H2
+        </Typography>
+
+        <Typography variant="bodyLarge" component="span">
+            Body large as span.  Lorem ipsum dolar sit amet.
+        </Typography>
+    </>
+```
+
+## Typography Props
+
+**Any other props supplied will be provided to the wrapping html element.**
+
+<SimplePropsTable
+  propertyValues={{
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
+    },
+    color: {
+      type: {
+        name: 'enum',
+        options: [
+          'TypographyColor.danger',
+          'TypographyColor.default',
+          'TypographyColor.success',
+          'TypographyColor.subdued',
+        ],
+      },
+      required: false,
+      description:
+        'The color of the component, helping to convey meaning or relative emphasis',
+      defaultValue: 'default',
+    },
+    component: {
+      type: {
+        name: 'enum',
+      },
+      required: false,
+      description:
+        'The component used for the root node. Either a string to use a HTML element or a component.  Will override default the component indictated through the variant prop',
+      defaultValue: 'Determined  by the variant prop',
+    },
+    hasMargins: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have default top and bottom margins for the respective variant.  If false, top and bottom margin will be 0.',
+      defaultValue: 'false',
+    },
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    variant: {
+      type: {
+        name: 'enum',
+        options: [
+          'TypographyVariant.headingXLarge',
+          'TypographyVariant.headingLarge',
+          'TypographyVariant.headingMedium',
+          'TypographyVariant.headingSmall',
+          'TypographyVariant.headingXSmall',
+          'TypographyVariant.bodyLarge',
+          'TypographyVariant.bodyMedium',
+          'TypographyVariant.bodySmall',
+          'TypographyVariant.bodyXSmall',
+          'TypographyVariant.expressiveHeadingXLarge',
+          'TypographyVariant.expressiveHeadingLarge',
+          'TypographyVariant.expressiveHeadingMedium',
+          'TypographyVariant.expressiveHeadingSmall',
+          'TypographyVariant.expressiveHeadingXSmall',
+          'TypographyVariant.expressiveBodyLarge',
+        ],
+      },
+      required: false,
+      description:
+        'Applies the theme typograpy styles. Also indicates what element will render as root node if the component prop is not provided',
+      defaultValue: 'bodyMedium',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout {...props} components={{ Typography }} />
+)

@@ -102,6 +102,7 @@ export {
 } from './components/Tooltip';
 export { Textarea, TextareaProps } from './components/Textarea';
 export { TimePicker, TimePickerProps } from './components/TimePicker';
+export { Typography, TypographyProps } from './components/Typography';
 export {
   VisuallyHidden,
   VisuallyHiddenProps
