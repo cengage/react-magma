@@ -50,18 +50,102 @@ import { SimplePropsTable } from '../../components/props-table'
     </>
 ```
 
+## Margins
+
+When the `hasMargins` prop is applied, the elements will receive bottom and top elements for their respective styles.
+
+```.jsx
+    <>
+        <Typography hasMargins variant="headingXLarge">
+            Heading XLarge
+        </Typography>
+
+        <Typography hasMargins variant="headingLarge">
+            Heading Large
+        </Typography>
+
+        <Typography hasMargins variant="headingMedium">
+            Heading Medium
+        </Typography>
+
+        <Typography hasMargins variant="headingSmall">
+            Heading Small
+        </Typography>
+
+        <Typography hasMargins variant="headingXSmall">
+            Heading XSmall
+        </Typography>
+
+        <Typography hasMargins variant="bodyLarge">
+            Body large.  Lorem ipsum dolar sit amet.
+        </Typography>
+
+        <Typography hasMargins variant="bodyMedium">
+            Body medium.  Lorem ipsum dolar sit amet.
+        </Typography>
+
+        <Typography hasMargins variant="bodySmall">
+            Body small.  Lorem ipsum dolar sit amet.
+        </Typography>
+
+        <Typography hasMargins variant="bodyXSmall">
+            Body xsmall.  Lorem ipsum dolar sit amet.
+        </Typography>
+    </>
+```
+
 ## Component
 
 ```.jsx
     <>
-        <Typography variant="headingXLarge" component="h2">
+        <Typography hasMargins variant="headingXLarge" component="h2">
             Heading XLarge as H2
         </Typography>
 
-        <Typography variant="bodyLarge" component="span">
+        <Typography hasMargins variant="bodyLarge" component="span">
             Body large as span.  Lorem ipsum dolar sit amet.
         </Typography>
     </>
+```
+
+## Color
+
+```.jsx
+    <>
+        <Typography color="success" hasMargins variant="headingMedium">
+            Positive Heading
+        </Typography>
+
+        <Typography color="subdued" hasMargins variant="bodyMedium">
+            Subdued text.  Lorem ipsum dolar sit amet.
+        </Typography>
+
+        <Typography hasMargins variant="bodyMedium">
+            Some <Typography component="span" color="danger" variant="bodyMedium"> inline negative text</Typography>. And some <strong>bold</strong> and <em>italic</em> text. Lorem ipsum dolar sit amet.
+        </Typography>
+    </>
+```
+
+## Inverse
+
+```.jsx
+    <div style={{background: '#003865', padding: '4px 16px'}}>
+        <Typography color="success" hasMargins isInverse variant="headingMedium">
+            Normal Heading
+        </Typography>
+
+        <Typography hasMargins isInverse variant="bodyMedium">
+            Normal text.  Lorem ipsum dolar sit amet.
+        </Typography>
+
+         <Typography color="subdued" hasMargins isInverse variant="headingMedium">
+            Subdued Heading
+        </Typography>
+
+        <Typography color="subdued" hasMargins isInverse variant="bodyMedium">
+            Subdued text.  Lorem ipsum dolar sit amet.
+        </Typography>
+    </div>
 ```
 
 ## Typography Props
