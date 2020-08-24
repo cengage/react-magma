@@ -601,6 +601,47 @@ describe('Combobox', () => {
     expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
   });
 
+  it('should select the first item highlighted in items list', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+
+    const { getByText, getByLabelText } = render(
+      <MultiCombobox isMulti labelText={labelText} items={items} />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+    fireEvent.change(renderedCombobox, { target: { value: 'R' } });
+
+    fireEvent.keyDown(renderedCombobox, { key: 'Enter' });
+
+    expect(getByText('Red')).toBeInTheDocument();
+  });
+
+  it('should not change the selected item if no item list after filter', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+
+    const { getByText, getByLabelText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        selectedItems={[items[0]]}
+      />
+    );
+
+    expect(getByText('Red')).toBeInTheDocument();
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+    fireEvent.change(renderedCombobox, { target: { value: 'R' } });
+
+    fireEvent.keyDown(renderedCombobox, { key: 'Enter' });
+
+    expect(getByText('Red')).toBeInTheDocument();
+  });
+
   it('should show an error message', () => {
     const labelText = 'Label';
     const errorMessage = 'This is an error';

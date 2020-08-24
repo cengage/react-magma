@@ -487,6 +487,42 @@ describe('Combobox', () => {
     expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
   });
 
+  it('should select the first item highlighted in items list on enter', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+
+    const { getByLabelText } = render(
+      <Combobox labelText={labelText} items={items} />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+    fireEvent.change(renderedCombobox, { target: { value: 'R' } });
+
+    fireEvent.keyDown(renderedCombobox, { key: 'Enter' });
+
+    expect(renderedCombobox.value).toEqual('Red');
+  });
+
+  it('should not change the selected item if no item list after filter', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+
+    const { getByLabelText } = render(
+      <Combobox labelText={labelText} items={items} selectedItem="Red" />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+    expect(renderedCombobox.value).toEqual('Red');
+
+    fireEvent.change(renderedCombobox, { target: { value: 'P' } });
+
+    fireEvent.keyDown(renderedCombobox, { key: 'Enter' });
+
+    expect(renderedCombobox.value).toEqual('Red');
+  });
+
   it('should show an error message', () => {
     const labelText = 'Label';
     const errorMessage = 'This is an error';

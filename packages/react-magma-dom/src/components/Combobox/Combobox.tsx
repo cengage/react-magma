@@ -91,6 +91,11 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
   function stateReducer(state, actionAndChanges) {
     const { type, changes } = actionAndChanges;
     switch (type) {
+      case useCombobox.stateChangeTypes.InputKeyDownEnter:
+        return {
+          ...changes,
+          ...(displayItems[0] && { selectedItem: displayItems[0] })
+        };
       case useCombobox.stateChangeTypes.InputBlur:
         return {
           ...changes,
