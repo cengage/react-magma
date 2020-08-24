@@ -63,6 +63,19 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
       onIsOpenChange(changes);
   }
 
+  function stateReducer(state, actionAndChanges) {
+    const { type, changes } = actionAndChanges;
+    switch (type) {
+      case useSelect.stateChangeTypes.ToggleButtonKeyDownCharacter:
+        return {
+          ...changes,
+          selectedItem: state.selectedItem
+        };
+      default:
+        return changes;
+    }
+  }
+
   const {
     isOpen,
     selectedItem,
@@ -77,6 +90,7 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
   } = useSelect<DownshiftOption<T>>({
     ...props,
     onIsOpenChange: handleOnIsOpenChange,
+    stateReducer,
     ...(defaultSelectedItem &&
       getValidItem(defaultSelectedItem, 'defaultSelectedItem')),
     ...(initialSelectedItem &&

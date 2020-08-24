@@ -63,7 +63,24 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
     );
   }
 
-  const { stateReducer, onStateChange, ...selectProps } = props;
+  const {
+    stateReducer: passedInStateReducer,
+    onStateChange,
+    ...selectProps
+  } = props;
+
+  function stateReducer(state, actionAndChanges) {
+    const { type, changes } = actionAndChanges;
+    switch (type) {
+      case useSelect.stateChangeTypes.ToggleButtonKeyDownCharacter:
+        return {
+          ...changes,
+          selectedItem: state.selectedItem
+        };
+      default:
+        return changes;
+    }
+  }
 
   const {
     isOpen,
@@ -77,10 +94,13 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
   } = useSelect({
     ...selectProps,
     items: getFilteredItems(items),
-    onSelectedItemChange: defaultOnSelectedItemChange
+    onSelectedItemChange: defaultOnSelectedItemChange,
+    stateReducer
   });
 
-  function defaultOnSelectedItemChange({ selectedItem: newSelectedItem }) {
+  function defaultOnSelectedItemChange(changes) {
+    const { selectedItem: newSelectedItem } = changes;
+
     if (newSelectedItem) {
       addSelectedItem(newSelectedItem);
       selectItem(null);

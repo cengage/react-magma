@@ -81,6 +81,24 @@ describe('Select', () => {
     expect(getByText(items[0].representation)).toBeInTheDocument();
   });
 
+  it('should not select an item when typing and select is closed', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByLabelText, queryByText } = render(
+      <MultiSelect isMulti labelText={labelText} items={items} />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    renderedSelect.focus();
+
+    fireEvent.keyDown(renderedSelect, { key: 'r' });
+
+    expect(
+      queryByText(items[0], { selector: 'button' })
+    ).not.toBeInTheDocument();
+  });
+
   it('should allow for selection of multiple items', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];

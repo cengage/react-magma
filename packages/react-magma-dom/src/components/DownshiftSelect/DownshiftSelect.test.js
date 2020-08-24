@@ -77,6 +77,22 @@ describe('Select', () => {
     expect(getByText(items[0].representation)).toBeInTheDocument();
   });
 
+  it('should not select an item when typing and select is closed', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByLabelText, getByTestId } = render(
+      <Select labelText={labelText} items={items} />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    renderedSelect.focus();
+
+    fireEvent.keyDown(renderedSelect, { key: 'r' });
+
+    expect(getByTestId('selectedItemText').textContent).not.toEqual(items[0]);
+  });
+
   it('should allow for selection of an item', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
