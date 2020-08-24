@@ -216,7 +216,7 @@ export const BaseInput: React.FunctionComponent<BaseInputProps> = React.forwardR
     );
 
     React.useEffect(() => {
-      if (props.value !== undefined || props.value !== null) {
+      if (props.value !== undefined && props.value !== null) {
         setValue(props.value);
       }
     }, [props.value]);
