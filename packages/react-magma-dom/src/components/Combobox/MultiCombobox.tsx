@@ -241,7 +241,6 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
               handleRemoveSelectedItem(event, multiSelectedItem)
             }
             onFocus={() => setActiveIndex(index)}
-            tabIndex={0}
             theme={theme}
           >
             {itemToString(multiSelectedItem)}
