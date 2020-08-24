@@ -5,10 +5,18 @@ import {
   HeadingMediumComponent,
   HeadingSmallComponent,
   HeadingXSmallComponent,
+  HeadingXXSmallComponent,
   BodyLargeComponent,
   BodyMediumComponent,
   BodySmallComponent,
-  BodyXSmallComponent
+  BodyXSmallComponent,
+  ExpressiveHeadingXLargeComponent,
+  ExpressiveHeadingLargeComponent,
+  ExpressiveHeadingMediumComponent,
+  ExpressiveHeadingSmallComponent,
+  ExpressiveHeadingXSmallComponent,
+  ExpressiveHeadingXXSmallComponent,
+  ExpressiveBodyLargeComponent
 } from './styles';
 import { ThemeContext } from '../../theme/ThemeContext';
 
@@ -43,13 +51,18 @@ export enum TypographyVariant {
   expressiveHeadingLarge = 'expressiveHeadingLarge',
   expressiveHeadingMedium = 'expressiveHeadingMedium',
   expressiveHeadingSmall = 'expressiveHeadingSmall',
-  expressiveHeadingXSmall = 'expressiveHeadingXSmall',
-  expressiveBodyLarge = 'expressiveBodyLarge'
+  expressiveHeadingXSmall = 'expressiveHeadingXSmall'
 }
 
 export const Typography: React.FunctionComponent<TypographyProps> = React.forwardRef(
   (
-    { children, component, variant, testId, ...other }: TypographyProps,
+    {
+      children,
+      component,
+      variant = TypographyVariant.bodyMedium,
+      testId,
+      ...other
+    }: TypographyProps,
     ref: any
   ) => {
     const theme = React.useContext(ThemeContext);
@@ -60,10 +73,18 @@ export const Typography: React.FunctionComponent<TypographyProps> = React.forwar
       headingMedium: HeadingMediumComponent,
       headingSmall: HeadingSmallComponent,
       headingXSmall: HeadingXSmallComponent,
+      headingXXSmall: HeadingXXSmallComponent,
       bodyLarge: BodyLargeComponent,
       bodyMedium: BodyMediumComponent,
       bodySmall: BodySmallComponent,
-      bodyXSmall: BodyXSmallComponent
+      bodyXSmall: BodyXSmallComponent,
+      expressiveHeadingXLarge: ExpressiveHeadingXLargeComponent,
+      expressiveHeadingLarge: ExpressiveHeadingLargeComponent,
+      expressiveHeadingMedium: ExpressiveHeadingMediumComponent,
+      expressiveHeadingSmall: ExpressiveHeadingSmallComponent,
+      expressiveHeadingXSmall: ExpressiveHeadingXSmallComponent,
+      expressiveHeadingXXSmall: ExpressiveHeadingXXSmallComponent,
+      expressiveBodyLarge: ExpressiveBodyLargeComponent
     };
 
     const elementToRender = component ? component : null;

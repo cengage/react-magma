@@ -8,6 +8,10 @@ import { SimplePropsTable } from '../../components/props-table'
 
 # Typography
 
+The `Typography` component is used to present your content in a clear and consistent manner, by limiting the number to sizes and styles with a UI. This component will display variants for different heading and paragraph styles.
+
+The default varaint is `bodyMedium`.
+
 ## Basic Usage
 
 ```.jsx
@@ -32,12 +36,16 @@ import { SimplePropsTable } from '../../components/props-table'
             Heading XSmall
         </Typography>
 
+        <Typography variant="headingXXSmall">
+            Heading XXSmall
+        </Typography>
+
         <Typography variant="bodyLarge">
             Body large.  Lorem ipsum dolar sit amet.
         </Typography>
 
-        <Typography variant="bodyMedium">
-            Body medium.  Lorem ipsum dolar sit amet.
+        <Typography>
+            Body medium (default).  Lorem ipsum dolar sit amet.
         </Typography>
 
         <Typography variant="bodySmall">
@@ -52,7 +60,7 @@ import { SimplePropsTable } from '../../components/props-table'
 
 ## Margins
 
-When the `hasMargins` prop is applied, the elements will receive bottom and top elements for their respective styles.
+By default, the `Typography` component does not include margins. When the `hasMargins` prop is applied, the elements will receive bottom and top elements for their respective styles.
 
 ```.jsx
     <>
@@ -76,6 +84,10 @@ When the `hasMargins` prop is applied, the elements will receive bottom and top 
             Heading XSmall
         </Typography>
 
+        <Typography variant="headingXXSmall">
+            Heading XXSmall
+        </Typography>
+
         <Typography hasMargins variant="bodyLarge">
             Body large.  Lorem ipsum dolar sit amet.
         </Typography>
@@ -96,6 +108,10 @@ When the `hasMargins` prop is applied, the elements will receive bottom and top 
 
 ## Component
 
+By default, each of the variants will render as its corresponding semantic element. For example, `headingXLarge` will render an `h1`, `headingLarge` will render and `h2` and so on. Each of the `body` variants will render with a `p` tag.
+
+However, you can easily override which element is rendered, by using the `component` prop.
+
 ```.jsx
     <>
         <Typography hasMargins variant="headingXLarge" component="h2">
@@ -108,7 +124,46 @@ When the `hasMargins` prop is applied, the elements will receive bottom and top 
     </>
 ```
 
+## Expressive Variants
+
+The `expressive` variants use additional styles that can be used in marketing or more narrative contexts,
+which may require more variety than the default productive styles.
+
+```.jsx
+    <>
+        <Typography hasMargins variant="expressiveHeadingXLarge">
+            Expressive Heading XLarge
+        </Typography>
+
+        <Typography hasMargins variant="expressiveHeadingLarge">
+            Expressive Heading Large
+        </Typography>
+
+        <Typography hasMargins variant="expressiveHeadingMedium">
+            Expressive Heading Medium
+        </Typography>
+
+        <Typography hasMargins variant="expressiveHeadingSmall">
+            Expressive Heading Small
+        </Typography>
+
+        <Typography hasMargins variant="expressiveHeadingXSmall">
+            Expressive Heading XSmall
+        </Typography>
+
+        <Typography hasMargins variant="expressiveHeadingXXSmall">
+            Expressive Heading XXSmall
+        </Typography>
+
+        <Typography hasMargins variant="expressiveBodyLarge">
+            Expressive body large.  Lorem ipsum dolar sit amet.
+        </Typography>
+    </>
+```
+
 ## Color
+
+The `color` prop can be used to change the style or emphasis on the different variants. It accepts the values: `success`, `danger` and `subdued`.
 
 ```.jsx
     <>
@@ -123,10 +178,24 @@ When the `hasMargins` prop is applied, the elements will receive bottom and top 
         <Typography hasMargins variant="bodyMedium">
             Some <Typography component="span" color="danger" variant="bodyMedium"> inline negative text</Typography>. And some <strong>bold</strong> and <em>italic</em> text. Lorem ipsum dolar sit amet.
         </Typography>
+
+         <Typography color="success" hasMargins variant="expressiveHeadingMedium">
+            Expressive Positive Heading
+        </Typography>
+
+        <Typography color="subdued" hasMargins variant="expressiveBodyLarge">
+            Expressive subdued text.  Lorem ipsum dolar sit amet.
+        </Typography>
+
+        <Typography hasMargins variant="expressiveBodyLarge">
+            Some expressive <Typography component="span" color="danger" variant="expressiveBodyLarge"> inline negative text</Typography>. And some <strong>bold</strong> and <em>italic</em> text. Lorem ipsum dolar sit amet.
+        </Typography>
     </>
 ```
 
 ## Inverse
+
+The `isInverse` property is an optional boolean, that changes the colors so component can appear on a dark background.
 
 ```.jsx
     <div style={{background: '#003865', padding: '4px 16px'}}>
@@ -144,6 +213,22 @@ When the `hasMargins` prop is applied, the elements will receive bottom and top 
 
         <Typography color="subdued" hasMargins isInverse variant="bodyMedium">
             Subdued text.  Lorem ipsum dolar sit amet.
+        </Typography>
+
+        <Typography color="success" hasMargins isInverse variant="expressiveHeadingMedium">
+            Expressive Normal Heading
+        </Typography>
+
+        <Typography hasMargins isInverse variant="expressiveBodyLarge">
+            Expressive normal text.  Lorem ipsum dolar sit amet.
+        </Typography>
+
+         <Typography color="subdued" hasMargins isInverse variant="expressiveHeadingMedium">
+            Expressive Subdued Heading
+        </Typography>
+
+        <Typography color="subdued" hasMargins isInverse variant="expressiveBodyLarge">
+            Expressive subdued text.  Lorem ipsum dolar sit amet.
         </Typography>
     </div>
 ```
@@ -212,6 +297,7 @@ When the `hasMargins` prop is applied, the elements will receive bottom and top 
           'TypographyVariant.headingMedium',
           'TypographyVariant.headingSmall',
           'TypographyVariant.headingXSmall',
+          'TypographyVariant.headingXXSmall',
           'TypographyVariant.bodyLarge',
           'TypographyVariant.bodyMedium',
           'TypographyVariant.bodySmall',
