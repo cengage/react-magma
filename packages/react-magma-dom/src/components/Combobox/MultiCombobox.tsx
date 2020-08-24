@@ -6,7 +6,7 @@ import { DownshiftSelectContainer } from '../DownshiftSelect/SelectContainer';
 import { ItemsList } from '../DownshiftSelect/ItemsList';
 import { ComboboxInput } from './ComboboxInput';
 import { SelectedItemButton, IconWrapper } from '../DownshiftSelect/shared';
-import { useComboboxItems } from './shared';
+import { useComboboxItems, defaultOnInputValueChange } from './shared';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { DownshiftMultiComboboxInterface } from '.';
@@ -30,6 +30,7 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     labelText,
     newItemTransform,
     onInputBlur,
+    onInputChange,
     onInputFocus,
     onInputKeyDown,
     onInputKeyPress,
@@ -45,15 +46,8 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     allItems,
     displayItems,
     setDisplayItems,
-    updateItemsRef,
-    defaultOnInputValueChange
-  ] = useComboboxItems(defaultItems, items, {
-    itemToString,
-    disableCreateItem,
-    onInputChange: changes => {
-      setInputValue(changes.inputValue);
-    }
-  });
+    updateItemsRef
+  ] = useComboboxItems(defaultItems, items);
 
   function checkSelectedItemValidity(itemToCheck) {
     return (
@@ -175,6 +169,14 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     }
   }
 
+  function handleInputChange(changes) {
+    setInputValue(changes.inputValue);
+
+    onInputChange &&
+      typeof onInputChange === 'function' &&
+      onInputChange(changes);
+  }
+
   const {
     isOpen,
     getToggleButtonProps,
@@ -184,7 +186,8 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     getComboboxProps,
     highlightedIndex,
     getItemProps,
-    selectItem
+    selectItem,
+    setHighlightedIndex
   } = useCombobox({
     ...comboboxProps,
     itemToString,
@@ -192,7 +195,16 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     onInputValueChange:
       onInputValueChange && typeof onInputValueChange === 'function'
         ? changes => onInputValueChange(changes, setDisplayItems)
-        : defaultOnInputValueChange,
+        : changes =>
+            defaultOnInputValueChange(
+              changes,
+              allItems,
+              itemToString,
+              disableCreateItem,
+              setDisplayItems,
+              setHighlightedIndex,
+              handleInputChange
+            ),
     onIsOpenChange: handleOnIsOpenChange,
     onSelectedItemChange: defaultOnSelectedItemChange,
     stateReducer

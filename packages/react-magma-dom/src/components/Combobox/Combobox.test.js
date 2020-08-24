@@ -472,6 +472,21 @@ describe('Combobox', () => {
     expect(getByText('Green')).toBeInTheDocument();
   });
 
+  it('should highlight the first item in the list after typing', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+
+    const { getByLabelText, getByText } = render(
+      <Combobox labelText={labelText} items={items} />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+    fireEvent.change(renderedCombobox, { target: { value: 'R' } });
+
+    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+  });
+
   it('should show an error message', () => {
     const labelText = 'Label';
     const errorMessage = 'This is an error';
@@ -673,6 +688,30 @@ describe('Combobox', () => {
           inputValue: 'Red'
         }),
         expect.anything(Function)
+      );
+    });
+
+    it('onInputChange', () => {
+      const labelText = 'Label';
+      const items = ['Red', 'Blue', 'Green'];
+      const onInputChange = jest.fn();
+
+      const { getByLabelText } = render(
+        <Combobox
+          labelText={labelText}
+          items={items}
+          onInputChange={onInputChange}
+        />
+      );
+
+      const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+      fireEvent.change(renderedCombobox, { target: { value: 'Red' } });
+
+      expect(onInputChange).toBeCalledWith(
+        expect.objectContaining({
+          inputValue: 'Red'
+        })
       );
     });
   });

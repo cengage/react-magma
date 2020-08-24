@@ -1,10 +1,6 @@
 import React from 'react';
 
-export function useComboboxItems(
-  defaultItems,
-  items,
-  { itemToString, disableCreateItem, onInputChange }
-) {
+export function useComboboxItems(defaultItems, items) {
   const allItems = React.useRef(defaultItems || items);
   const [displayItems, setDisplayItems] = React.useState(defaultItems || items);
 
@@ -19,55 +15,60 @@ export function useComboboxItems(
     }
   }, [items]);
 
-  function inputValueInList(inputValue) {
-    return (
-      allItems.current.filter(
-        item => itemToString(item).toLowerCase() === inputValue.toLowerCase()
-      ).length > 0
-    );
+  return [allItems, displayItems, setDisplayItems, updateItemsRef];
+}
+
+function inputValueInList(items, inputValue, itemToString) {
+  return (
+    items.current.filter(
+      item => itemToString(item).toLowerCase() === inputValue.toLowerCase()
+    ).length > 0
+  );
+}
+
+export function defaultOnInputValueChange(
+  changes,
+  items,
+  itemToString,
+  disableCreateItem,
+  setDisplayItems,
+  setHighlightedIndex,
+  onInputChange
+) {
+  const { inputValue: baseInputValue, isOpen } = changes;
+
+  if (isOpen) {
+    const inputValue =
+      typeof baseInputValue === 'string'
+        ? baseInputValue
+        : itemToString(baseInputValue);
+
+    const filteredItems = inputValue
+      ? items.current
+          .filter(item =>
+            itemToString(item)
+              .toLowerCase()
+              .startsWith(inputValue.toLowerCase())
+          )
+          .concat(
+            !disableCreateItem &&
+              inputValue &&
+              !inputValueInList(items, inputValue, itemToString)
+              ? {
+                  label: `Create "${inputValue}"`,
+                  value: inputValue,
+                  react_magma__created_item: true
+                }
+              : null
+          )
+          .filter(Boolean)
+      : items.current;
+
+    setHighlightedIndex(0);
+    setDisplayItems(filteredItems);
   }
 
-  function defaultOnInputValueChange(changes) {
-    const { inputValue: baseInputValue, isOpen } = changes;
-
-    if (isOpen) {
-      const inputValue =
-        typeof baseInputValue === 'string'
-          ? baseInputValue
-          : itemToString(baseInputValue);
-
-      const filteredItems = inputValue
-        ? allItems.current
-            .filter(item =>
-              itemToString(item)
-                .toLowerCase()
-                .startsWith(inputValue.toLowerCase())
-            )
-            .concat(
-              !disableCreateItem && inputValue && !inputValueInList(inputValue)
-                ? {
-                    label: `Create "${inputValue}"`,
-                    value: inputValue,
-                    react_magma__created_item: true
-                  }
-                : null
-            )
-            .filter(Boolean)
-        : allItems.current;
-
-      setDisplayItems(filteredItems);
-    }
-
-    onInputChange &&
-      typeof onInputChange === 'function' &&
-      onInputChange(changes);
-  }
-
-  return [
-    allItems,
-    displayItems,
-    setDisplayItems,
-    updateItemsRef,
-    defaultOnInputValueChange
-  ];
+  onInputChange &&
+    typeof onInputChange === 'function' &&
+    onInputChange(changes);
 }

@@ -10,7 +10,7 @@ import { DownshiftSelectContainer } from '../DownshiftSelect/SelectContainer';
 import { ItemsList } from '../DownshiftSelect/ItemsList';
 import { ComboboxInput } from './ComboboxInput';
 import { ButtonSize, ButtonVariant } from '../Button';
-import { useComboboxItems } from './shared';
+import { useComboboxItems, defaultOnInputValueChange } from './shared';
 import { DownshiftComboboxInterface } from '.';
 
 export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
@@ -116,13 +116,8 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
     allItems,
     displayItems,
     setDisplayItems,
-    updateItemsRef,
-    defaultOnInputValueChange
-  ] = useComboboxItems(defaultItems, items, {
-    itemToString,
-    disableCreateItem,
-    onInputChange
-  });
+    updateItemsRef
+  ] = useComboboxItems(defaultItems, items);
 
   function getValidItem(itemToCheck: DownshiftOption<T>, key: string): object {
     return allItems.current.findIndex(
@@ -175,7 +170,16 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
     onInputValueChange:
       onInputValueChange && typeof onInputValueChange === 'function'
         ? changes => onInputValueChange(changes, setDisplayItems)
-        : defaultOnInputValueChange,
+        : changes =>
+            defaultOnInputValueChange(
+              changes,
+              allItems,
+              itemToString,
+              disableCreateItem,
+              setDisplayItems,
+              setHighlightedIndex,
+              onInputChange
+            ),
     onIsOpenChange: handleOnIsOpenChange,
     onSelectedItemChange: defaultOnSelectedItemChange,
     stateReducer,
