@@ -9,14 +9,7 @@ import {
   BodyLargeComponent,
   BodyMediumComponent,
   BodySmallComponent,
-  BodyXSmallComponent,
-  ExpressiveHeadingXLargeComponent,
-  ExpressiveHeadingLargeComponent,
-  ExpressiveHeadingMediumComponent,
-  ExpressiveHeadingSmallComponent,
-  ExpressiveHeadingXSmallComponent,
-  ExpressiveHeadingXXSmallComponent,
-  ExpressiveBodyLargeComponent
+  BodyXSmallComponent
 } from './styles';
 import { ThemeContext } from '../../theme/ThemeContext';
 
@@ -37,6 +30,12 @@ export enum TypographyColor {
   subdued = 'subdued'
 }
 
+export enum TypographyTypeStyle {
+  expressive = 'expressive',
+  narrative = 'narrative',
+  productive = 'productive' // default
+}
+
 export enum TypographyVariant {
   headingXLarge = 'headingXLarge',
   headingLarge = 'headingLarge',
@@ -46,12 +45,7 @@ export enum TypographyVariant {
   bodyLarge = 'bodyLarge',
   bodyMedium = 'bodyMedium',
   bodySmall = 'bodySmall',
-  bodyXSmall = 'bodyXSmall',
-  expressiveHeadingXLarge = 'expressiveHeadingXLarge',
-  expressiveHeadingLarge = 'expressiveHeadingLarge',
-  expressiveHeadingMedium = 'expressiveHeadingMedium',
-  expressiveHeadingSmall = 'expressiveHeadingSmall',
-  expressiveHeadingXSmall = 'expressiveHeadingXSmall'
+  bodyXSmall = 'bodyXSmall'
 }
 
 export const Typography: React.FunctionComponent<TypographyProps> = React.forwardRef(
@@ -77,14 +71,7 @@ export const Typography: React.FunctionComponent<TypographyProps> = React.forwar
       bodyLarge: BodyLargeComponent,
       bodyMedium: BodyMediumComponent,
       bodySmall: BodySmallComponent,
-      bodyXSmall: BodyXSmallComponent,
-      expressiveHeadingXLarge: ExpressiveHeadingXLargeComponent,
-      expressiveHeadingLarge: ExpressiveHeadingLargeComponent,
-      expressiveHeadingMedium: ExpressiveHeadingMediumComponent,
-      expressiveHeadingSmall: ExpressiveHeadingSmallComponent,
-      expressiveHeadingXSmall: ExpressiveHeadingXSmallComponent,
-      expressiveHeadingXXSmall: ExpressiveHeadingXXSmallComponent,
-      expressiveBodyLarge: ExpressiveBodyLargeComponent
+      bodyXSmall: BodyXSmallComponent
     };
 
     const elementToRender = component ? component : null;

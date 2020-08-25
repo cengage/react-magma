@@ -35,22 +35,6 @@ describe('Typography', () => {
     expect(container.querySelector('h1')).toBeInTheDocument();
   });
 
-  it('should render expressive heading XL element with the correct styles', () => {
-    const testId = 'test-id';
-    const { getByTestId } = render(
-      <Typography variant="expressiveHeadingXLarge" testId={testId}>
-        test
-      </Typography>
-    );
-
-    expect(getByTestId(testId)).toHaveStyleRule('font-size', '32px');
-    expect(getByTestId(testId)).toHaveStyleRule('margin', '0');
-    expect(getByTestId(testId)).toHaveStyleRule(
-      'color',
-      magma.colors.foundation02
-    );
-  });
-
   it('should render heading Large element with the default html tag and correct styles', () => {
     const testId = 'test-id';
     const { container, getByTestId } = render(
@@ -61,18 +45,6 @@ describe('Typography', () => {
 
     expect(getByTestId(testId)).toHaveStyleRule('font-size', '24px');
     expect(container.querySelector('h2')).toBeInTheDocument();
-  });
-
-  it('should render expressive heading Large element with the correct styles', () => {
-    const testId = 'test-id';
-    const { getByTestId } = render(
-      <Typography variant="expressiveHeadingLarge" testId={testId}>
-        test
-      </Typography>
-    );
-
-    expect(getByTestId(testId)).toHaveStyleRule('font-size', '28px');
-    expect(getByTestId(testId)).toHaveStyleRule('margin', '0');
   });
 
   it('should render heading medium element with the default html tag and correct styles', () => {
@@ -87,18 +59,6 @@ describe('Typography', () => {
     expect(container.querySelector('h3')).toBeInTheDocument();
   });
 
-  it('should render expressive heading medium element with the correct styles', () => {
-    const testId = 'test-id';
-    const { getByTestId } = render(
-      <Typography variant="expressiveHeadingMedium" testId={testId}>
-        test
-      </Typography>
-    );
-
-    expect(getByTestId(testId)).toHaveStyleRule('font-size', '28px');
-    expect(getByTestId(testId)).toHaveStyleRule('margin', '0');
-  });
-
   it('should render heading small element with the default html tag and correct styles', () => {
     const testId = 'test-id';
     const { container, getByTestId } = render(
@@ -109,18 +69,6 @@ describe('Typography', () => {
 
     expect(getByTestId(testId)).toHaveStyleRule('font-size', '18px');
     expect(container.querySelector('h4')).toBeInTheDocument();
-  });
-
-  it('should render expressive heading small element with the correct styles', () => {
-    const testId = 'test-id';
-    const { getByTestId } = render(
-      <Typography variant="expressiveHeadingSmall" testId={testId}>
-        test
-      </Typography>
-    );
-
-    expect(getByTestId(testId)).toHaveStyleRule('font-size', '20px');
-    expect(getByTestId(testId)).toHaveStyleRule('margin', '0');
   });
 
   it('should render heading xs element with the default html tag and correct styles', () => {
@@ -135,18 +83,6 @@ describe('Typography', () => {
     expect(container.querySelector('h5')).toBeInTheDocument();
   });
 
-  it('should render expressive heading xsmall element with the correct styles', () => {
-    const testId = 'test-id';
-    const { getByTestId } = render(
-      <Typography variant="expressiveHeadingXSmall" testId={testId}>
-        test
-      </Typography>
-    );
-
-    expect(getByTestId(testId)).toHaveStyleRule('font-size', '18px');
-    expect(getByTestId(testId)).toHaveStyleRule('margin', '0');
-  });
-
   it('should render heading xxs element with the default html tag and correct styles', () => {
     const testId = 'test-id';
     const { container, getByTestId } = render(
@@ -159,18 +95,6 @@ describe('Typography', () => {
     expect(container.querySelector('h6')).toBeInTheDocument();
   });
 
-  it('should render expressive heading xxsmall element with the correct styles', () => {
-    const testId = 'test-id';
-    const { getByTestId } = render(
-      <Typography variant="expressiveHeadingXXSmall" testId={testId}>
-        test
-      </Typography>
-    );
-
-    expect(getByTestId(testId)).toHaveStyleRule('font-size', '16px');
-    expect(getByTestId(testId)).toHaveStyleRule('margin', '0');
-  });
-
   it('should render body large element with the default html tag and correct styles', () => {
     const testId = 'test-id';
     const { container, getByTestId } = render(
@@ -181,18 +105,6 @@ describe('Typography', () => {
 
     expect(getByTestId(testId)).toHaveStyleRule('font-size', '18px');
     expect(container.querySelector('p')).toBeInTheDocument();
-  });
-
-  it('should render expressive body large element with the  correct styles', () => {
-    const testId = 'test-id';
-    const { getByTestId } = render(
-      <Typography variant="expressiveBodyLarge" testId={testId}>
-        test
-      </Typography>
-    );
-
-    expect(getByTestId(testId)).toHaveStyleRule('font-size', '20px');
-    expect(getByTestId(testId)).toHaveStyleRule('margin', '0');
   });
 
   it('should render body small element with the default html tag and correct styles', () => {
@@ -242,36 +154,10 @@ describe('Typography', () => {
       expect(getByTestId(testId)).toHaveStyleRule('margin', '0 0 16px');
     });
 
-    it('should render expressive heading XL element with correct margins', () => {
-      const testId = 'test-id';
-      const { getByTestId } = render(
-        <Typography
-          hasMargins
-          variant="expressiveHeadingXLarge"
-          testId={testId}
-        >
-          test
-        </Typography>
-      );
-
-      expect(getByTestId(testId)).toHaveStyleRule('margin', '0 0 16px');
-    });
-
     it('should render heading Large element with correct margins', () => {
       const testId = 'test-id';
       const { getByTestId } = render(
         <Typography hasMargins variant="headingLarge" testId={testId}>
-          test
-        </Typography>
-      );
-
-      expect(getByTestId(testId)).toHaveStyleRule('margin', '48px 0 16px');
-    });
-
-    it('should render expressive heading Large element with correct margins', () => {
-      const testId = 'test-id';
-      const { getByTestId } = render(
-        <Typography hasMargins variant="expressiveHeadingLarge" testId={testId}>
           test
         </Typography>
       );
@@ -290,36 +176,10 @@ describe('Typography', () => {
       expect(getByTestId(testId)).toHaveStyleRule('margin', '40px 0 16px');
     });
 
-    it('should render expressive heading medium element with correct margins', () => {
-      const testId = 'test-id';
-      const { getByTestId } = render(
-        <Typography
-          hasMargins
-          variant="expressiveHeadingMedium"
-          testId={testId}
-        >
-          test
-        </Typography>
-      );
-
-      expect(getByTestId(testId)).toHaveStyleRule('margin', '40px 0 16px');
-    });
-
     it('should render heading small element with correct margins', () => {
       const testId = 'test-id';
       const { getByTestId } = render(
         <Typography hasMargins variant="headingSmall" testId={testId}>
-          test
-        </Typography>
-      );
-
-      expect(getByTestId(testId)).toHaveStyleRule('margin', '32px 0 16px');
-    });
-
-    it('should render expressive heading small element with correct margins', () => {
-      const testId = 'test-id';
-      const { getByTestId } = render(
-        <Typography hasMargins variant="expressiveHeadingSmall" testId={testId}>
           test
         </Typography>
       );
@@ -338,21 +198,6 @@ describe('Typography', () => {
       expect(getByTestId(testId)).toHaveStyleRule('margin', '24px 0 12px');
     });
 
-    it('should render expressive heading XSmall element with correct margins', () => {
-      const testId = 'test-id';
-      const { getByTestId } = render(
-        <Typography
-          hasMargins
-          variant="expressiveHeadingXSmall"
-          testId={testId}
-        >
-          test
-        </Typography>
-      );
-
-      expect(getByTestId(testId)).toHaveStyleRule('margin', '24px 0 12px');
-    });
-
     it('should render heading XXS element with correct margins', () => {
       const testId = 'test-id';
       const { getByTestId } = render(
@@ -364,36 +209,10 @@ describe('Typography', () => {
       expect(getByTestId(testId)).toHaveStyleRule('margin', '24px 0 8px');
     });
 
-    it('should render expressive heading XXS element with correct margins', () => {
-      const testId = 'test-id';
-      const { getByTestId } = render(
-        <Typography
-          hasMargins
-          variant="expressiveHeadingXXSmall"
-          testId={testId}
-        >
-          test
-        </Typography>
-      );
-
-      expect(getByTestId(testId)).toHaveStyleRule('margin', '24px 0 8px');
-    });
-
     it('should render body large element with correct margins', () => {
       const testId = 'test-id';
       const { getByTestId } = render(
         <Typography hasMargins variant="bodyLarge" testId={testId}>
-          test
-        </Typography>
-      );
-
-      expect(getByTestId(testId)).toHaveStyleRule('margin', '0 0 24px');
-    });
-
-    it('should render expressive body large element with correct margins', () => {
-      const testId = 'test-id';
-      const { getByTestId } = render(
-        <Typography hasMargins variant="expressiveBodyLarge" testId={testId}>
           test
         </Typography>
       );
@@ -516,20 +335,6 @@ describe('Typography', () => {
       );
     });
 
-    it('should render expressive headings with the correct inverse styles', () => {
-      const testId = 'test-id';
-      const { getByTestId } = render(
-        <Typography isInverse testId={testId} variant="expressiveHeadingLarge">
-          test
-        </Typography>
-      );
-
-      expect(getByTestId(testId)).toHaveStyleRule(
-        'color',
-        magma.colors.neutral08
-      );
-    });
-
     it('should render headings with the the correct inverse, subdued styles', () => {
       const testId = 'test-id';
       const { getByTestId } = render(
@@ -547,6 +352,113 @@ describe('Typography', () => {
         'color',
         magma.colors.focusInverse
       );
+    });
+  });
+
+  describe('expressive type style', () => {
+    it('should render expressive heading XL element with the correct styles', () => {
+      const testId = 'test-id';
+      const { getByTestId } = render(
+        <Typography
+          variant="headingXLarge"
+          testId={testId}
+          typeStyle="expressive"
+        >
+          test
+        </Typography>
+      );
+
+      expect(getByTestId(testId)).toHaveStyleRule('font-size', '32px');
+      expect(getByTestId(testId)).toHaveStyleRule(
+        'color',
+        magma.colors.foundation02
+      );
+    });
+
+    it('should render expressive heading Large element with the correct styles', () => {
+      const testId = 'test-id';
+      const { getByTestId } = render(
+        <Typography
+          variant="headingLarge"
+          testId={testId}
+          typeStyle="expressive"
+        >
+          test
+        </Typography>
+      );
+
+      expect(getByTestId(testId)).toHaveStyleRule('font-size', '28px');
+    });
+
+    it('should render expressive heading medium element with the correct styles', () => {
+      const testId = 'test-id';
+      const { getByTestId } = render(
+        <Typography
+          variant="headingMedium"
+          testId={testId}
+          typeStyle="expressive"
+        >
+          test
+        </Typography>
+      );
+
+      expect(getByTestId(testId)).toHaveStyleRule('font-size', '28px');
+    });
+
+    it('should render expressive heading small element with the correct styles', () => {
+      const testId = 'test-id';
+      const { getByTestId } = render(
+        <Typography
+          variant="headingSmall"
+          testId={testId}
+          typeStyle="expressive"
+        >
+          test
+        </Typography>
+      );
+
+      expect(getByTestId(testId)).toHaveStyleRule('font-size', '20px');
+    });
+
+    it('should render expressive heading xsmall element with the correct styles', () => {
+      const testId = 'test-id';
+      const { getByTestId } = render(
+        <Typography
+          variant="headingXSmall"
+          testId={testId}
+          typeStyle="expressive"
+        >
+          test
+        </Typography>
+      );
+
+      expect(getByTestId(testId)).toHaveStyleRule('font-size', '18px');
+    });
+
+    it('should render expressive heading xxsmall element with the correct styles', () => {
+      const testId = 'test-id';
+      const { getByTestId } = render(
+        <Typography
+          variant="headingXXSmall"
+          testId={testId}
+          typeStyle="expressive"
+        >
+          test
+        </Typography>
+      );
+
+      expect(getByTestId(testId)).toHaveStyleRule('font-size', '16px');
+    });
+
+    it('should render expressive body large element with the  correct styles', () => {
+      const testId = 'test-id';
+      const { getByTestId } = render(
+        <Typography variant="bodyLarge" testId={testId} typeStyle="expressive">
+          test
+        </Typography>
+      );
+
+      expect(getByTestId(testId)).toHaveStyleRule('font-size', '20px');
     });
   });
 });

@@ -124,38 +124,37 @@ However, you can easily override which element is rendered, by using the `compon
     </>
 ```
 
-## Expressive Variants
+## Type-Style
 
-The `expressive` variants use additional styles that can be used in marketing or more narrative contexts,
-which may require more variety than the default productive styles.
+The `expressive` type-style can be used in marketing contexts, which may require more variety than the default productive styles.
 
 ```.jsx
     <>
-        <Typography hasMargins variant="expressiveHeadingXLarge">
+        <Typography hasMargins typeStyle="expressive" variant="headingXLarge">
             Expressive Heading XLarge
         </Typography>
 
-        <Typography hasMargins variant="expressiveHeadingLarge">
+        <Typography hasMargins typeStyle="expressive" variant="headingLarge">
             Expressive Heading Large
         </Typography>
 
-        <Typography hasMargins variant="expressiveHeadingMedium">
+        <Typography hasMargins typeStyle="expressive" variant="headingMedium">
             Expressive Heading Medium
         </Typography>
 
-        <Typography hasMargins variant="expressiveHeadingSmall">
+        <Typography hasMargins typeStyle="expressive" variant="headingSmall">
             Expressive Heading Small
         </Typography>
 
-        <Typography hasMargins variant="expressiveHeadingXSmall">
+        <Typography hasMargins typeStyle="expressive" variant="headingXSmall">
             Expressive Heading XSmall
         </Typography>
 
-        <Typography hasMargins variant="expressiveHeadingXXSmall">
+        <Typography hasMargins typeStyle="expressive" variant="headingXXSmall">
             Expressive Heading XXSmall
         </Typography>
 
-        <Typography hasMargins variant="expressiveBodyLarge">
+        <Typography hasMargins typeStyle="expressive" variant="bodyLarge">
             Expressive body large.  Lorem ipsum dolar sit amet.
         </Typography>
     </>
@@ -179,16 +178,16 @@ The `color` prop can be used to change the style or emphasis on the different va
             Some <Typography component="span" color="danger" variant="bodyMedium"> inline negative text</Typography>. And some <strong>bold</strong> and <em>italic</em> text. Lorem ipsum dolar sit amet.
         </Typography>
 
-         <Typography color="success" hasMargins variant="expressiveHeadingMedium">
+         <Typography color="success" hasMargins variant="headingMedium">
             Expressive Positive Heading
         </Typography>
 
-        <Typography color="subdued" hasMargins variant="expressiveBodyLarge">
+        <Typography color="subdued" hasMargins variant="bodyLarge">
             Expressive subdued text.  Lorem ipsum dolar sit amet.
         </Typography>
 
-        <Typography hasMargins variant="expressiveBodyLarge">
-            Some expressive <Typography component="span" color="danger" variant="expressiveBodyLarge"> inline negative text</Typography>. And some <strong>bold</strong> and <em>italic</em> text. Lorem ipsum dolar sit amet.
+        <Typography hasMargins variant="bodyLarge">
+            Some expressive <Typography component="span" color="danger" variant="bodyLarge"> inline negative text</Typography>. And some <strong>bold</strong> and <em>italic</em> text. Lorem ipsum dolar sit amet.
         </Typography>
     </>
 ```
@@ -213,22 +212,6 @@ The `isInverse` property is an optional boolean, that changes the colors so comp
 
         <Typography color="subdued" hasMargins isInverse variant="bodyMedium">
             Subdued text.  Lorem ipsum dolar sit amet.
-        </Typography>
-
-        <Typography color="success" hasMargins isInverse variant="expressiveHeadingMedium">
-            Expressive Normal Heading
-        </Typography>
-
-        <Typography hasMargins isInverse variant="expressiveBodyLarge">
-            Expressive normal text.  Lorem ipsum dolar sit amet.
-        </Typography>
-
-         <Typography color="subdued" hasMargins isInverse variant="expressiveHeadingMedium">
-            Expressive Subdued Heading
-        </Typography>
-
-        <Typography color="subdued" hasMargins isInverse variant="expressiveBodyLarge">
-            Expressive subdued text.  Lorem ipsum dolar sit amet.
         </Typography>
     </div>
 ```
@@ -288,6 +271,18 @@ The `isInverse` property is an optional boolean, that changes the colors so comp
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
+    typeStyle: {
+      type: {
+        name: 'enum',
+        options: [
+          'TypographyTypeStyle.expressive',
+          'TypographyTypeStyle.narrative',
+          'TypographyTypeStyle.productive',
+        ],
+      },
+      description: 'Additional style for various typography variants',
+      defaultValue: 'productive',
+    },
     variant: {
       type: {
         name: 'enum',
@@ -302,12 +297,6 @@ The `isInverse` property is an optional boolean, that changes the colors so comp
           'TypographyVariant.bodyMedium',
           'TypographyVariant.bodySmall',
           'TypographyVariant.bodyXSmall',
-          'TypographyVariant.expressiveHeadingXLarge',
-          'TypographyVariant.expressiveHeadingLarge',
-          'TypographyVariant.expressiveHeadingMedium',
-          'TypographyVariant.expressiveHeadingSmall',
-          'TypographyVariant.expressiveHeadingXSmall',
-          'TypographyVariant.expressiveBodyLarge',
         ],
       },
       required: false,
