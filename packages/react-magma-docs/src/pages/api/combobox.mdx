@@ -3,7 +3,7 @@ title: 'Combobox'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { Combobox, Alert } from 'react-magma-dom'
+import { Combobox, ComboboxStateChangeTypes, Alert } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 import { Link } from 'gatsby'
 import { v4 as uuid } from 'uuid'
@@ -143,7 +143,7 @@ Set initial state using the `initialSelectedItem` and `initialHighlightedIndex` 
   }
 ```
 
-## State Changes
+## Specific State Changes
 
 You can track changes made to the internal state of the `select` using the following functions: `onHighlightedIndexChange`,
 `onIsOpenChange`, `onSelectedItemChange`, and `onStateChange`. Each of these functions will have a `changes` object as a parameter that
@@ -156,7 +156,6 @@ includes the changes made to state from each action as well as a `type` that des
     const [highlightedIndexChangeCount, updateHighlightedIndexChangeCount] = React.useState(0);
     const [isOpenChangeCount, updateIsOpenChangeCount] = React.useState(0);
     const [selectedItem, updateSelectedItem] = React.useState(undefined);
-    const [changes, updateChanges] = React.useState({});
 
     function onHighlightedIndexChange(changes) {
       updateHighlightedIndexChangeCount(highlightedIndexChangeCount + 1);
@@ -168,10 +167,6 @@ includes the changes made to state from each action as well as a `type` that des
 
     function onSelectedItemChange(changes) {
       updateSelectedItem(changes.selectedItem);
-    }
-
-    function onStateChange(newChanges) {
-      updateChanges(newChanges)
     }
 
     return <>
@@ -192,21 +187,82 @@ includes the changes made to state from each action as well as a `type` that des
         onIsOpenChange={onIsOpenChange}
         onSelectedItemChange={onSelectedItemChange}
       />
-
-      <pre>{JSON.stringify(changes, null, 2)}</pre>
-
-      <Combobox
-        id="stateChangesId"
-        name="stateChanges"
-        labelText="State Changes"
-        defaultItems={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-        onStateChange={onStateChange}
-      />
     </>
+  }
+```
+
+## Generic State Change
+
+`onStateChange` is called when any internal state is changed. Therefore, it is best used when using the
+`combobox` in a controlled state.
+
+The `onStateChange` function passes a `changes` object that includes properties that have changed since the
+last state change. The `changes` object also includes a `type` property that describes the action taken
+to change the state. You can see the full list of the types in the [`stateChangeTypes`](/api/combobox/#state_change_types) section.
+
+```.jsx
+  () => {
+    const [changes, updateChanges] = React.useState({});
+    const [highlightedIndex, updateHighlightedIndex] = React.useState(-1);
+    const [isOpen, updateIsOpen] = React.useState(false);
+    const [selectedItem, updateSelectedItem] = React.useState({});
+
+    function onStateChange(newChanges) {
+      const { type } = newChanges
+
+      updateChanges(newChanges)
+
+      switch(type) {
+        case ComboboxStateChangeTypes.ToggleButtonClick:
+          updateIsOpen(!isOpen)
+          break;
+        case ComboboxStateChangeTypes.InputKeyDownArrowDown:
+          newChanges.isOpen ? updateIsOpen(newChanges.isOpen) : null
+          updateHighlightedIndex(newChanges.highlightedIndex)
+          break;
+        case ComboboxStateChangeTypes.ItemMouseMove:
+        case ComboboxStateChangeTypes.FunctionSetHighlightedIndex:
+        case ComboboxStateChangeTypes.InputKeyDownArrowDown:
+        case ComboboxStateChangeTypes.InputKeyDownArrowUp:
+          updateHighlightedIndex(newChanges.highlightedIndex)
+          break;
+        case ComboboxStateChangeTypes.InputKeyDownEscape:
+        case ComboboxStateChangeTypes.InputBlur:
+          updateIsOpen(false)
+          updateHighlightedIndex(newChanges.highlightedIndex)
+          break;
+        case ComboboxStateChangeTypes.ItemClick:
+        case ComboboxStateChangeTypes.InputKeyDownEnter:
+          updateHighlightedIndex(newChanges.highlightedIndex)
+          updateIsOpen(newChanges.isOpen)
+          updateSelectedItem(newChanges.selectedItem)
+          break;
+        default:
+          break;
+      }
+    }
+
+    return (
+      <>
+        <pre>{JSON.stringify(changes, null, 2)}</pre>
+        <strong>Is Open: </strong>{isOpen.toString()}
+
+        <Combobox
+          id="stateChangesId"
+          name="stateChanges"
+          labelText="State Changes"
+          defaultItems={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' }
+          ]}
+          onStateChange={onStateChange}
+          highlightedIndex={highlightedIndex}
+          isOpen={isOpen}
+          selectedItem={selectedItem}
+        />
+      </>
+    )
   }
 ```
 
@@ -777,6 +833,50 @@ Please use discretion when adding custom styles.
 
 ```
 
+## State Change Types
+
+The `type` property in the `changes` object that is returned from the `onStateChange` function
+corresponds to a `stateChangeTypes` property. The list of all the possible types for a `combobox` or a
+`multi-combobox` are listed below.
+
+### Combobox
+
+- `ComboboxStateChangeTypes.InputKeyDownArrowDown`
+- `ComboboxStateChangeTypes.InputKeyDownArrowUp`
+- `ComboboxStateChangeTypes.InputKeyDownEscape`
+- `ComboboxStateChangeTypes.InputKeyDownHome`
+- `ComboboxStateChangeTypes.InputKeyDownEnd`
+- `ComboboxStateChangeTypes.InputKeyDownEnter`
+- `ComboboxStateChangeTypes.InputChange`
+- `ComboboxStateChangeTypes.InputBlur`
+- `ComboboxStateChangeTypes.MenuMouseLeave`
+- `ComboboxStateChangeTypes.ItemMouseMove`
+- `ComboboxStateChangeTypes.ItemClick`
+- `ComboboxStateChangeTypes.ToggleButtonClick`
+- `ComboboxStateChangeTypes.FunctionToggleMenu`
+- `ComboboxStateChangeTypes.FunctionOpenMenu`
+- `ComboboxStateChangeTypes.FunctionCloseMenu`
+- `ComboboxStateChangeTypes.FunctionSetHighlightedIndex`
+- `ComboboxStateChangeTypes.FunctionSelectItem`
+- `ComboboxStateChangeTypes.FunctionSetInputValue`
+- `ComboboxStateChangeTypes.FunctionReset`
+
+### MultiCombobox
+
+- `MultipleSelectionStateChangeTypes.SelectedItemClick`
+- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownDelete`
+- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownBackspace`
+- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationNext`
+- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationPrevious`
+- `MultipleSelectionStateChangeTypes.DropdownKeyDownNavigationPrevious`
+- `MultipleSelectionStateChangeTypes.DropdownKeyDownBackspace`
+- `MultipleSelectionStateChangeTypes.DropdownClick`
+- `MultipleSelectionStateChangeTypes.FunctionAddSelectedItem`
+- `MultipleSelectionStateChangeTypes.FunctionRemoveSelectedItem`
+- `MultipleSelectionStateChangeTypes.FunctionSetSelectedItems`
+- `MultipleSelectionStateChangeTypes.FunctionSetActiveIndex`
+- `MultipleSelectionStateChangeTypes.FunctionReset`
+
 ## Combobox Props
 
 <SimplePropsTable
@@ -987,6 +1087,7 @@ export default props => (
       Combobox,
       Alert,
       uuid,
+      ComboboxStateChangeTypes
     }}
   />
 )

@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  useCombobox,
   UseComboboxProps,
   UseComboboxState,
   UseMultipleSelectionProps
@@ -60,7 +61,7 @@ export function instanceOfMultiCombobox<T>(
   return 'isMulti' in object;
 }
 
-// ON BLUR REMOVING SELECTED ITEMS WHEN SELECTED WITH MOUSE
+export const ComboboxStateChangeTypes = useCombobox.stateChangeTypes;
 
 export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
   const {

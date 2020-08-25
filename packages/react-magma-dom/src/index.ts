@@ -78,8 +78,12 @@ export { Radio, RadioTextPosition, RadioProps } from './components/Radio';
 export { Modal, ModalSize, ModalProps } from './components/Modal';
 export { Search, SearchProps } from './components/Search';
 
-export { DownshiftSelect } from './components/DownshiftSelect';
-export { Combobox } from './components/Combobox';
+export {
+  DownshiftSelect,
+  SelectStateChangeTypes,
+  MultipleSelectionStateChangeTypes
+} from './components/DownshiftSelect';
+export { Combobox, ComboboxStateChangeTypes } from './components/Combobox';
 
 export { LegacySelect } from './components/LegacySelect';
 export { LegacyAsyncSelect } from './components/LegacyAsyncSelect';

@@ -3,7 +3,7 @@ title: 'Downshift Selects'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { DownshiftSelect, Alert } from 'react-magma-dom'
+import { DownshiftSelect, SelectStateChangeTypes, Alert } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 import { useSelect } from 'downshift'
 import { Link } from 'gatsby'
@@ -147,20 +147,17 @@ Set initial state using the `initialSelectedItem` and `initialHighlightedIndex` 
   }
 ```
 
-## State Changes
+## Specific State Changes
 
-You can track changes made to the internal state of the `select` using the following functions: `onHighlightedIndexChange`,
-`onIsOpenChange`, `onSelectedItemChange`, and `onStateChange`. Each of these functions will have a `changes` object as a parameter that
-includes the changes made to state from each action as well as a `type` that describes the action.
-
-`onStateChange` is best used when using the `select` in a controlled state because it is called on every state change.
+You can track specific changes made to the internal state of the `select` using the following functions: `onHighlightedIndexChange`,
+`onIsOpenChange`, and `onSelectedItemChange`. Each of these functions will have a `changes` object as a parameter that
+includes the changes made to the corresponding state from each action.
 
 ```.jsx
   () => {
     const [highlightedIndexChangeCount, updateHighlightedIndexChangeCount] = React.useState(0);
     const [isOpenChangeCount, updateIsOpenChangeCount] = React.useState(0);
     const [selectedItem, updateSelectedItem] = React.useState(undefined);
-    const [changes, updateChanges] = React.useState({});
 
     function onHighlightedIndexChange(changes) {
       updateHighlightedIndexChangeCount(highlightedIndexChangeCount + 1);
@@ -172,10 +169,6 @@ includes the changes made to state from each action as well as a `type` that des
 
     function onSelectedItemChange(changes) {
       updateSelectedItem(changes.selectedItem);
-    }
-
-    function onStateChange(newChanges) {
-      updateChanges(newChanges)
     }
 
     return <>
@@ -196,21 +189,74 @@ includes the changes made to state from each action as well as a `type` that des
         onIsOpenChange={onIsOpenChange}
         onSelectedItemChange={onSelectedItemChange}
       />
-
-      <pre>{JSON.stringify(changes, null, 2)}</pre>
-
-      <DownshiftSelect
-        id="stateChangesId"
-        name="stateChanges"
-        labelText="State Changes"
-        items={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-        onStateChange={onStateChange}
-      />
     </>
+  }
+```
+
+## Generic State Change
+
+`onStateChange` is called when any internal state is changed. Therefore, it is best used when using the
+`select` in a controlled state.
+
+The `onStateChange` function passes a `changes` object that includes properties that have changed since the
+last state change. The `changes` object also includes a `type` property that describes the action taken
+to change the state. You can see the full list of the types in the [`stateChangeTypes`](/api/downshift-select/#state_change_types) section.
+
+```.jsx
+  () => {
+    const [changes, updateChanges] = React.useState({});
+    const [highlightedIndex, updateHighlightedIndex] = React.useState(-1);
+    const [isOpen, updateIsOpen] = React.useState(false);
+    const [selectedItem, updateSelectedItem] = React.useState('');
+
+    function onStateChange(newChanges) {
+      const { type } = newChanges
+      updateChanges(newChanges)
+
+      switch(type) {
+        case SelectStateChangeTypes.ToggleButtonClick:
+          updateIsOpen(!isOpen)
+        case SelectStateChangeTypes.ToggleButtonKeyDownArrowDown:
+          updateIsOpen(newChanges.isOpen)
+          updateHighlightedIndex(newChanges.highlightedIndex)
+        case SelectStateChangeTypes.ItemMouseMove:
+        case SelectStateChangeTypes.FunctionSetHighlightedIndex:
+        case SelectStateChangeTypes.MenuKeyDownArrowDown:
+        case SelectStateChangeTypes.MenuKeyDownArrowUp:
+          updateHighlightedIndex(newChanges.highlightedIndex)
+        case SelectStateChangeTypes.MenuKeyDownEscape:
+        case SelectStateChangeTypes.MenuBlur:
+          updateIsOpen(false)
+          updateHighlightedIndex(newChanges.highlightedIndex)
+        case SelectStateChangeTypes.ItemClick:
+          updateHighlightedIndex(newChanges.highlightedIndex)
+          updateIsOpen(newChanges.isOpen)
+          updateSelectedItem(newChanges.selectedItem)
+        default:
+          break;
+      }
+    }
+
+    return (
+      <>
+        <pre>{JSON.stringify(changes, null, 2)}</pre>
+
+        <DownshiftSelect
+          id="stateChangesId"
+          name="stateChanges"
+          labelText="State Changes"
+          items={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' }
+          ]}
+          onStateChange={onStateChange}
+          highlightedIndex={highlightedIndex}
+          isOpen={isOpen}
+          selectedItem={selectedItem}
+        />
+      </>
+    )
   }
 ```
 
@@ -604,6 +650,54 @@ Please use discretion when adding custom styles.
   }
 ```
 
+## State Change Types
+
+The `type` property in the `changes` object that is returned from the `onStateChange` function
+corresponds to a `stateChangeTypes` property. The list of all the possible types for a `select` or a
+`multi-select` are listed below.
+
+### Select
+
+- `SelectStateChangeTypes.MenuKeyDownArrowDown`
+- `SelectStateChangeTypes.MenuKeyDownArrowUp`
+- `SelectStateChangeTypes.MenuKeyDownEscape`
+- `SelectStateChangeTypes.MenuKeyDownHome`
+- `SelectStateChangeTypes.MenuKeyDownEnd`
+- `SelectStateChangeTypes.MenuKeyDownEnter`
+- `SelectStateChangeTypes.MenuKeyDownSpaceButton`
+- `SelectStateChangeTypes.MenuKeyDownCharacter`
+- `SelectStateChangeTypes.MenuBlur`
+- `SelectStateChangeTypes.MenuMouseLeave`
+- `SelectStateChangeTypes.ItemMouseMove`
+- `SelectStateChangeTypes.ItemClick`
+- `SelectStateChangeTypes.ToggleButtonKeyDownCharacter`
+- `SelectStateChangeTypes.ToggleButtonKeyDownArrowDown`
+- `SelectStateChangeTypes.ToggleButtonKeyDownArrowUp`
+- `SelectStateChangeTypes.ToggleButtonClick`
+- `SelectStateChangeTypes.FunctionToggleMenu`
+- `SelectStateChangeTypes.FunctionOpenMenu`
+- `SelectStateChangeTypes.FunctionCloseMenu`
+- `SelectStateChangeTypes.FunctionSetHighlightedIndex`
+- `SelectStateChangeTypes.FunctionSelectItem`
+- `SelectStateChangeTypes.FunctionSetInputValue`
+- `SelectStateChangeTypes.FunctionReset`
+
+### MultiSelect
+
+- `MultipleSelectionStateChangeTypes.SelectedItemClick`
+- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownDelete`
+- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownBackspace`
+- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationNext`
+- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationPrevious`
+- `MultipleSelectionStateChangeTypes.DropdownKeyDownNavigationPrevious`
+- `MultipleSelectionStateChangeTypes.DropdownKeyDownBackspace`
+- `MultipleSelectionStateChangeTypes.DropdownClick`
+- `MultipleSelectionStateChangeTypes.FunctionAddSelectedItem`
+- `MultipleSelectionStateChangeTypes.FunctionRemoveSelectedItem`
+- `MultipleSelectionStateChangeTypes.FunctionSetSelectedItems`
+- `MultipleSelectionStateChangeTypes.FunctionSetActiveIndex`
+- `MultipleSelectionStateChangeTypes.FunctionReset`
+
 ## Select Props
 
 <SimplePropsTable
@@ -797,6 +891,7 @@ export default props => (
       Alert,
       useSelect,
       uuid,
+      SelectStateChangeTypes
     }}
   />
 )

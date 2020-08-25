@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { UseSelectProps, UseMultipleSelectionProps } from 'downshift';
+import {
+  useSelect,
+  useMultipleSelection,
+  UseSelectProps,
+  UseMultipleSelectionProps
+} from 'downshift';
 
 import { Select } from './Select';
 import { MultiSelect } from './MultiSelect';
@@ -78,8 +83,9 @@ export function instanceOfToBeCreatedItemObject(
   );
 }
 
-// TODO: Need documentation on how to migrate from react-select to this select
-// TODO: Rename react-select to LegacySelect
+export const SelectStateChangeTypes = useSelect.stateChangeTypes;
+export const MultipleSelectionStateChangeTypes =
+  useMultipleSelection.stateChangeTypes;
 
 export function DownshiftSelect<T>(props: DownshiftSelectInterface<T>) {
   const {
