@@ -21,113 +21,17 @@ We recommend migrating to the new components as soon as possible. The major diff
 
 Both the `LegacySelect` and new `Select` component take an array of options. However the property name has changed from `options` in `LegacySelect` to `items` in the new `Select` component.
 
-Each item in the `items` array can either be a `string` or an `object` with the shape `{item: string; label: string;}`. In the new component, you may also pass in a custom shape for your items, by passing in an additional prop named `itemToString`,
+Each item in the `items` array can either be a `string` or an `object` with the shape `{item: string; label: string;}`, as shown in the <Link to="/api/downshift-select/#basic_usage">Basic Usage examples</Link>.
+In the new component, you may also pass in a <Link to="/api/downshift-select/#custom_items">custom shape for your items</Link>, by passing in an additional prop named `itemToString`,
 which is a function that returns the string representation of your `item` which will be applied as the label. The same formats apply to the `Combobox` component.
-
-### Items as Strings
-
-```.jsx
-<DownshiftSelect items={['Red', 'Blue', 'Green' ]} />
-```
-
-### Items as Arrays
-
-```.jsx
-<DownshiftSelect items={[
-    { label: 'Red', value: 'red' },
-    { label: 'Blue', value: 'blue' },
-    { label: 'Green', value: 'green' }
-]} />
-
-```
-
-### Items as Arrays with Custom Shape
-
-```.jsx
-() => {
-    function itemToString(item) {
-      return item ? `${item.representation} (${item.hex})` : ''
-    }
-
-    return (
-        <DownshiftSelect
-            items={[{
-                id: 1,
-                actual: 'red',
-                representation: 'Red',
-                hex: '#FF0000'
-            }, {
-                id: 2,
-                actual: 'blue',
-                representation: 'Blue',
-                hex: '#0000FF'
-            }, {
-                id: 3,
-                actual: 'green',
-                representation: 'Green',
-                hex: '#008000'
-            }]}
-            itemToString={itemToString}
-        />);
-}
-```
 
 ## Async
 
 The `Select` and the `Combobox` no longer have separate components for asynchronous loading of options.
 
-To create the equivalent of `LegacyAsyncCreatableSelect` you can pass in the new options and use the `isLoading` prop to indicate that the new options are loading.
+To create the equivalent of `LegacyAsyncCreatableSelect` you can pass in the new options to a <Link to="/api/combobox/#async">Combobox with the isLoading prop</Link> to indicate that the new options are loading.
 
-To create the equivalent of the `LegacyAsyncSelect`, you would use the `Combobox` component in the same manner, but with the prop `disableCreateItem`.
-
-```.jsx
-  () => {
-    const [isLoading, updateIsLoading] = React.useState(false);
-
-    function loadItems(inputValue) {
-      return new Promise(resolve => resolve([
-        { label: 'Yellow', value: 'yellow'},
-        { label: 'Pink', value: 'pink' },
-        { label: 'Perrywinkle', value: 'perrywinkle'}
-      ]))
-    }
-
-    function handleInputValueChange(changes, setInputItems) {
-      const { inputValue } = changes;
-
-      if (!inputValue) return
-
-      updateIsLoading(true);
-
-      setTimeout(() => {
-        updateIsLoading(false);
-        loadItems(inputValue).then((items) => {
-          setInputItems(items.filter(item =>
-            item
-              .label
-              .toLowerCase()
-              .startsWith(inputValue.toLowerCase())
-          ))
-        })
-      }, 1000)
-    }
-
-    return <Combobox
-      id="asyncId"
-      name="async"
-      labelText="Async"
-      isLoading={isLoading}
-      defaultItems={[
-        { label: 'Red', value: 'red' },
-        { label: 'Blue', value: 'blue' },
-        { label: 'Green', value: 'green' }
-      ]}
-      onInputValueChange={handleInputValueChange}
-    />
-  }
-
-
-```
+To create the equivalent of the `LegacyAsyncSelect`, you would use the `Combobox` component in the same manner with the prop <Link to="/api/combobox/#disable_create_item">disableCreateItem</Link> in addition to `isLoading`.
 
 ## Events
 
@@ -137,107 +41,18 @@ The `onMenuOpen` and `onMenuClose` props from the `LegacySelect` have been repla
 
 Additionally, two new event props, `onHighlightedIndexChange` and `onStateChange` are also available.
 
-```.jsx
-
-() => {
-    const [highlightedIndexChangeCount, updateHighlightedIndexChangeCount] = React.useState(0);
-    const [isOpenChangeCount, updateIsOpenChangeCount] = React.useState(0);
-    const [selectedItem, updateSelectedItem] = React.useState(undefined);
-    const [changes, updateChanges] = React.useState({});
-
-    function onHighlightedIndexChange(changes) {
-      updateHighlightedIndexChangeCount(highlightedIndexChangeCount + 1);
-    }
-
-    function onIsOpenChange(changes) {
-      updateIsOpenChangeCount(isOpenChangeCount + 1)
-    }
-
-    function onSelectedItemChange(changes) {
-      updateSelectedItem(changes.selectedItem);
-    }
-
-    function onStateChange(newChanges) {
-      updateChanges(newChanges)
-    }
-
-    return <>
-      <strong>Selected Item: </strong><pre>{JSON.stringify(selectedItem, null, 2)}</pre>
-      <p><strong>Highlighted Index Change Count: </strong>{highlightedIndexChangeCount}</p>
-      <p><strong>Is Open Change Count: </strong>{isOpenChangeCount}</p>
-
-      <DownshiftSelect
-        id="stateChangesId"
-        name="stateChanges"
-        labelText="State Changes"
-        items={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-        onHighlightedIndexChange={onHighlightedIndexChange}
-        onIsOpenChange={onIsOpenChange}
-        onSelectedItemChange={onSelectedItemChange}
-      />
-
-      <pre>{JSON.stringify(changes, null, 2)}</pre>
-
-      <DownshiftSelect
-        id="stateChangesId"
-        name="stateChanges"
-        labelText="State Changes"
-        items={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-        onStateChange={onStateChange}
-      />
-    </>
-  }
-
-```
+See the docs for information on <Link to="/api/downshift-select/#specific_state_changes">Specific State Changes</Link> and <Link to="/api/downshift-select/#generic_state_change">Generic State Change</Link>.
 
 ## Accessibility
 
-New to the upgraded `Select` and `Combobox` components, are some new props to allow for customization of the screen-reader accessible messages.
+New to the upgraded `Select` and `Combobox` components, are some new props to allow for <Link to="/api/downshift-select/#accessibility">customization of the screen-reader accessible messages</Link>.
 The `getA11yStatusMessage` prop is used to indicate when one the following props are changed: `items`, `highlightedIndex`, `inputValue` or `isOpen`.
 
 The `getA11ySelectionMessage` prop is used to indicate when an item has been selected.
 
-```.jsx
-  () => {
-    return <>
-      <DownshiftSelect
-        labelText="New Accessibility Status Message"
-        items={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-        getA11yStatusMessage={({highlightedItem}) => `custom message saying that ${highlightedItem} is highlighted`}
-        getA11ySelectionMessage={({selectedItem}) => `custom message saying that ${selectedItem} is now selected`}
-      />
-    </>
-  }
-
-```
-
 ## Custom Styles
 
-New to the upgraded `Select` and `Combobox` components, is the ability to add custom styles either by passing CSS properties.
-
-```.jsx
-    <DownshiftSelect
-        containerStyle={{ marginBottom: '32px'}}
-        helperMessage="Helper message"
-        inputStyle={{ border: '2px dotted green', width: '200px'}}
-        items={['Red', 'Blue', 'Green']}
-        labelStyle={{ fontStyle: 'italic' }}
-        labelText="Basic with Custom Styles"
-        messageStyle={{ border: '1px solid blue' }}
-    />
-```
+New to the upgraded `Select` and `Combobox` components, is the ability to add <Link to="/api/downshift-select/#custom_styles">custom styles</Link> by passing CSS properties.
 
 export default props => (
   <ScopeableLayout
