@@ -15,7 +15,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;

@@ -45,8 +45,8 @@ export interface ThemeInterface {
 }
 
 export const magma = {
-  bodyFont: '"Open Sans", sans-serif',
-  headingFont: '"Open Sans", sans-serif',
+  bodyFont: '"Open Sans", Helvetica, sans-serif',
+  headingFont: '"Open Sans", Helvetica, sans-serif',
   direction: 'ltr',
 
   colors: {

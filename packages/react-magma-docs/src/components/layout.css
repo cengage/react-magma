@@ -222,11 +222,8 @@ h4,
 h5,
 h6 {
   border-bottom: 2px solid transparent;
-  color: #003865;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 300;
-  line-height: 1.2;
-  margin: 40px 0 20px;
+  font-family: 'Open Sans', Helvetica, sans-serif;
+  font-weight: 600;
 }
 
 h1:focus,
@@ -240,33 +237,42 @@ h6:focus {
 }
 
 h1 {
-  font-size: 2.8em;
+  font-size: 32px;
+  line-height: 40px;
+  margin: 0 0 16px;
 }
 
 h2 {
-  font-size: 2.4em;
+  font-size: 28px;
+  line-height: 40px;
+  margin: 48px 0 16px;
 }
 
 h3 {
-  font-size: 1.867em;
+  font-size: 24px;
+  line-height: 32px;
+  margin: 40px 0 16px;
 }
 
 h4 {
-  font-size: 1.467em;
-  font-weight: 400;
-  line-height: 1.3;
+  font-size: 20px;
+  line-height: 32px;
+  margin: 32px 0 16px;
 }
 
 h5 {
-  font-size: 1.067em;
-  font-weight: 600;
-  line-height: 1.4;
+  font-size: 18px;
+  line-height: 32px;
+  margin: 24px 0 12px;
 }
 
 h6 {
-  font-size: 0.867em;
-  font-weight: 700;
-  line-height: 1.5;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.32px;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin: 24px 0 8px;
 }
 ul {
   margin-left: 1.45rem;
@@ -320,7 +326,7 @@ p {
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
-  margin-bottom: 1.45rem;
+  margin-bottom: 24px;
 }
 figure {
   margin-left: 0;
@@ -586,14 +592,14 @@ pre tt:after {
   }
 }
 
-/* .content-article h1 {
+.content-article > div > h1 {
   margin-top: 0;
 }
 
-.content-article h2 {
+.content-article > div > h2 {
   margin-top: -60px;
-  padding-top: 85px;
-} */
+  padding-top: 88px;
+}
 
 .pre-container {
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -609,6 +615,7 @@ pre tt:after {
 
 .demo-container {
   border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
   padding: 10px;
 }
 

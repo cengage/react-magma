@@ -4,7 +4,7 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
   color: #003865;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   font-weight: 300;
   line-height: 1.2;
   margin: 20px 0 10px;
@@ -32,7 +32,7 @@ exports[`Heading Snapshot should render heading 2 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
   color: #003865;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   font-weight: 300;
   line-height: 1.2;
   margin: 20px 0 10px;
@@ -59,7 +59,7 @@ exports[`Heading Snapshot should render heading 3 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
   color: #003865;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   font-weight: 300;
   line-height: 1.2;
   margin: 20px 0 10px;
@@ -86,7 +86,7 @@ exports[`Heading Snapshot should render heading 4 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
   color: #003865;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   font-weight: 300;
   line-height: 1.2;
   margin: 20px 0 10px;
@@ -115,7 +115,7 @@ exports[`Heading Snapshot should render heading 5 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
   color: #003865;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   font-weight: 300;
   line-height: 1.2;
   margin: 20px 0 10px;
@@ -144,7 +144,7 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
   color: #003865;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   font-weight: 300;
   line-height: 1.2;
   margin: 20px 0 10px;

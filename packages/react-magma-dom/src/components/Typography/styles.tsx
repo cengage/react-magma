@@ -46,6 +46,7 @@ const baseHeadingStyles = props => css`
   border-bottom: 2px solid transparent;
   font-family: ${props.theme.headingFont};
   font-weight: 600;
+  padding: 0;
 
   &:focus {
     border-bottom: 2px dotted
