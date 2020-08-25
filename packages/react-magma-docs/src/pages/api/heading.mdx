@@ -6,6 +6,7 @@ import { ScopeableLayout } from '../../components/layout'
 import { Heading, Button } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { SimplePropsTable } from '../../components/props-table'
+import { Link } from 'gatsby'
 
 # Headings
 
@@ -24,6 +25,71 @@ The `Heading` component can be used with the `level` prop to render the HTML hea
   </>
 ```
 
+## Variant
+
+By default, the a heading will render the semantic HTML element with its corresponding styles, as defined in the <Link to="/api/typography">Typography</Link> component.
+However, if the `variant` prop is specified, the heading will render with the styles for that variant.
+
+```.jsx
+  <>
+    <Heading level={2} variant="headingXXSmall">H2 styled as Heading XXSmall (h6)</Heading>
+    <Heading level={3} variant="bodyMedium">H3 styled as standard paragraph text</Heading>
+  </>
+```
+
+## Margins
+
+By default, the `Heading` component does not include margins. When the `hasMargins` prop is applied, the elements will receive bottom and top elements for their respective styles.
+
+```.jsx
+  <>
+    <Heading hasMargins level={1}>Heading 1</Heading>
+    <Heading hasMargins level={2}>Heading 2</Heading>
+    <Heading hasMargins level={3}>Heading 3</Heading>
+    <Heading hasMargins level={4}>Heading 4</Heading>
+    <Heading hasMargins level={5}>Heading 5</Heading>
+    <Heading hasMargins level={6}>Heading 6</Heading>
+  </>
+```
+
+## Type-Style
+
+The `typeStyle` prop can be used to set additional styles on a component. The default `typeStyle` is `productive`.
+
+The `expressive` type-style can be used in marketing contexts, which may require more variety than the default productive styles.
+
+```.jsx
+    <>
+      <Heading typeStyle="expressive" level={1}>Heading 1</Heading>
+      <Heading typeStyle="expressive" level={2}>Heading 2</Heading>
+      <Heading typeStyle="expressive" level={3}>Heading 3</Heading>
+      <Heading typeStyle="expressive" level={4}>Heading 4</Heading>
+      <Heading typeStyle="expressive" level={5}>Heading 5</Heading>
+      <Heading typeStyle="expressive"  level={6}>Heading 6</Heading>
+    </>
+```
+
+## Color
+
+The `color` prop can be used to change the style or emphasis. It accepts the values: `success`, `danger` and `subdued`.
+
+```.jsx
+    <>
+        <Heading color="success" level={2}>
+            Positive Heading
+        </Heading>
+
+        <Heading color="danger" level={2}>
+            Danger Heading
+        </Heading>
+
+        <Heading color="subdued" level={2}>
+            Subdued Heading
+        </Heading>
+
+    </>
+```
+
 ## Inverse
 
 `isInverse` is an optional boolean prop, that may be passed in when the component is to be displayed on a dark background.
@@ -31,6 +97,7 @@ The `Heading` component can be used with the `level` prop to render the HTML hea
 ```.jsx
   <div style={{ background : '#00263E', padding: '10px' }}>
     <Heading isInverse level={2}>Heading 2</Heading>
+    <Heading isInverse level={2} color="subdued">Heading 2 Subdued</Heading>
   </div>
 ```
 
@@ -80,6 +147,30 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
       required: true,
       description: 'The content of the component',
     },
+    color: {
+      type: {
+        name: 'enum',
+        options: [
+          'TypographyColor.danger',
+          'TypographyColor.default',
+          'TypographyColor.success',
+          'TypographyColor.subdued',
+        ],
+      },
+      required: false,
+      description:
+        'The color of the component, helping to convey meaning or relative emphasis',
+      defaultValue: 'default',
+    },
+    hasMargins: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have default top and bottom margins for the respective heading element.  If false, top and bottom margin will be 0.',
+      defaultValue: 'false',
+    },
     isInverse: {
       type: {
         name: 'boolean',
@@ -105,6 +196,26 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
       required: false,
       description:
         'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+    variant: {
+      type: {
+        name: 'enum',
+        options: [
+          'TypographyVariant.headingXLarge',
+          'TypographyVariant.headingLarge',
+          'TypographyVariant.headingMedium',
+          'TypographyVariant.headingSmall',
+          'TypographyVariant.headingXSmall',
+          'TypographyVariant.headingXXSmall',
+          'TypographyVariant.bodyLarge',
+          'TypographyVariant.bodyMedium',
+          'TypographyVariant.bodySmall',
+          'TypographyVariant.bodyXSmall',
+        ],
+      },
+      required: false,
+      description: 'Applies the theme typograpy styles.',
+      defaultValue: 'Default variant associated with the heading level 1-6',
     },
   }}
 />

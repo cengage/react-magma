@@ -23,7 +23,7 @@ describe('Heading', () => {
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
-    expect(heading).toHaveStyleRule('font-size', '42px');
+    expect(heading).toHaveStyleRule('font-size', '28px');
   });
 
   it('should render an h2', () => {
@@ -33,7 +33,7 @@ describe('Heading', () => {
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
-    expect(heading).toHaveStyleRule('font-size', '36px');
+    expect(heading).toHaveStyleRule('font-size', '24px');
   });
 
   it('should render an h3', () => {
@@ -43,7 +43,7 @@ describe('Heading', () => {
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
-    expect(heading).toHaveStyleRule('font-size', '28px');
+    expect(heading).toHaveStyleRule('font-size', '20px');
   });
 
   it('should render an h4', () => {
@@ -53,7 +53,7 @@ describe('Heading', () => {
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
-    expect(heading).toHaveStyleRule('font-size', '22px');
+    expect(heading).toHaveStyleRule('font-size', '18px');
   });
 
   it('should render an h5', () => {
@@ -63,7 +63,7 @@ describe('Heading', () => {
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
-    expect(heading).toHaveStyleRule('font-size', '16px');
+    expect(heading).toHaveStyleRule('font-size', '18px');
   });
 
   it('should render an h6', () => {
@@ -73,22 +73,21 @@ describe('Heading', () => {
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
-    expect(heading).toHaveStyleRule('font-size', '13px');
+    expect(heading).toHaveStyleRule('font-size', '12px');
   });
 
-  it('should render default styles', () => {
+  it('should render an component with a different variant', () => {
     const headingText = 'test';
-    const { getByText } = render(<Heading level={1}>{headingText}</Heading>);
+    const { container, getByText } = render(
+      <Heading variant="headingXLarge" level={6}>
+        {headingText}
+      </Heading>
+    );
     const heading = getByText(headingText);
 
-    expect(heading).toHaveStyleRule('color', magma.colors.foundation02);
-    expect(heading).toHaveStyleRule(
-      'border-bottom',
-      `2px dotted ${magma.colors.focus}`,
-      {
-        target: ':focus'
-      }
-    );
+    expect(container.querySelector('h6')).toBeInTheDocument();
+    expect(heading).toHaveTextContent(headingText);
+    expect(heading).toHaveStyleRule('font-size', '28px');
   });
 
   it('should render inverse styles', () => {

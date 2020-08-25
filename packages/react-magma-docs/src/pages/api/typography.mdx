@@ -126,35 +126,36 @@ However, you can easily override which element is rendered, by using the `compon
 
 ## Type-Style
 
+The `typeStyle` prop can be used to set additional styles on a component. The default `typeStyle` is `productive`.
 The `expressive` type-style can be used in marketing contexts, which may require more variety than the default productive styles.
 
 ```.jsx
     <>
-        <Typography hasMargins typeStyle="expressive" variant="headingXLarge">
+        <Typography typeStyle="expressive" variant="headingXLarge">
             Expressive Heading XLarge
         </Typography>
 
-        <Typography hasMargins typeStyle="expressive" variant="headingLarge">
+        <Typography typeStyle="expressive" variant="headingLarge">
             Expressive Heading Large
         </Typography>
 
-        <Typography hasMargins typeStyle="expressive" variant="headingMedium">
+        <Typography typeStyle="expressive" variant="headingMedium">
             Expressive Heading Medium
         </Typography>
 
-        <Typography hasMargins typeStyle="expressive" variant="headingSmall">
+        <Typography typeStyle="expressive" variant="headingSmall">
             Expressive Heading Small
         </Typography>
 
-        <Typography hasMargins typeStyle="expressive" variant="headingXSmall">
+        <Typography typeStyle="expressive" variant="headingXSmall">
             Expressive Heading XSmall
         </Typography>
 
-        <Typography hasMargins typeStyle="expressive" variant="headingXXSmall">
+        <Typography typeStyle="expressive" variant="headingXXSmall">
             Expressive Heading XXSmall
         </Typography>
 
-        <Typography hasMargins typeStyle="expressive" variant="bodyLarge">
+        <Typography typeStyle="expressive" variant="bodyLarge">
             Expressive body large.  Lorem ipsum dolar sit amet.
         </Typography>
     </>
@@ -178,16 +179,16 @@ The `color` prop can be used to change the style or emphasis on the different va
             Some <Typography component="span" color="danger" variant="bodyMedium"> inline negative text</Typography>. And some <strong>bold</strong> and <em>italic</em> text. Lorem ipsum dolar sit amet.
         </Typography>
 
-         <Typography color="success" hasMargins variant="headingMedium">
-            Expressive Positive Heading
+         <Typography color="danger" hasMargins typeStyle="expressive" variant="headingMedium">
+            Expressive Danger Heading
         </Typography>
 
-        <Typography color="subdued" hasMargins variant="bodyLarge">
+        <Typography color="subdued" typeStyle="expressive" hasMargins variant="bodyLarge">
             Expressive subdued text.  Lorem ipsum dolar sit amet.
         </Typography>
 
-        <Typography hasMargins variant="bodyLarge">
-            Some expressive <Typography component="span" color="danger" variant="bodyLarge"> inline negative text</Typography>. And some <strong>bold</strong> and <em>italic</em> text. Lorem ipsum dolar sit amet.
+        <Typography hasMargins typeStyle="expressive" variant="bodyLarge">
+            Some expressive <Typography component="span" color="success" variant="bodyLarge"> inline success text</Typography>. And some <strong>bold</strong> and <em>italic</em> text. Lorem ipsum dolar sit amet.
         </Typography>
     </>
 ```
@@ -280,7 +281,7 @@ The `isInverse` property is an optional boolean, that changes the colors so comp
           'TypographyTypeStyle.productive',
         ],
       },
-      description: 'Additional style for various typography variants',
+      description: 'Additional styles for typography variants',
       defaultValue: 'productive',
     },
     variant: {

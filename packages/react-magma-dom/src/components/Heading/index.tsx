@@ -1,7 +1,19 @@
 import * as React from 'react';
-import { css } from '@emotion/core';
-import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { TypographyVariant } from '../Typography';
+
+import {
+  HeadingXLargeComponent,
+  HeadingLargeComponent,
+  HeadingMediumComponent,
+  HeadingSmallComponent,
+  HeadingXSmallComponent,
+  HeadingXXSmallComponent,
+  BodyLargeComponent,
+  BodyMediumComponent,
+  BodySmallComponent,
+  BodyXSmallComponent
+} from '../Typography/styles';
 
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   isInverse?: boolean;
@@ -9,84 +21,47 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   ref?: any;
   testId?: string;
   tabIndex?: number;
+  variant?: TypographyVariant;
 }
 
-export const baseHeadingStyles = props => css`
-  border-bottom: 2px solid transparent;
-  color: ${props.isInverse
-    ? props.theme.colors.neutral08
-    : props.theme.colors.foundation02};
-  font-family: ${props.theme.headingFont};
-  font-weight: 300;
-  line-height: 1.2;
-  margin: 20px 0 10px;
-
-  &:focus {
-    border-bottom: 2px dotted
-      ${props.isInverse
-        ? props.theme.colors.focusInverse
-        : props.theme.colors.focus};
-    outline: 0;
-    transition: border 0.1s linear;
-  }
-`;
-
-const StyledH1 = styled.h1`
-  ${baseHeadingStyles};
-  font-size: 42px;
-`;
-
-const StyledH2 = styled.h2`
-  ${baseHeadingStyles};
-  font-size: 36px;
-`;
-
-const StyledH3 = styled.h3`
-  ${baseHeadingStyles};
-  font-size: 28px;
-`;
-
-const StyledH4 = styled.h4`
-  ${baseHeadingStyles};
-  font-size: 22px;
-  font-weight: 400;
-  line-height: 1.4;
-`;
-
-const StyledH5 = styled.h5`
-  ${baseHeadingStyles};
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.4;
-`;
-
-const StyledH6 = styled.h6`
-  ${baseHeadingStyles};
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.5;
-`;
-
 export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
-  ({ level, testId, children, ...other }: HeadingProps, ref: any) => {
+  ({ level, testId, variant, children, ...other }: HeadingProps, ref: any) => {
     const theme = React.useContext(ThemeContext);
-    const headingLevels = {
-      1: StyledH1,
-      2: StyledH2,
-      3: StyledH3,
-      4: StyledH4,
-      5: StyledH5,
-      6: StyledH6
+
+    const variantComponents = {
+      headingXLarge: HeadingXLargeComponent,
+      headingLarge: HeadingLargeComponent,
+      headingMedium: HeadingMediumComponent,
+      headingSmall: HeadingSmallComponent,
+      headingXSmall: HeadingXSmallComponent,
+      headingXXSmall: HeadingXXSmallComponent,
+      bodyLarge: BodyLargeComponent,
+      bodyMedium: BodyMediumComponent,
+      bodySmall: BodySmallComponent,
+      bodyXSmall: BodyXSmallComponent
     };
 
-    const HeadingComponent = headingLevels[level];
+    const headingLevels = {
+      1: HeadingXLargeComponent,
+      2: HeadingLargeComponent,
+      3: HeadingMediumComponent,
+      4: HeadingSmallComponent,
+      5: HeadingXSmallComponent,
+      6: HeadingXXSmallComponent
+    };
+
+    const HeadingComponent = variant
+      ? variantComponents[variant]
+      : headingLevels[level];
+
+    const headingElement = `h${level}`;
 
     return (
       <HeadingComponent
         {...other}
-        css={baseHeadingStyles({ theme })}
-        ref={ref}
+        as={headingElement}
         data-testid={testId}
+        ref={ref}
         theme={theme}
       >
         {children}
