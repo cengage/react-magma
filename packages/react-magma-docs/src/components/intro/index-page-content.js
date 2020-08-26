@@ -17,13 +17,15 @@ import ImageQuality from '../../images/img-quality.svg'
 const Heading = styled.h1`
   color: inherit;
   font-family: ${props => props.theme.bodyFont};
-  font-size: 3.4em;
+  font-size: 56px;
   font-weight: 600;
+  line-height: 64px;
   text-align: center;
   text-transform: uppercase;
 
   @media (min-width: ${props => props.theme.breakpoints.medium}px) {
-    font-size: 6.4em;
+    font-size: 104px;
+    line-height: 120px;
   }
 
   @media (min-width: ${props => props.theme.breakpoints.small}px) {

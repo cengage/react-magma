@@ -90,3 +90,106 @@ export const magma = {
     xl: 1200
   }
 };
+
+// Font sizes
+export const typeScale = {
+  size01: {
+    fontSize: '12px',
+    lineHeight: '16px'
+  },
+  size02: {
+    fontSize: '14px',
+    lineHeight: '20px'
+  },
+  size03: {
+    fontSize: '16px',
+    lineHeight: '24px'
+  },
+  size04: {
+    fontSize: '18px',
+    lineHeight: '32px'
+  },
+  size05: {
+    fontSize: '20px',
+    lineHeight: '32px'
+  },
+  size06: {
+    fontSize: '24px',
+    lineHeight: '32px'
+  },
+  size07: {
+    fontSize: '28px',
+    lineHeight: '40px'
+  },
+  size08: {
+    fontSize: '32px',
+    lineHeight: '40px'
+  },
+  size09: {
+    fontSize: '36px',
+    lineHeight: '48px'
+  },
+  size10: {
+    fontSize: '42px',
+    lineHeight: '48px'
+  },
+  size11: {
+    fontSize: '48px',
+    lineHeight: '56px'
+  },
+  size12: {
+    fontSize: '54px', //should this be 56px?
+    lineHeight: '64px'
+  },
+  size13: {
+    fontSize: '60px',
+    lineHeight: '72px'
+  }
+};
+
+// Variants
+
+export const typographyVariants = {
+  headingXLarge: {
+    mobile: {
+      fontSize: '28px',
+      lineHeight: '40px',
+      typeScale: typeScale.size07
+    },
+    desktop: {
+      fontSize: '32px',
+      lineHeight: '40px',
+      typeScale: typeScale.size08
+    }
+  },
+  headingLarge: {
+    mobile: {
+      fontSize: '24px',
+      lineHeight: '32px',
+      typeScale: typeScale.size06
+    },
+    desktop: {
+      fontSize: '28px',
+      lineHeight: '40px',
+      typeScale: typeScale.size07
+    }
+  },
+  headingMedium: {
+    mobile: {
+      fontSize: '20px',
+      lineHeight: '32px',
+      typeScale: typeScale.size05
+    },
+    desktop: {
+      fontSize: '24px',
+      lineHeight: '32px',
+      typeScale: typeScale.size06
+    }
+  },
+  headingSmall: {},
+  headingXSmall: {},
+  bodyLarge: {},
+  bodyMedium: {},
+  bodySmall: {},
+  bodyXSmall: {}
+};
