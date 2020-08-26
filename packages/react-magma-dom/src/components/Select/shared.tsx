@@ -3,10 +3,11 @@ import {
   Styles as ReactSelectStyles,
   ValueType,
   ActionMeta,
-  components
+  components,
+  Styles
 } from 'react-select';
-import { CrossIcon } from '../Icon/types/CrossIcon';
-import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
+
+import { CrossIcon, CaretDownIcon } from 'react-magma-icons';
 
 export interface BaseSelectProps {
   testId?: string;
@@ -56,7 +57,7 @@ export function getStyles(
   theme: any,
   errorMessage?: React.ReactNode,
   inverse?: boolean
-) {
+): Styles {
   return {
     control: (styles, state) => {
       const custom =

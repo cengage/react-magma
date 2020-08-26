@@ -46,34 +46,40 @@ const linkStyles = props => css`
   }
 `;
 
-export const HyperLink: React.FunctionComponent<
-  HyperLinkProps
-> = React.forwardRef((props: HyperLinkProps, ref: any) => {
-  const composedProps = buildPropsWithDefaultButtonStyles(props);
-  const { children, to, styledAs, isInverse, testId, ...rest } = props;
+export const HyperLink: React.FunctionComponent<HyperLinkProps> = React.forwardRef(
+  (props: HyperLinkProps, ref: any) => {
+    const composedProps = buildPropsWithDefaultButtonStyles(props);
+    const { children, to, styledAs, isInverse, testId, ...rest } = props;
 
-  const other = omit(['textTransform', 'positionTop', 'positionLeft'], rest);
-  const theme = React.useContext(ThemeContext);
+    const other = omit(['textTransform', 'positionTop', 'positionLeft'], rest);
+    const theme = React.useContext(ThemeContext);
 
-  const composedStyle =
-    styledAs === 'Button'
-      ? buttonStyles({ ...composedProps, theme })
-      : linkStyles({ ...props, theme });
+    const composedStyle =
+      styledAs === 'Button'
+        ? buttonStyles({ ...composedProps, theme })
+        : linkStyles({ ...props, theme });
 
-  if (typeof children === 'function') {
-    return (
-      <ClassNames>
-        {({ css: composedCss }) => {
-          const stylesClass = composedCss(composedStyle);
-          return children({ to, stylesClass });
-        }}
-      </ClassNames>
-    );
-  } else {
-    return (
-      <a {...other} data-testid={testId} href={to} css={composedStyle}>
-        {children}
-      </a>
-    );
+    if (typeof children === 'function') {
+      return (
+        <ClassNames>
+          {({ css: composedCss }) => {
+            const stylesClass = composedCss(composedStyle);
+            return children({ to, stylesClass });
+          }}
+        </ClassNames>
+      );
+    } else {
+      return (
+        <a
+          {...other}
+          ref={ref}
+          data-testid={testId}
+          href={to}
+          css={composedStyle}
+        >
+          {children}
+        </a>
+      );
+    }
   }
-});
+);

@@ -3,7 +3,7 @@ import { axe } from 'jest-axe';
 import { Input } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
-import { CheckIcon } from '../Icon/types/CheckIcon';
+import { CheckIcon } from 'react-magma-icons';
 
 describe('Input', () => {
   it('should find element by testId', () => {

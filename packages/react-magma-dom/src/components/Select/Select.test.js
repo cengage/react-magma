@@ -5,7 +5,7 @@ import { Select } from '.';
 import { getStyles } from './shared';
 import { render, fireEvent, act } from '@testing-library/react';
 import { magma } from '../../theme/magma';
-import { Search2Icon } from '../Icon/types/Search2Icon';
+import { Search2Icon } from 'react-magma-icons';
 import { components as ReactSelectComponents } from 'react-select';
 
 describe('Select', () => {

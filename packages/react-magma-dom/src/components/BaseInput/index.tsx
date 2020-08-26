@@ -4,7 +4,7 @@ import { css } from '@emotion/core';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonVariant, ButtonType, ButtonSize, ButtonShape } from '../Button';
 import { IconButton } from '../IconButton';
-import { IconProps } from '../Icon/utils';
+import { IconProps } from 'react-magma-icons';
 
 export enum InputSize {
   large = 'large',
@@ -211,9 +211,9 @@ export const BaseInput: React.FunctionComponent<BaseInputProps> = React.forwardR
         ? InputIconPosition.left
         : props.iconPosition;
 
-    const [value, setValue] = React.useState<string | string[] | number>(
-      props.defaultValue || props.value || ''
-    );
+    const [value, setValue] = React.useState<
+      string | ReadonlyArray<string> | number
+    >(props.defaultValue || props.value || '');
 
     React.useEffect(() => {
       if (props.value !== undefined && props.value !== null) {

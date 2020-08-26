@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { HyperLink, CodeIcon, PaletteIcon, ThemeContext } from 'react-magma-dom'
+import { CodeIcon, PaletteIcon } from 'react-magma-icons'
+import { HyperLink, ThemeContext } from 'react-magma-dom'
 import IntroHeading from './intro-heading'
 import IntroSection from './intro-section'
 import NavItem from './nav-item'

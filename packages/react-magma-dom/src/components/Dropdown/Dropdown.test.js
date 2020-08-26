@@ -1,5 +1,5 @@
 import React from 'react';
-import { AsteriskIcon } from '../Icon/types/AsteriskIcon';
+import { AsteriskIcon } from 'react-magma-icons';
 import { Dropdown } from '.';
 import { DropdownContent } from './DropdownContent';
 import { DropdownDivider } from './DropdownDivider';

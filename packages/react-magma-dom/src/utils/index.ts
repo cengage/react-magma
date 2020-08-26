@@ -24,7 +24,7 @@ export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
 
-export type XOR<T, U> = (T | U) extends object
+export type XOR<T, U> = T | U extends object
   ? (Without<T, U> & U) | (Without<U, T> & T)
   : T | U;
 
@@ -124,7 +124,9 @@ export function animate(
   element,
   to,
   options: any = {},
-  cb = (error?: Error) => {}
+  cb = (error?: Error) => {
+    throw error;
+  }
 ) {
   const { ease = easeInOutSin, duration = 300 } = options;
 

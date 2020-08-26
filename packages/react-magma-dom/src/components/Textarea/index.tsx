@@ -20,7 +20,7 @@ export interface TextareaProps
   messageStyle?: React.CSSProperties;
   testId?: string;
   textareaStyle?: React.CSSProperties;
-  value?: string | string[] | number;
+  value?: string | ReadonlyArray<string> | number;
 }
 
 const Container = styled.div`
@@ -33,9 +33,7 @@ const StyledTextArea = styled.textarea<TextareaProps>`
   padding: 5px 8px 0;
 `;
 
-export const Textarea: React.FunctionComponent<
-  TextareaProps
-> = React.forwardRef(
+export const Textarea: React.FunctionComponent<TextareaProps> = React.forwardRef(
   (props: TextareaProps, ref: React.Ref<HTMLTextAreaElement>) => {
     const {
       containerStyle,
@@ -57,9 +55,9 @@ export const Textarea: React.FunctionComponent<
     const id = useGenerateId(defaultId);
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
-    const [value, setValue] = React.useState<string | string[] | number>(
-      props.defaultValue || props.value || ''
-    );
+    const [value, setValue] = React.useState<
+      string | ReadonlyArray<string> | number
+    >(props.defaultValue || props.value || '');
 
     React.useEffect(() => {
       if (props.value) {

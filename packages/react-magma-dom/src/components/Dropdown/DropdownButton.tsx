@@ -1,12 +1,14 @@
 import * as React from 'react';
 
 import { IconButton, ButtonIconPosition } from '../IconButton';
-import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
-import { CaretLeftIcon } from '../Icon/types/CaretLeftIcon';
-import { CaretRightIcon } from '../Icon/types/CaretRightIcon';
-import { CaretUpIcon } from '../Icon/types/CaretUpIcon';
+import {
+  CaretDownIcon,
+  CaretLeftIcon,
+  CaretRightIcon,
+  CaretUpIcon,
+  IconProps
+} from 'react-magma-icons';
 import { DropdownContext, DropdownDropDirection } from '.';
-import { IconProps } from '../Icon/utils';
 import { Omit, XOR } from '../../utils';
 import { ButtonProps } from '../Button';
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { Notification2Icon } from '../Icon/types/Notification2Icon';
+import { Notification2Icon } from 'react-magma-icons';
 
 export interface InputMessageProps
   extends React.HTMLAttributes<HTMLDivElement> {

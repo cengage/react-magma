@@ -3,7 +3,7 @@ import React from 'react';
 import { axe } from 'jest-axe';
 import { CreatableSelect } from '.';
 import { act, render, fireEvent, waitForElement } from '@testing-library/react';
-import { Search2Icon } from '../Icon/types/Search2Icon';
+import { Search2Icon } from 'react-magma-icons';
 import { components as ReactSelectComponents } from 'react-select';
 
 const colourOptions = [

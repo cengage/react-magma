@@ -2,8 +2,7 @@ import * as React from 'react';
 
 import { Button, ButtonShape, ButtonStyles } from '../Button';
 import { IconButton, IconButtonProps } from '../IconButton';
-import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
-import { CaretUpIcon } from '../Icon/types/CaretUpIcon';
+import { CaretDownIcon, CaretUpIcon } from 'react-magma-icons';
 import { DropdownContext, DropdownDropDirection } from '.';
 
 export interface DropdownSplitButtonProps extends ButtonStyles {
@@ -14,9 +13,7 @@ export interface DropdownSplitButtonProps extends ButtonStyles {
   onClick?: () => void;
 }
 
-export const DropdownSplitButton: React.FunctionComponent<
-  DropdownSplitButtonProps
-> = ({
+export const DropdownSplitButton: React.FunctionComponent<DropdownSplitButtonProps> = ({
   'aria-label': ariaLabel,
   children,
   icon,

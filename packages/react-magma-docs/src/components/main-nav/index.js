@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { Link, StaticQuery, graphql } from 'gatsby'
 import { Location, Router } from '@reach/router'
 import './main-nav.css'
-import { magma, AngleDownIcon } from 'react-magma-dom'
+import { AngleDownIcon } from 'react-magma-icons'
+import { magma } from 'react-magma-dom'
 import { convertTextToId } from '../../utils'
 import {
   Accordion,
