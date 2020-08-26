@@ -137,13 +137,13 @@ export const HeadingMediumComponent = styled.h3<{
   ${props =>
     props.typeStyle === 'expressive' &&
     css`
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 300;
-      line-height: 40px;
+      line-height: 32px;
 
       @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: 36px;
-        line-height: 48px;
+        font-size: 28px;
+        line-height: 40px;
       }
     `};
 `;
@@ -244,6 +244,10 @@ export const BodyLargeComponent = styled.p<{
     css`
       font-size: 20px;
       line-height: 32px;
+
+      @media (min-width: ${props.theme.breakpoints.small}px) {
+        font-size: 24px;
+      }
     `};
 `;
 

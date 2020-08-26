@@ -402,7 +402,7 @@ describe('Typography', () => {
         </Typography>
       );
 
-      expect(getByTestId(testId)).toHaveStyleRule('font-size', '28px');
+      expect(getByTestId(testId)).toHaveStyleRule('font-size', '24px');
     });
 
     it('should render expressive heading small element with the correct styles', () => {
