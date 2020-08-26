@@ -269,6 +269,17 @@ describe('Input', () => {
     expect(getByText(labelText)).toHaveStyleRule('height', '1px');
   });
 
+  it('should allow reset to empty string when being controlled', () => {
+    const initialValue = 'sample';
+    const handleChange = jest.fn();
+    const { getByLabelText, rerender } = render(
+      <Input labelText="demo" value={initialValue} onChange={handleChange} />
+    );
+    expect(getByLabelText('demo')).toHaveAttribute('value', initialValue);
+    rerender(<Input labelText="demo" value="" onChange={handleChange} />);
+    expect(getByLabelText('demo')).toHaveAttribute('value', '');
+  });
+
   describe('sizes', () => {
     it('should render a default input with correct styles', () => {
       const labelText = 'test label';
