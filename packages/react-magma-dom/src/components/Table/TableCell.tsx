@@ -65,11 +65,11 @@ export const TableCell: React.FunctionComponent<TableCellProps> = React.forwardR
       <StyledCell
         {...other}
         data-testid={testId}
-        density={tableContext.paddingDensity}
-        hasVerticalBorders={tableContext.hasVertBorders}
-        isInverse={tableContext.isInverseContainer}
+        density={tableContext.density}
+        hasVerticalBorders={tableContext.hasVerticalBorders}
+        isInverse={tableContext.isInverse}
         ref={ref}
-        textAlign={align ? align : TableCellAlign.left}
+        textAlign={align || TableCellAlign.left}
         theme={theme}
         width={widthString}
       >

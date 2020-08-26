@@ -126,9 +126,7 @@ export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = Re
     const tableContext = React.useContext(TableContext);
 
     function handleSort() {
-      if (onSort && typeof onSort === 'function') {
-        onSort();
-      }
+      onSort && typeof onSort === 'function' && onSort();
     }
 
     const SortIcon =
@@ -139,7 +137,7 @@ export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = Re
       ) : (
         <ArrowDoubleIcon
           color={
-            tableContext.isInverseContainer
+            tableContext.isInverse
               ? theme.colors.neutral06
               : theme.colors.neutral04
           }
@@ -153,22 +151,22 @@ export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = Re
       <StyledTableHeaderCell
         {...other}
         data-testid={testId}
-        density={tableContext.paddingDensity}
-        hasVerticalBorders={tableContext.hasVertBorders}
-        isInverse={tableContext.isInverseContainer}
+        density={tableContext.density}
+        hasVerticalBorders={tableContext.hasVerticalBorders}
+        isInverse={tableContext.isInverse}
         ref={ref}
         isSortable={isSortable}
-        scope={scope ? scope : TableHeaderCellScope.col}
-        textAlign={align ? align : TableCellAlign.left}
+        scope={scope || TableHeaderCellScope.col}
+        textAlign={align || TableCellAlign.left}
         theme={theme}
         width={widthString}
       >
         {isSortable ? (
           <SortButton
-            density={tableContext.paddingDensity}
-            isInverse={tableContext.isInverseContainer}
+            density={tableContext.density}
+            isInverse={tableContext.isInverse}
             onClick={handleSort}
-            textAlign={align ? align : TableCellAlign.left}
+            textAlign={align || TableCellAlign.left}
             theme={theme}
           >
             <span>{children}</span>

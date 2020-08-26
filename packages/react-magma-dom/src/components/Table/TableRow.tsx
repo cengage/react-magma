@@ -50,8 +50,8 @@ export const TableRow: React.FunctionComponent<TableRowProps> = React.forwardRef
 
     let isHeaderRow = false;
 
-    tableContext.hasHoverStyle &&
-      React.Children.map(children, (child: any) => {
+    tableContext.hasHoverStyles &&
+      React.Children.forEach(children, (child: any) => {
         if (child.type.displayName === 'TableHeaderCell') {
           isHeaderRow = true;
           return;
@@ -62,9 +62,9 @@ export const TableRow: React.FunctionComponent<TableRowProps> = React.forwardRef
       <StyledTableRow
         {...other}
         data-testid={testId}
-        hasHoverStyles={tableContext.hasHoverStyle && !isHeaderRow}
-        hasZebraStripes={tableContext.hasStripes}
-        isInverse={tableContext.isInverseContainer}
+        hasHoverStyles={tableContext.hasHoverStyles && !isHeaderRow}
+        hasZebraStripes={tableContext.hasZebraStripes}
+        isInverse={tableContext.isInverse}
         ref={ref}
         theme={theme}
       >

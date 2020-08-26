@@ -34,19 +34,19 @@ export enum TableSortDirection {
 }
 
 interface TableContextInterface {
-  paddingDensity?: TableDensity;
-  hasHoverStyle?: boolean;
-  hasVertBorders?: boolean;
-  hasStripes?: boolean;
-  isInverseContainer?: boolean;
+  density?: TableDensity;
+  hasHoverStyles?: boolean;
+  hasVerticalBorders?: boolean;
+  hasZebraStripes?: boolean;
+  isInverse?: boolean;
 }
 
 export const TableContext = React.createContext<TableContextInterface>({
-  paddingDensity: TableDensity.normal,
-  hasHoverStyle: false,
-  hasStripes: false,
-  hasVertBorders: false,
-  isInverseContainer: false
+  density: TableDensity.normal,
+  hasHoverStyles: false,
+  hasZebraStripes: false,
+  hasVerticalBorders: false,
+  isInverse: false
 });
 
 const TableContainer = styled.div`
@@ -82,56 +82,14 @@ export const Table: React.FunctionComponent<TableProps> = React.forwardRef(
   ) => {
     const theme = React.useContext(ThemeContext);
 
-    const [hasVertBorders, setHasVertBorders] = React.useState(
-      Boolean(hasVerticalBorders)
-    );
-
-    React.useEffect(() => {
-      setHasVertBorders(Boolean(hasVerticalBorders));
-    }, [hasVerticalBorders]);
-
-    const [hasStripes, setHasStripes] = React.useState(
-      Boolean(hasZebraStripes)
-    );
-
-    React.useEffect(() => {
-      setHasStripes(Boolean(hasZebraStripes));
-    }, [hasZebraStripes]);
-
-    const [hasHoverStyle, setHasHoverStyle] = React.useState(
-      Boolean(hasHoverStyles)
-    );
-
-    React.useEffect(() => {
-      setHasHoverStyle(Boolean(hasHoverStyles));
-    }, [hasHoverStyles]);
-
-    const [paddingDensity, setPaddingDensity] = React.useState(density);
-
-    React.useEffect(() => {
-      setPaddingDensity(density);
-    }, [density]);
-
-    React.useEffect(() => {
-      setHasStripes(Boolean(hasZebraStripes));
-    }, [hasZebraStripes]);
-
-    const [isInverseContainer, setIsInverseContainer] = React.useState(
-      isInverse
-    );
-
-    React.useEffect(() => {
-      setIsInverseContainer(isInverse);
-    }, [isInverse]);
-
     return (
       <TableContext.Provider
         value={{
-          hasHoverStyle,
-          hasStripes,
-          hasVertBorders,
-          isInverseContainer,
-          paddingDensity
+          hasHoverStyles,
+          hasZebraStripes,
+          hasVerticalBorders,
+          isInverse,
+          density
         }}
       >
         <TableContainer>
@@ -139,7 +97,7 @@ export const Table: React.FunctionComponent<TableProps> = React.forwardRef(
             {...other}
             data-testid={testId}
             isInverse={isInverse}
-            minWidth={minWidth ? minWidth : theme.breakpoints.small}
+            minWidth={minWidth || theme.breakpoints.small}
             ref={ref}
             theme={theme}
           >
