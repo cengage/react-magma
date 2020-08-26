@@ -328,6 +328,7 @@ export { StatsPieChartIcon } from './components/Icon/types/StatsPieChartIcon';
 export { StopIcon } from './components/Icon/types/StopIcon';
 export { Stop2Icon } from './components/Icon/types/Stop2Icon';
 export { SwapHorizIcon } from './components/Icon/types/SwapHorizIcon';
+
 export { TabsContainer } from './components/Tabs/TabsContainer';
 export {
   Tabs,
@@ -339,6 +340,17 @@ export {
 export { Tab } from './components/Tabs/Tab';
 export { TabPanelsContainer } from './components/Tabs/TabPanelsContainer';
 export { TabPanel } from './components/Tabs/TabPanel';
+
+export { Table, TableProps } from './components/Table';
+export { TableBody, TableBodyProps } from './components/Table/TableBody';
+export { TableCell, TableCellProps } from './components/Table/TableCell';
+export { TableHead, TableHeadProps } from './components/Table/TableHead';
+export {
+  TableHeaderCell,
+  TableHeaderCellProps
+} from './components/Table/TableHeaderCell';
+export { TableRow, TableRowProps } from './components/Table/TableRow';
+
 export { TargetIcon } from './components/Icon/types/TargetIcon';
 export { ThIcon } from './components/Icon/types/ThIcon';
 export { ThumbsODownIcon } from './components/Icon/types/ThumbsODownIcon';

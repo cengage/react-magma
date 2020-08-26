@@ -1,0 +1,315 @@
+import React from 'react';
+import { Table } from '.';
+import { TableBody } from './TableBody';
+import { TableCell } from './TableCell';
+import { TableHead } from './TableHead';
+import { TableHeaderCell } from './TableHeaderCell';
+import { TableRow } from './TableRow';
+
+import { magma } from '../../theme/magma';
+
+import { render, fireEvent } from '@testing-library/react';
+
+describe('Table', () => {
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(<Table testId={testId} />);
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
+  it('should render table with vertical borders', () => {
+    const { getByText } = render(
+      <Table hasVerticalBorders>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByText('cell 1')).toHaveStyleRule('border-right', '1px solid');
+    expect(getByText('heading 1')).toHaveStyleRule('border-right', '1px solid');
+  });
+
+  it('should render table with zebra striping', () => {
+    const { getByTestId } = render(
+      <Table hasZebraStripes>
+        <TableBody>
+          <TableRow testId="row1">
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+          <TableRow testId="row2">
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId('row2')).toHaveStyleRule(
+      'background',
+      'rgba(63,63,63,0.07)',
+      {
+        target: ':nth-of-type(even)'
+      }
+    );
+  });
+
+  it('should render table with hover styles', () => {
+    const { getByTestId } = render(
+      <Table hasHoverStyles>
+        <TableBody>
+          <TableRow testId="row1">
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+          <TableRow testId="row2">
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId('row2')).toHaveStyleRule(
+      'background',
+      magma.colors.tone02,
+      {
+        target: ':hover'
+      }
+    );
+  });
+
+  it('should render table with compact density ', () => {
+    const { getByText } = render(
+      <Table density="compact">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByText('cell 1')).toHaveStyleRule('padding', '4px 8px');
+    expect(getByText('heading 1')).toHaveStyleRule('padding', '4px 8px');
+  });
+
+  it('should render table with loose density ', () => {
+    const { getByText } = render(
+      <Table density="loose">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByText('cell 1')).toHaveStyleRule('padding', '24px 36px');
+    expect(getByText('heading 1')).toHaveStyleRule('padding', '24px 36px');
+  });
+
+  it('should render table with inverse styles', () => {
+    const { getByTestId, getByText } = render(
+      <Table hasZebraStripes hasHoverStyles isInverse>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow testId="row1">
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+          <TableRow testId="row2">
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByText('heading 1')).toHaveStyleRule(
+      'background',
+      magma.colors.tint03
+    );
+
+    expect(getByTestId('row1')).toHaveStyleRule(
+      'background',
+      magma.colors.tint02,
+      {
+        target: ':hover'
+      }
+    );
+
+    expect(getByTestId('row2')).toHaveStyleRule(
+      'background',
+      magma.colors.tint01,
+      {
+        target: ':nth-of-type(even)'
+      }
+    );
+  });
+
+  it('should render right aligned cells', () => {
+    const { getByText, getByTestId } = render(
+      <Table hasZebraStripes isInverse>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell align="right" testId="heading1">
+              heading 1
+            </TableHeaderCell>
+            <TableHeaderCell align="right" isSortable testId="heading2">
+              heading 2
+            </TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell align="right">cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId('heading1')).toHaveStyleRule('text-align', 'right');
+    expect(getByText('cell 1')).toHaveStyleRule('text-align', 'right');
+    expect(getByTestId('heading2').querySelector('button')).toHaveStyleRule(
+      'justify-content',
+      'flex-end'
+    );
+  });
+
+  it('should render table cells with specified widths', () => {
+    const { getByText } = render(
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell width={100}>heading 1</TableHeaderCell>
+            <TableHeaderCell width="50%">heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell width={100}>cell 1</TableCell>
+            <TableCell width="50%">cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByText('heading 1')).toHaveStyleRule('width', '100px');
+    expect(getByText('cell 1')).toHaveStyleRule('width', '100px');
+    expect(getByText('heading 2')).toHaveStyleRule('width', '50%');
+    expect(getByText('cell 2')).toHaveStyleRule('width', '50%');
+  });
+
+  it('should render table header cells with specified scope', () => {
+    const { getByText } = render(
+      <TableHeaderCell scope="row">heading</TableHeaderCell>
+    );
+
+    expect(getByText('heading')).toHaveAttribute('scope', 'row');
+  });
+
+  it('should render sortable table header cells', () => {
+    const onSortSpy = jest.fn();
+
+    const { getByTestId, getByText } = render(
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell
+              testId="header1"
+              isSortable
+              sortDirection="ascending"
+              onSort={onSortSpy}
+            >
+              heading 1
+            </TableHeaderCell>
+            <TableHeaderCell testId="header2" isSortable onSort={onSortSpy}>
+              heading 2
+            </TableHeaderCell>
+            <TableHeaderCell testId="header3">heading 3</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+      </Table>
+    );
+
+    expect(getByTestId('header1')).toHaveStyleRule('padding', '0');
+    expect(getByTestId('header1').querySelector('button')).toBeInTheDocument();
+
+    expect(getByTestId('header3')).toHaveStyleRule('padding', '12px 16px');
+    expect(
+      getByTestId('header3').querySelector('button')
+    ).not.toBeInTheDocument();
+
+    expect(onSortSpy).not.toHaveBeenCalled();
+
+    fireEvent.click(getByText('heading 1'));
+
+    expect(onSortSpy).toHaveBeenCalled();
+  });
+
+  it('should render sortable table header cells with inverse styles', () => {
+    const { getByTestId } = render(
+      <Table isInverse>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell
+              testId="header1"
+              isSortable
+              sortDirection="descending"
+            >
+              heading 1
+            </TableHeaderCell>
+          </TableRow>
+        </TableHead>
+      </Table>
+    );
+
+    const button = getByTestId('header1').querySelector('button');
+
+    expect(button).toBeInTheDocument();
+
+    expect(button).toHaveStyleRule(
+      'outline',
+      `2px dotted ${magma.colors.focusInverse}`,
+      {
+        target: ':focus'
+      }
+    );
+
+    expect(button).toHaveStyleRule('background', magma.colors.tint01, {
+      target: ':hover'
+    });
+  });
+});
