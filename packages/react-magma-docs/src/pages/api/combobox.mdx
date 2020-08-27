@@ -28,7 +28,6 @@ For simple Select functionality, please see the <Link to="/api/downshift-select"
         { label: 'Blue', value: 'blue' },
         { label: 'Green', value: 'green' }
       ]}
-      selectedItem={{ label: 'Green', value: 'green' }}
       placeholder="Hello"
     />
   </>
@@ -54,7 +53,7 @@ which is a function that returns the string representation of your `item` which 
     ])
 
     function itemToString(item) {
-      return item ? `${item.representation} (${item.hex})` : ''
+      return item ? `${item.representation}${item.hex ? ` (${item.hex})` : ''}` : ''
     }
 
     function newItemTransform(item) {
@@ -111,7 +110,17 @@ which is a function that returns the string representation of your `item` which 
 
 ## Initial State
 
-Set initial state using the `initialSelectedItem` and `initialHighlightedIndex` props.
+Set initial state using the `initialSelectedItem`, `initialSelectedItems`, and `initialHighlightedIndex` props.
+
+<Alert variant="info">
+  When using any of the <code>initial*</code> props be aware that passing in the
+  controlled version of that prop will overwrite the initial version.
+  <br />
+  <br />
+  <strong>Ex: </strong>
+  <code>selectedItem</code> takes precedence over{' '}
+  <code>initialSelectedItem</code>
+</Alert>
 
 ```.jsx
   () => {
@@ -192,6 +201,12 @@ includes the changes made to state from each action as well as a `type` that des
 ```
 
 ## Generic State Change
+
+<Alert variant="warning">
+  Using <code>onStateChange</code> and controlling every piece of{' '}
+  <code>state</code> will result in losing most of the functionality that has
+  been built in to this component. Only use this feature as a last resort.
+</Alert>
 
 `onStateChange` is called when any internal state is changed. Therefore, it is best used when using the
 `combobox` in a controlled state.
@@ -334,8 +349,8 @@ prop. If no `newItemTransform` function is passed in, the created item will be t
 
 The optional `isClearable` prop allows the user to clear the field once a selection has been made.
 
-When using the `isClearable` prop you can set default values to be set once the `select` is cleared.
-These props are `defaultSelectedItem`, and `defaultHighlightedIndex`.
+When using the `isClearable` prop you can choose a default selected item to be set once the `combobox` is cleared
+using the `defaultSelectedItem` prop.
 
 ```.jsx
   () => {
@@ -836,6 +851,23 @@ Please use discretion when adding custom styles.
 The `type` property in the `changes` object that is returned from the `onStateChange` function
 corresponds to a `stateChangeTypes` property. The list of all the possible types for a `combobox` or a
 `multi-combobox` are listed below.
+
+<Alert variant="info">
+  In the development environment these types equate to strings
+  <br />
+  (eg:{' '}
+  <code class="inverse">
+    ComboboxStateChangeTypes.InputKeyDownArrowDown =
+    '__input_keydown_arrow_down__'
+  </code>
+  ). However, in the production environment the types equate to numbers
+  <br />
+  (eg:{' '}
+  <code class="inverse">
+    ComboboxStateChangeTypes.InputKeyDownArrowDown = 0
+  </code>
+  ).
+</Alert>
 
 ### Combobox
 

@@ -156,14 +156,17 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
       onIsOpenChange(changes);
   }
 
-  function stateReducer(_, actionAndChanges) {
+  function stateReducer(state, actionAndChanges) {
     const { type, changes } = actionAndChanges;
     switch (type) {
       case useCombobox.stateChangeTypes.InputKeyDownEnter:
+        const newSelectedItem = getFilteredItems(displayItems)[
+          state.highlightedIndex
+        ];
         return {
           ...changes,
-          ...(getFilteredItems(displayItems)[0] && {
-            selectedItem: getFilteredItems(displayItems)[0]
+          ...(newSelectedItem && {
+            selectedItem: newSelectedItem
           })
         };
       case useCombobox.stateChangeTypes.InputBlur:
