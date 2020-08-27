@@ -107,10 +107,10 @@ which is a function that returns the string representation of your `item` which 
 
 ## Initial State
 
-Set initial state using the `initialSelectedItem` and `initialHighlightedIndex` props.
+Set initial state using the `initialSelectedItem`, `initialSelectedItems`, and `initialHighlightedIndex` props.
 
 <Alert variant="info">
-  When using any of the <code>initial[prop]</code> props
+  When using any of the <code>initial*</code> props
   be aware that passing in the controlled version of that prop will overwrite the initial version.
   <br />
   <br />
@@ -194,6 +194,12 @@ includes the changes made to the corresponding state from each action.
 ```
 
 ## Generic State Change
+
+<Alert variant="warning">
+  Using <code style={{background:'rgba(0,0,0,0.1)', border: 0}}>onStateChange</code> and controlling every
+  piece of <code style={{background:'rgba(0,0,0,0.1)', border: 0}}>state</code> will result in losing most of the functionality
+  that has been built in to this component. Only use this feature as a last resort.
+</Alert>
 
 `onStateChange` is called when any internal state is changed. Therefore, it is best used when using the
 `select` in a controlled state.
@@ -329,8 +335,8 @@ you will have to use the handlers mentioned above in the <Link to="/api/downshif
 
 The optional `isClearable` prop allows the user to clear the field once a selection has been made.
 
-When using the `isClearable` prop you can set default values to be set once the `select` is cleared.
-These props are `defaultSelectedItem`, and `defaultHighlightedIndex`.
+When using the `isClearable` prop you can choose a default selected item to be set once the `select` is cleared
+using the `defaultSelectedItem` prop.
 
 ```.jsx
   () => {
@@ -655,6 +661,13 @@ Please use discretion when adding custom styles.
 The `type` property in the `changes` object that is returned from the `onStateChange` function
 corresponds to a `stateChangeTypes` property. The list of all the possible types for a `select` or a
 `multi-select` are listed below.
+
+<Alert variant="info">
+  In the development environment these types equate to strings
+  <br />(eg: <code style={{background: 'rgba(255, 255, 255, 0.1)', border: '0px', color: '#fff'}}>ComboboxStateChangeTypes.InputKeyDownArrowDown = '__input_keydown_arrow_down__'</code>).
+  However, in the production environment the types equate to numbers
+  <br />(eg: <code style={{background: 'rgba(255, 255, 255, 0.1)', border: '0px', color: '#fff'}}>ComboboxStateChangeTypes.InputKeyDownArrowDown = 0</code>).
+</Alert>
 
 ### Select
 
