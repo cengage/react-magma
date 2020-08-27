@@ -41,7 +41,7 @@ for each `item`. If you need to pass in a custom shape for your `items` you can 
 which is a function that returns the string representation of your `item` which will be applied as the label.
 
 <Alert variant="warning">
-  <strong>WARNING</strong> Your function must include a <code style={{background:'rgba(0,0,0,0.1)', border: 0}}>null</code> check.
+  <strong>WARNING</strong> Your function must include a <code>null</code> check.
 </Alert>
 
 ```.jsx
@@ -736,7 +736,6 @@ Custom styles can be passed into the Combobox component. The `containerStyle` pr
 Additional `labelStyle`, `inputStyle` and `messageStyle` properties are available to style the respective elements.
 Please use discretion when adding custom styles.
 
-
 ```.jsx
   () => {
     const [selectedItem, updateSelectedItem] = React.useState('');
@@ -773,7 +772,6 @@ Please use discretion when adding custom styles.
     </>
   }
 ```
-
 
 ## Custom Components
 
@@ -886,8 +884,7 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
         name: 'DownshiftComponents',
       },
       required: false,
-      description:
-        'Custom components',
+      description: 'Custom components',
     },
     containerStyle: {
       type: {
@@ -927,8 +924,7 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
         name: 'string',
       },
       required: false,
-      description:
-        'Value of the initially selected item',
+      description: 'Value of the initially selected item',
     },
     inputStyle: {
       type: {
@@ -951,8 +947,7 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
         name: 'boolean',
       },
       required: false,
-      description:
-        'If true, multiple items may be selected',
+      description: 'If true, multiple items may be selected',
       defaultValue: 'false',
     },
     isClearable: {
@@ -982,14 +977,12 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
-   
     isMulti: {
       type: {
         name: 'boolean',
       },
       required: false,
-      description:
-        'If true, multiple items may be selected',
+      description: 'If true, multiple items may be selected',
       defaultValue: 'false',
     },
     items: {
@@ -1029,7 +1022,7 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
       required: false,
       description: 'Style properties for the helper or error message',
     },
-     onHighlightedIndexChange: {
+    onHighlightedIndexChange: {
       type: {
         name: 'function',
       },
@@ -1087,7 +1080,7 @@ export default props => (
       Combobox,
       Alert,
       uuid,
-      ComboboxStateChangeTypes
+      ComboboxStateChangeTypes,
     }}
   />
 )
