@@ -1,5 +1,5 @@
 import React from 'react';
-const uuidv4 = require('uuid/v4');
+import { v4 as uuidv4 } from 'uuid';
 
 export function generateId(id?: string) {
   return id ? id : uuidv4();
