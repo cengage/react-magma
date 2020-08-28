@@ -210,7 +210,7 @@ describe('Select', () => {
 
     expect(errorMessage).toBeInTheDocument();
     expect(errorMessage).toHaveStyleRule('background', 'none');
-    expect(errorMessage).toHaveStyleRule('color', '#E70000');
+    expect(errorMessage).toHaveStyleRule('color', '#C61D23');
   });
 
   it('should render the error message on an inverse component with the correct styles', async () => {
@@ -226,7 +226,7 @@ describe('Select', () => {
     const errorMessage = getByTestId('inputMessage');
 
     expect(errorMessage).toBeInTheDocument();
-    expect(errorMessage).toHaveStyleRule('background', '#E70000');
+    expect(errorMessage).toHaveStyleRule('background', '#C61D23');
     expect(errorMessage).toHaveStyleRule('color', '#FFFFFF');
   });
 

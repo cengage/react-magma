@@ -48,7 +48,7 @@ describe('ProgressBar', () => {
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      '#E70000'
+      '#C61D23'
     );
   });
 
@@ -66,7 +66,7 @@ describe('ProgressBar', () => {
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      '#FA6600'
+      '#FC4C02'
     );
   });
 

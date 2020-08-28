@@ -21,12 +21,12 @@ describe('ProgressRing', () => {
 
   it('should render the progress ring component with a custom color', () => {
     const { container } = render(
-      <ProgressRing percentage={50} color="#E70000" />
+      <ProgressRing percentage={50} color="#C61D23" />
     );
 
     expect(container.querySelector('circle')).toHaveAttribute(
       'stroke',
-      '#E70000'
+      '#C61D23'
     );
   });
 
