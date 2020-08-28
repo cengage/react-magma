@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { instanceOfDefaultItemObject } from '../DownshiftSelect';
 import { useCombobox, useMultipleSelection } from 'downshift';
-import { CrossIcon } from '../Icon/types/CrossIcon';
+import { CrossIcon } from 'react-magma-icons';
 import { DownshiftSelectContainer } from '../DownshiftSelect/SelectContainer';
 import { ItemsList } from '../DownshiftSelect/ItemsList';
 import { ComboboxInput } from './ComboboxInput';

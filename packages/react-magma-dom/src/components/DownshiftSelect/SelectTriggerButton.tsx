@@ -1,6 +1,6 @@
 import React from 'react';
 import { baseInputStyles } from '../BaseInput';
-import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
+import { CaretDownIcon } from 'react-magma-icons';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '../../theme/styled';
 

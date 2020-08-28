@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DownshiftMultiSelectInterface } from '.';
 import { useSelect, useMultipleSelection } from 'downshift';
-import { CrossIcon } from '../Icon/types/CrossIcon';
+import { CrossIcon } from 'react-magma-icons';
 import { ItemsList } from './ItemsList';
 import { DownshiftSelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';

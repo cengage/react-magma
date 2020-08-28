@@ -4,7 +4,7 @@ import {
   DownshiftOption
 } from '../DownshiftSelect';
 import { useCombobox } from 'downshift';
-import { CrossIcon } from '../Icon/types/CrossIcon';
+import { CrossIcon } from 'react-magma-icons';
 import { defaultComponents } from '../DownshiftSelect/components';
 import { DownshiftSelectContainer } from '../DownshiftSelect/SelectContainer';
 import { ItemsList } from '../DownshiftSelect/ItemsList';

@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { IconButton, IconButtonProps } from '../IconButton';
 import { Spinner, SpinnerProps } from '../Spinner';
-import { SvgIconProps } from '../Icon/SvgIcon';
-import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
+import { IconProps, CaretDownIcon } from 'react-magma-icons';
 
 export type DownshiftComponents = {
   ClearIndicator?: React.FunctionComponent<IconButtonProps>;
-  DropdownIndicator?: React.FunctionComponent<Partial<SvgIconProps>>;
+  DropdownIndicator?: React.FunctionComponent<Partial<IconProps>>;
   LoadingIndicator?: React.FunctionComponent<SpinnerProps>;
 };
 

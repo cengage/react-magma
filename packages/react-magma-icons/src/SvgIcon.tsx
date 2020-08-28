@@ -15,6 +15,7 @@ export interface SvgIconProps extends React.HTMLAttributes<HTMLOrSVGElement> {
   title?: string;
   viewBox: string;
   paths: Path[];
+  style?: React.CSSProperties;
   color?: string;
   size?: number;
 }

@@ -3,7 +3,7 @@ import { DownshiftSelectInterface, DownshiftOption } from '.';
 import { useSelect } from 'downshift';
 import { SelectText } from './shared';
 import { defaultComponents } from './components';
-import { CrossIcon } from '../Icon/types/CrossIcon';
+import { CrossIcon } from 'react-magma-icons';
 import { ButtonSize, ButtonVariant } from '../Button';
 import { ItemsList } from './ItemsList';
 import { DownshiftSelectContainer } from './SelectContainer';
