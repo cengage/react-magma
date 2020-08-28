@@ -42,12 +42,95 @@ export interface Breakpoints {
   xl: number;
 }
 
+export interface TypographyVariants {
+  headingXLarge: any;
+  headingLarge: any;
+  headingMedium: any;
+  headingSmall: any;
+  headingXSmall: any;
+  headingXXSmall: any;
+  bodyLarge: any;
+  bodyMedium: any;
+  bodySmall: any;
+  bodyXSmall: any;
+}
+
+export interface ExpressiveTypographyVariants {
+  headingXLarge: any;
+  headingLarge: any;
+  headingMedium: any;
+  headingSmall: any;
+  headingXSmall: any;
+  headingXXSmall: any;
+  bodyLarge: any;
+  bodyMedium: any;
+  bodySmall: any;
+  bodyXSmall: any;
+}
+
 export interface ThemeInterface {
   bodyFont: string;
+  expressiveTypographyVariants: ExpressiveTypographyVariants;
   headingFont: string;
   colors: Colors;
   breakpoints: Breakpoints;
+  typographyVariants: TypographyVariants;
 }
+
+const typeScale = {
+  size01: {
+    fontSize: '12px',
+    lineHeight: '16px'
+  },
+  size02: {
+    fontSize: '14px',
+    lineHeight: '20px'
+  },
+  size03: {
+    fontSize: '16px',
+    lineHeight: '24px'
+  },
+  size04: {
+    fontSize: '18px',
+    lineHeight: '32px'
+  },
+  size05: {
+    fontSize: '20px',
+    lineHeight: '32px'
+  },
+  size06: {
+    fontSize: '24px',
+    lineHeight: '32px'
+  },
+  size07: {
+    fontSize: '28px',
+    lineHeight: '40px'
+  },
+  size08: {
+    fontSize: '32px',
+    lineHeight: '40px'
+  },
+  size09: {
+    fontSize: '36px',
+    lineHeight: '48px'
+  },
+  size10: {
+    fontSize: '42px',
+    lineHeight: '48px'
+  },
+  size11: {
+    fontSize: '48px',
+    lineHeight: '56px'
+  },
+  size12: {
+    fontSize: '54px',
+    lineHeight: '64px'
+  },
+  size13: {
+    fontSize: '60px',
+    lineHeight: '72px'
+  }
+};
 
 export const magma = {
   bodyFont: '"Open Sans", Helvetica, sans-serif',
@@ -100,157 +183,89 @@ export const magma = {
     large: 1024,
     xl: 1200
   },
-
-  typeScale: {
-    size01: {
-      fontSize: '12px',
-      lineHeight: '16px'
+  typeScale: typeScale,
+  typographyVariants: {
+    headingXLarge: {
+      mobile: typeScale.size07,
+      desktop: typeScale.size08
     },
-    size02: {
-      fontSize: '14px',
-      lineHeight: '20px'
+    headingLarge: {
+      mobile: typeScale.size06,
+      desktop: typeScale.size07
     },
-    size03: {
-      fontSize: '16px',
-      lineHeight: '24px'
+    headingMedium: {
+      mobile: typeScale.size05,
+      desktop: typeScale.size06
     },
-    size04: {
-      fontSize: '18px',
-      lineHeight: '32px'
+    headingSmall: {
+      mobile: typeScale.size04,
+      desktop: typeScale.size05
     },
-    size05: {
-      fontSize: '20px',
-      lineHeight: '32px'
+    headingXSmall: {
+      mobile: typeScale.size04,
+      desktop: typeScale.size04
     },
-    size06: {
-      fontSize: '24px',
-      lineHeight: '32px'
+    headingXXSmall: {
+      mobile: typeScale.size01,
+      desktop: typeScale.size01
     },
-    size07: {
-      fontSize: '28px',
-      lineHeight: '40px'
+    bodyLarge: {
+      mobile: typeScale.size04,
+      desktop: typeScale.size05
     },
-    size08: {
-      fontSize: '32px',
-      lineHeight: '40px'
+    bodyMedium: {
+      mobile: typeScale.size03,
+      desktop: typeScale.size03
     },
-    size09: {
-      fontSize: '36px',
-      lineHeight: '48px'
+    bodySmall: {
+      mobile: typeScale.size02,
+      desktop: typeScale.size02
     },
-    size10: {
-      fontSize: '42px',
-      lineHeight: '48px'
-    },
-    size11: {
-      fontSize: '48px',
-      lineHeight: '56px'
-    },
-    size12: {
-      fontSize: '54px',
-      lineHeight: '64px'
-    },
-    size13: {
-      fontSize: '60px',
-      lineHeight: '72px'
-    }
-  }
-};
-
-//TODO:  Put variants and expressive variants into the theme
-//TODO:  Replace hard-coded font-sizes and line-heights with the theme typescale
-
-// Variants
-
-export const typographyVariants = {
-  headingXLarge: {
-    mobile: magma.typeScale.size07,
-    desktop: magma.typeScale.size08
-  },
-  headingLarge: {
-    mobile: magma.typeScale.size06,
-    desktop: magma.typeScale.size07
-  },
-  headingMedium: {
-    mobile: magma.typeScale.size05,
-    desktop: magma.typeScale.size06
-  },
-  headingSmall: {
-    mobile: magma.typeScale.size04,
-    desktop: magma.typeScale.size05
-  },
-  headingXSmall: {
-    mobile: magma.typeScale.size04,
-    desktop: magma.typeScale.size04
-  },
-  headingXXSmall: {
-    mobile: magma.typeScale.size01,
-    desktop: magma.typeScale.size01
-  },
-  bodyLarge: {
-    mobile: magma.typeScale.size04,
-    desktop: magma.typeScale.size05
-  },
-  bodyMedium: {
-    mobile: magma.typeScale.size03,
-    desktop: magma.typeScale.size03
-  },
-  bodySmall: {
-    mobile: magma.typeScale.size02,
-    desktop: magma.typeScale.size02
-  },
-  bodyXSmall: {
-    mobile: magma.typeScale.size01,
-    desktop: magma.typeScale.size01
-  }
-};
-
-// Expressive Variants
-
-export const expressiveTypographyVariants = {
-  headingXLarge: {
-    mobile: magma.typeScale.size08,
-    desktop: magma.typeScale.size11
-  },
-  headingLarge: {
-    mobile: magma.typeScale.size07,
-    desktop: magma.typeScale.size09
-  },
-  headingMedium: {
-    mobile: magma.typeScale.size06,
-    desktop: magma.typeScale.size07
-  },
-  headingSmall: {
-    mobile: magma.typeScale.size05,
-    desktop: magma.typeScale.size06
-  },
-  headingXSmall: {
-    mobile: magma.typeScale.size04,
-    desktop: magma.typeScale.size05
-  },
-  headingXXSmall: {
-    mobile: magma.typeScale.size03,
-    desktop: magma.typeScale.size03
-  },
-  bodyLarge: {
-    mobile: {
-      typeScale: magma.typeScale.size05
-    },
-    desktop: {
-      mobile: magma.typeScale.size05,
-      desktop: magma.typeScale.size06
+    bodyXSmall: {
+      mobile: typeScale.size01,
+      desktop: typeScale.size01
     }
   },
-  bodyMedium: {
-    mobile: magma.typeScale.size03,
-    desktop: magma.typeScale.size03
-  },
-  bodySmall: {
-    mobile: magma.typeScale.size02,
-    desktop: magma.typeScale.size02
-  },
-  bodyXSmall: {
-    mobile: magma.typeScale.size01,
-    desktop: magma.typeScale.size01
+  expressiveTypographyVariants: {
+    headingXLarge: {
+      mobile: typeScale.size08,
+      desktop: typeScale.size11
+    },
+    headingLarge: {
+      mobile: typeScale.size07,
+      desktop: typeScale.size09
+    },
+    headingMedium: {
+      mobile: typeScale.size06,
+      desktop: typeScale.size07
+    },
+    headingSmall: {
+      mobile: typeScale.size05,
+      desktop: typeScale.size06
+    },
+    headingXSmall: {
+      mobile: typeScale.size04,
+      desktop: typeScale.size05
+    },
+    headingXXSmall: {
+      mobile: typeScale.size03,
+      desktop: typeScale.size03
+    },
+    bodyLarge: {
+      mobile: typeScale.size05,
+      desktop: typeScale.size06
+    },
+    bodyMedium: {
+      mobile: typeScale.size03,
+      desktop: typeScale.size03
+    },
+    bodySmall: {
+      mobile: typeScale.size02,
+      desktop: typeScale.size02
+    },
+    bodyXSmall: {
+      mobile: typeScale.size01,
+      desktop: typeScale.size01
+    }
   }
 };

@@ -93,6 +93,7 @@ exports[`Heading Snapshot should render heading 3 correctly 1`] = `
 @media (min-width:600px) {
   .emotion-0 {
     font-size: 24px;
+    line-height: 32px;
   }
 }
 
@@ -159,6 +160,13 @@ exports[`Heading Snapshot should render heading 5 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 18px;
+    line-height: 32px;
+  }
+}
+
 <div>
   <h5
     class="emotion-0"
@@ -176,8 +184,8 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
   padding: 0;
   color: #3F3F3F;
   font-size: 12px;
-  font-weight: bold;
   line-height: 16px;
+  font-weight: bold;
   text-transform: uppercase;
   margin: 0;
 }
@@ -187,6 +195,13 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 12px;
+    line-height: 16px;
+  }
 }
 
 <div>
