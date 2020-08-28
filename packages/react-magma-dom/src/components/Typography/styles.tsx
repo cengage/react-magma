@@ -36,7 +36,9 @@ ${props.color === 'subdued' &&
   `}`;
 
 const baseBodyStyles = props => css`
-  font-family: ${props.theme.bodyFont};
+  font-family: ${props.typeStyle === 'narrative'
+    ? props.theme.narrativeFont
+    : props.theme.bodyFont};
   margin: 0;
 
   ${colorStyles(props)}
@@ -44,8 +46,10 @@ const baseBodyStyles = props => css`
 
 const baseHeadingStyles = props => css`
   border-bottom: 2px solid transparent;
-  font-family: ${props.theme.headingFont};
-  font-weight: 600;
+  font-family: ${props.typeStyle === 'narrative'
+    ? props.theme.narrativeFont
+    : props.theme.headingFont};
+  font-weight: ${props.typeStyle === 'narrative' ? 700 : 600};
   padding: 0;
 
   &:focus {

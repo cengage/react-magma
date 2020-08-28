@@ -72,6 +72,7 @@ export interface ThemeInterface {
   bodyFont: string;
   expressiveTypographyVariants: ExpressiveTypographyVariants;
   headingFont: string;
+  narrativeFont: string;
   colors: Colors;
   breakpoints: Breakpoints;
   typographyVariants: TypographyVariants;
@@ -135,6 +136,7 @@ const typeScale = {
 export const magma = {
   bodyFont: '"Open Sans", Helvetica, sans-serif',
   headingFont: '"Open Sans", Helvetica, sans-serif',
+  narrativeFont: "'Noto Serif',Times New Roman,serif",
   direction: 'ltr',
 
   colors: {

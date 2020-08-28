@@ -461,4 +461,39 @@ describe('Typography', () => {
       expect(getByTestId(testId)).toHaveStyleRule('font-size', '20px');
     });
   });
+
+  describe('narrative type style', () => {
+    it('should render a heading element with the correct styles', () => {
+      const testId = 'test-id';
+      const { getByTestId } = render(
+        <Typography
+          testId={testId}
+          typeStyle="narrative"
+          variant="headingLarge"
+        >
+          test
+        </Typography>
+      );
+
+      expect(getByTestId(testId)).toHaveStyleRule('font-weight', '700');
+      expect(getByTestId(testId)).toHaveStyleRule(
+        'font-family',
+        magma.narrativeFont
+      );
+    });
+
+    it('should render a body element with the correct styles', () => {
+      const testId = 'test-id';
+      const { getByTestId } = render(
+        <Typography testId={testId} typeStyle="narrative">
+          test
+        </Typography>
+      );
+
+      expect(getByTestId(testId)).toHaveStyleRule(
+        'font-family',
+        magma.narrativeFont
+      );
+    });
+  });
 });

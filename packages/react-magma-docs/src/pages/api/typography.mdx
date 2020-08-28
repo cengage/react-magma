@@ -127,7 +127,10 @@ However, you can easily override which element is rendered, by using the `compon
 ## Type-Style
 
 The `typeStyle` prop can be used to set additional styles on a component. The default `typeStyle` is `productive`.
+
 The `expressive` type-style can be used in marketing contexts, which may require more variety than the default productive styles.
+
+The `narrative` type-style can be used for content-heavy contexts, such as an e-reader.
 
 ```.jsx
     <>
@@ -157,6 +160,44 @@ The `expressive` type-style can be used in marketing contexts, which may require
 
         <Typography typeStyle="expressive" variant="bodyLarge">
             Expressive body large.  Lorem ipsum dolar sit amet.
+        </Typography>
+        <br />
+        <br />
+        <Typography typeStyle="narrative" variant="headingXLarge">
+            Narrative Heading XLarge
+        </Typography>
+
+        <Typography typeStyle="narrative" variant="headingLarge">
+            Narrative Heading Large
+        </Typography>
+
+        <Typography typeStyle="narrative" variant="headingMedium">
+            Narrative Heading Medium
+        </Typography>
+
+        <Typography typeStyle="narrative" variant="headingSmall">
+            Narrative Heading Small
+        </Typography>
+
+        <Typography typeStyle="narrative" variant="headingXSmall">
+            Narrative Heading XSmall
+        </Typography>
+
+        <Typography typeStyle="narrative" variant="headingXXSmall">
+            Narrative Heading XXSmall
+        </Typography>
+
+        <Typography typeStyle="narrative" variant="bodyLarge">
+            Narrative body large.  Lorem ipsum dolar sit amet.
+        </Typography>
+         <Typography typeStyle="narrative" variant="bodyMedium">
+            Narrative body medium.  Lorem ipsum dolar sit amet.
+        </Typography>
+         <Typography typeStyle="narrative" variant="bodySmall">
+            Narrative body small.  Lorem ipsum dolar sit amet.
+        </Typography>
+         <Typography typeStyle="narrative" variant="bodyXSmall">
+            Narrative body extra small.  Lorem ipsum dolar sit amet.
         </Typography>
     </>
 ```
