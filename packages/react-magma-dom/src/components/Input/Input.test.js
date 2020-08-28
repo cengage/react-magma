@@ -296,10 +296,10 @@ describe('Input', () => {
       expect(label).toHaveStyleRule('font-size', '13px');
 
       expect(input).toHaveStyleRule('font-size', '1rem');
-      expect(input).toHaveStyleRule('height', '37px');
+      expect(input).toHaveStyleRule('height', '40px');
       expect(input).toHaveStyleRule('padding-left', '35px');
 
-      expect(iconWrapper).toHaveStyleRule('margin-top', '-9px');
+      expect(iconWrapper).toHaveStyleRule('margin-top', '-11px');
       expect(iconWrapper).toHaveStyleRule('left', '10px');
       expect(iconWrapper).toHaveStyleRule('right', 'auto');
 

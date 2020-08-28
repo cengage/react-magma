@@ -1,7 +1,7 @@
 /// <reference types="jest-dom/extend-expect"/>
 import React from 'react';
 import { axe } from 'jest-axe';
-import { AsyncSelect } from '.';
+import { LegacyAsyncSelect } from '.';
 import { act, render, fireEvent, waitForElement } from '@testing-library/react';
 import { Search2Icon } from 'react-magma-icons';
 import { components as ReactSelectComponents } from 'react-select';
@@ -32,7 +32,7 @@ it('Does not violate accessibility standards', async () => {
 
   await act(async () => {
     ({ container } = render(
-      <AsyncSelect
+      <LegacyAsyncSelect
         labelText="test label"
         loadOptions={mockPromise.resolve(42)}
       />
@@ -61,7 +61,7 @@ describe('Async', () => {
 
       await act(async () => {
         ({ container, getByLabelText, getByText } = render(
-          <AsyncSelect
+          <LegacyAsyncSelect
             id="colorsSelect"
             labelText="Colors"
             loadOptions={promiseOptions}
@@ -102,7 +102,7 @@ describe('Async', () => {
 
       await act(async () => {
         ({ container, getByLabelText, getByText } = render(
-          <AsyncSelect
+          <LegacyAsyncSelect
             id="colorsSelect"
             labelText="Colors"
             loadOptions={promiseOptions}
@@ -145,7 +145,7 @@ describe('Async', () => {
 
       await act(async () => {
         ({ getByTestId } = render(
-          <AsyncSelect
+          <LegacyAsyncSelect
             id="customSelect"
             labelText="Custom"
             loadOptions={promiseOptions}

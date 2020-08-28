@@ -1,4 +1,5 @@
 export { IconProps } from './iconProps';
+export { SvgIconProps } from './SvgIcon';
 export { AddPersonIcon } from './icons/AddPersonIcon';
 export { AlertIcon } from './icons/AlertIcon';
 export { AndroidIcon } from './icons/AndroidIcon';

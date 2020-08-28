@@ -56,13 +56,13 @@ export const baseInputStyles = props => css`
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral03
   };
-  border-radius: 5px;
+  border-radius: 4px;
   color: ${props.theme.colors.neutral01};
   display: block;
   font-size: 1rem;
   font-family: ${props.theme.bodyFont};
-  height: 37px;
-  line-height: 1.25rem;
+  height: 40px;
+  line-height: 24px;
   padding: 0 8px;
   -webkit-appearance: none;
   width: 100%;
@@ -146,7 +146,7 @@ const IconWrapper = styled.span<{
   left: ${props => (props.iconPosition === 'left' ? '10px' : 'auto')};
   right: ${props => (props.iconPosition === 'right' ? '10px' : 'auto')};
   position: absolute;
-  margin-top: -9px;
+  margin-top: -11px;
   top: 50%;
 
   ${props =>

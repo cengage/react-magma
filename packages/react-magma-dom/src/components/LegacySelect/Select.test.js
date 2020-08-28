@@ -1,7 +1,7 @@
 /// <reference types="jest-dom/extend-expect"/>
 import React from 'react';
 import { axe } from 'jest-axe';
-import { Select } from '.';
+import { LegacySelect } from '.';
 import { getStyles } from './shared';
 import { render, fireEvent, act } from '@testing-library/react';
 import { magma } from '../../theme/magma';
@@ -13,7 +13,7 @@ describe('Select', () => {
     let getByTestId;
     const testId = 'test-id';
     await act(async () => {
-      ({ getByTestId } = render(<Select testId={testId} />));
+      ({ getByTestId } = render(<LegacySelect testId={testId} />));
     });
 
     expect(getByTestId(testId)).toBeInTheDocument();
@@ -23,7 +23,7 @@ describe('Select', () => {
     let getByText;
     const labelText = 'Test';
     await act(async () => {
-      ({ getByText } = render(<Select labelText={labelText} />));
+      ({ getByText } = render(<LegacySelect labelText={labelText} />));
     });
 
     expect(getByText(labelText)).toBeInTheDocument();
@@ -33,7 +33,7 @@ describe('Select', () => {
     let getByLabelText;
     const labelText = 'Test';
     await act(async () => {
-      ({ getByLabelText } = render(<Select labelText={labelText} />));
+      ({ getByLabelText } = render(<LegacySelect labelText={labelText} />));
     });
     const input = getByLabelText(labelText);
     expect(input).toBeInTheDocument();
@@ -126,7 +126,7 @@ describe('Select', () => {
     const inputName = 'Test';
     await act(async () => {
       ({ getByDisplayValue } = render(
-        <Select name={inputName} defaultValue={defaultValue} />
+        <LegacySelect name={inputName} defaultValue={defaultValue} />
       ));
     });
 
@@ -139,7 +139,7 @@ describe('Select', () => {
     const inputName = 'Test';
     await act(async () => {
       ({ getByDisplayValue } = render(
-        <Select name={inputName} value={value} />
+        <LegacySelect name={inputName} value={value} />
       ));
     });
 
@@ -162,7 +162,7 @@ describe('Select', () => {
     const inputName = 'Test';
     await act(async () => {
       ({ getByDisplayValue, getByText } = render(
-        <Select defaultValue={[...options]} name={inputName} isMulti />
+        <LegacySelect defaultValue={[...options]} name={inputName} isMulti />
       ));
     });
 
@@ -176,7 +176,7 @@ describe('Select', () => {
   it('should disable the select', async () => {
     let container;
     await act(async () => {
-      ({ container } = render(<Select isDisabled />));
+      ({ container } = render(<LegacySelect isDisabled />));
     });
     const input = container.querySelector('input');
 
@@ -188,7 +188,7 @@ describe('Select', () => {
     const helperString = 'Helper text';
 
     await act(async () => {
-      ({ getByTestId } = render(<Select helperMessage={helperString} />));
+      ({ getByTestId } = render(<LegacySelect helperMessage={helperString} />));
     });
 
     const helperMessage = getByTestId('inputMessage');
@@ -203,7 +203,7 @@ describe('Select', () => {
     const errorString = 'Please fix this error';
 
     await act(async () => {
-      ({ getByTestId } = render(<Select errorMessage={errorString} />));
+      ({ getByTestId } = render(<LegacySelect errorMessage={errorString} />));
     });
 
     const errorMessage = getByTestId('inputMessage');
@@ -219,7 +219,7 @@ describe('Select', () => {
 
     await act(async () => {
       ({ getByTestId } = render(
-        <Select errorMessage={errorString} isInverse />
+        <LegacySelect errorMessage={errorString} isInverse />
       ));
     });
 
@@ -244,7 +244,7 @@ describe('Select', () => {
 
     await act(async () => {
       ({ getByTestId } = render(
-        <Select
+        <LegacySelect
           components={{
             DropdownIndicator
           }}
@@ -271,7 +271,11 @@ describe('Select', () => {
 
     await act(async () => {
       ({ getByLabelText } = render(
-        <Select onChange={onChangeSpy} labelText="target" options={options} />
+        <LegacySelect
+          onChange={onChangeSpy}
+          labelText="target"
+          options={options}
+        />
       ));
     });
 
@@ -296,7 +300,7 @@ describe('Select', () => {
     let container;
     const onBlurSpy = jest.fn();
     await act(async () => {
-      ({ container } = render(<Select onFocus={onBlurSpy} />));
+      ({ container } = render(<LegacySelect onFocus={onBlurSpy} />));
     });
 
     const input = container.querySelector('input');
@@ -309,7 +313,7 @@ describe('Select', () => {
     let container;
     const onFocusSpy = jest.fn();
     await act(async () => {
-      ({ container } = render(<Select onFocus={onFocusSpy} />));
+      ({ container } = render(<LegacySelect onFocus={onFocusSpy} />));
     });
 
     const input = container.querySelector('input');
@@ -321,7 +325,7 @@ describe('Select', () => {
   it('Does not violate accessibility standards', async () => {
     let container;
     await act(async () => {
-      ({ container } = render(<Select labelText="test label" />));
+      ({ container } = render(<LegacySelect labelText="test label" />));
     });
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();

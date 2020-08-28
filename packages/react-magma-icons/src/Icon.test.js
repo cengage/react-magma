@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import { renderIcon as renderIconUtil } from './SvgIcon';
 
 // eslint-disable-next-line no-unused-vars
-const { IconProps, ...ICONS } = ICNS;
+const { IconProps, SvgIconProps, ...ICONS } = ICNS;
 
 describe('Icon', () => {
   it('should find element by testId', () => {

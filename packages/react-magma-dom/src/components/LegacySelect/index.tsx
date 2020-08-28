@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { SelectWrapper } from '../Select/SelectWrapper';
+import { Props as ReactSelectProps } from 'react-select';
 import {
   ClearIndicator,
   DropdownIndicator,
@@ -8,33 +8,27 @@ import {
   getStyles,
   useSelectValue,
   getAriaLabel,
-  BaseSelectProps,
-  OptionType
-} from '../Select/shared';
-import { Props as AsyncCreatableReactSelectProps } from 'react-select/async-creatable';
+  BaseSelectProps
+} from './shared';
+import { SelectWrapper } from './SelectWrapper';
 
 const Loader = () => null;
 
-export interface AsyncCreatableSelectProps
-  extends BaseSelectProps,
-    AsyncCreatableReactSelectProps<OptionType> {}
+export interface SelectProps extends BaseSelectProps, ReactSelectProps {}
 
-export const AsyncCreatableSelect: React.FunctionComponent<AsyncCreatableSelectProps> = (
-  props: AsyncCreatableSelectProps
+export const LegacySelect: React.FunctionComponent<SelectProps> = (
+  props: SelectProps
 ) => {
   const [value, onChange] = useSelectValue(
     props.value,
     props.defaultValue,
     props.onChange
   );
-  const [
-    ReactAsyncCreatableSelect,
-    updateReactAsyncCreatableSelect
-  ] = React.useState<any>(() => Loader);
+  const [ReactSelect, updateReactSelect] = React.useState<any>(() => Loader);
 
   React.useEffect(() => {
-    import('react-select/async-creatable')
-      .then(module => updateReactAsyncCreatableSelect(() => module.default))
+    import('react-select')
+      .then(module => updateReactSelect(() => module.default))
       .catch(err => {
         if (process.env.NODE_ENV !== 'production') {
           console.warn(
@@ -68,7 +62,7 @@ export const AsyncCreatableSelect: React.FunctionComponent<AsyncCreatableSelectP
       labelText={labelText}
       testId={testId}
     >
-      <ReactAsyncCreatableSelect
+      <ReactSelect
         {...other}
         aria-label={ariaLabelText}
         classNamePrefix="magma"
@@ -79,7 +73,7 @@ export const AsyncCreatableSelect: React.FunctionComponent<AsyncCreatableSelectP
           ...components
         }}
         onChange={onChange}
-        styles={getStyles(styles, theme, errorMessage)}
+        styles={getStyles(styles, theme, errorMessage, isInverse)}
         value={value}
       />
     </SelectWrapper>

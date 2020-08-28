@@ -26,6 +26,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
+# [2.0.0-beta.63](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.62...v2.0.0-beta.63) (2020-08-24)
+
+### Bug Fixes
+
 - **input:** fixed baseinput update logic ([ea8f05c](http://stash.cengage.com:7999/FRONT/react-magma/commits/ea8f05c))
 
 # [2.0.0-beta.62](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.61...v2.0.0-beta.62) (2020-08-24)

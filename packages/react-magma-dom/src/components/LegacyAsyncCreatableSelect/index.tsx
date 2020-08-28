@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { SelectWrapper } from '../Select/SelectWrapper';
+import { SelectWrapper } from '../LegacySelect/SelectWrapper';
 import {
   ClearIndicator,
   DropdownIndicator,
@@ -10,30 +10,33 @@ import {
   getAriaLabel,
   BaseSelectProps,
   OptionType
-} from '../Select/shared';
-import { Props as AsyncReactSelectProps } from 'react-select/async';
+} from '../LegacySelect/shared';
+import { Props as AsyncCreatableReactSelectProps } from 'react-select/async-creatable';
 
 const Loader = () => null;
 
-export interface AsyncSelectProps
+export interface LegacyAsyncCreatableSelectProps
   extends BaseSelectProps,
-    AsyncReactSelectProps<OptionType> {}
+    AsyncCreatableReactSelectProps<OptionType> {}
 
-export const AsyncSelect: React.FunctionComponent<AsyncSelectProps> = (
-  props: AsyncSelectProps
+export const LegacyAsyncCreatableSelect: React.FunctionComponent<LegacyAsyncCreatableSelectProps> = (
+  props: LegacyAsyncCreatableSelectProps
 ) => {
   const [value, onChange] = useSelectValue(
     props.value,
     props.defaultValue,
     props.onChange
   );
-  const [ReactAsyncSelect, updateReactAsyncSelect] = React.useState<any>(
-    () => Loader
-  );
+  const [
+    ReactLegacyAsyncCreatableSelect,
+    updateReactLegacyAsyncCreatableSelect
+  ] = React.useState<any>(() => Loader);
 
   React.useEffect(() => {
-    import('react-select/async')
-      .then(module => updateReactAsyncSelect(() => module.default))
+    import('react-select/async-creatable')
+      .then(module =>
+        updateReactLegacyAsyncCreatableSelect(() => module.default)
+      )
       .catch(err => {
         if (process.env.NODE_ENV !== 'production') {
           console.warn(
@@ -67,7 +70,7 @@ export const AsyncSelect: React.FunctionComponent<AsyncSelectProps> = (
       labelText={labelText}
       testId={testId}
     >
-      <ReactAsyncSelect
+      <ReactLegacyAsyncCreatableSelect
         {...other}
         aria-label={ariaLabelText}
         classNamePrefix="magma"
@@ -78,7 +81,7 @@ export const AsyncSelect: React.FunctionComponent<AsyncSelectProps> = (
           ...components
         }}
         onChange={onChange}
-        styles={getStyles(styles, theme, errorMessage, isInverse)}
+        styles={getStyles(styles, theme, errorMessage)}
         value={value}
       />
     </SelectWrapper>

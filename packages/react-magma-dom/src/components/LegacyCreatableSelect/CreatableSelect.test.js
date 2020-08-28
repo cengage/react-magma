@@ -1,7 +1,7 @@
 /// <reference types="jest-dom/extend-expect"/>
 import React from 'react';
 import { axe } from 'jest-axe';
-import { CreatableSelect } from '.';
+import { LegacyCreatableSelect } from '.';
 import { act, render, fireEvent, waitForElement } from '@testing-library/react';
 import { Search2Icon } from 'react-magma-icons';
 import { components as ReactSelectComponents } from 'react-select';
@@ -22,7 +22,7 @@ it('Does not violate accessibility standards', async () => {
 
   await act(async () => {
     ({ container } = render(
-      <CreatableSelect labelText="test label" options={colourOptions} />
+      <LegacyCreatableSelect labelText="test label" options={colourOptions} />
     ));
   });
   await waitForElement(() => container.querySelector('input'));
@@ -39,7 +39,7 @@ describe('Creatable', () => {
 
     await act(async () => {
       ({ container, getByText } = render(
-        <CreatableSelect
+        <LegacyCreatableSelect
           id="colorsSelect"
           labelText="Colors"
           options={colourOptions}
@@ -76,7 +76,7 @@ describe('Creatable', () => {
 
     await act(async () => {
       ({ getByTestId } = render(
-        <CreatableSelect
+        <LegacyCreatableSelect
           id="customSelect"
           labelText="Custom"
           components={{
