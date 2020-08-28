@@ -25,7 +25,7 @@ See also: <Link to="/api/radio">Radio Buttons</Link>, <Link to="/api/toggle">Tog
 ```.jsx
   <FormGroup labelText="Choose One or More">
     <Checkbox
-        checked
+        defaultChecked
         labelText='Checkbox label' />
 
     <Checkbox
@@ -37,6 +37,42 @@ See also: <Link to="/api/radio">Radio Buttons</Link>, <Link to="/api/toggle">Tog
     </FormGroup>
 ```
 
+## Controlled
+
+Checkboxes can either be controlled or uncontrolled. If you pass in a `checked` prop, it is a controlled input. That means that to change the checkbox's state, you must updated the `checked` prop's value.
+If you do not want to have your checkbox be in a controlled state, but need the initial checked value to be set, pass in the `defaultChecked` prop with the value you would like on intial render.
+
+```.jsx
+  class Example extends React.Component {
+    constructor(props) {
+      super(props)
+
+      this.state = {
+        isChecked: false
+      }
+
+      this.toggleCheckbox = this.toggleCheckbox.bind(this)
+    }
+
+    toggleCheckbox(event) {
+      const { isChecked } = this.state
+
+      this.setState({isChecked: !isChecked})
+    };
+
+    render() {
+      const { isChecked } = this.state
+      return (
+        <Checkbox
+          onChange={this.toggleCheckbox}
+          checked={isChecked}
+          labelText='Controlled'
+        />
+      )
+    }
+  }
+```
+
 ## Colors
 
 By default, the checkboxes use the theme's primary color. But any other color may be passed in.
@@ -44,18 +80,18 @@ By default, the checkboxes use the theme's primary color. But any other color ma
 ```.jsx
   <FormGroup labelText="Choose One or More Colors">
     <Checkbox
-        checked
+        defaultChecked
         labelText='Default color' />
     <Checkbox
-        checked
+        defaultChecked
         color={magma.colors.success01}
         labelText='Success color' />
     <Checkbox
-        checked
+        defaultChecked
         color={magma.colors.danger}
         labelText='Danger color' />
     <Checkbox
-        checked
+        defaultChecked
         color={magma.colors.pop02}
         labelText='Pop color' />
     </FormGroup>
@@ -94,21 +130,21 @@ Inverse is an optional boolean prop, that may be passed in when the component is
 ```.jsx
   <FormGroup containerStyle={{ background : '#00263E',color: '#FFFFFF', padding: '10px' }} labelText="Choose Inverse Options">
     <Checkbox
-        checked
+        defaultChecked
         inverse
       labelText='Inverse' />
     <Checkbox
-        checked
+        defaultChecked
         color={magma.colors.success01}
         inverse
         labelText='Success inverse' />
     <Checkbox
-        checked
+        defaultChecked
         color={magma.colors.danger}
         inverse
         labelText='Danger inverse' />
     <Checkbox
-        checked
+        defaultChecked
         color={magma.colors.pop02}
         inverse
         labelText='Pop inverse' />
@@ -141,14 +177,14 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
 ```.jsx
   <>
     <Checkbox
-        checked
+        defaultChecked
         containerStyle={{ 'border': '1px dotted purple'}}
         inputStyle={{ 'boxShadow': '3px 3px 3px rgba(0, 0 , 0, .6)'}}
         labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
         labelText='Custom styles' />
 
     <Checkbox
-        checked
+        defaultChecked
         labelText='No custom styles' />
   </>
 ```
@@ -216,6 +252,14 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       },
       required: false,
       description: 'Style properties for the component container element',
+    },
+    defaultChecked: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, element is checked only on intial render',
+      defaultValue: 'false',
     },
     disabled: {
       type: {

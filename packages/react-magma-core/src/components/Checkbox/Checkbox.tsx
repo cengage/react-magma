@@ -2,10 +2,11 @@ import * as React from 'react';
 import { generateId } from '../utils';
 
 export interface CheckboxCoreProps {
+  checked?: boolean;
   children: (props) => React.ReactNode;
+  defaultChecked?: boolean;
   id?: string;
   onChange?: (checked: boolean) => void;
-  checked?: boolean;
 }
 
 export interface CheckboxCoreState {
@@ -22,7 +23,7 @@ export class CheckboxCore extends React.Component<
 
     this.state = {
       id: generateId(this.props.id),
-      checked: this.props.checked
+      checked: Boolean(this.props.defaultChecked) || Boolean(this.props.checked)
     };
 
     this.onChange = this.onChange.bind(this);
@@ -33,7 +34,10 @@ export class CheckboxCore extends React.Component<
       this.setState({ id: generateId(this.props.id) });
     }
 
-    if (prevProps.checked !== this.props.checked) {
+    if (
+      typeof this.props.checked === 'boolean' &&
+      prevProps.checked !== this.props.checked
+    ) {
       this.setState({ checked: this.props.checked });
     }
   }
