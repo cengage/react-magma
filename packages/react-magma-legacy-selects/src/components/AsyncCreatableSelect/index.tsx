@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { Props as ReactSelectProps } from 'react-select';
+import { ThemeContext } from 'react-magma-dom';
+import { SelectWrapper } from '../Select/SelectWrapper';
 import {
   ClearIndicator,
   DropdownIndicator,
@@ -8,27 +8,33 @@ import {
   getStyles,
   useSelectValue,
   getAriaLabel,
-  BaseSelectProps
-} from './shared';
-import { SelectWrapper } from './SelectWrapper';
+  BaseSelectProps,
+  OptionType
+} from '../Select/shared';
+import { Props as AsyncCreatableReactSelectProps } from 'react-select/async-creatable';
 
 const Loader = () => null;
 
-export interface SelectProps extends BaseSelectProps, ReactSelectProps {}
+export interface AsyncCreatableSelectProps
+  extends BaseSelectProps,
+    AsyncCreatableReactSelectProps<OptionType> {}
 
-export const LegacySelect: React.FunctionComponent<SelectProps> = (
-  props: SelectProps
+export const AsyncCreatableSelect: React.FunctionComponent<AsyncCreatableSelectProps> = (
+  props: AsyncCreatableSelectProps
 ) => {
   const [value, onChange] = useSelectValue(
     props.value,
     props.defaultValue,
     props.onChange
   );
-  const [ReactSelect, updateReactSelect] = React.useState<any>(() => Loader);
+  const [
+    ReactAsyncCreatableSelect,
+    updateReactAsyncCreatableSelect
+  ] = React.useState<any>(() => Loader);
 
   React.useEffect(() => {
-    import('react-select')
-      .then(module => updateReactSelect(() => module.default))
+    import('react-select/async-creatable')
+      .then(module => updateReactAsyncCreatableSelect(() => module.default))
       .catch(err => {
         if (process.env.NODE_ENV !== 'production') {
           console.warn(
@@ -62,7 +68,7 @@ export const LegacySelect: React.FunctionComponent<SelectProps> = (
       labelText={labelText}
       testId={testId}
     >
-      <ReactSelect
+      <ReactAsyncCreatableSelect
         {...other}
         aria-label={ariaLabelText}
         classNamePrefix="magma"
@@ -73,7 +79,7 @@ export const LegacySelect: React.FunctionComponent<SelectProps> = (
           ...components
         }}
         onChange={onChange}
-        styles={getStyles(styles, theme, errorMessage, isInverse)}
+        styles={getStyles(styles, theme, errorMessage)}
         value={value}
       />
     </SelectWrapper>

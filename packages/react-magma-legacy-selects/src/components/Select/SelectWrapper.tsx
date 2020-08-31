@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Label } from '../Label';
-import { InputMessage } from '../Input/InputMessage';
+import { Label, InputMessage } from 'react-magma-dom';
 
 interface SelectWrapperProps {
   children: React.ReactNode;

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { SelectWrapper } from '../LegacySelect/SelectWrapper';
+import { ThemeContext } from 'react-magma-dom';
+import { SelectWrapper } from '../Select/SelectWrapper';
 import {
   ClearIndicator,
   DropdownIndicator,
@@ -10,33 +10,30 @@ import {
   getAriaLabel,
   BaseSelectProps,
   OptionType
-} from '../LegacySelect/shared';
-import { Props as AsyncCreatableReactSelectProps } from 'react-select/async-creatable';
+} from '../Select/shared';
+import { Props as AsyncReactSelectProps } from 'react-select/async';
 
 const Loader = () => null;
 
-export interface LegacyAsyncCreatableSelectProps
+export interface AsyncSelectProps
   extends BaseSelectProps,
-    AsyncCreatableReactSelectProps<OptionType> {}
+    AsyncReactSelectProps<OptionType> {}
 
-export const LegacyAsyncCreatableSelect: React.FunctionComponent<LegacyAsyncCreatableSelectProps> = (
-  props: LegacyAsyncCreatableSelectProps
+export const AsyncSelect: React.FunctionComponent<AsyncSelectProps> = (
+  props: AsyncSelectProps
 ) => {
   const [value, onChange] = useSelectValue(
     props.value,
     props.defaultValue,
     props.onChange
   );
-  const [
-    ReactLegacyAsyncCreatableSelect,
-    updateReactLegacyAsyncCreatableSelect
-  ] = React.useState<any>(() => Loader);
+  const [ReactAsyncSelect, updateReactAsyncSelect] = React.useState<any>(
+    () => Loader
+  );
 
   React.useEffect(() => {
-    import('react-select/async-creatable')
-      .then(module =>
-        updateReactLegacyAsyncCreatableSelect(() => module.default)
-      )
+    import('react-select/async')
+      .then(module => updateReactAsyncSelect(() => module.default))
       .catch(err => {
         if (process.env.NODE_ENV !== 'production') {
           console.warn(
@@ -70,7 +67,7 @@ export const LegacyAsyncCreatableSelect: React.FunctionComponent<LegacyAsyncCrea
       labelText={labelText}
       testId={testId}
     >
-      <ReactLegacyAsyncCreatableSelect
+      <ReactAsyncSelect
         {...other}
         aria-label={ariaLabelText}
         classNamePrefix="magma"
@@ -81,7 +78,7 @@ export const LegacyAsyncCreatableSelect: React.FunctionComponent<LegacyAsyncCrea
           ...components
         }}
         onChange={onChange}
-        styles={getStyles(styles, theme, errorMessage)}
+        styles={getStyles(styles, theme, errorMessage, isInverse)}
         value={value}
       />
     </SelectWrapper>

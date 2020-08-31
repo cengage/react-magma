@@ -60,6 +60,7 @@ export {
   IndeterminateCheckboxProps
 } from './components/IndeterminateCheckbox';
 export { Input, InputProps } from './components/Input';
+export { InputMessage } from './components/Input/InputMessage';
 export { Label } from './components/Label';
 export { LinkButton } from './components/LinkButton';
 export {
@@ -84,11 +85,6 @@ export {
   MultipleSelectionStateChangeTypes
 } from './components/DownshiftSelect';
 export { Combobox, ComboboxStateChangeTypes } from './components/Combobox';
-
-export { LegacySelect } from './components/LegacySelect';
-export { LegacyAsyncSelect } from './components/LegacyAsyncSelect';
-export { LegacyCreatableSelect } from './components/LegacyCreatableSelect';
-export { LegacyAsyncCreatableSelect } from './components/LegacyAsyncCreatableSelect';
 
 export { SkipLink, SkipLinkProps } from './components/SkipLink';
 export {

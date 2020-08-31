@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { SelectWrapper } from '../LegacySelect/SelectWrapper';
+import { ThemeContext } from 'react-magma-dom';
+import { Props as ReactSelectProps } from 'react-select';
 import {
   ClearIndicator,
   DropdownIndicator,
@@ -8,32 +8,27 @@ import {
   getStyles,
   useSelectValue,
   getAriaLabel,
-  BaseSelectProps,
-  OptionType
-} from '../LegacySelect/shared';
-import { Props as AsyncReactSelectProps } from 'react-select/async';
+  BaseSelectProps
+} from './shared';
+import { SelectWrapper } from './SelectWrapper';
 
 const Loader = () => null;
 
-export interface LegacyAsyncSelectProps
-  extends BaseSelectProps,
-    AsyncReactSelectProps<OptionType> {}
+export interface SelectProps extends BaseSelectProps, ReactSelectProps {}
 
-export const LegacyAsyncSelect: React.FunctionComponent<LegacyAsyncSelectProps> = (
-  props: LegacyAsyncSelectProps
+export const Select: React.FunctionComponent<SelectProps> = (
+  props: SelectProps
 ) => {
   const [value, onChange] = useSelectValue(
     props.value,
     props.defaultValue,
     props.onChange
   );
-  const [ReactLegacyAsyncSelect, updateReactLegacyAsyncSelect] = React.useState<
-    any
-  >(() => Loader);
+  const [ReactSelect, updateReactSelect] = React.useState<any>(() => Loader);
 
   React.useEffect(() => {
-    import('react-select/async')
-      .then(module => updateReactLegacyAsyncSelect(() => module.default))
+    import('react-select')
+      .then(module => updateReactSelect(() => module.default))
       .catch(err => {
         if (process.env.NODE_ENV !== 'production') {
           console.warn(
@@ -67,7 +62,7 @@ export const LegacyAsyncSelect: React.FunctionComponent<LegacyAsyncSelectProps> 
       labelText={labelText}
       testId={testId}
     >
-      <ReactLegacyAsyncSelect
+      <ReactSelect
         {...other}
         aria-label={ariaLabelText}
         classNamePrefix="magma"

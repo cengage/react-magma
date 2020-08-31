@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { SelectWrapper } from '../LegacySelect/SelectWrapper';
+import { ThemeContext } from 'react-magma-dom';
+import { SelectWrapper } from '../Select/SelectWrapper';
 import {
   getStyles,
   ClearIndicator,
@@ -10,17 +10,17 @@ import {
   useSelectValue,
   BaseSelectProps,
   OptionType
-} from '../LegacySelect/shared';
+} from '../Select/shared';
 import { Props as CreatableReactSelectProps } from 'react-select/creatable';
 
 const Loader = () => null;
 
-export interface LegacyCreatableSelectProps
+export interface CreatableSelectProps
   extends BaseSelectProps,
     CreatableReactSelectProps<OptionType> {}
 
-export const LegacyCreatableSelect: React.FunctionComponent<LegacyCreatableSelectProps> = (
-  props: LegacyCreatableSelectProps
+export const CreatableSelect: React.FunctionComponent<CreatableSelectProps> = (
+  props: CreatableSelectProps
 ) => {
   const [value, onChange] = useSelectValue(
     props.value,
