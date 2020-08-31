@@ -194,7 +194,7 @@ describe('Select', () => {
     const helperMessage = getByTestId('inputMessage');
 
     expect(helperMessage).toBeInTheDocument();
-    expect(helperMessage).toHaveStyleRule('color', '#727272');
+    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral03);
     expect(helperMessage).toHaveStyleRule('font-size', '13px');
   });
 
@@ -210,7 +210,7 @@ describe('Select', () => {
 
     expect(errorMessage).toBeInTheDocument();
     expect(errorMessage).toHaveStyleRule('background', 'none');
-    expect(errorMessage).toHaveStyleRule('color', '#E70000');
+    expect(errorMessage).toHaveStyleRule('color', magma.colors.danger);
   });
 
   it('should render the error message on an inverse component with the correct styles', async () => {
@@ -226,8 +226,8 @@ describe('Select', () => {
     const errorMessage = getByTestId('inputMessage');
 
     expect(errorMessage).toBeInTheDocument();
-    expect(errorMessage).toHaveStyleRule('background', '#E70000');
-    expect(errorMessage).toHaveStyleRule('color', '#FFFFFF');
+    expect(errorMessage).toHaveStyleRule('background', magma.colors.danger);
+    expect(errorMessage).toHaveStyleRule('color', magma.colors.neutral08);
   });
 
   it('should allow for the passing in of custom components', async () => {

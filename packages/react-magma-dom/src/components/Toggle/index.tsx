@@ -142,7 +142,7 @@ const IconContainer = styled.span<{ theme?: any }>`
   color: ${props => props.theme.colors.neutral08};
   left: 7px;
   position: absolute;
-  margin-top: -11px;
+  margin-top: -13px;
   top: 50%;
 `;
 
