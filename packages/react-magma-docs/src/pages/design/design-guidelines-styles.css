@@ -1,5 +1,5 @@
 .article-divider {
-  background: #DFDFDF;
+  background: #dfdfdf;
   margin: 40px 0;
 }
 
@@ -43,13 +43,13 @@ figure .image-container {
 }
 
 figure .image-container span {
-  padding-bottom: 0px!important;
+  padding-bottom: 0px !important;
 }
 
 figure .image-container img {
   max-width: 400px;
-  margin: auto!important;
-  position: relative!important;
+  margin: auto !important;
+  position: relative !important;
 }
 
 figcaption {
@@ -70,22 +70,22 @@ figcaption .title {
   text-transform: uppercase;
   font-weight: 600;
   padding: 3px 5px;
-  margin: 0 0 5px 0!important;
+  margin: 0 0 5px 0 !important;
   letter-spacing: 1px;
 }
 
 figcaption .title-correct {
-  background: #3A8200;
+  background: #3a8200;
   color: #fff;
 }
 
 figcaption .title-incorrect {
-  background: #E70000;
+  background: #c61d23;
   color: #fff;
 }
 
 figcaption .title-caution {
-  background: #F2A900;
+  background: #f2a900;
   color: #3f3f3f;
 }
 
@@ -154,7 +154,7 @@ figure img {
   display: flex;
   flex-direction: column;
   padding: 20px 5%;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   margin-bottom: 30px;
   border-radius: 5px;
@@ -162,7 +162,7 @@ figure img {
 
 .principles-c h3 {
   font-size: 36px;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-top: 10px;
 }
 
@@ -176,35 +176,35 @@ figure img {
 }
 
 .encourage-container {
-  background: #E0004D;
+  background: #e0004d;
 }
 
 .inspire-container {
-  background: #FA6600;
+  background: #fa6600;
 }
 
 .cultivate-container {
-  background: #48A200;
+  background: #48a200;
 }
 
 .preserve-container {
-  background: #F2A900;
-  color: #00263E;
+  background: #f2a900;
+  color: #00263e;
 }
 
 .preserve-container h3 {
-  color: #00263E;
+  color: #00263e;
 }
 
 .discover-container {
-  background: #92278F;
+  background: #92278f;
 }
 
 .principles-c blockquote {
   padding: 20px;
   margin: 0 0 20px 0;
   text-align: left;
-  background: rgba(0,0,0,0.35);
+  background: rgba(0, 0, 0, 0.35);
   border-radius: 5px;
 }
 
@@ -218,13 +218,13 @@ figure img {
   color: #ffffff;
 }
 
-blockquote footer  {
+blockquote footer {
   font-style: italic;
 }
 
 .feature-list,
 .feature-list li {
-  margin:  0;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
@@ -264,7 +264,6 @@ blockquote footer  {
 }
 
 @media only screen and (max-width: 600px) {
-
   .type-example {
     flex-direction: column;
     align-items: flex-start;
@@ -278,7 +277,6 @@ blockquote footer  {
     margin: 0 0 10px 0;
     text-align: left;
   }
-
 }
 
 @media only screen and (max-width: 480px) {

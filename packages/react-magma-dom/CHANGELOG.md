@@ -3,124 +3,92 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.0.0-beta.64](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.63...v2.0.0-beta.64) (2020-08-26)
-
+# [2.0.0-beta.66](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.65...v2.0.0-beta.66) (2020-08-31)
 
 ### Features
 
-* **data table:** changes based on PR feedback ([c046eeb](http://stash.cengage.com:7999/FRONT/react-magma/commits/c046eeb))
-* **data table:** context for density, zebrastripes, vertical border ([f5c1557](http://stash.cengage.com:7999/FRONT/react-magma/commits/f5c1557))
-* **data table:** don't apply hover styles to header rows ([76a7a7a](http://stash.cengage.com:7999/FRONT/react-magma/commits/76a7a7a))
-* **data table:** inverse styles ([2371f3e](http://stash.cengage.com:7999/FRONT/react-magma/commits/2371f3e))
-* **data table:** more sort props ([76029dc](http://stash.cengage.com:7999/FRONT/react-magma/commits/76029dc))
-* **data table:** styles for sortable th ([654c993](http://stash.cengage.com:7999/FRONT/react-magma/commits/654c993))
-* **data table:** updated hover styles, cell padding, some docs updates ([0fc239d](http://stash.cengage.com:7999/FRONT/react-magma/commits/0fc239d))
-* **data tables:** more styles, incl row hover styles ([f3a1120](http://stash.cengage.com:7999/FRONT/react-magma/commits/f3a1120))
-* **data-table:** inverse styles ([f7f1bd8](http://stash.cengage.com:7999/FRONT/react-magma/commits/f7f1bd8))
-* **data-table:** min-width and horiztonal scrolling ([decc74d](http://stash.cengage.com:7999/FRONT/react-magma/commits/decc74d))
-* **table:** align prop for cells ([ad078dd](http://stash.cengage.com:7999/FRONT/react-magma/commits/ad078dd))
-* **table:** cell widths, header cell scope ([d3cf365](http://stash.cengage.com:7999/FRONT/react-magma/commits/d3cf365))
-* **table:** start of sortable tables ([4c0e946](http://stash.cengage.com:7999/FRONT/react-magma/commits/4c0e946))
-* **table:** very basic data table ([647dbba](http://stash.cengage.com:7999/FRONT/react-magma/commits/647dbba))
+- **colors:** add teal, update orange and red ([f4b81d2](http://stash.cengage.com:7999/FRONT/react-magma/commits/f4b81d2))
 
+# [2.0.0-beta.65](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.64...v2.0.0-beta.65) (2020-08-31)
 
+### Bug Fixes
 
+- **checkbox, toggle radio:** fix styling bug ([a2f7d00](http://stash.cengage.com:7999/FRONT/react-magma/commits/a2f7d00))
 
+# [2.0.0-beta.64](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.63...v2.0.0-beta.64) (2020-08-26)
+
+### Features
+
+- **data table:** changes based on PR feedback ([c046eeb](http://stash.cengage.com:7999/FRONT/react-magma/commits/c046eeb))
+- **data table:** context for density, zebrastripes, vertical border ([f5c1557](http://stash.cengage.com:7999/FRONT/react-magma/commits/f5c1557))
+- **data table:** don't apply hover styles to header rows ([76a7a7a](http://stash.cengage.com:7999/FRONT/react-magma/commits/76a7a7a))
+- **data table:** inverse styles ([2371f3e](http://stash.cengage.com:7999/FRONT/react-magma/commits/2371f3e))
+- **data table:** more sort props ([76029dc](http://stash.cengage.com:7999/FRONT/react-magma/commits/76029dc))
+- **data table:** styles for sortable th ([654c993](http://stash.cengage.com:7999/FRONT/react-magma/commits/654c993))
+- **data table:** updated hover styles, cell padding, some docs updates ([0fc239d](http://stash.cengage.com:7999/FRONT/react-magma/commits/0fc239d))
+- **data tables:** more styles, incl row hover styles ([f3a1120](http://stash.cengage.com:7999/FRONT/react-magma/commits/f3a1120))
+- **data-table:** inverse styles ([f7f1bd8](http://stash.cengage.com:7999/FRONT/react-magma/commits/f7f1bd8))
+- **data-table:** min-width and horiztonal scrolling ([decc74d](http://stash.cengage.com:7999/FRONT/react-magma/commits/decc74d))
+- **table:** align prop for cells ([ad078dd](http://stash.cengage.com:7999/FRONT/react-magma/commits/ad078dd))
+- **table:** cell widths, header cell scope ([d3cf365](http://stash.cengage.com:7999/FRONT/react-magma/commits/d3cf365))
+- **table:** start of sortable tables ([4c0e946](http://stash.cengage.com:7999/FRONT/react-magma/commits/4c0e946))
+- **table:** very basic data table ([647dbba](http://stash.cengage.com:7999/FRONT/react-magma/commits/647dbba))
 
 # [2.0.0-beta.63](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.62...v2.0.0-beta.63) (2020-08-24)
 
-
 ### Bug Fixes
 
-* **input:** fixed baseinput update logic ([ea8f05c](http://stash.cengage.com:7999/FRONT/react-magma/commits/ea8f05c))
-
-
-
-
+- **input:** fixed baseinput update logic ([ea8f05c](http://stash.cengage.com:7999/FRONT/react-magma/commits/ea8f05c))
 
 # [2.0.0-beta.62](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.61...v2.0.0-beta.62) (2020-08-24)
 
-
 ### Bug Fixes
 
-* **input:** allow input reset to empty string ([453fbe2](http://stash.cengage.com:7999/FRONT/react-magma/commits/453fbe2))
-
-
-
-
+- **input:** allow input reset to empty string ([453fbe2](http://stash.cengage.com:7999/FRONT/react-magma/commits/453fbe2))
 
 # [2.0.0-beta.61](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.60...v2.0.0-beta.61) (2020-08-11)
 
-
 ### Bug Fixes
 
-* **CU-1370:** modal usabilty with input ([4219836](http://stash.cengage.com:7999/FRONT/react-magma/commits/4219836))
-* **magma-221/modal:** update click outside behaviour ([15dc9e6](http://stash.cengage.com:7999/FRONT/react-magma/commits/15dc9e6))
-
-
-
-
+- **CU-1370:** modal usabilty with input ([4219836](http://stash.cengage.com:7999/FRONT/react-magma/commits/4219836))
+- **magma-221/modal:** update click outside behaviour ([15dc9e6](http://stash.cengage.com:7999/FRONT/react-magma/commits/15dc9e6))
 
 # [2.0.0-beta.60](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.59...v2.0.0-beta.60) (2020-08-07)
 
-
 ### Bug Fixes
 
-* **tooltip:** add aria-hidden when tooltip is visually hidden ([b5c1182](http://stash.cengage.com:7999/FRONT/react-magma/commits/b5c1182))
-
-
-
-
+- **tooltip:** add aria-hidden when tooltip is visually hidden ([b5c1182](http://stash.cengage.com:7999/FRONT/react-magma/commits/b5c1182))
 
 # [2.0.0-beta.59](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.58...v2.0.0-beta.59) (2020-07-30)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 # [2.0.0-beta.58](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.57...v2.0.0-beta.58) (2020-07-30)
-
 
 ### Bug Fixes
 
-* **modal:** change prop type, remove event from inline handler ([3683999](http://stash.cengage.com:7999/FRONT/react-magma/commits/3683999))
-* **modal:** fix close button for modal in modal ([d07490e](http://stash.cengage.com:7999/FRONT/react-magma/commits/d07490e))
-
-
-
-
+- **modal:** change prop type, remove event from inline handler ([3683999](http://stash.cengage.com:7999/FRONT/react-magma/commits/3683999))
+- **modal:** fix close button for modal in modal ([d07490e](http://stash.cengage.com:7999/FRONT/react-magma/commits/d07490e))
 
 # [2.0.0-beta.57](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.56...v2.0.0-beta.57) (2020-07-27)
 
-
 ### Features
 
-* **alert:** only show progress ring on toast ([c5cad21](http://stash.cengage.com:7999/FRONT/react-magma/commits/c5cad21))
-* **progress ring:** animate progress ring ([2b975e8](http://stash.cengage.com:7999/FRONT/react-magma/commits/2b975e8))
-* **progress ring:** change default value and prop name for radius ([7a953e6](http://stash.cengage.com:7999/FRONT/react-magma/commits/7a953e6))
-* **progress ring:** start of timer animation ([9c32790](http://stash.cengage.com:7999/FRONT/react-magma/commits/9c32790))
-* **toast:** add progress ring to toast ([7cc0bc8](http://stash.cengage.com:7999/FRONT/react-magma/commits/7cc0bc8))
-* **toast:** increase toast timer interval ([d8bde7f](http://stash.cengage.com:7999/FRONT/react-magma/commits/d8bde7f))
-* **toast:** make timer based on actual toast duration ([2a4736f](http://stash.cengage.com:7999/FRONT/react-magma/commits/2a4736f))
-* **toast:** pause dismiss timer on focus not just hover ([d486ba2](http://stash.cengage.com:7999/FRONT/react-magma/commits/d486ba2))
-* **toast:** pause toast on hover with countdown ([2afaecc](http://stash.cengage.com:7999/FRONT/react-magma/commits/2afaecc))
-
-
-
-
+- **alert:** only show progress ring on toast ([c5cad21](http://stash.cengage.com:7999/FRONT/react-magma/commits/c5cad21))
+- **progress ring:** animate progress ring ([2b975e8](http://stash.cengage.com:7999/FRONT/react-magma/commits/2b975e8))
+- **progress ring:** change default value and prop name for radius ([7a953e6](http://stash.cengage.com:7999/FRONT/react-magma/commits/7a953e6))
+- **progress ring:** start of timer animation ([9c32790](http://stash.cengage.com:7999/FRONT/react-magma/commits/9c32790))
+- **toast:** add progress ring to toast ([7cc0bc8](http://stash.cengage.com:7999/FRONT/react-magma/commits/7cc0bc8))
+- **toast:** increase toast timer interval ([d8bde7f](http://stash.cengage.com:7999/FRONT/react-magma/commits/d8bde7f))
+- **toast:** make timer based on actual toast duration ([2a4736f](http://stash.cengage.com:7999/FRONT/react-magma/commits/2a4736f))
+- **toast:** pause dismiss timer on focus not just hover ([d486ba2](http://stash.cengage.com:7999/FRONT/react-magma/commits/d486ba2))
+- **toast:** pause toast on hover with countdown ([2afaecc](http://stash.cengage.com:7999/FRONT/react-magma/commits/2afaecc))
 
 # [2.0.0-beta.56](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.55...v2.0.0-beta.56) (2020-07-22)
 
-
 ### Features
 
-* **double arrow icon:** add double arrow icon for table sort ([856c2ca](http://stash.cengage.com:7999/FRONT/react-magma/commits/856c2ca))
-
-
-
-
+- **double arrow icon:** add double arrow icon for table sort ([856c2ca](http://stash.cengage.com:7999/FRONT/react-magma/commits/856c2ca))
 
 # [2.0.0-beta.54](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.53...v2.0.0-beta.54) (2020-07-14)
 

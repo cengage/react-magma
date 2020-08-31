@@ -699,7 +699,7 @@ describe('Alert', () => {
 }
 
 .emotion-2 {
-  background-color: #E70000;
+  background-color: #C61D23;
   border-radius: 3px;
   border-radius: 5px;
   color: #FFFFFF;

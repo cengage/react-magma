@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.66](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.65...v2.0.0-beta.66) (2020-08-31)
+
+
+### Features
+
+* **colors:** add teal, update orange and red ([f4b81d2](http://stash.cengage.com:7999/FRONT/react-magma/commits/f4b81d2))
+
+
+
+
+
+# [2.0.0-beta.65](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.64...v2.0.0-beta.65) (2020-08-31)
+
+
+### Bug Fixes
+
+* **checkbox, toggle radio:** fix styling bug ([a2f7d00](http://stash.cengage.com:7999/FRONT/react-magma/commits/a2f7d00))
+
+
+
+
+
 # [2.0.0-beta.64](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.63...v2.0.0-beta.64) (2020-08-26)
 
 
