@@ -11,6 +11,7 @@ const StyledContainerComponent = styled.div<ContainerProps>`
   display: flex;
   flex-wrap: nowrap;
   margin: 0 0 0 10px;
+  position: relative;
 `;
 
 export const StyledContainer: React.FunctionComponent<ContainerProps> = ({

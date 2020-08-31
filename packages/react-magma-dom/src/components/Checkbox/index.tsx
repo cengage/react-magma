@@ -16,6 +16,7 @@ export interface CheckboxProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   color?: string;
   containerStyle?: React.CSSProperties;
+  defaultChecked?: boolean;
   indeterminate?: boolean;
   inputStyle?: React.CSSProperties;
   inverse?: boolean;
@@ -171,15 +172,23 @@ export class Checkbox extends React.Component<CheckboxProps> {
       this.props.onChange &&
         typeof this.props.onChange === 'function' &&
         this.props.onChange(event);
-      onChange(checked);
+
+      if (typeof this.props.checked !== 'boolean') {
+        onChange(checked);
+      }
     };
   }
 
   render() {
     return (
-      <CheckboxCore id={this.props.id} checked={this.props.checked}>
+      <CheckboxCore
+        id={this.props.id}
+        checked={this.props.checked}
+        defaultChecked={this.props.defaultChecked}
+      >
         {({ id, onChange, checked }) => {
           const {
+            defaultChecked,
             onBlur,
             onFocus,
             color,
