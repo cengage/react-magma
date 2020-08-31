@@ -1,5 +1,6 @@
 import React from 'react';
 import { axe } from 'jest-axe';
+import { magma } from '../../theme/magma';
 import { ProgressBar } from '.';
 import { render } from '@testing-library/react';
 
@@ -48,7 +49,7 @@ describe('ProgressBar', () => {
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      '#C61D23'
+      magma.colors.danger
     );
   });
 
@@ -57,7 +58,7 @@ describe('ProgressBar', () => {
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      '#E0004D'
+      magma.colors.pop01
     );
   });
 
@@ -66,7 +67,7 @@ describe('ProgressBar', () => {
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      '#FC4C02'
+      magma.colors.pop02
     );
   });
 
@@ -77,7 +78,7 @@ describe('ProgressBar', () => {
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      '#3A8200'
+      magma.colors.success01
     );
   });
 
