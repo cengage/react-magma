@@ -1,5 +1,6 @@
 import React from 'react';
 import { axe } from 'jest-axe';
+import { magma } from '../../theme/magma';
 import { ProgressRing } from '.';
 import { render } from '@testing-library/react';
 
@@ -21,12 +22,12 @@ describe('ProgressRing', () => {
 
   it('should render the progress ring component with a custom color', () => {
     const { container } = render(
-      <ProgressRing percentage={50} color="#E70000" />
+      <ProgressRing percentage={50} color={magma.colors.success01} />
     );
 
     expect(container.querySelector('circle')).toHaveAttribute(
       'stroke',
-      '#E70000'
+      magma.colors.success01
     );
   });
 

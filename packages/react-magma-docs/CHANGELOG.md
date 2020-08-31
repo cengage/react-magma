@@ -3,6 +3,64 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.66](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.65...v2.0.0-beta.66) (2020-08-31)
+
+
+### Features
+
+* **colors:** add teal, update orange and red ([f4b81d2](http://stash.cengage.com:7999/FRONT/react-magma/commits/f4b81d2))
+
+
+
+
+
+# [2.0.0-beta.65](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.64...v2.0.0-beta.65) (2020-08-31)
+
+**Note:** Version bump only for package react-magma-docs
+
+
+
+
+
+# [2.0.0-beta.64](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.63...v2.0.0-beta.64) (2020-08-26)
+
+
+### Features
+
+* **data table:** changes based on PR feedback ([c046eeb](http://stash.cengage.com:7999/FRONT/react-magma/commits/c046eeb))
+* **data table:** context for density, zebrastripes, vertical border ([f5c1557](http://stash.cengage.com:7999/FRONT/react-magma/commits/f5c1557))
+* **data table:** inverse styles ([2371f3e](http://stash.cengage.com:7999/FRONT/react-magma/commits/2371f3e))
+* **data table:** more sort props ([76029dc](http://stash.cengage.com:7999/FRONT/react-magma/commits/76029dc))
+* **data table:** styles for sortable th ([654c993](http://stash.cengage.com:7999/FRONT/react-magma/commits/654c993))
+* **data table:** updated hover styles, cell padding, some docs updates ([0fc239d](http://stash.cengage.com:7999/FRONT/react-magma/commits/0fc239d))
+* **data tables:** more styles, incl row hover styles ([f3a1120](http://stash.cengage.com:7999/FRONT/react-magma/commits/f3a1120))
+* **data-table:** inverse styles ([f7f1bd8](http://stash.cengage.com:7999/FRONT/react-magma/commits/f7f1bd8))
+* **data-table:** min-width and horiztonal scrolling ([decc74d](http://stash.cengage.com:7999/FRONT/react-magma/commits/decc74d))
+* **table:** align prop for cells ([ad078dd](http://stash.cengage.com:7999/FRONT/react-magma/commits/ad078dd))
+* **table:** cell widths, header cell scope ([d3cf365](http://stash.cengage.com:7999/FRONT/react-magma/commits/d3cf365))
+* **table:** start of sortable tables ([4c0e946](http://stash.cengage.com:7999/FRONT/react-magma/commits/4c0e946))
+* **table:** very basic data table ([647dbba](http://stash.cengage.com:7999/FRONT/react-magma/commits/647dbba))
+
+
+
+
+
+# [2.0.0-beta.63](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.62...v2.0.0-beta.63) (2020-08-24)
+
+**Note:** Version bump only for package react-magma-docs
+
+
+
+
+
+# [2.0.0-beta.62](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.61...v2.0.0-beta.62) (2020-08-24)
+
+**Note:** Version bump only for package react-magma-docs
+
+
+
+
+
 # [2.0.0-beta.61](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.60...v2.0.0-beta.61) (2020-08-11)
 
 **Note:** Version bump only for package react-magma-docs
