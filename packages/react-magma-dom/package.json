@@ -1,6 +1,6 @@
 {
   "name": "react-magma-dom",
-  "version": "2.0.0-beta.64",
+  "version": "2.0.0-beta.65",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/esm/react-magma-dom.esm.js",
