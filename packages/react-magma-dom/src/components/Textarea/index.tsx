@@ -18,6 +18,7 @@ export interface TextareaProps
   labelStyle?: React.CSSProperties;
   labelText?: React.ReactNode;
   messageStyle?: React.CSSProperties;
+  ref?: any;
   testId?: string;
   textareaStyle?: React.CSSProperties;
   value?: string | string[] | number;
@@ -33,9 +34,7 @@ const StyledTextArea = styled.textarea<TextareaProps>`
   padding: 5px 8px 0;
 `;
 
-export const Textarea: React.FunctionComponent<
-  TextareaProps
-> = React.forwardRef(
+export const Textarea: React.FunctionComponent<TextareaProps> = React.forwardRef(
   (props: TextareaProps, ref: React.Ref<HTMLTextAreaElement>) => {
     const {
       containerStyle,
