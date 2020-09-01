@@ -9,7 +9,7 @@ import { DropdownSplitButton } from './DropdownSplitButton';
 import { DropdownButton } from './DropdownButton';
 import { magma } from '../../theme/magma';
 
-import { render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent } from '@testing-library/react';
 
 describe('Dropdown', () => {
   it('should find element by testId', () => {
@@ -275,6 +275,55 @@ describe('Dropdown', () => {
     });
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+  });
+
+  it('should call the onBeforeShiftFocus prop when closing the dropdown', () => {
+    jest.useFakeTimers();
+    const onBeforeShiftFocus = jest.fn();
+    const { getByTestId } = render(
+      <Dropdown onBeforeShiftFocus={onBeforeShiftFocus} testId="dropdown">
+        <DropdownButton testId="toggleButton">Toggle me</DropdownButton>
+      </Dropdown>
+    );
+
+    const toggleButton = getByTestId('toggleButton');
+
+    fireEvent.click(toggleButton);
+
+    fireEvent.keyDown(getByTestId('dropdown'), {
+      key: 'Escape',
+      code: 27
+    });
+
+    expect(onBeforeShiftFocus).toHaveBeenCalled();
+
+    act(jest.runAllTimers);
+
+    expect(document.activeElement).toEqual(toggleButton);
+
+    jest.useRealTimers();
+  });
+
+  it('should not focus the toggle button if preventMagmaFocus is on the event from the onBeforeShiftFocus prop', () => {
+    const { getByTestId } = render(
+      <Dropdown
+        onBeforeShiftFocus={event => (event.preventMagmaFocus = true)}
+        testId="dropdown"
+      >
+        <DropdownButton testId="toggleButton">Toggle me</DropdownButton>
+      </Dropdown>
+    );
+
+    const toggleButton = getByTestId('toggleButton');
+
+    fireEvent.click(toggleButton);
+
+    fireEvent.keyDown(getByTestId('dropdown'), {
+      key: 'Escape',
+      code: 27
+    });
+
+    expect(document.activeElement).not.toEqual(toggleButton);
   });
 
   it('go to the first or next item when the down arrow key is pressed', () => {

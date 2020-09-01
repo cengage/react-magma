@@ -23,6 +23,7 @@ import {
   Radio,
   RadioGroup,
   magma,
+  Modal,
 } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 import { Link } from 'gatsby'
@@ -403,6 +404,41 @@ When another item is selected, that item will become active and the menu will re
 }
 ```
 
+## Prevent Default Focus Handling
+
+By default when the `dropdown` closes we put focus on the button that triggered the opening of the `dropdown`.
+Sometimes this behavior will override the focusing of another element that you want to be focused. For this,
+you can pass in a function named `onBeforeShiftFocus` in which you can set `preventMagmaFocus` to true on the `event`
+to disable the auto-focusing on close.
+
+```.jsx
+  (props) => {
+    const [showModal, setShowModal] = React.useState(false);
+
+    return (<>
+      <Modal header="Modal Title" onClose={() => setShowModal(false)} isOpen={showModal}>
+        <p>This is a modal, doing modal things.</p>
+        <p>This is <a href="#">linked text</a> in the modal</p>
+        <p>This is <a href="#"> some more linked text</a> in the modal</p>
+      </Modal>
+
+      <Dropdown>
+         <DropdownButton>Without Disabling Auto Focus</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem onClick={() => setShowModal(true)}>Open Modal</DropdownMenuItem>
+          </DropdownContent>
+      </Dropdown>
+
+      <Dropdown onBeforeShiftFocus={event => event.preventMagmaFocus = true}>
+         <DropdownButton>Disable Auto Focusing</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem onClick={() => setShowModal(true)}>Open Modal</DropdownMenuItem>
+          </DropdownContent>
+      </Dropdown>
+    </>)
+  }
+```
+
 ## Dropdown Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**
@@ -445,6 +481,14 @@ When another item is selected, that item will become active and the menu will re
       required: false,
       description: 'Max-height of dropdown content',
       defaultValue: '250px',
+    },
+    onBeforeShiftFocus: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description:
+        'Function called on dropdown close before focusing the toggle button',
     },
     testId: {
       type: {
@@ -544,6 +588,7 @@ export default props => (
       Radio,
       RadioGroup,
       magma,
+      Modal,
     }}
   />
 )

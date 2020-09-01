@@ -18,6 +18,7 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
   alignment?: DropdownAlignment;
   dropDirection?: DropdownDropDirection;
   maxHeight?: string | number;
+  onBeforeShiftFocus?: (event: React.SyntheticEvent) => void;
   ref?: any;
   testId?: string;
   width?: string | number;
@@ -31,7 +32,7 @@ const Container = styled.div`
 interface DropdownContextInterface {
   activeItemIndex?: number;
   alignment?: DropdownAlignment;
-  closeDropdown?: () => void;
+  closeDropdown?: (event: React.SyntheticEvent | React.KeyboardEvent) => void;
   dropDirection?: DropdownDropDirection;
   itemRefArray?: any;
   isFixedWidth?: boolean;
@@ -52,9 +53,7 @@ export const DropdownContext = React.createContext<DropdownContextInterface>({
 
 export const useDropdownContext = () => React.useContext(DropdownContext);
 
-export const Dropdown: React.FunctionComponent<
-  DropdownProps
-> = React.forwardRef(
+export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef(
   (
     {
       activeIndex,
@@ -62,6 +61,7 @@ export const Dropdown: React.FunctionComponent<
       children,
       dropDirection,
       maxHeight,
+      onBeforeShiftFocus,
       testId,
       width,
       ...other
@@ -89,14 +89,10 @@ export const Dropdown: React.FunctionComponent<
       setIsOpen(true);
     }
 
-    function closeDropdown() {
+    function closeDropdown(event) {
       setIsOpen(false);
 
-      setTimeout(() => {
-        if (toggleRef.current) {
-          toggleRef.current.focus();
-        }
-      }, 0);
+      handleBeforeShiftFocus(onBeforeShiftFocus)(event);
     }
 
     function useFilteredItems(): [any, number] {
@@ -112,7 +108,7 @@ export const Dropdown: React.FunctionComponent<
 
     function handleKeyDown(event: React.KeyboardEvent) {
       if (event.key === 'Escape') {
-        closeDropdown();
+        closeDropdown(event);
       }
 
       if (event.key === 'ArrowDown') {
@@ -161,6 +157,22 @@ export const Dropdown: React.FunctionComponent<
           setIsOpen(false);
         }
       }, 0);
+    }
+
+    function handleBeforeShiftFocus(fn) {
+      return event => {
+        if (fn) {
+          fn(event);
+        }
+
+        if (!event.preventMagmaFocus) {
+          setTimeout(() => {
+            if (toggleRef.current) {
+              toggleRef.current.focus();
+            }
+          }, 0);
+        }
+      };
     }
 
     const maxHeightString =
