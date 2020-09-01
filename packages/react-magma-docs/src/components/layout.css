@@ -342,20 +342,6 @@ pre {
   padding: 1.45rem;
   margin: 0 0 1.45rem;
 }
-table {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.45rem;
-  font-size: 1rem;
-  line-height: 1.45rem;
-  border-collapse: collapse;
-  width: 100%;
-}
 fieldset {
   margin-left: 0;
   margin-right: 0;
@@ -494,29 +480,6 @@ abbr[title] {
   cursor: help;
   text-decoration: none;
 }
-thead {
-  text-align: left;
-}
-td,
-th {
-  border-bottom: 1px solid hsla(0, 0%, 0%, 0.12);
-  font-feature-settings: 'tnum';
-  -moz-font-feature-settings: 'tnum';
-  -ms-font-feature-settings: 'tnum';
-  -webkit-font-feature-settings: 'tnum';
-  padding-left: 0.96667rem;
-  padding-right: 0.96667rem;
-  padding-top: 0.725rem;
-  padding-bottom: calc(0.725rem - 1px);
-}
-th:first-child,
-td:first-child {
-  padding-left: 0;
-}
-th:last-child,
-td:last-child {
-  padding-right: 0;
-}
 tt,
 code {
   background-color: #f7f7f7;
@@ -524,9 +487,9 @@ code {
   font-family: monospace;
   font-size: 15px;
   line-height: 1.5em;
-  font-weight: normal!important;
+  font-weight: normal !important;
   padding: 2px 4px;
-  border: 1px solid #DFDFDF;
+  border: 1px solid #dfdfdf;
   color: #003865;
   margin: 0 0.3em 0 0.2em;
 }
@@ -575,7 +538,7 @@ pre tt:after {
 
 .content-article {
   margin: 0 auto;
-  max-width: 750px;
+  max-width: 900px;
   width: 80%;
 }
 
