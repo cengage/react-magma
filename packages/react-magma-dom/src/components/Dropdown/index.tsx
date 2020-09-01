@@ -93,7 +93,10 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
     function closeDropdown(event) {
       setIsOpen(false);
 
-      handleBeforeShiftFocus(onBeforeShiftFocus)(event);
+      if (onBeforeShiftFocus && typeof onBeforeShiftFocus === 'function') {
+        event.preventMagmaFocus = handlePreventMagmaFocus;
+        onBeforeShiftFocus(event);
+      }
 
       if (shouldFocusToggleElement.current) {
         setTimeout(() => {
@@ -172,15 +175,6 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
 
     function handlePreventMagmaFocus() {
       shouldFocusToggleElement.current = false;
-    }
-
-    function handleBeforeShiftFocus(fn) {
-      return event => {
-        if (fn) {
-          event.preventMagmaFocus = handlePreventMagmaFocus;
-          fn(event);
-        }
-      };
     }
 
     const maxHeightString =
