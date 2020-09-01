@@ -10,10 +10,10 @@ import {Search2Icon} from 'react-magma-icons'
 import { Alert } from 'react-magma-dom'
 
 import {
-  Select as LegacySelect,
-  AsyncSelect as LegacyAsyncSelect,
-  CreatableSelect as LegacyCreatableSelect,
-  AsyncCreatableSelect as LegacyAsyncCreatableSelect,
+  Select,
+  AsyncSelect,
+  CreatableSelect,
+  AsyncCreatableSelect,
 } from 'react-magma-legacy-selects'
 import DocsHeading from '../../components/docs-heading'
 import { SimplePropsTable } from '../../components/props-table'
@@ -27,13 +27,13 @@ import { Link } from 'gatsby'
   <strong>Important!</strong> The components on this page have been deprecated.
 </Alert>
 
-The `Select`, `AsyncSelect`, `CreatableSelect` and `AsyncCreatableSelect` components have all been deprecated. They have been renamed `LegacySelect`, `LegacyLegacyAsyncSelect`, `LegacyCreatableSelect` and `LegacyLegacyAsyncCreatableSelect`, the will no longer be maintained, and will be removed in future versions.
+The `Select`, `AsyncSelect`, `CreatableSelect` and `AsyncCreatableSelect` components have all been deprecated. They have been renamed `Select`, `LegacyAsyncSelect`, `CreatableSelect` and `LegacyAsyncCreatableSelect`, the will no longer be maintained, and will be removed in future versions.
 
 Please see the <Link to="/select-migration">Select Migration docs</Link> for details on how to transition to the new <Link to="/api/downshift-select">Select</Link> and <Link to="/api/combobox">Combobox</Link> components.
 
 ## Basic Usage
 
-A `LegacySelect` component allows the user to choose one or more item from a list. By default, only one item may be selected.
+A `Select` component allows the user to choose one or more item from a list. By default, only one item may be selected.
 
 The label/select association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
 
@@ -41,7 +41,7 @@ This component is built upon [React Select by Jed Watson](https://react-select.c
 
 ```.jsx
   <>
-    <LegacySelect
+    <Select
       id="basicSelectId"
       name="basic"
       labelText="Basic"
@@ -65,7 +65,7 @@ The optional `multi` prop allows the user to select more than one item.
 
 ```.jsx
   <>
-    <LegacySelect
+    <Select
       id="multiSelectId"
       name="multi"
       labelText="Multi"
@@ -90,7 +90,7 @@ The optional `clearable` prop allows the user to clear the field once a selectio
 
 ```.jsx
   <>
-    <LegacySelect
+    <Select
       id="clearableSelectId"
       name="clearable"
       labelText="Clearable"
@@ -113,7 +113,7 @@ The optional `clearable` prop allows the user to clear the field once a selectio
 
 ```.jsx
   <>
-    <LegacySelect
+    <Select
       id="defaultValueSelectId"
       name="defaultValue"
       labelText="Default Value"
@@ -139,7 +139,7 @@ The optional `clearable` prop allows the user to clear the field once a selectio
 
 ```.jsx
   <>
-    <LegacySelect
+    <Select
       id="disabledSelectId"
       name="disabled"
       labelText="Disabled"
@@ -165,7 +165,7 @@ If an error message is present, it will replace the helper text. Can be a node o
 
 ```.jsx
   <>
-    <LegacySelect
+    <Select
       errorMessage="Please select a color"
       helperMessage="Helper text goes here"
       name="error"
@@ -190,7 +190,7 @@ The `helperMessage` appears underneath the select field. It will not appear if a
 
 ```.jsx
   <>
-    <LegacySelect
+    <Select
       helperMessage="Helper text goes here"
       name="helper"
       labelText="Helper Message"
@@ -215,7 +215,7 @@ The default value is `false`.
 
 ```.jsx
   <div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
-    <LegacySelect
+    <Select
       errorMessage="Please select a color"
       isInverse
       name="inverse"
@@ -254,7 +254,7 @@ For this example I am importing `components` from `react-select` and renaming th
 
     return (
       <>
-        <LegacySelect
+        <Select
           id="customComponentId"
           name="custom"
           labelText="Custom Component"
@@ -277,7 +277,7 @@ For this example I am importing `components` from `react-select` and renaming th
   }
 ```
 
-## LegacyAsyncSelect
+## AsyncSelect
 
 The `loadOptions` property allows for loading from a remote source as the user types.
 
@@ -307,14 +307,14 @@ The `loadOptions` property allows for loading from a remote source as the user t
   }
 
   return (
-    <LegacyAsyncSelect labelText="Async Select" loadOptions={promiseOptions} />
+    <AsyncSelect labelText="Async Select" loadOptions={promiseOptions} />
   );
 }
 ```
 
 ## CreatableSelect
 
-The `LegacyCreatableSelect` allows for the creation of a new option if that option is not found.
+The `CreatableSelect` allows for the creation of a new option if that option is not found.
 
 ```.jsx
 (props) => {
@@ -349,7 +349,7 @@ The `LegacyCreatableSelect` allows for the creation of a new option if that opti
   };
 
   return (
-    <LegacyCreatableSelect
+    <CreatableSelect
       labelText="Creatable Select"
       isClearable
       onChange={handleChange}
@@ -360,9 +360,9 @@ The `LegacyCreatableSelect` allows for the creation of a new option if that opti
 }
 ```
 
-## LegacyAsyncCreatableSelect
+## AsyncCreatableSelect
 
-The `LegacyAsyncCreatableSelect` combines both the creation of a new option and the loading from a remote source.
+The `AsyncCreatableSelect` combines both the creation of a new option and the loading from a remote source.
 
 ```.jsx
 (props) => {
@@ -405,7 +405,7 @@ The `LegacyAsyncCreatableSelect` combines both the creation of a new option and 
   }
 
   return (
-    <LegacyAsyncCreatableSelect labelText="Async Creatable Select" loadOptions={promiseOptions} onChange={handleChange} />
+    <AsyncCreatableSelect labelText="Async Creatable Select" loadOptions={promiseOptions} onChange={handleChange} />
   );
 }
 ```
@@ -421,7 +421,7 @@ The `LegacyAsyncCreatableSelect` combines both the creation of a new option and 
       <strong>Value: </strong>
       <span id="value">{value ? value.value : 'No Value Set'}</span>
     </p>
-    <LegacySelect
+    <Select
       id="valueSelectId"
       name="value"
       labelText="Value"
@@ -457,7 +457,7 @@ The `LegacyAsyncCreatableSelect` combines both the creation of a new option and 
 
     return (<>
       <p><strong>Focused: </strong> <span id="focused">{message}</span></p>
-      <LegacySelect
+      <Select
         id="focusedSelectId"
         name="focused"
         labelText="Focused?"
@@ -494,7 +494,7 @@ The `LegacyAsyncCreatableSelect` combines both the creation of a new option and 
 
     return (<>
       <p><strong>Opened: </strong> <span id="opened">{message}</span></p>
-      <LegacySelect
+      <Select
         id="openedSelectId"
         name="opened"
         labelText="Opened?"
@@ -558,7 +558,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
     let getByText;
     const labelText = 'Test';
     await act(async () => {
-      ({ getByText } = render(<LegacySelect labelText={labelText} />));
+      ({ getByText } = render(<Select labelText={labelText} />));
     });
 
     expect(getByText(labelText)).toBeInTheDocument();
@@ -567,7 +567,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 
 ## Select Props
 
-**Any other props supplied will be provided to the `LegacySelect` element from [react-select](https://react-select.com/home).**
+**Any other props supplied will be provided to the `Select` element from [react-select](https://react-select.com/home).**
 
 **A list of the props that they accept for each component can be found here: [react-select props](https://react-select.com/props).**
 
@@ -637,10 +637,10 @@ export default props => (
   <ScopeableLayout
     {...props}
     components={{
-      LegacySelect,
-      LegacyAsyncSelect,
-      LegacyCreatableSelect,
-      LegacyAsyncCreatableSelect,
+      Select,
+      AsyncSelect,
+      CreatableSelect,
+      AsyncCreatableSelect,
       ReactSelectComponents,
       Search2Icon,
       Alert,
