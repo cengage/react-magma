@@ -2,6 +2,6 @@
   "packages": [
     "packages/*"
   ],
-  "version": "independent",
-  "hoist": true
+  "hoist": true,
+  "version": "2.0.0-beta.67"
 }

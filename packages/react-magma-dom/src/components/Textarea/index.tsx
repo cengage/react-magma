@@ -18,6 +18,7 @@ export interface TextareaProps
   labelStyle?: React.CSSProperties;
   labelText?: React.ReactNode;
   messageStyle?: React.CSSProperties;
+  ref?: any;
   testId?: string;
   textareaStyle?: React.CSSProperties;
   value?: string | ReadonlyArray<string> | number;
