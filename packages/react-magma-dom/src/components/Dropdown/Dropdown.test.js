@@ -307,7 +307,7 @@ describe('Dropdown', () => {
   it('should not focus the toggle button if preventMagmaFocus is on the event from the onBeforeShiftFocus prop', () => {
     const { getByTestId } = render(
       <Dropdown
-        onBeforeShiftFocus={event => (event.preventMagmaFocus = true)}
+        onBeforeShiftFocus={event => event.preventMagmaFocus()}
         testId="dropdown"
       >
         <DropdownButton testId="toggleButton">Toggle me</DropdownButton>

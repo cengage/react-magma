@@ -408,7 +408,7 @@ When another item is selected, that item will become active and the menu will re
 
 By default when the `dropdown` closes we put focus on the button that triggered the opening of the `dropdown`.
 Sometimes this behavior will override the focusing of another element that you want to be focused. For this,
-you can pass in a function named `onBeforeShiftFocus` in which you can set `preventMagmaFocus` to true on the `event`
+you can pass in a function named `onBeforeShiftFocus` in which you can call the `preventMagmaFocus` function on the `event`
 to disable the auto-focusing on close.
 
 ```.jsx
@@ -429,7 +429,7 @@ to disable the auto-focusing on close.
           </DropdownContent>
       </Dropdown>
 
-      <Dropdown onBeforeShiftFocus={event => event.preventMagmaFocus = true}>
+      <Dropdown onBeforeShiftFocus={event => event.preventMagmaFocus()}>
          <DropdownButton>Disable Auto Focusing</DropdownButton>
           <DropdownContent>
             <DropdownMenuItem onClick={() => setShowModal(true)}>Open Modal</DropdownMenuItem>

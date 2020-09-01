@@ -75,6 +75,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
     );
 
     const itemRefArray = React.useRef([]);
+    const shouldFocusToggleElement = React.useRef<boolean>(true);
 
     const toggleRef = React.useRef<HTMLButtonElement>();
     const menuRef = React.useRef<any>([]);
@@ -93,6 +94,16 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
       setIsOpen(false);
 
       handleBeforeShiftFocus(onBeforeShiftFocus)(event);
+
+      if (shouldFocusToggleElement.current) {
+        setTimeout(() => {
+          if (toggleRef.current) {
+            toggleRef.current.focus();
+          }
+        }, 0);
+      }
+
+      shouldFocusToggleElement.current = true;
     }
 
     function useFilteredItems(): [any, number] {
@@ -159,18 +170,15 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
       }, 0);
     }
 
+    function handlePreventMagmaFocus() {
+      shouldFocusToggleElement.current = false;
+    }
+
     function handleBeforeShiftFocus(fn) {
       return event => {
         if (fn) {
+          event.preventMagmaFocus = handlePreventMagmaFocus;
           fn(event);
-        }
-
-        if (!event.preventMagmaFocus) {
-          setTimeout(() => {
-            if (toggleRef.current) {
-              toggleRef.current.focus();
-            }
-          }, 0);
         }
       };
     }
