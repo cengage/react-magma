@@ -18,7 +18,7 @@ Alerts display a short, important message in a way that attracts a user's attent
 
 ## Usage
 
-Use alerts to inform users of updates or changes to system status, or as feedback to an action they have taken. Communicating with users and providing immediate feedback are important for building trust. While alerts are an effective method of communicating with users, they are disruptive and should be used with care.
+Use alerts to inform users of updates or changes to system status, or as feedback to an action, they have taken. Communicating with users and providing immediate feedback is important for building trust. While alerts are an effective method of communicating with users, they are disruptive and should be used with care.
 
 <span class="horizontal-spacer"></span>
 
@@ -32,7 +32,7 @@ Alerts are used to clearly communicate important information to the user and hel
 
 ### Simple
 
-Alerts should use simple language and as few words as possible.  Avoid using error codes or other technical language that doesn't help the user know what to do next.
+Alerts should use simple language and as few words as possible.  Avoid using error codes or other technical languages that don't help the user know what to do next.
 
 ### Appropriately Interruptive
 
@@ -104,7 +104,7 @@ Alerts come in three different types – Banner, inline, and toast.  The choice 
 
 Banner alerts appear at the very top of the browser viewport and extend all the way across.  Banner alerts can be an effective way of telling the user about something that impacts the entire application such as a planned maintenance notification or an important world event that impacts all users.  Banner alerts are by their nature the most disruptive type of alert so you may decide whether you want the alert to persist or allow the user to dismiss the alert themselves.
 
-View the <Link to="/api/banner/">component api</Link> for banner alerts.
+View the <Link to="/api/banner/">component API</Link> for banner alerts.
 
 <figure>
     <img src="../../images/alerts/banner-alert-example.png" alt=" " />
@@ -112,7 +112,7 @@ View the <Link to="/api/banner/">component api</Link> for banner alerts.
 
 #### Responsive Behavior
 
-When the viewport is 600px wide and smaller, we automatically hide the icon and reduce the font size to opitimize the amount of space given to the message and optional links or buttons in the alert.
+When the viewport is 600px wide and smaller, we automatically hide the icon and reduce the font size to optimize the amount of space given to the message and optional links or buttons in the alert.
 
 <figure>
     <img src="../../images/alerts/mobile-banner-alert-example.png" alt=" " />
@@ -124,7 +124,7 @@ When the viewport is 600px wide and smaller, we automatically hide the icon and 
 
 Inline alerts are embedded within the content of a page.  They can provide the user with helpful information regarding a specific process or part of the interface.  They can also be triggered by an action the user took, like submitting a form before filling out all the required fields.
 
-View the <Link to="/api/alert/">component api</Link> for inline alerts.
+View the <Link to="/api/alert/">component API</Link> for inline alerts.
 
 <figure>
     <img src="../../images/alerts/inline-alert-example.png" alt=" " />
@@ -150,7 +150,7 @@ When the viewport is 600px wide and smaller, we automatically hide the icon and 
 
 Toast alerts are the least intrusive of the three types and are used primarily for communicating non-critical information to the user.  Toasts appear in the lower-left corner of the viewport.  They are always triggered by the action of a user, such as when they add or delete something, and shouldn't require additional actions from the user.
 
-View the <Link to="/api/toast/">component api</Link> for toast alerts.
+View the <Link to="/api/toast/">component API</Link> for toast alerts.
 
 <figure>
     <img src="../../images/alerts/toast-alert-example.png" alt=" " />
@@ -176,7 +176,7 @@ If multiple toasts are triggered, they will automatically stack vertically.  Whe
 
 #### Auto-Dismiss
 
-Because toasts are intended to be the least disruptive type of alert, you can generally allow them to dismiss themselves automatically.  A timer will be displayed showing the user how long they have, unless they dismiss it manually before the timer runs out.  The default duration of a toast is 5 seconds (5000 milliseconds), but this may be easily extended for longer or more complex messages.
+Because toasts are intended to be the least disruptive type of alert, you can generally allow them to dismiss themselves automatically.  A timer will be displayed showing the user how long they have unless they dismiss it manually before the timer runs out.  The default duration of a toast is 5 seconds (5000 milliseconds), but this may be easily extended for longer or more complex messages.
 
 Avoid displaying errors or warnings with toasts, but if you have to, then these should not auto-dismiss.  Errors and warnings are generally considered critical, and you don't want the user to miss the notification.  The user has to manually dismiss these messages when they are ready, or when the issue is resolved.
 
@@ -230,7 +230,7 @@ When the viewport is 600px wide and smaller, we automatically hide the icon and 
 
 ## Accessibility
 
-Alerts have a number of measures built into them to improve accessibility.  Starting with the colors, we make sure that text always has at least a 4.5:1 contrast ratio with the background color.  All of the alerts can be navigated with a keyboard or screenreader.
+Alerts have a number of measures built into them to improve accessibility.  Starting with the colors, we make sure that text always has at least a 4.5:1 contrast ratio with the background color.  All of the alerts can be navigated with a keyboard or screen reader.
 
 The auto-dismissing toasts have some additional features for accessibility including:
 * Hovering over or moving focus to the toast pauses the timer to give the user ample time to read and understand the message.
