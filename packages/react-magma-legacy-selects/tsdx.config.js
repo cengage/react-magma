@@ -24,7 +24,8 @@ module.exports = {
         'prop-types',
         'react-input-autosize',
         'react-loadable',
-        'react-magma-icons'
+        'react-magma-icons',
+        'uuid'
       ],
       plugins: [
         ...config.plugins,

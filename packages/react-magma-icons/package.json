@@ -1,9 +1,9 @@
 {
   "name": "react-magma-icons",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "ISC",
   "main": "dist/index.js",
-  "module": "dist/esm/icons.esm.js",
+  "module": "dist/react-magma-icons.esm.js",
   "typings": "dist/index.d.ts",
   "sideEffects": false,
   "files": [
