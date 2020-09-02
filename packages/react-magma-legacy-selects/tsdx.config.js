@@ -22,6 +22,7 @@ module.exports = {
         '@emotion/styled-base',
         '@emotion/serialize',
         'prop-types',
+        'react-is',
         'react-input-autosize',
         'react-loadable',
         'react-magma-icons',
