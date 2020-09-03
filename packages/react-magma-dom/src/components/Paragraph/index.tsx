@@ -7,7 +7,7 @@ import {
   TypographyColor,
   TypographyVariant
 } from '../Typography';
-import { colorStyles } from '../Typography/styles';
+import { colorStyles, getBodyFontFamily } from '../Typography/styles';
 
 import {
   HeadingXLargeComponent,
@@ -30,17 +30,6 @@ export interface ParagraphProps
   theme?: any;
   variant?: TypographyVariant;
   size?: TypographySize;
-}
-
-function getBodyFontFamily(props) {
-  switch (props.variant) {
-    case TypographyVariant.expressive:
-      return props.theme.bodyExpressiveFont;
-    case TypographyVariant.narrative:
-      return props.theme.bodyNarrativeFont;
-    default:
-      return props.theme.bodyFont;
-  }
 }
 
 export const ParagraphComponent = styled.p<ParagraphProps>`

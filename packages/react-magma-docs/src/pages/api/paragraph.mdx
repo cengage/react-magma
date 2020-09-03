@@ -250,6 +250,14 @@ By default, the `Paragraph` component includes a margin on the bottom. When the 
       description: 'Applies the styles for the different relative sizes',
       defaultValue: 'bodyMedium',
     },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
     variant: {
       type: {
         name: 'enum',

@@ -1,6 +1,17 @@
 import { css } from '@emotion/core';
 
-import { TypographyColor } from '../Typography';
+import { TypographyColor, TypographyVariant } from '../Typography';
+
+export function getBodyFontFamily(props) {
+  switch (props.variant) {
+    case TypographyVariant.expressive:
+      return props.theme.bodyExpressiveFont;
+    case TypographyVariant.narrative:
+      return props.theme.bodyNarrativeFont;
+    default:
+      return props.theme.bodyFont;
+  }
+}
 
 export const colorStyles = props => css`
 color: ${
