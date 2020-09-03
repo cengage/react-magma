@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.70](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.69...v2.0.0-beta.70) (2020-09-03)
+
+**Note:** Version bump only for package react-magma-docs
+
+
+
+
+
+# [2.0.0-beta.69](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.68...v2.0.0-beta.69) (2020-09-02)
+
+**Note:** Version bump only for package react-magma-docs
+
+
+
+
+
+# [2.0.0-beta.68](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.67...v2.0.0-beta.68) (2020-09-02)
+
+
+### Bug Fixes
+
+* **dropdown:** allow disable of auto focus on close ([82ef3f0](http://stash.cengage.com:7999/FRONT/react-magma/commits/82ef3f0))
+* **dropdown:** change preventMagmaFocus to a function on event ([c628a93](http://stash.cengage.com:7999/FRONT/react-magma/commits/c628a93))
+
+
+
+
+
 # [2.0.0-beta.67](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.66...v2.0.0-beta.67) (2020-08-31)
 
 **Note:** Version bump only for package react-magma-docs

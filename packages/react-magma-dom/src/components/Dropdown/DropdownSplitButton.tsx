@@ -29,9 +29,9 @@ export const DropdownSplitButton: React.FunctionComponent<DropdownSplitButtonPro
       <CaretDownIcon size={10} testId="caretDown" />
     );
 
-  function handleClick() {
+  function handleClick(event: React.SyntheticEvent) {
     if (context.isOpen) {
-      context.closeDropdown();
+      context.closeDropdown(event);
     } else {
       context.openDropdown();
     }

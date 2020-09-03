@@ -61,7 +61,7 @@ export const DropdownMenuItem: React.FunctionComponent<DropdownMenuItemProps> = 
     const theme = React.useContext(ThemeContext);
     const context = React.useContext(DropdownContext);
 
-    function handleClick() {
+    function handleClick(event: React.SyntheticEvent | React.KeyboardEvent) {
       if (context.activeItemIndex >= 0) {
         context.setActiveItemIndex(index);
       }
@@ -71,14 +71,14 @@ export const DropdownMenuItem: React.FunctionComponent<DropdownMenuItemProps> = 
       }
 
       if (!isDisabled && context.activeItemIndex < 0) {
-        context.closeDropdown();
+        context.closeDropdown(event);
       }
     }
 
     function handleKeyDown(event: React.KeyboardEvent) {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
-        handleClick();
+        handleClick(event);
       }
     }
 
