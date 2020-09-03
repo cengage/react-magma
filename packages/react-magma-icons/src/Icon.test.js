@@ -1,10 +1,16 @@
 import React from 'react';
-import * as ICNS from './index';
+import * as IconExports from './index';
 import { render } from '@testing-library/react';
 import { renderIcon as renderIconUtil } from './SvgIcon';
 
+export function omit(props, obj) {
+  return Object.fromEntries(
+    Object.entries(obj).filter(([key]) => !props.includes(key))
+  );
+}
+
 // eslint-disable-next-line no-unused-vars
-const { IconProps, SvgIconProps, ...ICONS } = ICNS;
+const ICONS = omit(['IconProps', 'SvgIconProps'], IconExports);
 
 describe('Icon', () => {
   it('should find element by testId', () => {
