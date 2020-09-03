@@ -3,11 +3,11 @@ import * as IconExports from './index';
 import { render } from '@testing-library/react';
 import { renderIcon as renderIconUtil } from './SvgIcon';
 
-export function omit(props, obj) {
+const omit = (props, obj) => {
   return Object.fromEntries(
     Object.entries(obj).filter(([key]) => !props.includes(key))
   );
-}
+};
 
 // eslint-disable-next-line no-unused-vars
 const ICONS = omit(['IconProps', 'SvgIconProps'], IconExports);
