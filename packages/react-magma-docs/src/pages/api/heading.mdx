@@ -25,42 +25,42 @@ The `Heading` component can be used with the `level` prop to render the HTML hea
   </>
 ```
 
-## Variant
+## Size
 
-By default, the a heading will render the semantic HTML element with its corresponding styles, as defined in the <Link to="/api/typography">Typography</Link> component.
-However, if the `variant` prop is specified, the heading will render with the styles for that variant.
+By default, the a heading will render the semantic HTML element with its corresponding styles.
+However, if the `size` prop is specified, the heading will render with the styles for that relative size rather than its default styles.
 
 ```.jsx
   <>
-    <Heading level={2} variant="headingXXSmall">H2 styled as Heading XXSmall (h6)</Heading>
-    <Heading level={3} variant="bodyMedium">H3 styled as standard paragraph text</Heading>
-    <Heading level={3} variant="bodyXSmall">H4 styled as extra-small paragraph text</Heading>
+    <Heading level={2} size="headingXXSmall">H2 styled as Heading XXSmall (h6)</Heading>
+    <Heading level={3} size="bodyMedium">H3 styled as standard paragraph text</Heading>
+    <Heading level={3} size="bodyXSmall">H4 styled as extra-small paragraph text</Heading>
   </>
 ```
 
-## Type-Style
+## Variant
 
-The `typeStyle` prop can be used to set additional styles on a component. The default `typeStyle` is `default`.
+The `variant` prop can be used to set additional styles on a component. The default `variant` is `default`.
 
-The `expressive` type-style can be used in marketing contexts, which may require more variety than the default styles.
+The `expressive` variant can be used in marketing contexts, which may require more variety than the default styles.
 
-The `narrative` type-style can be used for content-heavy contexts, such as an e-reader.
+The `narrative` variant can be used for content-heavy contexts, such as an e-reader.
 
 ```.jsx
     <>
-      <Heading typeStyle="expressive" level={1}>Expressive Heading 1</Heading>
-      <Heading typeStyle="expressive" level={2}>Expressive Heading 2</Heading>
-      <Heading typeStyle="expressive" level={3}>Expressive Heading 3</Heading>
-      <Heading typeStyle="expressive" level={4}>Expressive Heading 4</Heading>
-      <Heading typeStyle="expressive" level={5}>Expressive Heading 5</Heading>
-      <Heading typeStyle="expressive" level={6}>Expressive Heading 6</Heading>
+      <Heading variant="expressive" level={1}>Expressive Heading 1</Heading>
+      <Heading variant="expressive" level={2}>Expressive Heading 2</Heading>
+      <Heading variant="expressive" level={3}>Expressive Heading 3</Heading>
+      <Heading variant="expressive" level={4}>Expressive Heading 4</Heading>
+      <Heading variant="expressive" level={5}>Expressive Heading 5</Heading>
+      <Heading variant="expressive" level={6}>Expressive Heading 6</Heading>
       <br/><br/>
-      <Heading typeStyle="narrative" level={1}>Narrative Heading 1</Heading>
-      <Heading typeStyle="narrative" level={2}>Narrative Heading 2</Heading>
-      <Heading typeStyle="narrative" level={3}>Narrative Heading 3</Heading>
-      <Heading typeStyle="narrative" level={4}>Narrative Heading 4</Heading>
-      <Heading typeStyle="narrative" level={5}>Narrative Heading 5</Heading>
-      <Heading typeStyle="narrative"  level={6}>Narrative Heading 6</Heading>
+      <Heading variant="narrative" level={1}>Narrative Heading 1</Heading>
+      <Heading variant="narrative" level={2}>Narrative Heading 2</Heading>
+      <Heading variant="narrative" level={3}>Narrative Heading 3</Heading>
+      <Heading variant="narrative" level={4}>Narrative Heading 4</Heading>
+      <Heading variant="narrative" level={5}>Narrative Heading 5</Heading>
+      <Heading variant="narrative"  level={6}>Narrative Heading 6</Heading>
     </>
 ```
 
@@ -199,6 +199,27 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
         'If true, the component will not have default top and bottom margins for the respective heading element and instead will a margin value of 0.',
       defaultValue: 'false',
     },
+    size: {
+      type: {
+        name: 'enum',
+        options: [
+          'TypographySize.headingXLarge',
+          'TypographySize.headingLarge',
+          'TypographySize.headingMedium',
+          'TypographySize.headingSmall',
+          'TypographySize.headingXSmall',
+          'TypographySize.headingXXSmall',
+          'TypographySize.bodyLarge',
+          'TypographySize.bodyMedium',
+          'TypographySize.bodySmall',
+          'TypographySize.bodyXSmall',
+        ],
+      },
+      required: false,
+      description: 'Applies the typograpy styles for the relative size',
+      defaultValue:
+        'Default relative size associated with the heading level 1-6',
+    },
     testId: {
       type: {
         name: 'string',
@@ -211,21 +232,13 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
       type: {
         name: 'enum',
         options: [
-          'TypographyVariant.headingXLarge',
-          'TypographyVariant.headingLarge',
-          'TypographyVariant.headingMedium',
-          'TypographyVariant.headingSmall',
-          'TypographyVariant.headingXSmall',
-          'TypographyVariant.headingXXSmall',
-          'TypographyVariant.bodyLarge',
-          'TypographyVariant.bodyMedium',
-          'TypographyVariant.bodySmall',
-          'TypographyVariant.bodyXSmall',
+          'TypographyVariant.expressive',
+          'TypographyVariant.narrative',
+          'TypographyVariant.default',
         ],
       },
-      required: false,
-      description: 'Applies the theme typograpy styles.',
-      defaultValue: 'Default variant associated with the heading level 1-6',
+      description: 'Additional styles for typography',
+      defaultValue: 'default',
     },
   }}
 />

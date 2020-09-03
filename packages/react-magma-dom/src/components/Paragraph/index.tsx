@@ -3,9 +3,9 @@ import { css } from '@emotion/core';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import {
-  TypographyVariant,
+  TypographySize,
   TypographyColor,
-  TypographyTypeStyle
+  TypographyVariant
 } from '../Typography';
 import { colorStyles } from '../Typography/styles';
 
@@ -28,15 +28,15 @@ export interface ParagraphProps
   ref?: any;
   testId?: string;
   theme?: any;
-  typeStyle?: TypographyTypeStyle;
   variant?: TypographyVariant;
+  size?: TypographySize;
 }
 
 function getBodyFontFamily(props) {
-  switch (props.typeStyle) {
-    case TypographyTypeStyle.expressive:
+  switch (props.variant) {
+    case TypographyVariant.expressive:
       return props.theme.bodyExpressiveFont;
-    case TypographyTypeStyle.narrative:
+    case TypographyVariant.narrative:
       return props.theme.bodyNarrativeFont;
     default:
       return props.theme.bodyFont;
@@ -49,82 +49,80 @@ export const ParagraphComponent = styled.p<ParagraphProps>`
   font-weight: normal;
 
   ${props =>
-    props.variant === TypographyVariant.bodyLarge &&
-    props.typeStyle !== TypographyTypeStyle.expressive &&
+    props.size === TypographySize.bodyLarge &&
     css`
-      font-size: ${props.theme.typographyVariants.bodyLarge.mobile.fontSize};
-      line-height: ${props.theme.typographyVariants.bodyLarge.mobile
-        .lineHeight};
       margin: ${props.noMargins ? '0' : '0 0 24px'};
+    `};
+
+  ${props =>
+    props.size === TypographySize.bodyLarge &&
+    props.variant !== TypographyVariant.expressive &&
+    css`
+      font-size: ${props.theme.typographySizes.bodyLarge.mobile.fontSize};
+      line-height: ${props.theme.typographySizes.bodyLarge.mobile.lineHeight};
 
       @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyVariants.bodyLarge.desktop.fontSize};
-        line-height: ${props.theme.typographyVariants.bodyLarge.desktop
+        font-size: ${props.theme.typographySizes.bodyLarge.desktop.fontSize};
+        line-height: ${props.theme.typographySizes.bodyLarge.desktop
           .lineHeight};
       }
     `};
 
   ${props =>
-    props.variant === TypographyVariant.bodyLarge &&
-    props.typeStyle === TypographyTypeStyle.expressive &&
+    props.size === TypographySize.bodyLarge &&
+    props.variant === TypographyVariant.expressive &&
     css`
-      font-size: ${props.theme.typographyExpressiveVariants.bodyLarge.mobile
+      font-size: ${props.theme.typographyExpressiveSizes.bodyLarge.mobile
         .fontSize};
-      line-height: ${props.theme.typographyExpressiveVariants.bodyLarge.mobile
+      line-height: ${props.theme.typographyExpressiveSizes.bodyLarge.mobile
         .lineHeight};
-      margin: ${props.noMargins ? '0' : '0 0 24px'};
 
       @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyExpressiveVariants.bodyLarge.desktop
+        font-size: ${props.theme.typographyExpressiveSizes.bodyLarge.desktop
           .fontSize};
-        line-height: ${props.theme.typographyExpressiveVariants.bodyLarge
-          .desktop.lineHeight};
-      }
-    `};
-
-  ${props =>
-    props.variant === TypographyVariant.bodyMedium &&
-    css`
-      font-size: ${props.theme.typographyVariants.bodyMedium.mobile.fontSize};
-      line-height: ${props.theme.typographyVariants.bodyMedium.mobile
-        .lineHeight};
-      margin: ${props.noMargins ? '0' : '0 0 24px'};
-
-      @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyVariants.bodyMedium.desktop
-          .fontSize};
-        line-height: ${props.theme.typographyVariants.bodyMedium.desktop
+        line-height: ${props.theme.typographyExpressiveSizes.bodyLarge.desktop
           .lineHeight};
       }
     `};
 
   ${props =>
-    props.variant === TypographyVariant.bodySmall &&
+    props.size === TypographySize.bodyMedium &&
     css`
-      font-size: ${props.theme.typographyVariants.bodySmall.mobile.fontSize};
-      line-height: ${props.theme.typographyVariants.bodySmall.mobile
-        .lineHeight};
+      font-size: ${props.theme.typographySizes.bodyMedium.mobile.fontSize};
+      line-height: ${props.theme.typographySizes.bodyMedium.mobile.lineHeight};
+      margin: ${props.noMargins ? '0' : '0 0 24px'};
+
+      @media (min-width: ${props.theme.breakpoints.small}px) {
+        font-size: ${props.theme.typographySizes.bodyMedium.desktop.fontSize};
+        line-height: ${props.theme.typographySizes.bodyMedium.desktop
+          .lineHeight};
+      }
+    `};
+
+  ${props =>
+    props.size === TypographySize.bodySmall &&
+    css`
+      font-size: ${props.theme.typographySizes.bodySmall.mobile.fontSize};
+      line-height: ${props.theme.typographySizes.bodySmall.mobile.lineHeight};
       margin: ${props.noMargins ? '0' : '0 0 16px'};
 
       @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyVariants.bodySmall.desktop.fontSize};
-        line-height: ${props.theme.typographyVariants.bodySmall.desktop
+        font-size: ${props.theme.typographySizes.bodySmall.desktop.fontSize};
+        line-height: ${props.theme.typographySizes.bodySmall.desktop
           .lineHeight};
       }
     `};
 
   ${props =>
-    props.variant === TypographyVariant.bodyXSmall &&
+    props.size === TypographySize.bodyXSmall &&
     css`
-      font-size: ${props.theme.typographyVariants.bodyXSmall.mobile.fontSize};
-      line-height: ${props.theme.typographyVariants.bodyXSmall.mobile
-        .lineHeight};
+      font-size: ${props.theme.typographySizes.bodyXSmall.mobile.fontSize};
+      line-height: ${props.theme.typographySizes.bodyXSmall.mobile.lineHeight};
       margin: ${props.noMargins ? '0' : '0 0 8px'};
 
       @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyVariants.bodyXSmall.desktop
-          .fontSize};
-        line-height: ${props.theme.typographyVariants.bodyXSmall.desktop
+        font-size: ${props.theme.typographySizes.bodyXSmall.desktop.fontSize};
+        line-height: ${props.theme.typographySizes.bodyXSmall.desktop
           .lineHeight};
       }
     `};
@@ -132,12 +130,12 @@ export const ParagraphComponent = styled.p<ParagraphProps>`
 
 export const Paragraph: React.FunctionComponent<ParagraphProps> = React.forwardRef(
   (
-    { color, testId, typeStyle, variant, children, ...other }: ParagraphProps,
+    { color, testId, variant, size, children, ...other }: ParagraphProps,
     ref: any
   ) => {
     const theme = React.useContext(ThemeContext);
 
-    const variantComponents = {
+    const sizeComponents = {
       headingXLarge: HeadingXLargeComponent,
       headingLarge: HeadingLargeComponent,
       headingMedium: HeadingMediumComponent,
@@ -150,9 +148,9 @@ export const Paragraph: React.FunctionComponent<ParagraphProps> = React.forwardR
       bodyXSmall: ParagraphComponent
     };
 
-    const PComponent = variant
-      ? variantComponents[variant]
-      : variantComponents[TypographyVariant.bodyMedium];
+    const PComponent = size
+      ? sizeComponents[size]
+      : sizeComponents[TypographySize.bodyMedium];
 
     return (
       <PComponent
@@ -162,8 +160,8 @@ export const Paragraph: React.FunctionComponent<ParagraphProps> = React.forwardR
         color={color || TypographyColor.default}
         ref={ref}
         theme={theme}
-        typeStyle={typeStyle || TypographyTypeStyle.default}
-        variant={variant || TypographyVariant.bodyMedium}
+        variant={variant || TypographyVariant.default}
+        size={size || TypographySize.bodyMedium}
       >
         {children}
       </PComponent>

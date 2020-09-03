@@ -82,10 +82,10 @@ describe('Heading', () => {
     expect(heading).toHaveStyleRule('margin', '24px 0 8px');
   });
 
-  it('should render an component with a different variant', () => {
+  it('should render an component with a different size', () => {
     const headingText = 'test';
     const { container, getByText } = render(
-      <Heading variant="headingXLarge" level={6}>
+      <Heading size="headingXLarge" level={6}>
         {headingText}
       </Heading>
     );
@@ -214,7 +214,7 @@ describe('Heading', () => {
     it('should render expressive h1 styles', () => {
       const headingText = 'test';
       const { getByText } = render(
-        <Heading typeStyle="expressive" level={1}>
+        <Heading variant="expressive" level={1}>
           {headingText}
         </Heading>
       );
@@ -227,14 +227,14 @@ describe('Heading', () => {
       );
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyExpressiveVariants.headingXLarge.mobile.fontSize
+        magma.typographyExpressiveSizes.headingXLarge.mobile.fontSize
       );
     });
 
     it('should render expressive h2 styles', () => {
       const headingText = 'test';
       const { getByText } = render(
-        <Heading typeStyle="expressive" level={2}>
+        <Heading variant="expressive" level={2}>
           {headingText}
         </Heading>
       );
@@ -242,14 +242,14 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyExpressiveVariants.headingLarge.mobile.fontSize
+        magma.typographyExpressiveSizes.headingLarge.mobile.fontSize
       );
     });
 
     it('should render expressive h3 styles', () => {
       const headingText = 'test';
       const { getByText } = render(
-        <Heading typeStyle="expressive" level={3}>
+        <Heading variant="expressive" level={3}>
           {headingText}
         </Heading>
       );
@@ -257,14 +257,14 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyExpressiveVariants.headingMedium.mobile.fontSize
+        magma.typographyExpressiveSizes.headingMedium.mobile.fontSize
       );
     });
 
     it('should render expressive h4 styles', () => {
       const headingText = 'test';
       const { getByText } = render(
-        <Heading typeStyle="expressive" level={4}>
+        <Heading variant="expressive" level={4}>
           {headingText}
         </Heading>
       );
@@ -272,14 +272,14 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyExpressiveVariants.headingSmall.mobile.fontSize
+        magma.typographyExpressiveSizes.headingSmall.mobile.fontSize
       );
     });
 
     it('should render expressive h5 styles', () => {
       const headingText = 'test';
       const { getByText } = render(
-        <Heading typeStyle="expressive" level={5}>
+        <Heading variant="expressive" level={5}>
           {headingText}
         </Heading>
       );
@@ -287,14 +287,14 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyExpressiveVariants.headingXSmall.mobile.fontSize
+        magma.typographyExpressiveSizes.headingXSmall.mobile.fontSize
       );
     });
 
     it('should render expressive h6 styles', () => {
       const headingText = 'test';
       const { getByText } = render(
-        <Heading typeStyle="expressive" level={6}>
+        <Heading variant="expressive" level={6}>
           {headingText}
         </Heading>
       );
@@ -302,7 +302,7 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyExpressiveVariants.headingXXSmall.mobile.fontSize
+        magma.typographyExpressiveSizes.headingXXSmall.mobile.fontSize
       );
     });
   });
@@ -310,7 +310,7 @@ describe('Heading', () => {
   it('should render narrative styles', () => {
     const headingText = 'test';
     const { getByText } = render(
-      <Heading typeStyle="narrative" level={1}>
+      <Heading variant="narrative" level={1}>
         {headingText}
       </Heading>
     );

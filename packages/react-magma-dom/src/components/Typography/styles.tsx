@@ -6,7 +6,7 @@ export const colorStyles = props => css`
 color: ${
   props.isInverse
     ? props.theme.colors.neutral08
-    : props.typeStyle === 'expressive'
+    : props.variant === 'expressive'
     ? props.theme.colors.foundation02
     : props.theme.colors.neutral01
 };

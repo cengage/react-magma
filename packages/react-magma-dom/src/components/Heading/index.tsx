@@ -2,8 +2,8 @@ import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
 import {
   TypographyColor,
-  TypographyTypeStyle,
-  TypographyVariant
+  TypographyVariant,
+  TypographySize
 } from '../Typography';
 import { ParagraphComponent } from '../Paragraph';
 
@@ -23,15 +23,15 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   ref?: any;
   testId?: string;
   tabIndex?: number;
-  typeStyle?: TypographyTypeStyle;
   variant?: TypographyVariant;
+  size?: TypographySize;
 }
 
 export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
-  ({ level, testId, variant, children, ...other }: HeadingProps, ref: any) => {
+  ({ level, testId, size, children, ...other }: HeadingProps, ref: any) => {
     const theme = React.useContext(ThemeContext);
 
-    const variantComponents = {
+    const sizeComponents = {
       headingXLarge: HeadingXLargeComponent,
       headingLarge: HeadingLargeComponent,
       headingMedium: HeadingMediumComponent,
@@ -53,9 +53,7 @@ export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
       6: HeadingXXSmallComponent
     };
 
-    const HeadingComponent = variant
-      ? variantComponents[variant]
-      : headingLevels[level];
+    const HeadingComponent = size ? sizeComponents[size] : headingLevels[level];
 
     const headingElement = `h${level}`;
 
@@ -65,7 +63,7 @@ export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
         as={headingElement}
         data-testid={testId}
         ref={ref}
-        variant={variant}
+        size={size}
         theme={theme}
       >
         {children}

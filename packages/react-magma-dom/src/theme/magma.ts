@@ -43,7 +43,7 @@ export interface Breakpoints {
   xl: number;
 }
 
-export interface TypographyVariants {
+export interface TypographySizes {
   headingXLarge: any;
   headingLarge: any;
   headingMedium: any;
@@ -56,7 +56,7 @@ export interface TypographyVariants {
   bodyXSmall: any;
 }
 
-export interface TypographyExpressiveVariants {
+export interface TypographyExpressiveSizes {
   headingXLarge: any;
   headingLarge: any;
   headingMedium: any;
@@ -78,8 +78,8 @@ export interface ThemeInterface {
   headingFont: string;
   headingExpressiveFont: string;
   headingNarrativeFont: string;
-  typographyVariants: TypographyVariants;
-  typographyExpressiveVariants: TypographyExpressiveVariants;
+  typographySizes: TypographySizes;
+  typographyExpressiveSizes: TypographyExpressiveSizes;
 }
 
 const typeScale = {
@@ -194,7 +194,7 @@ export const magma = {
     xl: 1200
   },
   typeScale: typeScale,
-  typographyVariants: {
+  typographySizes: {
     headingXLarge: {
       mobile: typeScale.size07,
       desktop: typeScale.size08
@@ -236,7 +236,7 @@ export const magma = {
       desktop: typeScale.size01
     }
   },
-  typographyExpressiveVariants: {
+  typographyExpressiveSizes: {
     headingXLarge: {
       mobile: typeScale.size08,
       desktop: typeScale.size11

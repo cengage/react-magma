@@ -4,9 +4,9 @@ import styled from '../../theme/styled';
 import { colorStyles } from '../Typography/styles';
 
 import {
-  TypographyVariant,
+  TypographySize,
   TypographyColor,
-  TypographyTypeStyle
+  TypographyVariant
 } from '../Typography';
 
 export interface StyledHeadingProps {
@@ -18,15 +18,15 @@ export interface StyledHeadingProps {
   ref?: any;
   testId?: string;
   theme?: any;
-  typeStyle?: TypographyTypeStyle;
   variant?: TypographyVariant;
+  size?: TypographySize;
 }
 
 function getHeadingFontFamily(props) {
-  switch (props.typeStyle) {
-    case TypographyTypeStyle.expressive:
+  switch (props.variant) {
+    case TypographyVariant.expressive:
       return props.theme.headingExpressiveFont;
-    case TypographyTypeStyle.narrative:
+    case TypographyVariant.narrative:
       return props.theme.headingNarrativeFont;
     default:
       return props.theme.headingFont;
@@ -36,7 +36,7 @@ function getHeadingFontFamily(props) {
 const baseHeadingStyles = props => css`
   border-bottom: 2px solid transparent;
   font-family: ${getHeadingFontFamily(props)};
-  font-weight: ${props.typeStyle === 'narrative' ? 700 : 600};
+  font-weight: ${props.variant === 'narrative' ? 700 : 600};
   padding: 0;
 
   &:focus {
@@ -55,30 +55,30 @@ export const HeadingXLargeComponent = styled.h1<StyledHeadingProps>`
   ${props => baseHeadingStyles(props)}
 
   font-size: ${props =>
-    props.theme.typographyVariants.headingXLarge.mobile.fontSize};
+    props.theme.typographySizes.headingXLarge.mobile.fontSize};
   line-height: ${props =>
-    props.theme.typographyVariants.headingXLarge.mobile.lineHeight};
+    props.theme.typographySizes.headingXLarge.mobile.lineHeight};
   margin: ${props => (props.noMargins ? 0 : '0 0 16px')};
 
   @media (min-width: ${props => props.theme.breakpoints.small}px) {
     font-size: ${props =>
-      props.theme.typographyVariants.headingXLarge.desktop.fontSize};
+      props.theme.typographySizes.headingXLarge.desktop.fontSize};
     line-height: ${props =>
-      props.theme.typographyVariants.headingXLarge.desktop.lineHeight};
+      props.theme.typographySizes.headingXLarge.desktop.lineHeight};
   }
 
   ${props =>
-    props.typeStyle === 'expressive' &&
+    props.variant === 'expressive' &&
     css`
-      font-size: ${props.theme.typographyExpressiveVariants.headingXLarge.mobile
+      font-size: ${props.theme.typographyExpressiveSizes.headingXLarge.mobile
         .fontSize};
-      line-height: ${props.theme.typographyExpressiveVariants.headingXLarge
-        .mobile.lineHeight};
+      line-height: ${props.theme.typographyExpressiveSizes.headingXLarge.mobile
+        .lineHeight};
 
       @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyExpressiveVariants.headingXLarge
-          .desktop.fontSize};
-        line-height: ${props.theme.typographyExpressiveVariants.headingXLarge
+        font-size: ${props.theme.typographyExpressiveSizes.headingXLarge.desktop
+          .fontSize};
+        line-height: ${props.theme.typographyExpressiveSizes.headingXLarge
           .desktop.lineHeight};
       }
     `};
@@ -88,31 +88,31 @@ export const HeadingLargeComponent = styled.h2<StyledHeadingProps>`
   ${props => baseHeadingStyles(props)}
 
   font-size: ${props =>
-    props.theme.typographyVariants.headingLarge.mobile.fontSize};
+    props.theme.typographySizes.headingLarge.mobile.fontSize};
   line-height: ${props =>
-    props.theme.typographyVariants.headingLarge.mobile.lineHeight};
+    props.theme.typographySizes.headingLarge.mobile.lineHeight};
   margin: ${props => (props.noMargins ? 0 : '48px 0 16px')};
 
   @media (min-width: ${props => props.theme.breakpoints.small}px) {
     font-size: ${props =>
-      props.theme.typographyVariants.headingLarge.desktop.fontSize};
+      props.theme.typographySizes.headingLarge.desktop.fontSize};
     line-height: ${props =>
-      props.theme.typographyVariants.headingLarge.desktop.lineHeight};
+      props.theme.typographySizes.headingLarge.desktop.lineHeight};
   }
 
   ${props =>
-    props.typeStyle === 'expressive' &&
+    props.variant === 'expressive' &&
     css`
       font-weight: 300;
-      font-size: ${props.theme.typographyExpressiveVariants.headingLarge.mobile
+      font-size: ${props.theme.typographyExpressiveSizes.headingLarge.mobile
         .fontSize};
-      line-height: ${props.theme.typographyExpressiveVariants.headingLarge
-        .mobile.lineHeight};
+      line-height: ${props.theme.typographyExpressiveSizes.headingLarge.mobile
+        .lineHeight};
 
       @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyExpressiveVariants.headingLarge
-          .desktop.fontSize};
-        line-height: ${props.theme.typographyExpressiveVariants.headingLarge
+        font-size: ${props.theme.typographyExpressiveSizes.headingLarge.desktop
+          .fontSize};
+        line-height: ${props.theme.typographyExpressiveSizes.headingLarge
           .desktop.lineHeight};
       }
     `};
@@ -122,31 +122,31 @@ export const HeadingMediumComponent = styled.h3<StyledHeadingProps>`
   ${props => baseHeadingStyles(props)}
 
   font-size: ${props =>
-    props.theme.typographyVariants.headingMedium.mobile.fontSize};
+    props.theme.typographySizes.headingMedium.mobile.fontSize};
   line-height: ${props =>
-    props.theme.typographyVariants.headingMedium.mobile.lineHeight};
+    props.theme.typographySizes.headingMedium.mobile.lineHeight};
   margin: ${props => (props.noMargins ? 0 : '40px 0 16px')};
 
   @media (min-width: ${props => props.theme.breakpoints.small}px) {
     font-size: ${props =>
-      props.theme.typographyVariants.headingMedium.desktop.fontSize};
+      props.theme.typographySizes.headingMedium.desktop.fontSize};
     line-height: ${props =>
-      props.theme.typographyVariants.headingMedium.desktop.lineHeight};
+      props.theme.typographySizes.headingMedium.desktop.lineHeight};
   }
 
   ${props =>
-    props.typeStyle === 'expressive' &&
+    props.variant === 'expressive' &&
     css`
       font-weight: 300;
-      font-size: ${props.theme.typographyExpressiveVariants.headingMedium.mobile
+      font-size: ${props.theme.typographyExpressiveSizes.headingMedium.mobile
         .fontSize};
-      line-height: ${props.theme.typographyExpressiveVariants.headingMedium
-        .mobile.lineHeight};
+      line-height: ${props.theme.typographyExpressiveSizes.headingMedium.mobile
+        .lineHeight};
 
       @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyExpressiveVariants.headingMedium
-          .desktop.fontSize};
-        line-height: ${props.theme.typographyExpressiveVariants.headingMedium
+        font-size: ${props.theme.typographyExpressiveSizes.headingMedium.desktop
+          .fontSize};
+        line-height: ${props.theme.typographyExpressiveSizes.headingMedium
           .desktop.lineHeight};
       }
     `};
@@ -156,31 +156,31 @@ export const HeadingSmallComponent = styled.h4<StyledHeadingProps>`
   ${props => baseHeadingStyles(props)}
 
   font-size: ${props =>
-    props.theme.typographyVariants.headingSmall.mobile.fontSize};
+    props.theme.typographySizes.headingSmall.mobile.fontSize};
   line-height: ${props =>
-    props.theme.typographyVariants.headingSmall.mobile.lineHeight};
+    props.theme.typographySizes.headingSmall.mobile.lineHeight};
   margin: ${props => (props.noMargins ? 0 : '32px 0 16px')};
 
   @media (min-width: ${props => props.theme.breakpoints.small}px) {
     font-size: ${props =>
-      props.theme.typographyVariants.headingSmall.desktop.fontSize};
+      props.theme.typographySizes.headingSmall.desktop.fontSize};
     line-height: ${props =>
-      props.theme.typographyVariants.headingSmall.desktop.lineHeight};
+      props.theme.typographySizes.headingSmall.desktop.lineHeight};
   }
 
   ${props =>
-    props.typeStyle === 'expressive' &&
+    props.variant === 'expressive' &&
     css`
       font-weight: 300;
-      font-size: ${props.theme.typographyExpressiveVariants.headingSmall.mobile
+      font-size: ${props.theme.typographyExpressiveSizes.headingSmall.mobile
         .fontSize};
-      line-height: ${props.theme.typographyExpressiveVariants.headingSmall
-        .mobile.lineHeight};
+      line-height: ${props.theme.typographyExpressiveSizes.headingSmall.mobile
+        .lineHeight};
 
       @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyExpressiveVariants.headingSmall
-          .desktop.fontSize};
-        line-height: ${props.theme.typographyExpressiveVariants.headingSmall
+        font-size: ${props.theme.typographyExpressiveSizes.headingSmall.desktop
+          .fontSize};
+        line-height: ${props.theme.typographyExpressiveSizes.headingSmall
           .desktop.lineHeight};
       }
     `};
@@ -190,31 +190,31 @@ export const HeadingXSmallComponent = styled.h5<StyledHeadingProps>`
   ${props => baseHeadingStyles(props)}
 
   font-size: ${props =>
-    props.theme.typographyVariants.headingXSmall.mobile.fontSize};
+    props.theme.typographySizes.headingXSmall.mobile.fontSize};
   line-height: ${props =>
-    props.theme.typographyVariants.headingXSmall.mobile.lineHeight};
+    props.theme.typographySizes.headingXSmall.mobile.lineHeight};
   margin: ${props => (props.noMargins ? 0 : '24px 0 16px')};
 
   @media (min-width: ${props => props.theme.breakpoints.small}px) {
     font-size: ${props =>
-      props.theme.typographyVariants.headingXSmall.desktop.fontSize};
+      props.theme.typographySizes.headingXSmall.desktop.fontSize};
     line-height: ${props =>
-      props.theme.typographyVariants.headingXSmall.desktop.lineHeight};
+      props.theme.typographySizes.headingXSmall.desktop.lineHeight};
   }
 
   ${props =>
-    props.typeStyle === 'expressive' &&
+    props.variant === 'expressive' &&
     css`
       font-weight: 300;
-      font-size: ${props.theme.typographyExpressiveVariants.headingXSmall.mobile
+      font-size: ${props.theme.typographyExpressiveSizes.headingXSmall.mobile
         .fontSize};
-      line-height: ${props.theme.typographyExpressiveVariants.headingXSmall
-        .mobile.lineHeight};
+      line-height: ${props.theme.typographyExpressiveSizes.headingXSmall.mobile
+        .lineHeight};
 
       @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyExpressiveVariants.headingXSmall
-          .desktop.fontSize};
-        line-height: ${props.theme.typographyExpressiveVariants.headingXSmall
+        font-size: ${props.theme.typographyExpressiveSizes.headingXSmall.desktop
+          .fontSize};
+        line-height: ${props.theme.typographyExpressiveSizes.headingXSmall
           .desktop.lineHeight};
       }
     `};
@@ -224,27 +224,27 @@ export const HeadingXXSmallComponent = styled.h6<StyledHeadingProps>`
   ${props => baseHeadingStyles(props)}
 
   font-size: ${props =>
-    props.theme.typographyVariants.headingXXSmall.mobile.fontSize};
+    props.theme.typographySizes.headingXXSmall.mobile.fontSize};
   line-height: ${props =>
-    props.theme.typographyVariants.headingXXSmall.mobile.lineHeight};
+    props.theme.typographySizes.headingXXSmall.mobile.lineHeight};
   font-weight: bold;
   text-transform: uppercase;
   margin: ${props => (props.noMargins ? 0 : '24px 0 8px')};
 
   @media (min-width: ${props => props.theme.breakpoints.small}px) {
     font-size: ${props =>
-      props.theme.typographyVariants.headingXXSmall.desktop.fontSize};
+      props.theme.typographySizes.headingXXSmall.desktop.fontSize};
     line-height: ${props =>
-      props.theme.typographyVariants.headingXXSmall.desktop.lineHeight};
+      props.theme.typographySizes.headingXXSmall.desktop.lineHeight};
   }
 
   ${props =>
-    props.typeStyle === 'expressive' &&
+    props.variant === 'expressive' &&
     css`
       font-weight: bold;
-      font-size: ${props.theme.typographyExpressiveVariants.headingXXSmall
-        .mobile.fontSize};
-      line-height: ${props.theme.typographyExpressiveVariants.headingXXSmall
-        .mobile.lineHeight};
+      font-size: ${props.theme.typographyExpressiveSizes.headingXXSmall.mobile
+        .fontSize};
+      line-height: ${props.theme.typographyExpressiveSizes.headingXXSmall.mobile
+        .lineHeight};
     `};
 `;
