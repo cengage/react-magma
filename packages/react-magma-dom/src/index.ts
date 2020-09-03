@@ -66,6 +66,7 @@ export {
   LoadingIndicator,
   LoadingIndicatorProps
 } from './components/LoadingIndicator';
+export { Paragraph, ParagraphProps } from './components/Paragraph';
 export { PasswordInput, PasswordInputProps } from './components/PasswordInput';
 export {
   ProgressBar,
@@ -88,6 +89,7 @@ export {
   SkipLinkContent,
   SkipLinkContentProps
 } from './components/SkipLinkContent';
+
 export { Spinner, SpinnerProps } from './components/Spinner';
 export {
   ToastsContainer,
@@ -103,7 +105,6 @@ export {
 export { Textarea, TextareaProps } from './components/Textarea';
 export { TimePicker, TimePickerProps } from './components/TimePicker';
 export {
-  Typography,
   TypographyProps,
   TypographyColor,
   TypographyVariant

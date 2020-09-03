@@ -34,29 +34,15 @@ However, if the `variant` prop is specified, the heading will render with the st
   <>
     <Heading level={2} variant="headingXXSmall">H2 styled as Heading XXSmall (h6)</Heading>
     <Heading level={3} variant="bodyMedium">H3 styled as standard paragraph text</Heading>
-  </>
-```
-
-## Margins
-
-By default, the `Heading` component does not include margins. When the `hasMargins` prop is applied, the elements will receive bottom and top elements for their respective styles.
-
-```.jsx
-  <>
-    <Heading hasMargins level={1}>Heading 1</Heading>
-    <Heading hasMargins level={2}>Heading 2</Heading>
-    <Heading hasMargins level={3}>Heading 3</Heading>
-    <Heading hasMargins level={4}>Heading 4</Heading>
-    <Heading hasMargins level={5}>Heading 5</Heading>
-    <Heading hasMargins level={6}>Heading 6</Heading>
+    <Heading level={3} variant="bodyXSmall">H4 styled as extra-small paragraph text</Heading>
   </>
 ```
 
 ## Type-Style
 
-The `typeStyle` prop can be used to set additional styles on a component. The default `typeStyle` is `productive`.
+The `typeStyle` prop can be used to set additional styles on a component. The default `typeStyle` is `default`.
 
-The `expressive` type-style can be used in marketing contexts, which may require more variety than the default productive styles.
+The `expressive` type-style can be used in marketing contexts, which may require more variety than the default styles.
 
 The `narrative` type-style can be used for content-heavy contexts, such as an e-reader.
 
@@ -85,15 +71,15 @@ The `color` prop can be used to change the style or emphasis. It accepts the val
 ```.jsx
     <>
         <Heading color="success" level={2}>
-            Positive Heading
+            Success Color Heading
         </Heading>
 
         <Heading color="danger" level={2}>
-            Danger Heading
+            Danger Color Heading
         </Heading>
 
         <Heading color="subdued" level={2}>
-            Subdued Heading
+            Subdued Color Heading
         </Heading>
 
     </>
@@ -108,6 +94,21 @@ The `color` prop can be used to change the style or emphasis. It accepts the val
     <Heading isInverse level={2}>Heading 2</Heading>
     <Heading isInverse level={2} color="subdued">Heading 2 Subdued</Heading>
   </div>
+```
+
+## No Margins
+
+By default, the `Heading` component includes margins on the top and bottom. When the `noMargins` prop is applied, the element will have a margin value of 0.
+
+```.jsx
+  <>
+    <Heading noMargins level={1}>Heading 1</Heading>
+    <Heading noMargins level={2}>Heading 2</Heading>
+    <Heading noMargins level={3}>Heading 3</Heading>
+    <Heading noMargins level={4}>Heading 4</Heading>
+    <Heading noMargins level={5}>Heading 5</Heading>
+    <Heading noMargins level={6}>Heading 6</Heading>
+  </>
 ```
 
 ## Forward Ref
@@ -171,15 +172,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
         'The color of the component, helping to convey meaning or relative emphasis',
       defaultValue: 'default',
     },
-    hasMargins: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have default top and bottom margins for the respective heading element.  If false, top and bottom margin will be 0.',
-      defaultValue: 'false',
-    },
     isInverse: {
       type: {
         name: 'boolean',
@@ -197,6 +189,15 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
       description:
         'Number to indicate which level heading will render (e.g. h1, h2 etc.)',
       defaultValue: '',
+    },
+    noMargins: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will not have default top and bottom margins for the respective heading element and instead will a margin value of 0.',
+      defaultValue: 'false',
     },
     testId: {
       type: {

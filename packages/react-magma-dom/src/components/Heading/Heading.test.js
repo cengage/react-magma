@@ -24,6 +24,7 @@ describe('Heading', () => {
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
     expect(heading).toHaveStyleRule('font-size', '28px');
+    expect(heading).toHaveStyleRule('margin', '0 0 16px');
   });
 
   it('should render an h2', () => {
@@ -34,6 +35,7 @@ describe('Heading', () => {
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
     expect(heading).toHaveStyleRule('font-size', '24px');
+    expect(heading).toHaveStyleRule('margin', '48px 0 16px');
   });
 
   it('should render an h3', () => {
@@ -44,6 +46,7 @@ describe('Heading', () => {
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
     expect(heading).toHaveStyleRule('font-size', '20px');
+    expect(heading).toHaveStyleRule('margin', '40px 0 16px');
   });
 
   it('should render an h4', () => {
@@ -54,6 +57,7 @@ describe('Heading', () => {
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
     expect(heading).toHaveStyleRule('font-size', '18px');
+    expect(heading).toHaveStyleRule('margin', '32px 0 16px');
   });
 
   it('should render an h5', () => {
@@ -64,6 +68,7 @@ describe('Heading', () => {
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
     expect(heading).toHaveStyleRule('font-size', '18px');
+    expect(heading).toHaveStyleRule('margin', '24px 0 16px');
   });
 
   it('should render an h6', () => {
@@ -74,6 +79,7 @@ describe('Heading', () => {
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
     expect(heading).toHaveStyleRule('font-size', '12px');
+    expect(heading).toHaveStyleRule('margin', '24px 0 8px');
   });
 
   it('should render an component with a different variant', () => {
@@ -88,6 +94,45 @@ describe('Heading', () => {
     expect(container.querySelector('h6')).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
     expect(heading).toHaveStyleRule('font-size', '28px');
+  });
+
+  it('should render headings without margins styles', () => {
+    const headingText1 = 'test 1';
+    const headingText2 = 'test 2';
+    const headingText3 = 'test 3';
+    const headingText4 = 'test 4';
+    const headingText5 = 'test 5';
+    const headingText6 = 'test 6';
+
+    const { getByText } = render(
+      <>
+        <Heading noMargins level={1}>
+          {headingText1}
+        </Heading>
+        <Heading noMargins level={2}>
+          {headingText2}
+        </Heading>
+        <Heading noMargins level={3}>
+          {headingText3}
+        </Heading>
+        <Heading noMargins level={4}>
+          {headingText4}
+        </Heading>
+        <Heading noMargins level={5}>
+          {headingText5}
+        </Heading>
+        <Heading noMargins level={6}>
+          {headingText6}
+        </Heading>
+      </>
+    );
+
+    expect(getByText(headingText1)).toHaveStyleRule('margin', '0');
+    expect(getByText(headingText2)).toHaveStyleRule('margin', '0');
+    expect(getByText(headingText3)).toHaveStyleRule('margin', '0');
+    expect(getByText(headingText4)).toHaveStyleRule('margin', '0');
+    expect(getByText(headingText5)).toHaveStyleRule('margin', '0');
+    expect(getByText(headingText6)).toHaveStyleRule('margin', '0');
   });
 
   it('should render inverse styles', () => {
@@ -163,6 +208,116 @@ describe('Heading', () => {
 
       expect(container).toMatchSnapshot();
     });
+  });
+
+  describe('expressive styles', () => {
+    it('should render expressive h1 styles', () => {
+      const headingText = 'test';
+      const { getByText } = render(
+        <Heading typeStyle="expressive" level={1}>
+          {headingText}
+        </Heading>
+      );
+      const heading = getByText(headingText);
+
+      expect(heading).toHaveStyleRule('color', magma.colors.foundation02);
+      expect(heading).toHaveStyleRule(
+        'font-family',
+        magma.headingExpressiveFont
+      );
+      expect(heading).toHaveStyleRule(
+        'font-size',
+        magma.typographyExpressiveVariants.headingXLarge.mobile.fontSize
+      );
+    });
+
+    it('should render expressive h2 styles', () => {
+      const headingText = 'test';
+      const { getByText } = render(
+        <Heading typeStyle="expressive" level={2}>
+          {headingText}
+        </Heading>
+      );
+      const heading = getByText(headingText);
+
+      expect(heading).toHaveStyleRule(
+        'font-size',
+        magma.typographyExpressiveVariants.headingLarge.mobile.fontSize
+      );
+    });
+
+    it('should render expressive h3 styles', () => {
+      const headingText = 'test';
+      const { getByText } = render(
+        <Heading typeStyle="expressive" level={3}>
+          {headingText}
+        </Heading>
+      );
+      const heading = getByText(headingText);
+
+      expect(heading).toHaveStyleRule(
+        'font-size',
+        magma.typographyExpressiveVariants.headingMedium.mobile.fontSize
+      );
+    });
+
+    it('should render expressive h4 styles', () => {
+      const headingText = 'test';
+      const { getByText } = render(
+        <Heading typeStyle="expressive" level={4}>
+          {headingText}
+        </Heading>
+      );
+      const heading = getByText(headingText);
+
+      expect(heading).toHaveStyleRule(
+        'font-size',
+        magma.typographyExpressiveVariants.headingSmall.mobile.fontSize
+      );
+    });
+
+    it('should render expressive h5 styles', () => {
+      const headingText = 'test';
+      const { getByText } = render(
+        <Heading typeStyle="expressive" level={5}>
+          {headingText}
+        </Heading>
+      );
+      const heading = getByText(headingText);
+
+      expect(heading).toHaveStyleRule(
+        'font-size',
+        magma.typographyExpressiveVariants.headingXSmall.mobile.fontSize
+      );
+    });
+
+    it('should render expressive h6 styles', () => {
+      const headingText = 'test';
+      const { getByText } = render(
+        <Heading typeStyle="expressive" level={6}>
+          {headingText}
+        </Heading>
+      );
+      const heading = getByText(headingText);
+
+      expect(heading).toHaveStyleRule(
+        'font-size',
+        magma.typographyExpressiveVariants.headingXXSmall.mobile.fontSize
+      );
+    });
+  });
+
+  it('should render narrative styles', () => {
+    const headingText = 'test';
+    const { getByText } = render(
+      <Heading typeStyle="narrative" level={1}>
+        {headingText}
+      </Heading>
+    );
+    const heading = getByText(headingText);
+
+    expect(heading).toHaveStyleRule('font-family', magma.headingNarrativeFont);
+    expect(heading).toHaveStyleRule('font-weight', '700');
   });
 
   it('Does not violate accessibility standards', () => {

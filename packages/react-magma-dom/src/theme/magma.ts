@@ -56,7 +56,7 @@ export interface TypographyVariants {
   bodyXSmall: any;
 }
 
-export interface ExpressiveTypographyVariants {
+export interface TypographyExpressiveVariants {
   headingXLarge: any;
   headingLarge: any;
   headingMedium: any;
@@ -70,13 +70,16 @@ export interface ExpressiveTypographyVariants {
 }
 
 export interface ThemeInterface {
-  bodyFont: string;
-  expressiveTypographyVariants: ExpressiveTypographyVariants;
-  headingFont: string;
-  narrativeFont: string;
-  colors: Colors;
   breakpoints: Breakpoints;
+  colors: Colors;
+  bodyFont: string;
+  bodyExpressiveFont: string;
+  bodyNarrativeFont: string;
+  headingFont: string;
+  headingExpressiveFont: string;
+  headingNarrativeFont: string;
   typographyVariants: TypographyVariants;
+  typographyExpressiveVariants: TypographyExpressiveVariants;
 }
 
 const typeScale = {
@@ -135,9 +138,12 @@ const typeScale = {
 };
 
 export const magma = {
-  bodyFont: '"Open Sans", Helvetica, sans-serif',
-  headingFont: '"Open Sans", Helvetica, sans-serif',
-  narrativeFont: "'Noto Serif',Times New Roman,serif",
+  bodyFont: '"Open Sans",Helvetica,sans-serif',
+  bodyExpressiveFont: '"Open Sans",Helvetica,sans-serif',
+  bodyNarrativeFont: "'Noto Serif',Times New Roman,serif",
+  headingFont: '"Open Sans",Helvetica,sans-serif',
+  headingExpressiveFont: '"Open Sans",Helvetica,sans-serif',
+  headingNarrativeFont: "'Noto Serif',Times New Roman,serif",
   direction: 'ltr',
 
   colors: {
@@ -230,7 +236,7 @@ export const magma = {
       desktop: typeScale.size01
     }
   },
-  expressiveTypographyVariants: {
+  typographyExpressiveVariants: {
     headingXLarge: {
       mobile: typeScale.size08,
       desktop: typeScale.size11

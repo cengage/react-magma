@@ -1,0 +1,271 @@
+---
+title: 'Paragraph'
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { Paragraph } from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
+
+# Paragraph
+
+The `Paragraph` component is used to present paragraph content in a clear and consistent manner, by limiting the number to sizes and styles with a UI.
+
+## Basic Usage
+
+```.jsx
+    <Paragraph>
+        Basic paragraph component.
+    </Paragraph>
+```
+
+## Variants
+
+There are four style-variants for the paragraph: `bodyLarge`, `bodyMedium`, `bodySmall`, and `bodyXSmall`.
+The default variant is `bodyMedium`.
+
+```.jsx
+    <>
+        <Paragraph variant="bodyLarge">
+            Body large.  Lorem ipsum dolar sit amet.
+        </Paragraph>
+
+        <Paragraph variant="bodyMedium">
+            Body medium (default).  Lorem ipsum dolar sit amet.
+        </Paragraph>
+
+        <Paragraph variant="bodySmall">
+            Body small.  Lorem ipsum dolar sit amet.
+        </Paragraph>
+
+        <Paragraph variant="bodyXSmall">
+            Body xsmall.  Lorem ipsum dolar sit amet.
+        </Paragraph>
+    </>
+```
+
+## Heading Variants
+
+In addition to the paragraph variants, the `variant` prop can also accept the values for the different heading variants.
+
+```.jsx
+  <>
+    <Paragraph variant="headingXLarge">
+        Heading large.  Lorem ipsum dolar sit amet.
+    </Paragraph>
+
+    <Paragraph variant="headingLarge">
+        Heading large.  Lorem ipsum dolar sit amet.
+    </Paragraph>
+
+    <Paragraph variant="headingMedium">
+        Heading large.  Lorem ipsum dolar sit amet.
+    </Paragraph>
+
+    <Paragraph variant="headingSmall">
+        Heading large.  Lorem ipsum dolar sit amet.
+    </Paragraph>
+
+    <Paragraph variant="headingXSmall">
+        Heading large.  Lorem ipsum dolar sit amet.
+    </Paragraph>
+
+    <Paragraph variant="headingXXSmall">
+        Heading large.  Lorem ipsum dolar sit amet.
+    </Paragraph>
+  </>
+```
+
+## Type-Style
+
+The `typeStyle` prop can be used to set additional styles on a component. The default `typeStyle` is `default`.
+
+The `expressive` type-style can be used in marketing contexts, which may require more variety than the default styles.
+
+The `narrative` type-style can be used for content-heavy contexts, such as an e-reader.
+
+```.jsx
+    <>
+
+        <Paragraph typeStyle="expressive" variant="bodyLarge">
+            Body large.  Lorem ipsum dolar sit amet.
+        </Paragraph>
+
+        <Paragraph typeStyle="expressive" variant="bodyMedium">
+            Body medium (default).  Lorem ipsum dolar sit amet.
+        </Paragraph>
+
+        <Paragraph typeStyle="expressive" variant="bodySmall">
+            Body small.  Lorem ipsum dolar sit amet.
+        </Paragraph>
+
+        <Paragraph typeStyle="expressive" variant="bodyXSmall">
+            Body xsmall.  Lorem ipsum dolar sit amet.
+        </Paragraph>
+
+        <Paragraph typeStyle="narrative" variant="bodyLarge">
+            Body large.  Lorem ipsum dolar sit amet.
+        </Paragraph>
+
+        <Paragraph typeStyle="narrative" variant="bodyMedium">
+            Body medium (default).  Lorem ipsum dolar sit amet.
+        </Paragraph>
+
+        <Paragraph typeStyle="narrative" variant="bodySmall">
+            Body small.  Lorem ipsum dolar sit amet.
+        </Paragraph>
+
+        <Paragraph typeStyle="narrative" variant="bodyXSmall">
+            Body xsmall.  Lorem ipsum dolar sit amet.
+        </Paragraph>
+    </>
+```
+
+## Color
+
+The `color` prop can be used to change the style or emphasis on the different variants.
+It accepts the values: `success`, `danger` and `subdued`.
+
+There are no inverse tyles for the `success` or `danger` colors.
+
+```.jsx
+    <>
+        <Paragraph color="success" variant="bodyLarge">
+            Success paragraph. Lorem ipsum dolar sit amet.
+        </Paragraph>
+
+        <Paragraph color="subdued" variant="bodyMedium">
+            Subdued paragraph.  Lorem ipsum dolar sit amet.
+        </Paragraph>
+
+        <Paragraph color="danger" variant="bodySmall">
+            Danger paragraph.  Lorem ipsum dolar sit amet.
+        </Paragraph>
+    </>
+```
+
+## Inverse
+
+The `isInverse` property is an optional boolean, that changes the colors so component can appear on a dark background.
+
+There are no inverse tyles for the `success` or `danger` colors.
+
+```.jsx
+    <div style={{background: '#003865', padding: '4px 16px'}}>
+         <Paragraph color="subdued" isInverse variant="bodyMedium">
+            Inverse paragraph.  Lorem ipsum dolar sit amet.
+        </Paragraph>
+        <Paragraph isInverse variant="bodyMedium">
+            Subdued inverse paragraph.  Lorem ipsum dolar sit amet.
+        </Paragraph>
+    </div>
+```
+
+## No Margins
+
+By default, the `Paragraph` component includes a margin on the bottom. When the `noMargins` prop is applied, the element will have a margin value of 0.
+
+```.jsx
+  <>
+     <Paragraph noMargins variant="bodyLarge">
+            Body large.  Lorem ipsum dolar sit amet.
+        </Paragraph>
+
+        <Paragraph noMargins variant="bodyMedium">
+            Body medium (default).  Lorem ipsum dolar sit amet.
+        </Paragraph>
+
+        <Paragraph noMargins variant="bodySmall">
+            Body small.  Lorem ipsum dolar sit amet.
+        </Paragraph>
+
+        <Paragraph noMargins variant="bodyXSmall">
+            Body xsmall.  Lorem ipsum dolar sit amet.
+        </Paragraph>
+  </>
+```
+
+## Paragraph Props
+
+**Any other props supplied will be provided to the wrapping `p` element.**
+
+<SimplePropsTable
+  propertyValues={{
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
+    },
+    color: {
+      type: {
+        name: 'enum',
+        options: [
+          'TypographyColor.danger',
+          'TypographyColor.default',
+          'TypographyColor.success',
+          'TypographyColor.subdued',
+        ],
+      },
+      required: false,
+      description:
+        'The color of the component, helping to convey meaning or relative emphasis',
+      defaultValue: 'default',
+    },
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    noMargins: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will not have the default bottom margin and instead will a margin value of 0.',
+      defaultValue: 'false',
+    },
+    typeStyle: {
+      type: {
+        name: 'enum',
+        options: [
+          'TypographyTypeStyle.expressive',
+          'TypographyTypeStyle.narrative',
+          'TypographyTypeStyle.default',
+        ],
+      },
+      description: 'Additional styles for typography variants',
+      defaultValue: 'default',
+    },
+    variant: {
+      type: {
+        name: 'enum',
+        options: [
+          'TypographyVariant.headingXLarge',
+          'TypographyVariant.headingLarge',
+          'TypographyVariant.headingMedium',
+          'TypographyVariant.headingSmall',
+          'TypographyVariant.headingXSmall',
+          'TypographyVariant.headingXXSmall',
+          'TypographyVariant.bodyLarge',
+          'TypographyVariant.bodyMedium',
+          'TypographyVariant.bodySmall',
+          'TypographyVariant.bodyXSmall',
+        ],
+      },
+      required: false,
+      description:
+        'Applies the theme typograpy styles. Also indicates what element will render as root node if the component prop is not provided',
+      defaultValue: 'bodyMedium',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout {...props} components={{ Paragraph }} />
+)

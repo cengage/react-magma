@@ -9,7 +9,7 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
   color: #3F3F3F;
   font-size: 28px;
   line-height: 40px;
-  margin: 0;
+  margin: 0 0 16px;
 }
 
 .emotion-0:focus {
@@ -45,7 +45,7 @@ exports[`Heading Snapshot should render heading 2 correctly 1`] = `
   color: #3F3F3F;
   font-size: 24px;
   line-height: 32px;
-  margin: 0;
+  margin: 48px 0 16px;
 }
 
 .emotion-0:focus {
@@ -80,7 +80,7 @@ exports[`Heading Snapshot should render heading 3 correctly 1`] = `
   color: #3F3F3F;
   font-size: 20px;
   line-height: 32px;
-  margin: 0;
+  margin: 40px 0 16px;
 }
 
 .emotion-0:focus {
@@ -115,7 +115,7 @@ exports[`Heading Snapshot should render heading 4 correctly 1`] = `
   color: #3F3F3F;
   font-size: 18px;
   line-height: 32px;
-  margin: 0;
+  margin: 32px 0 16px;
 }
 
 .emotion-0:focus {
@@ -150,7 +150,7 @@ exports[`Heading Snapshot should render heading 5 correctly 1`] = `
   color: #3F3F3F;
   font-size: 18px;
   line-height: 32px;
-  margin: 0;
+  margin: 24px 0 16px;
 }
 
 .emotion-0:focus {
@@ -187,7 +187,7 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
   line-height: 16px;
   font-weight: bold;
   text-transform: uppercase;
-  margin: 0;
+  margin: 24px 0 8px;
 }
 
 .emotion-0:focus {

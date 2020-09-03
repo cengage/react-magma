@@ -1,26 +1,13 @@
 import * as React from 'react';
-import {
-  HeadingXLargeComponent,
-  HeadingLargeComponent,
-  HeadingMediumComponent,
-  HeadingSmallComponent,
-  HeadingXSmallComponent,
-  HeadingXXSmallComponent,
-  BodyLargeComponent,
-  BodyMediumComponent,
-  BodySmallComponent,
-  BodyXSmallComponent
-} from './styles';
-import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
   color?: TypographyColor;
-  component?: string;
+  element?: string;
   isInverse?: boolean;
-  hasMargins?: boolean;
+  noMargins?: boolean;
   ref?: any;
-  testId?: string;
   variant?: TypographyVariant;
+  testId?: string;
 }
 
 export enum TypographyColor {
@@ -31,9 +18,9 @@ export enum TypographyColor {
 }
 
 export enum TypographyTypeStyle {
+  default = 'default', // default
   expressive = 'expressive',
-  narrative = 'narrative',
-  productive = 'productive' // default
+  narrative = 'narrative'
 }
 
 export enum TypographyVariant {
@@ -42,51 +29,9 @@ export enum TypographyVariant {
   headingMedium = 'headingMedium',
   headingSmall = 'headingSmall',
   headingXSmall = 'headingXSmall',
+  headingXXSmall = 'headingXSmall',
   bodyLarge = 'bodyLarge',
   bodyMedium = 'bodyMedium',
   bodySmall = 'bodySmall',
   bodyXSmall = 'bodyXSmall'
 }
-
-export const Typography: React.FunctionComponent<TypographyProps> = React.forwardRef(
-  (
-    {
-      children,
-      component,
-      variant = TypographyVariant.bodyMedium,
-      testId,
-      ...other
-    }: TypographyProps,
-    ref: any
-  ) => {
-    const theme = React.useContext(ThemeContext);
-
-    const variantComponents = {
-      headingXLarge: HeadingXLargeComponent,
-      headingLarge: HeadingLargeComponent,
-      headingMedium: HeadingMediumComponent,
-      headingSmall: HeadingSmallComponent,
-      headingXSmall: HeadingXSmallComponent,
-      headingXXSmall: HeadingXXSmallComponent,
-      bodyLarge: BodyLargeComponent,
-      bodyMedium: BodyMediumComponent,
-      bodySmall: BodySmallComponent,
-      bodyXSmall: BodyXSmallComponent
-    };
-
-    const elementToRender = component ? component : null;
-    const StyledComponent = variantComponents[variant];
-
-    return (
-      <StyledComponent
-        {...other}
-        as={elementToRender}
-        data-testid={testId}
-        ref={ref}
-        theme={theme}
-      >
-        {children}
-      </StyledComponent>
-    );
-  }
-);

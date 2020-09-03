@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { TypographyVariant } from '../Typography';
+import {
+  TypographyColor,
+  TypographyTypeStyle,
+  TypographyVariant
+} from '../Typography';
+import { ParagraphComponent } from '../Paragraph';
 
 import {
   HeadingXLargeComponent,
@@ -8,19 +13,17 @@ import {
   HeadingMediumComponent,
   HeadingSmallComponent,
   HeadingXSmallComponent,
-  HeadingXXSmallComponent,
-  BodyLargeComponent,
-  BodyMediumComponent,
-  BodySmallComponent,
-  BodyXSmallComponent
-} from '../Typography/styles';
+  HeadingXXSmallComponent
+} from './styles';
 
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
+  color?: TypographyColor;
   isInverse?: boolean;
   level: 1 | 2 | 3 | 4 | 5 | 6;
   ref?: any;
   testId?: string;
   tabIndex?: number;
+  typeStyle?: TypographyTypeStyle;
   variant?: TypographyVariant;
 }
 
@@ -35,10 +38,10 @@ export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
       headingSmall: HeadingSmallComponent,
       headingXSmall: HeadingXSmallComponent,
       headingXXSmall: HeadingXXSmallComponent,
-      bodyLarge: BodyLargeComponent,
-      bodyMedium: BodyMediumComponent,
-      bodySmall: BodySmallComponent,
-      bodyXSmall: BodyXSmallComponent
+      bodyLarge: ParagraphComponent,
+      bodyMedium: ParagraphComponent,
+      bodySmall: ParagraphComponent,
+      bodyXSmall: ParagraphComponent
     };
 
     const headingLevels = {
@@ -62,6 +65,7 @@ export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
         as={headingElement}
         data-testid={testId}
         ref={ref}
+        variant={variant}
         theme={theme}
       >
         {children}
