@@ -14,9 +14,7 @@ export interface DropdownSplitButtonProps extends ButtonStyles {
   onClick?: () => void;
 }
 
-export const DropdownSplitButton: React.FunctionComponent<
-  DropdownSplitButtonProps
-> = ({
+export const DropdownSplitButton: React.FunctionComponent<DropdownSplitButtonProps> = ({
   'aria-label': ariaLabel,
   children,
   icon,
@@ -32,9 +30,9 @@ export const DropdownSplitButton: React.FunctionComponent<
       <CaretDownIcon size={10} testId="caretDown" />
     );
 
-  function handleClick() {
+  function handleClick(event: React.SyntheticEvent) {
     if (context.isOpen) {
-      context.closeDropdown();
+      context.closeDropdown(event);
     } else {
       context.openDropdown();
     }

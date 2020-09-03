@@ -61,9 +61,9 @@ export const DropdownButton: React.FunctionComponent<DropdownButtonProps> = (
     children = props.children;
   }
 
-  function handleClick() {
+  function handleClick(event: React.SyntheticEvent) {
     if (context.isOpen) {
-      context.closeDropdown();
+      context.closeDropdown(event);
     } else {
       context.openDropdown();
     }

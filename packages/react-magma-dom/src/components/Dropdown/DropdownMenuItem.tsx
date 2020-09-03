@@ -54,9 +54,7 @@ const IconWrapper = styled.span`
   }
 `;
 
-export const DropdownMenuItem: React.FunctionComponent<
-  DropdownMenuItemProps
-> = React.forwardRef(
+export const DropdownMenuItem: React.FunctionComponent<DropdownMenuItemProps> = React.forwardRef(
   (
     { children, index, isDisabled, icon, onClick, value, ...other },
     ref: React.Ref<any>
@@ -64,7 +62,7 @@ export const DropdownMenuItem: React.FunctionComponent<
     const theme = React.useContext(ThemeContext);
     const context = React.useContext(DropdownContext);
 
-    function handleClick() {
+    function handleClick(event: React.SyntheticEvent | React.KeyboardEvent) {
       if (context.activeItemIndex >= 0) {
         context.setActiveItemIndex(index);
       }
@@ -74,14 +72,14 @@ export const DropdownMenuItem: React.FunctionComponent<
       }
 
       if (!isDisabled && context.activeItemIndex < 0) {
-        context.closeDropdown();
+        context.closeDropdown(event);
       }
     }
 
     function handleKeyDown(event: React.KeyboardEvent) {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
-        handleClick();
+        handleClick(event);
       }
     }
 
