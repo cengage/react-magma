@@ -237,3 +237,27 @@ export { WlReadyIcon } from './icons/WlReadyIcon';
 export { WlUseItIcon } from './icons/WlUseItIcon';
 export { WrenchIcon } from './icons/WrenchIcon';
 export { YoutubeIcon } from './icons/YoutubeIcon';
+
+//aliases
+export { ArrowDown2Icon as ArrowDownIcon } from './icons/ArrowDown2Icon';
+export { ArrowLeft2Icon as ArrowLeftIcon } from './icons/ArrowLeft2Icon';
+export { ArrowRight2Icon as ArrowRightIcon } from './icons/ArrowRight2Icon';
+export { ArrowUp2Icon as ArrowUpIcon } from './icons/ArrowUp2Icon';
+export { Book2Icon as BookIcon } from './icons/Book2Icon';
+export { Bug2Icon as BugIcon } from './icons/Bug2Icon';
+export { Cloud2Icon as CloudIcon } from './icons/Cloud2Icon';
+export { Cog2Icon as CogIcon } from './icons/Cog2Icon';
+export { Download2Icon as DownloadIcon } from './icons/Download2Icon';
+export { Extracredit2Icon as ExtracreditIcon } from './icons/Extracredit2Icon';
+export { Eye2Icon as EyeIcon } from './icons/Eye2Icon';
+export { Feed5Icon as FeedIcon } from './icons/Feed5Icon';
+export { Filter2Icon as FilterIcon } from './icons/Filter2Icon';
+export { Flag3Icon as FlagIcon } from './icons/Flag3Icon';
+export { Home32Icon as HomeIcon } from './icons/Home32Icon';
+export { Key3Icon as KeyIcon } from './icons/Key3Icon';
+export { MTAct1TimeIcon as MTActTimeIcon } from './icons/MTAct1TimeIcon';
+export { Music2Icon as MusicIcon } from './icons/Music2Icon';
+export { Pencil3Icon as PencilIcon } from './icons/Pencil3Icon';
+export { Reading2Icon as ReadingIcon } from './icons/Reading2Icon';
+export { Search2Icon as SearchIcon } from './icons/Search2Icon';
+export { Upload2Icon as UploadIcon } from './icons/Upload2Icon';
