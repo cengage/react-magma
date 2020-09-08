@@ -3,12 +3,15 @@ title: 'Span'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
+import { Link } from 'gatsby'
 import { Paragraph, Span } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 
-# Span
+# Spans
 
 The `Span` component is used to present inline text in a clear and consistent manner, by limiting the number to sizes and styles with a UI.
+
+See also: the <Link to="/api/paragraph">Paragraph</Link> component and the <Link to="api/heading">Heading</Link> component.
 
 ## Basic Usage
 
@@ -58,6 +61,16 @@ There are no inverse styles for the `success` or `danger` colors.
     </div>
 ```
 
+## Bold and Italic
+
+The `isBold` and `isItalic` props can be used to apply bold and italic styles, respectively.
+
+```.jsx
+         <Paragraph>
+            Some <Span isBold>bold</Span> text and some <Span isItalic>italic</Span> test. This is text <Span isBold isItalic>bold and italic</Span>.
+        </Paragraph>
+```
+
 ## Span Props
 
 **Any other props supplied will be provided to the wrapping `p` element.**
@@ -86,6 +99,15 @@ There are no inverse styles for the `success` or `danger` colors.
         'The color of the component, helping to convey meaning or relative emphasis',
       defaultValue: 'default',
     },
+    isBold: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will be styled with a font-weight of 700 (bold)',
+      defaultValue: 'false',
+    },
     isInverse: {
       type: {
         name: 'boolean',
@@ -93,6 +115,15 @@ There are no inverse styles for the `success` or `danger` colors.
       required: false,
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    isItalic: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will be styled with a font-style of italic',
       defaultValue: 'false',
     },
     testId: {

@@ -40,7 +40,7 @@ export const ParagraphComponent = styled.p<ParagraphProps>`
   ${props =>
     props.size === TypographySize.bodyLarge &&
     css`
-      margin: ${props.noMargins ? '0' : '0 0 24px'};
+      margin: ${props.noMargins ? '0' : '24px 0'};
     `};
 
   ${props =>
@@ -79,7 +79,7 @@ export const ParagraphComponent = styled.p<ParagraphProps>`
     css`
       font-size: ${props.theme.typographySizes.bodyMedium.mobile.fontSize};
       line-height: ${props.theme.typographySizes.bodyMedium.mobile.lineHeight};
-      margin: ${props.noMargins ? '0' : '0 0 24px'};
+      margin: ${props.noMargins ? '0' : '24px 0'};
 
       @media (min-width: ${props.theme.breakpoints.small}px) {
         font-size: ${props.theme.typographySizes.bodyMedium.desktop.fontSize};
@@ -93,7 +93,7 @@ export const ParagraphComponent = styled.p<ParagraphProps>`
     css`
       font-size: ${props.theme.typographySizes.bodySmall.mobile.fontSize};
       line-height: ${props.theme.typographySizes.bodySmall.mobile.lineHeight};
-      margin: ${props.noMargins ? '0' : '0 0 16px'};
+      margin: ${props.noMargins ? '0' : '16px 0'};
 
       @media (min-width: ${props.theme.breakpoints.small}px) {
         font-size: ${props.theme.typographySizes.bodySmall.desktop.fontSize};
@@ -107,7 +107,7 @@ export const ParagraphComponent = styled.p<ParagraphProps>`
     css`
       font-size: ${props.theme.typographySizes.bodyXSmall.mobile.fontSize};
       line-height: ${props.theme.typographySizes.bodyXSmall.mobile.lineHeight};
-      margin: ${props.noMargins ? '0' : '0 0 8px'};
+      margin: ${props.noMargins ? '0' : '8px 0'};
 
       @media (min-width: ${props.theme.breakpoints.small}px) {
         font-size: ${props.theme.typographySizes.bodyXSmall.desktop.fontSize};

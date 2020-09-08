@@ -46,6 +46,18 @@ describe('Span', () => {
     expect(getByText(text)).toHaveStyleRule('color', magma.colors.focusInverse);
   });
 
+  it('should render a span with italics', () => {
+    const text = 'Test Span';
+    const { getByText } = render(<Span isItalic>{text}</Span>);
+    expect(getByText(text)).toHaveStyleRule('font-style', 'italic');
+  });
+
+  it('should render a span with bold styles', () => {
+    const text = 'Test Span';
+    const { getByText } = render(<Span isBold>{text}</Span>);
+    expect(getByText(text)).toHaveStyleRule('font-weight', '700');
+  });
+
   it('Does not violate accessibility standards', () => {
     const { container } = render(<Span>test text</Span>);
 

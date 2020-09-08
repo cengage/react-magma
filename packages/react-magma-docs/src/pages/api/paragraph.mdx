@@ -3,12 +3,15 @@ title: 'Paragraph'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
+import { Link } from 'gatsby'
 import { Paragraph } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 
-# Paragraph
+# Paragraphs
 
 The `Paragraph` component is used to present paragraph content in a clear and consistent manner, by limiting the number to sizes and styles with a UI.
+
+See also: the <Link to="/api/span">Span</Link> component and the <Link to="api/heading">Heading</Link> component.
 
 ## Basic Usage
 
@@ -45,7 +48,8 @@ The default sizes is `bodyMedium`.
 
 ## Heading Sizes
 
-In addition to the paragraph relative sizes, the `sizes` prop can also accept the values for the different heading sizes.
+In addition to the paragraph relative sizes, the `sizes` prop can also accept the values for the different heading sizes that are used with the <Link to="/api/heading">Heading</Link> component.
+The underlying HTML component will stil be a `p`.
 
 ```.jsx
   <>
@@ -162,7 +166,7 @@ There are no inverse styles for the `success` or `danger` colors.
 
 ## No Margins
 
-By default, the `Paragraph` component includes a margin on the bottom. When the `noMargins` prop is applied, the element will have a margin value of 0.
+By default, the `Paragraph` component includes a margins on the top and bottom. When the `noMargins` prop is applied, the element will have a margin value of 0.
 
 ```.jsx
   <>
@@ -227,7 +231,7 @@ By default, the `Paragraph` component includes a margin on the bottom. When the 
       },
       required: false,
       description:
-        'If true, the component will not have the default bottom margin and instead will a margin value of 0.',
+        'If true, the component will not have the default top and bottom margin and instead will a margin value of 0.',
       defaultValue: 'false',
     },
     size: {

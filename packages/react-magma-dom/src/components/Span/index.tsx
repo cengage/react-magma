@@ -7,7 +7,9 @@ import { colorStyles, getBodyFontFamily } from '../Typography/styles';
 export interface SpanProps extends React.HTMLAttributes<HTMLSpanElement> {
   children?: any;
   color?: TypographyColor;
+  isBold?: boolean;
   isInverse?: boolean;
+  isItalic?: boolean;
   ref?: any;
   testId?: string;
   theme?: any;
@@ -17,6 +19,8 @@ export interface SpanProps extends React.HTMLAttributes<HTMLSpanElement> {
 const StyledSpan = styled.span<SpanProps>`
   ${colorStyles};
   font-family: ${getBodyFontFamily};
+  font-style: ${props => (props.isItalic ? 'italic' : 'inherit')};
+  font-weight: ${props => (props.isBold ? 700 : 'inherit')};
 `;
 
 export const Span: React.FunctionComponent<SpanProps> = React.forwardRef(

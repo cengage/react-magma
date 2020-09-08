@@ -25,7 +25,7 @@ describe('Paragraph', () => {
       magma.typographySizes.bodyLarge.mobile.fontSize
     );
 
-    expect(getByText(text)).toHaveStyleRule('margin', '0 0 24px');
+    expect(getByText(text)).toHaveStyleRule('margin', '24px 0');
   });
 
   it('should render a medium paragraph with the correct styles', () => {
@@ -39,7 +39,7 @@ describe('Paragraph', () => {
       magma.typographySizes.bodyMedium.mobile.fontSize
     );
 
-    expect(getByText(text)).toHaveStyleRule('margin', '0 0 24px');
+    expect(getByText(text)).toHaveStyleRule('margin', '24px 0');
   });
 
   it('should render a small paragraph with the correct styles', () => {
@@ -53,7 +53,7 @@ describe('Paragraph', () => {
       magma.typographySizes.bodySmall.mobile.fontSize
     );
 
-    expect(getByText(text)).toHaveStyleRule('margin', '0 0 16px');
+    expect(getByText(text)).toHaveStyleRule('margin', '16px 0');
   });
 
   it('should render an extra small paragraph with the correct styles', () => {
@@ -67,7 +67,7 @@ describe('Paragraph', () => {
       magma.typographySizes.bodyXSmall.mobile.fontSize
     );
 
-    expect(getByText(text)).toHaveStyleRule('margin', '0 0 8px');
+    expect(getByText(text)).toHaveStyleRule('margin', '8px 0');
   });
 
   it('should render a paragraph with expressive styles', () => {

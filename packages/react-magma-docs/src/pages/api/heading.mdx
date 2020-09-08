@@ -14,6 +14,8 @@ import { Link } from 'gatsby'
 
 The `Heading` component can be used with the `level` prop to render the HTML heading elements, levels 1-6.
 
+See also: the <Link to="/api/paragraph">Paragraph</Link> component and the <Link to="api/span">Span</Link> component.
+
 ```.jsx
   <>
     <Heading level={1}>Heading 1</Heading>
@@ -29,6 +31,7 @@ The `Heading` component can be used with the `level` prop to render the HTML hea
 
 By default, the a heading will render the semantic HTML element with its corresponding styles.
 However, if the `size` prop is specified, the heading will render with the styles for that relative size rather than its default styles.
+The `sizes` prop can also accept the values for the different paragraph sizes that are used with the <Link to="/api/paragraph">Paragraph</Link> component.
 
 ```.jsx
   <>
@@ -40,7 +43,7 @@ However, if the `size` prop is specified, the heading will render with the style
 
 ## Variant
 
-The `variant` prop can be used to set additional styles on a component. The default `variant` is `default`.
+The `variant` prop can be used to set additional styles on a component. The `variant` can effect the font-size, or font-family. The default `variant` is `default`.
 
 The `expressive` variant can be used in marketing contexts, which may require more variety than the default styles.
 
@@ -81,13 +84,12 @@ The `color` prop can be used to change the style or emphasis. It accepts the val
         <Heading color="subdued" level={2}>
             Subdued Color Heading
         </Heading>
-
     </>
 ```
 
 ## Inverse
 
-`isInverse` is an optional boolean prop, that may be passed in when the component is to be displayed on a dark background.
+The `isInverse` property is an optional boolean, that changes the colors so component can appear on a dark background.
 
 ```.jsx
   <div style={{ background : '#00263E', padding: '10px' }}>
