@@ -307,17 +307,101 @@ describe('Heading', () => {
     });
   });
 
-  it('should render narrative styles', () => {
-    const headingText = 'test';
-    const { getByText } = render(
-      <Heading variant="narrative" level={1}>
-        {headingText}
-      </Heading>
-    );
-    const heading = getByText(headingText);
+  describe('narrative styles', () => {
+    it('should render narrative h1 styles', () => {
+      const headingText = 'test';
+      const { getByText } = render(
+        <Heading variant="narrative" level={1}>
+          {headingText}
+        </Heading>
+      );
+      const heading = getByText(headingText);
 
-    expect(heading).toHaveStyleRule('font-family', magma.headingNarrativeFont);
-    expect(heading).toHaveStyleRule('font-weight', '700');
+      expect(heading).toHaveStyleRule('color', magma.colors.neutral01);
+      expect(heading).toHaveStyleRule(
+        'font-family',
+        magma.headingNarrativeFont
+      );
+      expect(heading).toHaveStyleRule(
+        'font-size',
+        magma.typographyNarrativeSizes.headingXLarge.mobile.fontSize
+      );
+    });
+
+    it('should render narrative h2 styles', () => {
+      const headingText = 'test';
+      const { getByText } = render(
+        <Heading variant="narrative" level={2}>
+          {headingText}
+        </Heading>
+      );
+      const heading = getByText(headingText);
+
+      expect(heading).toHaveStyleRule(
+        'font-size',
+        magma.typographyNarrativeSizes.headingLarge.mobile.fontSize
+      );
+    });
+
+    it('should render narrative h3 styles', () => {
+      const headingText = 'test';
+      const { getByText } = render(
+        <Heading variant="narrative" level={3}>
+          {headingText}
+        </Heading>
+      );
+      const heading = getByText(headingText);
+
+      expect(heading).toHaveStyleRule(
+        'font-size',
+        magma.typographyNarrativeSizes.headingMedium.mobile.fontSize
+      );
+    });
+
+    it('should render narrative h4 styles', () => {
+      const headingText = 'test';
+      const { getByText } = render(
+        <Heading variant="narrative" level={4}>
+          {headingText}
+        </Heading>
+      );
+      const heading = getByText(headingText);
+
+      expect(heading).toHaveStyleRule(
+        'font-size',
+        magma.typographyNarrativeSizes.headingSmall.mobile.fontSize
+      );
+    });
+
+    it('should render narrative h5 styles', () => {
+      const headingText = 'test';
+      const { getByText } = render(
+        <Heading variant="narrative" level={5}>
+          {headingText}
+        </Heading>
+      );
+      const heading = getByText(headingText);
+
+      expect(heading).toHaveStyleRule(
+        'font-size',
+        magma.typographyNarrativeSizes.headingXSmall.mobile.fontSize
+      );
+    });
+
+    it('should render narrative h6 styles', () => {
+      const headingText = 'test';
+      const { getByText } = render(
+        <Heading variant="narrative" level={6}>
+          {headingText}
+        </Heading>
+      );
+      const heading = getByText(headingText);
+
+      expect(heading).toHaveStyleRule(
+        'font-size',
+        magma.typographyNarrativeSizes.headingXXSmall.mobile.fontSize
+      );
+    });
   });
 
   it('Does not violate accessibility standards', () => {

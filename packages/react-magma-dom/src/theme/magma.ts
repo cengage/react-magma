@@ -193,31 +193,39 @@ export const magma = {
     large: 1024,
     xl: 1200
   },
+
+  // Typography
   typeScale: typeScale,
   typographySizes: {
     headingXLarge: {
       mobile: typeScale.size07,
-      desktop: typeScale.size08
+      desktop: typeScale.size08,
+      fontWeight: 600
     },
     headingLarge: {
       mobile: typeScale.size06,
-      desktop: typeScale.size07
+      desktop: typeScale.size07,
+      fontWeight: 600
     },
     headingMedium: {
       mobile: typeScale.size05,
-      desktop: typeScale.size06
+      desktop: typeScale.size06,
+      fontWeight: 600
     },
     headingSmall: {
       mobile: typeScale.size04,
-      desktop: typeScale.size05
+      desktop: typeScale.size05,
+      fontWeight: 600
     },
     headingXSmall: {
       mobile: typeScale.size04,
-      desktop: typeScale.size04
+      desktop: typeScale.size04,
+      fontWeight: 600
     },
     headingXXSmall: {
       mobile: typeScale.size01,
-      desktop: typeScale.size01
+      desktop: typeScale.size01,
+      fontWeight: 700
     },
     bodyLarge: {
       mobile: typeScale.size04,
@@ -239,31 +247,85 @@ export const magma = {
   typographyExpressiveSizes: {
     headingXLarge: {
       mobile: typeScale.size08,
-      desktop: typeScale.size11
+      desktop: typeScale.size11,
+      fontWeight: 600
     },
     headingLarge: {
       mobile: typeScale.size07,
-      desktop: typeScale.size09
+      desktop: typeScale.size09,
+      fontWeight: 300
     },
     headingMedium: {
       mobile: typeScale.size06,
-      desktop: typeScale.size07
+      desktop: typeScale.size07,
+      fontWeight: 300
     },
     headingSmall: {
       mobile: typeScale.size05,
-      desktop: typeScale.size06
+      desktop: typeScale.size06,
+      fontWeight: 300
     },
     headingXSmall: {
       mobile: typeScale.size04,
-      desktop: typeScale.size05
+      desktop: typeScale.size05,
+      fontWeight: 300
     },
     headingXXSmall: {
       mobile: typeScale.size03,
-      desktop: typeScale.size03
+      desktop: typeScale.size03,
+      fontWeight: 700
     },
     bodyLarge: {
       mobile: typeScale.size05,
       desktop: typeScale.size06
+    },
+    bodyMedium: {
+      mobile: typeScale.size03,
+      desktop: typeScale.size03
+    },
+    bodySmall: {
+      mobile: typeScale.size02,
+      desktop: typeScale.size02
+    },
+    bodyXSmall: {
+      mobile: typeScale.size01,
+      desktop: typeScale.size01
+    }
+  },
+  typographyNarrativeSizes: {
+    headingXLarge: {
+      mobile: typeScale.size07,
+      desktop: typeScale.size08,
+      fontWeight: 700
+    },
+    headingLarge: {
+      mobile: typeScale.size06,
+      desktop: typeScale.size07,
+      fontWeight: 700
+    },
+    headingMedium: {
+      mobile: typeScale.size05,
+      desktop: typeScale.size06,
+      fontWeight: 700
+    },
+    headingSmall: {
+      mobile: typeScale.size04,
+      desktop: typeScale.size05,
+      fontWeight: 700
+    },
+    headingXSmall: {
+      mobile: typeScale.size04,
+      desktop: typeScale.size04,
+      fontWeight: 700
+    },
+    headingXXSmall: {
+      mobile: typeScale.size01,
+      desktop: typeScale.size01,
+      fontWeight: 700
+    },
+    bodyLarge: {
+      mobile: typeScale.size04,
+      desktop: typeScale.size05
     },
     bodyMedium: {
       mobile: typeScale.size03,

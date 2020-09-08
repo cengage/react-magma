@@ -4,10 +4,10 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
   font-family: "Open Sans",Helvetica,sans-serif;
-  font-weight: 600;
   padding: 0;
   color: #3F3F3F;
   font-size: 28px;
+  font-weight: 600;
   line-height: 40px;
   margin: 0 0 16px;
 }
@@ -40,10 +40,10 @@ exports[`Heading Snapshot should render heading 2 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
   font-family: "Open Sans",Helvetica,sans-serif;
-  font-weight: 600;
   padding: 0;
   color: #3F3F3F;
   font-size: 24px;
+  font-weight: 600;
   line-height: 32px;
   margin: 48px 0 16px;
 }
@@ -75,10 +75,10 @@ exports[`Heading Snapshot should render heading 3 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
   font-family: "Open Sans",Helvetica,sans-serif;
-  font-weight: 600;
   padding: 0;
   color: #3F3F3F;
   font-size: 20px;
+  font-weight: 600;
   line-height: 32px;
   margin: 40px 0 16px;
 }
@@ -110,10 +110,10 @@ exports[`Heading Snapshot should render heading 4 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
   font-family: "Open Sans",Helvetica,sans-serif;
-  font-weight: 600;
   padding: 0;
   color: #3F3F3F;
   font-size: 18px;
+  font-weight: 600;
   line-height: 32px;
   margin: 32px 0 16px;
 }
@@ -145,10 +145,10 @@ exports[`Heading Snapshot should render heading 5 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
   font-family: "Open Sans",Helvetica,sans-serif;
-  font-weight: 600;
   padding: 0;
   color: #3F3F3F;
   font-size: 18px;
+  font-weight: 600;
   line-height: 32px;
   margin: 24px 0 16px;
 }
@@ -180,12 +180,11 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
   font-family: "Open Sans",Helvetica,sans-serif;
-  font-weight: 600;
   padding: 0;
   color: #3F3F3F;
   font-size: 12px;
+  font-weight: 700;
   line-height: 16px;
-  font-weight: bold;
   text-transform: uppercase;
   margin: 24px 0 8px;
 }
