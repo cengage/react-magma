@@ -10,37 +10,14 @@ import {
   InfoIcon,
   AngleDownIcon,
 } from 'react-magma-icons'
+
 import {
   DatePicker,
   VisuallyHidden,
   Alert
 } from 'react-magma-dom'
-import { SimplePropsTable } from '../../components/props-table'
-const hiddenIcons=[
-  'ArrowDown2Icon',
-  'ArrowLeft2Icon',
-  'ArrowRight2Icon',
-  'ArrowUp2Icon',
-  'Book2Icon',
-  'Bug2Icon',
-  'Cloud2Icon',
-  'Cog2Icon',
-  'Download2Icon',
-  'Extracredit2Icon',
-  'Eye2Icon',
-  'Feed5Icon',
-  'Filter2Icon',
-  'Flag3Icon',
-  'Home32Icon',
-  'Key3Icon',
-  'MTAct1TimeIcon',
-  'Music2Icon',
-  'Pencil3Icon',
-  'Reading2Icon',
-  'Search2Icon',
-  'Upload2Icon'
-]
 
+import { SimplePropsTable } from '../../components/props-table'
 
 # Icons
 
@@ -108,6 +85,30 @@ so it will be read screen readers.
 ## Available Icons
 
 ```.jsx hideCode
+  export const hiddenIcons=[
+    'ArrowDown2Icon',
+    'ArrowLeft2Icon',
+    'ArrowRight2Icon',
+    'ArrowUp2Icon',
+    'Book2Icon',
+    'Bug2Icon',
+    'Cloud2Icon',
+    'Cog2Icon',
+    'Download2Icon',
+    'Extracredit2Icon',
+    'Eye2Icon',
+    'Feed5Icon',
+    'Filter2Icon',
+    'Flag3Icon',
+    'Home32Icon',
+    'Key3Icon',
+    'MTAct1TimeIcon',
+    'Music2Icon',
+    'Pencil3Icon',
+    'Reading2Icon',
+    'Search2Icon',
+    'Upload2Icon'
+  ]
   <div className='demo-icon-list-container'>{Object.keys(ICONS).filter((icon) => {return !hiddenIcons.includes(icon)}).map((icon) => {
     const id = icon + 'Available';
     const title = icon + ' Title';
