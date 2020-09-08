@@ -177,9 +177,9 @@ describe('sizes', () => {
     const label = container.querySelector('label');
     const input = getByLabelText(labelText);
 
-    expect(label).toHaveStyleRule('font-size', '13px');
+    expect(label).toHaveStyleRule('font-size', '14px');
 
-    expect(input).toHaveStyleRule('font-size', '1rem');
+    expect(input).toHaveStyleRule('font-size', '16px');
     expect(input).toHaveStyleRule('height', '37px');
   });
 
@@ -194,7 +194,7 @@ describe('sizes', () => {
 
     expect(label).toHaveStyleRule('font-size', '16px');
 
-    expect(input).toHaveStyleRule('font-size', '22px');
+    expect(input).toHaveStyleRule('font-size', '18px');
     expect(input).toHaveStyleRule('height', '58px');
     expect(input).toHaveStyleRule('padding', '0 15px');
   });

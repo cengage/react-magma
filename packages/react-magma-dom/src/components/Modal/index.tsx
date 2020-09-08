@@ -13,6 +13,8 @@ import { ButtonColor, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { CrossIcon } from '../Icon/types/CrossIcon';
 import { Heading } from '../Heading';
+import { TypographySize } from '../Typography';
+
 import { omit, useGenerateId, usePrevious } from '../../utils';
 
 export enum ModalSize {
@@ -144,8 +146,6 @@ const ModalHeader = styled.div`
 `;
 
 const H1 = styled(Heading)`
-  font-size: 20px;
-  font-weight: 600;
   margin: 0;
   padding-right: 50px;
 `;
@@ -369,8 +369,8 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
                         id={headingId}
                         level={1}
                         ref={headingRef}
+                        size={TypographySize.headingSmall}
                         tabIndex={-1}
-                        theme={theme}
                       >
                         {header}
                       </H1>

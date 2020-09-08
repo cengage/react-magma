@@ -59,10 +59,10 @@ export const baseInputStyles = props => css`
   border-radius: 5px;
   color: ${props.theme.colors.neutral01};
   display: block;
-  font-size: 1rem;
+  font-size: ${props.theme.typeScale.size03.fontSize};
+  line-height: ${props.theme.typeScale.size03.lineHeight};
   font-family: ${props.theme.bodyFont};
   height: 37px;
-  line-height: 1.25rem;
   padding: 0 8px;
   -webkit-appearance: none;
   width: 100%;
@@ -88,9 +88,9 @@ export const baseInputStyles = props => css`
 
   ${props.inputSize === 'large' &&
     css`
-      font-size: 22px;
+      font-size: ${props.theme.typeScale.size04.fontSize};
+      line-height: ${props.theme.typeScale.size04.lineHeight};
       height: 58px;
-      line-height: 33px;
       padding: 0 15px;
     `}
 

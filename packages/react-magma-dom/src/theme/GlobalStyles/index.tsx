@@ -20,7 +20,8 @@ function getStyles(theme) {
 
     html {
       scroll-behavior: smooth;
-      font-size: 16px;
+      font-size: ${theme.typeScale.size03.fontSize};
+      line-height: ${theme.typeScale.size03.lineHeight};
     }
 
     html,
@@ -35,8 +36,8 @@ function getStyles(theme) {
       font-family: ${theme.bodyFont};
       font-style: normal;
       font-weight: 400;
-      font-size: 16px;
-      line-height: 24px;
+      font-size: ${theme.typeScale.size03.fontSize};
+      line-height: ${theme.typeScale.size03.lineHeight};
     }
 
     a {

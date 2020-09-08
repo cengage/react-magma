@@ -54,6 +54,7 @@ describe('Alert', () => {
 @media (max-width:600px) {
   .emotion-3 {
     font-size: 14px;
+    line-height: 20px;
   }
 }
 
@@ -232,6 +233,7 @@ describe('Alert', () => {
 @media (max-width:600px) {
   .emotion-3 {
     font-size: 14px;
+    line-height: 20px;
   }
 }
 
@@ -369,6 +371,7 @@ describe('Alert', () => {
 @media (max-width:600px) {
   .emotion-3 {
     font-size: 14px;
+    line-height: 20px;
   }
 }
 
@@ -506,6 +509,7 @@ describe('Alert', () => {
 @media (max-width:600px) {
   .emotion-3 {
     font-size: 14px;
+    line-height: 20px;
   }
 }
 
@@ -642,6 +646,7 @@ describe('Alert', () => {
 @media (max-width:600px) {
   .emotion-3 {
     font-size: 14px;
+    line-height: 20px;
   }
 }
 

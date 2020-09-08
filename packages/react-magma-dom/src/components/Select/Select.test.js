@@ -195,7 +195,7 @@ describe('Select', () => {
 
     expect(helperMessage).toBeInTheDocument();
     expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral03);
-    expect(helperMessage).toHaveStyleRule('font-size', '13px');
+    expect(helperMessage).toHaveStyleRule('font-size', '14px');
   });
 
   it('should render the error message with the correct styles', async () => {

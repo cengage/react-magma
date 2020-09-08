@@ -293,9 +293,9 @@ describe('Input', () => {
       const iconWrapper = container.querySelector('span');
       const svg = container.querySelector('svg');
 
-      expect(label).toHaveStyleRule('font-size', '13px');
+      expect(label).toHaveStyleRule('font-size', '14px');
 
-      expect(input).toHaveStyleRule('font-size', '1rem');
+      expect(input).toHaveStyleRule('font-size', '16px');
       expect(input).toHaveStyleRule('height', '37px');
       expect(input).toHaveStyleRule('padding-left', '35px');
 
@@ -317,7 +317,7 @@ describe('Input', () => {
 
       expect(label).toHaveStyleRule('font-size', '16px');
 
-      expect(input).toHaveStyleRule('font-size', '22px');
+      expect(input).toHaveStyleRule('font-size', '18px');
       expect(input).toHaveStyleRule('height', '58px');
       expect(input).toHaveStyleRule('padding', '0 15px');
     });

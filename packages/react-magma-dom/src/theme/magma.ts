@@ -69,6 +69,27 @@ export interface TypographyExpressiveSizes {
   bodyXSmall: any;
 }
 
+export interface TypeScaleSize {
+  fontSize: string;
+  lineHeight: string;
+}
+
+export interface TypeScale {
+  size01: TypeScaleSize;
+  size02: TypeScaleSize;
+  size03: TypeScaleSize;
+  size04: TypeScaleSize;
+  size05: TypeScaleSize;
+  size06: TypeScaleSize;
+  size07: TypeScaleSize;
+  size08: TypeScaleSize;
+  size09: TypeScaleSize;
+  size10: TypeScaleSize;
+  size11: TypeScaleSize;
+  size12: TypeScaleSize;
+  size13: TypeScaleSize;
+}
+
 export interface ThemeInterface {
   breakpoints: Breakpoints;
   colors: Colors;
@@ -78,6 +99,7 @@ export interface ThemeInterface {
   headingFont: string;
   headingExpressiveFont: string;
   headingNarrativeFont: string;
+  typeScale: TypeScale;
   typographySizes: TypographySizes;
   typographyExpressiveSizes: TypographyExpressiveSizes;
 }

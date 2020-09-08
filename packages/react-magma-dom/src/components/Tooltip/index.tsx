@@ -37,8 +37,8 @@ const StyledTooltip = styled.div<{
   visible?: boolean;
 }>`
   display: ${props => (props.visible ? 'block' : 'none')};
-  font-size: 12px;
-  line-height: 1.3em;
+  font-size: ${props => props.theme.typeScale.size01.fontSize};
+  line-height: ${props => props.theme.typeScale.size01.lineHeight};
   font-weight: 600;
   position: absolute;
   text-align: center;
@@ -275,6 +275,7 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
           id={id}
           position={position ? position : EnumTooltipPosition.top}
           role="tooltip"
+          theme={theme}
           visible={isVisible}
         >
           <StyledTooltipInner

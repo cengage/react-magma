@@ -26,13 +26,15 @@ const StyledBanner = styled.div<AlertProps>`
       ? props.theme.colors.neutral01
       : props.theme.colors.neutral08};
   display: flex;
-  line-height: 20px;
+  font-size: ${props => props.theme.typeScale.size03.fontSize};
+  line-height: ${props => props.theme.typeScale.size03.lineHeight};
   position: relative;
   text-align: center;
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     text-align: left;
-    font-size: 14px;
+    font-size: ${props => props.theme.typeScale.size02.fontSize};
+    line-height: ${props => props.theme.typeScale.size02.lineHeight};
   }
 `;
 

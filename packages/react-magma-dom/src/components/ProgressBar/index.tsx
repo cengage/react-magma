@@ -98,13 +98,12 @@ const Bar = styled.div<ProgressBarProps>`
 `;
 
 const Percentage = styled.span`
-  font-size: 14px;
+  font-size: ${props => props.theme.typeScale.size02.fontSize};
+  line-height: ${props => props.theme.typeScale.size02.lineHeight};
   margin-left: 10px;
 `;
 
-export const ProgressBar: React.FunctionComponent<
-  ProgressBarProps
-> = React.forwardRef(
+export const ProgressBar: React.FunctionComponent<ProgressBarProps> = React.forwardRef(
   (
     {
       color,
@@ -143,7 +142,9 @@ export const ProgressBar: React.FunctionComponent<
             theme={theme}
           />
         </Track>
-        {isLabelVisible && <Percentage>{percentageValue}%</Percentage>}
+        {isLabelVisible && (
+          <Percentage theme={theme}>{percentageValue}%</Percentage>
+        )}
       </Container>
     );
   }

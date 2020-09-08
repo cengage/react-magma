@@ -22,9 +22,9 @@ const Message = styled.div<InputMessageProps>`
       ? props.theme.colors.danger
       : props.theme.colors.neutral03};
   display: flex;
-  font-size: 13px;
-  line-height: 1.3;
-  margin-top: 5px;
+  font-size: ${props => props.theme.typeScale.size02.fontSize};
+  line-height: ${props => props.theme.typeScale.size02.lineHeight};
+  margin-top: 4px;
   min-height: 20px;
   padding: ${props => (props.isInverse && props.isError ? '5px 10px' : '0')};
   text-align: left;

@@ -77,7 +77,8 @@ const StyledAlert = styled.div<AlertProps>`
   position: relative;
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
-    font-size: 14px;
+    font-size: ${props => props.theme.typeScale.size02.fontSize};
+    line-height: ${props => props.theme.typeScale.size02.lineHeight};
   }
 
   &:focus {

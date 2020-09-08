@@ -90,8 +90,12 @@ export const baseBadgeStyles = props => css`
     : props.theme.colors.neutral08};
   display: inline-block;
   font-weight: bold;
-  font-size: ${props.variant === BadgeVariant.counter ? '14px' : '12px'};
-  line-height: ${props.variant === BadgeVariant.counter ? '18px' : '21px'};
+  font-size: ${props.variant === BadgeVariant.counter
+    ? props.theme.typeScale.size02.fontSize
+    : props.theme.typeScale.size01.fontSize};
+  line-height: ${props.variant === BadgeVariant.counter
+    ? props.theme.typeScale.size02.lineHeight
+    : props.theme.typeScale.size02.lineHeight};
   margin: ${props.variant === BadgeVariant.counter
     ? '0 0 0 10px'
     : '0 10px 0 0'};

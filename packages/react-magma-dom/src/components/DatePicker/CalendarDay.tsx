@@ -16,7 +16,8 @@ interface CalendarDayProps {
 const CalendarDayCell = styled.td`
   border: 1px solid ${props => props.theme.colors.neutral06};
   color: ${props => props.theme.colors.neutral01};
-  font-size: 15px;
+  font-size: ${props => props.theme.typeScale.size03.fontSize};
+  line-height: ${props => props.theme.typeScale.size03.lineHeight};
   height: 40px;
   padding: 0;
   position: relative;
