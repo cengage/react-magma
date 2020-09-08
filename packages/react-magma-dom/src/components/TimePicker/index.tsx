@@ -10,9 +10,12 @@ import { enUS } from 'date-fns/locale';
 import { ThemeInterface } from '../../theme/magma';
 
 export interface TimePickerProps {
+  containerStyle?: React.CSSProperties;
   errorMessage?: React.ReactNode;
   id?: string;
+  inputStyle?: React.CSSProperties;
   isInverse?: boolean;
+  labelStyle?: React.CSSProperties;
   labelText: React.ReactNode;
   helperMessage?: React.ReactNode;
   messageStyle?: React.CSSProperties;
@@ -42,7 +45,7 @@ const InputsContainer = styled.div<{ theme: ThemeInterface }>`
   background: ${props => props.theme.colors.neutral08};
   left: 31px;
   position: absolute;
-  top: 7px;
+  top: 5px;
 `;
 
 const Divider = styled.span`
@@ -57,7 +60,7 @@ const StyledNumInput = styled.input<{ theme: ThemeInterface }>`
   border-radius: 3px;
   padding: 0 3px;
   text-align: right;
-  width: 23px;
+  width: 25px;
 
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -80,6 +83,7 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
   const {
     errorMessage,
     helperMessage,
+    inputStyle,
     isInverse,
     labelText,
     onChange,
@@ -246,7 +250,8 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
               : theme.colors.neutral04
           }`,
           cursor: 'default',
-          width: '125px'
+          width: '134px',
+          ...inputStyle
         }}
         value={time}
       >
