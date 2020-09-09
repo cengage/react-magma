@@ -11,24 +11,20 @@ import {
   AngleDownIcon,
 } from 'react-magma-icons'
 
-import {
-  DatePicker,
-  VisuallyHidden,
-  Alert
-} from 'react-magma-dom'
+import { DatePicker, VisuallyHidden, Alert } from 'react-magma-dom'
 
 import { SimplePropsTable } from '../../components/props-table'
 
 # Icons
 
 <Alert variant="warning">
-  <strong>Important!</strong> Icons are now imported from `react-magma-icons` which must be installed as a peer dependency.
+  <strong>Important!</strong> Icons are now imported from `react-magma-icons`
+  which must be installed as a peer dependency.
 </Alert>
 
 ## Basic Usage
 
 Icons are imported from a separate `react-magma-icons` package.
-
 
 ```.jsx
   <p>
@@ -189,9 +185,8 @@ export default props => (
   <ScopeableLayout
     {...props}
     components={{
-      hiddenIcons,
       ICONS,
-      ...ICONS
+      ...ICONS,
     }}
   />
 )
