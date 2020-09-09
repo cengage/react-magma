@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
-import { ThemeContext } from 'react-magma-dom'
+import { ThemeContext, VisuallyHidden } from 'react-magma-dom'
 
 const Item = styled.li`
   list-style: none;
@@ -59,6 +59,7 @@ const NavItem = ({ activeSection, id, number, onClick, text }) => (
         >
           <Num>{number}</Num>
           {text}
+          {activeSection === id && <VisuallyHidden>(selected)</VisuallyHidden>}
         </Link>
       </Item>
     )}
