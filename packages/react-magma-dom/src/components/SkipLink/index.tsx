@@ -43,7 +43,7 @@ const StyledSkipLink = styled(HyperLink)<{
     &:focus {
       left: ${props => props.positionLeft}px;
       top: ${props => props.positionTop}px;
-      z-index: 3;
+      z-index: 99999;
     }
   }
 `;
