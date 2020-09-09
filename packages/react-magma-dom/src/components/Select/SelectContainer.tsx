@@ -4,11 +4,11 @@ import { Label } from '../Label';
 import { HiddenLabelText } from '../Input/index';
 import { UseSelectGetLabelPropsOptions } from 'downshift';
 
-export const SelectContainer = styled.div`
+export const SelectContainerElement = styled.div`
   position: relative;
 `;
 
-interface DownshiftSelectContainer<T> {
+interface SelectContainer<T> {
   children: React.ReactNode[];
   containerStyle?: React.CSSProperties;
   getLabelProps: (options?: UseSelectGetLabelPropsOptions) => any;
@@ -19,9 +19,7 @@ interface DownshiftSelectContainer<T> {
   labelText: string;
 }
 
-export function DownshiftSelectContainer<T>(
-  props: DownshiftSelectContainer<T>
-) {
+export function SelectContainer<T>(props: SelectContainer<T>) {
   const {
     children,
     getLabelProps,
@@ -31,7 +29,7 @@ export function DownshiftSelectContainer<T>(
     labelText
   } = props;
   return (
-    <SelectContainer>
+    <SelectContainerElement>
       <Label {...getLabelProps()} isInverse={isInverse} style={labelStyle}>
         {isLabelVisuallyHidden ? (
           <HiddenLabelText>{labelText}</HiddenLabelText>
@@ -40,6 +38,6 @@ export function DownshiftSelectContainer<T>(
         )}{' '}
       </Label>
       {children}
-    </SelectContainer>
+    </SelectContainerElement>
   );
 }

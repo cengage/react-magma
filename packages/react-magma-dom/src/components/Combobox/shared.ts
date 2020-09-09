@@ -1,6 +1,7 @@
 import React from 'react';
 
 export function useComboboxItems(defaultItems, items) {
+  const afterInitialRender = React.useRef(false);
   const allItems = React.useRef(defaultItems || items);
   const [displayItems, setDisplayItems] = React.useState(defaultItems || items);
 
@@ -11,10 +12,15 @@ export function useComboboxItems(defaultItems, items) {
   }
 
   React.useEffect(() => {
-    if (items) {
-      allItems.current = items;
-      setDisplayItems(items);
+    if (!afterInitialRender.current) {
+      afterInitialRender.current = true;
+      return;
     }
+
+    const cleanItems = items ? items : [];
+
+    allItems.current = cleanItems;
+    setDisplayItems(cleanItems);
   }, [items]);
 
   return [allItems, displayItems, setDisplayItems, updateItemsRef];
@@ -35,7 +41,8 @@ export function defaultOnInputValueChange(
   disableCreateItem,
   setDisplayItems,
   setHighlightedIndex,
-  onInputChange
+  onInputChange,
+  createLabel
 ) {
   const { inputValue: baseInputValue, isOpen } = changes;
 
@@ -57,7 +64,7 @@ export function defaultOnInputValueChange(
               inputValue &&
               !inputValueInList(items, inputValue, itemToString)
               ? {
-                  label: `Create "${inputValue}"`,
+                  label: createLabel(inputValue),
                   value: inputValue,
                   react_magma__created_item: true
                 }

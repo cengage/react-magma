@@ -308,6 +308,37 @@ describe('Combobox', () => {
     expect(getByText('Yellow')).toBeInTheDocument();
   });
 
+  it('should not break when passing null in for the items prop', () => {
+    let items = ['Red', 'Blue', 'Green'];
+    const labelText = 'Label';
+
+    const { getByLabelText, getByText, rerender } = render(
+      <>
+        <button onClick={() => (items = null)}>Clear items</button>
+        <Combobox labelText={labelText} items={items} />
+      </>
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+    fireEvent.click(renderedCombobox);
+
+    expect(getByText('Red')).toBeInTheDocument();
+
+    fireEvent.click(getByText('Clear items'));
+
+    rerender(
+      <>
+        <button onClick={() => (items = null)}>Clear items</button>
+        <Combobox labelText={labelText} items={items} />
+      </>
+    );
+
+    fireEvent.click(renderedCombobox);
+
+    expect(getByText(/no options/i)).toBeInTheDocument();
+  });
+
   it('should disable the creation of an item', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];

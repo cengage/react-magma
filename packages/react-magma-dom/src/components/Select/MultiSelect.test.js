@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { DownshiftSelect as MultiSelect } from '.';
+import { Select as MultiSelect } from '.';
 
 describe('Select', () => {
   it('should render a multi-select with items', () => {

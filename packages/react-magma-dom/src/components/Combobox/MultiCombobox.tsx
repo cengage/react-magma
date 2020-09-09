@@ -1,17 +1,18 @@
 import * as React from 'react';
-import { instanceOfDefaultItemObject } from '../DownshiftSelect';
+import { instanceOfDefaultItemObject } from '../Select';
 import { useCombobox, useMultipleSelection } from 'downshift';
 import { CrossIcon } from 'react-magma-icons';
-import { DownshiftSelectContainer } from '../DownshiftSelect/SelectContainer';
-import { ItemsList } from '../DownshiftSelect/ItemsList';
+import { SelectContainer } from '../Select/SelectContainer';
+import { ItemsList } from '../Select/ItemsList';
 import { ComboboxInput } from './ComboboxInput';
-import { SelectedItemButton, IconWrapper } from '../DownshiftSelect/shared';
+import { SelectedItemButton, IconWrapper } from '../Select/shared';
 import { useComboboxItems, defaultOnInputValueChange } from './shared';
 
 import { ThemeContext } from '../../theme/ThemeContext';
-import { DownshiftMultiComboboxInterface } from '.';
+import { I18nContext } from '../../i18n';
+import { MultiComboboxInterface } from '.';
 
-export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
+export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
   const [inputValue, setInputValue] = React.useState('');
   const {
     ariaDescribedBy,
@@ -41,6 +42,9 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     onRemoveSelectedItem,
     placeholder
   } = props;
+
+  const theme = React.useContext(ThemeContext);
+  const i18n = React.useContext(I18nContext);
 
   const [
     allItems,
@@ -213,7 +217,8 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
               disableCreateItem,
               setDisplayItems,
               setHighlightedIndex,
-              handleInputChange
+              handleInputChange,
+              i18n.combobox.createLabel
             ),
     onIsOpenChange: handleOnIsOpenChange,
     onSelectedItemChange: defaultOnSelectedItemChange,
@@ -234,14 +239,14 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     onInputFocus && typeof onInputFocus === 'function' && onInputFocus(event);
   }
 
-  const theme = React.useContext(ThemeContext);
-
   const selectedItemsContent =
     selectedItems && selectedItems.length > 0 ? (
       <>
         {selectedItems.map((multiSelectedItem, index) => (
           <SelectedItemButton
-            aria-label={`reset item ${itemToString(multiSelectedItem)}`}
+            aria-label={i18n.multiCombobox.selectedItemButtonAriaLabel(
+              itemToString(multiSelectedItem)
+            )}
             key={`selected-item-${index}`}
             {...getSelectedItemProps({
               selectedItem: multiSelectedItem,
@@ -263,7 +268,7 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
     ) : null;
 
   return (
-    <DownshiftSelectContainer
+    <SelectContainer
       getLabelProps={getLabelProps}
       isInverse={isInverse}
       isLabelVisuallyHidden={isLabelVisuallyHidden}
@@ -305,6 +310,6 @@ export function MultiCombobox<T>(props: DownshiftMultiComboboxInterface<T>) {
         items={getFilteredItems(displayItems)}
         itemToString={itemToString}
       />
-    </DownshiftSelectContainer>
+    </SelectContainer>
   );
 }

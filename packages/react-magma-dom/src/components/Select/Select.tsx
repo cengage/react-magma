@@ -1,15 +1,16 @@
 import * as React from 'react';
-import { DownshiftSelectInterface, DownshiftOption } from '.';
+import { SelectInterface, Option } from '.';
 import { useSelect } from 'downshift';
 import { SelectText } from './shared';
 import { defaultComponents } from './components';
 import { CrossIcon } from 'react-magma-icons';
 import { ButtonSize, ButtonVariant } from '../Button';
 import { ItemsList } from './ItemsList';
-import { DownshiftSelectContainer } from './SelectContainer';
+import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
+import { I18nContext } from '../../i18n';
 
-export function Select<T>(props: DownshiftSelectInterface<T>) {
+export function Select<T>(props: SelectInterface<T>) {
   const {
     ariaDescribedBy,
     components: customComponents,
@@ -35,8 +36,9 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
   } = props;
 
   const toggleButtonRef = React.useRef<HTMLButtonElement>();
+  const i18n = React.useContext(I18nContext);
 
-  function getValidItem(itemToCheck: DownshiftOption<T>, key: string): object {
+  function getValidItem(itemToCheck: Option<T>, key: string): object {
     return items.findIndex(
       i => itemToString(i) === itemToString(itemToCheck)
     ) !== -1
@@ -87,7 +89,7 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
     reset,
     openMenu,
     setHighlightedIndex
-  } = useSelect<DownshiftOption<T>>({
+  } = useSelect<Option<T>>({
     ...props,
     onIsOpenChange: handleOnIsOpenChange,
     stateReducer,
@@ -131,7 +133,7 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
     reset();
   }
   return (
-    <DownshiftSelectContainer
+    <SelectContainer
       getLabelProps={getLabelProps}
       isInverse={isInverse}
       isLabelVisuallyHidden={isLabelVisuallyHidden}
@@ -147,13 +149,14 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
         style={inputStyle}
       >
         <SelectText data-testid="selectedItemText">
-          {itemToString(selectedItem) || 'Select...'}
+          {itemToString(selectedItem) || i18n.select.placeholder}
         </SelectText>
         {isClearable && selectedItem && (
           <ClearIndicator
-            aria-label={`reset selection for ${labelText}.  ${itemToString(
-              selectedItem
-            )} is selected`}
+            aria-label={i18n.select.clearIndicatorAriaLabel(
+              labelText,
+              itemToString(selectedItem)
+            )}
             icon={<CrossIcon size={12} />}
             onClick={defaultHandleClearIndicatorClick}
             size={ButtonSize.small}
@@ -171,6 +174,6 @@ export function Select<T>(props: DownshiftSelectInterface<T>) {
         items={items}
         itemToString={itemToString}
       />
-    </DownshiftSelectContainer>
+    </SelectContainer>
   );
 }

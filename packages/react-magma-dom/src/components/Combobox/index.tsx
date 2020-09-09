@@ -6,49 +6,42 @@ import {
   UseMultipleSelectionProps
 } from 'downshift';
 import {
-  DownshiftOption,
+  Option,
   instanceOfDefaultItemObject,
   InternalSelectInterface,
   InternalMultiInterface
-} from '../DownshiftSelect';
+} from '../Select';
 import { InternalCombobox } from './Combobox';
 import { MultiCombobox } from './MultiCombobox';
 import { InputMessage } from '../Input/InputMessage';
 import { useGenerateId } from '../../utils';
 
-export interface DownshiftComboboxInterface<T>
-  extends UseComboboxProps<DownshiftOption<T>>,
+export interface ComboboxInterface<T>
+  extends UseComboboxProps<Option<T>>,
     InternalSelectInterface {
   ariaDescribedBy?: string;
-  defaultItems?: DownshiftOption<T>[];
+  defaultItems?: Option<T>[];
   disableCreateItem?: boolean;
   hasError?: boolean;
   isLoading?: boolean;
-  newItemTransform?: (item: {
-    label: string;
-    value: string;
-  }) => DownshiftOption<T>;
+  newItemTransform?: (item: { label: string; value: string }) => Option<T>;
   onInputBlur?: (event: React.FocusEvent) => void;
-  onInputChange?: (
-    changes: Partial<UseComboboxState<DownshiftOption<T>>>
-  ) => void;
+  onInputChange?: (changes: Partial<UseComboboxState<Option<T>>>) => void;
   onInputFocus?: (event: React.FocusEvent) => void;
   onInputKeyDown?: (event: React.KeyboardEvent) => void;
   onInputKeyPress?: (event: React.KeyboardEvent) => void;
   onInputKeyUp?: (event: React.KeyboardEvent) => void;
   onInputValueChange?: (
-    changes: Partial<UseComboboxState<DownshiftOption<T>>>,
-    updateInputItems?: React.Dispatch<
-      React.SetStateAction<DownshiftOption<T>[]>
-    >
+    changes: Partial<UseComboboxState<Option<T>>>,
+    updateInputItems?: React.Dispatch<React.SetStateAction<Option<T>[]>>
   ) => void;
-  onItemCreated?: (newItem: DownshiftOption<T>) => void;
+  onItemCreated?: (newItem: Option<T>) => void;
   placeholder?: string;
 }
 
-export interface DownshiftMultiComboboxInterface<T>
-  extends UseMultipleSelectionProps<DownshiftOption<T>>,
-    Omit<DownshiftComboboxInterface<T>, 'onStateChange' | 'stateReducer'>,
+export interface MultiComboboxInterface<T>
+  extends UseMultipleSelectionProps<Option<T>>,
+    Omit<ComboboxInterface<T>, 'onStateChange' | 'stateReducer'>,
     InternalMultiInterface<T> {
   ariaDescribedBy?: string;
   hasError?: boolean;
@@ -57,13 +50,13 @@ export interface DownshiftMultiComboboxInterface<T>
 
 export function instanceOfMultiCombobox<T>(
   object: any
-): object is DownshiftMultiComboboxInterface<T> {
+): object is MultiComboboxInterface<T> {
   return 'isMulti' in object;
 }
 
 export const ComboboxStateChangeTypes = useCombobox.stateChangeTypes;
 
-export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
+export function Combobox<T>(props: ComboboxInterface<T>) {
   const {
     containerStyle,
     errorMessage,
@@ -74,7 +67,7 @@ export function Combobox<T>(props: DownshiftComboboxInterface<T>) {
     helperMessage
   } = props;
 
-  function itemToString(item: DownshiftOption<T>) {
+  function itemToString(item: Option<T>) {
     return item && typeof item === 'string'
       ? item
       : item && instanceOfDefaultItemObject(item)

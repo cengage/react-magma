@@ -1,15 +1,16 @@
 import * as React from 'react';
-import { DownshiftMultiSelectInterface } from '.';
+import { MultiSelectInterface } from '.';
 import { useSelect, useMultipleSelection } from 'downshift';
 import { CrossIcon } from 'react-magma-icons';
 import { ItemsList } from './ItemsList';
-import { DownshiftSelectContainer } from './SelectContainer';
+import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
 import { SelectedItemButton, IconWrapper } from './shared';
 
 import { ThemeContext } from '../../theme/ThemeContext';
+import { I18nContext } from '../../i18n';
 
-export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
+export function MultiSelect<T>(props: MultiSelectInterface<T>) {
   const {
     ariaDescribedBy,
     hasError,
@@ -116,6 +117,7 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
   }
 
   const theme = React.useContext(ThemeContext);
+  const i18n = React.useContext(I18nContext);
 
   const toggleButtonProps = getToggleButtonProps({
     ...getDropdownProps({
@@ -146,7 +148,7 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
   });
 
   return (
-    <DownshiftSelectContainer
+    <SelectContainer
       getLabelProps={getLabelProps}
       isLabelVisuallyHidden={isLabelVisuallyHidden}
       labelStyle={labelStyle}
@@ -166,7 +168,9 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
             const multiSelectedItemString = itemToString(multiSelectedItem);
             return (
               <SelectedItemButton
-                aria-label={`reset item ${multiSelectedItemString}`}
+                aria-label={i18n.multiSelect.selectedItemButtonAriaLabel(
+                  multiSelectedItemString
+                )}
                 key={`selected-item-${index}`}
                 {...getSelectedItemProps({
                   selectedItem: multiSelectedItem,
@@ -194,6 +198,6 @@ export function MultiSelect<T>(props: DownshiftMultiSelectInterface<T>) {
         items={getFilteredItems(items)}
         itemToString={itemToString}
       />
-    </DownshiftSelectContainer>
+    </SelectContainer>
   );
 }

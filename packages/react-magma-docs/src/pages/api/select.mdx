@@ -1,15 +1,15 @@
 ---
-title: 'Downshift Selects'
+title: 'Select'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { DownshiftSelect, SelectStateChangeTypes, Alert } from 'react-magma-dom'
+import { Select, SelectStateChangeTypes, Alert, I18nContext, defaultI18n } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 import { useSelect } from 'downshift'
 import { Link } from 'gatsby'
 import { v4 as uuid } from 'uuid'
 
-# Downshift Selects
+# Select
 
 ## Basic Usage
 
@@ -33,7 +33,7 @@ If you are using a custom items format see the [Custom Items example](/api/downs
     }
 
     return <>
-      <DownshiftSelect
+      <Select
         id="basicSelectId"
         name="basic"
         labelText="Basic"
@@ -46,7 +46,7 @@ If you are using a custom items format see the [Custom Items example](/api/downs
         onSelectedItemChange={onSelectedItemChange}
       />
 
-      <DownshiftSelect
+      <Select
         id="badSelectedItemId"
         name="badSelectedItem"
         labelText="Bad Selected Item"
@@ -78,7 +78,7 @@ which is a function that returns the string representation of your `item` which 
     }
 
     return <>
-      <DownshiftSelect
+      <Select
         id="itemToStringId"
         name="itemToString"
         labelText="Item to String"
@@ -122,7 +122,7 @@ Set initial state using the `initialSelectedItem`, `initialSelectedItems`, and `
 ```.jsx
   () => {
     return <>
-      <DownshiftSelect
+      <Select
         id="initialSelectedByItemSelectId"
         name="initialSelectedByItem"
         labelText="Initial Selected By Item"
@@ -134,7 +134,7 @@ Set initial state using the `initialSelectedItem`, `initialSelectedItems`, and `
         initialSelectedItem={{ label: 'Green', value: 'green' }}
       />
 
-      <DownshiftSelect
+      <Select
         id="initialHighlightedIndexSelectId"
         name="initialHighlightedIndex"
         labelText="Initial Highlighted Index"
@@ -178,7 +178,7 @@ includes the changes made to the corresponding state from each action.
       <p><strong>Highlighted Index Change Count: </strong>{highlightedIndexChangeCount}</p>
       <p><strong>Is Open Change Count: </strong>{isOpenChangeCount}</p>
 
-      <DownshiftSelect
+      <Select
         id="stateChangesId"
         name="stateChanges"
         labelText="State Changes"
@@ -249,7 +249,7 @@ to change the state. You can see the full list of the types in the [`stateChange
       <>
         <pre>{JSON.stringify(changes, null, 2)}</pre>
 
-        <DownshiftSelect
+        <Select
           id="stateChangesId"
           name="stateChanges"
           labelText="State Changes"
@@ -297,7 +297,7 @@ you will have to use the handlers mentioned above in the <Link to="/api/downshif
       <p><strong>Highlighted Index: </strong>{highlightedIndex}</p>
       <p><strong>Is Open: </strong>{isOpen.toString()}</p>
 
-      <DownshiftSelect
+      <Select
         id="controlledId"
         name="controlled"
         labelText="Controlled"
@@ -320,7 +320,7 @@ you will have to use the handlers mentioned above in the <Link to="/api/downshif
 ## Disabled
 
 ```.jsx
-  <DownshiftSelect
+  <Select
     id="disabledSelectId"
     isDisabled
     name="disabled"
@@ -343,7 +343,7 @@ using the `defaultSelectedItem` prop.
 ```.jsx
   () => {
     return <>
-      <DownshiftSelect
+      <Select
         id="clearableSelectId"
         name="clearable"
         labelText="Clearable"
@@ -356,7 +356,7 @@ using the `defaultSelectedItem` prop.
         isClearable
       />
 
-      <DownshiftSelect
+      <Select
         id="clearableWithDefaultsId"
         name="clearableWithDefaults"
         labelText="Clearable With Defaults"
@@ -380,7 +380,7 @@ If an error message is present, it will replace the helper text. Can be a node o
 ```.jsx
   () => (
     <>
-      <DownshiftSelect
+      <Select
         id="errorMessage"
         name="error"
         labelText="Error Message"
@@ -402,7 +402,7 @@ The `helperMessage` appears underneath the select field. It will not appear if a
 ```.jsx
   () => (
     <>
-      <DownshiftSelect
+      <Select
         id="helperMessage"
         name="helper"
         labelText="Helper Message"
@@ -431,7 +431,7 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
 ```.jsx
   () => {
     return <>
-      <DownshiftSelect
+      <Select
         id="newA11yStatusMessageId"
         name="newA11yStatusMessage"
         labelText="New Accessibility Status Message"
@@ -464,7 +464,7 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
     }
 
     return <>
-      <DownshiftSelect
+      <Select
         id="multiSelectId"
         isMulti
         name="multiSelect"
@@ -491,7 +491,7 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
         ]}
       />
 
-      <DownshiftSelect
+      <Select
         id="multiSelectControlledId"
         isMulti
         name="multiSelectControlled"
@@ -541,7 +541,7 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
       <>
         <p><strong>{currentSelectEvent || 'No'} event was triggered</strong></p>
 
-        <DownshiftSelect
+        <Select
           id="selectFocusEventId"
           name="selectFocusEvent"
           labelText="Select Focus Events"
@@ -583,7 +583,7 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
     }
 
     return (<div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
-      <DownshiftSelect
+      <Select
         id="basicSelectInverseId"
         isInverse
         name="basic"
@@ -597,7 +597,7 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
         onSelectedItemChange={onSelectedItemChange}
       />
 
-      <DownshiftSelect
+      <Select
         id="multiSelectInverseId"
         isInverse
         isMulti
@@ -629,7 +629,7 @@ Please use discretion when adding custom styles.
     }
 
     return <>
-      <DownshiftSelect
+      <Select
         containerStyle={{ marginBottom: '32px'}}
         helperMessage="Helper message"
         inputStyle={{ border: '2px dotted green', width: '200px'}}
@@ -641,7 +641,7 @@ Please use discretion when adding custom styles.
         onSelectedItemChange={onSelectedItemChange}
       />
 
-      <DownshiftSelect
+      <Select
         containerStyle={{ marginBottom: '32px'}}
         helperMessage="Helper message"
         inputStyle={{ border: '2px dotted green', width: '200px'}}
@@ -654,6 +654,52 @@ Please use discretion when adding custom styles.
         onSelectedItemChange={onSelectedItemChange}
       />
     </>
+  }
+```
+
+## Internationalization
+
+Some of the internationalization overrides use functions to allow you to have the internal data that the
+default labels are using.
+
+<Link to="/api/internationalization">Full example of internationalization override options</Link>
+
+```.jsx
+  () => {
+    return (<I18nContext.Provider value={{
+      ...defaultI18n,
+      select: {
+        placeholder: 'Custom Select Placeholder...',
+        clearIndicatorAriaLabel: (labelText, selectedItem) =>
+          `click to reset selection for ${labelText}. ${selectedItem} is currently selected`
+      },
+      multiSelect: {
+        selectedItemButtonAriaLabel: (selectedItem) =>
+          `click to reset the selected item ${selectedItem}`
+      }
+    }}>
+      <Select
+        labelText="Internationalization"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        initialSelectedItem={{ label: 'Red', value: 'red' }}
+        isClearable
+      />
+
+      <Select
+        labelText="Multi Internationalization"
+        isMulti
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        initialSelectedItems={[{ label: 'Red', value: 'red' }]}
+      />
+    </I18nContext.Provider>)
   }
 ```
 
@@ -728,7 +774,7 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
   propertyValues={{
     components: {
       type: {
-        name: 'DownshiftComponents',
+        name: 'SelectComponents',
       },
       required: false,
       description: 'Custom components',
@@ -905,11 +951,13 @@ export default props => (
   <ScopeableLayout
     {...props}
     components={{
-      DownshiftSelect,
+      Select,
       Alert,
       useSelect,
       uuid,
       SelectStateChangeTypes,
+      I18nContext,
+      defaultI18n
     }}
   />
 )

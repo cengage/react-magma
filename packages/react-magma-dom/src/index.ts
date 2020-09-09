@@ -80,10 +80,10 @@ export { Modal, ModalSize, ModalProps } from './components/Modal';
 export { Search, SearchProps } from './components/Search';
 
 export {
-  DownshiftSelect,
+  Select,
   SelectStateChangeTypes,
   MultipleSelectionStateChangeTypes
-} from './components/DownshiftSelect';
+} from './components/Select';
 export { Combobox, ComboboxStateChangeTypes } from './components/Combobox';
 
 export { SkipLink, SkipLinkProps } from './components/SkipLink';

@@ -3,7 +3,7 @@ title: 'Theming'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { DownshiftSelect, ThemeContext, magma } from 'react-magma-dom'
+import { Select, ThemeContext, magma } from 'react-magma-dom'
 import DemoComponent from '../../components/demo-component'
 import { amgam } from '../../themes/amgam.ts'
 import { amgamDark } from '../../themes/amgamDark.ts'
@@ -27,7 +27,7 @@ Use the dropdown to change theme for the demo component.
 
     return (
       <div>
-        <DownshiftSelect
+        <Select
           id="themeSwitcher"
           labelText="Select Theme"
           onSelectedItemChange={handleItemChange}
@@ -54,7 +54,7 @@ export default props => (
   <ScopeableLayout
     {...props}
     components={{
-      DownshiftSelect,
+      Select,
       ThemeContext,
       DemoComponent,
       magma,

@@ -1,9 +1,6 @@
 import React from 'react';
 import { baseInputStyles } from '../BaseInput';
-import {
-  defaultComponents,
-  DownshiftComponents
-} from '../DownshiftSelect/components';
+import { defaultComponents, SelectComponents } from '../Select/components';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
@@ -13,7 +10,7 @@ import {
   UseComboboxGetInputPropsOptions
 } from 'downshift';
 
-import { SelectedItemsWrapper } from '../DownshiftSelect/shared';
+import { SelectedItemsWrapper } from '../Select/shared';
 
 const ComboBoxContainer = styled.div<{
   hasError?: boolean;
@@ -96,7 +93,7 @@ const StyledInput = styled.input`
 interface ComboboxInputProps<T> {
   ariaDescribedBy?: string;
   children?: React.ReactNode | React.ReactNode[];
-  customComponents?: DownshiftComponents;
+  customComponents?: SelectComponents;
   getComboboxProps: (options?: UseComboboxGetComboboxPropsOptions) => any;
   getInputProps: (options?: UseComboboxGetInputPropsOptions) => any;
   getToggleButtonProps: (
@@ -146,18 +143,16 @@ export const ComboboxInput = React.forwardRef(
       ...customComponents
     });
 
-    function handleBlur(e) {
+    function handleBlur(e: React.FocusEvent) {
       setIsFocused(false);
-      if (onInputBlur) {
-        onInputBlur(e);
-      }
+
+      onInputBlur && typeof onInputBlur === 'function' && onInputBlur(e);
     }
 
-    function handleFocus(e) {
+    function handleFocus(e: React.FocusEvent) {
       setIsFocused(true);
-      if (onInputFocus) {
-        onInputFocus(e);
-      }
+
+      onInputFocus && typeof onInputFocus === 'function' && onInputFocus(e);
     }
 
     const inputProps = getInputProps({

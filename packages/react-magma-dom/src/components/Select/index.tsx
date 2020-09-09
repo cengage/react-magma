@@ -6,19 +6,19 @@ import {
   UseMultipleSelectionProps
 } from 'downshift';
 
-import { Select } from './Select';
+import { Select as InternalSelect } from './Select';
 import { MultiSelect } from './MultiSelect';
 import { InputMessage } from '../Input/InputMessage';
-import { DownshiftComponents } from './components';
+import { SelectComponents } from './components';
 import { useGenerateId } from '../../utils';
 
-export type DownshiftOption<T> =
+export type Option<T> =
   | string
   | { value: string; label: string; [key: string]: any }
   | T;
 
 export interface InternalSelectInterface {
-  components?: DownshiftComponents;
+  components?: SelectComponents;
   containerStyle?: React.CSSProperties;
   errorMessage?: React.ReactNode;
   helperMessage?: React.ReactNode;
@@ -34,11 +34,11 @@ export interface InternalSelectInterface {
 }
 
 export interface InternalMultiInterface<T> {
-  onRemoveSelectedItem?: (removedItem: DownshiftOption<T>) => void;
+  onRemoveSelectedItem?: (removedItem: Option<T>) => void;
 }
 
-export interface DownshiftSelectInterface<T>
-  extends UseSelectProps<DownshiftOption<T>>,
+export interface SelectInterface<T>
+  extends UseSelectProps<Option<T>>,
     InternalSelectInterface {
   ariaDescribedBy?: string;
   hasError?: boolean;
@@ -49,9 +49,9 @@ export interface DownshiftSelectInterface<T>
   onKeyUp?: (event: React.KeyboardEvent) => void;
 }
 
-export interface DownshiftMultiSelectInterface<T>
-  extends UseMultipleSelectionProps<DownshiftOption<T>>,
-    Omit<DownshiftSelectInterface<T>, 'onStateChange' | 'stateReducer'>,
+export interface MultiSelectInterface<T>
+  extends UseMultipleSelectionProps<Option<T>>,
+    Omit<SelectInterface<T>, 'onStateChange' | 'stateReducer'>,
     InternalMultiInterface<T> {
   hasError?: boolean;
   isInverse?: boolean;
@@ -59,7 +59,7 @@ export interface DownshiftMultiSelectInterface<T>
 
 export function instanceOfMultiSelect<T>(
   object: any
-): object is DownshiftMultiSelectInterface<T> {
+): object is MultiSelectInterface<T> {
   return 'isMulti' in object && object.type !== 'combo';
 }
 
@@ -87,7 +87,7 @@ export const SelectStateChangeTypes = useSelect.stateChangeTypes;
 export const MultipleSelectionStateChangeTypes =
   useMultipleSelection.stateChangeTypes;
 
-export function DownshiftSelect<T>(props: DownshiftSelectInterface<T>) {
+export function Select<T>(props: SelectInterface<T>) {
   const {
     containerStyle,
     id: defaultId,
@@ -98,7 +98,7 @@ export function DownshiftSelect<T>(props: DownshiftSelectInterface<T>) {
     helperMessage
   } = props;
 
-  function itemToString(item: DownshiftOption<T>) {
+  function itemToString(item: Option<T>) {
     return item && typeof item === 'string'
       ? item
       : item && instanceOfDefaultItemObject(item)
@@ -121,10 +121,9 @@ export function DownshiftSelect<T>(props: DownshiftSelectInterface<T>) {
           itemToString={itemToString}
           {...props}
           hasError={hasError}
-          isInverse={isInverse}
         />
       ) : (
-        <Select
+        <InternalSelect
           ariaDescribedBy={descriptionId}
           id={id}
           itemToString={itemToString}

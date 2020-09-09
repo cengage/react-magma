@@ -3,7 +3,7 @@ import { IconButton, IconButtonProps } from '../IconButton';
 import { Spinner, SpinnerProps } from '../Spinner';
 import { IconProps, CaretDownIcon } from 'react-magma-icons';
 
-export type DownshiftComponents = {
+export type SelectComponents = {
   ClearIndicator?: React.FunctionComponent<IconButtonProps>;
   DropdownIndicator?: React.FunctionComponent<Partial<IconProps>>;
   LoadingIndicator?: React.FunctionComponent<SpinnerProps>;
@@ -28,7 +28,7 @@ export const DefaultLoadingIndicator = props => {
   return <Spinner testId="loadingIndicator" {...props} />;
 };
 
-export const defaultComponents = (props: DownshiftComponents) => ({
+export const defaultComponents = (props: SelectComponents) => ({
   ClearIndicator: DefaultClearIndicator,
   DropdownIndicator: DefaultDropdownIndicator,
   LoadingIndicator: DefaultLoadingIndicator,

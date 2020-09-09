@@ -3,7 +3,7 @@ title: 'Combobox'
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { Combobox, ComboboxStateChangeTypes, Alert } from 'react-magma-dom'
+import { Combobox, ComboboxStateChangeTypes, Alert, I18nContext, defaultI18n } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 import { Link } from 'gatsby'
 import { v4 as uuid } from 'uuid'
@@ -846,6 +846,52 @@ Please use discretion when adding custom styles.
 
 ```
 
+## Internationalization
+
+Some of the internationalization overrides use functions to allow you to have the internal data that the
+default labels are using.
+
+<Link to="/api/internationalization">Full example of internationalization override options</Link>
+
+```.jsx
+  () => {
+    return (<I18nContext.Provider value={{
+      ...defaultI18n,
+      combobox: {
+        clearIndicatorAriaLabel: (labelText, selectedItem) =>
+          `click to reset selection for ${labelText}. ${selectedItem} is currently selected`,
+        createLabel: inputValue => `Custom Create "${inputValue}"`
+      },
+      multiCombobox: {
+        selectedItemButtonAriaLabel: (selectedItem) =>
+          `click to reset the selected item ${selectedItem}`
+      }
+    }}>
+      <Combobox
+        labelText="Internationalization"
+        defaultItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        isClearable
+        initialSelectedItem={{ label: 'Red', value: 'red' }}
+      />
+
+      <Combobox
+        labelText="Multi Internationalization"
+        isMulti
+        defaultItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        initialSelectedItems={[{ label: 'Red', value: 'red' }]}
+      />
+    </I18nContext.Provider>)
+  }
+```
+
 ## State Change Types
 
 The `type` property in the `changes` object that is returned from the `onStateChange` function
@@ -1113,6 +1159,8 @@ export default props => (
       Alert,
       uuid,
       ComboboxStateChangeTypes,
+      I18nContext,
+      defaultI18n
     }}
   />
 )

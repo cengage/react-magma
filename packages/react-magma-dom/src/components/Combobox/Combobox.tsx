@@ -1,19 +1,17 @@
 import * as React from 'react';
-import {
-  instanceOfDefaultItemObject,
-  DownshiftOption
-} from '../DownshiftSelect';
+import { instanceOfDefaultItemObject, Option } from '../Select';
 import { useCombobox } from 'downshift';
 import { CrossIcon } from 'react-magma-icons';
-import { defaultComponents } from '../DownshiftSelect/components';
-import { DownshiftSelectContainer } from '../DownshiftSelect/SelectContainer';
-import { ItemsList } from '../DownshiftSelect/ItemsList';
+import { defaultComponents } from '../Select/components';
+import { SelectContainer } from '../Select/SelectContainer';
+import { ItemsList } from '../Select/ItemsList';
 import { ComboboxInput } from './ComboboxInput';
 import { ButtonSize, ButtonVariant } from '../Button';
 import { useComboboxItems, defaultOnInputValueChange } from './shared';
-import { DownshiftComboboxInterface } from '.';
+import { ComboboxInterface } from '.';
+import { I18nContext } from '../../i18n';
 
-export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
+export function InternalCombobox<T>(props: ComboboxInterface<T>) {
   const {
     ariaDescribedBy,
     components: customComponents,
@@ -45,6 +43,8 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
     placeholder,
     selectedItem: passedInSelectedItem
   } = props;
+
+  const i18n = React.useContext(I18nContext);
 
   function defaultNewItemTransform(newItem) {
     return newItem.value;
@@ -124,7 +124,7 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
     updateItemsRef
   ] = useComboboxItems(defaultItems, items);
 
-  function getValidItem(itemToCheck: DownshiftOption<T>, key: string): object {
+  function getValidItem(itemToCheck: Option<T>, key: string): object {
     return allItems.current.findIndex(
       i => itemToString(i) === itemToString(itemToCheck)
     ) !== -1
@@ -183,7 +183,8 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
               disableCreateItem,
               setDisplayItems,
               setHighlightedIndex,
-              onInputChange
+              onInputChange,
+              i18n.combobox.createLabel
             ),
     onIsOpenChange: handleOnIsOpenChange,
     onSelectedItemChange: defaultOnSelectedItemChange,
@@ -213,7 +214,7 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
   }
 
   return (
-    <DownshiftSelectContainer
+    <SelectContainer
       getLabelProps={getLabelProps}
       hasError={hasError}
       isLabelVisuallyHidden={isLabelVisuallyHidden}
@@ -242,9 +243,10 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
       >
         {isClearable && selectedItem && (
           <ClearIndicator
-            aria-label={`reset selection for ${labelText}.  ${itemToString(
-              selectedItem
-            )} is selected`}
+            aria-label={i18n.combobox.clearIndicatorAriaLabel(
+              labelText,
+              itemToString(selectedItem)
+            )}
             icon={<CrossIcon size={10} />}
             onClick={defaultHandleClearIndicatorClick}
             size={ButtonSize.small}
@@ -261,6 +263,6 @@ export function InternalCombobox<T>(props: DownshiftComboboxInterface<T>) {
         items={displayItems}
         itemToString={itemToString}
       />
-    </DownshiftSelectContainer>
+    </SelectContainer>
   );
 }

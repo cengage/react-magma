@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { DownshiftSelect as Select } from '.';
+import { Select } from '.';
 
 describe('Select', () => {
   it('should render a select with items', () => {

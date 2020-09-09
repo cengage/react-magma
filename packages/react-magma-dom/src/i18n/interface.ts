@@ -168,4 +168,24 @@ export interface I18nInterface {
   skipLink: {
     buttonText: string;
   };
+  select: {
+    placeholder: string;
+    clearIndicatorAriaLabel: (
+      labelText: string,
+      selectedItem: string
+    ) => string;
+  };
+  multiSelect: {
+    selectedItemButtonAriaLabel: (selectedItem: string) => string;
+  };
+  combobox: {
+    clearIndicatorAriaLabel: (
+      labelText: string,
+      selectedItem: string
+    ) => string;
+    createLabel: (inputValue: string) => string;
+  };
+  multiCombobox: {
+    selectedItemButtonAriaLabel: (selectedItem: string) => string;
+  };
 }
