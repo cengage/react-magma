@@ -24,6 +24,7 @@ export interface TimePickerProps {
 }
 
 const TimePickerContainer = styled.div<{
+  containerStyle?: React.CSSProperties;
   isInverse?: boolean;
   theme: ThemeInterface;
 }>`
@@ -81,10 +82,12 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
   const {
+    containerStyle,
     errorMessage,
     helperMessage,
     inputStyle,
     isInverse,
+    labelStyle,
     labelText,
     onChange,
     ...other
@@ -230,7 +233,11 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
   }
 
   return (
-    <TimePickerContainer isInverse={isInverse} theme={theme}>
+    <TimePickerContainer
+      isInverse={isInverse}
+      style={containerStyle}
+      theme={theme}
+    >
       <Input
         {...other}
         disabled
@@ -239,6 +246,7 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
         icon={<ClockIcon />}
         isInverse={isInverse}
         id={id}
+        labelStyle={labelStyle}
         labelText={labelText}
         inputStyle={{
           background: `${theme.colors.neutral08}`,
