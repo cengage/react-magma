@@ -4,15 +4,23 @@ import styled from '@emotion/styled'
 import { ThemeContext } from 'react-magma-dom'
 
 const StyledHeading = styled.h2`
-  color: inherit;
-  font-family: ${props => props.theme.bodyFont};
-  font-size: ${props => (props.isCta ? '2em' : '2.4em')};
-  font-weight: 600;
-  text-align: center;
-  text-transform: uppercase;
+  && {
+    color: inherit;
+    font-family: ${props => props.theme.bodyFont};
+    font-size: ${props => (props.isCta ? '2em' : '2.4em')};
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: -200px;
+    padding-top: 220px;
 
-  @media (min-width: ${props => props.theme.breakpoints.small}) {
-    text-align: ${props => (props.isCta ? 'center' : 'left')};
+    &:focus {
+      border-bottom: 2px dotted ${props => props.theme.colors.neutral08};
+    }
+
+    @media (min-width: ${props => props.theme.breakpoints.small}) {
+      text-align: ${props => (props.isCta ? 'center' : 'left')};
+    }
   }
 `
 
@@ -24,10 +32,10 @@ const HeadingNum = styled.span`
   margin-bottom: 15px;
 `
 
-const IntroHeading = ({ isCta, name, number }) => (
+const IntroHeading = ({ id, isCta, name, number }) => (
   <ThemeContext.Consumer>
     {theme => (
-      <StyledHeading isCta={isCta} theme={theme}>
+      <StyledHeading id={id} isCta={isCta} tabIndex={-1} theme={theme}>
         {number && <HeadingNum>{number}</HeadingNum>}
         {name}
       </StyledHeading>
