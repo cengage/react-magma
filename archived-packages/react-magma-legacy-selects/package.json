@@ -1,6 +1,6 @@
 {
   "name": "react-magma-legacy-selects",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0",
   "license": "ISC",
   "main": "dist/index.js",
   "module": "dist/esm/legacy-selects.esm.js",
@@ -46,7 +46,7 @@
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0",
     "react-magma-dom": "^2.0.0-beta.64",
-    "react-magma-icons": "^1.0.0",
+    "react-magma-icons": "^1.0.2",
     "react-select": "3.0.8",
     "uuid": "^8.3.0"
   },

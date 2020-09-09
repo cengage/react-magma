@@ -26,6 +26,7 @@ module.exports = {
         'react-input-autosize',
         'react-loadable',
         'react-magma-icons',
+        'react-magma-dom',
         'uuid'
       ],
       plugins: [
