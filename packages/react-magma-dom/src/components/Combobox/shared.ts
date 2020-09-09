@@ -64,7 +64,7 @@ export function defaultOnInputValueChange(
               inputValue &&
               !inputValueInList(items, inputValue, itemToString)
               ? {
-                  label: createLabel(inputValue),
+                  label: createLabel.replace(/\{inputValue\}/g, inputValue),
                   value: inputValue,
                   react_magma__created_item: true
                 }

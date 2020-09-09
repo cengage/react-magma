@@ -170,22 +170,16 @@ export interface I18nInterface {
   };
   select: {
     placeholder: string;
-    clearIndicatorAriaLabel: (
-      labelText: string,
-      selectedItem: string
-    ) => string;
+    clearIndicatorAriaLabel: string;
   };
   multiSelect: {
-    selectedItemButtonAriaLabel: (selectedItem: string) => string;
+    selectedItemButtonAriaLabel: string;
   };
   combobox: {
-    clearIndicatorAriaLabel: (
-      labelText: string,
-      selectedItem: string
-    ) => string;
-    createLabel: (inputValue: string) => string;
+    clearIndicatorAriaLabel: string;
+    createLabel: string;
   };
   multiCombobox: {
-    selectedItemButtonAriaLabel: (selectedItem: string) => string;
+    selectedItemButtonAriaLabel: string;
   };
 }

@@ -132,6 +132,11 @@ export function Select<T>(props: SelectInterface<T>) {
 
     reset();
   }
+
+  const clearIndicatorAriaLabel = i18n.select.clearIndicatorAriaLabel
+    .replace(/\{labelText\}/g, labelText)
+    .replace(/\{selectedItem\}/g, itemToString(selectedItem));
+
   return (
     <SelectContainer
       getLabelProps={getLabelProps}
@@ -153,10 +158,7 @@ export function Select<T>(props: SelectInterface<T>) {
         </SelectText>
         {isClearable && selectedItem && (
           <ClearIndicator
-            aria-label={i18n.select.clearIndicatorAriaLabel(
-              labelText,
-              itemToString(selectedItem)
-            )}
+            aria-label={clearIndicatorAriaLabel}
             icon={<CrossIcon size={12} />}
             onClick={defaultHandleClearIndicatorClick}
             size={ButtonSize.small}

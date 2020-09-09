@@ -244,7 +244,8 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
       <>
         {selectedItems.map((multiSelectedItem, index) => (
           <SelectedItemButton
-            aria-label={i18n.multiCombobox.selectedItemButtonAriaLabel(
+            aria-label={i18n.multiCombobox.selectedItemButtonAriaLabel.replace(
+              /\{selectedItem\}/g,
               itemToString(multiSelectedItem)
             )}
             key={`selected-item-${index}`}

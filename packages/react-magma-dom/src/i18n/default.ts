@@ -165,18 +165,18 @@ export const defaultI18n: I18nInterface = {
   },
   select: {
     placeholder: 'Select...',
-    clearIndicatorAriaLabel: (labelText, selectedItem) =>
-      `reset selection for ${labelText}. ${selectedItem} is selected`
+    clearIndicatorAriaLabel:
+      'reset selection for {labelText}. {selectedItem} is selected'
   },
   multiSelect: {
-    selectedItemButtonAriaLabel: selectedItem => `reset item ${selectedItem}`
+    selectedItemButtonAriaLabel: 'reset item {selectedItem}'
   },
   combobox: {
-    clearIndicatorAriaLabel: (labelText, selectedItem) =>
-      `reset selection for ${labelText}. ${selectedItem} is selected`,
-    createLabel: inputValue => `Create "${inputValue}"`
+    clearIndicatorAriaLabel:
+      'reset selection for {labelText}. {selectedItem} is selected',
+    createLabel: 'Create "{inputValue}"'
   },
   multiCombobox: {
-    selectedItemButtonAriaLabel: selectedItem => `reset item ${selectedItem}`
+    selectedItemButtonAriaLabel: 'reset item {selectedItem}'
   }
 };

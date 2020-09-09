@@ -213,6 +213,10 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
     reset();
   }
 
+  const clearIndicatorAriaLabel = i18n.combobox.clearIndicatorAriaLabel
+    .replace(/\{labelText\}/g, labelText)
+    .replace(/\{selectedItem\}/g, itemToString(selectedItem));
+
   return (
     <SelectContainer
       getLabelProps={getLabelProps}
@@ -243,10 +247,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
       >
         {isClearable && selectedItem && (
           <ClearIndicator
-            aria-label={i18n.combobox.clearIndicatorAriaLabel(
-              labelText,
-              itemToString(selectedItem)
-            )}
+            aria-label={clearIndicatorAriaLabel}
             icon={<CrossIcon size={10} />}
             onClick={defaultHandleClearIndicatorClick}
             size={ButtonSize.small}

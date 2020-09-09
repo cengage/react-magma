@@ -659,8 +659,11 @@ Please use discretion when adding custom styles.
 
 ## Internationalization
 
-Some of the internationalization overrides use functions to allow you to have the internal data that the
-default labels are using.
+Some of the internationalization overrides use placeholders to insert selected values in to the message.
+Placeholders are specific keywords surrounded by curly braces. 
+
+- `{labelText}` will be replaced with the comboboxes `labelText`.
+- `{selectedItem}` will be replaced by the current `itemToString` representation of the `selectedItem` of the `select`.
 
 <Link to="/api/internationalization">Full example of internationalization override options</Link>
 
@@ -670,12 +673,10 @@ default labels are using.
       ...defaultI18n,
       select: {
         placeholder: 'Custom Select Placeholder...',
-        clearIndicatorAriaLabel: (labelText, selectedItem) =>
-          `click to reset selection for ${labelText}. ${selectedItem} is currently selected`
+        clearIndicatorAriaLabel: 'Click to reset selection for {labelText}. {selectedItem} is currently selected'
       },
       multiSelect: {
-        selectedItemButtonAriaLabel: (selectedItem) =>
-          `click to reset the selected item ${selectedItem}`
+        selectedItemButtonAriaLabel: 'Click to reset the selected item {selectedItem}'
       }
     }}>
       <Select

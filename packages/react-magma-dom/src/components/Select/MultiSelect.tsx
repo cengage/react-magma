@@ -168,7 +168,8 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
             const multiSelectedItemString = itemToString(multiSelectedItem);
             return (
               <SelectedItemButton
-                aria-label={i18n.multiSelect.selectedItemButtonAriaLabel(
+                aria-label={i18n.multiSelect.selectedItemButtonAriaLabel.replace(
+                  /\{selectedItem\}/g,
                   multiSelectedItemString
                 )}
                 key={`selected-item-${index}`}

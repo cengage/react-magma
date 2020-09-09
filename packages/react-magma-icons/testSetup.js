@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import 'jest-extended';
-import '@testing-library/jest-dom/extend-expect';
+require('jest-extended');
+require('@testing-library/jest-dom/extend-expect');
 require('jest-axe/extend-expect');
 
 // this is just a little hack to silence a warning that we'll get until we
