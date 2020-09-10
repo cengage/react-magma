@@ -82,11 +82,13 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
           onFocus: props.onFocus
         }}
       >
-        {isTextVisuallyHidden ? (
+        {labelText && isTextVisuallyHidden && (
           <HiddenLabel id={id} style={labelStyle}>
             {labelText}
           </HiddenLabel>
-        ) : (
+        )}
+
+        {labelText && !isTextVisuallyHidden && (
           <FormGroupLabel id={id} style={labelStyle}>
             {labelText}
           </FormGroupLabel>
