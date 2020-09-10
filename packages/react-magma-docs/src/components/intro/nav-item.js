@@ -51,7 +51,7 @@ const NavItem = ({ activeSection, id, number, onClick, text }) => (
       <Item>
         <Link
           active={activeSection === id}
-          href={`#${id}`}
+          href={`#${id}H`}
           onClick={() => {
             handleNavClick(id, onClick)
           }}

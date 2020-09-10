@@ -174,11 +174,12 @@ export class IndexPageContent extends React.Component {
 
             <HexBackground>
               <IntroSection
+                id="sectionIntro"
                 image={<ColorLogo style={{ width: '100%' }} />}
                 afterAnimatedIn={this.handleAnimateIn}
                 style={{ marginTop: '70px' }}
               >
-                <Heading id="sectionIntro" tabIndex={-1} theme={theme}>
+                <Heading id="sectionIntroH" tabIndex={-1} theme={theme}>
                   React Magma
                 </Heading>
                 <p style={{ marginBottom: '20px' }}>
@@ -224,11 +225,12 @@ export class IndexPageContent extends React.Component {
               </IntroSection>
 
               <IntroSection
+                id="sectionComponents"
                 image={<ImageComponents style={{ width: '100%' }} />}
                 afterAnimatedIn={this.handleAnimateIn}
               >
                 <IntroHeading
-                  id="sectionComponents"
+                  id="sectionComponentsH"
                   number="01"
                   name="Component-based"
                 />
@@ -244,10 +246,11 @@ export class IndexPageContent extends React.Component {
               </IntroSection>
 
               <IntroSection
+                id="sectionQuality"
                 image={<ImageQuality style={{ width: '100%' }} />}
                 afterAnimatedIn={this.handleAnimateIn}
               >
-                <IntroHeading id="sectionQuality" name="Quality" number="02" />
+                <IntroHeading id="sectionQualityH" name="Quality" number="02" />
                 <p>
                   Every component goes through a rigorous process to ensure it
                   meets our standards for quality. This includes design,
@@ -256,11 +259,12 @@ export class IndexPageContent extends React.Component {
               </IntroSection>
 
               <IntroSection
+                id="sectionAccessible"
                 image={<ImageAccessible style={{ width: '100%' }} />}
                 afterAnimatedIn={this.handleAnimateIn}
               >
                 <IntroHeading
-                  id="sectionAccessible"
+                  id="sectionAccessibleH"
                   name="Accessible"
                   number="03"
                 />
@@ -272,10 +276,11 @@ export class IndexPageContent extends React.Component {
               </IntroSection>
 
               <IntroSection
+                id="sectionDevice"
                 image={<ImageDevice style={{ width: '100%' }} />}
                 afterAnimatedIn={this.handleAnimateIn}
               >
-                <IntroHeading id="sectionDevice" name="Device" number="04" />
+                <IntroHeading id="sectionDeviceH" name="Device" number="04" />
                 <p>
                   React Magma is designed and developed to provide a single
                   system that unifies the user experience across platforms,
@@ -285,11 +290,12 @@ export class IndexPageContent extends React.Component {
               </IntroSection>
 
               <IntroSection
+                id="sectionEvolving"
                 image={<ImageEvolving style={{ width: '100%' }} />}
                 afterAnimatedIn={this.handleAnimateIn}
               >
                 <IntroHeading
-                  id="sectionEvolving"
+                  id="sectionEvolvingH"
                   name="Always Evolving"
                   number="05"
                 />
