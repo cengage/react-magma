@@ -15,19 +15,27 @@ import ImageEvolving from '../../images/img-evolving.svg'
 import ImageQuality from '../../images/img-quality.svg'
 
 const Heading = styled.h1`
-  color: inherit;
-  font-family: ${props => props.theme.bodyFont};
-  font-size: 3.4em;
-  font-weight: 600;
-  text-align: center;
-  text-transform: uppercase;
+  && {
+    color: inherit;
+    font-family: ${props => props.theme.bodyFont};
+    font-size: 3.4em;
+    font-weight: 600;
+    margin-top: -240px;
+    padding-top: 240px;
+    text-align: center;
+    text-transform: uppercase;
 
-  @media (min-width: ${props => props.theme.breakpoints.medium}px) {
-    font-size: 6.4em;
-  }
+    &:focus {
+      border-bottom: 2px dotted ${props => props.theme.colors.neutral08};
+    }
 
-  @media (min-width: ${props => props.theme.breakpoints.small}px) {
-    text-align: left;
+    @media (min-width: ${props => props.theme.breakpoints.medium}px) {
+      font-size: 6.4em;
+    }
+
+    @media (min-width: ${props => props.theme.breakpoints.small}px) {
+      text-align: left;
+    }
   }
 `
 
@@ -121,44 +129,44 @@ export class IndexPageContent extends React.Component {
               <List theme={theme}>
                 <NavItem
                   activeSection={this.state.activeSection}
-                  id="sectionIntro"
                   number="00"
                   onClick={this.handleNavClick}
+                  section="sectionIntro"
                   text="Intro"
                 />
                 <NavItem
                   activeSection={this.state.activeSection}
-                  id="sectionComponents"
                   number="01"
                   onClick={this.handleNavClick}
+                  section="sectionComponents"
                   text="Component-based"
                 />
                 <NavItem
                   activeSection={this.state.activeSection}
-                  id="sectionQuality"
                   number="02"
                   onClick={this.handleNavClick}
+                  section="sectionQuality"
                   text="Quality"
                 />
                 <NavItem
                   activeSection={this.state.activeSection}
-                  id="sectionAccessible"
                   number="03"
                   onClick={this.handleNavClick}
+                  section="sectionAccessible"
                   text="Accessible"
                 />
                 <NavItem
                   activeSection={this.state.activeSection}
-                  id="sectionDevice"
                   number="04"
                   onClick={this.handleNavClick}
+                  section="sectionDevice"
                   text="Device-agnostic"
                 />
                 <NavItem
                   activeSection={this.state.activeSection}
-                  id="sectionEvolving"
                   number="05"
                   onClick={this.handleNavClick}
+                  section="sectionEvolving"
                   text="Always evolving"
                 />
               </List>
@@ -166,12 +174,14 @@ export class IndexPageContent extends React.Component {
 
             <HexBackground>
               <IntroSection
-                id="sectionIntro"
+                section="sectionIntro"
                 image={<ColorLogo style={{ width: '100%' }} />}
                 afterAnimatedIn={this.handleAnimateIn}
                 style={{ marginTop: '70px' }}
               >
-                <Heading theme={theme}>React Magma</Heading>
+                <Heading id="sectionIntroH" tabIndex={-1} theme={theme}>
+                  React Magma
+                </Heading>
                 <p style={{ marginBottom: '20px' }}>
                   React Magma is a suite of React components based on the Magma
                   design system that make it easy to create powerful and
@@ -215,11 +225,15 @@ export class IndexPageContent extends React.Component {
               </IntroSection>
 
               <IntroSection
-                id="sectionComponents"
+                section="sectionComponents"
                 image={<ImageComponents style={{ width: '100%' }} />}
                 afterAnimatedIn={this.handleAnimateIn}
               >
-                <IntroHeading number="01" name="Component-based" />
+                <IntroHeading
+                  id="sectionComponentsH"
+                  number="01"
+                  name="Component-based"
+                />
                 <p>
                   Components are the building blocks of React applications. With
                   React Magma, we've built on this fundamental concept to
@@ -232,11 +246,11 @@ export class IndexPageContent extends React.Component {
               </IntroSection>
 
               <IntroSection
-                id="sectionQuality"
+                section="sectionQuality"
                 image={<ImageQuality style={{ width: '100%' }} />}
                 afterAnimatedIn={this.handleAnimateIn}
               >
-                <IntroHeading name="Quality" number="02" />
+                <IntroHeading id="sectionQualityH" name="Quality" number="02" />
                 <p>
                   Every component goes through a rigorous process to ensure it
                   meets our standards for quality. This includes design,
@@ -245,11 +259,15 @@ export class IndexPageContent extends React.Component {
               </IntroSection>
 
               <IntroSection
-                id="sectionAccessible"
+                section="sectionAccessible"
                 image={<ImageAccessible style={{ width: '100%' }} />}
                 afterAnimatedIn={this.handleAnimateIn}
               >
-                <IntroHeading name="Accessible" number="03" />
+                <IntroHeading
+                  id="sectionAccessibleH"
+                  name="Accessible"
+                  number="03"
+                />
                 <p>
                   React Magma components come with accessibility already baked
                   in, including keyboard behavior and the management of ARIA
@@ -258,11 +276,15 @@ export class IndexPageContent extends React.Component {
               </IntroSection>
 
               <IntroSection
-                id="sectionDevice"
+                section="sectionDevice"
                 image={<ImageDevice style={{ width: '100%' }} />}
                 afterAnimatedIn={this.handleAnimateIn}
               >
-                <IntroHeading name="Device" number="04" />
+                <IntroHeading
+                  id="sectionDeviceH"
+                  name="Device-agnostic"
+                  number="04"
+                />
                 <p>
                   React Magma is designed and developed to provide a single
                   system that unifies the user experience across platforms,
@@ -272,11 +294,15 @@ export class IndexPageContent extends React.Component {
               </IntroSection>
 
               <IntroSection
-                id="sectionEvolving"
+                section="sectionEvolving"
                 image={<ImageEvolving style={{ width: '100%' }} />}
                 afterAnimatedIn={this.handleAnimateIn}
               >
-                <IntroHeading name="Always Evolving" number="05" />
+                <IntroHeading
+                  id="sectionEvolvingH"
+                  name="Always Evolving"
+                  number="05"
+                />
                 <p>
                   The React Magma team actively designs, develops, tests, and
                   maintains the design system. If you have any requests for new
