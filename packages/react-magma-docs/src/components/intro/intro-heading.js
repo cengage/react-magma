@@ -11,8 +11,8 @@ const StyledHeading = styled.h2`
     font-weight: 600;
     text-align: center;
     text-transform: uppercase;
-    margin-top: -200px;
-    padding-top: 220px;
+    margin-top: -240px;
+    padding-top: 264px;
 
     &:focus {
       border-bottom: 2px dotted ${props => props.theme.colors.neutral08};

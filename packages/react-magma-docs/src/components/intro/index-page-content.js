@@ -20,8 +20,8 @@ const Heading = styled.h1`
     font-family: ${props => props.theme.bodyFont};
     font-size: 3.4em;
     font-weight: 600;
-    margin-top: -200px;
-    padding-top: 200px;
+    margin-top: -240px;
+    padding-top: 240px;
     text-align: center;
     text-transform: uppercase;
 
@@ -129,44 +129,44 @@ export class IndexPageContent extends React.Component {
               <List theme={theme}>
                 <NavItem
                   activeSection={this.state.activeSection}
-                  id="sectionIntro"
                   number="00"
                   onClick={this.handleNavClick}
+                  section="sectionIntro"
                   text="Intro"
                 />
                 <NavItem
                   activeSection={this.state.activeSection}
-                  id="sectionComponents"
                   number="01"
                   onClick={this.handleNavClick}
+                  section="sectionComponents"
                   text="Component-based"
                 />
                 <NavItem
                   activeSection={this.state.activeSection}
-                  id="sectionQuality"
                   number="02"
                   onClick={this.handleNavClick}
+                  section="sectionQuality"
                   text="Quality"
                 />
                 <NavItem
                   activeSection={this.state.activeSection}
-                  id="sectionAccessible"
                   number="03"
                   onClick={this.handleNavClick}
+                  section="sectionAccessible"
                   text="Accessible"
                 />
                 <NavItem
                   activeSection={this.state.activeSection}
-                  id="sectionDevice"
                   number="04"
                   onClick={this.handleNavClick}
+                  section="sectionDevice"
                   text="Device-agnostic"
                 />
                 <NavItem
                   activeSection={this.state.activeSection}
-                  id="sectionEvolving"
                   number="05"
                   onClick={this.handleNavClick}
+                  section="sectionEvolving"
                   text="Always evolving"
                 />
               </List>
@@ -174,7 +174,7 @@ export class IndexPageContent extends React.Component {
 
             <HexBackground>
               <IntroSection
-                id="sectionIntro"
+                section="sectionIntro"
                 image={<ColorLogo style={{ width: '100%' }} />}
                 afterAnimatedIn={this.handleAnimateIn}
                 style={{ marginTop: '70px' }}
@@ -225,7 +225,7 @@ export class IndexPageContent extends React.Component {
               </IntroSection>
 
               <IntroSection
-                id="sectionComponents"
+                section="sectionComponents"
                 image={<ImageComponents style={{ width: '100%' }} />}
                 afterAnimatedIn={this.handleAnimateIn}
               >
@@ -246,7 +246,7 @@ export class IndexPageContent extends React.Component {
               </IntroSection>
 
               <IntroSection
-                id="sectionQuality"
+                section="sectionQuality"
                 image={<ImageQuality style={{ width: '100%' }} />}
                 afterAnimatedIn={this.handleAnimateIn}
               >
@@ -259,7 +259,7 @@ export class IndexPageContent extends React.Component {
               </IntroSection>
 
               <IntroSection
-                id="sectionAccessible"
+                section="sectionAccessible"
                 image={<ImageAccessible style={{ width: '100%' }} />}
                 afterAnimatedIn={this.handleAnimateIn}
               >
@@ -276,11 +276,15 @@ export class IndexPageContent extends React.Component {
               </IntroSection>
 
               <IntroSection
-                id="sectionDevice"
+                section="sectionDevice"
                 image={<ImageDevice style={{ width: '100%' }} />}
                 afterAnimatedIn={this.handleAnimateIn}
               >
-                <IntroHeading id="sectionDeviceH" name="Device" number="04" />
+                <IntroHeading
+                  id="sectionDeviceH"
+                  name="Device-agnostic"
+                  number="04"
+                />
                 <p>
                   React Magma is designed and developed to provide a single
                   system that unifies the user experience across platforms,
@@ -290,7 +294,7 @@ export class IndexPageContent extends React.Component {
               </IntroSection>
 
               <IntroSection
-                id="sectionEvolving"
+                section="sectionEvolving"
                 image={<ImageEvolving style={{ width: '100%' }} />}
                 afterAnimatedIn={this.handleAnimateIn}
               >

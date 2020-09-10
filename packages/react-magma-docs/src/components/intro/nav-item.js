@@ -45,15 +45,15 @@ function handleNavClick(id, onClick) {
   onClick(id)
 }
 
-const NavItem = ({ activeSection, id, number, onClick, text }) => (
+const NavItem = ({ activeSection, section, number, onClick, text }) => (
   <ThemeContext.Consumer>
     {theme => (
       <Item>
         <Link
-          active={activeSection === id}
-          href={`#${id}H`}
+          active={activeSection === section}
+          href={`#${section}H`}
           onClick={() => {
-            handleNavClick(id, onClick)
+            handleNavClick(section, onClick)
           }}
           theme={theme}
         >
@@ -67,9 +67,9 @@ const NavItem = ({ activeSection, id, number, onClick, text }) => (
 
 NavItem.propTypes = {
   activeSection: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  section: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
 }
 
