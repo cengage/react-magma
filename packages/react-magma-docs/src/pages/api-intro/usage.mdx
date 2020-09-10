@@ -6,7 +6,6 @@ order: 2
 import { Link } from 'gatsby'
 import { Button } from 'react-magma-dom'
 
-
 # Using React Magma
 
 How to use React Magma components. The examples here use the <Link to="/api/button">Button</Link> component. More information about each of the components can be found in the Component API section.
@@ -17,7 +16,7 @@ To use a component, simply import the component and add it to your UI. The style
 Here is a most basic example:
 
 ```.js
-  import React from 'react'
+ import React from 'react'
   import { Button } from 'react-magma-dom'
 
   function Demo() {
@@ -26,6 +25,7 @@ Here is a most basic example:
 ```
 
 This would render as:
+
 <Button>Hello World</Button>
 
 ## Using TypeScript Enums
@@ -33,7 +33,7 @@ This would render as:
 When using a prop that takes an enum, you must import that type from React Magma if you are using TypeScript.
 
 ```.js
-  import React from 'react'
+ import React from 'react'
   import { Button, ButtonVariant } from 'react-magma-dom'
 
   function Demo() {
@@ -42,7 +42,8 @@ When using a prop that takes an enum, you must import that type from React Magma
 ```
 
 This would render as:
-<Button variant='outline'>Hello World</Button>
+
+<Button variant="outline">Hello World</Button>
 
 ## Importing Global Styles
 
@@ -55,7 +56,7 @@ To use the `GlobalStyles` object, simply import it from `react-magma-dom` and in
 The `GlobalStyles` component can be nested inside the <Link to="/api/theme">ThemeContext.Provivder</Link> to inherit styles from the theme.
 
 ```.js
-  import React from 'react'
+ import React from 'react'
   import { GlobalStyles } from 'react-magma-dom'
 
   function App() {
@@ -74,7 +75,7 @@ The complete Magma theme can be found in the [Stash repository](http://stash.cor
 For more information about colors, see the <Link to="/design/colors">Design Documentation</Link>.
 
 ```.js
-  import React from 'react'
+ import React from 'react'
   import { magma } from 'react-magma-dom'
   import styled from '@emotion/styled';
 

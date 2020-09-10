@@ -140,7 +140,7 @@ describe('Input', () => {
 
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('left', '10px');
+    expect(span).toHaveStyleRule('left', '12px');
     expect(span).toHaveStyleRule('right', 'auto');
   });
 
@@ -151,7 +151,7 @@ describe('Input', () => {
     const span = container.querySelector('span');
 
     expect(span).toHaveStyleRule('left', 'auto');
-    expect(span).toHaveStyleRule('right', '10px');
+    expect(span).toHaveStyleRule('right', '12px');
   });
 
   it('should render a large input with a right-aligned icon in the correct position', () => {
@@ -164,7 +164,7 @@ describe('Input', () => {
     const input = container.querySelector('input');
 
     expect(span).toHaveStyleRule('left', 'auto');
-    expect(span).toHaveStyleRule('right', '15px');
+    expect(span).toHaveStyleRule('right', '16px');
 
     expect(input).toHaveStyleRule('padding-right', '50px');
   });
@@ -175,7 +175,7 @@ describe('Input', () => {
 
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('left', '10px');
+    expect(span).toHaveStyleRule('left', '12px');
     expect(span).toHaveStyleRule('right', 'auto');
   });
 
@@ -188,7 +188,7 @@ describe('Input', () => {
     const span = container.querySelector('span');
     const input = container.querySelector('input');
 
-    expect(span).toHaveStyleRule('left', '15px');
+    expect(span).toHaveStyleRule('left', '16px');
     expect(span).toHaveStyleRule('right', 'auto');
 
     expect(input).toHaveStyleRule('padding-left', '50px');
@@ -299,8 +299,8 @@ describe('Input', () => {
       expect(input).toHaveStyleRule('height', '37px');
       expect(input).toHaveStyleRule('padding-left', '35px');
 
-      expect(iconWrapper).toHaveStyleRule('margin-top', '-9px');
-      expect(iconWrapper).toHaveStyleRule('left', '10px');
+      expect(iconWrapper).toHaveStyleRule('margin-top', '-11px');
+      expect(iconWrapper).toHaveStyleRule('left', '12px');
       expect(iconWrapper).toHaveStyleRule('right', 'auto');
 
       expect(svg).toHaveAttribute('height', '17');

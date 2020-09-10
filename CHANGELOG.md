@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.71](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.70...v2.0.0-beta.71) (2020-09-10)
+
+
+### Bug Fixes
+
+* **codesnippits:** fix alignment of code snippets on usage page ([0d6bc9e](http://stash.cengage.com:7999/FRONT/react-magma/commits/0d6bc9e))
+* **input message:** add aria-live around error messages ([bfe5919](http://stash.cengage.com:7999/FRONT/react-magma/commits/bfe5919))
+* **skiplink:** fix skiplink not showing up ([51ef962](http://stash.cengage.com:7999/FRONT/react-magma/commits/51ef962))
+* **skiplink:** make z-index even higher ([16b4cf1](http://stash.cengage.com:7999/FRONT/react-magma/commits/16b4cf1))
+* **timepicker:** apply style props instead of spreading ([2d59f75](http://stash.cengage.com:7999/FRONT/react-magma/commits/2d59f75))
+* **timepicker:** some style fixes to timepicker, add style props ([3963654](http://stash.cengage.com:7999/FRONT/react-magma/commits/3963654))
+
+
+
+
+
 # [2.0.0-beta.70](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.69...v2.0.0-beta.70) (2020-09-03)
 
 **Note:** Version bump only for package react-magma

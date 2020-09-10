@@ -143,17 +143,17 @@ const IconWrapper = styled.span<{
   inputSize?: InputSize;
 }>`
   color: ${props => props.theme.colors.neutral01};
-  left: ${props => (props.iconPosition === 'left' ? '10px' : 'auto')};
-  right: ${props => (props.iconPosition === 'right' ? '10px' : 'auto')};
+  left: ${props => (props.iconPosition === 'left' ? '12px' : 'auto')};
+  right: ${props => (props.iconPosition === 'right' ? '12px' : 'auto')};
   position: absolute;
-  margin-top: -9px;
+  margin-top: -11px;
   top: 50%;
 
   ${props =>
     props.inputSize === 'large' &&
     css`
-      left: ${props.iconPosition === 'left' ? '15px' : 'auto'};
-      right: ${props.iconPosition === 'right' ? '15px' : 'auto'};
+      left: ${props.iconPosition === 'left' ? '16px' : 'auto'};
+      right: ${props.iconPosition === 'right' ? '16px' : 'auto'};
       margin-top: -10px;
     `}
 `;

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { Announce } from '../Announce';
 import { Notification2Icon } from '../Icon/types/Notification2Icon';
 
 export interface InputMessageProps
@@ -46,20 +47,22 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
   const theme = React.useContext(ThemeContext);
 
   return (
-    <Message
-      {...other}
-      data-testid="inputMessage"
-      id={id}
-      isInverse={isInverse}
-      isError={isError}
-      theme={theme}
-    >
-      {isError && (
-        <IconWrapper>
-          <Notification2Icon aria-label="Error" size={18} />
-        </IconWrapper>
-      )}
-      <div>{children}</div>
-    </Message>
+    <Announce>
+      <Message
+        {...other}
+        data-testid="inputMessage"
+        id={id}
+        isInverse={isInverse}
+        isError={isError}
+        theme={theme}
+      >
+        {isError && (
+          <IconWrapper>
+            <Notification2Icon aria-label="Error" size={18} />
+          </IconWrapper>
+        )}
+        <div>{children}</div>
+      </Message>
+    </Announce>
   );
 };

@@ -10,9 +10,12 @@ import { enUS } from 'date-fns/locale';
 import { ThemeInterface } from '../../theme/magma';
 
 export interface TimePickerProps {
+  containerStyle?: React.CSSProperties;
   errorMessage?: React.ReactNode;
   id?: string;
+  inputStyle?: React.CSSProperties;
   isInverse?: boolean;
+  labelStyle?: React.CSSProperties;
   labelText: React.ReactNode;
   helperMessage?: React.ReactNode;
   messageStyle?: React.CSSProperties;
@@ -21,6 +24,7 @@ export interface TimePickerProps {
 }
 
 const TimePickerContainer = styled.div<{
+  containerStyle?: React.CSSProperties;
   isInverse?: boolean;
   theme: ThemeInterface;
 }>`
@@ -42,7 +46,7 @@ const InputsContainer = styled.div<{ theme: ThemeInterface }>`
   background: ${props => props.theme.colors.neutral08};
   left: 31px;
   position: absolute;
-  top: 7px;
+  top: 5px;
 `;
 
 const Divider = styled.span`
@@ -57,7 +61,7 @@ const StyledNumInput = styled.input<{ theme: ThemeInterface }>`
   border-radius: 3px;
   padding: 0 3px;
   text-align: right;
-  width: 23px;
+  width: 25px;
 
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -78,9 +82,12 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
   const {
+    containerStyle,
     errorMessage,
     helperMessage,
+    inputStyle,
     isInverse,
+    labelStyle,
     labelText,
     onChange,
     ...other
@@ -226,7 +233,11 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
   }
 
   return (
-    <TimePickerContainer isInverse={isInverse} theme={theme}>
+    <TimePickerContainer
+      isInverse={isInverse}
+      style={containerStyle}
+      theme={theme}
+    >
       <Input
         {...other}
         disabled
@@ -235,6 +246,7 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
         icon={<ClockIcon />}
         isInverse={isInverse}
         id={id}
+        labelStyle={labelStyle}
         labelText={labelText}
         inputStyle={{
           background: `${theme.colors.neutral08}`,
@@ -246,7 +258,8 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
               : theme.colors.neutral04
           }`,
           cursor: 'default',
-          width: '125px'
+          width: '134px',
+          ...inputStyle
         }}
         value={time}
       >

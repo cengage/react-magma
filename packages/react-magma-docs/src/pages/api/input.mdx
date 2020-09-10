@@ -97,10 +97,22 @@ If an input has an `errorMessage`, the input will be styled to highlight it's er
 If an error message is present, it will replace the helper text. Can be a node or a string.
 
 ```.jsx
-    <Input
-        errorMessage='Please correct this error'
-        helperMessage='Helper text'
-        labelText='Error Message' />
+  (props) => {
+
+  const [hasError, setHasError] = React.useState(false);
+
+  function toggleError(){
+    setHasError(!hasError)
+  }
+
+   return( <>
+      <Input
+          errorMessage={hasError ? 'Please correct this error': null}
+          helperMessage='Helper text'
+          labelText='Error Message' />
+      <Button onClick={toggleError}>Toggle Error Message</Button>
+    </>)
+  }
 ```
 
 ## Helper Message
