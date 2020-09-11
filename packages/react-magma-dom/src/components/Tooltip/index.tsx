@@ -259,16 +259,20 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
 
     const tooltipTrigger = React.cloneElement(children, {
       'aria-describedby': id,
-      onKeyDown: handleKeyDown,
       onBlur: hideTooltip,
       onFocus: showTooltip,
-      onMouseLeave: hideTooltip,
-      onMouseEnter: showTooltip,
       ref: ref
     });
 
     return (
-      <ToolTipContainer {...other} data-testid={testId} style={containerStyle}>
+      <ToolTipContainer
+        {...other}
+        data-testid={testId}
+        onKeyDown={handleKeyDown}
+        onMouseLeave={hideTooltip}
+        onMouseEnter={showTooltip}
+        style={containerStyle}
+      >
         {tooltipTrigger}
         <StyledTooltip
           aria-hidden={!isVisible}
