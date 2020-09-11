@@ -59,7 +59,9 @@ const NavItem = ({ activeSection, section, number, onClick, text }) => (
         >
           <Num>{number}</Num>
           {text}
-          {activeSection === id && <VisuallyHidden>(selected)</VisuallyHidden>}
+          {activeSection === number && (
+            <VisuallyHidden>(selected)</VisuallyHidden>
+          )}
         </Link>
       </Item>
     )}
