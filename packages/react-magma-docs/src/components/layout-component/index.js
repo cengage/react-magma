@@ -48,8 +48,8 @@ export default props => (
           variant="outline"
         />
         <main className="main">
-          <SlidingDrawer />
           <Masthead />
+          <SlidingDrawer />
           <section className="content">{props.children}</section>
         </main>
       </>

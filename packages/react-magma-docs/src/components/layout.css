@@ -493,14 +493,15 @@ code {
   color: #003865;
   margin: 0 0.3em 0 0.2em;
 }
-code.inverse {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.1);
-  color: #fff;
+pre {
+  white-space: pre-wrap;
 }
 pre code {
   background: none;
+  border: 0;
   line-height: 1.42;
+
+  word-wrap: break-word;
 }
 code:before,
 code:after,

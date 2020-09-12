@@ -24,10 +24,10 @@ export const SimplePropsTable = ({ propertyValues }) => {
           }}
         >
           <tr>
-            <th>Property</th>
-            <th>Type</th>
-            <th>Default</th>
-            {hasDescription && <th>Description</th>}
+            <th scope="col">Property</th>
+            <th scope="col">Type</th>
+            <th scope="col">Default</th>
+            {hasDescription && <th scope="col">Description</th>}
           </tr>
         </thead>
         <tbody>
