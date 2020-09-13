@@ -8,7 +8,7 @@
     "test-watch": "lerna exec --scope react-magma-dom 'npm t -- --watch'",
     "test-dom": "lerna exec --scope react-magma-dom 'npm t -- --watch --coverage=false'",
     "test-core": "lerna exec --scope react-magma-core 'npm t -- --watch --coverage=false'",
-    "build": "lerna run build --scope react-magma-dom --scope react-magma-icons --scope react-magma-docs --stream --no-progress",
+    "build": "lerna run build --stream --no-progress --scope react-magma-dom --scope react-magma-icons --scope react-magma-docs",
     "bootstrap": "lerna bootstrap --ci",
     "lint": "lerna run lint",
     "docs": "lerna exec --scope react-magma-docs gatsby develop",
