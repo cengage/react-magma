@@ -7,6 +7,12 @@
   "command": {
     "bootstrap":{
       "hoist": [
+        "@commitlint/cli",
+        "@commitlint/config-conventional",
+        "commitizen",
+        "cz-conventional-changelog",
+        "husky",
+        "lerna",
         "react",
         "react-dom"
       ]
