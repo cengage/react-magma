@@ -6,3 +6,6 @@ yarn-error.log
 # Build directory
 /public
 .DS_Store
+
+# https://github.com/gatsbyjs/gatsby/issues/26735
+package-lock.json
