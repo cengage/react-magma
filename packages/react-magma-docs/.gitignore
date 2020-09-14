@@ -8,4 +8,4 @@ yarn-error.log
 .DS_Store
 
 # https://github.com/gatsbyjs/gatsby/issues/26735
-package-lock.json
+# package-lock.json

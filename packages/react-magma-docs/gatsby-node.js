@@ -24,14 +24,3 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   }
 }
 
-exports.onCreateWebpackConfig = ({ actions }) => {
-  actions.setWebpackConfig({
-    resolve: {
-      // symlinks: true,
-      modules: [
-        './node_modules',
-        '../../node_modules'
-      ]
-    },
-  })
-}

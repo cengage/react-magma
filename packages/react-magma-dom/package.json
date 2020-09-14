@@ -94,8 +94,6 @@
     "postcss-url": "^8.0.0",
     "prettier": "^1.14.2",
     "promise": "^8.0.3",
-    "react": "^16.10.0",
-    "react-dom": "^16.10.0",
     "react-magma-icons": "^1.0.0",
     "react-test-renderer": "^16.13.1",
     "regenerator-runtime": "^0.13.7",

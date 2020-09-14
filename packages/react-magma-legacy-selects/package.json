@@ -72,8 +72,6 @@
     "jest-emotion": "^10.0.32",
     "jest-extended": "^0.11.5",
     "lint-staged": "^10.2.11",
-    "react": "^16.10.0",
-    "react-dom": "^16.10.0",
     "react-magma-dom": "^2.0.0-beta.64",
     "react-magma-icons": "^1.0.0",
     "react-select": "3.0.8",

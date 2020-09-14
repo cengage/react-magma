@@ -1,21 +1,11 @@
 {
   "packages": [
-    "packages/react-magma-dom",
-    "packages/react-magma-docs",
-    "packages/react-magma-icons"
+    "packages/**"
   ],
   "command": {
     "bootstrap":{
-      "hoist": [
-        "@commitlint/cli",
-        "@commitlint/config-conventional",
-        "commitizen",
-        "cz-conventional-changelog",
-        "husky",
-        "lerna",
-        "react",
-        "react-dom"
-      ]
+      "ci": false,
+      "ignore": ["react-magma-legacy-selects"]
     }
   },
   "version": "2.0.0-beta.72"
