@@ -15,7 +15,7 @@ import { v4 as uuid } from 'uuid'
 A Combobox is similar to a Select component, in that it is used for collecting user provided information from a list of options.
 However, a combobox also allows users to type in the field, either to create their own option or to see typeahead suggestions.
 
-For simple Select functionality, please see the <Link to="/api/downshift-select">Select component</Link>.
+For simple Select functionality, please see the <Link to="/api/select">Select component</Link>.
 
 ```.jsx
   <>
@@ -113,13 +113,13 @@ which is a function that returns the string representation of your `item` which 
 Set initial state using the `initialSelectedItem`, `initialSelectedItems`, and `initialHighlightedIndex` props.
 
 <Alert variant="info">
-  When using any of the <code>initial*</code> props be aware that passing in the
+  When using any of the <code class="inverse">initial*</code> props be aware that passing in the
   controlled version of that prop will overwrite the initial version.
   <br />
   <br />
   <strong>Ex: </strong>
-  <code>selectedItem</code> takes precedence over{' '}
-  <code>initialSelectedItem</code>
+  <code class="inverse">selectedItem</code> takes precedence over{' '}
+  <code class="inverse">initialSelectedItem</code>
 </Alert>
 
 ```.jsx
