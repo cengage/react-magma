@@ -157,7 +157,7 @@ describe('Calendar Month', () => {
       </CalendarContext.Provider>
     );
 
-    fireEvent.click(getByLabelText('Calendar Help'));
+    fireEvent.click(getByLabelText('Calendar Widget Help'));
 
     expect(setShowHelperInformation).toHaveBeenCalledWith(true);
   });
@@ -201,7 +201,7 @@ describe('Calendar Month', () => {
       </CalendarContext.Provider>
     );
 
-    getByLabelText('Calendar Help').focus();
+    getByLabelText('Calendar Widget Help').focus();
 
     expect(setDateFocused).toHaveBeenCalledWith(false);
   });

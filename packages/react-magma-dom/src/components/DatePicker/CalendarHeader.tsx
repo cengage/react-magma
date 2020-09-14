@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Announce } from '../Announce';
 import { CalendarContext } from './CalendarContext';
 import { ArrowLeft2Icon } from '../Icon/types/ArrowLeft2Icon';
 import { ArrowRight2Icon } from '../Icon/types/ArrowRight2Icon';
@@ -68,7 +69,7 @@ export const CalendarHeader: React.FunctionComponent<CalendarHeaderProps> = (
   return (
     <CalendarHeaderContainer>
       <CalendarHeaderText tabIndex={-1} theme={theme} ref={calendarHeader}>
-        {capitalizeCurrentMonth}
+        <Announce>{capitalizeCurrentMonth}</Announce>
       </CalendarHeaderText>
       <CalendarIconButton>
         <IconButton
