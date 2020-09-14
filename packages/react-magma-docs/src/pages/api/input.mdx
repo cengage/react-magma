@@ -206,11 +206,13 @@ The `inputSize` prop can be used to control the input size. Options are `medium`
 
 The `isLabelVisuallyHidden` prop can be used to visually hide the text label, while still making the text available to screen readers.
 
+When there isn't a visible label, the placeholder text should match the invisible label word for word. This is so speech input users can operate the control with voice commands.
+
 ```.jsx
     <Input
       isLabelVisuallyHidden
-      labelText='This is the aria-label'
-      placeholder='This is placeholder' />
+      labelText='Search'
+      placeholder='Search' />
 ```
 
 ## Additional Children (e.g. Help Link)
