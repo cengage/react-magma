@@ -81,7 +81,7 @@ so it will be read screen readers.
 ## Available Icons
 
 ```.jsx hideCode
-  export const hiddenIcons=[
+<div className='demo-icon-list-container'>{Object.keys(ICONS).filter((icon) => {return ![
     'ArrowDown2Icon',
     'ArrowLeft2Icon',
     'ArrowRight2Icon',
@@ -104,8 +104,7 @@ so it will be read screen readers.
     'Reading2Icon',
     'Search2Icon',
     'Upload2Icon'
-  ]
-  <div className='demo-icon-list-container'>{Object.keys(ICONS).filter((icon) => {return !hiddenIcons.includes(icon)}).map((icon) => {
+  ].includes(icon)}).map((icon) => {
     const id = icon + 'Available';
     const title = icon + ' Title';
     const Icon = ICONS[icon];
