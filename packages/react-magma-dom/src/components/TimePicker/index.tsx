@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
+import { Announce } from '../Announce';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { AmPmToggle } from './AmPmToggle';
 import { ClockIcon } from '../Icon/types/ClockIcon';
@@ -8,6 +9,7 @@ import { useGenerateId } from '../../utils';
 import { I18nContext } from '../../i18n';
 import { enUS } from 'date-fns/locale';
 import { ThemeInterface } from '../../theme/magma';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 export interface TimePickerProps {
   containerStyle?: React.CSSProperties;
@@ -23,11 +25,14 @@ export interface TimePickerProps {
   onChange?: (value: string) => void;
 }
 
-const TimePickerContainer = styled.div<{
+const TimePickerContainer = styled.fieldset<{
   containerStyle?: React.CSSProperties;
   isInverse?: boolean;
   theme: ThemeInterface;
 }>`
+  border: 0;
+  margin: 0;
+  padding: 0;
   position: relative;
 
   &:focus-within {
@@ -40,6 +45,23 @@ const TimePickerContainer = styled.div<{
       outline-offset: 4px;
     }
   }
+`;
+
+const StyledLegend = styled.legend<{
+  isInverse?: boolean;
+  labelStyle?: React.CSSProperties;
+  theme: ThemeInterface;
+}>`
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral01};
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  max-width: 100%;
+  text-align: left;
 `;
 
 const InputsContainer = styled.div<{ theme: ThemeInterface }>`
@@ -226,7 +248,12 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
       minuteRef.current.focus();
     }
 
-    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+    if (
+      event.key === 'ArrowUp' ||
+      event.key === 'ArrowDown' ||
+      ((event.key === 'A' || event.key === 'a') && amPm === pm) ||
+      ((event.key === 'P' || event.key === 'p') && amPm === am)
+    ) {
       event.preventDefault();
       toggleAmPm();
     }
@@ -238,6 +265,9 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
       style={containerStyle}
       theme={theme}
     >
+      <StyledLegend isInverse={isInverse} labelStyle={labelStyle} theme={theme}>
+        {labelText}
+      </StyledLegend>
       <Input
         {...other}
         disabled
@@ -246,8 +276,6 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
         icon={<ClockIcon />}
         isInverse={isInverse}
         id={id}
-        labelStyle={labelStyle}
-        labelText={labelText}
         inputStyle={{
           background: `${theme.colors.neutral08}`,
           borderColor: `${
@@ -297,12 +325,25 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
             value={minute}
           />
           <AmPmToggle
+            aria-label={
+              amPm === am
+                ? i18n.timePicker.amButtonAriaLabel
+                : i18n.timePicker.pmButtonAriaLabel
+            }
             ref={amPmRef}
             onClick={toggleAmPm}
             onKeyDown={handleAmPmKeyDown}
           >
             {amPm}
           </AmPmToggle>
+
+          <VisuallyHidden>
+            <Announce>
+              {amPm === am
+                ? i18n.timePicker.amSelectedAnnounce
+                : i18n.timePicker.pmSelectedAnnounce}
+            </Announce>
+          </VisuallyHidden>
         </InputsContainer>
       </Input>
     </TimePickerContainer>

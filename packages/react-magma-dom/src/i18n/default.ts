@@ -96,8 +96,12 @@ export const defaultI18n: I18nInterface = {
     ariaLabel: 'Loading'
   },
   timePicker: {
-    hoursAriaLabel: 'Hours',
-    minutesAriaLabel: 'Minutes'
+    hoursAriaLabel: 'Hour',
+    minutesAriaLabel: 'Minute',
+    amButtonAriaLabel: 'AM selected.  Press button to change',
+    pmButtonAriaLabel: 'PM selected.  Press button to change',
+    amSelectedAnnounce: 'AM is now selected',
+    pmSelectedAnnounce: 'PM is now selected'
   },
   datePicker: {
     startOfWeek: 'sunday',
