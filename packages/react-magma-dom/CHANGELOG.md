@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.73](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.72...v2.0.0-beta.73) (2020-09-15)
+
+
+### Bug Fixes
+
+* **dropdown:** some dropdown a11y fixes ([27670bc](http://stash.cengage.com:7999/FRONT/react-magma/commits/27670bc))
+
+
+
+
+
 # [2.0.0-beta.71](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.70...v2.0.0-beta.71) (2020-09-10)
 
 

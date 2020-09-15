@@ -73,7 +73,7 @@ describe('Radio Group', () => {
       </RadioGroup>
     );
 
-    expect(container.firstChild.children.length).toBe(2);
+    expect(container.firstChild.children.length).toBe(1);
   });
 
   it('Should select an option based on value passed to group', () => {
@@ -125,7 +125,7 @@ describe('Radio Group', () => {
 
   it('Does not violate accessibility standards', () => {
     const { container } = render(
-      <RadioGroup value="default">
+      <RadioGroup labelText="Choose a Color" value="default">
         <Radio id="colorRadio" labelText="Default Color" value="default" />
         <Radio
           color={magma.colors.success01}

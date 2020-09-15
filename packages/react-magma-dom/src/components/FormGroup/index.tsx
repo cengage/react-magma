@@ -48,11 +48,13 @@ export const FormGroup: React.FunctionComponent<FormGroupProps> = (
       role="group"
       style={containerStyle}
     >
-      {isTextVisuallyHidden ? (
+      {labelText && isTextVisuallyHidden && (
         <HiddenLabel id={id} style={labelStyle}>
           {labelText}
         </HiddenLabel>
-      ) : (
+      )}
+
+      {labelText && !isTextVisuallyHidden && (
         <FormGroupLabel id={id} style={labelStyle}>
           {labelText}
         </FormGroupLabel>
