@@ -6,7 +6,7 @@ import {
   InputType
 } from '../BaseInput';
 import { I18nContext } from '../../i18n';
-import { Search2Icon } from '../Icon/types/Search2Icon';
+import { Search2Icon } from 'react-magma-icons';
 import { Spinner } from '../Spinner';
 
 export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
@@ -53,7 +53,7 @@ export const Search: React.FunctionComponent<SearchProps> = React.forwardRef(
 
     // handle search on enter
     function handleKeyPress(event: React.KeyboardEvent) {
-      if (event.keyCode === 13) {
+      if (event.key === 'Enter') {
         event.preventDefault();
         handleSearch();
       }

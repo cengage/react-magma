@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { CalendarContext } from './CalendarContext';
-import { ArrowLeft2Icon } from '../Icon/types/ArrowLeft2Icon';
-import { ArrowRight2Icon } from '../Icon/types/ArrowRight2Icon';
+import { ArrowLeft2Icon, ArrowRight2Icon } from 'react-magma-icons';
 import { ButtonType, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { ThemeContext } from '../../theme/ThemeContext';

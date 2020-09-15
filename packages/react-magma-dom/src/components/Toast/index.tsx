@@ -76,7 +76,7 @@ export const Toast: React.FunctionComponent<ToastProps> = (
     setTimeout(() => {
       if (toastsArray.current) {
         toastsArray.current = toastsArray.current.filter(
-          toastId => toastId !== id
+          toastId => toastId !== containerElement.current
         );
       }
     }, 0);
@@ -140,6 +140,16 @@ export const Toast: React.FunctionComponent<ToastProps> = (
     }
   }
 
+  function calculateAndSetBottomOffsetForToast() {
+    updateBottomOffsetForToast(
+      typeof toastsArray.current[0] === 'undefined'
+        ? 0
+        : toastsArray.current.indexOf(containerElement.current) * TOAST_HEIGHT
+    );
+  }
+
+  const [bottomOffsetForToast, updateBottomOffsetForToast] = React.useState(0);
+
   React.useEffect(() => {
     lastFocus.current = document.activeElement;
 
@@ -152,19 +162,6 @@ export const Toast: React.FunctionComponent<ToastProps> = (
     };
   }, []);
 
-  let bottomOffsetForToast = 0;
-
-  if (toastsArray) {
-    toastsArray.current = toastsArray.current.includes(id)
-      ? toastsArray.current
-      : toastsArray.current.concat([id]);
-
-    bottomOffsetForToast =
-      typeof toastsArray.current[0] === 'undefined'
-        ? 0
-        : toastsArray.current.indexOf(id) * TOAST_HEIGHT;
-  }
-
   React.useEffect(() => {
     if (!disableAutoDismiss) {
       const focusableElements = getTrapElements(containerElement);
@@ -174,6 +171,22 @@ export const Toast: React.FunctionComponent<ToastProps> = (
       });
     }
   }, []);
+
+  React.useEffect(() => {
+    if (toastsArray) {
+      toastsArray.current = toastsArray.current.includes(
+        containerElement.current
+      )
+        ? toastsArray.current
+        : toastsArray.current.concat([containerElement.current]);
+
+      calculateAndSetBottomOffsetForToast();
+    }
+  }, []);
+
+  React.useEffect(() => {
+    calculateAndSetBottomOffsetForToast();
+  }, [toastsArray.current]);
 
   return (
     <ToastWrapper

@@ -11,7 +11,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { ButtonColor, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
-import { CrossIcon } from '../Icon/types/CrossIcon';
+import { CrossIcon } from 'react-magma-icons';
 import { Heading } from '../Heading';
 import { omit, useGenerateId, usePrevious } from '../../utils';
 

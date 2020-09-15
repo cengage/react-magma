@@ -1,6 +1,7 @@
 import React from 'react'
 import './styles.css'
-import { AsteriskIcon, magma } from 'react-magma-dom'
+import { AsteriskIcon } from 'react-magma-icons'
+import { magma } from 'react-magma-dom'
 
 export const SimplePropsTable = ({ propertyValues }) => {
   if (propertyValues === undefined) {

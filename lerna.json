@@ -1,6 +1,10 @@
 {
-  "packages": [
-    "packages/*"
-  ],
+  "packages": ["packages/**"],
+  "command": {
+    "bootstrap": {
+      "ci": false,
+      "ignore": ["react-magma-legacy-selects"]
+    }
+  },
   "version": "2.0.0-beta.73"
 }

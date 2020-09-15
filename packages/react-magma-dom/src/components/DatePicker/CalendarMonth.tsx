@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { ButtonColor, ButtonSize, ButtonType, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
-import { QuestionCircleOIcon } from '../Icon/types/QuestionCircleOIcon';
-import { CrossIcon } from '../Icon/types/CrossIcon';
+import { QuestionCircleOIcon, CrossIcon } from 'react-magma-icons';
 import { CalendarContext } from './CalendarContext';
 import { CalendarHeader } from './CalendarHeader';
 import { CalendarDay } from './CalendarDay';
@@ -109,16 +108,16 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
   }
 
   function handleKeyDown(event: React.KeyboardEvent) {
-    const { keyCode, shiftKey } = event;
+    const { key, shiftKey } = event;
 
-    if (shiftKey && keyCode === 9) {
+    if (shiftKey && key === 'Tab') {
       const index = getFocusedElementIndex(focusableElements, event.target);
 
       if (index === 0) {
         event.preventDefault();
         focusableElements[focusableElements.length - 1].focus();
       }
-    } else if (keyCode === 9) {
+    } else if (key === 'Tab') {
       const index = getFocusedElementIndex(focusableElements, event.target);
 
       if (index === focusableElements.length - 1) {

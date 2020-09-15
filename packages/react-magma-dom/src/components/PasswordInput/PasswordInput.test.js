@@ -180,7 +180,7 @@ describe('sizes', () => {
     expect(label).toHaveStyleRule('font-size', '13px');
 
     expect(input).toHaveStyleRule('font-size', '1rem');
-    expect(input).toHaveStyleRule('height', '37px');
+    expect(input).toHaveStyleRule('height', '40px');
   });
 
   it('should render a large input with correct styles', () => {

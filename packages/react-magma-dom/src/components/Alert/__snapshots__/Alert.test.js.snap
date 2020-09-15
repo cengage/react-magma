@@ -80,7 +80,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   opacity: 0;
   position: absolute;
   padding: 50%;
-  top: 18px;
+  top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
   transform: translate(-50%,-50%) scale(1);
@@ -104,6 +104,12 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-transition: -webkit-transform 0s;
   -webkit-transition: transform 0s;
   transition: transform 0s;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }
 
 .emotion-0.emotion-0:focus:not(:disabled) {

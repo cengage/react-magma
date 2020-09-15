@@ -21,7 +21,7 @@ export interface TextareaProps
   ref?: any;
   testId?: string;
   textareaStyle?: React.CSSProperties;
-  value?: string | string[] | number;
+  value?: string | ReadonlyArray<string> | number;
 }
 
 const Container = styled.div`
@@ -56,9 +56,9 @@ export const Textarea: React.FunctionComponent<TextareaProps> = React.forwardRef
     const id = useGenerateId(defaultId);
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
-    const [value, setValue] = React.useState<string | string[] | number>(
-      props.defaultValue || props.value || ''
-    );
+    const [value, setValue] = React.useState<
+      string | ReadonlyArray<string> | number
+    >(props.defaultValue || props.value || '');
 
     React.useEffect(() => {
       if (props.value) {
