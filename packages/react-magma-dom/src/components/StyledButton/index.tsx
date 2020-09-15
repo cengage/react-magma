@@ -5,7 +5,6 @@ import {
   buildActiveBackground,
   buildActiveColor,
   buildAfterBackground,
-  buildAfterTopPosition,
   buildButtonBaseHeight,
   buildButtonBorderRadius,
   buildButtonFontSize,
@@ -91,7 +90,7 @@ export const buttonStyles = props => css`
       opacity: 0;
       position: absolute;
       padding: 50%;
-      top: ${buildAfterTopPosition(props)};
+      top: 50%;
       transform: translate(-50%, -50%) scale(1);
       transition: opacity 1s, transform 0.5s;
       width: 32px;
@@ -109,6 +108,10 @@ export const buttonStyles = props => css`
     }
   }
 
+  svg {
+    flex-shrink: 0;
+  }
+
   ${props.iconOnly &&
     css`
       display: inline-flex;
@@ -119,33 +122,33 @@ export const buttonStyles = props => css`
     `}
 `;
 
-export const StyledButton: React.FunctionComponent<
-  StyledButtonProps
-> = React.forwardRef((props, ref: any) => {
-  const {
-    isFullWidth,
-    children,
-    iconOnly,
-    testId,
-    isInverse,
-    color,
-    shape,
-    size,
-    textTransform,
-    variant,
-    ...other
-  } = props;
+export const StyledButton: React.FunctionComponent<StyledButtonProps> = React.forwardRef(
+  (props, ref: any) => {
+    const {
+      isFullWidth,
+      children,
+      iconOnly,
+      testId,
+      isInverse,
+      color,
+      shape,
+      size,
+      textTransform,
+      variant,
+      ...other
+    } = props;
 
-  const theme = React.useContext(ThemeContext);
+    const theme = React.useContext(ThemeContext);
 
-  return (
-    <button
-      css={buttonStyles({ ...props, theme })}
-      {...other}
-      data-testid={testId}
-      ref={ref}
-    >
-      {children}
-    </button>
-  );
-});
+    return (
+      <button
+        css={buttonStyles({ ...props, theme })}
+        {...other}
+        data-testid={testId}
+        ref={ref}
+      >
+        {children}
+      </button>
+    );
+  }
+);

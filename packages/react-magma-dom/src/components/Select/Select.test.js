@@ -1,330 +1,431 @@
-/// <reference types="jest-dom/extend-expect"/>
 import React from 'react';
-import { axe } from 'jest-axe';
+import { render, fireEvent } from '@testing-library/react';
 import { Select } from '.';
-import { getStyles } from './shared';
-import { render, fireEvent, act } from '@testing-library/react';
-import { magma } from '../../theme/magma';
-import { Search2Icon } from '../Icon/types/Search2Icon';
-import { components as ReactSelectComponents } from 'react-select';
 
 describe('Select', () => {
-  it('should find element by testId', async () => {
-    let getByTestId;
-    const testId = 'test-id';
-    await act(async () => {
-      ({ getByTestId } = render(<Select testId={testId} />));
-    });
-
-    expect(getByTestId(testId)).toBeInTheDocument();
-  });
-
-  it('should render a label for the select', async () => {
-    let getByText;
-    const labelText = 'Test';
-    await act(async () => {
-      ({ getByText } = render(<Select labelText={labelText} />));
-    });
-
-    expect(getByText(labelText)).toBeInTheDocument();
-  });
-
-  it('should render a select with desired attributes', async () => {
-    let getByLabelText;
-    const labelText = 'Test';
-    await act(async () => {
-      ({ getByLabelText } = render(<Select labelText={labelText} />));
-    });
-    const input = getByLabelText(labelText);
-    expect(input).toBeInTheDocument();
-    expect(input).toHaveAttribute('aria-label', labelText);
-  });
-
-  describe('Custom Styles', () => {
-    it('control', () => {
-      const color = '#cccccc';
-      const styles = getStyles({ control: () => ({ color }) }, magma);
-
-      expect(
-        styles.control({}, { isDisabled: false, isFocused: false })
-      ).toContainKey('color', color);
-    });
-
-    it('dropdownIndicator', () => {
-      const color = '#cccccc';
-      const styles = getStyles({ dropdownIndicator: () => ({ color }) }, magma);
-
-      expect(styles.dropdownIndicator({})).toContainKey('color', color);
-    });
-
-    it('clearIndicator', () => {
-      const color = '#cccccc';
-      const styles = getStyles({ clearIndicator: () => ({ color }) }, magma);
-
-      expect(styles.clearIndicator({})).toContainKey('color', color);
-    });
-
-    it('indicatorSeparator', () => {
-      const color = '#cccccc';
-      const styles = getStyles(
-        { indicatorSeparator: () => ({ color }) },
-        magma
-      );
-
-      expect(styles.indicatorSeparator({})).toContainKey('color', color);
-    });
-
-    it('menu', () => {
-      const color = '#cccccc';
-      const styles = getStyles({ menu: () => ({ color }) }, magma);
-
-      expect(styles.menu({})).toContainKey('color', color);
-    });
-
-    it('multiValue', () => {
-      const color = '#cccccc';
-      const styles = getStyles({ multiValue: () => ({ color }) }, magma);
-
-      expect(styles.multiValue({})).toContainKey('color', color);
-    });
-
-    it('multiValueRemove', () => {
-      const color = '#cccccc';
-      const styles = getStyles({ multiValueRemove: () => ({ color }) }, magma);
-
-      expect(styles.multiValueRemove({})).toContainKey('color', color);
-    });
-
-    it('option', () => {
-      const color = '#cccccc';
-      const styles = getStyles({ option: () => ({ color }) }, magma);
-
-      expect(styles.option({}, { isFocused: false })).toContainKey(
-        'color',
-        color
-      );
-    });
-
-    it('placeholder', () => {
-      const color = '#cccccc';
-      const styles = getStyles({ placeholder: () => ({ color }) }, magma);
-
-      expect(styles.placeholder({})).toContainKey('color', color);
-    });
-
-    it('singleValue', () => {
-      const color = '#cccccc';
-      const styles = getStyles({ singleValue: () => ({ color }) }, magma);
-
-      expect(styles.singleValue({})).toContainKey('color', color);
-    });
-  });
-
-  it('should render a select with a default value passed through', async () => {
-    let getByDisplayValue;
-    const defaultValue = { value: 'red', label: 'Red' };
-    const inputName = 'Test';
-    await act(async () => {
-      ({ getByDisplayValue } = render(
-        <Select name={inputName} defaultValue={defaultValue} />
-      ));
-    });
-
-    expect(getByDisplayValue('red')).toBeInTheDocument();
-  });
-
-  it('should render a select with a value passed through', async () => {
-    let getByDisplayValue;
-    const value = { value: 'red', label: 'Red' };
-    const inputName = 'Test';
-    await act(async () => {
-      ({ getByDisplayValue } = render(
-        <Select name={inputName} value={value} />
-      ));
-    });
-
-    expect(getByDisplayValue('red')).toBeInTheDocument();
-  });
-
-  it('should render a multi-select with a multiple values passed through', async () => {
-    let getByDisplayValue;
-    let getByText;
-    const options = [
-      {
-        label: 'Red',
-        value: 'red'
-      },
-      {
-        label: 'Blue',
-        value: 'blue'
-      }
-    ];
-    const inputName = 'Test';
-    await act(async () => {
-      ({ getByDisplayValue, getByText } = render(
-        <Select defaultValue={[...options]} name={inputName} isMulti />
-      ));
-    });
-
-    expect(getByDisplayValue('red')).toBeInTheDocument();
-    expect(getByText('Red')).toBeInTheDocument();
-
-    expect(getByDisplayValue('blue')).toBeInTheDocument();
-    expect(getByText('Blue')).toBeInTheDocument();
-  });
-
-  it('should disable the select', async () => {
-    let container;
-    await act(async () => {
-      ({ container } = render(<Select isDisabled />));
-    });
-    const input = container.querySelector('input');
-
-    expect(input).toBeDisabled();
-  });
-
-  it('should render the helper message with the correct styles', async () => {
-    let getByTestId;
-    const helperString = 'Helper text';
-
-    await act(async () => {
-      ({ getByTestId } = render(<Select helperMessage={helperString} />));
-    });
-
-    const helperMessage = getByTestId('inputMessage');
-
-    expect(helperMessage).toBeInTheDocument();
-    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral03);
-    expect(helperMessage).toHaveStyleRule('font-size', '13px');
-  });
-
-  it('should render the error message with the correct styles', async () => {
-    let getByTestId;
-    const errorString = 'Please fix this error';
-
-    await act(async () => {
-      ({ getByTestId } = render(<Select errorMessage={errorString} />));
-    });
-
-    const errorMessage = getByTestId('inputMessage');
-
-    expect(errorMessage).toBeInTheDocument();
-    expect(errorMessage).toHaveStyleRule('background', 'none');
-    expect(errorMessage).toHaveStyleRule('color', magma.colors.danger);
-  });
-
-  it('should render the error message on an inverse component with the correct styles', async () => {
-    let getByTestId;
-    const errorString = 'Please fix this error';
-
-    await act(async () => {
-      ({ getByTestId } = render(
-        <Select errorMessage={errorString} isInverse />
-      ));
-    });
-
-    const errorMessage = getByTestId('inputMessage');
-
-    expect(errorMessage).toBeInTheDocument();
-    expect(errorMessage).toHaveStyleRule('background', magma.colors.danger);
-    expect(errorMessage).toHaveStyleRule('color', magma.colors.neutral08);
-  });
-
-  it('should allow for the passing in of custom components', async () => {
-    let getByTestId;
-    const DropdownIndicator = props => {
-      return (
-        ReactSelectComponents.DropdownIndicator && (
-          <ReactSelectComponents.DropdownIndicator {...props}>
-            <Search2Icon testId="custom-dropdown-indicator" size={10} />
-          </ReactSelectComponents.DropdownIndicator>
-        )
-      );
-    };
-
-    await act(async () => {
-      ({ getByTestId } = render(
-        <Select
-          components={{
-            DropdownIndicator
-          }}
-        />
-      ));
-    });
-
-    expect(getByTestId('custom-dropdown-indicator')).toBeInTheDocument();
-  });
-
-  it('should trigger the passed in onChange when option is changed', async () => {
-    let getByLabelText;
-    const options = [
-      {
-        label: 'Red',
-        value: 'red'
-      },
-      {
-        label: 'Blue',
-        value: 'blue'
-      }
-    ];
-    const onChangeSpy = jest.fn();
-
-    await act(async () => {
-      ({ getByLabelText } = render(
-        <Select onChange={onChangeSpy} labelText="target" options={options} />
-      ));
-    });
-
-    const targetNode = getByLabelText('target');
-
-    fireEvent.keyDown(targetNode, {
-      key: 'ArrowDown',
-      code: 40
-    });
-    fireEvent.keyDown(targetNode, {
-      key: 'Enter',
-      code: 13
-    });
-
-    expect(onChangeSpy).toHaveBeenCalledWith(
-      options[0],
-      expect.objectContaining({ action: 'select-option' })
+  it('should render a select with items', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByLabelText, getByText } = render(
+      <Select labelText={labelText} items={items} />
     );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    expect(renderedSelect).toBeInTheDocument();
+
+    fireEvent.click(renderedSelect);
+
+    expect(getByText(items[0])).toBeInTheDocument();
   });
 
-  it('should trigger the passed in onBlur when focus is removed', async () => {
-    let container;
-    const onBlurSpy = jest.fn();
-    await act(async () => {
-      ({ container } = render(<Select onFocus={onBlurSpy} />));
-    });
+  it('should accept items in the default object format', () => {
+    const labelText = 'Label';
+    const items = [
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' }
+    ];
+    const { getByLabelText, getByText } = render(
+      <Select labelText={labelText} items={items} />
+    );
 
-    const input = container.querySelector('input');
-    fireEvent.focus(input);
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-    expect(onBlurSpy).toHaveBeenCalledTimes(1);
+    expect(renderedSelect).toBeInTheDocument();
+
+    fireEvent.click(renderedSelect);
+
+    expect(getByText(items[0].label)).toBeInTheDocument();
   });
 
-  it('should trigger the passed in onFocus when focused', async () => {
-    let container;
-    const onFocusSpy = jest.fn();
-    await act(async () => {
-      ({ container } = render(<Select onFocus={onFocusSpy} />));
-    });
+  it('should accept items in a custom item format', () => {
+    function itemToString(item) {
+      return item ? item.representation : '';
+    }
 
-    const input = container.querySelector('input');
-    fireEvent.focus(input);
+    const labelText = 'Label';
+    const items = [
+      {
+        id: 1,
+        actual: 'red',
+        representation: 'Red'
+      },
+      {
+        id: 2,
+        actual: 'blue',
+        representation: 'Blue'
+      },
+      {
+        id: 3,
+        actual: 'green',
+        representation: 'Green'
+      }
+    ];
 
-    expect(onFocusSpy).toHaveBeenCalledTimes(1);
+    const { getByLabelText, getByText } = render(
+      <Select labelText={labelText} items={items} itemToString={itemToString} />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    expect(renderedSelect).toBeInTheDocument();
+
+    fireEvent.click(renderedSelect);
+
+    expect(getByText(items[0].representation)).toBeInTheDocument();
   });
 
-  it('Does not violate accessibility standards', async () => {
-    let container;
-    await act(async () => {
-      ({ container } = render(<Select labelText="test label" />));
+  it('should not select an item when typing and select is closed', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByLabelText, getByTestId } = render(
+      <Select labelText={labelText} items={items} />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    renderedSelect.focus();
+
+    fireEvent.keyDown(renderedSelect, { key: 'r' });
+
+    expect(getByTestId('selectedItemText').textContent).not.toEqual(items[0]);
+  });
+
+  it('should allow for selection of an item', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByLabelText, getByText, getByTestId } = render(
+      <Select labelText={labelText} items={items} />
+    );
+
+    fireEvent.click(getByLabelText(labelText, { selector: 'div' }));
+
+    fireEvent.click(getByText(items[0]));
+
+    expect(getByTestId('selectedItemText').textContent).toEqual(items[0]);
+  });
+
+  it('should call the passed in onIsOpenChange function on select open', () => {
+    const onIsOpenChange = jest.fn();
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByLabelText } = render(
+      <Select
+        labelText={labelText}
+        items={items}
+        onIsOpenChange={onIsOpenChange}
+      />
+    );
+
+    fireEvent.click(getByLabelText(labelText, { selector: 'div' }));
+
+    expect(onIsOpenChange).toHaveBeenCalled();
+  });
+
+  it('should allow for a controlled select', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    let selectedItem = 'Red';
+    const { getByLabelText, getByText, getByTestId, rerender } = render(
+      <Select
+        labelText={labelText}
+        items={items}
+        selectedItem={selectedItem}
+        onSelectedItemChange={changes => (selectedItem = changes.selectedItem)}
+      />
+    );
+
+    expect(getByTestId('selectedItemText').textContent).toEqual('Red');
+
+    fireEvent.click(getByLabelText(labelText, { selector: 'div' }));
+
+    fireEvent.click(getByText(items[1]));
+
+    expect(selectedItem).toEqual(items[1]);
+
+    rerender(
+      <Select
+        labelText={labelText}
+        items={items}
+        selectedItem={selectedItem}
+        onSelectedItemChange={changes => (selectedItem = changes.selectedItem)}
+      />
+    );
+
+    expect(getByTestId('selectedItemText').textContent).toEqual(items[1]);
+  });
+
+  it('should have an initial selected item', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByTestId } = render(
+      <Select labelText={labelText} items={items} initialSelectedItem="Red" />
+    );
+
+    expect(getByTestId('selectedItemText').textContent).toEqual('Red');
+  });
+
+  it('should not select an item that is not in the items list', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByTestId } = render(
+      <Select labelText={labelText} items={items} selectedItem="Pink" />
+    );
+
+    expect(getByTestId('selectedItemText').textContent).not.toEqual('Pink');
+  });
+
+  it('should not use the initial selected item if it is not in the items list', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByTestId } = render(
+      <Select labelText={labelText} items={items} initialSelectedItem="Pink" />
+    );
+
+    expect(getByTestId('selectedItemText').textContent).not.toEqual('Pink');
+  });
+
+  it('should disable the select', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByLabelText } = render(
+      <Select labelText={labelText} items={items} isDisabled />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    expect(renderedSelect).toHaveAttribute('disabled');
+  });
+
+  it('should allow a selection to be cleared', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByTestId } = render(
+      <Select
+        labelText={labelText}
+        items={items}
+        initialSelectedItem="Red"
+        isClearable
+      />
+    );
+
+    expect(getByTestId('selectedItemText').textContent).toEqual('Red');
+
+    fireEvent.click(getByTestId('clearIndicator'));
+
+    expect(getByTestId('selectedItemText').textContent).not.toEqual('Red');
+
+    expect(getByTestId('selectTriggerButton')).toHaveFocus();
+  });
+
+  it('should select the default selected item when cleared', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByTestId } = render(
+      <Select
+        labelText={labelText}
+        items={items}
+        initialSelectedItem="Red"
+        defaultSelectedItem="Blue"
+        isClearable
+      />
+    );
+
+    expect(getByTestId('selectedItemText').textContent).toEqual('Red');
+
+    fireEvent.click(getByTestId('clearIndicator'));
+
+    expect(getByTestId('selectedItemText').textContent).toEqual('Blue');
+  });
+
+  it('should not select the default selected item when cleared if it is not in the items list', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByTestId } = render(
+      <Select
+        labelText={labelText}
+        items={items}
+        initialSelectedItem="Red"
+        defaultSelectedItem="Pink"
+        isClearable
+      />
+    );
+
+    expect(getByTestId('selectedItemText').textContent).toEqual('Red');
+
+    fireEvent.click(getByTestId('clearIndicator'));
+
+    expect(getByTestId('selectedItemText').textContent).not.toEqual('Pink');
+  });
+
+  it('should open select when clicking the enter key', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByLabelText, getByText } = render(
+      <Select labelText={labelText} items={items} />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    renderedSelect.focus();
+
+    fireEvent.keyDown(renderedSelect, {
+      key: 'Enter'
     });
-    return axe(container.innerHTML).then(result => {
-      return expect(result).toHaveNoViolations();
+
+    expect(getByText(items[0])).toBeInTheDocument();
+  });
+
+  it('should open select when clicking the spacebar', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByLabelText, getByText } = render(
+      <Select labelText={labelText} items={items} />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    renderedSelect.focus();
+
+    fireEvent.keyDown(renderedSelect, {
+      key: ' '
+    });
+
+    expect(getByText(items[0])).toBeInTheDocument();
+  });
+
+  it('should not open select when clicking another key other than the enter or spacebar', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByLabelText, queryByText } = render(
+      <Select labelText={labelText} items={items} />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    renderedSelect.focus();
+
+    fireEvent.keyDown(renderedSelect, {
+      key: 'a'
+    });
+
+    expect(queryByText(items[0])).not.toBeInTheDocument();
+  });
+
+  it('should show an error message', () => {
+    const labelText = 'Label';
+    const errorMessage = 'This is an error';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByText } = render(
+      <Select labelText={labelText} items={items} errorMessage={errorMessage} />
+    );
+
+    expect(getByText(errorMessage)).toBeInTheDocument();
+  });
+
+  it('should show an helper message', () => {
+    const labelText = 'Label';
+    const helperMessage = 'This is an error';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByText } = render(
+      <Select
+        labelText={labelText}
+        items={items}
+        helperMessage={helperMessage}
+      />
+    );
+
+    expect(getByText(helperMessage)).toBeInTheDocument();
+  });
+
+  it('should allow you to send in your own components', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const ClearIndicator = () => (
+      <button data-testid="customClearIndicator">Clear</button>
+    );
+
+    const { getByTestId } = render(
+      <Select
+        labelText={labelText}
+        isClearable
+        items={items}
+        selectedItem={items[0]}
+        components={{
+          ClearIndicator
+        }}
+      />
+    );
+
+    expect(getByTestId('customClearIndicator')).toBeInTheDocument();
+  });
+
+  describe('events', () => {
+    it('onBlur', () => {
+      const labelText = 'Label';
+      const items = ['Red', 'Blue', 'Green'];
+      const onBlur = jest.fn();
+
+      const { getByLabelText } = render(
+        <Select labelText={labelText} items={items} onBlur={onBlur} />
+      );
+
+      const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+      renderedSelect.focus();
+
+      fireEvent.blur(renderedSelect);
+
+      expect(onBlur).toHaveBeenCalled();
+    });
+
+    it('onFocus', () => {
+      const labelText = 'Label';
+      const items = ['Red', 'Blue', 'Green'];
+      const onFocus = jest.fn();
+
+      const { getByLabelText } = render(
+        <Select labelText={labelText} items={items} onFocus={onFocus} />
+      );
+
+      const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+      renderedSelect.focus();
+
+      expect(onFocus).toHaveBeenCalled();
+    });
+
+    it('onKeyDown', () => {
+      const labelText = 'Label';
+      const items = ['Red', 'Blue', 'Green'];
+      const onKeyDown = jest.fn();
+
+      const { getByLabelText } = render(
+        <Select labelText={labelText} items={items} onKeyDown={onKeyDown} />
+      );
+
+      const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+      fireEvent.keyDown(renderedSelect, { key: 'Enter' });
+
+      expect(onKeyDown).toHaveBeenCalled();
+    });
+
+    it('onKeyUp', () => {
+      const labelText = 'Label';
+      const items = ['Red', 'Blue', 'Green'];
+      const onKeyUp = jest.fn();
+
+      const { getByLabelText } = render(
+        <Select labelText={labelText} items={items} onKeyUp={onKeyUp} />
+      );
+
+      const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+      fireEvent.keyUp(renderedSelect, { key: 'Enter' });
+
+      expect(onKeyUp).toHaveBeenCalled();
     });
   });
 });

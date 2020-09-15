@@ -9,7 +9,7 @@ import {
   ButtonVariant,
   ButtonTextTransform
 } from '../Button';
-import { IconProps } from '../Icon/utils';
+import { IconProps } from 'react-magma-icons';
 import { omit, Omit, XOR } from '../../utils';
 
 export enum ButtonIconPosition {
@@ -68,66 +68,66 @@ export function instanceOfIconOnly(object: any): object is IconOnlyButtonProps {
   return 'icon' in object && !('children' in object);
 }
 
-export const IconButton: React.FunctionComponent<
-  IconButtonProps
-> = React.forwardRef((props: IconButtonProps, ref: any) => {
-  let icon;
-  let iconPosition;
-  let children;
-  const { color, shape, size, textTransform, variant, ...rest } = props;
+export const IconButton: React.FunctionComponent<IconButtonProps> = React.forwardRef(
+  (props: IconButtonProps, ref: any) => {
+    let icon;
+    let iconPosition;
+    let children;
+    const { color, shape, size, textTransform, variant, ...rest } = props;
 
-  if (instanceOfIconOnly(props)) {
-    icon = props.icon;
-  } else {
-    icon = props.icon;
-    iconPosition = props.iconPosition;
-    children = props.children;
-  }
+    if (instanceOfIconOnly(props)) {
+      icon = props.icon;
+    } else {
+      icon = props.icon;
+      iconPosition = props.iconPosition;
+      children = props.children;
+    }
 
-  const other = omit(['iconPosition', 'textPosition'], rest);
+    const other = omit(['iconPosition', 'textPosition'], rest);
 
-  if (icon && !children) {
+    if (icon && !children) {
+      return (
+        <StyledButton
+          {...other}
+          ref={ref}
+          color={color ? color : ButtonColor.primary}
+          iconOnly
+          shape={shape ? shape : ButtonShape.round}
+          size={size ? size : ButtonSize.medium}
+          variant={variant ? variant : ButtonVariant.solid}
+        >
+          {React.Children.only(
+            React.cloneElement(icon, {
+              size: icon.props.size ? icon.props.size : getIconSize(size)
+            })
+          )}
+        </StyledButton>
+      );
+    }
     return (
       <StyledButton
         {...other}
         ref={ref}
         color={color ? color : ButtonColor.primary}
-        iconOnly
-        shape={shape ? shape : ButtonShape.round}
+        shape={shape ? shape : ButtonShape.fill}
         size={size ? size : ButtonSize.medium}
+        textTransform={
+          textTransform ? textTransform : ButtonTextTransform.uppercase
+        }
         variant={variant ? variant : ButtonVariant.solid}
       >
+        {iconPosition === ButtonIconPosition.right && (
+          <SpanTextLeft size={size}>{children} </SpanTextLeft>
+        )}
         {React.Children.only(
           React.cloneElement(icon, {
-            size: icon.props.size ? icon.props.size : getIconSize(size)
+            size: icon.props.size ? icon.props.size : getIconWithTextSize(size)
           })
+        )}
+        {iconPosition !== ButtonIconPosition.right && (
+          <SpanTextRight size={size}>{children}</SpanTextRight>
         )}
       </StyledButton>
     );
   }
-  return (
-    <StyledButton
-      {...other}
-      ref={ref}
-      color={color ? color : ButtonColor.primary}
-      shape={shape ? shape : ButtonShape.fill}
-      size={size ? size : ButtonSize.medium}
-      textTransform={
-        textTransform ? textTransform : ButtonTextTransform.uppercase
-      }
-      variant={variant ? variant : ButtonVariant.solid}
-    >
-      {iconPosition === ButtonIconPosition.right && (
-        <SpanTextLeft size={size}>{children} </SpanTextLeft>
-      )}
-      {React.Children.only(
-        React.cloneElement(icon, {
-          size: icon.props.size ? icon.props.size : getIconWithTextSize(size)
-        })
-      )}
-      {iconPosition !== ButtonIconPosition.right && (
-        <SpanTextRight size={size}>{children}</SpanTextRight>
-      )}
-    </StyledButton>
-  );
-});
+);

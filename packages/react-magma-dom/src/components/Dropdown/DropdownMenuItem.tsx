@@ -2,8 +2,7 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { DropdownContext } from '.';
-import { IconProps } from '../Icon/utils';
-import { CheckIcon } from '../Icon/types/CheckIcon';
+import { IconProps, CheckIcon } from 'react-magma-icons';
 import { Omit } from '../../utils';
 
 export interface DropdownMenuItemProps

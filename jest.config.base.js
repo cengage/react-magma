@@ -1,7 +1,7 @@
 module.exports = {
   testMatch: ['<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}'],
   transform: {
-    '^.+\\.(j|t)s(x)?$': 'babel-jest'
+    '^.+\\.(j|t)s(x)?$': 'babel-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   collectCoverage: true,
@@ -9,7 +9,7 @@ module.exports = {
     'src/**/*.{js,jsx,ts,tsx}',
     '!src/**/*.test.*',
     '!src/index.ts',
-    '!src/theme/*.ts'
+    '!src/theme/*.ts',
   ],
   coveragePathIgnorePatterns: ['.snap'],
   coverageThreshold: {
@@ -17,12 +17,12 @@ module.exports = {
       branches: 20,
       functions: 20,
       lines: 20,
-      statements: 20
-    }
+      statements: 20,
+    },
   },
   verbose: true,
   watchPlugins: [
     'jest-watch-typeahead/filename',
-    'jest-watch-typeahead/testname'
-  ]
+    'jest-watch-typeahead/testname',
+  ],
 };

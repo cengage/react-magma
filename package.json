@@ -3,17 +3,16 @@
   "version": "1.0.1-beta.1",
   "private": true,
   "scripts": {
-    "postinstall": "lerna bootstrap && npm run build && npm run createStaticFile",
-    "test": "lerna run test --scope react-magma-dom && npm run report",
+    "postinstall": "npm run bootstrap && npm run build",
+    "test": "lerna run test --scope react-magma-dom",
     "test-watch": "lerna exec --scope react-magma-dom 'npm t -- --watch'",
     "test-dom": "lerna exec --scope react-magma-dom 'npm t -- --watch --coverage=false'",
     "test-core": "lerna exec --scope react-magma-core 'npm t -- --watch --coverage=false'",
-    "report": "mkdir -p .nyc_output && istanbul-merge ./packages/*/coverage/*.json --out .nyc_output/coverage.json && nyc report --reporter=lcov --reporter=text",
-    "build": "lerna run build --scope react-magma-dom --scope react-magma-docs",
-    "bootstrap": "lerna bootstrap",
-    "lint": "lerna run lint",
+    "build": "lerna run build --stream --no-progress --scope react-magma-dom --scope react-magma-icons --scope react-magma-docs",
+    "bootstrap": "lerna bootstrap && lerna exec --scope react-magma-docs 'rm -rf node_modules/react node_modules/react-dom'",
+    "lint": "lerna run lint --ignore react-magma-legacy-selects",
     "docs": "lerna exec --scope react-magma-docs gatsby develop",
-    "createStaticFile": "echo 'pushstate: enabled' >| packages/react-magma-docs/public/Staticfile",
+    "clean": "lerna exec --scope react-magma-docs 'gatsby clean' && lerna clean --yes && rimraf node_modules",
     "cm": "git-cz",
     "cm-retry": "git-cz --retry",
     "bump:patch": "lerna version --conventional-commits",
@@ -24,25 +23,25 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lerna run lint && npm run test"
+      "pre-commit": "npm run lint && npm run test"
     }
   },
   "devDependencies": {
-    "@commitlint/cli": "^7.1.2",
-    "@commitlint/config-conventional": "^7.1.2",
-    "commitizen": "^2.10.1",
-    "cz-conventional-changelog": "^2.1.0",
-    "husky": "^3.0.9",
-    "istanbul-merge": "^1.1.1",
-    "jest": "^23.6.0",
-    "jest-watch-typeahead": "^0.2.0",
-    "lerna": "^3.1.4",
-    "nyc": "^13.0.1",
-    "terser": "^4.0.2"
+    "@commitlint/cli": "7.6.1",
+    "@commitlint/config-conventional": "7.6.0",
+    "commitizen": "2.10.1",
+    "cz-conventional-changelog": "2.1.0",
+    "husky": "3.1.0",
+    "lerna": "3.22.1",
+    "react": "^16.10.0",
+    "react-dom": "^16.10.0"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "jest-axe": "3.1.0"
   }
 }

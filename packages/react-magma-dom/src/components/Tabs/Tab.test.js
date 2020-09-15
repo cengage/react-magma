@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tab } from './Tab';
-import { CheckIcon } from '../Icon/types/CheckIcon';
+import { CheckIcon } from 'react-magma-icons';
 import { render } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import { magma } from '../../theme/magma';

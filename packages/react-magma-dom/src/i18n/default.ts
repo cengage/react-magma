@@ -162,5 +162,21 @@ export const defaultI18n: I18nInterface = {
   },
   skipLink: {
     buttonText: 'Skip Navigation'
+  },
+  select: {
+    placeholder: 'Select...',
+    clearIndicatorAriaLabel:
+      'reset selection for {labelText}. {selectedItem} is selected'
+  },
+  multiSelect: {
+    selectedItemButtonAriaLabel: 'reset item {selectedItem}'
+  },
+  combobox: {
+    clearIndicatorAriaLabel:
+      'reset selection for {labelText}. {selectedItem} is selected',
+    createLabel: 'Create "{inputValue}"'
+  },
+  multiCombobox: {
+    selectedItemButtonAriaLabel: 'reset item {selectedItem}'
   }
 };

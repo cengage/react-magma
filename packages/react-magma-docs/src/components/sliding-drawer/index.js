@@ -2,7 +2,8 @@ import React from 'react'
 import { css, keyframes } from '@emotion/core'
 import styled from '@emotion/styled'
 import FocusLock from 'react-focus-lock'
-import { IconButton, MenuIcon, CrossIcon, magma } from 'react-magma-dom'
+import { MenuIcon, CrossIcon } from 'react-magma-icons'
+import { IconButton, magma } from 'react-magma-dom'
 import MainNav from '../main-nav'
 
 export class SlidingDrawer extends React.Component {

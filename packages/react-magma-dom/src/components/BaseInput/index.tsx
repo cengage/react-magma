@@ -4,7 +4,7 @@ import { css } from '@emotion/core';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonVariant, ButtonType, ButtonSize, ButtonShape } from '../Button';
 import { IconButton } from '../IconButton';
-import { IconProps } from '../Icon/utils';
+import { IconProps } from 'react-magma-icons';
 
 export enum InputSize {
   large = 'large',
@@ -56,13 +56,13 @@ export const baseInputStyles = props => css`
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral03
   };
-  border-radius: 5px;
+  border-radius: 4px;
   color: ${props.theme.colors.neutral01};
   display: block;
   font-size: 1rem;
   font-family: ${props.theme.bodyFont};
-  height: 37px;
-  line-height: 1.25rem;
+  height: 40px;
+  line-height: 24px;
   padding: 0 8px;
   -webkit-appearance: none;
   width: 100%;
@@ -211,9 +211,9 @@ export const BaseInput: React.FunctionComponent<BaseInputProps> = React.forwardR
         ? InputIconPosition.left
         : props.iconPosition;
 
-    const [value, setValue] = React.useState<string | string[] | number>(
-      props.defaultValue || props.value || ''
-    );
+    const [value, setValue] = React.useState<
+      string | ReadonlyArray<string> | number
+    >(props.defaultValue || props.value || '');
 
     React.useEffect(() => {
       if (props.value !== undefined && props.value !== null) {
