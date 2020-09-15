@@ -92,6 +92,7 @@ export const DropdownMenuItem: React.FunctionComponent<DropdownMenuItemProps> = 
       <StyledItem
         {...other}
         aria-disabled={isDisabled}
+        aria-selected={isActive}
         isDisabled={isDisabled}
         isFixedWidth={context.isFixedWidth}
         isInactive={isInactive}
