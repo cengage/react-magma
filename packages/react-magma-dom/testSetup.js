@@ -3,9 +3,10 @@ require('jest-emotion');
 require('jest-extended');
 require('@testing-library/jest-dom/extend-expect');
 require('jest-axe/extend-expect');
+require('regenerator-runtime/runtime');
 
-import * as emotion from '@emotion/core';
-import { createSerializer, matchers } from 'jest-emotion';
+const emotion = require('@emotion/core');
+const { createSerializer, matchers } = require('jest-emotion');
 
 expect.addSnapshotSerializer(createSerializer(emotion));
 expect.extend(matchers);

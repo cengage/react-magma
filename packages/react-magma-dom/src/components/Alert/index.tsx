@@ -3,18 +3,23 @@ import { css } from '@emotion/core';
 import styled from '../../theme/styled';
 import isPropValid from '@emotion/is-prop-valid';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { Info2Icon } from '../Icon/types/Info2Icon';
-import { CheckIcon } from '../Icon/types/CheckIcon';
-import { NotificationIcon } from '../Icon/types/NotificationIcon';
-import { BlockedIcon } from '../Icon/types/BlockedIcon';
-import { CrossIcon } from '../Icon/types/CrossIcon';
+import {
+  Info2Icon,
+  CheckIcon,
+  NotificationIcon,
+  BlockedIcon,
+  CrossIcon,
+  IconProps
+} from 'react-magma-icons';
 import { ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { ProgressRing } from '../ProgressRing';
 import { useGenerateId } from '../../utils';
 import { I18nContext } from '../../i18n';
 
-export const VARIANT_ICON = {
+export const VARIANT_ICON: {
+  [name: string]: React.FunctionComponent<IconProps>;
+} = {
   info: Info2Icon,
   success: CheckIcon,
   warning: NotificationIcon,
@@ -258,7 +263,7 @@ function renderIcon(variant = 'info', isToast?: boolean) {
   const Icon = VARIANT_ICON[variant];
 
   return (
-    <IconWrapper>
+    <IconWrapper isToast={isToast}>
       <Icon size={20} />
     </IconWrapper>
   );

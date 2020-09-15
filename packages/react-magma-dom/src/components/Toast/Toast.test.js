@@ -1,6 +1,6 @@
 import React from 'react';
 import { Toast } from '.';
-import { ToastsContext } from './ToastsContainer';
+import { ToastsContainer } from './ToastsContainer';
 import { act, render, fireEvent } from '@testing-library/react';
 
 describe('Toast', () => {
@@ -30,35 +30,27 @@ describe('Toast', () => {
   });
 
   it('should render a toast with position if multiple toasts', () => {
-    const toastsArray = React.createRef([]);
-    toastsArray.current = ['toast1', 'toast2'];
-
     const { getByTestId } = render(
-      <ToastsContext.Provider value={{ toastsArray: toastsArray }}>
+      <ToastsContainer>
         <Toast id="toast1" testId="toast1">
           toast
         </Toast>
         <Toast id="toast2" testId="toast2">
           toast
         </Toast>
-      </ToastsContext.Provider>
+      </ToastsContainer>
     );
     expect(getByTestId('toast1')).toHaveStyleRule('bottom', '20px');
     expect(getByTestId('toast2')).toHaveStyleRule('bottom', '85px');
   });
 
   it('should render a toast with bottom offset', () => {
-    const toastsArray = React.createRef([]);
-    toastsArray.current = ['toast1'];
-
     const { getByTestId } = render(
-      <ToastsContext.Provider
-        value={{ bottomOffset: 50, toastsArray: toastsArray }}
-      >
+      <ToastsContainer bottomOffset={50}>
         <Toast id="toast1" testId="toast1">
           toast
         </Toast>
-      </ToastsContext.Provider>
+      </ToastsContainer>
     );
     expect(getByTestId('toast1')).toHaveStyleRule(
       'transform',

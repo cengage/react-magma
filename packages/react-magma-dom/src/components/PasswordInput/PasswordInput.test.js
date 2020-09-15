@@ -178,9 +178,8 @@ describe('sizes', () => {
     const input = getByLabelText(labelText);
 
     expect(label).toHaveStyleRule('font-size', '14px');
-
     expect(input).toHaveStyleRule('font-size', '16px');
-    expect(input).toHaveStyleRule('height', '37px');
+    expect(input).toHaveStyleRule('height', '40px');
   });
 
   it('should render a large input with correct styles', () => {

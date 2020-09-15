@@ -3,7 +3,7 @@ import { axe } from 'jest-axe';
 import { Input } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
-import { CheckIcon } from '../Icon/types/CheckIcon';
+import { CheckIcon } from 'react-magma-icons';
 
 describe('Input', () => {
   it('should find element by testId', () => {
@@ -296,7 +296,7 @@ describe('Input', () => {
       expect(label).toHaveStyleRule('font-size', '14px');
 
       expect(input).toHaveStyleRule('font-size', '16px');
-      expect(input).toHaveStyleRule('height', '37px');
+      expect(input).toHaveStyleRule('height', '40px');
       expect(input).toHaveStyleRule('padding-left', '35px');
 
       expect(iconWrapper).toHaveStyleRule('margin-top', '-11px');

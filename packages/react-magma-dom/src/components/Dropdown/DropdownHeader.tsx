@@ -15,8 +15,12 @@ const StyledDiv = styled.div`
 
 export const DropdownHeader: React.FunctionComponent<{
   children: React.ReactNode;
-}> = ({ children }) => {
+}> = ({ children, ...other }) => {
   const theme = React.useContext(ThemeContext);
 
-  return <StyledDiv theme={theme}>{children}</StyledDiv>;
+  return (
+    <StyledDiv {...other} theme={theme}>
+      {children}
+    </StyledDiv>
+  );
 };

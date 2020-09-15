@@ -74,7 +74,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   opacity: 0;
   position: absolute;
   padding: 50%;
-  top: 22px;
+  top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
   transform: translate(-50%,-50%) scale(1);
@@ -98,6 +98,12 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-transition: -webkit-transform 0s;
   -webkit-transition: transform 0s;
   transition: transform 0s;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }
 
 <div>
@@ -198,7 +204,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   opacity: 0;
   position: absolute;
   padding: 50%;
-  top: 14px;
+  top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
   transform: translate(-50%,-50%) scale(1);
@@ -222,6 +228,12 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-transition: -webkit-transform 0s;
   -webkit-transition: transform 0s;
   transition: transform 0s;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }
 
 <div>
@@ -322,7 +334,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   opacity: 0;
   position: absolute;
   padding: 50%;
-  top: 18px;
+  top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
   transform: translate(-50%,-50%) scale(1);
@@ -346,6 +358,12 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -webkit-transition: -webkit-transform 0s;
   -webkit-transition: transform 0s;
   transition: transform 0s;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }
 
 <div>
@@ -446,7 +464,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   opacity: 0;
   position: absolute;
   padding: 50%;
-  top: 18px;
+  top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
   transform: translate(-50%,-50%) scale(1);
@@ -470,6 +488,12 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-transition: -webkit-transform 0s;
   -webkit-transition: transform 0s;
   transition: transform 0s;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }
 
 <div>
@@ -569,7 +593,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   opacity: 0;
   position: absolute;
   padding: 50%;
-  top: 18px;
+  top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
   transform: translate(-50%,-50%) scale(1);
@@ -593,6 +617,12 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-transition: -webkit-transform 0s;
   -webkit-transition: transform 0s;
   transition: transform 0s;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }
 
 <div>
@@ -683,7 +713,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   opacity: 0;
   position: absolute;
   padding: 50%;
-  top: 22px;
+  top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
   transform: translate(-50%,-50%) scale(1);
@@ -707,6 +737,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-transition: -webkit-transform 0s;
   -webkit-transition: transform 0s;
   transition: transform 0s;
+}
+
+.emotion-1 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }
 
 .emotion-0 {
@@ -807,7 +843,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   opacity: 0;
   position: absolute;
   padding: 50%;
-  top: 18px;
+  top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
   transform: translate(-50%,-50%) scale(1);
@@ -831,6 +867,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -webkit-transition: -webkit-transform 0s;
   -webkit-transition: transform 0s;
   transition: transform 0s;
+}
+
+.emotion-1 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }
 
 .emotion-0 {
@@ -931,7 +973,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   opacity: 0;
   position: absolute;
   padding: 50%;
-  top: 14px;
+  top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
   transform: translate(-50%,-50%) scale(1);
@@ -955,6 +997,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   -webkit-transition: -webkit-transform 0s;
   -webkit-transition: transform 0s;
   transition: transform 0s;
+}
+
+.emotion-1 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }
 
 .emotion-0 {
@@ -1055,7 +1103,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   opacity: 0;
   position: absolute;
   padding: 50%;
-  top: 18px;
+  top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
   transform: translate(-50%,-50%) scale(1);
@@ -1079,6 +1127,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -webkit-transition: -webkit-transform 0s;
   -webkit-transition: transform 0s;
   transition: transform 0s;
+}
+
+.emotion-1 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }
 
 .emotion-0 {
@@ -1179,7 +1233,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   opacity: 0;
   position: absolute;
   padding: 50%;
-  top: 18px;
+  top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
   transform: translate(-50%,-50%) scale(1);
@@ -1203,6 +1257,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-transition: -webkit-transform 0s;
   -webkit-transition: transform 0s;
   transition: transform 0s;
+}
+
+.emotion-1 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }
 
 .emotion-0 {
@@ -1307,7 +1367,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   opacity: 0;
   position: absolute;
   padding: 50%;
-  top: 18px;
+  top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
   transform: translate(-50%,-50%) scale(1);
@@ -1331,6 +1391,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-transition: -webkit-transform 0s;
   -webkit-transition: transform 0s;
   transition: transform 0s;
+}
+
+.emotion-1 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }
 
 <div>
@@ -1430,7 +1496,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   opacity: 0;
   position: absolute;
   padding: 50%;
-  top: 18px;
+  top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
   transform: translate(-50%,-50%) scale(1);
@@ -1454,6 +1520,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-transition: -webkit-transform 0s;
   -webkit-transition: transform 0s;
   transition: transform 0s;
+}
+
+.emotion-1 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }
 
 <div>
