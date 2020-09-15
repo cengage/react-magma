@@ -43,6 +43,9 @@ which is a function that returns the string representation of your `item` which 
   <strong>WARNING</strong> Your function must include a <code>null</code> check.
 </Alert>
 
+If you are using a custom shape for your `items` in a `typescript` project refer to our example of [using your
+custom `type`](/api/combobox#custom_items_typescript).
+
 ```.jsx
   () => {
     const [controlledSelectedItem, updateControlledSelectedItem] = React.useState('')
@@ -891,6 +894,67 @@ Placeholders are specific keywords surrounded by curly braces.
         initialSelectedItems={[{ label: 'Red', value: 'red' }]}
       />
     </I18nContext.Provider>)
+  }
+```
+
+## Custom Items Typescript
+
+When using a custom shape for your `items` in a `typescript` project you will need to provide the `Combobox`
+element with the shape of the `items` you are passing in.
+
+```
+  interface CustomComboboxItem {
+    id: number;
+    actual: string;
+    representation: string;
+    hex?: string;
+  }
+
+  () => {
+    const customItems: CustomComboboxItem[] = [
+      {
+        id: 1,
+        actual: "red",
+        representation: "Red",
+        hex: "#FF0000",
+      },
+      {
+        id: 2,
+        actual: "blue",
+        representation: "Blue",
+        hex: "#0000FF",
+      },
+      {
+        id: 3,
+        actual: "green",
+        representation: "Green",
+        hex: "#008000",
+      },
+    ];
+
+    function itemToString(item: CustomComboboxItem) {
+      return item ? `${item.representation} (${item.hex})` : ''
+    }
+
+    function newItemTransform(item: { label: string, value: string }): CustomComboboxItem {
+      const { value } = item;
+
+      return {
+        id: uuid(),
+        name: value,
+        representation: value.charAt(0).toUpperCase() + value.slice(1)
+      }
+    }
+
+    return <>
+      <Combobox<CustomComboboxItem>
+        id="customItemToStringTypescriptId"
+        labelText="Cust Items with Typescript"
+        defaultItems={customItems}
+        itemToString={itemToString}
+        newItemTransform={newItemTransform}
+      />
+    </>
   }
 ```
 

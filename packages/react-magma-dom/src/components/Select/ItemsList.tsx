@@ -5,16 +5,16 @@ import {
   UseSelectGetMenuPropsOptions,
   UseSelectGetItemPropsOptions
 } from 'downshift';
-import { Option, instanceOfToBeCreatedItemObject } from '.';
+import { instanceOfToBeCreatedItemObject } from '.';
 import styled from '../../theme/styled';
 
 interface ItemsListProps<T> {
-  getItemProps: (options?: UseSelectGetItemPropsOptions<Option<T>>) => any;
+  getItemProps: (options?: UseSelectGetItemPropsOptions<T>) => any;
   getMenuProps: (options?: UseSelectGetMenuPropsOptions) => any;
   highlightedIndex?: number;
   isOpen?: boolean;
-  items: Option<T>[];
-  itemToString: (item: Option<T>) => string;
+  items: T[];
+  itemToString: (item: T) => string;
 }
 
 const NoItemsMessage = styled.span`

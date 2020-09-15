@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SelectInterface, Option } from '.';
+import { SelectInterface } from '.';
 import { useSelect } from 'downshift';
 import { SelectText } from './shared';
 import { defaultComponents } from './components';
@@ -38,7 +38,7 @@ export function Select<T>(props: SelectInterface<T>) {
   const toggleButtonRef = React.useRef<HTMLButtonElement>();
   const i18n = React.useContext(I18nContext);
 
-  function getValidItem(itemToCheck: Option<T>, key: string): object {
+  function getValidItem(itemToCheck: T, key: string): object {
     return items.findIndex(
       i => itemToString(i) === itemToString(itemToCheck)
     ) !== -1
@@ -89,7 +89,7 @@ export function Select<T>(props: SelectInterface<T>) {
     reset,
     openMenu,
     setHighlightedIndex
-  } = useSelect<Option<T>>({
+  } = useSelect<T>({
     ...props,
     onIsOpenChange: handleOnIsOpenChange,
     stateReducer,
