@@ -124,7 +124,12 @@ const MainNav = ({ ...props }) => (
         <h2>Magma System</h2>
         <ul>
           <li>
-            <Link activeStyle={activeStyle} onClick={props.handleClick} to="/">
+            <Link
+              activeStyle={activeStyle}
+              aria-label="Introduction to the Magma System"
+              onClick={props.handleClick}
+              to="/"
+            >
               Introduction
             </Link>
           </li>

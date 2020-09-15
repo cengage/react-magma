@@ -47,11 +47,11 @@ export default props => (
           positionTop={16}
           variant="outline"
         />
-        <main className="main">
+        <div className="main-container">
           <Masthead />
           <SlidingDrawer />
-          <section className="content">{props.children}</section>
-        </main>
+          <main className="content">{props.children}</main>
+        </div>
       </>
     )}
   />
