@@ -15,6 +15,14 @@ The new version includes both the <Link to="/api/select">Select</Link> (replacin
 
 We recommend migrating to the new components as soon as possible. The major differences in the new version are outlined here.
 
+## Installing Downshift
+
+`downshift` is a `peerDependency` of `react-magma-dom`. Install `downshift` using `npm i --save downshift@5.4.7`.
+
+## Remove React Select
+
+`react-select` is no longer needed as a `peerDependency` if you are soley using the new components. Remove `react-select` from your `dependencies`.
+
 ## Options/Items
 
 Both the `LegacySelect` and new `Select` component take an array of options. However the property name has changed from `options` in `LegacySelect` to `items` in the new `Select` component.
