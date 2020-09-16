@@ -7,10 +7,13 @@ import { convertTextToId } from '../utils'
 import './layout.css'
 import LayoutComponent from './layout-component'
 import editorTheme from './editorTheme'
+import { v4 as uuid } from 'uuid'
 
 const PreComponent = ({ className, components, ...props }) => {
   const hideCode = props.children.props.hideCode
   const hidePreview = props.children.props.hidePreview
+
+  const liveEditorId = React.useRef(uuid())
 
   return props.children.props &&
     props.children.props.className === 'language-.jsx' ? (
@@ -24,7 +27,14 @@ const PreComponent = ({ className, components, ...props }) => {
         className="pre-container"
         style={hideCode ? { display: 'none' } : null}
       >
-        <LiveEditor ignoreTabKey tabIndex="-1" />
+        <label htmlFor={liveEditorId.current}>
+          Code Example
+          <LiveEditor
+            textareaId={liveEditorId.current}
+            ignoreTabKey
+            tabIndex="-1"
+          />
+        </label>
       </div>
       <LiveError />
       <div
