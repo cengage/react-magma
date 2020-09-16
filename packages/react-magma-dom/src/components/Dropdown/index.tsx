@@ -34,6 +34,7 @@ interface DropdownContextInterface {
   alignment?: DropdownAlignment;
   closeDropdown?: (event: React.SyntheticEvent | React.KeyboardEvent) => void;
   dropDirection?: DropdownDropDirection;
+  handleMenuBlur?: (event: React.FocusEvent) => void;
   itemRefArray?: any;
   isFixedWidth?: boolean;
   isOpen?: boolean;
@@ -88,6 +89,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
 
     function openDropdown() {
       setIsOpen(true);
+      toggleRef.current.focus();
     }
 
     function closeDropdown(event) {
@@ -189,6 +191,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
           alignment,
           closeDropdown,
           dropDirection,
+          handleMenuBlur,
           itemRefArray,
           isFixedWidth: !!width,
           isOpen,
@@ -205,7 +208,6 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
           {...other}
           ref={ref}
           data-testid={testId}
-          onBlur={handleMenuBlur}
           onKeyDown={isOpen ? handleKeyDown : null}
         >
           {children}

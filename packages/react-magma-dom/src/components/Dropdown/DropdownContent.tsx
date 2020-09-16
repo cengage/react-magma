@@ -119,6 +119,7 @@ export const DropdownContent: React.FunctionComponent = ({
       tabIndex={-1}
       testId="dropdownContent"
       width={context.width}
+      onBlur={context.handleMenuBlur}
     >
       <StyledDiv ref={context.menuRef} role="menu">
         {context.itemRefArray &&
