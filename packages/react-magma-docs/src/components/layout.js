@@ -53,38 +53,52 @@ const LinkHeading = props => (
   <h3 id={convertTextToId(props.children)}>{props.children}</h3>
 )
 
-const Layout = ({ children }) => (
-  <LayoutComponent>
-    <MDXProvider
-      components={{
-        table: Table,
-        h2: SectionHeading,
-        h3: LinkHeading,
-      }}
-    >
-      <article className="content-article">
-        <SkipLinkContent>{children}</SkipLinkContent>
-      </article>
-    </MDXProvider>
-  </LayoutComponent>
-)
+const Layout = ({ children, pageContext }) => {
+  const title =
+    pageContext && pageContext.frontmatter
+      ? pageContext.frontmatter.pageTitle || pageContext.frontmatter.title || ''
+      : ''
+  return (
+    <LayoutComponent title={title}>
+      <MDXProvider
+        components={{
+          table: Table,
+          h2: SectionHeading,
+          h3: LinkHeading,
+        }}
+      >
+        <article className="content-article">
+          <SkipLinkContent>{children}</SkipLinkContent>
+        </article>
+      </MDXProvider>
+    </LayoutComponent>
+  )
+}
 
-export const ScopeableLayout = ({ children, components, ...props }) => (
-  <LayoutComponent>
-    <MDXProvider
-      components={{
-        pre: preProps => <PreComponent {...preProps} components={components} />,
-        table: Table,
-        h2: SectionHeading,
-        h3: LinkHeading,
-      }}
-    >
-      <article className="content-article">
-        <SkipLinkContent>{children}</SkipLinkContent>
-      </article>
-    </MDXProvider>
-  </LayoutComponent>
-)
+export const ScopeableLayout = ({ children, components, pageContext }) => {
+  const title =
+    pageContext && pageContext.frontmatter
+      ? pageContext.frontmatter.pageTitle || pageContext.frontmatter.title || ''
+      : ''
+  return (
+    <LayoutComponent title={title}>
+      <MDXProvider
+        components={{
+          pre: preProps => (
+            <PreComponent {...preProps} components={components} />
+          ),
+          table: Table,
+          h2: SectionHeading,
+          h3: LinkHeading,
+        }}
+      >
+        <article className="content-article">
+          <SkipLinkContent>{children}</SkipLinkContent>
+        </article>
+      </MDXProvider>
+    </LayoutComponent>
+  )
+}
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
