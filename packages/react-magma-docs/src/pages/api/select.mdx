@@ -1,5 +1,6 @@
 ---
-title: 'Select'
+pageTitle: Select API
+title: Select
 ---
 
 import { ScopeableLayout } from '../../components/layout'
@@ -22,7 +23,7 @@ If you are migrating from the <Link to="/api/legacy-select">Legacy Select</Link>
 By default when passing in a `selectedItem` it will be checked to make sure it is in your `items` array. The check will use the
 `itemToString` function on both the `selectedItem` and each `item` in the array. The default `itemToString` function
 is able to be used for `items` that are either `strings` or an object with the shape `{item: string; label: string;}`.
-If you are using a custom items format see the [Custom Items example](/api/downshift-select/#custom_items).
+If you are using a custom items format see the [Custom Items example](/api/select/#custom_items).
 
 ```.jsx
   () => {
@@ -70,6 +71,9 @@ which is a function that returns the string representation of your `item` which 
 <Alert variant="warning">
   <strong>WARNING</strong> Your function must include a <code>null</code> check.
 </Alert>
+
+If you are using a custom shape for your `items` in a `typescript` project refer to our example of [using your
+custom `type`](/api/select#custom_items_typescript).
 
 ```.jsx
   () => {
@@ -208,7 +212,7 @@ includes the changes made to the corresponding state from each action.
 
 The `onStateChange` function passes a `changes` object that includes properties that have changed since the
 last state change. The `changes` object also includes a `type` property that describes the action taken
-to change the state. You can see the full list of the types in the [`stateChangeTypes`](/api/downshift-select/#state_change_types) section.
+to change the state. You can see the full list of the types in the [`stateChangeTypes`](/api/select/#state_change_types) section.
 
 ```.jsx
   () => {
@@ -272,7 +276,7 @@ to change the state. You can see the full list of the types in the [`stateChange
 
 If you wish to control the state rather than having it handled internally you can use the control props
 provided. These props are `isOpen`, `selectedItem`, and `highlightedIndex`. If you are using these control props
-you will have to use the handlers mentioned above in the <Link to="/api/downshift-select/#state_changes">State Changes</Link> section.
+you will have to use the handlers mentioned above in the <Link to="/api/select/#state_changes">State Changes</Link> section.
 
 ```.jsx
   () => {
@@ -701,6 +705,56 @@ Placeholders are specific keywords surrounded by curly braces.
         initialSelectedItems={[{ label: 'Red', value: 'red' }]}
       />
     </I18nContext.Provider>)
+  }
+```
+
+## Custom Items Typescript
+
+When using a custom shape for your `items` in a `typescript` project you will need to provide the `Select`
+element with the shape of the `items` you are passing in.
+
+```
+  interface CustomSelectItem {
+    id: number;
+    actual: string;
+    representation: string;
+    hex?: string;
+  }
+
+  () => {
+    const customItems: CustomSelectItem[] = [
+      {
+        id: 1,
+        actual: "red",
+        representation: "Red",
+        hex: "#FF0000",
+      },
+      {
+        id: 2,
+        actual: "blue",
+        representation: "Blue",
+        hex: "#0000FF",
+      },
+      {
+        id: 3,
+        actual: "green",
+        representation: "Green",
+        hex: "#008000",
+      },
+    ];
+
+    function itemToString(item: CustomSelectItem) {
+      return item ? `${item.representation} (${item.hex})` : ''
+    }
+
+    return <>
+      <Select<CustomSelectItem>
+        id="customItemToStringTypescriptId"
+        labelText="Cust Items with Typescript"
+        items={customItems}
+        itemToString={itemToString}
+      />
+    </>
   }
 ```
 

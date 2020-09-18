@@ -12,10 +12,10 @@ import { InputMessage } from '../Input/InputMessage';
 import { SelectComponents } from './components';
 import { useGenerateId } from '../../utils';
 
-export type Option<T> =
+export type SelectOptions =
   | string
   | { value: string; label: string; [key: string]: any }
-  | T;
+  | any;
 
 export interface InternalSelectInterface {
   components?: SelectComponents;
@@ -31,14 +31,15 @@ export interface InternalSelectInterface {
   labelStyle?: React.CSSProperties;
   labelText: string;
   messageStyle?: React.CSSProperties;
+  name?: string;
 }
 
 export interface InternalMultiInterface<T> {
-  onRemoveSelectedItem?: (removedItem: Option<T>) => void;
+  onRemoveSelectedItem?: (removedItem: T) => void;
 }
 
-export interface SelectInterface<T>
-  extends UseSelectProps<Option<T>>,
+export interface SelectInterface<T extends SelectOptions>
+  extends UseSelectProps<T>,
     InternalSelectInterface {
   ariaDescribedBy?: string;
   hasError?: boolean;
@@ -49,8 +50,8 @@ export interface SelectInterface<T>
   onKeyUp?: (event: React.KeyboardEvent) => void;
 }
 
-export interface MultiSelectInterface<T>
-  extends UseMultipleSelectionProps<Option<T>>,
+export interface MultiSelectInterface<T extends SelectOptions>
+  extends UseMultipleSelectionProps<T>,
     Omit<SelectInterface<T>, 'onStateChange' | 'stateReducer'>,
     InternalMultiInterface<T> {
   hasError?: boolean;
@@ -98,7 +99,7 @@ export function Select<T>(props: SelectInterface<T>) {
     helperMessage
   } = props;
 
-  function itemToString(item: Option<T>) {
+  function itemToString(item: T) {
     return item && typeof item === 'string'
       ? item
       : item && instanceOfDefaultItemObject(item)

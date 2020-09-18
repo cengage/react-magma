@@ -6,7 +6,7 @@ import {
   UseMultipleSelectionProps
 } from 'downshift';
 import {
-  Option,
+  SelectOptions,
   instanceOfDefaultItemObject,
   InternalSelectInterface,
   InternalMultiInterface
@@ -16,31 +16,31 @@ import { MultiCombobox } from './MultiCombobox';
 import { InputMessage } from '../Input/InputMessage';
 import { useGenerateId } from '../../utils';
 
-export interface ComboboxInterface<T>
-  extends UseComboboxProps<Option<T>>,
+export interface ComboboxInterface<T extends SelectOptions>
+  extends UseComboboxProps<T>,
     InternalSelectInterface {
   ariaDescribedBy?: string;
-  defaultItems?: Option<T>[];
+  defaultItems?: T[];
   disableCreateItem?: boolean;
   hasError?: boolean;
   isLoading?: boolean;
-  newItemTransform?: (item: { label: string; value: string }) => Option<T>;
+  newItemTransform?: (item: { label: string; value: string }) => T;
   onInputBlur?: (event: React.FocusEvent) => void;
-  onInputChange?: (changes: Partial<UseComboboxState<Option<T>>>) => void;
+  onInputChange?: (changes: Partial<UseComboboxState<T>>) => void;
   onInputFocus?: (event: React.FocusEvent) => void;
   onInputKeyDown?: (event: React.KeyboardEvent) => void;
   onInputKeyPress?: (event: React.KeyboardEvent) => void;
   onInputKeyUp?: (event: React.KeyboardEvent) => void;
   onInputValueChange?: (
-    changes: Partial<UseComboboxState<Option<T>>>,
-    updateInputItems?: React.Dispatch<React.SetStateAction<Option<T>[]>>
+    changes: Partial<UseComboboxState<T>>,
+    updateInputItems?: React.Dispatch<React.SetStateAction<T[]>>
   ) => void;
-  onItemCreated?: (newItem: Option<T>) => void;
+  onItemCreated?: (newItem: T) => void;
   placeholder?: string;
 }
 
-export interface MultiComboboxInterface<T>
-  extends UseMultipleSelectionProps<Option<T>>,
+export interface MultiComboboxInterface<T extends SelectOptions>
+  extends UseMultipleSelectionProps<T>,
     Omit<ComboboxInterface<T>, 'onStateChange' | 'stateReducer'>,
     InternalMultiInterface<T> {
   ariaDescribedBy?: string;
@@ -67,7 +67,7 @@ export function Combobox<T>(props: ComboboxInterface<T>) {
     helperMessage
   } = props;
 
-  function itemToString(item: Option<T>) {
+  function itemToString(item: T) {
     return item && typeof item === 'string'
       ? item
       : item && instanceOfDefaultItemObject(item)

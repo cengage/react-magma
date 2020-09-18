@@ -1,5 +1,6 @@
 ---
-title: 'Inputs'
+pageTitle: Input API
+title: Input
 ---
 
 import { ScopeableLayout } from '../../components/layout'
@@ -9,19 +10,13 @@ import {
   QuestionCircleIcon,
   Search2Icon,
 } from 'react-magma-icons'
-import {
-  Input,
-  Button,
-  IconButton,
-  Spinner,
-  Tooltip,
-} from 'react-magma-dom'
+import { Input, Button, IconButton, Spinner, Tooltip } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
 
 <DocsHeading to="/design/inputs/" type="design">
-  Inputs
+  Input
 </DocsHeading>
 
 Input fields are used in a number of ways for both collecting and displaying data from the user.
@@ -93,30 +88,6 @@ relied upon to take the place of the label text.
         placeholder='yourname@example.com' />
 ```
 
-## Error Message
-
-If an input has an `errorMessage`, the input will be styled to highlight it's error state and the error message will appear below the input field.
-If an error message is present, it will replace the helper text. Can be a node or a string.
-
-```.jsx
-  (props) => {
-
-  const [hasError, setHasError] = React.useState(false);
-
-  function toggleError(){
-    setHasError(!hasError)
-  }
-
-   return( <>
-      <Input
-          errorMessage={hasError ? 'Please correct this error': null}
-          helperMessage='Helper text'
-          labelText='Error Message' />
-      <Button onClick={toggleError}>Toggle Error Message</Button>
-    </>)
-  }
-```
-
 ## Helper Message
 
 The `helperMessage` appears underneath the input field. It will not appear if an error message is present. Can be a node or a string.
@@ -130,6 +101,49 @@ The `helperMessage` appears underneath the input field. It will not appear if an
           helperMessage={helperMessage}
           labelText='Helper Message' />
     )
+  }
+```
+
+## Error Message
+
+If an input has an `errorMessage`, the input will be styled to highlight it's error state and the error message will appear below the input field.
+If an error message is present, it will replace the helper text. Can be a node or a string.
+
+The `required` prop can be used to indicate when a field is required. It is also important to indicate to the user whenever a field is required.
+
+While React Magma provides the error styling, it is up to the consumer app to handle the validation.
+
+```.jsx
+  (props) => {
+
+  const [hasError, setHasError] = React.useState(false);
+  const [nameValue, setNameValue] = React.useState('');
+
+  function submit(){
+    if (nameValue === '') {
+      setHasError(true);
+    }
+    else {
+      setHasError(false);
+    }
+  }
+
+  function reset(){
+    setHasError(false);
+    setNameValue('');
+  }
+
+   return( <>
+      <Input
+          errorMessage={hasError ? 'Please provide name': null}
+          helperMessage='* Required'
+          labelText='Name *'
+          onChange={(event) => setNameValue(event.target.value)}
+          required
+          value={nameValue} />
+      <Button onClick={submit}>Submit</Button>
+      <Button onClick={reset} color="secondary">Reset</Button>
+    </>)
   }
 ```
 
@@ -198,9 +212,10 @@ The `inputSize` prop can be used to control the input size. Options are `medium`
           labelText='Inverse Input with Helper Text' />
 
       <Input
-          errorMessage='Please correct your error'
+          errorMessage='Please fill out this field'
           isInverse
-          labelText='Inverse Input with Error Message' />
+          labelText='Inverse Input with Error Message'
+          required />
     </div>
 ```
 
@@ -208,11 +223,14 @@ The `inputSize` prop can be used to control the input size. Options are `medium`
 
 The `isLabelVisuallyHidden` prop can be used to visually hide the text label, while still making the text available to screen readers.
 
+This option should only be used in rare instances, such as a search field. Providing a visual label is helpful for individuals with cognitive disabilities and users who have fine motor control limitations. When there isn't a visible label, the placeholder text should match the invisible label word for word. This is so speech input users can operate the control with voice commands.
+
 ```.jsx
     <Input
+      icon={<Search2Icon />}
       isLabelVisuallyHidden
-      labelText='This is the aria-label'
-      placeholder='This is placeholder' />
+      labelText='Search'
+      placeholder='Search' />
 ```
 
 ## Additional Children (e.g. Help Link)
@@ -478,7 +496,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
         name: 'function',
       },
       required: false,
-      description: 'Action that will fire when icon is receives keypress.',
+      description: 'Action that will fire when icon receives keypress.',
       defaultValue: '',
     },
     placeholder: {

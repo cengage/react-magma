@@ -30,7 +30,7 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
     onRemoveSelectedItem
   } = props;
 
-  function checkSelectedItemValidity(itemToCheck) {
+  function checkSelectedItemValidity(itemToCheck: T) {
     return (
       items.findIndex(i => itemToString(i) === itemToString(itemToCheck)) !== -1
     );
@@ -43,7 +43,7 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
     removeSelectedItem,
     selectedItems,
     setActiveIndex
-  } = useMultipleSelection({
+  } = useMultipleSelection<T>({
     ...props,
     ...(props.initialSelectedItems && {
       initialSelectedItems: props.initialSelectedItems.filter(

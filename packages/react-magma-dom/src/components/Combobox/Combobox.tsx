@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { instanceOfDefaultItemObject, Option } from '../Select';
+import { instanceOfDefaultItemObject } from '../Select';
 import { useCombobox } from 'downshift';
 import { CrossIcon } from 'react-magma-icons';
 import { defaultComponents } from '../Select/components';
@@ -124,7 +124,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
     updateItemsRef
   ] = useComboboxItems(defaultItems, items);
 
-  function getValidItem(itemToCheck: Option<T>, key: string): object {
+  function getValidItem(itemToCheck: T, key: string): object {
     return allItems.current.findIndex(
       i => itemToString(i) === itemToString(itemToCheck)
     ) !== -1
