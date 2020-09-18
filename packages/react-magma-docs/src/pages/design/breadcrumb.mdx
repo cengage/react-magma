@@ -1,4 +1,5 @@
 ---
+pageTitle: Breadcrumb Design Guidelines
 title: Breadcrumb
 order: 1
 ---
@@ -7,32 +8,38 @@ import { Link } from 'gatsby'
 import './design-guidelines-styles.css'
 import DocsHeading from '../../components/docs-heading'
 
-<DocsHeading to="/api/breadcrumb/" type="code">Breadcrumbs</DocsHeading>
+<DocsHeading to="/api/breadcrumb/" type="code">
+  Breadcrumb
+</DocsHeading>
 
 ## Usage
-Indicate the current page’s location within a navigational hierarchy that automatically adds separators.  The default breadcrumb component is styled for use on backgrounds **neutral08** or **neutral07**.  For dark backgrounds you can use the inverse version.
+
+Indicate the current page’s location within a navigational hierarchy that automatically adds separators. The default breadcrumb component is styled for use on backgrounds **neutral08** or **neutral07**. For dark backgrounds you can use the inverse version.
 
 <figure>
-  <img src="../../images/breadcrumbs/example-breadcrumbs.png" alt="Example of default and inverse breadcrumbs" />
+  <img
+    src="../../images/breadcrumbs/example-breadcrumbs.png"
+    alt="Example of default and inverse breadcrumbs"
+  />
 </figure>
-
 <span class="horizontal-spacer"></span>
 <hr class="article-divider" />
 
 ## Responsive Behavior
 
-As the viewport gets smaller, the breadcrumb component will simply wrap to as many lines as necessary.  Mobile apps do not typically use breadcrumbs, and the same goes for when our Responsive applications are rendered on smaller screens.  Therefore it is appropriate to supress the breadcrumbs at a specified breakpoint, and provide an alternative way of navigating if necessary.  A common breakpoint for hiding breadcrumbs is 600px, which covers the majority of small tablets and phones.
+As the viewport gets smaller, the breadcrumb component will simply wrap to as many lines as necessary. Mobile apps do not typically use breadcrumbs, and the same goes for when our Responsive applications are rendered on smaller screens. Therefore it is appropriate to supress the breadcrumbs at a specified breakpoint, and provide an alternative way of navigating if necessary. A common breakpoint for hiding breadcrumbs is 600px, which covers the majority of small tablets and phones.
 
 <div class="two-col">
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/breadcrumbs/breadcrumbs-wrap.png" alt="Example of breadcrumbs wrapping" />
+        <img
+          src="../../images/breadcrumbs/breadcrumbs-wrap.png"
+          alt="Example of breadcrumbs wrapping"
+        />
       </figure>
     </div>
-    <div class="col col-2">
-    </div>
+    <div class="col col-2"></div>
   </div>
 </div>
-
 <span class="horizontal-spacer"></span>

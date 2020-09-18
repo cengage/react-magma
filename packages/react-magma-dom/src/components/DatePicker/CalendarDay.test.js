@@ -42,7 +42,7 @@ describe('Calendar Day', () => {
 
     expect(container.querySelector(':focus')).toHaveAttribute(
       'aria-label',
-      format(defaultDate, 'MMMM do yyyy')
+      ` ${format(defaultDate, 'EEEE, MMMM do yyyy')}  (Selected)`
     );
   });
 

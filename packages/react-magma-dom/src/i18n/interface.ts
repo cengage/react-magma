@@ -113,6 +113,9 @@ export interface I18nInterface {
     previousMonthAriaLabel: string;
     nextMonthAriaLabel: string;
     disabledDayAriaLabel: string;
+    selectedDayAriaLabel: string;
+    todayAriaLabel: string;
+
     helpModal: {
       header: string;
       helpButtonAriaLabel: string;

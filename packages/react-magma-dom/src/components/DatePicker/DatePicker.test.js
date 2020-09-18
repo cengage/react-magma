@@ -185,7 +185,7 @@ describe('Date Picker', () => {
 
     getByLabelText(labelText).focus();
 
-    getByLabelText('Calendar').focus();
+    getByLabelText('Toggle Calendar Widget').focus();
 
     expect(onInputBlur).toHaveBeenCalled();
   });
@@ -202,9 +202,9 @@ describe('Date Picker', () => {
       target: { value: '1/1/1991' }
     });
 
-    getByLabelText('Calendar').focus();
+    getByLabelText('Toggle Calendar Widget').focus();
 
-    fireEvent.click(getByLabelText('Calendar'));
+    fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
     expect(
       getByText(new Date('1/1/1991').getDate().toString())
@@ -219,7 +219,7 @@ describe('Date Picker', () => {
 
     expect(getByTestId('calendarContainer')).toHaveStyleRule('display', 'none');
 
-    fireEvent.click(getByLabelText('Calendar'));
+    fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
     expect(getByTestId('calendarContainer')).toHaveStyleRule(
       'display',
@@ -233,9 +233,9 @@ describe('Date Picker', () => {
     const { getByLabelText, getByText } = render(
       <DatePicker labelText="Date Picker Label" />
     );
-    fireEvent.click(getByLabelText('Calendar'));
+    fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    expect(getByText(monthYear)).toBe(document.activeElement);
+    expect(getByText(monthYear)).toBe(document.activeElement.firstChild);
   });
 
   it('should focus the chosen date when the calendar is opened', () => {
@@ -243,7 +243,7 @@ describe('Date Picker', () => {
     const { getByLabelText, getByText } = render(
       <DatePicker defaultDate={defaultDate} labelText="Date Picker Label" />
     );
-    fireEvent.click(getByLabelText('Calendar'));
+    fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
     expect(getByText('17')).toBe(document.activeElement);
   });
@@ -262,9 +262,9 @@ describe('Date Picker', () => {
       target: { value: '12' }
     });
 
-    getByLabelText('Calendar').focus();
+    getByLabelText('Toggle Calendar Widget').focus();
 
-    fireEvent.click(getByLabelText('Calendar'));
+    fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
     expect(getByText(format(now, 'MMMM yyyy'))).not.toBeNull();
     expect(getByText(format(now, 'd'))).not.toBe(document.activeElement);
@@ -277,7 +277,7 @@ describe('Date Picker', () => {
       <DatePicker defaultDate={defaultDate} labelText={labelText} />
     );
 
-    fireEvent.click(getByLabelText('Calendar'));
+    fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
     expect(getByText(/january/i)).toBeInTheDocument();
 
@@ -293,7 +293,7 @@ describe('Date Picker', () => {
       <DatePicker defaultDate={defaultDate} labelText={labelText} />
     );
 
-    fireEvent.click(getByLabelText('Calendar'));
+    fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
     expect(getByText(/january/i)).toBeInTheDocument();
 
@@ -307,7 +307,7 @@ describe('Date Picker', () => {
       <DatePicker labelText="Date Picker Label" />
     );
 
-    fireEvent.click(getByLabelText('Calendar'));
+    fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
     fireEvent.click(getByLabelText(/close calendar/i));
 
@@ -319,7 +319,7 @@ describe('Date Picker', () => {
       <DatePicker labelText="Date Picker Label" />
     );
 
-    fireEvent.click(getByLabelText('Calendar'));
+    fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
     expect(getByTestId('calendarContainer')).not.toHaveStyleRule(
       'display',
@@ -339,14 +339,14 @@ describe('Date Picker', () => {
       <DatePicker defaultDate={defaultDate} labelText="Date Picker Label" />
     );
 
-    fireEvent.click(getByLabelText('Calendar'));
+    fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
     expect(getByTestId('calendarContainer')).toHaveStyleRule(
       'display',
       'block'
     );
 
-    fireEvent.keyDown(getByLabelText('Calendar'), {
+    fireEvent.keyDown(getByLabelText('Toggle Calendar Widget'), {
       key: 'Escape',
       code: 27
     });
@@ -656,7 +656,7 @@ describe('Date Picker', () => {
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      fireEvent.click(getByLabelText('Calendar'));
+      fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
       fireEvent.keyDown(container.querySelector('table'), {
         key: 'Tab'

@@ -1,6 +1,7 @@
 {
   "packages": [
-    "packages/**"
+    "packages/react-magma-dom",
+    "packages/react-magma-docs"
   ],
   "command": {
     "bootstrap": {
@@ -10,5 +11,5 @@
       ]
     }
   },
-  "version": "2.0.0-beta.74"
+  "version": "2.0.0-beta.78"
 }

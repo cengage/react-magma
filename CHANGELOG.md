@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.78](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.77...v2.0.0-beta.78) (2020-09-18)
+
+
+### Bug Fixes
+
+* **calendar:** some a11y fixes ([85c6242](http://stash.cengage.com:7999/FRONT/react-magma/commits/85c62429bebb5f35d9b5029da2fa8a0de87bb167))
+
+
+
+
+
+# [2.0.0-beta.77](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.76...v2.0.0-beta.77) (2020-09-17)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.76](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.75...v2.0.0-beta.76) (2020-09-15)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.75](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.74...v2.0.0-beta.75) (2020-09-15)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
 # [2.0.0-beta.74](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.73...v2.0.0-beta.74) (2020-09-15)
 
 

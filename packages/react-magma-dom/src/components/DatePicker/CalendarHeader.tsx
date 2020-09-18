@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Announce } from '../Announce';
 import { CalendarContext } from './CalendarContext';
 import { ArrowLeft2Icon, ArrowRight2Icon } from 'react-magma-icons';
 import { ButtonType, ButtonVariant } from '../Button';
@@ -68,7 +69,7 @@ export const CalendarHeader: React.FunctionComponent<CalendarHeaderProps> = (
   return (
     <CalendarHeaderContainer>
       <CalendarHeaderText tabIndex={-1} theme={theme} ref={calendarHeader}>
-        {capitalizeCurrentMonth}
+        <Announce>{capitalizeCurrentMonth}</Announce>
       </CalendarHeaderText>
       <CalendarIconButton>
         <IconButton
