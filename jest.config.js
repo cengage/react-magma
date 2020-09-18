@@ -21,6 +21,8 @@ const colors = [
 const isDirectory = directory => source => lstatSync(join(directory,source)).isDirectory()
 const ignored = source => ![
   'react-magma-docs', 
+  'react-magma-icons', 
+  'react-magma-legacy-selects', 
   'react-magma-landing'
 ].includes(source)
 
@@ -31,6 +33,9 @@ const buildProjects = source => name => {
   return {
     displayName:{name, color: colors.pop()},
     testMatch: [`<rootDir>/packages/${name}/src/**/?(*.)(spec|test).{js,jsx,mjs}`],
+    setupFiles: [
+      // './jest.overrides.js',
+    ],
     setupFilesAfterEnv: [
       'jest-extended',
       '@testing-library/jest-dom/extend-expect',
