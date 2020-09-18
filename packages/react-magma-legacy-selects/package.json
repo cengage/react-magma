@@ -1,6 +1,6 @@
 {
   "name": "react-magma-legacy-selects",
-  "version": "2.0.0-beta.76",
+  "version": "2.0.0-beta.78",
   "license": "ISC",
   "main": "dist/index.js",
   "module": "dist/esm/legacy-selects.esm.js",
@@ -72,7 +72,7 @@
     "jest-emotion": "^10.0.32",
     "jest-extended": "^0.11.5",
     "lint-staged": "^10.2.11",
-    "react-magma-dom": "^2.0.0-beta.76",
+    "react-magma-dom": "^2.0.0-beta.78",
     "react-magma-icons": "^2.0.0-beta.76",
     "react-select": "3.0.8",
     "rimraf": "^3.0.2",
