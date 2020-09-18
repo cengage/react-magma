@@ -1,5 +1,6 @@
 ---
-title: 'Theming'
+pageTitle: Theming API
+title: Theming
 ---
 
 import { ScopeableLayout } from '../../components/layout'
@@ -21,13 +22,17 @@ Use the dropdown to change theme for the demo component.
   (props) => {
     const [theme, setTheme] = React.useState(magma);
 
+    function handleItemChange(changes) {
+      setTheme(changes.selectedItem.value);
+    }
+
     return (
       <div>
         <Select
           id="themeSwitcher"
           labelText="Select Theme"
-          onChange={({value}) => setTheme(value)}
-          options={[{
+          onSelectedItemChange={handleItemChange}
+          items={[{
             value: magma,
             label: 'Magma (default)'
           }, {

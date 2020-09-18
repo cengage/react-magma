@@ -4,7 +4,8 @@ module.exports = {
   ...base,
   projects: [
     '<rootDir>/packages/react-magma-core/jest.config.js',
-    '<rootDir>/packages/react-magma-dom/jest.config.js'
+    '<rootDir>/packages/react-magma-dom/jest.config.js',
+    '<rootDir>/packages/react-magma-icons/jest.config.js'
   ],
   coverageDirectory: '<rootDir>/coverage/',
   snapshotSerializers: ['jest-emotion']

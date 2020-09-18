@@ -9,9 +9,11 @@ import {
   TableSortDirection
 } from './';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { ArrowDoubleIcon } from '../Icon/types/ArrowDoubleIcon';
-import { ArrowDown2Icon } from '../Icon/types/ArrowDown2Icon';
-import { ArrowUp2Icon } from '../Icon/types/ArrowUp2Icon';
+import {
+  ArrowDoubleIcon,
+  ArrowDown2Icon,
+  ArrowUp2Icon
+} from 'react-magma-icons';
 
 export interface TableHeaderCellProps
   extends React.HTMLAttributes<HTMLTableHeaderCellElement> {

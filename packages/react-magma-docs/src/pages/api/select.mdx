@@ -1,148 +1,379 @@
 ---
-title: 'Selects'
+pageTitle: Select API
+title: Select
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import {
-  Select,
-  AsyncSelect,
-  CreatableSelect,
-  AsyncCreatableSelect,
-  Search2Icon,
-} from 'react-magma-dom'
-import DocsHeading from '../../components/docs-heading'
+import { Select, SelectStateChangeTypes, Alert, I18nContext, defaultI18n } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
-import { components as ReactSelectComponents } from 'react-select'
+import { useSelect } from 'downshift'
+import { Link } from 'gatsby'
+import { v4 as uuid } from 'uuid'
 
-<DocsHeading to="/design/select/" type="design">
-  Selects
-</DocsHeading>
+# Select
 
 ## Basic Usage
 
-A `Select` component allows the user to choose one or more item from a list. By default, only one item may be selected.
+Select components are used for collecting user provided information from a list of options.
 
-The label/select association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
+For combobox/autocomplete functionality, please see the <Link to="/api/combobox">Combobox component</Link>.
 
-This component is built upon [React Select by Jed Watson](https://react-select.com/home).
+If you are migrating from the <Link to="/api/legacy-select">Legacy Select</Link>, please see the <Link to="/select-migration">Select Migration docs</Link> for details on how to make the transition.
+
+By default when passing in a `selectedItem` it will be checked to make sure it is in your `items` array. The check will use the
+`itemToString` function on both the `selectedItem` and each `item` in the array. The default `itemToString` function
+is able to be used for `items` that are either `strings` or an object with the shape `{item: string; label: string;}`.
+If you are using a custom items format see the [Custom Items example](/api/select/#custom_items).
 
 ```.jsx
-  <>
-    <Select
-      id="basicSelectId"
-      name="basic"
-      labelText="Basic"
-      options={[{
-        value: 'red',
-        label: 'Red'
-      }, {
-        value: 'blue',
-        label: 'Blue'
-      }, {
-        value: 'green',
-        label: 'Green'
-      }]}
-    />
-  </>
+  () => {
+    const [selectedItem, updateSelectedItem] = React.useState('');
+
+    function onSelectedItemChange(changes) {
+      updateSelectedItem(changes.selectedItem);
+    }
+
+    return <>
+      <Select
+        id="basicSelectId"
+        name="basic"
+        labelText="Basic"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        selectedItem={selectedItem}
+        onSelectedItemChange={onSelectedItemChange}
+      />
+
+      <Select
+        id="badSelectedItemId"
+        name="badSelectedItem"
+        labelText="Bad Selected Item"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        selectedItem={{ label: 'Purple', value: 'purple' }}
+      />
+    </>
+  }
 ```
 
-## Multi-Select
+## Custom Items
 
-The optional `multi` prop allows the user to select more than one item.
+By default each component accepts an array of `items` with either a `string` or an `object` with the shape `{item: string; label: string;}`
+for each `item`. If you need to pass in a custom shape for your `items` you can pass in an additional prop named `itemToString`
+which is a function that returns the string representation of your `item` which will be applied as the label.
+
+<Alert variant="warning">
+  <strong>WARNING</strong> Your function must include a <code>null</code> check.
+</Alert>
+
+If you are using a custom shape for your `items` in a `typescript` project refer to our example of [using your
+custom `type`](/api/select#custom_items_typescript).
 
 ```.jsx
-  <>
-    <Select
-      id="multiSelectId"
-      name="multi"
-      labelText="Multi"
-      options={[{
-        value: 'red',
-        label: 'Red'
-      }, {
-        value: 'blue',
-        label: 'Blue'
-      }, {
-        value: 'green',
-        label: 'Green'
-      }]}
-      isMulti
-    />
-  </>
+  () => {
+    function itemToString(item) {
+      return item ? `${item.representation} (${item.hex})` : ''
+    }
+
+    return <>
+      <Select
+        id="itemToStringId"
+        name="itemToString"
+        labelText="Item to String"
+        items={[{
+          id: 1,
+          actual: 'red',
+          representation: 'Red',
+          hex: '#FF0000'
+        }, {
+          id: 2,
+          actual: 'blue',
+          representation: 'Blue',
+          hex: '#0000FF'
+        }, {
+          id: 3,
+          actual: 'green',
+          representation: 'Green',
+          hex: '#008000'
+        }]}
+        itemToString={itemToString}
+      />
+    </>
+  }
 ```
 
-## Clearable
+## Initial State
 
-The optional `clearable` prop allows the user to clear the field once a selection has been made.
+Set initial state using the `initialSelectedItem`, `initialSelectedItems`, and `initialHighlightedIndex` props.
+
+<Alert variant="info">
+  When using any of the <code class="inverse">initial*</code> props be aware
+  that passing in the controlled version of that prop will overwrite the initial
+  version.
+  <br />
+  <br />
+  <strong>Ex: </strong>
+  <code class="inverse">selectedItem</code> takes precedence over{' '}
+  <code class="inverse">initialSelectedItem</code>
+</Alert>
 
 ```.jsx
-  <>
-    <Select
-      id="clearableSelectId"
-      name="clearable"
-      labelText="Clearable"
-      options={[{
-        value: 'red',
-        label: 'Red'
-      }, {
-        value: 'blue',
-        label: 'Blue'
-      }, {
-        value: 'green',
-        label: 'Green'
-      }]}
-      isClearable
-    />
-  </>
+  () => {
+    return <>
+      <Select
+        id="initialSelectedByItemSelectId"
+        name="initialSelectedByItem"
+        labelText="Initial Selected By Item"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        initialSelectedItem={{ label: 'Green', value: 'green' }}
+      />
+
+      <Select
+        id="initialHighlightedIndexSelectId"
+        name="initialHighlightedIndex"
+        labelText="Initial Highlighted Index"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        initialHighlightedIndex={1}
+      />
+    </>
+  }
 ```
 
-## Default Value
+## Specific State Changes
+
+You can track specific changes made to the internal state of the `select` using the following functions: `onHighlightedIndexChange`,
+`onIsOpenChange`, and `onSelectedItemChange`. Each of these functions will have a `changes` object as a parameter that
+includes the changes made to the corresponding state from each action.
 
 ```.jsx
-  <>
-    <Select
-      id="defaultValueSelectId"
-      name="defaultValue"
-      labelText="Default Value"
-      options={[{
-        value: 'red',
-        label: 'Red'
-      }, {
-        value: 'blue',
-        label: 'Blue'
-      }, {
-        value: 'green',
-        label: 'Green'
-      }]}
-      defaultValue={{
-        value: 'red',
-        label: 'Red'
-      }}
-    />
-  </>
+  () => {
+    const [highlightedIndexChangeCount, updateHighlightedIndexChangeCount] = React.useState(0);
+    const [isOpenChangeCount, updateIsOpenChangeCount] = React.useState(0);
+    const [selectedItem, updateSelectedItem] = React.useState(undefined);
+
+    function onHighlightedIndexChange(changes) {
+      updateHighlightedIndexChangeCount(highlightedIndexChangeCount + 1);
+    }
+
+    function onIsOpenChange(changes) {
+      updateIsOpenChangeCount(isOpenChangeCount + 1)
+    }
+
+    function onSelectedItemChange(changes) {
+      updateSelectedItem(changes.selectedItem);
+    }
+
+    return <>
+      <strong>Selected Item: </strong><pre>{JSON.stringify(selectedItem, null, 2)}</pre>
+      <p><strong>Highlighted Index Change Count: </strong>{highlightedIndexChangeCount}</p>
+      <p><strong>Is Open Change Count: </strong>{isOpenChangeCount}</p>
+
+      <Select
+        id="stateChangesId"
+        name="stateChanges"
+        labelText="State Changes"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        onHighlightedIndexChange={onHighlightedIndexChange}
+        onIsOpenChange={onIsOpenChange}
+        onSelectedItemChange={onSelectedItemChange}
+      />
+    </>
+  }
+```
+
+## Generic State Change
+
+<Alert variant="warning">
+  Using <code>onStateChange</code> and controlling every piece of{' '}
+  <code>state</code> will result in losing most of the functionality that has
+  been built in to this component. Only use this feature as a last resort.
+</Alert>
+
+`onStateChange` is called when any internal state is changed. Therefore, it is best used when using the
+`select` in a controlled state.
+
+The `onStateChange` function passes a `changes` object that includes properties that have changed since the
+last state change. The `changes` object also includes a `type` property that describes the action taken
+to change the state. You can see the full list of the types in the [`stateChangeTypes`](/api/select/#state_change_types) section.
+
+```.jsx
+  () => {
+    const [changes, updateChanges] = React.useState({});
+    const [highlightedIndex, updateHighlightedIndex] = React.useState(-1);
+    const [isOpen, updateIsOpen] = React.useState(false);
+    const [selectedItem, updateSelectedItem] = React.useState('');
+
+    function onStateChange(newChanges) {
+      const { type } = newChanges
+      updateChanges(newChanges)
+
+      switch(type) {
+        case SelectStateChangeTypes.ToggleButtonClick:
+          updateIsOpen(!isOpen)
+        case SelectStateChangeTypes.ToggleButtonKeyDownArrowDown:
+          updateIsOpen(newChanges.isOpen)
+          updateHighlightedIndex(newChanges.highlightedIndex)
+        case SelectStateChangeTypes.ItemMouseMove:
+        case SelectStateChangeTypes.FunctionSetHighlightedIndex:
+        case SelectStateChangeTypes.MenuKeyDownArrowDown:
+        case SelectStateChangeTypes.MenuKeyDownArrowUp:
+          updateHighlightedIndex(newChanges.highlightedIndex)
+        case SelectStateChangeTypes.MenuKeyDownEscape:
+        case SelectStateChangeTypes.MenuBlur:
+          updateIsOpen(false)
+          updateHighlightedIndex(newChanges.highlightedIndex)
+        case SelectStateChangeTypes.ItemClick:
+          updateHighlightedIndex(newChanges.highlightedIndex)
+          updateIsOpen(newChanges.isOpen)
+          updateSelectedItem(newChanges.selectedItem)
+        default:
+          break;
+      }
+    }
+
+    return (
+      <>
+        <pre>{JSON.stringify(changes, null, 2)}</pre>
+
+        <Select
+          id="stateChangesId"
+          name="stateChanges"
+          labelText="State Changes"
+          items={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' }
+          ]}
+          onStateChange={onStateChange}
+          highlightedIndex={highlightedIndex}
+          isOpen={isOpen}
+          selectedItem={selectedItem}
+        />
+      </>
+    )
+  }
+```
+
+## Controlled
+
+If you wish to control the state rather than having it handled internally you can use the control props
+provided. These props are `isOpen`, `selectedItem`, and `highlightedIndex`. If you are using these control props
+you will have to use the handlers mentioned above in the <Link to="/api/select/#state_changes">State Changes</Link> section.
+
+```.jsx
+  () => {
+    const [highlightedIndex, updateHighlightedIndex] = React.useState(0);
+    const [isOpen, updateIsOpen] = React.useState(false);
+    const [selectedItem, updateSelectedItem] = React.useState('');
+
+    function onHighlightedIndexChange(changes) {
+      updateHighlightedIndex(changes.highlightedIndex);
+    }
+
+    function onIsOpenChange(changes) {
+      updateIsOpen(changes.isOpen)
+    }
+
+    function onSelectedItemChange(changes) {
+      updateSelectedItem(changes.selectedItem);
+    }
+
+    return <>
+      <strong>Selected Item: </strong><pre>{JSON.stringify(selectedItem, null, 2)}</pre>
+      <p><strong>Highlighted Index: </strong>{highlightedIndex}</p>
+      <p><strong>Is Open: </strong>{isOpen.toString()}</p>
+
+      <Select
+        id="controlledId"
+        name="controlled"
+        labelText="Controlled"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        isOpen={isOpen}
+        highlightedIndex={highlightedIndex}
+        selectedItem={selectedItem}
+        onHighlightedIndexChange={onHighlightedIndexChange}
+        onIsOpenChange={onIsOpenChange}
+        onSelectedItemChange={onSelectedItemChange}
+      />
+    </>
+  }
 ```
 
 ## Disabled
 
 ```.jsx
-  <>
-    <Select
-      id="disabledSelectId"
-      name="disabled"
-      labelText="Disabled"
-      options={[{
-        value: 'red',
-        label: 'Red'
-      }, {
-        value: 'blue',
-        label: 'Blue'
-      }, {
-        value: 'green',
-        label: 'Green'
-      }]}
-      isDisabled
-    />
-  </>
+  <Select
+    id="disabledSelectId"
+    isDisabled
+    name="disabled"
+    labelText="Disabled"
+    items={[
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' }
+    ]}
+  />
+```
+
+## Clearable
+
+The optional `isClearable` prop allows the user to clear the field once a selection has been made.
+
+When using the `isClearable` prop you can choose a default selected item to be set once the `select` is cleared
+using the `defaultSelectedItem` prop.
+
+```.jsx
+  () => {
+    return <>
+      <Select
+        id="clearableSelectId"
+        name="clearable"
+        labelText="Clearable"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        initialSelectedItem={{ label: 'Green', value: 'green' }}
+        isClearable
+      />
+
+      <Select
+        id="clearableWithDefaultsId"
+        name="clearableWithDefaults"
+        labelText="Clearable With Defaults"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        isClearable
+        defaultSelectedItem={{ label: 'Blue', value: 'blue' }}
+      />
+    </>
+  }
 ```
 
 ## Error Message
@@ -151,24 +382,21 @@ If a select has an `errorMessage`, the select will be styled to highlight it's e
 If an error message is present, it will replace the helper text. Can be a node or a string.
 
 ```.jsx
-  <>
-    <Select
-      errorMessage="Please select a color"
-      helperMessage="Helper text goes here"
-      name="error"
-      labelText="Error Message"
-      options={[{
-        value: 'red',
-        label: 'Red'
-      }, {
-        value: 'blue',
-        label: 'Blue'
-      }, {
-        value: 'green',
-        label: 'Green'
-      }]}
-    />
-  </>
+  () => (
+    <>
+      <Select
+        id="errorMessage"
+        name="error"
+        labelText="Error Message"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        errorMessage="Please select a color"
+      />
+    </>
+  )
 ```
 
 ## Helper Message
@@ -176,397 +404,450 @@ If an error message is present, it will replace the helper text. Can be a node o
 The `helperMessage` appears underneath the select field. It will not appear if an error message is present. Can be a node or a string.
 
 ```.jsx
-  <>
-    <Select
-      helperMessage="Helper text goes here"
-      name="helper"
-      labelText="Helper Message"
-      options={[{
-        value: 'red',
-        label: 'Red'
-      }, {
-        value: 'blue',
-        label: 'Blue'
-      }, {
-        value: 'green',
-        label: 'Green'
-      }]}
-    />
-  </>
+  () => (
+    <>
+      <Select
+        id="helperMessage"
+        name="helper"
+        labelText="Helper Message"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        helperMessage="Helper text goes here"
+      />
+    </>
+  )
 ```
 
-## Inverse styles
+## Accessibility
 
-The `isInverse` property is an optional boolean, that reverses the colors so that the select can better appear on a dark background.
-The default value is `false`.
+The `getA11yStatusMessage` prop is a passed in function that allows for customization of the screen-reader accessible message whenever the following props
+are changed: `items`, `highlightedIndex`, `inputValue` or `isOpen`.
 
-```.jsx
-  <div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
-    <Select
-      errorMessage="Please select a color"
-      isInverse
-      name="inverse"
-      labelText="Error Message"
-      options={[{
-        value: 'red',
-        label: 'Red'
-      }, {
-        value: 'blue',
-        label: 'Blue'
-      }, {
-        value: 'green',
-        label: 'Green'
-      }]}
-    />
-  </div>
-```
+The `getA11ySelectionMessage` prop is a passed in function that allows for customization of the screen-reader accessible message
+whenever an item has been selected.
 
-## Custom components
-
-`react-select` allows for the passing of custom components to override the building blocks of a `select`. The explanation and a full list of components that you can override can be found [here](https://react-select.com/components).
-
-For this example I am importing `components` from `react-select` and renaming the import to `ReactSelectComponents`. In practice you should not have a component defined inside of your `select` component, but it is there in this example to allow you to see how to build a custom component.
+For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions there is an
+[object passed with internal state data](https://github.com/downshift-js/downshift/tree/master/src/hooks/useSelect#geta11yselectionmessage).
 
 ```.jsx
   () => {
-    const DropdownIndicator = props => {
-      return (
-        ReactSelectComponents.DropdownIndicator && (
-          <ReactSelectComponents.DropdownIndicator {...props}>
-            <Search2Icon size={10} />
-          </ReactSelectComponents.DropdownIndicator>
-        )
-      );
-    };
+    return <>
+      <Select
+        id="newA11yStatusMessageId"
+        name="newA11yStatusMessage"
+        labelText="New Accessibility Status Message"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        getA11yStatusMessage={({highlightedItem}) => `custom message saying that ${highlightedItem} is highlighted`}
+        getA11ySelectionMessage={({selectedItem}) => `custom message saying that ${selectedItem} is now selected`}
+      />
+    </>
+  }
+```
+
+## Multi Select
+
+```.jsx
+  () => {
+    const [selectedItems, updateSelectedItems] = React.useState([]);
+
+    function handleSelectedItemsChange(changes) {
+      updateSelectedItems(changes.selectedItems);
+    }
+
+    function handleRemoveSelectedItem(removedItem) {
+      updateSelectedItems(
+        selectedItems.filter(item => item !== removedItem)
+      )
+    }
+
+    return <>
+      <Select
+        id="multiSelectId"
+        isMulti
+        name="multiSelect"
+        labelText="Multi Select"
+        items={[
+          {label: 'Red', value: 'red'},
+          {label: 'Blue', value: 'blue'},
+          {label: 'Green', value: 'green'},
+          {label: 'Orange', value: 'orange'},
+          {label: 'Aqua', value: 'aqua'},
+          {label: 'Gold', value: 'gold'},
+          {label: 'Perriwinkle', value: 'perriwinkle'},
+          {label: 'Lavender', value: 'lavender'},
+          {label: 'Marigold', value: 'marigold'},
+          {label: 'Yellow', value: 'yellow'},
+          {label: 'Purple', value: 'purple'},
+          {label: 'Dusty Rose', value: 'dusty_rose'},
+          {label: 'Burnt Sienna', value: 'burnt_sienna'}
+        ]}
+        initialSelectedItems={[
+          {label: 'Red', value: 'red'},
+          {label: 'Blue', value: 'blue'},
+          {label: 'Blah', value: 'blah'}
+        ]}
+      />
+
+      <Select
+        id="multiSelectControlledId"
+        isMulti
+        name="multiSelectControlled"
+        labelText="Multi Select Controlled"
+        items={[
+          {label: 'Red', value: 'red'},
+          {label: 'Blue', value: 'blue'},
+          {label: 'Green', value: 'green'},
+          {label: 'Orange', value: 'orange'},
+          {label: 'Aqua', value: 'aqua'},
+          {label: 'Gold', value: 'gold'},
+          {label: 'Perriwinkle', value: 'perriwinkle'},
+          {label: 'Lavender', value: 'lavender'},
+          {label: 'Marigold', value: 'marigold'},
+          {label: 'Yellow', value: 'yellow'},
+          {label: 'Purple', value: 'purple'},
+          {label: 'Dusty Rose', value: 'dusty_rose'},
+          {label: 'Burnt Sienna', value: 'burnt_sienna'}
+        ]}
+        selectedItems={selectedItems}
+        onSelectedItemsChange={handleSelectedItemsChange}
+        onRemoveSelectedItem={handleRemoveSelectedItem}
+      />
+    </>
+  }
+```
+
+## Events
+
+```.jsx
+  () => {
+    const [currentSelectEvent, updateCurrentSelectEvent] = React.useState(undefined);
+
+    function handleSelectBlur(event) {
+      updateCurrentSelectEvent('Blur')
+    }
+
+    function handleSelectFocus(event) {
+      updateCurrentSelectEvent('Focus')
+    }
+
+    function handleSelectKeyPress(event) {
+      updateCurrentSelectEvent('KeyPress')
+    }
 
     return (
       <>
+        <p><strong>{currentSelectEvent || 'No'} event was triggered</strong></p>
+
         <Select
-          id="customComponentId"
-          name="custom"
-          labelText="Custom Component"
-          options={[{
-            value: 'red',
-            label: 'Red'
-          }, {
-            value: 'blue',
-            label: 'Blue'
-          }, {
-            value: 'green',
-            label: 'Green'
-          }]}
-          components={{
-            DropdownIndicator
-          }}
+          id="selectFocusEventId"
+          name="selectFocusEvent"
+          labelText="Select Focus Events"
+          items={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' }
+          ]}
+          onBlur={handleSelectBlur}
+          onFocus={handleSelectFocus}
+          onKeyPress={handleSelectKeyPress}
         />
       </>
     )
   }
 ```
 
-## AsyncSelect
-
-The `loadOptions` property allows for loading from a remote source as the user types.
+## Inverse
 
 ```.jsx
-(props) => {
-  function filterColors(inputValue) {
-    return [
+  () => {
+    const [selectedItem, updateSelectedItem] = React.useState('');
+
+    function onSelectedItemChange(changes) {
+      updateSelectedItem(changes.selectedItem);
+    }
+
+
+    const [selectedItems, updateSelectedItems] = React.useState([]);
+
+    function handleSelectedItemsChange(changes) {
+      updateSelectedItems(changes.selectedItems);
+    }
+
+    function handleRemoveSelectedItem(removedItem) {
+      updateSelectedItems(
+        selectedItems.filter(item => item !== removedItem)
+      )
+    }
+
+    return (<div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
+      <Select
+        id="basicSelectInverseId"
+        isInverse
+        name="basic"
+        labelText="Basic"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        selectedItem={selectedItem}
+        onSelectedItemChange={onSelectedItemChange}
+      />
+
+      <Select
+        id="multiSelectInverseId"
+        isInverse
+        isMulti
+        name="multiSelect"
+        labelText="Multi Select"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+      />
+    </div>)
+
+  }
+```
+
+## Custom Styles
+
+Custom styles can be passed into the Select component. The `containerStyle` property will apply to the container.
+Additional `labelStyle`, `inputStyle` and `messageStyle` properties are available to style the respective elements.
+Please use discretion when adding custom styles.
+
+```.jsx
+  () => {
+    const [selectedItem, updateSelectedItem] = React.useState('');
+
+    function onSelectedItemChange(changes) {
+      updateSelectedItem(changes.selectedItem);
+    }
+
+    return <>
+      <Select
+        containerStyle={{ marginBottom: '32px'}}
+        helperMessage="Helper message"
+        inputStyle={{ border: '2px dotted green', width: '200px'}}
+        items={['Red', 'Blue', 'Green']}
+        labelStyle={{ fontStyle: 'italic' }}
+        labelText="Basic with Custom Styles"
+        messageStyle={{ border: '1px solid blue' }}
+        selectedItem={selectedItem}
+        onSelectedItemChange={onSelectedItemChange}
+      />
+
+      <Select
+        containerStyle={{ marginBottom: '32px'}}
+        helperMessage="Helper message"
+        inputStyle={{ border: '2px dotted green', width: '200px'}}
+        isMulti
+        items={['Red', 'Blue', 'Green']}
+        labelStyle={{ fontStyle: 'italic' }}
+        labelText="Multi with Custom Styles"
+        messageStyle={{ border: '1px solid blue' }}
+        selectedItem={selectedItem}
+        onSelectedItemChange={onSelectedItemChange}
+      />
+    </>
+  }
+```
+
+## Internationalization
+
+Some of the internationalization overrides use placeholders to insert selected values in to the message.
+Placeholders are specific keywords surrounded by curly braces. 
+
+- `{labelText}` will be replaced with the comboboxes `labelText`.
+- `{selectedItem}` will be replaced by the current `itemToString` representation of the `selectedItem` of the `select`.
+
+<Link to="/api/internationalization">Full example of internationalization override options</Link>
+
+```.jsx
+  () => {
+    return (<I18nContext.Provider value={{
+      ...defaultI18n,
+      select: {
+        placeholder: 'Custom Select Placeholder...',
+        clearIndicatorAriaLabel: 'Click to reset selection for {labelText}. {selectedItem} is currently selected'
+      },
+      multiSelect: {
+        selectedItemButtonAriaLabel: 'Click to reset the selected item {selectedItem}'
+      }
+    }}>
+      <Select
+        labelText="Internationalization"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        initialSelectedItem={{ label: 'Red', value: 'red' }}
+        isClearable
+      />
+
+      <Select
+        labelText="Multi Internationalization"
+        isMulti
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        initialSelectedItems={[{ label: 'Red', value: 'red' }]}
+      />
+    </I18nContext.Provider>)
+  }
+```
+
+## Custom Items Typescript
+
+When using a custom shape for your `items` in a `typescript` project you will need to provide the `Select`
+element with the shape of the `items` you are passing in.
+
+```
+  interface CustomSelectItem {
+    id: number;
+    actual: string;
+    representation: string;
+    hex?: string;
+  }
+
+  () => {
+    const customItems: CustomSelectItem[] = [
       {
-        label: "Red",
-        value: "red"
+        id: 1,
+        actual: "red",
+        representation: "Red",
+        hex: "#FF0000",
       },
       {
-        label: "Blue",
-        value: "blue"
-      }
-    ].filter(i =>
-      i.label.toLowerCase().includes(inputValue.toLowerCase())
-    );
-  }
+        id: 2,
+        actual: "blue",
+        representation: "Blue",
+        hex: "#0000FF",
+      },
+      {
+        id: 3,
+        actual: "green",
+        representation: "Green",
+        hex: "#008000",
+      },
+    ];
 
-  function promiseOptions(inputValue) {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(filterColors(inputValue));
-      }, 1000);
-    });
-  }
-
-  return (
-    <AsyncSelect labelText="Async Select" loadOptions={promiseOptions} />
-  );
-}
-```
-
-## CreatableSelect
-
-The `CreatableSelect` allows for the creation of a new option if that option is not found.
-
-```.jsx
-(props) => {
-  const [options, updateOptions] = React.useState([
-    {
-      label: "Red",
-      value: "red"
-    },
-    {
-      label: "Blue",
-      value: "blue"
-    }
-  ])
-
-  function handleChange(value, action) {
-    if (value.__isNew__) {
-      updateOptions(options => {
-        options.push({
-          label: value.label,
-          value: value.value
-        });
-
-        return options;
-      })
-    }
-  }
-
-  function handleInputChange(value, action) {
-    console.group('Input Changed');
-    console.log(value);
-    console.groupEnd();
-  };
-
-  return (
-    <CreatableSelect
-      labelText="Creatable Select"
-      isClearable
-      onChange={handleChange}
-      onInputChange={handleInputChange}
-      options={options}
-    />
-  );
-}
-```
-
-## AsyncCreatableSelect
-
-The `AsyncCreatableSelect` combines both the creation of a new option and the loading from a remote source.
-
-```.jsx
-(props) => {
-  const [options, updateOptions] = React.useState([
-    {
-      label: "Red",
-      value: "red"
-    },
-    {
-      label: "Blue",
-      value: "blue"
-    }
-  ]);
-
-  function filterColors(inputValue) {
-    return options.filter(i =>
-      i.label.toLowerCase().includes(inputValue.toLowerCase())
-    );
-  }
-
-  function promiseOptions(inputValue) {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(filterColors(inputValue));
-      }, 1000);
-    });
-  }
-
-  function handleChange(value, action) {
-    if (value.__isNew__) {
-      updateOptions(options => {
-        options.push({
-          label: value.label,
-          value: value.value
-        });
-
-        return options;
-      })
-    }
-  }
-
-  return (
-    <AsyncCreatableSelect labelText="Async Creatable Select" loadOptions={promiseOptions} onChange={handleChange} />
-  );
-}
-```
-
-## Controlled
-
-```.jsx
-(props) => {
-  const [value, updateValue] = React.useState(null)
-
-  return (<>
-    <p>
-      <strong>Value: </strong>
-      <span id="value">{value ? value.value : 'No Value Set'}</span>
-    </p>
-    <Select
-      id="valueSelectId"
-      name="value"
-      labelText="Value"
-      options={[{
-        value: 'red',
-        label: 'Red'
-      }, {
-        value: 'blue',
-        label: 'Blue'
-      }, {
-        value: 'green',
-        label: 'Green'
-      }]}
-      onChange={updateValue}
-    />
-  </>)
-}
-```
-
-## Focus Events
-
-```.jsx
-  (props) => {
-    const [focused, updateFocused] = React.useState(false);
-    const [message, updateMessage] = React.useState('No');
-
-    function changeFocusedMessage() {
-      const updatedFocused = !focused;
-
-      updateFocused(updatedFocused)
-      updateMessage(updatedFocused ? 'Yes' : 'No')
+    function itemToString(item: CustomSelectItem) {
+      return item ? `${item.representation} (${item.hex})` : ''
     }
 
-    return (<>
-      <p><strong>Focused: </strong> <span id="focused">{message}</span></p>
-      <Select
-        id="focusedSelectId"
-        name="focused"
-        labelText="Focused?"
-        options={[{
-          value: 'red',
-          label: 'Red'
-        }, {
-          value: 'blue',
-          label: 'Blue'
-        }, {
-          value: 'green',
-          label: 'Green'
-        }]}
-        onFocus={changeFocusedMessage}
-        onBlur={changeFocusedMessage}
+    return <>
+      <Select<CustomSelectItem>
+        id="customItemToStringTypescriptId"
+        labelText="Cust Items with Typescript"
+        items={customItems}
+        itemToString={itemToString}
       />
-    </>)
+    </>
   }
 ```
 
-## Open and Close Events
+## State Change Types
 
-```.jsx
-  (props) => {
-    const [opened, updateOpened] = React.useState(false);
-    const [message, updateMessage] = React.useState('No');
+The `type` property in the `changes` object that is returned from the `onStateChange` function
+corresponds to a `stateChangeTypes` property. The list of all the possible types for a `select` or a
+`multi-select` are listed below.
 
-    function changeOpenedMessage() {
-      const updatedOpened = !opened;
+<Alert variant="info">
+  In the development environment these types equate to strings
+  <br />
+  (eg:{' '}
+  <code class="inverse">
+    ComboboxStateChangeTypes.InputKeyDownArrowDown =
+    '__input_keydown_arrow_down__'
+  </code>
+  ). However, in the production environment the types equate to numbers
+  <br />
+  (eg:{' '}
+  <code class="inverse">
+    ComboboxStateChangeTypes.InputKeyDownArrowDown = 0
+  </code>
+  ).
+</Alert>
 
-      updateOpened(updatedOpened)
-      updateMessage(updatedOpened ? 'Yes' : 'No')
-    }
+### Select
 
-    return (<>
-      <p><strong>Opened: </strong> <span id="opened">{message}</span></p>
-      <Select
-        id="openedSelectId"
-        name="opened"
-        labelText="Opened?"
-        options={[{
-          value: 'red',
-          label: 'Red'
-        }, {
-          value: 'blue',
-          label: 'Blue'
-        }, {
-          value: 'green',
-          label: 'Green'
-        }]}
-        onMenuOpen={changeOpenedMessage}
-        onMenuClose={changeOpenedMessage}
-      />
-    </>)
-  }
-```
+- `SelectStateChangeTypes.MenuKeyDownArrowDown`
+- `SelectStateChangeTypes.MenuKeyDownArrowUp`
+- `SelectStateChangeTypes.MenuKeyDownEscape`
+- `SelectStateChangeTypes.MenuKeyDownHome`
+- `SelectStateChangeTypes.MenuKeyDownEnd`
+- `SelectStateChangeTypes.MenuKeyDownEnter`
+- `SelectStateChangeTypes.MenuKeyDownSpaceButton`
+- `SelectStateChangeTypes.MenuKeyDownCharacter`
+- `SelectStateChangeTypes.MenuBlur`
+- `SelectStateChangeTypes.MenuMouseLeave`
+- `SelectStateChangeTypes.ItemMouseMove`
+- `SelectStateChangeTypes.ItemClick`
+- `SelectStateChangeTypes.ToggleButtonKeyDownCharacter`
+- `SelectStateChangeTypes.ToggleButtonKeyDownArrowDown`
+- `SelectStateChangeTypes.ToggleButtonKeyDownArrowUp`
+- `SelectStateChangeTypes.ToggleButtonClick`
+- `SelectStateChangeTypes.FunctionToggleMenu`
+- `SelectStateChangeTypes.FunctionOpenMenu`
+- `SelectStateChangeTypes.FunctionCloseMenu`
+- `SelectStateChangeTypes.FunctionSetHighlightedIndex`
+- `SelectStateChangeTypes.FunctionSelectItem`
+- `SelectStateChangeTypes.FunctionSetInputValue`
+- `SelectStateChangeTypes.FunctionReset`
 
-## Testing
+### MultiSelect
 
-Passing in the `testId` prop will add the `data-testid` attribute to the wrapper element for easier querying in tests.
-
-```html
-<div data-testid="test-id">
-  <label class="css-1bgxxbw egrtx8x0">Basic</label>
-  <div id="basicSelectId">
-    <div>
-      <div>
-        <div>Select...</div>
-        <div>
-          <div style="display: inline-block;">
-            <input
-              autocapitalize="none"
-              autocomplete="off"
-              autocorrect="off"
-              id="react-select-19-input"
-              spellcheck="false"
-              tabindex="0"
-              type="text"
-              aria-autocomplete="list"
-              aria-label="Basic"
-              value=""
-            />
-            <div style="text-transform: none;"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-```
-
-​We use `react-select` under the hood and on its own, react-select and its sub-dependencies reference browser objects such as `window` and `document` without checking for them first. Because of this, using `react-magma-dom` in server side rendering (SSR) scenarios didn't work by default. In order to work around this issue, we've implemented dynamic imports of `react-select` inside our component to avoid those issues while taking advantage of SSR. Because of this, you need to account for this in your test code.
-
-​For all of the select variants you will have to wrap your render functions in an asynchronous function, called inside `act` to allow it to load properly before making assertions against it.
-
-```
-  it('should render a label for the select', async () => {
-    let getByText;
-    const labelText = 'Test';
-    await act(async () => {
-      ({ getByText } = render(<Select labelText={labelText} />));
-    });
-
-    expect(getByText(labelText)).toBeInTheDocument();
-  });
-```
+- `MultipleSelectionStateChangeTypes.SelectedItemClick`
+- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownDelete`
+- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownBackspace`
+- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationNext`
+- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationPrevious`
+- `MultipleSelectionStateChangeTypes.DropdownKeyDownNavigationPrevious`
+- `MultipleSelectionStateChangeTypes.DropdownKeyDownBackspace`
+- `MultipleSelectionStateChangeTypes.DropdownClick`
+- `MultipleSelectionStateChangeTypes.FunctionAddSelectedItem`
+- `MultipleSelectionStateChangeTypes.FunctionRemoveSelectedItem`
+- `MultipleSelectionStateChangeTypes.FunctionSetSelectedItems`
+- `MultipleSelectionStateChangeTypes.FunctionSetActiveIndex`
+- `MultipleSelectionStateChangeTypes.FunctionReset`
 
 ## Select Props
 
-**Any other props supplied will be provided to the `Select` element from [react-select](https://react-select.com/home).**
-
-**A list of the props that they accept for each component can be found here: [react-select props](https://react-select.com/props).**
-
 <SimplePropsTable
   propertyValues={{
+    components: {
+      type: {
+        name: 'SelectComponents',
+      },
+      required: false,
+      description: 'Custom components',
+    },
+    containerStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the component container',
+    },
     errorMessage: {
       type: {
         name: 'ReactNode',
       },
       required: false,
       description:
-        'Content of the errror message.  If a value is provided, the error message will be styled as an error state.',
+        'Content of the error message.  If a value is provided, the component will be styled to show an error state',
       defaultValue: '',
     },
     helperMessage: {
@@ -574,8 +855,33 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
         name: 'ReactNode',
       },
       required: false,
-      description: 'Content of the helper message.',
+      description: 'Content of the helper message',
       defaultValue: '',
+    },
+    inputStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the select input',
+    },
+    isClearable: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component include a button for clearing the field',
+      defaultValue: 'false',
+    },
+    isDisabled: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, item will be disabled; it will appear dimmed and events will not fire',
+      defaultValue: 'false',
     },
     isInverse: {
       type: {
@@ -586,6 +892,59 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
+    initialHighlightedIndex: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'Index of the initially selected item',
+    },
+    initialSelectedItem: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Value of the initially selected item',
+    },
+    isLabelVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
+      defaultValue: 'false',
+    },
+    isMulti: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, multiple items may be selected',
+      defaultValue: 'false',
+    },
+    items: {
+      type: {
+        name: 'array',
+      },
+      required: false,
+      description: 'Selectable options.  Can be an array of strings or objects',
+    },
+    itemToString: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description:
+        'Function that returns the string representation of your item which will be applied as the label when using a custom shape for items',
+    },
+    labelStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the label',
+    },
     labelText: {
       type: {
         name: 'ReactNode',
@@ -593,21 +952,44 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       required: true,
       description: 'Text for label',
     },
-    inverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
     messageStyle: {
       type: {
         name: 'React.CSSProperties',
       },
       required: false,
       description: 'Style properties for the helper or error message',
+    },
+    onHighlightedIndexChange: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Event that fires when the highlighted index changes',
+      defaultValue: '',
+    },
+    onIsOpenChange: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Event that fires when the options menu opens or closes',
+      defaultValue: '',
+    },
+    onSelectedItemChange: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Event that fires hen the selected item changes',
+      defaultValue: '',
+    },
+    onStateChange: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Event that fires on every internal state changes',
+      defaultValue: '',
     },
     testId: {
       type: {
@@ -625,11 +1007,12 @@ export default props => (
     {...props}
     components={{
       Select,
-      AsyncSelect,
-      CreatableSelect,
-      AsyncCreatableSelect,
-      ReactSelectComponents,
-      Search2Icon,
+      Alert,
+      useSelect,
+      uuid,
+      SelectStateChangeTypes,
+      I18nContext,
+      defaultI18n
     }}
   />
 )
