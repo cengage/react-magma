@@ -98,8 +98,10 @@ export const defaultI18n: I18nInterface = {
   timePicker: {
     hoursAriaLabel: 'Hour',
     minutesAriaLabel: 'Minute',
-    amButtonAriaLabel: 'AM selected.  Press button to change',
-    pmButtonAriaLabel: 'PM selected.  Press button to change',
+    amButtonAriaLabel:
+      'AM selected.  To change to PM press the p or enter button.',
+    pmButtonAriaLabel:
+      'PM selected.  To change to AM press the a or enter button.',
     amSelectedAnnounce: 'AM is now selected',
     pmSelectedAnnounce: 'PM is now selected'
   },
