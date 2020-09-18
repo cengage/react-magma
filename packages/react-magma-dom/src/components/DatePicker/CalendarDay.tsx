@@ -146,14 +146,17 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
     const sameDateAsChosenDate = isSameDay(day, chosenDate);
     const sameDateAsToday = isSameDay(day, new Date());
     const locale = i18n.locale || enUS;
+    const ariaLabel = `${
+      isDisabled ? i18n.datePicker.disabledDayAriaLabel : ''
+    } ${format(day, 'EEEE, MMMM do yyyy', locale)} ${
+      sameDateAsToday ? i18n.datePicker.todayAriaLabel : ''
+    } ${sameDateAsChosenDate ? i18n.datePicker.selectedDayAriaLabel : ''}`;
 
     return (
       <CalendarDayCell onFocus={onCalendarDayFocus} theme={theme}>
         <CalendarDayInner
           aria-disabled={isDisabled}
-          aria-label={`${
-            isDisabled ? i18n.datePicker.disabledDayAriaLabel : ''
-          }${format(day, 'MMMM do yyyy', locale)}`}
+          aria-label={ariaLabel}
           isDisabled={isDisabled}
           isChosen={sameDateAsChosenDate}
           isFocused={dayFocusable && sameDateAsFocusedDate}
