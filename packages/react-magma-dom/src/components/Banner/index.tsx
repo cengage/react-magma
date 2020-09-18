@@ -6,7 +6,7 @@ import {
   buildAlertBackground,
   VARIANT_ICON
 } from '../Alert';
-import { CrossIcon } from '../Icon/types/CrossIcon';
+import { CrossIcon } from 'react-magma-icons';
 import { Button, ButtonSize, ButtonVariant, ButtonColor } from '../Button';
 import { IconButton } from '../IconButton';
 import { ThemeContext } from '../../theme/ThemeContext';

@@ -1,6 +1,5 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import { StaticQuery, graphql } from 'gatsby'
 import { SlidingDrawer } from '../sliding-drawer'
 import Masthead from '../masthead'
 import { SkipLink, GlobalStyles } from 'react-magma-dom'
@@ -19,40 +18,27 @@ const StyledSkipLink = styled(SkipLink)`
 `
 
 export default props => (
-  <StaticQuery
-    query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `}
-    render={data => (
-      <>
-        <GlobalStyles />
-        <Helmet
-          title={data.site.siteMetadata.title}
-          meta={[
-            { name: 'description', content: 'Sample' },
-            { name: 'keywords', content: 'sample, something' },
-          ]}
-        >
-          <html lang="en" />
-        </Helmet>
-        <StyledSkipLink
-          isInverse
-          positionLeft={275}
-          positionTop={16}
-          variant="outline"
-        />
-        <div className="main-container">
-          <Masthead />
-          <SlidingDrawer />
-          <main className="content">{props.children}</main>
-        </div>
-      </>
-    )}
-  />
+  <>
+    <GlobalStyles />
+    <Helmet
+      title={props.title ? `${props.title} - React Magma` : 'React Magma'}
+      meta={[
+        { name: 'description', content: 'Sample' },
+        { name: 'keywords', content: 'sample, something' },
+      ]}
+    >
+      <html lang="en" />
+    </Helmet>
+    <StyledSkipLink
+      isInverse
+      positionLeft={275}
+      positionTop={16}
+      variant="outline"
+    />
+    <main className="main">
+      <Masthead />
+      <SlidingDrawer />
+      <section className="content">{props.children}</section>
+    </main>
+  </>
 )

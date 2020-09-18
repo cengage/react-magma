@@ -1,6 +1,15 @@
 {
   "packages": [
-    "packages/*"
+    "packages/react-magma-dom",
+    "packages/react-magma-docs"
   ],
-  "version": "2.0.0-beta.72"
+  "command": {
+    "bootstrap": {
+      "ci": false,
+      "ignore": [
+        "react-magma-legacy-selects"
+      ]
+    }
+  },
+  "version": "2.0.0-beta.78"
 }

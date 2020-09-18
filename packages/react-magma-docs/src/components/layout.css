@@ -482,16 +482,21 @@ abbr[title] {
 }
 tt,
 code {
-  background-color: #f7f7f7;
+  background-color: rgba(0, 0, 0, 0.03);
   border-radius: 3px;
   font-family: monospace;
   font-size: 15px;
   line-height: 1.5em;
   font-weight: normal !important;
   padding: 2px 4px;
-  border: 1px solid #dfdfdf;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   color: #003865;
   margin: 0 0.3em 0 0.2em;
+}
+code.inverse {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
 }
 pre {
   white-space: pre-wrap;
@@ -500,15 +505,7 @@ pre code {
   background: none;
   border: 0;
   line-height: 1.42;
-
   word-wrap: break-word;
-}
-code:before,
-code:after,
-tt:before,
-tt:after {
-  letter-spacing: -0.7em;
-  content: ' ';
 }
 pre code:before,
 pre code:after,

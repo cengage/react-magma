@@ -4,7 +4,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { BreadCrumbContext } from '.';
 
 import { HyperLink } from '../HyperLink';
-import { AngleRightIcon } from '../Icon/types/AngleRightIcon';
+import { AngleRightIcon } from 'react-magma-icons';
 
 export interface BreadcrumbItemProps
   extends React.HTMLAttributes<HTMLLIElement> {

@@ -1,0 +1,649 @@
+---
+pageTitle: Legacy Select API
+title: Legacy Select
+---
+
+import { ScopeableLayout } from '../../components/layout'
+
+import { Search2Icon } from 'react-magma-icons'
+
+import { Alert } from 'react-magma-dom'
+
+import {
+  Select,
+  AsyncSelect,
+  CreatableSelect,
+  AsyncCreatableSelect,
+} from 'react-magma-legacy-selects'
+import DocsHeading from '../../components/docs-heading'
+import { SimplePropsTable } from '../../components/props-table'
+import { components as ReactSelectComponents } from 'react-select'
+import { Link } from 'gatsby'
+
+<DocsHeading to="/design/select/" type="design">
+  Select (Deprecated)
+</DocsHeading>
+<Alert variant="warning">
+  <strong>Important!</strong> The components on this page have been deprecated.
+</Alert>
+
+The `Select`, `AsyncSelect`, `CreatableSelect` and `AsyncCreatableSelect` components have all been deprecated. They have been renamed `Select`, `LegacyAsyncSelect`, `CreatableSelect` and `LegacyAsyncCreatableSelect`, the will no longer be maintained, and will be removed in future versions.
+
+Please see the <Link to="/select-migration">Select Migration docs</Link> for details on how to transition to the new <Link to="/api/select">Select</Link> and <Link to="/api/combobox">Combobox</Link> components.
+
+## Basic Usage
+
+A `Select` component allows the user to choose one or more item from a list. By default, only one item may be selected.
+
+The label/select association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
+
+This component is built upon [React Select by Jed Watson](https://react-select.com/home).
+
+```.jsx
+  <>
+    <Select
+      id="basicSelectId"
+      name="basic"
+      labelText="Basic"
+      options={[{
+        value: 'red',
+        label: 'Red'
+      }, {
+        value: 'blue',
+        label: 'Blue'
+      }, {
+        value: 'green',
+        label: 'Green'
+      }]}
+    />
+  </>
+```
+
+## Multi-Select
+
+The optional `multi` prop allows the user to select more than one item.
+
+```.jsx
+  <>
+    <Select
+      id="multiSelectId"
+      name="multi"
+      labelText="Multi"
+      options={[{
+        value: 'red',
+        label: 'Red'
+      }, {
+        value: 'blue',
+        label: 'Blue'
+      }, {
+        value: 'green',
+        label: 'Green'
+      }]}
+      isMulti
+    />
+  </>
+```
+
+## Clearable
+
+The optional `clearable` prop allows the user to clear the field once a selection has been made.
+
+```.jsx
+  <>
+    <Select
+      id="clearableSelectId"
+      name="clearable"
+      labelText="Clearable"
+      options={[{
+        value: 'red',
+        label: 'Red'
+      }, {
+        value: 'blue',
+        label: 'Blue'
+      }, {
+        value: 'green',
+        label: 'Green'
+      }]}
+      isClearable
+    />
+  </>
+```
+
+## Default Value
+
+```.jsx
+  <>
+    <Select
+      id="defaultValueSelectId"
+      name="defaultValue"
+      labelText="Default Value"
+      options={[{
+        value: 'red',
+        label: 'Red'
+      }, {
+        value: 'blue',
+        label: 'Blue'
+      }, {
+        value: 'green',
+        label: 'Green'
+      }]}
+      defaultValue={{
+        value: 'red',
+        label: 'Red'
+      }}
+    />
+  </>
+```
+
+## Disabled
+
+```.jsx
+  <>
+    <Select
+      id="disabledSelectId"
+      name="disabled"
+      labelText="Disabled"
+      options={[{
+        value: 'red',
+        label: 'Red'
+      }, {
+        value: 'blue',
+        label: 'Blue'
+      }, {
+        value: 'green',
+        label: 'Green'
+      }]}
+      isDisabled
+    />
+  </>
+```
+
+## Error Message
+
+If a select has an `errorMessage`, the select will be styled to highlight it's error state and the error message will appear below the field.
+If an error message is present, it will replace the helper text. Can be a node or a string.
+
+```.jsx
+  <>
+    <Select
+      errorMessage="Please select a color"
+      helperMessage="Helper text goes here"
+      name="error"
+      labelText="Error Message"
+      options={[{
+        value: 'red',
+        label: 'Red'
+      }, {
+        value: 'blue',
+        label: 'Blue'
+      }, {
+        value: 'green',
+        label: 'Green'
+      }]}
+    />
+  </>
+```
+
+## Helper Message
+
+The `helperMessage` appears underneath the select field. It will not appear if an error message is present. Can be a node or a string.
+
+```.jsx
+  <>
+    <Select
+      helperMessage="Helper text goes here"
+      name="helper"
+      labelText="Helper Message"
+      options={[{
+        value: 'red',
+        label: 'Red'
+      }, {
+        value: 'blue',
+        label: 'Blue'
+      }, {
+        value: 'green',
+        label: 'Green'
+      }]}
+    />
+  </>
+```
+
+## Inverse styles
+
+The `isInverse` property is an optional boolean, that reverses the colors so that the select can better appear on a dark background.
+The default value is `false`.
+
+```.jsx
+  <div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
+    <Select
+      errorMessage="Please select a color"
+      isInverse
+      name="inverse"
+      labelText="Error Message"
+      options={[{
+        value: 'red',
+        label: 'Red'
+      }, {
+        value: 'blue',
+        label: 'Blue'
+      }, {
+        value: 'green',
+        label: 'Green'
+      }]}
+    />
+  </div>
+```
+
+## Custom components
+
+`react-select` allows for the passing of custom components to override the building blocks of a `select`. The explanation and a full list of components that you can override can be found [here](https://react-select.com/components).
+
+For this example I am importing `components` from `react-select` and renaming the import to `ReactSelectComponents`. In practice you should not have a component defined inside of your `select` component, but it is there in this example to allow you to see how to build a custom component.
+
+```.jsx
+  () => {
+    const DropdownIndicator = props => {
+      return (
+        ReactSelectComponents.DropdownIndicator && (
+          <ReactSelectComponents.DropdownIndicator {...props}>
+            <Search2Icon size={10} />
+          </ReactSelectComponents.DropdownIndicator>
+        )
+      );
+    };
+
+    return (
+      <>
+        <Select
+          id="customComponentId"
+          name="custom"
+          labelText="Custom Component"
+          options={[{
+            value: 'red',
+            label: 'Red'
+          }, {
+            value: 'blue',
+            label: 'Blue'
+          }, {
+            value: 'green',
+            label: 'Green'
+          }]}
+          components={{
+            DropdownIndicator
+          }}
+        />
+      </>
+    )
+  }
+```
+
+## AsyncSelect
+
+The `loadOptions` property allows for loading from a remote source as the user types.
+
+```.jsx
+(props) => {
+  function filterColors(inputValue) {
+    return [
+      {
+        label: "Red",
+        value: "red"
+      },
+      {
+        label: "Blue",
+        value: "blue"
+      }
+    ].filter(i =>
+      i.label.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  }
+
+  function promiseOptions(inputValue) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(filterColors(inputValue));
+      }, 1000);
+    });
+  }
+
+  return (
+    <AsyncSelect labelText="Async Select" loadOptions={promiseOptions} />
+  );
+}
+```
+
+## CreatableSelect
+
+The `CreatableSelect` allows for the creation of a new option if that option is not found.
+
+```.jsx
+(props) => {
+  const [options, updateOptions] = React.useState([
+    {
+      label: "Red",
+      value: "red"
+    },
+    {
+      label: "Blue",
+      value: "blue"
+    }
+  ])
+
+  function handleChange(value, action) {
+    if (value.__isNew__) {
+      updateOptions(options => {
+        options.push({
+          label: value.label,
+          value: value.value
+        });
+
+        return options;
+      })
+    }
+  }
+
+  function handleInputChange(value, action) {
+    console.group('Input Changed');
+    console.log(value);
+    console.groupEnd();
+  };
+
+  return (
+    <CreatableSelect
+      labelText="Creatable Select"
+      isClearable
+      onChange={handleChange}
+      onInputChange={handleInputChange}
+      options={options}
+    />
+  );
+}
+```
+
+## AsyncCreatableSelect
+
+The `AsyncCreatableSelect` combines both the creation of a new option and the loading from a remote source.
+
+```.jsx
+(props) => {
+  const [options, updateOptions] = React.useState([
+    {
+      label: "Red",
+      value: "red"
+    },
+    {
+      label: "Blue",
+      value: "blue"
+    }
+  ]);
+
+  function filterColors(inputValue) {
+    return options.filter(i =>
+      i.label.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  }
+
+  function promiseOptions(inputValue) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(filterColors(inputValue));
+      }, 1000);
+    });
+  }
+
+  function handleChange(value, action) {
+    if (value.__isNew__) {
+      updateOptions(options => {
+        options.push({
+          label: value.label,
+          value: value.value
+        });
+
+        return options;
+      })
+    }
+  }
+
+  return (
+    <AsyncCreatableSelect labelText="Async Creatable Select" loadOptions={promiseOptions} onChange={handleChange} />
+  );
+}
+```
+
+## Controlled
+
+```.jsx
+(props) => {
+  const [value, updateValue] = React.useState(null)
+
+  return (<>
+    <p>
+      <strong>Value: </strong>
+      <span id="value">{value ? value.value : 'No Value Set'}</span>
+    </p>
+    <Select
+      id="valueSelectId"
+      name="value"
+      labelText="Value"
+      options={[{
+        value: 'red',
+        label: 'Red'
+      }, {
+        value: 'blue',
+        label: 'Blue'
+      }, {
+        value: 'green',
+        label: 'Green'
+      }]}
+      onChange={updateValue}
+    />
+  </>)
+}
+```
+
+## Focus Events
+
+```.jsx
+  (props) => {
+    const [focused, updateFocused] = React.useState(false);
+    const [message, updateMessage] = React.useState('No');
+
+    function changeFocusedMessage() {
+      const updatedFocused = !focused;
+
+      updateFocused(updatedFocused)
+      updateMessage(updatedFocused ? 'Yes' : 'No')
+    }
+
+    return (<>
+      <p><strong>Focused: </strong> <span id="focused">{message}</span></p>
+      <Select
+        id="focusedSelectId"
+        name="focused"
+        labelText="Focused?"
+        options={[{
+          value: 'red',
+          label: 'Red'
+        }, {
+          value: 'blue',
+          label: 'Blue'
+        }, {
+          value: 'green',
+          label: 'Green'
+        }]}
+        onFocus={changeFocusedMessage}
+        onBlur={changeFocusedMessage}
+      />
+    </>)
+  }
+```
+
+## Open and Close Events
+
+```.jsx
+  (props) => {
+    const [opened, updateOpened] = React.useState(false);
+    const [message, updateMessage] = React.useState('No');
+
+    function changeOpenedMessage() {
+      const updatedOpened = !opened;
+
+      updateOpened(updatedOpened)
+      updateMessage(updatedOpened ? 'Yes' : 'No')
+    }
+
+    return (<>
+      <p><strong>Opened: </strong> <span id="opened">{message}</span></p>
+      <Select
+        id="openedSelectId"
+        name="opened"
+        labelText="Opened?"
+        options={[{
+          value: 'red',
+          label: 'Red'
+        }, {
+          value: 'blue',
+          label: 'Blue'
+        }, {
+          value: 'green',
+          label: 'Green'
+        }]}
+        onMenuOpen={changeOpenedMessage}
+        onMenuClose={changeOpenedMessage}
+      />
+    </>)
+  }
+```
+
+## Testing
+
+Passing in the `testId` prop will add the `data-testid` attribute to the wrapper element for easier querying in tests.
+
+```html
+<div data-testid="test-id">
+  <label class="css-1bgxxbw egrtx8x0">Basic</label>
+  <div id="basicSelectId">
+    <div>
+      <div>
+        <div>Select...</div>
+        <div>
+          <div style="display: inline-block;">
+            <input
+              autocapitalize="none"
+              autocomplete="off"
+              autocorrect="off"
+              id="react-select-19-input"
+              spellcheck="false"
+              tabindex="0"
+              type="text"
+              aria-autocomplete="list"
+              aria-label="Basic"
+              value=""
+            />
+            <div style="text-transform: none;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+​We use `react-select` under the hood and on its own, react-select and its sub-dependencies reference browser objects such as `window` and `document` without checking for them first. Because of this, using `react-magma-dom` in server side rendering (SSR) scenarios didn't work by default. In order to work around this issue, we've implemented dynamic imports of `react-select` inside our component to avoid those issues while taking advantage of SSR. Because of this, you need to account for this in your test code.
+
+​For all of the select variants you will have to wrap your render functions in an asynchronous function, called inside `act` to allow it to load properly before making assertions against it.
+
+```
+  it('should render a label for the select', async () => {
+    let getByText;
+    const labelText = 'Test';
+    await act(async () => {
+      ({ getByText } = render(<Select labelText={labelText} />));
+    });
+
+    expect(getByText(labelText)).toBeInTheDocument();
+  });
+```
+
+## Select Props
+
+**Any other props supplied will be provided to the `Select` element from [react-select](https://react-select.com/home).**
+
+**A list of the props that they accept for each component can be found here: [react-select props](https://react-select.com/props).**
+
+<SimplePropsTable
+  propertyValues={{
+    errorMessage: {
+      type: {
+        name: 'ReactNode',
+      },
+      required: false,
+      description:
+        'Content of the error message.  If a value is provided, the component will be styled to show an error state.',
+      defaultValue: '',
+    },
+    helperMessage: {
+      type: {
+        name: 'ReactNode',
+      },
+      required: false,
+      description: 'Content of the helper message.',
+      defaultValue: '',
+    },
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    labelText: {
+      type: {
+        name: 'ReactNode',
+      },
+      required: true,
+      description: 'Text for label',
+    },
+    inverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    messageStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the helper or error message',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout
+    {...props}
+    components={{
+      Select,
+      AsyncSelect,
+      CreatableSelect,
+      AsyncCreatableSelect,
+      ReactSelectComponents,
+      Search2Icon,
+      Alert,
+    }}
+  />
+)

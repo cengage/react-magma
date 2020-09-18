@@ -38,10 +38,9 @@ const DemoComponent = idPrefix => (
             errorMessage="Error message"
           />
           <Select
-            id={`${idPrefix}-select`}
             name="basic"
-            labelText="Basic"
-            options={[
+            labelText="Select"
+            items={[
               {
                 value: 'red',
                 label: 'Red',

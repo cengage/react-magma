@@ -1,0 +1,19 @@
+module.exports = {
+  plugins: [['emotion', { autoLabel: true }]],
+  env: {
+    test: {
+      plugins: ['dynamic-import-node'],
+      presets: [
+        '@babel/preset-react',
+        '@babel/preset-typescript',
+        [
+          '@babel/preset-env',
+          {
+            useBuiltIns: 'entry',
+            corejs: '3.*.*'
+          }
+        ]
+      ]
+    }
+  }
+};
