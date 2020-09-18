@@ -33,7 +33,7 @@ describe('Calendar Header', () => {
       </CalendarContext.Provider>
     );
 
-    expect(getByText(monthYear)).toBe(document.activeElement);
+    expect(getByText(monthYear)).toBe(document.activeElement.firstChild);
   });
 
   it('should call to move forward a month when clicking the next month button', () => {

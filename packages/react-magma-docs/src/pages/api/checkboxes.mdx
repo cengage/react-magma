@@ -1,5 +1,6 @@
 ---
-title: 'Checkboxes'
+pageTitle: Checkbox API
+title: Checkbox
 ---
 
 import { ScopeableLayout } from '../../components/layout'
@@ -15,7 +16,7 @@ import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
 
 <DocsHeading to="/design/selection-controls" type="design">
-  Checkboxes
+  Checkbox
 </DocsHeading>
 
 ## Basic Usage
@@ -26,8 +27,8 @@ Related checkboxes should be grouped within the `FormGroup` control.
 
 The label/checkbox association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
 
-Checkboxes can either be controlled or  uncontrolled. If you pass in a `checked` prop, it is a controlled input. That means that to change the checkbox's state, you must updated the `checked` prop's value.
-If you do not want to have your checkbox be in a controlled state, but need the inital checked value to be set, pass in the `defaultChecked` prop with the value you would like on intial render.
+Checkboxes can either be controlled or uncontrolled. If you pass in a `checked` prop, it is a controlled input. That means that to change the checkbox's state, you must updated the `checked` prop's value.
+If you do not want to have your checkbox be in a controlled state, but need the initial checked value to be set, pass in the `defaultChecked` prop with the value you would like on intial render.
 
 See also: <Link to="/api/radio">Radio Buttons</Link>, <Link to="/api/toggle">Toggle Switches</Link>, and the <Link to="/design/selection-controls">Design Guidelines</Link> for selection controls in general.
 
@@ -35,10 +36,17 @@ See also: <Link to="/api/radio">Radio Buttons</Link>, <Link to="/api/toggle">Tog
   () => {
     const [checked, updateChecked] = React.useState(false)
     return (<FormGroup labelText="Choose One or More">
-      <Checkbox
+      <button onClick={() => console.log('button clicked')}>
+        Click
+        <input
+          type='checkbox'
           checked={checked}
-          onChange={() => updateChecked(!checked)}
-          labelText='Checkbox label' />
+          onChange={(event) => {
+            console.log(event);
+            updateChecked(!checked)
+          }}
+          onClick={() => console.log('checkbox clicked')} />
+      </button>
 
       <Checkbox
           defaultChecked={true}

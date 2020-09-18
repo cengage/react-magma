@@ -104,12 +104,12 @@ describe('Form Group', () => {
       </FormGroup>
     );
 
-    expect(container.firstChild.children.length).toBe(2);
+    expect(container.firstChild.children.length).toBe(1);
   });
 
   it('Does not violate accessibility standards', () => {
     const { container } = render(
-      <FormGroup value="default">
+      <FormGroup labelText="Choose a Color" value="default">
         <Checkbox labelText="Default Color" value="default" />
         <Checkbox
           color={magma.colors.success01}

@@ -5,9 +5,9 @@ import { act, render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 
-jest.mock('uuid/v4');
+jest.mock('uuid');
 
 describe('Alert', () => {
   afterEach(() => {
