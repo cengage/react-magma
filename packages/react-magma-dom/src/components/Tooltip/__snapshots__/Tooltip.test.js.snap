@@ -11,7 +11,7 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
   width: 300px;
   z-index: 999;
   bottom: 100%;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
   left: 50%;
   -webkit-transform: translateX(-50%);
   -ms-transform: translateX(-50%);

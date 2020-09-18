@@ -49,7 +49,7 @@ const StyledTooltip = styled.div<{
     props.position === 'bottom' &&
     css`
       top: 100%;
-      margin-top: 10px;
+      padding-top: 10px;
       left: 50%;
       transform: translateX(-50%);
     `}
@@ -58,7 +58,7 @@ const StyledTooltip = styled.div<{
     props.position === 'left' &&
     css`
       right: 100%;
-      margin-right: 10px;
+      padding-right: 10px;
       top: 50%;
       transform: translateY(-50%);
     `}
@@ -67,7 +67,7 @@ const StyledTooltip = styled.div<{
     props.position === 'right' &&
     css`
       left: 100%;
-      margin-left: 10px;
+      padding-left: 10px;
       top: 50%;
       transform: translateY(-50%);
     `}
@@ -76,7 +76,7 @@ const StyledTooltip = styled.div<{
     props.position === 'top' &&
     css`
       bottom: 100%;
-      margin-bottom: 10px;
+      padding-bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
     `}
