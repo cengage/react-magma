@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { MDXProvider } from '@mdx-js/react'
-import { SkipLinkContent } from 'react-magma-dom'
+import { SkipLinkContent, VisuallyHidden } from 'react-magma-dom'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import { convertTextToId } from '../utils'
 import './layout.css'
@@ -27,14 +27,14 @@ const PreComponent = ({ className, components, ...props }) => {
         className="pre-container"
         style={hideCode ? { display: 'none' } : null}
       >
-        <label htmlFor={liveEditorId.current}>
-          Code Example
-          <LiveEditor
-            textareaId={liveEditorId.current}
-            ignoreTabKey
-            tabIndex="-1"
-          />
-        </label>
+        <VisuallyHidden>
+          <label htmlFor={liveEditorId.current}>Code Example</label>
+        </VisuallyHidden>
+        <LiveEditor
+          textareaId={liveEditorId.current}
+          ignoreTabKey
+          tabIndex="-1"
+        />
       </div>
       <LiveError />
       <div
