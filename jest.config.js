@@ -61,6 +61,8 @@ module.exports = {
     '!**/archived-packages/**',
     '!**/react-magma-docs/**',
     '!**/react-magma-landing/**',
+    '!**/react-magma-legacy-selects/**',
+    '!**/react-magma-icons/**',
   ],
   coverageDirectory: '<rootDir>/coverage',
   coverageReporters: ['text'],
