@@ -19,6 +19,7 @@ export interface TimePickerProps {
   labelText: React.ReactNode;
   helperMessage?: React.ReactNode;
   messageStyle?: React.CSSProperties;
+  minutesStep?: number;
   value?: string;
   onChange?: (value: string) => void;
 }
@@ -89,6 +90,7 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
     isInverse,
     labelStyle,
     labelText,
+    minutesStep,
     onChange,
     ...other
   } = props;
@@ -292,6 +294,7 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
             onKeyDown={handleMinuteKeyDown}
             placeholder="--"
             ref={minuteRef}
+            step={minutesStep || 15}
             theme={theme}
             type="number"
             value={minute}
