@@ -84,9 +84,9 @@ const Divider = styled.span`
 const StyledNumInput = styled.input<{ theme: ThemeInterface }>`
   border: 0;
   border-radius: 3px;
-  padding: 0 3px;
+  padding: 0 2px;
   text-align: right;
-  width: 25px;
+  width: 28px;
 
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
