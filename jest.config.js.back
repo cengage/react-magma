@@ -1,0 +1,46 @@
+module.exports = {
+  collectCoverageFrom: [
+    'projects/**/*.(t|j)s?(x)',
+    '!projects/**/*.test.(t|j)s?(x)',
+  ],
+  coverageDirectory: '<rootDir>/coverage/',
+  coveragePathIgnorePatterns: ['.snap'],
+  coverageReporters: ['lcov', 'text'],
+  coverageThreshold: {
+    global: {
+      branches: 20,
+      functions: 20,
+      lines: 20,
+      statements: 20,
+    },
+  },
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  //projects: ['<rootDir>', '<rootDir>/packages/*'],
+  //roots: ['<rootDir>/packages'],
+  setupFilesAfterEnv: [
+    '@testing-library/jest-dom/extend-expect',
+    '@testing-library/jest-dom',
+    'jest-extended',
+    'jest-emotion',
+    'regenerator-runtime/runtime',
+    'jest-axe/extend-expect',
+  ],
+  snapshotSerializers: ['jest-emotion'],
+  //testMatch: ['?(*.)(spec|test).{js,jsx,mjs}d'],
+  //testMatch: ['**/?(*.)+(spec|test).(t|j)s?(x)'],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/packages/.*/dist',
+    '\\.snap$',
+  ],
+  transform: {
+    '^.+\\.(j|t)s(x)?$': 'babel-jest',
+  },
+  watchPlugins: [
+    'jest-watch-typeahead/filename',
+    'jest-watch-typeahead/testname',
+  ],
+  verbose: false,
+  watchPathIgnorePatterns: [
+    'coverage'],
+};
