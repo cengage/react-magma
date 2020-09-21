@@ -89,8 +89,9 @@ This prop is specified on the `Tabs` component.
 
 By default, horizontal tabs have the inidicator placed underneath the tabs.
 However, there are times you may want to place the indicator above the tabs, such as when the tab menu is displayed below its content.
-The `borderPosition` prop is an enum and accepts `top` or `bottom` for horizontal tabs.
+This is less common, but can be used in cases such as using tabs to emulate bottom navigation in a mobile application.
 
+The `borderPosition` prop is an enum and accepts `top` or `bottom` for horizontal tabs.
 The `borderPosition` prop is specified on the `Tabs` component and will apply to each individual tab.
 
 ```.jsx
@@ -446,7 +447,7 @@ The `icon` prop can be used to display an icon inside the individual `Tab` compo
             <Tabs>
               <Tab aria-label='Graduation' icon={<GraduationCapIcon />} />
               <Tab aria-label='Android' icon={<AndroidIcon />} />
-              <Tab aria-label='Bell' icon={<BellIcon />} />
+              <Tab aria-label='Notifications' icon={<BellIcon />} />
             </Tabs>
             <TabPanelsContainer>
               <TabPanel>
@@ -456,7 +457,7 @@ The `icon` prop can be used to display an icon inside the individual `Tab` compo
                 <div>Android</div>
               </TabPanel>
               <TabPanel>
-                <div>Bell</div>
+                <div>Notifications</div>
               </TabPanel>
             </TabPanelsContainer>
           </TabsContainer>
