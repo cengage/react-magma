@@ -1,11 +1,15 @@
 {
   "packages": [
-    "packages/react-magma-dom",
-    "packages/react-magma-docs"
+    "packages/*"
   ],
   "command": {
-    "bootstrap": {
+    "tootstrap": {
       "ci": false,
+      "ignore": [
+        "react-magma-legacy-selects"
+      ]
+    },
+    "run": {
       "ignore": [
         "react-magma-legacy-selects"
       ]
