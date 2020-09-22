@@ -3,12 +3,6 @@
     "packages/*"
   ],
   "command": {
-    "tootstrap": {
-      "ci": false,
-      "ignore": [
-        "react-magma-legacy-selects"
-      ]
-    },
     "run": {
       "ignore": [
         "react-magma-legacy-selects"
