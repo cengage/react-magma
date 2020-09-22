@@ -69,6 +69,11 @@ export interface I18nInterface {
   breadcrumb: {
     navAriaLabel: string;
   };
+  indeterminateCheckbox: {
+    isCheckedAnnounce: string;
+    isIndeterminateAnnounce: string;
+    isUncheckedAnnounce: string;
+  };
   modal: {
     closeAriaLabel: string;
   };

@@ -11,6 +11,9 @@ import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';
 import { useGenerateId, Omit } from '../../utils';
+import { VisuallyHidden } from '../VisuallyHidden';
+import { Announce } from '../Announce';
+import { I18nContext } from '../../i18n';
 
 export interface IndeterminateCheckboxProps
   extends Omit<CheckboxProps, 'checked'> {
@@ -70,6 +73,7 @@ export const IndeterminateCheckbox: React.FunctionComponent<IndeterminateCheckbo
     }
 
     const theme = React.useContext(ThemeContext);
+    const i18n = React.useContext(I18nContext);
 
     const {
       color,
@@ -84,6 +88,35 @@ export const IndeterminateCheckbox: React.FunctionComponent<IndeterminateCheckbo
       testId,
       ...other
     } = props;
+
+    const isIndeterminate = status === 'indeterminate';
+    const isUnchecked = status === 'unchecked';
+
+    function getStringifiedLabelText(node) {
+      if (['string', 'number'].includes(typeof node)) return node;
+      if (node instanceof Array)
+        return node.map(getStringifiedLabelText).join('');
+      if (typeof node === 'object' && node)
+        return getStringifiedLabelText(node.props.children);
+    }
+
+    const showAnnounce = isChecked || isIndeterminate || isUnchecked;
+    const announceText = isChecked
+      ? i18n.indeterminateCheckbox.isCheckedAnnounce.replace(
+          /\{labelText\}/g,
+          getStringifiedLabelText(labelText)
+        )
+      : isIndeterminate
+      ? i18n.indeterminateCheckbox.isIndeterminateAnnounce.replace(
+          /\{labelText\}/g,
+          getStringifiedLabelText(labelText)
+        )
+      : isUnchecked
+      ? i18n.indeterminateCheckbox.isUncheckedAnnounce.replace(
+          /\{labelText\}/g,
+          getStringifiedLabelText(labelText)
+        )
+      : '';
 
     return (
       <StyledContainer style={containerStyle}>
@@ -102,12 +135,12 @@ export const IndeterminateCheckbox: React.FunctionComponent<IndeterminateCheckbo
             checked={isChecked}
             color={color ? color : ''}
             disabled={disabled}
-            isIndeterminate={status === 'indeterminate'}
+            isIndeterminate={isIndeterminate}
             isInverse={isInverse}
             style={inputStyle}
             theme={theme}
           >
-            {status === 'indeterminate' && (
+            {isIndeterminate && (
               <IndeterminateIcon
                 data-testid="indeterminateIcon"
                 color={color ? color : ''}
@@ -123,6 +156,9 @@ export const IndeterminateCheckbox: React.FunctionComponent<IndeterminateCheckbo
             labelText
           )}
         </StyledLabel>
+        <Announce>
+          {showAnnounce && <VisuallyHidden>{announceText}</VisuallyHidden>}
+        </Announce>
       </StyledContainer>
     );
   }
