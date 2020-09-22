@@ -65,7 +65,7 @@ describe('Radio Group', () => {
     expect(group).toHaveAttribute('aria-labelledby', 'myID');
   });
 
-  it('should not render anything when invalid children are present', () => {
+  it('should not render anything except the container and the message container when invalid children are present', () => {
     const { container } = render(
       <RadioGroup>
         <Radio id="colorRadio" labelText="Default Color" value="default" />
@@ -73,7 +73,7 @@ describe('Radio Group', () => {
       </RadioGroup>
     );
 
-    expect(container.firstChild.children.length).toBe(1);
+    expect(container.firstChild.children.length).toBe(2);
   });
 
   it('Should select an option based on value passed to group', () => {

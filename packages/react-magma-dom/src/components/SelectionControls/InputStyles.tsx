@@ -54,6 +54,9 @@ export function buildDisplayInputBorderColor(props) {
     }
     return props.theme.colors.neutral08;
   }
+  if (props.hasError) {
+    return props.theme.colors.danger;
+  }
   if (props.disabled) {
     return props.theme.colors.neutral05;
   }

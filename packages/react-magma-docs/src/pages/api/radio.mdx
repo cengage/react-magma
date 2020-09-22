@@ -105,6 +105,7 @@ By default, the radio buttons use the theme's primary color. But any other color
 ```.jsx
   <RadioGroup
     containerStyle={{ background : '#00263E', color: '#fff', padding: '10px' }}
+    errorMessage="Please correct this"
     labelText='Inverse Radio Buttons'
     id='inverseGroup'
     name='inverse'>
@@ -268,6 +269,32 @@ Adding the `isTextVisuallyHidden` prop will make the label text for either the r
         labelText='Hidden label'
         isTextVisuallyHidden />
     </RadioGroup>
+```
+
+## Required Fields
+
+The `required` attribute can be indicated to the `RadioGroup` component if a selection is required.
+You will also need to indicate the required field to the user in the UI.
+
+```.jsx
+  <>
+    <p>* indicates required fields</p>
+    <RadioGroup
+      errorMessage="Please select a color"
+      labelText='Choose a color *'
+      name='requiredFields'
+      required>
+      <Radio
+          labelText='Red'
+          value='R' />
+      <Radio
+          labelText='Blue'
+          value='B' />
+      <Radio
+          labelText='Yellow'
+          value='Y' />
+      </RadioGroup>
+  </>
 ```
 
 ## Forward Ref
