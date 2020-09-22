@@ -7,8 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-<<<<<<< HEAD
-
 - fix build commands ([610b105](http://stash.cengage.com:7999/FRONT/react-magma/commits/610b105334fc06c9e7a9dc101406c37b7db0fb5b))
 - merge ([52e5c6e](http://stash.cengage.com:7999/FRONT/react-magma/commits/52e5c6e79f496a1a6c4c62708b7cb2201396bc66))
 - **docs:** fix build ([785b49a](http://stash.cengage.com:7999/FRONT/react-magma/commits/785b49a98c949506a05484a06cdb9251591d0e3f))
@@ -18,20 +16,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **calendar:** some a11y fixes ([85c6242](http://stash.cengage.com:7999/FRONT/react-magma/commits/85c62429bebb5f35d9b5029da2fa8a0de87bb167))
 
-> > > > > > > dev
-
-<<<<<<< HEAD
-
 - **legacy-selects:** move legacy selects to their own package ([c348dd7](http://stash.cengage.com:7999/FRONT/react-magma/commits/c348dd7c7edb582559740ccf91de408567f73f7e))
 - # **select:** rename Select components LegacySelect ([40047f2](http://stash.cengage.com:7999/FRONT/react-magma/commits/40047f2f5e2ac1f22f4ff4206b4793714578be62))
-
-> > > > > > > dev
 
 # [2.0.0-beta.76](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.75...v2.0.0-beta.76) (2020-09-15)
 
 **Note:** Version bump only for package react-magma-dom
-
-<<<<<<< HEAD
 
 - **combobox:** clear button ux tweaks ([5c47001](http://stash.cengage.com:7999/FRONT/react-magma/commits/5c470015987d51957aaec9a041d8e5853b64134a))
 - **combobox:** loading, clearable styles ([853708e](http://stash.cengage.com:7999/FRONT/react-magma/commits/853708ebd3ef977989e6db427cb62ff99e0b0a9b))

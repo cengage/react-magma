@@ -7,9 +7,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package react-magma-icons
 
-### Bug Fixes
-
 # [2.0.0-beta.74](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.73...v2.0.0-beta.74) (2020-09-15)
+
+### Bug Fixes
 
 - **docs:** fix build ([785b49a](http://stash.cengage.com:7999/FRONT/react-magma/commits/785b49a98c949506a05484a06cdb9251591d0e3f))
 - **docs:** fix issues from hoisting ([0034350](http://stash.cengage.com:7999/FRONT/react-magma/commits/0034350e7c0c095f435d73e0650a141f85aa5b12))
