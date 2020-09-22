@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
-import { ThemeContext } from 'react-magma-dom'
+import { ThemeContext, VisuallyHidden } from 'react-magma-dom'
 
 const Item = styled.li`
   list-style: none;
@@ -45,20 +45,23 @@ function handleNavClick(id, onClick) {
   onClick(id)
 }
 
-const NavItem = ({ activeSection, id, number, onClick, text }) => (
+const NavItem = ({ activeSection, section, number, onClick, text }) => (
   <ThemeContext.Consumer>
     {theme => (
       <Item>
         <Link
-          active={activeSection === id}
-          href={`#${id}`}
+          active={activeSection === section}
+          href={`#${section}H`}
           onClick={() => {
-            handleNavClick(id, onClick)
+            handleNavClick(section, onClick)
           }}
           theme={theme}
         >
           <Num>{number}</Num>
           {text}
+          {activeSection === number && (
+            <VisuallyHidden>(selected)</VisuallyHidden>
+          )}
         </Link>
       </Item>
     )}
@@ -67,9 +70,9 @@ const NavItem = ({ activeSection, id, number, onClick, text }) => (
 
 NavItem.propTypes = {
   activeSection: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  section: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
 }
 

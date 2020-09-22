@@ -1,18 +1,23 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
+import { Announce } from '../Announce';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { AmPmToggle } from './AmPmToggle';
-import { ClockIcon } from '../Icon/types/ClockIcon';
+import { ClockIcon } from 'react-magma-icons';
 import { Input } from '../Input';
 import { useGenerateId } from '../../utils';
 import { I18nContext } from '../../i18n';
 import { enUS } from 'date-fns/locale';
 import { ThemeInterface } from '../../theme/magma';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 export interface TimePickerProps {
+  containerStyle?: React.CSSProperties;
   errorMessage?: React.ReactNode;
   id?: string;
+  inputStyle?: React.CSSProperties;
   isInverse?: boolean;
+  labelStyle?: React.CSSProperties;
   labelText: React.ReactNode;
   helperMessage?: React.ReactNode;
   messageStyle?: React.CSSProperties;
@@ -21,6 +26,7 @@ export interface TimePickerProps {
 }
 
 const TimePickerContainer = styled.div<{
+  containerStyle?: React.CSSProperties;
   isInverse?: boolean;
   theme: ThemeInterface;
 }>`
@@ -38,11 +44,34 @@ const TimePickerContainer = styled.div<{
   }
 `;
 
+const StyledFieldset = styled.fieldset`
+  border: 0;
+  margin: 0;
+  padding: 0;
+`;
+
+const StyledLegend = styled.legend<{
+  isInverse?: boolean;
+  labelStyle?: React.CSSProperties;
+  theme: ThemeInterface;
+}>`
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral01};
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  max-width: 100%;
+  text-align: left;
+`;
+
 const InputsContainer = styled.div<{ theme: ThemeInterface }>`
   background: ${props => props.theme.colors.neutral08};
   left: 31px;
   position: absolute;
-  top: 7px;
+  top: 5px;
 `;
 
 const Divider = styled.span`
@@ -55,9 +84,9 @@ const Divider = styled.span`
 const StyledNumInput = styled.input<{ theme: ThemeInterface }>`
   border: 0;
   border-radius: 3px;
-  padding: 0 3px;
+  padding: 0 2px;
   text-align: right;
-  width: 23px;
+  width: 28px;
 
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -78,9 +107,12 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
   const {
+    containerStyle,
     errorMessage,
     helperMessage,
+    inputStyle,
     isInverse,
+    labelStyle,
     labelText,
     onChange,
     ...other
@@ -219,79 +251,110 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
       minuteRef.current.focus();
     }
 
-    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+    if (
+      event.key === 'ArrowUp' ||
+      event.key === 'ArrowDown' ||
+      ((event.key === 'A' || event.key === 'a') && amPm === pm) ||
+      ((event.key === 'P' || event.key === 'p') && amPm === am)
+    ) {
       event.preventDefault();
       toggleAmPm();
     }
   }
 
   return (
-    <TimePickerContainer isInverse={isInverse} theme={theme}>
-      <Input
-        {...other}
-        disabled
-        errorMessage={errorMessage}
-        helperMessage={helperMessage}
-        icon={<ClockIcon />}
-        isInverse={isInverse}
-        id={id}
-        labelText={labelText}
-        inputStyle={{
-          background: `${theme.colors.neutral08}`,
-          borderColor: `${
-            errorMessage
-              ? theme.colors.danger
-              : isInverse
-              ? theme.colors.neutral08
-              : theme.colors.neutral04
-          }`,
-          cursor: 'default',
-          width: '125px'
-        }}
-        value={time}
-      >
-        <InputsContainer theme={theme}>
-          <StyledNumInput
-            aria-label={i18n.timePicker.hoursAriaLabel}
-            aria-describedby={descriptionId}
-            data-testid="hoursTimeInput"
-            id={hourId}
-            maxLength={2}
-            max="12"
-            min="1"
-            onChange={handleHourChange}
-            onKeyDown={handleHourKeyDown}
-            placeholder="--"
-            ref={hourRef}
-            theme={theme}
-            type="number"
-            value={hour}
-          />
-          <Divider> : </Divider>
-          <StyledNumInput
-            aria-label={i18n.timePicker.minutesAriaLabel}
-            data-testid="minutesTimeInput"
-            id={minuteId}
-            maxLength={2}
-            max="59"
-            min="0"
-            onChange={handleMinuteChange}
-            onKeyDown={handleMinuteKeyDown}
-            placeholder="--"
-            ref={minuteRef}
-            theme={theme}
-            type="number"
-            value={minute}
-          />
-          <AmPmToggle
-            ref={amPmRef}
-            onClick={toggleAmPm}
-            onKeyDown={handleAmPmKeyDown}
-          >
-            {amPm}
-          </AmPmToggle>
-        </InputsContainer>
-      </Input>
+    <TimePickerContainer
+      isInverse={isInverse}
+      style={containerStyle}
+      theme={theme}
+    >
+      <StyledFieldset>
+        <StyledLegend
+          isInverse={isInverse}
+          labelStyle={labelStyle}
+          theme={theme}
+        >
+          {labelText}
+        </StyledLegend>
+        <Input
+          {...other}
+          disabled
+          errorMessage={errorMessage}
+          helperMessage={helperMessage}
+          icon={<ClockIcon />}
+          isInverse={isInverse}
+          id={id}
+          inputStyle={{
+            background: `${theme.colors.neutral08}`,
+            borderColor: `${
+              errorMessage
+                ? theme.colors.danger
+                : isInverse
+                ? theme.colors.neutral08
+                : theme.colors.neutral04
+            }`,
+            cursor: 'default',
+            width: '134px',
+            ...inputStyle
+          }}
+          value={time}
+        >
+          <InputsContainer theme={theme}>
+            <StyledNumInput
+              aria-label={i18n.timePicker.hoursAriaLabel}
+              aria-describedby={descriptionId}
+              data-testid="hoursTimeInput"
+              id={hourId}
+              maxLength={2}
+              max="12"
+              min="1"
+              onChange={handleHourChange}
+              onKeyDown={handleHourKeyDown}
+              placeholder="--"
+              ref={hourRef}
+              theme={theme}
+              type="number"
+              value={hour}
+            />
+            <Divider> : </Divider>
+            <StyledNumInput
+              aria-label={i18n.timePicker.minutesAriaLabel}
+              data-testid="minutesTimeInput"
+              id={minuteId}
+              maxLength={2}
+              max="59"
+              min="0"
+              onChange={handleMinuteChange}
+              onKeyDown={handleMinuteKeyDown}
+              placeholder="--"
+              ref={minuteRef}
+              theme={theme}
+              type="number"
+              value={minute}
+            />
+            <AmPmToggle
+              aria-label={
+                amPm === am
+                  ? i18n.timePicker.amButtonAriaLabel
+                  : i18n.timePicker.pmButtonAriaLabel
+              }
+              ref={amPmRef}
+              onClick={toggleAmPm}
+              onKeyDown={handleAmPmKeyDown}
+            >
+              {amPm}
+            </AmPmToggle>
+
+            <VisuallyHidden>
+              <Announce>
+                {amPm === am
+                  ? i18n.timePicker.amSelectedAnnounce
+                  : i18n.timePicker.pmSelectedAnnounce}
+              </Announce>
+            </VisuallyHidden>
+          </InputsContainer>
+        </Input>
+      </StyledFieldset>
     </TimePickerContainer>
   );
 };

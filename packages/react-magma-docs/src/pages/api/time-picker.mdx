@@ -1,5 +1,6 @@
 ---
-title: 'Time Pickers'
+pageTitle: Time Picker API
+title: Time Picker
 ---
 
 import { ScopeableLayout } from '../../components/layout'
@@ -57,6 +58,19 @@ The `helperMessage` appears underneath the input field. It will not appear if an
     </div>
 ```
 
+## Custom Styles
+
+The `containerStyle`, `inputStyle`, `labelStyle` and `messageStyle` props can be used for custom styling.
+
+```.jsx
+  <TimePicker
+    containerStyle={{ border: '1px solid gray'}}
+    labelStyle={{fontStyle: 'italic'}}
+    helperMessage="Helper text" messageStyle={{background: 'pink'}}
+    inputStyle={{ border: '2px dotted black', width: '100%'}}
+    labelText="Time Due" />
+```
+
 ## Internationalization
 
 ```.jsx
@@ -75,13 +89,20 @@ The `helperMessage` appears underneath the input field. It will not appear if an
 
 <SimplePropsTable
   propertyValues={{
+    containerStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the outer container',
+    },
     errorMessage: {
       type: {
         name: 'ReactNode',
       },
       required: false,
       description:
-        'Content of the errror message.  If a value is provided, the error message will be styled as an error state.',
+        'Content of the error message.  If a value is provided, the component will be styled to show an error state.',
       defaultValue: '',
     },
     helperMessage: {
@@ -92,12 +113,26 @@ The `helperMessage` appears underneath the input field. It will not appear if an
       description: 'Content of the helper message.',
       defaultValue: '',
     },
+    labelStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the label',
+    },
     labelText: {
       type: {
         name: 'ReactNode',
       },
       required: true,
       description: 'Content for label; can be a node or a string',
+    },
+    inputStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the outer input',
     },
     isInverse: {
       type: {

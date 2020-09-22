@@ -3,10 +3,12 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import { transparentize } from 'polished';
 
-import { AngleRightIcon } from '../Icon/types/AngleRightIcon';
-import { AngleLeftIcon } from '../Icon/types/AngleLeftIcon';
-import { AngleUpIcon } from '../Icon/types/AngleUpIcon';
-import { AngleDownIcon } from '../Icon/types/AngleDownIcon';
+import {
+  AngleRightIcon,
+  AngleLeftIcon,
+  AngleUpIcon,
+  AngleDownIcon
+} from 'react-magma-icons';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { TabsContainerContext } from './TabsContainer';
 import isPropValid from '@emotion/is-prop-valid';
@@ -212,7 +214,7 @@ interface TabsContextInterface {
 
 export const TabsContext = React.createContext<TabsContextInterface>({
   borderPosition: TabsBorderPosition.bottom,
-  changeHandler: (index, event) => {},
+  changeHandler: () => {},
   iconPosition: TabsIconPosition.left,
   isInverse: false,
   isFullWidth: false,

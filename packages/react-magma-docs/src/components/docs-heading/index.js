@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { Link } from 'gatsby'
-import { HyperLink, CodeIcon, PaletteIcon } from 'react-magma-dom'
+import { HyperLink } from 'react-magma-dom'
+import { CodeIcon, PaletteIcon } from 'react-magma-icons'
 
 const StyledDiv = styled.div`
   align-items: flex-start;

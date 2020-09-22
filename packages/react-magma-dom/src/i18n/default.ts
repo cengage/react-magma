@@ -96,21 +96,29 @@ export const defaultI18n: I18nInterface = {
     ariaLabel: 'Loading'
   },
   timePicker: {
-    hoursAriaLabel: 'Hours',
-    minutesAriaLabel: 'Minutes'
+    hoursAriaLabel: 'Hour',
+    minutesAriaLabel: 'Minute',
+    amButtonAriaLabel:
+      'AM selected.  To change to PM press the p or enter button.',
+    pmButtonAriaLabel:
+      'PM selected.  To change to AM press the a or enter button.',
+    amSelectedAnnounce: 'AM is now selected',
+    pmSelectedAnnounce: 'PM is now selected'
   },
   datePicker: {
     startOfWeek: 'sunday',
-    calendarIconAriaLabel: 'Calendar',
+    calendarIconAriaLabel: 'Toggle Calendar Widget',
     calendarOpenAnnounce:
-      'Calendar widget is now open. Press the question mark key to get the keyboard shortcuts for changing dates.',
-    calendarCloseAriaLabel: 'Close Calendar',
+      'Calendar Widget is now open. Press the question mark key to get the keyboard shortcuts for changing dates.',
+    calendarCloseAriaLabel: 'Close Calendar Widget',
     previousMonthAriaLabel: 'Previous Month',
     nextMonthAriaLabel: 'Next Month',
     disabledDayAriaLabel: 'Not Available. ',
+    selectedDayAriaLabel: '(Selected)',
+    todayAriaLabel: '(Today)',
     helpModal: {
       header: 'Keyboard Shortcuts',
-      helpButtonAriaLabel: 'Calendar Help',
+      helpButtonAriaLabel: 'Calendar Widget Help',
       enter: {
         ariaLabel: 'Enter key',
         explanation: 'Select the date in focus.'
@@ -162,5 +170,21 @@ export const defaultI18n: I18nInterface = {
   },
   skipLink: {
     buttonText: 'Skip Navigation'
+  },
+  select: {
+    placeholder: 'Select...',
+    clearIndicatorAriaLabel:
+      'reset selection for {labelText}. {selectedItem} is selected'
+  },
+  multiSelect: {
+    selectedItemButtonAriaLabel: 'reset item {selectedItem}'
+  },
+  combobox: {
+    clearIndicatorAriaLabel:
+      'reset selection for {labelText}. {selectedItem} is selected',
+    createLabel: 'Create "{inputValue}"'
+  },
+  multiCombobox: {
+    selectedItemButtonAriaLabel: 'reset item {selectedItem}'
   }
 };

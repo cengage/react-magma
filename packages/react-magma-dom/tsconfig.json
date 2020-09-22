@@ -1,16 +1,24 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "src",
+    "outDir": "./dist",
+    "rootDir": "./src",
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "types": ["jest", "node"],
     "typeRoots": ["node_modules/@types"],
+    "importHelpers": true,
     "esModuleInterop": true,
     "noUnusedLocals": true,
-    "module": "ESNext",
-    "moduleResolution": "Node"
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "declaration": true,
+    "sourceMap": true,
+    "moduleResolution": "node"
   },
+  "lib": ["dom", "esnext"],
   "include": ["src/**/*"],
-  "exclude": ["node_modules/**"]
+  "exclude": ["node_modules/**", "dist/**"],
+  "paths": {
+    "*": ["src/*", "node_modules/*"]
+  }
 }

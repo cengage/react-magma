@@ -97,6 +97,10 @@ export interface I18nInterface {
   timePicker: {
     hoursAriaLabel: string;
     minutesAriaLabel: string;
+    amButtonAriaLabel: string;
+    pmButtonAriaLabel: string;
+    amSelectedAnnounce: string;
+    pmSelectedAnnounce: string;
   };
   datePicker: {
     startOfWeek:
@@ -113,6 +117,9 @@ export interface I18nInterface {
     previousMonthAriaLabel: string;
     nextMonthAriaLabel: string;
     disabledDayAriaLabel: string;
+    selectedDayAriaLabel: string;
+    todayAriaLabel: string;
+
     helpModal: {
       header: string;
       helpButtonAriaLabel: string;
@@ -167,5 +174,19 @@ export interface I18nInterface {
   };
   skipLink: {
     buttonText: string;
+  };
+  select: {
+    placeholder: string;
+    clearIndicatorAriaLabel: string;
+  };
+  multiSelect: {
+    selectedItemButtonAriaLabel: string;
+  };
+  combobox: {
+    clearIndicatorAriaLabel: string;
+    createLabel: string;
+  };
+  multiCombobox: {
+    selectedItemButtonAriaLabel: string;
   };
 }

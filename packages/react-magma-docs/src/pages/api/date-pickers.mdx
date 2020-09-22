@@ -1,5 +1,6 @@
 ---
-title: 'Date Pickers'
+pageTitle: Date Picker API
+title: Date Picker
 ---
 
 import { ScopeableLayout } from '../../components/layout'
@@ -10,8 +11,8 @@ import { SimplePropsTable } from '../../components/props-table'
 import { es } from 'date-fns/locale'
 import { format } from 'date-fns'
 
-<DocsHeading to="/design/inputs/" type="design">
-Date Picker
+<DocsHeading to="/design/date-pickers/" type="design">
+  Date Picker
 </DocsHeading>
 
 ## Basic Usage
@@ -147,12 +148,13 @@ to the `I18nContext` provider.
     },
     datePicker: {
       ...defaultI18n.datePicker,
-      "calendarIconAriaLabel": "Calendario",
-      "calendarOpenAnnounce": "El widget de calendario ahora está abierto. Presione la tecla de signo de interrogación para obtener los atajos de teclado para cambiar las fechas.",
-      "calendarCloseAriaLabel": "Cerrar calendario",
+      calendarIconAriaLabel: "Calendario",
+      calendarOpenAnnounce: "El widget de calendario ahora está abierto. Presione la tecla de signo de interrogación para obtener los atajos de teclado para cambiar las fechas.",
+      calendarCloseAriaLabel: "Cerrar calendario",
       previousMonthAriaLabel: 'Mes Anterior',
       nextMonthAriaLabel: 'Próximo Mes',
-      "disabledDayAriaLabel": "No disponible. "
+      disabledDayAriaLabel: "No disponible. ",
+      selectedDayAriaLabel: "(Seleccionado)"
     },
     locale: es
   }}>
@@ -187,7 +189,7 @@ to the `I18nContext` provider.
       },
       required: false,
       description:
-        'Content of the errror message.  If a value is provided, the error message will be styled as an error state.',
+        'Content of the error message.  If a value is provided, the component will be styled to show an error state.',
       defaultValue: '',
     },
     helperMessage: {

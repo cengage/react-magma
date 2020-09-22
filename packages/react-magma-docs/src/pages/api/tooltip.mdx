@@ -1,22 +1,22 @@
 ---
-title: 'Tooltips'
+pageTitle: Tooltip API
+title: Tooltip
 ---
 
 import { ScopeableLayout } from '../../components/layout'
 import {
-  Tooltip,
-  IconButton,
   CircleDownIcon,
   CircleLeftIcon,
   CircleRightIcon,
   CircleUpIcon,
   QuestionCircleIcon,
-} from 'react-magma-dom'
+} from 'react-magma-icons'
+import { Tooltip, IconButton } from 'react-magma-dom'
 import { SimplePropsTable } from '../../components/props-table'
 import DocsHeading from '../../components/docs-heading'
 
 <DocsHeading to="/design/tooltips/" type="design">
-  Tooltips
+  Tooltip
 </DocsHeading>
 
 ## Basic Usage
@@ -32,11 +32,11 @@ The `trigger` prop must take a react element (not just a string), and determines
     return (
       <>
           <Tooltip content="What's this?">
-            <IconButton icon={<QuestionCircleIcon />} variant="link" />
+            <IconButton aria-label="Get Help" icon={<QuestionCircleIcon />} variant="link" />
           </Tooltip>
 
           <Tooltip content={tooltipNodeContent}>
-            <IconButton icon={<QuestionCircleIcon />} variant="link" />
+            <IconButton aria-label="Get Help" icon={<QuestionCircleIcon />} variant="link" />
           </Tooltip>
       </>
     )
@@ -75,7 +75,7 @@ The default value is `false`.
 ```.jsx
     <div style={{ background: '#00263E', color: '#fff'}}>
         <Tooltip isInverse position='right' content='Inverse tooltip'>
-          <IconButton aria-label="Question Icon" icon={<QuestionCircleIcon />} isInverse variant="link" />
+          <IconButton aria-label="Get Help" icon={<QuestionCircleIcon />} isInverse variant="link" />
         </Tooltip>
     </div>
 ```
@@ -86,7 +86,7 @@ The containing div for the tooltip, and the tooltip component itself can have cu
 
 ```.jsx
         <Tooltip content='Styled tooltip' containerStyle={{background: 'pink', padding: '10px' }} tooltipStyle={{ border: '1px solid red', background: 'yellow', color: 'black', padding: '10px' }}>
-          <IconButton aria-label="Question Icon" icon={<QuestionCircleIcon />} variant="link" />
+          <IconButton aria-label="Get Help" icon={<QuestionCircleIcon />} variant="link" />
         </Tooltip>
 ```
 

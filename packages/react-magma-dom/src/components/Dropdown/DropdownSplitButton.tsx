@@ -2,8 +2,7 @@ import * as React from 'react';
 
 import { Button, ButtonShape, ButtonStyles } from '../Button';
 import { IconButton, IconButtonProps } from '../IconButton';
-import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
-import { CaretUpIcon } from '../Icon/types/CaretUpIcon';
+import { CaretDownIcon, CaretUpIcon } from 'react-magma-icons';
 import { DropdownContext, DropdownDropDirection } from '.';
 
 export interface DropdownSplitButtonProps extends ButtonStyles {

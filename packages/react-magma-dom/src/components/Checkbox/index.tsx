@@ -8,7 +8,7 @@ import {
   buildDisplayInputFocusStyles
 } from '../SelectionControls/InputStyles';
 import { HiddenStyles } from '../../utils/UtilityStyles';
-import { CheckIcon } from '../Icon/types/CheckIcon';
+import { CheckIcon } from 'react-magma-icons';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';

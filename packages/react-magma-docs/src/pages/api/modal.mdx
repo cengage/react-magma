@@ -1,15 +1,23 @@
 ---
-title: 'Modals'
+pageTitle: Modal API
+title: Modal
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { Modal, Button, Radio, RadioGroup, Toggle } from 'react-magma-dom'
+import {
+  Modal,
+  Button,
+  Radio,
+  RadioGroup,
+  Toggle,
+  VisuallyHidden,
+} from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
 
 <DocsHeading to="/design/modals/" type="design">
-  Modals
+  Modal
 </DocsHeading>
 
 ## Basic Usage
@@ -19,6 +27,9 @@ properly manages focus; moving to the modal content, and keeping it there until 
 
 The modal will _only_ render if the `isOpen` prop is set to true. For that reason, it is redundant to show the modal using the following anti-pattern: `{flag && <Modal isOpen={flag} />`. Instead,
 simply use `<Modal isOpen={flag} />`
+
+Although not required, it is helpful to inform users (especially screen reader users) when a button or link will trigger a modal dialog.
+This can be done by supplementing the button label or link text with "(opens modal dialog)" using the <Link to="/api/visually-hidden/">VisuallyHidden</Link> component.
 
 More examples of modals can be found on the <Link to="/examples/modal">More Modal Examples</Link> page.
 
@@ -33,7 +44,10 @@ More examples of modals can be found on the <Link to="/examples/modal">More Moda
         <p><Button>This is a button</Button></p>
         <p>This is <a href="#"> some more linked text</a> in the modal</p>
       </Modal>
-    <Button onClick={() => setShowModal(true)}>Show Modal</Button>
+    <Button onClick={() => setShowModal(true)}>
+      Show Modal
+      <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+    </Button>
     </>)
   }
 ```
@@ -56,8 +70,14 @@ Sizes for modals include `small`, `medium`, and `large`, with `medium` being the
         <p>This is a large modal, doing large modal things.</p>
       </Modal>
 
-      <Button size="small" onClick={() => setShowSmallModal(true)}>Show Small Modal</Button>
-      <Button size="large" onClick={() => setShowLargeModal(true)}>Show Large Modal</Button>
+      <Button size="small" onClick={() => setShowSmallModal(true)}>
+        Show Small Modal
+        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+      </Button>
+      <Button size="large" onClick={() => setShowLargeModal(true)}>
+        Show Large Modal
+        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+      </Button>
     </>)
   }
 ```
@@ -86,15 +106,21 @@ the first actionable element.
             <Button onClick={() => setShowModalHeader(false)} >OK</Button>
         </div>
       </Modal>
-      <Button onClick={() => setShowModal(true)}>Show Modal with no header</Button>
-      <Button onClick={() => setShowModalHeader(true)}>Show Modal with header</Button>
+      <Button onClick={() => setShowModal(true)}>
+        Show Modal with no header
+        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+      </Button>
+      <Button onClick={() => setShowModalHeader(true)}>
+        Show Modal with header
+        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+      </Button>
     </>)
   }
 ```
 
 ## Hide Close Button
 
-The close button can be hidden by using the `isCloseButtonHidden` prop. If this prop is used, it is best to provide another way to close the modal.
+The close button can be hidden by using the `isCloseButtonHidden` prop. If this prop is used, it is mandatory to provide another way to close the modal.
 
 ```.jsx
   (props) => {
@@ -132,12 +158,12 @@ If you would like to add a custom close button to the `Modal` be sure not to use
 
     return (<>
       <Modal header="Modal Title" onClose={closeModal} isOpen={showModal}>
-        Blah
-        <Button onClick={customCloseModal}>Show Modal</Button>
+        Lorem ipsum dolar sit amet
+        <Button onClick={customCloseModal}>Close Modal</Button>
       </Modal>
       <p><strong>Magma Close Called Times:</strong> {magmaCloseCalledTimes}</p>
       <p><strong>Internal Close Called Times:</strong> {internalCloseCalledTimes}</p>
-      <Button onClick={() => setShowModal(true)}>Show Modal</Button>
+      <Button onClick={() => setShowModal(true)}>Show Modal <VisuallyHidden>(opens modal dialog)</VisuallyHidden></Button>
     </>)
   }
 ```
@@ -247,6 +273,6 @@ If you would like to add a custom close button to the `Modal` be sure not to use
 export default props => (
   <ScopeableLayout
     {...props}
-    components={{ Modal, Button, Radio, RadioGroup, Toggle }}
+    components={{ Modal, Button, Radio, RadioGroup, Toggle, VisuallyHidden }}
   />
 )

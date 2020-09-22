@@ -1,6 +1,7 @@
 import React from 'react'
 import './styles.css'
-import { AsteriskIcon, magma } from 'react-magma-dom'
+import { AsteriskIcon } from 'react-magma-icons'
+import { magma } from 'react-magma-dom'
 
 export const SimplePropsTable = ({ propertyValues }) => {
   if (propertyValues === undefined) {
@@ -23,10 +24,10 @@ export const SimplePropsTable = ({ propertyValues }) => {
           }}
         >
           <tr>
-            <th>Property</th>
-            <th>Type</th>
-            <th>Default</th>
-            {hasDescription && <th>Description</th>}
+            <th scope="col">Property</th>
+            <th scope="col">Type</th>
+            <th scope="col">Default</th>
+            {hasDescription && <th scope="col">Description</th>}
           </tr>
         </thead>
         <tbody>

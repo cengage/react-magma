@@ -1,5 +1,6 @@
 ---
-title: Inputs
+pageTitle: Input Design Guidelines
+title: Input
 order: 1
 ---
 
@@ -7,7 +8,9 @@ import DocsHeading from '../../components/docs-heading'
 import { Input, PasswordInput, Textarea } from 'react-magma-dom'
 import { Link } from 'gatsby'
 
-# Inputs
+<DocsHeading to="/api/input/" type="code">
+  Input
+</DocsHeading>
 
 Inputs enable the user to interact with and input content and data.
 
@@ -19,7 +22,7 @@ Inputs enable the user to interact with and input content and data.
 
 ## Usage
 
-Inputs can be used alone or they can be combined with other types of inputs to create more robust forms.  In addition to text fields, other types of inputs include text area, password, search, number, and more.
+Inputs can be used alone or they can be combined with other types of inputs to create more robust forms. In addition to text fields, other types of inputs include text area, password, search, number, and more.
 
 <span class="horizontal-spacer"></span>
 <hr class="article-divider" />
@@ -81,7 +84,7 @@ View <Link to="/api/password-input/">component API</Link> for password inputs.
   </div>
 </figure>
 
-### Number
+### Number Input
 
 Use this input when you want to limit the user's input to numerical characters.
 
@@ -107,7 +110,16 @@ View <Link to="/api/search/">component API</Link> or <Link to="/design/search/">
 
 ### Date
 
-Use the date input when you want the user to input a date in the format you choose.  A built-in calendar widget and keyboard controls improve the general usability and accessibility of the component.
+=======
+id="inputNum"
+labelText="Number"
+type="number"
+inputStyle={{ width: '80px' }}
+/>
+
+> > > > > > > dev
+
+Use the date input when you want the user to input a date in the format you choose. A built-in calendar widget and keyboard controls improve the general usability and accessibility of the component.
 
 View <Link to="/api/date-pickers/">component API</Link> for date inputs.
 
@@ -119,7 +131,7 @@ View <Link to="/api/date-pickers/">component API</Link> for date inputs.
 
 ### Time
 
-Use the time input when you want the user to input a time in the format you choose.  Enhanced keyboard navigation improves the general usability and accessibility of the component.
+Use the time input when you want the user to input a time in the format you choose. Enhanced keyboard navigation improves the general usability and accessibility of the component.
 
 View <Link to="/api/time-picker/">component API</Link> for time inputs.
 
@@ -128,7 +140,6 @@ View <Link to="/api/time-picker/">component API</Link> for time inputs.
     <img src="../../images/inputs/time-input-example.png" alt="" />
   </div>
 </figure>
-
 <span class="horizontal-spacer"></span>
 <hr class="article-divider" />
 
@@ -155,6 +166,7 @@ View <Link to="/api/time-picker/">component API</Link> for time inputs.
 The field label tells the user what information they need to input. Using placeholder text in lieu of a label is sometimes employed as a space-saving method. However, this should typically be limited to search inputs because it hides context and presents accessibility issues.
 
 **Accessibility best practices for labels**
+
 - Labels must be visible when an input gets focus.
 - Labels must be announced to the screen reader on focus.
 - Do not truncate text labels.
@@ -197,7 +209,10 @@ Placeholder text provides hints or examples of what to enter. Placeholder text d
       <figure>
         <img src="../../images/inputs/input-text.png" alt="" />
         <figcaption>
-          <p>This example shows how the placeholder text provides a hint to the user how to enter their email address.</p>
+          <p>
+            This example shows how the placeholder text provides a hint to the
+            user how to enter their email address.
+          </p>
         </figcaption>
       </figure>
     </div>
@@ -348,7 +363,6 @@ The Help Link icon can be added to inputs that might require more explanation or
     <div class="col col-2"></div>
   </div>
 </div>
-
 <span class="horizontal-spacer"></span>
 <hr class="article-divider" />
 
@@ -395,10 +409,8 @@ When the input provided is invalid, an error message should be used to provide i
     <div class="col col-2"></div>
   </div>
 </div>
-
 <span class="horizontal-spacer"></span>
 <hr class="article-divider" />
-
 
 ## Sizes
 

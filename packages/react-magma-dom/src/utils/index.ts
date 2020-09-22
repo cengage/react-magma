@@ -1,15 +1,21 @@
 import React from 'react';
-const uuidv4 = require('uuid/v4');
+import { v4 as uuidv4 } from 'uuid';
 
 export function generateId(id?: string) {
   return id ? id : uuidv4();
 }
 
 export function useGenerateId(newId?: string) {
-  const [id, updateId] = React.useState<string>(generateId(newId));
+  const [id, updateId] = React.useState<string>(newId);
+
+  React.useEffect(() => {
+    updateId(generateId(newId));
+  }, []);
+
   React.useEffect(() => {
     newId && updateId(generateId(newId));
   }, [newId]);
+
   return id;
 }
 
@@ -24,7 +30,7 @@ export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
 
-export type XOR<T, U> = (T | U) extends object
+export type XOR<T, U> = T | U extends object
   ? (Without<T, U> & U) | (Without<U, T> & T)
   : T | U;
 
@@ -124,7 +130,9 @@ export function animate(
   element,
   to,
   options: any = {},
-  cb = (error?: Error) => {}
+  cb = (error?: Error) => {
+    throw error;
+  }
 ) {
   const { ease = easeInOutSin, duration = 300 } = options;
 
@@ -166,4 +174,30 @@ export function animate(
 
   requestAnimationFrame(step);
   return cancel;
+}
+
+export function assignRef(ref, value) {
+  if (ref === null) return;
+  if (typeof ref === 'function') {
+    ref(value);
+  } else {
+    try {
+      ref.current = value;
+    } catch (error) {
+      throw new Error(`Cannot assign value "${value}" to ref "${ref}"`);
+    }
+  }
+}
+
+export function useForkedRef(...refs) {
+  return React.useMemo(() => {
+    if (refs.every(ref => ref === null)) {
+      return null;
+    }
+    return (node: any) => {
+      refs.forEach(ref => {
+        assignRef(ref, node);
+      });
+    };
+  }, [...refs]);
 }

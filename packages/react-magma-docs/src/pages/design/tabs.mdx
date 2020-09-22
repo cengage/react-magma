@@ -1,4 +1,5 @@
 ---
+pageTitle: Tabs Design Guidelines
 title: Tabs
 order: 1
 ---
@@ -15,12 +16,12 @@ import { Button } from 'react-magma-dom'
 Tabs allow navigation between different sets of related content or can be used to navigate an entire application.
 
 <figure>
-    <img
-      src="../../images/tabs/tabs-example.png" alt="Simple example of horizontal tabs" />
+  <img
+    src="../../images/tabs/tabs-example.png"
+    alt="Simple example of horizontal tabs"
+  />
 </figure>
-
 <span class="horizontal-spacer"></span>
-
 <hr class="article-divider" />
 
 ## Principles
@@ -38,16 +39,15 @@ Tabs help users find what they’re looking for by organizing content into categ
 Tabs are displayed next to each other because they are equal to each other hierarchically.
 
 <span class="horizontal-spacer"></span>
-
 <hr class="article-divider" />
 
 ## Anatomy
 
 <figure>
-    <img
-      src="../../images/tabs/tabs-anatomy.png"
-      alt="Illustration showing the anatomy of an tab group"
-    />
+  <img
+    src="../../images/tabs/tabs-anatomy.png"
+    alt="Illustration showing the anatomy of an tab group"
+  />
 </figure>
 
 1. Tab
@@ -58,7 +58,8 @@ Tabs are displayed next to each other because they are equal to each other hiera
 1. Inactive Tab Label
 
 ### Text Label
-Text labels should clearly and succinctly describe the content they represent.  Tabs have a max-width of 250px by default, and long labels will wrap, but this obviously has a drastic impact on the presentation so we should take great care with the words we choose.
+
+Text labels should clearly and succinctly describe the content they represent. Tabs have a max-width of 250px by default, and long labels will wrap, but this obviously has a drastic impact on the presentation so we should take great care with the words we choose.
 
 <div class="two-col">
   <div class="row">
@@ -68,7 +69,8 @@ Text labels should clearly and succinctly describe the content they represent.  
         <figcaption>
           <p class="title title-caution">Caution</p>
           <p>
-            Be careful how much text you use in your tab labels.  The text will wrap, but it has a drastic impact on the presentation of your tabs.
+            Be careful how much text you use in your tab labels. The text will
+            wrap, but it has a drastic impact on the presentation of your tabs.
           </p>
         </figcaption>
       </figure>
@@ -92,7 +94,8 @@ Text labels should clearly and succinctly describe the content they represent.  
         <figcaption>
           <p class="title title-incorrect">Incorrect</p>
           <p>
-            Do not truncate text on a tab to make it fit on a single line.  This could make it difficult to understand the true intent of the tab.
+            Do not truncate text on a tab to make it fit on a single line. This
+            could make it difficult to understand the true intent of the tab.
           </p>
         </figcaption>
       </figure>
@@ -103,7 +106,8 @@ Text labels should clearly and succinctly describe the content they represent.  
         <figcaption>
           <p class="title title-incorrect">Incorrect</p>
           <p>
-            Do not mix icon-only tabs with text-only tabs.  All tabs in a group should use the same type of tab consistently.
+            Do not mix icon-only tabs with text-only tabs. All tabs in a group
+            should use the same type of tab consistently.
           </p>
         </figcaption>
       </figure>
@@ -112,87 +116,81 @@ Text labels should clearly and succinctly describe the content they represent.  
 </div>
 
 ### Icons
+
 Icons can be very helpful in helping identify the type or context of the content the tabs represent.
 
 #### Icon + Text Label
-Icons can be placed to the left of the label or on top of the label, depending on the desired outcome or constraints of the layout.  The added space required by the icon requires even greater effort to make the text label as short as possible.
+
+Icons can be placed to the left of the label or on top of the label, depending on the desired outcome or constraints of the layout. The added space required by the icon requires even greater effort to make the text label as short as possible.
 
 <figure>
-    <img
-      src="../../images/tabs/tabs-icon-and-text.png"
-      alt=""
-    />
-    <figcaption>
-      <p>
-        Icons and text labels can be used together to help communicate what the content is.
-      </p>
-    </figcaption>
+  <img src="../../images/tabs/tabs-icon-and-text.png" alt="" />
+  <figcaption>
+    <p>
+      Icons and text labels can be used together to help communicate what the
+      content is.
+    </p>
+  </figcaption>
 </figure>
-
 <span class="horizontal-spacer"></span>
-
 <figure>
-    <img
-      src="../../images/tabs/tabs-icon-and-label-stacked.png"
-      alt=""
-    />
-    <figcaption>
-      <p>
-        Icons can be stacked on top of the label which saves horizontal space, but also increases the vertical footprint.
-      </p>
-    </figcaption>
+  <img src="../../images/tabs/tabs-icon-and-label-stacked.png" alt="" />
+  <figcaption>
+    <p>
+      Icons can be stacked on top of the label which saves horizontal space, but
+      also increases the vertical footprint.
+    </p>
+  </figcaption>
 </figure>
 
 #### Icon Only
+
 Icon-only tabs can be very useful for communicating the content they represent, especially in small areas or on small devices.
 
 <figure>
-    <img
-      src="../../images/tabs/tabs-icon-only.png"
-      alt=""
-    />
-    <figcaption>
-      <p class="title title-caution">Caution</p>
-      <p>
-        Icons used on their own should only be done if testing proves that the icons being used are clear and easy to understand or learn quickly.
-      </p>
-    </figcaption>
+  <img src="../../images/tabs/tabs-icon-only.png" alt="" />
+  <figcaption>
+    <p class="title title-caution">Caution</p>
+    <p>
+      Icons used on their own should only be done if testing proves that the
+      icons being used are clear and easy to understand or learn quickly.
+    </p>
+  </figcaption>
 </figure>
 
 ### Active Tab Indicator
+
 The active tab indicator helps make it very clear which tab is currently selected.
 
 <figure>
-    <img
-      src="../../images/tabs/tabs-active-indicator-bottom.png" alt="" />
-    <figcaption>
-      <p>
-        The indicator appears on the bottom of the tab when the content the tab represents is also below.
-      </p>
-    </figcaption>
+  <img src="../../images/tabs/tabs-active-indicator-bottom.png" alt="" />
+  <figcaption>
+    <p>
+      The indicator appears on the bottom of the tab when the content the tab
+      represents is also below.
+    </p>
+  </figcaption>
 </figure>
-
 <span class="horizontal-spacer"></span>
-
 <figure>
-    <img
-      src="../../images/tabs/tabs-active-indicator-top.png" alt="" />
-    <figcaption>
-      <p>
-        The indicator appears on the top of the tab when the content the tab represents is also above.
-      </p>
-    </figcaption>
+  <img src="../../images/tabs/tabs-active-indicator-top.png" alt="" />
+  <figcaption>
+    <p>
+      The indicator appears on the top of the tab when the content the tab
+      represents is also above.
+    </p>
+  </figcaption>
 </figure>
-
 <span class="horizontal-spacer"></span>
-
 <hr class="article-divider" />
 
 ## States
 
 <figure>
-    <img
-      src="../../images/tabs/tabs-states.png" alt="image showing different tab states" />
+  <img
+    src="../../images/tabs/tabs-states.png"
+    alt="image showing different tab states"
+  />
 </figure>
 
 1. Inactive
@@ -201,39 +199,27 @@ The active tab indicator helps make it very clear which tab is currently selecte
 1. Hover
 1. Focus
 
-
 <span class="horizontal-spacer"></span>
-
 <hr class="article-divider" />
 
 ## Placement
 
-Tabs are displayed in a single row or column, with each tab connected to the content they represent.  Tabs can be attached to headers, main content areas, side panels, and nestled into cards.
+Tabs are displayed in a single row or column, with each tab connected to the content they represent. Tabs can be attached to headers, main content areas, side panels, and nestled into cards.
 
 <figure>
-    <img
-      src="../../images/tabs/tabs-header.png" alt="" />
-    <figcaption>
-      <p>
-        Example of tabs in the header of a panel.
-      </p>
-    </figcaption>
+  <img src="../../images/tabs/tabs-header.png" alt="" />
+  <figcaption>
+    <p>Example of tabs in the header of a panel.</p>
+  </figcaption>
 </figure>
-
 <span class="horizontal-spacer"></span>
-
 <figure>
-    <img
-      src="../../images/tabs/tabs-column.png" alt="" />
-    <figcaption>
-      <p>
-        Example of tabs in a column.
-      </p>
-    </figcaption>
+  <img src="../../images/tabs/tabs-column.png" alt="" />
+  <figcaption>
+    <p>Example of tabs in a column.</p>
+  </figcaption>
 </figure>
-
 <span class="horizontal-spacer"></span>
-
 <div class="two-col">
   <div class="row">
     <div class="col col-1">
@@ -241,9 +227,7 @@ Tabs are displayed in a single row or column, with each tab connected to the con
         <img src="../../images/tabs/nesting-tabs-wrong.png" alt="" />
         <figcaption>
           <p class="title title-incorrect">Incorrect</p>
-          <p>
-            Don't nest tabs to create multiple levels.
-          </p>
+          <p>Don't nest tabs to create multiple levels.</p>
         </figcaption>
       </figure>
     </div>
@@ -252,117 +236,93 @@ Tabs are displayed in a single row or column, with each tab connected to the con
         <img src="../../images/tabs/stacking-tabs-wrong.png" alt="" />
         <figcaption>
           <p class="title title-incorrect">Incorrect</p>
-          <p>
-            Don't stack tabs meant to be horizontal on top of each other.
-          </p>
+          <p>Don't stack tabs meant to be horizontal on top of each other.</p>
         </figcaption>
       </figure>
     </div>
   </div>
 </div>
-
 <hr class="article-divider" />
 
 ## Tab Layout
 
 ### Auto-Width Tabs
 
-The default width of a tab is undefined and is determined by the content within the tab plus 20px of padding on either side.  There is, however, a max-width of 250px which could cause the text within a tab to wrap to multiple lines.
+The default width of a tab is undefined and is determined by the content within the tab plus 20px of padding on either side. There is, however, a max-width of 250px which could cause the text within a tab to wrap to multiple lines.
 
 #### Alignment
+
 Auto-width tabs can be left-aligned, right-aligned, or centered.
 
 <figure>
-    <img
-      src="../../images/tabs/tabs-left-aligned.png" alt="" />
-    <figcaption>
-      <p>
-        By default, auto-width tabs are left aligned.
-      </p>
-    </figcaption>
+  <img src="../../images/tabs/tabs-left-aligned.png" alt="" />
+  <figcaption>
+    <p>By default, auto-width tabs are left aligned.</p>
+  </figcaption>
 </figure>
-
 <span class="horizontal-spacer"></span>
-
 <figure>
-    <img
-      src="../../images/tabs/tabs-right-aligned.png" alt="" />
-    <figcaption>
-      <p>
-        You may also right-align the tabs with the content below or above.
-      </p>
-    </figcaption>
+  <img src="../../images/tabs/tabs-right-aligned.png" alt="" />
+  <figcaption>
+    <p>You may also right-align the tabs with the content below or above.</p>
+  </figcaption>
 </figure>
-
 <span class="horizontal-spacer"></span>
-
 <figure>
-    <img
-      src="../../images/tabs/tabs-centered.png" alt="" />
-    <figcaption>
-      <p>
-        On wider layouts, centering the tabs may work well.
-      </p>
-    </figcaption>
+  <img src="../../images/tabs/tabs-centered.png" alt="" />
+  <figcaption>
+    <p>On wider layouts, centering the tabs may work well.</p>
+  </figcaption>
 </figure>
 
 #### Scrolling Horizontal Tabs
 
-The tab container for auto-width tabs will automatically scroll if the container becomes too small to show all the tabs.  Buttons to scroll left and right will automatically be added, but users with touch-based devices will also be able to drag the tab container left and right.
+The tab container for auto-width tabs will automatically scroll if the container becomes too small to show all the tabs. Buttons to scroll left and right will automatically be added, but users with touch-based devices will also be able to drag the tab container left and right.
 
 <figure>
-    <img
-      src="../../images/tabs/horizontal-scrolling-tabs.png" alt="" />
-    <figcaption>
-      <p>
-        If there are more tabs to see beyond the edge of the container, you will see an arrow appear at the right side of the tabs container.
-      </p>
-    </figcaption>
+  <img src="../../images/tabs/horizontal-scrolling-tabs.png" alt="" />
+  <figcaption>
+    <p>
+      If there are more tabs to see beyond the edge of the container, you will
+      see an arrow appear at the right side of the tabs container.
+    </p>
+  </figcaption>
 </figure>
-
 
 ### Full-Width Tabs
 
-Full-width tabs can be calculated by the width of the container divided by the number of tabs.  Full-width tabs should only be used if you can guarantee that all tabs will be visible without truncation regardless of the size of the container.
+Full-width tabs can be calculated by the width of the container divided by the number of tabs. Full-width tabs should only be used if you can guarantee that all tabs will be visible without truncation regardless of the size of the container.
 
 <figure>
-    <img
-      src="../../images/tabs/tabs-full-width.png" alt="" />
-    <figcaption>
-      <p>
-        Simple example of full-width tabs, each tab being of equal width.
-      </p>
-    </figcaption>
+  <img src="../../images/tabs/tabs-full-width.png" alt="" />
+  <figcaption>
+    <p>Simple example of full-width tabs, each tab being of equal width.</p>
+  </figcaption>
 </figure>
-
 <span class="horizontal-spacer"></span>
-
 <figure>
-    <img
-      src="../../images/tabs/tabs-alignment-with-content.png" alt="" />
-    <figcaption>
-      <p class="title title-caution">Caution</p>
-      <p>
-        Be careful with how the content aligns with the tabs themselves. In this example, the alignment could cause users to misunderstand what the tabs represent.
-      </p>
-    </figcaption>
+  <img src="../../images/tabs/tabs-alignment-with-content.png" alt="" />
+  <figcaption>
+    <p class="title title-caution">Caution</p>
+    <p>
+      Be careful with how the content aligns with the tabs themselves. In this
+      example, the alignment could cause users to misunderstand what the tabs
+      represent.
+    </p>
+  </figcaption>
 </figure>
-
 
 ### Vertical Tabs
 
 Tabs may also be placed to the left of their corresponding content in a vertical layout.
 
-**NOTE:** There isn’t any default Responsive behavior for when the content area gets too narrow to display the tabs next to the content.  You are encouraged to reuse solutions from other instances of vertical tabs.  In the event no solution exists that will work in your scenario, a new solution will have to be designed.
+**NOTE:** There isn’t any default Responsive behavior for when the content area gets too narrow to display the tabs next to the content. You are encouraged to reuse solutions from other instances of vertical tabs. In the event no solution exists that will work in your scenario, a new solution will have to be designed.
 
 <figure>
-    <img
-      src="../../images/tabs/tabs-vertical.png" alt="" />
-    <figcaption>
-      <p>
-        Simple example of vertical tabs on the left side of the content.
-      </p>
-    </figcaption>
+  <img src="../../images/tabs/tabs-vertical.png" alt="" />
+  <figcaption>
+    <p>Simple example of vertical tabs on the left side of the content.</p>
+  </figcaption>
 </figure>
 
 #### Scrolling Vertical Tabs
@@ -370,17 +330,15 @@ Tabs may also be placed to the left of their corresponding content in a vertical
 Vertical tabs will also automatically scroll when the height of their container is too small to display all of the tabs.
 
 <figure>
-    <img
-      src="../../images/tabs/tabs-vertical-scrolling.png" alt="" />
-    <figcaption>
-      <p>
-        If there are more tabs to see beyond the bottom of the container, you will see an arrow appear at the bottom of the tabs container.
-      </p>
-    </figcaption>
+  <img src="../../images/tabs/tabs-vertical-scrolling.png" alt="" />
+  <figcaption>
+    <p>
+      If there are more tabs to see beyond the bottom of the container, you will
+      see an arrow appear at the bottom of the tabs container.
+    </p>
+  </figcaption>
 </figure>
-
 <span class="horizontal-spacer"></span>
-
 <hr class="article-divider" />
 
 ## Inverse Styling
@@ -388,24 +346,23 @@ Vertical tabs will also automatically scroll when the height of their container 
 The tabs have inverse styling available for use on dark backgrounds. Take care with the color you choose for the background to make sure the necessary contrast ratios are upheld for accessibility compliance.
 
 <figure>
-    <img
-      src="../../images/tabs/tabs-inverse-example.png" alt="" />
-    <figcaption>
-      <p>
-        Example of tabs on a dark blue background.
-      </p>
-    </figcaption>
+  <img src="../../images/tabs/tabs-inverse-example.png" alt="" />
+  <figcaption>
+    <p>Example of tabs on a dark blue background.</p>
+  </figcaption>
 </figure>
 
 The colors in the Magma palette that you can safely use as a background include:
+
 - neutral01 (#3F3F3F)
 - neutral02 (#575757)
 - foundation01 (#00263E)
 - foundation02 (#003865).
 
 <figure>
-    <img
-      src="../../images/tabs/tabs-inverse-compliant-colors.png" alt="visual examples of tabs on dark backgrounds" />
+  <img
+    src="../../images/tabs/tabs-inverse-compliant-colors.png"
+    alt="visual examples of tabs on dark backgrounds"
+  />
 </figure>
-
 <span class="horizontal-spacer"></span>

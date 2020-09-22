@@ -1,81 +1,147 @@
 import * as React from 'react';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { Props as ReactSelectProps } from 'react-select';
 import {
-  ClearIndicator,
-  DropdownIndicator,
-  MultiValueRemove,
-  getStyles,
-  useSelectValue,
-  getAriaLabel,
-  BaseSelectProps
-} from './shared';
-import { SelectWrapper } from './SelectWrapper';
+  useSelect,
+  useMultipleSelection,
+  UseSelectProps,
+  UseMultipleSelectionProps
+} from 'downshift';
 
-const Loader = () => null;
+import { Select as InternalSelect } from './Select';
+import { MultiSelect } from './MultiSelect';
+import { InputMessage } from '../Input/InputMessage';
+import { SelectComponents } from './components';
+import { useGenerateId } from '../../utils';
 
-export interface SelectProps extends BaseSelectProps, ReactSelectProps {}
+export type SelectOptions =
+  | string
+  | { value: string; label: string; [key: string]: any }
+  | any;
 
-export const Select: React.FunctionComponent<SelectProps> = (
-  props: SelectProps
-) => {
-  const [value, onChange] = useSelectValue(
-    props.value,
-    props.defaultValue,
-    props.onChange
+export interface InternalSelectInterface {
+  components?: SelectComponents;
+  containerStyle?: React.CSSProperties;
+  errorMessage?: React.ReactNode;
+  helperMessage?: React.ReactNode;
+  inputStyle?: React.CSSProperties;
+  isClearable?: boolean;
+  isDisabled?: boolean;
+  isInverse?: boolean;
+  isLabelVisuallyHidden?: boolean;
+  isMulti?: boolean;
+  labelStyle?: React.CSSProperties;
+  labelText: string;
+  messageStyle?: React.CSSProperties;
+  name?: string;
+}
+
+export interface InternalMultiInterface<T> {
+  onRemoveSelectedItem?: (removedItem: T) => void;
+}
+
+export interface SelectInterface<T extends SelectOptions>
+  extends UseSelectProps<T>,
+    InternalSelectInterface {
+  ariaDescribedBy?: string;
+  hasError?: boolean;
+  onBlur?: (event: React.FocusEvent) => void;
+  onFocus?: (event: React.FocusEvent) => void;
+  onKeyDown?: (event: React.KeyboardEvent) => void;
+  onKeyPress?: (event: React.KeyboardEvent) => void;
+  onKeyUp?: (event: React.KeyboardEvent) => void;
+}
+
+export interface MultiSelectInterface<T extends SelectOptions>
+  extends UseMultipleSelectionProps<T>,
+    Omit<SelectInterface<T>, 'onStateChange' | 'stateReducer'>,
+    InternalMultiInterface<T> {
+  hasError?: boolean;
+  isInverse?: boolean;
+}
+
+export function instanceOfMultiSelect<T>(
+  object: any
+): object is MultiSelectInterface<T> {
+  return 'isMulti' in object && object.type !== 'combo';
+}
+
+export function instanceOfDefaultItemObject(
+  object: any
+): object is { label: string; value: string; [key: string]: any } {
+  return object && 'label' in object;
+}
+
+export function instanceOfToBeCreatedItemObject(
+  object: any
+): object is {
+  label: string;
+  value: string;
+  react_magma__created_item: boolean;
+} {
+  return (
+    typeof object !== 'string' &&
+    object &&
+    'react_magma__created_item' in object
   );
-  const [ReactSelect, updateReactSelect] = React.useState<any>(() => Loader);
+}
 
-  React.useEffect(() => {
-    import('react-select')
-      .then(module => updateReactSelect(() => module.default))
-      .catch(err => {
-        if (process.env.NODE_ENV !== 'production') {
-          console.warn(
-            'React-Magma: Unable to import component from react-select'
-          );
-        }
-        throw new Error(err);
-      });
-  }, []);
+export const SelectStateChangeTypes = useSelect.stateChangeTypes;
+export const MultipleSelectionStateChangeTypes =
+  useMultipleSelection.stateChangeTypes;
 
+export function Select<T>(props: SelectInterface<T>) {
   const {
-    components,
-    testId,
-    labelText,
-    errorMessage,
-    helperMessage,
+    containerStyle,
+    id: defaultId,
     isInverse,
-    styles,
-    ...other
+    isMulti,
+    errorMessage,
+    messageStyle,
+    helperMessage
   } = props;
 
-  const ariaLabelText = getAriaLabel(labelText, errorMessage, helperMessage);
+  function itemToString(item: T) {
+    return item && typeof item === 'string'
+      ? item
+      : item && instanceOfDefaultItemObject(item)
+      ? item.label
+      : '';
+  }
 
-  const theme = React.useContext(ThemeContext);
+  const hasError = !!errorMessage;
+
+  const id = useGenerateId(defaultId);
+
+  const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
   return (
-    <SelectWrapper
-      errorMessage={errorMessage}
-      helperMessage={helperMessage}
-      isInverse={isInverse}
-      labelText={labelText}
-      testId={testId}
-    >
-      <ReactSelect
-        {...other}
-        aria-label={ariaLabelText}
-        classNamePrefix="magma"
-        components={{
-          ClearIndicator,
-          DropdownIndicator,
-          MultiValueRemove,
-          ...components
-        }}
-        onChange={onChange}
-        styles={getStyles(styles, theme, errorMessage, isInverse)}
-        value={value}
-      />
-    </SelectWrapper>
+    <div style={containerStyle}>
+      {isMulti && instanceOfMultiSelect<T>(props) ? (
+        <MultiSelect
+          ariaDescribedBy={descriptionId}
+          id={id}
+          itemToString={itemToString}
+          {...props}
+          hasError={hasError}
+        />
+      ) : (
+        <InternalSelect
+          ariaDescribedBy={descriptionId}
+          id={id}
+          itemToString={itemToString}
+          {...props}
+          hasError={hasError}
+        />
+      )}
+      <InputMessage
+        id={descriptionId}
+        isInverse={isInverse}
+        isError={hasError}
+        style={messageStyle}
+      >
+        {(errorMessage || helperMessage) && (
+          <>{errorMessage ? errorMessage : helperMessage}</>
+        )}
+      </InputMessage>
+    </div>
   );
-};
+}

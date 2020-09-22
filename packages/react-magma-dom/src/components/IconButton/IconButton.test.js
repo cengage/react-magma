@@ -10,7 +10,7 @@ import {
   ButtonVariant
 } from '../Button';
 import { IconButton, ButtonIconPosition } from '.';
-import { CheckIcon } from '../Icon/types/CheckIcon';
+import { CheckIcon } from 'react-magma-icons';
 
 describe('IconButton', () => {
   it('An icon-only button does not violate detectible accessibility standards', () => {
