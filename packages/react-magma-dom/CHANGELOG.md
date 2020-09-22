@@ -3,29 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.0.0-beta.68](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.67...v2.0.0-beta.68) (2020-09-02)
+# [2.0.0-beta.69](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.68...v2.0.0-beta.69) (2020-09-02)
 
+**Note:** Version bump only for package react-magma-dom
+
+# [2.0.0-beta.68](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.67...v2.0.0-beta.68) (2020-09-02)
 
 ### Bug Fixes
 
-* **dropdown:** allow disable of auto focus on close ([82ef3f0](http://stash.cengage.com:7999/FRONT/react-magma/commits/82ef3f0))
-* **dropdown:** change preventMagmaFocus to a function on event ([c628a93](http://stash.cengage.com:7999/FRONT/react-magma/commits/c628a93))
-* **dropdown:** remove curried function ([15a5ec6](http://stash.cengage.com:7999/FRONT/react-magma/commits/15a5ec6))
-
-
-
-
+- **dropdown:** allow disable of auto focus on close ([82ef3f0](http://stash.cengage.com:7999/FRONT/react-magma/commits/82ef3f0))
+- **dropdown:** change preventMagmaFocus to a function on event ([c628a93](http://stash.cengage.com:7999/FRONT/react-magma/commits/c628a93))
+- **dropdown:** remove curried function ([15a5ec6](http://stash.cengage.com:7999/FRONT/react-magma/commits/15a5ec6))
 
 # [2.0.0-beta.67](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.66...v2.0.0-beta.67) (2020-08-31)
 
-
 ### Bug Fixes
 
-* **textarea:** add ref as prop ([127ea1d](http://stash.cengage.com:7999/FRONT/react-magma/commits/127ea1d))
-
-
-
-
+- **textarea:** add ref as prop ([127ea1d](http://stash.cengage.com:7999/FRONT/react-magma/commits/127ea1d))
 
 # [2.0.0-beta.66](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.65...v2.0.0-beta.66) (2020-08-31)
 

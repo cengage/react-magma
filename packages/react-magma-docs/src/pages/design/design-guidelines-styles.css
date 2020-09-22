@@ -50,6 +50,7 @@ figure .image-container img {
   max-width: 400px;
   margin: auto !important;
   position: relative !important;
+  top: 1px!important;
 }
 
 figcaption {
