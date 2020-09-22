@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
+import { useForkedRef } from '../../utils';
 
 export enum DropdownDropDirection {
   down = 'down', //default
@@ -34,6 +35,7 @@ interface DropdownContextInterface {
   alignment?: DropdownAlignment;
   closeDropdown?: (event: React.SyntheticEvent | React.KeyboardEvent) => void;
   dropDirection?: DropdownDropDirection;
+  handleMenuBlur?: (event: React.FocusEvent) => void;
   itemRefArray?: any;
   isFixedWidth?: boolean;
   isOpen?: boolean;
@@ -66,7 +68,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
       width,
       ...other
     }: DropdownProps,
-    ref: any
+    forwardedRef: any
   ) => {
     const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
@@ -77,8 +79,11 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
     const itemRefArray = React.useRef([]);
     const shouldFocusToggleElement = React.useRef<boolean>(true);
 
+    const ownRef = React.useRef<any>();
     const toggleRef = React.useRef<HTMLButtonElement>();
     const menuRef = React.useRef<any>([]);
+
+    const ref = useForkedRef(forwardedRef, ownRef);
 
     React.useEffect(() => {
       if (activeIndex >= 0) {
@@ -86,8 +91,25 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
       }
     }, [activeIndex]);
 
+    React.useEffect(() => {
+      if (isOpen) {
+        document.addEventListener('click', globalClickListener);
+      }
+
+      return () => {
+        document.removeEventListener('click', globalClickListener);
+      };
+    }, [isOpen]);
+
+    function globalClickListener(event) {
+      if (isOpen && ownRef.current && !ownRef.current.contains(event.target)) {
+        closeDropdown(event);
+      }
+    }
+
     function openDropdown() {
       setIsOpen(true);
+      toggleRef.current.focus();
     }
 
     function closeDropdown(event) {
@@ -189,6 +211,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
           alignment,
           closeDropdown,
           dropDirection,
+          handleMenuBlur,
           itemRefArray,
           isFixedWidth: !!width,
           isOpen,
@@ -205,7 +228,6 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
           {...other}
           ref={ref}
           data-testid={testId}
-          onBlur={handleMenuBlur}
           onKeyDown={isOpen ? handleKeyDown : null}
         >
           {children}
