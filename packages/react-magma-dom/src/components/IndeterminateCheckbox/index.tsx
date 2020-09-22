@@ -92,6 +92,13 @@ export const IndeterminateCheckbox: React.FunctionComponent<IndeterminateCheckbo
     const isIndeterminate = status === 'indeterminate';
     const isUnchecked = status === 'unchecked';
 
+    function replaceLabelTextForAnnounceText(baseAnnounceText) {
+      return baseAnnounceText.replace(
+        /\{labelText\}/g,
+        getStringifiedLabelText(labelText)
+      );
+    }
+
     function getStringifiedLabelText(node) {
       if (['string', 'number'].includes(typeof node)) return node;
       if (node instanceof Array)
@@ -102,19 +109,16 @@ export const IndeterminateCheckbox: React.FunctionComponent<IndeterminateCheckbo
 
     const showAnnounce = isChecked || isIndeterminate || isUnchecked;
     const announceText = isChecked
-      ? i18n.indeterminateCheckbox.isCheckedAnnounce.replace(
-          /\{labelText\}/g,
-          getStringifiedLabelText(labelText)
+      ? replaceLabelTextForAnnounceText(
+          i18n.indeterminateCheckbox.isCheckedAnnounce
         )
       : isIndeterminate
-      ? i18n.indeterminateCheckbox.isIndeterminateAnnounce.replace(
-          /\{labelText\}/g,
-          getStringifiedLabelText(labelText)
+      ? replaceLabelTextForAnnounceText(
+          i18n.indeterminateCheckbox.isIndeterminateAnnounce
         )
       : isUnchecked
-      ? i18n.indeterminateCheckbox.isUncheckedAnnounce.replace(
-          /\{labelText\}/g,
-          getStringifiedLabelText(labelText)
+      ? replaceLabelTextForAnnounceText(
+          i18n.indeterminateCheckbox.isUncheckedAnnounce
         )
       : '';
 
