@@ -5,6 +5,7 @@ title: Checkbox
 
 import { ScopeableLayout } from '../../components/layout'
 import {
+  Alert,
   Button,
   Checkbox,
   FormGroup,
@@ -445,6 +446,13 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 export default props => (
   <ScopeableLayout
     {...props}
-    components={{ Button, Checkbox, FormGroup, IndeterminateCheckbox, magma }}
+    components={{
+      Alert,
+      Button,
+      Checkbox,
+      FormGroup,
+      IndeterminateCheckbox,
+      magma,
+    }}
   />
 )

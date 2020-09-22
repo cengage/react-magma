@@ -4,7 +4,7 @@ title: Toggle
 ---
 
 import { ScopeableLayout } from '../../components/layout'
-import { Toggle } from 'react-magma-dom'
+import { Alert, Toggle } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
 import { SimplePropsTable } from '../../components/props-table'
@@ -243,4 +243,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
   }}
 />
 
-export default props => <ScopeableLayout {...props} components={{ Toggle }} />
+export default props => (
+  <ScopeableLayout {...props} components={{ Alert, Toggle }} />
+)
