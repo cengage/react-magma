@@ -30,7 +30,7 @@ export const HideAtBreakpoint: React.FunctionComponent<HideAtBreakpointProps> = 
   return (
     <Container
       {...other}
-      data-testId={testId}
+      data-testid={testId}
       maxWidth={maxWidth}
       minWidth={minWidth}
     >

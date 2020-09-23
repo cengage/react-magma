@@ -1,6 +1,6 @@
 {
   "name": "react-magma-icons",
-  "version": "2.0.0-beta.76",
+  "version": "2.0.0-beta.79",
   "license": "ISC",
   "main": "dist/index.js",
   "module": "dist/react-magma-icons.esm.js",
@@ -14,17 +14,11 @@
     "node": ">=10"
   },
   "scripts": {
-    "babel-build": "babel src --out-dir dist --extensions '.tsx','.ts'",
-    "compiler-checks": "tsc --noEmit --project './tsconfig.json'",
-    "test": "jest",
-    "test-watch": "jest --watch",
-    "test-watch-no-covg": "jest --watch --coverage=false",
-    "covg": "open coverage/lcov-report/index.html",
-    "prebuild": "rimraf 'dist'",
+    "test": "tsdx test",
+    "test-watch": "tsdx test --watc",
     "build": "tsdx build",
     "build-watch": "tsdx watch",
-    "lint": "npm run tsc && npm run tslint",
-    "tsc": "tsc --noEmit",
+    "lint": "tsdx lint",
     "tslint": "lint-staged"
   },
   "lint-staged": {
@@ -46,8 +40,6 @@
     "uuid": "^8.3.0"
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.0.0",
-    "@babel/preset-typescript": "^7.1.0",
     "@testing-library/jest-dom": "^4.1.0",
     "@testing-library/react": "^9.1.4",
     "@types/react": "^16.9.0",
@@ -57,8 +49,6 @@
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-hooks": "^2.3.0",
     "eslint-plugin-unicorn": "^8.0.2",
-    "jest-axe": "3.1.0",
-    "jest-extended": "^0.11.5",
     "lint-staged": "^10.2.11",
     "tsdx": "^0.13.2",
     "tslib": "^2.0.1",
