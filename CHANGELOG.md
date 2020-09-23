@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.82](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.81...v2.0.0-beta.82) (2020-09-23)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.81](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.80...v2.0.0-beta.81) (2020-09-23)
+
+
+### Bug Fixes
+
+* **tabs:** update tab styles for better a11y ([6dbfaf8](http://stash.cengage.com:7999/FRONT/react-magma/commits/6dbfaf831f95fbadb1696c19521816d58a904c1f))
+
+
+### Features
+
+* **indeterminate-checkbox:** add announce text for all statuses ([56b52b0](http://stash.cengage.com:7999/FRONT/react-magma/commits/56b52b042c4f65b547093650d6a18cb490a7b6d7))
+* **indeterminate-checkbox:** shared function for label text replacement ([a049af0](http://stash.cengage.com:7999/FRONT/react-magma/commits/a049af01b44b1efb0cb4c0a6cf2494e8c06ea1b1))
+
+
+
+
+
+# [2.0.0-beta.80](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.79...v2.0.0-beta.80) (2020-09-23)
+
+
+### Bug Fixes
+
+* **icons:** spread props on icons ([5d6209b](http://stash.cengage.com:7999/FRONT/react-magma/commits/5d6209b2416079d9a86d8e6b3b23c26f22d29616))
+* fix merge error ([3d884bc](http://stash.cengage.com:7999/FRONT/react-magma/commits/3d884bc9758418a4f100c9e072978d8f8488ab8c))
+* **platform:** platform/docs-level a11y fixes ([c4f8a5d](http://stash.cengage.com:7999/FRONT/react-magma/commits/c4f8a5d8e30abc88f5508ec7fc61d97463bff802))
+
+
+
+
+
 # [2.0.0-beta.79](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.78...v2.0.0-beta.79) (2020-09-23)
 
 

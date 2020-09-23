@@ -110,7 +110,7 @@ const TabStyles = props => css`
     ? props.theme.colors.primary
     : props.isInverse
     ? props.theme.colors.neutral08
-    : props.theme.colors.neutral01};
+    : props.theme.colors.neutral03};
   cursor: ${props.disabled ? 'auto' : 'pointer'};
   display: flex;
   flex-direction: ${getFlexDirection(props.iconPosition)};
@@ -121,7 +121,7 @@ const TabStyles = props => css`
   line-height: 1.5;
   height: 100%;
   justify-content: ${props.iconPosition === 'left' ? 'flex-start' : 'center'};
-  opacity: ${props.disabled ? 0.4 : props.isActive ? 1 : 0.7};
+  opacity: ${props.disabled ? 0.4 : props.isInverse ? 0.7 : 1};
   padding: 13px 20px;
   position: relative;
   pointer-events: ${props.disabled ? 'none' : ''};
@@ -149,6 +149,12 @@ const TabStyles = props => css`
       : props.isInverse
       ? props.theme.colors.shade02
       : props.theme.colors.shade01};
+    color: ${props.isActive
+      ? ''
+      : props.isInverse
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral02};
+    opacity: ${props.disabled ? 0.4 : 1};
   }
 
   &:focus {
