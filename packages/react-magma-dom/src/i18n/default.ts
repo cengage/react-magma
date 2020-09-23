@@ -69,6 +69,12 @@ export const defaultI18n: I18nInterface = {
   breadcrumb: {
     navAriaLabel: 'Breadcrumb'
   },
+  indeterminateCheckbox: {
+    isCheckedAnnounce: 'All subitems are checked for {labelText} checkbox',
+    isIndeterminateAnnounce:
+      'Some, but not all, subitems are checked for {labelText} checkbox',
+    isUncheckedAnnounce: 'No subitems are checked for {labelText} checkbox'
+  },
   modal: {
     closeAriaLabel: 'Close dialog'
   },
