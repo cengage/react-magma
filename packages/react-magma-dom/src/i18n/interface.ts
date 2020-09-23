@@ -102,6 +102,10 @@ export interface I18nInterface {
   timePicker: {
     hoursAriaLabel: string;
     minutesAriaLabel: string;
+    amButtonAriaLabel: string;
+    pmButtonAriaLabel: string;
+    amSelectedAnnounce: string;
+    pmSelectedAnnounce: string;
   };
   datePicker: {
     startOfWeek:

@@ -105,6 +105,110 @@ exports[`SkipLink should render the skip link component 1`] = `
   z-index: 99999;
 }
 
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Open Sans",sans-serif;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  line-height: 1;
+  margin: 5px;
+  min-width: 5.625em;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  -webkit-transition: background 0.35s,color 0.35s;
+  transition: background 0.35s,color 0.35s;
+  vertical-align: middle;
+  touch-action: manipulation;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
+  height: 37px;
+  padding: 0 15px;
+  width: auto;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
+  color: #FFFFFF;
+  left: -9999px;
+  position: fixed;
+  top: -9999px;
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px dotted #027EE1;
+  outline-offset: 3px;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  background: #004165;
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):after {
+  border-radius: 50%;
+  content: '';
+  height: 32px;
+  left: 50%;
+  opacity: 0;
+  position: absolute;
+  padding: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 32px;
+  background: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):active {
+  background: #002032;
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0:focus {
+  left: 10px;
+  top: 10px;
+  z-index: 99999;
+}
+
 <a
   class="emotion-0"
   color="primary"

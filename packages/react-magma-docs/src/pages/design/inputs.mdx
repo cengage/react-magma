@@ -6,14 +6,23 @@ order: 1
 
 import DocsHeading from '../../components/docs-heading'
 import { Input, PasswordInput, Textarea } from 'react-magma-dom'
+import { Link } from 'gatsby'
 
 <DocsHeading to="/api/input/" type="code">
   Input
 </DocsHeading>
 
+Inputs enable the user to interact with and input content and data.
+
+<figure>
+  <div class="image-container">
+    <img src="../../images/inputs/inputs-intro-image.png" alt="" />
+  </div>
+</figure>
+
 ## Usage
 
-Text fields let users enter and edit text. This includes text fields, text areas, password fields, and number inputs. They typically appear in forms and dialogs.
+Inputs can be used alone or they can be combined with other types of inputs to create more robust forms. In addition to text fields, other types of inputs include text area, password, search, number, and more.
 
 <span class="horizontal-spacer"></span>
 <hr class="article-divider" />
@@ -30,38 +39,99 @@ Input states should be clearly differentiated from one another.
 
 ### Efficient
 
-Text fields should make it easy to understand the requested information and to address any errors.
+Inputs should make it easy to understand the requested information and clearly describe any errors.
 
 <span class="horizontal-spacer"></span>
 <hr class="article-divider" />
 
 ## Types
 
+Inputs come in many different types depending on what kind of information you want the user to enter.
+
 ### Text Field
 
-<Input
-  id="input1"
-  labelText="Email"
-  placeholder="john.doe@gmail.com"
-  required={false}
-/>
+Use this input when the expected user input is a single line of text, as opposed to a paragraph.
+
+View <Link to="/api/input/">component API</Link> for text fields.
+
+<figure>
+  <div class="image-container">
+    <img src="../../images/inputs/text-field-example.png" alt="" />
+  </div>
+</figure>
 
 ### Text Area
 
-<Textarea id="textarea" labelText="Comments" />
+Use this input when the expected user input is more than one sentence.
+
+View <Link to="/api/textarea/">component API</Link> for text areas.
+
+<figure>
+  <div class="image-container">
+    <img src="../../images/inputs/text-area-example.png" alt="" />
+  </div>
+</figure>
 
 ### Password
 
-<PasswordInput labelText="Password" placeholder="Enter your password" />
+Use this input when you want keep the user's password masked for security.
 
-### Number<Input
+View <Link to="/api/password-input/">component API</Link> for password inputs.
 
-id="inputNum"
-labelText="Number"
-type="number"
-inputStyle={{ width: '80px' }}
-/>
+<figure>
+  <div class="image-container">
+    <img src="../../images/inputs/password-input-example.png" alt="" />
+  </div>
+</figure>
 
+### Number Input
+
+Use this input when you want to limit the user's input to numerical characters.
+
+View <Link to="/api/input/">component API</Link> for number inputs.
+
+<figure>
+  <div class="image-container">
+    <img src="../../images/inputs/number-field-example.png" alt="" />
+  </div>
+</figure>
+
+### Search
+
+Use the search input when the desired functionality is to submit a search query.
+
+View <Link to="/api/search/">component API</Link> or <Link to="/design/search/">design guidelines</Link> for search inputs.
+
+<figure>
+  <div class="image-container">
+    <img src="../../images/inputs/search-input-example.png" alt="" />
+  </div>
+</figure>
+
+### Date
+
+Use the date input when you want the user to input a date in the format you choose. A built-in calendar widget and keyboard controls improve the general usability and accessibility of the component.
+
+View <Link to="/api/date-pickers/">component API</Link> for date inputs.
+
+<figure>
+  <div class="image-container">
+    <img src="../../images/inputs/date-input-example.png" alt="" />
+  </div>
+</figure>
+
+### Time
+
+Use the time input when you want the user to input a time in the format you choose. Enhanced keyboard navigation improves the general usability and accessibility of the component.
+
+View <Link to="/api/time-picker/">component API</Link> for time inputs.
+
+<figure>
+  <div class="image-container">
+    <img src="../../images/inputs/time-input-example.png" alt="" />
+  </div>
+</figure>
+<span class="horizontal-spacer"></span>
 <hr class="article-divider" />
 
 ## Anatomy
@@ -84,9 +154,14 @@ inputStyle={{ width: '80px' }}
 
 ### Field Label
 
-The field label tells the user what information is being requested. Most inputs should have a field label, unless you make sure the placeholder text, and other text available to screen readers, very clear about what the input is asking for from the user. For example, search fields don't typically have a visible field label, but instead rely on the placeholder text to make it clear what you're searching.
+The field label tells the user what information they need to input. Using placeholder text in lieu of a label is sometimes employed as a space-saving method. However, this should typically be limited to search inputs because it hides context and presents accessibility issues.
 
-Do not truncate text labels. Try to keep text labels as short and clear as possible to avoid wrapping to multiple lines.
+**Accessibility best practices for labels**
+
+- Labels must be visible when an input gets focus.
+- Labels must be announced to the screen reader on focus.
+- Do not truncate text labels.
+- Keep labels as short and clear as possible to avoid wrapping to multiple lines.
 
 <div class="two-col">
   <div class="row">
@@ -115,7 +190,46 @@ Do not truncate text labels. Try to keep text labels as short and clear as possi
   </div>
 </div>
 
-#### Required Text Indicator
+### Placeholder Text
+
+Placeholder text provides hints or examples of what to enter. Placeholder text disappears after the user begins entering data into the input and should not contain crucial information. Use sentence-style capitalization, and in most cases, write the text as a direct statement without punctuation.
+
+<div class="two-col">
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img src="../../images/inputs/input-text.png" alt="" />
+        <figcaption>
+          <p>
+            This example shows how the placeholder text provides a hint to the
+            user how to enter their email address.
+          </p>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="col col-2"></div>
+  </div>
+</div>
+
+### Helper Text
+
+Helper text is pertinent information that assists the user in completing a field. Helper text appears underneath the container and remains visible unless there is a validation error on that field. Use sentence-style capitalization, and in most cases, write the text as full sentences with punctuation.
+
+<div class="two-col">
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img src="../../images/inputs/input-helper-text.png" alt="" />
+        <figcaption>
+          <p>Example of input helper text</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="col col-2"></div>
+  </div>
+</div>
+
+### Required Field Indicator
 
 Required fields should be indicated by putting an asterisk (\*) at the end of the label. If there are very few required inputs in the form, you can use the helper text to inform the user what the asterisk means. If there are a relatively large number of required fields in the form, you can put a legend at the top of the form and just tell them once.
 
@@ -164,13 +278,13 @@ Required fields should be indicated by putting an asterisk (\*) at the end of th
   </div>
 </div>
 
-### Container
+### Input Container
 
-Containers improve the discoverability of inputs by creating enough contrast between the input and the surrounding content.
+The input container is designed to improve the discoverability of inputs by creating enough contrast between the input and the surrounding content.
 
 #### Fill and Border
 
-Inputs have a white fill which provides optimal visibility on dark backgrounds. The border of inputs on a white background are 1px wide and use the color neutral03 (#727272). The border of inputs on a white background is 1px wide and white.
+The input container is filled with white and has a 1px border. The color of the border on a white background neutral03 (#727272), while the color of the border on a white background is white.
 
 #### Rounded Corners
 
@@ -190,61 +304,7 @@ Inputs have a 5px border radius to be consistent with buttons, which often accom
   </div>
 </div>
 
-### Input Text
-
-Input text is text the user has entered into a text field. You can also use placeholder text to help inform the user how their input should be formatted.
-
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
-      <figure>
-        <img src="../../images/inputs/input-text.png" alt="" />
-        <figcaption>
-          <p>Example of placeholder text and user input</p>
-        </figcaption>
-      </figure>
-    </div>
-    <div class="col col-2"></div>
-  </div>
-</div>
-
 ### Assistive Elements
-
-#### Helper Text
-
-Helper text is extra guidance for the input such as how the input will be used. Try to keep helper text limited to a single line.
-
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
-      <figure>
-        <img src="../../images/inputs/input-helper-text.png" alt="" />
-        <figcaption>
-          <p>Example of input helper text</p>
-        </figcaption>
-      </figure>
-    </div>
-    <div class="col col-2"></div>
-  </div>
-</div>
-
-#### Error Message
-
-When the input provided is invalid, an error message should be used to provide instructions on how to fix the error. The error message will replace the helper text until it is fixed.
-
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
-      <figure>
-        <img src="../../images/inputs/input-error-message.png" alt="" />
-        <figcaption>
-          <p>Example of input with error message</p>
-        </figcaption>
-      </figure>
-    </div>
-    <div class="col col-2"></div>
-  </div>
-</div>
 
 #### Icons
 
@@ -294,9 +354,10 @@ The Help Link icon can be added to inputs that might require more explanation or
     <div class="col col-2"></div>
   </div>
 </div>
+<span class="horizontal-spacer"></span>
 <hr class="article-divider" />
 
-## States
+## Input States
 
 <div class="two-col">
   <div class="row">
@@ -320,6 +381,25 @@ The Help Link icon can be added to inputs that might require more explanation or
 1. Focus
 1. Error
 
+<span class="horizontal-spacer"></span>
+
+### Error Messages
+
+When the input provided is invalid, an error message should be used to provide instructions on how to fix the error. The error message will replace the helper text until it is fixed.
+
+<div class="two-col">
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img src="../../images/inputs/input-error-message.png" alt="" />
+        <figcaption>
+          <p>Example of input with error message</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="col col-2"></div>
+  </div>
+</div>
 <span class="horizontal-spacer"></span>
 <hr class="article-divider" />
 
