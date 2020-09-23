@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.82](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.81...v2.0.0-beta.82) (2020-09-23)
+
+**Note:** Version bump only for package react-magma-docs
+
+
+
+
+
 # [2.0.0-beta.81](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.80...v2.0.0-beta.81) (2020-09-23)
 
 
