@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.80](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.79...v2.0.0-beta.80) (2020-09-23)
+
+
+### Bug Fixes
+
+* **icons:** spread props on icons ([5d6209b](http://stash.cengage.com:7999/FRONT/react-magma/commits/5d6209b2416079d9a86d8e6b3b23c26f22d29616))
+* fix merge error ([3d884bc](http://stash.cengage.com:7999/FRONT/react-magma/commits/3d884bc9758418a4f100c9e072978d8f8488ab8c))
+* **platform:** platform/docs-level a11y fixes ([c4f8a5d](http://stash.cengage.com:7999/FRONT/react-magma/commits/c4f8a5d8e30abc88f5508ec7fc61d97463bff802))
+
+
+
+
+
 # [2.0.0-beta.79](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.78...v2.0.0-beta.79) (2020-09-23)
 
 
