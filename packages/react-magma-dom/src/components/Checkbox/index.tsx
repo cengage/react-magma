@@ -80,6 +80,7 @@ export const StyledFakeInput = styled.span<{
   disabled?: boolean;
   isIndeterminate?: boolean;
   isInverse?: boolean;
+  hasError?: boolean;
 }>`
   ${DisplayInputStyles};
   background: ${props => buildCheckboxBackground(props)};

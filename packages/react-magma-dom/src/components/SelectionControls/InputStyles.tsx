@@ -52,13 +52,16 @@ export function buildDisplayInputBorderColor(props) {
     if (props.disabled) {
       return props.theme.colors.disabledInverseText;
     }
+    if (props.hasError) {
+      return props.theme.colors.danger;
+    }
     return props.theme.colors.neutral08;
-  }
-  if (props.hasError) {
-    return props.theme.colors.danger;
   }
   if (props.disabled) {
     return props.theme.colors.neutral05;
+  }
+  if (props.hasError) {
+    return props.theme.colors.danger;
   }
   if (!props.checked && !props.isIndeterminate) {
     return props.theme.colors.neutral02;

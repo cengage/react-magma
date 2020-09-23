@@ -65,6 +65,8 @@ const StyledFakeInput = styled.span<{
   border-color: ${props => buildDisplayInputBorderColor(props)};
   border-radius: 100%;
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+  box-shadow: ${props =>
+    props.isInverse && props.hasError ? '0 0 0 1px #fff' : '0 0 0'};
 
   ${HiddenInput}:checked:not(:disabled) + label & {
     background: ${props => {
