@@ -33,6 +33,14 @@ There are multiple formats you can send in through the `value` prop. You can do 
   <TimePicker value='01:15 PM' labelText="Time Due" />
 ```
 
+## Minutes Step
+
+The `minutesStep` prop can be used to set the stepping interval when using the arrow keys on the minutes input. The default value is 1.
+
+```.jsx
+  <TimePicker labelText="Time Due" minutesStep="15" />
+```
+
 ## Error Message
 
 If an input has an `errorMessage`, the input will be styled to highlight it's error state and the error message will appear below the input field.
@@ -149,6 +157,14 @@ The `containerStyle`, `inputStyle`, `labelStyle` and `messageStyle` props can be
       },
       required: false,
       description: 'Style properties for the helper or error message',
+    },
+    minutesStep: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'The stepping interval for the minutes input',
+      defaultValue: '1',
     },
     value: {
       type: {
