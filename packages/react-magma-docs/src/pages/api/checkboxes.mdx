@@ -38,27 +38,22 @@ See also: <Link to="/api/radio">Radio Buttons</Link>, <Link to="/api/toggle">Tog
 ```.jsx
   () => {
     const [checked, updateChecked] = React.useState(false)
-    return (<FormGroup labelText="Choose One or More">
-      <button onClick={() => console.log('button clicked')}>
-        Click
-        <input
-          type='checkbox'
-          checked={checked}
-          onChange={(event) => {
-            console.log(event);
-            updateChecked(!checked)
-          }}
-          onClick={() => console.log('checkbox clicked')} />
-      </button>
-
-      <Checkbox
+    return (
+      <FormGroup labelText="Choose One or More">
+        <Checkbox
           defaultChecked={true}
           id='customId'
-          labelText='Checkbox label' />
+          labelText='Uncontrolled Checkbox' />
 
-      <Checkbox
+        <Checkbox
+          checked={checked}
+          labelText='Controlled Checkbox'
+          onChange={() => updateChecked(!checked)} />
+  
+        <Checkbox
           labelText='Checkbox label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines' />
-    </FormGroup>)
+      </FormGroup>
+    )
   }
 ```
 
