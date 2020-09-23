@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.79](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.78...v2.0.0-beta.79) (2020-09-23)
+
+
+### Bug Fixes
+
+* **docs:** fix icon dependency ([387e639](http://stash.cengage.com:7999/FRONT/react-magma/commits/387e6399783f4f5f0d6dcdd0179c4cbf06945d71))
+* **docs:** use correct icons version ([df11363](http://stash.cengage.com:7999/FRONT/react-magma/commits/df11363671ad43a382de5de677d3cb06f90899e4))
+
+
+### Features
+
+* **timepicker:** add minuteStep prop ([09770ed](http://stash.cengage.com:7999/FRONT/react-magma/commits/09770ed1b7b9b7286a5c4767afde39c693a3a19b))
+* **timepicker:** default step to 1 min ([2ac7ce4](http://stash.cengage.com:7999/FRONT/react-magma/commits/2ac7ce4e87c46e0c97996d65fbfdd215f290755d))
+
+
+
+
+
 # [2.0.0-beta.78](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.77...v2.0.0-beta.78) (2020-09-18)
 
 **Note:** Version bump only for package react-magma-docs

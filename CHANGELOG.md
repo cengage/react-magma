@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.79](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.78...v2.0.0-beta.79) (2020-09-23)
+
+
+### Bug Fixes
+
+* **breakpoints:** fix data-testid to be lowercase ([5b5abd8](http://stash.cengage.com:7999/FRONT/react-magma/commits/5b5abd8c1fc1904633984f9518cd4336131631e0))
+* **docs:** fix icon dependency ([387e639](http://stash.cengage.com:7999/FRONT/react-magma/commits/387e6399783f4f5f0d6dcdd0179c4cbf06945d71))
+* **docs:** use correct icons version ([df11363](http://stash.cengage.com:7999/FRONT/react-magma/commits/df11363671ad43a382de5de677d3cb06f90899e4))
+* **dom:** use correct version for icon devDependency ([e71d3de](http://stash.cengage.com:7999/FRONT/react-magma/commits/e71d3de2dca1551cd59fb7f9266023de567697fd))
+* **dropdown:** close menu on clicking outside of dropdown ([fcb124d](http://stash.cengage.com:7999/FRONT/react-magma/commits/fcb124d07aa994cce54b539c94d21afcc7835cce))
+* **dropdown:** force focus dropdown button on click for safari ([53cdbc1](http://stash.cengage.com:7999/FRONT/react-magma/commits/53cdbc12c735e426d4ed5a11c9006888b3eb7b65))
+* **tests:** dont count coverage on packages that dont have their tests ran ([967723b](http://stash.cengage.com:7999/FRONT/react-magma/commits/967723b76f142aac32ee1b29a242feb14bd0125a))
+* **timepicker:** fixes for a11y ([bd5e413](http://stash.cengage.com:7999/FRONT/react-magma/commits/bd5e413e3ed74bcb5c85793dcc0225c8766527fa))
+* **timepicker:** make time fields bigger ([7c89c92](http://stash.cengage.com:7999/FRONT/react-magma/commits/7c89c9261f59d21cb1a2959f3c4c91faebd8c3be))
+* **timepicker:** remove fieldset style, change sr text ([6b00986](http://stash.cengage.com:7999/FRONT/react-magma/commits/6b00986097f774a1b5f7bbecf4cc4fa81be5d46c))
+* **toggle:** label line-height ([3a00d1c](http://stash.cengage.com:7999/FRONT/react-magma/commits/3a00d1c631daf0c9fc527a95d2af0b56ca202d44))
+* **toggle:** update colors, shadow for better a11y ([8dafb25](http://stash.cengage.com:7999/FRONT/react-magma/commits/8dafb256080c80ac67f0beef48f926c9df588467))
+* **tooltip:** change margin to padding for easier hover ([c487122](http://stash.cengage.com:7999/FRONT/react-magma/commits/c48712262e8273e6422c4512a3c9219a5cb76d2c))
+* **tooltip:** move hover events to container ([9bab99f](http://stash.cengage.com:7999/FRONT/react-magma/commits/9bab99fd88529df4274a6f632fb9984a21e64b4a))
+
+
+### Features
+
+* **timepicker:** add minuteStep prop ([09770ed](http://stash.cengage.com:7999/FRONT/react-magma/commits/09770ed1b7b9b7286a5c4767afde39c693a3a19b))
+* **timepicker:** default step to 1 min ([2ac7ce4](http://stash.cengage.com:7999/FRONT/react-magma/commits/2ac7ce4e87c46e0c97996d65fbfdd215f290755d))
+
+
+
+
+
 # [2.0.0-beta.78](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.77...v2.0.0-beta.78) (2020-09-18)
 
 
