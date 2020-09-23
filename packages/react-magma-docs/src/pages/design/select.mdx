@@ -1,15 +1,71 @@
 ---
-pageTitle: Select Design Guidelines
-title: Select
+pageTitle: Selects Design Guidelines
+title: Selects
+order: 1
 ---
 
-import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
+import './design-guidelines-styles.css'
+import DocsHeading from '../../components/docs-heading'
 
 <DocsHeading to="/api/select/" type="code">
-  Select
+  Selects
 </DocsHeading>
 
-Design guidelines for selects coming soon.
+The Select component allows users to choose one or more options from a list. It is used in forms for users to submit data.
 
-For design guidelines on form inputs in general, see the <Link to="/design/inputs">Inputs Design Guidelines</Link> or the <Link to="/design/selection-controls">Selection Controls Design Guidelines</Link>.
+<figure>
+  <img src="../../images/inputs/selects-intro-image.png" alt=" " />
+</figure>
+
+<span class="horizontal-spacer"></span>
+<hr class="article-divider" />
+
+## Principles
+
+### Discoverable
+
+Selects should stand out and indicate that users can input information.
+
+### Clear
+
+The various states of a Select component should be clearly differentiated from one another.
+
+### Efficient
+
+Selects should make it easy to understand the requested information and clearly describe any errors.
+
+<span class="horizontal-spacer"></span>
+<hr class="article-divider" />
+
+## Select vs. Dropdown
+
+While the Select and Dropdown components can look similar, they have different functions.
+
+- Use the Select component inside a form where users are selecting from a list of options and submitting data.
+- Use the Dropdown component to display menus and filter or sort content on a page.
+
+<span class="horizontal-spacer"></span>
+<hr class="article-divider" />
+
+## Advanced Selects
+
+### Multiselect
+
+Multiselects are exactly what the name implies – A Select input that allows the user to choose multiple values to be submitted at the same time.  Previously selected options may be removed with the associated close/remove button.
+
+<figure>
+  <img src="../../images/inputs/multi-select-example.png" alt=" " />
+</figure>
+
+### Combobox
+
+A Combobox is similar to a Select component, in that it is used for collecting user provided information from a list of options. However, a combobox also allows users to type in the field, either to create their own option or to see typeahead suggestions.  This can also be combined with the Multiselect functionality.
+
+View <Link to="/api/combobox/">component API</Link> for Combobox.
+
+<figure>
+  <img src="../../images/inputs/combobox-example.png" alt=" " />
+</figure>
+
+<span class="horizontal-spacer"></span>
