@@ -46,18 +46,20 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
 
     return (
       <Container style={containerStyle}>
-        <Label
-          isInverse={isInverse}
-          htmlFor={id}
-          size={inputSize ? inputSize : InputSize.medium}
-          style={labelStyle}
-        >
-          {isLabelVisuallyHidden ? (
-            <HiddenLabelText>{labelText}</HiddenLabelText>
-          ) : (
-            labelText
-          )}
-        </Label>
+        {labelText && (
+          <Label
+            isInverse={isInverse}
+            htmlFor={id}
+            size={inputSize ? inputSize : InputSize.medium}
+            style={labelStyle}
+          >
+            {isLabelVisuallyHidden ? (
+              <HiddenLabelText>{labelText}</HiddenLabelText>
+            ) : (
+              labelText
+            )}
+          </Label>
+        )}
         <BaseInput
           {...other}
           aria-describedby={
@@ -72,7 +74,6 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
         >
           {children}
         </BaseInput>
-
         <InputMessage
           isInverse={isInverse}
           id={descriptionId}
