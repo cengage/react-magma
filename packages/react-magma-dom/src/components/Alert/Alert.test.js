@@ -123,6 +123,99 @@ describe('Alert', () => {
         }
       }
 
+      .emotion-3 {
+        -webkit-align-items: stretch;
+        -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+        -webkit-animation: fadein 500ms;
+        animation: fadein 500ms;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        line-height: 20px;
+        margin-bottom: 20px;
+        max-width: 100%;
+        padding: 0;
+        position: relative;
+      }
+
+      @media (max-width:600px) {
+        .emotion-3 {
+          font-size: 14px;
+        }
+      }
+
+      .emotion-3:focus {
+        outline: 2px dotted #027EE1;
+      }
+
+      .emotion-3 a {
+        color: inherit;
+        font-weight: 600;
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      }
+
+      .emotion-3 a:focus {
+        outline: 2px dotted rgba(255,255,255,0.7);
+      }
+
+      .emotion-2 {
+        background-color: #3F3F3F;
+        border-radius: 3px;
+        border-radius: 5px;
+        color: #FFFFFF;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        position: relative;
+        z-index: 2;
+      }
+
+      .emotion-0 {
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-shrink: 0;
+        -ms-flex-negative: 0;
+        flex-shrink: 0;
+        padding: 0 10px 0 15px;
+      }
+
+      @media (max-width:600px) {
+        .emotion-0 {
+          display: none;
+        }
+      }
+
+      .emotion-1 {
+        -webkit-align-self: center;
+        -ms-flex-item-align: center;
+        align-self: center;
+        -webkit-box-flex: 1;
+        -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        padding: 13px 15px 13px 0;
+      }
+
+      @media (max-width:600px) {
+        .emotion-1 {
+          padding-left: 15px;
+        }
+      }
+
       <div>
         <div
           class="emotion-3"
@@ -208,6 +301,99 @@ describe('Alert', () => {
       );
 
       expect(container).toMatchInlineSnapshot(`
+        .emotion-3 {
+          -webkit-align-items: stretch;
+          -webkit-box-align: stretch;
+          -ms-flex-align: stretch;
+          align-items: stretch;
+          -webkit-animation: fadein 500ms;
+          animation: fadein 500ms;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+          flex-direction: column;
+          line-height: 20px;
+          margin-bottom: 20px;
+          max-width: 100%;
+          padding: 0;
+          position: relative;
+        }
+
+        @media (max-width:600px) {
+          .emotion-3 {
+            font-size: 14px;
+          }
+        }
+
+        .emotion-3:focus {
+          outline: 2px dotted #027EE1;
+        }
+
+        .emotion-3 a {
+          color: inherit;
+          font-weight: 600;
+          -webkit-text-decoration: underline;
+          text-decoration: underline;
+        }
+
+        .emotion-3 a:focus {
+          outline: 2px dotted rgba(255,255,255,0.7);
+        }
+
+        .emotion-2 {
+          background-color: #3F3F3F;
+          border-radius: 3px;
+          border-radius: 5px;
+          color: #FFFFFF;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          position: relative;
+          z-index: 2;
+        }
+
+        .emotion-0 {
+          -webkit-align-items: center;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-flex-shrink: 0;
+          -ms-flex-negative: 0;
+          flex-shrink: 0;
+          padding: 0 10px 0 15px;
+        }
+
+        @media (max-width:600px) {
+          .emotion-0 {
+            display: none;
+          }
+        }
+
+        .emotion-1 {
+          -webkit-align-self: center;
+          -ms-flex-item-align: center;
+          align-self: center;
+          -webkit-box-flex: 1;
+          -webkit-flex-grow: 1;
+          -ms-flex-positive: 1;
+          flex-grow: 1;
+          padding: 13px 15px 13px 0;
+        }
+
+        @media (max-width:600px) {
+          .emotion-1 {
+            padding-left: 15px;
+          }
+        }
+
         .emotion-3 {
           -webkit-align-items: stretch;
           -webkit-box-align: stretch;
@@ -438,6 +624,99 @@ describe('Alert', () => {
           z-index: 2;
         }
 
+        .emotion-3 {
+          -webkit-align-items: stretch;
+          -webkit-box-align: stretch;
+          -ms-flex-align: stretch;
+          align-items: stretch;
+          -webkit-animation: fadein 500ms;
+          animation: fadein 500ms;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+          flex-direction: column;
+          line-height: 20px;
+          margin-bottom: 20px;
+          max-width: 100%;
+          padding: 0;
+          position: relative;
+        }
+
+        @media (max-width:600px) {
+          .emotion-3 {
+            font-size: 14px;
+          }
+        }
+
+        .emotion-3:focus {
+          outline: 2px dotted #027EE1;
+        }
+
+        .emotion-3 a {
+          color: inherit;
+          font-weight: 600;
+          -webkit-text-decoration: underline;
+          text-decoration: underline;
+        }
+
+        .emotion-3 a:focus {
+          outline: 2px dotted rgba(255,255,255,0.7);
+        }
+
+        .emotion-0 {
+          -webkit-align-items: center;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-flex-shrink: 0;
+          -ms-flex-negative: 0;
+          flex-shrink: 0;
+          padding: 0 10px 0 15px;
+        }
+
+        @media (max-width:600px) {
+          .emotion-0 {
+            display: none;
+          }
+        }
+
+        .emotion-1 {
+          -webkit-align-self: center;
+          -ms-flex-item-align: center;
+          align-self: center;
+          -webkit-box-flex: 1;
+          -webkit-flex-grow: 1;
+          -ms-flex-positive: 1;
+          flex-grow: 1;
+          padding: 13px 15px 13px 0;
+        }
+
+        @media (max-width:600px) {
+          .emotion-1 {
+            padding-left: 15px;
+          }
+        }
+
+        .emotion-2 {
+          background-color: #3A8200;
+          border-radius: 3px;
+          border-radius: 5px;
+          color: #FFFFFF;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          position: relative;
+          z-index: 2;
+        }
+
         <div>
           <div
             class="emotion-3"
@@ -575,6 +854,99 @@ describe('Alert', () => {
           z-index: 2;
         }
 
+        .emotion-3 {
+          -webkit-align-items: stretch;
+          -webkit-box-align: stretch;
+          -ms-flex-align: stretch;
+          align-items: stretch;
+          -webkit-animation: fadein 500ms;
+          animation: fadein 500ms;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+          flex-direction: column;
+          line-height: 20px;
+          margin-bottom: 20px;
+          max-width: 100%;
+          padding: 0;
+          position: relative;
+        }
+
+        @media (max-width:600px) {
+          .emotion-3 {
+            font-size: 14px;
+          }
+        }
+
+        .emotion-3:focus {
+          outline: 2px dotted #027EE1;
+        }
+
+        .emotion-3 a {
+          color: inherit;
+          font-weight: 600;
+          -webkit-text-decoration: underline;
+          text-decoration: underline;
+        }
+
+        .emotion-3 a:focus {
+          outline: 2px dotted rgba(255,255,255,0.7);
+        }
+
+        .emotion-0 {
+          -webkit-align-items: center;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-flex-shrink: 0;
+          -ms-flex-negative: 0;
+          flex-shrink: 0;
+          padding: 0 10px 0 15px;
+        }
+
+        @media (max-width:600px) {
+          .emotion-0 {
+            display: none;
+          }
+        }
+
+        .emotion-1 {
+          -webkit-align-self: center;
+          -ms-flex-item-align: center;
+          align-self: center;
+          -webkit-box-flex: 1;
+          -webkit-flex-grow: 1;
+          -ms-flex-positive: 1;
+          flex-grow: 1;
+          padding: 13px 15px 13px 0;
+        }
+
+        @media (max-width:600px) {
+          .emotion-1 {
+            padding-left: 15px;
+          }
+        }
+
+        .emotion-2 {
+          background-color: #FFC72C;
+          border-radius: 3px;
+          border-radius: 5px;
+          color: #3F3F3F;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          position: relative;
+          z-index: 2;
+        }
+
         <div>
           <div
             class="emotion-3"
@@ -618,6 +990,99 @@ describe('Alert', () => {
       );
 
       expect(container).toMatchInlineSnapshot(`
+        .emotion-3 {
+          -webkit-align-items: stretch;
+          -webkit-box-align: stretch;
+          -ms-flex-align: stretch;
+          align-items: stretch;
+          -webkit-animation: fadein 500ms;
+          animation: fadein 500ms;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+          flex-direction: column;
+          line-height: 20px;
+          margin-bottom: 20px;
+          max-width: 100%;
+          padding: 0;
+          position: relative;
+        }
+
+        @media (max-width:600px) {
+          .emotion-3 {
+            font-size: 14px;
+          }
+        }
+
+        .emotion-3:focus {
+          outline: 2px dotted #027EE1;
+        }
+
+        .emotion-3 a {
+          color: inherit;
+          font-weight: 600;
+          -webkit-text-decoration: underline;
+          text-decoration: underline;
+        }
+
+        .emotion-3 a:focus {
+          outline: 2px dotted rgba(255,255,255,0.7);
+        }
+
+        .emotion-0 {
+          -webkit-align-items: center;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-flex-shrink: 0;
+          -ms-flex-negative: 0;
+          flex-shrink: 0;
+          padding: 0 10px 0 15px;
+        }
+
+        @media (max-width:600px) {
+          .emotion-0 {
+            display: none;
+          }
+        }
+
+        .emotion-1 {
+          -webkit-align-self: center;
+          -ms-flex-item-align: center;
+          align-self: center;
+          -webkit-box-flex: 1;
+          -webkit-flex-grow: 1;
+          -ms-flex-positive: 1;
+          flex-grow: 1;
+          padding: 13px 15px 13px 0;
+        }
+
+        @media (max-width:600px) {
+          .emotion-1 {
+            padding-left: 15px;
+          }
+        }
+
+        .emotion-2 {
+          background-color: #C61D23;
+          border-radius: 3px;
+          border-radius: 5px;
+          color: #FFFFFF;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          position: relative;
+          z-index: 2;
+        }
+
         .emotion-3 {
           -webkit-align-items: stretch;
           -webkit-box-align: stretch;

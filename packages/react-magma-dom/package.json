@@ -15,17 +15,11 @@
     "registry": "http://nexus.mindtap.corp.web/content/repositories/npm.cengage/"
   },
   "scripts": {
-    "babel-build": "babel src --out-dir dist --extensions '.tsx','.ts'",
-    "compiler-checks": "tsc --noEmit --project './tsconfig.json'",
-    "test": "jest",
-    "test-watch": "jest --watch",
-    "test-watch-no-covg": "jest --watch --coverage=false",
-    "covg": "open coverage/lcov-report/index.html",
-    "prebuild": "rimraf 'dist'",
+    "test": "tsdx test",
+    "test-watch": "tsdx test --watch",
     "build": "tsdx build",
     "build-watch": "tsdx watch",
-    "lint": "npm run tsc && npm run tslint",
-    "tsc": "tsc --noEmit",
+    "lint": "tsdx lint",
     "tslint": "lint-staged"
   },
   "keywords": [],
