@@ -4,13 +4,12 @@
   "private": true,
   "scripts": {
     "postinstall": "npm run bootstrap && npm run build",
-    "test": "lerna run test --scope react-magma-dom",
+    "test": "jest",
     "test-watch": "lerna exec --scope react-magma-dom 'npm t -- --watch'",
     "test-dom": "lerna exec --scope react-magma-dom 'npm t -- --watch --coverage=false'",
-    "test-core": "lerna exec --scope react-magma-core 'npm t -- --watch --coverage=false'",
-    "build": "lerna run build --stream --no-progress --scope react-magma-dom --scope react-magma-icons --scope react-magma-docs",
+    "build": "lerna run build --stream --no-progress",
     "bootstrap": "lerna bootstrap && lerna exec --scope react-magma-docs 'rm -rf node_modules/react node_modules/react-dom'",
-    "lint": "lerna run lint --ignore react-magma-legacy-selects",
+    "lint": "lerna run lint",
     "docs": "lerna exec --scope react-magma-docs gatsby develop",
     "clean": "lerna exec --scope react-magma-docs 'gatsby clean' && lerna clean --yes && rimraf node_modules",
     "cm": "git-cz",
@@ -27,21 +26,49 @@
     }
   },
   "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.4",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
+    "@babel/plugin-proposal-throw-expressions": "^7.0.0",
+    "@babel/plugin-syntax-import-meta": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.1.0",
     "@commitlint/cli": "7.6.1",
     "@commitlint/config-conventional": "7.6.0",
+    "@emotion/core": "^10.0.35",
+    "@testing-library/dom": "^7.24.2",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.4",
+    "@testing-library/react-hooks": "^3.2.1",
+    "@testing-library/user-event": "^12.1.5",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^26.2.0",
+    "babel-plugin-dynamic-import-node": "^2.3.3",
+    "babel-plugin-emotion": "^10.0.33",
+    "babel-plugin-polished": "^1.1.0",
     "commitizen": "2.10.1",
     "cz-conventional-changelog": "2.1.0",
     "husky": "3.1.0",
+    "jest": "^26.4.2",
+    "jest-axe": "3.1.0",
+    "jest-dom": "^4.0.0",
+    "jest-emotion": "^10.0.32",
+    "jest-extended": "^0.11.5",
+    "jest-watch-typeahead": "^0.6.1",
     "lerna": "3.22.1",
     "react": "^16.10.0",
-    "react-dom": "^16.10.0"
+    "react-dom": "^16.10.0",
+    "regenerator-runtime": "^0.13.7",
+    "typescript": "^3.9.7"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "dependencies": {
-    "jest-axe": "3.1.0"
   }
 }

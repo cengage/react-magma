@@ -5,6 +5,7 @@ title: Checkbox
 
 import { ScopeableLayout } from '../../components/layout'
 import {
+  Alert,
   Button,
   Checkbox,
   FormGroup,
@@ -217,6 +218,15 @@ The `textPosition` property takes the values `left` and `right`. The default val
 ## Visually Hidden Label
 
 Adding the `isTextVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
+
+<Alert variant="warning">
+  Use caution when using the <code>isTextVisuallyHidden</code> prop; it should
+  only be used in rare circumstances when the purpose of the checkbox is
+  conveyed in another way. While screen readers will announce the label when the
+  checkbox gains focus, it is still best to have a visual label. This is
+  especially helpful for individuals with cognitive disabilities and users who
+  have fine motor control limitations.
+</Alert>
 
 ```.jsx
     <Checkbox
@@ -435,6 +445,13 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 export default props => (
   <ScopeableLayout
     {...props}
-    components={{ Button, Checkbox, FormGroup, IndeterminateCheckbox, magma }}
+    components={{
+      Alert,
+      Button,
+      Checkbox,
+      FormGroup,
+      IndeterminateCheckbox,
+      magma,
+    }}
   />
 )

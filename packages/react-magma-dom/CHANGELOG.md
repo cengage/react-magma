@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.69](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.68...v2.0.0-beta.69) (2020-09-02)
+
+### Bug Fixes
+
+**Note:** Version bump only for package react-magma-dom
+
+# [2.0.0-beta.68](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.67...v2.0.0-beta.68) (2020-09-02)
+
+### Bug Fixes
+
+- **dropdown:** allow disable of auto focus on close ([82ef3f0](http://stash.cengage.com:7999/FRONT/react-magma/commits/82ef3f0))
+- **dropdown:** change preventMagmaFocus to a function on event ([c628a93](http://stash.cengage.com:7999/FRONT/react-magma/commits/c628a93))
+- **dropdown:** remove curried function ([15a5ec6](http://stash.cengage.com:7999/FRONT/react-magma/commits/15a5ec6))
+
 # [2.0.0-beta.78](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.77...v2.0.0-beta.78) (2020-09-18)
 
 ### Bug Fixes
@@ -115,9 +129,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-- **colors:** add teal, update orange and red ([f4b81d2](http://stash.cengage.com:7999/FRONT/react-magma/commits/f4b81d2))
-
 ### Bug Fixes
+
+- **textarea:** add ref as prop ([127ea1d](http://stash.cengage.com:7999/FRONT/react-magma/commits/127ea1d))
+- **colors:** add teal, update orange and red ([f4b81d2](http://stash.cengage.com:7999/FRONT/react-magma/commits/f4b81d2))
 
 - **dropdown:** allow disable of auto focus on close ([82ef3f0](http://stash.cengage.com:7999/FRONT/react-magma/commits/82ef3f0))
 - **dropdown:** change preventMagmaFocus to a function on event ([c628a93](http://stash.cengage.com:7999/FRONT/react-magma/commits/c628a93))

@@ -43,9 +43,9 @@ const Track = styled.span<{
   isInverse?: boolean;
   theme?: any;
 }>`
-  background: ${props => props.theme.colors.neutral07};
+  background: ${props => props.theme.colors.neutral04};
   border: 2px solid;
-  border-color: ${props => props.theme.colors.neutral05};
+  border-color: ${props => props.theme.colors.neutral04};
   border-radius: 12px;
   cursor: pointer;
   height: 24px;
@@ -114,7 +114,6 @@ const Thumb = styled.span<{
   theme?: any;
 }>`
   background: ${props => props.theme.colors.neutral08};
-  box-shadow: ${props => props.theme.colors.toggleBoxShadow};
   border-radius: 100%;
   height: 20px;
   left: 0;
@@ -129,20 +128,16 @@ const Thumb = styled.span<{
     css`
       left: 24px;
     `}
-
-  ${props =>
-    props.disabled &&
-    css`
-      background: ${props.theme.colors.neutral05};
-      box-shadow: 0 0 0;
-    `}
 `;
 
-const IconContainer = styled.span<{ theme?: any }>`
-  color: ${props => props.theme.colors.neutral08};
+const IconContainer = styled.span<{ disabled?: boolean; theme?: any }>`
+  color: ${props =>
+    props.disabled
+      ? props.theme.colors.neutral05
+      : props.theme.colors.neutral08};
   left: 7px;
   position: absolute;
-  margin-top: -13px;
+  margin-top: -14px;
   top: 50%;
 `;
 
@@ -231,7 +226,7 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
           style={trackStyle}
           theme={theme}
         >
-          <IconContainer theme={theme}>
+          <IconContainer disabled={disabled} theme={theme}>
             <CheckIcon size={11} />
           </IconContainer>
           <Thumb
