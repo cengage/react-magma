@@ -14,6 +14,7 @@ const StyledLabelComponent = styled.label<StyledLabelProps>`
   color: ${props =>
     props.isInverse ? props.theme.colors.neutral08 : 'inherit'};
   display: flex;
+  line-height: 24px;
   margin: 0;
   padding: 10px;
 `;
