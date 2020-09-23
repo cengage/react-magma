@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.81](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.80...v2.0.0-beta.81) (2020-09-23)
+
+
+### Features
+
+* **indeterminate-checkbox:** add announce text for all statuses ([56b52b0](http://stash.cengage.com:7999/FRONT/react-magma/commits/56b52b042c4f65b547093650d6a18cb490a7b6d7))
+
+
+
+
+
 # [2.0.0-beta.80](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.79...v2.0.0-beta.80) (2020-09-23)
 
 

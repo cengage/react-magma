@@ -1,6 +1,6 @@
 {
   "name": "react-magma-legacy-selects",
-  "version": "2.0.0-beta.80",
+  "version": "2.0.0-beta.81",
   "license": "ISC",
   "main": "dist/index.js",
   "module": "dist/esm/legacy-selects.esm.js",
@@ -64,7 +64,7 @@
     "eslint-plugin-unicorn": "^8.0.2",
     "lint-staged": "^10.2.11",
     "promise": "^8.1.0",
-    "react-magma-dom": "^2.0.0-beta.80",
+    "react-magma-dom": "^2.0.0-beta.81",
     "react-magma-icons": "^1.0.0",
     "react-select": "3.0.8",
     "rimraf": "^3.0.2",
