@@ -184,6 +184,16 @@ describe('TimePicker', () => {
 
       expect(onChange).toHaveBeenCalledWith(':09 AM');
     });
+
+    it('should render with a custom step attribute', () => {
+      const { getByTestId } = render(
+        <TimePicker label="label" minutesStep="5" />
+      );
+
+      const minutesInput = getByTestId('minutesTimeInput');
+
+      expect(minutesInput).toHaveAttribute('step', '5');
+    });
   });
 
   describe('AM/PM', () => {

@@ -69,6 +69,11 @@ export interface I18nInterface {
   breadcrumb: {
     navAriaLabel: string;
   };
+  indeterminateCheckbox: {
+    isCheckedAnnounce: string;
+    isIndeterminateAnnounce: string;
+    isUncheckedAnnounce: string;
+  };
   modal: {
     closeAriaLabel: string;
   };
@@ -97,6 +102,10 @@ export interface I18nInterface {
   timePicker: {
     hoursAriaLabel: string;
     minutesAriaLabel: string;
+    amButtonAriaLabel: string;
+    pmButtonAriaLabel: string;
+    amSelectedAnnounce: string;
+    pmSelectedAnnounce: string;
   };
   datePicker: {
     startOfWeek:

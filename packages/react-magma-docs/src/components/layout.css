@@ -563,7 +563,7 @@ pre tt:after {
 /* Layout component styles */
 
 @media (min-width: 1024px) {
-  .main {
+  .main-container {
     display: grid;
     grid-template-columns: 280px auto;
     grid-template-rows: 80px auto;
@@ -605,7 +605,7 @@ pre tt:after {
 .pre-container {
   border: 1px solid rgba(0, 0, 0, 0.1);
   display: grid;
-  margin: 10px 0 0;
+  margin: 0;
   max-width: 100%;
 }
 

@@ -21,6 +21,17 @@ describe('Indeterminate Checkbox', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
+  it('should render a label that is an element', () => {
+    const { getByLabelText } = render(
+      <IndeterminateCheckbox
+        status="indeterminate"
+        labelText={<span>Hello</span>}
+      />
+    );
+
+    expect(getByLabelText('Hello')).toBeInTheDocument();
+  });
+
   it('should give the checkbox an indeterminate value', () => {
     const label = 'test label';
     const { getByLabelText } = render(

@@ -62,16 +62,9 @@ export const SvgIcon: React.FunctionComponent<SvgIconProps> = (
 };
 
 export function renderIcon(props: IconProps, iconType: any) {
-  const { id, testId, title, color, size } = props;
+  const { id, testId } = props;
 
   return iconType ? (
-    <SvgIcon
-      id={id}
-      testId={testId}
-      title={title}
-      color={color}
-      size={size}
-      {...iconType}
-    />
+    <SvgIcon {...props} id={id} testId={testId} {...iconType} />
   ) : null;
 }

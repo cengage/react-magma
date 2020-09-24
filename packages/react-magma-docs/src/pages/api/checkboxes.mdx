@@ -5,11 +5,14 @@ title: Checkbox
 
 import { ScopeableLayout } from '../../components/layout'
 import {
+  Alert,
   Button,
   Checkbox,
   FormGroup,
   IndeterminateCheckbox,
   magma,
+  I18nContext,
+  defaultI18n
 } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
@@ -35,27 +38,22 @@ See also: <Link to="/api/radio">Radio Buttons</Link>, <Link to="/api/toggle">Tog
 ```.jsx
   () => {
     const [checked, updateChecked] = React.useState(false)
-    return (<FormGroup labelText="Choose One or More">
-      <button onClick={() => console.log('button clicked')}>
-        Click
-        <input
-          type='checkbox'
-          checked={checked}
-          onChange={(event) => {
-            console.log(event);
-            updateChecked(!checked)
-          }}
-          onClick={() => console.log('checkbox clicked')} />
-      </button>
-
-      <Checkbox
+    return (
+      <FormGroup labelText="Choose One or More">
+        <Checkbox
           defaultChecked={true}
           id='customId'
-          labelText='Checkbox label' />
+          labelText='Uncontrolled Checkbox' />
 
-      <Checkbox
+        <Checkbox
+          checked={checked}
+          labelText='Controlled Checkbox'
+          onChange={() => updateChecked(!checked)} />
+  
+        <Checkbox
           labelText='Checkbox label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines' />
-    </FormGroup>)
+      </FormGroup>
+    )
   }
 ```
 
@@ -87,42 +85,45 @@ By default, the checkboxes use the theme's primary color. But any other color ma
 
 The `IndterminateCheckbox` component is similar to the `Checkbox` component, except that instead of accepting a boolean `checked` value,
 it takes the `status` prop, with three possible statuses: `indeterminate`, `checked` and `unchecked`. The default status is `unchecked`.
+The `status` is used to represent the state of a group of checkboxes that goes underneath it.
 
-```.jsx
-<>
-    <IndeterminateCheckbox
-        labelText='Indeterminate indeterminate'
-        status='indeterminate' />
-    <IndeterminateCheckbox
-        labelText='Indeterminate unchecked'
-        status='unchecked' />
-    <IndeterminateCheckbox
-        labelText='Indeterminate checked'
-        status='checked' />
-  </>
-```
-
-### Updating Indeterminate Status
+- `checked` means all of the checkboxes in the group are checked.
+- `indeterminate` means that some, but not all, checkboxes in the group are checked.
+- `unchecked` means that none of the checkboxes in the group are checked.
 
 The `indeterminate` status cannot be changed by direct user action, it can only be changed by updating the prop.
 
 ```.jsx
 () => {
-  const [status, setStatus] = React.useState('indeterminate');
+  const [checkedItems, setCheckedItems] = React.useState([true, false]);
 
-  return (<>
-    <IndeterminateCheckbox
-        color={magma.colors.success01}
-        labelText='Indeterminate checkbox'
+  const status = checkedItems.every(Boolean) 
+    ? 'checked'
+    : checkedItems.some(Boolean)
+    ? 'indeterminate'
+    : 'unchecked';
+
+  return (
+    <>
+      <IndeterminateCheckbox
+        onChange={e => setCheckedItems([e.target.checked, e.target.checked])}
         status={status}
-        onChange={() => {
-          if (status === 'indeterminate') {
-            setStatus('checked')
-          }
-        }} />
-        <br />
-        <Button color="secondary" onClick={()=>{setStatus('indeterminate')}} >Reset to Indeterminate</Button>
-  </>)
+        labelText="Colors"
+      />
+      <div style={{marginLeft: '30px'}}>
+        <Checkbox
+          checked={checkedItems[0]}
+          onChange={e => setCheckedItems([e.target.checked, checkedItems[1]])}
+          labelText="Red"
+        />
+        <Checkbox
+          checked={checkedItems[1]}
+          onChange={e => setCheckedItems([checkedItems[0], e.target.checked])}
+          labelText="Blue"
+        />
+      </div>
+    </>
+  )
 }
 ```
 
@@ -218,6 +219,15 @@ The `textPosition` property takes the values `left` and `right`. The default val
 
 Adding the `isTextVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
 
+<Alert variant="warning">
+  Use caution when using the <code>isTextVisuallyHidden</code> prop; it should
+  only be used in rare circumstances when the purpose of the checkbox is
+  conveyed in another way. While screen readers will announce the label when the
+  checkbox gains focus, it is still best to have a visual label. This is
+  especially helpful for individuals with cognitive disabilities and users who
+  have fine motor control limitations.
+</Alert>
+
 ```.jsx
     <Checkbox
         labelText='Hidden checkbox'
@@ -260,6 +270,59 @@ The `labelText` prop can either be a string, or it can be a React Node.
       }
 ```
 
+## Internationalization
+
+Some of the internationalization overrides use placeholders to insert selected values in to the message.
+Placeholders are specific keywords surrounded by curly braces. 
+
+- `{labelText}` will be replaced with the checkbox's `labelText`.
+
+<Link to="/api/internationalization">Full example of internationalization override options</Link>
+
+```.jsx
+  () => {
+    const [checkedItems, setCheckedItems] = React.useState([true, false]);
+
+    const status = checkedItems.every(Boolean) 
+      ? 'checked'
+      : checkedItems.some(Boolean)
+      ? 'indeterminate'
+      : 'unchecked';
+
+    return (
+      <I18nContext.Provider value={{
+        ...defaultI18n,
+        indeterminateCheckbox: {
+          isCheckedAnnounce:
+            'Custom message about checked status for {labelText} checkbox',
+          isIndeterminateAnnounce:
+            'Custom message about indeterminate status for {labelText} checkbox',
+          isUncheckedAnnounce:
+            'Custom message about unchecked status for {labelText} checkbox'
+        }
+      }}>
+        <IndeterminateCheckbox
+          onChange={e => setCheckedItems([e.target.checked, e.target.checked])}
+          status={status}
+          labelText="Colors"
+        />
+        <div style={{marginLeft: '30px'}}>
+          <Checkbox
+            checked={checkedItems[0]}
+            onChange={e => setCheckedItems([e.target.checked, checkedItems[1]])}
+            labelText="Red"
+          />
+          <Checkbox
+            checked={checkedItems[1]}
+            onChange={e => setCheckedItems([checkedItems[0], e.target.checked])}
+            labelText="Blue"
+          />
+        </div>
+      </I18nContext.Provider>
+    )
+  }
+```
+
 ## Testing
 
 Passing in the `testId` prop will add the `data-testid` attribute to the input element for easier querying in tests.
@@ -277,15 +340,14 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
     <span>
       <span color="" class="css-1on1hey e1iwfc8c3"></span>
       <svg
+        aria-hidden="true"
         class="icon"
         height="12"
         width="12"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 29.37 21.88"
-        aria-labelledby="78a52361-5b36-4198-8d06-c9f8a239af09"
       >
-        <title id="78a52361-5b36-4198-8d06-c9f8a239af09"></title>
         <path
           d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
           transform="translate(-0.87 -3.06)"
@@ -436,6 +498,15 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 export default props => (
   <ScopeableLayout
     {...props}
-    components={{ Button, Checkbox, FormGroup, IndeterminateCheckbox, magma }}
+    components={{
+      Alert,
+      Button,
+      Checkbox,
+      FormGroup,
+      IndeterminateCheckbox,
+      magma,
+      I18nContext,
+      defaultI18n
+    }}
   />
 )

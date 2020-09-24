@@ -69,6 +69,12 @@ export const defaultI18n: I18nInterface = {
   breadcrumb: {
     navAriaLabel: 'Breadcrumb'
   },
+  indeterminateCheckbox: {
+    isCheckedAnnounce: 'All subitems are checked for {labelText} checkbox',
+    isIndeterminateAnnounce:
+      'Some, but not all, subitems are checked for {labelText} checkbox',
+    isUncheckedAnnounce: 'No subitems are checked for {labelText} checkbox'
+  },
   modal: {
     closeAriaLabel: 'Close dialog'
   },
@@ -96,8 +102,14 @@ export const defaultI18n: I18nInterface = {
     ariaLabel: 'Loading'
   },
   timePicker: {
-    hoursAriaLabel: 'Hours',
-    minutesAriaLabel: 'Minutes'
+    hoursAriaLabel: 'Hour',
+    minutesAriaLabel: 'Minute',
+    amButtonAriaLabel:
+      'AM selected.  To change to PM press the p or enter button.',
+    pmButtonAriaLabel:
+      'PM selected.  To change to AM press the a or enter button.',
+    amSelectedAnnounce: 'AM is now selected',
+    pmSelectedAnnounce: 'PM is now selected'
   },
   datePicker: {
     startOfWeek: 'sunday',
