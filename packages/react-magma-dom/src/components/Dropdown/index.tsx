@@ -35,6 +35,7 @@ interface DropdownContextInterface {
   alignment?: DropdownAlignment;
   closeDropdown?: (event: React.SyntheticEvent | React.KeyboardEvent) => void;
   dropDirection?: DropdownDropDirection;
+  handleButtonKeyDown?: (event: React.KeyboardEvent) => void;
   handleMenuBlur?: (event: React.FocusEvent) => void;
   itemRefArray?: any;
   isFixedWidth?: boolean;
@@ -213,6 +214,14 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
       }
     }
 
+    function handleButtonKeyDown(event: React.KeyboardEvent) {
+      const { key, shiftKey } = event;
+
+      if ((key === 'Tab' || (shiftKey && key === 'Tab')) && isOpen) {
+        setIsOpen(false);
+      }
+    }
+
     function handleMenuBlur(event: React.SyntheticEvent) {
       const { currentTarget } = event;
 
@@ -241,6 +250,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
           alignment,
           closeDropdown,
           dropDirection,
+          handleButtonKeyDown,
           handleMenuBlur,
           itemRefArray,
           isFixedWidth: !!width,

@@ -286,6 +286,61 @@ describe('Dropdown', () => {
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
+  it('should close the menu the dropdown button is focused and the tab key is pressed', () => {
+    const { getByText, getByTestId } = render(
+      <Dropdown testId="dropdown">
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    const toggleButton = getByText('Toggle me').parentElement;
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+
+    fireEvent.click(toggleButton);
+    toggleButton.focus();
+
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
+
+    expect(toggleButton).toHaveFocus();
+
+    fireEvent.keyDown(toggleButton, {
+      key: 'Tab'
+    });
+
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+  });
+
+  it('should close the menu the dropdown button is focused and shift + the tab key is pressed', () => {
+    const { getByText, getByTestId } = render(
+      <Dropdown testId="dropdown">
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    const toggleButton = getByText('Toggle me').parentElement;
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+
+    fireEvent.click(toggleButton);
+    toggleButton.focus();
+
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
+
+    expect(toggleButton).toHaveFocus();
+
+    fireEvent.keyDown(toggleButton, {
+      key: 'Tab',
+      shiftKey: true
+    });
+
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+  });
+
   it('should call the onBeforeShiftFocus prop when closing the dropdown', () => {
     jest.useFakeTimers();
     const onBeforeShiftFocus = jest.fn();

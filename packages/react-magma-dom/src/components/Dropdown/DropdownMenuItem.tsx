@@ -3,7 +3,7 @@ import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { DropdownContext } from '.';
 import { IconProps, CheckIcon } from 'react-magma-icons';
-import { Omit } from '../../utils';
+import { Omit, useForkedRef } from '../../utils';
 
 export interface DropdownMenuItemProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'> {
@@ -56,11 +56,13 @@ const IconWrapper = styled.span`
 export const DropdownMenuItem: React.FunctionComponent<DropdownMenuItemProps> = React.forwardRef(
   (
     { children, isDisabled, icon, onClick, value, ...other },
-    ref: React.Ref<any>
+    forwardedRef: React.Ref<any>
   ) => {
     const ownRef = React.useRef<HTMLDivElement>();
     const theme = React.useContext(ThemeContext);
     const context = React.useContext(DropdownContext);
+
+    const ref = useForkedRef(forwardedRef, ownRef);
 
     const index = context.itemRefArray.current.findIndex(
       ({ current: item }) => {
@@ -111,7 +113,7 @@ export const DropdownMenuItem: React.FunctionComponent<DropdownMenuItemProps> = 
         isInactive={isInactive}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
-        ref={isDisabled ? null : ownRef}
+        ref={isDisabled ? null : ref}
         role="menuitem"
         theme={theme}
         tabIndex={isDisabled ? null : -1}
