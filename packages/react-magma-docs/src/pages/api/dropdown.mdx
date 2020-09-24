@@ -13,6 +13,7 @@ import {
   DropdownContent,
   DropdownDivider,
   DropdownHeader,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownSplitButton,
   DropdownButton,
@@ -354,23 +355,30 @@ Similarly, the `DropdownButton` can be customized by using any of the props that
       </>
 ```
 
-## Breaking a Menu Into Sections
+## Breaking a Menu Into Groups
 
-A `DropdownMenu` can be broken into multiple sections, by using the `DropdownHeader` and `DropdownDivider` components.
+A `DropdownMenu` can be broken into multiple groups, by using the `DropdownMenuGroup` and `DropdownDivider` components.
+
+The `DropdownMenuGroup` component accepts a `header` prop to be used to describe the group. The menu group `div`
+be given a `role` or `group` and an `aria-labelledbyId` that corresponds with the header made internally.
 
 ```.jsx
       <Dropdown>
         <DropdownButton>Divider and headings</DropdownButton>
         <DropdownContent>
-          <DropdownHeader>Section title A</DropdownHeader>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+          <DropdownMenuGroup header="Section title A">
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+          </DropdownMenuGroup>
           <DropdownDivider />
-          <DropdownHeader>Section title B</DropdownHeader>
-          <DropdownMenuItem>Menu item 3</DropdownMenuItem>
-          <DropdownMenuItem>Menu item 4</DropdownMenuItem>
+          <DropdownMenuGroup header="Section title B">
+            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 4</DropdownMenuItem>
+          </DropdownMenuGroup>
           <DropdownDivider />
-          <DropdownMenuItem>Log out</DropdownMenuItem>
+          <DropdownMenuGroup>
+            <DropdownMenuItem>Log out</DropdownMenuItem>
+          </DropdownMenuGroup>
         </DropdownContent>
       </Dropdown>
 ```
@@ -516,6 +524,22 @@ to disable the auto-focusing on close.
 
 Examples may include an id, a title, event handlers or various aria attributes. It is unlikely that it will be necessary to provide additional props.
 
+## Dropdown Menu Group
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<SimplePropsTable
+  propertyValues={{
+    header: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Header text to use for the menu group',
+    },
+  }}
+/>
+
 ## Dropdown Menu Item
 
 **Any other props supplied will be provided to the wrapping `li` element.**
@@ -579,6 +603,7 @@ export default props => (
       DropdownContent,
       DropdownDivider,
       DropdownHeader,
+      DropdownMenuGroup,
       DropdownMenuItem,
       DropdownSplitButton,
       DropdownButton,

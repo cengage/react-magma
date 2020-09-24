@@ -55,11 +55,20 @@ const IconWrapper = styled.span`
 
 export const DropdownMenuItem: React.FunctionComponent<DropdownMenuItemProps> = React.forwardRef(
   (
-    { children, index, isDisabled, icon, onClick, value, ...other },
+    { children, isDisabled, icon, onClick, value, ...other },
     ref: React.Ref<any>
   ) => {
+    const ownRef = React.useRef<HTMLDivElement>();
     const theme = React.useContext(ThemeContext);
     const context = React.useContext(DropdownContext);
+
+    const index = context.itemRefArray.current.findIndex(
+      ({ current: item }) => {
+        if (!item || !ownRef.current) return false;
+
+        return item === ownRef.current;
+      }
+    );
 
     function handleClick(event: React.SyntheticEvent | React.KeyboardEvent) {
       if (context.activeItemIndex >= 0) {
@@ -88,6 +97,10 @@ export const DropdownMenuItem: React.FunctionComponent<DropdownMenuItemProps> = 
     const isInactive =
       context.activeItemIndex >= 0 && context.activeItemIndex !== index;
 
+    React.useEffect(() => {
+      if (!isDisabled) context.registerDropdownMenuItem(ownRef);
+    }, []);
+
     return (
       <StyledItem
         {...other}
@@ -98,7 +111,7 @@ export const DropdownMenuItem: React.FunctionComponent<DropdownMenuItemProps> = 
         isInactive={isInactive}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
-        ref={isDisabled ? null : ref}
+        ref={isDisabled ? null : ownRef}
         role="menuitem"
         theme={theme}
         tabIndex={isDisabled ? null : -1}

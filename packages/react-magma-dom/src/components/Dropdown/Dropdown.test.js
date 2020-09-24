@@ -5,6 +5,7 @@ import { DropdownContent } from './DropdownContent';
 import { DropdownDivider } from './DropdownDivider';
 import { DropdownHeader } from './DropdownHeader';
 import { DropdownMenuItem } from './DropdownMenuItem';
+import { DropdownMenuGroup } from './DropdownMenuGroup';
 import { DropdownSplitButton } from './DropdownSplitButton';
 import { DropdownButton } from './DropdownButton';
 import { magma } from '../../theme/magma';
@@ -238,7 +239,9 @@ describe('Dropdown', () => {
     const { getByText, getByTestId } = render(
       <Dropdown testId="dropdown">
         <DropdownButton>Toggle me</DropdownButton>
-        <DropdownContent />
+        <DropdownContent>
+          <DropdownMenuItem>Menu item</DropdownMenuItem>
+        </DropdownContent>
       </Dropdown>
     );
 
@@ -248,18 +251,20 @@ describe('Dropdown', () => {
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
 
-    fireEvent.focus(getByTestId('dropdown'));
-    fireEvent.blur(getByTestId('dropdown'));
-    setTimeout(() => {
-      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
-    }, 1);
+    const menuItem = getByText('Menu item');
+
+    fireEvent.click(menuItem);
+
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
   it('should close the menu when escape key is pressed', () => {
     const { getByText, getByTestId } = render(
       <Dropdown testId="dropdown">
         <DropdownButton>Toggle me</DropdownButton>
-        <DropdownContent />
+        <DropdownContent>
+          <DropdownMenuItem>Menu item</DropdownMenuItem>
+        </DropdownContent>
       </Dropdown>
     );
 
@@ -268,6 +273,10 @@ describe('Dropdown', () => {
     fireEvent.click(getByText('Toggle me'));
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
+
+    fireEvent.keyDown(getByTestId('dropdown'), {
+      key: 'ArrowDown'
+    });
 
     fireEvent.keyDown(getByTestId('dropdown'), {
       key: 'Escape',
@@ -396,7 +405,9 @@ describe('Dropdown', () => {
 
   it('should render a dropdown menu item with an icon', () => {
     const { container } = render(
-      <DropdownMenuItem icon={<AsteriskIcon />}>Menu item</DropdownMenuItem>
+      <Dropdown>
+        <DropdownMenuItem icon={<AsteriskIcon />}>Menu item</DropdownMenuItem>
+      </Dropdown>
     );
 
     expect(container.querySelector('svg')).toBeInTheDocument();
@@ -469,6 +480,38 @@ describe('Dropdown', () => {
     expect(getByText(text)).toBeInTheDocument();
   });
 
+  it('should render dropdown menu items in groups', () => {
+    const headerText = 'header';
+    const headerText2 = 'header2';
+
+    const { getByLabelText, getByText } = render(
+      <Dropdown>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuGroup header={headerText}>
+            <DropdownMenuItem>Menu Item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu Item 2</DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuGroup header={headerText2}>
+            <DropdownMenuItem>Menu Item 3</DropdownMenuItem>
+            <DropdownMenuItem>Menu Item 4</DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    const group1 = getByLabelText(headerText);
+    const group2 = getByLabelText(headerText2);
+
+    expect(group1).toHaveAttribute('role', 'group');
+    expect(getByText('Menu Item 1').closest('div[role="group"]')).toEqual(
+      group1
+    );
+    expect(getByText('Menu Item 3').closest('div[role="group"]')).toEqual(
+      group2
+    );
+  });
+
   it('should render a dropdown menu divider', () => {
     const { container } = render(<DropdownDivider />);
 
@@ -517,7 +560,7 @@ describe('Dropdown', () => {
     expect(onClick).toHaveBeenCalled();
   });
 
-  it('should render a dropdown with an active item', () => {
+  it('should render a dropdown with an active item', async () => {
     const { container, getByText } = render(
       <Dropdown activeIndex={1}>
         <DropdownButton>Toggle</DropdownButton>
@@ -527,6 +570,8 @@ describe('Dropdown', () => {
         </DropdownContent>
       </Dropdown>
     );
+
+    fireEvent.click(getByText('Toggle'));
 
     expect(getByText('aaa')).toHaveStyleRule('padding', '10px 20px 10px 55px');
     expect(getByText('bbb')).toHaveStyleRule('padding', '10px 20px');
