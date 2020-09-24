@@ -152,12 +152,12 @@ describe('Select', () => {
     const options = [
       {
         label: 'Red',
-        value: 'red'
+        value: 'red',
       },
       {
         label: 'Blue',
-        value: 'blue'
-      }
+        value: 'blue',
+      },
     ];
     const inputName = 'Test';
     await act(async () => {
@@ -195,7 +195,7 @@ describe('Select', () => {
 
     expect(helperMessage).toBeInTheDocument();
     expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral03);
-    expect(helperMessage).toHaveStyleRule('font-size', '13px');
+    expect(helperMessage).toHaveStyleRule('font-size', '14px');
   });
 
   it('should render the error message with the correct styles', async () => {
@@ -246,7 +246,7 @@ describe('Select', () => {
       ({ getByTestId } = render(
         <Select
           components={{
-            DropdownIndicator
+            DropdownIndicator,
           }}
         />
       ));
@@ -260,12 +260,12 @@ describe('Select', () => {
     const options = [
       {
         label: 'Red',
-        value: 'red'
+        value: 'red',
       },
       {
         label: 'Blue',
-        value: 'blue'
-      }
+        value: 'blue',
+      },
     ];
     const onChangeSpy = jest.fn();
 
@@ -279,11 +279,11 @@ describe('Select', () => {
 
     fireEvent.keyDown(targetNode, {
       key: 'ArrowDown',
-      code: 40
+      code: 40,
     });
     fireEvent.keyDown(targetNode, {
       key: 'Enter',
-      code: 13
+      code: 13,
     });
 
     expect(onChangeSpy).toHaveBeenCalledWith(

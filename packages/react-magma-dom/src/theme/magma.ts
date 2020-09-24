@@ -221,7 +221,7 @@ export const magma = {
   typographySizes: {
     headingXLarge: {
       mobile: typeScale.size07,
-      desktop: typeScale.size08,
+      desktop: typeScale.size09,
       fontWeight: 600
     },
     headingLarge: {

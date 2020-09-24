@@ -21,8 +21,8 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
 
 @media (min-width:600px) {
   .emotion-0 {
-    font-size: 32px;
-    line-height: 40px;
+    font-size: 36px;
+    line-height: 48px;
   }
 }
 
@@ -46,8 +46,8 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
 
 @media (min-width:600px) {
   .emotion-0 {
-    font-size: 32px;
-    line-height: 40px;
+    font-size: 36px;
+    line-height: 48px;
   }
 }
 
