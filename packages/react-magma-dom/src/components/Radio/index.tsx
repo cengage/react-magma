@@ -121,6 +121,7 @@ export const Radio: React.FunctionComponent<RadioProps> = React.forwardRef(
       isTextVisuallyHidden,
       labelStyle,
       labelText,
+      required,
       testId,
       textPosition,
       value,
@@ -139,6 +140,7 @@ export const Radio: React.FunctionComponent<RadioProps> = React.forwardRef(
           data-testid={testId}
           disabled={disabled}
           name={context.name}
+          required={context.isRequired || required}
           type="radio"
           value={value}
           onBlur={context.onBlur}
