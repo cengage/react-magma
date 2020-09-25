@@ -4,7 +4,7 @@ import { DropdownHeader } from './DropdownHeader';
 
 export interface DropdownMenuGroupInterface
   extends React.HTMLAttributes<HTMLDivElement> {
-  header?: string;
+  header?: React.ReactNode;
 }
 
 export const DropdownMenuGroup: React.FunctionComponent<DropdownMenuGroupInterface> = (
