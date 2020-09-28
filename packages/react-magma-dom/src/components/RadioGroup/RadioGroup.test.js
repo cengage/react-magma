@@ -93,6 +93,38 @@ describe('Radio Group', () => {
     expect(getByLabelText('Success Color')).not.toHaveAttribute('checked');
   });
 
+  it('Should render an error message', () => {
+    const errorMessage = 'test error';
+    const { getByText } = render(
+      <RadioGroup value="default" errorMessage={errorMessage} id="testId">
+        <Radio labelText="Default Color" value="default" />
+        <Radio labelText="Success Color" value="success" />
+      </RadioGroup>
+    );
+
+    expect(getByText(errorMessage)).toBeInTheDocument();
+    expect(getByText(errorMessage).parentElement).toHaveAttribute(
+      'id',
+      'testId__desc'
+    );
+  });
+
+  it('Should render a helper message', () => {
+    const helperMessage = 'test helper message';
+    const { getByText } = render(
+      <RadioGroup value="default" helperMessage={helperMessage} id="testId">
+        <Radio labelText="Default Color" value="default" />
+        <Radio labelText="Success Color" value="success" />
+      </RadioGroup>
+    );
+
+    expect(getByText(helperMessage)).toBeInTheDocument();
+    expect(getByText(helperMessage).parentElement).toHaveAttribute(
+      'id',
+      'testId__desc'
+    );
+  });
+
   it('Changes the selected radio when clicked', () => {
     const onChangeSpy = jest.fn();
     const { getByLabelText } = render(

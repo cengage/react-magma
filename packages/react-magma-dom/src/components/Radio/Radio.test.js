@@ -276,6 +276,45 @@ describe('Radio', () => {
     expect(radio).toHaveAttribute('checked');
   });
 
+  it('should render a radio button with error styles', () => {
+    const { container } = render(
+      <RadioContext.Provider
+        value={{
+          name: 'colors',
+          hasError: true,
+          onChange: jest.fn()
+        }}
+      >
+        <Radio labelText="blue" name="colors" value="blue" />
+      </RadioContext.Provider>
+    );
+
+    const span = container.querySelector('span');
+
+    expect(span).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(span).toHaveStyleRule('box-shadow', '0 0 0');
+  });
+
+  it('should render an inverse radio button with error styles', () => {
+    const { container } = render(
+      <RadioContext.Provider
+        value={{
+          name: 'colors',
+          hasError: true,
+          isInverse: true,
+          onChange: jest.fn()
+        }}
+      >
+        <Radio labelText="blue" name="colors" value="blue" />
+      </RadioContext.Provider>
+    );
+
+    const span = container.querySelector('span');
+
+    expect(span).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(span).toHaveStyleRule('box-shadow', '0 0 0 1px #fff');
+  });
+
   it('blurring a radio button calls the passed in onBlur function', () => {
     const onBlur = jest.fn();
     const { getByLabelText } = render(

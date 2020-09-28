@@ -134,6 +134,7 @@ export const Radio: React.FunctionComponent<RadioProps> = React.forwardRef(
       <StyledContainer style={containerStyle}>
         <HiddenInput
           {...other}
+          aria-labelledby={context.descriptionId}
           id={id}
           ref={ref}
           checked={context.selectedValue === value}

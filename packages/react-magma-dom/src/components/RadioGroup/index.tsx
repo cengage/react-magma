@@ -30,6 +30,7 @@ export interface RadioGroupProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export interface RadioContextInterface {
+  descriptionId?: string;
   hasError?: boolean;
   isInverse?: boolean;
   isRequired?: boolean;
@@ -92,6 +93,7 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
     >
       <RadioContext.Provider
         value={{
+          descriptionId,
           hasError: !!errorMessage,
           isInverse,
           isRequired,
