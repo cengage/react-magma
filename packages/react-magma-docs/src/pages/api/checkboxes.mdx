@@ -104,7 +104,7 @@ The `indeterminate` status cannot be changed by direct user action, it can only 
     : 'unchecked';
 
   return (
-    <>
+    <FormGroup labelText="Categories">
       <IndeterminateCheckbox
         onChange={e => setCheckedItems([e.target.checked, e.target.checked])}
         status={status}
@@ -122,7 +122,7 @@ The `indeterminate` status cannot be changed by direct user action, it can only 
           labelText="Blue"
         />
       </div>
-    </>
+    </FormGroup>
   )
 }
 ```
@@ -132,7 +132,7 @@ The `indeterminate` status cannot be changed by direct user action, it can only 
 Adding the optional boolean prop `disabled` will apply disabled styles and add the disabled attribute to the underlying HTML element.
 
 ```.jsx
-    <>
+    <FormGroup labelText="Choose one or more">
       <Checkbox
           color={magma.colors.success01}
           disabled
@@ -148,7 +148,7 @@ Adding the optional boolean prop `disabled` will apply disabled styles and add t
           labelText='Disabled indeterminate checkbox'
           status='indeterminate'
        />
-    </>
+    </FormGroup>
 ```
 
 ## Inverse
@@ -197,6 +197,10 @@ Adding the optional boolean prop `disabled` will apply disabled styles and add t
           isInverse
           labelText='Disabled indeterminate inverse'
           status='indeterminate' />
+       <Checkbox
+          errorMessage="Please check this box"
+          isInverse
+          labelText='Checkbox with error' />
     </FormGroup>
 ```
 
@@ -206,13 +210,45 @@ Use the optional prop `textPosition` to position the label text on either side o
 The `textPosition` property takes the values `left` and `right`. The default value is `right`.
 
 ```.jsx
-  <div>
+  <FormGroup labelText="Text Positions">
     <Checkbox
         labelText='Text left'
         textPosition='left' />
     <Checkbox
         labelText='Text right' />
-    </div>
+    </FormGroup>
+```
+
+## Error at Group Level
+
+The `errorMessage` prop can be used on the `FormGroup` component to display an error message for the group.  Each checkbox within the group will display with error styles.
+
+```.jsx
+    <>
+      <p>* indicates required fields</p>
+      <FormGroup labelText="Choose One or More Colors *" errorMessage="Please choose at least one color">
+          <Checkbox
+              labelText='Yellow' />
+          <Checkbox
+              labelText='Red' />
+          <Checkbox
+              labelText='Green' />
+      </FormGroup>
+    </>
+```
+
+## Error at Checkbox Level
+
+An `errorMessage` can also be supplied to an individual checkbox, without the use of a `FormGroup`.
+
+The `required` attribute can be used on a single checkbox if that individual checkbox is required.
+An example of when to use this would be for a terms and conditions checkbox.  
+
+```.jsx
+    <Checkbox
+        errorMessage='You must agree to the terms and conditions'
+        labelText='I agree to the terms and conditions'
+        required />
 ```
 
 ## Visually Hidden Label
@@ -395,6 +431,15 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       required: false,
       description: 'If true, element is disabled',
       defaultValue: 'false',
+    },
+    errorMessage: {
+      type: {
+        name: 'ReactNode',
+      },
+      required: false,
+      description:
+        'Content of the error message for an individual checkbox.  If a value is provided, the input will be styled as an error state and the error message will display.',
+      defaultValue: '',
     },
     inputStyle: {
       type: {

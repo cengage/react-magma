@@ -48,6 +48,19 @@ The label/toggle association will be handled via the passed in `id` if one is su
     </div>
 ```
 
+## Error Message
+
+An `errorMessage` can also be supplied to an toggle to indicate the selection is invalid.
+
+The `required` attribute can be used on a toggle if that field is required.
+
+```.jsx
+    <Toggle
+        errorMessage="You must turn permissions on"
+        id='errorToggle'
+        labelText='Enable Permissions' />
+```
+
 ## Text Position
 
 Use the optional prop `textPosition` to position the label text on either side of the toggle switch.

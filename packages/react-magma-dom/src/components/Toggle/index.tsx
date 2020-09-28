@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { CheckIcon } from 'react-magma-icons';
+import { FormGroupContext } from '../FormGroup';
+import { InputMessage } from '../Input/InputMessage';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import { css } from '@emotion/core';
@@ -18,6 +20,8 @@ export enum ToggleTextPosition {
 export interface ToggleProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   containerStyle?: React.CSSProperties;
+  errorMessage?: React.ReactNode;
+  hasError?: boolean;
   isInverse?: boolean;
   isTextVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
@@ -40,13 +44,19 @@ const HiddenInput = styled.input`
 const Track = styled.span<{
   checked?: boolean;
   disabled?: boolean;
+  hasError?: boolean;
   isInverse?: boolean;
   theme?: any;
 }>`
   background: ${props => props.theme.colors.neutral04};
   border: 2px solid;
-  border-color: ${props => props.theme.colors.neutral04};
+  border-color: ${props =>
+    props.hasError ? props.theme.colors.danger : props.theme.colors.neutral04};
   border-radius: 12px;
+  box-shadow: ${props =>
+    props.isInverse && props.hasError
+      ? `0 0 0 1px ${props.theme.colors.neutral08}`
+      : '0 0 0'};
   cursor: pointer;
   height: 24px;
   position: relative;
@@ -56,7 +66,9 @@ const Track = styled.span<{
     props.checked &&
     css`
       background: ${props.theme.colors.success02};
-      border-color: ${props.theme.colors.success02};
+      border-color: ${props.hasError
+        ? props.theme.colors.danger
+        : props.theme.colors.success02};
     `}
 
   ${props =>
@@ -181,6 +193,8 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
   const {
     containerStyle,
     disabled,
+    errorMessage,
+    hasError,
     id: defaultId,
     isInverse,
     isTextVisuallyHidden,
@@ -197,53 +211,83 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
 
   const theme = React.useContext(ThemeContext);
 
+  const context = React.useContext(FormGroupContext);
+
+  const descriptionId = errorMessage ? `${id}__desc` : null;
+  const groupDescriptionId = context.descriptionId
+    ? context.descriptionId
+    : null;
+
+  const describedBy =
+    descriptionId && groupDescriptionId
+      ? `${groupDescriptionId} ${descriptionId}`
+      : descriptionId
+      ? descriptionId
+      : groupDescriptionId
+      ? groupDescriptionId
+      : null;
+
   return (
-    <StyledContainer>
-      <HiddenInput
-        {...other}
-        aria-checked={!!checked}
-        id={id}
-        data-testid={testId}
-        disabled={disabled}
-        checked={checked}
-        type="checkbox"
-        onChange={handleChange}
-        role="switch"
-      />
-      <StyledLabel htmlFor={id} style={containerStyle}>
-        {textPosition !== ToggleTextPosition.right &&
-          renderLabelText(
-            isTextVisuallyHidden,
-            labelText,
-            ToggleTextPosition.left,
-            labelStyle
-          )}
-        <Track
-          checked={checked}
-          data-testid="toggle-track"
+    <>
+      <StyledContainer>
+        <HiddenInput
+          {...other}
+          aria-checked={!!checked}
+          aria-describedBy={describedBy}
+          id={id}
+          data-testid={testId}
           disabled={disabled}
-          isInverse={isInverse}
-          style={trackStyle}
-          theme={theme}
-        >
-          <IconContainer disabled={disabled} theme={theme}>
-            <CheckIcon size={11} />
-          </IconContainer>
-          <Thumb
+          checked={checked}
+          type="checkbox"
+          onChange={handleChange}
+          role="switch"
+        />
+        <StyledLabel htmlFor={id} style={containerStyle}>
+          {textPosition !== ToggleTextPosition.right &&
+            renderLabelText(
+              isTextVisuallyHidden,
+              labelText,
+              ToggleTextPosition.left,
+              labelStyle
+            )}
+          <Track
             checked={checked}
+            data-testid="toggle-track"
             disabled={disabled}
-            style={thumbStyle}
+            hasError={context.hasError || !!errorMessage}
+            isInverse={isInverse}
+            style={trackStyle}
             theme={theme}
-          />
-        </Track>
-        {textPosition === ToggleTextPosition.right &&
-          renderLabelText(
-            isTextVisuallyHidden,
-            labelText,
-            ToggleTextPosition.right,
-            labelStyle
-          )}
-      </StyledLabel>
-    </StyledContainer>
+          >
+            <IconContainer disabled={disabled} theme={theme}>
+              <CheckIcon size={11} />
+            </IconContainer>
+            <Thumb
+              checked={checked}
+              disabled={disabled}
+              style={thumbStyle}
+              theme={theme}
+            />
+          </Track>
+          {textPosition === ToggleTextPosition.right &&
+            renderLabelText(
+              isTextVisuallyHidden,
+              labelText,
+              ToggleTextPosition.right,
+              labelStyle
+            )}
+        </StyledLabel>
+      </StyledContainer>
+      {!!errorMessage && (
+        <InputMessage
+          id={descriptionId}
+          isError
+          isInverse={isInverse}
+          style={{ paddingLeft: '20px' }}
+        >
+          {errorMessage}
+        </InputMessage>
+      )}
+    </>
   );
 };

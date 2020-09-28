@@ -7,7 +7,9 @@ import {
   buildDisplayInputBorderColor,
   buildDisplayInputFocusStyles
 } from '../SelectionControls/InputStyles';
+import { FormGroupContext } from '../FormGroup';
 import { HiddenStyles } from '../../utils/UtilityStyles';
+import { InputMessage } from '../Input/InputMessage';
 import { CheckIcon } from 'react-magma-icons';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
@@ -25,6 +27,8 @@ export interface CheckboxProps
   containerStyle?: React.CSSProperties;
   inputStyle?: React.CSSProperties;
   defaultChecked?: boolean;
+  errorMessage?: React.ReactNode;
+  hasError?: boolean;
   isInverse?: boolean;
   isTextVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
@@ -81,11 +85,16 @@ export const StyledFakeInput = styled.span<{
   isIndeterminate?: boolean;
   isInverse?: boolean;
   hasError?: boolean;
+  theme?: any;
 }>`
   ${DisplayInputStyles};
   background: ${props => buildCheckboxBackground(props)};
   border-color: ${props => buildDisplayInputBorderColor(props)};
   border-radius: 3px;
+  box-shadow: ${props =>
+    props.isInverse && props.hasError
+      ? `0 0 0 1px ${props.theme.colors.neutral08}`
+      : '0 0 0'};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
 
   svg {
@@ -142,11 +151,14 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = React.forwardRef
     }
 
     const theme = React.useContext(ThemeContext);
+    const context = React.useContext(FormGroupContext);
 
     const {
       color,
       containerStyle,
       disabled,
+      errorMessage,
+      hasError,
       inputStyle,
       isInverse,
       labelStyle,
@@ -157,41 +169,71 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = React.forwardRef
       ...other
     } = props;
 
+    const descriptionId = errorMessage ? `${id}__desc` : null;
+    const groupDescriptionId = context.descriptionId
+      ? context.descriptionId
+      : null;
+
+    const describedBy =
+      descriptionId && groupDescriptionId
+        ? `${groupDescriptionId} ${descriptionId}`
+        : descriptionId
+        ? descriptionId
+        : groupDescriptionId
+        ? groupDescriptionId
+        : null;
+
     return (
-      <StyledContainer style={containerStyle}>
-        <HiddenInput
-          {...other}
-          id={id}
-          data-testid={testId}
-          checked={isChecked}
-          disabled={disabled}
-          ref={ref}
-          type="checkbox"
-          onChange={handleChange}
-        />
-        <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
-          {!isTextVisuallyHidden &&
-            textPosition === CheckboxTextPosition.left &&
-            labelText}
-
-          <StyledFakeInput
+      <>
+        <StyledContainer style={containerStyle}>
+          <HiddenInput
+            {...other}
+            aria-describedBy={describedBy}
+            id={id}
+            data-testid={testId}
             checked={isChecked}
-            color={color ? color : ''}
             disabled={disabled}
-            isInverse={isInverse}
-            style={inputStyle}
-            theme={theme}
-          >
-            <CheckIcon size={12} />
-          </StyledFakeInput>
+            ref={ref}
+            type="checkbox"
+            onChange={handleChange}
+          />
+          <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
+            {!isTextVisuallyHidden &&
+              textPosition === CheckboxTextPosition.left &&
+              labelText}
 
-          {isTextVisuallyHidden ? (
-            <HiddenLabelText>{labelText}</HiddenLabelText>
-          ) : (
-            textPosition !== CheckboxTextPosition.left && labelText && labelText
-          )}
-        </StyledLabel>
-      </StyledContainer>
+            <StyledFakeInput
+              checked={isChecked}
+              color={color ? color : ''}
+              disabled={disabled}
+              hasError={context.hasError || !!errorMessage}
+              isInverse={context.isInverse || isInverse}
+              style={inputStyle}
+              theme={theme}
+            >
+              <CheckIcon size={12} />
+            </StyledFakeInput>
+
+            {isTextVisuallyHidden ? (
+              <HiddenLabelText>{labelText}</HiddenLabelText>
+            ) : (
+              textPosition !== CheckboxTextPosition.left &&
+              labelText &&
+              labelText
+            )}
+          </StyledLabel>
+        </StyledContainer>
+        {!!errorMessage && (
+          <InputMessage
+            id={descriptionId}
+            isError
+            isInverse={isInverse}
+            style={{ paddingLeft: '30px' }}
+          >
+            {errorMessage}
+          </InputMessage>
+        )}
+      </>
     );
   }
 );

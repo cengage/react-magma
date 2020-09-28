@@ -1,16 +1,31 @@
 import * as React from 'react';
 import { HiddenStyles } from '../../utils/UtilityStyles';
+import { InputMessage } from '../Input/InputMessage';
 import styled from '../../theme/styled';
 import { omit, useGenerateId } from '../../utils';
 
 export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   containerStyle?: React.CSSProperties;
+  errorMessage?: React.ReactNode;
+  helperMessage;
+  isInverse?: boolean;
   isTextVisuallyHidden?: boolean;
   labelledById?: string;
   labelStyle?: React.CSSProperties;
   labelText?: React.ReactNode;
   testId?: string;
 }
+
+export interface FormGroupContextInterface {
+  descriptionId?: string;
+  hasError?: boolean;
+  isInverse?: boolean;
+}
+
+export const FormGroupContext = React.createContext<FormGroupContextInterface>({
+  hasError: false,
+  isInverse: false
+});
 
 export const FormGroupLabel = styled.label`
   display: block;
@@ -30,15 +45,20 @@ export const FormGroup: React.FunctionComponent<FormGroupProps> = (
 
   const {
     containerStyle,
+    errorMessage,
+    helperMessage,
     labelledById,
     labelStyle,
     labelText,
+    isInverse,
     isTextVisuallyHidden,
     testId,
     children,
     ...rest
   } = props;
   const other = omit(['id'], rest);
+
+  const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
   return (
     <div
@@ -48,18 +68,36 @@ export const FormGroup: React.FunctionComponent<FormGroupProps> = (
       role="group"
       style={containerStyle}
     >
-      {labelText && isTextVisuallyHidden && (
-        <HiddenLabel id={id} style={labelStyle}>
-          {labelText}
-        </HiddenLabel>
-      )}
+      <FormGroupContext.Provider
+        value={{
+          descriptionId,
+          hasError: !!errorMessage,
+          isInverse
+        }}
+      >
+        {labelText && isTextVisuallyHidden && (
+          <HiddenLabel id={id} style={labelStyle}>
+            {labelText}
+          </HiddenLabel>
+        )}
 
-      {labelText && !isTextVisuallyHidden && (
-        <FormGroupLabel id={id} style={labelStyle}>
-          {labelText}
-        </FormGroupLabel>
-      )}
-      {children}
+        {labelText && !isTextVisuallyHidden && (
+          <FormGroupLabel id={id} style={labelStyle}>
+            {labelText}
+          </FormGroupLabel>
+        )}
+        {children}
+
+        <InputMessage
+          id={descriptionId}
+          isError={!!errorMessage}
+          isInverse={isInverse}
+        >
+          {(errorMessage || helperMessage) && (
+            <>{errorMessage ? errorMessage : helperMessage}</>
+          )}
+        </InputMessage>
+      </FormGroupContext.Provider>
     </div>
   );
 };
