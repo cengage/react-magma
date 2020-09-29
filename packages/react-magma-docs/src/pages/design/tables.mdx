@@ -1,6 +1,6 @@
 ---
-pageTitle: Data Tables Design Guidelines
-title: Data Tables
+pageTitle: Tables Design Guidelines
+title: Tables
 order: 1
 ---
 
@@ -10,10 +10,10 @@ import DocsHeading from '../../components/docs-heading'
 import { Alert } from 'react-magma-dom'
 
 <DocsHeading to="/api/table/" type="code">
-  Data Tables
+  Tables
 </DocsHeading>
 
-Data tables are used to organize and display data efficiently. The data table component allows for customization with additional functionality, as needed by your product’s users.
+Tables are used to organize and display data efficiently. The table component allows for customization with additional functionality, as needed by your product’s users.
 
 <figure>
   <img src="../../images/tables/tables-intro-image.png" alt=" " />
@@ -21,9 +21,9 @@ Data tables are used to organize and display data efficiently. The data table co
 
 ## Usage
 
-Data tables display information in a grid-like format of rows and columns. They organize information in a way that’s easy to scan so that users can look for patterns and develop insights from data.
+Tables display information in a grid-like format of rows and columns. They organize information in a way that’s easy to scan so that users can look for patterns and develop insights from data.
 
-**Data tables can contain:**
+**Tables can contain:**
 - Interactive components (such as inputs, buttons, or menus)
 - Non-interactive elements (such as badges)
 - Tools to query and manipulate data
@@ -50,11 +50,11 @@ Information should be organized in a meaningful way, such as hierarchy or alphab
 
 ### Interactive
 
-Data tables should allow user interaction so that a data display is customizable and interactive.
+Tables should allow user interaction so that a data display is customizable and interactive.
 
 ### Intuitive
 
-Data tables should be easy to use, with a logical structure that makes content easy to understand.
+Tables should be easy to use, with a logical structure that makes content easy to understand.
 
 <span class="horizontal-spacer"></span>
 <hr class="article-divider" />
@@ -74,7 +74,7 @@ Data tables should be easy to use, with a logical structure that makes content e
 
 ## Sizing
 
-Data tables come in three different sizes or densities: compact, normal, and loose. This is applied to the entire table and not just a specific row or cell.
+Tables come in three different sizes or densities: compact, normal, and loose. This is applied to the entire table and not just a specific row or cell.
 
 <figure>
   <img src="../../images/tables/table-densities.png" alt=" " />
@@ -82,7 +82,7 @@ Data tables come in three different sizes or densities: compact, normal, and loo
 
 ### Compact Density
 
-The compact density can be useful for data tables with a relatively large number of columns and rows by allowing you to simply fit more on the screen at once.
+The compact density can be useful for tables with a relatively large number of columns and rows by allowing you to simply fit more on the screen at once.
 
 <figure>
   <img src="../../images/tables/compact-density.png" alt=" " />
@@ -90,7 +90,7 @@ The compact density can be useful for data tables with a relatively large number
 
 ### Normal Density
 
-The default padding of data tables is optimized for a nice balance between compact and loose densities.
+The default padding of tables is optimized for a nice balance between compact and loose densities.
 
 <figure>
   <img src="../../images/tables/normal-density.png" alt=" " />
@@ -109,7 +109,7 @@ The loose density can be useful if you have a relatively small amount of data an
 
 ## Content
 
-### Data Table Title and Description
+### Table Title and Description
 - The table title should make it clear to the user what the data is and what purpose it serves in the UI.
 - A description can be added under the title to provide more information about the data or its source.
 
@@ -184,7 +184,7 @@ Striped rows (zebra striping) is an optional styling you may apply to your table
 
 ### Hover
 
-The data table’s row hover state can help your user visually scan the columns of data in a row even if the row is not interactive.  This feature is optional and is easily enabled for any table, and may be used in combination with striped rows.
+The table’s row hover state can help your user visually scan the columns of data in a row even if the row is not interactive.  This feature is optional and is easily enabled for any table, and may be used in combination with striped rows.
 
 <figure>
   <img src="../../images/tables/row-hover.png" alt=" " />
@@ -194,7 +194,7 @@ The data table’s row hover state can help your user visually scan the columns 
 
 Columns can be sorted in ascending or descending order. Sorting controls are located in the column headers and indicated with an arrow icon to the right of the label.
 
-A sorted data table has three states: unsorted (sort-double-arrow), sorted-up (arrow-upward) or sorted-down (arrow-downward). The icon indicates the current sorted state. All sortable columns display an arrow icon, but only one can be actively sorted at a time.
+A sorted table has three states: unsorted (sort-double-arrow), sorted-up (arrow-upward) or sorted-down (arrow-downward). The icon indicates the current sorted state. All sortable columns display an arrow icon, but only one can be actively sorted at a time.
 
 <figure>
   <img src="../../images/tables/table-sorting.png" alt=" " />
