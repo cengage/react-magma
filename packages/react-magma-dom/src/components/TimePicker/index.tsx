@@ -226,7 +226,7 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
 
   function handleHourKeyDown(event: React.KeyboardEvent) {
     if (event.key === 'Backspace') {
-      setHour('00');
+      setHour('--');
     }
 
     if (event.key === 'ArrowRight') {
@@ -236,7 +236,7 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
 
   function handleMinuteKeyDown(event: React.KeyboardEvent) {
     if (event.key === 'Backspace') {
-      setMinute('00');
+      setMinute('--');
     }
 
     if (event.key === 'ArrowLeft') {
