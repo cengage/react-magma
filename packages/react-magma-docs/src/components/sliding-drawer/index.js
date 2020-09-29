@@ -154,7 +154,7 @@ export class SlidingDrawer extends React.Component {
 
     return (
       <FocusLock disabled={!isOpen}>
-        <nav>
+        <nav aria-label="Main site navigation">
           <MenuButton>
             <IconButton
               aria-label="Open navigation menu"
