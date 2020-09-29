@@ -16,7 +16,7 @@ const StyledLabelComponent = styled.label<StyledLabelProps>`
   display: flex;
   line-height: 24px;
   margin: 0;
-  padding: 10px;
+  padding: 10px 0;
 `;
 
 export const StyledLabel: React.FunctionComponent<StyledLabelProps> = ({

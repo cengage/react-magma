@@ -85,6 +85,7 @@ export const StyledFakeInput = styled.span<{
   isIndeterminate?: boolean;
   isInverse?: boolean;
   hasError?: boolean;
+  textPosition?: CheckboxTextPosition;
   theme?: any;
 }>`
   ${DisplayInputStyles};
@@ -96,6 +97,8 @@ export const StyledFakeInput = styled.span<{
       ? `0 0 0 1px ${props.theme.colors.neutral08}`
       : '0 0 0'};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+  margin: ${props =>
+    props.textPosition === 'left' ? '2px 0 0 10px' : '2px 10px 0 0'};
 
   svg {
     display: ${props => (props.checked ? 'block' : 'none')};
@@ -170,9 +173,7 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = React.forwardRef
     } = props;
 
     const descriptionId = errorMessage ? `${id}__desc` : null;
-    const groupDescriptionId = context.descriptionId
-      ? context.descriptionId
-      : null;
+    const groupDescriptionId = context.descriptionId;
 
     const describedBy =
       descriptionId && groupDescriptionId
@@ -209,6 +210,7 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = React.forwardRef
               hasError={context.hasError || !!errorMessage}
               isInverse={context.isInverse || isInverse}
               style={inputStyle}
+              textPosition={textPosition}
               theme={theme}
             >
               <CheckIcon size={12} />
@@ -224,12 +226,7 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = React.forwardRef
           </StyledLabel>
         </StyledContainer>
         {!!errorMessage && (
-          <InputMessage
-            id={descriptionId}
-            isError
-            isInverse={isInverse}
-            style={{ paddingLeft: '30px' }}
-          >
+          <InputMessage id={descriptionId} isError isInverse={isInverse}>
             {errorMessage}
           </InputMessage>
         )}

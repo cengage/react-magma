@@ -149,7 +149,7 @@ const IconContainer = styled.span<{ disabled?: boolean; theme?: any }>`
       : props.theme.colors.neutral08};
   left: 7px;
   position: absolute;
-  margin-top: -14px;
+  margin-top: -13px;
   top: 50%;
 `;
 
@@ -214,9 +214,7 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
   const context = React.useContext(FormGroupContext);
 
   const descriptionId = errorMessage ? `${id}__desc` : null;
-  const groupDescriptionId = context.descriptionId
-    ? context.descriptionId
-    : null;
+  const groupDescriptionId = context.descriptionId;
 
   const describedBy =
     descriptionId && groupDescriptionId
@@ -279,12 +277,7 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
         </StyledLabel>
       </StyledContainer>
       {!!errorMessage && (
-        <InputMessage
-          id={descriptionId}
-          isError
-          isInverse={isInverse}
-          style={{ paddingLeft: '20px' }}
-        >
+        <InputMessage id={descriptionId} isError isInverse={isInverse}>
           {errorMessage}
         </InputMessage>
       )}

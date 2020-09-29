@@ -50,6 +50,7 @@ const StyledFakeInput = styled.span<{
   isInverse: boolean;
   disabled: boolean;
   color: string;
+  textPosition?: RadioTextPosition;
   theme?: any;
 }>`
   ${DisplayInputStyles};
@@ -69,6 +70,8 @@ const StyledFakeInput = styled.span<{
       ? `0 0 0 1px ${props.theme.colors.neutral08}`
       : '0 0 0'};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+  margin: ${props =>
+    props.textPosition === 'left' ? '2px 0 0 10px' : '2px 10px 0 0'};
 
   ${HiddenInput}:checked:not(:disabled) + label & {
     background: ${props => {
@@ -166,6 +169,7 @@ export const Radio: React.FunctionComponent<RadioProps> = React.forwardRef(
             isInverse={context.isInverse || isInverse}
             hasError={context.hasError}
             style={inputStyle}
+            textPosition={textPosition}
             theme={theme}
           >
             <SelectedIcon color={color ? color : ''} theme={theme} />

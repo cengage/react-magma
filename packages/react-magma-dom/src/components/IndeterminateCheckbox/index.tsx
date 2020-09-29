@@ -128,9 +128,7 @@ export const IndeterminateCheckbox: React.FunctionComponent<IndeterminateCheckbo
       : '';
 
     const descriptionId = errorMessage ? `${id}__desc` : null;
-    const groupDescriptionId = context.descriptionId
-      ? context.descriptionId
-      : null;
+    const groupDescriptionId = context.descriptionId;
 
     const describedBy =
       descriptionId && groupDescriptionId

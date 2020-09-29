@@ -186,7 +186,7 @@ The `isInverse` property is an optional boolean can be applied to the containing
 ```.jsx
 <>
   <RadioGroup
-    containerStyle={{ background : '#00263E', color: '#fff', padding: '12px'}}
+    containerStyle={{ background : '#00263E', color: '#fff', marginTop: '24px', padding: '12px' }}
     labelText='Inverse Radio Buttons'
     id='inverseGroup'
     isInverse
@@ -217,22 +217,23 @@ The `isInverse` property is an optional boolean can be applied to the containing
             value='disabled' />
     </RadioGroup>
 
-    <RadioGroup
-      containerStyle={{ background : '#00263E', color: '#fff', marginTop: '24px', padding: '12px' }}
-      errorMessage="Please select a color"
-      isInverse
-      isRequired
-      labelText='Inverse with Error *'
-      name='requiredFieldsInverse'>
-
+    <div style={{ background : '#00263E', color: '#fff', marginTop: '24px', padding: '12px' }}>
       <p>* indicates required fields</p>
-      <Radio
-          labelText='Option 1'
-          value='R' />
-      <Radio
-          labelText='Option2'
-          value='B' />
-    </RadioGroup>
+      <RadioGroup
+        errorMessage="Please select a color"
+        isInverse
+        isRequired
+        labelText='Inverse with Error *'
+        name='requiredFieldsInverse'>
+
+        <Radio
+            labelText='Option 1'
+            value='R' />
+        <Radio
+            labelText='Option2'
+            value='B' />
+      </RadioGroup>
+    </div>
   </>
 ```
 

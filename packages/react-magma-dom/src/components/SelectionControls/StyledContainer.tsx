@@ -10,7 +10,6 @@ const StyledContainerComponent = styled.div<ContainerProps>`
   align-items: baseline;
   display: flex;
   flex-wrap: nowrap;
-  margin: 0 0 0 10px;
   position: relative;
 `;
 
