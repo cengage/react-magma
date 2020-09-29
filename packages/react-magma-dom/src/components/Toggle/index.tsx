@@ -231,7 +231,7 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
         <HiddenInput
           {...other}
           aria-checked={!!checked}
-          aria-describedBy={describedBy}
+          aria-describedby={describedBy}
           id={id}
           data-testid={testId}
           disabled={disabled}

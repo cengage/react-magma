@@ -144,7 +144,7 @@ export const IndeterminateCheckbox: React.FunctionComponent<IndeterminateCheckbo
         <StyledContainer style={containerStyle}>
           <HiddenInput
             {...other}
-            aria-describedBy={describedBy}
+            aria-describedby={describedBy}
             checked={isChecked}
             data-testid={testId}
             disabled={disabled}

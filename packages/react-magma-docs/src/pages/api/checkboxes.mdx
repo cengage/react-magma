@@ -224,17 +224,48 @@ The `textPosition` property takes the values `left` and `right`. The default val
 The `errorMessage` prop can be used on the `FormGroup` component to display an error message for the group.  Each checkbox within the group will display with error styles.
 
 ```.jsx
-    <>
-      <p>* indicates required fields</p>
-      <FormGroup labelText="Choose One or More Colors *" errorMessage="Please choose at least one color">
-          <Checkbox
-              labelText='Yellow' />
-          <Checkbox
-              labelText='Red' />
-          <Checkbox
-              labelText='Green' />
-      </FormGroup>
-    </>
+  (props) => {
+    const [hasError, setHasError] = React.useState(true);
+    const [state, setState] = React.useState({
+        yellow: false,
+        red: false,
+        green: false,
+      });
+
+      const handleChange = (event) => {
+        setState({ ...state, [event.target.value]: event.target.checked });
+      };
+
+      React.useEffect(() => {
+        setHasError(!state.yellow && !state.red && !state.green)
+      }, [state]);
+
+    return (
+      <>
+        <p>* indicates required fields</p>
+        <FormGroup labelText="Choose One or More Colors *" errorMessage={hasError ? "Please choose at least one color" : null}>
+            <Checkbox
+                checked={state.yellow}
+                labelText="Yellow 1"
+                name="color"
+                onChange={handleChange}
+                value="yellow" />
+            <Checkbox
+                checked={state.red}
+                labelText="Red"
+                name="color"
+                onChange={handleChange}
+                value="red" />
+            <Checkbox
+                checked={state.green}
+                labelText="Green"
+                name="color"
+                onChange={handleChange}
+                value="green" />
+        </FormGroup>
+      </>
+    )
+  }
 ```
 
 ## Error at Checkbox Level
@@ -245,10 +276,20 @@ The `required` attribute can be used on a single checkbox if that individual che
 An example of when to use this would be for a terms and conditions checkbox.  
 
 ```.jsx
-    <Checkbox
-        errorMessage='You must agree to the terms and conditions'
-        labelText='I agree to the terms and conditions'
-        required />
+  (props) => {
+    const [hasError, setHasError] = React.useState(true);
+
+    function handleChange(e){
+      setHasError(!e.target.checked);
+    }
+    return (
+      <Checkbox
+          errorMessage={hasError ? 'You must agree to the terms and conditions' : null}
+          labelText='I agree to the terms and conditions'
+          onChange={handleChange}
+          required />
+    )
+  } 
 ```
 
 ## Visually Hidden Label

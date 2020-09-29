@@ -189,7 +189,7 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = React.forwardRef
         <StyledContainer style={containerStyle}>
           <HiddenInput
             {...other}
-            aria-describedBy={describedBy}
+            aria-describedby={describedBy}
             id={id}
             data-testid={testId}
             checked={isChecked}

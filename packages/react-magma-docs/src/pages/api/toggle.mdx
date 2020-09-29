@@ -55,11 +55,22 @@ An `errorMessage` can also be supplied to an toggle to indicate the selection is
 The `required` attribute can be used on a toggle if that field is required.
 
 ```.jsx
-    <Toggle
-        errorMessage="You must turn permissions on"
+ (props) => {
+  const [hasError, setHasError] = React.useState(true);
+
+    function handleChange(e){
+      setHasError(!e.target.checked)
+    }
+
+   return(
+     <Toggle
+        errorMessage={hasError ? "You must turn permissions on" : null}
         id='errorToggle'
         labelText='Enable Permissions'
+        onChange={handleChange}
         required />
+    )
+ }
 ```
 
 ## Text Position

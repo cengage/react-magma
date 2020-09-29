@@ -67,7 +67,7 @@ describe('Toggle', () => {
     const track = getByTestId('toggle-track');
     const error = getByText(errorMessage);
 
-    expect(toggle).toHaveAttribute('aria-describedBy', 'testId__desc');
+    expect(toggle).toHaveAttribute('aria-describedby', 'testId__desc');
     expect(track).toHaveStyleRule('border-color', magma.colors.danger);
 
     expect(error).toBeInTheDocument();
@@ -119,7 +119,7 @@ describe('Toggle', () => {
     const track = getByTestId('toggle-track');
     const error = getByText(errorMessage);
 
-    expect(toggle).toHaveAttribute('aria-describedBy', 'testId__desc');
+    expect(toggle).toHaveAttribute('aria-describedby', 'testId__desc');
     expect(track).toHaveStyleRule('border-color', magma.colors.danger);
   });
 
