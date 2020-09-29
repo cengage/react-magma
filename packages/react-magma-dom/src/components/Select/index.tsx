@@ -135,7 +135,7 @@ export function Select<T>(props: SelectInterface<T>) {
       <InputMessage
         id={descriptionId}
         isInverse={isInverse}
-        isError={hasError}
+        hasError={hasError}
         style={messageStyle}
       >
         {(errorMessage || helperMessage) && (

@@ -167,7 +167,7 @@ export const PasswordInput: React.FunctionComponent<PasswordInputProps> = React.
         <InputMessage
           isInverse={isInverse}
           id={descriptionId}
-          isError={!!errorMessage}
+          hasError={!!errorMessage}
           style={messageStyle}
         >
           {(errorMessage || helperMessage) && (

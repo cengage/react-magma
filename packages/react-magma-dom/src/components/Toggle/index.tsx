@@ -277,7 +277,7 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (
         </StyledLabel>
       </StyledContainer>
       {!!errorMessage && (
-        <InputMessage id={descriptionId} isError isInverse={isInverse}>
+        <InputMessage id={descriptionId} hasError isInverse={isInverse}>
           {errorMessage}
         </InputMessage>
       )}

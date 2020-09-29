@@ -187,7 +187,7 @@ export const IndeterminateCheckbox: React.FunctionComponent<IndeterminateCheckbo
         {!!errorMessage && (
           <InputMessage
             id={descriptionId}
-            isError
+            hasError
             isInverse={isInverse}
             style={{ paddingLeft: '30px' }}
           >

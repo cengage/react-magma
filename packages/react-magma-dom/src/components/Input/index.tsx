@@ -77,7 +77,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
         <InputMessage
           isInverse={isInverse}
           id={descriptionId}
-          isError={!!errorMessage}
+          hasError={!!errorMessage}
           style={messageStyle}
         >
           {(errorMessage || helperMessage) && (

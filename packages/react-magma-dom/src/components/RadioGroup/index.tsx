@@ -119,7 +119,7 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
 
         <InputMessage
           id={descriptionId}
-          isError={!!errorMessage}
+          hasError={!!errorMessage}
           isInverse={isInverse}
         >
           {(errorMessage || helperMessage) && (

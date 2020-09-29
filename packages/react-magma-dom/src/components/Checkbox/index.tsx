@@ -226,7 +226,7 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = React.forwardRef
           </StyledLabel>
         </StyledContainer>
         {!!errorMessage && (
-          <InputMessage id={descriptionId} isError isInverse={isInverse}>
+          <InputMessage id={descriptionId} hasError isInverse={isInverse}>
             {errorMessage}
           </InputMessage>
         )}

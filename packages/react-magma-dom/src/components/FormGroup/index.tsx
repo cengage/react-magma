@@ -90,7 +90,7 @@ export const FormGroup: React.FunctionComponent<FormGroupProps> = (
 
         <InputMessage
           id={descriptionId}
-          isError={!!errorMessage}
+          hasError={!!errorMessage}
           isInverse={isInverse}
         >
           {(errorMessage || helperMessage) && (
