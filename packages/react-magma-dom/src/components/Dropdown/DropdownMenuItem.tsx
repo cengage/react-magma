@@ -3,7 +3,7 @@ import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { DropdownContext } from '.';
 import { IconProps, CheckIcon } from 'react-magma-icons';
-import { Omit } from '../../utils';
+import { Omit, useForkedRef } from '../../utils';
 
 export interface DropdownMenuItemProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'> {
@@ -55,11 +55,22 @@ const IconWrapper = styled.span`
 
 export const DropdownMenuItem: React.FunctionComponent<DropdownMenuItemProps> = React.forwardRef(
   (
-    { children, index, isDisabled, icon, onClick, value, ...other },
-    ref: React.Ref<any>
+    { children, isDisabled, icon, onClick, value, ...other },
+    forwardedRef: React.Ref<any>
   ) => {
+    const ownRef = React.useRef<HTMLDivElement>();
     const theme = React.useContext(ThemeContext);
     const context = React.useContext(DropdownContext);
+
+    const ref = useForkedRef(forwardedRef, ownRef);
+
+    const index = context.itemRefArray.current.findIndex(
+      ({ current: item }) => {
+        if (!item || !ownRef.current) return false;
+
+        return item === ownRef.current;
+      }
+    );
 
     function handleClick(event: React.SyntheticEvent | React.KeyboardEvent) {
       if (context.activeItemIndex >= 0) {
@@ -87,6 +98,10 @@ export const DropdownMenuItem: React.FunctionComponent<DropdownMenuItemProps> = 
 
     const isInactive =
       context.activeItemIndex >= 0 && context.activeItemIndex !== index;
+
+    React.useEffect(() => {
+      if (!isDisabled) context.registerDropdownMenuItem(ownRef);
+    }, []);
 
     return (
       <StyledItem

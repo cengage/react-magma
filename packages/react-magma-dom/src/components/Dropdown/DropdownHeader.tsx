@@ -12,9 +12,9 @@ const StyledDiv = styled.div`
   text-transform: uppercase;
 `;
 
-export const DropdownHeader: React.FunctionComponent<{
-  children: React.ReactNode;
-}> = ({ children, ...other }) => {
+export const DropdownHeader: React.FunctionComponent<React.HTMLAttributes<
+  HTMLDivElement
+>> = ({ children, ...other }) => {
   const theme = React.useContext(ThemeContext);
 
   return (

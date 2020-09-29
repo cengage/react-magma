@@ -87,6 +87,7 @@ export const DropdownButton: React.FunctionComponent<DropdownButtonProps> = (
       icon={icon}
       iconPosition={iconPositionToUse}
       onClick={handleClick}
+      onKeyDown={context.handleButtonKeyDown}
       ref={context.toggleRef}
     >
       {children}
