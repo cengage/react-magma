@@ -26,6 +26,7 @@ export interface BaseInputProps
   icon?: React.ReactElement<IconProps>;
   iconAriaLabel?: string;
   iconPosition?: InputIconPosition;
+  iconRef?: React.Ref<HTMLButtonElement>;
   inputSize?: InputSize;
   inputStyle?: React.CSSProperties;
   isInverse?: boolean;
@@ -193,6 +194,7 @@ export const BaseInput: React.FunctionComponent<BaseInputProps> = React.forwardR
       hasError,
       icon,
       iconAriaLabel,
+      iconRef,
       onIconClick,
       onIconKeyDown,
       inputSize,
@@ -266,6 +268,7 @@ export const BaseInput: React.FunctionComponent<BaseInputProps> = React.forwardR
             icon={icon}
             onClick={onIconClick}
             onKeyDown={onIconKeyDown}
+            ref={iconRef}
             shape={ButtonShape.fill}
             size={
               inputSize === InputSize.large

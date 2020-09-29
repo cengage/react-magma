@@ -67,6 +67,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
 ) => {
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
+  const iconRef = React.useRef<HTMLButtonElement>();
   const inputRef = React.useRef<HTMLInputElement>();
   const id: string = useGenerateId(props.id);
   const [showHelperInformation, setShowHelperInformation] = React.useState<
@@ -227,7 +228,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
         setCalendarOpened,
         setShowHelperInformation,
         onDateChange,
-        inputRef
+        iconRef
       );
       if (newChosenDate) {
         setFocusedDate(newChosenDate);
@@ -235,7 +236,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
     } else {
       if (event.key === 'Escape') {
         setCalendarOpened(false);
-        inputRef.current.focus();
+        iconRef.current.focus();
       }
 
       if (event.key === '?') {
@@ -277,7 +278,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
   }
 
   function handleCloseButtonClick(event: React.SyntheticEvent) {
-    inputRef.current.focus();
+    iconRef.current.focus();
     setCalendarOpened(false);
   }
 
@@ -323,6 +324,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
           {...other}
           icon={<CalendarIcon size={17} />}
           iconAriaLabel={i18n.datePicker.calendarIconAriaLabel}
+          iconRef={iconRef}
           onIconClick={toggleCalendarOpened}
           onIconKeyDown={handleInputKeyDown}
           id={id}
