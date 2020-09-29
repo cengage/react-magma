@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.85](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.84...v2.0.0-beta.85) (2020-09-29)
+
+**Note:** Version bump only for package react-magma-docs
+
+
+
+
+
+# [2.0.0-beta.84](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.83...v2.0.0-beta.84) (2020-09-29)
+
+
+### Features
+
+* **dropdown:** add a DropdownMenuGroup component for role="group" ([501590b](http://stash.cengage.com:7999/FRONT/react-magma/commits/501590bac057346a5d12b62d1821766178d81ca8))
+* **dropdown:** dropdown header in menu group can be node ([2f3379e](http://stash.cengage.com:7999/FRONT/react-magma/commits/2f3379e00cd65f8922301ba19c461e32b5688348))
+
+
+
+
+
 # [2.0.0-beta.83](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.82...v2.0.0-beta.83) (2020-09-24)
 
 **Note:** Version bump only for package react-magma-docs
