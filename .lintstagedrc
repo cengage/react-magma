@@ -1,0 +1,16 @@
+{
+  "**/*.js": [
+    "prettier --write",
+    "eslint --fix"
+  ],
+  "*.{json,yml,yaml}": [
+    "prettier --write"
+  ],
+  "packages/**/*.{ts,tsx,js}": [
+    "prettier --write",
+    "eslint --fix"
+  ],
+  "packages/**/*.test.{ts,tsx}": [
+    "jest --coverage=false --bail --findRelatedTests"
+  ]
+}

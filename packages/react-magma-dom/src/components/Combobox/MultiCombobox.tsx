@@ -40,7 +40,7 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
     onIsOpenChange,
     onItemCreated,
     onRemoveSelectedItem,
-    placeholder
+    placeholder,
   } = props;
 
   const theme = React.useContext(ThemeContext);
@@ -50,7 +50,7 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
     allItems,
     displayItems,
     setDisplayItems,
-    updateItemsRef
+    updateItemsRef,
   ] = useComboboxItems(defaultItems, items);
 
   function checkSelectedItemValidity(itemToCheck) {
@@ -67,17 +67,17 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
     addSelectedItem,
     removeSelectedItem,
     setActiveIndex,
-    selectedItems
+    selectedItems,
   } = useMultipleSelection({
     ...props,
     ...(props.initialSelectedItems && {
       initialSelectedItems: props.initialSelectedItems.filter(
         checkSelectedItemValidity
-      )
+      ),
     }),
     ...(props.selectedItems && {
-      selectedItems: props.selectedItems.filter(checkSelectedItemValidity)
-    })
+      selectedItems: props.selectedItems.filter(checkSelectedItemValidity),
+    }),
   });
 
   function isCreatedItem(item) {
@@ -163,20 +163,21 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
   function stateReducer(state, actionAndChanges) {
     const { type, changes } = actionAndChanges;
     switch (type) {
-      case useCombobox.stateChangeTypes.InputKeyDownEnter:
+      case useCombobox.stateChangeTypes.InputKeyDownEnter: {
         const newSelectedItem = getFilteredItems(displayItems)[
           state.highlightedIndex
         ];
         return {
           ...changes,
           ...(newSelectedItem && {
-            selectedItem: newSelectedItem
-          })
+            selectedItem: newSelectedItem,
+          }),
         };
+      }
       case useCombobox.stateChangeTypes.InputBlur:
         return {
           ...changes,
-          inputValue: ''
+          inputValue: '',
         };
       default:
         return changes;
@@ -201,7 +202,7 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
     highlightedIndex,
     getItemProps,
     selectItem,
-    setHighlightedIndex
+    setHighlightedIndex,
   } = useCombobox({
     ...comboboxProps,
     itemToString,
@@ -222,7 +223,7 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
             ),
     onIsOpenChange: handleOnIsOpenChange,
     onSelectedItemChange: defaultOnSelectedItemChange,
-    stateReducer
+    stateReducer,
   });
 
   function handleRemoveSelectedItem(event: React.SyntheticEvent, selectedItem) {
@@ -251,7 +252,7 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
             key={`selected-item-${index}`}
             {...getSelectedItemProps({
               selectedItem: multiSelectedItem,
-              index
+              index,
             })}
             onClick={event =>
               handleRemoveSelectedItem(event, multiSelectedItem)
@@ -285,9 +286,9 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
             ...options,
             ...getDropdownProps({
               onKeyDown: onInputKeyDown,
-              preventKeyAction: isOpen
-            })
-          })
+              preventKeyAction: isOpen,
+            }),
+          }),
         })}
         getToggleButtonProps={getToggleButtonProps}
         inputStyle={inputStyle}
