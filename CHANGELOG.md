@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.86](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.85...v2.0.0-beta.86) (2020-09-29)
+
+
+### Bug Fixes
+
+* **timepicker:** change to empty string instead of -- on bkspc ([642d72f](http://stash.cengage.com:7999/FRONT/react-magma/commits/642d72ff4e4bf6cbd80e00b17205855f37350d12))
+* **timepicker:** set min and hour to -- instead of 00 on backspace ([7b1dece](http://stash.cengage.com:7999/FRONT/react-magma/commits/7b1dece063c9f32179a0899e6ef3b78759e633e8))
+
+
+
+
+
 # [2.0.0-beta.85](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.84...v2.0.0-beta.85) (2020-09-29)
 
 **Note:** Version bump only for package react-magma
