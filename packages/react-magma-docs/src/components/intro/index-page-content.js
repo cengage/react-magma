@@ -126,7 +126,7 @@ export class IndexPageContent extends React.Component {
       <ThemeContext.Consumer>
         {theme => (
           <>
-            <nav>
+            <nav aria-label="Intro to React Magma navigation">
               <List theme={theme}>
                 <NavItem
                   activeSection={this.state.activeSection}
