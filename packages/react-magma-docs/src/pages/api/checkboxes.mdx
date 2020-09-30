@@ -11,6 +11,8 @@ import {
   FormGroup,
   IndeterminateCheckbox,
   magma,
+  I18nContext,
+  defaultI18n
 } from 'react-magma-dom'
 import DocsHeading from '../../components/docs-heading'
 import { Link } from 'gatsby'
@@ -36,27 +38,22 @@ See also: <Link to="/api/radio">Radio Buttons</Link>, <Link to="/api/toggle">Tog
 ```.jsx
   () => {
     const [checked, updateChecked] = React.useState(false)
-    return (<FormGroup labelText="Choose One or More">
-      <button onClick={() => console.log('button clicked')}>
-        Click
-        <input
-          type='checkbox'
-          checked={checked}
-          onChange={(event) => {
-            console.log(event);
-            updateChecked(!checked)
-          }}
-          onClick={() => console.log('checkbox clicked')} />
-      </button>
-
-      <Checkbox
+    return (
+      <FormGroup labelText="Choose One or More">
+        <Checkbox
           defaultChecked={true}
           id='customId'
-          labelText='Checkbox label' />
+          labelText='Uncontrolled Checkbox' />
 
-      <Checkbox
+        <Checkbox
+          checked={checked}
+          labelText='Controlled Checkbox'
+          onChange={() => updateChecked(!checked)} />
+  
+        <Checkbox
           labelText='Checkbox label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines' />
-    </FormGroup>)
+      </FormGroup>
+    )
   }
 ```
 
@@ -88,42 +85,45 @@ By default, the checkboxes use the theme's primary color. But any other color ma
 
 The `IndterminateCheckbox` component is similar to the `Checkbox` component, except that instead of accepting a boolean `checked` value,
 it takes the `status` prop, with three possible statuses: `indeterminate`, `checked` and `unchecked`. The default status is `unchecked`.
+The `status` is used to represent the state of a group of checkboxes that goes underneath it.
 
-```.jsx
-<>
-    <IndeterminateCheckbox
-        labelText='Indeterminate indeterminate'
-        status='indeterminate' />
-    <IndeterminateCheckbox
-        labelText='Indeterminate unchecked'
-        status='unchecked' />
-    <IndeterminateCheckbox
-        labelText='Indeterminate checked'
-        status='checked' />
-  </>
-```
-
-### Updating Indeterminate Status
+- `checked` means all of the checkboxes in the group are checked.
+- `indeterminate` means that some, but not all, checkboxes in the group are checked.
+- `unchecked` means that none of the checkboxes in the group are checked.
 
 The `indeterminate` status cannot be changed by direct user action, it can only be changed by updating the prop.
 
 ```.jsx
 () => {
-  const [status, setStatus] = React.useState('indeterminate');
+  const [checkedItems, setCheckedItems] = React.useState([true, false]);
 
-  return (<>
-    <IndeterminateCheckbox
-        color={magma.colors.success01}
-        labelText='Indeterminate checkbox'
+  const status = checkedItems.every(Boolean) 
+    ? 'checked'
+    : checkedItems.some(Boolean)
+    ? 'indeterminate'
+    : 'unchecked';
+
+  return (
+    <FormGroup labelText="Categories">
+      <IndeterminateCheckbox
+        onChange={e => setCheckedItems([e.target.checked, e.target.checked])}
         status={status}
-        onChange={() => {
-          if (status === 'indeterminate') {
-            setStatus('checked')
-          }
-        }} />
-        <br />
-        <Button color="secondary" onClick={()=>{setStatus('indeterminate')}} >Reset to Indeterminate</Button>
-  </>)
+        labelText="Colors"
+      />
+      <div style={{marginLeft: '30px'}}>
+        <Checkbox
+          checked={checkedItems[0]}
+          onChange={e => setCheckedItems([e.target.checked, checkedItems[1]])}
+          labelText="Red"
+        />
+        <Checkbox
+          checked={checkedItems[1]}
+          onChange={e => setCheckedItems([checkedItems[0], e.target.checked])}
+          labelText="Blue"
+        />
+      </div>
+    </FormGroup>
+  )
 }
 ```
 
@@ -132,7 +132,7 @@ The `indeterminate` status cannot be changed by direct user action, it can only 
 Adding the optional boolean prop `disabled` will apply disabled styles and add the disabled attribute to the underlying HTML element.
 
 ```.jsx
-    <>
+    <FormGroup labelText="Choose one or more">
       <Checkbox
           color={magma.colors.success01}
           disabled
@@ -148,7 +148,7 @@ Adding the optional boolean prop `disabled` will apply disabled styles and add t
           labelText='Disabled indeterminate checkbox'
           status='indeterminate'
        />
-    </>
+    </FormGroup>
 ```
 
 ## Inverse
@@ -197,6 +197,10 @@ Adding the optional boolean prop `disabled` will apply disabled styles and add t
           isInverse
           labelText='Disabled indeterminate inverse'
           status='indeterminate' />
+       <Checkbox
+          errorMessage="Please check this box"
+          isInverse
+          labelText='Checkbox with error' />
     </FormGroup>
 ```
 
@@ -206,13 +210,86 @@ Use the optional prop `textPosition` to position the label text on either side o
 The `textPosition` property takes the values `left` and `right`. The default value is `right`.
 
 ```.jsx
-  <div>
+  <FormGroup labelText="Text Positions">
     <Checkbox
         labelText='Text left'
         textPosition='left' />
     <Checkbox
         labelText='Text right' />
-    </div>
+    </FormGroup>
+```
+
+## Error at Group Level
+
+The `errorMessage` prop can be used on the `FormGroup` component to display an error message for the group.  Each checkbox within the group will display with error styles.
+
+```.jsx
+  (props) => {
+    const [hasError, setHasError] = React.useState(true);
+    const [state, setState] = React.useState({
+        yellow: false,
+        red: false,
+        green: false,
+      });
+
+      const handleChange = (event) => {
+        setState({ ...state, [event.target.value]: event.target.checked });
+      };
+
+      React.useEffect(() => {
+        setHasError(!state.yellow && !state.red && !state.green)
+      }, [state]);
+
+    return (
+      <>
+        <p>* indicates required fields</p>
+        <FormGroup labelText="Choose One or More Colors *" errorMessage={hasError ? "Please choose at least one color" : null}>
+            <Checkbox
+                checked={state.yellow}
+                labelText="Yellow 1"
+                name="color"
+                onChange={handleChange}
+                value="yellow" />
+            <Checkbox
+                checked={state.red}
+                labelText="Red"
+                name="color"
+                onChange={handleChange}
+                value="red" />
+            <Checkbox
+                checked={state.green}
+                labelText="Green"
+                name="color"
+                onChange={handleChange}
+                value="green" />
+        </FormGroup>
+      </>
+    )
+  }
+```
+
+## Error at Checkbox Level
+
+An `errorMessage` can also be supplied to an individual checkbox, without the use of a `FormGroup`.
+
+The `required` attribute can be used on a single checkbox if that individual checkbox is required.
+An example of when to use this would be for a terms and conditions checkbox.  
+
+```.jsx
+  (props) => {
+    const [hasError, setHasError] = React.useState(true);
+
+    function handleChange(e){
+      setHasError(!e.target.checked);
+    }
+    return (
+      <Checkbox
+          errorMessage={hasError ? 'You must agree to the terms and conditions' : null}
+          labelText='I agree to the terms and conditions'
+          onChange={handleChange}
+          required />
+    )
+  } 
 ```
 
 ## Visually Hidden Label
@@ -270,6 +347,59 @@ The `labelText` prop can either be a string, or it can be a React Node.
       }
 ```
 
+## Internationalization
+
+Some of the internationalization overrides use placeholders to insert selected values in to the message.
+Placeholders are specific keywords surrounded by curly braces. 
+
+- `{labelText}` will be replaced with the checkbox's `labelText`.
+
+<Link to="/api/internationalization">Full example of internationalization override options</Link>
+
+```.jsx
+  () => {
+    const [checkedItems, setCheckedItems] = React.useState([true, false]);
+
+    const status = checkedItems.every(Boolean) 
+      ? 'checked'
+      : checkedItems.some(Boolean)
+      ? 'indeterminate'
+      : 'unchecked';
+
+    return (
+      <I18nContext.Provider value={{
+        ...defaultI18n,
+        indeterminateCheckbox: {
+          isCheckedAnnounce:
+            'Custom message about checked status for {labelText} checkbox',
+          isIndeterminateAnnounce:
+            'Custom message about indeterminate status for {labelText} checkbox',
+          isUncheckedAnnounce:
+            'Custom message about unchecked status for {labelText} checkbox'
+        }
+      }}>
+        <IndeterminateCheckbox
+          onChange={e => setCheckedItems([e.target.checked, e.target.checked])}
+          status={status}
+          labelText="Colors"
+        />
+        <div style={{marginLeft: '30px'}}>
+          <Checkbox
+            checked={checkedItems[0]}
+            onChange={e => setCheckedItems([e.target.checked, checkedItems[1]])}
+            labelText="Red"
+          />
+          <Checkbox
+            checked={checkedItems[1]}
+            onChange={e => setCheckedItems([checkedItems[0], e.target.checked])}
+            labelText="Blue"
+          />
+        </div>
+      </I18nContext.Provider>
+    )
+  }
+```
+
 ## Testing
 
 Passing in the `testId` prop will add the `data-testid` attribute to the input element for easier querying in tests.
@@ -287,15 +417,14 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
     <span>
       <span color="" class="css-1on1hey e1iwfc8c3"></span>
       <svg
+        aria-hidden="true"
         class="icon"
         height="12"
         width="12"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 29.37 21.88"
-        aria-labelledby="78a52361-5b36-4198-8d06-c9f8a239af09"
       >
-        <title id="78a52361-5b36-4198-8d06-c9f8a239af09"></title>
         <path
           d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
           transform="translate(-0.87 -3.06)"
@@ -343,6 +472,15 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       required: false,
       description: 'If true, element is disabled',
       defaultValue: 'false',
+    },
+    errorMessage: {
+      type: {
+        name: 'ReactNode',
+      },
+      required: false,
+      description:
+        'Content of the error message for an individual checkbox.  If a value is provided, the input will be styled as an error state and the error message will display.',
+      defaultValue: '',
     },
     inputStyle: {
       type: {
@@ -453,6 +591,8 @@ export default props => (
       FormGroup,
       IndeterminateCheckbox,
       magma,
+      I18nContext,
+      defaultI18n
     }}
   />
 )

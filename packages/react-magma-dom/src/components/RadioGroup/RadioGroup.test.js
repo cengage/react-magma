@@ -65,7 +65,7 @@ describe('Radio Group', () => {
     expect(group).toHaveAttribute('aria-labelledby', 'myID');
   });
 
-  it('should not render anything when invalid children are present', () => {
+  it('should not render anything except the container and the message container when invalid children are present', () => {
     const { container } = render(
       <RadioGroup>
         <Radio id="colorRadio" labelText="Default Color" value="default" />
@@ -73,7 +73,7 @@ describe('Radio Group', () => {
       </RadioGroup>
     );
 
-    expect(container.firstChild.children.length).toBe(1);
+    expect(container.firstChild.children.length).toBe(2);
   });
 
   it('Should select an option based on value passed to group', () => {
@@ -91,6 +91,38 @@ describe('Radio Group', () => {
 
     expect(getByLabelText('Default Color')).toHaveAttribute('checked');
     expect(getByLabelText('Success Color')).not.toHaveAttribute('checked');
+  });
+
+  it('Should render an error message', () => {
+    const errorMessage = 'test error';
+    const { getByText } = render(
+      <RadioGroup value="default" errorMessage={errorMessage} id="testId">
+        <Radio labelText="Default Color" value="default" />
+        <Radio labelText="Success Color" value="success" />
+      </RadioGroup>
+    );
+
+    expect(getByText(errorMessage)).toBeInTheDocument();
+    expect(getByText(errorMessage).parentElement).toHaveAttribute(
+      'id',
+      'testId__desc'
+    );
+  });
+
+  it('Should render a helper message', () => {
+    const helperMessage = 'test helper message';
+    const { getByText } = render(
+      <RadioGroup value="default" helperMessage={helperMessage} id="testId">
+        <Radio labelText="Default Color" value="default" />
+        <Radio labelText="Success Color" value="success" />
+      </RadioGroup>
+    );
+
+    expect(getByText(helperMessage)).toBeInTheDocument();
+    expect(getByText(helperMessage).parentElement).toHaveAttribute(
+      'id',
+      'testId__desc'
+    );
   });
 
   it('Changes the selected radio when clicked', () => {

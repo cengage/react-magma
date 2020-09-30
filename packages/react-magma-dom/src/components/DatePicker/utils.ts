@@ -12,7 +12,7 @@ import {
   startOfMonth,
   endOfMonth,
   differenceInDays,
-  parseISO
+  parseISO,
 } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 
@@ -22,7 +22,7 @@ export function handleKeyPress(
   toggleCalendar?: (calendarOpened: boolean) => void,
   setShowHelperInformation?: (value: boolean) => void,
   onDateChange?: (day: Date) => void,
-  inputRef?: React.RefObject<any>
+  iconRef?: React.RefObject<any>
 ) {
   const { key } = e;
 
@@ -68,7 +68,7 @@ export function handleKeyPress(
     case 'Escape':
       e.preventDefault();
       toggleCalendar(false);
-      inputRef.current.focus();
+      iconRef.current.focus();
       break;
 
     case '?':
@@ -127,7 +127,7 @@ export function i18nFormat(date, formatStr = 'PP', locale = enUS) {
   return (
     date &&
     format(convertToUtc(date), formatStr, {
-      locale
+      locale,
     })
   );
 }

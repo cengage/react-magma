@@ -96,7 +96,32 @@ describe('Form Group', () => {
     expect(group).toHaveAttribute('aria-labelledby', 'myID');
   });
 
-  it('should not render anything when invalid children are present', () => {
+  it('should render a form group with an error message', () => {
+    const groupId = 'testId';
+    const errorMessage = 'test error';
+
+    const { container, getByLabelText, getByText } = render(
+      <FormGroup id={groupId} errorMessage={errorMessage}>
+        <Checkbox labelText="Default Color" value="default" />
+      </FormGroup>
+    );
+
+    const span = container.querySelector('span');
+
+    expect(span).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(getByLabelText('Default Color')).toHaveAttribute(
+      'aria-describedby',
+      `${groupId}__desc`
+    );
+
+    expect(getByText(errorMessage)).toBeInTheDocument();
+    expect(getByText(errorMessage).parentElement).toHaveAttribute(
+      'id',
+      `${groupId}__desc`
+    );
+  });
+
+  it('should not render anything except container and message container when invalid children are present', () => {
     const { container } = render(
       <FormGroup>
         <Checkbox labelText="Default Color" value="default" />
@@ -104,7 +129,7 @@ describe('Form Group', () => {
       </FormGroup>
     );
 
-    expect(container.firstChild.children.length).toBe(1);
+    expect(container.firstChild.children.length).toBe(2);
   });
 
   it('Does not violate accessibility standards', () => {

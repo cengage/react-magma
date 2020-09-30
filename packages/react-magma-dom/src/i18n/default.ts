@@ -17,7 +17,7 @@ export const defaultI18n: I18nInterface = {
       september: 'September',
       october: 'October',
       november: 'November',
-      december: 'December'
+      december: 'December',
     },
     short: {
       january: 'Jan',
@@ -31,8 +31,8 @@ export const defaultI18n: I18nInterface = {
       september: 'Sep',
       october: 'Oct',
       november: 'Nov',
-      december: 'Dec'
-    }
+      december: 'Dec',
+    },
   },
   days: {
     long: {
@@ -42,7 +42,7 @@ export const defaultI18n: I18nInterface = {
       thursday: 'Thursday',
       friday: 'Friday',
       saturday: 'Saturday',
-      sunday: 'Sunday'
+      sunday: 'Sunday',
     },
     short: {
       monday: 'Mon',
@@ -51,7 +51,7 @@ export const defaultI18n: I18nInterface = {
       thursday: 'Thur',
       friday: 'Fri',
       saturday: 'Sat',
-      sunday: 'Sun'
+      sunday: 'Sun',
     },
     min: {
       monday: 'M',
@@ -60,40 +60,46 @@ export const defaultI18n: I18nInterface = {
       thursday: 'T',
       friday: 'F',
       saturday: 'S',
-      sunday: 'S'
-    }
+      sunday: 'S',
+    },
   },
   alert: {
-    dismissAriaLabel: 'Close this message'
+    dismissAriaLabel: 'Close this message',
   },
   breadcrumb: {
-    navAriaLabel: 'Breadcrumb'
+    navAriaLabel: 'Breadcrumb',
+  },
+  indeterminateCheckbox: {
+    isCheckedAnnounce: 'All subitems are checked for {labelText} checkbox',
+    isIndeterminateAnnounce:
+      'Some, but not all, subitems are checked for {labelText} checkbox',
+    isUncheckedAnnounce: 'No subitems are checked for {labelText} checkbox',
   },
   modal: {
-    closeAriaLabel: 'Close dialog'
+    closeAriaLabel: 'Close dialog',
   },
   password: {
     shown: {
       ariaLabel:
         'Show password. Note: this will visually expose your password on the screen',
       buttonText: 'Show',
-      announce: 'Password is now visible'
+      announce: 'Password is now visible',
     },
     hidden: {
       ariaLabel: 'Hide password',
       buttonText: 'Hide',
-      announce: 'Password is now hidden'
-    }
+      announce: 'Password is now hidden',
+    },
   },
   search: {
     input: {
       ariaLabel: 'Search',
-      placeholder: 'Search'
+      placeholder: 'Search',
     },
-    iconAriaLabel: 'Search'
+    iconAriaLabel: 'Search',
   },
   spinner: {
-    ariaLabel: 'Loading'
+    ariaLabel: 'Loading',
   },
   timePicker: {
     hoursAriaLabel: 'Hour',
@@ -103,7 +109,7 @@ export const defaultI18n: I18nInterface = {
     pmButtonAriaLabel:
       'PM selected.  To change to AM press the a or enter button.',
     amSelectedAnnounce: 'AM is now selected',
-    pmSelectedAnnounce: 'PM is now selected'
+    pmSelectedAnnounce: 'PM is now selected',
   },
   datePicker: {
     startOfWeek: 'sunday',
@@ -121,70 +127,70 @@ export const defaultI18n: I18nInterface = {
       helpButtonAriaLabel: 'Calendar Widget Help',
       enter: {
         ariaLabel: 'Enter key',
-        explanation: 'Select the date in focus.'
+        explanation: 'Select the date in focus.',
       },
       rightAndLeftArrowKeys: {
         ariaLabel: 'Right and left arrow keys',
-        explanation: 'Move backward (left) and forward (right) by one day.'
+        explanation: 'Move backward (left) and forward (right) by one day.',
       },
       upAndDownArrowKeys: {
         ariaLabel: 'up and down arrow keys',
-        explanation: 'Move backward (up) and forward (down) by one week.'
+        explanation: 'Move backward (up) and forward (down) by one week.',
       },
       pageUpAndPageDownKeys: {
         ariaLabel: 'page up and page down keys',
         displayValue: 'PGUP/PGDN',
-        explanation: 'Switch months.'
+        explanation: 'Switch months.',
       },
       homeAndEndKeys: {
         ariaLabel: 'Home and end keys',
         displayValue: 'HOME/END',
-        explanation: 'Go to the first or last day of a week.'
+        explanation: 'Go to the first or last day of a week.',
       },
       escape: {
         ariaLabel: 'Escape key',
         displayValue: 'ESC',
-        explanation: 'Return to the date input field.'
+        explanation: 'Return to the date input field.',
       },
       questionMark: {
         ariaLabel: 'Question Mark',
-        explanation: 'Open this panel.'
-      }
-    }
+        explanation: 'Open this panel.',
+      },
+    },
   },
   loadingIndicator: {
     progressBar: {
       messages: {
         first: 'Please be patient as this could take up to a minute to load.',
         second: 'Thank you for your patience. Still loading...',
-        third: 'Thank you for waiting.  We’re almost there!'
-      }
+        third: 'Thank you for waiting.  We’re almost there!',
+      },
     },
     spinner: {
       messages: {
         first: 'Loading...',
         second: 'Thank you for your patience. Still loading...',
-        third: 'Sorry for the delay. This is taking longer than expected.'
-      }
-    }
+        third: 'Sorry for the delay. This is taking longer than expected.',
+      },
+    },
   },
   skipLink: {
-    buttonText: 'Skip Navigation'
+    buttonText: 'Skip Navigation',
   },
   select: {
     placeholder: 'Select...',
     clearIndicatorAriaLabel:
-      'reset selection for {labelText}. {selectedItem} is selected'
+      'reset selection for {labelText}. {selectedItem} is selected',
   },
   multiSelect: {
-    selectedItemButtonAriaLabel: 'reset item {selectedItem}'
+    selectedItemButtonAriaLabel: 'reset item {selectedItem}',
   },
   combobox: {
     clearIndicatorAriaLabel:
       'reset selection for {labelText}. {selectedItem} is selected',
-    createLabel: 'Create "{inputValue}"'
+    createLabel: 'Create "{inputValue}"',
   },
   multiCombobox: {
-    selectedItemButtonAriaLabel: 'reset item {selectedItem}'
-  }
+    selectedItemButtonAriaLabel: 'reset item {selectedItem}',
+  },
 };

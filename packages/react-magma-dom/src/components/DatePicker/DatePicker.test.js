@@ -13,7 +13,7 @@ import {
   addDays,
   endOfWeek,
   isSameDay,
-  getDay
+  getDay,
 } from 'date-fns';
 import * as es from 'date-fns/locale/es';
 import { DatePicker } from '.';
@@ -170,7 +170,7 @@ describe('Date Picker', () => {
     );
 
     fireEvent.change(getByLabelText(labelText), {
-      target: { value: 'new value' }
+      target: { value: 'new value' },
     });
 
     expect(onInputChange).toHaveBeenCalled();
@@ -199,7 +199,7 @@ describe('Date Picker', () => {
     getByLabelText(labelText).focus();
 
     fireEvent.change(getByLabelText(labelText), {
-      target: { value: '1/1/1991' }
+      target: { value: '1/1/1991' },
     });
 
     getByLabelText('Toggle Calendar Widget').focus();
@@ -259,7 +259,7 @@ describe('Date Picker', () => {
     getByLabelText(labelText).focus();
 
     fireEvent.change(getByLabelText(labelText), {
-      target: { value: '12' }
+      target: { value: '12' },
     });
 
     getByLabelText('Toggle Calendar Widget').focus();
@@ -303,7 +303,7 @@ describe('Date Picker', () => {
   });
 
   it('should close the calendar when the close button is clicked', () => {
-    const { getByLabelText, getByTestId } = render(
+    const { container, getByLabelText, getByTestId } = render(
       <DatePicker labelText="Date Picker Label" />
     );
 
@@ -312,6 +312,7 @@ describe('Date Picker', () => {
     fireEvent.click(getByLabelText(/close calendar/i));
 
     expect(getByTestId('calendarContainer')).toHaveStyleRule('display', 'none');
+    expect(document.activeElement).toBe(container.querySelector('button'));
   });
 
   it('should close the calendar when there is an input change', () => {
@@ -327,7 +328,7 @@ describe('Date Picker', () => {
     );
 
     fireEvent.change(getByLabelText('Date Picker Label'), {
-      target: { value: '12' }
+      target: { value: '12' },
     });
 
     expect(getByTestId('calendarContainer')).toHaveStyleRule('display', 'none');
@@ -348,7 +349,7 @@ describe('Date Picker', () => {
 
     fireEvent.keyDown(getByLabelText('Toggle Calendar Widget'), {
       key: 'Escape',
-      code: 27
+      code: 27,
     });
 
     expect(getByTestId('calendarContainer')).toHaveStyleRule('display', 'none');
@@ -366,7 +367,7 @@ describe('Date Picker', () => {
 
     fireEvent.keyDown(getByLabelText(labelText), {
       key: '?',
-      code: 63
+      code: 63,
     });
 
     expect(getByText(/select the date/i)).toBeInTheDocument();
@@ -403,7 +404,7 @@ describe('Date Picker', () => {
       fireEvent.focus(datePickerInput);
 
       fireEvent.keyDown(datePickerInput, {
-        key: '?'
+        key: '?',
       });
 
       expect(getByRole('dialog')).toBeVisible();
@@ -420,7 +421,7 @@ describe('Date Picker', () => {
       fireEvent.focus(datePickerInput);
 
       fireEvent.keyDown(datePickerInput, {
-        key: 'abc123'
+        key: 'abc123',
       });
 
       expect(queryByRole('dialog')).not.toBeInTheDocument();
@@ -438,7 +439,7 @@ describe('Date Picker', () => {
 
       fireEvent.keyDown(container.querySelector('table'), {
         key: 'ArrowUp',
-        code: 38
+        code: 38,
       });
 
       fireEvent.focus(container.querySelector('table'));
@@ -462,15 +463,11 @@ describe('Date Picker', () => {
 
       fireEvent.keyDown(container.querySelector('table'), {
         key: 'ArrowUp',
-        code: 38
+        code: 38,
       });
 
       expect(
-        getByText(
-          subWeeks(defaultDate, 1)
-            .getDate()
-            .toString()
-        )
+        getByText(subWeeks(defaultDate, 1).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
@@ -487,15 +484,11 @@ describe('Date Picker', () => {
 
       fireEvent.keyDown(container.querySelector('table'), {
         key: 'ArrowLeft',
-        code: 37
+        code: 37,
       });
 
       expect(
-        getByText(
-          subDays(defaultDate, 1)
-            .getDate()
-            .toString()
-        )
+        getByText(subDays(defaultDate, 1).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
@@ -512,15 +505,11 @@ describe('Date Picker', () => {
 
       fireEvent.keyDown(container.querySelector('table'), {
         key: 'Home',
-        code: 36
+        code: 36,
       });
 
       expect(
-        getByText(
-          startOfWeek(defaultDate, 1)
-            .getDate()
-            .toString()
-        )
+        getByText(startOfWeek(defaultDate, 1).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
@@ -537,15 +526,11 @@ describe('Date Picker', () => {
 
       fireEvent.keyDown(container.querySelector('table'), {
         key: 'PageUp',
-        code: 33
+        code: 33,
       });
 
       expect(
-        getByText(
-          subMonths(defaultDate, 1)
-            .getDate()
-            .toString()
-        )
+        getByText(subMonths(defaultDate, 1).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
@@ -562,15 +547,11 @@ describe('Date Picker', () => {
 
       fireEvent.keyDown(container.querySelector('table'), {
         key: 'PageDown',
-        code: 34
+        code: 34,
       });
 
       expect(
-        getByText(
-          addMonths(defaultDate, 1)
-            .getDate()
-            .toString()
-        )
+        getByText(addMonths(defaultDate, 1).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
@@ -587,15 +568,11 @@ describe('Date Picker', () => {
 
       fireEvent.keyDown(container.querySelector('table'), {
         key: 'ArrowDown',
-        code: 40
+        code: 40,
       });
 
       expect(
-        getByText(
-          addWeeks(defaultDate, 1)
-            .getDate()
-            .toString()
-        )
+        getByText(addWeeks(defaultDate, 1).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
@@ -612,15 +589,11 @@ describe('Date Picker', () => {
 
       fireEvent.keyDown(container.querySelector('table'), {
         key: 'ArrowRight',
-        code: 39
+        code: 39,
       });
 
       expect(
-        getByText(
-          addDays(defaultDate, 1)
-            .getDate()
-            .toString()
-        )
+        getByText(addDays(defaultDate, 1).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
@@ -637,15 +610,11 @@ describe('Date Picker', () => {
 
       fireEvent.keyDown(container.querySelector('table'), {
         key: 'End',
-        code: 35
+        code: 35,
       });
 
       expect(
-        getByText(
-          endOfWeek(defaultDate)
-            .getDate()
-            .toString()
-        )
+        getByText(endOfWeek(defaultDate).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
@@ -659,24 +628,24 @@ describe('Date Picker', () => {
       fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
       fireEvent.keyDown(container.querySelector('table'), {
-        key: 'Tab'
+        key: 'Tab',
       });
 
       fireEvent.keyDown(container.querySelector('table'), {
-        key: 'Tab'
+        key: 'Tab',
       });
 
       fireEvent.keyDown(container.querySelector('table'), {
-        key: 'Tab'
+        key: 'Tab',
       });
 
       fireEvent.keyDown(container.querySelector('table'), {
         key: 'Escape',
-        code: 27
+        code: 27,
       });
 
       expect(container.querySelector('table')).not.toBeVisible();
-      expect(document.activeElement).toBe(container.querySelector('input'));
+      expect(document.activeElement).toBe(container.querySelector('button'));
     });
 
     it('?', () => {
@@ -691,7 +660,7 @@ describe('Date Picker', () => {
       getByText(defaultDate.getDate().toString()).focus();
 
       fireEvent.keyDown(container.querySelector('table'), {
-        key: '?'
+        key: '?',
       });
 
       expect(getByText(/keyboard shortcuts/i)).toBeVisible();
@@ -707,7 +676,7 @@ describe('Date Picker', () => {
       fireEvent.focus(container.querySelector('input'));
       fireEvent.keyDown(container.querySelector('table'), {
         key: 'Escape',
-        code: 27
+        code: 27,
       });
 
       expect(container.querySelector('table')).not.toBeVisible();
@@ -723,7 +692,7 @@ describe('Date Picker', () => {
       fireEvent.focus(container.querySelector('input'));
 
       fireEvent.keyDown(container.querySelector('table'), {
-        key: '?'
+        key: '?',
       });
 
       expect(getByText(/keyboard shortcuts/i)).toBeVisible();
@@ -742,7 +711,7 @@ describe('Date Picker', () => {
 
       fireEvent.keyDown(container.querySelector('table'), {
         key: 'Enter',
-        code: 13
+        code: 13,
       });
 
       expect(
@@ -763,7 +732,7 @@ describe('Date Picker', () => {
 
       fireEvent.keyDown(container.querySelector('table'), {
         key: 'Space',
-        code: 32
+        code: 32,
       });
 
       expect(
@@ -784,7 +753,7 @@ describe('Date Picker', () => {
 
       fireEvent.keyDown(container.querySelector('table'), {
         key: 'f',
-        code: 70
+        code: 70,
       });
 
       expect(getByText(defaultDate.getDate().toString())).not.toHaveStyleRule(
@@ -800,7 +769,7 @@ describe('Date Picker', () => {
         <I18nContext.Provider
           value={{
             ...defaultI18n,
-            locale: es
+            locale: es,
           }}
         >
           <DatePicker
@@ -823,7 +792,7 @@ describe('Date Picker', () => {
         wednesday: 'i18nWe',
         thursday: 'i18nTh',
         friday: 'i18nFr',
-        saturday: 'i18nSa'
+        saturday: 'i18nSa',
       };
       const { getByText } = render(
         <I18nContext.Provider
@@ -831,8 +800,8 @@ describe('Date Picker', () => {
             ...defaultI18n,
             days: {
               ...defaultI18n.days,
-              min
-            }
+              min,
+            },
           }}
         >
           <DatePicker labelText="Spanish" />
@@ -856,8 +825,8 @@ describe('Date Picker', () => {
             datePicker: {
               ...defaultI18n.datePicker,
               previousMonthAriaLabel: 'I am previous',
-              nextMonthAriaLabel: 'I am next'
-            }
+              nextMonthAriaLabel: 'I am next',
+            },
           }}
         >
           <DatePicker labelText="Spanish" />
@@ -877,9 +846,9 @@ describe('Date Picker', () => {
               ...defaultI18n.datePicker,
               helpModal: {
                 ...defaultI18n.datePicker.helpModal,
-                helpButtonAriaLabel: 'I am the help button'
-              }
-            }
+                helpButtonAriaLabel: 'I am the help button',
+              },
+            },
           }}
         >
           <DatePicker labelText="Spanish" />
@@ -896,8 +865,8 @@ describe('Date Picker', () => {
             ...defaultI18n,
             datePicker: {
               ...defaultI18n.datePicker,
-              calendarCloseAriaLabel: 'I am the close button'
-            }
+              calendarCloseAriaLabel: 'I am the close button',
+            },
           }}
         >
           <DatePicker labelText="Spanish" />
@@ -914,8 +883,8 @@ describe('Date Picker', () => {
             ...defaultI18n,
             datePicker: {
               ...defaultI18n.datePicker,
-              startOfWeek: 'wednesday'
-            }
+              startOfWeek: 'wednesday',
+            },
           }}
         >
           <DatePicker

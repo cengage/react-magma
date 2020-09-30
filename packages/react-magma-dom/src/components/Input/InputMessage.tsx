@@ -8,18 +8,18 @@ export interface InputMessageProps
   extends React.HTMLAttributes<HTMLDivElement> {
   id?: string;
   isInverse?: boolean;
-  isError?: boolean;
+  hasError?: boolean;
 }
 
 const Message = styled.div<InputMessageProps>`
   align-items: center;
   background: ${props =>
-    props.isInverse && props.isError ? props.theme.colors.danger : 'none'};
+    props.isInverse && props.hasError ? props.theme.colors.danger : 'none'};
   border-radius: 5px;
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral08
-      : props.isError
+      : props.hasError
       ? props.theme.colors.danger
       : props.theme.colors.neutral03};
   display: flex;
@@ -27,7 +27,7 @@ const Message = styled.div<InputMessageProps>`
   line-height: 1.3;
   margin-top: 5px;
   min-height: 20px;
-  padding: ${props => (props.isInverse && props.isError ? '5px 10px' : '0')};
+  padding: ${props => (props.isInverse && props.hasError ? '5px 10px' : '0')};
   text-align: left;
 `;
 
@@ -41,7 +41,7 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
   children,
   id,
   isInverse,
-  isError,
+  hasError,
   ...other
 }: InputMessageProps) => {
   const theme = React.useContext(ThemeContext);
@@ -53,10 +53,10 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
         data-testid="inputMessage"
         id={id}
         isInverse={isInverse}
-        isError={isError}
+        hasError={hasError}
         theme={theme}
       >
-        {isError && (
+        {hasError && (
           <IconWrapper>
             <Notification2Icon aria-label="Error" size={18} />
           </IconWrapper>

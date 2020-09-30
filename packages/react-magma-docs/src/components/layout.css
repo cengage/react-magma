@@ -522,7 +522,7 @@ pre tt:after {
 /* Layout component styles */
 
 @media (min-width: 1024px) {
-  .main {
+  .main-container {
     display: grid;
     grid-template-columns: 280px auto;
     grid-template-rows: 80px auto;

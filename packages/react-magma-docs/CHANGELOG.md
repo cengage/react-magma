@@ -3,6 +3,101 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.88](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.87...v2.0.0-beta.88) (2020-09-30)
+
+**Note:** Version bump only for package react-magma-docs
+
+
+
+
+
+# [2.0.0-beta.87](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.86...v2.0.0-beta.87) (2020-09-30)
+
+
+### Bug Fixes
+
+* **checkbox, toggle:** fix aria-describedby casing, add error examples ([697053f](http://stash.cengage.com:7999/FRONT/react-magma/commits/697053fa148a959ecf444f407c8d0db40f50dac3))
+* **radio, checkbox, toggle:** fix styles, update docs, small refactor ([103786e](http://stash.cengage.com:7999/FRONT/react-magma/commits/103786e207730fb43707d05f5b7f362d724fb08f))
+
+
+### Features
+
+* **checkbox, toggle:** add error message ([c292f78](http://stash.cengage.com:7999/FRONT/react-magma/commits/c292f7829840cbd875df9ce8d0d2b082432a30f7))
+* **radio:** adding error message prop to radio group ([0d779b4](http://stash.cengage.com:7999/FRONT/react-magma/commits/0d779b4868293283093c08a7204c1f528b3a5ff4))
+* **radio buttons:** add error styles for radio buttons ([10f7e51](http://stash.cengage.com:7999/FRONT/react-magma/commits/10f7e51cdd7613ab45fa8c00dad89773a4c6ae10))
+* **radio buttons:** more error state ([fc5a849](http://stash.cengage.com:7999/FRONT/react-magma/commits/fc5a849f7bff25e680de46b30fecefe872d47d5c))
+
+
+
+
+
+# [2.0.0-beta.86](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.85...v2.0.0-beta.86) (2020-09-29)
+
+**Note:** Version bump only for package react-magma-docs
+
+
+
+
+
+# [2.0.0-beta.85](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.84...v2.0.0-beta.85) (2020-09-29)
+
+**Note:** Version bump only for package react-magma-docs
+
+
+
+
+
+# [2.0.0-beta.84](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.83...v2.0.0-beta.84) (2020-09-29)
+
+
+### Features
+
+* **dropdown:** add a DropdownMenuGroup component for role="group" ([501590b](http://stash.cengage.com:7999/FRONT/react-magma/commits/501590bac057346a5d12b62d1821766178d81ca8))
+* **dropdown:** dropdown header in menu group can be node ([2f3379e](http://stash.cengage.com:7999/FRONT/react-magma/commits/2f3379e00cd65f8922301ba19c461e32b5688348))
+
+
+
+
+
+# [2.0.0-beta.83](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.82...v2.0.0-beta.83) (2020-09-24)
+
+**Note:** Version bump only for package react-magma-docs
+
+
+
+
+
+# [2.0.0-beta.82](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.81...v2.0.0-beta.82) (2020-09-23)
+
+**Note:** Version bump only for package react-magma-docs
+
+
+
+
+
+# [2.0.0-beta.81](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.80...v2.0.0-beta.81) (2020-09-23)
+
+
+### Features
+
+* **indeterminate-checkbox:** add announce text for all statuses ([56b52b0](http://stash.cengage.com:7999/FRONT/react-magma/commits/56b52b042c4f65b547093650d6a18cb490a7b6d7))
+
+
+
+
+
+# [2.0.0-beta.80](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.79...v2.0.0-beta.80) (2020-09-23)
+
+
+### Bug Fixes
+
+* fix merge error ([3d884bc](http://stash.cengage.com:7999/FRONT/react-magma/commits/3d884bc9758418a4f100c9e072978d8f8488ab8c))
+* **platform:** platform/docs-level a11y fixes ([c4f8a5d](http://stash.cengage.com:7999/FRONT/react-magma/commits/c4f8a5d8e30abc88f5508ec7fc61d97463bff802))
+
+
+
+
+
 # [2.0.0-beta.79](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.78...v2.0.0-beta.79) (2020-09-23)
 
 

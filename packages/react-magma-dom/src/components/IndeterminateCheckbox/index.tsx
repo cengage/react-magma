@@ -4,13 +4,18 @@ import {
   CheckboxProps,
   HiddenLabelText,
   HiddenInput,
-  StyledFakeInput
+  StyledFakeInput,
 } from '../Checkbox';
 import { CheckIcon } from 'react-magma-icons';
+import { FormGroupContext } from '../FormGroup';
+import { InputMessage } from '../Input/InputMessage';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';
 import { useGenerateId, Omit } from '../../utils';
+import { VisuallyHidden } from '../VisuallyHidden';
+import { Announce } from '../Announce';
+import { I18nContext } from '../../i18n';
 
 export interface IndeterminateCheckboxProps
   extends Omit<CheckboxProps, 'checked'> {
@@ -20,7 +25,7 @@ export interface IndeterminateCheckboxProps
 export enum IndeterminateCheckboxStatus {
   checked = 'checked',
   indeterminate = 'indeterminate',
-  unchecked = 'unchecked' //default
+  unchecked = 'unchecked', //default
 }
 
 const IndeterminateIcon = styled.span<{
@@ -70,11 +75,15 @@ export const IndeterminateCheckbox: React.FunctionComponent<IndeterminateCheckbo
     }
 
     const theme = React.useContext(ThemeContext);
+    const i18n = React.useContext(I18nContext);
+    const context = React.useContext(FormGroupContext);
 
     const {
       color,
       containerStyle,
       disabled,
+      hasError,
+      errorMessage,
       inputStyle,
       isInverse,
       labelStyle,
@@ -85,45 +94,107 @@ export const IndeterminateCheckbox: React.FunctionComponent<IndeterminateCheckbo
       ...other
     } = props;
 
+    const isIndeterminate = status === 'indeterminate';
+    const isUnchecked = status === 'unchecked';
+
+    function replaceLabelTextForAnnounceText(baseAnnounceText) {
+      return baseAnnounceText.replace(
+        /\{labelText\}/g,
+        getStringifiedLabelText(labelText)
+      );
+    }
+
+    function getStringifiedLabelText(node) {
+      if (['string', 'number'].includes(typeof node)) return node;
+      if (node instanceof Array)
+        return node.map(getStringifiedLabelText).join('');
+      if (typeof node === 'object' && node)
+        return getStringifiedLabelText(node.props.children);
+    }
+
+    const showAnnounce = isChecked || isIndeterminate || isUnchecked;
+    const announceText = isChecked
+      ? replaceLabelTextForAnnounceText(
+          i18n.indeterminateCheckbox.isCheckedAnnounce
+        )
+      : isIndeterminate
+      ? replaceLabelTextForAnnounceText(
+          i18n.indeterminateCheckbox.isIndeterminateAnnounce
+        )
+      : isUnchecked
+      ? replaceLabelTextForAnnounceText(
+          i18n.indeterminateCheckbox.isUncheckedAnnounce
+        )
+      : '';
+
+    const descriptionId = errorMessage ? `${id}__desc` : null;
+    const groupDescriptionId = context.descriptionId;
+
+    const describedBy =
+      descriptionId && groupDescriptionId
+        ? `${groupDescriptionId} ${descriptionId}`
+        : descriptionId
+        ? descriptionId
+        : groupDescriptionId
+        ? groupDescriptionId
+        : null;
+
     return (
-      <StyledContainer style={containerStyle}>
-        <HiddenInput
-          {...other}
-          checked={isChecked}
-          data-testid={testId}
-          disabled={disabled}
-          id={id}
-          ref={ref}
-          type="checkbox"
-          onChange={handleChange}
-        />
-        <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
-          <StyledFakeInput
+      <>
+        <StyledContainer style={containerStyle}>
+          <HiddenInput
+            {...other}
+            aria-describedby={describedBy}
             checked={isChecked}
-            color={color ? color : ''}
+            data-testid={testId}
             disabled={disabled}
-            isIndeterminate={status === 'indeterminate'}
-            isInverse={isInverse}
-            style={inputStyle}
-            theme={theme}
-          >
-            {status === 'indeterminate' && (
-              <IndeterminateIcon
-                data-testid="indeterminateIcon"
-                color={color ? color : ''}
-                disabled={disabled}
-                theme={theme}
-              />
+            id={id}
+            ref={ref}
+            type="checkbox"
+            onChange={handleChange}
+          />
+          <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
+            <StyledFakeInput
+              checked={isChecked}
+              color={color ? color : ''}
+              disabled={disabled}
+              hasError={context.hasError || !!errorMessage}
+              isIndeterminate={isIndeterminate}
+              isInverse={isInverse}
+              style={inputStyle}
+              theme={theme}
+            >
+              {isIndeterminate && (
+                <IndeterminateIcon
+                  data-testid="indeterminateIcon"
+                  color={color ? color : ''}
+                  disabled={disabled}
+                  theme={theme}
+                />
+              )}
+              {isChecked && <CheckIcon size={12} />}
+            </StyledFakeInput>
+            {isTextVisuallyHidden ? (
+              <HiddenLabelText>{labelText}</HiddenLabelText>
+            ) : (
+              labelText
             )}
-            {isChecked && <CheckIcon size={12} />}
-          </StyledFakeInput>
-          {isTextVisuallyHidden ? (
-            <HiddenLabelText>{labelText}</HiddenLabelText>
-          ) : (
-            labelText
-          )}
-        </StyledLabel>
-      </StyledContainer>
+          </StyledLabel>
+          <Announce>
+            {showAnnounce && <VisuallyHidden>{announceText}</VisuallyHidden>}
+          </Announce>
+        </StyledContainer>
+        {!!errorMessage && (
+          <InputMessage
+            id={descriptionId}
+            hasError
+            isInverse={isInverse}
+            style={{ paddingLeft: '30px' }}
+          >
+            {errorMessage}
+          </InputMessage>
+        )}
+      </>
     );
   }
 );

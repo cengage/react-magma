@@ -171,6 +171,42 @@ describe('Checkbox', () => {
     );
   });
 
+  it('should render a checkbox with an error message', () => {
+    const errorMessage = 'test error';
+    const labelText = 'test label';
+    const { getByText, getByLabelText, container } = render(
+      <Checkbox errorMessage={errorMessage} id="testId" labelText={labelText} />
+    );
+
+    const span = container.querySelector('span');
+    expect(span).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(getByLabelText(labelText)).toHaveAttribute(
+      'aria-describedby',
+      'testId__desc'
+    );
+
+    expect(getByText(errorMessage)).toBeInTheDocument();
+    expect(getByText(errorMessage).parentElement).toHaveAttribute(
+      'id',
+      'testId__desc'
+    );
+  });
+
+  it('should render an inverse checkbox with error styling', () => {
+    const errorMessage = 'test error';
+    const labelText = 'test label';
+    const { container } = render(
+      <Checkbox errorMessage={errorMessage} isInverse labelText={labelText} />
+    );
+
+    const span = container.querySelector('span');
+    expect(span).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(span).toHaveStyleRule(
+      'box-shadow',
+      `0 0 0 1px ${magma.colors.neutral08}`
+    );
+  });
+
   describe('events', () => {
     it('should trigger the passed in onBlur when focus is removed', () => {
       const onBlurSpy = jest.fn();
@@ -183,7 +219,7 @@ describe('Checkbox', () => {
         getByTestId(testId),
         new MouseEvent('blur', {
           bubbles: true,
-          cancelable: true
+          cancelable: true,
         })
       );
 
@@ -213,7 +249,7 @@ describe('Checkbox', () => {
         getByTestId(testId),
         new MouseEvent('focus', {
           bubbles: true,
-          cancelable: true
+          cancelable: true,
         })
       );
 

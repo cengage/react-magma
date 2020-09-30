@@ -8,7 +8,7 @@ import { IconProps } from 'react-magma-icons';
 
 export enum InputSize {
   large = 'large',
-  medium = 'medium' //default
+  medium = 'medium', //default
 }
 
 export enum InputType {
@@ -16,7 +16,7 @@ export enum InputType {
   number = 'number',
   password = 'password',
   search = 'search',
-  text = 'text' // default
+  text = 'text', // default
 }
 
 export interface BaseInputProps
@@ -26,6 +26,7 @@ export interface BaseInputProps
   icon?: React.ReactElement<IconProps>;
   iconAriaLabel?: string;
   iconPosition?: InputIconPosition;
+  iconRef?: React.Ref<HTMLButtonElement>;
   inputSize?: InputSize;
   inputStyle?: React.CSSProperties;
   isInverse?: boolean;
@@ -39,7 +40,7 @@ export interface BaseInputProps
 
 export enum InputIconPosition {
   left = 'left',
-  right = 'right'
+  right = 'right',
 }
 
 const InputWrapper = styled.div`
@@ -51,11 +52,9 @@ const InputWrapper = styled.div`
 export const baseInputStyles = props => css`
   background: ${props.theme.colors.neutral08};
   border: 1px solid;
-  border-color: ${
-    props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral03
-  };
+  border-color: ${props.isInverse
+    ? props.theme.colors.neutral08
+    : props.theme.colors.neutral03};
   border-radius: 4px;
   color: ${props.theme.colors.neutral01};
   display: block;
@@ -68,43 +67,43 @@ export const baseInputStyles = props => css`
   width: 100%;
 
   ${props.iconPosition === 'left' &&
-    css`
-      padding-left: 35px;
-    `}
+  css`
+    padding-left: 35px;
+  `}
 
-    ${props.iconPosition === 'right' &&
-      css`
-        padding-right: 35px;
-      `}
+  ${props.iconPosition === 'right' &&
+  css`
+    padding-right: 35px;
+  `}
   
   ${props.hasError &&
-    css`
-      border-color: ${props.theme.colors.danger};
-      box-shadow: 0 0 0 1px
-        ${props.isInverse
-          ? props.theme.colors.neutral08
-          : props.theme.colors.danger};
-    `}
+  css`
+    border-color: ${props.theme.colors.danger};
+    box-shadow: 0 0 0 1px
+      ${props.isInverse
+        ? props.theme.colors.neutral08
+        : props.theme.colors.danger};
+  `}
 
   ${props.inputSize === 'large' &&
-    css`
-      font-size: 22px;
-      height: 58px;
-      line-height: 33px;
-      padding: 0 15px;
-    `}
+  css`
+    font-size: 22px;
+    height: 58px;
+    line-height: 33px;
+    padding: 0 15px;
+  `}
 
     ${props.iconPosition === 'left' &&
-      props.inputSize === 'large' &&
-      css`
-        padding-left: 50px;
-      `}
+  props.inputSize === 'large' &&
+  css`
+    padding-left: 50px;
+  `}
   
       ${props.iconPosition === 'right' &&
-        props.inputSize === 'large' &&
-        css`
-          padding-right: 50px;
-        `}
+  props.inputSize === 'large' &&
+  css`
+    padding-right: 50px;
+  `}
 
   &::placeholder {
     color: ${props.theme.colors.neutral03};
@@ -113,25 +112,23 @@ export const baseInputStyles = props => css`
 
   &:focus {
     outline: 2px dotted
-      ${
-        props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus
-      };
+      ${props.isInverse
+        ? props.theme.colors.focusInverse
+        : props.theme.colors.focus};
     outline-offset: 4px;
   }
 
   ${props.disabled &&
-    css`
-      background: ${props.theme.colors.neutral07};
-      border-color: ${props.theme.colors.neutral05};
-      color: ${props.theme.colors.disabledText};
-      cursor: not-allowed;
+  css`
+    background: ${props.theme.colors.neutral07};
+    border-color: ${props.theme.colors.neutral05};
+    color: ${props.theme.colors.disabledText};
+    cursor: not-allowed;
 
-      &::placeholder {
-        color: ${props.theme.colors.disabledText};
-      }
-    `}
+    &::placeholder {
+      color: ${props.theme.colors.disabledText};
+    }
+  `}
 `;
 
 const StyledInput = styled.input<BaseInputProps>`
@@ -193,6 +190,7 @@ export const BaseInput: React.FunctionComponent<BaseInputProps> = React.forwardR
       hasError,
       icon,
       iconAriaLabel,
+      iconRef,
       onIconClick,
       onIconKeyDown,
       inputSize,
@@ -254,7 +252,7 @@ export const BaseInput: React.FunctionComponent<BaseInputProps> = React.forwardR
           >
             {React.Children.only(
               React.cloneElement(icon, {
-                size: getIconSize(inputSize ? inputSize : InputSize.medium)
+                size: getIconSize(inputSize ? inputSize : InputSize.medium),
               })
             )}
           </IconWrapper>
@@ -266,6 +264,7 @@ export const BaseInput: React.FunctionComponent<BaseInputProps> = React.forwardR
             icon={icon}
             onClick={onIconClick}
             onKeyDown={onIconKeyDown}
+            ref={iconRef}
             shape={ButtonShape.fill}
             size={
               inputSize === InputSize.large

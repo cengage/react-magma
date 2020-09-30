@@ -6,7 +6,7 @@ import {
   CaretLeftIcon,
   CaretRightIcon,
   CaretUpIcon,
-  IconProps
+  IconProps,
 } from 'react-magma-icons';
 import { DropdownContext, DropdownDropDirection } from '.';
 import { Omit, XOR } from '../../utils';
@@ -87,6 +87,7 @@ export const DropdownButton: React.FunctionComponent<DropdownButtonProps> = (
       icon={icon}
       iconPosition={iconPositionToUse}
       onClick={handleClick}
+      onKeyDown={context.handleButtonKeyDown}
       ref={context.toggleRef}
     >
       {children}

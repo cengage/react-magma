@@ -35,6 +35,7 @@ interface DropdownContextInterface {
   alignment?: DropdownAlignment;
   closeDropdown?: (event: React.SyntheticEvent | React.KeyboardEvent) => void;
   dropDirection?: DropdownDropDirection;
+  handleButtonKeyDown?: (event: React.KeyboardEvent) => void;
   handleMenuBlur?: (event: React.FocusEvent) => void;
   itemRefArray?: any;
   isFixedWidth?: boolean;
@@ -42,6 +43,7 @@ interface DropdownContextInterface {
   maxHeight?: string;
   menuRef?: any;
   openDropdown?: () => void;
+  registerDropdownMenuItem: (element) => void;
   setActiveItemIndex?: React.Dispatch<React.SetStateAction<number>>;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   toggleRef?: any;
@@ -51,6 +53,7 @@ interface DropdownContextInterface {
 export const DropdownContext = React.createContext<DropdownContextInterface>({
   isOpen: false,
   setIsOpen: () => false,
+  registerDropdownMenuItem: element => {},
 });
 
 export const useDropdownContext = () => React.useContext(DropdownContext);
@@ -84,6 +87,34 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
     const menuRef = React.useRef<any>([]);
 
     const ref = useForkedRef(forwardedRef, ownRef);
+
+    function registerDropdownMenuItem(menuItemRef) {
+      if (
+        itemRefArray.current.find(
+          ({ current: item }) => item === menuItemRef.current
+        ) == null
+      ) {
+        const index = itemRefArray.current.findIndex(({ current: item }) => {
+          if (!item || !menuItemRef.current) return false;
+
+          return Boolean(
+            item.compareDocumentPosition(menuItemRef.current) &
+              Node.DOCUMENT_POSITION_PRECEDING
+          );
+        });
+
+        const newItem = menuItemRef;
+
+        itemRefArray.current =
+          index === -1
+            ? [...itemRefArray.current, newItem]
+            : [
+                ...itemRefArray.current.slice(0, index),
+                newItem,
+                ...itemRefArray.current.slice(index),
+              ];
+      }
+    }
 
     React.useEffect(() => {
       if (activeIndex >= 0) {
@@ -183,6 +214,14 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
       }
     }
 
+    function handleButtonKeyDown(event: React.KeyboardEvent) {
+      const { key, shiftKey } = event;
+
+      if ((key === 'Tab' || (shiftKey && key === 'Tab')) && isOpen) {
+        setIsOpen(false);
+      }
+    }
+
     function handleMenuBlur(event: React.SyntheticEvent) {
       const { currentTarget } = event;
 
@@ -211,6 +250,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
           alignment,
           closeDropdown,
           dropDirection,
+          handleButtonKeyDown,
           handleMenuBlur,
           itemRefArray,
           isFixedWidth: !!width,
@@ -218,6 +258,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
           maxHeight: maxHeightString,
           menuRef,
           openDropdown,
+          registerDropdownMenuItem,
           setActiveItemIndex,
           setIsOpen,
           toggleRef,
