@@ -100,7 +100,8 @@ export const DropdownMenuItem: React.FunctionComponent<DropdownMenuItemProps> = 
       context.activeItemIndex >= 0 && context.activeItemIndex !== index;
 
     React.useEffect(() => {
-      if (!isDisabled) context.registerDropdownMenuItem(ownRef);
+      if (!isDisabled)
+        context.registerDropdownMenuItem(context.itemRefArray, ownRef);
     }, []);
 
     return (
