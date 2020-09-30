@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.87](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.86...v2.0.0-beta.87) (2020-09-30)
+
+
+### Bug Fixes
+
+* **checkbox, toggle:** fix aria-describedby casing, add error examples ([697053f](http://stash.cengage.com:7999/FRONT/react-magma/commits/697053fa148a959ecf444f407c8d0db40f50dac3))
+* **radio, checkbox, toggle:** fix styles, update docs, small refactor ([103786e](http://stash.cengage.com:7999/FRONT/react-magma/commits/103786e207730fb43707d05f5b7f362d724fb08f))
+
+
+### Features
+
+* **checkbox, toggle:** add error message ([c292f78](http://stash.cengage.com:7999/FRONT/react-magma/commits/c292f7829840cbd875df9ce8d0d2b082432a30f7))
+* **radio:** adding error message prop to radio group ([0d779b4](http://stash.cengage.com:7999/FRONT/react-magma/commits/0d779b4868293283093c08a7204c1f528b3a5ff4))
+* **radio buttons:** add error styles for radio buttons ([10f7e51](http://stash.cengage.com:7999/FRONT/react-magma/commits/10f7e51cdd7613ab45fa8c00dad89773a4c6ae10))
+* **radio buttons:** more error state ([fc5a849](http://stash.cengage.com:7999/FRONT/react-magma/commits/fc5a849f7bff25e680de46b30fecefe872d47d5c))
+
+
+
+
+
 # [2.0.0-beta.86](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.85...v2.0.0-beta.86) (2020-09-29)
 
 **Note:** Version bump only for package react-magma-docs
