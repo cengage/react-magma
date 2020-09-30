@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { I18nContext } from '../../i18n';
 import { DropdownContext } from '.';
 import { IconProps, CheckIcon } from 'react-magma-icons';
 import { Omit, useForkedRef } from '../../utils';
@@ -103,11 +104,12 @@ export const DropdownMenuItem: React.FunctionComponent<DropdownMenuItemProps> = 
       if (!isDisabled) context.registerDropdownMenuItem(ownRef);
     }, []);
 
+    const i18n = React.useContext(I18nContext);
+
     return (
       <StyledItem
         {...other}
         aria-disabled={isDisabled}
-        aria-selected={isActive}
         isDisabled={isDisabled}
         isFixedWidth={context.isFixedWidth}
         isInactive={isInactive}
@@ -122,7 +124,7 @@ export const DropdownMenuItem: React.FunctionComponent<DropdownMenuItemProps> = 
         {icon && <IconWrapper theme={theme}>{icon}</IconWrapper>}
         {isActive && (
           <IconWrapper theme={theme}>
-            <CheckIcon />
+            <CheckIcon aria-label={i18n.dropdown.menuItemSelectedAriaLabel} />
           </IconWrapper>
         )}
         {children}

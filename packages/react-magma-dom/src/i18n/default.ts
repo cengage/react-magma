@@ -192,5 +192,9 @@ export const defaultI18n: I18nInterface = {
   },
   multiCombobox: {
     selectedItemButtonAriaLabel: 'reset item {selectedItem}'
+  },
+  dropdown: {
+    menuItemSelectedAriaLabel: '(selected)',
+    toggleMenuAriaLabel: 'Toggle menu'
   }
 };
