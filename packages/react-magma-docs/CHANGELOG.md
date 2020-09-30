@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.89](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.88...v2.0.0-beta.89) (2020-09-30)
+
+
+### Bug Fixes
+
+* **tabs:** a11y enhancements for tablist and tab ([ad910eb](http://stash.cengage.com:7999/FRONT/react-magma/commits/ad910eb1a9030ce2df44faeba3fba06639830ade))
+* **tabs:** fix string type in tabs api table ([79ed8d6](http://stash.cengage.com:7999/FRONT/react-magma/commits/79ed8d62b91886c46c9feb8c16f7640aa2710075))
+
+
+
+
+
 # [2.0.0-beta.88](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.87...v2.0.0-beta.88) (2020-09-30)
 
 **Note:** Version bump only for package react-magma-docs
