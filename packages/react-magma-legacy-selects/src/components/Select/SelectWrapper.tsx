@@ -25,7 +25,7 @@ export const SelectWrapper: React.FunctionComponent<SelectWrapperProps> = ({
     {children}
     <InputMessage
       isInverse={isInverse}
-      isError={!!errorMessage}
+      hasError={!!errorMessage}
       style={messageStyle}
     >
       {(errorMessage || helperMessage) && (

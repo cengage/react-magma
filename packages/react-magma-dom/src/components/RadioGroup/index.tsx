@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { FormGroupLabel } from '../FormGroup';
 import { HiddenStyles } from '../../utils/UtilityStyles';
+import { InputMessage } from '../Input/InputMessage';
+
 import styled from '../../theme/styled';
 import { omit, useGenerateId } from '../../utils';
 
@@ -13,16 +15,25 @@ export interface RadioGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
   containerStyle?: React.CSSProperties;
+  errorMessage?: React.ReactNode;
+  helperMessage?: React.ReactNode;
+  isInverse?: boolean;
+  isRequired?: boolean;
   isTextVisuallyHidden?: boolean;
   labelledById?: string;
   labelStyle?: React.CSSProperties;
   labelText?: React.ReactNode;
   name: string;
+  required?: boolean;
   testId?: string;
   value?: string;
 }
 
 export interface RadioContextInterface {
+  descriptionId?: string;
+  hasError?: boolean;
+  isInverse?: boolean;
+  isRequired?: boolean;
   name: string;
   selectedValue?: string;
   onBlur?: () => void;
@@ -31,6 +42,7 @@ export interface RadioContextInterface {
 }
 
 export const RadioContext = React.createContext<RadioContextInterface>({
+  hasError: false,
   name: 'defaultName'
 });
 
@@ -54,16 +66,22 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
 
   const {
     containerStyle,
+    errorMessage,
+    helperMessage,
+    isInverse,
+    isRequired,
+    isTextVisuallyHidden,
     labelledById,
     labelStyle,
     labelText,
-    isTextVisuallyHidden,
     testId,
     name,
     children,
     ...rest
   } = props;
   const other = omit(['onBlur', 'onChange', 'onFocus', 'id'], rest);
+
+  const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
   return (
     <div
@@ -75,6 +93,10 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
     >
       <RadioContext.Provider
         value={{
+          descriptionId,
+          hasError: !!errorMessage,
+          isInverse,
+          isRequired,
           name,
           selectedValue,
           onBlur: props.onBlur,
@@ -94,6 +116,16 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
           </FormGroupLabel>
         )}
         {children}
+
+        <InputMessage
+          id={descriptionId}
+          hasError={!!errorMessage}
+          isInverse={isInverse}
+        >
+          {(errorMessage || helperMessage) && (
+            <>{errorMessage ? errorMessage : helperMessage}</>
+          )}
+        </InputMessage>
       </RadioContext.Provider>
     </div>
   );

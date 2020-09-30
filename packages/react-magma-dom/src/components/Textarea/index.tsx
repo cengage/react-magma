@@ -102,7 +102,7 @@ export const Textarea: React.FunctionComponent<TextareaProps> = React.forwardRef
         <InputMessage
           isInverse={isInverse}
           id={descriptionId}
-          isError={!!errorMessage}
+          hasError={!!errorMessage}
           style={messageStyle}
         >
           {(errorMessage || helperMessage) && (

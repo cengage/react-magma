@@ -46,9 +46,11 @@ const HiddenInput = styled.input<{ indeterminate?: boolean }>`
 
 const StyledFakeInput = styled.span<{
   checked?: boolean;
+  hasError?: boolean;
   isInverse: boolean;
   disabled: boolean;
   color: string;
+  textPosition?: RadioTextPosition;
   theme?: any;
 }>`
   ${DisplayInputStyles};
@@ -63,7 +65,13 @@ const StyledFakeInput = styled.span<{
   }};
   border-color: ${props => buildDisplayInputBorderColor(props)};
   border-radius: 100%;
+  box-shadow: ${props =>
+    props.isInverse && props.hasError
+      ? `0 0 0 1px ${props.theme.colors.neutral08}`
+      : '0 0 0'};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+  margin: ${props =>
+    props.textPosition === 'left' ? '2px 0 0 10px' : '2px 10px 0 0'};
 
   ${HiddenInput}:checked:not(:disabled) + label & {
     background: ${props => {
@@ -118,6 +126,7 @@ export const Radio: React.FunctionComponent<RadioProps> = React.forwardRef(
       isTextVisuallyHidden,
       labelStyle,
       labelText,
+      required,
       testId,
       textPosition,
       value,
@@ -130,19 +139,25 @@ export const Radio: React.FunctionComponent<RadioProps> = React.forwardRef(
       <StyledContainer style={containerStyle}>
         <HiddenInput
           {...other}
+          aria-labelledby={context.descriptionId}
           id={id}
           ref={ref}
           checked={context.selectedValue === value}
           data-testid={testId}
           disabled={disabled}
           name={context.name}
+          required={context.isRequired || required}
           type="radio"
           value={value}
           onBlur={context.onBlur}
           onChange={context.onChange}
           onFocus={context.onFocus}
         />
-        <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
+        <StyledLabel
+          htmlFor={id}
+          isInverse={context.isInverse || isInverse}
+          style={labelStyle}
+        >
           {!isTextVisuallyHidden &&
             textPosition === RadioTextPosition.left &&
             labelText}
@@ -151,8 +166,10 @@ export const Radio: React.FunctionComponent<RadioProps> = React.forwardRef(
             checked={context.selectedValue === value}
             color={color ? color : ''}
             disabled={disabled}
-            isInverse={isInverse}
+            isInverse={context.isInverse || isInverse}
+            hasError={context.hasError}
             style={inputStyle}
+            textPosition={textPosition}
             theme={theme}
           >
             <SelectedIcon color={color ? color : ''} theme={theme} />

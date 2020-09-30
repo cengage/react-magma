@@ -98,46 +98,143 @@ By default, the radio buttons use the theme's primary color. But any other color
     </RadioGroup>
 ```
 
-## Inverse
+## Helper Message
 
-`isInverse` is an optional boolean prop, that may be passed in when radio buttons are to be displayed on a dark background.
+The `helperMessage` appears underneath the group of radio buttons. It will not appear if an error message is present. Can be a node or a string.
 
 ```.jsx
+<RadioGroup
+      helperMessage="Your choice of color is important"
+      labelText="Choose a color"
+      name="helperMessage">
+      <Radio
+          labelText='Red'
+          value='R' />
+      <Radio
+          labelText='Blue'
+          value='B' />
+      <Radio
+          labelText='Yellow'
+          value='Y' />
+    </RadioGroup>
+```
+
+## Required Fields / Error Message
+
+The `isRequired` attribute can be indicated to the `RadioGroup` component if a selection is required.
+You will also need to indicate the required field to the user in the UI.
+
+If a radio group has an `errorMessage`, the radio buttons will be styled to highlight the error state and the error message will appear below the fields.
+If an error message is present, it will replace the helper text. Can be a node or a string.
+
+```.jsx
+ (props) => {
+
+  const [hasError, setHasError] = React.useState(false);
+  const [requiredFieldsValue, setRequiredFieldsValue] = React.useState('');
+
+  function changeValue(e) {
+    setRequiredFieldsValue(e.target.value);
+  }
+
+  function submit(){
+    if (requiredFieldsValue === '') {
+      setHasError(true);
+    }
+    else {
+      setHasError(false);
+    }
+  }
+
+  function reset(){
+    setHasError(false);
+    setRequiredFieldsValue('');
+  }
+
+   return(
+     <>
+      <p>* indicates required fields</p>
+      <RadioGroup
+        errorMessage={hasError ? "Please select a color" : null}
+        isRequired
+        labelText='Choose a color *'
+        name='requiredFields'
+        onChange={changeValue}
+        value={requiredFieldsValue}>
+        <Radio
+            labelText='Red'
+            value='R' />
+        <Radio
+            labelText='Blue'
+            value='B' />
+        <Radio
+            labelText='Yellow'
+            value='Y' />
+      </RadioGroup>
+      <br />
+      <Button onClick={submit}>Submit</Button>
+      <Button onClick={reset} color="secondary">Reset</Button>
+    </>
+  )
+ }
+```
+
+## Inverse
+
+The `isInverse` property is an optional boolean can be applied to the containing `RadioGroup`, that reverses the colors so that the radio buttons can better appear on a dark background.
+
+```.jsx
+<>
   <RadioGroup
-    containerStyle={{ background : '#00263E', color: '#fff', padding: '10px' }}
+    containerStyle={{ background : '#00263E', color: '#fff', marginTop: '24px', padding: '12px' }}
     labelText='Inverse Radio Buttons'
     id='inverseGroup'
+    isInverse
     name='inverse'>
     <Radio
         id='inverseRadio'
-        isInverse
         labelText='Inverse'
         value='default' />
       <Radio
           color={magma.colors.success01}
           id='successInverseRadio'
-          isInverse
           labelText='Success inverse'
           value='success' />
       <Radio
           color={magma.colors.danger}
           id='dangerInverseRadio'
-          isInverse
           labelText='Danger inverse'
           value='danger' />
       <Radio
           color={magma.colors.pop02}
           id='popInverseRadio'
-          isInverse
           labelText='Pop inverse'
           value='pop' />
         <Radio
             disabled
             id='disabledInverseRadio'
-            isInverse
             labelText='Disabled inverse'
             value='disabled' />
     </RadioGroup>
+
+    <div style={{ background : '#00263E', color: '#fff', marginTop: '24px', padding: '12px' }}>
+      <p>* indicates required fields</p>
+      <RadioGroup
+        errorMessage="Please select a color"
+        isInverse
+        isRequired
+        labelText='Inverse with Error *'
+        name='requiredFieldsInverse'>
+
+        <Radio
+            labelText='Option 1'
+            value='R' />
+        <Radio
+            labelText='Option2'
+            value='B' />
+      </RadioGroup>
+    </div>
+  </>
 ```
 
 ## Custom Styles
@@ -360,6 +457,33 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       },
       required: false,
       description: 'Style properties for the component container element',
+    },
+    errorMessage: {
+      type: {
+        name: 'ReactNode',
+      },
+      required: false,
+      description:
+        'Content of the error message.  If a value is provided, the radio buttons will be styled to show an error state',
+      defaultValue: '',
+    },
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component and all child radio buttons will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    isRequired: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the user must select one radio button for the form to be valid',
+      defaultValue: 'false',
     },
     isTextVisuallyHidden: {
       type: {

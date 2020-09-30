@@ -48,6 +48,31 @@ The label/toggle association will be handled via the passed in `id` if one is su
     </div>
 ```
 
+## Error Message
+
+An `errorMessage` can also be supplied to an toggle to indicate the selection is invalid.
+
+The `required` attribute can be used on a toggle if that field is required.
+
+```.jsx
+ (props) => {
+  const [hasError, setHasError] = React.useState(true);
+
+    function handleChange(e){
+      setHasError(!e.target.checked)
+    }
+
+   return(
+     <Toggle
+        errorMessage={hasError ? "You must turn permissions on" : null}
+        id='errorToggle'
+        labelText='Enable Permissions'
+        onChange={handleChange}
+        required />
+    )
+ }
+```
+
 ## Text Position
 
 Use the optional prop `textPosition` to position the label text on either side of the toggle switch.
