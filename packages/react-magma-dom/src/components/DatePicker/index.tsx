@@ -17,7 +17,7 @@ import {
   i18nFormat as format,
   getDateFromString
 } from './utils';
-import { useGenerateId, Omit } from '../../utils';
+import { omit, useGenerateId, Omit } from '../../utils';
 import { I18nContext } from '../../i18n';
 
 export interface DatePickerProps
@@ -286,7 +286,9 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
     setCalendarOpened(opened => !opened);
   }
 
-  const { placeholder, testId, ...other } = props;
+  const { placeholder, testId, ...rest } = props;
+  const other = omit(['onDateChange', 'onInputChange', 'onInputBlur'], rest);
+
   const minDate = getDateFromString(props.minDate);
   const maxDate = getDateFromString(props.maxDate);
 
