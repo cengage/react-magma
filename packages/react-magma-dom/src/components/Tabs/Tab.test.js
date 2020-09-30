@@ -24,7 +24,7 @@ describe('Tab', () => {
     const testId = 'test-id';
 
     const { getByText } = render(<Tab testId={testId}>Test</Tab>);
-    expect(getByText('Test'));
+    expect(getByText('Test')).toBeInTheDocument();
   });
 
   it('should render tab as passed in component', () => {

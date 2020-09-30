@@ -15,11 +15,10 @@
   },
   "scripts": {
     "test": "tsdx test",
-    "test-watch": "tsdx test --watc",
+    "test-watch": "tsdx test --watch",
     "build": "tsdx build",
     "build-watch": "tsdx watch",
-    "lint": "tsdx test --watch",
-    "tsc": "tsc --noEmit"
+    "lint": "eslint ./src"
   },
   "publishConfig": {
     "registry": "http://nexus.mindtap.corp.web/content/repositories/npm.cengage/"
@@ -43,14 +42,17 @@
     "@testing-library/react": "^9.1.4",
     "@types/react": "^16.9.0",
     "@types/react-select": "^3.0.8",
+    "@typescript-eslint/eslint-plugin": "^4.2.0",
+    "@typescript-eslint/parser": "^4.2.0",
     "date-fns": "^2.12.0",
     "downshift": "^5.4.7",
-    "eslint": "^5.16.0",
-    "eslint-config-cengage": "^0.5.0",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.12.4",
-    "eslint-plugin-react-hooks": "^2.3.0",
-    "eslint-plugin-unicorn": "^8.0.2",
+    "eslint": "^7.9.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^24.0.2",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "eslint-plugin-unicorn": "^22.0.0",
     "promise": "^8.1.0",
     "react-magma-dom": "^2.0.0-beta.79",
     "react-magma-icons": "^1.0.0",

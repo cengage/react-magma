@@ -141,18 +141,6 @@ describe('Indeterminate Checkbox', () => {
     );
   });
 
-  it('should render an inverse checkbox with the correct styles', () => {
-    const label = 'test label';
-    const { container } = render(
-      <IndeterminateCheckbox labelText={label} isInverse />
-    );
-
-    expect(container.querySelector('span')).toHaveStyleRule(
-      'background',
-      'none'
-    );
-  });
-
   it('should render an inverse disabled checkbox with the correct styles', () => {
     const label = 'test label';
     const { container } = render(

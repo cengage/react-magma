@@ -8,7 +8,7 @@ export const SelectContainerElement = styled.div`
   position: relative;
 `;
 
-interface SelectContainer<T> {
+interface SelectContainerInterface<T> {
   children: React.ReactNode[];
   containerStyle?: React.CSSProperties;
   getLabelProps: (options?: UseSelectGetLabelPropsOptions) => any;
@@ -19,14 +19,14 @@ interface SelectContainer<T> {
   labelText: string;
 }
 
-export function SelectContainer<T>(props: SelectContainer<T>) {
+export function SelectContainer<T>(props: SelectContainerInterface<T>) {
   const {
     children,
     getLabelProps,
     isInverse,
     isLabelVisuallyHidden,
     labelStyle,
-    labelText
+    labelText,
   } = props;
   return (
     <SelectContainerElement>

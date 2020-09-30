@@ -19,8 +19,7 @@
     "test-watch": "tsdx test --watch",
     "build": "tsdx build",
     "build-watch": "tsdx watch",
-    "lint": "eslint",
-    "tslint": "lint-staged"
+    "lint": "eslint ./src"
   },
   "keywords": [],
   "author": "",
@@ -40,17 +39,6 @@
     "polished": "^3.2.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.11.4",
-    "@babel/plugin-proposal-class-properties": "^7.0.0",
-    "@babel/plugin-proposal-export-default-from": "^7.0.0",
-    "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
-    "@babel/plugin-proposal-throw-expressions": "^7.0.0",
-    "@babel/plugin-syntax-import-meta": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/preset-typescript": "^7.1.0",
     "@emotion/core": "^10.0.27",
     "@emotion/styled": "^10.0.27",
     "@testing-library/dom": "^4.1.0",
@@ -60,39 +48,28 @@
     "@types/jest": "^26.0.9",
     "@types/node": "^12.6.8",
     "@types/react": "^16.9.0",
-    "babel-core": "7.0.0-bridge.0",
+    "@typescript-eslint/eslint-plugin": "^4.2.0",
+    "@typescript-eslint/parser": "^4.2.0",
     "babel-eslint": "^10.1.0",
-    "babel-jest": "^26.2.0",
-    "babel-plugin-dynamic-import-node": "^2.3.3",
-    "babel-plugin-emotion": "^10.0.33",
-    "babel-plugin-polished": "^1.1.0",
-    "core-js": "^3.1.4",
     "date-fns": "^2.12.0",
     "downshift": "^5.4.5",
     "eslint": "^7.9.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^24.0.2",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "eslint-plugin-unicorn": "^22.0.0",
     "fs-extra": "^7.0.1",
     "glob": "^7.1.3",
-    "lint-staged": "^10.2.11",
     "polished": "^3.2.0",
     "postcss-url": "^8.0.0",
-    "prettier": "^1.14.2",
     "promise": "^8.0.3",
     "react-magma-icons": "^1.0.0",
     "react-test-renderer": "^16.13.1",
     "regenerator-runtime": "^0.13.7",
     "rimraf": "^3.0.2",
     "tsdx": "^0.13.2",
-    "typescript": "^3.9.7",
     "uuid": "^8.3.0"
-  },
-  "lint-staged": {
-    "*.{ts,tsx,js,json,css,md}": [
-      "prettier --write",
-      "git add"
-    ],
-    "*.{js,jsx}": "eslint src/components/**/*.test.js",
-    "*.{ts,tsx}": [
-      "tslint --project './tsconfig.json'"
-    ]
   }
 }
