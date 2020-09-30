@@ -22,7 +22,7 @@ export function handleKeyPress(
   toggleCalendar?: (calendarOpened: boolean) => void,
   setShowHelperInformation?: (value: boolean) => void,
   onDateChange?: (day: Date) => void,
-  inputRef?: React.RefObject<any>
+  iconRef?: React.RefObject<any>
 ) {
   const { key } = e;
 
@@ -68,7 +68,7 @@ export function handleKeyPress(
     case 'Escape':
       e.preventDefault();
       toggleCalendar(false);
-      inputRef.current.focus();
+      iconRef.current.focus();
       break;
 
     case '?':
