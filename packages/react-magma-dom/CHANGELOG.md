@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.84](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.83...v2.0.0-beta.84) (2020-09-29)
+
+
+### Features
+
+* **dropdown:** add a DropdownMenuGroup component for role="group" ([501590b](http://stash.cengage.com:7999/FRONT/react-magma/commits/501590bac057346a5d12b62d1821766178d81ca8))
+* **dropdown:** blur menu on shift-tab or tab from menu button ([885d680](http://stash.cengage.com:7999/FRONT/react-magma/commits/885d6807baa313cfe60c326f78251fc15a816bb5))
+* **dropdown:** dropdown header in menu group can be node ([2f3379e](http://stash.cengage.com:7999/FRONT/react-magma/commits/2f3379e00cd65f8922301ba19c461e32b5688348))
+
+
+
+
+
 # [2.0.0-beta.81](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.80...v2.0.0-beta.81) (2020-09-23)
 
 ### Bug Fixes

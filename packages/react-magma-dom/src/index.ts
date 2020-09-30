@@ -43,6 +43,7 @@ export { Dropdown, DropdownProps } from './components/Dropdown';
 export { DropdownContent } from './components/Dropdown/DropdownContent';
 export { DropdownDivider } from './components/Dropdown/DropdownDivider';
 export { DropdownHeader } from './components/Dropdown/DropdownHeader';
+export { DropdownMenuGroup } from './components/Dropdown/DropdownMenuGroup';
 export { DropdownMenuItem } from './components/Dropdown/DropdownMenuItem';
 export { DropdownSplitButton } from './components/Dropdown/DropdownSplitButton';
 export { DropdownButton } from './components/Dropdown/DropdownButton';
