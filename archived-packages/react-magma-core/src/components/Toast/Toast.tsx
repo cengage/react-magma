@@ -58,7 +58,7 @@ export class ToastCore extends React.Component<ToastCoreProps> {
       ...this.props,
       clearTimeoutAndDismiss: this.clearTimeoutAndDismiss,
       handlePause: this.handlePause,
-      handleResume: this.handleResume
+      handleResume: this.handleResume,
     });
   }
 }

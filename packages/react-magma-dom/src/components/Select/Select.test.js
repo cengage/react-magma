@@ -24,7 +24,7 @@ describe('Select', () => {
     const items = [
       { label: 'Red', value: 'red' },
       { label: 'Blue', value: 'blue' },
-      { label: 'Green', value: 'green' }
+      { label: 'Green', value: 'green' },
     ];
     const { getByLabelText, getByText } = render(
       <Select labelText={labelText} items={items} />
@@ -49,18 +49,18 @@ describe('Select', () => {
       {
         id: 1,
         actual: 'red',
-        representation: 'Red'
+        representation: 'Red',
       },
       {
         id: 2,
         actual: 'blue',
-        representation: 'Blue'
+        representation: 'Blue',
       },
       {
         id: 3,
         actual: 'green',
-        representation: 'Green'
-      }
+        representation: 'Green',
+      },
     ];
 
     const { getByLabelText, getByText } = render(
@@ -271,7 +271,7 @@ describe('Select', () => {
     renderedSelect.focus();
 
     fireEvent.keyDown(renderedSelect, {
-      key: 'Enter'
+      key: 'Enter',
     });
 
     expect(getByText(items[0])).toBeInTheDocument();
@@ -289,7 +289,7 @@ describe('Select', () => {
     renderedSelect.focus();
 
     fireEvent.keyDown(renderedSelect, {
-      key: ' '
+      key: ' ',
     });
 
     expect(getByText(items[0])).toBeInTheDocument();
@@ -307,7 +307,7 @@ describe('Select', () => {
     renderedSelect.focus();
 
     fireEvent.keyDown(renderedSelect, {
-      key: 'a'
+      key: 'a',
     });
 
     expect(queryByText(items[0])).not.toBeInTheDocument();
@@ -353,7 +353,7 @@ describe('Select', () => {
         items={items}
         selectedItem={items[0]}
         components={{
-          ClearIndicator
+          ClearIndicator,
         }}
       />
     );

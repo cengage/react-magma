@@ -1,4 +1,4 @@
-import { magma } from 'react-magma-dom'
+import { magma } from 'react-magma-dom';
 
 const editorTheme = {
   plain: {
@@ -100,6 +100,6 @@ const editorTheme = {
       },
     },
   ],
-}
+};
 
-export default editorTheme
+export default editorTheme;

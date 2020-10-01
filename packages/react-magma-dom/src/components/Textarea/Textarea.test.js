@@ -43,7 +43,7 @@ describe('Textarea', () => {
     );
 
     fireEvent.change(getByLabelText(labelText), {
-      target: { value: targetValue }
+      target: { value: targetValue },
     });
 
     expect(onChangeSpy).toHaveBeenCalledTimes(1);

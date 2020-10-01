@@ -8,7 +8,7 @@ export enum EnumTooltipPosition {
   bottom = 'bottom',
   left = 'left',
   right = 'right',
-  top = 'top' //default
+  top = 'top', //default
 }
 
 export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -261,7 +261,7 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
       'aria-describedby': id,
       onBlur: hideTooltip,
       onFocus: showTooltip,
-      ref: ref
+      ref: ref,
     });
 
     return (

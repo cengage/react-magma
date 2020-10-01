@@ -7,7 +7,7 @@ import {
   ButtonShape,
   ButtonSize,
   ButtonTextTransform,
-  ButtonVariant
+  ButtonVariant,
 } from '../Button';
 import { IconButton, ButtonIconPosition } from '.';
 import { CheckIcon } from 'react-magma-icons';

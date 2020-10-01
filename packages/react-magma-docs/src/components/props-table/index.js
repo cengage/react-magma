@@ -1,16 +1,16 @@
-import React from 'react'
-import './styles.css'
-import { AsteriskIcon } from 'react-magma-icons'
-import { magma } from 'react-magma-dom'
+import React from 'react';
+import './styles.css';
+import { AsteriskIcon } from 'react-magma-icons';
+import { magma } from 'react-magma-dom';
 
 export const SimplePropsTable = ({ propertyValues }) => {
   if (propertyValues === undefined) {
-    return null
+    return null;
   }
 
   const hasDescription = Object.keys(propertyValues).some(name => {
-    return Boolean(propertyValues[name].description)
-  })
+    return Boolean(propertyValues[name].description);
+  });
 
   return (
     <div>
@@ -33,10 +33,10 @@ export const SimplePropsTable = ({ propertyValues }) => {
         <tbody>
           {propertyValues &&
             Object.keys(propertyValues).map(name => {
-              const prop = propertyValues[name]
+              const prop = propertyValues[name];
 
               if (!prop.type.name) {
-                return null
+                return null;
               }
 
               return (
@@ -66,7 +66,7 @@ export const SimplePropsTable = ({ propertyValues }) => {
                             <code>{prop.type.options[i]}</code>
                             <br />
                           </div>
-                        )
+                        );
                       })}
                   </td>
                   {!prop.defaultValue ? (
@@ -86,10 +86,10 @@ export const SimplePropsTable = ({ propertyValues }) => {
                     <td>{prop.description && prop.description}</td>
                   )}
                 </tr>
-              )
+              );
             })}
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};

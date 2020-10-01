@@ -86,7 +86,7 @@ describe('Heading', () => {
       'border-bottom',
       `2px dotted ${magma.colors.focus}`,
       {
-        target: ':focus'
+        target: ':focus',
       }
     );
   });
@@ -106,7 +106,7 @@ describe('Heading', () => {
       'border-bottom',
       `2px dotted ${magma.colors.focusInverse}`,
       {
-        target: ':focus'
+        target: ':focus',
       }
     );
   });

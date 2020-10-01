@@ -32,7 +32,7 @@ export class AlertCore extends React.Component<AlertCoreProps, AlertCoreState> {
     return this.props.children({
       ...this.props,
       handleDismiss: this.handleDismiss,
-      isExiting: this.state.isExiting
+      isExiting: this.state.isExiting,
     });
   }
 }

@@ -7,9 +7,9 @@ const iconType = {
   paths: [
     {
       d: 'M7.23,21.91h5v4.7h-5ZM7.41,1.39h4.71v7.5L10.88,20.15H8.66L7.41,8.89Z',
-      transform: 'translate(-7.23 -1.39)'
-    }
-  ]
+      transform: 'translate(-7.23 -1.39)',
+    },
+  ],
 };
 
 export const AlertIcon: React.FunctionComponent<IconProps> = (

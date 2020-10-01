@@ -14,7 +14,7 @@ export interface ToastsContextInterface {
 
 export const ToastsContext = React.createContext<ToastsContextInterface>({
   toastsArray: { current: [] },
-  bottomOffset: 0
+  bottomOffset: 0,
 });
 
 export const ToastsContainer: React.FunctionComponent<ToastsContainerProps> = React.forwardRef(

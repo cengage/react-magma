@@ -9,7 +9,7 @@ import {
   getAriaLabel,
   useSelectValue,
   BaseSelectProps,
-  OptionType
+  OptionType,
 } from '../Select/shared';
 import { Props as CreatableReactSelectProps } from 'react-select/creatable';
 
@@ -74,7 +74,7 @@ export const CreatableSelect: React.FunctionComponent<CreatableSelectProps> = (
           ClearIndicator,
           DropdownIndicator,
           MultiValueRemove,
-          ...components
+          ...components,
         }}
         onChange={onChange}
         isInverse={isInverse}

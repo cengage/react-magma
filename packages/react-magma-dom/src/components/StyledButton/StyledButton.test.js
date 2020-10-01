@@ -67,10 +67,10 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule('background', magma.colors.primary);
         expect(button).toHaveStyleRule('background', '#004165', {
-          target: ':hover'
+          target: ':hover',
         });
         expect(button).toHaveStyleRule('background', '#002032', {
-          target: ':active'
+          target: ':active',
         });
         expect(button).toHaveStyleRule('border-color', magma.colors.primary);
         expect(button).toHaveStyleRule('color', magma.colors.neutral08);
@@ -85,10 +85,10 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule('background', 'rgba(0,0,0,0)');
         expect(button).toHaveStyleRule('background', '#e5eff4', {
-          target: ':hover'
+          target: ':hover',
         });
         expect(button).toHaveStyleRule('background', '#b2cfe0', {
-          target: ':active'
+          target: ':active',
         });
         expect(button).toHaveStyleRule('color', magma.colors.primary);
       });
@@ -483,7 +483,7 @@ describe('Styled Button', () => {
       getByText(text),
       new MouseEvent('click', {
         bubbles: true,
-        cancelable: true
+        cancelable: true,
       })
     );
 

@@ -16,12 +16,12 @@ export enum BadgeColor {
   primary = 'primary',
   secondary = 'secondary', // default
   success = 'success',
-  light = 'light'
+  light = 'light',
 }
 
 export enum BadgeVariant {
   counter = 'counter',
-  label = 'label' // default
+  label = 'label', // default
 }
 
 export function buildBadgeBackground(props) {

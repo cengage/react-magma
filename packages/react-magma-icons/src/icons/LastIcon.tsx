@@ -8,9 +8,9 @@ const iconType = {
     {
       d:
         'M24.5,3.5v21H21V14.88l-8.75,8.74V14.88L3.5,23.62V4.38l8.75,8.74V4.38L21,13.12V3.5Z',
-      transform: 'translate(-3.5 -3.5)'
-    }
-  ]
+      transform: 'translate(-3.5 -3.5)',
+    },
+  ],
 };
 
 export const LastIcon: React.FunctionComponent<IconProps> = (

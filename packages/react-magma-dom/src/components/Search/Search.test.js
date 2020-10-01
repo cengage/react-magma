@@ -48,7 +48,7 @@ describe('Search', () => {
     expect(onSearchSpy).not.toHaveBeenCalled();
 
     fireEvent.keyDown(container.querySelector('input'), {
-      keyCode: 13
+      keyCode: 13,
     });
 
     expect(onSearchSpy).toBeCalledWith('test value');
@@ -63,7 +63,7 @@ describe('Search', () => {
     );
 
     fireEvent.change(getByLabelText(labelText), {
-      target: { value: targetValue }
+      target: { value: targetValue },
     });
 
     expect(onChangeSpy).toHaveBeenCalledTimes(1);
@@ -81,7 +81,7 @@ describe('Search', () => {
     it('should use the input overrides', () => {
       const input = {
         ariaLabel: 'search ariaLabel',
-        placeholder: 'search placeholder'
+        placeholder: 'search placeholder',
       };
       const { getByLabelText } = render(
         <I18nContext.Provider
@@ -89,8 +89,8 @@ describe('Search', () => {
             ...defaultI18n,
             search: {
               ...defaultI18n.search,
-              input
-            }
+              input,
+            },
           }}
         >
           <Search />
@@ -111,8 +111,8 @@ describe('Search', () => {
             ...defaultI18n,
             search: {
               ...defaultI18n.search,
-              iconAriaLabel
-            }
+              iconAriaLabel,
+            },
           }}
         >
           <Search />

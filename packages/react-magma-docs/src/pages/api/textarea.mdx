@@ -3,13 +3,13 @@ pageTitle: Textarea API
 title: Textarea
 ---
 
-import { ScopeableLayout } from '../../components/layout'
-import { Textarea } from 'react-magma-dom'
-import { SimplePropsTable } from '../../components/props-table'
-import DocsHeading from '../../components/docs-heading'
+import { ScopeableLayout } from '../../components/layout';
+import { Textarea } from 'react-magma-dom';
+import { SimplePropsTable } from '../../components/props-table';
+import DocsHeading from '../../components/docs-heading';
 
 <DocsHeading to="/design/inputs/" type="design">
-Textarea
+  Textarea
 </DocsHeading>
 
 ## Basic Usage
@@ -162,4 +162,6 @@ Textarea
   }}
 />
 
-export default props => <ScopeableLayout {...props} components={{ Textarea }} />
+export default props => (
+  <ScopeableLayout {...props} components={{ Textarea }} />
+);

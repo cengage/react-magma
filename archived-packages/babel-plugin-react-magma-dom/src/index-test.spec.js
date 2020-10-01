@@ -179,7 +179,7 @@ it('handles a combination of imports and use cases', () => {
 it('rewrites the named imports', () => {
   const { ast } = babel.transform(namedExample, {
     ast: true,
-    plugins: [plugin]
+    plugins: [plugin],
   });
   const program = ast.program;
   const sourceValue1 = program.body[0].declarations[0].init.arguments[0].value;
@@ -192,7 +192,7 @@ it('rewrites the named imports', () => {
 it('changes default import reference to named imports', () => {
   const { ast } = babel.transform(defaultImportExample, {
     ast: true,
-    plugins: [plugin]
+    plugins: [plugin],
   });
   const program = ast.program;
   const sourceValue1 = program.body[2].declarations[0].init.arguments[0].value;
@@ -205,7 +205,7 @@ it('changes default import reference to named imports', () => {
 it('changes default namespace import reference to named imports', () => {
   const { ast } = babel.transform(defaultNamespaceExample, {
     ast: true,
-    plugins: [plugin]
+    plugins: [plugin],
   });
   const program = ast.program;
   const sourceValue1 = program.body[2].declarations[0].init.arguments[0].value;
@@ -218,7 +218,7 @@ it('changes default namespace import reference to named imports', () => {
 it('changes GlobalStyles to import from the theme folder', () => {
   const { ast } = babel.transform(globalStylesExample, {
     ast: true,
-    plugins: [plugin]
+    plugins: [plugin],
   });
   const program = ast.program;
   const sourceValue = program.body[2].declarations[0].init.arguments[0].value;
@@ -229,7 +229,7 @@ it('changes GlobalStyles to import from the theme folder', () => {
 it('changes Icons import references to named imports', () => {
   const { ast } = babel.transform(iconsExample, {
     ast: true,
-    plugins: [plugin]
+    plugins: [plugin],
   });
   const program = ast.program;
   const sourceValue = program.body[2].declarations[0].init.arguments[0].value;
@@ -242,7 +242,7 @@ it('changes Icons import references to named imports', () => {
 it('changes default import references to Icons to named imports', () => {
   const { ast } = babel.transform(defaultIconsExample, {
     ast: true,
-    plugins: [plugin]
+    plugins: [plugin],
   });
   const program = ast.program;
   const sourceValue1 = program.body[2].declarations[0].init.arguments[0].value;
@@ -259,7 +259,7 @@ it('changes default import references to Icons to named imports', () => {
 it('changes named icon import references to their path', () => {
   const { ast } = babel.transform(namedIconsExample, {
     ast: true,
-    plugins: [plugin]
+    plugins: [plugin],
   });
 
   const program = ast.program;
@@ -273,7 +273,7 @@ it('changes named icon import references to their path', () => {
 it('changes renamed import references to named imports', () => {
   const { ast } = babel.transform(renamedImportExample, {
     ast: true,
-    plugins: [plugin]
+    plugins: [plugin],
   });
   const program = ast.program;
   const sourceValue = program.body[2].declarations[0].init.arguments[0].value;
@@ -284,7 +284,7 @@ it('changes renamed import references to named imports', () => {
 it('changes inteface imports to reference the base component file', () => {
   const { ast } = babel.transform(interfaceExample, {
     ast: true,
-    plugins: [plugin]
+    plugins: [plugin],
   });
 
   const program = ast.program;
@@ -296,7 +296,7 @@ it('changes inteface imports to reference the base component file', () => {
 it('changes enum imports to reference the base component file', () => {
   const { ast } = babel.transform(enumExample, {
     ast: true,
-    plugins: [plugin]
+    plugins: [plugin],
   });
 
   const program = ast.program;

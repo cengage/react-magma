@@ -31,7 +31,7 @@ export default function reactMagmaDom({ types: t, template }) {
       return uniqueNames.map(({ name, path }) => {
         return buildRequire({
           IMPORT_NAME: t.identifier(name),
-          SOURCE: `${path || importPath}/${name}`
+          SOURCE: `${path || importPath}/${name}`,
         });
       });
     }
@@ -88,13 +88,13 @@ export default function reactMagmaDom({ types: t, template }) {
 
                 return buildRequire({
                   IMPORT_NAME: t.identifier(specifierImportedName),
-                  SOURCE: `${importPathString}/${importFileName}`
+                  SOURCE: `${importPathString}/${importFileName}`,
                 });
               }
 
               return buildRequire({
                 IMPORT_NAME: t.identifier(specifierImportedName),
-                SOURCE: `${importPathString}/${specifierImportedName}`
+                SOURCE: `${importPathString}/${specifierImportedName}`,
               });
             } else if (
               specifierType === 'ImportNamespaceSpecifier' ||
@@ -108,7 +108,7 @@ export default function reactMagmaDom({ types: t, template }) {
 
           path.replaceWithMultiple([].concat.apply([], names));
         }
-      }
-    }
+      },
+    },
   };
 }

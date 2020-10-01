@@ -8,9 +8,9 @@ const iconType = {
     {
       d:
         'M12.56,18,7.89,26.13H23.33L28,18Zm14.12-2.29-8-13.88H9.33l8,13.88ZM8,4.17,0,18l4.67,8.09,8-13.88Z',
-      transform: 'translate(0 -1.87)'
-    }
-  ]
+      transform: 'translate(0 -1.87)',
+    },
+  ],
 };
 
 export const GoogleDriveIcon: React.FunctionComponent<IconProps> = (

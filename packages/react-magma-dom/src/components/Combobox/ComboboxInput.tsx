@@ -7,7 +7,7 @@ import { css } from '@emotion/core';
 import {
   UseComboboxGetToggleButtonPropsOptions,
   UseComboboxGetComboboxPropsOptions,
-  UseComboboxGetInputPropsOptions
+  UseComboboxGetInputPropsOptions,
 } from 'downshift';
 
 import { SelectedItemsWrapper } from '../Select/shared';
@@ -61,18 +61,18 @@ const InputContainer = styled.div<{
     `}
 
     ${props =>
-      props.isDisabled &&
-      css`
-        background: ${props.theme.colors.neutral07};
-        border-color: ${props.theme.colors.neutral05};
-        color: ${props.theme.colors.disabledText};
-        cursor: not-allowed;
-        outline: 0;
+    props.isDisabled &&
+    css`
+      background: ${props.theme.colors.neutral07};
+      border-color: ${props.theme.colors.neutral05};
+      color: ${props.theme.colors.disabledText};
+      cursor: not-allowed;
+      outline: 0;
 
-        &::placeholder {
-          color: ${props.theme.colors.disabledText};
-        }
-      `}
+      &::placeholder {
+        color: ${props.theme.colors.disabledText};
+      }
+    `}
 `;
 
 const StyledInput = styled.input`
@@ -133,14 +133,14 @@ export const ComboboxInput = React.forwardRef(
       onInputKeyPress,
       onInputKeyUp,
       placeholder,
-      selectedItems
+      selectedItems,
     } = props;
     const theme = React.useContext(ThemeContext);
 
     const [isFocused, setIsFocused] = React.useState<boolean>(false);
 
     const { DropdownIndicator, LoadingIndicator } = defaultComponents({
-      ...customComponents
+      ...customComponents,
     });
 
     function handleBlur(e: React.FocusEvent) {
@@ -162,7 +162,7 @@ export const ComboboxInput = React.forwardRef(
       onKeyDown: onInputKeyDown,
       onKeyPress: onInputKeyPress,
       onKeyUp: onInputKeyUp,
-      ref
+      ref,
     });
 
     return (

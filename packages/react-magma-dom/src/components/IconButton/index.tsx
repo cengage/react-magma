@@ -7,14 +7,14 @@ import {
   ButtonShape,
   ButtonSize,
   ButtonVariant,
-  ButtonTextTransform
+  ButtonTextTransform,
 } from '../Button';
 import { IconProps } from 'react-magma-icons';
 import { omit, Omit, XOR } from '../../utils';
 
 export enum ButtonIconPosition {
   left = 'left',
-  right = 'right'
+  right = 'right',
 }
 
 export interface IconOnlyButtonProps extends Omit<ButtonProps, 'children'> {
@@ -98,7 +98,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = React.forwar
         >
           {React.Children.only(
             React.cloneElement(icon, {
-              size: icon.props.size ? icon.props.size : getIconSize(size)
+              size: icon.props.size ? icon.props.size : getIconSize(size),
             })
           )}
         </StyledButton>
@@ -121,7 +121,7 @@ export const IconButton: React.FunctionComponent<IconButtonProps> = React.forwar
         )}
         {React.Children.only(
           React.cloneElement(icon, {
-            size: icon.props.size ? icon.props.size : getIconWithTextSize(size)
+            size: icon.props.size ? icon.props.size : getIconWithTextSize(size),
           })
         )}
         {iconPosition !== ButtonIconPosition.right && (
