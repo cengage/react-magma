@@ -208,7 +208,7 @@ interface TabsContextInterface {
   buttonRefArray?: React.MutableRefObject<React.MutableRefObject<Element>[]>;
   changeHandler: (
     newActiveIndex: number,
-    event?: React.MouseEvent<HTMLLIElement, MouseEvent>
+    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
   iconPosition?: TabsIconPosition;
   isInverse?: boolean;
@@ -437,7 +437,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
 
     function changeHandler(
       newActiveIndex: number,
-      event?: React.MouseEvent<HTMLLIElement, MouseEvent>
+      event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
     ): void {
       if (
         (event.target as HTMLInputElement).children[0] &&
@@ -452,6 +452,47 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
       newActiveIndex === activeTabIndex
         ? scrollSelectedIntoView()
         : setActiveTabIndex(newActiveIndex);
+    }
+
+    function handleKeyDown(event: React.KeyboardEvent) {
+      const target = event.target as HTMLButtonElement;
+
+      const role = target.getAttribute('role');
+      if (role !== 'tab') {
+        return;
+      }
+
+      const lastChild = buttonRefArray.current.length - 1;
+      let newActiveTabIndex = null;
+      let previousItemKey =
+        orientation !== TabsOrientation.vertical ? 'ArrowLeft' : 'ArrowUp';
+      let nextItemKey =
+        orientation !== TabsOrientation.vertical ? 'ArrowRight' : 'ArrowDown';
+
+      switch (event.key) {
+        case previousItemKey:
+          newActiveTabIndex = activeTabIndex > 0 ? activeTabIndex - 1 : 0;
+          break;
+        case nextItemKey:
+          newActiveTabIndex =
+            activeTabIndex < lastChild ? activeTabIndex + 1 : lastChild;
+          break;
+        case 'Home':
+          newActiveTabIndex = 0;
+          break;
+        case 'End':
+          newActiveTabIndex = lastChild;
+          break;
+        default:
+          break;
+      }
+
+      if (newActiveTabIndex !== null) {
+        setActiveTabIndex(newActiveTabIndex);
+        (buttonRefArray.current[newActiveTabIndex]
+          .current as HTMLButtonElement).focus();
+        event.preventDefault();
+      }
     }
 
     return (
@@ -488,7 +529,9 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
         >
           <StyledTabs
             aria-label={rest['aria-label']}
+            aria-orientation={orientation || TabsOrientation.horizontal}
             alignment={alignment ? alignment : TabsAlignment.left}
+            onKeyDown={handleKeyDown}
             orientation={orientation}
             ref={childrenWrapperRef}
             role="tablist"
