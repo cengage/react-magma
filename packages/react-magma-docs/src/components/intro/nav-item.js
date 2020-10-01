@@ -1,14 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from '@emotion/styled'
-import { ThemeContext, VisuallyHidden } from 'react-magma-dom'
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
+import { ThemeContext, VisuallyHidden } from 'react-magma-dom';
 
 const Item = styled.li`
   list-style: none;
   margin: 0;
   padding: 0;
   text-transform: uppercase;
-`
+`;
 
 const Link = styled.a`
   background: rgba(0, 0, 0, 0);
@@ -34,15 +34,15 @@ const Link = styled.a`
     outline: 2px dotted ${props => props.theme.colors.focusInverse};
     outline-offset: 0;
   }
-`
+`;
 
 const Num = styled.span`
   display: block;
   font-family: 'Abel', sans-serif;
-`
+`;
 
 function handleNavClick(id, onClick) {
-  onClick(id)
+  onClick(id);
 }
 
 const NavItem = ({ activeSection, section, number, onClick, text }) => (
@@ -53,7 +53,7 @@ const NavItem = ({ activeSection, section, number, onClick, text }) => (
           active={activeSection === section}
           href={`#${section}H`}
           onClick={() => {
-            handleNavClick(section, onClick)
+            handleNavClick(section, onClick);
           }}
           theme={theme}
         >
@@ -66,7 +66,7 @@ const NavItem = ({ activeSection, section, number, onClick, text }) => (
       </Item>
     )}
   </ThemeContext.Consumer>
-)
+);
 
 NavItem.propTypes = {
   activeSection: PropTypes.string.isRequired,
@@ -74,6 +74,6 @@ NavItem.propTypes = {
   onClick: PropTypes.func.isRequired,
   section: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-}
+};
 
-export default NavItem
+export default NavItem;

@@ -1,5 +1,5 @@
-import React from 'react'
-import { SimplePropsTable } from './props-table'
+import React from 'react';
+import { SimplePropsTable } from './props-table';
 
 export const ButtonProps = () => (
   <>
@@ -136,4 +136,4 @@ export const ButtonProps = () => (
       }}
     />
   </>
-)
+);

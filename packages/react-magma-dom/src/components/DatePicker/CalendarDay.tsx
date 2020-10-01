@@ -105,7 +105,7 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
     maxDate,
     minDate,
     setDateFocused,
-    onDateChange
+    onDateChange,
   } = React.useContext(CalendarContext);
   const [focused, setFocused] = React.useState<boolean>(false);
   const { day, dayFocusable } = props;

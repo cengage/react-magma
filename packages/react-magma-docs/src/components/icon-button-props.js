@@ -1,5 +1,5 @@
-import React from 'react'
-import { SimplePropsTable } from './props-table'
+import React from 'react';
+import { SimplePropsTable } from './props-table';
 
 export function IconButtonProps() {
   return (
@@ -161,5 +161,5 @@ export function IconButtonProps() {
         },
       }}
     />
-  )
+  );
 }

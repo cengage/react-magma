@@ -9,7 +9,7 @@
     "test-dom": "lerna exec --scope react-magma-dom 'npm t -- --watch --coverage=false'",
     "build": "lerna run build --stream --no-progress",
     "bootstrap": "lerna bootstrap && lerna exec --scope react-magma-docs 'rm -rf node_modules/react node_modules/react-dom'",
-    "lint": "lerna run lint -- --quiet",
+    "lint": "lerna run lint",
     "docs": "lerna exec --scope react-magma-docs gatsby develop",
     "clean": "lerna exec --scope react-magma-docs 'gatsby clean' && lerna clean --yes && rimraf node_modules",
     "cm": "git-cz",
@@ -18,7 +18,7 @@
     "bump:pre": "lerna version --conventional-commits --conventional-prerelease --yes",
     "bump:release": "lerna version --conventional-commits --conventional-graduate --yes",
     "publish-all": "lerna exec --scope react-magma-dom 'npm publish'",
-    "run:prettier": "prettier --loglevel warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\""
+    "prettier": "prettier --write --loglevel warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\""
   },
   "husky": {
     "hooks": {

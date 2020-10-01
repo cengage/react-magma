@@ -51,8 +51,8 @@ describe('Spinner', () => {
           value={{
             ...defaultI18n,
             spinner: {
-              ariaLabel
-            }
+              ariaLabel,
+            },
           }}
         >
           <Spinner />

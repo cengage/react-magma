@@ -91,7 +91,7 @@ export const magma = {
     tint03: 'rgba(255,255,255,0.1)',
     tint04: 'rgba(255,255,255,0.4)',
     tone01: 'rgba(63,63,63,0.07)',
-    tone02: 'rgba(63,63,63,0.1)'
+    tone02: 'rgba(63,63,63,0.1)',
   },
 
   // breakpoints
@@ -100,6 +100,6 @@ export const magma = {
     small: 600,
     medium: 768,
     large: 1024,
-    xl: 1200
-  }
+    xl: 1200,
+  },
 };

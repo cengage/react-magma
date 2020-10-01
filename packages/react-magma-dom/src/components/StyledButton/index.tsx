@@ -15,7 +15,7 @@ import {
   buildButtonBackground,
   buildColor,
   buildFocusBackground,
-  buildFocusColor
+  buildFocusColor,
 } from './styles';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonProps } from '../Button';
@@ -113,13 +113,13 @@ export const buttonStyles = props => css`
   }
 
   ${props.iconOnly &&
-    css`
-      display: inline-flex;
-      justify-content: center;
-      line-height: 1;
-      min-width: 0;
-      padding: 0;
-    `}
+  css`
+    display: inline-flex;
+    justify-content: center;
+    line-height: 1;
+    min-width: 0;
+    padding: 0;
+  `}
 `;
 
 export const StyledButton: React.FunctionComponent<StyledButtonProps> = React.forwardRef(

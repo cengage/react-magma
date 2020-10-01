@@ -16,7 +16,7 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
 export enum TableDensity {
   compact = 'compact',
   loose = 'loose',
-  normal = 'normal' // default
+  normal = 'normal', // default
 }
 
 export enum TableCellAlign {
@@ -24,13 +24,13 @@ export enum TableCellAlign {
   inherit = 'inherit',
   justify = 'justify',
   left = 'left', // default
-  right = 'right'
+  right = 'right',
 }
 
 export enum TableSortDirection {
   ascending = 'ascending',
   descending = 'descending',
-  none = 'none' // default
+  none = 'none', // default
 }
 
 interface TableContextInterface {
@@ -46,7 +46,7 @@ export const TableContext = React.createContext<TableContextInterface>({
   hasHoverStyles: false,
   hasZebraStripes: false,
   hasVerticalBorders: false,
-  isInverse: false
+  isInverse: false,
 });
 
 const TableContainer = styled.div`
@@ -89,7 +89,7 @@ export const Table: React.FunctionComponent<TableProps> = React.forwardRef(
           hasZebraStripes,
           hasVerticalBorders,
           isInverse,
-          density
+          density,
         }}
       >
         <TableContainer>

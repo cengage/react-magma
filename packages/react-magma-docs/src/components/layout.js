@@ -1,19 +1,19 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { MDXProvider } from '@mdx-js/react'
-import { SkipLinkContent, Label } from 'react-magma-dom'
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
-import { convertTextToId } from '../utils'
-import './layout.css'
-import LayoutComponent from './layout-component'
-import editorTheme from './editorTheme'
-import { v4 as uuid } from 'uuid'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { MDXProvider } from '@mdx-js/react';
+import { SkipLinkContent, Label } from 'react-magma-dom';
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
+import { convertTextToId } from '../utils';
+import './layout.css';
+import LayoutComponent from './layout-component';
+import editorTheme from './editorTheme';
+import { v4 as uuid } from 'uuid';
 
 const PreComponent = ({ className, components, ...props }) => {
-  const hideCode = props.children.props.hideCode
-  const hidePreview = props.children.props.hidePreview
+  const hideCode = props.children.props.hideCode;
+  const hidePreview = props.children.props.hidePreview;
 
-  const liveEditorId = React.useRef(uuid())
+  const liveEditorId = React.useRef(uuid());
 
   return props.children.props &&
     props.children.props.className === 'language-.jsx' ? (
@@ -44,28 +44,28 @@ const PreComponent = ({ className, components, ...props }) => {
     </LiveProvider>
   ) : (
     <pre {...props} />
-  )
-}
+  );
+};
 
 const Table = props => (
   <div style={{ margin: '10px 0' }}>
     <table {...props} />
   </div>
-)
+);
 
 const SectionHeading = props => (
   <h2 id={convertTextToId(props.children)}>{props.children}</h2>
-)
+);
 
 const LinkHeading = props => (
   <h3 id={convertTextToId(props.children)}>{props.children}</h3>
-)
+);
 
 const Layout = ({ children, pageContext }) => {
   const title =
     pageContext && pageContext.frontmatter
       ? pageContext.frontmatter.pageTitle || pageContext.frontmatter.title || ''
-      : ''
+      : '';
   return (
     <LayoutComponent title={title}>
       <MDXProvider
@@ -80,14 +80,14 @@ const Layout = ({ children, pageContext }) => {
         </article>
       </MDXProvider>
     </LayoutComponent>
-  )
-}
+  );
+};
 
 export const ScopeableLayout = ({ children, components, pageContext }) => {
   const title =
     pageContext && pageContext.frontmatter
       ? pageContext.frontmatter.pageTitle || pageContext.frontmatter.title || ''
-      : ''
+      : '';
   return (
     <LayoutComponent title={title}>
       <MDXProvider
@@ -105,11 +105,11 @@ export const ScopeableLayout = ({ children, components, pageContext }) => {
         </article>
       </MDXProvider>
     </LayoutComponent>
-  )
-}
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
-export default Layout
+export default Layout;

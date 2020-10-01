@@ -23,7 +23,7 @@ export class SelectCore extends React.Component<
     super(props);
 
     this.state = {
-      value: this.props.defaultValue || this.props.value
+      value: this.props.defaultValue || this.props.value,
     };
 
     this.onChange = this.onChange.bind(this);
@@ -47,7 +47,7 @@ export class SelectCore extends React.Component<
       ...this.state,
       ...this.props,
       onChange: this.onChange,
-      value: this.state.value
+      value: this.state.value,
     });
   }
 }

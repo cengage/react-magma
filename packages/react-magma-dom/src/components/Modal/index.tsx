@@ -5,7 +5,7 @@ import { Global, css } from '@emotion/core';
 import {
   getTrapElements,
   getTrapElementsAndFocus,
-  getFocusedElementIndex
+  getFocusedElementIndex,
 } from './utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
@@ -18,7 +18,7 @@ import { omit, useGenerateId, usePrevious } from '../../utils';
 export enum ModalSize {
   large = 'large',
   medium = 'medium', //default
-  small = 'small'
+  small = 'small',
 }
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {

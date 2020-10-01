@@ -66,7 +66,7 @@ export function defaultOnInputValueChange(
               ? {
                   label: createLabel.replace(/\{inputValue\}/g, inputValue),
                   value: inputValue,
-                  react_magma__created_item: true
+                  react_magma__created_item: true,
                 }
               : null
           )

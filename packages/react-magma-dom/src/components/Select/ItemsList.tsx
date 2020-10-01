@@ -3,7 +3,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { StyledCard, StyledList, StyledItem } from './shared';
 import {
   UseSelectGetMenuPropsOptions,
-  UseSelectGetItemPropsOptions
+  UseSelectGetItemPropsOptions,
 } from 'downshift';
 import { instanceOfToBeCreatedItemObject } from '.';
 import styled from '../../theme/styled';
@@ -31,7 +31,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
     items,
     itemToString,
     highlightedIndex,
-    getItemProps
+    getItemProps,
   } = props;
 
   const theme = React.useContext(ThemeContext);

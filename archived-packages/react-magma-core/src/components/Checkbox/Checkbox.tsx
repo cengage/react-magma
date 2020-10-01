@@ -22,7 +22,7 @@ export class CheckboxCore extends React.Component<
 
     this.state = {
       id: generateId(this.props.id),
-      checked: this.props.checked
+      checked: this.props.checked,
     };
 
     this.onChange = this.onChange.bind(this);
@@ -48,7 +48,7 @@ export class CheckboxCore extends React.Component<
       ...this.props,
       id: this.state.id,
       onChange: this.onChange,
-      checked: this.state.checked
+      checked: this.state.checked,
     });
   }
 }

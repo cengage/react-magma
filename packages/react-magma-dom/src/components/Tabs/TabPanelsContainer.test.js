@@ -90,7 +90,7 @@ describe('Tab Panels Container', () => {
     );
 
     fireEvent.click(getByText('This is tab 2'), {
-      target: { scrollIntoView: jest.fn() }
+      target: { scrollIntoView: jest.fn() },
     });
 
     expect(getByText('Tab 2 Info')).toHaveStyleRule(

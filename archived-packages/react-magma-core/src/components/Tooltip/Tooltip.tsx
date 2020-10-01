@@ -21,7 +21,7 @@ export class TooltipCore extends React.Component<
 
     this.state = {
       id: generateId(this.props.id),
-      isVisible: false
+      isVisible: false,
     };
 
     this.showTooltip = this.showTooltip.bind(this);
@@ -52,7 +52,7 @@ export class TooltipCore extends React.Component<
       id: this.state.id,
       hideTooltip: this.hideTooltip,
       showTooltip: this.showTooltip,
-      isVisible: this.state.isVisible
+      isVisible: this.state.isVisible,
     });
   }
 }

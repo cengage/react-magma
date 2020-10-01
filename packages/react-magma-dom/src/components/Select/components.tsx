@@ -32,5 +32,5 @@ export const defaultComponents = (props: SelectComponents) => ({
   ClearIndicator: DefaultClearIndicator,
   DropdownIndicator: DefaultDropdownIndicator,
   LoadingIndicator: DefaultLoadingIndicator,
-  ...props
+  ...props,
 });

@@ -14,7 +14,7 @@ describe('Calendar Header', () => {
         value={{
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn(),
-          focusedDate: now
+          focusedDate: now,
         }}
       >
         <CalendarHeader focusHeader={false} />
@@ -26,7 +26,7 @@ describe('Calendar Header', () => {
         value={{
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn(),
-          focusedDate: now
+          focusedDate: now,
         }}
       >
         <CalendarHeader focusHeader={true} />
@@ -44,7 +44,7 @@ describe('Calendar Header', () => {
         value={{
           onPrevMonthClick: jest.fn(),
           onNextMonthClick,
-          focusedDate
+          focusedDate,
         }}
       >
         <CalendarHeader focusHeader={true} />
@@ -64,7 +64,7 @@ describe('Calendar Header', () => {
         value={{
           onPrevMonthClick,
           onNextMonthClick: jest.fn(),
-          focusedDate
+          focusedDate,
         }}
       >
         <CalendarHeader focusHeader={true} />

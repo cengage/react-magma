@@ -20,7 +20,7 @@ export class InputCore extends React.Component<InputCoreProps, InputCoreState> {
 
     this.state = {
       id: generateId(this.props.id),
-      value: this.props.value
+      value: this.props.value,
     };
 
     this.onChange = this.onChange.bind(this);
@@ -53,7 +53,7 @@ export class InputCore extends React.Component<InputCoreProps, InputCoreState> {
       onChange: this.onChange,
       togglePasswordShown: this.togglePasswordShown,
       passwordShown: this.state.passwordShown,
-      value: this.state.value
+      value: this.state.value,
     });
   }
 }

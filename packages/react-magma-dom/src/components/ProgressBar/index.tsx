@@ -18,7 +18,7 @@ export enum ProgressBarColor {
   primary = 'primary', // default
   pop01 = 'pop01',
   pop02 = 'pop02',
-  success = 'success'
+  success = 'success',
 }
 
 function buildProgressBarBackground(props) {
@@ -102,9 +102,7 @@ const Percentage = styled.span`
   margin-left: 10px;
 `;
 
-export const ProgressBar: React.FunctionComponent<
-  ProgressBarProps
-> = React.forwardRef(
+export const ProgressBar: React.FunctionComponent<ProgressBarProps> = React.forwardRef(
   (
     {
       color,

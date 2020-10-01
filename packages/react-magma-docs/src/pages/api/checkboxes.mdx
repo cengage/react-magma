@@ -3,7 +3,7 @@ pageTitle: Checkbox API
 title: Checkbox
 ---
 
-import { ScopeableLayout } from '../../components/layout'
+import { ScopeableLayout } from '../../components/layout';
 import {
   Alert,
   Button,
@@ -12,11 +12,11 @@ import {
   IndeterminateCheckbox,
   magma,
   I18nContext,
-  defaultI18n
-} from 'react-magma-dom'
-import DocsHeading from '../../components/docs-heading'
-import { Link } from 'gatsby'
-import { SimplePropsTable } from '../../components/props-table'
+  defaultI18n,
+} from 'react-magma-dom';
+import DocsHeading from '../../components/docs-heading';
+import { Link } from 'gatsby';
+import { SimplePropsTable } from '../../components/props-table';
 
 <DocsHeading to="/design/selection-controls" type="design">
   Checkbox
@@ -49,7 +49,7 @@ See also: <Link to="/api/radio">Radio Buttons</Link>, <Link to="/api/toggle">Tog
           checked={checked}
           labelText='Controlled Checkbox'
           onChange={() => updateChecked(!checked)} />
-  
+
         <Checkbox
           labelText='Checkbox label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines' />
       </FormGroup>
@@ -97,7 +97,7 @@ The `indeterminate` status cannot be changed by direct user action, it can only 
 () => {
   const [checkedItems, setCheckedItems] = React.useState([true, false]);
 
-  const status = checkedItems.every(Boolean) 
+  const status = checkedItems.every(Boolean)
     ? 'checked'
     : checkedItems.some(Boolean)
     ? 'indeterminate'
@@ -221,7 +221,7 @@ The `textPosition` property takes the values `left` and `right`. The default val
 
 ## Error at Group Level
 
-The `errorMessage` prop can be used on the `FormGroup` component to display an error message for the group.  Each checkbox within the group will display with error styles.
+The `errorMessage` prop can be used on the `FormGroup` component to display an error message for the group. Each checkbox within the group will display with error styles.
 
 ```.jsx
   (props) => {
@@ -273,7 +273,7 @@ The `errorMessage` prop can be used on the `FormGroup` component to display an e
 An `errorMessage` can also be supplied to an individual checkbox, without the use of a `FormGroup`.
 
 The `required` attribute can be used on a single checkbox if that individual checkbox is required.
-An example of when to use this would be for a terms and conditions checkbox.  
+An example of when to use this would be for a terms and conditions checkbox.
 
 ```.jsx
   (props) => {
@@ -289,7 +289,7 @@ An example of when to use this would be for a terms and conditions checkbox.
           onChange={handleChange}
           required />
     )
-  } 
+  }
 ```
 
 ## Visually Hidden Label
@@ -350,17 +350,19 @@ The `labelText` prop can either be a string, or it can be a React Node.
 ## Internationalization
 
 Some of the internationalization overrides use placeholders to insert selected values in to the message.
-Placeholders are specific keywords surrounded by curly braces. 
+Placeholders are specific keywords surrounded by curly braces.
 
 - `{labelText}` will be replaced with the checkbox's `labelText`.
 
-<Link to="/api/internationalization">Full example of internationalization override options</Link>
+<Link to="/api/internationalization">
+  Full example of internationalization override options
+</Link>
 
 ```.jsx
   () => {
     const [checkedItems, setCheckedItems] = React.useState([true, false]);
 
-    const status = checkedItems.every(Boolean) 
+    const status = checkedItems.every(Boolean)
       ? 'checked'
       : checkedItems.some(Boolean)
       ? 'indeterminate'
@@ -592,7 +594,7 @@ export default props => (
       IndeterminateCheckbox,
       magma,
       I18nContext,
-      defaultI18n
+      defaultI18n,
     }}
   />
-)
+);

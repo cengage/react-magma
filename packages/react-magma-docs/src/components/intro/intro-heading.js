@@ -1,7 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from '@emotion/styled'
-import { ThemeContext } from 'react-magma-dom'
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
+import { ThemeContext } from 'react-magma-dom';
 
 const StyledHeading = styled.h2`
   && {
@@ -22,7 +22,7 @@ const StyledHeading = styled.h2`
       text-align: ${props => (props.isCta ? 'center' : 'left')};
     }
   }
-`
+`;
 
 const HeadingNum = styled.span`
   display: block;
@@ -30,7 +30,7 @@ const HeadingNum = styled.span`
   font-weight: normal;
   font-size: 17px;
   margin-bottom: 15px;
-`
+`;
 
 const IntroHeading = ({ id, isCta, name, number }) => (
   <ThemeContext.Consumer>
@@ -41,12 +41,12 @@ const IntroHeading = ({ id, isCta, name, number }) => (
       </StyledHeading>
     )}
   </ThemeContext.Consumer>
-)
+);
 
 IntroHeading.propTypes = {
   isCta: PropTypes.bool,
   name: PropTypes.string.isRequired,
   number: PropTypes.string,
-}
+};
 
-export default IntroHeading
+export default IntroHeading;

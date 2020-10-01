@@ -145,11 +145,11 @@ describe('Loading Indicator', () => {
                 messages: {
                   first: 'first test',
                   second: 'second test',
-                  third: 'third test'
-                }
+                  third: 'third test',
+                },
               },
-              ...defaultI18n.loadingIndicator.spinner
-            }
+              ...defaultI18n.loadingIndicator.spinner,
+            },
           }}
         >
           <LoadingIndicator type="progressbar" />
@@ -185,11 +185,11 @@ describe('Loading Indicator', () => {
                 messages: {
                   first: 'first test',
                   second: 'second test',
-                  third: 'third test'
-                }
+                  third: 'third test',
+                },
               },
-              ...defaultI18n.loadingIndicator.progressBar
-            }
+              ...defaultI18n.loadingIndicator.progressBar,
+            },
           }}
         >
           <LoadingIndicator />
