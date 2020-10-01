@@ -5,11 +5,13 @@ import { IconButton, IconButtonProps } from '../IconButton';
 import { CaretDownIcon, CaretUpIcon } from 'react-magma-icons';
 import { DropdownContext, DropdownDropDirection } from '.';
 import { I18nContext } from '../../i18n';
+import { useGenerateId } from '../../utils';
 
 export interface DropdownSplitButtonProps extends ButtonStyles {
   'aria-label': string;
   children?: any;
   icon?: React.ReactElement<IconButtonProps>;
+  id?: string;
   isDisabled?: boolean;
   onClick?: () => void;
 }
@@ -18,10 +20,13 @@ export const DropdownSplitButton: React.FunctionComponent<DropdownSplitButtonPro
   'aria-label': ariaLabel,
   children,
   icon,
+  id,
   onClick,
   ...other
 }: DropdownSplitButtonProps) => {
   const context = React.useContext(DropdownContext);
+
+  context.dropdownButtonId.current = useGenerateId(id);
 
   const buttonIcon =
     context.dropDirection === DropdownDropDirection.up ? (
@@ -44,6 +49,7 @@ export const DropdownSplitButton: React.FunctionComponent<DropdownSplitButtonPro
     <>
       <Button
         {...other}
+        id={context.dropdownButtonId.current}
         onClick={onClick}
         shape={ButtonShape.leftCap}
         style={{ borderRight: 0, marginRight: 0 }}
