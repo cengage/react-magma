@@ -34,6 +34,7 @@ interface DropdownContextInterface {
   activeItemIndex?: number;
   alignment?: DropdownAlignment;
   closeDropdown?: (event: React.SyntheticEvent | React.KeyboardEvent) => void;
+  dropdownButtonId?: React.MutableRefObject<string>;
   dropDirection?: DropdownDropDirection;
   handleButtonKeyDown?: (event: React.KeyboardEvent) => void;
   handleMenuBlur?: (event: React.FocusEvent) => void;
@@ -87,6 +88,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
     const ownRef = React.useRef<any>();
     const toggleRef = React.useRef<HTMLButtonElement>();
     const menuRef = React.useRef<any>([]);
+    const dropdownButtonId = React.useRef<string>('');
 
     const ref = useForkedRef(forwardedRef, ownRef);
 
@@ -225,6 +227,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
           activeItemIndex,
           alignment,
           closeDropdown,
+          dropdownButtonId,
           dropDirection,
           handleButtonKeyDown,
           handleMenuBlur,

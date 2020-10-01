@@ -94,7 +94,11 @@ export const DropdownContent: React.FunctionComponent = ({
       width={context.width}
       onBlur={context.handleMenuBlur}
     >
-      <StyledDiv ref={context.menuRef} role="menu">
+      <StyledDiv
+        aria-labelledby={context.dropdownButtonId.current}
+        ref={context.menuRef}
+        role="menu"
+      >
         {children}
       </StyledDiv>
     </StyledCard>
