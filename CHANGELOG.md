@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.92](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.91...v2.0.0-beta.92) (2020-10-01)
+
+
+### Bug Fixes
+
+* **dropdown:** add aria-labelledby to menu div using button for label ([2025173](http://stash.cengage.com:7999/FRONT/react-magma/commits/2025173c3d35441088cb19d7b097ee584610826c))
+
+
+
+
+
 # [2.0.0-beta.91](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.90...v2.0.0-beta.91) (2020-10-01)
 
 **Note:** Version bump only for package react-magma
