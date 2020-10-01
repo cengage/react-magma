@@ -36,7 +36,6 @@ const StyledCard = styled(Card)<{
       bottom: 100%;
     `}
 
-
   ${props =>
     props.dropDirection === 'left' &&
     css`
@@ -44,7 +43,6 @@ const StyledCard = styled(Card)<{
       right: 100%;
       top: 5px;
     `}
-
 
   ${props =>
     props.dropDirection === 'right' &&
@@ -62,7 +60,7 @@ const StyledCard = styled(Card)<{
       right: 5px;
     `}
 
-    ${props =>
+ ${props =>
     props.alignment === 'end' &&
     (props.dropDirection === 'left' || props.dropDirection === 'right') &&
     css`
