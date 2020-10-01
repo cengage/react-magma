@@ -4,6 +4,7 @@ import { Button, ButtonShape, ButtonStyles } from '../Button';
 import { IconButton, IconButtonProps } from '../IconButton';
 import { CaretDownIcon, CaretUpIcon } from 'react-magma-icons';
 import { DropdownContext, DropdownDropDirection } from '.';
+import { I18nContext } from '../../i18n';
 
 export interface DropdownSplitButtonProps extends ButtonStyles {
   'aria-label': string;
@@ -37,6 +38,8 @@ export const DropdownSplitButton: React.FunctionComponent<DropdownSplitButtonPro
     }
   }
 
+  const i18n = React.useContext(I18nContext);
+
   return (
     <>
       <Button
@@ -50,7 +53,7 @@ export const DropdownSplitButton: React.FunctionComponent<DropdownSplitButtonPro
       <IconButton
         {...other}
         aria-expanded={context.isOpen}
-        aria-label={ariaLabel ? ariaLabel : 'Toggle menu'}
+        aria-label={ariaLabel ? ariaLabel : i18n.dropdown.toggleMenuAriaLabel}
         aria-haspopup="true"
         icon={buttonIcon}
         onClick={handleClick}

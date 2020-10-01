@@ -7,7 +7,7 @@ import {
   AngleRightIcon,
   AngleLeftIcon,
   AngleUpIcon,
-  AngleDownIcon
+  AngleDownIcon,
 } from 'react-magma-icons';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { TabsContainerContext } from './TabsContainer';
@@ -17,9 +17,9 @@ import {
   Omit,
   debounce,
   getNormalizedScrollLeft,
-  detectScrollType
+  detectScrollType,
+  useDescendants,
 } from '../../utils';
-import { Tab } from './Tab';
 import { ThemeInterface } from '../../theme/magma';
 
 const StyledContainer = styled('div', { shouldForwardProp: isPropValid })<{
@@ -57,7 +57,7 @@ const StyledTabsWrapper = styled('div', { shouldForwardProp: isPropValid })<{
   scrollbar-width: none;
 `;
 
-const StyledTabs = styled('div', { shouldForwardProp: isPropValid })<{
+const StyledTabs = styled('ul', { shouldForwardProp: isPropValid })<{
   alignment?: TabsAlignment;
   orientation: TabsOrientation;
 }>`
@@ -71,6 +71,8 @@ const StyledTabs = styled('div', { shouldForwardProp: isPropValid })<{
       : props.alignment === 'right'
       ? 'flex-end'
       : ''};
+  margin: 0;
+  padding: 0;
   width: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
 `;
 
@@ -156,26 +158,26 @@ const StyledButtonNext = styled(StyledScrollButton)<{
 export enum TabsAlignment {
   center = 'center',
   left = 'left',
-  right = 'right'
+  right = 'right',
 }
 
 export enum TabsOrientation {
   horizontal = 'horizontal',
-  vertical = 'vertical'
+  vertical = 'vertical',
 }
 
 export enum TabsBorderPosition {
   bottom = 'bottom',
   left = 'left',
   right = 'right',
-  top = 'top'
+  top = 'top',
 }
 
 export enum TabsIconPosition {
   bottom = 'bottom',
   left = 'left',
   right = 'right',
-  top = 'top'
+  top = 'top',
 }
 
 export interface VerticalTabsProps {
@@ -192,6 +194,7 @@ declare type Orientation = HorizontalTabsProps | VerticalTabsProps;
 export interface TabsProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   alignment?: TabsAlignment;
+  'aria-label': string;
   backgroundColor?: string;
   iconPosition?: TabsIconPosition;
   isFullWidth?: boolean;
@@ -202,14 +205,19 @@ export interface TabsProps
 
 interface TabsContextInterface {
   borderPosition?: TabsBorderPosition;
+  buttonRefArray?: React.MutableRefObject<React.MutableRefObject<Element>[]>;
   changeHandler: (
     newActiveIndex: number,
-    event?: React.MouseEvent<HTMLDivElement, MouseEvent>
+    event?: React.MouseEvent<HTMLLIElement, MouseEvent>
   ) => void;
   iconPosition?: TabsIconPosition;
   isInverse?: boolean;
   isFullWidth?: boolean;
   orientation?: TabsOrientation;
+  registerTabButton: (
+    itemRefArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
+    itemRef: React.MutableRefObject<Element>
+  ) => void;
 }
 
 export const TabsContext = React.createContext<TabsContextInterface>({
@@ -218,7 +226,8 @@ export const TabsContext = React.createContext<TabsContextInterface>({
   iconPosition: TabsIconPosition.left,
   isInverse: false,
   isFullWidth: false,
-  orientation: TabsOrientation.horizontal
+  orientation: TabsOrientation.horizontal,
+  registerTabButton: (elements, element) => {},
 });
 
 export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
@@ -248,7 +257,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
     const {
       activeTabIndex,
       setActiveTabIndex,
-      isInverseContainer
+      isInverseContainer,
     } = React.useContext(TabsContainerContext);
 
     const isInverse =
@@ -264,21 +273,13 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
 
     const [displayScroll, setDisplayScroll] = React.useState({
       start: false,
-      end: false
+      end: false,
     });
 
-    const buttonRefArray = React.useRef([]);
-
-    const childrenLength = React.Children.toArray(children).length;
-
-    if (buttonRefArray.current.length !== childrenLength) {
-      buttonRefArray.current = Array(childrenLength)
-        .fill(null)
-        .map((_, i) => buttonRefArray.current[i] || React.createRef());
-    }
+    const [buttonRefArray, registerTabButton] = useDescendants();
 
     const tabsWrapperRef = React.useRef<HTMLDivElement>();
-    const childrenWrapperRef = React.useRef<HTMLDivElement>();
+    const childrenWrapperRef = React.useRef<HTMLUListElement>();
     const prevButtonRef = React.useRef<HTMLDivElement>();
     const nextButtonRef = React.useRef<HTMLDivElement>();
 
@@ -299,7 +300,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
           top: rect.top,
           bottom: rect.bottom,
           left: rect.left,
-          right: rect.right
+          right: rect.right,
         };
       }
 
@@ -377,7 +378,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
         scrollHeight,
         clientHeight,
         scrollWidth,
-        clientWidth
+        clientWidth,
       } = tabsWrapperRef.current;
       let showStartScroll;
       let showEndScroll;
@@ -434,26 +435,9 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
 
     React.useEffect(scrollSelectedIntoView, [activeTabIndex]);
 
-    function findAndAddIndexToTab(baseChild, fn) {
-      return React.Children.map(baseChild, (child: React.ReactChild, index) => {
-        if (!React.isValidElement(child)) {
-          return child;
-        }
-
-        if (child.props.children) {
-          child = React.cloneElement(child, {
-            children: findAndAddIndexToTab(child.props.children, fn),
-            key: index
-          });
-        }
-
-        return fn(child);
-      });
-    }
-
     function changeHandler(
       newActiveIndex: number,
-      event?: React.MouseEvent<HTMLDivElement, MouseEvent>
+      event?: React.MouseEvent<HTMLLIElement, MouseEvent>
     ): void {
       if (
         (event.target as HTMLInputElement).children[0] &&
@@ -509,60 +493,20 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
             ref={childrenWrapperRef}
             role="tablist"
           >
-            {buttonRefArray.current.length && (
-              <TabsContext.Provider
-                value={{
-                  borderPosition,
-                  changeHandler,
-                  iconPosition,
-                  isInverse,
-                  isFullWidth,
-                  orientation
-                }}
-              >
-                {React.Children.map(
-                  props.children,
-                  (baseChild: any, baseIndex) => {
-                    if (baseChild && baseChild.type === Tab) {
-                      const index = baseChild.props.index || baseIndex;
-                      return React.cloneElement(baseChild, {
-                        index,
-                        key: index,
-                        ref: buttonRefArray.current[index]
-                      });
-                    } else if (
-                      baseChild &&
-                      baseChild.props &&
-                      baseChild.props.children
-                    ) {
-                      return findAndAddIndexToTab(baseChild, newChild => {
-                        if (newChild.type === Tab) {
-                          const index = baseChild.props.index || baseIndex;
-                          return React.cloneElement(newChild, {
-                            index,
-                            key: index,
-                            ref: buttonRefArray.current[index]
-                          });
-                        }
-
-                        return newChild;
-                      });
-                    } else if (baseChild) {
-                      const index = baseChild.props.index || baseIndex;
-                      return React.cloneElement(baseChild, {
-                        tabProps: {
-                          index,
-                          key: index,
-                          ref: buttonRefArray.current[index]
-                        }
-                      });
-                    } else {
-                      return null;
-                    }
-                  }
-                )}
-              </TabsContext.Provider>
-            )}
+            <TabsContext.Provider
+              value={{
+                borderPosition,
+                buttonRefArray,
+                changeHandler,
+                iconPosition,
+                isInverse,
+                isFullWidth,
+                orientation,
+                registerTabButton,
+              }}
+            >
+              {children}
+            </TabsContext.Provider>
           </StyledTabs>
         </StyledTabsWrapper>
         <StyledButtonNext
