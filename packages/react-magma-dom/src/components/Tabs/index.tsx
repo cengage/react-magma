@@ -7,7 +7,7 @@ import {
   AngleRightIcon,
   AngleLeftIcon,
   AngleUpIcon,
-  AngleDownIcon
+  AngleDownIcon,
 } from 'react-magma-icons';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { TabsContainerContext } from './TabsContainer';
@@ -18,7 +18,7 @@ import {
   debounce,
   getNormalizedScrollLeft,
   detectScrollType,
-  useDescendants
+  useDescendants,
 } from '../../utils';
 import { ThemeInterface } from '../../theme/magma';
 
@@ -158,26 +158,26 @@ const StyledButtonNext = styled(StyledScrollButton)<{
 export enum TabsAlignment {
   center = 'center',
   left = 'left',
-  right = 'right'
+  right = 'right',
 }
 
 export enum TabsOrientation {
   horizontal = 'horizontal',
-  vertical = 'vertical'
+  vertical = 'vertical',
 }
 
 export enum TabsBorderPosition {
   bottom = 'bottom',
   left = 'left',
   right = 'right',
-  top = 'top'
+  top = 'top',
 }
 
 export enum TabsIconPosition {
   bottom = 'bottom',
   left = 'left',
   right = 'right',
-  top = 'top'
+  top = 'top',
 }
 
 export interface VerticalTabsProps {
@@ -227,7 +227,7 @@ export const TabsContext = React.createContext<TabsContextInterface>({
   isInverse: false,
   isFullWidth: false,
   orientation: TabsOrientation.horizontal,
-  registerTabButton: (elements, element) => {}
+  registerTabButton: (elements, element) => {},
 });
 
 export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
@@ -257,7 +257,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
     const {
       activeTabIndex,
       setActiveTabIndex,
-      isInverseContainer
+      isInverseContainer,
     } = React.useContext(TabsContainerContext);
 
     const isInverse =
@@ -273,7 +273,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
 
     const [displayScroll, setDisplayScroll] = React.useState({
       start: false,
-      end: false
+      end: false,
     });
 
     const [buttonRefArray, registerTabButton] = useDescendants();
@@ -300,7 +300,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
           top: rect.top,
           bottom: rect.bottom,
           left: rect.left,
-          right: rect.right
+          right: rect.right,
         };
       }
 
@@ -378,7 +378,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
         scrollHeight,
         clientHeight,
         scrollWidth,
-        clientWidth
+        clientWidth,
       } = tabsWrapperRef.current;
       let showStartScroll;
       let showEndScroll;
@@ -502,7 +502,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
                 isInverse,
                 isFullWidth,
                 orientation,
-                registerTabButton
+                registerTabButton,
               }}
             >
               {children}

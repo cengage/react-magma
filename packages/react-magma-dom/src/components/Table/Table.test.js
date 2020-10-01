@@ -60,7 +60,7 @@ describe('Table', () => {
       'background',
       'rgba(63,63,63,0.07)',
       {
-        target: ':nth-of-type(even)'
+        target: ':nth-of-type(even)',
       }
     );
   });
@@ -85,12 +85,12 @@ describe('Table', () => {
       'background',
       magma.colors.tone02,
       {
-        target: ':hover'
+        target: ':hover',
       }
     );
   });
 
-  it('should render table with compact density ', () => {
+  it('should render table with compact density', () => {
     const { getByText } = render(
       <Table density="compact">
         <TableHead>
@@ -112,7 +112,7 @@ describe('Table', () => {
     expect(getByText('heading 1')).toHaveStyleRule('padding', '4px 8px');
   });
 
-  it('should render table with loose density ', () => {
+  it('should render table with loose density', () => {
     const { getByText } = render(
       <Table density="loose">
         <TableHead>
@@ -165,7 +165,7 @@ describe('Table', () => {
       'background',
       magma.colors.tint02,
       {
-        target: ':hover'
+        target: ':hover',
       }
     );
 
@@ -173,7 +173,7 @@ describe('Table', () => {
       'background',
       magma.colors.tint01,
       {
-        target: ':nth-of-type(even)'
+        target: ':nth-of-type(even)',
       }
     );
   });
@@ -304,12 +304,12 @@ describe('Table', () => {
       'outline',
       `2px dotted ${magma.colors.focusInverse}`,
       {
-        target: ':focus'
+        target: ':focus',
       }
     );
 
     expect(button).toHaveStyleRule('background', magma.colors.tint01, {
-      target: ':hover'
+      target: ':hover',
     });
   });
 });

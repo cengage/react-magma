@@ -32,7 +32,7 @@ describe('TabPanel', () => {
       </TabsContainerContext.Provider>
     );
 
-    expect(getByText('Tab Panel Text'));
+    expect(getByText('Tab Panel Text')).toBeInTheDocument();
   });
 });
 

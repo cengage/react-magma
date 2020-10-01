@@ -6,7 +6,7 @@ import {
   CaretLeftIcon,
   CaretRightIcon,
   CaretUpIcon,
-  IconProps
+  IconProps,
 } from 'react-magma-icons';
 import { DropdownContext, DropdownDropDirection } from '.';
 import { Omit, useGenerateId, XOR } from '../../utils';

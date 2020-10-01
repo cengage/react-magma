@@ -221,13 +221,13 @@ describe('TimePicker', () => {
       expect(amPmButton).toHaveTextContent('AM');
 
       fireEvent.keyDown(amPmButton, {
-        key: 'ArrowDown'
+        key: 'ArrowDown',
       });
 
       expect(amPmButton).toHaveTextContent('PM');
 
       fireEvent.keyDown(amPmButton, {
-        key: 'ArrowDown'
+        key: 'ArrowDown',
       });
 
       expect(amPmButton).toHaveTextContent('AM');
@@ -241,13 +241,13 @@ describe('TimePicker', () => {
       expect(amPmButton).toHaveTextContent('AM');
 
       fireEvent.keyDown(amPmButton, {
-        key: 'ArrowUp'
+        key: 'ArrowUp',
       });
 
       expect(amPmButton).toHaveTextContent('PM');
 
       fireEvent.keyDown(amPmButton, {
-        key: 'ArrowUp'
+        key: 'ArrowUp',
       });
 
       expect(amPmButton).toHaveTextContent('AM');

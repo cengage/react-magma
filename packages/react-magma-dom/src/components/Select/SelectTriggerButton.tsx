@@ -42,7 +42,7 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
     isDisabled,
     isInverse,
     style,
-    toggleButtonProps
+    toggleButtonProps,
   } = props;
   const theme = React.useContext(ThemeContext);
 

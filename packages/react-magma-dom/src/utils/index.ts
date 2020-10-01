@@ -228,7 +228,7 @@ export function registerDescendant(
         : [
             ...itemRefArray.current.slice(0, index),
             newItem,
-            ...itemRefArray.current.slice(index)
+            ...itemRefArray.current.slice(index),
           ];
   }
 }

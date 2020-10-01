@@ -3,7 +3,7 @@ import {
   useSelect,
   useMultipleSelection,
   UseSelectProps,
-  UseMultipleSelectionProps
+  UseMultipleSelectionProps,
 } from 'downshift';
 
 import { Select as InternalSelect } from './Select';
@@ -96,7 +96,7 @@ export function Select<T>(props: SelectInterface<T>) {
     isMulti,
     errorMessage,
     messageStyle,
-    helperMessage
+    helperMessage,
   } = props;
 
   function itemToString(item: T) {

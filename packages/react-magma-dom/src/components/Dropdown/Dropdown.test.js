@@ -275,12 +275,12 @@ describe('Dropdown', () => {
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
 
     fireEvent.keyDown(getByTestId('dropdown'), {
-      key: 'ArrowDown'
+      key: 'ArrowDown',
     });
 
     fireEvent.keyDown(getByTestId('dropdown'), {
       key: 'Escape',
-      code: 27
+      code: 27,
     });
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
@@ -307,7 +307,7 @@ describe('Dropdown', () => {
     expect(toggleButton).toHaveFocus();
 
     fireEvent.keyDown(toggleButton, {
-      key: 'Tab'
+      key: 'Tab',
     });
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
@@ -335,7 +335,7 @@ describe('Dropdown', () => {
 
     fireEvent.keyDown(toggleButton, {
       key: 'Tab',
-      shiftKey: true
+      shiftKey: true,
     });
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
@@ -356,7 +356,7 @@ describe('Dropdown', () => {
 
     fireEvent.keyDown(getByTestId('dropdown'), {
       key: 'Escape',
-      code: 27
+      code: 27,
     });
 
     expect(onBeforeShiftFocus).toHaveBeenCalled();
@@ -390,7 +390,7 @@ describe('Dropdown', () => {
 
     fireEvent.keyDown(getByTestId('dropdown'), {
       key: 'Escape',
-      code: 27
+      code: 27,
     });
 
     expect(document.activeElement).not.toEqual(toggleButton);
@@ -414,14 +414,14 @@ describe('Dropdown', () => {
 
     fireEvent.keyDown(getByTestId('dropdown'), {
       key: 'ArrowDown',
-      code: 40
+      code: 40,
     });
 
     expect(getByText('Menu item 1')).toHaveFocus();
 
     fireEvent.keyDown(getByTestId('dropdown'), {
       key: 'ArrowDown',
-      code: 40
+      code: 40,
     });
 
     expect(getByText('Menu item 2')).toHaveFocus();
@@ -445,14 +445,14 @@ describe('Dropdown', () => {
 
     fireEvent.keyDown(getByTestId('dropdown'), {
       key: 'ArrowUp',
-      code: 38
+      code: 38,
     });
 
     expect(getByText('Menu item 2')).toHaveFocus();
 
     fireEvent.keyDown(getByTestId('dropdown'), {
       key: 'ArrowUp',
-      code: 38
+      code: 38,
     });
 
     expect(getByText('Menu item 1')).toHaveFocus();
@@ -588,7 +588,7 @@ describe('Dropdown', () => {
 
     fireEvent.keyDown(getByText(itemText), {
       key: 'Enter',
-      code: 13
+      code: 13,
     });
 
     expect(onClick).toHaveBeenCalled();
@@ -609,7 +609,7 @@ describe('Dropdown', () => {
 
     fireEvent.keyDown(getByText(itemText), {
       key: ' ',
-      code: 32
+      code: 32,
     });
 
     expect(onClick).toHaveBeenCalled();

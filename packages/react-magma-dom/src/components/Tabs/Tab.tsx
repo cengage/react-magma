@@ -7,7 +7,7 @@ import {
   TabsIconPosition,
   TabsOrientation,
   TabsBorderPosition,
-  TabsContext
+  TabsContext,
 } from '.';
 import { Omit, useForceUpdate, useForkedRef, XOR } from '../../utils';
 import { TabsContainerContext } from './TabsContainer';
@@ -134,16 +134,16 @@ const TabStyles = props => css`
   width: ${props.isFullWidth ? '100%' : 'auto'};
 
   ${props.orientation === 'vertical' &&
-    css`
-      align-items: flex-start;
-      justify-content: ${props.iconPosition === 'left'
-        ? 'flex-start'
-        : 'flex-end'};
-      text-align: left;
-      width: 100%;
+  css`
+    align-items: flex-start;
+    justify-content: ${props.iconPosition === 'left'
+      ? 'flex-start'
+      : 'flex-end'};
+    text-align: left;
+    width: 100%;
 
-      align-items: center;
-    `}
+    align-items: center;
+  `}
 
   &:hover,
   &:focus {
@@ -191,7 +191,7 @@ export const StyledCustomTab: React.FunctionComponent<TabComponentProps> = ({
         key: element.key,
         ref: element.ref,
         ...element.props,
-        ...newProps
+        ...newProps,
       });
     };
 
@@ -206,7 +206,7 @@ export const StyledCustomTab: React.FunctionComponent<TabComponentProps> = ({
           {icon}
           {component.props.children}
         </>
-      )
+      ),
     });
   }
 };
@@ -280,7 +280,7 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
       borderPosition,
       iconPosition,
       isInverse,
-      isFullWidth
+      isFullWidth,
     } = React.useContext(TabsContext);
 
     React.useEffect(() => {

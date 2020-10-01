@@ -30,7 +30,7 @@ describe('Tab', () => {
         <Tab testId={testId}>Test</Tab>
       </Tabs>
     );
-    expect(getByText('Test'));
+    expect(getByText('Test')).toBeInTheDocument();
   });
 
   it('should render tab as passed in component', () => {

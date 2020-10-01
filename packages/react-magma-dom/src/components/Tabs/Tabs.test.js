@@ -96,7 +96,7 @@ describe('Tabs', () => {
     );
   });
 
-  it('should render the tabs horizontally', () => {
+  it('should render the tabs vertically', () => {
     const testId = 'test-id';
 
     const { getByTestId } = render(
@@ -196,7 +196,7 @@ describe('Tabs', () => {
     );
 
     expect(getByText('Tab 1').parentElement).toHaveStyleRule('bottom', '0', {
-      target: ':after'
+      target: ':after',
     });
   });
 
@@ -211,7 +211,7 @@ describe('Tabs', () => {
     );
 
     expect(getByText('Tab 1').parentElement).toHaveStyleRule('bottom', 'auto', {
-      target: ':after'
+      target: ':after',
     });
   });
 
@@ -226,7 +226,7 @@ describe('Tabs', () => {
     );
 
     expect(getByText('Tab 1').parentElement).toHaveStyleRule('left', 'auto', {
-      target: ':after'
+      target: ':after',
     });
   });
 
@@ -241,7 +241,7 @@ describe('Tabs', () => {
     );
 
     expect(getByText('Tab 1').parentElement).toHaveStyleRule('bottom', '0', {
-      target: ':after'
+      target: ':after',
     });
   });
 
@@ -256,7 +256,7 @@ describe('Tabs', () => {
       'background',
       magma.colors.pop02,
       {
-        target: ':after'
+        target: ':after',
       }
     );
     expect(getByTestId('buttonPrev')).toHaveStyleRule(
@@ -290,7 +290,7 @@ describe('Tabs', () => {
     expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
 
     fireEvent.click(getByText('This is tab 2'), {
-      target: { scrollIntoView: jest.fn() }
+      target: { scrollIntoView: jest.fn() },
     });
 
     expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
@@ -319,8 +319,8 @@ describe('Tabs', () => {
 
     fireEvent.click(getByText('This is tab 2').parentElement, {
       target: {
-        scrollIntoView: jest.fn()
-      }
+        scrollIntoView: jest.fn(),
+      },
     });
 
     expect(queryByText('Tab 1 Info')).toBeInTheDocument();
@@ -351,7 +351,7 @@ describe('Tabs', () => {
     );
 
     fireEvent.click(getByText('This is tab 2'), {
-      target: { scrollIntoView: jest.fn() }
+      target: { scrollIntoView: jest.fn() },
     });
 
     expect(onChange).toHaveBeenCalled();
