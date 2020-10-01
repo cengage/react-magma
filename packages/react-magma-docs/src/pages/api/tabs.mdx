@@ -3,8 +3,8 @@ pageTitle: Tabs API
 title: Tabs
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { GraduationCapIcon, BellIcon, AndroidIcon } from 'react-magma-icons';
+import { ScopeableLayout } from '../../components/layout'
+import { GraduationCapIcon, BellIcon, AndroidIcon } from 'react-magma-icons'
 import {
   magma,
   Tab,
@@ -14,11 +14,14 @@ import {
   TabsContainer,
   HyperLink,
   useMediaQuery,
-} from 'react-magma-dom';
-import { SimplePropsTable } from '../../components/props-table';
-import { Link } from 'gatsby';
+} from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
+import { Link } from 'gatsby'
+import DocsHeading from '../../components/docs-heading'
 
-# Tabs
+<DocsHeading to="/design/tabs/" type="design">
+Tabs
+</DocsHeading>
 
 ## Basic Usage
 
@@ -87,9 +90,9 @@ This prop is specified on the `Tabs` component.
 
 ## Border Position
 
-By default, horizontal tabs have the inidicator placed underneath the tabs.
-However, there are times you may want to place the indicator above the tabs, such as when the tab menu is displayed below its content.
-This is less common, but can be used in cases such as using tabs to emulate bottom navigation in a mobile application.
+By default, horizontal tabs have the inidicator placed underneath the tabs. However, it is possible to display the indicator on the top edge of the tabs.
+
+**Caution:** Displaying tabs below their associated content panel is most commonly used for navigation that appears at the bottom of the viewport on mobile devices. Using this same pattern for a simple set of tabbed content on a page could be unfamiliar and confusing to the user, and should not be used without proper user-testing.
 
 The `borderPosition` prop is an enum and accepts `top` or `bottom` for horizontal tabs.
 The `borderPosition` prop is specified on the `Tabs` component and will apply to each individual tab.
@@ -917,4 +920,4 @@ export default props => (
       useMediaQuery,
     }}
   />
-);
+)
