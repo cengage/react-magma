@@ -1,0 +1,71 @@
+---
+pageTitle: Badge API
+title: Badge
+---
+
+import { ScopeableLayout } from '../../components/layout'
+import { NavTabs, NavTab } from 'react-magma-dom'
+import { SimplePropsTable } from '../../components/props-table'
+
+## Nav Tabs
+
+## Basic Usage
+
+```.jsx
+    <NavTabs>
+        <NavTab>Link 1</NavTab>
+        <NavTab>Link 2</NavTab>
+    </NavTabs>
+```
+
+## NavTabs Props
+
+**Any other props supplied will be provided to the wrapping `nav` element.**
+
+<SimplePropsTable
+  propertyValues={{
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+  }}
+/>
+
+## NavTab Props
+
+**Any other props supplied will be provided to the wrapping `a` element.**
+
+<SimplePropsTable
+  propertyValues={{
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout {...props} components={{ NavTabs, NavTab }} />
+)
