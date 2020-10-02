@@ -20,7 +20,7 @@ import { Link } from 'gatsby'
 import DocsHeading from '../../components/docs-heading'
 
 <DocsHeading to="/design/tabs/" type="design">
-Tabs
+  Tabs
 </DocsHeading>
 
 ## Basic Usage
@@ -235,13 +235,13 @@ This is a simple example of Tab Components with custom switching logic
 
 ## Disabled Tabs
 
-If a `Tab` is `disabled`, it will not be actionable. It will still appear in the menu, but will be styled to appear greyed out.
+If a `Tab` is `disabled` using the `isDisabled` prop, it will not be actionable. It will still appear in the menu, but will be styled to appear greyed out.
 
 ```.jsx
     <TabsContainer>
       <Tabs aria-label="Sample With Disabled Tabs" backgroundColor='#F7F7F7'>
         <Tab>Main page</Tab>
-        <Tab disabled>FAQ</Tab>
+        <Tab isDisabled>FAQ</Tab>
         <Tab>About us</Tab>
       </Tabs>
 
@@ -846,19 +846,19 @@ When using the `component` props in the `Tab` component we will disregard anythi
       description:
         'The prop for custom component instead of `button` in Tab. When using this prop the `children` of the component is not used.',
     },
-    disabled: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'The prop for disabling Tab.',
-    },
     index: {
       type: {
         name: 'number',
       },
       required: false,
       description: 'The index of your Tab.',
+    },
+    isDisabled: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'The prop for disabling Tab.',
     },
     testId: {
       type: {

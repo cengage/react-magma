@@ -99,7 +99,9 @@ describe('Test for accessibility', () => {
       </TabsContainer>
     );
 
-    return axe(container.innerHTML).then(result => {
+    return axe(container.innerHTML, {
+      rules: { listitem: { enabled: false } }
+    }).then(result => {
       return expect(result).toHaveNoViolations();
     });
   });

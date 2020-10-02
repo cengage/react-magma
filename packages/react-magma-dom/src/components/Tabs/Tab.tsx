@@ -15,11 +15,11 @@ import { ThemeInterface } from '../../theme/magma';
 
 export interface TabProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  disabled?: boolean;
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
   iconPosition?: TabsIconPosition;
   index?: number;
   isActive?: boolean;
+  isDisabled?: boolean;
   isFullWidth?: boolean;
   isInverse?: boolean;
   orientation?: TabsOrientation;
@@ -199,7 +199,7 @@ const StyledIcon = styled.span<{
 
 export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
   (props: TabProps, forwardedRef: React.Ref<any>) => {
-    const { children, icon, testId, ...rest } = props;
+    const { children, icon, isDisabled, testId, ...rest } = props;
     const { activeTabIndex } = React.useContext(TabsContainerContext);
     const { buttonRefArray, registerTabButton } = React.useContext(TabsContext);
     const ownRef = React.useRef<HTMLDivElement>();
@@ -253,6 +253,7 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
           {...rest}
           aria-selected={isActive}
           data-testid={testId}
+          disabled={isDisabled}
           iconPosition={tabIconPosition}
           isActive={isActive}
           isInverse={isInverse}

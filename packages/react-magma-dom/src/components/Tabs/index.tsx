@@ -454,6 +454,48 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
         : setActiveTabIndex(newActiveIndex);
     }
 
+    function tabIsEnabled(tabIndex) {
+      return (
+        buttonRefArray.current[tabIndex].current.getAttribute('disabled') ===
+        null
+      );
+    }
+
+    function findPreviousEnabledTabIndex(modifiedActiveTabIndex?: number) {
+      const currentTabIndex = modifiedActiveTabIndex
+        ? modifiedActiveTabIndex
+        : activeTabIndex;
+      const newActiveTabIndex = currentTabIndex > 0 ? currentTabIndex - 1 : 0;
+
+      if (tabIsEnabled(newActiveTabIndex)) {
+        return newActiveTabIndex;
+      } else if (newActiveTabIndex - 1 >= 0) {
+        return findPreviousEnabledTabIndex(newActiveTabIndex);
+      } else {
+        return activeTabIndex;
+      }
+    }
+
+    function findNextEnabledTabIndex(
+      lastChildIndex: number,
+      modifiedActiveTabIndex?: number
+    ) {
+      const currentTabIndex =
+        modifiedActiveTabIndex === 0 || modifiedActiveTabIndex
+          ? modifiedActiveTabIndex
+          : activeTabIndex;
+      const newActiveTabIndex =
+        currentTabIndex < lastChildIndex ? currentTabIndex + 1 : lastChildIndex;
+
+      if (tabIsEnabled(newActiveTabIndex)) {
+        return newActiveTabIndex;
+      } else if (newActiveTabIndex + 1 <= lastChildIndex) {
+        return findNextEnabledTabIndex(lastChildIndex, newActiveTabIndex);
+      } else {
+        return activeTabIndex;
+      }
+    }
+
     function handleKeyDown(event: React.KeyboardEvent) {
       const target = event.target as HTMLButtonElement;
 
@@ -462,7 +504,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
         return;
       }
 
-      const lastChild = buttonRefArray.current.length - 1;
+      const lastChildIndex = buttonRefArray.current.length - 1;
       let newActiveTabIndex = null;
       let previousItemKey =
         orientation !== TabsOrientation.vertical ? 'ArrowLeft' : 'ArrowUp';
@@ -471,17 +513,20 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
 
       switch (event.key) {
         case previousItemKey:
-          newActiveTabIndex = activeTabIndex > 0 ? activeTabIndex - 1 : 0;
+          newActiveTabIndex = findPreviousEnabledTabIndex();
           break;
         case nextItemKey:
-          newActiveTabIndex =
-            activeTabIndex < lastChild ? activeTabIndex + 1 : lastChild;
+          newActiveTabIndex = findNextEnabledTabIndex(lastChildIndex);
           break;
         case 'Home':
-          newActiveTabIndex = 0;
+          newActiveTabIndex = tabIsEnabled(0)
+            ? 0
+            : findNextEnabledTabIndex(lastChildIndex, 0);
           break;
         case 'End':
-          newActiveTabIndex = lastChild;
+          newActiveTabIndex = tabIsEnabled(lastChildIndex)
+            ? lastChildIndex
+            : findPreviousEnabledTabIndex(lastChildIndex);
           break;
         default:
           break;

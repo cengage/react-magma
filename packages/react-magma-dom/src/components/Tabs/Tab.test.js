@@ -33,53 +33,23 @@ describe('Tab', () => {
     expect(getByText('Test'));
   });
 
-  it('should render tab as passed in component', () => {
-    const { getByText } = render(
-      <Tabs>
-        <Tab
-          component={
-            <a href="google.com" data-testid="child">
-              Test Component
-            </a>
-          }
-        />
-      </Tabs>
-    );
-
-    expect(getByText('Test Component')).toBeInTheDocument();
-  });
-
-  it('should render a tab with a component and an icon', () => {
-    const { getByTestId } = render(
-      <Tabs>
-        <Tab
-          component={<a href="google.com">Test Component</a>}
-          icon={<CheckIcon testId="icon" />}
-          testId="component"
-        />
-      </Tabs>
-    );
-
-    expect(getByTestId('component')).toBeInTheDocument();
-    expect(getByTestId('icon')).toBeInTheDocument();
-  });
-
   it('should have aria-selected attribute if tab is active', () => {
+    const testId = 'testId';
     const { getByTestId, rerender } = render(
       <TabsContainer activeIndex={0}>
         <Tabs>
-          <Tab ariaLabel="test">Tab Text</Tab>
+          <Tab testId={testId}>Tab Text</Tab>
         </Tabs>
       </TabsContainer>
     );
-    const component = getByTestId('tabContainer');
+    const component = getByTestId(testId);
 
     expect(component).toHaveAttribute('aria-selected', 'true');
 
     rerender(
       <TabsContainer activeIndex={1}>
         <Tabs>
-          <Tab ariaLabel="test">Tab Text</Tab>
+          <Tab testId={testId}>Tab Text</Tab>
         </Tabs>
       </TabsContainer>
     );
@@ -92,7 +62,7 @@ describe('Tab', () => {
 
     const { getByTestId, rerender } = render(
       <Tabs>
-        <Tab testId={testId} ariaLabel="test" disabled={true}>
+        <Tab testId={testId} ariaLabel="test" isDisabled={true}>
           Tab Text
         </Tab>
       </Tabs>
@@ -273,14 +243,18 @@ describe('Test for accessibility', () => {
   it('Does not violate accessibility standards', () => {
     const testId = 'test-id';
     const { container } = render(
-      <Tabs>
-        <Tab testId={testId} ariaLabel="test">
-          Tab Text
-        </Tab>
-      </Tabs>
+      <TabsContainer>
+        <Tabs>
+          <Tab testId={testId} ariaLabel="test">
+            Tab Text
+          </Tab>
+        </Tabs>
+      </TabsContainer>
     );
 
-    return axe(container.innerHTML).then(result => {
+    return axe(container.innerHTML, {
+      rules: { listitem: { enabled: false } }
+    }).then(result => {
       return expect(result).toHaveNoViolations();
     });
   });

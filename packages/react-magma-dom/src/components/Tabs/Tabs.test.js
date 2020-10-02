@@ -79,7 +79,7 @@ describe('Tabs', () => {
   it('should render the tabs horizontally', () => {
     const testId = 'test-id';
 
-    const { getByTestId } = render(
+    const { getByTestId, getAllByTestId } = render(
       <TabsContainerContext.Provider value={{ activeTabIndex: 1 }}>
         <Tabs testId={testId} orientation="horizontal">
           <Tab>Tab 1</Tab>
@@ -87,19 +87,17 @@ describe('Tabs', () => {
         </Tabs>
       </TabsContainerContext.Provider>
     );
+
     const tabsContainer = getByTestId(testId);
     expect(tabsContainer).toHaveAttribute('orientation', 'horizontal');
     expect(tabsContainer).toHaveStyleRule('width', '100%');
-    expect(tabsContainer.querySelector("[role='tab']")).toHaveStyleRule(
-      'height',
-      '100%'
-    );
+    expect(getAllByTestId('tabContainer')[0]).toHaveStyleRule('height', '100%');
   });
 
-  it('should render the tabs horizontally', () => {
+  it('should render the tabs vertically', () => {
     const testId = 'test-id';
 
-    const { getByTestId } = render(
+    const { getByTestId, getAllByTestId } = render(
       <TabsContainerContext.Provider value={{ activeTabIndex: 1 }}>
         <Tabs testId={testId} orientation="vertical">
           <Tab>Tab 1</Tab>
@@ -112,10 +110,7 @@ describe('Tabs', () => {
 
     expect(tabsContainer).toHaveAttribute('orientation', 'vertical');
     expect(tabsContainer).toHaveStyleRule('width', 'auto');
-    expect(tabsContainer.querySelector("[role='tab']")).toHaveStyleRule(
-      'height',
-      'auto'
-    );
+    expect(getAllByTestId('tabContainer')[0]).toHaveStyleRule('height', 'auto');
   });
 
   it('should render scroll buttons if orientation horizontal and hasScrollButtons is true', () => {
@@ -302,7 +297,7 @@ describe('Tabs', () => {
       <TabsContainer activeIndex={0}>
         <Tabs testId={'dd'} hasScrollButtons={true} orientation="horizontal">
           <Tab>This is tab 1</Tab>
-          <Tab disabled>This is tab 2</Tab>
+          <Tab isDisabled>This is tab 2</Tab>
           <Tab>This is tab 3</Tab>
         </Tabs>
 
@@ -368,6 +363,420 @@ describe('Tabs', () => {
 
     expect(getByTestId('testTab')).toBeInTheDocument();
   });
+
+  describe('Keyboard Navigation', () => {
+    it('ArrowRight', () => {
+      const { getByText, queryByText } = render(
+        <TabsContainer activeIndex={0}>
+          <Tabs>
+            <Tab>This is tab 1</Tab>
+            <Tab>This is tab 2</Tab>
+            <Tab>This is tab 3</Tab>
+          </Tabs>
+
+          <TabPanelsContainer>
+            <TabPanel>Tab 1 Info</TabPanel>
+            <TabPanel>Tab 2 Info</TabPanel>
+            <TabPanel>Tab 3 Info</TabPanel>
+          </TabPanelsContainer>
+        </TabsContainer>
+      );
+
+      expect(getByText('Tab 1 Info')).toBeVisible();
+      expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
+
+      fireEvent.keyDown(getByText('This is tab 1'), {
+        key: 'ArrowRight'
+      });
+
+      expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
+      expect(getByText('Tab 2 Info')).toBeVisible();
+      expect(document.activeElement).toEqual(getByText('This is tab 2'));
+
+      fireEvent.keyDown(getByText('This is tab 2'), {
+        key: 'ArrowRight'
+      });
+
+      expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
+      expect(getByText('Tab 3 Info')).toBeVisible();
+      expect(document.activeElement).toEqual(getByText('This is tab 3'));
+
+      fireEvent.keyDown(getByText('This is tab 3'), {
+        key: 'ArrowRight'
+      });
+
+      expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
+      expect(getByText('Tab 3 Info')).toBeVisible();
+      expect(document.activeElement).toEqual(getByText('This is tab 3'));
+    });
+
+    it('ArrowLeft', () => {
+      const { getByText, queryByText } = render(
+        <TabsContainer activeIndex={2}>
+          <Tabs>
+            <Tab>This is tab 1</Tab>
+            <Tab>This is tab 2</Tab>
+            <Tab>This is tab 3</Tab>
+          </Tabs>
+
+          <TabPanelsContainer>
+            <TabPanel>Tab 1 Info</TabPanel>
+            <TabPanel>Tab 2 Info</TabPanel>
+            <TabPanel>Tab 3 Info</TabPanel>
+          </TabPanelsContainer>
+        </TabsContainer>
+      );
+
+      expect(getByText('Tab 3 Info')).toBeVisible();
+      expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
+
+      fireEvent.keyDown(getByText('This is tab 3'), {
+        key: 'ArrowLeft'
+      });
+
+      expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
+      expect(getByText('Tab 2 Info')).toBeVisible();
+      expect(document.activeElement).toEqual(getByText('This is tab 2'));
+
+      fireEvent.keyDown(getByText('This is tab 2'), {
+        key: 'ArrowLeft'
+      });
+
+      expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
+      expect(getByText('Tab 1 Info')).toBeVisible();
+      expect(document.activeElement).toEqual(getByText('This is tab 1'));
+
+      fireEvent.keyDown(getByText('This is tab 1'), {
+        key: 'ArrowLeft'
+      });
+
+      expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
+      expect(getByText('Tab 1 Info')).toBeVisible();
+      expect(document.activeElement).toEqual(getByText('This is tab 1'));
+    });
+
+    it('ArrowDown', () => {
+      const { getByText, queryByText } = render(
+        <TabsContainer activeIndex={0}>
+          <Tabs orientation="vertical">
+            <Tab>This is tab 1</Tab>
+            <Tab>This is tab 2</Tab>
+            <Tab>This is tab 3</Tab>
+          </Tabs>
+
+          <TabPanelsContainer>
+            <TabPanel>Tab 1 Info</TabPanel>
+            <TabPanel>Tab 2 Info</TabPanel>
+            <TabPanel>Tab 3 Info</TabPanel>
+          </TabPanelsContainer>
+        </TabsContainer>
+      );
+
+      expect(getByText('Tab 1 Info')).toBeVisible();
+      expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
+
+      fireEvent.keyDown(getByText('This is tab 1'), {
+        key: 'ArrowDown'
+      });
+
+      expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
+      expect(getByText('Tab 2 Info')).toBeVisible();
+      expect(document.activeElement).toEqual(getByText('This is tab 2'));
+
+      fireEvent.keyDown(getByText('This is tab 2'), {
+        key: 'ArrowDown'
+      });
+
+      expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
+      expect(getByText('Tab 3 Info')).toBeVisible();
+      expect(document.activeElement).toEqual(getByText('This is tab 3'));
+
+      fireEvent.keyDown(getByText('This is tab 3'), {
+        key: 'ArrowDown'
+      });
+
+      expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
+      expect(getByText('Tab 3 Info')).toBeVisible();
+      expect(document.activeElement).toEqual(getByText('This is tab 3'));
+    });
+
+    it('ArrowUp', () => {
+      const { getByText, queryByText } = render(
+        <TabsContainer activeIndex={2}>
+          <Tabs orientation="vertical">
+            <Tab>This is tab 1</Tab>
+            <Tab>This is tab 2</Tab>
+            <Tab>This is tab 3</Tab>
+          </Tabs>
+
+          <TabPanelsContainer>
+            <TabPanel>Tab 1 Info</TabPanel>
+            <TabPanel>Tab 2 Info</TabPanel>
+            <TabPanel>Tab 3 Info</TabPanel>
+          </TabPanelsContainer>
+        </TabsContainer>
+      );
+
+      expect(getByText('Tab 3 Info')).toBeVisible();
+      expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
+
+      fireEvent.keyDown(getByText('This is tab 3'), {
+        key: 'ArrowUp'
+      });
+
+      expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
+      expect(getByText('Tab 2 Info')).toBeVisible();
+      expect(document.activeElement).toEqual(getByText('This is tab 2'));
+
+      fireEvent.keyDown(getByText('This is tab 2'), {
+        key: 'ArrowUp'
+      });
+
+      expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
+      expect(getByText('Tab 1 Info')).toBeVisible();
+      expect(document.activeElement).toEqual(getByText('This is tab 1'));
+
+      fireEvent.keyDown(getByText('This is tab 1'), {
+        key: 'ArrowUp'
+      });
+
+      expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
+      expect(getByText('Tab 1 Info')).toBeVisible();
+      expect(document.activeElement).toEqual(getByText('This is tab 1'));
+    });
+
+    it('Home', () => {
+      const { getByText, queryByText } = render(
+        <TabsContainer activeIndex={2}>
+          <Tabs>
+            <Tab>This is tab 1</Tab>
+            <Tab>This is tab 2</Tab>
+            <Tab>This is tab 3</Tab>
+          </Tabs>
+
+          <TabPanelsContainer>
+            <TabPanel>Tab 1 Info</TabPanel>
+            <TabPanel>Tab 2 Info</TabPanel>
+            <TabPanel>Tab 3 Info</TabPanel>
+          </TabPanelsContainer>
+        </TabsContainer>
+      );
+
+      expect(getByText('Tab 3 Info')).toBeVisible();
+      expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
+
+      fireEvent.keyDown(getByText('This is tab 3'), {
+        key: 'Home'
+      });
+
+      expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
+      expect(getByText('Tab 1 Info')).toBeVisible();
+      expect(document.activeElement).toEqual(getByText('This is tab 1'));
+    });
+
+    it('End', () => {
+      const { getByText, queryByText } = render(
+        <TabsContainer activeIndex={0}>
+          <Tabs>
+            <Tab>This is tab 1</Tab>
+            <Tab>This is tab 2</Tab>
+            <Tab>This is tab 3</Tab>
+          </Tabs>
+
+          <TabPanelsContainer>
+            <TabPanel>Tab 1 Info</TabPanel>
+            <TabPanel>Tab 2 Info</TabPanel>
+            <TabPanel>Tab 3 Info</TabPanel>
+          </TabPanelsContainer>
+        </TabsContainer>
+      );
+
+      expect(getByText('Tab 1 Info')).toBeVisible();
+      expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
+
+      fireEvent.keyDown(getByText('This is tab 1'), {
+        key: 'End'
+      });
+
+      expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
+      expect(getByText('Tab 3 Info')).toBeVisible();
+      expect(document.activeElement).toEqual(getByText('This is tab 3'));
+    });
+
+    it('ArrowRight with disabled', () => {
+      const { getByText, queryByText } = render(
+        <TabsContainer activeIndex={0}>
+          <Tabs>
+            <Tab>This is tab 1</Tab>
+            <Tab isDisabled>This is tab 2</Tab>
+            <Tab>This is tab 3</Tab>
+          </Tabs>
+
+          <TabPanelsContainer>
+            <TabPanel>Tab 1 Info</TabPanel>
+            <TabPanel>Tab 2 Info</TabPanel>
+            <TabPanel>Tab 3 Info</TabPanel>
+          </TabPanelsContainer>
+        </TabsContainer>
+      );
+
+      expect(getByText('Tab 1 Info')).toBeVisible();
+      expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
+
+      fireEvent.keyDown(getByText('This is tab 1'), {
+        key: 'ArrowRight'
+      });
+
+      expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
+      expect(getByText('Tab 3 Info')).toBeVisible();
+      expect(document.activeElement).toEqual(getByText('This is tab 3'));
+    });
+
+    it('ArrowLeft with disabled', () => {
+      const { getByText, queryByText } = render(
+        <TabsContainer activeIndex={2}>
+          <Tabs>
+            <Tab>This is tab 1</Tab>
+            <Tab isDisabled>This is tab 2</Tab>
+            <Tab>This is tab 3</Tab>
+          </Tabs>
+
+          <TabPanelsContainer>
+            <TabPanel>Tab 1 Info</TabPanel>
+            <TabPanel>Tab 2 Info</TabPanel>
+            <TabPanel>Tab 3 Info</TabPanel>
+          </TabPanelsContainer>
+        </TabsContainer>
+      );
+
+      expect(getByText('Tab 3 Info')).toBeVisible();
+      expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
+
+      fireEvent.keyDown(getByText('This is tab 3'), {
+        key: 'ArrowLeft'
+      });
+
+      expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
+      expect(getByText('Tab 1 Info')).toBeVisible();
+      expect(document.activeElement).toEqual(getByText('This is tab 1'));
+    });
+
+    it('ArrowDown with disabled', () => {
+      const { getByText, queryByText } = render(
+        <TabsContainer activeIndex={0}>
+          <Tabs orientation="vertical">
+            <Tab>This is tab 1</Tab>
+            <Tab isDisabled>This is tab 2</Tab>
+            <Tab>This is tab 3</Tab>
+          </Tabs>
+
+          <TabPanelsContainer>
+            <TabPanel>Tab 1 Info</TabPanel>
+            <TabPanel>Tab 2 Info</TabPanel>
+            <TabPanel>Tab 3 Info</TabPanel>
+          </TabPanelsContainer>
+        </TabsContainer>
+      );
+
+      expect(getByText('Tab 1 Info')).toBeVisible();
+      expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
+
+      fireEvent.keyDown(getByText('This is tab 1'), {
+        key: 'ArrowDown'
+      });
+
+      expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
+      expect(getByText('Tab 3 Info')).toBeVisible();
+      expect(document.activeElement).toEqual(getByText('This is tab 3'));
+    });
+
+    it('ArrowUp with disabled', () => {
+      const { getByText, queryByText } = render(
+        <TabsContainer activeIndex={2}>
+          <Tabs orientation="vertical">
+            <Tab>This is tab 1</Tab>
+            <Tab isDisabled>This is tab 2</Tab>
+            <Tab>This is tab 3</Tab>
+          </Tabs>
+
+          <TabPanelsContainer>
+            <TabPanel>Tab 1 Info</TabPanel>
+            <TabPanel>Tab 2 Info</TabPanel>
+            <TabPanel>Tab 3 Info</TabPanel>
+          </TabPanelsContainer>
+        </TabsContainer>
+      );
+
+      expect(getByText('Tab 3 Info')).toBeVisible();
+      expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
+
+      fireEvent.keyDown(getByText('This is tab 3'), {
+        key: 'ArrowUp'
+      });
+
+      expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
+      expect(getByText('Tab 1 Info')).toBeVisible();
+      expect(document.activeElement).toEqual(getByText('This is tab 1'));
+    });
+
+    it('Home with first element disabled', () => {
+      const { getByText, queryByText } = render(
+        <TabsContainer activeIndex={2}>
+          <Tabs>
+            <Tab isDisabled>This is tab 1</Tab>
+            <Tab>This is tab 2</Tab>
+            <Tab>This is tab 3</Tab>
+          </Tabs>
+
+          <TabPanelsContainer>
+            <TabPanel>Tab 1 Info</TabPanel>
+            <TabPanel>Tab 2 Info</TabPanel>
+            <TabPanel>Tab 3 Info</TabPanel>
+          </TabPanelsContainer>
+        </TabsContainer>
+      );
+
+      expect(getByText('Tab 3 Info')).toBeVisible();
+      expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
+
+      fireEvent.keyDown(getByText('This is tab 3'), {
+        key: 'Home'
+      });
+
+      expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
+      expect(getByText('Tab 2 Info')).toBeVisible();
+      expect(document.activeElement).toEqual(getByText('This is tab 2'));
+    });
+
+    it('End with last element disabled', () => {
+      const { getByText, queryByText } = render(
+        <TabsContainer activeIndex={0}>
+          <Tabs>
+            <Tab>This is tab 1</Tab>
+            <Tab>This is tab 2</Tab>
+            <Tab isDisabled>This is tab 3</Tab>
+          </Tabs>
+
+          <TabPanelsContainer>
+            <TabPanel>Tab 1 Info</TabPanel>
+            <TabPanel>Tab 2 Info</TabPanel>
+            <TabPanel>Tab 3 Info</TabPanel>
+          </TabPanelsContainer>
+        </TabsContainer>
+      );
+
+      expect(getByText('Tab 1 Info')).toBeVisible();
+      expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
+
+      fireEvent.keyDown(getByText('This is tab 1'), {
+        key: 'End'
+      });
+
+      expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
+      expect(getByText('Tab 2 Info')).toBeVisible();
+      expect(document.activeElement).toEqual(getByText('This is tab 2'));
+    });
+  });
 });
 
 describe('Test for accessibility', () => {
@@ -388,7 +797,9 @@ describe('Test for accessibility', () => {
       </TabsContainer>
     );
 
-    return axe(container.innerHTML).then(result => {
+    return axe(container.innerHTML, {
+      rules: { listitem: { enabled: false } }
+    }).then(result => {
       return expect(result).toHaveNoViolations();
     });
   });
