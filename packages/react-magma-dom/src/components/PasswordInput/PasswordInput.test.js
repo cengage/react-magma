@@ -115,7 +115,7 @@ it('should trigger the passed in onChange when value of the input is changed', (
   );
 
   fireEvent.change(getByLabelText(labelText), {
-    target: { value: targetValue }
+    target: { value: targetValue },
   });
 
   expect(onChangeSpy).toHaveBeenCalledTimes(1);
@@ -206,12 +206,12 @@ describe('i18n', () => {
     const hidden = {
       announce: 'hidden password announce',
       ariaLabel: 'hidden password ariaLabel',
-      buttonText: 'hidden password buttonText'
+      buttonText: 'hidden password buttonText',
     };
     const shown = {
       announce: 'shown password announce',
       ariaLabel: 'shown password ariaLabel',
-      buttonText: 'shown password buttonText'
+      buttonText: 'shown password buttonText',
     };
     const { getByLabelText, getByText } = render(
       <I18nContext.Provider
@@ -219,8 +219,8 @@ describe('i18n', () => {
           ...defaultI18n,
           password: {
             hidden,
-            shown
-          }
+            shown,
+          },
         }}
       >
         <PasswordInput labelText={labelText} inputSize="large" />

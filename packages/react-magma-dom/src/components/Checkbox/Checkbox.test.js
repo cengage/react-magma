@@ -219,7 +219,7 @@ describe('Checkbox', () => {
         getByTestId(testId),
         new MouseEvent('blur', {
           bubbles: true,
-          cancelable: true
+          cancelable: true,
         })
       );
 
@@ -249,7 +249,7 @@ describe('Checkbox', () => {
         getByTestId(testId),
         new MouseEvent('focus', {
           bubbles: true,
-          cancelable: true
+          cancelable: true,
         })
       );
 

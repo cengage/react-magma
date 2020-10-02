@@ -100,7 +100,7 @@ describe('InputCore', () => {
     );
 
     fireEvent.change(getByTestId('target'), {
-      target: { value: 'whatever' }
+      target: { value: 'whatever' },
     });
 
     expect(getByDisplayValue('whatever')).toBeInTheDocument();
@@ -118,7 +118,7 @@ describe('InputCore', () => {
 
     expect(() =>
       fireEvent.change(getByTestId('target'), {
-        target: { value: 'whatever' }
+        target: { value: 'whatever' },
       })
     ).not.toThrow();
   });

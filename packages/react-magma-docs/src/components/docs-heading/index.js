@@ -1,9 +1,9 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from '@emotion/styled'
-import { Link } from 'gatsby'
-import { HyperLink } from 'react-magma-dom'
-import { CodeIcon, PaletteIcon } from 'react-magma-icons'
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
+import { Link } from 'gatsby';
+import { HyperLink } from 'react-magma-dom';
+import { CodeIcon, PaletteIcon } from 'react-magma-icons';
 
 const StyledDiv = styled.div`
   align-items: flex-start;
@@ -16,7 +16,7 @@ const StyledDiv = styled.div`
     align-items: center;
     flex-direction: row;
   }
-`
+`;
 
 const Heading = styled.h1`
   margin: 0 0 20px;
@@ -24,7 +24,7 @@ const Heading = styled.h1`
   @media (min-width: 600px) {
     margin: 0;
   }
-`
+`;
 
 const DocsHeading = ({ children, to, type }) => (
   <StyledDiv>
@@ -52,12 +52,12 @@ const DocsHeading = ({ children, to, type }) => (
       </HyperLink>
     )}
   </StyledDiv>
-)
+);
 
 DocsHeading.propTypes = {
   children: PropTypes.node.isRequired,
   to: PropTypes.string,
   type: PropTypes.oneOf(['code', 'design']),
-}
+};
 
-export default DocsHeading
+export default DocsHeading;

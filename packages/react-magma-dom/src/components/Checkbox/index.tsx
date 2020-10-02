@@ -5,7 +5,7 @@ import {
   DisplayInputActiveStyles,
   buildDisplayInputActiveBackground,
   buildDisplayInputBorderColor,
-  buildDisplayInputFocusStyles
+  buildDisplayInputFocusStyles,
 } from '../SelectionControls/InputStyles';
 import { FormGroupContext } from '../FormGroup';
 import { HiddenStyles } from '../../utils/UtilityStyles';
@@ -18,7 +18,7 @@ import { useGenerateId } from '../../utils';
 
 export enum CheckboxTextPosition {
   left = 'left',
-  right = 'right' // default
+  right = 'right', // default
 }
 
 export interface CheckboxProps

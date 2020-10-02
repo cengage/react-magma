@@ -18,7 +18,7 @@ export const SelectWrapper: React.FunctionComponent<SelectWrapperProps> = ({
   isInverse,
   labelText,
   messageStyle,
-  testId
+  testId,
 }: SelectWrapperProps) => (
   <div data-testid={testId}>
     <Label isInverse={isInverse}>{labelText}</Label>

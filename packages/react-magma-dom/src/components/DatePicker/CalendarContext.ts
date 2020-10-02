@@ -20,12 +20,12 @@ export const CalendarContext = React.createContext<CalendarContextInterface>({
   chosenDate: new Date(),
   focusedDate: new Date(),
   buildCalendarMonth: (newDate: Date, enableOutsideDates: boolean) => [
-    [newDate]
+    [newDate],
   ],
   setShowHelperInformation: (value: boolean) => {},
-  onDateChange: (newDate: Date, {}) => {},
-  onKeyDown: ({}) => {},
+  onDateChange: (newDate: Date, event: React.SyntheticEvent) => {},
+  onKeyDown: (event: React.KeyboardEvent) => {},
   onPrevMonthClick: () => {},
   onNextMonthClick: () => {},
-  setDateFocused: (value: boolean) => {}
+  setDateFocused: (value: boolean) => {},
 });

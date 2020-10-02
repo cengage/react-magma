@@ -101,10 +101,10 @@ describe('SkipLink', () => {
     const link = container.querySelector('a');
 
     expect(link).toHaveStyleRule('left', '86px', {
-      target: ':focus'
+      target: ':focus',
     });
     expect(link).toHaveStyleRule('top', '99px', {
-      target: ':focus'
+      target: ':focus',
     });
   });
 
@@ -116,8 +116,8 @@ describe('SkipLink', () => {
           value={{
             ...defaultI18n,
             skipLink: {
-              buttonText
-            }
+              buttonText,
+            },
           }}
         >
           <SkipLink />

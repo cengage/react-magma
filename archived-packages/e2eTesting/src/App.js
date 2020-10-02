@@ -8,7 +8,7 @@ import {
   RadioGroup,
   Radio,
   Select,
-  InfoIcon
+  InfoIcon,
 } from 'react-magma-dom';
 
 class App extends Component {
@@ -108,16 +108,16 @@ class App extends Component {
           options={[
             {
               value: 'red',
-              label: 'Red'
+              label: 'Red',
             },
             {
               value: 'blue',
-              label: 'Blue'
+              label: 'Blue',
             },
             {
               value: 'green',
-              label: 'Green'
-            }
+              label: 'Green',
+            },
           ]}
           onOpen={() => {
             alert('opened');
@@ -133,16 +133,16 @@ class App extends Component {
           options={[
             {
               value: 'red',
-              label: 'Red'
+              label: 'Red',
             },
             {
               value: 'blue',
-              label: 'Blue'
+              label: 'Blue',
             },
             {
               value: 'green',
-              label: 'Green'
-            }
+              label: 'Green',
+            },
           ]}
           onChange={() => {
             alert('changed');

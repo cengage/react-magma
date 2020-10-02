@@ -32,7 +32,7 @@ export function Select<T>(props: SelectInterface<T>) {
     onKeyDown,
     onKeyPress,
     onKeyUp,
-    selectedItem: passedInSelectedItem
+    selectedItem: passedInSelectedItem,
   } = props;
 
   const toggleButtonRef = React.useRef<HTMLButtonElement>();
@@ -49,7 +49,7 @@ export function Select<T>(props: SelectInterface<T>) {
   function handleOnIsOpenChange(changes) {
     const {
       isOpen: changedIsOpen,
-      selectedItem: changedSelectedItem
+      selectedItem: changedSelectedItem,
     } = changes;
 
     if (changedIsOpen && changedSelectedItem) {
@@ -71,7 +71,7 @@ export function Select<T>(props: SelectInterface<T>) {
       case useSelect.stateChangeTypes.ToggleButtonKeyDownCharacter:
         return {
           ...changes,
-          selectedItem: state.selectedItem
+          selectedItem: state.selectedItem,
         };
       default:
         return changes;
@@ -88,7 +88,7 @@ export function Select<T>(props: SelectInterface<T>) {
     getItemProps,
     reset,
     openMenu,
-    setHighlightedIndex
+    setHighlightedIndex,
   } = useSelect<T>({
     ...props,
     onIsOpenChange: handleOnIsOpenChange,
@@ -98,7 +98,7 @@ export function Select<T>(props: SelectInterface<T>) {
     ...(initialSelectedItem &&
       getValidItem(initialSelectedItem, 'initialSelectedItem')),
     ...(passedInSelectedItem &&
-      getValidItem(passedInSelectedItem, 'selectedItem'))
+      getValidItem(passedInSelectedItem, 'selectedItem')),
   });
 
   const { ClearIndicator } = defaultComponents({ ...customComponents });
@@ -120,7 +120,7 @@ export function Select<T>(props: SelectInterface<T>) {
     onKeyPress,
     onKeyUp,
     onFocus,
-    ref: toggleButtonRef
+    ref: toggleButtonRef,
   });
 
   function defaultHandleClearIndicatorClick(event: React.SyntheticEvent) {

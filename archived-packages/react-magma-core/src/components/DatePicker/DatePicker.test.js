@@ -9,7 +9,7 @@ import {
   addMonths,
   startOfMonth,
   addDays,
-  format
+  format,
 } from 'date-fns';
 import uuid from 'uuid/v4';
 
@@ -18,7 +18,7 @@ jest.mock('uuid/v4');
 const DATE_PICKER_CORE_PROPS = {
   children: () => React.createElement('div'),
   calendarOpened: false,
-  defaultDate: new Date('January 17, 2019')
+  defaultDate: new Date('January 17, 2019'),
 };
 
 describe('DatePickerCore', () => {
@@ -127,7 +127,7 @@ describe('DatePickerCore', () => {
           {({
             showHelperInformation,
             openHelperInformation,
-            closeHelperInformation
+            closeHelperInformation,
           }) => {
             return (
               <>
@@ -168,7 +168,7 @@ describe('DatePickerCore', () => {
             focusedDate,
             chosenDate,
             reset,
-            toggleDateFocus
+            toggleDateFocus,
           }) => {
             return (
               <>

@@ -15,7 +15,7 @@ const StyledContainerComponent = styled.div<ContainerProps>`
 
 export const StyledContainer: React.FunctionComponent<ContainerProps> = ({
   children,
-  style
+  style,
 }: ContainerProps) => (
   <StyledContainerComponent style={style}>{children}</StyledContainerComponent>
 );

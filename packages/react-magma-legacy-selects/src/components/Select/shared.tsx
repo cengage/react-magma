@@ -4,7 +4,7 @@ import {
   ValueType,
   ActionMeta,
   components,
-  Styles
+  Styles,
 } from 'react-select';
 
 import { CrossIcon, CaretDownIcon } from 'react-magma-icons';
@@ -88,9 +88,9 @@ export function getStyles(
         '&:hover': {
           borderColor: state.isFocused
             ? theme.colors.pop02
-            : theme.colors.neutral03
+            : theme.colors.neutral03,
         },
-        ...custom
+        ...custom,
       };
     },
     dropdownIndicator: (styles, state) => {
@@ -100,7 +100,7 @@ export function getStyles(
       return {
         ...styles,
         color: theme.colors.neutral01,
-        ...custom
+        ...custom,
       };
     },
     clearIndicator: (styles, state) => {
@@ -112,9 +112,9 @@ export function getStyles(
         color: theme.colors.neutral02,
 
         '&:hover': {
-          backgroundColor: theme.colors.neutral07
+          backgroundColor: theme.colors.neutral07,
         },
-        ...custom
+        ...custom,
       };
     },
     indicatorSeparator: (styles, state) => {
@@ -123,7 +123,7 @@ export function getStyles(
         customStyles.indicatorSeparator(styles, state);
       return {
         display: 'none',
-        ...custom
+        ...custom,
       };
     },
     menu: (styles, state) => {
@@ -136,7 +136,7 @@ export function getStyles(
         boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)',
         color: theme.colors.neutral01,
         zIndex: 999,
-        ...custom
+        ...custom,
       };
     },
     multiValue: (styles, state) => {
@@ -146,7 +146,7 @@ export function getStyles(
         ...styles,
         backgroundColor: theme.colors.neutral06,
         color: theme.colors.neutral01,
-        ...custom
+        ...custom,
       };
     },
     multiValueRemove: (styles, state) => {
@@ -160,9 +160,9 @@ export function getStyles(
 
         '&:hover': {
           backgroundColor: theme.colors.neutral05,
-          color: theme.colors.neutral01
+          color: theme.colors.neutral01,
         },
-        ...custom
+        ...custom,
       };
     },
     option: (styles, state) => {
@@ -175,7 +175,7 @@ export function getStyles(
           ? theme.colors.neutral07
           : theme.colors.neutral08,
         color: theme.colors.neutral01,
-        ...custom
+        ...custom,
       };
     },
     placeholder: (styles, state) => {
@@ -184,7 +184,7 @@ export function getStyles(
       return {
         ...styles,
         color: theme.colors.neutral03,
-        ...custom
+        ...custom,
       };
     },
     singleValue: (styles, state) => {
@@ -193,9 +193,9 @@ export function getStyles(
       return {
         ...styles,
         color: theme.colors.neutral01,
-        ...custom
+        ...custom,
       };
-    }
+    },
   };
 }
 

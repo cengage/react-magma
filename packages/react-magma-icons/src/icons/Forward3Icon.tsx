@@ -7,9 +7,9 @@ const iconType = {
   paths: [
     {
       d: 'M13.56,23.62V14.88L4.81,23.62V4.38l8.75,8.74V4.38L23.19,14Z',
-      transform: 'translate(-4.81 -4.38)'
-    }
-  ]
+      transform: 'translate(-4.81 -4.38)',
+    },
+  ],
 };
 
 export const Forward3Icon: React.FunctionComponent<IconProps> = (

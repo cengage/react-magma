@@ -7,7 +7,7 @@ import {
   ButtonShape,
   ButtonSize,
   ButtonTextTransform,
-  ButtonVariant
+  ButtonVariant,
 } from '.';
 import { render } from '@testing-library/react';
 

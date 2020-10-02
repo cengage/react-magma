@@ -12,9 +12,11 @@ describe('Tab', () => {
     const testId = 'test-id';
 
     const { getByTestId } = render(
-      <Tab testId={testId} ariaLabel="test">
-        Tab Text
-      </Tab>
+      <Tabs>
+        <Tab testId={testId} ariaLabel="test">
+          Tab Text
+        </Tab>
+      </Tabs>
     );
 
     expect(getByTestId(testId)).toBeInTheDocument();
@@ -23,19 +25,25 @@ describe('Tab', () => {
   it('should render children', () => {
     const testId = 'test-id';
 
-    const { getByText } = render(<Tab testId={testId}>Test</Tab>);
-    expect(getByText('Test'));
+    const { getByText } = render(
+      <Tabs>
+        <Tab testId={testId}>Test</Tab>
+      </Tabs>
+    );
+    expect(getByText('Test')).toBeInTheDocument();
   });
 
   it('should render tab as passed in component', () => {
     const { getByText } = render(
-      <Tab
-        component={
-          <a href="google.com" data-testid="child">
-            Test Component
-          </a>
-        }
-      />
+      <Tabs>
+        <Tab
+          component={
+            <a href="google.com" data-testid="child">
+              Test Component
+            </a>
+          }
+        />
+      </Tabs>
     );
 
     expect(getByText('Test Component')).toBeInTheDocument();
@@ -43,11 +51,13 @@ describe('Tab', () => {
 
   it('should render a tab with a component and an icon', () => {
     const { getByTestId } = render(
-      <Tab
-        component={<a href="google.com">Test Component</a>}
-        icon={<CheckIcon testId="icon" />}
-        testId="component"
-      />
+      <Tabs>
+        <Tab
+          component={<a href="google.com">Test Component</a>}
+          icon={<CheckIcon testId="icon" />}
+          testId="component"
+        />
+      </Tabs>
     );
 
     expect(getByTestId('component')).toBeInTheDocument();
@@ -81,9 +91,11 @@ describe('Tab', () => {
     const testId = 'test-id';
 
     const { getByTestId, rerender } = render(
-      <Tab testId={testId} ariaLabel="test" disabled={true}>
-        Tab Text
-      </Tab>
+      <Tabs>
+        <Tab testId={testId} ariaLabel="test" disabled={true}>
+          Tab Text
+        </Tab>
+      </Tabs>
     );
     const component = getByTestId(testId);
 
@@ -91,9 +103,11 @@ describe('Tab', () => {
     expect(component).toBeDisabled();
 
     rerender(
-      <Tab testId={testId} ariaLabel="test" disabled={false}>
-        Tab Text
-      </Tab>
+      <Tabs>
+        <Tab testId={testId} ariaLabel="test" disabled={false}>
+          Tab Text
+        </Tab>
+      </Tabs>
     );
 
     expect(component).toHaveProperty('disabled', false);
@@ -102,7 +116,11 @@ describe('Tab', () => {
 
   it('should render icon', () => {
     const icon = <CheckIcon size={18} />;
-    const { container } = render(<Tab icon={icon}>Tab With Icon</Tab>);
+    const { container } = render(
+      <Tabs>
+        <Tab icon={icon}>Tab With Icon</Tab>
+      </Tabs>
+    );
 
     expect(container.querySelector('svg')).toBeInTheDocument();
     expect(container.querySelector('span')).toBeInTheDocument();
@@ -110,7 +128,11 @@ describe('Tab', () => {
 
   it('should render an icon only tab', () => {
     const icon = <CheckIcon testId="icon" />;
-    const { getByTestId } = render(<Tab icon={icon} />);
+    const { getByTestId } = render(
+      <Tabs>
+        <Tab icon={icon} />
+      </Tabs>
+    );
 
     expect(getByTestId('icon')).toBeInTheDocument();
   });
@@ -176,9 +198,11 @@ describe('Tab', () => {
     expect(getByTestId(testId)).toHaveStyleRule('align-items', 'center');
 
     rerender(
-      <Tab testId={testId} icon={icon} iconPosition="left">
-        Tab
-      </Tab>
+      <Tabs iconPosition="left">
+        <Tab testId={testId} icon={icon}>
+          Tab
+        </Tab>
+      </Tabs>
     );
 
     expect(container.querySelector('span')).toHaveStyleRule(
@@ -193,9 +217,11 @@ describe('Tab', () => {
 
     const icon = <CheckIcon size={18} />;
     const { container, getByTestId } = render(
-      <Tab testId={testId} icon={icon} iconPosition="left">
-        Tab
-      </Tab>
+      <Tabs iconPosition="left">
+        <Tab testId={testId} icon={icon}>
+          Tab
+        </Tab>
+      </Tabs>
     );
 
     expect(container.querySelector('span')).toHaveStyleRule(

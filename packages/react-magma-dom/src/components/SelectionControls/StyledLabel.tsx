@@ -23,7 +23,7 @@ export const StyledLabel: React.FunctionComponent<StyledLabelProps> = ({
   children,
   htmlFor,
   isInverse,
-  style
+  style,
 }: StyledLabelProps) => (
   <ThemeContext.Consumer>
     {theme => (

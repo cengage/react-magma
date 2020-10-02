@@ -6,7 +6,7 @@ import {
   getDay,
   startOfMonth,
   endOfMonth,
-  differenceInDays
+  differenceInDays,
 } from 'date-fns';
 
 export function getCalendarMonthWeeks(

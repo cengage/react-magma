@@ -3,13 +3,13 @@ import {
   useCombobox,
   UseComboboxProps,
   UseComboboxState,
-  UseMultipleSelectionProps
+  UseMultipleSelectionProps,
 } from 'downshift';
 import {
   SelectOptions,
   instanceOfDefaultItemObject,
   InternalSelectInterface,
-  InternalMultiInterface
+  InternalMultiInterface,
 } from '../Select';
 import { InternalCombobox } from './Combobox';
 import { MultiCombobox } from './MultiCombobox';
@@ -64,7 +64,7 @@ export function Combobox<T>(props: ComboboxInterface<T>) {
     isInverse,
     isMulti,
     messageStyle,
-    helperMessage
+    helperMessage,
   } = props;
 
   function itemToString(item: T) {

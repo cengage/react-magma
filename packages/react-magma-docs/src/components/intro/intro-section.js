@@ -1,8 +1,8 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from '@emotion/styled'
-import ScrollAnimation from 'react-animate-on-scroll'
-import { ThemeContext } from 'react-magma-dom'
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
+import ScrollAnimation from 'react-animate-on-scroll';
+import { ThemeContext } from 'react-magma-dom';
 
 export const StyledSection = styled.section`
   align-items: center;
@@ -18,7 +18,7 @@ export const StyledSection = styled.section`
     height: 100vh;
     padding: 0 10%;
   }
-`
+`;
 
 const ImgContainer = styled(ScrollAnimation)`
   flex-shrink: 0;
@@ -28,7 +28,7 @@ const ImgContainer = styled(ScrollAnimation)`
     margin-right: 30px;
     width: 30%;
   }
-`
+`;
 
 const IntroSection = ({ afterAnimatedIn, children, image, section }) => (
   <ThemeContext.Consumer>
@@ -37,7 +37,7 @@ const IntroSection = ({ afterAnimatedIn, children, image, section }) => (
         {image && (
           <ImgContainer
             afterAnimatedIn={v => {
-              afterAnimatedIn(section, v)
+              afterAnimatedIn(section, v);
             }}
             animateIn="fadeInLeft"
             duration={1.2}
@@ -50,13 +50,13 @@ const IntroSection = ({ afterAnimatedIn, children, image, section }) => (
       </StyledSection>
     )}
   </ThemeContext.Consumer>
-)
+);
 
 IntroSection.propTypes = {
   children: PropTypes.node.isRequired,
   section: PropTypes.string.isRequired,
   image: PropTypes.node,
   afterAnimatedIn: PropTypes.func.isRequired,
-}
+};
 
-export default IntroSection
+export default IntroSection;

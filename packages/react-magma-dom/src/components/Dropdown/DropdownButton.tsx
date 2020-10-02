@@ -6,10 +6,10 @@ import {
   CaretLeftIcon,
   CaretRightIcon,
   CaretUpIcon,
-  IconProps
+  IconProps,
 } from 'react-magma-icons';
 import { DropdownContext, DropdownDropDirection } from '.';
-import { Omit, XOR } from '../../utils';
+import { Omit, useGenerateId, XOR } from '../../utils';
 import { ButtonProps } from '../Button';
 
 export interface IconOnlyDropdownButtonProps
@@ -39,6 +39,8 @@ export const DropdownButton: React.FunctionComponent<DropdownButtonProps> = (
   props: DropdownButtonProps
 ) => {
   const context = React.useContext(DropdownContext);
+
+  context.dropdownButtonId.current = useGenerateId(props.id);
 
   function getButtonIcon(dropDirection: DropdownDropDirection) {
     switch (dropDirection) {
@@ -86,6 +88,7 @@ export const DropdownButton: React.FunctionComponent<DropdownButtonProps> = (
       aria-haspopup="true"
       icon={icon}
       iconPosition={iconPositionToUse}
+      id={context.dropdownButtonId.current}
       onClick={handleClick}
       onKeyDown={context.handleButtonKeyDown}
       ref={context.toggleRef}

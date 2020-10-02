@@ -9,12 +9,12 @@ import { components as ReactSelectComponents } from 'react-select';
 const colourOptions = [
   {
     label: 'Red',
-    value: 'red'
+    value: 'red',
   },
   {
     label: 'Blue',
-    value: 'blue'
-  }
+    value: 'blue',
+  },
 ];
 
 it('Does not violate accessibility standards', async () => {
@@ -53,8 +53,8 @@ describe('Creatable', () => {
 
     fireEvent.change(input, {
       target: {
-        value: 'pink'
-      }
+        value: 'pink',
+      },
     });
 
     await waitForElement(() => getByText('Create "pink"'));
@@ -80,7 +80,7 @@ describe('Creatable', () => {
           id="customSelect"
           labelText="Custom"
           components={{
-            DropdownIndicator
+            DropdownIndicator,
           }}
         />
       ));

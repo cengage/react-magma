@@ -19,7 +19,7 @@ export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
 
     this.state = {
       id: generateId(this.props.id),
-      selectedValue: this.props.value
+      selectedValue: this.props.value,
     };
 
     this.onChange = this.onChange.bind(this);
@@ -45,7 +45,7 @@ export class RadioCore extends React.Component<RadioCoreProps, RadioCoreState> {
       ...this.props,
       id: this.state.id,
       onChange: this.onChange,
-      selectedValue: this.state.selectedValue
+      selectedValue: this.state.selectedValue,
     });
   }
 }

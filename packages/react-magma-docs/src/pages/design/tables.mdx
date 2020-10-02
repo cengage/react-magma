@@ -4,8 +4,8 @@ title: Tables
 order: 1
 ---
 
-import './design-guidelines-styles.css'
-import DocsHeading from '../../components/docs-heading'
+import './design-guidelines-styles.css';
+import DocsHeading from '../../components/docs-heading';
 
 <DocsHeading to="/api/table/" type="code">
   Tables
@@ -22,6 +22,7 @@ Tables are used to organize and display data efficiently. The table component al
 Tables display information in a grid-like format of rows and columns. They organize information in a way that’s easy to scan so that users can look for patterns and develop insights from data.
 
 **Tables can contain:**
+
 - Interactive components (such as inputs, buttons, or menus)
 - Non-interactive elements (such as badges)
 - Tools to query and manipulate data
@@ -35,7 +36,6 @@ Tables display information in a grid-like format of rows and columns. They organ
 
 - When a more complex display of the data or interactions are required.
 - As a replacement for a spreadsheet application.
-
 
 <span class="horizontal-spacer"></span>
 <hr class="article-divider" />
@@ -108,6 +108,7 @@ The loose density can be useful if you have a relatively small amount of data an
 ## Content
 
 ### Table Title and Description
+
 - The table title should make it clear to the user what the data is and what purpose it serves in the UI.
 - A description can be added under the title to provide more information about the data or its source.
 
@@ -127,6 +128,7 @@ The loose density can be useful if you have a relatively small amount of data an
 </div>
 
 ### Column Titles
+
 - Column titles should stick to one or two words that describe the data in that column.
 - In cases where a column title is too long, the text will wrap to two lines.
 
@@ -141,9 +143,7 @@ The loose density can be useful if you have a relatively small amount of data an
         <img src="../../images/tables/column-header-truncate.png" alt=" " />
         <figcaption>
           <p class="title title-incorrect">Incorrect</p>
-          <p>
-            Don't truncate column titles.
-          </p>
+          <p>Don't truncate column titles.</p>
         </figcaption>
       </figure>
     </div>
@@ -152,9 +152,7 @@ The loose density can be useful if you have a relatively small amount of data an
         <img src="../../images/tables/column-header-wrap.png" alt=" " />
         <figcaption>
           <p class="title title-correct">Correct</p>
-          <p>
-            Let long column titles wrap naturally.
-          </p>
+          <p>Let long column titles wrap naturally.</p>
         </figcaption>
       </figure>
     </div>
@@ -162,10 +160,10 @@ The loose density can be useful if you have a relatively small amount of data an
 </div>
 
 ### Table Cells
-- Table cells can contain just about any kind of content: Text, numbers, images, buttons, inputs, and more.
-- The content within a cell should be left or right aligned.  Using center-alignment could make it difficult for a user to scan the column of data.
-- Columns of numbers should typically be right-aligned for better scanning.
 
+- Table cells can contain just about any kind of content: Text, numbers, images, buttons, inputs, and more.
+- The content within a cell should be left or right aligned. Using center-alignment could make it difficult for a user to scan the column of data.
+- Columns of numbers should typically be right-aligned for better scanning.
 
 <span class="horizontal-spacer"></span>
 <hr class="article-divider" />
@@ -174,7 +172,7 @@ The loose density can be useful if you have a relatively small amount of data an
 
 ### Striped Rows
 
-Striped rows (zebra striping) is an optional styling you may apply to your table.  This can make data-heavy tables easier for your user to read, as the stripes help guide the eye across the table and then back to the next row.
+Striped rows (zebra striping) is an optional styling you may apply to your table. This can make data-heavy tables easier for your user to read, as the stripes help guide the eye across the table and then back to the next row.
 
 <figure>
   <img src="../../images/tables/striped-rows.png" alt=" " />
@@ -182,7 +180,7 @@ Striped rows (zebra striping) is an optional styling you may apply to your table
 
 ### Hover
 
-The table’s row hover state can help your user visually scan the columns of data in a row even if the row is not interactive.  This feature is optional and is easily enabled for any table, and may be used in combination with striped rows.
+The table’s row hover state can help your user visually scan the columns of data in a row even if the row is not interactive. This feature is optional and is easily enabled for any table, and may be used in combination with striped rows.
 
 <figure>
   <img src="../../images/tables/row-hover.png" alt=" " />

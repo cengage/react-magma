@@ -6,13 +6,13 @@ import {
   TableCellAlign,
   TableContext,
   TableDensity,
-  TableSortDirection
+  TableSortDirection,
 } from './';
 import { ThemeContext } from '../../theme/ThemeContext';
 import {
   ArrowDoubleIcon,
   ArrowDown2Icon,
-  ArrowUp2Icon
+  ArrowUp2Icon,
 } from 'react-magma-icons';
 
 export interface TableHeaderCellProps
@@ -31,7 +31,7 @@ export enum TableHeaderCellScope {
   col = 'col',
   colgroup = 'colgroup',
   row = 'row',
-  rowgroup = 'rowgroup'
+  rowgroup = 'rowgroup',
 }
 
 const StyledTableHeaderCell = styled.th<{
@@ -57,10 +57,10 @@ const StyledTableHeaderCell = styled.th<{
     `}
 
     ${props =>
-      props.width &&
-      css`
-        width: ${props.width};
-      `}
+    props.width &&
+    css`
+      width: ${props.width};
+    `}
 `;
 
 const SortButton = styled.button<{
