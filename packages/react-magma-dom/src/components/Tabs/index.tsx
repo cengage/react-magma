@@ -22,7 +22,10 @@ import {
 } from '../../utils';
 import { ThemeInterface } from '../../theme/magma';
 
-const StyledContainer = styled('div', { shouldForwardProp: isPropValid })<{
+export const StyledContainer = styled('div', {
+  shouldForwardProp: isPropValid
+})<{
+  as?: string;
   orientation: TabsOrientation;
   isInverse: boolean;
   backgroundColor: string;
@@ -42,7 +45,9 @@ const StyledContainer = styled('div', { shouldForwardProp: isPropValid })<{
   width: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
 `;
 
-const StyledTabsWrapper = styled('div', { shouldForwardProp: isPropValid })<{
+export const StyledTabsWrapper = styled('div', {
+  shouldForwardProp: isPropValid
+})<{
   orientation: TabsOrientation;
 }>`
   display: flex;
@@ -57,7 +62,7 @@ const StyledTabsWrapper = styled('div', { shouldForwardProp: isPropValid })<{
   scrollbar-width: none;
 `;
 
-const StyledTabs = styled('ul', { shouldForwardProp: isPropValid })<{
+export const StyledTabs = styled('ul', { shouldForwardProp: isPropValid })<{
   alignment?: TabsAlignment;
   orientation: TabsOrientation;
 }>`

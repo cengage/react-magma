@@ -28,7 +28,9 @@ export interface TabProps
   theme?: any;
 }
 
-const StyledTabsChild = styled('li', { shouldForwardProp: isPropValid })<{
+export const StyledTabsChild = styled('li', {
+  shouldForwardProp: isPropValid
+})<{
   borderPosition?: TabsBorderPosition;
   isActive?: boolean;
   isFullWidth?: boolean;
@@ -95,7 +97,7 @@ function getFlexDirection(position: TabsIconPosition) {
   }
 }
 
-const TabStyles = props => css`
+export const TabStyles = props => css`
   align-items: center;
   background: transparent;
   border: 0;
@@ -114,7 +116,11 @@ const TabStyles = props => css`
   line-height: 1.5;
   height: 100%;
   justify-content: ${props.iconPosition === 'left' ? 'flex-start' : 'center'};
-  opacity: ${props.disabled ? 0.4 : props.isInverse ? 0.7 : 1};
+  opacity: ${props.disabled
+    ? 0.4
+    : props.isInverse && !props.isActive
+    ? 0.7
+    : 1};
   padding: 13px 20px;
   position: relative;
   pointer-events: ${props.disabled ? 'none' : ''};
@@ -143,11 +149,12 @@ const TabStyles = props => css`
       ? props.theme.colors.shade02
       : props.theme.colors.shade01};
     color: ${props.isActive
-      ? ''
+      ? props.isInverse
+        ? props.theme.colors.neutral08
+        : props.theme.colors.primary
       : props.isInverse
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral02};
-    opacity: ${props.disabled ? 0.4 : 1};
   }
 
   &:focus {
@@ -184,7 +191,7 @@ function getIconMargin(props) {
   }
 }
 
-const StyledIcon = styled.span<{
+export const StyledIcon = styled.span<{
   iconPosition: TabsIconPosition;
   isIconOnly?: boolean;
 }>`
