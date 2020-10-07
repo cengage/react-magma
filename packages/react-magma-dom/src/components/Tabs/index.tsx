@@ -1,15 +1,5 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
-import { transparentize } from 'polished';
-
-import {
-  AngleRightIcon,
-  AngleLeftIcon,
-  AngleUpIcon,
-  AngleDownIcon
-} from 'react-magma-icons';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { TabsContainerContext } from './TabsContainer';
 import isPropValid from '@emotion/is-prop-valid';
 import {
@@ -20,7 +10,9 @@ import {
   detectScrollType,
   useDescendants
 } from '../../utils';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
+import { ButtonNext, ButtonPrev } from './TabsScrollButtons';
 
 export const StyledContainer = styled('div', {
   shouldForwardProp: isPropValid
@@ -81,84 +73,15 @@ export const StyledTabs = styled('ul', { shouldForwardProp: isPropValid })<{
   width: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
 `;
 
-const StyledScrollButton = styled.div<{
-  buttonVisible: boolean;
+export interface ScrollButtonProps
+  extends React.HTMLAttributes<HTMLButtonElement> {
+  backgroundColor?: string;
+  buttonVisible?: boolean;
   isInverse?: boolean;
   orientation?: TabsOrientation;
-  theme: ThemeInterface;
-}>`
-  align-items: center;
-  backdrop-filter: blur(1px);
-  color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral01};
-  cursor: pointer;
-  display: ${props => (props.buttonVisible ? 'flex' : 'none')};
-  justify-content: center;
-  position: absolute;
-  z-index: 2;
-
-  bottom: 0;
-  top: 0;
-  width: 44px;
-
-  ${props =>
-    props.orientation === 'vertical' &&
-    css`
-      left: 0;
-      height: 44px;
-      right: 0;
-      width: auto;
-    `}
-`;
-
-const StyledButtonPrev = styled(StyledScrollButton)<{
-  backgroundColor?: string;
-  orientation?: TabsOrientation;
   ref?: any;
-}>`
-  background: ${props => `linear-gradient(
-    90deg,
-    ${props.backgroundColor} 0%,
-    ${transparentize(0.5, props.backgroundColor)} 100%
-  )`};
-  left: 0;
-
-  ${props =>
-    props.orientation === 'vertical' &&
-    css`
-      background: ${`linear-gradient(
-        ${props.backgroundColor} 0%,
-        ${transparentize(0.5, props.backgroundColor)} 100%
-      )`};
-
-      bottom: auto;
-    `}
-`;
-
-const StyledButtonNext = styled(StyledScrollButton)<{
-  backgroundColor?: string;
-  orientation?: TabsOrientation;
-  ref?: any;
-}>`
-  background: ${props => `linear-gradient(
-    90deg,
-    ${transparentize(0.5, props.backgroundColor)} 0%,
-    ${props.backgroundColor} 100%
-  )`};
-  right: 0;
-
-  ${props =>
-    props.orientation === 'vertical' &&
-    css`
-      background: linear-gradient(
-        ${transparentize(0.5, props.backgroundColor)} 0%,
-        ${props.backgroundColor} 100%
-      );
-      top: auto;
-    `}
-`;
+  theme?: ThemeInterface;
+}
 
 export enum TabsAlignment {
   center = 'center',
@@ -285,8 +208,8 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
 
     const tabsWrapperRef = React.useRef<HTMLDivElement>();
     const childrenWrapperRef = React.useRef<HTMLUListElement>();
-    const prevButtonRef = React.useRef<HTMLDivElement>();
-    const nextButtonRef = React.useRef<HTMLDivElement>();
+    const prevButtonRef = React.useRef<HTMLButtonElement>();
+    const nextButtonRef = React.useRef<HTMLButtonElement>();
 
     function getTabsMeta() {
       const tabsNode = tabsWrapperRef.current;
@@ -555,22 +478,15 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
         theme={theme}
         {...rest}
       >
-        <StyledButtonPrev
+        <ButtonPrev
           backgroundColor={background}
           buttonVisible={displayScroll.start}
-          data-testid="buttonPrev"
           isInverse={isInverse}
           onClick={handleStartScrollClick}
           orientation={orientation || TabsOrientation.horizontal}
           ref={prevButtonRef}
           theme={theme}
-        >
-          {orientation === TabsOrientation.vertical ? (
-            <AngleUpIcon size={16} />
-          ) : (
-            <AngleLeftIcon size={16} />
-          )}
-        </StyledButtonPrev>
+        />
         <StyledTabsWrapper
           data-testid="tabsWrapper"
           onScroll={handleTabsScroll}
@@ -602,22 +518,15 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
             </TabsContext.Provider>
           </StyledTabs>
         </StyledTabsWrapper>
-        <StyledButtonNext
+        <ButtonNext
           backgroundColor={background}
           buttonVisible={displayScroll.end}
-          data-testid="buttonNext"
           isInverse={isInverse}
           onClick={handleEndScrollClick}
           orientation={orientation || TabsOrientation.horizontal}
           ref={nextButtonRef}
           theme={theme}
-        >
-          {orientation === TabsOrientation.vertical ? (
-            <AngleDownIcon size={16} />
-          ) : (
-            <AngleRightIcon size={16} />
-          )}
-        </StyledButtonNext>
+        />
       </StyledContainer>
     );
   }

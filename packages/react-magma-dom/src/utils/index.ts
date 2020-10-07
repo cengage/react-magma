@@ -125,15 +125,7 @@ function easeInOutSin(time) {
   return (1 + Math.sin(Math.PI * time - Math.PI / 2)) / 2;
 }
 
-export function animate(
-  property,
-  element,
-  to,
-  options: any = {},
-  cb = (error?: Error) => {
-    throw error;
-  }
-) {
+export function animate(property, element, to, options: any = {}) {
   const { ease = easeInOutSin, duration = 300 } = options;
 
   let start = null;
@@ -146,7 +138,6 @@ export function animate(
 
   const step = timestamp => {
     if (cancelled) {
-      cb(new Error('Animation cancelled'));
       return;
     }
 
@@ -158,9 +149,7 @@ export function animate(
     element[property] = ease(time) * (to - from) + from;
 
     if (time >= 1) {
-      requestAnimationFrame(() => {
-        cb(null);
-      });
+      requestAnimationFrame(() => {});
       return;
     }
 
@@ -168,7 +157,6 @@ export function animate(
   };
 
   if (from === to) {
-    cb(new Error('Element already at target position'));
     return cancel;
   }
 
