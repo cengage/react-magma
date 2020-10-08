@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, act } from '@testing-library/react';
 import { Select } from '.';
 
 describe('Select', () => {
@@ -77,6 +77,8 @@ describe('Select', () => {
   });
 
   it('should not select an item when typing and select is closed', () => {
+    // Use fake timers here for downshift's debounce on input change.
+    jest.useFakeTimers();
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByTestId } = render(
@@ -90,6 +92,9 @@ describe('Select', () => {
     fireEvent.keyDown(renderedSelect, { key: 'r' });
 
     expect(getByTestId('selectedItemText').textContent).not.toEqual(items[0]);
+
+    act(() => jest.runAllTimers());
+    jest.useRealTimers();
   });
 
   it('should allow for selection of an item', () => {
@@ -296,6 +301,8 @@ describe('Select', () => {
   });
 
   it('should not open select when clicking another key other than the enter or spacebar', () => {
+    // Use fake timers here for downshift's debounce on input change.
+    jest.useFakeTimers();
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, queryByText } = render(
@@ -311,6 +318,9 @@ describe('Select', () => {
     });
 
     expect(queryByText(items[0])).not.toBeInTheDocument();
+
+    act(() => jest.runAllTimers());
+    jest.useRealTimers();
   });
 
   it('should show an error message', () => {
