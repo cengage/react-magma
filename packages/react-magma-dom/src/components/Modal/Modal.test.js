@@ -530,8 +530,7 @@ describe('Modal', () => {
           >
             Modal Content
           </Modal>
-        </>,
-        { container: document.body }
+        </>
       );
 
       fireEvent.focus(getByText('Open'));
@@ -547,8 +546,7 @@ describe('Modal', () => {
           >
             Modal Content
           </Modal>
-        </>,
-        { container: document.body }
+        </>
       );
 
       fireEvent.mouseDown(getByTestId('modal-backdrop'));
@@ -569,8 +567,7 @@ describe('Modal', () => {
           <Modal header="Hello" isOpen={false} onClose={jest.fn()}>
             Modal Content
           </Modal>
-        </>,
-        { container: document.body }
+        </>
       );
 
       fireEvent.focus(getByText('Open'));
@@ -581,8 +578,7 @@ describe('Modal', () => {
           <Modal header="Hello" isOpen={true} onClose={jest.fn()}>
             Modal Content
           </Modal>
-        </>,
-        { container: document.body }
+        </>
       );
 
       expect(getByText('Hello')).toHaveFocus();
@@ -595,8 +591,7 @@ describe('Modal', () => {
           <Modal isOpen={false} onClose={jest.fn()}>
             <button data-testid="closeButton">Close</button>
           </Modal>
-        </>,
-        { container: document.body }
+        </>
       );
 
       fireEvent.focus(getByText('Open'));
@@ -607,8 +602,7 @@ describe('Modal', () => {
           <Modal isOpen={true} onClose={jest.fn()}>
             <button data-testid="closeButton">Close</button>
           </Modal>
-        </>,
-        { container: document.body }
+        </>
       );
 
       expect(getByTestId('closeButton')).toHaveFocus();
@@ -621,8 +615,7 @@ describe('Modal', () => {
           <Modal isOpen={false} onClose={jest.fn()} isCloseButtonHidden>
             <p>Modal Content</p>
           </Modal>
-        </>,
-        { container: document.body }
+        </>
       );
 
       fireEvent.focus(getByText('Open'));
@@ -633,8 +626,7 @@ describe('Modal', () => {
           <Modal isOpen={true} onClose={jest.fn()} isCloseButtonHidden>
             <p>Modal Content</p>
           </Modal>
-        </>,
-        { container: document.body }
+        </>
       );
 
       expect(getByText('Modal Content')).toHaveFocus();
