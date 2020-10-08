@@ -24,7 +24,7 @@ describe('Calendar Month', () => {
             focusedDate,
             setDateFocused: jest.fn(),
             onPrevMonthClick: jest.fn(),
-            onNextMonthClick: jest.fn()
+            onNextMonthClick: jest.fn(),
           }}
         >
           <CalendarMonth calendarOpened={false} />
@@ -38,7 +38,7 @@ describe('Calendar Month', () => {
             focusedDate,
             setDateFocused: jest.fn(),
             onPrevMonthClick: jest.fn(),
-            onNextMonthClick: jest.fn()
+            onNextMonthClick: jest.fn(),
           }}
         >
           <CalendarMonth calendarOpened={true} />
@@ -46,23 +46,23 @@ describe('Calendar Month', () => {
       );
 
       fireEvent.keyDown(getByLabelText(/previous month/i), {
-        keyCode: 9
+        keyCode: 9,
       });
 
       fireEvent.keyDown(getByLabelText(/next month/i), {
-        keyCode: 9
+        keyCode: 9,
       });
 
       fireEvent.keyDown(getByText(new Date().getDate().toString()), {
-        keyCode: 9
+        keyCode: 9,
       });
 
       fireEvent.keyDown(getByLabelText(/help/i), {
-        keyCode: 9
+        keyCode: 9,
       });
 
       fireEvent.keyDown(getByLabelText(/close calendar/i), {
-        keyCode: 9
+        keyCode: 9,
       });
 
       expect(getByLabelText(/previous month/i)).toHaveFocus();
@@ -77,7 +77,7 @@ describe('Calendar Month', () => {
             focusedDate,
             setDateFocused: jest.fn(),
             onPrevMonthClick: jest.fn(),
-            onNextMonthClick: jest.fn()
+            onNextMonthClick: jest.fn(),
           }}
         >
           <CalendarMonth calendarOpened={false} />
@@ -85,7 +85,7 @@ describe('Calendar Month', () => {
       );
 
       fireEvent.keyDown(getByLabelText(/previous month/i), {
-        keyCode: 9
+        keyCode: 9,
       });
 
       expect(getByLabelText(/previous month/i)).not.toHaveFocus();
@@ -100,7 +100,7 @@ describe('Calendar Month', () => {
             focusedDate,
             setDateFocused: jest.fn(),
             onPrevMonthClick: jest.fn(),
-            onNextMonthClick: jest.fn()
+            onNextMonthClick: jest.fn(),
           }}
         >
           <CalendarMonth calendarOpened={false} />
@@ -114,7 +114,7 @@ describe('Calendar Month', () => {
             focusedDate,
             setDateFocused: jest.fn(),
             onPrevMonthClick: jest.fn(),
-            onNextMonthClick: jest.fn()
+            onNextMonthClick: jest.fn(),
           }}
         >
           <CalendarMonth calendarOpened={true} />
@@ -122,17 +122,17 @@ describe('Calendar Month', () => {
       );
 
       fireEvent.keyDown(getByLabelText(/previous month/i), {
-        keyCode: 9
+        keyCode: 9,
       });
 
       fireEvent.keyDown(getByLabelText(/next month/i), {
         keyCode: 9,
-        shiftKey: true
+        shiftKey: true,
       });
 
       fireEvent.keyDown(getByLabelText(/previous month/i), {
         keyCode: 9,
-        shiftKey: true
+        shiftKey: true,
       });
 
       expect(getByLabelText(/close calendar/i)).toHaveFocus();
@@ -150,7 +150,7 @@ describe('Calendar Month', () => {
           setDateFocused: jest.fn(),
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn(),
-          setShowHelperInformation
+          setShowHelperInformation,
         }}
       >
         <CalendarMonth calendarOpened={true} />
@@ -173,7 +173,7 @@ describe('Calendar Month', () => {
           setDateFocused,
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn(),
-          setShowHelperInformation: jest.fn()
+          setShowHelperInformation: jest.fn(),
         }}
       >
         <CalendarMonth calendarOpened={true} focusOnOpen={true} />
@@ -183,7 +183,7 @@ describe('Calendar Month', () => {
     expect(setDateFocused).toHaveBeenCalledWith(true);
   });
 
-  it('should open helper information when clicking the helper information button', () => {
+  it('should close helper information when clicking the helper information button', () => {
     const setDateFocused = jest.fn();
     const focusedDate = new Date('January 18, 2019');
     const { getByLabelText } = render(
@@ -194,7 +194,7 @@ describe('Calendar Month', () => {
           setDateFocused,
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn(),
-          setShowHelperInformation: jest.fn()
+          setShowHelperInformation: jest.fn(),
         }}
       >
         <CalendarMonth calendarOpened={true} />
@@ -218,7 +218,7 @@ describe('Calendar Month', () => {
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn(),
           setShowHelperInformation,
-          showHelperInformation: true
+          showHelperInformation: true,
         }}
       >
         <CalendarMonth calendarOpened={true} />
@@ -234,7 +234,7 @@ describe('Calendar Month', () => {
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn(),
           setShowHelperInformation,
-          showHelperInformation: false
+          showHelperInformation: false,
         }}
       >
         <CalendarMonth calendarOpened={true} />
@@ -258,7 +258,7 @@ describe('Calendar Month', () => {
           focusedDate,
           setDateFocused: jest.fn(),
           onPrevMonthClick: jest.fn(),
-          onNextMonthClick: jest.fn()
+          onNextMonthClick: jest.fn(),
         }}
       >
         <CalendarMonth

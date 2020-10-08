@@ -152,7 +152,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
     'wednesday',
     'thursday',
     'friday',
-    'saturday'
+    'saturday',
   ];
   const startOfWeek = days.indexOf(i18n.datePicker.startOfWeek);
   const sortedDays = days.slice(startOfWeek).concat(days.slice(0, startOfWeek));

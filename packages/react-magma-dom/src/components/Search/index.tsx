@@ -3,7 +3,7 @@ import {
   BaseInput,
   InputIconPosition,
   InputSize,
-  InputType
+  InputType,
 } from '../BaseInput';
 import { I18nContext } from '../../i18n';
 import { Search2Icon } from 'react-magma-icons';

@@ -334,7 +334,7 @@ describe('Input', () => {
           getByLabelText(labelText),
           new MouseEvent('blur', {
             bubbles: true,
-            cancelable: true
+            cancelable: true,
           })
         );
 
@@ -350,7 +350,7 @@ describe('Input', () => {
         );
 
         fireEvent.change(getByLabelText(labelText), {
-          target: { value: targetValue }
+          target: { value: targetValue },
         });
 
         expect(onChangeSpy).toHaveBeenCalledTimes(1);
@@ -367,7 +367,7 @@ describe('Input', () => {
           getByLabelText(labelText),
           new MouseEvent('focus', {
             bubbles: true,
-            cancelable: true
+            cancelable: true,
           })
         );
 

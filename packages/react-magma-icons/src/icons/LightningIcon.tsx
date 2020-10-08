@@ -7,9 +7,9 @@ const iconType = {
   paths: [
     {
       d: 'M17.64,10.66l-5.71,1.1L14.27.62,4.67,17.34l5.71-1.1L8,27.38Z',
-      transform: 'translate(-4.67 -0.62)'
-    }
-  ]
+      transform: 'translate(-4.67 -0.62)',
+    },
+  ],
 };
 
 export const LightningIcon: React.FunctionComponent<IconProps> = (

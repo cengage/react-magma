@@ -60,14 +60,14 @@ describe('TimePicker', () => {
       expect(hoursInput.value).toEqual('03');
     });
 
-    it('should set the hour to 00 if the backspace key is clicked', () => {
+    it('should set the hour to null if the backspace key is clicked', () => {
       const { getByTestId } = render(<TimePicker label="label" />);
 
       const hoursInput = getByTestId('hoursTimeInput');
 
       fireEvent.keyDown(hoursInput, { key: 'Backspace' });
 
-      expect(hoursInput.value).toEqual('00');
+      expect(hoursInput.value).toEqual('');
     });
 
     it('should focus the minute input if the right arrow key is clicked', () => {
@@ -140,14 +140,14 @@ describe('TimePicker', () => {
       expect(hoursInput.value).toEqual('08');
     });
 
-    it('should set the minutes to 00 if the backspace key is clicked', () => {
+    it('should set the minutes to null if the backspace key is clicked', () => {
       const { getByTestId } = render(<TimePicker label="label" />);
 
       const minutesInput = getByTestId('minutesTimeInput');
 
       fireEvent.keyDown(minutesInput, { key: 'Backspace' });
 
-      expect(minutesInput.value).toEqual('00');
+      expect(minutesInput.value).toEqual('');
     });
 
     it('should focus the hour input if the left arrow key is clicked', () => {
@@ -221,13 +221,13 @@ describe('TimePicker', () => {
       expect(amPmButton).toHaveTextContent('AM');
 
       fireEvent.keyDown(amPmButton, {
-        key: 'ArrowDown'
+        key: 'ArrowDown',
       });
 
       expect(amPmButton).toHaveTextContent('PM');
 
       fireEvent.keyDown(amPmButton, {
-        key: 'ArrowDown'
+        key: 'ArrowDown',
       });
 
       expect(amPmButton).toHaveTextContent('AM');
@@ -241,13 +241,13 @@ describe('TimePicker', () => {
       expect(amPmButton).toHaveTextContent('AM');
 
       fireEvent.keyDown(amPmButton, {
-        key: 'ArrowUp'
+        key: 'ArrowUp',
       });
 
       expect(amPmButton).toHaveTextContent('PM');
 
       fireEvent.keyDown(amPmButton, {
-        key: 'ArrowUp'
+        key: 'ArrowUp',
       });
 
       expect(amPmButton).toHaveTextContent('AM');

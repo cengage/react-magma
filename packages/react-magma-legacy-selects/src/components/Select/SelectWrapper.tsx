@@ -18,14 +18,14 @@ export const SelectWrapper: React.FunctionComponent<SelectWrapperProps> = ({
   isInverse,
   labelText,
   messageStyle,
-  testId
+  testId,
 }: SelectWrapperProps) => (
   <div data-testid={testId}>
     <Label isInverse={isInverse}>{labelText}</Label>
     {children}
     <InputMessage
       isInverse={isInverse}
-      isError={!!errorMessage}
+      hasError={!!errorMessage}
       style={messageStyle}
     >
       {(errorMessage || helperMessage) && (

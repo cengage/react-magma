@@ -42,7 +42,7 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
     isDisabled,
     isInverse,
     style,
-    toggleButtonProps
+    toggleButtonProps,
   } = props;
   const theme = React.useContext(ThemeContext);
 
@@ -50,7 +50,6 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
     <StyledButton
       {...toggleButtonProps}
       aria-describedby={ariaDescribedBy}
-      aria-invalid={hasError}
       data-testid="selectTriggerButton"
       hasError={hasError}
       isDisabled={isDisabled}

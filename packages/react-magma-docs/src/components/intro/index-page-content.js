@@ -1,19 +1,19 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import { CodeIcon, PaletteIcon } from 'react-magma-icons'
-import { HyperLink, ThemeContext } from 'react-magma-dom'
-import IntroHeading from './intro-heading'
-import IntroSection from './intro-section'
-import NavItem from './nav-item'
-import HexBackground from './hex-background'
-import styled from '@emotion/styled'
+import React from 'react';
+import { Link } from 'gatsby';
+import { CodeIcon, PaletteIcon } from 'react-magma-icons';
+import { HyperLink, ThemeContext } from 'react-magma-dom';
+import IntroHeading from './intro-heading';
+import IntroSection from './intro-section';
+import NavItem from './nav-item';
+import HexBackground from './hex-background';
+import styled from '@emotion/styled';
 
-import ColorLogo from '../../images/React_Magma_Logo_Color.svg'
-import ImageAccessible from '../../images/img-accessible.svg'
-import ImageComponents from '../../images/img-component-based.svg'
-import ImageDevice from '../../images/img-device-agnostic.svg'
-import ImageEvolving from '../../images/img-evolving.svg'
-import ImageQuality from '../../images/img-quality.svg'
+import ColorLogo from '../../images/React_Magma_Logo_Color.svg';
+import ImageAccessible from '../../images/img-accessible.svg';
+import ImageComponents from '../../images/img-component-based.svg';
+import ImageDevice from '../../images/img-device-agnostic.svg';
+import ImageEvolving from '../../images/img-evolving.svg';
+import ImageQuality from '../../images/img-quality.svg';
 
 const Heading = styled.h1`
   && {
@@ -41,7 +41,7 @@ const Heading = styled.h1`
       text-align: left;
     }
   }
-`
+`;
 
 const List = styled.ol`
   display: none;
@@ -63,7 +63,7 @@ const List = styled.ol`
   @media (min-width: ${props => props.theme.breakpoints.large}px) {
     left: 280px;
   }
-`
+`;
 
 const ButtonContainer = styled.div`
   text-align: center;
@@ -79,14 +79,14 @@ const ButtonContainer = styled.div`
   @media (min-width: ${props => props.theme.breakpoints.small}px) {
     text-align: left;
   }
-`
+`;
 
 const Footer = styled.footer`
   background: ${props => props.theme.colors.foundation01};
   padding: 80px 10%;
   position: relative;
   text-align: center;
-`
+`;
 
 const FooterPara = styled.p`
   font-size: 1.5em;
@@ -97,31 +97,31 @@ const FooterPara = styled.p`
   a {
     color: inherit !important;
   }
-`
+`;
 
 export class IndexPageContent extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       activeSection: 'sectionIntro',
-    }
+    };
 
-    this.handleAnimateIn = this.handleAnimateIn.bind(this)
-    this.handleNavClick = this.handleNavClick.bind(this)
+    this.handleAnimateIn = this.handleAnimateIn.bind(this);
+    this.handleNavClick = this.handleNavClick.bind(this);
   }
 
   handleAnimateIn(id, v) {
     if (v.inViewport) {
       this.setState({
         activeSection: id,
-      })
+      });
     }
   }
 
   handleNavClick(id) {
     this.setState({
       activeSection: id,
-    })
+    });
   }
 
   render() {
@@ -129,7 +129,7 @@ export class IndexPageContent extends React.Component {
       <ThemeContext.Consumer>
         {theme => (
           <>
-            <nav>
+            <nav aria-label="Introduction to React Magma navigation">
               <List theme={theme}>
                 <NavItem
                   activeSection={this.state.activeSection}
@@ -330,6 +330,6 @@ export class IndexPageContent extends React.Component {
           </>
         )}
       </ThemeContext.Consumer>
-    )
+    );
   }
 }

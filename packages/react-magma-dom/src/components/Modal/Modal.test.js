@@ -243,7 +243,7 @@ describe('Modal', () => {
 
       fireEvent.keyDown(getByText('Modal Content'), {
         key: 'Escape',
-        keyCode: 27
+        keyCode: 27,
       });
 
       await act(async () => {
@@ -287,7 +287,7 @@ describe('Modal', () => {
 
       fireEvent.keyDown(getByText('Modal Content'), {
         key: 'Escape',
-        keyCode: 27
+        keyCode: 27,
       });
 
       await act(async () => {
@@ -466,7 +466,7 @@ describe('Modal', () => {
 
       fireEvent.keyDown(getByText('Modal Content'), {
         key: 'Escape',
-        keyCode: 27
+        keyCode: 27,
       });
 
       await act(async () => {
@@ -680,15 +680,15 @@ describe('Modal', () => {
       );
 
       fireEvent.keyDown(getByTestId('closeButton'), {
-        keyCode: 9
+        keyCode: 9,
       });
 
       fireEvent.keyDown(getByTestId('emailInput'), {
-        keyCode: 9
+        keyCode: 9,
       });
 
       fireEvent.keyDown(getByTestId('passwordInput'), {
-        keyCode: 9
+        keyCode: 9,
       });
 
       expect(getByTestId('closeButton')).toHaveFocus();
@@ -716,7 +716,7 @@ describe('Modal', () => {
       );
 
       fireEvent.keyDown(getByText('Modal Content'), {
-        keyCode: 9
+        keyCode: 9,
       });
 
       expect(getByText('Modal Content')).toHaveFocus();
@@ -763,12 +763,12 @@ describe('Modal', () => {
 
       fireEvent.keyDown(getByTestId('emailInput'), {
         keyCode: 9,
-        shiftKey: true
+        shiftKey: true,
       });
 
       fireEvent.keyDown(getByTestId('closeButton'), {
         keyCode: 9,
-        shiftKey: true
+        shiftKey: true,
       });
 
       expect(getByTestId('passwordInput')).toHaveFocus();
@@ -815,7 +815,7 @@ describe('Modal', () => {
 
       fireEvent.keyDown(getByTestId('noInput'), {
         keyCode: 9,
-        shiftKey: true
+        shiftKey: true,
       });
 
       expect(getByTestId('closeButton')).toHaveFocus();
@@ -882,15 +882,15 @@ describe('Modal', () => {
       expect(getByTestId('closeButton')).toHaveFocus();
 
       fireEvent.keyDown(getByTestId('closeButton'), {
-        keyCode: 9
+        keyCode: 9,
       });
 
       fireEvent.keyDown(getByTestId('addressInput'), {
-        keyCode: 9
+        keyCode: 9,
       });
 
       fireEvent.keyDown(getByTestId('stateInput'), {
-        keyCode: 9
+        keyCode: 9,
       });
 
       expect(getByTestId('closeButton')).toHaveFocus();
@@ -936,7 +936,7 @@ describe('Modal', () => {
       );
 
       fireEvent.keyDown(getByTestId('closeButton'), {
-        keyCode: 10
+        keyCode: 10,
       });
 
       expect(getByTestId('closeButton')).toBeInTheDocument();
@@ -951,8 +951,8 @@ describe('Modal', () => {
           value={{
             ...defaultI18n,
             modal: {
-              closeAriaLabel
-            }
+              closeAriaLabel,
+            },
           }}
         >
           <Modal isOpen>Modal Text</Modal>

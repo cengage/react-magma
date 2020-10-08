@@ -1,17 +1,17 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { useForkedRef } from '../../utils';
+import { useDescendants, useForkedRef } from '../../utils';
 
 export enum DropdownDropDirection {
   down = 'down', //default
   left = 'left',
   right = 'right',
-  up = 'up'
+  up = 'up',
 }
 
 export enum DropdownAlignment {
   start = 'start', //default
-  end = 'end'
+  end = 'end',
 }
 
 export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -34,16 +34,20 @@ interface DropdownContextInterface {
   activeItemIndex?: number;
   alignment?: DropdownAlignment;
   closeDropdown?: (event: React.SyntheticEvent | React.KeyboardEvent) => void;
+  dropdownButtonId?: React.MutableRefObject<string>;
   dropDirection?: DropdownDropDirection;
   handleButtonKeyDown?: (event: React.KeyboardEvent) => void;
   handleMenuBlur?: (event: React.FocusEvent) => void;
-  itemRefArray?: any;
+  itemRefArray?: React.MutableRefObject<React.MutableRefObject<Element>[]>;
   isFixedWidth?: boolean;
   isOpen?: boolean;
   maxHeight?: string;
   menuRef?: any;
   openDropdown?: () => void;
-  registerDropdownMenuItem: (element) => void;
+  registerDropdownMenuItem: (
+    itemRefArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
+    itemRef: React.MutableRefObject<Element>
+  ) => void;
   setActiveItemIndex?: React.Dispatch<React.SetStateAction<number>>;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   toggleRef?: any;
@@ -52,8 +56,8 @@ interface DropdownContextInterface {
 
 export const DropdownContext = React.createContext<DropdownContextInterface>({
   isOpen: false,
-  registerDropdownMenuItem: element => {},
-  setIsOpen: () => false
+  registerDropdownMenuItem: (elements, element) => {},
+  setIsOpen: () => false,
 });
 
 export const useDropdownContext = () => React.useContext(DropdownContext);
@@ -79,42 +83,16 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
       activeIndex || -1
     );
 
-    const itemRefArray = React.useRef([]);
     const shouldFocusToggleElement = React.useRef<boolean>(true);
 
     const ownRef = React.useRef<any>();
     const toggleRef = React.useRef<HTMLButtonElement>();
     const menuRef = React.useRef<any>([]);
+    const dropdownButtonId = React.useRef<string>('');
 
     const ref = useForkedRef(forwardedRef, ownRef);
 
-    function registerDropdownMenuItem(menuItemRef) {
-      if (
-        itemRefArray.current.find(
-          ({ current: item }) => item === menuItemRef.current
-        ) == null
-      ) {
-        const index = itemRefArray.current.findIndex(({ current: item }) => {
-          if (!item || !menuItemRef.current) return false;
-
-          return Boolean(
-            item.compareDocumentPosition(menuItemRef.current) &
-              Node.DOCUMENT_POSITION_PRECEDING
-          );
-        });
-
-        const newItem = menuItemRef;
-
-        itemRefArray.current =
-          index === -1
-            ? [...itemRefArray.current, newItem]
-            : [
-                ...itemRefArray.current.slice(0, index),
-                newItem,
-                ...itemRefArray.current.slice(index)
-              ];
-      }
-    }
+    const [itemRefArray, registerDropdownMenuItem] = useDescendants();
 
     React.useEffect(() => {
       if (activeIndex >= 0) {
@@ -162,7 +140,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
       shouldFocusToggleElement.current = true;
     }
 
-    function useFilteredItems(): [any, number] {
+    function getFilteredItem(): [any, number] {
       const filteredItems = itemRefArray.current.filter(
         itemRef => itemRef.current
       );
@@ -179,7 +157,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
       }
 
       if (event.key === 'ArrowDown') {
-        const [filteredItems, filteredItemIndex] = useFilteredItems();
+        const [filteredItems, filteredItemIndex] = getFilteredItem();
 
         if (filteredItems.length === 0) {
           return;
@@ -198,7 +176,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
       }
 
       if (event.key === 'ArrowUp') {
-        const [filteredItems, filteredItemIndex] = useFilteredItems();
+        const [filteredItems, filteredItemIndex] = getFilteredItem();
 
         if (filteredItems.length === 0) {
           return;
@@ -249,6 +227,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
           activeItemIndex,
           alignment,
           closeDropdown,
+          dropdownButtonId,
           dropDirection,
           handleButtonKeyDown,
           handleMenuBlur,
@@ -262,7 +241,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
           setActiveItemIndex,
           setIsOpen,
           toggleRef,
-          width: widthString
+          width: widthString,
         }}
       >
         <Container

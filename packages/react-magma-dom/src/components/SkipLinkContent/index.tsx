@@ -9,7 +9,7 @@ export interface SkipLinkContentProps
 
 export const SkipLinkContent: React.FunctionComponent<SkipLinkContentProps> = ({
   children,
-  testId
+  testId,
 }: SkipLinkContentProps) => (
   <div data-testid={testId} id={TARGET_ID} tabIndex={-1} style={{ outline: 0 }}>
     {children}

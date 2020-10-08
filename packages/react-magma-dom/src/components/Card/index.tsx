@@ -17,14 +17,14 @@ export interface CardProps extends React.LabelHTMLAttributes<HTMLDivElement> {
 export enum CardAlignment {
   center = 'center',
   left = 'left',
-  right = 'right'
+  right = 'right',
 }
 
 export enum CardCalloutType {
   danger = 'danger',
   primary = 'primary',
   success = 'success',
-  warning = 'warning'
+  warning = 'warning',
 }
 
 export function buildCalloutBackground(

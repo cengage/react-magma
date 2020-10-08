@@ -14,9 +14,9 @@ const iconType = {
     {
       d:
         'M1,5.24V22.76h25.3V5.24Zm1.62,15.9V6.86H13.08V21.14Zm22.06,0H14.05V6.86h10.6Z',
-      transform: 'translate(-0.97 -5.24)'
-    }
-  ]
+      transform: 'translate(-0.97 -5.24)',
+    },
+  ],
 };
 
 export const Reading2Icon: React.FunctionComponent<IconProps> = (

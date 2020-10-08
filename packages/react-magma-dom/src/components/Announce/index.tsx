@@ -9,12 +9,10 @@ export interface AnnounceProps extends React.HTMLAttributes<HTMLDivElement> {
 export enum AnnouncePoliteness {
   polite = 'polite', //default
   off = 'off',
-  assertive = 'assertive'
+  assertive = 'assertive',
 }
 
-export const Announce: React.FunctionComponent<
-  AnnounceProps
-> = React.forwardRef(
+export const Announce: React.FunctionComponent<AnnounceProps> = React.forwardRef(
   ({ children, politeness, testId, ...other }: AnnounceProps, ref: any) => {
     return (
       <div

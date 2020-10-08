@@ -7,9 +7,9 @@ import {
   TabsIconPosition,
   TabsOrientation,
   TabsBorderPosition,
-  TabsContext
+  TabsContext,
 } from '.';
-import { Omit, XOR } from '../../utils';
+import { Omit, useForceUpdate, useForkedRef, XOR } from '../../utils';
 import { TabsContainerContext } from './TabsContainer';
 import { ThemeInterface } from '../../theme/magma';
 
@@ -38,7 +38,7 @@ interface TabComponentProps extends BaseTabProps {
 
 export type TabProps = XOR<TabChildrenProps, TabComponentProps>;
 
-const StyledTabsChild = styled('div', { shouldForwardProp: isPropValid })<{
+const StyledTabsChild = styled('li', { shouldForwardProp: isPropValid })<{
   borderPosition?: TabsBorderPosition;
   isActive?: boolean;
   isFullWidth?: boolean;
@@ -49,7 +49,10 @@ const StyledTabsChild = styled('div', { shouldForwardProp: isPropValid })<{
   flex-grow: 0;
   flex-shrink: ${props => (props.isFullWidth ? '1' : '0')};
   height: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
+  list-style: none;
+  margin: 0;
   max-width: ${props => (props.isFullWidth ? '100%' : '250px')};
+  padding: 0;
   position: relative;
   white-space: normal;
   width: ${props =>
@@ -131,16 +134,16 @@ const TabStyles = props => css`
   width: ${props.isFullWidth ? '100%' : 'auto'};
 
   ${props.orientation === 'vertical' &&
-    css`
-      align-items: flex-start;
-      justify-content: ${props.iconPosition === 'left'
-        ? 'flex-start'
-        : 'flex-end'};
-      text-align: left;
-      width: 100%;
+  css`
+    align-items: flex-start;
+    justify-content: ${props.iconPosition === 'left'
+      ? 'flex-start'
+      : 'flex-end'};
+    text-align: left;
+    width: 100%;
 
-      align-items: center;
-    `}
+    align-items: center;
+  `}
 
   &:hover,
   &:focus {
@@ -188,7 +191,7 @@ export const StyledCustomTab: React.FunctionComponent<TabComponentProps> = ({
         key: element.key,
         ref: element.ref,
         ...element.props,
-        ...newProps
+        ...newProps,
       });
     };
 
@@ -203,7 +206,7 @@ export const StyledCustomTab: React.FunctionComponent<TabComponentProps> = ({
           {icon}
           {component.props.children}
         </>
-      )
+      ),
     });
   }
 };
@@ -251,13 +254,25 @@ function instanceOfChildrenTab(object: any): object is TabChildrenProps {
 export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
   (
     props: Omit<React.PropsWithChildren<TabProps>, 'children'>,
-    ref: React.Ref<any>
+    forwardedRef: React.Ref<any>
   ) => {
     let component;
     let children;
-    const { icon, index, testId, ...rest } = props;
+    const { icon, testId, ...rest } = props;
     const { activeTabIndex } = React.useContext(TabsContainerContext);
+    const { buttonRefArray, registerTabButton } = React.useContext(TabsContext);
+    const ownRef = React.useRef<HTMLDivElement>();
+    const forceUpdate = useForceUpdate();
+
+    const index = buttonRefArray.current.findIndex(({ current: item }) => {
+      if (!item || !ownRef.current) return false;
+
+      return item === ownRef.current;
+    });
+
     const isActive = index === activeTabIndex;
+
+    const ref = useForkedRef(forwardedRef, ownRef);
 
     const {
       changeHandler,
@@ -265,8 +280,14 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
       borderPosition,
       iconPosition,
       isInverse,
-      isFullWidth
+      isFullWidth,
     } = React.useContext(TabsContext);
+
+    React.useEffect(() => {
+      registerTabButton(buttonRefArray, ownRef);
+
+      forceUpdate();
+    }, []);
 
     if (instanceOfComponentTab(props)) {
       component = props.component;

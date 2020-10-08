@@ -9,7 +9,7 @@ import {
   useSelectValue,
   getAriaLabel,
   BaseSelectProps,
-  OptionType
+  OptionType,
 } from '../Select/shared';
 import { Props as AsyncReactSelectProps } from 'react-select/async';
 
@@ -75,7 +75,7 @@ export const AsyncSelect: React.FunctionComponent<AsyncSelectProps> = (
           ClearIndicator,
           DropdownIndicator,
           MultiValueRemove,
-          ...components
+          ...components,
         }}
         onChange={onChange}
         styles={getStyles(styles, theme, errorMessage, isInverse)}

@@ -7,9 +7,9 @@ const iconType = {
   paths: [
     {
       d: 'M20.12,3.5v21h-3.5V14.88L7.88,23.62V4.38l8.74,8.74V3.5Z',
-      transform: 'translate(-7.88 -3.5)'
-    }
-  ]
+      transform: 'translate(-7.88 -3.5)',
+    },
+  ],
 };
 
 export const Next2Icon: React.FunctionComponent<IconProps> = (

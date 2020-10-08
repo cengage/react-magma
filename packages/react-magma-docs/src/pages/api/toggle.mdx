@@ -3,11 +3,11 @@ pageTitle: Toggle API
 title: Toggle
 ---
 
-import { ScopeableLayout } from '../../components/layout'
-import { Alert, Toggle } from 'react-magma-dom'
-import DocsHeading from '../../components/docs-heading'
-import { Link } from 'gatsby'
-import { SimplePropsTable } from '../../components/props-table'
+import { ScopeableLayout } from '../../components/layout';
+import { Alert, Toggle } from 'react-magma-dom';
+import DocsHeading from '../../components/docs-heading';
+import { Link } from 'gatsby';
+import { SimplePropsTable } from '../../components/props-table';
 
 <DocsHeading to="/design/selection-controls" type="design">
   Toggle
@@ -46,6 +46,31 @@ The label/toggle association will be handled via the passed in `id` if one is su
         id='disabledToggleOn'
         labelText='Disabled toggle on' />
     </div>
+```
+
+## Error Message
+
+An `errorMessage` can also be supplied to an toggle to indicate the selection is invalid.
+
+The `required` attribute can be used on a toggle if that field is required.
+
+```.jsx
+ (props) => {
+  const [hasError, setHasError] = React.useState(true);
+
+    function handleChange(e){
+      setHasError(!e.target.checked)
+    }
+
+   return(
+     <Toggle
+        errorMessage={hasError ? "You must turn permissions on" : null}
+        id='errorToggle'
+        labelText='Enable Permissions'
+        onChange={handleChange}
+        required />
+    )
+ }
 ```
 
 ## Text Position
@@ -244,4 +269,4 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 
 export default props => (
   <ScopeableLayout {...props} components={{ Alert, Toggle }} />
-)
+);

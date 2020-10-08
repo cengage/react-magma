@@ -50,7 +50,7 @@ figure .image-container img {
   max-width: 400px;
   margin: auto !important;
   position: relative !important;
-  top: 1px!important;
+  top: 1px !important;
 }
 
 figcaption {
@@ -181,7 +181,7 @@ figure img {
 }
 
 .inspire-container {
-  background: #fa6600;
+  background: #fc4c02;
 }
 
 .cultivate-container {

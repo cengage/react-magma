@@ -1,6 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from '@emotion/styled'
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
 import {
   Button,
   Checkbox,
@@ -10,8 +10,8 @@ import {
   RadioGroup,
   Select,
   Toggle,
-} from 'react-magma-dom'
-import { ThemeContext } from 'react-magma-dom'
+} from 'react-magma-dom';
+import { ThemeContext } from 'react-magma-dom';
 
 const StyledDiv = styled.div`
   background: ${props => props.theme.colors.neutral08};
@@ -19,7 +19,7 @@ const StyledDiv = styled.div`
   color: ${props => props.theme.colors.neutral01};
   margin: 10px 0;
   padding: 20px;
-`
+`;
 
 const DemoComponent = idPrefix => (
   <ThemeContext.Consumer>
@@ -73,10 +73,10 @@ const DemoComponent = idPrefix => (
       )
     }
   </ThemeContext.Consumer>
-)
+);
 
 DemoComponent.propTypes = {
   idPrefix: PropTypes.string.isRequired,
-}
+};
 
-export default DemoComponent
+export default DemoComponent;

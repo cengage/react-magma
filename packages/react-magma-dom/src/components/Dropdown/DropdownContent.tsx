@@ -36,7 +36,6 @@ const StyledCard = styled(Card)<{
       bottom: 100%;
     `}
 
-
   ${props =>
     props.dropDirection === 'left' &&
     css`
@@ -44,7 +43,6 @@ const StyledCard = styled(Card)<{
       right: 100%;
       top: 5px;
     `}
-
 
   ${props =>
     props.dropDirection === 'right' &&
@@ -62,13 +60,13 @@ const StyledCard = styled(Card)<{
       right: 5px;
     `}
 
-    ${props =>
-      props.alignment === 'end' &&
-      (props.dropDirection === 'left' || props.dropDirection === 'right') &&
-      css`
-        bottom: 5px;
-        top: auto;
-      `}
+ ${props =>
+    props.alignment === 'end' &&
+    (props.dropDirection === 'left' || props.dropDirection === 'right') &&
+    css`
+      bottom: 5px;
+      top: auto;
+    `}
 `;
 
 const StyledDiv = styled.div`
@@ -94,7 +92,11 @@ export const DropdownContent: React.FunctionComponent = ({
       width={context.width}
       onBlur={context.handleMenuBlur}
     >
-      <StyledDiv ref={context.menuRef} role="menu">
+      <StyledDiv
+        aria-labelledby={context.dropdownButtonId.current}
+        ref={context.menuRef}
+        role="menu"
+      >
         {children}
       </StyledDiv>
     </StyledCard>

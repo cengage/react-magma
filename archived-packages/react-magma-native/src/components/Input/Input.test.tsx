@@ -4,13 +4,13 @@ import { Input, InputProps } from './Input';
 
 const INPUT_PROPS: InputProps = {
   autoFocus: false,
-  placeholder: 'test placeholder'
+  placeholder: 'test placeholder',
 };
 
 const renderInput = (myProps = {}) => {
   const props = {
     ...INPUT_PROPS,
-    ...myProps
+    ...myProps,
   };
 
   return TestRenderer.create(<Input {...props} />);

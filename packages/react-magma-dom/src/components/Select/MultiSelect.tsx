@@ -27,7 +27,7 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
     onKeyDown,
     onKeyPress,
     onKeyUp,
-    onRemoveSelectedItem
+    onRemoveSelectedItem,
   } = props;
 
   function checkSelectedItemValidity(itemToCheck: T) {
@@ -42,17 +42,17 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
     addSelectedItem,
     removeSelectedItem,
     selectedItems,
-    setActiveIndex
+    setActiveIndex,
   } = useMultipleSelection<T>({
     ...props,
     ...(props.initialSelectedItems && {
       initialSelectedItems: props.initialSelectedItems.filter(
         checkSelectedItemValidity
-      )
+      ),
     }),
     ...(props.selectedItems && {
-      selectedItems: props.selectedItems.filter(checkSelectedItemValidity)
-    })
+      selectedItems: props.selectedItems.filter(checkSelectedItemValidity),
+    }),
   });
 
   function getFilteredItems(unfilteredItems) {
@@ -76,7 +76,7 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
       case useSelect.stateChangeTypes.ToggleButtonKeyDownCharacter:
         return {
           ...changes,
-          selectedItem: state.selectedItem
+          selectedItem: state.selectedItem,
         };
       default:
         return changes;
@@ -91,12 +91,12 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
     highlightedIndex,
     getItemProps,
     selectItem,
-    openMenu
+    openMenu,
   } = useSelect({
     ...selectProps,
     items: getFilteredItems(items),
     onSelectedItemChange: defaultOnSelectedItemChange,
-    stateReducer
+    stateReducer,
   });
 
   function defaultOnSelectedItemChange(changes) {
@@ -142,9 +142,9 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
       onKeyPress,
       onKeyUp,
       onFocus,
-      preventKeyAction: isOpen
+      preventKeyAction: isOpen,
     }),
-    disabled: isDisabled
+    disabled: isDisabled,
   });
 
   return (
@@ -175,7 +175,7 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
                 key={`selected-item-${index}`}
                 {...getSelectedItemProps({
                   selectedItem: multiSelectedItem,
-                  index
+                  index,
                 })}
                 onClick={event =>
                   handleRemoveSelectedItem(event, multiSelectedItem)

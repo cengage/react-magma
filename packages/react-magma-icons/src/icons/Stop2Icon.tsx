@@ -4,7 +4,7 @@ import { renderIcon } from '../SvgIcon';
 
 const iconType = {
   viewBox: '0 0 21 21',
-  paths: [{ d: 'M3.5,3.5h21v21H3.5Z', transform: 'translate(-3.5 -3.5)' }]
+  paths: [{ d: 'M3.5,3.5h21v21H3.5Z', transform: 'translate(-3.5 -3.5)' }],
 };
 
 export const Stop2Icon: React.FunctionComponent<IconProps> = (

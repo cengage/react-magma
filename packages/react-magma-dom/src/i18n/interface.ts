@@ -194,4 +194,8 @@ export interface I18nInterface {
   multiCombobox: {
     selectedItemButtonAriaLabel: string;
   };
+  dropdown: {
+    menuItemSelectedAriaLabel: string;
+    toggleMenuAriaLabel: string;
+  };
 }

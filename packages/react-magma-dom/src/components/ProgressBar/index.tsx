@@ -18,7 +18,7 @@ export enum ProgressBarColor {
   primary = 'primary', // default
   pop01 = 'pop01',
   pop02 = 'pop02',
-  success = 'success'
+  success = 'success',
 }
 
 function buildProgressBarBackground(props) {

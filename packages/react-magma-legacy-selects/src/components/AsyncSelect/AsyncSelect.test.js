@@ -10,12 +10,12 @@ const mockPromise = require('promise');
 const colourOptions = [
   {
     label: 'Red',
-    value: 'red'
+    value: 'red',
   },
   {
     label: 'Blue',
-    value: 'blue'
-  }
+    value: 'blue',
+  },
 ];
 
 const filterColors = inputValue => {
@@ -84,8 +84,8 @@ describe('Async', () => {
 
       fireEvent.change(input, {
         target: {
-          value: 'r'
-        }
+          value: 'r',
+        },
       });
 
       jest.runOnlyPendingTimers();
@@ -150,7 +150,7 @@ describe('Async', () => {
             labelText="Custom"
             loadOptions={promiseOptions}
             components={{
-              DropdownIndicator
+              DropdownIndicator,
             }}
           />
         ));

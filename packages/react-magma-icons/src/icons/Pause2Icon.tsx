@@ -7,9 +7,9 @@ const iconType = {
   paths: [
     {
       d: 'M3.5,3.5h8.75v21H3.5Zm12.25,0H24.5v21H15.75Z',
-      transform: 'translate(-3.5 -3.5)'
-    }
-  ]
+      transform: 'translate(-3.5 -3.5)',
+    },
+  ],
 };
 
 export const Pause2Icon: React.FunctionComponent<IconProps> = (

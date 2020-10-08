@@ -1,10 +1,10 @@
-import React from 'react'
-import Layout from '../components/layout'
-import { IndexPageContent } from '../components/intro/index-page-content'
-import { Global, css } from '@emotion/core'
-import { ThemeContext } from 'react-magma-dom'
+import React from 'react';
+import Layout from '../components/layout';
+import { IndexPageContent } from '../components/intro/index-page-content';
+import { Global, css } from '@emotion/core';
+import { ThemeContext } from 'react-magma-dom';
 
-import '../components/animate.css'
+import '../components/animate.css';
 
 const IndexPage = () => (
   <ThemeContext.Consumer>
@@ -36,6 +36,6 @@ const IndexPage = () => (
       </Layout>
     )}
   </ThemeContext.Consumer>
-)
+);
 
-export default IndexPage
+export default IndexPage;

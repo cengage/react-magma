@@ -1,4 +1,4 @@
-import { magma } from 'react-magma-dom'
+import { magma } from 'react-magma-dom';
 
 export const amgam = Object.assign({}, magma, {
   colors: Object.assign({}, magma.colors, {
@@ -15,4 +15,4 @@ export const amgam = Object.assign({}, magma, {
     danger: '#18FFFF',
     focus: '#0599FF',
   }),
-})
+});

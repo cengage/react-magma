@@ -1,4 +1,4 @@
-import { magma } from 'react-magma-dom'
+import { magma } from 'react-magma-dom';
 
 // Can not spread props because there is no babel transpiling and Edge/Safari does not currently support the spread operator
 
@@ -29,4 +29,4 @@ export const amgamDark = Object.assign({}, magma, {
     toggleBoxShadow:
       '0 2px 2px -1px rgba(255,255,255, 0.3), 0 0 4px 0 rgba(255,255,255, 0.24),0 0 5px 0 rgba(255,255,255, 0.22)',
   }),
-})
+});

@@ -5,7 +5,7 @@ const DEFAULT_STYLE_PROPS = {
   shape: 'fill',
   size: 'medium',
   textTransform: 'uppercase',
-  variant: 'solid'
+  variant: 'solid',
 };
 
 export function buildPropsWithDefaultButtonStyles(props) {

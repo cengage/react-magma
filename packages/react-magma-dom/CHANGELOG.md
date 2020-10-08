@@ -3,6 +3,89 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.94](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.93...v2.0.0-beta.94) (2020-10-01)
+
+**Note:** Version bump only for package react-magma-dom
+
+
+
+
+
+# [2.0.0-beta.93](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.92...v2.0.0-beta.93) (2020-10-01)
+
+**Note:** Version bump only for package react-magma-dom
+
+
+
+
+
+# [2.0.0-beta.92](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.91...v2.0.0-beta.92) (2020-10-01)
+
+
+### Bug Fixes
+
+* **dropdown:** add aria-labelledby to menu div using button for label ([2025173](http://stash.cengage.com:7999/FRONT/react-magma/commits/2025173c3d35441088cb19d7b097ee584610826c))
+
+
+
+
+
+# [2.0.0-beta.90](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.89...v2.0.0-beta.90) (2020-10-01)
+
+
+### Bug Fixes
+
+* **select, dropdown:** fix aria lint errors ([166b04f](http://stash.cengage.com:7999/FRONT/react-magma/commits/166b04fcca2156ba472c403462dd415b05e720d4))
+
+
+
+
+
+# [2.0.0-beta.89](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.88...v2.0.0-beta.89) (2020-09-30)
+
+
+### Bug Fixes
+
+* **tabs:** a11y enhancements for tablist and tab ([ad910eb](http://stash.cengage.com:7999/FRONT/react-magma/commits/ad910eb1a9030ce2df44faeba3fba06639830ade))
+
+
+
+
+
+# [2.0.0-beta.87](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.86...v2.0.0-beta.87) (2020-09-30)
+
+
+### Bug Fixes
+
+* **checkbox, toggle:** fix aria-describedby casing, add error examples ([697053f](http://stash.cengage.com:7999/FRONT/react-magma/commits/697053fa148a959ecf444f407c8d0db40f50dac3))
+* **date-picker:** focus calendar icon button on close ([8f0ada6](http://stash.cengage.com:7999/FRONT/react-magma/commits/8f0ada67195520db1bbb528ad2d31b0ebb6c829c))
+* **radio, checkbox, toggle:** fix styles, update docs, small refactor ([103786e](http://stash.cengage.com:7999/FRONT/react-magma/commits/103786e207730fb43707d05f5b7f362d724fb08f))
+
+
+### Features
+
+* **checkbox, toggle:** add error message ([c292f78](http://stash.cengage.com:7999/FRONT/react-magma/commits/c292f7829840cbd875df9ce8d0d2b082432a30f7))
+* **radio:** adding error message prop to radio group ([0d779b4](http://stash.cengage.com:7999/FRONT/react-magma/commits/0d779b4868293283093c08a7204c1f528b3a5ff4))
+* **radio buttons:** add error styles for radio buttons ([10f7e51](http://stash.cengage.com:7999/FRONT/react-magma/commits/10f7e51cdd7613ab45fa8c00dad89773a4c6ae10))
+* **radio buttons:** associate field with message id, tests ([4f9618b](http://stash.cengage.com:7999/FRONT/react-magma/commits/4f9618bd5ab96d7da86cb5ef9cbb0b87e0e4a576))
+* **radio buttons:** more error state ([fc5a849](http://stash.cengage.com:7999/FRONT/react-magma/commits/fc5a849f7bff25e680de46b30fecefe872d47d5c))
+
+
+
+
+
+# [2.0.0-beta.86](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.85...v2.0.0-beta.86) (2020-09-29)
+
+
+### Bug Fixes
+
+* **timepicker:** change to empty string instead of -- on bkspc ([642d72f](http://stash.cengage.com:7999/FRONT/react-magma/commits/642d72ff4e4bf6cbd80e00b17205855f37350d12))
+* **timepicker:** set min and hour to -- instead of 00 on backspace ([7b1dece](http://stash.cengage.com:7999/FRONT/react-magma/commits/7b1dece063c9f32179a0899e6ef3b78759e633e8))
+
+
+
+
+
 # [2.0.0-beta.84](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.83...v2.0.0-beta.84) (2020-09-29)
 
 

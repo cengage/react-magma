@@ -18,7 +18,7 @@ export interface LoadingIndicatorProps
 
 export enum LoadingIndicatorType {
   progressbar = 'progressbar',
-  spinner = 'spinner' // default
+  spinner = 'spinner', // default
 }
 
 export interface LoadingIndicatorState {

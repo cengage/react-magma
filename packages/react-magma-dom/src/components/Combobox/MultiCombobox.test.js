@@ -24,7 +24,7 @@ describe('Combobox', () => {
     const items = [
       { label: 'Red', value: 'red' },
       { label: 'Blue', value: 'blue' },
-      { label: 'Green', value: 'green' }
+      { label: 'Green', value: 'green' },
     ];
     const { getByLabelText, getByText } = render(
       <MultiCombobox isMulti labelText={labelText} items={items} />
@@ -49,18 +49,18 @@ describe('Combobox', () => {
       {
         id: 1,
         actual: 'red',
-        representation: 'Red'
+        representation: 'Red',
       },
       {
         id: 2,
         actual: 'blue',
-        representation: 'Blue'
+        representation: 'Blue',
       },
       {
         id: 3,
         actual: 'green',
-        representation: 'Green'
-      }
+        representation: 'Green',
+      },
     ];
 
     const { getByLabelText, getByText } = render(
@@ -307,7 +307,7 @@ describe('Combobox', () => {
       return {
         id: 'abc123',
         name: value,
-        representation: value.charAt(0).toUpperCase() + value.slice(1)
+        representation: value.charAt(0).toUpperCase() + value.slice(1),
       };
     }
 
@@ -316,18 +316,18 @@ describe('Combobox', () => {
       {
         id: 1,
         actual: 'red',
-        representation: 'Red'
+        representation: 'Red',
       },
       {
         id: 2,
         actual: 'blue',
-        representation: 'Blue'
+        representation: 'Blue',
       },
       {
         id: 3,
         actual: 'green',
-        representation: 'Green'
-      }
+        representation: 'Green',
+      },
     ];
 
     const { getByLabelText, getByText } = render(
@@ -358,18 +358,18 @@ describe('Combobox', () => {
       {
         id: 1,
         actual: 'red',
-        representation: 'Red'
+        representation: 'Red',
       },
       {
         id: 2,
         actual: 'blue',
-        representation: 'Blue'
+        representation: 'Blue',
       },
       {
         id: 3,
         actual: 'green',
-        representation: 'Green'
-      }
+        representation: 'Green',
+      },
     ];
     const labelText = 'Label';
 
@@ -383,7 +383,7 @@ describe('Combobox', () => {
       return {
         id: 'abc123',
         name: value,
-        representation: value.charAt(0).toUpperCase() + value.slice(1)
+        representation: value.charAt(0).toUpperCase() + value.slice(1),
       };
     }
 
@@ -690,7 +690,7 @@ describe('Combobox', () => {
         items={items}
         selectedItem={items[0]}
         components={{
-          LoadingIndicator
+          LoadingIndicator,
         }}
       />
     );
@@ -824,7 +824,7 @@ describe('Combobox', () => {
 
       expect(onInputValueChange).toBeCalledWith(
         expect.objectContaining({
-          inputValue: 'Red'
+          inputValue: 'Red',
         }),
         expect.anything(Function)
       );
@@ -850,7 +850,7 @@ describe('Combobox', () => {
 
       expect(onInputChange).toBeCalledWith(
         expect.objectContaining({
-          inputValue: 'Red'
+          inputValue: 'Red',
         })
       );
     });

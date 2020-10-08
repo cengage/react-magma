@@ -17,12 +17,13 @@
     "bump:patch": "lerna version --conventional-commits",
     "bump:pre": "lerna version --conventional-commits --conventional-prerelease --yes",
     "bump:release": "lerna version --conventional-commits --conventional-graduate --yes",
-    "publish-all": "lerna exec --scope react-magma-dom 'npm publish'"
+    "publish-all": "lerna exec --scope react-magma-dom 'npm publish'",
+    "prettier": "prettier --write --loglevel warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\""
   },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "npm run lint && npm run test"
+      "pre-commit": "lint-staged"
     }
   },
   "devDependencies": {
@@ -45,14 +46,25 @@
     "@testing-library/react": "^11.0.4",
     "@testing-library/react-hooks": "^3.2.1",
     "@testing-library/user-event": "^12.1.5",
+    "@typescript-eslint/eslint-plugin": "^4.2.0",
+    "@typescript-eslint/parser": "^4.2.0",
     "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "^26.2.0",
     "babel-plugin-dynamic-import-node": "^2.3.3",
     "babel-plugin-emotion": "^10.0.33",
     "babel-plugin-polished": "^1.1.0",
     "commitizen": "2.10.1",
+    "core-js": "^3.1.4",
     "cz-conventional-changelog": "2.1.0",
+    "eslint": "^7.9.0",
+    "eslint-config-cengage": "^2.0.0-beta.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^24.0.2",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "eslint-plugin-unicorn": "^22.0.0",
     "husky": "3.1.0",
     "jest": "^26.4.2",
     "jest-axe": "3.1.0",
@@ -61,6 +73,8 @@
     "jest-extended": "^0.11.5",
     "jest-watch-typeahead": "^0.6.1",
     "lerna": "3.22.1",
+    "lint-staged": "^10.4.0",
+    "prettier": "^2.1.2",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
     "regenerator-runtime": "^0.13.7",

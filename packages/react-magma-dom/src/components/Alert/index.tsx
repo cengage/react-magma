@@ -9,7 +9,7 @@ import {
   NotificationIcon,
   BlockedIcon,
   CrossIcon,
-  IconProps
+  IconProps,
 } from 'react-magma-icons';
 import { ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
@@ -23,7 +23,7 @@ export const VARIANT_ICON: {
   info: Info2Icon,
   success: CheckIcon,
   warning: NotificationIcon,
-  danger: BlockedIcon
+  danger: BlockedIcon,
 };
 
 export enum AlertVariant {
@@ -31,7 +31,7 @@ export enum AlertVariant {
   success = 'success',
   warning = 'warning',
   danger = 'danger',
-  silly = 'silly'
+  silly = 'silly',
 }
 
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
