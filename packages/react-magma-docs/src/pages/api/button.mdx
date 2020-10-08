@@ -78,8 +78,10 @@ The `marketing` buttons do not have `outline` and `link` variants, and will rend
 
 ## Link Buttons
 
-Using the `LinkButton` will render a button that is styled exactly like a link. Unlike the using `<Button variant='link' />`,
-the `LinkButton` will render as inline text, the way an `a` element would.
+Using the `LinkButton` will render a button that is styled exactly like a link. Unlike using the `<Button variant='link' />`,
+the `LinkButton` will render as inline text, the way an `a` element would.  
+
+**Note:** For accessibility, it's important to remember that this is still a button and should be used to trigger functionality or manipulate data, and _not_ navigate to a new page like a traditional hyperlink.
 
 ```.jsx
     <>
