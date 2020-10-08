@@ -234,7 +234,13 @@ describe('Table', () => {
 
   it('should render table header cells with specified scope', () => {
     const { getByText } = render(
-      <TableHeaderCell scope="row">heading</TableHeaderCell>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell scope="row">heading</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+      </Table>
     );
 
     expect(getByText('heading')).toHaveAttribute('scope', 'row');
