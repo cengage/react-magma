@@ -12,7 +12,7 @@ import {
   startOfMonth,
   endOfMonth,
   differenceInDays,
-  parseISO
+  parseISO,
 } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 
@@ -127,7 +127,7 @@ export function i18nFormat(date, formatStr = 'PP', locale = enUS) {
   return (
     date &&
     format(convertToUtc(date), formatStr, {
-      locale
+      locale,
     })
   );
 }

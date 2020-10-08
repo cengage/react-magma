@@ -82,23 +82,23 @@ export const PasswordInput: React.FunctionComponent<PasswordInputProps> = React.
     const id = useGenerateId(defaultId);
 
     const HIDDEN_PASSWORD_ANNOUNCE_TEXT = hiddenPasswordAnnounceText
-        ? hiddenPasswordAnnounceText
-        : i18n.password.hidden.announce,
-      HIDE_PASSWORD_BUTTON_ARIA_LABEL = hidePasswordButtonAriaLabel
-        ? hidePasswordButtonAriaLabel
-        : i18n.password.hidden.ariaLabel,
-      HIDE_PASSWORD_BUTTON_TEXT = hidePasswordButtonText
-        ? hidePasswordButtonText
-        : i18n.password.hidden.buttonText,
-      SHOWN_PASSWORD_ANNOUNCE_TEXT = shownPasswordAnnounceText
-        ? shownPasswordAnnounceText
-        : i18n.password.shown.announce,
-      SHOW_PASSWORD_BUTTON_ARIA_LABEL = showPasswordButtonAriaLabel
-        ? showPasswordButtonAriaLabel
-        : i18n.password.shown.ariaLabel,
-      SHOW_PASSWORD_BUTTON_TEXT = showPasswordButtonText
-        ? showPasswordButtonText
-        : i18n.password.shown.buttonText;
+      ? hiddenPasswordAnnounceText
+      : i18n.password.hidden.announce;
+    const HIDE_PASSWORD_BUTTON_ARIA_LABEL = hidePasswordButtonAriaLabel
+      ? hidePasswordButtonAriaLabel
+      : i18n.password.hidden.ariaLabel;
+    const HIDE_PASSWORD_BUTTON_TEXT = hidePasswordButtonText
+      ? hidePasswordButtonText
+      : i18n.password.hidden.buttonText;
+    const SHOWN_PASSWORD_ANNOUNCE_TEXT = shownPasswordAnnounceText
+      ? shownPasswordAnnounceText
+      : i18n.password.shown.announce;
+    const SHOW_PASSWORD_BUTTON_ARIA_LABEL = showPasswordButtonAriaLabel
+      ? showPasswordButtonAriaLabel
+      : i18n.password.shown.ariaLabel;
+    const SHOW_PASSWORD_BUTTON_TEXT = showPasswordButtonText
+      ? showPasswordButtonText
+      : i18n.password.shown.buttonText;
 
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
     const theme = React.useContext(ThemeContext);
@@ -145,7 +145,7 @@ export const PasswordInput: React.FunctionComponent<PasswordInputProps> = React.
                   marginTop: '8px',
                   marginRight: '0',
                   left: '7px',
-                  borderRadius: '3px'
+                  borderRadius: '3px',
                 }}
                 type={ButtonType.button}
                 variant={ButtonVariant.link}

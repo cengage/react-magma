@@ -12,7 +12,7 @@ describe('Radio', () => {
         value={{
           name: 'colors',
           selectedValue: 'blue',
-          onChange: jest.fn()
+          onChange: jest.fn(),
         }}
       >
         <Radio labelText="blue" testId={testId} name="colors" value="blue" />
@@ -28,7 +28,7 @@ describe('Radio', () => {
         value={{
           name: 'colors',
           selectedValue: 'blue',
-          onChange: jest.fn()
+          onChange: jest.fn(),
         }}
       >
         <Radio labelText="blue" name="colors" value="blue" />
@@ -44,7 +44,7 @@ describe('Radio', () => {
         value={{
           name: 'colors',
           selectedValue: 'blue',
-          onChange: jest.fn()
+          onChange: jest.fn(),
         }}
       >
         <Radio labelText="blue" name="colors" value="blue" />
@@ -60,7 +60,7 @@ describe('Radio', () => {
         value={{
           name: 'colors',
           selectedValue: 'blue',
-          onChange: jest.fn()
+          onChange: jest.fn(),
         }}
       >
         <Radio labelText="blue" name="colors" value="pink" />
@@ -77,7 +77,7 @@ describe('Radio', () => {
         value={{
           name: 'colors',
           selectedValue: 'blue',
-          onChange: jest.fn()
+          onChange: jest.fn(),
         }}
       >
         <Radio labelText="blue" name="colors" value="blue" />
@@ -92,7 +92,7 @@ describe('Radio', () => {
         value={{
           name: 'colors',
           selectedValue: 'blue',
-          onChange: jest.fn()
+          onChange: jest.fn(),
         }}
       >
         <Radio labelText="blue" name="colors" value="blue" id="differentId" />
@@ -108,7 +108,7 @@ describe('Radio', () => {
         value={{
           name: 'colors',
           selectedValue: 'blue',
-          onChange: jest.fn()
+          onChange: jest.fn(),
         }}
       >
         <Radio labelText="blue" name="colors" value="blue" />
@@ -125,7 +125,7 @@ describe('Radio', () => {
         value={{
           name: 'colors',
           selectedValue: 'blue',
-          onChange: jest.fn()
+          onChange: jest.fn(),
         }}
       >
         <Radio labelText="blue" name="colors" value="blue" />
@@ -143,7 +143,7 @@ describe('Radio', () => {
         value={{
           name: 'colors',
           selectedValue: 'blue',
-          onChange: jest.fn()
+          onChange: jest.fn(),
         }}
       >
         <Radio labelText="blue" name="colors" value="blue" required />
@@ -160,7 +160,7 @@ describe('Radio', () => {
         value={{
           name: 'colors',
           selectedValue: 'blue',
-          onChange: jest.fn()
+          onChange: jest.fn(),
         }}
       >
         <Radio labelText="blue" name="colors" value="blue" disabled />
@@ -181,7 +181,7 @@ describe('Radio', () => {
         value={{
           name: 'colors',
           selectedValue: 'blue',
-          onChange: jest.fn()
+          onChange: jest.fn(),
         }}
       >
         <Radio
@@ -204,7 +204,7 @@ describe('Radio', () => {
         value={{
           name: 'colors',
           selectedValue: 'blue',
-          onChange: jest.fn()
+          onChange: jest.fn(),
         }}
       >
         <Radio labelText="blue" name="colors" value="blue" isInverse />
@@ -222,7 +222,7 @@ describe('Radio', () => {
         value={{
           name: 'colors',
           selectedValue: 'blue',
-          onChange: jest.fn()
+          onChange: jest.fn(),
         }}
       >
         <Radio labelText="blue" name="colors" value="blue" isInverse disabled />
@@ -243,7 +243,7 @@ describe('Radio', () => {
         value={{
           name: 'colors',
           selectedValue: 'blue',
-          onChange: jest.fn()
+          onChange: jest.fn(),
         }}
       >
         <Radio
@@ -265,7 +265,7 @@ describe('Radio', () => {
         value={{
           name: 'colors',
           selectedValue: 'blue',
-          onChange: jest.fn()
+          onChange: jest.fn(),
         }}
       >
         <Radio labelText="blue" name="colors" value="blue" />
@@ -282,7 +282,7 @@ describe('Radio', () => {
         value={{
           name: 'colors',
           hasError: true,
-          onChange: jest.fn()
+          onChange: jest.fn(),
         }}
       >
         <Radio labelText="blue" name="colors" value="blue" />
@@ -302,7 +302,7 @@ describe('Radio', () => {
           name: 'colors',
           hasError: true,
           isInverse: true,
-          onChange: jest.fn()
+          onChange: jest.fn(),
         }}
       >
         <Radio labelText="blue" name="colors" value="blue" />
@@ -326,7 +326,7 @@ describe('Radio', () => {
           name: 'colors',
           selectedValue: 'blue',
           onChange: jest.fn(),
-          onBlur
+          onBlur,
         }}
       >
         <Radio labelText="blue" name="colors" value="blue" />
@@ -337,7 +337,7 @@ describe('Radio', () => {
       getByLabelText('blue'),
       new MouseEvent('blur', {
         bubbles: true,
-        cancelable: true
+        cancelable: true,
       })
     );
 
@@ -352,7 +352,7 @@ describe('Radio', () => {
           name: 'colors',
           selectedValue: 'blue',
           onChange: jest.fn(),
-          onFocus
+          onFocus,
         }}
       >
         <Radio labelText="blue" name="colors" value="blue" />
@@ -363,7 +363,7 @@ describe('Radio', () => {
       getByLabelText('blue'),
       new MouseEvent('focus', {
         bubbles: true,
-        cancelable: true
+        cancelable: true,
       })
     );
 

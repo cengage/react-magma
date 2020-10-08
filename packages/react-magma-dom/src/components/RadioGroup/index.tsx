@@ -43,7 +43,7 @@ export interface RadioContextInterface {
 
 export const RadioContext = React.createContext<RadioContextInterface>({
   hasError: false,
-  name: 'defaultName'
+  name: 'defaultName',
 });
 
 export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
@@ -101,7 +101,7 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
           selectedValue,
           onBlur: props.onBlur,
           onChange: handleChange,
-          onFocus: props.onFocus
+          onFocus: props.onFocus,
         }}
       >
         {labelText && isTextVisuallyHidden && (

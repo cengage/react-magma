@@ -33,7 +33,7 @@ describe('Banner', () => {
       'outline',
       `2px dotted ${magma.colors.neutral01}`,
       {
-        target: ':focus'
+        target: ':focus',
       }
     );
   });

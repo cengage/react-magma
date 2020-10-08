@@ -15,7 +15,7 @@ import {
   getPrevMonthFromDate,
   getNextMonthFromDate,
   i18nFormat as format,
-  getDateFromString
+  getDateFromString,
 } from './utils';
 import { omit, useGenerateId, Omit } from '../../utils';
 import { I18nContext } from '../../i18n';
@@ -147,7 +147,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
       'wednesday',
       'thursday',
       'friday',
-      'saturday'
+      'saturday',
     ];
     const { startOfWeek } = i18n.datePicker;
     return getCalendarMonthWeeks(
@@ -311,7 +311,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = (
         onPrevMonthClick,
         onNextMonthClick,
         onDateChange: handleDaySelection,
-        setDateFocused
+        setDateFocused,
       }}
     >
       <DatePickerContainer data-testid={testId} onBlur={handleCalendarBlur}>

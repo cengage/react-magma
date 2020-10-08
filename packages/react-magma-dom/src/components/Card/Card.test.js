@@ -89,7 +89,7 @@ describe('Card', () => {
 
     expect(card).toHaveStyleRule('padding-left', '5px');
     expect(card).toHaveStyleRule('background', magma.colors.danger, {
-      target: ':before'
+      target: ':before',
     });
   });
 
@@ -100,7 +100,7 @@ describe('Card', () => {
 
     expect(card).toHaveStyleRule('padding-left', '5px');
     expect(card).toHaveStyleRule('background', magma.colors.primary, {
-      target: ':before'
+      target: ':before',
     });
   });
 
@@ -111,7 +111,7 @@ describe('Card', () => {
 
     expect(card).toHaveStyleRule('padding-left', '5px');
     expect(card).toHaveStyleRule('background', magma.colors.success01, {
-      target: ':before'
+      target: ':before',
     });
   });
 
@@ -122,7 +122,7 @@ describe('Card', () => {
 
     expect(card).toHaveStyleRule('padding-left', '5px');
     expect(card).toHaveStyleRule('background', magma.colors.pop04, {
-      target: ':before'
+      target: ':before',
     });
   });
 

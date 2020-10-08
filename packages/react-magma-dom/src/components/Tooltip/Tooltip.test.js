@@ -40,16 +40,16 @@ describe('Tooltip', () => {
     expect(tooltipInner).toHaveStyleRule('background', '#3F3F3F');
     expect(tooltipInner).toHaveStyleRule('color', '#FFFFFF');
     expect(tooltipInner).toHaveStyleRule('border-bottom-color', '#3F3F3F', {
-      target: ':before'
+      target: ':before',
     });
     expect(tooltipInner).toHaveStyleRule('border-top-color', '#3F3F3F', {
-      target: ':before'
+      target: ':before',
     });
     expect(tooltipInner).toHaveStyleRule('border-left-color', 'transparent', {
-      target: ':before'
+      target: ':before',
     });
     expect(tooltipInner).toHaveStyleRule('border-right-color', 'transparent', {
-      target: ':before'
+      target: ':before',
     });
 
     expect(tooltip).toMatchSnapshot();
@@ -66,16 +66,16 @@ describe('Tooltip', () => {
 
     expect(tooltip).toHaveStyleRule('right', '100%');
     expect(tooltipInner).toHaveStyleRule('border-bottom-color', 'transparent', {
-      target: ':before'
+      target: ':before',
     });
     expect(tooltipInner).toHaveStyleRule('border-top-color', 'transparent', {
-      target: ':before'
+      target: ':before',
     });
     expect(tooltipInner).toHaveStyleRule('border-left-color', '#3F3F3F', {
-      target: ':before'
+      target: ':before',
     });
     expect(tooltipInner).toHaveStyleRule('border-right-color', '#3F3F3F', {
-      target: ':before'
+      target: ':before',
     });
   });
 
@@ -147,14 +147,14 @@ describe('Tooltip', () => {
 
     fireEvent.keyDown(trigger, {
       key: 'ArrowDown',
-      code: 40
+      code: 40,
     });
 
     expect(tooltip).toHaveStyleRule('display', 'block');
 
     fireEvent.keyDown(trigger, {
       key: 'Escape',
-      keyCode: 27
+      keyCode: 27,
     });
 
     expect(tooltip).toHaveStyleRule('display', 'none');
@@ -172,10 +172,10 @@ describe('Tooltip', () => {
     expect(tooltipInner).toHaveStyleRule('color', '#3F3F3F');
 
     expect(tooltipInner).toHaveStyleRule('border-bottom-color', '#FFFFFF', {
-      target: ':before'
+      target: ':before',
     });
     expect(tooltipInner).toHaveStyleRule('border-top-color', '#FFFFFF', {
-      target: ':before'
+      target: ':before',
     });
   });
 
@@ -188,10 +188,10 @@ describe('Tooltip', () => {
     const tooltipInner = getByText('Test Content');
 
     expect(tooltipInner).toHaveStyleRule('border-left-color', '#FFFFFF', {
-      target: ':before'
+      target: ':before',
     });
     expect(tooltipInner).toHaveStyleRule('border-right-color', '#FFFFFF', {
-      target: ':before'
+      target: ':before',
     });
   });
 

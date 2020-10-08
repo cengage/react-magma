@@ -1,65 +1,65 @@
-import React from 'react'
-import { css, keyframes } from '@emotion/core'
-import styled from '@emotion/styled'
-import FocusLock from 'react-focus-lock'
-import { MenuIcon, CrossIcon } from 'react-magma-icons'
-import { IconButton, magma } from 'react-magma-dom'
-import MainNav from '../main-nav'
+import React from 'react';
+import { css, keyframes } from '@emotion/core';
+import styled from '@emotion/styled';
+import FocusLock from 'react-focus-lock';
+import { MenuIcon, CrossIcon } from 'react-magma-icons';
+import { IconButton, magma } from 'react-magma-dom';
+import MainNav from '../main-nav';
 
 export class SlidingDrawer extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       isOpen: false,
       isActivated: false,
-    }
-    this.toggleButtonRef = React.createRef()
-    this.closeMenu = this.closeMenu.bind(this)
-    this.openMenu = this.openMenu.bind(this)
-    this.closeMenu = this.closeMenu.bind(this)
-    this.handleCloseMenu = this.handleCloseMenu.bind(this)
-    this.handleCloseMenuFromNav = this.handleCloseMenuFromNav.bind(this)
-    this.handleKeypress = this.handleKeypress.bind(this)
+    };
+    this.toggleButtonRef = React.createRef();
+    this.closeMenu = this.closeMenu.bind(this);
+    this.openMenu = this.openMenu.bind(this);
+    this.closeMenu = this.closeMenu.bind(this);
+    this.handleCloseMenu = this.handleCloseMenu.bind(this);
+    this.handleCloseMenuFromNav = this.handleCloseMenuFromNav.bind(this);
+    this.handleKeypress = this.handleKeypress.bind(this);
   }
 
   closeMenu = returnFocus => {
     if (this.state.isOpen) {
-      document.getElementsByTagName('html')[0].style.overflow = 'auto'
-      document.removeEventListener('keydown', this.handleKeypress, false)
+      document.getElementsByTagName('html')[0].style.overflow = 'auto';
+      document.removeEventListener('keydown', this.handleKeypress, false);
 
       this.setState({ isOpen: false }, () => {
         setTimeout(() => {
-          this.setState({ isActivated: false })
+          this.setState({ isActivated: false });
           if (returnFocus) {
-            this.toggleButtonRef.current.focus()
+            this.toggleButtonRef.current.focus();
           }
-        }, 250)
-      })
+        }, 250);
+      });
     }
-  }
+  };
 
   componentWillUnmount = () => {
-    document.removeEventListener('keydown', this.handleKeypress, false)
-  }
+    document.removeEventListener('keydown', this.handleKeypress, false);
+  };
 
   openMenu = () => {
-    document.getElementsByTagName('html')[0].style.overflow = 'hidden'
-    this.setState({ isOpen: true, isActivated: true })
+    document.getElementsByTagName('html')[0].style.overflow = 'hidden';
+    this.setState({ isOpen: true, isActivated: true });
 
-    document.addEventListener('keydown', this.handleKeypress, false)
-  }
+    document.addEventListener('keydown', this.handleKeypress, false);
+  };
 
   handleCloseMenu() {
-    this.closeMenu(true)
+    this.closeMenu(true);
   }
 
   handleCloseMenuFromNav() {
-    this.closeMenu(false)
+    this.closeMenu(false);
   }
 
   handleKeypress(event) {
     if (event.keyCode === 27) {
-      this.closeMenu(true)
+      this.closeMenu(true);
     }
   }
 
@@ -67,12 +67,12 @@ export class SlidingDrawer extends React.Component {
     const slidein = keyframes`
             from { transform: translateX(-280px); }
             to   { transform: translateX(0); }
-        `
+        `;
 
     const slideout = keyframes`
             from { transform: translateX(0); }
             to   { transform: translateX(-280px); }
-        `
+        `;
 
     const Panel = styled.div`
       background: ${magma.colors.neutral08};
@@ -106,7 +106,7 @@ export class SlidingDrawer extends React.Component {
         top: 80px;
         transform: translateX(0);
       }
-    `
+    `;
 
     const PanelInner = styled.div`
       display: ${props => (props.isOpen ? 'block' : 'none')};
@@ -114,7 +114,7 @@ export class SlidingDrawer extends React.Component {
       @media (min-width: 1024px) {
         display: block;
       }
-    `
+    `;
 
     const Overlay = styled.div`
       background: rgba(0, 0, 0, 0.6);
@@ -124,7 +124,7 @@ export class SlidingDrawer extends React.Component {
       right: 0;
       top: 0;
       z-index: 3;
-    `
+    `;
 
     const MenuButton = styled.span`
       position: fixed;
@@ -139,7 +139,7 @@ export class SlidingDrawer extends React.Component {
       @media (min-width: 1024px) {
         display: none;
       }
-    `
+    `;
 
     const CloseButton = styled.span`
       display: block;
@@ -148,9 +148,9 @@ export class SlidingDrawer extends React.Component {
       @media (min-width: 1024px) {
         display: none;
       }
-    `
+    `;
 
-    const { isOpen, isActivated } = this.state
+    const { isOpen, isActivated } = this.state;
 
     return (
       <FocusLock disabled={!isOpen}>
@@ -184,6 +184,6 @@ export class SlidingDrawer extends React.Component {
           {isOpen && <Overlay onClick={this.handleCloseMenu} />}
         </nav>
       </FocusLock>
-    )
+    );
   }
 }

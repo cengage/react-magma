@@ -260,7 +260,7 @@ describe('Alert', () => {
       'outline',
       `2px dotted ${magma.colors.focusInverse}`,
       {
-        target: ':focus'
+        target: ':focus',
       }
     );
   });
@@ -1287,8 +1287,8 @@ describe('Alert', () => {
           value={{
             ...defaultI18n,
             alert: {
-              dismissAriaLabel
-            }
+              dismissAriaLabel,
+            },
           }}
         >
           <Alert isDismissible>Test Alert Text</Alert>

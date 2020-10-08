@@ -6,12 +6,12 @@ export enum DropdownDropDirection {
   down = 'down', //default
   left = 'left',
   right = 'right',
-  up = 'up'
+  up = 'up',
 }
 
 export enum DropdownAlignment {
   start = 'start', //default
-  end = 'end'
+  end = 'end',
 }
 
 export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -57,7 +57,7 @@ interface DropdownContextInterface {
 export const DropdownContext = React.createContext<DropdownContextInterface>({
   isOpen: false,
   registerDropdownMenuItem: (elements, element) => {},
-  setIsOpen: () => false
+  setIsOpen: () => false,
 });
 
 export const useDropdownContext = () => React.useContext(DropdownContext);
@@ -140,7 +140,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
       shouldFocusToggleElement.current = true;
     }
 
-    function useFilteredItems(): [any, number] {
+    function getFilteredItem(): [any, number] {
       const filteredItems = itemRefArray.current.filter(
         itemRef => itemRef.current
       );
@@ -157,7 +157,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
       }
 
       if (event.key === 'ArrowDown') {
-        const [filteredItems, filteredItemIndex] = useFilteredItems();
+        const [filteredItems, filteredItemIndex] = getFilteredItem();
 
         if (filteredItems.length === 0) {
           return;
@@ -176,7 +176,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
       }
 
       if (event.key === 'ArrowUp') {
-        const [filteredItems, filteredItemIndex] = useFilteredItems();
+        const [filteredItems, filteredItemIndex] = getFilteredItem();
 
         if (filteredItems.length === 0) {
           return;
@@ -241,7 +241,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
           setActiveItemIndex,
           setIsOpen,
           toggleRef,
-          width: widthString
+          width: widthString,
         }}
       >
         <Container

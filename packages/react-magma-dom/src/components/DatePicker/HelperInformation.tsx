@@ -31,7 +31,7 @@ const KeyboardShortcutButtonWrapper = styled.span`
 
 export const HelperInformation: React.FunctionComponent<HelperInformationProps> = ({
   isOpen,
-  onClose
+  onClose,
 }) => {
   const i18n = React.useContext(I18nContext);
 

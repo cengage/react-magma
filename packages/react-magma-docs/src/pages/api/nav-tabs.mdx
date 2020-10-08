@@ -3,16 +3,17 @@ pageTitle: Nav Tabs API
 title: Nav Tabs
 ---
 
-import { ScopeableLayout } from '../../components/layout'
-import { NavTabs, NavTab } from 'react-magma-dom'
-import { SimplePropsTable } from '../../components/props-table'
-import { GraduationCapIcon, BellIcon, AndroidIcon } from 'react-magma-icons'
+import { ScopeableLayout } from '../../components/layout';
+import { NavTabs, NavTab } from 'react-magma-dom';
+import { SimplePropsTable } from '../../components/props-table';
+import { GraduationCapIcon, BellIcon, AndroidIcon } from 'react-magma-icons';
+import { Link } from 'gatsby';
 
 ## Nav Tabs
 
 ## Basic Usage
 
-The `NavTabs` component is a navigation element that is styled similarly to the `Tabs` component. While they appear visually similar,
+The `NavTabs` component is a navigation element that is styled similarly to the <Link to="/api/tabs">Tabs</Link> component. While they appear visually similar,
 the `NavTabs` component is used for navigation between pages (or parts of a page), while the `Tabs` component is used to toggle the display of different tab panels on a single page.
 
 The `NavTabs` component represents the navigation container, and the `NavTab` component represents each individual navigation link. The `isActive` prop can be used to indicate the current page.
@@ -39,6 +40,19 @@ This prop is specified on the `NavTabs` component.
     </NavTabs>
 ```
 
+## Custom Component
+
+By default, the nav tabs will render an `a` tag, using the `to` prop for its `href`. However, you can use a custom element instead, by using the `component` prop.
+In this case, the children should be placed inside the `component` prop, instead of putting content directly inside each `NavTab`. The `to` prop directly on the `NavTab` (instead of the component) will be also ignored.
+
+```.jsx
+  <NavTabs aria-label="Sample Custom Component Navigation Tabs">
+    <NavTab component={<Link to="/api/nav-tabs">Main page</Link>} />
+    <NavTab component={<Link to="/api/nav-tab">FAQ</Link>}/>
+    <NavTab component={<Link to="/api/nav-tabs">About us</Link>}/>
+  </NavTabs>
+```
+
 ## Border Position
 
 By default, horizontal nav tabs have the indicator placed underneath the tabs. However, it is possible to display the indicator on the top edge of the nav tabs.
@@ -58,7 +72,7 @@ The `borderPosition` prop is specified on the `Tabs` component and will apply to
 ## Border Position (vertical)
 
 By default, vertical nav tabs have the indicator placed to the left.
-However, there are times you may want to place the indicator to the right the tabs, such as when the tab menu is displayed to the left of its content.
+However, there are times you may want to place the indicator to the right of the tabs, such as when the tab menu is displayed to the left of its content.
 The `borderPosition` prop is an enum and accepts `left` or `right` for horizontal tabs.
 
 The `borderPosition` prop is specified on the `NavTabs` component and will apply to each individual tab.
@@ -115,10 +129,12 @@ Full width tabs work best when inside a smaller container.
     <NavTab>Fourth item</NavTab>
     <NavTab>Fifth item</NavTab>
     <NavTab>Sixth item</NavTab>
+    <NavTab>Seventh item</NavTab>
+    <NavTab>Eighth item</NavTab>
   </NavTabs>
 ```
 
-## Scrollable Veritical Tabs
+## Scrollable Vertical Tabs
 
 ```.jsx
   <div style={{ display: 'flex', height: '200px', overflow: 'hidden'  }}>
@@ -231,25 +247,25 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
   propertyValues={{
     children: {
       type: {
-        name: 'node',
+        name: 'node'
       },
       required: true,
-      description: 'The content of the component',
+      description: 'The content of the component'
     },
     'aria-label': {
       type: {
-        name: 'string',
+        name: 'string'
       },
       required: true,
       description:
-        'The text the screen reader will announce that describes your navigation',
+        'The text the screen reader will announce that describes your navigation'
     },
     backgroundColor: {
       type: {
-        name: 'string',
+        name: 'string'
       },
       required: false,
-      description: 'Background color for the nav tabs menu',
+      description: 'Background color for the nav tabs menu'
     },
     borderPosition: {
       type: {
@@ -257,45 +273,45 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
         options: [
           'TabsBorderPositionHorizontal.bottom',
           'TabsBorderPositionHorizontal.top',
-          'TabsBorderPositionVertical.left',
-        ],
+          'TabsBorderPositionVertical.left'
+        ]
       },
       required: false,
       description: 'Position of the current tab indicator border',
-      defaultValue: 'bottom or left',
+      defaultValue: 'bottom or left'
     },
     iconPosition: {
       type: {
-        name: '"left" | "top"',
+        name: '"left" | "top"'
       },
       required: false,
-      description: 'The orientation of icon on NavTab',
+      description: 'The orientation of icon on NavTab'
     },
     isInverse: {
       type: {
-        name: 'boolean',
+        name: 'boolean'
       },
       required: false,
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
+      defaultValue: 'false'
     },
     hasScrollButtons: {
       type: {
-        name: 'boolean',
+        name: 'boolean'
       },
       required: false,
       description:
-        'The prop for turning on/off buttons for scrolling NavTabs component',
+        'The prop for turning on/off buttons for scrolling NavTabs component'
     },
     testId: {
       type: {
-        name: 'string',
+        name: 'string'
       },
       required: false,
       description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
+        'Test ID attached to an internal element as `data-testid` for consumer testing'
+    }
   }}
 />
 
@@ -307,33 +323,40 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
   propertyValues={{
     children: {
       type: {
-        name: 'node',
+        name: 'node'
       },
       required: true,
-      description: 'The content of the component',
+      description: 'The content of the component'
     },
     component: {
       type: {
-        name: 'React.ReactElement',
+        name: 'React.ReactElement'
       },
       required: false,
       description:
-        'The prop for custom component instead of `a` in NavTab. When using this prop the `children` of the component is not used.',
+        'The prop for custom component instead of `a` in NavTab. When using this prop the `children` of the component and the `to` prop are not used.'
     },
     testId: {
       type: {
-        name: 'string',
+        name: 'string'
       },
       required: false,
       description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
+        'Test ID attached to an internal element as `data-testid` for consumer testing'
+    }
   }}
 />
 
 export default props => (
   <ScopeableLayout
     {...props}
-    components={{ NavTabs, NavTab, GraduationCapIcon, BellIcon, AndroidIcon }}
+    components={{
+      NavTabs,
+      NavTab,
+      GraduationCapIcon,
+      BellIcon,
+      AndroidIcon,
+      Link
+    }}
   />
-)
+);

@@ -24,7 +24,7 @@ export interface BreadCrumbContextInterface {
 export const BreadCrumbContext = React.createContext<
   BreadCrumbContextInterface
 >({
-  isInverse: false
+  isInverse: false,
 });
 
 export const Breadcrumb: React.FunctionComponent<BreadcrumbProps> = React.forwardRef(

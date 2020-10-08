@@ -76,7 +76,7 @@ export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
       3: StyledH3,
       4: StyledH4,
       5: StyledH5,
-      6: StyledH6
+      6: StyledH6,
     };
 
     const HeadingComponent = headingLevels[level];

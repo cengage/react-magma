@@ -41,7 +41,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
     onIsOpenChange,
     onItemCreated,
     placeholder,
-    selectedItem: passedInSelectedItem
+    selectedItem: passedInSelectedItem,
   } = props;
 
   const i18n = React.useContext(I18nContext);
@@ -94,7 +94,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
       case useCombobox.stateChangeTypes.InputKeyDownEnter:
         return {
           ...changes,
-          ...(displayItems[0] && { selectedItem: displayItems[0] })
+          ...(displayItems[0] && { selectedItem: displayItems[0] }),
         };
       case useCombobox.stateChangeTypes.InputBlur:
         return {
@@ -103,14 +103,14 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
             state.inputValue && !state.selectedItem
               ? ''
               : itemToString(state.selectedItem),
-          selectedItem: state.selectedItem ? state.selectedItem : ''
+          selectedItem: state.selectedItem ? state.selectedItem : '',
         };
       case useCombobox.stateChangeTypes.FunctionReset:
         return {
           ...changes,
           inputValue: changes.selectedItem
             ? itemToString(changes.selectedItem)
-            : ''
+            : '',
         };
       default:
         return changes;
@@ -121,7 +121,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
     allItems,
     displayItems,
     setDisplayItems,
-    updateItemsRef
+    updateItemsRef,
   ] = useComboboxItems(defaultItems, items);
 
   function getValidItem(itemToCheck: T, key: string): object {
@@ -135,7 +135,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
   function handleOnIsOpenChange(changes) {
     const {
       isOpen: changedIsOpen,
-      selectedItem: changedSelectedItem
+      selectedItem: changedSelectedItem,
     } = changes;
 
     if (!changedIsOpen) {
@@ -167,7 +167,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
     reset,
     selectItem,
     selectedItem,
-    setHighlightedIndex
+    setHighlightedIndex,
   } = useCombobox({
     ...props,
     itemToString,
@@ -194,11 +194,11 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
     ...(initialSelectedItem &&
       getValidItem(initialSelectedItem, 'initialSelectedItem')),
     ...(passedInSelectedItem &&
-      getValidItem(passedInSelectedItem, 'selectedItem'))
+      getValidItem(passedInSelectedItem, 'selectedItem')),
   });
 
   const { ClearIndicator } = defaultComponents({
-    ...customComponents
+    ...customComponents,
   });
 
   const toggleButtonRef = React.useRef<HTMLDivElement>();

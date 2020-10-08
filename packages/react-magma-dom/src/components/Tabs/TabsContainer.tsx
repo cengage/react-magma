@@ -35,7 +35,7 @@ export const TabsContainerContext = React.createContext<
 >({
   activeTabIndex: 0,
   isInverseContainer: false,
-  setActiveTabIndex: () => 0
+  setActiveTabIndex: () => 0,
 });
 
 export const TabsContainer: React.FunctionComponent<TabsContainerProps> = React.forwardRef(

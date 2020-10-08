@@ -297,7 +297,7 @@ export const TimePicker: React.FunctionComponent<TimePickerProps> = (
             }`,
             cursor: 'default',
             width: '134px',
-            ...inputStyle
+            ...inputStyle,
           }}
           value={time}
         >

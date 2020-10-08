@@ -7,7 +7,7 @@ import {
   TabsIconPosition,
   TabsOrientation,
   TabsBorderPosition,
-  TabsContext
+  TabsContext,
 } from '.';
 import { useForceUpdate, useForkedRef } from '../../utils';
 import { TabsContainerContext } from './TabsContainer';
@@ -29,7 +29,7 @@ export interface TabProps
 }
 
 export const StyledTabsChild = styled('li', {
-  shouldForwardProp: isPropValid
+  shouldForwardProp: isPropValid,
 })<{
   borderPosition?: TabsBorderPosition;
   isActive?: boolean;
@@ -130,16 +130,16 @@ export const TabStyles = props => css`
   width: ${props.isFullWidth ? '100%' : 'auto'};
 
   ${props.orientation === 'vertical' &&
-    css`
-      align-items: flex-start;
-      justify-content: ${props.iconPosition === 'left'
-        ? 'flex-start'
-        : 'flex-end'};
-      text-align: left;
-      width: 100%;
+  css`
+    align-items: flex-start;
+    justify-content: ${props.iconPosition === 'left'
+      ? 'flex-start'
+      : 'flex-end'};
+    text-align: left;
+    width: 100%;
 
-      align-items: center;
-    `}
+    align-items: center;
+  `}
 
   &:hover,
   &:focus {
@@ -228,7 +228,7 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
       borderPosition,
       iconPosition,
       isInverse,
-      isFullWidth
+      isFullWidth,
     } = React.useContext(TabsContext);
 
     React.useEffect(() => {

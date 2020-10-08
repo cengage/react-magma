@@ -7,7 +7,7 @@ export enum BreakpointScreenSize {
   small = 'small',
   medium = 'medium',
   large = 'large',
-  xl = 'xl'
+  xl = 'xl',
 }
 
 export interface BreakpointsContainerProps

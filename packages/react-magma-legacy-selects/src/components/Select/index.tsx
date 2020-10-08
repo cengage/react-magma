@@ -8,7 +8,7 @@ import {
   getStyles,
   useSelectValue,
   getAriaLabel,
-  BaseSelectProps
+  BaseSelectProps,
 } from './shared';
 import { SelectWrapper } from './SelectWrapper';
 
@@ -70,7 +70,7 @@ export const Select: React.FunctionComponent<SelectProps> = (
           ClearIndicator,
           DropdownIndicator,
           MultiValueRemove,
-          ...components
+          ...components,
         }}
         onChange={onChange}
         styles={getStyles(styles, theme, errorMessage, isInverse)}

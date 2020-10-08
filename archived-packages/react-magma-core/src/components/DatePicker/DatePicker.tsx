@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
   getCalendarMonthWeeks,
   getPrevMonthFromDate,
-  getNextMonthFromDate
+  getNextMonthFromDate,
 } from './utils';
 import { generateId } from '../utils';
 
@@ -30,7 +30,7 @@ export class DatePickerCore extends React.Component<
     id: generateId(this.props.id),
     calendarOpened: this.props.calendarOpened,
     focusedDate: this.props.defaultDate || new Date(),
-    chosenDate: this.props.defaultDate
+    chosenDate: this.props.defaultDate,
   };
   state: DatePickerState = this.initialState;
 
@@ -62,13 +62,13 @@ export class DatePickerCore extends React.Component<
 
   openHelperInformation() {
     this.setState({
-      showHelperInformation: true
+      showHelperInformation: true,
     });
   }
 
   closeHelperInformation() {
     this.setState({
-      showHelperInformation: false
+      showHelperInformation: false,
     });
   }
 
@@ -90,13 +90,13 @@ export class DatePickerCore extends React.Component<
 
   onPrevMonthClick() {
     this.setState({
-      focusedDate: getPrevMonthFromDate(this.state.focusedDate)
+      focusedDate: getPrevMonthFromDate(this.state.focusedDate),
     });
   }
 
   onNextMonthClick() {
     this.setState({
-      focusedDate: getNextMonthFromDate(this.state.focusedDate)
+      focusedDate: getNextMonthFromDate(this.state.focusedDate),
     });
   }
 
@@ -112,7 +112,7 @@ export class DatePickerCore extends React.Component<
     this.setState({
       focusedDate: new Date(),
       chosenDate: null,
-      dateFocused: false
+      dateFocused: false,
     });
   }
 
@@ -123,7 +123,7 @@ export class DatePickerCore extends React.Component<
       focusedDate,
       dateFocused,
       id,
-      showHelperInformation
+      showHelperInformation,
     } = this.state;
 
     return this.props.children({
@@ -145,7 +145,7 @@ export class DatePickerCore extends React.Component<
       onNextMonthClick: this.onNextMonthClick,
       updateFocusedDate: this.updateFocusedDate,
       onDateChange: this.onDateChange,
-      reset: this.reset
+      reset: this.reset,
     });
   }
 }

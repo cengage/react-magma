@@ -24,7 +24,7 @@ export interface FormGroupContextInterface {
 
 export const FormGroupContext = React.createContext<FormGroupContextInterface>({
   hasError: false,
-  isInverse: false
+  isInverse: false,
 });
 
 export const FormGroupLabel = styled.label`
@@ -72,7 +72,7 @@ export const FormGroup: React.FunctionComponent<FormGroupProps> = (
         value={{
           descriptionId,
           hasError: !!errorMessage,
-          isInverse
+          isInverse,
         }}
       >
         {labelText && isTextVisuallyHidden && (

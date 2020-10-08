@@ -1,9 +1,9 @@
-import React from 'react'
-import Helmet from 'react-helmet'
-import { SlidingDrawer } from '../sliding-drawer'
-import Masthead from '../masthead'
-import { SkipLink, GlobalStyles } from 'react-magma-dom'
-import styled from '@emotion/styled'
+import React from 'react';
+import Helmet from 'react-helmet';
+import { SlidingDrawer } from '../sliding-drawer';
+import Masthead from '../masthead';
+import { SkipLink, GlobalStyles } from 'react-magma-dom';
+import styled from '@emotion/styled';
 
 const StyledSkipLink = styled(SkipLink)`
   display: none;
@@ -15,7 +15,7 @@ const StyledSkipLink = styled(SkipLink)`
   @media (min-width: 1024px) {
     display: inline-flex;
   }
-`
+`;
 
 export default props => (
   <>
@@ -43,4 +43,4 @@ export default props => (
       </main>
     </div>
   </>
-)
+);

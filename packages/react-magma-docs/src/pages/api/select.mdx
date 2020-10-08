@@ -3,13 +3,19 @@ pageTitle: Select API
 title: Select
 ---
 
-import { ScopeableLayout } from '../../components/layout'
-import { Select, SelectStateChangeTypes, Alert, I18nContext, defaultI18n } from 'react-magma-dom'
-import { SimplePropsTable } from '../../components/props-table'
-import { useSelect } from 'downshift'
-import { Link } from 'gatsby'
-import { v4 as uuid } from 'uuid'
-import DocsHeading from '../../components/docs-heading'
+import { ScopeableLayout } from '../../components/layout';
+import {
+  Select,
+  SelectStateChangeTypes,
+  Alert,
+  I18nContext,
+  defaultI18n,
+} from 'react-magma-dom';
+import { SimplePropsTable } from '../../components/props-table';
+import { useSelect } from 'downshift';
+import { Link } from 'gatsby';
+import { v4 as uuid } from 'uuid';
+import DocsHeading from '../../components/docs-heading';
 
 <DocsHeading to="/design/select/" type="design">
   Selects
@@ -667,12 +673,14 @@ Please use discretion when adding custom styles.
 ## Internationalization
 
 Some of the internationalization overrides use placeholders to insert selected values in to the message.
-Placeholders are specific keywords surrounded by curly braces. 
+Placeholders are specific keywords surrounded by curly braces.
 
 - `{labelText}` will be replaced with the comboboxes `labelText`.
 - `{selectedItem}` will be replaced by the current `itemToString` representation of the `selectedItem` of the `select`.
 
-<Link to="/api/internationalization">Full example of internationalization override options</Link>
+<Link to="/api/internationalization">
+  Full example of internationalization override options
+</Link>
 
 ```.jsx
   () => {
@@ -777,8 +785,7 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
   </code>
   ). However, in the production environment the types equate to numbers
   <br />
-  (eg:{' '}
-  <code class="inverse">
+  (eg: <code class="inverse">
     ComboboxStateChangeTypes.InputKeyDownArrowDown = 0
   </code>
   ).
@@ -1015,7 +1022,7 @@ export default props => (
       uuid,
       SelectStateChangeTypes,
       I18nContext,
-      defaultI18n
+      defaultI18n,
     }}
   />
-)
+);

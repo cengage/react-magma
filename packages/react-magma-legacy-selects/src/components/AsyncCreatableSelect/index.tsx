@@ -9,7 +9,7 @@ import {
   useSelectValue,
   getAriaLabel,
   BaseSelectProps,
-  OptionType
+  OptionType,
 } from '../Select/shared';
 import { Props as AsyncCreatableReactSelectProps } from 'react-select/async-creatable';
 
@@ -29,7 +29,7 @@ export const AsyncCreatableSelect: React.FunctionComponent<AsyncCreatableSelectP
   );
   const [
     ReactAsyncCreatableSelect,
-    updateReactAsyncCreatableSelect
+    updateReactAsyncCreatableSelect,
   ] = React.useState<any>(() => Loader);
 
   React.useEffect(() => {
@@ -76,7 +76,7 @@ export const AsyncCreatableSelect: React.FunctionComponent<AsyncCreatableSelectP
           ClearIndicator,
           DropdownIndicator,
           MultiValueRemove,
-          ...components
+          ...components,
         }}
         onChange={onChange}
         styles={getStyles(styles, theme, errorMessage)}

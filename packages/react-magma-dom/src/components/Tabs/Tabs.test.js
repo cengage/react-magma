@@ -191,7 +191,7 @@ describe('Tabs', () => {
     );
 
     expect(getByText('Tab 1').parentElement).toHaveStyleRule('bottom', '0', {
-      target: ':after'
+      target: ':after',
     });
   });
 
@@ -206,7 +206,7 @@ describe('Tabs', () => {
     );
 
     expect(getByText('Tab 1').parentElement).toHaveStyleRule('bottom', 'auto', {
-      target: ':after'
+      target: ':after',
     });
   });
 
@@ -221,7 +221,7 @@ describe('Tabs', () => {
     );
 
     expect(getByText('Tab 1').parentElement).toHaveStyleRule('left', 'auto', {
-      target: ':after'
+      target: ':after',
     });
   });
 
@@ -236,7 +236,7 @@ describe('Tabs', () => {
     );
 
     expect(getByText('Tab 1').parentElement).toHaveStyleRule('bottom', '0', {
-      target: ':after'
+      target: ':after',
     });
   });
 
@@ -251,7 +251,7 @@ describe('Tabs', () => {
       'background',
       magma.colors.pop02,
       {
-        target: ':after'
+        target: ':after',
       }
     );
     expect(getByTestId('buttonPrev')).toHaveStyleRule(
@@ -285,7 +285,7 @@ describe('Tabs', () => {
     expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
 
     fireEvent.click(getByText('This is tab 2'), {
-      target: { scrollIntoView: jest.fn() }
+      target: { scrollIntoView: jest.fn() },
     });
 
     expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
@@ -314,8 +314,8 @@ describe('Tabs', () => {
 
     fireEvent.click(getByText('This is tab 2').parentElement, {
       target: {
-        scrollIntoView: jest.fn()
-      }
+        scrollIntoView: jest.fn(),
+      },
     });
 
     expect(queryByText('Tab 1 Info')).toBeInTheDocument();
@@ -346,7 +346,7 @@ describe('Tabs', () => {
     );
 
     fireEvent.click(getByText('This is tab 2'), {
-      target: { scrollIntoView: jest.fn() }
+      target: { scrollIntoView: jest.fn() },
     });
 
     expect(onChange).toHaveBeenCalled();
@@ -386,7 +386,7 @@ describe('Tabs', () => {
       expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
 
       fireEvent.keyDown(getByText('This is tab 1'), {
-        key: 'ArrowRight'
+        key: 'ArrowRight',
       });
 
       expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
@@ -394,7 +394,7 @@ describe('Tabs', () => {
       expect(document.activeElement).toEqual(getByText('This is tab 2'));
 
       fireEvent.keyDown(getByText('This is tab 2'), {
-        key: 'ArrowRight'
+        key: 'ArrowRight',
       });
 
       expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
@@ -402,7 +402,7 @@ describe('Tabs', () => {
       expect(document.activeElement).toEqual(getByText('This is tab 3'));
 
       fireEvent.keyDown(getByText('This is tab 3'), {
-        key: 'ArrowRight'
+        key: 'ArrowRight',
       });
 
       expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
@@ -431,7 +431,7 @@ describe('Tabs', () => {
       expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
 
       fireEvent.keyDown(getByText('This is tab 3'), {
-        key: 'ArrowLeft'
+        key: 'ArrowLeft',
       });
 
       expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
@@ -439,7 +439,7 @@ describe('Tabs', () => {
       expect(document.activeElement).toEqual(getByText('This is tab 2'));
 
       fireEvent.keyDown(getByText('This is tab 2'), {
-        key: 'ArrowLeft'
+        key: 'ArrowLeft',
       });
 
       expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
@@ -447,7 +447,7 @@ describe('Tabs', () => {
       expect(document.activeElement).toEqual(getByText('This is tab 1'));
 
       fireEvent.keyDown(getByText('This is tab 1'), {
-        key: 'ArrowLeft'
+        key: 'ArrowLeft',
       });
 
       expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
@@ -476,7 +476,7 @@ describe('Tabs', () => {
       expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
 
       fireEvent.keyDown(getByText('This is tab 1'), {
-        key: 'ArrowDown'
+        key: 'ArrowDown',
       });
 
       expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
@@ -484,7 +484,7 @@ describe('Tabs', () => {
       expect(document.activeElement).toEqual(getByText('This is tab 2'));
 
       fireEvent.keyDown(getByText('This is tab 2'), {
-        key: 'ArrowDown'
+        key: 'ArrowDown',
       });
 
       expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
@@ -492,7 +492,7 @@ describe('Tabs', () => {
       expect(document.activeElement).toEqual(getByText('This is tab 3'));
 
       fireEvent.keyDown(getByText('This is tab 3'), {
-        key: 'ArrowDown'
+        key: 'ArrowDown',
       });
 
       expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
@@ -521,7 +521,7 @@ describe('Tabs', () => {
       expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
 
       fireEvent.keyDown(getByText('This is tab 3'), {
-        key: 'ArrowUp'
+        key: 'ArrowUp',
       });
 
       expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
@@ -529,7 +529,7 @@ describe('Tabs', () => {
       expect(document.activeElement).toEqual(getByText('This is tab 2'));
 
       fireEvent.keyDown(getByText('This is tab 2'), {
-        key: 'ArrowUp'
+        key: 'ArrowUp',
       });
 
       expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
@@ -537,7 +537,7 @@ describe('Tabs', () => {
       expect(document.activeElement).toEqual(getByText('This is tab 1'));
 
       fireEvent.keyDown(getByText('This is tab 1'), {
-        key: 'ArrowUp'
+        key: 'ArrowUp',
       });
 
       expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
@@ -566,7 +566,7 @@ describe('Tabs', () => {
       expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
 
       fireEvent.keyDown(getByText('This is tab 3'), {
-        key: 'Home'
+        key: 'Home',
       });
 
       expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
@@ -595,7 +595,7 @@ describe('Tabs', () => {
       expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
 
       fireEvent.keyDown(getByText('This is tab 1'), {
-        key: 'End'
+        key: 'End',
       });
 
       expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
@@ -624,7 +624,7 @@ describe('Tabs', () => {
       expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
 
       fireEvent.keyDown(getByText('This is tab 1'), {
-        key: 'ArrowRight'
+        key: 'ArrowRight',
       });
 
       expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
@@ -653,7 +653,7 @@ describe('Tabs', () => {
       expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
 
       fireEvent.keyDown(getByText('This is tab 3'), {
-        key: 'ArrowLeft'
+        key: 'ArrowLeft',
       });
 
       expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
@@ -682,7 +682,7 @@ describe('Tabs', () => {
       expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
 
       fireEvent.keyDown(getByText('This is tab 1'), {
-        key: 'ArrowDown'
+        key: 'ArrowDown',
       });
 
       expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
@@ -711,7 +711,7 @@ describe('Tabs', () => {
       expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
 
       fireEvent.keyDown(getByText('This is tab 3'), {
-        key: 'ArrowUp'
+        key: 'ArrowUp',
       });
 
       expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
@@ -740,7 +740,7 @@ describe('Tabs', () => {
       expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
 
       fireEvent.keyDown(getByText('This is tab 3'), {
-        key: 'Home'
+        key: 'Home',
       });
 
       expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
@@ -769,7 +769,7 @@ describe('Tabs', () => {
       expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
 
       fireEvent.keyDown(getByText('This is tab 1'), {
-        key: 'End'
+        key: 'End',
       });
 
       expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
@@ -798,7 +798,7 @@ describe('Test for accessibility', () => {
     );
 
     return axe(container.innerHTML, {
-      rules: { listitem: { enabled: false } }
+      rules: { listitem: { enabled: false } },
     }).then(result => {
       return expect(result).toHaveNoViolations();
     });

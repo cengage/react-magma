@@ -4,7 +4,7 @@ import {
   CheckboxProps,
   HiddenLabelText,
   HiddenInput,
-  StyledFakeInput
+  StyledFakeInput,
 } from '../Checkbox';
 import { CheckIcon } from 'react-magma-icons';
 import { FormGroupContext } from '../FormGroup';
@@ -25,7 +25,7 @@ export interface IndeterminateCheckboxProps
 export enum IndeterminateCheckboxStatus {
   checked = 'checked',
   indeterminate = 'indeterminate',
-  unchecked = 'unchecked' //default
+  unchecked = 'unchecked', //default
 }
 
 const IndeterminateIcon = styled.span<{

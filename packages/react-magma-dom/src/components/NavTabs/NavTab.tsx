@@ -65,7 +65,7 @@ export const StyledCustomTab: React.FunctionComponent<NavTabComponentProps> = ({
         key: element.key,
         ref: element.ref,
         ...element.props,
-        ...newProps
+        ...newProps,
       });
     };
 
@@ -80,7 +80,7 @@ export const StyledCustomTab: React.FunctionComponent<NavTabComponentProps> = ({
           {icon}
           {component.props.children}
         </>
-      )
+      ),
     });
   }
 };
@@ -105,7 +105,7 @@ export const NavTab: React.FunctionComponent<NavTabProps> = React.forwardRef(
       borderPosition,
       iconPosition,
       isInverse,
-      isFullWidth
+      isFullWidth,
     } = React.useContext(NavTabsContext);
 
     const tabIconPosition = iconPosition

@@ -3,9 +3,9 @@ title: Search
 order: 1
 ---
 
-import DocsHeading from '../../components/docs-heading'
-import { Input, PasswordInput, Textarea } from 'react-magma-dom'
-import { Link } from 'gatsby'
+import DocsHeading from '../../components/docs-heading';
+import { Input, PasswordInput, Textarea } from 'react-magma-dom';
+import { Link } from 'gatsby';
 
 <DocsHeading to="/api/search/" type="code">
   Search
@@ -14,10 +14,8 @@ import { Link } from 'gatsby'
 Search enables users to specify a word or a phrase to find relevant pieces of content without the use of navigation.
 
 <figure>
-    <img src="../../images/inputs/search-intro-image.png" alt="" />
+  <img src="../../images/inputs/search-intro-image.png" alt="" />
 </figure>
-
-
 
 ## Usage
 
@@ -40,6 +38,7 @@ It should be clear what the search field is capable of searching for.
 <hr class="article-divider" />
 
 ## Behavior
+
 Set the user’s context for the search with helpful placeholder text within the search field (search documents), that pertains to the page or section the search box is in. Search in the global header should just say search.
 
 <div class="two-col">
@@ -60,6 +59,7 @@ Set the user’s context for the search with helpful placeholder text within the
 **Accessibility note:** If the search component’s label and placeholder text differ, VoiceOver on macOS will read both.
 
 ### Search results
+
 - Clearly show which results are being displayed with labels or headers (i.e. Results for X).
 - Categorize the search results if they come from different areas (eg. docs, services, apps, tutorials, blogs).
 - Give the user control over their viewing options and ability to sort results (eg. relevancy, popularity, ratings, date).
@@ -69,5 +69,3 @@ Set the user’s context for the search with helpful placeholder text within the
 - Highlight the search term in the results, where appropriate.
 
 <span class="horizontal-spacer"></span>
-
-

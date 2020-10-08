@@ -14,7 +14,7 @@ import { useGenerateId } from '../../utils';
 
 export enum ToggleTextPosition {
   left = 'left', // default
-  right = 'right'
+  right = 'right',
 }
 
 export interface ToggleProps
@@ -80,14 +80,16 @@ const Track = styled.span<{
     `}
 
   ${HiddenInput}:focus + label & {
-    outline: 2px dotted ${props =>
-      props.isInverse
-        ? props.theme.colors.focusInverse
-        : props.theme.colors.focus};
+    outline: 2px dotted
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
     outline-offset: 3px;
   }
 
-  &:before { // active state
+  &:before {
+    // active state
     background: ${props => props.theme.colors.neutral01};
     border-radius: 50%;
     content: '';

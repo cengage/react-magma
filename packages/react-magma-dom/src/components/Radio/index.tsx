@@ -4,7 +4,7 @@ import {
   DisplayInputActiveStyles,
   buildDisplayInputActiveBackground,
   buildDisplayInputBorderColor,
-  buildDisplayInputFocusStyles
+  buildDisplayInputFocusStyles,
 } from '../SelectionControls/InputStyles';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { RadioContext } from '../RadioGroup';
@@ -18,7 +18,7 @@ import { useGenerateId } from '../../utils';
 
 export enum RadioTextPosition {
   left = 'left',
-  right = 'right' // default
+  right = 'right', // default
 }
 
 export interface RadioProps

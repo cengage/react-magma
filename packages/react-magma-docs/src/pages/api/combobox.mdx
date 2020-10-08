@@ -3,12 +3,18 @@ pageTitle: Combobox API
 title: Combobox
 ---
 
-import { ScopeableLayout } from '../../components/layout'
-import { Combobox, ComboboxStateChangeTypes, Alert, I18nContext, defaultI18n } from 'react-magma-dom'
-import { SimplePropsTable } from '../../components/props-table'
-import { Link } from 'gatsby'
-import { v4 as uuid } from 'uuid'
-import DocsHeading from '../../components/docs-heading'
+import { ScopeableLayout } from '../../components/layout';
+import {
+  Combobox,
+  ComboboxStateChangeTypes,
+  Alert,
+  I18nContext,
+  defaultI18n,
+} from 'react-magma-dom';
+import { SimplePropsTable } from '../../components/props-table';
+import { Link } from 'gatsby';
+import { v4 as uuid } from 'uuid';
+import DocsHeading from '../../components/docs-heading';
 
 <DocsHeading to="/design/select/" type="design">
   Combobox
@@ -120,8 +126,9 @@ custom `type`](/api/combobox#custom_items_typescript).
 Set initial state using the `initialSelectedItem`, `initialSelectedItems`, and `initialHighlightedIndex` props.
 
 <Alert variant="info">
-  When using any of the <code class="inverse">initial*</code> props be aware that passing in the
-  controlled version of that prop will overwrite the initial version.
+  When using any of the <code class="inverse">initial*</code> props be aware
+  that passing in the controlled version of that prop will overwrite the initial
+  version.
   <br />
   <br />
   <strong>Ex: </strong>
@@ -856,13 +863,15 @@ Please use discretion when adding custom styles.
 ## Internationalization
 
 Some of the internationalization overrides use placeholders to insert selected values in to the message.
-Placeholders are specific keywords surrounded by curly braces. 
+Placeholders are specific keywords surrounded by curly braces.
 
 - `{labelText}` will be replaced with the comboboxes `labelText`.
 - `{selectedItem}` will be replaced by the current `itemToString` representation of the `selectedItem` of the `combobox`.
 - `{inputValue}` will be replaced by the current `inputValue` of the `combobox` input.
 
-<Link to="/api/internationalization">Full example of internationalization override options</Link>
+<Link to="/api/internationalization">
+  Full example of internationalization override options
+</Link>
 
 ```.jsx
   () => {
@@ -978,8 +987,7 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
   </code>
   ). However, in the production environment the types equate to numbers
   <br />
-  (eg:{' '}
-  <code class="inverse">
+  (eg: <code class="inverse">
     ComboboxStateChangeTypes.InputKeyDownArrowDown = 0
   </code>
   ).
@@ -1230,7 +1238,7 @@ export default props => (
       uuid,
       ComboboxStateChangeTypes,
       I18nContext,
-      defaultI18n
+      defaultI18n,
     }}
   />
-)
+);

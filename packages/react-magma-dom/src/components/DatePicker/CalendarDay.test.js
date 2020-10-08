@@ -14,7 +14,7 @@ describe('Calendar Day', () => {
           focusedDate: defaultDate,
           setDateFocused: jest.fn(),
           onDateChange: jest.fn(),
-          chosenDate: defaultDate
+          chosenDate: defaultDate,
         }}
       >
         <CalendarDay day={defaultDate} />
@@ -33,7 +33,7 @@ describe('Calendar Day', () => {
           focusedDate: defaultDate,
           setDateFocused: jest.fn(),
           onDateChange: jest.fn(),
-          chosenDate: defaultDate
+          chosenDate: defaultDate,
         }}
       >
         <CalendarDay day={defaultDate} />
@@ -55,7 +55,7 @@ describe('Calendar Day', () => {
           focusedDate: defaultDate,
           setDateFocused: jest.fn(),
           onDateChange: jest.fn(),
-          chosenDate: defaultDate
+          chosenDate: defaultDate,
         }}
       >
         <CalendarDay day={new Date('January 18, 2019')} />
@@ -74,7 +74,7 @@ describe('Calendar Day', () => {
           focusedDate: defaultDate,
           setDateFocused: jest.fn(),
           onDateChange: jest.fn(),
-          chosenDate: defaultDate
+          chosenDate: defaultDate,
         }}
       >
         <CalendarDay day={defaultDate} />
@@ -93,7 +93,7 @@ describe('Calendar Day', () => {
           focusedDate: defaultDate,
           setDateFocused: jest.fn(),
           onDateChange: jest.fn(),
-          chosenDate: defaultDate
+          chosenDate: defaultDate,
         }}
       >
         <CalendarDay day={defaultDate} />
@@ -116,7 +116,7 @@ describe('Calendar Day', () => {
           maxDate,
           setDateFocused: jest.fn(),
           onDateChange,
-          chosenDate: defaultDate
+          chosenDate: defaultDate,
         }}
       >
         <CalendarDay day={defaultDate} />

@@ -4,7 +4,7 @@ import {
   AlertProps,
   AlertVariant,
   buildAlertBackground,
-  VARIANT_ICON
+  VARIANT_ICON,
 } from '../Alert';
 import { CrossIcon } from 'react-magma-icons';
 import { Button, ButtonSize, ButtonVariant, ButtonColor } from '../Button';

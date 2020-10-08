@@ -17,7 +17,7 @@ export class ModalCore extends React.Component<ModalCoreProps, ModalCoreState> {
     super(props);
 
     this.state = {
-      id: generateId(this.props.id)
+      id: generateId(this.props.id),
     };
   }
 
@@ -30,7 +30,7 @@ export class ModalCore extends React.Component<ModalCoreProps, ModalCoreState> {
   render() {
     return this.props.children({
       ...this.props,
-      id: this.state.id
+      id: this.state.id,
     });
   }
 }

@@ -6,6 +6,7 @@ module.exports = {
     '!**/archived-packages/**',
     '!**/react-magma-docs/**',
     '!**/react-magma-landing/**',
+    '!**/react-magma-legacy-selects/**',
   ],
   coverageDirectory: '<rootDir>/coverage',
   coverageReporters: ['text'],
@@ -30,12 +31,13 @@ module.exports = {
     '/static/',
     '/dist/',
     '/archived-packages/',
+    '/react-magma-legacy-selects/',
   ],
   transform: {
-   '^.+\\.(j|t)s(x)?$': 'babel-jest',
+    '^.+\\.(j|t)s(x)?$': 'babel-jest',
   },
   watchPlugins: [
     'jest-watch-typeahead/filename',
-    'jest-watch-typeahead/testname'
-  ]
+    'jest-watch-typeahead/testname',
+  ],
 };

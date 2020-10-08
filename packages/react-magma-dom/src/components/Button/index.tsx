@@ -4,7 +4,7 @@ import { StyledButton } from '../StyledButton';
 export enum ButtonVariant {
   solid = 'solid', //default
   outline = 'outline',
-  link = 'link'
+  link = 'link',
 }
 
 export enum ButtonColor {
@@ -12,31 +12,31 @@ export enum ButtonColor {
   secondary = 'secondary',
   success = 'success',
   danger = 'danger',
-  marketing = 'marketing'
+  marketing = 'marketing',
 }
 
 export enum ButtonShape {
   fill = 'fill', //default
   leftCap = 'leftCap',
   rightCap = 'rightCap',
-  round = 'round' // default for icon only buttons
+  round = 'round', // default for icon only buttons
 }
 
 export enum ButtonSize {
   large = 'large',
   medium = 'medium', //default
-  small = 'small'
+  small = 'small',
 }
 
 export enum ButtonTextTransform {
   uppercase = 'uppercase', //default
-  none = 'none'
+  none = 'none',
 }
 
 export enum ButtonType {
   button = 'button',
   submit = 'submit',
-  reset = 'reset'
+  reset = 'reset',
 }
 
 export interface ButtonStyles {

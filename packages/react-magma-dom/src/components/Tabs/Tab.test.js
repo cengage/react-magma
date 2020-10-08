@@ -30,7 +30,7 @@ describe('Tab', () => {
         <Tab testId={testId}>Test</Tab>
       </Tabs>
     );
-    expect(getByText('Test'));
+    expect(getByText('Test')).toBeInTheDocument();
   });
 
   it('should have aria-selected attribute if tab is active', () => {
@@ -253,7 +253,7 @@ describe('Test for accessibility', () => {
     );
 
     return axe(container.innerHTML, {
-      rules: { listitem: { enabled: false } }
+      rules: { listitem: { enabled: false } },
     }).then(result => {
       return expect(result).toHaveNoViolations();
     });

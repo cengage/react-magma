@@ -45,14 +45,14 @@ describe('Badge', () => {
         'background',
         darken(0.1, magma.colors.primary),
         {
-          target: ':focus'
+          target: ':focus',
         }
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
         darken(0.2, magma.colors.primary),
         {
-          target: ':active'
+          target: ':active',
         }
       );
     });
@@ -72,14 +72,14 @@ describe('Badge', () => {
         'background',
         darken(0.1, magma.colors.neutral02),
         {
-          target: ':focus'
+          target: ':focus',
         }
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
         darken(0.2, magma.colors.neutral02),
         {
-          target: ':active'
+          target: ':active',
         }
       );
     });
@@ -99,14 +99,14 @@ describe('Badge', () => {
         'background',
         darken(0.1, magma.colors.success01),
         {
-          target: ':focus'
+          target: ':focus',
         }
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
         darken(0.2, magma.colors.success01),
         {
-          target: ':active'
+          target: ':active',
         }
       );
     });
@@ -126,14 +126,14 @@ describe('Badge', () => {
         'background',
         darken(0.1, magma.colors.danger),
         {
-          target: ':focus'
+          target: ':focus',
         }
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
         darken(0.2, magma.colors.danger),
         {
-          target: ':active'
+          target: ':active',
         }
       );
     });
@@ -153,14 +153,14 @@ describe('Badge', () => {
         'background',
         lighten(0.05, magma.colors.neutral07),
         {
-          target: ':focus'
+          target: ':focus',
         }
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
         lighten(0.1, magma.colors.neutral07),
         {
-          target: ':active'
+          target: ':active',
         }
       );
     });
@@ -176,14 +176,14 @@ describe('Badge', () => {
         'background',
         darken(0.1, magma.colors.neutral02),
         {
-          target: ':focus'
+          target: ':focus',
         }
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
         darken(0.2, magma.colors.neutral02),
         {
-          target: ':active'
+          target: ':active',
         }
       );
     });

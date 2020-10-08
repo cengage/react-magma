@@ -67,8 +67,8 @@ describe('Breadcrumb', () => {
           value={{
             ...defaultI18n,
             breadcrumb: {
-              navAriaLabel
-            }
+              navAriaLabel,
+            },
           }}
         >
           <Breadcrumb>
