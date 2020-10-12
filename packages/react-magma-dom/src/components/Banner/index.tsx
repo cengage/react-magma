@@ -55,10 +55,10 @@ const ButtonWrapper = styled.span`
   flex-shrink: 0;
 `;
 
-const whitelistProps = ['icon', 'isInverse', 'theme', 'variant'];
+const allowedProps = ['icon', 'isInverse', 'theme', 'variant'];
 
 const shouldForwardProp = prop => {
-  return isPropValid(prop) || whitelistProps.includes(prop);
+  return isPropValid(prop) || allowedProps.includes(prop);
 };
 
 const DismissButton = styled(IconButton, { shouldForwardProp })<{
