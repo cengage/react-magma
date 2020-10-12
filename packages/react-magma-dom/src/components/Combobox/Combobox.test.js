@@ -287,25 +287,25 @@ describe('Combobox', () => {
     expect(createItem).toBeInTheDocument();
     fireEvent.click(createItem);
 
-    // expect(selectedItem.representation).toEqual('Yellow');
+    expect(selectedItem.representation).toEqual('Yellow');
 
-    // // rerender(
-    //   <Combobox
-    //     labelText={labelText}
-    //     items={items}
-    //     newItemTransform={newItemTransform}
-    //     itemToString={itemToString}
-    //     onItemCreated={handleItemCreated}
-    //     onSelectedItemChange={handleSelectedItemChange}
-    //     selectedItem={selectedItem}
-    //   />
-    // );
+    rerender(
+      <Combobox
+        labelText={labelText}
+        items={items}
+        newItemTransform={newItemTransform}
+        itemToString={itemToString}
+        onItemCreated={handleItemCreated}
+        onSelectedItemChange={handleSelectedItemChange}
+        selectedItem={selectedItem}
+      />
+    );
 
-    // expect(renderedCombobox.value).toEqual('Yellow');
+    expect(renderedCombobox.value).toEqual('Yellow');
 
-    // fireEvent.change(renderedCombobox, { target: { value: 'Y' } });
+    fireEvent.change(renderedCombobox, { target: { value: 'Y' } });
 
-    // expect(getByText('Yellow')).toBeInTheDocument();
+    expect(getByText('Yellow')).toBeInTheDocument();
   });
 
   it('should not break when passing null in for the items prop', () => {
