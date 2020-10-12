@@ -9,7 +9,7 @@ import {
   AngleRightIcon,
   AngleLeftIcon,
   AngleUpIcon,
-  AngleDownIcon
+  AngleDownIcon,
 } from 'react-magma-icons';
 
 export interface ScrollButtonProps

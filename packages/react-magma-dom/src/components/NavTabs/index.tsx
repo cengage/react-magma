@@ -6,31 +6,21 @@ import {
   TabsAlignment,
   TabsBorderPosition,
   TabsIconPosition,
-  TabsOrientation
+  TabsOrientation,
+  TabsProps,
+  Orientation,
 } from '../Tabs';
-
-import { ButtonNext, ButtonPrev } from '../Tabs/TabsScrollButtons';
-
 import {
   animate,
   debounce,
   getNormalizedScrollLeft,
-  detectScrollType
+  detectScrollType,
+  Omit,
 } from '../../utils';
-
 import { ThemeContext } from '../../theme/ThemeContext';
+import { ButtonNext, ButtonPrev } from '../Tabs/TabsScrollButtons';
 
-export interface NavTabsProps extends React.HTMLAttributes<HTMLDivElement> {
-  alignment?: TabsAlignment;
-  borderPosition?: TabsBorderPosition;
-  backgroundColor?: string;
-  children?: any;
-  iconPosition?: TabsIconPosition;
-  isFullWidth?: boolean;
-  isInverse?: boolean;
-  orientation?: TabsOrientation;
-  testId?: string;
-}
+export interface NavTabsProps extends Omit<TabsProps, 'onChange'> {}
 
 interface NavTabsContextInterface {
   borderPosition?: TabsBorderPosition;
@@ -45,10 +35,12 @@ export const NavTabsContext = React.createContext<NavTabsContextInterface>({
   iconPosition: TabsIconPosition.left,
   isInverse: false,
   isFullWidth: false,
-  orientation: TabsOrientation.horizontal
+  orientation: TabsOrientation.horizontal,
 });
 
-export const NavTabs: React.FunctionComponent<NavTabsProps> = React.forwardRef(
+export const NavTabs: React.FunctionComponent<
+  NavTabsProps & Orientation
+> = React.forwardRef(
   (
     {
       alignment,
@@ -61,7 +53,7 @@ export const NavTabs: React.FunctionComponent<NavTabsProps> = React.forwardRef(
       orientation,
       testId,
       ...rest
-    }: NavTabsProps,
+    }: NavTabsProps & Orientation,
     ref: any
   ) => {
     const theme = React.useContext(ThemeContext);
@@ -79,7 +71,7 @@ export const NavTabs: React.FunctionComponent<NavTabsProps> = React.forwardRef(
 
     const [displayScroll, setDisplayScroll] = React.useState({
       start: false,
-      end: false
+      end: false,
     });
 
     const tabsWrapperRef = React.useRef<HTMLDivElement>();
@@ -117,7 +109,7 @@ export const NavTabs: React.FunctionComponent<NavTabsProps> = React.forwardRef(
         scrollHeight,
         clientHeight,
         scrollWidth,
-        clientWidth
+        clientWidth,
       } = tabsWrapperRef.current;
       let showStartScroll;
       let showEndScroll;
@@ -187,7 +179,7 @@ export const NavTabs: React.FunctionComponent<NavTabsProps> = React.forwardRef(
           buttonVisible={displayScroll.start}
           isInverse={isInverse}
           onClick={handleStartScrollClick}
-          orientation={orientation}
+          orientation={orientation || TabsOrientation.horizontal}
           ref={prevButtonRef}
           theme={theme}
         />
@@ -195,7 +187,7 @@ export const NavTabs: React.FunctionComponent<NavTabsProps> = React.forwardRef(
         <StyledTabsWrapper
           data-testid="navTabsWrapper"
           onScroll={handleTabsScroll}
-          orientation={orientation}
+          orientation={orientation || TabsOrientation.horizontal}
           ref={tabsWrapperRef}
         >
           <StyledTabs
@@ -208,7 +200,7 @@ export const NavTabs: React.FunctionComponent<NavTabsProps> = React.forwardRef(
                 iconPosition,
                 isInverse,
                 isFullWidth,
-                orientation
+                orientation,
               }}
             >
               {children}

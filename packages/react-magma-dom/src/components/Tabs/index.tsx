@@ -73,25 +73,10 @@ export const StyledTabs = styled('ul', { shouldForwardProp: isPropValid })<{
   width: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
 `;
 
-export interface ScrollButtonProps
-  extends React.HTMLAttributes<HTMLButtonElement> {
-  backgroundColor?: string;
-  buttonVisible?: boolean;
-  isInverse?: boolean;
-  orientation?: TabsOrientation;
-  ref?: any;
-  theme?: ThemeInterface;
-}
-
 export enum TabsAlignment {
   center = 'center',
   left = 'left',
   right = 'right',
-}
-
-export enum TabsOrientation {
-  horizontal = 'horizontal',
-  vertical = 'vertical',
 }
 
 export enum TabsBorderPosition {
@@ -108,6 +93,11 @@ export enum TabsIconPosition {
   top = 'top',
 }
 
+export enum TabsOrientation {
+  horizontal = 'horizontal',
+  vertical = 'vertical',
+}
+
 export interface VerticalTabsProps {
   orientation?: TabsOrientation.vertical;
   borderPosition?: TabsBorderPosition.left | TabsBorderPosition.right;
@@ -117,7 +107,7 @@ export interface HorizontalTabsProps {
   borderPosition?: TabsBorderPosition.bottom | TabsBorderPosition.top;
 }
 
-declare type Orientation = HorizontalTabsProps | VerticalTabsProps;
+export declare type Orientation = HorizontalTabsProps | VerticalTabsProps;
 
 export interface TabsProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
@@ -470,11 +460,11 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
 
     return (
       <StyledContainer
-        ref={ref}
-        orientation={orientation || TabsOrientation.horizontal}
-        isInverse={isInverse}
         data-testid={testId}
         backgroundColor={background}
+        isInverse={isInverse}
+        orientation={orientation || TabsOrientation.horizontal}
+        ref={ref}
         theme={theme}
         {...rest}
       >
@@ -494,9 +484,9 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
           ref={tabsWrapperRef}
         >
           <StyledTabs
+            alignment={alignment ? alignment : TabsAlignment.left}
             aria-label={rest['aria-label']}
             aria-orientation={orientation || TabsOrientation.horizontal}
-            alignment={alignment ? alignment : TabsAlignment.left}
             onKeyDown={handleKeyDown}
             orientation={orientation}
             ref={childrenWrapperRef}
