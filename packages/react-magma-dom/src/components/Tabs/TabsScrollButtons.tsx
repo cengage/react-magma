@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import { transparentize } from 'polished';
-import { TabsOrientation } from './';
+import { TabsOrientation } from './shared';
 import { ThemeInterface } from '../../theme/magma';
 
 import {

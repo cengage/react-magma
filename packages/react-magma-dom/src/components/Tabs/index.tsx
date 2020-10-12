@@ -2,17 +2,11 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { TabsContainerContext } from './TabsContainer';
 import isPropValid from '@emotion/is-prop-valid';
-import {
-  animate,
-  Omit,
-  debounce,
-  getNormalizedScrollLeft,
-  detectScrollType,
-  useDescendants,
-} from '../../utils';
+import { Omit, getNormalizedScrollLeft, useDescendants } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import { ButtonNext, ButtonPrev } from './TabsScrollButtons';
+import { useTabsMeta } from './utils';
 
 export const StyledContainer = styled('div', {
   shouldForwardProp: isPropValid,
@@ -165,13 +159,6 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
 
     const theme = React.useContext(ThemeContext);
 
-    const isRtl = theme.direction === 'rtl';
-    const vertical = orientation === TabsOrientation.vertical;
-    const scrollStart = vertical ? 'scrollTop' : 'scrollLeft';
-    const start = vertical ? 'top' : 'left';
-    const end = vertical ? 'bottom' : 'right';
-    const clientSize = vertical ? 'clientHeight' : 'clientWidth';
-
     const {
       activeTabIndex,
       setActiveTabIndex,
@@ -183,23 +170,28 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
         ? Boolean(props.isInverse)
         : isInverseContainer;
 
-    const background = backgroundColor
-      ? backgroundColor
-      : isInverse
-      ? theme.colors.foundation01
-      : theme.colors.neutral08;
+    const [tabsMeta, tabsHandleMethods, tabsRefs] = useTabsMeta(
+      theme,
+      orientation,
+      backgroundColor,
+      isInverse
+    );
 
-    const [displayScroll, setDisplayScroll] = React.useState({
-      start: false,
-      end: false,
-    });
+    const { vertical, background, displayScroll, scrollStart } = tabsMeta;
+    const {
+      handleStartScrollClick,
+      handleEndScrollClick,
+      handleTabsScroll,
+      scroll,
+    } = tabsHandleMethods;
+    const { prevButtonRef, nextButtonRef, tabsWrapperRef } = tabsRefs;
+
+    const start = vertical ? 'top' : 'left';
+    const end = vertical ? 'bottom' : 'right';
 
     const [buttonRefArray, registerTabButton] = useDescendants();
 
-    const tabsWrapperRef = React.useRef<HTMLDivElement>();
     const childrenWrapperRef = React.useRef<HTMLUListElement>();
-    const prevButtonRef = React.useRef<HTMLButtonElement>();
-    const nextButtonRef = React.useRef<HTMLButtonElement>();
 
     function getTabsMeta() {
       const tabsNode = tabsWrapperRef.current;
@@ -233,32 +225,6 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
       return { tabsMeta, tabMeta };
     }
 
-    function scroll(scrollValue) {
-      animate(scrollStart, tabsWrapperRef.current, scrollValue);
-    }
-
-    function moveTabsScroll(delta) {
-      let scrollValue = tabsWrapperRef.current[scrollStart];
-
-      if (vertical) {
-        scrollValue += delta;
-      } else {
-        scrollValue += delta * (isRtl ? -1 : 1);
-        // Fix for Edge
-        scrollValue *= isRtl && detectScrollType() === 'reverse' ? -1 : 1;
-      }
-
-      scroll(scrollValue);
-    }
-
-    function handleStartScrollClick() {
-      moveTabsScroll(-tabsWrapperRef.current[clientSize]);
-    }
-
-    function handleEndScrollClick() {
-      moveTabsScroll(tabsWrapperRef.current[clientSize]);
-    }
-
     function scrollSelectedIntoView() {
       const { tabsMeta, tabMeta } = getTabsMeta();
 
@@ -289,65 +255,6 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
         scroll(nextScrollStart);
       }
     }
-
-    function updateScrollButtonState() {
-      const {
-        scrollTop,
-        scrollHeight,
-        clientHeight,
-        scrollWidth,
-        clientWidth,
-      } = tabsWrapperRef.current;
-      let showStartScroll;
-      let showEndScroll;
-
-      if (vertical) {
-        showStartScroll = scrollTop > 1;
-        showEndScroll = scrollTop < scrollHeight - clientHeight - 1;
-      } else {
-        const scrollLeft = getNormalizedScrollLeft(
-          tabsWrapperRef.current,
-          theme.direction
-        );
-        // use 1 for the potential rounding error with browser zooms.
-        showStartScroll = isRtl
-          ? scrollLeft < scrollWidth - clientWidth - 1
-          : scrollLeft > 1;
-        showEndScroll = !isRtl
-          ? scrollLeft < scrollWidth - clientWidth - 1
-          : scrollLeft > 1;
-      }
-
-      if (
-        showStartScroll !== displayScroll.start ||
-        showEndScroll !== displayScroll.end
-      ) {
-        setDisplayScroll({ start: showStartScroll, end: showEndScroll });
-      }
-    }
-
-    React.useEffect(() => {
-      const handleResize = debounce(updateScrollButtonState, 100);
-
-      window.addEventListener('resize', handleResize);
-      return () => {
-        handleResize.clear();
-        window.removeEventListener('resize', handleResize);
-      };
-    }, [updateScrollButtonState]);
-
-    const handleTabsScroll = React.useCallback(
-      debounce(updateScrollButtonState, 100),
-      [updateScrollButtonState]
-    );
-
-    React.useEffect(() => {
-      return () => {
-        handleTabsScroll.clear();
-      };
-    }, [handleTabsScroll]);
-
-    React.useEffect(updateScrollButtonState);
 
     React.useEffect(scrollSelectedIntoView, []);
 

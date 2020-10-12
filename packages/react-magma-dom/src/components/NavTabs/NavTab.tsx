@@ -4,9 +4,10 @@ import { jsx } from '@emotion/core';
 
 import { NavTabsContext } from './';
 import { StyledTabsChild, StyledIcon, TabStyles } from '../Tabs/Tab';
-import { TabsBorderPosition, TabsIconPosition, TabsOrientation } from '../Tabs';
+import { TabsBorderPosition, TabsIconPosition } from '../Tabs';
+import { TabsOrientation } from '../Tabs/shared';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { XOR } from '../../utils';
+import { omit, XOR } from '../../utils';
 
 export interface BaseNavTabProps
   extends React.HTMLAttributes<HTMLAnchorElement> {
@@ -16,7 +17,6 @@ export interface BaseNavTabProps
   iconPosition?: TabsIconPosition;
   index?: number;
   isActive?: boolean;
-  isDisabled?: boolean;
   isFullWidth?: boolean;
   isInverse?: boolean;
   orientation?: TabsOrientation;
@@ -69,8 +69,13 @@ export const StyledCustomTab: React.FunctionComponent<NavTabComponentProps> = ({
       });
     };
 
+    const other = omit(
+      ['iconPosition', 'isInverse', 'isActive', 'isFullWidth'],
+      props
+    );
+
     return cloneElement(component, {
-      ...props,
+      ...other,
       css: TabStyles(props),
       ...style,
       onClick,

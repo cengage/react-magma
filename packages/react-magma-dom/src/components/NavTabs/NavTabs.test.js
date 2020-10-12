@@ -13,6 +13,37 @@ describe('NavTabs', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
+  it('should render tab as passed in component', () => {
+    const { getByText } = render(
+      <NavTabs>
+        <NavTab
+          component={
+            <a href="google.com" data-testid="child">
+              Test Component
+            </a>
+          }
+        />
+      </NavTabs>
+    );
+
+    expect(getByText('Test Component')).toBeInTheDocument();
+  });
+
+  it('should render a tab with a component and an icon', () => {
+    const { getByTestId } = render(
+      <NavTabs>
+        <NavTab
+          component={<a href="google.com">Test Component</a>}
+          icon={<CheckIcon testId="icon" />}
+          testId="component"
+        />
+      </NavTabs>
+    );
+
+    expect(getByTestId('component')).toBeInTheDocument();
+    expect(getByTestId('icon')).toBeInTheDocument();
+  });
+
   it('should render centered tabs', () => {
     const { container } = render(
       <NavTabs alignment="center">
@@ -146,7 +177,7 @@ describe('NavTabs', () => {
       );
 
       return axe(container.innerHTML, {
-        rules: { listitem: { enabled: false } }
+        rules: { listitem: { enabled: false } },
       }).then(result => {
         return expect(result).toHaveNoViolations();
       });

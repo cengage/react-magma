@@ -3,12 +3,8 @@ import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { css } from '@emotion/core';
 import isPropValid from '@emotion/is-prop-valid';
-import {
-  TabsIconPosition,
-  TabsOrientation,
-  TabsBorderPosition,
-  TabsContext,
-} from '.';
+import { TabsIconPosition, TabsBorderPosition, TabsContext } from '.';
+import { TabsOrientation } from './shared';
 import { useForceUpdate, useForkedRef } from '../../utils';
 import { TabsContainerContext } from './TabsContainer';
 import { ThemeInterface } from '../../theme/magma';
