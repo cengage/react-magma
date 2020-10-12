@@ -91,9 +91,10 @@ describe('Select', () => {
 
     fireEvent.keyDown(renderedSelect, { key: 'r' });
 
+    act(() => jest.runAllTimers());
+
     expect(getByTestId('selectedItemText').textContent).not.toEqual(items[0]);
 
-    act(() => jest.runAllTimers());
     jest.useRealTimers();
   });
 
@@ -317,9 +318,10 @@ describe('Select', () => {
       key: 'a',
     });
 
+    act(() => jest.runAllTimers());
+
     expect(queryByText(items[0])).not.toBeInTheDocument();
 
-    act(() => jest.runAllTimers());
     jest.useRealTimers();
   });
 

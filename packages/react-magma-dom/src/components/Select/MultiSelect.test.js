@@ -96,11 +96,12 @@ describe('Select', () => {
 
     fireEvent.keyDown(renderedSelect, { key: 'r' });
 
+    act(() => jest.runAllTimers());
+
     expect(
       queryByText(items[0], { selector: 'button' })
     ).not.toBeInTheDocument();
 
-    act(() => jest.runAllTimers());
     jest.useRealTimers();
   });
 
@@ -376,9 +377,10 @@ describe('Select', () => {
       key: 'a',
     });
 
+    act(() => jest.runAllTimers());
+
     expect(queryByText(items[0])).not.toBeInTheDocument();
 
-    act(() => jest.runAllTimers());
     jest.useRealTimers();
   });
 
