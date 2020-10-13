@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.96](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.95...v2.0.0-beta.96) (2020-10-13)
+
+
+### Bug Fixes
+
+* **banner:** stop forwarding invalid props to dom element ([aea01d1](http://stash.cengage.com:7999/FRONT/react-magma/commits/aea01d15774bf78f007366496d933422b6f15b9b))
+* **checkbox:** stop forwarding invalid props to dom element ([c271430](http://stash.cengage.com:7999/FRONT/react-magma/commits/c271430d6c5ddfea8f7228533cfa817ce11d065b))
+* **combobox:** set input value on new item creation ([7115817](http://stash.cengage.com:7999/FRONT/react-magma/commits/711581708b27fe173dbb2eada5db5ff5f8b02d17))
+
+
+
+
+
 # [2.0.0-beta.95](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.94...v2.0.0-beta.95) (2020-10-08)
 
 **Note:** Version bump only for package react-magma
