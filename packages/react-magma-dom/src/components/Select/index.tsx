@@ -97,6 +97,7 @@ export function Select<T>(props: SelectInterface<T>) {
     errorMessage,
     messageStyle,
     helperMessage,
+    testId,
   } = props;
 
   function itemToString(item: T) {
@@ -114,7 +115,7 @@ export function Select<T>(props: SelectInterface<T>) {
   const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
   return (
-    <div style={containerStyle}>
+    <div style={containerStyle} data-testid={testId}>
       {isMulti && instanceOfMultiSelect<T>(props) ? (
         <MultiSelect
           ariaDescribedBy={descriptionId}
