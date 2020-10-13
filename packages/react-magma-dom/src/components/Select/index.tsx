@@ -32,6 +32,7 @@ export interface InternalSelectInterface {
   labelText: string;
   messageStyle?: React.CSSProperties;
   name?: string;
+  testId?: string;
 }
 
 export interface InternalMultiInterface<T> {

@@ -65,6 +65,7 @@ export function Combobox<T>(props: ComboboxInterface<T>) {
     isMulti,
     messageStyle,
     helperMessage,
+    testId,
   } = props;
 
   function itemToString(item: T) {
@@ -82,7 +83,7 @@ export function Combobox<T>(props: ComboboxInterface<T>) {
   const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
   return (
-    <div style={containerStyle}>
+    <div style={containerStyle} data-testid={testId}>
       {isMulti && instanceOfMultiCombobox<T>(props) ? (
         <MultiCombobox
           ariaDescribedBy={descriptionId}
