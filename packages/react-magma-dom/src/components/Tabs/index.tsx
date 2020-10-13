@@ -7,6 +7,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import { ButtonNext, ButtonPrev } from './TabsScrollButtons';
 import { useTabsMeta } from './utils';
+import { I18nContext } from '../../i18n';
 
 export const StyledContainer = styled('div', {
   shouldForwardProp: isPropValid,
@@ -365,6 +366,13 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
       }
     }
 
+    const i18n = React.useContext(I18nContext);
+    const ariaLabel = `${rest['aria-label']}, ${
+      orientation === TabsOrientation.vertical
+        ? i18n.tabs.verticalTabsInstructions
+        : i18n.tabs.horizontalTabsInstructions
+    }`;
+
     return (
       <StyledContainer
         data-testid={testId}
@@ -392,7 +400,7 @@ export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
         >
           <StyledTabs
             alignment={alignment ? alignment : TabsAlignment.left}
-            aria-label={rest['aria-label']}
+            aria-label={ariaLabel}
             aria-orientation={orientation || TabsOrientation.horizontal}
             onKeyDown={handleKeyDown}
             orientation={orientation}

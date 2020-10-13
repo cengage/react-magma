@@ -79,9 +79,9 @@ describe('Tabs', () => {
   it('should render the tabs horizontally', () => {
     const testId = 'test-id';
 
-    const { getByTestId, getAllByTestId } = render(
+    const { getByTestId, getAllByTestId, container } = render(
       <TabsContainerContext.Provider value={{ activeTabIndex: 1 }}>
-        <Tabs testId={testId} orientation="horizontal">
+        <Tabs testId={testId} orientation="horizontal" aria-label="Tabs">
           <Tab>Tab 1</Tab>
           <Tab>Tab 2</Tab>
         </Tabs>
@@ -91,15 +91,19 @@ describe('Tabs', () => {
     const tabsContainer = getByTestId(testId);
     expect(tabsContainer).toHaveAttribute('orientation', 'horizontal');
     expect(tabsContainer).toHaveStyleRule('width', '100%');
+    expect(container.querySelector("[role='tablist']")).toHaveAttribute(
+      'aria-label',
+      'Tabs, use the right and left arrow keys to activate other tabs'
+    );
     expect(getAllByTestId('tabContainer')[0]).toHaveStyleRule('height', '100%');
   });
 
   it('should render the tabs vertically', () => {
     const testId = 'test-id';
 
-    const { getByTestId, getAllByTestId } = render(
+    const { getByTestId, getAllByTestId, container } = render(
       <TabsContainerContext.Provider value={{ activeTabIndex: 1 }}>
-        <Tabs testId={testId} orientation="vertical">
+        <Tabs testId={testId} orientation="vertical" aria-label="Tabs">
           <Tab>Tab 1</Tab>
           <Tab>Tab 2</Tab>
         </Tabs>
@@ -110,6 +114,10 @@ describe('Tabs', () => {
 
     expect(tabsContainer).toHaveAttribute('orientation', 'vertical');
     expect(tabsContainer).toHaveStyleRule('width', 'auto');
+    expect(container.querySelector("[role='tablist']")).toHaveAttribute(
+      'aria-label',
+      'Tabs, use the down and up arrow keys to activate other tabs'
+    );
     expect(getAllByTestId('tabContainer')[0]).toHaveStyleRule('height', 'auto');
   });
 
