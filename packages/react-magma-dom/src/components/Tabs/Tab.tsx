@@ -13,7 +13,6 @@ export interface TabProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
   iconPosition?: TabsIconPosition;
-  index?: number;
   isActive?: boolean;
   isDisabled?: boolean;
   isFullWidth?: boolean;

@@ -498,13 +498,13 @@ By default, the icons appear above the children.
           </Tabs>
 
           <TabPanelsContainer style={{padding: '10px'}}>
-            <TabPanel index={0}>
+            <TabPanel>
               <div>Main page</div>
             </TabPanel>
-            <TabPanel index={1}>
+            <TabPanel>
               <div>FAQ</div>
             </TabPanel>
-            <TabPanel index={2}>
+            <TabPanel>
               <div>About us</div>
             </TabPanel>
           </TabPanelsContainer>
@@ -567,13 +567,13 @@ This prop is specified on the `Tabs` component.
           </Tabs>
 
           <TabPanelsContainer style={{padding: '10px'}}>
-            <TabPanel index={0}>
+            <TabPanel>
               <div>Main page</div>
             </TabPanel>
-            <TabPanel index={1}>
+            <TabPanel>
               <div>FAQ</div>
             </TabPanel>
-            <TabPanel index={2}>
+            <TabPanel>
               <div>About us</div>
             </TabPanel>
           </TabPanelsContainer>
@@ -816,13 +816,6 @@ When using the `component` props in the `Tab` component we will disregard anythi
 
 <SimplePropsTable
   propertyValues={{
-    index: {
-      type: {
-        name: 'number'
-      },
-      required: false,
-      description: 'The index of your Tab.'
-    },
     isDisabled: {
       type: {
         name: 'boolean'
