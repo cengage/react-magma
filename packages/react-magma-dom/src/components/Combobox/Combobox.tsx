@@ -46,16 +46,20 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
 
   const i18n = React.useContext(I18nContext);
 
+  function isCreatedItem(item) {
+    return (
+      !(typeof item === 'string') &&
+      instanceOfDefaultItemObject(item) &&
+      item.react_magma__created_item
+    );
+  }
+
   function defaultNewItemTransform(newItem) {
     return newItem.value;
   }
 
   function defaultOnSelectedItemChange(changes) {
-    if (
-      !(typeof changes.selectedItem === 'string') &&
-      instanceOfDefaultItemObject(changes.selectedItem) &&
-      changes.selectedItem.react_magma__created_item
-    ) {
+    if (isCreatedItem(changes.selectedItem)) {
       const {
         react_magma__created_item,
         ...createdItem
@@ -73,6 +77,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
         : updateItemsRef(newItem);
 
       selectItem(newItem);
+      setInputValue(itemToString(newItem));
 
       if (process.env.NODE_ENV === 'development') {
         if (!items && !disableCreateItem) {
@@ -90,12 +95,27 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
 
   function stateReducer(state, actionAndChanges) {
     const { type, changes } = actionAndChanges;
+
     switch (type) {
-      case useCombobox.stateChangeTypes.InputKeyDownEnter:
+      case useCombobox.stateChangeTypes.InputKeyDownEnter: {
+        const inputValue = isCreatedItem(displayItems[0])
+          ? ''
+          : changes.inputValue;
         return {
           ...changes,
           ...(displayItems[0] && { selectedItem: displayItems[0] }),
+          inputValue,
         };
+      }
+      case useCombobox.stateChangeTypes.ItemClick: {
+        const inputValue = isCreatedItem(displayItems[0])
+          ? ''
+          : changes.inputValue;
+        return {
+          ...changes,
+          inputValue,
+        };
+      }
       case useCombobox.stateChangeTypes.InputBlur:
         return {
           ...changes,
@@ -167,6 +187,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
     reset,
     selectItem,
     selectedItem,
+    setInputValue,
     setHighlightedIndex,
   } = useCombobox({
     ...props,

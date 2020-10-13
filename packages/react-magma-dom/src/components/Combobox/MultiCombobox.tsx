@@ -138,8 +138,8 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
       addSelectedItem(changes.selectedItem);
     }
 
-    setInputValue('');
     selectItem(null);
+    setInputValue('');
   }
 
   const {
@@ -172,6 +172,13 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
           ...(newSelectedItem && {
             selectedItem: newSelectedItem,
           }),
+          inputValue: '',
+        };
+      }
+      case useCombobox.stateChangeTypes.ItemClick: {
+        return {
+          ...changes,
+          inputValue: '',
         };
       }
       case useCombobox.stateChangeTypes.InputBlur:

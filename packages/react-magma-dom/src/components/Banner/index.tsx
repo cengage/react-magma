@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
+import isPropValid from '@emotion/is-prop-valid';
 import {
   AlertProps,
   AlertVariant,
@@ -54,7 +55,13 @@ const ButtonWrapper = styled.span`
   flex-shrink: 0;
 `;
 
-const DismissButton = styled(IconButton)<{
+const allowedProps = ['icon', 'isInverse', 'theme', 'variant'];
+
+const shouldForwardProp = prop => {
+  return isPropValid(prop) || allowedProps.includes(prop);
+};
+
+const DismissButton = styled(IconButton, { shouldForwardProp })<{
   alertVariant?: AlertVariant;
 }>`
   border-radius: 0;

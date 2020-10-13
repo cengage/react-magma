@@ -14,7 +14,7 @@ import { CheckIcon } from 'react-magma-icons';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';
-import { useGenerateId } from '../../utils';
+import { omit, useGenerateId } from '../../utils';
 
 export enum CheckboxTextPosition {
   left = 'left',
@@ -169,8 +169,9 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = React.forwardRef
       isTextVisuallyHidden,
       testId,
       textPosition,
-      ...other
+      ...rest
     } = props;
+    const other = omit(['defaultChecked'], rest);
 
     const descriptionId = errorMessage ? `${id}__desc` : null;
     const groupDescriptionId = context.descriptionId;
