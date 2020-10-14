@@ -198,4 +198,8 @@ export interface I18nInterface {
     menuItemSelectedAriaLabel: string;
     toggleMenuAriaLabel: string;
   };
+  tabs: {
+    horizontalTabsInstructions: string;
+    verticalTabsInstructions: string;
+  };
 }

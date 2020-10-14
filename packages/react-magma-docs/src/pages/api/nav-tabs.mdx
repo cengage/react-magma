@@ -1,0 +1,362 @@
+---
+pageTitle: Nav Tabs API
+title: Nav Tabs
+---
+
+import { ScopeableLayout } from '../../components/layout';
+import { NavTabs, NavTab } from 'react-magma-dom';
+import { SimplePropsTable } from '../../components/props-table';
+import { GraduationCapIcon, BellIcon, AndroidIcon } from 'react-magma-icons';
+import { Link } from 'gatsby';
+
+## Nav Tabs
+
+## Basic Usage
+
+The `NavTabs` component is a navigation element that is styled similarly to the <Link to="/api/tabs">Tabs</Link> component. While they appear visually similar,
+the `NavTabs` component is used for navigation between pages (or parts of a page), while the `Tabs` component is used to toggle the display of different tab panels on a single page.
+
+The `NavTabs` component represents the navigation container, and the `NavTab` component represents each individual navigation link. The `isActive` prop can be used to indicate the current page.
+
+The `to` prop is used to set the link's `href`.
+
+```.jsx
+    <NavTabs aria-label="Nav Tabs">
+        <NavTab isActive to="#">Current Page</NavTab>
+        <NavTab to="http://google.com">Link to Google</NavTab>
+    </NavTabs>
+```
+
+## Vertical Tabs
+
+The `orientation` prop can be used to display nav tabs vertically, instead of horizontally.  
+The `orientation` prop is an enum that accepts either `horizontal` or `vertical` with `horizontal` being the default.
+This prop is specified on the `NavTabs` component.
+
+```.jsx
+    <NavTabs aria-label="Vertical Nav Tabs" orientation='vertical'>
+        <NavTab isActive to="#">Link 1</NavTab>
+        <NavTab to="#">Link 2</NavTab>
+    </NavTabs>
+```
+
+## Custom Component
+
+By default, the nav tabs will render an `a` tag, using the `to` prop for its `href`. However, you can use a custom element instead, by using the `component` prop.
+In this case, the children should be placed inside the `component` prop, instead of putting content directly inside each `NavTab`. The `to` prop directly on the `NavTab` (instead of the component) will be also ignored.
+
+```.jsx
+  <NavTabs aria-label="Sample Custom Component Navigation Tabs">
+    <NavTab component={<Link to="/api/nav-tabs">Main page</Link>} />
+    <NavTab component={<Link to="/api/nav-tab">FAQ</Link>}/>
+    <NavTab component={<Link to="/api/nav-tabs">About us</Link>}/>
+  </NavTabs>
+```
+
+## Border Position
+
+By default, horizontal nav tabs have the indicator placed underneath the tabs. However, it is possible to display the indicator on the top edge of the nav tabs.
+
+**Caution:** Displaying nav tabs below their associated content panel is most commonly used for navigation that appears at the bottom of the viewport on mobile devices. Using this same pattern for a simple set of tabbed content on a page could be unfamiliar and confusing to the user, and should not be used without proper user-testing.
+
+The `borderPosition` prop is an enum and accepts `top` or `bottom` for horizontal tabs.
+The `borderPosition` prop is specified on the `Tabs` component and will apply to each individual tab.
+
+```.jsx
+    <NavTabs aria-label="Border Top Nav Tabs" borderPosition='top'>
+        <NavTab isActive to="#">Link 1</NavTab>
+        <NavTab to="#">Link 2</NavTab>
+    </NavTabs>
+```
+
+## Border Position (vertical)
+
+By default, vertical nav tabs have the indicator placed to the left.
+However, there are times you may want to place the indicator to the right of the tabs, such as when the tab menu is displayed to the left of its content.
+The `borderPosition` prop is an enum and accepts `left` or `right` for horizontal tabs.
+
+The `borderPosition` prop is specified on the `NavTabs` component and will apply to each individual tab.
+
+```.jsx
+    <NavTabs aria-label="Border Right Nav Tabs" borderPosition='right'  orientation='vertical'>
+        <NavTab isActive to="#">Link 1</NavTab>
+        <NavTab to="#">Link 2</NavTab>
+    </NavTabs>
+```
+
+## Alignment
+
+The `alignment` prop determines whether the nav tabs are aligned `left`, `right` or `center`. `Left` is the default.
+
+```.jsx
+    <>
+        <NavTabs aria-label="Center Aligned Nav Tabs" alignment='center'>
+            <NavTab isActive to="#">Link 1</NavTab>
+            <NavTab to="#">Link 2</NavTab>
+        </NavTabs>
+
+        <br />
+        <hr />
+        <br />
+
+        <NavTabs aria-label="Right Aligned Nav Tabs" alignment='right'>
+            <NavTab isActive to="#">Link 1</NavTab>
+            <NavTab to="#">Link 2</NavTab>
+        </NavTabs>
+    </>
+```
+
+## Full-Width
+
+The `isFullWidth` prop is an optional boolean that will cause the tabs to take up the full width of their container. The `isFullWidth` prop is specified on the `NavTabs` component.
+
+Full width tabs work best when inside a smaller container.
+
+```.jsx
+    <NavTabs aria-label="Full-Width Nav Tabs" isFullWidth>
+        <NavTab isActive to="#">Link 1</NavTab>
+        <NavTab to="#">Link 2</NavTab>
+    </NavTabs>
+```
+
+## Scrollable
+
+```.jsx
+  <NavTabs aria-label="Sample Scrollable Nav Tabs" backgroundColor='#F7F7F7'>
+    <NavTab to="#">First item with a longer text label</NavTab>
+    <NavTab to="#">Second item</NavTab>
+    <NavTab to="#">Third item</NavTab>
+    <NavTab to="#">Fourth item</NavTab>
+    <NavTab to="#">Fifth item</NavTab>
+    <NavTab to="#">Sixth item</NavTab>
+    <NavTab to="#">Seventh item</NavTab>
+    <NavTab to="#">Eighth item</NavTab>
+  </NavTabs>
+```
+
+## Scrollable Vertical Tabs
+
+```.jsx
+  <div style={{ display: 'flex', height: '200px', overflow: 'hidden'  }}>
+    <NavTabs aria-label="Sample Scrollable Vertical Nav Tabs" backgroundColor='#F7F7F7' orientation='vertical'>
+      <NavTab to="#">First item</NavTab>
+      <NavTab to="#">Second item</NavTab>
+      <NavTab to="#">Third item</NavTab>
+      <NavTab to="#">Fourth item</NavTab>
+      <NavTab to="#">Fifth item</NavTab>
+      <NavTab to="#">Sixth item</NavTab>
+    </NavTabs>
+  </div>
+
+```
+
+## Icon Tabs
+
+The `icon` prop can be used to display an icon inside the individual `NavTab` components.
+
+### Icon Only
+
+`NavTab` components without children can be used to display an icon only version of the tabs. Be sure to include an `aria-label` for each tab, when using this pattern.
+
+```.jsx
+    <NavTabs aria-label="Icon Only Nav Tabs">
+        <NavTab aria-label='Graduation' icon={<GraduationCapIcon isActive />} to="#"/>
+        <NavTab aria-label='Android' icon={<AndroidIcon />} to="#" />
+        <NavTab aria-label='Notifications' icon={<BellIcon />} to="#" />
+    </NavTabs>
+```
+
+### Icon with Text
+
+`NavTab` components with children and `icon` prop will display both the icon and the children.
+By default, the icons appear above the children.
+
+```.jsx
+    <NavTabs aria-label="Icon with Text Nav Tabs" isFullWidth>
+        <NavTab icon={<GraduationCapIcon />} isActive to="#">First item with a longer text label</NavTab>
+        <NavTab icon={<AndroidIcon />} to="#">Second item</NavTab>
+        <NavTab icon={<BellIcon />} to="#">Third item</NavTab>
+    </NavTabs>
+```
+
+### Vertical with Icon
+
+```.jsx
+    <NavTabs aria-label="Vertical Icon with Text Nav Tabs"  orientation='vertical'>
+        <NavTab icon={<GraduationCapIcon />} isActive to="#">First item with a longer text label</NavTab>
+        <NavTab icon={<AndroidIcon />} to="#">Second item</NavTab>
+        <NavTab icon={<BellIcon />} to="#">Third item</NavTab>
+    </NavTabs>
+```
+
+### Icon Position
+
+The `iconPosition` prop can be used to position the icon relative to the children.  
+The `iconPosition` prop is an enum that accepts `left`, `top`, `right` or `bottom` with `top` being the default for horizontal tabs.
+This prop is specified on the `NavTabs` component.
+
+```.jsx
+    <>
+        <NavTabs aria-label="Icon Position Left Nav Tabs" iconPosition="left">
+            <NavTab icon={<GraduationCapIcon />} isActive to="#">First item with a longer text label</NavTab>
+            <NavTab icon={<AndroidIcon />} to="#">Second item</NavTab>
+            <NavTab icon={<BellIcon />} to="#">Third item</NavTab>
+        </NavTabs>
+
+        <br />
+        <br />
+        <br />
+
+        <NavTabs aria-label="Icon Position Right Nav Tabs" iconPosition="right">
+            <NavTab icon={<GraduationCapIcon />} isActive to="#">First item with a longer text label</NavTab>
+            <NavTab icon={<AndroidIcon />} to="#">Second item</NavTab>
+            <NavTab icon={<BellIcon />} to="#">Third item</NavTab>
+        </NavTabs>
+    </>
+```
+
+## Inverse
+
+The `isInverse` property is an optional boolean, that reverses the colors so that the tabs can better appear on a dark background. It is applied to the `Tabs` component.
+
+### With Blue Background
+
+```.jsx
+    <NavTabs aria-label="Sample Inverse Colors Nav Tabs" isInverse>
+        <NavTab isActive to="#">First link</NavTab>
+        <NavTab to="#">Second link</NavTab>
+        <NavTab to="#">Third link</NavTab>
+    </NavTabs>
+```
+
+### With Blue Background
+
+```.jsx
+    <NavTabs aria-label="Sample Inverse Colors Nav Tabs with Dark Background" backgroundColor='#3f3f3f' isInverse>
+        <NavTab isActive to="#">First link</NavTab>
+        <NavTab to="#">Second link</NavTab>
+        <NavTab to="#">Third link</NavTab>
+    </NavTabs>
+```
+
+## NavTabs Props
+
+**Any other props supplied will be provided to the wrapping `nav` element.**
+
+<SimplePropsTable
+  propertyValues={{
+    children: {
+      type: {
+        name: 'node'
+      },
+      required: true,
+      description: 'The content of the component'
+    },
+    'aria-label': {
+      type: {
+        name: 'string'
+      },
+      required: true,
+      description:
+        'The text the screen reader will announce that describes your navigation'
+    },
+    backgroundColor: {
+      type: {
+        name: 'string'
+      },
+      required: false,
+      description: 'Background color for the nav tabs menu'
+    },
+    borderPosition: {
+      type: {
+        name: 'enum',
+        options: [
+          'TabsBorderPositionHorizontal.bottom',
+          'TabsBorderPositionHorizontal.top',
+          'TabsBorderPositionVertical.left'
+        ]
+      },
+      required: false,
+      description: 'Position of the current tab indicator border',
+      defaultValue: 'bottom or left'
+    },
+    iconPosition: {
+      type: {
+        name: '"left" | "top"'
+      },
+      required: false,
+      description: 'The orientation of icon on NavTab'
+    },
+    isInverse: {
+      type: {
+        name: 'boolean'
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false'
+    },
+    hasScrollButtons: {
+      type: {
+        name: 'boolean'
+      },
+      required: false,
+      description:
+        'The prop for turning on/off buttons for scrolling NavTabs component'
+    },
+    testId: {
+      type: {
+        name: 'string'
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing'
+    }
+  }}
+/>
+
+## NavTab Props
+
+**Any other props supplied will be provided to the wrapping `a` element.**
+
+<SimplePropsTable
+  propertyValues={{
+    children: {
+      type: {
+        name: 'node'
+      },
+      required: true,
+      description: 'The content of the component'
+    },
+    component: {
+      type: {
+        name: 'React.ReactElement'
+      },
+      required: false,
+      description:
+        'The prop for custom component instead of `a` in NavTab. When using this prop the `children` of the component and the `to` prop are not used.'
+    },
+    testId: {
+      type: {
+        name: 'string'
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing'
+    }
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout
+    {...props}
+    components={{
+      NavTabs,
+      NavTab,
+      GraduationCapIcon,
+      BellIcon,
+      AndroidIcon,
+      Link
+    }}
+  />
+);
