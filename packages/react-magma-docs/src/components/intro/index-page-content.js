@@ -119,7 +119,8 @@ export class IndexPageContent extends React.Component {
     this.setState({
       activeSection: id,
     });
-    const focused = document.getElementById(`${id}H`)
+    const focused = document.querySelector(`#${id}H`)
+    window.scrollTo({top: focused.offsetTop, behavior: "smooth"})
     focused.focus()
   }
 
