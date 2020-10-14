@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { ThemeContext, VisuallyHidden } from 'react-magma-dom';
+import { Link } from '@reach/router';
 
 const Item = styled.li`
   list-style: none;
@@ -10,7 +11,7 @@ const Item = styled.li`
   text-transform: uppercase;
 `;
 
-const Link = styled.a`
+const StyledLink = styled(Link)`
   background: rgba(0, 0, 0, 0);
   border-bottom: 2px solid;
   border-color: ${props =>
@@ -49,20 +50,21 @@ const NavItem = ({ activeSection, section, number, onClick, text }) => (
   <ThemeContext.Consumer>
     {theme => (
       <Item>
-        <Link
+        <StyledLink
           active={activeSection === section}
-          href={`#${section}H`}
+          to={`#${section}H`}
           onClick={() => {
             handleNavClick(section, onClick);
           }}
           theme={theme}
-        >
+          replace
+	>
           <Num>{number}</Num>
           {text}
           {activeSection === number && (
             <VisuallyHidden>(selected)</VisuallyHidden>
           )}
-        </Link>
+        </StyledLink>
       </Item>
     )}
   </ThemeContext.Consumer>
