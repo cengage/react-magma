@@ -68,6 +68,8 @@ export {
   LoadingIndicator,
   LoadingIndicatorProps,
 } from './components/LoadingIndicator';
+export { NavTabs } from './components/NavTabs';
+export { NavTab } from './components/NavTabs/NavTab';
 export { Paragraph, ParagraphProps } from './components/Paragraph';
 export { PasswordInput, PasswordInputProps } from './components/PasswordInput';
 export {

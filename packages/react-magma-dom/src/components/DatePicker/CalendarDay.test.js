@@ -17,7 +17,13 @@ describe('Calendar Day', () => {
           chosenDate: defaultDate,
         }}
       >
-        <CalendarDay day={defaultDate} />
+        <table>
+          <tbody>
+            <tr>
+              <CalendarDay day={defaultDate} />
+            </tr>
+          </tbody>
+        </table>
       </CalendarContext.Provider>
     );
 
@@ -36,7 +42,13 @@ describe('Calendar Day', () => {
           chosenDate: defaultDate,
         }}
       >
-        <CalendarDay day={defaultDate} />
+        <table>
+          <tbody>
+            <tr>
+              <CalendarDay day={defaultDate} />
+            </tr>
+          </tbody>
+        </table>
       </CalendarContext.Provider>
     );
 
@@ -58,7 +70,13 @@ describe('Calendar Day', () => {
           chosenDate: defaultDate,
         }}
       >
-        <CalendarDay day={new Date('January 18, 2019')} />
+        <table>
+          <tbody>
+            <tr>
+              <CalendarDay day={new Date('January 18, 2019')} />
+            </tr>
+          </tbody>
+        </table>
       </CalendarContext.Provider>
     );
 
@@ -77,7 +95,13 @@ describe('Calendar Day', () => {
           chosenDate: defaultDate,
         }}
       >
-        <CalendarDay day={defaultDate} />
+        <table>
+          <tbody>
+            <tr>
+              <CalendarDay day={defaultDate} />
+            </tr>
+          </tbody>
+        </table>
       </CalendarContext.Provider>
     );
 
@@ -96,7 +120,13 @@ describe('Calendar Day', () => {
           chosenDate: defaultDate,
         }}
       >
-        <CalendarDay day={defaultDate} />
+        <table>
+          <tbody>
+            <tr>
+              <CalendarDay day={defaultDate} />
+            </tr>
+          </tbody>
+        </table>
       </CalendarContext.Provider>
     );
 
@@ -119,7 +149,13 @@ describe('Calendar Day', () => {
           chosenDate: defaultDate,
         }}
       >
-        <CalendarDay day={defaultDate} />
+        <table>
+          <tbody>
+            <tr>
+              <CalendarDay day={defaultDate} />
+            </tr>
+          </tbody>
+        </table>
       </CalendarContext.Provider>
     );
 

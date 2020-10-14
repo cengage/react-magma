@@ -197,4 +197,10 @@ export const defaultI18n: I18nInterface = {
     menuItemSelectedAriaLabel: '(selected)',
     toggleMenuAriaLabel: 'Toggle menu',
   },
+  tabs: {
+    horizontalTabsInstructions:
+      'use the right and left arrow keys to activate other tabs',
+    verticalTabsInstructions:
+      'use the down and up arrow keys to activate other tabs',
+  },
 };

@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.98](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.97...v2.0.0-beta.98) (2020-10-14)
+
+**Note:** Version bump only for package react-magma-legacy-selects
+
+
+
+
+
+# [2.0.0-beta.97](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.96...v2.0.0-beta.97) (2020-10-13)
+
+**Note:** Version bump only for package react-magma-legacy-selects
+
+
+
+
+
+# [2.0.0-beta.96](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.95...v2.0.0-beta.96) (2020-10-13)
+
+**Note:** Version bump only for package react-magma-legacy-selects
+
+
+
+
+
 # [2.0.0-beta.94](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.93...v2.0.0-beta.94) (2020-10-01)
 
 **Note:** Version bump only for package react-magma-legacy-selects

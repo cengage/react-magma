@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.98](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.97...v2.0.0-beta.98) (2020-10-14)
+
+
+### Features
+
+* **nav tabs:** styles for nav tabs ([17a031d](http://stash.cengage.com:7999/FRONT/react-magma/commits/17a031df84522399a4d43f37c1a08fa966170d0c))
+* **nav tabs:** very start of nav tabs ([3d9f02d](http://stash.cengage.com:7999/FRONT/react-magma/commits/3d9f02d09671814087999d3db8e880498a73a784))
+* **nav-tabs:** allow for component nav tabs ([7920ca7](http://stash.cengage.com:7999/FRONT/react-magma/commits/7920ca7b019b3921774d9347e9f0a76eaf45474a))
+* **tabs:** add keyboard instructions to aria-label ([35b8621](http://stash.cengage.com:7999/FRONT/react-magma/commits/35b86211edd02292b68ff62f7d72394ec5f6f10a))
+* **tabs:** arrow navigation for tabs ([ea4de2b](http://stash.cengage.com:7999/FRONT/react-magma/commits/ea4de2b77b19546dc726c539a97d432c2a8ab741))
+* **tabs:** create hook for shared tabs functionality ([31a4e96](http://stash.cengage.com:7999/FRONT/react-magma/commits/31a4e96685dcad3afa11712f5beaba8ba426c202))
+* **tabs:** disabled prop changed to isDisabled for Tab ([21e13a4](http://stash.cengage.com:7999/FRONT/react-magma/commits/21e13a45fe65c05cf403ddc11de2d8399f4aa99c))
+* **tabs:** remove index prop ([a0828fe](http://stash.cengage.com:7999/FRONT/react-magma/commits/a0828feb9dfdb6fcf9309eb6c1072a3d97691f99))
+
+
+### BREAKING CHANGES
+
+* **tabs:** prop change
+* **tabs:** removal of component tabs
+
+
+
+
+
+# [2.0.0-beta.97](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.96...v2.0.0-beta.97) (2020-10-13)
+
+
+### Features
+
+* **selects:** add testId prop to selects ([285f147](http://stash.cengage.com:7999/FRONT/react-magma/commits/285f147faadb38363993387e0b8df83b6aedebcf))
+
+
+
+
+
+# [2.0.0-beta.96](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.95...v2.0.0-beta.96) (2020-10-13)
+
+
+### Bug Fixes
+
+* **banner:** stop forwarding invalid props to dom element ([aea01d1](http://stash.cengage.com:7999/FRONT/react-magma/commits/aea01d15774bf78f007366496d933422b6f15b9b))
+* **checkbox:** stop forwarding invalid props to dom element ([c271430](http://stash.cengage.com:7999/FRONT/react-magma/commits/c271430d6c5ddfea8f7228533cfa817ce11d065b))
+* **combobox:** set input value on new item creation ([7115817](http://stash.cengage.com:7999/FRONT/react-magma/commits/711581708b27fe173dbb2eada5db5ff5f8b02d17))
+
+
+
+
+
+# [2.0.0-beta.95](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.94...v2.0.0-beta.95) (2020-10-08)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
 # [2.0.0-beta.94](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.93...v2.0.0-beta.94) (2020-10-01)
 
 **Note:** Version bump only for package react-magma

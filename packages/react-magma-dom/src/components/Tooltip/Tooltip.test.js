@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Tooltip } from '.';
@@ -196,6 +197,17 @@ describe('Tooltip', () => {
   });
 
   it('should throw an error if the tooltip children is more than one element', () => {
+    const originalError = console.error;
+    console.error = (...args) => {
+      if (
+        /Tooltip children can only be one element/.test(args[0]) ||
+        /The above error occurred/.test(args[0])
+      ) {
+        return;
+      }
+      originalError.call(console, ...args);
+    };
+
     const renderComponent = () =>
       render(
         <Tooltip content="Tooltip content">
@@ -207,6 +219,8 @@ describe('Tooltip', () => {
     expect(renderComponent).toThrowError(
       'Tooltip children can only be one element.'
     );
+
+    console.error = originalError;
   });
 
   it('Does not violate accessibility standards', () => {

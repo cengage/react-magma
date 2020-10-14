@@ -8,7 +8,10 @@ describe('Toast', () => {
     jest.useFakeTimers();
   });
 
-  afterEach(() => {
+  afterEach(async () => {
+    await act(async () => {
+      jest.runAllTimers();
+    });
     jest.useRealTimers();
   });
 
