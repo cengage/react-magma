@@ -1,5 +1,4 @@
 import React from 'react';
-import Layout from '../components/layout';
 import { IndexPageContent } from '../components/intro/index-page-content';
 import { Global, css } from '@emotion/core';
 import { ThemeContext } from 'react-magma-dom';
@@ -9,7 +8,7 @@ import '../components/animate.css';
 const IndexPage = () => (
   <ThemeContext.Consumer>
     {theme => (
-      <Layout>
+      <>
         <Global
           styles={css`
             @import url('https://fonts.googleapis.com/css?family=Abel&display=swap');
@@ -33,7 +32,7 @@ const IndexPage = () => (
           `}
         />
         <IndexPageContent />
-      </Layout>
+      </>
     )}
   </ThemeContext.Consumer>
 );

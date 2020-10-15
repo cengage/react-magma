@@ -1,7 +1,5 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { SlidingDrawer } from '../sliding-drawer';
-import Masthead from '../masthead';
 import { SkipLink, GlobalStyles } from 'react-magma-dom';
 import styled from '@emotion/styled';
 
@@ -35,12 +33,8 @@ export default props => (
       positionTop={16}
       variant="outline"
     />
-    <div className="main-container">
-      <Masthead />
-      <SlidingDrawer />
       <main>
         <section className="content">{props.children}</section>
       </main>
-    </div>
   </>
 );
