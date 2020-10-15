@@ -15,8 +15,6 @@ import { Link } from 'gatsby';
 
 The `Heading` component can be used with the `level` prop to render the HTML heading elements, levels 1-6.
 
-See also: the <Link to="/api/paragraph">Paragraph</Link> component and the <Link to="api/span">Span</Link> component.
-
 ```.jsx
   <>
     <Heading level={1}>Heading 1</Heading>
@@ -30,15 +28,24 @@ See also: the <Link to="/api/paragraph">Paragraph</Link> component and the <Link
 
 ## Size
 
-By default, a heading will render the semantic HTML element with its corresponding styles.
-However, if the `size` prop is specified, the heading will render with the styles for that relative size rather than its default styles.
-The `sizes` prop can also accept the values for the different paragraph sizes that are used with the <Link to="/api/paragraph">Paragraph</Link> component.
+There are six relative sizes for the heading: `headingXLarge`, `headingLarge`, `headingMedium`, `headingSmall`, `headingXSmall` and `headingXXSmall`. By default each of the size-styles corresponds with the semantic HTML heading elements levels 1-6.  
+However any of these size-styles can be applied to of the HTML elements using the `size` prop.
+
+Furthermore, the `size` prop can also accept the values for the four different paragraph sizes: `bodyLarge`, `bodyMedium`, `bodySmall`, and `bodyXSmall`. These are sizes are also used with the <Link to="/api/paragraph">Paragraph</Link> component.
 
 ```.jsx
   <>
-    <Heading level={2} size="headingXXSmall">H2 styled as Heading XXSmall (h6)</Heading>
-    <Heading level={3} size="bodyMedium">H3 styled as standard paragraph text</Heading>
-    <Heading level={3} size="bodyXSmall">H4 styled as extra-small paragraph text</Heading>
+    <Heading level={2} size="headingXLarge">H2 styled as Heading XLarge</Heading>
+    <Heading level={2} size="headingLarge">H2 styled as Heading Large</Heading>
+    <Heading level={2} size="headingMedium">H2 styled as Heading Medium</Heading>
+    <Heading level={2} size="headingSmall">H2 styled as Heading Small</Heading>
+    <Heading level={2} size="headingXSmall">H2 styled as Heading XSmall</Heading>
+    <Heading level={2} size="headingXXSmall">H2 styled as Heading XXSmall</Heading>
+
+    <Heading level={2} size="bodyLarge">H2 styled as Body Large</Heading>
+    <Heading level={2} size="bodyMedium">H2 styled as Body Medium</Heading>
+    <Heading level={2} size="bodySmall">H2 styled as Body Small</Heading>
+    <Heading level={2} size="bodyXSmall">H2 styled as Body XSmall</Heading>
   </>
 ```
 

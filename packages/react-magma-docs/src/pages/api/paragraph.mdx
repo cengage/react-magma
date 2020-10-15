@@ -2,16 +2,14 @@
 title: 'Paragraph'
 ---
 
-import { ScopeableLayout } from '../../components/layout'
-import { Link } from 'gatsby'
-import { Paragraph } from 'react-magma-dom'
-import { SimplePropsTable } from '../../components/props-table'
+import { ScopeableLayout } from '../../components/layout';
+import { Link } from 'gatsby';
+import { Paragraph } from 'react-magma-dom';
+import { SimplePropsTable } from '../../components/props-table';
 
 # Paragraphs
 
 The `Paragraph` component is used to present paragraph content in a clear and consistent manner, by limiting the number to sizes and styles with a UI.
-
-See also: the <Link to="/api/span">Span</Link> component and the <Link to="api/heading">Heading</Link> component.
 
 ## Basic Usage
 
@@ -26,33 +24,27 @@ See also: the <Link to="/api/span">Span</Link> component and the <Link to="api/h
 There are four relative sizes for the paragraph: `bodyLarge`, `bodyMedium`, `bodySmall`, and `bodyXSmall`.
 The default size is `bodyMedium`.
 
-```.jsx
-    <>
-        <Paragraph size="bodyLarge">
-            Body large.  Lorem ipsum dolar sit amet.
-        </Paragraph>
-
-        <Paragraph size="bodyMedium">
-            Body medium (default).  Lorem ipsum dolar sit amet.
-        </Paragraph>
-
-        <Paragraph size="bodySmall">
-            Body small.  Lorem ipsum dolar sit amet.
-        </Paragraph>
-
-        <Paragraph size="bodyXSmall">
-            Body xsmall.  Lorem ipsum dolar sit amet.
-        </Paragraph>
-    </>
-```
-
-## Heading Sizes
-
-In addition to the paragraph relative sizes, the `sizes` prop can also accept the values for the different heading sizes that are used with the <Link to="/api/heading">Heading</Link> component.
-The underlying HTML will still render as a `p` element.
+In addition to the paragraph relative sizes, the `sizes` prop can also accept the values for the different heading size-styles: `headingXLarge`, `headingLarge`, `headingMedium`, `headingSmall`, `headingXSmall` and `headingXXSmall`.
+These size-styles are also used with the <Link to="/api/heading">Heading</Link> component. The underlying HTML will still render as a `p` element.
 
 ```.jsx
   <>
+    <Paragraph size="bodyLarge">
+        Body large.  Lorem ipsum dolar sit amet.
+    </Paragraph>
+
+    <Paragraph size="bodyMedium">
+        Body medium (default).  Lorem ipsum dolar sit amet.
+    </Paragraph>
+
+    <Paragraph size="bodySmall">
+        Body small.  Lorem ipsum dolar sit amet.
+    </Paragraph>
+
+    <Paragraph size="bodyXSmall">
+        Body xsmall.  Lorem ipsum dolar sit amet.
+    </Paragraph>
+
     <Paragraph size="headingXLarge">
         Heading large.  Lorem ipsum dolar sit amet.
     </Paragraph>
@@ -196,10 +188,10 @@ By default, the `Paragraph` component includes margins on the top and bottom. Wh
   propertyValues={{
     children: {
       type: {
-        name: 'node',
+        name: 'node'
       },
       required: true,
-      description: 'The content of the component',
+      description: 'The content of the component'
     },
     color: {
       type: {
@@ -208,31 +200,31 @@ By default, the `Paragraph` component includes margins on the top and bottom. Wh
           'TypographyColor.danger',
           'TypographyColor.default',
           'TypographyColor.success',
-          'TypographyColor.subdued',
-        ],
+          'TypographyColor.subdued'
+        ]
       },
       required: false,
       description:
         'The color of the component, helping to convey meaning or relative emphasis',
-      defaultValue: 'default',
+      defaultValue: 'default'
     },
     isInverse: {
       type: {
-        name: 'boolean',
+        name: 'boolean'
       },
       required: false,
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
+      defaultValue: 'false'
     },
     noMargins: {
       type: {
-        name: 'boolean',
+        name: 'boolean'
       },
       required: false,
       description:
         'If true, the component will not have the default top and bottom margin and instead will a margin value of 0.',
-      defaultValue: 'false',
+      defaultValue: 'false'
     },
     size: {
       type: {
@@ -247,20 +239,20 @@ By default, the `Paragraph` component includes margins on the top and bottom. Wh
           'TypographySize.bodyLarge',
           'TypographySize.bodyMedium',
           'TypographySize.bodySmall',
-          'TypographySize.bodyXSmall',
-        ],
+          'TypographySize.bodyXSmall'
+        ]
       },
       required: false,
       description: 'Applies the styles for the different relative sizes',
-      defaultValue: 'bodyMedium',
+      defaultValue: 'bodyMedium'
     },
     testId: {
       type: {
-        name: 'string',
+        name: 'string'
       },
       required: false,
       description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
+        'Test ID attached to an internal element as `data-testid` for consumer testing'
     },
     variant: {
       type: {
@@ -268,15 +260,15 @@ By default, the `Paragraph` component includes margins on the top and bottom. Wh
         options: [
           'TypographyVariant.expressive',
           'TypographyVariant.narrative',
-          'TypographyVariant.default',
-        ],
+          'TypographyVariant.default'
+        ]
       },
       description: 'Additional styles for typography',
-      defaultValue: 'default',
-    },
+      defaultValue: 'default'
+    }
   }}
 />
 
 export default props => (
   <ScopeableLayout {...props} components={{ Paragraph }} />
-)
+);

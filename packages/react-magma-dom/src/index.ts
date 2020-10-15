@@ -95,7 +95,6 @@ export {
   SkipLinkContent,
   SkipLinkContentProps,
 } from './components/SkipLinkContent';
-export { Span, SpanProps } from './components/Span';
 export { Spinner, SpinnerProps } from './components/Spinner';
 export {
   ToastsContainer,
