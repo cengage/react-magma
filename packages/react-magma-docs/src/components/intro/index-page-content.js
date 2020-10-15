@@ -120,7 +120,7 @@ export class IndexPageContent extends React.Component {
       activeSection: id
     });
     const focused = document.querySelector(`#${id}H`);
-    focused.focus();
+    focused.focus({ preventScroll: true });
     window.scrollTo({ top: focused.offsetTop, behavior: 'smooth' });
   }
 
