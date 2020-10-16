@@ -3,7 +3,9 @@ import styled from '../../theme/styled';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 
 export interface VisuallyHiddenProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
+  extends React.HTMLAttributes<HTMLDivElement> {
+  testId?: string;
+}
 
 const VisuallyHiddenDiv = styled.div`
   ${HiddenStyles}
@@ -11,7 +13,10 @@ const VisuallyHiddenDiv = styled.div`
 
 export const VisuallyHidden: React.FunctionComponent<VisuallyHiddenProps> = ({
   children,
+  testId,
   ...other
 }: VisuallyHiddenProps) => (
-  <VisuallyHiddenDiv {...other}>{children}</VisuallyHiddenDiv>
+  <VisuallyHiddenDiv {...other} data-testid={testId}>
+    {children}
+  </VisuallyHiddenDiv>
 );
