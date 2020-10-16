@@ -1,4 +1,5 @@
-export { Alert, AlertVariant, AlertProps } from './components/Alert';
+export { Alert, AlertProps } from './components/Alert';
+export { AlertVariant } from './components/AlertBase';
 export { Announce, AnnounceProps } from './components/Announce';
 export { Badge, BadgeColor, BadgeProps } from './components/Badge';
 export { Banner, BannerProps } from './components/Banner';
