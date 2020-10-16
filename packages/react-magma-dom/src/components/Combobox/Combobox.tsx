@@ -22,7 +22,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
     initialSelectedItem,
     inputStyle,
     isClearable,
-    isDisabled,
+    disabled,
     isLabelVisuallyHidden,
     isLoading,
     isInverse,
@@ -254,7 +254,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
         getInputProps={getInputProps}
         getToggleButtonProps={getToggleButtonProps}
         inputStyle={inputStyle}
-        isDisabled={isDisabled}
+        disabled={disabled}
         isInverse={isInverse}
         isLoading={isLoading}
         hasError={hasError}

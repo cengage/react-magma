@@ -62,7 +62,7 @@ describe('Tab', () => {
 
     const { getByTestId, rerender } = render(
       <Tabs>
-        <Tab testId={testId} ariaLabel="test" isDisabled={true}>
+        <Tab testId={testId} ariaLabel="test" disabled={true}>
           Tab Text
         </Tab>
       </Tabs>

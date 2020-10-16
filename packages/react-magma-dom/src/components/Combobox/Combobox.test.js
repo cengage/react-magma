@@ -404,7 +404,7 @@ describe('Combobox', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText } = render(
-      <Combobox labelText={labelText} items={items} isDisabled />
+      <Combobox labelText={labelText} items={items} disabled />
     );
 
     expect(getByLabelText(labelText, { selector: 'input' })).toHaveAttribute(

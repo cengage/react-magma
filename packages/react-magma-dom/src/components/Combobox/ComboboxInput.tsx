@@ -22,7 +22,7 @@ const ComboBoxContainer = styled.div<{
 
 const InputContainer = styled.div<{
   hasError?: boolean;
-  isDisabled?: boolean;
+  disabled?: boolean;
   isFocused?: boolean;
   isInverse?: boolean;
   theme?: any;
@@ -61,7 +61,7 @@ const InputContainer = styled.div<{
     `}
 
     ${props =>
-    props.isDisabled &&
+    props.disabled &&
     css`
       background: ${props.theme.colors.neutral07};
       border-color: ${props.theme.colors.neutral05};
@@ -101,7 +101,7 @@ interface ComboboxInputProps<T> {
   ) => any;
   hasError?: boolean;
   inputStyle?: React.CSSProperties;
-  isDisabled?: boolean;
+  disabled?: boolean;
   isInverse?: boolean;
   isLoading?: boolean;
   onInputBlur?: (event: React.FocusEvent) => void;
@@ -124,7 +124,7 @@ export const ComboboxInput = React.forwardRef(
       getToggleButtonProps,
       hasError,
       inputStyle,
-      isDisabled,
+      disabled,
       isInverse,
       isLoading,
       onInputBlur,
@@ -156,7 +156,7 @@ export const ComboboxInput = React.forwardRef(
     }
 
     const inputProps = getInputProps({
-      disabled: isDisabled,
+      disabled: disabled,
       onBlur: handleBlur,
       onFocus: handleFocus,
       onKeyDown: onInputKeyDown,
@@ -169,14 +169,14 @@ export const ComboboxInput = React.forwardRef(
       <ComboBoxContainer
         {...getComboboxProps()}
         hasError={hasError}
-        isDisabled={isDisabled}
+        disabled={disabled}
         isInverse={isInverse}
         theme={theme}
       >
         <InputContainer
-          {...getToggleButtonProps({ disabled: isDisabled })}
+          {...getToggleButtonProps({ disabled: disabled })}
           hasError={hasError}
-          isDisabled={isDisabled}
+          disabled={disabled}
           isFocused={isFocused}
           isInverse={isInverse}
           style={inputStyle}
@@ -188,7 +188,7 @@ export const ComboboxInput = React.forwardRef(
               {...inputProps}
               aria-describedby={ariaDescribedBy}
               aria-invalid={hasError}
-              disabled={isDisabled}
+              disabled={disabled}
               placeholder={placeholder}
               theme={theme}
             />

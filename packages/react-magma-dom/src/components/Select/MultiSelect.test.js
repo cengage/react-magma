@@ -316,7 +316,7 @@ describe('Select', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText } = render(
-      <MultiSelect isMulti labelText={labelText} items={items} isDisabled />
+      <MultiSelect isMulti labelText={labelText} items={items} disabled />
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
