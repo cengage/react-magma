@@ -10,8 +10,9 @@ const Item = styled.li`
   text-transform: uppercase;
 `;
 
-const StyledLink = styled.a`
+const StyledLink = styled.button`
   background: rgba(0, 0, 0, 0);
+  border: none;
   border-bottom: 2px solid;
   border-color: ${props =>
     props.active ? props.theme.colors.pop04 : 'transparent'};
@@ -21,7 +22,9 @@ const StyledLink = styled.a`
   font-size: 13px;
   line-height: 1.3em;
   padding: 9px 15px 7px;
+  text-align: left;
   text-decoration: none;
+  text-transform: inherit;
   transition: background 0.3s;
 
   &:hover,
