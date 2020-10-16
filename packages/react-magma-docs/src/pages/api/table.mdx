@@ -1,6 +1,6 @@
 ---
-pageTitle: Tables API
-title: Tables
+pageTitle: Table API
+title: Table
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -15,7 +15,7 @@ import {
   TableHead,
   TableHeaderCell,
   TableRow,
-  magma,
+  magma
 } from 'react-magma-dom';
 import { SimplePropsTable } from '../../components/props-table';
 import DocsHeading from '../../components/docs-heading';
@@ -551,10 +551,10 @@ Content other than just text, such as buttons, inputs and other elements can be 
   propertyValues={{
     children: {
       type: {
-        name: 'node',
+        name: 'node'
       },
       required: true,
-      description: 'The content of the component',
+      description: 'The content of the component'
     },
     density: {
       type: {
@@ -562,51 +562,59 @@ Content other than just text, such as buttons, inputs and other elements can be 
         options: [
           'TableDensity.compact',
           'TableDensity.loose',
-          'TableDensity.normal',
-        ],
+          'TableDensity.normal'
+        ]
       },
       required: false,
       description: 'Relative padding of the table cells',
-      defaultValue: 'normal',
+      defaultValue: 'normal'
     },
     hasHoverStyles: {
       type: {
-        name: 'boolean',
+        name: 'boolean'
       },
       required: false,
-      description: 'If true, row will be visualy highlighted on hover',
+      description: 'If true, row will be visualy highlighted on hover'
     },
     hasVerticalBorders: {
       type: {
-        name: 'boolean',
+        name: 'boolean'
       },
       required: false,
-      description: 'If true, columns will have vertical borders',
+      description: 'If true, columns will have vertical borders'
     },
     hasZebraStripes: {
       type: {
-        name: 'boolean',
+        name: 'boolean'
       },
       required: false,
-      description: 'If true, every other row will have a background color',
+      description: 'If true, every other row will have a background color'
     },
     isInverse: {
       type: {
-        name: 'boolean',
+        name: 'boolean'
       },
       required: false,
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
+      defaultValue: 'false'
     },
     minWidth: {
       type: {
-        name: 'number',
+        name: 'number'
       },
       required: false,
       description: 'Minimum width for the table in pixels',
-      defaultValue: '600',
+      defaultValue: '600'
     },
+    testId: {
+      type: {
+        name: 'string'
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing'
+    }
   }}
 />
 
@@ -624,35 +632,35 @@ Content other than just text, such as buttons, inputs and other elements can be 
           'TableCellAlign.inherit',
           'TableCellAlign.justify',
           'TableCellAlign.left',
-          'TableCellAlign.right',
-        ],
+          'TableCellAlign.right'
+        ]
       },
       required: false,
       description:
         'Text alignment of the cell content.  Right alignment should be used for numeric values.',
-      defaultValue: 'left',
+      defaultValue: 'left'
     },
     children: {
       type: {
-        name: 'node',
+        name: 'node'
       },
       required: true,
-      description: 'The content of the component',
+      description: 'The content of the component'
     },
     isSortable: {
       type: {
-        name: 'boolean',
+        name: 'boolean'
       },
       required: false,
-      description: 'If true, the header will render a button for sorting',
+      description: 'If true, the header will render a button for sorting'
     },
     onSort: {
       type: {
-        name: 'function',
+        name: 'function'
       },
       required: false,
       description:
-        'Event that fires when clicking the table header cell sort button',
+        'Event that fires when clicking the table header cell sort button'
     },
     sortDirection: {
       type: {
@@ -660,13 +668,21 @@ Content other than just text, such as buttons, inputs and other elements can be 
         options: [
           'TableSortDirection.ascending',
           'TableSortDirection.descending',
-          'TableSortDirection.none',
-        ],
+          'TableSortDirection.none'
+        ]
       },
       required: false,
       description: 'Direction by which the column is sorted',
-      defaultValue: 'none',
+      defaultValue: 'none'
     },
+    testId: {
+      type: {
+        name: 'string'
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing'
+    }
   }}
 />
 
@@ -684,21 +700,29 @@ Content other than just text, such as buttons, inputs and other elements can be 
           'TableCellAlign.inherit',
           'TableCellAlign.justify',
           'TableCellAlign.left',
-          'TableCellAlign.right',
-        ],
+          'TableCellAlign.right'
+        ]
       },
       required: false,
       description:
         'Text alignment of the cell content.  Right alignment should be used for numeric values.',
-      defaultValue: 'left',
+      defaultValue: 'left'
     },
     children: {
       type: {
-        name: 'node',
+        name: 'node'
       },
       required: true,
-      description: 'The content of the component',
+      description: 'The content of the component'
     },
+    testId: {
+      type: {
+        name: 'string'
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing'
+    }
   }}
 />
 
@@ -715,7 +739,7 @@ export default props => (
       TableHead,
       TableHeaderCell,
       TableRow,
-      magma,
+      magma
     }}
   />
 );
