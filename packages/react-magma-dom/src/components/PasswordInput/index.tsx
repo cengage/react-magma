@@ -3,7 +3,7 @@ import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { Announce } from '../Announce';
-import { BaseInput, InputSize, InputType } from '../BaseInput';
+import { InputBase, InputSize, InputType } from '../InputBase';
 import { Button, ButtonVariant, ButtonType } from '../Button';
 import { HiddenLabelText } from '../Input';
 import { InputMessage } from '../Input/InputMessage';
@@ -117,7 +117,7 @@ export const PasswordInput: React.FunctionComponent<PasswordInputProps> = React.
             labelText
           )}
         </Label>
-        <BaseInput
+        <InputBase
           {...other}
           aria-describedby={
             descriptionId ? descriptionId : props['aria-describedby']
@@ -163,7 +163,7 @@ export const PasswordInput: React.FunctionComponent<PasswordInputProps> = React.
               </VisuallyHidden>
             </PasswordMaskWrapper>
           )}
-        </BaseInput>
+        </InputBase>
         <InputMessage
           isInverse={isInverse}
           id={descriptionId}

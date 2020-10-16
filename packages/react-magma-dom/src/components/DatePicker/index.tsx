@@ -3,7 +3,7 @@ import { CalendarContext } from './CalendarContext';
 import { CalendarMonth } from './CalendarMonth';
 import { Announce } from '../Announce';
 import { Input } from '../Input';
-import { InputType } from '../BaseInput';
+import { InputType } from '../InputBase';
 import { isAfter, isBefore, isValid, isSameDay } from 'date-fns';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '../../theme/styled';

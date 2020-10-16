@@ -1,6 +1,6 @@
 import styled from '../../theme/styled';
 
-import { baseInputStyles } from '../BaseInput';
+import { inputBaseStyles } from '../InputBase';
 import { Card } from '../Card';
 
 export const SelectContainer = styled.div`
@@ -8,7 +8,7 @@ export const SelectContainer = styled.div`
 `;
 
 export const StyledButton = styled.div`
-  ${baseInputStyles}
+  ${inputBaseStyles}
 
   align-items: center;
   display: flex;
