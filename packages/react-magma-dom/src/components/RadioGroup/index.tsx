@@ -18,7 +18,6 @@ export interface RadioGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   errorMessage?: React.ReactNode;
   helperMessage?: React.ReactNode;
   isInverse?: boolean;
-  isRequired?: boolean;
   isTextVisuallyHidden?: boolean;
   labelledById?: string;
   labelStyle?: React.CSSProperties;
@@ -33,7 +32,7 @@ export interface RadioContextInterface {
   descriptionId?: string;
   hasError?: boolean;
   isInverse?: boolean;
-  isRequired?: boolean;
+  required?: boolean;
   name: string;
   selectedValue?: string;
   onBlur?: () => void;
@@ -69,7 +68,7 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
     errorMessage,
     helperMessage,
     isInverse,
-    isRequired,
+    required,
     isTextVisuallyHidden,
     labelledById,
     labelStyle,
@@ -96,7 +95,7 @@ export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
           descriptionId,
           hasError: !!errorMessage,
           isInverse,
-          isRequired,
+          required,
           name,
           selectedValue,
           onBlur: props.onBlur,
