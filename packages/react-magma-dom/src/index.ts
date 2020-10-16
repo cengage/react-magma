@@ -50,7 +50,7 @@ export { DropdownButton } from './components/Dropdown/DropdownButton';
 export { FormGroup, FormGroupProps } from './components/FormGroup';
 export { Heading, HeadingProps } from './components/Heading';
 export { HideAtBreakpoint } from './components/HideAtBreakpoint';
-export { HyperLink, HyperLinkProps } from './components/HyperLink';
+export { Hyperlink, HyperlinkProps } from './components/Hyperlink';
 export {
   IconButton,
   ButtonIconPosition,

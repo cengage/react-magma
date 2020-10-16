@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
-import { HyperLink } from 'react-magma-dom';
+import { Hyperlink } from 'react-magma-dom';
 import { CodeIcon, PaletteIcon } from 'react-magma-icons';
 
 const StyledDiv = styled.div`
@@ -31,25 +31,25 @@ const DocsHeading = ({ children, to, type }) => (
     <Heading>{children}</Heading>
 
     {type === 'design' && to && (
-      <HyperLink color="secondary" styledAs="Button" to={to}>
+      <Hyperlink color="secondary" styledAs="Button" to={to}>
         {({ to, stylesClass }) => (
           <Link className={stylesClass} to={to}>
             <PaletteIcon size="16" />
             <span style={{ paddingLeft: '10px' }}>View Design Guidelines</span>
           </Link>
         )}
-      </HyperLink>
+      </Hyperlink>
     )}
 
     {type === 'code' && to && (
-      <HyperLink color="secondary" styledAs="Button" to={to}>
+      <Hyperlink color="secondary" styledAs="Button" to={to}>
         {({ to, stylesClass }) => (
           <Link className={stylesClass} to={to}>
             <CodeIcon size="16" />
             <span style={{ paddingLeft: '10px' }}>View Component API</span>
           </Link>
         )}
-      </HyperLink>
+      </Hyperlink>
     )}
   </StyledDiv>
 );
@@ -57,7 +57,7 @@ const DocsHeading = ({ children, to, type }) => (
 DocsHeading.propTypes = {
   children: PropTypes.node.isRequired,
   to: PropTypes.string,
-  type: PropTypes.oneOf(['code', 'design']),
+  type: PropTypes.oneOf(['code', 'design'])
 };
 
 export default DocsHeading;

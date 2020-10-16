@@ -3,7 +3,7 @@ import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { BreadCrumbContext } from '.';
 
-import { HyperLink } from '../HyperLink';
+import { Hyperlink } from '../Hyperlink';
 import { AngleRightIcon } from 'react-magma-icons';
 
 export interface BreadcrumbItemProps
@@ -41,9 +41,9 @@ export const BreadcrumbItem: React.FunctionComponent<BreadcrumbItemProps> = (
     <StyledItem {...other} data-testid={testId} ref={ref}>
       {to ? (
         <>
-          <HyperLink to={to} isInverse={isInverse}>
+          <Hyperlink to={to} isInverse={isInverse}>
             {children}
-          </HyperLink>
+          </Hyperlink>
           <StyledSpan isInverse={isInverse} theme={theme}>
             <AngleRightIcon size={10} />
           </StyledSpan>
