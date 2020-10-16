@@ -580,6 +580,14 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
         'Status of the indeterminate, three-state checkbox, which includes and indeterminate (e.g. mixed) option.',
       defaultValue: 'unchecked',
     },
+     testId: {
+      type: {
+        name: 'string'
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing'
+    }
   }}
 />
 

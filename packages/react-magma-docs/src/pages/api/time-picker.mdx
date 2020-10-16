@@ -9,7 +9,7 @@ import {
   Heading,
   Button,
   I18nContext,
-  defaultI18n,
+  defaultI18n
 } from 'react-magma-dom';
 import DocsHeading from '../../components/docs-heading';
 import { SimplePropsTable } from '../../components/props-table';
@@ -99,81 +99,89 @@ The `containerStyle`, `inputStyle`, `labelStyle` and `messageStyle` props can be
   propertyValues={{
     containerStyle: {
       type: {
-        name: 'React.CSSProperties',
+        name: 'React.CSSProperties'
       },
       required: false,
-      description: 'Style properties for the outer container',
+      description: 'Style properties for the outer container'
     },
     errorMessage: {
       type: {
-        name: 'ReactNode',
+        name: 'ReactNode'
       },
       required: false,
       description:
         'Content of the error message.  If a value is provided, the component will be styled to show an error state.',
-      defaultValue: '',
+      defaultValue: ''
     },
     helperMessage: {
       type: {
-        name: 'ReactNode',
+        name: 'ReactNode'
       },
       required: false,
       description: 'Content of the helper message.',
-      defaultValue: '',
+      defaultValue: ''
     },
     labelStyle: {
       type: {
-        name: 'React.CSSProperties',
+        name: 'React.CSSProperties'
       },
       required: false,
-      description: 'Style properties for the label',
+      description: 'Style properties for the label'
     },
     labelText: {
       type: {
-        name: 'ReactNode',
+        name: 'ReactNode'
       },
       required: true,
-      description: 'Content for label; can be a node or a string',
+      description: 'Content for label; can be a node or a string'
     },
     inputStyle: {
       type: {
-        name: 'React.CSSProperties',
+        name: 'React.CSSProperties'
       },
       required: false,
-      description: 'Style properties for the outer input',
+      description: 'Style properties for the outer input'
     },
     isInverse: {
       type: {
-        name: 'boolean',
+        name: 'boolean'
       },
       required: false,
       description:
         'If true, the focus state of the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
+      defaultValue: 'false'
     },
     messageStyle: {
       type: {
-        name: 'React.CSSProperties',
+        name: 'React.CSSProperties'
       },
       required: false,
-      description: 'Style properties for the helper or error message',
+      description: 'Style properties for the helper or error message'
     },
     minutesStep: {
       type: {
-        name: 'number',
+        name: 'number'
       },
       required: false,
       description: 'The stepping interval for the minutes input',
-      defaultValue: '1',
+      defaultValue: '1'
     },
-    value: {
+    testId: {
       type: {
-        name: 'string',
+        name: 'string'
       },
       required: false,
       description:
-        'The value of the time picker. Can use the format ##:## AM/PM or ##:##',
+        'Test ID attached to an internal element as `data-testid` for consumer testing'
     },
+    value: {
+      type: {
+        name: 'string'
+      },
+      required: false,
+      description:
+        'The value of the time picker. Can use the format ##:## AM/PM or ##:##'
+    }
   }}
 />
 
