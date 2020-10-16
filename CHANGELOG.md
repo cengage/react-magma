@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.103](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.102...v2.0.0-beta.103) (2020-10-16)
+
+
+### Features
+
+* **hyperlink:** Change name from HyperLink to Hyperlink ([5aba7dc](http://stash.cengage.com:7999/FRONT/react-magma/commits/5aba7dcef9c4af060bd373f46e45c94ad45eb6c9))
+
+
+### BREAKING CHANGES
+
+* **hyperlink:** component name change for Hyperlink
+
+
+
+
+
 # [2.0.0-beta.102](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.101...v2.0.0-beta.102) (2020-10-16)
 
 
