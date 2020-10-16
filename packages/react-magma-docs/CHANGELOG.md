@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.99](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.98...v2.0.0-beta.99) (2020-10-16)
+
+
+### Bug Fixes
+
+* **docs:** change docs main-nav to buttons ([544c9d3](http://stash.cengage.com:7999/FRONT/react-magma/commits/544c9d37575fc800887ea42c16a3c18d64b33af3))
+* **docs:** fix skiplinks in doc to not prevent any clicks ([af2bd7b](http://stash.cengage.com:7999/FRONT/react-magma/commits/af2bd7b4d92c8c21f89bf6e95edce73e03849fbb))
+* **docs:** fix subnavs for doc sections ([f685a9e](http://stash.cengage.com:7999/FRONT/react-magma/commits/f685a9eb853e5f06451898991c7385f41bb65c76))
+* **docs:** maintain sidebar location ([665362d](http://stash.cengage.com:7999/FRONT/react-magma/commits/665362da26d2226202e7bf960d3e6692c4d54c26))
+* **docs:** move skiplink back up to first ([cd68797](http://stash.cengage.com:7999/FRONT/react-magma/commits/cd687970be84d82244669fdb8591d60bf33fb65b))
+* **docs:** set focus and scroll to active section when clicking nav bar ([60d5f9a](http://stash.cengage.com:7999/FRONT/react-magma/commits/60d5f9a04ec1ab0046bd7efa84406ced8956c264))
+* **docs:** switch to event handler for focus and movement ([4d15af8](http://stash.cengage.com:7999/FRONT/react-magma/commits/4d15af85a43f613b39719e7b3e6cb7539fc21d1c))
+
+
+
+
+
 # [2.0.0-beta.98](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.97...v2.0.0-beta.98) (2020-10-14)
 
 
