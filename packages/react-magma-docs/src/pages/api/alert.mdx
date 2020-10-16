@@ -89,58 +89,59 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 
 ## Alert Props
 
-**Any other props supplied will be provided to the wrapping `div` element.**
+**This component uses `forwardRef`. The ref is applied to the Alert container `div` element.
+**Any other props supplied will be provided to the wrapping `div` element.\*\*
 
 <SimplePropsTable
   propertyValues={{
     children: {
       type: {
-        name: 'node',
+        name: 'node'
       },
       required: true,
-      description: 'The content of the component',
+      description: 'The content of the component'
     },
     closeAriaLabel: {
       type: {
-        name: 'string',
+        name: 'string'
       },
       required: false,
       description: 'The text read by screen readers for the close button',
-      defaultValue: '"Close this message"',
+      defaultValue: '"Close this message"'
     },
     isDismissible: {
       type: {
-        name: 'boolean',
+        name: 'boolean'
       },
       required: false,
       description:
         'If true, the component will be able to be dismissed and will include a close button',
-      defaultValue: 'false',
+      defaultValue: 'false'
     },
     isInverse: {
       type: {
-        name: 'boolean',
+        name: 'boolean'
       },
       required: false,
       description:
         'If true, the focus state of the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
+      defaultValue: 'false'
     },
     onDismiss: {
       type: {
-        name: 'function',
+        name: 'function'
       },
       required: false,
       description:
-        'Action that fires when the close button is clicked (required when isDismissible is true)',
+        'Action that fires when the close button is clicked (required when isDismissible is true)'
     },
     testId: {
       type: {
-        name: 'string',
+        name: 'string'
       },
       required: false,
       description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
+        'Test ID attached to an internal element as `data-testid` for consumer testing'
     },
     variant: {
       type: {
@@ -149,14 +150,14 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
           'AlertVariant.info',
           'AlertVariant.success',
           'AlertVariant.warning',
-          'AlertVariant.danger',
-        ],
+          'AlertVariant.danger'
+        ]
       },
       required: false,
       description:
         'The variant of the alert, indicating its function in the UI',
-      defaultValue: 'info',
-    },
+      defaultValue: 'info'
+    }
   }}
 />
 

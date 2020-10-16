@@ -1,11 +1,11 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { Alert, AlertProps, transitionDuration } from '../Alert';
+import { AlertBase, AlertBaseProps, transitionDuration } from '../AlertBase';
 import { getTrapElements } from '../Modal/utils';
 import { useGenerateId } from '../../utils';
 import { ToastsContext } from './ToastsContainer';
 
-export interface ToastProps extends AlertProps {
+export interface ToastProps extends AlertBaseProps {
   alertStyle?: React.CSSProperties;
   containerStyle?: React.CSSProperties;
   disableAutoDismiss?: boolean;
@@ -198,7 +198,7 @@ export const Toast: React.FunctionComponent<ToastProps> = (
       style={containerStyle}
       data-testid={testId}
     >
-      <Alert
+      <AlertBase
         {...other}
         forceDismiss={clearTimeoutAndDismiss}
         hasTimerRing={!disableAutoDismiss}
@@ -213,7 +213,7 @@ export const Toast: React.FunctionComponent<ToastProps> = (
         variant={variant}
       >
         {children}
-      </Alert>
+      </AlertBase>
     </ToastWrapper>
   );
 };
