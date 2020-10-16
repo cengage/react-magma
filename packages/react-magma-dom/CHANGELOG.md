@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.102](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.101...v2.0.0-beta.102) (2020-10-16)
+
+
+### Bug Fixes
+
+* **visuallyhidden:** add testid, also add testid to missing prop tables ([917bf1c](http://stash.cengage.com:7999/FRONT/react-magma/commits/917bf1c8feedc93c7c445016363054a45c213c5e))
+
+
+
+
+
 # [2.0.0-beta.101](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.100...v2.0.0-beta.101) (2020-10-16)
 
 **Note:** Version bump only for package react-magma-dom
