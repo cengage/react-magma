@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.100](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.99...v2.0.0-beta.100) (2020-10-16)
+
+
+### Features
+
+* **multi:** change isDisabled prop to disabled ([9d5c57b](http://stash.cengage.com:7999/FRONT/react-magma/commits/9d5c57bd802f9dcf7cac58deda60dd8843087457))
+* **radio-group:** isRequired prop renamed to required ([aae29e3](http://stash.cengage.com:7999/FRONT/react-magma/commits/aae29e3ffb6fb6c5235473d0d10d75b0f7157fac))
+
+
+### BREAKING CHANGES
+
+* **radio-group:** isRequired prop changed to required in RadioGroup
+* **multi:** prop name change
+
+
+
+
+
 # [2.0.0-beta.99](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.98...v2.0.0-beta.99) (2020-10-16)
 
 
