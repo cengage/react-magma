@@ -1,11 +1,11 @@
 import React from 'react';
-import { baseInputStyles } from '../BaseInput';
+import { inputBaseStyles } from '../InputBase';
 import { CaretDownIcon } from 'react-magma-icons';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '../../theme/styled';
 
 const StyledButton = styled.div<{ disabled?: boolean; hasError?: boolean }>`
-  ${baseInputStyles}
+  ${inputBaseStyles}
 
   align-items: center;
   display: flex;

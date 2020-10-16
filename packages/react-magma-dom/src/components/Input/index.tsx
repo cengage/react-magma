@@ -1,12 +1,12 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { BaseInput, BaseInputProps, InputSize } from '../BaseInput';
+import { InputBase, InputBaseProps, InputSize } from '../InputBase';
 import { InputMessage } from './InputMessage';
 import { Label } from '../Label';
 import { useGenerateId } from '../../utils';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 
-export interface InputProps extends BaseInputProps {
+export interface InputProps extends InputBaseProps {
   errorMessage?: React.ReactNode;
   helperMessage?: React.ReactNode;
   isLabelVisuallyHidden?: boolean;
@@ -60,7 +60,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
             )}
           </Label>
         )}
-        <BaseInput
+        <InputBase
           {...other}
           aria-describedby={
             descriptionId ? descriptionId : props['aria-describedby']
@@ -73,7 +73,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
           ref={ref}
         >
           {children}
-        </BaseInput>
+        </InputBase>
         <InputMessage
           isInverse={isInverse}
           id={descriptionId}

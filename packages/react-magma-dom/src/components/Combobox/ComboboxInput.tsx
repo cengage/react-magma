@@ -1,5 +1,5 @@
 import React from 'react';
-import { baseInputStyles } from '../BaseInput';
+import { inputBaseStyles } from '../InputBase';
 import { defaultComponents, SelectComponents } from '../Select/components';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
@@ -76,7 +76,7 @@ const InputContainer = styled.div<{
 `;
 
 const StyledInput = styled.input`
-  ${baseInputStyles}
+  ${inputBaseStyles}
   border: 0;
   display: flex;
   flex-grow: 1;

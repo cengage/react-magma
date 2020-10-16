@@ -3,12 +3,12 @@ export { Announce, AnnounceProps } from './components/Announce';
 export { Badge, BadgeColor, BadgeProps } from './components/Badge';
 export { Banner, BannerProps } from './components/Banner';
 export {
-  BaseInput,
-  BaseInputProps,
+  InputBase,
+  InputBaseProps,
   InputIconPosition,
   InputSize,
   InputType,
-} from './components/BaseInput';
+} from './components/InputBase';
 export { Breadcrumb, BreadcrumbProps } from './components/Breadcrumb';
 export { BreadcrumbItem } from './components/Breadcrumb/Item';
 export {
