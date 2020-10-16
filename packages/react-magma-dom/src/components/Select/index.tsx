@@ -24,7 +24,7 @@ export interface InternalSelectInterface {
   helperMessage?: React.ReactNode;
   inputStyle?: React.CSSProperties;
   isClearable?: boolean;
-  isDisabled?: boolean;
+  disabled?: boolean;
   isInverse?: boolean;
   isLabelVisuallyHidden?: boolean;
   isMulti?: boolean;

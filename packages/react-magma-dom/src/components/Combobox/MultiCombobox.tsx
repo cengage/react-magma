@@ -21,7 +21,7 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
     disableCreateItem,
     hasError,
     inputStyle,
-    isDisabled,
+    disabled,
     isLabelVisuallyHidden,
     isLoading,
     isInverse,
@@ -299,7 +299,7 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
         })}
         getToggleButtonProps={getToggleButtonProps}
         inputStyle={inputStyle}
-        isDisabled={isDisabled}
+        disabled={disabled}
         isInverse={isInverse}
         isLoading={isLoading}
         hasError={hasError}

@@ -196,7 +196,7 @@ describe('Select', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText } = render(
-      <Select labelText={labelText} items={items} isDisabled />
+      <Select labelText={labelText} items={items} disabled />
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });

@@ -20,7 +20,7 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
     items,
     labelStyle,
     labelText,
-    isDisabled,
+    disabled,
     isInverse,
     onBlur,
     onFocus,
@@ -144,7 +144,7 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
       onFocus,
       preventKeyAction: isOpen,
     }),
-    disabled: isDisabled,
+    disabled: disabled,
   });
 
   return (
@@ -159,7 +159,7 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
         ariaDescribedBy={ariaDescribedBy}
         toggleButtonProps={toggleButtonProps}
         hasError={hasError}
-        isDisabled={isDisabled}
+        disabled={disabled}
         isInverse={isInverse}
         style={inputStyle}
       >

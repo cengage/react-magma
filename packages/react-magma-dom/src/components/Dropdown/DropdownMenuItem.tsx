@@ -11,22 +11,22 @@ export interface DropdownMenuItemProps
   icon?: React.ReactElement<IconProps>;
   index?: number;
   isActive?: boolean;
-  isDisabled?: boolean;
+  disabled?: boolean;
   onClick?: (value?: string) => void;
   value?: string;
 }
 
 const StyledItem = styled.div<{
-  isDisabled?: boolean;
+  disabled?: boolean;
   isFixedWidth?: boolean;
   isInactive?: boolean;
   value?: string;
 }>`
   color: ${props =>
-    props.isDisabled
+    props.disabled
       ? props.theme.colors.disabledText
       : props.theme.colors.neutral01};
-  cursor: ${props => (props.isDisabled ? 'not-allowed' : 'pointer')};
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   display: flex;
   line-height: 20px;
   margin: 0;
@@ -56,7 +56,7 @@ const IconWrapper = styled.span`
 
 export const DropdownMenuItem: React.FunctionComponent<DropdownMenuItemProps> = React.forwardRef(
   (
-    { children, isDisabled, icon, onClick, value, ...other },
+    { children, disabled, icon, onClick, value, ...other },
     forwardedRef: React.Ref<any>
   ) => {
     const ownRef = React.useRef<HTMLDivElement>();
@@ -78,11 +78,11 @@ export const DropdownMenuItem: React.FunctionComponent<DropdownMenuItemProps> = 
         context.setActiveItemIndex(index);
       }
 
-      if (onClick && !isDisabled) {
+      if (onClick && !disabled) {
         onClick(value);
       }
 
-      if (!isDisabled && context.activeItemIndex < 0) {
+      if (!disabled && context.activeItemIndex < 0) {
         context.closeDropdown(event);
       }
     }
@@ -101,7 +101,7 @@ export const DropdownMenuItem: React.FunctionComponent<DropdownMenuItemProps> = 
       context.activeItemIndex >= 0 && context.activeItemIndex !== index;
 
     React.useEffect(() => {
-      if (!isDisabled)
+      if (!disabled)
         context.registerDropdownMenuItem(context.itemRefArray, ownRef);
     }, []);
 
@@ -110,16 +110,16 @@ export const DropdownMenuItem: React.FunctionComponent<DropdownMenuItemProps> = 
     return (
       <StyledItem
         {...other}
-        aria-disabled={isDisabled}
-        isDisabled={isDisabled}
+        aria-disabled={disabled}
+        disabled={disabled}
         isFixedWidth={context.isFixedWidth}
         isInactive={isInactive}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
-        ref={isDisabled ? null : ref}
+        ref={disabled ? null : ref}
         role="menuitem"
         theme={theme}
-        tabIndex={isDisabled ? null : -1}
+        tabIndex={disabled ? null : -1}
         value={value}
       >
         {icon && <IconWrapper theme={theme}>{icon}</IconWrapper>}

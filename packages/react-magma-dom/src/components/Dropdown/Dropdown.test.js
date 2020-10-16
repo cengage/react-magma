@@ -505,7 +505,7 @@ describe('Dropdown', () => {
       <Dropdown alignment="right">
         <DropdownButton>Toggle me</DropdownButton>
         <DropdownContent>
-          <DropdownMenuItem isDisabled onClick={onClick}>
+          <DropdownMenuItem disabled onClick={onClick}>
             {text}
           </DropdownMenuItem>
         </DropdownContent>

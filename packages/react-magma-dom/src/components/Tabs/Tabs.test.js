@@ -305,7 +305,7 @@ describe('Tabs', () => {
       <TabsContainer activeIndex={0}>
         <Tabs testId={'dd'} hasScrollButtons={true} orientation="horizontal">
           <Tab>This is tab 1</Tab>
-          <Tab isDisabled>This is tab 2</Tab>
+          <Tab disabled>This is tab 2</Tab>
           <Tab>This is tab 3</Tab>
         </Tabs>
 
@@ -616,7 +616,7 @@ describe('Tabs', () => {
         <TabsContainer activeIndex={0}>
           <Tabs>
             <Tab>This is tab 1</Tab>
-            <Tab isDisabled>This is tab 2</Tab>
+            <Tab disabled>This is tab 2</Tab>
             <Tab>This is tab 3</Tab>
           </Tabs>
 
@@ -645,7 +645,7 @@ describe('Tabs', () => {
         <TabsContainer activeIndex={2}>
           <Tabs>
             <Tab>This is tab 1</Tab>
-            <Tab isDisabled>This is tab 2</Tab>
+            <Tab disabled>This is tab 2</Tab>
             <Tab>This is tab 3</Tab>
           </Tabs>
 
@@ -674,7 +674,7 @@ describe('Tabs', () => {
         <TabsContainer activeIndex={0}>
           <Tabs orientation="vertical">
             <Tab>This is tab 1</Tab>
-            <Tab isDisabled>This is tab 2</Tab>
+            <Tab disabled>This is tab 2</Tab>
             <Tab>This is tab 3</Tab>
           </Tabs>
 
@@ -703,7 +703,7 @@ describe('Tabs', () => {
         <TabsContainer activeIndex={2}>
           <Tabs orientation="vertical">
             <Tab>This is tab 1</Tab>
-            <Tab isDisabled>This is tab 2</Tab>
+            <Tab disabled>This is tab 2</Tab>
             <Tab>This is tab 3</Tab>
           </Tabs>
 
@@ -731,7 +731,7 @@ describe('Tabs', () => {
       const { getByText, queryByText } = render(
         <TabsContainer activeIndex={2}>
           <Tabs>
-            <Tab isDisabled>This is tab 1</Tab>
+            <Tab disabled>This is tab 1</Tab>
             <Tab>This is tab 2</Tab>
             <Tab>This is tab 3</Tab>
           </Tabs>
@@ -762,7 +762,7 @@ describe('Tabs', () => {
           <Tabs>
             <Tab>This is tab 1</Tab>
             <Tab>This is tab 2</Tab>
-            <Tab isDisabled>This is tab 3</Tab>
+            <Tab disabled>This is tab 3</Tab>
           </Tabs>
 
           <TabPanelsContainer>

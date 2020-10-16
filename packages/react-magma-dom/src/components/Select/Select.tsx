@@ -24,7 +24,7 @@ export function Select<T>(props: SelectInterface<T>) {
     labelText,
     initialSelectedItem,
     isClearable,
-    isDisabled,
+    disabled,
     isInverse,
     onBlur,
     onFocus,
@@ -104,7 +104,7 @@ export function Select<T>(props: SelectInterface<T>) {
   const { ClearIndicator } = defaultComponents({ ...customComponents });
 
   const toggleButtonProps = getToggleButtonProps({
-    disabled: isDisabled,
+    disabled: disabled,
     onBlur,
     onKeyDown: event => {
       if (
@@ -149,7 +149,7 @@ export function Select<T>(props: SelectInterface<T>) {
         ariaDescribedBy={ariaDescribedBy}
         toggleButtonProps={toggleButtonProps}
         hasError={hasError}
-        isDisabled={isDisabled}
+        disabled={disabled}
         isInverse={isInverse}
         style={inputStyle}
       >

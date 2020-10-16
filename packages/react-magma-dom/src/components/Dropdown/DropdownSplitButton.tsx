@@ -12,7 +12,7 @@ export interface DropdownSplitButtonProps extends ButtonStyles {
   children?: any;
   icon?: React.ReactElement<IconButtonProps>;
   id?: string;
-  isDisabled?: boolean;
+  disabled?: boolean;
   onClick?: () => void;
 }
 
