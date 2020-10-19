@@ -17,6 +17,7 @@
     "bump:patch": "lerna version --conventional-commits",
     "bump:pre": "lerna version --conventional-commits --conventional-prerelease --yes",
     "bump:release": "lerna version --conventional-commits --conventional-graduate --yes",
+    "check:spelling": "cspell --config=.cspell.json packages/**/*.{md,ts,js,mdx,tsx,jsx}",
     "publish-all": "lerna exec --scope react-magma-dom 'npm publish'",
     "prettier": "prettier --write --loglevel warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\""
   },
@@ -56,6 +57,9 @@
     "babel-plugin-polished": "^1.1.0",
     "commitizen": "2.10.1",
     "core-js": "^3.1.4",
+    "cspell": "^4.1.0",
+    "cspell-dict-es-es": "^1.0.19",
+    "cspell-dict-lorem-ipsum": "^1.0.13",
     "cz-conventional-changelog": "2.1.0",
     "eslint": "^7.9.0",
     "eslint-config-cengage": "^2.0.0",
