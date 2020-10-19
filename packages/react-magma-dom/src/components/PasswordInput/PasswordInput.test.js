@@ -177,8 +177,8 @@ describe('sizes', () => {
     const label = container.querySelector('label');
     const input = getByLabelText(labelText);
 
-    expect(label).toHaveStyleRule('font-size', '14px');
-    expect(input).toHaveStyleRule('font-size', '16px');
+    expect(label).toHaveStyleRule('font-size', magma.typeScale.size02.fontSize);
+    expect(input).toHaveStyleRule('font-size', magma.typeScale.size03.fontSize);
     expect(input).toHaveStyleRule('height', '40px');
   });
 
@@ -191,9 +191,9 @@ describe('sizes', () => {
     const label = container.querySelector('label');
     const input = getByLabelText(labelText);
 
-    expect(label).toHaveStyleRule('font-size', '16px');
+    expect(label).toHaveStyleRule('font-size', magma.typeScale.size03.fontSize);
 
-    expect(input).toHaveStyleRule('font-size', '18px');
+    expect(input).toHaveStyleRule('font-size', magma.typeScale.size04.fontSize);
     expect(input).toHaveStyleRule('height', '58px');
     expect(input).toHaveStyleRule('padding', '0 15px');
   });

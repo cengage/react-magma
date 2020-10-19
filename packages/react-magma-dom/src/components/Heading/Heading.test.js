@@ -23,7 +23,10 @@ describe('Heading', () => {
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
-    expect(heading).toHaveStyleRule('font-size', '28px');
+    expect(heading).toHaveStyleRule(
+      'font-size',
+      magma.typeScale.size07.fontSize
+    );
     expect(heading).toHaveStyleRule('margin', '0 0 16px');
   });
 
@@ -34,7 +37,10 @@ describe('Heading', () => {
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
-    expect(heading).toHaveStyleRule('font-size', '24px');
+    expect(heading).toHaveStyleRule(
+      'font-size',
+      magma.typeScale.size06.fontSize
+    );
     expect(heading).toHaveStyleRule('margin', '48px 0 16px');
   });
 
@@ -45,7 +51,10 @@ describe('Heading', () => {
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
-    expect(heading).toHaveStyleRule('font-size', '20px');
+    expect(heading).toHaveStyleRule(
+      'font-size',
+      magma.typeScale.size05.fontSize
+    );
     expect(heading).toHaveStyleRule('margin', '40px 0 16px');
   });
 
@@ -56,7 +65,10 @@ describe('Heading', () => {
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
-    expect(heading).toHaveStyleRule('font-size', '18px');
+    expect(heading).toHaveStyleRule(
+      'font-size',
+      magma.typeScale.size04.fontSize
+    );
     expect(heading).toHaveStyleRule('margin', '32px 0 16px');
   });
 
@@ -67,7 +79,10 @@ describe('Heading', () => {
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
-    expect(heading).toHaveStyleRule('font-size', '18px');
+    expect(heading).toHaveStyleRule(
+      'font-size',
+      magma.typeScale.size04.fontSize
+    );
     expect(heading).toHaveStyleRule('margin', '24px 0 16px');
   });
 
@@ -78,7 +93,10 @@ describe('Heading', () => {
 
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
-    expect(heading).toHaveStyleRule('font-size', '12px');
+    expect(heading).toHaveStyleRule(
+      'font-size',
+      magma.typeScale.size01.fontSize
+    );
     expect(heading).toHaveStyleRule('margin', '24px 0 8px');
   });
 
@@ -93,7 +111,10 @@ describe('Heading', () => {
 
     expect(container.querySelector('h6')).toBeInTheDocument();
     expect(heading).toHaveTextContent(headingText);
-    expect(heading).toHaveStyleRule('font-size', '28px');
+    expect(heading).toHaveStyleRule(
+      'font-size',
+      magma.typeScale.size07.fontSize
+    );
   });
 
   it('should render headings without margins styles', () => {
