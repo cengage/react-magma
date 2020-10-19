@@ -15,6 +15,7 @@ interface ItemsListProps<T> {
   isOpen?: boolean;
   items: T[];
   itemToString: (item: T) => string;
+  style?: React.CSSProperties;
 }
 
 const NoItemsMessage = styled.span`
@@ -32,6 +33,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
     itemToString,
     highlightedIndex,
     getItemProps,
+    style,
   } = props;
 
   const theme = React.useContext(ThemeContext);
@@ -39,7 +41,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
   const hasItems = items && items.length > 0;
 
   return (
-    <StyledCard hasDropShadow isOpen={isOpen}>
+    <StyledCard hasDropShadow isOpen={isOpen} style={style}>
       <StyledList isOpen={isOpen} {...getMenuProps()}>
         {isOpen && hasItems ? (
           items.map((item, index) => {
