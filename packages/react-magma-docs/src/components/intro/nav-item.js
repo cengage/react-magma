@@ -10,8 +10,9 @@ const Item = styled.li`
   text-transform: uppercase;
 `;
 
-const Link = styled.a`
+const StyledLink = styled.button`
   background: rgba(0, 0, 0, 0);
+  border: none;
   border-bottom: 2px solid;
   border-color: ${props =>
     props.active ? props.theme.colors.pop04 : 'transparent'};
@@ -21,7 +22,9 @@ const Link = styled.a`
   font-size: 13px;
   line-height: 1.3em;
   padding: 9px 15px 7px;
+  text-align: left;
   text-decoration: none;
+  text-transform: inherit;
   transition: background 0.3s;
 
   &:hover,
@@ -49,20 +52,19 @@ const NavItem = ({ activeSection, section, number, onClick, text }) => (
   <ThemeContext.Consumer>
     {theme => (
       <Item>
-        <Link
+        <StyledLink
           active={activeSection === section}
-          href={`#${section}H`}
           onClick={() => {
             handleNavClick(section, onClick);
           }}
           theme={theme}
-        >
+	>
           <Num>{number}</Num>
           {text}
           {activeSection === number && (
             <VisuallyHidden>(selected)</VisuallyHidden>
           )}
-        </Link>
+        </StyledLink>
       </Item>
     )}
   </ThemeContext.Consumer>

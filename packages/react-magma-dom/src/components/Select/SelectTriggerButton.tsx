@@ -1,11 +1,11 @@
 import React from 'react';
-import { baseInputStyles } from '../BaseInput';
+import { inputBaseStyles } from '../InputBase';
 import { CaretDownIcon } from 'react-magma-icons';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '../../theme/styled';
 
-const StyledButton = styled.div<{ isDisabled?: boolean; hasError?: boolean }>`
-  ${baseInputStyles}
+const StyledButton = styled.div<{ disabled?: boolean; hasError?: boolean }>`
+  ${inputBaseStyles}
 
   align-items: center;
   display: flex;
@@ -26,7 +26,7 @@ interface SelectTriggerButtonInterface<T> {
   ariaDescribedBy?: string;
   children: React.ReactNode[];
   hasError?: boolean;
-  isDisabled?: boolean;
+  disabled?: boolean;
   isInverse?: boolean;
   ref?: any;
   style?: React.CSSProperties;
@@ -39,7 +39,7 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
     ariaDescribedBy,
     children,
     hasError,
-    isDisabled,
+    disabled,
     isInverse,
     style,
     toggleButtonProps,
@@ -52,12 +52,12 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
       aria-describedby={ariaDescribedBy}
       data-testid="selectTriggerButton"
       hasError={hasError}
-      isDisabled={isDisabled}
+      disabled={disabled}
       isInverse={isInverse}
       role="button"
       style={style}
       theme={theme}
-      tabIndex={isDisabled ? undefined : 0}
+      tabIndex={disabled ? undefined : 0}
     >
       <ChildrenContainer>{children}</ChildrenContainer>
       <CaretDownIcon size={10} style={{ flexShrink: 0 }} testId="caretDown" />

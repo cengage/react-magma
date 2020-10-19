@@ -1,14 +1,14 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { HyperLink } from '.';
+import { Hyperlink } from '.';
 
-describe('Hyper Link', () => {
+describe('Hyperlink', () => {
   it('should find element by testId', () => {
     const testId = 'test-id';
     const { getByTestId } = render(
-      <HyperLink to="https://www.google.com" testId={testId}>
+      <Hyperlink to="https://www.google.com" testId={testId}>
         Google
-      </HyperLink>
+      </Hyperlink>
     );
 
     expect(getByTestId(testId)).toBeInTheDocument();
@@ -16,7 +16,7 @@ describe('Hyper Link', () => {
 
   it('should render a basic anchor element', () => {
     const { getByText } = render(
-      <HyperLink to="https://www.google.com">Google</HyperLink>
+      <Hyperlink to="https://www.google.com">Google</Hyperlink>
     );
 
     expect(getByText(/google/i)).toBeInTheDocument();
@@ -28,7 +28,7 @@ describe('Hyper Link', () => {
 
   it('should render a basic anchor element with link styles', () => {
     const { getByText } = render(
-      <HyperLink to="https://www.google.com">Google</HyperLink>
+      <Hyperlink to="https://www.google.com">Google</Hyperlink>
     );
 
     const element = getByText(/google/i);
@@ -38,9 +38,9 @@ describe('Hyper Link', () => {
 
   it('should render an inverse anchor element', () => {
     const { getByText } = render(
-      <HyperLink isInverse to="https://www.google.com">
+      <Hyperlink isInverse to="https://www.google.com">
         Google
-      </HyperLink>
+      </Hyperlink>
     );
 
     const element = getByText(/google/i);
@@ -50,9 +50,9 @@ describe('Hyper Link', () => {
 
   it('should render an anchor element with default button styles', () => {
     const { getByText } = render(
-      <HyperLink styledAs="Button" to="https://www.google.com">
+      <Hyperlink styledAs="Button" to="https://www.google.com">
         Google
-      </HyperLink>
+      </Hyperlink>
     );
 
     const element = getByText(/google/i);
@@ -64,14 +64,14 @@ describe('Hyper Link', () => {
 
   it('should render an anchor element with passed in button styles', () => {
     const { getByText } = render(
-      <HyperLink
+      <Hyperlink
         styledAs="Button"
         size="large"
         shape="round"
         to="https://www.google.com"
       >
         Google
-      </HyperLink>
+      </Hyperlink>
     );
 
     const element = getByText(/google/i);
@@ -83,20 +83,20 @@ describe('Hyper Link', () => {
 
   it('should send back values when passed children as a function', () => {
     render(
-      <HyperLink to="https://www.google.com">
+      <Hyperlink to="https://www.google.com">
         {({ to }) => expect(to).toEqual('https://www.google.com')}
-      </HyperLink>
+      </Hyperlink>
     );
   });
 
   it('should compose css when styled as button for function children', () => {
     render(
-      <HyperLink styledAs="Button" to="https://www.google.com">
+      <Hyperlink styledAs="Button" to="https://www.google.com">
         {({ stylesClass, to }) => {
           expect(to).toEqual('https://www.google.com');
           expect(stylesClass).not.toBeNull();
         }}
-      </HyperLink>
+      </Hyperlink>
     );
   });
 });

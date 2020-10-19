@@ -1,14 +1,8 @@
-export { Alert, AlertVariant, AlertProps } from './components/Alert';
+export { Alert, AlertProps } from './components/Alert';
+export { AlertVariant } from './components/AlertBase';
 export { Announce, AnnounceProps } from './components/Announce';
 export { Badge, BadgeColor, BadgeProps } from './components/Badge';
 export { Banner, BannerProps } from './components/Banner';
-export {
-  BaseInput,
-  BaseInputProps,
-  InputIconPosition,
-  InputSize,
-  InputType,
-} from './components/BaseInput';
 export { Breadcrumb, BreadcrumbProps } from './components/Breadcrumb';
 export { BreadcrumbItem } from './components/Breadcrumb/Item';
 export {
@@ -50,7 +44,7 @@ export { DropdownButton } from './components/Dropdown/DropdownButton';
 export { FormGroup, FormGroupProps } from './components/FormGroup';
 export { Heading, HeadingProps } from './components/Heading';
 export { HideAtBreakpoint } from './components/HideAtBreakpoint';
-export { HyperLink, HyperLinkProps } from './components/HyperLink';
+export { Hyperlink, HyperlinkProps } from './components/Hyperlink';
 export {
   IconButton,
   ButtonIconPosition,
@@ -61,6 +55,13 @@ export {
   IndeterminateCheckboxProps,
 } from './components/IndeterminateCheckbox';
 export { Input, InputProps } from './components/Input';
+export {
+  InputBase,
+  InputBaseProps,
+  InputIconPosition,
+  InputSize,
+  InputType,
+} from './components/InputBase';
 export { InputMessage } from './components/Input/InputMessage';
 export { Label } from './components/Label';
 export { LinkButton } from './components/LinkButton';

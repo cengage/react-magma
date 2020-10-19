@@ -17,6 +17,15 @@ describe('VisuallyHidden', () => {
     expect(getByText(TEXT)).toHaveStyleRule('overflow', 'hidden');
   });
 
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <VisuallyHidden testId={testId}>Test Announce</VisuallyHidden>
+    );
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('Does not violate accessibility standards', () => {
     const { container } = render(<VisuallyHidden>{TEXT}</VisuallyHidden>);
 

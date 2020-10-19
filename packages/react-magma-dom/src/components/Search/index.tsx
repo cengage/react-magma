@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {
-  BaseInput,
+  InputBase,
   InputIconPosition,
   InputSize,
   InputType,
-} from '../BaseInput';
+} from '../InputBase';
 import { I18nContext } from '../../i18n';
 import { Search2Icon } from 'react-magma-icons';
 import { Spinner } from '../Spinner';
@@ -64,7 +64,7 @@ export const Search: React.FunctionComponent<SearchProps> = React.forwardRef(
     }
 
     return (
-      <BaseInput
+      <InputBase
         {...other}
         aria-label={labelText ? labelText : i18n.search.input.ariaLabel}
         icon={icon}

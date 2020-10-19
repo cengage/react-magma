@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import { CodeIcon, PaletteIcon } from 'react-magma-icons';
-import { HyperLink, ThemeContext } from 'react-magma-dom';
+import { Hyperlink, ThemeContext } from 'react-magma-dom';
 import IntroHeading from './intro-heading';
 import IntroSection from './intro-section';
 import NavItem from './nav-item';
@@ -103,7 +103,7 @@ export class IndexPageContent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeSection: 'sectionIntro',
+      activeSection: 'sectionIntro'
     };
 
     this.handleAnimateIn = this.handleAnimateIn.bind(this);
@@ -113,15 +113,18 @@ export class IndexPageContent extends React.Component {
   handleAnimateIn(id, v) {
     if (v.inViewport) {
       this.setState({
-        activeSection: id,
+        activeSection: id
       });
     }
   }
 
   handleNavClick(id) {
     this.setState({
-      activeSection: id,
+      activeSection: id
     });
+    const focused = document.querySelector(`#${id}H`);
+    focused.focus({ preventScroll: true });
+    window.scrollTo({ top: focused.offsetTop, behavior: 'smooth' });
   }
 
   render() {
@@ -193,7 +196,7 @@ export class IndexPageContent extends React.Component {
                   Cengage products.
                 </p>
                 <ButtonContainer theme={theme}>
-                  <HyperLink
+                  <Hyperlink
                     styledAs="Button"
                     isInverse
                     to="/api-intro/introduction"
@@ -208,9 +211,9 @@ export class IndexPageContent extends React.Component {
                         <span>Develop with React Magma</span>
                       </Link>
                     )}
-                  </HyperLink>
+                  </Hyperlink>
                   <br />
-                  <HyperLink
+                  <Hyperlink
                     styledAs="Button"
                     isInverse
                     to="/design-intro/introduction"
@@ -224,7 +227,7 @@ export class IndexPageContent extends React.Component {
                         <span>Design with React Magma</span>
                       </Link>
                     )}
-                  </HyperLink>
+                  </Hyperlink>
                 </ButtonContainer>
               </IntroSection>
 

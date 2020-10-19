@@ -3,6 +3,92 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.105](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.104...v2.0.0-beta.105) (2020-10-16)
+
+
+### Features
+
+* **alert-base:** create AlertBase component to share internally ([e2e2dfc](http://stash.cengage.com:7999/FRONT/react-magma/commits/e2e2dfcc9ace426aea82cc6102affe30e5500796))
+
+
+### BREAKING CHANGES
+
+* **alert-base:** removed undocumented props used only internally from Alert
+
+
+
+
+
+# [2.0.0-beta.104](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.103...v2.0.0-beta.104) (2020-10-16)
+
+
+### Features
+
+* **base-input:** BaseInput component renamed to InputBase ([8309338](http://stash.cengage.com:7999/FRONT/react-magma/commits/8309338873875d9fcc7baa537db0c44a49d37bcf))
+* **base-input:** move InputBase export for alphabetical context ([51651c0](http://stash.cengage.com:7999/FRONT/react-magma/commits/51651c071d3269c0d9fb7966cb42ad61c5cee6f2))
+
+
+### BREAKING CHANGES
+
+* **base-input:** BaseInput component name changed
+
+
+
+
+
+# [2.0.0-beta.103](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.102...v2.0.0-beta.103) (2020-10-16)
+
+
+### Features
+
+* **hyperlink:** Change name from HyperLink to Hyperlink ([5aba7dc](http://stash.cengage.com:7999/FRONT/react-magma/commits/5aba7dcef9c4af060bd373f46e45c94ad45eb6c9))
+
+
+### BREAKING CHANGES
+
+* **hyperlink:** component name change for Hyperlink
+
+
+
+
+
+# [2.0.0-beta.102](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.101...v2.0.0-beta.102) (2020-10-16)
+
+
+### Bug Fixes
+
+* **visuallyhidden:** add testid, also add testid to missing prop tables ([917bf1c](http://stash.cengage.com:7999/FRONT/react-magma/commits/917bf1c8feedc93c7c445016363054a45c213c5e))
+
+
+
+
+
+# [2.0.0-beta.101](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.100...v2.0.0-beta.101) (2020-10-16)
+
+**Note:** Version bump only for package react-magma-dom
+
+
+
+
+
+# [2.0.0-beta.100](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.99...v2.0.0-beta.100) (2020-10-16)
+
+
+### Features
+
+* **multi:** change isDisabled prop to disabled ([9d5c57b](http://stash.cengage.com:7999/FRONT/react-magma/commits/9d5c57bd802f9dcf7cac58deda60dd8843087457))
+* **radio-group:** isRequired prop renamed to required ([aae29e3](http://stash.cengage.com:7999/FRONT/react-magma/commits/aae29e3ffb6fb6c5235473d0d10d75b0f7157fac))
+
+
+### BREAKING CHANGES
+
+* **radio-group:** isRequired prop changed to required in RadioGroup
+* **multi:** prop name change
+
+
+
+
+
 # [2.0.0-beta.98](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.97...v2.0.0-beta.98) (2020-10-14)
 
 

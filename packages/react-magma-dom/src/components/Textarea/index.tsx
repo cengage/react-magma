@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { baseInputStyles } from '../BaseInput';
+import { inputBaseStyles } from '../InputBase';
 import { HiddenLabelText } from '../Input';
 import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';
@@ -29,7 +29,7 @@ const Container = styled.div`
 `;
 
 const StyledTextArea = styled.textarea<TextareaProps>`
-  ${baseInputStyles};
+  ${inputBaseStyles};
   height: 4.5em;
   padding: 5px 8px 0;
 `;

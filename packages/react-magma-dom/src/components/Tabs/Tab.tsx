@@ -14,7 +14,7 @@ export interface TabProps
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
   iconPosition?: TabsIconPosition;
   isActive?: boolean;
-  isDisabled?: boolean;
+  disabled?: boolean;
   isFullWidth?: boolean;
   isInverse?: boolean;
   orientation?: TabsOrientation;
@@ -201,7 +201,7 @@ export const StyledIcon = styled.span<{
 
 export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
   (props: TabProps, forwardedRef: React.Ref<any>) => {
-    const { children, icon, isDisabled, testId, ...rest } = props;
+    const { children, icon, disabled, testId, ...rest } = props;
     const { activeTabIndex } = React.useContext(TabsContainerContext);
     const { buttonRefArray, registerTabButton } = React.useContext(TabsContext);
     const ownRef = React.useRef<HTMLDivElement>();
@@ -255,7 +255,7 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
           {...rest}
           aria-selected={isActive}
           data-testid={testId}
-          disabled={isDisabled}
+          disabled={disabled}
           iconPosition={tabIconPosition}
           isActive={isActive}
           isInverse={isInverse}

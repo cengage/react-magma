@@ -1,6 +1,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
-import { Alert, AlertVariant } from '.';
+import { Alert } from '.';
+import { AlertVariant } from '../AlertBase';
 import { act, render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
@@ -54,7 +55,6 @@ describe('Alert', () => {
       @media (max-width:600px) {
         .emotion-3 {
           font-size: 14px;
-          line-height: 20px;
         }
       }
 
@@ -148,7 +148,6 @@ describe('Alert', () => {
       @media (max-width:600px) {
         .emotion-3 {
           font-size: 14px;
-          line-height: 20px;
         }
       }
 
@@ -327,7 +326,6 @@ describe('Alert', () => {
         @media (max-width:600px) {
           .emotion-3 {
             font-size: 14px;
-            line-height: 20px;
           }
         }
 
@@ -421,7 +419,6 @@ describe('Alert', () => {
         @media (max-width:600px) {
           .emotion-3 {
             font-size: 14px;
-            line-height: 20px;
           }
         }
 
@@ -559,7 +556,6 @@ describe('Alert', () => {
         @media (max-width:600px) {
           .emotion-3 {
             font-size: 14px;
-            line-height: 20px;
           }
         }
 
@@ -653,7 +649,6 @@ describe('Alert', () => {
         @media (max-width:600px) {
           .emotion-3 {
             font-size: 14px;
-            line-height: 20px;
           }
         }
 
@@ -791,7 +786,6 @@ describe('Alert', () => {
         @media (max-width:600px) {
           .emotion-3 {
             font-size: 14px;
-            line-height: 20px;
           }
         }
 
@@ -885,7 +879,6 @@ describe('Alert', () => {
         @media (max-width:600px) {
           .emotion-3 {
             font-size: 14px;
-            line-height: 20px;
           }
         }
 
@@ -1022,7 +1015,6 @@ describe('Alert', () => {
         @media (max-width:600px) {
           .emotion-3 {
             font-size: 14px;
-            line-height: 20px;
           }
         }
 
@@ -1116,7 +1108,6 @@ describe('Alert', () => {
         @media (max-width:600px) {
           .emotion-3 {
             font-size: 14px;
-            line-height: 20px;
           }
         }
 

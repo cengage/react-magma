@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link, StaticQuery, graphql, withPrefix } from 'gatsby';
 import { Location, Router } from '@reach/router';
 import './main-nav.css';
 import { AngleDownIcon } from 'react-magma-icons';
@@ -159,7 +159,7 @@ const MainNav = ({ ...props }) => (
                         </Link>
                         <Router>
                           <SubMenu
-                            path={node.fields.slug}
+                            path={withPrefix(node.fields.slug)}
                             headings={node.headings}
                             handleClick={props.handleClick}
                           />
@@ -180,7 +180,7 @@ const MainNav = ({ ...props }) => (
                         </Link>
                         <Router>
                           <SubMenu
-                            path={node.fields.slug}
+                            path={withPrefix(node.fields.slug)}
                             headings={node.headings}
                             handleClick={props.handleClick}
                           />
@@ -211,7 +211,7 @@ const MainNav = ({ ...props }) => (
                         </Link>
                         <Router>
                           <SubMenu
-                            path={node.fields.slug}
+                            path={withPrefix(node.fields.slug)}
                             headings={node.headings}
                             handleClick={props.handleClick}
                           />
@@ -229,7 +229,7 @@ const MainNav = ({ ...props }) => (
                         </Link>
                         <Router>
                           <SubMenu
-                            path={node.fields.slug}
+                            path={withPrefix(node.fields.slug)}
                             headings={node.headings}
                             handleClick={props.handleClick}
                           />

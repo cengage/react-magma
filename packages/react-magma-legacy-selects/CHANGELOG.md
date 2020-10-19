@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.105](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.104...v2.0.0-beta.105) (2020-10-16)
+
+**Note:** Version bump only for package react-magma-legacy-selects
+
+
+
+
+
+# [2.0.0-beta.104](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.103...v2.0.0-beta.104) (2020-10-16)
+
+**Note:** Version bump only for package react-magma-legacy-selects
+
+
+
+
+
+# [2.0.0-beta.103](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.102...v2.0.0-beta.103) (2020-10-16)
+
+**Note:** Version bump only for package react-magma-legacy-selects
+
+
+
+
+
+# [2.0.0-beta.102](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.101...v2.0.0-beta.102) (2020-10-16)
+
+**Note:** Version bump only for package react-magma-legacy-selects
+
+
+
+
+
+# [2.0.0-beta.101](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.100...v2.0.0-beta.101) (2020-10-16)
+
+**Note:** Version bump only for package react-magma-legacy-selects
+
+
+
+
+
+# [2.0.0-beta.100](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.99...v2.0.0-beta.100) (2020-10-16)
+
+**Note:** Version bump only for package react-magma-legacy-selects
+
+
+
+
+
 # [2.0.0-beta.98](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.97...v2.0.0-beta.98) (2020-10-14)
 
 **Note:** Version bump only for package react-magma-legacy-selects

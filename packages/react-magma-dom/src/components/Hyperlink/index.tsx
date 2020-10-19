@@ -13,7 +13,7 @@ interface anchorAttributesRemoveColor
 interface anchorAttributesRemoveType
   extends Omit<anchorAttributesRemoveColor, 'type'> {}
 
-export interface HyperLinkProps
+export interface HyperlinkProps
   extends ButtonStyles,
     anchorAttributesRemoveType {
   children: string | React.ReactNode | ((props: object) => React.ReactNode);
@@ -46,8 +46,8 @@ const linkStyles = props => css`
   }
 `;
 
-export const HyperLink: React.FunctionComponent<HyperLinkProps> = React.forwardRef(
-  (props: HyperLinkProps, ref: any) => {
+export const Hyperlink: React.FunctionComponent<HyperlinkProps> = React.forwardRef(
+  (props: HyperlinkProps, ref: any) => {
     const composedProps = buildPropsWithDefaultButtonStyles(props);
     const { children, to, styledAs, isInverse, testId, ...rest } = props;
 

@@ -508,7 +508,7 @@ describe('Combobox', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText } = render(
-      <MultiCombobox isMulti labelText={labelText} items={items} isDisabled />
+      <MultiCombobox isMulti labelText={labelText} items={items} disabled />
     );
 
     expect(getByLabelText(labelText, { selector: 'input' })).toHaveAttribute(

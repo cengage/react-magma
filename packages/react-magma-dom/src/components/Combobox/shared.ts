@@ -44,13 +44,13 @@ export function defaultOnInputValueChange(
   onInputChange,
   createLabel
 ) {
-  const { inputValue: baseInputValue, isOpen } = changes;
+  const { inputValue: inputBaseValue, isOpen } = changes;
 
   if (isOpen) {
     const inputValue =
-      typeof baseInputValue === 'string'
-        ? baseInputValue
-        : itemToString(baseInputValue);
+      typeof inputBaseValue === 'string'
+        ? inputBaseValue
+        : itemToString(inputBaseValue);
 
     const filteredItems = inputValue
       ? items.current

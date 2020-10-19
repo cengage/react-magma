@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { InputSize } from '../BaseInput';
+import { InputSize } from '../InputBase';
 
 export interface LabelProps
   extends React.LabelHTMLAttributes<HTMLLabelElement> {

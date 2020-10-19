@@ -19,7 +19,7 @@ export enum InputType {
   text = 'text', // default
 }
 
-export interface BaseInputProps
+export interface InputBaseProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   containerStyle?: React.CSSProperties;
   hasError?: boolean;
@@ -49,7 +49,7 @@ const InputWrapper = styled.div`
   position: relative;
 `;
 
-export const baseInputStyles = props => css`
+export const inputBaseStyles = props => css`
   background: ${props.theme.colors.neutral08};
   border: 1px solid;
   border-color: ${props.isInverse
@@ -132,8 +132,8 @@ export const baseInputStyles = props => css`
   `}
 `;
 
-const StyledInput = styled.input<BaseInputProps>`
-  ${baseInputStyles}
+const StyledInput = styled.input<InputBaseProps>`
+  ${inputBaseStyles}
 `;
 
 const IconWrapper = styled.span<{
@@ -182,8 +182,8 @@ function getIconSize(size) {
   }
 }
 
-export const BaseInput: React.FunctionComponent<BaseInputProps> = React.forwardRef(
-  (props: BaseInputProps, ref: React.Ref<HTMLInputElement>) => {
+export const InputBase: React.FunctionComponent<InputBaseProps> = React.forwardRef(
+  (props: InputBaseProps, ref: React.Ref<HTMLInputElement>) => {
     const {
       children,
       containerStyle,

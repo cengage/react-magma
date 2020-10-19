@@ -233,13 +233,13 @@ This is a simple example of Tab Components with custom switching logic
 
 ## Disabled Tabs
 
-If a `Tab` is `disabled` using the `isDisabled` prop, it will not be actionable. It will still appear in the menu, but will be styled to appear greyed out.
+If a `Tab` is `disabled` using the `disabled` prop, it will not be actionable. It will still appear in the menu, but will be styled to appear greyed out.
 
 ```.jsx
     <TabsContainer>
       <Tabs aria-label="Sample With Disabled Tabs" backgroundColor='#F7F7F7'>
         <Tab>Main page</Tab>
-        <Tab isDisabled>FAQ</Tab>
+        <Tab disabled>FAQ</Tab>
         <Tab>About us</Tab>
       </Tabs>
 
@@ -816,7 +816,7 @@ When using the `component` props in the `Tab` component we will disregard anythi
 
 <SimplePropsTable
   propertyValues={{
-    isDisabled: {
+    disabled: {
       type: {
         name: 'boolean'
       },

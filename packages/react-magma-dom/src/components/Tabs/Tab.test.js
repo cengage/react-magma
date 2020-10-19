@@ -13,13 +13,22 @@ describe('Tab', () => {
 
     const { getByTestId } = render(
       <Tabs>
-        <Tab testId={testId} ariaLabel="test">
-          Tab Text
-        </Tab>
+        <Tab testId={testId}>Tab Text</Tab>
       </Tabs>
     );
 
     expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
+  it('should apply the aria-label', () => {
+    const ariaLabel = 'Tab aria label';
+    const { getByLabelText } = render(
+      <Tabs>
+        <Tab aria-label={ariaLabel}>Tab Text</Tab>
+      </Tabs>
+    );
+
+    expect(getByLabelText(ariaLabel)).toBeInTheDocument();
   });
 
   it('should render children', () => {
@@ -62,7 +71,7 @@ describe('Tab', () => {
 
     const { getByTestId, rerender } = render(
       <Tabs>
-        <Tab testId={testId} ariaLabel="test" isDisabled={true}>
+        <Tab testId={testId} disabled={true}>
           Tab Text
         </Tab>
       </Tabs>
@@ -74,7 +83,7 @@ describe('Tab', () => {
 
     rerender(
       <Tabs>
-        <Tab testId={testId} ariaLabel="test" disabled={false}>
+        <Tab testId={testId} disabled={false}>
           Tab Text
         </Tab>
       </Tabs>
@@ -245,9 +254,7 @@ describe('Test for accessibility', () => {
     const { container } = render(
       <TabsContainer>
         <Tabs>
-          <Tab testId={testId} ariaLabel="test">
-            Tab Text
-          </Tab>
+          <Tab testId={testId}>Tab Text</Tab>
         </Tabs>
       </TabsContainer>
     );
