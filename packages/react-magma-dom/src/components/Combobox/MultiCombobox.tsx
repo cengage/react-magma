@@ -29,6 +29,7 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
     itemToString,
     labelStyle,
     labelText,
+    menuStyle,
     newItemTransform,
     onInputBlur,
     onInputChange,
@@ -318,6 +319,7 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
         isOpen={isOpen}
         items={getFilteredItems(displayItems)}
         itemToString={itemToString}
+        menuStyle={menuStyle}
       />
     </SelectContainer>
   );

@@ -30,6 +30,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
     itemToString,
     labelStyle,
     labelText,
+    menuStyle,
     newItemTransform,
     onInputBlur,
     onInputChange,
@@ -284,6 +285,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
         isOpen={isOpen}
         items={displayItems}
         itemToString={itemToString}
+        menuStyle={menuStyle}
       />
     </SelectContainer>
   );
