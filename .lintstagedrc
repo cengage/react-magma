@@ -6,5 +6,8 @@
   ],
   "packages/!(react-magma-docs)**/*.test.{ts,tsx}": [
     "jest --coverage=false --bail --findRelatedTests"
+  ],
+  "packages/**/*.{ts,tsx,md,mdx,js,jsx}": [
+    "cspell --config=.cspell.json"
   ]
 }
