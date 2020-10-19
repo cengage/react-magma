@@ -152,7 +152,7 @@ describe('Styled Button', () => {
           { target: ':active' }
         );
         expect(button).toHaveStyleRule('border-color', magma.colors.neutral05);
-        expect(button).toHaveStyleRule('color', magma.colors.neutral01);
+        expect(button).toHaveStyleRule('color', magma.colors.neutral);
       });
 
       it('success button', () => {
@@ -164,18 +164,18 @@ describe('Styled Button', () => {
         );
         const button = getByText(text);
 
-        expect(button).toHaveStyleRule('background', magma.colors.success01);
+        expect(button).toHaveStyleRule('background', magma.colors.success);
         expect(button).toHaveStyleRule(
           'background',
-          darken(0.1, magma.colors.success01),
+          darken(0.1, magma.colors.success),
           { target: ':hover' }
         );
         expect(button).toHaveStyleRule(
           'background',
-          darken(0.2, magma.colors.success01),
+          darken(0.2, magma.colors.success),
           { target: ':active' }
         );
-        expect(button).toHaveStyleRule('border-color', magma.colors.success01);
+        expect(button).toHaveStyleRule('border-color', magma.colors.success);
         expect(button).toHaveStyleRule('color', magma.colors.neutral08);
       });
 
@@ -257,7 +257,7 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule('background', magma.colors.neutral08);
         expect(button).toHaveStyleRule('border-color', magma.colors.neutral08);
-        expect(button).toHaveStyleRule('color', magma.colors.neutral01);
+        expect(button).toHaveStyleRule('color', magma.colors.neutral);
       });
 
       it('success button', () => {
@@ -271,7 +271,7 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule('background', magma.colors.neutral08);
         expect(button).toHaveStyleRule('border-color', magma.colors.neutral08);
-        expect(button).toHaveStyleRule('color', magma.colors.success01);
+        expect(button).toHaveStyleRule('color', magma.colors.success);
       });
 
       it('danger button', () => {

@@ -15,7 +15,7 @@ const StyledTabPanel = styled.div<{
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral08
-      : props.theme.colors.neutral01};
+      : props.theme.colors.neutral};
   flex: 1;
   padding: 20px;
 `;

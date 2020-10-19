@@ -47,7 +47,7 @@ const List = styled.ol`
   display: none;
 
   @media (min-width: ${props => props.theme.breakpoints.medium}px) {
-    background-color: ${props => props.theme.colors.foundation01};
+    background-color: ${props => props.theme.colors.foundation};
     display: flex;
     left: 0;
     list-style: none;
@@ -82,7 +82,7 @@ const ButtonContainer = styled.div`
 `;
 
 const Footer = styled.footer`
-  background: ${props => props.theme.colors.foundation01};
+  background: ${props => props.theme.colors.foundation};
   padding: 80px 10%;
   position: relative;
   text-align: center;

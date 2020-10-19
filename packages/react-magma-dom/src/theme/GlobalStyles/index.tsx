@@ -32,7 +32,7 @@ function getStyles(theme) {
 
     body {
       background: ${theme.colors.neutral08};
-      color: ${theme.colors.neutral01};
+      color: ${theme.colors.neutral};
       font-family: ${theme.bodyFont};
       font-style: normal;
       font-weight: 400;

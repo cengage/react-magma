@@ -89,11 +89,11 @@ const StyledTooltipInner = styled.div<{
   background: ${props =>
     props.isInverse
       ? props.theme.colors.neutral08
-      : props.theme.colors.neutral01};
+      : props.theme.colors.neutral};
   border-radius: 3px;
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral01
+      ? props.theme.colors.neutral
       : props.theme.colors.neutral08};
   display: inline-block;
   padding: 7px 10px;
@@ -105,26 +105,26 @@ const StyledTooltipInner = styled.div<{
       props.position === 'left' || props.position === 'right'
         ? props.isInverse
           ? props.theme.colors.neutral08
-          : props.theme.colors.neutral01
+          : props.theme.colors.neutral
         : 'transparent'};
     border-right-color: ${props =>
       props.position === 'left' || props.position === 'right'
         ? props.isInverse
           ? props.theme.colors.neutral08
-          : props.theme.colors.neutral01
+          : props.theme.colors.neutral
         : 'transparent'};
     border-top-color: ${props =>
       props.position === 'left' || props.position === 'right'
         ? 'transparent'
         : props.isInverse
         ? props.theme.colors.neutral08
-        : props.theme.colors.neutral01};
+        : props.theme.colors.neutral};
     border-bottom-color: ${props =>
       props.position === 'left' || props.position === 'right'
         ? 'transparent'
         : props.isInverse
         ? props.theme.colors.neutral08
-        : props.theme.colors.neutral01};
+        : props.theme.colors.neutral};
     border-style: solid;
     content: '';
     height: 0;

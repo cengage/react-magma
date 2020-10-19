@@ -90,7 +90,7 @@ const Track = styled.span<{
 
   &:before {
     // active state
-    background: ${props => props.theme.colors.neutral01};
+    background: ${props => props.theme.colors.neutral};
     border-radius: 50%;
     content: '';
     display: block;

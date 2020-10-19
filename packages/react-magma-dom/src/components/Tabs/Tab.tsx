@@ -142,7 +142,7 @@ export const TabStyles = props => css`
       ? ''
       : props.isInverse
       ? props.theme.colors.shade02
-      : props.theme.colors.shade01};
+      : props.theme.colors.shade};
     color: ${props.isActive
       ? props.isInverse
         ? props.theme.colors.neutral08

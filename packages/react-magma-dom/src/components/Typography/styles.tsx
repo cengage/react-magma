@@ -18,7 +18,7 @@ export const colorStyles = props => css`
     ? props.theme.colors.neutral08
     : props.contextVariant === 'expressive'
     ? props.theme.colors.foundation02
-    : props.theme.colors.neutral01};
+    : props.theme.colors.neutral};
 
   ${props.color === TypographyColor.danger &&
   !props.isInverse &&
@@ -29,7 +29,7 @@ export const colorStyles = props => css`
   ${props.color === TypographyColor.success &&
   !props.isInverse &&
   css`
-    color: ${props.theme.colors.success01};
+    color: ${props.theme.colors.success};
   `}
 
 ${props.color === TypographyColor.subdued &&

@@ -30,7 +30,7 @@ function buildProgressBarBackground(props) {
     case 'pop02':
       return props.theme.colors.pop02;
     case 'success':
-      return props.theme.colors.success01;
+      return props.theme.colors.success;
 
     default:
       return props.isInverse

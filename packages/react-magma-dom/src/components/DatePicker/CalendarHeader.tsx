@@ -31,7 +31,7 @@ const CalendarIconButton = styled.div<{ next?: boolean }>`
 
 const CalendarHeaderText = styled.div`
   caption-side: initial;
-  color: ${props => props.theme.colors.neutral01};
+  color: ${props => props.theme.colors.neutral};
   font-size: ${props => props.theme.typeScale.size04.fontSize};
   line-height: ${props => props.theme.typeScale.size04.lineHeight};
   order: 1;

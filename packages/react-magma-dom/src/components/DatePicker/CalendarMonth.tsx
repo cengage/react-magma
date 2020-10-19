@@ -39,7 +39,7 @@ const Table = styled.table`
 
 const Th = styled.th`
   border: 0;
-  color: $ ${props => props.theme.colors.neutral01};
+  color: $ ${props => props.theme.colors.neutral};
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   font-weight: normal;

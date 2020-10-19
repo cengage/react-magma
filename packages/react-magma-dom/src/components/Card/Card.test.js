@@ -110,7 +110,7 @@ describe('Card', () => {
     const card = getByText(TEXT);
 
     expect(card).toHaveStyleRule('padding-left', '5px');
-    expect(card).toHaveStyleRule('background', magma.colors.success01, {
+    expect(card).toHaveStyleRule('background', magma.colors.success, {
       target: ':before',
     });
   });

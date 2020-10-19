@@ -13,7 +13,7 @@ const IndexPage = () => (
           styles={css`
             @import url('https://fonts.googleapis.com/css?family=Abel&display=swap');
             .content {
-              background: ${theme.colors.foundation01};
+              background: ${theme.colors.foundation};
               color: ${theme.colors.neutral08};
               padding: 0;
               overflow: hidden;

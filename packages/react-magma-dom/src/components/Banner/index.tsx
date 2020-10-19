@@ -20,7 +20,7 @@ const StyledBanner = styled.div<AlertProps>`
   background: ${props => buildAlertBackground(props)};
   color: ${props =>
     props.variant === 'warning'
-      ? props.theme.colors.neutral01
+      ? props.theme.colors.neutral
       : props.theme.colors.neutral08};
   display: flex;
   font-size: ${props => props.theme.typeScale.size03.fontSize};
@@ -64,9 +64,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
 }>`
   border-radius: 0;
   color: ${({ alertVariant, theme }) =>
-    alertVariant === 'warning'
-      ? theme.colors.neutral01
-      : theme.colors.neutral08};
+    alertVariant === 'warning' ? theme.colors.neutral : theme.colors.neutral08};
   height: calc(100% - 6px);
   margin: 3px;
   padding: 0 15px;
@@ -76,7 +74,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
     outline: 2px dotted
       ${({ alertVariant, theme }) =>
         alertVariant === 'warning'
-          ? theme.colors.neutral01
+          ? theme.colors.neutral
           : theme.colors.neutral08};
     outline-offset: 0 !important;
   }
@@ -87,7 +85,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
       &:before {
         background: ${({ alertVariant, theme }) =>
           alertVariant === 'warning'
-            ? theme.colors.neutral01
+            ? theme.colors.neutral
             : theme.colors.neutral08};
         opacity: 0.15;
       }

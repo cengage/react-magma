@@ -29,7 +29,7 @@ export enum TypographyVisualStyle {
   headingMedium = 'headingMedium',
   headingSmall = 'headingSmall',
   headingXSmall = 'headingXSmall',
-  heading2XSmall = 'headingXSmall',
+  heading2XSmall = 'heading2XSmall',
   bodyLarge = 'bodyLarge',
   bodyMedium = 'bodyMedium',
   bodySmall = 'bodySmall',

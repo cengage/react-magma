@@ -25,7 +25,7 @@ const StyledItem = styled.div<{
   color: ${props =>
     props.disabled
       ? props.theme.colors.disabledText
-      : props.theme.colors.neutral01};
+      : props.theme.colors.neutral};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   display: flex;
   line-height: 20px;

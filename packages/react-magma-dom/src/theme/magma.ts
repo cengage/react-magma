@@ -2,7 +2,7 @@ export interface Colors {
   primary: string;
   focus: string;
   focusInverse: string;
-  foundation01: string;
+  foundation: string;
   foundation02: string;
   foundation03: string;
   foundation04: string;
@@ -12,12 +12,12 @@ export interface Colors {
   pop04: string;
   pop05: string;
   pop06: string;
-  success01: string;
+  success: string;
   success02: string;
   successInverse: string;
   danger: string;
   dangerInverse: string;
-  neutral01: string;
+  neutral: string;
   neutral02: string;
   neutral03: string;
   neutral04: string;
@@ -28,12 +28,12 @@ export interface Colors {
   disabledText: string;
   disabledInverseText: string;
   toggleBoxShadow: string;
-  shade01: string;
+  shade: string;
   shade02: string;
-  tint01: string;
+  tint: string;
   tint02: string;
   tint03: string;
-  tone01: string;
+  tone: string;
   tone02: string;
 }
 
@@ -174,7 +174,7 @@ export const magma = {
     primary: '#006298', // link color blue
     focus: '#027EE1',
     focusInverse: 'rgba(255,255,255,0.7)',
-    foundation01: '#00263E',
+    foundation: '#00263E',
     foundation02: '#003865',
     foundation03: '#00A9E0',
     foundation04: '#71C5E8',
@@ -184,12 +184,12 @@ export const magma = {
     pop04: '#FFC72C',
     pop05: '#92278F',
     pop06: '#007A6D',
-    success01: '#3A8200',
+    success: '#3A8200',
     success02: '#48A200',
     successInverse: '#91CF60',
     danger: '#C61D23',
     dangerInverse: '#F59295',
-    neutral01: '#3F3F3F', // main dark grey text color
+    neutral: '#3F3F3F', // main dark grey text color
     neutral02: '#575757',
     neutral03: '#727272',
     neutral04: '#8f8f8f', // lightest gray that meets 3:1 contrast ratio
@@ -201,13 +201,13 @@ export const magma = {
     disabledInverseText: 'rgba(255,255,255,0.25)',
     toggleBoxShadow:
       '0 2px 2px -1px rgba(0, 0, 0, 0.3), 0 0 4px 0 rgba(0, 0, 0, 0.24),0 0 5px 0 rgba(0, 0, 0, 0.22)',
-    shade01: 'rgba(0,0,0,0.05)',
+    shade: 'rgba(0,0,0,0.05)',
     shade02: 'rgba(0,0,0,0.3)',
-    tint01: 'rgba(255,255,255,0.05)',
+    tint: 'rgba(255,255,255,0.05)',
     tint02: 'rgba(255,255,255,0.1)',
     tint03: 'rgba(255,255,255,0.1)',
     tint04: 'rgba(255,255,255,0.4)',
-    tone01: 'rgba(63,63,63,0.07)',
+    tone: 'rgba(63,63,63,0.07)',
     tone02: 'rgba(63,63,63,0.1)',
   },
 

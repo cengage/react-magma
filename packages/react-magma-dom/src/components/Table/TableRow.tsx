@@ -24,8 +24,8 @@ const StyledTableRow = styled.tr<{
     background: ${props =>
       props.hasZebraStripes
         ? props.isInverse
-          ? props.theme.colors.tint01
-          : props.theme.colors.tone01
+          ? props.theme.colors.tint
+          : props.theme.colors.tone
         : 'none'};
   }
 

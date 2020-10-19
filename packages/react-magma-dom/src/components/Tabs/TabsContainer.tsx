@@ -12,7 +12,7 @@ const StyledTabsContainer = styled.div<{
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral08
-      : props.theme.colors.neutral01};
+      : props.theme.colors.neutral};
   display: flex;
   flex-wrap: wrap;
   position: relative;

@@ -56,7 +56,7 @@ export const inputBaseStyles = props => css`
     ? props.theme.colors.neutral08
     : props.theme.colors.neutral03};
   border-radius: 4px;
-  color: ${props.theme.colors.neutral01};
+  color: ${props.theme.colors.neutral};
   display: block;
   font-size: ${props.theme.typeScale.size03.fontSize};
   line-height: ${props.theme.typeScale.size03.lineHeight};
@@ -140,7 +140,7 @@ const IconWrapper = styled.span<{
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
 }>`
-  color: ${props => props.theme.colors.neutral01};
+  color: ${props => props.theme.colors.neutral};
   left: ${props => (props.iconPosition === 'left' ? '12px' : 'auto')};
   right: ${props => (props.iconPosition === 'right' ? '12px' : 'auto')};
   position: absolute;

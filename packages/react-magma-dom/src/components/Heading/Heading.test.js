@@ -317,7 +317,7 @@ describe('Heading', () => {
       );
       const heading = getByText(headingText);
 
-      expect(heading).toHaveStyleRule('color', magma.colors.neutral01);
+      expect(heading).toHaveStyleRule('color', magma.colors.neutral);
       expect(heading).toHaveStyleRule(
         'font-family',
         magma.headingNarrativeFont

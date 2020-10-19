@@ -290,7 +290,7 @@ describe('Alert', () => {
     expect(container.querySelector('circle')).toBeInTheDocument();
     expect(container.querySelector('circle')).toHaveAttribute(
       'stroke',
-      magma.colors.neutral01
+      magma.colors.neutral
     );
   });
 
