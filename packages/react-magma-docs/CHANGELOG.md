@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.106](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.105...v2.0.0-beta.106) (2020-10-19)
+
+
+### Bug Fixes
+
+* **docs:** add missing colon ([839464e](http://stash.cengage.com:7999/FRONT/react-magma/commits/839464e74c14d9206c68179ecd8310690e61b7a0))
+
+
+
+
+
 # [2.0.0-beta.105](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.104...v2.0.0-beta.105) (2020-10-16)
 
 
