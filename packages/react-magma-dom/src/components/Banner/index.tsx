@@ -1,12 +1,8 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import isPropValid from '@emotion/is-prop-valid';
-import {
-  AlertProps,
-  AlertVariant,
-  buildAlertBackground,
-  VARIANT_ICON,
-} from '../Alert';
+import { AlertProps } from '../Alert';
+import { AlertVariant, buildAlertBackground, VARIANT_ICON } from '../AlertBase';
 import { CrossIcon } from 'react-magma-icons';
 import { Button, ButtonSize, ButtonVariant, ButtonColor } from '../Button';
 import { IconButton } from '../IconButton';

@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.105](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.104...v2.0.0-beta.105) (2020-10-16)
+
+
+### Features
+
+* **alert-base:** create AlertBase component to share internally ([e2e2dfc](http://stash.cengage.com:7999/FRONT/react-magma/commits/e2e2dfcc9ace426aea82cc6102affe30e5500796))
+
+
+### BREAKING CHANGES
+
+* **alert-base:** removed undocumented props used only internally from Alert
+
+
+
+
+
+# [2.0.0-beta.104](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.103...v2.0.0-beta.104) (2020-10-16)
+
+
+### Features
+
+* **base-input:** BaseInput component renamed to InputBase ([8309338](http://stash.cengage.com:7999/FRONT/react-magma/commits/8309338873875d9fcc7baa537db0c44a49d37bcf))
+* **base-input:** move InputBase export for alphabetical context ([51651c0](http://stash.cengage.com:7999/FRONT/react-magma/commits/51651c071d3269c0d9fb7966cb42ad61c5cee6f2))
+
+
+### BREAKING CHANGES
+
+* **base-input:** BaseInput component name changed
+
+
+
+
+
 # [2.0.0-beta.103](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.102...v2.0.0-beta.103) (2020-10-16)
 
 
