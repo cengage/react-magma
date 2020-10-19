@@ -13,7 +13,7 @@ import { ButtonColor, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { CrossIcon } from 'react-magma-icons';
 import { Heading } from '../Heading';
-import { TypographySize } from '../Typography';
+import { TypographyVisualStyle } from '../Typography';
 
 import { omit, useGenerateId, usePrevious } from '../../utils';
 
@@ -369,7 +369,7 @@ export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
                         id={headingId}
                         level={1}
                         ref={headingRef}
-                        size={TypographySize.headingSmall}
+                        visualStyle={TypographyVisualStyle.headingSmall}
                         tabIndex={-1}
                       >
                         {header}

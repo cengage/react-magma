@@ -17,12 +17,12 @@ describe('Paragraph', () => {
   it('should render a large paragraph with the correct styles', () => {
     const text = 'Test Paragraph';
     const { getByText } = render(
-      <Paragraph size="bodyLarge">{text}</Paragraph>
+      <Paragraph visualStyle="bodyLarge">{text}</Paragraph>
     );
 
     expect(getByText(text)).toHaveStyleRule(
       'font-size',
-      magma.typographySizes.bodyLarge.mobile.fontSize
+      magma.typographyVisualStyles.bodyLarge.mobile.fontSize
     );
 
     expect(getByText(text)).toHaveStyleRule('margin', '24px 0');
@@ -31,12 +31,12 @@ describe('Paragraph', () => {
   it('should render a medium paragraph with the correct styles', () => {
     const text = 'Test Paragraph';
     const { getByText } = render(
-      <Paragraph size="bodyMedium">{text}</Paragraph>
+      <Paragraph visualStyle="bodyMedium">{text}</Paragraph>
     );
 
     expect(getByText(text)).toHaveStyleRule(
       'font-size',
-      magma.typographySizes.bodyMedium.mobile.fontSize
+      magma.typographyVisualStyles.bodyMedium.mobile.fontSize
     );
 
     expect(getByText(text)).toHaveStyleRule('margin', '24px 0');
@@ -45,12 +45,12 @@ describe('Paragraph', () => {
   it('should render a small paragraph with the correct styles', () => {
     const text = 'Test Paragraph';
     const { getByText } = render(
-      <Paragraph size="bodySmall">{text}</Paragraph>
+      <Paragraph visualStyle="bodySmall">{text}</Paragraph>
     );
 
     expect(getByText(text)).toHaveStyleRule(
       'font-size',
-      magma.typographySizes.bodySmall.mobile.fontSize
+      magma.typographyVisualStyles.bodySmall.mobile.fontSize
     );
 
     expect(getByText(text)).toHaveStyleRule('margin', '16px 0');
@@ -59,12 +59,12 @@ describe('Paragraph', () => {
   it('should render an extra small paragraph with the correct styles', () => {
     const text = 'Test Paragraph';
     const { getByText } = render(
-      <Paragraph size="bodyXSmall">{text}</Paragraph>
+      <Paragraph visualStyle="bodyXSmall">{text}</Paragraph>
     );
 
     expect(getByText(text)).toHaveStyleRule(
       'font-size',
-      magma.typographySizes.bodyXSmall.mobile.fontSize
+      magma.typographyVisualStyles.bodyXSmall.mobile.fontSize
     );
 
     expect(getByText(text)).toHaveStyleRule('margin', '8px 0');
@@ -73,14 +73,14 @@ describe('Paragraph', () => {
   it('should render a paragraph with expressive styles', () => {
     const text = 'Test Paragraph';
     const { getByText } = render(
-      <Paragraph size="bodyLarge" variant="expressive">
+      <Paragraph visualStyle="bodyLarge" contextVariant="expressive">
         {text}
       </Paragraph>
     );
 
     expect(getByText(text)).toHaveStyleRule(
       'font-size',
-      magma.typographyExpressiveSizes.bodyLarge.mobile.fontSize
+      magma.typographyExpressiveVisualStyles.bodyLarge.mobile.fontSize
     );
     expect(getByText(text)).toHaveStyleRule(
       'font-family',
@@ -91,7 +91,7 @@ describe('Paragraph', () => {
   it('should render a paragraph with narrative styles', () => {
     const text = 'Test Paragraph';
     const { getByText } = render(
-      <Paragraph variant="narrative">{text}</Paragraph>
+      <Paragraph contextVariant="narrative">{text}</Paragraph>
     );
 
     expect(getByText(text)).toHaveStyleRule(
@@ -107,16 +107,16 @@ describe('Paragraph', () => {
     const text4 = 'Test Paragraph 4';
     const { getByText } = render(
       <>
-        <Paragraph noMargins size="bodyLarge">
+        <Paragraph noMargins visualStyle="bodyLarge">
           {text1}
         </Paragraph>
-        <Paragraph noMargins size="bodyMedium">
+        <Paragraph noMargins visualStyle="bodyMedium">
           {text2}
         </Paragraph>
-        <Paragraph noMargins size="bodySmall">
+        <Paragraph noMargins visualStyle="bodySmall">
           {text3}
         </Paragraph>
-        <Paragraph noMargins size="bodyXSmall">
+        <Paragraph noMargins visualStyle="bodyXSmall">
           {text4}
         </Paragraph>
       </>

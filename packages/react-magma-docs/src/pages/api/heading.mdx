@@ -28,56 +28,56 @@ The `Heading` component can be used with the `level` prop to render the HTML hea
 
 ## Size
 
-There are six relative sizes for the heading: `headingXLarge`, `headingLarge`, `headingMedium`, `headingSmall`, `headingXSmall` and `headingXXSmall`. By default each of the size-styles corresponds with the semantic HTML heading elements levels 1-6.  
-However any of these size-styles can be applied to of the HTML elements using the `size` prop.
+There are six visual styles for the heading: `headingXLarge`, `headingLarge`, `headingMedium`, `headingSmall`, `headingXSmall` and `heading2XSmall`. By default each of the visual styles corresponds with the semantic HTML heading elements levels 1-6.  
+However any of these visual styles can be applied to of the HTML elements using the `visualStyle` prop.
 
-Furthermore, the `size` prop can also accept the values for the four different paragraph sizes: `bodyLarge`, `bodyMedium`, `bodySmall`, and `bodyXSmall`. These are sizes are also used with the <Link to="/api/paragraph">Paragraph</Link> component.
+Furthermore, the `visualStyle` prop can also accept the values for the four different paragraph visual styles: `bodyLarge`, `bodyMedium`, `bodySmall`, and `bodyXSmall`. These are sizes are also used with the <Link to="/api/paragraph">Paragraph</Link> component.
 
 ```.jsx
   <>
-    <Heading level={2} size="headingXLarge">H2 styled as Heading XLarge</Heading>
-    <Heading level={2} size="headingLarge">H2 styled as Heading Large</Heading>
-    <Heading level={2} size="headingMedium">H2 styled as Heading Medium</Heading>
-    <Heading level={2} size="headingSmall">H2 styled as Heading Small</Heading>
-    <Heading level={2} size="headingXSmall">H2 styled as Heading XSmall</Heading>
-    <Heading level={2} size="headingXXSmall">H2 styled as Heading XXSmall</Heading>
+    <Heading level={2} visualStyle="headingXLarge">H2 styled as Heading XLarge</Heading>
+    <Heading level={2} visualStyle="headingLarge">H2 styled as Heading Large</Heading>
+    <Heading level={2} visualStyle="headingMedium">H2 styled as Heading Medium</Heading>
+    <Heading level={2} visualStyle="headingSmall">H2 styled as Heading Small</Heading>
+    <Heading level={2} visualStyle="headingXSmall">H2 styled as Heading XSmall</Heading>
+    <Heading level={2} visualStyle="heading2XSmall">H2 styled as Heading 2XSmall</Heading>
 
-    <Heading level={2} size="bodyLarge">H2 styled as Body Large</Heading>
-    <Heading level={2} size="bodyMedium">H2 styled as Body Medium</Heading>
-    <Heading level={2} size="bodySmall">H2 styled as Body Small</Heading>
-    <Heading level={2} size="bodyXSmall">H2 styled as Body XSmall</Heading>
+    <Heading level={2} visualStyle="bodyLarge">H2 styled as Body Large</Heading>
+    <Heading level={2} visualStyle="bodyMedium">H2 styled as Body Medium</Heading>
+    <Heading level={2} visualStyle="bodySmall">H2 styled as Body Small</Heading>
+    <Heading level={2} visualStyle="bodyXSmall">H2 styled as Body XSmall</Heading>
   </>
 ```
 
 ## Variant
 
-The `variant` prop can be used to set additional styles on a component. The `variant` can affect the font-size, or font-family. The default `variant` is `default`.
+The `contextVariant` prop can be used to set additional styles on a component. The `contextVariant` can affect the font-size, or font-family. The default `variant` is `default`.
 
-The `expressive` variant can be used in marketing contexts, which may require more variety than the default styles.
+The `expressive` context variant can be used in marketing contexts, which may require more variety than the default styles.
 
-The `narrative` variant can be used for content-heavy contexts, such as an e-reader.
+The `narrative` context variant can be used for content-heavy contexts, such as a blog post or an e-reader.
 
 ```.jsx
     <>
-      <Heading variant="expressive" level={1}>Expressive Heading 1</Heading>
-      <Heading variant="expressive" level={2}>Expressive Heading 2</Heading>
-      <Heading variant="expressive" level={3}>Expressive Heading 3</Heading>
-      <Heading variant="expressive" level={4}>Expressive Heading 4</Heading>
-      <Heading variant="expressive" level={5}>Expressive Heading 5</Heading>
-      <Heading variant="expressive" level={6}>Expressive Heading 6</Heading>
+      <Heading contextVariant="expressive" level={1}>Expressive Heading 1</Heading>
+      <Heading contextVariant="expressive" level={2}>Expressive Heading 2</Heading>
+      <Heading contextVariant="expressive" level={3}>Expressive Heading 3</Heading>
+      <Heading contextVariant="expressive" level={4}>Expressive Heading 4</Heading>
+      <Heading contextVariant="expressive" level={5}>Expressive Heading 5</Heading>
+      <Heading contextVariant="expressive" level={6}>Expressive Heading 6</Heading>
       <br/><br/>
-      <Heading variant="narrative" level={1}>Narrative Heading 1</Heading>
-      <Heading variant="narrative" level={2}>Narrative Heading 2</Heading>
-      <Heading variant="narrative" level={3}>Narrative Heading 3</Heading>
-      <Heading variant="narrative" level={4}>Narrative Heading 4</Heading>
-      <Heading variant="narrative" level={5}>Narrative Heading 5</Heading>
-      <Heading variant="narrative"  level={6}>Narrative Heading 6</Heading>
+      <Heading contextVariant="narrative" level={1}>Narrative Heading 1</Heading>
+      <Heading contextVariant="narrative" level={2}>Narrative Heading 2</Heading>
+      <Heading contextVariant="narrative" level={3}>Narrative Heading 3</Heading>
+      <Heading contextVariant="narrative" level={4}>Narrative Heading 4</Heading>
+      <Heading contextVariant="narrative" level={5}>Narrative Heading 5</Heading>
+      <Heading contextVariant="narrative"  level={6}>Narrative Heading 6</Heading>
     </>
 ```
 
 ## Color
 
-The `color` prop can be used to change the style or emphasis. It accepts the values: `success`, `danger` and `subdued`.
+The `color` prop can be used to change the color of the heading to convey additional meaning. It accepts the values: `success`, `danger` and `subdued`.
 
 ```.jsx
     <>
@@ -101,8 +101,19 @@ The `isInverse` property is an optional boolean that changes the colors so the c
 
 ```.jsx
   <div style={{ background : '#00263E', padding: '10px' }}>
-    <Heading isInverse level={2}>Heading 2</Heading>
-    <Heading isInverse level={2} color="subdued">Heading 2 Subdued</Heading>
+      <Heading isInverse level={2}>Heading 2</Heading>
+
+      <Heading color="success" isInverse level={2}>
+        Success Color Heading
+      </Heading>
+
+      <Heading color="danger" isInverse level={2}>
+        Danger Color Heading
+      </Heading>
+
+      <Heading isInverse level={2} color="subdued">
+        Heading 2 Subdued
+      </Heading>
   </div>
 ```
 
@@ -182,6 +193,19 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
         'The color of the component, helping to convey meaning or relative emphasis',
       defaultValue: 'default'
     },
+    contextVariant: {
+      type: {
+        name: 'enum',
+        options: [
+          'TypographyContextVariant.expressive',
+          'TypographyContextVariant.narrative',
+          'TypographyContextVariant.default'
+        ]
+      },
+      description:
+        'Additional styles for typography based on the context of the content',
+      defaultValue: 'default'
+    },
     isInverse: {
       type: {
         name: 'boolean'
@@ -209,27 +233,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
         'If true, the component will not have default top and bottom margins for the respective heading element and instead will a margin value of 0.',
       defaultValue: 'false'
     },
-    size: {
-      type: {
-        name: 'enum',
-        options: [
-          'TypographySize.headingXLarge',
-          'TypographySize.headingLarge',
-          'TypographySize.headingMedium',
-          'TypographySize.headingSmall',
-          'TypographySize.headingXSmall',
-          'TypographySize.headingXXSmall',
-          'TypographySize.bodyLarge',
-          'TypographySize.bodyMedium',
-          'TypographySize.bodySmall',
-          'TypographySize.bodyXSmall'
-        ]
-      },
-      required: false,
-      description: 'Applies the typography styles for the relative size',
-      defaultValue:
-        'Default relative size associated with the heading level 1-6'
-    },
     testId: {
       type: {
         name: 'string'
@@ -238,17 +241,26 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
       description:
         'Test ID attached to an internal element as `data-testid` for consumer testing'
     },
-    variant: {
+    visualStyle: {
       type: {
         name: 'enum',
         options: [
-          'TypographyVariant.expressive',
-          'TypographyVariant.narrative',
-          'TypographyVariant.default'
+          'TypographyVisualStyle.headingXLarge',
+          'TypographyVisualStyle.headingLarge',
+          'TypographyVisualStyle.headingMedium',
+          'TypographyVisualStyle.headingSmall',
+          'TypographyVisualStyle.headingXSmall',
+          'TypographyVisualStyle.heading2XSmall',
+          'TypographyVisualStyle.bodyLarge',
+          'TypographyVisualStyle.bodyMedium',
+          'TypographyVisualStyle.bodySmall',
+          'TypographyVisualStyle.bodyXSmall'
         ]
       },
-      description: 'Additional styles for typography',
-      defaultValue: 'default'
+      required: false,
+      description:
+        'Applies visual styles including font-size, font-weight, line-height and margins',
+      defaultValue: 'Default styles associated with the heading level 1-6'
     }
   }}
 />

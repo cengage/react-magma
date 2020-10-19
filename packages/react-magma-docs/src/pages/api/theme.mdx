@@ -118,7 +118,7 @@ Furthermore, font-size and line-height can be set in the theme for six heading l
 The theme also contains options for two additional typography variants for those heading and paragraph styles.
 
 ```
-typographySizes: {
+typographyVisualStyles: {
     headingXLarge: {
       mobile: typeScale.size07,
       desktop: typeScale.size08,
@@ -136,7 +136,7 @@ typographySizes: {
     },
     ...
 },
-typographyExpressiveSizes: {
+typographyExpressiveVisualStyles: {
     headingXLarge: {
       mobile: typeScale.size08,
       desktop: typeScale.size11,
@@ -154,7 +154,7 @@ typographyExpressiveSizes: {
     }, ...
 },
 },
-  typographyNarrativeSizes: {
+  typographyNarrativeVisualStyles: {
     headingXLarge: {
       mobile: typeScale.size07,
       desktop: typeScale.size08,
@@ -183,7 +183,7 @@ export default props => (
       DemoComponent,
       magma,
       amgam,
-      amgamDark,
+      amgamDark
     }}
   />
 );

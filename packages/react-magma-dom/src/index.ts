@@ -113,7 +113,7 @@ export { TimePicker, TimePickerProps } from './components/TimePicker';
 export {
   TypographyProps,
   TypographyColor,
-  TypographySize,
+  TypographyVisualStyle,
 } from './components/Typography';
 export {
   VisuallyHidden,

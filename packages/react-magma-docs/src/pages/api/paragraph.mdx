@@ -21,51 +21,51 @@ The `Paragraph` component is used to present paragraph content in a clear and co
 
 ## Sizes
 
-There are four relative sizes for the paragraph: `bodyLarge`, `bodyMedium`, `bodySmall`, and `bodyXSmall`.
-The default size is `bodyMedium`.
+There are four visual styles for the paragraph: `bodyLarge`, `bodyMedium`, `bodySmall`, and `bodyXSmall`, which determine the paragraph's relative font-size.
+The default `visualStyle` is `bodyMedium`.
 
-In addition to the paragraph relative sizes, the `sizes` prop can also accept the values for the different heading size-styles: `headingXLarge`, `headingLarge`, `headingMedium`, `headingSmall`, `headingXSmall` and `headingXXSmall`.
-These size-styles are also used with the <Link to="/api/heading">Heading</Link> component. The underlying HTML will still render as a `p` element.
+In addition to the paragraph visual styles, the `visualStyle` prop can also accept the values for the different heading visual styles: `headingXLarge`, `headingLarge`, `headingMedium`, `headingSmall`, `headingXSmall` and `heading2XSmall`.
+These visual styles are also used with the <Link to="/api/heading">Heading</Link> component. The underlying HTML will still render as a `p` element.
 
 ```.jsx
   <>
-    <Paragraph size="bodyLarge">
+    <Paragraph visualStyle="bodyLarge">
         Body large.  Lorem ipsum dolar sit amet.
     </Paragraph>
 
-    <Paragraph size="bodyMedium">
+    <Paragraph visualStyle="bodyMedium">
         Body medium (default).  Lorem ipsum dolar sit amet.
     </Paragraph>
 
-    <Paragraph size="bodySmall">
+    <Paragraph visualStyle="bodySmall">
         Body small.  Lorem ipsum dolar sit amet.
     </Paragraph>
 
-    <Paragraph size="bodyXSmall">
-        Body xsmall.  Lorem ipsum dolar sit amet.
+    <Paragraph visualStyle="bodyXSmall">
+        Body x-small.  Lorem ipsum dolar sit amet.
     </Paragraph>
 
-    <Paragraph size="headingXLarge">
+    <Paragraph visualStyle="headingXLarge">
         Heading large.  Lorem ipsum dolar sit amet.
     </Paragraph>
 
-    <Paragraph size="headingLarge">
+    <Paragraph visualStyle="headingLarge">
         Heading large.  Lorem ipsum dolar sit amet.
     </Paragraph>
 
-    <Paragraph size="headingMedium">
+    <Paragraph visualStyle="headingMedium">
         Heading large.  Lorem ipsum dolar sit amet.
     </Paragraph>
 
-    <Paragraph size="headingSmall">
+    <Paragraph visualStyle="headingSmall">
         Heading large.  Lorem ipsum dolar sit amet.
     </Paragraph>
 
-    <Paragraph size="headingXSmall">
+    <Paragraph visualStyle="headingXSmall">
         Heading large.  Lorem ipsum dolar sit amet.
     </Paragraph>
 
-    <Paragraph size="headingXXSmall">
+    <Paragraph visualStyle="heading2XSmall">
         Heading large.  Lorem ipsum dolar sit amet.
     </Paragraph>
   </>
@@ -82,35 +82,35 @@ The `narrative` variant can be used for content-heavy contexts, such as an e-rea
 ```.jsx
     <>
 
-        <Paragraph variant="expressive" size="bodyLarge">
+        <Paragraph contextVariant="expressive" visualStyle="bodyLarge">
             Body large.  Lorem ipsum dolar sit amet.
         </Paragraph>
 
-        <Paragraph variant="expressive" size="bodyMedium">
+        <Paragraph contextVariant="expressive" visualStyle="bodyMedium">
             Body medium (default).  Lorem ipsum dolar sit amet.
         </Paragraph>
 
-        <Paragraph variant="expressive" size="bodySmall">
+        <Paragraph contextVariant="expressive" visualStyle="bodySmall">
             Body small.  Lorem ipsum dolar sit amet.
         </Paragraph>
 
-        <Paragraph variant="expressive" size="bodyXSmall">
+        <Paragraph contextVariant="expressive" visualStyle="bodyXSmall">
             Body xsmall.  Lorem ipsum dolar sit amet.
         </Paragraph>
 
-        <Paragraph variant="narrative" size="bodyLarge">
+        <Paragraph contextVariant="narrative" visualStyle="bodyLarge">
             Body large.  Lorem ipsum dolar sit amet.
         </Paragraph>
 
-        <Paragraph variant="narrative" size="bodyMedium">
+        <Paragraph contextVariant="narrative" visualStyle="bodyMedium">
             Body medium (default).  Lorem ipsum dolar sit amet.
         </Paragraph>
 
-        <Paragraph variant="narrative" size="bodySmall">
+        <Paragraph contextVariant="narrative" visualStyle="bodySmall">
             Body small.  Lorem ipsum dolar sit amet.
         </Paragraph>
 
-        <Paragraph variant="narrative" size="bodyXSmall">
+        <Paragraph contextVariant="narrative" visualStyle="bodyXSmall">
             Body xsmall.  Lorem ipsum dolar sit amet.
         </Paragraph>
     </>
@@ -118,22 +118,19 @@ The `narrative` variant can be used for content-heavy contexts, such as an e-rea
 
 ## Color
 
-The `color` prop can be used to change the style or emphasis on the different variants.
-It accepts the values: `success`, `danger` and `subdued`.
-
-There are no inverse styles for the `success` or `danger` colors.
+The `color` prop can be used to change the color of the paragraph to convey additional meaning. It accepts the values: `success`, `danger` and `subdued`.
 
 ```.jsx
     <>
-        <Paragraph color="success" size="bodyLarge">
+        <Paragraph color="success">
             Success paragraph. Lorem ipsum dolar sit amet.
         </Paragraph>
 
-        <Paragraph color="subdued" size="bodyMedium">
+        <Paragraph color="subdued">
             Subdued paragraph.  Lorem ipsum dolar sit amet.
         </Paragraph>
 
-        <Paragraph color="danger" v="bodySmall">
+        <Paragraph color="danger">
             Danger paragraph.  Lorem ipsum dolar sit amet.
         </Paragraph>
     </>
@@ -143,15 +140,22 @@ There are no inverse styles for the `success` or `danger` colors.
 
 The `isInverse` property is an optional boolean that changes the colors so the component can appear on a dark background.
 
-There are no inverse styles for the `success` or `danger` colors.
-
 ```.jsx
     <div style={{background: '#003865', padding: '4px 16px'}}>
-         <Paragraph color="subdued" isInverse size="bodyMedium">
+         <Paragraph isInverse>
             Inverse paragraph.  Lorem ipsum dolar sit amet.
         </Paragraph>
-        <Paragraph isInverse size="bodyMedium">
+
+         <Paragraph color="success" isInverse>
+            Success inverse paragraph. Lorem ipsum dolar sit amet.
+        </Paragraph>
+
+        <Paragraph color="subdued" isInverse>
             Subdued inverse paragraph.  Lorem ipsum dolar sit amet.
+        </Paragraph>
+
+        <Paragraph color="danger" isInverse>
+            Danger inverse paragraph.  Lorem ipsum dolar sit amet.
         </Paragraph>
     </div>
 ```
@@ -162,20 +166,20 @@ By default, the `Paragraph` component includes margins on the top and bottom. Wh
 
 ```.jsx
   <>
-     <Paragraph noMargins size="bodyLarge">
+     <Paragraph noMargins visualStyle="bodyLarge">
             Body large.  Lorem ipsum dolar sit amet.
         </Paragraph>
 
-        <Paragraph noMargins size="bodyMedium">
+        <Paragraph noMargins visualStyle="bodyMedium">
             Body medium (default).  Lorem ipsum dolar sit amet.
         </Paragraph>
 
-        <Paragraph noMargins size="bodySmall">
+        <Paragraph noMargins visualStyle="bodySmall">
             Body small.  Lorem ipsum dolar sit amet.
         </Paragraph>
 
-        <Paragraph noMargins size="bodyXSmall">
-            Body xsmall.  Lorem ipsum dolar sit amet.
+        <Paragraph noMargins visualStyle="bodyXSmall">
+            Body x-small.  Lorem ipsum dolar sit amet.
         </Paragraph>
   </>
 ```
@@ -208,6 +212,19 @@ By default, the `Paragraph` component includes margins on the top and bottom. Wh
         'The color of the component, helping to convey meaning or relative emphasis',
       defaultValue: 'default'
     },
+    contextVariant: {
+      type: {
+        name: 'enum',
+        options: [
+          'TypographyContextVariant.expressive',
+          'TypographyContextVariant.narrative',
+          'TypographyContextVariant.default'
+        ]
+      },
+      description:
+        'Additional styles for typography based on the context of the content',
+      defaultValue: 'default'
+    },
     isInverse: {
       type: {
         name: 'boolean'
@@ -226,26 +243,6 @@ By default, the `Paragraph` component includes margins on the top and bottom. Wh
         'If true, the component will not have the default top and bottom margin and instead will a margin value of 0.',
       defaultValue: 'false'
     },
-    size: {
-      type: {
-        name: 'enum',
-        options: [
-          'TypographySize.headingXLarge',
-          'TypographySize.headingLarge',
-          'TypographySize.headingMedium',
-          'TypographySize.headingSmall',
-          'TypographySize.headingXSmall',
-          'TypographySize.headingXXSmall',
-          'TypographySize.bodyLarge',
-          'TypographySize.bodyMedium',
-          'TypographySize.bodySmall',
-          'TypographySize.bodyXSmall'
-        ]
-      },
-      required: false,
-      description: 'Applies the styles for the different relative sizes',
-      defaultValue: 'bodyMedium'
-    },
     testId: {
       type: {
         name: 'string'
@@ -254,17 +251,26 @@ By default, the `Paragraph` component includes margins on the top and bottom. Wh
       description:
         'Test ID attached to an internal element as `data-testid` for consumer testing'
     },
-    variant: {
+    visualStyle: {
       type: {
         name: 'enum',
         options: [
-          'TypographyVariant.expressive',
-          'TypographyVariant.narrative',
-          'TypographyVariant.default'
+          'TypographyVisualStyle.headingXLarge',
+          'TypographyVisualStyle.headingLarge',
+          'TypographyVisualStyle.headingMedium',
+          'TypographyVisualStyle.headingSmall',
+          'TypographyVisualStyle.headingXSmall',
+          'TypographyVisualStyle.heading2XSmall',
+          'TypographyVisualStyle.bodyLarge',
+          'TypographyVisualStyle.bodyMedium',
+          'TypographyVisualStyle.bodySmall',
+          'TypographyVisualStyle.bodyXSmall'
         ]
       },
-      description: 'Additional styles for typography',
-      defaultValue: 'default'
+      required: false,
+      description:
+        'Applies visual styles including font-size, font-weight, line-height and margins',
+      defaultValue: 'bodyMedium'
     }
   }}
 />

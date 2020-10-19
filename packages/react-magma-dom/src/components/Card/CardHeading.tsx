@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { Heading } from '../Heading';
-import { TypographyColor, TypographySize } from '../Typography';
+import { TypographyColor, TypographyVisualStyle } from '../Typography';
 
 export interface CardHeadingProps
   extends React.LabelHTMLAttributes<HTMLHeadingElement> {
@@ -25,7 +25,7 @@ export const CardHeading: React.FunctionComponent<CardHeadingProps> = (
       {...other}
       color={TypographyColor.default}
       level={headingLevel ? headingLevel : 4}
-      size={TypographySize.headingMedium}
+      visualStyle={TypographyVisualStyle.headingMedium}
       testId={props.testId}
     >
       {children}

@@ -14,7 +14,9 @@ export interface Colors {
   pop06: string;
   success01: string;
   success02: string;
+  successInverse: string;
   danger: string;
+  dangerInverse: string;
   neutral01: string;
   neutral02: string;
   neutral03: string;
@@ -43,13 +45,13 @@ export interface Breakpoints {
   xl: number;
 }
 
-export interface TypographySizes {
+export interface TypographyVisualStyles {
   headingXLarge: any;
   headingLarge: any;
   headingMedium: any;
   headingSmall: any;
   headingXSmall: any;
-  headingXXSmall: any;
+  heading2XSmall: any;
   bodyLarge: any;
   bodyMedium: any;
   bodySmall: any;
@@ -62,7 +64,7 @@ export interface TypographyExpressiveSizes {
   headingMedium: any;
   headingSmall: any;
   headingXSmall: any;
-  headingXXSmall: any;
+  heading2XSmall: any;
   bodyLarge: any;
   bodyMedium: any;
   bodySmall: any;
@@ -100,63 +102,63 @@ export interface ThemeInterface {
   headingExpressiveFont: string;
   headingNarrativeFont: string;
   typeScale: TypeScale;
-  typographySizes: TypographySizes;
-  typographyExpressiveSizes: TypographyExpressiveSizes;
+  typographyVisualStyles: TypographyVisualStyles;
+  typographyExpressiveVisualStyles: TypographyExpressiveSizes;
 }
 
 const typeScale = {
   size01: {
     fontSize: '12px',
-    lineHeight: '16px'
+    lineHeight: '16px',
   },
   size02: {
     fontSize: '14px',
-    lineHeight: '20px'
+    lineHeight: '20px',
   },
   size03: {
     fontSize: '16px',
-    lineHeight: '24px'
+    lineHeight: '24px',
   },
   size04: {
     fontSize: '18px',
-    lineHeight: '32px'
+    lineHeight: '32px',
   },
   size05: {
     fontSize: '20px',
-    lineHeight: '32px'
+    lineHeight: '32px',
   },
   size06: {
     fontSize: '24px',
-    lineHeight: '32px'
+    lineHeight: '32px',
   },
   size07: {
     fontSize: '28px',
-    lineHeight: '40px'
+    lineHeight: '40px',
   },
   size08: {
     fontSize: '32px',
-    lineHeight: '40px'
+    lineHeight: '40px',
   },
   size09: {
     fontSize: '36px',
-    lineHeight: '48px'
+    lineHeight: '48px',
   },
   size10: {
     fontSize: '42px',
-    lineHeight: '48px'
+    lineHeight: '48px',
   },
   size11: {
     fontSize: '48px',
-    lineHeight: '56px'
+    lineHeight: '56px',
   },
   size12: {
     fontSize: '54px',
-    lineHeight: '64px'
+    lineHeight: '64px',
   },
   size13: {
     fontSize: '60px',
-    lineHeight: '72px'
-  }
+    lineHeight: '72px',
+  },
 };
 
 export const magma = {
@@ -184,7 +186,9 @@ export const magma = {
     pop06: '#007A6D',
     success01: '#3A8200',
     success02: '#48A200',
+    successInverse: '#91CF60',
     danger: '#C61D23',
+    dangerInverse: '#F59295',
     neutral01: '#3F3F3F', // main dark grey text color
     neutral02: '#575757',
     neutral03: '#727272',
@@ -204,7 +208,7 @@ export const magma = {
     tint03: 'rgba(255,255,255,0.1)',
     tint04: 'rgba(255,255,255,0.4)',
     tone01: 'rgba(63,63,63,0.07)',
-    tone02: 'rgba(63,63,63,0.1)'
+    tone02: 'rgba(63,63,63,0.1)',
   },
 
   // breakpoints
@@ -213,153 +217,153 @@ export const magma = {
     small: 600,
     medium: 768,
     large: 1024,
-    xl: 1200
+    xl: 1200,
   },
 
   // Typography
   typeScale: typeScale,
-  typographySizes: {
+  typographyVisualStyles: {
     headingXLarge: {
       mobile: typeScale.size07,
       desktop: typeScale.size09,
-      fontWeight: 600
+      fontWeight: 600,
     },
     headingLarge: {
       mobile: typeScale.size06,
       desktop: typeScale.size07,
-      fontWeight: 600
+      fontWeight: 600,
     },
     headingMedium: {
       mobile: typeScale.size05,
       desktop: typeScale.size06,
-      fontWeight: 600
+      fontWeight: 600,
     },
     headingSmall: {
       mobile: typeScale.size04,
       desktop: typeScale.size05,
-      fontWeight: 600
+      fontWeight: 600,
     },
     headingXSmall: {
       mobile: typeScale.size04,
       desktop: typeScale.size04,
-      fontWeight: 600
+      fontWeight: 600,
     },
-    headingXXSmall: {
+    heading2XSmall: {
       mobile: typeScale.size01,
       desktop: typeScale.size01,
-      fontWeight: 700
+      fontWeight: 700,
     },
     bodyLarge: {
       mobile: typeScale.size04,
-      desktop: typeScale.size05
+      desktop: typeScale.size05,
     },
     bodyMedium: {
       mobile: typeScale.size03,
-      desktop: typeScale.size03
+      desktop: typeScale.size03,
     },
     bodySmall: {
       mobile: typeScale.size02,
-      desktop: typeScale.size02
+      desktop: typeScale.size02,
     },
     bodyXSmall: {
       mobile: typeScale.size01,
-      desktop: typeScale.size01
-    }
+      desktop: typeScale.size01,
+    },
   },
-  typographyExpressiveSizes: {
+  typographyExpressiveVisualStyles: {
     headingXLarge: {
       mobile: typeScale.size08,
       desktop: typeScale.size11,
-      fontWeight: 600
+      fontWeight: 600,
     },
     headingLarge: {
       mobile: typeScale.size07,
       desktop: typeScale.size09,
-      fontWeight: 300
+      fontWeight: 300,
     },
     headingMedium: {
       mobile: typeScale.size06,
       desktop: typeScale.size07,
-      fontWeight: 300
+      fontWeight: 300,
     },
     headingSmall: {
       mobile: typeScale.size05,
       desktop: typeScale.size06,
-      fontWeight: 300
+      fontWeight: 300,
     },
     headingXSmall: {
       mobile: typeScale.size04,
       desktop: typeScale.size05,
-      fontWeight: 300
+      fontWeight: 300,
     },
-    headingXXSmall: {
+    heading2XSmall: {
       mobile: typeScale.size03,
       desktop: typeScale.size03,
-      fontWeight: 700
+      fontWeight: 700,
     },
     bodyLarge: {
       mobile: typeScale.size05,
-      desktop: typeScale.size06
+      desktop: typeScale.size06,
     },
     bodyMedium: {
       mobile: typeScale.size03,
-      desktop: typeScale.size03
+      desktop: typeScale.size03,
     },
     bodySmall: {
       mobile: typeScale.size02,
-      desktop: typeScale.size02
+      desktop: typeScale.size02,
     },
     bodyXSmall: {
       mobile: typeScale.size01,
-      desktop: typeScale.size01
-    }
+      desktop: typeScale.size01,
+    },
   },
-  typographyNarrativeSizes: {
+  typographyNarrativeVisualStyles: {
     headingXLarge: {
       mobile: typeScale.size07,
       desktop: typeScale.size08,
-      fontWeight: 700
+      fontWeight: 700,
     },
     headingLarge: {
       mobile: typeScale.size06,
       desktop: typeScale.size07,
-      fontWeight: 700
+      fontWeight: 700,
     },
     headingMedium: {
       mobile: typeScale.size05,
       desktop: typeScale.size06,
-      fontWeight: 700
+      fontWeight: 700,
     },
     headingSmall: {
       mobile: typeScale.size04,
       desktop: typeScale.size05,
-      fontWeight: 700
+      fontWeight: 700,
     },
     headingXSmall: {
       mobile: typeScale.size04,
       desktop: typeScale.size04,
-      fontWeight: 700
+      fontWeight: 700,
     },
-    headingXXSmall: {
+    heading2XSmall: {
       mobile: typeScale.size01,
       desktop: typeScale.size01,
-      fontWeight: 700
+      fontWeight: 700,
     },
     bodyLarge: {
       mobile: typeScale.size04,
-      desktop: typeScale.size05
+      desktop: typeScale.size05,
     },
     bodyMedium: {
       mobile: typeScale.size03,
-      desktop: typeScale.size03
+      desktop: typeScale.size03,
     },
     bodySmall: {
       mobile: typeScale.size02,
-      desktop: typeScale.size02
+      desktop: typeScale.size02,
     },
     bodyXSmall: {
       mobile: typeScale.size01,
-      desktop: typeScale.size01
-    }
-  }
+      desktop: typeScale.size01,
+    },
+  },
 };

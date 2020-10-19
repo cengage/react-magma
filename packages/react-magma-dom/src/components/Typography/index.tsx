@@ -6,7 +6,7 @@ export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
   isInverse?: boolean;
   noMargins?: boolean;
   ref?: any;
-  size?: TypographySize;
+  size?: TypographyVisualStyle;
   testId?: string;
 }
 
@@ -14,24 +14,24 @@ export enum TypographyColor {
   danger = 'danger',
   default = 'default', // default
   success = 'success',
-  subdued = 'subdued'
+  subdued = 'subdued',
 }
 
-export enum TypographyVariant {
+export enum TypographyContextVariant {
   default = 'default', // default
   expressive = 'expressive',
-  narrative = 'narrative'
+  narrative = 'narrative',
 }
 
-export enum TypographySize {
+export enum TypographyVisualStyle {
   headingXLarge = 'headingXLarge',
   headingLarge = 'headingLarge',
   headingMedium = 'headingMedium',
   headingSmall = 'headingSmall',
   headingXSmall = 'headingXSmall',
-  headingXXSmall = 'headingXSmall',
+  heading2XSmall = 'headingXSmall',
   bodyLarge = 'bodyLarge',
   bodyMedium = 'bodyMedium',
   bodySmall = 'bodySmall',
-  bodyXSmall = 'bodyXSmall'
+  bodyXSmall = 'bodyXSmall',
 }

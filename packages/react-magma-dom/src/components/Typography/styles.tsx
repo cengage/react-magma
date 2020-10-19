@@ -1,12 +1,12 @@
 import { css } from '@emotion/core';
 
-import { TypographyColor, TypographyVariant } from '../Typography';
+import { TypographyColor, TypographyContextVariant } from '../Typography';
 
 export function getBodyFontFamily(props) {
-  switch (props.variant) {
-    case TypographyVariant.expressive:
+  switch (props.contextVariant) {
+    case TypographyContextVariant.expressive:
       return props.theme.bodyExpressiveFont;
-    case TypographyVariant.narrative:
+    case TypographyContextVariant.narrative:
       return props.theme.bodyNarrativeFont;
     default:
       return props.theme.bodyFont;
@@ -14,21 +14,19 @@ export function getBodyFontFamily(props) {
 }
 
 export const colorStyles = props => css`
-color: ${
-  props.isInverse
+  color: ${props.isInverse
     ? props.theme.colors.neutral08
-    : props.variant === 'expressive'
+    : props.contextVariant === 'expressive'
     ? props.theme.colors.foundation02
-    : props.theme.colors.neutral01
-};
+    : props.theme.colors.neutral01};
 
-${props.color === TypographyColor.danger &&
+  ${props.color === TypographyColor.danger &&
   !props.isInverse &&
   css`
     color: ${props.theme.colors.danger};
   `}
 
-${props.color === TypographyColor.success &&
+  ${props.color === TypographyColor.success &&
   !props.isInverse &&
   css`
     color: ${props.theme.colors.success01};
@@ -40,8 +38,21 @@ ${props.color === TypographyColor.subdued &&
     color: ${props.theme.colors.neutral03};
   `}
 
+  ${props.color === TypographyColor.danger &&
+  props.isInverse &&
+  css`
+    color: ${props.theme.colors.dangerInverse};
+  `}
+
+  ${props.color === TypographyColor.success &&
+  props.isInverse &&
+  css`
+    color: ${props.theme.colors.successInverse};
+  `}
+
 ${props.color === TypographyColor.subdued &&
   props.isInverse &&
   css`
     color: ${props.theme.colors.focusInverse};
-  `}`;
+  `}
+`;

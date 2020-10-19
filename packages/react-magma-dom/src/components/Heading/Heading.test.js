@@ -85,7 +85,7 @@ describe('Heading', () => {
   it('should render an component with a different size', () => {
     const headingText = 'test';
     const { container, getByText } = render(
-      <Heading size="headingXLarge" level={6}>
+      <Heading visualStyle="headingXLarge" level={6}>
         {headingText}
       </Heading>
     );
@@ -150,7 +150,7 @@ describe('Heading', () => {
       'border-bottom',
       `2px dotted ${magma.colors.focusInverse}`,
       {
-        target: ':focus'
+        target: ':focus',
       }
     );
   });
@@ -214,7 +214,7 @@ describe('Heading', () => {
     it('should render expressive h1 styles', () => {
       const headingText = 'test';
       const { getByText } = render(
-        <Heading variant="expressive" level={1}>
+        <Heading contextVariant="expressive" level={1}>
           {headingText}
         </Heading>
       );
@@ -227,14 +227,14 @@ describe('Heading', () => {
       );
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyExpressiveSizes.headingXLarge.mobile.fontSize
+        magma.typographyExpressiveVisualStyles.headingXLarge.mobile.fontSize
       );
     });
 
     it('should render expressive h2 styles', () => {
       const headingText = 'test';
       const { getByText } = render(
-        <Heading variant="expressive" level={2}>
+        <Heading contextVariant="expressive" level={2}>
           {headingText}
         </Heading>
       );
@@ -242,14 +242,14 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyExpressiveSizes.headingLarge.mobile.fontSize
+        magma.typographyExpressiveVisualStyles.headingLarge.mobile.fontSize
       );
     });
 
     it('should render expressive h3 styles', () => {
       const headingText = 'test';
       const { getByText } = render(
-        <Heading variant="expressive" level={3}>
+        <Heading contextVariant="expressive" level={3}>
           {headingText}
         </Heading>
       );
@@ -257,14 +257,14 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyExpressiveSizes.headingMedium.mobile.fontSize
+        magma.typographyExpressiveVisualStyles.headingMedium.mobile.fontSize
       );
     });
 
     it('should render expressive h4 styles', () => {
       const headingText = 'test';
       const { getByText } = render(
-        <Heading variant="expressive" level={4}>
+        <Heading contextVariant="expressive" level={4}>
           {headingText}
         </Heading>
       );
@@ -272,14 +272,14 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyExpressiveSizes.headingSmall.mobile.fontSize
+        magma.typographyExpressiveVisualStyles.headingSmall.mobile.fontSize
       );
     });
 
     it('should render expressive h5 styles', () => {
       const headingText = 'test';
       const { getByText } = render(
-        <Heading variant="expressive" level={5}>
+        <Heading contextVariant="expressive" level={5}>
           {headingText}
         </Heading>
       );
@@ -287,14 +287,14 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyExpressiveSizes.headingXSmall.mobile.fontSize
+        magma.typographyExpressiveVisualStyles.headingXSmall.mobile.fontSize
       );
     });
 
     it('should render expressive h6 styles', () => {
       const headingText = 'test';
       const { getByText } = render(
-        <Heading variant="expressive" level={6}>
+        <Heading contextVariant="expressive" level={6}>
           {headingText}
         </Heading>
       );
@@ -302,7 +302,7 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyExpressiveSizes.headingXXSmall.mobile.fontSize
+        magma.typographyExpressiveVisualStyles.heading2XSmall.mobile.fontSize
       );
     });
   });
@@ -311,7 +311,7 @@ describe('Heading', () => {
     it('should render narrative h1 styles', () => {
       const headingText = 'test';
       const { getByText } = render(
-        <Heading variant="narrative" level={1}>
+        <Heading contextVariant="narrative" level={1}>
           {headingText}
         </Heading>
       );
@@ -324,14 +324,14 @@ describe('Heading', () => {
       );
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyNarrativeSizes.headingXLarge.mobile.fontSize
+        magma.typographyNarrativeVisualStyles.headingXLarge.mobile.fontSize
       );
     });
 
     it('should render narrative h2 styles', () => {
       const headingText = 'test';
       const { getByText } = render(
-        <Heading variant="narrative" level={2}>
+        <Heading contextVariant="narrative" level={2}>
           {headingText}
         </Heading>
       );
@@ -339,14 +339,14 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyNarrativeSizes.headingLarge.mobile.fontSize
+        magma.typographyNarrativeVisualStyles.headingLarge.mobile.fontSize
       );
     });
 
     it('should render narrative h3 styles', () => {
       const headingText = 'test';
       const { getByText } = render(
-        <Heading variant="narrative" level={3}>
+        <Heading contextVariant="narrative" level={3}>
           {headingText}
         </Heading>
       );
@@ -354,14 +354,14 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyNarrativeSizes.headingMedium.mobile.fontSize
+        magma.typographyNarrativeVisualStyles.headingMedium.mobile.fontSize
       );
     });
 
     it('should render narrative h4 styles', () => {
       const headingText = 'test';
       const { getByText } = render(
-        <Heading variant="narrative" level={4}>
+        <Heading contextVariant="narrative" level={4}>
           {headingText}
         </Heading>
       );
@@ -369,14 +369,14 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyNarrativeSizes.headingSmall.mobile.fontSize
+        magma.typographyNarrativeVisualStyles.headingSmall.mobile.fontSize
       );
     });
 
     it('should render narrative h5 styles', () => {
       const headingText = 'test';
       const { getByText } = render(
-        <Heading variant="narrative" level={5}>
+        <Heading contextVariant="narrative" level={5}>
           {headingText}
         </Heading>
       );
@@ -384,14 +384,14 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyNarrativeSizes.headingXSmall.mobile.fontSize
+        magma.typographyNarrativeVisualStyles.headingXSmall.mobile.fontSize
       );
     });
 
     it('should render narrative h6 styles', () => {
       const headingText = 'test';
       const { getByText } = render(
-        <Heading variant="narrative" level={6}>
+        <Heading contextVariant="narrative" level={6}>
           {headingText}
         </Heading>
       );
@@ -399,7 +399,7 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyNarrativeSizes.headingXXSmall.mobile.fontSize
+        magma.typographyNarrativeVisualStyles.heading2XSmall.mobile.fontSize
       );
     });
   });
