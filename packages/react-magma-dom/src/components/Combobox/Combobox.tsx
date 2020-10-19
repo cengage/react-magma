@@ -285,7 +285,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
         isOpen={isOpen}
         items={displayItems}
         itemToString={itemToString}
-        style={menuStyle}
+        menuStyle={menuStyle}
       />
     </SelectContainer>
   );

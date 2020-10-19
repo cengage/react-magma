@@ -176,7 +176,7 @@ export function Select<T>(props: SelectInterface<T>) {
         isOpen={isOpen}
         items={items}
         itemToString={itemToString}
-        style={menuStyle}
+        menuStyle={menuStyle}
       />
     </SelectContainer>
   );

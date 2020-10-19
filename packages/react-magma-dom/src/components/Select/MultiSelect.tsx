@@ -199,7 +199,7 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
         isOpen={isOpen}
         items={getFilteredItems(items)}
         itemToString={itemToString}
-        style={menuStyle}
+        menuStyle={menuStyle}
       />
     </SelectContainer>
   );
