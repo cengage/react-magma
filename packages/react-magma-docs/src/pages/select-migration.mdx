@@ -21,7 +21,7 @@ We recommend migrating to the new components as soon as possible. The major diff
 
 ## Remove React Select
 
-`react-select` is no longer needed as a `peerDependency` if you are soley using the new components. Remove `react-select` from your `dependencies`.
+`react-select` is no longer needed as a `peerDependency` if you are only using the new components. Remove `react-select` from your `dependencies`.
 
 ## Options/Items
 
@@ -37,7 +37,7 @@ The `Select` and the `Combobox` no longer have separate components for asynchron
 
 To create the equivalent of `LegacyAsyncCreatableSelect` you can pass in the new options to an <Link to="/api/combobox/#async">Async Combobox</Link> with the `isLoading` prop to indicate that the new options are loading.
 
-To create the equivalent of the `LegacyAsyncSelect`, you would use the <Link to="/api/combobox/#async">Async Combobox</Link> component iwith the prop <Link to="/api/combobox/#disable_create_item">disableCreateItem</Link> in addition to `isLoading`.
+To create the equivalent of the `LegacyAsyncSelect`, you would use the <Link to="/api/combobox/#async">Async Combobox</Link> component with the prop <Link to="/api/combobox/#disable_create_item">disableCreateItem</Link> in addition to `isLoading`.
 
 ## Events
 

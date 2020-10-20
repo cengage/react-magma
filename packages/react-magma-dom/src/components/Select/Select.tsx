@@ -26,6 +26,7 @@ export function Select<T>(props: SelectInterface<T>) {
     isClearable,
     disabled,
     isInverse,
+    menuStyle,
     onBlur,
     onFocus,
     onIsOpenChange,
@@ -175,6 +176,7 @@ export function Select<T>(props: SelectInterface<T>) {
         isOpen={isOpen}
         items={items}
         itemToString={itemToString}
+        menuStyle={menuStyle}
       />
     </SelectContainer>
   );

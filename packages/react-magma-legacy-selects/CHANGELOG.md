@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.107](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.106...v2.0.0-beta.107) (2020-10-19)
+
+
+### Features
+
+* **itemslist:** add styles prop ([f829b9b](http://stash.cengage.com:7999/FRONT/react-magma/commits/f829b9b32ba7659b16635b2be01446a1cd5bbd6e))
+
+
+
+
+
 # [2.0.0-beta.105](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.104...v2.0.0-beta.105) (2020-10-16)
 
 **Note:** Version bump only for package react-magma-legacy-selects

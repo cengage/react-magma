@@ -22,6 +22,7 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
     labelText,
     disabled,
     isInverse,
+    menuStyle,
     onBlur,
     onFocus,
     onKeyDown,
@@ -198,6 +199,7 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
         isOpen={isOpen}
         items={getFilteredItems(items)}
         itemToString={itemToString}
+        menuStyle={menuStyle}
       />
     </SelectContainer>
   );

@@ -30,6 +30,7 @@ export interface InternalSelectInterface {
   isMulti?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: string;
+  menuStyle?: React.CSSProperties;
   messageStyle?: React.CSSProperties;
   name?: string;
   testId?: string;
