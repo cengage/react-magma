@@ -21,7 +21,7 @@ The `Paragraph` component is used to present paragraph content in a clear and co
 
 ## Sizes
 
-There are four visual styles for the paragraph: `bodyLarge`, `bodyMedium`, `bodySmall`, and `bodyXSmall`, which determine the paragraph's relative font-size.
+There are four visual styles for the paragraph: `bodyLarge`, `bodyMedium`, `bodySmall`, and `bodyXSmall`, which determine the paragraph's relative size (including font-size, line-height, margins, font-weight, etc).
 The default `visualStyle` is `bodyMedium`.
 
 In addition to the paragraph visual styles, the `visualStyle` prop can also accept the values for the different heading visual styles: `headingXLarge`, `headingLarge`, `headingMedium`, `headingSmall`, `headingXSmall` and `heading2XSmall`.
@@ -29,55 +29,55 @@ These visual styles are also used with the <Link to="/api/heading">Heading</Link
 
 ```.jsx
   <>
-    <Paragraph visualStyle="bodyLarge">
-        Body large.  Lorem ipsum dolar sit amet.
-    </Paragraph>
-
-    <Paragraph visualStyle="bodyMedium">
-        Body medium (default).  Lorem ipsum dolar sit amet.
-    </Paragraph>
-
-    <Paragraph visualStyle="bodySmall">
-        Body small.  Lorem ipsum dolar sit amet.
-    </Paragraph>
-
-    <Paragraph visualStyle="bodyXSmall">
-        Body x-small.  Lorem ipsum dolar sit amet.
-    </Paragraph>
-
-    <Paragraph visualStyle="headingXLarge">
-        Heading large.  Lorem ipsum dolar sit amet.
+   <Paragraph visualStyle="headingXLarge">
+        Heading x-large styles.
     </Paragraph>
 
     <Paragraph visualStyle="headingLarge">
-        Heading large.  Lorem ipsum dolar sit amet.
+        Heading large styles.
     </Paragraph>
 
     <Paragraph visualStyle="headingMedium">
-        Heading large.  Lorem ipsum dolar sit amet.
+        Heading medium styles.
     </Paragraph>
 
     <Paragraph visualStyle="headingSmall">
-        Heading large.  Lorem ipsum dolar sit amet.
+        Heading small styles.
     </Paragraph>
 
     <Paragraph visualStyle="headingXSmall">
-        Heading large.  Lorem ipsum dolar sit amet.
+        Heading x-small styles.
     </Paragraph>
 
     <Paragraph visualStyle="heading2XSmall">
-        Heading large.  Lorem ipsum dolar sit amet.
+        Heading 2x-small styles.
+    </Paragraph>
+
+    <Paragraph visualStyle="bodyLarge">
+        Body large styles.  Lorem ipsum dolar sit amet.
+    </Paragraph>
+
+    <Paragraph visualStyle="bodyMedium">
+        Body medium (default) styles.  Lorem ipsum dolar sit amet.
+    </Paragraph>
+
+    <Paragraph visualStyle="bodySmall">
+        Body small styles.  Lorem ipsum dolar sit amet.
+    </Paragraph>
+
+    <Paragraph visualStyle="bodyXSmall">
+        Body x-small styles.  Lorem ipsum dolar sit amet.
     </Paragraph>
   </>
 ```
 
-## Variant
+## Context Variant
 
-The `variant` prop can be used to set additional styles on a component. The default `variant` is `default`.
+The `contextVariant` prop can be used to set additional styles on a component. The default `contextVariant` is `default`.
 
-The `expressive` variant can be used in marketing contexts, which may require more variety than the default styles.
+The `expressive` context variant can be used in marketing contexts, which may require more variety than the default styles.
 
-The `narrative` variant can be used for content-heavy contexts, such as a blog-post or an e-reader.
+The `narrative` context variant can be used for content-heavy contexts, such as a blog-post or an e-reader.
 
 ```.jsx
     <>
@@ -95,7 +95,7 @@ The `narrative` variant can be used for content-heavy contexts, such as a blog-p
         </Paragraph>
 
         <Paragraph contextVariant="expressive" visualStyle="bodyXSmall">
-            Body xsmall.  Lorem ipsum dolar sit amet.
+            Body x-small.  Lorem ipsum dolar sit amet.
         </Paragraph>
 
         <Paragraph contextVariant="narrative" visualStyle="bodyLarge">
@@ -111,7 +111,7 @@ The `narrative` variant can be used for content-heavy contexts, such as a blog-p
         </Paragraph>
 
         <Paragraph contextVariant="narrative" visualStyle="bodyXSmall">
-            Body xsmall.  Lorem ipsum dolar sit amet.
+            Body x-small.  Lorem ipsum dolar sit amet.
         </Paragraph>
     </>
 ```
