@@ -249,6 +249,7 @@ export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
         isFullWidth={isFullWidth}
         isInverse={isInverse}
         orientation={orientation}
+        role="presentation"
         theme={theme}
       >
         <StyledTab
