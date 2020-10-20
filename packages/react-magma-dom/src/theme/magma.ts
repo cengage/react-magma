@@ -45,32 +45,6 @@ export interface Breakpoints {
   xl: number;
 }
 
-export interface TypographyVisualStyles {
-  headingXLarge: any;
-  headingLarge: any;
-  headingMedium: any;
-  headingSmall: any;
-  headingXSmall: any;
-  heading2XSmall: any;
-  bodyLarge: any;
-  bodyMedium: any;
-  bodySmall: any;
-  bodyXSmall: any;
-}
-
-export interface TypographyExpressiveSizes {
-  headingXLarge: any;
-  headingLarge: any;
-  headingMedium: any;
-  headingSmall: any;
-  headingXSmall: any;
-  heading2XSmall: any;
-  bodyLarge: any;
-  bodyMedium: any;
-  bodySmall: any;
-  bodyXSmall: any;
-}
-
 export interface TypeScaleSize {
   fontSize: string;
   lineHeight: string;
@@ -92,18 +66,39 @@ export interface TypeScale {
   size13: TypeScaleSize;
 }
 
+export interface VisualStyle {
+  mobile: TypeScaleSize;
+  desktop: TypeScaleSize;
+  fontWeight?: number;
+}
+
+export interface TypographyVisualStyles {
+  headingXLarge: VisualStyle;
+  headingLarge: VisualStyle;
+  headingMedium: VisualStyle;
+  headingSmall: VisualStyle;
+  headingXSmall: VisualStyle;
+  heading2XSmall: VisualStyle;
+  bodyLarge: VisualStyle;
+  bodyMedium: VisualStyle;
+  bodySmall: VisualStyle;
+  bodyXSmall: VisualStyle;
+}
+
 export interface ThemeInterface {
   breakpoints: Breakpoints;
-  colors: Colors;
   bodyFont: string;
   bodyExpressiveFont: string;
   bodyNarrativeFont: string;
+  colors: Colors;
+  direction: string;
   headingFont: string;
   headingExpressiveFont: string;
   headingNarrativeFont: string;
   typeScale: TypeScale;
   typographyVisualStyles: TypographyVisualStyles;
-  typographyExpressiveVisualStyles: TypographyExpressiveSizes;
+  typographyExpressiveVisualStyles: TypographyVisualStyles;
+  typographyNarrativeVisualStyles: TypographyVisualStyles;
 }
 
 const typeScale = {
