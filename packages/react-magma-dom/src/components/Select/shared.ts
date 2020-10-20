@@ -35,6 +35,7 @@ export const StyledList = styled('ul')<{ isOpen?: boolean }>`
   list-style: none;
   margin: 0 0 4px;
   outline: none;
+  padding: 0;
 `;
 
 export const StyledItem = styled('li')<{ isFocused?: boolean }>`
