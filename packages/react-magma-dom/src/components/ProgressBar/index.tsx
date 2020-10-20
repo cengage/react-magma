@@ -16,7 +16,7 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
 export enum ProgressBarColor {
   danger = 'danger',
   primary = 'primary', // default
-  pop01 = 'pop01',
+  pop = 'pop',
   pop02 = 'pop02',
   success = 'success',
 }
@@ -25,8 +25,8 @@ function buildProgressBarBackground(props) {
   switch (props.color) {
     case 'danger':
       return props.theme.colors.danger;
-    case 'pop01':
-      return props.theme.colors.pop01;
+    case 'pop':
+      return props.theme.colors.pop;
     case 'pop02':
       return props.theme.colors.pop02;
     case 'success':

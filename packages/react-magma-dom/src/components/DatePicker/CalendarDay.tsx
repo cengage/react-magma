@@ -83,7 +83,7 @@ const EmptyCell = styled.td`
 `;
 
 const TodayIndicator = styled.span`
-  border-left: 8px solid ${props => props.theme.colors.pop01};
+  border-left: 8px solid ${props => props.theme.colors.pop};
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
   bottom: -6px;

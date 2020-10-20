@@ -22,7 +22,7 @@ const IndexPage = () => (
               background: linear-gradient(
                 to bottom,
                 ${theme.colors.foundation02} 0%,
-                ${theme.colors.pop01} 100%
+                ${theme.colors.pop} 100%
               );
               margin: 0;
               max-width: none;

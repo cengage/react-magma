@@ -6,7 +6,7 @@ export interface Colors {
   foundation02: string;
   foundation03: string;
   foundation04: string;
-  pop01: string;
+  pop: string;
   pop02: string;
   pop03: string;
   pop04: string;
@@ -173,7 +173,7 @@ export const magma = {
     foundation02: '#003865',
     foundation03: '#00A9E0',
     foundation04: '#71C5E8',
-    pop01: '#E0004D',
+    pop: '#E0004D',
     pop02: '#FC4C02',
     pop03: '#F2A900',
     pop04: '#FFC72C',

@@ -100,7 +100,8 @@ Our blues are just like us: confident, cool and collected. They also, just like 
 
 ### Feedback
 
-Feedback colors should be used to reinforce positive or negative feedback to users.
+Feedback colors should be used to reinforce positive or negative feedback to users.  The `successInverse` and `dangerInverse` are designed to be used against dark backgrounds.
+
 
 <div class="swatch-rows">
   <ColorSwatch color={magma.colors.success}>
@@ -119,6 +120,14 @@ Feedback colors should be used to reinforce positive or negative feedback to use
     <span>rgb(72,162,0)</span>
     <span>3.3:1</span>
   </ColorSwatch>
+   <ColorSwatch color={magma.colors.successInverse}>
+    <span>
+      <strong>successInverse</strong>
+    </span>
+    <span class="color-hex">{magma.colors.successInverse}</span>
+    <span>rgb(145,207,96)</span>
+    <span>4.5:1 (against dark colors)</span>
+  </ColorSwatch>
   <ColorSwatch color={magma.colors.danger}>
     <span>
       <strong>danger</strong>
@@ -127,6 +136,14 @@ Feedback colors should be used to reinforce positive or negative feedback to use
     <span>rgb(198,29,35)</span>
     <span>5.8:1</span>
   </ColorSwatch>
+   <ColorSwatch color={magma.colors.dangerInverse}>
+    <span>
+      <strong>dangerInverse</strong>
+    </span>
+    <span class="color-hex">{magma.colors.dangerInverse}</span>
+    <span>rgb(245,146,149)</span>
+    <span>4.5:1 (against dark colors)</span>
+  </ColorSwatch>
 </div>
 
 ### Pops
@@ -134,11 +151,11 @@ Feedback colors should be used to reinforce positive or negative feedback to use
 The goal of our pop colors is to create some buzzy vibrations with our blues. Let’s try to just use one pop (or two pops that are next to each other in the palette) at a time to keep the Cengage vibe going strong. Do not create tonal versions of these colors.
 
 <div class="swatch-rows">
-  <ColorSwatch color={magma.colors.pop01}>
+  <ColorSwatch color={magma.colors.pop}>
     <span>
-      <strong>pop01</strong>
+      <strong>pop</strong>
     </span>
-    <span class="color-hex">{magma.colors.pop01}</span>
+    <span class="color-hex">{magma.colors.pop}</span>
     <span>rgb(224,0,77)</span>
     <span>4.9:1</span>
   </ColorSwatch>

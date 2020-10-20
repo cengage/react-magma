@@ -50,13 +50,13 @@ The `percentage` prop is used to display how much of the bar should be filled in
 
 ## Background Color
 
-The `color` prop can be used to set the background color of the progress bar. This prop takes the following values: `danger`, `primary`, `pop01`, `pop02`, `success`.
+The `color` prop can be used to set the background color of the progress bar. This prop takes the following values: `danger`, `primary`, `pop`, `pop02`, `success`.
 The default value is `primary` which renders as `#006298`, or `magma.colors.primary`.
 
 ```.jsx
     <>
       <ProgressBar color='danger' percentage={25} /><br/>
-      <ProgressBar color='pop01' percentage={25} /><br/>
+      <ProgressBar color='pop' percentage={25} /><br/>
       <ProgressBar color='pop02' percentage={25} /><br/>
       <ProgressBar color='primary' percentage={25} /><br/>
       <ProgressBar color='success' percentage={25} /><br/>
@@ -102,7 +102,7 @@ If the `isLabelVisible` prop is true, the percentage value will display to the r
         options: [
           'ProgressBarColor.danger',
           'ProgressBarColor.primary',
-          'ProgressBarColor.pop01',
+          'ProgressBarColor.pop',
           'ProgressBarColor.po02',
           'ProgressBarColor.success',
         ],
