@@ -1,24 +1,12 @@
 {
-  "compilerOptions": {
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "jsx": "react",
-    "allowSyntheticDefaultImports": true,
-    "types": ["jest", "node"],
-    "typeRoots": ["node_modules/@types"],
-    "importHelpers": true,
-    "esModuleInterop": true,
-    "noUnusedLocals": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "declaration": true,
-    "sourceMap": true,
-    "moduleResolution": "node"
-  },
-  "lib": ["dom", "esnext"],
+  "extends": "../../tsconfig",
   "include": ["src/**/*"],
-  "exclude": ["node_modules/**", "dist/**"],
-  "paths": {
-    "*": ["src/*", "node_modules/*"]
+  "compilerOptions": {
+    "noUnusedParameters": false,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "noImplicitThis": false, 
+    "strictFunctionTypes": false,
+    "strictNullChecks":  false
   }
 }
