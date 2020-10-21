@@ -44,157 +44,158 @@ const IndeterminateIcon = styled.span<{
   display: block;
 `;
 
-export const IndeterminateCheckbox: React.FunctionComponent<IndeterminateCheckboxProps> = React.forwardRef(
-  (props: IndeterminateCheckboxProps, ref: any) => {
-    const [isChecked, updateIsChecked] = React.useState(
+export const IndeterminateCheckbox = React.forwardRef<
+  HTMLInputElement,
+  IndeterminateCheckboxProps
+>((props, ref) => {
+  const [isChecked, updateIsChecked] = React.useState(
+    props.status === 'indeterminate'
+      ? false
+      : Boolean(props.status === 'checked')
+  );
+
+  const id = useGenerateId(props.id);
+
+  React.useEffect(() => {
+    updateIsChecked(
       props.status === 'indeterminate'
         ? false
         : Boolean(props.status === 'checked')
     );
+  }, [props.status]);
 
-    const id = useGenerateId(props.id);
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const { checked: targetChecked } = event.target;
 
-    React.useEffect(() => {
-      updateIsChecked(
-        props.status === 'indeterminate'
-          ? false
-          : Boolean(props.status === 'checked')
-      );
-    }, [props.status]);
+    props.onChange &&
+      typeof props.onChange === 'function' &&
+      props.onChange(event);
 
-    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-      const { checked: targetChecked } = event.target;
-
-      props.onChange &&
-        typeof props.onChange === 'function' &&
-        props.onChange(event);
-
-      if (props.status !== 'indeterminate') {
-        updateIsChecked(targetChecked);
-      }
+    if (props.status !== 'indeterminate') {
+      updateIsChecked(targetChecked);
     }
+  }
 
-    const theme = React.useContext(ThemeContext);
-    const i18n = React.useContext(I18nContext);
-    const context = React.useContext(FormGroupContext);
+  const theme = React.useContext(ThemeContext);
+  const i18n = React.useContext(I18nContext);
+  const context = React.useContext(FormGroupContext);
 
-    const {
-      color,
-      containerStyle,
-      disabled,
-      hasError,
-      errorMessage,
-      inputStyle,
-      isInverse,
-      labelStyle,
-      labelText,
-      isTextVisuallyHidden,
-      status,
-      testId,
-      ...other
-    } = props;
+  const {
+    color,
+    containerStyle,
+    disabled,
+    hasError,
+    errorMessage,
+    inputStyle,
+    isInverse,
+    labelStyle,
+    labelText,
+    isTextVisuallyHidden,
+    status,
+    testId,
+    ...other
+  } = props;
 
-    const isIndeterminate = status === 'indeterminate';
-    const isUnchecked = status === 'unchecked';
+  const isIndeterminate = status === 'indeterminate';
+  const isUnchecked = status === 'unchecked';
 
-    function replaceLabelTextForAnnounceText(baseAnnounceText) {
-      return baseAnnounceText.replace(
-        /\{labelText\}/g,
-        getStringifiedLabelText(labelText)
-      );
-    }
-
-    function getStringifiedLabelText(node) {
-      if (['string', 'number'].includes(typeof node)) return node;
-      if (node instanceof Array)
-        return node.map(getStringifiedLabelText).join('');
-      if (typeof node === 'object' && node)
-        return getStringifiedLabelText(node.props.children);
-    }
-
-    const showAnnounce = isChecked || isIndeterminate || isUnchecked;
-    const announceText = isChecked
-      ? replaceLabelTextForAnnounceText(
-          i18n.indeterminateCheckbox.isCheckedAnnounce
-        )
-      : isIndeterminate
-      ? replaceLabelTextForAnnounceText(
-          i18n.indeterminateCheckbox.isIndeterminateAnnounce
-        )
-      : isUnchecked
-      ? replaceLabelTextForAnnounceText(
-          i18n.indeterminateCheckbox.isUncheckedAnnounce
-        )
-      : '';
-
-    const descriptionId = errorMessage ? `${id}__desc` : null;
-    const groupDescriptionId = context.descriptionId;
-
-    const describedBy =
-      descriptionId && groupDescriptionId
-        ? `${groupDescriptionId} ${descriptionId}`
-        : descriptionId
-        ? descriptionId
-        : groupDescriptionId
-        ? groupDescriptionId
-        : null;
-
-    return (
-      <>
-        <StyledContainer style={containerStyle}>
-          <HiddenInput
-            {...other}
-            aria-describedby={describedBy}
-            checked={isChecked}
-            data-testid={testId}
-            disabled={disabled}
-            id={id}
-            ref={ref}
-            type="checkbox"
-            onChange={handleChange}
-          />
-          <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
-            <StyledFakeInput
-              checked={isChecked}
-              color={color ? color : ''}
-              disabled={disabled}
-              hasError={context.hasError || !!errorMessage}
-              isIndeterminate={isIndeterminate}
-              isInverse={isInverse}
-              style={inputStyle}
-              theme={theme}
-            >
-              {isIndeterminate && (
-                <IndeterminateIcon
-                  data-testid="indeterminateIcon"
-                  color={color ? color : ''}
-                  disabled={disabled}
-                  theme={theme}
-                />
-              )}
-              {isChecked && <CheckIcon size={12} />}
-            </StyledFakeInput>
-            {isTextVisuallyHidden ? (
-              <HiddenLabelText>{labelText}</HiddenLabelText>
-            ) : (
-              labelText
-            )}
-          </StyledLabel>
-          <Announce>
-            {showAnnounce && <VisuallyHidden>{announceText}</VisuallyHidden>}
-          </Announce>
-        </StyledContainer>
-        {!!errorMessage && (
-          <InputMessage
-            id={descriptionId}
-            hasError
-            isInverse={isInverse}
-            style={{ paddingLeft: '30px' }}
-          >
-            {errorMessage}
-          </InputMessage>
-        )}
-      </>
+  function replaceLabelTextForAnnounceText(baseAnnounceText) {
+    return baseAnnounceText.replace(
+      /\{labelText\}/g,
+      getStringifiedLabelText(labelText)
     );
   }
-);
+
+  function getStringifiedLabelText(node) {
+    if (['string', 'number'].includes(typeof node)) return node;
+    if (node instanceof Array)
+      return node.map(getStringifiedLabelText).join('');
+    if (typeof node === 'object' && node)
+      return getStringifiedLabelText(node.props.children);
+  }
+
+  const showAnnounce = isChecked || isIndeterminate || isUnchecked;
+  const announceText = isChecked
+    ? replaceLabelTextForAnnounceText(
+        i18n.indeterminateCheckbox.isCheckedAnnounce
+      )
+    : isIndeterminate
+    ? replaceLabelTextForAnnounceText(
+        i18n.indeterminateCheckbox.isIndeterminateAnnounce
+      )
+    : isUnchecked
+    ? replaceLabelTextForAnnounceText(
+        i18n.indeterminateCheckbox.isUncheckedAnnounce
+      )
+    : '';
+
+  const descriptionId = errorMessage ? `${id}__desc` : null;
+  const groupDescriptionId = context.descriptionId;
+
+  const describedBy =
+    descriptionId && groupDescriptionId
+      ? `${groupDescriptionId} ${descriptionId}`
+      : descriptionId
+      ? descriptionId
+      : groupDescriptionId
+      ? groupDescriptionId
+      : null;
+
+  return (
+    <>
+      <StyledContainer style={containerStyle}>
+        <HiddenInput
+          {...other}
+          aria-describedby={describedBy}
+          checked={isChecked}
+          data-testid={testId}
+          disabled={disabled}
+          id={id}
+          ref={ref}
+          type="checkbox"
+          onChange={handleChange}
+        />
+        <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
+          <StyledFakeInput
+            checked={isChecked}
+            color={color ? color : ''}
+            disabled={disabled}
+            hasError={context.hasError || !!errorMessage}
+            isIndeterminate={isIndeterminate}
+            isInverse={isInverse}
+            style={inputStyle}
+            theme={theme}
+          >
+            {isIndeterminate && (
+              <IndeterminateIcon
+                data-testid="indeterminateIcon"
+                color={color ? color : ''}
+                disabled={disabled}
+                theme={theme}
+              />
+            )}
+            {isChecked && <CheckIcon size={12} />}
+          </StyledFakeInput>
+          {isTextVisuallyHidden ? (
+            <HiddenLabelText>{labelText}</HiddenLabelText>
+          ) : (
+            labelText
+          )}
+        </StyledLabel>
+        <Announce>
+          {showAnnounce && <VisuallyHidden>{announceText}</VisuallyHidden>}
+        </Announce>
+      </StyledContainer>
+      {!!errorMessage && (
+        <InputMessage
+          id={descriptionId}
+          hasError
+          isInverse={isInverse}
+          style={{ paddingLeft: '30px' }}
+        >
+          {errorMessage}
+        </InputMessage>
+      )}
+    </>
+  );
+});

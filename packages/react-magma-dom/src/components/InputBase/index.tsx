@@ -32,7 +32,6 @@ export interface InputBaseProps
   isInverse?: boolean;
   onIconClick?: () => void;
   onIconKeyDown?: (event) => void;
-  ref?: React.Ref<HTMLInputElement>;
   testId?: string;
   theme?: any;
   type?: InputType;
@@ -182,8 +181,8 @@ function getIconSize(size) {
   }
 }
 
-export const InputBase: React.FunctionComponent<InputBaseProps> = React.forwardRef(
-  (props: InputBaseProps, ref: React.Ref<HTMLInputElement>) => {
+export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
+  (props, ref) => {
     const {
       children,
       containerStyle,

@@ -9,7 +9,6 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   hasZebraStripes?: boolean;
   isInverse?: boolean;
   minWidth?: number;
-  ref?: any;
   testId?: string;
 }
 
@@ -65,9 +64,9 @@ const StyledTable = styled.table<{ isInverse?: boolean; minWidth: number }>`
   width: 100%;
 `;
 
-export const Table: React.FunctionComponent<TableProps> = React.forwardRef(
-  (
-    {
+export const Table = React.forwardRef<HTMLTableElement, TableProps>(
+  (props, ref) => {
+    const {
       children,
       density,
       hasHoverStyles,
@@ -77,9 +76,8 @@ export const Table: React.FunctionComponent<TableProps> = React.forwardRef(
       minWidth,
       testId,
       ...other
-    }: TableProps,
-    ref: any
-  ) => {
+    } = props;
+
     const theme = React.useContext(ThemeContext);
 
     return (

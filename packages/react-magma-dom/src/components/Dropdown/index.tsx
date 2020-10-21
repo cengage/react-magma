@@ -20,7 +20,6 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
   dropDirection?: DropdownDropDirection;
   maxHeight?: string | number;
   onBeforeShiftFocus?: (event: React.SyntheticEvent) => void;
-  ref?: any;
   testId?: string;
   width?: string | number;
 }
@@ -62,9 +61,9 @@ export const DropdownContext = React.createContext<DropdownContextInterface>({
 
 export const useDropdownContext = () => React.useContext(DropdownContext);
 
-export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef(
-  (
-    {
+export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
+  (props, forwardedRef) => {
+    const {
       activeIndex,
       alignment,
       children,
@@ -74,9 +73,8 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = React.forwardRef
       testId,
       width,
       ...other
-    }: DropdownProps,
-    forwardedRef: any
-  ) => {
+    } = props;
+
     const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
     const [activeItemIndex, setActiveItemIndex] = React.useState<number>(

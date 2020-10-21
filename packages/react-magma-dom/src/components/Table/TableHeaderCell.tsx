@@ -20,7 +20,6 @@ export interface TableHeaderCellProps
   align?: any;
   isSortable?: boolean;
   onSort?: () => void;
-  ref?: any;
   scope?: TableHeaderCellScope;
   sortDirection?: TableSortDirection;
   testId?: string;
@@ -107,77 +106,76 @@ const IconWrapper = styled.span`
   padding-left: 8px;
 `;
 
-export const TableHeaderCell: React.FunctionComponent<TableHeaderCellProps> = React.forwardRef(
-  (
-    {
-      align,
-      children,
-      isSortable,
-      onSort,
-      scope,
-      sortDirection,
-      testId,
-      width,
-      ...other
-    }: TableHeaderCellProps,
-    ref: any
-  ) => {
-    const theme = React.useContext(ThemeContext);
-    const tableContext = React.useContext(TableContext);
+export const TableHeaderCell = React.forwardRef<
+  HTMLTableCellElement,
+  TableHeaderCellProps
+>((props, ref) => {
+  const {
+    align,
+    children,
+    isSortable,
+    onSort,
+    scope,
+    sortDirection,
+    testId,
+    width,
+    ...other
+  } = props;
+  const theme = React.useContext(ThemeContext);
+  const tableContext = React.useContext(TableContext);
 
-    function handleSort() {
-      onSort && typeof onSort === 'function' && onSort();
-    }
-
-    const SortIcon =
-      sortDirection === TableSortDirection.ascending ? (
-        <ArrowDown2Icon size={14} />
-      ) : sortDirection === TableSortDirection.descending ? (
-        <ArrowUp2Icon size={14} />
-      ) : (
-        <ArrowDoubleIcon
-          color={
-            tableContext.isInverse
-              ? theme.colors.neutral06
-              : theme.colors.neutral04
-          }
-          size={14}
-        />
-      );
-
-    const widthString = typeof width === 'number' ? `${width}px` : width;
-
-    return (
-      <StyledTableHeaderCell
-        {...other}
-        data-testid={testId}
-        density={tableContext.density}
-        hasVerticalBorders={tableContext.hasVerticalBorders}
-        isInverse={tableContext.isInverse}
-        ref={ref}
-        isSortable={isSortable}
-        scope={scope || TableHeaderCellScope.col}
-        textAlign={align || TableCellAlign.left}
-        theme={theme}
-        width={widthString}
-      >
-        {isSortable ? (
-          <SortButton
-            density={tableContext.density}
-            isInverse={tableContext.isInverse}
-            onClick={handleSort}
-            textAlign={align || TableCellAlign.left}
-            theme={theme}
-          >
-            <span>{children}</span>
-            <IconWrapper>{SortIcon}</IconWrapper>
-          </SortButton>
-        ) : (
-          <>{children}</>
-        )}
-      </StyledTableHeaderCell>
-    );
+  function handleSort() {
+    onSort && typeof onSort === 'function' && onSort();
   }
-);
+
+  const SortIcon =
+    sortDirection === TableSortDirection.ascending ? (
+      <ArrowDown2Icon size={14} />
+    ) : sortDirection === TableSortDirection.descending ? (
+      <ArrowUp2Icon size={14} />
+    ) : (
+      <ArrowDoubleIcon
+        color={
+          tableContext.isInverse
+            ? theme.colors.neutral06
+            : theme.colors.neutral04
+        }
+        size={14}
+      />
+    );
+
+  const widthString = typeof width === 'number' ? `${width}px` : width;
+
+  return (
+    <StyledTableHeaderCell
+      {...other}
+      data-testid={testId}
+      density={tableContext.density}
+      hasVerticalBorders={tableContext.hasVerticalBorders}
+      isInverse={tableContext.isInverse}
+      ref={ref}
+      isSortable={isSortable}
+      scope={scope || TableHeaderCellScope.col}
+      textAlign={align || TableCellAlign.left}
+      theme={theme}
+      width={widthString}
+    >
+      {isSortable ? (
+        <SortButton
+          density={tableContext.density}
+          isInverse={tableContext.isInverse}
+          onClick={handleSort}
+          textAlign={align || TableCellAlign.left}
+          theme={theme}
+        >
+          <span>{children}</span>
+          <IconWrapper>{SortIcon}</IconWrapper>
+        </SortButton>
+      ) : (
+        <>{children}</>
+      )}
+    </StyledTableHeaderCell>
+  );
+});
 
 TableHeaderCell.displayName = 'TableHeaderCell';

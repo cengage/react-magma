@@ -12,16 +12,13 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   contextVariant?: TypographyContextVariant;
   isInverse?: boolean;
   level: 1 | 2 | 3 | 4 | 5 | 6;
-  ref?: any;
   testId?: string;
   visualStyle?: TypographyVisualStyle;
 }
 
-export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
-  (
-    { level, testId, visualStyle, children, ...other }: HeadingProps,
-    ref: any
-  ) => {
+export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
+  (props, ref) => {
+    const { level, testId, visualStyle, children, ...other } = props;
     const theme = React.useContext(ThemeContext);
 
     const stylesFromLevel = {

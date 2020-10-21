@@ -48,15 +48,16 @@ const StyledSkipLink = styled(Hyperlink)<{
   }
 `;
 
-export const SkipLink: React.FunctionComponent<SkipLinkProps> = ({
-  buttonText,
-  color,
-  positionLeft,
-  positionTop,
-  testId,
-  variant,
-  ...other
-}: SkipLinkProps) => {
+export const SkipLink: React.FunctionComponent<SkipLinkProps> = props => {
+  const {
+    buttonText,
+    color,
+    positionLeft,
+    positionTop,
+    testId,
+    variant,
+    ...other
+  } = props;
   const i18n = React.useContext(I18nContext);
 
   return (

@@ -103,9 +103,9 @@ const Percentage = styled.span`
   margin-left: 10px;
 `;
 
-export const ProgressBar: React.FunctionComponent<ProgressBarProps> = React.forwardRef(
-  (
-    {
+export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
+  (props, ref) => {
+    const {
       color,
       height,
       isAnimated,
@@ -114,9 +114,8 @@ export const ProgressBar: React.FunctionComponent<ProgressBarProps> = React.forw
       percentage,
       testId,
       ...other
-    }: ProgressBarProps,
-    ref: any
-  ) => {
+    } = props;
+
     const percentageValue = percentage ? percentage : 0;
 
     const theme = React.useContext(ThemeContext);

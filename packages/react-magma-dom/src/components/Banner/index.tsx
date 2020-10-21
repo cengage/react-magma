@@ -129,9 +129,9 @@ function getButtonColor(variant: AlertVariant) {
   }
 }
 
-export const Banner: React.FunctionComponent<BannerProps> = React.forwardRef(
-  (
-    {
+export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
+  (props, ref) => {
+    const {
       actionButtonText,
       actionButtonOnClick,
       children,
@@ -141,9 +141,8 @@ export const Banner: React.FunctionComponent<BannerProps> = React.forwardRef(
       testId,
       variant,
       ...other
-    }: BannerProps,
-    ref: any
-  ) => {
+    } = props;
+
     const theme = React.useContext(ThemeContext);
 
     return (

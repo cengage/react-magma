@@ -17,13 +17,15 @@ import { InputMessage } from '../Input/InputMessage';
 import { useGenerateId } from '../../utils';
 
 export interface ComboboxInterface<T extends SelectOptions>
-  extends UseComboboxProps<T>,
+  extends Omit<UseComboboxProps<T>, 'items'>,
     InternalSelectInterface {
   ariaDescribedBy?: string;
   defaultItems?: T[];
   disableCreateItem?: boolean;
   hasError?: boolean;
+  innerRef?: React.Ref<HTMLInputElement>;
   isLoading?: boolean;
+  items?: T[];
   newItemTransform?: (item: { label: string; value: string }) => T;
   onInputBlur?: (event: React.FocusEvent) => void;
   onInputChange?: (changes: Partial<UseComboboxState<T>>) => void;
@@ -37,6 +39,7 @@ export interface ComboboxInterface<T extends SelectOptions>
   ) => void;
   onItemCreated?: (newItem: T) => void;
   placeholder?: string;
+  toggleButtonRef?: React.Ref<HTMLButtonElement>;
 }
 
 export interface MultiComboboxInterface<T extends SelectOptions>

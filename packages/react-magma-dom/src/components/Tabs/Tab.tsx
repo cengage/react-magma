@@ -18,7 +18,6 @@ export interface TabProps
   isFullWidth?: boolean;
   isInverse?: boolean;
   orientation?: TabsOrientation;
-  ref?: any;
   testId?: string;
   theme?: any;
 }
@@ -199,8 +198,8 @@ export const StyledIcon = styled.span<{
   }
 `;
 
-export const Tab: React.FunctionComponent<TabProps> = React.forwardRef(
-  (props: TabProps, forwardedRef: React.Ref<any>) => {
+export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
+  (props, forwardedRef) => {
     const { children, icon, disabled, testId, ...rest } = props;
     const { activeTabIndex } = React.useContext(TabsContainerContext);
     const { buttonRefArray, registerTabButton } = React.useContext(TabsContext);

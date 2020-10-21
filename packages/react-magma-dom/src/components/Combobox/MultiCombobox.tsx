@@ -22,6 +22,7 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
     hasError,
     inputStyle,
     disabled,
+    innerRef,
     isLabelVisuallyHidden,
     isLoading,
     isInverse,
@@ -42,6 +43,7 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
     onItemCreated,
     onRemoveSelectedItem,
     placeholder,
+    toggleButtonRef,
   } = props;
 
   const theme = React.useContext(ThemeContext);
@@ -295,6 +297,7 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
             ...getDropdownProps({
               onKeyDown: onInputKeyDown,
               preventKeyAction: isOpen,
+              ...(innerRef && { ref: innerRef }),
             }),
           }),
         })}
@@ -311,6 +314,7 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
         onInputKeyUp={onInputKeyUp}
         placeholder={placeholder}
         selectedItems={selectedItemsContent}
+        toggleButtonRef={toggleButtonRef}
       />
       <ItemsList
         getItemProps={getItemProps}

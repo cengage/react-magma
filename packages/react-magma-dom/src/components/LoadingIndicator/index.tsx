@@ -11,7 +11,6 @@ export interface LoadingIndicatorProps
   message2?: string;
   message3?: string;
   percentage?: number;
-  ref?: any;
   testId?: string;
   type?: LoadingIndicatorType;
 }

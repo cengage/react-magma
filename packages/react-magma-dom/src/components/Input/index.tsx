@@ -23,8 +23,8 @@ export const HiddenLabelText = styled.span`
   ${HiddenStyles};
 `;
 
-export const Input: React.FunctionComponent<InputProps> = React.forwardRef(
-  (props: InputProps, ref: React.Ref<HTMLInputElement>) => {
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  (props, ref) => {
     const {
       children,
       containerStyle,

@@ -143,8 +143,8 @@ export const TabsContext = React.createContext<TabsContextInterface>({
   registerTabButton: (elements, element) => {},
 });
 
-export const Tabs: React.FC<TabsProps & Orientation> = React.forwardRef(
-  (props, ref: React.Ref<any>) => {
+export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
+  (props, ref) => {
     const {
       alignment,
       backgroundColor,

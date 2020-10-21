@@ -15,9 +15,10 @@ const StyledCardHeading = styled(Heading)`
   margin-top: 0;
 `;
 
-export const CardHeading: React.FunctionComponent<CardHeadingProps> = (
-  props: CardHeadingProps
-) => {
+export const CardHeading = React.forwardRef<
+  HTMLHeadingElement,
+  CardHeadingProps
+>((props, ref) => {
   const { headingLevel, children, ...other } = props;
 
   return (
@@ -26,9 +27,10 @@ export const CardHeading: React.FunctionComponent<CardHeadingProps> = (
       color={TypographyColor.default}
       level={headingLevel ? headingLevel : 4}
       visualStyle={TypographyVisualStyle.headingMedium}
+      ref={ref}
       testId={props.testId}
     >
       {children}
     </StyledCardHeading>
   );
-};
+});

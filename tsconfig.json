@@ -8,7 +8,7 @@
     ],
     "jsx": "react",
     "moduleResolution": "node",
-    "strict": false,
+    "strict": true,
     "experimentalDecorators": true,
     "noEmit": true,
     "forceConsistentCasingInFileNames": true,
@@ -19,13 +19,6 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "baseUrl": "./",
-    "paths": {
-      "react-magma-dom": ["packages/react-magma-dom"],
-      "react-magma-dom/*": ["packages/react-magma-dom/*"],
-      "react-magma-icons": ["packages/react-magma-icons"],
-      "react-magma-icons/*": ["packages/react-magma-icons/*"]
-    },
     "esModuleInterop": true
   },
   "exclude": [
