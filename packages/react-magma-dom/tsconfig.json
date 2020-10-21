@@ -3,6 +3,10 @@
   "include": ["src/**/*"],
   "compilerOptions": {
     "noUnusedParameters": false,
-    "noImplicitReturns": false
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "noImplicitThis": false, 
+    "strictFunctionTypes": false,
+    "strictNullChecks":  false
   }
 }

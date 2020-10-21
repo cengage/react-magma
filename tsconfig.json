@@ -8,7 +8,7 @@
     ],
     "jsx": "react",
     "moduleResolution": "node",
-    "strict": false,
+    "strict": true,
     "experimentalDecorators": true,
     "noEmit": true,
     "forceConsistentCasingInFileNames": true,
