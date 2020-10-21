@@ -8,7 +8,6 @@ import { AngleRightIcon } from 'react-magma-icons';
 
 export interface BreadcrumbItemProps
   extends React.HTMLAttributes<HTMLLIElement> {
-  ref?: any;
   testId?: string;
   to?: string;
 }
@@ -30,10 +29,11 @@ const StyledSpan = styled.span<{ isInverse?: boolean }>`
   }
 `;
 
-export const BreadcrumbItem: React.FunctionComponent<BreadcrumbItemProps> = (
-  props: BreadcrumbItemProps
-) => {
-  const { children, ref, to, testId, ...other } = props;
+export const BreadcrumbItem = React.forwardRef<
+  HTMLLIElement,
+  BreadcrumbItemProps
+>((props, ref) => {
+  const { children, to, testId, ...other } = props;
   const theme = React.useContext(ThemeContext);
   const { isInverse } = React.useContext(BreadCrumbContext);
 
@@ -55,4 +55,4 @@ export const BreadcrumbItem: React.FunctionComponent<BreadcrumbItemProps> = (
       )}
     </StyledItem>
   );
-};
+});

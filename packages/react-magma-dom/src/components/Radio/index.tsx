@@ -31,7 +31,6 @@ export interface RadioProps
   isTextVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: React.ReactNode;
-  ref?: any;
   testId?: string;
   textPosition?: RadioTextPosition;
 }
@@ -113,8 +112,8 @@ const SelectedIcon = styled.span<{ color: string; theme?: any }>`
   }
 `;
 
-export const Radio: React.FunctionComponent<RadioProps> = React.forwardRef(
-  (props: RadioProps, ref: any) => {
+export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
+  (props, ref) => {
     const id = useGenerateId(props.id);
     const context = React.useContext(RadioContext);
     const {

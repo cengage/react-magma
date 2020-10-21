@@ -7,7 +7,6 @@ import { ThemeContext } from '../../theme/ThemeContext';
 export interface TableCellProps
   extends React.HTMLAttributes<HTMLTableCellElement> {
   align?: TableCellAlign;
-  ref?: any;
   testId?: string;
   width?: string | number;
 }
@@ -54,8 +53,9 @@ const StyledCell = styled.td<{
     `}
 `;
 
-export const TableCell: React.FunctionComponent<TableCellProps> = React.forwardRef(
-  ({ align, children, testId, width, ...other }: TableCellProps, ref: any) => {
+export const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
+  (props, ref) => {
+    const { align, children, testId, width, ...other } = props;
     const tableContext = React.useContext(TableContext);
     const theme = React.useContext(ThemeContext);
 

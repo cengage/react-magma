@@ -17,16 +17,18 @@ export const ToastsContext = React.createContext<ToastsContextInterface>({
   bottomOffset: 0,
 });
 
-export const ToastsContainer: React.FunctionComponent<ToastsContainerProps> = React.forwardRef(
-  ({ bottomOffset, children, testId }: ToastsContainerProps, ref: any) => {
-    const toastsArray = React.useRef([]);
+export const ToastsContainer = React.forwardRef<
+  HTMLDivElement,
+  ToastsContainerProps
+>((props, ref) => {
+  const { bottomOffset, children, testId } = props;
+  const toastsArray = React.useRef([]);
 
-    return (
-      <ToastsContext.Provider value={{ bottomOffset, toastsArray }}>
-        <div ref={ref} data-testid={testId}>
-          {children}
-        </div>
-      </ToastsContext.Provider>
-    );
-  }
-);
+  return (
+    <ToastsContext.Provider value={{ bottomOffset, toastsArray }}>
+      <div ref={ref} data-testid={testId}>
+        {children}
+      </div>
+    </ToastsContext.Provider>
+  );
+});

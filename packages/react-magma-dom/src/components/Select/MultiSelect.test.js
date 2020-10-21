@@ -215,7 +215,7 @@ describe('Select', () => {
 
     expect(document.activeElement).toEqual(getByText(items[1]));
 
-    fireEvent.keyDown(getByText(items[2]), { key: 'ArrowRight' });
+    fireEvent.keyDown(getByText(items[1]), { key: 'ArrowRight' });
 
     expect(document.activeElement).toEqual(getByText(items[2]));
 

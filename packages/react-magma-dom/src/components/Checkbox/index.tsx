@@ -33,7 +33,6 @@ export interface CheckboxProps
   isTextVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
   labelText: React.ReactNode;
-  ref?: any;
   testId?: string;
   textPosition?: CheckboxTextPosition;
 }
@@ -127,8 +126,8 @@ export const StyledFakeInput = styled.span<{
   }
 `;
 
-export const Checkbox: React.FunctionComponent<CheckboxProps> = React.forwardRef(
-  (props: CheckboxProps, ref: any) => {
+export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
+  (props, ref) => {
     const { checked, id: defaultId, defaultChecked, onChange } = props;
     const [isChecked, updateIsChecked] = React.useState(
       Boolean(defaultChecked) || Boolean(checked)

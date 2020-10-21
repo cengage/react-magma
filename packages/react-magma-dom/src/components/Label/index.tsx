@@ -24,21 +24,22 @@ const StyledLabel = styled.label<LabelProps>`
   text-align: left;
 `;
 
-export const Label: React.FunctionComponent<LabelProps> = (
-  props: LabelProps
-) => {
-  const { children, isInverse, size, testId, ...other } = props;
-  const theme = React.useContext(ThemeContext);
+export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
+  (props, ref) => {
+    const { children, isInverse, size, testId, ...other } = props;
+    const theme = React.useContext(ThemeContext);
 
-  return (
-    <StyledLabel
-      {...other}
-      data-testid={testId}
-      isInverse={isInverse}
-      size={size ? size : InputSize.medium}
-      theme={theme}
-    >
-      {children}
-    </StyledLabel>
-  );
-};
+    return (
+      <StyledLabel
+        {...other}
+        data-testid={testId}
+        isInverse={isInverse}
+        ref={ref}
+        size={size ? size : InputSize.medium}
+        theme={theme}
+      >
+        {children}
+      </StyledLabel>
+    );
+  }
+);

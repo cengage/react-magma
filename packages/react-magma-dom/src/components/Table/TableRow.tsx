@@ -4,8 +4,8 @@ import { css } from '@emotion/core';
 import { TableContext } from './';
 import { ThemeContext } from '../../theme/ThemeContext';
 
-export interface TableRowProps extends React.HTMLAttributes<HTMLElement> {
-  ref?: any;
+export interface TableRowProps
+  extends React.HTMLAttributes<HTMLTableRowElement> {
   testId?: string;
 }
 
@@ -43,8 +43,9 @@ const StyledTableRow = styled.tr<{
     `}
 `;
 
-export const TableRow: React.FunctionComponent<TableRowProps> = React.forwardRef(
-  ({ children, testId, ...other }: TableRowProps, ref: any) => {
+export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
+  (props, ref) => {
+    const { children, testId, ...other } = props;
     const theme = React.useContext(ThemeContext);
     const tableContext = React.useContext(TableContext);
 

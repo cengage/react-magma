@@ -18,7 +18,6 @@ export interface ScrollButtonProps
   buttonVisible?: boolean;
   isInverse?: boolean;
   orientation?: TabsOrientation;
-  ref?: any;
   theme?: ThemeInterface;
 }
 
@@ -74,7 +73,6 @@ const StyledButtonPrev = styled(StyledScrollButton)<ScrollButtonProps>`
 const StyledButtonNext = styled(StyledScrollButton)<{
   backgroundColor?: string;
   orientation?: TabsOrientation;
-  ref?: any;
 }>`
   background: ${props => `linear-gradient(
         90deg,
@@ -94,48 +92,50 @@ const StyledButtonNext = styled(StyledScrollButton)<{
     `}
 `;
 
-export const ButtonPrev: React.FunctionComponent<ScrollButtonProps> = React.forwardRef(
-  (props: ScrollButtonProps, ref: any) => {
-    return (
-      <StyledButtonPrev
-        backgroundColor={props.backgroundColor}
-        buttonVisible={props.buttonVisible}
-        data-testid="buttonPrev"
-        isInverse={props.isInverse}
-        onClick={props.onClick}
-        orientation={props.orientation}
-        ref={ref}
-        theme={props.theme}
-      >
-        {props.orientation === TabsOrientation.vertical ? (
-          <AngleUpIcon size={16} />
-        ) : (
-          <AngleLeftIcon size={16} />
-        )}
-      </StyledButtonPrev>
-    );
-  }
-);
+export const ButtonPrev = React.forwardRef<
+  HTMLButtonElement,
+  ScrollButtonProps
+>((props, ref) => {
+  return (
+    <StyledButtonPrev
+      backgroundColor={props.backgroundColor}
+      buttonVisible={props.buttonVisible}
+      data-testid="buttonPrev"
+      isInverse={props.isInverse}
+      onClick={props.onClick}
+      orientation={props.orientation}
+      ref={ref}
+      theme={props.theme}
+    >
+      {props.orientation === TabsOrientation.vertical ? (
+        <AngleUpIcon size={16} />
+      ) : (
+        <AngleLeftIcon size={16} />
+      )}
+    </StyledButtonPrev>
+  );
+});
 
-export const ButtonNext: React.FunctionComponent<ScrollButtonProps> = React.forwardRef(
-  (props: ScrollButtonProps, ref: any) => {
-    return (
-      <StyledButtonNext
-        backgroundColor={props.backgroundColor}
-        buttonVisible={props.buttonVisible}
-        data-testid="buttonNext"
-        isInverse={props.isInverse}
-        onClick={props.onClick}
-        orientation={props.orientation}
-        ref={ref}
-        theme={props.theme}
-      >
-        {props.orientation === TabsOrientation.vertical ? (
-          <AngleDownIcon size={16} />
-        ) : (
-          <AngleRightIcon size={16} />
-        )}
-      </StyledButtonNext>
-    );
-  }
-);
+export const ButtonNext = React.forwardRef<
+  HTMLButtonElement,
+  ScrollButtonProps
+>((props, ref) => {
+  return (
+    <StyledButtonNext
+      backgroundColor={props.backgroundColor}
+      buttonVisible={props.buttonVisible}
+      data-testid="buttonNext"
+      isInverse={props.isInverse}
+      onClick={props.onClick}
+      orientation={props.orientation}
+      ref={ref}
+      theme={props.theme}
+    >
+      {props.orientation === TabsOrientation.vertical ? (
+        <AngleDownIcon size={16} />
+      ) : (
+        <AngleRightIcon size={16} />
+      )}
+    </StyledButtonNext>
+  );
+});

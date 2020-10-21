@@ -9,6 +9,7 @@ import { ItemsList } from './ItemsList';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
 import { I18nContext } from '../../i18n';
+import { useForkedRef } from '../../utils';
 
 export function Select<T>(props: SelectInterface<T>) {
   const {
@@ -18,6 +19,7 @@ export function Select<T>(props: SelectInterface<T>) {
     hasError,
     inputStyle,
     isLabelVisuallyHidden,
+    innerRef,
     itemToString,
     items,
     labelStyle,
@@ -37,6 +39,8 @@ export function Select<T>(props: SelectInterface<T>) {
 
   const toggleButtonRef = React.useRef<HTMLButtonElement>();
   const i18n = React.useContext(I18nContext);
+
+  const ref = useForkedRef(innerRef || null, toggleButtonRef);
 
   function getValidItem(itemToCheck: T, key: string): object {
     return items.findIndex(
@@ -120,7 +124,7 @@ export function Select<T>(props: SelectInterface<T>) {
     onKeyPress,
     onKeyUp,
     onFocus,
-    ref: toggleButtonRef,
+    ref,
   });
 
   function defaultHandleClearIndicatorClick(event: React.SyntheticEvent) {

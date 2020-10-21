@@ -28,7 +28,6 @@ export interface PasswordInputProps
   labelStyle?: React.CSSProperties;
   labelText: React.ReactNode;
   messageStyle?: React.CSSProperties;
-  ref?: React.Ref<HTMLInputElement>;
   shownPasswordAnnounceText?: string;
   showPasswordButtonAriaLabel?: string;
   showPasswordButtonText?: string;
@@ -47,134 +46,135 @@ const PasswordMaskWrapper = styled.span`
   top: 50%;
 `;
 
-export const PasswordInput: React.FunctionComponent<PasswordInputProps> = React.forwardRef(
-  (props: PasswordInputProps, ref: React.Ref<HTMLInputElement>) => {
-    const [passwordShown, setPasswordShown] = React.useState<boolean>(false);
+export const PasswordInput = React.forwardRef<
+  HTMLInputElement,
+  PasswordInputProps
+>((props, ref) => {
+  const [passwordShown, setPasswordShown] = React.useState<boolean>(false);
 
-    function togglePasswordShown() {
-      setPasswordShown(prevPasswordShown => !prevPasswordShown);
-    }
-
-    const {
-      containerStyle,
-      errorMessage,
-      helperMessage,
-      hiddenPasswordAnnounceText,
-      hidePasswordButtonAriaLabel,
-      hidePasswordButtonText,
-      isPasswordMaskButtonHidden,
-      id: defaultId,
-      inputSize,
-      isInverse,
-      labelStyle,
-      labelText,
-      isLabelVisuallyHidden,
-      messageStyle,
-      shownPasswordAnnounceText,
-      showPasswordButtonAriaLabel,
-      showPasswordButtonText,
-      type,
-      ...other
-    } = props;
-
-    const i18n = React.useContext(I18nContext);
-
-    const id = useGenerateId(defaultId);
-
-    const HIDDEN_PASSWORD_ANNOUNCE_TEXT = hiddenPasswordAnnounceText
-      ? hiddenPasswordAnnounceText
-      : i18n.password.hidden.announce;
-    const HIDE_PASSWORD_BUTTON_ARIA_LABEL = hidePasswordButtonAriaLabel
-      ? hidePasswordButtonAriaLabel
-      : i18n.password.hidden.ariaLabel;
-    const HIDE_PASSWORD_BUTTON_TEXT = hidePasswordButtonText
-      ? hidePasswordButtonText
-      : i18n.password.hidden.buttonText;
-    const SHOWN_PASSWORD_ANNOUNCE_TEXT = shownPasswordAnnounceText
-      ? shownPasswordAnnounceText
-      : i18n.password.shown.announce;
-    const SHOW_PASSWORD_BUTTON_ARIA_LABEL = showPasswordButtonAriaLabel
-      ? showPasswordButtonAriaLabel
-      : i18n.password.shown.ariaLabel;
-    const SHOW_PASSWORD_BUTTON_TEXT = showPasswordButtonText
-      ? showPasswordButtonText
-      : i18n.password.shown.buttonText;
-
-    const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
-    const theme = React.useContext(ThemeContext);
-
-    return (
-      <Container style={containerStyle}>
-        <Label
-          isInverse={isInverse}
-          htmlFor={id}
-          size={inputSize ? inputSize : InputSize.medium}
-          style={labelStyle}
-        >
-          {isLabelVisuallyHidden ? (
-            <HiddenLabelText>{labelText}</HiddenLabelText>
-          ) : (
-            labelText
-          )}
-        </Label>
-        <InputBase
-          {...other}
-          aria-describedby={
-            descriptionId ? descriptionId : props['aria-describedby']
-          }
-          aria-invalid={!!errorMessage}
-          id={id}
-          hasError={!!errorMessage}
-          inputSize={inputSize ? inputSize : InputSize.medium}
-          isInverse={isInverse}
-          ref={ref}
-          theme={theme}
-          type={passwordShown ? InputType.text : InputType.password}
-        >
-          {!isPasswordMaskButtonHidden && (
-            <PasswordMaskWrapper>
-              <Button
-                aria-label={
-                  passwordShown
-                    ? HIDE_PASSWORD_BUTTON_ARIA_LABEL
-                    : SHOW_PASSWORD_BUTTON_ARIA_LABEL
-                }
-                onClick={togglePasswordShown}
-                style={{
-                  height: '30px',
-                  marginTop: '8px',
-                  marginRight: '0',
-                  left: '7px',
-                  borderRadius: '3px',
-                }}
-                type={ButtonType.button}
-                variant={ButtonVariant.link}
-              >
-                {passwordShown
-                  ? HIDE_PASSWORD_BUTTON_TEXT
-                  : SHOW_PASSWORD_BUTTON_TEXT}
-              </Button>
-              <VisuallyHidden>
-                <Announce>
-                  {passwordShown
-                    ? SHOWN_PASSWORD_ANNOUNCE_TEXT
-                    : HIDDEN_PASSWORD_ANNOUNCE_TEXT}
-                </Announce>
-              </VisuallyHidden>
-            </PasswordMaskWrapper>
-          )}
-        </InputBase>
-        <InputMessage
-          isInverse={isInverse}
-          id={descriptionId}
-          hasError={!!errorMessage}
-          style={messageStyle}
-        >
-          {(errorMessage || helperMessage) && (
-            <>{errorMessage ? errorMessage : helperMessage}</>
-          )}
-        </InputMessage>
-      </Container>
-    );
+  function togglePasswordShown() {
+    setPasswordShown(prevPasswordShown => !prevPasswordShown);
   }
-);
+
+  const {
+    containerStyle,
+    errorMessage,
+    helperMessage,
+    hiddenPasswordAnnounceText,
+    hidePasswordButtonAriaLabel,
+    hidePasswordButtonText,
+    isPasswordMaskButtonHidden,
+    id: defaultId,
+    inputSize,
+    isInverse,
+    labelStyle,
+    labelText,
+    isLabelVisuallyHidden,
+    messageStyle,
+    shownPasswordAnnounceText,
+    showPasswordButtonAriaLabel,
+    showPasswordButtonText,
+    type,
+    ...other
+  } = props;
+
+  const i18n = React.useContext(I18nContext);
+
+  const id = useGenerateId(defaultId);
+
+  const HIDDEN_PASSWORD_ANNOUNCE_TEXT = hiddenPasswordAnnounceText
+    ? hiddenPasswordAnnounceText
+    : i18n.password.hidden.announce;
+  const HIDE_PASSWORD_BUTTON_ARIA_LABEL = hidePasswordButtonAriaLabel
+    ? hidePasswordButtonAriaLabel
+    : i18n.password.hidden.ariaLabel;
+  const HIDE_PASSWORD_BUTTON_TEXT = hidePasswordButtonText
+    ? hidePasswordButtonText
+    : i18n.password.hidden.buttonText;
+  const SHOWN_PASSWORD_ANNOUNCE_TEXT = shownPasswordAnnounceText
+    ? shownPasswordAnnounceText
+    : i18n.password.shown.announce;
+  const SHOW_PASSWORD_BUTTON_ARIA_LABEL = showPasswordButtonAriaLabel
+    ? showPasswordButtonAriaLabel
+    : i18n.password.shown.ariaLabel;
+  const SHOW_PASSWORD_BUTTON_TEXT = showPasswordButtonText
+    ? showPasswordButtonText
+    : i18n.password.shown.buttonText;
+
+  const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+  const theme = React.useContext(ThemeContext);
+
+  return (
+    <Container style={containerStyle}>
+      <Label
+        isInverse={isInverse}
+        htmlFor={id}
+        size={inputSize ? inputSize : InputSize.medium}
+        style={labelStyle}
+      >
+        {isLabelVisuallyHidden ? (
+          <HiddenLabelText>{labelText}</HiddenLabelText>
+        ) : (
+          labelText
+        )}
+      </Label>
+      <InputBase
+        {...other}
+        aria-describedby={
+          descriptionId ? descriptionId : props['aria-describedby']
+        }
+        aria-invalid={!!errorMessage}
+        id={id}
+        hasError={!!errorMessage}
+        inputSize={inputSize ? inputSize : InputSize.medium}
+        isInverse={isInverse}
+        ref={ref}
+        theme={theme}
+        type={passwordShown ? InputType.text : InputType.password}
+      >
+        {!isPasswordMaskButtonHidden && (
+          <PasswordMaskWrapper>
+            <Button
+              aria-label={
+                passwordShown
+                  ? HIDE_PASSWORD_BUTTON_ARIA_LABEL
+                  : SHOW_PASSWORD_BUTTON_ARIA_LABEL
+              }
+              onClick={togglePasswordShown}
+              style={{
+                height: '30px',
+                marginTop: '8px',
+                marginRight: '0',
+                left: '7px',
+                borderRadius: '3px',
+              }}
+              type={ButtonType.button}
+              variant={ButtonVariant.link}
+            >
+              {passwordShown
+                ? HIDE_PASSWORD_BUTTON_TEXT
+                : SHOW_PASSWORD_BUTTON_TEXT}
+            </Button>
+            <VisuallyHidden>
+              <Announce>
+                {passwordShown
+                  ? SHOWN_PASSWORD_ANNOUNCE_TEXT
+                  : HIDDEN_PASSWORD_ANNOUNCE_TEXT}
+              </Announce>
+            </VisuallyHidden>
+          </PasswordMaskWrapper>
+        )}
+      </InputBase>
+      <InputMessage
+        isInverse={isInverse}
+        id={descriptionId}
+        hasError={!!errorMessage}
+        style={messageStyle}
+      >
+        {(errorMessage || helperMessage) && (
+          <>{errorMessage ? errorMessage : helperMessage}</>
+        )}
+      </InputMessage>
+    </Container>
+  );
+});

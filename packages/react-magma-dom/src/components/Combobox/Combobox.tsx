@@ -10,6 +10,7 @@ import { ButtonSize, ButtonVariant } from '../Button';
 import { useComboboxItems, defaultOnInputValueChange } from './shared';
 import { ComboboxInterface } from '.';
 import { I18nContext } from '../../i18n';
+import { useForkedRef } from '../../utils';
 
 export function InternalCombobox<T>(props: ComboboxInterface<T>) {
   const {
@@ -23,6 +24,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
     inputStyle,
     isClearable,
     disabled,
+    innerRef,
     isLabelVisuallyHidden,
     isLoading,
     isInverse,
@@ -42,6 +44,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
     onItemCreated,
     placeholder,
     selectedItem: passedInSelectedItem,
+    toggleButtonRef,
   } = props;
 
   const i18n = React.useContext(I18nContext);
@@ -222,13 +225,14 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
     ...customComponents,
   });
 
-  const toggleButtonRef = React.useRef<HTMLDivElement>();
+  const inputRef = React.useRef<HTMLInputElement>();
+  const ref = useForkedRef(innerRef || null, inputRef);
 
   function defaultHandleClearIndicatorClick(event: React.SyntheticEvent) {
     event.stopPropagation();
 
-    if (toggleButtonRef.current) {
-      toggleButtonRef.current.focus();
+    if (inputRef.current) {
+      inputRef.current.focus();
     }
 
     reset();
@@ -264,7 +268,8 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
         onInputKeyPress={onInputKeyPress}
         onInputKeyUp={onInputKeyUp}
         placeholder={placeholder}
-        ref={toggleButtonRef}
+        ref={ref}
+        toggleButtonRef={toggleButtonRef}
       >
         {isClearable && selectedItem && (
           <ClearIndicator

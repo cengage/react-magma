@@ -11,6 +11,7 @@ import {
 } from 'downshift';
 
 import { SelectedItemsWrapper } from '../Select/shared';
+import { SelectOptions } from '../Select';
 
 const ComboBoxContainer = styled.div<{
   hasError?: boolean;
@@ -111,10 +112,14 @@ interface ComboboxInputProps<T> {
   onInputKeyUp?: (event: React.KeyboardEvent) => void;
   placeholder?: string;
   selectedItems?: React.ReactNode;
+  toggleButtonRef?: React.Ref<HTMLButtonElement>;
 }
 
 export const ComboboxInput = React.forwardRef(
-  <T extends {}>(props: ComboboxInputProps<T>, ref: any) => {
+  <T extends SelectOptions>(
+    props: ComboboxInputProps<T>,
+    ref: React.Ref<HTMLInputElement>
+  ) => {
     const {
       ariaDescribedBy,
       children,
@@ -134,6 +139,7 @@ export const ComboboxInput = React.forwardRef(
       onInputKeyUp,
       placeholder,
       selectedItems,
+      toggleButtonRef,
     } = props;
     const theme = React.useContext(ThemeContext);
 
@@ -162,7 +168,7 @@ export const ComboboxInput = React.forwardRef(
       onKeyDown: onInputKeyDown,
       onKeyPress: onInputKeyPress,
       onKeyUp: onInputKeyUp,
-      ref,
+      ...(ref && { ref }),
     });
 
     return (
@@ -174,7 +180,10 @@ export const ComboboxInput = React.forwardRef(
         theme={theme}
       >
         <InputContainer
-          {...getToggleButtonProps({ disabled: disabled })}
+          {...getToggleButtonProps({
+            disabled,
+            ...(toggleButtonRef && { ref: toggleButtonRef }),
+          })}
           hasError={hasError}
           disabled={disabled}
           isFocused={isFocused}

@@ -180,109 +180,112 @@ const renderLabelText = (
   );
 };
 
-export const Toggle: React.FunctionComponent<ToggleProps> = (
-  props: ToggleProps
-) => {
-  const [checked, setChecked] = React.useState<boolean>(Boolean(props.checked));
+export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
+  (props, ref) => {
+    const [checked, setChecked] = React.useState<boolean>(
+      Boolean(props.checked)
+    );
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    props.onChange &&
-      typeof props.onChange === 'function' &&
-      props.onChange(event);
-    setChecked(event.target.checked);
-  }
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+      props.onChange &&
+        typeof props.onChange === 'function' &&
+        props.onChange(event);
+      setChecked(event.target.checked);
+    }
 
-  const {
-    containerStyle,
-    disabled,
-    errorMessage,
-    hasError,
-    id: defaultId,
-    isInverse,
-    isTextVisuallyHidden,
-    labelStyle,
-    labelText,
-    textPosition,
-    testId,
-    trackStyle,
-    thumbStyle,
-    ...other
-  } = props;
+    const {
+      containerStyle,
+      disabled,
+      errorMessage,
+      hasError,
+      id: defaultId,
+      isInverse,
+      isTextVisuallyHidden,
+      labelStyle,
+      labelText,
+      textPosition,
+      testId,
+      trackStyle,
+      thumbStyle,
+      ...other
+    } = props;
 
-  const id = useGenerateId(defaultId);
+    const id = useGenerateId(defaultId);
 
-  const theme = React.useContext(ThemeContext);
+    const theme = React.useContext(ThemeContext);
 
-  const context = React.useContext(FormGroupContext);
+    const context = React.useContext(FormGroupContext);
 
-  const descriptionId = errorMessage ? `${id}__desc` : null;
-  const groupDescriptionId = context.descriptionId;
+    const descriptionId = errorMessage ? `${id}__desc` : null;
+    const groupDescriptionId = context.descriptionId;
 
-  const describedBy =
-    descriptionId && groupDescriptionId
-      ? `${groupDescriptionId} ${descriptionId}`
-      : descriptionId
-      ? descriptionId
-      : groupDescriptionId
-      ? groupDescriptionId
-      : null;
+    const describedBy =
+      descriptionId && groupDescriptionId
+        ? `${groupDescriptionId} ${descriptionId}`
+        : descriptionId
+        ? descriptionId
+        : groupDescriptionId
+        ? groupDescriptionId
+        : null;
 
-  return (
-    <>
-      <StyledContainer>
-        <HiddenInput
-          {...other}
-          aria-checked={!!checked}
-          aria-describedby={describedBy}
-          id={id}
-          data-testid={testId}
-          disabled={disabled}
-          checked={checked}
-          type="checkbox"
-          onChange={handleChange}
-          role="switch"
-        />
-        <StyledLabel htmlFor={id} style={containerStyle}>
-          {textPosition !== ToggleTextPosition.right &&
-            renderLabelText(
-              isTextVisuallyHidden,
-              labelText,
-              ToggleTextPosition.left,
-              labelStyle
-            )}
-          <Track
-            checked={checked}
-            data-testid="toggle-track"
+    return (
+      <>
+        <StyledContainer>
+          <HiddenInput
+            {...other}
+            aria-checked={!!checked}
+            aria-describedby={describedBy}
+            id={id}
+            data-testid={testId}
             disabled={disabled}
-            hasError={context.hasError || !!errorMessage}
-            isInverse={isInverse}
-            style={trackStyle}
-            theme={theme}
-          >
-            <IconContainer disabled={disabled} theme={theme}>
-              <CheckIcon size={11} />
-            </IconContainer>
-            <Thumb
+            checked={checked}
+            type="checkbox"
+            onChange={handleChange}
+            ref={ref}
+            role="switch"
+          />
+          <StyledLabel htmlFor={id} style={containerStyle}>
+            {textPosition !== ToggleTextPosition.right &&
+              renderLabelText(
+                isTextVisuallyHidden,
+                labelText,
+                ToggleTextPosition.left,
+                labelStyle
+              )}
+            <Track
               checked={checked}
+              data-testid="toggle-track"
               disabled={disabled}
-              style={thumbStyle}
+              hasError={context.hasError || !!errorMessage}
+              isInverse={isInverse}
+              style={trackStyle}
               theme={theme}
-            />
-          </Track>
-          {textPosition === ToggleTextPosition.right &&
-            renderLabelText(
-              isTextVisuallyHidden,
-              labelText,
-              ToggleTextPosition.right,
-              labelStyle
-            )}
-        </StyledLabel>
-      </StyledContainer>
-      {!!errorMessage && (
-        <InputMessage id={descriptionId} hasError isInverse={isInverse}>
-          {errorMessage}
-        </InputMessage>
-      )}
-    </>
-  );
-};
+            >
+              <IconContainer disabled={disabled} theme={theme}>
+                <CheckIcon size={11} />
+              </IconContainer>
+              <Thumb
+                checked={checked}
+                disabled={disabled}
+                style={thumbStyle}
+                theme={theme}
+              />
+            </Track>
+            {textPosition === ToggleTextPosition.right &&
+              renderLabelText(
+                isTextVisuallyHidden,
+                labelText,
+                ToggleTextPosition.right,
+                labelStyle
+              )}
+          </StyledLabel>
+        </StyledContainer>
+        {!!errorMessage && (
+          <InputMessage id={descriptionId} hasError isInverse={isInverse}>
+            {errorMessage}
+          </InputMessage>
+        )}
+      </>
+    );
+  }
+);

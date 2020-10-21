@@ -20,7 +20,6 @@ export interface BaseNavTabProps
   isFullWidth?: boolean;
   isInverse?: boolean;
   orientation?: TabsOrientation;
-  ref?: any;
   testId?: string;
   theme?: any;
 }
@@ -50,127 +49,122 @@ const StyledTab = styled.a`
   ${TabStyles}
 `;
 
-export const StyledCustomTab: React.FunctionComponent<NavTabComponentProps> = ({
-  children,
-  component,
-  icon,
-  style,
-  onClick,
-  ref,
-  ...props
-}) => {
-  if (React.isValidElement(component) && React.isValidElement(component)) {
-    const cloneElement = (element, newProps) => {
-      return jsx(element.type, {
-        key: element.key,
-        ref: element.ref,
-        ...element.props,
-        ...newProps,
+export const StyledCustomTab = React.forwardRef<any, NavTabComponentProps>(
+  (props, ref) => {
+    const { children, component, icon, style, onClick, ...rest } = props;
+
+    if (React.isValidElement(component) && React.isValidElement(component)) {
+      const cloneElement = (element, newProps) => {
+        return jsx(element.type, {
+          key: element.key,
+          ref: element.ref,
+          ...element.props,
+          ...newProps,
+        });
+      };
+
+      const other = omit(
+        ['iconPosition', 'isInverse', 'isActive', 'isFullWidth'],
+        rest
+      );
+
+      return cloneElement(component, {
+        ...other,
+        css: TabStyles(props),
+        ...style,
+        onClick,
+        ref,
+        children: (
+          <>
+            {icon}
+            {component.props.children}
+          </>
+        ),
       });
-    };
-
-    const other = omit(
-      ['iconPosition', 'isInverse', 'isActive', 'isFullWidth'],
-      props
-    );
-
-    return cloneElement(component, {
-      ...other,
-      css: TabStyles(props),
-      ...style,
-      onClick,
-      ref,
-      children: (
-        <>
-          {icon}
-          {component.props.children}
-        </>
-      ),
-    });
-  }
-};
-
-export const NavTab: React.FunctionComponent<NavTabProps> = React.forwardRef(
-  (props: Omit<React.PropsWithChildren<NavTabProps>, 'children'>, ref: any) => {
-    let children;
-    let component;
-    const { isActive, icon, testId, to, ...other } = props;
-    const theme = React.useContext(ThemeContext);
-
-    if (instanceOfNavComponentTab(props)) {
-      component = props.component;
-    } else if (instanceOfNavChildrenTab(props)) {
-      children = props.children;
     }
-
-    const isIconOnly = !children;
-
-    const {
-      orientation,
-      borderPosition,
-      iconPosition,
-      isInverse,
-      isFullWidth,
-    } = React.useContext(NavTabsContext);
-
-    const tabIconPosition = iconPosition
-      ? iconPosition
-      : orientation === 'vertical'
-      ? TabsIconPosition.left
-      : TabsIconPosition.top;
-
-    return (
-      <StyledTabsChild
-        borderPosition={borderPosition}
-        data-testid="tabContainer"
-        isActive={isActive}
-        isFullWidth={isFullWidth}
-        isInverse={isInverse}
-        orientation={orientation}
-        theme={theme}
-      >
-        {component ? (
-          <StyledCustomTab
-            {...other}
-            component={component}
-            data-testid={testId}
-            iconPosition={tabIconPosition}
-            icon={
-              icon && (
-                <StyledIcon iconPosition={tabIconPosition}>{icon}</StyledIcon>
-              )
-            }
-            isActive={isActive}
-            isInverse={isInverse}
-            isFullWidth={isFullWidth}
-            orientation={orientation}
-            theme={theme}
-          />
-        ) : (
-          <StyledTab
-            {...other}
-            ref={ref}
-            data-testid={testId}
-            href={to}
-            isActive={isActive}
-            isFullWidth={isFullWidth}
-            iconPosition={tabIconPosition}
-            isInverse={isInverse}
-            orientation={orientation}
-            theme={theme}
-          >
-            {icon && (
-              <StyledIcon
-                iconPosition={tabIconPosition}
-                isIconOnly={isIconOnly}
-              >
-                {icon}
-              </StyledIcon>
-            )}
-            {children}
-          </StyledTab>
-        )}
-      </StyledTabsChild>
-    );
   }
 );
+
+// Using any type because we do not know the element type of a custom tab
+export const NavTab = React.forwardRef<
+  any,
+  Omit<React.PropsWithChildren<NavTabProps>, 'children'>
+>((props, ref) => {
+  let children;
+  let component;
+  const { isActive, icon, testId, to, ...other } = props;
+  const theme = React.useContext(ThemeContext);
+
+  if (instanceOfNavComponentTab(props)) {
+    component = props.component;
+  } else if (instanceOfNavChildrenTab(props)) {
+    children = props.children;
+  }
+
+  const isIconOnly = !children;
+
+  const {
+    orientation,
+    borderPosition,
+    iconPosition,
+    isInverse,
+    isFullWidth,
+  } = React.useContext(NavTabsContext);
+
+  const tabIconPosition = iconPosition
+    ? iconPosition
+    : orientation === 'vertical'
+    ? TabsIconPosition.left
+    : TabsIconPosition.top;
+
+  return (
+    <StyledTabsChild
+      borderPosition={borderPosition}
+      data-testid="tabContainer"
+      isActive={isActive}
+      isFullWidth={isFullWidth}
+      isInverse={isInverse}
+      orientation={orientation}
+      theme={theme}
+    >
+      {component ? (
+        <StyledCustomTab
+          {...other}
+          component={component}
+          data-testid={testId}
+          iconPosition={tabIconPosition}
+          icon={
+            icon && (
+              <StyledIcon iconPosition={tabIconPosition}>{icon}</StyledIcon>
+            )
+          }
+          isActive={isActive}
+          isInverse={isInverse}
+          isFullWidth={isFullWidth}
+          orientation={orientation}
+          theme={theme}
+        />
+      ) : (
+        <StyledTab
+          {...other}
+          ref={ref}
+          data-testid={testId}
+          href={to}
+          isActive={isActive}
+          isFullWidth={isFullWidth}
+          iconPosition={tabIconPosition}
+          isInverse={isInverse}
+          orientation={orientation}
+          theme={theme}
+        >
+          {icon && (
+            <StyledIcon iconPosition={tabIconPosition} isIconOnly={isIconOnly}>
+              {icon}
+            </StyledIcon>
+          )}
+          {children}
+        </StyledTab>
+      )}
+    </StyledTabsChild>
+  );
+});

@@ -1,16 +1,18 @@
 import * as React from 'react';
 
-export interface TableBodyProps extends React.HTMLAttributes<HTMLElement> {
-  ref?: any;
+export interface TableBodyProps
+  extends React.HTMLAttributes<HTMLTableSectionElement> {
   testId?: string;
 }
 
-export const TableBody: React.FunctionComponent<TableBodyProps> = React.forwardRef(
-  ({ children, testId, ...other }: TableBodyProps, ref: any) => {
-    return (
-      <tbody {...other} ref={ref} data-testid={testId}>
-        {children}
-      </tbody>
-    );
-  }
-);
+export const TableBody = React.forwardRef<
+  HTMLTableSectionElement,
+  TableBodyProps
+>((props, ref) => {
+  const { children, testId, ...other } = props;
+  return (
+    <tbody {...other} ref={ref} data-testid={testId}>
+      {children}
+    </tbody>
+  );
+});

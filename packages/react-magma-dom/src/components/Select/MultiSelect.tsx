@@ -16,6 +16,7 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
     hasError,
     inputStyle,
     isLabelVisuallyHidden,
+    innerRef,
     itemToString,
     items,
     labelStyle,
@@ -143,6 +144,7 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
       onKeyUp,
       onFocus,
       preventKeyAction: isOpen,
+      ...(innerRef && { ref: innerRef }),
     }),
     disabled: disabled,
   });

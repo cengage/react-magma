@@ -20,21 +20,21 @@ const Container = styled.div<HideAtBreakpointProps>`
   }
 `;
 
-export const HideAtBreakpoint: React.FunctionComponent<HideAtBreakpointProps> = ({
-  children,
-  minWidth,
-  maxWidth,
-  testId,
-  ...other
-}: HideAtBreakpointProps) => {
+export const HideAtBreakpoint = React.forwardRef<
+  HTMLDivElement,
+  HideAtBreakpointProps
+>((props, ref) => {
+  const { children, minWidth, maxWidth, testId, ...other } = props;
+
   return (
     <Container
       {...other}
       data-testid={testId}
       maxWidth={maxWidth}
       minWidth={minWidth}
+      ref={ref}
     >
       {children}
     </Container>
   );
-};
+});

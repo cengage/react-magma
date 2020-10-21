@@ -25,22 +25,21 @@ const StyledSpinner = styled.span<SpinnerProps>`
   }
 `;
 
-export const Spinner: React.FunctionComponent<SpinnerProps> = ({
-  'aria-label': ariaLabel,
-  color,
-  size,
-  testId,
-  ...other
-}: SpinnerProps) => {
-  const theme = React.useContext(ThemeContext);
-  const i18n = React.useContext(I18nContext);
-  return (
-    <StyledSpinner
-      {...other}
-      aria-label={ariaLabel ? ariaLabel : i18n.spinner.ariaLabel}
-      color={color ? color : theme.colors.primary}
-      data-testid={testId}
-      size={size ? size : 15}
-    />
-  );
-};
+export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
+  (props, ref) => {
+    const { 'aria-label': ariaLabel, color, size, testId, ...other } = props;
+
+    const theme = React.useContext(ThemeContext);
+    const i18n = React.useContext(I18nContext);
+    return (
+      <StyledSpinner
+        {...other}
+        aria-label={ariaLabel ? ariaLabel : i18n.spinner.ariaLabel}
+        color={color ? color : theme.colors.primary}
+        data-testid={testId}
+        ref={ref}
+        size={size ? size : 15}
+      />
+    );
+  }
+);

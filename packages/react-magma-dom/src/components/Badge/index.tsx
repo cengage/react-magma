@@ -121,8 +121,10 @@ function getStyledBadgeComponent(isClickable: boolean) {
   return isClickable ? StyledButton : StyledSpan;
 }
 
-export const Badge: React.FunctionComponent<BadgeProps> = React.forwardRef(
-  ({ children, onClick, testId, variant, ...other }: BadgeProps, ref: any) => {
+export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
+  (props, ref) => {
+    const { children, onClick, testId, variant, ...other } = props;
+
     const BadgeComponent = getStyledBadgeComponent(Boolean(onClick));
 
     const theme = React.useContext(ThemeContext);

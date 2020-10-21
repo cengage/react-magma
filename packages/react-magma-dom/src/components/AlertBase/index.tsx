@@ -44,7 +44,6 @@ export interface AlertBaseProps extends React.HTMLAttributes<HTMLDivElement> {
   isPaused?: boolean;
   isToast?: boolean;
   onDismiss?: () => void;
-  ref?: any;
   testId?: string;
   toastDuration?: number;
   variant?: AlertVariant;
@@ -267,9 +266,9 @@ function renderIcon(variant = 'info', isToast?: boolean) {
   );
 }
 
-export const AlertBase: React.FunctionComponent<AlertBaseProps> = React.forwardRef(
-  (
-    {
+export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
+  (props, ref) => {
+    const {
       children,
       closeAriaLabel,
       forceDismiss,
@@ -286,9 +285,8 @@ export const AlertBase: React.FunctionComponent<AlertBaseProps> = React.forwardR
       toastDuration,
       variant,
       ...other
-    }: AlertBaseProps,
-    ref: React.MutableRefObject<HTMLDivElement>
-  ) => {
+    } = props;
+
     const id = useGenerateId(defaultId);
     const [isExiting, setIsExiting] = React.useState(false);
 

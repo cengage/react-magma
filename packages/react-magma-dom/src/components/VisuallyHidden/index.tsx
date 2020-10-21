@@ -11,12 +11,11 @@ const VisuallyHiddenDiv = styled.div`
   ${HiddenStyles}
 `;
 
-export const VisuallyHidden: React.FunctionComponent<VisuallyHiddenProps> = ({
-  children,
-  testId,
-  ...other
-}: VisuallyHiddenProps) => (
-  <VisuallyHiddenDiv {...other} data-testid={testId}>
-    {children}
-  </VisuallyHiddenDiv>
-);
+export const VisuallyHidden: React.FunctionComponent<VisuallyHiddenProps> = props => {
+  const { children, testId, ...other } = props;
+  return (
+    <VisuallyHiddenDiv {...other} data-testid={testId}>
+      {children}
+    </VisuallyHiddenDiv>
+  );
+};
