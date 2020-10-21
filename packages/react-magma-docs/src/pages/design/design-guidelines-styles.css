@@ -108,10 +108,8 @@ figure img {
 
 .type-example {
   border-bottom: 1px solid #dfdfdf;
-  padding: 20px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
 }
 
@@ -129,16 +127,148 @@ figure img {
   padding: 0;
 }
 
+.type-sample {
+  padding: 24px;
+  width: 66%;
+}
+
+.type-sample p {
+  margin-bottom: 0;
+}
+
 .type-specs {
   display: flex;
   flex-direction: column;
+  border-left: 1px solid #dfdfdf;
+  padding: 24px;
+}
+
+.specs-mobile  {
+  display: none;
 }
 
 .type-specs p {
-  font-size: 13px;
+  font-size: 14px;
+  line-height: 20px;
   color: #727272;
   margin: 0 0 10px 0;
-  text-align: right;
+}
+
+.type-specs p:last-of-type {
+  margin-bottom: 0;
+}
+
+.productive-body-large {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+}
+
+.productive-body-medium {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.productive-body-small {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: .16px;
+}
+
+.productive-body-xsmall {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: .32px;
+}
+
+.productive-heading-xlarge {
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 48px;
+}
+
+.productive-heading-large {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 40px;
+}
+
+.productive-heading-medium {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.productive-heading-small {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.productive-heading-xsmall {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.productive-heading-xxsmall {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: .32px;
+  text-transform: uppercase;
+}
+
+.expressive-body-large {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  color: #003865;
+}
+
+.expressive-heading-xlarge {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 56px;
+  color: #003865;
+}
+
+.expressive-heading-large {
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 48px;
+  color: #003865;
+}
+
+.expressive-heading-medium {
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 40px;
+  color: #003865;
+}
+
+.expressive-heading-small {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 32px;
+  color: #003865;
+}
+
+.expressive-heading-xsmall {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 32px;
+  color: #003865;
+}
+
+.expressive-heading-xxsmall {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: #003865;
 }
 
 .heading-leading-img h3 {
@@ -270,14 +400,100 @@ blockquote footer {
     align-items: flex-start;
   }
 
+  .type-sample {
+    width: 100%;
+    padding-bottom: 0;
+  }
+
   .type-specs {
-    margin-top: 10px;
+    border-left: 0;
   }
 
   .type-specs p {
     margin: 0 0 10px 0;
     text-align: left;
   }
+
+  .specs-mobile {
+    display: flex;
+  }
+
+  .specs-desktop {
+    display: none;
+  }
+
+  .productive-body-large {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 32px;
+  }
+  
+  .productive-heading-xlarge {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 48px;
+  }
+  
+  .productive-heading-large {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+  }
+  
+  .productive-heading-medium {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 32px;
+  }
+  
+  .productive-heading-small {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 32px;
+  }
+  
+  .expressive-body-large {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 32px;
+    color: #003865;
+  }
+  
+  .expressive-heading-xlarge {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 40px;
+    color: #003865;
+  }
+  
+  .expressive-heading-large {
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 40px;
+    color: #003865;
+  }
+  
+  .expressive-heading-medium {
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 32px;
+    color: #003865;
+  }
+  
+  .expressive-heading-small {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 32px;
+    color: #003865;
+  }
+  
+  .expressive-heading-xsmall {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 32px;
+    color: #003865;
+  }
+  
 }
 
 @media only screen and (max-width: 480px) {
