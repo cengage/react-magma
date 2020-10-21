@@ -58,21 +58,24 @@ The `expressive` context variant can be used in marketing contexts, which may re
 The `narrative` context variant can be used for content-heavy contexts, such as a blog post or an e-reader.
 
 ```.jsx
-    <>
+  <>
+    <div style={{marginBottom: '40px'}}>
       <Heading contextVariant="expressive" level={1}>Expressive Heading 1</Heading>
       <Heading contextVariant="expressive" level={2}>Expressive Heading 2</Heading>
       <Heading contextVariant="expressive" level={3}>Expressive Heading 3</Heading>
       <Heading contextVariant="expressive" level={4}>Expressive Heading 4</Heading>
       <Heading contextVariant="expressive" level={5}>Expressive Heading 5</Heading>
       <Heading contextVariant="expressive" level={6}>Expressive Heading 6</Heading>
-      <br/><br/>
+    </div>
+    <div>
       <Heading contextVariant="narrative" level={1}>Narrative Heading 1</Heading>
       <Heading contextVariant="narrative" level={2}>Narrative Heading 2</Heading>
       <Heading contextVariant="narrative" level={3}>Narrative Heading 3</Heading>
       <Heading contextVariant="narrative" level={4}>Narrative Heading 4</Heading>
       <Heading contextVariant="narrative" level={5}>Narrative Heading 5</Heading>
       <Heading contextVariant="narrative"  level={6}>Narrative Heading 6</Heading>
-    </>
+    </div>
+  </>
 ```
 
 ## Color
@@ -101,19 +104,19 @@ The `isInverse` property is an optional boolean that changes the colors so the c
 
 ```.jsx
   <div style={{ background : '#00263E', padding: '10px' }}>
-      <Heading isInverse level={2}>Heading 2</Heading>
+    <Heading isInverse level={2}>Heading 2</Heading>
 
-      <Heading color="success" isInverse level={2}>
-        Success Color Heading
-      </Heading>
+    <Heading color="success" isInverse level={2}>
+      Success Color Heading
+    </Heading>
 
-      <Heading color="danger" isInverse level={2}>
-        Danger Color Heading
-      </Heading>
+    <Heading color="danger" isInverse level={2}>
+      Danger Color Heading
+    </Heading>
 
-      <Heading isInverse level={2} color="subdued">
-        Heading 2 Subdued
-      </Heading>
+    <Heading isInverse level={2} color="subdued">
+      Heading 2 Subdued
+    </Heading>
   </div>
 ```
 
