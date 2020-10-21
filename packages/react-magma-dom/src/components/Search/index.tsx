@@ -18,13 +18,12 @@ export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
   isInverse?: boolean;
   labelText?: string;
   onSearch: (term: string) => void;
-  ref?: React.Ref<HTMLInputElement>;
   testId?: string;
   value?: string;
 }
 
-export const Search: React.FunctionComponent<SearchProps> = React.forwardRef(
-  (props: SearchProps, ref: React.Ref<HTMLInputElement>) => {
+export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
+  (props, ref) => {
     const {
       iconAriaLabel,
       isLoading,

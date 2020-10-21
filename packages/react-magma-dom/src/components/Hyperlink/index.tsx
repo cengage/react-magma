@@ -46,8 +46,8 @@ const linkStyles = props => css`
   }
 `;
 
-export const Hyperlink: React.FunctionComponent<HyperlinkProps> = React.forwardRef(
-  (props: HyperlinkProps, ref: any) => {
+export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
+  (props, ref) => {
     const composedProps = buildPropsWithDefaultButtonStyles(props);
     const { children, to, styledAs, isInverse, testId, ...rest } = props;
 
@@ -64,7 +64,10 @@ export const Hyperlink: React.FunctionComponent<HyperlinkProps> = React.forwardR
         <ClassNames>
           {({ css: composedCss }) => {
             const stylesClass = composedCss(composedStyle);
-            return children({ to, stylesClass });
+            return (children as (props: object) => React.ReactNode)({
+              to,
+              stylesClass,
+            });
           }}
         </ClassNames>
       );

@@ -32,7 +32,6 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   isOpen?: boolean;
   onClose?: () => void;
   onEscKeyDown?: (event: KeyboardEvent) => void;
-  ref?: React.Ref<HTMLDivElement>;
   size?: ModalSize;
   testId?: string;
   theme?: any;
@@ -165,8 +164,8 @@ const ModalBody = styled.div`
   padding: 20px;
 `;
 
-export const Modal: React.FunctionComponent<ModalProps> = React.forwardRef(
-  (props: ModalProps, ref: any) => {
+export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
+  (props, ref) => {
     const lastFocus = React.useRef<any>();
     const headingRef = React.useRef<any>();
     const bodyRef = React.useRef<any>();

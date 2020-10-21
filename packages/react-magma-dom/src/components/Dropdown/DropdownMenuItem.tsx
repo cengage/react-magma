@@ -54,84 +54,82 @@ const IconWrapper = styled.span`
   }
 `;
 
-export const DropdownMenuItem: React.FunctionComponent<DropdownMenuItemProps> = React.forwardRef(
-  (
-    { children, disabled, icon, onClick, value, ...other },
-    forwardedRef: React.Ref<any>
-  ) => {
-    const ownRef = React.useRef<HTMLDivElement>();
-    const theme = React.useContext(ThemeContext);
-    const context = React.useContext(DropdownContext);
+export const DropdownMenuItem = React.forwardRef<
+  HTMLDivElement,
+  DropdownMenuItemProps
+>((props, forwardedRef) => {
+  const { children, disabled, icon, onClick, value, ...other } = props;
 
-    const ref = useForkedRef(forwardedRef, ownRef);
+  const ownRef = React.useRef<HTMLDivElement>();
+  const theme = React.useContext(ThemeContext);
+  const context = React.useContext(DropdownContext);
 
-    const index = context.itemRefArray.current.findIndex(
-      ({ current: item }) => {
-        if (!item || !ownRef.current) return false;
+  const ref = useForkedRef(forwardedRef, ownRef);
 
-        return item === ownRef.current;
-      }
-    );
+  const index = context.itemRefArray.current.findIndex(({ current: item }) => {
+    if (!item || !ownRef.current) return false;
 
-    function handleClick(event: React.SyntheticEvent | React.KeyboardEvent) {
-      if (context.activeItemIndex >= 0) {
-        context.setActiveItemIndex(index);
-      }
+    return item === ownRef.current;
+  });
 
-      if (onClick && !disabled) {
-        onClick(value);
-      }
-
-      if (!disabled && context.activeItemIndex < 0) {
-        context.closeDropdown(event);
-      }
+  function handleClick(event: React.SyntheticEvent | React.KeyboardEvent) {
+    if (context.activeItemIndex >= 0) {
+      context.setActiveItemIndex(index);
     }
 
-    function handleKeyDown(event: React.KeyboardEvent) {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        handleClick(event);
-      }
+    if (onClick && !disabled) {
+      onClick(value);
     }
 
-    const isActive =
-      context.activeItemIndex >= 0 && context.activeItemIndex === index;
-
-    const isInactive =
-      context.activeItemIndex >= 0 && context.activeItemIndex !== index;
-
-    React.useEffect(() => {
-      if (!disabled)
-        context.registerDropdownMenuItem(context.itemRefArray, ownRef);
-    }, []);
-
-    const i18n = React.useContext(I18nContext);
-
-    return (
-      <StyledItem
-        {...other}
-        aria-disabled={disabled}
-        disabled={disabled}
-        isFixedWidth={context.isFixedWidth}
-        isInactive={isInactive}
-        onClick={handleClick}
-        onKeyDown={handleKeyDown}
-        ref={disabled ? null : ref}
-        role="menuitem"
-        theme={theme}
-        tabIndex={disabled ? null : -1}
-        value={value}
-      >
-        {icon && <IconWrapper theme={theme}>{icon}</IconWrapper>}
-        {isActive && (
-          <IconWrapper theme={theme}>
-            <CheckIcon aria-label={i18n.dropdown.menuItemSelectedAriaLabel} />
-          </IconWrapper>
-        )}
-        {children}
-      </StyledItem>
-    );
+    if (!disabled && context.activeItemIndex < 0) {
+      context.closeDropdown(event);
+    }
   }
-);
+
+  function handleKeyDown(event: React.KeyboardEvent) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      handleClick(event);
+    }
+  }
+
+  const isActive =
+    context.activeItemIndex >= 0 && context.activeItemIndex === index;
+
+  const isInactive =
+    context.activeItemIndex >= 0 && context.activeItemIndex !== index;
+
+  React.useEffect(() => {
+    if (!disabled)
+      context.registerDropdownMenuItem(context.itemRefArray, ownRef);
+  }, []);
+
+  const i18n = React.useContext(I18nContext);
+
+  return (
+    <StyledItem
+      {...other}
+      aria-disabled={disabled}
+      disabled={disabled}
+      isFixedWidth={context.isFixedWidth}
+      isInactive={isInactive}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      ref={disabled ? null : ref}
+      role="menuitem"
+      theme={theme}
+      tabIndex={disabled ? null : -1}
+      value={value}
+    >
+      {icon && <IconWrapper theme={theme}>{icon}</IconWrapper>}
+      {isActive && (
+        <IconWrapper theme={theme}>
+          <CheckIcon aria-label={i18n.dropdown.menuItemSelectedAriaLabel} />
+        </IconWrapper>
+      )}
+      {children}
+    </StyledItem>
+  );
+});
 
 DropdownMenuItem.displayName = 'DropdownMenuItem';

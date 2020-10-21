@@ -18,7 +18,6 @@ export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   isInverse?: boolean;
   position?: EnumTooltipPosition;
   testId?: string;
-  ref?: React.Ref<HTMLDivElement>;
   tooltipStyle?: React.CSSProperties;
 }
 
@@ -220,77 +219,76 @@ const StyledTooltipInner = styled.div<{
     `}
 `;
 
-export const Tooltip: React.FunctionComponent<TooltipProps> = React.forwardRef(
-  (props: TooltipProps, ref: any) => {
-    const [isVisible, setIsVisible] = React.useState<boolean>(false);
+// Using any for the ref because it is put ont he passed in children which does not have a specific type
+export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
+  const [isVisible, setIsVisible] = React.useState<boolean>(false);
 
-    function handleKeyDown(event: React.KeyboardEvent) {
-      if (event.key === 'Escape') {
-        setIsVisible(false);
-      }
-    }
-
-    function showTooltip() {
-      setIsVisible(true);
-    }
-
-    function hideTooltip() {
+  function handleKeyDown(event: React.KeyboardEvent) {
+    if (event.key === 'Escape') {
       setIsVisible(false);
     }
-
-    const {
-      children,
-      content,
-      containerStyle,
-      id: defaultId,
-      isInverse,
-      position,
-      testId,
-      tooltipStyle,
-      ...other
-    } = props;
-
-    const id = useGenerateId(defaultId);
-    const theme = React.useContext(ThemeContext);
-
-    if (Array.isArray(children)) {
-      throw new Error('Tooltip children can only be one element.');
-    }
-
-    const tooltipTrigger = React.cloneElement(children, {
-      'aria-describedby': id,
-      onBlur: hideTooltip,
-      onFocus: showTooltip,
-      ref: ref,
-    });
-
-    return (
-      <ToolTipContainer
-        {...other}
-        data-testid={testId}
-        onKeyDown={handleKeyDown}
-        onMouseLeave={hideTooltip}
-        onMouseEnter={showTooltip}
-        style={containerStyle}
-      >
-        {tooltipTrigger}
-        <StyledTooltip
-          aria-hidden={!isVisible}
-          id={id}
-          position={position ? position : EnumTooltipPosition.top}
-          role="tooltip"
-          visible={isVisible}
-        >
-          <StyledTooltipInner
-            isInverse={isInverse}
-            position={position ? position : EnumTooltipPosition.top}
-            style={tooltipStyle}
-            theme={theme}
-          >
-            {content}
-          </StyledTooltipInner>
-        </StyledTooltip>
-      </ToolTipContainer>
-    );
   }
-);
+
+  function showTooltip() {
+    setIsVisible(true);
+  }
+
+  function hideTooltip() {
+    setIsVisible(false);
+  }
+
+  const {
+    children,
+    content,
+    containerStyle,
+    id: defaultId,
+    isInverse,
+    position,
+    testId,
+    tooltipStyle,
+    ...other
+  } = props;
+
+  const id = useGenerateId(defaultId);
+  const theme = React.useContext(ThemeContext);
+
+  if (Array.isArray(children)) {
+    throw new Error('Tooltip children can only be one element.');
+  }
+
+  const tooltipTrigger = React.cloneElement(children, {
+    'aria-describedby': id,
+    onBlur: hideTooltip,
+    onFocus: showTooltip,
+    ref,
+  });
+
+  return (
+    <ToolTipContainer
+      {...other}
+      data-testid={testId}
+      onKeyDown={handleKeyDown}
+      onMouseLeave={hideTooltip}
+      onMouseEnter={showTooltip}
+      style={containerStyle}
+    >
+      {tooltipTrigger}
+      <StyledTooltip
+        aria-hidden={!isVisible}
+        id={id}
+        position={position ? position : EnumTooltipPosition.top}
+        role="tooltip"
+        visible={isVisible}
+      >
+        <StyledTooltipInner
+          isInverse={isInverse}
+          position={position ? position : EnumTooltipPosition.top}
+          style={tooltipStyle}
+          theme={theme}
+        >
+          {content}
+        </StyledTooltipInner>
+      </StyledTooltip>
+    </ToolTipContainer>
+  );
+});

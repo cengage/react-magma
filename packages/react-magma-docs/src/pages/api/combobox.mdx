@@ -1082,6 +1082,13 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
       required: false,
       description: 'Value of the initially selected item',
     },
+    innerRef: {
+      type: {
+        name: 'React.Ref<HTMLInputElement>',
+      },
+      required: false,
+      description: 'Reference to the input element in the combobox',
+    },
     inputStyle: {
       type: {
         name: 'React.CSSProperties',
@@ -1225,6 +1232,13 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
       required: false,
       description:
         'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+    toggleButtonRef: {
+      type: {
+        name: 'React.Ref<HTMLButtonElement>',
+      },
+      required: false,
+      description: 'Reference to the toggle button element wrapping the input in the combobox',
     },
   }}
 />

@@ -27,17 +27,16 @@ export const BreadCrumbContext = React.createContext<
   isInverse: false,
 });
 
-export const Breadcrumb: React.FunctionComponent<BreadcrumbProps> = React.forwardRef(
-  (
-    {
+export const Breadcrumb = React.forwardRef<HTMLOListElement, BreadcrumbProps>(
+  (props, ref) => {
+    const {
       'aria-label': ariaLabel,
       children,
       isInverse,
       testId,
       ...other
-    }: BreadcrumbProps,
-    ref: any
-  ) => {
+    } = props;
+
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
 

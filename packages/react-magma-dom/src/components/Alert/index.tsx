@@ -6,13 +6,12 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   isDismissible?: boolean;
   isInverse?: boolean;
   onDismiss?: () => void;
-  ref?: any;
   testId?: string;
   variant?: AlertVariant;
 }
 
-export const Alert: React.FunctionComponent<AlertProps> = React.forwardRef(
-  (props: AlertProps, ref: React.MutableRefObject<HTMLDivElement>) => {
+export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
+  (props, ref) => {
     return <AlertBase ref={ref} {...props} />;
   }
 );

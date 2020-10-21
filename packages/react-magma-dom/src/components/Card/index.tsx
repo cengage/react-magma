@@ -79,26 +79,29 @@ const StyledCard = styled.div<CardProps>`
     `}
 `;
 
-export const Card: React.FunctionComponent<CardProps> = (props: CardProps) => {
-  const { align, children, testId, width, ...other } = props;
+export const Card = React.forwardRef<HTMLDivElement, CardProps>(
+  (props, ref) => {
+    const { align, children, testId, width, ...other } = props;
 
-  const theme = React.useContext(ThemeContext);
+    const theme = React.useContext(ThemeContext);
 
-  const widthString = width
-    ? typeof width === 'number'
-      ? `${width}px`
-      : width
-    : 'auto';
+    const widthString = width
+      ? typeof width === 'number'
+        ? `${width}px`
+        : width
+      : 'auto';
 
-  return (
-    <StyledCard
-      {...other}
-      align={align ? align : CardAlignment.left}
-      data-testid={testId}
-      width={widthString}
-      theme={theme}
-    >
-      {children}
-    </StyledCard>
-  );
-};
+    return (
+      <StyledCard
+        {...other}
+        align={align ? align : CardAlignment.left}
+        data-testid={testId}
+        width={widthString}
+        ref={ref}
+        theme={theme}
+      >
+        {children}
+      </StyledCard>
+    );
+  }
+);

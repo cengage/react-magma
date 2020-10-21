@@ -6,7 +6,6 @@ import { ThemeInterface } from '../../theme/magma';
 interface AmPmToggleProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: string;
-  ref: any;
 }
 
 const StyledAmPmToggle = styled.button<{ theme: ThemeInterface }>`
@@ -23,8 +22,8 @@ const StyledAmPmToggle = styled.button<{ theme: ThemeInterface }>`
   }
 `;
 
-export const AmPmToggle: React.FunctionComponent<AmPmToggleProps> = React.forwardRef(
-  (props: AmPmToggleProps, ref: any) => {
+export const AmPmToggle = React.forwardRef<HTMLButtonElement, AmPmToggleProps>(
+  (props, ref) => {
     const { children, ...other } = props;
     const theme = React.useContext(ThemeContext);
 

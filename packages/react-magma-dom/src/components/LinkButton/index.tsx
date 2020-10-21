@@ -41,16 +41,22 @@ const LinkButtonComponent = styled.button<LinkButtonProps>`
   }
 `;
 
-export const LinkButton: React.FunctionComponent<LinkButtonProps> = ({
-  children,
-  testId,
-  ...other
-}: LinkButtonProps) => (
-  <ThemeContext.Consumer>
-    {theme => (
-      <LinkButtonComponent {...other} data-testid={testId} theme={theme}>
-        {children}
-      </LinkButtonComponent>
-    )}
-  </ThemeContext.Consumer>
+export const LinkButton = React.forwardRef<HTMLButtonElement, LinkButtonProps>(
+  (props, ref) => {
+    const { children, testId, ...other } = props;
+    return (
+      <ThemeContext.Consumer>
+        {theme => (
+          <LinkButtonComponent
+            {...other}
+            data-testid={testId}
+            ref={ref}
+            theme={theme}
+          >
+            {children}
+          </LinkButtonComponent>
+        )}
+      </ThemeContext.Consumer>
+    );
+  }
 );

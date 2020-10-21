@@ -28,7 +28,6 @@ interface SelectTriggerButtonInterface<T> {
   hasError?: boolean;
   disabled?: boolean;
   isInverse?: boolean;
-  ref?: any;
   style?: React.CSSProperties;
   toggleButtonProps: any;
   tabindex?: number;

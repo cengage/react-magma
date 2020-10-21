@@ -45,87 +45,90 @@ export const RadioContext = React.createContext<RadioContextInterface>({
   name: 'defaultName',
 });
 
-export const RadioGroup: React.FunctionComponent<RadioGroupProps> = (
-  props: RadioGroupProps
-) => {
-  const id = useGenerateId(props.id);
-  const [selectedValue, setSelectedValue] = React.useState<string>(props.value);
+export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
+  (props, ref) => {
+    const id = useGenerateId(props.id);
+    const [selectedValue, setSelectedValue] = React.useState<string>(
+      props.value
+    );
 
-  React.useEffect(() => {
-    setSelectedValue(props.value);
-  }, [props.value]);
+    React.useEffect(() => {
+      setSelectedValue(props.value);
+    }, [props.value]);
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { value: newSelectedValue } = event.target;
-    props.onChange &&
-      typeof props.onChange === 'function' &&
-      props.onChange(event);
-    setSelectedValue(newSelectedValue);
-  }
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+      const { value: newSelectedValue } = event.target;
+      props.onChange &&
+        typeof props.onChange === 'function' &&
+        props.onChange(event);
+      setSelectedValue(newSelectedValue);
+    }
 
-  const {
-    containerStyle,
-    errorMessage,
-    helperMessage,
-    isInverse,
-    required,
-    isTextVisuallyHidden,
-    labelledById,
-    labelStyle,
-    labelText,
-    testId,
-    name,
-    children,
-    ...rest
-  } = props;
-  const other = omit(['onBlur', 'onChange', 'onFocus', 'id'], rest);
+    const {
+      containerStyle,
+      errorMessage,
+      helperMessage,
+      isInverse,
+      required,
+      isTextVisuallyHidden,
+      labelledById,
+      labelStyle,
+      labelText,
+      testId,
+      name,
+      children,
+      ...rest
+    } = props;
+    const other = omit(['onBlur', 'onChange', 'onFocus', 'id'], rest);
 
-  const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+    const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
-  return (
-    <div
-      {...other}
-      aria-labelledby={labelledById ? labelledById : id}
-      style={containerStyle}
-      data-testid={testId}
-      role="radiogroup"
-    >
-      <RadioContext.Provider
-        value={{
-          descriptionId,
-          hasError: !!errorMessage,
-          isInverse,
-          required,
-          name,
-          selectedValue,
-          onBlur: props.onBlur,
-          onChange: handleChange,
-          onFocus: props.onFocus,
-        }}
+    return (
+      <div
+        {...other}
+        aria-labelledby={labelledById ? labelledById : id}
+        style={containerStyle}
+        data-testid={testId}
+        ref={ref}
+        role="radiogroup"
       >
-        {labelText && isTextVisuallyHidden && (
-          <HiddenLabel id={id} style={labelStyle}>
-            {labelText}
-          </HiddenLabel>
-        )}
-
-        {labelText && !isTextVisuallyHidden && (
-          <FormGroupLabel id={id} style={labelStyle}>
-            {labelText}
-          </FormGroupLabel>
-        )}
-        {children}
-
-        <InputMessage
-          id={descriptionId}
-          hasError={!!errorMessage}
-          isInverse={isInverse}
+        <RadioContext.Provider
+          value={{
+            descriptionId,
+            hasError: !!errorMessage,
+            isInverse,
+            required,
+            name,
+            selectedValue,
+            onBlur: props.onBlur,
+            onChange: handleChange,
+            onFocus: props.onFocus,
+          }}
         >
-          {(errorMessage || helperMessage) && (
-            <>{errorMessage ? errorMessage : helperMessage}</>
+          {labelText && isTextVisuallyHidden && (
+            <HiddenLabel id={id} style={labelStyle}>
+              {labelText}
+            </HiddenLabel>
           )}
-        </InputMessage>
-      </RadioContext.Provider>
-    </div>
-  );
-};
+
+          {labelText && !isTextVisuallyHidden && (
+            <FormGroupLabel id={id} style={labelStyle}>
+              {labelText}
+            </FormGroupLabel>
+          )}
+          {children}
+
+          <InputMessage
+            id={descriptionId}
+            hasError={!!errorMessage}
+            isInverse={isInverse}
+          >
+            {(errorMessage || helperMessage) && (
+              <>{errorMessage ? errorMessage : helperMessage}</>
+            )}
+          </InputMessage>
+        </RadioContext.Provider>
+      </div>
+    );
+  }
+);

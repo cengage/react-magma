@@ -40,180 +40,185 @@ const ToastWrapper = styled.div<{
 const DEFAULT_TOAST_DURATION = 5000;
 const TOAST_HEIGHT = 65;
 
-export const Toast: React.FunctionComponent<ToastProps> = (
-  props: ToastProps
-) => {
-  const timerAutoHide = React.useRef<any>();
-  const [isDismissed, setIsDismissed] = React.useState<boolean>(false);
-  const [isPaused, setIsPaused] = React.useState<boolean>(false);
-  const [timerTimeRemaining, setTimerTimeRemaining] = React.useState<number>();
+export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
+  (props, ref) => {
+    const timerAutoHide = React.useRef<any>();
+    const [isDismissed, setIsDismissed] = React.useState<boolean>(false);
+    const [isPaused, setIsPaused] = React.useState<boolean>(false);
+    const [timerTimeRemaining, setTimerTimeRemaining] = React.useState<
+      number
+    >();
 
-  const {
-    alertStyle,
-    id: defaultId,
-    testId,
-    variant,
-    disableAutoDismiss,
-    children,
-    containerStyle,
-    toastDuration,
-    ...other
-  } = props;
+    const {
+      alertStyle,
+      id: defaultId,
+      testId,
+      variant,
+      disableAutoDismiss,
+      children,
+      containerStyle,
+      toastDuration,
+      ...other
+    } = props;
 
-  const id = useGenerateId(defaultId);
+    const id = useGenerateId(defaultId);
 
-  const lastFocus = React.useRef<any>();
+    const lastFocus = React.useRef<any>();
 
-  const { bottomOffset, toastsArray } = React.useContext(ToastsContext);
+    const { bottomOffset, toastsArray } = React.useContext(ToastsContext);
 
-  const timerStartTime = Date.now();
+    const timerStartTime = Date.now();
 
-  const containerElement = React.useRef<any>();
+    const containerElement = React.useRef<any>();
 
-  function dismissToast() {
-    setIsDismissed(true);
+    function dismissToast() {
+      setIsDismissed(true);
 
-    setTimeout(() => {
-      if (toastsArray.current) {
-        toastsArray.current = toastsArray.current.filter(
-          toastId => toastId !== containerElement.current
-        );
-      }
-    }, 0);
-  }
-
-  function clearTimeoutAndDismiss() {
-    clearTimeout(timerAutoHide.current);
-
-    dismissToast();
-
-    if (lastFocus.current) {
-      lastFocus.current.focus();
+      setTimeout(() => {
+        if (toastsArray.current) {
+          toastsArray.current = toastsArray.current.filter(
+            toastId => toastId !== containerElement.current
+          );
+        }
+      }, 0);
     }
-  }
 
-  function setAutoHideTimer(duration = DEFAULT_TOAST_DURATION) {
-    clearTimeout(timerAutoHide.current);
-    const totalDuration = duration + transitionDuration;
+    function clearTimeoutAndDismiss() {
+      clearTimeout(timerAutoHide.current);
 
-    timerAutoHide.current = setTimeout(() => {
       dismissToast();
-    }, totalDuration);
-  }
 
-  function handlePause() {
-    const duration = timerTimeRemaining
-      ? timerTimeRemaining
-      : toastDuration
-      ? toastDuration
-      : DEFAULT_TOAST_DURATION;
-    const timeRemaining = duration - (Date.now() - timerStartTime);
-
-    clearTimeout(timerAutoHide.current);
-    setTimerTimeRemaining(timeRemaining);
-
-    setIsPaused(true);
-  }
-
-  function handleResume() {
-    setAutoHideTimer(timerTimeRemaining);
-    setIsPaused(false);
-  }
-
-  function handleMouseEnter(event: React.SyntheticEvent) {
-    props.onMouseEnter &&
-      typeof props.onMouseEnter === 'function' &&
-      props.onMouseEnter(event);
-
-    if (!props.disableAutoDismiss) {
-      handlePause();
+      if (lastFocus.current) {
+        lastFocus.current.focus();
+      }
     }
-  }
 
-  function handleMouseLeave(event: React.SyntheticEvent) {
-    props.onMouseLeave &&
-      typeof props.onMouseLeave === 'function' &&
-      props.onMouseLeave(event);
+    function setAutoHideTimer(duration = DEFAULT_TOAST_DURATION) {
+      clearTimeout(timerAutoHide.current);
+      const totalDuration = duration + transitionDuration;
 
-    if (!props.disableAutoDismiss) {
-      handleResume();
+      timerAutoHide.current = setTimeout(() => {
+        dismissToast();
+      }, totalDuration);
     }
-  }
 
-  function calculateAndSetBottomOffsetForToast() {
-    updateBottomOffsetForToast(
-      typeof toastsArray.current[0] === 'undefined'
-        ? 0
-        : toastsArray.current.indexOf(containerElement.current) * TOAST_HEIGHT
+    function handlePause() {
+      const duration = timerTimeRemaining
+        ? timerTimeRemaining
+        : toastDuration
+        ? toastDuration
+        : DEFAULT_TOAST_DURATION;
+      const timeRemaining = duration - (Date.now() - timerStartTime);
+
+      clearTimeout(timerAutoHide.current);
+      setTimerTimeRemaining(timeRemaining);
+
+      setIsPaused(true);
+    }
+
+    function handleResume() {
+      setAutoHideTimer(timerTimeRemaining);
+      setIsPaused(false);
+    }
+
+    function handleMouseEnter(event: React.SyntheticEvent) {
+      props.onMouseEnter &&
+        typeof props.onMouseEnter === 'function' &&
+        props.onMouseEnter(event);
+
+      if (!props.disableAutoDismiss) {
+        handlePause();
+      }
+    }
+
+    function handleMouseLeave(event: React.SyntheticEvent) {
+      props.onMouseLeave &&
+        typeof props.onMouseLeave === 'function' &&
+        props.onMouseLeave(event);
+
+      if (!props.disableAutoDismiss) {
+        handleResume();
+      }
+    }
+
+    function calculateAndSetBottomOffsetForToast() {
+      updateBottomOffsetForToast(
+        typeof toastsArray.current[0] === 'undefined'
+          ? 0
+          : toastsArray.current.indexOf(containerElement.current) * TOAST_HEIGHT
+      );
+    }
+
+    const [bottomOffsetForToast, updateBottomOffsetForToast] = React.useState(
+      0
+    );
+
+    React.useEffect(() => {
+      lastFocus.current = document.activeElement;
+
+      if (!props.disableAutoDismiss) {
+        setAutoHideTimer(props.toastDuration);
+      }
+
+      return () => {
+        clearTimeout(timerAutoHide.current);
+      };
+    }, []);
+
+    React.useEffect(() => {
+      if (!disableAutoDismiss) {
+        const focusableElements = getTrapElements(containerElement);
+        focusableElements.forEach(element => {
+          element.addEventListener('focus', handlePause);
+          element.addEventListener('blur', handleResume);
+        });
+      }
+    }, []);
+
+    React.useEffect(() => {
+      if (toastsArray) {
+        toastsArray.current = toastsArray.current.includes(
+          containerElement.current
+        )
+          ? toastsArray.current
+          : toastsArray.current.concat([containerElement.current]);
+
+        calculateAndSetBottomOffsetForToast();
+      }
+    }, []);
+
+    React.useEffect(() => {
+      calculateAndSetBottomOffsetForToast();
+    }, [toastsArray.current]);
+
+    return (
+      <ToastWrapper
+        bottomOffsetForToast={bottomOffsetForToast}
+        bottomOffsetForContainer={bottomOffset}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        ref={containerElement}
+        style={containerStyle}
+        data-testid={testId}
+      >
+        <AlertBase
+          {...other}
+          forceDismiss={clearTimeoutAndDismiss}
+          hasTimerRing={!disableAutoDismiss}
+          id={id}
+          isDismissible
+          isDismissed={isDismissed}
+          isPaused={isPaused}
+          isToast
+          onDismiss={props.onDismiss}
+          ref={ref}
+          style={{ ...alertStyle }}
+          toastDuration={toastDuration ? toastDuration : DEFAULT_TOAST_DURATION}
+          variant={variant}
+        >
+          {children}
+        </AlertBase>
+      </ToastWrapper>
     );
   }
-
-  const [bottomOffsetForToast, updateBottomOffsetForToast] = React.useState(0);
-
-  React.useEffect(() => {
-    lastFocus.current = document.activeElement;
-
-    if (!props.disableAutoDismiss) {
-      setAutoHideTimer(props.toastDuration);
-    }
-
-    return () => {
-      clearTimeout(timerAutoHide.current);
-    };
-  }, []);
-
-  React.useEffect(() => {
-    if (!disableAutoDismiss) {
-      const focusableElements = getTrapElements(containerElement);
-      focusableElements.forEach(element => {
-        element.addEventListener('focus', handlePause);
-        element.addEventListener('blur', handleResume);
-      });
-    }
-  }, []);
-
-  React.useEffect(() => {
-    if (toastsArray) {
-      toastsArray.current = toastsArray.current.includes(
-        containerElement.current
-      )
-        ? toastsArray.current
-        : toastsArray.current.concat([containerElement.current]);
-
-      calculateAndSetBottomOffsetForToast();
-    }
-  }, []);
-
-  React.useEffect(() => {
-    calculateAndSetBottomOffsetForToast();
-  }, [toastsArray.current]);
-
-  return (
-    <ToastWrapper
-      bottomOffsetForToast={bottomOffsetForToast}
-      bottomOffsetForContainer={bottomOffset}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      ref={containerElement}
-      style={containerStyle}
-      data-testid={testId}
-    >
-      <AlertBase
-        {...other}
-        forceDismiss={clearTimeoutAndDismiss}
-        hasTimerRing={!disableAutoDismiss}
-        id={id}
-        isDismissible
-        isDismissed={isDismissed}
-        isPaused={isPaused}
-        isToast
-        onDismiss={props.onDismiss}
-        style={{ ...alertStyle }}
-        toastDuration={toastDuration ? toastDuration : DEFAULT_TOAST_DURATION}
-        variant={variant}
-      >
-        {children}
-      </AlertBase>
-    </ToastWrapper>
-  );
-};
+);

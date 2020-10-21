@@ -53,15 +53,14 @@ export interface ButtonStyles {
 interface BaseButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   testId?: string;
-  ref?: any;
   theme?: any;
   type?: ButtonType;
 }
 
 export type ButtonProps = BaseButtonProps & ButtonStyles;
 
-export const Button: React.FunctionComponent<ButtonProps> = React.forwardRef(
-  (props: ButtonProps, ref: any) => {
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (props, ref) => {
     const {
       children,
       color,

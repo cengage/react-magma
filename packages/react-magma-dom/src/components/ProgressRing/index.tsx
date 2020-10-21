@@ -19,9 +19,9 @@ const Circle = styled.circle`
   transform-origin: 50% 50%;
 `;
 
-export const ProgressRing: React.FunctionComponent<ProgressRingProps> = React.forwardRef(
-  (
-    {
+export const ProgressRing = React.forwardRef<HTMLDivElement, ProgressRingProps>(
+  (props, ref) => {
+    const {
       color,
       duration = 5000,
       isActive,
@@ -29,9 +29,8 @@ export const ProgressRing: React.FunctionComponent<ProgressRingProps> = React.fo
       strokeWidth = 3,
       testId,
       ...other
-    }: ProgressRingProps,
-    ref: any
-  ) => {
+    } = props;
+
     const [percentage, setPercentage] = React.useState(100);
 
     React.useEffect(() => {

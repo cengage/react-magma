@@ -68,8 +68,8 @@ export function instanceOfIconOnly(object: any): object is IconOnlyButtonProps {
   return 'icon' in object && !('children' in object);
 }
 
-export const IconButton: React.FunctionComponent<IconButtonProps> = React.forwardRef(
-  (props: IconButtonProps, ref: any) => {
+export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
+  (props, ref) => {
     let icon;
     let iconPosition;
     let children;

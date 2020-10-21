@@ -7,14 +7,13 @@ const StyledCardBody = styled.div<CardProps>`
   text-align: ${props => props.align};
 `;
 
-export const CardBody: React.FunctionComponent<CardProps> = ({
-  children,
-  testId,
-  ...other
-}: CardProps) => {
-  return (
-    <StyledCardBody {...other} data-testid={testId}>
-      {children}
-    </StyledCardBody>
-  );
-};
+export const CardBody = React.forwardRef<HTMLDivElement, CardProps>(
+  (props, ref) => {
+    const { children, testId, ...other } = props;
+    return (
+      <StyledCardBody {...other} data-testid={testId} ref={ref}>
+        {children}
+      </StyledCardBody>
+    );
+  }
+);

@@ -45,6 +45,7 @@ export interface SelectInterface<T extends SelectOptions>
     InternalSelectInterface {
   ariaDescribedBy?: string;
   hasError?: boolean;
+  innerRef?: React.Ref<HTMLButtonElement>;
   onBlur?: (event: React.FocusEvent) => void;
   onFocus?: (event: React.FocusEvent) => void;
   onKeyDown?: (event: React.KeyboardEvent) => void;

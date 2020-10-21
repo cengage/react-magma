@@ -24,7 +24,6 @@ interface StyledButtonProps extends ButtonProps {
   as?: any;
   href?: string;
   iconOnly?: boolean;
-  ref?: any;
   to?: string;
 }
 
@@ -122,33 +121,34 @@ export const buttonStyles = props => css`
   `}
 `;
 
-export const StyledButton: React.FunctionComponent<StyledButtonProps> = React.forwardRef(
-  (props, ref: any) => {
-    const {
-      isFullWidth,
-      children,
-      iconOnly,
-      testId,
-      isInverse,
-      color,
-      shape,
-      size,
-      textTransform,
-      variant,
-      ...other
-    } = props;
+export const StyledButton = React.forwardRef<
+  HTMLButtonElement,
+  StyledButtonProps
+>((props, ref) => {
+  const {
+    isFullWidth,
+    children,
+    iconOnly,
+    testId,
+    isInverse,
+    color,
+    shape,
+    size,
+    textTransform,
+    variant,
+    ...other
+  } = props;
 
-    const theme = React.useContext(ThemeContext);
+  const theme = React.useContext(ThemeContext);
 
-    return (
-      <button
-        css={buttonStyles({ ...props, theme })}
-        {...other}
-        data-testid={testId}
-        ref={ref}
-      >
-        {children}
-      </button>
-    );
-  }
-);
+  return (
+    <button
+      css={buttonStyles({ ...props, theme })}
+      {...other}
+      data-testid={testId}
+      ref={ref}
+    >
+      {children}
+    </button>
+  );
+});

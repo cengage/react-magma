@@ -6,7 +6,6 @@ import { ThemeContext } from '../../theme/ThemeContext';
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   isInverse?: boolean;
   level: 1 | 2 | 3 | 4 | 5 | 6;
-  ref?: any;
   testId?: string;
   tabIndex?: number;
 }
@@ -67,8 +66,9 @@ const StyledH6 = styled.h6`
   line-height: 1.5;
 `;
 
-export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
-  ({ level, testId, children, ...other }: HeadingProps, ref: any) => {
+export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
+  (props, ref) => {
+    const { level, testId, children, ...other } = props;
     const theme = React.useContext(ThemeContext);
     const headingLevels = {
       1: StyledH1,
