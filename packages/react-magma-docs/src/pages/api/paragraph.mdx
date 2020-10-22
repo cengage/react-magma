@@ -192,10 +192,10 @@ By default, the `Paragraph` component includes margins on the top and bottom. Wh
   propertyValues={{
     children: {
       type: {
-        name: 'node'
+        name: 'node',
       },
       required: true,
-      description: 'The content of the component'
+      description: 'The content of the component',
     },
     color: {
       type: {
@@ -204,13 +204,13 @@ By default, the `Paragraph` component includes margins on the top and bottom. Wh
           'TypographyColor.danger',
           'TypographyColor.default',
           'TypographyColor.success',
-          'TypographyColor.subdued'
-        ]
+          'TypographyColor.subdued',
+        ],
       },
       required: false,
       description:
         'The color of the component, helping to convey meaning or relative emphasis',
-      defaultValue: 'default'
+      defaultValue: 'default',
     },
     contextVariant: {
       type: {
@@ -218,38 +218,38 @@ By default, the `Paragraph` component includes margins on the top and bottom. Wh
         options: [
           'TypographyContextVariant.expressive',
           'TypographyContextVariant.narrative',
-          'TypographyContextVariant.default'
-        ]
+          'TypographyContextVariant.default',
+        ],
       },
       description:
         'Additional styles for typography based on the context of the content',
-      defaultValue: 'default'
+      defaultValue: 'default',
     },
     isInverse: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     noMargins: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description:
         'If true, the component will not have the default top and bottom margin and instead will a margin value of 0.',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     testId: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing'
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     visualStyle: {
       type: {
@@ -264,14 +264,14 @@ By default, the `Paragraph` component includes margins on the top and bottom. Wh
           'TypographyVisualStyle.bodyLarge',
           'TypographyVisualStyle.bodyMedium',
           'TypographyVisualStyle.bodySmall',
-          'TypographyVisualStyle.bodyXSmall'
-        ]
+          'TypographyVisualStyle.bodyXSmall',
+        ],
       },
       required: false,
       description:
         'Applies visual styles including font-size, font-weight, line-height and margins',
-      defaultValue: 'bodyMedium'
-    }
+      defaultValue: 'bodyMedium',
+    },
   }}
 />
 

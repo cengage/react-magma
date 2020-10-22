@@ -176,10 +176,10 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
   propertyValues={{
     children: {
       type: {
-        name: 'node'
+        name: 'node',
       },
       required: true,
-      description: 'The content of the component'
+      description: 'The content of the component',
     },
     color: {
       type: {
@@ -188,13 +188,13 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
           'TypographyColor.danger',
           'TypographyColor.default',
           'TypographyColor.success',
-          'TypographyColor.subdued'
-        ]
+          'TypographyColor.subdued',
+        ],
       },
       required: false,
       description:
-        'The color of the component, helping to convey meaning or relative emphasis',
-      defaultValue: 'default'
+        'The color of the component, that helps to convey meaning or relative emphasis',
+      defaultValue: 'default',
     },
     contextVariant: {
       type: {
@@ -202,47 +202,47 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
         options: [
           'TypographyContextVariant.expressive',
           'TypographyContextVariant.narrative',
-          'TypographyContextVariant.default'
-        ]
+          'TypographyContextVariant.default',
+        ],
       },
       description:
         'Additional styles for typography based on the context of the content',
-      defaultValue: 'default'
+      defaultValue: 'default',
     },
     isInverse: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     level: {
       type: {
-        name: 'number (1-6)'
+        name: 'number (1-6)',
       },
       required: true,
       description:
         'Number to indicate which level heading will render (e.g. h1, h2 etc.)',
-      defaultValue: ''
+      defaultValue: '',
     },
     noMargins: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description:
         'If true, the component will not have default top and bottom margins for the respective heading element and instead will a margin value of 0.',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     testId: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing'
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     visualStyle: {
       type: {
@@ -257,14 +257,14 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
           'TypographyVisualStyle.bodyLarge',
           'TypographyVisualStyle.bodyMedium',
           'TypographyVisualStyle.bodySmall',
-          'TypographyVisualStyle.bodyXSmall'
-        ]
+          'TypographyVisualStyle.bodyXSmall',
+        ],
       },
       required: false,
       description:
         'Applies visual styles including font-size, font-weight, line-height and margins',
-      defaultValue: 'Default styles associated with the heading level 1-6'
-    }
+      defaultValue: 'Default styles associated with the heading level 1-6',
+    },
   }}
 />
 
