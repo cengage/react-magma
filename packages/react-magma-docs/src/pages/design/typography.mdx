@@ -7,7 +7,7 @@ order: 1
 import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
 import DocsHeading from '../../components/docs-heading';
-import { Button } from 'react-magma-dom';
+import { Button, Paragraph, Heading } from 'react-magma-dom';
 
 # Typography
 
@@ -15,7 +15,6 @@ Cengage applications need clear and consistent headings, highly legible body par
 
 By consistently tying typographic styles to appropriate functions in the interface, we create a clear visual pattern for students and faculty to follow while they’re interacting with our products.
 
-<span class="horizontal-spacer"></span>
 <hr class="article-divider" />
 
 ## Magma Type Sets
@@ -26,12 +25,14 @@ Magma has three sets of ready-made typographic elements that you can choose from
 
 Productive type is reserved for use in web-based product design, where the user needs to focus on tasks. The Productive styles are curated to create a series of clear user expectations about hierarchy. The difference between the Productive and Expressive styles is mainly evident in the Headings.
 
-#### Body
+#### Productive Body Text Styles
 
 <div class="type-details-table">
   <div class="type-example">
     <div class="type-sample">
-      <p class="productive-body-large">This is a good size for higher emphasis text, as well as the subheadline of a page.</p>
+      <Paragraph noMargins visualStyle="bodyLarge">
+        This is a good size for higher emphasis text, as well as the subheadline of a page.
+      </Paragraph>
     </div>
     <div class="type-specs specs-desktop">
       <p><strong>Body / Large</strong></p>
@@ -52,7 +53,9 @@ Productive type is reserved for use in web-based product design, where the user 
   </div>
   <div class="type-example">
     <div class="type-sample">
-      <p class="productive-body-medium">This is commonly used in layouts for paragraphs. The line height and size make for comfortable, long-form reading, in mediums that allow for more space. This size type is the basis for how all other text is calculated.</p>
+      <Paragraph noMargins visualStyle="bodyMedium">
+        This is commonly used in layouts for paragraphs. The line height and size make for comfortable, long-form reading, in mediums that allow for more space. This size type is the basis for how all other text is calculated.
+      </Paragraph>
     </div>
     <div class="type-specs">
       <p><strong>Body / Medium</strong></p>
@@ -65,7 +68,9 @@ Productive type is reserved for use in web-based product design, where the user 
   </div>
   <div class="type-example">
     <div class="type-sample">
-      <p class="productive-body-small">This is commonly used for helper and error text on inputs, as well as other explanatory text.</p>
+      <Paragraph noMargins visualStyle="bodySmall">
+        This is commonly used for helper and error text on inputs, as well as other explanatory text.
+      </Paragraph>
     </div>
     <div class="type-specs">
       <p><strong>Body / Small</strong></p>
@@ -78,7 +83,9 @@ Productive type is reserved for use in web-based product design, where the user 
   </div>
   <div class="type-example">
     <div class="type-sample">
-      <p class="productive-body-xsmall">This is good to use for captions and other meta-data or explanatory text. </p>
+      <Paragraph noMargins visualStyle="bodyXSmall">
+        This is good to use for captions and other meta-data or explanatory text.
+      </Paragraph>
     </div>
     <div class="type-specs">
       <p><strong>Body / X-Small</strong></p>
@@ -91,12 +98,16 @@ Productive type is reserved for use in web-based product design, where the user 
   </div>
 </div>
 
-#### Headings
+<span class="horizontal-spacer"></span>
+
+#### Productive Heading Text Styles
 
 <div class="type-details-table">
   <div class="type-example">
     <div class="type-sample">
-      <p class="productive-heading-xlarge">This is used for layout headings</p>
+      <Paragraph noMargins visualStyle="headingXLarge">
+        This is used for layout headings
+      </Paragraph>
     </div>
     <div class="type-specs specs-desktop">
       <p><strong>Heading / X-Large</strong></p>
@@ -117,7 +128,9 @@ Productive type is reserved for use in web-based product design, where the user 
   </div>
   <div class="type-example">
     <div class="type-sample">
-      <p class="productive-heading-large">This is used for layout headings</p>
+      <Paragraph noMargins visualStyle="headingLarge">
+        This is used for layout headings
+      </Paragraph>
     </div>
     <div class="type-specs specs-desktop">
       <p><strong>Heading / Large</strong></p>
@@ -138,7 +151,9 @@ Productive type is reserved for use in web-based product design, where the user 
   </div>
   <div class="type-example">
     <div class="type-sample">
-      <p class="productive-heading-medium">This is used for layout headings and component titles</p>
+      <Paragraph noMargins visualStyle="headingMedium">
+        This is used for layout headings and component titles
+      </Paragraph>
     </div>
     <div class="type-specs specs-desktop">
       <p><strong>Heading / Medium</strong></p>
@@ -159,7 +174,9 @@ Productive type is reserved for use in web-based product design, where the user 
   </div>
   <div class="type-example">
     <div class="type-sample">
-      <p class="productive-heading-small">This is used for layout headings and component titles</p>
+      <Paragraph noMargins visualStyle="headingSmall">
+        This is used for layout headings and component titles
+      </Paragraph>
     </div>
     <div class="type-specs specs-desktop">
       <p><strong>Heading / Small</strong></p>
@@ -180,7 +197,9 @@ Productive type is reserved for use in web-based product design, where the user 
   </div>
   <div class="type-example">
     <div class="type-sample">
-      <p class="productive-heading-xsmall">This is used for layout headings and component titles</p>
+      <Paragraph noMargins visualStyle="headingXSmall">
+        This is used for layout headings and component titles
+      </Paragraph>
     </div>
     <div class="type-specs">
       <p><strong>Heading / X-Small</strong></p>
@@ -193,10 +212,12 @@ Productive type is reserved for use in web-based product design, where the user 
   </div>
   <div class="type-example">
     <div class="type-sample">
-      <p class="productive-heading-xxsmall">This is used for layout headings and component titles</p>
+      <Paragraph noMargins visualStyle="heading2XSmall">
+        This is used for layout headings and component titles
+      </Paragraph>
     </div>
     <div class="type-specs">
-      <p><strong>Heading / XX-Small</strong></p>
+      <p><strong>Heading / 2X-Small</strong></p>
       <p>Typface: Open Sans</p>
       <p>Size: 12px / .75em</p>
       <p>Line-height: 16px / 1em</p>
@@ -212,14 +233,16 @@ Productive type is reserved for use in web-based product design, where the user 
 
 Expressive type is reserved for use in editorial and digital marketing experiences which may require more dynamic typographic hierarchies and more variety in the Heading scale. The Expressive styles are curated to create a series of clear user expectations while still allowing for a more dramatic, graphic use of type.
 
-#### Body
+#### Expressive Body Text Styles
 
 <div class="type-details-table">
   <div class="type-example">
     <div class="type-sample">
-      <p class="expressive-body-large">This is a good size for higher emphasis text, as well as the subheadline of a page.</p>
+      <Paragraph contextVariant="expressive" noMargins visualStyle="bodyLarge">
+        This is a good size for higher emphasis text, as well as the subheadline of a page.
+      </Paragraph>
     </div>
-    <div class="type-specs">
+    <div class="type-specs specs-desktop">
       <p><strong>Body / Large</strong></p>
       <p>Typface: Open Sans</p>
       <p>Size: 24px / 1.5em</p>
@@ -228,17 +251,30 @@ Expressive type is reserved for use in editorial and digital marketing experienc
       <p>Letter-spacing: 0px</p>
       <p>Color: foundation02 / #003865</p>
     </div>
+    <div class="type-specs specs-mobile">
+      <p><strong>Body / Large</strong></p>
+      <p>Typface: Open Sans</p>
+      <p>Size: 20px / 1.25em</p>
+      <p>Line-height: 32px / 2em</p>
+      <p>Weight: Regular / 400</p>
+      <p>Letter-spacing: 0px</p>
+      <p>Color: foundation02 / #003865</p>
+    </div>
   </div>
 </div>
 
-#### Headings
+<span class="horizontal-spacer"></span>
+
+#### Expressive Heading Text Styles
 
 <div class="type-details-table">
   <div class="type-example">
     <div class="type-sample">
-      <p class="expressive-heading-xlarge">This is used for layout headings</p>
+      <Paragraph contextVariant="expressive" noMargins visualStyle="headingXLarge">
+        This is used for layout headings
+      </Paragraph>
     </div>
-    <div class="type-specs">
+    <div class="type-specs specs-desktop">
       <p><strong>Heading / X-Large</strong></p>
       <p>Typface: Open Sans</p>
       <p>Size: 48px / 3em</p>
@@ -246,12 +282,22 @@ Expressive type is reserved for use in editorial and digital marketing experienc
       <p>Weight: Semibold / 600</p>
       <p>Letter-spacing: 0px</p>
     </div>
+    <div class="type-specs specs-mobile">
+      <p><strong>Heading / X-Large</strong></p>
+      <p>Typface: Open Sans</p>
+      <p>Size: 32px / 2em</p>
+      <p>Line-height: 40px / 2.5em</p>
+      <p>Weight: Semibold / 600</p>
+      <p>Letter-spacing: 0px</p>
+    </div>
   </div>
   <div class="type-example">
     <div class="type-sample">
-      <p class="expressive-heading-large">This is used for layout headings</p>
+      <Paragraph contextVariant="expressive" noMargins visualStyle="headingLarge">
+        This is used for layout headings
+      </Paragraph>
     </div>
-    <div class="type-specs">
+    <div class="type-specs specs-desktop">
       <p><strong>Heading / Large</strong></p>
       <p>Typface: Open Sans</p>
       <p>Size: 36px / 2.25em</p>
@@ -259,13 +305,8 @@ Expressive type is reserved for use in editorial and digital marketing experienc
       <p>Weight: Light / 300</p>
       <p>Letter-spacing: 0px</p>
     </div>
-  </div>
-  <div class="type-example">
-    <div class="type-sample">
-      <p class="expressive-heading-medium">This is used for layout headings and component titles</p>
-    </div>
-    <div class="type-specs">
-      <p><strong>Heading / Medium</strong></p>
+    <div class="type-specs specs-mobile">
+      <p><strong>Heading / Large</strong></p>
       <p>Typface: Open Sans</p>
       <p>Size: 28px / 1.75em</p>
       <p>Line-height: 40px / 2.5em</p>
@@ -275,10 +316,20 @@ Expressive type is reserved for use in editorial and digital marketing experienc
   </div>
   <div class="type-example">
     <div class="type-sample">
-      <p class="expressive-heading-small">This is used for layout headings and component titles</p>
+      <Paragraph contextVariant="expressive" noMargins visualStyle="headingMedium">
+        This is used for layout headings and component titles
+      </Paragraph>
     </div>
-    <div class="type-specs">
-      <p><strong>Heading / Small</strong></p>
+    <div class="type-specs specs-desktop">
+      <p><strong>Heading / Medium</strong></p>
+      <p>Typface: Open Sans</p>
+      <p>Size: 28px / 1.75em</p>
+      <p>Line-height: 40px / 2.5em</p>
+      <p>Weight: Light / 300</p>
+      <p>Letter-spacing: 0px</p>
+    </div>
+    <div class="type-specs specs-mobile">
+      <p><strong>Heading / Medium</strong></p>
       <p>Typface: Open Sans</p>
       <p>Size: 24px / 1.5em</p>
       <p>Line-height: 32px / 2em</p>
@@ -288,12 +339,22 @@ Expressive type is reserved for use in editorial and digital marketing experienc
   </div>
   <div class="type-example">
     <div class="type-sample">
-      <p class="expressive-heading-xsmall">This is used for layout headings and component titles</p>
+      <Paragraph contextVariant="expressive" noMargins visualStyle="headingSmall">
+        This is used for layout headings and component titles
+      </Paragraph>
     </div>
-    <div class="type-specs">
-      <p><strong>Heading / X-Small</strong></p>
+    <div class="type-specs specs-desktop">
+      <p><strong>Heading / Small</strong></p>
       <p>Typface: Open Sans</p>
-      <p>Size: 20px / 1.25em</p>
+      <p>Size: 24px / 1.5em</p>
+      <p>Line-height: 32px / 2em</p>
+      <p>Weight: Light / 300</p>
+      <p>Letter-spacing: 0px</p>
+    </div>
+    <div class="type-specs specs-mobile">
+      <p><strong>Heading / Small</strong></p>
+      <p>Typface: Open Sans</p>
+      <p>Size: 20px / 1.5em</p>
       <p>Line-height: 32px / 2em</p>
       <p>Weight: Light / 300</p>
       <p>Letter-spacing: 0px</p>
@@ -301,10 +362,35 @@ Expressive type is reserved for use in editorial and digital marketing experienc
   </div>
   <div class="type-example">
     <div class="type-sample">
-      <p class="expressive-heading-xxsmall">This is used for layout headings and component titles</p>
+      <Paragraph contextVariant="expressive" noMargins visualStyle="headingXSmall">
+        This is used for layout headings and component titles
+      </Paragraph>
+    </div>
+    <div class="type-specs specs-desktop">
+      <p><strong>Heading / X-Small</strong></p>
+      <p>Typface: Open Sans</p>
+      <p>Size: 20px / 1.25em</p>
+      <p>Line-height: 32px / 2em</p>
+      <p>Weight: Light / 300</p>
+      <p>Letter-spacing: 0px</p>
+    </div>
+    <div class="type-specs specs-mobile">
+      <p><strong>Heading / X-Small</strong></p>
+      <p>Typface: Open Sans</p>
+      <p>Size: 18px / 1.25em</p>
+      <p>Line-height: 32px / 2em</p>
+      <p>Weight: Light / 300</p>
+      <p>Letter-spacing: 0px</p>
+    </div>
+  </div>
+  <div class="type-example">
+    <div class="type-sample">
+      <Paragraph contextVariant="expressive" noMargins visualStyle="heading2XSmall">
+        This is used for layout headings and component titles
+      </Paragraph>
     </div>
     <div class="type-specs">
-      <p><strong>Heading / XX-Small</strong></p>
+      <p><strong>Heading / 2X-Small</strong></p>
       <p>Typface: Open Sans</p>
       <p>Size: 16px / 1em</p>
       <p>Line-height: 24px / 1.5em</p>
@@ -320,13 +406,215 @@ Expressive type is reserved for use in editorial and digital marketing experienc
 
 Narrative type uses Noto Serif but is otherwise styled the same as the default Productive variant.  The Narrative styles are curated to create a series of clear user expectations about hierarchy, but in a font that is more pleasurable for reading long passages of text.  
 
-DETAILS COMING SOON!
+#### Narrative Body Text Styles
+
+<div class="type-details-table">
+  <div class="type-example">
+    <div class="type-sample">
+      <Paragraph contextVariant="narrative" noMargins visualStyle="bodyLarge">
+        This is a good size for higher emphasis text, as well as the subheadline of a page.
+      </Paragraph>
+    </div>
+    <div class="type-specs specs-desktop">
+      <p><strong>Body / Large</strong></p>
+      <p>Typface: Open Sans</p>
+      <p>Size: 20px / 1.25em</p>
+      <p>Line-height: 32px / 2em</p>
+      <p>Weight: Regular / 400</p>
+      <p>Letter-spacing: 0px</p>
+    </div>
+    <div class="type-specs specs-mobile">
+      <p><strong>Body / Large</strong></p>
+      <p>Typface: Open Sans</p>
+      <p>Size: 18px / 1.125em</p>
+      <p>Line-height: 32px / 2em</p>
+      <p>Weight: Regular / 400</p>
+      <p>Letter-spacing: 0px</p>
+    </div>
+  </div>
+  <div class="type-example">
+    <div class="type-sample">
+      <Paragraph contextVariant="narrative" noMargins visualStyle="bodyMedium">
+        This is commonly used in layouts for paragraphs. The line height and size make for comfortable, long-form reading, in mediums that allow for more space. This size type is the basis for how all other text is calculated.
+      </Paragraph>
+    </div>
+    <div class="type-specs">
+      <p><strong>Body / Medium</strong></p>
+      <p>Typface: Open Sans</p>
+      <p>Size: 16px / 1em</p>
+      <p>Line-height: 24px / 1.5em</p>
+      <p>Weight: Regular / 400</p>
+      <p>Letter-spacing: 0px</p>
+    </div>
+  </div>
+  <div class="type-example">
+    <div class="type-sample">
+      <Paragraph contextVariant="narrative" noMargins visualStyle="bodySmall">
+        This is commonly used for helper and error text on inputs, as well as other explanatory text.
+      </Paragraph>
+    </div>
+    <div class="type-specs">
+      <p><strong>Body / Small</strong></p>
+      <p>Typface: Open Sans</p>
+      <p>Size: 14px / .875em</p>
+      <p>Line-height: 20px / 1.25em</p>
+      <p>Weight: Regular / 400</p>
+      <p>Letter-spacing: .16px</p>
+    </div>
+  </div>
+  <div class="type-example">
+    <div class="type-sample">
+      <Paragraph contextVariant="narrative" noMargins visualStyle="bodyXSmall">
+        This is good to use for captions and other meta-data or explanatory text.
+      </Paragraph>
+    </div>
+    <div class="type-specs">
+      <p><strong>Body / X-Small</strong></p>
+      <p>Typface: Open Sans</p>
+      <p>Size: 12px / .75em</p>
+      <p>Line-height: 16px / 1em</p>
+      <p>Weight: Regular / 400</p>
+      <p>Letter-spacing: .32px</p>
+    </div>
+  </div>
+</div>
+
+<span class="horizontal-spacer"></span>
+
+#### Narrative Heading Text Styles
+
+<div class="type-details-table">
+  <div class="type-example">
+    <div class="type-sample">
+      <Paragraph contextVariant="narrative" noMargins visualStyle="headingXLarge">
+        This is used for layout headings
+      </Paragraph>
+    </div>
+    <div class="type-specs specs-desktop">
+      <p><strong>Heading / X-Large</strong></p>
+      <p>Typface: Open Sans</p>
+      <p>Size: 36px / 2.25em</p>
+      <p>Line-height: 48px / 3em</p>
+      <p>Weight: Semibold / 600</p>
+      <p>Letter-spacing: 0px</p>
+    </div>
+    <div class="type-specs specs-mobile">
+      <p><strong>Heading / X-Large</strong></p>
+      <p>Typface: Open Sans</p>
+      <p>Size: 28px / 1.75em</p>
+      <p>Line-height: 40px / 2.5em</p>
+      <p>Weight: Semibold / 600</p>
+      <p>Letter-spacing: 0px</p>
+    </div>
+  </div>
+  <div class="type-example">
+    <div class="type-sample">
+      <Paragraph contextVariant="narrative" noMargins visualStyle="headingLarge">
+        This is used for layout headings
+      </Paragraph>
+    </div>
+    <div class="type-specs specs-desktop">
+      <p><strong>Heading / Large</strong></p>
+      <p>Typface: Open Sans</p>
+      <p>Size: 28px / 1.75em</p>
+      <p>Line-height: 40px / 2.5em</p>
+      <p>Weight: Semibold / 600</p>
+      <p>Letter-spacing: 0px</p>
+    </div>
+    <div class="type-specs specs-mobile">
+      <p><strong>Heading / Large</strong></p>
+      <p>Typface: Open Sans</p>
+      <p>Size: 24px / 1.5em</p>
+      <p>Line-height: 32px / 2em</p>
+      <p>Weight: Semibold / 600</p>
+      <p>Letter-spacing: 0px</p>
+    </div>
+  </div>
+  <div class="type-example">
+    <div class="type-sample">
+      <Paragraph contextVariant="narrative" noMargins visualStyle="headingMedium">
+        This is used for layout headings and component titles
+      </Paragraph>
+    </div>
+    <div class="type-specs specs-desktop">
+      <p><strong>Heading / Medium</strong></p>
+      <p>Typface: Open Sans</p>
+      <p>Size: 24px / 1.5em</p>
+      <p>Line-height: 32px / 2em</p>
+      <p>Weight: Semibold / 600</p>
+      <p>Letter-spacing: 0px</p>
+    </div>
+    <div class="type-specs specs-mobile">
+      <p><strong>Heading / Medium</strong></p>
+      <p>Typface: Open Sans</p>
+      <p>Size: 20px / 1.25em</p>
+      <p>Line-height: 32px / 2em</p>
+      <p>Weight: Semibold / 600</p>
+      <p>Letter-spacing: 0px</p>
+    </div>
+  </div>
+  <div class="type-example">
+    <div class="type-sample">
+      <Paragraph contextVariant="narrative" noMargins visualStyle="headingSmall">
+        This is used for layout headings and component titles
+      </Paragraph>
+    </div>
+    <div class="type-specs specs-desktop">
+      <p><strong>Heading / Small</strong></p>
+      <p>Typface: Open Sans</p>
+      <p>Size: 20px / 1.25em</p>
+      <p>Line-height: 32px / 2em</p>
+      <p>Weight: Semibold / 600</p>
+      <p>Letter-spacing: 0px</p>
+    </div>
+    <div class="type-specs specs-mobile">
+      <p><strong>Heading / Small</strong></p>
+      <p>Typface: Open Sans</p>
+      <p>Size: 18px / 1.125em</p>
+      <p>Line-height: 32px / 2em</p>
+      <p>Weight: Semibold / 600</p>
+      <p>Letter-spacing: 0px</p>
+    </div>
+  </div>
+  <div class="type-example">
+    <div class="type-sample">
+      <Paragraph contextVariant="narrative" noMargins visualStyle="headingXSmall">
+        This is used for layout headings and component titles
+      </Paragraph>
+    </div>
+    <div class="type-specs">
+      <p><strong>Heading / X-Small</strong></p>
+      <p>Typface: Open Sans</p>
+      <p>Size: 18px / 1.125em</p>
+      <p>Line-height: 32px / 2em</p>
+      <p>Weight: Semibold / 600</p>
+      <p>Letter-spacing: 0px</p>
+    </div>
+  </div>
+  <div class="type-example">
+    <div class="type-sample">
+      <Paragraph contextVariant="narrative" noMargins visualStyle="heading2XSmall">
+        This is used for layout headings and component titles
+      </Paragraph>
+    </div>
+    <div class="type-specs">
+      <p><strong>Heading / 2X-Small</strong></p>
+      <p>Typface: Open Sans</p>
+      <p>Size: 12px / .75em</p>
+      <p>Line-height: 16px / 1em</p>
+      <p>Weight: Bold / 700</p>
+      <p>Letter-spacing: .32px</p>
+    </div>
+  </div>
+</div>
+
+<span class="horizontal-spacer"></span>
 
 ### Changing Headings Styles
 
 The headings presets above are assigned by default to H1 through H6 in the <Link to="/api/heading/">Headings component</Link>. But it's relatively common to need a specific heading type in the markup, but not want the default styling.  For this reason we have made it very easy to change which styling preset you use in the headings component.
 
-One example of this is in the <Link to="/api/modal/">Modal component</Link>.  For optimal accessibilty the title of the modal needs to be an H1, but we definitely don't want it to be styled with text that large.  So we use an H1, but apply the Productive Heading Small style to it.  This flexibility allows consumers of Magma to design using the styles that work best for the UI, but still have a clear informational hierarchy for assistive technologies.
+One example of this is in the <Link to="/api/modal/">Modal component</Link>.  For optimal accessibility the title of the modal needs to be an H1, but we definitely don't want it to be styled with text that large.  So we use an H1, but apply the Productive Heading Small style to it.  This flexibility allows consumers of Magma to design using the styles that work best for the UI, but still have a clear informational hierarchy for assistive technologies.
 
 <figure>
   <img src="../../images/typography/modal-title-style.png" alt=" " />
@@ -334,11 +622,11 @@ One example of this is in the <Link to="/api/modal/">Modal component</Link>.  Fo
 
 #### Consistency is Key
 
-Continuing from above, there isn't just one way an H1 or and H3 should be styled.  We have chosen logical default styles, but it's easy to say you need an H3 to be styled using one of the larger or smaller presets.  The key is to be consistent.  If you style a page title using productive-heading-large, then you need to use the same styling on all of the pages.  If you use productive-heading-xsmall to style the title of a section, then you should use the same styling on equivelant sections.
+Continuing from above, there isn't just one way an H1 or and H3 should be styled.  We have chosen logical default styles, but it's easy to say you need an H3 to be styled using one of the larger or smaller presets.  The key is to be consistent.  If you style a page title using productive-heading-large, then you need to use the same styling on all of the pages.  If you use "productive-heading-xsmall" to style the title of a section, then you should use the same styling on equivalent sections.
 
 ### Responsive Behavior
 
-Another advantage to using the presets above is that Responsive behavior is already built into each style so you don't have to figure out and include it yourself.  This means a number of the larger sizes will automatically reduce in size at 600px wide.  This ensures we have appropriate text sizes on smaller devices.  The breakpoint can be overriden if you want this change to happen earlier or later.
+Another advantage to using the presets above is that Responsive behavior is already built into each style so you don't have to figure out and include it yourself.  This means a number of the larger sizes will automatically reduce in size at 600px wide.  This ensures we have appropriate text sizes on smaller devices.  The breakpoint can be overridden if you want this change to happen earlier or later.
 
 <figure>
   <img src="../../images/typography/responsive-example.png" alt=" " />
@@ -516,7 +804,7 @@ Type color should be carefully considered, with legibility and accessibility as 
 
 #### Subdued
 
-It is common to lighten certain pieces of text in order to create more contrast.  For example, making a subtitle more subdued than the title, or instructional text like the helper text on form inputs.  This can be easily done by applying the "subdued" color to a piece of text.  On a light background, this makes the color #727272.  The inverse equivelant is a semi-transparent white.
+It is common to lighten certain pieces of text in order to create more contrast.  For example, making a subtitle more subdued than the title, or instructional text like the helper text on form inputs.  This can be easily done by applying the "subdued" color to a piece of text.  On a light background, this makes the color #727272.  The inverse equivalent is a semi-transparent white.
 
 <div class="two-col">
   <div class="row">
@@ -532,7 +820,5 @@ It is common to lighten certain pieces of text in order to create more contrast.
     </div>
   </div>
 </div>
-
-
 
 <span class="horizontal-spacer"></span>

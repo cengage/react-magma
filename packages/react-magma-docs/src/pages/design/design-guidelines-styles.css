@@ -117,16 +117,6 @@ figure img {
   border-bottom: none;
 }
 
-.type-example h1,
-.type-example h2,
-.type-example h3,
-.type-example h4,
-.type-example h5,
-.type-example h6 {
-  margin: 0;
-  padding: 0;
-}
-
 .type-sample {
   padding: 24px;
   width: 66%;
@@ -156,119 +146,6 @@ figure img {
 
 .type-specs p:last-of-type {
   margin-bottom: 0;
-}
-
-.productive-body-large {
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 32px;
-}
-
-.productive-body-medium {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-}
-
-.productive-body-small {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  letter-spacing: .16px;
-}
-
-.productive-body-xsmall {
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 16px;
-  letter-spacing: .32px;
-}
-
-.productive-heading-xlarge {
-  font-size: 36px;
-  font-weight: 600;
-  line-height: 48px;
-}
-
-.productive-heading-large {
-  font-size: 28px;
-  font-weight: 600;
-  line-height: 40px;
-}
-
-.productive-heading-medium {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 32px;
-}
-
-.productive-heading-small {
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 32px;
-}
-
-.productive-heading-xsmall {
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 32px;
-}
-
-.productive-heading-xxsmall {
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 16px;
-  letter-spacing: .32px;
-  text-transform: uppercase;
-}
-
-.expressive-body-large {
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 32px;
-  color: #003865;
-}
-
-.expressive-heading-xlarge {
-  font-size: 48px;
-  font-weight: 600;
-  line-height: 56px;
-  color: #003865;
-}
-
-.expressive-heading-large {
-  font-size: 36px;
-  font-weight: 300;
-  line-height: 48px;
-  color: #003865;
-}
-
-.expressive-heading-medium {
-  font-size: 28px;
-  font-weight: 300;
-  line-height: 40px;
-  color: #003865;
-}
-
-.expressive-heading-small {
-  font-size: 24px;
-  font-weight: 300;
-  line-height: 32px;
-  color: #003865;
-}
-
-.expressive-heading-xsmall {
-  font-size: 20px;
-  font-weight: 300;
-  line-height: 32px;
-  color: #003865;
-}
-
-.expressive-heading-xxsmall {
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 24px;
-  color: #003865;
 }
 
 .heading-leading-img h3 {
