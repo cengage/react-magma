@@ -12,7 +12,7 @@ import {
   TabPanel,
   TabPanelsContainer,
   TabsContainer,
-  useMediaQuery
+  useMediaQuery,
 } from 'react-magma-dom';
 import { SimplePropsTable } from '../../components/props-table';
 import DocsHeading from '../../components/docs-heading';
@@ -705,19 +705,19 @@ When using the `component` props in the `Tab` component we will disregard anythi
   propertyValues={{
     activeIndex: {
       type: {
-        name: 'number'
+        name: 'number',
       },
       required: false,
       description:
-        'The index of the current active tab. You can use this for managing state of the tabs component by your custom logic.'
+        'The index of the current active tab. You can use this for managing state of the tabs component by your custom logic.',
     },
     testId: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
-      description: 'The id for react-testing-library.'
-    }
+      description: 'The id for react-testing-library.',
+    },
   }}
 />
 
@@ -733,27 +733,27 @@ When using the `component` props in the `Tab` component we will disregard anythi
         options: [
           'TabsAlignment.center',
           'TabsAlignment.left',
-          'TabsAlignment.right'
-        ]
+          'TabsAlignment.right',
+        ],
       },
       required: false,
       description: 'Alignment of the tabs menu',
-      defaultValue: 'left'
+      defaultValue: 'left',
     },
     'aria-label': {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: true,
       description:
-        'The text the screen reader will announce that describes your tablist.'
+        'The text the screen reader will announce that describes your tablist.',
     },
     backgroundColor: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
-      description: 'Background color for the tabs menu'
+      description: 'Background color for the tabs menu',
     },
     borderPosition: {
       type: {
@@ -761,52 +761,52 @@ When using the `component` props in the `Tab` component we will disregard anythi
         options: [
           'TabsBorderPositionHorizontal.bottom',
           'TabsBorderPositionHorizontal.top',
-          'TabsBorderPositionVertical.left'
-        ]
+          'TabsBorderPositionVertical.left',
+        ],
       },
       required: false,
       description: 'Position of the current tab indicator border.',
-      defaultValue: 'bottom or left'
+      defaultValue: 'bottom or left',
     },
     iconPosition: {
       type: {
-        name: '"left" | "top"'
+        name: '"left" | "top"',
       },
       required: false,
-      description: 'The orientation of icon on Tab.'
+      description: 'The orientation of icon on Tab.',
     },
     isInverse: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description:
         'If true, the component will have inverse styling to better appear on a dark background.',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     hasScrollButtons: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description:
-        'The prop for turning on/off buttons for scrolling Tabs component.'
+        'The prop for turning on/off buttons for scrolling Tabs component.',
     },
     onChange: {
       type: {
-        name: 'function'
+        name: 'function',
       },
       required: false,
       description:
-        'The onChange handler for managing state of Tabs component by your custom logic.'
+        'The onChange handler for managing state of Tabs component by your custom logic.',
     },
     testId: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
-      description: 'The id for react-testing-library.'
-    }
+      description: 'The id for react-testing-library.',
+    },
   }}
 />
 
@@ -818,18 +818,18 @@ When using the `component` props in the `Tab` component we will disregard anythi
   propertyValues={{
     disabled: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
-      description: 'The prop for disabling Tab.'
+      description: 'The prop for disabling Tab.',
     },
     testId: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
-      description: 'The id for react-testing-library.'
-    }
+      description: 'The id for react-testing-library.',
+    },
   }}
 />
 
@@ -841,11 +841,11 @@ When using the `component` props in the `Tab` component we will disregard anythi
   propertyValues={{
     testId: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
-      description: 'The id for react-testing-library'
-    }
+      description: 'The id for react-testing-library',
+    },
   }}
 />
 
@@ -857,11 +857,11 @@ When using the `component` props in the `Tab` component we will disregard anythi
   propertyValues={{
     testId: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
-      description: 'The id for react-testing-library'
-    }
+      description: 'The id for react-testing-library',
+    },
   }}
 />
 
@@ -878,7 +878,7 @@ export default props => (
       GraduationCapIcon,
       BellIcon,
       AndroidIcon,
-      useMediaQuery
+      useMediaQuery,
     }}
   />
 );

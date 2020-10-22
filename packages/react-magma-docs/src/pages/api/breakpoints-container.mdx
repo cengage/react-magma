@@ -10,7 +10,7 @@ import {
   BreakpointsContainer,
   Button,
   Card,
-  CardBody
+  CardBody,
 } from 'react-magma-dom';
 import { Link } from 'gatsby';
 import { SimplePropsTable } from '../../components/props-table';
@@ -140,13 +140,13 @@ Custom breakpoints can be shown by using the `breakpoints` object prop.
   propertyValues={{
     breakpoints: {
       type: {
-        name: 'object'
+        name: 'object',
       },
       required: false,
       description:
         'Object that defines the pixel size of individual breakpoints',
-      defaultValue: '{ xs: 0, small: 600, medium: 768, large: 1024, xl: 1200 }'
-    }
+      defaultValue: '{ xs: 0, small: 600, medium: 768, large: 1024, xl: 1200 }',
+    },
   }}
 />
 
@@ -164,22 +164,22 @@ Custom breakpoints can be shown by using the `breakpoints` object prop.
           'BreakpointScreenSize.small',
           'BreakpointScreenSize.medium',
           'BreakpointScreenSize.large',
-          'BreakpointScreenSize.xl'
-        ]
+          'BreakpointScreenSize.xl',
+        ],
       },
       required: false,
       description:
         'The relative screen size for the breakpoint.  Will go from pixel width specified up to the next breakpoint.',
-      defaultValue: 'xs'
+      defaultValue: 'xs',
     },
     testId: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing'
-    }
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
   }}
 />
 
@@ -192,7 +192,7 @@ export default props => (
       BreakpointsContainer,
       Button,
       Card,
-      CardBody
+      CardBody,
     }}
   />
 );

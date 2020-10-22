@@ -100,7 +100,7 @@ describe('Test for accessibility', () => {
     );
 
     return axe(container.innerHTML, {
-      rules: { listitem: { enabled: false } }
+      rules: { listitem: { enabled: false } },
     }).then(result => {
       return expect(result).toHaveNoViolations();
     });

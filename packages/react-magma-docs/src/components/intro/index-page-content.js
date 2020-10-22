@@ -100,7 +100,7 @@ export class IndexPageContent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeSection: 'sectionIntro'
+      activeSection: 'sectionIntro',
     };
 
     this.handleAnimateIn = this.handleAnimateIn.bind(this);
@@ -110,14 +110,14 @@ export class IndexPageContent extends React.Component {
   handleAnimateIn(id, v) {
     if (v.inViewport) {
       this.setState({
-        activeSection: id
+        activeSection: id,
       });
     }
   }
 
   handleNavClick(id) {
     this.setState({
-      activeSection: id
+      activeSection: id,
     });
     const focused = document.querySelector(`#${id}H`);
     focused.focus({ preventScroll: true });

@@ -10,7 +10,7 @@ import {
   Radio,
   RadioGroup,
   Toggle,
-  VisuallyHidden
+  VisuallyHidden,
 } from 'react-magma-dom';
 import DocsHeading from '../../components/docs-heading';
 import { Link } from 'gatsby';
@@ -176,90 +176,90 @@ If you would like to add a custom close button to the `Modal` be sure not to use
   propertyValues={{
     children: {
       type: {
-        name: 'node'
+        name: 'node',
       },
       required: true,
-      description: 'The content of the component'
+      description: 'The content of the component',
     },
     closeAriaLabel: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description: 'The text read by screen readers for the close button',
-      defaultValue: 'Close dialog'
+      defaultValue: 'Close dialog',
     },
     isBackgroundClickDisabled: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description: 'If true, clicking the backdrop will not dismiss the modal',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     isCloseButtonHidden: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description: 'If true, the close button the the modal will be suppressed',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     isEscKeyDownDisabled: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description:
         'If true, pressing the Escape key will not dismiss the modal',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     isOpen: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description: 'If true, the modal will be visible',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     header: {
       type: {
-        name: 'node'
+        name: 'node',
       },
       required: false,
-      description: 'The content of the modal header'
+      description: 'The content of the modal header',
     },
     onClose: {
       type: {
-        name: 'function'
+        name: 'function',
       },
       required: true,
-      description: 'Action that fires when the close button is clicked'
+      description: 'Action that fires when the close button is clicked',
     },
     onEscKeyDown: {
       type: {
-        name: 'function'
+        name: 'function',
       },
       required: true,
-      description: 'Action that fires when the Escape key is pressed'
+      description: 'Action that fires when the Escape key is pressed',
     },
     size: {
       type: {
         name: 'enum',
-        options: ['ModalSize.large', 'ModalSize.medium', 'ModalSize.small']
+        options: ['ModalSize.large', 'ModalSize.medium', 'ModalSize.small'],
       },
       required: false,
       description: 'The relative size of the modal',
-      defaultValue: 'medium'
+      defaultValue: 'medium',
     },
     testId: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing'
-    }
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
   }}
 />
 

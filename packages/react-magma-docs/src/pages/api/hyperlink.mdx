@@ -78,10 +78,10 @@ Use this when you want to render something that is from another library. For exa
   propertyValues={{
     children: {
       type: {
-        name: 'node'
+        name: 'node',
       },
       required: true,
-      description: 'The content of the component'
+      description: 'The content of the component',
     },
     color: {
       type: {
@@ -91,31 +91,31 @@ Use this when you want to render something that is from another library. For exa
           'ButtonColor.secondary',
           'ButtonColor.success',
           'ButtonColor.danger',
-          'ButtonColor.marketing'
-        ]
+          'ButtonColor.marketing',
+        ],
       },
       required: false,
       description:
         'If the link is styled as a button, the color of the component, indicating its function in the UI',
-      defaultValue: 'primary'
+      defaultValue: 'primary',
     },
     isFullWidth: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description:
         'If true, and if the link is styled as a button, the link will take up the full width of its container',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     isInverse: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     shape: {
       type: {
@@ -123,59 +123,59 @@ Use this when you want to render something that is from another library. For exa
         options: [
           'ButtonShape.fill',
           'ButtonShape.leftCap',
-          'ButtonShape.rightCap'
-        ]
+          'ButtonShape.rightCap',
+        ],
       },
       required: false,
       description:
         'If the link is styled as a button, this defines the border radius',
-      defaultValue: 'fill'
+      defaultValue: 'fill',
     },
     size: {
       type: {
         name: 'enum',
-        options: ['ButtonSize.large', 'ButtonSize.medium', 'ButtonSize.small']
+        options: ['ButtonSize.large', 'ButtonSize.medium', 'ButtonSize.small'],
       },
       required: false,
       description:
         'If the link is styled as a button, the relative size of the component',
-      defaultValue: 'medium'
+      defaultValue: 'medium',
     },
     styledAs: {
       type: {
         name: 'enum',
-        options: ['Button', 'Link']
+        options: ['Button', 'Link'],
       },
       required: false,
       description:
         'How the hyperlink is styled (can look like either a plain link or a button)',
-      defaultValue: 'Link'
+      defaultValue: 'Link',
     },
     testId: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing'
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     textTransform: {
       type: {
         name: 'enum',
-        options: ['ButtonTextTransform.uppercase', 'ButtonTextTransform.none']
+        options: ['ButtonTextTransform.uppercase', 'ButtonTextTransform.none'],
       },
       required: false,
       description:
         'If the link is styled as a button, this determines whether the button appears in all-caps',
-      defaultValue: 'uppercase'
+      defaultValue: 'uppercase',
     },
     to: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description: 'The href value of the link',
-      defaultValue: ''
+      defaultValue: '',
     },
     variant: {
       type: {
@@ -183,14 +183,14 @@ Use this when you want to render something that is from another library. For exa
         options: [
           'ButtonVariant.solid',
           'ButtonVariant.outline',
-          'ButtonVariant.link'
-        ]
+          'ButtonVariant.link',
+        ],
       },
       required: false,
       description:
         'If the link is styled as a button, the variant of the component (e.g. outline, link, solid)',
-      defaultValue: 'solid'
-    }
+      defaultValue: 'solid',
+    },
   }}
 />
 

@@ -57,7 +57,7 @@ const DocsHeading = ({ children, to, type }) => (
 DocsHeading.propTypes = {
   children: PropTypes.node.isRequired,
   to: PropTypes.string,
-  type: PropTypes.oneOf(['code', 'design'])
+  type: PropTypes.oneOf(['code', 'design']),
 };
 
 export default DocsHeading;

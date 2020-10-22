@@ -446,126 +446,126 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
   propertyValues={{
     children: {
       type: {
-        name: 'node'
+        name: 'node',
       },
       required: true,
-      description: 'The content of the component'
+      description: 'The content of the component',
     },
     containerStyle: {
       type: {
-        name: 'React.CSSProperties'
+        name: 'React.CSSProperties',
       },
       required: false,
-      description: 'Style properties for the component container element'
+      description: 'Style properties for the component container element',
     },
     errorMessage: {
       type: {
-        name: 'ReactNode'
+        name: 'ReactNode',
       },
       required: false,
       description:
         'Content of the error message.  If a value is provided, the radio buttons will be styled to show an error state',
-      defaultValue: ''
+      defaultValue: '',
     },
     isInverse: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description:
         'If true, the component and all child radio buttons will have inverse styling to better appear on a dark background',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     required: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description:
         'If true, the user must select one radio button for the form to be valid',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     isTextVisuallyHidden: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description:
         'If true, label text for the radio group will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     labelledById: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description:
         'ID of the element that labels the radio group, used in the aria-labelledby attribute for the group.  Alternatively, the labelText prop can be used.',
-      defaultValue: ''
+      defaultValue: '',
     },
     labelStyle: {
       type: {
-        name: 'React.CSSProperties'
+        name: 'React.CSSProperties',
       },
       required: false,
-      description: 'Style properties for the label of the radio group'
+      description: 'Style properties for the label of the radio group',
     },
     labelText: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description:
-        'Content of label of the radio group; can be node or string. Alternatively, the labelledById prop can be used.'
+        'Content of label of the radio group; can be node or string. Alternatively, the labelledById prop can be used.',
     },
     onBlur: {
       type: {
-        name: 'function'
+        name: 'function',
       },
       required: false,
-      description: 'Action that fires when the radio group loses focus'
+      description: 'Action that fires when the radio group loses focus',
     },
     onChange: {
       type: {
-        name: 'function'
+        name: 'function',
       },
       required: false,
       description:
-        'Action that fires when selected value of the radio group changes'
+        'Action that fires when selected value of the radio group changes',
     },
     onFocus: {
       type: {
-        name: 'function'
+        name: 'function',
       },
       required: false,
       description:
-        'Action that fires when one of the radio buttons within the group receives focus'
+        'Action that fires when one of the radio buttons within the group receives focus',
     },
     name: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description: 'Name attribute the radio group',
-      defaultValue: ''
+      defaultValue: '',
     },
     testId: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing'
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     value: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description:
         'Value of the radio button that is the default selected value for the group',
-      defaultValue: ''
-    }
+      defaultValue: '',
+    },
   }}
 />
 
@@ -577,100 +577,100 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
   propertyValues={{
     color: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description: 'Hex code for the background color',
-      defaultValue: '#0000FF'
+      defaultValue: '#0000FF',
     },
     containerStyle: {
       type: {
-        name: 'React.CSSProperties'
+        name: 'React.CSSProperties',
       },
       required: false,
-      description: 'Style properties for the component container element'
+      description: 'Style properties for the component container element',
     },
     disabled: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description: 'If true, element is disabled',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     inputStyle: {
       type: {
-        name: 'React.CSSProperties'
+        name: 'React.CSSProperties',
       },
       required: false,
-      description: 'Style properties for the radio button element'
+      description: 'Style properties for the radio button element',
     },
     isInverse: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     isTextVisuallyHidden: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description:
         'If true, label text will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     labelStyle: {
       type: {
-        name: 'React.CSSProperties'
+        name: 'React.CSSProperties',
       },
       required: false,
-      description: 'Style properties for the label element'
+      description: 'Style properties for the label element',
     },
     labelText: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: true,
-      description: 'Content of label; can be node or string'
+      description: 'Content of label; can be node or string',
     },
     required: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description: 'If true, the form field is required',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     testId: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing'
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     textPosition: {
       type: {
         name: 'enum',
-        options: ['RadioTextPosition.left', 'RadioTextPosition.right']
+        options: ['RadioTextPosition.left', 'RadioTextPosition.right'],
       },
       required: false,
       description:
         'Whether the label appears to the left of the right of the radio button',
-      defaultValue: 'right'
+      defaultValue: 'right',
     },
     value: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description: 'Value attribute the form field',
-      defaultValue: ''
-    }
+      defaultValue: '',
+    },
   }}
 />
 
