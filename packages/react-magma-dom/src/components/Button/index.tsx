@@ -46,7 +46,6 @@ export interface ButtonStyles {
   shape?: ButtonShape;
   size?: ButtonSize;
   textTransform?: ButtonTextTransform;
-  type?: ButtonType;
   variant?: ButtonVariant;
 }
 

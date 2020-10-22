@@ -1,6 +1,6 @@
 ---
-pageTitle: Breadcrumbs API
-title: Breadcrumbs
+pageTitle: Breadcrumb API
+title: Breadcrumb
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -9,7 +9,7 @@ import { SimplePropsTable } from '../../components/props-table';
 import DocsHeading from '../../components/docs-heading';
 
 <DocsHeading to="/design/breadcrumb/" type="design">
-  Breadcrumbs
+  Breadcrumb
 </DocsHeading>
 
 ## Basic Usage
@@ -76,14 +76,6 @@ By default, the `aria-label` of the Breadcrumb component is `Breadcrumb`. This c
 
 <SimplePropsTable
   propertyValues={{
-    'aria-label': {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'The aria-label of the container element',
-      defaultValue: 'Breadcrumb',
-    },
     children: {
       type: {
         name: 'node',
@@ -99,15 +91,6 @@ By default, the `aria-label` of the Breadcrumb component is `Breadcrumb`. This c
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
-    },
-    minWidthToShow: {
-      type: {
-        name: 'number',
-      },
-      required: false,
-      description:
-        'Number of pixels used as the min-width breakpoint where the breadcrumb is shown',
-      defaultValue: '0',
     },
     testId: {
       type: {

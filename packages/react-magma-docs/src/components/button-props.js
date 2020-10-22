@@ -7,10 +7,10 @@ export const ButtonProps = () => (
       propertyValues={{
         children: {
           type: {
-            name: 'node',
+            name: 'node'
           },
           required: true,
-          description: 'The content of the component',
+          description: 'The content of the component'
         },
         color: {
           type: {
@@ -20,46 +20,31 @@ export const ButtonProps = () => (
               'ButtonColor.secondary',
               'ButtonColor.success',
               'ButtonColor.danger',
-              'ButtonColor.marketing',
-            ],
+              'ButtonColor.marketing'
+            ]
           },
           required: false,
           description:
             'The color of the button, indicating its function in the UI',
-          defaultValue: 'primary',
+          defaultValue: 'primary'
         },
-        disabled: {
+        isFullWidth: {
           type: {
-            name: 'boolean',
-          },
-          required: false,
-          description: 'If true, element is disabled',
-          defaultValue: 'false',
-        },
-        fullWidth: {
-          type: {
-            name: 'boolean',
+            name: 'boolean'
           },
           required: false,
           description:
             'If true, the button will take up the full width of its container',
-          defaultValue: 'false',
+          defaultValue: 'false'
         },
         isInverse: {
           type: {
-            name: 'boolean',
+            name: 'boolean'
           },
           required: false,
           description:
             'If true, the component will have inverse styling to better appear on a dark background',
-          defaultValue: 'false',
-        },
-        onClick: {
-          type: {
-            name: 'function',
-          },
-          required: true,
-          description: 'Action that fires when the button is clicked',
+          defaultValue: 'false'
         },
         shape: {
           type: {
@@ -67,12 +52,12 @@ export const ButtonProps = () => (
             options: [
               'ButtonShape.fill',
               'ButtonShape.leftCap',
-              'ButtonShape.rightCap',
-            ],
+              'ButtonShape.rightCap'
+            ]
           },
           required: false,
           description: 'Defines the border radius',
-          defaultValue: 'fill',
+          defaultValue: 'fill'
         },
         size: {
           type: {
@@ -80,32 +65,32 @@ export const ButtonProps = () => (
             options: [
               'ButtonSize.large',
               'ButtonSize.medium',
-              'ButtonSize.small',
-            ],
+              'ButtonSize.small'
+            ]
           },
           required: false,
           description: 'The relative size of the button',
-          defaultValue: 'medium',
+          defaultValue: 'medium'
         },
         testId: {
           type: {
-            name: 'string',
+            name: 'string'
           },
           required: false,
           description:
-            'Test ID attached to an internal element as `data-testid` for consumer testing',
+            'Test ID attached to an internal element as `data-testid` for consumer testing'
         },
         textTransform: {
           type: {
             name: 'enum',
             options: [
               'ButtonTextTransform.uppercase',
-              'ButtonTextTransform.none',
-            ],
+              'ButtonTextTransform.none'
+            ]
           },
           required: false,
           description: 'Determines whether the button appears in all-caps',
-          defaultValue: 'uppercase',
+          defaultValue: 'uppercase'
         },
         type: {
           type: {
@@ -113,12 +98,12 @@ export const ButtonProps = () => (
             options: [
               'ButtonType.button',
               'ButtonType.submit',
-              'ButtonType.reset',
-            ],
+              'ButtonType.reset'
+            ]
           },
           required: false,
           description: 'The type attribute of the button',
-          defaultValue: 'button',
+          defaultValue: 'button'
         },
         variant: {
           type: {
@@ -126,13 +111,13 @@ export const ButtonProps = () => (
             options: [
               'ButtonVariant.solid',
               'ButtonVariant.outline',
-              'ButtonVariant.link',
-            ],
+              'ButtonVariant.link'
+            ]
           },
           required: false,
           description: 'The variant of the button',
-          defaultValue: 'solid',
-        },
+          defaultValue: 'solid'
+        }
       }}
     />
   </>

@@ -25,10 +25,9 @@ export interface CheckboxProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   color?: string;
   containerStyle?: React.CSSProperties;
-  inputStyle?: React.CSSProperties;
   defaultChecked?: boolean;
   errorMessage?: React.ReactNode;
-  hasError?: boolean;
+  inputStyle?: React.CSSProperties;
   isInverse?: boolean;
   isTextVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
@@ -160,7 +159,6 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       containerStyle,
       disabled,
       errorMessage,
-      hasError,
       inputStyle,
       isInverse,
       labelStyle,
@@ -172,7 +170,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     } = props;
     const other = omit(['defaultChecked'], rest);
 
-    const descriptionId = errorMessage ? `${id}__desc` : null;
+    const descriptionId = errorMessage && `${id}__desc`;
     const groupDescriptionId = context.descriptionId;
 
     const describedBy =
@@ -183,6 +181,8 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         : groupDescriptionId
         ? groupDescriptionId
         : null;
+
+    const hasError = context.hasError || !!errorMessage;
 
     return (
       <>
@@ -207,7 +207,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               checked={isChecked}
               color={color ? color : ''}
               disabled={disabled}
-              hasError={context.hasError || !!errorMessage}
+              hasError={hasError}
               isInverse={context.isInverse || isInverse}
               style={inputStyle}
               textPosition={textPosition}

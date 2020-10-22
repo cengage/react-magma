@@ -11,8 +11,6 @@ import { ThemeContext } from '../../theme/ThemeContext';
 export interface BannerProps extends AlertProps {
   actionButtonText?: string;
   actionButtonOnClick?: () => void;
-  isDismissible?: boolean;
-  testId?: string;
 }
 
 const StyledBanner = styled.div<AlertProps>`
