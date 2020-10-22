@@ -487,6 +487,14 @@ export const heading2XSmallStyles = props => css`
       .fontWeight};
     line-height: ${props.theme.typographyExpressiveVisualStyles.heading2XSmall
       .mobile.lineHeight};
+    text-transform: none;
+
+    @media (min-width: ${props.theme.breakpoints.small}px) {
+      font-size: ${props.theme.typographyExpressiveVisualStyles.heading2XSmall
+        .desktop.fontSize};
+      line-height: ${props.theme.typographyExpressiveVisualStyles.heading2XSmall
+        .desktop.lineHeight};
+    }
   `};
 
   ${props.contextVariant === 'narrative' &&

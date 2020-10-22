@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.110](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.109...v2.0.0-beta.110) (2020-10-21)
+
+
+### Bug Fixes
+
+* **forward-refs:** fix types in components with forwardRef ([b8cbcd4](http://stash.cengage.com:7999/FRONT/react-magma/commits/b8cbcd4be5c794dbeb47334fc649137387e708d3))
+
+
+
+
+
 # [2.0.0-beta.109](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.108...v2.0.0-beta.109) (2020-10-21)
 
 **Note:** Version bump only for package react-magma-docs

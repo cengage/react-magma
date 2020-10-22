@@ -28,8 +28,8 @@ The `Heading` component can be used with the `level` prop to render the HTML hea
 
 ## Size
 
-There are six visual styles for the heading: `headingXLarge`, `headingLarge`, `headingMedium`, `headingSmall`, `headingXSmall` and `heading2XSmall`. By default each of the visual styles corresponds with the semantic HTML heading elements levels 1-6.  
-However any of these visual styles can be applied to of the HTML elements using the `visualStyle` prop.
+There are six visual styles for the heading: `headingXLarge`, `headingLarge`, `headingMedium`, `headingSmall`, `headingXSmall` and `heading2XSmall`. If not specified, a corresponding visual style will be applied based on the heading.  
+Visual style and heading level can be set independently so you can specify the correct semantic level and then apply any of the visual styles to change the visual appearance to fit your design.
 
 Furthermore, the `visualStyle` prop can also accept the values for the four different paragraph visual styles: `bodyLarge`, `bodyMedium`, `bodySmall`, and `bodyXSmall`. These are sizes are also used with the <Link to="/api/paragraph">Paragraph</Link> component.
 
@@ -49,30 +49,33 @@ Furthermore, the `visualStyle` prop can also accept the values for the four diff
   </>
 ```
 
-## Variant
+## Context Variant
 
-The `contextVariant` prop can be used to set additional styles on a component. The `contextVariant` can affect the font-size, or font-family. The default `variant` is `default`.
+The `contextVariant` prop can be used to set additional styles on a heading component. The `contextVariant` can affect the font-size, text-transform, or font-family. The default `contextVariant` is `default`.
 
 The `expressive` context variant can be used in marketing contexts, which may require more variety than the default styles.
 
 The `narrative` context variant can be used for content-heavy contexts, such as a blog post or an e-reader.
 
 ```.jsx
-    <>
+  <>
+    <div style={{marginBottom: '40px'}}>
       <Heading contextVariant="expressive" level={1}>Expressive Heading 1</Heading>
       <Heading contextVariant="expressive" level={2}>Expressive Heading 2</Heading>
       <Heading contextVariant="expressive" level={3}>Expressive Heading 3</Heading>
       <Heading contextVariant="expressive" level={4}>Expressive Heading 4</Heading>
       <Heading contextVariant="expressive" level={5}>Expressive Heading 5</Heading>
       <Heading contextVariant="expressive" level={6}>Expressive Heading 6</Heading>
-      <br/><br/>
+    </div>
+    <div>
       <Heading contextVariant="narrative" level={1}>Narrative Heading 1</Heading>
       <Heading contextVariant="narrative" level={2}>Narrative Heading 2</Heading>
       <Heading contextVariant="narrative" level={3}>Narrative Heading 3</Heading>
       <Heading contextVariant="narrative" level={4}>Narrative Heading 4</Heading>
       <Heading contextVariant="narrative" level={5}>Narrative Heading 5</Heading>
       <Heading contextVariant="narrative"  level={6}>Narrative Heading 6</Heading>
-    </>
+    </div>
+  </>
 ```
 
 ## Color
@@ -101,19 +104,19 @@ The `isInverse` property is an optional boolean that changes the colors so the c
 
 ```.jsx
   <div style={{ background : '#00263E', padding: '10px' }}>
-      <Heading isInverse level={2}>Heading 2</Heading>
+    <Heading isInverse level={2}>Heading 2</Heading>
 
-      <Heading color="success" isInverse level={2}>
-        Success Color Heading
-      </Heading>
+    <Heading color="success" isInverse level={2}>
+      Success Color Heading
+    </Heading>
 
-      <Heading color="danger" isInverse level={2}>
-        Danger Color Heading
-      </Heading>
+    <Heading color="danger" isInverse level={2}>
+      Danger Color Heading
+    </Heading>
 
-      <Heading isInverse level={2} color="subdued">
-        Heading 2 Subdued
-      </Heading>
+    <Heading isInverse level={2} color="subdued">
+      Heading 2 Subdued
+    </Heading>
   </div>
 ```
 
@@ -173,10 +176,10 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
   propertyValues={{
     children: {
       type: {
-        name: 'node'
+        name: 'node',
       },
       required: true,
-      description: 'The content of the component'
+      description: 'The content of the component',
     },
     color: {
       type: {
@@ -185,13 +188,13 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
           'TypographyColor.danger',
           'TypographyColor.default',
           'TypographyColor.success',
-          'TypographyColor.subdued'
-        ]
+          'TypographyColor.subdued',
+        ],
       },
       required: false,
       description:
-        'The color of the component, helping to convey meaning or relative emphasis',
-      defaultValue: 'default'
+        'The color of the component, that helps to convey meaning or relative emphasis',
+      defaultValue: 'default',
     },
     contextVariant: {
       type: {
@@ -199,47 +202,47 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
         options: [
           'TypographyContextVariant.expressive',
           'TypographyContextVariant.narrative',
-          'TypographyContextVariant.default'
-        ]
+          'TypographyContextVariant.default',
+        ],
       },
       description:
         'Additional styles for typography based on the context of the content',
-      defaultValue: 'default'
+      defaultValue: 'default',
     },
     isInverse: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     level: {
       type: {
-        name: 'number (1-6)'
+        name: 'number (1-6)',
       },
       required: true,
       description:
         'Number to indicate which level heading will render (e.g. h1, h2 etc.)',
-      defaultValue: ''
+      defaultValue: '',
     },
     noMargins: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description:
         'If true, the component will not have default top and bottom margins for the respective heading element and instead will a margin value of 0.',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     testId: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing'
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     visualStyle: {
       type: {
@@ -254,14 +257,14 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
           'TypographyVisualStyle.bodyLarge',
           'TypographyVisualStyle.bodyMedium',
           'TypographyVisualStyle.bodySmall',
-          'TypographyVisualStyle.bodyXSmall'
-        ]
+          'TypographyVisualStyle.bodyXSmall',
+        ],
       },
       required: false,
       description:
         'Applies visual styles including font-size, font-weight, line-height and margins',
-      defaultValue: 'Default styles associated with the heading level 1-6'
-    }
+      defaultValue: 'Default styles associated with the heading level 1-6',
+    },
   }}
 />
 
