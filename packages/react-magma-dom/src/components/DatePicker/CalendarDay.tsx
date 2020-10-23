@@ -15,8 +15,9 @@ interface CalendarDayProps {
 
 const CalendarDayCell = styled.td`
   border: 1px solid ${props => props.theme.colors.neutral06};
-  color: ${props => props.theme.colors.neutral01};
-  font-size: 15px;
+  color: ${props => props.theme.colors.neutral};
+  font-size: ${props => props.theme.typeScale.size03.fontSize};
+  line-height: ${props => props.theme.typeScale.size03.lineHeight};
   height: 40px;
   padding: 0;
   position: relative;
@@ -41,7 +42,7 @@ const CalendarDayInner = styled.button<{
       ? props.theme.colors.neutral08
       : props.disabled
       ? props.theme.colors.disabledText
-      : props.theme.colors.neutral01};
+      : props.theme.colors.neutral};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   display: flex;
   height: 35px;
@@ -58,7 +59,7 @@ const CalendarDayInner = styled.button<{
   }
 
   &:before {
-    background: ${props => props.theme.colors.neutral01};
+    background: ${props => props.theme.colors.neutral};
     content: '';
     height: 200%;
     left: 0;
@@ -82,7 +83,7 @@ const EmptyCell = styled.td`
 `;
 
 const TodayIndicator = styled.span`
-  border-left: 8px solid ${props => props.theme.colors.pop01};
+  border-left: 8px solid ${props => props.theme.colors.pop};
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
   bottom: -6px;

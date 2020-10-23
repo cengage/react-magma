@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { Modal, ModalSize } from '../Modal';
 import { I18nContext } from '../../i18n';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 interface HelperInformationProps {
   isOpen?: boolean;
@@ -23,7 +24,8 @@ const Item = styled.li`
 const KeyboardShortcutButtonWrapper = styled.span`
   background: rgb(242, 242, 242);
   font-family: monospace;
-  font-size: 12px;
+  font-size: ${props => props.theme.typeScale.size02.fontSize};
+  line-height: ${props => props.theme.typeScale.size02.lineHeight};
   margin-right: 10px;
   padding: 2px 6px;
   text-transform: uppercase;
@@ -34,6 +36,7 @@ export const HelperInformation: React.FunctionComponent<HelperInformationProps> 
   onClose,
 }) => {
   const i18n = React.useContext(I18nContext);
+  const theme = React.useContext(ThemeContext);
 
   return (
     <Modal
@@ -46,8 +49,9 @@ export const HelperInformation: React.FunctionComponent<HelperInformationProps> 
       <List id="DayPickerKeyboardShortcuts_description">
         <Item>
           <KeyboardShortcutButtonWrapper
-            role="img"
             aria-label={i18n.datePicker.helpModal.enter.ariaLabel}
+            role="img"
+            theme={theme}
           >
             ↵
           </KeyboardShortcutButtonWrapper>
@@ -56,6 +60,7 @@ export const HelperInformation: React.FunctionComponent<HelperInformationProps> 
         <Item>
           <KeyboardShortcutButtonWrapper
             role="img"
+            theme={theme}
             aria-label={
               i18n.datePicker.helpModal.rightAndLeftArrowKeys.ariaLabel
             }
@@ -69,6 +74,7 @@ export const HelperInformation: React.FunctionComponent<HelperInformationProps> 
         <Item>
           <KeyboardShortcutButtonWrapper
             role="img"
+            theme={theme}
             aria-label={i18n.datePicker.helpModal.upAndDownArrowKeys.ariaLabel}
           >
             ↑/↓
@@ -78,6 +84,7 @@ export const HelperInformation: React.FunctionComponent<HelperInformationProps> 
         <Item>
           <KeyboardShortcutButtonWrapper
             role="img"
+            theme={theme}
             aria-label={
               i18n.datePicker.helpModal.pageUpAndPageDownKeys.ariaLabel
             }
@@ -91,6 +98,7 @@ export const HelperInformation: React.FunctionComponent<HelperInformationProps> 
         <Item>
           <KeyboardShortcutButtonWrapper
             role="img"
+            theme={theme}
             aria-label={i18n.datePicker.helpModal.homeAndEndKeys.ariaLabel}
           >
             {i18n.datePicker.helpModal.homeAndEndKeys.displayValue}
@@ -100,6 +108,7 @@ export const HelperInformation: React.FunctionComponent<HelperInformationProps> 
         <Item>
           <KeyboardShortcutButtonWrapper
             role="img"
+            theme={theme}
             aria-label={i18n.datePicker.helpModal.escape.ariaLabel}
           >
             {i18n.datePicker.helpModal.escape.displayValue}
@@ -109,6 +118,7 @@ export const HelperInformation: React.FunctionComponent<HelperInformationProps> 
         <Item>
           <KeyboardShortcutButtonWrapper
             role="img"
+            theme={theme}
             aria-label={i18n.datePicker.helpModal.questionMark.ariaLabel}
           >
             ?

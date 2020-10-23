@@ -34,7 +34,7 @@ export function buildCalloutBackground(
     case 'danger':
       return props.theme.colors.danger;
     case 'success':
-      return props.theme.colors.success01;
+      return props.theme.colors.success;
     case 'warning':
       return props.theme.colors.pop04;
     default:
@@ -54,7 +54,7 @@ const StyledCard = styled.div<CardProps>`
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral08
-      : props.theme.colors.neutral01};
+      : props.theme.colors.neutral};
   display: flex;
   flex-direction: column;
   overflow: hidden;

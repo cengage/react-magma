@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { Heading } from '../Heading';
+import { TypographyColor, TypographyVisualStyle } from '../Typography';
 
 export interface CardHeadingProps
   extends React.LabelHTMLAttributes<HTMLHeadingElement> {
@@ -10,10 +11,8 @@ export interface CardHeadingProps
 }
 
 const StyledCardHeading = styled(Heading)`
-  font-size: 1.467em;
   font-weight: 400;
-  line-height: 1.4;
-  margin: 0 0 20px;
+  margin-top: 0;
 `;
 
 export const CardHeading = React.forwardRef<
@@ -25,7 +24,9 @@ export const CardHeading = React.forwardRef<
   return (
     <StyledCardHeading
       {...other}
+      color={TypographyColor.default}
       level={headingLevel ? headingLevel : 4}
+      visualStyle={TypographyVisualStyle.headingMedium}
       ref={ref}
       testId={props.testId}
     >

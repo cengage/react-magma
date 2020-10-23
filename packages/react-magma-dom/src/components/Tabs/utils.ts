@@ -16,7 +16,7 @@ export function useTabsMeta(theme, orientation, backgroundColor, isInverse) {
   const background = backgroundColor
     ? backgroundColor
     : isInverse
-    ? theme.colors.foundation01
+    ? theme.colors.foundation
     : theme.colors.neutral08;
 
   const [displayScroll, setDisplayScroll] = React.useState({

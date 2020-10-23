@@ -15,7 +15,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -120,7 +120,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -250,7 +250,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -355,7 +355,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -485,7 +485,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -590,7 +590,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -720,7 +720,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -825,7 +825,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -955,7 +955,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -1059,7 +1059,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -1188,7 +1188,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -1287,7 +1287,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -1417,7 +1417,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -1516,7 +1516,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -1646,7 +1646,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -1745,7 +1745,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -1875,7 +1875,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -1974,7 +1974,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -2104,7 +2104,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -2203,7 +2203,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -2337,7 +2337,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -2436,7 +2436,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -2566,7 +2566,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -2664,7 +2664,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;

@@ -6,13 +6,13 @@ export const amgam = Object.assign({}, magma, {
     foundation02: '#FFC79A',
     foundation03: '#ff9d67',
     foundation04: '#006298',
-    pop01: '#1FFFB2',
+    pop: '#1FFFB2',
     pop02: '#0599FF',
     pop03: '#0D56FF',
     pop04: '#0038D3',
-    success01: '#C57DFF',
+    success: '#C57DFF',
     success02: '#AC44FF',
     danger: '#18FFFF',
-    focus: '#0599FF',
-  }),
+    focus: '#0599FF'
+  })
 });

@@ -3,12 +3,13 @@
 exports[`Heading Snapshot should render heading 1 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  color: #003865;
-  font-family: "Open Sans",sans-serif;
-  font-weight: 300;
-  line-height: 1.2;
-  margin: 20px 0 10px;
-  font-size: 42px;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 40px;
+  margin: 0 0 16px;
 }
 
 .emotion-0:focus {
@@ -16,16 +17,24 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 36px;
+    line-height: 48px;
+  }
 }
 
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  color: #003865;
-  font-family: "Open Sans",sans-serif;
-  font-weight: 300;
-  line-height: 1.2;
-  margin: 20px 0 10px;
-  font-size: 42px;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 40px;
+  margin: 0 0 16px;
 }
 
 .emotion-0:focus {
@@ -33,6 +42,13 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 36px;
+    line-height: 48px;
+  }
 }
 
 <div>
@@ -48,12 +64,13 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
 exports[`Heading Snapshot should render heading 2 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  color: #003865;
-  font-family: "Open Sans",sans-serif;
-  font-weight: 300;
-  line-height: 1.2;
-  margin: 20px 0 10px;
-  font-size: 36px;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  margin: 48px 0 16px;
 }
 
 .emotion-0:focus {
@@ -61,16 +78,24 @@ exports[`Heading Snapshot should render heading 2 correctly 1`] = `
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 28px;
+    line-height: 40px;
+  }
 }
 
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  color: #003865;
-  font-family: "Open Sans",sans-serif;
-  font-weight: 300;
-  line-height: 1.2;
-  margin: 20px 0 10px;
-  font-size: 36px;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  margin: 48px 0 16px;
 }
 
 .emotion-0:focus {
@@ -78,6 +103,13 @@ exports[`Heading Snapshot should render heading 2 correctly 1`] = `
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 28px;
+    line-height: 40px;
+  }
 }
 
 <div>
@@ -92,12 +124,13 @@ exports[`Heading Snapshot should render heading 2 correctly 1`] = `
 exports[`Heading Snapshot should render heading 3 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  color: #003865;
-  font-family: "Open Sans",sans-serif;
-  font-weight: 300;
-  line-height: 1.2;
-  margin: 20px 0 10px;
-  font-size: 28px;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+  margin: 40px 0 16px;
 }
 
 .emotion-0:focus {
@@ -105,16 +138,24 @@ exports[`Heading Snapshot should render heading 3 correctly 1`] = `
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 24px;
+    line-height: 32px;
+  }
 }
 
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  color: #003865;
-  font-family: "Open Sans",sans-serif;
-  font-weight: 300;
-  line-height: 1.2;
-  margin: 20px 0 10px;
-  font-size: 28px;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+  margin: 40px 0 16px;
 }
 
 .emotion-0:focus {
@@ -122,6 +163,13 @@ exports[`Heading Snapshot should render heading 3 correctly 1`] = `
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 24px;
+    line-height: 32px;
+  }
 }
 
 <div>
@@ -136,14 +184,13 @@ exports[`Heading Snapshot should render heading 3 correctly 1`] = `
 exports[`Heading Snapshot should render heading 4 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  color: #003865;
-  font-family: "Open Sans",sans-serif;
-  font-weight: 300;
-  line-height: 1.2;
-  margin: 20px 0 10px;
-  font-size: 22px;
-  font-weight: 400;
-  line-height: 1.4;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 32px;
+  margin: 32px 0 16px;
 }
 
 .emotion-0:focus {
@@ -151,18 +198,24 @@ exports[`Heading Snapshot should render heading 4 correctly 1`] = `
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 20px;
+    line-height: 32px;
+  }
 }
 
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  color: #003865;
-  font-family: "Open Sans",sans-serif;
-  font-weight: 300;
-  line-height: 1.2;
-  margin: 20px 0 10px;
-  font-size: 22px;
-  font-weight: 400;
-  line-height: 1.4;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 32px;
+  margin: 32px 0 16px;
 }
 
 .emotion-0:focus {
@@ -170,6 +223,13 @@ exports[`Heading Snapshot should render heading 4 correctly 1`] = `
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 20px;
+    line-height: 32px;
+  }
 }
 
 <div>
@@ -184,14 +244,13 @@ exports[`Heading Snapshot should render heading 4 correctly 1`] = `
 exports[`Heading Snapshot should render heading 5 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  color: #003865;
-  font-family: "Open Sans",sans-serif;
-  font-weight: 300;
-  line-height: 1.2;
-  margin: 20px 0 10px;
-  font-size: 16px;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 18px;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 32px;
+  margin: 24px 0 16px;
 }
 
 .emotion-0:focus {
@@ -199,18 +258,24 @@ exports[`Heading Snapshot should render heading 5 correctly 1`] = `
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 18px;
+    line-height: 32px;
+  }
 }
 
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  color: #003865;
-  font-family: "Open Sans",sans-serif;
-  font-weight: 300;
-  line-height: 1.2;
-  margin: 20px 0 10px;
-  font-size: 16px;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 18px;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 32px;
+  margin: 24px 0 16px;
 }
 
 .emotion-0:focus {
@@ -218,6 +283,13 @@ exports[`Heading Snapshot should render heading 5 correctly 1`] = `
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 18px;
+    line-height: 32px;
+  }
 }
 
 <div>
@@ -232,14 +304,14 @@ exports[`Heading Snapshot should render heading 5 correctly 1`] = `
 exports[`Heading Snapshot should render heading 6 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  color: #003865;
-  font-family: "Open Sans",sans-serif;
-  font-weight: 300;
-  line-height: 1.2;
-  margin: 20px 0 10px;
-  font-size: 13px;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 12px;
   font-weight: 700;
-  line-height: 1.5;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin: 24px 0 8px;
 }
 
 .emotion-0:focus {
@@ -247,18 +319,25 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 12px;
+    line-height: 16px;
+  }
 }
 
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  color: #003865;
-  font-family: "Open Sans",sans-serif;
-  font-weight: 300;
-  line-height: 1.2;
-  margin: 20px 0 10px;
-  font-size: 13px;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 12px;
   font-weight: 700;
-  line-height: 1.5;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin: 24px 0 8px;
 }
 
 .emotion-0:focus {
@@ -266,6 +345,13 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 12px;
+    line-height: 16px;
+  }
 }
 
 <div>

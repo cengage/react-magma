@@ -27,11 +27,11 @@ describe('Banner', () => {
 
     const closeBtn = getByLabelText('Close this message');
 
-    expect(closeBtn).toHaveStyleRule('color', magma.colors.neutral01);
+    expect(closeBtn).toHaveStyleRule('color', magma.colors.neutral);
 
     expect(closeBtn).toHaveStyleRule(
       'outline',
-      `2px dotted ${magma.colors.neutral01}`,
+      `2px dotted ${magma.colors.neutral}`,
       {
         target: ':focus',
       }
@@ -99,7 +99,7 @@ describe('Banner', () => {
 
     expect(getByText('btn text')).toHaveStyleRule(
       'color',
-      magma.colors.success01
+      magma.colors.success
     );
   });
 
@@ -116,7 +116,7 @@ describe('Banner', () => {
 
     expect(getByText('btn text')).toHaveStyleRule(
       'color',
-      magma.colors.neutral01
+      magma.colors.neutral
     );
   });
 

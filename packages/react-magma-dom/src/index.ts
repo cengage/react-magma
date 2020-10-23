@@ -71,6 +71,7 @@ export {
 } from './components/LoadingIndicator';
 export { NavTabs } from './components/NavTabs';
 export { NavTab } from './components/NavTabs/NavTab';
+export { Paragraph, ParagraphProps } from './components/Paragraph';
 export { PasswordInput, PasswordInputProps } from './components/PasswordInput';
 export {
   ProgressBar,
@@ -109,6 +110,11 @@ export {
 } from './components/Tooltip';
 export { Textarea, TextareaProps } from './components/Textarea';
 export { TimePicker, TimePickerProps } from './components/TimePicker';
+export {
+  TypographyProps,
+  TypographyColor,
+  TypographyVisualStyle,
+} from './components/Typography';
 export {
   VisuallyHidden,
   VisuallyHiddenProps,

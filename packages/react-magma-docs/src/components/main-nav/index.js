@@ -62,7 +62,7 @@ const SubMenu = ({ headings, handleClick }) => {
 };
 
 const activeStyle = {
-  color: magma.colors.neutral01,
+  color: magma.colors.neutral,
   fontWeight: 'bold',
   background: magma.colors.neutral07,
 };

@@ -53,12 +53,12 @@ describe('ProgressBar', () => {
     );
   });
 
-  it('should render the progress bar component with pop01 color', () => {
-    const { container } = render(<ProgressBar percentage={50} color="pop01" />);
+  it('should render the progress bar component with pop color', () => {
+    const { container } = render(<ProgressBar percentage={50} color="pop" />);
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      magma.colors.pop01
+      magma.colors.pop
     );
   });
 
@@ -78,7 +78,7 @@ describe('ProgressBar', () => {
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      magma.colors.success01
+      magma.colors.success
     );
   });
 

@@ -4,7 +4,8 @@ import { ThemeContext } from '../../theme/ThemeContext';
 
 const StyledDiv = styled.div`
   color: ${props => props.theme.colors.neutral03};
-  font-size: 13px;
+  font-size: ${props => props.theme.typeScale.size01.fontSize};
+  line-height: ${props => props.theme.typeScale.size01.lineHeight};
   font-weight: bold;
   line-height: 20px;
   margin: 0;

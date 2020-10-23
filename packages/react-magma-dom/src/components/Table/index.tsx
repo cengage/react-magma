@@ -58,7 +58,7 @@ const StyledTable = styled.table<{ isInverse?: boolean; minWidth: number }>`
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral08
-      : props.theme.colors.neutral01};
+      : props.theme.colors.neutral};
   display: table;
   min-width: ${props => props.minWidth}px;
   width: 100%;

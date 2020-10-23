@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.112](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.111...v2.0.0-beta.112) (2020-10-23)
+
+**Note:** Version bump only for package react-magma-dom
+
+
+
+
+
 # [2.0.0-beta.111](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.110...v2.0.0-beta.111) (2020-10-22)
 
 
@@ -293,55 +301,39 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [2.0.0-beta.81](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.80...v2.0.0-beta.81) (2020-09-23)
 
-
 ### Bug Fixes
 
-* **tabs:** update tab styles for better a11y ([6dbfaf8](http://stash.cengage.com:7999/FRONT/react-magma/commits/6dbfaf831f95fbadb1696c19521816d58a904c1f))
-
+- **tabs:** update tab styles for better a11y ([6dbfaf8](http://stash.cengage.com:7999/FRONT/react-magma/commits/6dbfaf831f95fbadb1696c19521816d58a904c1f))
 
 ### Features
 
-* **indeterminate-checkbox:** add announce text for all statuses ([56b52b0](http://stash.cengage.com:7999/FRONT/react-magma/commits/56b52b042c4f65b547093650d6a18cb490a7b6d7))
-* **indeterminate-checkbox:** shared function for label text replacement ([a049af0](http://stash.cengage.com:7999/FRONT/react-magma/commits/a049af01b44b1efb0cb4c0a6cf2494e8c06ea1b1))
-
-
-
-
+- **indeterminate-checkbox:** add announce text for all statuses ([56b52b0](http://stash.cengage.com:7999/FRONT/react-magma/commits/56b52b042c4f65b547093650d6a18cb490a7b6d7))
+- **indeterminate-checkbox:** shared function for label text replacement ([a049af0](http://stash.cengage.com:7999/FRONT/react-magma/commits/a049af01b44b1efb0cb4c0a6cf2494e8c06ea1b1))
 
 # [2.0.0-beta.80](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.79...v2.0.0-beta.80) (2020-09-23)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 # [2.0.0-beta.79](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.78...v2.0.0-beta.79) (2020-09-23)
-
 
 ### Bug Fixes
 
-* **breakpoints:** fix data-testid to be lowercase ([5b5abd8](http://stash.cengage.com:7999/FRONT/react-magma/commits/5b5abd8c1fc1904633984f9518cd4336131631e0))
-* **dom:** use correct version for icon devDependency ([e71d3de](http://stash.cengage.com:7999/FRONT/react-magma/commits/e71d3de2dca1551cd59fb7f9266023de567697fd))
-* **dropdown:** close menu on clicking outside of dropdown ([fcb124d](http://stash.cengage.com:7999/FRONT/react-magma/commits/fcb124d07aa994cce54b539c94d21afcc7835cce))
-* **dropdown:** force focus dropdown button on click for safari ([53cdbc1](http://stash.cengage.com:7999/FRONT/react-magma/commits/53cdbc12c735e426d4ed5a11c9006888b3eb7b65))
-* **timepicker:** fixes for a11y ([bd5e413](http://stash.cengage.com:7999/FRONT/react-magma/commits/bd5e413e3ed74bcb5c85793dcc0225c8766527fa))
-* **timepicker:** make time fields bigger ([7c89c92](http://stash.cengage.com:7999/FRONT/react-magma/commits/7c89c9261f59d21cb1a2959f3c4c91faebd8c3be))
-* **timepicker:** remove fieldset style, change sr text ([6b00986](http://stash.cengage.com:7999/FRONT/react-magma/commits/6b00986097f774a1b5f7bbecf4cc4fa81be5d46c))
-* **toggle:** label line-height ([3a00d1c](http://stash.cengage.com:7999/FRONT/react-magma/commits/3a00d1c631daf0c9fc527a95d2af0b56ca202d44))
-* **toggle:** update colors, shadow for better a11y ([8dafb25](http://stash.cengage.com:7999/FRONT/react-magma/commits/8dafb256080c80ac67f0beef48f926c9df588467))
-* **tooltip:** change margin to padding for easier hover ([c487122](http://stash.cengage.com:7999/FRONT/react-magma/commits/c48712262e8273e6422c4512a3c9219a5cb76d2c))
-* **tooltip:** move hover events to container ([9bab99f](http://stash.cengage.com:7999/FRONT/react-magma/commits/9bab99fd88529df4274a6f632fb9984a21e64b4a))
-
+- **breakpoints:** fix data-testid to be lowercase ([5b5abd8](http://stash.cengage.com:7999/FRONT/react-magma/commits/5b5abd8c1fc1904633984f9518cd4336131631e0))
+- **dom:** use correct version for icon devDependency ([e71d3de](http://stash.cengage.com:7999/FRONT/react-magma/commits/e71d3de2dca1551cd59fb7f9266023de567697fd))
+- **dropdown:** close menu on clicking outside of dropdown ([fcb124d](http://stash.cengage.com:7999/FRONT/react-magma/commits/fcb124d07aa994cce54b539c94d21afcc7835cce))
+- **dropdown:** force focus dropdown button on click for safari ([53cdbc1](http://stash.cengage.com:7999/FRONT/react-magma/commits/53cdbc12c735e426d4ed5a11c9006888b3eb7b65))
+- **timepicker:** fixes for a11y ([bd5e413](http://stash.cengage.com:7999/FRONT/react-magma/commits/bd5e413e3ed74bcb5c85793dcc0225c8766527fa))
+- **timepicker:** make time fields bigger ([7c89c92](http://stash.cengage.com:7999/FRONT/react-magma/commits/7c89c9261f59d21cb1a2959f3c4c91faebd8c3be))
+- **timepicker:** remove fieldset style, change sr text ([6b00986](http://stash.cengage.com:7999/FRONT/react-magma/commits/6b00986097f774a1b5f7bbecf4cc4fa81be5d46c))
+- **toggle:** label line-height ([3a00d1c](http://stash.cengage.com:7999/FRONT/react-magma/commits/3a00d1c631daf0c9fc527a95d2af0b56ca202d44))
+- **toggle:** update colors, shadow for better a11y ([8dafb25](http://stash.cengage.com:7999/FRONT/react-magma/commits/8dafb256080c80ac67f0beef48f926c9df588467))
+- **tooltip:** change margin to padding for easier hover ([c487122](http://stash.cengage.com:7999/FRONT/react-magma/commits/c48712262e8273e6422c4512a3c9219a5cb76d2c))
+- **tooltip:** move hover events to container ([9bab99f](http://stash.cengage.com:7999/FRONT/react-magma/commits/9bab99fd88529df4274a6f632fb9984a21e64b4a))
 
 ### Features
 
-* **timepicker:** add minuteStep prop ([09770ed](http://stash.cengage.com:7999/FRONT/react-magma/commits/09770ed1b7b9b7286a5c4767afde39c693a3a19b))
-* **timepicker:** default step to 1 min ([2ac7ce4](http://stash.cengage.com:7999/FRONT/react-magma/commits/2ac7ce4e87c46e0c97996d65fbfdd215f290755d))
-
-
-
-
+- **timepicker:** add minuteStep prop ([09770ed](http://stash.cengage.com:7999/FRONT/react-magma/commits/09770ed1b7b9b7286a5c4767afde39c693a3a19b))
+- **timepicker:** default step to 1 min ([2ac7ce4](http://stash.cengage.com:7999/FRONT/react-magma/commits/2ac7ce4e87c46e0c97996d65fbfdd215f290755d))
 
 # [2.0.0-beta.69](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.68...v2.0.0-beta.69) (2020-09-02)
 
@@ -361,11 +353,75 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **calendar:** some a11y fixes ([85c6242](http://stash.cengage.com:7999/FRONT/react-magma/commits/85c62429bebb5f35d9b5029da2fa8a0de87bb167))
+- fix build commands ([610b105](http://stash.cengage.com:7999/FRONT/react-magma/commits/610b105334fc06c9e7a9dc101406c37b7db0fb5b))
+- merge ([52e5c6e](http://stash.cengage.com:7999/FRONT/react-magma/commits/52e5c6e79f496a1a6c4c62708b7cb2201396bc66))
+- **docs:** fix build ([785b49a](http://stash.cengage.com:7999/FRONT/react-magma/commits/785b49a98c949506a05484a06cdb9251591d0e3f))
+- **docs:** fix issues from hoisting ([0034350](http://stash.cengage.com:7999/FRONT/react-magma/commits/0034350e7c0c095f435d73e0650a141f85aa5b12))
+- **docs:** rollback dependency upgrades ([a4faf3d](http://stash.cengage.com:7999/FRONT/react-magma/commits/a4faf3d65edf1eb06d783a6304cfb73768935ea8))
+- # **uuid:** fix ssr with uuid and toasts rendering with ids ([4914a35](http://stash.cengage.com:7999/FRONT/react-magma/commits/4914a35ccc75f25f573aa2fbc719828c9131a00a))
+
+* **calendar:** some a11y fixes ([85c6242](http://stash.cengage.com:7999/FRONT/react-magma/commits/85c62429bebb5f35d9b5029da2fa8a0de87bb167))
+
+- **legacy-selects:** move legacy selects to their own package ([c348dd7](http://stash.cengage.com:7999/FRONT/react-magma/commits/c348dd7c7edb582559740ccf91de408567f73f7e))
+- # **select:** rename Select components LegacySelect ([40047f2](http://stash.cengage.com:7999/FRONT/react-magma/commits/40047f2f5e2ac1f22f4ff4206b4793714578be62))
 
 # [2.0.0-beta.76](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.75...v2.0.0-beta.76) (2020-09-15)
 
 **Note:** Version bump only for package react-magma-dom
+
+- **combobox:** clear button ux tweaks ([5c47001](http://stash.cengage.com:7999/FRONT/react-magma/commits/5c470015987d51957aaec9a041d8e5853b64134a))
+- **combobox:** loading, clearable styles ([853708e](http://stash.cengage.com:7999/FRONT/react-magma/commits/853708ebd3ef977989e6db427cb62ff99e0b0a9b))
+- **downshift:** add aria-describedby and aria-invalid when error ([36208d4](http://stash.cengage.com:7999/FRONT/react-magma/commits/36208d4a00327bf576fca885df15388a5d9320de))
+- **downshift:** add created item to display items in combobox ([a686a9d](http://stash.cengage.com:7999/FRONT/react-magma/commits/a686a9d3d3a6362919d941b412b5c63afdeaa962))
+- **downshift:** better wrapping for multi-combo ([873d833](http://stash.cengage.com:7999/FRONT/react-magma/commits/873d833499dc376b7b9ebf66f3db7da7a152cf8f))
+- **downshift:** cleanup ([eac0afc](http://stash.cengage.com:7999/FRONT/react-magma/commits/eac0afc75f466583f8bc732f8dc9f7bcfb1b2f6e))
+- **downshift:** combobox on enter select first item in items list ([30f9eeb](http://stash.cengage.com:7999/FRONT/react-magma/commits/30f9eeb1387b6273ec78d03f016d19a06327c7bd))
+- **downshift:** creatable combobox ([35b1636](http://stash.cengage.com:7999/FRONT/react-magma/commits/35b163608f6ca8603c32739e40ec336fb0cf9b31))
+- **downshift:** custom styles, placeholder, islabelvisuallyhidden ([316926e](http://stash.cengage.com:7999/FRONT/react-magma/commits/316926ec04e4a9a951e316155ff4062b819acf58))
+- **downshift:** disabled combobox and console warning for controlled items ([5fa097c](http://stash.cengage.com:7999/FRONT/react-magma/commits/5fa097c06995997c2ca8a2cbc0d22ebcbe057898))
+- **downshift:** disabled combobox and handle blur for combobox ([df80b37](http://stash.cengage.com:7999/FRONT/react-magma/commits/df80b3709b1447f58bf27a6e9af3a61dc227ed4b))
+- **downshift:** do not allow bad selectedItem(s) in select ([c2687b2](http://stash.cengage.com:7999/FRONT/react-magma/commits/c2687b2381078876955d30d01957d5436500482f))
+- **downshift:** do not select item when typing in closed select ([2ee405e](http://stash.cengage.com:7999/FRONT/react-magma/commits/2ee405e952508d0eb88c1db569b8bb746a0d271f))
+- **downshift:** error message styles ([138d65d](http://stash.cengage.com:7999/FRONT/react-magma/commits/138d65dbe2b6d10bbfc9be529f52a13e8d65719e))
+- **downshift:** exporting state change types ([ae1dda3](http://stash.cengage.com:7999/FRONT/react-magma/commits/ae1dda37512a40f8dbea4a4cecb53624e5b67378))
+- **downshift:** fix multi combo select using arrow keys and docs ([f18f1a7](http://stash.cengage.com:7999/FRONT/react-magma/commits/f18f1a73ef0653ba064dcdc6e1016e65fb4c1fa3))
+- **downshift:** hide list with no items but still render it ([0313a0c](http://stash.cengage.com:7999/FRONT/react-magma/commits/0313a0c86ad2ba9fe51ae1f10665c939d1b4f177))
+- **downshift:** inverse styles ([792d3e6](http://stash.cengage.com:7999/FRONT/react-magma/commits/792d3e6fba7e1150c341f2df17975761254233e0))
+- **downshift:** itemToString and async example ([4f12609](http://stash.cengage.com:7999/FRONT/react-magma/commits/4f12609a66d54e8514868190cdadb07a7f4472fc))
+- **downshift:** keyboard functionality with multi-select ([4b7dde1](http://stash.cengage.com:7999/FRONT/react-magma/commits/4b7dde1151ebfaf929917027c31add8a4d41ce2e))
+- **downshift:** keyboard nav for multi-combobox ([e56e309](http://stash.cengage.com:7999/FRONT/react-magma/commits/e56e309326644fa38b1cd3aa23186f622056fe68))
+- **downshift:** make combobox separate component ([c4e205c](http://stash.cengage.com:7999/FRONT/react-magma/commits/c4e205c30622885cf29a8bae3a9eb2feacf19d8b))
+- **downshift:** make sure selectedItems are in items list combobox ([a0acf1e](http://stash.cengage.com:7999/FRONT/react-magma/commits/a0acf1eb76980d9726f7985fef7ed3c58c906d04))
+- **downshift:** multi select and combobox ([e425d8f](http://stash.cengage.com:7999/FRONT/react-magma/commits/e425d8ff530f693b7c2a781772bbf0d97d0b56ef))
+- **downshift:** no options message styles ([3834d58](http://stash.cengage.com:7999/FRONT/react-magma/commits/3834d58b3196ed41687dbebdd1f098a2c8efa700))
+- **downshift:** remove tabindex from selected items ([69e40f4](http://stash.cengage.com:7999/FRONT/react-magma/commits/69e40f49200a26af4e9897251dc9560992ce841b))
+- **downshift:** return focus after clearing, multicombo styles ([de4761d](http://stash.cengage.com:7999/FRONT/react-magma/commits/de4761d2f5f0601d25570d33039a2ec8b4b39880))
+- **downshift:** select first item in list when typing in combobox ([4b42efd](http://stash.cengage.com:7999/FRONT/react-magma/commits/4b42efd70dfd42bdc06a6e9291eb3dbc5b8ef00c))
+- **downshift:** some ux tweaks ([6c185a6](http://stash.cengage.com:7999/FRONT/react-magma/commits/6c185a6a91993fdd5c3ebb6785b839781a7aad77))
+- **downshift:** styles for multi, multicombo ([af18581](http://stash.cengage.com:7999/FRONT/react-magma/commits/af185816da87c6be239062bbaebaab2551bf4586))
+- **downshift:** use default object for combobox docs ([3439acd](http://stash.cengage.com:7999/FRONT/react-magma/commits/3439acd8fc2596f7d82d59944e4a0c6f216d266e))
+- **downshift:** use default object for items in select docs ([3f62792](http://stash.cengage.com:7999/FRONT/react-magma/commits/3f627929ee04dfd36f2892f537dc4db54ff0fbc3))
+- **downshift:** various style adjustments, some docs updates ([9596c98](http://stash.cengage.com:7999/FRONT/react-magma/commits/9596c98de13d85751e94de86c70caaeee7b770b6))
+- **downshift select:** focus whole combobox, not just input ([438f42c](http://stash.cengage.com:7999/FRONT/react-magma/commits/438f42c78368dafe033bb066abe94c2a929b0124))
+- **downshift select:** more ui fixes ([a2da7ea](http://stash.cengage.com:7999/FRONT/react-magma/commits/a2da7ea5dadc334e01a662665330f69cc9a3fdda))
+- **downshift select:** rough implementation of styles ([dc3c893](http://stash.cengage.com:7999/FRONT/react-magma/commits/dc3c893900a8ce08acdd31b3b41bf399775273fd))
+- **downshift select:** style multi-select ([f3f6c4e](http://stash.cengage.com:7999/FRONT/react-magma/commits/f3f6c4e1122f9fd279ebc67b3bbe3f79a6669ed0))
+- **downshift-select:** using downshift to implement new select ([180fcf3](http://stash.cengage.com:7999/FRONT/react-magma/commits/180fcf31fa730398ecf72c4d27d2c7e9bc8806ab))
+- **icons:** alias icon variations that only have a single variation ([7e31832](http://stash.cengage.com:7999/FRONT/react-magma/commits/7e31832f89abf4def1cbaf4bb6b50bf4138b5b82))
+- **icons:** move icons to their own package ([cd34967](http://stash.cengage.com:7999/FRONT/react-magma/commits/cd34967a7c53e69ffc5b0a54ad3cb491292e7ec5))
+- **internationalization:** template strings for select i18n ([6706972](http://stash.cengage.com:7999/FRONT/react-magma/commits/6706972de4f902d22af9d15dc14d24989149daf6))
+- **select:** add more styles to downshift select ([caa9e2a](http://stash.cengage.com:7999/FRONT/react-magma/commits/caa9e2ad8c31162e969b2112b0f50f757be13a31))
+- **select:** styles for multicombobox ([1e95a04](http://stash.cengage.com:7999/FRONT/react-magma/commits/1e95a04580e88851f622aad9ff759984e99159e6))
+- **selects:** fixed generic type for custom items ([009055a](http://stash.cengage.com:7999/FRONT/react-magma/commits/009055ae2f6b3ca4a15fecb389ba2e2ffdcafea6))
+- **selects:** removal of reference to downshift and i18n ([e34d824](http://stash.cengage.com:7999/FRONT/react-magma/commits/e34d824e0ea5d7d9b36e6fc4a31af381496c7a7b))
+
+# [2.0.0-beta.68](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.67...v2.0.0-beta.68) (2020-09-02)
+
+### Bug Fixes
+
+- **dropdown:** allow disable of auto focus on close ([82ef3f0](http://stash.cengage.com:7999/FRONT/react-magma/commits/82ef3f0))
+- **dropdown:** change preventMagmaFocus to a function on event ([c628a93](http://stash.cengage.com:7999/FRONT/react-magma/commits/c628a93))
+- # **dropdown:** remove curried function ([15a5ec6](http://stash.cengage.com:7999/FRONT/react-magma/commits/15a5ec6))
 
 # [2.0.0-beta.74](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.73...v2.0.0-beta.74) (2020-09-15)
 
@@ -430,6 +486,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - **select:** styles for multicombobox ([1e95a04](http://stash.cengage.com:7999/FRONT/react-magma/commits/1e95a04580e88851f622aad9ff759984e99159e6))
 - **selects:** fixed generic type for custom items ([009055a](http://stash.cengage.com:7999/FRONT/react-magma/commits/009055ae2f6b3ca4a15fecb389ba2e2ffdcafea6))
 - **selects:** removal of reference to downshift and i18n ([e34d824](http://stash.cengage.com:7999/FRONT/react-magma/commits/e34d824e0ea5d7d9b36e6fc4a31af381496c7a7b))
+  > > > > > > > dev
 
 ### BREAKING CHANGES
 
@@ -479,8 +536,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - **dropdown:** remove curried function ([15a5ec6](http://stash.cengage.com:7999/FRONT/react-magma/commits/15a5ec6))
 
 # [2.0.0-beta.67](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.66...v2.0.0-beta.67) (2020-08-31)
-
-### Bug Fixes
 
 - **checkbox, toggle radio:** fix styling bug ([a2f7d00](http://stash.cengage.com:7999/FRONT/react-magma/commits/a2f7d00))
 

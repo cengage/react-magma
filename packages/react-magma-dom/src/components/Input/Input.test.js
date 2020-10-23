@@ -293,9 +293,15 @@ describe('Input', () => {
       const iconWrapper = container.querySelector('span');
       const svg = container.querySelector('svg');
 
-      expect(label).toHaveStyleRule('font-size', '13px');
+      expect(label).toHaveStyleRule(
+        'font-size',
+        magma.typeScale.size02.fontSize
+      );
 
-      expect(input).toHaveStyleRule('font-size', '1rem');
+      expect(input).toHaveStyleRule(
+        'font-size',
+        magma.typeScale.size03.fontSize
+      );
       expect(input).toHaveStyleRule('height', '40px');
       expect(input).toHaveStyleRule('padding-left', '35px');
 
@@ -315,9 +321,15 @@ describe('Input', () => {
       const label = container.querySelector('label');
       const input = getByLabelText(labelText);
 
-      expect(label).toHaveStyleRule('font-size', '16px');
+      expect(label).toHaveStyleRule(
+        'font-size',
+        magma.typeScale.size03.fontSize
+      );
 
-      expect(input).toHaveStyleRule('font-size', '22px');
+      expect(input).toHaveStyleRule(
+        'font-size',
+        magma.typeScale.size04.fontSize
+      );
       expect(input).toHaveStyleRule('height', '58px');
       expect(input).toHaveStyleRule('padding', '0 15px');
     });

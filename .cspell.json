@@ -50,7 +50,14 @@
     "npmrc",
     "dropup",
     "fadein",
-    "closebtn"
+    "slidein",
+    "closebtn",
+    "prettierrc",
+    "Entypo",
+    "Linkedin",
+    "Spotify",
+    "Horiz",
+    "xsmall"
   ],
   "overrides": [
     {

@@ -19,8 +19,10 @@ const Heading = styled.h1`
   && {
     color: inherit;
     font-family: ${props => props.theme.bodyFont};
-    font-size: 3.4em;
+    font-size: 56px;
     font-weight: 600;
+    line-height: 64px;
+    text-align: center;
     margin-top: -240px;
     padding-top: 240px;
     text-align: center;
@@ -32,6 +34,7 @@ const Heading = styled.h1`
 
     @media (min-width: ${props => props.theme.breakpoints.medium}px) {
       font-size: 6.4em;
+      line-height: 1.2;
     }
 
     @media (min-width: ${props => props.theme.breakpoints.small}px) {
@@ -44,7 +47,7 @@ const List = styled.ol`
   display: none;
 
   @media (min-width: ${props => props.theme.breakpoints.medium}px) {
-    background-color: ${props => props.theme.colors.foundation01};
+    background-color: ${props => props.theme.colors.foundation};
     display: flex;
     left: 0;
     list-style: none;
@@ -79,7 +82,7 @@ const ButtonContainer = styled.div`
 `;
 
 const Footer = styled.footer`
-  background: ${props => props.theme.colors.foundation01};
+  background: ${props => props.theme.colors.foundation};
   padding: 80px 10%;
   position: relative;
   text-align: center;

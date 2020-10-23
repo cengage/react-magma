@@ -22,7 +22,7 @@ export const StyledContainer = styled('div', {
     props.backgroundColor
       ? props.backgroundColor
       : props.isInverse
-      ? props.theme.colors.foundation01
+      ? props.theme.colors.foundation
       : 'transparent'};
   background: backgroundColor;
   display: flex;

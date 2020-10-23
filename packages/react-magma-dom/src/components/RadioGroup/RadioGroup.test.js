@@ -53,7 +53,7 @@ describe('Radio Group', () => {
         <h3 id="myID">Heading</h3>
         <Radio labelText="Default Color" value="default" />
         <Radio
-          color={magma.colors.success01}
+          color={magma.colors.success}
           labelText="Success Color"
           value="success"
         />
@@ -81,7 +81,7 @@ describe('Radio Group', () => {
       <RadioGroup value="default">
         <Radio id="colorRadio" labelText="Default Color" value="default" />
         <Radio
-          color={magma.colors.success01}
+          color={magma.colors.success}
           id="successColorRadio"
           labelText="Success Color"
           value="success"
@@ -137,7 +137,7 @@ describe('Radio Group', () => {
       >
         <Radio id="colorRadio" labelText="Default Color" value="default" />
         <Radio
-          color={magma.colors.success01}
+          color={magma.colors.success}
           id="successColorRadio"
           labelText="Success Color"
           value="success"
@@ -160,7 +160,7 @@ describe('Radio Group', () => {
       <RadioGroup labelText="Choose a Color" value="default">
         <Radio id="colorRadio" labelText="Default Color" value="default" />
         <Radio
-          color={magma.colors.success01}
+          color={magma.colors.success}
           id="successColorRadio"
           labelText="Success Color"
           value="success"

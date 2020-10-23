@@ -24,7 +24,7 @@ body {
 body {
   background: #fff;
   color: #3f3f3f;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -47,7 +47,7 @@ h2,
 h3,
 h4 {
   color: #003865;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', Helvetica, sans-serif;
   font-weight: 300;
   line-height: 1.2;
   margin: 20px 0 10px;

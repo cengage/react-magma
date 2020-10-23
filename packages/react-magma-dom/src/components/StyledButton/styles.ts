@@ -103,7 +103,7 @@ export function buildButtonBackground(props) {
     case 'secondary':
       return props.theme.colors.neutral08;
     case 'success':
-      return props.theme.colors.success01;
+      return props.theme.colors.success;
     case 'danger':
       return props.theme.colors.danger;
     default:
@@ -130,7 +130,7 @@ export function buildBorderColor(props) {
   if (props.variant === 'solid') {
     switch (props.color) {
       case 'success':
-        return props.theme.colors.success01;
+        return props.theme.colors.success;
       case 'danger':
         return props.theme.colors.danger;
       default:
@@ -154,15 +154,15 @@ export function buildColor(props) {
     (props.isInverse && props.variant !== 'solid')
   ) {
     if (props.color === 'secondary' && !props.isInverse) {
-      return props.theme.colors.neutral01;
+      return props.theme.colors.neutral;
     }
     return props.theme.colors.neutral08;
   }
   switch (props.color) {
     case 'secondary':
-      return props.theme.colors.neutral01;
+      return props.theme.colors.neutral;
     case 'success':
-      return props.theme.colors.success01;
+      return props.theme.colors.success;
     case 'danger':
       return props.theme.colors.danger;
     default:
@@ -180,9 +180,9 @@ export function buildFocusBackground(props) {
   ) {
     switch (props.color) {
       case 'secondary':
-        return tint(0.9, props.theme.colors.neutral01);
+        return tint(0.9, props.theme.colors.neutral);
       case 'success':
-        return tint(0.9, props.theme.colors.success01);
+        return tint(0.9, props.theme.colors.success);
       case 'danger':
         return tint(0.9, props.theme.colors.danger);
       default:
@@ -196,7 +196,7 @@ export function buildFocusBackground(props) {
     case 'secondary':
       return darken(0.1, props.theme.colors.neutral08);
     case 'success':
-      return darken(0.1, props.theme.colors.success01);
+      return darken(0.1, props.theme.colors.success);
     case 'danger':
       return darken(0.1, props.theme.colors.danger);
     default:
@@ -214,9 +214,9 @@ export function buildFocusColor(props) {
   ) {
     switch (props.color) {
       case 'secondary':
-        return props.theme.colors.neutral01;
+        return props.theme.colors.neutral;
       case 'success':
-        return darken(0.1, props.theme.colors.success01);
+        return darken(0.1, props.theme.colors.success);
       case 'danger':
         return darken(0.1, props.theme.colors.danger);
       default:
@@ -227,7 +227,7 @@ export function buildFocusColor(props) {
     return props.theme.colors.neutral08;
   }
   if (props.color === 'secondary' && !props.isInverse) {
-    return props.theme.colors.neutral01;
+    return props.theme.colors.neutral;
   }
   return props.theme.colors.neutral08;
 }
@@ -239,9 +239,9 @@ export function buildAfterBackground(props) {
   ) {
     switch (props.color) {
       case 'secondary':
-        return props.theme.colors.neutral01;
+        return props.theme.colors.neutral;
       case 'success':
-        return props.theme.colors.success01;
+        return props.theme.colors.success;
       case 'danger':
         return props.theme.colors.danger;
       default:
@@ -253,7 +253,7 @@ export function buildAfterBackground(props) {
     !props.isInverse &&
     props.color === 'secondary'
   ) {
-    return props.theme.colors.neutral01;
+    return props.theme.colors.neutral;
   }
   return props.theme.colors.neutral08;
 }
@@ -268,9 +268,9 @@ export function buildActiveBackground(props) {
   ) {
     switch (props.color) {
       case 'secondary':
-        return tint(0.7, props.theme.colors.neutral01);
+        return tint(0.7, props.theme.colors.neutral);
       case 'success':
-        return tint(0.7, props.theme.colors.success01);
+        return tint(0.7, props.theme.colors.success);
       case 'danger':
         return tint(0.7, props.theme.colors.danger);
       default:
@@ -284,7 +284,7 @@ export function buildActiveBackground(props) {
     case 'secondary':
       return darken(0.2, props.theme.colors.neutral08);
     case 'success':
-      return darken(0.2, props.theme.colors.success01);
+      return darken(0.2, props.theme.colors.success);
     case 'danger':
       return darken(0.2, props.theme.colors.danger);
     default:
@@ -302,9 +302,9 @@ export function buildActiveColor(props) {
   ) {
     switch (props.color) {
       case 'secondary':
-        return props.theme.colors.neutral01;
+        return props.theme.colors.neutral;
       case 'success':
-        return darken(0.2, props.theme.colors.success01);
+        return darken(0.2, props.theme.colors.success);
       case 'danger':
         return darken(0.2, props.theme.colors.danger);
       default:
@@ -315,7 +315,7 @@ export function buildActiveColor(props) {
     return props.theme.colors.neutral08;
   }
   if (props.color === 'secondary' && !props.isInverse) {
-    return props.theme.colors.neutral01;
+    return props.theme.colors.neutral;
   }
   return props.theme.colors.neutral08;
 }

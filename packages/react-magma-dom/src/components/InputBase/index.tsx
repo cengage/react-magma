@@ -55,9 +55,10 @@ export const inputBaseStyles = props => css`
     ? props.theme.colors.neutral08
     : props.theme.colors.neutral03};
   border-radius: 4px;
-  color: ${props.theme.colors.neutral01};
+  color: ${props.theme.colors.neutral};
   display: block;
-  font-size: 1rem;
+  font-size: ${props.theme.typeScale.size03.fontSize};
+  line-height: ${props.theme.typeScale.size03.lineHeight};
   font-family: ${props.theme.bodyFont};
   height: 40px;
   line-height: 24px;
@@ -86,9 +87,9 @@ export const inputBaseStyles = props => css`
 
   ${props.inputSize === 'large' &&
   css`
-    font-size: 22px;
+    font-size: ${props.theme.typeScale.size04.fontSize};
+    line-height: ${props.theme.typeScale.size04.lineHeight};
     height: 58px;
-    line-height: 33px;
     padding: 0 15px;
   `}
 
@@ -138,7 +139,7 @@ const IconWrapper = styled.span<{
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
 }>`
-  color: ${props => props.theme.colors.neutral01};
+  color: ${props => props.theme.colors.neutral};
   left: ${props => (props.iconPosition === 'left' ? '12px' : 'auto')};
   right: ${props => (props.iconPosition === 'right' ? '12px' : 'auto')};
   position: absolute;

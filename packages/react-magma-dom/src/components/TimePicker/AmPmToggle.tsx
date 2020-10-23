@@ -17,7 +17,7 @@ const StyledAmPmToggle = styled.button<{ theme: ThemeInterface }>`
 
   &:focus {
     outline: 0;
-    background: ${props => props.theme.colors.foundation01};
+    background: ${props => props.theme.colors.foundation};
     color: ${props => props.theme.colors.neutral08};
   }
 `;

@@ -25,8 +25,14 @@ describe('Badge', () => {
     const { getByText } = render(<Badge variant="counter">{TEXT}</Badge>);
 
     expect(getByText(TEXT)).toHaveStyleRule('border-radius', '10px');
-    expect(getByText(TEXT)).toHaveStyleRule('font-size', '14px');
-    expect(getByText(TEXT)).toHaveStyleRule('line-height', '18px');
+    expect(getByText(TEXT)).toHaveStyleRule(
+      'font-size',
+      magma.typeScale.size02.fontSize
+    );
+    expect(getByText(TEXT)).toHaveStyleRule(
+      'line-height',
+      magma.typeScale.size02.lineHeight
+    );
   });
 
   describe('color variants', () => {
@@ -93,18 +99,18 @@ describe('Badge', () => {
 
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        magma.colors.success01
+        magma.colors.success
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        darken(0.1, magma.colors.success01),
+        darken(0.1, magma.colors.success),
         {
           target: ':focus',
         }
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        darken(0.2, magma.colors.success01),
+        darken(0.2, magma.colors.success),
         {
           target: ':active',
         }
