@@ -784,14 +784,6 @@ When using the `component` props in the `Tab` component we will disregard anythi
         'If true, the component will have inverse styling to better appear on a dark background.',
       defaultValue: 'false',
     },
-    hasScrollButtons: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'The prop for turning on/off buttons for scrolling Tabs component.',
-    },
     onChange: {
       type: {
         name: 'function',
@@ -812,16 +804,32 @@ When using the `component` props in the `Tab` component we will disregard anythi
 
 ## Tab API
 
-**Any other props supplied will be provided to the `div` element that wraps the tab content.**
+**Any other props supplied will be provided to the `button` element that wraps the tab content.**
 
 <SimplePropsTable
   propertyValues={{
-    disabled: {
+    icon: {
+      type: {
+        name: 'React Element',
+      },
+      required: false,
+      description: 'Icon to display within the component',
+    },
+    isActive: {
       type: {
         name: 'boolean',
       },
       required: false,
-      description: 'The prop for disabling Tab.',
+      description: 'If true, the component will display with the active/selected state',
+    },
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background.',
+      defaultValue: 'false',
     },
     testId: {
       type: {
@@ -839,6 +847,15 @@ When using the `component` props in the `Tab` component we will disregard anythi
 
 <SimplePropsTable
   propertyValues={{
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background.',
+      defaultValue: 'false',
+    },
     testId: {
       type: {
         name: 'string',
@@ -855,6 +872,15 @@ When using the `component` props in the `Tab` component we will disregard anythi
 
 <SimplePropsTable
   propertyValues={{
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background.',
+      defaultValue: 'false',
+    },
     testId: {
       type: {
         name: 'string',

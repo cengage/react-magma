@@ -20,8 +20,6 @@ export interface HyperlinkProps
   styledAs?: 'Button' | 'Link';
   testId?: string;
   to: string;
-  positionLeft?: number;
-  positionTop?: number;
 }
 
 const linkStyles = props => css`

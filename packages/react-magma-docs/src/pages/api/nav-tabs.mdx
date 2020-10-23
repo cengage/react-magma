@@ -245,12 +245,18 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
 
 <SimplePropsTable
   propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
+    alignment: {
+    type: {
+      name: 'enum',
+      options: [
+        'TabsAlignment.center',
+        'TabsAlignment.left',
+        'TabsAlignment.right',
+      ],
+    },
+    required: false,
+    description: 'Alignment of the tabs menu',
+    defaultValue: 'left',
     },
     'aria-label': {
       type: {
@@ -296,14 +302,6 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
-    hasScrollButtons: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'The prop for turning on/off buttons for scrolling NavTabs component',
-    },
     testId: {
       type: {
         name: 'string',
@@ -335,6 +333,29 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
       required: false,
       description:
         'The prop for custom component instead of `a` in NavTab. When using this prop the `children` of the component and the `to` prop are not used.',
+    },
+    icon: {
+      type: {
+        name: 'React Element',
+      },
+      required: false,
+      description: 'Icon to display within the component',
+    },
+    isActive: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the component will display with the active/selected state',
+    },
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background.',
+      defaultValue: 'false',
     },
     testId: {
       type: {

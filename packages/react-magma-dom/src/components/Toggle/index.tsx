@@ -197,7 +197,6 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
       containerStyle,
       disabled,
       errorMessage,
-      hasError,
       id: defaultId,
       isInverse,
       isTextVisuallyHidden,
@@ -228,6 +227,8 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
         ? groupDescriptionId
         : null;
 
+    const hasError = context.hasError || !!errorMessage;
+
     return (
       <>
         <StyledContainer>
@@ -256,7 +257,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
               checked={checked}
               data-testid="toggle-track"
               disabled={disabled}
-              hasError={context.hasError || !!errorMessage}
+              hasError={hasError}
               isInverse={isInverse}
               style={trackStyle}
               theme={theme}

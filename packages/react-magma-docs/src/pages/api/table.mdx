@@ -662,6 +662,21 @@ Content other than just text, such as buttons, inputs and other elements can be 
       description:
         'Event that fires when clicking the table header cell sort button',
     },
+    scope: {
+      type: {
+        name: 'enum',
+        options: [
+          'TableHeaderCellScope.col',
+          'TableHeaderCellScope.colgroup',
+          'TableHeaderCellScope.row',
+          'TableHeaderCellScope.rowgroup',
+        ],
+        required: false,
+        description:
+          'Scope attribute for header cell.  Indicates which cells are associated to which header.',
+        defaultValue: 'col',
+      },
+    },
     sortDirection: {
       type: {
         name: 'enum',
@@ -682,6 +697,14 @@ Content other than just text, such as buttons, inputs and other elements can be 
       required: false,
       description:
         'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+    width: {
+      type: {
+        name: 'string | number (px)',
+      },
+      required: false,
+      description: 'Width of the component, set by CSS.',
+      defaultValue: 'auto',
     },
   }}
 />
@@ -722,6 +745,14 @@ Content other than just text, such as buttons, inputs and other elements can be 
       required: false,
       description:
         'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+    width: {
+      type: {
+        name: 'string | number (px)',
+      },
+      required: false,
+      description: 'Width of the component, set by CSS.',
+      defaultValue: 'auto',
     },
   }}
 />
