@@ -56,7 +56,7 @@ IntroSection.propTypes = {
   children: PropTypes.node.isRequired,
   section: PropTypes.string.isRequired,
   image: PropTypes.node,
-  afterAnimatedIn: PropTypes.func.isRequired
+  afterAnimatedIn: PropTypes.func.isRequired,
 };
 
 export default IntroSection;

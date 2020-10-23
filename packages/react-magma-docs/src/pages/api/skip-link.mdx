@@ -104,11 +104,11 @@ This would render the button 25px from the top, and 25px from the left of the br
   propertyValues={{
     buttonText: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description: 'The text in the skip link',
-      defaultValue: "'Skip Navigation'"
+      defaultValue: "'Skip Navigation'",
     },
     color: {
       type: {
@@ -118,47 +118,47 @@ This would render the button 25px from the top, and 25px from the left of the br
           'ButtonColor.secondary',
           'ButtonColor.success',
           'ButtonColor.danger',
-          'ButtonColor.marketing'
-        ]
+          'ButtonColor.marketing',
+        ],
       },
       required: false,
       description: 'The color of the button',
-      defaultValue: 'primary'
+      defaultValue: 'primary',
     },
     isInverse: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     positionLeft: {
       type: {
-        name: 'number'
+        name: 'number',
       },
       required: false,
       description:
         'Number of pixels from the left of the screen for the skip link to be positioned ',
-      defaultValue: '10'
+      defaultValue: '10',
     },
     positionTop: {
       type: {
-        name: 'number'
+        name: 'number',
       },
       required: false,
       description:
         'Number of pixels from the top of the screen for the skip link to be positioned ',
-      defaultValue: '10'
+      defaultValue: '10',
     },
     testId: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing'
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     variant: {
       type: {
@@ -166,13 +166,13 @@ This would render the button 25px from the top, and 25px from the left of the br
         options: [
           'ButtonVariant.solid',
           'ButtonVariant.outline',
-          'ButtonVariant.link'
-        ]
+          'ButtonVariant.link',
+        ],
       },
       required: false,
       description: 'The variant of the button',
-      defaultValue: 'solid'
-    }
+      defaultValue: 'solid',
+    },
   }}
 />
 
@@ -182,19 +182,19 @@ This would render the button 25px from the top, and 25px from the left of the br
   propertyValues={{
     children: {
       type: {
-        name: 'node'
+        name: 'node',
       },
       required: false,
-      description: 'The content of the destination of the skip link'
+      description: 'The content of the destination of the skip link',
     },
     testId: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing'
-    }
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
   }}
 />
 

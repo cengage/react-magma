@@ -58,7 +58,7 @@ const NavItem = ({ activeSection, section, number, onClick, text }) => (
             handleNavClick(section, onClick);
           }}
           theme={theme}
-	>
+        >
           <Num>{number}</Num>
           {text}
           {activeSection === number && (

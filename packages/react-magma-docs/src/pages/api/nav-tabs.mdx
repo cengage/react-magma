@@ -247,25 +247,25 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
   propertyValues={{
     children: {
       type: {
-        name: 'node'
+        name: 'node',
       },
       required: true,
-      description: 'The content of the component'
+      description: 'The content of the component',
     },
     'aria-label': {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: true,
       description:
-        'The text the screen reader will announce that describes your navigation'
+        'The text the screen reader will announce that describes your navigation',
     },
     backgroundColor: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
-      description: 'Background color for the nav tabs menu'
+      description: 'Background color for the nav tabs menu',
     },
     borderPosition: {
       type: {
@@ -273,45 +273,45 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
         options: [
           'TabsBorderPositionHorizontal.bottom',
           'TabsBorderPositionHorizontal.top',
-          'TabsBorderPositionVertical.left'
-        ]
+          'TabsBorderPositionVertical.left',
+        ],
       },
       required: false,
       description: 'Position of the current tab indicator border',
-      defaultValue: 'bottom or left'
+      defaultValue: 'bottom or left',
     },
     iconPosition: {
       type: {
-        name: '"left" | "top"'
+        name: '"left" | "top"',
       },
       required: false,
-      description: 'The orientation of icon on NavTab'
+      description: 'The orientation of icon on NavTab',
     },
     isInverse: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     hasScrollButtons: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description:
-        'The prop for turning on/off buttons for scrolling NavTabs component'
+        'The prop for turning on/off buttons for scrolling NavTabs component',
     },
     testId: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing'
-    }
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
   }}
 />
 
@@ -323,27 +323,27 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
   propertyValues={{
     children: {
       type: {
-        name: 'node'
+        name: 'node',
       },
       required: true,
-      description: 'The content of the component'
+      description: 'The content of the component',
     },
     component: {
       type: {
-        name: 'React.ReactElement'
+        name: 'React.ReactElement',
       },
       required: false,
       description:
-        'The prop for custom component instead of `a` in NavTab. When using this prop the `children` of the component and the `to` prop are not used.'
+        'The prop for custom component instead of `a` in NavTab. When using this prop the `children` of the component and the `to` prop are not used.',
     },
     testId: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing'
-    }
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
   }}
 />
 
@@ -356,7 +356,7 @@ export default props => (
       GraduationCapIcon,
       BellIcon,
       AndroidIcon,
-      Link
+      Link,
     }}
   />
 );
