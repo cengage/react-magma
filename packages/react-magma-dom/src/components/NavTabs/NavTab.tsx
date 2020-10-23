@@ -13,6 +13,7 @@ export interface BaseNavTabProps
   extends React.HTMLAttributes<HTMLAnchorElement> {
   borderPosition?: TabsBorderPosition;
   component?: React.ReactNode;
+  css?: any; // Adding css prop to fix emotion error
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
   iconPosition?: TabsIconPosition;
   index?: number;

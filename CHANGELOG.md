@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.111](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.110...v2.0.0-beta.111) (2020-10-22)
+
+
+### Bug Fixes
+
+* **nav-tab:** add css prop for emotion types ([8e16292](http://stash.cengage.com:7999/FRONT/react-magma/commits/8e16292c940eff97105e2f800670053e65d02623))
+
+
+
+
+
 # [2.0.0-beta.110](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.109...v2.0.0-beta.110) (2020-10-21)
 
 

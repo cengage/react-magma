@@ -23,7 +23,7 @@ import {
   Radio,
   RadioGroup,
   magma,
-  Modal
+  Modal,
 } from 'react-magma-dom';
 import DocsHeading from '../../components/docs-heading';
 import { SimplePropsTable } from '../../components/props-table';
@@ -456,65 +456,65 @@ to disable the auto-focusing on close.
   propertyValues={{
     activeIndex: {
       type: {
-        name: 'number'
+        name: 'number',
       },
       required: false,
       description:
         'Index of the item that will active/selected. If none is provided, no item will appear active.',
-      defaultValue: '-1'
+      defaultValue: '-1',
     },
     alignment: {
       type: {
         name: 'enum',
-        options: ['DropdownAlignment.start, DropdownAlignment.end']
+        options: ['DropdownAlignment.start, DropdownAlignment.end'],
       },
       required: false,
       description: 'Alignment of the dropdown content',
-      defaultValue: 'start'
+      defaultValue: 'start',
     },
     dropDirection: {
       type: {
         name: 'enum',
         options: [
-          'DropdownDropDirection.down, DropdownDropDirection.left, DropdownDropDirection.right, DropdownDropDirection.up'
-        ]
+          'DropdownDropDirection.down, DropdownDropDirection.left, DropdownDropDirection.right, DropdownDropDirection.up',
+        ],
       },
       required: false,
       description: 'Position of the dropdown content',
-      defaultValue: 'down'
+      defaultValue: 'down',
     },
     maxHeight: {
       type: {
-        name: 'string | number (px)'
+        name: 'string | number (px)',
       },
       required: false,
       description: 'Max-height of dropdown content',
-      defaultValue: '250px'
+      defaultValue: '250px',
     },
     onBeforeShiftFocus: {
       type: {
-        name: 'function'
+        name: 'function',
       },
       required: false,
       description:
-        'Function called on dropdown close before focusing the toggle button'
+        'Function called on dropdown close before focusing the toggle button',
     },
     testId: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing'
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     width: {
       type: {
-        name: 'string | number (px)'
+        name: 'string | number (px)',
       },
       required: false,
       description: 'Width of menu',
-      defaultValue: 'Width of longest menu item'
-    }
+      defaultValue: 'Width of longest menu item',
+    },
   }}
 />
 
@@ -532,11 +532,11 @@ Examples may include an id, a title, event handlers or various aria attributes. 
   propertyValues={{
     header: {
       type: {
-        name: 'React.Node'
+        name: 'React.Node',
       },
       required: false,
-      description: 'Header text to use for the menu group'
-    }
+      description: 'Header text to use for the menu group',
+    },
   }}
 />
 
@@ -548,35 +548,35 @@ Examples may include an id, a title, event handlers or various aria attributes. 
   propertyValues={{
     icon: {
       type: {
-        name: 'React.ReactElement'
+        name: 'React.ReactElement',
       },
       required: false,
-      description: 'Leading icon for the menu item'
+      description: 'Leading icon for the menu item',
     },
     disabled: {
       type: {
-        name: 'boolean'
+        name: 'boolean',
       },
       required: false,
       description:
         'If true, item will be disabled; it will appear dimmed and onClick event (or any other events) will not fire',
-      defaultValue: 'false'
+      defaultValue: 'false',
     },
     onClick: {
       type: {
-        name: 'function'
+        name: 'function',
       },
       required: false,
       description:
-        'Action that fires when the menu item is clicked. If the menuitem also has a value prop, the value will be passed to the onClick handler'
+        'Action that fires when the menu item is clicked. If the menuitem also has a value prop, the value will be passed to the onClick handler',
     },
     value: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
-      description: 'Value of the component, gets passed to the onClick event'
-    }
+      description: 'Value of the component, gets passed to the onClick event',
+    },
   }}
 />
 
@@ -614,7 +614,7 @@ export default props => (
       Radio,
       RadioGroup,
       magma,
-      Modal
+      Modal,
     }}
   />
 );

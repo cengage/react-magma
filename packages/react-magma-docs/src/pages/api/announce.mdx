@@ -73,28 +73,28 @@ possibly interrupting the current task. Using `off` will silence these updates, 
   propertyValues={{
     children: {
       type: {
-        name: 'node'
+        name: 'node',
       },
       required: true,
-      description: 'The content of the component'
+      description: 'The content of the component',
     },
     politeness: {
       type: {
         name: 'enum',
-        options: ['AnnouncePoliteness.assertive', 'AnnouncePoliteness.off', 'AnnouncePoliteness.polite']
+        options: ['AnnouncePoliteness.assertive', 'AnnouncePoliteness.off', 'AnnouncePoliteness.polite'],
       },
       required: false,
       description: 'Value of the `aria-live` attribute',
-      defaultValue: 'polite'
+      defaultValue: 'polite',
     },
     testId: {
       type: {
-        name: 'string'
+        name: 'string',
       },
       required: false,
       description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing'
-    }
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
   }}
 />
 
