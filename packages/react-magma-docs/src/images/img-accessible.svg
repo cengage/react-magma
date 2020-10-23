@@ -45,7 +45,7 @@
                                             <use xlink:href="#a_path-7"></use>
                                         </mask>
                                         <use id="a_Shape" stroke="none" fill="#444444" fill-rule="nonzero" xlink:href="#a_path-7"></use>
-                                        <g id="a_neutral01" stroke="none" fill="none" mask="url(#a_mask-8)" fill-rule="evenodd">
+                                        <g id="a_neutral" stroke="none" fill="none" mask="url(#a_mask-8)" fill-rule="evenodd">
                                             <rect id="a_Rectangle" fill="#00263E" x="0" y="0" width="40" height="40"></rect>
                                         </g>
                                     </g>

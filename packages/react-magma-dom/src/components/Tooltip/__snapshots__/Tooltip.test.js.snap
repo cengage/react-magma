@@ -4,7 +4,7 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
 .emotion-1 {
   display: none;
   font-size: 12px;
-  line-height: 1.3em;
+  line-height: 16px;
   font-weight: 600;
   position: absolute;
   text-align: center;
@@ -59,7 +59,7 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
 .emotion-1 {
   display: none;
   font-size: 12px;
-  line-height: 1.3em;
+  line-height: 16px;
   font-weight: 600;
   position: absolute;
   text-align: center;

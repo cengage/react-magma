@@ -11,7 +11,8 @@ export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
 const StyledList = styled.ol<BreadcrumbProps>`
   display: flex;
   flex-wrap: wrap;
-  font-size: 13px;
+  font-size: ${props => props.theme.typeScale.size02.fontSize};
+  line-height: ${props => props.theme.typeScale.size02.lineHeight};
   list-style: none;
   margin: 0;
   padding: 0;

@@ -13,6 +13,8 @@ import { ButtonColor, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { CrossIcon } from 'react-magma-icons';
 import { Heading } from '../Heading';
+import { TypographyVisualStyle } from '../Typography';
+
 import { omit, useGenerateId, usePrevious } from '../../utils';
 
 export enum ModalSize {
@@ -87,7 +89,7 @@ const ModalContent = styled.div<ModalProps>`
   border-color: ${props => props.theme.colors.neutral06};
   border-radius: 3px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  color: ${props => props.theme.colors.neutral01};
+  color: ${props => props.theme.colors.neutral};
   margin: 10px;
   position: relative;
   z-index: 1000;
@@ -143,8 +145,6 @@ const ModalHeader = styled.div`
 `;
 
 const H1 = styled(Heading)`
-  font-size: 20px;
-  font-weight: 600;
   margin: 0;
   padding-right: 50px;
 `;
@@ -368,8 +368,8 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                         id={headingId}
                         level={1}
                         ref={headingRef}
+                        visualStyle={TypographyVisualStyle.headingSmall}
                         tabIndex={-1}
-                        theme={theme}
                       >
                         {header}
                       </H1>

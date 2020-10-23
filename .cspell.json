@@ -48,7 +48,16 @@
     "bolds",
     "testid",
     "npmrc",
-    "dropup"
+    "dropup",
+    "fadein",
+    "slidein",
+    "closebtn",
+    "prettierrc",
+    "Entypo",
+    "Linkedin",
+    "Spotify",
+    "Horiz",
+    "xsmall"
   ],
   "overrides": [
     {

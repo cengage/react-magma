@@ -15,7 +15,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -110,7 +110,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -216,7 +216,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -311,7 +311,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -417,7 +417,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -512,7 +512,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -618,7 +618,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -713,7 +713,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -819,7 +819,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -914,7 +914,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -1020,7 +1020,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -1114,7 +1114,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",Helvetica,sans-serif;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;

@@ -15,10 +15,17 @@ const StyledLabel = styled.label<LabelProps>`
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral08
-      : props.theme.colors.neutral01};
+      : props.theme.colors.neutral};
   display: inline-block;
-  font-size: ${props => (props.size === InputSize.large ? '16px' : '13px')};
+  font-size: ${props =>
+    props.size === InputSize.large
+      ? props.theme.typeScale.size03.fontSize
+      : props.theme.typeScale.size02.fontSize};
   font-weight: 600;
+  line-height: ${props =>
+    props.size === InputSize.large
+      ? props.theme.typeScale.size03.lineHeight
+      : props.theme.typeScale.size02.lineHeight};
   margin-bottom: 5px;
   max-width: 100%;
   text-align: left;

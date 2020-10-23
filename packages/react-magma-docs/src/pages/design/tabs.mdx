@@ -7,13 +7,17 @@ order: 1
 import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
 import DocsHeading from '../../components/docs-heading';
-import { Button } from 'react-magma-dom';
+import { Button, Paragraph } from 'react-magma-dom';
 
 <DocsHeading to="/api/tabs/" type="code">
   Tabs
 </DocsHeading>
 
-Tabs allow navigation between different sets of related content or can be used to navigate an entire application.
+<Paragraph visualStyle="bodyLarge">
+  Tabs allow navigation between different sets of related content or can be used to navigate an entire application.
+</Paragraph>
+
+<span class="horizontal-spacer"></span>
 
 <figure>
   <img src="../../images/tabs/tabs-example.png" alt=" " />
@@ -356,9 +360,9 @@ The tabs have inverse styling available for use on dark backgrounds. Take care w
 
 The colors in the Magma palette that you can safely use as a background include:
 
-- neutral01 (#3F3F3F)
+- neutral (#3F3F3F)
 - neutral02 (#575757)
-- foundation01 (#00263E)
+- foundation (#00263E)
 - foundation02 (#003865).
 
 <figure>

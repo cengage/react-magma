@@ -84,7 +84,7 @@ describe('Form Group', () => {
         <h3 id="myID">Heading</h3>
         <Checkbox labelText="Default Color" value="default" />
         <Checkbox
-          color={magma.colors.success01}
+          color={magma.colors.success}
           labelText="Success Color"
           value="success"
         />
@@ -137,7 +137,7 @@ describe('Form Group', () => {
       <FormGroup labelText="Choose a Color" value="default">
         <Checkbox labelText="Default Color" value="default" />
         <Checkbox
-          color={magma.colors.success01}
+          color={magma.colors.success}
           labelText="Success Color"
           value="success"
         />

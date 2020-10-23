@@ -91,15 +91,13 @@ const SortButton = styled.button<{
   &:hover,
   &:focus {
     background: ${props =>
-      props.isInverse
-        ? props.theme.colors.tint01
-        : props.theme.colors.neutral06};
+      props.isInverse ? props.theme.colors.tint : props.theme.colors.neutral06};
 
     svg {
       fill: ${props =>
         props.isInverse
           ? props.theme.colors.neutral08
-          : props.theme.colors.neutral01};
+          : props.theme.colors.neutral};
     }
   }
 `;

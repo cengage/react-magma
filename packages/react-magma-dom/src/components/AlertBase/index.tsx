@@ -54,13 +54,13 @@ export const transitionDuration = 500;
 export function buildAlertBackground(props) {
   switch (props.variant) {
     case 'success':
-      return props.theme.colors.success01;
+      return props.theme.colors.success;
     case 'warning':
       return props.theme.colors.pop04;
     case 'danger':
       return props.theme.colors.danger;
     default:
-      return props.theme.colors.neutral01;
+      return props.theme.colors.neutral;
   }
 }
 
@@ -164,7 +164,7 @@ const StyledAlertInner = styled.div<AlertBaseProps>`
   border-radius: 5px;
   color: ${props =>
     props.variant === 'warning'
-      ? props.theme.colors.neutral01
+      ? props.theme.colors.neutral
       : props.theme.colors.neutral08};
   display: flex;
   position: relative;
@@ -334,7 +334,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
                   <ProgressRing
                     color={
                       variant === AlertVariant.warning
-                        ? theme.colors.neutral01
+                        ? theme.colors.neutral
                         : theme.colors.neutral08
                     }
                     isActive={!isPaused}

@@ -35,7 +35,7 @@ export function buildBadgeBackground(props) {
     case 'secondary':
       return props.theme.colors.neutral02;
     case 'success':
-      return props.theme.colors.success01;
+      return props.theme.colors.success;
 
     default:
       return props.theme.colors.neutral02;
@@ -53,7 +53,7 @@ export function buildBadgeFocusBackground(props) {
     case 'secondary':
       return darken(0.1, props.theme.colors.neutral02);
     case 'success':
-      return darken(0.1, props.theme.colors.success01);
+      return darken(0.1, props.theme.colors.success);
 
     default:
       return darken(0.1, props.theme.colors.neutral02);
@@ -71,7 +71,7 @@ export function buildBadgeActiveBackground(props) {
     case 'secondary':
       return darken(0.2, props.theme.colors.neutral02);
     case 'success':
-      return darken(0.2, props.theme.colors.success01);
+      return darken(0.2, props.theme.colors.success);
 
     default:
       return darken(0.2, props.theme.colors.neutral02);
@@ -86,12 +86,16 @@ export const baseBadgeStyles = props => css`
     : 'transparent'};
   border-radius: ${props.variant === BadgeVariant.counter ? '10px' : '3px'};
   color: ${props.color === 'light'
-    ? props.theme.colors.neutral01
+    ? props.theme.colors.neutral
     : props.theme.colors.neutral08};
   display: inline-block;
   font-weight: bold;
-  font-size: ${props.variant === BadgeVariant.counter ? '14px' : '12px'};
-  line-height: ${props.variant === BadgeVariant.counter ? '18px' : '21px'};
+  font-size: ${props.variant === BadgeVariant.counter
+    ? props.theme.typeScale.size02.fontSize
+    : props.theme.typeScale.size01.fontSize};
+  line-height: ${props.variant === BadgeVariant.counter
+    ? props.theme.typeScale.size02.lineHeight
+    : props.theme.typeScale.size02.lineHeight};
   margin: ${props.variant === BadgeVariant.counter
     ? '0 0 0 10px'
     : '0 10px 0 0'};

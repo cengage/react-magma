@@ -105,9 +105,9 @@ export const TabStyles = props => css`
   flex-direction: ${getFlexDirection(props.iconPosition)};
   flex-grow: 0;
   flex-shrink: ${props.isFullWidth ? '1' : '0'};
-  font-size: 14px;
   font-weight: 600;
-  line-height: 1.5;
+  font-size: ${props.theme.typeScale.size02.fontSize};
+  line-height: ${props.theme.typeScale.size02.lineHeight};
   height: 100%;
   justify-content: ${props.iconPosition === 'left' ? 'flex-start' : 'center'};
   opacity: ${props.disabled
@@ -141,7 +141,7 @@ export const TabStyles = props => css`
       ? ''
       : props.isInverse
       ? props.theme.colors.shade02
-      : props.theme.colors.shade01};
+      : props.theme.colors.shade};
     color: ${props.isActive
       ? props.isInverse
         ? props.theme.colors.neutral08

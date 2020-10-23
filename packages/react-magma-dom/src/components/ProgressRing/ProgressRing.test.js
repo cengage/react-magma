@@ -22,12 +22,12 @@ describe('ProgressRing', () => {
 
   it('should render the progress ring component with a custom color', () => {
     const { container } = render(
-      <ProgressRing percentage={50} color={magma.colors.success01} />
+      <ProgressRing percentage={50} color={magma.colors.success} />
     );
 
     expect(container.querySelector('circle')).toHaveAttribute(
       'stroke',
-      magma.colors.success01
+      magma.colors.success
     );
   });
 

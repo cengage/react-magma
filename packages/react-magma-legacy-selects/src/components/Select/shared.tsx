@@ -74,7 +74,7 @@ export function getStyles(
         boxShadow: errorMessage
           ? `0 0 0 1px ${theme.colors.neutral08}`
           : '0 0 0',
-        color: theme.colors.neutral01,
+        color: theme.colors.neutral,
         cursor: state.isDisabled ? 'not-allowed' : 'pointer',
         height: '37px',
         outline: state.isFocused
@@ -99,7 +99,7 @@ export function getStyles(
         customStyles.dropdownIndicator(styles, state);
       return {
         ...styles,
-        color: theme.colors.neutral01,
+        color: theme.colors.neutral,
         ...custom,
       };
     },
@@ -134,7 +134,7 @@ export function getStyles(
         border: `1px solid ${theme.colors.neutral06}`,
         borderRadius: '3px',
         boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)',
-        color: theme.colors.neutral01,
+        color: theme.colors.neutral,
         zIndex: 999,
         ...custom,
       };
@@ -145,7 +145,7 @@ export function getStyles(
       return {
         ...styles,
         backgroundColor: theme.colors.neutral06,
-        color: theme.colors.neutral01,
+        color: theme.colors.neutral,
         ...custom,
       };
     },
@@ -156,11 +156,11 @@ export function getStyles(
       return {
         ...styles,
         backgroundColor: theme.colors.neutral06,
-        color: theme.colors.neutral01,
+        color: theme.colors.neutral,
 
         '&:hover': {
           backgroundColor: theme.colors.neutral05,
-          color: theme.colors.neutral01,
+          color: theme.colors.neutral,
         },
         ...custom,
       };
@@ -174,7 +174,7 @@ export function getStyles(
           : state.isSelected
           ? theme.colors.neutral07
           : theme.colors.neutral08,
-        color: theme.colors.neutral01,
+        color: theme.colors.neutral,
         ...custom,
       };
     },
@@ -192,7 +192,7 @@ export function getStyles(
         customStyles.singleValue && customStyles.singleValue(styles, state);
       return {
         ...styles,
-        color: theme.colors.neutral01,
+        color: theme.colors.neutral,
         ...custom,
       };
     },

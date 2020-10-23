@@ -13,7 +13,7 @@ const IndexPage = () => (
           styles={css`
             @import url('https://fonts.googleapis.com/css?family=Abel&display=swap');
             .content {
-              background: ${theme.colors.foundation01};
+              background: ${theme.colors.foundation};
               color: ${theme.colors.neutral08};
               padding: 0;
               overflow: hidden;
@@ -22,7 +22,7 @@ const IndexPage = () => (
               background: linear-gradient(
                 to bottom,
                 ${theme.colors.foundation02} 0%,
-                ${theme.colors.pop01} 100%
+                ${theme.colors.pop} 100%
               );
               margin: 0;
               max-width: none;

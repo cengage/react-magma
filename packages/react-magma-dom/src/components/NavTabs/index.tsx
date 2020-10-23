@@ -54,7 +54,7 @@ export const NavTabs = React.forwardRef<
   const background = backgroundColor
     ? backgroundColor
     : isInverse
-    ? theme.colors.foundation01
+    ? theme.colors.foundation
     : theme.colors.neutral08;
 
   const [tabsMeta, tabsHandleMethods, tabsRefs] = useTabsMeta(

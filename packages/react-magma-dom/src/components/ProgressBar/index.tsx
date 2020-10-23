@@ -16,7 +16,7 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
 export enum ProgressBarColor {
   danger = 'danger',
   primary = 'primary', // default
-  pop01 = 'pop01',
+  pop = 'pop',
   pop02 = 'pop02',
   success = 'success',
 }
@@ -25,12 +25,12 @@ function buildProgressBarBackground(props) {
   switch (props.color) {
     case 'danger':
       return props.theme.colors.danger;
-    case 'pop01':
-      return props.theme.colors.pop01;
+    case 'pop':
+      return props.theme.colors.pop;
     case 'pop02':
       return props.theme.colors.pop02;
     case 'success':
-      return props.theme.colors.success01;
+      return props.theme.colors.success;
 
     default:
       return props.isInverse
@@ -98,7 +98,8 @@ const Bar = styled.div<ProgressBarProps>`
 `;
 
 const Percentage = styled.span`
-  font-size: 14px;
+  font-size: ${props => props.theme.typeScale.size02.fontSize};
+  line-height: ${props => props.theme.typeScale.size02.lineHeight};
   margin-left: 10px;
 `;
 
@@ -140,7 +141,9 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
             theme={theme}
           />
         </Track>
-        {isLabelVisible && <Percentage>{percentageValue}%</Percentage>}
+        {isLabelVisible && (
+          <Percentage theme={theme}>{percentageValue}%</Percentage>
+        )}
       </Container>
     );
   }
