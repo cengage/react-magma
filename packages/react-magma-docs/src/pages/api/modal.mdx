@@ -189,6 +189,13 @@ If you would like to add a custom close button to the `Modal` be sure not to use
       description: 'The text read by screen readers for the close button',
       defaultValue: 'Close dialog',
     },
+    header: {
+      type: {
+        name: 'node',
+      },
+      required: false,
+      description: 'The content of the modal header',
+    },
     isBackgroundClickDisabled: {
       type: {
         name: 'boolean',
@@ -221,13 +228,6 @@ If you would like to add a custom close button to the `Modal` be sure not to use
       required: false,
       description: 'If true, the modal will be visible',
       defaultValue: 'false',
-    },
-    header: {
-      type: {
-        name: 'node',
-      },
-      required: false,
-      description: 'The content of the modal header',
     },
     onClose: {
       type: {

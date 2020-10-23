@@ -127,6 +127,24 @@ The ;abel text for the form group can be hidden visually, but still be read by a
       required: false,
       description: 'Style properties for the component container element',
     },
+    errorMessage: {
+      type: {
+        name: 'ReactNode',
+      },
+      required: false,
+      description:
+        'Content of the error message.  If a value is provided, the form fields will be styled to show an error state',
+      defaultValue: '',
+    },
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the focus state of the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
     isTextVisuallyHidden: {
       type: {
         name: 'boolean',

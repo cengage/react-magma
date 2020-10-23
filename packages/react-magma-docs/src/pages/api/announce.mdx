@@ -81,7 +81,11 @@ possibly interrupting the current task. Using `off` will silence these updates, 
     politeness: {
       type: {
         name: 'enum',
-        options: ['AnnouncePoliteness.assertive', 'AnnouncePoliteness.off', 'AnnouncePoliteness.polite'],
+        options: [
+          'AnnouncePoliteness.assertive',
+          'AnnouncePoliteness.off',
+          'AnnouncePoliteness.polite',
+        ],
       },
       required: false,
       description: 'Value of the `aria-live` attribute',

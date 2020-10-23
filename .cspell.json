@@ -48,7 +48,9 @@
     "bolds",
     "testid",
     "npmrc",
-    "dropup"
+    "dropup",
+    "fadein",
+    "closebtn"
   ],
   "overrides": [
     {

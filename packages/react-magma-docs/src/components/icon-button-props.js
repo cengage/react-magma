@@ -11,7 +11,7 @@ export function IconButtonProps() {
           },
           required: false,
           description:
-            'The text the screen reader will announce.  Very important for icon-only buttons',
+            'The text the screen reader will announce. Required for icon-only buttons',
         },
         children: {
           type: {
@@ -49,7 +49,7 @@ export function IconButtonProps() {
           type: {
             name: 'React Element',
           },
-          required: false,
+          required: true,
           description: 'Icon to display within the component',
         },
         iconPosition: {
@@ -78,13 +78,6 @@ export function IconButtonProps() {
           description:
             'If true, the component will have inverse styling to better appear on a dark background',
           defaultValue: 'false',
-        },
-        onClick: {
-          type: {
-            name: 'function',
-          },
-          required: true,
-          description: 'Action that fires when the button is clicked',
         },
         shape: {
           type: {

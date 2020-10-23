@@ -476,15 +476,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
         'If true, the component and all child radio buttons will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
-    required: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the user must select one radio button for the form to be valid',
-      defaultValue: 'false',
-    },
     isTextVisuallyHidden: {
       type: {
         name: 'boolean',
@@ -548,6 +539,15 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       required: false,
       description: 'Name attribute the radio group',
       defaultValue: '',
+    },
+    required: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the user must select one radio button for the form to be valid',
+      defaultValue: 'false',
     },
     testId: {
       type: {
