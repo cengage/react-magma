@@ -170,7 +170,9 @@ If you would like to add a custom close button to the `Modal` be sure not to use
 
 ## Modal Props
 
-**Any other props supplied will be provided to the `div` element that wraps the modal content.**
+**This component uses `forwardRef`. The ref is applied to the `div` element that wraps the Modal content.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the `div` element that wraps the modal content.
 
 <SimplePropsTable
   propertyValues={{

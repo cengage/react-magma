@@ -98,7 +98,9 @@ This would render the button 25px from the top, and 25px from the left of the br
 
 ## Skip Link Props
 
-**Any other props supplied will be provided to the `a` element.**
+**This component uses `forwardRef`. The ref is applied to the `a` element.**
+
+All of the [standard anchor attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) can be provided as props and will be applied to the `a` element that gets rendered.
 
 <SimplePropsTable
   propertyValues={{

@@ -545,7 +545,9 @@ Content other than just text, such as buttons, inputs and other elements can be 
 
 ## Table Props
 
-**Any other props supplied will be provided to the wrapping `table` element.**
+**This component uses `forwardRef`. The ref is applied to the `table` element.**
+
+All of the [standard table attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table) can be provided as props and will be applied to the `table` element that gets rendered.
 
 <SimplePropsTable
   propertyValues={{
@@ -620,7 +622,9 @@ Content other than just text, such as buttons, inputs and other elements can be 
 
 ## TableHeaderCell Props
 
-**Any other props supplied will be provided to the wrapping `th` element.**
+**This component uses `forwardRef`. The ref is applied to the `th` element.**
+
+All of the [standard th attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th) can be provided as props and will be applied to the `th` element that gets rendered.
 
 <SimplePropsTable
   propertyValues={{
@@ -711,7 +715,9 @@ Content other than just text, such as buttons, inputs and other elements can be 
 
 ## TableCell Props
 
-**Any other props supplied will be provided to the wrapping `td` element.**
+**This component uses `forwardRef`. The ref is applied to the `td` element.**
+
+All of the [standard td attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/td) can be provided as props and will be applied to the `td` element that gets rendered.
 
 <SimplePropsTable
   propertyValues={{

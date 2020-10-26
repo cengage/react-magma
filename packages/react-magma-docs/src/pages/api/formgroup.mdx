@@ -109,7 +109,9 @@ The ;abel text for the form group can be hidden visually, but still be read by a
 
 ## Form Group Props
 
-**Any other props supplied will be provided to the wrapping `div` element.**
+**This component uses `forwardRef`. The ref is applied to the Form Group `div` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
 <SimplePropsTable
   propertyValues={{
