@@ -241,7 +241,9 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
 
 ## NavTabs Props
 
-**Any other props supplied will be provided to the wrapping `nav` element.**
+**This component uses `forwardRef`. The ref is applied to the `nav` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `nav` element that gets rendered.
 
 <SimplePropsTable
   propertyValues={{
@@ -315,7 +317,9 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
 
 ## NavTab Props
 
-**Any other props supplied will be provided to the wrapping `a` element.**
+**This component uses `forwardRef`. The ref is applied to the `a` element.**
+
+All of the [standard anchor attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) can be provided as props and will be applied to the `a` element that gets rendered.
 
 <SimplePropsTable
   propertyValues={{
