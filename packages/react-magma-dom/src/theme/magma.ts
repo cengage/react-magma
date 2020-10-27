@@ -45,11 +45,6 @@ export interface Breakpoints {
   xl: number;
 }
 
-export interface Space {
-  px: number;
-  rem: number;
-}
-
 export interface SpacingScale {
   spacing01: string;
   spacing02: string;
