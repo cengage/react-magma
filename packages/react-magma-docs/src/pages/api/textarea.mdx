@@ -53,7 +53,9 @@ import DocsHeading from '../../components/docs-heading';
 
 ## Textarea Props
 
-**Any other props supplied will be provided to the `textarea` element.**
+**This component uses `forwardRef`. The ref is applied to the  `textarea` element.**
+
+All of the [standard textarea attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) can be provided as props and will be applied to the `textarea` element that gets rendered.
 
 <SimplePropsTable
   propertyValues={{

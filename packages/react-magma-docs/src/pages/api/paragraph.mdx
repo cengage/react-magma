@@ -186,7 +186,9 @@ By default, the `Paragraph` component includes margins on the top and bottom. Wh
 
 ## Paragraph Props
 
-**Any other props supplied will be provided to the wrapping `p` element.**
+**This component uses `forwardRef`. The ref is applied to the outer `p` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `p` element that gets rendered.
 
 <SimplePropsTable
   propertyValues={{

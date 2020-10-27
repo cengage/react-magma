@@ -27,8 +27,8 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   closeAriaLabel?: string;
   header?: React.ReactNode;
   id?: string;
-  isCloseButtonHidden?: boolean;
   isBackgroundClickDisabled?: boolean;
+  isCloseButtonHidden?: boolean;
   isEscKeyDownDisabled?: boolean;
   isExiting?: boolean;
   isOpen?: boolean;

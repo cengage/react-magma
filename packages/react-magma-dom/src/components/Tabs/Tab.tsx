@@ -12,12 +12,8 @@ import { ThemeInterface } from '../../theme/magma';
 export interface TabProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
-  iconPosition?: TabsIconPosition;
   isActive?: boolean;
-  disabled?: boolean;
-  isFullWidth?: boolean;
   isInverse?: boolean;
-  orientation?: TabsOrientation;
   testId?: string;
   theme?: any;
 }
@@ -160,9 +156,15 @@ export const TabStyles = props => css`
   }
 `;
 
-const StyledTab = styled('button', { shouldForwardProp: isPropValid })<
-  TabProps
->`
+const StyledTab = styled('button', { shouldForwardProp: isPropValid })<{
+  borderPosition?: TabsBorderPosition;
+  iconPosition?: TabsIconPosition;
+  isActive?: boolean;
+  isFullWidth?: boolean;
+  isInverse?: boolean;
+  orientation: TabsOrientation;
+  theme: ThemeInterface;
+}>`
   ${TabStyles}
 `;
 

@@ -6,7 +6,7 @@ import { ThemeInterface } from '../../theme/magma';
 
 export interface CardProps extends React.LabelHTMLAttributes<HTMLDivElement> {
   align?: CardAlignment;
-  background?: boolean;
+  background?: string;
   calloutType?: CardCalloutType;
   hasDropShadow?: boolean;
   isInverse?: boolean;
