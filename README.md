@@ -31,7 +31,7 @@ This site has general usage information, as well as information on all of the av
 
 ### Dependencies
 
-Node v10.x or greater with npm 6.1.x or greater
+Node v12.x or greater with npm 6.1.x or greater
 
 ### Steps to run documentation locally
 
@@ -70,36 +70,31 @@ The project is built using a monorepo structure with the help of [Lerna](https:/
 
 Each folder under the `packages` folder is it's own, independent package. Each package can be built and deployed as a node module, or in the case of an app like `react-magma-docs`, it can be built and served as if it had its own repository.
 
-Lerna handles dependencies within the monorepo, using symlinks to connect dependent packages. For example, `react-magma-dom` uses `react-magma-core` and `react-magma-docs` uses `react-magma-dom`. When a dependent project is build the consuming project automatically gets the latest build.
+Lerna handles dependencies within the monorepo, using symlinks to connect dependent packages. For example,`react-magma-docs` uses `react-magma-dom`. When a dependent project is build the consuming project automatically gets the latest build.
 
 #### Source organization
 
 The component library itself is broken out into multiple projects.
 
-The `react-magma-core` project is render-agnostic, meaning it does not have a specific rendering target and can be used in any environment that runs React, whether that is a browser, React Native, React VR, or some future rendering target we haven't explored yet. This "core" project handles internal state management and logic so it can be shared between component implementations that target specific environments.
-
 The `react-magma-dom` package is the browser-specific version of the components. The components utilize `react-magma-core` and handle the DOM specific rendering for those components.
 
 The `react-magma-native` package is similar to `react-magma-dom` but is for the native-specific version of the components.
 
-The `react-magma-docs-gatsby` package handles the React Magma documentation, and is built on the <a href="https://www.gatsbyjs.org/">Gatsby framework</a>.
+The `react-magma-docs` package handles the React Magma documentation, and is built on the <a href="https://www.gatsbyjs.org/">Gatsby framework</a>.
 
+The `react-magma-icons` package handles all of the SVG icons in the React Magma library. Being in a separate package allows for changes or additions to the icons to happen without consumers having to update the whole component library.
 
 ### Making changes
 
-The source code for each independent package in the project can be found under the `packages` folder. You will likely end up making changes to multiple packages.
+The source code for each independent package in the project can be found under the `packages` folder.
 
-
-All state management and logic should be handled in `react-magma-core`. Therefore, any component with any statefulness will have a component within `react-magma-core`, as well as a corresponding component for each of its rendering targets (i.e. `react-magma-dom` or `react-magma-native`).  Core and the implementation for your render target will typically be changed in tandem.
-
-Any changes to the public-facing API **must** be accurately captured in the docs, and therefore will require updates to `react-magma-docs-gatsby`.
+Any changes to the public-facing API **must** be accurately captured in the docs, and therefore will require updates to `react-magma-docs`.
 
 ### Building
 
-Once you have finished making your code changes within a package run `npm run build` from inside that package.
+Once you have finished making your code changes within a package run `npm run build` or `npm run build-watch` from inside that package.
 
-You must build before your changes will be reflected in the browser. Because of the linking provided by Lerna, making changes in `react-magma-core` will immediately be reflected in the `react-magma-dom` once `react-magma-core` is built.
-
+You must build before your changes will be reflected in the browser.
 
 ### Running tests
 
@@ -151,7 +146,7 @@ Test files are under the `cypress/integration` folder.
 
 ### Updating the docs
 
-The `react-magma-gatsby-docs` is the project for the documentation site. Any changes to the public API of an existing component or the creation of a new component should be documented here.
+The `react-magma-docs` is the project for the documentation site. Any changes to the public API of an existing component or the creation of a new component should be documented here.
 
 This project uses [MDX](https://mdxjs.com/), allowing the combination of Markdown and React components.
 
