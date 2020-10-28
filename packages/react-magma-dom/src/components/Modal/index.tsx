@@ -87,7 +87,7 @@ const ModalContent = styled.div<ModalProps>`
   background: ${props => props.theme.colors.neutral08};
   border: 1px solid;
   border-color: ${props => props.theme.colors.neutral06};
-  border-radius: 3px;
+  border-radius: ${props => props.theme.borderRadius};
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   color: ${props => props.theme.colors.neutral};
   margin: 10px;
