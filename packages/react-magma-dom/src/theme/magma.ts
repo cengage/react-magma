@@ -117,6 +117,7 @@ export interface ThemeInterface {
   bodyFont: string;
   bodyExpressiveFont: string;
   bodyNarrativeFont: string;
+  borderRadius: string;
   colors: Colors;
   direction: string;
   headingFont: string;
@@ -188,6 +189,7 @@ export const magma = {
   bodyFont: '"Open Sans",Helvetica,sans-serif',
   bodyExpressiveFont: '"Open Sans",Helvetica,sans-serif',
   bodyNarrativeFont: "'Noto Serif',Times New Roman,serif",
+  borderRadius: '4px',
   headingFont: '"Open Sans",Helvetica,sans-serif',
   headingExpressiveFont: '"Open Sans",Helvetica,sans-serif',
   headingNarrativeFont: "'Noto Serif',Times New Roman,serif",

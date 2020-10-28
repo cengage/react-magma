@@ -48,7 +48,7 @@ const StyledCard = styled.div<CardProps>`
   border: 1px solid
     ${props =>
       props.background ? props.background : props.theme.colors.neutral06};
-  border-radius: 5px;
+  border-radius: ${props => props.theme.borderRadius};
   box-shadow: ${props =>
     props.hasDropShadow ? '0 2px 6px 0 rgba(0,0,0,0.18)' : '0 0 0'};
   color: ${props =>
@@ -68,7 +68,8 @@ const StyledCard = styled.div<CardProps>`
     css`
       &:before {
         background: ${buildCalloutBackground(props)};
-        border-radius: 5px 0 0 5px;
+        border-radius: ${props.theme.borderRadius} 0 0
+          ${props.theme.borderRadius};
         content: '';
         display: block;
         height: 100%;
