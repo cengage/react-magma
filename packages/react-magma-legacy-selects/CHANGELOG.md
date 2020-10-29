@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.113](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.112...v2.0.0-beta.113) (2020-10-29)
+
+
+### Features
+
+* **heading:** update h1 size ([ea1cab4](http://stash.cengage.com:7999/FRONT/react-magma/commits/ea1cab47f340402f7142462aaa5ba5710c2531ca))
+* **magma theme:** change color names to remove 01 from names ([a8aeb6c](http://stash.cengage.com:7999/FRONT/react-magma/commits/a8aeb6c5813b002ef316ff2fd1a37482cced1570))
+
+
+### BREAKING CHANGES
+
+* **magma theme:** Color name changes in Magma theme
+
+
+
+
+
 # [2.0.0-beta.112](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.111...v2.0.0-beta.112) (2020-10-23)
 
 **Note:** Version bump only for package react-magma-legacy-selects

@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.113](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.112...v2.0.0-beta.113) (2020-10-29)
+
+
+### Code Refactoring
+
+* **multiple:** clean up prop interfaces, props tables in docs ([04b1ce3](http://stash.cengage.com:7999/FRONT/react-magma/commits/04b1ce38fc255018dd33ada8285eddcd447b7b39))
+
+
+### Features
+
+* **heading:** expressive heading style change ([006c5bd](http://stash.cengage.com:7999/FRONT/react-magma/commits/006c5bd14b67596f3d5f1241c166f0df8b8931b2))
+* **heading:** update h1 size ([ea1cab4](http://stash.cengage.com:7999/FRONT/react-magma/commits/ea1cab47f340402f7142462aaa5ba5710c2531ca))
+* **heading:** use typography components and styles in heading component ([9cff630](http://stash.cengage.com:7999/FRONT/react-magma/commits/9cff630882d38a098e4da5eab2d2ca8c04c7319f))
+* **headings:** move heading font-weights to theme ([0377732](http://stash.cengage.com:7999/FRONT/react-magma/commits/03777327f411b01e57da22e7eb87309fab285316))
+* **magma theme:** add space scale to theme ([42c8847](http://stash.cengage.com:7999/FRONT/react-magma/commits/42c884745c1b62f6a8540bd2896de7801161cfdc))
+* **magma theme:** change color names to remove 01 from names ([a8aeb6c](http://stash.cengage.com:7999/FRONT/react-magma/commits/a8aeb6c5813b002ef316ff2fd1a37482cced1570))
+* **magma theme:** change pop01 to pop in color names ([c125d05](http://stash.cengage.com:7999/FRONT/react-magma/commits/c125d05a0d3f2f58f9cd6722bba33ca0cee70e53))
+* **magma theme:** remove unneeded interface ([2266669](http://stash.cengage.com:7999/FRONT/react-magma/commits/2266669fcf481640cefc4b20753cf24c84bd7b52))
+* **modal, card:** update border-radius ([0b02c15](http://stash.cengage.com:7999/FRONT/react-magma/commits/0b02c1510879b1c48b4d2189ff05e1b59cd4d97e))
+* **paragrph, heading:** change prop names ([4f4591c](http://stash.cengage.com:7999/FRONT/react-magma/commits/4f4591c1168355cc68d7eef93bdcd88fe4698c48))
+* **span:** add bold, italic props ([01c5922](http://stash.cengage.com:7999/FRONT/react-magma/commits/01c592214d05fc0cf47142840265e50ea74dfb49))
+* **span:** span component ([16c0667](http://stash.cengage.com:7999/FRONT/react-magma/commits/16c0667b1a7b23e66029504aa89be4d1828da7e5))
+* **theme:** add border radius to theme separate from spacescale ([fb5ad63](http://stash.cengage.com:7999/FRONT/react-magma/commits/fb5ad635f1782b39e7865ebb5c0bcb81750a7f0a))
+* **typography:** add noto serif as narrative font ([6a70e4f](http://stash.cengage.com:7999/FRONT/react-magma/commits/6a70e4f357a6ffa6537e816ed9096e932a7a2606))
+* **typography:** add paragraph component, remove typography ([c4694a2](http://stash.cengage.com:7999/FRONT/react-magma/commits/c4694a28adf1fd5a26e0b5403833dd4acbd0807b))
+* **typography:** add typescale to theme (not used yet) ([a434df7](http://stash.cengage.com:7999/FRONT/react-magma/commits/a434df7769b57ffdbb54a7dad74e8564ea48947e))
+* **typography:** margin, inverse, color props for typography ([5537267](http://stash.cengage.com:7999/FRONT/react-magma/commits/5537267e2930b51aa493d21a609d57a63c691aaa))
+* **typography:** remove span component ([adc32e2](http://stash.cengage.com:7999/FRONT/react-magma/commits/adc32e2f4c5271256d0acd2ecfdd33b77a71ec20))
+* **typography:** rename props ([65fae6a](http://stash.cengage.com:7999/FRONT/react-magma/commits/65fae6a17f251bcfd54fff95c4c45084288f8d5c))
+* **typography:** reorgainze heading and paragraph styles ([d77d045](http://stash.cengage.com:7999/FRONT/react-magma/commits/d77d045b5ee1ca2c92f0020ced5403938383a0f0))
+* **typography:** start of new typography component ([32f6c08](http://stash.cengage.com:7999/FRONT/react-magma/commits/32f6c081a12c85789f704356e1c9527cb4fa421e))
+* **typography:** styles for variants, screen sizes, colors ([1116acf](http://stash.cengage.com:7999/FRONT/react-magma/commits/1116acfc3be57eeeb7b731b283001aeabbbb815f))
+* **typography:** update global styles, docs styles ([56a7522](http://stash.cengage.com:7999/FRONT/react-magma/commits/56a75224543fa5e983839253063668a65ff3a46c))
+* **typography:** use magma theme for fontsize lineheight ([8406306](http://stash.cengage.com:7999/FRONT/react-magma/commits/8406306185494662586a409c0a9efb330dac61a1))
+* **typography:** use typescale from theme instead of hardcoded styles ([63b6193](http://stash.cengage.com:7999/FRONT/react-magma/commits/63b619316fd7b346063a014b44f1bce0ee07dee0))
+* **typography:** use typeStyle prop for expressive variants ([014ee8f](http://stash.cengage.com:7999/FRONT/react-magma/commits/014ee8f88bd6db75388008f501912d4c12ea751e))
+* **typography:** very start of themable styles ([bbc17f9](http://stash.cengage.com:7999/FRONT/react-magma/commits/bbc17f9eddd88bc7033dab97b1d7265a3b874f42))
+
+
+### BREAKING CHANGES
+
+* **multiple:** removed unused props from some components
+* **magma theme:** name change in magma theme -- pop01 to pop
+* **magma theme:** Color name changes in Magma theme
+
+
+
+
+
 # [2.0.0-beta.112](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.111...v2.0.0-beta.112) (2020-10-23)
 
 **Note:** Version bump only for package react-magma-dom
