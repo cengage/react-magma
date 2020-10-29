@@ -64,7 +64,6 @@ export {
 } from './components/InputBase';
 export { InputMessage } from './components/Input/InputMessage';
 export { Label } from './components/Label';
-export { LinkButton } from './components/LinkButton';
 export {
   LoadingIndicator,
   LoadingIndicatorProps,
