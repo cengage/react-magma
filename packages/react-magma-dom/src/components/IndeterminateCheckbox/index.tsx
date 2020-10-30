@@ -19,7 +19,12 @@ import { I18nContext } from '../../i18n';
 
 export interface IndeterminateCheckboxProps
   extends Omit<CheckboxProps, 'checked'> {
+  /**
+   * Status of the indeterminate, three-state checkbox, which includes and indeterminate (e.g. mixed) option.
+   * @default IndeterminateCheckboxStatus.unchecked
+   */
   status: string;
+  testId?: string;
 }
 
 export enum IndeterminateCheckboxStatus {

@@ -9,10 +9,19 @@ import { IconButton } from '../IconButton';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface BannerProps extends AlertProps {
+  /**
+   * The text displayed inside of the action button
+   */
   actionButtonText?: string;
+  /**
+   * Action that fires when the action button is clicked. Must be present for button to appear
+   */
   actionButtonOnClick?: () => void;
+  /**
+   * If true, the component will be able to be dismissed and will include a close button
+   * @default false
+   */
   isDismissible?: boolean;
-  testId?: string;
 }
 
 const StyledBanner = styled.div<AlertProps>`

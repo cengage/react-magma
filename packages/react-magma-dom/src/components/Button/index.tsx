@@ -40,20 +40,55 @@ export enum ButtonType {
 }
 
 export interface ButtonStyles {
+  /**
+   * The color of the button, indicating its function in the UI
+   * @default ButtonColor.primary
+   */
   color?: ButtonColor;
+  /**
+   *  Set the button to display full-width.
+   * @default false
+   */
   isFullWidth?: boolean;
   isInverse?: boolean;
+  /**
+   * Defines the border radius
+   * @default ButtonShape.fill
+   */
   shape?: ButtonShape;
+  /**
+   * The relative size of the button
+   * @default ButtonSize.medium
+   */
   size?: ButtonSize;
+  /**
+   * Determines whether the button appears in all-caps
+   * @default ButtonTextTransform.uppercase
+   */
   textTransform?: ButtonTextTransform;
+  /**
+   * The type attribute of the button
+   * ButtonType.button
+   */
   type?: ButtonType;
+  /**
+   * The variant of the button
+   * @default ButtonVariant.solid
+   */
   variant?: ButtonVariant;
 }
 
 interface BaseButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   testId?: string;
+  /**
+   * @internal
+   */
   theme?: any;
+  /**
+   * The type attribute of the button
+   * ButtonType.button
+   */
   type?: ButtonType;
 }
 

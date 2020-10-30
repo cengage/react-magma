@@ -1,5 +1,6 @@
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
+const propertiesJson = require('./src/data/properties.json');
 
 const getPathPrefix = path =>
   /design/.test(path)
@@ -23,3 +24,20 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     })
   }
 }
+
+exports.onCreatePage = async ({ page, actions: { createPage, deletePage } }) => {
+  const { frontmatter } = page.context;
+
+  if (frontmatter) {
+    deletePage(page);
+    createPage({
+      ...page,
+      context: {
+        ...page.context,
+        properties: propertiesJson.filter(property =>
+          frontmatter.props && frontmatter.props.includes(property.name)
+        )
+      }
+    });
+  }
+};

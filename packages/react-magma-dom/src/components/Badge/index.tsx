@@ -5,9 +5,20 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { darken, lighten } from 'polished';
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLButtonElement> {
+  /**
+   * The color variant of the badge
+   * @default BadgeColor.primary
+   */
   color?: BadgeColor;
+  /**
+   * Action that fires when the badge is clicked. Causes the Badge to render as a button instead of a span.
+   */
   onClick?: () => void;
   testId?: string;
+  /**
+   * Indicates the style variant of the component
+   * @default BadgeVariant.label
+   */
   variant?: BadgeVariant;
 }
 

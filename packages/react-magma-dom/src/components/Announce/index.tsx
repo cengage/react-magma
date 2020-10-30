@@ -1,7 +1,14 @@
 import * as React from 'react';
 
 export interface AnnounceProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Value of the `aria-live` attribute
+   * @default AnnouncePoliteness.polite
+   */
   politeness?: AnnouncePoliteness;
+  /*
+   * Test ID attached to an internal element as `data-testid` for consumer testing
+   */
   testId?: string;
 }
 

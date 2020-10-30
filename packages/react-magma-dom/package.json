@@ -36,7 +36,8 @@
   },
   "dependencies": {
     "@emotion/styled-base": "^10.0.31",
-    "polished": "^3.2.0"
+    "polished": "^3.2.0",
+    "typedoc": "^0.19.2"
   },
   "devDependencies": {
     "@emotion/core": "^10.0.27",

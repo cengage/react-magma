@@ -5,12 +5,30 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 
 export interface CardProps extends React.LabelHTMLAttributes<HTMLDivElement> {
+  /**
+   * Sets the alignment of the card content
+   * @default CardAlignment.left
+   */
   align?: CardAlignment;
-  background?: boolean;
+  /**
+   * Color for the background and border-color, set by CSS.
+   */
+  background?: string;
+  /**
+   * If a value is passed, the card will be styled as a callout for the specified type.
+   * @default none
+   */
   calloutType?: CardCalloutType;
+  /**
+   * If true, card will render with a box-shadow
+   * @default false
+   */
   hasDropShadow?: boolean;
   isInverse?: boolean;
   testId?: string;
+  /**
+   * Width of the component, set by CSS.
+   */
   width?: string | number;
 }
 

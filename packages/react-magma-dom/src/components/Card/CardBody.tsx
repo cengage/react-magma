@@ -2,12 +2,17 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { CardProps } from '../Card';
 
+export interface CardBodyProps
+  extends React.LabelHTMLAttributes<HTMLHeadingElement> {
+  testId?: string;
+}
+
 const StyledCardBody = styled.div<CardProps>`
   padding: 20px;
   text-align: ${props => props.align};
 `;
 
-export const CardBody = React.forwardRef<HTMLDivElement, CardProps>(
+export const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>(
   (props, ref) => {
     const { children, testId, ...other } = props;
     return (
