@@ -4,7 +4,7 @@ title: Button
 ---
 
 import { ScopeableLayout } from '../../components/layout';
-import { Button, LinkButton, Input } from 'react-magma-dom';
+import { Button, Input } from 'react-magma-dom';
 import { Link } from 'gatsby';
 import DocsHeading from '../../components/docs-heading';
 import { ButtonProps } from '../../components/button-props';
@@ -76,19 +76,6 @@ The `marketing` buttons do not have `outline` and `link` variants, and will rend
     </>
 ```
 
-## Link Buttons
-
-Using the `LinkButton` will render a button that is styled exactly like a link. Unlike using the `<Button variant='link' />`,
-the `LinkButton` will render as inline text, the way an `a` element would.
-
-**Note:** For accessibility, it's important to remember that this is still a button and should be used to trigger functionality or manipulate data, and _not_ navigate to a new page like a traditional hyperlink.
-
-```.jsx
-    <>
-        This is a <LinkButton>link button</LinkButton>.
-    </>
-```
-
 ## Shapes
 
 Shapes for buttons include `fill`, `leftCap`, and `rightCap`, with `fill` being the default value.
@@ -129,12 +116,6 @@ The `marketing` button does not have an inverse state, as it already is styled t
           <Button disabled isInverse variant="outline">Disabled outline inverse</Button>
           <Button disabled isInverse variant="link">Disabled link inverse</Button>
       </p>
-      <p>
-        This is a <LinkButton isInverse>link button</LinkButton>.
-      </p>
-      <p>
-        This is a <LinkButton disabled isInverse>disabled link button</LinkButton>.
-      </p>
     </div>
 ```
 
@@ -169,7 +150,6 @@ Passing the `isFullWidth` property will set the button to display full-width.
         <Button disabled>Disabled</Button>
         <Button disabled variant="outline">Disabled</Button>
         <Button disabled variant="link">Disabled</Button>
-        <p>This is a <LinkButton disabled>disabled link button</LinkButton>.</p>
     </>
 ```
 
@@ -265,5 +245,5 @@ All of the [standard button attributes](https://developer.mozilla.org/en-US/docs
 <ButtonProps />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ Button, LinkButton, Input }} />
+  <ScopeableLayout {...props} components={{ Button, Input }} />
 );
