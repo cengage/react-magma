@@ -157,7 +157,6 @@ const filterJson = () => {
       ];
     }, []);
 
-  console.log(JSON.stringify(jsonFinal[0], null, 2));
   fs.writeFileSync(outPath, JSON.stringify(jsonFinal, null, 2));
 };
 

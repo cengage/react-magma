@@ -960,6 +960,13 @@
         },
         "description": "Content of the error message for an individual checkbox. If a value is provided, the input will be styled as an error state and the error message will display."
       },
+      "hasError": {
+        "name": "hasError",
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "inputStyle": {
         "name": "inputStyle",
         "required": false,
@@ -1028,7 +1035,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7865,
+        "id": 7558,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1184,7 +1191,7 @@
     },
     "typeParameter": [
       {
-        "id": 7950,
+        "id": 7643,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1193,7 +1200,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7794,
+          "id": 7487,
           "name": "SelectOptions"
         }
       }
@@ -1452,7 +1459,7 @@
     },
     "typeParameter": [
       {
-        "id": 8018,
+        "id": 7711,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1461,7 +1468,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7794,
+          "id": 7487,
           "name": "SelectOptions"
         }
       }
@@ -2101,12 +2108,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 9166,
+          "id": 8859,
           "name": "IconOnlyDropdownButtonProps"
         },
         {
           "type": "reference",
-          "id": 9170,
+          "id": 8863,
           "name": "IconTextDropdownButtonProps"
         }
       ],
@@ -2790,20 +2797,6 @@
         "description": "If true, the component will have inverse styling to better appear on a dark background",
         "defaultValue": "false"
       },
-      "positionLeft": {
-        "name": "positionLeft",
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
-      "positionTop": {
-        "name": "positionTop",
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
       "shape": {
         "name": "shape",
         "required": false,
@@ -3136,33 +3129,11 @@
     },
     "id": "InputProps",
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
-      "containerStyle": {
-        "name": "containerStyle",
-        "required": false,
-        "type": {
-          "name": "CSSProperties"
-        }
-      },
       "errorMessage": {
         "name": "errorMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
-      },
-      "hasError": {
-        "name": "hasError",
-        "required": false,
-        "type": {
-          "name": "boolean"
         }
       },
       "helperMessage": {
@@ -3171,57 +3142,6 @@
         "type": {
           "name": "React.ReactNode"
         }
-      },
-      "icon": {
-        "name": "icon",
-        "required": false,
-        "type": {
-          "name": "ReactElement"
-        }
-      },
-      "iconAriaLabel": {
-        "name": "iconAriaLabel",
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "iconPosition": {
-        "name": "iconPosition",
-        "required": false,
-        "type": {
-          "name": "enum, one of: `InputIconPosition.left` `InputIconPosition.right`"
-        }
-      },
-      "iconRef": {
-        "name": "iconRef",
-        "required": false,
-        "type": {
-          "name": "React.Ref"
-        }
-      },
-      "inputSize": {
-        "name": "inputSize",
-        "required": false,
-        "type": {
-          "name": "enum, one of: `InputSize.large` `InputSize.medium`"
-        }
-      },
-      "inputStyle": {
-        "name": "inputStyle",
-        "required": false,
-        "type": {
-          "name": "CSSProperties"
-        }
-      },
-      "isInverse": {
-        "name": "isInverse",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
       },
       "isLabelVisuallyHidden": {
         "name": "isLabelVisuallyHidden",
@@ -3249,42 +3169,6 @@
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
-      },
-      "onIconClick": {
-        "name": "onIconClick",
-        "required": false,
-        "type": {
-          "name": "function"
-        }
-      },
-      "onIconKeyDown": {
-        "name": "onIconKeyDown",
-        "required": false,
-        "type": {
-          "name": "function"
-        }
-      },
-      "testId": {
-        "name": "testId",
-        "required": false,
-        "type": {
-          "name": "string"
-        },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
-      },
-      "theme": {
-        "name": "theme",
-        "required": false,
-        "type": {
-          "name": "any"
-        }
-      },
-      "type": {
-        "name": "type",
-        "required": false,
-        "type": {
-          "name": "enum, one of: `InputType.email` `InputType.number` `InputType.password` `InputType.search` `InputType.text`"
         }
       }
     }
@@ -3693,13 +3577,6 @@
     },
     "id": "BaseNavTabProps",
     "properties": {
-      "borderPosition": {
-        "name": "borderPosition",
-        "required": false,
-        "type": {
-          "name": "enum, one of: `TabsBorderPosition.bottom` `TabsBorderPosition.left` `TabsBorderPosition.right` `TabsBorderPosition.top`"
-        }
-      },
       "children": {
         "name": "children",
         "required": true,
@@ -3722,29 +3599,8 @@
           "name": "function"
         }
       },
-      "iconPosition": {
-        "name": "iconPosition",
-        "required": false,
-        "type": {
-          "name": "enum, one of: `TabsIconPosition.bottom` `TabsIconPosition.left` `TabsIconPosition.right` `TabsIconPosition.top`"
-        }
-      },
-      "index": {
-        "name": "index",
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
       "isActive": {
         "name": "isActive",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "isFullWidth": {
-        "name": "isFullWidth",
         "required": false,
         "type": {
           "name": "boolean"
@@ -3790,13 +3646,6 @@
     "flags": {},
     "id": "NavTabChildrenProps",
     "properties": {
-      "borderPosition": {
-        "name": "borderPosition",
-        "required": false,
-        "type": {
-          "name": "enum, one of: `TabsBorderPosition.bottom` `TabsBorderPosition.left` `TabsBorderPosition.right` `TabsBorderPosition.top`"
-        }
-      },
       "children": {
         "name": "children",
         "required": true,
@@ -3819,29 +3668,8 @@
           "name": "function"
         }
       },
-      "iconPosition": {
-        "name": "iconPosition",
-        "required": false,
-        "type": {
-          "name": "enum, one of: `TabsIconPosition.bottom` `TabsIconPosition.left` `TabsIconPosition.right` `TabsIconPosition.top`"
-        }
-      },
-      "index": {
-        "name": "index",
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
       "isActive": {
         "name": "isActive",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "isFullWidth": {
-        "name": "isFullWidth",
         "required": false,
         "type": {
           "name": "boolean"
@@ -3894,13 +3722,6 @@
     "flags": {},
     "id": "NavTabComponentProps",
     "properties": {
-      "borderPosition": {
-        "name": "borderPosition",
-        "required": false,
-        "type": {
-          "name": "enum, one of: `TabsBorderPosition.bottom` `TabsBorderPosition.left` `TabsBorderPosition.right` `TabsBorderPosition.top`"
-        }
-      },
       "children": {
         "name": "children",
         "required": true,
@@ -3928,13 +3749,6 @@
         "required": false,
         "type": {
           "name": "enum, one of: `TabsIconPosition.bottom` `TabsIconPosition.left` `TabsIconPosition.right` `TabsIconPosition.top`"
-        }
-      },
-      "index": {
-        "name": "index",
-        "required": false,
-        "type": {
-          "name": "number"
         }
       },
       "isActive": {
@@ -3996,12 +3810,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 11877,
+          "id": 11571,
           "name": "NavTabChildrenProps"
         },
         {
           "type": "reference",
-          "id": 12147,
+          "id": 11837,
           "name": "NavTabComponentProps"
         }
       ],
@@ -4817,7 +4631,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 6973,
+        "id": 6971,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -4884,7 +4698,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7581,
+        "id": 7274,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -4961,7 +4775,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7600,
+        "id": 7293,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5041,7 +4855,7 @@
     "type": {
       "type": "reflection",
       "declaration": {
-        "id": 6951,
+        "id": 6949,
         "name": "__type",
         "kind": 65536,
         "kindString": "Type literal",
@@ -5050,7 +4864,7 @@
         },
         "children": [
           {
-            "id": 6952,
+            "id": 6950,
             "name": "ClearIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -5078,7 +4892,7 @@
             }
           },
           {
-            "id": 6953,
+            "id": 6951,
             "name": "DropdownIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -5111,7 +4925,7 @@
             }
           },
           {
-            "id": 6954,
+            "id": 6952,
             "name": "LoadingIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -5131,7 +4945,7 @@
               "typeArguments": [
                 {
                   "type": "reference",
-                  "id": 6687,
+                  "id": 6685,
                   "name": "SpinnerProps"
                 }
               ],
@@ -5144,9 +4958,9 @@
             "title": "Variables",
             "kind": 32,
             "children": [
-              6952,
-              6953,
-              6954
+              6950,
+              6951,
+              6952
             ]
           }
         ],
@@ -5170,7 +4984,7 @@
     },
     "typeParameter": [
       {
-        "id": 7647,
+        "id": 7340,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5325,7 +5139,7 @@
     },
     "typeParameter": [
       {
-        "id": 7752,
+        "id": 7445,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5334,7 +5148,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7794,
+          "id": 7487,
           "name": "SelectOptions"
         }
       }
@@ -5480,7 +5294,7 @@
     },
     "typeParameter": [
       {
-        "id": 7653,
+        "id": 7346,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5489,7 +5303,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7794,
+          "id": 7487,
           "name": "SelectOptions"
         }
       }
@@ -5868,7 +5682,7 @@
         {
           "type": "reflection",
           "declaration": {
-            "id": 7795,
+            "id": 7488,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -5877,7 +5691,7 @@
             },
             "indexSignature": [
               {
-                "id": 7798,
+                "id": 7491,
                 "name": "__index",
                 "kind": 8192,
                 "kindString": "Index signature",
@@ -5886,7 +5700,7 @@
                 },
                 "parameters": [
                   {
-                    "id": 7799,
+                    "id": 7492,
                     "name": "key",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -5907,7 +5721,7 @@
             ],
             "children": [
               {
-                "id": 7797,
+                "id": 7490,
                 "name": "label",
                 "kind": 32,
                 "kindString": "Variable",
@@ -5927,7 +5741,7 @@
                 }
               },
               {
-                "id": 7796,
+                "id": 7489,
                 "name": "value",
                 "kind": 32,
                 "kindString": "Variable",
@@ -5952,8 +5766,8 @@
                 "title": "Variables",
                 "kind": 32,
                 "children": [
-                  7797,
-                  7796
+                  7490,
+                  7489
                 ]
               }
             ],
@@ -6071,7 +5885,9 @@
         "required": false,
         "type": {
           "name": "enum, one of: `ButtonColor.danger` `ButtonColor.marketing` `ButtonColor.primary` `ButtonColor.secondary` `ButtonColor.success`"
-        }
+        },
+        "description": "The color of the button, indicating its function in the UI",
+        "defaultValue": "ButtonColor.primary\n"
       },
       "isFullWidth": {
         "name": "isFullWidth",
@@ -6167,7 +5983,9 @@
         "required": false,
         "type": {
           "name": "enum, one of: `ButtonVariant.link` `ButtonVariant.outline` `ButtonVariant.solid`"
-        }
+        },
+        "description": "The variant of the button",
+        "defaultValue": "ButtonVariant.solid\n"
       }
     }
   },
@@ -6679,13 +6497,6 @@
         },
         "description": "The content of the component"
       },
-      "disabled": {
-        "name": "disabled",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "icon": {
         "name": "icon",
         "required": false,
@@ -6693,22 +6504,8 @@
           "name": "function"
         }
       },
-      "iconPosition": {
-        "name": "iconPosition",
-        "required": false,
-        "type": {
-          "name": "enum, one of: `TabsIconPosition.bottom` `TabsIconPosition.left` `TabsIconPosition.right` `TabsIconPosition.top`"
-        }
-      },
       "isActive": {
         "name": "isActive",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "isFullWidth": {
-        "name": "isFullWidth",
         "required": false,
         "type": {
           "name": "boolean"
@@ -6722,13 +6519,6 @@
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
         "defaultValue": "false"
-      },
-      "orientation": {
-        "name": "orientation",
-        "required": false,
-        "type": {
-          "name": "enum, one of: `TabsOrientation.horizontal` `TabsOrientation.vertical`"
-        }
       },
       "testId": {
         "name": "testId",
@@ -7150,12 +6940,12 @@
       "types": [
         {
           "type": "reference",
-          "id": 11245,
+          "id": 10938,
           "name": "HorizontalTabsProps"
         },
         {
           "type": "reference",
-          "id": 11242,
+          "id": 10935,
           "name": "VerticalTabsProps"
         }
       ]

@@ -1,6 +1,8 @@
 ---
 pageTitle: Alert API
 title: Alert
+props:
+  - AlertProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -93,74 +95,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    closeAriaLabel: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'The text read by screen readers for the close button',
-      defaultValue: '"Close this message"',
-    },
-    isDismissible: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will be able to be dismissed and will include a close button',
-      defaultValue: 'false',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the focus state of the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    onDismiss: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description:
-        'Action that fires when the close button is clicked (required when isDismissible is true)',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    variant: {
-      type: {
-        name: 'enum',
-        options: [
-          'AlertVariant.info',
-          'AlertVariant.success',
-          'AlertVariant.warning',
-          'AlertVariant.danger',
-        ],
-      },
-      required: false,
-      description:
-        'The variant of the alert, indicating its function in the UI',
-      defaultValue: 'info',
-    },
-  }}
-/>
+<AlertProps />
 
 export default props => (
   <ScopeableLayout {...props} components={{ Alert, Button }} />

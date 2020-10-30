@@ -1,6 +1,8 @@
 ---
 pageTitle: Breadcrumb API
 title: Breadcrumb
+props:
+  - BreadcrumbProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -111,34 +113,7 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 
 All of the [standard li attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li) can be provided as props and will be applied to the wrapping `li` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component, i.e the name of the page',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    to: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'The href value of the link.  If left blank, the breadcrumb item will render as a span with aria-current="page" on it.',
-      defaultValue: '',
-    },
-  }}
-/>
+<BreadcrumbProps />
 
 export default props => (
   <ScopeableLayout {...props} components={{ Breadcrumb, BreadcrumbItem }} />
