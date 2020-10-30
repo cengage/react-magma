@@ -17,7 +17,7 @@
   "scripts": {
     "test": "tsdx test",
     "test-watch": "tsdx test --watch",
-    "build": "tsdx build && generate-properties",
+    "build": "tsdx build && npm run generate-properties",
     "build-watch": "tsdx watch",
     "generate-properties": "node scripts/generateJSON.js",
     "lint": "eslint ./src"
