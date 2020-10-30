@@ -134,7 +134,9 @@ Custom breakpoints can be shown by using the `breakpoints` object prop.
 
 ## Breakpoints Container Props
 
-**Any other props supplied will be provided to the wrapping `div` element.**
+**This component uses `forwardRef`. The ref is applied to the Breakpoints Container `div` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
 <SimplePropsTable
   propertyValues={{

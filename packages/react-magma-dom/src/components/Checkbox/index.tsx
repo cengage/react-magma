@@ -54,9 +54,6 @@ export interface CheckboxProps
    * If true, checkbox is checked on first render
    */
   defaultChecked?: boolean;
-  /**
-   * @internal
-   */
   hasError?: boolean;
   isInverse?: boolean;
   /**
@@ -203,7 +200,6 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       containerStyle,
       disabled,
       errorMessage,
-      hasError,
       inputStyle,
       isInverse,
       labelStyle,
@@ -215,7 +211,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     } = props;
     const other = omit(['defaultChecked'], rest);
 
-    const descriptionId = errorMessage ? `${id}__desc` : null;
+    const descriptionId = errorMessage && `${id}__desc`;
     const groupDescriptionId = context.descriptionId;
 
     const describedBy =
@@ -226,6 +222,8 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         : groupDescriptionId
         ? groupDescriptionId
         : null;
+
+    const hasError = context.hasError || !!errorMessage;
 
     return (
       <>
@@ -250,7 +248,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               checked={isChecked}
               color={color ? color : ''}
               disabled={disabled}
-              hasError={context.hasError || !!errorMessage}
+              hasError={hasError}
               isInverse={context.isInverse || isInverse}
               style={inputStyle}
               textPosition={textPosition}

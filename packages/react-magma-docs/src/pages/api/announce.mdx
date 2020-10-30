@@ -67,7 +67,7 @@ possibly interrupting the current task. Using `off` will silence these updates, 
 
 **This component uses `forwardRef`. The ref is applied to the Announce container `div` element.**
 
-**Any other props supplied will be provided to the wrapping `div` element.**
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
 <SimplePropsTable
   propertyValues={{
@@ -81,7 +81,11 @@ possibly interrupting the current task. Using `off` will silence these updates, 
     politeness: {
       type: {
         name: 'enum',
-        options: ['assertive', 'off', 'polite'],
+        options: [
+          'AnnouncePoliteness.assertive',
+          'AnnouncePoliteness.off',
+          'AnnouncePoliteness.polite',
+        ],
       },
       required: false,
       description: 'Value of the `aria-live` attribute',

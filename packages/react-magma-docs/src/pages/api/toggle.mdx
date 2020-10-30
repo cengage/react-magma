@@ -163,7 +163,9 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 
 ## Toggle Props
 
-**Any other props supplied will be provided to the `input` element.**
+**This component uses `forwardRef`. The ref is applied to the `input` element.**
+
+All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the `input` element that gets rendered.
 
 <SimplePropsTable
   propertyValues={{
@@ -181,6 +183,15 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       required: false,
       description: 'If true, element is disabled',
       defaultValue: 'false',
+    },
+    errorMessage: {
+      type: {
+        name: 'ReactNode',
+      },
+      required: false,
+      description:
+        'Content of the error message for toggle.  If a value is provided, the component will be styled as an error state and the error message will display.',
+      defaultValue: '',
     },
     isInverse: {
       type: {

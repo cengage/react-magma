@@ -95,6 +95,10 @@ The `containerStyle`, `inputStyle`, `labelStyle` and `messageStyle` props can be
 
 ## TimePicker Props
 
+**This component uses `forwardRef`. The ref is applied to the `input` element that is displayed visually and stores the value for full time value (hours, minutes, am/pm).**
+
+All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the outer `input` element that gets rendered.
+
 <SimplePropsTable
   propertyValues={{
     containerStyle: {

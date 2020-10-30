@@ -6,13 +6,13 @@ import { Label } from '../Label';
 import { useGenerateId } from '../../utils';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 
-export interface InputProps extends InputBaseProps {
+export interface InputProps extends Omit<InputBaseProps, 'hasError'> {
   errorMessage?: React.ReactNode;
   helperMessage?: React.ReactNode;
   isLabelVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
-  messageStyle?: React.CSSProperties;
   labelText?: React.ReactNode;
+  messageStyle?: React.CSSProperties;
 }
 
 const Container = styled.div`

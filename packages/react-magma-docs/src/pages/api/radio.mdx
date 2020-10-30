@@ -440,7 +440,9 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 
 ## Radio Group Props
 
-**Any other props supplied will be provided to the wrapping `div` element.**
+**This component uses `forwardRef`. The ref is applied to the outer `div` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
 <SimplePropsTable
   propertyValues={{
@@ -474,15 +476,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       required: false,
       description:
         'If true, the component and all child radio buttons will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    required: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the user must select one radio button for the form to be valid',
       defaultValue: 'false',
     },
     isTextVisuallyHidden: {
@@ -549,6 +542,15 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
       description: 'Name attribute the radio group',
       defaultValue: '',
     },
+    required: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the user must select one radio button for the form to be valid',
+      defaultValue: 'false',
+    },
     testId: {
       type: {
         name: 'string',
@@ -571,7 +573,9 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 
 ## Radio Props
 
-**Any other props supplied will be provided to the `input` element.**
+**This component uses `forwardRef`. The ref is applied to the `input` element.**
+
+All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the `input` element that gets rendered.
 
 <SimplePropsTable
   propertyValues={{

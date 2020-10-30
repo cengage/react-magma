@@ -92,7 +92,9 @@ The containing div for the tooltip, and the tooltip component itself can have cu
 
 ## Tooltip Props
 
-**Any other props supplied will be provided to the `div` element wrapping the tooltip content.**
+**This component uses `forwardRef`. The ref is applied to the tooltip trigger element element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the outer-most `div` element that gets rendered.
 
 <SimplePropsTable
   propertyValues={{

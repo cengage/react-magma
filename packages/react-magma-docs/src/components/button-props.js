@@ -28,15 +28,7 @@ export const ButtonProps = () => (
             'The color of the button, indicating its function in the UI',
           defaultValue: 'primary',
         },
-        disabled: {
-          type: {
-            name: 'boolean',
-          },
-          required: false,
-          description: 'If true, element is disabled',
-          defaultValue: 'false',
-        },
-        fullWidth: {
+        isFullWidth: {
           type: {
             name: 'boolean',
           },
@@ -53,13 +45,6 @@ export const ButtonProps = () => (
           description:
             'If true, the component will have inverse styling to better appear on a dark background',
           defaultValue: 'false',
-        },
-        onClick: {
-          type: {
-            name: 'function',
-          },
-          required: true,
-          description: 'Action that fires when the button is clicked',
         },
         shape: {
           type: {

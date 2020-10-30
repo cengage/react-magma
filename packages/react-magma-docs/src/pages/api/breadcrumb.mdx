@@ -1,6 +1,6 @@
 ---
-pageTitle: Breadcrumbs API
-title: Breadcrumbs
+pageTitle: Breadcrumb API
+title: Breadcrumb
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -9,7 +9,7 @@ import { SimplePropsTable } from '../../components/props-table';
 import DocsHeading from '../../components/docs-heading';
 
 <DocsHeading to="/design/breadcrumb/" type="design">
-  Breadcrumbs
+  Breadcrumb
 </DocsHeading>
 
 ## Basic Usage
@@ -72,18 +72,12 @@ By default, the `aria-label` of the Breadcrumb component is `Breadcrumb`. This c
 
 ## Breadcrumb Props
 
-**Any other props supplied will be provided to the wrapping `nav` element.**
+**This component uses `forwardRef`. The ref is applied to the Breadcrumb container `nav` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `nav` element that gets rendered.
 
 <SimplePropsTable
   propertyValues={{
-    'aria-label': {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'The aria-label of the container element',
-      defaultValue: 'Breadcrumb',
-    },
     children: {
       type: {
         name: 'node',
@@ -100,15 +94,6 @@ By default, the `aria-label` of the Breadcrumb component is `Breadcrumb`. This c
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
-    minWidthToShow: {
-      type: {
-        name: 'number',
-      },
-      required: false,
-      description:
-        'Number of pixels used as the min-width breakpoint where the breadcrumb is shown',
-      defaultValue: '0',
-    },
     testId: {
       type: {
         name: 'string',
@@ -122,7 +107,9 @@ By default, the `aria-label` of the Breadcrumb component is `Breadcrumb`. This c
 
 ## Breadcrumb Item Props
 
-**Any other props supplied will be provided to the wrapping `li` element.**
+**This component uses `forwardRef`. The ref is applied to the Breadcrumb Item container `li` element.**
+
+All of the [standard li attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li) can be provided as props and will be applied to the wrapping `li` element that gets rendered.
 
 <SimplePropsTable
   propertyValues={{

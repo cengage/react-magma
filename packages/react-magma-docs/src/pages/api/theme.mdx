@@ -53,7 +53,7 @@ Use the dropdown to change the theme for the demo component.
 
 ## Typography Scale
 
-One of the features of the Magma themes, is a typography scale, that contains thirteen font-size/line-height combinations, to better ensure consistency. Designers are advised not to deviate from these combinations.
+One of the features of the Magma theme is a typography scale, that contains thirteen font-size/line-height combinations, to better ensure consistency. Designers are advised not to deviate from these combinations.
 
 The `typeScale` can be set as part of the theme.
 
@@ -176,6 +176,30 @@ typographyExpressiveVisualStyles: {
 
 ```
 
+## Space Scale
+
+The Magma theme also has a spacing scale that can be used to implement padding or margins in a consistent fashion.
+Designers are advised to use values from the space scale whenever possible.
+
+The `spaceScale` can be overridden in by defining its values new theme.
+
+```
+  spaceScale: {
+    spacing01: '2px',
+    spacing02: '4px',
+    spacing03: '8px',
+    spacing04: '12px',
+    spacing05: '16px',
+    spacing06: '24px',
+    spacing07: '32px',
+    spacing08: '40px',
+    spacing09: '48px',
+    spacing10: '64px',
+    spacing11: '96px',
+    spacing12: '160px',
+  }
+```
+
 export default props => (
   <ScopeableLayout
     {...props}
@@ -185,7 +209,7 @@ export default props => (
       DemoComponent,
       magma,
       amgam,
-      amgamDark
+      amgamDark,
     }}
   />
 );

@@ -198,7 +198,9 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
 
 ## Icon Button Props
 
-**Any other props supplied will be provided to the `button` element.**
+**This component uses `forwardRef`. The ref is applied to the `button` element.**
+
+All of the [standard button attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) can be provided as props and will be applied to the `button` element that gets rendered.
 
 <IconButtonProps />
 

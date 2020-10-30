@@ -4,21 +4,17 @@ import { jsx } from '@emotion/core';
 
 import { NavTabsContext } from './';
 import { StyledTabsChild, StyledIcon, TabStyles } from '../Tabs/Tab';
-import { TabsBorderPosition, TabsIconPosition } from '../Tabs';
+import { TabsIconPosition } from '../Tabs';
 import { TabsOrientation } from '../Tabs/shared';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { omit, XOR } from '../../utils';
 
 export interface BaseNavTabProps
   extends React.HTMLAttributes<HTMLAnchorElement> {
-  borderPosition?: TabsBorderPosition;
   component?: React.ReactNode;
   css?: any; // Adding css prop to fix emotion error
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
-  iconPosition?: TabsIconPosition;
-  index?: number;
   isActive?: boolean;
-  isFullWidth?: boolean;
   isInverse?: boolean;
   orientation?: TabsOrientation;
   testId?: string;
@@ -32,6 +28,8 @@ interface NavTabChildrenProps extends BaseNavTabProps {
 
 interface NavTabComponentProps extends BaseNavTabProps {
   component: React.ReactNode;
+  iconPosition?: TabsIconPosition;
+  isFullWidth?: boolean;
 }
 
 export type NavTabProps = XOR<NavTabChildrenProps, NavTabComponentProps>;

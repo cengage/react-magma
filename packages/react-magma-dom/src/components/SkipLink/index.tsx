@@ -8,9 +8,9 @@ export const TARGET_ID = 'reactMagmaMainContent';
 
 export interface SkipLinkProps extends HyperlinkProps {
   buttonText?: string;
-  color?: ButtonColor;
+  positionLeft?: number;
+  positionTop?: number;
   testId?: string;
-  variant?: ButtonVariant;
 }
 
 const handleClick = e => {

@@ -241,16 +241,24 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
 
 ## NavTabs Props
 
-**Any other props supplied will be provided to the wrapping `nav` element.**
+**This component uses `forwardRef`. The ref is applied to the `nav` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `nav` element that gets rendered.
 
 <SimplePropsTable
   propertyValues={{
-    children: {
+    alignment: {
       type: {
-        name: 'node',
+        name: 'enum',
+        options: [
+          'TabsAlignment.center',
+          'TabsAlignment.left',
+          'TabsAlignment.right',
+        ],
       },
-      required: true,
-      description: 'The content of the component',
+      required: false,
+      description: 'Alignment of the tabs menu',
+      defaultValue: 'left',
     },
     'aria-label': {
       type: {
@@ -296,14 +304,6 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
-    hasScrollButtons: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'The prop for turning on/off buttons for scrolling NavTabs component',
-    },
     testId: {
       type: {
         name: 'string',
@@ -317,7 +317,9 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
 
 ## NavTab Props
 
-**Any other props supplied will be provided to the wrapping `a` element.**
+**This component uses `forwardRef`. The ref is applied to the `a` element.**
+
+All of the [standard anchor attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) can be provided as props and will be applied to the `a` element that gets rendered.
 
 <SimplePropsTable
   propertyValues={{
@@ -335,6 +337,30 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
       required: false,
       description:
         'The prop for custom component instead of `a` in NavTab. When using this prop the `children` of the component and the `to` prop are not used.',
+    },
+    icon: {
+      type: {
+        name: 'React Element',
+      },
+      required: false,
+      description: 'Icon to display within the component',
+    },
+    isActive: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will display with the active/selected state',
+    },
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background.',
+      defaultValue: 'false',
     },
     testId: {
       type: {

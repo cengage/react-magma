@@ -121,7 +121,7 @@ describe('Tabs', () => {
     expect(getAllByTestId('tabContainer')[0]).toHaveStyleRule('height', 'auto');
   });
 
-  it('should render scroll buttons if orientation horizontal and hasScrollButtons is true', () => {
+  it('should render scroll buttons if orientation horizontal', () => {
     const { getByTestId } = render(
       <TabsContainerContext.Provider value={{ activeTabIndex: 1 }}>
         <Tabs orientation="horizontal">
@@ -250,7 +250,7 @@ describe('Tabs', () => {
 
   it('should render the inverse tabs with the correct styles', () => {
     const { getByText, getByTestId } = render(
-      <Tabs isInverse hasScrollButtons>
+      <Tabs isInverse>
         <Tab>Tab 1</Tab>
       </Tabs>
     );
@@ -275,7 +275,7 @@ describe('Tabs', () => {
   it('should change panels on tab button click', () => {
     const { getByText, queryByText } = render(
       <TabsContainer activeIndex={0}>
-        <Tabs testId={'dd'} hasScrollButtons={true} orientation="horizontal">
+        <Tabs testId={'dd'} orientation="horizontal">
           <Tab>This is tab 1</Tab>
           <Tab>This is tab 2</Tab>
           <Tab>This is tab 3</Tab>
@@ -303,7 +303,7 @@ describe('Tabs', () => {
   it('should not change the panel on clicking a disabled tab', () => {
     const { getByText, queryByText } = render(
       <TabsContainer activeIndex={0}>
-        <Tabs testId={'dd'} hasScrollButtons={true} orientation="horizontal">
+        <Tabs testId={'dd'} orientation="horizontal">
           <Tab>This is tab 1</Tab>
           <Tab disabled>This is tab 2</Tab>
           <Tab>This is tab 3</Tab>
@@ -334,12 +334,7 @@ describe('Tabs', () => {
     const onChange = jest.fn();
     const { getByText } = render(
       <TabsContainer activeIndex={0}>
-        <Tabs
-          testId={'dd'}
-          hasScrollButtons
-          orientation="horizontal"
-          onChange={onChange}
-        >
+        <Tabs testId={'dd'} orientation="horizontal" onChange={onChange}>
           <Tab>This is tab 1</Tab>
           <Tab>This is tab 2</Tab>
           <Tab>This is tab 3</Tab>
@@ -791,7 +786,7 @@ describe('Test for accessibility', () => {
   it('Does not violate accessibility standards', () => {
     const { container } = render(
       <TabsContainer activeIndex={0}>
-        <Tabs testId={'dd'} hasScrollButtons={true} orientation="horizontal">
+        <Tabs testId={'dd'} orientation="horizontal">
           <Tab>This is tab 1</Tab>
           <Tab>This is tab 2</Tab>
           <Tab>This is tab 3</Tab>

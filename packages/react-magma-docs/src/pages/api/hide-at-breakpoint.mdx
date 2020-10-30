@@ -36,7 +36,9 @@ It takes two props, `minWidth` and `maxWidth` for the minimum and maximum widths
 
 ## Hide at Breakpoint Props
 
-**Any other props supplied will be provided to the wrapping `div` element.**
+**This component uses `forwardRef`. The ref is applied to the outer `div` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
 <SimplePropsTable
   propertyValues={{

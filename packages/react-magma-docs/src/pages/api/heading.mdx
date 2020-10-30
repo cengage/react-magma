@@ -170,7 +170,9 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
 
 ## Heading Props
 
-**Any other props supplied will be provided to the `heading` element.**
+**This component uses `forwardRef`. The ref is applied to the heading element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the heading (h1-6) element that gets rendered.
 
 <SimplePropsTable
   propertyValues={{

@@ -89,7 +89,6 @@ export const IndeterminateCheckbox = React.forwardRef<
     color,
     containerStyle,
     disabled,
-    hasError,
     errorMessage,
     inputStyle,
     isInverse,
@@ -146,6 +145,8 @@ export const IndeterminateCheckbox = React.forwardRef<
       ? groupDescriptionId
       : null;
 
+  const hasError = context.hasError || !!errorMessage;
+
   return (
     <>
       <StyledContainer style={containerStyle}>
@@ -165,7 +166,7 @@ export const IndeterminateCheckbox = React.forwardRef<
             checked={isChecked}
             color={color ? color : ''}
             disabled={disabled}
-            hasError={context.hasError || !!errorMessage}
+            hasError={hasError}
             isIndeterminate={isIndeterminate}
             isInverse={isInverse}
             style={inputStyle}
