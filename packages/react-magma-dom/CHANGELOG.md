@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.114](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.113...v2.0.0-beta.114) (2020-10-30)
+
+
+### Features
+
+* **linkbutton:** remove link button component ([99fe51f](http://stash.cengage.com:7999/FRONT/react-magma/commits/99fe51f7fe34f75a62d5b7d5ff89e02b933ac677))
+
+
+### BREAKING CHANGES
+
+* **linkbutton:** removed LinkButton component
+
+
+
+
+
 # [2.0.0-beta.113](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.112...v2.0.0-beta.113) (2020-10-29)
 
 
