@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.115](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.114...v2.0.0-beta.115) (2020-11-02)
+
+
+### Features
+
+* **card:** give inverse cards default bgcolor, add context for inverse ([4549420](http://stash.cengage.com:7999/FRONT/react-magma/commits/4549420d06df33d9905f8d35975ed3705b531bb0))
+
+
+
+
+
 # [2.0.0-beta.114](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.113...v2.0.0-beta.114) (2020-10-30)
 
 
