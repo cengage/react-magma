@@ -4,7 +4,7 @@ title: Breadcrumb
 ---
 
 import { ScopeableLayout } from '../../components/layout';
-import { Breadcrumb, BreadcrumbItem } from 'react-magma-dom';
+import { Breadcrumb, BreadcrumbItem, Card, CardBody } from 'react-magma-dom';
 import { SimplePropsTable } from '../../components/props-table';
 import DocsHeading from '../../components/docs-heading';
 
@@ -37,19 +37,21 @@ the item will be rendered as a span and will have `aria-current="page"` on it. A
 IsInverse is an optional boolean prop, that may be used when the breadcrumb menu to be displayed on a dark background.
 
 ```.jsx
-    <div style={{background: '#003865', padding: '10px'}}>
-        <Breadcrumb isInverse>
-            <BreadcrumbItem to="#">
-                Home
-            </BreadcrumbItem>
-             <BreadcrumbItem to="#">
-                Library
-            </BreadcrumbItem>
-             <BreadcrumbItem>
-                Data
-            </BreadcrumbItem>
-        </Breadcrumb>
-    </div>
+    <Card isInverse>
+      <CardBody>
+          <Breadcrumb isInverse>
+              <BreadcrumbItem to="#">
+                  Home
+              </BreadcrumbItem>
+              <BreadcrumbItem to="#">
+                  Library
+              </BreadcrumbItem>
+              <BreadcrumbItem>
+                  Data
+              </BreadcrumbItem>
+          </Breadcrumb>
+      </CardBody>
+    </Card>
 ```
 
 ## Aria-label
@@ -141,5 +143,8 @@ All of the [standard li attributes](https://developer.mozilla.org/en-US/docs/Web
 />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ Breadcrumb, BreadcrumbItem }} />
+  <ScopeableLayout
+    {...props}
+    components={{ Breadcrumb, BreadcrumbItem, Card, CardBody }}
+  />
 );

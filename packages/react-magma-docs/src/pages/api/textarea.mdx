@@ -4,7 +4,7 @@ title: Textarea
 ---
 
 import { ScopeableLayout } from '../../components/layout';
-import { Textarea } from 'react-magma-dom';
+import { Textarea, Card, CardBody } from 'react-magma-dom';
 import { SimplePropsTable } from '../../components/props-table';
 import DocsHeading from '../../components/docs-heading';
 
@@ -45,15 +45,17 @@ import DocsHeading from '../../components/docs-heading';
 ## Inverse
 
 ```.jsx
-    <div style={{ background : '#00263E', padding: '10px' }}>
-      <Textarea isInverse labelText="Inverse Textarea" />
-      <Textarea errorMessage="Please fix this error" isInverse labelText="Inverse Textarea with Error" />
-    </div>
+    <Card isInverse>
+      <CardBody>
+        <Textarea isInverse labelText="Inverse Textarea" />
+        <Textarea errorMessage="Please fix this error" isInverse labelText="Inverse Textarea with Error" />
+      </CardBody>
+    </Card>
 ```
 
 ## Textarea Props
 
-**This component uses `forwardRef`. The ref is applied to the  `textarea` element.**
+**This component uses `forwardRef`. The ref is applied to the `textarea` element.**
 
 All of the [standard textarea attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) can be provided as props and will be applied to the `textarea` element that gets rendered.
 
@@ -165,5 +167,5 @@ All of the [standard textarea attributes](https://developer.mozilla.org/en-US/do
 />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ Textarea }} />
+  <ScopeableLayout {...props} components={{ Textarea, Card, CardBody }} />
 );

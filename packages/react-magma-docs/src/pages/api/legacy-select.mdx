@@ -7,7 +7,7 @@ import { ScopeableLayout } from '../../components/layout';
 
 import { Search2Icon } from 'react-magma-icons';
 
-import { Alert } from 'react-magma-dom';
+import { Alert, Card, CardBody } from 'react-magma-dom';
 
 import {
   Select,
@@ -214,24 +214,26 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
 The default value is `false`.
 
 ```.jsx
-  <div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
-    <Select
-      errorMessage="Please select a color"
-      isInverse
-      name="inverse"
-      labelText="Error Message"
-      options={[{
-        value: 'red',
-        label: 'Red'
-      }, {
-        value: 'blue',
-        label: 'Blue'
-      }, {
-        value: 'green',
-        label: 'Green'
-      }]}
-    />
-  </div>
+  <Card isInverse>
+    <CardBody>
+      <Select
+        errorMessage="Please select a color"
+        isInverse
+        name="inverse"
+        labelText="Error Message"
+        options={[{
+          value: 'red',
+          label: 'Red'
+        }, {
+          value: 'blue',
+          label: 'Blue'
+        }, {
+          value: 'green',
+          label: 'Green'
+        }]}
+      />
+    </CardBody>
+  </Card>
 ```
 
 ## Custom components
@@ -637,6 +639,8 @@ export default props => (
   <ScopeableLayout
     {...props}
     components={{
+      Card,
+      CardBody,
       Select,
       AsyncSelect,
       CreatableSelect,

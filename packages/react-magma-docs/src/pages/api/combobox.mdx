@@ -5,6 +5,8 @@ title: Combobox
 
 import { ScopeableLayout } from '../../components/layout';
 import {
+  Card,
+  CardBody,
   Combobox,
   ComboboxStateChangeTypes,
   Alert,
@@ -722,41 +724,43 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
       )
     }
 
-    return (<div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
+    return (
+      <Card isInverse>
+        <CardBody>
+          <Combobox
+            id="comboboxInverseId"
+            isInverse
+            name="comboboxInverse"
+            labelText="Combobox"
+            defaultItems={[
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+              { label: 'Green', value: 'green' }
+            ]}
+          />
 
-      <Combobox
-        id="comboboxInverseId"
-        isInverse
-        name="comboboxInverse"
-        labelText="Combobox"
-        defaultItems={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-      />
-
-      <Combobox
-        errorMessage="Please correct this error"
-        isMulti
-        id="comboboxMultiInverseId"
-        isInverse
-        labelText="Multi Combobox"
-        defaultItems={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-        initialSelectedItems={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-        name="comboboxmultiInverse"
-      />
-    </div>)
-
-  }
+          <Combobox
+            errorMessage="Please correct this error"
+            isMulti
+            id="comboboxMultiInverseId"
+            isInverse
+            labelText="Multi Combobox"
+            defaultItems={[
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+              { label: 'Green', value: 'green' }
+            ]}
+            initialSelectedItems={[
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+              { label: 'Green', value: 'green' }
+            ]}
+            name="comboboxmultiInverse"
+          />
+      </CardBody>
+    </Card>
+  )
+}
 ```
 
 ## Custom Styles
@@ -1248,6 +1252,8 @@ export default props => (
   <ScopeableLayout
     {...props}
     components={{
+      Card,
+      CardBody,
       Combobox,
       Alert,
       uuid,
