@@ -156,17 +156,43 @@ To get an image to take up the full width of a card, without padding, place it o
 
 A string for a background color may be passed in using the `background` prop.
 
-If the background color is dark, the `isInverse` boolean prop can be used to render content in a light color.
+The default background color is `magma.colors.neutral08` (white) or `magma.colors.foundation` (dark blue) for inverse cards.
+
+The `isInverse` boolean prop can also be used with other dark backgrounds to render content in a light color.
 
 ```.jsx
-        <Card background={magma.colors.success} isInverse>
-            <CardBody>
-              <CardHeading isInverse>
-                  Card Heading
-              </CardHeading>
-                Some content
-            </CardBody>
-        </Card>
+  <>
+    <Card isInverse>
+        <CardBody>
+          <CardHeading>
+              Card Heading
+          </CardHeading>
+            Some content
+        </CardBody>
+    </Card>
+
+    <br/>
+
+    <Card background={magma.colors.neutral06}>
+        <CardBody>
+          <CardHeading>
+              Card Heading
+          </CardHeading>
+            Some content
+        </CardBody>
+    </Card>
+
+     <br/>
+
+    <Card background={magma.colors.success} isInverse>
+        <CardBody>
+          <CardHeading>
+              Card Heading
+          </CardHeading>
+            Some content
+        </CardBody>
+    </Card>
+  </>
 ```
 
 ## Card Props
@@ -196,6 +222,8 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
       },
       required: false,
       description: 'Color for the background and border-color, set by CSS.',
+      defaultValue:
+        'magma.colors.default08 (white) or magma.colors.foundation (dark blue) if inverse',
     },
     calloutType: {
       type: {
