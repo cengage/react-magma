@@ -4,7 +4,7 @@ title: Hyperlink
 ---
 
 import { ScopeableLayout } from '../../components/layout';
-import { Hyperlink } from 'react-magma-dom';
+import { Hyperlink, Card, CardBody, Paragraph } from 'react-magma-dom';
 import { Link } from 'gatsby';
 import { Button } from 'react-magma-dom';
 import { SimplePropsTable } from '../../components/props-table';
@@ -63,11 +63,14 @@ Use this when you want to render something that is from another library. For exa
 `isInverse` is an optional boolean prop, that may be passed in when the hyperlink is to be displayed on a dark background.
 
 ```.jsx
-    <div style={{ background : '#00263E', padding: '10px' }}>
-      <Hyperlink isInverse target="_blank" to="https://www.google.com">Google inverse link</Hyperlink>
-      <br />
+  <Card isInverse>
+    <CardBody>
+      <Paragraph>
+        <Hyperlink isInverse target="_blank" to="https://www.google.com">Google inverse link</Hyperlink>
+      </Paragraph>
       <Hyperlink isInverse styledAs="Button" target="_blank" to="https://www.google.com">Inverse link styled as button</Hyperlink>
-    </div>
+    </CardBody>
+  </Card>
 ```
 
 ## Hyperlink Props
@@ -197,5 +200,8 @@ All of the [standard anchor attributes](https://developer.mozilla.org/en-US/docs
 />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ Hyperlink }} />
+  <ScopeableLayout
+    {...props}
+    components={{ Hyperlink, Card, CardBody, Paragraph }}
+  />
 );

@@ -10,6 +10,8 @@ import {
   Alert,
   I18nContext,
   defaultI18n,
+  Card,
+  CardBody,
 } from 'react-magma-dom';
 import { SimplePropsTable } from '../../components/props-table';
 import { useSelect } from 'downshift';
@@ -549,35 +551,38 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
       )
     }
 
-    return (<div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
-      <Select
-        id="basicSelectInverseId"
-        isInverse
-        name="basic"
-        labelText="Basic"
-        items={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-        selectedItem={selectedItem}
-        onSelectedItemChange={onSelectedItemChange}
-      />
+    return (
+      <Card isInverse>
+        <CardBody>
+          <Select
+            id="basicSelectInverseId"
+            isInverse
+            name="basic"
+            labelText="Basic"
+            items={[
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+              { label: 'Green', value: 'green' }
+            ]}
+            selectedItem={selectedItem}
+            onSelectedItemChange={onSelectedItemChange}
+          />
 
-      <Select
-        id="multiSelectInverseId"
-        isInverse
-        isMulti
-        name="multiSelect"
-        labelText="Multi Select"
-        items={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-      />
-    </div>)
-
+          <Select
+            id="multiSelectInverseId"
+            isInverse
+            isMulti
+            name="multiSelect"
+            labelText="Multi Select"
+            items={[
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+              { label: 'Green', value: 'green' }
+            ]}
+          />
+        </CardBody>
+      </Card>
+    )
   }
 ```
 
@@ -1059,6 +1064,8 @@ export default props => (
       SelectStateChangeTypes,
       I18nContext,
       defaultI18n,
+      Card,
+      CardBody,
     }}
   />
 );

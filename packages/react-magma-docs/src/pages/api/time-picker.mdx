@@ -8,6 +8,8 @@ import {
   TimePicker,
   Heading,
   Button,
+  Card,
+  CardBody,
   I18nContext,
   defaultI18n,
 } from 'react-magma-dom';
@@ -55,15 +57,17 @@ If an error message is present, it will replace the helper text. Can be a node o
 The `helperMessage` appears underneath the input field. It will not appear if an error message is present. Can be a node or a string.
 
 ```.jsx
-  <TimePicker  helperMessage="Helper text" labelText="Time Due" />
+  <TimePicker helperMessage="Helper text" labelText="Time Due" />
 ```
 
 ## Inverse
 
 ```.jsx
-    <div style={{background: '#003865', display: 'flex', padding: '10px'}}>
-      <TimePicker isInverse labelText="Time Due" />
-    </div>
+    <Card isInverse>
+      <CardBody>
+        <TimePicker isInverse labelText="Time Due" />
+      </CardBody>
+    </Card>
 ```
 
 ## Custom Styles
@@ -192,6 +196,6 @@ All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/
 export default props => (
   <ScopeableLayout
     {...props}
-    components={{ TimePicker, I18nContext, defaultI18n, zhCN }}
+    components={{ TimePicker, Card, CardBody, I18nContext, defaultI18n, zhCN }}
   />
 );

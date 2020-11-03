@@ -11,7 +11,7 @@ import {
   CircleUpIcon,
   QuestionCircleIcon,
 } from 'react-magma-icons';
-import { Tooltip, IconButton } from 'react-magma-dom';
+import { Tooltip, IconButton, Card, CardBody } from 'react-magma-dom';
 import { SimplePropsTable } from '../../components/props-table';
 import DocsHeading from '../../components/docs-heading';
 
@@ -73,11 +73,13 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
 The default value is `false`.
 
 ```.jsx
-    <div style={{ background: '#00263E', color: '#fff'}}>
+    <Card isInverse>
+    <CardBody>
         <Tooltip isInverse position='right' content='Inverse tooltip'>
           <IconButton aria-label="Get Help" icon={<QuestionCircleIcon />} isInverse variant="link" />
         </Tooltip>
-    </div>
+        </CardBody>
+    </Card>
 ```
 
 ## Custom Styles
@@ -172,6 +174,8 @@ export default props => (
       CircleRightIcon,
       CircleUpIcon,
       QuestionCircleIcon,
+      Card,
+      CardBody,
     }}
   />
 );
