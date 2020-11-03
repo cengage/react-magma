@@ -4,7 +4,7 @@ title: Progress Bar
 ---
 
 import { ScopeableLayout } from '../../components/layout';
-import { ProgressBar, Button } from 'react-magma-dom';
+import { ProgressBar, Button, Card, CardBody } from 'react-magma-dom';
 import { SimplePropsTable } from '../../components/props-table';
 import DocsHeading from '../../components/docs-heading';
 import { Link } from 'gatsby';
@@ -77,9 +77,11 @@ The `height` prop can be used to set the height of the progress bar in pixels. T
 the default background color of the progress bar is `#00A9E0` or `magma.colors.foundation03`.
 
 ```.jsx
-    <div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
-        <ProgressBar isInverse percentage={25} />
-    </div>
+    <Card isInverse>
+      <CardBody>
+          <ProgressBar isInverse percentage={25} />
+      </CardBody>
+    </Card>
 ```
 
 ## Label Visible
@@ -167,5 +169,8 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ ProgressBar, Button }} />
+  <ScopeableLayout
+    {...props}
+    components={{ ProgressBar, Button, Card, CardBody }}
+  />
 );

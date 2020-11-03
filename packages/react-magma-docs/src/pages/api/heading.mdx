@@ -4,7 +4,7 @@ title: Heading
 ---
 
 import { ScopeableLayout } from '../../components/layout';
-import { Heading, Button } from 'react-magma-dom';
+import { Heading, Button, Card, CardBody } from 'react-magma-dom';
 import DocsHeading from '../../components/docs-heading';
 import { SimplePropsTable } from '../../components/props-table';
 import { Link } from 'gatsby';
@@ -103,21 +103,23 @@ The `color` prop can be used to change the color of the heading to convey additi
 The `isInverse` property is an optional boolean that changes the colors so the component can appear on a dark background.
 
 ```.jsx
-  <div style={{ background : '#00263E', padding: '10px' }}>
-    <Heading isInverse level={2}>Heading 2</Heading>
+  <Card isInverse>
+    <CardBody>
+      <Heading isInverse level={2}>Heading 2</Heading>
 
-    <Heading color="success" isInverse level={2}>
-      Success Color Heading
-    </Heading>
+      <Heading color="success" isInverse level={2}>
+        Success Color Heading
+      </Heading>
 
-    <Heading color="danger" isInverse level={2}>
-      Danger Color Heading
-    </Heading>
+      <Heading color="danger" isInverse level={2}>
+        Danger Color Heading
+      </Heading>
 
-    <Heading isInverse level={2} color="subdued">
-      Heading 2 Subdued
-    </Heading>
-  </div>
+      <Heading isInverse level={2} color="subdued">
+        Heading 2 Subdued
+      </Heading>
+    </CardBody>
+  </Card>
 ```
 
 ## No Margins
@@ -271,5 +273,8 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ Heading, Button }} />
+  <ScopeableLayout
+    {...props}
+    components={{ Heading, Button, Card, CardBody }}
+  />
 );

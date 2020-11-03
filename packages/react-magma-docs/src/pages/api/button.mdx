@@ -4,7 +4,7 @@ title: Button
 ---
 
 import { ScopeableLayout } from '../../components/layout';
-import { Button, Input } from 'react-magma-dom';
+import { Button, Input, Card, CardBody } from 'react-magma-dom';
 import { Link } from 'gatsby';
 import DocsHeading from '../../components/docs-heading';
 import { ButtonProps } from '../../components/button-props';
@@ -99,24 +99,26 @@ online affects `solid isInverse buttons`.
 The `marketing` button does not have an inverse state, as it already is styled to appear well against a dark background.
 
 ```.jsx
-    <div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
-      <p>
-          <Button isInverse>Solid inverse</Button>
-          <Button color="secondary" isInverse>Solid inverse</Button>
-          <Button color="success" isInverse>Solid inverse</Button>
-          <Button color="danger" isInverse>Solid inverse</Button>
-          <Button color="marketing" isInverse>Marketing inverse</Button>
-      </p>
-      <p>
-          <Button variant="outline" isInverse>Outline inverse</Button>
-          <Button variant="link" isInverse>Link inverse</Button>
-      </p>
-      <p>
-          <Button disabled isInverse>Disabled inverse</Button>
-          <Button disabled isInverse variant="outline">Disabled outline inverse</Button>
-          <Button disabled isInverse variant="link">Disabled link inverse</Button>
-      </p>
-    </div>
+    <Card isInverse>
+      <CardBody>
+        <p>
+            <Button isInverse>Solid inverse</Button>
+            <Button color="secondary" isInverse>Solid inverse</Button>
+            <Button color="success" isInverse>Solid inverse</Button>
+            <Button color="danger" isInverse>Solid inverse</Button>
+            <Button color="marketing" isInverse>Marketing inverse</Button>
+        </p>
+        <p>
+            <Button variant="outline" isInverse>Outline inverse</Button>
+            <Button variant="link" isInverse>Link inverse</Button>
+        </p>
+        <p>
+            <Button disabled isInverse>Disabled inverse</Button>
+            <Button disabled isInverse variant="outline">Disabled outline inverse</Button>
+            <Button disabled isInverse variant="link">Disabled link inverse</Button>
+        </p>
+      </CardBody>
+    </Card>
 ```
 
 ## Text Transform
@@ -245,5 +247,5 @@ All of the [standard button attributes](https://developer.mozilla.org/en-US/docs
 <ButtonProps />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ Button, Input }} />
+  <ScopeableLayout {...props} components={{ Button, Input, Card, CardBody }} />
 );

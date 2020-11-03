@@ -4,7 +4,7 @@ title: 'Paragraph'
 
 import { ScopeableLayout } from '../../components/layout';
 import { Link } from 'gatsby';
-import { Paragraph } from 'react-magma-dom';
+import { Paragraph, Card, CardBody } from 'react-magma-dom';
 import { SimplePropsTable } from '../../components/props-table';
 
 # Paragraphs
@@ -141,23 +141,25 @@ The `color` prop can be used to change the color of the paragraph to convey addi
 The `isInverse` property is an optional boolean that changes the colors so the component can appear on a dark background.
 
 ```.jsx
-    <div style={{background: '#003865', padding: '4px 16px'}}>
-         <Paragraph isInverse>
-            Inverse paragraph.  Lorem ipsum dolar sit amet.
-        </Paragraph>
+  <Card isInverse>
+    <CardBody>
+      <Paragraph isInverse>
+          Inverse paragraph.  Lorem ipsum dolar sit amet.
+      </Paragraph>
 
-         <Paragraph color="success" isInverse>
-            Success inverse paragraph. Lorem ipsum dolar sit amet.
-        </Paragraph>
+        <Paragraph color="success" isInverse>
+          Success inverse paragraph. Lorem ipsum dolar sit amet.
+      </Paragraph>
 
-        <Paragraph color="subdued" isInverse>
-            Subdued inverse paragraph.  Lorem ipsum dolar sit amet.
-        </Paragraph>
+      <Paragraph color="subdued" isInverse>
+          Subdued inverse paragraph.  Lorem ipsum dolar sit amet.
+      </Paragraph>
 
-        <Paragraph color="danger" isInverse>
-            Danger inverse paragraph.  Lorem ipsum dolar sit amet.
-        </Paragraph>
-    </div>
+      <Paragraph color="danger" isInverse>
+          Danger inverse paragraph.  Lorem ipsum dolar sit amet.
+      </Paragraph>
+    </CardBody>
+  </Card>
 ```
 
 ## No Margins
@@ -278,5 +280,5 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ Paragraph }} />
+  <ScopeableLayout {...props} components={{ Paragraph, Card, CardBody }} />
 );
