@@ -771,12 +771,12 @@ element with the shape of the `items` you are passing in.
 
 ## Custom Components
 
-Out of the box, the `Select` component uses React Magma-styled iconography for the button used to clear the selection.
-However, this can be overridden by providing custom components to the `components` prop, in an object containing a `ClearIndicator`.
+Out of the box, the `Select` component uses React Magma-styled iconography for the button used to clear the selection and the caret for the dropdown.
+However, these can be overridden by providing custom components to the `components` prop, in an object containing a `ClearIndicator` and a `DropdownIndicator`.
 
 ```.jsx
   () => {
-    return (<>
+    return (
      <Select
         id="customComponentsId"
         name="customComponents"
@@ -790,9 +790,10 @@ However, this can be overridden by providing custom components to the `component
         isClearable
         components={{
           ClearIndicator: (props) => <button onClick={props.onClick}>Clear</button>,
+          DropdownIndicator: () => <span style={{ border: '1px solid'}}>Dropdown</span>
         }}
       />
-    </>)
+    )
   }
 ```
 

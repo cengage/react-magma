@@ -1,6 +1,7 @@
 import React from 'react';
 import { inputBaseStyles } from '../InputBase';
-import { CaretDownIcon } from 'react-magma-icons';
+//import { CaretDownIcon } from 'react-magma-icons';
+import { defaultComponents, SelectComponents } from '../Select/components';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '../../theme/styled';
 
@@ -25,6 +26,7 @@ const ChildrenContainer = styled.div`
 interface SelectTriggerButtonInterface<T> {
   ariaDescribedBy?: string;
   children: React.ReactNode[];
+  customComponents?: SelectComponents;
   hasError?: boolean;
   disabled?: boolean;
   isInverse?: boolean;
@@ -37,6 +39,7 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
   const {
     ariaDescribedBy,
     children,
+    customComponents,
     hasError,
     disabled,
     isInverse,
@@ -44,6 +47,10 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
     toggleButtonProps,
   } = props;
   const theme = React.useContext(ThemeContext);
+
+  const { DropdownIndicator } = defaultComponents({
+    ...customComponents,
+  });
 
   return (
     <StyledButton
@@ -59,7 +66,7 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
       tabIndex={disabled ? undefined : 0}
     >
       <ChildrenContainer>{children}</ChildrenContainer>
-      <CaretDownIcon size={10} style={{ flexShrink: 0 }} testId="caretDown" />
+      <DropdownIndicator />
     </StyledButton>
   );
 }
