@@ -71,52 +71,6 @@ If you are using a custom items format see the [Custom Items example](/api/selec
   }
 ```
 
-## Custom Items
-
-By default each component accepts an array of `items` with either a `string` or an `object` with the shape `{item: string; label: string;}`
-for each `item`. If you need to pass in a custom shape for your `items` you can pass in an additional prop named `itemToString`
-which is a function that returns the string representation of your `item` which will be applied as the label.
-
-<Alert variant="warning">
-  <strong>WARNING</strong> Your function must include a <code>null</code> check.
-</Alert>
-
-If you are using a custom shape for your `items` in a `typescript` project refer to our example of [using your
-custom `type`](/api/select#custom_items_typescript).
-
-```.jsx
-  () => {
-    function itemToString(item) {
-      return item ? `${item.representation} (${item.hex})` : ''
-    }
-
-    return <>
-      <Select
-        id="itemToStringId"
-        name="itemToString"
-        labelText="Item to String"
-        items={[{
-          id: 1,
-          actual: 'red',
-          representation: 'Red',
-          hex: '#FF0000'
-        }, {
-          id: 2,
-          actual: 'blue',
-          representation: 'Blue',
-          hex: '#0000FF'
-        }, {
-          id: 3,
-          actual: 'green',
-          representation: 'Green',
-          hex: '#008000'
-        }]}
-        itemToString={itemToString}
-      />
-    </>
-  }
-```
-
 ## Initial State
 
 Set initial state using the `initialSelectedItem`, `initialSelectedItems`, and `initialHighlightedIndex` props.
@@ -719,6 +673,52 @@ Placeholders are specific keywords surrounded by curly braces.
   }
 ```
 
+## Custom Items
+
+By default each component accepts an array of `items` with either a `string` or an `object` with the shape `{item: string; label: string;}`
+for each `item`. If you need to pass in a custom shape for your `items` you can pass in an additional prop named `itemToString`
+which is a function that returns the string representation of your `item` which will be applied as the label.
+
+<Alert variant="warning">
+  <strong>WARNING</strong> Your function must include a <code>null</code> check.
+</Alert>
+
+If you are using a custom shape for your `items` in a `typescript` project refer to our example of [using your
+custom `type`](/api/select#custom_items_typescript).
+
+```.jsx
+  () => {
+    function itemToString(item) {
+      return item ? `${item.representation} (${item.hex})` : ''
+    }
+
+    return <>
+      <Select
+        id="itemToStringId"
+        name="itemToString"
+        labelText="Item to String"
+        items={[{
+          id: 1,
+          actual: 'red',
+          representation: 'Red',
+          hex: '#FF0000'
+        }, {
+          id: 2,
+          actual: 'blue',
+          representation: 'Blue',
+          hex: '#0000FF'
+        }, {
+          id: 3,
+          actual: 'green',
+          representation: 'Green',
+          hex: '#008000'
+        }]}
+        itemToString={itemToString}
+      />
+    </>
+  }
+```
+
 ## Custom Items Typescript
 
 When using a custom shape for your `items` in a `typescript` project you will need to provide the `Select`
@@ -766,6 +766,33 @@ element with the shape of the `items` you are passing in.
         itemToString={itemToString}
       />
     </>
+  }
+```
+
+## Custom Components
+
+Out of the box, the `Select` component uses React Magma-styled iconography for the button used to clear the selection.
+However, this can be overridden by providing custom components to the `components` prop, in an object containing a `ClearIndicator`.
+
+```.jsx
+  () => {
+    return (<>
+     <Select
+        id="customComponentsId"
+        name="customComponents"
+        labelText="Custom Components"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        initialSelectedItem={{ label: 'Green', value: 'green' }}
+        isClearable
+        components={{
+          ClearIndicator: (props) => <button onClick={props.onClick}>Clear</button>,
+        }}
+      />
+    </>)
   }
 ```
 
