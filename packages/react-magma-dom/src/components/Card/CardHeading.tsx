@@ -12,7 +12,6 @@ export interface CardHeadingProps
 }
 
 const StyledCardHeading = styled(Heading)`
-  font-weight: 400;
   margin-top: 0;
 `;
 
@@ -32,7 +31,7 @@ export const CardHeading = React.forwardRef<
       level={headingLevel ? headingLevel : 4}
       ref={ref}
       testId={props.testId}
-      visualStyle={TypographyVisualStyle.headingMedium}
+      visualStyle={TypographyVisualStyle.headingSmall}
     >
       {children}
     </StyledCardHeading>
