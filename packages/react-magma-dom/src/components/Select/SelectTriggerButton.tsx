@@ -1,6 +1,5 @@
 import React from 'react';
 import { inputBaseStyles } from '../InputBase';
-//import { CaretDownIcon } from 'react-magma-icons';
 import { defaultComponents, SelectComponents } from '../Select/components';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '../../theme/styled';
