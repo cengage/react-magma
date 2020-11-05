@@ -3,6 +3,11 @@
     "packages/*"
   ],
   "command": {
+    "bootstrap": {
+      "ignore": [
+        "react-magma-legacy-selects"
+      ]
+    },
     "run": {
       "ignore": [
         "react-magma-legacy-selects"
