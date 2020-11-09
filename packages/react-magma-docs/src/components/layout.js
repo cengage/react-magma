@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { MDXProvider } from '@mdx-js/react';
-import { SkipLinkContent, Label } from 'react-magma-dom';
+import { SkipLinkContent, Label, Heading } from 'react-magma-dom';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import { convertTextToId } from '../utils';
 import './layout.css';
@@ -54,11 +54,19 @@ const Table = props => (
 );
 
 const SectionHeading = props => (
-  <h2 id={convertTextToId(props.children)}>{props.children}</h2>
+  <Heading
+    level={2}
+    id={convertTextToId(props.children)}
+    style={{ marginTop: '-60px', paddingTop: '88px' }}
+  >
+    {props.children}
+  </Heading>
 );
 
 const LinkHeading = props => (
-  <h3 id={convertTextToId(props.children)}>{props.children}</h3>
+  <Heading level={3} id={convertTextToId(props.children)}>
+    {props.children}
+  </Heading>
 );
 
 const Layout = ({ children, pageContext }) => {
