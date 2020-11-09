@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.117](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.116...v2.0.0-beta.117) (2020-11-09)
+
+
+### Bug Fixes
+
+* **badge:** export badgeVariant enum ([ac8303b](http://stash.cengage.com:7999/FRONT/react-magma/commits/ac8303b2fe0c02901f711c62fcc80303c2822b4f))
+* **form-group:** make helperMessage prop optional ([0b3076a](http://stash.cengage.com:7999/FRONT/react-magma/commits/0b3076ad0e3673c8916e7b2ebfe6024c43e58c7d))
+
+
+
+
+
 # [2.0.0-beta.115](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.114...v2.0.0-beta.115) (2020-11-02)
 
 

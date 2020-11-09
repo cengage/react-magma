@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.117](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.116...v2.0.0-beta.117) (2020-11-09)
+
+
+### Bug Fixes
+
+* **badge:** export badgeVariant enum ([ac8303b](http://stash.cengage.com:7999/FRONT/react-magma/commits/ac8303b2fe0c02901f711c62fcc80303c2822b4f))
+* **docs:** don't link local legacy selects ([0fed32f](http://stash.cengage.com:7999/FRONT/react-magma/commits/0fed32f21cc6cbcdd6e2c20e5f2aee081d99f0d2))
+* **docs:** fix linking of icons/legacy-selects ([e07b388](http://stash.cengage.com:7999/FRONT/react-magma/commits/e07b38849e9e89a260e087879b6bd6050f30563e))
+* **form-group:** make helperMessage prop optional ([0b3076a](http://stash.cengage.com:7999/FRONT/react-magma/commits/0b3076ad0e3673c8916e7b2ebfe6024c43e58c7d))
+* **icons:** always force bootstrap linking ([edc3135](http://stash.cengage.com:7999/FRONT/react-magma/commits/edc313562ed76c4a0cee92be5a85409bf0885e58))
+
+
+
+
+
 # [2.0.0-beta.116](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.115...v2.0.0-beta.116) (2020-11-03)
 
 **Note:** Version bump only for package react-magma
