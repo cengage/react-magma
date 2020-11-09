@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.117](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.116...v2.0.0-beta.117) (2020-11-09)
+
+
+### Bug Fixes
+
+* **docs:** fix linking of icons/legacy-selects ([e07b388](http://stash.cengage.com:7999/FRONT/react-magma/commits/e07b38849e9e89a260e087879b6bd6050f30563e))
+
+
+
+
+
 # [2.0.0-beta.116](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.115...v2.0.0-beta.116) (2020-11-03)
 
 **Note:** Version bump only for package react-magma-docs

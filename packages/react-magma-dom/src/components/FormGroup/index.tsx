@@ -7,7 +7,7 @@ import { omit, useGenerateId } from '../../utils';
 export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   containerStyle?: React.CSSProperties;
   errorMessage?: React.ReactNode;
-  helperMessage;
+  helperMessage?: React.ReactNode;
   isInverse?: boolean;
   isTextVisuallyHidden?: boolean;
   labelledById?: string;
