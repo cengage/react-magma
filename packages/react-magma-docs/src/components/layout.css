@@ -593,15 +593,6 @@ pre tt:after {
   }
 }
 
-.content-article > div > h1 {
-  margin-top: 0;
-}
-
-.content-article > div > h2 {
-  margin-top: -60px;
-  padding-top: 88px;
-}
-
 .pre-container {
   border: 1px solid rgba(0, 0, 0, 0.1);
   display: grid;
