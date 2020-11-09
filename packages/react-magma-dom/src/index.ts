@@ -1,7 +1,12 @@
 export { Alert, AlertProps } from './components/Alert';
 export { AlertVariant } from './components/AlertBase';
 export { Announce, AnnounceProps } from './components/Announce';
-export { Badge, BadgeColor, BadgeProps } from './components/Badge';
+export {
+  Badge,
+  BadgeColor,
+  BadgeProps,
+  BadgeVariant,
+} from './components/Badge';
 export { Banner, BannerProps } from './components/Banner';
 export { Breadcrumb, BreadcrumbProps } from './components/Breadcrumb';
 export { BreadcrumbItem } from './components/Breadcrumb/Item';
