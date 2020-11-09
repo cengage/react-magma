@@ -10,7 +10,15 @@ import {
   QuestionCircleIcon,
   Search2Icon,
 } from 'react-magma-icons';
-import { Input, Button, IconButton, Spinner, Tooltip } from 'react-magma-dom';
+import {
+  Input,
+  Button,
+  IconButton,
+  Spinner,
+  Tooltip,
+  Card,
+  CardBody,
+} from 'react-magma-dom';
 import DocsHeading from '../../components/docs-heading';
 import { Link } from 'gatsby';
 import { SimplePropsTable } from '../../components/props-table';
@@ -198,24 +206,26 @@ The `inputSize` prop can be used to control the input size. Options are `medium`
 `isInverse` is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
 
 ```.jsx
-    <div style={{ background : '#00263E', padding: '20px' }}>
-      <Input
-          id='inputInverse'
-          isInverse
-          labelText='Inverse Input'
-          placeholder='Type in here' />
+    <Card isInverse>
+      <CardBody>
+        <Input
+            id='inputInverse'
+            isInverse
+            labelText='Inverse Input'
+            placeholder='Type in here' />
 
-      <Input
-          helperMessage='Helper text'
-          isInverse
-          labelText='Inverse Input with Helper Text' />
+        <Input
+            helperMessage='Helper text'
+            isInverse
+            labelText='Inverse Input with Helper Text' />
 
-      <Input
-          errorMessage='Please fill out this field'
-          isInverse
-          labelText='Inverse Input with Error Message'
-          required />
-    </div>
+        <Input
+            errorMessage='Please fill out this field'
+            isInverse
+            labelText='Inverse Input with Error Message'
+            required />
+      </CardBody>
+    </Card>
 ```
 
 ## Input With Hidden Label
@@ -563,6 +573,8 @@ export default props => (
       Search2Icon,
       Spinner,
       Tooltip,
+      Card,
+      CardBody,
     }}
   />
 );

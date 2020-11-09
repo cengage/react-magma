@@ -5,6 +5,8 @@ title: Combobox
 
 import { ScopeableLayout } from '../../components/layout';
 import {
+  Card,
+  CardBody,
   Combobox,
   ComboboxStateChangeTypes,
   Alert,
@@ -41,84 +43,6 @@ For simple Select functionality, please see the <Link to="/api/select">Select co
       placeholder="Hello"
     />
   </>
-```
-
-## Custom Items
-
-By default each component accepts an array of `items` with either a `string` or an `object` with the shape `{item: string; label: string;}`
-for each `item`. If you need to pass in a custom shape for your `items` you can pass in an additional prop named `itemToString`
-which is a function that returns the string representation of your `item` which will be applied as the label.
-
-<Alert variant="warning">
-  <strong>WARNING</strong> Your function must include a <code>null</code> check.
-</Alert>
-
-If you are using a custom shape for your `items` in a `typescript` project refer to our example of [using your
-custom `type`](/api/combobox#custom_items_typescript).
-
-```.jsx
-  () => {
-    const [controlledSelectedItem, updateControlledSelectedItem] = React.useState('')
-    const [controlledItems, updateControlledItems] = React.useState([
-      { id: 0, name: 'red', representation: 'Red', hex: '#FF0000' },
-      { id: 1, name: 'blue', representation: 'Blue', hex: '#0000FF' },
-      { id: 2, name: 'green', representation: 'Green', hex: '#008000' }
-    ])
-
-    function itemToString(item) {
-      return item ? `${item.representation}${item.hex ? ` (${item.hex})` : ''}` : ''
-    }
-
-    function newItemTransform(item) {
-      const { value } = item;
-
-      return {
-        id: uuid(),
-        name: value,
-        representation: value.charAt(0).toUpperCase() + value.slice(1)
-      }
-    }
-
-    function handleSelectedItemChange(changes) {
-      updateControlledSelectedItem(changes.selectedItem)
-    }
-
-    function handleItemCreated(newItem) {
-      updateControlledSelectedItem(newItem);
-      updateControlledItems(oldItems => [...oldItems, newItem]);
-    }
-
-    return (
-      <>
-        <Combobox
-          labelText="Combobox With Custom Items"
-          defaultItems={[
-            { id: 0, name: 'red', representation: 'Red', hex: '#FF0000' },
-            { id: 1, name: 'blue', representation: 'Blue', hex: '#0000FF' },
-            { id: 2, name: 'green', representation: 'Green', hex: '#008000' }
-          ]}
-          newItemTransform={newItemTransform}
-          itemToString={itemToString}
-        />
-
-
-        { controlledSelectedItem && <>
-          <p><strong>Controlled Selected Item</strong></p>
-          <pre>{JSON.stringify(controlledSelectedItem, null, 2)}</pre>
-        </>}
-
-        <Combobox
-          labelText="Controlled Combobox With Custom Items"
-          items={controlledItems}
-          newItemTransform={newItemTransform}
-          itemToString={itemToString}
-          onItemCreated={handleItemCreated}
-          onSelectedItemChange={handleSelectedItemChange}
-          selectedItem={controlledSelectedItem}
-        />
-      </>
-    )
-  }
 ```
 
 ## Initial State
@@ -461,6 +385,70 @@ relied upon to take the place of the label text.
   )
 ```
 
+## Inverse
+
+The isInverse prop is an optional boolean, that used when the component is to be displayed on a dark background.
+
+```.jsx
+  () => {
+    const [selectedItem, updateSelectedItem] = React.useState('');
+
+    function onSelectedItemChange(changes) {
+      updateSelectedItem(changes.selectedItem);
+    }
+
+
+    const [selectedItems, updateSelectedItems] = React.useState([]);
+
+    function handleSelectedItemsChange(changes) {
+      updateSelectedItems(changes.selectedItems);
+    }
+
+    function handleRemoveSelectedItem(removedItem) {
+      updateSelectedItems(
+        selectedItems.filter(item => item !== removedItem)
+      )
+    }
+
+    return (
+      <Card isInverse>
+        <CardBody>
+          <Combobox
+            id="comboboxInverseId"
+            isInverse
+            name="comboboxInverse"
+            labelText="Combobox"
+            defaultItems={[
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+              { label: 'Green', value: 'green' }
+            ]}
+          />
+
+          <Combobox
+            errorMessage="Please correct this error"
+            isMulti
+            id="comboboxMultiInverseId"
+            isInverse
+            labelText="Multi Combobox"
+            defaultItems={[
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+              { label: 'Green', value: 'green' }
+            ]}
+            initialSelectedItems={[
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+              { label: 'Green', value: 'green' }
+            ]}
+            name="comboboxmultiInverse"
+          />
+        </CardBody>
+      </Card>
+    )
+  }
+```
+
 ## Accessibility
 
 The `getA11yStatusMessage` prop is a passed in function that allows for customization of the screen-reader accessible message whenever the following props
@@ -492,6 +480,9 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
 ```
 
 ## Disable Create Item
+
+The `disableCreateItem` prop is an optional boolean and can be used to prevent the user from creating their own items.
+This is commonly used to provide a typeahead dropdown without allowing custom options.
 
 ```.jsx
   <>
@@ -722,41 +713,43 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
       )
     }
 
-    return (<div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
+    return (
+      <Card isInverse>
+        <CardBody>
+          <Combobox
+            id="comboboxInverseId"
+            isInverse
+            name="comboboxInverse"
+            labelText="Combobox"
+            defaultItems={[
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+              { label: 'Green', value: 'green' }
+            ]}
+          />
 
-      <Combobox
-        id="comboboxInverseId"
-        isInverse
-        name="comboboxInverse"
-        labelText="Combobox"
-        defaultItems={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-      />
-
-      <Combobox
-        errorMessage="Please correct this error"
-        isMulti
-        id="comboboxMultiInverseId"
-        isInverse
-        labelText="Multi Combobox"
-        defaultItems={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-        initialSelectedItems={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-        name="comboboxmultiInverse"
-      />
-    </div>)
-
-  }
+          <Combobox
+            errorMessage="Please correct this error"
+            isMulti
+            id="comboboxMultiInverseId"
+            isInverse
+            labelText="Multi Combobox"
+            defaultItems={[
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+              { label: 'Green', value: 'green' }
+            ]}
+            initialSelectedItems={[
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+              { label: 'Green', value: 'green' }
+            ]}
+            name="comboboxmultiInverse"
+          />
+      </CardBody>
+    </Card>
+  )
+}
 ```
 
 ## Custom Styles
@@ -802,7 +795,149 @@ Please use discretion when adding custom styles.
   }
 ```
 
+## Custom Items
+
+By default each component accepts an array of `items` with either a `string` or an `object` with the shape `{item: string; label: string;}`
+for each `item`. If you need to pass in a custom shape for your `items` you can pass in an additional prop named `itemToString`
+which is a function that returns the string representation of your `item` which will be applied as the label.
+
+<Alert variant="warning">
+  <strong>WARNING</strong> Your function must include a <code>null</code> check.
+</Alert>
+
+If you are using a custom shape for your `items` in a `typescript` project refer to our example of [using your
+custom `type`](/api/combobox#custom_items_typescript).
+
+```.jsx
+  () => {
+    const [controlledSelectedItem, updateControlledSelectedItem] = React.useState('')
+    const [controlledItems, updateControlledItems] = React.useState([
+      { id: 0, name: 'red', representation: 'Red', hex: '#FF0000' },
+      { id: 1, name: 'blue', representation: 'Blue', hex: '#0000FF' },
+      { id: 2, name: 'green', representation: 'Green', hex: '#008000' }
+    ])
+
+    function itemToString(item) {
+      return item ? `${item.representation}${item.hex ? ` (${item.hex})` : ''}` : ''
+    }
+
+    function newItemTransform(item) {
+      const { value } = item;
+
+      return {
+        id: uuid(),
+        name: value,
+        representation: value.charAt(0).toUpperCase() + value.slice(1)
+      }
+    }
+
+    function handleSelectedItemChange(changes) {
+      updateControlledSelectedItem(changes.selectedItem)
+    }
+
+    function handleItemCreated(newItem) {
+      updateControlledSelectedItem(newItem);
+      updateControlledItems(oldItems => [...oldItems, newItem]);
+    }
+
+    return (
+      <>
+        <Combobox
+          labelText="Combobox With Custom Items"
+          defaultItems={[
+            { id: 0, name: 'red', representation: 'Red', hex: '#FF0000' },
+            { id: 1, name: 'blue', representation: 'Blue', hex: '#0000FF' },
+            { id: 2, name: 'green', representation: 'Green', hex: '#008000' }
+          ]}
+          newItemTransform={newItemTransform}
+          itemToString={itemToString}
+        />
+
+
+        { controlledSelectedItem && <>
+          <p><strong>Controlled Selected Item</strong></p>
+          <pre>{JSON.stringify(controlledSelectedItem, null, 2)}</pre>
+        </>}
+
+        <Combobox
+          labelText="Controlled Combobox With Custom Items"
+          items={controlledItems}
+          newItemTransform={newItemTransform}
+          itemToString={itemToString}
+          onItemCreated={handleItemCreated}
+          onSelectedItemChange={handleSelectedItemChange}
+          selectedItem={controlledSelectedItem}
+        />
+      </>
+    )
+  }
+```
+
+## Custom Items Typescript
+
+When using a custom shape for your `items` in a `typescript` project you will need to provide the `Combobox`
+element with the shape of the `items` you are passing in.
+
+```
+  interface CustomComboboxItem {
+    id: number;
+    actual: string;
+    representation: string;
+    hex?: string;
+  }
+
+  () => {
+    const customItems: CustomComboboxItem[] = [
+      {
+        id: 1,
+        actual: "red",
+        representation: "Red",
+        hex: "#FF0000",
+      },
+      {
+        id: 2,
+        actual: "blue",
+        representation: "Blue",
+        hex: "#0000FF",
+      },
+      {
+        id: 3,
+        actual: "green",
+        representation: "Green",
+        hex: "#008000",
+      },
+    ];
+
+    function itemToString(item: CustomComboboxItem) {
+      return item ? `${item.representation} (${item.hex})` : ''
+    }
+
+    function newItemTransform(item: { label: string, value: string }): CustomComboboxItem {
+      const { value } = item;
+
+      return {
+        id: uuid(),
+        name: value,
+        representation: value.charAt(0).toUpperCase() + value.slice(1)
+      }
+    }
+
+    return <>
+      <Combobox<CustomComboboxItem>
+        id="customItemToStringTypescriptId"
+        labelText="Custom Items with Typescript"
+        defaultItems={customItems}
+        itemToString={itemToString}
+        newItemTransform={newItemTransform}
+      />
+    </>
+  }
+```
+
 ## Custom Components
+
+Out of the box, the `Combobox` uses React Magma-styled iconography for the button used to clear the selection, the caret for the dropdown, and the loading animation.
+However, these can be overridden by providing custom components to the `components` prop, in an object containing a `ClearIndicator`, a `DropdownIndicator` and a `LoadingIndicator`.
 
 ```.jsx
   () => {
@@ -907,67 +1042,6 @@ Placeholders are specific keywords surrounded by curly braces.
         initialSelectedItems={[{ label: 'Red', value: 'red' }]}
       />
     </I18nContext.Provider>)
-  }
-```
-
-## Custom Items Typescript
-
-When using a custom shape for your `items` in a `typescript` project you will need to provide the `Combobox`
-element with the shape of the `items` you are passing in.
-
-```
-  interface CustomComboboxItem {
-    id: number;
-    actual: string;
-    representation: string;
-    hex?: string;
-  }
-
-  () => {
-    const customItems: CustomComboboxItem[] = [
-      {
-        id: 1,
-        actual: "red",
-        representation: "Red",
-        hex: "#FF0000",
-      },
-      {
-        id: 2,
-        actual: "blue",
-        representation: "Blue",
-        hex: "#0000FF",
-      },
-      {
-        id: 3,
-        actual: "green",
-        representation: "Green",
-        hex: "#008000",
-      },
-    ];
-
-    function itemToString(item: CustomComboboxItem) {
-      return item ? `${item.representation} (${item.hex})` : ''
-    }
-
-    function newItemTransform(item: { label: string, value: string }): CustomComboboxItem {
-      const { value } = item;
-
-      return {
-        id: uuid(),
-        name: value,
-        representation: value.charAt(0).toUpperCase() + value.slice(1)
-      }
-    }
-
-    return <>
-      <Combobox<CustomComboboxItem>
-        id="customItemToStringTypescriptId"
-        labelText="Custom Items with Typescript"
-        defaultItems={customItems}
-        itemToString={itemToString}
-        newItemTransform={newItemTransform}
-      />
-    </>
   }
 ```
 
@@ -1248,6 +1322,8 @@ export default props => (
   <ScopeableLayout
     {...props}
     components={{
+      Card,
+      CardBody,
       Combobox,
       Alert,
       uuid,

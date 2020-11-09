@@ -62,7 +62,11 @@ export function buildCalloutBackground(
 
 const StyledCard = styled.div<CardProps>`
   background: ${props =>
-    props.background ? props.background : props.theme.colors.neutral08};
+    props.background
+      ? props.background
+      : props.isInverse
+      ? props.theme.colors.foundation
+      : props.theme.colors.neutral08};
   border: 1px solid
     ${props =>
       props.background ? props.background : props.theme.colors.neutral06};
@@ -98,9 +102,17 @@ const StyledCard = styled.div<CardProps>`
     `}
 `;
 
+interface NavTabsContextInterface {
+  isInverse?: boolean;
+}
+
+export const CardContext = React.createContext<NavTabsContextInterface>({
+  isInverse: false,
+});
+
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(
   (props, ref) => {
-    const { align, children, testId, width, ...other } = props;
+    const { align, children, isInverse, testId, width, ...other } = props;
 
     const theme = React.useContext(ThemeContext);
 
@@ -115,11 +127,18 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
         {...other}
         align={align ? align : CardAlignment.left}
         data-testid={testId}
-        width={widthString}
+        isInverse={isInverse}
         ref={ref}
         theme={theme}
+        width={widthString}
       >
-        {children}
+        <CardContext.Provider
+          value={{
+            isInverse,
+          }}
+        >
+          {children}
+        </CardContext.Provider>
       </StyledCard>
     );
   }

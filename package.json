@@ -8,7 +8,7 @@
     "test-watch": "lerna exec --scope react-magma-dom 'npm t -- --watch'",
     "test-dom": "lerna exec --scope react-magma-dom 'npm t -- --watch --coverage=false'",
     "build": "lerna run build --stream --no-progress",
-    "bootstrap": "lerna bootstrap && lerna exec --scope react-magma-docs 'rm -rf node_modules/react node_modules/react-dom'",
+    "bootstrap": "lerna bootstrap --force-local && lerna exec --scope react-magma-docs 'rm -rf node_modules/react node_modules/react-dom'",
     "lint": "lerna run lint",
     "docs": "lerna exec --scope react-magma-docs gatsby develop",
     "clean": "lerna exec --scope react-magma-docs 'gatsby clean' && lerna clean --yes && rimraf node_modules",
@@ -89,7 +89,5 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "dependencies": {
-    "prettier": "^2.1.2"
-  }
+  "dependencies": {}
 }

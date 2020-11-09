@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { MDXProvider } from '@mdx-js/react';
-import { SkipLinkContent, Label } from 'react-magma-dom';
+import { SkipLinkContent, Label, Heading } from 'react-magma-dom';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import { convertTextToId } from '../utils';
 import './layout.css';
@@ -55,11 +55,19 @@ const Table = props => (
 );
 
 const SectionHeading = props => (
-  <h2 id={convertTextToId(props.children)}>{props.children}</h2>
+  <Heading
+    level={2}
+    id={convertTextToId(props.children)}
+    style={{ marginTop: '-60px', paddingTop: '88px' }}
+  >
+    {props.children}
+  </Heading>
 );
 
 const LinkHeading = props => (
-  <h3 id={convertTextToId(props.children)}>{props.children}</h3>
+  <Heading level={3} id={convertTextToId(props.children)}>
+    {props.children}
+  </Heading>
 );
 
 const Layout = ({ children, pageContext }) => {
@@ -77,9 +85,7 @@ const Layout = ({ children, pageContext }) => {
         }}
       >
         <article className="content-article">
-          <SkipLinkContent>
-            {children}
-          </SkipLinkContent>
+          <SkipLinkContent>{children}</SkipLinkContent>
         </article>
       </MDXProvider>
     </LayoutComponent>
@@ -91,7 +97,7 @@ export const ScopeableLayout = ({ children, components, pageContext }) => {
     pageContext && pageContext.frontmatter
       ? pageContext.frontmatter.pageTitle || pageContext.frontmatter.title || ''
       : '';
-  const properties = (pageContext && pageContext.properties) || []
+  const properties = (pageContext && pageContext.properties) || [];
   return (
     <LayoutComponent title={title}>
       <MDXProvider
@@ -106,9 +112,11 @@ export const ScopeableLayout = ({ children, components, pageContext }) => {
           ...properties.reduce((acc, { name, properties }) => {
             return {
               ...acc,
-              [name]: (args) => <SimplePropsTable propertyValues={properties} {...args} />
+              [name]: args => (
+                <SimplePropsTable propertyValues={properties} {...args} />
+              ),
             };
-          }, {})
+          }, {}),
         }}
       >
         <article className="content-article">

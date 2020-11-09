@@ -1,13 +1,13 @@
 {
   "packages": [
-    "packages/*"
+    "packages/react-magma-docs",
+    "packages/react-magma-dom",
+    "packages/react-magma-icons"
   ],
   "command": {
-    "run": {
-      "ignore": [
-        "react-magma-legacy-selects"
-      ]
+    "bootstrap": {
+      "forceLocal": true
     }
   },
-  "version": "2.0.0-beta.113"
+  "version": "2.0.0-beta.119"
 }

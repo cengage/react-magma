@@ -10,6 +10,7 @@ import {
   CrossIcon,
   InfoIcon,
   AngleDownIcon,
+  HomeIcon,
 } from 'react-magma-icons';
 
 import { DatePicker, VisuallyHidden, Alert } from 'react-magma-dom';
@@ -75,6 +76,18 @@ so it will be read screen readers.
     </span>
     <span className='demo-icon-container'>
       <AngleDownIcon color="green" title="Some Color" />
+    </span>
+  </p>
+```
+
+## Accessibility
+
+To improve the experience for assistive technology users and remove the icon and its children from the accessibility tree, add the prop `aria-hidden="true"` to your icon.
+
+```.jsx
+  <p>
+    <span className='demo-icon-container'>
+      <HomeIcon aria-hidden="true"/>
     </span>
   </p>
 ```

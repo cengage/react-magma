@@ -4,7 +4,15 @@ title: Radio Button
 ---
 
 import { ScopeableLayout } from '../../components/layout';
-import { Alert, Radio, RadioGroup, Button, magma } from 'react-magma-dom';
+import {
+  Alert,
+  Radio,
+  RadioGroup,
+  Button,
+  Card,
+  CardBody,
+  magma,
+} from 'react-magma-dom';
 import DocsHeading from '../../components/docs-heading';
 import { Link } from 'gatsby';
 import { SimplePropsTable } from '../../components/props-table';
@@ -185,55 +193,60 @@ The `isInverse` property is an optional boolean can be applied to the containing
 
 ```.jsx
 <>
-  <RadioGroup
-    containerStyle={{ background : '#00263E', color: '#fff', marginTop: '24px', padding: '12px' }}
-    labelText='Inverse Radio Buttons'
-    id='inverseGroup'
-    isInverse
-    name='inverse'>
-    <Radio
-        id='inverseRadio'
-        labelText='Inverse'
-        value='default' />
-      <Radio
-          color={magma.colors.success}
-          id='successInverseRadio'
-          labelText='Success inverse'
-          value='success' />
-      <Radio
-          color={magma.colors.danger}
-          id='dangerInverseRadio'
-          labelText='Danger inverse'
-          value='danger' />
-      <Radio
-          color={magma.colors.pop02}
-          id='popInverseRadio'
-          labelText='Pop inverse'
-          value='pop' />
-        <Radio
-            disabled
-            id='disabledInverseRadio'
-            labelText='Disabled inverse'
-            value='disabled' />
-    </RadioGroup>
-
-    <div style={{ background : '#00263E', color: '#fff', marginTop: '24px', padding: '12px' }}>
-      <p>* indicates required fields</p>
+  <Card isInverse style={{marginBottom: magma.spaceScale.spacing04}}>
+    <CardBody>
       <RadioGroup
-        errorMessage="Please select a color"
+        labelText='Inverse Radio Buttons'
+        id='inverseGroup'
         isInverse
-        required
-        labelText='Inverse with Error *'
-        name='requiredFieldsInverse'>
+        name='inverse'>
+        <Radio
+            id='inverseRadio'
+            labelText='Inverse'
+            value='default' />
+          <Radio
+              color={magma.colors.success}
+              id='successInverseRadio'
+              labelText='Success inverse'
+              value='success' />
+          <Radio
+              color={magma.colors.danger}
+              id='dangerInverseRadio'
+              labelText='Danger inverse'
+              value='danger' />
+          <Radio
+              color={magma.colors.pop02}
+              id='popInverseRadio'
+              labelText='Pop inverse'
+              value='pop' />
+            <Radio
+                disabled
+                id='disabledInverseRadio'
+                labelText='Disabled inverse'
+                value='disabled' />
+        </RadioGroup>
+      </CardBody>
+    </Card>
 
-        <Radio
-            labelText='Option 1'
-            value='R' />
-        <Radio
-            labelText='Option2'
-            value='B' />
-      </RadioGroup>
-    </div>
+    <Card isInverse>
+      <CardBody>
+        <p>* indicates required fields</p>
+        <RadioGroup
+          errorMessage="Please select a color"
+          isInverse
+          required
+          labelText='Inverse with Error *'
+          name='requiredFieldsInverse'>
+
+          <Radio
+              labelText='Option 1'
+              value='R' />
+          <Radio
+              labelText='Option2'
+              value='B' />
+        </RadioGroup>
+      </CardBody>
+    </Card>
   </>
 ```
 
@@ -681,6 +694,6 @@ All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/
 export default props => (
   <ScopeableLayout
     {...props}
-    components={{ Alert, Radio, RadioGroup, Button, magma }}
+    components={{ Alert, Radio, RadioGroup, Button, Card, CardBody, magma }}
   />
 );

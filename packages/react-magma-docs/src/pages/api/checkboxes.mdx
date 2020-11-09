@@ -10,6 +10,8 @@ import { ScopeableLayout } from '../../components/layout';
 import {
   Alert,
   Button,
+  Card,
+  CardBody,
   Checkbox,
   FormGroup,
   IndeterminateCheckbox,
@@ -159,52 +161,56 @@ Adding the optional boolean prop `disabled` will apply disabled styles and add t
 `isInverse` is an optional boolean prop, that may be passed in when the component is to be displayed on a dark background.
 
 ```.jsx
-  <FormGroup containerStyle={{ background : '#00263E',color: '#FFFFFF', padding: '10px' }} labelText="Choose Inverse Options">
-    <Checkbox
-        isInverse
-      labelText='Inverse' />
-    <Checkbox
-        checked
-        isInverse
-      labelText='Inverse checked' />
-    <Checkbox
-        checked
-        color={magma.colors.success}
-        isInverse
-        labelText='Success inverse' />
-    <Checkbox
-        checked
-        color={magma.colors.danger}
-        isInverse
-        labelText='Danger inverse' />
-    <Checkbox
-        checked
-        color={magma.colors.pop02}
-        isInverse
-        labelText='Pop inverse' />
-    <IndeterminateCheckbox
-          status='indeterminate'
-          isInverse
-          labelText='Indeterminate inverse' />
+<Card isInverse>
+  <CardBody>
+    <FormGroup labelText="Choose Inverse Options">
       <Checkbox
-          disabled
           isInverse
-          labelText='Disabled inverse' />
+        labelText='Inverse' />
       <Checkbox
           checked
-          disabled
           isInverse
-          labelText='Disabled checked inverse' />
+        labelText='Inverse checked' />
+      <Checkbox
+          checked
+          color={magma.colors.success}
+          isInverse
+          labelText='Success inverse' />
+      <Checkbox
+          checked
+          color={magma.colors.danger}
+          isInverse
+          labelText='Danger inverse' />
+      <Checkbox
+          checked
+          color={magma.colors.pop02}
+          isInverse
+          labelText='Pop inverse' />
       <IndeterminateCheckbox
-          disabled
-          isInverse
-          labelText='Disabled indeterminate inverse'
-          status='indeterminate' />
-       <Checkbox
-          errorMessage="Please check this box"
-          isInverse
-          labelText='Checkbox with error' />
-    </FormGroup>
+            status='indeterminate'
+            isInverse
+            labelText='Indeterminate inverse' />
+        <Checkbox
+            disabled
+            isInverse
+            labelText='Disabled inverse' />
+        <Checkbox
+            checked
+            disabled
+            isInverse
+            labelText='Disabled checked inverse' />
+        <IndeterminateCheckbox
+            disabled
+            isInverse
+            labelText='Disabled indeterminate inverse'
+            status='indeterminate' />
+        <Checkbox
+            errorMessage="Please check this box"
+            isInverse
+            labelText='Checkbox with error' />
+      </FormGroup>
+  </CardBody>
+</Card>
 ```
 
 ## Text Position
@@ -461,6 +467,8 @@ export default props => (
     components={{
       Alert,
       Button,
+      Card,
+      CardBody,
       Checkbox,
       FormGroup,
       IndeterminateCheckbox,

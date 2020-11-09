@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.119](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.118...v2.0.0-beta.119) (2020-11-09)
+
+### Bug Fixes
+
+- **card:** fix heading styles ([bdd9598](http://stash.cengage.com:7999/FRONT/react-magma/commits/bdd95984b7c88f1be19f867574f8672228169de2))
+
+### Features
+
+- **select:** allow for custom dropdown indicator ([45f2d0d](http://stash.cengage.com:7999/FRONT/react-magma/commits/45f2d0d3e27ed53185bbc2511180657e57ffa8e4))
+
+# [2.0.0-beta.118](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.117...v2.0.0-beta.118) (2020-11-09)
+
+**Note:** Version bump only for package react-magma-dom
+
+# [2.0.0-beta.117](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.116...v2.0.0-beta.117) (2020-11-09)
+
+### Bug Fixes
+
+- **badge:** export badgeVariant enum ([ac8303b](http://stash.cengage.com:7999/FRONT/react-magma/commits/ac8303b2fe0c02901f711c62fcc80303c2822b4f))
+- **form-group:** make helperMessage prop optional ([0b3076a](http://stash.cengage.com:7999/FRONT/react-magma/commits/0b3076ad0e3673c8916e7b2ebfe6024c43e58c7d))
+
+# [2.0.0-beta.115](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.114...v2.0.0-beta.115) (2020-11-02)
+
+### Features
+
+- **card:** give inverse cards default bgcolor, add context for inverse ([4549420](http://stash.cengage.com:7999/FRONT/react-magma/commits/4549420d06df33d9905f8d35975ed3705b531bb0))
+
+# [2.0.0-beta.114](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.113...v2.0.0-beta.114) (2020-10-30)
+
+### Features
+
+- **linkbutton:** remove link button component ([99fe51f](http://stash.cengage.com:7999/FRONT/react-magma/commits/99fe51f7fe34f75a62d5b7d5ff89e02b933ac677))
+
+### BREAKING CHANGES
+
+- **linkbutton:** removed LinkButton component
+
 # [2.0.0-beta.113](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.112...v2.0.0-beta.113) (2020-10-29)
 
 ### Code Refactoring

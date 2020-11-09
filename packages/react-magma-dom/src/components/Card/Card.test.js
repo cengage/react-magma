@@ -143,15 +143,12 @@ describe('Card', () => {
   });
 
   it('should render the card component with inverse styles', () => {
-    const { getByText } = render(
-      <Card background="red" isInverse>
-        {TEXT}
-      </Card>
-    );
+    const { getByText } = render(<Card isInverse>{TEXT}</Card>);
 
     const card = getByText(TEXT);
 
-    expect(card).toHaveStyleRule('color', '#FFFFFF');
+    expect(card).toHaveStyleRule('background', magma.colors.foundation);
+    expect(card).toHaveStyleRule('color', magma.colors.neutral08);
   });
 
   it('should render a card with right alignment', () => {

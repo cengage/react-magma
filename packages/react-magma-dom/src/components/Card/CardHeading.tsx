@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
+import { CardContext } from './';
 import { Heading } from '../Heading';
 import { TypographyColor, TypographyVisualStyle } from '../Typography';
 
@@ -15,7 +16,6 @@ export interface CardHeadingProps
 }
 
 const StyledCardHeading = styled(Heading)`
-  font-weight: 400;
   margin-top: 0;
 `;
 
@@ -25,14 +25,17 @@ export const CardHeading = React.forwardRef<
 >((props, ref) => {
   const { headingLevel, children, ...other } = props;
 
+  const context = React.useContext(CardContext);
+
   return (
     <StyledCardHeading
       {...other}
       color={TypographyColor.default}
+      isInverse={context.isInverse || props.isInverse}
       level={headingLevel ? headingLevel : 4}
-      visualStyle={TypographyVisualStyle.headingMedium}
       ref={ref}
       testId={props.testId}
+      visualStyle={TypographyVisualStyle.headingSmall}
     >
       {children}
     </StyledCardHeading>

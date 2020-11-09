@@ -106,7 +106,9 @@ export function Select<T>(props: SelectInterface<T>) {
       getValidItem(passedInSelectedItem, 'selectedItem')),
   });
 
-  const { ClearIndicator } = defaultComponents({ ...customComponents });
+  const { ClearIndicator } = defaultComponents({
+    ...customComponents,
+  });
 
   const toggleButtonProps = getToggleButtonProps({
     disabled: disabled,
@@ -152,6 +154,7 @@ export function Select<T>(props: SelectInterface<T>) {
     >
       <SelectTriggerButton
         ariaDescribedBy={ariaDescribedBy}
+        customComponents={customComponents}
         toggleButtonProps={toggleButtonProps}
         hasError={hasError}
         disabled={disabled}
