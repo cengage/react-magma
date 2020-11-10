@@ -7,15 +7,12 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { buttonStyles } from '../StyledButton';
 import { buildPropsWithDefaultButtonStyles } from '../StyledButton/styles';
 
-interface anchorAttributesRemoveColor
-  extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'color'> {}
-
-interface anchorAttributesRemoveType
-  extends Omit<anchorAttributesRemoveColor, 'type'> {}
-
 export interface HyperlinkProps
   extends ButtonStyles,
-    anchorAttributesRemoveType {
+    Omit<
+      React.AnchorHTMLAttributes<HTMLAnchorElement>,
+      'color' | 'type' | 'href'
+    > {
   children: string | React.ReactNode | ((props: object) => React.ReactNode);
   styledAs?: 'Button' | 'Link';
   testId?: string;
@@ -61,10 +58,10 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
       return (
         <ClassNames>
           {({ css: composedCss }) => {
-            const stylesClass = composedCss(composedStyle);
+            const className = composedCss(composedStyle);
             return (children as (props: object) => React.ReactNode)({
               to,
-              stylesClass,
+              className,
             });
           }}
         </ClassNames>
