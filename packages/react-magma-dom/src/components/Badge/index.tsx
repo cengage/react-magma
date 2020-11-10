@@ -4,6 +4,9 @@ import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { darken, lighten } from 'polished';
 
+/**
+ * @children required
+ */
 export interface BadgeProps extends React.HTMLAttributes<HTMLButtonElement> {
   /**
    * The color variant of the badge

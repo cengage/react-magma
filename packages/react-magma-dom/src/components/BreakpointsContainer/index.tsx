@@ -10,6 +10,9 @@ export enum BreakpointScreenSize {
   xl = 'xl',
 }
 
+/**
+ * @children required
+ */
 export interface BreakpointsContainerProps
   extends React.HTMLAttributes<HTMLDivElement> {
   /**

@@ -6,7 +6,18 @@
     "flags": {
       "isExported": true
     },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
     "id": "AlertProps",
+    "tags": {
+      "children": "required"
+    },
     "properties": {
       "children": {
         "name": "children",
@@ -23,7 +34,7 @@
           "name": "string"
         },
         "description": "The text read by screen readers for the close button",
-        "defaultValue": "\"Close this message\"\n"
+        "defaultValue": "\"Close this message\""
       },
       "isDismissible": {
         "name": "isDismissible",
@@ -32,7 +43,7 @@
           "name": "boolean"
         },
         "description": "If true, the component will be able to be dismissed and will include a close button",
-        "defaultValue": "false\n"
+        "defaultValue": "false"
       },
       "isInverse": {
         "name": "isInverse",
@@ -63,10 +74,16 @@
         "name": "variant",
         "required": false,
         "type": {
-          "name": "enum, one of: `AlertVariant.danger` `AlertVariant.info` `AlertVariant.success` `AlertVariant.warning`"
+          "name": "enum",
+          "options": [
+            "AlertVariant.danger",
+            "AlertVariant.info",
+            "AlertVariant.success",
+            "AlertVariant.warning"
+          ]
         },
         "description": "The variant of the alert, indicating its function in the UI",
-        "defaultValue": "`AlertVariant.info`\n"
+        "defaultValue": "`AlertVariant.info`"
       }
     }
   },
@@ -78,15 +95,8 @@
       "isExported": true
     },
     "id": "AlertBaseProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "closeAriaLabel": {
         "name": "closeAriaLabel",
         "required": false,
@@ -178,7 +188,13 @@
         "name": "variant",
         "required": false,
         "type": {
-          "name": "enum, one of: `AlertVariant.danger` `AlertVariant.info` `AlertVariant.success` `AlertVariant.warning`"
+          "name": "enum",
+          "options": [
+            "AlertVariant.danger",
+            "AlertVariant.info",
+            "AlertVariant.success",
+            "AlertVariant.warning"
+          ]
         }
       }
     }
@@ -190,7 +206,18 @@
     "flags": {
       "isExported": true
     },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
     "id": "AnnounceProps",
+    "tags": {
+      "children": "required"
+    },
     "properties": {
       "children": {
         "name": "children",
@@ -204,10 +231,15 @@
         "name": "politeness",
         "required": false,
         "type": {
-          "name": "enum, one of: `AnnouncePoliteness.assertive` `AnnouncePoliteness.off` `AnnouncePoliteness.polite`"
+          "name": "enum",
+          "options": [
+            "AnnouncePoliteness.assertive",
+            "AnnouncePoliteness.off",
+            "AnnouncePoliteness.polite"
+          ]
         },
         "description": "Value of the `aria-live` attribute",
-        "defaultValue": "AnnouncePoliteness.polite\n"
+        "defaultValue": "AnnouncePoliteness.polite"
       },
       "testId": {
         "name": "testId",
@@ -226,7 +258,18 @@
     "flags": {
       "isExported": true
     },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
     "id": "BadgeProps",
+    "tags": {
+      "children": "required"
+    },
     "properties": {
       "children": {
         "name": "children",
@@ -240,10 +283,17 @@
         "name": "color",
         "required": false,
         "type": {
-          "name": "enum, one of: `BadgeColor.danger` `BadgeColor.light` `BadgeColor.primary` `BadgeColor.secondary` `BadgeColor.success`"
+          "name": "enum",
+          "options": [
+            "BadgeColor.danger",
+            "BadgeColor.light",
+            "BadgeColor.primary",
+            "BadgeColor.secondary",
+            "BadgeColor.success"
+          ]
         },
         "description": "The color variant of the badge",
-        "defaultValue": "BadgeColor.primary\n"
+        "defaultValue": "BadgeColor.primary"
       },
       "onClick": {
         "name": "onClick",
@@ -265,10 +315,14 @@
         "name": "variant",
         "required": false,
         "type": {
-          "name": "enum, one of: `BadgeVariant.counter` `BadgeVariant.label`"
+          "name": "enum",
+          "options": [
+            "BadgeVariant.counter",
+            "BadgeVariant.label"
+          ]
         },
         "description": "Indicates the style variant of the component",
-        "defaultValue": "BadgeVariant.label\n"
+        "defaultValue": "BadgeVariant.label"
       }
     }
   },
@@ -279,8 +333,27 @@
     "flags": {
       "isExported": true
     },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
     "id": "BannerProps",
+    "tags": {
+      "children": "required"
+    },
     "properties": {
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component"
+      },
       "actionButtonOnClick": {
         "name": "actionButtonOnClick",
         "required": false,
@@ -297,14 +370,6 @@
         },
         "description": "The text displayed inside of the action button"
       },
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "closeAriaLabel": {
         "name": "closeAriaLabel",
         "required": false,
@@ -312,7 +377,7 @@
           "name": "string"
         },
         "description": "The text read by screen readers for the close button",
-        "defaultValue": "\"Close this message\"\n"
+        "defaultValue": "\"Close this message\""
       },
       "isDismissible": {
         "name": "isDismissible",
@@ -321,7 +386,7 @@
           "name": "boolean"
         },
         "description": "If true, the component will be able to be dismissed and will include a close button",
-        "defaultValue": "false\n"
+        "defaultValue": "false"
       },
       "isInverse": {
         "name": "isInverse",
@@ -352,10 +417,16 @@
         "name": "variant",
         "required": false,
         "type": {
-          "name": "enum, one of: `AlertVariant.danger` `AlertVariant.info` `AlertVariant.success` `AlertVariant.warning`"
+          "name": "enum",
+          "options": [
+            "AlertVariant.danger",
+            "AlertVariant.info",
+            "AlertVariant.success",
+            "AlertVariant.warning"
+          ]
         },
         "description": "The variant of the alert, indicating its function in the UI",
-        "defaultValue": "`AlertVariant.info`\n"
+        "defaultValue": "`AlertVariant.info`"
       }
     }
   },
@@ -366,7 +437,18 @@
     "flags": {
       "isExported": true
     },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
     "id": "BreadcrumbItemProps",
+    "tags": {
+      "children": "required"
+    },
     "properties": {
       "children": {
         "name": "children",
@@ -401,6 +483,7 @@
       "isExported": true
     },
     "id": "BreadCrumbContextInterface",
+    "tags": {},
     "properties": {
       "isInverse": {
         "name": "isInverse",
@@ -420,7 +503,18 @@
     "flags": {
       "isExported": true
     },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
     "id": "BreadcrumbProps",
+    "tags": {
+      "children": "required"
+    },
     "properties": {
       "children": {
         "name": "children",
@@ -457,23 +551,23 @@
       "isExported": true
     },
     "id": "BreakpointProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "screenSize": {
         "name": "screenSize",
         "required": false,
         "type": {
-          "name": "enum, one of: `BreakpointScreenSize.large` `BreakpointScreenSize.medium` `BreakpointScreenSize.small` `BreakpointScreenSize.xl` `BreakpointScreenSize.xs`"
+          "name": "enum",
+          "options": [
+            "BreakpointScreenSize.large",
+            "BreakpointScreenSize.medium",
+            "BreakpointScreenSize.small",
+            "BreakpointScreenSize.xl",
+            "BreakpointScreenSize.xs"
+          ]
         },
         "description": "The relative screen size for the breakpoint. Will go from pixel width specified up to the next breakpoint.",
-        "defaultValue": "BreakpointScreenSize.xs\n"
+        "defaultValue": "BreakpointScreenSize.xs"
       },
       "testId": {
         "name": "testId",
@@ -492,17 +586,19 @@
     "flags": {
       "isExported": true
     },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
     "id": "BreakpointsContainerProps",
+    "tags": {
+      "children": "required"
+    },
     "properties": {
-      "breakpoints": {
-        "name": "breakpoints",
-        "required": false,
-        "type": {
-          "name": "object"
-        },
-        "description": "Object that defines the pixel size of individual breakpoints",
-        "defaultValue": "{ xs: 0, small: 600, medium: 768, large: 1024, xl: 1200 }\n"
-      },
       "children": {
         "name": "children",
         "required": true,
@@ -510,6 +606,15 @@
           "name": "ReactNode"
         },
         "description": "The content of the component"
+      },
+      "breakpoints": {
+        "name": "breakpoints",
+        "required": false,
+        "type": {
+          "name": "object"
+        },
+        "description": "Object that defines the pixel size of individual breakpoints",
+        "defaultValue": "{ xs: 0, small: 600, medium: 768, large: 1024, xl: 1200 }"
       }
     }
   },
@@ -518,7 +623,18 @@
     "kind": 256,
     "kindString": "Interface",
     "flags": {},
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
     "id": "BaseButtonProps",
+    "tags": {
+      "children": "required"
+    },
     "properties": {
       "children": {
         "name": "children",
@@ -540,7 +656,12 @@
         "name": "type",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonType.button` `ButtonType.reset` `ButtonType.submit`"
+          "name": "enum",
+          "options": [
+            "ButtonType.button",
+            "ButtonType.reset",
+            "ButtonType.submit"
+          ]
         },
         "description": "The type attribute of the button\nButtonType.button"
       }
@@ -554,15 +675,23 @@
       "isExported": true
     },
     "id": "ButtonStyles",
+    "tags": {},
     "properties": {
       "color": {
         "name": "color",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonColor.danger` `ButtonColor.marketing` `ButtonColor.primary` `ButtonColor.secondary` `ButtonColor.success`"
+          "name": "enum",
+          "options": [
+            "ButtonColor.danger",
+            "ButtonColor.marketing",
+            "ButtonColor.primary",
+            "ButtonColor.secondary",
+            "ButtonColor.success"
+          ]
         },
         "description": "The color of the button, indicating its function in the UI",
-        "defaultValue": "ButtonColor.primary\n"
+        "defaultValue": "ButtonColor.primary"
       },
       "isFullWidth": {
         "name": "isFullWidth",
@@ -571,7 +700,7 @@
           "name": "boolean"
         },
         "description": " Set the button to display full-width.",
-        "defaultValue": "false\n"
+        "defaultValue": "false"
       },
       "isInverse": {
         "name": "isInverse",
@@ -586,34 +715,54 @@
         "name": "shape",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonShape.fill` `ButtonShape.leftCap` `ButtonShape.rightCap` `ButtonShape.round`"
+          "name": "enum",
+          "options": [
+            "ButtonShape.fill",
+            "ButtonShape.leftCap",
+            "ButtonShape.rightCap",
+            "ButtonShape.round"
+          ]
         },
         "description": "Defines the border radius",
-        "defaultValue": "ButtonShape.fill\n"
+        "defaultValue": "ButtonShape.fill"
       },
       "size": {
         "name": "size",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonSize.large` `ButtonSize.medium` `ButtonSize.small`"
+          "name": "enum",
+          "options": [
+            "ButtonSize.large",
+            "ButtonSize.medium",
+            "ButtonSize.small"
+          ]
         },
         "description": "The relative size of the button",
-        "defaultValue": "ButtonSize.medium\n"
+        "defaultValue": "ButtonSize.medium"
       },
       "textTransform": {
         "name": "textTransform",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonTextTransform.none` `ButtonTextTransform.uppercase`"
+          "name": "enum",
+          "options": [
+            "ButtonTextTransform.none",
+            "ButtonTextTransform.uppercase"
+          ]
         },
         "description": "Determines whether the button appears in all-caps",
-        "defaultValue": "ButtonTextTransform.uppercase\n"
+        "defaultValue": "ButtonTextTransform.uppercase"
       },
       "type": {
         "name": "type",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonType.button` `ButtonType.reset` `ButtonType.submit`"
+          "name": "enum",
+          "options": [
+            "ButtonType.button",
+            "ButtonType.reset",
+            "ButtonType.submit"
+          ]
         },
         "description": "The type attribute of the button\nButtonType.button"
       },
@@ -621,10 +770,15 @@
         "name": "variant",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonVariant.link` `ButtonVariant.outline` `ButtonVariant.solid`"
+          "name": "enum",
+          "options": [
+            "ButtonVariant.link",
+            "ButtonVariant.outline",
+            "ButtonVariant.solid"
+          ]
         },
         "description": "The variant of the button",
-        "defaultValue": "ButtonVariant.solid\n"
+        "defaultValue": "ButtonVariant.solid"
       }
     }
   },
@@ -652,14 +806,6 @@
     },
     "id": "ButtonProps",
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "testId": {
         "name": "testId",
         "required": false,
@@ -672,7 +818,12 @@
         "name": "type",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonType.button` `ButtonType.reset` `ButtonType.submit`"
+          "name": "enum",
+          "options": [
+            "ButtonType.button",
+            "ButtonType.reset",
+            "ButtonType.submit"
+          ]
         },
         "description": "The type attribute of the button\nButtonType.button"
       },
@@ -680,10 +831,17 @@
         "name": "color",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonColor.danger` `ButtonColor.marketing` `ButtonColor.primary` `ButtonColor.secondary` `ButtonColor.success`"
+          "name": "enum",
+          "options": [
+            "ButtonColor.danger",
+            "ButtonColor.marketing",
+            "ButtonColor.primary",
+            "ButtonColor.secondary",
+            "ButtonColor.success"
+          ]
         },
         "description": "The color of the button, indicating its function in the UI",
-        "defaultValue": "ButtonColor.primary\n"
+        "defaultValue": "ButtonColor.primary"
       },
       "isFullWidth": {
         "name": "isFullWidth",
@@ -692,7 +850,7 @@
           "name": "boolean"
         },
         "description": " Set the button to display full-width.",
-        "defaultValue": "false\n"
+        "defaultValue": "false"
       },
       "isInverse": {
         "name": "isInverse",
@@ -707,37 +865,57 @@
         "name": "shape",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonShape.fill` `ButtonShape.leftCap` `ButtonShape.rightCap` `ButtonShape.round`"
+          "name": "enum",
+          "options": [
+            "ButtonShape.fill",
+            "ButtonShape.leftCap",
+            "ButtonShape.rightCap",
+            "ButtonShape.round"
+          ]
         },
         "description": "Defines the border radius",
-        "defaultValue": "ButtonShape.fill\n"
+        "defaultValue": "ButtonShape.fill"
       },
       "size": {
         "name": "size",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonSize.large` `ButtonSize.medium` `ButtonSize.small`"
+          "name": "enum",
+          "options": [
+            "ButtonSize.large",
+            "ButtonSize.medium",
+            "ButtonSize.small"
+          ]
         },
         "description": "The relative size of the button",
-        "defaultValue": "ButtonSize.medium\n"
+        "defaultValue": "ButtonSize.medium"
       },
       "textTransform": {
         "name": "textTransform",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonTextTransform.none` `ButtonTextTransform.uppercase`"
+          "name": "enum",
+          "options": [
+            "ButtonTextTransform.none",
+            "ButtonTextTransform.uppercase"
+          ]
         },
         "description": "Determines whether the button appears in all-caps",
-        "defaultValue": "ButtonTextTransform.uppercase\n"
+        "defaultValue": "ButtonTextTransform.uppercase"
       },
       "variant": {
         "name": "variant",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonVariant.link` `ButtonVariant.outline` `ButtonVariant.solid`"
+          "name": "enum",
+          "options": [
+            "ButtonVariant.link",
+            "ButtonVariant.outline",
+            "ButtonVariant.solid"
+          ]
         },
         "description": "The variant of the button",
-        "defaultValue": "ButtonVariant.solid\n"
+        "defaultValue": "ButtonVariant.solid"
       }
     }
   },
@@ -748,7 +926,18 @@
     "flags": {
       "isExported": true
     },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
     "id": "CardBodyProps",
+    "tags": {
+      "children": "required"
+    },
     "properties": {
       "children": {
         "name": "children",
@@ -775,7 +964,18 @@
     "flags": {
       "isExported": true
     },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
     "id": "CardHeadingProps",
+    "tags": {
+      "children": "required"
+    },
     "properties": {
       "children": {
         "name": "children",
@@ -792,7 +992,7 @@
           "name": "function"
         },
         "description": "Number to indicate which level heading will render (e.g. h1, h2 etc.)",
-        "defaultValue": "4\n"
+        "defaultValue": "4"
       },
       "isInverse": {
         "name": "isInverse",
@@ -820,16 +1020,40 @@
     "flags": {
       "isExported": true
     },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
     "id": "CardProps",
+    "tags": {
+      "children": "required"
+    },
     "properties": {
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component"
+      },
       "align": {
         "name": "align",
         "required": false,
         "type": {
-          "name": "enum, one of: `CardAlignment.center` `CardAlignment.left` `CardAlignment.right`"
+          "name": "enum",
+          "options": [
+            "CardAlignment.center",
+            "CardAlignment.left",
+            "CardAlignment.right"
+          ]
         },
         "description": "Sets the alignment of the card content",
-        "defaultValue": "CardAlignment.left\n"
+        "defaultValue": "CardAlignment.left"
       },
       "background": {
         "name": "background",
@@ -843,18 +1067,16 @@
         "name": "calloutType",
         "required": false,
         "type": {
-          "name": "enum, one of: `CardCalloutType.danger` `CardCalloutType.primary` `CardCalloutType.success` `CardCalloutType.warning`"
+          "name": "enum",
+          "options": [
+            "CardCalloutType.danger",
+            "CardCalloutType.primary",
+            "CardCalloutType.success",
+            "CardCalloutType.warning"
+          ]
         },
         "description": "If a value is passed, the card will be styled as a callout for the specified type.",
-        "defaultValue": "none\n"
-      },
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
+        "defaultValue": "none"
       },
       "hasDropShadow": {
         "name": "hasDropShadow",
@@ -863,7 +1085,7 @@
           "name": "boolean"
         },
         "description": "If true, card will render with a box-shadow",
-        "defaultValue": "false\n"
+        "defaultValue": "false"
       },
       "isInverse": {
         "name": "isInverse",
@@ -893,6 +1115,25 @@
     }
   },
   {
+    "name": "NavTabsContextInterface",
+    "kind": 256,
+    "kindString": "Interface",
+    "flags": {},
+    "id": "NavTabsContextInterface",
+    "tags": {},
+    "properties": {
+      "isInverse": {
+        "name": "isInverse",
+        "required": false,
+        "type": {
+          "name": "boolean"
+        },
+        "description": "If true, the component will have inverse styling to better appear on a dark background",
+        "defaultValue": "false"
+      }
+    }
+  },
+  {
     "name": "CheckboxProps",
     "kind": 256,
     "kindString": "Interface",
@@ -900,6 +1141,7 @@
       "isExported": true
     },
     "id": "CheckboxProps",
+    "tags": {},
     "properties": {
       "checked": {
         "name": "checked",
@@ -908,15 +1150,7 @@
           "name": "boolean"
         },
         "description": "If true, element is checked (i.e. selected)",
-        "defaultValue": "false\n"
-      },
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
+        "defaultValue": "false"
       },
       "color": {
         "name": "color",
@@ -925,7 +1159,7 @@
           "name": "string"
         },
         "description": "Hex code for the background color",
-        "defaultValue": "#0000FF\n"
+        "defaultValue": "#0000FF"
       },
       "containerStyle": {
         "name": "containerStyle",
@@ -950,7 +1184,7 @@
           "name": "boolean"
         },
         "description": "If true, element is disabled",
-        "defaultValue": "false\n"
+        "defaultValue": "false"
       },
       "errorMessage": {
         "name": "errorMessage",
@@ -991,7 +1225,7 @@
           "name": "boolean"
         },
         "description": "If true, label text will be hidden visually, but will still be read by assistive technology",
-        "defaultValue": "false\n"
+        "defaultValue": "false"
       },
       "labelStyle": {
         "name": "labelStyle",
@@ -1021,10 +1255,14 @@
         "name": "textPosition",
         "required": false,
         "type": {
-          "name": "enum, one of: `CheckboxTextPosition.left` `CheckboxTextPosition.right`"
+          "name": "enum",
+          "options": [
+            "CheckboxTextPosition.left",
+            "CheckboxTextPosition.right"
+          ]
         },
         "description": "Whether the label appears to the left of the right of the checkbox",
-        "defaultValue": "CheckboxTextPosition.right\n"
+        "defaultValue": "CheckboxTextPosition.right"
       }
     }
   },
@@ -1035,7 +1273,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7558,
+        "id": 7537,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1043,6 +1281,7 @@
       }
     ],
     "id": "ComboboxInputProps",
+    "tags": {},
     "properties": {
       "ariaDescribedBy": {
         "name": "ariaDescribedBy",
@@ -1053,7 +1292,7 @@
       },
       "children": {
         "name": "children",
-        "required": true,
+        "required": false,
         "type": {
           "name": "function"
         },
@@ -1191,7 +1430,7 @@
     },
     "typeParameter": [
       {
-        "id": 7643,
+        "id": 7622,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1200,12 +1439,13 @@
         },
         "type": {
           "type": "reference",
-          "id": 7487,
+          "id": 7466,
           "name": "SelectOptions"
         }
       }
     ],
     "id": "ComboboxInterface",
+    "tags": {},
     "properties": {
       "ariaDescribedBy": {
         "name": "ariaDescribedBy",
@@ -1459,7 +1699,7 @@
     },
     "typeParameter": [
       {
-        "id": 7711,
+        "id": 7690,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1468,12 +1708,13 @@
         },
         "type": {
           "type": "reference",
-          "id": 7487,
+          "id": 7466,
           "name": "SelectOptions"
         }
       }
     ],
     "id": "MultiComboboxInterface",
+    "tags": {},
     "properties": {
       "activeIndex": {
         "name": "activeIndex",
@@ -1620,6 +1861,7 @@
       "isExported": true
     },
     "id": "CalendarContextInterface",
+    "tags": {},
     "properties": {
       "buildCalendarMonth": {
         "name": "buildCalendarMonth",
@@ -1720,6 +1962,7 @@
     "kindString": "Interface",
     "flags": {},
     "id": "CalendarDayProps",
+    "tags": {},
     "properties": {
       "day": {
         "name": "day",
@@ -1750,6 +1993,7 @@
     "kindString": "Interface",
     "flags": {},
     "id": "CalendarHeaderProps",
+    "tags": {},
     "properties": {
       "focusHeader": {
         "name": "focusHeader",
@@ -1766,6 +2010,7 @@
     "kindString": "Interface",
     "flags": {},
     "id": "CalendarMonthProps",
+    "tags": {},
     "properties": {
       "calendarOpened": {
         "name": "calendarOpened",
@@ -1803,6 +2048,7 @@
     "kindString": "Interface",
     "flags": {},
     "id": "HelperInformationProps",
+    "tags": {},
     "properties": {
       "isOpen": {
         "name": "isOpen",
@@ -1828,6 +2074,7 @@
       "isExported": true
     },
     "id": "DatePickerProps",
+    "tags": {},
     "properties": {
       "containerStyle": {
         "name": "containerStyle",
@@ -1976,6 +2223,7 @@
       "isExported": true
     },
     "id": "IconOnlyDropdownButtonProps",
+    "tags": {},
     "properties": {
       "aria-label": {
         "name": "aria-label",
@@ -2001,6 +2249,7 @@
       "isExported": true
     },
     "id": "IconTextDropdownButtonProps",
+    "tags": {},
     "properties": {
       "children": {
         "name": "children",
@@ -2021,7 +2270,11 @@
         "name": "iconPosition",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonIconPosition.left` `ButtonIconPosition.right`"
+          "name": "enum",
+          "options": [
+            "ButtonIconPosition.left",
+            "ButtonIconPosition.right"
+          ]
         }
       },
       "isFullWidth": {
@@ -2031,7 +2284,7 @@
           "name": "boolean"
         },
         "description": " Set the button to display full-width.",
-        "defaultValue": "false\n"
+        "defaultValue": "false"
       },
       "isInverse": {
         "name": "isInverse",
@@ -2046,19 +2299,30 @@
         "name": "shape",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonShape.fill` `ButtonShape.leftCap` `ButtonShape.rightCap` `ButtonShape.round`"
+          "name": "enum",
+          "options": [
+            "ButtonShape.fill",
+            "ButtonShape.leftCap",
+            "ButtonShape.rightCap",
+            "ButtonShape.round"
+          ]
         },
         "description": "Defines the border radius",
-        "defaultValue": "ButtonShape.fill\n"
+        "defaultValue": "ButtonShape.fill"
       },
       "size": {
         "name": "size",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonSize.large` `ButtonSize.medium` `ButtonSize.small`"
+          "name": "enum",
+          "options": [
+            "ButtonSize.large",
+            "ButtonSize.medium",
+            "ButtonSize.small"
+          ]
         },
         "description": "The relative size of the button",
-        "defaultValue": "ButtonSize.medium\n"
+        "defaultValue": "ButtonSize.medium"
       },
       "testId": {
         "name": "testId",
@@ -2072,16 +2336,25 @@
         "name": "textTransform",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonTextTransform.none` `ButtonTextTransform.uppercase`"
+          "name": "enum",
+          "options": [
+            "ButtonTextTransform.none",
+            "ButtonTextTransform.uppercase"
+          ]
         },
         "description": "Determines whether the button appears in all-caps",
-        "defaultValue": "ButtonTextTransform.uppercase\n"
+        "defaultValue": "ButtonTextTransform.uppercase"
       },
       "type": {
         "name": "type",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonType.button` `ButtonType.reset` `ButtonType.submit`"
+          "name": "enum",
+          "options": [
+            "ButtonType.button",
+            "ButtonType.reset",
+            "ButtonType.submit"
+          ]
         },
         "description": "The type attribute of the button\nButtonType.button"
       },
@@ -2089,10 +2362,15 @@
         "name": "variant",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonVariant.link` `ButtonVariant.outline` `ButtonVariant.solid`"
+          "name": "enum",
+          "options": [
+            "ButtonVariant.link",
+            "ButtonVariant.outline",
+            "ButtonVariant.solid"
+          ]
         },
         "description": "The variant of the button",
-        "defaultValue": "ButtonVariant.solid\n"
+        "defaultValue": "ButtonVariant.solid"
       }
     }
   },
@@ -2108,18 +2386,19 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 8859,
+          "id": 8838,
           "name": "IconOnlyDropdownButtonProps"
         },
         {
           "type": "reference",
-          "id": 8863,
+          "id": 8842,
           "name": "IconTextDropdownButtonProps"
         }
       ],
       "name": "XOR"
     },
-    "id": "DropdownButtonProps"
+    "id": "DropdownButtonProps",
+    "tags": {}
   },
   {
     "name": "DropdownMenuGroupInterface",
@@ -2129,15 +2408,8 @@
       "isExported": true
     },
     "id": "DropdownMenuGroupInterface",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "header": {
         "name": "header",
         "required": false,
@@ -2155,6 +2427,7 @@
       "isExported": true
     },
     "id": "DropdownMenuItemProps",
+    "tags": {},
     "properties": {
       "disabled": {
         "name": "disabled",
@@ -2208,6 +2481,7 @@
       "isExported": true
     },
     "id": "DropdownSplitButtonProps",
+    "tags": {},
     "properties": {
       "aria-label": {
         "name": "aria-label",
@@ -2218,7 +2492,7 @@
       },
       "children": {
         "name": "children",
-        "required": true,
+        "required": false,
         "type": {
           "name": "any"
         },
@@ -2228,10 +2502,17 @@
         "name": "color",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonColor.danger` `ButtonColor.marketing` `ButtonColor.primary` `ButtonColor.secondary` `ButtonColor.success`"
+          "name": "enum",
+          "options": [
+            "ButtonColor.danger",
+            "ButtonColor.marketing",
+            "ButtonColor.primary",
+            "ButtonColor.secondary",
+            "ButtonColor.success"
+          ]
         },
         "description": "The color of the button, indicating its function in the UI",
-        "defaultValue": "ButtonColor.primary\n"
+        "defaultValue": "ButtonColor.primary"
       },
       "disabled": {
         "name": "disabled",
@@ -2261,7 +2542,7 @@
           "name": "boolean"
         },
         "description": " Set the button to display full-width.",
-        "defaultValue": "false\n"
+        "defaultValue": "false"
       },
       "isInverse": {
         "name": "isInverse",
@@ -2283,34 +2564,54 @@
         "name": "shape",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonShape.fill` `ButtonShape.leftCap` `ButtonShape.rightCap` `ButtonShape.round`"
+          "name": "enum",
+          "options": [
+            "ButtonShape.fill",
+            "ButtonShape.leftCap",
+            "ButtonShape.rightCap",
+            "ButtonShape.round"
+          ]
         },
         "description": "Defines the border radius",
-        "defaultValue": "ButtonShape.fill\n"
+        "defaultValue": "ButtonShape.fill"
       },
       "size": {
         "name": "size",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonSize.large` `ButtonSize.medium` `ButtonSize.small`"
+          "name": "enum",
+          "options": [
+            "ButtonSize.large",
+            "ButtonSize.medium",
+            "ButtonSize.small"
+          ]
         },
         "description": "The relative size of the button",
-        "defaultValue": "ButtonSize.medium\n"
+        "defaultValue": "ButtonSize.medium"
       },
       "textTransform": {
         "name": "textTransform",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonTextTransform.none` `ButtonTextTransform.uppercase`"
+          "name": "enum",
+          "options": [
+            "ButtonTextTransform.none",
+            "ButtonTextTransform.uppercase"
+          ]
         },
         "description": "Determines whether the button appears in all-caps",
-        "defaultValue": "ButtonTextTransform.uppercase\n"
+        "defaultValue": "ButtonTextTransform.uppercase"
       },
       "type": {
         "name": "type",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonType.button` `ButtonType.reset` `ButtonType.submit`"
+          "name": "enum",
+          "options": [
+            "ButtonType.button",
+            "ButtonType.reset",
+            "ButtonType.submit"
+          ]
         },
         "description": "The type attribute of the button\nButtonType.button"
       },
@@ -2318,10 +2619,15 @@
         "name": "variant",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonVariant.link` `ButtonVariant.outline` `ButtonVariant.solid`"
+          "name": "enum",
+          "options": [
+            "ButtonVariant.link",
+            "ButtonVariant.outline",
+            "ButtonVariant.solid"
+          ]
         },
         "description": "The variant of the button",
-        "defaultValue": "ButtonVariant.solid\n"
+        "defaultValue": "ButtonVariant.solid"
       }
     }
   },
@@ -2331,6 +2637,7 @@
     "kindString": "Interface",
     "flags": {},
     "id": "DropdownContextInterface",
+    "tags": {},
     "properties": {
       "activeItemIndex": {
         "name": "activeItemIndex",
@@ -2343,7 +2650,11 @@
         "name": "alignment",
         "required": false,
         "type": {
-          "name": "enum, one of: `DropdownAlignment.end` `DropdownAlignment.start`"
+          "name": "enum",
+          "options": [
+            "DropdownAlignment.end",
+            "DropdownAlignment.start"
+          ]
         }
       },
       "closeDropdown": {
@@ -2357,7 +2668,13 @@
         "name": "dropDirection",
         "required": false,
         "type": {
-          "name": "enum, one of: `DropdownDropDirection.down` `DropdownDropDirection.left` `DropdownDropDirection.right` `DropdownDropDirection.up`"
+          "name": "enum",
+          "options": [
+            "DropdownDropDirection.down",
+            "DropdownDropDirection.left",
+            "DropdownDropDirection.right",
+            "DropdownDropDirection.up"
+          ]
         }
       },
       "dropdownButtonId": {
@@ -2468,6 +2785,7 @@
       "isExported": true
     },
     "id": "DropdownProps",
+    "tags": {},
     "properties": {
       "activeIndex": {
         "name": "activeIndex",
@@ -2480,22 +2798,24 @@
         "name": "alignment",
         "required": false,
         "type": {
-          "name": "enum, one of: `DropdownAlignment.end` `DropdownAlignment.start`"
+          "name": "enum",
+          "options": [
+            "DropdownAlignment.end",
+            "DropdownAlignment.start"
+          ]
         }
-      },
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
       },
       "dropDirection": {
         "name": "dropDirection",
         "required": false,
         "type": {
-          "name": "enum, one of: `DropdownDropDirection.down` `DropdownDropDirection.left` `DropdownDropDirection.right` `DropdownDropDirection.up`"
+          "name": "enum",
+          "options": [
+            "DropdownDropDirection.down",
+            "DropdownDropDirection.left",
+            "DropdownDropDirection.right",
+            "DropdownDropDirection.up"
+          ]
         }
       },
       "maxHeight": {
@@ -2537,6 +2857,7 @@
       "isExported": true
     },
     "id": "FormGroupContextInterface",
+    "tags": {},
     "properties": {
       "descriptionId": {
         "name": "descriptionId",
@@ -2571,15 +2892,8 @@
       "isExported": true
     },
     "id": "FormGroupProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "containerStyle": {
         "name": "containerStyle",
         "required": false,
@@ -2596,9 +2910,9 @@
       },
       "helperMessage": {
         "name": "helperMessage",
-        "required": true,
+        "required": false,
         "type": {
-          "name": "any"
+          "name": "React.ReactNode"
         }
       },
       "isInverse": {
@@ -2656,27 +2970,31 @@
       "isExported": true
     },
     "id": "HeadingProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "color": {
         "name": "color",
         "required": false,
         "type": {
-          "name": "enum, one of: `TypographyColor.danger` `TypographyColor.default` `TypographyColor.subdued` `TypographyColor.success`"
+          "name": "enum",
+          "options": [
+            "TypographyColor.danger",
+            "TypographyColor.default",
+            "TypographyColor.subdued",
+            "TypographyColor.success"
+          ]
         }
       },
       "contextVariant": {
         "name": "contextVariant",
         "required": false,
         "type": {
-          "name": "enum, one of: `TypographyContextVariant.default` `TypographyContextVariant.expressive` `TypographyContextVariant.narrative`"
+          "name": "enum",
+          "options": [
+            "TypographyContextVariant.default",
+            "TypographyContextVariant.expressive",
+            "TypographyContextVariant.narrative"
+          ]
         }
       },
       "isInverse": {
@@ -2707,7 +3025,19 @@
         "name": "visualStyle",
         "required": false,
         "type": {
-          "name": "enum, one of: `TypographyVisualStyle.bodyLarge` `TypographyVisualStyle.bodyMedium` `TypographyVisualStyle.bodySmall` `TypographyVisualStyle.bodyXSmall` `TypographyVisualStyle.heading2XSmall` `TypographyVisualStyle.headingLarge` `TypographyVisualStyle.headingMedium` `TypographyVisualStyle.headingSmall` `TypographyVisualStyle.headingXLarge` `TypographyVisualStyle.headingXSmall`"
+          "name": "enum",
+          "options": [
+            "TypographyVisualStyle.bodyLarge",
+            "TypographyVisualStyle.bodyMedium",
+            "TypographyVisualStyle.bodySmall",
+            "TypographyVisualStyle.bodyXSmall",
+            "TypographyVisualStyle.heading2XSmall",
+            "TypographyVisualStyle.headingLarge",
+            "TypographyVisualStyle.headingMedium",
+            "TypographyVisualStyle.headingSmall",
+            "TypographyVisualStyle.headingXLarge",
+            "TypographyVisualStyle.headingXSmall"
+          ]
         }
       }
     }
@@ -2720,15 +3050,8 @@
       "isExported": true
     },
     "id": "HideAtBreakpointProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "maxWidth": {
         "name": "maxWidth",
         "required": false,
@@ -2754,132 +3077,6 @@
     }
   },
   {
-    "name": "HyperlinkProps",
-    "kind": 256,
-    "kindString": "Interface",
-    "flags": {
-      "isExported": true
-    },
-    "id": "HyperlinkProps",
-    "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "function"
-        },
-        "description": "The content of the component"
-      },
-      "color": {
-        "name": "color",
-        "required": false,
-        "type": {
-          "name": "enum, one of: `ButtonColor.danger` `ButtonColor.marketing` `ButtonColor.primary` `ButtonColor.secondary` `ButtonColor.success`"
-        },
-        "description": "The color of the button, indicating its function in the UI",
-        "defaultValue": "ButtonColor.primary\n"
-      },
-      "isFullWidth": {
-        "name": "isFullWidth",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": " Set the button to display full-width.",
-        "defaultValue": "false\n"
-      },
-      "isInverse": {
-        "name": "isInverse",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
-      },
-      "shape": {
-        "name": "shape",
-        "required": false,
-        "type": {
-          "name": "enum, one of: `ButtonShape.fill` `ButtonShape.leftCap` `ButtonShape.rightCap` `ButtonShape.round`"
-        },
-        "description": "Defines the border radius",
-        "defaultValue": "ButtonShape.fill\n"
-      },
-      "size": {
-        "name": "size",
-        "required": false,
-        "type": {
-          "name": "enum, one of: `ButtonSize.large` `ButtonSize.medium` `ButtonSize.small`"
-        },
-        "description": "The relative size of the button",
-        "defaultValue": "ButtonSize.medium\n"
-      },
-      "styledAs": {
-        "name": "styledAs",
-        "required": false,
-        "type": {
-          "name": "function"
-        }
-      },
-      "testId": {
-        "name": "testId",
-        "required": false,
-        "type": {
-          "name": "string"
-        },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
-      },
-      "textTransform": {
-        "name": "textTransform",
-        "required": false,
-        "type": {
-          "name": "enum, one of: `ButtonTextTransform.none` `ButtonTextTransform.uppercase`"
-        },
-        "description": "Determines whether the button appears in all-caps",
-        "defaultValue": "ButtonTextTransform.uppercase\n"
-      },
-      "to": {
-        "name": "to",
-        "required": true,
-        "type": {
-          "name": "string"
-        }
-      },
-      "type": {
-        "name": "type",
-        "required": false,
-        "type": {
-          "name": "enum, one of: `ButtonType.button` `ButtonType.reset` `ButtonType.submit`"
-        },
-        "description": "The type attribute of the button\nButtonType.button"
-      },
-      "variant": {
-        "name": "variant",
-        "required": false,
-        "type": {
-          "name": "enum, one of: `ButtonVariant.link` `ButtonVariant.outline` `ButtonVariant.solid`"
-        },
-        "description": "The variant of the button",
-        "defaultValue": "ButtonVariant.solid\n"
-      }
-    }
-  },
-  {
-    "name": "anchorAttributesRemoveColor",
-    "kind": 256,
-    "kindString": "Interface",
-    "flags": {},
-    "id": "anchorAttributesRemoveColor"
-  },
-  {
-    "name": "anchorAttributesRemoveType",
-    "kind": 256,
-    "kindString": "Interface",
-    "flags": {},
-    "id": "anchorAttributesRemoveType"
-  },
-  {
     "name": "IconOnlyButtonProps",
     "kind": 256,
     "kindString": "Interface",
@@ -2887,6 +3084,7 @@
       "isExported": true
     },
     "id": "IconOnlyButtonProps",
+    "tags": {},
     "properties": {
       "aria-label": {
         "name": "aria-label",
@@ -2912,6 +3110,7 @@
       "isExported": true
     },
     "id": "IconTextButtonProps",
+    "tags": {},
     "properties": {
       "children": {
         "name": "children",
@@ -2932,7 +3131,11 @@
         "name": "iconPosition",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonIconPosition.left` `ButtonIconPosition.right`"
+          "name": "enum",
+          "options": [
+            "ButtonIconPosition.left",
+            "ButtonIconPosition.right"
+          ]
         }
       },
       "isFullWidth": {
@@ -2942,7 +3145,7 @@
           "name": "boolean"
         },
         "description": " Set the button to display full-width.",
-        "defaultValue": "false\n"
+        "defaultValue": "false"
       },
       "isInverse": {
         "name": "isInverse",
@@ -2957,19 +3160,30 @@
         "name": "shape",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonShape.fill` `ButtonShape.leftCap` `ButtonShape.rightCap` `ButtonShape.round`"
+          "name": "enum",
+          "options": [
+            "ButtonShape.fill",
+            "ButtonShape.leftCap",
+            "ButtonShape.rightCap",
+            "ButtonShape.round"
+          ]
         },
         "description": "Defines the border radius",
-        "defaultValue": "ButtonShape.fill\n"
+        "defaultValue": "ButtonShape.fill"
       },
       "size": {
         "name": "size",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonSize.large` `ButtonSize.medium` `ButtonSize.small`"
+          "name": "enum",
+          "options": [
+            "ButtonSize.large",
+            "ButtonSize.medium",
+            "ButtonSize.small"
+          ]
         },
         "description": "The relative size of the button",
-        "defaultValue": "ButtonSize.medium\n"
+        "defaultValue": "ButtonSize.medium"
       },
       "testId": {
         "name": "testId",
@@ -2983,16 +3197,25 @@
         "name": "textTransform",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonTextTransform.none` `ButtonTextTransform.uppercase`"
+          "name": "enum",
+          "options": [
+            "ButtonTextTransform.none",
+            "ButtonTextTransform.uppercase"
+          ]
         },
         "description": "Determines whether the button appears in all-caps",
-        "defaultValue": "ButtonTextTransform.uppercase\n"
+        "defaultValue": "ButtonTextTransform.uppercase"
       },
       "type": {
         "name": "type",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonType.button` `ButtonType.reset` `ButtonType.submit`"
+          "name": "enum",
+          "options": [
+            "ButtonType.button",
+            "ButtonType.reset",
+            "ButtonType.submit"
+          ]
         },
         "description": "The type attribute of the button\nButtonType.button"
       },
@@ -3000,10 +3223,15 @@
         "name": "variant",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonVariant.link` `ButtonVariant.outline` `ButtonVariant.solid`"
+          "name": "enum",
+          "options": [
+            "ButtonVariant.link",
+            "ButtonVariant.outline",
+            "ButtonVariant.solid"
+          ]
         },
         "description": "The variant of the button",
-        "defaultValue": "ButtonVariant.solid\n"
+        "defaultValue": "ButtonVariant.solid"
       }
     }
   },
@@ -3015,12 +3243,18 @@
       "isExported": true
     },
     "id": "SpanProps",
+    "tags": {},
     "properties": {
       "size": {
         "name": "size",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonSize.large` `ButtonSize.medium` `ButtonSize.small`"
+          "name": "enum",
+          "options": [
+            "ButtonSize.large",
+            "ButtonSize.medium",
+            "ButtonSize.small"
+          ]
         }
       }
     }
@@ -3048,7 +3282,8 @@
       ],
       "name": "XOR"
     },
-    "id": "IconButtonProps"
+    "id": "IconButtonProps",
+    "tags": {}
   },
   {
     "name": "IndeterminateCheckboxProps",
@@ -3058,6 +3293,7 @@
       "isExported": true
     },
     "id": "IndeterminateCheckboxProps",
+    "tags": {},
     "properties": {
       "status": {
         "name": "status",
@@ -3066,7 +3302,7 @@
           "name": "string"
         },
         "description": "Status of the indeterminate, three-state checkbox, which includes and indeterminate (e.g. mixed) option.",
-        "defaultValue": "IndeterminateCheckboxStatus.unchecked\n"
+        "defaultValue": "IndeterminateCheckboxStatus.unchecked"
       },
       "testId": {
         "name": "testId",
@@ -3086,15 +3322,8 @@
       "isExported": true
     },
     "id": "InputMessageProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "hasError": {
         "name": "hasError",
         "required": false,
@@ -3128,6 +3357,7 @@
       "isExported": true
     },
     "id": "InputProps",
+    "tags": {},
     "properties": {
       "errorMessage": {
         "name": "errorMessage",
@@ -3181,15 +3411,8 @@
       "isExported": true
     },
     "id": "InputBaseProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "containerStyle": {
         "name": "containerStyle",
         "required": false,
@@ -3222,7 +3445,11 @@
         "name": "iconPosition",
         "required": false,
         "type": {
-          "name": "enum, one of: `InputIconPosition.left` `InputIconPosition.right`"
+          "name": "enum",
+          "options": [
+            "InputIconPosition.left",
+            "InputIconPosition.right"
+          ]
         }
       },
       "iconRef": {
@@ -3236,7 +3463,11 @@
         "name": "inputSize",
         "required": false,
         "type": {
-          "name": "enum, one of: `InputSize.large` `InputSize.medium`"
+          "name": "enum",
+          "options": [
+            "InputSize.large",
+            "InputSize.medium"
+          ]
         }
       },
       "inputStyle": {
@@ -3288,7 +3519,14 @@
         "name": "type",
         "required": false,
         "type": {
-          "name": "enum, one of: `InputType.email` `InputType.number` `InputType.password` `InputType.search` `InputType.text`"
+          "name": "enum",
+          "options": [
+            "InputType.email",
+            "InputType.number",
+            "InputType.password",
+            "InputType.search",
+            "InputType.text"
+          ]
         }
       }
     }
@@ -3301,15 +3539,8 @@
       "isExported": true
     },
     "id": "LabelProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "isInverse": {
         "name": "isInverse",
         "required": false,
@@ -3323,7 +3554,11 @@
         "name": "size",
         "required": false,
         "type": {
-          "name": "enum, one of: `InputSize.large` `InputSize.medium`"
+          "name": "enum",
+          "options": [
+            "InputSize.large",
+            "InputSize.medium"
+          ]
         }
       },
       "testId": {
@@ -3344,40 +3579,6 @@
     }
   },
   {
-    "name": "LinkButtonProps",
-    "kind": 256,
-    "kindString": "Interface",
-    "flags": {},
-    "id": "LinkButtonProps",
-    "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
-      "isInverse": {
-        "name": "isInverse",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
-      },
-      "testId": {
-        "name": "testId",
-        "required": false,
-        "type": {
-          "name": "string"
-        },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
-      }
-    }
-  },
-  {
     "name": "LoadingIndicatorProps",
     "kind": 256,
     "kindString": "Interface",
@@ -3385,15 +3586,8 @@
       "isExported": true
     },
     "id": "LoadingIndicatorProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "message1": {
         "name": "message1",
         "required": false,
@@ -3434,7 +3628,11 @@
         "name": "type",
         "required": false,
         "type": {
-          "name": "enum, one of: `LoadingIndicatorType.progressbar` `LoadingIndicatorType.spinner`"
+          "name": "enum",
+          "options": [
+            "LoadingIndicatorType.progressbar",
+            "LoadingIndicatorType.spinner"
+          ]
         }
       }
     }
@@ -3447,6 +3645,7 @@
       "isExported": true
     },
     "id": "LoadingIndicatorState",
+    "tags": {},
     "properties": {
       "messageLevel": {
         "name": "messageLevel",
@@ -3465,15 +3664,8 @@
       "isExported": true
     },
     "id": "ModalProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "closeAriaLabel": {
         "name": "closeAriaLabel",
         "required": false,
@@ -3548,7 +3740,12 @@
         "name": "size",
         "required": false,
         "type": {
-          "name": "enum, one of: `ModalSize.large` `ModalSize.medium` `ModalSize.small`"
+          "name": "enum",
+          "options": [
+            "ModalSize.large",
+            "ModalSize.medium",
+            "ModalSize.small"
+          ]
         }
       },
       "testId": {
@@ -3576,15 +3773,8 @@
       "isExported": true
     },
     "id": "BaseNavTabProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "component": {
         "name": "component",
         "required": false,
@@ -3619,7 +3809,11 @@
         "name": "orientation",
         "required": false,
         "type": {
-          "name": "enum, one of: `TabsOrientation.horizontal` `TabsOrientation.vertical`"
+          "name": "enum",
+          "options": [
+            "TabsOrientation.horizontal",
+            "TabsOrientation.vertical"
+          ]
         }
       },
       "testId": {
@@ -3645,6 +3839,7 @@
     "kindString": "Interface",
     "flags": {},
     "id": "NavTabChildrenProps",
+    "tags": {},
     "properties": {
       "children": {
         "name": "children",
@@ -3688,7 +3883,11 @@
         "name": "orientation",
         "required": false,
         "type": {
-          "name": "enum, one of: `TabsOrientation.horizontal` `TabsOrientation.vertical`"
+          "name": "enum",
+          "options": [
+            "TabsOrientation.horizontal",
+            "TabsOrientation.vertical"
+          ]
         }
       },
       "testId": {
@@ -3721,15 +3920,8 @@
     "kindString": "Interface",
     "flags": {},
     "id": "NavTabComponentProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "component": {
         "name": "component",
         "required": true,
@@ -3748,7 +3940,13 @@
         "name": "iconPosition",
         "required": false,
         "type": {
-          "name": "enum, one of: `TabsIconPosition.bottom` `TabsIconPosition.left` `TabsIconPosition.right` `TabsIconPosition.top`"
+          "name": "enum",
+          "options": [
+            "TabsIconPosition.bottom",
+            "TabsIconPosition.left",
+            "TabsIconPosition.right",
+            "TabsIconPosition.top"
+          ]
         }
       },
       "isActive": {
@@ -3778,7 +3976,11 @@
         "name": "orientation",
         "required": false,
         "type": {
-          "name": "enum, one of: `TabsOrientation.horizontal` `TabsOrientation.vertical`"
+          "name": "enum",
+          "options": [
+            "TabsOrientation.horizontal",
+            "TabsOrientation.vertical"
+          ]
         }
       },
       "testId": {
@@ -3810,18 +4012,19 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 11571,
+          "id": 11276,
           "name": "NavTabChildrenProps"
         },
         {
           "type": "reference",
-          "id": 11837,
+          "id": 11542,
           "name": "NavTabComponentProps"
         }
       ],
       "name": "XOR"
     },
-    "id": "NavTabProps"
+    "id": "NavTabProps",
+    "tags": {}
   },
   {
     "name": "NavTabsContextInterface",
@@ -3829,19 +4032,32 @@
     "kindString": "Interface",
     "flags": {},
     "id": "NavTabsContextInterface",
+    "tags": {},
     "properties": {
       "borderPosition": {
         "name": "borderPosition",
         "required": false,
         "type": {
-          "name": "enum, one of: `TabsBorderPosition.bottom` `TabsBorderPosition.left` `TabsBorderPosition.right` `TabsBorderPosition.top`"
+          "name": "enum",
+          "options": [
+            "TabsBorderPosition.bottom",
+            "TabsBorderPosition.left",
+            "TabsBorderPosition.right",
+            "TabsBorderPosition.top"
+          ]
         }
       },
       "iconPosition": {
         "name": "iconPosition",
         "required": false,
         "type": {
-          "name": "enum, one of: `TabsIconPosition.bottom` `TabsIconPosition.left` `TabsIconPosition.right` `TabsIconPosition.top`"
+          "name": "enum",
+          "options": [
+            "TabsIconPosition.bottom",
+            "TabsIconPosition.left",
+            "TabsIconPosition.right",
+            "TabsIconPosition.top"
+          ]
         }
       },
       "isFullWidth": {
@@ -3864,7 +4080,11 @@
         "name": "orientation",
         "required": false,
         "type": {
-          "name": "enum, one of: `TabsOrientation.horizontal` `TabsOrientation.vertical`"
+          "name": "enum",
+          "options": [
+            "TabsOrientation.horizontal",
+            "TabsOrientation.vertical"
+          ]
         }
       }
     }
@@ -3876,7 +4096,8 @@
     "flags": {
       "isExported": true
     },
-    "id": "NavTabsProps"
+    "id": "NavTabsProps",
+    "tags": {}
   },
   {
     "name": "ParagraphProps",
@@ -3886,10 +4107,11 @@
       "isExported": true
     },
     "id": "ParagraphProps",
+    "tags": {},
     "properties": {
       "children": {
         "name": "children",
-        "required": true,
+        "required": false,
         "type": {
           "name": "any"
         },
@@ -3899,14 +4121,25 @@
         "name": "color",
         "required": false,
         "type": {
-          "name": "enum, one of: `TypographyColor.danger` `TypographyColor.default` `TypographyColor.subdued` `TypographyColor.success`"
+          "name": "enum",
+          "options": [
+            "TypographyColor.danger",
+            "TypographyColor.default",
+            "TypographyColor.subdued",
+            "TypographyColor.success"
+          ]
         }
       },
       "contextVariant": {
         "name": "contextVariant",
         "required": false,
         "type": {
-          "name": "enum, one of: `TypographyContextVariant.default` `TypographyContextVariant.expressive` `TypographyContextVariant.narrative`"
+          "name": "enum",
+          "options": [
+            "TypographyContextVariant.default",
+            "TypographyContextVariant.expressive",
+            "TypographyContextVariant.narrative"
+          ]
         }
       },
       "isInverse": {
@@ -3951,7 +4184,19 @@
         "name": "visualStyle",
         "required": false,
         "type": {
-          "name": "enum, one of: `TypographyVisualStyle.bodyLarge` `TypographyVisualStyle.bodyMedium` `TypographyVisualStyle.bodySmall` `TypographyVisualStyle.bodyXSmall` `TypographyVisualStyle.heading2XSmall` `TypographyVisualStyle.headingLarge` `TypographyVisualStyle.headingMedium` `TypographyVisualStyle.headingSmall` `TypographyVisualStyle.headingXLarge` `TypographyVisualStyle.headingXSmall`"
+          "name": "enum",
+          "options": [
+            "TypographyVisualStyle.bodyLarge",
+            "TypographyVisualStyle.bodyMedium",
+            "TypographyVisualStyle.bodySmall",
+            "TypographyVisualStyle.bodyXSmall",
+            "TypographyVisualStyle.heading2XSmall",
+            "TypographyVisualStyle.headingLarge",
+            "TypographyVisualStyle.headingMedium",
+            "TypographyVisualStyle.headingSmall",
+            "TypographyVisualStyle.headingXLarge",
+            "TypographyVisualStyle.headingXSmall"
+          ]
         }
       }
     }
@@ -3964,15 +4209,8 @@
       "isExported": true
     },
     "id": "PasswordInputProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "containerStyle": {
         "name": "containerStyle",
         "required": false,
@@ -4019,7 +4257,11 @@
         "name": "inputSize",
         "required": false,
         "type": {
-          "name": "enum, one of: `InputSize.large` `InputSize.medium`"
+          "name": "enum",
+          "options": [
+            "InputSize.large",
+            "InputSize.medium"
+          ]
         }
       },
       "inputStyle": {
@@ -4112,20 +4354,20 @@
       "isExported": true
     },
     "id": "ProgressBarProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "color": {
         "name": "color",
         "required": false,
         "type": {
-          "name": "enum, one of: `ProgressBarColor.danger` `ProgressBarColor.pop` `ProgressBarColor.pop02` `ProgressBarColor.primary` `ProgressBarColor.success`"
+          "name": "enum",
+          "options": [
+            "ProgressBarColor.danger",
+            "ProgressBarColor.pop",
+            "ProgressBarColor.pop02",
+            "ProgressBarColor.primary",
+            "ProgressBarColor.success"
+          ]
         }
       },
       "height": {
@@ -4183,15 +4425,8 @@
       "isExported": true
     },
     "id": "ProgressRingProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "color": {
         "name": "color",
         "required": false,
@@ -4252,15 +4487,8 @@
       "isExported": true
     },
     "id": "RadioProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "color": {
         "name": "color",
         "required": false,
@@ -4324,7 +4552,11 @@
         "name": "textPosition",
         "required": false,
         "type": {
-          "name": "enum, one of: `RadioTextPosition.left` `RadioTextPosition.right`"
+          "name": "enum",
+          "options": [
+            "RadioTextPosition.left",
+            "RadioTextPosition.right"
+          ]
         }
       }
     }
@@ -4337,6 +4569,7 @@
       "isExported": true
     },
     "id": "RadioContextInterface",
+    "tags": {},
     "properties": {
       "descriptionId": {
         "name": "descriptionId",
@@ -4413,15 +4646,8 @@
       "isExported": true
     },
     "id": "RadioGroupProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "containerStyle": {
         "name": "containerStyle",
         "required": false,
@@ -4540,15 +4766,8 @@
       "isExported": true
     },
     "id": "SearchProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "containerStyle": {
         "name": "containerStyle",
         "required": false,
@@ -4567,7 +4786,11 @@
         "name": "inputSize",
         "required": false,
         "type": {
-          "name": "enum, one of: `InputSize.large` `InputSize.medium`"
+          "name": "enum",
+          "options": [
+            "InputSize.large",
+            "InputSize.medium"
+          ]
         }
       },
       "inputStyle": {
@@ -4631,7 +4854,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 6971,
+        "id": 6949,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -4639,6 +4862,7 @@
       }
     ],
     "id": "ItemsListProps",
+    "tags": {},
     "properties": {
       "getItemProps": {
         "name": "getItemProps",
@@ -4698,7 +4922,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7274,
+        "id": 7252,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -4706,6 +4930,7 @@
       }
     ],
     "id": "SelectContainerInterface",
+    "tags": {},
     "properties": {
       "children": {
         "name": "children",
@@ -4775,7 +5000,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7293,
+        "id": 7271,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -4783,6 +5008,7 @@
       }
     ],
     "id": "SelectTriggerButtonInterface",
+    "tags": {},
     "properties": {
       "ariaDescribedBy": {
         "name": "ariaDescribedBy",
@@ -4798,6 +5024,13 @@
           "name": "function"
         },
         "description": "The content of the component"
+      },
+      "customComponents": {
+        "name": "customComponents",
+        "required": false,
+        "type": {
+          "name": "SelectComponents"
+        }
       },
       "disabled": {
         "name": "disabled",
@@ -4855,7 +5088,7 @@
     "type": {
       "type": "reflection",
       "declaration": {
-        "id": 6949,
+        "id": 6927,
         "name": "__type",
         "kind": 65536,
         "kindString": "Type literal",
@@ -4864,7 +5097,7 @@
         },
         "children": [
           {
-            "id": 6950,
+            "id": 6928,
             "name": "ClearIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -4892,7 +5125,7 @@
             }
           },
           {
-            "id": 6951,
+            "id": 6929,
             "name": "DropdownIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -4925,7 +5158,7 @@
             }
           },
           {
-            "id": 6952,
+            "id": 6930,
             "name": "LoadingIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -4945,7 +5178,7 @@
               "typeArguments": [
                 {
                   "type": "reference",
-                  "id": 6685,
+                  "id": 6663,
                   "name": "SpinnerProps"
                 }
               ],
@@ -4958,9 +5191,9 @@
             "title": "Variables",
             "kind": 32,
             "children": [
-              6950,
-              6951,
-              6952
+              6928,
+              6929,
+              6930
             ]
           }
         ],
@@ -4973,7 +5206,8 @@
         ]
       }
     },
-    "id": "SelectComponents"
+    "id": "SelectComponents",
+    "tags": {}
   },
   {
     "name": "InternalMultiInterface",
@@ -4984,7 +5218,7 @@
     },
     "typeParameter": [
       {
-        "id": 7340,
+        "id": 7319,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -4994,6 +5228,7 @@
       }
     ],
     "id": "InternalMultiInterface",
+    "tags": {},
     "properties": {
       "onRemoveSelectedItem": {
         "name": "onRemoveSelectedItem",
@@ -5012,6 +5247,7 @@
       "isExported": true
     },
     "id": "InternalSelectInterface",
+    "tags": {},
     "properties": {
       "components": {
         "name": "components",
@@ -5139,7 +5375,7 @@
     },
     "typeParameter": [
       {
-        "id": 7445,
+        "id": 7424,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5148,12 +5384,13 @@
         },
         "type": {
           "type": "reference",
-          "id": 7487,
+          "id": 7466,
           "name": "SelectOptions"
         }
       }
     ],
     "id": "MultiSelectInterface",
+    "tags": {},
     "properties": {
       "activeIndex": {
         "name": "activeIndex",
@@ -5294,7 +5531,7 @@
     },
     "typeParameter": [
       {
-        "id": 7346,
+        "id": 7325,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5303,12 +5540,13 @@
         },
         "type": {
           "type": "reference",
-          "id": 7487,
+          "id": 7466,
           "name": "SelectOptions"
         }
       }
     ],
     "id": "SelectInterface",
+    "tags": {},
     "properties": {
       "ariaDescribedBy": {
         "name": "ariaDescribedBy",
@@ -5682,7 +5920,7 @@
         {
           "type": "reflection",
           "declaration": {
-            "id": 7488,
+            "id": 7467,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -5691,7 +5929,7 @@
             },
             "indexSignature": [
               {
-                "id": 7491,
+                "id": 7470,
                 "name": "__index",
                 "kind": 8192,
                 "kindString": "Index signature",
@@ -5700,7 +5938,7 @@
                 },
                 "parameters": [
                   {
-                    "id": 7492,
+                    "id": 7471,
                     "name": "key",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -5721,7 +5959,7 @@
             ],
             "children": [
               {
-                "id": 7490,
+                "id": 7469,
                 "name": "label",
                 "kind": 32,
                 "kindString": "Variable",
@@ -5741,7 +5979,7 @@
                 }
               },
               {
-                "id": 7489,
+                "id": 7468,
                 "name": "value",
                 "kind": 32,
                 "kindString": "Variable",
@@ -5766,8 +6004,8 @@
                 "title": "Variables",
                 "kind": 32,
                 "children": [
-                  7490,
-                  7489
+                  7469,
+                  7468
                 ]
               }
             ],
@@ -5786,7 +6024,8 @@
         }
       ]
     },
-    "id": "SelectOptions"
+    "id": "SelectOptions",
+    "tags": {}
   },
   {
     "name": "ContainerProps",
@@ -5796,10 +6035,11 @@
       "isExported": true
     },
     "id": "ContainerProps",
+    "tags": {},
     "properties": {
       "children": {
         "name": "children",
-        "required": true,
+        "required": false,
         "type": {
           "name": "any"
         },
@@ -5822,10 +6062,11 @@
       "isExported": true
     },
     "id": "StyledLabelProps",
+    "tags": {},
     "properties": {
       "children": {
         "name": "children",
-        "required": true,
+        "required": false,
         "type": {
           "name": "any"
         },
@@ -5864,6 +6105,7 @@
       "isExported": true
     },
     "id": "SkipLinkProps",
+    "tags": {},
     "properties": {
       "buttonText": {
         "name": "buttonText",
@@ -5884,10 +6126,17 @@
         "name": "color",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonColor.danger` `ButtonColor.marketing` `ButtonColor.primary` `ButtonColor.secondary` `ButtonColor.success`"
+          "name": "enum",
+          "options": [
+            "ButtonColor.danger",
+            "ButtonColor.marketing",
+            "ButtonColor.primary",
+            "ButtonColor.secondary",
+            "ButtonColor.success"
+          ]
         },
         "description": "The color of the button, indicating its function in the UI",
-        "defaultValue": "ButtonColor.primary\n"
+        "defaultValue": "ButtonColor.primary"
       },
       "isFullWidth": {
         "name": "isFullWidth",
@@ -5896,7 +6145,7 @@
           "name": "boolean"
         },
         "description": " Set the button to display full-width.",
-        "defaultValue": "false\n"
+        "defaultValue": "false"
       },
       "isInverse": {
         "name": "isInverse",
@@ -5925,19 +6174,30 @@
         "name": "shape",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonShape.fill` `ButtonShape.leftCap` `ButtonShape.rightCap` `ButtonShape.round`"
+          "name": "enum",
+          "options": [
+            "ButtonShape.fill",
+            "ButtonShape.leftCap",
+            "ButtonShape.rightCap",
+            "ButtonShape.round"
+          ]
         },
         "description": "Defines the border radius",
-        "defaultValue": "ButtonShape.fill\n"
+        "defaultValue": "ButtonShape.fill"
       },
       "size": {
         "name": "size",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonSize.large` `ButtonSize.medium` `ButtonSize.small`"
+          "name": "enum",
+          "options": [
+            "ButtonSize.large",
+            "ButtonSize.medium",
+            "ButtonSize.small"
+          ]
         },
         "description": "The relative size of the button",
-        "defaultValue": "ButtonSize.medium\n"
+        "defaultValue": "ButtonSize.medium"
       },
       "styledAs": {
         "name": "styledAs",
@@ -5958,10 +6218,14 @@
         "name": "textTransform",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonTextTransform.none` `ButtonTextTransform.uppercase`"
+          "name": "enum",
+          "options": [
+            "ButtonTextTransform.none",
+            "ButtonTextTransform.uppercase"
+          ]
         },
         "description": "Determines whether the button appears in all-caps",
-        "defaultValue": "ButtonTextTransform.uppercase\n"
+        "defaultValue": "ButtonTextTransform.uppercase"
       },
       "to": {
         "name": "to",
@@ -5974,7 +6238,12 @@
         "name": "type",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonType.button` `ButtonType.reset` `ButtonType.submit`"
+          "name": "enum",
+          "options": [
+            "ButtonType.button",
+            "ButtonType.reset",
+            "ButtonType.submit"
+          ]
         },
         "description": "The type attribute of the button\nButtonType.button"
       },
@@ -5982,10 +6251,15 @@
         "name": "variant",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonVariant.link` `ButtonVariant.outline` `ButtonVariant.solid`"
+          "name": "enum",
+          "options": [
+            "ButtonVariant.link",
+            "ButtonVariant.outline",
+            "ButtonVariant.solid"
+          ]
         },
         "description": "The variant of the button",
-        "defaultValue": "ButtonVariant.solid\n"
+        "defaultValue": "ButtonVariant.solid"
       }
     }
   },
@@ -5997,15 +6271,8 @@
       "isExported": true
     },
     "id": "SkipLinkContentProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "testId": {
         "name": "testId",
         "required": false,
@@ -6024,15 +6291,8 @@
       "isExported": true
     },
     "id": "SpinnerProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "color": {
         "name": "color",
         "required": false,
@@ -6063,6 +6323,7 @@
     "kindString": "Interface",
     "flags": {},
     "id": "StyledButtonProps",
+    "tags": {},
     "properties": {
       "as": {
         "name": "as",
@@ -6070,14 +6331,6 @@
         "type": {
           "name": "any"
         }
-      },
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
       },
       "href": {
         "name": "href",
@@ -6100,7 +6353,7 @@
           "name": "boolean"
         },
         "description": " Set the button to display full-width.",
-        "defaultValue": "false\n"
+        "defaultValue": "false"
       },
       "isInverse": {
         "name": "isInverse",
@@ -6115,19 +6368,30 @@
         "name": "shape",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonShape.fill` `ButtonShape.leftCap` `ButtonShape.rightCap` `ButtonShape.round`"
+          "name": "enum",
+          "options": [
+            "ButtonShape.fill",
+            "ButtonShape.leftCap",
+            "ButtonShape.rightCap",
+            "ButtonShape.round"
+          ]
         },
         "description": "Defines the border radius",
-        "defaultValue": "ButtonShape.fill\n"
+        "defaultValue": "ButtonShape.fill"
       },
       "size": {
         "name": "size",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonSize.large` `ButtonSize.medium` `ButtonSize.small`"
+          "name": "enum",
+          "options": [
+            "ButtonSize.large",
+            "ButtonSize.medium",
+            "ButtonSize.small"
+          ]
         },
         "description": "The relative size of the button",
-        "defaultValue": "ButtonSize.medium\n"
+        "defaultValue": "ButtonSize.medium"
       },
       "testId": {
         "name": "testId",
@@ -6141,10 +6405,14 @@
         "name": "textTransform",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonTextTransform.none` `ButtonTextTransform.uppercase`"
+          "name": "enum",
+          "options": [
+            "ButtonTextTransform.none",
+            "ButtonTextTransform.uppercase"
+          ]
         },
         "description": "Determines whether the button appears in all-caps",
-        "defaultValue": "ButtonTextTransform.uppercase\n"
+        "defaultValue": "ButtonTextTransform.uppercase"
       },
       "to": {
         "name": "to",
@@ -6157,7 +6425,12 @@
         "name": "type",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonType.button` `ButtonType.reset` `ButtonType.submit`"
+          "name": "enum",
+          "options": [
+            "ButtonType.button",
+            "ButtonType.reset",
+            "ButtonType.submit"
+          ]
         },
         "description": "The type attribute of the button\nButtonType.button"
       },
@@ -6165,10 +6438,15 @@
         "name": "variant",
         "required": false,
         "type": {
-          "name": "enum, one of: `ButtonVariant.link` `ButtonVariant.outline` `ButtonVariant.solid`"
+          "name": "enum",
+          "options": [
+            "ButtonVariant.link",
+            "ButtonVariant.outline",
+            "ButtonVariant.solid"
+          ]
         },
         "description": "The variant of the button",
-        "defaultValue": "ButtonVariant.solid\n"
+        "defaultValue": "ButtonVariant.solid"
       }
     }
   },
@@ -6180,15 +6458,8 @@
       "isExported": true
     },
     "id": "TableBodyProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "testId": {
         "name": "testId",
         "required": false,
@@ -6207,21 +6478,21 @@
       "isExported": true
     },
     "id": "TableCellProps",
+    "tags": {},
     "properties": {
       "align": {
         "name": "align",
         "required": false,
         "type": {
-          "name": "enum, one of: `TableCellAlign.center` `TableCellAlign.inherit` `TableCellAlign.justify` `TableCellAlign.left` `TableCellAlign.right`"
+          "name": "enum",
+          "options": [
+            "TableCellAlign.center",
+            "TableCellAlign.inherit",
+            "TableCellAlign.justify",
+            "TableCellAlign.left",
+            "TableCellAlign.right"
+          ]
         }
-      },
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
       },
       "testId": {
         "name": "testId",
@@ -6248,15 +6519,8 @@
       "isExported": true
     },
     "id": "TableHeadProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "testId": {
         "name": "testId",
         "required": false,
@@ -6275,6 +6539,7 @@
       "isExported": true
     },
     "id": "TableHeaderCellProps",
+    "tags": {},
     "properties": {
       "align": {
         "name": "align",
@@ -6282,14 +6547,6 @@
         "type": {
           "name": "any"
         }
-      },
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
       },
       "isSortable": {
         "name": "isSortable",
@@ -6309,14 +6566,25 @@
         "name": "scope",
         "required": false,
         "type": {
-          "name": "enum, one of: `TableHeaderCellScope.col` `TableHeaderCellScope.colgroup` `TableHeaderCellScope.row` `TableHeaderCellScope.rowgroup`"
+          "name": "enum",
+          "options": [
+            "TableHeaderCellScope.col",
+            "TableHeaderCellScope.colgroup",
+            "TableHeaderCellScope.row",
+            "TableHeaderCellScope.rowgroup"
+          ]
         }
       },
       "sortDirection": {
         "name": "sortDirection",
         "required": false,
         "type": {
-          "name": "enum, one of: `TableSortDirection.ascending` `TableSortDirection.descending` `TableSortDirection.none`"
+          "name": "enum",
+          "options": [
+            "TableSortDirection.ascending",
+            "TableSortDirection.descending",
+            "TableSortDirection.none"
+          ]
         }
       },
       "testId": {
@@ -6344,15 +6612,8 @@
       "isExported": true
     },
     "id": "TableRowProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "testId": {
         "name": "testId",
         "required": false,
@@ -6369,12 +6630,18 @@
     "kindString": "Interface",
     "flags": {},
     "id": "TableContextInterface",
+    "tags": {},
     "properties": {
       "density": {
         "name": "density",
         "required": false,
         "type": {
-          "name": "enum, one of: `TableDensity.compact` `TableDensity.loose` `TableDensity.normal`"
+          "name": "enum",
+          "options": [
+            "TableDensity.compact",
+            "TableDensity.loose",
+            "TableDensity.normal"
+          ]
         }
       },
       "hasHoverStyles": {
@@ -6417,20 +6684,18 @@
       "isExported": true
     },
     "id": "TableProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "density": {
         "name": "density",
         "required": false,
         "type": {
-          "name": "enum, one of: `TableDensity.compact` `TableDensity.loose` `TableDensity.normal`"
+          "name": "enum",
+          "options": [
+            "TableDensity.compact",
+            "TableDensity.loose",
+            "TableDensity.normal"
+          ]
         }
       },
       "hasHoverStyles": {
@@ -6488,15 +6753,8 @@
       "isExported": true
     },
     "id": "TabProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "icon": {
         "name": "icon",
         "required": false,
@@ -6545,15 +6803,8 @@
       "isExported": true
     },
     "id": "TabPanelProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "index": {
         "name": "index",
         "required": false,
@@ -6586,15 +6837,8 @@
     "kindString": "Interface",
     "flags": {},
     "id": "TabPanelContainerProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "isInverse": {
         "name": "isInverse",
         "required": false,
@@ -6620,6 +6864,7 @@
     "kindString": "Interface",
     "flags": {},
     "id": "TabsContainerContextInterface",
+    "tags": {},
     "properties": {
       "activeTabIndex": {
         "name": "activeTabIndex",
@@ -6650,6 +6895,7 @@
     "kindString": "Interface",
     "flags": {},
     "id": "TabsContainerProps",
+    "tags": {},
     "properties": {
       "activeIndex": {
         "name": "activeIndex",
@@ -6657,14 +6903,6 @@
         "type": {
           "name": "number"
         }
-      },
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
       },
       "isInverse": {
         "name": "isInverse",
@@ -6693,6 +6931,7 @@
       "isExported": true
     },
     "id": "ScrollButtonProps",
+    "tags": {},
     "properties": {
       "backgroundColor": {
         "name": "backgroundColor",
@@ -6708,14 +6947,6 @@
           "name": "boolean"
         }
       },
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "isInverse": {
         "name": "isInverse",
         "required": false,
@@ -6729,7 +6960,11 @@
         "name": "orientation",
         "required": false,
         "type": {
-          "name": "enum, one of: `TabsOrientation.horizontal` `TabsOrientation.vertical`"
+          "name": "enum",
+          "options": [
+            "TabsOrientation.horizontal",
+            "TabsOrientation.vertical"
+          ]
         }
       },
       "theme": {
@@ -6749,6 +6984,7 @@
       "isExported": true
     },
     "id": "HorizontalTabsProps",
+    "tags": {},
     "properties": {
       "borderPosition": {
         "name": "borderPosition",
@@ -6772,12 +7008,19 @@
     "kindString": "Interface",
     "flags": {},
     "id": "TabsContextInterface",
+    "tags": {},
     "properties": {
       "borderPosition": {
         "name": "borderPosition",
         "required": false,
         "type": {
-          "name": "enum, one of: `TabsBorderPosition.bottom` `TabsBorderPosition.left` `TabsBorderPosition.right` `TabsBorderPosition.top`"
+          "name": "enum",
+          "options": [
+            "TabsBorderPosition.bottom",
+            "TabsBorderPosition.left",
+            "TabsBorderPosition.right",
+            "TabsBorderPosition.top"
+          ]
         }
       },
       "buttonRefArray": {
@@ -6798,7 +7041,13 @@
         "name": "iconPosition",
         "required": false,
         "type": {
-          "name": "enum, one of: `TabsIconPosition.bottom` `TabsIconPosition.left` `TabsIconPosition.right` `TabsIconPosition.top`"
+          "name": "enum",
+          "options": [
+            "TabsIconPosition.bottom",
+            "TabsIconPosition.left",
+            "TabsIconPosition.right",
+            "TabsIconPosition.top"
+          ]
         }
       },
       "isFullWidth": {
@@ -6821,7 +7070,11 @@
         "name": "orientation",
         "required": false,
         "type": {
-          "name": "enum, one of: `TabsOrientation.horizontal` `TabsOrientation.vertical`"
+          "name": "enum",
+          "options": [
+            "TabsOrientation.horizontal",
+            "TabsOrientation.vertical"
+          ]
         }
       },
       "registerTabButton": {
@@ -6841,12 +7094,18 @@
       "isExported": true
     },
     "id": "TabsProps",
+    "tags": {},
     "properties": {
       "alignment": {
         "name": "alignment",
         "required": false,
         "type": {
-          "name": "enum, one of: `TabsAlignment.center` `TabsAlignment.left` `TabsAlignment.right`"
+          "name": "enum",
+          "options": [
+            "TabsAlignment.center",
+            "TabsAlignment.left",
+            "TabsAlignment.right"
+          ]
         }
       },
       "aria-label": {
@@ -6867,7 +7126,13 @@
         "name": "iconPosition",
         "required": false,
         "type": {
-          "name": "enum, one of: `TabsIconPosition.bottom` `TabsIconPosition.left` `TabsIconPosition.right` `TabsIconPosition.top`"
+          "name": "enum",
+          "options": [
+            "TabsIconPosition.bottom",
+            "TabsIconPosition.left",
+            "TabsIconPosition.right",
+            "TabsIconPosition.top"
+          ]
         }
       },
       "isFullWidth": {
@@ -6911,6 +7176,7 @@
       "isExported": true
     },
     "id": "VerticalTabsProps",
+    "tags": {},
     "properties": {
       "borderPosition": {
         "name": "borderPosition",
@@ -6940,17 +7206,18 @@
       "types": [
         {
           "type": "reference",
-          "id": 10938,
+          "id": 10643,
           "name": "HorizontalTabsProps"
         },
         {
           "type": "reference",
-          "id": 10935,
+          "id": 10640,
           "name": "VerticalTabsProps"
         }
       ]
     },
-    "id": "Orientation"
+    "id": "Orientation",
+    "tags": {}
   },
   {
     "name": "TextareaProps",
@@ -6960,15 +7227,8 @@
       "isExported": true
     },
     "id": "TextareaProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "containerStyle": {
         "name": "containerStyle",
         "required": false,
@@ -7064,6 +7324,7 @@
     "kindString": "Interface",
     "flags": {},
     "id": "AmPmToggleProps",
+    "tags": {},
     "properties": {
       "children": {
         "name": "children",
@@ -7083,6 +7344,7 @@
       "isExported": true
     },
     "id": "TimePickerProps",
+    "tags": {},
     "properties": {
       "containerStyle": {
         "name": "containerStyle",
@@ -7180,6 +7442,7 @@
       "isExported": true
     },
     "id": "ToastsContainerProps",
+    "tags": {},
     "properties": {
       "bottomOffset": {
         "name": "bottomOffset",
@@ -7187,14 +7450,6 @@
         "type": {
           "name": "number"
         }
-      },
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
       },
       "testId": {
         "name": "testId",
@@ -7221,6 +7476,7 @@
       "isExported": true
     },
     "id": "ToastsContextInterface",
+    "tags": {},
     "properties": {
       "bottomOffset": {
         "name": "bottomOffset",
@@ -7246,6 +7502,7 @@
       "isExported": true
     },
     "id": "ToastProps",
+    "tags": {},
     "properties": {
       "alertStyle": {
         "name": "alertStyle",
@@ -7253,14 +7510,6 @@
         "type": {
           "name": "CSSProperties"
         }
-      },
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
       },
       "closeAriaLabel": {
         "name": "closeAriaLabel",
@@ -7381,7 +7630,13 @@
         "name": "variant",
         "required": false,
         "type": {
-          "name": "enum, one of: `AlertVariant.danger` `AlertVariant.info` `AlertVariant.success` `AlertVariant.warning`"
+          "name": "enum",
+          "options": [
+            "AlertVariant.danger",
+            "AlertVariant.info",
+            "AlertVariant.success",
+            "AlertVariant.warning"
+          ]
         }
       }
     }
@@ -7394,15 +7649,8 @@
       "isExported": true
     },
     "id": "ToggleProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "containerStyle": {
         "name": "containerStyle",
         "required": false,
@@ -7466,7 +7714,11 @@
         "name": "textPosition",
         "required": false,
         "type": {
-          "name": "enum, one of: `ToggleTextPosition.left` `ToggleTextPosition.right`"
+          "name": "enum",
+          "options": [
+            "ToggleTextPosition.left",
+            "ToggleTextPosition.right"
+          ]
         }
       },
       "theme": {
@@ -7500,6 +7752,7 @@
       "isExported": true
     },
     "id": "ITooltipState",
+    "tags": {},
     "properties": {
       "id": {
         "name": "id",
@@ -7525,6 +7778,7 @@
       "isExported": true
     },
     "id": "TooltipProps",
+    "tags": {},
     "properties": {
       "children": {
         "name": "children",
@@ -7561,7 +7815,13 @@
         "name": "position",
         "required": false,
         "type": {
-          "name": "enum, one of: `EnumTooltipPosition.bottom` `EnumTooltipPosition.left` `EnumTooltipPosition.right` `EnumTooltipPosition.top`"
+          "name": "enum",
+          "options": [
+            "EnumTooltipPosition.bottom",
+            "EnumTooltipPosition.left",
+            "EnumTooltipPosition.right",
+            "EnumTooltipPosition.top"
+          ]
         }
       },
       "testId": {
@@ -7589,6 +7849,7 @@
       "isExported": true
     },
     "id": "TypographyProps",
+    "tags": {},
     "properties": {
       "as": {
         "name": "as",
@@ -7599,7 +7860,7 @@
       },
       "children": {
         "name": "children",
-        "required": true,
+        "required": false,
         "type": {
           "name": "any"
         },
@@ -7609,14 +7870,25 @@
         "name": "color",
         "required": false,
         "type": {
-          "name": "enum, one of: `TypographyColor.danger` `TypographyColor.default` `TypographyColor.subdued` `TypographyColor.success`"
+          "name": "enum",
+          "options": [
+            "TypographyColor.danger",
+            "TypographyColor.default",
+            "TypographyColor.subdued",
+            "TypographyColor.success"
+          ]
         }
       },
       "contextVariant": {
         "name": "contextVariant",
         "required": false,
         "type": {
-          "name": "enum, one of: `TypographyContextVariant.default` `TypographyContextVariant.expressive` `TypographyContextVariant.narrative`"
+          "name": "enum",
+          "options": [
+            "TypographyContextVariant.default",
+            "TypographyContextVariant.expressive",
+            "TypographyContextVariant.narrative"
+          ]
         }
       },
       "element": {
@@ -7668,7 +7940,19 @@
         "name": "visualStyle",
         "required": false,
         "type": {
-          "name": "enum, one of: `TypographyVisualStyle.bodyLarge` `TypographyVisualStyle.bodyMedium` `TypographyVisualStyle.bodySmall` `TypographyVisualStyle.bodyXSmall` `TypographyVisualStyle.heading2XSmall` `TypographyVisualStyle.headingLarge` `TypographyVisualStyle.headingMedium` `TypographyVisualStyle.headingSmall` `TypographyVisualStyle.headingXLarge` `TypographyVisualStyle.headingXSmall`"
+          "name": "enum",
+          "options": [
+            "TypographyVisualStyle.bodyLarge",
+            "TypographyVisualStyle.bodyMedium",
+            "TypographyVisualStyle.bodySmall",
+            "TypographyVisualStyle.bodyXSmall",
+            "TypographyVisualStyle.heading2XSmall",
+            "TypographyVisualStyle.headingLarge",
+            "TypographyVisualStyle.headingMedium",
+            "TypographyVisualStyle.headingSmall",
+            "TypographyVisualStyle.headingXLarge",
+            "TypographyVisualStyle.headingXSmall"
+          ]
         }
       }
     }
@@ -7681,15 +7965,8 @@
       "isExported": true
     },
     "id": "VisuallyHiddenProps",
+    "tags": {},
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "testId": {
         "name": "testId",
         "required": false,

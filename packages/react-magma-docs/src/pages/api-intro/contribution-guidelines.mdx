@@ -35,3 +35,38 @@ The react-magma team welcomes your suggestions and contributions. This project w
 ## Communication
 
 Communicate often. Make sure you are giving progress updates for any PR. With more communication we can catch things earlier and help you develop using the conventions and practices that we have built in. This will also ensure a much faster PR approval if we are on the same page the whole time.
+
+## Interfaces and Property Tables
+
+The property tables that we use are generated automatically, but require some wiring up. The interface in the typescript file must be annotated with typedoc comments and then the needed props get added to the front matter in the `mdx` file and there is a magic component for the property table which matches the props in the frontmatter. For example:
+
+```typescript
+/**
+ * @children required
+ */
+export interface SomeComponentProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * The description for a component prop.
+   * @default "the default prop value"
+   */
+  someOptionalComponentProp?: string;
+}
+```
+
+```mdx
+---
+pageTitle: Some Component API
+title: Some Component
+props:
+  - SomeComponentProps
+---
+
+## Examples
+
+...
+
+## props
+
+<SomeComponentProps />
+```

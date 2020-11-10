@@ -4,6 +4,9 @@ import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 
+/**
+ * @children required
+ */
 export interface CardProps extends React.LabelHTMLAttributes<HTMLDivElement> {
   /**
    * Sets the alignment of the card content

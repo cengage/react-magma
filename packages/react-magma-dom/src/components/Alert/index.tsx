@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { AlertBase, AlertVariant } from '../AlertBase';
 
+/**
+ * @children required
+ */
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * The text read by screen readers for the close button

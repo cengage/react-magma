@@ -23,10 +23,6 @@ const defaultDefaults = {
   isInverse: 'false',
 };
 
-const forceRequired = {
-  children: true,
-};
-
 const generateJson = () => {
   const app = new TypeDoc.Application();
 
@@ -68,45 +64,48 @@ const filterJson = () => {
       .pop();
   };
 
-  const cleanChildren = children =>
+  const cleanChildren = (children, acc = {}) =>
     children &&
     children
       .filter(filterReactDefinitions)
       .filter(filterEmotion)
-      .reduce(formatChild, {});
+      .reduce(formatChild, acc);
 
   const findType = ({ type, id, name }) => {
     if (type === 'reference') {
       const referenceType = findById(id);
       if (referenceType && referenceType.kindString === 'Enumeration') {
-        return `enum, one of: ${referenceType.children
-          .map(child => `\`${referenceType.name}.${child.name}\``)
-          .join(' ')}`;
+        return {
+          name: 'enum',
+          options: referenceType.children.map(
+            child => `${referenceType.name}.${child.name}`
+          ),
+        };
       }
     }
-    return name || 'function';
+    return { name: name || 'function' };
   };
 
   const filterEmotion = definition =>
     definition.type !== 'InterpolationWithTheme' && definition.name !== 'css';
 
   const filterReactDefinitions = definition =>
-    definition.name === 'children' ||
     definition.sources[0].fileName !== 'node_modules/@types/react/index.d.ts';
 
+  const formatTags = (tags = []) => {
+    return tags.reduce((acc, { tag, text }) => {
+      return { [tag]: text.trim(), ...acc };
+    }, {});
+  };
+
   const formatChild = (acc, child) => {
-    const tags = ((child.comment && child.comment.tags) || []).reduce(
-      (acc, { tag, text }) => {
-        return { [tag]: text, ...acc };
-      },
-      {}
-    );
+    const tags = formatTags((child.comment && child.comment.tags) || []);
     return {
       ...acc,
       [child.name]: {
         name: child.name,
-        required: forceRequired[child.name] || !child.flags.isOptional,
-        type: { name: child.type && findType(child.type) },
+        required: !child.flags.isOptional,
+        type: findType(child.type),
         description:
           (child.comment && child.comment.shortText) ||
           defaultDescriptions[child.name],
@@ -132,6 +131,25 @@ const filterJson = () => {
         ...rest
       } = child;
 
+      let childAccumulator = {};
+      const tags = formatTags((child.comment && child.comment.tags) || []);
+
+      if (tags.children) {
+        childAccumulator = formatChild(childAccumulator, {
+          ...child.children
+            .filter(child => child.name === 'children')
+            .flatMap(child => {
+              return {
+                ...child,
+                flags: {
+                  ...child.flags,
+                  isOptional: tags.children !== 'required',
+                },
+              };
+            })[0],
+        });
+      }
+
       if (rest.type && rest.type.type === 'intersection') {
         return [
           ...acc,
@@ -141,7 +159,8 @@ const filterJson = () => {
             properties: cleanChildren(
               rest.type.types.reduce((childAcc, childType) => {
                 return childAcc.concat(findById(childType.id).children);
-              }, [])
+              }, []),
+              childAccumulator
             ),
           },
         ];
@@ -152,7 +171,8 @@ const filterJson = () => {
         {
           ...rest,
           id: rest.name,
-          properties: cleanChildren(children),
+          tags,
+          properties: cleanChildren(children, childAccumulator),
         },
       ];
     }, []);

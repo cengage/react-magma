@@ -6,6 +6,9 @@ import { BreadCrumbContext } from '.';
 import { Hyperlink } from '../Hyperlink';
 import { AngleRightIcon } from 'react-magma-icons';
 
+/**
+ * @children required
+ */
 export interface BreadcrumbItemProps
   extends React.HTMLAttributes<HTMLLIElement> {
   testId?: string;

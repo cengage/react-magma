@@ -1,5 +1,8 @@
 import * as React from 'react';
 
+/**
+ * @children required
+ */
 export interface AnnounceProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Value of the `aria-live` attribute

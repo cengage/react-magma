@@ -2,6 +2,9 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { CardProps } from '../Card';
 
+/**
+ * @children required
+ */
 export interface CardBodyProps
   extends React.LabelHTMLAttributes<HTMLHeadingElement> {
   testId?: string;

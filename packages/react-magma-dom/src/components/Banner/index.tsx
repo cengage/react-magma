@@ -8,6 +8,9 @@ import { Button, ButtonSize, ButtonVariant, ButtonColor } from '../Button';
 import { IconButton } from '../IconButton';
 import { ThemeContext } from '../../theme/ThemeContext';
 
+/**
+ * @children required
+ */
 export interface BannerProps extends AlertProps {
   /**
    * The text displayed inside of the action button
