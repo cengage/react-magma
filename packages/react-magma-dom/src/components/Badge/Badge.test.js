@@ -24,7 +24,10 @@ describe('Badge', () => {
   it('should render the badge component with counter styles', () => {
     const { getByText } = render(<Badge variant="counter">{TEXT}</Badge>);
 
-    expect(getByText(TEXT)).toHaveStyleRule('border-radius', '10px');
+    expect(getByText(TEXT)).toHaveStyleRule(
+      'border-radius',
+      magma.spaceScale.spacing06
+    );
     expect(getByText(TEXT)).toHaveStyleRule(
       'font-size',
       magma.typeScale.size02.fontSize

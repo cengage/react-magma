@@ -84,7 +84,9 @@ export const baseBadgeStyles = props => css`
   border-color: ${props.color === BadgeColor.light
     ? props.theme.colors.neutral06
     : 'transparent'};
-  border-radius: ${props.variant === BadgeVariant.counter ? '10px' : '3px'};
+  border-radius: ${props.variant === BadgeVariant.counter
+    ? props.theme.spaceScale.spacing06
+    : props.theme.borderRadius};
   color: ${props.color === 'light'
     ? props.theme.colors.neutral
     : props.theme.colors.neutral08};
@@ -95,11 +97,17 @@ export const baseBadgeStyles = props => css`
     : props.theme.typeScale.size01.fontSize};
   line-height: ${props.variant === BadgeVariant.counter
     ? props.theme.typeScale.size02.lineHeight
-    : props.theme.typeScale.size02.lineHeight};
+    : props.theme.typeScale.size01.lineHeight};
   margin: ${props.variant === BadgeVariant.counter
-    ? '0 0 0 10px'
-    : '0 10px 0 0'};
-  padding: 0 5px;
+    ? `0 0 0 ${props.theme.spaceScale.spacing03}`
+    : `0 ${props.theme.spaceScale.spacing03} 0 0`};
+  max-height: ${props.variant === BadgeVariant.counter
+    ? props.theme.spaceScale.spacing06
+    : 'auto'};
+  min-width: ${props.theme.spaceScale.spacing06};
+  padding: ${props.variant === BadgeVariant.counter
+    ? `1px ${props.theme.spaceScale.spacing02}`
+    : `${props.theme.spaceScale.spacing01} ${props.theme.spaceScale.spacing02}`};
 `;
 
 const StyledSpan = styled.span<BadgeProps>`
