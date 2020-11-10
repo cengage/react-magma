@@ -255,9 +255,10 @@ export const magma = {
     spacing07: '32px',
     spacing08: '40px',
     spacing09: '48px',
-    spacing10: '64px',
-    spacing11: '96px',
-    spacing12: '160px',
+    spacing10: '56px',
+    spacing11: '64px',
+    spacing12: '96px',
+    spacing13: '160px',
   },
 
   // Typography

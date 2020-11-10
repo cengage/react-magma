@@ -54,26 +54,25 @@ export const inputBaseStyles = props => css`
   border-color: ${props.isInverse
     ? props.theme.colors.neutral08
     : props.theme.colors.neutral03};
-  border-radius: 4px;
+  border-radius: ${props.theme.borderRadius};
   color: ${props.theme.colors.neutral};
   display: block;
   font-size: ${props.theme.typeScale.size03.fontSize};
   line-height: ${props.theme.typeScale.size03.lineHeight};
   font-family: ${props.theme.bodyFont};
-  height: 40px;
-  line-height: 24px;
-  padding: 0 8px;
+  height: ${props.theme.spaceScale.spacing08};
+  padding: ${props.theme.spaceScale.spacing03};
   -webkit-appearance: none;
   width: 100%;
 
   ${props.iconPosition === 'left' &&
   css`
-    padding-left: 35px;
+    padding-left: ${props.theme.spaceScale.spacing08};
   `}
 
   ${props.iconPosition === 'right' &&
   css`
-    padding-right: 35px;
+    padding-right: ${props.theme.spaceScale.spacing08};
   `}
   
   ${props.hasError &&
@@ -89,20 +88,20 @@ export const inputBaseStyles = props => css`
   css`
     font-size: ${props.theme.typeScale.size04.fontSize};
     line-height: ${props.theme.typeScale.size04.lineHeight};
-    height: 58px;
-    padding: 0 15px;
+    height: ${props.theme.spaceScale.spacing10};
+    padding: 0 ${props.theme.spaceScale.spacing04};
   `}
 
     ${props.iconPosition === 'left' &&
   props.inputSize === 'large' &&
   css`
-    padding-left: 50px;
+    padding-left: ${props.theme.spaceScale.spacing09};
   `}
   
       ${props.iconPosition === 'right' &&
   props.inputSize === 'large' &&
   css`
-    padding-right: 50px;
+    padding-right: ${props.theme.spaceScale.spacing09};
   `}
 
   &::placeholder {
@@ -140,44 +139,42 @@ const IconWrapper = styled.span<{
   inputSize?: InputSize;
 }>`
   color: ${props => props.theme.colors.neutral};
-  left: ${props => (props.iconPosition === 'left' ? '12px' : 'auto')};
-  right: ${props => (props.iconPosition === 'right' ? '12px' : 'auto')};
+  left: ${props =>
+    props.iconPosition === 'left' ? props.theme.spaceScale.spacing04 : 'auto'};
+  margin-top: ${props => props.theme.spaceScale.spacing01};
+  right: ${props =>
+    props.iconPosition === 'right' ? props.theme.spaceScale.spacing04 : 'auto'};
   position: absolute;
-  margin-top: -11px;
-  top: 50%;
+  top: ${props => props.theme.spaceScale.spacing03};
 
   ${props =>
     props.inputSize === 'large' &&
     css`
-      left: ${props.iconPosition === 'left' ? '16px' : 'auto'};
-      right: ${props.iconPosition === 'right' ? '16px' : 'auto'};
-      margin-top: -10px;
+      left: ${props.iconPosition === 'left'
+        ? props.theme.spaceScale.spacing04
+        : 'auto'};
+      right: ${props.iconPosition === 'right'
+        ? props.theme.spaceScale.spacing04
+        : 'auto'};
+      top: ${props.theme.spaceScale.spacing04};
     `}
 `;
 
-const StyledIconButton = styled(IconButton)<{ size: ButtonSize }>`
+const StyledIconButton = styled(IconButton)`
+  bottom: 1px;
+  height: auto;
+  margin: 0;
   position: absolute;
-  bottom: 0;
-  right: 0;
-
-  ${props =>
-    props.size === 'large' &&
-    css`
-      bottom: 2px;
-
-      svg {
-        height: 21px;
-        width: 21px;
-      }
-    `}
+  top: 1px;
+  right: 1px;
 `;
 
 function getIconSize(size) {
   switch (size) {
     case 'large':
-      return 21;
+      return 30;
     default:
-      return 17;
+      return 20;
   }
 }
 
@@ -269,9 +266,8 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             size={
               inputSize === InputSize.large
                 ? ButtonSize.large
-                : ButtonSize.small
+                : ButtonSize.medium
             }
-            theme={theme}
             type={ButtonType.button}
             variant={ButtonVariant.link}
           />

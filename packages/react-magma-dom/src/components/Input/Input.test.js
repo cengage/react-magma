@@ -164,9 +164,9 @@ describe('Input', () => {
     const input = container.querySelector('input');
 
     expect(span).toHaveStyleRule('left', 'auto');
-    expect(span).toHaveStyleRule('right', '16px');
+    expect(span).toHaveStyleRule('right', magma.spaceScale.spacing04);
 
-    expect(input).toHaveStyleRule('padding-right', '50px');
+    expect(input).toHaveStyleRule('padding-right', magma.spaceScale.spacing09);
   });
 
   it('should render an input with a left-aligned icon in the correct position', () => {
@@ -188,10 +188,10 @@ describe('Input', () => {
     const span = container.querySelector('span');
     const input = container.querySelector('input');
 
-    expect(span).toHaveStyleRule('left', '16px');
+    expect(span).toHaveStyleRule('left', magma.spaceScale.spacing04);
     expect(span).toHaveStyleRule('right', 'auto');
 
-    expect(input).toHaveStyleRule('padding-left', '50px');
+    expect(input).toHaveStyleRule('padding-left', magma.spaceScale.spacing09);
   });
 
   it('should render a clickable icon', () => {
@@ -302,14 +302,13 @@ describe('Input', () => {
         'font-size',
         magma.typeScale.size03.fontSize
       );
-      expect(input).toHaveStyleRule('height', '40px');
-      expect(input).toHaveStyleRule('padding-left', '35px');
+      expect(input).toHaveStyleRule('height', magma.spaceScale.spacing08);
+      expect(input).toHaveStyleRule('padding-left', magma.spaceScale.spacing08);
 
-      expect(iconWrapper).toHaveStyleRule('margin-top', '-11px');
-      expect(iconWrapper).toHaveStyleRule('left', '12px');
+      expect(iconWrapper).toHaveStyleRule('left', magma.spaceScale.spacing04);
       expect(iconWrapper).toHaveStyleRule('right', 'auto');
 
-      expect(svg).toHaveAttribute('height', '17');
+      expect(svg).toHaveAttribute('height', '20');
     });
 
     it('should render a large input with correct styles', () => {
@@ -330,8 +329,11 @@ describe('Input', () => {
         'font-size',
         magma.typeScale.size04.fontSize
       );
-      expect(input).toHaveStyleRule('height', '58px');
-      expect(input).toHaveStyleRule('padding', '0 15px');
+      expect(input).toHaveStyleRule('height', magma.spaceScale.spacing10);
+      expect(input).toHaveStyleRule(
+        'padding',
+        `0 ${magma.spaceScale.spacing04}`
+      );
     });
 
     describe('events', () => {

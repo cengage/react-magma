@@ -61,18 +61,19 @@ const StyledLegend = styled.legend<{
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral};
   display: inline-block;
-  font-size: 13px;
+  font-size: ${props => props.theme.typeScale.size02.fontSize};
   font-weight: 600;
-  margin-bottom: 5px;
+  line-height: ${props => props.theme.typeScale.size02.lineHeight};
+  margin-bottom: ${props => props.theme.spaceScale.spacing03};
   max-width: 100%;
   text-align: left;
 `;
 
 const InputsContainer = styled.div<{ theme: ThemeInterface }>`
   background: ${props => props.theme.colors.neutral08};
-  left: 31px;
+  left: ${props => props.theme.spaceScale.spacing08};
   position: absolute;
-  top: 5px;
+  top: ${props => props.theme.spaceScale.spacing03};
 `;
 
 const Divider = styled.span`
@@ -84,10 +85,11 @@ const Divider = styled.span`
 
 const StyledNumInput = styled.input<{ theme: ThemeInterface }>`
   border: 0;
-  border-radius: 3px;
-  padding: 0 2px;
+  border-radius: ${props => props.theme.borderRadius};
+  margin-right: ${props => props.theme.spaceScale.spacing01};
+  padding: 0 ${props => props.theme.spaceScale.spacing01};
   text-align: right;
-  width: 28px;
+  width: ${props => props.theme.spaceScale.spacing07};
 
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -295,7 +297,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
                   : theme.colors.neutral04
               }`,
               cursor: 'default',
-              width: '134px',
+              width: theme.spaceScale.spacing13,
               ...inputStyle,
             }}
             ref={ref}
