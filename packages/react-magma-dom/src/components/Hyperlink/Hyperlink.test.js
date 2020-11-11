@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Hyperlink } from '.';
+import { magma } from '../../theme/magma';
 
 describe('Hyperlink', () => {
   it('should find element by testId', () => {
@@ -33,7 +34,7 @@ describe('Hyperlink', () => {
 
     const element = getByText(/google/i);
 
-    expect(element).toHaveStyleRule('color', '#006298');
+    expect(element).toHaveStyleRule('color', magma.colors.primary);
   });
 
   it('should render an inverse anchor element', () => {
@@ -45,7 +46,7 @@ describe('Hyperlink', () => {
 
     const element = getByText(/google/i);
 
-    expect(element).toHaveStyleRule('color', '#FFFFFF');
+    expect(element).toHaveStyleRule('color', magma.colors.neutral08);
   });
 
   it('should render an anchor element with default button styles', () => {
@@ -57,9 +58,12 @@ describe('Hyperlink', () => {
 
     const element = getByText(/google/i);
 
-    expect(element).toHaveStyleRule('font-size', '14px');
-    expect(element).toHaveStyleRule('border-radius', '5px');
-    expect(element).toHaveStyleRule('height', '37px');
+    expect(element).toHaveStyleRule(
+      'font-size',
+      magma.typeScale.size03.fontSize
+    );
+    expect(element).toHaveStyleRule('border-radius', magma.borderRadius);
+    expect(element).toHaveStyleRule('height', magma.spaceScale.spacing08);
   });
 
   it('should render an anchor element with passed in button styles', () => {
@@ -76,9 +80,12 @@ describe('Hyperlink', () => {
 
     const element = getByText(/google/i);
 
-    expect(element).toHaveStyleRule('font-size', '18px');
+    expect(element).toHaveStyleRule(
+      'font-size',
+      magma.typeScale.size04.fontSize
+    );
     expect(element).toHaveStyleRule('border-radius', '100%');
-    expect(element).toHaveStyleRule('height', '45px');
+    expect(element).toHaveStyleRule('height', magma.spaceScale.spacing10);
   });
 
   it('should send back values when passed children as a function', () => {

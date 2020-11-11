@@ -17,72 +17,72 @@ export function buildButtonBorderRadius(props) {
     case 'round':
       return '100%';
     case 'leftCap':
-      return '5px 0 0 5px';
+      return `${props.theme.borderRadius} 0 0 ${props.theme.borderRadius}`;
     case 'rightCap':
-      return '0 5px 5px 0';
+      return `0 ${props.theme.borderRadius} ${props.theme.borderRadius} 0`;
     default:
       //fill
-      return '5px';
+      return props.theme.borderRadius;
   }
 }
 
 export function buildButtonFontSize(props) {
   switch (props.size) {
     case 'small':
-      return '12px';
+      return props.theme.typeScale.size01.fontSize;
     case 'large':
-      return '18px';
+      return props.theme.typeScale.size04.fontSize;
     default:
       //medium
-      return '14px';
+      return props.theme.typeScale.size03.fontSize;
   }
 }
 
 export function buildButtonBaseHeight(props) {
   switch (props.size) {
     case 'small':
-      return '29px';
+      return '28px';
     case 'large':
-      return '45px';
+      return props.theme.spaceScale.spacing10;
     default:
       //medium
-      return '37px';
+      return props.theme.spaceScale.spacing08;
   }
 }
 
 export function buildButtonIconOnlyHeight(props) {
   switch (props.size) {
     case 'small':
-      return '29px';
+      return '28px';
     case 'large':
-      return '45px';
+      return props.theme.spaceScale.spacing10;
     default:
       //medium
-      return '37px';
+      return props.theme.spaceScale.spacing08;
   }
 }
 
 export function buildButtonIconOnlyWidth(props) {
   switch (props.size) {
     case 'small':
-      return '29px';
+      return '28px';
     case 'large':
-      return '45px';
+      return props.theme.spaceScale.spacing10;
     default:
       //medium
-      return '37px';
+      return props.theme.spaceScale.spacing08;
   }
 }
 
 export function buildButtonPadding(props) {
   switch (props.size) {
     case 'small':
-      return '0 10px';
+      return `${props.theme.spaceScale.spacing02} ${props.theme.spaceScale.spacing03}`;
     case 'large':
-      return '0 20px';
+      return `${props.theme.spaceScale.spacing04} ${props.theme.spaceScale.spacing06}`;
     default:
       //medium
-      return '0 15px';
+      return `${props.theme.spaceScale.spacing04} ${props.theme.spaceScale.spacing05}`;
   }
 }
 

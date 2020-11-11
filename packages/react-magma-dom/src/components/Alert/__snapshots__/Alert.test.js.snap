@@ -6,7 +6,11 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  background: rgba(0,0,0,0);
+  border: 0;
+  border-color: #FFFFFF;
   border-radius: 100%;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -16,32 +20,28 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
+  margin: 4px;
   min-width: 5.625em;
   overflow: hidden;
+  padding: 12px 16px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 14px;
-  font-weight: 600;
-  height: 37px;
-  padding: 0 15px;
-  width: 37px;
-  background: rgba(0,0,0,0);
-  border: 0;
-  border-color: #FFFFFF;
-  color: #FFFFFF;
+  width: 40px;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -73,13 +73,14 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 }
 
 .emotion-0:not(:disabled):after {
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
   height: 32px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -88,7 +89,6 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 32px;
-  background: #FFFFFF;
 }
 
 .emotion-0:not(:disabled):active {
@@ -133,7 +133,11 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  background: rgba(0,0,0,0);
+  border: 0;
+  border-color: #FFFFFF;
   border-radius: 100%;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -143,32 +147,28 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
+  margin: 4px;
   min-width: 5.625em;
   overflow: hidden;
+  padding: 12px 16px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 14px;
-  font-weight: 600;
-  height: 37px;
-  padding: 0 15px;
-  width: 37px;
-  background: rgba(0,0,0,0);
-  border: 0;
-  border-color: #FFFFFF;
-  color: #FFFFFF;
+  width: 40px;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -200,13 +200,14 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 }
 
 .emotion-0:not(:disabled):after {
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
   height: 32px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -215,7 +216,6 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 32px;
-  background: #FFFFFF;
 }
 
 .emotion-0:not(:disabled):active {

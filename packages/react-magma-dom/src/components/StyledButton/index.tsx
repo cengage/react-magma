@@ -29,42 +29,44 @@ interface StyledButtonProps extends ButtonProps {
 
 export const buttonStyles = props => css`
   align-items: center;
-  border-radius: ${buildButtonBorderRadius(props)};
-  cursor: ${props.disabled ? 'not-allowed' : 'pointer'};
-  display: ${props.isFullWidth ? 'flex' : 'inline-flex'};
-  flex-shrink: 0;
-  font-family: ${props.theme.bodyFont};
-  justify-content: center;
-  line-height: 1;
-  margin: ${props.isFullWidth ? '5px 0' : '5px'};
-  min-width: 5.625em;
-  overflow: hidden;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  text-transform: ${props.textTransform};
-  transition: background 0.35s, color 0.35s;
-  vertical-align: middle;
-  touch-action: manipulation;
-  white-space: nowrap;
-  font-size: ${buildButtonFontSize(props)};
-  font-weight: 600;
-  height: ${props.iconOnly
-    ? buildButtonIconOnlyHeight(props)
-    : buildButtonBaseHeight(props)};
-  padding: ${buildButtonPadding(props)};
-  width: ${props.iconOnly
-    ? buildButtonIconOnlyWidth(props)
-    : props.isFullWidth
-    ? '100%'
-    : 'auto'};
   background: ${buildButtonBackground(props)};
   border: ${props.variant === 'outline' ||
   (props.variant === 'solid' && props.color === 'secondary' && !props.isInverse)
     ? '2px solid'
     : '0'};
   border-color: ${buildBorderColor(props)};
+  border-radius: ${buildButtonBorderRadius(props)};
   color: ${buildColor(props)};
+  cursor: ${props.disabled ? 'not-allowed' : 'pointer'};
+  display: ${props.isFullWidth ? 'flex' : 'inline-flex'};
+  flex-shrink: 0;
+  font-family: ${props.theme.bodyFont};
+  font-size: ${buildButtonFontSize(props)};
+  font-weight: 600;
+  height: ${props.iconOnly
+    ? buildButtonIconOnlyHeight(props)
+    : buildButtonBaseHeight(props)};
+  justify-content: center;
+  line-height: 1;
+  margin: ${props.isFullWidth
+    ? `${props.theme.spaceScale.spacing02} 0`
+    : props.theme.spaceScale.spacing02};
+  min-width: 5.625em;
+  overflow: hidden;
+  padding: ${buildButtonPadding(props)};
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: ${props.textTransform};
+  touch-action: manipulation;
+  transition: background 0.35s, color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: ${props.iconOnly
+    ? buildButtonIconOnlyWidth(props)
+    : props.isFullWidth
+    ? '100%'
+    : 'auto'};
 
   &:not(:disabled) {
     &:focus {
@@ -82,18 +84,18 @@ export const buttonStyles = props => css`
     }
 
     &:after {
+      background: ${buildAfterBackground(props)};
       border-radius: 50%;
       content: '';
-      height: 32px;
+      height: ${props.theme.spaceScale.spacing07};
       left: 50%;
       opacity: 0;
-      position: absolute;
       padding: 50%;
+      position: absolute;
       top: 50%;
       transform: translate(-50%, -50%) scale(1);
       transition: opacity 1s, transform 0.5s;
-      width: 32px;
-      background: ${buildAfterBackground(props)};
+      width: ${props.theme.spaceScale.spacing07};
     }
 
     &:active {
