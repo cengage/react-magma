@@ -32,10 +32,10 @@ const DocsHeading = ({ children, to, type }) => (
 
     {type === 'design' && to && (
       <Hyperlink color="secondary" styledAs="Button" to={to}>
-        {({ to, stylesClass }) => (
-          <Link className={stylesClass} to={to}>
+        {linkProps => (
+          <Link {...linkProps}>
             <PaletteIcon size="16" />
-            <span style={{ paddingLeft: '10px' }}>View Design Guidelines</span>
+            <span style={{ paddingLeft: '8px' }}>View Design Guidelines</span>
           </Link>
         )}
       </Hyperlink>
@@ -43,10 +43,10 @@ const DocsHeading = ({ children, to, type }) => (
 
     {type === 'code' && to && (
       <Hyperlink color="secondary" styledAs="Button" to={to}>
-        {({ to, stylesClass }) => (
-          <Link className={stylesClass} to={to}>
+        {linkProps => (
+          <Link {...linkProps}>
             <CodeIcon size="16" />
-            <span style={{ paddingLeft: '10px' }}>View Component API</span>
+            <span style={{ paddingLeft: '8px' }}>View Component API</span>
           </Link>
         )}
       </Hyperlink>
