@@ -38,39 +38,15 @@ export function buildButtonFontSize(props) {
   }
 }
 
-export function buildButtonBaseHeight(props) {
+export function buildButtonSize(props) {
   switch (props.size) {
     case 'small':
-      return '28px';
+      return props.theme.spaceScale.spacing07;
     case 'large':
-      return props.theme.spaceScale.spacing10;
+      return props.theme.spaceScale.spacing11;
     default:
       //medium
-      return props.theme.spaceScale.spacing08;
-  }
-}
-
-export function buildButtonIconOnlyHeight(props) {
-  switch (props.size) {
-    case 'small':
-      return '28px';
-    case 'large':
-      return props.theme.spaceScale.spacing10;
-    default:
-      //medium
-      return props.theme.spaceScale.spacing08;
-  }
-}
-
-export function buildButtonIconOnlyWidth(props) {
-  switch (props.size) {
-    case 'small':
-      return '28px';
-    case 'large':
-      return props.theme.spaceScale.spacing10;
-    default:
-      //medium
-      return props.theme.spaceScale.spacing08;
+      return props.theme.spaceScale.spacing09;
   }
 }
 

@@ -29,7 +29,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
   position: relative;
@@ -76,7 +76,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -88,7 +88,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-0:not(:disabled):active {
@@ -156,7 +156,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
   position: relative;
@@ -203,7 +203,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -215,7 +215,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-0:not(:disabled):active {

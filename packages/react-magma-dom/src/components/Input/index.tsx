@@ -5,6 +5,7 @@ import { InputMessage } from './InputMessage';
 import { Label } from '../Label';
 import { useGenerateId } from '../../utils';
 import { HiddenStyles } from '../../utils/UtilityStyles';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface InputProps extends Omit<InputBaseProps, 'hasError'> {
   errorMessage?: React.ReactNode;
@@ -16,7 +17,7 @@ export interface InputProps extends Omit<InputBaseProps, 'hasError'> {
 }
 
 const Container = styled.div`
-  margin-bottom: 10px;
+  margin-bottom: ${props => props.theme.spaceScale.spacing03};
 `;
 
 export const HiddenLabelText = styled.span`
@@ -44,13 +45,15 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
+    const theme = React.useContext(ThemeContext);
+
     return (
-      <Container style={containerStyle}>
+      <Container theme={theme} style={containerStyle}>
         {labelText && (
           <Label
             isInverse={isInverse}
             htmlFor={id}
-            size={inputSize ? inputSize : InputSize.medium}
+            size={inputSize || InputSize.medium}
             style={labelStyle}
           >
             {isLabelVisuallyHidden ? (
@@ -68,16 +71,17 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           aria-invalid={!!errorMessage}
           hasError={!!errorMessage}
           id={id}
-          inputSize={inputSize ? inputSize : InputSize.medium}
+          inputSize={inputSize || InputSize.medium}
           isInverse={isInverse}
           ref={ref}
         >
           {children}
         </InputBase>
         <InputMessage
+          hasError={!!errorMessage}
           isInverse={isInverse}
           id={descriptionId}
-          hasError={!!errorMessage}
+          inputSize={inputSize || InputSize.medium}
           style={messageStyle}
         >
           {(errorMessage || helperMessage) && (

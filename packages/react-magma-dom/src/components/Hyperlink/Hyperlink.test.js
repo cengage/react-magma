@@ -63,7 +63,7 @@ describe('Hyperlink', () => {
       magma.typeScale.size03.fontSize
     );
     expect(element).toHaveStyleRule('border-radius', magma.borderRadius);
-    expect(element).toHaveStyleRule('height', magma.spaceScale.spacing08);
+    expect(element).toHaveStyleRule('height', magma.spaceScale.spacing09);
   });
 
   it('should render an anchor element with passed in button styles', () => {
@@ -85,7 +85,7 @@ describe('Hyperlink', () => {
       magma.typeScale.size04.fontSize
     );
     expect(element).toHaveStyleRule('border-radius', '100%');
-    expect(element).toHaveStyleRule('height', magma.spaceScale.spacing10);
+    expect(element).toHaveStyleRule('height', magma.spaceScale.spacing11);
   });
 
   it('should send back values when passed children as a function', () => {

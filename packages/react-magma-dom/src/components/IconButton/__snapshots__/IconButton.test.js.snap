@@ -29,7 +29,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 96px;
   overflow: hidden;
   padding: 12px 24px;
   position: relative;
@@ -70,7 +70,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -82,7 +82,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-0:not(:disabled):active {
@@ -134,7 +134,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 96px;
   overflow: hidden;
   padding: 12px 24px;
   position: relative;
@@ -175,7 +175,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -187,7 +187,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-0:not(:disabled):active {
@@ -264,7 +264,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 0;
   overflow: hidden;
   padding: 4px 8px;
   position: relative;
@@ -305,7 +305,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -317,7 +317,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-0:not(:disabled):active {
@@ -369,7 +369,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 0;
   overflow: hidden;
   padding: 4px 8px;
   position: relative;
@@ -410,7 +410,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -422,7 +422,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-0:not(:disabled):active {
@@ -499,7 +499,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
   position: relative;
@@ -540,7 +540,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   background: #3F3F3F;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -552,7 +552,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-0:not(:disabled):active {
@@ -604,7 +604,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
   position: relative;
@@ -645,7 +645,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   background: #3F3F3F;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -657,7 +657,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-0:not(:disabled):active {
@@ -734,7 +734,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
   position: relative;
@@ -775,7 +775,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -787,7 +787,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-0:not(:disabled):active {
@@ -839,7 +839,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
   position: relative;
@@ -880,7 +880,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -892,7 +892,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-0:not(:disabled):active {
@@ -968,7 +968,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
   position: relative;
@@ -1009,7 +1009,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   background: #006298;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -1021,7 +1021,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-0:not(:disabled):active {
@@ -1072,7 +1072,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
   position: relative;
@@ -1113,7 +1113,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   background: #006298;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -1125,7 +1125,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-0:not(:disabled):active {
@@ -1202,7 +1202,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 96px;
   overflow: hidden;
   padding: 12px 24px;
   position: relative;
@@ -1233,7 +1233,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -1245,7 +1245,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -1301,7 +1301,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 96px;
   overflow: hidden;
   padding: 12px 24px;
   position: relative;
@@ -1332,7 +1332,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -1344,7 +1344,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -1431,7 +1431,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
   position: relative;
@@ -1462,7 +1462,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -1474,7 +1474,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -1530,7 +1530,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
   position: relative;
@@ -1561,7 +1561,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -1573,7 +1573,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -1660,7 +1660,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 0;
   overflow: hidden;
   padding: 4px 8px;
   position: relative;
@@ -1691,7 +1691,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -1703,7 +1703,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -1759,7 +1759,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 0;
   overflow: hidden;
   padding: 4px 8px;
   position: relative;
@@ -1790,7 +1790,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -1802,7 +1802,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -1889,7 +1889,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
   position: relative;
@@ -1920,7 +1920,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   background: #3F3F3F;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -1932,7 +1932,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -1988,7 +1988,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
   position: relative;
@@ -2019,7 +2019,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   background: #3F3F3F;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -2031,7 +2031,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -2118,7 +2118,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
   position: relative;
@@ -2149,7 +2149,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -2161,7 +2161,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -2217,7 +2217,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
   position: relative;
@@ -2248,7 +2248,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -2260,7 +2260,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -2351,7 +2351,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
   position: relative;
@@ -2382,7 +2382,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -2394,7 +2394,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -2450,7 +2450,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
   position: relative;
@@ -2481,7 +2481,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -2493,7 +2493,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -2579,7 +2579,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
   position: relative;
@@ -2610,7 +2610,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   background: #006298;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -2622,7 +2622,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -2677,7 +2677,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   justify-content: center;
   line-height: 1;
   margin: 4px;
-  min-width: 5.625em;
+  min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
   position: relative;
@@ -2708,7 +2708,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   background: #006298;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -2720,7 +2720,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {

@@ -5,11 +5,9 @@ import {
   buildActiveBackground,
   buildActiveColor,
   buildAfterBackground,
-  buildButtonBaseHeight,
   buildButtonBorderRadius,
   buildButtonFontSize,
-  buildButtonIconOnlyHeight,
-  buildButtonIconOnlyWidth,
+  buildButtonSize,
   buildButtonPadding,
   buildBorderColor,
   buildButtonBackground,
@@ -43,15 +41,13 @@ export const buttonStyles = props => css`
   font-family: ${props.theme.bodyFont};
   font-size: ${buildButtonFontSize(props)};
   font-weight: 600;
-  height: ${props.iconOnly
-    ? buildButtonIconOnlyHeight(props)
-    : buildButtonBaseHeight(props)};
+  height: ${buildButtonSize(props)};
   justify-content: center;
   line-height: 1;
   margin: ${props.isFullWidth
     ? `${props.theme.spaceScale.spacing02} 0`
     : props.theme.spaceScale.spacing02};
-  min-width: 5.625em;
+  min-width: ${props.size === 'small' ? '0' : props.theme.spaceScale.spacing13};
   overflow: hidden;
   padding: ${buildButtonPadding(props)};
   position: relative;
@@ -63,7 +59,7 @@ export const buttonStyles = props => css`
   vertical-align: middle;
   white-space: nowrap;
   width: ${props.iconOnly
-    ? buildButtonIconOnlyWidth(props)
+    ? buildButtonSize(props)
     : props.isFullWidth
     ? '100%'
     : 'auto'};

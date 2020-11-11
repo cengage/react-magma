@@ -441,8 +441,8 @@ describe('Styled Button', () => {
       const button = getByText(text);
 
       expect(button).toHaveStyleRule('display', 'inline-flex');
-      expect(button).toHaveStyleRule('height', '28px');
-      expect(button).toHaveStyleRule('width', '28px');
+      expect(button).toHaveStyleRule('height', magma.spaceScale.spacing07);
+      expect(button).toHaveStyleRule('width', magma.spaceScale.spacing07);
     });
 
     it('icon medium', () => {
@@ -455,8 +455,8 @@ describe('Styled Button', () => {
       const button = getByText(text);
 
       expect(button).toHaveStyleRule('display', 'inline-flex');
-      expect(button).toHaveStyleRule('height', magma.spaceScale.spacing08);
-      expect(button).toHaveStyleRule('width', magma.spaceScale.spacing08);
+      expect(button).toHaveStyleRule('height', magma.spaceScale.spacing09);
+      expect(button).toHaveStyleRule('width', magma.spaceScale.spacing09);
     });
 
     it('icon large', () => {
@@ -469,8 +469,8 @@ describe('Styled Button', () => {
       const button = getByText(text);
 
       expect(button).toHaveStyleRule('display', 'inline-flex');
-      expect(button).toHaveStyleRule('height', magma.spaceScale.spacing10);
-      expect(button).toHaveStyleRule('width', magma.spaceScale.spacing10);
+      expect(button).toHaveStyleRule('height', magma.spaceScale.spacing11);
+      expect(button).toHaveStyleRule('width', magma.spaceScale.spacing11);
     });
   });
 
