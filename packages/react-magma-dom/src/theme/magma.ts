@@ -57,6 +57,9 @@ export interface SpacingScale {
   spacing09: string;
   spacing10: string;
   spacing11: string;
+  spacing12: string;
+  spacing13: string;
+  spacing14: string;
 }
 
 export interface TypographyExpressiveSizes {
@@ -252,13 +255,14 @@ export const magma = {
     spacing04: '12px',
     spacing05: '16px',
     spacing06: '24px',
-    spacing07: '32px',
-    spacing08: '40px',
-    spacing09: '48px',
-    spacing10: '56px',
-    spacing11: '64px',
-    spacing12: '96px',
-    spacing13: '160px',
+    spacing07: '28px',
+    spacing08: '32px',
+    spacing09: '40px',
+    spacing10: '48px',
+    spacing11: '56px',
+    spacing12: '64px',
+    spacing13: '96px',
+    spacing14: '160px',
   },
 
   // Typography

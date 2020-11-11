@@ -60,19 +60,19 @@ export const inputBaseStyles = props => css`
   font-size: ${props.theme.typeScale.size03.fontSize};
   line-height: ${props.theme.typeScale.size03.lineHeight};
   font-family: ${props.theme.bodyFont};
-  height: ${props.theme.spaceScale.spacing08};
+  height: ${props.theme.spaceScale.spacing09};
   padding: ${props.theme.spaceScale.spacing03};
   -webkit-appearance: none;
   width: 100%;
 
   ${props.iconPosition === 'left' &&
   css`
-    padding-left: ${props.theme.spaceScale.spacing08};
+    padding-left: ${props.theme.spaceScale.spacing09};
   `}
 
   ${props.iconPosition === 'right' &&
   css`
-    padding-right: ${props.theme.spaceScale.spacing08};
+    padding-right: ${props.theme.spaceScale.spacing09};
   `}
   
   ${props.hasError &&
@@ -88,20 +88,20 @@ export const inputBaseStyles = props => css`
   css`
     font-size: ${props.theme.typeScale.size04.fontSize};
     line-height: ${props.theme.typeScale.size04.lineHeight};
-    height: ${props.theme.spaceScale.spacing10};
+    height: ${props.theme.spaceScale.spacing11};
     padding: 0 ${props.theme.spaceScale.spacing04};
   `}
 
     ${props.iconPosition === 'left' &&
   props.inputSize === 'large' &&
   css`
-    padding-left: ${props.theme.spaceScale.spacing09};
+    padding-left: ${props.theme.spaceScale.spacing10};
   `}
   
       ${props.iconPosition === 'right' &&
   props.inputSize === 'large' &&
   css`
-    padding-right: ${props.theme.spaceScale.spacing09};
+    padding-right: ${props.theme.spaceScale.spacing10};
   `}
 
   &::placeholder {

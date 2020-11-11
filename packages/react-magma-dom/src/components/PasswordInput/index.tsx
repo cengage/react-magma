@@ -42,7 +42,7 @@ const PasswordMaskWrapper = styled.span`
   margin: 0;
   position: absolute;
   right: ${props => props.theme.spaceScale.spacing02};
-  top: ${props => props.theme.spaceScale.spacing03};
+  top: ${props => props.theme.spaceScale.spacing02};
 `;
 
 export const PasswordInput = React.forwardRef<
@@ -144,8 +144,8 @@ export const PasswordInput = React.forwardRef<
                 borderRadius: theme.borderRadius,
                 height:
                   inputSize == InputSize.large
-                    ? theme.spaceScale.spacing08
-                    : theme.spaceScale.spacing07,
+                    ? theme.spaceScale.spacing10
+                    : theme.spaceScale.spacing08,
                 margin: 0,
               }}
               type={ButtonType.button}

@@ -179,7 +179,7 @@ describe('sizes', () => {
 
     expect(label).toHaveStyleRule('font-size', magma.typeScale.size02.fontSize);
     expect(input).toHaveStyleRule('font-size', magma.typeScale.size03.fontSize);
-    expect(input).toHaveStyleRule('height', magma.spaceScale.spacing08);
+    expect(input).toHaveStyleRule('height', magma.spaceScale.spacing09);
   });
 
   it('should render a large input with correct styles', () => {
@@ -194,7 +194,7 @@ describe('sizes', () => {
     expect(label).toHaveStyleRule('font-size', magma.typeScale.size03.fontSize);
 
     expect(input).toHaveStyleRule('font-size', magma.typeScale.size04.fontSize);
-    expect(input).toHaveStyleRule('height', magma.spaceScale.spacing10);
+    expect(input).toHaveStyleRule('height', magma.spaceScale.spacing11);
     expect(input).toHaveStyleRule('padding', `0 ${magma.spaceScale.spacing04}`);
   });
 });

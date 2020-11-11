@@ -71,7 +71,7 @@ const StyledLegend = styled.legend<{
 
 const InputsContainer = styled.div<{ theme: ThemeInterface }>`
   background: ${props => props.theme.colors.neutral08};
-  left: ${props => props.theme.spaceScale.spacing08};
+  left: ${props => props.theme.spaceScale.spacing09};
   position: absolute;
   top: ${props => props.theme.spaceScale.spacing03};
 `;

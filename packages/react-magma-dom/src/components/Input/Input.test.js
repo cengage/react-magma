@@ -166,7 +166,7 @@ describe('Input', () => {
     expect(span).toHaveStyleRule('left', 'auto');
     expect(span).toHaveStyleRule('right', magma.spaceScale.spacing04);
 
-    expect(input).toHaveStyleRule('padding-right', magma.spaceScale.spacing09);
+    expect(input).toHaveStyleRule('padding-right', magma.spaceScale.spacing10);
   });
 
   it('should render an input with a left-aligned icon in the correct position', () => {
@@ -191,7 +191,7 @@ describe('Input', () => {
     expect(span).toHaveStyleRule('left', magma.spaceScale.spacing04);
     expect(span).toHaveStyleRule('right', 'auto');
 
-    expect(input).toHaveStyleRule('padding-left', magma.spaceScale.spacing09);
+    expect(input).toHaveStyleRule('padding-left', magma.spaceScale.spacing10);
   });
 
   it('should render a clickable icon', () => {
@@ -302,8 +302,8 @@ describe('Input', () => {
         'font-size',
         magma.typeScale.size03.fontSize
       );
-      expect(input).toHaveStyleRule('height', magma.spaceScale.spacing08);
-      expect(input).toHaveStyleRule('padding-left', magma.spaceScale.spacing08);
+      expect(input).toHaveStyleRule('height', magma.spaceScale.spacing09);
+      expect(input).toHaveStyleRule('padding-left', magma.spaceScale.spacing09);
 
       expect(iconWrapper).toHaveStyleRule('left', magma.spaceScale.spacing04);
       expect(iconWrapper).toHaveStyleRule('right', 'auto');
@@ -329,7 +329,7 @@ describe('Input', () => {
         'font-size',
         magma.typeScale.size04.fontSize
       );
-      expect(input).toHaveStyleRule('height', magma.spaceScale.spacing10);
+      expect(input).toHaveStyleRule('height', magma.spaceScale.spacing11);
       expect(input).toHaveStyleRule(
         'padding',
         `0 ${magma.spaceScale.spacing04}`
