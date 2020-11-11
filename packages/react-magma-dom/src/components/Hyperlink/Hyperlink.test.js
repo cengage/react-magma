@@ -99,9 +99,9 @@ describe('Hyperlink', () => {
   it('should compose css when styled as button for function children', () => {
     render(
       <Hyperlink styledAs="Button" to="https://www.google.com">
-        {({ stylesClass, to }) => {
+        {({ className, to }) => {
           expect(to).toEqual('https://www.google.com');
-          expect(stylesClass).not.toBeNull();
+          expect(className).not.toBeNull();
         }}
       </Hyperlink>
     );
