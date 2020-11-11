@@ -89,7 +89,7 @@ const StyledNumInput = styled.input<{ theme: ThemeInterface }>`
   margin-right: ${props => props.theme.spaceScale.spacing01};
   padding: 0 ${props => props.theme.spaceScale.spacing01};
   text-align: right;
-  width: ${props => props.theme.spaceScale.spacing07};
+  width: ${props => props.theme.spaceScale.spacing06};
 
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -297,7 +297,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
                   : theme.colors.neutral04
               }`,
               cursor: 'default',
-              width: theme.spaceScale.spacing13,
+              width: '144px',
               ...inputStyle,
             }}
             ref={ref}
