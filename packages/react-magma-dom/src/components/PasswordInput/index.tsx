@@ -42,7 +42,7 @@ const PasswordMaskWrapper = styled.span`
   margin: 0;
   position: absolute;
   right: ${props => props.theme.spaceScale.spacing02};
-  top: ${props => props.theme.spaceScale.spacing02}%;
+  top: ${props => props.theme.spaceScale.spacing03};
 `;
 
 export const PasswordInput = React.forwardRef<
