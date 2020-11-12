@@ -76,43 +76,25 @@ const Layout = ({ children, pageContext }) => {
       : '';
   return (
     <LayoutComponent title={title}>
-      <MDXProvider
-        components={{
-          table: Table,
-          h2: SectionHeading,
-          h3: LinkHeading,
-        }}
-      >
-        <article className="content-article">
-          <SkipLinkContent>{children}</SkipLinkContent>
-        </article>
-      </MDXProvider>
+      <article className="content-article">
+        <SkipLinkContent>{children}</SkipLinkContent>
+      </article>
     </LayoutComponent>
   );
 };
 
 export const ScopeableLayout = ({ children, components, pageContext }) => {
-  const title =
-    pageContext && pageContext.frontmatter
-      ? pageContext.frontmatter.pageTitle || pageContext.frontmatter.title || ''
-      : '';
   return (
-    <LayoutComponent title={title}>
-      <MDXProvider
-        components={{
-          pre: preProps => (
-            <PreComponent {...preProps} components={components} />
-          ),
-          table: Table,
-          h2: SectionHeading,
-          h3: LinkHeading,
-        }}
-      >
-        <article className="content-article">
-          <SkipLinkContent>{children}</SkipLinkContent>
-        </article>
-      </MDXProvider>
-    </LayoutComponent>
+    <MDXProvider
+      components={{
+        pre: preProps => <PreComponent {...preProps} components={components} />,
+        table: Table,
+        h2: SectionHeading,
+        h3: LinkHeading,
+      }}
+    >
+      {children}
+    </MDXProvider>
   );
 };
 
