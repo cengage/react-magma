@@ -3,35 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.0.0-beta.119](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.118...v2.0.0-beta.119) (2020-11-09)
+# [2.0.0-beta.120](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.119...v2.0.0-beta.120) (2020-11-11)
 
+### Bug Fixes
+
+- **hyperlink:** remove href prop ([ae221db](http://stash.cengage.com:7999/FRONT/react-magma/commits/ae221dba3d4e1be4ab30f5e736051de3b519ff17))
+
+### BREAKING CHANGES
+
+- **hyperlink:** removing prop from typescript interface
+
+# [2.0.0-beta.119](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.118...v2.0.0-beta.119) (2020-11-09)
 
 ### Features
 
-* **select:** allow for custom dropdown indicator ([45f2d0d](http://stash.cengage.com:7999/FRONT/react-magma/commits/45f2d0d3e27ed53185bbc2511180657e57ffa8e4))
-
-
-
-
+- **select:** allow for custom dropdown indicator ([45f2d0d](http://stash.cengage.com:7999/FRONT/react-magma/commits/45f2d0d3e27ed53185bbc2511180657e57ffa8e4))
 
 # [2.0.0-beta.118](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.117...v2.0.0-beta.118) (2020-11-09)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 # [2.0.0-beta.117](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.116...v2.0.0-beta.117) (2020-11-09)
-
 
 ### Bug Fixes
 
-* **docs:** fix linking of icons/legacy-selects ([e07b388](http://stash.cengage.com:7999/FRONT/react-magma/commits/e07b38849e9e89a260e087879b6bd6050f30563e))
-
-
-
-
+- **docs:** fix linking of icons/legacy-selects ([e07b388](http://stash.cengage.com:7999/FRONT/react-magma/commits/e07b38849e9e89a260e087879b6bd6050f30563e))
 
 # [2.0.0-beta.116](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.115...v2.0.0-beta.116) (2020-11-03)
 
