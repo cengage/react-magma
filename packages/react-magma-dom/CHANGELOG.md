@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.121](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.120...v2.0.0-beta.121) (2020-11-12)
+
+### Features
+
+- **date-picker:** add onChange prop for generic state changes ([2ad33e6](http://stash.cengage.com:7999/FRONT/react-magma/commits/2ad33e6b4926026287240eb4fecefc050a08d5ac))
+
+# [2.0.0-beta.120](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.119...v2.0.0-beta.120) (2020-11-11)
+
+### Bug Fixes
+
+- **hyperlink:** remove href prop ([ae221db](http://stash.cengage.com:7999/FRONT/react-magma/commits/ae221dba3d4e1be4ab30f5e736051de3b519ff17))
+
+### BREAKING CHANGES
+
+- **hyperlink:** removing prop from typescript interface
+
 # [2.0.0-beta.119](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.118...v2.0.0-beta.119) (2020-11-09)
 
 ### Bug Fixes

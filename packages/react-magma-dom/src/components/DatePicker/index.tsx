@@ -21,10 +21,10 @@ import { omit, useGenerateId, Omit, useForkedRef } from '../../utils';
 import { I18nContext } from '../../i18n';
 
 export interface DatePickerProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value'> {
-  /**
-   * look at me, I'm sandra lee
-   */
+  extends Omit<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    'value' | 'onChange'
+  > {
   containerStyle?: React.CSSProperties;
   defaultDate?: Date;
   errorMessage?: React.ReactNode;
@@ -41,9 +41,14 @@ export interface DatePickerProps
   required?: boolean;
   testId?: string;
   value?: Date;
+  onChange?: (
+    value: string,
+    event: React.ChangeEvent | React.SyntheticEvent
+  ) => void;
   onDateChange?: (day: Date, event: React.SyntheticEvent) => void;
   onInputBlur?: (event: React.FocusEvent) => void;
   onInputChange?: (event: React.ChangeEvent) => void;
+  onInputFocus?: (event: React.FocusEvent) => void;
 }
 
 const DatePickerContainer = styled.div`
@@ -179,25 +184,43 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       setDateFocused(false);
     }
 
+    function isValidDateFromString(value: string, day: Date) {
+      const isValidDateFormat = /^\d{1,2}\/\d{1,2}\/\d{4}$/.test(value);
+      const isValidDate = isValid(day);
+
+      return isValidDateFormat && isValidDate;
+    }
+
     function handleInputChange(event) {
+      const { value } = event.target;
+      const day = new Date(value);
       setCalendarOpened(false);
 
       props.onInputChange &&
         typeof props.onInputChange === 'function' &&
         props.onInputChange(event);
+
+      const isValidDay = isValidDateFromString(value, day);
+
+      props.onChange &&
+        typeof props.onChange === 'function' &&
+        props.onChange(isValidDay ? day.toISOString() : value, event);
+    }
+
+    function handleInputFocus(event: React.FocusEvent) {
+      props.onInputFocus &&
+        typeof props.onInputFocus === 'function' &&
+        props.onInputFocus(event);
     }
 
     function handleInputBlur(event: React.FocusEvent) {
       const { value } = inputRef.current;
       const day = new Date(value);
-      const isValidDateFormat = /^\d{1,2}\/\d{1,2}\/\d{4}$/.test(value);
-      const isValidDate = isValid(day);
       const convertedMinDate = getDateFromString(props.minDate);
       const convertedMaxDate = getDateFromString(props.maxDate);
 
       if (
-        isValidDateFormat &&
-        isValidDate &&
+        isValidDateFromString(value, day) &&
         inDateRange(day, convertedMinDate, convertedMaxDate)
       ) {
         handleDateChange(day, event);
@@ -255,6 +278,10 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       props.onDateChange &&
         typeof props.onDateChange === 'function' &&
         props.onDateChange(day, event);
+
+      props.onChange &&
+        typeof props.onChange === 'function' &&
+        props.onChange(day.toISOString(), event);
 
       onDateChange(day);
       setFocusedDate(day);
@@ -336,6 +363,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             ref={ref}
             onChange={handleInputChange}
             onBlur={handleInputBlur}
+            onFocus={handleInputFocus}
             onKeyDown={handleInputKeyDown}
             placeholder={placeholder ? placeholder : dateFormat}
             type={InputType.text}

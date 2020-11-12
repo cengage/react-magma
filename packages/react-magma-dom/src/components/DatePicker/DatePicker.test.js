@@ -163,17 +163,35 @@ describe('Date Picker', () => {
   });
 
   it('should watch for input change', () => {
+    const onChange = jest.fn();
     const onInputChange = jest.fn();
     const labelText = 'Date Picker Label';
     const { getByLabelText } = render(
-      <DatePicker labelText={labelText} onInputChange={onInputChange} />
+      <DatePicker
+        labelText={labelText}
+        onChange={onChange}
+        onInputChange={onInputChange}
+      />
     );
 
     fireEvent.change(getByLabelText(labelText), {
       target: { value: 'new value' },
     });
 
+    expect(onChange).toHaveBeenCalled();
     expect(onInputChange).toHaveBeenCalled();
+  });
+
+  it('should call passed in handle focus function', () => {
+    const onInputFocus = jest.fn();
+    const labelText = 'Date Picker Label';
+    const { getByLabelText } = render(
+      <DatePicker labelText={labelText} onInputFocus={onInputFocus} />
+    );
+
+    getByLabelText(labelText).focus();
+
+    expect(onInputFocus).toHaveBeenCalled();
   });
 
   it('should call passed in handle blur function', () => {
@@ -190,10 +208,11 @@ describe('Date Picker', () => {
     expect(onInputBlur).toHaveBeenCalled();
   });
 
-  it('should change the focused date on blur if the typed in date is a valid date', () => {
+  it('should change the focused date and call on change on blur if the typed in date is a valid date', () => {
+    const onChange = jest.fn();
     const labelText = 'Date Picker Label';
     const { getByLabelText, getByText } = render(
-      <DatePicker labelText={labelText} />
+      <DatePicker labelText={labelText} onChange={onChange} />
     );
 
     getByLabelText(labelText).focus();
@@ -203,6 +222,8 @@ describe('Date Picker', () => {
     });
 
     getByLabelText('Toggle Calendar Widget').focus();
+
+    expect(onChange).toHaveBeenCalled();
 
     fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
@@ -374,6 +395,7 @@ describe('Date Picker', () => {
   });
 
   it('should handle a day click', () => {
+    const onChange = jest.fn();
     const onDateChange = jest.fn();
     const defaultDate = new Date();
     const labelText = 'Date picker label';
@@ -381,6 +403,7 @@ describe('Date Picker', () => {
       <DatePicker
         defaultDate={defaultDate}
         labelText={labelText}
+        onChange={onChange}
         onDateChange={onDateChange}
       />
     );
@@ -390,6 +413,7 @@ describe('Date Picker', () => {
     fireEvent.click(getByText(defaultDate.getDate().toString()));
 
     expect(onDateChange).toHaveBeenCalled();
+    expect(onChange).toHaveBeenCalled();
   });
 
   describe('on key down press', () => {
