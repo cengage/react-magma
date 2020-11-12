@@ -74,6 +74,7 @@ const Layout = ({ children, pageContext }) => {
     pageContext && pageContext.frontmatter
       ? pageContext.frontmatter.pageTitle || pageContext.frontmatter.title || ''
       : '';
+
   return (
     <LayoutComponent title={title}>
       <MDXProvider
@@ -91,7 +92,7 @@ const Layout = ({ children, pageContext }) => {
   );
 };
 
-export const ScopeableLayout = ({ children, components, pageContext }) => {
+export const ScopeableLayout = ({ children, components }) => {
   return (
     <MDXProvider
       components={{
