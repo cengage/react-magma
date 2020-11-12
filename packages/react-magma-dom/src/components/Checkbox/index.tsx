@@ -38,6 +38,10 @@ export interface CheckboxProps
    */
   containerStyle?: React.CSSProperties;
   /**
+   * If true, checkbox is checked on first render
+   */
+  defaultChecked?: boolean;
+  /**
    * If true, element is disabled
    * @default false
    */
@@ -46,15 +50,14 @@ export interface CheckboxProps
    * Content of the error message for an individual checkbox. If a value is provided, the input will be styled as an error state and the error message will display.
    */
   errorMessage?: React.ReactNode;
+  /*
+   * @internal
+   */
+  hasError?: boolean;
   /**
    * Style properties for the checkbox element
    */
   inputStyle?: React.CSSProperties;
-  /**
-   * If true, checkbox is checked on first render
-   */
-  defaultChecked?: boolean;
-  hasError?: boolean;
   isInverse?: boolean;
   /**
    * If true, label text will be hidden visually, but will still be read by assistive technology

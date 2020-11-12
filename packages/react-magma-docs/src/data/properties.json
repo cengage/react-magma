@@ -346,14 +346,6 @@
       "children": "required"
     },
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "actionButtonOnClick": {
         "name": "actionButtonOnClick",
         "required": false,
@@ -369,6 +361,14 @@
           "name": "string"
         },
         "description": "The text displayed inside of the action button"
+      },
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component"
       },
       "closeAriaLabel": {
         "name": "closeAriaLabel",
@@ -471,7 +471,8 @@
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "description": "The href value of the link. If left blank, the breadcrumb item will render as a span with aria-current=\"page\" on it."
       }
     }
   },
@@ -599,14 +600,6 @@
       "children": "required"
     },
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "breakpoints": {
         "name": "breakpoints",
         "required": false,
@@ -615,6 +608,14 @@
         },
         "description": "Object that defines the pixel size of individual breakpoints",
         "defaultValue": "{ xs: 0, small: 600, medium: 768, large: 1024, xl: 1200 }"
+      },
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component"
       }
     }
   },
@@ -806,27 +807,6 @@
     },
     "id": "ButtonProps",
     "properties": {
-      "testId": {
-        "name": "testId",
-        "required": false,
-        "type": {
-          "name": "string"
-        },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
-      },
-      "type": {
-        "name": "type",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonType.button",
-            "ButtonType.reset",
-            "ButtonType.submit"
-          ]
-        },
-        "description": "The type attribute of the button\nButtonType.button"
-      },
       "color": {
         "name": "color",
         "required": false,
@@ -890,6 +870,14 @@
         "description": "The relative size of the button",
         "defaultValue": "ButtonSize.medium"
       },
+      "testId": {
+        "name": "testId",
+        "required": false,
+        "type": {
+          "name": "string"
+        },
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+      },
       "textTransform": {
         "name": "textTransform",
         "required": false,
@@ -902,6 +890,19 @@
         },
         "description": "Determines whether the button appears in all-caps",
         "defaultValue": "ButtonTextTransform.uppercase"
+      },
+      "type": {
+        "name": "type",
+        "required": false,
+        "type": {
+          "name": "enum",
+          "options": [
+            "ButtonType.button",
+            "ButtonType.reset",
+            "ButtonType.submit"
+          ]
+        },
+        "description": "The type attribute of the button\nButtonType.button"
       },
       "variant": {
         "name": "variant",
@@ -1033,14 +1034,6 @@
       "children": "required"
     },
     "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        },
-        "description": "The content of the component"
-      },
       "align": {
         "name": "align",
         "required": false,
@@ -1077,6 +1070,14 @@
         },
         "description": "If a value is passed, the card will be styled as a callout for the specified type.",
         "defaultValue": "none"
+      },
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component"
       },
       "hasDropShadow": {
         "name": "hasDropShadow",
@@ -2081,8 +2082,7 @@
         "required": false,
         "type": {
           "name": "CSSProperties"
-        },
-        "description": "look at me, I'm sandra lee"
+        }
       },
       "defaultDate": {
         "name": "defaultDate",
@@ -2163,6 +2163,13 @@
           "name": "Date"
         }
       },
+      "onChange": {
+        "name": "onChange",
+        "required": false,
+        "type": {
+          "name": "function"
+        }
+      },
       "onDateChange": {
         "name": "onDateChange",
         "required": false,
@@ -2179,6 +2186,13 @@
       },
       "onInputChange": {
         "name": "onInputChange",
+        "required": false,
+        "type": {
+          "name": "function"
+        }
+      },
+      "onInputFocus": {
+        "name": "onInputFocus",
         "required": false,
         "type": {
           "name": "function"
@@ -2386,19 +2400,20 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 8838,
+          "id": 8847,
           "name": "IconOnlyDropdownButtonProps"
         },
         {
           "type": "reference",
-          "id": 8842,
+          "id": 8851,
           "name": "IconTextDropdownButtonProps"
         }
       ],
       "name": "XOR"
     },
     "id": "DropdownButtonProps",
-    "tags": {}
+    "tags": {},
+    "properties": {}
   },
   {
     "name": "DropdownMenuGroupInterface",
@@ -3283,7 +3298,8 @@
       "name": "XOR"
     },
     "id": "IconButtonProps",
-    "tags": {}
+    "tags": {},
+    "properties": {}
   },
   {
     "name": "IndeterminateCheckboxProps",
@@ -4012,19 +4028,20 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 11276,
+          "id": 11285,
           "name": "NavTabChildrenProps"
         },
         {
           "type": "reference",
-          "id": 11542,
+          "id": 11551,
           "name": "NavTabComponentProps"
         }
       ],
       "name": "XOR"
     },
     "id": "NavTabProps",
-    "tags": {}
+    "tags": {},
+    "properties": {}
   },
   {
     "name": "NavTabsContextInterface",
@@ -4097,7 +4114,8 @@
       "isExported": true
     },
     "id": "NavTabsProps",
-    "tags": {}
+    "tags": {},
+    "properties": {}
   },
   {
     "name": "ParagraphProps",
@@ -5207,7 +5225,8 @@
       }
     },
     "id": "SelectComponents",
-    "tags": {}
+    "tags": {},
+    "properties": {}
   },
   {
     "name": "InternalMultiInterface",
@@ -6025,7 +6044,8 @@
       ]
     },
     "id": "SelectOptions",
-    "tags": {}
+    "tags": {},
+    "properties": {}
   },
   {
     "name": "ContainerProps",
@@ -7206,18 +7226,19 @@
       "types": [
         {
           "type": "reference",
-          "id": 10643,
+          "id": 10652,
           "name": "HorizontalTabsProps"
         },
         {
           "type": "reference",
-          "id": 10640,
+          "id": 10649,
           "name": "VerticalTabsProps"
         }
       ]
     },
     "id": "Orientation",
-    "tags": {}
+    "tags": {},
+    "properties": {}
   },
   {
     "name": "TextareaProps",

@@ -64,12 +64,26 @@ const filterJson = () => {
       .pop();
   };
 
-  const cleanChildren = (children, acc = {}) =>
-    children &&
-    children
-      .filter(filterReactDefinitions)
-      .filter(filterEmotion)
-      .reduce(formatChild, acc);
+  const sortObject = unordered => {
+    const ordered = {};
+    Object.keys(unordered)
+      .sort()
+      .forEach(function (key) {
+        ordered[key] = unordered[key];
+      });
+    return ordered;
+  };
+
+  const cleanChildren = (children, acc = {}) => {
+    if (!children) return acc;
+
+    return sortObject(
+      children
+        .filter(filterReactDefinitions)
+        .filter(filterEmotion)
+        .reduce(formatChild, acc)
+    );
+  };
 
   const findType = ({ type, id, name }) => {
     if (type === 'reference') {

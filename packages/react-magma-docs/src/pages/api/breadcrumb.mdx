@@ -3,6 +3,7 @@ pageTitle: Breadcrumb API
 title: Breadcrumb
 props:
   - BreadcrumbProps
+  - BreadcrumbItemProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -80,34 +81,7 @@ By default, the `aria-label` of the Breadcrumb component is `Breadcrumb`. This c
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `nav` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-  }}
-/>
+<BreadcrumbProps />
 
 ## Breadcrumb Item Props
 
@@ -115,7 +89,7 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 
 All of the [standard li attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li) can be provided as props and will be applied to the wrapping `li` element that gets rendered.
 
-<BreadcrumbProps />
+<BreadcrumbItemProps />
 
 export default props => (
   <ScopeableLayout

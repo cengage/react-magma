@@ -38,7 +38,7 @@ Communicate often. Make sure you are giving progress updates for any PR. With mo
 
 ## Interfaces and Property Tables
 
-The property tables that we use are generated automatically, but require some wiring up. The interface in the typescript file must be annotated with typedoc comments and then the needed props get added to the front matter in the `mdx` file and there is a magic component for the property table which matches the props in the frontmatter. For example:
+The property tables that we use are generated automatically, but require some wiring up. The interface in the typescript file must be annotated with typedoc comments. You will also need to add the needed props to the frontmatter in the `mdx` file. This will allow for our props table component to match the props referenced in the frontmatter to build out the props table. For example:
 
 ```typescript
 /**
