@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.124](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.123...v2.0.0-beta.124) (2020-11-12)
+
+
+### Features
+
+* text align fix ([0e0a18c](http://stash.cengage.com:7999/FRONT/react-magma/commits/0e0a18c05879d616de60df15b5deb66b14dd31e6))
+* **feat:** margin and padding tweaks ([6c35ae6](http://stash.cengage.com:7999/FRONT/react-magma/commits/6c35ae60c8f4b84887d23172e6699cd302250a9f))
+
+
+
+
+
 # [2.0.0-beta.123](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.122...v2.0.0-beta.123) (2020-11-12)
 
 
