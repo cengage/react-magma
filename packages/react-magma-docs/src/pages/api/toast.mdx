@@ -19,30 +19,61 @@ import { SimplePropsTable } from '../../components/props-table';
 
 ## Basic Usage
 
+```.jsx
+  () => {
+    const [showToast, setShowToast] = React.useState(false);
+
+    function handleClick() {
+      setShowToast(true);
+    }
+
+    function handleDismiss() {
+      setShowToast(false);
+    }
+
+    return (
+      <>
+        <Button size="small" onClick={handleClick}>
+          Show Default Toast
+        </Button>
+        {showToast
+          ? <Toast onDismiss={handleDismiss}>Default Toast</Toast>
+          : null}
+      </>
+    )
+  }
+```
+
+## Variants
+
 Variants for toasts include `info`, `success`, `warning`, and `danger`, with `info` being the default value.
 
 **It is strongly recommended that `warning` and `danger` toasts do not auto-dismiss**, so that users have time to process the information in them.
 
-```.jsx
-  (props) => {
-    const [showDefaultToast, setShowDefaultToast] = React.useState(false);
-    const [showInfoToast, setShowInfoToast] = React.useState(false);
-    const [showSuccessToast, setShowSuccessToast] = React.useState(false);
-    const [showWarningToast, setShowWarningToast] = React.useState(false);
-    const [showDangerToast, setShowDangerToast] = React.useState(false);
+### Info
 
-    return (<>
-      <Button size="small" onClick={() => setShowDefaultToast(true)}>Show Default Toast</Button>
-      <Button size="small" onClick={() => setShowInfoToast(true)}>Show Info Toast</Button>
-      <Button size="small" onClick={() => setShowSuccessToast(true)}>Show Success Toast</Button>
-      <Button size="small" onClick={() => setShowWarningToast(true)}>Show Warning Toast</Button>
-      <Button size="small" onClick={() => setShowDangerToast(true)}>Show Danger Toast</Button>
-      {showDefaultToast && <Toast onDismiss={() => setShowDefaultToast(false)}>Default Toast</Toast>}
-      {showInfoToast && <Toast variant="info" onDismiss={() => setShowInfoToast(false)}>Info Toast with <a href="#">linked element</a></Toast>}
-      {showSuccessToast && <Toast variant="success" onDismiss={() => setShowSuccessToast(false)}>Success Toast</Toast>}
-      {showWarningToast && <Toast disableAutoDismiss variant="warning" onDismiss={() => setShowWarningToast(false)}>Warning Toast</Toast>}
-      {showDangerToast && <Toast disableAutoDismiss variant="danger" onDismiss={() => setShowDangerToast(false)}>Danger Toast</Toast>}
-      </>)
+```.jsx
+  () => {
+    const [showToast, setShowToast] = React.useState(false);
+
+    function handleClick() {
+      setShowToast(true);
+    }
+
+    function handleDismiss() {
+      setShowToast(false);
+    }
+
+    return (
+      <>
+        <Button size="small" onClick={handleClick}>
+          Show Info Toast
+        </Button>
+        {showToast
+          ? <Toast onDismiss={handleDismiss} variant='info'>Info Toast</Toast>
+          : null}
+      </>
+    )
   }
 ```
 
@@ -56,7 +87,7 @@ While toasts appear visually in centered at bottom of the screen, they will exis
 markup, to ensure that they have the expected tab order.
 
 ```.jsx
-  (props) => {
+  () => {
     const [showToast, setShowToast] = React.useState(false);
 
     return (<>
@@ -76,7 +107,7 @@ that may be added. However if the number of toasts exceeds the amount of space o
 appearing on screen at once as much as possible.
 
 ```.jsx
-  (props) => {
+  () => {
     const [showToast, setShowToast] = React.useState(false);
     const [showToast2, setShowToast2] = React.useState(false);
     const [showToast3, setShowToast3] = React.useState(false);
@@ -103,7 +134,7 @@ The `ToastsContainer` component takes an optional `bottomOffset` prop, that indi
 This is useful in cases where toasts are intended to display above a component, such as a toolbar.
 
 ```.jsx
-  (props) => {
+  () => {
     const [showToast, setShowToast] = React.useState(false);
 
     return (<ToastsContainer bottomOffset={100}>
@@ -119,7 +150,7 @@ The `toastDuration` prop can be used to set the number of milliseconds that the 
 This can be useful to set a longer duration for more lengthy toasts. It is recommended that the minimum `toastDuration` is 4000ms. The default is 5000.
 
 ```.jsx
-  (props) => {
+  () => {
     const [showToast, setShowToast] = React.useState(false);
 
     return (<>
@@ -132,7 +163,7 @@ This can be useful to set a longer duration for more lengthy toasts. It is recom
 ## Disable Auto Dismiss
 
 ```.jsx
-  (props) => {
+  () => {
     const [showToast, setShowToast] = React.useState(false);
 
     return (<>
@@ -147,7 +178,7 @@ This can be useful to set a longer duration for more lengthy toasts. It is recom
 When you hover over the Toast the timer is paused. Once the mouse leaves the Toast the timer is restarted and runs for half of the original toast duration.
 
 ```.jsx
-  (props) => {
+  () => {
     const [showToast, setShowToast] = React.useState(false);
     const [toastContent, setToastContent] = React.useState('Default Toast Content');
 
@@ -168,7 +199,7 @@ which includes the component's positioning and z-index. The `alertStyle` prop co
 includes the element's background, border-radius, and fade animation.
 
 ```.jsx
-  (props) => {
+  () => {
     const [showToast, setShowToast] = React.useState(false);
 
     return (<>

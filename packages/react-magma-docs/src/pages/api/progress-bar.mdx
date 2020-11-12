@@ -26,7 +26,7 @@ A progress bar can be used to show a user how far along they are in a process. P
 The `percentage` prop is used to display how much of the bar should be filled in. The default value is 0. This value can be adjusted dynamically.
 
 ```.jsx
-  (props) => {
+  () => {
     const [percentage, setPercentage] = React.useState(0);
 
     return (
@@ -45,7 +45,7 @@ The `percentage` prop is used to display how much of the bar should be filled in
 ## Animated
 
 ```.jsx
-    <ProgressBar isAnimated percentage={25} />
+  <ProgressBar isAnimated percentage={25} />
 ```
 
 ## Background Color
@@ -54,13 +54,13 @@ The `color` prop can be used to set the background color of the progress bar. Th
 The default value is `primary` which renders as `#006298`, or `magma.colors.primary`.
 
 ```.jsx
-    <>
-      <ProgressBar color='danger' percentage={25} /><br/>
-      <ProgressBar color='pop' percentage={25} /><br/>
-      <ProgressBar color='pop02' percentage={25} /><br/>
-      <ProgressBar color='primary' percentage={25} /><br/>
-      <ProgressBar color='success' percentage={25} /><br/>
-    </>
+  <>
+    <ProgressBar color='danger' percentage={25} /><br/>
+    <ProgressBar color='pop' percentage={25} /><br/>
+    <ProgressBar color='pop02' percentage={25} /><br/>
+    <ProgressBar color='primary' percentage={25} /><br/>
+    <ProgressBar color='success' percentage={25} /><br/>
+  </>
 ```
 
 ## Height
@@ -68,7 +68,7 @@ The default value is `primary` which renders as `#006298`, or `magma.colors.prim
 The `height` prop can be used to set the height of the progress bar in pixels. The default value is 15.
 
 ```.jsx
-    <ProgressBar height={10} percentage={25} />
+  <ProgressBar height={10} percentage={25} />
 ```
 
 ## Inverse
@@ -77,11 +77,11 @@ The `height` prop can be used to set the height of the progress bar in pixels. T
 the default background color of the progress bar is `#00A9E0` or `magma.colors.foundation03`.
 
 ```.jsx
-    <Card isInverse>
-      <CardBody>
-          <ProgressBar isInverse percentage={25} />
-      </CardBody>
-    </Card>
+  <Card isInverse>
+    <CardBody>
+        <ProgressBar isInverse percentage={25} />
+    </CardBody>
+  </Card>
 ```
 
 ## Label Visible
@@ -89,7 +89,7 @@ the default background color of the progress bar is `#00A9E0` or `magma.colors.f
 If the `isLabelVisible` prop is true, the percentage value will display to the right of the progress bar.
 
 ```.jsx
-        <ProgressBar isLabelVisible percentage={25} />
+  <ProgressBar isLabelVisible percentage={25} />
 ```
 
 ## Progress Bar Props

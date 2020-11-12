@@ -83,19 +83,19 @@ The `narrative` context variant can be used for content-heavy contexts, such as 
 The `color` prop can be used to change the color of the heading to convey additional meaning. It accepts the values: `success`, `danger` and `subdued`.
 
 ```.jsx
-    <>
-        <Heading color="success" level={2}>
-            Success Color Heading
-        </Heading>
+  <>
+    <Heading color="success" level={2}>
+      Success Color Heading
+    </Heading>
 
-        <Heading color="danger" level={2}>
-            Danger Color Heading
-        </Heading>
+    <Heading color="danger" level={2}>
+      Danger Color Heading
+    </Heading>
 
-        <Heading color="subdued" level={2}>
-            Subdued Color Heading
-        </Heading>
-    </>
+    <Heading color="subdued" level={2}>
+      Subdued Color Heading
+    </Heading>
+  </>
 ```
 
 ## Inverse
@@ -142,23 +142,25 @@ By default, the `Heading` component includes margins on the top and bottom. When
 Using React's `forwardRef` feature you can gain access to the reference of the internal heading.
 
 ```.jsx
-  (props) => {
+  () => {
     const headingRef = React.useRef();
 
-    return <div>
-      <Heading
-        ref={headingRef}
-        level={1}>
-        Heading to Be Focused
-      </Heading>
+    return (
+      <>
+        <Heading
+          ref={headingRef}
+          level={1}>
+          Heading to Be Focused
+        </Heading>
 
-      <Button
-        onClick={() => {
-          headingRef.current.tabIndex = -1
-          headingRef.current.focus();
-        }}>Click to focus heading
-      </Button>
-    </div>
+        <Button
+          onClick={() => {
+            headingRef.current.tabIndex = -1
+            headingRef.current.focus();
+          }}>Click to focus heading
+        </Button>
+      </>
+    )
   }
 ```
 

@@ -24,24 +24,24 @@ The `SkipLinkContent` component is the div that is the target of the `SkipLink`.
 If there is an h1 heading inside the SkipLinkContent, the h1 will receive focus. Otherwise, just the SkipLinkContent div itself will get focus.
 
 ```
-    <div>
-        <SkipLink />
-        <YourNav />
-        <SkipLinkContent>
-            <YourContent />
-        </SkipLinkContent>
-    </div>
+  <div>
+    <SkipLink />
+    <YourNav />
+    <SkipLinkContent>
+      <YourContent />
+    </SkipLinkContent>
+  </div>
 ```
 
 Or
 
 ```
-    <div>
-        <SkipLink />
-        <YourNav />
-        <SkipLinkContent />
-        <YourContent />
-    </div>
+  <div>
+    <SkipLink />
+    <YourNav />
+    <SkipLinkContent />
+    <YourContent />
+  </div>
 ```
 
 When the user tabs to the first element, a hyperlink with this appearance will display in focus:
@@ -59,9 +59,9 @@ IsInverse is can be either `true` or `false`, and is used when the SkipLink is t
 For more information, see the <Link to="/api/button">Button Component documentation</Link>.
 
 ```
-    <SkipLink
-        color="success"
-        variant="outline" />
+  <SkipLink
+    color="success"
+    variant="outline" />
 ```
 
 This would render the button as:
@@ -75,8 +75,8 @@ This would render the button as:
 By default, the text inside the button says "Skip Navigation". This can be overridden using the `buttonText` prop.
 
 ```
-    <SkipLink
-        buttonText='Skip to main content' />
+  <SkipLink
+    buttonText='Skip to main content' />
 ```
 
 This would render the button as:
@@ -89,9 +89,9 @@ By default, the `SkipLink` is fixed positioned 10px from the top and 10px from l
 and `positionTop` properties, which take numeric values.
 
 ```
-    <SkipLink
-        positionLeft={25}
-        positionTop={25} />
+  <SkipLink
+    positionLeft={25}
+    positionTop={25} />
 ```
 
 This would render the button 25px from the top, and 25px from the left of the browser window.

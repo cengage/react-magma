@@ -19,7 +19,7 @@ and pass in your custom theme as the `value` property. Any descendants of the co
 Use the dropdown to change the theme for the demo component.
 
 ```.jsx
-  (props) => {
+  () => {
     const [theme, setTheme] = React.useState(magma);
 
     function handleItemChange(changes) {
@@ -117,62 +117,61 @@ typeScale: {
 Furthermore, font-size and line-height can be set in the theme for six heading levels and four paragraph relative sizes for two different screen resolutions.
 The theme also contains options for two additional typography variants for those heading and paragraph styles.
 
-```
+```.js
 typographyVisualStyles: {
-    headingXLarge: {
-      mobile: typeScale.size07,
-      desktop: typeScale.size08,
-      fontWeight: 600
-    },
-    headingLarge: {
-      mobile: typeScale.size06,
-      desktop: typeScale.size07,
-      fontWeight: 600
-    },
-    headingMedium: {
-      mobile: typeScale.size05,
-      desktop: typeScale.size06,
-      fontWeight: 600
-    },
-    ...
+  headingXLarge: {
+    mobile: typeScale.size07,
+    desktop: typeScale.size08,
+    fontWeight: 600
+  },
+  headingLarge: {
+    mobile: typeScale.size06,
+    desktop: typeScale.size07,
+    fontWeight: 600
+  },
+  headingMedium: {
+    mobile: typeScale.size05,
+    desktop: typeScale.size06,
+    fontWeight: 600
+  },
+  ...
 },
 typographyExpressiveVisualStyles: {
-    headingXLarge: {
-      mobile: typeScale.size08,
-      desktop: typeScale.size11,
-      fontWeight: 600
-    },
-    headingLarge: {
-      mobile: typeScale.size07,
-      desktop: typeScale.size09,
-      fontWeight: 300
-    },
-    headingMedium: {
-      mobile: typeScale.size06,
-      desktop: typeScale.size07,
-      fontWeight: 300
-    },
-    ...
+  headingXLarge: {
+    mobile: typeScale.size08,
+    desktop: typeScale.size11,
+    fontWeight: 600
+  },
+  headingLarge: {
+    mobile: typeScale.size07,
+    desktop: typeScale.size09,
+    fontWeight: 300
+  },
+  headingMedium: {
+    mobile: typeScale.size06,
+    desktop: typeScale.size07,
+    fontWeight: 300
+  },
+  ...
 },
-},
-  typographyNarrativeVisualStyles: {
-    headingXLarge: {
-      mobile: typeScale.size07,
-      desktop: typeScale.size08,
-      fontWeight: 700
-    },
-    headingLarge: {
-      mobile: typeScale.size06,
-      desktop: typeScale.size07,
-      fontWeight: 700
-    },
-    headingMedium: {
-      mobile: typeScale.size05,
-      desktop: typeScale.size06,
-      fontWeight: 700
-    },
-    ...
-  }
+typographyNarrativeVisualStyles: {
+  headingXLarge: {
+    mobile: typeScale.size07,
+    desktop: typeScale.size08,
+    fontWeight: 700
+  },
+  headingLarge: {
+    mobile: typeScale.size06,
+    desktop: typeScale.size07,
+    fontWeight: 700
+  },
+  headingMedium: {
+    mobile: typeScale.size05,
+    desktop: typeScale.size06,
+    fontWeight: 700
+  },
+  ...
+}
 
 ```
 

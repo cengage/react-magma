@@ -29,7 +29,7 @@ The `type` prop can be used to change what sort of loading animation displays. T
 to render the <Link to="/api/progress-bar">Progress Bar</Link> component.
 
 ```.jsx
-  (props) => {
+  () => {
     const [percentage, setPercentage] = React.useState(0);
 
     React.useEffect(() => {
@@ -97,10 +97,10 @@ The `LoadingIndicator`, supports three levels of messages. One displays immediat
 These messages can be customized by using the `message1`, `message2` and `message3` props.
 
 ```.jsx
-    <LoadingIndicator
-      message1="Custom message"
-      message2="An additional custom message"
-      message3="Third and final custom message" />
+  <LoadingIndicator
+    message1="Custom message"
+    message2="An additional custom message"
+    message3="Third and final custom message" />
 ```
 
 ## Accessibility Considerations
@@ -110,18 +110,20 @@ One way to do this is to the use the <Link to="/api/announce">Announce component
 the conditional logic to display the `LoadingIndicator` _inside_ the `Announce` component.
 
 ```.jsx
-  (props) => {
+  () => {
     const [showLoader, setShowLoader] = React.useState(false);
 
-    return (<>
-      <p>
-        <Button onClick={() => setShowLoader(true)}>Show Loading Indicator</Button>
-        <Button onClick={() => setShowLoader(false)}>Hide Loading Indicator</Button>
-      </p>
-      <Announce>
-        {showLoader && <LoadingIndicator />}
-      </Announce>
-    </>)
+    return (
+      <>
+        <p>
+          <Button onClick={() => setShowLoader(true)}>Show Loading Indicator</Button>
+          <Button onClick={() => setShowLoader(false)}>Hide Loading Indicator</Button>
+        </p>
+        <Announce>
+          {showLoader && <LoadingIndicator />}
+        </Announce>
+      </>
+    )
   }
 ```
 

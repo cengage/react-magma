@@ -18,7 +18,7 @@ import { format } from 'date-fns';
 ## Basic Usage
 
 ```.jsx
-    <DatePicker labelText="Date" />
+  <DatePicker labelText="Date" />
 ```
 
 ## Default Date
@@ -26,7 +26,7 @@ import { format } from 'date-fns';
 By default, no date value is selected. You can add a default date, by using the `defaultDate` prop.
 
 ```.jsx
-    <DatePicker defaultDate='07/23/2019' labelText="Date" />
+  <DatePicker defaultDate='07/23/2019' labelText="Date" />
 ```
 
 ## Value
@@ -34,7 +34,7 @@ By default, no date value is selected. You can add a default date, by using the 
 The `value` prop can also be used so set the date value externally. It will override the `defaultDate` if both are passed.
 
 ```.jsx
-    <DatePicker defaultDate='07/23/2019' labelText="Date" value='03/12/2019' />
+  <DatePicker defaultDate='07/23/2019' labelText="Date" value='03/12/2019' />
 ```
 
 ## Minimum and Maximum Dates
@@ -51,49 +51,51 @@ By default, the placeholder text of the input is 'MM/DD/YYYY'. You can override 
 Note: the expected date format should appear somewhere in either the labelText or the placeholder.
 
 ```.jsx
-    <DatePicker placeholder='Your birthday (format MM/DD/YYYY)' labelText="Birthday" />
+  <DatePicker placeholder='Your birthday (format MM/DD/YYYY)' labelText="Birthday" />
 ```
 
 ## Helper Message
 
 ```.jsx
-    <DatePicker labelText="Help Me" helperMessage="This is your help" />
+  <DatePicker labelText="Help Me" helperMessage="This is your help" />
 ```
 
 ## Error Message
 
 ```.jsx
-    <DatePicker labelText="Error *" errorMessage="You made an error" required />
+  <DatePicker labelText="Error *" errorMessage="You made an error" required />
 ```
 
 ## Date Change Event
 
 ```.jsx
-  (props) => {
+  () => {
     const [chosenDate, setChosenDate] = React.useState(0);
     const [inputValue, setInputValue] = React.useState('');
 
-    return (<div>
-      <p>
-        <strong>Chosen Date: </strong>
-        {chosenDate &&
-          <span>
-            {`${chosenDate.getMonth() + 1}/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
-          </span>
-        }
-      </p>
-      <p><strong>Input Value: </strong>{inputValue}</p>
-      <DatePicker
-        onInputChange={(event) => {
-          setInputValue(event.target.value);
-        }}
-        onDateChange={(newChosenDate) => {
-          setChosenDate(newChosenDate);
-        }}
-        onInputBlur={(chosenDate) => {
-          console.log('blurred')
-        }} />
-    </div>);
+    return (
+      <div>
+        <p>
+          <strong>Chosen Date: </strong>
+          {chosenDate &&
+            <span>
+              {`${chosenDate.getMonth() + 1}/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
+            </span>
+          }
+        </p>
+        <p><strong>Input Value: </strong>{inputValue}</p>
+        <DatePicker
+          onInputChange={(event) => {
+            setInputValue(event.target.value);
+          }}
+          onDateChange={(newChosenDate) => {
+            setChosenDate(newChosenDate);
+          }}
+          onInputBlur={(chosenDate) => {
+            console.log('blurred')
+          }} />
+      </div>
+    );
   }
 ```
 
@@ -102,7 +104,7 @@ Note: the expected date format should appear somewhere in either the labelText o
 The `DatePicker` is keyboard navigable for allowing the user to navigate between days, weeks, and months. If you would like to see all of the options for keyboard navigation click on the `?` button in the bottom right corner of the `DatePicker` or press the `?` key.
 
 ```.jsx
-    <DatePicker labelText="Date" />
+  <DatePicker labelText="Date" />
 ```
 
 ## Custom Styles
@@ -112,13 +114,13 @@ The `labelStyle` prop will apply to the field's label; the `messageStyle` prop w
 Please use discretion when adding custom styles.
 
 ```.jsx
-    <DatePicker
-      containerStyle={{ border: '2px solid green', maxWidth:  '300px', padding: '2px' }}
-      errorMessage="Please fix the error"
-      inputStyle={{ border: '1px dashed purple', borderRadius: '0' }}
-      labelStyle={{ border: '1px dotted blue' }}
-      labelText="Date"
-      messageStyle={{ border: '1px solid black', padding: '' }} />
+  <DatePicker
+    containerStyle={{ border: '2px solid green', maxWidth:  '300px', padding: '2px' }}
+    errorMessage="Please fix the error"
+    inputStyle={{ border: '1px dashed purple', borderRadius: '0' }}
+    labelStyle={{ border: '1px dotted blue' }}
+    labelText="Date"
+    messageStyle={{ border: '1px solid black', padding: '' }} />
 ```
 
 ## Internationalization
@@ -131,8 +133,7 @@ to the `I18nContext` provider.
 </Link>
 
 ```.jsx
-() => {
-  return (<I18nContext.Provider value={{
+  <I18nContext.Provider value={{
     ...defaultI18n,
     days: {
       ...defaultI18n.days,
@@ -159,7 +160,7 @@ to the `I18nContext` provider.
     locale: es
   }}>
     <DatePicker labelText="Español" />
-  </I18nContext.Provider>)
+  </I18nContext.Provider>
 }
 ```
 

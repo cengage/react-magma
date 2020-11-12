@@ -23,12 +23,12 @@ The label/toggle association will be handled via the passed in `id` if one is su
 ```.jsx
   <div>
     <Toggle
-        id='Toggle0'
-        labelText='Toggle label off' />
+      id='Toggle0'
+      labelText='Toggle label off' />
     <Toggle
-        checked
-        id='Toggle1'
-        labelText='Toggle label on' />
+      checked
+      id='Toggle1'
+      labelText='Toggle label on' />
   </div>
 ```
 
@@ -37,15 +37,15 @@ The label/toggle association will be handled via the passed in `id` if one is su
 ```.jsx
   <div>
     <Toggle
-        disabled
-        id='disabledToggle'
-        labelText='Disabled toggle' />
+      disabled
+      id='disabledToggle'
+      labelText='Disabled toggle' />
     <Toggle
-        checked
-        disabled
-        id='disabledToggleOn'
-        labelText='Disabled toggle on' />
-    </div>
+      checked
+      disabled
+      id='disabledToggleOn'
+      labelText='Disabled toggle on' />
+  </div>
 ```
 
 ## Error Message
@@ -55,22 +55,22 @@ An `errorMessage` can also be supplied to an toggle to indicate the selection is
 The `required` attribute can be used on a toggle if that field is required.
 
 ```.jsx
- (props) => {
-  const [hasError, setHasError] = React.useState(true);
+  () => {
+    const [hasError, setHasError] = React.useState(true);
 
     function handleChange(e){
       setHasError(!e.target.checked)
     }
 
-   return(
-     <Toggle
+    return(
+      <Toggle
         errorMessage={hasError ? "You must turn permissions on" : null}
         id='errorToggle'
         labelText='Enable Permissions'
         onChange={handleChange}
         required />
     )
- }
+  }
 ```
 
 ## Text Position
@@ -81,13 +81,13 @@ The `textPosition` property takes the values `left` and `right`. The default val
 ```.jsx
   <div>
     <Toggle
-        id='ToggleTextLeft'
-        labelText='Text left' />
+      id='ToggleTextLeft'
+      labelText='Text left' />
     <Toggle
-        id='ToggleTextRight'
-        labelText='Text right'
-        textPosition='right' />
-    </div>
+      id='ToggleTextRight'
+      labelText='Text right'
+      textPosition='right' />
+  </div>
 ```
 
 ## Visually Hidden Label
@@ -106,10 +106,10 @@ Adding the `isTextVisuallyHidden` prop will make the label text available to scr
 ```.jsx
   <div>
     <Toggle
-        id='visuallyHiddenToggle'
-        labelText='Label is hidden'
-        isTextVisuallyHidden />
-    </div>
+      id='visuallyHiddenToggle'
+      labelText='Label is hidden'
+      isTextVisuallyHidden />
+  </div>
 ```
 
 ## Custom Styles
@@ -121,12 +121,12 @@ Please use discretion when adding custom styles.
 ```.jsx
   <div>
     <Toggle
-        containerStyle={{ 'border': '1px dotted purple', 'width': '100%'}}
-        id='custom1'
-        labelStyle={{ 'fontStyle': 'italic', 'flexGrow': '1'}}
-        labelText='Custom styles'
-        thumbStyle={{ 'background': 'yellow', 'border' : '1px solid orange', 'boxShadow': '0 0 0' }}
-        trackStyle={{ 'borderRadius': '5px', 'height': '18px'}} />
+      containerStyle={{ 'border': '1px dotted purple', 'width': '100%'}}
+      id='custom1'
+      labelStyle={{ 'fontStyle': 'italic', 'flexGrow': '1'}}
+      labelText='Custom styles'
+      thumbStyle={{ 'background': 'yellow', 'border' : '1px solid orange', 'boxShadow': '0 0 0' }}
+      trackStyle={{ 'borderRadius': '5px', 'height': '18px'}} />
   </div>
 ```
 
@@ -184,7 +184,7 @@ All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/
       description: 'If true, element is disabled',
       defaultValue: 'false',
     },
-     errorMessage: {
+    errorMessage: {
       type: {
         name: 'ReactNode',
       },

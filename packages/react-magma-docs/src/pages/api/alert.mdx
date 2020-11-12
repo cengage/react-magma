@@ -51,14 +51,16 @@ you must also include a function in the `onDismiss` prop to handle the dismiss b
 The aria-label, by default is `Close this message` but can be overridden using the optional `closeAriaLabel` prop.
 
 ```.jsx
-    (props) => {
-      const [showAlert, updateShowAlert] = React.useState(false);
+  () => {
+    const [showAlert, updateShowAlert] = React.useState(false);
 
-      return (<>
+    return (
+      <>
         {showAlert && <Alert isDismissible onDismiss={() => updateShowAlert(false)}>Dismiss Me<br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Alert>}
         <Button onClick={() => updateShowAlert(true)}>Show Alert</Button>
-      </>)
-    }
+      </>
+    )
+  }
 ```
 
 ## Testing
@@ -92,7 +94,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 **This component uses `forwardRef`. The ref is applied to the Alert container `div` element.**
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
-
 
 <SimplePropsTable
   propertyValues={{

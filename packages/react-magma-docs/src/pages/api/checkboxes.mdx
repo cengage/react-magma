@@ -80,7 +80,7 @@ By default, the checkboxes use the theme's primary color. But any other color ma
         checked
         color={magma.colors.pop02}
         labelText='Pop color' />
-    </FormGroup>
+  </FormGroup>
 ```
 
 ## Indeterminate
@@ -134,23 +134,23 @@ The `indeterminate` status cannot be changed by direct user action, it can only 
 Adding the optional boolean prop `disabled` will apply disabled styles and add the disabled attribute to the underlying HTML element.
 
 ```.jsx
-    <FormGroup labelText="Choose one or more">
-      <Checkbox
-          color={magma.colors.success}
-          disabled
-          labelText='Disabled checkbox' />
-      <Checkbox
-          checked
-          color={magma.colors.success}
-          disabled
-          labelText='Disabled checked checkbox' />
-        <IndeterminateCheckbox
-          color={magma.colors.success}
-          disabled
-          labelText='Disabled indeterminate checkbox'
-          status='indeterminate'
-       />
-    </FormGroup>
+  <FormGroup labelText="Choose one or more">
+    <Checkbox
+      color={magma.colors.success}
+      disabled
+      labelText='Disabled checkbox' />
+    <Checkbox
+      checked
+      color={magma.colors.success}
+      disabled
+      labelText='Disabled checked checkbox' />
+    <IndeterminateCheckbox
+      color={magma.colors.success}
+      disabled
+      labelText='Disabled indeterminate checkbox'
+      status='indeterminate'
+    />
+  </FormGroup>
 ```
 
 ## Inverse
@@ -158,56 +158,56 @@ Adding the optional boolean prop `disabled` will apply disabled styles and add t
 `isInverse` is an optional boolean prop, that may be passed in when the component is to be displayed on a dark background.
 
 ```.jsx
-<Card isInverse>
-  <CardBody>
-    <FormGroup labelText="Choose Inverse Options">
-      <Checkbox
+  <Card isInverse>
+    <CardBody>
+      <FormGroup labelText="Choose Inverse Options">
+        <Checkbox
           isInverse
-        labelText='Inverse' />
-      <Checkbox
+          labelText='Inverse' />
+        <Checkbox
           checked
           isInverse
-        labelText='Inverse checked' />
-      <Checkbox
+          labelText='Inverse checked' />
+        <Checkbox
           checked
           color={magma.colors.success}
           isInverse
           labelText='Success inverse' />
-      <Checkbox
+        <Checkbox
           checked
           color={magma.colors.danger}
           isInverse
           labelText='Danger inverse' />
-      <Checkbox
+        <Checkbox
           checked
           color={magma.colors.pop02}
           isInverse
           labelText='Pop inverse' />
-      <IndeterminateCheckbox
-            status='indeterminate'
-            isInverse
-            labelText='Indeterminate inverse' />
-        <Checkbox
-            disabled
-            isInverse
-            labelText='Disabled inverse' />
-        <Checkbox
-            checked
-            disabled
-            isInverse
-            labelText='Disabled checked inverse' />
         <IndeterminateCheckbox
-            disabled
-            isInverse
-            labelText='Disabled indeterminate inverse'
-            status='indeterminate' />
+          status='indeterminate'
+          isInverse
+          labelText='Indeterminate inverse' />
         <Checkbox
-            errorMessage="Please check this box"
-            isInverse
-            labelText='Checkbox with error' />
+          disabled
+          isInverse
+          labelText='Disabled inverse' />
+        <Checkbox
+          checked
+          disabled
+          isInverse
+          labelText='Disabled checked inverse' />
+        <IndeterminateCheckbox
+          disabled
+          isInverse
+          labelText='Disabled indeterminate inverse'
+          status='indeterminate' />
+        <Checkbox
+          errorMessage="Please check this box"
+          isInverse
+          labelText='Checkbox with error' />
       </FormGroup>
-  </CardBody>
-</Card>
+    </CardBody>
+  </Card>
 ```
 
 ## Text Position
@@ -218,11 +218,11 @@ The `textPosition` property takes the values `left` and `right`. The default val
 ```.jsx
   <FormGroup labelText="Text Positions">
     <Checkbox
-        labelText='Text left'
-        textPosition='left' />
+      labelText='Text left'
+      textPosition='left' />
     <Checkbox
-        labelText='Text right' />
-    </FormGroup>
+      labelText='Text right' />
+  </FormGroup>
 ```
 
 ## Error at Group Level
@@ -230,44 +230,44 @@ The `textPosition` property takes the values `left` and `right`. The default val
 The `errorMessage` prop can be used on the `FormGroup` component to display an error message for the group. Each checkbox within the group will display with error styles.
 
 ```.jsx
-  (props) => {
+  () => {
     const [hasError, setHasError] = React.useState(true);
     const [state, setState] = React.useState({
-        yellow: false,
-        red: false,
-        green: false,
-      });
+      yellow: false,
+      red: false,
+      green: false,
+    });
 
-      const handleChange = (event) => {
-        setState({ ...state, [event.target.value]: event.target.checked });
-      };
+    const handleChange = (event) => {
+      setState({ ...state, [event.target.value]: event.target.checked });
+    };
 
-      React.useEffect(() => {
-        setHasError(!state.yellow && !state.red && !state.green)
-      }, [state]);
+    React.useEffect(() => {
+      setHasError(!state.yellow && !state.red && !state.green)
+    }, [state]);
 
     return (
       <>
         <p>* indicates required fields</p>
         <FormGroup labelText="Choose One or More Colors *" errorMessage={hasError ? "Please choose at least one color" : null}>
-            <Checkbox
-                checked={state.yellow}
-                labelText="Yellow 1"
-                name="color"
-                onChange={handleChange}
-                value="yellow" />
-            <Checkbox
-                checked={state.red}
-                labelText="Red"
-                name="color"
-                onChange={handleChange}
-                value="red" />
-            <Checkbox
-                checked={state.green}
-                labelText="Green"
-                name="color"
-                onChange={handleChange}
-                value="green" />
+          <Checkbox
+            checked={state.yellow}
+            labelText="Yellow 1"
+            name="color"
+            onChange={handleChange}
+            value="yellow" />
+          <Checkbox
+            checked={state.red}
+            labelText="Red"
+            name="color"
+            onChange={handleChange}
+            value="red" />
+          <Checkbox
+            checked={state.green}
+            labelText="Green"
+            name="color"
+            onChange={handleChange}
+            value="green" />
         </FormGroup>
       </>
     )
@@ -282,18 +282,19 @@ The `required` attribute can be used on a single checkbox if that individual che
 An example of when to use this would be for a terms and conditions checkbox.
 
 ```.jsx
-  (props) => {
+  () => {
     const [hasError, setHasError] = React.useState(true);
 
     function handleChange(e){
       setHasError(!e.target.checked);
     }
+
     return (
       <Checkbox
-          errorMessage={hasError ? 'You must agree to the terms and conditions' : null}
-          labelText='I agree to the terms and conditions'
-          onChange={handleChange}
-          required />
+        errorMessage={hasError ? 'You must agree to the terms and conditions' : null}
+        labelText='I agree to the terms and conditions'
+        onChange={handleChange}
+        required />
     )
   }
 ```
@@ -312,9 +313,9 @@ Adding the `isTextVisuallyHidden` prop will make the label text available to scr
 </Alert>
 
 ```.jsx
-    <Checkbox
-        labelText='Hidden checkbox'
-        isTextVisuallyHidden />
+  <Checkbox
+    labelText='Hidden checkbox'
+    isTextVisuallyHidden />
 ```
 
 ## Custom Styles
@@ -325,15 +326,15 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
 ```.jsx
   <>
     <Checkbox
-        checked
-        containerStyle={{ 'border': '1px dotted purple'}}
-        inputStyle={{ 'boxShadow': '3px 3px 3px rgba(0, 0 , 0, .6)'}}
-        labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
-        labelText='Custom styles' />
+      checked
+      containerStyle={{ 'border': '1px dotted purple'}}
+      inputStyle={{ 'boxShadow': '3px 3px 3px rgba(0, 0 , 0, .6)'}}
+      labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
+      labelText='Custom styles' />
 
     <Checkbox
-        checked
-        labelText='No custom styles' />
+      checked
+      labelText='No custom styles' />
   </>
 ```
 
@@ -342,15 +343,15 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
 The `labelText` prop can either be a string, or it can be a React Node.
 
 ```.jsx
-      () => {
-        const myLabel = <span style={{  border: '1px solid #3f3f3f', borderRadius: '3px', display: 'inline-block', padding: '10px' }}><strong>Node </strong> as <i>label</i></span>;
+  () => {
+    const myLabel = <span style={{  border: '1px solid #3f3f3f', borderRadius: '3px', display: 'inline-block', padding: '10px' }}><strong>Node </strong> as <i>label</i></span>;
 
-        return (
-          <Checkbox
-              labelText={myLabel}
-              inputStyle={{ alignSelf: 'center' }} />
-        );
-      }
+    return (
+      <Checkbox
+        labelText={myLabel}
+        inputStyle={{ alignSelf: 'center' }} />
+    );
+  }
 ```
 
 ## Internationalization

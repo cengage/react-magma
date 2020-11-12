@@ -15,7 +15,7 @@ they may not be clear to users of assistive technology. The `Announce` component
 ## Basic Usage
 
 ```.jsx
-  (props) => {
+  () => {
     const [announceContent, setAnnounceContent] = React.useState('Initial content');
 
     return (
@@ -39,7 +39,7 @@ When `polite` is used, assistive technology will notify a users of a change afte
 possibly interrupting the current task. Using `off` will silence these updates, so they will not be read.
 
 ```.jsx
-  (props) => {
+  () => {
     const [announceContentAssertive, setAnnounceContentAssertive] = React.useState('Initial assertive content');
     const [announceContentOff, setAnnounceContentOff] = React.useState('Initial off content');
 
@@ -49,7 +49,7 @@ possibly interrupting the current task. Using `off` will silence these updates, 
         <Button onClick={() => setAnnounceContentAssertive('New content replacing the assertive initial content')}>Update assertive content</Button>
       </p>
       <Announce politeness="assertive">
-          <p>{announceContentAssertive}</p>
+        <p>{announceContentAssertive}</p>
       </Announce>
       <hr />
       <p>This content will be not read by a screen reader when it changes.</p>
@@ -57,7 +57,7 @@ possibly interrupting the current task. Using `off` will silence these updates, 
         <Button onClick={() => setAnnounceContentOff('New content replacing the off initial content')}>Update off content</Button>
       </p>
       <Announce politeness="off">
-          <p>{announceContentOff}</p>
+        <p>{announceContentOff}</p>
       </Announce>
     </>)
   }

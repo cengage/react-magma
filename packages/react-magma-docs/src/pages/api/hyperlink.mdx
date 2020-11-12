@@ -37,13 +37,13 @@ Use a button instead of a link for actions that will change data or manipulate h
 Sometimes links can be styled as buttons in order to give them more weight on the page, but this is only on the surface. Underneath the styles, they are still a link component. The `styledAs` prop can be used to style the `Hyperlink` component as another component. The options are `Link` (default) and `Button`.
 
 ```.jsx
-    <>
-      <Hyperlink textTransform="none" styledAs="Button" target="_blank" to="https://www.google.com">Google</Hyperlink>
-      <Hyperlink color="secondary" styledAs="Button" target="_blank" to="https://www.google.com">Google</Hyperlink>
-      <Hyperlink color="success" styledAs="Button" target="_blank" to="https://www.google.com">Google</Hyperlink>
-      <Hyperlink color="danger" styledAs="Button" target="_blank" to="https://www.google.com">Google</Hyperlink>
-      <Hyperlink color="marketing"  styledAs="Button" target="_blank" to="https://www.google.com">Google</Hyperlink>
-    </>
+  <>
+    <Hyperlink textTransform="none" styledAs="Button" target="_blank" to="https://www.google.com">Google</Hyperlink>
+    <Hyperlink color="secondary" styledAs="Button" target="_blank" to="https://www.google.com">Google</Hyperlink>
+    <Hyperlink color="success" styledAs="Button" target="_blank" to="https://www.google.com">Google</Hyperlink>
+    <Hyperlink color="danger" styledAs="Button" target="_blank" to="https://www.google.com">Google</Hyperlink>
+    <Hyperlink color="marketing"  styledAs="Button" target="_blank" to="https://www.google.com">Google</Hyperlink>
+  </>
 ```
 
 ## Render Props Usage
@@ -51,11 +51,11 @@ Sometimes links can be styled as buttons in order to give them more weight on th
 Use this when you want to render something that is from another library. For example, the `Link` component from `react-router`.
 
 ```.jsx
-    <Hyperlink styledAs="Button" to="https://www.google.com">
-      {({to, stylesClass}) => (
-        <a className={stylesClass} href={to}>Render Props Google</a>
-      )}
-    </Hyperlink>
+  <Hyperlink styledAs="Button" to="https://www.google.com">
+    {({to, stylesClass}) => (
+      <a className={stylesClass} href={to}>Render Props Google</a>
+    )}
+  </Hyperlink>
 ```
 
 ## Inverse

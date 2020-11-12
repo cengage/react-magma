@@ -30,42 +30,43 @@ A table contains a header row at the top that lists column names, followed by ro
 ## Basic Usage
 
 ```.jsx
-
-(props) => {
+  () => {
     const rows = [
-        ['Lorem ipsum dolor sit amet consectetur', 'Lorem ipsum dolor', 'Lorem ipsum dolor', 'Lorem ipsum'],
-        ['Lorem ipsum dolor sit amet', 'Lorem ipsum dolor', 'Lorem ipsum dolor', 'Lorem ipsum'],
-        ['Lorem ipsum dolor', 'Lorem ipsum dolor', 'Lorem ipsum dolor', 'Lorem ipsum'],
-        ['Lorem ipsum dolor sit amet consectetur', 'Lorem ipsum dolor', 'Lorem ipsum dolor', 'Lorem ipsum'],
-        ['Lorem ipsum dolor sit amet', 'Lorem ipsum dolor', 'Lorem ipsum dolor', 'Lorem ipsum'],
-        ['Lorem ipsum dolor', 'Lorem ipsum dolor', 'Lorem ipsum dolor', 'Lorem ipsum']
+      ['Lorem ipsum dolor sit amet consectetur', 'Lorem ipsum dolor', 'Lorem ipsum dolor', 'Lorem ipsum'],
+      ['Lorem ipsum dolor sit amet', 'Lorem ipsum dolor', 'Lorem ipsum dolor', 'Lorem ipsum'],
+      ['Lorem ipsum dolor', 'Lorem ipsum dolor', 'Lorem ipsum dolor', 'Lorem ipsum'],
+      ['Lorem ipsum dolor sit amet consectetur', 'Lorem ipsum dolor', 'Lorem ipsum dolor', 'Lorem ipsum'],
+      ['Lorem ipsum dolor sit amet', 'Lorem ipsum dolor', 'Lorem ipsum dolor', 'Lorem ipsum'],
+      ['Lorem ipsum dolor', 'Lorem ipsum dolor', 'Lorem ipsum dolor', 'Lorem ipsum']
     ];
 
-    return (<>
+    return (
+      <>
         <Card>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableHeaderCell>Column</TableHeaderCell>
-                        <TableHeaderCell>Column</TableHeaderCell>
-                        <TableHeaderCell>Column</TableHeaderCell>
-                        <TableHeaderCell>Column</TableHeaderCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                {rows.map((row, i) => (
-                    <TableRow key={`row${i}`}>
-                        {row.map((cell, j) => (
-                            <TableCell key={`cell${i}_${j}`}>
-                                {cell}
-                            </TableCell>
-                        ))}
-                    </TableRow>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+            {rows.map((row, i) => (
+              <TableRow key={`row${i}`}>
+                {row.map((cell, j) => (
+                  <TableCell key={`cell${i}_${j}`}>
+                    {cell}
+                  </TableCell>
                 ))}
-                </TableBody>
-            </Table>
+              </TableRow>
+            ))}
+            </TableBody>
+          </Table>
         </Card>
-    </>)
+      </>
+    )
   }
 ```
 
@@ -74,32 +75,32 @@ A table contains a header row at the top that lists column names, followed by ro
 The `hasVerticalBorders` boolean prop may be used to give table cells vertical borders between them.
 
 ```.jsx
-    <Card>
-        <Table hasVerticalBorders>
-            <TableHead>
-                <TableRow>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                </TableRow>
-            </TableHead>
-            <TableBody>
-                <TableRow>
-                    <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum</TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell>Lorem ipsum dolor sit amet</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum</TableCell>
-                </TableRow>
-            </TableBody>
-        </Table>
-    </Card>
+  <Card>
+    <Table hasVerticalBorders>
+      <TableHead>
+        <TableRow>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Lorem ipsum dolor sit amet</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  </Card>
 ```
 
 ## Hover Styles
@@ -107,32 +108,32 @@ The `hasVerticalBorders` boolean prop may be used to give table cells vertical b
 The `hasHoverStyles` boolean prop may be used to visually highlight a row when hovered over.
 
 ```.jsx
-    <Card>
-        <Table hasHoverStyles>
-            <TableHead>
-                <TableRow>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                </TableRow>
-            </TableHead>
-            <TableBody>
-                <TableRow>
-                    <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum</TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell>Lorem ipsum dolor sit amet</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum</TableCell>
-                </TableRow>
-            </TableBody>
-        </Table>
-    </Card>
+  <Card>
+    <Table hasHoverStyles>
+      <TableHead>
+        <TableRow>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Lorem ipsum dolor sit amet</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  </Card>
 ```
 
 ## Zebra Stripes
@@ -140,101 +141,101 @@ The `hasHoverStyles` boolean prop may be used to visually highlight a row when h
 The `hasZebraStripes` boolean prop may be used to give each alternating row a different background color.
 
 ```.jsx
-    <Card>
-        <Table hasZebraStripes hasHoverStyles>
-            <TableHead>
-                <TableRow>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                </TableRow>
-            </TableHead>
-            <TableBody>
-                <TableRow>
-                    <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum</TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell>Lorem ipsum dolor sit amet</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum</TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum</TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell>Lorem ipsum dolor sit amet</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum</TableCell>
-                </TableRow>
-            </TableBody>
-        </Table>
-    </Card>
+  <Card>
+    <Table hasZebraStripes hasHoverStyles>
+      <TableHead>
+        <TableRow>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Lorem ipsum dolor sit amet</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Lorem ipsum dolor sit amet</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  </Card>
 ```
 
 ## Density
 
 ```.jsx
-    <>
-        <Card>
-            <Table density="compact">
-                <TableHead>
-                    <TableRow>
-                        <TableHeaderCell>Column</TableHeaderCell>
-                        <TableHeaderCell>Column</TableHeaderCell>
-                        <TableHeaderCell>Column</TableHeaderCell>
-                        <TableHeaderCell>Column</TableHeaderCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    <TableRow>
-                        <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-                        <TableCell>Lorem ipsum dolor</TableCell>
-                        <TableCell>Lorem ipsum dolor</TableCell>
-                        <TableCell>Lorem ipsum</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell>Lorem ipsum dolor sit amet</TableCell>
-                        <TableCell>Lorem ipsum dolor</TableCell>
-                        <TableCell>Lorem ipsum dolor</TableCell>
-                        <TableCell>Lorem ipsum</TableCell>
-                    </TableRow>
-                </TableBody>
-            </Table>
-        </Card>
-        <br/ > <br/>
-        <Card>
-            <Table density="loose">
-                <TableHead>
-                    <TableRow>
-                        <TableHeaderCell>Column</TableHeaderCell>
-                        <TableHeaderCell>Column</TableHeaderCell>
-                        <TableHeaderCell>Column</TableHeaderCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    <TableRow>
-                        <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-                        <TableCell>Lorem ipsum dolor</TableCell>
-                        <TableCell>Lorem ipsum</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell>Lorem ipsum dolor sit amet</TableCell>
-                        <TableCell>Lorem ipsum dolor</TableCell>
-                        <TableCell>Lorem ipsum</TableCell>
-                    </TableRow>
-                </TableBody>
-            </Table>
-        </Card>
-    </>
+  <>
+    <Card>
+      <Table density="compact">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Lorem ipsum dolor sit amet</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </Card>
+    <br/ > <br/>
+    <Card>
+      <Table density="loose">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Lorem ipsum dolor sit amet</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </Card>
+  </>
 ```
 
 ## Sortable
@@ -245,73 +246,74 @@ The `sortDirection` prop indicates the direction by which the column is sorted, 
 These props do not handle the actual sorting of the table, just the visual appearance.
 
 ```.jsx
-(props) => {
-
+  () => {
     const products = [
-        { id: 1, name: 'Cheese', price: 5, stock: 20 },
-        { id: 2, name: 'Milk', price: 5, stock: 32 },
-        { id: 3, name: 'Yoghurt', price: 3, stock: 12 },
-        { id: 4, name: 'Heavy Cream', price: 10, stock: 9 },
-        { id: 5, name: 'Butter', price: 2, stock: 99 },
-        { id: 6, name: 'Sour Cream ', price: 5, stock: 86 },
-        { id: 7, name: 'Fancy French Cheese 🇫🇷', price: 15, stock: 12 },
+      { id: 1, name: 'Cheese', price: 5, stock: 20 },
+      { id: 2, name: 'Milk', price: 5, stock: 32 },
+      { id: 3, name: 'Yoghurt', price: 3, stock: 12 },
+      { id: 4, name: 'Heavy Cream', price: 10, stock: 9 },
+      { id: 5, name: 'Butter', price: 2, stock: 99 },
+      { id: 6, name: 'Sour Cream ', price: 5, stock: 86 },
+      { id: 7, name: 'Fancy French Cheese 🇫🇷', price: 15, stock: 12 },
     ];
 
     const [sortConfig, setSortConfig] = React.useState({
-        key: 'name',
-        direction: 'ascending'
+      key: 'name',
+      direction: 'ascending'
     });
 
     const sortedItems = React.useMemo(() => {
-        let sortableItems = [...products];
-        if (sortConfig !== null) {
-            sortableItems.sort((a, b) => {
-                if (a[sortConfig.key] < b[sortConfig.key]) {
-                    return sortConfig.direction === 'ascending' ? -1 : 1;
-                }
-                if (a[sortConfig.key] > b[sortConfig.key]) {
-                    return sortConfig.direction === 'ascending' ? 1 : -1;
-                }
-                return 0;
-            });
-        }
-        return sortableItems;
+      let sortableItems = [...products];
+      if (sortConfig !== null) {
+        sortableItems.sort((a, b) => {
+          if (a[sortConfig.key] < b[sortConfig.key]) {
+            return sortConfig.direction === 'ascending' ? -1 : 1;
+          }
+          if (a[sortConfig.key] > b[sortConfig.key]) {
+            return sortConfig.direction === 'ascending' ? 1 : -1;
+          }
+          return 0;
+        });
+      }
+      return sortableItems;
     }, [products, sortConfig]);
 
     const requestSort = (key) => {
-        let direction = 'ascending';
-        if (
-            sortConfig &&
-            sortConfig.key === key &&
-            sortConfig.direction === 'ascending'
-        ) {
-            direction = 'descending';
-        }
-        setSortConfig({ key, direction });
-  };
+      let direction = 'ascending';
+      if (
+        sortConfig &&
+        sortConfig.key === key &&
+        sortConfig.direction === 'ascending'
+      ) {
+        direction = 'descending';
+      }
+      setSortConfig({ key, direction });
+    };
 
-    return (<>
+    return (
+      <>
         <Card>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableHeaderCell onSort={()=>{requestSort('name')}} isSortable sortDirection={sortConfig.key === 'name' ? sortConfig.direction : "none"}>Name</TableHeaderCell>
-                        <TableHeaderCell onSort={()=>{requestSort('price')}} isSortable align="right" sortDirection={sortConfig.key === 'price' ? sortConfig.direction : "none"}>Price</TableHeaderCell>
-                        <TableHeaderCell onSort={()=>{requestSort('stock')}} isSortable align="right" sortDirection={sortConfig.key === 'stock' ? sortConfig.direction : "none"}>In Stock</TableHeaderCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {sortedItems.map((item) => (
-                        <TableRow key={item.id}>
-                            <TableCell>{item.name}</TableCell>
-                            <TableCell align="right">${item.price}</TableCell>
-                            <TableCell align="right">{item.stock}</TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableHeaderCell onSort={()=>{requestSort('name')}} isSortable sortDirection={sortConfig.key === 'name' ? sortConfig.direction : "none"}>Name</TableHeaderCell>
+                <TableHeaderCell onSort={()=>{requestSort('price')}} isSortable align="right" sortDirection={sortConfig.key === 'price' ? sortConfig.direction : "none"}>Price</TableHeaderCell>
+                <TableHeaderCell onSort={()=>{requestSort('stock')}} isSortable align="right" sortDirection={sortConfig.key === 'stock' ? sortConfig.direction : "none"}>In Stock</TableHeaderCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {sortedItems.map((item) => (
+                <TableRow key={item.id}>
+                  <TableCell>{item.name}</TableCell>
+                  <TableCell align="right">${item.price}</TableCell>
+                  <TableCell align="right">{item.stock}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </Card>
-    </>)
+      </>
+    )
   }
 ```
 
@@ -320,156 +322,156 @@ These props do not handle the actual sorting of the table, just the visual appea
 `IsInverse` is an optional boolean prop, that may be used when a table is displayed on a dark background.
 
 ```.jsx
-    <>
+  <>
     <Card background={magma.colors.foundation} isInverse>
-        <Table isInverse hasZebraStripes hasVerticalBorders hasHoverStyles>
-            <TableHead>
-                <TableRow>
-                    <TableHeaderCell isSortable sortDirection="descending">Column</TableHeaderCell>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell isSortable>Column</TableHeaderCell>
-                </TableRow>
-            </TableHead>
-            <TableBody>
-                <TableRow>
-                    <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum</TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell>Lorem ipsum dolor sit amet</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum</TableCell>
-                </TableRow>
-                 <TableRow>
-                    <TableCell>Lorem ipsum dolor sit amet</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum</TableCell>
-                </TableRow>
-            </TableBody>
-        </Table>
+      <Table isInverse hasZebraStripes hasVerticalBorders hasHoverStyles>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell isSortable sortDirection="descending">Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell isSortable>Column</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Lorem ipsum dolor sit amet</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum</TableCell>
+          </TableRow>
+            <TableRow>
+            <TableCell>Lorem ipsum dolor sit amet</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     </Card>
 
     <br />
 
     <Card background={magma.colors.neutral} isInverse>
-        <Table isInverse hasZebraStripes hasVerticalBorders hasHoverStyles>
-            <TableHead>
-                <TableRow>
-                    <TableHeaderCell isSortable sortDirection="descending">Column</TableHeaderCell>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell isSortable>Column</TableHeaderCell>
-                </TableRow>
-            </TableHead>
-            <TableBody>
-                <TableRow>
-                    <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum</TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell>Lorem ipsum dolor sit amet</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum</TableCell>
-                </TableRow>
-                 <TableRow>
-                    <TableCell>Lorem ipsum dolor sit amet</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum</TableCell>
-                </TableRow>
-            </TableBody>
-        </Table>
+      <Table isInverse hasZebraStripes hasVerticalBorders hasHoverStyles>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell isSortable sortDirection="descending">Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell isSortable>Column</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Lorem ipsum dolor sit amet</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Lorem ipsum dolor sit amet</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     </Card>
-    </>
+  </>
 ```
 
 ## Cell Alignment
 
 ```.jsx
-    <Card>
-        <Table>
-            <TableHead>
-                <TableRow>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell>Column</TableHeaderCell>
-                    <TableHeaderCell align="right">Number</TableHeaderCell>
-                </TableRow>
-            </TableHead>
-            <TableBody>
-                <TableRow>
-                    <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell align="right">86</TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell>Lorem ipsum dolor sit amet</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell align="right">399</TableCell>
-                </TableRow>
-            </TableBody>
-        </Table>
-    </Card>
+  <Card>
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell align="right">Number</TableHeaderCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell align="right">86</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Lorem ipsum dolor sit amet</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell align="right">399</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  </Card>
 ```
 
 ## Cell Width
 
 ```.jsx
-    <>
-        <Card>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableHeaderCell width="25%">Column 25%</TableHeaderCell>
-                        <TableHeaderCell width="75%">Column 75%</TableHeaderCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    <TableRow>
-                        <TableCell width="25%">Lorem ipsum dolor</TableCell>
-                        <TableCell width="75%">Lorem ipsum dolor sit amet consectetur</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell width="25%">Lorem ipsum dolor sit amet</TableCell>
-                        <TableCell width="75%">Lorem ipsum dolor</TableCell>
-                    </TableRow>
-                </TableBody>
-            </Table>
-        </Card>
+  <>
+    <Card>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell width="25%">Column 25%</TableHeaderCell>
+            <TableHeaderCell width="75%">Column 75%</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell width="25%">Lorem ipsum dolor</TableCell>
+            <TableCell width="75%">Lorem ipsum dolor sit amet consectetur</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell width="25%">Lorem ipsum dolor sit amet</TableCell>
+            <TableCell width="75%">Lorem ipsum dolor</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </Card>
 
-        <br />
+    <br />
 
-        <Card>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableHeaderCell width={200}>Column 200px</TableHeaderCell>
-                        <TableHeaderCell>Column Wide</TableHeaderCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    <TableRow>
-                        <TableCell width={200}>Lorem ipsum dolor</TableCell>
-                        <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell width={200}>Lorem ipsum dolor sit amet</TableCell>
-                        <TableCell>Lorem ipsum dolor</TableCell>
-                    </TableRow>
-                </TableBody>
-            </Table>
-        </Card>
-    </>
+    <Card>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell width={200}>Column 200px</TableHeaderCell>
+            <TableHeaderCell>Column Wide</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell width={200}>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell width={200}>Lorem ipsum dolor sit amet</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </Card>
+  </>
 ```
 
 ## Min-Width
@@ -479,35 +481,35 @@ If the table is larger than the width of its container, it will scroll horizonta
 The horizontal scrolling is useful for responsive behavior to ensure that the content can be viewed, even on small screens.
 
 ```.jsx
-    <Card>
-        <Table minWidth={900}>
-            <TableHead>
-                <TableRow>
-                    <TableHeaderCell>Column 1</TableHeaderCell>
-                    <TableHeaderCell>Column 2</TableHeaderCell>
-                    <TableHeaderCell>Column 3</TableHeaderCell>
-                    <TableHeaderCell>Column 4</TableHeaderCell>
-                    <TableHeaderCell>Column 5</TableHeaderCell>
-                </TableRow>
-            </TableHead>
-            <TableBody>
-                <TableRow>
-                    <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Sit amet</TableCell>
-                    <TableCell>Consectetur</TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell>Lorem ipsum dolor sit amet</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell>Consectetur</TableCell>
-                    <TableCell>Sit amet</TableCell>
-                </TableRow>
-            </TableBody>
-        </Table>
-    </Card>
+  <Card>
+    <Table minWidth={900}>
+      <TableHead>
+        <TableRow>
+          <TableHeaderCell>Column 1</TableHeaderCell>
+          <TableHeaderCell>Column 2</TableHeaderCell>
+          <TableHeaderCell>Column 3</TableHeaderCell>
+          <TableHeaderCell>Column 4</TableHeaderCell>
+          <TableHeaderCell>Column 5</TableHeaderCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Sit amet</TableCell>
+          <TableCell>Consectetur</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Lorem ipsum dolor sit amet</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Consectetur</TableCell>
+          <TableCell>Sit amet</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  </Card>
 ```
 
 ## Other Content
@@ -515,32 +517,32 @@ The horizontal scrolling is useful for responsive behavior to ensure that the co
 Content other than just text, such as buttons, inputs and other elements can be included inside a table cell.
 
 ```.jsx
-    <Card>
-        <Table hasVerticalBorders>
-            <TableHead>
-                <TableRow>
-                    <TableHeaderCell>Column 1</TableHeaderCell>
-                    <TableHeaderCell>Column 2</TableHeaderCell>
-                    <TableHeaderCell>Column 3</TableHeaderCell>
-                    <TableHeaderCell>Column 4</TableHeaderCell>
-                </TableRow>
-            </TableHead>
-            <TableBody>
-                <TableRow>
-                    <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-                    <TableCell><Input label="Table input" isLabelVisuallyHidden /></TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell><Button>Button</Button></TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell>Lorem ipsum dolor sit amet</TableCell>
-                    <TableCell><Input label="Table input" isLabelVisuallyHidden /></TableCell>
-                    <TableCell>Lorem ipsum dolor</TableCell>
-                    <TableCell><Button>Button</Button></TableCell>
-                </TableRow>
-            </TableBody>
-        </Table>
-    </Card>
+  <Card>
+    <Table hasVerticalBorders>
+      <TableHead>
+        <TableRow>
+          <TableHeaderCell>Column 1</TableHeaderCell>
+          <TableHeaderCell>Column 2</TableHeaderCell>
+          <TableHeaderCell>Column 3</TableHeaderCell>
+          <TableHeaderCell>Column 4</TableHeaderCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+          <TableCell><Input label="Table input" isLabelVisuallyHidden /></TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell><Button>Button</Button></TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Lorem ipsum dolor sit amet</TableCell>
+          <TableCell><Input label="Table input" isLabelVisuallyHidden /></TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell><Button>Button</Button></TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  </Card>
 ```
 
 ## Table Props

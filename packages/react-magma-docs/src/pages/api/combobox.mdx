@@ -30,19 +30,17 @@ However, a combobox also allows users to type in the field, either to create the
 For simple Select functionality, please see the <Link to="/api/select">Select component</Link>.
 
 ```.jsx
-  <>
-    <Combobox
-      id="comboboxId"
-      name="combobox"
-      labelText="Combobox"
-      defaultItems={[
-        { label: 'Red', value: 'red' },
-        { label: 'Blue', value: 'blue' },
-        { label: 'Green', value: 'green' }
-      ]}
-      placeholder="Hello"
-    />
-  </>
+  <Combobox
+    id="comboboxId"
+    name="combobox"
+    labelText="Combobox"
+    defaultItems={[
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' }
+    ]}
+    placeholder="Hello"
+  />
 ```
 
 ## Initial State
@@ -61,33 +59,31 @@ Set initial state using the `initialSelectedItem`, `initialSelectedItems`, and `
 </Alert>
 
 ```.jsx
-  () => {
-    return <>
-      <Combobox
-        id="initialSelectedByItemSelectId"
-        name="initialSelectedByItem"
-        labelText="Initial Selected By Item"
-        defaultItems={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-        initialSelectedItem={{ label: 'Green', value: 'green' }}
-      />
+  <>
+    <Combobox
+      id="initialSelectedByItemSelectId"
+      name="initialSelectedByItem"
+      labelText="Initial Selected By Item"
+      defaultItems={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' }
+      ]}
+      initialSelectedItem={{ label: 'Green', value: 'green' }}
+    />
 
-      <Combobox
-        id="initialHighlightedIndexSelectId"
-        name="initialHighlightedIndex"
-        labelText="Initial Highlighted Index"
-        defaultItems={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-        initialHighlightedIndex={1}
-      />
-    </>
-  }
+    <Combobox
+      id="initialHighlightedIndexSelectId"
+      name="initialHighlightedIndex"
+      labelText="Initial Highlighted Index"
+      defaultItems={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' }
+      ]}
+      initialHighlightedIndex={1}
+    />
+  </>
 ```
 
 ## Specific State Changes
@@ -116,25 +112,27 @@ includes the changes made to state from each action as well as a `type` that des
       updateSelectedItem(changes.selectedItem);
     }
 
-    return <>
-      <strong>Selected Item: </strong><pre>{JSON.stringify(selectedItem, null, 2)}</pre>
-      <p><strong>Highlighted Index Change Count: </strong>{highlightedIndexChangeCount}</p>
-      <p><strong>Is Open Change Count: </strong>{isOpenChangeCount}</p>
+    return (
+      <>
+        <strong>Selected Item: </strong><pre>{JSON.stringify(selectedItem, null, 2)}</pre>
+        <p><strong>Highlighted Index Change Count: </strong>{highlightedIndexChangeCount}</p>
+        <p><strong>Is Open Change Count: </strong>{isOpenChangeCount}</p>
 
-      <Combobox
-        id="individualStateChangesId"
-        name="individualStateChanges"
-        labelText="Individual State Changes"
-        defaultItems={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-        onHighlightedIndexChange={onHighlightedIndexChange}
-        onIsOpenChange={onIsOpenChange}
-        onSelectedItemChange={onSelectedItemChange}
-      />
-    </>
+        <Combobox
+          id="individualStateChangesId"
+          name="individualStateChanges"
+          labelText="Individual State Changes"
+          defaultItems={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' }
+          ]}
+          onHighlightedIndexChange={onHighlightedIndexChange}
+          onIsOpenChange={onIsOpenChange}
+          onSelectedItemChange={onSelectedItemChange}
+        />
+      </>
+    )
   }
 ```
 
@@ -291,35 +289,33 @@ When using the `isClearable` prop you can choose a default selected item to be s
 using the `defaultSelectedItem` prop.
 
 ```.jsx
-  () => {
-    return <>
-      <Combobox
-        id="clearableSelectId"
-        name="clearable"
-        labelText="Clearable"
-        defaultItems={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-        initialSelectedItem={{ label: 'Green', value: 'green' }}
-        isClearable
-      />
+  <>
+    <Combobox
+      id="clearableSelectId"
+      name="clearable"
+      labelText="Clearable"
+      defaultItems={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' }
+      ]}
+      initialSelectedItem={{ label: 'Green', value: 'green' }}
+      isClearable
+    />
 
-      <Combobox
-        id="clearableWithDefaultsId"
-        name="clearableWithDefaults"
-        labelText="Clearable With Defaults"
-        defaultItems={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-        isClearable
-        defaultSelectedItem={{ label: 'Blue', value: 'blue' }}
-      />
-    </>
-  }
+    <Combobox
+      id="clearableWithDefaultsId"
+      name="clearableWithDefaults"
+      labelText="Clearable With Defaults"
+      defaultItems={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' }
+      ]}
+      isClearable
+      defaultSelectedItem={{ label: 'Blue', value: 'blue' }}
+    />
+  </>
 ```
 
 ## Error Message
@@ -328,21 +324,17 @@ If a select has an `errorMessage`, the select will be styled to highlight it's e
 If an error message is present, it will replace the helper text. Can be a node or a string.
 
 ```.jsx
-  () => (
-    <>
-      <Combobox
-        id="errorMessage"
-        name="error"
-        labelText="Error Message"
-        defaultItems={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-        errorMessage="Please select a color"
-      />
-    </>
-  )
+  <Combobox
+    id="errorMessage"
+    name="error"
+    labelText="Error Message"
+    defaultItems={[
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' }
+    ]}
+    errorMessage="Please select a color"
+  />
 ```
 
 ## Helper Message
@@ -350,21 +342,17 @@ If an error message is present, it will replace the helper text. Can be a node o
 The `helperMessage` appears underneath the select field. It will not appear if an error message is present. Can be a node or a string.
 
 ```.jsx
-  () => (
-    <>
-      <Combobox
-        id="helperMessage"
-        name="helper"
-        labelText="Helper Message"
-        defaultItems={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-        helperMessage="Helper text goes here"
-      />
-    </>
-  )
+  <Combobox
+    id="helperMessage"
+    name="helper"
+    labelText="Helper Message"
+    defaultItems={[
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' }
+    ]}
+    helperMessage="Helper text goes here"
+  />
 ```
 
 ## Placeholder
@@ -374,15 +362,11 @@ Placeholder text should be used to provide supplemental information about the in
 relied upon to take the place of the label text.
 
 ```.jsx
-  () => (
-    <>
-      <Combobox
-        labelText="Placeholder text"
-        items={['Red', 'Blue', 'Green']}
-        placeholder='Enter or select a color'
-      />
-    </>
-  )
+  <Combobox
+    labelText="Placeholder text"
+    items={['Red', 'Blue', 'Green']}
+    placeholder='Enter or select a color'
+  />
 ```
 
 ## Inverse
@@ -396,7 +380,6 @@ The isInverse prop is an optional boolean, that used when the component is to be
     function onSelectedItemChange(changes) {
       updateSelectedItem(changes.selectedItem);
     }
-
 
     const [selectedItems, updateSelectedItems] = React.useState([]);
 
@@ -461,22 +444,18 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
 [object passed with internal state data](https://github.com/downshift-js/downshift/tree/master/src/hooks/useSelect#geta11yselectionmessage).
 
 ```.jsx
-  () => {
-    return <>
-      <Combobox
-        id="newA11yStatusMessageId"
-        name="newA11yStatusMessage"
-        labelText="New Accessibility Status Message"
-        defaultItems={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-        getA11yStatusMessage={({highlightedItem}) => `custom message saying that ${highlightedItem ? highlightedItem.label : 'nothing'} is highlighted`}
-        getA11ySelectionMessage={({selectedItem}) => `custom message saying that ${selectedItem ? selectedItem.label : 'nothing'} is now selected`}
-      />
-    </>
-  }
+  <Combobox
+    id="newA11yStatusMessageId"
+    name="newA11yStatusMessage"
+    labelText="New Accessibility Status Message"
+    defaultItems={[
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' }
+    ]}
+    getA11yStatusMessage={({highlightedItem}) => `custom message saying that ${highlightedItem ? highlightedItem.label : 'nothing'} is highlighted`}
+    getA11ySelectionMessage={({selectedItem}) => `custom message saying that ${selectedItem ? selectedItem.label : 'nothing'} is now selected`}
+  />
 ```
 
 ## Disable Create Item
@@ -485,120 +464,118 @@ The `disableCreateItem` prop is an optional boolean and can be used to prevent t
 This is commonly used to provide a typeahead dropdown without allowing custom options.
 
 ```.jsx
-  <>
-    <Combobox
-      disableCreateItem
-      id="disableCreateItemId"
-      name="disableCreateItem"
-      labelText="Disable Create Item"
-      defaultItems={[
-        { label: 'Red', value: 'red' },
-        { label: 'Blue', value: 'blue' },
-        { label: 'Green', value: 'green' }
-      ]}
-    />
-  </>
+  <Combobox
+    disableCreateItem
+    id="disableCreateItemId"
+    name="disableCreateItem"
+    labelText="Disable Create Item"
+    defaultItems={[
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' }
+    ]}
+  />
 ```
 
 ## Multi Combobox
 
 ```.jsx
-() => {
-  const [selectedItems, updateSelectedItems] = React.useState([]);
+  () => {
+    const [selectedItems, updateSelectedItems] = React.useState([]);
 
-  function handleSelectedItemsChange(changes) {
-    updateSelectedItems(changes.selectedItems);
-  }
+    function handleSelectedItemsChange(changes) {
+      updateSelectedItems(changes.selectedItems);
+    }
 
-  function handleRemoveSelectedItem(removedItem) {
-    updateSelectedItems(
-      selectedItems.filter(item => item !== removedItem)
+    function handleRemoveSelectedItem(removedItem) {
+      updateSelectedItems(
+        selectedItems.filter(item => item !== removedItem)
+      )
+    }
+
+    return (
+      <>
+        <Combobox
+          isMulti
+          id="multiComboboxId"
+          name="multiCombobox"
+          labelText="Multi Combobox"
+          initialSelectedItems={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' }
+          ]}
+          defaultItems={[
+            {label: 'Red', value: 'red'},
+            {label: 'Blue', value: 'blue'},
+            {label: 'Green', value: 'green'},
+            {label: 'Orange', value: 'orange'},
+            {label: 'Aqua', value: 'aqua'},
+            {label: 'Gold', value: 'gold'},
+            {label: 'Periwinkle', value: 'periwinkle'},
+            {label: 'Lavender', value: 'lavender'},
+            {label: 'Marigold', value: 'marigold'},
+            {label: 'Yellow', value: 'yellow'},
+            {label: 'Purple', value: 'purple'},
+            {label: 'Dusty Rose', value: 'dusty_rose'},
+            {label: 'Burnt Sienna', value: 'burnt_sienna'}
+          ]}
+        />
+
+        <Combobox
+          isMulti
+          id="multiComboboxId2"
+          name="multiCombobox2"
+          labelText="Multi Combobox"
+          initialSelectedItems={[
+            {label: 'Red', value: 'red'},
+            {label: 'Blue', value: 'blue'},
+            {label: 'Green', value: 'green'},
+            {label: 'Orange', value: 'orange'},
+            {label: 'Aqua', value: 'aqua'},
+            {label: 'Gold', value: 'gold'},
+            {label: 'Periwinkle', value: 'periwinkle'},
+            {label: 'Lavender', value: 'lavender'},
+            {label: 'Marigold', value: 'marigold'},
+            {label: 'Yellow', value: 'yellow'},
+            {label: 'Purple', value: 'purple'},
+            {label: 'Dusty Rose', value: 'dusty_rose'},
+            {label: 'Burnt Sienna', value: 'burnt_sienna'}
+          ]}
+          defaultItems={[
+            {label: 'Red', value: 'red'},
+            {label: 'Blue', value: 'blue'},
+            {label: 'Green', value: 'green'},
+            {label: 'Orange', value: 'orange'},
+            {label: 'Aqua', value: 'aqua'},
+            {label: 'Gold', value: 'gold'},
+            {label: 'Periwinkle', value: 'periwinkle'},
+            {label: 'Lavender', value: 'lavender'},
+            {label: 'Marigold', value: 'marigold'},
+            {label: 'Yellow', value: 'yellow'},
+            {label: 'Purple', value: 'purple'},
+            {label: 'Dusty Rose', value: 'dusty_rose'},
+            {label: 'Burnt Sienna', value: 'burnt_sienna'}
+          ]}
+        />
+
+        <Combobox
+          errorMessage="Please correct this error"
+          id="multiComboboxControlledId"
+          isMulti
+          name="multiComboboxControlled"
+          labelText="Multi Combobox Controlled"
+          defaultItems={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' }
+          ]}
+          selectedItems={selectedItems}
+          onSelectedItemsChange={handleSelectedItemsChange}
+          onRemoveSelectedItem={handleRemoveSelectedItem}
+        />
+      </>
     )
   }
-
-  return (
-    <>
-      <Combobox
-        isMulti
-        id="multiComboboxId"
-        name="multiCombobox"
-        labelText="Multi Combobox"
-        initialSelectedItems={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' }
-        ]}
-        defaultItems={[
-          {label: 'Red', value: 'red'},
-          {label: 'Blue', value: 'blue'},
-          {label: 'Green', value: 'green'},
-          {label: 'Orange', value: 'orange'},
-          {label: 'Aqua', value: 'aqua'},
-          {label: 'Gold', value: 'gold'},
-          {label: 'Periwinkle', value: 'periwinkle'},
-          {label: 'Lavender', value: 'lavender'},
-          {label: 'Marigold', value: 'marigold'},
-          {label: 'Yellow', value: 'yellow'},
-          {label: 'Purple', value: 'purple'},
-          {label: 'Dusty Rose', value: 'dusty_rose'},
-          {label: 'Burnt Sienna', value: 'burnt_sienna'}
-        ]}
-      />
-
-      <Combobox
-        isMulti
-        id="multiComboboxId2"
-        name="multiCombobox2"
-        labelText="Multi Combobox"
-        initialSelectedItems={[
-          {label: 'Red', value: 'red'},
-          {label: 'Blue', value: 'blue'},
-          {label: 'Green', value: 'green'},
-          {label: 'Orange', value: 'orange'},
-          {label: 'Aqua', value: 'aqua'},
-          {label: 'Gold', value: 'gold'},
-          {label: 'Periwinkle', value: 'periwinkle'},
-          {label: 'Lavender', value: 'lavender'},
-          {label: 'Marigold', value: 'marigold'},
-          {label: 'Yellow', value: 'yellow'},
-          {label: 'Purple', value: 'purple'},
-          {label: 'Dusty Rose', value: 'dusty_rose'},
-          {label: 'Burnt Sienna', value: 'burnt_sienna'}
-        ]}
-        defaultItems={[
-          {label: 'Red', value: 'red'},
-          {label: 'Blue', value: 'blue'},
-          {label: 'Green', value: 'green'},
-          {label: 'Orange', value: 'orange'},
-          {label: 'Aqua', value: 'aqua'},
-          {label: 'Gold', value: 'gold'},
-          {label: 'Periwinkle', value: 'periwinkle'},
-          {label: 'Lavender', value: 'lavender'},
-          {label: 'Marigold', value: 'marigold'},
-          {label: 'Yellow', value: 'yellow'},
-          {label: 'Purple', value: 'purple'},
-          {label: 'Dusty Rose', value: 'dusty_rose'},
-          {label: 'Burnt Sienna', value: 'burnt_sienna'}
-        ]}
-      />
-
-      <Combobox
-        errorMessage="Please correct this error"
-        id="multiComboboxControlledId"
-        isMulti
-        name="multiComboboxControlled"
-        labelText="Multi Combobox Controlled"
-        defaultItems={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-        selectedItems={selectedItems}
-        onSelectedItemsChange={handleSelectedItemsChange}
-        onRemoveSelectedItem={handleRemoveSelectedItem}
-      />
-    </>
-  )
-}
 ```
 
 ## Events
@@ -922,15 +899,17 @@ element with the shape of the `items` you are passing in.
       }
     }
 
-    return <>
-      <Combobox<CustomComboboxItem>
-        id="customItemToStringTypescriptId"
-        labelText="Custom Items with Typescript"
-        defaultItems={customItems}
-        itemToString={itemToString}
-        newItemTransform={newItemTransform}
-      />
-    </>
+    return (
+      <>
+        <Combobox<CustomComboboxItem>
+          id="customItemToStringTypescriptId"
+          labelText="Custom Items with Typescript"
+          defaultItems={customItems}
+          itemToString={itemToString}
+          newItemTransform={newItemTransform}
+        />
+      </>
+    )
   }
 ```
 
@@ -971,7 +950,7 @@ However, these can be overridden by providing custom components to the `componen
       }, 1000)
     }
 
-    return (<>
+    return (
       <Combobox
         id="customComponentsId"
         name="customComponents"
@@ -990,7 +969,7 @@ However, these can be overridden by providing custom components to the `componen
           LoadingIndicator: (props) => <>Loading</>
         }}
       />
-    </>)
+    )
   }
 
 ```
@@ -1009,40 +988,38 @@ Placeholders are specific keywords surrounded by curly braces.
 </Link>
 
 ```.jsx
-  () => {
-    return (<I18nContext.Provider value={{
-      ...defaultI18n,
-      combobox: {
-        clearIndicatorAriaLabel: 'click to reset selection for {labelText}. {selectedItem} is currently selected',
-        createLabel: 'Custom Create "{inputValue}"'
-      },
-      multiCombobox: {
-        selectedItemButtonAriaLabel: 'click to reset the selected item {selectedItem}'
-      }
-    }}>
-      <Combobox
-        labelText="Internationalization"
-        defaultItems={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-        isClearable
-        initialSelectedItem={{ label: 'Red', value: 'red' }}
-      />
+  <I18nContext.Provider value={{
+    ...defaultI18n,
+    combobox: {
+      clearIndicatorAriaLabel: 'click to reset selection for {labelText}. {selectedItem} is currently selected',
+      createLabel: 'Custom Create "{inputValue}"'
+    },
+    multiCombobox: {
+      selectedItemButtonAriaLabel: 'click to reset the selected item {selectedItem}'
+    }
+  }}>
+    <Combobox
+      labelText="Internationalization"
+      defaultItems={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' }
+      ]}
+      isClearable
+      initialSelectedItem={{ label: 'Red', value: 'red' }}
+    />
 
-      <Combobox
-        labelText="Multi Internationalization"
-        isMulti
-        defaultItems={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
-        ]}
-        initialSelectedItems={[{ label: 'Red', value: 'red' }]}
-      />
-    </I18nContext.Provider>)
-  }
+    <Combobox
+      labelText="Multi Internationalization"
+      isMulti
+      defaultItems={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' }
+      ]}
+      initialSelectedItems={[{ label: 'Red', value: 'red' }]}
+    />
+  </I18nContext.Provider>
 ```
 
 ## State Change Types

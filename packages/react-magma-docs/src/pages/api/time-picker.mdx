@@ -24,7 +24,7 @@ import { zhCN } from 'date-fns/locale';
 ## Basic Usage
 
 ```.jsx
-    <TimePicker labelText="Time Due" />
+  <TimePicker labelText="Time Due" />
 ```
 
 ## Value
@@ -63,11 +63,11 @@ The `helperMessage` appears underneath the input field. It will not appear if an
 ## Inverse
 
 ```.jsx
-    <Card isInverse>
-      <CardBody>
-        <TimePicker isInverse labelText="Time Due" />
-      </CardBody>
-    </Card>
+  <Card isInverse>
+    <CardBody>
+      <TimePicker isInverse labelText="Time Due" />
+    </CardBody>
+  </Card>
 ```
 
 ## Custom Styles
@@ -87,13 +87,15 @@ The `containerStyle`, `inputStyle`, `labelStyle` and `messageStyle` props can be
 
 ```.jsx
 () => {
-  return (<I18nContext.Provider value={{
-    ...defaultI18n,
-    locale: zhCN
-  }}>
-    <TimePicker labelText="International Time" />
-    <TimePicker labelText="International Time with Passed in Value" value="01:30 下午" />
-  </I18nContext.Provider>)
+  return (
+    <I18nContext.Provider value={{
+      ...defaultI18n,
+      locale: zhCN
+    }}>
+      <TimePicker labelText="International Time" />
+      <TimePicker labelText="International Time with Passed in Value" value="01:30 下午" />
+    </I18nContext.Provider>
+  )
 }
 ```
 

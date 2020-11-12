@@ -21,10 +21,10 @@ The `NavTabs` component represents the navigation container, and the `NavTab` co
 The `to` prop is used to set the link's `href`.
 
 ```.jsx
-    <NavTabs aria-label="Nav Tabs">
-        <NavTab isActive to="#">Current Page</NavTab>
-        <NavTab to="http://google.com">Link to Google</NavTab>
-    </NavTabs>
+  <NavTabs aria-label="Nav Tabs">
+    <NavTab isActive to="#">Current Page</NavTab>
+    <NavTab to="http://google.com">Link to Google</NavTab>
+  </NavTabs>
 ```
 
 ## Vertical Tabs
@@ -34,10 +34,10 @@ The `orientation` prop is an enum that accepts either `horizontal` or `vertical`
 This prop is specified on the `NavTabs` component.
 
 ```.jsx
-    <NavTabs aria-label="Vertical Nav Tabs" orientation='vertical'>
-        <NavTab isActive to="#">Link 1</NavTab>
-        <NavTab to="#">Link 2</NavTab>
-    </NavTabs>
+  <NavTabs aria-label="Vertical Nav Tabs" orientation='vertical'>
+    <NavTab isActive to="#">Link 1</NavTab>
+    <NavTab to="#">Link 2</NavTab>
+  </NavTabs>
 ```
 
 ## Custom Component
@@ -63,10 +63,10 @@ The `borderPosition` prop is an enum and accepts `top` or `bottom` for horizonta
 The `borderPosition` prop is specified on the `Tabs` component and will apply to each individual tab.
 
 ```.jsx
-    <NavTabs aria-label="Border Top Nav Tabs" borderPosition='top'>
-        <NavTab isActive to="#">Link 1</NavTab>
-        <NavTab to="#">Link 2</NavTab>
-    </NavTabs>
+  <NavTabs aria-label="Border Top Nav Tabs" borderPosition='top'>
+    <NavTab isActive to="#">Link 1</NavTab>
+    <NavTab to="#">Link 2</NavTab>
+  </NavTabs>
 ```
 
 ## Border Position (vertical)
@@ -78,10 +78,10 @@ The `borderPosition` prop is an enum and accepts `left` or `right` for horizonta
 The `borderPosition` prop is specified on the `NavTabs` component and will apply to each individual tab.
 
 ```.jsx
-    <NavTabs aria-label="Border Right Nav Tabs" borderPosition='right'  orientation='vertical'>
-        <NavTab isActive to="#">Link 1</NavTab>
-        <NavTab to="#">Link 2</NavTab>
-    </NavTabs>
+  <NavTabs aria-label="Border Right Nav Tabs" borderPosition='right'  orientation='vertical'>
+    <NavTab isActive to="#">Link 1</NavTab>
+    <NavTab to="#">Link 2</NavTab>
+  </NavTabs>
 ```
 
 ## Alignment
@@ -89,21 +89,21 @@ The `borderPosition` prop is specified on the `NavTabs` component and will apply
 The `alignment` prop determines whether the nav tabs are aligned `left`, `right` or `center`. `Left` is the default.
 
 ```.jsx
-    <>
-        <NavTabs aria-label="Center Aligned Nav Tabs" alignment='center'>
-            <NavTab isActive to="#">Link 1</NavTab>
-            <NavTab to="#">Link 2</NavTab>
-        </NavTabs>
+  <>
+    <NavTabs aria-label="Center Aligned Nav Tabs" alignment='center'>
+      <NavTab isActive to="#">Link 1</NavTab>
+      <NavTab to="#">Link 2</NavTab>
+    </NavTabs>
 
-        <br />
-        <hr />
-        <br />
+    <br />
+    <hr />
+    <br />
 
-        <NavTabs aria-label="Right Aligned Nav Tabs" alignment='right'>
-            <NavTab isActive to="#">Link 1</NavTab>
-            <NavTab to="#">Link 2</NavTab>
-        </NavTabs>
-    </>
+    <NavTabs aria-label="Right Aligned Nav Tabs" alignment='right'>
+      <NavTab isActive to="#">Link 1</NavTab>
+      <NavTab to="#">Link 2</NavTab>
+    </NavTabs>
+  </>
 ```
 
 ## Full-Width
@@ -113,10 +113,10 @@ The `isFullWidth` prop is an optional boolean that will cause the tabs to take u
 Full width tabs work best when inside a smaller container.
 
 ```.jsx
-    <NavTabs aria-label="Full-Width Nav Tabs" isFullWidth>
-        <NavTab isActive to="#">Link 1</NavTab>
-        <NavTab to="#">Link 2</NavTab>
-    </NavTabs>
+  <NavTabs aria-label="Full-Width Nav Tabs" isFullWidth>
+    <NavTab isActive to="#">Link 1</NavTab>
+    <NavTab to="#">Link 2</NavTab>
+  </NavTabs>
 ```
 
 ## Scrollable
@@ -159,11 +159,11 @@ The `icon` prop can be used to display an icon inside the individual `NavTab` co
 `NavTab` components without children can be used to display an icon only version of the tabs. Be sure to include an `aria-label` for each tab, when using this pattern.
 
 ```.jsx
-    <NavTabs aria-label="Icon Only Nav Tabs">
-        <NavTab aria-label='Graduation' icon={<GraduationCapIcon isActive />} to="#"/>
-        <NavTab aria-label='Android' icon={<AndroidIcon />} to="#" />
-        <NavTab aria-label='Notifications' icon={<BellIcon />} to="#" />
-    </NavTabs>
+  <NavTabs aria-label="Icon Only Nav Tabs">
+    <NavTab aria-label='Graduation' icon={<GraduationCapIcon isActive />} to="#"/>
+    <NavTab aria-label='Android' icon={<AndroidIcon />} to="#" />
+    <NavTab aria-label='Notifications' icon={<BellIcon />} to="#" />
+  </NavTabs>
 ```
 
 ### Icon with Text
@@ -172,21 +172,21 @@ The `icon` prop can be used to display an icon inside the individual `NavTab` co
 By default, the icons appear above the children.
 
 ```.jsx
-    <NavTabs aria-label="Icon with Text Nav Tabs" isFullWidth>
-        <NavTab icon={<GraduationCapIcon />} isActive to="#">First item with a longer text label</NavTab>
-        <NavTab icon={<AndroidIcon />} to="#">Second item</NavTab>
-        <NavTab icon={<BellIcon />} to="#">Third item</NavTab>
-    </NavTabs>
+  <NavTabs aria-label="Icon with Text Nav Tabs" isFullWidth>
+    <NavTab icon={<GraduationCapIcon />} isActive to="#">First item with a longer text label</NavTab>
+    <NavTab icon={<AndroidIcon />} to="#">Second item</NavTab>
+    <NavTab icon={<BellIcon />} to="#">Third item</NavTab>
+  </NavTabs>
 ```
 
 ### Vertical with Icon
 
 ```.jsx
-    <NavTabs aria-label="Vertical Icon with Text Nav Tabs"  orientation='vertical'>
-        <NavTab icon={<GraduationCapIcon />} isActive to="#">First item with a longer text label</NavTab>
-        <NavTab icon={<AndroidIcon />} to="#">Second item</NavTab>
-        <NavTab icon={<BellIcon />} to="#">Third item</NavTab>
-    </NavTabs>
+  <NavTabs aria-label="Vertical Icon with Text Nav Tabs"  orientation='vertical'>
+    <NavTab icon={<GraduationCapIcon />} isActive to="#">First item with a longer text label</NavTab>
+    <NavTab icon={<AndroidIcon />} to="#">Second item</NavTab>
+    <NavTab icon={<BellIcon />} to="#">Third item</NavTab>
+  </NavTabs>
 ```
 
 ### Icon Position
@@ -196,23 +196,23 @@ The `iconPosition` prop is an enum that accepts `left`, `top`, `right` or `botto
 This prop is specified on the `NavTabs` component.
 
 ```.jsx
-    <>
-        <NavTabs aria-label="Icon Position Left Nav Tabs" iconPosition="left">
-            <NavTab icon={<GraduationCapIcon />} isActive to="#">First item with a longer text label</NavTab>
-            <NavTab icon={<AndroidIcon />} to="#">Second item</NavTab>
-            <NavTab icon={<BellIcon />} to="#">Third item</NavTab>
-        </NavTabs>
+  <>
+    <NavTabs aria-label="Icon Position Left Nav Tabs" iconPosition="left">
+      <NavTab icon={<GraduationCapIcon />} isActive to="#">First item with a longer text label</NavTab>
+      <NavTab icon={<AndroidIcon />} to="#">Second item</NavTab>
+      <NavTab icon={<BellIcon />} to="#">Third item</NavTab>
+    </NavTabs>
 
-        <br />
-        <br />
-        <br />
+    <br />
+    <br />
+    <br />
 
-        <NavTabs aria-label="Icon Position Right Nav Tabs" iconPosition="right">
-            <NavTab icon={<GraduationCapIcon />} isActive to="#">First item with a longer text label</NavTab>
-            <NavTab icon={<AndroidIcon />} to="#">Second item</NavTab>
-            <NavTab icon={<BellIcon />} to="#">Third item</NavTab>
-        </NavTabs>
-    </>
+    <NavTabs aria-label="Icon Position Right Nav Tabs" iconPosition="right">
+      <NavTab icon={<GraduationCapIcon />} isActive to="#">First item with a longer text label</NavTab>
+      <NavTab icon={<AndroidIcon />} to="#">Second item</NavTab>
+      <NavTab icon={<BellIcon />} to="#">Third item</NavTab>
+    </NavTabs>
+  </>
 ```
 
 ## Inverse
@@ -222,21 +222,21 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
 ### With Blue Background
 
 ```.jsx
-    <NavTabs aria-label="Sample Inverse Colors Nav Tabs" isInverse>
-        <NavTab isActive to="#">First link</NavTab>
-        <NavTab to="#">Second link</NavTab>
-        <NavTab to="#">Third link</NavTab>
-    </NavTabs>
+  <NavTabs aria-label="Sample Inverse Colors Nav Tabs" isInverse>
+    <NavTab isActive to="#">First link</NavTab>
+    <NavTab to="#">Second link</NavTab>
+    <NavTab to="#">Third link</NavTab>
+  </NavTabs>
 ```
 
 ### With Blue Background
 
 ```.jsx
-    <NavTabs aria-label="Sample Inverse Colors Nav Tabs with Dark Background" backgroundColor='#3f3f3f' isInverse>
-        <NavTab isActive to="#">First link</NavTab>
-        <NavTab to="#">Second link</NavTab>
-        <NavTab to="#">Third link</NavTab>
-    </NavTabs>
+  <NavTabs aria-label="Sample Inverse Colors Nav Tabs with Dark Background" backgroundColor='#3f3f3f' isInverse>
+    <NavTab isActive to="#">First link</NavTab>
+    <NavTab to="#">Second link</NavTab>
+    <NavTab to="#">Third link</NavTab>
+  </NavTabs>
 ```
 
 ## NavTabs Props
