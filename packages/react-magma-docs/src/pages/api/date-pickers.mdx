@@ -66,36 +66,91 @@ Note: the expected date format should appear somewhere in either the labelText o
   <DatePicker labelText="Error *" errorMessage="You made an error" required />
 ```
 
-## Date Change Event
+## Events
+
+### On Input Change
+
+The `onInputChange` is passed to the input's `onChange` method that is in the `DatePicker` component.
+
+```.jsx
+  () => {
+    const [inputValue, setInputValue] = React.useState('');
+
+    return (<div>
+      <p><strong>Input Value: </strong>{inputValue}</p>
+      <DatePicker
+        onInputChange={(event) => {
+          setInputValue(event.target.value);
+        }} />
+    </div>);
+  }
+```
+
+### On Date Change
+
+The `onDateChange` function is called when the user changes a date using the calendar widget in the `DatePicker` component.
 
 ```.jsx
   () => {
     const [chosenDate, setChosenDate] = React.useState(0);
-    const [inputValue, setInputValue] = React.useState('');
 
-    return (
-      <div>
-        <p>
-          <strong>Chosen Date: </strong>
-          {chosenDate &&
-            <span>
-              {`${chosenDate.getMonth() + 1}/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
-            </span>
-          }
-        </p>
-        <p><strong>Input Value: </strong>{inputValue}</p>
-        <DatePicker
-          onInputChange={(event) => {
-            setInputValue(event.target.value);
-          }}
-          onDateChange={(newChosenDate) => {
-            setChosenDate(newChosenDate);
-          }}
-          onInputBlur={(chosenDate) => {
-            console.log('blurred')
-          }} />
-      </div>
-    );
+    return (<div>
+      <p>
+        <strong>Chosen Date: </strong>
+        {chosenDate &&
+          <span>
+            {`${chosenDate.getMonth() + 1}/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
+          </span>
+        }
+      </p>
+      <DatePicker
+        onDateChange={(newChosenDate) => {
+          setChosenDate(newChosenDate);
+        }} />
+    </div>);
+  }
+```
+
+### Focus Events
+
+```.jsx
+  () => {
+    const [isFocused, updateIsFocused] = React.useState(false);
+
+    return (<div>
+    <p><strong>Is Focused?: </strong>{isFocused ? 'Yes' : 'No'}</p>
+      <DatePicker
+        onInputBlur={(event) => {
+          updateIsFocused(false);
+        }}
+        onInputFocus={(event) => {
+          updateIsFocused(true);
+        }} />
+    </div>);
+  }
+```
+
+### On Change
+
+The `onChange` event is called in multiple instances when internal values are changed and can be used as a generic state change event when you do not want to use each function separately.
+
+- _onInputChange:_ The `value` parameter will return a string. If it is not what we consider a valid date, it will simply be the string typed in to the `input` (ie: 01/21). If we consider the `input` value to be a valid date, it will be the ISO string representation of the date entered.
+- _onDateChange:_ The `value` parameter will return the ISO string representation of the date chosen with the calendar widget.
+- _onInputBlur:_ If the `input` value is considered a valid date the `onChange` function will be called with the ISO string representation of the date in the input being returned in the `value` argument of the function.
+
+```.jsx
+  () => {
+    const [changedValue, setChangedValue] = React.useState('');
+
+    function handleChange(value, event) {
+      setChangedValue(value);
+    }
+
+    return (<div>
+      <p><strong>Changed Value: </strong>{changedValue}</p>
+      <DatePicker
+        onChange={handleChange} />
+    </div>);
   }
 ```
 
