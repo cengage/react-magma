@@ -76,9 +76,17 @@ const Layout = ({ children, pageContext }) => {
       : '';
   return (
     <LayoutComponent title={title}>
-      <article className="content-article">
-        <SkipLinkContent>{children}</SkipLinkContent>
-      </article>
+      <MDXProvider
+        components={{
+          table: Table,
+          h2: SectionHeading,
+          h3: LinkHeading,
+        }}
+      >
+        <article className="content-article">
+          <SkipLinkContent>{children}</SkipLinkContent>
+        </article>
+      </MDXProvider>
     </LayoutComponent>
   );
 };
