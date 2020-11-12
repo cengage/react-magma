@@ -108,6 +108,7 @@ export const baseBadgeStyles = props => css`
   padding: ${props.variant === BadgeVariant.counter
     ? `1px ${props.theme.spaceScale.spacing02}`
     : `${props.theme.spaceScale.spacing01} ${props.theme.spaceScale.spacing02}`};
+  text-align: ${props.variant == BadgeVariant.counter ? 'center' : 'inherit'};
 `;
 
 const StyledSpan = styled.span<BadgeProps>`
