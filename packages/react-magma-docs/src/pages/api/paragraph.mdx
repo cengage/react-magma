@@ -14,9 +14,9 @@ The `Paragraph` component is used to present paragraph content in a clear and co
 ## Basic Usage
 
 ```.jsx
-    <Paragraph>
-        Basic paragraph component.
-    </Paragraph>
+<Paragraph>
+  Basic paragraph component.
+</Paragraph>
 ```
 
 ## Sizes
@@ -28,47 +28,47 @@ In addition to the paragraph visual styles, the `visualStyle` prop can also acce
 These visual styles are also used with the <Link to="/api/heading">Heading</Link> component. The underlying HTML will still render as a `p` element.
 
 ```.jsx
-  <>
-   <Paragraph visualStyle="headingXLarge">
-        Heading x-large styles.
-    </Paragraph>
+<>
+  <Paragraph visualStyle="headingXLarge">
+    Heading x-large styles.
+  </Paragraph>
 
-    <Paragraph visualStyle="headingLarge">
-        Heading large styles.
-    </Paragraph>
+  <Paragraph visualStyle="headingLarge">
+    Heading large styles.
+  </Paragraph>
 
-    <Paragraph visualStyle="headingMedium">
-        Heading medium styles.
-    </Paragraph>
+  <Paragraph visualStyle="headingMedium">
+    Heading medium styles.
+  </Paragraph>
 
-    <Paragraph visualStyle="headingSmall">
-        Heading small styles.
-    </Paragraph>
+  <Paragraph visualStyle="headingSmall">
+    Heading small styles.
+  </Paragraph>
 
-    <Paragraph visualStyle="headingXSmall">
-        Heading x-small styles.
-    </Paragraph>
+  <Paragraph visualStyle="headingXSmall">
+    Heading x-small styles.
+  </Paragraph>
 
-    <Paragraph visualStyle="heading2XSmall">
-        Heading 2x-small styles.
-    </Paragraph>
+  <Paragraph visualStyle="heading2XSmall">
+    Heading 2x-small styles.
+  </Paragraph>
 
-    <Paragraph visualStyle="bodyLarge">
-        Body large styles.  Lorem ipsum dolar sit amet.
-    </Paragraph>
+  <Paragraph visualStyle="bodyLarge">
+    Body large styles.  Lorem ipsum dolar sit amet.
+  </Paragraph>
 
-    <Paragraph visualStyle="bodyMedium">
-        Body medium (default) styles.  Lorem ipsum dolar sit amet.
-    </Paragraph>
+  <Paragraph visualStyle="bodyMedium">
+    Body medium (default) styles.  Lorem ipsum dolar sit amet.
+  </Paragraph>
 
-    <Paragraph visualStyle="bodySmall">
-        Body small styles.  Lorem ipsum dolar sit amet.
-    </Paragraph>
+  <Paragraph visualStyle="bodySmall">
+    Body small styles.  Lorem ipsum dolar sit amet.
+  </Paragraph>
 
-    <Paragraph visualStyle="bodyXSmall">
-        Body x-small styles.  Lorem ipsum dolar sit amet.
-    </Paragraph>
-  </>
+  <Paragraph visualStyle="bodyXSmall">
+    Body x-small styles.  Lorem ipsum dolar sit amet.
+  </Paragraph>
+</>
 ```
 
 ## Context Variant
@@ -80,40 +80,39 @@ The `expressive` context variant can be used in marketing contexts, which may re
 The `narrative` context variant can be used for content-heavy contexts, such as a blog-post or an e-reader.
 
 ```.jsx
-    <>
+<>
+  <Paragraph contextVariant="expressive" visualStyle="bodyLarge">
+    Body large.  Lorem ipsum dolar sit amet.
+  </Paragraph>
 
-        <Paragraph contextVariant="expressive" visualStyle="bodyLarge">
-            Body large.  Lorem ipsum dolar sit amet.
-        </Paragraph>
+  <Paragraph contextVariant="expressive" visualStyle="bodyMedium">
+    Body medium (default).  Lorem ipsum dolar sit amet.
+  </Paragraph>
 
-        <Paragraph contextVariant="expressive" visualStyle="bodyMedium">
-            Body medium (default).  Lorem ipsum dolar sit amet.
-        </Paragraph>
+  <Paragraph contextVariant="expressive" visualStyle="bodySmall">
+    Body small.  Lorem ipsum dolar sit amet.
+  </Paragraph>
 
-        <Paragraph contextVariant="expressive" visualStyle="bodySmall">
-            Body small.  Lorem ipsum dolar sit amet.
-        </Paragraph>
+  <Paragraph contextVariant="expressive" visualStyle="bodyXSmall">
+    Body x-small.  Lorem ipsum dolar sit amet.
+  </Paragraph>
 
-        <Paragraph contextVariant="expressive" visualStyle="bodyXSmall">
-            Body x-small.  Lorem ipsum dolar sit amet.
-        </Paragraph>
+  <Paragraph contextVariant="narrative" visualStyle="bodyLarge">
+    Body large.  Lorem ipsum dolar sit amet.
+  </Paragraph>
 
-        <Paragraph contextVariant="narrative" visualStyle="bodyLarge">
-            Body large.  Lorem ipsum dolar sit amet.
-        </Paragraph>
+  <Paragraph contextVariant="narrative" visualStyle="bodyMedium">
+    Body medium (default).  Lorem ipsum dolar sit amet.
+  </Paragraph>
 
-        <Paragraph contextVariant="narrative" visualStyle="bodyMedium">
-            Body medium (default).  Lorem ipsum dolar sit amet.
-        </Paragraph>
+  <Paragraph contextVariant="narrative" visualStyle="bodySmall">
+    Body small.  Lorem ipsum dolar sit amet.
+  </Paragraph>
 
-        <Paragraph contextVariant="narrative" visualStyle="bodySmall">
-            Body small.  Lorem ipsum dolar sit amet.
-        </Paragraph>
-
-        <Paragraph contextVariant="narrative" visualStyle="bodyXSmall">
-            Body x-small.  Lorem ipsum dolar sit amet.
-        </Paragraph>
-    </>
+  <Paragraph contextVariant="narrative" visualStyle="bodyXSmall">
+    Body x-small.  Lorem ipsum dolar sit amet.
+  </Paragraph>
+</>
 ```
 
 ## Color
@@ -121,19 +120,19 @@ The `narrative` context variant can be used for content-heavy contexts, such as 
 The `color` prop can be used to change the color of the paragraph to convey additional meaning. It accepts the values: `success`, `danger` and `subdued`.
 
 ```.jsx
-    <>
-        <Paragraph color="success">
-            Success paragraph. Lorem ipsum dolar sit amet.
-        </Paragraph>
+<>
+  <Paragraph color="success">
+    Success paragraph. Lorem ipsum dolar sit amet.
+  </Paragraph>
 
-        <Paragraph color="subdued">
-            Subdued paragraph.  Lorem ipsum dolar sit amet.
-        </Paragraph>
+  <Paragraph color="subdued">
+    Subdued paragraph.  Lorem ipsum dolar sit amet.
+  </Paragraph>
 
-        <Paragraph color="danger">
-            Danger paragraph.  Lorem ipsum dolar sit amet.
-        </Paragraph>
-    </>
+  <Paragraph color="danger">
+    Danger paragraph.  Lorem ipsum dolar sit amet.
+  </Paragraph>
+</>
 ```
 
 ## Inverse
@@ -141,25 +140,25 @@ The `color` prop can be used to change the color of the paragraph to convey addi
 The `isInverse` property is an optional boolean that changes the colors so the component can appear on a dark background.
 
 ```.jsx
-  <Card isInverse>
-    <CardBody>
-      <Paragraph isInverse>
-          Inverse paragraph.  Lorem ipsum dolar sit amet.
-      </Paragraph>
+<Card isInverse>
+  <CardBody>
+    <Paragraph isInverse>
+      Inverse paragraph.  Lorem ipsum dolar sit amet.
+    </Paragraph>
 
-        <Paragraph color="success" isInverse>
-          Success inverse paragraph. Lorem ipsum dolar sit amet.
-      </Paragraph>
+      <Paragraph color="success" isInverse>
+      Success inverse paragraph. Lorem ipsum dolar sit amet.
+    </Paragraph>
 
-      <Paragraph color="subdued" isInverse>
-          Subdued inverse paragraph.  Lorem ipsum dolar sit amet.
-      </Paragraph>
+    <Paragraph color="subdued" isInverse>
+      Subdued inverse paragraph.  Lorem ipsum dolar sit amet.
+    </Paragraph>
 
-      <Paragraph color="danger" isInverse>
-          Danger inverse paragraph.  Lorem ipsum dolar sit amet.
-      </Paragraph>
-    </CardBody>
-  </Card>
+    <Paragraph color="danger" isInverse>
+      Danger inverse paragraph.  Lorem ipsum dolar sit amet.
+    </Paragraph>
+  </CardBody>
+</Card>
 ```
 
 ## No Margins
@@ -167,23 +166,23 @@ The `isInverse` property is an optional boolean that changes the colors so the c
 By default, the `Paragraph` component includes margins on the top and bottom. When the `noMargins` prop is applied, the element will have a margin value of 0.
 
 ```.jsx
-  <>
-     <Paragraph noMargins visualStyle="bodyLarge">
-            Body large.  Lorem ipsum dolar sit amet.
-        </Paragraph>
+<>
+  <Paragraph noMargins visualStyle="bodyLarge">
+    Body large.  Lorem ipsum dolar sit amet.
+  </Paragraph>
 
-        <Paragraph noMargins visualStyle="bodyMedium">
-            Body medium (default).  Lorem ipsum dolar sit amet.
-        </Paragraph>
+  <Paragraph noMargins visualStyle="bodyMedium">
+    Body medium (default).  Lorem ipsum dolar sit amet.
+  </Paragraph>
 
-        <Paragraph noMargins visualStyle="bodySmall">
-            Body small.  Lorem ipsum dolar sit amet.
-        </Paragraph>
+  <Paragraph noMargins visualStyle="bodySmall">
+    Body small.  Lorem ipsum dolar sit amet.
+  </Paragraph>
 
-        <Paragraph noMargins visualStyle="bodyXSmall">
-            Body x-small.  Lorem ipsum dolar sit amet.
-        </Paragraph>
-  </>
+  <Paragraph noMargins visualStyle="bodyXSmall">
+    Body x-small.  Lorem ipsum dolar sit amet.
+  </Paragraph>
+</>
 ```
 
 ## Paragraph Props
