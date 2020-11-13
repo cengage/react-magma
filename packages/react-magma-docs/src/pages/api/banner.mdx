@@ -22,12 +22,12 @@ The `variant` prop accepts the following values: `info`, `success`, `warning` an
 This prop determines the icon and color scheme used to style the Banner.
 
 ```.jsx
-      <>
-        <Banner >Default (info) banner</Banner>
-        <Banner variant='success'>Success banner</Banner>
-        <Banner variant='warning'>Warning banner</Banner>
-        <Banner variant='danger'>Danger banner. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus rutrum nisl placerat ullamcorper. Maecenas gravida ut velit sagittis lacinia.</Banner>
-      </>
+<>
+  <Banner >Default (info) banner</Banner>
+  <Banner variant='success'>Success banner</Banner>
+  <Banner variant='warning'>Warning banner</Banner>
+  <Banner variant='danger'>Danger banner. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus rutrum nisl placerat ullamcorper. Maecenas gravida ut velit sagittis lacinia.</Banner>
+</>
 ```
 
 ## Dismissible
@@ -37,14 +37,16 @@ The isDismissible prop is optional, and if provided the Banner will render a dis
 The aria-label, by default is Close this message but can be overridden using the optional closeAriaLabel prop.
 
 ```.jsx
-(props) => {
-      const [showBanner, updateShowBanner] = React.useState(true);
+() => {
+  const [showBanner, updateShowBanner] = React.useState(true);
 
-      return (<>
-        { showBanner && <Banner isDismissible onDismiss={() => updateShowBanner(false)} variant="success">Success!  You may now dismiss this banner</Banner>}
-        { !showBanner && <Button onClick={() => updateShowBanner(true)} size="small" color="secondary">Show Banner Again</Button>}
-      </>)
-    }
+  return (
+    <>
+      { showBanner && <Banner isDismissible onDismiss={() => updateShowBanner(false)} variant="success">Success!  You may now dismiss this banner</Banner>}
+      { !showBanner && <Button onClick={() => updateShowBanner(true)} size="small" color="secondary">Show Banner Again</Button>}
+    </>
+  )
+}
 ```
 
 ## Action Button
@@ -53,7 +55,7 @@ A single button can be added to a Banner Alert to provide the user with an actio
 The `actionButtonOnClick` prop takes a function and fires when the action button is clicked. Both props must be present for the button to appear.
 
 ```.jsx
-        <Banner actionButtonText='Action' actionButtonOnClick={()=>{alert('action button clicked!')}}>Default banner</Banner>
+<Banner actionButtonText='Action' actionButtonOnClick={()=>{alert('action button clicked!')}}>Default banner</Banner>
 ```
 
 ## Banner Props

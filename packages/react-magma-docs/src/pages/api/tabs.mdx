@@ -29,217 +29,12 @@ The tab system is made up of five components:
 And `TabPanel`, which contains the individual content sections for each tab.
 
 ```.jsx
-  () => {
-    return (
-      <TabsContainer activeIndex={1}>
-        <Tabs aria-label="Sample Tabs">
-          <Tab>Main page</Tab>
-          <Tab>FAQ</Tab>
-          <Tab>About us</Tab>
-        </Tabs>
-
-        <TabPanelsContainer>
-          <TabPanel>
-            <div>Main page</div>
-          </TabPanel>
-          <TabPanel>
-            <div>FAQ</div>
-          </TabPanel>
-          <TabPanel>
-            <div>About us</div>
-          </TabPanel>
-        </TabPanelsContainer>
-      </TabsContainer>
-  )}
-```
-
-## Vertical Tabs
-
-The `orientation` prop can be used to display tabs vertically, instead of horizontally.  
-The `orientation` prop is an enum that accepts either `horizontal` or `vertical` with `horizontal` being the default.
-This prop is specified on the `Tabs` component.
-
-```.jsx
-      () => {
-        return (
-          <div>
-            <TabsContainer>
-                <Tabs aria-label="Sample Vertical Tabs" orientation='vertical' backgroundColor='#F7F7F7'>
-                  <Tab>Main page with a longer text label</Tab>
-                  <Tab>FAQ</Tab>
-                  <Tab>About us</Tab>
-                </Tabs>
-
-                <TabPanelsContainer style={{padding: '10px'}}>
-                  <TabPanel>
-                    <div>Main page</div>
-                  </TabPanel>
-                  <TabPanel>
-                    <div>FAQ</div>
-                  </TabPanel>
-                  <TabPanel>
-                    <div>About us</div>
-                  </TabPanel>
-                </TabPanelsContainer>
-            </TabsContainer>
-          </div>
-    )}
-```
-
-## Border Position
-
-By default, horizontal tabs have the indicator placed underneath the tabs. However, it is possible to display the indicator on the top edge of the tabs.
-
-**Caution:** Displaying tabs below their associated content panel is most commonly used for navigation that appears at the bottom of the viewport on mobile devices. Using this same pattern for a simple set of tabbed content on a page could be unfamiliar and confusing to the user, and should not be used without proper user-testing.
-
-The `borderPosition` prop is an enum and accepts `top` or `bottom` for horizontal tabs.
-The `borderPosition` prop is specified on the `Tabs` component and will apply to each individual tab.
-
-```.jsx
-      () => {
-
-        return (
-        <TabsContainer>
-          <TabPanelsContainer>
-            <TabPanel>
-              <div>Main page</div>
-            </TabPanel>
-            <TabPanel>
-              <div>FAQ</div>
-            </TabPanel>
-            <TabPanel>
-              <div>About us</div>
-            </TabPanel>
-          </TabPanelsContainer>
-          <Tabs aria-label="Sample Border Top Tabs" backgroundColor='#F7F7F7' borderPosition='top'>
-            <Tab>Main page</Tab>
-            <Tab>FAQ</Tab>
-            <Tab>About us</Tab>
-          </Tabs>
-        </TabsContainer>
-    )}
-```
-
-## Border Position (vertical)
-
-By default, vertical tabs have the indicator placed to the left.
-However, there are times you may want to place the indicator to the right of the tabs, such as when the tab menu is displayed to the left of its content.
-The `borderPosition` prop is an enum and accepts `left` or `right` for horizontal tabs.
-
-The `borderPosition` prop is specified on the `Tabs` component and will apply to each individual tab.
-
-```.jsx
-      () => {
-
-        return (
-          <TabsContainer>
-            <TabPanelsContainer>
-              <TabPanel>
-                <div>Main page</div>
-              </TabPanel>
-              <TabPanel>
-                <div>FAQ</div>
-              </TabPanel>
-              <TabPanel>
-                <div>About us</div>
-              </TabPanel>
-            </TabPanelsContainer>
-            <Tabs aria-label="Sample Border Right Vertical Tabs" backgroundColor='#F7F7F7' borderPosition='right' orientation='vertical'>
-              <Tab>Main page</Tab>
-              <Tab>FAQ</Tab>
-              <Tab>About us</Tab>
-            </Tabs>
-          </TabsContainer>
-    )}
-```
-
-## Custom Tab Wrappers
-
-`Tabs` expects its children to be of type `Tab`, be an element in which its lowest child is of type `Tab`, or a custom component
-that returns a `Tab`.
-
-For a custom component you'll receive a `tabsProps` prop that you must spread in to the `Tab` component in your renderer.
-
-```.jsx
- () => {
-  const OptionalTab = ({toggle, tabProps}) => {
-    return toggle ? <Tab {...tabProps}>Hello There</Tab> : null
-  }
-
-   return (
-     <TabsContainer activeIndex={0}>
-       <Tabs aria-label="Sample Custom Wrappers Tabs">
-         <Tab>Main page</Tab>
-         <OptionalTab toggle />
-         <div>
-           <Tab>FAQ</Tab>
-         </div>
-       </Tabs>
-
-       <TabPanelsContainer>
-         <TabPanel>
-           <div>Main page</div>
-         </TabPanel>
-         <TabPanel>
-           <div>Optional</div>
-         </TabPanel>
-         <TabPanel>
-           <div>FAQ</div>
-         </TabPanel>
-       </TabPanelsContainer>
-     </TabsContainer>
- )}
-```
-
-## Custom Logic
-
-This is a simple example of Tab Components with custom switching logic
-
-```.jsx
-  () => {
-    const [activeIndex, setActiveIndex] = React.useState(0);
-
-    function handleChange(index) {
-      setActiveIndex(index);
-    }
-
-    return (
-      <TabsContainer activeIndex={activeIndex}>
-        <Tabs
-          aria-label="Sample Custom Logic Tabs"
-          backgroundColor='#F7F7F7'
-          onChange={handleChange}
-        >
-          <Tab>First item</Tab>
-          <Tab>Second item</Tab>
-          <Tab>Third item</Tab>
-        </Tabs>
-
-        <TabPanelsContainer>
-          <TabPanel>
-            <div>First item</div>
-          </TabPanel>
-          <TabPanel>
-            <div>Second item</div>
-          </TabPanel>
-          <TabPanel>
-            <div>Third item</div>
-          </TabPanel>
-        </TabPanelsContainer>
-      </TabsContainer>
-    )
-  }
-```
-
-## Disabled Tabs
-
-If a `Tab` is `disabled` using the `disabled` prop, it will not be actionable. It will still appear in the menu, but will be styled to appear greyed out.
-
-```.jsx
-    <TabsContainer>
-      <Tabs aria-label="Sample With Disabled Tabs" backgroundColor='#F7F7F7'>
+() => {
+  return (
+    <TabsContainer activeIndex={1}>
+      <Tabs aria-label="Sample Tabs">
         <Tab>Main page</Tab>
-        <Tab disabled>FAQ</Tab>
+        <Tab>FAQ</Tab>
         <Tab>About us</Tab>
       </Tabs>
 
@@ -255,7 +50,213 @@ If a `Tab` is `disabled` using the `disabled` prop, it will not be actionable. I
         </TabPanel>
       </TabPanelsContainer>
     </TabsContainer>
+)}
+```
 
+## Vertical Tabs
+
+The `orientation` prop can be used to display tabs vertically, instead of horizontally.  
+The `orientation` prop is an enum that accepts either `horizontal` or `vertical` with `horizontal` being the default.
+This prop is specified on the `Tabs` component.
+
+```.jsx
+() => {
+  return (
+    <div>
+      <TabsContainer>
+        <Tabs aria-label="Sample Vertical Tabs" orientation='vertical' backgroundColor='#F7F7F7'>
+          <Tab>Main page with a longer text label</Tab>
+          <Tab>FAQ</Tab>
+          <Tab>About us</Tab>
+        </Tabs>
+
+        <TabPanelsContainer style={{padding: '10px'}}>
+          <TabPanel>
+            <div>Main page</div>
+          </TabPanel>
+          <TabPanel>
+            <div>FAQ</div>
+          </TabPanel>
+          <TabPanel>
+            <div>About us</div>
+          </TabPanel>
+        </TabPanelsContainer>
+      </TabsContainer>
+    </div>
+  )
+}
+```
+
+## Border Position
+
+By default, horizontal tabs have the indicator placed underneath the tabs. However, it is possible to display the indicator on the top edge of the tabs.
+
+**Caution:** Displaying tabs below their associated content panel is most commonly used for navigation that appears at the bottom of the viewport on mobile devices. Using this same pattern for a simple set of tabbed content on a page could be unfamiliar and confusing to the user, and should not be used without proper user-testing.
+
+The `borderPosition` prop is an enum and accepts `top` or `bottom` for horizontal tabs.
+The `borderPosition` prop is specified on the `Tabs` component and will apply to each individual tab.
+
+```.jsx
+() => {
+  return (
+    <TabsContainer>
+      <TabPanelsContainer>
+        <TabPanel>
+          <div>Main page</div>
+        </TabPanel>
+        <TabPanel>
+          <div>FAQ</div>
+        </TabPanel>
+        <TabPanel>
+          <div>About us</div>
+        </TabPanel>
+      </TabPanelsContainer>
+      <Tabs aria-label="Sample Border Top Tabs" backgroundColor='#F7F7F7' borderPosition='top'>
+        <Tab>Main page</Tab>
+        <Tab>FAQ</Tab>
+        <Tab>About us</Tab>
+      </Tabs>
+    </TabsContainer>
+  )
+}
+```
+
+## Border Position (vertical)
+
+By default, vertical tabs have the indicator placed to the left.
+However, there are times you may want to place the indicator to the right of the tabs, such as when the tab menu is displayed to the left of its content.
+The `borderPosition` prop is an enum and accepts `left` or `right` for horizontal tabs.
+
+The `borderPosition` prop is specified on the `Tabs` component and will apply to each individual tab.
+
+```.jsx
+() => {
+  return (
+    <TabsContainer>
+      <TabPanelsContainer>
+        <TabPanel>
+          <div>Main page</div>
+        </TabPanel>
+        <TabPanel>
+          <div>FAQ</div>
+        </TabPanel>
+        <TabPanel>
+          <div>About us</div>
+        </TabPanel>
+      </TabPanelsContainer>
+      <Tabs aria-label="Sample Border Right Vertical Tabs" backgroundColor='#F7F7F7' borderPosition='right' orientation='vertical'>
+        <Tab>Main page</Tab>
+        <Tab>FAQ</Tab>
+        <Tab>About us</Tab>
+      </Tabs>
+    </TabsContainer>
+  )
+}
+```
+
+## Custom Tab Wrappers
+
+`Tabs` expects its children to be of type `Tab`, be an element in which its lowest child is of type `Tab`, or a custom component
+that returns a `Tab`.
+
+For a custom component you'll receive a `tabsProps` prop that you must spread in to the `Tab` component in your renderer.
+
+```.jsx
+() => {
+  const OptionalTab = ({toggle, tabProps}) => {
+    return toggle ? <Tab {...tabProps}>Hello There</Tab> : null
+  }
+
+  return (
+    <TabsContainer activeIndex={0}>
+      <Tabs aria-label="Sample Custom Wrappers Tabs">
+        <Tab>Main page</Tab>
+        <OptionalTab toggle />
+        <div>
+          <Tab>FAQ</Tab>
+        </div>
+      </Tabs>
+
+      <TabPanelsContainer>
+        <TabPanel>
+          <div>Main page</div>
+        </TabPanel>
+        <TabPanel>
+          <div>Optional</div>
+        </TabPanel>
+        <TabPanel>
+          <div>FAQ</div>
+        </TabPanel>
+      </TabPanelsContainer>
+    </TabsContainer>
+  )
+}
+```
+
+## Custom Logic
+
+This is a simple example of Tab Components with custom switching logic
+
+```.jsx
+() => {
+  const [activeIndex, setActiveIndex] = React.useState(0);
+
+  function handleChange(index) {
+    setActiveIndex(index);
+  }
+
+  return (
+    <TabsContainer activeIndex={activeIndex}>
+      <Tabs
+        aria-label="Sample Custom Logic Tabs"
+        backgroundColor='#F7F7F7'
+        onChange={handleChange}
+      >
+        <Tab>First item</Tab>
+        <Tab>Second item</Tab>
+        <Tab>Third item</Tab>
+      </Tabs>
+
+      <TabPanelsContainer>
+        <TabPanel>
+          <div>First item</div>
+        </TabPanel>
+        <TabPanel>
+          <div>Second item</div>
+        </TabPanel>
+        <TabPanel>
+          <div>Third item</div>
+        </TabPanel>
+      </TabPanelsContainer>
+    </TabsContainer>
+  )
+}
+```
+
+## Disabled Tabs
+
+If a `Tab` is `disabled` using the `disabled` prop, it will not be actionable. It will still appear in the menu, but will be styled to appear greyed out.
+
+```.jsx
+<TabsContainer>
+  <Tabs aria-label="Sample With Disabled Tabs" backgroundColor='#F7F7F7'>
+    <Tab>Main page</Tab>
+    <Tab disabled>FAQ</Tab>
+    <Tab>About us</Tab>
+  </Tabs>
+
+  <TabPanelsContainer>
+    <TabPanel>
+      <div>Main page</div>
+    </TabPanel>
+    <TabPanel>
+      <div>FAQ</div>
+    </TabPanel>
+    <TabPanel>
+      <div>About us</div>
+    </TabPanel>
+  </TabPanelsContainer>
+</TabsContainer>
 ```
 
 ## Alignment
@@ -315,115 +316,116 @@ The `isFullWidth` prop is an optional boolean that will cause the tabs to take u
 Full width tabs work best when inside a smaller container. This example uses the `useMediaQuery` hook to set this prop only on devices with smaller browser widths.
 
 ```.jsx
-      () => {
+() => {
+  const isSmallerScreen = useMediaQuery(`(max-width:${magma.breakpoints.large}px)`);
 
-        const isSmallerScreen = useMediaQuery(`(max-width:${magma.breakpoints.large}px)`);
-
-        return (
-          <TabsContainer>
-            <Tabs aria-label="Sample Full Width Tabs" isFullWidth={isSmallerScreen}>
-              <Tab>Main Page with a longer text label</Tab>
-              <Tab>FAQ</Tab>
-              <Tab>About Us</Tab>
-            </Tabs>
-            <TabPanelsContainer>
-              <TabPanel>
-                <div>Main page</div>
-              </TabPanel>
-              <TabPanel>
-                <div>FAQ</div>
-              </TabPanel>
-              <TabPanel>
-                <div>About us</div>
-              </TabPanel>
-            </TabPanelsContainer>
-        </TabsContainer>
-    )}
+  return (
+    <TabsContainer>
+      <Tabs aria-label="Sample Full Width Tabs" isFullWidth={isSmallerScreen}>
+        <Tab>Main Page with a longer text label</Tab>
+        <Tab>FAQ</Tab>
+        <Tab>About Us</Tab>
+      </Tabs>
+      <TabPanelsContainer>
+        <TabPanel>
+          <div>Main page</div>
+        </TabPanel>
+        <TabPanel>
+          <div>FAQ</div>
+        </TabPanel>
+        <TabPanel>
+          <div>About us</div>
+        </TabPanel>
+      </TabPanelsContainer>
+    </TabsContainer>
+  )
+}
 ```
 
 ## Scrollable Tabs
 
 ```.jsx
-      () => {
-        return (
-          <div>
-            <TabsContainer>
-                <Tabs aria-label="Sample Scrollable Tabs" backgroundColor='#F7F7F7'>
-                  <Tab>First item with a longer text label</Tab>
-                  <Tab>Second item</Tab>
-                  <Tab>Third item</Tab>
-                  <Tab>Fourth item</Tab>
-                  <Tab>Fifth item</Tab>
-                  <Tab>Sixth item</Tab>
-                  <Tab>Seventh item</Tab>
-                  <Tab>Eighth item</Tab>
-                </Tabs>
+() => {
+  return (
+    <div>
+      <TabsContainer>
+          <Tabs aria-label="Sample Scrollable Tabs" backgroundColor='#F7F7F7'>
+            <Tab>First item with a longer text label</Tab>
+            <Tab>Second item</Tab>
+            <Tab>Third item</Tab>
+            <Tab>Fourth item</Tab>
+            <Tab>Fifth item</Tab>
+            <Tab>Sixth item</Tab>
+            <Tab>Seventh item</Tab>
+            <Tab>Eighth item</Tab>
+          </Tabs>
 
-                <TabPanelsContainer>
-                  <TabPanel>
-                    <div>First item</div>
-                  </TabPanel>
-                  <TabPanel>
-                    <div>Second item</div>
-                  </TabPanel>
-                  <TabPanel>
-                    <div>Third item</div>
-                  </TabPanel>
-                  <TabPanel>
-                    <div>Fourth item</div>
-                  </TabPanel>
-                  <TabPanel>
-                    <div>Fifth item</div>
-                  </TabPanel>
-                  <TabPanel>
-                    <div>Sixth item</div>
-                  </TabPanel>
-                  <TabPanel>
-                    <div>Seventh item</div>
-                  </TabPanel>
-                  <TabPanel>
-                    <div>Eighth item</div>
-                  </TabPanel>
-                </TabPanelsContainer>
-            </TabsContainer>
-          </div>
-    )}
+          <TabPanelsContainer>
+            <TabPanel>
+              <div>First item</div>
+            </TabPanel>
+            <TabPanel>
+              <div>Second item</div>
+            </TabPanel>
+            <TabPanel>
+              <div>Third item</div>
+            </TabPanel>
+            <TabPanel>
+              <div>Fourth item</div>
+            </TabPanel>
+            <TabPanel>
+              <div>Fifth item</div>
+            </TabPanel>
+            <TabPanel>
+              <div>Sixth item</div>
+            </TabPanel>
+            <TabPanel>
+              <div>Seventh item</div>
+            </TabPanel>
+            <TabPanel>
+              <div>Eighth item</div>
+            </TabPanel>
+          </TabPanelsContainer>
+      </TabsContainer>
+    </div>
+  )
+}
 ```
 
 ## Scrollable Vertical Tabs
 
 ```.jsx
-    <TabsContainer style={{ height: '200px', overflow: 'hidden'  }}>
-        <Tabs aria-label="Sample Scrollable Vertical Tabs" backgroundColor='#F7F7F7' orientation='vertical'>
-          <Tab>First item</Tab>
-          <Tab>Second item</Tab>
-          <Tab>Third item</Tab>
-          <Tab>Fourth item</Tab>
-          <Tab>Fifth item</Tab>
-          <Tab>Sixth item</Tab>
-        </Tabs>
+<TabsContainer style={{ height: '200px', overflow: 'hidden'  }}>
+  <Tabs aria-label="Sample Scrollable Vertical Tabs" backgroundColor='#F7F7F7' orientation='vertical'>
+    <Tab>First item</Tab>
+    <Tab>Second item</Tab>
+    <Tab>Third item</Tab>
+    <Tab>Fourth item</Tab>
+    <Tab>Fifth item</Tab>
+    <Tab>Sixth item</Tab>
+  </Tabs>
 
-        <TabPanelsContainer>
-          <TabPanel>
-            <div>First item</div>
-          </TabPanel>
-          <TabPanel>
-            <div>Second item</div>
-          </TabPanel>
-          <TabPanel>
-            <div>Third item</div>
-          </TabPanel>
-          <TabPanel>
-            <div>Fourth item</div>
-          </TabPanel>
-          <TabPanel>
-            <div>Fifth item</div>
-          </TabPanel>
-          <TabPanel>
-            <div>Sixth item</div>
-          </TabPanel>
-        </TabPanelsContainer>
-    </TabsContainer>
+  <TabPanelsContainer>
+    <TabPanel>
+      <div>First item</div>
+    </TabPanel>
+    <TabPanel>
+      <div>Second item</div>
+    </TabPanel>
+    <TabPanel>
+      <div>Third item</div>
+    </TabPanel>
+    <TabPanel>
+      <div>Fourth item</div>
+    </TabPanel>
+    <TabPanel>
+      <div>Fifth item</div>
+    </TabPanel>
+    <TabPanel>
+      <div>Sixth item</div>
+    </TabPanel>
+  </TabPanelsContainer>
+</TabsContainer>
 ```
 
 ## Icon
@@ -435,27 +437,28 @@ The `icon` prop can be used to display an icon inside the individual `Tab` compo
 `Tab` components without children can be used to display an icon only version of the tabs. Be sure to include an `aria-label` for each tab, when using this pattern.
 
 ```.jsx
-      () => {
-        return (
-          <TabsContainer>
-            <Tabs aria-label="Sample Icon Only Tabs">
-              <Tab aria-label='Graduation' icon={<GraduationCapIcon />} />
-              <Tab aria-label='Android' icon={<AndroidIcon />} />
-              <Tab aria-label='Notifications' icon={<BellIcon />} />
-            </Tabs>
-            <TabPanelsContainer>
-              <TabPanel>
-                <div>Graduation</div>
-              </TabPanel>
-              <TabPanel>
-                <div>Android</div>
-              </TabPanel>
-              <TabPanel>
-                <div>Notifications</div>
-              </TabPanel>
-            </TabPanelsContainer>
-          </TabsContainer>
-    )}
+() => {
+  return (
+    <TabsContainer>
+      <Tabs aria-label="Sample Icon Only Tabs">
+        <Tab aria-label='Graduation' icon={<GraduationCapIcon />} />
+        <Tab aria-label='Android' icon={<AndroidIcon />} />
+        <Tab aria-label='Notifications' icon={<BellIcon />} />
+      </Tabs>
+      <TabPanelsContainer>
+        <TabPanel>
+          <div>Graduation</div>
+        </TabPanel>
+        <TabPanel>
+          <div>Android</div>
+        </TabPanel>
+        <TabPanel>
+          <div>Notifications</div>
+        </TabPanel>
+      </TabPanelsContainer>
+    </TabsContainer>
+  )
+}
 ```
 
 ### Icon With Text
@@ -464,51 +467,52 @@ The `icon` prop can be used to display an icon inside the individual `Tab` compo
 By default, the icons appear above the children.
 
 ```.jsx
-      () => {
-        return (
-          <TabsContainer>
-            <Tabs aria-label="Sample Icon With Text Tabs">
-              <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
-              <Tab icon={<AndroidIcon />}>Second item</Tab>
-              <Tab icon={<BellIcon />}>Third item</Tab>
-            </Tabs>
-            <TabPanelsContainer>
-              <TabPanel>
-                <div>Graduation</div>
-              </TabPanel>
-              <TabPanel>
-                <div>Android</div>
-              </TabPanel>
-              <TabPanel>
-                <div>Bell</div>
-              </TabPanel>
-            </TabPanelsContainer>
-          </TabsContainer>
-    )}
+() => {
+  return (
+    <TabsContainer>
+      <Tabs aria-label="Sample Icon With Text Tabs">
+        <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
+        <Tab icon={<AndroidIcon />}>Second item</Tab>
+        <Tab icon={<BellIcon />}>Third item</Tab>
+      </Tabs>
+      <TabPanelsContainer>
+        <TabPanel>
+          <div>Graduation</div>
+        </TabPanel>
+        <TabPanel>
+          <div>Android</div>
+        </TabPanel>
+        <TabPanel>
+          <div>Bell</div>
+        </TabPanel>
+      </TabPanelsContainer>
+    </TabsContainer>
+  )
+}
 ```
 
 ### Vertical Tabs with Icons
 
 ```.jsx
-      <TabsContainer>
-          <Tabs aria-label="Sample Vertical Icon Tabs" backgroundColor='#F7F7F7' orientation='vertical'>
-            <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
-            <Tab icon={<AndroidIcon />}>Second item</Tab>
-            <Tab icon={<BellIcon />}>Third item</Tab>
-          </Tabs>
+<TabsContainer>
+  <Tabs aria-label="Sample Vertical Icon Tabs" backgroundColor='#F7F7F7' orientation='vertical'>
+    <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
+    <Tab icon={<AndroidIcon />}>Second item</Tab>
+    <Tab icon={<BellIcon />}>Third item</Tab>
+  </Tabs>
 
-          <TabPanelsContainer style={{padding: '10px'}}>
-            <TabPanel>
-              <div>Main page</div>
-            </TabPanel>
-            <TabPanel>
-              <div>FAQ</div>
-            </TabPanel>
-            <TabPanel>
-              <div>About us</div>
-            </TabPanel>
-          </TabPanelsContainer>
-      </TabsContainer>
+  <TabPanelsContainer style={{padding: '10px'}}>
+    <TabPanel>
+      <div>Main page</div>
+    </TabPanel>
+    <TabPanel>
+      <div>FAQ</div>
+    </TabPanel>
+    <TabPanel>
+      <div>About us</div>
+    </TabPanel>
+  </TabPanelsContainer>
+</TabsContainer>
 ```
 
 ### Icon Position
@@ -518,39 +522,39 @@ The `iconPosition` prop is an enum that accepts `left`, `top`, `right` or `botto
 This prop is specified on the `Tabs` component.
 
 ```.jsx
-    <>
-      <TabsContainer>
-        <Tabs aria-label="Sample Icon Position Left Tabs" iconPosition="left" backgroundColor='#F7F7F7'>
-          <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
-          <Tab icon={<AndroidIcon />}>Second item</Tab>
-          <Tab icon={<BellIcon />}>Third item</Tab>
-        </Tabs>
-      </TabsContainer>
+<>
+  <TabsContainer>
+    <Tabs aria-label="Sample Icon Position Left Tabs" iconPosition="left" backgroundColor='#F7F7F7'>
+      <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
+      <Tab icon={<AndroidIcon />}>Second item</Tab>
+      <Tab icon={<BellIcon />}>Third item</Tab>
+    </Tabs>
+  </TabsContainer>
 
-      <br />
-      <br />
-      <br />
+  <br />
+  <br />
+  <br />
 
-      <TabsContainer>
-        <Tabs aria-label="Sample Icon Position Bottom Tabs" iconPosition="bottom" backgroundColor='#F7F7F7'>
-          <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
-          <Tab icon={<AndroidIcon />}>Second item</Tab>
-          <Tab icon={<BellIcon />}>Third item</Tab>
-        </Tabs>
-      </TabsContainer>
+  <TabsContainer>
+    <Tabs aria-label="Sample Icon Position Bottom Tabs" iconPosition="bottom" backgroundColor='#F7F7F7'>
+      <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
+      <Tab icon={<AndroidIcon />}>Second item</Tab>
+      <Tab icon={<BellIcon />}>Third item</Tab>
+    </Tabs>
+  </TabsContainer>
 
-      <br />
-      <br />
-      <br />
+  <br />
+  <br />
+  <br />
 
-      <TabsContainer>
-        <Tabs aria-label="Sample Icon Position Right Tabs" iconPosition="right" backgroundColor='#F7F7F7'>
-          <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
-          <Tab icon={<AndroidIcon />}>Second item</Tab>
-          <Tab icon={<BellIcon />}>Third item</Tab>
-        </Tabs>
-      </TabsContainer>
-    </>
+  <TabsContainer>
+    <Tabs aria-label="Sample Icon Position Right Tabs" iconPosition="right" backgroundColor='#F7F7F7'>
+      <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
+      <Tab icon={<AndroidIcon />}>Second item</Tab>
+      <Tab icon={<BellIcon />}>Third item</Tab>
+    </Tabs>
+  </TabsContainer>
+</>
 ```
 
 ### Icon Position (vertical)
@@ -559,25 +563,25 @@ Vertical tabs only accept `left` or `right` for the `iconPosition` prop, with `l
 This prop is specified on the `Tabs` component.
 
 ```.jsx
-      <TabsContainer>
-          <Tabs aria-label="Sample Icon Position Right Vertical Tabs" backgroundColor='#F7F7F7' iconPosition='right' orientation='vertical'>
-            <Tab icon={<GraduationCapIcon />}>First item</Tab>
-            <Tab icon={<AndroidIcon />}>Second item</Tab>
-            <Tab icon={<BellIcon />}>Third item</Tab>
-          </Tabs>
+<TabsContainer>
+  <Tabs aria-label="Sample Icon Position Right Vertical Tabs" backgroundColor='#F7F7F7' iconPosition='right' orientation='vertical'>
+    <Tab icon={<GraduationCapIcon />}>First item</Tab>
+    <Tab icon={<AndroidIcon />}>Second item</Tab>
+    <Tab icon={<BellIcon />}>Third item</Tab>
+  </Tabs>
 
-          <TabPanelsContainer style={{padding: '10px'}}>
-            <TabPanel>
-              <div>Main page</div>
-            </TabPanel>
-            <TabPanel>
-              <div>FAQ</div>
-            </TabPanel>
-            <TabPanel>
-              <div>About us</div>
-            </TabPanel>
-          </TabPanelsContainer>
-      </TabsContainer>
+  <TabPanelsContainer style={{padding: '10px'}}>
+    <TabPanel>
+      <div>Main page</div>
+    </TabPanel>
+    <TabPanel>
+      <div>FAQ</div>
+    </TabPanel>
+    <TabPanel>
+      <div>About us</div>
+    </TabPanel>
+  </TabPanelsContainer>
+</TabsContainer>
 ```
 
 ## Inverse
@@ -589,108 +593,109 @@ It can also be applied to the `TabPanelsContainer` or the individual `TabPanel`.
 ### With Blue Background
 
 ```.jsx
-    <TabsContainer>
-        <Tabs aria-label="Sample Inverse Colors Tabs" isInverse>
-          <Tab>First item</Tab>
-          <Tab>Second item</Tab>
-          <Tab>Third item</Tab>
-        </Tabs>
-    </TabsContainer>
+<TabsContainer>
+  <Tabs aria-label="Sample Inverse Colors Tabs" isInverse>
+    <Tab>First item</Tab>
+    <Tab>Second item</Tab>
+    <Tab>Third item</Tab>
+  </Tabs>
+</TabsContainer>
 ```
 
 ### With Dark Grey Background
 
 ```.jsx
-  <TabsContainer>
-      <Tabs aria-label="Sample Inverse Colors On Dark Background Tabs" isInverse backgroundColor='#3f3f3f'>
-        <Tab>First item</Tab>
-        <Tab>Second item</Tab>
-        <Tab>Third item</Tab>
-      </Tabs>
-  </TabsContainer>
+<TabsContainer>
+  <Tabs aria-label="Sample Inverse Colors On Dark Background Tabs" isInverse backgroundColor='#3f3f3f'>
+    <Tab>First item</Tab>
+    <Tab>Second item</Tab>
+    <Tab>Third item</Tab>
+  </Tabs>
+</TabsContainer>
 ```
 
 ### Applied to Tabs Container
 
 ```.jsx
-      () => {
-        return (
-          <TabsContainer activeIndex={0} isInverse>
-            <Tabs aria-label="Sample Inverse Colors Tabs">
-              <Tab>Main page</Tab>
-              <Tab>FAQ</Tab>
-              <Tab>About us</Tab>
-            </Tabs>
+() => {
+  return (
+    <TabsContainer activeIndex={0} isInverse>
+      <Tabs aria-label="Sample Inverse Colors Tabs">
+        <Tab>Main page</Tab>
+        <Tab>FAQ</Tab>
+        <Tab>About us</Tab>
+      </Tabs>
 
-            <TabPanelsContainer>
-              <TabPanel>
-                <div>Main page</div>
-              </TabPanel>
-              <TabPanel>
-                <div>FAQ</div>
-              </TabPanel>
-              <TabPanel isInverse={false}>
-                <div>About us</div>
-              </TabPanel>
-            </TabPanelsContainer>
-          </TabsContainer>
-    )}
+      <TabPanelsContainer>
+        <TabPanel>
+          <div>Main page</div>
+        </TabPanel>
+        <TabPanel>
+          <div>FAQ</div>
+        </TabPanel>
+        <TabPanel isInverse={false}>
+          <div>About us</div>
+        </TabPanel>
+      </TabPanelsContainer>
+    </TabsContainer>
+  )
+}
 ```
 
 ### Applied to Tab Panels Container
 
 ```.jsx
-      () => {
+() => {
+  return (
+    <TabsContainer>
+      <Tabs aria-label="Sample Inverse Colors Tabs">
+        <Tab>Main page</Tab>
+        <Tab>FAQ</Tab>
+        <Tab>About us</Tab>
+      </Tabs>
 
-        return (
-          <TabsContainer>
-            <Tabs aria-label="Sample Inverse Colors Tabs">
-              <Tab>Main page</Tab>
-              <Tab>FAQ</Tab>
-              <Tab>About us</Tab>
-            </Tabs>
-
-            <TabPanelsContainer isInverse>
-              <TabPanel>
-                <div>Main page</div>
-              </TabPanel>
-              <TabPanel>
-                <div>FAQ</div>
-              </TabPanel>
-              <TabPanel isInverse={false}>
-                <div>About us</div>
-              </TabPanel>
-            </TabPanelsContainer>
-          </TabsContainer>
-    )}
+      <TabPanelsContainer isInverse>
+        <TabPanel>
+          <div>Main page</div>
+        </TabPanel>
+        <TabPanel>
+          <div>FAQ</div>
+        </TabPanel>
+        <TabPanel isInverse={false}>
+          <div>About us</div>
+        </TabPanel>
+      </TabPanelsContainer>
+    </TabsContainer>
+  )
+}
 ```
 
 ### Applied to Tab Panel
 
 ```.jsx
-      () => {
+() => {
+  return (
+    <TabsContainer>
+      <Tabs aria-label="Sample Inverse Colors Tabs">
+        <Tab>Main page</Tab>
+        <Tab>FAQ</Tab>
+        <Tab>About us</Tab>
+      </Tabs>
 
-        return (
-          <TabsContainer>
-            <Tabs aria-label="Sample Inverse Colors Tabs">
-              <Tab>Main page</Tab>
-              <Tab>FAQ</Tab>
-              <Tab>About us</Tab>
-            </Tabs>
-
-            <TabPanelsContainer>
-              <TabPanel isInverse>
-                <div>Main page</div>
-              </TabPanel>
-              <TabPanel>
-                <div>FAQ</div>
-              </TabPanel>
-              <TabPanel>
-                <div>About us</div>
-              </TabPanel>
-            </TabPanelsContainer>
-          </TabsContainer>
-    )}
+      <TabPanelsContainer>
+        <TabPanel isInverse>
+          <div>Main page</div>
+        </TabPanel>
+        <TabPanel>
+          <div>FAQ</div>
+        </TabPanel>
+        <TabPanel>
+          <div>About us</div>
+        </TabPanel>
+      </TabPanelsContainer>
+    </TabsContainer>
+  )
+}
 ```
 
 ### Custom Component Disclaimer

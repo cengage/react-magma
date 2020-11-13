@@ -22,17 +22,17 @@ should be used multiple times within it, and refers to each node in the menu. A 
 the item will be rendered as a span and will have `aria-current="page"` on it. All items in a breadcrumb menu should have the `to` prop, except for the last one, which represents the current page.
 
 ```.jsx
-        <Breadcrumb>
-            <BreadcrumbItem to="#">
-                Home
-            </BreadcrumbItem>
-             <BreadcrumbItem to="#">
-                Library
-            </BreadcrumbItem>
-             <BreadcrumbItem>
-                Data
-            </BreadcrumbItem>
-        </Breadcrumb>
+<Breadcrumb>
+  <BreadcrumbItem to="#">
+    Home
+  </BreadcrumbItem>
+  <BreadcrumbItem to="#">
+    Library
+  </BreadcrumbItem>
+  <BreadcrumbItem>
+    Data
+  </BreadcrumbItem>
+</Breadcrumb>
 ```
 
 ## Inverse
@@ -40,21 +40,21 @@ the item will be rendered as a span and will have `aria-current="page"` on it. A
 IsInverse is an optional boolean prop, that may be used when the breadcrumb menu to be displayed on a dark background.
 
 ```.jsx
-    <Card isInverse>
-      <CardBody>
-          <Breadcrumb isInverse>
-              <BreadcrumbItem to="#">
-                  Home
-              </BreadcrumbItem>
-              <BreadcrumbItem to="#">
-                  Library
-              </BreadcrumbItem>
-              <BreadcrumbItem>
-                  Data
-              </BreadcrumbItem>
-          </Breadcrumb>
-      </CardBody>
-    </Card>
+<Card isInverse>
+  <CardBody>
+    <Breadcrumb isInverse>
+      <BreadcrumbItem to="#">
+        Home
+      </BreadcrumbItem>
+      <BreadcrumbItem to="#">
+        Library
+      </BreadcrumbItem>
+      <BreadcrumbItem>
+        Data
+      </BreadcrumbItem>
+    </Breadcrumb>
+  </CardBody>
+</Card>
 ```
 
 ## Aria-label
@@ -62,17 +62,17 @@ IsInverse is an optional boolean prop, that may be used when the breadcrumb menu
 By default, the `aria-label` of the Breadcrumb component is `Breadcrumb`. This can be overridden by passing in the `aria-label` prop.
 
 ```.jsx
-        <Breadcrumb aria-label="Hello world">
-            <BreadcrumbItem to="#">
-                Home
-            </BreadcrumbItem>
-             <BreadcrumbItem to="#">
-                Library
-            </BreadcrumbItem>
-             <BreadcrumbItem>
-                Data
-            </BreadcrumbItem>
-        </Breadcrumb>
+<Breadcrumb aria-label="Hello world">
+  <BreadcrumbItem to="#">
+    Home
+  </BreadcrumbItem>
+    <BreadcrumbItem to="#">
+    Library
+  </BreadcrumbItem>
+    <BreadcrumbItem>
+    Data
+  </BreadcrumbItem>
+</Breadcrumb>
 ```
 
 ## Breadcrumb Props

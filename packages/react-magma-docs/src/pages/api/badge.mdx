@@ -19,7 +19,7 @@ Badges are a small labeling component, used to highlight key pieces of informati
 ## Basic Usage
 
 ```.jsx
-    <Badge>Badge</Badge>
+<Badge>Badge</Badge>
 ```
 
 ## Variants
@@ -28,12 +28,12 @@ Badges have two variants, `label` and `counter`. The `label` is the default vari
 The `counter` is for displaying a numeric count, and can be used inside a button.
 
 ```.jsx
-    <>
-      <Badge variant='label'>Label</Badge>
-      <Badge variant='counter'>99+</Badge>
-      <Button>Messages<Badge variant='counter' color='light'>99+</Badge></Button>
-      <Button color='secondary'>Messages<Badge variant='counter' color='primary'>99+</Badge></Button>
-    </>
+<>
+  <Badge variant='label'>Label</Badge>
+  <Badge variant='counter'>99+</Badge>
+  <Button>Messages<Badge variant='counter' color='light'>99+</Badge></Button>
+  <Button color='secondary'>Messages<Badge variant='counter' color='primary'>99+</Badge></Button>
+</>
 ```
 
 ## Colors
@@ -41,13 +41,13 @@ The `counter` is for displaying a numeric count, and can be used inside a button
 Five colors of badges are available, `primary`, `secondary`, `success`, `danger`, and `light`. The default color is `secondary`.
 
 ```.jsx
-    <>
-        <Badge color='primary'>Primary</Badge>
-        <Badge color='secondary'>Secondary</Badge>
-        <Badge color='light'>Light</Badge>
-        <Badge color='danger'>Danger</Badge>
-        <Badge color='success'>Success</Badge>
-    </>
+<>
+  <Badge color='primary'>Primary</Badge>
+  <Badge color='secondary'>Secondary</Badge>
+  <Badge color='light'>Light</Badge>
+  <Badge color='danger'>Danger</Badge>
+  <Badge color='success'>Success</Badge>
+</>
 ```
 
 ## Event Handling
@@ -56,23 +56,29 @@ Badges may also be actionable. To make a badge actionable, use the `onClick` pro
 The `onClick` event will fire when the badge is clicked, or when the enter or space bar key is pressed.
 
 ```.jsx
-  (props) => {
-    const [counter, setCounter] = React.useState(0);
+() => {
+  const [counter, setCounter] = React.useState(0);
 
-    return (<>
+  return (
+    <>
       <p><strong>Counter: </strong> <Badge variant='counter'>{counter}</Badge></p>
       <Badge
         color='light'
         onClick={() => {
           setCounter(count => count + 1)
-        }}>Click me</Badge>
+        }}>
+        Click me
+      </Badge>
       <Badge
         color='primary'
         onClick={() => {
           setCounter(count => count + 1)
-        }}>Click me too</Badge>
-    </>);
-  }
+        }}>
+        Click me too
+      </Badge>
+    </>
+  );
+}
 ```
 
 ## Badge Props

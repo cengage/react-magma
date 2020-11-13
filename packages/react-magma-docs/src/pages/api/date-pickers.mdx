@@ -18,7 +18,7 @@ import { format } from 'date-fns';
 ## Basic Usage
 
 ```.jsx
-    <DatePicker labelText="Date" />
+<DatePicker labelText="Date" />
 ```
 
 ## Default Date
@@ -26,7 +26,7 @@ import { format } from 'date-fns';
 By default, no date value is selected. You can add a default date, by using the `defaultDate` prop.
 
 ```.jsx
-    <DatePicker defaultDate='07/23/2019' labelText="Date" />
+<DatePicker defaultDate='07/23/2019' labelText="Date" />
 ```
 
 ## Value
@@ -34,7 +34,7 @@ By default, no date value is selected. You can add a default date, by using the 
 The `value` prop can also be used so set the date value externally. It will override the `defaultDate` if both are passed.
 
 ```.jsx
-    <DatePicker defaultDate='07/23/2019' labelText="Date" value='03/12/2019' />
+<DatePicker defaultDate='07/23/2019' labelText="Date" value='03/12/2019' />
 ```
 
 ## Minimum and Maximum Dates
@@ -42,7 +42,7 @@ The `value` prop can also be used so set the date value externally. It will over
 Minimum and Maximum dates can be passed in as `props` to disallow the selection of a date outside of a specific range. If a date value is passed in that does not fit in to the range given, the date picker will try to give focus when entering the calendar on today's date, then the minimum date, and finally the maximum date.
 
 ```.jsx
-  <DatePicker labelText="Date" minDate={'01/09/2020'}  maxDate={'02/10/2020'} />
+<DatePicker labelText="Date" minDate={'01/09/2020'}  maxDate={'02/10/2020'} />
 ```
 
 ## Placeholder Text
@@ -51,19 +51,19 @@ By default, the placeholder text of the input is 'MM/DD/YYYY'. You can override 
 Note: the expected date format should appear somewhere in either the labelText or the placeholder.
 
 ```.jsx
-    <DatePicker placeholder='Your birthday (format MM/DD/YYYY)' labelText="Birthday" />
+<DatePicker placeholder='Your birthday (format MM/DD/YYYY)' labelText="Birthday" />
 ```
 
 ## Helper Message
 
 ```.jsx
-    <DatePicker labelText="Help Me" helperMessage="This is your help" />
+<DatePicker labelText="Help Me" helperMessage="This is your help" />
 ```
 
 ## Error Message
 
 ```.jsx
-    <DatePicker labelText="Error *" errorMessage="You made an error" required />
+<DatePicker labelText="Error *" errorMessage="You made an error" required />
 ```
 
 ## Events
@@ -73,17 +73,17 @@ Note: the expected date format should appear somewhere in either the labelText o
 The `onInputChange` is passed to the input's `onChange` method that is in the `DatePicker` component.
 
 ```.jsx
-  (props) => {
-    const [inputValue, setInputValue] = React.useState('');
+() => {
+  const [inputValue, setInputValue] = React.useState('');
 
-    return (<div>
-      <p><strong>Input Value: </strong>{inputValue}</p>
-      <DatePicker
-        onInputChange={(event) => {
-          setInputValue(event.target.value);
-        }} />
-    </div>);
-  }
+  return (<div>
+    <p><strong>Input Value: </strong>{inputValue}</p>
+    <DatePicker
+      onInputChange={(event) => {
+        setInputValue(event.target.value);
+      }} />
+  </div>);
+}
 ```
 
 ### On Date Change
@@ -91,43 +91,43 @@ The `onInputChange` is passed to the input's `onChange` method that is in the `D
 The `onDateChange` function is called when the user changes a date using the calendar widget in the `DatePicker` component.
 
 ```.jsx
-  (props) => {
-    const [chosenDate, setChosenDate] = React.useState(0);
+() => {
+  const [chosenDate, setChosenDate] = React.useState(0);
 
-    return (<div>
-      <p>
-        <strong>Chosen Date: </strong>
-        {chosenDate &&
-          <span>
-            {`${chosenDate.getMonth() + 1}/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
-          </span>
-        }
-      </p>
-      <DatePicker
-        onDateChange={(newChosenDate) => {
-          setChosenDate(newChosenDate);
-        }} />
-    </div>);
-  }
+  return (<div>
+    <p>
+      <strong>Chosen Date: </strong>
+      {chosenDate &&
+        <span>
+          {`${chosenDate.getMonth() + 1}/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
+        </span>
+      }
+    </p>
+    <DatePicker
+      onDateChange={(newChosenDate) => {
+        setChosenDate(newChosenDate);
+      }} />
+  </div>);
+}
 ```
 
 ### Focus Events
 
 ```.jsx
-  (props) => {
-    const [isFocused, updateIsFocused] = React.useState(false);
+() => {
+  const [isFocused, updateIsFocused] = React.useState(false);
 
-    return (<div>
-    <p><strong>Is Focused?: </strong>{isFocused ? 'Yes' : 'No'}</p>
-      <DatePicker
-        onInputBlur={(event) => {
-          updateIsFocused(false);
-        }}
-        onInputFocus={(event) => {
-          updateIsFocused(true);
-        }} />
-    </div>);
-  }
+  return (<div>
+  <p><strong>Is Focused?: </strong>{isFocused ? 'Yes' : 'No'}</p>
+    <DatePicker
+      onInputBlur={(event) => {
+        updateIsFocused(false);
+      }}
+      onInputFocus={(event) => {
+        updateIsFocused(true);
+      }} />
+  </div>);
+}
 ```
 
 ### On Change
@@ -139,19 +139,19 @@ The `onChange` event is called in multiple instances when internal values are ch
 - _onInputBlur:_ If the `input` value is considered a valid date the `onChange` function will be called with the ISO string representation of the date in the input being returned in the `value` argument of the function.
 
 ```.jsx
-  (props) => {
-    const [changedValue, setChangedValue] = React.useState('');
+() => {
+  const [changedValue, setChangedValue] = React.useState('');
 
-    function handleChange(value, event) {
-      setChangedValue(value);
-    }
-
-    return (<div>
-      <p><strong>Changed Value: </strong>{changedValue}</p>
-      <DatePicker
-        onChange={handleChange} />
-    </div>);
+  function handleChange(value, event) {
+    setChangedValue(value);
   }
+
+  return (<div>
+    <p><strong>Changed Value: </strong>{changedValue}</p>
+    <DatePicker
+      onChange={handleChange} />
+  </div>);
+}
 ```
 
 ## Keyboard Navigation
@@ -159,7 +159,7 @@ The `onChange` event is called in multiple instances when internal values are ch
 The `DatePicker` is keyboard navigable for allowing the user to navigate between days, weeks, and months. If you would like to see all of the options for keyboard navigation click on the `?` button in the bottom right corner of the `DatePicker` or press the `?` key.
 
 ```.jsx
-    <DatePicker labelText="Date" />
+<DatePicker labelText="Date" />
 ```
 
 ## Custom Styles
@@ -169,13 +169,13 @@ The `labelStyle` prop will apply to the field's label; the `messageStyle` prop w
 Please use discretion when adding custom styles.
 
 ```.jsx
-    <DatePicker
-      containerStyle={{ border: '2px solid green', maxWidth:  '300px', padding: '2px' }}
-      errorMessage="Please fix the error"
-      inputStyle={{ border: '1px dashed purple', borderRadius: '0' }}
-      labelStyle={{ border: '1px dotted blue' }}
-      labelText="Date"
-      messageStyle={{ border: '1px solid black', padding: '' }} />
+<DatePicker
+  containerStyle={{ border: '2px solid green', maxWidth:  '300px', padding: '2px' }}
+  errorMessage="Please fix the error"
+  inputStyle={{ border: '1px dashed purple', borderRadius: '0' }}
+  labelStyle={{ border: '1px dotted blue' }}
+  labelText="Date"
+  messageStyle={{ border: '1px solid black', padding: '' }} />
 ```
 
 ## Internationalization
@@ -188,36 +188,34 @@ to the `I18nContext` provider.
 </Link>
 
 ```.jsx
-() => {
-  return (<I18nContext.Provider value={{
-    ...defaultI18n,
-    days: {
-      ...defaultI18n.days,
-      min: {
-        sunday: 'D',
-        monday: 'L',
-        tuesday: 'M',
-        wednesday: 'M',
-        thursday: 'J',
-        friday: 'V',
-        saturday: 'S'
-      }
-    },
-    datePicker: {
-      ...defaultI18n.datePicker,
-      calendarIconAriaLabel: "Calendario",
-      calendarOpenAnnounce: "El widget de calendario ahora está abierto. Presione la tecla de signo de interrogación para obtener los atajos de teclado para cambiar las fechas.",
-      calendarCloseAriaLabel: "Cerrar calendario",
-      previousMonthAriaLabel: 'Mes Anterior',
-      nextMonthAriaLabel: 'Próximo Mes',
-      disabledDayAriaLabel: "No disponible. ",
-      selectedDayAriaLabel: "(Seleccionado)"
-    },
-    locale: es
-  }}>
-    <DatePicker labelText="Español" />
-  </I18nContext.Provider>)
-}
+<I18nContext.Provider value={{
+  ...defaultI18n,
+  days: {
+    ...defaultI18n.days,
+    min: {
+      sunday: 'D',
+      monday: 'L',
+      tuesday: 'M',
+      wednesday: 'M',
+      thursday: 'J',
+      friday: 'V',
+      saturday: 'S'
+    }
+  },
+  datePicker: {
+    ...defaultI18n.datePicker,
+    calendarIconAriaLabel: "Calendario",
+    calendarOpenAnnounce: "El widget de calendario ahora está abierto. Presione la tecla de signo de interrogación para obtener los atajos de teclado para cambiar las fechas.",
+    calendarCloseAriaLabel: "Cerrar calendario",
+    previousMonthAriaLabel: 'Mes Anterior',
+    nextMonthAriaLabel: 'Próximo Mes',
+    disabledDayAriaLabel: "No disponible. ",
+    selectedDayAriaLabel: "(Seleccionado)"
+  },
+  locale: es
+}}>
+  <DatePicker labelText="Español" />
+</I18nContext.Provider>
 ```
 
 ## Date Picker Props
