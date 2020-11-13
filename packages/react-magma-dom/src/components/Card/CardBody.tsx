@@ -6,7 +6,7 @@ import { CardProps } from '../Card';
  * @children required
  */
 export interface CardBodyProps
-  extends React.LabelHTMLAttributes<HTMLHeadingElement> {
+  extends React.LabelHTMLAttributes<HTMLDivElement> {
   testId?: string;
 }
 
