@@ -54,25 +54,14 @@ function getIconPadding(props) {
   }
 }
 
-function getIconSize(size) {
+function getIconSize(size, theme) {
   switch (size) {
     case 'large':
-      return 28;
+      return theme.iconSizes.large;
     case 'small':
-      return 16;
+      return theme.iconSizes.small;
     default:
-      return 20;
-  }
-}
-
-function getIconWithTextSize(size) {
-  switch (size) {
-    case 'large':
-      return 28;
-    case 'small':
-      return 16;
-    default:
-      return 20;
+      return theme.iconSizes.medium;
   }
 }
 
@@ -112,7 +101,9 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         >
           {React.Children.only(
             React.cloneElement(icon, {
-              size: icon.props.size ? icon.props.size : getIconSize(size),
+              size: icon.props.size
+                ? icon.props.size
+                : getIconSize(size, theme),
             })
           )}
         </StyledButton>
@@ -132,12 +123,12 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       >
         {iconPosition === ButtonIconPosition.right && (
           <SpanTextLeft size={size} theme={theme}>
-            {children}{' '}
+            {children}
           </SpanTextLeft>
         )}
         {React.Children.only(
           React.cloneElement(icon, {
-            size: icon.props.size ? icon.props.size : getIconWithTextSize(size),
+            size: icon.props.size ? icon.props.size : getIconSize(size, theme),
           })
         )}
         {iconPosition !== ButtonIconPosition.right && (

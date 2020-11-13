@@ -169,12 +169,12 @@ const StyledIconButton = styled(IconButton)`
   right: 1px;
 `;
 
-function getIconSize(size) {
+function getIconSize(size, theme) {
   switch (size) {
     case 'large':
-      return 30;
+      return theme.iconSizes.large;
     default:
-      return 20;
+      return theme.iconSizes.medium;
   }
 }
 
@@ -249,7 +249,10 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           >
             {React.Children.only(
               React.cloneElement(icon, {
-                size: getIconSize(inputSize ? inputSize : InputSize.medium),
+                size: getIconSize(
+                  inputSize ? inputSize : InputSize.medium,
+                  theme
+                ),
               })
             )}
           </IconWrapper>

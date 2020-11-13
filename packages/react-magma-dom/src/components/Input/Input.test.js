@@ -140,7 +140,7 @@ describe('Input', () => {
 
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('left', '12px');
+    expect(span).toHaveStyleRule('left', magma.spaceScale.spacing04);
     expect(span).toHaveStyleRule('right', 'auto');
   });
 
@@ -151,7 +151,7 @@ describe('Input', () => {
     const span = container.querySelector('span');
 
     expect(span).toHaveStyleRule('left', 'auto');
-    expect(span).toHaveStyleRule('right', '12px');
+    expect(span).toHaveStyleRule('right', magma.spaceScale.spacing04);
   });
 
   it('should render a large input with a right-aligned icon in the correct position', () => {
@@ -175,7 +175,7 @@ describe('Input', () => {
 
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('left', '12px');
+    expect(span).toHaveStyleRule('left', magma.spaceScale.spacing04);
     expect(span).toHaveStyleRule('right', 'auto');
   });
 
@@ -308,7 +308,7 @@ describe('Input', () => {
       expect(iconWrapper).toHaveStyleRule('left', magma.spaceScale.spacing04);
       expect(iconWrapper).toHaveStyleRule('right', 'auto');
 
-      expect(svg).toHaveAttribute('height', '20');
+      expect(svg).toHaveAttribute('height', magma.iconSizes.medium.toString());
     });
 
     it('should render a large input with correct styles', () => {

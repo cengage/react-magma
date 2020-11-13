@@ -1383,7 +1383,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
       class="emotion-0"
     >
       Test Text
-       
     </span>
     <svg
       class="icon"
@@ -1612,7 +1611,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
       class="emotion-0"
     >
       Test Text
-       
     </span>
     <svg
       class="icon"
@@ -1841,7 +1839,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
       class="emotion-0"
     >
       Test Text
-       
     </span>
     <svg
       class="icon"
@@ -2070,7 +2067,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
       class="emotion-0"
     >
       Test Text
-       
     </span>
     <svg
       class="icon"
@@ -2299,7 +2295,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
       class="emotion-0"
     >
       Test Text
-       
     </span>
     <svg
       class="icon"
@@ -2528,7 +2523,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
       class="emotion-0"
     >
       Test Text
-       
     </span>
     <svg
       class="icon"
@@ -2755,7 +2749,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
       class="emotion-0"
     >
       Test Text
-       
     </span>
     <svg
       class="icon"

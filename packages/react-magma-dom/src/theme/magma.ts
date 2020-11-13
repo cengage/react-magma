@@ -45,6 +45,12 @@ export interface Breakpoints {
   xl: number;
 }
 
+export interface IconSizes {
+  small: number;
+  medium: number;
+  large: number;
+}
+
 export interface SpacingScale {
   spacing01: string;
   spacing02: string;
@@ -124,6 +130,7 @@ export interface ThemeInterface {
   colors: Colors;
   direction: string;
   headingFont: string;
+  iconSizes: IconSizes;
   spaceScale: SpacingScale;
   headingExpressiveFont: string;
   headingNarrativeFont: string;
@@ -263,6 +270,12 @@ export const magma = {
     spacing12: '64px',
     spacing13: '96px',
     spacing14: '160px',
+  },
+
+  iconSizes: {
+    small: 16,
+    medium: 20,
+    large: 28,
   },
 
   // Typography

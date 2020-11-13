@@ -47,8 +47,14 @@ describe('IconButton', () => {
             size={ButtonSize.large}
           />
         );
-        expect(container.querySelector('svg')).toHaveAttribute('height', '28');
-        expect(container.querySelector('svg')).toHaveAttribute('width', '28');
+        expect(container.querySelector('svg')).toHaveAttribute(
+          'height',
+          magma.iconSizes.large.toString()
+        );
+        expect(container.querySelector('svg')).toHaveAttribute(
+          'width',
+          magma.iconSizes.large.toString()
+        );
       });
 
       it('Medium', () => {
@@ -62,8 +68,14 @@ describe('IconButton', () => {
             size={ButtonSize.medium}
           />
         );
-        expect(container.querySelector('svg')).toHaveAttribute('height', '20');
-        expect(container.querySelector('svg')).toHaveAttribute('width', '20');
+        expect(container.querySelector('svg')).toHaveAttribute(
+          'height',
+          magma.iconSizes.medium.toString()
+        );
+        expect(container.querySelector('svg')).toHaveAttribute(
+          'width',
+          magma.iconSizes.medium.toString()
+        );
       });
 
       it('Small', () => {
@@ -77,8 +89,14 @@ describe('IconButton', () => {
             size={ButtonSize.small}
           />
         );
-        expect(container.querySelector('svg')).toHaveAttribute('height', '16');
-        expect(container.querySelector('svg')).toHaveAttribute('width', '16');
+        expect(container.querySelector('svg')).toHaveAttribute(
+          'height',
+          magma.iconSizes.small.toString()
+        );
+        expect(container.querySelector('svg')).toHaveAttribute(
+          'width',
+          magma.iconSizes.small.toString()
+        );
       });
     });
 
