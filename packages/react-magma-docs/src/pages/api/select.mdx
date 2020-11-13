@@ -37,42 +37,42 @@ is able to be used for `items` that are either `strings` or an object with the s
 If you are using a custom items format see the [Custom Items example](/api/select/#custom_items).
 
 ```.jsx
-  () => {
-    const [selectedItem, updateSelectedItem] = React.useState('');
+() => {
+  const [selectedItem, updateSelectedItem] = React.useState('');
 
-    function onSelectedItemChange(changes) {
-      updateSelectedItem(changes.selectedItem);
-    }
-
-    return (
-      <>
-        <Select
-          id="basicSelectId"
-          name="basic"
-          labelText="Basic"
-          items={[
-            { label: 'Red', value: 'red' },
-            { label: 'Blue', value: 'blue' },
-            { label: 'Green', value: 'green' }
-          ]}
-          selectedItem={selectedItem}
-          onSelectedItemChange={onSelectedItemChange}
-        />
-
-        <Select
-          id="badSelectedItemId"
-          name="badSelectedItem"
-          labelText="Bad Selected Item"
-          items={[
-            { label: 'Red', value: 'red' },
-            { label: 'Blue', value: 'blue' },
-            { label: 'Green', value: 'green' }
-          ]}
-          selectedItem={{ label: 'Purple', value: 'purple' }}
-        />
-      </>
-    )
+  function onSelectedItemChange(changes) {
+    updateSelectedItem(changes.selectedItem);
   }
+
+  return (
+    <>
+      <Select
+        id="basicSelectId"
+        name="basic"
+        labelText="Basic"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        selectedItem={selectedItem}
+        onSelectedItemChange={onSelectedItemChange}
+      />
+
+      <Select
+        id="badSelectedItemId"
+        name="badSelectedItem"
+        labelText="Bad Selected Item"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        selectedItem={{ label: 'Purple', value: 'purple' }}
+      />
+    </>
+  )
+}
 ```
 
 ## Initial State
@@ -91,35 +91,35 @@ Set initial state using the `initialSelectedItem`, `initialSelectedItems`, and `
 </Alert>
 
 ```.jsx
-  () => {
-    return (
-      <>
-        <Select
-          id="initialSelectedByItemSelectId"
-          name="initialSelectedByItem"
-          labelText="Initial Selected By Item"
-          items={[
-            { label: 'Red', value: 'red' },
-            { label: 'Blue', value: 'blue' },
-            { label: 'Green', value: 'green' }
-          ]}
-          initialSelectedItem={{ label: 'Green', value: 'green' }}
-        />
+() => {
+  return (
+    <>
+      <Select
+        id="initialSelectedByItemSelectId"
+        name="initialSelectedByItem"
+        labelText="Initial Selected By Item"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        initialSelectedItem={{ label: 'Green', value: 'green' }}
+      />
 
-        <Select
-          id="initialHighlightedIndexSelectId"
-          name="initialHighlightedIndex"
-          labelText="Initial Highlighted Index"
-          items={[
-            { label: 'Red', value: 'red' },
-            { label: 'Blue', value: 'blue' },
-            { label: 'Green', value: 'green' }
-          ]}
-          initialHighlightedIndex={1}
-        />
-      </>
-    )
-  }
+      <Select
+        id="initialHighlightedIndexSelectId"
+        name="initialHighlightedIndex"
+        labelText="Initial Highlighted Index"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        initialHighlightedIndex={1}
+      />
+    </>
+  )
+}
 ```
 
 ## Specific State Changes
@@ -129,45 +129,45 @@ You can track specific changes made to the internal state of the `select` using 
 includes the changes made to the corresponding state from each action.
 
 ```.jsx
-  () => {
-    const [highlightedIndexChangeCount, updateHighlightedIndexChangeCount] = React.useState(0);
-    const [isOpenChangeCount, updateIsOpenChangeCount] = React.useState(0);
-    const [selectedItem, updateSelectedItem] = React.useState(undefined);
+() => {
+  const [highlightedIndexChangeCount, updateHighlightedIndexChangeCount] = React.useState(0);
+  const [isOpenChangeCount, updateIsOpenChangeCount] = React.useState(0);
+  const [selectedItem, updateSelectedItem] = React.useState(undefined);
 
-    function onHighlightedIndexChange(changes) {
-      updateHighlightedIndexChangeCount(highlightedIndexChangeCount + 1);
-    }
-
-    function onIsOpenChange(changes) {
-      updateIsOpenChangeCount(isOpenChangeCount + 1)
-    }
-
-    function onSelectedItemChange(changes) {
-      updateSelectedItem(changes.selectedItem);
-    }
-
-    return (
-      <>
-        <strong>Selected Item: </strong><pre>{JSON.stringify(selectedItem, null, 2)}</pre>
-        <p><strong>Highlighted Index Change Count: </strong>{highlightedIndexChangeCount}</p>
-        <p><strong>Is Open Change Count: </strong>{isOpenChangeCount}</p>
-
-        <Select
-          id="stateChangesId"
-          name="stateChanges"
-          labelText="State Changes"
-          items={[
-            { label: 'Red', value: 'red' },
-            { label: 'Blue', value: 'blue' },
-            { label: 'Green', value: 'green' }
-          ]}
-          onHighlightedIndexChange={onHighlightedIndexChange}
-          onIsOpenChange={onIsOpenChange}
-          onSelectedItemChange={onSelectedItemChange}
-        />
-      </>
-    )
+  function onHighlightedIndexChange(changes) {
+    updateHighlightedIndexChangeCount(highlightedIndexChangeCount + 1);
   }
+
+  function onIsOpenChange(changes) {
+    updateIsOpenChangeCount(isOpenChangeCount + 1)
+  }
+
+  function onSelectedItemChange(changes) {
+    updateSelectedItem(changes.selectedItem);
+  }
+
+  return (
+    <>
+      <strong>Selected Item: </strong><pre>{JSON.stringify(selectedItem, null, 2)}</pre>
+      <p><strong>Highlighted Index Change Count: </strong>{highlightedIndexChangeCount}</p>
+      <p><strong>Is Open Change Count: </strong>{isOpenChangeCount}</p>
+
+      <Select
+        id="stateChangesId"
+        name="stateChanges"
+        labelText="State Changes"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        onHighlightedIndexChange={onHighlightedIndexChange}
+        onIsOpenChange={onIsOpenChange}
+        onSelectedItemChange={onSelectedItemChange}
+      />
+    </>
+  )
+}
 ```
 
 ## Generic State Change
@@ -186,61 +186,61 @@ last state change. The `changes` object also includes a `type` property that des
 to change the state. You can see the full list of the types in the [`stateChangeTypes`](/api/select/#state_change_types) section.
 
 ```.jsx
-  () => {
-    const [changes, updateChanges] = React.useState({});
-    const [highlightedIndex, updateHighlightedIndex] = React.useState(-1);
-    const [isOpen, updateIsOpen] = React.useState(false);
-    const [selectedItem, updateSelectedItem] = React.useState('');
+() => {
+  const [changes, updateChanges] = React.useState({});
+  const [highlightedIndex, updateHighlightedIndex] = React.useState(-1);
+  const [isOpen, updateIsOpen] = React.useState(false);
+  const [selectedItem, updateSelectedItem] = React.useState('');
 
-    function onStateChange(newChanges) {
-      const { type } = newChanges
-      updateChanges(newChanges)
+  function onStateChange(newChanges) {
+    const { type } = newChanges
+    updateChanges(newChanges)
 
-      switch(type) {
-        case SelectStateChangeTypes.ToggleButtonClick:
-          updateIsOpen(!isOpen)
-        case SelectStateChangeTypes.ToggleButtonKeyDownArrowDown:
-          updateIsOpen(newChanges.isOpen)
-          updateHighlightedIndex(newChanges.highlightedIndex)
-        case SelectStateChangeTypes.ItemMouseMove:
-        case SelectStateChangeTypes.FunctionSetHighlightedIndex:
-        case SelectStateChangeTypes.MenuKeyDownArrowDown:
-        case SelectStateChangeTypes.MenuKeyDownArrowUp:
-          updateHighlightedIndex(newChanges.highlightedIndex)
-        case SelectStateChangeTypes.MenuKeyDownEscape:
-        case SelectStateChangeTypes.MenuBlur:
-          updateIsOpen(false)
-          updateHighlightedIndex(newChanges.highlightedIndex)
-        case SelectStateChangeTypes.ItemClick:
-          updateHighlightedIndex(newChanges.highlightedIndex)
-          updateIsOpen(newChanges.isOpen)
-          updateSelectedItem(newChanges.selectedItem)
-        default:
-          break;
-      }
+    switch(type) {
+      case SelectStateChangeTypes.ToggleButtonClick:
+        updateIsOpen(!isOpen)
+      case SelectStateChangeTypes.ToggleButtonKeyDownArrowDown:
+        updateIsOpen(newChanges.isOpen)
+        updateHighlightedIndex(newChanges.highlightedIndex)
+      case SelectStateChangeTypes.ItemMouseMove:
+      case SelectStateChangeTypes.FunctionSetHighlightedIndex:
+      case SelectStateChangeTypes.MenuKeyDownArrowDown:
+      case SelectStateChangeTypes.MenuKeyDownArrowUp:
+        updateHighlightedIndex(newChanges.highlightedIndex)
+      case SelectStateChangeTypes.MenuKeyDownEscape:
+      case SelectStateChangeTypes.MenuBlur:
+        updateIsOpen(false)
+        updateHighlightedIndex(newChanges.highlightedIndex)
+      case SelectStateChangeTypes.ItemClick:
+        updateHighlightedIndex(newChanges.highlightedIndex)
+        updateIsOpen(newChanges.isOpen)
+        updateSelectedItem(newChanges.selectedItem)
+      default:
+        break;
     }
-
-    return (
-      <>
-        <pre>{JSON.stringify(changes, null, 2)}</pre>
-
-        <Select
-          id="stateChangesId"
-          name="stateChanges"
-          labelText="State Changes"
-          items={[
-            { label: 'Red', value: 'red' },
-            { label: 'Blue', value: 'blue' },
-            { label: 'Green', value: 'green' }
-          ]}
-          onStateChange={onStateChange}
-          highlightedIndex={highlightedIndex}
-          isOpen={isOpen}
-          selectedItem={selectedItem}
-        />
-      </>
-    )
   }
+
+  return (
+    <>
+      <pre>{JSON.stringify(changes, null, 2)}</pre>
+
+      <Select
+        id="stateChangesId"
+        name="stateChanges"
+        labelText="State Changes"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        onStateChange={onStateChange}
+        highlightedIndex={highlightedIndex}
+        isOpen={isOpen}
+        selectedItem={selectedItem}
+      />
+    </>
+  )
+}
 ```
 
 ## Controlled
@@ -250,64 +250,64 @@ provided. These props are `isOpen`, `selectedItem`, and `highlightedIndex`. If y
 you will have to use the handlers mentioned above in the <Link to="/api/select/#state_changes">State Changes</Link> section.
 
 ```.jsx
-  () => {
-    const [highlightedIndex, updateHighlightedIndex] = React.useState(0);
-    const [isOpen, updateIsOpen] = React.useState(false);
-    const [selectedItem, updateSelectedItem] = React.useState('');
+() => {
+  const [highlightedIndex, updateHighlightedIndex] = React.useState(0);
+  const [isOpen, updateIsOpen] = React.useState(false);
+  const [selectedItem, updateSelectedItem] = React.useState('');
 
-    function onHighlightedIndexChange(changes) {
-      updateHighlightedIndex(changes.highlightedIndex);
-    }
-
-    function onIsOpenChange(changes) {
-      updateIsOpen(changes.isOpen)
-    }
-
-    function onSelectedItemChange(changes) {
-      updateSelectedItem(changes.selectedItem);
-    }
-
-    return (
-      <>
-        <strong>Selected Item: </strong><pre>{JSON.stringify(selectedItem, null, 2)}</pre>
-        <p><strong>Highlighted Index: </strong>{highlightedIndex}</p>
-        <p><strong>Is Open: </strong>{isOpen.toString()}</p>
-
-        <Select
-          id="controlledId"
-          name="controlled"
-          labelText="Controlled"
-          items={[
-            { label: 'Red', value: 'red' },
-            { label: 'Blue', value: 'blue' },
-            { label: 'Green', value: 'green' }
-          ]}
-          isOpen={isOpen}
-          highlightedIndex={highlightedIndex}
-          selectedItem={selectedItem}
-          onHighlightedIndexChange={onHighlightedIndexChange}
-          onIsOpenChange={onIsOpenChange}
-          onSelectedItemChange={onSelectedItemChange}
-        />
-      </>
-    )
+  function onHighlightedIndexChange(changes) {
+    updateHighlightedIndex(changes.highlightedIndex);
   }
+
+  function onIsOpenChange(changes) {
+    updateIsOpen(changes.isOpen)
+  }
+
+  function onSelectedItemChange(changes) {
+    updateSelectedItem(changes.selectedItem);
+  }
+
+  return (
+    <>
+      <strong>Selected Item: </strong><pre>{JSON.stringify(selectedItem, null, 2)}</pre>
+      <p><strong>Highlighted Index: </strong>{highlightedIndex}</p>
+      <p><strong>Is Open: </strong>{isOpen.toString()}</p>
+
+      <Select
+        id="controlledId"
+        name="controlled"
+        labelText="Controlled"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        isOpen={isOpen}
+        highlightedIndex={highlightedIndex}
+        selectedItem={selectedItem}
+        onHighlightedIndexChange={onHighlightedIndexChange}
+        onIsOpenChange={onIsOpenChange}
+        onSelectedItemChange={onSelectedItemChange}
+      />
+    </>
+  )
+}
 ```
 
 ## Disabled
 
 ```.jsx
-  <Select
-    id="disabledSelectId"
-    disabled
-    name="disabled"
-    labelText="Disabled"
-    items={[
-      { label: 'Red', value: 'red' },
-      { label: 'Blue', value: 'blue' },
-      { label: 'Green', value: 'green' }
-    ]}
-  />
+<Select
+  id="disabledSelectId"
+  disabled
+  name="disabled"
+  labelText="Disabled"
+  items={[
+    { label: 'Red', value: 'red' },
+    { label: 'Blue', value: 'blue' },
+    { label: 'Green', value: 'green' }
+  ]}
+/>
 ```
 
 ## Clearable
@@ -318,33 +318,33 @@ When using the `isClearable` prop you can choose a default selected item to be s
 using the `defaultSelectedItem` prop.
 
 ```.jsx
-  <>
-    <Select
-      id="clearableSelectId"
-      name="clearable"
-      labelText="Clearable"
-      items={[
-        { label: 'Red', value: 'red' },
-        { label: 'Blue', value: 'blue' },
-        { label: 'Green', value: 'green' }
-      ]}
-      initialSelectedItem={{ label: 'Green', value: 'green' }}
-      isClearable
-    />
+<>
+  <Select
+    id="clearableSelectId"
+    name="clearable"
+    labelText="Clearable"
+    items={[
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' }
+    ]}
+    initialSelectedItem={{ label: 'Green', value: 'green' }}
+    isClearable
+  />
 
-    <Select
-      id="clearableWithDefaultsId"
-      name="clearableWithDefaults"
-      labelText="Clearable With Defaults"
-      items={[
-        { label: 'Red', value: 'red' },
-        { label: 'Blue', value: 'blue' },
-        { label: 'Green', value: 'green' }
-      ]}
-      isClearable
-      defaultSelectedItem={{ label: 'Blue', value: 'blue' }}
-    />
-  </>
+  <Select
+    id="clearableWithDefaultsId"
+    name="clearableWithDefaults"
+    labelText="Clearable With Defaults"
+    items={[
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' }
+    ]}
+    isClearable
+    defaultSelectedItem={{ label: 'Blue', value: 'blue' }}
+  />
+</>
 ```
 
 ## Error Message
@@ -353,19 +353,19 @@ If a select has an `errorMessage`, the select will be styled to highlight it's e
 If an error message is present, it will replace the helper text. Can be a node or a string.
 
 ```.jsx
-  <>
-    <Select
-      id="errorMessage"
-      name="error"
-      labelText="Error Message"
-      items={[
-        { label: 'Red', value: 'red' },
-        { label: 'Blue', value: 'blue' },
-        { label: 'Green', value: 'green' }
-      ]}
-      errorMessage="Please select a color"
-    />
-  </>
+<>
+  <Select
+    id="errorMessage"
+    name="error"
+    labelText="Error Message"
+    items={[
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' }
+    ]}
+    errorMessage="Please select a color"
+  />
+</>
 ```
 
 ## Helper Message
@@ -373,19 +373,19 @@ If an error message is present, it will replace the helper text. Can be a node o
 The `helperMessage` appears underneath the select field. It will not appear if an error message is present. Can be a node or a string.
 
 ```.jsx
-  <>
-    <Select
-      id="helperMessage"
-      name="helper"
-      labelText="Helper Message"
-      items={[
-        { label: 'Red', value: 'red' },
-        { label: 'Blue', value: 'blue' },
-        { label: 'Green', value: 'green' }
-      ]}
-      helperMessage="Helper text goes here"
-    />
-  </>
+<>
+  <Select
+    id="helperMessage"
+    name="helper"
+    labelText="Helper Message"
+    items={[
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' }
+    ]}
+    helperMessage="Helper text goes here"
+  />
+</>
 ```
 
 ## Accessibility
@@ -400,190 +400,190 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
 [object passed with internal state data](https://github.com/downshift-js/downshift/tree/master/src/hooks/useSelect#geta11yselectionmessage).
 
 ```.jsx
-  <>
-    <Select
-      id="newA11yStatusMessageId"
-      name="newA11yStatusMessage"
-      labelText="New Accessibility Status Message"
-      items={[
-        { label: 'Red', value: 'red' },
-        { label: 'Blue', value: 'blue' },
-        { label: 'Green', value: 'green' }
-      ]}
-      getA11yStatusMessage={({highlightedItem}) => `custom message saying that ${highlightedItem} is highlighted`}
-      getA11ySelectionMessage={({selectedItem}) => `custom message saying that ${selectedItem} is now selected`}
-    />
-  </>
+<>
+  <Select
+    id="newA11yStatusMessageId"
+    name="newA11yStatusMessage"
+    labelText="New Accessibility Status Message"
+    items={[
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' }
+    ]}
+    getA11yStatusMessage={({highlightedItem}) => `custom message saying that ${highlightedItem} is highlighted`}
+    getA11ySelectionMessage={({selectedItem}) => `custom message saying that ${selectedItem} is now selected`}
+  />
+</>
 ```
 
 ## Multi Select
 
 ```.jsx
-  () => {
-    const [selectedItems, updateSelectedItems] = React.useState([]);
+() => {
+  const [selectedItems, updateSelectedItems] = React.useState([]);
 
-    function handleSelectedItemsChange(changes) {
-      updateSelectedItems(changes.selectedItems);
-    }
-
-    function handleRemoveSelectedItem(removedItem) {
-      updateSelectedItems(
-        selectedItems.filter(item => item !== removedItem)
-      )
-    }
-
-    return <>
-      <Select
-        id="multiSelectId"
-        isMulti
-        name="multiSelect"
-        labelText="Multi Select"
-        items={[
-          {label: 'Red', value: 'red'},
-          {label: 'Blue', value: 'blue'},
-          {label: 'Green', value: 'green'},
-          {label: 'Orange', value: 'orange'},
-          {label: 'Aqua', value: 'aqua'},
-          {label: 'Gold', value: 'gold'},
-          {label: 'Periwinkle', value: 'periwinkle'},
-          {label: 'Lavender', value: 'lavender'},
-          {label: 'Marigold', value: 'marigold'},
-          {label: 'Yellow', value: 'yellow'},
-          {label: 'Purple', value: 'purple'},
-          {label: 'Dusty Rose', value: 'dusty_rose'},
-          {label: 'Burnt Sienna', value: 'burnt_sienna'}
-        ]}
-        initialSelectedItems={[
-          {label: 'Red', value: 'red'},
-          {label: 'Blue', value: 'blue'},
-          {label: 'Blah', value: 'blah'}
-        ]}
-      />
-
-      <Select
-        id="multiSelectControlledId"
-        isMulti
-        name="multiSelectControlled"
-        labelText="Multi Select Controlled"
-        items={[
-          {label: 'Red', value: 'red'},
-          {label: 'Blue', value: 'blue'},
-          {label: 'Green', value: 'green'},
-          {label: 'Orange', value: 'orange'},
-          {label: 'Aqua', value: 'aqua'},
-          {label: 'Gold', value: 'gold'},
-          {label: 'Periwinkle', value: 'periwinkle'},
-          {label: 'Lavender', value: 'lavender'},
-          {label: 'Marigold', value: 'marigold'},
-          {label: 'Yellow', value: 'yellow'},
-          {label: 'Purple', value: 'purple'},
-          {label: 'Dusty Rose', value: 'dusty_rose'},
-          {label: 'Burnt Sienna', value: 'burnt_sienna'}
-        ]}
-        selectedItems={selectedItems}
-        onSelectedItemsChange={handleSelectedItemsChange}
-        onRemoveSelectedItem={handleRemoveSelectedItem}
-      />
-    </>
+  function handleSelectedItemsChange(changes) {
+    updateSelectedItems(changes.selectedItems);
   }
+
+  function handleRemoveSelectedItem(removedItem) {
+    updateSelectedItems(
+      selectedItems.filter(item => item !== removedItem)
+    )
+  }
+
+  return <>
+    <Select
+      id="multiSelectId"
+      isMulti
+      name="multiSelect"
+      labelText="Multi Select"
+      items={[
+        {label: 'Red', value: 'red'},
+        {label: 'Blue', value: 'blue'},
+        {label: 'Green', value: 'green'},
+        {label: 'Orange', value: 'orange'},
+        {label: 'Aqua', value: 'aqua'},
+        {label: 'Gold', value: 'gold'},
+        {label: 'Periwinkle', value: 'periwinkle'},
+        {label: 'Lavender', value: 'lavender'},
+        {label: 'Marigold', value: 'marigold'},
+        {label: 'Yellow', value: 'yellow'},
+        {label: 'Purple', value: 'purple'},
+        {label: 'Dusty Rose', value: 'dusty_rose'},
+        {label: 'Burnt Sienna', value: 'burnt_sienna'}
+      ]}
+      initialSelectedItems={[
+        {label: 'Red', value: 'red'},
+        {label: 'Blue', value: 'blue'},
+        {label: 'Blah', value: 'blah'}
+      ]}
+    />
+
+    <Select
+      id="multiSelectControlledId"
+      isMulti
+      name="multiSelectControlled"
+      labelText="Multi Select Controlled"
+      items={[
+        {label: 'Red', value: 'red'},
+        {label: 'Blue', value: 'blue'},
+        {label: 'Green', value: 'green'},
+        {label: 'Orange', value: 'orange'},
+        {label: 'Aqua', value: 'aqua'},
+        {label: 'Gold', value: 'gold'},
+        {label: 'Periwinkle', value: 'periwinkle'},
+        {label: 'Lavender', value: 'lavender'},
+        {label: 'Marigold', value: 'marigold'},
+        {label: 'Yellow', value: 'yellow'},
+        {label: 'Purple', value: 'purple'},
+        {label: 'Dusty Rose', value: 'dusty_rose'},
+        {label: 'Burnt Sienna', value: 'burnt_sienna'}
+      ]}
+      selectedItems={selectedItems}
+      onSelectedItemsChange={handleSelectedItemsChange}
+      onRemoveSelectedItem={handleRemoveSelectedItem}
+    />
+  </>
+}
 ```
 
 ## Events
 
 ```.jsx
-  () => {
-    const [currentSelectEvent, updateCurrentSelectEvent] = React.useState(undefined);
+() => {
+  const [currentSelectEvent, updateCurrentSelectEvent] = React.useState(undefined);
 
-    function handleSelectBlur(event) {
-      updateCurrentSelectEvent('Blur')
-    }
-
-    function handleSelectFocus(event) {
-      updateCurrentSelectEvent('Focus')
-    }
-
-    function handleSelectKeyPress(event) {
-      updateCurrentSelectEvent('KeyPress')
-    }
-
-    return (
-      <>
-        <p><strong>{currentSelectEvent || 'No'} event was triggered</strong></p>
-
-        <Select
-          id="selectFocusEventId"
-          name="selectFocusEvent"
-          labelText="Select Focus Events"
-          items={[
-            { label: 'Red', value: 'red' },
-            { label: 'Blue', value: 'blue' },
-            { label: 'Green', value: 'green' }
-          ]}
-          onBlur={handleSelectBlur}
-          onFocus={handleSelectFocus}
-          onKeyPress={handleSelectKeyPress}
-        />
-      </>
-    )
+  function handleSelectBlur(event) {
+    updateCurrentSelectEvent('Blur')
   }
+
+  function handleSelectFocus(event) {
+    updateCurrentSelectEvent('Focus')
+  }
+
+  function handleSelectKeyPress(event) {
+    updateCurrentSelectEvent('KeyPress')
+  }
+
+  return (
+    <>
+      <p><strong>{currentSelectEvent || 'No'} event was triggered</strong></p>
+
+      <Select
+        id="selectFocusEventId"
+        name="selectFocusEvent"
+        labelText="Select Focus Events"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' }
+        ]}
+        onBlur={handleSelectBlur}
+        onFocus={handleSelectFocus}
+        onKeyPress={handleSelectKeyPress}
+      />
+    </>
+  )
+}
 ```
 
 ## Inverse
 
 ```.jsx
-  () => {
-    const [selectedItem, updateSelectedItem] = React.useState('');
+() => {
+  const [selectedItem, updateSelectedItem] = React.useState('');
 
-    function onSelectedItemChange(changes) {
-      updateSelectedItem(changes.selectedItem);
-    }
+  function onSelectedItemChange(changes) {
+    updateSelectedItem(changes.selectedItem);
+  }
 
 
-    const [selectedItems, updateSelectedItems] = React.useState([]);
+  const [selectedItems, updateSelectedItems] = React.useState([]);
 
-    function handleSelectedItemsChange(changes) {
-      updateSelectedItems(changes.selectedItems);
-    }
+  function handleSelectedItemsChange(changes) {
+    updateSelectedItems(changes.selectedItems);
+  }
 
-    function handleRemoveSelectedItem(removedItem) {
-      updateSelectedItems(
-        selectedItems.filter(item => item !== removedItem)
-      )
-    }
-
-    return (
-      <Card isInverse>
-        <CardBody>
-          <Select
-            id="basicSelectInverseId"
-            isInverse
-            name="basic"
-            labelText="Basic"
-            items={[
-              { label: 'Red', value: 'red' },
-              { label: 'Blue', value: 'blue' },
-              { label: 'Green', value: 'green' }
-            ]}
-            selectedItem={selectedItem}
-            onSelectedItemChange={onSelectedItemChange}
-          />
-
-          <Select
-            id="multiSelectInverseId"
-            isInverse
-            isMulti
-            name="multiSelect"
-            labelText="Multi Select"
-            items={[
-              { label: 'Red', value: 'red' },
-              { label: 'Blue', value: 'blue' },
-              { label: 'Green', value: 'green' }
-            ]}
-          />
-        </CardBody>
-      </Card>
+  function handleRemoveSelectedItem(removedItem) {
+    updateSelectedItems(
+      selectedItems.filter(item => item !== removedItem)
     )
   }
+
+  return (
+    <Card isInverse>
+      <CardBody>
+        <Select
+          id="basicSelectInverseId"
+          isInverse
+          name="basic"
+          labelText="Basic"
+          items={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' }
+          ]}
+          selectedItem={selectedItem}
+          onSelectedItemChange={onSelectedItemChange}
+        />
+
+        <Select
+          id="multiSelectInverseId"
+          isInverse
+          isMulti
+          name="multiSelect"
+          labelText="Multi Select"
+          items={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' }
+          ]}
+        />
+      </CardBody>
+    </Card>
+  )
+}
 ```
 
 ## Custom Styles
@@ -593,40 +593,40 @@ Additional `labelStyle`, `inputStyle` and `messageStyle` properties are availabl
 Please use discretion when adding custom styles.
 
 ```.jsx
-  () => {
-    const [selectedItem, updateSelectedItem] = React.useState('');
+() => {
+  const [selectedItem, updateSelectedItem] = React.useState('');
 
-    function onSelectedItemChange(changes) {
-      updateSelectedItem(changes.selectedItem);
-    }
-
-    return <>
-      <Select
-        containerStyle={{ marginBottom: '32px'}}
-        helperMessage="Helper message"
-        inputStyle={{ border: '2px dotted green', width: '200px'}}
-        items={['Red', 'Blue', 'Green']}
-        labelStyle={{ fontStyle: 'italic' }}
-        labelText="Basic with Custom Styles"
-        messageStyle={{ border: '1px solid blue' }}
-        selectedItem={selectedItem}
-        onSelectedItemChange={onSelectedItemChange}
-      />
-
-      <Select
-        containerStyle={{ marginBottom: '32px'}}
-        helperMessage="Helper message"
-        inputStyle={{ border: '2px dotted green', width: '200px'}}
-        isMulti
-        items={['Red', 'Blue', 'Green']}
-        labelStyle={{ fontStyle: 'italic' }}
-        labelText="Multi with Custom Styles"
-        messageStyle={{ border: '1px solid blue' }}
-        selectedItem={selectedItem}
-        onSelectedItemChange={onSelectedItemChange}
-      />
-    </>
+  function onSelectedItemChange(changes) {
+    updateSelectedItem(changes.selectedItem);
   }
+
+  return <>
+    <Select
+      containerStyle={{ marginBottom: '32px'}}
+      helperMessage="Helper message"
+      inputStyle={{ border: '2px dotted green', width: '200px'}}
+      items={['Red', 'Blue', 'Green']}
+      labelStyle={{ fontStyle: 'italic' }}
+      labelText="Basic with Custom Styles"
+      messageStyle={{ border: '1px solid blue' }}
+      selectedItem={selectedItem}
+      onSelectedItemChange={onSelectedItemChange}
+    />
+
+    <Select
+      containerStyle={{ marginBottom: '32px'}}
+      helperMessage="Helper message"
+      inputStyle={{ border: '2px dotted green', width: '200px'}}
+      isMulti
+      items={['Red', 'Blue', 'Green']}
+      labelStyle={{ fontStyle: 'italic' }}
+      labelText="Multi with Custom Styles"
+      messageStyle={{ border: '1px solid blue' }}
+      selectedItem={selectedItem}
+      onSelectedItemChange={onSelectedItemChange}
+    />
+  </>
+}
 ```
 
 ## Internationalization
@@ -642,38 +642,38 @@ Placeholders are specific keywords surrounded by curly braces.
 </Link>
 
 ```.jsx
-  <I18nContext.Provider value={{
-    ...defaultI18n,
-    select: {
-      placeholder: 'Custom Select Placeholder...',
-      clearIndicatorAriaLabel: 'Click to reset selection for {labelText}. {selectedItem} is currently selected'
-    },
-    multiSelect: {
-      selectedItemButtonAriaLabel: 'Click to reset the selected item {selectedItem}'
-    }
-  }}>
-    <Select
-      labelText="Internationalization"
-      items={[
-        { label: 'Red', value: 'red' },
-        { label: 'Blue', value: 'blue' },
-        { label: 'Green', value: 'green' }
-      ]}
-      initialSelectedItem={{ label: 'Red', value: 'red' }}
-      isClearable
-    />
+<I18nContext.Provider value={{
+  ...defaultI18n,
+  select: {
+    placeholder: 'Custom Select Placeholder...',
+    clearIndicatorAriaLabel: 'Click to reset selection for {labelText}. {selectedItem} is currently selected'
+  },
+  multiSelect: {
+    selectedItemButtonAriaLabel: 'Click to reset the selected item {selectedItem}'
+  }
+}}>
+  <Select
+    labelText="Internationalization"
+    items={[
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' }
+    ]}
+    initialSelectedItem={{ label: 'Red', value: 'red' }}
+    isClearable
+  />
 
-    <Select
-      labelText="Multi Internationalization"
-      isMulti
-      items={[
-        { label: 'Red', value: 'red' },
-        { label: 'Blue', value: 'blue' },
-        { label: 'Green', value: 'green' }
-      ]}
-      initialSelectedItems={[{ label: 'Red', value: 'red' }]}
-    />
-  </I18nContext.Provider>
+  <Select
+    labelText="Multi Internationalization"
+    isMulti
+    items={[
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' }
+    ]}
+    initialSelectedItems={[{ label: 'Red', value: 'red' }]}
+  />
+</I18nContext.Provider>
 ```
 
 ## Custom Items
@@ -690,38 +690,38 @@ If you are using a custom shape for your `items` in a `typescript` project refer
 custom `type`](/api/select#custom_items_typescript).
 
 ```.jsx
-  () => {
-    function itemToString(item) {
-      return item ? `${item.representation} (${item.hex})` : ''
-    }
-
-    return (
-      <>
-        <Select
-          id="itemToStringId"
-          name="itemToString"
-          labelText="Item to String"
-          items={[{
-            id: 1,
-            actual: 'red',
-            representation: 'Red',
-            hex: '#FF0000'
-          }, {
-            id: 2,
-            actual: 'blue',
-            representation: 'Blue',
-            hex: '#0000FF'
-          }, {
-            id: 3,
-            actual: 'green',
-            representation: 'Green',
-            hex: '#008000'
-          }]}
-          itemToString={itemToString}
-        />
-      </>
-    )
+() => {
+  function itemToString(item) {
+    return item ? `${item.representation} (${item.hex})` : ''
   }
+
+  return (
+    <>
+      <Select
+        id="itemToStringId"
+        name="itemToString"
+        labelText="Item to String"
+        items={[{
+          id: 1,
+          actual: 'red',
+          representation: 'Red',
+          hex: '#FF0000'
+        }, {
+          id: 2,
+          actual: 'blue',
+          representation: 'Blue',
+          hex: '#0000FF'
+        }, {
+          id: 3,
+          actual: 'green',
+          representation: 'Green',
+          hex: '#008000'
+        }]}
+        itemToString={itemToString}
+      />
+    </>
+  )
+}
 ```
 
 ## Custom Items Typescript
@@ -730,50 +730,50 @@ When using a custom shape for your `items` in a `typescript` project you will ne
 element with the shape of the `items` you are passing in.
 
 ```
-  interface CustomSelectItem {
-    id: number;
-    actual: string;
-    representation: string;
-    hex?: string;
+interface CustomSelectItem {
+  id: number;
+  actual: string;
+  representation: string;
+  hex?: string;
+}
+
+() => {
+  const customItems: CustomSelectItem[] = [
+    {
+      id: 1,
+      actual: "red",
+      representation: "Red",
+      hex: "#FF0000",
+    },
+    {
+      id: 2,
+      actual: "blue",
+      representation: "Blue",
+      hex: "#0000FF",
+    },
+    {
+      id: 3,
+      actual: "green",
+      representation: "Green",
+      hex: "#008000",
+    },
+  ];
+
+  function itemToString(item: CustomSelectItem) {
+    return item ? `${item.representation} (${item.hex})` : ''
   }
 
-  () => {
-    const customItems: CustomSelectItem[] = [
-      {
-        id: 1,
-        actual: "red",
-        representation: "Red",
-        hex: "#FF0000",
-      },
-      {
-        id: 2,
-        actual: "blue",
-        representation: "Blue",
-        hex: "#0000FF",
-      },
-      {
-        id: 3,
-        actual: "green",
-        representation: "Green",
-        hex: "#008000",
-      },
-    ];
-
-    function itemToString(item: CustomSelectItem) {
-      return item ? `${item.representation} (${item.hex})` : ''
-    }
-
-    return (
-      <>
-        <Select<CustomSelectItem>
-          id="customItemToStringTypescriptId"
-          labelText="Custom Items with Typescript"
-          items={customItems}
-          itemToString={itemToString}
-        />
-      </>
-    )
-  }
+  return (
+    <>
+      <Select<CustomSelectItem>
+        id="customItemToStringTypescriptId"
+        labelText="Custom Items with Typescript"
+        items={customItems}
+        itemToString={itemToString}
+      />
+    </>
+  )
+}
 ```
 
 ## Custom Components
@@ -782,22 +782,22 @@ Out of the box, the `Select` component uses React Magma-styled iconography for t
 However, these can be overridden by providing custom components to the `components` prop, in an object containing a `ClearIndicator` and a `DropdownIndicator`.
 
 ```.jsx
-  <Select
-    id="customComponentsId"
-    name="customComponents"
-    labelText="Custom Components"
-    items={[
-      { label: 'Red', value: 'red' },
-      { label: 'Blue', value: 'blue' },
-      { label: 'Green', value: 'green' }
-    ]}
-    initialSelectedItem={{ label: 'Green', value: 'green' }}
-    isClearable
-    components={{
-      ClearIndicator: (props) => <button onClick={props.onClick}>Clear</button>,
-      DropdownIndicator: () => <span style={{ border: '1px solid'}}>Dropdown</span>
-    }}
-  />
+<Select
+  id="customComponentsId"
+  name="customComponents"
+  labelText="Custom Components"
+  items={[
+    { label: 'Red', value: 'red' },
+    { label: 'Blue', value: 'blue' },
+    { label: 'Green', value: 'green' }
+  ]}
+  initialSelectedItem={{ label: 'Green', value: 'green' }}
+  isClearable
+  components={{
+    ClearIndicator: (props) => <button onClick={props.onClick}>Clear</button>,
+    DropdownIndicator: () => <span style={{ border: '1px solid'}}>Dropdown</span>
+  }}
+/>
 ```
 
 ## State Change Types

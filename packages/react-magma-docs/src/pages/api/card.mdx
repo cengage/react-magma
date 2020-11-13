@@ -18,11 +18,11 @@ The `CardBody` component can be placed inside, and will give the content padding
 ## Basic Usage
 
 ```.jsx
-  <Card>
-    <CardBody>
-      Some content
-    </CardBody>
-  </Card>
+<Card>
+  <CardBody>
+    Some content
+  </CardBody>
+</Card>
 ```
 
 ## Heading
@@ -32,25 +32,25 @@ By default, the heading will render as an `h4`, however you may use the `heading
 The heading will always render with the same style, no matter what heading level is use.
 
 ```.jsx
-  <>
-    <Card>
-      <CardBody>
-        <CardHeading>
-          Card Heading Level 4 (default)
-        </CardHeading>
-        Some content
-      </CardBody>
-    </Card>
-    <br />
-    <Card>
-      <CardBody>
-        <CardHeading headingLevel={5}>
-          Card Heading Level 5
-        </CardHeading>
-        Some content
-      </CardBody>
-    </Card>
-  </>
+<>
+  <Card>
+    <CardBody>
+      <CardHeading>
+        Card Heading Level 4 (default)
+      </CardHeading>
+      Some content
+    </CardBody>
+  </Card>
+  <br />
+  <Card>
+    <CardBody>
+      <CardHeading headingLevel={5}>
+        Card Heading Level 5
+      </CardHeading>
+      Some content
+    </CardBody>
+  </Card>
+</>
 ```
 
 ## Drop Shadow
@@ -58,11 +58,11 @@ The heading will always render with the same style, no matter what heading level
 Passing in the `hasDropShadow` prop will cause the `Card` component to render with a box-shadow.
 
 ```.jsx
-  <Card hasDropShadow>
-    <CardBody>
-      Some content
-    </CardBody>
-  </Card>
+<Card hasDropShadow>
+  <CardBody>
+    Some content
+  </CardBody>
+</Card>
 ```
 
 ## Alignment
@@ -70,25 +70,25 @@ Passing in the `hasDropShadow` prop will cause the `Card` component to render wi
 By default, content aligns to the left. However, the `align` prop can be specified, and it takes values `center`, `left`, and `right`.
 
 ```.jsx
-  <>
-    <Card align='right'>
-      <CardBody>
-        <CardHeading>
-          Card Heading
-        </CardHeading>
-        Some content
-      </CardBody>
-    </Card>
-    <br />
-    <Card align='center'>
-      <CardBody>
-        <CardHeading>
-          Card Heading
-        </CardHeading>
-        Some content
-      </CardBody>
-    </Card>
-  </>
+<>
+  <Card align='right'>
+    <CardBody>
+      <CardHeading>
+        Card Heading
+      </CardHeading>
+      Some content
+    </CardBody>
+  </Card>
+  <br />
+  <Card align='center'>
+    <CardBody>
+      <CardHeading>
+        Card Heading
+      </CardHeading>
+      Some content
+    </CardBody>
+  </Card>
+</>
 ```
 
 ## Callout Type
@@ -97,25 +97,25 @@ The `cardCalloutType` prop takes values `danger`, `primary`, `success` and `warn
 with a left border of the appropriate color.
 
 ```.jsx
-  <>
-    <Card calloutType='success'>
-      <CardBody>
-        <CardHeading>
-          Card Heading
-        </CardHeading>
-        Some content
-      </CardBody>
-    </Card>
-    <br />
-    <Card calloutType='danger'>
-      <CardBody>
-        <CardHeading>
-          Card Heading
-        </CardHeading>
-        Some content
-      </CardBody>
-    </Card>
-  </>
+<>
+  <Card calloutType='success'>
+    <CardBody>
+      <CardHeading>
+        Card Heading
+      </CardHeading>
+      Some content
+    </CardBody>
+  </Card>
+  <br />
+  <Card calloutType='danger'>
+    <CardBody>
+      <CardHeading>
+        Card Heading
+      </CardHeading>
+      Some content
+    </CardBody>
+  </Card>
+</>
 ```
 
 ## Width
@@ -124,19 +124,19 @@ By default, the card width is set to auto, but you can pass in another value to 
 The `width` prop can either be a string or a number. If a number is provided, then pixels will be used for the unit.
 
 ```.jsx
-  <>
-    <Card width='200px'>
-      <CardBody>
-        Some content 200px wide
-      </CardBody>
-    </Card>
-    <br />
-    <Card width='50%'>
-      <CardBody>
-        Some content 50% wide
-      </CardBody>
-    </Card>
-  </>
+<>
+  <Card width='200px'>
+    <CardBody>
+      Some content 200px wide
+    </CardBody>
+  </Card>
+  <br />
+  <Card width='50%'>
+    <CardBody>
+      Some content 50% wide
+    </CardBody>
+  </Card>
+</>
 ```
 
 ## Image in Card
@@ -144,12 +144,12 @@ The `width` prop can either be a string or a number. If a number is provided, th
 To get an image to take up the full width of a card, without padding, place it outside of the `CardBody` component.
 
 ```.jsx
-  <Card width='250px'>
-    <img height="125" width="250" src="http://placekitten.com/250/125" />
-    <CardBody>
-      Some content
-    </CardBody>
-  </Card>
+<Card width='250px'>
+  <img height="125" width="250" src="http://placekitten.com/250/125" />
+  <CardBody>
+    Some content
+  </CardBody>
+</Card>
 ```
 
 ## Background and Inverse
@@ -161,38 +161,38 @@ The default background color is `magma.colors.neutral08` (white) or `magma.color
 The `isInverse` boolean prop can also be used with other dark backgrounds to render content in a light color.
 
 ```.jsx
-  <>
-    <Card isInverse>
-      <CardBody>
-        <CardHeading>
-          Card Heading
-        </CardHeading>
-        Some content
-      </CardBody>
-    </Card>
+<>
+  <Card isInverse>
+    <CardBody>
+      <CardHeading>
+        Card Heading
+      </CardHeading>
+      Some content
+    </CardBody>
+  </Card>
 
-    <br/>
+  <br/>
 
-    <Card background={magma.colors.neutral06}>
-      <CardBody>
-        <CardHeading>
-          Card Heading
-        </CardHeading>
-        Some content
-      </CardBody>
-    </Card>
+  <Card background={magma.colors.neutral06}>
+    <CardBody>
+      <CardHeading>
+        Card Heading
+      </CardHeading>
+      Some content
+    </CardBody>
+  </Card>
 
-    <br/>
+  <br/>
 
-    <Card background={magma.colors.success} isInverse>
-      <CardBody>
-        <CardHeading>
-          Card Heading
-        </CardHeading>
-        Some content
-      </CardBody>
-    </Card>
-  </>
+  <Card background={magma.colors.success} isInverse>
+    <CardBody>
+      <CardHeading>
+        Card Heading
+      </CardHeading>
+      Some content
+    </CardBody>
+  </Card>
+</>
 ```
 
 ## Card Props

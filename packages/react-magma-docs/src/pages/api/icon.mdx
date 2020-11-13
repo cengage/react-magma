@@ -29,11 +29,11 @@ import { SimplePropsTable } from '../../components/props-table';
 Icons are imported from a separate `react-magma-icons` package.
 
 ```.jsx
-  <p>
-    <span className='demo-icon-container'>
-      <GroupIcon />
-    </span>
-  </p>
+<p>
+  <span className='demo-icon-container'>
+    <GroupIcon />
+  </span>
+</p>
 ```
 
 ## Title
@@ -44,40 +44,40 @@ The title/svg association will be handled via the passed in `id` if one is suppl
 so it will be read screen readers.
 
 ```.jsx
-  <p>
-    <span className='demo-icon-container'>
-      <CrossIcon title="Close This Message" />
-    </span>
-    <span className='demo-icon-container'>
-      <InfoIcon id="infoIcon" title="Info Available" />
-    </span>
-  </p>
+<p>
+  <span className='demo-icon-container'>
+    <CrossIcon title="Close This Message" />
+  </span>
+  <span className='demo-icon-container'>
+    <InfoIcon id="infoIcon" title="Info Available" />
+  </span>
+</p>
 ```
 
 ## Sizes
 
 ```.jsx
-  <p>
-    <span className='demo-icon-container'>
-      <AngleDownIcon size={20} title="Small Size" />
-    </span>
-    <span className='demo-icon-container'>
-      <AngleDownIcon size={50} title="Large Size" />
-    </span>
-  </p>
+<p>
+  <span className='demo-icon-container'>
+    <AngleDownIcon size={20} title="Small Size" />
+  </span>
+  <span className='demo-icon-container'>
+    <AngleDownIcon size={50} title="Large Size" />
+  </span>
+</p>
 ```
 
 ## Color
 
 ```.jsx
-  <p>
-    <span className='demo-icon-container'>
-      <AngleDownIcon title="No Color" />
-    </span>
-    <span className='demo-icon-container'>
-      <AngleDownIcon color="green" title="Some Color" />
-    </span>
-  </p>
+<p>
+  <span className='demo-icon-container'>
+    <AngleDownIcon title="No Color" />
+  </span>
+  <span className='demo-icon-container'>
+    <AngleDownIcon color="green" title="Some Color" />
+  </span>
+</p>
 ```
 
 ## Accessibility
@@ -85,53 +85,53 @@ so it will be read screen readers.
 To improve the experience for assistive technology users and remove the icon and its children from the accessibility tree, add the prop `aria-hidden="true"` to your icon.
 
 ```.jsx
-  <p>
-    <span className='demo-icon-container'>
-      <HomeIcon aria-hidden="true"/>
-    </span>
-  </p>
+<p>
+  <span className='demo-icon-container'>
+    <HomeIcon aria-hidden="true"/>
+  </span>
+</p>
 ```
 
 ## Available Icons
 
 ```.jsx hideCode
-  <div className='demo-icon-list-container'>
-    {Object.keys(ICONS).filter((icon) => {
-      return ![
-        'ArrowDown2Icon',
-        'ArrowLeft2Icon',
-        'ArrowRight2Icon',
-        'ArrowUp2Icon',
-        'Book2Icon',
-        'Bug2Icon',
-        'Cloud2Icon',
-        'Cog2Icon',
-        'Download2Icon',
-        'Extracredit2Icon',
-        'Eye2Icon',
-        'Feed5Icon',
-        'Filter2Icon',
-        'Flag3Icon',
-        'Home32Icon',
-        'Key3Icon',
-        'MTAct1TimeIcon',
-        'Music2Icon',
-        'Pencil3Icon',
-        'Reading2Icon',
-        'Search2Icon',
-        'Upload2Icon'
-      ].includes(icon)}).map((icon) => {
-        const id = icon + 'Available';
-        const title = icon + ' Title';
-        const Icon = ICONS[icon];
+<div className='demo-icon-list-container'>
+  {Object.keys(ICONS).filter((icon) => {
+    return ![
+      'ArrowDown2Icon',
+      'ArrowLeft2Icon',
+      'ArrowRight2Icon',
+      'ArrowUp2Icon',
+      'Book2Icon',
+      'Bug2Icon',
+      'Cloud2Icon',
+      'Cog2Icon',
+      'Download2Icon',
+      'Extracredit2Icon',
+      'Eye2Icon',
+      'Feed5Icon',
+      'Filter2Icon',
+      'Flag3Icon',
+      'Home32Icon',
+      'Key3Icon',
+      'MTAct1TimeIcon',
+      'Music2Icon',
+      'Pencil3Icon',
+      'Reading2Icon',
+      'Search2Icon',
+      'Upload2Icon'
+    ].includes(icon)}).map((icon) => {
+      const id = icon + 'Available';
+      const title = icon + ' Title';
+      const Icon = ICONS[icon];
 
-        return <span className='demo-icon-container' key={id} >
-          <Icon title={title} /><br />
-          {icon}
-        </span>
-      })
-    }
-  </div>
+      return <span className='demo-icon-container' key={id} >
+        <Icon title={title} /><br />
+        {icon}
+      </span>
+    })
+  }
+</div>
 ```
 
 ## Testing

@@ -34,29 +34,29 @@ If no children are included, then they render in the icon-only style.
 </Alert>
 
 ```.jsx
-  <>
+<>
+  <p>
+    <IconButton aria-label="Notifications" icon={<BellIcon />} />
+    <IconButton aria-label="Notifications" icon={<BellIcon />} />
+    <IconButton aria-label="Notifications" variant="outline" icon={<BellIcon />} />
+    <IconButton aria-label="Notifications" variant="link" icon={<BellIcon />} />
+    <IconButton aria-label="Settings" color="secondary" icon={<Cog2Icon />} />
+    <IconButton aria-label="Settings" color="secondary" variant="outline" icon={<Cog2Icon />} />
+    <IconButton aria-label="Settings" color="secondary" variant="link" icon={<Cog2Icon />} />
+    <IconButton aria-label="Correct" color="success" icon={<CheckIcon />} />
+    <IconButton aria-label="Correct" color="success"variant="outline" icon={<CheckIcon />} />
+    <IconButton aria-label="Correct" color="success" variant="link" icon={<CheckIcon />} />
+    <IconButton aria-label="Error" color="danger" icon={<AlertIcon />} />
+    <IconButton aria-label="Error" color="danger" variant="outline" icon={<AlertIcon />} />
+    <IconButton aria-label="Error" color="danger" variant="link" icon={<AlertIcon />} />
+    <IconButton aria-label="Notifications" disabled icon={<BellIcon />} />
+  </p>
     <p>
-      <IconButton aria-label="Notifications" icon={<BellIcon />} />
-      <IconButton aria-label="Notifications" icon={<BellIcon />} />
-      <IconButton aria-label="Notifications" variant="outline" icon={<BellIcon />} />
-      <IconButton aria-label="Notifications" variant="link" icon={<BellIcon />} />
-      <IconButton aria-label="Settings" color="secondary" icon={<Cog2Icon />} />
-      <IconButton aria-label="Settings" color="secondary" variant="outline" icon={<Cog2Icon />} />
-      <IconButton aria-label="Settings" color="secondary" variant="link" icon={<Cog2Icon />} />
-      <IconButton aria-label="Correct" color="success" icon={<CheckIcon />} />
-      <IconButton aria-label="Correct" color="success"variant="outline" icon={<CheckIcon />} />
-      <IconButton aria-label="Correct" color="success" variant="link" icon={<CheckIcon />} />
-      <IconButton aria-label="Error" color="danger" icon={<AlertIcon />} />
-      <IconButton aria-label="Error" color="danger" variant="outline" icon={<AlertIcon />} />
-      <IconButton aria-label="Error" color="danger" variant="link" icon={<AlertIcon />} />
-      <IconButton aria-label="Notifications" disabled icon={<BellIcon />} />
-    </p>
-      <p>
-      <IconButton icon={<BellIcon />}>Notifications</IconButton>
-      <IconButton icon={<Cog2Icon />} color="secondary" variant="outline" >Settings</IconButton>
-      <IconButton icon={<CheckIcon />} color="success" variant="link">Submit</IconButton>
-    </p>
-  </>
+    <IconButton icon={<BellIcon />}>Notifications</IconButton>
+    <IconButton icon={<Cog2Icon />} color="secondary" variant="outline" >Settings</IconButton>
+    <IconButton icon={<CheckIcon />} color="success" variant="link">Submit</IconButton>
+  </p>
+</>
 ```
 
 ## Assign Icon to Variable
@@ -64,11 +64,11 @@ If no children are included, then they render in the icon-only style.
 If you find JSX being passed in as a prop directly ugly, you can assign an icon to a variable and pass that in as the prop.
 
 ```.jsx
-  () => {
-    const icon = <BellIcon />
+() => {
+  const icon = <BellIcon />
 
-    return <IconButton aria-label="Notifications" icon={icon} />
-  }
+  return <IconButton aria-label="Notifications" icon={icon} />
+}
 ```
 
 ## Custom Size
@@ -76,11 +76,11 @@ If you find JSX being passed in as a prop directly ugly, you can assign an icon 
 Icon buttons have default sizes for small, medium and large icon buttons respectively. However, if a pixel size is specified for an icon itself, that size will take precedence.
 
 ```.jsx
-  () => {
-    const icon = <BellIcon size={10} />
+() => {
+  const icon = <BellIcon size={10} />
 
-    return <IconButton icon={icon}>Notification with Custom Icon Size</IconButton>
-  }
+  return <IconButton icon={icon}>Notification with Custom Icon Size</IconButton>
+}
 ```
 
 ## Icon Position
@@ -89,10 +89,10 @@ Use the optional prop `iconPosition` to position the icon of the button on eithe
 The `iconPosition` property takes the values `left` and `right`.
 
 ```.jsx
-  <>
-    <IconButton icon={<BellIcon />}>Icon Left</IconButton>
-    <IconButton color="secondary" icon={<InfoIcon />} iconPosition="right">Icon Right</IconButton>
-  </>
+<>
+  <IconButton icon={<BellIcon />}>Icon Left</IconButton>
+  <IconButton color="secondary" icon={<InfoIcon />} iconPosition="right">Icon Right</IconButton>
+</>
 ```
 
 ## Sizes
@@ -100,18 +100,18 @@ The `iconPosition` property takes the values `left` and `right`.
 Sizes for `IconButtons` include `small`, `medium`, and `large`, with `medium` being the default value.
 
 ```.jsx
-  <>
-    <p>
-      <IconButton icon={<BellIcon aria-label="Notifications" />} size="small" />
-      <IconButton icon={<BellIcon aria-label="Notifications" />} />
-      <IconButton icon={<BellIcon aria-label="Notifications" />} size="large" />
-    </p>
-    <p>
-      <IconButton icon={<BellIcon />} size="small" iconPosition="left">Small Notifications</IconButton>
-      <IconButton icon={<BellIcon />} iconPosition="left">Medium Notifications</IconButton>
-      <IconButton icon={<BellIcon />} size="large" iconPosition="left">Large Notifications</IconButton>
-    </p>
-  </>
+<>
+  <p>
+    <IconButton icon={<BellIcon aria-label="Notifications" />} size="small" />
+    <IconButton icon={<BellIcon aria-label="Notifications" />} />
+    <IconButton icon={<BellIcon aria-label="Notifications" />} size="large" />
+  </p>
+  <p>
+    <IconButton icon={<BellIcon />} size="small" iconPosition="left">Small Notifications</IconButton>
+    <IconButton icon={<BellIcon />} iconPosition="left">Medium Notifications</IconButton>
+    <IconButton icon={<BellIcon />} size="large" iconPosition="left">Large Notifications</IconButton>
+  </p>
+</>
 ```
 
 ## Shape
@@ -119,12 +119,12 @@ Sizes for `IconButtons` include `small`, `medium`, and `large`, with `medium` be
 Icon only buttons have `shape = round`, by default.
 
 ```.jsx
-  <>
-    <IconButton icon={<BellIcon aria-label="Notifications"  />} />
-    <IconButton icon={<BellIcon aria-label="Notifications"  />} shape="fill" />
-    <IconButton icon={<BellIcon aria-label="Notifications"  />} shape="rightCap" />
-    <IconButton icon={<BellIcon aria-label="Notifications"  />} shape="leftCap" />
-  </>
+<>
+  <IconButton icon={<BellIcon aria-label="Notifications"  />} />
+  <IconButton icon={<BellIcon aria-label="Notifications"  />} shape="fill" />
+  <IconButton icon={<BellIcon aria-label="Notifications"  />} shape="rightCap" />
+  <IconButton icon={<BellIcon aria-label="Notifications"  />} shape="leftCap" />
+</>
 ```
 
 ## Full-Width Buttons
@@ -132,12 +132,12 @@ Icon only buttons have `shape = round`, by default.
 The `isFullWidth` property will set the button to display full-width. This property does not have any effect on icon-only buttons.
 
 ```.jsx
-  <>
-    <IconButton icon={<BellIcon />} isFullWidth>Full-Width Notifications Button</IconButton>
-    <IconButton icon={<BellIcon />} isFullWidth iconPosition="right">Full-Width Notifications Button</IconButton>
+<>
+  <IconButton icon={<BellIcon />} isFullWidth>Full-Width Notifications Button</IconButton>
+  <IconButton icon={<BellIcon />} isFullWidth iconPosition="right">Full-Width Notifications Button</IconButton>
 
-    <IconButton icon={<BellIcon aria-label="Notifications" />} isFullWidth />
-  </>
+  <IconButton icon={<BellIcon aria-label="Notifications" />} isFullWidth />
+</>
 ```
 
 ## Event Handling
@@ -146,39 +146,39 @@ The `onClick` event will fire when the button is clicked, or when the enter or s
 Events do not fire on disabled buttons.
 
 ```.jsx
-  () => {
-    const [iconButtonCounter, setIconButtonCounter] = React.useState(0);
-    const [textIconButtonCounter, setTextIconButtonCounter] = React.useState(0);
+() => {
+  const [iconButtonCounter, setIconButtonCounter] = React.useState(0);
+  const [textIconButtonCounter, setTextIconButtonCounter] = React.useState(0);
 
-    return (
-      <>
-        <p><strong>Icon Counter: </strong> {iconButtonCounter} | <strong>Text Icon Counter: </strong> {textIconButtonCounter}</p>
-        <IconButton
-          icon={<BellIcon />}
-          onClick={() => {
-            setIconButtonCounter(count => count + 1)
-          }}>
-          Click me
-        </IconButton>
-        <IconButton
-          icon={<BellIcon />}
-          textPosition="left"
-          onClick={() => {
-            setTextIconButtonCounter(count => count + 1)
-          }}>
-          Click me
-        </IconButton>
-        <IconButton
-          disabled
-          icon={<BellIcon />}
-          onClick={() => {
-            setIconButtonCounter(count => count + 1)
-          }}>
-          Click me if you can
-        </IconButton>
-      </>
-    )
-  }
+  return (
+    <>
+      <p><strong>Icon Counter: </strong> {iconButtonCounter} | <strong>Text Icon Counter: </strong> {textIconButtonCounter}</p>
+      <IconButton
+        icon={<BellIcon />}
+        onClick={() => {
+          setIconButtonCounter(count => count + 1)
+        }}>
+        Click me
+      </IconButton>
+      <IconButton
+        icon={<BellIcon />}
+        textPosition="left"
+        onClick={() => {
+          setTextIconButtonCounter(count => count + 1)
+        }}>
+        Click me
+      </IconButton>
+      <IconButton
+        disabled
+        icon={<BellIcon />}
+        onClick={() => {
+          setIconButtonCounter(count => count + 1)
+        }}>
+        Click me if you can
+      </IconButton>
+    </>
+  )
+}
 ```
 
 ## Testing

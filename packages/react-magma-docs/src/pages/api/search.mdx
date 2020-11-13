@@ -20,7 +20,7 @@ The `Search` component is the standardized use of the <Link to='/api/inputs/'>In
 The `onSearch` prop is required and takes a function and fires when the user clicks or presses Enter when focus is on the search icon or the search input. It also fires if the user is focused on the input and presses Enter.
 
 ```.jsx
-  <Search onSearch={(term) => {alert(term)}} />
+<Search onSearch={(term) => {alert(term)}} />
 ```
 
 ## Label and Placeholder Text
@@ -34,7 +34,7 @@ The `placeholder` refers to the placeholder attribute of the input, which will d
 The default value of all of these is `Search`.
 
 ```.jsx
-  <Search iconAriaLabel='Submit Search' labelText="Search for Articles and Books" onSearch={(term) => {}} placeholder="Search our Library" />
+<Search iconAriaLabel='Submit Search' labelText="Search for Articles and Books" onSearch={(term) => {}} placeholder="Search our Library" />
 ```
 
 ## Input Size
@@ -42,7 +42,7 @@ The default value of all of these is `Search`.
 The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default.
 
 ```.jsx
-  <Search inputSize='large' onSearch={() => {}} />
+<Search inputSize='large' onSearch={() => {}} />
 ```
 
 ## Inverse
@@ -50,11 +50,11 @@ The `inputSize` prop can be used to control the input size. Options are `medium`
 Inverse is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
 
 ```.jsx
-  <Card isInverse>
-    <CardBody>
-      <Search isInverse onSearch={(term) => {}} />
-    </CardBody>
-  </Card>
+<Card isInverse>
+  <CardBody>
+    <Search isInverse onSearch={(term) => {}} />
+  </CardBody>
+</Card>
 ```
 
 ## Loading
@@ -62,30 +62,30 @@ Inverse is an optional boolean prop, that may be passed in when inputs are to be
 The isLoading boolean prop will determine if a loading animation is shown. The loading animation will replace the search icon button.
 
 ```.jsx
-  () => {
-    const [searchValue, setSearchValue] = React.useState('');
-    const [isLoading, setIsLoading] = React.useState(false);
+() => {
+  const [searchValue, setSearchValue] = React.useState('');
+  const [isLoading, setIsLoading] = React.useState(false);
 
-    function handleSearch(term) {
-      setIsLoading(true);
-      setTimeout(() => {
-        setSearchValue(`Search value set to ${term}`);
-        setIsLoading(false);
-      }, 2500)
-    }
-
-    return (
-      <div>
-        <p><strong>Search Value: </strong> <span id="changedValue">{searchValue}</span></p>
-        <Search
-          labelText='Test Value'
-          isLoading={isLoading}
-          value=''
-          onChange={(event) => setSearchValue(event.target.value)}
-          onSearch={handleSearch} />
-      </div>
-    )
+  function handleSearch(term) {
+    setIsLoading(true);
+    setTimeout(() => {
+      setSearchValue(`Search value set to ${term}`);
+      setIsLoading(false);
+    }, 2500)
   }
+
+  return (
+    <div>
+      <p><strong>Search Value: </strong> <span id="changedValue">{searchValue}</span></p>
+      <Search
+        labelText='Test Value'
+        isLoading={isLoading}
+        value=''
+        onChange={(event) => setSearchValue(event.target.value)}
+        onSearch={handleSearch} />
+    </div>
+  )
+}
 ```
 
 ## Custom Styles
@@ -94,26 +94,26 @@ Custom styles can be passed into the Search component. The `containerStyle` prop
 Please use discretion when adding custom styles.
 
 ```.jsx
-  <Search
-    containerStyle={{ border: '2px solid green', maxWidth:  '300px', padding: '2px' }}
-    inputStyle={{ border: '1px dashed purple', borderRadius: '0' }} />
+<Search
+  containerStyle={{ border: '2px solid green', maxWidth:  '300px', padding: '2px' }}
+  inputStyle={{ border: '1px dashed purple', borderRadius: '0' }} />
 ```
 
 ## Change Events
 
 ```.jsx
-  () => {
-    const [message, setMessage] = React.useState('');
+() => {
+  const [message, setMessage] = React.useState('');
 
-    return (<div>
-      <p><strong>Changed Value: </strong> <span id="changedValue">{message}</span></p>
-      <Search
-        labelText='Test Value'
-        value=''
-        onChange={(event) => setMessage(event.target.value)}
-        onSearch={(term) => {}} />
-    </div>)
-  }
+  return (<div>
+    <p><strong>Changed Value: </strong> <span id="changedValue">{message}</span></p>
+    <Search
+      labelText='Test Value'
+      value=''
+      onChange={(event) => setMessage(event.target.value)}
+      onSearch={(term) => {}} />
+  </div>)
+}
 ```
 
 ## Search Props

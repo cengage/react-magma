@@ -20,7 +20,7 @@ When content is loading, the `LoadingIndicator` component can be used to communi
 By default, the Loading Indicator uses the <Link to="/api/spinner">Spinner</Link> component.
 
 ```.jsx
-    <LoadingIndicator />
+<LoadingIndicator />
 ```
 
 ## Progress Bar
@@ -29,66 +29,66 @@ The `type` prop can be used to change what sort of loading animation displays. T
 to render the <Link to="/api/progress-bar">Progress Bar</Link> component.
 
 ```.jsx
-  () => {
-    const [percentage, setPercentage] = React.useState(0);
+() => {
+  const [percentage, setPercentage] = React.useState(0);
 
-    React.useEffect(() => {
-      const timer1 = setTimeout(() => {
-        setPercentage(10);
-      }, 2000);
+  React.useEffect(() => {
+    const timer1 = setTimeout(() => {
+      setPercentage(10);
+    }, 2000);
 
-      const timer2 = setTimeout(() => {
-        setPercentage(20);
-      }, 4000);
+    const timer2 = setTimeout(() => {
+      setPercentage(20);
+    }, 4000);
 
-      const timer3 = setTimeout(() => {
-        setPercentage(30);
-      }, 6000);
+    const timer3 = setTimeout(() => {
+      setPercentage(30);
+    }, 6000);
 
-      const timer4 = setTimeout(() => {
-        setPercentage(40);
-      }, 8000);
+    const timer4 = setTimeout(() => {
+      setPercentage(40);
+    }, 8000);
 
-      const timer5 = setTimeout(() => {
-        setPercentage(50);
-      }, 10000);
+    const timer5 = setTimeout(() => {
+      setPercentage(50);
+    }, 10000);
 
-      const timer6 = setTimeout(() => {
-        setPercentage(60);
-      }, 12000);
+    const timer6 = setTimeout(() => {
+      setPercentage(60);
+    }, 12000);
 
-      const timer7 = setTimeout(() => {
-        setPercentage(70);
-      }, 14000);
+    const timer7 = setTimeout(() => {
+      setPercentage(70);
+    }, 14000);
 
-      const timer8 = setTimeout(() => {
-        setPercentage(80);
-      }, 16000);
+    const timer8 = setTimeout(() => {
+      setPercentage(80);
+    }, 16000);
 
-      const timer9 = setTimeout(() => {
-        setPercentage(90);
-      }, 18000);
+    const timer9 = setTimeout(() => {
+      setPercentage(90);
+    }, 18000);
 
-      const timer10 = setTimeout(() => {
-        setPercentage(100);
-      }, 20000);
+    const timer10 = setTimeout(() => {
+      setPercentage(100);
+    }, 20000);
 
-      return () => {
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-        clearTimeout(timer3);
-        clearTimeout(timer4);
-        clearTimeout(timer5);
-        clearTimeout(timer6);
-        clearTimeout(timer7);
-        clearTimeout(timer8);
-        clearTimeout(timer9);
-        clearTimeout(timer10);
-      }
-    }, [])
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+      clearTimeout(timer4);
+      clearTimeout(timer5);
+      clearTimeout(timer6);
+      clearTimeout(timer7);
+      clearTimeout(timer8);
+      clearTimeout(timer9);
+      clearTimeout(timer10);
+    }
+  }, [])
 
-    return (<LoadingIndicator percentage={percentage} type='progressbar' />)
-  }
+  return (<LoadingIndicator percentage={percentage} type='progressbar' />)
+}
 ```
 
 ## Custom Messages
@@ -97,10 +97,10 @@ The `LoadingIndicator`, supports three levels of messages. One displays immediat
 These messages can be customized by using the `message1`, `message2` and `message3` props.
 
 ```.jsx
-  <LoadingIndicator
-    message1="Custom message"
-    message2="An additional custom message"
-    message3="Third and final custom message" />
+<LoadingIndicator
+  message1="Custom message"
+  message2="An additional custom message"
+  message3="Third and final custom message" />
 ```
 
 ## Accessibility Considerations
@@ -110,21 +110,21 @@ One way to do this is to the use the <Link to="/api/announce">Announce component
 the conditional logic to display the `LoadingIndicator` _inside_ the `Announce` component.
 
 ```.jsx
-  () => {
-    const [showLoader, setShowLoader] = React.useState(false);
+() => {
+  const [showLoader, setShowLoader] = React.useState(false);
 
-    return (
-      <>
-        <p>
-          <Button onClick={() => setShowLoader(true)}>Show Loading Indicator</Button>
-          <Button onClick={() => setShowLoader(false)}>Hide Loading Indicator</Button>
-        </p>
-        <Announce>
-          {showLoader && <LoadingIndicator />}
-        </Announce>
-      </>
-    )
-  }
+  return (
+    <>
+      <p>
+        <Button onClick={() => setShowLoader(true)}>Show Loading Indicator</Button>
+        <Button onClick={() => setShowLoader(false)}>Hide Loading Indicator</Button>
+      </p>
+      <Announce>
+        {showLoader && <LoadingIndicator />}
+      </Announce>
+    </>
+  )
+}
 ```
 
 ## Loading Indicator Props
