@@ -119,6 +119,8 @@ export const PasswordInput = React.forwardRef<
         )}
       </Label>
       <InputBase
+        autoCorrect="off"
+        autoCapitalize="none"
         {...other}
         aria-describedby={
           descriptionId ? descriptionId : props['aria-describedby']

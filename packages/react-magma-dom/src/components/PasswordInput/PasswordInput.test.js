@@ -197,6 +197,34 @@ describe('sizes', () => {
     expect(input).toHaveStyleRule('height', '58px');
     expect(input).toHaveStyleRule('padding', '0 15px');
   });
+
+  it('should default to no autocomplete', () => {
+    const labelText = 'test label';
+    const { container, getByLabelText } = render(
+      <PasswordInput labelText={labelText} />
+    );
+
+    const input = getByLabelText(labelText);
+
+    expect(input).toHaveAttribute('autoCorrect', 'off');
+    expect(input).toHaveAttribute('autoCapitalize', 'none');
+  });
+
+  it('should allow autocomplete to be overwritten', () => {
+    const labelText = 'test label';
+    const { container, getByLabelText } = render(
+      <PasswordInput
+        autoCapitalize="sentences"
+        autoCorrect="on"
+        labelText={labelText}
+      />
+    );
+
+    const input = getByLabelText(labelText);
+
+    expect(input).toHaveAttribute('autoCorrect', 'on');
+    expect(input).toHaveAttribute('autoCapitalize', 'sentences');
+  });
 });
 
 describe('i18n', () => {
