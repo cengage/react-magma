@@ -6,9 +6,15 @@ import { BreadCrumbContext } from '.';
 import { Hyperlink } from '../Hyperlink';
 import { AngleRightIcon } from 'react-magma-icons';
 
+/**
+ * @children required
+ */
 export interface BreadcrumbItemProps
   extends React.HTMLAttributes<HTMLLIElement> {
   testId?: string;
+  /**
+   * The href value of the link. If left blank, the breadcrumb item will render as a span with aria-current="page" on it.
+   */
   to?: string;
 }
 
