@@ -1,6 +1,9 @@
 ---
 pageTitle: Checkbox API
 title: Checkbox
+props:
+  - CheckboxProps
+  - IndeterminateCheckboxProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -451,122 +454,13 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 
 All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the `input` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    color: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Hex code for the background color',
-      defaultValue: '#0000FF',
-    },
-    containerStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the component container element',
-    },
-    errorMessage: {
-      type: {
-        name: 'ReactNode',
-      },
-      required: false,
-      description:
-        'Content of the error message for an individual checkbox.  If a value is provided, the input will be styled as an error state and the error message will display.',
-      defaultValue: '',
-    },
-    inputStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the checkbox element',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    isTextVisuallyHidden: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, label text will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
-    },
-    labelStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the label element',
-    },
-    labelText: {
-      type: {
-        name: 'ReactNode',
-      },
-      required: true,
-      description: 'Content of label; can be node or string',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    textPosition: {
-      type: {
-        name: 'enum',
-        options: ['CheckboxTextPosition.left', 'CheckboxTextPosition.right'],
-      },
-      required: false,
-      description:
-        'Whether the label appears to the left of the right of the checkbox',
-      defaultValue: 'right',
-    },
-  }}
-/>
+<CheckboxProps />
 
 ## Indeterminate Checkbox Props
 
 **Any other props supplied will be provided to the `Checkbox` Component, except for the `checked` prop.**
 
-<SimplePropsTable
-  propertyValues={{
-    status: {
-      type: {
-        name: 'enum',
-        options: [
-          'IndeterminateCheckboxStatus.checked',
-          'IndeterminateCheckboxStatus.indeterminate',
-          'IndeterminateCheckboxStatus.unchecked',
-        ],
-      },
-      required: false,
-      description:
-        'Status of the indeterminate, three-state checkbox, which includes and indeterminate (e.g. mixed) option.',
-      defaultValue: 'unchecked',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-  }}
-/>
+<IndeterminateCheckboxProps />
 
 export default props => (
   <ScopeableLayout

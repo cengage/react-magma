@@ -1,6 +1,8 @@
 ---
 pageTitle: Announce API
 title: Announce
+props:
+  - AnnounceProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -69,38 +71,7 @@ possibly interrupting the current task. Using `off` will silence these updates, 
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    politeness: {
-      type: {
-        name: 'enum',
-        options: [
-          'AnnouncePoliteness.assertive',
-          'AnnouncePoliteness.off',
-          'AnnouncePoliteness.polite',
-        ],
-      },
-      required: false,
-      description: 'Value of the `aria-live` attribute',
-      defaultValue: 'polite',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-  }}
-/>
+<AnnounceProps />
 
 export default props => (
   <ScopeableLayout {...props} components={{ Announce, Button }} />
