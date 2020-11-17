@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.128](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.127...v2.0.0-beta.128) (2020-11-17)
+
+
+### Bug Fixes
+
+* **password input:** fix button positioning ([8d8a68e](http://stash.cengage.com:7999/FRONT/react-magma/commits/8d8a68e93e0016570dd3adfb4b8fe227637b089f))
+
+
+### Features
+
+* **buttons:** update buttons for new space scale ([2822993](http://stash.cengage.com:7999/FRONT/react-magma/commits/2822993ae20a153ce75cb149c574a855766b18eb))
+* **icon buttons, inputs:** add icon size to theme ([cc03c73](http://stash.cengage.com:7999/FRONT/react-magma/commits/cc03c7300218250802b4c0c01216eeb060221dfd))
+* **input:** adjustments to password, timepicker ([1db700d](http://stash.cengage.com:7999/FRONT/react-magma/commits/1db700d939b6e1a57bae13b2fe933eea73c77bac))
+* **input:** apply new spacing scale to inputs ([b6f75e4](http://stash.cengage.com:7999/FRONT/react-magma/commits/b6f75e4b075dc2c4efff986547b68785e0361c7d))
+* **spacing scale:** addition spacing scale value ([b62c677](http://stash.cengage.com:7999/FRONT/react-magma/commits/b62c677ccaf18534ba72578d60c1569205d07a4b))
+* **textarea:** update textarea with space scale ([c99c5f9](http://stash.cengage.com:7999/FRONT/react-magma/commits/c99c5f9fae0aa01fca1502ddef0620c1e579d7bc))
+
+
+
+
+
 # [2.0.0-beta.127](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.126...v2.0.0-beta.127) (2020-11-17)
 
 
