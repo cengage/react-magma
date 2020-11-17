@@ -1,52 +1,52 @@
 module.exports = {
   pathPrefix: process.env.PATH_PREFIX || '/',
   siteMetadata: {
-    title: 'React Magma Docs'
+    title: 'React Magma Docs',
   },
   plugins: [
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
-          include: /images/
-        }
-      }
+          include: /images/,
+        },
+      },
     },
     'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`
-      }
+        path: `${__dirname}/src/images`,
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `api`,
-        path: `${__dirname}/src/pages/api`
-      }
+        path: `${__dirname}/src/pages/api`,
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `design`,
-        path: `${__dirname}/src/pages/design`
-      }
+        path: `${__dirname}/src/pages/design`,
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `design-intro`,
-        path: `${__dirname}/src/pages/design-intro`
-      }
+        path: `${__dirname}/src/pages/design-intro`,
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `api-intro`,
-        path: `${__dirname}/src/pages/api-intro`
-      }
+        path: `${__dirname}/src/pages/api-intro`,
+      },
     },
     {
       resolve: 'gatsby-plugin-mdx',
@@ -56,11 +56,11 @@ module.exports = {
             resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 1035,
-              linkImagesToOriginal: false
-            }
-          }
-        ]
-      }
+              linkImagesToOriginal: false,
+            },
+          },
+        ],
+      },
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
@@ -73,9 +73,9 @@ module.exports = {
         background_color: '#663399',
         theme_color: '#663399',
         display: 'minimal-ui',
-        icon: 'src/images/react-magma-icon.png' // This path is relative to the root of the site.
-      }
+        icon: 'src/images/react-magma-icon.png', // This path is relative to the root of the site.
+      },
     },
-    'gatsby-plugin-offline'
-  ]
+    'gatsby-plugin-offline',
+  ],
 };

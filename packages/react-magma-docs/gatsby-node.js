@@ -1,5 +1,5 @@
-const path = require('path')
-const { createFilePath } = require('gatsby-source-filesystem')
+const path = require('path');
+const { createFilePath } = require('gatsby-source-filesystem');
 const propertiesJson = require('./src/data/properties.json');
 
 const getPathPrefix = path =>
@@ -9,23 +9,26 @@ const getPathPrefix = path =>
       : 'design'
     : /intro/.test(path)
     ? 'api-intro'
-    : 'api'
+    : 'api';
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
+  const { createNodeField } = actions;
   if (node.internal.type === 'Mdx') {
-    const prefix = getPathPrefix(node.fileAbsolutePath)
-    const filePath = createFilePath({ node, getNode })
-    const fullFilePath = `/${prefix}${filePath.toLowerCase()}`
+    const prefix = getPathPrefix(node.fileAbsolutePath);
+    const filePath = createFilePath({ node, getNode });
+    const fullFilePath = `/${prefix}${filePath.toLowerCase()}`;
     createNodeField({
       name: 'slug',
       node,
       value: fullFilePath,
-    })
+    });
   }
-}
+};
 
-exports.onCreatePage = async ({ page, actions: { createPage, deletePage } }) => {
+exports.onCreatePage = async ({
+  page,
+  actions: { createPage, deletePage },
+}) => {
   const { frontmatter } = page.context;
 
   if (frontmatter) {
@@ -34,10 +37,11 @@ exports.onCreatePage = async ({ page, actions: { createPage, deletePage } }) => 
       ...page,
       context: {
         ...page.context,
-        properties: propertiesJson.filter(property =>
-          frontmatter.props && frontmatter.props.includes(property.name)
-        )
-      }
+        properties: propertiesJson.filter(
+          property =>
+            frontmatter.props && frontmatter.props.includes(property.name)
+        ),
+      },
     });
   }
 };

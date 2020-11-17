@@ -75,6 +75,7 @@ const Layout = ({ children, pageContext }) => {
     pageContext && pageContext.frontmatter
       ? pageContext.frontmatter.pageTitle || pageContext.frontmatter.title || ''
       : '';
+
   return (
     <LayoutComponent title={title}>
       <MDXProvider
@@ -93,37 +94,28 @@ const Layout = ({ children, pageContext }) => {
 };
 
 export const ScopeableLayout = ({ children, components, pageContext }) => {
-  const title =
-    pageContext && pageContext.frontmatter
-      ? pageContext.frontmatter.pageTitle || pageContext.frontmatter.title || ''
-      : '';
   const properties = (pageContext && pageContext.properties) || [];
+
   return (
-    <LayoutComponent title={title}>
-      <MDXProvider
-        components={{
-          pre: preProps => (
-            <PreComponent {...preProps} components={components} />
-          ),
-          table: Table,
-          h2: SectionHeading,
-          h3: LinkHeading,
-          SimplePropsTable: SimplePropsTable,
-          ...properties.reduce((acc, { name, properties }) => {
-            return {
-              ...acc,
-              [name]: args => (
-                <SimplePropsTable propertyValues={properties} {...args} />
-              ),
-            };
-          }, {}),
-        }}
-      >
-        <article className="content-article">
-          <SkipLinkContent>{children}</SkipLinkContent>
-        </article>
-      </MDXProvider>
-    </LayoutComponent>
+    <MDXProvider
+      components={{
+        pre: preProps => <PreComponent {...preProps} components={components} />,
+        table: Table,
+        h2: SectionHeading,
+        h3: LinkHeading,
+        SimplePropsTable: SimplePropsTable,
+        ...properties.reduce((acc, { name, properties }) => {
+          return {
+            ...acc,
+            [name]: args => (
+              <SimplePropsTable propertyValues={properties} {...args} />
+            ),
+          };
+        }, {}),
+      }}
+    >
+      {children}
+    </MDXProvider>
   );
 };
 
