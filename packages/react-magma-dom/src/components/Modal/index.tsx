@@ -90,7 +90,7 @@ const ModalContent = styled.div<ModalProps>`
   border-radius: ${props => props.theme.borderRadius};
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   color: ${props => props.theme.colors.neutral};
-  margin: 10px;
+  margin: ${props => props.theme.spaceScale.spacing03};
   position: relative;
   z-index: 1000;
 
@@ -127,12 +127,9 @@ const ModalContent = styled.div<ModalProps>`
     }
   }};
 
-  @media (min-width: 320px) {
-    margin: ${props => (props.size === 'small' ? '30px auto' : '10px')};
-  }
-
-  @media (min-width: 770px) {
-    margin: ${props => (props.size !== 'large' ? '30px auto' : '10px')};
+  @media (min-width: ${props => props.theme.breakpoints.medium}px) {
+    margin: ${props =>
+      props.size !== 'large' ? '30px auto' : props.theme.spaceScale.spacing03};
   }
 
   @media (min-width: 920px) {
@@ -140,8 +137,15 @@ const ModalContent = styled.div<ModalProps>`
   }
 `;
 
-const ModalHeader = styled.div`
-  padding: 20px 20px 10px;
+const ModalHeader = styled.div<{ theme?: any }>`
+  padding: ${props => props.theme.spaceScale.spacing05}
+    ${props => props.theme.spaceScale.spacing06} 0
+    ${props => props.theme.spaceScale.spacing06};
+  @media (max-width: 600px) {
+    padding: ${props => props.theme.spaceScale.spacing03}
+      ${props => props.theme.spaceScale.spacing05} 0
+      ${props => props.theme.spaceScale.spacing05};
+  }
 `;
 
 const H1 = styled(Heading)`
@@ -159,9 +163,12 @@ const CloseBtn = styled.span`
     width: 15px;
   }
 `;
+const ModalBody = styled.div<{ theme?: any }>`
+  padding: ${props => props.theme.spaceScale.spacing06};
 
-const ModalBody = styled.div`
-  padding: 20px;
+  @media (max-width: 600px) {
+    padding: ${props => props.theme.spaceScale.spacing05};
+  }
 `;
 
 export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
@@ -376,7 +383,9 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                     )}
                   </ModalHeader>
                 )}
-                <ModalBody ref={bodyRef}>{children}</ModalBody>
+                <ModalBody ref={bodyRef} theme={theme}>
+                  {children}
+                </ModalBody>
                 {!isCloseButtonHidden && (
                   <CloseBtn>
                     <IconButton
