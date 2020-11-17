@@ -90,7 +90,7 @@ const ModalContent = styled.div<ModalProps>`
   border-radius: ${props => props.theme.borderRadius};
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   color: ${props => props.theme.colors.neutral};
-  margin: 10px;
+  margin: ${props => props.theme.spaceScale.spacing03};
   position: relative;
   z-index: 1000;
 
@@ -127,12 +127,9 @@ const ModalContent = styled.div<ModalProps>`
     }
   }};
 
-  @media (min-width: 320px) {
-    margin: ${props => (props.size === 'small' ? '30px auto' : '8px')};
-  }
-
-  @media (min-width: 770px) {
-    margin: ${props => (props.size !== 'large' ? '30px auto' : '10px')};
+  @media (min-width: ${props => props.theme.breakpoints.medium}px) {
+    margin: ${props =>
+      props.size !== 'large' ? '30px auto' : props.theme.spaceScale.spacing03};
   }
 
   @media (min-width: 920px) {
