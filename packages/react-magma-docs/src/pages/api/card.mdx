@@ -1,11 +1,14 @@
 ---
 pageTitle: Card API
 title: Card
+props:
+  - CardProps
+  - CardHeadingProps
+  - CardBodyProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
 import { Card, CardBody, CardHeading, magma } from 'react-magma-dom';
-import { SimplePropsTable } from '../../components/props-table';
 import DocsHeading from '../../components/docs-heading';
 
 <DocsHeading to="/design/card/" type="design">
@@ -201,153 +204,19 @@ The `isInverse` boolean prop can also be used with other dark backgrounds to ren
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    align: {
-      type: {
-        name: 'enum',
-        options: [
-          'CardAlignment.center',
-          'CardAlignment.left',
-          'CardAlignment.right',
-        ],
-      },
-      required: false,
-      description: 'Sets the alignment of the card content',
-      defaultValue: 'left',
-    },
-    background: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Color for the background and border-color, set by CSS.',
-      defaultValue:
-        'magma.colors.default08 (white) or magma.colors.foundation (dark blue) if inverse',
-    },
-    calloutType: {
-      type: {
-        name: 'enum',
-        options: [
-          'CardCalloutType.danger',
-          'CardCalloutType.primary',
-          'CardCalloutType.success',
-          'CardCalloutType.warning',
-        ],
-      },
-      required: false,
-      description:
-        'If a value is passed, the card will be styled as a callout for the specified type.',
-      defaultValue: 'none',
-    },
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    hasDropShadow: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, card will render with a box-shadow',
-      defaultValue: 'false',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    width: {
-      type: {
-        name: 'string | number (px)',
-      },
-      required: false,
-      description: 'Width of the component, set by CSS.',
-      defaultValue: 'auto',
-    },
-  }}
-/>
+<CardProps />
 
 ## Card Heading Props
 
 **Any other props supplied will be provided to the `heading` element.**
 
-<SimplePropsTable
-  propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    headingLevel: {
-      type: {
-        name: 'number (1-6)',
-      },
-      required: false,
-      description:
-        'Number to indicate which level heading will render (e.g. h1, h2 etc.)',
-      defaultValue: '4',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-  }}
-/>
+<CardHeadingProps />
 
 ## Card Body Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**
 
-<SimplePropsTable
-  propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-  }}
-/>
+<CardBodyProps />
 
 export default props => (
   <ScopeableLayout

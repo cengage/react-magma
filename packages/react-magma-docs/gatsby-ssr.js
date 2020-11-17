@@ -4,8 +4,8 @@
  * See: https://www.gatsbyjs.org/docs/ssr-apis/
  */
 
-import React from "react";
-import Layout from "./src/components/layout";
+import React from 'react';
+import Layout from './src/components/layout';
 import { SlidingDrawer } from './src/components/sliding-drawer';
 import Masthead from './src/components/masthead';
 import { SkipLink, GlobalStyles } from 'react-magma-dom';
@@ -23,10 +23,11 @@ const StyledSkipLink = styled(SkipLink)`
   }
 `;
 
-export const wrapRootElement = ({ element, props }) => {
-    // props provide same data to Layout as Page element will get
-    // including location, data, etc - you don't need to pass it
-    return <>
+export const wrapPageElement = ({ element, props }) => {
+  // props provide same data to Layout as Page element will get
+  // including location, data, etc - you don't need to pass it
+  return (
+    <>
       <GlobalStyles />
       <StyledSkipLink
         isInverse
@@ -37,9 +38,8 @@ export const wrapRootElement = ({ element, props }) => {
       <div className="main-container">
         <Masthead />
         <SlidingDrawer />
-        <Layout {...props}>
-          {element}
-        </Layout>
+        <Layout {...props}>{element}</Layout>
       </div>
-    </>;
+    </>
+  );
 };
