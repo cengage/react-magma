@@ -297,8 +297,14 @@ describe('Styled Button', () => {
         );
         const button = getByText(text);
 
-        expect(button).toHaveStyleRule('font-size', '14px');
-        expect(button).toHaveStyleRule('padding', '0 15px');
+        expect(button).toHaveStyleRule(
+          'font-size',
+          magma.typeScale.size03.fontSize
+        );
+        expect(button).toHaveStyleRule(
+          'padding',
+          `${magma.spaceScale.spacing04} ${magma.spaceScale.spacing05}`
+        );
       });
 
       it('small button', () => {
@@ -308,8 +314,14 @@ describe('Styled Button', () => {
         );
         const button = getByText(text);
 
-        expect(button).toHaveStyleRule('font-size', '12px');
-        expect(button).toHaveStyleRule('padding', '0 10px');
+        expect(button).toHaveStyleRule(
+          'font-size',
+          magma.typeScale.size01.fontSize
+        );
+        expect(button).toHaveStyleRule(
+          'padding',
+          `${magma.spaceScale.spacing02} ${magma.spaceScale.spacing03}`
+        );
       });
 
       it('large button', () => {
@@ -319,8 +331,14 @@ describe('Styled Button', () => {
         );
         const button = getByText(text);
 
-        expect(button).toHaveStyleRule('font-size', '18px');
-        expect(button).toHaveStyleRule('padding', '0 20px');
+        expect(button).toHaveStyleRule(
+          'font-size',
+          magma.typeScale.size04.fontSize
+        );
+        expect(button).toHaveStyleRule(
+          'padding',
+          `${magma.spaceScale.spacing04} ${magma.spaceScale.spacing06}`
+        );
       });
 
       it('disabled inverse outline button', () => {
@@ -351,7 +369,7 @@ describe('Styled Button', () => {
         );
         const button = getByText(text);
 
-        expect(button).toHaveStyleRule('border-radius', '5px');
+        expect(button).toHaveStyleRule('border-radius', magma.borderRadius);
       });
 
       it('leftCap button', () => {
@@ -361,7 +379,10 @@ describe('Styled Button', () => {
         );
         const button = getByText(text);
 
-        expect(button).toHaveStyleRule('border-radius', '5px 0 0 5px');
+        expect(button).toHaveStyleRule(
+          'border-radius',
+          `${magma.borderRadius} 0 0 ${magma.borderRadius}`
+        );
       });
 
       it('rightCap button', () => {
@@ -371,7 +392,10 @@ describe('Styled Button', () => {
         );
         const button = getByText(text);
 
-        expect(button).toHaveStyleRule('border-radius', '0 5px 5px 0');
+        expect(button).toHaveStyleRule(
+          'border-radius',
+          `0 ${magma.borderRadius} ${magma.borderRadius} 0`
+        );
       });
 
       it('round button', () => {
@@ -417,8 +441,8 @@ describe('Styled Button', () => {
       const button = getByText(text);
 
       expect(button).toHaveStyleRule('display', 'inline-flex');
-      expect(button).toHaveStyleRule('height', '29px');
-      expect(button).toHaveStyleRule('width', '29px');
+      expect(button).toHaveStyleRule('height', magma.spaceScale.spacing07);
+      expect(button).toHaveStyleRule('width', magma.spaceScale.spacing07);
     });
 
     it('icon medium', () => {
@@ -431,8 +455,8 @@ describe('Styled Button', () => {
       const button = getByText(text);
 
       expect(button).toHaveStyleRule('display', 'inline-flex');
-      expect(button).toHaveStyleRule('height', '37px');
-      expect(button).toHaveStyleRule('width', '37px');
+      expect(button).toHaveStyleRule('height', magma.spaceScale.spacing09);
+      expect(button).toHaveStyleRule('width', magma.spaceScale.spacing09);
     });
 
     it('icon large', () => {
@@ -445,8 +469,8 @@ describe('Styled Button', () => {
       const button = getByText(text);
 
       expect(button).toHaveStyleRule('display', 'inline-flex');
-      expect(button).toHaveStyleRule('height', '45px');
-      expect(button).toHaveStyleRule('width', '45px');
+      expect(button).toHaveStyleRule('height', magma.spaceScale.spacing11);
+      expect(button).toHaveStyleRule('width', magma.spaceScale.spacing11);
     });
   });
 

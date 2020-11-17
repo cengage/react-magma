@@ -3,19 +3,21 @@ import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Notification2Icon } from 'react-magma-icons';
 import { Announce } from '../Announce';
+import { InputSize } from '../InputBase';
 
 export interface InputMessageProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  id?: string;
-  isInverse?: boolean;
   hasError?: boolean;
+  id?: string;
+  inputSize?: InputSize;
+  isInverse?: boolean;
 }
 
 const Message = styled.div<InputMessageProps>`
   align-items: center;
   background: ${props =>
     props.isInverse && props.hasError ? props.theme.colors.danger : 'none'};
-  border-radius: 5px;
+  border-radius: ${props => props.theme.borderRadius};
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral08
@@ -25,16 +27,22 @@ const Message = styled.div<InputMessageProps>`
   display: flex;
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
-  margin-top: 4px;
-  min-height: 20px;
-  padding: ${props => (props.isInverse && props.hasError ? '5px 10px' : '0')};
+  margin-top: ${props =>
+    props.inputSize === InputSize.large
+      ? props.theme.spaceScale.spacing03
+      : props.theme.spaceScale.spacing02};
+  min-height: ${props => props.theme.spaceScale.spacing06};
+  padding: ${props =>
+    props.isInverse && props.hasError
+      ? `${props.theme.spaceScale.spacing02} ${props.theme.spaceScale.spacing03}`
+      : '0'};
   text-align: left;
 `;
 
 const IconWrapper = styled.span`
   display: inline-flex;
   flex-shrink: 0;
-  padding-right: 5px;
+  padding-right: ${props => props.theme.spaceScale.spacing02};
 `;
 
 export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
@@ -57,7 +65,7 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
         theme={theme}
       >
         {hasError && (
-          <IconWrapper>
+          <IconWrapper theme={theme}>
             <Notification2Icon aria-label="Error" size={18} />
           </IconWrapper>
         )}
