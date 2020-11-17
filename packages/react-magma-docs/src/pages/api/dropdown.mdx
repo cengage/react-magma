@@ -192,9 +192,9 @@ The items accept an `onClick` event. The `disabled` prop can be used on an item 
 <Dropdown>
   <DropdownButton>Dropdown Menu Items</DropdownButton>
   <DropdownContent>
-    <DropdownMenuItem  onClick={()=>{alert('Item 1 clicked')}}>Menu item 1</DropdownMenuItem>
-    <DropdownMenuItem  disabled onClick={()=>{alert('Item 2 clicked')}}>Menu item 2</DropdownMenuItem>
-    <DropdownMenuItem  onClick={()=>{alert('Item 3 clicked')}}>Menu item 3</DropdownMenuItem>
+    <DropdownMenuItem onClick={()=>{alert('Item 1 clicked')}}>Menu item 1</DropdownMenuItem>
+    <DropdownMenuItem disabled onClick={()=>{alert('Item 2 clicked')}}>Menu item 2</DropdownMenuItem>
+    <DropdownMenuItem onClick={()=>{alert('Item 3 clicked')}}>Menu item 3</DropdownMenuItem>
   </DropdownContent>
 </Dropdown>
 ```
@@ -254,7 +254,7 @@ Dropdowns can contain elements other than Dropdown Menu Items. The standard keyb
       <Dropdown width='300px' maxHeight='600px'>
         <DropdownButton>Dropdown with Login Form</DropdownButton>
         <DropdownContent>
-          <form style={{padding: '20px'}}>
+          <form style={{padding: magma.spaceScale.spacing05}}>
             <Input type="email" labelText="Email Address" />
             <PasswordInput labelText="Password" />
             <div style={{textAlign: 'center'}}>
@@ -264,7 +264,7 @@ Dropdowns can contain elements other than Dropdown Menu Items. The standard keyb
             </div>
           </form>
           <DropdownDivider />
-          <div style={{textAlign: 'center', padding: '20px'}}>
+          <div style={{textAlign: 'center', padding: magma.spaceScale.spacing05}}>
             <p>
               Don't have an account?
               <br/>
@@ -273,18 +273,18 @@ Dropdowns can contain elements other than Dropdown Menu Items. The standard keyb
           </div>
         </DropdownContent>
       </Dropdown>
-      <Dropdown maxHeight='600px' width='300px'>
+      <Dropdown width='300px'>
         <DropdownButton>Dropdown with Form 2</DropdownButton>
         <DropdownContent>
-          <form style={{margin: '0 0 5px', color: magma.colors.neutral03}}>
+          <form style={{ margin: '0 0 5px', color: magma.colors.neutral03 }}>
             <DropdownHeader id='checkboxGroup'>Checkbox Group Label</DropdownHeader>
-            <FormGroup labelledById='checkboxGroup'>
+            <FormGroup labelledById='checkboxGroup' containerStyle={{ padding: `0 ${magma.spaceScale.spacing05}`}}>
               <Checkbox labelText='Option number one with a longer label' />
               <Checkbox labelText='Option 2' />
             </FormGroup>
             <DropdownDivider />
             <DropdownHeader id='radioGroup'>Radio Group Label</DropdownHeader>
-            <RadioGroup labelledById='radioGroup' name='radioGroupExample' value='1'>
+            <RadioGroup labelledById='radioGroup' name='radioGroupExample' value='1' containerStyle={{ padding: `0 ${magma.spaceScale.spacing05}`}}>
               <Radio labelText='Option 1' value='1' />
               <Radio labelText='Option 2' value='2' />
               <Radio labelText='Option 3' value='3' />
