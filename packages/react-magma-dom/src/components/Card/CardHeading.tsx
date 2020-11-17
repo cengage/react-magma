@@ -4,8 +4,15 @@ import { CardContext } from './';
 import { Heading } from '../Heading';
 import { TypographyColor, TypographyVisualStyle } from '../Typography';
 
+/**
+ * @children required
+ */
 export interface CardHeadingProps
   extends React.LabelHTMLAttributes<HTMLHeadingElement> {
+  /**
+   * Number to indicate which level heading will render (e.g. h1, h2 etc.)
+   * @default 4
+   */
   headingLevel?: 1 | 2 | 3 | 4 | 5 | 6;
   isInverse?: boolean;
   testId?: string;

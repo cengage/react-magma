@@ -2,6 +2,7 @@
   "extends": "../../tsconfig",
   "include": ["src/**/*"],
   "compilerOptions": {
+    "removeComments": false,
     "noUnusedParameters": false,
     "noImplicitAny": false,
     "noImplicitReturns": false,

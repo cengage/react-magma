@@ -19,31 +19,62 @@ import { SimplePropsTable } from '../../components/props-table';
 
 ## Basic Usage
 
+```.jsx
+() => {
+  const [showToast, setShowToast] = React.useState(false);
+
+  function handleClick() {
+    setShowToast(true);
+  }
+
+  function handleDismiss() {
+    setShowToast(false);
+  }
+
+  return (
+    <>
+      <Button size="small" onClick={handleClick}>
+        Show Default Toast
+      </Button>
+      {showToast
+        ? <Toast onDismiss={handleDismiss}>Default Toast</Toast>
+        : null}
+    </>
+  )
+}
+```
+
+## Variants
+
 Variants for toasts include `info`, `success`, `warning`, and `danger`, with `info` being the default value.
 
 **It is strongly recommended that `warning` and `danger` toasts do not auto-dismiss**, so that users have time to process the information in them.
 
-```.jsx
-  (props) => {
-    const [showDefaultToast, setShowDefaultToast] = React.useState(false);
-    const [showInfoToast, setShowInfoToast] = React.useState(false);
-    const [showSuccessToast, setShowSuccessToast] = React.useState(false);
-    const [showWarningToast, setShowWarningToast] = React.useState(false);
-    const [showDangerToast, setShowDangerToast] = React.useState(false);
+### Info
 
-    return (<>
-      <Button size="small" onClick={() => setShowDefaultToast(true)}>Show Default Toast</Button>
-      <Button size="small" onClick={() => setShowInfoToast(true)}>Show Info Toast</Button>
-      <Button size="small" onClick={() => setShowSuccessToast(true)}>Show Success Toast</Button>
-      <Button size="small" onClick={() => setShowWarningToast(true)}>Show Warning Toast</Button>
-      <Button size="small" onClick={() => setShowDangerToast(true)}>Show Danger Toast</Button>
-      {showDefaultToast && <Toast onDismiss={() => setShowDefaultToast(false)}>Default Toast</Toast>}
-      {showInfoToast && <Toast variant="info" onDismiss={() => setShowInfoToast(false)}>Info Toast with <a href="#">linked element</a></Toast>}
-      {showSuccessToast && <Toast variant="success" onDismiss={() => setShowSuccessToast(false)}>Success Toast</Toast>}
-      {showWarningToast && <Toast disableAutoDismiss variant="warning" onDismiss={() => setShowWarningToast(false)}>Warning Toast</Toast>}
-      {showDangerToast && <Toast disableAutoDismiss variant="danger" onDismiss={() => setShowDangerToast(false)}>Danger Toast</Toast>}
-      </>)
+```.jsx
+() => {
+  const [showToast, setShowToast] = React.useState(false);
+
+  function handleClick() {
+    setShowToast(true);
   }
+
+  function handleDismiss() {
+    setShowToast(false);
+  }
+
+  return (
+    <>
+      <Button size="small" onClick={handleClick}>
+        Show Info Toast
+      </Button>
+      {showToast
+        ? <Toast onDismiss={handleDismiss} variant='info'>Info Toast</Toast>
+        : null}
+    </>
+  )
+}
 ```
 
 ## Accessibility Considerations
@@ -56,16 +87,16 @@ While toasts appear visually in centered at bottom of the screen, they will exis
 markup, to ensure that they have the expected tab order.
 
 ```.jsx
-  (props) => {
-    const [showToast, setShowToast] = React.useState(false);
+() => {
+  const [showToast, setShowToast] = React.useState(false);
 
-    return (<>
-      <Button onClick={() => setShowToast(true)}>Show Toast in Announce</Button>
-      <Announce>
-        {showToast && <Toast dismissible onDismiss={() => setShowToast(false)}>Dismissible Toast with <a href="#">linked text</a></Toast>}
-      </Announce>
-    </>)
-  }
+  return (<>
+    <Button onClick={() => setShowToast(true)}>Show Toast in Announce</Button>
+    <Announce>
+      {showToast && <Toast dismissible onDismiss={() => setShowToast(false)}>Dismissible Toast with <a href="#">linked text</a></Toast>}
+    </Announce>
+  </>)
+}
 ```
 
 ## Toasts Container (handling multiple toasts)
@@ -76,25 +107,24 @@ that may be added. However if the number of toasts exceeds the amount of space o
 appearing on screen at once as much as possible.
 
 ```.jsx
-  (props) => {
-    const [showToast, setShowToast] = React.useState(false);
-    const [showToast2, setShowToast2] = React.useState(false);
-    const [showToast3, setShowToast3] = React.useState(false);
+() => {
+  const [showToast, setShowToast] = React.useState(false);
+  const [showToast2, setShowToast2] = React.useState(false);
+  const [showToast3, setShowToast3] = React.useState(false);
 
-    return (<ToastsContainer>
-      <Announce>
-        <Button onClick={() => setShowToast(true)} color="success">Show Toast</Button>
-        {showToast && <Toast id="toast1" onDismiss={() => setShowToast(false)} variant="success">Toast 1</Toast>}
+  return (<ToastsContainer>
+    <Announce>
+      <Button onClick={() => setShowToast(true)} color="success">Show Toast</Button>
+      {showToast && <Toast id="toast1" onDismiss={() => setShowToast(false)} variant="success">Toast 1</Toast>}
 
-        <Button onClick={() => setShowToast2(true)} color="secondary">Show Toast 2</Button>
-        {showToast2 && <Toast id="toast2" onDismiss={() => setShowToast2(false)}>This is the second toast which is longer than either toast one or three</Toast>}
+      <Button onClick={() => setShowToast2(true)} color="secondary">Show Toast 2</Button>
+      {showToast2 && <Toast id="toast2" onDismiss={() => setShowToast2(false)}>This is the second toast which is longer than either toast one or three</Toast>}
 
-        <Button onClick={() => setShowToast3(true)} color="danger">Show Toast 3</Button>
-        {showToast3 && <Toast disableAutoDismiss id="toast3" variant="danger" onDismiss={() => setShowToast3(false)}>Toast three</Toast>}
-      </Announce>
-    </ToastsContainer>)
-  }
-
+      <Button onClick={() => setShowToast3(true)} color="danger">Show Toast 3</Button>
+      {showToast3 && <Toast disableAutoDismiss id="toast3" variant="danger" onDismiss={() => setShowToast3(false)}>Toast three</Toast>}
+    </Announce>
+  </ToastsContainer>)
+}
 ```
 
 ## Bottom Offset
@@ -103,14 +133,14 @@ The `ToastsContainer` component takes an optional `bottomOffset` prop, that indi
 This is useful in cases where toasts are intended to display above a component, such as a toolbar.
 
 ```.jsx
-  (props) => {
-    const [showToast, setShowToast] = React.useState(false);
+() => {
+  const [showToast, setShowToast] = React.useState(false);
 
-    return (<ToastsContainer bottomOffset={100}>
-        <Button onClick={() => setShowToast(true)} color="success">Show Toast with Bottom Offset</Button>
-        {showToast && <Toast onDismiss={() => setShowToast(false)} variant="success">Toast Container has bottomOffset of 100</Toast>}
-    </ToastsContainer>)
-  }
+  return (<ToastsContainer bottomOffset={100}>
+      <Button onClick={() => setShowToast(true)} color="success">Show Toast with Bottom Offset</Button>
+      {showToast && <Toast onDismiss={() => setShowToast(false)} variant="success">Toast Container has bottomOffset of 100</Toast>}
+  </ToastsContainer>)
+}
 ```
 
 ## Toast Duration
@@ -119,27 +149,27 @@ The `toastDuration` prop can be used to set the number of milliseconds that the 
 This can be useful to set a longer duration for more lengthy toasts. It is recommended that the minimum `toastDuration` is 4000ms. The default is 5000.
 
 ```.jsx
-  (props) => {
-    const [showToast, setShowToast] = React.useState(false);
+() => {
+  const [showToast, setShowToast] = React.useState(false);
 
-    return (<>
-      <Button onClick={() => setShowToast(true)}>Show Toast</Button>
-      {showToast && <Toast toastDuration={10000} onDismiss={() => setShowToast(false)}>Slow Toast</Toast>}
-    </>)
-  }
+  return (<>
+    <Button onClick={() => setShowToast(true)}>Show Toast</Button>
+    {showToast && <Toast toastDuration={10000} onDismiss={() => setShowToast(false)}>Slow Toast</Toast>}
+  </>)
+}
 ```
 
 ## Disable Auto Dismiss
 
 ```.jsx
-  (props) => {
-    const [showToast, setShowToast] = React.useState(false);
+() => {
+  const [showToast, setShowToast] = React.useState(false);
 
-    return (<>
-      <Button onClick={() => setShowToast(true)}>Show Toast</Button>
-      {showToast && <Toast disableAutoDismiss onDismiss={() => setShowToast(false)}>Non-Auto Hiding Dismissible Toast</Toast>}
-    </>)
-  }
+  return (<>
+    <Button onClick={() => setShowToast(true)}>Show Toast</Button>
+    {showToast && <Toast disableAutoDismiss onDismiss={() => setShowToast(false)}>Non-Auto Hiding Dismissible Toast</Toast>}
+  </>)
+}
 ```
 
 ## Mouse Events
@@ -147,18 +177,18 @@ This can be useful to set a longer duration for more lengthy toasts. It is recom
 When you hover over the Toast the timer is paused. Once the mouse leaves the Toast the timer is restarted and runs for half of the original toast duration.
 
 ```.jsx
-  (props) => {
-    const [showToast, setShowToast] = React.useState(false);
-    const [toastContent, setToastContent] = React.useState('Default Toast Content');
+() => {
+  const [showToast, setShowToast] = React.useState(false);
+  const [toastContent, setToastContent] = React.useState('Default Toast Content');
 
-    return (<>
-      <Button onClick={() => setShowToast(true)}>Show Toast</Button>
-      {showToast && <Toast
-                      onDismiss={() => setShowToast(false)}
-                      onMouseEnter={() => setAlertContent('Mouse is hovering toast')}
-                      onMouseLeave={() => setAlertContent('Mouse has stopped hovering toast')}>{toastContent}</Toast>}
-    </>)
-  }
+  return (<>
+    <Button onClick={() => setShowToast(true)}>Show Toast</Button>
+    {showToast && <Toast
+                    onDismiss={() => setShowToast(false)}
+                    onMouseEnter={() => setAlertContent('Mouse is hovering toast')}
+                    onMouseLeave={() => setAlertContent('Mouse has stopped hovering toast')}>{toastContent}</Toast>}
+  </>)
+}
 ```
 
 ## Custom Styles
@@ -168,19 +198,19 @@ which includes the component's positioning and z-index. The `alertStyle` prop co
 includes the element's background, border-radius, and fade animation.
 
 ```.jsx
-  (props) => {
-    const [showToast, setShowToast] = React.useState(false);
+() => {
+  const [showToast, setShowToast] = React.useState(false);
 
-    return (<>
-      <Button onClick={() => setShowToast(true)}>Show Toast</Button>
-      {showToast &&
-        <Toast
-          alertStyle={{border: '4px dotted yellow'}}
-          containerStyle={{'left': 'auto', 'right': '20px', bottom: '150px'}}
-          onDismiss={() => setShowToast(false)}>Toast with custom styles</Toast>
-      }
-    </>)
-  }
+  return (<>
+    <Button onClick={() => setShowToast(true)}>Show Toast</Button>
+    {showToast &&
+      <Toast
+        alertStyle={{border: '4px dotted yellow'}}
+        containerStyle={{'left': 'auto', 'right': '20px', bottom: '150px'}}
+        onDismiss={() => setShowToast(false)}>Toast with custom styles</Toast>
+    }
+  </>)
+}
 ```
 
 ## Testing

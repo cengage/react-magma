@@ -26,21 +26,21 @@ The children of the tooltip, determines the content inside of the tooltip bubble
 The `trigger` prop must take a react element (not just a string), and determines the content that triggers the tooltip on hover or on focus. Note: in order to trigger the content on focus (a requirement for accessibility), the `trigger` should be a focusable element.
 
 ```.jsx
-  () => {
-    const tooltipNodeContent = <>Lorem ipsum <i>dolor sit amet</i>. Vel molestie no, ut vim.</>
+() => {
+  const tooltipNodeContent = <>Lorem ipsum <i>dolor sit amet</i>. Vel molestie no, ut vim.</>
 
-    return (
-      <>
-          <Tooltip content="What's this?">
-            <IconButton aria-label="Get Help" icon={<QuestionCircleIcon />} variant="link" />
-          </Tooltip>
+  return (
+    <>
+      <Tooltip content="What's this?">
+        <IconButton aria-label="Get Help" icon={<QuestionCircleIcon />} variant="link" />
+      </Tooltip>
 
-          <Tooltip content={tooltipNodeContent}>
-            <IconButton aria-label="Get Help" icon={<QuestionCircleIcon />} variant="link" />
-          </Tooltip>
-      </>
-    )
-  }
+      <Tooltip content={tooltipNodeContent}>
+        <IconButton aria-label="Get Help" icon={<QuestionCircleIcon />} variant="link" />
+      </Tooltip>
+    </>
+  )
+}
 ```
 
 ## Position
@@ -48,23 +48,23 @@ The `trigger` prop must take a react element (not just a string), and determines
 The `Tooltip` component takes a `position` property, that accepts the following values: bottom, left, right, top. Top is the default value.
 
 ```.jsx
-    <>
-        <Tooltip position='bottom' content='Tooltip bottom'>
-          <IconButton aria-label="Bottom" icon={<CircleDownIcon />} variant="link" />
-        </Tooltip>
+<>
+  <Tooltip position='bottom' content='Tooltip bottom'>
+    <IconButton aria-label="Bottom" icon={<CircleDownIcon />} variant="link" />
+  </Tooltip>
 
-        <Tooltip position='left' content='Tooltip left'>
-          <IconButton aria-label="Left" icon={<CircleLeftIcon />} variant="link" />
-        </Tooltip>
+  <Tooltip position='left' content='Tooltip left'>
+    <IconButton aria-label="Left" icon={<CircleLeftIcon />} variant="link" />
+  </Tooltip>
 
-        <Tooltip position='right' content='Tooltip right'>
-          <IconButton aria-label="Right" icon={<CircleRightIcon />} variant="link" />
-        </Tooltip>
+  <Tooltip position='right' content='Tooltip right'>
+    <IconButton aria-label="Right" icon={<CircleRightIcon />} variant="link" />
+  </Tooltip>
 
-         <Tooltip position='top' content='Tooltip top'>
-          <IconButton aria-label="Top" icon={<CircleUpIcon />} variant="link" />
-        </Tooltip>
-    </>
+  <Tooltip position='top' content='Tooltip top'>
+    <IconButton aria-label="Top" icon={<CircleUpIcon />} variant="link" />
+  </Tooltip>
+</>
 ```
 
 ## Inverse
@@ -73,13 +73,13 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
 The default value is `false`.
 
 ```.jsx
-    <Card isInverse>
-    <CardBody>
-        <Tooltip isInverse position='right' content='Inverse tooltip'>
-          <IconButton aria-label="Get Help" icon={<QuestionCircleIcon />} isInverse variant="link" />
-        </Tooltip>
-        </CardBody>
-    </Card>
+<Card isInverse>
+  <CardBody>
+    <Tooltip isInverse position='right' content='Inverse tooltip'>
+      <IconButton aria-label="Get Help" icon={<QuestionCircleIcon />} isInverse variant="link" />
+    </Tooltip>
+  </CardBody>
+</Card>
 ```
 
 ## Custom Styles
@@ -87,9 +87,9 @@ The default value is `false`.
 The containing div for the tooltip, and the tooltip component itself can have custom styles applied to it, using the `containerStyle` and `tooltipStyle` props respectively.
 
 ```.jsx
-        <Tooltip content='Styled tooltip' containerStyle={{background: 'pink', padding: '10px' }} tooltipStyle={{ border: '1px solid red', background: 'yellow', color: 'black', padding: '10px' }}>
-          <IconButton aria-label="Get Help" icon={<QuestionCircleIcon />} variant="link" />
-        </Tooltip>
+<Tooltip content='Styled tooltip' containerStyle={{background: 'pink', padding: '10px' }} tooltipStyle={{ border: '1px solid red', background: 'yellow', color: 'black', padding: '10px' }}>
+  <IconButton aria-label="Get Help" icon={<QuestionCircleIcon />} variant="link" />
+</Tooltip>
 ```
 
 ## Tooltip Props

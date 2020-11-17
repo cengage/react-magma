@@ -8,6 +8,7 @@ import './layout.css';
 import LayoutComponent from './layout-component';
 import editorTheme from './editorTheme';
 import { v4 as uuid } from 'uuid';
+import { SimplePropsTable } from './props-table';
 
 const PreComponent = ({ className, components, ...props }) => {
   const hideCode = props.children.props.hideCode;
@@ -92,7 +93,9 @@ const Layout = ({ children, pageContext }) => {
   );
 };
 
-export const ScopeableLayout = ({ children, components }) => {
+export const ScopeableLayout = ({ children, components, pageContext }) => {
+  const properties = (pageContext && pageContext.properties) || [];
+
   return (
     <MDXProvider
       components={{
@@ -100,6 +103,15 @@ export const ScopeableLayout = ({ children, components }) => {
         table: Table,
         h2: SectionHeading,
         h3: LinkHeading,
+        SimplePropsTable: SimplePropsTable,
+        ...properties.reduce((acc, { name, properties }) => {
+          return {
+            ...acc,
+            [name]: args => (
+              <SimplePropsTable propertyValues={properties} {...args} />
+            ),
+          };
+        }, {}),
       }}
     >
       {children}

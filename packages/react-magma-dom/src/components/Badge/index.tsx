@@ -4,10 +4,24 @@ import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { darken, lighten } from 'polished';
 
+/**
+ * @children required
+ */
 export interface BadgeProps extends React.HTMLAttributes<HTMLButtonElement> {
+  /**
+   * The color variant of the badge
+   * @default BadgeColor.primary
+   */
   color?: BadgeColor;
+  /**
+   * Action that fires when the badge is clicked. Causes the Badge to render as a button instead of a span.
+   */
   onClick?: () => void;
   testId?: string;
+  /**
+   * Indicates the style variant of the component
+   * @default BadgeVariant.label
+   */
   variant?: BadgeVariant;
 }
 
@@ -84,7 +98,9 @@ export const baseBadgeStyles = props => css`
   border-color: ${props.color === BadgeColor.light
     ? props.theme.colors.neutral06
     : 'transparent'};
-  border-radius: ${props.variant === BadgeVariant.counter ? '10px' : '3px'};
+  border-radius: ${props.variant === BadgeVariant.counter
+    ? props.theme.spaceScale.spacing06
+    : props.theme.borderRadius};
   color: ${props.color === 'light'
     ? props.theme.colors.neutral
     : props.theme.colors.neutral08};
@@ -95,11 +111,18 @@ export const baseBadgeStyles = props => css`
     : props.theme.typeScale.size01.fontSize};
   line-height: ${props.variant === BadgeVariant.counter
     ? props.theme.typeScale.size02.lineHeight
-    : props.theme.typeScale.size02.lineHeight};
+    : props.theme.typeScale.size01.lineHeight};
   margin: ${props.variant === BadgeVariant.counter
-    ? '0 0 0 10px'
-    : '0 10px 0 0'};
-  padding: 0 5px;
+    ? `0 0 0 ${props.theme.spaceScale.spacing03}`
+    : `0 ${props.theme.spaceScale.spacing03} 0 0`};
+  max-height: ${props.variant === BadgeVariant.counter
+    ? props.theme.spaceScale.spacing06
+    : 'auto'};
+  min-width: ${props.theme.spaceScale.spacing06};
+  padding: ${props.variant === BadgeVariant.counter
+    ? `1px ${props.theme.spaceScale.spacing02}`
+    : `${props.theme.spaceScale.spacing01} ${props.theme.spaceScale.spacing02}`};
+  text-align: ${props.variant == BadgeVariant.counter ? 'center' : 'inherit'};
 `;
 
 const StyledSpan = styled.span<BadgeProps>`

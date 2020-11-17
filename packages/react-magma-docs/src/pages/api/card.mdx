@@ -1,11 +1,14 @@
 ---
 pageTitle: Card API
 title: Card
+props:
+  - CardProps
+  - CardHeadingProps
+  - CardBodyProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
 import { Card, CardBody, CardHeading, magma } from 'react-magma-dom';
-import { SimplePropsTable } from '../../components/props-table';
 import DocsHeading from '../../components/docs-heading';
 
 <DocsHeading to="/design/card/" type="design">
@@ -18,11 +21,11 @@ The `CardBody` component can be placed inside, and will give the content padding
 ## Basic Usage
 
 ```.jsx
-        <Card>
-            <CardBody>
-                Some content
-            </CardBody>
-        </Card>
+<Card>
+  <CardBody>
+    Some content
+  </CardBody>
+</Card>
 ```
 
 ## Heading
@@ -32,25 +35,25 @@ By default, the heading will render as an `h4`, however you may use the `heading
 The heading will always render with the same style, no matter what heading level is use.
 
 ```.jsx
-      <>
-        <Card>
-            <CardBody>
-                <CardHeading>
-                    Card Heading Level 4 (default)
-                </CardHeading>
-                Some content
-            </CardBody>
-        </Card>
-        <p />
-        <Card>
-            <CardBody>
-              <CardHeading headingLevel={5}>
-                  Card Heading Level 5
-              </CardHeading>
-                Some content
-            </CardBody>
-        </Card>
-      </>
+<>
+  <Card>
+    <CardBody>
+      <CardHeading>
+        Card Heading Level 4 (default)
+      </CardHeading>
+      Some content
+    </CardBody>
+  </Card>
+  <br />
+  <Card>
+    <CardBody>
+      <CardHeading headingLevel={5}>
+        Card Heading Level 5
+      </CardHeading>
+      Some content
+    </CardBody>
+  </Card>
+</>
 ```
 
 ## Drop Shadow
@@ -58,11 +61,11 @@ The heading will always render with the same style, no matter what heading level
 Passing in the `hasDropShadow` prop will cause the `Card` component to render with a box-shadow.
 
 ```.jsx
-        <Card hasDropShadow>
-            <CardBody>
-                Some content
-            </CardBody>
-        </Card>
+<Card hasDropShadow>
+  <CardBody>
+    Some content
+  </CardBody>
+</Card>
 ```
 
 ## Alignment
@@ -70,25 +73,25 @@ Passing in the `hasDropShadow` prop will cause the `Card` component to render wi
 By default, content aligns to the left. However, the `align` prop can be specified, and it takes values `center`, `left`, and `right`.
 
 ```.jsx
-    <>
-        <Card align='right'>
-            <CardBody>
-              <CardHeading>
-                  Card Heading
-              </CardHeading>
-              Some content
-            </CardBody>
-        </Card>
-        <p></p>
-        <Card align='center'>
-            <CardBody>
-              <CardHeading>
-                  Card Heading
-              </CardHeading>
-              Some content
-            </CardBody>
-        </Card>
-    </>
+<>
+  <Card align='right'>
+    <CardBody>
+      <CardHeading>
+        Card Heading
+      </CardHeading>
+      Some content
+    </CardBody>
+  </Card>
+  <br />
+  <Card align='center'>
+    <CardBody>
+      <CardHeading>
+        Card Heading
+      </CardHeading>
+      Some content
+    </CardBody>
+  </Card>
+</>
 ```
 
 ## Callout Type
@@ -97,25 +100,25 @@ The `cardCalloutType` prop takes values `danger`, `primary`, `success` and `warn
 with a left border of the appropriate color.
 
 ```.jsx
-    <>
-        <Card calloutType='success'>
-            <CardBody>
-              <CardHeading>
-                  Card Heading
-              </CardHeading>
-              Some content
-            </CardBody>
-        </Card>
-        <p></p>
-        <Card calloutType='danger'>
-            <CardBody>
-              <CardHeading>
-                Card Heading
-              </CardHeading>
-              Some content
-            </CardBody>
-        </Card>
-    </>
+<>
+  <Card calloutType='success'>
+    <CardBody>
+      <CardHeading>
+        Card Heading
+      </CardHeading>
+      Some content
+    </CardBody>
+  </Card>
+  <br />
+  <Card calloutType='danger'>
+    <CardBody>
+      <CardHeading>
+        Card Heading
+      </CardHeading>
+      Some content
+    </CardBody>
+  </Card>
+</>
 ```
 
 ## Width
@@ -124,19 +127,19 @@ By default, the card width is set to auto, but you can pass in another value to 
 The `width` prop can either be a string or a number. If a number is provided, then pixels will be used for the unit.
 
 ```.jsx
-    <>
-        <Card width='200px'>
-            <CardBody>
-                Some content 200px wide
-            </CardBody>
-        </Card>
-        <p></p>
-        <Card width='50%'>
-            <CardBody>
-                Some content 50% wide
-            </CardBody>
-        </Card>
-    </>
+<>
+  <Card width='200px'>
+    <CardBody>
+      Some content 200px wide
+    </CardBody>
+  </Card>
+  <br />
+  <Card width='50%'>
+    <CardBody>
+      Some content 50% wide
+    </CardBody>
+  </Card>
+</>
 ```
 
 ## Image in Card
@@ -144,12 +147,12 @@ The `width` prop can either be a string or a number. If a number is provided, th
 To get an image to take up the full width of a card, without padding, place it outside of the `CardBody` component.
 
 ```.jsx
-        <Card width='250px'>
-            <img height="125" width="250" src="http://placekitten.com/250/125" />
-            <CardBody>
-                Some content
-            </CardBody>
-        </Card>
+<Card width='250px'>
+  <img height="125" width="250" src="http://placekitten.com/250/125" />
+  <CardBody>
+    Some content
+  </CardBody>
+</Card>
 ```
 
 ## Background and Inverse
@@ -161,38 +164,38 @@ The default background color is `magma.colors.neutral08` (white) or `magma.color
 The `isInverse` boolean prop can also be used with other dark backgrounds to render content in a light color.
 
 ```.jsx
-  <>
-    <Card isInverse>
-        <CardBody>
-          <CardHeading>
-              Card Heading
-          </CardHeading>
-            Some content
-        </CardBody>
-    </Card>
+<>
+  <Card isInverse>
+    <CardBody>
+      <CardHeading>
+        Card Heading
+      </CardHeading>
+      Some content
+    </CardBody>
+  </Card>
 
-    <br/>
+  <br/>
 
-    <Card background={magma.colors.neutral06}>
-        <CardBody>
-          <CardHeading>
-              Card Heading
-          </CardHeading>
-            Some content
-        </CardBody>
-    </Card>
+  <Card background={magma.colors.neutral06}>
+    <CardBody>
+      <CardHeading>
+        Card Heading
+      </CardHeading>
+      Some content
+    </CardBody>
+  </Card>
 
-     <br/>
+  <br/>
 
-    <Card background={magma.colors.success} isInverse>
-        <CardBody>
-          <CardHeading>
-              Card Heading
-          </CardHeading>
-            Some content
-        </CardBody>
-    </Card>
-  </>
+  <Card background={magma.colors.success} isInverse>
+    <CardBody>
+      <CardHeading>
+        Card Heading
+      </CardHeading>
+      Some content
+    </CardBody>
+  </Card>
+</>
 ```
 
 ## Card Props
@@ -201,153 +204,19 @@ The `isInverse` boolean prop can also be used with other dark backgrounds to ren
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    align: {
-      type: {
-        name: 'enum',
-        options: [
-          'CardAlignment.center',
-          'CardAlignment.left',
-          'CardAlignment.right',
-        ],
-      },
-      required: false,
-      description: 'Sets the alignment of the card content',
-      defaultValue: 'left',
-    },
-    background: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Color for the background and border-color, set by CSS.',
-      defaultValue:
-        'magma.colors.default08 (white) or magma.colors.foundation (dark blue) if inverse',
-    },
-    calloutType: {
-      type: {
-        name: 'enum',
-        options: [
-          'CardCalloutType.danger',
-          'CardCalloutType.primary',
-          'CardCalloutType.success',
-          'CardCalloutType.warning',
-        ],
-      },
-      required: false,
-      description:
-        'If a value is passed, the card will be styled as a callout for the specified type.',
-      defaultValue: 'none',
-    },
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    hasDropShadow: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, card will render with a box-shadow',
-      defaultValue: 'false',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    width: {
-      type: {
-        name: 'string | number (px)',
-      },
-      required: false,
-      description: 'Width of the component, set by CSS.',
-      defaultValue: 'auto',
-    },
-  }}
-/>
+<CardProps />
 
 ## Card Heading Props
 
 **Any other props supplied will be provided to the `heading` element.**
 
-<SimplePropsTable
-  propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    headingLevel: {
-      type: {
-        name: 'number (1-6)',
-      },
-      required: false,
-      description:
-        'Number to indicate which level heading will render (e.g. h1, h2 etc.)',
-      defaultValue: '4',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-  }}
-/>
+<CardHeadingProps />
 
 ## Card Body Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**
 
-<SimplePropsTable
-  propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-  }}
-/>
+<CardBodyProps />
 
 export default props => (
   <ScopeableLayout

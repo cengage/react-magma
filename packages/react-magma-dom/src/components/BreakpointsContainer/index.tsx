@@ -10,12 +10,23 @@ export enum BreakpointScreenSize {
   xl = 'xl',
 }
 
+/**
+ * @children required
+ */
 export interface BreakpointsContainerProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Object that defines the pixel size of individual breakpoints
+   * @default { xs: 0, small: 600, medium: 768, large: 1024, xl: 1200 }
+   */
   breakpoints?: object;
 }
 
 export interface BreakpointProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * The relative screen size for the breakpoint. Will go from pixel width specified up to the next breakpoint.
+   * @default BreakpointScreenSize.xs
+   */
   screenSize?: BreakpointScreenSize;
   testId?: string;
 }

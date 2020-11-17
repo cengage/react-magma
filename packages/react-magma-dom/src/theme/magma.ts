@@ -145,7 +145,7 @@ const typeScale = {
   },
   size04: {
     fontSize: '18px',
-    lineHeight: '32px',
+    lineHeight: '24px',
   },
   size05: {
     fontSize: '20px',

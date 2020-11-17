@@ -1,6 +1,9 @@
 ---
 pageTitle: Breadcrumb API
 title: Breadcrumb
+props:
+  - BreadcrumbProps
+  - BreadcrumbItemProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -19,17 +22,17 @@ should be used multiple times within it, and refers to each node in the menu. A 
 the item will be rendered as a span and will have `aria-current="page"` on it. All items in a breadcrumb menu should have the `to` prop, except for the last one, which represents the current page.
 
 ```.jsx
-        <Breadcrumb>
-            <BreadcrumbItem to="#">
-                Home
-            </BreadcrumbItem>
-             <BreadcrumbItem to="#">
-                Library
-            </BreadcrumbItem>
-             <BreadcrumbItem>
-                Data
-            </BreadcrumbItem>
-        </Breadcrumb>
+<Breadcrumb>
+  <BreadcrumbItem to="#">
+    Home
+  </BreadcrumbItem>
+  <BreadcrumbItem to="#">
+    Library
+  </BreadcrumbItem>
+  <BreadcrumbItem>
+    Data
+  </BreadcrumbItem>
+</Breadcrumb>
 ```
 
 ## Inverse
@@ -37,21 +40,21 @@ the item will be rendered as a span and will have `aria-current="page"` on it. A
 IsInverse is an optional boolean prop, that may be used when the breadcrumb menu to be displayed on a dark background.
 
 ```.jsx
-    <Card isInverse>
-      <CardBody>
-          <Breadcrumb isInverse>
-              <BreadcrumbItem to="#">
-                  Home
-              </BreadcrumbItem>
-              <BreadcrumbItem to="#">
-                  Library
-              </BreadcrumbItem>
-              <BreadcrumbItem>
-                  Data
-              </BreadcrumbItem>
-          </Breadcrumb>
-      </CardBody>
-    </Card>
+<Card isInverse>
+  <CardBody>
+    <Breadcrumb isInverse>
+      <BreadcrumbItem to="#">
+        Home
+      </BreadcrumbItem>
+      <BreadcrumbItem to="#">
+        Library
+      </BreadcrumbItem>
+      <BreadcrumbItem>
+        Data
+      </BreadcrumbItem>
+    </Breadcrumb>
+  </CardBody>
+</Card>
 ```
 
 ## Aria-label
@@ -59,17 +62,17 @@ IsInverse is an optional boolean prop, that may be used when the breadcrumb menu
 By default, the `aria-label` of the Breadcrumb component is `Breadcrumb`. This can be overridden by passing in the `aria-label` prop.
 
 ```.jsx
-        <Breadcrumb aria-label="Hello world">
-            <BreadcrumbItem to="#">
-                Home
-            </BreadcrumbItem>
-             <BreadcrumbItem to="#">
-                Library
-            </BreadcrumbItem>
-             <BreadcrumbItem>
-                Data
-            </BreadcrumbItem>
-        </Breadcrumb>
+<Breadcrumb aria-label="Hello world">
+  <BreadcrumbItem to="#">
+    Home
+  </BreadcrumbItem>
+    <BreadcrumbItem to="#">
+    Library
+  </BreadcrumbItem>
+    <BreadcrumbItem>
+    Data
+  </BreadcrumbItem>
+</Breadcrumb>
 ```
 
 ## Breadcrumb Props
@@ -78,34 +81,7 @@ By default, the `aria-label` of the Breadcrumb component is `Breadcrumb`. This c
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `nav` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-  }}
-/>
+<BreadcrumbProps />
 
 ## Breadcrumb Item Props
 
@@ -113,34 +89,7 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 
 All of the [standard li attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li) can be provided as props and will be applied to the wrapping `li` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component, i.e the name of the page',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    to: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'The href value of the link.  If left blank, the breadcrumb item will render as a span with aria-current="page" on it.',
-      defaultValue: '',
-    },
-  }}
-/>
+<BreadcrumbItemProps />
 
 export default props => (
   <ScopeableLayout
