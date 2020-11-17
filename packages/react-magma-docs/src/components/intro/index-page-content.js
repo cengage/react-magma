@@ -81,24 +81,6 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const Footer = styled.footer`
-  background: ${props => props.theme.colors.foundation};
-  padding: 80px 10%;
-  position: relative;
-  text-align: center;
-`;
-
-const FooterPara = styled.p`
-  font-size: 1.5em;
-  line-height: 1.5em;
-  margin: 0 auto;
-  max-width: 750px;
-
-  a {
-    color: inherit !important;
-  }
-`;
-
 export class IndexPageContent extends React.Component {
   constructor(props) {
     super(props);
@@ -311,19 +293,6 @@ export class IndexPageContent extends React.Component {
                 </p>
               </IntroSection>
             </HexBackground>
-
-            <Footer theme={theme}>
-              <IntroHeading isCta name="Contact us anytime" />
-              <FooterPara>
-                If you have questions or you’d like to be personally involved in
-                helping React Magma be the best it can be, please reach out to
-                us on Slack —{' '}
-                <a href="https://cengage.slack.com/app_redirect?channel=react-magma">
-                  #react-magma
-                </a>
-                .
-              </FooterPara>
-            </Footer>
           </>
         )}
       </ThemeContext.Consumer>
