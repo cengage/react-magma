@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.130](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.129...v2.0.0-beta.130) (2020-11-17)
+
+
+### Features
+
+* **date-picker:** lowercase placeholder text ([2202013](http://stash.cengage.com:7999/FRONT/react-magma/commits/2202013e663ccde2e330f1df50ccc7774d56882f))
+
+
+
+
+
 # [2.0.0-beta.129](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.128...v2.0.0-beta.129) (2020-11-17)
 
 **Note:** Version bump only for package react-magma-docs
