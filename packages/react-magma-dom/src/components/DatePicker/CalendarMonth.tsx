@@ -47,17 +47,17 @@ const Th = styled.th`
   text-align: center;
 `;
 
-const HelperButton = styled.span`
-  bottom: 0px;
+const HelperButton = styled.span<{ theme?: any }>`
+  bottom: ${props => props.theme.spaceScale.spacing01};
   position: absolute;
-  right: 0px;
+  right: ${props => props.theme.spaceScale.spacing01};
   z-index: 2;
 `;
 
-const CloseButton = styled.span`
+const CloseButton = styled.span<{ theme?: any }>`
   position: absolute;
-  right: 0px;
-  top: 0px;
+  right: ${props => props.theme.spaceScale.spacing01};
+  top: ${props => props.theme.spaceScale.spacing01};
   z-index: 2;
 `;
 
@@ -199,7 +199,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
             ))}
           </tbody>
         </Table>
-        <HelperButton>
+        <HelperButton theme={theme}>
           <IconButton
             aria-label={i18n.datePicker.helpModal.helpButtonAriaLabel}
             icon={<QuestionCircleOIcon />}
@@ -213,7 +213,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
             onClose={closeHelperInformation}
           />
         </HelperButton>
-        <CloseButton>
+        <CloseButton theme={theme}>
           <IconButton
             aria-label={i18n.datePicker.calendarCloseAriaLabel}
             color={ButtonColor.secondary}

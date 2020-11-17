@@ -6,7 +6,11 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
   border-radius: 100%;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -16,32 +20,28 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  height: 56px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
+  margin: 4px;
+  min-width: 96px;
   overflow: hidden;
+  padding: 12px 24px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 18px;
-  font-weight: 600;
-  height: 45px;
-  padding: 0 20px;
-  width: 45px;
-  background: #006298;
-  border: 0;
-  border-color: #006298;
-  color: #FFFFFF;
+  width: 56px;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -67,13 +67,14 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
 }
 
 .emotion-0:not(:disabled):after {
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -81,8 +82,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #FFFFFF;
+  width: 28px;
 }
 
 .emotion-0:not(:disabled):active {
@@ -111,7 +111,11 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
   border-radius: 100%;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -121,32 +125,28 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  height: 56px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
+  margin: 4px;
+  min-width: 96px;
   overflow: hidden;
+  padding: 12px 24px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 18px;
-  font-weight: 600;
-  height: 45px;
-  padding: 0 20px;
-  width: 45px;
-  background: #006298;
-  border: 0;
-  border-color: #006298;
-  color: #FFFFFF;
+  width: 56px;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -172,13 +172,14 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
 }
 
 .emotion-0:not(:disabled):after {
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -186,8 +187,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #FFFFFF;
+  width: 28px;
 }
 
 .emotion-0:not(:disabled):active {
@@ -221,9 +221,9 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
     <svg
       class="icon"
       fill="currentColor"
-      height="24"
+      height="28"
       viewBox="0 0 29.37 21.88"
-      width="24"
+      width="28"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
@@ -241,7 +241,11 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
   border-radius: 100%;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -251,32 +255,28 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  height: 28px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
+  margin: 4px;
+  min-width: 0;
   overflow: hidden;
+  padding: 4px 8px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 12px;
-  font-weight: 600;
-  height: 29px;
-  padding: 0 10px;
-  width: 29px;
-  background: #006298;
-  border: 0;
-  border-color: #006298;
-  color: #FFFFFF;
+  width: 28px;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -302,13 +302,14 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
 }
 
 .emotion-0:not(:disabled):after {
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -316,8 +317,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #FFFFFF;
+  width: 28px;
 }
 
 .emotion-0:not(:disabled):active {
@@ -346,7 +346,11 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
   border-radius: 100%;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -356,32 +360,28 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  height: 28px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
+  margin: 4px;
+  min-width: 0;
   overflow: hidden;
+  padding: 4px 8px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 12px;
-  font-weight: 600;
-  height: 29px;
-  padding: 0 10px;
-  width: 29px;
-  background: #006298;
-  border: 0;
-  border-color: #006298;
-  color: #FFFFFF;
+  width: 28px;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -407,13 +407,14 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
 }
 
 .emotion-0:not(:disabled):after {
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -421,8 +422,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #FFFFFF;
+  width: 28px;
 }
 
 .emotion-0:not(:disabled):active {
@@ -456,9 +456,9 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
     <svg
       class="icon"
       fill="currentColor"
-      height="14"
+      height="16"
       viewBox="0 0 29.37 21.88"
-      width="14"
+      width="16"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
@@ -476,7 +476,11 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  background: #FFFFFF;
+  border: 2px solid;
+  border-color: #BFBFBF;
   border-radius: 100%;
+  color: #3F3F3F;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -486,32 +490,28 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
+  margin: 4px;
+  min-width: 96px;
   overflow: hidden;
+  padding: 12px 16px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 14px;
-  font-weight: 600;
-  height: 37px;
-  padding: 0 15px;
-  width: 37px;
-  background: #FFFFFF;
-  border: 2px solid;
-  border-color: #BFBFBF;
-  color: #3F3F3F;
+  width: 40px;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -537,13 +537,14 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 }
 
 .emotion-0:not(:disabled):after {
+  background: #3F3F3F;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -551,8 +552,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #3F3F3F;
+  width: 28px;
 }
 
 .emotion-0:not(:disabled):active {
@@ -581,7 +581,11 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  background: #FFFFFF;
+  border: 2px solid;
+  border-color: #BFBFBF;
   border-radius: 100%;
+  color: #3F3F3F;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -591,32 +595,28 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
+  margin: 4px;
+  min-width: 96px;
   overflow: hidden;
+  padding: 12px 16px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 14px;
-  font-weight: 600;
-  height: 37px;
-  padding: 0 15px;
-  width: 37px;
-  background: #FFFFFF;
-  border: 2px solid;
-  border-color: #BFBFBF;
-  color: #3F3F3F;
+  width: 40px;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -642,13 +642,14 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 }
 
 .emotion-0:not(:disabled):after {
+  background: #3F3F3F;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -656,8 +657,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #3F3F3F;
+  width: 28px;
 }
 
 .emotion-0:not(:disabled):active {
@@ -691,9 +691,9 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
     <svg
       class="icon"
       fill="currentColor"
-      height="18"
+      height="20"
       viewBox="0 0 29.37 21.88"
-      width="18"
+      width="20"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
@@ -711,7 +711,11 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 5px;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
+  border-radius: 4px;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -721,32 +725,28 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
+  margin: 4px;
+  min-width: 96px;
   overflow: hidden;
+  padding: 12px 16px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 14px;
-  font-weight: 600;
-  height: 37px;
-  padding: 0 15px;
-  width: 37px;
-  background: #006298;
-  border: 0;
-  border-color: #006298;
-  color: #FFFFFF;
+  width: 40px;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -772,13 +772,14 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
 }
 
 .emotion-0:not(:disabled):after {
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -786,8 +787,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #FFFFFF;
+  width: 28px;
 }
 
 .emotion-0:not(:disabled):active {
@@ -816,7 +816,11 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 5px;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
+  border-radius: 4px;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -826,32 +830,28 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
+  margin: 4px;
+  min-width: 96px;
   overflow: hidden;
+  padding: 12px 16px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 14px;
-  font-weight: 600;
-  height: 37px;
-  padding: 0 15px;
-  width: 37px;
-  background: #006298;
-  border: 0;
-  border-color: #006298;
-  color: #FFFFFF;
+  width: 40px;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -877,13 +877,14 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
 }
 
 .emotion-0:not(:disabled):after {
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -891,8 +892,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #FFFFFF;
+  width: 28px;
 }
 
 .emotion-0:not(:disabled):active {
@@ -926,9 +926,9 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
     <svg
       class="icon"
       fill="currentColor"
-      height="18"
+      height="20"
       viewBox="0 0 29.37 21.88"
-      width="18"
+      width="20"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
@@ -946,7 +946,10 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  background: rgba(0,0,0,0);
+  border: 2px solid;
   border-radius: 100%;
+  color: #006298;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -956,31 +959,28 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
+  margin: 4px;
+  min-width: 96px;
   overflow: hidden;
+  padding: 12px 16px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 14px;
-  font-weight: 600;
-  height: 37px;
-  padding: 0 15px;
-  width: 37px;
-  background: rgba(0,0,0,0);
-  border: 2px solid;
-  color: #006298;
+  width: 40px;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -1006,13 +1006,14 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 }
 
 .emotion-0:not(:disabled):after {
+  background: #006298;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -1020,8 +1021,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #006298;
+  width: 28px;
 }
 
 .emotion-0:not(:disabled):active {
@@ -1050,7 +1050,10 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  background: rgba(0,0,0,0);
+  border: 2px solid;
   border-radius: 100%;
+  color: #006298;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1060,31 +1063,28 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
+  margin: 4px;
+  min-width: 96px;
   overflow: hidden;
+  padding: 12px 16px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 14px;
-  font-weight: 600;
-  height: 37px;
-  padding: 0 15px;
-  width: 37px;
-  background: rgba(0,0,0,0);
-  border: 2px solid;
-  color: #006298;
+  width: 40px;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -1110,13 +1110,14 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 }
 
 .emotion-0:not(:disabled):after {
+  background: #006298;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -1124,8 +1125,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #006298;
+  width: 28px;
 }
 
 .emotion-0:not(:disabled):active {
@@ -1159,9 +1159,9 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
     <svg
       class="icon"
       fill="currentColor"
-      height="18"
+      height="20"
       viewBox="0 0 29.37 21.88"
-      width="18"
+      width="20"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
@@ -1179,7 +1179,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 5px;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
+  border-radius: 4px;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1189,33 +1193,29 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  height: 56px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
+  margin: 4px;
+  min-width: 96px;
   overflow: hidden;
+  padding: 12px 24px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
   text-transform: uppercase;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 18px;
-  font-weight: 600;
-  height: 45px;
-  padding: 0 20px;
   width: auto;
-  background: #006298;
-  border: 0;
-  border-color: #006298;
-  color: #FFFFFF;
 }
 
 .emotion-1:not(:disabled):focus {
@@ -1230,13 +1230,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 }
 
 .emotion-1:not(:disabled):after {
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -1244,8 +1245,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #FFFFFF;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -1270,7 +1270,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 }
 
 .emotion-0 {
-  padding-right: 15px;
+  padding-right: 16px;
 }
 
 .emotion-1 {
@@ -1278,7 +1278,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 5px;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
+  border-radius: 4px;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1288,33 +1292,29 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  height: 56px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
+  margin: 4px;
+  min-width: 96px;
   overflow: hidden;
+  padding: 12px 24px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
   text-transform: uppercase;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 18px;
-  font-weight: 600;
-  height: 45px;
-  padding: 0 20px;
   width: auto;
-  background: #006298;
-  border: 0;
-  border-color: #006298;
-  color: #FFFFFF;
 }
 
 .emotion-1:not(:disabled):focus {
@@ -1329,13 +1329,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 }
 
 .emotion-1:not(:disabled):after {
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -1343,8 +1344,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #FFFFFF;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -1369,7 +1369,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 }
 
 .emotion-0 {
-  padding-right: 15px;
+  padding-right: 16px;
 }
 
 <div>
@@ -1383,7 +1383,234 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
       class="emotion-0"
     >
       Test Text
-       
+    </span>
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="28"
+      viewBox="0 0 29.37 21.88"
+      width="28"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+        transform="translate(-0.87 -3.06)"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`IconButton Icon With Text Button Snapshot should render with medium size 1`] = `
+.emotion-1 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
+  border-radius: 4px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  line-height: 1;
+  margin: 4px;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,color 0.35s;
+  transition: background 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-1:not(:disabled):focus {
+  outline: 2px dotted #027EE1;
+  outline-offset: 3px;
+}
+
+.emotion-1:not(:disabled):hover,
+.emotion-1:not(:disabled):focus {
+  background: #004165;
+  color: #FFFFFF;
+}
+
+.emotion-1:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-1:not(:disabled):active {
+  background: #002032;
+  color: #FFFFFF;
+}
+
+.emotion-1:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-1 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0 {
+  padding-right: 8px;
+}
+
+.emotion-1 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
+  border-radius: 4px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  line-height: 1;
+  margin: 4px;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,color 0.35s;
+  transition: background 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-1:not(:disabled):focus {
+  outline: 2px dotted #027EE1;
+  outline-offset: 3px;
+}
+
+.emotion-1:not(:disabled):hover,
+.emotion-1:not(:disabled):focus {
+  background: #004165;
+  color: #FFFFFF;
+}
+
+.emotion-1:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-1:not(:disabled):active {
+  background: #002032;
+  color: #FFFFFF;
+}
+
+.emotion-1:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-1 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0 {
+  padding-right: 8px;
+}
+
+<div>
+  <button
+    aria-label="Check Icon"
+    class="emotion-1"
+    icon="[object Object]"
+    id="testId"
+  >
+    <span
+      class="emotion-0"
+    >
+      Test Text
     </span>
     <svg
       class="icon"
@@ -1402,13 +1629,17 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 </div>
 `;
 
-exports[`IconButton Icon With Text Button Snapshot should render with medium size 1`] = `
+exports[`IconButton Icon With Text Button Snapshot should render with small size 1`] = `
 .emotion-1 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 5px;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
+  border-radius: 4px;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1418,33 +1649,29 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  height: 28px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
+  margin: 4px;
+  min-width: 0;
   overflow: hidden;
+  padding: 4px 8px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
   text-transform: uppercase;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 14px;
-  font-weight: 600;
-  height: 37px;
-  padding: 0 15px;
   width: auto;
-  background: #006298;
-  border: 0;
-  border-color: #006298;
-  color: #FFFFFF;
 }
 
 .emotion-1:not(:disabled):focus {
@@ -1459,13 +1686,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 }
 
 .emotion-1:not(:disabled):after {
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -1473,8 +1701,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #FFFFFF;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -1499,7 +1726,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 }
 
 .emotion-0 {
-  padding-right: 10px;
+  padding-right: 4px;
 }
 
 .emotion-1 {
@@ -1507,7 +1734,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 5px;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
+  border-radius: 4px;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1517,33 +1748,29 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  height: 28px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
+  margin: 4px;
+  min-width: 0;
   overflow: hidden;
+  padding: 4px 8px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
   text-transform: uppercase;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 14px;
-  font-weight: 600;
-  height: 37px;
-  padding: 0 15px;
   width: auto;
-  background: #006298;
-  border: 0;
-  border-color: #006298;
-  color: #FFFFFF;
 }
 
 .emotion-1:not(:disabled):focus {
@@ -1558,13 +1785,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 }
 
 .emotion-1:not(:disabled):after {
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -1572,8 +1800,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #FFFFFF;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -1598,7 +1825,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 }
 
 .emotion-0 {
-  padding-right: 10px;
+  padding-right: 4px;
 }
 
 <div>
@@ -1612,7 +1839,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
       class="emotion-0"
     >
       Test Text
-       
     </span>
     <svg
       class="icon"
@@ -1620,235 +1846,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
       height="16"
       viewBox="0 0 29.37 21.88"
       width="16"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
-      />
-    </svg>
-  </button>
-</div>
-`;
-
-exports[`IconButton Icon With Text Button Snapshot should render with small size 1`] = `
-.emotion-1 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  border-radius: 5px;
-  cursor: pointer;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
-  overflow: hidden;
-  position: relative;
-  text-align: center;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  text-transform: uppercase;
-  -webkit-transition: background 0.35s,color 0.35s;
-  transition: background 0.35s,color 0.35s;
-  vertical-align: middle;
-  touch-action: manipulation;
-  white-space: nowrap;
-  font-size: 12px;
-  font-weight: 600;
-  height: 29px;
-  padding: 0 10px;
-  width: auto;
-  background: #006298;
-  border: 0;
-  border-color: #006298;
-  color: #FFFFFF;
-}
-
-.emotion-1:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
-}
-
-.emotion-1:not(:disabled):hover,
-.emotion-1:not(:disabled):focus {
-  background: #004165;
-  color: #FFFFFF;
-}
-
-.emotion-1:not(:disabled):after {
-  border-radius: 50%;
-  content: '';
-  height: 32px;
-  left: 50%;
-  opacity: 0;
-  position: absolute;
-  padding: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #FFFFFF;
-}
-
-.emotion-1:not(:disabled):active {
-  background: #002032;
-  color: #FFFFFF;
-}
-
-.emotion-1:not(:disabled):active:after {
-  opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
-  transition: transform 0s;
-}
-
-.emotion-1 svg {
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-}
-
-.emotion-0 {
-  padding-right: 10px;
-}
-
-.emotion-1 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  border-radius: 5px;
-  cursor: pointer;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
-  overflow: hidden;
-  position: relative;
-  text-align: center;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  text-transform: uppercase;
-  -webkit-transition: background 0.35s,color 0.35s;
-  transition: background 0.35s,color 0.35s;
-  vertical-align: middle;
-  touch-action: manipulation;
-  white-space: nowrap;
-  font-size: 12px;
-  font-weight: 600;
-  height: 29px;
-  padding: 0 10px;
-  width: auto;
-  background: #006298;
-  border: 0;
-  border-color: #006298;
-  color: #FFFFFF;
-}
-
-.emotion-1:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
-}
-
-.emotion-1:not(:disabled):hover,
-.emotion-1:not(:disabled):focus {
-  background: #004165;
-  color: #FFFFFF;
-}
-
-.emotion-1:not(:disabled):after {
-  border-radius: 50%;
-  content: '';
-  height: 32px;
-  left: 50%;
-  opacity: 0;
-  position: absolute;
-  padding: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #FFFFFF;
-}
-
-.emotion-1:not(:disabled):active {
-  background: #002032;
-  color: #FFFFFF;
-}
-
-.emotion-1:not(:disabled):active:after {
-  opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
-  transition: transform 0s;
-}
-
-.emotion-1 svg {
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-}
-
-.emotion-0 {
-  padding-right: 10px;
-}
-
-<div>
-  <button
-    aria-label="Check Icon"
-    class="emotion-1"
-    icon="[object Object]"
-    id="testId"
-  >
-    <span
-      class="emotion-0"
-    >
-      Test Text
-       
-    </span>
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="12"
-      viewBox="0 0 29.37 21.88"
-      width="12"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
@@ -1866,7 +1863,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 5px;
+  background: #FFFFFF;
+  border: 2px solid;
+  border-color: #BFBFBF;
+  border-radius: 4px;
+  color: #3F3F3F;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1876,33 +1877,29 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
+  margin: 4px;
+  min-width: 96px;
   overflow: hidden;
+  padding: 12px 16px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
   text-transform: uppercase;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 14px;
-  font-weight: 600;
-  height: 37px;
-  padding: 0 15px;
   width: auto;
-  background: #FFFFFF;
-  border: 2px solid;
-  border-color: #BFBFBF;
-  color: #3F3F3F;
 }
 
 .emotion-1:not(:disabled):focus {
@@ -1917,13 +1914,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 }
 
 .emotion-1:not(:disabled):after {
+  background: #3F3F3F;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -1931,8 +1929,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #3F3F3F;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -1957,7 +1954,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 }
 
 .emotion-0 {
-  padding-right: 10px;
+  padding-right: 8px;
 }
 
 .emotion-1 {
@@ -1965,7 +1962,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 5px;
+  background: #FFFFFF;
+  border: 2px solid;
+  border-color: #BFBFBF;
+  border-radius: 4px;
+  color: #3F3F3F;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1975,33 +1976,29 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
+  margin: 4px;
+  min-width: 96px;
   overflow: hidden;
+  padding: 12px 16px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
   text-transform: uppercase;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 14px;
-  font-weight: 600;
-  height: 37px;
-  padding: 0 15px;
   width: auto;
-  background: #FFFFFF;
-  border: 2px solid;
-  border-color: #BFBFBF;
-  color: #3F3F3F;
 }
 
 .emotion-1:not(:disabled):focus {
@@ -2016,13 +2013,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 }
 
 .emotion-1:not(:disabled):after {
+  background: #3F3F3F;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -2030,8 +2028,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #3F3F3F;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -2056,7 +2053,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 }
 
 .emotion-0 {
-  padding-right: 10px;
+  padding-right: 8px;
 }
 
 <div>
@@ -2070,14 +2067,13 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
       class="emotion-0"
     >
       Test Text
-       
     </span>
     <svg
       class="icon"
       fill="currentColor"
-      height="16"
+      height="20"
       viewBox="0 0 29.37 21.88"
-      width="16"
+      width="20"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
@@ -2095,7 +2091,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 5px;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
+  border-radius: 4px;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2105,33 +2105,29 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
+  margin: 4px;
+  min-width: 96px;
   overflow: hidden;
+  padding: 12px 16px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
   text-transform: uppercase;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 14px;
-  font-weight: 600;
-  height: 37px;
-  padding: 0 15px;
   width: auto;
-  background: #006298;
-  border: 0;
-  border-color: #006298;
-  color: #FFFFFF;
 }
 
 .emotion-1:not(:disabled):focus {
@@ -2146,13 +2142,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 }
 
 .emotion-1:not(:disabled):after {
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -2160,8 +2157,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #FFFFFF;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -2186,7 +2182,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 }
 
 .emotion-0 {
-  padding-right: 10px;
+  padding-right: 8px;
 }
 
 .emotion-1 {
@@ -2194,7 +2190,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 5px;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
+  border-radius: 4px;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2204,33 +2204,29 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
+  margin: 4px;
+  min-width: 96px;
   overflow: hidden;
+  padding: 12px 16px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
   text-transform: uppercase;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 14px;
-  font-weight: 600;
-  height: 37px;
-  padding: 0 15px;
   width: auto;
-  background: #006298;
-  border: 0;
-  border-color: #006298;
-  color: #FFFFFF;
 }
 
 .emotion-1:not(:disabled):focus {
@@ -2245,13 +2241,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 }
 
 .emotion-1:not(:disabled):after {
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -2259,8 +2256,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #FFFFFF;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -2285,7 +2281,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 }
 
 .emotion-0 {
-  padding-right: 10px;
+  padding-right: 8px;
 }
 
 <div>
@@ -2299,14 +2295,13 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
       class="emotion-0"
     >
       Test Text
-       
     </span>
     <svg
       class="icon"
       fill="currentColor"
-      height="16"
+      height="20"
       viewBox="0 0 29.37 21.88"
-      width="16"
+      width="20"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
@@ -2320,7 +2315,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 
 exports[`IconButton Icon With Text Button Snapshot should render with updated text transform 1`] = `
 .emotion-0 {
-  padding-right: 10px;
+  padding-right: 8px;
 }
 
 .emotion-1 {
@@ -2328,7 +2323,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 5px;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
+  border-radius: 4px;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2338,33 +2337,29 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
+  margin: 4px;
+  min-width: 96px;
   overflow: hidden;
+  padding: 12px 16px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
   text-transform: none;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 14px;
-  font-weight: 600;
-  height: 37px;
-  padding: 0 15px;
   width: auto;
-  background: #006298;
-  border: 0;
-  border-color: #006298;
-  color: #FFFFFF;
 }
 
 .emotion-1:not(:disabled):focus {
@@ -2379,13 +2374,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 }
 
 .emotion-1:not(:disabled):after {
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -2393,8 +2389,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #FFFFFF;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -2419,7 +2414,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 }
 
 .emotion-0 {
-  padding-right: 10px;
+  padding-right: 8px;
 }
 
 .emotion-1 {
@@ -2427,7 +2422,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 5px;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
+  border-radius: 4px;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2437,33 +2436,29 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
+  margin: 4px;
+  min-width: 96px;
   overflow: hidden;
+  padding: 12px 16px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
   text-transform: none;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 14px;
-  font-weight: 600;
-  height: 37px;
-  padding: 0 15px;
   width: auto;
-  background: #006298;
-  border: 0;
-  border-color: #006298;
-  color: #FFFFFF;
 }
 
 .emotion-1:not(:disabled):focus {
@@ -2478,13 +2473,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 }
 
 .emotion-1:not(:disabled):after {
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -2492,8 +2488,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #FFFFFF;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -2528,14 +2523,13 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
       class="emotion-0"
     >
       Test Text
-       
     </span>
     <svg
       class="icon"
       fill="currentColor"
-      height="16"
+      height="20"
       viewBox="0 0 29.37 21.88"
-      width="16"
+      width="20"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
@@ -2549,7 +2543,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 
 exports[`IconButton Icon With Text Button Snapshot should render with updated variant 1`] = `
 .emotion-0 {
-  padding-right: 10px;
+  padding-right: 8px;
 }
 
 .emotion-1 {
@@ -2557,7 +2551,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 5px;
+  background: rgba(0,0,0,0);
+  border: 2px solid;
+  border-radius: 4px;
+  color: #006298;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2567,32 +2564,29 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
+  margin: 4px;
+  min-width: 96px;
   overflow: hidden;
+  padding: 12px 16px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
   text-transform: uppercase;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 14px;
-  font-weight: 600;
-  height: 37px;
-  padding: 0 15px;
   width: auto;
-  background: rgba(0,0,0,0);
-  border: 2px solid;
-  color: #006298;
 }
 
 .emotion-1:not(:disabled):focus {
@@ -2607,13 +2601,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 }
 
 .emotion-1:not(:disabled):after {
+  background: #006298;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -2621,8 +2616,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #006298;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -2647,7 +2641,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 }
 
 .emotion-0 {
-  padding-right: 10px;
+  padding-right: 8px;
 }
 
 .emotion-1 {
@@ -2655,7 +2649,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 5px;
+  background: rgba(0,0,0,0);
+  border: 2px solid;
+  border-radius: 4px;
+  color: #006298;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2665,32 +2662,29 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -ms-flex-negative: 0;
   flex-shrink: 0;
   font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  min-width: 5.625em;
+  margin: 4px;
+  min-width: 96px;
   overflow: hidden;
+  padding: 12px 16px;
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
   text-transform: uppercase;
+  touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: 14px;
-  font-weight: 600;
-  height: 37px;
-  padding: 0 15px;
   width: auto;
-  background: rgba(0,0,0,0);
-  border: 2px solid;
-  color: #006298;
 }
 
 .emotion-1:not(:disabled):focus {
@@ -2705,13 +2699,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 }
 
 .emotion-1:not(:disabled):after {
+  background: #006298;
   border-radius: 50%;
   content: '';
-  height: 32px;
+  height: 28px;
   left: 50%;
   opacity: 0;
-  position: absolute;
   padding: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%,-50%) scale(1);
   -ms-transform: translate(-50%,-50%) scale(1);
@@ -2719,8 +2714,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 32px;
-  background: #006298;
+  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
@@ -2755,14 +2749,13 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
       class="emotion-0"
     >
       Test Text
-       
     </span>
     <svg
       class="icon"
       fill="currentColor"
-      height="16"
+      height="20"
       viewBox="0 0 29.37 21.88"
-      width="16"
+      width="20"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

@@ -24,13 +24,14 @@ export interface TextareaProps
 }
 
 const Container = styled.div`
-  margin-bottom: 10px;
+  margin-bottom: ${props => props.theme.spaceScale.spacing03};
 `;
 
 const StyledTextArea = styled.textarea<TextareaProps>`
   ${inputBaseStyles};
   height: 4.5em;
-  padding: 5px 8px 0;
+  padding: ${props =>
+    `${props.theme.spaceScale.spacing02} ${props.theme.spaceScale.spacing03}`};
 `;
 
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
@@ -73,7 +74,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     }
 
     return (
-      <Container style={containerStyle}>
+      <Container style={containerStyle} theme={theme}>
         <Label isInverse={isInverse} htmlFor={id} style={labelStyle}>
           {isLabelVisuallyHidden ? (
             <HiddenLabelText>{labelText}</HiddenLabelText>

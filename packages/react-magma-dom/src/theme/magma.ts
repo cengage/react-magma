@@ -45,6 +45,12 @@ export interface Breakpoints {
   xl: number;
 }
 
+export interface IconSizes {
+  small: number;
+  medium: number;
+  large: number;
+}
+
 export interface SpacingScale {
   spacing01: string;
   spacing02: string;
@@ -57,6 +63,9 @@ export interface SpacingScale {
   spacing09: string;
   spacing10: string;
   spacing11: string;
+  spacing12: string;
+  spacing13: string;
+  spacing14: string;
 }
 
 export interface TypographyExpressiveSizes {
@@ -121,6 +130,7 @@ export interface ThemeInterface {
   colors: Colors;
   direction: string;
   headingFont: string;
+  iconSizes: IconSizes;
   spaceScale: SpacingScale;
   headingExpressiveFont: string;
   headingNarrativeFont: string;
@@ -252,12 +262,20 @@ export const magma = {
     spacing04: '12px',
     spacing05: '16px',
     spacing06: '24px',
-    spacing07: '32px',
-    spacing08: '40px',
-    spacing09: '48px',
-    spacing10: '64px',
-    spacing11: '96px',
-    spacing12: '160px',
+    spacing07: '28px',
+    spacing08: '32px',
+    spacing09: '40px',
+    spacing10: '48px',
+    spacing11: '56px',
+    spacing12: '64px',
+    spacing13: '96px',
+    spacing14: '160px',
+  },
+
+  iconSizes: {
+    small: 16,
+    medium: 20,
+    large: 28,
   },
 
   // Typography

@@ -11,6 +11,7 @@ import {
 } from '../Button';
 import { IconProps } from 'react-magma-icons';
 import { omit, Omit, XOR } from '../../utils';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 export enum ButtonIconPosition {
   left = 'left',
@@ -35,32 +36,32 @@ export interface SpanProps {
 }
 
 const SpanTextLeft = styled.span<SpanProps>`
-  padding-right: ${props => (props.size === 'large' ? '15px' : '10px')};
+  padding-right: ${props => getIconPadding(props)};
 `;
 
 const SpanTextRight = styled.span<SpanProps>`
-  padding-left: ${props => (props.size === 'large' ? '15px' : '10px')};
+  padding-left: ${props => getIconPadding(props)};
 `;
 
-function getIconSize(size) {
-  switch (size) {
+function getIconPadding(props) {
+  switch (props.size) {
     case 'large':
-      return 24;
+      return props.theme.spaceScale.spacing05;
     case 'small':
-      return 14;
+      return props.theme.spaceScale.spacing02;
     default:
-      return 18;
+      return props.theme.spaceScale.spacing03;
   }
 }
 
-function getIconWithTextSize(size) {
+function getIconSize(size, theme) {
   switch (size) {
     case 'large':
-      return 20;
+      return theme.iconSizes.large;
     case 'small':
-      return 12;
+      return theme.iconSizes.small;
     default:
-      return 16;
+      return theme.iconSizes.medium;
   }
 }
 
@@ -74,6 +75,8 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     let iconPosition;
     let children;
     const { color, shape, size, textTransform, variant, ...rest } = props;
+
+    const theme = React.useContext(ThemeContext);
 
     if (instanceOfIconOnly(props)) {
       icon = props.icon;
@@ -98,7 +101,9 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         >
           {React.Children.only(
             React.cloneElement(icon, {
-              size: icon.props.size ? icon.props.size : getIconSize(size),
+              size: icon.props.size
+                ? icon.props.size
+                : getIconSize(size, theme),
             })
           )}
         </StyledButton>
@@ -117,15 +122,19 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         variant={variant ? variant : ButtonVariant.solid}
       >
         {iconPosition === ButtonIconPosition.right && (
-          <SpanTextLeft size={size}>{children} </SpanTextLeft>
+          <SpanTextLeft size={size} theme={theme}>
+            {children}
+          </SpanTextLeft>
         )}
         {React.Children.only(
           React.cloneElement(icon, {
-            size: icon.props.size ? icon.props.size : getIconWithTextSize(size),
+            size: icon.props.size ? icon.props.size : getIconSize(size, theme),
           })
         )}
         {iconPosition !== ButtonIconPosition.right && (
-          <SpanTextRight size={size}>{children}</SpanTextRight>
+          <SpanTextRight size={size} theme={theme}>
+            {children}
+          </SpanTextRight>
         )}
       </StyledButton>
     );
