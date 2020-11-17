@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.126](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.125...v2.0.0-beta.126) (2020-11-17)
+
+
+### Bug Fixes
+
+* **card:** CardBodyProps isnt a Heading ([93be975](http://stash.cengage.com:7999/FRONT/react-magma/commits/93be975dfb2334c5f0f9c5ee88dec85ed03b6446))
+
+
+### Features
+
+* **docs:** generate prop tables from ts definitions ([7f34e1e](http://stash.cengage.com:7999/FRONT/react-magma/commits/7f34e1e142553fbeb8052abfb628a29c9ea954b9))
+* **docs:** improve props table generation ([4d52c61](http://stash.cengage.com:7999/FRONT/react-magma/commits/4d52c61aff0e90f68d69340e2250a56c2ebb2311))
+* **docs:** sort prop tables ([1a19fd7](http://stash.cengage.com:7999/FRONT/react-magma/commits/1a19fd749ba1c548d07d76f5230ea64b110c1f3e))
+
+
+
+
+
 # [2.0.0-beta.125](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.124...v2.0.0-beta.125) (2020-11-13)
 
 **Note:** Version bump only for package react-magma
