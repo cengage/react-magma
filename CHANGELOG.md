@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.129](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.128...v2.0.0-beta.129) (2020-11-17)
+
+
+### Features
+
+* **component:** spacing updates ([0c4664e](http://stash.cengage.com:7999/FRONT/react-magma/commits/0c4664ef330aa410cfedfd65970999fbbd15e633))
+* **component:** theme values ([95d4196](http://stash.cengage.com:7999/FRONT/react-magma/commits/95d4196737092379f019302248c86ca09d71192b))
+
+
+
+
+
 # [2.0.0-beta.128](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.127...v2.0.0-beta.128) (2020-11-17)
 
 
