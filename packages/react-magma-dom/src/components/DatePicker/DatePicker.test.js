@@ -38,7 +38,7 @@ describe('Date Picker', () => {
     expect(getByLabelText('Date Picker Label')).not.toBeNull();
     expect(getByLabelText('Date Picker Label')).toHaveAttribute(
       'placeholder',
-      'MM/dd/yyyy'
+      'mm/dd/yyyy'
     );
   });
 
