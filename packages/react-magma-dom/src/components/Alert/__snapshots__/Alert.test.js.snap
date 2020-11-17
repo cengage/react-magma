@@ -53,10 +53,12 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   line-height: 1;
   min-width: 0;
   padding: 0;
+  -webkit-align-self: stretch;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
   border-radius: 0 4px 4px 0;
   color: inherit;
-  height: calc(100% - 6px);
-  margin: 3px;
+  height: auto;
   padding: 0 16px;
   width: auto;
 }
@@ -180,10 +182,12 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   line-height: 1;
   min-width: 0;
   padding: 0;
+  -webkit-align-self: stretch;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
   border-radius: 0 4px 4px 0;
   color: inherit;
-  height: calc(100% - 6px);
-  margin: 3px;
+  height: auto;
   padding: 0 16px;
   width: auto;
 }

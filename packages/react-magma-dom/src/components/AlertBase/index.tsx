@@ -209,9 +209,10 @@ const IconWrapper = styled.span<{ isToast?: boolean; theme: any }>`
 
 const ProgressRingWrapper = styled.div`
   opacity: 0.7;
+  margin-top: ${props => props.theme.spaceScale.spacing01};
   position: absolute;
-  top: 6px;
-  right: 2px;
+  top: ${props => props.theme.spaceScale.spacing02};
+  right: ${props => props.theme.spaceScale.spacing02};
 `;
 
 const DismissibleIconWrapper = styled.span<AlertBaseProps>`
@@ -227,11 +228,11 @@ const shouldForwardProp = prop => {
 const DismissButton = styled(IconButton, { shouldForwardProp })<{
   alertVariant?: AlertVariant;
 }>`
+  align-self: stretch;
   border-radius: 0 ${props => props.theme.borderRadius}
     ${props => props.theme.borderRadius} 0;
   color: inherit;
-  height: calc(100% - 6px);
-  margin: 3px;
+  height: auto;
   padding: 0 ${props => props.theme.spaceScale.spacing05};
   width: auto;
 
@@ -334,7 +335,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
           {isDismissible && (
             <DismissibleIconWrapper variant={variant} theme={theme}>
               {hasTimerRing && isToast && (
-                <ProgressRingWrapper>
+                <ProgressRingWrapper theme={theme}>
                   <ProgressRing
                     color={
                       variant === AlertVariant.warning

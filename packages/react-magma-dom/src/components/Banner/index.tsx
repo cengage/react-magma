@@ -76,11 +76,11 @@ const shouldForwardProp = prop => {
 const DismissButton = styled(IconButton, { shouldForwardProp })<{
   alertVariant?: AlertVariant;
 }>`
+  align-self: stretch;
   border-radius: 0;
   color: ${({ alertVariant, theme }) =>
     alertVariant === 'warning' ? theme.colors.neutral : theme.colors.neutral08};
-  height: calc(100% - 6px);
-  margin: 3px;
+  height: auto;
   padding: 0 ${props => props.theme.spaceScale.spacing05};
   width: auto;
 
