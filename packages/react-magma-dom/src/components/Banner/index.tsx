@@ -7,6 +7,7 @@ import { CrossIcon } from 'react-magma-icons';
 import { Button, ButtonSize, ButtonVariant, ButtonColor } from '../Button';
 import { IconButton } from '../IconButton';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { I18nContext } from '../../i18n';
 
 export interface BannerProps extends AlertProps {
   actionButtonText?: string;
@@ -38,7 +39,8 @@ const BannerContents = styled.div`
   display: flex;
   flex-grow: 1;
   justify-content: center;
-  padding: 13px 15px;
+  padding: ${props => props.theme.spaceScale.spacing05}
+    ${props => props.theme.spaceScale.spacing04};
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     justify-content: flex-start;
@@ -65,7 +67,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
     alertVariant === 'warning' ? theme.colors.neutral : theme.colors.neutral08};
   height: calc(100% - 6px);
   margin: 3px;
-  padding: 0 15px;
+  padding: 0 ${props => props.theme.spaceScale.spacing05};
   width: auto;
 
   &&:focus:not(:disabled) {
@@ -97,19 +99,19 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
 
 const IconWrapper = styled.span`
   display: inline-flex;
-  padding-right: 10px;
+  padding-right: ${props => props.theme.spaceScale.spacing03};
 
-  @media (max-width: 600px) {
+  @media (max-width: ${props => props.theme.breakpoints.small}px) {
     display: none;
   }
 `;
 
-function renderIcon(variant = 'info') {
+function renderIcon(variant = 'info', theme: any) {
   const Icon = VARIANT_ICON[variant];
 
   return (
-    <IconWrapper>
-      <Icon size={20} />
+    <IconWrapper theme={theme}>
+      <Icon size={theme.iconSizes.medium} />
     </IconWrapper>
   );
 }
@@ -142,6 +144,7 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
     } = props;
 
     const theme = React.useContext(ThemeContext);
+    const i18n = React.useContext(I18nContext);
 
     return (
       <StyledBanner
@@ -152,14 +155,14 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
         variant={variant}
       >
         <BannerContents theme={theme}>
-          {renderIcon(variant)}
+          {renderIcon(variant, theme)}
           {children}
           {actionButtonText && actionButtonOnClick && (
             <Button
               color={getButtonColor(variant)}
               isInverse
               onClick={actionButtonOnClick}
-              style={{ margin: '0 0 0 30px' }}
+              style={{ margin: `0 0 0 ${theme.spaceScale.spacing08}` }}
               size={ButtonSize.small}
             >
               {actionButtonText}
@@ -172,7 +175,7 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
             <DismissButton
               alertVariant={variant}
               aria-label={
-                closeAriaLabel ? closeAriaLabel : 'Close this message'
+                closeAriaLabel ? closeAriaLabel : i18n.alert.dismissAriaLabel
               }
               icon={<CrossIcon size={13} />}
               isInverse
