@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.127](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.126...v2.0.0-beta.127) (2020-11-17)
+
+
+### Bug Fixes
+
+* **ci:** dont run the test tests twice ([e15ff1f](http://stash.cengage.com:7999/FRONT/react-magma/commits/e15ff1f681df0cf20bd5f230b584f1741ea68862))
+
+
+### Features
+
+* **password:** autoCapitalize and autoComplete on unmasked password ([413b82c](http://stash.cengage.com:7999/FRONT/react-magma/commits/413b82ccbd1eef5b4474ddb51229c692cefec39f))
+
+
+
+
+
 # [2.0.0-beta.126](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.125...v2.0.0-beta.126) (2020-11-17)
 
 
