@@ -1,6 +1,9 @@
 ---
 pageTitle: Breakpoints Container API
 title: Breakpoints Container
+props:
+  - BreakpointProps
+  - BreakpointContainerProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -136,52 +139,13 @@ Custom breakpoints can be shown by using the `breakpoints` object prop.
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    breakpoints: {
-      type: {
-        name: 'object',
-      },
-      required: false,
-      description:
-        'Object that defines the pixel size of individual breakpoints',
-      defaultValue: '{ xs: 0, small: 600, medium: 768, large: 1024, xl: 1200 }',
-    },
-  }}
-/>
+<BreakpointContainerProps />
 
 ## Breakpoint Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**
 
-<SimplePropsTable
-  propertyValues={{
-    screenSize: {
-      type: {
-        name: 'enum',
-        options: [
-          'BreakpointScreenSize.xs',
-          'BreakpointScreenSize.small',
-          'BreakpointScreenSize.medium',
-          'BreakpointScreenSize.large',
-          'BreakpointScreenSize.xl',
-        ],
-      },
-      required: false,
-      description:
-        'The relative screen size for the breakpoint.  Will go from pixel width specified up to the next breakpoint.',
-      defaultValue: 'xs',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-  }}
-/>
+<BreakpointProps />
 
 export default props => (
   <ScopeableLayout

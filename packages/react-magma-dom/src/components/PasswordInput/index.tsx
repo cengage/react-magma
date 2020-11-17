@@ -35,15 +35,14 @@ export interface PasswordInputProps
 }
 
 const Container = styled.div`
-  margin-bottom: 10px;
+  margin-bottom: ${props => props.theme.spaceScale.spacing03};
 `;
 
 const PasswordMaskWrapper = styled.span`
-  left: auto;
-  right: 10px;
+  margin: 0;
   position: absolute;
-  margin-top: -23px;
-  top: 50%;
+  right: ${props => props.theme.spaceScale.spacing02};
+  top: ${props => props.theme.spaceScale.spacing02};
 `;
 
 export const PasswordInput = React.forwardRef<
@@ -105,7 +104,7 @@ export const PasswordInput = React.forwardRef<
   const theme = React.useContext(ThemeContext);
 
   return (
-    <Container style={containerStyle}>
+    <Container style={containerStyle} theme={theme}>
       <Label
         isInverse={isInverse}
         htmlFor={id}
@@ -119,6 +118,8 @@ export const PasswordInput = React.forwardRef<
         )}
       </Label>
       <InputBase
+        autoCorrect="off"
+        autoCapitalize="none"
         {...other}
         aria-describedby={
           descriptionId ? descriptionId : props['aria-describedby']
@@ -133,7 +134,7 @@ export const PasswordInput = React.forwardRef<
         type={passwordShown ? InputType.text : InputType.password}
       >
         {!isPasswordMaskButtonHidden && (
-          <PasswordMaskWrapper>
+          <PasswordMaskWrapper theme={theme}>
             <Button
               aria-label={
                 passwordShown
@@ -142,11 +143,12 @@ export const PasswordInput = React.forwardRef<
               }
               onClick={togglePasswordShown}
               style={{
-                height: '30px',
-                marginTop: '8px',
-                marginRight: '0',
-                left: '7px',
-                borderRadius: '3px',
+                borderRadius: theme.borderRadius,
+                height:
+                  inputSize == InputSize.large
+                    ? theme.spaceScale.spacing10
+                    : theme.spaceScale.spacing08,
+                margin: 0,
               }}
               type={ButtonType.button}
               variant={ButtonVariant.link}

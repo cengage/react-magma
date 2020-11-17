@@ -169,7 +169,7 @@ describe('Dropdown', () => {
 
     expect(container.querySelector('span')).toHaveStyleRule(
       'padding-left',
-      '10px'
+      magma.spaceScale.spacing03
     );
 
     expect(queryByTestId('caretUp')).not.toBeInTheDocument();
@@ -188,7 +188,7 @@ describe('Dropdown', () => {
 
     expect(container.querySelector('span')).toHaveStyleRule(
       'padding-right',
-      '10px'
+      magma.spaceScale.spacing03
     );
   });
 

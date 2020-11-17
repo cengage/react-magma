@@ -191,10 +191,18 @@ The `inputSize` prop can be used to control the input size. Options are `medium`
 ```.jsx
 <>
   <Input
-    iconPosition='right'
+    labelText='Input large with Icon on Left'
     inputSize='large'
-    labelText='Large Input'
-    icon={<Search2Icon />} />
+    icon={<EnvelopeOIcon />}
+    type="email" />
+
+  <Input
+    labelText='Input large with Clickable Icon on Right'
+    iconAriaLabel="Calendar"
+    inputSize='large'
+    onIconClick={()=>{alert('Icon clicked')}}
+    icon={<CalendarIcon />} />
+
   <Input
     errorMessage='Error'
     inputSize='large'

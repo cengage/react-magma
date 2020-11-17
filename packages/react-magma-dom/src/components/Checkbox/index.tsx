@@ -23,16 +23,60 @@ export enum CheckboxTextPosition {
 
 export interface CheckboxProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
+  /**
+   * If true, element is checked (i.e. selected)
+   * @default false
+   */
+  checked?: boolean;
+  /**
+   * Hex code for the background color
+   * @default #0000FF
+   */
   color?: string;
+  /**
+   * Style properties for the component container element
+   */
   containerStyle?: React.CSSProperties;
+  /**
+   * If true, checkbox is checked on first render
+   */
   defaultChecked?: boolean;
+  /**
+   * If true, element is disabled
+   * @default false
+   */
+  disabled?: boolean;
+  /**
+   * Content of the error message for an individual checkbox. If a value is provided, the input will be styled as an error state and the error message will display.
+   */
   errorMessage?: React.ReactNode;
+  /*
+   * @internal
+   */
+  hasError?: boolean;
+  /**
+   * Style properties for the checkbox element
+   */
   inputStyle?: React.CSSProperties;
   isInverse?: boolean;
+  /**
+   * If true, label text will be hidden visually, but will still be read by assistive technology
+   * @default false
+   */
   isTextVisuallyHidden?: boolean;
+  /**
+   * Style properties for the label element
+   */
   labelStyle?: React.CSSProperties;
+  /**
+   * Content of label; can be node or string
+   */
   labelText: React.ReactNode;
   testId?: string;
+  /**
+   * Whether the label appears to the left of the right of the checkbox
+   * @default CheckboxTextPosition.right
+   */
   textPosition?: CheckboxTextPosition;
 }
 

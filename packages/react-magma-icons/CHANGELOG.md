@@ -3,59 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.0.0-beta.118](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.117...v2.0.0-beta.118) (2020-11-09)
+# [2.0.0-beta.126](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.125...v2.0.0-beta.126) (2020-11-17)
 
+**Note:** Version bump only for package react-magma-icons
+
+# [2.0.0-beta.118](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.117...v2.0.0-beta.118) (2020-11-09)
 
 ### Bug Fixes
 
-* **icons:** don't extract props for icon render ([0f71d98](http://stash.cengage.com:7999/FRONT/react-magma/commits/0f71d98db6979a96e48c1623809d3c42d127de44))
-
-
-
-
+- **icons:** don't extract props for icon render ([0f71d98](http://stash.cengage.com:7999/FRONT/react-magma/commits/0f71d98db6979a96e48c1623809d3c42d127de44))
 
 # [2.0.0-beta.113](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.112...v2.0.0-beta.113) (2020-10-29)
 
 **Note:** Version bump only for package react-magma-icons
 
-
-
-
-
 # [2.0.0-beta.94](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.93...v2.0.0-beta.94) (2020-10-01)
 
 **Note:** Version bump only for package react-magma-icons
-
-
-
-
 
 # [2.0.0-beta.93](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.92...v2.0.0-beta.93) (2020-10-01)
 
 **Note:** Version bump only for package react-magma-icons
 
-
-
-
-
 # [2.0.0-beta.80](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.79...v2.0.0-beta.80) (2020-09-23)
-
 
 ### Bug Fixes
 
-* **icons:** spread props on icons ([5d6209b](http://stash.cengage.com:7999/FRONT/react-magma/commits/5d6209b2416079d9a86d8e6b3b23c26f22d29616))
-
-
-
-
+- **icons:** spread props on icons ([5d6209b](http://stash.cengage.com:7999/FRONT/react-magma/commits/5d6209b2416079d9a86d8e6b3b23c26f22d29616))
 
 # [2.0.0-beta.79](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.78...v2.0.0-beta.79) (2020-09-23)
 
 **Note:** Version bump only for package react-magma-icons
-
-
-
-
 
 # [2.0.0-beta.76](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.75...v2.0.0-beta.76) (2020-09-15)
 

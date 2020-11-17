@@ -26,7 +26,7 @@ const StyledLabel = styled.label<LabelProps>`
     props.size === InputSize.large
       ? props.theme.typeScale.size03.lineHeight
       : props.theme.typeScale.size02.lineHeight};
-  margin-bottom: 5px;
+  margin-bottom: ${props => props.theme.spaceScale.spacing03};
   max-width: 100%;
   text-align: left;
 `;

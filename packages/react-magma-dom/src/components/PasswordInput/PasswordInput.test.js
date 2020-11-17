@@ -179,7 +179,7 @@ describe('sizes', () => {
 
     expect(label).toHaveStyleRule('font-size', magma.typeScale.size02.fontSize);
     expect(input).toHaveStyleRule('font-size', magma.typeScale.size03.fontSize);
-    expect(input).toHaveStyleRule('height', '40px');
+    expect(input).toHaveStyleRule('height', magma.spaceScale.spacing09);
   });
 
   it('should render a large input with correct styles', () => {
@@ -194,8 +194,36 @@ describe('sizes', () => {
     expect(label).toHaveStyleRule('font-size', magma.typeScale.size03.fontSize);
 
     expect(input).toHaveStyleRule('font-size', magma.typeScale.size04.fontSize);
-    expect(input).toHaveStyleRule('height', '58px');
-    expect(input).toHaveStyleRule('padding', '0 15px');
+    expect(input).toHaveStyleRule('height', magma.spaceScale.spacing11);
+    expect(input).toHaveStyleRule('padding', `0 ${magma.spaceScale.spacing04}`);
+  });
+
+  it('should default to no autocomplete', () => {
+    const labelText = 'test label';
+    const { container, getByLabelText } = render(
+      <PasswordInput labelText={labelText} />
+    );
+
+    const input = getByLabelText(labelText);
+
+    expect(input).toHaveAttribute('autoCorrect', 'off');
+    expect(input).toHaveAttribute('autoCapitalize', 'none');
+  });
+
+  it('should allow autocomplete to be overwritten', () => {
+    const labelText = 'test label';
+    const { container, getByLabelText } = render(
+      <PasswordInput
+        autoCapitalize="sentences"
+        autoCorrect="on"
+        labelText={labelText}
+      />
+    );
+
+    const input = getByLabelText(labelText);
+
+    expect(input).toHaveAttribute('autoCorrect', 'on');
+    expect(input).toHaveAttribute('autoCapitalize', 'sentences');
   });
 });
 

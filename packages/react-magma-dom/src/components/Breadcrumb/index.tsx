@@ -3,6 +3,9 @@ import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 
+/**
+ * @children required
+ */
 export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
   isInverse?: boolean;
   testId?: string;
