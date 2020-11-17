@@ -317,7 +317,10 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     }
 
     const { placeholder, testId, ...rest } = props;
-    const other = omit(['onDateChange', 'onInputChange', 'onInputBlur'], rest);
+    const other = omit(
+      ['onDateChange', 'onInputChange', 'onInputBlur', 'onInputFocus'],
+      rest
+    );
 
     const minDate = getDateFromString(props.minDate);
     const maxDate = getDateFromString(props.maxDate);
@@ -365,7 +368,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             onBlur={handleInputBlur}
             onFocus={handleInputFocus}
             onKeyDown={handleInputKeyDown}
-            placeholder={placeholder ? placeholder : dateFormat}
+            placeholder={placeholder ? placeholder : dateFormat.toLowerCase()}
             type={InputType.text}
             value={inputValue}
           />

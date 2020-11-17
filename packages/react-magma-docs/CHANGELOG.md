@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.129](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.128...v2.0.0-beta.129) (2020-11-17)
+
+**Note:** Version bump only for package react-magma-docs
+
+
+
+
+
+# [2.0.0-beta.128](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.127...v2.0.0-beta.128) (2020-11-17)
+
+
+### Features
+
+* **input:** apply new spacing scale to inputs ([b6f75e4](http://stash.cengage.com:7999/FRONT/react-magma/commits/b6f75e4b075dc2c4efff986547b68785e0361c7d))
+* **spacing scale:** addition spacing scale value ([b62c677](http://stash.cengage.com:7999/FRONT/react-magma/commits/b62c677ccaf18534ba72578d60c1569205d07a4b))
+
+
+
+
+
 # [2.0.0-beta.127](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.126...v2.0.0-beta.127) (2020-11-17)
 
 **Note:** Version bump only for package react-magma-docs
