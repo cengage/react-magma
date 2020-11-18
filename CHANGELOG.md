@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.132](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.131...v2.0.0-beta.132) (2020-11-18)
+
+
+### Features
+
+* **alert, banner:** update styles with spacing scale ([e4bdc19](http://stash.cengage.com:7999/FRONT/react-magma/commits/e4bdc19927d6cc14cc5c949d4ef2e8bbc041162c))
+* **alert, banner:** use new spacing scale for alert, banner ([7bdf07f](http://stash.cengage.com:7999/FRONT/react-magma/commits/7bdf07f75f88b642dccd506c0e4d8cf20a602b1b))
+
+
+
+
+
 # [2.0.0-beta.131](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.130...v2.0.0-beta.131) (2020-11-17)
 
 **Note:** Version bump only for package react-magma
