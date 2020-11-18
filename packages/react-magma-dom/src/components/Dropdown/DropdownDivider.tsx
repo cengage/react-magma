@@ -5,7 +5,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 const StyledHr = styled.hr`
   background: ${props => props.theme.colors.neutral06};
   height: 1px;
-  margin: 5px 0;
+  margin: ${props => props.theme.spaceScale.spacing02} 0;
 `;
 
 export const DropdownDivider: React.FunctionComponent = () => {

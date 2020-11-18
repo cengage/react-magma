@@ -7,9 +7,9 @@ const StyledDiv = styled.div`
   font-size: ${props => props.theme.typeScale.size01.fontSize};
   line-height: ${props => props.theme.typeScale.size01.lineHeight};
   font-weight: bold;
-  line-height: 20px;
   margin: 0;
-  padding: 10px 20px 5px;
+  padding: ${props =>
+    `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing02}`};
   text-transform: uppercase;
 `;
 

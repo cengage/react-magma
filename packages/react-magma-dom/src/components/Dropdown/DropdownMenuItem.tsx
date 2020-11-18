@@ -22,15 +22,20 @@ const StyledItem = styled.div<{
   isInactive?: boolean;
   value?: string;
 }>`
+  align-items: center;
   color: ${props =>
     props.disabled
       ? props.theme.colors.disabledText
       : props.theme.colors.neutral};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   display: flex;
-  line-height: 20px;
+  font-size: ${props => props.theme.typeScale.size03.fontSize};
+  line-height: ${props => props.theme.typeScale.size03.lineHeight};
   margin: 0;
-  padding: ${props => (props.isInactive ? '10px 20px 10px 55px' : '10px 20px')};
+  padding: ${props =>
+    props.isInactive
+      ? `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing11}`
+      : `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05}`};
   white-space: ${props => (props.isFixedWidth ? 'normal' : 'nowrap')};
 
   &:hover,
@@ -46,11 +51,11 @@ const StyledItem = styled.div<{
 const IconWrapper = styled.span`
   color: ${props => props.theme.colors.neutral03};
   display: inline-flex;
-  margin-right: 15px;
+  margin-right: ${props => props.theme.spaceScale.spacing05};
 
   svg {
-    height: 20px;
-    width: 20px;
+    height: ${props => props.theme.iconSizes.medium}px;
+    width: ${props => props.theme.iconSizes.medium}px;
   }
 `;
 
