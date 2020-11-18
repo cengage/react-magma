@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.133](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.132...v2.0.0-beta.133) (2020-11-18)
+
+
+### Features
+
+* **dropdown:** update dropdown spacing ([2204d0f](http://stash.cengage.com:7999/FRONT/react-magma/commits/2204d0fe45560cb058ff891a4d842bb20e984b23))
+
+
+
+
+
 # [2.0.0-beta.132](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.131...v2.0.0-beta.132) (2020-11-18)
 
 **Note:** Version bump only for package react-magma-docs
