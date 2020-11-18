@@ -83,7 +83,10 @@ describe('Dropdown', () => {
     );
 
     expect(getByTestId('caretLeft')).toBeInTheDocument();
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('top', '5px');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule(
+      'top',
+      magma.spaceScale.spacing02
+    );
     expect(getByTestId('dropdownContent')).toHaveStyleRule('right', '100%');
   });
 
@@ -96,7 +99,10 @@ describe('Dropdown', () => {
     );
 
     expect(getByTestId('caretRight')).toBeInTheDocument();
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('top', '5px');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule(
+      'top',
+      magma.spaceScale.spacing02
+    );
     expect(getByTestId('dropdownContent')).toHaveStyleRule('left', '100%');
   });
 
@@ -109,7 +115,10 @@ describe('Dropdown', () => {
     );
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('left', 'auto');
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('right', '5px');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule(
+      'right',
+      magma.spaceScale.spacing02
+    );
   });
 
   it('should render a top-aligned menu', () => {
@@ -121,7 +130,10 @@ describe('Dropdown', () => {
     );
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('top', 'auto');
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('bottom', '5px');
+    expect(getByTestId('dropdownContent')).toHaveStyleRule(
+      'bottom',
+      magma.spaceScale.spacing02
+    );
   });
 
   it('should render a split dropdown', () => {
@@ -626,14 +638,17 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
+    const activeStylePadding = `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05}`;
+    const inActiveStylePadding = `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing11}`;
+
     fireEvent.click(getByText('Toggle'));
 
-    expect(getByText('aaa')).toHaveStyleRule('padding', '10px 20px 10px 55px');
-    expect(getByText('bbb')).toHaveStyleRule('padding', '10px 20px');
+    expect(getByText('aaa')).toHaveStyleRule('padding', inActiveStylePadding);
+    expect(getByText('bbb')).toHaveStyleRule('padding', activeStylePadding);
     expect(container.querySelector('svg')).toBeInTheDocument();
 
     fireEvent.click(getByText('aaa'));
-    expect(getByText('aaa')).toHaveStyleRule('padding', '10px 20px');
-    expect(getByText('bbb')).toHaveStyleRule('padding', '10px 20px 10px 55px');
+    expect(getByText('aaa')).toHaveStyleRule('padding', activeStylePadding);
+    expect(getByText('bbb')).toHaveStyleRule('padding', inActiveStylePadding);
   });
 });
