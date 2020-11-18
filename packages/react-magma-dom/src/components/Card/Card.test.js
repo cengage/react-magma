@@ -55,7 +55,7 @@ describe('Card', () => {
 
     const body = getByText(TEXT);
 
-    expect(body).toHaveStyleRule('padding', '20px');
+    expect(body).toHaveStyleRule('padding', magma.spaceScale.spacing05);
   });
 
   it('should render the card heading component', () => {
@@ -87,7 +87,7 @@ describe('Card', () => {
 
     const card = getByText(TEXT);
 
-    expect(card).toHaveStyleRule('padding-left', '5px');
+    expect(card).toHaveStyleRule('padding-left', magma.spaceScale.spacing02);
     expect(card).toHaveStyleRule('background', magma.colors.danger, {
       target: ':before',
     });
@@ -98,7 +98,7 @@ describe('Card', () => {
 
     const card = getByText(TEXT);
 
-    expect(card).toHaveStyleRule('padding-left', '5px');
+    expect(card).toHaveStyleRule('padding-left', magma.spaceScale.spacing02);
     expect(card).toHaveStyleRule('background', magma.colors.primary, {
       target: ':before',
     });
@@ -109,7 +109,7 @@ describe('Card', () => {
 
     const card = getByText(TEXT);
 
-    expect(card).toHaveStyleRule('padding-left', '5px');
+    expect(card).toHaveStyleRule('padding-left', magma.spaceScale.spacing02);
     expect(card).toHaveStyleRule('background', magma.colors.success, {
       target: ':before',
     });
@@ -120,7 +120,7 @@ describe('Card', () => {
 
     const card = getByText(TEXT);
 
-    expect(card).toHaveStyleRule('padding-left', '5px');
+    expect(card).toHaveStyleRule('padding-left', magma.spaceScale.spacing02);
     expect(card).toHaveStyleRule('background', magma.colors.pop04, {
       target: ':before',
     });
