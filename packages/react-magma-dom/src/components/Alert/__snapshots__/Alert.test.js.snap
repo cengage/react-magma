@@ -53,11 +53,13 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   line-height: 1;
   min-width: 0;
   padding: 0;
-  border-radius: 0 3px 3px 0;
+  -webkit-align-self: stretch;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
+  border-radius: 0 4px 4px 0;
   color: inherit;
-  height: calc(100% - 6px);
-  margin: 3px;
-  padding: 0 15px;
+  height: auto;
+  padding: 0 16px;
   width: auto;
 }
 
@@ -180,11 +182,13 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   line-height: 1;
   min-width: 0;
   padding: 0;
-  border-radius: 0 3px 3px 0;
+  -webkit-align-self: stretch;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
+  border-radius: 0 4px 4px 0;
   color: inherit;
-  height: calc(100% - 6px);
-  margin: 3px;
-  padding: 0 15px;
+  height: auto;
+  padding: 0 16px;
   width: auto;
 }
 
@@ -296,8 +300,9 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  line-height: 20px;
-  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 24px;
   max-width: 100%;
   padding: 0;
   position: relative;
@@ -306,6 +311,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 @media (max-width:600px) {
   .emotion-3 {
     font-size: 14px;
+    line-height: 20px;
   }
 }
 
@@ -336,7 +342,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  padding: 0 10px 0 15px;
+  padding: 0 8px 0 16px;
 }
 
 @media (max-width:600px) {
@@ -353,19 +359,18 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 13px 15px 13px 0;
+  padding: 16px 12px;
 }
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 15px;
+    padding-left: 16px;
   }
 }
 
 .emotion-2 {
   background-color: #C61D23;
-  border-radius: 3px;
-  border-radius: 5px;
+  border-radius: 4px;
   color: #FFFFFF;
   display: -webkit-box;
   display: -webkit-flex;
@@ -389,8 +394,9 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  line-height: 20px;
-  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 24px;
   max-width: 100%;
   padding: 0;
   position: relative;
@@ -399,6 +405,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 @media (max-width:600px) {
   .emotion-3 {
     font-size: 14px;
+    line-height: 20px;
   }
 }
 
@@ -429,7 +436,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  padding: 0 10px 0 15px;
+  padding: 0 8px 0 16px;
 }
 
 @media (max-width:600px) {
@@ -446,19 +453,18 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 13px 15px 13px 0;
+  padding: 16px 12px;
 }
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 15px;
+    padding-left: 16px;
   }
 }
 
 .emotion-2 {
   background-color: #C61D23;
-  border-radius: 3px;
-  border-radius: 5px;
+  border-radius: 4px;
   color: #FFFFFF;
   display: -webkit-box;
   display: -webkit-flex;
@@ -519,8 +525,9 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  line-height: 20px;
-  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 24px;
   max-width: 100%;
   padding: 0;
   position: relative;
@@ -529,6 +536,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 @media (max-width:600px) {
   .emotion-3 {
     font-size: 14px;
+    line-height: 20px;
   }
 }
 
@@ -549,8 +557,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 
 .emotion-2 {
   background-color: #3F3F3F;
-  border-radius: 3px;
-  border-radius: 5px;
+  border-radius: 4px;
   color: #FFFFFF;
   display: -webkit-box;
   display: -webkit-flex;
@@ -572,7 +579,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  padding: 0 10px 0 15px;
+  padding: 0 8px 0 16px;
 }
 
 @media (max-width:600px) {
@@ -589,12 +596,12 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 13px 15px 13px 0;
+  padding: 16px 12px;
 }
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 15px;
+    padding-left: 16px;
   }
 }
 
@@ -612,8 +619,9 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  line-height: 20px;
-  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 24px;
   max-width: 100%;
   padding: 0;
   position: relative;
@@ -622,6 +630,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 @media (max-width:600px) {
   .emotion-3 {
     font-size: 14px;
+    line-height: 20px;
   }
 }
 
@@ -642,8 +651,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 
 .emotion-2 {
   background-color: #3F3F3F;
-  border-radius: 3px;
-  border-radius: 5px;
+  border-radius: 4px;
   color: #FFFFFF;
   display: -webkit-box;
   display: -webkit-flex;
@@ -665,7 +673,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  padding: 0 10px 0 15px;
+  padding: 0 8px 0 16px;
 }
 
 @media (max-width:600px) {
@@ -682,12 +690,12 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 13px 15px 13px 0;
+  padding: 16px 12px;
 }
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 15px;
+    padding-left: 16px;
   }
 }
 
@@ -742,8 +750,9 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  line-height: 20px;
-  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 24px;
   max-width: 100%;
   padding: 0;
   position: relative;
@@ -752,6 +761,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 @media (max-width:600px) {
   .emotion-3 {
     font-size: 14px;
+    line-height: 20px;
   }
 }
 
@@ -782,7 +792,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  padding: 0 10px 0 15px;
+  padding: 0 8px 0 16px;
 }
 
 @media (max-width:600px) {
@@ -799,19 +809,18 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 13px 15px 13px 0;
+  padding: 16px 12px;
 }
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 15px;
+    padding-left: 16px;
   }
 }
 
 .emotion-2 {
   background-color: #FFC72C;
-  border-radius: 3px;
-  border-radius: 5px;
+  border-radius: 4px;
   color: #3F3F3F;
   display: -webkit-box;
   display: -webkit-flex;
@@ -835,8 +844,9 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  line-height: 20px;
-  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 24px;
   max-width: 100%;
   padding: 0;
   position: relative;
@@ -845,6 +855,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 @media (max-width:600px) {
   .emotion-3 {
     font-size: 14px;
+    line-height: 20px;
   }
 }
 
@@ -875,7 +886,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  padding: 0 10px 0 15px;
+  padding: 0 8px 0 16px;
 }
 
 @media (max-width:600px) {
@@ -892,19 +903,18 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 13px 15px 13px 0;
+  padding: 16px 12px;
 }
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 15px;
+    padding-left: 16px;
   }
 }
 
 .emotion-2 {
   background-color: #FFC72C;
-  border-radius: 3px;
-  border-radius: 5px;
+  border-radius: 4px;
   color: #3F3F3F;
   display: -webkit-box;
   display: -webkit-flex;
@@ -964,8 +974,9 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  line-height: 20px;
-  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 24px;
   max-width: 100%;
   padding: 0;
   position: relative;
@@ -974,6 +985,7 @@ exports[`Alert should render an alert with default variant 1`] = `
 @media (max-width:600px) {
   .emotion-3 {
     font-size: 14px;
+    line-height: 20px;
   }
 }
 
@@ -994,8 +1006,7 @@ exports[`Alert should render an alert with default variant 1`] = `
 
 .emotion-2 {
   background-color: #3F3F3F;
-  border-radius: 3px;
-  border-radius: 5px;
+  border-radius: 4px;
   color: #FFFFFF;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1017,7 +1028,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  padding: 0 10px 0 15px;
+  padding: 0 8px 0 16px;
 }
 
 @media (max-width:600px) {
@@ -1034,12 +1045,12 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 13px 15px 13px 0;
+  padding: 16px 12px;
 }
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 15px;
+    padding-left: 16px;
   }
 }
 
@@ -1057,8 +1068,9 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  line-height: 20px;
-  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 24px;
   max-width: 100%;
   padding: 0;
   position: relative;
@@ -1067,6 +1079,7 @@ exports[`Alert should render an alert with default variant 1`] = `
 @media (max-width:600px) {
   .emotion-3 {
     font-size: 14px;
+    line-height: 20px;
   }
 }
 
@@ -1087,8 +1100,7 @@ exports[`Alert should render an alert with default variant 1`] = `
 
 .emotion-2 {
   background-color: #3F3F3F;
-  border-radius: 3px;
-  border-radius: 5px;
+  border-radius: 4px;
   color: #FFFFFF;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1110,7 +1122,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  padding: 0 10px 0 15px;
+  padding: 0 8px 0 16px;
 }
 
 @media (max-width:600px) {
@@ -1127,12 +1139,12 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 13px 15px 13px 0;
+  padding: 16px 12px;
 }
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 15px;
+    padding-left: 16px;
   }
 }
 

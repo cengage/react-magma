@@ -73,14 +73,16 @@ const StyledAlert = styled.div<AlertBaseProps>`
   
   display: flex;
   flex-direction: column;
-  line-height: 20px;
-  margin-bottom: 20px;
+  font-size: ${props => props.theme.typeScale.size03.fontSize};
+  line-height: ${props => props.theme.typeScale.size03.lineHeight};
+  margin-bottom: ${props => props.theme.spaceScale.spacing06};
   max-width: 100%;
   padding: 0;
   position: relative;
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
-    font-size: 14px;
+    font-size: ${props => props.theme.typeScale.size02.fontSize};
+    line-height: ${props => props.theme.typeScale.size02.lineHeight};
   }
 
   &:focus {
@@ -160,8 +162,7 @@ const StyledAlert = styled.div<AlertBaseProps>`
 
 const StyledAlertInner = styled.div<AlertBaseProps>`
   background-color: ${props => buildAlertBackground(props)};
-  border-radius: 3px;
-  border-radius: 5px;
+  border-radius: ${props => props.theme.borderRadius};
   color: ${props =>
     props.variant === 'warning'
       ? props.theme.colors.neutral
@@ -175,17 +176,18 @@ const StyledAlertInner = styled.div<AlertBaseProps>`
     css`
       border: 1px solid ${props.theme.colors.neutral08};
       box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.4);
-      height: 56px;
+      height: ${props.theme.spaceScale.spacing11};
     `}
 `;
 
 const AlertContents = styled.div`
   align-self: center;
   flex-grow: 1;
-  padding: 13px 15px 13px 0;
+  padding: ${props => props.theme.spaceScale.spacing05}
+    ${props => props.theme.spaceScale.spacing04};
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
-    padding-left: 15px;
+    padding-left: ${props => props.theme.spaceScale.spacing05};
   }
 `;
 
@@ -195,20 +197,22 @@ const IconWrapperStyles = css`
   flex-shrink: 0;
 `;
 
-const IconWrapper = styled.span<{ isToast?: boolean }>`
+const IconWrapper = styled.span<{ isToast?: boolean; theme: any }>`
   ${IconWrapperStyles}
-  padding: 0 10px 0 15px;
+  padding: 0 ${props => props.theme.spaceScale.spacing03} 0 ${props =>
+    props.theme.spaceScale.spacing05};
 
-  @media (max-width: 600px) {
+  @media (max-width: ${props => props.theme.breakpoints.small}px) {
     display: none;
   }
 `;
 
 const ProgressRingWrapper = styled.div`
   opacity: 0.7;
+  margin-top: ${props => props.theme.spaceScale.spacing01};
   position: absolute;
-  top: 6px;
-  right: 2px;
+  top: ${props => props.theme.spaceScale.spacing02};
+  right: ${props => props.theme.spaceScale.spacing02};
 `;
 
 const DismissibleIconWrapper = styled.span<AlertBaseProps>`
@@ -224,11 +228,12 @@ const shouldForwardProp = prop => {
 const DismissButton = styled(IconButton, { shouldForwardProp })<{
   alertVariant?: AlertVariant;
 }>`
-  border-radius: 0 3px 3px 0;
+  align-self: stretch;
+  border-radius: 0 ${props => props.theme.borderRadius}
+    ${props => props.theme.borderRadius} 0;
   color: inherit;
-  height: calc(100% - 6px);
-  margin: 3px;
-  padding: 0 15px;
+  height: auto;
+  padding: 0 ${props => props.theme.spaceScale.spacing05};
   width: auto;
 
   &&:focus:not(:disabled) {
@@ -256,11 +261,11 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
   }
 `;
 
-function renderIcon(variant = 'info', isToast?: boolean) {
+function renderIcon(variant = 'info', isToast?: boolean, theme?: any) {
   const Icon = VARIANT_ICON[variant];
 
   return (
-    <IconWrapper isToast={isToast}>
+    <IconWrapper isToast={isToast} theme={theme}>
       <Icon size={20} />
     </IconWrapper>
   );
@@ -325,12 +330,12 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
         theme={theme}
       >
         <StyledAlertInner isToast={isToast} theme={theme} variant={variant}>
-          {renderIcon(variant, isToast)}
+          {renderIcon(variant, isToast, theme)}
           <AlertContents theme={theme}>{children}</AlertContents>
           {isDismissible && (
             <DismissibleIconWrapper variant={variant} theme={theme}>
               {hasTimerRing && isToast && (
-                <ProgressRingWrapper>
+                <ProgressRingWrapper theme={theme}>
                   <ProgressRing
                     color={
                       variant === AlertVariant.warning
