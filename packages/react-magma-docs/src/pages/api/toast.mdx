@@ -1,6 +1,9 @@
 ---
 pageTitle: Toast API
 title: Toast
+props:
+  - ToastProps
+  - ToastsContainerProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -241,18 +244,7 @@ Passing in the `testId` prop will pass the `testId` to the internal `Alert` elem
 
 ## ToastsContainer Props
 
-<SimplePropsTable
-  propertyValues={{
-    bottomOffset: {
-      type: {
-        name: 'number',
-      },
-      required: false,
-      description: 'Number of additional pixels from bottom of screen',
-      defaultValue: '0',
-    },
-  }}
-/>
+<ToastsContainerProps />
 
 ## Toast Props
 
@@ -260,111 +252,7 @@ Passing in the `testId` prop will pass the `testId` to the internal `Alert` elem
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    alertStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description:
-        'CSS properties for the alert component within the toast container',
-    },
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    closeAriaLabel: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'The text read by screen readers for the close button',
-      defaultValue: '"Close this message"',
-    },
-    containerStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'CSS properties for the component container',
-    },
-    isDismissible: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'Deprecated: If true, the component will be able to be dismissed and will include a close button.  Is now always true for a11y reasons.',
-      defaultValue: 'true',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background.',
-      defaultValue: 'false',
-    },
-    onDismiss: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description:
-        'Action that fires when the close button is clicked (required when dismissible is true)',
-    },
-    onMouseEnter: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description: 'Action that fires when the mouse enters the component',
-    },
-    onMouseLeave: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description: 'Action that fires when the mouse leaves the component',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    toastDuration: {
-      type: {
-        name: 'number',
-      },
-      required: false,
-      description: 'Number of milliseconds the toast displays before it closes',
-      defaultValue: '5000',
-    },
-    variant: {
-      type: {
-        name: 'enum',
-        options: [
-          'AlertVariant.info',
-          'AlertVariant.success',
-          'AlertVariant.warning',
-          'AlertVariant.danger',
-        ],
-      },
-      required: false,
-      description:
-        'The variant of the alert, indicating its function in the UI',
-      defaultValue: 'info',
-    },
-  }}
-/>
+<ToastProps />
 
 export default props => (
   <ScopeableLayout

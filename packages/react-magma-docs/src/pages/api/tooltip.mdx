@@ -1,6 +1,8 @@
 ---
 pageTitle: Tooltip API
 title: Tooltip
+props:
+  - TooltipProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -98,70 +100,7 @@ The containing div for the tooltip, and the tooltip component itself can have cu
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the outer-most `div` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description:
-        'The element that triggers the tooltip when it is hovered or focused.  Must be a react element (not a string) and should be a focusable element to meet a11y requirements',
-    },
-    containerStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the component container element',
-    },
-    content: {
-      type: {
-        name: 'element',
-      },
-      required: true,
-      description: 'The content of the tooltip',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    position: {
-      type: {
-        name: 'enum',
-        options: [
-          'EnumTooltipPosition.bottom',
-          'EnumTooltipPosition.left',
-          'EnumTooltipPosition.right',
-          'EnumTooltipPosition.top',
-        ],
-      },
-      required: false,
-      description: 'Position the tooltip appears in relation to its trigger',
-      defaultValue: 'top',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    tooltipStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the tooltip',
-    },
-  }}
-/>
+<TooltipProps />
 
 export default props => (
   <ScopeableLayout

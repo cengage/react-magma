@@ -1274,7 +1274,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7557,
+        "id": 7535,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1431,7 +1431,7 @@
     },
     "typeParameter": [
       {
-        "id": 7642,
+        "id": 7620,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1440,7 +1440,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7486,
+          "id": 7464,
           "name": "SelectOptions"
         }
       }
@@ -1700,7 +1700,7 @@
     },
     "typeParameter": [
       {
-        "id": 7710,
+        "id": 7688,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1709,7 +1709,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7486,
+          "id": 7464,
           "name": "SelectOptions"
         }
       }
@@ -2400,12 +2400,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 8875,
+          "id": 8853,
           "name": "IconOnlyDropdownButtonProps"
         },
         {
           "type": "reference",
-          "id": 8879,
+          "id": 8857,
           "name": "IconTextDropdownButtonProps"
         }
       ],
@@ -3088,151 +3088,6 @@
           "name": "string"
         },
         "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
-      }
-    }
-  },
-  {
-    "name": "HyperlinkProps",
-    "kind": 256,
-    "kindString": "Interface",
-    "flags": {
-      "isExported": true
-    },
-    "id": "HyperlinkProps",
-    "tags": {},
-    "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "function"
-        },
-        "description": "The content of the component"
-      },
-      "color": {
-        "name": "color",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonColor.danger",
-            "ButtonColor.marketing",
-            "ButtonColor.primary",
-            "ButtonColor.secondary",
-            "ButtonColor.success"
-          ]
-        },
-        "description": "The color of the button, indicating its function in the UI",
-        "defaultValue": "ButtonColor.primary"
-      },
-      "isFullWidth": {
-        "name": "isFullWidth",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": " Set the button to display full-width.",
-        "defaultValue": "false"
-      },
-      "isInverse": {
-        "name": "isInverse",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
-      },
-      "shape": {
-        "name": "shape",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonShape.fill",
-            "ButtonShape.leftCap",
-            "ButtonShape.rightCap",
-            "ButtonShape.round"
-          ]
-        },
-        "description": "Defines the border radius",
-        "defaultValue": "ButtonShape.fill"
-      },
-      "size": {
-        "name": "size",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonSize.large",
-            "ButtonSize.medium",
-            "ButtonSize.small"
-          ]
-        },
-        "description": "The relative size of the button",
-        "defaultValue": "ButtonSize.medium"
-      },
-      "styledAs": {
-        "name": "styledAs",
-        "required": false,
-        "type": {
-          "name": "function"
-        }
-      },
-      "testId": {
-        "name": "testId",
-        "required": false,
-        "type": {
-          "name": "string"
-        },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
-      },
-      "textTransform": {
-        "name": "textTransform",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonTextTransform.none",
-            "ButtonTextTransform.uppercase"
-          ]
-        },
-        "description": "Determines whether the button appears in all-caps",
-        "defaultValue": "ButtonTextTransform.uppercase"
-      },
-      "to": {
-        "name": "to",
-        "required": true,
-        "type": {
-          "name": "string"
-        }
-      },
-      "type": {
-        "name": "type",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonType.button",
-            "ButtonType.reset",
-            "ButtonType.submit"
-          ]
-        },
-        "description": "The type attribute of the button\nButtonType.button"
-      },
-      "variant": {
-        "name": "variant",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonVariant.link",
-            "ButtonVariant.outline",
-            "ButtonVariant.solid"
-          ]
-        },
-        "description": "The variant of the button",
-        "defaultValue": "ButtonVariant.solid"
       }
     }
   },
@@ -4184,12 +4039,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 11313,
+          "id": 11291,
           "name": "NavTabChildrenProps"
         },
         {
           "type": "reference",
-          "id": 11579,
+          "id": 11557,
           "name": "NavTabComponentProps"
         }
       ],
@@ -5028,7 +4883,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 6969,
+        "id": 6947,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5096,7 +4951,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7272,
+        "id": 7250,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5174,7 +5029,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7291,
+        "id": 7269,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5262,7 +5117,7 @@
     "type": {
       "type": "reflection",
       "declaration": {
-        "id": 6947,
+        "id": 6925,
         "name": "__type",
         "kind": 65536,
         "kindString": "Type literal",
@@ -5271,7 +5126,7 @@
         },
         "children": [
           {
-            "id": 6948,
+            "id": 6926,
             "name": "ClearIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -5299,7 +5154,7 @@
             }
           },
           {
-            "id": 6949,
+            "id": 6927,
             "name": "DropdownIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -5332,7 +5187,7 @@
             }
           },
           {
-            "id": 6950,
+            "id": 6928,
             "name": "LoadingIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -5352,7 +5207,7 @@
               "typeArguments": [
                 {
                   "type": "reference",
-                  "id": 6683,
+                  "id": 6661,
                   "name": "SpinnerProps"
                 }
               ],
@@ -5365,9 +5220,9 @@
             "title": "Variables",
             "kind": 32,
             "children": [
-              6948,
-              6949,
-              6950
+              6926,
+              6927,
+              6928
             ]
           }
         ],
@@ -5393,7 +5248,7 @@
     },
     "typeParameter": [
       {
-        "id": 7339,
+        "id": 7317,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5550,7 +5405,7 @@
     },
     "typeParameter": [
       {
-        "id": 7444,
+        "id": 7422,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5559,7 +5414,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7486,
+          "id": 7464,
           "name": "SelectOptions"
         }
       }
@@ -5706,7 +5561,7 @@
     },
     "typeParameter": [
       {
-        "id": 7345,
+        "id": 7323,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5715,7 +5570,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7486,
+          "id": 7464,
           "name": "SelectOptions"
         }
       }
@@ -6095,7 +5950,7 @@
         {
           "type": "reflection",
           "declaration": {
-            "id": 7487,
+            "id": 7465,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -6104,7 +5959,7 @@
             },
             "indexSignature": [
               {
-                "id": 7490,
+                "id": 7468,
                 "name": "__index",
                 "kind": 8192,
                 "kindString": "Index signature",
@@ -6113,7 +5968,7 @@
                 },
                 "parameters": [
                   {
-                    "id": 7491,
+                    "id": 7469,
                     "name": "key",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -6134,7 +5989,7 @@
             ],
             "children": [
               {
-                "id": 7489,
+                "id": 7467,
                 "name": "label",
                 "kind": 32,
                 "kindString": "Variable",
@@ -6154,7 +6009,7 @@
                 }
               },
               {
-                "id": 7488,
+                "id": 7466,
                 "name": "value",
                 "kind": 32,
                 "kindString": "Variable",
@@ -6179,8 +6034,8 @@
                 "title": "Variables",
                 "kind": 32,
                 "children": [
-                  7489,
-                  7488
+                  7467,
+                  7466
                 ]
               }
             ],
@@ -6936,14 +6791,17 @@
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "description": "Icon to display within the component"
       },
       "isActive": {
         "name": "isActive",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "description": "If true, the component will display with the active/selected state",
+        "defaultValue": "false"
       },
       "isInverse": {
         "name": "isInverse",
@@ -6961,13 +6819,6 @@
           "name": "string"
         },
         "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
-      },
-      "theme": {
-        "name": "theme",
-        "required": false,
-        "type": {
-          "name": "any"
-        }
       }
     }
   },
@@ -7078,7 +6929,8 @@
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "description": "The index of the current active tab. You can use this for managing state of the tabs component by your custom logic."
       },
       "isInverse": {
         "name": "isInverse",
@@ -7282,21 +7134,25 @@
             "TabsAlignment.left",
             "TabsAlignment.right"
           ]
-        }
+        },
+        "description": "Alignment of the tabs menu",
+        "defaultValue": "TabsAlignment.left"
       },
       "aria-label": {
         "name": "aria-label",
         "required": true,
         "type": {
           "name": "string"
-        }
+        },
+        "description": "The text the screen reader will announce that describes your tablist."
       },
       "backgroundColor": {
         "name": "backgroundColor",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "description": "Background color for the tabs menu"
       },
       "iconPosition": {
         "name": "iconPosition",
@@ -7309,14 +7165,16 @@
             "TabsIconPosition.right",
             "TabsIconPosition.top"
           ]
-        }
+        },
+        "description": "The orientation of icon on Tab"
       },
       "isFullWidth": {
         "name": "isFullWidth",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "description": "If true, the components takes the full width of the screen"
       },
       "isInverse": {
         "name": "isInverse",
@@ -7332,7 +7190,8 @@
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "description": "The onChange handler for managing state of Tabs component by your custom logic."
       },
       "testId": {
         "name": "testId",
@@ -7382,12 +7241,12 @@
       "types": [
         {
           "type": "reference",
-          "id": 10680,
+          "id": 10658,
           "name": "HorizontalTabsProps"
         },
         {
           "type": "reference",
-          "id": 10677,
+          "id": 10655,
           "name": "VerticalTabsProps"
         }
       ]
@@ -7411,28 +7270,24 @@
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the component container element"
       },
       "errorMessage": {
         "name": "errorMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
-      },
-      "hasError": {
-        "name": "hasError",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
+        },
+        "description": "Content of the error message. If a value is provided, the input will be styled as an error state, and the error message will display."
       },
       "helperMessage": {
         "name": "helperMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "description": "Content of the helper message"
       },
       "isInverse": {
         "name": "isInverse",
@@ -7448,28 +7303,33 @@
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "description": "If true, label text will be hidden visually, but will still be read by assistive technology",
+        "defaultValue": "false"
       },
       "labelStyle": {
         "name": "labelStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the label element"
       },
       "labelText": {
         "name": "labelText",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "description": "Content for label; can be a node or a string"
       },
       "messageStyle": {
         "name": "messageStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the helper or error message"
       },
       "testId": {
         "name": "testId",
@@ -7484,14 +7344,8 @@
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
-      },
-      "value": {
-        "name": "value",
-        "required": false,
-        "type": {
-          "name": "function"
-        }
+        },
+        "description": "Style properties for the textarea element"
       }
     }
   },
@@ -7528,35 +7382,32 @@
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the outer container"
       },
       "errorMessage": {
         "name": "errorMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "description": "Content of the error message. If a value is provided, the component will be styled to show an error state."
       },
       "helperMessage": {
         "name": "helperMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
-      },
-      "id": {
-        "name": "id",
-        "required": false,
-        "type": {
-          "name": "string"
-        }
+        },
+        "description": "Content of the helper message"
       },
       "inputStyle": {
         "name": "inputStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the outer input"
       },
       "isInverse": {
         "name": "isInverse",
@@ -7572,42 +7423,40 @@
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the label"
       },
       "labelText": {
         "name": "labelText",
         "required": true,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "description": "Content for label; can be a node or a string"
       },
       "messageStyle": {
         "name": "messageStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the helper or error message"
       },
       "minutesStep": {
         "name": "minutesStep",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "description": "The stepping interval for the minutes input"
       },
       "onChange": {
         "name": "onChange",
         "required": false,
         "type": {
           "name": "function"
-        }
-      },
-      "value": {
-        "name": "value",
-        "required": false,
-        "type": {
-          "name": "string"
-        }
+        },
+        "description": "Function called when the component is changed to a new time"
       }
     }
   },
@@ -7626,7 +7475,9 @@
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "description": "Number of additional pixels from bottom of screen",
+        "defaultValue": "0"
       },
       "testId": {
         "name": "testId",
@@ -7635,13 +7486,6 @@
           "name": "string"
         },
         "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
-      },
-      "toastsArray": {
-        "name": "toastsArray",
-        "required": false,
-        "type": {
-          "name": "any"
-        }
       }
     }
   },
@@ -7678,15 +7522,34 @@
     "flags": {
       "isExported": true
     },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
     "id": "ToastProps",
-    "tags": {},
+    "tags": {
+      "children": "required"
+    },
     "properties": {
       "alertStyle": {
         "name": "alertStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "CSS properties for the alert component within the toast container"
+      },
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component"
       },
       "closeAriaLabel": {
         "name": "closeAriaLabel",
@@ -7700,14 +7563,17 @@
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "CSS properties for the component container"
       },
       "disableAutoDismiss": {
         "name": "disableAutoDismiss",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "description": "If true, the component will persist until dismissed by the user",
+        "defaultValue": "false"
       },
       "forceDismiss": {
         "name": "forceDismiss",
@@ -7772,21 +7638,24 @@
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "description": "Action that fires when the close button is clicked (required when dismissible is true)"
       },
       "onMouseEnter": {
         "name": "onMouseEnter",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "description": "Action that fires when the mouse enters the component"
       },
       "onMouseLeave": {
         "name": "onMouseLeave",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "description": "Action that fires when the mouse leaves the component"
       },
       "testId": {
         "name": "testId",
@@ -7801,7 +7670,9 @@
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "description": "Number of milliseconds the toast displays before it closes",
+        "defaultValue": "5000"
       },
       "variant": {
         "name": "variant",
@@ -7833,21 +7704,16 @@
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the component container element"
       },
       "errorMessage": {
         "name": "errorMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
-      },
-      "hasError": {
-        "name": "hasError",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
+        },
+        "description": "Content of the error message for toggle. If a value is provided, the component will be styled as an error state and the error message will display."
       },
       "isInverse": {
         "name": "isInverse",
@@ -7863,21 +7729,25 @@
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "description": "If true, label text will be hidden visually, but will still be read by assistive technology",
+        "defaultValue": "false"
       },
       "labelStyle": {
         "name": "labelStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the label element"
       },
       "labelText": {
         "name": "labelText",
         "required": true,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "description": "Content for label; can be a node or a string"
       },
       "testId": {
         "name": "testId",
@@ -7896,28 +7766,25 @@
             "ToggleTextPosition.left",
             "ToggleTextPosition.right"
           ]
-        }
-      },
-      "theme": {
-        "name": "theme",
-        "required": false,
-        "type": {
-          "name": "any"
-        }
+        },
+        "description": "Whether the label appears to the left of the right of the toggle switch",
+        "defaultValue": "ToggleTextPosition.left"
       },
       "thumbStyle": {
         "name": "thumbStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the part of the component that slides back and forth on the track"
       },
       "trackStyle": {
         "name": "trackStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for track on which the toggle thumb slides"
       }
     }
   },
@@ -7963,21 +7830,23 @@
         "type": {
           "name": "ReactElement"
         },
-        "description": "The content of the component"
+        "description": "The element that triggers the tooltip when it is hovered or focused. Must be a react element (not a string) and should be a focusable element to meet a11y requirements"
       },
       "containerStyle": {
         "name": "containerStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the component container element"
       },
       "content": {
         "name": "content",
         "required": true,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "description": "The content of the tooltip"
       },
       "isInverse": {
         "name": "isInverse",
@@ -7999,7 +7868,8 @@
             "EnumTooltipPosition.right",
             "EnumTooltipPosition.top"
           ]
-        }
+        },
+        "description": "Position the tooltip appears in relation to its trigger"
       },
       "testId": {
         "name": "testId",
@@ -8014,7 +7884,8 @@
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the tooltip"
       }
     }
   },
@@ -8141,9 +8012,27 @@
     "flags": {
       "isExported": true
     },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
     "id": "VisuallyHiddenProps",
-    "tags": {},
+    "tags": {
+      "children": "required"
+    },
     "properties": {
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component"
+      },
       "testId": {
         "name": "testId",
         "required": false,

@@ -12,17 +12,42 @@ import { ThemeInterface } from '../../theme/magma';
 import { VisuallyHidden } from '../VisuallyHidden';
 
 export interface TimePickerProps {
+  /**
+   * Style properties for the outer container
+   */
   containerStyle?: React.CSSProperties;
+  /**
+   * Content of the error message. If a value is provided, the component will be styled to show an error state.
+   */
   errorMessage?: React.ReactNode;
-  id?: string;
+  /**
+   * Content of the helper message
+   */
+  helperMessage?: React.ReactNode;
+  /**
+   * Style properties for the outer input
+   */
   inputStyle?: React.CSSProperties;
   isInverse?: boolean;
+  /**
+   * Style properties for the label
+   */
   labelStyle?: React.CSSProperties;
+  /**
+   * Content for label; can be a node or a string
+   */
   labelText: React.ReactNode;
-  helperMessage?: React.ReactNode;
+  /**
+   * Style properties for the helper or error message
+   */
   messageStyle?: React.CSSProperties;
+  /**
+   * The stepping interval for the minutes input
+   */
   minutesStep?: number;
-  value?: string;
+  /**
+   * Function called when the component is changed to a new time
+   */
   onChange?: (value: string) => void;
 }
 

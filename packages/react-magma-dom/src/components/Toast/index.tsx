@@ -5,13 +5,39 @@ import { getTrapElements } from '../Modal/utils';
 import { useGenerateId } from '../../utils';
 import { ToastsContext } from './ToastsContainer';
 
+/**
+ * @children required
+ */
 export interface ToastProps extends AlertBaseProps {
+  /**
+   * CSS properties for the alert component within the toast container
+   */
   alertStyle?: React.CSSProperties;
+  /**
+   * CSS properties for the component container
+   */
   containerStyle?: React.CSSProperties;
+  /**
+   * If true, the component will persist until dismissed by the user
+   * @default false
+   */
   disableAutoDismiss?: boolean;
+  /**
+   * Number of milliseconds the toast displays before it closes
+   * @default 5000
+   */
   toastDuration?: number;
+  /**
+   * Action that fires when the close button is clicked (required when dismissible is true)
+   */
   onDismiss: () => void;
+  /**
+   * Action that fires when the mouse enters the component
+   */
   onMouseEnter?: (event: React.SyntheticEvent) => void;
+  /**
+   * Action that fires when the mouse leaves the component
+   */
   onMouseLeave?: (event: React.SyntheticEvent) => void;
 }
 
