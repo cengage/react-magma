@@ -24,7 +24,7 @@ const ChildrenContainer = styled.div`
 
 interface SelectTriggerButtonInterface<T> {
   ariaDescribedBy?: string;
-  children: React.ReactNode[];
+  children: React.ReactNode | React.ReactNode[];
   customComponents?: SelectComponents;
   hasError?: boolean;
   disabled?: boolean;

@@ -35,6 +35,7 @@ export function Select<T>(props: SelectInterface<T>) {
     onKeyDown,
     onKeyPress,
     onKeyUp,
+    placeholder,
     selectedItem: passedInSelectedItem,
   } = props;
 
@@ -144,6 +145,12 @@ export function Select<T>(props: SelectInterface<T>) {
     .replace(/\{labelText\}/g, labelText)
     .replace(/\{selectedItem\}/g, itemToString(selectedItem));
 
+  const selectText = itemToString(selectedItem)
+    ? itemToString(selectedItem)
+    : typeof placeholder === 'string'
+    ? placeholder
+    : i18n.select.placeholder;
+
   return (
     <SelectContainer
       getLabelProps={getLabelProps}
@@ -161,9 +168,7 @@ export function Select<T>(props: SelectInterface<T>) {
         isInverse={isInverse}
         style={inputStyle}
       >
-        <SelectText data-testid="selectedItemText">
-          {itemToString(selectedItem) || i18n.select.placeholder}
-        </SelectText>
+        <SelectText data-testid="selectedItemText">{selectText}</SelectText>
         {isClearable && selectedItem && (
           <ClearIndicator
             aria-label={clearIndicatorAriaLabel}

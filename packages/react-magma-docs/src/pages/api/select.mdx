@@ -388,6 +388,25 @@ The `helperMessage` appears underneath the select field. It will not appear if a
 </>
 ```
 
+## Placeholder
+
+The `placeholder` prop can be used to replace the default text shown before an item is chosen.
+Placeholder text should be used to provide supplemental information about the input field. It should not be
+relied upon to take the place of the label text.
+
+```.jsx
+<Select
+  id="placeholderSelect"
+  labelText="Placeholder Example"
+  items={[
+    { label: 'Red', value: 'red' },
+    { label: 'Blue', value: 'blue' },
+    { label: 'Green', value: 'green' }
+  ]}
+  placeholder="Choose a color"
+/>
+```
+
 ## Accessibility
 
 The `getA11yStatusMessage` prop is a passed in function that allows for customization of the screen-reader accessible message whenever the following props
