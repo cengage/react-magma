@@ -43,7 +43,7 @@ describe('Select', () => {
       <MultiSelect isMulti labelText={labelText} items={items} />
     );
 
-    expect(getByText(defaultI18n.select.placeholder)).toBeInTheDocument();
+    expect(getByText(defaultI18n.multiSelect.placeholder)).toBeInTheDocument();
   });
 
   it('should accept items in the default object format', () => {
