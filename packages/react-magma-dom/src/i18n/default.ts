@@ -183,6 +183,7 @@ export const defaultI18n: I18nInterface = {
       'reset selection for {labelText}. {selectedItem} is selected',
   },
   multiSelect: {
+    placeholder: 'Select...',
     selectedItemButtonAriaLabel: 'reset item {selectedItem}',
   },
   combobox: {

@@ -185,6 +185,7 @@ export interface I18nInterface {
     clearIndicatorAriaLabel: string;
   };
   multiSelect: {
+    placeholder: string;
     selectedItemButtonAriaLabel: string;
   };
   combobox: {

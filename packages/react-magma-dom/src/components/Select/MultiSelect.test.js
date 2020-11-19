@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent, act } from '@testing-library/react';
 import { Select as MultiSelect } from '.';
+import { defaultI18n } from '../../i18n/default';
 
 describe('Select', () => {
   it('should render a multi-select with items', () => {
@@ -17,6 +18,32 @@ describe('Select', () => {
     fireEvent.click(renderedSelect);
 
     expect(getByText(items[0])).toBeInTheDocument();
+  });
+
+  it('should render a select with a passed in placeholder', () => {
+    const labelText = 'Label';
+    const placeholder = 'Test';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByText } = render(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        placeholder={placeholder}
+      />
+    );
+
+    expect(getByText(placeholder)).toBeInTheDocument();
+  });
+
+  it('should render a select with the default i18n placeholder', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByText } = render(
+      <MultiSelect isMulti labelText={labelText} items={items} />
+    );
+
+    expect(getByText(defaultI18n.select.placeholder)).toBeInTheDocument();
   });
 
   it('should accept items in the default object format', () => {

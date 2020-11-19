@@ -33,6 +33,7 @@ export interface InternalSelectInterface {
   menuStyle?: React.CSSProperties;
   messageStyle?: React.CSSProperties;
   name?: string;
+  placeholder?: string;
   testId?: string;
 }
 
