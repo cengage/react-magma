@@ -1,15 +1,23 @@
 ---
-title: 'Modals'
+pageTitle: Modal API
+title: Modal
 ---
 
-import { ScopeableLayout } from '../../components/layout'
-import { Modal, Button, Radio, RadioGroup, Toggle } from 'react-magma-dom'
-import DocsHeading from '../../components/docs-heading'
-import { Link } from 'gatsby'
-import { SimplePropsTable } from '../../components/props-table'
+import { ScopeableLayout } from '../../components/layout';
+import {
+  Modal,
+  Button,
+  Radio,
+  RadioGroup,
+  Toggle,
+  VisuallyHidden,
+} from 'react-magma-dom';
+import DocsHeading from '../../components/docs-heading';
+import { Link } from 'gatsby';
+import { SimplePropsTable } from '../../components/props-table';
 
 <DocsHeading to="/design/modals/" type="design">
-  Modals
+  Modal
 </DocsHeading>
 
 ## Basic Usage
@@ -17,46 +25,33 @@ import { SimplePropsTable } from '../../components/props-table'
 The `Modal` component renders its `children` node in front of a backdrop component. It also disables scrolling of the page content while open,
 properly manages focus; moving to the modal content, and keeping it there until the modal is closed, and adds the appropriate ARIA roles automatically.
 
-The modal will _only_ render if the `open` prop is set to true. For that reason, it is redundant to show the modal using the following anti-pattern: `{flag && <Modal open={flag} />`. Instead,
-simply use `<Modal open={flag} />`
+The modal will _only_ render if the `isOpen` prop is set to true. For that reason, it is redundant to show the modal using the following anti-pattern: `{flag && <Modal isOpen={flag} />`. Instead,
+simply use `<Modal isOpen={flag} />`
+
+Although not required, it is helpful to inform users (especially screen reader users) when a button or link will trigger a modal dialog.
+This can be done by supplementing the button label or link text with "(opens modal dialog)" using the <Link to="/api/visually-hidden/">VisuallyHidden</Link> component.
 
 More examples of modals can be found on the <Link to="/examples/modal">More Modal Examples</Link> page.
 
 ```.jsx
+() => {
+  const [showModal, setShowModal] = React.useState(false);
 
-    class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          showModal: false
-        }
-
-        this.onModalShow = this.onModalShow.bind(this);
-        this.onModalClose = this.onModalClose.bind(this);
-      }
-
-      onModalShow() {
-        this.setState({showModal: true})
-      }
-
-      onModalClose() {
-        this.setState({showModal: false})
-      }
-
-      render() {
-        const { showModal } = this.state;
-
-        return (<>
-            <Modal header="Modal Title" onClose={this.onModalClose} open={showModal}>
-              <p>This is a modal, doing modal things.</p>
-              <p>This is <a href="#">linked text</a> in the modal</p>
-              <p><Button>This is a button</Button></p>
-              <p>This is <a href="#"> some more linked text</a> in the modal</p>
-            </Modal>
-          <Button onClick={this.onModalShow}>Show Modal</Button>
-        </>)
-      }
-    }
+  return (
+    <>
+      <Modal header="Modal Title" onClose={() => setShowModal(false)} isOpen={showModal}>
+        <p>This is a modal, doing modal things.</p>
+        <p>This is <a href="#">linked text</a> in the modal</p>
+        <p><Button>This is a button</Button></p>
+        <p>This is <a href="#"> some more linked text</a> in the modal</p>
+      </Modal>
+      <Button onClick={() => setShowModal(true)}>
+        Show Modal
+        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+      </Button>
+    </>
+  )
+}
 ```
 
 ## Sizes
@@ -64,55 +59,31 @@ More examples of modals can be found on the <Link to="/examples/modal">More Moda
 Sizes for modals include `small`, `medium`, and `large`, with `medium` being the default value.
 
 ```.jsx
+() => {
+  const [showSmallModal, setShowSmallModal] = React.useState(false);
+  const [showLargeModal, setShowLargeModal] = React.useState(false);
 
-    class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          showSmallModal: false,
-          showLargeModal: false
-        }
+  return (
+    <>
+      <Modal size="small" header="Modal Small" onClose={() => setShowSmallModal(false)} isOpen={showSmallModal}>
+        <p>This is a small modal, doing small modal things.</p>
+      </Modal>
 
-        this.onModalSmallShow = this.onModalSmallShow.bind(this);
-        this.onModalSmallClose = this.onModalSmallClose.bind(this);
-        this.onModalLargeShow = this.onModalLargeShow.bind(this);
-        this.onModalLargeClose = this.onModalLargeClose.bind(this);
-      }
+      <Modal size="large" header="Modal Large" onClose={() => setShowLargeModal(false)} isOpen={showLargeModal}>
+        <p>This is a large modal, doing large modal things.</p>
+      </Modal>
 
-      onModalSmallShow() {
-        this.setState({showSmallModal: true})
-      }
-
-      onModalSmallClose() {
-        this.setState({showSmallModal: false})
-      }
-
-      onModalLargeShow() {
-        this.setState({showLargeModal: true})
-      }
-
-      onModalLargeClose() {
-        this.setState({showLargeModal: false})
-      }
-
-
-      render() {
-        const { showSmallModal, showLargeModal } = this.state;
-
-        return (<>
-            <Modal size="small" header="Modal Small" onClose={this.onModalSmallClose} open={showSmallModal}>
-                <p>This is a small modal, doing small modal things.</p>
-            </Modal>
-
-            <Modal size="large" header="Modal Large" onClose={this.onModalLargeClose} open={showLargeModal}>
-                <p>This is a large modal, doing large modal things.</p>
-            </Modal>
-
-          <Button size="small" onClick={this.onModalSmallShow}>Show Small Modal</Button>
-          <Button size="large" onClick={this.onModalLargeShow}>Show Large Modal</Button>
-        </>)
-      }
-    }
+      <Button size="small" onClick={() => setShowSmallModal(true)}>
+        Show Small Modal
+        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+      </Button>
+      <Button size="large" onClick={() => setShowLargeModal(true)}>
+        Show Large Modal
+        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+      </Button>
+    </>
+  )
+}
 ```
 
 ## Modal Header
@@ -122,97 +93,99 @@ If there is a header passed in, the focus will be placed on the header when the 
 the first actionable element.
 
 ```.jsx
+() => {
+  const [showModal, setShowModal] = React.useState(false);
+  const [showModalHeader, setShowModalHeader] = React.useState(false);
 
-    class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          showModal: false,
-          showModalHeader: false
-        }
-
-        this.onModalShow = this.onModalShow.bind(this);
-        this.onModalClose = this.onModalClose.bind(this);
-
-        this.onModalHeaderShow = this.onModalHeaderShow.bind(this);
-        this.onModalHeaderClose = this.onModalHeaderClose.bind(this);
-      }
-
-      onModalShow() {
-        this.setState({showModal: true})
-      }
-
-      onModalClose() {
-        this.setState({showModal: false})
-      }
-
-       onModalHeaderShow() {
-        this.setState({showModalHeader: true})
-      }
-
-      onModalHeaderClose() {
-        this.setState({showModalHeader: false})
-      }
-
-      render() {
-        const { showModal,  showModalHeader } = this.state;
-
-        return (<>
-            <Modal size="small" onClose={this.onModalClose} open={showModal}>
-                <p>This modal has no header.</p>
-                <div style={{textAlign: 'center'}}>
-                    <Button onClick={this.onModalClose} >OK</Button>
-                </div>
-            </Modal>
-          <Button onClick={this.onModalShow}>Show Modal with no header</Button>
-        </>)
-      }
-    }
+  return (
+    <>
+      <Modal size="small" onClose={() => setShowModal(false)} isOpen={showModal}>
+        <p>This modal has no header.</p>
+        <div style={{textAlign: 'center'}}>
+            <Button onClick={() => setShowModal(false)} >OK</Button>
+        </div>
+      </Modal>
+      <Modal header="This modal has a header" size="small" onClose={() => setShowModalHeader(false)} isOpen={showModalHeader}>
+        <p>This modal has no header.</p>
+        <div style={{textAlign: 'center'}}>
+            <Button onClick={() => setShowModalHeader(false)} >OK</Button>
+        </div>
+      </Modal>
+      <Button onClick={() => setShowModal(true)}>
+        Show Modal with no header
+        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+      </Button>
+      <Button onClick={() => setShowModalHeader(true)}>
+        Show Modal with header
+        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+      </Button>
+    </>
+  )
+}
 ```
 
-## Hide Escape Button
+## Hide Close Button
 
-The close button can be hidden by using the `hideEscButton` prop. If this prop is used, it is best to provide another way to close the modal.
+The close button can be hidden by using the `isCloseButtonHidden` prop. If this prop is used, it is mandatory to provide another way to close the modal.
 
 ```.jsx
+() => {
+  const [showModal, setShowModal] = React.useState(false);
 
-    class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          showModal: false
-        }
+  return (
+    <>
+      <Modal header="Modal Title" isCloseButtonHidden onClose={() => setShowModal(false)} isOpen={showModal}>
+        <p>The standard modal close button is hidden.</p>
+        <Button onClick={() => setShowModal(false)}>Close this Dialog</Button>
+      </Modal>
+      <Button onClick={() => setShowModal(true)}>Show Modal</Button>
+    </>
+  )
+}
+```
 
-        this.onModalShow = this.onModalShow.bind(this);
-        this.onModalClose = this.onModalClose.bind(this);
-      }
+## Custom Close Button
 
-      onModalShow() {
-        this.setState({showModal: true})
-      }
+If you would like to add a custom close button to the `Modal` be sure not to use the same `onClose` function as it will mean that the function will be called twice (once internally and once by `react-magma`).
 
-      onModalClose() {
-        this.setState({showModal: false})
-      }
+```.jsx
+() => {
+  const [showModal, setShowModal] = React.useState(false);
+  const [magmaCloseCalledTimes, setMagmaCloseCalledTimes] = React.useState(0)
+  const [internalCloseCalledTimes, setInternalCloseCalledTimes] = React.useState(0)
 
-      render() {
-        const { showModal } = this.state;
+  function closeModal() {
+    setMagmaCloseCalledTimes(magmaCloseCalledTimes + 1)
+    setShowModal(false)
+  }
 
-        return (<>
-            <Modal header="Modal Title" hideEscButton onClose={this.onModalClose} open={showModal}>
-              <p>The standard modal close button is hidden.</p>
-              <Button onClick={this.onModalClose}>Close this Dialog</Button>
-            </Modal>
-          <Button onClick={this.onModalShow}>Show Modal</Button>
-        </>)
-      }
-    }
+  function customCloseModal() {
+    setInternalCloseCalledTimes(internalCloseCalledTimes + 1)
+    setShowModal(false)
+  }
+
+  return (
+    <>
+      <Modal header="Modal Title" onClose={closeModal} isOpen={showModal}>
+        Lorem ipsum dolar sit amet
+        <Button onClick={customCloseModal}>Close Modal</Button>
+      </Modal>
+      <p><strong>Magma Close Called Times:</strong> {magmaCloseCalledTimes}</p>
+      <p><strong>Internal Close Called Times:</strong> {internalCloseCalledTimes}</p>
+      <Button onClick={() => setShowModal(true)}>Show Modal <VisuallyHidden>(opens modal dialog)</VisuallyHidden></Button>
+    </>
+  )
+}
 ```
 
 ## Modal Props
 
+**This component uses `forwardRef`. The ref is applied to the `div` element that wraps the Modal content.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the `div` element that wraps the modal content.
+
 <SimplePropsTable
-  props={{
+  propertyValues={{
     children: {
       type: {
         name: 'node',
@@ -220,30 +193,13 @@ The close button can be hidden by using the `hideEscButton` prop. If this prop i
       required: true,
       description: 'The content of the component',
     },
-    closeLabel: {
+    closeAriaLabel: {
       type: {
         name: 'string',
       },
       required: false,
       description: 'The text read by screen readers for the close button',
       defaultValue: 'Close dialog',
-    },
-    disableBackdropClick: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, clicking the backdrop will not dismiss the modal',
-      defaultValue: 'false',
-    },
-    disableEscKeyDown: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, pressing the Escape key will not dismiss the modal',
-      defaultValue: 'false',
     },
     header: {
       type: {
@@ -252,7 +208,15 @@ The close button can be hidden by using the `hideEscButton` prop. If this prop i
       required: false,
       description: 'The content of the modal header',
     },
-    hideEscButton: {
+    isBackgroundClickDisabled: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, clicking the backdrop will not dismiss the modal',
+      defaultValue: 'false',
+    },
+    isCloseButtonHidden: {
       type: {
         name: 'boolean',
       },
@@ -260,12 +224,22 @@ The close button can be hidden by using the `hideEscButton` prop. If this prop i
       description: 'If true, the close button the the modal will be suppressed',
       defaultValue: 'false',
     },
-    innerRef: {
+    isEscKeyDownDisabled: {
       type: {
-        name: 'React.Ref',
+        name: 'boolean',
       },
       required: false,
-      description: 'Reference to the element containing the modal content',
+      description:
+        'If true, pressing the Escape key will not dismiss the modal',
+      defaultValue: 'false',
+    },
+    isOpen: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the modal will be visible',
+      defaultValue: 'false',
     },
     onClose: {
       type: {
@@ -281,14 +255,6 @@ The close button can be hidden by using the `hideEscButton` prop. If this prop i
       required: true,
       description: 'Action that fires when the Escape key is pressed',
     },
-    open: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, the modal will be visible',
-      defaultValue: 'false',
-    },
     size: {
       type: {
         name: 'enum',
@@ -303,8 +269,8 @@ The close button can be hidden by using the `hideEscButton` prop. If this prop i
         name: 'string',
       },
       required: false,
-      description: 'ID used for testing purposes',
-      defaultValue: '',
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
   }}
 />
@@ -312,6 +278,6 @@ The close button can be hidden by using the `hideEscButton` prop. If this prop i
 export default props => (
   <ScopeableLayout
     {...props}
-    components={{ Modal, Button, Radio, RadioGroup, Toggle }}
+    components={{ Modal, Button, Radio, RadioGroup, Toggle, VisuallyHidden }}
   />
-)
+);

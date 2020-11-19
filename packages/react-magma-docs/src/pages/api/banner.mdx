@@ -1,0 +1,71 @@
+---
+pageTitle: Banner API
+title: Banner
+props:
+  - BannerProps
+---
+
+import { ScopeableLayout } from '../../components/layout';
+import { Banner, Button } from 'react-magma-dom';
+import { SimplePropsTable } from '../../components/props-table';
+import DocsHeading from '../../components/docs-heading';
+
+<DocsHeading to="/design/alerts/" type="design">
+  Banner
+</DocsHeading>
+
+Banners are typically used for system or application level alerts. They fill the full width of their container and are intended to be used without margins.
+
+## Basic Usage
+
+The `variant` prop accepts the following values: `info`, `success`, `warning` and `danger`, with info being the default value.
+This prop determines the icon and color scheme used to style the Banner.
+
+```.jsx
+<>
+  <Banner >Default (info) banner</Banner>
+  <Banner variant='success'>Success banner</Banner>
+  <Banner variant='warning'>Warning banner</Banner>
+  <Banner variant='danger'>Danger banner. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus rutrum nisl placerat ullamcorper. Maecenas gravida ut velit sagittis lacinia.</Banner>
+</>
+```
+
+## Dismissible
+
+The isDismissible prop is optional, and if provided the Banner will render a dismiss button. Providing this property only causes the dismiss button to render; it does not control the dismiss behavior itself. If you include the isDismissible prop, you must also include a function in the onDismiss prop to handle the dismiss behavior.
+
+The aria-label, by default is Close this message but can be overridden using the optional closeAriaLabel prop.
+
+```.jsx
+() => {
+  const [showBanner, updateShowBanner] = React.useState(true);
+
+  return (
+    <>
+      { showBanner && <Banner isDismissible onDismiss={() => updateShowBanner(false)} variant="success">Success!  You may now dismiss this banner</Banner>}
+      { !showBanner && <Button onClick={() => updateShowBanner(true)} size="small" color="secondary">Show Banner Again</Button>}
+    </>
+  )
+}
+```
+
+## Action Button
+
+A single button can be added to a Banner Alert to provide the user with an action to take. The `actionButtonText` prop is a string that sets the text of the button.
+The `actionButtonOnClick` prop takes a function and fires when the action button is clicked. Both props must be present for the button to appear.
+
+```.jsx
+<Banner actionButtonText='Action' actionButtonOnClick={()=>{alert('action button clicked!')}}>Default banner</Banner>
+```
+
+## Banner Props
+
+**This component uses `forwardRef`. The ref is applied to the outer `div` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
+
+<BannerProps />
+
+export default props => (
+  <ScopeableLayout {...props} components={{ Banner, Button }} />
+);

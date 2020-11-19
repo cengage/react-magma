@@ -5,18 +5,15 @@ import {
   buildActiveBackground,
   buildActiveColor,
   buildAfterBackground,
-  buildAfterTopPosition,
+  buildButtonBorderRadius,
+  buildButtonFontSize,
+  buildButtonSize,
+  buildButtonPadding,
   buildBorderColor,
   buildButtonBackground,
   buildColor,
   buildFocusBackground,
   buildFocusColor,
-  buttonBaseHeight,
-  buttonBorderRadius,
-  buttonFontSize,
-  buttonIconOnlyHeight,
-  buttonIconOnlyWidth,
-  buttonPadding
 } from './styles';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonProps } from '../Button';
@@ -25,55 +22,54 @@ interface StyledButtonProps extends ButtonProps {
   as?: any;
   href?: string;
   iconOnly?: boolean;
-  ref?: any;
   to?: string;
 }
 
 export const buttonStyles = props => css`
   align-items: center;
-  border-radius: ${buttonBorderRadius[props.shape]};
+  background: ${buildButtonBackground(props)};
+  border: ${props.variant === 'outline' ||
+  (props.variant === 'solid' && props.color === 'secondary' && !props.isInverse)
+    ? '2px solid'
+    : '0'};
+  border-color: ${buildBorderColor(props)};
+  border-radius: ${buildButtonBorderRadius(props)};
+  color: ${buildColor(props)};
   cursor: ${props.disabled ? 'not-allowed' : 'pointer'};
-  display: ${props.block ? 'flex' : 'inline-flex'};
+  display: ${props.isFullWidth ? 'flex' : 'inline-flex'};
   flex-shrink: 0;
   font-family: ${props.theme.bodyFont};
+  font-size: ${buildButtonFontSize(props)};
+  font-weight: 600;
+  height: ${buildButtonSize(props)};
   justify-content: center;
   line-height: 1;
-  margin: ${props.block ? '5px 0' : '5px'};
-  min-width: 5.625em;
+  margin: ${props.isFullWidth
+    ? `${props.theme.spaceScale.spacing02} 0`
+    : props.theme.spaceScale.spacing02};
+  min-width: ${props.size === 'small' ? '0' : props.theme.spaceScale.spacing13};
   overflow: hidden;
+  padding: ${buildButtonPadding(props)};
   position: relative;
   text-align: center;
   text-decoration: none;
   text-transform: ${props.textTransform};
+  touch-action: manipulation;
   transition: background 0.35s, color 0.35s;
   vertical-align: middle;
-  touch-action: manipulation;
   white-space: nowrap;
-  font-size: ${buttonFontSize[props.size]};
-  font-weight: 600;
-  height: ${props.iconOnly
-    ? buttonIconOnlyHeight[props.size]
-    : buttonBaseHeight[props.size]};
-  padding: ${buttonPadding[props.size]};
   width: ${props.iconOnly
-    ? buttonIconOnlyWidth[props.size]
-    : props.block
+    ? buildButtonSize(props)
+    : props.isFullWidth
     ? '100%'
     : 'auto'};
-  background: ${buildButtonBackground(props)};
-  border: ${props.variant === 'outline' ||
-  (props.variant === 'solid' && props.color === 'secondary' && !props.inverse)
-    ? '2px solid'
-    : '0'};
-  border-color: ${buildBorderColor(props)};
-  color: ${buildColor(props)};
 
   &:not(:disabled) {
     &:focus {
       outline: 2px dotted
-        ${props.inverse
-          ? props.theme.colors.neutral08
-          : props.theme.colors.pop02};
+        ${props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
       outline-offset: 3px;
     }
 
@@ -84,18 +80,18 @@ export const buttonStyles = props => css`
     }
 
     &:after {
+      background: ${buildAfterBackground(props)};
       border-radius: 50%;
       content: '';
-      height: 32px;
+      height: ${props.theme.spaceScale.spacing07};
       left: 50%;
       opacity: 0;
-      position: absolute;
       padding: 50%;
-      top: ${buildAfterTopPosition(props)};
+      position: absolute;
+      top: 50%;
       transform: translate(-50%, -50%) scale(1);
       transition: opacity 1s, transform 0.5s;
-      width: 32px;
-      background: ${buildAfterBackground(props)};
+      width: ${props.theme.spaceScale.spacing07};
     }
 
     &:active {
@@ -109,25 +105,30 @@ export const buttonStyles = props => css`
     }
   }
 
+  svg {
+    flex-shrink: 0;
+  }
+
   ${props.iconOnly &&
-    css`
-      display: inline-flex;
-      justify-content: center;
-      line-height: 1;
-      min-width: 0;
-      padding: 0;
-    `}
+  css`
+    display: inline-flex;
+    justify-content: center;
+    line-height: 1;
+    min-width: 0;
+    padding: 0;
+  `}
 `;
 
-export const StyledButton: React.FunctionComponent<
+export const StyledButton = React.forwardRef<
+  HTMLButtonElement,
   StyledButtonProps
-> = React.forwardRef((props, ref: any) => {
+>((props, ref) => {
   const {
-    block,
+    isFullWidth,
     children,
     iconOnly,
     testId,
-    inverse,
+    isInverse,
     color,
     shape,
     size,
@@ -135,18 +136,17 @@ export const StyledButton: React.FunctionComponent<
     variant,
     ...other
   } = props;
+
+  const theme = React.useContext(ThemeContext);
+
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <button
-          css={buttonStyles({ ...props, theme })}
-          {...other}
-          data-testid={testId}
-          ref={ref}
-        >
-          {children}
-        </button>
-      )}
-    </ThemeContext.Consumer>
+    <button
+      css={buttonStyles({ ...props, theme })}
+      {...other}
+      data-testid={testId}
+      ref={ref}
+    >
+      {children}
+    </button>
   );
 });

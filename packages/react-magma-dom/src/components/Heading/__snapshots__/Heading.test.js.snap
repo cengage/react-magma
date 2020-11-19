@@ -1,9 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Heading Snapshot should render heading 1 correctly 1`] = `
+.emotion-0 {
+  border-bottom: 2px solid transparent;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 40px;
+  margin: 0 0 16px;
+}
+
+.emotion-0:focus {
+  border-bottom: 2px dotted #027EE1;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 36px;
+    line-height: 48px;
+  }
+}
+
+.emotion-0 {
+  border-bottom: 2px solid transparent;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 40px;
+  margin: 0 0 16px;
+}
+
+.emotion-0:focus {
+  border-bottom: 2px dotted #027EE1;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 36px;
+    line-height: 48px;
+  }
+}
+
 <div>
   <h1
-    class="css-8ouban-StyledH1 exymr0g0"
+    class="emotion-0"
     id="testId"
   >
     Heading 1
@@ -12,9 +62,59 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
 `;
 
 exports[`Heading Snapshot should render heading 2 correctly 1`] = `
+.emotion-0 {
+  border-bottom: 2px solid transparent;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  margin: 48px 0 16px;
+}
+
+.emotion-0:focus {
+  border-bottom: 2px dotted #027EE1;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 28px;
+    line-height: 40px;
+  }
+}
+
+.emotion-0 {
+  border-bottom: 2px solid transparent;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  margin: 48px 0 16px;
+}
+
+.emotion-0:focus {
+  border-bottom: 2px dotted #027EE1;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 28px;
+    line-height: 40px;
+  }
+}
+
 <div>
   <h2
-    class="css-q45n80-StyledH2 exymr0g1"
+    class="emotion-0"
   >
     Heading 2
   </h2>
@@ -22,9 +122,59 @@ exports[`Heading Snapshot should render heading 2 correctly 1`] = `
 `;
 
 exports[`Heading Snapshot should render heading 3 correctly 1`] = `
+.emotion-0 {
+  border-bottom: 2px solid transparent;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+  margin: 40px 0 16px;
+}
+
+.emotion-0:focus {
+  border-bottom: 2px dotted #027EE1;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}
+
+.emotion-0 {
+  border-bottom: 2px solid transparent;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+  margin: 40px 0 16px;
+}
+
+.emotion-0:focus {
+  border-bottom: 2px dotted #027EE1;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}
+
 <div>
   <h3
-    class="css-11jqkh6-StyledH3 exymr0g2"
+    class="emotion-0"
   >
     Heading 3
   </h3>
@@ -32,9 +182,59 @@ exports[`Heading Snapshot should render heading 3 correctly 1`] = `
 `;
 
 exports[`Heading Snapshot should render heading 4 correctly 1`] = `
+.emotion-0 {
+  border-bottom: 2px solid transparent;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  margin: 32px 0 16px;
+}
+
+.emotion-0:focus {
+  border-bottom: 2px dotted #027EE1;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 20px;
+    line-height: 32px;
+  }
+}
+
+.emotion-0 {
+  border-bottom: 2px solid transparent;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  margin: 32px 0 16px;
+}
+
+.emotion-0:focus {
+  border-bottom: 2px dotted #027EE1;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 20px;
+    line-height: 32px;
+  }
+}
+
 <div>
   <h4
-    class="css-11w790-StyledH4 exymr0g3"
+    class="emotion-0"
   >
     Heading 4
   </h4>
@@ -42,9 +242,59 @@ exports[`Heading Snapshot should render heading 4 correctly 1`] = `
 `;
 
 exports[`Heading Snapshot should render heading 5 correctly 1`] = `
+.emotion-0 {
+  border-bottom: 2px solid transparent;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  margin: 24px 0 16px;
+}
+
+.emotion-0:focus {
+  border-bottom: 2px dotted #027EE1;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+.emotion-0 {
+  border-bottom: 2px solid transparent;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  margin: 24px 0 16px;
+}
+
+.emotion-0:focus {
+  border-bottom: 2px dotted #027EE1;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
 <div>
   <h5
-    class="css-s1m22h-StyledH5 exymr0g4"
+    class="emotion-0"
   >
     Heading 5
   </h5>
@@ -52,9 +302,61 @@ exports[`Heading Snapshot should render heading 5 correctly 1`] = `
 `;
 
 exports[`Heading Snapshot should render heading 6 correctly 1`] = `
+.emotion-0 {
+  border-bottom: 2px solid transparent;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin: 24px 0 8px;
+}
+
+.emotion-0:focus {
+  border-bottom: 2px dotted #027EE1;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+
+.emotion-0 {
+  border-bottom: 2px solid transparent;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #3F3F3F;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin: 24px 0 8px;
+}
+
+.emotion-0:focus {
+  border-bottom: 2px dotted #027EE1;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+
 <div>
   <h6
-    class="css-xzxnj0-StyledH6 exymr0g5"
+    class="emotion-0"
   >
     Heading 6
   </h6>

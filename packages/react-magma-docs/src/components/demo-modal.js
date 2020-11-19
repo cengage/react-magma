@@ -1,25 +1,25 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Button, Modal } from 'react-magma-dom'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Button, Modal } from 'react-magma-dom';
 
 export class DemoModal extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      isModalOpen: false
-    }
+      isModalOpen: false,
+    };
 
-    this.closeModal = this.closeModal.bind(this)
-    this.openModal = this.openModal.bind(this)
+    this.closeModal = this.closeModal.bind(this);
+    this.openModal = this.openModal.bind(this);
   }
 
   closeModal() {
-    this.setState({ isModalOpen: false })
+    this.setState({ isModalOpen: false });
   }
 
   openModal() {
-    this.setState({ isModalOpen: true })
+    this.setState({ isModalOpen: true });
   }
 
   render() {
@@ -29,17 +29,17 @@ export class DemoModal extends React.Component {
 
         <Modal
           header="Demo Modal"
-          open={this.state.isModalOpen}
+          isOpen={this.state.isModalOpen}
           onClose={this.closeModal}
           size={this.props.size}
         >
           This is a {this.props.size} demo modal.
         </Modal>
       </>
-    )
+    );
   }
 }
 
 DemoModal.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
-}
+};

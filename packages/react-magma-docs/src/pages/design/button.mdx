@@ -1,64 +1,88 @@
 ---
-title: Buttons
+pageTitle: Button Design Guidelines
+title: Button
 order: 1
 ---
 
-import { Link } from 'gatsby'
-import './design-guidelines-styles.css'
-import DocsHeading from '../../components/docs-heading'
-import { Button } from 'react-magma-dom'
+import { Link } from 'gatsby';
+import './design-guidelines-styles.css';
+import DocsHeading from '../../components/docs-heading';
+import { Button, Paragraph } from 'react-magma-dom';
 
-<DocsHeading to="/api/button/" type="code">Buttons</DocsHeading>
+<DocsHeading to="/api/button/" type="code">
+  Button
+</DocsHeading>
 
-Buttons are clickable items used to perform an action.
+<Paragraph visualStyle="bodyLarge">
+  Buttons are clickable items used to perform an action.
+</Paragraph>
+
 ## Usage
 
 Buttons communicate actions that users can take.
 
-* Submit a form.
-* Begin a new task.
-* Trigger a new UI element to appear on the page.
-* Specify a new or next step in a process.
-<span class="horizontal-spacer"></span>
+- Submit a form.
+- Begin a new task.
+- Trigger a new UI element to appear on the page.
+- Specify a new or next step in a process.
+  <span class="horizontal-spacer"></span>
 
 <hr class="article-divider" />
 
 ## Principles
+
 ### Identifiable
+
 Buttons should indicate that they can trigger an action.
 
 ### Findable
+
 Buttons should be easy to find among other elements, including other buttons.
 
 ### Clear
-A button’s action and state should be clear.
-<span class="horizontal-spacer"></span>
 
+A button’s action and state should be clear.
+
+<span class="horizontal-spacer"></span>
 <hr class="article-divider" />
 
 ## Types
+
 ### Text Button (low emphasis)
+
 Text buttons are typically used for less important actions.
-<Button color="primary" variant="link">Text Button</Button>
+
+<Button color="primary" variant="link">
+  Text Button
+</Button>
 
 ### Outlined Button (medium emphasis)
+
 Outlined buttons are used for more emphasis than text buttons due to the stroke.
-<Button color="primary" variant="outline">Outlined Button</Button>
+
+<Button color="primary" variant="outline">
+  Outlined Button
+</Button>
 
 ### Solid Button (high emphasis)
+
 Solid buttons have more emphasis, as they use use a color fill.
+
 <Button>Solid Button</Button>
 <span class="horizontal-spacer"></span>
-
 <hr class="article-divider" />
 
 ## Anatomy
+
 ### Text Label
+
 Almost all buttons use text labels, which describe the action that will occur if a user taps a button.
+
 #### All Caps or Title Case?
+
 **By default Magma uses all caps text labels.** This is to provide a greater contrast between buttons and surrounding text, therefore making buttons easier to find. This is especially helpful for buttons that don't have a visible container.
 
-Text labels should always be short and have clear purpose.  If a button requires a text label with three or more words, try really hard to shorten it.  If you can’t, you may use title case to help reduce the size of the button’s footprint.  We recommend buttons using title case also have an outline or solid container, to help differentiate the button from the text around it.
+Text labels should always be short and have clear purpose. If a button requires a text label with three or more words, try really hard to shorten it. If you can’t, you may use title case to help reduce the size of the button’s footprint. We recommend buttons using title case also have an outline or solid container, to help differentiate the button from the text around it.
 
 <div class="two-col">
   <div class="row">
@@ -76,7 +100,10 @@ Text labels should always be short and have clear purpose.  If a button requires
         <img src="../../images/buttons/ex_4_2.png" alt="" />
         <figcaption>
           <p class="title title-incorrect">Incorrect</p>
-          <p>Don’t wrap text. For maximum legibility and recognition as a button, a text label should never wrap to multiple lines.</p>
+          <p>
+            Don’t wrap text. For maximum legibility and recognition as a button,
+            a text label should never wrap to multiple lines.
+          </p>
         </figcaption>
       </figure>
     </div>
@@ -87,12 +114,15 @@ Text labels should always be short and have clear purpose.  If a button requires
         <img src="../../images/buttons/ex_4_3.png" alt="" />
         <figcaption>
           <p class="title title-correct">Correct</p>
-          <p>Text labels can be written in title case if all efforts to make the label less than three words have been exhausted, or if the button simply won't fit in the space without making it smaller.</p>
+          <p>
+            Text labels can be written in title case if all efforts to make the
+            label less than three words have been exhausted, or if the button
+            simply won't fit in the space without making it smaller.
+          </p>
         </figcaption>
       </figure>
     </div>
-    <div class="col">
-    </div>
+    <div class="col"></div>
   </div>
   <div class="row">
     <div class="col col-1">
@@ -100,7 +130,10 @@ Text labels should always be short and have clear purpose.  If a button requires
         <img src="../../images/buttons/ex_4_4.png" alt="" />
         <figcaption>
           <p class="title title-correct">Correct</p>
-          <p>Text buttons don’t typically need a container when in all caps, because the label is differentiated from the text around it.</p>
+          <p>
+            Text buttons don’t typically need a container when in all caps,
+            because the label is differentiated from the text around it.
+          </p>
         </figcaption>
       </figure>
     </div>
@@ -109,7 +142,11 @@ Text labels should always be short and have clear purpose.  If a button requires
         <img src="../../images/buttons/ex_4_5.png" alt="" />
         <figcaption>
           <p class="title title-caution">Caution</p>
-          <p>Text labels need to be distinct from other elements. Without a container, the button above could be hard to distinguish from the content above it.</p>
+          <p>
+            Text labels need to be distinct from other elements. Without a
+            container, the button above could be hard to distinguish from the
+            content above it.
+          </p>
         </figcaption>
       </figure>
     </div>
@@ -117,7 +154,8 @@ Text labels should always be short and have clear purpose.  If a button requires
 </div>
 
 ### Icon
-You can place icons next to text labels to both clarify an action and call attention to a button.  If a text label is not used, an icon should be present to signify what the button does.
+
+You can place icons next to text labels to both clarify an action and call attention to a button. If a text label is not used, an icon should be present to signify what the button does.
 
 <div class="two-col">
   <div class="row">
@@ -135,7 +173,10 @@ You can place icons next to text labels to both clarify an action and call atten
         <img src="../../images/buttons/ex_4_7.png" alt="" />
         <figcaption>
           <p class="title title-correct">Correct</p>
-          <p>You can use icons without a text label if testing proves that the intended action of the button is clear to the users.</p>
+          <p>
+            You can use icons without a text label if testing proves that the
+            intended action of the button is clear to the users.
+          </p>
         </figcaption>
       </figure>
     </div>
@@ -146,7 +187,10 @@ You can place icons next to text labels to both clarify an action and call atten
         <img src="../../images/buttons/ex_4_8.png" alt="" />
         <figcaption>
           <p class="title title-incorrect">Incorrect</p>
-          <p>Don’t vertically align an icon and text in the center of a contained button.</p>
+          <p>
+            Don’t vertically align an icon and text in the center of a contained
+            button.
+          </p>
         </figcaption>
       </figure>
     </div>
@@ -161,29 +205,30 @@ You can place icons next to text labels to both clarify an action and call atten
     </div>
   </div>
 </div>
-
 <hr class="article-divider" />
 
 ## Sizes
+
 Other than the standard sized buttons, there are two other sizes – Large and small.
 
-*Large* buttons can be used in scenarios where space allows and you desire a much more prominent call to action.
+_Large_ buttons can be used in scenarios where space allows and you desire a much more prominent call to action.
 
-*Small* buttons can be used in scenarios where you want less emphasis on some actions because there are other more prominent actions on the UI.  They can also be used when space is limited for the number of buttons you need.
+_Small_ buttons can be used in scenarios where you want less emphasis on some actions because there are other more prominent actions on the UI. They can also be used when space is limited for the number of buttons you need.
 
-**Minimum Width -** Buttons with extremely short labels like “OK” or “Save” are in danger of being very small, even though they may be the primary action.  To avoid this, all text buttons have a minimum of width of 5.625em (90px).  This does not apply to icon only buttons.
+**Minimum Width -** Buttons with extremely short labels like “OK” or “Save” are in danger of being very small, even though they may be the primary action. To avoid this, all text buttons have a minimum of width of 5.625em (90px). This does not apply to icon only buttons.
+
 <span class="horizontal-spacer"></span>
-
 <hr class="article-divider" />
 
 ## Button Colors
-Color can help reinforce the type of action that a button will perform if tapped.  The default colors of Magma are carefully chosen to both fit Cengage branding guidelines, as well as meet the accessibility requirement for color contrast ratio of at least 4.5:1.  If deviations to these colors are required, then you assume responsibility to meet accessibility requirements.
 
-By default, a button using the **Primary** color should be used.  This includes outlined buttons.
+Color can help reinforce the type of action that a button will perform if tapped. The default colors of Magma are carefully chosen to both fit Cengage branding guidelines, as well as meet the accessibility requirement for color contrast ratio of at least 4.5:1. If deviations to these colors are required, then you assume responsibility to meet accessibility requirements.
 
-If you can justify in your design that the button’s purpose is to create or do something positive, you may use the button using the **Success** color.  This includes outlined buttons.
+By default, a button using the **Primary** color should be used. This includes outlined buttons.
 
-If you can justify in your design that the button’s purpose is to destroy or remove something, you may use the button using the **Danger** color.  This includes outlined buttons.
+If you can justify in your design that the button’s purpose is to create or do something positive, you may use the button using the **Success** color. This includes outlined buttons.
+
+If you can justify in your design that the button’s purpose is to destroy or remove something, you may use the button using the **Danger** color. This includes outlined buttons.
 
 <div class="two-col">
   <div class="row">
@@ -192,7 +237,10 @@ If you can justify in your design that the button’s purpose is to destroy or r
         <img src="../../images/buttons/ex_6_1.png" alt="" />
         <figcaption>
           <p class="title title-correct">Correct</p>
-          <p>Use the <strong>Primary</strong> colored button for the primary action unless there is a specific reason to use something else.</p>
+          <p>
+            Use the <strong>Primary</strong> colored button for the primary
+            action unless there is a specific reason to use something else.
+          </p>
         </figcaption>
       </figure>
     </div>
@@ -201,7 +249,10 @@ If you can justify in your design that the button’s purpose is to destroy or r
         <img src="../../images/buttons/ex_6_2.png" alt="" />
         <figcaption>
           <p class="title title-correct">Correct</p>
-          <p>Consider using the <strong>Success</strong> variation for buttons that will execute an action that creates something new.</p>
+          <p>
+            Consider using the <strong>Success</strong> variation for buttons
+            that will execute an action that creates something new.
+          </p>
         </figcaption>
       </figure>
     </div>
@@ -212,14 +263,18 @@ If you can justify in your design that the button’s purpose is to destroy or r
         <img src="../../images/buttons/ex_6_3.png" alt="" />
         <figcaption>
           <p class="title title-correct">Correct</p>
-          <p>Consider using the <strong>Danger</strong> variation for buttons that will remove or destroy something to help emphasize the danger that comes with clicking that button.</p>
+          <p>
+            Consider using the <strong>Danger</strong> variation for buttons
+            that will remove or destroy something to help emphasize the danger
+            that comes with clicking that button.
+          </p>
         </figcaption>
       </figure>
     </div>
   </div>
 </div>
 
-If your button is going on a dark background, you can use any of the solid buttons, but the link and outline buttons won’t work well.  Adding the inverse class to the solid or link buttons will give you a new set of options to choose from that work well on dark backgrounds.
+If your button is going on a dark background, you can use any of the solid buttons, but the link and outline buttons won’t work well. Adding the isInverse prop to the solid or link buttons will give you a new set of options to choose from that work well on dark backgrounds.
 
 <div class="one-col">
   <div class="row">
@@ -231,10 +286,10 @@ If your button is going on a dark background, you can use any of the solid butto
   </div>
 </div>
 <span class="horizontal-spacer"></span>
-
 <hr class="article-divider" />
 
 ## Button States
+
 Buttons have clear states to provide feedback to the user.
 
 <div class="one-col">
@@ -248,12 +303,18 @@ Buttons have clear states to provide feedback to the user.
 </div>
 
 ### Hover and Active
-For the best scalability, we use pseudo elements as overlays with varying opacities so we don’t have to find specific color values for each state.  Solid buttons typically use a white overlay at 10% opacity (hover) and 25% opacity (active).  For outline buttons we use the color of the text label as the overlay at the same opacity levels.
+
+The background color of the Hover and Active button states are automatically calculated based on the base color. This frees designers from having to choose multiple colors to represent the various states of a button. Additionally, if the colors of the buttons ever need to change, due to a rebranding event or the creation of a new theme, this automatic calculation will make this task much easier to complete and will reinforce consistency in what colors should be used.
+
+Here's how it works in more detail. If you have a solid button with a white text label, the background is darkened by 10% on hover, and then 20% on the active or pressed state. If you have a solid button with dark label, the background is lightened by 10% on hover, and then 20% on the active or pressed state. This ensures the button's background and text label will always have the necessary 4.5:1 contrast ratio for accessibility.
+
+Outline and link buttons are a little different since they don't have a background color or fill in their default state. On hover, the text label and/or border are darkened by 10%, and then 20% on the active or pressed state. For the background color on hover, we take the original color value of the text label and lighten it by 90%. On the active or pressed state, we change the value to 70% darkened.
 
 ### Focus
-It’s important for users to clearly see when the browser’s focus is on a button.  This is especially important for users who can’t use a mouse, but instead have to rely on a keyboard or other means for navigating through the elements on the page.  The default focus presentation built into the browsers are not consistent, and have varying success in visibility depending on what’s behind the button.  For this reason, we are putting our own custom focus effect on Magma buttons.
 
-The dotted outline is 2px, and the color is #F2A900 ($accent06).  Both of these properties help ensure the outline is visible on both light and dark backgrounds.
+It’s important for users to clearly see when the browser’s focus is on a button. This is especially important for users who can’t use a mouse, but instead have to rely on a keyboard or other means for navigating through the elements on the page. The default focus presentation built into the browsers are not consistent, and have varying success in visibility depending on what’s behind the button. For this reason, we are putting our own custom focus effect on Magma components.
+
+The dotted outline is 2px thick with at least a 4px offset, and the color is #027EE1 (\$focus). These properties ensure the outline is visible on a light background. The color changes to semi-transparent-white for optimal visibility on dark backgrounds.
 
 <div class="two-col">
   <div class="row">
@@ -264,17 +325,23 @@ The dotted outline is 2px, and the color is #F2A900 ($accent06).  Both of these 
     </div>
   </div>
 </div>
-
 <hr class="article-divider" />
 
 ## Hierarchy and Placement
+
 ### Hierarchy
+
 #### Single Prominent Button
+
 A layout should contain a single prominent button that makes it clear that other buttons have less visual importance in the hierarchy. This high-emphasis button commands the most attention.
+
 #### Other Buttons
+
 An app can show more than one button in a layout at a time, so a high-emphasis button can be accompanied by medium- and low-emphasis buttons that perform less important actions. When using multiple buttons, ensure the available state of one button doesn’t look like the disabled state of another.
+
 ### Placement
-Multiple button types can be used to express different emphasis levels.  When using buttons that are contextually connected to left-to-right content, the buttons should also be left aligned, with the most important action coming first.  When the buttons are positioned as actions for a larger context, like an entire modal or page, then the buttons will typically be right aligned, with the most important action on the far right.
+
+Multiple button types can be used to express different emphasis levels. When using buttons that are contextually connected to left-to-right content, the buttons should also be left aligned, with the most important action coming first. When the buttons are positioned as actions for a larger context, like an entire modal or page, then the buttons will typically be right aligned, with the most important action on the far right.
 
 <div class="two-col">
   <div class="row">
@@ -283,7 +350,10 @@ Multiple button types can be used to express different emphasis levels.  When us
         <img src="../../images/buttons/ex_8_1.png" alt="" />
         <figcaption>
           <p class="title title-correct">Correct</p>
-          <p>When using multiple buttons, you can place a text button next to a solid button to show emphasis.</p>
+          <p>
+            When using multiple buttons, you can place a text button next to a
+            solid button to show emphasis.
+          </p>
         </figcaption>
       </figure>
     </div>
@@ -292,7 +362,11 @@ Multiple button types can be used to express different emphasis levels.  When us
         <img src="../../images/buttons/ex_8_2.png" alt="" />
         <figcaption>
           <p class="title title-correct">Correct</p>
-          <p>When using multiple buttons in the bottom bar of a modal, the buttons align to the right with the most important button on the far right.</p>
+          <p>
+            When using multiple buttons in the bottom bar of a modal, the
+            buttons align to the right with the most important button on the far
+            right.
+          </p>
         </figcaption>
       </figure>
     </div>
@@ -303,7 +377,10 @@ Multiple button types can be used to express different emphasis levels.  When us
         <img src="../../images/buttons/ex_8_3.png" alt="" />
         <figcaption>
           <p class="title title-correct">Correct</p>
-          <p>You can place a text button (low emphasis) next to an outlined button (medium emphasis).</p>
+          <p>
+            You can place a text button (low emphasis) next to an outlined
+            button (medium emphasis).
+          </p>
         </figcaption>
       </figure>
     </div>
@@ -312,17 +389,20 @@ Multiple button types can be used to express different emphasis levels.  When us
         <img src="../../images/buttons/ex_8_4.png" alt="" />
         <figcaption>
           <p class="title title-incorrect">Incorrect</p>
-          <p>Avoid using two solid buttons next to one another if they don’t have the same fill color.</p>
+          <p>
+            Avoid using two solid buttons next to one another if they don’t have
+            the same fill color.
+          </p>
         </figcaption>
       </figure>
     </div>
   </div>
 </div>
-
 <hr class="article-divider" />
 
 ## Responsive Behavior
-Button sizes and placements will sometimes need to change because of the size of the user’s screen.  CSS breakpoints should be determined based on need, instead of limited to a set of standard breakpoints.
+
+Button sizes and placements will sometimes need to change because of the size of the user’s screen. CSS breakpoints should be determined based on need, instead of limited to a set of standard breakpoints.
 
 <div class="two-col">
   <div class="row">
@@ -331,7 +411,11 @@ Button sizes and placements will sometimes need to change because of the size of
         <img src="../../images/buttons/ex_9_1.png" alt="" />
         <figcaption>
           <p class="title title-correct">Correct</p>
-          <p>You may allow the buttons to go block level if it benefits the design or if there isn’t enough room for them to remain side-by-side.</p>
+          <p>
+            You may allow the buttons to go block level if it benefits the
+            design or if there isn’t enough room for them to remain
+            side-by-side.
+          </p>
         </figcaption>
       </figure>
     </div>
@@ -340,7 +424,10 @@ Button sizes and placements will sometimes need to change because of the size of
         <img src="../../images/buttons/ex_9_2.png" alt="" />
         <figcaption>
           <p class="title title-correct">Correct</p>
-          <p>No need to force buttons to be block level if they fit in the container without problem.</p>
+          <p>
+            No need to force buttons to be block level if they fit in the
+            container without problem.
+          </p>
         </figcaption>
       </figure>
     </div>

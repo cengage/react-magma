@@ -1,14 +1,13 @@
 {
-  "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "src",
-    "jsx": "react",
-    "allowSyntheticDefaultImports": true,
-    "types": ["jest", "node"],
-    "typeRoots": ["node_modules/@types"],
-    "esModuleInterop": true,
-    "noUnusedLocals": true
-  },
+  "extends": "../../tsconfig",
   "include": ["src/**/*"],
-  "exclude": ["node_modules/**"]
+  "compilerOptions": {
+    "removeComments": false,
+    "noUnusedParameters": false,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "noImplicitThis": false, 
+    "strictFunctionTypes": false,
+    "strictNullChecks":  false
+  }
 }

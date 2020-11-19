@@ -1,59 +1,76 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { Notification2Icon } from '../Icon/types/Notification2Icon';
+import { Notification2Icon } from 'react-magma-icons';
+import { Announce } from '../Announce';
+import { InputSize } from '../InputBase';
 
 export interface InputMessageProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  hasError?: boolean;
   id?: string;
-  inverse?: boolean;
-  isError?: boolean;
+  inputSize?: InputSize;
+  isInverse?: boolean;
 }
 
 const Message = styled.div<InputMessageProps>`
   align-items: center;
   background: ${props =>
-    props.inverse && props.isError ? props.theme.colors.danger : 'none'};
-  border-radius: 5px;
+    props.isInverse && props.hasError ? props.theme.colors.danger : 'none'};
+  border-radius: ${props => props.theme.borderRadius};
   color: ${props =>
-    props.inverse
+    props.isInverse
       ? props.theme.colors.neutral08
-      : props.isError
+      : props.hasError
       ? props.theme.colors.danger
-      : props.theme.colors.neutral04};
+      : props.theme.colors.neutral03};
   display: flex;
-  font-size: 13px;
-  margin-top: 5px;
-  min-height: 2.5em;
-  padding: ${props => (props.inverse && props.isError ? '5px 10px' : '0')};
+  font-size: ${props => props.theme.typeScale.size02.fontSize};
+  line-height: ${props => props.theme.typeScale.size02.lineHeight};
+  margin-top: ${props =>
+    props.inputSize === InputSize.large
+      ? props.theme.spaceScale.spacing03
+      : props.theme.spaceScale.spacing02};
+  min-height: ${props => props.theme.spaceScale.spacing06};
+  padding: ${props =>
+    props.isInverse && props.hasError
+      ? `${props.theme.spaceScale.spacing02} ${props.theme.spaceScale.spacing03}`
+      : '0'};
   text-align: left;
+`;
+
+const IconWrapper = styled.span`
+  display: inline-flex;
+  flex-shrink: 0;
+  padding-right: ${props => props.theme.spaceScale.spacing02};
 `;
 
 export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
   children,
   id,
-  inverse,
-  isError,
+  isInverse,
+  hasError,
   ...other
 }: InputMessageProps) => {
+  const theme = React.useContext(ThemeContext);
+
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <Message
-          {...other}
-          id={id}
-          inverse={inverse}
-          isError={isError}
-          theme={theme}
-        >
-          {isError && (
-            <>
-              <Notification2Icon aria-label="Error" size={18} /> &nbsp;
-            </>
-          )}
-          {children}
-        </Message>
-      )}
-    </ThemeContext.Consumer>
+    <Announce>
+      <Message
+        {...other}
+        data-testid="inputMessage"
+        id={id}
+        isInverse={isInverse}
+        hasError={hasError}
+        theme={theme}
+      >
+        {hasError && (
+          <IconWrapper theme={theme}>
+            <Notification2Icon aria-label="Error" size={18} />
+          </IconWrapper>
+        )}
+        <div>{children}</div>
+      </Message>
+    </Announce>
   );
 };

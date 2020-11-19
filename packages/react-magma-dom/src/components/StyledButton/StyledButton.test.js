@@ -67,10 +67,10 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule('background', magma.colors.primary);
         expect(button).toHaveStyleRule('background', '#004165', {
-          target: ':hover'
+          target: ':hover',
         });
         expect(button).toHaveStyleRule('background', '#002032', {
-          target: ':active'
+          target: ':active',
         });
         expect(button).toHaveStyleRule('border-color', magma.colors.primary);
         expect(button).toHaveStyleRule('color', magma.colors.neutral08);
@@ -85,10 +85,10 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule('background', 'rgba(0,0,0,0)');
         expect(button).toHaveStyleRule('background', '#e5eff4', {
-          target: ':hover'
+          target: ':hover',
         });
         expect(button).toHaveStyleRule('background', '#b2cfe0', {
-          target: ':active'
+          target: ':active',
         });
         expect(button).toHaveStyleRule('color', magma.colors.primary);
       });
@@ -152,7 +152,7 @@ describe('Styled Button', () => {
           { target: ':active' }
         );
         expect(button).toHaveStyleRule('border-color', magma.colors.neutral05);
-        expect(button).toHaveStyleRule('color', magma.colors.neutral02);
+        expect(button).toHaveStyleRule('color', magma.colors.neutral);
       });
 
       it('success button', () => {
@@ -164,18 +164,18 @@ describe('Styled Button', () => {
         );
         const button = getByText(text);
 
-        expect(button).toHaveStyleRule('background', magma.colors.success01);
+        expect(button).toHaveStyleRule('background', magma.colors.success);
         expect(button).toHaveStyleRule(
           'background',
-          darken(0.1, magma.colors.success01),
+          darken(0.1, magma.colors.success),
           { target: ':hover' }
         );
         expect(button).toHaveStyleRule(
           'background',
-          darken(0.2, magma.colors.success01),
+          darken(0.2, magma.colors.success),
           { target: ':active' }
         );
-        expect(button).toHaveStyleRule('border-color', magma.colors.success01);
+        expect(button).toHaveStyleRule('border-color', magma.colors.success);
         expect(button).toHaveStyleRule('color', magma.colors.neutral08);
       });
 
@@ -222,7 +222,7 @@ describe('Styled Button', () => {
           { target: ':active' }
         );
         expect(button).toHaveStyleRule('border-color', magma.colors.pop04);
-        expect(button).toHaveStyleRule('color', magma.colors.foundation01);
+        expect(button).toHaveStyleRule('color', magma.colors.foundation02);
       });
     });
 
@@ -230,7 +230,7 @@ describe('Styled Button', () => {
       it('primary button', () => {
         const text = 'test text';
         const { getByText } = render(
-          <StyledButton inverse color="primary" theme="magma" variant="solid">
+          <StyledButton isInverse color="primary" theme="magma" variant="solid">
             {text}
           </StyledButton>
         );
@@ -244,7 +244,12 @@ describe('Styled Button', () => {
       it('secondary button', () => {
         const text = 'test text';
         const { getByText } = render(
-          <StyledButton inverse color="secondary" theme="magma" variant="solid">
+          <StyledButton
+            isInverse
+            color="secondary"
+            theme="magma"
+            variant="solid"
+          >
             {text}
           </StyledButton>
         );
@@ -252,13 +257,13 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule('background', magma.colors.neutral08);
         expect(button).toHaveStyleRule('border-color', magma.colors.neutral08);
-        expect(button).toHaveStyleRule('color', magma.colors.neutral02);
+        expect(button).toHaveStyleRule('color', magma.colors.neutral);
       });
 
       it('success button', () => {
         const text = 'test text';
         const { getByText } = render(
-          <StyledButton inverse color="success" theme="magma" variant="solid">
+          <StyledButton isInverse color="success" theme="magma" variant="solid">
             {text}
           </StyledButton>
         );
@@ -266,13 +271,13 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule('background', magma.colors.neutral08);
         expect(button).toHaveStyleRule('border-color', magma.colors.neutral08);
-        expect(button).toHaveStyleRule('color', magma.colors.success01);
+        expect(button).toHaveStyleRule('color', magma.colors.success);
       });
 
       it('danger button', () => {
         const text = 'test text';
         const { getByText } = render(
-          <StyledButton inverse color="danger" theme="magma" variant="solid">
+          <StyledButton isInverse color="danger" theme="magma" variant="solid">
             {text}
           </StyledButton>
         );
@@ -292,11 +297,14 @@ describe('Styled Button', () => {
         );
         const button = getByText(text);
 
-        expect(button).toHaveStyleRule('font-size', '14px');
-        expect(button).toHaveStyleRule('padding', '0 15px');
-        expect(button).toHaveStyleRule('top', '18px', {
-          target: ':after'
-        });
+        expect(button).toHaveStyleRule(
+          'font-size',
+          magma.typeScale.size03.fontSize
+        );
+        expect(button).toHaveStyleRule(
+          'padding',
+          `${magma.spaceScale.spacing04} ${magma.spaceScale.spacing05}`
+        );
       });
 
       it('small button', () => {
@@ -306,11 +314,14 @@ describe('Styled Button', () => {
         );
         const button = getByText(text);
 
-        expect(button).toHaveStyleRule('font-size', '12px');
-        expect(button).toHaveStyleRule('padding', '0 10px');
-        expect(button).toHaveStyleRule('top', '14px', {
-          target: ':after'
-        });
+        expect(button).toHaveStyleRule(
+          'font-size',
+          magma.typeScale.size01.fontSize
+        );
+        expect(button).toHaveStyleRule(
+          'padding',
+          `${magma.spaceScale.spacing02} ${magma.spaceScale.spacing03}`
+        );
       });
 
       it('large button', () => {
@@ -320,17 +331,20 @@ describe('Styled Button', () => {
         );
         const button = getByText(text);
 
-        expect(button).toHaveStyleRule('font-size', '18px');
-        expect(button).toHaveStyleRule('padding', '0 20px');
-        expect(button).toHaveStyleRule('top', '22px', {
-          target: ':after'
-        });
+        expect(button).toHaveStyleRule(
+          'font-size',
+          magma.typeScale.size04.fontSize
+        );
+        expect(button).toHaveStyleRule(
+          'padding',
+          `${magma.spaceScale.spacing04} ${magma.spaceScale.spacing06}`
+        );
       });
 
       it('disabled inverse outline button', () => {
         const text = 'test text';
         const { getByText } = render(
-          <StyledButton disabled inverse variant="outline">
+          <StyledButton disabled isInverse variant="outline">
             {text}
           </StyledButton>
         );
@@ -338,9 +352,12 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule(
           'border-color',
-          'rgba(255,255,255,0.25)'
+          magma.colors.disabledInverseText
         );
-        expect(button).toHaveStyleRule('color', 'rgba(255,255,255,0.25)');
+        expect(button).toHaveStyleRule(
+          'color',
+          magma.colors.disabledInverseText
+        );
       });
     });
 
@@ -352,7 +369,7 @@ describe('Styled Button', () => {
         );
         const button = getByText(text);
 
-        expect(button).toHaveStyleRule('border-radius', '5px');
+        expect(button).toHaveStyleRule('border-radius', magma.borderRadius);
       });
 
       it('leftCap button', () => {
@@ -362,7 +379,10 @@ describe('Styled Button', () => {
         );
         const button = getByText(text);
 
-        expect(button).toHaveStyleRule('border-radius', '5px 0 0 5px');
+        expect(button).toHaveStyleRule(
+          'border-radius',
+          `${magma.borderRadius} 0 0 ${magma.borderRadius}`
+        );
       });
 
       it('rightCap button', () => {
@@ -372,7 +392,10 @@ describe('Styled Button', () => {
         );
         const button = getByText(text);
 
-        expect(button).toHaveStyleRule('border-radius', '0 5px 5px 0');
+        expect(button).toHaveStyleRule(
+          'border-radius',
+          `0 ${magma.borderRadius} ${magma.borderRadius} 0`
+        );
       });
 
       it('round button', () => {
@@ -418,8 +441,8 @@ describe('Styled Button', () => {
       const button = getByText(text);
 
       expect(button).toHaveStyleRule('display', 'inline-flex');
-      expect(button).toHaveStyleRule('height', '28px');
-      expect(button).toHaveStyleRule('width', '28px');
+      expect(button).toHaveStyleRule('height', magma.spaceScale.spacing07);
+      expect(button).toHaveStyleRule('width', magma.spaceScale.spacing07);
     });
 
     it('icon medium', () => {
@@ -432,8 +455,8 @@ describe('Styled Button', () => {
       const button = getByText(text);
 
       expect(button).toHaveStyleRule('display', 'inline-flex');
-      expect(button).toHaveStyleRule('height', '37px');
-      expect(button).toHaveStyleRule('width', '37px');
+      expect(button).toHaveStyleRule('height', magma.spaceScale.spacing09);
+      expect(button).toHaveStyleRule('width', magma.spaceScale.spacing09);
     });
 
     it('icon large', () => {
@@ -446,12 +469,12 @@ describe('Styled Button', () => {
       const button = getByText(text);
 
       expect(button).toHaveStyleRule('display', 'inline-flex');
-      expect(button).toHaveStyleRule('height', '44px');
-      expect(button).toHaveStyleRule('width', '44px');
+      expect(button).toHaveStyleRule('height', magma.spaceScale.spacing11);
+      expect(button).toHaveStyleRule('width', magma.spaceScale.spacing11);
     });
   });
 
-  describe('Block', () => {
+  describe('Full Width', () => {
     it('default button', () => {
       const text = 'test text';
       const { getByText } = render(<StyledButton>{text}</StyledButton>);
@@ -461,9 +484,11 @@ describe('Styled Button', () => {
       expect(button).toHaveStyleRule('width', 'auto');
     });
 
-    it('block button', () => {
+    it('Full Width button', () => {
       const text = 'test text';
-      const { getByText } = render(<StyledButton block>{text}</StyledButton>);
+      const { getByText } = render(
+        <StyledButton isFullWidth>{text}</StyledButton>
+      );
       const button = getByText(text);
 
       expect(button).toHaveStyleRule('display', 'flex');
@@ -482,7 +507,7 @@ describe('Styled Button', () => {
       getByText(text),
       new MouseEvent('click', {
         bubbles: true,
-        cancelable: true
+        cancelable: true,
       })
     );
 

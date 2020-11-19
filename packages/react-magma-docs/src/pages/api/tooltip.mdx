@@ -1,35 +1,46 @@
 ---
-title: 'Tooltips'
+pageTitle: Tooltip API
+title: Tooltip
 ---
 
-import { ScopeableLayout } from '../../components/layout'
+import { ScopeableLayout } from '../../components/layout';
 import {
-  Tooltip,
-  Button,
   CircleDownIcon,
   CircleLeftIcon,
   CircleRightIcon,
   CircleUpIcon,
   QuestionCircleIcon,
-} from 'react-magma-dom'
-import { SimplePropsTable } from '../../components/props-table'
-import DocsHeading from '../../components/docs-heading'
+} from 'react-magma-icons';
+import { Tooltip, IconButton, Card, CardBody } from 'react-magma-dom';
+import { SimplePropsTable } from '../../components/props-table';
+import DocsHeading from '../../components/docs-heading';
 
 <DocsHeading to="/design/tooltips/" type="design">
-  Tooltips
+  Tooltip
 </DocsHeading>
 
 ## Basic Usage
 
-The `content` prop can take a string or a react node, and determines the content inside of the tooltip bubble.
+The children of the tooltip, determines the content inside of the tooltip bubble.
 
-The `trigger` prop must take a react element (not just a string), and determines the content that tiggers the tooltip on hover or on focus. Note: in order to trigger the content on focus (a requirement for accessibility), the `trigger` should be a focusable element.
+The `trigger` prop must take a react element (not just a string), and determines the content that triggers the tooltip on hover or on focus. Note: in order to trigger the content on focus (a requirement for accessibility), the `trigger` should be a focusable element.
 
 ```.jsx
+() => {
+  const tooltipNodeContent = <>Lorem ipsum <i>dolor sit amet</i>. Vel molestie no, ut vim.</>
+
+  return (
     <>
-        <Tooltip content="What is this?" id="basicTooltip" trigger={<Button icon={<QuestionCircleIcon />} variant="link" />} />
-        <Tooltip content="Lorem ipsum dolor sit amet, mutat utroque cu quo. Vel molestie invidunt dissentiet no, ut vim iriure eloquentiam." id="basicTooltip2" trigger={<Button icon={<QuestionCircleIcon />} variant="link" />} />
+      <Tooltip content="What's this?">
+        <IconButton aria-label="Get Help" icon={<QuestionCircleIcon />} variant="link" />
+      </Tooltip>
+
+      <Tooltip content={tooltipNodeContent}>
+        <IconButton aria-label="Get Help" icon={<QuestionCircleIcon />} variant="link" />
+      </Tooltip>
     </>
+  )
+}
 ```
 
 ## Position
@@ -37,27 +48,38 @@ The `trigger` prop must take a react element (not just a string), and determines
 The `Tooltip` component takes a `position` property, that accepts the following values: bottom, left, right, top. Top is the default value.
 
 ```.jsx
-    <>
-        <Tooltip position='bottom' content="Tooltip bottom" trigger={<Button aria-label="Question Icon" icon={<CircleDownIcon />} variant="link" />} />
-        <Tooltip position='left' content="Tooltip left" trigger={<Button icon={<CircleLeftIcon />} variant="link" />} />
-        <Tooltip position='right' content="Tooltip right" trigger={<Button icon={<CircleRightIcon />} variant="link" />} />
-        <Tooltip position='top' content="Tooltip top" trigger={<Button icon={<CircleUpIcon />} variant="link" />} />
-        <br/>
-        <Tooltip position='bottom' content="Lorem ipsum dolor sit amet, mutat utroque cu quo. Vel molestie invidunt dissentiet no, ut vim iriure eloquentiam." trigger={<Button aria-label="Question Icon" icon={<CircleDownIcon />} variant="link" />} />
-        <Tooltip position='left' content="Lorem ipsum dolor sit amet, mutat utroque cu quo. Vel molestie invidunt dissentiet no, ut vim iriure eloquentiam." trigger={<Button icon={<CircleLeftIcon />} variant="link" />} />
-        <Tooltip position='right' content="Lorem ipsum dolor sit amet, mutat utroque cu quo. Vel molestie invidunt dissentiet no, ut vim iriure eloquentiam." trigger={<Button icon={<CircleRightIcon />} variant="link" />} />
-        <Tooltip position='top' content="Lorem ipsum dolor sit amet, mutat utroque cu quo. Vel molestie invidunt dissentiet no, ut vim iriure eloquentiam." trigger={<Button icon={<CircleUpIcon />} variant="link" />} />
-    </>
+<>
+  <Tooltip position='bottom' content='Tooltip bottom'>
+    <IconButton aria-label="Bottom" icon={<CircleDownIcon />} variant="link" />
+  </Tooltip>
+
+  <Tooltip position='left' content='Tooltip left'>
+    <IconButton aria-label="Left" icon={<CircleLeftIcon />} variant="link" />
+  </Tooltip>
+
+  <Tooltip position='right' content='Tooltip right'>
+    <IconButton aria-label="Right" icon={<CircleRightIcon />} variant="link" />
+  </Tooltip>
+
+  <Tooltip position='top' content='Tooltip top'>
+    <IconButton aria-label="Top" icon={<CircleUpIcon />} variant="link" />
+  </Tooltip>
+</>
 ```
 
 ## Inverse
 
-The `Tooltip` component takes an optional `inverse` prop, for when the tooltip is to appear on a dark background.
+The `isInverse` property is an optional boolean, that reverses the colors so that the component can better appear on a dark background.
+The default value is `false`.
 
 ```.jsx
-    <div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
-        <Tooltip inverse position="right" content="Inverse tooltip" trigger={<Button aria-label="Question Icon" icon={<QuestionCircleIcon />} inverse variant="link" />} />
-    </div>
+<Card isInverse>
+  <CardBody>
+    <Tooltip isInverse position='right' content='Inverse tooltip'>
+      <IconButton aria-label="Get Help" icon={<QuestionCircleIcon />} isInverse variant="link" />
+    </Tooltip>
+  </CardBody>
+</Card>
 ```
 
 ## Custom Styles
@@ -65,49 +87,42 @@ The `Tooltip` component takes an optional `inverse` prop, for when the tooltip i
 The containing div for the tooltip, and the tooltip component itself can have custom styles applied to it, using the `containerStyle` and `tooltipStyle` props respectively.
 
 ```.jsx
-        <Tooltip
-          trigger={<Button aria-label="Question Icon"icon={<QuestionCircleIcon />} variant="link" />}
-          containerStyle={{background: 'pink', padding: '10px' }} 
-          content='Styled tooltip'
-          tooltipStyle={{ border: '1px solid red', background: 'yellow', color: 'black', padding: '10px' }}>
-        </Tooltip>
-```
-
-
-## Refs
-
-```.jsx
-  class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.tooltipRef = React.createRef();
-      }
-
-      render() {
-        return <div>
-          <Tooltip ref={this.tooltipRef} position="top" content="Ref tooltip" trigger={<Button aria-label="Question Icon" icon={<QuestionCircleIcon />} variant="link" />} />
-          <Button
-          onClick={() => {
-            this.tooltipRef.current.focus();
-          }}>Click to focus the tooltip</Button>
-        </div>
-      }
-    }
+<Tooltip content='Styled tooltip' containerStyle={{background: 'pink', padding: '10px' }} tooltipStyle={{ border: '1px solid red', background: 'yellow', color: 'black', padding: '10px' }}>
+  <IconButton aria-label="Get Help" icon={<QuestionCircleIcon />} variant="link" />
+</Tooltip>
 ```
 
 ## Tooltip Props
 
+**This component uses `forwardRef`. The ref is applied to the tooltip trigger element element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the outer-most `div` element that gets rendered.
+
 <SimplePropsTable
-  props={{
-    content: {
+  propertyValues={{
+    children: {
       type: {
         name: 'node',
       },
       required: true,
       description:
-        'The content of the tooltip.  May be a string or a react node',
+        'The element that triggers the tooltip when it is hovered or focused.  Must be a react element (not a string) and should be a focusable element to meet a11y requirements',
     },
-    inverse: {
+    containerStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the component container element',
+    },
+    content: {
+      type: {
+        name: 'element',
+      },
+      required: true,
+      description: 'The content of the tooltip',
+    },
+    isInverse: {
       type: {
         name: 'boolean',
       },
@@ -130,13 +145,20 @@ The containing div for the tooltip, and the tooltip component itself can have cu
       description: 'Position the tooltip appears in relation to its trigger',
       defaultValue: 'top',
     },
-    trigger: {
+    testId: {
       type: {
-        name: 'element',
+        name: 'string',
       },
-      required: true,
+      required: false,
       description:
-        'The element that triggers the tooltip when it is hovered or focused.  Must be a react element (not a string) and should be a focusable element to meet a11y requirements',
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+    tooltipStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the tooltip',
     },
   }}
 />
@@ -146,12 +168,14 @@ export default props => (
     {...props}
     components={{
       Tooltip,
-      Button,
+      IconButton,
       CircleDownIcon,
       CircleLeftIcon,
       CircleRightIcon,
       CircleUpIcon,
       QuestionCircleIcon,
+      Card,
+      CardBody,
     }}
   />
-)
+);

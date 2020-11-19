@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { RadioCore } from 'react-magma-core';
 import { FormGroupLabel } from '../FormGroup';
-import { HiddenStyles } from '../UtilityStyles';
-import styled from '@emotion/styled';
-import { omit } from '../utils';
+import { HiddenStyles } from '../../utils/UtilityStyles';
+import { InputMessage } from '../Input/InputMessage';
+
+import styled from '../../theme/styled';
+import { omit, useGenerateId } from '../../utils';
 
 const HiddenLabel = styled.label`
   ${HiddenStyles};
@@ -14,16 +15,24 @@ export interface RadioGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
   containerStyle?: React.CSSProperties;
+  errorMessage?: React.ReactNode;
+  helperMessage?: React.ReactNode;
+  isInverse?: boolean;
+  isTextVisuallyHidden?: boolean;
   labelledById?: string;
   labelStyle?: React.CSSProperties;
-  labelText?: string;
+  labelText?: React.ReactNode;
   name: string;
+  required?: boolean;
   testId?: string;
-  textVisuallyHidden?: boolean;
   value?: string;
 }
 
 export interface RadioContextInterface {
+  descriptionId?: string;
+  hasError?: boolean;
+  isInverse?: boolean;
+  required?: boolean;
   name: string;
   selectedValue?: string;
   onBlur?: () => void;
@@ -31,76 +40,95 @@ export interface RadioContextInterface {
   onFocus?: () => void;
 }
 
-export const RadioContext = React.createContext<RadioContextInterface | null>(
-  null
-);
+export const RadioContext = React.createContext<RadioContextInterface>({
+  hasError: false,
+  name: 'defaultName',
+});
 
-export class RadioGroup extends React.Component<RadioGroupProps> {
-  constructor(props) {
-    super(props);
+export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
+  (props, ref) => {
+    const id = useGenerateId(props.id);
+    const [selectedValue, setSelectedValue] = React.useState<string>(
+      props.value
+    );
 
-    this.handleChange = this.handleChange.bind(this);
-  }
+    React.useEffect(() => {
+      setSelectedValue(props.value);
+    }, [props.value]);
 
-  handleChange(onChange: (selectedValue: string) => void) {
-    return (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { value: selectedValue } = event.target;
-      this.props.onChange &&
-        typeof this.props.onChange === 'function' &&
-        this.props.onChange(event);
-      onChange(selectedValue);
-    };
-  }
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+      const { value: newSelectedValue } = event.target;
+      props.onChange &&
+        typeof props.onChange === 'function' &&
+        props.onChange(event);
+      setSelectedValue(newSelectedValue);
+    }
 
-  render() {
+    const {
+      containerStyle,
+      errorMessage,
+      helperMessage,
+      isInverse,
+      required,
+      isTextVisuallyHidden,
+      labelledById,
+      labelStyle,
+      labelText,
+      testId,
+      name,
+      children,
+      ...rest
+    } = props;
+    const other = omit(['onBlur', 'onChange', 'onFocus', 'id'], rest);
+
+    const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+
     return (
-      <RadioCore id={this.props.id} value={this.props.value}>
-        {({ id, onChange, selectedValue }) => {
-          const {
-            containerStyle,
-            labelledById,
-            labelStyle,
-            labelText,
-            textVisuallyHidden,
-            testId,
+      <div
+        {...other}
+        aria-labelledby={labelledById ? labelledById : id}
+        style={containerStyle}
+        data-testid={testId}
+        ref={ref}
+        role="radiogroup"
+      >
+        <RadioContext.Provider
+          value={{
+            descriptionId,
+            hasError: !!errorMessage,
+            isInverse,
+            required,
             name,
-            children,
-            ...rest
-          } = this.props;
-          const other = omit(['onBlur', 'onChange', 'onFocus', 'id'], rest);
+            selectedValue,
+            onBlur: props.onBlur,
+            onChange: handleChange,
+            onFocus: props.onFocus,
+          }}
+        >
+          {labelText && isTextVisuallyHidden && (
+            <HiddenLabel id={id} style={labelStyle}>
+              {labelText}
+            </HiddenLabel>
+          )}
 
-          return (
-            <div
-              {...other}
-              aria-labelledby={labelledById ? labelledById : id}
-              style={containerStyle}
-              data-testid={testId}
-              role="radiogroup"
-            >
-              <RadioContext.Provider
-                value={{
-                  name: name,
-                  selectedValue: selectedValue,
-                  onBlur: this.props.onBlur,
-                  onChange: this.handleChange(onChange),
-                  onFocus: this.props.onFocus
-                }}
-              >
-                {textVisuallyHidden ? (
-                  <HiddenLabel id={id} style={labelStyle}>
-                    {labelText}
-                  </HiddenLabel>
-                ) : (
-                  <FormGroupLabel id={id} style={labelStyle}>
-                    {labelText}
-                  </FormGroupLabel>
-                )}
-                {children}
-              </RadioContext.Provider>
-            </div>
-          );
-        }}
-      </RadioCore>
+          {labelText && !isTextVisuallyHidden && (
+            <FormGroupLabel id={id} style={labelStyle}>
+              {labelText}
+            </FormGroupLabel>
+          )}
+          {children}
+
+          <InputMessage
+            id={descriptionId}
+            hasError={!!errorMessage}
+            isInverse={isInverse}
+          >
+            {(errorMessage || helperMessage) && (
+              <>{errorMessage ? errorMessage : helperMessage}</>
+            )}
+          </InputMessage>
+        </RadioContext.Provider>
+      </div>
     );
   }
-}
+);

@@ -1,21 +1,21 @@
-import React from 'react'
-import './styles.css'
-import { AsteriskIcon, magma } from 'react-magma-dom'
+import React from 'react';
+import './styles.css';
+import { AsteriskIcon } from 'react-magma-icons';
+import { magma } from 'react-magma-dom';
 
-export const SimplePropsTable = ({ props }) => {
-  if (props === undefined) {
-    return null
+export const SimplePropsTable = ({ propertyValues }) => {
+  if (propertyValues === undefined) {
+    return null;
   }
 
-  const hasDescription = Object.keys(props).some(name => {
-    return Boolean(props[name].description)
-  })
+  const hasDescription = Object.keys(propertyValues).some(name => {
+    return Boolean(propertyValues[name].description);
+  });
 
   return (
     <div>
       <div className="legend">
-        <AsteriskIcon size="12" color={magma.colors.foundation02} /> = required
-        prop
+        <AsteriskIcon size="12" color={magma.colors.primary} /> = required prop
       </div>
       <table className="props-table" cellSpacing="0" cellPadding="0">
         <thead
@@ -24,19 +24,19 @@ export const SimplePropsTable = ({ props }) => {
           }}
         >
           <tr>
-            <th>Property</th>
-            <th>Type</th>
-            <th>Default</th>
-            {hasDescription && <th>Description</th>}
+            <th scope="col">Property</th>
+            <th scope="col">Type</th>
+            <th scope="col">Default</th>
+            {hasDescription && <th scope="col">Description</th>}
           </tr>
         </thead>
         <tbody>
-          {props &&
-            Object.keys(props).map(name => {
-              const prop = props[name]
+          {propertyValues &&
+            Object.keys(propertyValues).map(name => {
+              const prop = propertyValues[name];
 
               if (!prop.type.name) {
-                return null
+                return null;
               }
 
               return (
@@ -48,7 +48,7 @@ export const SimplePropsTable = ({ props }) => {
                         <span aria-label="Required" className="required">
                           <AsteriskIcon
                             size="12"
-                            color={magma.colors.foundation02}
+                            color={magma.colors.primary}
                           />
                         </span>
                       )}
@@ -66,7 +66,7 @@ export const SimplePropsTable = ({ props }) => {
                             <code>{prop.type.options[i]}</code>
                             <br />
                           </div>
-                        )
+                        );
                       })}
                   </td>
                   {!prop.defaultValue ? (
@@ -86,10 +86,10 @@ export const SimplePropsTable = ({ props }) => {
                     <td>{prop.description && prop.description}</td>
                   )}
                 </tr>
-              )
+              );
             })}
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};

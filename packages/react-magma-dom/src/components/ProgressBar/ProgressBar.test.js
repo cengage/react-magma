@@ -1,9 +1,17 @@
 import React from 'react';
 import { axe } from 'jest-axe';
+import { magma } from '../../theme/magma';
 import { ProgressBar } from '.';
 import { render } from '@testing-library/react';
 
 describe('ProgressBar', () => {
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(<ProgressBar testId={testId} />);
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should render the progress bar component', () => {
     const { container } = render(<ProgressBar />);
 
@@ -11,7 +19,7 @@ describe('ProgressBar', () => {
   });
 
   it('should render the progress bar component with inverse styles', () => {
-    const { container } = render(<ProgressBar inverse />);
+    const { container } = render(<ProgressBar isInverse />);
 
     expect(container.firstChild.firstChild).toHaveStyleRule(
       'background',
@@ -36,50 +44,46 @@ describe('ProgressBar', () => {
 
   it('should render the progress bar component with danger color', () => {
     const { container } = render(
-      <ProgressBar percentage={50} bgColor="danger" />
+      <ProgressBar percentage={50} color="danger" />
     );
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      '#E70000'
+      magma.colors.danger
     );
   });
 
-  it('should render the progress bar component with pop01 color', () => {
-    const { container } = render(
-      <ProgressBar percentage={50} bgColor="pop01" />
-    );
+  it('should render the progress bar component with pop color', () => {
+    const { container } = render(<ProgressBar percentage={50} color="pop" />);
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      '#E0004D'
+      magma.colors.pop
     );
   });
 
   it('should render the progress bar component with pop02 color', () => {
-    const { container } = render(
-      <ProgressBar percentage={50} bgColor="pop02" />
-    );
+    const { container } = render(<ProgressBar percentage={50} color="pop02" />);
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      '#FA6600'
+      magma.colors.pop02
     );
   });
 
   it('should render the progress bar component with success color', () => {
     const { container } = render(
-      <ProgressBar percentage={50} bgColor="success" />
+      <ProgressBar percentage={50} color="success" />
     );
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      '#3A8200'
+      magma.colors.success
     );
   });
 
   it('should render the progress bar component shimmer animation', () => {
-    const { container } = render(<ProgressBar percentage={50} animated />);
+    const { container } = render(<ProgressBar percentage={50} isAnimated />);
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'animation-name',
@@ -88,7 +92,9 @@ describe('ProgressBar', () => {
   });
 
   it('should render the progress bar with the percentage label displayed', () => {
-    const { getByText } = render(<ProgressBar percentage={50} labelVisible />);
+    const { getByText } = render(
+      <ProgressBar percentage={50} isLabelVisible />
+    );
 
     expect(getByText('50%')).toBeInTheDocument();
   });

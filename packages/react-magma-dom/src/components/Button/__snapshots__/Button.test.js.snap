@@ -1,9 +1,199 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button Base Button Snapshot should render with large size 1`] = `
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
+  border-radius: 4px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  height: 56px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  line-height: 1;
+  margin: 4px;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 24px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,color 0.35s;
+  transition: background 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px dotted #027EE1;
+  outline-offset: 3px;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  background: #004165;
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-0:not(:disabled):active {
+  background: #002032;
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
+  border-radius: 4px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  height: 56px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  line-height: 1;
+  margin: 4px;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 24px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,color 0.35s;
+  transition: background 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px dotted #027EE1;
+  outline-offset: 3px;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  background: #004165;
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-0:not(:disabled):active {
+  background: #002032;
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
 <div>
   <button
-    class="css-g6evc3"
+    class="emotion-0"
     id="testId"
   >
     Test Text
@@ -12,9 +202,199 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 `;
 
 exports[`Button Base Button Snapshot should render with small size 1`] = `
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
+  border-radius: 4px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  height: 28px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  line-height: 1;
+  margin: 4px;
+  min-width: 0;
+  overflow: hidden;
+  padding: 4px 8px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,color 0.35s;
+  transition: background 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px dotted #027EE1;
+  outline-offset: 3px;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  background: #004165;
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-0:not(:disabled):active {
+  background: #002032;
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
+  border-radius: 4px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  height: 28px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  line-height: 1;
+  margin: 4px;
+  min-width: 0;
+  overflow: hidden;
+  padding: 4px 8px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,color 0.35s;
+  transition: background 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px dotted #027EE1;
+  outline-offset: 3px;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  background: #004165;
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-0:not(:disabled):active {
+  background: #002032;
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
 <div>
   <button
-    class="css-grushl"
+    class="emotion-0"
     id="testId"
   >
     Test Text
@@ -23,9 +403,199 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
 `;
 
 exports[`Button Base Button Snapshot should render with updated color 1`] = `
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #FFFFFF;
+  border: 2px solid;
+  border-color: #BFBFBF;
+  border-radius: 4px;
+  color: #3F3F3F;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  line-height: 1;
+  margin: 4px;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,color 0.35s;
+  transition: background 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px dotted #027EE1;
+  outline-offset: 3px;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  background: #e6e6e6;
+  color: #3F3F3F;
+}
+
+.emotion-0:not(:disabled):after {
+  background: #3F3F3F;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-0:not(:disabled):active {
+  background: #ccc;
+  color: #3F3F3F;
+}
+
+.emotion-0:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #FFFFFF;
+  border: 2px solid;
+  border-color: #BFBFBF;
+  border-radius: 4px;
+  color: #3F3F3F;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  line-height: 1;
+  margin: 4px;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,color 0.35s;
+  transition: background 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px dotted #027EE1;
+  outline-offset: 3px;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  background: #e6e6e6;
+  color: #3F3F3F;
+}
+
+.emotion-0:not(:disabled):after {
+  background: #3F3F3F;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-0:not(:disabled):active {
+  background: #ccc;
+  color: #3F3F3F;
+}
+
+.emotion-0:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
 <div>
   <button
-    class="css-6e8zn2"
+    class="emotion-0"
     id="testId"
   >
     Test Text
@@ -34,9 +604,199 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 `;
 
 exports[`Button Base Button Snapshot should render with updated shape 1`] = `
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
+  border-radius: 100%;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  line-height: 1;
+  margin: 4px;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,color 0.35s;
+  transition: background 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px dotted #027EE1;
+  outline-offset: 3px;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  background: #004165;
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-0:not(:disabled):active {
+  background: #002032;
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
+  border-radius: 100%;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  line-height: 1;
+  margin: 4px;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,color 0.35s;
+  transition: background 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px dotted #027EE1;
+  outline-offset: 3px;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  background: #004165;
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-0:not(:disabled):active {
+  background: #002032;
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
 <div>
   <button
-    class="css-1uh14c7"
+    class="emotion-0"
     id="testId"
   >
     Test Text
@@ -45,9 +805,199 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 `;
 
 exports[`Button Base Button Snapshot should render with updated textTransform 1`] = `
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
+  border-radius: 4px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  line-height: 1;
+  margin: 4px;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: none;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,color 0.35s;
+  transition: background 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px dotted #027EE1;
+  outline-offset: 3px;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  background: #004165;
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-0:not(:disabled):active {
+  background: #002032;
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #006298;
+  border: 0;
+  border-color: #006298;
+  border-radius: 4px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  line-height: 1;
+  margin: 4px;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: none;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,color 0.35s;
+  transition: background 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px dotted #027EE1;
+  outline-offset: 3px;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  background: #004165;
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-0:not(:disabled):active {
+  background: #002032;
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
 <div>
   <button
-    class="css-19h6w2s"
+    class="emotion-0"
     id="testId"
   >
     Test Text
@@ -56,354 +1006,200 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 `;
 
 exports[`Button Base Button Snapshot should render with updated variant 1`] = `
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgba(0,0,0,0);
+  border: 2px solid;
+  border-radius: 4px;
+  color: #006298;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  line-height: 1;
+  margin: 4px;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,color 0.35s;
+  transition: background 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px dotted #027EE1;
+  outline-offset: 3px;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  background: #e5eff4;
+  color: #004165;
+}
+
+.emotion-0:not(:disabled):after {
+  background: #006298;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-0:not(:disabled):active {
+  background: #b2cfe0;
+  color: #002032;
+}
+
+.emotion-0:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgba(0,0,0,0);
+  border: 2px solid;
+  border-radius: 4px;
+  color: #006298;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Open Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  line-height: 1;
+  margin: 4px;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,color 0.35s;
+  transition: background 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px dotted #027EE1;
+  outline-offset: 3px;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  background: #e5eff4;
+  color: #004165;
+}
+
+.emotion-0:not(:disabled):after {
+  background: #006298;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-0:not(:disabled):active {
+  background: #b2cfe0;
+  color: #002032;
+}
+
+.emotion-0:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
 <div>
   <button
-    class="css-1klcon5"
+    class="emotion-0"
     id="testId"
   >
     Test Text
-  </button>
-</div>
-`;
-
-exports[`Button Icon Only Button Snapshot should render with large size 1`] = `
-<div>
-  <button
-    aria-label="Check Icon"
-    class="css-do4zis"
-    icon="[object Object]"
-    id="testId"
-  >
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="24"
-      viewBox="0 0 29.37 21.88"
-      width="24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
-      />
-    </svg>
-  </button>
-</div>
-`;
-
-exports[`Button Icon Only Button Snapshot should render with small size 1`] = `
-<div>
-  <button
-    aria-label="Check Icon"
-    class="css-f4p49l"
-    icon="[object Object]"
-    id="testId"
-  >
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="14"
-      viewBox="0 0 29.37 21.88"
-      width="14"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
-      />
-    </svg>
-  </button>
-</div>
-`;
-
-exports[`Button Icon Only Button Snapshot should render with updated color 1`] = `
-<div>
-  <button
-    aria-label="Check Icon"
-    class="css-11irqno"
-    icon="[object Object]"
-    id="testId"
-  >
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="18"
-      viewBox="0 0 29.37 21.88"
-      width="18"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
-      />
-    </svg>
-  </button>
-</div>
-`;
-
-exports[`Button Icon Only Button Snapshot should render with updated shape 1`] = `
-<div>
-  <button
-    aria-label="Check Icon"
-    class="css-tbfnzz"
-    icon="[object Object]"
-    id="testId"
-  >
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="18"
-      viewBox="0 0 29.37 21.88"
-      width="18"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
-      />
-    </svg>
-  </button>
-</div>
-`;
-
-exports[`Button Icon Only Button Snapshot should render with updated variant 1`] = `
-<div>
-  <button
-    aria-label="Check Icon"
-    class="css-zzrhkf"
-    icon="[object Object]"
-    id="testId"
-  >
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="18"
-      viewBox="0 0 29.37 21.88"
-      width="18"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
-      />
-    </svg>
-  </button>
-</div>
-`;
-
-exports[`Button Icon With Text Button Snapshot should render with large size 1`] = `
-<div>
-  <button
-    aria-label="Check Icon"
-    class="css-g6evc3"
-    icon="[object Object]"
-    id="testId"
-  >
-    <span
-      class="css-1apg407-SpanTextLeft e1cefif80"
-    >
-      Test Text
-       
-    </span>
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="20"
-      viewBox="0 0 29.37 21.88"
-      width="20"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
-      />
-    </svg>
-  </button>
-</div>
-`;
-
-exports[`Button Icon With Text Button Snapshot should render with medium size 1`] = `
-<div>
-  <button
-    aria-label="Check Icon"
-    class="css-19z46wd"
-    icon="[object Object]"
-    id="testId"
-  >
-    <span
-      class="css-4fhr0b-SpanTextLeft e1cefif80"
-    >
-      Test Text
-       
-    </span>
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="16"
-      viewBox="0 0 29.37 21.88"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
-      />
-    </svg>
-  </button>
-</div>
-`;
-
-exports[`Button Icon With Text Button Snapshot should render with small size 1`] = `
-<div>
-  <button
-    aria-label="Check Icon"
-    class="css-grushl"
-    icon="[object Object]"
-    id="testId"
-  >
-    <span
-      class="css-4fhr0b-SpanTextLeft e1cefif80"
-    >
-      Test Text
-       
-    </span>
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="12"
-      viewBox="0 0 29.37 21.88"
-      width="12"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
-      />
-    </svg>
-  </button>
-</div>
-`;
-
-exports[`Button Icon With Text Button Snapshot should render with updated color 1`] = `
-<div>
-  <button
-    aria-label="Check Icon"
-    class="css-6e8zn2"
-    icon="[object Object]"
-    id="testId"
-  >
-    <span
-      class="css-4fhr0b-SpanTextLeft e1cefif80"
-    >
-      Test Text
-       
-    </span>
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="16"
-      viewBox="0 0 29.37 21.88"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
-      />
-    </svg>
-  </button>
-</div>
-`;
-
-exports[`Button Icon With Text Button Snapshot should render with updated shape 1`] = `
-<div>
-  <button
-    aria-label="Check Icon"
-    class="css-19z46wd"
-    icon="[object Object]"
-    id="testId"
-  >
-    <span
-      class="css-4fhr0b-SpanTextLeft e1cefif80"
-    >
-      Test Text
-       
-    </span>
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="16"
-      viewBox="0 0 29.37 21.88"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
-      />
-    </svg>
-  </button>
-</div>
-`;
-
-exports[`Button Icon With Text Button Snapshot should render with updated text transform 1`] = `
-<div>
-  <button
-    aria-label="Check Icon"
-    class="css-19h6w2s"
-    icon="[object Object]"
-    id="testId"
-  >
-    <span
-      class="css-4fhr0b-SpanTextLeft e1cefif80"
-    >
-      Test Text
-       
-    </span>
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="16"
-      viewBox="0 0 29.37 21.88"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
-      />
-    </svg>
-  </button>
-</div>
-`;
-
-exports[`Button Icon With Text Button Snapshot should render with updated variant 1`] = `
-<div>
-  <button
-    aria-label="Check Icon"
-    class="css-1klcon5"
-    icon="[object Object]"
-    id="testId"
-  >
-    <span
-      class="css-4fhr0b-SpanTextLeft e1cefif80"
-    >
-      Test Text
-       
-    </span>
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="16"
-      viewBox="0 0 29.37 21.88"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
-      />
-    </svg>
   </button>
 </div>
 `;

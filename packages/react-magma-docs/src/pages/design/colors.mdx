@@ -1,67 +1,95 @@
 ---
-title: 'Colors'
+pageTitle: Color Design Guidelines
+title: Color
 order: 1
 ---
 
-import { Link } from 'gatsby'
-import './design-guidelines-styles.css'
+import { Link } from 'gatsby';
+import './design-guidelines-styles.css';
 
-import ColorSwatch from '../../components/color-swatch'
+import ColorSwatch from '../../components/color-swatch';
 
-import {magma} from 'react-magma-dom'
+import { magma, Paragraph } from 'react-magma-dom';
 
-# Colors
-Color helps express hierarchy, establish brand presence, give meaning, and indicate element states.
+# Color
 
-## Principles
-### Consistent
-Color should be applied throughout a UI consistently and be compatible with the brand it represents.
-### Hierarchical
-Color indicates which elements are interactive, how they relate to other elements, and their level of prominence. Important elements should stand out the most.
-### Legible
-Text and important elements, like icons, should meet legibility standards when appearing on colored backgrounds, across all screen and device types.
-### Expressive
-Reinforce your brand by showing brand colors at memorable moments that reinforce your brand’s style.
-<span class="horizontal-spacer"></span>
-
-<hr class="article-divider" />
+<Paragraph visualStyle="bodyLarge">
+  Color helps express hierarchy, establish brand presence, give meaning, and indicate element states.
+</Paragraph>
 
 ## Color Palette
-*&ast; Contrast ratio on each color is based on a white background. *
+
+_\* Contrast ratio on each color is based on a white background. _
+
 ### Primary
-The primary color is the main brand color.  A brand color can be used in key moments, in ways that associate that color with specific actions and information.
+
+The primary color is the main brand color. A brand color can be used in key moments, in ways that associate that color with specific actions and information.
+
 <div class="swatch-rows">
   <ColorSwatch color={magma.colors.primary}>
-    <span><strong>primary</strong></span>
+    <span>
+      <strong>primary</strong>
+    </span>
     <span class="color-hex">{magma.colors.primary}</span>
     <span>rgb(0,98,152)</span>
     <span>6.6:1</span>
   </ColorSwatch>
 </div>
 
-### Foundation
-Our blues are just like us: confident, cool and collected. They also, just like us, play nicely with others. Go ahead and use multiple shades of blue in webpages to show off the dynamic palette.
+### Focus
+
+The focus color is used to visually highlight elements that are in focus on the UI. This color compliments the palette, while standing out against light colors to make the focus states visually distinct. This color will meet the 3:1 contrast ratio required as long as you use neutral07 or neutral08 as your background.
+If you are using dark backgrounds, then the focus color should use the focusInverse color instead, which is a semi-transparent white.
+
 <div class="swatch-rows">
-  <ColorSwatch color={magma.colors.foundation01}>
-    <span><strong>foundation01</strong></span>
-    <span class="color-hex">{magma.colors.foundation01}</span>
+  <ColorSwatch color={magma.colors.focus}>
+    <span>
+      <strong>focus</strong>
+    </span>
+    <span class="color-hex">{magma.colors.focus}</span>
+    <span>rgb(2, 126, 225)</span>
+    <span>4.1:1</span>
+  </ColorSwatch>
+
+
+  <ColorSwatch color={magma.colors.focusInverse}>
+    <span>
+      <strong>focusInverse</strong>
+    </span>
+    <span>rgba(255, 255, 255, 0.7)</span>
+  </ColorSwatch>
+</div>
+
+
+### Foundation
+
+Our blues are just like us: confident, cool and collected. They also, just like us, play nicely with others. Go ahead and use multiple shades of blue in webpages to show off the dynamic palette.
+
+<div class="swatch-rows">
+  <ColorSwatch color={magma.colors.foundation}>
+    <span>
+      <strong>foundation</strong>
+    </span>
+    <span class="color-hex">{magma.colors.foundation}</span>
+    <span>rgb(0,38,62)</span>
+    <span>15.6:1</span>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.foundation02}>
+    <span><strong>foundation02</strong></span>
+    <span class="color-hex">{magma.colors.foundation02}</span>
     <span>rgb(0,56,101)</span>
     <span>12.0:1</span>
   </ColorSwatch>
 
-  <ColorSwatch color={magma.colors.foundation02}>
-    <span><strong>foundation02</strong></span>
-    <span class="color-hex">{magma.colors.foundation02}</span>
-    <span>rgb(0,98,152)</span>
-    <span>6.6:1</span>
-  </ColorSwatch>
 
-  <ColorSwatch color={magma.colors.foundation03}>
-    <span><strong>foundation03</strong></span>
-    <span class="color-hex">{magma.colors.foundation03}</span>
-    <span>rgb(0,169,224)</span>
-    <span>2.7:1</span>
-  </ColorSwatch>
+<ColorSwatch color={magma.colors.foundation03}>
+  <span>
+    <strong>foundation03</strong>
+  </span>
+  <span class="color-hex">{magma.colors.foundation03}</span>
+  <span>rgb(0,169,224)</span>
+  <span>2.7:1</span>
+</ColorSwatch>
 
   <ColorSwatch color={magma.colors.foundation04}>
     <span><strong>foundation04</strong></span>
@@ -71,129 +99,209 @@ Our blues are just like us: confident, cool and collected. They also, just like 
   </ColorSwatch>
 </div>
 
+
 ### Feedback
-Feedback colors should be used to reinforce positive or negative feedback to users.
+
+Feedback colors should be used to reinforce positive or negative feedback to users.  The `successInverse` and `dangerInverse` are designed to be used against dark backgrounds.
+
+
 <div class="swatch-rows">
-  <ColorSwatch color={magma.colors.success01}>
-    <span><strong>success01</strong></span>
-    <span class="color-hex">{magma.colors.success01}</span>
+  <ColorSwatch color={magma.colors.success}>
+    <span>
+      <strong>success</strong>
+    </span>
+    <span class="color-hex">{magma.colors.success}</span>
     <span>rgb(58,130,0)</span>
     <span>4.8:1</span>
   </ColorSwatch>
   <ColorSwatch color={magma.colors.success02}>
-    <span><strong>success02</strong></span>
+    <span>
+      <strong>success02</strong>
+    </span>
     <span class="color-hex">{magma.colors.success02}</span>
     <span>rgb(72,162,0)</span>
     <span>3.3:1</span>
   </ColorSwatch>
+   <ColorSwatch color={magma.colors.successInverse}>
+    <span>
+      <strong>successInverse</strong>
+    </span>
+    <span class="color-hex">{magma.colors.successInverse}</span>
+    <span>rgb(145,207,96)</span>
+    <span>4.5:1 (against dark colors)</span>
+  </ColorSwatch>
   <ColorSwatch color={magma.colors.danger}>
-    <span><strong>danger</strong></span>
+    <span>
+      <strong>danger</strong>
+    </span>
     <span class="color-hex">{magma.colors.danger}</span>
-    <span>rgb(231,0,0)</span>
-    <span>4.8:1</span>
+    <span>rgb(198,29,35)</span>
+    <span>5.8:1</span>
+  </ColorSwatch>
+   <ColorSwatch color={magma.colors.dangerInverse}>
+    <span>
+      <strong>dangerInverse</strong>
+    </span>
+    <span class="color-hex">{magma.colors.dangerInverse}</span>
+    <span>rgb(245,146,149)</span>
+    <span>4.5:1 (against dark colors)</span>
   </ColorSwatch>
 </div>
 
-
 ### Pops
-The goal of our pop colors is to create some buzzy vibrations with our blues. Let’s try to just use one pop (or two pops that are next to each other in the palette) at a time to keep the Cengage vibe going strong.  Do not create tonal versions of these colors.
+
+The goal of our pop colors is to create some buzzy vibrations with our blues. Let’s try to just use one pop (or two pops that are next to each other in the palette) at a time to keep the Cengage vibe going strong. Do not create tonal versions of these colors.
+
 <div class="swatch-rows">
-  <ColorSwatch color={magma.colors.pop01}>
-    <span><strong>pop01</strong></span>
-    <span class="color-hex">{magma.colors.pop01}</span>
+  <ColorSwatch color={magma.colors.pop}>
+    <span>
+      <strong>pop</strong>
+    </span>
+    <span class="color-hex">{magma.colors.pop}</span>
     <span>rgb(224,0,77)</span>
     <span>4.9:1</span>
   </ColorSwatch>
   <ColorSwatch color={magma.colors.pop02}>
-    <span><strong>pop02</strong></span>
+    <span>
+      <strong>pop02</strong>
+    </span>
     <span class="color-hex">{magma.colors.pop02}</span>
-    <span>rgb(250,102,0)</span>
-    <span>3.0:1</span>
+    <span>rgb(252,76,2)</span>
+    <span>3.4:1</span>
   </ColorSwatch>
   <ColorSwatch color={magma.colors.pop03}>
-    <span><strong>pop03</strong></span>
+    <span>
+      <strong>pop03</strong>
+    </span>
     <span class="color-hex">{magma.colors.pop03}</span>
     <span>rgb(242,169,0)</span>
     <span>2.0:1</span>
   </ColorSwatch>
   <ColorSwatch color={magma.colors.pop04}>
-    <span><strong>pop04</strong></span>
+    <span>
+      <strong>pop04</strong>
+    </span>
     <span class="color-hex">{magma.colors.pop04}</span>
     <span>rgb(255,199,44)</span>
     <span>1.6:1</span>
   </ColorSwatch>
+  <ColorSwatch color={magma.colors.pop05}>
+    <span>
+      <strong>pop05</strong>
+    </span>
+    <span class="color-hex">{magma.colors.pop05}</span>
+    <span>rgb(146, 39, 143)</span>
+    <span>7.2:1</span>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.pop06}>
+    <span>
+      <strong>pop06</strong>
+    </span>
+    <span class="color-hex">{magma.colors.pop06}</span>
+    <span>rgb(0,122,109)</span>
+    <span>5.2:1</span>
+  </ColorSwatch>
 </div>
 
 ### Neutral
+
 Sometimes, going subtle makes a statement, too. Use our neutrals for the ultimate in legibility or to provide a rest from the buzzy bolds.
+
 <div class="swatch-rows">
-  <ColorSwatch color={magma.colors.neutral01}>
-    <span><strong>neutral01</strong></span>
-    <span class="color-hex">{magma.colors.neutral01}</span>
-    <span>rgb(0,38,62)</span>
-    <span>15.6:1</span>
-  </ColorSwatch>
-  <ColorSwatch color={magma.colors.neutral02}>
-    <span><strong>neutral02</strong></span>
-    <span class="color-hex">{magma.colors.neutral02}</span>
+  <ColorSwatch color={magma.colors.neutral}>
+    <span>
+      <strong>neutral</strong>
+    </span>
+    <span class="color-hex">{magma.colors.neutral}</span>
     <span>rgb(63,63,63)</span>
     <span>10.5:1</span>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.neutral03}>
-    <span><strong>neutral03</strong></span>
-    <span class="color-hex">{magma.colors.neutral03}</span>
+  <ColorSwatch color={magma.colors.neutral02}>
+    <span>
+      <strong>neutral02</strong>
+    </span>
+    <span class="color-hex">{magma.colors.neutral02}</span>
     <span>rgb(87,87,87)</span>
     <span>7.2:1</span>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.neutral04}>
-    <span><strong>neutral04</strong></span>
-    <span class="color-hex">{magma.colors.neutral04}</span>
+  <ColorSwatch color={magma.colors.neutral03}>
+    <span>
+      <strong>neutral03</strong>
+    </span>
+    <span class="color-hex">{magma.colors.neutral03}</span>
     <span>rgb(114,114,114)</span>
     <span>4.8:1</span>
   </ColorSwatch>
+  <ColorSwatch color={magma.colors.neutral04}>
+    <span>
+      <strong>neutral04</strong>
+    </span>
+    <span class="color-hex">{magma.colors.neutral04}</span>
+    <span>rgb(143,143,143)</span>
+    <span>3.2:1</span>
+  </ColorSwatch>
   <ColorSwatch color={magma.colors.neutral05}>
-    <span><strong>neutral05</strong></span>
+    <span>
+      <strong>neutral05</strong>
+    </span>
     <span class="color-hex">{magma.colors.neutral05}</span>
     <span>rgb(191,191,191)</span>
     <span>1.8:1</span>
   </ColorSwatch>
   <ColorSwatch color={magma.colors.neutral06}>
-    <span><strong>neutral06</strong></span>
+    <span>
+      <strong>neutral06</strong>
+    </span>
     <span>{magma.colors.neutral06}</span>
     <span>rgb(223,223,223)</span>
     <span>1.3:1</span>
   </ColorSwatch>
   <ColorSwatch color={magma.colors.neutral07}>
-    <span><strong>neutral07</strong></span>
+    <span>
+      <strong>neutral07</strong>
+    </span>
     <span class="color-hex">{magma.colors.neutral07}</span>
     <span>rgb(247,247,247)</span>
     <span>1.1:1</span>
   </ColorSwatch>
   <ColorSwatch color={magma.colors.neutral08}>
-    <span><strong>neutral08</strong></span>
+    <span>
+      <strong>neutral08</strong>
+    </span>
     <span class="color-hex">{magma.colors.neutral08}</span>
     <span>rgb(255,255,255)</span>
     <span>1.0:1</span>
   </ColorSwatch>
 </div>
 
-### Additional Colors for Accessibility
-This section is reserved for colors that fall outside of the corporate palette, but are helpful for scenarios when a different color is necessary to meet the necessary contrast ratio for accessibility.
-<div class="swatch-rows">
-  <ColorSwatch color={magma.colors.a11y01}>
-    <span><strong>a11y01</strong></span>
-    <span class="color-hex">{magma.colors.a11y01}</span>
-    <span>rgb(143,143,143)</span>
-    <span>3.2:1</span>
-  </ColorSwatch>
-</div>
+<hr class="article-divider" />
+
+## Principles
+
+### Consistent
+
+Color should be applied throughout a UI consistently and be compatible with the brand it represents.
+
+### Hierarchical
+
+Color indicates which elements are interactive, how they relate to other elements, and their level of prominence. Important elements should stand out the most.
+
+### Legible
+
+Text and important elements, like icons, should meet legibility standards when appearing on colored backgrounds, across all screen and device types.
+
+### Expressive
+
+Reinforce your brand by showing brand colors at memorable moments that reinforce your brand’s style.
 
 <span class="horizontal-spacer"></span>
+
 <hr class="article-divider" />
 
 ## Accessibility
-All text should be legible and meet accessibility standards. [The Web Content Accessibility Guidelines (WCAG 2.1)](https://www.w3.org/TR/WCAG21/#contrast-minimum) level AA requires a 4.5:1 color contrast between text and background for normal text, and 3:1 to large text. Large text is at least 18 point or 14 point bold.  Additionally,  any non-text visual information provided that is necessary for a user to identify that a control is present and how to operate it must have a minimum 3:1 contrast ratio with the adjacent colors.
 
-The contrast ratio displayed on each color above is based on that color on a white background.  If you are using a background color other than white, make sure you check the contrast ratio using a tool like the one found at [webaim.org](https://webaim.org/resources/contrastchecker/)*
+All text should be legible and meet accessibility standards. [The Web Content Accessibility Guidelines (WCAG 2.1)](https://www.w3.org/TR/WCAG21/#contrast-minimum) level AA requires a 4.5:1 color contrast between text and background for normal text, and 3:1 to large text. Large text is at least 18 point or 14 point bold. Additionally, any non-text visual information provided that is necessary for a user to identify that a control is present and how to operate it must have a minimum 3:1 contrast ratio with the adjacent colors.
+
+The contrast ratio displayed on each color above is based on that color on a white background. If you are using a background color other than white, make sure you check the contrast ratio using a tool like the one found at [webaim.org](https://webaim.org/resources/contrastchecker/)\*
 
 <span class="horizontal-spacer"></span>

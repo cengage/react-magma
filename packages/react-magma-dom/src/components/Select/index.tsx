@@ -1,282 +1,152 @@
 import * as React from 'react';
-import { SelectCore, Options } from 'react-magma-core';
-import { CrossIcon } from '../Icon/types/CrossIcon';
-import { CaretDownIcon } from '../Icon/types/CaretDownIcon';
-import { ThemeContext } from '../../theme/ThemeContext';
+import {
+  useSelect,
+  useMultipleSelection,
+  UseSelectProps,
+  UseMultipleSelectionProps,
+} from 'downshift';
 
-import ReactSelect, { components } from 'react-select';
-import { SelectWrapper } from './SelectWrapper';
+import { Select as InternalSelect } from './Select';
+import { MultiSelect } from './MultiSelect';
+import { InputMessage } from '../Input/InputMessage';
+import { SelectComponents } from './components';
+import { useGenerateId } from '../../utils';
 
-interface SelectComponents {
-  ClearIndicator: any;
-  Control: any;
-  DropdownIndicator: any;
-  DownChevron: any;
-  CrossIcon: any;
-  Group: any;
-  GroupHeading: any;
-  IndicatorsContainer: any;
-  IndicatorSeparator: any;
-  Input: any;
-  LoadingIndicator: any;
-  Menu: any;
-  MenuList: any;
-  MenuPortal: any;
-  LoadingMessage: any;
-  NoOptionsMessage: any;
-  MultiValue: any;
-  MultiValueContainer: any;
-  MultiValueLabel: any;
-  MultiValueRemove: any;
-  Option: any;
-  Placeholder: any;
-  SelectContainer: any;
-  SingleValue: any;
-  ValueContainer: any;
-}
+export type SelectOptions =
+  | string
+  | { value: string; label: string; [key: string]: any }
+  | any;
 
-export interface SelectProps {
+export interface InternalSelectInterface {
   components?: SelectComponents;
-  id?: string;
-  testId?: string;
-  name: string;
-  labelText: string;
-  options: Options[];
-  defaultValue?: Options[] | Options | null;
-  value?: Options[] | Options | null;
+  containerStyle?: React.CSSProperties;
+  errorMessage?: React.ReactNode;
+  helperMessage?: React.ReactNode;
+  inputStyle?: React.CSSProperties;
+  isClearable?: boolean;
   disabled?: boolean;
-  required?: boolean;
-  clearable?: boolean;
-  errorMessage?: string;
-  helperMessage?: string;
-  inverse?: boolean;
-  multi?: boolean;
-  style?: ReactSelectStyles;
-  onBlur?: () => void;
-  onFocus?: () => void;
-  onChange?: (option: Options) => void;
-  onOpen?: () => void;
-  onClose?: () => void;
-  onInputChange?: (value: string) => void;
+  isInverse?: boolean;
+  isLabelVisuallyHidden?: boolean;
+  isMulti?: boolean;
+  labelStyle?: React.CSSProperties;
+  labelText: string;
+  menuStyle?: React.CSSProperties;
+  messageStyle?: React.CSSProperties;
+  name?: string;
+  placeholder?: string;
+  testId?: string;
 }
 
-interface ReactSelectStyles {
-  control?: React.CSSProperties;
-  dropdownIndicator?: React.CSSProperties;
-  clearIndicator?: React.CSSProperties;
-  indicatorSeparator?: React.CSSProperties;
-  menu?: React.CSSProperties;
-  multiValue?: React.CSSProperties;
-  multiValueRemove?: React.CSSProperties;
-  option?: React.CSSProperties;
+export interface InternalMultiInterface<T> {
+  onRemoveSelectedItem?: (removedItem: T) => void;
 }
 
-export function getStyles(
-  customStyles: ReactSelectStyles = {},
-  theme: any,
-  errorMessage?: string,
-  inverse?: boolean
-) {
-  return {
-    control: (styles, { isFocused, isDisabled }) => ({
-      ...styles,
-      backgroundColor: isDisabled
-        ? theme.colors.neutral07
-        : theme.colors.neutral08,
-      borderColor: errorMessage ? theme.colors.danger : theme.colors.neutral04,
-      borderRadius: '5px',
-      boxShadow: errorMessage ? `0 0 0 1px ${theme.colors.neutral08}` : '0 0 0',
-      color: theme.colors.neutral02,
-      cursor: isDisabled ? 'not-allowed' : 'pointer',
-      height: '37px',
-      outline: isFocused
-        ? inverse
-          ? `2px dotted ${theme.colors.neutral08}`
-          : `2px dotted ${theme.colors.pop02}`
-        : '0',
-      outlineOffset: '2px',
-      padding: '0 8px 0 0',
-
-      '&:hover': {
-        borderColor: isFocused ? theme.colors.pop02 : theme.colors.neutral04
-      },
-      ...customStyles.control
-    }),
-    dropdownIndicator: styles => ({
-      ...styles,
-      color: theme.colors.neutral02,
-      ...customStyles.dropdownIndicator
-    }),
-    clearIndicator: styles => ({
-      ...styles,
-      color: theme.colors.neutral03,
-
-      '&:hover': {
-        backgroundColor: theme.colors.neutral07
-      },
-      ...customStyles.clearIndicator
-    }),
-    indicatorSeparator: styles => ({
-      display: 'none',
-      ...customStyles.indicatorSeparator
-    }),
-    menu: styles => ({
-      ...styles,
-      background: theme.colors.neutral08,
-      border: `1px solid ${theme.colors.neutral06}`,
-      borderRadius: '3px',
-      boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)',
-      color: theme.colors.neutral02,
-      zIndex: 999,
-      ...customStyles.menu
-    }),
-    multiValue: styles => ({
-      ...styles,
-      backgroundColor: theme.colors.neutral06,
-      color: theme.colors.neutral02,
-      ...customStyles.multiValue
-    }),
-    multiValueRemove: styles => ({
-      ...styles,
-      backgroundColor: theme.colors.neutral06,
-      color: theme.colors.neutral02,
-
-      '&:hover': {
-        backgroundColor: theme.colors.neutral05,
-        color: theme.colors.neutral02
-      },
-      ...customStyles.multiValueRemove
-    }),
-    option: (styles, { isFocused, isSelected }) => ({
-      ...styles,
-      backgroundColor: isFocused
-        ? theme.colors.neutral06
-        : isSelected
-        ? theme.colors.neutral07
-        : theme.colors.neutral08,
-      color: theme.colors.neutral02,
-      ...customStyles.option
-    }),
-    placeholder: styles => ({
-      ...styles,
-      color: theme.colors.neutral04
-    }),
-    singleValue: styles => ({
-      ...styles,
-      color: theme.colors.neutral02
-    })
-  };
+export interface SelectInterface<T extends SelectOptions>
+  extends UseSelectProps<T>,
+    InternalSelectInterface {
+  ariaDescribedBy?: string;
+  hasError?: boolean;
+  innerRef?: React.Ref<HTMLButtonElement>;
+  onBlur?: (event: React.FocusEvent) => void;
+  onFocus?: (event: React.FocusEvent) => void;
+  onKeyDown?: (event: React.KeyboardEvent) => void;
+  onKeyPress?: (event: React.KeyboardEvent) => void;
+  onKeyUp?: (event: React.KeyboardEvent) => void;
 }
 
-export const ClearIndicator = props => {
+export interface MultiSelectInterface<T extends SelectOptions>
+  extends UseMultipleSelectionProps<T>,
+    Omit<SelectInterface<T>, 'onStateChange' | 'stateReducer'>,
+    InternalMultiInterface<T> {
+  hasError?: boolean;
+  isInverse?: boolean;
+}
+
+export function instanceOfMultiSelect<T>(
+  object: any
+): object is MultiSelectInterface<T> {
+  return 'isMulti' in object && object.type !== 'combo';
+}
+
+export function instanceOfDefaultItemObject(
+  object: any
+): object is { label: string; value: string; [key: string]: any } {
+  return object && 'label' in object;
+}
+
+export function instanceOfToBeCreatedItemObject(
+  object: any
+): object is {
+  label: string;
+  value: string;
+  react_magma__created_item: boolean;
+} {
   return (
-    components.ClearIndicator && (
-      <components.ClearIndicator {...props}>
-        <CrossIcon size={12} />
-      </components.ClearIndicator>
-    )
+    typeof object !== 'string' &&
+    object &&
+    'react_magma__created_item' in object
   );
-};
+}
 
-export const DropdownIndicator = props => {
+export const SelectStateChangeTypes = useSelect.stateChangeTypes;
+export const MultipleSelectionStateChangeTypes =
+  useMultipleSelection.stateChangeTypes;
+
+export function Select<T>(props: SelectInterface<T>) {
+  const {
+    containerStyle,
+    id: defaultId,
+    isInverse,
+    isMulti,
+    errorMessage,
+    messageStyle,
+    helperMessage,
+    testId,
+  } = props;
+
+  function itemToString(item: T) {
+    return item && typeof item === 'string'
+      ? item
+      : item && instanceOfDefaultItemObject(item)
+      ? item.label
+      : '';
+  }
+
+  const hasError = !!errorMessage;
+
+  const id = useGenerateId(defaultId);
+
+  const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+
   return (
-    components.DropdownIndicator && (
-      <components.DropdownIndicator {...props}>
-        <CaretDownIcon size={10} />
-      </components.DropdownIndicator>
-    )
+    <div style={containerStyle} data-testid={testId}>
+      {isMulti && instanceOfMultiSelect<T>(props) ? (
+        <MultiSelect
+          ariaDescribedBy={descriptionId}
+          id={id}
+          itemToString={itemToString}
+          {...props}
+          hasError={hasError}
+        />
+      ) : (
+        <InternalSelect
+          ariaDescribedBy={descriptionId}
+          id={id}
+          itemToString={itemToString}
+          {...props}
+          hasError={hasError}
+        />
+      )}
+      <InputMessage
+        id={descriptionId}
+        isInverse={isInverse}
+        hasError={hasError}
+        style={messageStyle}
+      >
+        {(errorMessage || helperMessage) && (
+          <>{errorMessage ? errorMessage : helperMessage}</>
+        )}
+      </InputMessage>
+    </div>
   );
-};
-
-export const MultiValueRemove = props => {
-  return (
-    components.MultiValueRemove && (
-      <components.MultiValueRemove {...props}>
-        <CrossIcon size={8} />
-      </components.MultiValueRemove>
-    )
-  );
-};
-
-export const Select: React.FunctionComponent<SelectProps> = (
-  props: SelectProps
-) => (
-  <SelectCore
-    defaultValue={props.defaultValue}
-    value={props.value}
-    onChange={props.onChange}
-  >
-    {({ value, onChange }) => {
-      const {
-        components: customComponents,
-        defaultValue,
-        id,
-        testId,
-        name,
-        labelText,
-        options,
-        disabled,
-        onBlur,
-        onFocus,
-        onOpen,
-        onClose,
-        onInputChange,
-        required,
-        clearable,
-        errorMessage,
-        helperMessage,
-        inverse,
-        multi,
-        style
-      } = props;
-
-      const ariaLabelText =
-        errorMessage || helperMessage
-          ? `${labelText}, ${errorMessage ? errorMessage : helperMessage}`
-          : labelText;
-
-      return (
-        <ThemeContext.Consumer>
-          {theme => (
-            <SelectWrapper
-              errorMessage={errorMessage}
-              helperMessage={helperMessage}
-              id={id}
-              inverse={inverse}
-              labelText={labelText}
-              testId={testId}
-            >
-              <ReactSelect
-                aria-label={ariaLabelText}
-                classNamePrefix="magma"
-                components={{
-                  ClearIndicator,
-                  DropdownIndicator,
-                  MultiValueRemove,
-                  ...customComponents
-                }}
-                defaultValue={defaultValue}
-                id={id}
-                inverse={inverse}
-                isClearable={clearable}
-                isDisabled={disabled}
-                isMulti={multi}
-                name={name}
-                onBlur={onBlur}
-                onChange={onChange}
-                onFocus={onFocus}
-                onInputChange={onInputChange}
-                onMenuClose={onClose}
-                onMenuOpen={onOpen}
-                options={options}
-                required={required}
-                styles={getStyles(style, theme, errorMessage, inverse)}
-                value={value}
-              />
-            </SelectWrapper>
-          )}
-        </ThemeContext.Consumer>
-      );
-    }}
-  </SelectCore>
-);
+}

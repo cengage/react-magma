@@ -69,7 +69,7 @@ describe('Form Group', () => {
   it('should render a form group with hidden label text with the correct styles', () => {
     const labelText = 'Color';
     const { getByText } = render(
-      <FormGroup textVisuallyHidden labelText={labelText}>
+      <FormGroup isTextVisuallyHidden labelText={labelText}>
         <Checkbox labelText="Default Color" value="default" />
       </FormGroup>
     );
@@ -84,7 +84,7 @@ describe('Form Group', () => {
         <h3 id="myID">Heading</h3>
         <Checkbox labelText="Default Color" value="default" />
         <Checkbox
-          color={magma.colors.success01}
+          color={magma.colors.success}
           labelText="Success Color"
           value="success"
         />
@@ -96,7 +96,32 @@ describe('Form Group', () => {
     expect(group).toHaveAttribute('aria-labelledby', 'myID');
   });
 
-  it('should not render anything when invalid children are present', () => {
+  it('should render a form group with an error message', () => {
+    const groupId = 'testId';
+    const errorMessage = 'test error';
+
+    const { container, getByLabelText, getByText } = render(
+      <FormGroup id={groupId} errorMessage={errorMessage}>
+        <Checkbox labelText="Default Color" value="default" />
+      </FormGroup>
+    );
+
+    const span = container.querySelector('span');
+
+    expect(span).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(getByLabelText('Default Color')).toHaveAttribute(
+      'aria-describedby',
+      `${groupId}__desc`
+    );
+
+    expect(getByText(errorMessage)).toBeInTheDocument();
+    expect(getByText(errorMessage).parentElement).toHaveAttribute(
+      'id',
+      `${groupId}__desc`
+    );
+  });
+
+  it('should not render anything except container and message container when invalid children are present', () => {
     const { container } = render(
       <FormGroup>
         <Checkbox labelText="Default Color" value="default" />
@@ -109,10 +134,10 @@ describe('Form Group', () => {
 
   it('Does not violate accessibility standards', () => {
     const { container } = render(
-      <FormGroup value="default">
+      <FormGroup labelText="Choose a Color" value="default">
         <Checkbox labelText="Default Color" value="default" />
         <Checkbox
-          color={magma.colors.success01}
+          color={magma.colors.success}
           labelText="Success Color"
           value="success"
         />

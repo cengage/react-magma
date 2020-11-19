@@ -1,15 +1,16 @@
 ---
-title: 'Toggles'
+pageTitle: Toggle API
+title: Toggle
 ---
 
-import { ScopeableLayout } from '../../components/layout'
-import { Toggle } from 'react-magma-dom'
-import DocsHeading from '../../components/docs-heading'
-import { Link } from 'gatsby'
-import { SimplePropsTable } from '../../components/props-table'
+import { ScopeableLayout } from '../../components/layout';
+import { Alert, Toggle } from 'react-magma-dom';
+import DocsHeading from '../../components/docs-heading';
+import { Link } from 'gatsby';
+import { SimplePropsTable } from '../../components/props-table';
 
 <DocsHeading to="/design/selection-controls" type="design">
-  Toggles
+  Toggle
 </DocsHeading>
 
 ## Basic Usage
@@ -20,31 +21,56 @@ See also: <Link to="/api/checkbox">Checkboxes</Link>, <Link to="/api/radio">Radi
 The label/toggle association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
 
 ```.jsx
-  <div>
-    <Toggle
-        id='Toggle0'
-        labelText='Toggle label' />
-    <Toggle
-        checked
-        id='Toggle1'
-        labelText='Toggle label on' />
-  </div>
+<div>
+  <Toggle
+    id='Toggle0'
+    labelText='Toggle label off' />
+  <Toggle
+    checked
+    id='Toggle1'
+    labelText='Toggle label on' />
+</div>
 ```
 
 ## Disabled
 
 ```.jsx
-  <div>
+<div>
+  <Toggle
+    disabled
+    id='disabledToggle'
+    labelText='Disabled toggle' />
+  <Toggle
+    checked
+    disabled
+    id='disabledToggleOn'
+    labelText='Disabled toggle on' />
+</div>
+```
+
+## Error Message
+
+An `errorMessage` can also be supplied to an toggle to indicate the selection is invalid.
+
+The `required` attribute can be used on a toggle if that field is required.
+
+```.jsx
+() => {
+  const [hasError, setHasError] = React.useState(true);
+
+  function handleChange(e){
+    setHasError(!e.target.checked)
+  }
+
+  return(
     <Toggle
-        disabled
-        id='disabledToggle'
-        labelText='Disabled toggle' />
-    <Toggle
-        checked
-        disabled
-        id='disabledToggleOn'
-        labelText='Disabled toggle on' />
-    </div>
+      errorMessage={hasError ? "You must turn permissions on" : null}
+      id='errorToggle'
+      labelText='Enable Permissions'
+      onChange={handleChange}
+      required />
+  )
+}
 ```
 
 ## Text Position
@@ -53,28 +79,37 @@ Use the optional prop `textPosition` to position the label text on either side o
 The `textPosition` property takes the values `left` and `right`. The default value is `left`.
 
 ```.jsx
-  <div>
-    <Toggle
-        id='ToggleTextLeft'
-        labelText='Text left' />
-    <Toggle
-        id='ToggleTextRight'
-        labelText='Text right'
-        textPosition='right' />
-    </div>
+<div>
+  <Toggle
+    id='ToggleTextLeft'
+    labelText='Text left' />
+  <Toggle
+    id='ToggleTextRight'
+    labelText='Text right'
+    textPosition='right' />
+</div>
 ```
 
 ## Visually Hidden Label
 
-Adding the `textVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
+Adding the `isTextVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
+
+<Alert variant="warning">
+  Use caution when using the <code>isTextVisuallyHidden</code> prop; it should
+  only be used in rare circumstances when the purpose of the toggle is conveyed
+  in another way. While screen readers will announce the label when the toggle
+  gains focus, it is still best to have a visual label. This is especially
+  helpful for individuals with cognitive disabilities and users who have fine
+  motor control limitations.
+</Alert>
 
 ```.jsx
   <div>
     <Toggle
-        id='visuallyHiddenToggle'
-        labelText='Label is hidden'
-        textVisuallyHidden />
-    </div>
+      id='visuallyHiddenToggle'
+      labelText='Label is hidden'
+      isTextVisuallyHidden />
+  </div>
 ```
 
 ## Custom Styles
@@ -84,15 +119,15 @@ Additional `labelStyle`, `trackStyle` and `thumbStyle` properties are available 
 Please use discretion when adding custom styles.
 
 ```.jsx
-  <div>
-    <Toggle
-        containerStyle={{ 'border': '1px dotted purple', 'width': '100%'}}
-        id='custom1'
-        labelStyle={{ 'fontStyle': 'italic', 'flexGrow': '1'}}
-        labelText='Custom styles'
-        thumbStyle={{ 'background': 'yellow', 'border' : '1px solid orange', 'boxShadow': '0 0 0' }}
-        trackStyle={{ 'borderRadius': '5px', 'height': '18px'}} />
-  </div>
+<div>
+  <Toggle
+    containerStyle={{ 'border': '1px dotted purple', 'width': '100%'}}
+    id='custom1'
+    labelStyle={{ 'fontStyle': 'italic', 'flexGrow': '1'}}
+    labelText='Custom styles'
+    thumbStyle={{ 'background': 'yellow', 'border' : '1px solid orange', 'boxShadow': '0 0 0' }}
+    trackStyle={{ 'borderRadius': '5px', 'height': '18px'}} />
+</div>
 ```
 
 ## Testing
@@ -107,15 +142,14 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
     <span>
       <span>
         <svg
+          aria-hidden="true"
           class="icon"
           height="11"
           width="11"
           fill="currentColor"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 29.37 21.88"
-          aria-labelledby="573cfe4f-c354-4561-ad1c-4873bca476de"
         >
-          <title id="573cfe4f-c354-4561-ad1c-4873bca476de"></title>
           <path
             d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
             transform="translate(-0.87 -3.06)"
@@ -129,8 +163,12 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 
 ## Toggle Props
 
+**This component uses `forwardRef`. The ref is applied to the `input` element.**
+
+All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the `input` element that gets rendered.
+
 <SimplePropsTable
-  props={{
+  propertyValues={{
     containerStyle: {
       type: {
         name: 'React.CSSProperties',
@@ -146,13 +184,31 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description: 'If true, element is disabled',
       defaultValue: 'false',
     },
-    inverse: {
+    errorMessage: {
+      type: {
+        name: 'ReactNode',
+      },
+      required: false,
+      description:
+        'Content of the error message for toggle.  If a value is provided, the component will be styled as an error state and the error message will display.',
+      defaultValue: '',
+    },
+    isInverse: {
       type: {
         name: 'boolean',
       },
       required: false,
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    isTextVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
       defaultValue: 'false',
     },
     labelStyle: {
@@ -164,10 +220,10 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
     },
     labelText: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: true,
-      description: 'Text for label',
+      description: 'Content for label; can be a node or a string',
     },
     required: {
       type: {
@@ -182,8 +238,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
         name: 'string',
       },
       required: false,
-      description: 'ID used for testing purposes',
-      defaultValue: '',
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     textPosition: {
       type: {
@@ -194,15 +250,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description:
         'Whether the label appears to the left of the right of the toggle switch',
       defaultValue: 'left',
-    },
-    textVisuallyHidden: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, label text will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
     },
     thumbStyle: {
       type: {
@@ -231,4 +278,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
   }}
 />
 
-export default props => <ScopeableLayout {...props} components={{ Toggle }} />
+export default props => (
+  <ScopeableLayout {...props} components={{ Alert, Toggle }} />
+);

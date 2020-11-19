@@ -1,106 +1,48 @@
 import * as React from 'react';
-import { css } from '@emotion/core';
-import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
+import {
+  TypographyColor,
+  TypographyContextVariant,
+  TypographyVisualStyle,
+  TypographyComponent,
+} from '../Typography';
 
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
-  inverse?: boolean;
+  color?: TypographyColor;
+  contextVariant?: TypographyContextVariant;
+  isInverse?: boolean;
   level: 1 | 2 | 3 | 4 | 5 | 6;
-  ref?: any;
   testId?: string;
-  tabIndex?: number;
+  visualStyle?: TypographyVisualStyle;
 }
 
-export const baseHeadingStyles = props => css`
-  border-bottom: 2px solid transparent;
-  color: ${props.inverse
-    ? props.theme.colors.neutral08
-    : props.theme.colors.foundation01};
-  font-family: ${props.theme.headingFont};
-  font-weight: 300;
-  line-height: 1.2;
-  margin: 20px 0 10px;
+export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
+  (props, ref) => {
+    const { level, testId, visualStyle, children, ...other } = props;
+    const theme = React.useContext(ThemeContext);
 
-  &:focus {
-    border-bottom: 2px dotted
-      ${props.inverse ? props.theme.colors.neutral08 : props.theme.colors.pop02};
-    outline: 0;
-    transition: border 0.1s linear;
-  }
-`;
+    const stylesFromLevel = {
+      1: TypographyVisualStyle.headingXLarge,
+      2: TypographyVisualStyle.headingLarge,
+      3: TypographyVisualStyle.headingMedium,
+      4: TypographyVisualStyle.headingSmall,
+      5: TypographyVisualStyle.headingXSmall,
+      6: TypographyVisualStyle.heading2XSmall,
+    };
 
-const StyledH1 = styled.h1`
-  ${baseHeadingStyles};
-  font-size: 2.8em;
-`;
-
-const StyledH2 = styled.h2`
-  ${baseHeadingStyles};
-  font-size: 2.4em;
-`;
-
-const StyledH3 = styled.h3`
-  ${baseHeadingStyles};
-  font-size: 1.867em;
-`;
-
-const StyledH4 = styled.h4`
-  ${baseHeadingStyles};
-  font-size: 1.467em;
-  font-weight: 400;
-  line-height: 1.4;
-`;
-
-const StyledH5 = styled.h5`
-  ${baseHeadingStyles};
-  font-size: 1.067em;
-  font-weight: 600;
-  line-height: 1.4;
-`;
-
-const StyledH6 = styled.h6`
-  ${baseHeadingStyles};
-  font-size: 0.867em;
-  font-weight: 700;
-  line-height: 1.5;
-`;
-
-function renderHeading(level: number) {
-  const headingLevels = {
-    1: StyledH1,
-    2: StyledH2,
-    3: StyledH3,
-    4: StyledH4,
-    5: StyledH5,
-    6: StyledH6
-  };
-
-  return headingLevels[level];
-}
-
-export const Heading: React.FunctionComponent<HeadingProps> = React.forwardRef(
-  (
-    { inverse, level, testId, tabIndex, children, ...other }: HeadingProps,
-    ref: any
-  ) => {
-    const HeadingComponent = renderHeading(level);
+    const headingElement = `h${level}`;
 
     return (
-      <ThemeContext.Consumer>
-        {theme => (
-          <HeadingComponent
-            {...other}
-            css={baseHeadingStyles({ theme })}
-            inverse={inverse}
-            ref={ref}
-            data-testid={testId}
-            tabIndex={tabIndex}
-            theme={theme}
-          >
-            {children}
-          </HeadingComponent>
-        )}
-      </ThemeContext.Consumer>
+      <TypographyComponent
+        {...other}
+        as={headingElement}
+        data-testid={testId}
+        ref={ref}
+        visualStyle={visualStyle ? visualStyle : stylesFromLevel[level]}
+        theme={theme}
+      >
+        {children}
+      </TypographyComponent>
     );
   }
 );

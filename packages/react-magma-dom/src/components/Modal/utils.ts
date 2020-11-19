@@ -7,7 +7,7 @@ const candidateSelectors = [
   '[tabindex]:not([tabindex="-1"])',
   'audio[controls]',
   'video[controls]',
-  '[contenteditable]:not([contenteditable="false"])'
+  '[contenteditable]:not([contenteditable="false"])',
 ].join(',');
 
 export function getTrapElementsAndFocus(container, body?, header?) {

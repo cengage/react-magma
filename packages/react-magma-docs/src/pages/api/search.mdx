@@ -1,13 +1,17 @@
 ---
-title: 'Search'
+pageTitle: Search API
+title: Search
 ---
 
-import { Link } from 'gatsby'
-import { ScopeableLayout } from '../../components/layout'
-import { Search } from 'react-magma-dom'
-import { SimplePropsTable } from '../../components/props-table'
+import { Link } from 'gatsby';
+import { ScopeableLayout } from '../../components/layout';
+import { Search, Card, CardBody } from 'react-magma-dom';
+import { SimplePropsTable } from '../../components/props-table';
+import DocsHeading from '../../components/docs-heading';
 
-# Search
+<DocsHeading to="/design/search/" type="design">
+  Search
+</DocsHeading>
 
 The `Search` component is the standardized use of the <Link to='/api/inputs/'>Input</Link> component with `type='search'`.
 
@@ -16,19 +20,21 @@ The `Search` component is the standardized use of the <Link to='/api/inputs/'>In
 The `onSearch` prop is required and takes a function and fires when the user clicks or presses Enter when focus is on the search icon or the search input. It also fires if the user is focused on the input and presses Enter.
 
 ```.jsx
-    <Search onSearch={() => {alert('search')}} />
+<Search onSearch={(term) => {alert(term)}} />
 ```
 
 ## Label and Placeholder Text
 
-The `Search` component supports three text string props: `iconAriaLabel`, `labelText`, and `placeholderText`.
+The `Search` component supports three text string props: `iconAriaLabel`, `labelText`, and `placeholder`.
 
-The `iconAriaLabel` refers to the aria-label of the search icon, which will be read by screen readers. The `labelText` refers to the aria-label of the input itself, which will also be read by screen readers. The `placeholderText` refers to the placeholder attribute of the input, which will display when the input is empty.
+The `iconAriaLabel` refers to the aria-label of the search icon, which will be read by screen readers.
+The `labelText` refers to the aria-label of the input itself, which will also be read by screen readers.
+The `placeholder` refers to the placeholder attribute of the input, which will display when the input is empty.
 
 The default value of all of these is `Search`.
 
 ```.jsx
-    <Search iconAriaLabel='Submit Search' labelText="Search for Articles and Books" onSearch={() => {}} placeholderText="Search our Library" />
+<Search iconAriaLabel='Submit Search' labelText="Search for Articles and Books" onSearch={(term) => {}} placeholder="Search our Library" />
 ```
 
 ## Input Size
@@ -36,21 +42,7 @@ The default value of all of these is `Search`.
 The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default.
 
 ```.jsx
-    <>
-      <Search onSearch={() => {}} />
-      <Search inputSize='large' onSearch={() => {}} />
-    </>
-```
-
-## IsLoading
-
-The `isLoading` boolean prop will determine if a loading animation is shown. The loading animation will replace the search icon button.
-
-```.jsx
-    <>
-      <Search onSearch={() => {}} isLoading />
-      <Search inputSize='large' onSearch={() => {}} isLoading />
-    </>
+<Search inputSize='large' onSearch={() => {}} />
 ```
 
 ## Inverse
@@ -58,26 +50,42 @@ The `isLoading` boolean prop will determine if a loading animation is shown. The
 Inverse is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
 
 ```.jsx
-    <div style={{ background : '#00263E', padding: '20px' }}>
-      <Search inverse onSearch={() => {}} />
+<Card isInverse>
+  <CardBody>
+    <Search isInverse onSearch={(term) => {}} />
+  </CardBody>
+</Card>
+```
+
+## Loading
+
+The isLoading boolean prop will determine if a loading animation is shown. The loading animation will replace the search icon button.
+
+```.jsx
+() => {
+  const [searchValue, setSearchValue] = React.useState('');
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  function handleSearch(term) {
+    setIsLoading(true);
+    setTimeout(() => {
+      setSearchValue(`Search value set to ${term}`);
+      setIsLoading(false);
+    }, 2500)
+  }
+
+  return (
+    <div>
+      <p><strong>Search Value: </strong> <span id="changedValue">{searchValue}</span></p>
+      <Search
+        labelText='Test Value'
+        isLoading={isLoading}
+        value=''
+        onChange={(event) => setSearchValue(event.target.value)}
+        onSearch={handleSearch} />
     </div>
-```
-
-## Error Message
-
-If a search input has an `errorMessage`, the input will be styled to highlight it's error state and the error message will appear below the input field.
-If an error message is present, it will replace the helper text.
-
-```.jsx
-    <Search errorMessage='Please correct this error' onSearch={() => {}} />
-```
-
-## Helper Message
-
-The `helperMessage` appears underneath the search field. It will not appear if an error message is present.
-
-```.jsx
-    <Search helperMessage='Helper text goes here' onSearch={() => {}} />
+  )
+}
 ```
 
 ## Custom Styles
@@ -86,38 +94,42 @@ Custom styles can be passed into the Search component. The `containerStyle` prop
 Please use discretion when adding custom styles.
 
 ```.jsx
-      <Search
-        containerStyle={{ border: '2px solid green', maxWidth:  '300px', padding: '2px' }}
-        inputStyle={{ border: '1px dashed purple', borderRadius: '0' }} />
+<Search
+  containerStyle={{ border: '2px solid green', maxWidth:  '300px', padding: '2px' }}
+  inputStyle={{ border: '1px dashed purple', borderRadius: '0' }} />
+```
+
+## Change Events
+
+```.jsx
+() => {
+  const [message, setMessage] = React.useState('');
+
+  return (<div>
+    <p><strong>Changed Value: </strong> <span id="changedValue">{message}</span></p>
+    <Search
+      labelText='Test Value'
+      value=''
+      onChange={(event) => setMessage(event.target.value)}
+      onSearch={(term) => {}} />
+  </div>)
+}
 ```
 
 ## Search Props
 
+**This component uses `forwardRef`. The ref is applied to the `input` element.**
+
+All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the `input` element that gets rendered.
+
 <SimplePropsTable
-  props={{
+  propertyValues={{
     containerStyle: {
       type: {
         name: 'React.CSSProperties',
       },
       required: false,
       description: 'Style properties for the component container element',
-    },
-    errorMessage: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Text of the error message.  If a value is provided, the input will be styled as an error state, and the error message will display.',
-      defaultValue: '',
-    },
-    helperMessage: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Text of the helper message.',
-      defaultValue: '',
     },
     iconAriaLabel: {
       type: {
@@ -143,13 +155,22 @@ Please use discretion when adding custom styles.
       required: false,
       description: 'Style properties for the input element',
     },
-    inverse: {
+    isInverse: {
       type: {
         name: 'boolean',
       },
       required: false,
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    isLoading: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will show a loading animation instead of a search button',
       defaultValue: 'false',
     },
     labelText: {
@@ -168,12 +189,12 @@ Please use discretion when adding custom styles.
       description: 'Action that will fire when search icon button is clicked.',
       defaultValue: '',
     },
-    placeholderText: {
+    placeholder: {
       type: {
         name: 'string',
       },
       required: false,
-      description: 'Text for input aria-label placeholder',
+      description: 'Text for input placeholder',
       defaultValue: 'Search',
     },
     testId: {
@@ -181,10 +202,12 @@ Please use discretion when adding custom styles.
         name: 'string',
       },
       required: false,
-      description: 'ID used for testing purposes',
-      defaultValue: '',
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
   }}
 />
 
-export default props => <ScopeableLayout {...props} components={{ Search }} />
+export default props => (
+  <ScopeableLayout {...props} components={{ Search, Card, CardBody }} />
+);

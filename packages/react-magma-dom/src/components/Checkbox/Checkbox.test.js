@@ -2,6 +2,7 @@ import React from 'react';
 import { Checkbox } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
+import { axe } from 'jest-axe';
 
 describe('Checkbox', () => {
   it('should find element by testId', () => {
@@ -78,6 +79,54 @@ describe('Checkbox', () => {
     expect(getByTestId(testId)).toHaveAttribute('value', value);
   });
 
+  it('should not change the checked value if checkbox is in controlled state', () => {
+    const checked = true;
+    const testId = 'abc123';
+    const { getByTestId } = render(
+      <Checkbox testId={testId} checked={checked} />
+    );
+
+    const checkbox = getByTestId(testId);
+
+    expect(checkbox).toHaveProperty('checked', checked);
+
+    fireEvent.click(checkbox);
+
+    expect(checkbox).toHaveProperty('checked', checked);
+  });
+
+  it('should change the checked value if checkbox is in controlled state and the checked prop is updated', () => {
+    const checked = true;
+    const testId = 'abc123';
+    const { rerender, getByTestId } = render(
+      <Checkbox testId={testId} checked={checked} />
+    );
+
+    const checkbox = getByTestId(testId);
+
+    expect(checkbox).toHaveProperty('checked', checked);
+
+    rerender(<Checkbox testId={testId} checked={!checked} />);
+
+    expect(checkbox).toHaveProperty('checked', !checked);
+  });
+
+  it('should use the defaultChecked prop for initial render and then handle internally if not controlled', () => {
+    const defaultChecked = true;
+    const testId = 'abc123';
+    const { getByTestId } = render(
+      <Checkbox testId={testId} defaultChecked={defaultChecked} />
+    );
+
+    const checkbox = getByTestId(testId);
+
+    expect(checkbox).toHaveProperty('checked', defaultChecked);
+
+    fireEvent.click(checkbox);
+
+    expect(checkbox).toHaveProperty('checked', !defaultChecked);
+  });
+
   it('should auto focus your checkbox', () => {
     const testId = 'abc123';
     // eslint-disable-next-line jsx-a11y/no-autofocus
@@ -106,14 +155,14 @@ describe('Checkbox', () => {
 
   it('should render a passed in color', () => {
     const color = '#FFFFFF';
-    const { container } = render(<Checkbox color={color} />);
+    const { container } = render(<Checkbox checked color={color} />);
     const span = container.querySelector('span');
 
     expect(span).toHaveStyleRule('background', color);
   });
 
   it('should render an inverse checkbox with the correct styles', () => {
-    const { container } = render(<Checkbox inverse />);
+    const { container } = render(<Checkbox isInverse />);
     const span = container.querySelector('span');
 
     expect(span).toHaveStyleRule('background', 'none');
@@ -122,7 +171,7 @@ describe('Checkbox', () => {
 
   it('should render inverse with a passed in color', () => {
     const color = '#FFFFFF';
-    const { container } = render(<Checkbox color={color} inverse />);
+    const { container } = render(<Checkbox color={color} isInverse />);
     const span = container.querySelector('span');
     const svg = container.querySelector('svg');
 
@@ -132,15 +181,18 @@ describe('Checkbox', () => {
   });
 
   it('should render an inverse, disabled checkbox with the correct styles', () => {
-    const { container } = render(<Checkbox disabled inverse />);
+    const { container } = render(<Checkbox disabled isInverse />);
     const span = container.querySelector('span');
 
     expect(span).toHaveStyleRule('background', 'none');
-    expect(span).toHaveStyleRule('border-color', 'rgba(255,255,255,0.25)');
+    expect(span).toHaveStyleRule(
+      'border-color',
+      magma.colors.disabledInverseText
+    );
   });
 
   it('should render an inverse, checked checkbox with the correct styles', () => {
-    const { container } = render(<Checkbox checked inverse />);
+    const { container } = render(<Checkbox checked isInverse />);
     const span = container.querySelector('span');
 
     expect(span).toHaveStyleRule('background', magma.colors.neutral08);
@@ -150,7 +202,7 @@ describe('Checkbox', () => {
   it('should render a checkbox with hidden label text with the correct styles', () => {
     const label = 'test label';
     const { getByLabelText } = render(
-      <Checkbox labelText={label} textVisuallyHidden />
+      <Checkbox labelText={label} isTextVisuallyHidden />
     );
 
     expect(getByLabelText(label)).toHaveStyleRule(
@@ -159,43 +211,40 @@ describe('Checkbox', () => {
     );
   });
 
-  it('should give the checkbox an indeterminate value', () => {
-    const label = 'test label';
-    const { getByLabelText } = render(
-      <Checkbox labelText={label} indeterminate />
+  it('should render a checkbox with an error message', () => {
+    const errorMessage = 'test error';
+    const labelText = 'test label';
+    const { getByText, getByLabelText, container } = render(
+      <Checkbox errorMessage={errorMessage} id="testId" labelText={labelText} />
     );
 
-    expect(getByLabelText(label)).toHaveProperty('indeterminate');
+    const span = container.querySelector('span');
+    expect(span).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(getByLabelText(labelText)).toHaveAttribute(
+      'aria-describedby',
+      'testId__desc'
+    );
+
+    expect(getByText(errorMessage)).toBeInTheDocument();
+    expect(getByText(errorMessage).parentElement).toHaveAttribute(
+      'id',
+      'testId__desc'
+    );
   });
 
-  it('should update indeterminate on rerender', () => {
-    const testId = 'abc123';
-    const { getByTestId, rerender } = render(<Checkbox testId={testId} />);
-    const checkbox = getByTestId(testId);
+  it('should render an inverse checkbox with error styling', () => {
+    const errorMessage = 'test error';
+    const labelText = 'test label';
+    const { container } = render(
+      <Checkbox errorMessage={errorMessage} isInverse labelText={labelText} />
+    );
 
-    expect(checkbox).toHaveProperty('indeterminate', false);
-
-    rerender(<Checkbox testId={testId} indeterminate={true} />);
-
-    expect(checkbox).toHaveProperty('indeterminate', true);
-  });
-
-  it('should give the checkbox an indeterminate value', () => {
-    const testId = 'abc123';
-    const { getByTestId } = render(<Checkbox indeterminate testId={testId} />);
-    expect(getByTestId(testId)).toHaveProperty('indeterminate');
-  });
-
-  it('should update indeterminate on rerender', () => {
-    const testId = 'abc123';
-    const { getByTestId, rerender } = render(<Checkbox testId={testId} />);
-    const checkbox = getByTestId(testId);
-
-    expect(checkbox).toHaveProperty('indeterminate', false);
-
-    rerender(<Checkbox testId={testId} indeterminate />);
-
-    expect(checkbox).toHaveProperty('indeterminate', true);
+    const span = container.querySelector('span');
+    expect(span).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(span).toHaveStyleRule(
+      'box-shadow',
+      `0 0 0 1px ${magma.colors.neutral08}`
+    );
   });
 
   describe('events', () => {
@@ -210,7 +259,7 @@ describe('Checkbox', () => {
         getByTestId(testId),
         new MouseEvent('blur', {
           bubbles: true,
-          cancelable: true
+          cancelable: true,
         })
       );
 
@@ -240,11 +289,19 @@ describe('Checkbox', () => {
         getByTestId(testId),
         new MouseEvent('focus', {
           bubbles: true,
-          cancelable: true
+          cancelable: true,
         })
       );
 
       expect(onFocusSpy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  it('Does not violate accessibility standards', () => {
+    const { container } = render(<Checkbox labelText="label" />);
+
+    return axe(container.innerHTML).then(result => {
+      return expect(result).toHaveNoViolations();
     });
   });
 });

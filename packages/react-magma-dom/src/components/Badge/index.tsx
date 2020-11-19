@@ -1,13 +1,28 @@
 import * as React from 'react';
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { darken, lighten } from 'polished';
 
+/**
+ * @children required
+ */
 export interface BadgeProps extends React.HTMLAttributes<HTMLButtonElement> {
+  /**
+   * The color variant of the badge
+   * @default BadgeColor.primary
+   */
   color?: BadgeColor;
-  variant?: BadgeVariant;
+  /**
+   * Action that fires when the badge is clicked. Causes the Badge to render as a button instead of a span.
+   */
   onClick?: () => void;
+  testId?: string;
+  /**
+   * Indicates the style variant of the component
+   * @default BadgeVariant.label
+   */
+  variant?: BadgeVariant;
 }
 
 export enum BadgeColor {
@@ -15,12 +30,12 @@ export enum BadgeColor {
   primary = 'primary',
   secondary = 'secondary', // default
   success = 'success',
-  light = 'light'
+  light = 'light',
 }
 
 export enum BadgeVariant {
   counter = 'counter',
-  label = 'label' // default
+  label = 'label', // default
 }
 
 export function buildBadgeBackground(props) {
@@ -32,12 +47,12 @@ export function buildBadgeBackground(props) {
     case 'primary':
       return props.theme.colors.primary;
     case 'secondary':
-      return props.theme.colors.neutral03;
+      return props.theme.colors.neutral02;
     case 'success':
-      return props.theme.colors.success01;
+      return props.theme.colors.success;
 
     default:
-      return props.theme.colors.neutral03;
+      return props.theme.colors.neutral02;
   }
 }
 
@@ -50,12 +65,12 @@ export function buildBadgeFocusBackground(props) {
     case 'primary':
       return darken(0.1, props.theme.colors.primary);
     case 'secondary':
-      return darken(0.1, props.theme.colors.neutral03);
+      return darken(0.1, props.theme.colors.neutral02);
     case 'success':
-      return darken(0.1, props.theme.colors.success01);
+      return darken(0.1, props.theme.colors.success);
 
     default:
-      return darken(0.1, props.theme.colors.neutral03);
+      return darken(0.1, props.theme.colors.neutral02);
   }
 }
 
@@ -68,29 +83,46 @@ export function buildBadgeActiveBackground(props) {
     case 'primary':
       return darken(0.2, props.theme.colors.primary);
     case 'secondary':
-      return darken(0.2, props.theme.colors.neutral03);
+      return darken(0.2, props.theme.colors.neutral02);
     case 'success':
-      return darken(0.2, props.theme.colors.success01);
+      return darken(0.2, props.theme.colors.success);
 
     default:
-      return darken(0.2, props.theme.colors.neutral03);
+      return darken(0.2, props.theme.colors.neutral02);
   }
 }
 
 export const baseBadgeStyles = props => css`
   background: ${buildBadgeBackground(props)};
-  border-radius: ${props.variant === BadgeVariant.counter ? '10px' : '3px'};
+  border: 1px solid;
+  border-color: ${props.color === BadgeColor.light
+    ? props.theme.colors.neutral06
+    : 'transparent'};
+  border-radius: ${props.variant === BadgeVariant.counter
+    ? props.theme.spaceScale.spacing06
+    : props.theme.borderRadius};
   color: ${props.color === 'light'
-    ? props.theme.colors.neutral02
+    ? props.theme.colors.neutral
     : props.theme.colors.neutral08};
   display: inline-block;
   font-weight: bold;
-  font-size: ${props.variant === BadgeVariant.counter ? '14px' : '12px'};
-  line-height: ${props.variant === BadgeVariant.counter ? '20px' : '23px'};
+  font-size: ${props.variant === BadgeVariant.counter
+    ? props.theme.typeScale.size02.fontSize
+    : props.theme.typeScale.size01.fontSize};
+  line-height: ${props.variant === BadgeVariant.counter
+    ? props.theme.typeScale.size02.lineHeight
+    : props.theme.typeScale.size01.lineHeight};
   margin: ${props.variant === BadgeVariant.counter
-    ? '0 0 0 10px'
-    : '0 10px 0 0'};
-  padding: 0 6px;
+    ? `0 0 0 ${props.theme.spaceScale.spacing03}`
+    : `0 ${props.theme.spaceScale.spacing03} 0 0`};
+  max-height: ${props.variant === BadgeVariant.counter
+    ? props.theme.spaceScale.spacing06
+    : 'auto'};
+  min-width: ${props.theme.spaceScale.spacing06};
+  padding: ${props.variant === BadgeVariant.counter
+    ? `1px ${props.theme.spaceScale.spacing02}`
+    : `${props.theme.spaceScale.spacing01} ${props.theme.spaceScale.spacing02}`};
+  text-align: ${props.variant == BadgeVariant.counter ? 'center' : 'inherit'};
 `;
 
 const StyledSpan = styled.span<BadgeProps>`
@@ -99,7 +131,6 @@ const StyledSpan = styled.span<BadgeProps>`
 
 const StyledButton = styled.button<BadgeProps>`
   ${baseBadgeStyles};
-  border: 0;
   cursor: pointer;
   transition: background 0.35s;
 
@@ -113,29 +144,29 @@ const StyledButton = styled.button<BadgeProps>`
   }
 `;
 
-function renderBadge(isClickable: boolean) {
+function getStyledBadgeComponent(isClickable: boolean) {
   return isClickable ? StyledButton : StyledSpan;
 }
 
-export const Badge: React.FunctionComponent<BadgeProps> = React.forwardRef(
-  ({ children, color, onClick, variant, ...other }: BadgeProps, ref: any) => {
-    const BadgeComponent = renderBadge(!!onClick);
+export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
+  (props, ref) => {
+    const { children, onClick, testId, variant, ...other } = props;
+
+    const BadgeComponent = getStyledBadgeComponent(Boolean(onClick));
+
+    const theme = React.useContext(ThemeContext);
 
     return (
-      <ThemeContext.Consumer>
-        {theme => (
-          <BadgeComponent
-            {...other}
-            color={color}
-            variant={variant ? variant : BadgeVariant.label}
-            onClick={onClick}
-            ref={ref}
-            theme={theme}
-          >
-            {children}
-          </BadgeComponent>
-        )}
-      </ThemeContext.Consumer>
+      <BadgeComponent
+        {...other}
+        data-testid={testId}
+        variant={variant ? variant : BadgeVariant.label}
+        onClick={onClick}
+        ref={ref}
+        theme={theme}
+      >
+        {children}
+      </BadgeComponent>
     );
   }
 );

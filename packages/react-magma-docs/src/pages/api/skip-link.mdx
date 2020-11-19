@@ -1,12 +1,12 @@
 ---
-title: 'Skip Link'
+pageTitle: Skip Link API
+title: Skip Link
 ---
 
-import { ScopeableLayout } from '../../components/layout'
-import { SkipLink, SkipLinkContent } from 'react-magma-dom'
-import { Link } from 'gatsby'
-import { Button } from 'react-magma-dom'
-import { SimplePropsTable } from '../../components/props-table'
+import { ScopeableLayout } from '../../components/layout';
+import { Button } from 'react-magma-dom';
+import { Link } from 'gatsby';
+import { SimplePropsTable } from '../../components/props-table';
 
 # Skip Link
 
@@ -24,44 +24,44 @@ The `SkipLinkContent` component is the div that is the target of the `SkipLink`.
 If there is an h1 heading inside the SkipLinkContent, the h1 will receive focus. Otherwise, just the SkipLinkContent div itself will get focus.
 
 ```
-    <div>
-        <SkipLink />
-        <YourNav />
-        <SkipLinkContent>
-            <YourContent />
-        </SkipLinkContent>
-    </div>
+<div>
+  <SkipLink />
+  <YourNav />
+  <SkipLinkContent>
+    <YourContent />
+  </SkipLinkContent>
+</div>
 ```
 
 Or
 
 ```
-    <div>
-        <SkipLink />
-        <YourNav />
-        <SkipLinkContent />
-        <YourContent />
-    </div>
+<div>
+  <SkipLink />
+  <YourNav />
+  <SkipLinkContent />
+  <YourContent />
+</div>
 ```
 
-When the user tabs to the first element, a button with this appearace will display in focus:
+When the user tabs to the first element, a hyperlink with this appearance will display in focus:
 
 <Button>Skip Navigation</Button>
 
 ## Button Variations
 
-By default, the `SkipLink` looks like a standard button with `color` as`primary`, `variant` as `solid`, and `inverse` as false.
+By default, the `SkipLink` looks like a standard button with `color` as`primary`, `variant` as `solid`, and `isInverse` as false.
 
 Variants for buttons include `solid`, `outline`, and `link`.
 Colors for buttons include `primary`, `secondary`, `success`, and `danger`.
-Inverse is can be either `true` or `false`, and is used when the SkipLink is to appear on a dark background.
+IsInverse is can be either `true` or `false`, and is used when the SkipLink is to appear on a dark background.
 
 For more information, see the <Link to="/api/button">Button Component documentation</Link>.
 
 ```
-    <SkipLink
-        color="success"
-        variant="outline" />
+<SkipLink
+  color="success"
+  variant="outline" />
 ```
 
 This would render the button as:
@@ -75,8 +75,8 @@ This would render the button as:
 By default, the text inside the button says "Skip Navigation". This can be overridden using the `buttonText` prop.
 
 ```
-    <SkipLink
-        buttonText='Skip to main content' />
+<SkipLink
+  buttonText='Skip to main content' />
 ```
 
 This would render the button as:
@@ -85,21 +85,25 @@ This would render the button as:
 
 ## Positioning
 
-By default, the `SkipLink` is fixed poistioned 10px from the top and 10px from left of the screen. This can be customized using the optional `positionLeft`
+By default, the `SkipLink` is fixed positioned 10px from the top and 10px from left of the screen. This can be customized using the optional `positionLeft`
 and `positionTop` properties, which take numeric values.
 
 ```
-    <SkipLink
-        positionLeft={25}
-        positionTop={25} />
+<SkipLink
+  positionLeft={25}
+  positionTop={25} />
 ```
 
 This would render the button 25px from the top, and 25px from the left of the browser window.
 
 ## Skip Link Props
 
+**This component uses `forwardRef`. The ref is applied to the `a` element.**
+
+All of the [standard anchor attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) can be provided as props and will be applied to the `a` element that gets rendered.
+
 <SimplePropsTable
-  props={{
+  propertyValues={{
     buttonText: {
       type: {
         name: 'string',
@@ -123,7 +127,16 @@ This would render the button 25px from the top, and 25px from the left of the br
       description: 'The color of the button',
       defaultValue: 'primary',
     },
-    inverse: {
+    isFullWidth: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the button will take up the full width of its container',
+      defaultValue: 'false',
+    },
+    isInverse: {
       type: {
         name: 'boolean',
       },
@@ -150,13 +163,13 @@ This would render the button 25px from the top, and 25px from the left of the br
         'Number of pixels from the top of the screen for the skip link to be positioned ',
       defaultValue: '10',
     },
-    targetID: {
+    testId: {
       type: {
         name: 'string',
       },
-      required: true,
-      description: 'ID of the element the skip link will navigate to',
-      defaultValue: '',
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     variant: {
       type: {
@@ -177,7 +190,7 @@ This would render the button 25px from the top, and 25px from the left of the br
 ## Skip Link Content Props
 
 <SimplePropsTable
-  props={{
+  propertyValues={{
     children: {
       type: {
         name: 'node',
@@ -185,9 +198,15 @@ This would render the button 25px from the top, and 25px from the left of the br
       required: false,
       description: 'The content of the destination of the skip link',
     },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
   }}
 />
 
-export default props => (
-  <ScopeableLayout {...props} components={{ SkipLink, SkipLinkContent }} />
-)
+export default props => <ScopeableLayout {...props} components={{ Button }} />;

@@ -1,11 +1,12 @@
 ---
-title: 'Spinner'
+pageTitle: Spinner API
+title: Spinner
 ---
 
-import { ScopeableLayout } from '../../components/layout'
-import { Spinner, magma } from 'react-magma-dom'
-import { SimplePropsTable } from '../../components/props-table'
-import { Link } from 'gatsby'
+import { ScopeableLayout } from '../../components/layout';
+import { Spinner, magma } from 'react-magma-dom';
+import { SimplePropsTable } from '../../components/props-table';
+import { Link } from 'gatsby';
 
 # Spinner
 
@@ -14,15 +15,15 @@ Spinners indicate the loading state of a component or page. Spinners are used wi
 ## Basic Usage
 
 ```.jsx
-    <Spinner />
+<Spinner />
 ```
 
 ## Aria-Label
 
-By default, the aria-label for the spinner is "Loading", but this can be customized using the `ariaLabel` prop.
+By default, the aria-label for the spinner is "Loading", but this can be customized using the `aria-label` prop.
 
 ```.jsx
-    <Spinner ariaLabel="Custom aria label" />
+<Spinner aria-label="Custom aria label" />
 ```
 
 ## Color
@@ -30,7 +31,7 @@ By default, the aria-label for the spinner is "Loading", but this can be customi
 The default is `magma.colors.primary` (`#006298`), but can be customized using the `color` prop, which takes a string.
 
 ```.jsx
-    <Spinner color={magma.colors.danger} />
+<Spinner color={magma.colors.danger} />
 ```
 
 ## Size
@@ -38,14 +39,18 @@ The default is `magma.colors.primary` (`#006298`), but can be customized using t
 The default size is 15px, but can be customized using the `size` prop, which takes a number of pixels.
 
 ```.jsx
-    <Spinner size={30} />
+<Spinner size={30} />
 ```
 
 ## Spinner Props
 
+**This component uses `forwardRef`. The ref is applied to the outer `span` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `span` element that gets rendered.
+
 <SimplePropsTable
-  props={{
-    ariaLabel: {
+  propertyValues={{
+    'aria-label': {
       type: {
         name: 'string',
       },
@@ -69,9 +74,17 @@ The default size is 15px, but can be customized using the `size` prop, which tak
       description: 'The height and width of the spinner in pixels',
       defaultValue: '15',
     },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
   }}
 />
 
 export default props => (
   <ScopeableLayout {...props} components={{ Spinner, magma }} />
-)
+);

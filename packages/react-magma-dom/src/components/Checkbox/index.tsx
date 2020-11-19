@@ -1,88 +1,150 @@
 import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { CheckboxCore } from 'react-magma-core';
 import {
   DisplayInputStyles,
   DisplayInputActiveStyles,
-  DisplayInputFocusStyles
+  buildDisplayInputActiveBackground,
+  buildDisplayInputBorderColor,
+  buildDisplayInputFocusStyles,
 } from '../SelectionControls/InputStyles';
-import { HiddenStyles } from '../UtilityStyles';
-import { CheckIcon } from '../Icon/types/CheckIcon';
+import { FormGroupContext } from '../FormGroup';
+import { HiddenStyles } from '../../utils/UtilityStyles';
+import { InputMessage } from '../Input/InputMessage';
+import { CheckIcon } from 'react-magma-icons';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';
+import { omit, useGenerateId } from '../../utils';
+
+export enum CheckboxTextPosition {
+  left = 'left',
+  right = 'right', // default
+}
 
 export interface CheckboxProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
+  /**
+   * If true, element is checked (i.e. selected)
+   * @default false
+   */
+  checked?: boolean;
+  /**
+   * Hex code for the background color
+   * @default #0000FF
+   */
   color?: string;
+  /**
+   * Style properties for the component container element
+   */
   containerStyle?: React.CSSProperties;
+  /**
+   * If true, checkbox is checked on first render
+   */
   defaultChecked?: boolean;
-  indeterminate?: boolean;
+  /**
+   * If true, element is disabled
+   * @default false
+   */
+  disabled?: boolean;
+  /**
+   * Content of the error message for an individual checkbox. If a value is provided, the input will be styled as an error state and the error message will display.
+   */
+  errorMessage?: React.ReactNode;
+  /*
+   * @internal
+   */
+  hasError?: boolean;
+  /**
+   * Style properties for the checkbox element
+   */
   inputStyle?: React.CSSProperties;
-  inverse?: boolean;
+  isInverse?: boolean;
+  /**
+   * If true, label text will be hidden visually, but will still be read by assistive technology
+   * @default false
+   */
+  isTextVisuallyHidden?: boolean;
+  /**
+   * Style properties for the label element
+   */
   labelStyle?: React.CSSProperties;
-  labelText: string;
+  /**
+   * Content of label; can be node or string
+   */
+  labelText: React.ReactNode;
   testId?: string;
-  textVisuallyHidden?: boolean;
+  /**
+   * Whether the label appears to the left of the right of the checkbox
+   * @default CheckboxTextPosition.right
+   */
+  textPosition?: CheckboxTextPosition;
 }
 
-const HiddenLabelText = styled.span`
+export const HiddenLabelText = styled.span`
   ${HiddenStyles};
 `;
 
-const HiddenInput = styled.input<{ indeterminate?: boolean }>`
+export const HiddenInput = styled.input`
   ${HiddenStyles};
 `;
 
-const StyledFakeInput = styled.span<{
-  inverse: boolean;
-  checked: boolean;
-  disabled: boolean;
-  color: string;
-  indeterminate?: boolean;
-}>`
-  ${DisplayInputStyles};
-  background: ${props => {
-    if (props.inverse) {
-      if (props.checked) {
-        return props.theme.colors.neutral08;
-      }
-      return 'none';
-    }
-    if (props.disabled) {
-      return props.theme.colors.neutral06;
-    }
-    if (props.checked) {
-      return props.color ? props.color : props.theme.colors.primary;
-    }
-    return props.theme.colors.neutral08;
-  }};
-  border-color: ${props => {
-    if (props.inverse) {
-      if (props.disabled) {
-        return props.theme.colors.disabledInverseText;
-      }
+export function buildCheckboxBackground(props) {
+  if (props.isInverse) {
+    if (
+      (props.checked && !props.disabled) ||
+      (props.isIndeterminate && !props.disabled)
+    ) {
       return props.theme.colors.neutral08;
     }
-    if (props.disabled) {
-      return props.theme.colors.neutral05;
-    }
-    if (!props.checked && !props.indeterminate) {
-      return props.theme.colors.neutral03;
-    }
+    return 'none';
+  }
+  if (props.disabled) {
+    return props.theme.colors.neutral06;
+  }
+  if (props.checked) {
     return props.color ? props.color : props.theme.colors.primary;
-  }};
+  }
+  return props.theme.colors.neutral08;
+}
+
+export function buildCheckIconColor(props) {
+  if (props.disabled) {
+    return props.theme.colors.disabledText;
+  }
+  if (props.isInverse) {
+    if (props.color) {
+      return props.color;
+    }
+    return props.theme.colors.primary;
+  }
+  return props.theme.colors.neutral08;
+}
+
+export const StyledFakeInput = styled.span<{
+  checked?: boolean;
+  color: string;
+  disabled?: boolean;
+  isIndeterminate?: boolean;
+  isInverse?: boolean;
+  hasError?: boolean;
+  textPosition?: CheckboxTextPosition;
+  theme?: any;
+}>`
+  ${DisplayInputStyles};
+  background: ${props => buildCheckboxBackground(props)};
+  border-color: ${props => buildDisplayInputBorderColor(props)};
   border-radius: 3px;
+  box-shadow: ${props =>
+    props.isInverse && props.hasError
+      ? `0 0 0 1px ${props.theme.colors.neutral08}`
+      : '0 0 0'};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+  margin: ${props =>
+    props.textPosition === 'left' ? '2px 0 0 10px' : '2px 10px 0 0'};
 
   svg {
-    display: ${props => (props.checked && !props.disabled ? 'block' : 'none')};
-    fill: ${props =>
-      props.inverse
-        ? props.color
-          ? props.color
-          : props.theme.colors.primary
-        : props.theme.colors.neutral08};
+    display: ${props => (props.checked ? 'block' : 'none')};
+    fill: ${props => buildCheckIconColor(props)};
     opacity: ${props => (props.checked ? '1' : '0')};
     pointer-events: none;
     transition: all 0.2s ease-out;
@@ -90,24 +152,13 @@ const StyledFakeInput = styled.span<{
 
   ${HiddenInput}:focus + label & {
     &:before {
-      ${DisplayInputFocusStyles};
-      outline: 2px dotted ${props =>
-        props.inverse
-          ? props.theme.colors.neutral08
-          : props.theme.colors.pop02};
-      top: -7px;
-      left: -7px;
+      ${props => buildDisplayInputFocusStyles(props)};
     }
   }
 
   &:after {
     // active state
-    background: ${props =>
-      props.inverse
-        ? props.theme.colors.neutral08
-        : props.color
-        ? props.color
-        : props.theme.colors.primary};
+    background: ${props => buildDisplayInputActiveBackground(props)};
   }
 
   /* prettier-ignore */
@@ -116,142 +167,114 @@ const StyledFakeInput = styled.span<{
       ${DisplayInputActiveStyles}
     }
   }
-
-  ${HiddenInput}:indeterminate + label & {
-    background: ${props => props.theme.colors.neutral08};
-    border-color: ${props =>
-      props.inverse
-        ? props.theme.colors.neutral08
-        : props.color
-        ? props.color
-        : props.theme.colors.primary};
-
-    svg {
-      display: none;
-    }
-  }
 `;
 
-const IndeterminateIcon = styled.span<{ color?: string }>`
-  background: ${props =>
-    props.color ? props.color : props.theme.colors.primary};
-  display: none;
-  height: 2px;
-  width: 10px;
+export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
+  (props, ref) => {
+    const { checked, id: defaultId, defaultChecked, onChange } = props;
+    const [isChecked, updateIsChecked] = React.useState(
+      Boolean(defaultChecked) || Boolean(checked)
+    );
 
-  ${HiddenInput}:indeterminate + label & {
-    display: block;
-  }
-`;
+    const id = useGenerateId(defaultId);
+    const isControlled = typeof checked === 'boolean' ? true : false;
 
-export class Checkbox extends React.Component<CheckboxProps> {
-  constructor(props) {
-    super(props);
-
-    this.setIndeterminate = this.setIndeterminate.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  readonly checkboxInput = React.createRef<any>();
-
-  componentDidMount() {
-    this.setIndeterminate();
-  }
-
-  componentDidUpdate() {
-    this.setIndeterminate();
-  }
-
-  setIndeterminate() {
-    this.checkboxInput.current.indeterminate = this.props.indeterminate;
-  }
-
-  handleChange(onChange: (checked: boolean) => void) {
-    return (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { checked } = event.target;
-      this.props.onChange &&
-        typeof this.props.onChange === 'function' &&
-        this.props.onChange(event);
-
-      if (typeof this.props.checked !== 'boolean') {
-        onChange(checked);
+    React.useEffect(() => {
+      if (typeof checked === 'boolean') {
+        updateIsChecked(checked);
       }
-    };
-  }
+    }, [checked]);
 
-  render() {
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+      const { checked: targetChecked } = event.target;
+
+      onChange && typeof onChange === 'function' && onChange(event);
+
+      if (!isControlled) {
+        updateIsChecked(targetChecked);
+      }
+    }
+
+    const theme = React.useContext(ThemeContext);
+    const context = React.useContext(FormGroupContext);
+
+    const {
+      color,
+      containerStyle,
+      disabled,
+      errorMessage,
+      inputStyle,
+      isInverse,
+      labelStyle,
+      labelText,
+      isTextVisuallyHidden,
+      testId,
+      textPosition,
+      ...rest
+    } = props;
+    const other = omit(['defaultChecked'], rest);
+
+    const descriptionId = errorMessage && `${id}__desc`;
+    const groupDescriptionId = context.descriptionId;
+
+    const describedBy =
+      descriptionId && groupDescriptionId
+        ? `${groupDescriptionId} ${descriptionId}`
+        : descriptionId
+        ? descriptionId
+        : groupDescriptionId
+        ? groupDescriptionId
+        : null;
+
+    const hasError = context.hasError || !!errorMessage;
+
     return (
-      <CheckboxCore
-        id={this.props.id}
-        checked={this.props.checked}
-        defaultChecked={this.props.defaultChecked}
-      >
-        {({ id, onChange, checked }) => {
-          const {
-            defaultChecked,
-            onBlur,
-            onFocus,
-            color,
-            containerStyle,
-            disabled,
-            indeterminate,
-            inputStyle,
-            inverse,
-            labelStyle,
-            labelText,
-            textVisuallyHidden,
-            testId,
-            ...other
-          } = this.props;
+      <>
+        <StyledContainer style={containerStyle}>
+          <HiddenInput
+            {...other}
+            aria-describedby={describedBy}
+            id={id}
+            data-testid={testId}
+            checked={isChecked}
+            disabled={disabled}
+            ref={ref}
+            type="checkbox"
+            onChange={handleChange}
+          />
+          <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
+            {!isTextVisuallyHidden &&
+              textPosition === CheckboxTextPosition.left &&
+              labelText}
 
-          return (
-            <ThemeContext.Consumer>
-              {theme => (
-                <StyledContainer style={containerStyle}>
-                  <HiddenInput
-                    {...other}
-                    id={id}
-                    data-testid={testId}
-                    checked={checked}
-                    disabled={disabled}
-                    indeterminate={indeterminate}
-                    ref={this.checkboxInput}
-                    type="checkbox"
-                    onBlur={onBlur}
-                    onChange={this.handleChange(onChange)}
-                    onFocus={onFocus}
-                  />
-                  <StyledLabel
-                    htmlFor={id}
-                    inverse={inverse}
-                    style={labelStyle}
-                  >
-                    <StyledFakeInput
-                      checked={checked}
-                      color={color ? color : ''}
-                      disabled={disabled}
-                      inverse={inverse}
-                      style={inputStyle}
-                      theme={theme}
-                    >
-                      <IndeterminateIcon
-                        color={color ? color : ''}
-                        theme={theme}
-                      />
-                      <CheckIcon size={12} />
-                    </StyledFakeInput>
-                    {textVisuallyHidden ? (
-                      <HiddenLabelText>{labelText}</HiddenLabelText>
-                    ) : (
-                      labelText
-                    )}
-                  </StyledLabel>
-                </StyledContainer>
-              )}
-            </ThemeContext.Consumer>
-          );
-        }}
-      </CheckboxCore>
+            <StyledFakeInput
+              checked={isChecked}
+              color={color ? color : ''}
+              disabled={disabled}
+              hasError={hasError}
+              isInverse={context.isInverse || isInverse}
+              style={inputStyle}
+              textPosition={textPosition}
+              theme={theme}
+            >
+              <CheckIcon size={12} />
+            </StyledFakeInput>
+
+            {isTextVisuallyHidden ? (
+              <HiddenLabelText>{labelText}</HiddenLabelText>
+            ) : (
+              textPosition !== CheckboxTextPosition.left &&
+              labelText &&
+              labelText
+            )}
+          </StyledLabel>
+        </StyledContainer>
+        {!!errorMessage && (
+          <InputMessage id={descriptionId} hasError isInverse={isInverse}>
+            {errorMessage}
+          </InputMessage>
+        )}
+      </>
     );
   }
-}
+);

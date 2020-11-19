@@ -1,11 +1,11 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { InputSize } from '../Input';
+import { InputSize } from '../InputBase';
 
 export interface LabelProps
   extends React.LabelHTMLAttributes<HTMLLabelElement> {
-  inverse?: boolean;
+  isInverse?: boolean;
   size?: InputSize;
   theme?: any;
   testId?: string;
@@ -13,36 +13,40 @@ export interface LabelProps
 
 const StyledLabel = styled.label<LabelProps>`
   color: ${props =>
-    props.inverse
+    props.isInverse
       ? props.theme.colors.neutral08
-      : props.theme.colors.neutral02};
+      : props.theme.colors.neutral};
   display: inline-block;
-  font-size: ${props => (props.size === InputSize.large ? '16px' : '13px')};
+  font-size: ${props =>
+    props.size === InputSize.large
+      ? props.theme.typeScale.size03.fontSize
+      : props.theme.typeScale.size02.fontSize};
   font-weight: 600;
-  margin-bottom: 5px;
+  line-height: ${props =>
+    props.size === InputSize.large
+      ? props.theme.typeScale.size03.lineHeight
+      : props.theme.typeScale.size02.lineHeight};
+  margin-bottom: ${props => props.theme.spaceScale.spacing03};
   max-width: 100%;
   text-align: left;
 `;
 
-function renderLabel(props) {
-  const { children, inverse, size, testId, ...other } = props;
+export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
+  (props, ref) => {
+    const { children, isInverse, size, testId, ...other } = props;
+    const theme = React.useContext(ThemeContext);
 
-  return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <StyledLabel
-          {...other}
-          data-testid={testId}
-          inverse={inverse}
-          size={size ? size : InputSize.medium}
-          theme={theme}
-        >
-          {children}
-        </StyledLabel>
-      )}
-    </ThemeContext.Consumer>
-  );
-}
-
-export const Label: React.FunctionComponent<LabelProps> = (props: LabelProps) =>
-  renderLabel(props);
+    return (
+      <StyledLabel
+        {...other}
+        data-testid={testId}
+        isInverse={isInverse}
+        ref={ref}
+        size={size ? size : InputSize.medium}
+        theme={theme}
+      >
+        {children}
+      </StyledLabel>
+    );
+  }
+);

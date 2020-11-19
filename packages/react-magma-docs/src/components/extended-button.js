@@ -1,6 +1,6 @@
-import React from 'react'
-import { Button } from 'react-magma-dom'
-import styled from '@emotion/styled'
+import React from 'react';
+import { Button } from 'react-magma-dom';
+import styled from '@emotion/styled';
 
 const StyledButton = styled(Button)`
   && {
@@ -11,8 +11,8 @@ const StyledButton = styled(Button)`
       background: green;
     }
   }
-`
+`;
 
 export function ExtendedButton() {
-  return <StyledButton>Demo button</StyledButton>
+  return <StyledButton>Demo button</StyledButton>;
 }

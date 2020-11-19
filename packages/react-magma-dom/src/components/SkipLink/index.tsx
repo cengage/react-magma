@@ -1,18 +1,16 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { ButtonColor, ButtonVariant } from '../Button';
-import { HyperLink } from '../HyperLink';
+import { Hyperlink, HyperlinkProps } from '../Hyperlink';
+import { I18nContext } from '../../i18n';
 
 export const TARGET_ID = 'reactMagmaMainContent';
 
-export interface SkipLinkProps {
+export interface SkipLinkProps extends HyperlinkProps {
   buttonText?: string;
-  className?: string;
-  color?: ButtonColor;
-  inverse?: boolean;
   positionLeft?: number;
   positionTop?: number;
-  variant?: ButtonVariant;
+  testId?: string;
 }
 
 const handleClick = e => {
@@ -34,7 +32,7 @@ const handleClick = e => {
   targetAnchor.focus();
 };
 
-const StyledSkipLink = styled(HyperLink)<{
+const StyledSkipLink = styled(Hyperlink)<{
   positionLeft: number;
   positionTop: number;
 }>`
@@ -45,25 +43,28 @@ const StyledSkipLink = styled(HyperLink)<{
     &:focus {
       left: ${props => props.positionLeft}px;
       top: ${props => props.positionTop}px;
-      z-index: 3;
+      z-index: 99999;
     }
   }
 `;
 
-export const SkipLink: React.FunctionComponent<SkipLinkProps> = ({
-  buttonText,
-  className,
-  color,
-  inverse,
-  positionLeft,
-  positionTop,
-  variant
-}: SkipLinkProps) => {
+export const SkipLink: React.FunctionComponent<SkipLinkProps> = props => {
+  const {
+    buttonText,
+    color,
+    positionLeft,
+    positionTop,
+    testId,
+    variant,
+    ...other
+  } = props;
+  const i18n = React.useContext(I18nContext);
+
   return (
     <StyledSkipLink
-      className={className}
+      {...other}
       color={color ? color : ButtonColor.primary}
-      inverse={inverse}
+      testId={testId}
       onClick={e => {
         handleClick(e);
       }}
@@ -73,7 +74,7 @@ export const SkipLink: React.FunctionComponent<SkipLinkProps> = ({
       to={`#${TARGET_ID}`}
       variant={variant ? variant : ButtonVariant.solid}
     >
-      {buttonText ? buttonText : 'Skip Navigation'}
+      {buttonText ? buttonText : i18n.skipLink.buttonText}
     </StyledSkipLink>
   );
 };

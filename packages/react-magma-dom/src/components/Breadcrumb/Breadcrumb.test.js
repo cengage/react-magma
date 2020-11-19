@@ -1,12 +1,29 @@
 import React from 'react';
 import { axe } from 'jest-axe';
-import { Breadcrumb, BreadcrumbItem } from '.';
+import { Breadcrumb } from '.';
+import { BreadcrumbItem } from './Item';
+
 import { render } from '@testing-library/react';
+import { I18nContext } from '../../i18n';
+import { defaultI18n } from '../../i18n/default';
 
 const LINK_TEXT = 'Test link';
 const SPAN_TEXT = 'Test span';
 
 describe('Breadcrumb', () => {
+  it('should find elements by testId', () => {
+    const testId = 'test-id';
+    const testId2 = 'test-id2';
+    const { getByTestId } = render(
+      <Breadcrumb testId={testId}>
+        <BreadcrumbItem testId={testId2}>Item Text</BreadcrumbItem>
+      </Breadcrumb>
+    );
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+    expect(getByTestId(testId2)).toBeInTheDocument();
+  });
+
   it('should render the breadcrumb component', () => {
     const { container, getByLabelText } = render(
       <Breadcrumb>
@@ -21,11 +38,9 @@ describe('Breadcrumb', () => {
 
   it('should render the breadcrumb component with inverse styles', () => {
     const { getByText } = render(
-      <Breadcrumb inverse>
-        <BreadcrumbItem inverse to="#">
-          {LINK_TEXT}
-        </BreadcrumbItem>
-        <BreadcrumbItem inverse>{SPAN_TEXT}</BreadcrumbItem>
+      <Breadcrumb isInverse>
+        <BreadcrumbItem to="#">{LINK_TEXT}</BreadcrumbItem>
+        <BreadcrumbItem>{SPAN_TEXT}</BreadcrumbItem>
       </Breadcrumb>
     );
 
@@ -34,7 +49,7 @@ describe('Breadcrumb', () => {
 
   it('should render the breadcrumb component with custom aria-label', () => {
     const { queryByLabelText, getByLabelText } = render(
-      <Breadcrumb ariaLabel="Test label">
+      <Breadcrumb aria-label="Test label">
         <BreadcrumbItem to="#">{LINK_TEXT}</BreadcrumbItem>
         <BreadcrumbItem>{SPAN_TEXT}</BreadcrumbItem>
       </Breadcrumb>
@@ -42,6 +57,28 @@ describe('Breadcrumb', () => {
 
     expect(queryByLabelText('Breadcrumb')).not.toBeInTheDocument();
     expect(getByLabelText('Test label')).toBeInTheDocument();
+  });
+
+  describe('i18n', () => {
+    it('should use the nav aria-label', () => {
+      const navAriaLabel = 'test aria label';
+      const { getByLabelText } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            breadcrumb: {
+              navAriaLabel,
+            },
+          }}
+        >
+          <Breadcrumb>
+            <BreadcrumbItem>Item Text</BreadcrumbItem>
+          </Breadcrumb>
+        </I18nContext.Provider>
+      );
+
+      expect(getByLabelText(navAriaLabel)).toBeInTheDocument();
+    });
   });
 
   it('Does not violate accessibility standards', () => {

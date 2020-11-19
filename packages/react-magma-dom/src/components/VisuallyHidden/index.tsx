@@ -1,17 +1,21 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
-import { HiddenStyles } from '../UtilityStyles';
+import styled from '../../theme/styled';
+import { HiddenStyles } from '../../utils/UtilityStyles';
 
 export interface VisuallyHiddenProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
+  extends React.HTMLAttributes<HTMLDivElement> {
+  testId?: string;
+}
 
 const VisuallyHiddenDiv = styled.div`
   ${HiddenStyles}
 `;
 
-export const VisuallyHidden: React.FunctionComponent<VisuallyHiddenProps> = ({
-  children,
-  ...other
-}: VisuallyHiddenProps) => (
-  <VisuallyHiddenDiv {...other}>{children}</VisuallyHiddenDiv>
-);
+export const VisuallyHidden: React.FunctionComponent<VisuallyHiddenProps> = props => {
+  const { children, testId, ...other } = props;
+  return (
+    <VisuallyHiddenDiv {...other} data-testid={testId}>
+      {children}
+    </VisuallyHiddenDiv>
+  );
+};

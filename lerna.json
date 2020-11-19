@@ -1,6 +1,13 @@
 {
   "packages": [
-    "packages/*"
+    "packages/react-magma-docs",
+    "packages/react-magma-dom",
+    "packages/react-magma-icons"
   ],
-  "version": "1.6.0"
+  "command": {
+    "bootstrap": {
+      "forceLocal": true
+    }
+  },
+  "version": "2.0.0-beta.136"
 }

@@ -5,6 +5,7 @@ import { ThemeContext } from '../ThemeContext';
 function getStyles(theme) {
   return css`
     @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
     *,
     *:before,
@@ -13,13 +14,14 @@ function getStyles(theme) {
     }
 
     *:focus {
-      outline: 2px dotted ${theme.colors.pop02};
-      outline-offset: 3px;
+      outline: 2px dotted ${theme.colors.focus};
+      outline-offset: 4px;
     }
 
     html {
       scroll-behavior: smooth;
-      font-size: 15px;
+      font-size: ${theme.typeScale.size03.fontSize};
+      line-height: ${theme.typeScale.size03.lineHeight};
     }
 
     html,
@@ -30,12 +32,12 @@ function getStyles(theme) {
 
     body {
       background: ${theme.colors.neutral08};
-      color: ${theme.colors.neutral02};
+      color: ${theme.colors.neutral};
       font-family: ${theme.bodyFont};
       font-style: normal;
       font-weight: 400;
-      font-size: 15px;
-      line-height: 22px;
+      font-size: ${theme.typeScale.size03.fontSize};
+      line-height: ${theme.typeScale.size03.lineHeight};
     }
 
     a {
@@ -45,7 +47,7 @@ function getStyles(theme) {
 
       &:hover,
       &:focus {
-        color: ${theme.colors.foundation01};
+        color: ${theme.colors.foundation02};
       }
     }
   `;

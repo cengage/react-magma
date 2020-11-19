@@ -1,58 +1,19 @@
-import React from 'react'
-import Helmet from 'react-helmet'
-import { StaticQuery, graphql } from 'gatsby'
-import { SlidingDrawer } from '../sliding-drawer'
-import Masthead from '../masthead'
-import { SkipLink, GlobalStyles } from 'react-magma-dom'
-import styled from '@emotion/styled'
-
-const StyledSkipLink = styled(SkipLink)`
-  display: none;
-
-  &:not(:disabled):focus {
-    background: transparent;
-  }
-
-  @media (min-width: 1024px) {
-    display: inline-flex;
-  }
-`
+import React from 'react';
+import Helmet from 'react-helmet';
 
 export default props => (
-  <StaticQuery
-    query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `}
-    render={data => (
-      <>
-        <GlobalStyles />
-        <Helmet
-          title={data.site.siteMetadata.title}
-          meta={[
-            { name: 'description', content: 'Sample' },
-            { name: 'keywords', content: 'sample, something' },
-          ]}
-        >
-          <html lang="en" />
-        </Helmet>
-        <StyledSkipLink
-          inverse
-          positionLeft={275}
-          positionTop={16}
-          variant="outline"
-        />
-        <main className="main">
-          <SlidingDrawer />
-          <Masthead />
-          <section className="content">{props.children}</section>
-        </main>
-      </>
-    )}
-  />
-)
+  <>
+    <Helmet
+      title={props.title ? `${props.title} - React Magma` : 'React Magma'}
+      meta={[
+        { name: 'description', content: 'Sample' },
+        { name: 'keywords', content: 'sample, something' },
+      ]}
+    >
+      <html lang="en" />
+    </Helmet>
+    <main>
+      <section className="content">{props.children}</section>
+    </main>
+  </>
+);
