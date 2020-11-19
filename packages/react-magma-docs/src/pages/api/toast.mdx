@@ -1,102 +1,80 @@
 ---
-title: 'Toasts'
+pageTitle: Toast API
+title: Toast
 ---
 
-import { ScopeableLayout } from '../../components/layout'
-import { Button, Toast, Announce } from 'react-magma-dom'
-import DocsHeading from '../../components/docs-heading'
-import { Link } from 'gatsby'
-import { SimplePropsTable } from '../../components/props-table'
+import { ScopeableLayout } from '../../components/layout';
+import { Button, Toast, ToastsContainer, Announce } from 'react-magma-dom';
+import DocsHeading from '../../components/docs-heading';
+import { Link } from 'gatsby';
+import { SimplePropsTable } from '../../components/props-table';
 
-# Toasts
+<DocsHeading to="/design/alerts/" type="design">
+  Toast
+</DocsHeading>
 
-`Toast` components use the <Link to="/api/alert">Alert component</Link> internally for it's content and styles. Any props that can be passed to an `Alert` can be passed to a `Toast` component.
+`Toast` components use the <Link to="/api/alert">Alert component</Link> internally for its content and styles. Any props that can be passed to an `Alert` can be passed to a `Toast` component.
+
+**Toasts are used to display non-critical information to users.** For critical messages, designers should consider a different way of presenting the information, such as using the <Link to="/api/alert">Alert component</Link> within the context of the UI.
 
 ## Basic Usage
 
+```.jsx
+() => {
+  const [showToast, setShowToast] = React.useState(false);
+
+  function handleClick() {
+    setShowToast(true);
+  }
+
+  function handleDismiss() {
+    setShowToast(false);
+  }
+
+  return (
+    <>
+      <Button size="small" onClick={handleClick}>
+        Show Default Toast
+      </Button>
+      {showToast
+        ? <Toast onDismiss={handleDismiss}>Default Toast</Toast>
+        : null}
+    </>
+  )
+}
+```
+
+## Variants
+
 Variants for toasts include `info`, `success`, `warning`, and `danger`, with `info` being the default value.
 
+**It is strongly recommended that `warning` and `danger` toasts do not auto-dismiss**, so that users have time to process the information in them.
+
+### Info
+
 ```.jsx
-  class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          showDefaultAlert: false,
-          showInfoAlert: false,
-          showSuccessAlert: false,
-          showWarningAlert: false,
-          showDangerAlert: false
-        }
+() => {
+  const [showToast, setShowToast] = React.useState(false);
 
-        this.onDefaultAlertShow = this.onDefaultAlertShow.bind(this);
-        this.onDefaultAlertDismiss = this.onDefaultAlertDismiss.bind(this);
-        this.onInfoAlertShow = this.onInfoAlertShow.bind(this);
-        this.onInfoAlertDismiss = this.onInfoAlertDismiss.bind(this);
-        this.onSuccessAlertShow = this.onSuccessAlertShow.bind(this);
-        this.onSuccessAlertDismiss = this.onSuccessAlertDismiss.bind(this);
-        this.onWarningAlertShow = this.onWarningAlertShow.bind(this);
-        this.onWarningAlertDismiss = this.onWarningAlertDismiss.bind(this);
-        this.onDangerAlertShow = this.onDangerAlertShow.bind(this);
-        this.onDangerAlertDismiss = this.onDangerAlertDismiss.bind(this);
-      }
+  function handleClick() {
+    setShowToast(true);
+  }
 
-      onDefaultAlertShow() {
-        this.setState({showDefaultAlert: true})
-      }
+  function handleDismiss() {
+    setShowToast(false);
+  }
 
-      onDefaultAlertDismiss() {
-        this.setState({showDefaultAlert: false})
-      }
-
-      onInfoAlertShow() {
-        this.setState({showInfoAlert: true})
-      }
-
-      onInfoAlertDismiss() {
-        this.setState({showInfoAlert: false})
-      }
-
-      onSuccessAlertShow() {
-        this.setState({showSuccessAlert: true})
-      }
-
-      onSuccessAlertDismiss() {
-        this.setState({showSuccessAlert: false})
-      }
-
-      onWarningAlertShow() {
-        this.setState({showWarningAlert: true})
-      }
-
-      onWarningAlertDismiss() {
-        this.setState({showWarningAlert: false})
-      }
-
-      onDangerAlertShow() {
-        this.setState({showDangerAlert: true})
-      }
-
-      onDangerAlertDismiss() {
-        this.setState({showDangerAlert: false})
-      }
-
-      render() {
-        const { showDefaultAlert, showInfoAlert, showSuccessAlert, showWarningAlert, showDangerAlert } = this.state;
-
-        return (<>
-          <Button size="small" onClick={this.onDefaultAlertShow}>Show Default Toast</Button>
-          <Button size="small" onClick={this.onInfoAlertShow}>Show Info Toast</Button>
-          <Button size="small" onClick={this.onSuccessAlertShow}>Show Success Toast</Button>
-          <Button size="small" onClick={this.onWarningAlertShow}>Show Warning Toast</Button>
-          <Button size="small" onClick={this.onDangerAlertShow}>Show Danger Toast</Button>
-          {showDefaultAlert && <Toast onDismiss={this.onDefaultAlertDismiss}>Default Toast</Toast>}
-          {showInfoAlert && <Toast variant="info" onDismiss={this.onInfoAlertDismiss}>Info Toast</Toast>}
-          {showSuccessAlert && <Toast variant="success" onDismiss={this.onSuccessAlertDismiss}>Success Toast</Toast>}
-          {showWarningAlert && <Toast variant="warning" onDismiss={this.onWarningAlertDismiss}>Warning Toast</Toast>}
-          {showDangerAlert && <Toast variant="danger" onDismiss={this.onDangerAlertDismiss}>Danger Toast</Toast>}
-        </>)
-      }
-    }
+  return (
+    <>
+      <Button size="small" onClick={handleClick}>
+        Show Info Toast
+      </Button>
+      {showToast
+        ? <Toast onDismiss={handleDismiss} variant='info'>Info Toast</Toast>
+        : null}
+    </>
+  )
+}
 ```
 
 ## Accessibility Considerations
@@ -105,249 +83,151 @@ Toasts are intended to be small interruptions to users, so when a `Toast` compon
 read the new content. One way to do this is to the use the <Link to="/api/announce">Announce component</Link>, which employs the `aria-live` attribute. Be sure to place
 the conditional logic to display the Toast _inside_ the Announce component.
 
-While toasts appear visually in the lower right side of the screen, they will exist in the dom where ever they are placed. Keep this in mind when you are structuring your
+While toasts appear visually in centered at bottom of the screen, they will exist in the dom where ever they are placed. Keep this in mind when you are structuring your
 markup, to ensure that they have the expected tab order.
 
 ```.jsx
-  class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          showAlert: false,
-        }
+() => {
+  const [showToast, setShowToast] = React.useState(false);
 
-        this.onAlertShow = this.onAlertShow.bind(this);
-        this.onAlertDismiss = this.onAlertDismiss.bind(this);
-      }
+  return (<>
+    <Button onClick={() => setShowToast(true)}>Show Toast in Announce</Button>
+    <Announce>
+      {showToast && <Toast dismissible onDismiss={() => setShowToast(false)}>Dismissible Toast with <a href="#">linked text</a></Toast>}
+    </Announce>
+  </>)
+}
+```
 
-      onAlertShow() {
-        this.setState({showAlert: true})
-      }
+## Toasts Container (handling multiple toasts)
 
-      onAlertDismiss() {
-        this.setState({showAlert: false})
-      }
+To handle multiple toasts, add the `ToastsContainer` component around all of the content that will contain the toasts. This may be the entire application.
+The first toast will appear at the bottom of the screen, the next toast will appear just above it, and so on. There is no limit to the number of toasts
+that may be added. However if the number of toasts exceeds the amount of space on the screen, layout issues might occur. Try to limit the number of toasts
+appearing on screen at once as much as possible.
 
-      render() {
-        const { showAlert } = this.state;
+```.jsx
+() => {
+  const [showToast, setShowToast] = React.useState(false);
+  const [showToast2, setShowToast2] = React.useState(false);
+  const [showToast3, setShowToast3] = React.useState(false);
 
-        return (<>
-          <Button onClick={this.onAlertShow}>Show Toast in Announce</Button>
-          <Announce>
-            {showAlert && <Toast dismissable onDismiss={this.onAlertDismiss}>Dismissable Toast with <a href="#">linked text</a></Toast>}
-          </Announce>
-        </>)
-      }
-    }
+  return (<ToastsContainer>
+    <Announce>
+      <Button onClick={() => setShowToast(true)} color="success">Show Toast</Button>
+      {showToast && <Toast id="toast1" onDismiss={() => setShowToast(false)} variant="success">Toast 1</Toast>}
+
+      <Button onClick={() => setShowToast2(true)} color="secondary">Show Toast 2</Button>
+      {showToast2 && <Toast id="toast2" onDismiss={() => setShowToast2(false)}>This is the second toast which is longer than either toast one or three</Toast>}
+
+      <Button onClick={() => setShowToast3(true)} color="danger">Show Toast 3</Button>
+      {showToast3 && <Toast disableAutoDismiss id="toast3" variant="danger" onDismiss={() => setShowToast3(false)}>Toast three</Toast>}
+    </Announce>
+  </ToastsContainer>)
+}
+```
+
+## Bottom Offset
+
+The `ToastsContainer` component takes an optional `bottomOffset` prop, that indicates the additional number of pixels from the bottom the toasts will render.
+This is useful in cases where toasts are intended to display above a component, such as a toolbar.
+
+```.jsx
+() => {
+  const [showToast, setShowToast] = React.useState(false);
+
+  return (<ToastsContainer bottomOffset={100}>
+      <Button onClick={() => setShowToast(true)} color="success">Show Toast with Bottom Offset</Button>
+      {showToast && <Toast onDismiss={() => setShowToast(false)} variant="success">Toast Container has bottomOffset of 100</Toast>}
+  </ToastsContainer>)
+}
 ```
 
 ## Toast Duration
 
-```.jsx
-  class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          showAlert: false,
-        }
-
-        this.onAlertShow = this.onAlertShow.bind(this);
-        this.onAlertDismiss = this.onAlertDismiss.bind(this);
-      }
-
-      onAlertShow() {
-        this.setState({showAlert: true})
-      }
-
-      onAlertDismiss() {
-        this.setState({showAlert: false})
-      }
-
-      render() {
-        const { showAlert } = this.state;
-
-        return (<>
-          <Button onClick={this.onAlertShow}>Show Toast</Button>
-          {showAlert && <Toast toastDuration={1000} onDismiss={this.onAlertDismiss}>Quick Toast</Toast>}
-        </>)
-      }
-    }
-```
-
-## Dismissable
+The `toastDuration` prop can be used to set the number of milliseconds that the toast will remain on the screen before it auto-dismisses. This can be useful to set a longer duration for more lengthy toasts. It is recommended that the minimum `toastDuration` is 4000ms. The default is 5000.
 
 ```.jsx
-  class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          showAlert: false,
-        }
+() => {
+  const [showToast, setShowToast] = React.useState(false);
 
-        this.onAlertShow = this.onAlertShow.bind(this);
-        this.onAlertDismiss = this.onAlertDismiss.bind(this);
-      }
-
-      onAlertShow() {
-        this.setState({showAlert: true})
-      }
-
-      onAlertDismiss() {
-        this.setState({showAlert: false})
-      }
-
-      render() {
-        const { showAlert } = this.state;
-
-        return (<>
-          <Button onClick={this.onAlertShow}>Show Dismissable Toast</Button>
-          {showAlert && <Toast dismissable onDismiss={this.onAlertDismiss}>Dismissable Toast</Toast>}
-        </>)
-      }
-    }
+  return (<>
+    <Button onClick={() => setShowToast(true)}>Show Toast</Button>
+    {showToast && <Toast toastDuration={10000} onDismiss={() => setShowToast(false)}>Slow Toast</Toast>}
+  </>)
+}
 ```
 
 ## Disable Auto Dismiss
 
 ```.jsx
-  class Example extends React.Component {
-    constructor(props) {
-      super(props)
-      this.state = {
-        showAlert: false,
-      }
+() => {
+  const [showToast, setShowToast] = React.useState(false);
 
-      this.onAlertShow = this.onAlertShow.bind(this);
-      this.onAlertDismiss = this.onAlertDismiss.bind(this);
-    }
-
-    onAlertShow() {
-      this.setState({showAlert: true})
-    }
-
-    onAlertDismiss() {
-      this.setState({showAlert: false})
-    }
-
-    render() {
-      const { showAlert } = this.state;
-
-      return (<>
-        <Button onClick={this.onAlertShow}>Show Toast</Button>
-        {showAlert && <Toast dismissable disableAutoDismiss={true} onDismiss={this.onAlertDismiss}>Non-Auto Hiding Dismissable Toast</Toast>}
-      </>)
-    }
-  }
+  return (<>
+    <Button onClick={() => setShowToast(true)}>Show Toast</Button>
+    {showToast && <Toast disableAutoDismiss onDismiss={() => setShowToast(false)}>Non-Auto Hiding Dismissible Toast</Toast>}
+  </>)
+}
 ```
 
 ## Mouse Events
 
-When you hover over the Toast the timer is paused. Once the mouse leaves the Toast the timer is restarted and runs for half of the original toast duration.
+When you hover over the Toast the timer is paused. Once the mouse leaves the Toast the timer is will continue running.
 
 ```.jsx
-  class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          showAlert: false,
-          alertContent: 'Default Alert Content'
-        }
+() => {
+  const [showToast, setShowToast] = React.useState(false);
+  const [toastContent, setToastContent] = React.useState('Default Toast Content');
 
-        this.onAlertShow = this.onAlertShow.bind(this)
-        this.onAlertDismiss = this.onAlertDismiss.bind(this)
-        this.onMouseEnter = this.onMouseEnter.bind(this)
-        this.onMouseLeave = this.onMouseLeave.bind(this)
-      }
-
-      onAlertShow() {
-        this.setState({showAlert: true})
-      }
-
-      onAlertDismiss() {
-        this.setState({showAlert: false})
-      }
-
-      onMouseEnter() {
-        this.setState({alertContent: 'Mouse is hovering toast'})
-      }
-
-      onMouseLeave() {
-        this.setState({alertContent: 'Mouse has stopped hovering toast'})
-      }
-
-      render() {
-        const { showAlert, alertContent } = this.state;
-
-        return (<>
-          <Button onClick={this.onAlertShow}>Show Toast</Button>
-          {showAlert && <Toast
-                          onDismiss={this.onAlertDismiss}
-                          onMouseEnter={this.onMouseEnter}
-                          onMouseLeave={this.onMouseLeave}>{alertContent}</Toast>}
-        </>)
-      }
-    }
+  return (<>
+    <Button onClick={() => setShowToast(true)}>Show Toast</Button>
+    {showToast && <Toast
+                    onDismiss={() => setShowToast(false)}
+                    onMouseEnter={() => setAlertContent('Mouse is hovering toast')}
+                    onMouseLeave={() => setAlertContent('Mouse has stopped hovering toast')}>{toastContent}</Toast>}
+  </>)
+}
 ```
 
 ## Custom Styles
 
 Custom styles can be added to a toast using two different props. The `containerStyle` prop controls the style for the toast container itself,
-which includes the component's positioning and z-index. The `alertStyle` prop controls the style for the interal alert component, which
+which includes the component's positioning and z-index. The `alertStyle` prop controls the style for the internal alert component, which
 includes the element's background, border-radius, and fade animation.
 
 ```.jsx
-  class Example extends React.Component {
-    constructor(props) {
-      super(props)
-      this.state = {
-        showAlert: false,
-      }
+() => {
+  const [showToast, setShowToast] = React.useState(false);
 
-      this.onAlertShow = this.onAlertShow.bind(this);
-      this.onAlertDismiss = this.onAlertDismiss.bind(this);
+  return (<>
+    <Button onClick={() => setShowToast(true)}>Show Toast</Button>
+    {showToast &&
+      <Toast
+        alertStyle={{border: '4px dotted yellow'}}
+        containerStyle={{'left': 'auto', 'right': '20px', bottom: '150px'}}
+        onDismiss={() => setShowToast(false)}>Toast with custom styles</Toast>
     }
-
-    onAlertShow() {
-      this.setState({showAlert: true})
-    }
-
-    onAlertDismiss() {
-      this.setState({showAlert: false})
-    }
-
-    render() {
-      const { showAlert } = this.state;
-
-      return (<>
-        <Button onClick={this.onAlertShow}>Show Toast</Button>
-        {showAlert &&
-          <Toast
-            alertStyle={{border: '4px dotted yellow'}}
-            containerStyle={{'border': '1px solid purple', 'left': 'auto', 'right': '20px'}}
-            onDismiss={this.onAlertDismiss}>Toast with custom styles</Toast>
-        }
-      </>)
-    }
-  }
+  </>)
+}
 ```
 
 ## Testing
 
-Passing in the `testId` prop will pass the `testId` to the interal `Alert` element.
+Passing in the `testId` prop will pass the `testId` to the internal `Alert` element.
 
 ```html
 <div data-testid="test-id">
   <span>
     <svg
+      aria-hidden="true"
       class="icon"
       height="20"
       width="20"
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 27.3 27.3"
-      aria-labelledby="1e4e1f87-b814-4f20-9043-40643444f6b8"
     >
-      <title id="1e4e1f87-b814-4f20-9043-40643444f6b8"></title>
       <path
         d="M12.65,9.9V7.14h2.7V9.9ZM14,25A11,11,0,1,0,3,14,11,11,0,0,0,14,25ZM14,.35A13.65,13.65,0,1,1,.35,14,13.62,13.62,0,0,1,14,.35ZM12.65,20.86V12.65h2.7v8.21Z"
         transform="translate(-0.35 -0.35)"
@@ -358,10 +238,29 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
 </div>
 ```
 
-## Toast Props
+## ToastsContainer Props
 
 <SimplePropsTable
-  props={{
+  propertyValues={{
+    bottomOffset: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'Number of additional pixels from bottom of screen',
+      defaultValue: '0',
+    },
+  }}
+/>
+
+## Toast Props
+
+**This component uses `forwardRef`. The ref is applied to the outer `div` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
+
+<SimplePropsTable
+  propertyValues={{
     alertStyle: {
       type: {
         name: 'React.CSSProperties',
@@ -377,7 +276,7 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
       required: true,
       description: 'The content of the component',
     },
-    closeLabel: {
+    closeAriaLabel: {
       type: {
         name: 'string',
       },
@@ -392,22 +291,31 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
       required: false,
       description: 'CSS properties for the component container',
     },
-    dismissable: {
+    isDismissible: {
       type: {
         name: 'boolean',
       },
       required: false,
       description:
-        'If true, the component will be able to be dismissed and will include a close button',
+        'Deprecated: If true, the component will be able to be dismissed and will include a close button.  Is now always true for a11y reasons.',
+      defaultValue: 'true',
+    },
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background.',
       defaultValue: 'false',
     },
-    onDimiss: {
+    onDismiss: {
       type: {
         name: 'function',
       },
       required: false,
       description:
-        'Action that fires when the close button is clicked (required when dismissable is true)',
+        'Action that fires when the close button is clicked (required when dismissible is true)',
     },
     onMouseEnter: {
       type: {
@@ -428,8 +336,8 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
         name: 'string',
       },
       required: false,
-      description: 'ID used for testing purposes',
-      defaultValue: '',
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     toastDuration: {
       type: {
@@ -457,21 +365,9 @@ Passing in the `testId` prop will pass the `testId` to the interal `Alert` eleme
   }}
 />
 
-| Prop           | Type                                                           | Default              | Required |
-| -------------- | -------------------------------------------------------------- | -------------------- | :------: |
-| alertStyle     | React.CSSProperties                                            |                      |          |
-| children       | node                                                           |                      | &#10003; |
-| closeLabel     | string                                                         | 'Close this message' |          |
-| containerStyle | React.CSSProperties                                            |                      |          |
-| dismissable    | boolean                                                        |                      |          |
-| id             | string                                                         |                      |          |
-| onDismiss      | func                                                           |                      | &#10003; |
-| onMouseEnter   | func                                                           |                      |          |
-| onMouseLeave   | func                                                           |                      |          |
-| toastDuration  | number                                                         | 5000                 |          |
-| variant        | enum: 'info' &#124; 'success' &#124; 'warning' &#124; 'danger' |                      |          |
-| testId         | string                                                         |                      |          |
-
 export default props => (
-  <ScopeableLayout {...props} components={{ Button, Toast, Announce }} />
-)
+  <ScopeableLayout
+    {...props}
+    components={{ Button, Toast, ToastsContainer, Announce }}
+  />
+);

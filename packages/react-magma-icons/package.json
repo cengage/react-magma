@@ -1,0 +1,51 @@
+{
+  "name": "react-magma-icons",
+  "version": "2.0.0-beta.128",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "module": "dist/react-magma-icons.esm.js",
+  "typings": "dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "test": "tsdx test",
+    "test-watch": "tsdx test --watc",
+    "build": "tsdx build",
+    "build-watch": "tsdx watch",
+    "lint": "eslint ./src"
+  },
+  "publishConfig": {
+    "registry": "http://nexus.mindtap.corp.web/content/repositories/npm.cengage/"
+  },
+  "peerDependencies": {
+    "react": "^15.0.0 || ^16.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0",
+    "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.1.0",
+    "@testing-library/react": "^9.1.4",
+    "@typescript-eslint/eslint-plugin": "^4.2.0",
+    "@typescript-eslint/parser": "^4.2.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.9.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^24.0.2",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "eslint-plugin-unicorn": "^22.0.0",
+    "tsdx": "^0.13.2"
+  },
+  "dependencies": {
+    "@types/react": "^16.9.0",
+    "@types/uuid": "^8.3.0",
+    "uuid": "^8.3.0"
+  }
+}

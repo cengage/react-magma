@@ -1,23 +1,23 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { css } from '@emotion/core';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { TooltipCore } from 'react-magma-core';
+import { useGenerateId } from '../../utils';
 
 export enum EnumTooltipPosition {
   bottom = 'bottom',
   left = 'left',
   right = 'right',
-  top = 'top' //default
+  top = 'top', //default
 }
 
 export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactElement;
   containerStyle?: React.CSSProperties;
   content: React.ReactNode;
-  innerRef?: React.Ref<HTMLDivElement>;
-  inverse?: boolean;
+  isInverse?: boolean;
   position?: EnumTooltipPosition;
-  trigger: React.ReactElement;
+  testId?: string;
   tooltipStyle?: React.CSSProperties;
 }
 
@@ -36,8 +36,8 @@ const StyledTooltip = styled.div<{
   visible?: boolean;
 }>`
   display: ${props => (props.visible ? 'block' : 'none')};
-  font-size: 12px;
-  line-height: 1.3em;
+  font-size: ${props => props.theme.typeScale.size01.fontSize};
+  line-height: ${props => props.theme.typeScale.size01.lineHeight};
   font-weight: 600;
   position: absolute;
   text-align: center;
@@ -48,7 +48,7 @@ const StyledTooltip = styled.div<{
     props.position === 'bottom' &&
     css`
       top: 100%;
-      margin-top: 10px;
+      padding-top: 10px;
       left: 50%;
       transform: translateX(-50%);
     `}
@@ -57,7 +57,7 @@ const StyledTooltip = styled.div<{
     props.position === 'left' &&
     css`
       right: 100%;
-      margin-right: 10px;
+      padding-right: 10px;
       top: 50%;
       transform: translateY(-50%);
     `}
@@ -66,7 +66,7 @@ const StyledTooltip = styled.div<{
     props.position === 'right' &&
     css`
       left: 100%;
-      margin-left: 10px;
+      padding-left: 10px;
       top: 50%;
       transform: translateY(-50%);
     `}
@@ -75,24 +75,24 @@ const StyledTooltip = styled.div<{
     props.position === 'top' &&
     css`
       bottom: 100%;
-      margin-bottom: 10px;
+      padding-bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
     `}
 `;
 
 const StyledTooltipInner = styled.div<{
-  inverse: boolean;
+  isInverse: boolean;
   position: EnumTooltipPosition;
 }>`
   background: ${props =>
-    props.inverse
+    props.isInverse
       ? props.theme.colors.neutral08
-      : props.theme.colors.neutral02};
+      : props.theme.colors.neutral};
   border-radius: 3px;
   color: ${props =>
-    props.inverse
-      ? props.theme.colors.neutral02
+    props.isInverse
+      ? props.theme.colors.neutral
       : props.theme.colors.neutral08};
   display: inline-block;
   padding: 7px 10px;
@@ -102,28 +102,28 @@ const StyledTooltipInner = styled.div<{
   &:after {
     border-left-color: ${props =>
       props.position === 'left' || props.position === 'right'
-        ? props.inverse
+        ? props.isInverse
           ? props.theme.colors.neutral08
-          : props.theme.colors.neutral02
+          : props.theme.colors.neutral
         : 'transparent'};
     border-right-color: ${props =>
       props.position === 'left' || props.position === 'right'
-        ? props.inverse
+        ? props.isInverse
           ? props.theme.colors.neutral08
-          : props.theme.colors.neutral02
+          : props.theme.colors.neutral
         : 'transparent'};
     border-top-color: ${props =>
       props.position === 'left' || props.position === 'right'
         ? 'transparent'
-        : props.inverse
+        : props.isInverse
         ? props.theme.colors.neutral08
-        : props.theme.colors.neutral02};
+        : props.theme.colors.neutral};
     border-bottom-color: ${props =>
       props.position === 'left' || props.position === 'right'
         ? 'transparent'
-        : props.inverse
+        : props.isInverse
         ? props.theme.colors.neutral08
-        : props.theme.colors.neutral02};
+        : props.theme.colors.neutral};
     border-style: solid;
     content: '';
     height: 0;
@@ -219,73 +219,77 @@ const StyledTooltipInner = styled.div<{
     `}
 `;
 
-class TooltipComponent extends React.Component<TooltipProps> {
-  constructor(props) {
-    super(props);
+// Using any for the ref because it is put ont he passed in children which does not have a specific type
+export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
+  const [isVisible, setIsVisible] = React.useState<boolean>(false);
 
-    this.handleKeyDown = this.handleKeyDown.bind(this);
+  function handleKeyDown(event: React.KeyboardEvent) {
+    if (event.key === 'Escape') {
+      setIsVisible(false);
+    }
   }
 
-  handleKeyDown(hideTooltip: () => void) {
-    return (event: React.KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        hideTooltip();
-      }
-    };
+  function showTooltip() {
+    setIsVisible(true);
   }
 
-  render() {
-    return (
-      <TooltipCore id={this.props.id}>
-        {({ id, hideTooltip, showTooltip, isVisible }) => {
-          const {
-            containerStyle,
-            content,
-            inverse,
-            position,
-            trigger,
-            innerRef,
-            tooltipStyle
-          } = this.props;
-
-          return (
-            <ToolTipContainer style={containerStyle}>
-              {React.cloneElement(trigger, {
-                'aria-describedby': id,
-                onKeyDown: this.handleKeyDown(hideTooltip),
-                onBlur: hideTooltip,
-                onFocus: showTooltip,
-                onMouseLeave: hideTooltip,
-                onMouseEnter: showTooltip,
-                ref: innerRef
-              })}
-              <ThemeContext.Consumer>
-                {theme => (
-                  <StyledTooltip
-                    id={id}
-                    position={position ? position : EnumTooltipPosition.top}
-                    role="tooltip"
-                    visible={isVisible}
-                  >
-                    <StyledTooltipInner
-                      inverse={inverse}
-                      position={position ? position : EnumTooltipPosition.top}
-                      style={tooltipStyle}
-                      theme={theme}
-                    >
-                      {content}
-                    </StyledTooltipInner>
-                  </StyledTooltip>
-                )}
-              </ThemeContext.Consumer>
-            </ToolTipContainer>
-          );
-        }}
-      </TooltipCore>
-    );
+  function hideTooltip() {
+    setIsVisible(false);
   }
-}
 
-export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
-  (props, ref) => <TooltipComponent innerRef={ref} {...props} />
-);
+  const {
+    children,
+    content,
+    containerStyle,
+    id: defaultId,
+    isInverse,
+    position,
+    testId,
+    tooltipStyle,
+    ...other
+  } = props;
+
+  const id = useGenerateId(defaultId);
+  const theme = React.useContext(ThemeContext);
+
+  if (Array.isArray(children)) {
+    throw new Error('Tooltip children can only be one element.');
+  }
+
+  const tooltipTrigger = React.cloneElement(children, {
+    'aria-describedby': id,
+    onBlur: hideTooltip,
+    onFocus: showTooltip,
+    ref,
+  });
+
+  return (
+    <ToolTipContainer
+      {...other}
+      data-testid={testId}
+      onKeyDown={handleKeyDown}
+      onMouseLeave={hideTooltip}
+      onMouseEnter={showTooltip}
+      style={containerStyle}
+    >
+      {tooltipTrigger}
+      <StyledTooltip
+        aria-hidden={!isVisible}
+        id={id}
+        position={position ? position : EnumTooltipPosition.top}
+        role="tooltip"
+        theme={theme}
+        visible={isVisible}
+      >
+        <StyledTooltipInner
+          isInverse={!!isInverse}
+          position={position ? position : EnumTooltipPosition.top}
+          style={tooltipStyle}
+          theme={theme}
+        >
+          {content}
+        </StyledTooltipInner>
+      </StyledTooltip>
+    </ToolTipContainer>
+  );
+});

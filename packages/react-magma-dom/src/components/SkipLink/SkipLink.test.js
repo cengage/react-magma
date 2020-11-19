@@ -4,8 +4,17 @@ import { SkipLink } from '.';
 import { SkipLinkContent } from '../SkipLinkContent';
 
 import { render, fireEvent } from '@testing-library/react';
+import { I18nContext } from '../../i18n';
+import { defaultI18n } from '../../i18n/default';
 
 describe('SkipLink', () => {
+  it('should find element by testId', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(<SkipLink testId={testId} />);
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should render the skip link component', () => {
     const { container } = render(<SkipLink />);
     const link = container.querySelector('a');
@@ -78,7 +87,7 @@ describe('SkipLink', () => {
   });
 
   it('should render the skip link button the correct colors for an inverse button', () => {
-    const { container } = render(<SkipLink inverse />);
+    const { container } = render(<SkipLink isInverse />);
     const link = container.querySelector('a');
 
     expect(link).toHaveStyleRule('background', '#FFFFFF');
@@ -92,10 +101,30 @@ describe('SkipLink', () => {
     const link = container.querySelector('a');
 
     expect(link).toHaveStyleRule('left', '86px', {
-      target: ':focus'
+      target: ':focus',
     });
     expect(link).toHaveStyleRule('top', '99px', {
-      target: ':focus'
+      target: ':focus',
+    });
+  });
+
+  describe('i18n', () => {
+    it('uses the context override for button text', () => {
+      const buttonText = 'test button text';
+      const { getByText } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            skipLink: {
+              buttonText,
+            },
+          }}
+        >
+          <SkipLink />
+        </I18nContext.Provider>
+      );
+
+      expect(getByText(buttonText)).toBeInTheDocument();
     });
   });
 

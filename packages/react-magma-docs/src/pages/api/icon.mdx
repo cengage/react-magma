@@ -1,271 +1,39 @@
 ---
-title: 'Icons'
+pageTitle: Icon API
+title: Icon
 ---
 
-import { ScopeableLayout } from '../../components/layout'
+import { ScopeableLayout } from '../../components/layout';
+import * as ICONS from 'react-magma-icons';
 import {
-  ICONS,
-  AddPersonIcon,
-  AlertIcon,
-  AndroidIcon,
-  AngleDownIcon,
-  AngleDownDoubleIcon,
-  AngleLeftIcon,
-  AngleLeftDoubleIcon,
-  AngleRightIcon,
-  AngleRightDoubleIcon,
-  AngleUpIcon,
-  AngleUpDoubleIcon,
-  AppleIcon,
-  ArrowDown2Icon,
-  ArrowDown3Icon,
-  ArrowLeft2Icon,
-  ArrowLeft3Icon,
-  ArrowRight2Icon,
-  ArrowRight3Icon,
-  ArrowUp2Icon,
-  ArrowUp3Icon,
-  ArticleIcon,
-  AssignIcon,
-  AttachmentIcon,
-  BackwardIcon,
-  Backward2Icon,
-  BankIcon,
-  BellIcon,
-  BitcoinIcon,
-  BlockedIcon,
-  Book2Icon,
-  BookmarkIcon,
-  BubbleIcon,
-  Bug2Icon,
-  CalendarIcon,
-  CancelCircleIcon,
-  CaretDownIcon,
-  CaretLeftIcon,
-  CaretRightIcon,
-  CaretUpIcon,
-  CartIcon,
-  CcAmexIcon,
-  CcDiscoverIcon,
-  CcMastercardIcon,
-  CcPaypalIcon,
-  CcStripeIcon,
-  CcVisaIcon,
-  CheckIcon,
-  CircleDownIcon,
-  CircleLeftIcon,
-  CircleRightIcon,
-  CircleUpIcon,
-  ClockIcon,
-  Cloud2Icon,
-  CnyIcon,
-  CodeIcon,
-  Cog2Icon,
-  CommentsIcon,
-  CompassIcon,
-  ConnectionIcon,
-  CopyIcon,
-  CountsTowardsGradeIcon,
-  CourseIcon,
-  CreditNoCreditIcon,
-  CrossIcon,
-  CubeIcon,
-  DashboardIcon,
-  DatePicker,
-  DollarIcon,
-  DotCircleOIcon,
-  Download2Icon,
-  DroppedIcon,
-  EllipsisHIcon,
-  EllipsisVIcon,
-  EnlargeIcon,
-  Enlarge2Icon,
-  EntypoIcon,
-  EnvelopeOIcon,
-  EnvelopeIcon,
-  ErrorBlackIcon,
-  EurIcon,
-  ExamIcon,
-  ExclamationIcon,
-  ExternalLinkIcon,
-  Extracredit2Icon,
-  EyeSlashIcon,
-  Eye2Icon,
-  FacebookIcon,
-  Feed5Icon,
-  FileArchiveOIcon,
-  FileAudioOIcon,
-  FileCodeOIcon,
-  FileExcelOIcon,
-  FileImageOIcon,
-  FileMovieOIcon,
-  FileOIcon,
-  FilePdfOIcon,
-  FilePowerpointOIcon,
-  FileWordOIcon,
-  Filter2Icon,
-  FirstIcon,
-  FlagOIcon,
-  Flag3Icon,
-  FlashcardsIcon,
-  FolderOIcon,
-  FolderOpenOIcon,
-  ForwardIcon,
-  Forward2Icon,
-  Forward3Icon,
-  GbpIcon,
-  GlassdoorIcon,
-  GoogleDriveIcon,
-  GooglePlusIcon,
-  GoogleplayIcon,
-  GraduationCapIcon,
   GroupIcon,
-  HighlightIcon,
-  Home32Icon,
-  ImageIcon,
-  ImagesIcon,
-  InProgressIcon,
-  IndentDecreaseIcon,
-  IndentIncreaseIcon,
+  CrossIcon,
   InfoIcon,
-  Info2Icon,
-  Info22Icon,
-  InrIcon,
-  InstagramIcon,
-  InteractiveIcon,
-  Key3Icon,
-  KrwIcon,
-  LastIcon,
-  LatePenaltyIcon,
-  LifebuoyIcon,
-  LightningIcon,
-  LinkIcon,
-  LinkedinIcon,
-  ListNumberedIcon,
-  ListIcon,
-  List2Icon,
-  List3Icon,
-  LockIcon,
-  ManualGradedIcon,
-  MapMarkerIcon,
-  MarketIcon,
-  MenuSteppedIcon,
-  MenuIcon,
-  Menu2Icon,
-  Menu3Icon,
-  Menu4Icon,
-  MicrophoneSlashIcon,
-  MicrophoneIcon,
-  MinusCircleIcon,
-  MinusIcon,
-  MTAct1TimeIcon,
-  MTActLearnIcon,
-  MTActSerialIcon,
-  MtIcon,
-  Music2Icon,
-  NextIcon,
-  Next2Icon,
-  NonMindtapActivityIcon,
-  NotificationIcon,
-  Notification2Icon,
-  PaletteIcon,
-  ParagraphCenterIcon,
-  ParagraphJustifyIcon,
-  ParagraphLeftIcon,
-  ParagraphRightIcon,
-  PauseIcon,
-  Pause2Icon,
-  Pencil3Icon,
-  PhoneHangUpIcon,
-  PhoneIcon,
-  PieChartIcon,
-  PinIcon,
-  PinterestIcon,
-  Play2Icon,
-  Play3Icon,
-  PlusIcon,
-  PracticeIcon,
-  PreviousIcon,
-  Previous2Icon,
-  PrintIcon,
-  ProfileIcon,
-  QuestionCircleOIcon,
-  QuestionCircleIcon,
-  QuestionIcon,
-  Question2Icon,
-  Reading2Icon,
-  RedoIcon,
-  Redo2Icon,
-  RefreshIcon,
-  ReplyIcon,
-  RoubleIcon,
-  SearchMinusIcon,
-  SearchPlusIcon,
-  Search2Icon,
-  ShrinkIcon,
-  Shrink2Icon,
-  SignInIcon,
-  SnapchatIcon,
-  Spinner2Icon,
-  SpotifyIcon,
-  StackIcon,
-  StarFullIcon,
-  StarHalfIcon,
-  StarIcon,
-  StatsBarsIcon,
-  StatsBars2Icon,
-  StatsDotsIcon,
-  StopIcon,
-  Stop2Icon,
-  SwapHorizIcon,
-  TargetIcon,
-  ThListIcon,
-  ThIcon,
-  ThumbsODownIcon,
-  ThumbsOUpIcon,
-  TimedIcon,
-  TimerIcon,
-  TrashOIcon,
-  TruckIcon,
-  TuneIcon,
-  TwitterIcon,
-  UnarchiveIcon,
-  UndoIcon,
-  Undo2Icon,
-  UnlockIcon,
-  UnlockedIcon,
-  Upload2Icon,
-  VideoCameraIcon,
-  VideoIcon,
-  VisuallyHidden,
-  VolumeDownIcon,
-  VolumeOffIcon,
-  VolumeUpIcon,
-  WarningIcon,
-  WidgetsIcon,
-  Windows8Icon,
-  WlGotItIcon,
-  WlLearnItIcon,
-  WlPracticeItIcon,
-  WlReadyIcon,
-  WlUseItIcon,
-  WrenchIcon,
-  Wrench3Icon,
-  YoutubeIcon,
-} from 'react-magma-dom'
-import iconsArray from '../../utils/icons'
-import { SimplePropsTable } from '../../components/props-table'
+  AngleDownIcon,
+  HomeIcon,
+} from 'react-magma-icons';
 
-# Icons
+import { DatePicker, VisuallyHidden, Alert } from 'react-magma-dom';
+
+import { SimplePropsTable } from '../../components/props-table';
+
+# Icon
+
+<Alert variant="warning">
+  <strong>Important!</strong> Icons are now imported from `react-magma-icons`
+  which must be installed as a peer dependency.
+</Alert>
 
 ## Basic Usage
 
+Icons are imported from a separate `react-magma-icons` package.
+
 ```.jsx
-  <p>
-    <span className='demo-icon-container'>
-      <GroupIcon />
-    </span>
-  </p>
+<p>
+  <span className='demo-icon-container'>
+    <GroupIcon />
+  </span>
+</p>
 ```
 
 ## Title
@@ -276,46 +44,83 @@ The title/svg association will be handled via the passed in `id` if one is suppl
 so it will be read screen readers.
 
 ```.jsx
-  <p>
-    <span className='demo-icon-container'>
-      <CrossIcon title="Close This Message" />
-    </span>
-    <span className='demo-icon-container'>
-      <InfoIcon id="infoIcon" title="Info Available" />
-    </span>
-  </p>
+<p>
+  <span className='demo-icon-container'>
+    <CrossIcon title="Close This Message" />
+  </span>
+  <span className='demo-icon-container'>
+    <InfoIcon id="infoIcon" title="Info Available" />
+  </span>
+</p>
 ```
 
 ## Sizes
 
 ```.jsx
-  <p>
-    <span className='demo-icon-container'>
-      <AngleDownIcon size={20} title="Small Size" />
-    </span>
-    <span className='demo-icon-container'>
-      <AngleDownIcon size={50} title="Large Size" />
-    </span>
-  </p>
+<p>
+  <span className='demo-icon-container'>
+    <AngleDownIcon size={20} title="Small Size" />
+  </span>
+  <span className='demo-icon-container'>
+    <AngleDownIcon size={50} title="Large Size" />
+  </span>
+</p>
 ```
 
 ## Color
 
 ```.jsx
-  <p>
-    <span className='demo-icon-container'>
-      <AngleDownIcon title="No Color" />
-    </span>
-    <span className='demo-icon-container'>
-      <AngleDownIcon color="green" title="Some Color" />
-    </span>
-  </p>
+<p>
+  <span className='demo-icon-container'>
+    <AngleDownIcon title="No Color" />
+  </span>
+  <span className='demo-icon-container'>
+    <AngleDownIcon color="green" title="Some Color" />
+  </span>
+</p>
+```
+
+## Accessibility
+
+To improve the experience for assistive technology users and remove the icon and its children from the accessibility tree, add the prop `aria-hidden="true"` to your icon.
+
+```.jsx
+<p>
+  <span className='demo-icon-container'>
+    <HomeIcon aria-hidden="true"/>
+  </span>
+</p>
 ```
 
 ## Available Icons
 
 ```.jsx hideCode
-    <div className='demo-icon-list-container'>{iconsArray.map((icon) => {
+<div className='demo-icon-list-container'>
+  {Object.keys(ICONS).filter((icon) => {
+    return ![
+      'ArrowDown2Icon',
+      'ArrowLeft2Icon',
+      'ArrowRight2Icon',
+      'ArrowUp2Icon',
+      'Book2Icon',
+      'Bug2Icon',
+      'Cloud2Icon',
+      'Cog2Icon',
+      'Download2Icon',
+      'Extracredit2Icon',
+      'Eye2Icon',
+      'Feed5Icon',
+      'Filter2Icon',
+      'Flag3Icon',
+      'Home32Icon',
+      'Key3Icon',
+      'MTAct1TimeIcon',
+      'Music2Icon',
+      'Pencil3Icon',
+      'Reading2Icon',
+      'Search2Icon',
+      'Upload2Icon'
+    ].includes(icon)}).map((icon) => {
       const id = icon + 'Available';
       const title = icon + ' Title';
       const Icon = ICONS[icon];
@@ -324,7 +129,9 @@ so it will be read screen readers.
         <Icon title={title} /><br />
         {icon}
       </span>
-    })}</div>
+    })
+  }
+</div>
 ```
 
 ## Testing
@@ -333,6 +140,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the svg ele
 
 ```html
 <svg
+  aria-hidden="true"
   data-testid="test-id"
   class="icon"
   height="24"
@@ -340,9 +148,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the svg ele
   fill="currentColor"
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 25.63 25.63"
-  aria-labelledby="infoBasic"
 >
-  <title id="infoBasic">Info Available</title>
   <path
     d="M15.26,10.15V7.56H12.74v2.59Zm0,10.29v-7.7H12.74v7.7ZM14,1.18A12.82,12.82,0,1,1,1.18,14,12.79,12.79,0,0,1,14,1.18Z"
     transform="translate(-1.18 -1.18)"
@@ -352,8 +158,10 @@ Passing in the `testId` prop will add the `data-testid` attribute to the svg ele
 
 ## Icon Props
 
+**Any other props supplied will be provided to the `svg` element.**
+
 <SimplePropsTable
-  props={{
+  propertyValues={{
     color: {
       type: {
         name: 'string',
@@ -375,8 +183,8 @@ Passing in the `testId` prop will add the `data-testid` attribute to the svg ele
         name: 'string',
       },
       required: false,
-      description: 'ID used for testing purposes',
-      defaultValue: '',
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     title: {
       type: {
@@ -394,254 +202,7 @@ export default props => (
     {...props}
     components={{
       ICONS,
-      iconsArray,
-      AddPersonIcon,
-      AlertIcon,
-      AndroidIcon,
-      AngleDownIcon,
-      AngleDownDoubleIcon,
-      AngleLeftIcon,
-      AngleLeftDoubleIcon,
-      AngleRightIcon,
-      AngleRightDoubleIcon,
-      AngleUpIcon,
-      AngleUpDoubleIcon,
-      AppleIcon,
-      ArrowDown2Icon,
-      ArrowDown3Icon,
-      ArrowLeft2Icon,
-      ArrowLeft3Icon,
-      ArrowRight2Icon,
-      ArrowRight3Icon,
-      ArrowUp2Icon,
-      ArrowUp3Icon,
-      ArticleIcon,
-      AssignIcon,
-      AttachmentIcon,
-      BackwardIcon,
-      Backward2Icon,
-      BankIcon,
-      BellIcon,
-      BitcoinIcon,
-      BlockedIcon,
-      Book2Icon,
-      BookmarkIcon,
-      BubbleIcon,
-      Bug2Icon,
-      CalendarIcon,
-      CancelCircleIcon,
-      CaretDownIcon,
-      CaretLeftIcon,
-      CaretRightIcon,
-      CaretUpIcon,
-      CartIcon,
-      CcAmexIcon,
-      CcDiscoverIcon,
-      CcMastercardIcon,
-      CcPaypalIcon,
-      CcStripeIcon,
-      CcVisaIcon,
-      CheckIcon,
-      CircleDownIcon,
-      CircleLeftIcon,
-      CircleRightIcon,
-      CircleUpIcon,
-      ClockIcon,
-      Cloud2Icon,
-      CnyIcon,
-      CodeIcon,
-      Cog2Icon,
-      CommentsIcon,
-      CompassIcon,
-      ConnectionIcon,
-      CopyIcon,
-      CountsTowardsGradeIcon,
-      CourseIcon,
-      CreditNoCreditIcon,
-      CrossIcon,
-      CubeIcon,
-      DashboardIcon,
-      DatePicker,
-      DollarIcon,
-      DotCircleOIcon,
-      Download2Icon,
-      DroppedIcon,
-      EllipsisHIcon,
-      EllipsisVIcon,
-      EnlargeIcon,
-      Enlarge2Icon,
-      EntypoIcon,
-      EnvelopeOIcon,
-      EnvelopeIcon,
-      ErrorBlackIcon,
-      EurIcon,
-      ExamIcon,
-      ExclamationIcon,
-      ExternalLinkIcon,
-      Extracredit2Icon,
-      EyeSlashIcon,
-      Eye2Icon,
-      FacebookIcon,
-      Feed5Icon,
-      FileArchiveOIcon,
-      FileAudioOIcon,
-      FileCodeOIcon,
-      FileExcelOIcon,
-      FileImageOIcon,
-      FileMovieOIcon,
-      FileOIcon,
-      FilePdfOIcon,
-      FilePowerpointOIcon,
-      FileWordOIcon,
-      Filter2Icon,
-      FirstIcon,
-      FlagOIcon,
-      Flag3Icon,
-      FlashcardsIcon,
-      FolderOIcon,
-      FolderOpenOIcon,
-      ForwardIcon,
-      Forward2Icon,
-      Forward3Icon,
-      GbpIcon,
-      GlassdoorIcon,
-      GoogleDriveIcon,
-      GooglePlusIcon,
-      GoogleplayIcon,
-      GraduationCapIcon,
-      GroupIcon,
-      HighlightIcon,
-      Home32Icon,
-      ImageIcon,
-      ImagesIcon,
-      InProgressIcon,
-      IndentDecreaseIcon,
-      IndentIncreaseIcon,
-      InfoIcon,
-      Info2Icon,
-      Info22Icon,
-      InrIcon,
-      InstagramIcon,
-      InteractiveIcon,
-      Key3Icon,
-      KrwIcon,
-      LastIcon,
-      LatePenaltyIcon,
-      LifebuoyIcon,
-      LightningIcon,
-      LinkIcon,
-      LinkedinIcon,
-      ListNumberedIcon,
-      ListIcon,
-      List2Icon,
-      List3Icon,
-      LockIcon,
-      ManualGradedIcon,
-      MapMarkerIcon,
-      MarketIcon,
-      MenuSteppedIcon,
-      MenuIcon,
-      Menu2Icon,
-      Menu3Icon,
-      Menu4Icon,
-      MicrophoneSlashIcon,
-      MicrophoneIcon,
-      MinusCircleIcon,
-      MinusIcon,
-      MTAct1TimeIcon,
-      MTActLearnIcon,
-      MTActSerialIcon,
-      MtIcon,
-      Music2Icon,
-      NextIcon,
-      Next2Icon,
-      NonMindtapActivityIcon,
-      NotificationIcon,
-      Notification2Icon,
-      PaletteIcon,
-      ParagraphCenterIcon,
-      ParagraphJustifyIcon,
-      ParagraphLeftIcon,
-      ParagraphRightIcon,
-      PauseIcon,
-      Pause2Icon,
-      Pencil3Icon,
-      PhoneHangUpIcon,
-      PhoneIcon,
-      PieChartIcon,
-      PinIcon,
-      PinterestIcon,
-      Play2Icon,
-      Play3Icon,
-      PlusIcon,
-      PracticeIcon,
-      PreviousIcon,
-      Previous2Icon,
-      PrintIcon,
-      ProfileIcon,
-      QuestionCircleOIcon,
-      QuestionCircleIcon,
-      QuestionIcon,
-      Question2Icon,
-      Reading2Icon,
-      RedoIcon,
-      Redo2Icon,
-      RefreshIcon,
-      ReplyIcon,
-      RoubleIcon,
-      SearchMinusIcon,
-      SearchPlusIcon,
-      Search2Icon,
-      ShrinkIcon,
-      Shrink2Icon,
-      SignInIcon,
-      SnapchatIcon,
-      Spinner2Icon,
-      SpotifyIcon,
-      StackIcon,
-      StarFullIcon,
-      StarHalfIcon,
-      StarIcon,
-      StatsBarsIcon,
-      StatsBars2Icon,
-      StatsDotsIcon,
-      StopIcon,
-      Stop2Icon,
-      SwapHorizIcon,
-      TargetIcon,
-      ThListIcon,
-      ThIcon,
-      ThumbsODownIcon,
-      ThumbsOUpIcon,
-      TimedIcon,
-      TimerIcon,
-      TrashOIcon,
-      TruckIcon,
-      TuneIcon,
-      TwitterIcon,
-      UnarchiveIcon,
-      UndoIcon,
-      Undo2Icon,
-      UnlockIcon,
-      UnlockedIcon,
-      Upload2Icon,
-      VideoCameraIcon,
-      VideoIcon,
-      VisuallyHidden,
-      VolumeDownIcon,
-      VolumeOffIcon,
-      VolumeUpIcon,
-      WarningIcon,
-      WidgetsIcon,
-      Windows8Icon,
-      WlGotItIcon,
-      WlLearnItIcon,
-      WlPracticeItIcon,
-      WlReadyIcon,
-      WlUseItIcon,
-      WrenchIcon,
-      Wrench3Icon,
-      YoutubeIcon,
+      ...ICONS,
     }}
   />
-)
+);

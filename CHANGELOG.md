@@ -1,6 +1,2986 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.0.0-beta.136](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.135...v2.0.0-beta.136) (2020-11-19)
+
+
+### Features
+
+* **select:** add placeholder prop to override i18n default ([818809c](http://stash.cengage.com:7999/FRONT/react-magma/commits/818809c0e4e50cbbe2dee09f5bb218eb36a1784a))
+
+
+
+
+
+# [2.0.0-beta.135](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.134...v2.0.0-beta.135) (2020-11-19)
+
+
+### Features
+
+* **card:** update card spacing ([dadfb60](http://stash.cengage.com:7999/FRONT/react-magma/commits/dadfb60ca6c5ba584a8fb278facd9b416a0dd869))
+
+
+
+
+
+# [2.0.0-beta.134](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.133...v2.0.0-beta.134) (2020-11-19)
+
+
+### Features
+
+* **component:** alignment change ([f8ee970](http://stash.cengage.com:7999/FRONT/react-magma/commits/f8ee970a85d3e7cb088bca725881e9f0954a1d85))
+
+
+
+
+
+# [2.0.0-beta.133](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.132...v2.0.0-beta.133) (2020-11-18)
+
+
+### Features
+
+* **dropdown:** update dropdown spacing ([2204d0f](http://stash.cengage.com:7999/FRONT/react-magma/commits/2204d0fe45560cb058ff891a4d842bb20e984b23))
+
+
+
+
+
+# [2.0.0-beta.132](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.131...v2.0.0-beta.132) (2020-11-18)
+
+
+### Features
+
+* **alert, banner:** update styles with spacing scale ([e4bdc19](http://stash.cengage.com:7999/FRONT/react-magma/commits/e4bdc19927d6cc14cc5c949d4ef2e8bbc041162c))
+* **alert, banner:** use new spacing scale for alert, banner ([7bdf07f](http://stash.cengage.com:7999/FRONT/react-magma/commits/7bdf07f75f88b642dccd506c0e4d8cf20a602b1b))
+
+
+
+
+
+# [2.0.0-beta.131](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.130...v2.0.0-beta.131) (2020-11-17)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.130](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.129...v2.0.0-beta.130) (2020-11-17)
+
+
+### Features
+
+* **date-picker:** lowercase placeholder text ([2202013](http://stash.cengage.com:7999/FRONT/react-magma/commits/2202013e663ccde2e330f1df50ccc7774d56882f))
+
+
+
+
+
+# [2.0.0-beta.129](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.128...v2.0.0-beta.129) (2020-11-17)
+
+
+### Features
+
+* **component:** spacing updates ([0c4664e](http://stash.cengage.com:7999/FRONT/react-magma/commits/0c4664ef330aa410cfedfd65970999fbbd15e633))
+* **component:** theme values ([95d4196](http://stash.cengage.com:7999/FRONT/react-magma/commits/95d4196737092379f019302248c86ca09d71192b))
+
+
+
+
+
+# [2.0.0-beta.128](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.127...v2.0.0-beta.128) (2020-11-17)
+
+
+### Bug Fixes
+
+* **password input:** fix button positioning ([8d8a68e](http://stash.cengage.com:7999/FRONT/react-magma/commits/8d8a68e93e0016570dd3adfb4b8fe227637b089f))
+
+
+### Features
+
+* **buttons:** update buttons for new space scale ([2822993](http://stash.cengage.com:7999/FRONT/react-magma/commits/2822993ae20a153ce75cb149c574a855766b18eb))
+* **icon buttons, inputs:** add icon size to theme ([cc03c73](http://stash.cengage.com:7999/FRONT/react-magma/commits/cc03c7300218250802b4c0c01216eeb060221dfd))
+* **input:** adjustments to password, timepicker ([1db700d](http://stash.cengage.com:7999/FRONT/react-magma/commits/1db700d939b6e1a57bae13b2fe933eea73c77bac))
+* **input:** apply new spacing scale to inputs ([b6f75e4](http://stash.cengage.com:7999/FRONT/react-magma/commits/b6f75e4b075dc2c4efff986547b68785e0361c7d))
+* **spacing scale:** addition spacing scale value ([b62c677](http://stash.cengage.com:7999/FRONT/react-magma/commits/b62c677ccaf18534ba72578d60c1569205d07a4b))
+* **textarea:** update textarea with space scale ([c99c5f9](http://stash.cengage.com:7999/FRONT/react-magma/commits/c99c5f9fae0aa01fca1502ddef0620c1e579d7bc))
+
+
+
+
+
+# [2.0.0-beta.127](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.126...v2.0.0-beta.127) (2020-11-17)
+
+
+### Bug Fixes
+
+* **ci:** dont run the test tests twice ([e15ff1f](http://stash.cengage.com:7999/FRONT/react-magma/commits/e15ff1f681df0cf20bd5f230b584f1741ea68862))
+
+
+### Features
+
+* **password:** autoCapitalize and autoComplete on unmasked password ([413b82c](http://stash.cengage.com:7999/FRONT/react-magma/commits/413b82ccbd1eef5b4474ddb51229c692cefec39f))
+
+
+
+
+
+# [2.0.0-beta.126](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.125...v2.0.0-beta.126) (2020-11-17)
+
+
+### Bug Fixes
+
+* **card:** CardBodyProps isnt a Heading ([93be975](http://stash.cengage.com:7999/FRONT/react-magma/commits/93be975dfb2334c5f0f9c5ee88dec85ed03b6446))
+
+
+### Features
+
+* **docs:** generate prop tables from ts definitions ([7f34e1e](http://stash.cengage.com:7999/FRONT/react-magma/commits/7f34e1e142553fbeb8052abfb628a29c9ea954b9))
+* **docs:** improve props table generation ([4d52c61](http://stash.cengage.com:7999/FRONT/react-magma/commits/4d52c61aff0e90f68d69340e2250a56c2ebb2311))
+* **docs:** sort prop tables ([1a19fd7](http://stash.cengage.com:7999/FRONT/react-magma/commits/1a19fd749ba1c548d07d76f5230ea64b110c1f3e))
+
+
+
+
+
+# [2.0.0-beta.125](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.124...v2.0.0-beta.125) (2020-11-13)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.124](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.123...v2.0.0-beta.124) (2020-11-12)
+
+
+### Features
+
+* text align fix ([0e0a18c](http://stash.cengage.com:7999/FRONT/react-magma/commits/0e0a18c05879d616de60df15b5deb66b14dd31e6))
+* **feat:** margin and padding tweaks ([6c35ae6](http://stash.cengage.com:7999/FRONT/react-magma/commits/6c35ae60c8f4b84887d23172e6699cd302250a9f))
+
+
+
+
+
+# [2.0.0-beta.123](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.122...v2.0.0-beta.123) (2020-11-12)
+
+
+### Features
+
+* **theme:** update line-height ([2173c9c](http://stash.cengage.com:7999/FRONT/react-magma/commits/2173c9ca2b4ab9c4fa5ab7f39e4612908391d069))
+
+
+
+
+
+# [2.0.0-beta.122](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.121...v2.0.0-beta.122) (2020-11-12)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.121](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.120...v2.0.0-beta.121) (2020-11-12)
+
+
+### Features
+
+* **date-picker:** add onChange prop for generic state changes ([2ad33e6](http://stash.cengage.com:7999/FRONT/react-magma/commits/2ad33e6b4926026287240eb4fecefc050a08d5ac))
+
+
+
+
+
+# [2.0.0-beta.120](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.119...v2.0.0-beta.120) (2020-11-11)
+
+
+### Bug Fixes
+
+* **hyperlink:** remove href prop ([ae221db](http://stash.cengage.com:7999/FRONT/react-magma/commits/ae221dba3d4e1be4ab30f5e736051de3b519ff17))
+
+
+### BREAKING CHANGES
+
+* **hyperlink:** removing prop from typescript interface
+
+
+
+
+
+# [2.0.0-beta.119](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.118...v2.0.0-beta.119) (2020-11-09)
+
+
+### Bug Fixes
+
+* **card:** fix heading styles ([bdd9598](http://stash.cengage.com:7999/FRONT/react-magma/commits/bdd95984b7c88f1be19f867574f8672228169de2))
+
+
+### Features
+
+* **select:** allow for custom dropdown indicator ([45f2d0d](http://stash.cengage.com:7999/FRONT/react-magma/commits/45f2d0d3e27ed53185bbc2511180657e57ffa8e4))
+
+
+
+
+
+# [2.0.0-beta.118](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.117...v2.0.0-beta.118) (2020-11-09)
+
+
+### Bug Fixes
+
+* **icons:** don't extract props for icon render ([0f71d98](http://stash.cengage.com:7999/FRONT/react-magma/commits/0f71d98db6979a96e48c1623809d3c42d127de44))
+
+
+
+
+
+# [2.0.0-beta.117](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.116...v2.0.0-beta.117) (2020-11-09)
+
+
+### Bug Fixes
+
+* **badge:** export badgeVariant enum ([ac8303b](http://stash.cengage.com:7999/FRONT/react-magma/commits/ac8303b2fe0c02901f711c62fcc80303c2822b4f))
+* **docs:** don't link local legacy selects ([0fed32f](http://stash.cengage.com:7999/FRONT/react-magma/commits/0fed32f21cc6cbcdd6e2c20e5f2aee081d99f0d2))
+* **docs:** fix linking of icons/legacy-selects ([e07b388](http://stash.cengage.com:7999/FRONT/react-magma/commits/e07b38849e9e89a260e087879b6bd6050f30563e))
+* **form-group:** make helperMessage prop optional ([0b3076a](http://stash.cengage.com:7999/FRONT/react-magma/commits/0b3076ad0e3673c8916e7b2ebfe6024c43e58c7d))
+* **icons:** always force bootstrap linking ([edc3135](http://stash.cengage.com:7999/FRONT/react-magma/commits/edc313562ed76c4a0cee92be5a85409bf0885e58))
+
+
+
+
+
+# [2.0.0-beta.116](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.115...v2.0.0-beta.116) (2020-11-03)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.115](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.114...v2.0.0-beta.115) (2020-11-02)
+
+
+### Features
+
+* **card:** give inverse cards default bgcolor, add context for inverse ([4549420](http://stash.cengage.com:7999/FRONT/react-magma/commits/4549420d06df33d9905f8d35975ed3705b531bb0))
+
+
+
+
+
+# [2.0.0-beta.114](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.113...v2.0.0-beta.114) (2020-10-30)
+
+
+### Features
+
+* **linkbutton:** remove link button component ([99fe51f](http://stash.cengage.com:7999/FRONT/react-magma/commits/99fe51f7fe34f75a62d5b7d5ff89e02b933ac677))
+
+
+### BREAKING CHANGES
+
+* **linkbutton:** removed LinkButton component
+
+
+
+
+
+# [2.0.0-beta.113](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.112...v2.0.0-beta.113) (2020-10-29)
+
+
+### Bug Fixes
+
+* **package-lock:** commit new package-lock for merge conflicts ([5129f42](http://stash.cengage.com:7999/FRONT/react-magma/commits/5129f42fe146d9507ecc82eb2814139b60d55f91))
+
+
+### Code Refactoring
+
+* **multiple:** clean up prop interfaces, props tables in docs ([04b1ce3](http://stash.cengage.com:7999/FRONT/react-magma/commits/04b1ce38fc255018dd33ada8285eddcd447b7b39))
+
+
+### Features
+
+* **heading:** expressive heading style change ([006c5bd](http://stash.cengage.com:7999/FRONT/react-magma/commits/006c5bd14b67596f3d5f1241c166f0df8b8931b2))
+* **heading:** update h1 size ([ea1cab4](http://stash.cengage.com:7999/FRONT/react-magma/commits/ea1cab47f340402f7142462aaa5ba5710c2531ca))
+* **heading:** use typography components and styles in heading component ([9cff630](http://stash.cengage.com:7999/FRONT/react-magma/commits/9cff630882d38a098e4da5eab2d2ca8c04c7319f))
+* **headings:** move heading font-weights to theme ([0377732](http://stash.cengage.com:7999/FRONT/react-magma/commits/03777327f411b01e57da22e7eb87309fab285316))
+* **magma theme:** add space scale to theme ([42c8847](http://stash.cengage.com:7999/FRONT/react-magma/commits/42c884745c1b62f6a8540bd2896de7801161cfdc))
+* **magma theme:** change color names to remove 01 from names ([a8aeb6c](http://stash.cengage.com:7999/FRONT/react-magma/commits/a8aeb6c5813b002ef316ff2fd1a37482cced1570))
+* **magma theme:** change pop01 to pop in color names ([c125d05](http://stash.cengage.com:7999/FRONT/react-magma/commits/c125d05a0d3f2f58f9cd6722bba33ca0cee70e53))
+* **magma theme:** remove unneeded interface ([2266669](http://stash.cengage.com:7999/FRONT/react-magma/commits/2266669fcf481640cefc4b20753cf24c84bd7b52))
+* **modal, card:** update border-radius ([0b02c15](http://stash.cengage.com:7999/FRONT/react-magma/commits/0b02c1510879b1c48b4d2189ff05e1b59cd4d97e))
+* **paragrph, heading:** change prop names ([4f4591c](http://stash.cengage.com:7999/FRONT/react-magma/commits/4f4591c1168355cc68d7eef93bdcd88fe4698c48))
+* **span:** add bold, italic props ([01c5922](http://stash.cengage.com:7999/FRONT/react-magma/commits/01c592214d05fc0cf47142840265e50ea74dfb49))
+* **span:** span component ([16c0667](http://stash.cengage.com:7999/FRONT/react-magma/commits/16c0667b1a7b23e66029504aa89be4d1828da7e5))
+* **theme:** add border radius to theme separate from spacescale ([fb5ad63](http://stash.cengage.com:7999/FRONT/react-magma/commits/fb5ad635f1782b39e7865ebb5c0bcb81750a7f0a))
+* **typography:** add noto serif as narrative font ([6a70e4f](http://stash.cengage.com:7999/FRONT/react-magma/commits/6a70e4f357a6ffa6537e816ed9096e932a7a2606))
+* **typography:** add paragraph component, remove typography ([c4694a2](http://stash.cengage.com:7999/FRONT/react-magma/commits/c4694a28adf1fd5a26e0b5403833dd4acbd0807b))
+* **typography:** add typescale to theme (not used yet) ([a434df7](http://stash.cengage.com:7999/FRONT/react-magma/commits/a434df7769b57ffdbb54a7dad74e8564ea48947e))
+* **typography:** margin, inverse, color props for typography ([5537267](http://stash.cengage.com:7999/FRONT/react-magma/commits/5537267e2930b51aa493d21a609d57a63c691aaa))
+* **typography:** remove span component ([adc32e2](http://stash.cengage.com:7999/FRONT/react-magma/commits/adc32e2f4c5271256d0acd2ecfdd33b77a71ec20))
+* **typography:** rename props ([65fae6a](http://stash.cengage.com:7999/FRONT/react-magma/commits/65fae6a17f251bcfd54fff95c4c45084288f8d5c))
+* **typography:** reorgainze heading and paragraph styles ([d77d045](http://stash.cengage.com:7999/FRONT/react-magma/commits/d77d045b5ee1ca2c92f0020ced5403938383a0f0))
+* **typography:** start of new typography component ([32f6c08](http://stash.cengage.com:7999/FRONT/react-magma/commits/32f6c081a12c85789f704356e1c9527cb4fa421e))
+* **typography:** styles for variants, screen sizes, colors ([1116acf](http://stash.cengage.com:7999/FRONT/react-magma/commits/1116acfc3be57eeeb7b731b283001aeabbbb815f))
+* **typography:** update global styles, docs styles ([56a7522](http://stash.cengage.com:7999/FRONT/react-magma/commits/56a75224543fa5e983839253063668a65ff3a46c))
+* **typography:** use magma theme for fontsize lineheight ([8406306](http://stash.cengage.com:7999/FRONT/react-magma/commits/8406306185494662586a409c0a9efb330dac61a1))
+* **typography:** use typescale from theme instead of hardcoded styles ([63b6193](http://stash.cengage.com:7999/FRONT/react-magma/commits/63b619316fd7b346063a014b44f1bce0ee07dee0))
+* **typography:** use typeStyle prop for expressive variants ([014ee8f](http://stash.cengage.com:7999/FRONT/react-magma/commits/014ee8f88bd6db75388008f501912d4c12ea751e))
+* **typography:** very start of themable styles ([bbc17f9](http://stash.cengage.com:7999/FRONT/react-magma/commits/bbc17f9eddd88bc7033dab97b1d7265a3b874f42))
+
+
+### BREAKING CHANGES
+
+* **multiple:** removed unused props from some components
+* **magma theme:** name change in magma theme -- pop01 to pop
+* **magma theme:** Color name changes in Magma theme
+
+
+
+
+
+# [2.0.0-beta.112](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.111...v2.0.0-beta.112) (2020-10-23)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.111](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.110...v2.0.0-beta.111) (2020-10-22)
+
+
+### Bug Fixes
+
+* **nav-tab:** add css prop for emotion types ([8e16292](http://stash.cengage.com:7999/FRONT/react-magma/commits/8e16292c940eff97105e2f800670053e65d02623))
+
+
+
+
+
+# [2.0.0-beta.110](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.109...v2.0.0-beta.110) (2020-10-21)
+
+
+### Bug Fixes
+
+* **forward-refs:** fix types in components with forwardRef ([b8cbcd4](http://stash.cengage.com:7999/FRONT/react-magma/commits/b8cbcd4be5c794dbeb47334fc649137387e708d3))
+
+
+
+
+
+# [2.0.0-beta.109](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.108...v2.0.0-beta.109) (2020-10-21)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.108](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.107...v2.0.0-beta.108) (2020-10-20)
+
+
+### Bug Fixes
+
+* **styledlist:** reset padding to 0 ([6816767](http://stash.cengage.com:7999/FRONT/react-magma/commits/681676768070b72474eb3b498070cd3791a88532))
+* **tabs:** add presentation role to li for a11y ([1db5012](http://stash.cengage.com:7999/FRONT/react-magma/commits/1db50121145c255bfe23f74c07d6cc16e7a4fcb8))
+
+
+
+
+
+# [2.0.0-beta.107](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.106...v2.0.0-beta.107) (2020-10-19)
+
+
+### Bug Fixes
+
+* **itemslist:** rename style to menuStyle ([3e79adf](http://stash.cengage.com:7999/FRONT/react-magma/commits/3e79adf7b9b39a1fe312fa93b6c416515cac896a))
+
+
+### Features
+
+* **itemslist:** add styles prop ([f829b9b](http://stash.cengage.com:7999/FRONT/react-magma/commits/f829b9b32ba7659b16635b2be01446a1cd5bbd6e))
+
+
+
+
+
+# [2.0.0-beta.106](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.105...v2.0.0-beta.106) (2020-10-19)
+
+
+### Bug Fixes
+
+* **docs:** add missing colon ([839464e](http://stash.cengage.com:7999/FRONT/react-magma/commits/839464e74c14d9206c68179ecd8310690e61b7a0))
+
+
+
+
+
+# [2.0.0-beta.105](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.104...v2.0.0-beta.105) (2020-10-16)
+
+
+### Features
+
+* **alert-base:** create AlertBase component to share internally ([e2e2dfc](http://stash.cengage.com:7999/FRONT/react-magma/commits/e2e2dfcc9ace426aea82cc6102affe30e5500796))
+
+
+### BREAKING CHANGES
+
+* **alert-base:** removed undocumented props used only internally from Alert
+
+
+
+
+
+# [2.0.0-beta.104](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.103...v2.0.0-beta.104) (2020-10-16)
+
+
+### Features
+
+* **base-input:** BaseInput component renamed to InputBase ([8309338](http://stash.cengage.com:7999/FRONT/react-magma/commits/8309338873875d9fcc7baa537db0c44a49d37bcf))
+* **base-input:** move InputBase export for alphabetical context ([51651c0](http://stash.cengage.com:7999/FRONT/react-magma/commits/51651c071d3269c0d9fb7966cb42ad61c5cee6f2))
+
+
+### BREAKING CHANGES
+
+* **base-input:** BaseInput component name changed
+
+
+
+
+
+# [2.0.0-beta.103](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.102...v2.0.0-beta.103) (2020-10-16)
+
+
+### Features
+
+* **hyperlink:** Change name from HyperLink to Hyperlink ([5aba7dc](http://stash.cengage.com:7999/FRONT/react-magma/commits/5aba7dcef9c4af060bd373f46e45c94ad45eb6c9))
+
+
+### BREAKING CHANGES
+
+* **hyperlink:** component name change for Hyperlink
+
+
+
+
+
+# [2.0.0-beta.102](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.101...v2.0.0-beta.102) (2020-10-16)
+
+
+### Bug Fixes
+
+* **visuallyhidden:** add testid, also add testid to missing prop tables ([917bf1c](http://stash.cengage.com:7999/FRONT/react-magma/commits/917bf1c8feedc93c7c445016363054a45c213c5e))
+
+
+
+
+
+# [2.0.0-beta.101](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.100...v2.0.0-beta.101) (2020-10-16)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.100](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.99...v2.0.0-beta.100) (2020-10-16)
+
+
+### Features
+
+* **multi:** change isDisabled prop to disabled ([9d5c57b](http://stash.cengage.com:7999/FRONT/react-magma/commits/9d5c57bd802f9dcf7cac58deda60dd8843087457))
+* **radio-group:** isRequired prop renamed to required ([aae29e3](http://stash.cengage.com:7999/FRONT/react-magma/commits/aae29e3ffb6fb6c5235473d0d10d75b0f7157fac))
+
+
+### BREAKING CHANGES
+
+* **radio-group:** isRequired prop changed to required in RadioGroup
+* **multi:** prop name change
+
+
+
+
+
+# [2.0.0-beta.99](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.98...v2.0.0-beta.99) (2020-10-16)
+
+
+### Bug Fixes
+
+* **docs:** change docs main-nav to buttons ([544c9d3](http://stash.cengage.com:7999/FRONT/react-magma/commits/544c9d37575fc800887ea42c16a3c18d64b33af3))
+* **docs:** fix skiplinks in doc to not prevent any clicks ([af2bd7b](http://stash.cengage.com:7999/FRONT/react-magma/commits/af2bd7b4d92c8c21f89bf6e95edce73e03849fbb))
+* **docs:** fix subnavs for doc sections ([f685a9e](http://stash.cengage.com:7999/FRONT/react-magma/commits/f685a9eb853e5f06451898991c7385f41bb65c76))
+* **docs:** maintain sidebar location ([665362d](http://stash.cengage.com:7999/FRONT/react-magma/commits/665362da26d2226202e7bf960d3e6692c4d54c26))
+* **docs:** move skiplink back up to first ([cd68797](http://stash.cengage.com:7999/FRONT/react-magma/commits/cd687970be84d82244669fdb8591d60bf33fb65b))
+* **docs:** set focus and scroll to active section when clicking nav bar ([60d5f9a](http://stash.cengage.com:7999/FRONT/react-magma/commits/60d5f9a04ec1ab0046bd7efa84406ced8956c264))
+* **docs:** switch to event handler for focus and movement ([4d15af8](http://stash.cengage.com:7999/FRONT/react-magma/commits/4d15af85a43f613b39719e7b3e6cb7539fc21d1c))
+
+
+
+
+
+# [2.0.0-beta.98](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.97...v2.0.0-beta.98) (2020-10-14)
+
+
+### Features
+
+* **nav tabs:** styles for nav tabs ([17a031d](http://stash.cengage.com:7999/FRONT/react-magma/commits/17a031df84522399a4d43f37c1a08fa966170d0c))
+* **nav tabs:** very start of nav tabs ([3d9f02d](http://stash.cengage.com:7999/FRONT/react-magma/commits/3d9f02d09671814087999d3db8e880498a73a784))
+* **nav-tabs:** allow for component nav tabs ([7920ca7](http://stash.cengage.com:7999/FRONT/react-magma/commits/7920ca7b019b3921774d9347e9f0a76eaf45474a))
+* **tabs:** add keyboard instructions to aria-label ([35b8621](http://stash.cengage.com:7999/FRONT/react-magma/commits/35b86211edd02292b68ff62f7d72394ec5f6f10a))
+* **tabs:** arrow navigation for tabs ([ea4de2b](http://stash.cengage.com:7999/FRONT/react-magma/commits/ea4de2b77b19546dc726c539a97d432c2a8ab741))
+* **tabs:** create hook for shared tabs functionality ([31a4e96](http://stash.cengage.com:7999/FRONT/react-magma/commits/31a4e96685dcad3afa11712f5beaba8ba426c202))
+* **tabs:** disabled prop changed to isDisabled for Tab ([21e13a4](http://stash.cengage.com:7999/FRONT/react-magma/commits/21e13a45fe65c05cf403ddc11de2d8399f4aa99c))
+* **tabs:** remove index prop ([a0828fe](http://stash.cengage.com:7999/FRONT/react-magma/commits/a0828feb9dfdb6fcf9309eb6c1072a3d97691f99))
+
+
+### BREAKING CHANGES
+
+* **tabs:** prop change
+* **tabs:** removal of component tabs
+
+
+
+
+
+# [2.0.0-beta.97](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.96...v2.0.0-beta.97) (2020-10-13)
+
+
+### Features
+
+* **selects:** add testId prop to selects ([285f147](http://stash.cengage.com:7999/FRONT/react-magma/commits/285f147faadb38363993387e0b8df83b6aedebcf))
+
+
+
+
+
+# [2.0.0-beta.96](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.95...v2.0.0-beta.96) (2020-10-13)
+
+
+### Bug Fixes
+
+* **banner:** stop forwarding invalid props to dom element ([aea01d1](http://stash.cengage.com:7999/FRONT/react-magma/commits/aea01d15774bf78f007366496d933422b6f15b9b))
+* **checkbox:** stop forwarding invalid props to dom element ([c271430](http://stash.cengage.com:7999/FRONT/react-magma/commits/c271430d6c5ddfea8f7228533cfa817ce11d065b))
+* **combobox:** set input value on new item creation ([7115817](http://stash.cengage.com:7999/FRONT/react-magma/commits/711581708b27fe173dbb2eada5db5ff5f8b02d17))
+
+
+
+
+
+# [2.0.0-beta.95](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.94...v2.0.0-beta.95) (2020-10-08)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.94](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.93...v2.0.0-beta.94) (2020-10-01)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.93](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.92...v2.0.0-beta.93) (2020-10-01)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.92](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.91...v2.0.0-beta.92) (2020-10-01)
+
+
+### Bug Fixes
+
+* **dropdown:** add aria-labelledby to menu div using button for label ([2025173](http://stash.cengage.com:7999/FRONT/react-magma/commits/2025173c3d35441088cb19d7b097ee584610826c))
+
+
+
+
+
+# [2.0.0-beta.91](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.90...v2.0.0-beta.91) (2020-10-01)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.90](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.89...v2.0.0-beta.90) (2020-10-01)
+
+
+### Bug Fixes
+
+* **select, dropdown:** fix aria lint errors ([166b04f](http://stash.cengage.com:7999/FRONT/react-magma/commits/166b04fcca2156ba472c403462dd415b05e720d4))
+
+
+
+
+
+# [2.0.0-beta.89](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.88...v2.0.0-beta.89) (2020-09-30)
+
+
+### Bug Fixes
+
+* **tabs:** a11y enhancements for tablist and tab ([ad910eb](http://stash.cengage.com:7999/FRONT/react-magma/commits/ad910eb1a9030ce2df44faeba3fba06639830ade))
+* **tabs:** fix string type in tabs api table ([79ed8d6](http://stash.cengage.com:7999/FRONT/react-magma/commits/79ed8d62b91886c46c9feb8c16f7640aa2710075))
+
+
+
+
+
+# [2.0.0-beta.88](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.87...v2.0.0-beta.88) (2020-09-30)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.87](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.86...v2.0.0-beta.87) (2020-09-30)
+
+
+### Bug Fixes
+
+* **checkbox, toggle:** fix aria-describedby casing, add error examples ([697053f](http://stash.cengage.com:7999/FRONT/react-magma/commits/697053fa148a959ecf444f407c8d0db40f50dac3))
+* **date-picker:** focus calendar icon button on close ([8f0ada6](http://stash.cengage.com:7999/FRONT/react-magma/commits/8f0ada67195520db1bbb528ad2d31b0ebb6c829c))
+* **radio, checkbox, toggle:** fix styles, update docs, small refactor ([103786e](http://stash.cengage.com:7999/FRONT/react-magma/commits/103786e207730fb43707d05f5b7f362d724fb08f))
+
+
+### Features
+
+* **checkbox, toggle:** add error message ([c292f78](http://stash.cengage.com:7999/FRONT/react-magma/commits/c292f7829840cbd875df9ce8d0d2b082432a30f7))
+* **radio:** adding error message prop to radio group ([0d779b4](http://stash.cengage.com:7999/FRONT/react-magma/commits/0d779b4868293283093c08a7204c1f528b3a5ff4))
+* **radio buttons:** add error styles for radio buttons ([10f7e51](http://stash.cengage.com:7999/FRONT/react-magma/commits/10f7e51cdd7613ab45fa8c00dad89773a4c6ae10))
+* **radio buttons:** associate field with message id, tests ([4f9618b](http://stash.cengage.com:7999/FRONT/react-magma/commits/4f9618bd5ab96d7da86cb5ef9cbb0b87e0e4a576))
+* **radio buttons:** more error state ([fc5a849](http://stash.cengage.com:7999/FRONT/react-magma/commits/fc5a849f7bff25e680de46b30fecefe872d47d5c))
+
+
+
+
+
+# [2.0.0-beta.86](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.85...v2.0.0-beta.86) (2020-09-29)
+
+
+### Bug Fixes
+
+* **timepicker:** change to empty string instead of -- on bkspc ([642d72f](http://stash.cengage.com:7999/FRONT/react-magma/commits/642d72ff4e4bf6cbd80e00b17205855f37350d12))
+* **timepicker:** set min and hour to -- instead of 00 on backspace ([7b1dece](http://stash.cengage.com:7999/FRONT/react-magma/commits/7b1dece063c9f32179a0899e6ef3b78759e633e8))
+
+
+
+
+
+# [2.0.0-beta.85](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.84...v2.0.0-beta.85) (2020-09-29)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.84](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.83...v2.0.0-beta.84) (2020-09-29)
+
+
+### Features
+
+* **dropdown:** add a DropdownMenuGroup component for role="group" ([501590b](http://stash.cengage.com:7999/FRONT/react-magma/commits/501590bac057346a5d12b62d1821766178d81ca8))
+* **dropdown:** blur menu on shift-tab or tab from menu button ([885d680](http://stash.cengage.com:7999/FRONT/react-magma/commits/885d6807baa313cfe60c326f78251fc15a816bb5))
+* **dropdown:** dropdown header in menu group can be node ([2f3379e](http://stash.cengage.com:7999/FRONT/react-magma/commits/2f3379e00cd65f8922301ba19c461e32b5688348))
+
+
+
+
+
+# [2.0.0-beta.83](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.82...v2.0.0-beta.83) (2020-09-24)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.82](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.81...v2.0.0-beta.82) (2020-09-23)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.81](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.80...v2.0.0-beta.81) (2020-09-23)
+
+
+### Bug Fixes
+
+* **tabs:** update tab styles for better a11y ([6dbfaf8](http://stash.cengage.com:7999/FRONT/react-magma/commits/6dbfaf831f95fbadb1696c19521816d58a904c1f))
+
+
+### Features
+
+* **indeterminate-checkbox:** add announce text for all statuses ([56b52b0](http://stash.cengage.com:7999/FRONT/react-magma/commits/56b52b042c4f65b547093650d6a18cb490a7b6d7))
+* **indeterminate-checkbox:** shared function for label text replacement ([a049af0](http://stash.cengage.com:7999/FRONT/react-magma/commits/a049af01b44b1efb0cb4c0a6cf2494e8c06ea1b1))
+
+
+
+
+
+# [2.0.0-beta.80](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.79...v2.0.0-beta.80) (2020-09-23)
+
+
+### Bug Fixes
+
+* **icons:** spread props on icons ([5d6209b](http://stash.cengage.com:7999/FRONT/react-magma/commits/5d6209b2416079d9a86d8e6b3b23c26f22d29616))
+* fix merge error ([3d884bc](http://stash.cengage.com:7999/FRONT/react-magma/commits/3d884bc9758418a4f100c9e072978d8f8488ab8c))
+* **platform:** platform/docs-level a11y fixes ([c4f8a5d](http://stash.cengage.com:7999/FRONT/react-magma/commits/c4f8a5d8e30abc88f5508ec7fc61d97463bff802))
+
+
+
+
+
+# [2.0.0-beta.79](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.78...v2.0.0-beta.79) (2020-09-23)
+
+
+### Bug Fixes
+
+* **breakpoints:** fix data-testid to be lowercase ([5b5abd8](http://stash.cengage.com:7999/FRONT/react-magma/commits/5b5abd8c1fc1904633984f9518cd4336131631e0))
+* **docs:** fix icon dependency ([387e639](http://stash.cengage.com:7999/FRONT/react-magma/commits/387e6399783f4f5f0d6dcdd0179c4cbf06945d71))
+* **docs:** use correct icons version ([df11363](http://stash.cengage.com:7999/FRONT/react-magma/commits/df11363671ad43a382de5de677d3cb06f90899e4))
+* **dom:** use correct version for icon devDependency ([e71d3de](http://stash.cengage.com:7999/FRONT/react-magma/commits/e71d3de2dca1551cd59fb7f9266023de567697fd))
+* **dropdown:** close menu on clicking outside of dropdown ([fcb124d](http://stash.cengage.com:7999/FRONT/react-magma/commits/fcb124d07aa994cce54b539c94d21afcc7835cce))
+* **dropdown:** force focus dropdown button on click for safari ([53cdbc1](http://stash.cengage.com:7999/FRONT/react-magma/commits/53cdbc12c735e426d4ed5a11c9006888b3eb7b65))
+* **tests:** dont count coverage on packages that dont have their tests ran ([967723b](http://stash.cengage.com:7999/FRONT/react-magma/commits/967723b76f142aac32ee1b29a242feb14bd0125a))
+* **timepicker:** fixes for a11y ([bd5e413](http://stash.cengage.com:7999/FRONT/react-magma/commits/bd5e413e3ed74bcb5c85793dcc0225c8766527fa))
+* **timepicker:** make time fields bigger ([7c89c92](http://stash.cengage.com:7999/FRONT/react-magma/commits/7c89c9261f59d21cb1a2959f3c4c91faebd8c3be))
+* **timepicker:** remove fieldset style, change sr text ([6b00986](http://stash.cengage.com:7999/FRONT/react-magma/commits/6b00986097f774a1b5f7bbecf4cc4fa81be5d46c))
+* **toggle:** label line-height ([3a00d1c](http://stash.cengage.com:7999/FRONT/react-magma/commits/3a00d1c631daf0c9fc527a95d2af0b56ca202d44))
+* **toggle:** update colors, shadow for better a11y ([8dafb25](http://stash.cengage.com:7999/FRONT/react-magma/commits/8dafb256080c80ac67f0beef48f926c9df588467))
+* **tooltip:** change margin to padding for easier hover ([c487122](http://stash.cengage.com:7999/FRONT/react-magma/commits/c48712262e8273e6422c4512a3c9219a5cb76d2c))
+* **tooltip:** move hover events to container ([9bab99f](http://stash.cengage.com:7999/FRONT/react-magma/commits/9bab99fd88529df4274a6f632fb9984a21e64b4a))
+
+
+### Features
+
+* **timepicker:** add minuteStep prop ([09770ed](http://stash.cengage.com:7999/FRONT/react-magma/commits/09770ed1b7b9b7286a5c4767afde39c693a3a19b))
+* **timepicker:** default step to 1 min ([2ac7ce4](http://stash.cengage.com:7999/FRONT/react-magma/commits/2ac7ce4e87c46e0c97996d65fbfdd215f290755d))
+
+
+
+
+
+# [2.0.0-beta.78](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.77...v2.0.0-beta.78) (2020-09-18)
+
+
+### Bug Fixes
+
+* **calendar:** some a11y fixes ([85c6242](http://stash.cengage.com:7999/FRONT/react-magma/commits/85c62429bebb5f35d9b5029da2fa8a0de87bb167))
+
+
+
+
+
+# [2.0.0-beta.77](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.76...v2.0.0-beta.77) (2020-09-17)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.76](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.75...v2.0.0-beta.76) (2020-09-15)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.75](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.74...v2.0.0-beta.75) (2020-09-15)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.74](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.73...v2.0.0-beta.74) (2020-09-15)
+
+
+### Bug Fixes
+
+* fix build commands ([610b105](http://stash.cengage.com:7999/FRONT/react-magma/commits/610b105334fc06c9e7a9dc101406c37b7db0fb5b))
+* **docs:** fix build ([785b49a](http://stash.cengage.com:7999/FRONT/react-magma/commits/785b49a98c949506a05484a06cdb9251591d0e3f))
+* **docs:** fix icon dump ([916ae5a](http://stash.cengage.com:7999/FRONT/react-magma/commits/916ae5a2d0e83bd0972a530cf6f54d61c0c4a6f9))
+* **docs:** fix issues from hoisting ([0034350](http://stash.cengage.com:7999/FRONT/react-magma/commits/0034350e7c0c095f435d73e0650a141f85aa5b12))
+* **docs:** ignore package-lock ([5cd3499](http://stash.cengage.com:7999/FRONT/react-magma/commits/5cd349936fb7fb6f1c59c1cf538d8193bd224b71))
+* **docs:** rollback dependency upgrades ([a4faf3d](http://stash.cengage.com:7999/FRONT/react-magma/commits/a4faf3d65edf1eb06d783a6304cfb73768935ea8))
+* **legacy-selects:** add react-is to externals ([9f29674](http://stash.cengage.com:7999/FRONT/react-magma/commits/9f296743633bbe0a91773d2249583b3fe9bcae7b))
+* **uuid:** fix ssr with uuid and toasts rendering with ids ([4914a35](http://stash.cengage.com:7999/FRONT/react-magma/commits/4914a35ccc75f25f573aa2fbc719828c9131a00a))
+
+
+### Code Refactoring
+
+* **legacy-selects:** move legacy selects to their own package ([c348dd7](http://stash.cengage.com:7999/FRONT/react-magma/commits/c348dd7c7edb582559740ccf91de408567f73f7e))
+* **select:** rename Select components LegacySelect ([40047f2](http://stash.cengage.com:7999/FRONT/react-magma/commits/40047f2f5e2ac1f22f4ff4206b4793714578be62))
+
+
+### Features
+
+* **combobox:** clear button ux tweaks ([5c47001](http://stash.cengage.com:7999/FRONT/react-magma/commits/5c470015987d51957aaec9a041d8e5853b64134a))
+* **combobox:** loading, clearable styles ([853708e](http://stash.cengage.com:7999/FRONT/react-magma/commits/853708ebd3ef977989e6db427cb62ff99e0b0a9b))
+* **downshift:** add aria-describedby and aria-invalid when error ([36208d4](http://stash.cengage.com:7999/FRONT/react-magma/commits/36208d4a00327bf576fca885df15388a5d9320de))
+* **downshift:** add created item to display items in combobox ([a686a9d](http://stash.cengage.com:7999/FRONT/react-magma/commits/a686a9d3d3a6362919d941b412b5c63afdeaa962))
+* **downshift:** better wrapping for multi-combo ([873d833](http://stash.cengage.com:7999/FRONT/react-magma/commits/873d833499dc376b7b9ebf66f3db7da7a152cf8f))
+* **downshift:** cleanup ([eac0afc](http://stash.cengage.com:7999/FRONT/react-magma/commits/eac0afc75f466583f8bc732f8dc9f7bcfb1b2f6e))
+* **downshift:** combobox on enter select first item in items list ([30f9eeb](http://stash.cengage.com:7999/FRONT/react-magma/commits/30f9eeb1387b6273ec78d03f016d19a06327c7bd))
+* **downshift:** creatable combobox ([35b1636](http://stash.cengage.com:7999/FRONT/react-magma/commits/35b163608f6ca8603c32739e40ec336fb0cf9b31))
+* **downshift:** custom styles, placeholder, islabelvisuallyhidden ([316926e](http://stash.cengage.com:7999/FRONT/react-magma/commits/316926ec04e4a9a951e316155ff4062b819acf58))
+* **downshift:** disabled combobox and console warning for controlled items ([5fa097c](http://stash.cengage.com:7999/FRONT/react-magma/commits/5fa097c06995997c2ca8a2cbc0d22ebcbe057898))
+* **downshift:** disabled combobox and handle blur for combobox ([df80b37](http://stash.cengage.com:7999/FRONT/react-magma/commits/df80b3709b1447f58bf27a6e9af3a61dc227ed4b))
+* **downshift:** do not allow bad selectedItem(s) in select ([c2687b2](http://stash.cengage.com:7999/FRONT/react-magma/commits/c2687b2381078876955d30d01957d5436500482f))
+* **downshift:** do not select item when typing in closed select ([2ee405e](http://stash.cengage.com:7999/FRONT/react-magma/commits/2ee405e952508d0eb88c1db569b8bb746a0d271f))
+* **downshift:** error message styles ([138d65d](http://stash.cengage.com:7999/FRONT/react-magma/commits/138d65dbe2b6d10bbfc9be529f52a13e8d65719e))
+* **downshift:** exporting state change types ([ae1dda3](http://stash.cengage.com:7999/FRONT/react-magma/commits/ae1dda37512a40f8dbea4a4cecb53624e5b67378))
+* **downshift:** fix multi combo select using arrow keys and docs ([f18f1a7](http://stash.cengage.com:7999/FRONT/react-magma/commits/f18f1a73ef0653ba064dcdc6e1016e65fb4c1fa3))
+* **downshift:** hide list with no items but still render it ([0313a0c](http://stash.cengage.com:7999/FRONT/react-magma/commits/0313a0c86ad2ba9fe51ae1f10665c939d1b4f177))
+* **downshift:** inverse styles ([792d3e6](http://stash.cengage.com:7999/FRONT/react-magma/commits/792d3e6fba7e1150c341f2df17975761254233e0))
+* **downshift:** itemToString and async example ([4f12609](http://stash.cengage.com:7999/FRONT/react-magma/commits/4f12609a66d54e8514868190cdadb07a7f4472fc))
+* **downshift:** keyboard functionality with multi-select ([4b7dde1](http://stash.cengage.com:7999/FRONT/react-magma/commits/4b7dde1151ebfaf929917027c31add8a4d41ce2e))
+* **downshift:** keyboard nav for multi-combobox ([e56e309](http://stash.cengage.com:7999/FRONT/react-magma/commits/e56e309326644fa38b1cd3aa23186f622056fe68))
+* **downshift:** make combobox separate component ([c4e205c](http://stash.cengage.com:7999/FRONT/react-magma/commits/c4e205c30622885cf29a8bae3a9eb2feacf19d8b))
+* **downshift:** make sure selectedItems are in items list combobox ([a0acf1e](http://stash.cengage.com:7999/FRONT/react-magma/commits/a0acf1eb76980d9726f7985fef7ed3c58c906d04))
+* **downshift:** multi select and combobox ([e425d8f](http://stash.cengage.com:7999/FRONT/react-magma/commits/e425d8ff530f693b7c2a781772bbf0d97d0b56ef))
+* **downshift:** no options message styles ([3834d58](http://stash.cengage.com:7999/FRONT/react-magma/commits/3834d58b3196ed41687dbebdd1f098a2c8efa700))
+* **downshift:** remove tabindex from selected items ([69e40f4](http://stash.cengage.com:7999/FRONT/react-magma/commits/69e40f49200a26af4e9897251dc9560992ce841b))
+* **downshift:** return focus after clearing, multicombo styles ([de4761d](http://stash.cengage.com:7999/FRONT/react-magma/commits/de4761d2f5f0601d25570d33039a2ec8b4b39880))
+* **downshift:** select first item in list when typing in combobox ([4b42efd](http://stash.cengage.com:7999/FRONT/react-magma/commits/4b42efd70dfd42bdc06a6e9291eb3dbc5b8ef00c))
+* **downshift:** some ux tweaks ([6c185a6](http://stash.cengage.com:7999/FRONT/react-magma/commits/6c185a6a91993fdd5c3ebb6785b839781a7aad77))
+* **downshift:** styles for multi, multicombo ([af18581](http://stash.cengage.com:7999/FRONT/react-magma/commits/af185816da87c6be239062bbaebaab2551bf4586))
+* **downshift:** use default object for combobox docs ([3439acd](http://stash.cengage.com:7999/FRONT/react-magma/commits/3439acd8fc2596f7d82d59944e4a0c6f216d266e))
+* **downshift:** use default object for items in select docs ([3f62792](http://stash.cengage.com:7999/FRONT/react-magma/commits/3f627929ee04dfd36f2892f537dc4db54ff0fbc3))
+* **downshift:** various style adjustments, some docs updates ([9596c98](http://stash.cengage.com:7999/FRONT/react-magma/commits/9596c98de13d85751e94de86c70caaeee7b770b6))
+* **downshift select:** focus whole combobox, not just input ([438f42c](http://stash.cengage.com:7999/FRONT/react-magma/commits/438f42c78368dafe033bb066abe94c2a929b0124))
+* **downshift select:** more ui fixes ([a2da7ea](http://stash.cengage.com:7999/FRONT/react-magma/commits/a2da7ea5dadc334e01a662665330f69cc9a3fdda))
+* **downshift select:** rough implementation of styles ([dc3c893](http://stash.cengage.com:7999/FRONT/react-magma/commits/dc3c893900a8ce08acdd31b3b41bf399775273fd))
+* **downshift select:** style multi-select ([f3f6c4e](http://stash.cengage.com:7999/FRONT/react-magma/commits/f3f6c4e1122f9fd279ebc67b3bbe3f79a6669ed0))
+* **downshift-select:** using downshift to implement new select ([180fcf3](http://stash.cengage.com:7999/FRONT/react-magma/commits/180fcf31fa730398ecf72c4d27d2c7e9bc8806ab))
+* **icons:** alias icon variations that only have a single variation ([7e31832](http://stash.cengage.com:7999/FRONT/react-magma/commits/7e31832f89abf4def1cbaf4bb6b50bf4138b5b82))
+* **icons:** move icons to their own package ([cd34967](http://stash.cengage.com:7999/FRONT/react-magma/commits/cd34967a7c53e69ffc5b0a54ad3cb491292e7ec5))
+* **internationalization:** template strings for select i18n ([6706972](http://stash.cengage.com:7999/FRONT/react-magma/commits/6706972de4f902d22af9d15dc14d24989149daf6))
+* **select:** add more styles to downshift select ([caa9e2a](http://stash.cengage.com:7999/FRONT/react-magma/commits/caa9e2ad8c31162e969b2112b0f50f757be13a31))
+* **select:** styles for multicombobox ([1e95a04](http://stash.cengage.com:7999/FRONT/react-magma/commits/1e95a04580e88851f622aad9ff759984e99159e6))
+* **selects:** fixed generic type for custom items ([009055a](http://stash.cengage.com:7999/FRONT/react-magma/commits/009055ae2f6b3ca4a15fecb389ba2e2ffdcafea6))
+* **selects:** removal of reference to downshift and i18n ([e34d824](http://stash.cengage.com:7999/FRONT/react-magma/commits/e34d824e0ea5d7d9b36e6fc4a31af381496c7a7b))
+
+
+### BREAKING CHANGES
+
+* **legacy-selects:** legacy selects must be imported
+* **select:** Select, AsyncSelect, CreatableSelect, and AsyncCreatableSelect components all
+renamed with Legacy preface
+
+
+
+
+
+# [2.0.0-beta.73](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.72...v2.0.0-beta.73) (2020-09-15)
+
+
+### Bug Fixes
+
+* **dropdown:** some dropdown a11y fixes ([27670bc](http://stash.cengage.com:7999/FRONT/react-magma/commits/27670bc))
+
+
+
+
+
+# [2.0.0-beta.72](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.71...v2.0.0-beta.72) (2020-09-11)
+
+
+### Bug Fixes
+
+* **landing page nav:** fix bug with nav due to merge error ([6293256](http://stash.cengage.com:7999/FRONT/react-magma/commits/6293256))
+* **main nav:** fix highlighting selected items ([f744932](http://stash.cengage.com:7999/FRONT/react-magma/commits/f744932))
+
+
+
+
+
+# [2.0.0-beta.71](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.70...v2.0.0-beta.71) (2020-09-10)
+
+
+### Bug Fixes
+
+* **codesnippits:** fix alignment of code snippets on usage page ([0d6bc9e](http://stash.cengage.com:7999/FRONT/react-magma/commits/0d6bc9e))
+* **input message:** add aria-live around error messages ([bfe5919](http://stash.cengage.com:7999/FRONT/react-magma/commits/bfe5919))
+* **skiplink:** fix skiplink not showing up ([51ef962](http://stash.cengage.com:7999/FRONT/react-magma/commits/51ef962))
+* **skiplink:** make z-index even higher ([16b4cf1](http://stash.cengage.com:7999/FRONT/react-magma/commits/16b4cf1))
+* **timepicker:** apply style props instead of spreading ([2d59f75](http://stash.cengage.com:7999/FRONT/react-magma/commits/2d59f75))
+* **timepicker:** some style fixes to timepicker, add style props ([3963654](http://stash.cengage.com:7999/FRONT/react-magma/commits/3963654))
+
+
+
+
+
+# [2.0.0-beta.70](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.69...v2.0.0-beta.70) (2020-09-03)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.69](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.68...v2.0.0-beta.69) (2020-09-02)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.68](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.67...v2.0.0-beta.68) (2020-09-02)
+
+
+### Bug Fixes
+
+* **dropdown:** allow disable of auto focus on close ([82ef3f0](http://stash.cengage.com:7999/FRONT/react-magma/commits/82ef3f0))
+* **dropdown:** change preventMagmaFocus to a function on event ([c628a93](http://stash.cengage.com:7999/FRONT/react-magma/commits/c628a93))
+* **dropdown:** remove curried function ([15a5ec6](http://stash.cengage.com:7999/FRONT/react-magma/commits/15a5ec6))
+
+
+
+
+
+# [2.0.0-beta.67](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.66...v2.0.0-beta.67) (2020-08-31)
+
+
+### Bug Fixes
+
+* **textarea:** add ref as prop ([127ea1d](http://stash.cengage.com:7999/FRONT/react-magma/commits/127ea1d))
+
+
+
+
+
+# [2.0.0-beta.66](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.65...v2.0.0-beta.66) (2020-08-31)
+
+
+### Features
+
+* **colors:** add teal, update orange and red ([f4b81d2](http://stash.cengage.com:7999/FRONT/react-magma/commits/f4b81d2))
+
+
+
+
+
+# [2.0.0-beta.65](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.64...v2.0.0-beta.65) (2020-08-31)
+
+
+### Bug Fixes
+
+* **checkbox, toggle radio:** fix styling bug ([a2f7d00](http://stash.cengage.com:7999/FRONT/react-magma/commits/a2f7d00))
+
+
+
+
+
+# [2.0.0-beta.64](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.63...v2.0.0-beta.64) (2020-08-26)
+
+
+### Features
+
+* **data table:** changes based on PR feedback ([c046eeb](http://stash.cengage.com:7999/FRONT/react-magma/commits/c046eeb))
+* **data table:** context for density, zebrastripes, vertical border ([f5c1557](http://stash.cengage.com:7999/FRONT/react-magma/commits/f5c1557))
+* **data table:** don't apply hover styles to header rows ([76a7a7a](http://stash.cengage.com:7999/FRONT/react-magma/commits/76a7a7a))
+* **data table:** inverse styles ([2371f3e](http://stash.cengage.com:7999/FRONT/react-magma/commits/2371f3e))
+* **data table:** more sort props ([76029dc](http://stash.cengage.com:7999/FRONT/react-magma/commits/76029dc))
+* **data table:** styles for sortable th ([654c993](http://stash.cengage.com:7999/FRONT/react-magma/commits/654c993))
+* **data table:** updated hover styles, cell padding, some docs updates ([0fc239d](http://stash.cengage.com:7999/FRONT/react-magma/commits/0fc239d))
+* **data tables:** more styles, incl row hover styles ([f3a1120](http://stash.cengage.com:7999/FRONT/react-magma/commits/f3a1120))
+* **data-table:** inverse styles ([f7f1bd8](http://stash.cengage.com:7999/FRONT/react-magma/commits/f7f1bd8))
+* **data-table:** min-width and horiztonal scrolling ([decc74d](http://stash.cengage.com:7999/FRONT/react-magma/commits/decc74d))
+* **table:** align prop for cells ([ad078dd](http://stash.cengage.com:7999/FRONT/react-magma/commits/ad078dd))
+* **table:** cell widths, header cell scope ([d3cf365](http://stash.cengage.com:7999/FRONT/react-magma/commits/d3cf365))
+* **table:** start of sortable tables ([4c0e946](http://stash.cengage.com:7999/FRONT/react-magma/commits/4c0e946))
+* **table:** very basic data table ([647dbba](http://stash.cengage.com:7999/FRONT/react-magma/commits/647dbba))
+
+
+
+
+
+# [2.0.0-beta.63](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.62...v2.0.0-beta.63) (2020-08-24)
+
+
+### Bug Fixes
+
+* **input:** fixed baseinput update logic ([ea8f05c](http://stash.cengage.com:7999/FRONT/react-magma/commits/ea8f05c))
+
+
+
+
+
+# [2.0.0-beta.62](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.61...v2.0.0-beta.62) (2020-08-24)
+
+
+### Bug Fixes
+
+* **input:** allow input reset to empty string ([453fbe2](http://stash.cengage.com:7999/FRONT/react-magma/commits/453fbe2))
+
+
+
+
+
+# [2.0.0-beta.61](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.60...v2.0.0-beta.61) (2020-08-11)
+
+
+### Bug Fixes
+
+* **CU-1370:** modal usabilty with input ([4219836](http://stash.cengage.com:7999/FRONT/react-magma/commits/4219836))
+* **magma-221/modal:** update click outside behaviour ([15dc9e6](http://stash.cengage.com:7999/FRONT/react-magma/commits/15dc9e6))
+
+
+
+
+
+# [2.0.0-beta.60](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.59...v2.0.0-beta.60) (2020-08-07)
+
+
+### Bug Fixes
+
+* **tooltip:** add aria-hidden when tooltip is visually hidden ([b5c1182](http://stash.cengage.com:7999/FRONT/react-magma/commits/b5c1182))
+
+
+
+
+
+# [2.0.0-beta.59](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.58...v2.0.0-beta.59) (2020-07-30)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.58](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.57...v2.0.0-beta.58) (2020-07-30)
+
+
+### Bug Fixes
+
+* **modal:** change prop type, remove event from inline handler ([3683999](http://stash.cengage.com:7999/FRONT/react-magma/commits/3683999))
+* **modal:** fix close button for modal in modal ([d07490e](http://stash.cengage.com:7999/FRONT/react-magma/commits/d07490e))
+
+
+
+
+
+# [2.0.0-beta.57](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.56...v2.0.0-beta.57) (2020-07-27)
+
+
+### Features
+
+* **alert:** only show progress ring on toast ([c5cad21](http://stash.cengage.com:7999/FRONT/react-magma/commits/c5cad21))
+* **progress ring:** animate progress ring ([2b975e8](http://stash.cengage.com:7999/FRONT/react-magma/commits/2b975e8))
+* **progress ring:** change default value and prop name for radius ([7a953e6](http://stash.cengage.com:7999/FRONT/react-magma/commits/7a953e6))
+* **progress ring:** start of timer animation ([9c32790](http://stash.cengage.com:7999/FRONT/react-magma/commits/9c32790))
+* **toast:** add progress ring to toast ([7cc0bc8](http://stash.cengage.com:7999/FRONT/react-magma/commits/7cc0bc8))
+* **toast:** increase toast timer interval ([d8bde7f](http://stash.cengage.com:7999/FRONT/react-magma/commits/d8bde7f))
+* **toast:** make timer based on actual toast duration ([2a4736f](http://stash.cengage.com:7999/FRONT/react-magma/commits/2a4736f))
+* **toast:** pause dismiss timer on focus not just hover ([d486ba2](http://stash.cengage.com:7999/FRONT/react-magma/commits/d486ba2))
+* **toast:** pause toast on hover with countdown ([2afaecc](http://stash.cengage.com:7999/FRONT/react-magma/commits/2afaecc))
+
+
+
+
+
+# [2.0.0-beta.56](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.55...v2.0.0-beta.56) (2020-07-22)
+
+
+### Features
+
+* **double arrow icon:** add double arrow icon for table sort ([856c2ca](http://stash.cengage.com:7999/FRONT/react-magma/commits/856c2ca))
+
+
+
+
+
+# [2.0.0-beta.55](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.54...v2.0.0-beta.55) (2020-07-15)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.54](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.53...v2.0.0-beta.54) (2020-07-14)
+
+
+### Bug Fixes
+
+* **datepicker:** do not focus a typed date if out of range ([6e03fe5](http://stash.cengage.com:7999/FRONT/react-magma/commits/6e03fe5))
+* **generateid:** fix issue with id generating twice ([8ac508d](http://stash.cengage.com:7999/FRONT/react-magma/commits/8ac508d))
+* **toast:** fix extra bottom offset, remove min width for small screen ([0dd4355](http://stash.cengage.com:7999/FRONT/react-magma/commits/0dd4355))
+
+
+### Features
+
+* **alert:** font size 14px on sm screen, fix alert style ([4991141](http://stash.cengage.com:7999/FRONT/react-magma/commits/4991141))
+* **banner:** banner styles ([b12d5e9](http://stash.cengage.com:7999/FRONT/react-magma/commits/b12d5e9))
+* **datepicker:** add styles props ([252d1eb](http://stash.cengage.com:7999/FRONT/react-magma/commits/252d1eb))
+* **toast:** header, visual for multiple toasts ([7d67d78](http://stash.cengage.com:7999/FRONT/react-magma/commits/7d67d78))
+* **toast:** queue of multiple toasts ([63e3600](http://stash.cengage.com:7999/FRONT/react-magma/commits/63e3600))
+* **toast:** return focus to triggered element if still in dom ([fab93fa](http://stash.cengage.com:7999/FRONT/react-magma/commits/fab93fa))
+* **toast container:** create toast container to hold multiple toasts ([a772963](http://stash.cengage.com:7999/FRONT/react-magma/commits/a772963))
+* **toasts:** multiple toasts stacked vertically ([28a6cd0](http://stash.cengage.com:7999/FRONT/react-magma/commits/28a6cd0))
+* **toasts:** stack toasts vertically using ref for toastarray ([784bea2](http://stash.cengage.com:7999/FRONT/react-magma/commits/784bea2))
+* **toasts:** style tweaks for small screen toasts, bottom offset ([0513855](http://stash.cengage.com:7999/FRONT/react-magma/commits/0513855))
+
+
+
+
+
+# [2.0.0-beta.53](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.52...v2.0.0-beta.53) (2020-07-01)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.52](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.51...v2.0.0-beta.52) (2020-06-25)
+
+
+### Bug Fixes
+
+* **i18n:** possible fix for warning by moving interface to separate file ([e638117](http://stash.corp.web:7999/FRONT/react-magma/commits/e638117))
+
+
+
+
+
+# [2.0.0-beta.51](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.50...v2.0.0-beta.51) (2020-06-24)
+
+
+### Bug Fixes
+
+* **dropdownbutton:** allow iconPosition to be specified on custom btn ([5b203d8](http://stash.corp.web:7999/FRONT/react-magma/commits/5b203d8))
+
+
+
+
+
+# [2.0.0-beta.50](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.49...v2.0.0-beta.50) (2020-06-01)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.49](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.48...v2.0.0-beta.49) (2020-05-27)
+
+
+### Features
+
+* **global:** base font size ([2c176e8](http://stash.corp.web:7999/FRONT/react-magma/commits/2c176e8))
+* base line-height ([ab0b4be](http://stash.corp.web:7999/FRONT/react-magma/commits/ab0b4be))
+* **global styles:** body line-height ([ec16142](http://stash.corp.web:7999/FRONT/react-magma/commits/ec16142))
+* **headings:** font-sizes ([5cd55f5](http://stash.corp.web:7999/FRONT/react-magma/commits/5cd55f5))
+
+
+
+
+
+# [2.0.0-beta.48](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.47...v2.0.0-beta.48) (2020-05-27)
+
+
+### Features
+
+* **dropdown:** allow for wrapped menu items ([4d995c6](http://stash.corp.web:7999/FRONT/react-magma/commits/4d995c6))
+
+
+
+
+
+# [2.0.0-beta.47](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.46...v2.0.0-beta.47) (2020-05-27)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.46](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.45...v2.0.0-beta.46) (2020-05-26)
+
+
+### Features
+
+* **checkbox:** control checkbox based on checked prop ([de4a422](http://stash.corp.web:7999/FRONT/react-magma/commits/de4a422))
+
+
+
+
+
+# [2.0.0-beta.45](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.44...v2.0.0-beta.45) (2020-05-26)
+
+
+### Features
+
+* **ssr:** return null while loading selects ([6fe700f](http://stash.corp.web:7999/FRONT/react-magma/commits/6fe700f))
+
+
+
+
+
+# [2.0.0-beta.44](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.43...v2.0.0-beta.44) (2020-05-19)
+
+
+### Features
+
+* **breakpoints:** add useMediaQuery for js implementation ([b2f4da7](http://stash.corp.web:7999/FRONT/react-magma/commits/b2f4da7))
+* **breakpoints:** remove js implementation, move hook ([fb71533](http://stash.corp.web:7999/FRONT/react-magma/commits/fb71533))
+* **breakpoints:** take breakpoints from theme ([cc59586](http://stash.corp.web:7999/FRONT/react-magma/commits/cc59586))
+* **breakpoints container:** new container to hold multiple breakpoints ([9a94fbf](http://stash.corp.web:7999/FRONT/react-magma/commits/9a94fbf))
+* **breakpoints container:** support test id, add more tests ([1801d87](http://stash.corp.web:7999/FRONT/react-magma/commits/1801d87))
+* **breakpoints-container:** support just a few breakpoints ([1931031](http://stash.corp.web:7999/FRONT/react-magma/commits/1931031))
+* **i18n:** add more to docs for date picker ([904de39](http://stash.corp.web:7999/FRONT/react-magma/commits/904de39))
+* **i18n:** adding in i18n context for overrides ([e29c238](http://stash.corp.web:7999/FRONT/react-magma/commits/e29c238))
+* **i18n:** setup i18n context and implement overrides ([185a601](http://stash.corp.web:7999/FRONT/react-magma/commits/185a601))
+* **usemediaquery, bpcontainer:** tests ([a4e1ea7](http://stash.corp.web:7999/FRONT/react-magma/commits/a4e1ea7))
+
+
+
+
+
+# [2.0.0-beta.43](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.42...v2.0.0-beta.43) (2020-05-12)
+
+
+### Bug Fixes
+
+* **search:** border radius ios ([1979723](http://stash.corp.web:7999/FRONT/react-magma/commits/1979723))
+
+
+
+
+
+# [2.0.0-beta.42](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.41...v2.0.0-beta.42) (2020-05-12)
+
+
+### Features
+
+* **dropdown:** allow left and right for dropdirection ([ec46ea7](http://stash.corp.web:7999/FRONT/react-magma/commits/ec46ea7))
+* **dropdown:** change alignment enum to accept start and end ([54b25f3](http://stash.corp.web:7999/FRONT/react-magma/commits/54b25f3))
+* **dropdown:** option for dropleft and dropright ([7b7cd47](http://stash.corp.web:7999/FRONT/react-magma/commits/7b7cd47))
+
+
+
+
+
+# [2.0.0-beta.41](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.40...v2.0.0-beta.41) (2020-05-11)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.40](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.39...v2.0.0-beta.40) (2020-04-24)
+
+
+### Features
+
+* **tabs:** export enums for Tabs component ([a1ca8c0](http://stash.corp.web:7999/FRONT/react-magma/commits/a1ca8c0))
+
+
+
+
+
+# [2.0.0-beta.39](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.38...v2.0.0-beta.39) (2020-04-23)
+
+
+### Bug Fixes
+
+* **dropdown-button:** fix types for dropdown button ([27dfa3d](http://stash.corp.web:7999/FRONT/react-magma/commits/27dfa3d))
+
+
+### Features
+
+* **tabs:** allow custom wrapped tab components ([db5c288](http://stash.corp.web:7999/FRONT/react-magma/commits/db5c288))
+
+
+
+
+
+# [2.0.0-beta.38](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.37...v2.0.0-beta.38) (2020-04-21)
+
+
+### Bug Fixes
+
+* **tabs:** allow scrolling without buttons ([f0e256b](http://stash.corp.web:7999/FRONT/react-magma/commits/f0e256b))
+* **tabs:** clean up tab and tabs props ([c4fb082](http://stash.corp.web:7999/FRONT/react-magma/commits/c4fb082))
+* **tabs:** scroll button size, header z-index ([58ec54c](http://stash.corp.web:7999/FRONT/react-magma/commits/58ec54c))
+
+
+### Features
+
+* **tab-props:** make component and children mutually exclusive in Tab ([3e2bc01](http://stash.corp.web:7999/FRONT/react-magma/commits/3e2bc01))
+* **tabs:** add aria-label from props to tabs container ([c46da40](http://stash.corp.web:7999/FRONT/react-magma/commits/c46da40))
+* **tabs:** add isInverse to TabsPanelsContainer ([ad5bf7e](http://stash.corp.web:7999/FRONT/react-magma/commits/ad5bf7e))
+* **tabs:** hovering buttons no longer overlap selected tab ([0b95a44](http://stash.corp.web:7999/FRONT/react-magma/commits/0b95a44))
+* **tabs:** inverse styles on container, panels ([9ab5438](http://stash.corp.web:7999/FRONT/react-magma/commits/9ab5438))
+* **tabs:** next and prev tab button styles ([e37b2bf](http://stash.corp.web:7999/FRONT/react-magma/commits/e37b2bf))
+* **tabs:** remove path prop and passthrough props to component ([cecaa23](http://stash.corp.web:7999/FRONT/react-magma/commits/cecaa23))
+* **tabs:** scroll in to view on tab selection ([4cff42a](http://stash.corp.web:7999/FRONT/react-magma/commits/4cff42a))
+* **tabs:** scroll into view when covered by buttons ([cd86d92](http://stash.corp.web:7999/FRONT/react-magma/commits/cd86d92))
+* **tabs:** support all directions for borderPosition, iconPosition ([d8b01aa](http://stash.corp.web:7999/FRONT/react-magma/commits/d8b01aa))
+* **tabs:** tab panel props optional ([e35f57f](http://stash.corp.web:7999/FRONT/react-magma/commits/e35f57f))
+
+
+
+
+
+# [2.0.0-beta.37](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.36...v2.0.0-beta.37) (2020-04-15)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.36](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.35...v2.0.0-beta.36) (2020-04-14)
+
+
+### Bug Fixes
+
+* **buttons:** provide default styles for unknown props ([b4cdefe](http://stash.corp.web:7999/FRONT/react-magma/commits/b4cdefe))
+
+
+### Features
+
+* **dropdown:** active item ([529d123](http://stash.corp.web:7999/FRONT/react-magma/commits/529d123))
+* **dropdown:** add examples with checkboxes, add textposition prop ([f843e38](http://stash.corp.web:7999/FRONT/react-magma/commits/f843e38))
+* **dropdown:** add max-height to menu ([ff59fea](http://stash.corp.web:7999/FRONT/react-magma/commits/ff59fea))
+* **dropdown:** add value prop for active items ([fc697ec](http://stash.corp.web:7999/FRONT/react-magma/commits/fc697ec))
+* **dropdown:** allow custom aria-label on split toggle ([2ebdc55](http://stash.corp.web:7999/FRONT/react-magma/commits/2ebdc55))
+* **dropdown:** allow maxHeight and width props to be numbers ([f406cf5](http://stash.corp.web:7999/FRONT/react-magma/commits/f406cf5))
+* **dropdown:** arrow up functionality and cleanup of arrow keypress ([04aa0f6](http://stash.corp.web:7999/FRONT/react-magma/commits/04aa0f6))
+* **dropdown:** auto-assign index to dropdown ([532577b](http://stash.corp.web:7999/FRONT/react-magma/commits/532577b))
+* **dropdown:** disabled item ([4eb23b3](http://stash.corp.web:7999/FRONT/react-magma/commits/4eb23b3))
+* **dropdown:** dividers and headings ([89c371b](http://stash.corp.web:7999/FRONT/react-magma/commits/89c371b))
+* **dropdown:** fix handleblur ([c02cf9e](http://stash.corp.web:7999/FRONT/react-magma/commits/c02cf9e))
+* **dropdown:** keyboard behavior ([1cdaa20](http://stash.corp.web:7999/FRONT/react-magma/commits/1cdaa20))
+* **dropdown:** keydown behavior for items ([343fe93](http://stash.corp.web:7999/FRONT/react-magma/commits/343fe93))
+* **dropdown:** more examples, tests, focus button on esc ([32b077f](http://stash.corp.web:7999/FRONT/react-magma/commits/32b077f))
+* **dropdown:** more form examples ([1dc9d00](http://stash.corp.web:7999/FRONT/react-magma/commits/1dc9d00))
+* **dropdown:** move menu, toggle to independant components ([3f203a7](http://stash.corp.web:7999/FRONT/react-magma/commits/3f203a7))
+* **dropdown:** move more into context, add tests ([e74da40](http://stash.corp.web:7999/FRONT/react-magma/commits/e74da40))
+* **dropdown:** rename component, remove list markup, style fix ([04512aa](http://stash.corp.web:7999/FRONT/react-magma/commits/04512aa))
+* **dropdown:** renamed components ([ca81543](http://stash.corp.web:7999/FRONT/react-magma/commits/ca81543))
+* **dropdown:** skip focusing disabled item ([79e046a](http://stash.corp.web:7999/FRONT/react-magma/commits/79e046a))
+* **dropdown:** split button ([247e9ba](http://stash.corp.web:7999/FRONT/react-magma/commits/247e9ba))
+* **dropdown:** start component and basic styles ([9947056](http://stash.corp.web:7999/FRONT/react-magma/commits/9947056))
+* **dropdown:** stop blur when clicking inside dropdown ([bd03344](http://stash.corp.web:7999/FRONT/react-magma/commits/bd03344))
+* **dropdown:** very start of dropdown component ([4e15f75](http://stash.corp.web:7999/FRONT/react-magma/commits/4e15f75))
+
+
+
+
+
+# [2.0.0-beta.35](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.34...v2.0.0-beta.35) (2020-04-14)
+
+
+### Bug Fixes
+
+* **banners:** fix padding ([1fc6cc1](http://stash.corp.web:7999/FRONT/react-magma/commits/1fc6cc1))
+
+
+### Features
+
+* **alert:** close button styles ([b64acc9](http://stash.corp.web:7999/FRONT/react-magma/commits/b64acc9))
+* **banner:** add icon ([6e6102d](http://stash.corp.web:7999/FRONT/react-magma/commits/6e6102d))
+* **banner:** start of banner alert ([d32805e](http://stash.corp.web:7999/FRONT/react-magma/commits/d32805e))
+* **banner alerrt:** action buttons ([e685812](http://stash.corp.web:7999/FRONT/react-magma/commits/e685812))
+* **banner alert:** close button and icons ([fd2b980](http://stash.corp.web:7999/FRONT/react-magma/commits/fd2b980))
+* **modal:** add backdrop blur ([adc33be](http://stash.corp.web:7999/FRONT/react-magma/commits/adc33be))
+
+
+
+
+
+# [2.0.0-beta.34](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.33...v2.0.0-beta.34) (2020-04-09)
+
+
+### Bug Fixes
+
+* **search:** add and document style and testid props ([ce089c6](http://stash.corp.web:7999/FRONT/react-magma/commits/ce089c6))
+* **tabs:** fix TabsProps interface ([acd9e41](http://stash.corp.web:7999/FRONT/react-magma/commits/acd9e41))
+
+
+
+
+
+# [2.0.0-beta.33](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.32...v2.0.0-beta.33) (2020-04-08)
+
+
+### Features
+
+* **toast:** upadted animation, mobile styles ([96e4519](http://stash.corp.web:7999/FRONT/react-magma/commits/96e4519))
+* **toasts:** update styles based on orion feedback ([79f6660](http://stash.corp.web:7999/FRONT/react-magma/commits/79f6660))
+
+
+
+
+
+# [2.0.0-beta.32](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.31...v2.0.0-beta.32) (2020-04-07)
+
+
+### Features
+
+* **calendar,search icon:** update calendar icon, update icon sizes ([444c08e](http://stash.corp.web:7999/FRONT/react-magma/commits/444c08e))
+* **focus:** update color ([7bd022c](http://stash.corp.web:7999/FRONT/react-magma/commits/7bd022c))
+* **icons:** new icons -- open envelopes and signout ([4d8c2e7](http://stash.corp.web:7999/FRONT/react-magma/commits/4d8c2e7))
+
+
+
+
+
+# [2.0.0-beta.31](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.30...v2.0.0-beta.31) (2020-04-03)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.30](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.29...v2.0.0-beta.30) (2020-04-01)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.29](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.28...v2.0.0-beta.29) (2020-03-30)
+
+
+### Features
+
+* **select:** allow for custom components to be passed in ([dc8cffd](http://stash.corp.web:7999/FRONT/react-magma/commits/dc8cffd))
+
+
+
+
+
+# [2.0.0-beta.28](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.27...v2.0.0-beta.28) (2020-03-30)
+
+
+### Bug Fixes
+
+* **radio, checkbox:** border color on checked and indeterminate ([6f0436e](http://stash.corp.web:7999/FRONT/react-magma/commits/6f0436e))
+
+
+
+
+
+# [2.0.0-beta.27](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.26...v2.0.0-beta.27) (2020-03-25)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.26](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.25...v2.0.0-beta.26) (2020-03-25)
+
+
+### Bug Fixes
+
+* **input labels:** allow react node not just string ([a95f9b8](http://stash.corp.web:7999/FRONT/react-magma/commits/a95f9b8))
+* **tooltip:** allow custom styling of tooltip container and element ([e7b3083](http://stash.corp.web:7999/FRONT/react-magma/commits/e7b3083))
+
+
+
+
+
+# [2.0.0-beta.25](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.24...v2.0.0-beta.25) (2020-03-09)
+
+
+### Bug Fixes
+
+* **input message:** increase line-height ([c9eb328](http://stash.corp.web:7999/FRONT/react-magma/commits/c9eb328))
+* **input message:** tighten spacing ([3b0d7ca](http://stash.corp.web:7999/FRONT/react-magma/commits/3b0d7ca))
+* **inputs:** explicitly set font family ([560e870](http://stash.corp.web:7999/FRONT/react-magma/commits/560e870))
+* **inputs:** fix focus color ([28d6233](http://stash.corp.web:7999/FRONT/react-magma/commits/28d6233))
+* **textarea:** use value not children ([e6326f4](http://stash.corp.web:7999/FRONT/react-magma/commits/e6326f4))
+* **timepicker:** allow timepicker to display well in flex div ([136cc93](http://stash.corp.web:7999/FRONT/react-magma/commits/136cc93))
+
+
+### Features
+
+* **icon button:** allow custom icon size ([c62c62e](http://stash.corp.web:7999/FRONT/react-magma/commits/c62c62e))
+* **magma palette:** add purple to palette, also change order of docs ([6606932](http://stash.corp.web:7999/FRONT/react-magma/commits/6606932))
+
+
+
+
+
+# [2.0.0-beta.24](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.23...v2.0.0-beta.24) (2020-02-19)
+
+
+### Bug Fixes
+
+* **tabs:** change inverse prop to isInverse ([3371d7f](http://stash.corp.web:7999/FRONT/react-magma/commits/3371d7f))
+* **tabs:** code logic fixes ([0f06338](http://stash.corp.web:7999/FRONT/react-magma/commits/0f06338))
+* **tabs:** custom tab component fixes and examples for in in docs ([d9f5ea3](http://stash.corp.web:7999/FRONT/react-magma/commits/d9f5ea3))
+* **tabs:** fix and move tests toward tab component ([40552a0](http://stash.corp.web:7999/FRONT/react-magma/commits/40552a0))
+* **tabs:** fix aria attributes ([29799de](http://stash.corp.web:7999/FRONT/react-magma/commits/29799de))
+* **tabs:** fix function for reuse ([1c298a0](http://stash.corp.web:7999/FRONT/react-magma/commits/1c298a0))
+* **tabs:** fix max and min width of tab ([12f78d1](http://stash.corp.web:7999/FRONT/react-magma/commits/12f78d1))
+* **tabs:** fix styles ([aafed31](http://stash.corp.web:7999/FRONT/react-magma/commits/aafed31))
+* **tabs:** fix styles and themes ([41810c9](http://stash.corp.web:7999/FRONT/react-magma/commits/41810c9))
+* **tabs:** fix tests ([17ac74d](http://stash.corp.web:7999/FRONT/react-magma/commits/17ac74d))
+* **tabs:** fixed interfaces for tab components ([bfb4dcf](http://stash.corp.web:7999/FRONT/react-magma/commits/bfb4dcf))
+* **tabs:** minor fix ([6f84da7](http://stash.corp.web:7999/FRONT/react-magma/commits/6f84da7))
+* **tabs:** tabs interface component was extended ([fc6cd45](http://stash.corp.web:7999/FRONT/react-magma/commits/fc6cd45))
+* **tabs:** use template literal syntax for styled components ([7901c80](http://stash.corp.web:7999/FRONT/react-magma/commits/7901c80))
+
+
+### Code Refactoring
+
+* **tooltip:** make trigger children, make content a prop ([b082bc0](http://stash.corp.web:7999/FRONT/react-magma/commits/b082bc0))
+
+
+### Features
+
+* **date and timepickers:** allow custom message styles ([e9f4d35](http://stash.corp.web:7999/FRONT/react-magma/commits/e9f4d35))
+* **icon-button:** Make IconButton a separate component from Button ([d7b3767](http://stash.corp.web:7999/FRONT/react-magma/commits/d7b3767))
+* **input message:** allow custom styles on input message ([7cf75a4](http://stash.corp.web:7999/FRONT/react-magma/commits/7cf75a4))
+* **input message:** allow input message to take node ([50961f8](http://stash.corp.web:7999/FRONT/react-magma/commits/50961f8))
+* **inputs:** New separate components for inputs, inc pword, textarea ([b39b3ec](http://stash.corp.web:7999/FRONT/react-magma/commits/b39b3ec))
+* **password:** create separate password component ([566f11b](http://stash.corp.web:7999/FRONT/react-magma/commits/566f11b))
+* **search:** isLoading prop for search, docs for spinner as icon ([f0a051e](http://stash.corp.web:7999/FRONT/react-magma/commits/f0a051e))
+* **tabs:** Add in typing for component vs children tab ([eb15ce1](http://stash.corp.web:7999/FRONT/react-magma/commits/eb15ce1))
+* **tabs:** add padding to tabPanel, minor doc updates ([8650ba0](http://stash.corp.web:7999/FRONT/react-magma/commits/8650ba0))
+* **tabs:** added tabs component ([0dc0439](http://stash.corp.web:7999/FRONT/react-magma/commits/0dc0439))
+* **tabs:** allow for flexible widths ([8e29e15](http://stash.corp.web:7999/FRONT/react-magma/commits/8e29e15))
+* **tabs:** allow nav tabs to show icon ([8b12fd6](http://stash.corp.web:7999/FRONT/react-magma/commits/8b12fd6))
+* **tabs:** make alignment an enum, remove children from custom tabs ([57f7dee](http://stash.corp.web:7999/FRONT/react-magma/commits/57f7dee))
+* **tabs:** more styles, move props to container, not tabs ([1a467d7](http://stash.corp.web:7999/FRONT/react-magma/commits/1a467d7))
+* **tabs:** more styling for tabs, incl animation ([c3019cc](http://stash.corp.web:7999/FRONT/react-magma/commits/c3019cc))
+* **tabs:** refer to theme instead of magma directly ([6d6d241](http://stash.corp.web:7999/FRONT/react-magma/commits/6d6d241))
+* **tabs:** rename boolean props ([93cb9fd](http://stash.corp.web:7999/FRONT/react-magma/commits/93cb9fd))
+* **tabs:** update styles based on UX feedback ([35246e5](http://stash.corp.web:7999/FRONT/react-magma/commits/35246e5))
+* **time-picker:** allow typed input and passed in value ([90ffbe8](http://stash.corp.web:7999/FRONT/react-magma/commits/90ffbe8))
+* **timepicker:** add ids from core ([5bb8210](http://stash.corp.web:7999/FRONT/react-magma/commits/5bb8210))
+* **timepicker:** docs page and basic style ([f07bf06](http://stash.corp.web:7999/FRONT/react-magma/commits/f07bf06))
+* **timepicker:** docs update, fix bg color, remove unused ref ([af45728](http://stash.corp.web:7999/FRONT/react-magma/commits/af45728))
+* **timepicker:** error and helper messages ([3d2f22a](http://stash.corp.web:7999/FRONT/react-magma/commits/3d2f22a))
+* **timepicker:** individual fields for time input ([39148c6](http://stash.corp.web:7999/FRONT/react-magma/commits/39148c6))
+* **timepicker:** start of timepicker ([6b40a8d](http://stash.corp.web:7999/FRONT/react-magma/commits/6b40a8d))
+* **timepicker:** timepicker! ([5e20d02](http://stash.corp.web:7999/FRONT/react-magma/commits/5e20d02))
+
+
+### BREAKING CHANGES
+
+* **icon-button:** Button component no longer accepts the icon props. IconButton provides the
+functionality now
+* **tooltip:** Removed the trigger prop from tooltip and we are now using the children to provide
+* **inputs:** Many props removed from Input component.  Password related props have been moved to
+PasswordInput.  HelpLink related props removed and replaced with simply passing children. Multiline
+prop removed and replaced with separate Textarea component.  Error and help messaging removed from
+search.  New BaseInput component created.
+
+
+
+
+
+# [2.0.0-beta.23](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.22...v2.0.0-beta.23) (2020-02-07)
+
+
+### Bug Fixes
+
+* **modal:** remove console log ([cb0113c](http://stash.corp.web:7999/FRONT/react-magma/commits/cb0113c))
+* **modal:** Stop multiple onClose function calls ([d159b00](http://stash.corp.web:7999/FRONT/react-magma/commits/d159b00))
+* type error when theme is passed to styled component ([3e1d95b](http://stash.corp.web:7999/FRONT/react-magma/commits/3e1d95b))
+
+
+
+
+
+# [2.0.0-beta.22](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.21...v2.0.0-beta.22) (2020-02-04)
+
+
+### Documentation
+
+* **select:** upgrade docs to reflect react-select props change ([2de8b50](http://stash.corp.web:7999/FRONT/react-magma/commits/2de8b50))
+
+
+### BREAKING CHANGES
+
+* **select:** react-select props api breaking change
+
+
+
+
+
+# [2.0.0-beta.21](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.20...v2.0.0-beta.21) (2020-01-29)
+
+
+### Features
+
+* New and updated icons ([e204ef3](http://stash.corp.web:7999/FRONT/react-magma/commits/e204ef3))
+
+
+### BREAKING CHANGES
+
+* Added new stats icons. Added new empty star icon. Updated reply and forward icons.
+
+
+
+
+
+# [2.0.0-beta.20](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.19...v2.0.0-beta.20) (2020-01-29)
+
+
+### Features
+
+* Icons audit ([52444cd](http://stash.corp.web:7999/FRONT/react-magma/commits/52444cd))
+
+
+### BREAKING CHANGES
+
+* Resolved redundant icons. Remove unnecessary icons: ArrowUp3, ArrowDown3,
+ArrowLeft3, ArrowRight3, Exclamation, List3, Menu2, Menu3, Menu4, PieChart, Question2, Question,
+Spinner2, Star, ThList, Timed, Unlock, Wrench3
+
+
+
+
+
+# [2.0.0-beta.19](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.18...v2.0.0-beta.19) (2020-01-28)
+
+
+### Bug Fixes
+
+* **ref:** Fix references for Search/Input components ([4eace40](http://stash.corp.web:7999/FRONT/react-magma/commits/4eace40))
+
+
+
+
+
+# [2.0.0-beta.18](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.17...v2.0.0-beta.18) (2020-01-21)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.17](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.16...v2.0.0-beta.17) (2020-01-15)
+
+
+### Features
+
+* **hide at breakponit:** new component to hide at specified breakpoinit ([786eeec](http://stash.corp.web:7999/FRONT/react-magma/commits/786eeec))
+* **hideatbreakpoint:** remove ref, update tests ([7a932a3](http://stash.corp.web:7999/FRONT/react-magma/commits/7a932a3))
+
+
+
+
+
+# [2.0.0-beta.16](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.15...v2.0.0-beta.16) (2020-01-15)
+
+
+### Features
+
+* **date-picker:** add aria label for disabled day state ([7fe8184](http://stash.corp.web:7999/FRONT/react-magma/commits/7fe8184))
+* **date-picker:** adding in allowable dates ([6565fe8](http://stash.corp.web:7999/FRONT/react-magma/commits/6565fe8))
+* **date-picker:** allow navigation but not selection of disabled dates ([e4930a4](http://stash.corp.web:7999/FRONT/react-magma/commits/e4930a4))
+
+
+
+
+
+# [2.0.0-beta.15](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.14...v2.0.0-beta.15) (2020-01-13)
+
+
+### Features
+
+* **checkbox:** separate indeterminate checkbox ([fea93c1](http://stash.corp.web:7999/FRONT/react-magma/commits/fea93c1))
+* **checkbox:** share styles between indeterminate checkbox and checkbox ([03f692e](http://stash.corp.web:7999/FRONT/react-magma/commits/03f692e))
+* **checkbox:** use effect after all status updates ([cbb1a2a](http://stash.corp.web:7999/FRONT/react-magma/commits/cbb1a2a))
+
+
+### BREAKING CHANGES
+
+* **checkbox:** removed indeterminiate prop from checkbox, put in separate component
+
+MAGMA-196
+
+
+
+
+
+# [2.0.0-beta.14](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.13...v2.0.0-beta.14) (2020-01-13)
+
+
+### Features
+
+* **badge:** add 1px border to light badge ([d086865](http://stash.corp.web:7999/FRONT/react-magma/commits/d086865))
+
+
+
+
+
+# [2.0.0-beta.13](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.12...v2.0.0-beta.13) (2020-01-13)
+
+
+### Features
+
+* **breadcrumb:** update font size ([a8d053d](http://stash.corp.web:7999/FRONT/react-magma/commits/a8d053d))
+
+
+
+
+
+# [2.0.0-beta.12](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.11...v2.0.0-beta.12) (2020-01-13)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.11](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.10...v2.0.0-beta.11) (2020-01-07)
+
+
+### Features
+
+* **alert, toast:** change dismissible prop name to isDismissible ([99d6786](http://stash.corp.web:7999/FRONT/react-magma/commits/99d6786))
+* rename inverse prop to isInverse ([6a95471](http://stash.corp.web:7999/FRONT/react-magma/commits/6a95471))
+* **button:** change fullWidth prop to isFullWidth ([3b4477b](http://stash.corp.web:7999/FRONT/react-magma/commits/3b4477b))
+* **input:** rename hidePasswordMaskButton to isPasswordMaskButtonHidden ([4968f74](http://stash.corp.web:7999/FRONT/react-magma/commits/4968f74))
+* **input:** rename labelVisuallyHidden prop to isLabelVisuallyHidden ([3939dd7](http://stash.corp.web:7999/FRONT/react-magma/commits/3939dd7))
+* **modal:** change boolean prop names ([2723ed7](http://stash.corp.web:7999/FRONT/react-magma/commits/2723ed7))
+* **progressbar:** change boolean prop names ([0788dd0](http://stash.corp.web:7999/FRONT/react-magma/commits/0788dd0))
+* **radio, checkbox, toggle, formgroup:** textVisuallyHidden prop ([4bd2115](http://stash.corp.web:7999/FRONT/react-magma/commits/4bd2115))
+
+
+### BREAKING CHANGES
+
+* **modal:** change prop names in modal component - open to isOpen, disableBackdropClick to
+isBackgroundClickDisabled, disableEscKeyDown to isEscKeyDisabled and hideCloseButton to
+isCloseButtonHidden
+
+MAGMA-212
+* **progressbar:** prop name changes in progressbar component - animated to isAnimated and
+labelVisible to isLabelVisible
+
+MAGMA-212
+* **input:** prop name change in input component labelVisuallyHidden to isLabelVisuallyHidden
+* **input:** rename prop in input component hidePasswordMaskButton to isPasswordMaskButtonHidden
+
+MAGMA-212
+* **radio, checkbox, toggle, formgroup:** renamed textVisuallyHidden prop to isTextVisuallyHidden in checkbox, formgroup,
+radio, radiogroup and toggle components
+
+MAGMA-212
+* **button:** prop name in button changed from fullWidth, to isFullWidth. It was previously named
+block
+
+MAGMA-212
+* Across many components, the inverse prop has been renamed to isInverse.  Affects
+Alert, Breadcrumb, Button, Card, Checkbox, Datepicker, Heading, HyperLink, Input, ProgressBar,
+Radio, Search, Select, SkipLinik, Toast, Toggle, Tooltip
+
+MAGMA-212
+* **alert, toast:** prop name changed in alert, toast components.  Was dismissible, now is
+isDismissible
+
+
+
+
+
+# [2.0.0-beta.10](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.9...v2.0.0-beta.10) (2020-01-07)
+
+
+### Bug Fixes
+
+* **search:** pass search value to onsearch function ([9f7c9a2](http://stash.corp.web:7999/FRONT/react-magma/commits/9f7c9a2))
+
+
+### Features
+
+* **search:** call onchange event if passed as prop ([76ea4eb](http://stash.corp.web:7999/FRONT/react-magma/commits/76ea4eb))
+
+
+
+
+
+# [2.0.0-beta.9](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.8...v2.0.0-beta.9) (2020-01-07)
+
+
+### Features
+
+* **input:** add default value prop ([4aa61de](http://stash.corp.web:7999/FRONT/react-magma/commits/4aa61de))
+
+
+
+
+
+# [2.0.0-beta.8](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.7...v2.0.0-beta.8) (2020-01-07)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.7](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.6...v2.0.0-beta.7) (2020-01-07)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.6](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.5...v2.0.0-beta.6) (2020-01-07)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.5](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.4...v2.0.0-beta.5) (2020-01-06)
+
+
+### Bug Fixes
+
+* **datepicker:** omit value from default html props ([dd4def9](http://stash.corp.web:7999/FRONT/react-magma/commits/dd4def9))
+
+
+### Features
+
+* **datepicker:** add value prop ([430f5c8](http://stash.corp.web:7999/FRONT/react-magma/commits/430f5c8))
+
+
+
+
+
+# [2.0.0-beta.4](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.3...v2.0.0-beta.4) (2020-01-06)
+
+
+### Features
+
+* **all:** pass through base html attributes as props ([4715e2c](http://stash.corp.web:7999/FRONT/react-magma/commits/4715e2c))
+
+
+
+
+
+# [2.0.0-beta.3](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2019-12-20)
+
+
+### Code Refactoring
+
+* **breadcrumb, spinner:** renamed ariaLabel prop to aria-label ([df23d35](http://stash.corp.web:7999/FRONT/react-magma/commits/df23d35))
+* **tooltip:** remove content prop, use children instead ([b0316e9](http://stash.corp.web:7999/FRONT/react-magma/commits/b0316e9))
+
+
+### BREAKING CHANGES
+
+* **breadcrumb, spinner:** prop name changed in breadcrumb and spinner components -- ariaLabel changed to
+aria-label
+
+MAGMA-193
+* **tooltip:** removed the content prop from Tooltip component, uses children instead
+
+MAGMA-208
+
+
+
+
+
+# [2.0.0-beta.2](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2019-12-19)
+
+**Note:** Version bump only for package react-magma
+
+
+
+
+
+# [2.0.0-beta.1](http://stash.corp.web:7999/FRONT/react-magma/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2019-12-19)
+
+
+### Code Refactoring
+
+* **breadcrumb:** add context for inverse ([9917233](http://stash.corp.web:7999/FRONT/react-magma/commits/9917233))
+
+
+### Features
+
+* **all:** add testId prop to all components ([3732a49](http://stash.corp.web:7999/FRONT/react-magma/commits/3732a49))
+* **button:** change block prop name to fullWidth ([ff09002](http://stash.corp.web:7999/FRONT/react-magma/commits/ff09002))
+* **datepicker:** add required prop ([feaad82](http://stash.corp.web:7999/FRONT/react-magma/commits/feaad82))
+* **input:** rename helpLinkText to helpLinkAriaLabel ([a57726d](http://stash.corp.web:7999/FRONT/react-magma/commits/a57726d))
+* **input, datepicker, search:** change prop name ([22960bb](http://stash.corp.web:7999/FRONT/react-magma/commits/22960bb))
+* **modal:** rename hideEscButton prop to hideCloseButton ([82aa2c7](http://stash.corp.web:7999/FRONT/react-magma/commits/82aa2c7))
+* **modal, alert:** change closeLabel prop ([9e92c09](http://stash.corp.web:7999/FRONT/react-magma/commits/9e92c09))
+* **progressbar:** change prop name from bgColor to color ([2c726d2](http://stash.corp.web:7999/FRONT/react-magma/commits/2c726d2))
+
+
+### BREAKING CHANGES
+
+* **breadcrumb:** removed inverse prop from BreadcrumbItem, now inherits prop from Breadcrumb
+
+MAGMA-195
+* **modal, alert:** changed prop name in modal, alert and toast component from closeLabel to
+closeAriaLabel
+
+MAGMA-207
+* **progressbar:** change prop name in progressbar component from bgColor to color
+
+MAGMA-204
+* **modal:** prop name change in modal from hideEscButton to hideCloseButton
+
+MAGMA-203
+* **input:** renamed prop in input from helpLinkText to helpLinkAriaLabel
+
+MAGMA-202
+* **button:** change prop name in button component from block to fullWidth
+
+MAGMA-191
+* **input, datepicker, search:** changed prop name across three components (input, datepicker, search) from
+placeholderText to placeholder
+
+MAGMA-190
+
+
+
+
+
+# [2.0.0-beta.0](http://stash.corp.web:7999/FRONT/react-magma/compare/v1.0.1-beta.1...v2.0.0-beta.0) (2019-12-16)
+
+
+### Bug Fixes
+
+* **checkbox:** inverse indeterminate style ([7ee9a52](http://stash.corp.web:7999/FRONT/react-magma/commits/7ee9a52))
+* **dismissible:** fixing the spelling of the word dismissible ([d429931](http://stash.corp.web:7999/FRONT/react-magma/commits/d429931))
+
+
+### Features
+
+* **alert:** silly ([621d14e](http://stash.corp.web:7999/FRONT/react-magma/commits/621d14e))
+* **focus color:** add new focus color that works against grey ([865880b](http://stash.corp.web:7999/FRONT/react-magma/commits/865880b))
+* **hooks:** alert changed to using hooks ([fc4546c](http://stash.corp.web:7999/FRONT/react-magma/commits/fc4546c))
+* **hooks:** Checkbox hooks ([433e8c5](http://stash.corp.web:7999/FRONT/react-magma/commits/433e8c5))
+* **hooks:** checkbox hooks and indeterminate behaviour ([8a75293](http://stash.corp.web:7999/FRONT/react-magma/commits/8a75293))
+* **hooks:** Date picker hooks ([a62fc41](http://stash.corp.web:7999/FRONT/react-magma/commits/a62fc41))
+* **hooks:** form group hooks ([415c29a](http://stash.corp.web:7999/FRONT/react-magma/commits/415c29a))
+* **hooks:** icon hooks ([a6bddaa](http://stash.corp.web:7999/FRONT/react-magma/commits/a6bddaa))
+* **hooks:** input hooks ([9ccabeb](http://stash.corp.web:7999/FRONT/react-magma/commits/9ccabeb))
+* **hooks:** loading indicator hooks ([a13d4cf](http://stash.corp.web:7999/FRONT/react-magma/commits/a13d4cf))
+* **hooks:** modal hooks ([b513ef3](http://stash.corp.web:7999/FRONT/react-magma/commits/b513ef3))
+* **hooks:** radio hooks ([592bae7](http://stash.corp.web:7999/FRONT/react-magma/commits/592bae7))
+* **hooks:** radio useContext ([9f7933c](http://stash.corp.web:7999/FRONT/react-magma/commits/9f7933c))
+* **hooks:** RadioGroup hooks ([95ca9f1](http://stash.corp.web:7999/FRONT/react-magma/commits/95ca9f1))
+* **hooks:** refactoring based on PR feedback ([c3d4ad3](http://stash.corp.web:7999/FRONT/react-magma/commits/c3d4ad3))
+* **hooks:** start of modal hooks ([1c20c0b](http://stash.corp.web:7999/FRONT/react-magma/commits/1c20c0b))
+* **hooks:** toast hooks ([b568acd](http://stash.corp.web:7999/FRONT/react-magma/commits/b568acd))
+* **hooks:** toggle hooks ([283e92d](http://stash.corp.web:7999/FRONT/react-magma/commits/283e92d))
+* **hooks:** tooltip hooks ([b531237](http://stash.corp.web:7999/FRONT/react-magma/commits/b531237))
+* **hooks:** update alert component to hooks ([38a1f23](http://stash.corp.web:7999/FRONT/react-magma/commits/38a1f23))
+
+
+### BREAKING CHANGES
+
+* **alert:** added silly variant
+* **dismissible:** spelling of a prop has changed
+
+
+
+
+
+# [2.0.0-alpha.1](http://stash.corp.web:7999/front/react-magma/compare/v2.0.0-alpha.0...v2.0.0-alpha.1) (2019-12-16)
+
+
+### Features
+
+* **alert:** silly ([621d14e](http://stash.corp.web:7999/front/react-magma/commits/621d14e))
+
+
+### BREAKING CHANGES
+
+* **alert:** added silly variant
+
+
+
+
+
+# [2.0.0-alpha.0](http://stash.corp.web:7999/front/react-magma/compare/v1.0.0...v2.0.0-alpha.0) (2019-12-16)
+
+
+### Bug Fixes
+
+* **checkbox:** inverse indeterminate style ([7ee9a52](http://stash.corp.web:7999/front/react-magma/commits/7ee9a52))
+* **dismissible:** fixing the spelling of the word dismissible ([d429931](http://stash.corp.web:7999/front/react-magma/commits/d429931))
+
+
+### Features
+
+* **focus color:** add new focus color that works against grey ([865880b](http://stash.corp.web:7999/front/react-magma/commits/865880b))
+* **hooks:** alert changed to using hooks ([fc4546c](http://stash.corp.web:7999/front/react-magma/commits/fc4546c))
+* **hooks:** Checkbox hooks ([433e8c5](http://stash.corp.web:7999/front/react-magma/commits/433e8c5))
+* **hooks:** checkbox hooks and indeterminate behaviour ([8a75293](http://stash.corp.web:7999/front/react-magma/commits/8a75293))
+* **hooks:** Date picker hooks ([a62fc41](http://stash.corp.web:7999/front/react-magma/commits/a62fc41))
+* **hooks:** form group hooks ([415c29a](http://stash.corp.web:7999/front/react-magma/commits/415c29a))
+* **hooks:** icon hooks ([a6bddaa](http://stash.corp.web:7999/front/react-magma/commits/a6bddaa))
+* **hooks:** input hooks ([9ccabeb](http://stash.corp.web:7999/front/react-magma/commits/9ccabeb))
+* **hooks:** loading indicator hooks ([a13d4cf](http://stash.corp.web:7999/front/react-magma/commits/a13d4cf))
+* **hooks:** modal hooks ([b513ef3](http://stash.corp.web:7999/front/react-magma/commits/b513ef3))
+* **hooks:** radio hooks ([592bae7](http://stash.corp.web:7999/front/react-magma/commits/592bae7))
+* **hooks:** radio useContext ([9f7933c](http://stash.corp.web:7999/front/react-magma/commits/9f7933c))
+* **hooks:** RadioGroup hooks ([95ca9f1](http://stash.corp.web:7999/front/react-magma/commits/95ca9f1))
+* **hooks:** refactoring based on PR feedback ([c3d4ad3](http://stash.corp.web:7999/front/react-magma/commits/c3d4ad3))
+* **hooks:** start of modal hooks ([1c20c0b](http://stash.corp.web:7999/front/react-magma/commits/1c20c0b))
+* **hooks:** toast hooks ([b568acd](http://stash.corp.web:7999/front/react-magma/commits/b568acd))
+* **hooks:** toggle hooks ([283e92d](http://stash.corp.web:7999/front/react-magma/commits/283e92d))
+* **hooks:** tooltip hooks ([b531237](http://stash.corp.web:7999/front/react-magma/commits/b531237))
+* **hooks:** update alert component to hooks ([38a1f23](http://stash.corp.web:7999/front/react-magma/commits/38a1f23))
+* **icons:** new font size icon ([efc5012](http://stash.corp.web:7999/front/react-magma/commits/efc5012))
+
+
+### BREAKING CHANGES
+
+* **dismissible:** spelling of a prop has changed
+
+
+
+
+
 # Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### 1.0.1-beta.1 (2019-12-16)
+
+
+### Bug Fixes
+
+* **babel-plugin:** build babel plugin for publish ([8d3bc01](http://stash.corp.web:7999/FRONT/react-magma/commit/8d3bc01))
+* **babel-plugin:** Fix bad paths for interfaces and icons ([11c712a](http://stash.corp.web:7999/FRONT/react-magma/commit/11c712a))
+* **babel-plugin:** Fix GlobalStyles import ([a5f40cd](http://stash.corp.web:7999/FRONT/react-magma/commit/a5f40cd))
+* **babel-plugin:** removing npmrc ([9c3171c](http://stash.corp.web:7999/FRONT/react-magma/commit/9c3171c))
+* **bad-dom-props:** fix bad dom props when passed through emotion ([9a58375](http://stash.corp.web:7999/FRONT/react-magma/commit/9a58375))
+* **button:** corrected broken tests ([95d4608](http://stash.corp.web:7999/FRONT/react-magma/commit/95d4608))
+* **buttons:** fix font weight and size on buttons ([da2250f](http://stash.corp.web:7999/FRONT/react-magma/commit/da2250f))
+* **buttons:** pass href to button, to allow button to be used as link ([d96e398](http://stash.corp.web:7999/FRONT/react-magma/commit/d96e398))
+* **checkbox:** checkbox active state ([73c0203](http://stash.corp.web:7999/FRONT/react-magma/commit/73c0203))
+* **checkboxes:** active style issue fix ([0253731](http://stash.corp.web:7999/FRONT/react-magma/commit/0253731))
+* **console-warnings:** Removing bad props from dom ([b6dce9d](http://stash.corp.web:7999/FRONT/react-magma/commit/b6dce9d))
+* **cypress-upgrade:** upgrading cypress to fix bad dependency ([0ea5d77](http://stash.corp.web:7999/FRONT/react-magma/commit/0ea5d77))
+* **date-picker:** fix dates not being chosen ([cf9ceaf](http://stash.corp.web:7999/FRONT/react-magma/commit/cf9ceaf))
+* **date-picker:** return focus to input on esc on date focus ([27bcf3f](http://stash.corp.web:7999/FRONT/react-magma/commit/27bcf3f))
+* **datepicker:** add types to buttons and add inverse prop ([5e98535](http://stash.corp.web:7999/FRONT/react-magma/commit/5e98535))
+* **datepicker:** fix focus style in safari ([aa5d096](http://stash.corp.web:7999/FRONT/react-magma/commit/aa5d096))
+* **datepicker:** focus styles in ff ([4dec95e](http://stash.corp.web:7999/FRONT/react-magma/commit/4dec95e))
+* **docs:** downgrade gatsby to support new builds ([438b857](http://stash.corp.web:7999/FRONT/react-magma/commit/438b857))
+* **docs:** fix issue with settimeout in docs nav ([212a0fc](http://stash.corp.web:7999/FRONT/react-magma/commit/212a0fc))
+* **docs:** remove unneeded brackets ([3d345d1](http://stash.corp.web:7999/FRONT/react-magma/commit/3d345d1))
+* **event-stream:** add in own package of event-stream ([cd29345](http://stash.corp.web:7999/FRONT/react-magma/commit/cd29345))
+* **event-type-change:** change onChange event types to ChangeEvents ([f48e770](http://stash.corp.web:7999/FRONT/react-magma/commit/f48e770))
+* **focus style:** remove transition to fix safari bug ([3071af6](http://stash.corp.web:7999/FRONT/react-magma/commit/3071af6))
+* **gatsby:** changing static file location for jenkins ([6edbdc9](http://stash.corp.web:7999/FRONT/react-magma/commit/6edbdc9))
+* **gatsby:** trying to fix react-dev-utils ([a89b5fb](http://stash.corp.web:7999/FRONT/react-magma/commit/a89b5fb))
+* **gitignore:** ignore all log files ([e819687](http://stash.corp.web:7999/FRONT/react-magma/commit/e819687))
+* **global styles:** change folder structure for importing global stles ([10670af](http://stash.corp.web:7999/FRONT/react-magma/commit/10670af))
+* **global styles, labels:** changes to work better with react bootstrap ([5e8d3a3](http://stash.corp.web:7999/FRONT/react-magma/commit/5e8d3a3))
+* **headings:** fix heading styles not being applied ([7265dfc](http://stash.corp.web:7999/FRONT/react-magma/commit/7265dfc))
+* **husky:** fix husky hooks ([ed691f2](http://stash.corp.web:7999/FRONT/react-magma/commit/ed691f2))
+* **hyperlink:** fix console error with textTransform prop ([506d818](http://stash.corp.web:7999/FRONT/react-magma/commit/506d818))
+* **hyperlink:** fix shadow props error ([c32334e](http://stash.corp.web:7999/FRONT/react-magma/commit/c32334e))
+* **hyperlink:** fix shadow props error ([68adfbe](http://stash.corp.web:7999/FRONT/react-magma/commit/68adfbe))
+* **innerRef:** Fix all references to innerRef ([4220463](http://stash.corp.web:7999/FRONT/react-magma/commit/4220463))
+* **input button:** fix issue with button ref introduced in merge ([7cdb8d9](http://stash.corp.web:7999/FRONT/react-magma/commit/7cdb8d9))
+* **input-message:** Removing forward ref from input message ([61232f7](http://stash.corp.web:7999/FRONT/react-magma/commit/61232f7))
+* **lint-fixes:** add eslint for tests ([3f8c659](http://stash.corp.web:7999/FRONT/react-magma/commit/3f8c659))
+* **lint-fixes:** adding eslint to core for tests ([1169048](http://stash.corp.web:7999/FRONT/react-magma/commit/1169048))
+* **lint-fixes:** adding noUnusedVariables in tsconfig for core ([3b0c51d](http://stash.corp.web:7999/FRONT/react-magma/commit/3b0c51d))
+* **lint-fixes:** removing unnecessary globals and plugins ([788e356](http://stash.corp.web:7999/FRONT/react-magma/commit/788e356))
+* **loading-indicator:** add css to types for emotion ([b15cb4f](http://stash.corp.web:7999/FRONT/react-magma/commit/b15cb4f))
+* **modal:** add componentdidmount so it renders if always open ([5c321a6](http://stash.corp.web:7999/FRONT/react-magma/commit/5c321a6))
+* **modal:** close when clicking backdrop while still allowing scrolling ([5469cf4](http://stash.corp.web:7999/FRONT/react-magma/commit/5469cf4))
+* **modal:** do not try to focus next element if there isn't one ([d983749](http://stash.corp.web:7999/FRONT/react-magma/commit/d983749))
+* **modal:** esc key works when backdrop click is disabled ([ebcd8e2](http://stash.corp.web:7999/FRONT/react-magma/commit/ebcd8e2))
+* **modal:** export enum for modal size ([b5cfa6d](http://stash.corp.web:7999/FRONT/react-magma/commit/b5cfa6d))
+* **modal:** fix focusable elements when modal content changes ([33b3ff9](http://stash.corp.web:7999/FRONT/react-magma/commit/33b3ff9))
+* **modal:** fix scroll with mouse issue ([cc097d5](http://stash.corp.web:7999/FRONT/react-magma/commit/cc097d5))
+* **modal:** Fix trap focus for modals ([ff7aa51](http://stash.corp.web:7999/FRONT/react-magma/commit/ff7aa51))
+* **modal:** fix unknown prop warning ([39ea881](http://stash.corp.web:7999/FRONT/react-magma/commit/39ea881))
+* **modal:** handle shift-tab better to specifically look for header ([2e2ae00](http://stash.corp.web:7999/FRONT/react-magma/commit/2e2ae00))
+* **modal:** handle shift-tab from header and from radio group ([d17c317](http://stash.corp.web:7999/FRONT/react-magma/commit/d17c317))
+* **modal:** handle shift-tab from untabbable modal ([b3b3e2b](http://stash.corp.web:7999/FRONT/react-magma/commit/b3b3e2b))
+* **modal:** hide modal on esc key press on body ([1976511](http://stash.corp.web:7999/FRONT/react-magma/commit/1976511))
+* **modal:** use heading component in modal to explictly specify font ([6179123](http://stash.corp.web:7999/FRONT/react-magma/commit/6179123))
+* **modal, alert:** add more styles to better work in inverse mode ([595bf1c](http://stash.corp.web:7999/FRONT/react-magma/commit/595bf1c))
+* **modals:** handle shift-tab on header, add example to docs for radio ([6de0ec9](http://stash.corp.web:7999/FRONT/react-magma/commit/6de0ec9))
+* **notification icon:** update notification icon to fix irregular border ([12bd950](http://stash.corp.web:7999/FRONT/react-magma/commit/12bd950))
+* **password-mask:** Explicit Button type on show/hide button ([2738939](http://stash.corp.web:7999/FRONT/react-magma/commit/2738939))
+* **password-mask:** Fix typo ([f7c7137](http://stash.corp.web:7999/FRONT/react-magma/commit/f7c7137))
+* **radio:** fix docs to not have auto checked radios ([1666684](http://stash.corp.web:7999/FRONT/react-magma/commit/1666684))
+* **ref:** fix deprecated innerRef prop for styled Input ([f376c69](http://stash.corp.web:7999/FRONT/react-magma/commit/f376c69))
+* **refs:** fix forward refs on class components ([ad63f38](http://stash.corp.web:7999/FRONT/react-magma/commit/ad63f38))
+* **select:** add helper and error msg to arialabel ([bfaebf0](http://stash.corp.web:7999/FRONT/react-magma/commit/bfaebf0))
+* **select:** fix multiple labels for one element ([7889e25](http://stash.corp.web:7999/FRONT/react-magma/commit/7889e25))
+* **select:** fix spacing issue with error message ([ab61f50](http://stash.corp.web:7999/FRONT/react-magma/commit/ab61f50))
+* **select:** fixing toggle error ([bbd35bd](http://stash.corp.web:7999/FRONT/react-magma/commit/bbd35bd))
+* **skip link:** fix react import ([af07c40](http://stash.corp.web:7999/FRONT/react-magma/commit/af07c40))
+* **skiplink:** fix console errors in skip link ([fa629ec](http://stash.corp.web:7999/FRONT/react-magma/commit/fa629ec))
+* **spread-props:** fix overwriting of props when spreading "other" ([0081227](http://stash.corp.web:7999/FRONT/react-magma/commit/0081227))
+* **ThemeContext:** commit case sensitive file name change ([9bedbee](http://stash.corp.web:7999/FRONT/react-magma/commit/9bedbee))
+* **theming:** fix theming for edge ([1f2b459](http://stash.corp.web:7999/FRONT/react-magma/commit/1f2b459))
+* **toast:** honor disableAutoDismiss on mouse hovers ([26bc0a2](http://stash.corp.web:7999/FRONT/react-magma/commit/26bc0a2))
+* **toggle:** fix a11y issue with toggle by always including aria-checked ([856f1c1](http://stash.corp.web:7999/FRONT/react-magma/commit/856f1c1))
+* **toggle:** fix toggle to used checked prop ([68f0c9e](http://stash.corp.web:7999/FRONT/react-magma/commit/68f0c9e))
+* **toggle, heading, alert:** fix focus styles ([f69331a](http://stash.corp.web:7999/FRONT/react-magma/commit/f69331a))
+* **tooltip:** fix ThemeContext case ([6f22651](http://stash.corp.web:7999/FRONT/react-magma/commit/6f22651))
+* **types:** type fixes. select test ([fa18b56](http://stash.corp.web:7999/FRONT/react-magma/commit/fa18b56))
+* **update-gatsby:** update gatsby to fix build ([40085e4](http://stash.corp.web:7999/FRONT/react-magma/commit/40085e4))
+* **various:** merge ([61dfe4a](http://stash.corp.web:7999/FRONT/react-magma/commit/61dfe4a))
+* **versioning:** support for pipelines to publish new versions ([cab97ca](http://stash.corp.web:7999/FRONT/react-magma/commit/cab97ca))
+* fix errors with inline styles using kebob-case not camelCase ([5c18717](http://stash.corp.web:7999/FRONT/react-magma/commit/5c18717))
+
+
+### Build System
+
+* **adds tsdx:** replacing babel build with tsdx build ([aafe691](http://stash.corp.web:7999/FRONT/react-magma/commit/aafe691))
+* **analyze:** removing reports from package bundle ([1e7f01c](http://stash.corp.web:7999/FRONT/react-magma/commit/1e7f01c))
+* **analyzer:** adding in report analyzer for bundles ([972e38c](http://stash.corp.web:7999/FRONT/react-magma/commit/972e38c))
+* **babel-jest:** core tests to js ([4f081d2](http://stash.corp.web:7999/FRONT/react-magma/commit/4f081d2))
+* **babel-jest:** removing ts-jest in favor of babel-jest ([c8b3ead](http://stash.corp.web:7999/FRONT/react-magma/commit/c8b3ead))
+* **babel-jest:** trying to get coverage working ([009ec1f](http://stash.corp.web:7999/FRONT/react-magma/commit/009ec1f))
+* **babel-plugin:** build babel plugin ([cfad883](http://stash.corp.web:7999/FRONT/react-magma/commit/cfad883))
+* **babel-plugin:** publish babel-plugin ([039bc94](http://stash.corp.web:7999/FRONT/react-magma/commit/039bc94))
+* **babel-plugin:** update publish repo in package.json ([3f10075](http://stash.corp.web:7999/FRONT/react-magma/commit/3f10075))
+* **babel-plugins:** removing unused babel plugins ([6f7b674](http://stash.corp.web:7999/FRONT/react-magma/commit/6f7b674))
+* **core:** adds tsdx for core build ([506c0d8](http://stash.corp.web:7999/FRONT/react-magma/commit/506c0d8))
+* **core:** adds tsdx for core build ([361535b](http://stash.corp.web:7999/FRONT/react-magma/commit/361535b))
+* **e2eTesting:** adding npmrc to e2e repo ([70f3a22](http://stash.corp.web:7999/FRONT/react-magma/commit/70f3a22))
+* **everything:** Finished migration to tsdx and cleaned up comments ([0dde814](http://stash.corp.web:7999/FRONT/react-magma/commit/0dde814))
+* **everything:** refactoring to get new builds working ([89208c9](http://stash.corp.web:7999/FRONT/react-magma/commit/89208c9))
+* **jenkins:** updating jenkins file ([d238199](http://stash.corp.web:7999/FRONT/react-magma/commit/d238199))
+* **pipeline-change:** add scripts for pipeline change ([9f4fbed](http://stash.corp.web:7999/FRONT/react-magma/commit/9f4fbed))
+* **publish:** building with types and publishing ([5b2ac1a](http://stash.corp.web:7999/FRONT/react-magma/commit/5b2ac1a))
+* **publish:** fixing styled-components with types ([c2ac9dc](http://stash.corp.web:7999/FRONT/react-magma/commit/c2ac9dc))
+* **publish:** initial publish builds ([bad1746](http://stash.corp.web:7999/FRONT/react-magma/commit/bad1746))
+* **publishing:** updating registries for publishing ([7801668](http://stash.corp.web:7999/FRONT/react-magma/commit/7801668))
+* **react-magma-core:** updating build to use babel typescript and tsc ([07970cf](http://stash.corp.web:7999/FRONT/react-magma/commit/07970cf))
+* **react-magma-dom:** adding in prebuild to check compiler ([11de2c3](http://stash.corp.web:7999/FRONT/react-magma/commit/11de2c3))
+* **react-magma-dom:** Building with babel typescript ([495a224](http://stash.corp.web:7999/FRONT/react-magma/commit/495a224))
+* **react-magma-dom:** compiling types in postbuild using tsc ([81bb3e6](http://stash.corp.web:7999/FRONT/react-magma/commit/81bb3e6))
+* **theme-types:** Build types in theme folder ([c7e1bdb](http://stash.corp.web:7999/FRONT/react-magma/commit/c7e1bdb))
+* **tree-shaking:** Tree shaking working and minifying builds ([7a98cb8](http://stash.corp.web:7999/FRONT/react-magma/commit/7a98cb8))
+* **version:** upate dom version ([5e06c80](http://stash.corp.web:7999/FRONT/react-magma/commit/5e06c80))
+
+
+### Features
+
+* **a11y:** focus styles, toggles as switches, calendar fix ([2942f2d](http://stash.corp.web:7999/FRONT/react-magma/commit/2942f2d))
+* **alert:** allow override of alert close lable ([bda7747](http://stash.corp.web:7999/FRONT/react-magma/commit/bda7747))
+* **alert:** create alert component ([d6a5444](http://stash.corp.web:7999/FRONT/react-magma/commit/d6a5444))
+* **alert:** fade out alert before calling ondismiss ([670ef7c](http://stash.corp.web:7999/FRONT/react-magma/commit/670ef7c))
+* **alert-forward-ref:** adding forward ref to alerts ([1e70f7e](http://stash.corp.web:7999/FRONT/react-magma/commit/1e70f7e))
+* **alerts:** alert styles ([47b95f5](http://stash.corp.web:7999/FRONT/react-magma/commit/47b95f5))
+* **alerts:** No option to remove icons from alerts ([d735727](http://stash.corp.web:7999/FRONT/react-magma/commit/d735727))
+* **alerts:** style tweaks to alerts ([de21265](http://stash.corp.web:7999/FRONT/react-magma/commit/de21265))
+* **announce:** add announce (aria-live) component ([12368db](http://stash.corp.web:7999/FRONT/react-magma/commit/12368db))
+* **announce:** merge dev ([6b653d0](http://stash.corp.web:7999/FRONT/react-magma/commit/6b653d0))
+* **announce, visuallyhidden:** remove cleanup from tests, update docs ([8f0642f](http://stash.corp.web:7999/FRONT/react-magma/commit/8f0642f))
+* **auto-assign ids:** Auto assign ids where associations are needed ([9e3fe00](http://stash.corp.web:7999/FRONT/react-magma/commit/9e3fe00))
+* **auto-assign ids:** generateId to util function. Rename tests ([ff866fb](http://stash.corp.web:7999/FRONT/react-magma/commit/ff866fb))
+* **auto-assign ids:** update ids on prop changes ([709d9e9](http://stash.corp.web:7999/FRONT/react-magma/commit/709d9e9))
+* **babel-plugin:** Enum prefix added for exports ([dc28550](http://stash.corp.web:7999/FRONT/react-magma/commit/dc28550))
+* **babel-plugin:** Moving babel plugin in to packages ([0b7a850](http://stash.corp.web:7999/FRONT/react-magma/commit/0b7a850))
+* **badges:** badge component ([ac4d4e3](http://stash.corp.web:7999/FRONT/react-magma/commit/ac4d4e3))
+* **badges:** fixes based on orion feedback ([97bb229](http://stash.corp.web:7999/FRONT/react-magma/commit/97bb229))
+* **breadcrumb:** start of breadcrumb component ([2a9e282](http://stash.corp.web:7999/FRONT/react-magma/commit/2a9e282))
+* **breadcrumb:** support aria-label and min-width props ([44630e5](http://stash.corp.web:7999/FRONT/react-magma/commit/44630e5))
+* **build-types:** Output types in build and fix bad typing ([3dd09ae](http://stash.corp.web:7999/FRONT/react-magma/commit/3dd09ae))
+* **button:** styles for marketing button ([7906ac7](http://stash.corp.web:7999/FRONT/react-magma/commit/7906ac7))
+* **buttons:** add babel plugin for polished ([7b9f096](http://stash.corp.web:7999/FRONT/react-magma/commit/7b9f096))
+* **buttons:** babel plugin for polished ([82408c0](http://stash.corp.web:7999/FRONT/react-magma/commit/82408c0))
+* **buttons:** button color text for hover, active outline buttons ([da3763e](http://stash.corp.web:7999/FRONT/react-magma/commit/da3763e))
+* **buttons:** buttons as links ([1b685fb](http://stash.corp.web:7999/FRONT/react-magma/commit/1b685fb))
+* **buttons:** calculate outline hover colors ([773c240](http://stash.corp.web:7999/FRONT/react-magma/commit/773c240))
+* **buttons:** change label props to children, change type to variant ([3afd157](http://stash.corp.web:7999/FRONT/react-magma/commit/3afd157))
+* **buttons:** fix hover color for link buttons ([446cacd](http://stash.corp.web:7999/FRONT/react-magma/commit/446cacd))
+* **buttons:** icon buttons with text ([a3f40cf](http://stash.corp.web:7999/FRONT/react-magma/commit/a3f40cf))
+* **buttons:** more button styles, incl hover states ([7e05459](http://stash.corp.web:7999/FRONT/react-magma/commit/7e05459))
+* **buttons:** more styles for button varitions ([e2d4af0](http://stash.corp.web:7999/FRONT/react-magma/commit/e2d4af0))
+* **buttons:** new button hover and active styles ([4054589](http://stash.corp.web:7999/FRONT/react-magma/commit/4054589))
+* **buttons:** new button styles, new magma colors ([d3bc193](http://stash.corp.web:7999/FRONT/react-magma/commit/d3bc193))
+* **card:** background color and inverse ([7a77801](http://stash.corp.web:7999/FRONT/react-magma/commit/7a77801))
+* **card:** card component ([4cf501c](http://stash.corp.web:7999/FRONT/react-magma/commit/4cf501c))
+* **card:** remove unneeded case ([d81d3bc](http://stash.corp.web:7999/FRONT/react-magma/commit/d81d3bc))
+* **card heading:** make heading level flexible, style fix ([ec45861](http://stash.corp.web:7999/FRONT/react-magma/commit/ec45861))
+* **checkbox:** adding in indeterminate state ([fee7561](http://stash.corp.web:7999/FRONT/react-magma/commit/fee7561))
+* **checkbox:** created checkbox component ([9ac0171](http://stash.corp.web:7999/FRONT/react-magma/commit/9ac0171))
+* **checkboxes:** Adding indeterminate property to checkboxes ([2e11680](http://stash.corp.web:7999/FRONT/react-magma/commit/2e11680))
+* **checkboxes:** checkbox styles ([b2d94e5](http://stash.corp.web:7999/FRONT/react-magma/commit/b2d94e5))
+* **checkboxes:** indeterminate state ([1569889](http://stash.corp.web:7999/FRONT/react-magma/commit/1569889))
+* **checkboxes:** inverse, disabled, and color properties for checkboxes ([7452e8c](http://stash.corp.web:7999/FRONT/react-magma/commit/7452e8c))
+* **checkboxes:** types in checkboxes ([dd5214d](http://stash.corp.web:7999/FRONT/react-magma/commit/dd5214d))
+* **checkboxes:** use checked prop instead of value, add name prop ([5d949c2](http://stash.corp.web:7999/FRONT/react-magma/commit/5d949c2))
+* **checkboxes:** Using checked value for handleChange ([97f1fa0](http://stash.corp.web:7999/FRONT/react-magma/commit/97f1fa0))
+* **container style:** merge ([2a6759a](http://stash.corp.web:7999/FRONT/react-magma/commit/2a6759a))
+* **controlled-components:** allowing null for select values ([869f19a](http://stash.corp.web:7999/FRONT/react-magma/commit/869f19a))
+* **controlled-components:** updating values for components on rerender ([307f89a](http://stash.corp.web:7999/FRONT/react-magma/commit/307f89a))
+* **date picker:** help keyboard shortcut ([1ff932f](http://stash.corp.web:7999/FRONT/react-magma/commit/1ff932f))
+* **date-picker:** ? key works on next and prev buttons ([7e8d68a](http://stash.corp.web:7999/FRONT/react-magma/commit/7e8d68a))
+* **date-picker:** add helper and error message to date picker ([4f8f5ac](http://stash.corp.web:7999/FRONT/react-magma/commit/4f8f5ac))
+* **date-picker:** add trap focus to date picker calendar ([f4374fe](http://stash.corp.web:7999/FRONT/react-magma/commit/f4374fe))
+* **date-picker:** allowing text input ([64a3ee6](http://stash.corp.web:7999/FRONT/react-magma/commit/64a3ee6))
+* **date-picker:** Change to generic onDateChange function ([89e3943](http://stash.corp.web:7999/FRONT/react-magma/commit/89e3943))
+* **date-picker:** Clean out dom information in core ([534b626](http://stash.corp.web:7999/FRONT/react-magma/commit/534b626))
+* **date-picker:** close button functionality ([1225af3](http://stash.corp.web:7999/FRONT/react-magma/commit/1225af3))
+* **date-picker:** Created a date-picker ([244f514](http://stash.corp.web:7999/FRONT/react-magma/commit/244f514))
+* **date-picker:** finished up date picker ([fde3c06](http://stash.corp.web:7999/FRONT/react-magma/commit/fde3c06))
+* **date-picker:** focus calendar header when opened if no chosen date ([57316f9](http://stash.corp.web:7999/FRONT/react-magma/commit/57316f9))
+* **date-picker:** focus chosen date on calendar open ([1bf21c7](http://stash.corp.web:7999/FRONT/react-magma/commit/1bf21c7))
+* **date-picker:** helper information in the date picker ([85778a8](http://stash.corp.web:7999/FRONT/react-magma/commit/85778a8))
+* **date-picker:** moving logic to core ([9aaa8c8](http://stash.corp.web:7999/FRONT/react-magma/commit/9aaa8c8))
+* **date-picker:** question mark key while focused on calendar ([f448e5d](http://stash.corp.web:7999/FRONT/react-magma/commit/f448e5d))
+* **date-picker:** remove unecessary export in utils ([50518dd](http://stash.corp.web:7999/FRONT/react-magma/commit/50518dd))
+* **date-picker:** removing commented out code ([a8312a3](http://stash.corp.web:7999/FRONT/react-magma/commit/a8312a3))
+* **datepicker:** a few small ui tweaks ([629af19](http://stash.corp.web:7999/FRONT/react-magma/commit/629af19))
+* **datepicker:** add close button ([d331f54](http://stash.corp.web:7999/FRONT/react-magma/commit/d331f54))
+* **datepicker:** change announce text ([ec396cf](http://stash.corp.web:7999/FRONT/react-magma/commit/ec396cf))
+* **datepicker:** fix issue with dp closing when modal open ([fe04d38](http://stash.corp.web:7999/FRONT/react-magma/commit/fe04d38))
+* **datepicker:** fix issue with ondayclick ([01be3a1](http://stash.corp.web:7999/FRONT/react-magma/commit/01be3a1))
+* **datepicker:** focus input when pressig close ([cae3f38](http://stash.corp.web:7999/FRONT/react-magma/commit/cae3f38))
+* **datepicker:** help button style ([3969d2d](http://stash.corp.web:7999/FRONT/react-magma/commit/3969d2d))
+* **datepicker:** help modal styles ([3f735d4](http://stash.corp.web:7999/FRONT/react-magma/commit/3f735d4))
+* **datepicker:** icon button style ([4433cc2](http://stash.corp.web:7999/FRONT/react-magma/commit/4433cc2))
+* **datepicker:** make datepicker open on icon click ([e762800](http://stash.corp.web:7999/FRONT/react-magma/commit/e762800))
+* **datepicker:** placeholder ([7efcd41](http://stash.corp.web:7999/FRONT/react-magma/commit/7efcd41))
+* **datepicker:** return focus to input after dp closes, tests ([19f7f14](http://stash.corp.web:7999/FRONT/react-magma/commit/19f7f14))
+* **datepicker:** show calendar on icon click ([8f72a9f](http://stash.corp.web:7999/FRONT/react-magma/commit/8f72a9f))
+* **datepicker:** use small modal for help, prevent calendar closing ([a4e7269](http://stash.corp.web:7999/FRONT/react-magma/commit/a4e7269))
+* **docs:** move all docs pages to new layout ([6a68fe2](http://stash.corp.web:7999/FRONT/react-magma/commit/6a68fe2))
+* **docs-performance:** get alerts using new layout for performance ([9e80f58](http://stash.corp.web:7999/FRONT/react-magma/commit/9e80f58))
+* **e2e-add-react-version:** Adding react 16.0 to cypress tests ([2e974fd](http://stash.corp.web:7999/FRONT/react-magma/commit/2e974fd))
+* **event-handlers:** change name of handleEvents to onEvents ([13f60a0](http://stash.corp.web:7999/FRONT/react-magma/commit/13f60a0))
+* **feedback:** Changes from consumer feedback ([3883658](http://stash.corp.web:7999/FRONT/react-magma/commit/3883658))
+* **file-structure:** Changing file structure to allow single exports ([ea49527](http://stash.corp.web:7999/FRONT/react-magma/commit/ea49527))
+* **focus styles:** apply focus styles at all times, not just kb ([bc9417b](http://stash.corp.web:7999/FRONT/react-magma/commit/bc9417b))
+* **form group:** form group component for wrapping checkboxes ([af40516](http://stash.corp.web:7999/FRONT/react-magma/commit/af40516))
+* **form group:** get rid of core component ([09da516](http://stash.corp.web:7999/FRONT/react-magma/commit/09da516))
+* **forward refs:** Adding forward refs to all base components ([e3f7464](http://stash.corp.web:7999/FRONT/react-magma/commit/e3f7464))
+* **forward refs:** Base button now forward ref ([a8949bc](http://stash.corp.web:7999/FRONT/react-magma/commit/a8949bc))
+* **forward refs:** internal styled button now using forwardRef ([d33adaf](http://stash.corp.web:7999/FRONT/react-magma/commit/d33adaf))
+* **gatsby:** merging in master ([f06f747](http://stash.corp.web:7999/FRONT/react-magma/commit/f06f747))
+* **global styles:** export global styles ([4b07452](http://stash.corp.web:7999/FRONT/react-magma/commit/4b07452))
+* **global styles:** make global styles themable and reusable in gatsby ([dee6fda](http://stash.corp.web:7999/FRONT/react-magma/commit/dee6fda))
+* **global styles:** more global styles, docs for global styles ([17dd726](http://stash.corp.web:7999/FRONT/react-magma/commit/17dd726))
+* **heading:** change heading color to foundation blue ([e449e95](http://stash.corp.web:7999/FRONT/react-magma/commit/e449e95))
+* **headings:** Added basic component with styles for heading levels 1-6 ([c1a6217](http://stash.corp.web:7999/FRONT/react-magma/commit/c1a6217))
+* **headings:** Changing prop size to level ([c0a0a1a](http://stash.corp.web:7999/FRONT/react-magma/commit/c0a0a1a))
+* **headings:** created single header component with size prop ([a5cb4de](http://stash.corp.web:7999/FRONT/react-magma/commit/a5cb4de))
+* **headings:** getting rid of e2e tests and changing to headings ([2ea04b4](http://stash.corp.web:7999/FRONT/react-magma/commit/2ea04b4))
+* **headings:** merge conflicts with master ([81f33ea](http://stash.corp.web:7999/FRONT/react-magma/commit/81f33ea))
+* **headings:** new heading styles, refactor some styling ([b644d32](http://stash.corp.web:7999/FRONT/react-magma/commit/b644d32))
+* **hyper-link:** Change omit variable for consistency ([475250f](http://stash.corp.web:7999/FRONT/react-magma/commit/475250f))
+* **hyper-link:** HyperLink created and allows button styling ([2f15f2f](http://stash.corp.web:7999/FRONT/react-magma/commit/2f15f2f))
+* **hyper-link:** link styles ([4e7541c](http://stash.corp.web:7999/FRONT/react-magma/commit/4e7541c))
+* **hyperlink:** use hyperlink in skip link ([b78d04e](http://stash.corp.web:7999/FRONT/react-magma/commit/b78d04e))
+* **icon:** Added pointer cursor for clickable icons ([9499cd8](http://stash.corp.web:7999/FRONT/react-magma/commit/9499cd8))
+* **icon:** adding in top level heading on icons docs ([afdf814](http://stash.corp.web:7999/FRONT/react-magma/commit/afdf814))
+* **icon:** adding snapshot tests for icons ([89d91a2](http://stash.corp.web:7999/FRONT/react-magma/commit/89d91a2))
+* **icon:** getting rid of styled compoennt for icon span ([2952f6c](http://stash.corp.web:7999/FRONT/react-magma/commit/2952f6c))
+* **icon:** merging master ([39e18a9](http://stash.corp.web:7999/FRONT/react-magma/commit/39e18a9))
+* **icon:** merging master and getting rid of bad tests ([9a2a8bd](http://stash.corp.web:7999/FRONT/react-magma/commit/9a2a8bd))
+* **icon:** removing click events from icons ([e606104](http://stash.corp.web:7999/FRONT/react-magma/commit/e606104))
+* **icon:** removing commented out line ([f6ca603](http://stash.corp.web:7999/FRONT/react-magma/commit/f6ca603))
+* **icon:** update menu icon ([b65a9c3](http://stash.corp.web:7999/FRONT/react-magma/commit/b65a9c3))
+* **icon:** updating icon map export ([e29173d](http://stash.corp.web:7999/FRONT/react-magma/commit/e29173d))
+* **icon:** updating snapshot titles to be more unique ([a0ed356](http://stash.corp.web:7999/FRONT/react-magma/commit/a0ed356))
+* **icon button:** extending styled button for use with icon button ([b433214](http://stash.corp.web:7999/FRONT/react-magma/commit/b433214))
+* **icons:** add new icons, remove old clock icon ([cd9db59](http://stash.corp.web:7999/FRONT/react-magma/commit/cd9db59))
+* **icons:** change how components use icons ([d984913](http://stash.corp.web:7999/FRONT/react-magma/commit/d984913))
+* **icons:** Fixing e2e tests and adding more details ([f5cb222](http://stash.corp.web:7999/FRONT/react-magma/commit/f5cb222))
+* **icons:** new font size icon ([efc5012](http://stash.corp.web:7999/FRONT/react-magma/commit/efc5012))
+* **icons:** removing unneeded span around svg ([e45ead1](http://stash.corp.web:7999/FRONT/react-magma/commit/e45ead1))
+* **icons:** render title of icon conditionally ([7774492](http://stash.corp.web:7999/FRONT/react-magma/commit/7774492))
+* **icons:** Reworking icons and adding in all of the magma icons ([5b9e489](http://stash.corp.web:7999/FRONT/react-magma/commit/5b9e489))
+* **input:** add option for textarea ([ba0d5bd](http://stash.corp.web:7999/FRONT/react-magma/commit/ba0d5bd))
+* **input:** add spinner animation ([03898c5](http://stash.corp.web:7999/FRONT/react-magma/commit/03898c5))
+* **input:** center spinner vertically ([13a7890](http://stash.corp.web:7999/FRONT/react-magma/commit/13a7890))
+* **input:** Clean up dom related code in input core ([1a74df3](http://stash.corp.web:7999/FRONT/react-magma/commit/1a74df3))
+* **input:** more input size updates ([cdbcbff](http://stash.corp.web:7999/FRONT/react-magma/commit/cdbcbff))
+* **input:** new error styles ([4a2bd86](http://stash.corp.web:7999/FRONT/react-magma/commit/4a2bd86))
+* **input:** refactor error message, add aria-describedby ([410a587](http://stash.corp.web:7999/FRONT/react-magma/commit/410a587))
+* **input:** update input size styles to just medium and xl ([cbb345b](http://stash.corp.web:7999/FRONT/react-magma/commit/cbb345b))
+* **input:** what is this button ([23d1a32](http://stash.corp.web:7999/FRONT/react-magma/commit/23d1a32))
+* **inputs:** input icon styles for sizes ([24cd98a](http://stash.corp.web:7999/FRONT/react-magma/commit/24cd98a))
+* **inputs:** input sizes ([9feb3a8](http://stash.corp.web:7999/FRONT/react-magma/commit/9feb3a8))
+* **inputs:** new input styles, helper text, error messages ([d75bcf7](http://stash.corp.web:7999/FRONT/react-magma/commit/d75bcf7))
+* **inputs:** visually hidden labels, focus and placeholder style ([fcb355c](http://stash.corp.web:7999/FRONT/react-magma/commit/fcb355c))
+* **landing page:** added basic static landing page ([d985f82](http://stash.corp.web:7999/FRONT/react-magma/commit/d985f82))
+* **loading indicator:** aria-hidden on messages, more tests, more docs ([3698d54](http://stash.corp.web:7999/FRONT/react-magma/commit/3698d54))
+* **loading indicator:** basic loading indicator component ([6564b16](http://stash.corp.web:7999/FRONT/react-magma/commit/6564b16))
+* **loading indicator:** clear timeout when  component unmounts ([26feb6b](http://stash.corp.web:7999/FRONT/react-magma/commit/26feb6b))
+* **loading indicator:** cutom messages the change after time ([2258023](http://stash.corp.web:7999/FRONT/react-magma/commit/2258023))
+* **loading indicator:** show percentage on progress bar ([945471d](http://stash.corp.web:7999/FRONT/react-magma/commit/945471d))
+* **modal:** adding callback guard for modal closing ([824ad9f](http://stash.corp.web:7999/FRONT/react-magma/commit/824ad9f))
+* **modal:** handle search on enter keypress ([52667e1](http://stash.corp.web:7999/FRONT/react-magma/commit/52667e1))
+* **modal:** merge ([c0c9b75](http://stash.corp.web:7999/FRONT/react-magma/commit/c0c9b75))
+* **modal:** move onclose from core to dom ([9016bb4](http://stash.corp.web:7999/FRONT/react-magma/commit/9016bb4))
+* **modal:** put focus on first element if nothing else to focus ([68c564a](http://stash.corp.web:7999/FRONT/react-magma/commit/68c564a))
+* **modal:** put focus on modal heading if there is one ([e72d78e](http://stash.corp.web:7999/FRONT/react-magma/commit/e72d78e))
+* **modal:** update modal styles ([003559b](http://stash.corp.web:7999/FRONT/react-magma/commit/003559b))
+* **modal:** use react portal and aria-modal attribute ([cf17fe3](http://stash.corp.web:7999/FRONT/react-magma/commit/cf17fe3))
+* **modals:** Creating own focus trap for modal ([cd4ee83](http://stash.corp.web:7999/FRONT/react-magma/commit/cd4ee83))
+* **modals:** modal styles ([140b0d4](http://stash.corp.web:7999/FRONT/react-magma/commit/140b0d4))
+* **modals:** modals with functionality ([821f2e0](http://stash.corp.web:7999/FRONT/react-magma/commit/821f2e0))
+* **modals:** more modal styles ([bf48723](http://stash.corp.web:7999/FRONT/react-magma/commit/bf48723))
+* **modals:** removing dom related code in modal core ([69c46a3](http://stash.corp.web:7999/FRONT/react-magma/commit/69c46a3))
+* **modals:** very basic modal ([ccaa210](http://stash.corp.web:7999/FRONT/react-magma/commit/ccaa210))
+* **password-mask:** add mask/unmask button to password inputs ([1d28b32](http://stash.corp.web:7999/FRONT/react-magma/commit/1d28b32))
+* **password-mask:** fix password mask button css ([2262c88](http://stash.corp.web:7999/FRONT/react-magma/commit/2262c88))
+* **progress bar:** add progress bar style to loading indicator ([a70079a](http://stash.corp.web:7999/FRONT/react-magma/commit/a70079a))
+* **progressbar:** change bgcolor to enum ([41f5e87](http://stash.corp.web:7999/FRONT/react-magma/commit/41f5e87))
+* **progressbar:** new progress bar component ([bf6a344](http://stash.corp.web:7999/FRONT/react-magma/commit/bf6a344))
+* **progressbar:** update propname, add 1px padding ([5bfbf02](http://stash.corp.web:7999/FRONT/react-magma/commit/5bfbf02))
+* **pword input:** optional props to override ui text ([c5294b1](http://stash.corp.web:7999/FRONT/react-magma/commit/c5294b1))
+* **pword input:** screenreader feedback for pword toggle ([b453af8](http://stash.corp.web:7999/FRONT/react-magma/commit/b453af8))
+* **radio:** Add radio and radiogroup components ([4db8207](http://stash.corp.web:7999/FRONT/react-magma/commit/4db8207))
+* **radio:** clean up dom related code in radio core ([72f3a66](http://stash.corp.web:7999/FRONT/react-magma/commit/72f3a66))
+* **radio:** context instead of cloning children ([9a9abe3](http://stash.corp.web:7999/FRONT/react-magma/commit/9a9abe3))
+* **radio:** Default value from group and label styles ([fc65cc3](http://stash.corp.web:7999/FRONT/react-magma/commit/fc65cc3))
+* **radio:** persisting the event for the handleChange callback ([69dcc42](http://stash.corp.web:7999/FRONT/react-magma/commit/69dcc42))
+* **radio:** Removing commented out code ([f713e1c](http://stash.corp.web:7999/FRONT/react-magma/commit/f713e1c))
+* **radio buttons:** add option for visually hidden label ([d9ff82d](http://stash.corp.web:7999/FRONT/react-magma/commit/d9ff82d))
+* **radio buttons:** focus, blur events, required attr, some refactoring ([d5824cf](http://stash.corp.web:7999/FRONT/react-magma/commit/d5824cf))
+* **radio buttons:** styled radio buttons and radio groups ([fd56110](http://stash.corp.web:7999/FRONT/react-magma/commit/fd56110))
+* **react-magma-docs-gatsby:** honor PATH_PREFIX for doc builds ([e4a310c](http://stash.corp.web:7999/FRONT/react-magma/commit/e4a310c))
+* **react-select-variations:** Async, AsyncCreatable, Creatable selects ([b9601b7](http://stash.corp.web:7999/FRONT/react-magma/commit/b9601b7))
+* **search:** add e.preventDefault to keypress event ([bf469cb](http://stash.corp.web:7999/FRONT/react-magma/commit/bf469cb))
+* **search:** helper message ([14d484a](http://stash.corp.web:7999/FRONT/react-magma/commit/14d484a))
+* **search:** on search event, button style, more docs ([feed661](http://stash.corp.web:7999/FRONT/react-magma/commit/feed661))
+* **search:** start of search input ([f9672ad](http://stash.corp.web:7999/FRONT/react-magma/commit/f9672ad))
+* **select:** add and style error message for select ([755d6dd](http://stash.corp.web:7999/FRONT/react-magma/commit/755d6dd))
+* **select:** add helper text option to select fields ([066fbac](http://stash.corp.web:7999/FRONT/react-magma/commit/066fbac))
+* **select:** Adding a new select component ([a1bc0a7](http://stash.corp.web:7999/FRONT/react-magma/commit/a1bc0a7))
+* **select:** clean up dom related code in select core ([a0f9c7e](http://stash.corp.web:7999/FRONT/react-magma/commit/a0f9c7e))
+* **select:** merge async select with arror messages ([5308a6e](http://stash.corp.web:7999/FRONT/react-magma/commit/5308a6e))
+* **select:** remove console.log ([c0fe921](http://stash.corp.web:7999/FRONT/react-magma/commit/c0fe921))
+* **selects:** more select styles ([8895b39](http://stash.corp.web:7999/FRONT/react-magma/commit/8895b39))
+* **selects:** more styles for selects ([46de324](http://stash.corp.web:7999/FRONT/react-magma/commit/46de324))
+* **selects:** more styles for selects ([ec5e1d7](http://stash.corp.web:7999/FRONT/react-magma/commit/ec5e1d7))
+* **selects:** select disabled styles, reusable label, doc styles ([3dfdabb](http://stash.corp.web:7999/FRONT/react-magma/commit/3dfdabb))
+* **selects:** Start of styles for selects ([6e1bd06](http://stash.corp.web:7999/FRONT/react-magma/commit/6e1bd06))
+* **skip link:** add skip link content component, update docs ([29bf836](http://stash.corp.web:7999/FRONT/react-magma/commit/29bf836))
+* **skip link:** make skip link a link, not a button ([9d36736](http://stash.corp.web:7999/FRONT/react-magma/commit/9d36736))
+* **skip link:** merge changes from dev ([5444e81](http://stash.corp.web:7999/FRONT/react-magma/commit/5444e81))
+* **skip link:** move media query to docs specific skip link ([be2b219](http://stash.corp.web:7999/FRONT/react-magma/commit/be2b219))
+* **skip link:** moving skip link to react-magma-dom ([e2473c1](http://stash.corp.web:7999/FRONT/react-magma/commit/e2473c1))
+* **skip link:** style component directly instead of container, tests ([06ee300](http://stash.corp.web:7999/FRONT/react-magma/commit/06ee300))
+* **spinner:** spinner animation for search and other components ([104b5af](http://stash.corp.web:7999/FRONT/react-magma/commit/104b5af))
+* **spread-attributes:** removing commented out code ([9e12fe0](http://stash.corp.web:7999/FRONT/react-magma/commit/9e12fe0))
+* **spread-attributes:** removing unnecessary props ([dc7925b](http://stash.corp.web:7999/FRONT/react-magma/commit/dc7925b))
+* **spread-attributes:** removing unused variable in button ([a7fedfe](http://stash.corp.web:7999/FRONT/react-magma/commit/a7fedfe))
+* **spread-attributes:** Spreading default attributes for all components ([b44dc15](http://stash.corp.web:7999/FRONT/react-magma/commit/b44dc15))
+* **spread-props:** make omit function generic ([d69bed5](http://stash.corp.web:7999/FRONT/react-magma/commit/d69bed5))
+* **spread-props:** Utility function to omit props from "other" ([4bd0a85](http://stash.corp.web:7999/FRONT/react-magma/commit/4bd0a85))
+* **style prop:** change style prop name ([4d2b021](http://stash.corp.web:7999/FRONT/react-magma/commit/4d2b021))
+* **styles:** adding style prop to components ([c198f46](http://stash.corp.web:7999/FRONT/react-magma/commit/c198f46))
+* **theme:** change variable names and add coverage ([6c39a40](http://stash.corp.web:7999/FRONT/react-magma/commit/6c39a40))
+* **theme:** demo component for theming ([ad47558](http://stash.corp.web:7999/FRONT/react-magma/commit/ad47558))
+* **theming:** add dark theme, styles for input, toggle switch ([16765a0](http://stash.corp.web:7999/FRONT/react-magma/commit/16765a0))
+* **theming:** add support for theming ([913fcb8](http://stash.corp.web:7999/FRONT/react-magma/commit/913fcb8))
+* **theming:** change theme with select in demo ([c358e60](http://stash.corp.web:7999/FRONT/react-magma/commit/c358e60))
+* **theming:** cleanup unused references ([2735865](http://stash.corp.web:7999/FRONT/react-magma/commit/2735865))
+* **theming:** start of theming ([43fbb02](http://stash.corp.web:7999/FRONT/react-magma/commit/43fbb02))
+* **theming:** update docs demo, add theming to radio, checkbox, inputs ([30d1bfb](http://stash.corp.web:7999/FRONT/react-magma/commit/30d1bfb))
+* **theming:** use context to provide default theme custom option ([284843b](http://stash.corp.web:7999/FRONT/react-magma/commit/284843b))
+* **toast:** clean up dom related code in toast core ([ae6356f](http://stash.corp.web:7999/FRONT/react-magma/commit/ae6356f))
+* **toast:** disableAutoDismiss prop added ([cc3b3e6](http://stash.corp.web:7999/FRONT/react-magma/commit/cc3b3e6))
+* **toast:** fade out toast ([9bca3e3](http://stash.corp.web:7999/FRONT/react-magma/commit/9bca3e3))
+* **toast:** toast container style prop, alert focus style ([0ad3e9e](http://stash.corp.web:7999/FRONT/react-magma/commit/0ad3e9e))
+* **toast-transition:** moving state management in to core ([0a08e41](http://stash.corp.web:7999/FRONT/react-magma/commit/0a08e41))
+* **toasts:** Created toast component using Alert component ([1e809fc](http://stash.corp.web:7999/FRONT/react-magma/commit/1e809fc))
+* **toggle:** fix default toggle off ([b71a211](http://stash.corp.web:7999/FRONT/react-magma/commit/b71a211))
+* **toggle:** remove toggle from react-magma-core and react-magma-native ([52caa07](http://stash.corp.web:7999/FRONT/react-magma/commit/52caa07))
+* **toggle:** removing unused code ([7bf89ae](http://stash.corp.web:7999/FRONT/react-magma/commit/7bf89ae))
+* **toggles:** add focus, active, custom styles ([3fab0e3](http://stash.corp.web:7999/FRONT/react-magma/commit/3fab0e3))
+* **toggles:** add prop to control text position ([2d0938a](http://stash.corp.web:7999/FRONT/react-magma/commit/2d0938a))
+* **toggles:** style tweaks, remove import and props ([64b2c8a](http://stash.corp.web:7999/FRONT/react-magma/commit/64b2c8a))
+* **toggles:** styled toggled switches ([bba64d8](http://stash.corp.web:7999/FRONT/react-magma/commit/bba64d8))
+* **tooltip:** add tooltip to help link ([357b578](http://stash.corp.web:7999/FRONT/react-magma/commit/357b578))
+* **tooltip:** allow variable width for tooltip ([ffb51aa](http://stash.corp.web:7999/FRONT/react-magma/commit/ffb51aa))
+* **tooltip:** aria-labeledby and focus hover states ([4fe82ad](http://stash.corp.web:7999/FRONT/react-magma/commit/4fe82ad))
+* **tooltip:** autogenerate ids, more tests ([7b1c4d0](http://stash.corp.web:7999/FRONT/react-magma/commit/7b1c4d0))
+* **tooltip:** basic tooltip component ([3086dd2](http://stash.corp.web:7999/FRONT/react-magma/commit/3086dd2))
+* **tooltip:** hide tooltip on escape ([29041cd](http://stash.corp.web:7999/FRONT/react-magma/commit/29041cd))
+* **tooltip:** inverse style ([886e058](http://stash.corp.web:7999/FRONT/react-magma/commit/886e058))
+* **tooltip:** merge ([e185265](http://stash.corp.web:7999/FRONT/react-magma/commit/e185265))
+* **tooltip:** Moving state management to core ([eb05c9f](http://stash.corp.web:7999/FRONT/react-magma/commit/eb05c9f))
+* **tooltip:** removing dom related code in toolitp core ([7f1bfb7](http://stash.corp.web:7999/FRONT/react-magma/commit/7f1bfb7))
+* **tooltip:** tooltip positioning ([3bac18a](http://stash.corp.web:7999/FRONT/react-magma/commit/3bac18a))
+* **types:** fixed misspelled type name ([f30dc29](http://stash.corp.web:7999/FRONT/react-magma/commit/f30dc29))
+* **visuallyhidden:** visually hidden component, docs ([02b48b4](http://stash.corp.web:7999/FRONT/react-magma/commit/02b48b4))
+* global and heading styles, radiogroup labels ([e3a030e](http://stash.corp.web:7999/FRONT/react-magma/commit/e3a030e))
+
+
+### Tests
+
+* **a11y:** adding in a11y tests ([9d51c43](http://stash.corp.web:7999/FRONT/react-magma/commit/9d51c43))
+* **alert:** change variant tests to snapshot tests ([ada01b8](http://stash.corp.web:7999/FRONT/react-magma/commit/ada01b8))
+* **alert:** refactor alert tests to align with other tests ([a4dc7d0](http://stash.corp.web:7999/FRONT/react-magma/commit/a4dc7d0))
+* **button:** adding in test coverage for new button styles ([7496f4e](http://stash.corp.web:7999/FRONT/react-magma/commit/7496f4e))
+* **buttons:** fix button size tests ([e4355c5](http://stash.corp.web:7999/FRONT/react-magma/commit/e4355c5))
+* **checkbox:** changing test files to js ([d6a3e04](http://stash.corp.web:7999/FRONT/react-magma/commit/d6a3e04))
+* **checkbox:** moved render into tests ([750ec9e](http://stash.corp.web:7999/FRONT/react-magma/commit/750ec9e))
+* **checkboxes:** Adding in tests ([f3c9f36](http://stash.corp.web:7999/FRONT/react-magma/commit/f3c9f36))
+* **controlled-components:** Clarifying checkbox checked test ([2b3226d](http://stash.corp.web:7999/FRONT/react-magma/commit/2b3226d))
+* **core:** removed enzyme ([6eb2c28](http://stash.corp.web:7999/FRONT/react-magma/commit/6eb2c28))
+* **core:** rewrite tests without enzyme ([8c4c0de](http://stash.corp.web:7999/FRONT/react-magma/commit/8c4c0de))
+* **coverage:** bumping up coverage threshold to 85 ([0490c47](http://stash.corp.web:7999/FRONT/react-magma/commit/0490c47))
+* **date-picker:** adding tests for typing in date picker ([2322682](http://stash.corp.web:7999/FRONT/react-magma/commit/2322682))
+* **date-picker:** build calendar with timezone in tests ([d1c5bf7](http://stash.corp.web:7999/FRONT/react-magma/commit/d1c5bf7))
+* **date-picker:** timezone agnostic build calendar tests ([223fff9](http://stash.corp.web:7999/FRONT/react-magma/commit/223fff9))
+* **datepicker:** change focus test to handle icon click ([4df8f93](http://stash.corp.web:7999/FRONT/react-magma/commit/4df8f93))
+* **datepicker:** keyboard shortcut test ([c1f1313](http://stash.corp.web:7999/FRONT/react-magma/commit/c1f1313))
+* **dom:** new root test scripts and cleaned up warnings ([5636153](http://stash.corp.web:7999/FRONT/react-magma/commit/5636153))
+* **dom:** refactoring tests ([2163470](http://stash.corp.web:7999/FRONT/react-magma/commit/2163470))
+* **e2e:** removing all versions of react but 16.5 ([e5b27da](http://stash.corp.web:7999/FRONT/react-magma/commit/e5b27da))
+* **e2e:** updated cypress tests for select ([0d28f44](http://stash.corp.web:7999/FRONT/react-magma/commit/0d28f44))
+* **e2etests:** fixing e2e component getters ([b026bb2](http://stash.corp.web:7999/FRONT/react-magma/commit/b026bb2))
+* **global styles:** add test for global styles ([7b71917](http://stash.corp.web:7999/FRONT/react-magma/commit/7b71917))
+* **global styles:** update test ([5ddf37b](http://stash.corp.web:7999/FRONT/react-magma/commit/5ddf37b))
+* **heading:** refactored to remove test utils ([9398191](http://stash.corp.web:7999/FRONT/react-magma/commit/9398191))
+* **help-link:** merge snapshot test changes ([39246ef](http://stash.corp.web:7999/FRONT/react-magma/commit/39246ef))
+* **icon:** fixing readability of icon tsts ([6fe60c5](http://stash.corp.web:7999/FRONT/react-magma/commit/6fe60c5))
+* **icon:** merging in e2e test upgrades ([df60e35](http://stash.corp.web:7999/FRONT/react-magma/commit/df60e35))
+* **icon:** Moved render calls into tests to keep tests self-contained ([b70b2b5](http://stash.corp.web:7999/FRONT/react-magma/commit/b70b2b5))
+* **icon:** update snapshot ([92e3514](http://stash.corp.web:7999/FRONT/react-magma/commit/92e3514))
+* **icon:** update snapshot test ([9d5211d](http://stash.corp.web:7999/FRONT/react-magma/commit/9d5211d))
+* **icon button:** adding in tests for icon button ([7415748](http://stash.corp.web:7999/FRONT/react-magma/commit/7415748))
+* **icon button:** e2e tests for icon buttons ([76fa703](http://stash.corp.web:7999/FRONT/react-magma/commit/76fa703))
+* **icon-button:** switching icon button tests to js ([f2c661d](http://stash.corp.web:7999/FRONT/react-magma/commit/f2c661d))
+* **input:** move renders into tests ([411873f](http://stash.corp.web:7999/FRONT/react-magma/commit/411873f))
+* **linkbutton:** Moved render calls into tests ([e6c1dd6](http://stash.corp.web:7999/FRONT/react-magma/commit/e6c1dd6))
+* **modal:** Fix bad test to check for correct information ([81d3972](http://stash.corp.web:7999/FRONT/react-magma/commit/81d3972))
+* **modals:** adding modal style tests ([21f3b53](http://stash.corp.web:7999/FRONT/react-magma/commit/21f3b53))
+* **notification icon:** update snapshot ([544736b](http://stash.corp.web:7999/FRONT/react-magma/commit/544736b))
+* **radio:** e2e tests ([c0a76c3](http://stash.corp.web:7999/FRONT/react-magma/commit/c0a76c3))
+* **radio:** refactor radio tests to align with rest of tests ([2988e2e](http://stash.corp.web:7999/FRONT/react-magma/commit/2988e2e))
+* **radio buttons:** make small changes to tests ([4d2f6a0](http://stash.corp.web:7999/FRONT/react-magma/commit/4d2f6a0))
+* **radio buttons:** update clean up the cleanups in the tests ([578202f](http://stash.corp.web:7999/FRONT/react-magma/commit/578202f))
+* **radiogroup:** Moved render calls into tests ([122abcb](http://stash.corp.web:7999/FRONT/react-magma/commit/122abcb))
+* **select:** cleaned up nested thens ([d1cf71a](http://stash.corp.web:7999/FRONT/react-magma/commit/d1cf71a))
+* **select:** Cleaning up cypress tests ([72370c4](http://stash.corp.web:7999/FRONT/react-magma/commit/72370c4))
+* **select:** e2e tests for select event handlers ([ee57ac3](http://stash.corp.web:7999/FRONT/react-magma/commit/ee57ac3))
+* **select:** refactoring tests ([4f08101](http://stash.corp.web:7999/FRONT/react-magma/commit/4f08101))
+* **skip link:** add more tests ([fe4abb4](http://stash.corp.web:7999/FRONT/react-magma/commit/fe4abb4))
+* **skip link:** test for focusing on content div ([1002e12](http://stash.corp.web:7999/FRONT/react-magma/commit/1002e12))
+* **skiplink:** update snapshot ([a312d3a](http://stash.corp.web:7999/FRONT/react-magma/commit/a312d3a))
+* **snapshot tests:** rerunning snapshot tests to resolve emotion issues ([68af858](http://stash.corp.web:7999/FRONT/react-magma/commit/68af858))
+* **snapshots:** adding autoLabel to emotion babel plugin ([88c1f5c](http://stash.corp.web:7999/FRONT/react-magma/commit/88c1f5c))
+* **snapshots:** separating snapshots for better breakdown ([4970431](http://stash.corp.web:7999/FRONT/react-magma/commit/4970431))
+* **styled button:** move rendering into tests ([cb6b136](http://stash.corp.web:7999/FRONT/react-magma/commit/cb6b136))
+* **styles:** add in styles tests ([59246c6](http://stash.corp.web:7999/FRONT/react-magma/commit/59246c6))
+* **test-ids:** adding in test-ids for each component ([ad1bfae](http://stash.corp.web:7999/FRONT/react-magma/commit/ad1bfae))
+* **test-ids:** removing unused imports in tests ([02ab079](http://stash.corp.web:7999/FRONT/react-magma/commit/02ab079))
+* **testing-library:** remove getAllByText tests for selects ([9713d89](http://stash.corp.web:7999/FRONT/react-magma/commit/9713d89))
+* **tooltip:** update snapshot for a tooltip in another componentn ([2fd6055](http://stash.corp.web:7999/FRONT/react-magma/commit/2fd6055))
+* move imports to test setup ([e82cce8](http://stash.corp.web:7999/FRONT/react-magma/commit/e82cce8))
+* update snapshots ([a3d78f9](http://stash.corp.web:7999/FRONT/react-magma/commit/a3d78f9))
+* **testing-library:** upgrade react-testing-library ([dfc9099](http://stash.corp.web:7999/FRONT/react-magma/commit/dfc9099))
+* **toasts:** refactor tests to align with other tests ([027ace7](http://stash.corp.web:7999/FRONT/react-magma/commit/027ace7))
+* **toasts:** reseting jest timers after each test ([77aced4](http://stash.corp.web:7999/FRONT/react-magma/commit/77aced4))
+* **toggle:** refactor tests, disable lint rule in test ([d76a0f0](http://stash.corp.web:7999/FRONT/react-magma/commit/d76a0f0))
+* **toggle, button:** add tests to improve covg ([8adb4d7](http://stash.corp.web:7999/FRONT/react-magma/commit/8adb4d7))
+* **tooltip:** tooltip core tests ([961876b](http://stash.corp.web:7999/FRONT/react-magma/commit/961876b))
+* **tooltip:** update snapshot ([ac5287f](http://stash.corp.web:7999/FRONT/react-magma/commit/ac5287f))
+* **types:** update snapshots ([8f63d61](http://stash.corp.web:7999/FRONT/react-magma/commit/8f63d61))
+
+
+### BREAKING CHANGES
+
+* **container style:** this branch changes the prop name from style to container style on toasts, inputs,
+radios, radio groups and checkboxes
+* **style prop:** prop previously named style is now named containerStyle for radio, radioGroup,
+checkbox, input, toggle and toast
+* **types:** This changes an exposed type name so it will break TS consumers who are using the
+misspelled name
+* **checkboxes:** Previously the value prop was used to set checked state, now checked prop would be
+used
+
+
+
+### 1.0.1-beta.0 (2019-12-13)
+
+
+### Bug Fixes
+
+* **babel-plugin:** build babel plugin for publish ([8d3bc01](http://stash.corp.web:7999/FRONT/react-magma/commit/8d3bc01))
+* **babel-plugin:** Fix bad paths for interfaces and icons ([11c712a](http://stash.corp.web:7999/FRONT/react-magma/commit/11c712a))
+* **babel-plugin:** Fix GlobalStyles import ([a5f40cd](http://stash.corp.web:7999/FRONT/react-magma/commit/a5f40cd))
+* **babel-plugin:** removing npmrc ([9c3171c](http://stash.corp.web:7999/FRONT/react-magma/commit/9c3171c))
+* **bad-dom-props:** fix bad dom props when passed through emotion ([9a58375](http://stash.corp.web:7999/FRONT/react-magma/commit/9a58375))
+* **button:** corrected broken tests ([95d4608](http://stash.corp.web:7999/FRONT/react-magma/commit/95d4608))
+* **buttons:** fix font weight and size on buttons ([da2250f](http://stash.corp.web:7999/FRONT/react-magma/commit/da2250f))
+* **buttons:** pass href to button, to allow button to be used as link ([d96e398](http://stash.corp.web:7999/FRONT/react-magma/commit/d96e398))
+* **checkbox:** checkbox active state ([73c0203](http://stash.corp.web:7999/FRONT/react-magma/commit/73c0203))
+* **checkboxes:** active style issue fix ([0253731](http://stash.corp.web:7999/FRONT/react-magma/commit/0253731))
+* **console-warnings:** Removing bad props from dom ([b6dce9d](http://stash.corp.web:7999/FRONT/react-magma/commit/b6dce9d))
+* **cypress-upgrade:** upgrading cypress to fix bad dependency ([0ea5d77](http://stash.corp.web:7999/FRONT/react-magma/commit/0ea5d77))
+* **date-picker:** fix dates not being chosen ([cf9ceaf](http://stash.corp.web:7999/FRONT/react-magma/commit/cf9ceaf))
+* **date-picker:** return focus to input on esc on date focus ([27bcf3f](http://stash.corp.web:7999/FRONT/react-magma/commit/27bcf3f))
+* **datepicker:** add types to buttons and add inverse prop ([5e98535](http://stash.corp.web:7999/FRONT/react-magma/commit/5e98535))
+* **datepicker:** fix focus style in safari ([aa5d096](http://stash.corp.web:7999/FRONT/react-magma/commit/aa5d096))
+* **datepicker:** focus styles in ff ([4dec95e](http://stash.corp.web:7999/FRONT/react-magma/commit/4dec95e))
+* **docs:** downgrade gatsby to support new builds ([438b857](http://stash.corp.web:7999/FRONT/react-magma/commit/438b857))
+* **docs:** fix issue with settimeout in docs nav ([212a0fc](http://stash.corp.web:7999/FRONT/react-magma/commit/212a0fc))
+* **docs:** remove unneeded brackets ([3d345d1](http://stash.corp.web:7999/FRONT/react-magma/commit/3d345d1))
+* **event-stream:** add in own package of event-stream ([cd29345](http://stash.corp.web:7999/FRONT/react-magma/commit/cd29345))
+* **event-type-change:** change onChange event types to ChangeEvents ([f48e770](http://stash.corp.web:7999/FRONT/react-magma/commit/f48e770))
+* **focus style:** remove transition to fix safari bug ([3071af6](http://stash.corp.web:7999/FRONT/react-magma/commit/3071af6))
+* **gatsby:** changing static file location for jenkins ([6edbdc9](http://stash.corp.web:7999/FRONT/react-magma/commit/6edbdc9))
+* **gatsby:** trying to fix react-dev-utils ([a89b5fb](http://stash.corp.web:7999/FRONT/react-magma/commit/a89b5fb))
+* **gitignore:** ignore all log files ([e819687](http://stash.corp.web:7999/FRONT/react-magma/commit/e819687))
+* **global styles:** change folder structure for importing global stles ([10670af](http://stash.corp.web:7999/FRONT/react-magma/commit/10670af))
+* **global styles, labels:** changes to work better with react bootstrap ([5e8d3a3](http://stash.corp.web:7999/FRONT/react-magma/commit/5e8d3a3))
+* **headings:** fix heading styles not being applied ([7265dfc](http://stash.corp.web:7999/FRONT/react-magma/commit/7265dfc))
+* **husky:** fix husky hooks ([ed691f2](http://stash.corp.web:7999/FRONT/react-magma/commit/ed691f2))
+* **hyperlink:** fix console error with textTransform prop ([506d818](http://stash.corp.web:7999/FRONT/react-magma/commit/506d818))
+* **hyperlink:** fix shadow props error ([68adfbe](http://stash.corp.web:7999/FRONT/react-magma/commit/68adfbe))
+* **hyperlink:** fix shadow props error ([c32334e](http://stash.corp.web:7999/FRONT/react-magma/commit/c32334e))
+* **innerRef:** Fix all references to innerRef ([4220463](http://stash.corp.web:7999/FRONT/react-magma/commit/4220463))
+* **input button:** fix issue with button ref introduced in merge ([7cdb8d9](http://stash.corp.web:7999/FRONT/react-magma/commit/7cdb8d9))
+* **input-message:** Removing forward ref from input message ([61232f7](http://stash.corp.web:7999/FRONT/react-magma/commit/61232f7))
+* **lint-fixes:** add eslint for tests ([3f8c659](http://stash.corp.web:7999/FRONT/react-magma/commit/3f8c659))
+* **lint-fixes:** adding eslint to core for tests ([1169048](http://stash.corp.web:7999/FRONT/react-magma/commit/1169048))
+* **lint-fixes:** adding noUnusedVariables in tsconfig for core ([3b0c51d](http://stash.corp.web:7999/FRONT/react-magma/commit/3b0c51d))
+* **lint-fixes:** removing unnecessary globals and plugins ([788e356](http://stash.corp.web:7999/FRONT/react-magma/commit/788e356))
+* **modal:** add componentdidmount so it renders if always open ([5c321a6](http://stash.corp.web:7999/FRONT/react-magma/commit/5c321a6))
+* **modal:** close when clicking backdrop while still allowing scrolling ([5469cf4](http://stash.corp.web:7999/FRONT/react-magma/commit/5469cf4))
+* **modal:** do not try to focus next element if there isn't one ([d983749](http://stash.corp.web:7999/FRONT/react-magma/commit/d983749))
+* **modal:** esc key works when backdrop click is disabled ([ebcd8e2](http://stash.corp.web:7999/FRONT/react-magma/commit/ebcd8e2))
+* **modal:** export enum for modal size ([b5cfa6d](http://stash.corp.web:7999/FRONT/react-magma/commit/b5cfa6d))
+* **modal:** fix focusable elements when modal content changes ([33b3ff9](http://stash.corp.web:7999/FRONT/react-magma/commit/33b3ff9))
+* **modal:** fix scroll with mouse issue ([cc097d5](http://stash.corp.web:7999/FRONT/react-magma/commit/cc097d5))
+* **modal:** Fix trap focus for modals ([ff7aa51](http://stash.corp.web:7999/FRONT/react-magma/commit/ff7aa51))
+* **modal:** fix unknown prop warning ([39ea881](http://stash.corp.web:7999/FRONT/react-magma/commit/39ea881))
+* **modal:** handle shift-tab better to specifically look for header ([2e2ae00](http://stash.corp.web:7999/FRONT/react-magma/commit/2e2ae00))
+* **modal:** handle shift-tab from header and from radio group ([d17c317](http://stash.corp.web:7999/FRONT/react-magma/commit/d17c317))
+* **modal:** handle shift-tab from untabbable modal ([b3b3e2b](http://stash.corp.web:7999/FRONT/react-magma/commit/b3b3e2b))
+* **modal:** hide modal on esc key press on body ([1976511](http://stash.corp.web:7999/FRONT/react-magma/commit/1976511))
+* **modal:** use heading component in modal to explictly specify font ([6179123](http://stash.corp.web:7999/FRONT/react-magma/commit/6179123))
+* **modal, alert:** add more styles to better work in inverse mode ([595bf1c](http://stash.corp.web:7999/FRONT/react-magma/commit/595bf1c))
+* **modals:** handle shift-tab on header, add example to docs for radio ([6de0ec9](http://stash.corp.web:7999/FRONT/react-magma/commit/6de0ec9))
+* **notification icon:** update notification icon to fix irregular border ([12bd950](http://stash.corp.web:7999/FRONT/react-magma/commit/12bd950))
+* **password-mask:** Explicit Button type on show/hide button ([2738939](http://stash.corp.web:7999/FRONT/react-magma/commit/2738939))
+* **password-mask:** Fix typo ([f7c7137](http://stash.corp.web:7999/FRONT/react-magma/commit/f7c7137))
+* **radio:** fix docs to not have auto checked radios ([1666684](http://stash.corp.web:7999/FRONT/react-magma/commit/1666684))
+* **ref:** fix deprecated innerRef prop for styled Input ([f376c69](http://stash.corp.web:7999/FRONT/react-magma/commit/f376c69))
+* **refs:** fix forward refs on class components ([ad63f38](http://stash.corp.web:7999/FRONT/react-magma/commit/ad63f38))
+* **select:** add helper and error msg to arialabel ([bfaebf0](http://stash.corp.web:7999/FRONT/react-magma/commit/bfaebf0))
+* **select:** fix multiple labels for one element ([7889e25](http://stash.corp.web:7999/FRONT/react-magma/commit/7889e25))
+* **select:** fix spacing issue with error message ([ab61f50](http://stash.corp.web:7999/FRONT/react-magma/commit/ab61f50))
+* **select:** fixing toggle error ([bbd35bd](http://stash.corp.web:7999/FRONT/react-magma/commit/bbd35bd))
+* **skip link:** fix react import ([af07c40](http://stash.corp.web:7999/FRONT/react-magma/commit/af07c40))
+* **skiplink:** fix console errors in skip link ([fa629ec](http://stash.corp.web:7999/FRONT/react-magma/commit/fa629ec))
+* **spread-props:** fix overwriting of props when spreading "other" ([0081227](http://stash.corp.web:7999/FRONT/react-magma/commit/0081227))
+* **ThemeContext:** commit case sensitive file name change ([9bedbee](http://stash.corp.web:7999/FRONT/react-magma/commit/9bedbee))
+* **theming:** fix theming for edge ([1f2b459](http://stash.corp.web:7999/FRONT/react-magma/commit/1f2b459))
+* **toast:** honor disableAutoDismiss on mouse hovers ([26bc0a2](http://stash.corp.web:7999/FRONT/react-magma/commit/26bc0a2))
+* **toggle:** fix a11y issue with toggle by always including aria-checked ([856f1c1](http://stash.corp.web:7999/FRONT/react-magma/commit/856f1c1))
+* **toggle:** fix toggle to used checked prop ([68f0c9e](http://stash.corp.web:7999/FRONT/react-magma/commit/68f0c9e))
+* **toggle, heading, alert:** fix focus styles ([f69331a](http://stash.corp.web:7999/FRONT/react-magma/commit/f69331a))
+* **tooltip:** fix ThemeContext case ([6f22651](http://stash.corp.web:7999/FRONT/react-magma/commit/6f22651))
+* **types:** type fixes. select test ([fa18b56](http://stash.corp.web:7999/FRONT/react-magma/commit/fa18b56))
+* fix errors with inline styles using kebob-case not camelCase ([5c18717](http://stash.corp.web:7999/FRONT/react-magma/commit/5c18717))
+* **update-gatsby:** update gatsby to fix build ([40085e4](http://stash.corp.web:7999/FRONT/react-magma/commit/40085e4))
+* **various:** merge ([61dfe4a](http://stash.corp.web:7999/FRONT/react-magma/commit/61dfe4a))
+* **versioning:** support for pipelines to publish new versions ([cab97ca](http://stash.corp.web:7999/FRONT/react-magma/commit/cab97ca))
+
+
+### Build System
+
+* **adds tsdx:** replacing babel build with tsdx build ([aafe691](http://stash.corp.web:7999/FRONT/react-magma/commit/aafe691))
+* **analyze:** removing reports from package bundle ([1e7f01c](http://stash.corp.web:7999/FRONT/react-magma/commit/1e7f01c))
+* **analyzer:** adding in report analyzer for bundles ([972e38c](http://stash.corp.web:7999/FRONT/react-magma/commit/972e38c))
+* **babel-jest:** core tests to js ([4f081d2](http://stash.corp.web:7999/FRONT/react-magma/commit/4f081d2))
+* **babel-jest:** removing ts-jest in favor of babel-jest ([c8b3ead](http://stash.corp.web:7999/FRONT/react-magma/commit/c8b3ead))
+* **babel-jest:** trying to get coverage working ([009ec1f](http://stash.corp.web:7999/FRONT/react-magma/commit/009ec1f))
+* **babel-plugin:** build babel plugin ([cfad883](http://stash.corp.web:7999/FRONT/react-magma/commit/cfad883))
+* **babel-plugin:** publish babel-plugin ([039bc94](http://stash.corp.web:7999/FRONT/react-magma/commit/039bc94))
+* **babel-plugin:** update publish repo in package.json ([3f10075](http://stash.corp.web:7999/FRONT/react-magma/commit/3f10075))
+* **babel-plugins:** removing unused babel plugins ([6f7b674](http://stash.corp.web:7999/FRONT/react-magma/commit/6f7b674))
+* **core:** adds tsdx for core build ([506c0d8](http://stash.corp.web:7999/FRONT/react-magma/commit/506c0d8))
+* **core:** adds tsdx for core build ([361535b](http://stash.corp.web:7999/FRONT/react-magma/commit/361535b))
+* **e2eTesting:** adding npmrc to e2e repo ([70f3a22](http://stash.corp.web:7999/FRONT/react-magma/commit/70f3a22))
+* **everything:** Finished migration to tsdx and cleaned up comments ([0dde814](http://stash.corp.web:7999/FRONT/react-magma/commit/0dde814))
+* **everything:** refactoring to get new builds working ([89208c9](http://stash.corp.web:7999/FRONT/react-magma/commit/89208c9))
+* **jenkins:** updating jenkins file ([d238199](http://stash.corp.web:7999/FRONT/react-magma/commit/d238199))
+* **pipeline-change:** add scripts for pipeline change ([9f4fbed](http://stash.corp.web:7999/FRONT/react-magma/commit/9f4fbed))
+* **publish:** building with types and publishing ([5b2ac1a](http://stash.corp.web:7999/FRONT/react-magma/commit/5b2ac1a))
+* **publish:** fixing styled-components with types ([c2ac9dc](http://stash.corp.web:7999/FRONT/react-magma/commit/c2ac9dc))
+* **publish:** initial publish builds ([bad1746](http://stash.corp.web:7999/FRONT/react-magma/commit/bad1746))
+* **publishing:** updating registries for publishing ([7801668](http://stash.corp.web:7999/FRONT/react-magma/commit/7801668))
+* **react-magma-core:** updating build to use babel typescript and tsc ([07970cf](http://stash.corp.web:7999/FRONT/react-magma/commit/07970cf))
+* **react-magma-dom:** adding in prebuild to check compiler ([11de2c3](http://stash.corp.web:7999/FRONT/react-magma/commit/11de2c3))
+* **react-magma-dom:** Building with babel typescript ([495a224](http://stash.corp.web:7999/FRONT/react-magma/commit/495a224))
+* **react-magma-dom:** compiling types in postbuild using tsc ([81bb3e6](http://stash.corp.web:7999/FRONT/react-magma/commit/81bb3e6))
+* **theme-types:** Build types in theme folder ([c7e1bdb](http://stash.corp.web:7999/FRONT/react-magma/commit/c7e1bdb))
+* **tree-shaking:** Tree shaking working and minifying builds ([7a98cb8](http://stash.corp.web:7999/FRONT/react-magma/commit/7a98cb8))
+* **version:** upate dom version ([5e06c80](http://stash.corp.web:7999/FRONT/react-magma/commit/5e06c80))
+
+
+### Features
+
+* **a11y:** focus styles, toggles as switches, calendar fix ([2942f2d](http://stash.corp.web:7999/FRONT/react-magma/commit/2942f2d))
+* **alert:** allow override of alert close lable ([bda7747](http://stash.corp.web:7999/FRONT/react-magma/commit/bda7747))
+* **alert:** create alert component ([d6a5444](http://stash.corp.web:7999/FRONT/react-magma/commit/d6a5444))
+* **alert:** fade out alert before calling ondismiss ([670ef7c](http://stash.corp.web:7999/FRONT/react-magma/commit/670ef7c))
+* **alert-forward-ref:** adding forward ref to alerts ([1e70f7e](http://stash.corp.web:7999/FRONT/react-magma/commit/1e70f7e))
+* **alerts:** alert styles ([47b95f5](http://stash.corp.web:7999/FRONT/react-magma/commit/47b95f5))
+* **alerts:** No option to remove icons from alerts ([d735727](http://stash.corp.web:7999/FRONT/react-magma/commit/d735727))
+* **alerts:** style tweaks to alerts ([de21265](http://stash.corp.web:7999/FRONT/react-magma/commit/de21265))
+* **announce:** add announce (aria-live) component ([12368db](http://stash.corp.web:7999/FRONT/react-magma/commit/12368db))
+* **announce:** merge dev ([6b653d0](http://stash.corp.web:7999/FRONT/react-magma/commit/6b653d0))
+* **announce, visuallyhidden:** remove cleanup from tests, update docs ([8f0642f](http://stash.corp.web:7999/FRONT/react-magma/commit/8f0642f))
+* **auto-assign ids:** Auto assign ids where associations are needed ([9e3fe00](http://stash.corp.web:7999/FRONT/react-magma/commit/9e3fe00))
+* **auto-assign ids:** generateId to util function. Rename tests ([ff866fb](http://stash.corp.web:7999/FRONT/react-magma/commit/ff866fb))
+* **auto-assign ids:** update ids on prop changes ([709d9e9](http://stash.corp.web:7999/FRONT/react-magma/commit/709d9e9))
+* **babel-plugin:** Enum prefix added for exports ([dc28550](http://stash.corp.web:7999/FRONT/react-magma/commit/dc28550))
+* **babel-plugin:** Moving babel plugin in to packages ([0b7a850](http://stash.corp.web:7999/FRONT/react-magma/commit/0b7a850))
+* **badges:** badge component ([ac4d4e3](http://stash.corp.web:7999/FRONT/react-magma/commit/ac4d4e3))
+* **badges:** fixes based on orion feedback ([97bb229](http://stash.corp.web:7999/FRONT/react-magma/commit/97bb229))
+* **breadcrumb:** start of breadcrumb component ([2a9e282](http://stash.corp.web:7999/FRONT/react-magma/commit/2a9e282))
+* **breadcrumb:** support aria-label and min-width props ([44630e5](http://stash.corp.web:7999/FRONT/react-magma/commit/44630e5))
+* **build-types:** Output types in build and fix bad typing ([3dd09ae](http://stash.corp.web:7999/FRONT/react-magma/commit/3dd09ae))
+* **button:** styles for marketing button ([7906ac7](http://stash.corp.web:7999/FRONT/react-magma/commit/7906ac7))
+* **buttons:** add babel plugin for polished ([7b9f096](http://stash.corp.web:7999/FRONT/react-magma/commit/7b9f096))
+* **buttons:** babel plugin for polished ([82408c0](http://stash.corp.web:7999/FRONT/react-magma/commit/82408c0))
+* **buttons:** button color text for hover, active outline buttons ([da3763e](http://stash.corp.web:7999/FRONT/react-magma/commit/da3763e))
+* **buttons:** buttons as links ([1b685fb](http://stash.corp.web:7999/FRONT/react-magma/commit/1b685fb))
+* **buttons:** calculate outline hover colors ([773c240](http://stash.corp.web:7999/FRONT/react-magma/commit/773c240))
+* **buttons:** change label props to children, change type to variant ([3afd157](http://stash.corp.web:7999/FRONT/react-magma/commit/3afd157))
+* **buttons:** fix hover color for link buttons ([446cacd](http://stash.corp.web:7999/FRONT/react-magma/commit/446cacd))
+* **buttons:** icon buttons with text ([a3f40cf](http://stash.corp.web:7999/FRONT/react-magma/commit/a3f40cf))
+* **buttons:** more button styles, incl hover states ([7e05459](http://stash.corp.web:7999/FRONT/react-magma/commit/7e05459))
+* **buttons:** more styles for button varitions ([e2d4af0](http://stash.corp.web:7999/FRONT/react-magma/commit/e2d4af0))
+* **buttons:** new button hover and active styles ([4054589](http://stash.corp.web:7999/FRONT/react-magma/commit/4054589))
+* **buttons:** new button styles, new magma colors ([d3bc193](http://stash.corp.web:7999/FRONT/react-magma/commit/d3bc193))
+* **card:** background color and inverse ([7a77801](http://stash.corp.web:7999/FRONT/react-magma/commit/7a77801))
+* **card:** card component ([4cf501c](http://stash.corp.web:7999/FRONT/react-magma/commit/4cf501c))
+* **card:** remove unneeded case ([d81d3bc](http://stash.corp.web:7999/FRONT/react-magma/commit/d81d3bc))
+* **card heading:** make heading level flexible, style fix ([ec45861](http://stash.corp.web:7999/FRONT/react-magma/commit/ec45861))
+* **checkbox:** adding in indeterminate state ([fee7561](http://stash.corp.web:7999/FRONT/react-magma/commit/fee7561))
+* **checkbox:** created checkbox component ([9ac0171](http://stash.corp.web:7999/FRONT/react-magma/commit/9ac0171))
+* **checkboxes:** Adding indeterminate property to checkboxes ([2e11680](http://stash.corp.web:7999/FRONT/react-magma/commit/2e11680))
+* **checkboxes:** checkbox styles ([b2d94e5](http://stash.corp.web:7999/FRONT/react-magma/commit/b2d94e5))
+* **checkboxes:** indeterminate state ([1569889](http://stash.corp.web:7999/FRONT/react-magma/commit/1569889))
+* **checkboxes:** inverse, disabled, and color properties for checkboxes ([7452e8c](http://stash.corp.web:7999/FRONT/react-magma/commit/7452e8c))
+* **checkboxes:** types in checkboxes ([dd5214d](http://stash.corp.web:7999/FRONT/react-magma/commit/dd5214d))
+* **checkboxes:** use checked prop instead of value, add name prop ([5d949c2](http://stash.corp.web:7999/FRONT/react-magma/commit/5d949c2))
+* **checkboxes:** Using checked value for handleChange ([97f1fa0](http://stash.corp.web:7999/FRONT/react-magma/commit/97f1fa0))
+* **container style:** merge ([2a6759a](http://stash.corp.web:7999/FRONT/react-magma/commit/2a6759a))
+* **controlled-components:** allowing null for select values ([869f19a](http://stash.corp.web:7999/FRONT/react-magma/commit/869f19a))
+* **controlled-components:** updating values for components on rerender ([307f89a](http://stash.corp.web:7999/FRONT/react-magma/commit/307f89a))
+* **date picker:** help keyboard shortcut ([1ff932f](http://stash.corp.web:7999/FRONT/react-magma/commit/1ff932f))
+* **date-picker:** ? key works on next and prev buttons ([7e8d68a](http://stash.corp.web:7999/FRONT/react-magma/commit/7e8d68a))
+* **date-picker:** add helper and error message to date picker ([4f8f5ac](http://stash.corp.web:7999/FRONT/react-magma/commit/4f8f5ac))
+* **date-picker:** add trap focus to date picker calendar ([f4374fe](http://stash.corp.web:7999/FRONT/react-magma/commit/f4374fe))
+* **date-picker:** allowing text input ([64a3ee6](http://stash.corp.web:7999/FRONT/react-magma/commit/64a3ee6))
+* **date-picker:** Change to generic onDateChange function ([89e3943](http://stash.corp.web:7999/FRONT/react-magma/commit/89e3943))
+* **date-picker:** Clean out dom information in core ([534b626](http://stash.corp.web:7999/FRONT/react-magma/commit/534b626))
+* **date-picker:** close button functionality ([1225af3](http://stash.corp.web:7999/FRONT/react-magma/commit/1225af3))
+* **date-picker:** Created a date-picker ([244f514](http://stash.corp.web:7999/FRONT/react-magma/commit/244f514))
+* **date-picker:** finished up date picker ([fde3c06](http://stash.corp.web:7999/FRONT/react-magma/commit/fde3c06))
+* **date-picker:** focus calendar header when opened if no chosen date ([57316f9](http://stash.corp.web:7999/FRONT/react-magma/commit/57316f9))
+* **date-picker:** focus chosen date on calendar open ([1bf21c7](http://stash.corp.web:7999/FRONT/react-magma/commit/1bf21c7))
+* **date-picker:** helper information in the date picker ([85778a8](http://stash.corp.web:7999/FRONT/react-magma/commit/85778a8))
+* **date-picker:** moving logic to core ([9aaa8c8](http://stash.corp.web:7999/FRONT/react-magma/commit/9aaa8c8))
+* **date-picker:** question mark key while focused on calendar ([f448e5d](http://stash.corp.web:7999/FRONT/react-magma/commit/f448e5d))
+* **date-picker:** remove unecessary export in utils ([50518dd](http://stash.corp.web:7999/FRONT/react-magma/commit/50518dd))
+* **date-picker:** removing commented out code ([a8312a3](http://stash.corp.web:7999/FRONT/react-magma/commit/a8312a3))
+* **datepicker:** a few small ui tweaks ([629af19](http://stash.corp.web:7999/FRONT/react-magma/commit/629af19))
+* **datepicker:** add close button ([d331f54](http://stash.corp.web:7999/FRONT/react-magma/commit/d331f54))
+* **datepicker:** change announce text ([ec396cf](http://stash.corp.web:7999/FRONT/react-magma/commit/ec396cf))
+* **datepicker:** fix issue with dp closing when modal open ([fe04d38](http://stash.corp.web:7999/FRONT/react-magma/commit/fe04d38))
+* **datepicker:** fix issue with ondayclick ([01be3a1](http://stash.corp.web:7999/FRONT/react-magma/commit/01be3a1))
+* **datepicker:** focus input when pressig close ([cae3f38](http://stash.corp.web:7999/FRONT/react-magma/commit/cae3f38))
+* **datepicker:** help button style ([3969d2d](http://stash.corp.web:7999/FRONT/react-magma/commit/3969d2d))
+* **datepicker:** help modal styles ([3f735d4](http://stash.corp.web:7999/FRONT/react-magma/commit/3f735d4))
+* **datepicker:** icon button style ([4433cc2](http://stash.corp.web:7999/FRONT/react-magma/commit/4433cc2))
+* **datepicker:** make datepicker open on icon click ([e762800](http://stash.corp.web:7999/FRONT/react-magma/commit/e762800))
+* **datepicker:** placeholder ([7efcd41](http://stash.corp.web:7999/FRONT/react-magma/commit/7efcd41))
+* **datepicker:** return focus to input after dp closes, tests ([19f7f14](http://stash.corp.web:7999/FRONT/react-magma/commit/19f7f14))
+* **datepicker:** show calendar on icon click ([8f72a9f](http://stash.corp.web:7999/FRONT/react-magma/commit/8f72a9f))
+* **datepicker:** use small modal for help, prevent calendar closing ([a4e7269](http://stash.corp.web:7999/FRONT/react-magma/commit/a4e7269))
+* **docs:** move all docs pages to new layout ([6a68fe2](http://stash.corp.web:7999/FRONT/react-magma/commit/6a68fe2))
+* **docs-performance:** get alerts using new layout for performance ([9e80f58](http://stash.corp.web:7999/FRONT/react-magma/commit/9e80f58))
+* **e2e-add-react-version:** Adding react 16.0 to cypress tests ([2e974fd](http://stash.corp.web:7999/FRONT/react-magma/commit/2e974fd))
+* **event-handlers:** change name of handleEvents to onEvents ([13f60a0](http://stash.corp.web:7999/FRONT/react-magma/commit/13f60a0))
+* **feedback:** Changes from consumer feedback ([3883658](http://stash.corp.web:7999/FRONT/react-magma/commit/3883658))
+* **file-structure:** Changing file structure to allow single exports ([ea49527](http://stash.corp.web:7999/FRONT/react-magma/commit/ea49527))
+* **focus styles:** apply focus styles at all times, not just kb ([bc9417b](http://stash.corp.web:7999/FRONT/react-magma/commit/bc9417b))
+* **form group:** form group component for wrapping checkboxes ([af40516](http://stash.corp.web:7999/FRONT/react-magma/commit/af40516))
+* **form group:** get rid of core component ([09da516](http://stash.corp.web:7999/FRONT/react-magma/commit/09da516))
+* **forward refs:** Adding forward refs to all base components ([e3f7464](http://stash.corp.web:7999/FRONT/react-magma/commit/e3f7464))
+* **forward refs:** Base button now forward ref ([a8949bc](http://stash.corp.web:7999/FRONT/react-magma/commit/a8949bc))
+* **forward refs:** internal styled button now using forwardRef ([d33adaf](http://stash.corp.web:7999/FRONT/react-magma/commit/d33adaf))
+* **gatsby:** merging in master ([f06f747](http://stash.corp.web:7999/FRONT/react-magma/commit/f06f747))
+* **global styles:** export global styles ([4b07452](http://stash.corp.web:7999/FRONT/react-magma/commit/4b07452))
+* **global styles:** make global styles themable and reusable in gatsby ([dee6fda](http://stash.corp.web:7999/FRONT/react-magma/commit/dee6fda))
+* **global styles:** more global styles, docs for global styles ([17dd726](http://stash.corp.web:7999/FRONT/react-magma/commit/17dd726))
+* **heading:** change heading color to foundation blue ([e449e95](http://stash.corp.web:7999/FRONT/react-magma/commit/e449e95))
+* **headings:** Added basic component with styles for heading levels 1-6 ([c1a6217](http://stash.corp.web:7999/FRONT/react-magma/commit/c1a6217))
+* **headings:** Changing prop size to level ([c0a0a1a](http://stash.corp.web:7999/FRONT/react-magma/commit/c0a0a1a))
+* **headings:** created single header component with size prop ([a5cb4de](http://stash.corp.web:7999/FRONT/react-magma/commit/a5cb4de))
+* **headings:** getting rid of e2e tests and changing to headings ([2ea04b4](http://stash.corp.web:7999/FRONT/react-magma/commit/2ea04b4))
+* **headings:** merge conflicts with master ([81f33ea](http://stash.corp.web:7999/FRONT/react-magma/commit/81f33ea))
+* **headings:** new heading styles, refactor some styling ([b644d32](http://stash.corp.web:7999/FRONT/react-magma/commit/b644d32))
+* **hyper-link:** Change omit variable for consistency ([475250f](http://stash.corp.web:7999/FRONT/react-magma/commit/475250f))
+* **hyper-link:** HyperLink created and allows button styling ([2f15f2f](http://stash.corp.web:7999/FRONT/react-magma/commit/2f15f2f))
+* **hyper-link:** link styles ([4e7541c](http://stash.corp.web:7999/FRONT/react-magma/commit/4e7541c))
+* **hyperlink:** use hyperlink in skip link ([b78d04e](http://stash.corp.web:7999/FRONT/react-magma/commit/b78d04e))
+* **icon:** Added pointer cursor for clickable icons ([9499cd8](http://stash.corp.web:7999/FRONT/react-magma/commit/9499cd8))
+* **icon:** adding in top level heading on icons docs ([afdf814](http://stash.corp.web:7999/FRONT/react-magma/commit/afdf814))
+* **icon:** adding snapshot tests for icons ([89d91a2](http://stash.corp.web:7999/FRONT/react-magma/commit/89d91a2))
+* **icon:** getting rid of styled compoennt for icon span ([2952f6c](http://stash.corp.web:7999/FRONT/react-magma/commit/2952f6c))
+* **icon:** merging master ([39e18a9](http://stash.corp.web:7999/FRONT/react-magma/commit/39e18a9))
+* **icon:** merging master and getting rid of bad tests ([9a2a8bd](http://stash.corp.web:7999/FRONT/react-magma/commit/9a2a8bd))
+* **icon:** removing click events from icons ([e606104](http://stash.corp.web:7999/FRONT/react-magma/commit/e606104))
+* **icon:** removing commented out line ([f6ca603](http://stash.corp.web:7999/FRONT/react-magma/commit/f6ca603))
+* **icon:** update menu icon ([b65a9c3](http://stash.corp.web:7999/FRONT/react-magma/commit/b65a9c3))
+* **icon:** updating icon map export ([e29173d](http://stash.corp.web:7999/FRONT/react-magma/commit/e29173d))
+* **icon:** updating snapshot titles to be more unique ([a0ed356](http://stash.corp.web:7999/FRONT/react-magma/commit/a0ed356))
+* **icon button:** extending styled button for use with icon button ([b433214](http://stash.corp.web:7999/FRONT/react-magma/commit/b433214))
+* **icons:** add new icons, remove old clock icon ([cd9db59](http://stash.corp.web:7999/FRONT/react-magma/commit/cd9db59))
+* **icons:** change how components use icons ([d984913](http://stash.corp.web:7999/FRONT/react-magma/commit/d984913))
+* **icons:** Fixing e2e tests and adding more details ([f5cb222](http://stash.corp.web:7999/FRONT/react-magma/commit/f5cb222))
+* **icons:** new font size icon ([efc5012](http://stash.corp.web:7999/FRONT/react-magma/commit/efc5012))
+* **icons:** removing unneeded span around svg ([e45ead1](http://stash.corp.web:7999/FRONT/react-magma/commit/e45ead1))
+* **icons:** render title of icon conditionally ([7774492](http://stash.corp.web:7999/FRONT/react-magma/commit/7774492))
+* **icons:** Reworking icons and adding in all of the magma icons ([5b9e489](http://stash.corp.web:7999/FRONT/react-magma/commit/5b9e489))
+* **input:** add option for textarea ([ba0d5bd](http://stash.corp.web:7999/FRONT/react-magma/commit/ba0d5bd))
+* **input:** add spinner animation ([03898c5](http://stash.corp.web:7999/FRONT/react-magma/commit/03898c5))
+* **input:** center spinner vertically ([13a7890](http://stash.corp.web:7999/FRONT/react-magma/commit/13a7890))
+* **input:** Clean up dom related code in input core ([1a74df3](http://stash.corp.web:7999/FRONT/react-magma/commit/1a74df3))
+* **input:** more input size updates ([cdbcbff](http://stash.corp.web:7999/FRONT/react-magma/commit/cdbcbff))
+* **input:** new error styles ([4a2bd86](http://stash.corp.web:7999/FRONT/react-magma/commit/4a2bd86))
+* **input:** refactor error message, add aria-describedby ([410a587](http://stash.corp.web:7999/FRONT/react-magma/commit/410a587))
+* **input:** update input size styles to just medium and xl ([cbb345b](http://stash.corp.web:7999/FRONT/react-magma/commit/cbb345b))
+* **input:** what is this button ([23d1a32](http://stash.corp.web:7999/FRONT/react-magma/commit/23d1a32))
+* **inputs:** input icon styles for sizes ([24cd98a](http://stash.corp.web:7999/FRONT/react-magma/commit/24cd98a))
+* **inputs:** input sizes ([9feb3a8](http://stash.corp.web:7999/FRONT/react-magma/commit/9feb3a8))
+* **inputs:** new input styles, helper text, error messages ([d75bcf7](http://stash.corp.web:7999/FRONT/react-magma/commit/d75bcf7))
+* **inputs:** visually hidden labels, focus and placeholder style ([fcb355c](http://stash.corp.web:7999/FRONT/react-magma/commit/fcb355c))
+* **landing page:** added basic static landing page ([d985f82](http://stash.corp.web:7999/FRONT/react-magma/commit/d985f82))
+* **loading indicator:** aria-hidden on messages, more tests, more docs ([3698d54](http://stash.corp.web:7999/FRONT/react-magma/commit/3698d54))
+* **loading indicator:** basic loading indicator component ([6564b16](http://stash.corp.web:7999/FRONT/react-magma/commit/6564b16))
+* **loading indicator:** clear timeout when  component unmounts ([26feb6b](http://stash.corp.web:7999/FRONT/react-magma/commit/26feb6b))
+* **loading indicator:** cutom messages the change after time ([2258023](http://stash.corp.web:7999/FRONT/react-magma/commit/2258023))
+* **loading indicator:** show percentage on progress bar ([945471d](http://stash.corp.web:7999/FRONT/react-magma/commit/945471d))
+* **modal:** adding callback guard for modal closing ([824ad9f](http://stash.corp.web:7999/FRONT/react-magma/commit/824ad9f))
+* **modal:** handle search on enter keypress ([52667e1](http://stash.corp.web:7999/FRONT/react-magma/commit/52667e1))
+* **modal:** merge ([c0c9b75](http://stash.corp.web:7999/FRONT/react-magma/commit/c0c9b75))
+* **modal:** move onclose from core to dom ([9016bb4](http://stash.corp.web:7999/FRONT/react-magma/commit/9016bb4))
+* **modal:** put focus on first element if nothing else to focus ([68c564a](http://stash.corp.web:7999/FRONT/react-magma/commit/68c564a))
+* **modal:** put focus on modal heading if there is one ([e72d78e](http://stash.corp.web:7999/FRONT/react-magma/commit/e72d78e))
+* **modal:** update modal styles ([003559b](http://stash.corp.web:7999/FRONT/react-magma/commit/003559b))
+* **modal:** use react portal and aria-modal attribute ([cf17fe3](http://stash.corp.web:7999/FRONT/react-magma/commit/cf17fe3))
+* **modals:** Creating own focus trap for modal ([cd4ee83](http://stash.corp.web:7999/FRONT/react-magma/commit/cd4ee83))
+* **modals:** modal styles ([140b0d4](http://stash.corp.web:7999/FRONT/react-magma/commit/140b0d4))
+* **modals:** modals with functionality ([821f2e0](http://stash.corp.web:7999/FRONT/react-magma/commit/821f2e0))
+* **modals:** more modal styles ([bf48723](http://stash.corp.web:7999/FRONT/react-magma/commit/bf48723))
+* **modals:** removing dom related code in modal core ([69c46a3](http://stash.corp.web:7999/FRONT/react-magma/commit/69c46a3))
+* **modals:** very basic modal ([ccaa210](http://stash.corp.web:7999/FRONT/react-magma/commit/ccaa210))
+* **password-mask:** add mask/unmask button to password inputs ([1d28b32](http://stash.corp.web:7999/FRONT/react-magma/commit/1d28b32))
+* **password-mask:** fix password mask button css ([2262c88](http://stash.corp.web:7999/FRONT/react-magma/commit/2262c88))
+* **progress bar:** add progress bar style to loading indicator ([a70079a](http://stash.corp.web:7999/FRONT/react-magma/commit/a70079a))
+* **progressbar:** change bgcolor to enum ([41f5e87](http://stash.corp.web:7999/FRONT/react-magma/commit/41f5e87))
+* **progressbar:** new progress bar component ([bf6a344](http://stash.corp.web:7999/FRONT/react-magma/commit/bf6a344))
+* **progressbar:** update propname, add 1px padding ([5bfbf02](http://stash.corp.web:7999/FRONT/react-magma/commit/5bfbf02))
+* **pword input:** optional props to override ui text ([c5294b1](http://stash.corp.web:7999/FRONT/react-magma/commit/c5294b1))
+* **pword input:** screenreader feedback for pword toggle ([b453af8](http://stash.corp.web:7999/FRONT/react-magma/commit/b453af8))
+* **radio:** Add radio and radiogroup components ([4db8207](http://stash.corp.web:7999/FRONT/react-magma/commit/4db8207))
+* **radio:** clean up dom related code in radio core ([72f3a66](http://stash.corp.web:7999/FRONT/react-magma/commit/72f3a66))
+* **radio:** context instead of cloning children ([9a9abe3](http://stash.corp.web:7999/FRONT/react-magma/commit/9a9abe3))
+* **radio:** Default value from group and label styles ([fc65cc3](http://stash.corp.web:7999/FRONT/react-magma/commit/fc65cc3))
+* **radio:** persisting the event for the handleChange callback ([69dcc42](http://stash.corp.web:7999/FRONT/react-magma/commit/69dcc42))
+* **radio:** Removing commented out code ([f713e1c](http://stash.corp.web:7999/FRONT/react-magma/commit/f713e1c))
+* **radio buttons:** add option for visually hidden label ([d9ff82d](http://stash.corp.web:7999/FRONT/react-magma/commit/d9ff82d))
+* **radio buttons:** focus, blur events, required attr, some refactoring ([d5824cf](http://stash.corp.web:7999/FRONT/react-magma/commit/d5824cf))
+* **radio buttons:** styled radio buttons and radio groups ([fd56110](http://stash.corp.web:7999/FRONT/react-magma/commit/fd56110))
+* **react-magma-docs-gatsby:** honor PATH_PREFIX for doc builds ([e4a310c](http://stash.corp.web:7999/FRONT/react-magma/commit/e4a310c))
+* **react-select-variations:** Async, AsyncCreatable, Creatable selects ([b9601b7](http://stash.corp.web:7999/FRONT/react-magma/commit/b9601b7))
+* **search:** add e.preventDefault to keypress event ([bf469cb](http://stash.corp.web:7999/FRONT/react-magma/commit/bf469cb))
+* **search:** helper message ([14d484a](http://stash.corp.web:7999/FRONT/react-magma/commit/14d484a))
+* **search:** on search event, button style, more docs ([feed661](http://stash.corp.web:7999/FRONT/react-magma/commit/feed661))
+* **search:** start of search input ([f9672ad](http://stash.corp.web:7999/FRONT/react-magma/commit/f9672ad))
+* **select:** add and style error message for select ([755d6dd](http://stash.corp.web:7999/FRONT/react-magma/commit/755d6dd))
+* **select:** add helper text option to select fields ([066fbac](http://stash.corp.web:7999/FRONT/react-magma/commit/066fbac))
+* **select:** Adding a new select component ([a1bc0a7](http://stash.corp.web:7999/FRONT/react-magma/commit/a1bc0a7))
+* **select:** clean up dom related code in select core ([a0f9c7e](http://stash.corp.web:7999/FRONT/react-magma/commit/a0f9c7e))
+* **select:** merge async select with arror messages ([5308a6e](http://stash.corp.web:7999/FRONT/react-magma/commit/5308a6e))
+* **select:** remove console.log ([c0fe921](http://stash.corp.web:7999/FRONT/react-magma/commit/c0fe921))
+* **selects:** more select styles ([8895b39](http://stash.corp.web:7999/FRONT/react-magma/commit/8895b39))
+* **selects:** more styles for selects ([46de324](http://stash.corp.web:7999/FRONT/react-magma/commit/46de324))
+* **selects:** more styles for selects ([ec5e1d7](http://stash.corp.web:7999/FRONT/react-magma/commit/ec5e1d7))
+* **selects:** select disabled styles, reusable label, doc styles ([3dfdabb](http://stash.corp.web:7999/FRONT/react-magma/commit/3dfdabb))
+* **selects:** Start of styles for selects ([6e1bd06](http://stash.corp.web:7999/FRONT/react-magma/commit/6e1bd06))
+* **skip link:** add skip link content component, update docs ([29bf836](http://stash.corp.web:7999/FRONT/react-magma/commit/29bf836))
+* **skip link:** make skip link a link, not a button ([9d36736](http://stash.corp.web:7999/FRONT/react-magma/commit/9d36736))
+* **skip link:** merge changes from dev ([5444e81](http://stash.corp.web:7999/FRONT/react-magma/commit/5444e81))
+* **skip link:** move media query to docs specific skip link ([be2b219](http://stash.corp.web:7999/FRONT/react-magma/commit/be2b219))
+* **skip link:** moving skip link to react-magma-dom ([e2473c1](http://stash.corp.web:7999/FRONT/react-magma/commit/e2473c1))
+* **skip link:** style component directly instead of container, tests ([06ee300](http://stash.corp.web:7999/FRONT/react-magma/commit/06ee300))
+* **spinner:** spinner animation for search and other components ([104b5af](http://stash.corp.web:7999/FRONT/react-magma/commit/104b5af))
+* **spread-attributes:** removing commented out code ([9e12fe0](http://stash.corp.web:7999/FRONT/react-magma/commit/9e12fe0))
+* **spread-attributes:** removing unnecessary props ([dc7925b](http://stash.corp.web:7999/FRONT/react-magma/commit/dc7925b))
+* **spread-attributes:** removing unused variable in button ([a7fedfe](http://stash.corp.web:7999/FRONT/react-magma/commit/a7fedfe))
+* **spread-attributes:** Spreading default attributes for all components ([b44dc15](http://stash.corp.web:7999/FRONT/react-magma/commit/b44dc15))
+* **spread-props:** make omit function generic ([d69bed5](http://stash.corp.web:7999/FRONT/react-magma/commit/d69bed5))
+* **spread-props:** Utility function to omit props from "other" ([4bd0a85](http://stash.corp.web:7999/FRONT/react-magma/commit/4bd0a85))
+* **style prop:** change style prop name ([4d2b021](http://stash.corp.web:7999/FRONT/react-magma/commit/4d2b021))
+* **styles:** adding style prop to components ([c198f46](http://stash.corp.web:7999/FRONT/react-magma/commit/c198f46))
+* **theme:** change variable names and add coverage ([6c39a40](http://stash.corp.web:7999/FRONT/react-magma/commit/6c39a40))
+* **theme:** demo component for theming ([ad47558](http://stash.corp.web:7999/FRONT/react-magma/commit/ad47558))
+* **theming:** add dark theme, styles for input, toggle switch ([16765a0](http://stash.corp.web:7999/FRONT/react-magma/commit/16765a0))
+* **theming:** add support for theming ([913fcb8](http://stash.corp.web:7999/FRONT/react-magma/commit/913fcb8))
+* **theming:** change theme with select in demo ([c358e60](http://stash.corp.web:7999/FRONT/react-magma/commit/c358e60))
+* **theming:** cleanup unused references ([2735865](http://stash.corp.web:7999/FRONT/react-magma/commit/2735865))
+* **theming:** start of theming ([43fbb02](http://stash.corp.web:7999/FRONT/react-magma/commit/43fbb02))
+* **theming:** update docs demo, add theming to radio, checkbox, inputs ([30d1bfb](http://stash.corp.web:7999/FRONT/react-magma/commit/30d1bfb))
+* **theming:** use context to provide default theme custom option ([284843b](http://stash.corp.web:7999/FRONT/react-magma/commit/284843b))
+* **toast:** clean up dom related code in toast core ([ae6356f](http://stash.corp.web:7999/FRONT/react-magma/commit/ae6356f))
+* **toast:** disableAutoDismiss prop added ([cc3b3e6](http://stash.corp.web:7999/FRONT/react-magma/commit/cc3b3e6))
+* **toast:** fade out toast ([9bca3e3](http://stash.corp.web:7999/FRONT/react-magma/commit/9bca3e3))
+* **toast:** toast container style prop, alert focus style ([0ad3e9e](http://stash.corp.web:7999/FRONT/react-magma/commit/0ad3e9e))
+* **toast-transition:** moving state management in to core ([0a08e41](http://stash.corp.web:7999/FRONT/react-magma/commit/0a08e41))
+* **toasts:** Created toast component using Alert component ([1e809fc](http://stash.corp.web:7999/FRONT/react-magma/commit/1e809fc))
+* **toggle:** fix default toggle off ([b71a211](http://stash.corp.web:7999/FRONT/react-magma/commit/b71a211))
+* **toggle:** remove toggle from react-magma-core and react-magma-native ([52caa07](http://stash.corp.web:7999/FRONT/react-magma/commit/52caa07))
+* **toggle:** removing unused code ([7bf89ae](http://stash.corp.web:7999/FRONT/react-magma/commit/7bf89ae))
+* **toggles:** add focus, active, custom styles ([3fab0e3](http://stash.corp.web:7999/FRONT/react-magma/commit/3fab0e3))
+* **toggles:** add prop to control text position ([2d0938a](http://stash.corp.web:7999/FRONT/react-magma/commit/2d0938a))
+* **toggles:** style tweaks, remove import and props ([64b2c8a](http://stash.corp.web:7999/FRONT/react-magma/commit/64b2c8a))
+* **toggles:** styled toggled switches ([bba64d8](http://stash.corp.web:7999/FRONT/react-magma/commit/bba64d8))
+* **tooltip:** add tooltip to help link ([357b578](http://stash.corp.web:7999/FRONT/react-magma/commit/357b578))
+* **tooltip:** allow variable width for tooltip ([ffb51aa](http://stash.corp.web:7999/FRONT/react-magma/commit/ffb51aa))
+* **tooltip:** aria-labeledby and focus hover states ([4fe82ad](http://stash.corp.web:7999/FRONT/react-magma/commit/4fe82ad))
+* **tooltip:** autogenerate ids, more tests ([7b1c4d0](http://stash.corp.web:7999/FRONT/react-magma/commit/7b1c4d0))
+* **tooltip:** basic tooltip component ([3086dd2](http://stash.corp.web:7999/FRONT/react-magma/commit/3086dd2))
+* **tooltip:** hide tooltip on escape ([29041cd](http://stash.corp.web:7999/FRONT/react-magma/commit/29041cd))
+* **tooltip:** inverse style ([886e058](http://stash.corp.web:7999/FRONT/react-magma/commit/886e058))
+* **tooltip:** merge ([e185265](http://stash.corp.web:7999/FRONT/react-magma/commit/e185265))
+* **tooltip:** Moving state management to core ([eb05c9f](http://stash.corp.web:7999/FRONT/react-magma/commit/eb05c9f))
+* **tooltip:** removing dom related code in toolitp core ([7f1bfb7](http://stash.corp.web:7999/FRONT/react-magma/commit/7f1bfb7))
+* **tooltip:** tooltip positioning ([3bac18a](http://stash.corp.web:7999/FRONT/react-magma/commit/3bac18a))
+* **types:** fixed misspelled type name ([f30dc29](http://stash.corp.web:7999/FRONT/react-magma/commit/f30dc29))
+* **visuallyhidden:** visually hidden component, docs ([02b48b4](http://stash.corp.web:7999/FRONT/react-magma/commit/02b48b4))
+* global and heading styles, radiogroup labels ([e3a030e](http://stash.corp.web:7999/FRONT/react-magma/commit/e3a030e))
+
+
+### Tests
+
+* **a11y:** adding in a11y tests ([9d51c43](http://stash.corp.web:7999/FRONT/react-magma/commit/9d51c43))
+* **alert:** change variant tests to snapshot tests ([ada01b8](http://stash.corp.web:7999/FRONT/react-magma/commit/ada01b8))
+* **alert:** refactor alert tests to align with other tests ([a4dc7d0](http://stash.corp.web:7999/FRONT/react-magma/commit/a4dc7d0))
+* **button:** adding in test coverage for new button styles ([7496f4e](http://stash.corp.web:7999/FRONT/react-magma/commit/7496f4e))
+* **buttons:** fix button size tests ([e4355c5](http://stash.corp.web:7999/FRONT/react-magma/commit/e4355c5))
+* **checkbox:** changing test files to js ([d6a3e04](http://stash.corp.web:7999/FRONT/react-magma/commit/d6a3e04))
+* **checkbox:** moved render into tests ([750ec9e](http://stash.corp.web:7999/FRONT/react-magma/commit/750ec9e))
+* **checkboxes:** Adding in tests ([f3c9f36](http://stash.corp.web:7999/FRONT/react-magma/commit/f3c9f36))
+* **controlled-components:** Clarifying checkbox checked test ([2b3226d](http://stash.corp.web:7999/FRONT/react-magma/commit/2b3226d))
+* **core:** removed enzyme ([6eb2c28](http://stash.corp.web:7999/FRONT/react-magma/commit/6eb2c28))
+* **core:** rewrite tests without enzyme ([8c4c0de](http://stash.corp.web:7999/FRONT/react-magma/commit/8c4c0de))
+* **coverage:** bumping up coverage threshold to 85 ([0490c47](http://stash.corp.web:7999/FRONT/react-magma/commit/0490c47))
+* **date-picker:** adding tests for typing in date picker ([2322682](http://stash.corp.web:7999/FRONT/react-magma/commit/2322682))
+* **date-picker:** build calendar with timezone in tests ([d1c5bf7](http://stash.corp.web:7999/FRONT/react-magma/commit/d1c5bf7))
+* **date-picker:** timezone agnostic build calendar tests ([223fff9](http://stash.corp.web:7999/FRONT/react-magma/commit/223fff9))
+* **datepicker:** change focus test to handle icon click ([4df8f93](http://stash.corp.web:7999/FRONT/react-magma/commit/4df8f93))
+* **datepicker:** keyboard shortcut test ([c1f1313](http://stash.corp.web:7999/FRONT/react-magma/commit/c1f1313))
+* **dom:** new root test scripts and cleaned up warnings ([5636153](http://stash.corp.web:7999/FRONT/react-magma/commit/5636153))
+* **dom:** refactoring tests ([2163470](http://stash.corp.web:7999/FRONT/react-magma/commit/2163470))
+* **e2e:** removing all versions of react but 16.5 ([e5b27da](http://stash.corp.web:7999/FRONT/react-magma/commit/e5b27da))
+* **e2e:** updated cypress tests for select ([0d28f44](http://stash.corp.web:7999/FRONT/react-magma/commit/0d28f44))
+* **e2etests:** fixing e2e component getters ([b026bb2](http://stash.corp.web:7999/FRONT/react-magma/commit/b026bb2))
+* **global styles:** add test for global styles ([7b71917](http://stash.corp.web:7999/FRONT/react-magma/commit/7b71917))
+* **global styles:** update test ([5ddf37b](http://stash.corp.web:7999/FRONT/react-magma/commit/5ddf37b))
+* **heading:** refactored to remove test utils ([9398191](http://stash.corp.web:7999/FRONT/react-magma/commit/9398191))
+* **help-link:** merge snapshot test changes ([39246ef](http://stash.corp.web:7999/FRONT/react-magma/commit/39246ef))
+* **icon:** fixing readability of icon tsts ([6fe60c5](http://stash.corp.web:7999/FRONT/react-magma/commit/6fe60c5))
+* **icon:** merging in e2e test upgrades ([df60e35](http://stash.corp.web:7999/FRONT/react-magma/commit/df60e35))
+* **icon:** Moved render calls into tests to keep tests self-contained ([b70b2b5](http://stash.corp.web:7999/FRONT/react-magma/commit/b70b2b5))
+* **icon:** update snapshot ([92e3514](http://stash.corp.web:7999/FRONT/react-magma/commit/92e3514))
+* **icon:** update snapshot test ([9d5211d](http://stash.corp.web:7999/FRONT/react-magma/commit/9d5211d))
+* **icon button:** adding in tests for icon button ([7415748](http://stash.corp.web:7999/FRONT/react-magma/commit/7415748))
+* **icon button:** e2e tests for icon buttons ([76fa703](http://stash.corp.web:7999/FRONT/react-magma/commit/76fa703))
+* **icon-button:** switching icon button tests to js ([f2c661d](http://stash.corp.web:7999/FRONT/react-magma/commit/f2c661d))
+* **input:** move renders into tests ([411873f](http://stash.corp.web:7999/FRONT/react-magma/commit/411873f))
+* **linkbutton:** Moved render calls into tests ([e6c1dd6](http://stash.corp.web:7999/FRONT/react-magma/commit/e6c1dd6))
+* **modal:** Fix bad test to check for correct information ([81d3972](http://stash.corp.web:7999/FRONT/react-magma/commit/81d3972))
+* **modals:** adding modal style tests ([21f3b53](http://stash.corp.web:7999/FRONT/react-magma/commit/21f3b53))
+* **notification icon:** update snapshot ([544736b](http://stash.corp.web:7999/FRONT/react-magma/commit/544736b))
+* **radio:** e2e tests ([c0a76c3](http://stash.corp.web:7999/FRONT/react-magma/commit/c0a76c3))
+* **radio:** refactor radio tests to align with rest of tests ([2988e2e](http://stash.corp.web:7999/FRONT/react-magma/commit/2988e2e))
+* **radio buttons:** make small changes to tests ([4d2f6a0](http://stash.corp.web:7999/FRONT/react-magma/commit/4d2f6a0))
+* **radio buttons:** update clean up the cleanups in the tests ([578202f](http://stash.corp.web:7999/FRONT/react-magma/commit/578202f))
+* **radiogroup:** Moved render calls into tests ([122abcb](http://stash.corp.web:7999/FRONT/react-magma/commit/122abcb))
+* **select:** cleaned up nested thens ([d1cf71a](http://stash.corp.web:7999/FRONT/react-magma/commit/d1cf71a))
+* **select:** Cleaning up cypress tests ([72370c4](http://stash.corp.web:7999/FRONT/react-magma/commit/72370c4))
+* **select:** e2e tests for select event handlers ([ee57ac3](http://stash.corp.web:7999/FRONT/react-magma/commit/ee57ac3))
+* **select:** refactoring tests ([4f08101](http://stash.corp.web:7999/FRONT/react-magma/commit/4f08101))
+* **skip link:** add more tests ([fe4abb4](http://stash.corp.web:7999/FRONT/react-magma/commit/fe4abb4))
+* **skip link:** test for focusing on content div ([1002e12](http://stash.corp.web:7999/FRONT/react-magma/commit/1002e12))
+* **skiplink:** update snapshot ([a312d3a](http://stash.corp.web:7999/FRONT/react-magma/commit/a312d3a))
+* **snapshot tests:** rerunning snapshot tests to resolve emotion issues ([68af858](http://stash.corp.web:7999/FRONT/react-magma/commit/68af858))
+* **snapshots:** adding autoLabel to emotion babel plugin ([88c1f5c](http://stash.corp.web:7999/FRONT/react-magma/commit/88c1f5c))
+* **snapshots:** separating snapshots for better breakdown ([4970431](http://stash.corp.web:7999/FRONT/react-magma/commit/4970431))
+* **styled button:** move rendering into tests ([cb6b136](http://stash.corp.web:7999/FRONT/react-magma/commit/cb6b136))
+* **styles:** add in styles tests ([59246c6](http://stash.corp.web:7999/FRONT/react-magma/commit/59246c6))
+* **test-ids:** adding in test-ids for each component ([ad1bfae](http://stash.corp.web:7999/FRONT/react-magma/commit/ad1bfae))
+* **test-ids:** removing unused imports in tests ([02ab079](http://stash.corp.web:7999/FRONT/react-magma/commit/02ab079))
+* **testing-library:** remove getAllByText tests for selects ([9713d89](http://stash.corp.web:7999/FRONT/react-magma/commit/9713d89))
+* **tooltip:** update snapshot for a tooltip in another componentn ([2fd6055](http://stash.corp.web:7999/FRONT/react-magma/commit/2fd6055))
+* move imports to test setup ([e82cce8](http://stash.corp.web:7999/FRONT/react-magma/commit/e82cce8))
+* update snapshots ([a3d78f9](http://stash.corp.web:7999/FRONT/react-magma/commit/a3d78f9))
+* **testing-library:** upgrade react-testing-library ([dfc9099](http://stash.corp.web:7999/FRONT/react-magma/commit/dfc9099))
+* **toasts:** refactor tests to align with other tests ([027ace7](http://stash.corp.web:7999/FRONT/react-magma/commit/027ace7))
+* **toasts:** reseting jest timers after each test ([77aced4](http://stash.corp.web:7999/FRONT/react-magma/commit/77aced4))
+* **toggle:** refactor tests, disable lint rule in test ([d76a0f0](http://stash.corp.web:7999/FRONT/react-magma/commit/d76a0f0))
+* **toggle, button:** add tests to improve covg ([8adb4d7](http://stash.corp.web:7999/FRONT/react-magma/commit/8adb4d7))
+* **tooltip:** tooltip core tests ([961876b](http://stash.corp.web:7999/FRONT/react-magma/commit/961876b))
+* **tooltip:** update snapshot ([ac5287f](http://stash.corp.web:7999/FRONT/react-magma/commit/ac5287f))
+* **types:** update snapshots ([8f63d61](http://stash.corp.web:7999/FRONT/react-magma/commit/8f63d61))
+
+
+### BREAKING CHANGES
+
+* **container style:** this branch changes the prop name from style to container style on toasts, inputs,
+radios, radio groups and checkboxes
+* **style prop:** prop previously named style is now named containerStyle for radio, radioGroup,
+checkbox, input, toggle and toast
+* **types:** This changes an exposed type name so it will break TS consumers who are using the
+misspelled name
+* **checkboxes:** Previously the value prop was used to set checked state, now checked prop would be
+used
+
+
 
 ## 1.6.0 (2020-08-31)
 

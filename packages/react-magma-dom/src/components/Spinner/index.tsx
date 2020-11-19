@@ -1,11 +1,12 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { I18nContext } from '../../i18n';
 
-export interface SpinnerProps {
-  ariaLabel?: string;
+export interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {
   color?: string;
   size?: number;
+  testId?: string;
 }
 
 const StyledSpinner = styled.span<SpinnerProps>`
@@ -24,18 +25,21 @@ const StyledSpinner = styled.span<SpinnerProps>`
   }
 `;
 
-export const Spinner: React.FunctionComponent<SpinnerProps> = ({
-  ariaLabel,
-  color,
-  size
-}: SpinnerProps) => (
-  <ThemeContext.Consumer>
-    {theme => (
+export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
+  (props, ref) => {
+    const { 'aria-label': ariaLabel, color, size, testId, ...other } = props;
+
+    const theme = React.useContext(ThemeContext);
+    const i18n = React.useContext(I18nContext);
+    return (
       <StyledSpinner
-        aria-label={ariaLabel ? ariaLabel : 'Loading...'}
+        {...other}
+        aria-label={ariaLabel ? ariaLabel : i18n.spinner.ariaLabel}
         color={color ? color : theme.colors.primary}
+        data-testid={testId}
+        ref={ref}
         size={size ? size : 15}
       />
-    )}
-  </ThemeContext.Consumer>
+    );
+  }
 );

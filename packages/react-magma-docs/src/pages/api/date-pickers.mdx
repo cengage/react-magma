@@ -1,21 +1,24 @@
 ---
-title: 'Date Pickers'
+pageTitle: Date Picker API
+title: Date Picker
 ---
 
-import { ScopeableLayout } from '../../components/layout'
-import { DatePicker } from 'react-magma-dom'
-import DocsHeading from '../../components/docs-heading'
-import { Link } from 'gatsby'
-import { SimplePropsTable } from '../../components/props-table'
+import { ScopeableLayout } from '../../components/layout';
+import { DatePicker, I18nContext, defaultI18n } from 'react-magma-dom';
+import DocsHeading from '../../components/docs-heading';
+import { Link } from 'gatsby';
+import { SimplePropsTable } from '../../components/props-table';
+import { es } from 'date-fns/locale';
+import { format } from 'date-fns';
 
-<DocsHeading to="/design/date-pickers/" type="design">
-  Date Pickers
+<DocsHeading to="/design/inputs/" type="design">
+  Date Picker
 </DocsHeading>
 
 ## Basic Usage
 
 ```.jsx
-    <DatePicker labelText="Date" />
+<DatePicker labelText="Date" />
 ```
 
 ## Default Date
@@ -23,106 +26,245 @@ import { SimplePropsTable } from '../../components/props-table'
 By default, no date value is selected. You can add a default date, by using the `defaultDate` prop.
 
 ```.jsx
-    <DatePicker defaultDate='07/23/2019' labelText="Date" />
+<DatePicker defaultDate='07/23/2019' labelText="Date" />
+```
+
+## Value
+
+The `value` prop can also be used so set the date value externally. It will override the `defaultDate` if both are passed.
+
+```.jsx
+<DatePicker defaultDate='07/23/2019' labelText="Date" value='03/12/2019' />
+```
+
+## Minimum and Maximum Dates
+
+Minimum and Maximum dates can be passed in as `props` to disallow the selection of a date outside of a specific range. If a date value is passed in that does not fit in to the range given, the date picker will try to give focus when entering the calendar on today's date, then the minimum date, and finally the maximum date.
+
+```.jsx
+<DatePicker labelText="Date" minDate={'01/09/2020'}  maxDate={'02/10/2020'} />
 ```
 
 ## Placeholder Text
 
-By default, the placeholder text of the input is 'MM/DD/YYYY'. You can override this by using the `placeholderText` prop.
-Note: the expected date format should appear somewhere in either the labelText or the placeholderText.
+By default, the placeholder text of the input is 'mm/dd/yyyy'. You can override this by using the `placeholder` prop.
+Note: the expected date format should appear somewhere in either the labelText or the placeholder.
 
 ```.jsx
-    <DatePicker placeholderText='Your birthday (format MM/DD/YYYY)' labelText="Birthday" />
+<DatePicker placeholder='Your birthday (format mm/dd/yyyy)' labelText="Birthday" />
 ```
 
 ## Helper Message
 
 ```.jsx
-    <DatePicker labelText="Help Me" helperMessage="This is your help" />
+<DatePicker labelText="Help Me" helperMessage="This is your help" />
 ```
 
 ## Error Message
 
 ```.jsx
-    <DatePicker labelText="Error" errorMessage="You made an error" />
+<DatePicker labelText="Error *" errorMessage="You made an error" required />
 ```
 
-## Date Change Event
+## Events
+
+### On Input Change
+
+The `onInputChange` is passed to the input's `onChange` method that is in the `DatePicker` component.
 
 ```.jsx
-  class Example extends React.Component {
-    constructor(props) {
-      super(props)
-      this.state = {
-        chosenDate: 0,
-        inputValue: ''
-      }
-    }
+() => {
+  const [inputValue, setInputValue] = React.useState('');
 
-    render() {
-      const { chosenDate, inputValue } = this.state;
-      return <div>
-      <p>
-        <strong>Chosen Date: </strong>
-        {chosenDate &&
-          <span>
-            {`${chosenDate.getMonth() + 1}/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
-          </span>
-        }
-      </p>
-      <p><strong>Input Value: </strong>{inputValue}</p>
-      <DatePicker
-        onInputChange={(event) => {
-          this.setState({inputValue: event.target.value});
-        }}
-        onDateChange={(chosenDate) => {
-          this.setState(state => ({chosenDate}))
-        }}
-        onInputBlur={(chosenDate) => {
-          console.log('blurred')
-        }} />
-      </div>
-    }
+  return (<div>
+    <p><strong>Input Value: </strong>{inputValue}</p>
+    <DatePicker
+      onInputChange={(event) => {
+        setInputValue(event.target.value);
+      }} />
+  </div>);
+}
+```
+
+### On Date Change
+
+The `onDateChange` function is called when the user changes a date using the calendar widget in the `DatePicker` component.
+
+```.jsx
+() => {
+  const [chosenDate, setChosenDate] = React.useState(0);
+
+  return (<div>
+    <p>
+      <strong>Chosen Date: </strong>
+      {chosenDate &&
+        <span>
+          {`${chosenDate.getMonth() + 1}/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
+        </span>
+      }
+    </p>
+    <DatePicker
+      onDateChange={(newChosenDate) => {
+        setChosenDate(newChosenDate);
+      }} />
+  </div>);
+}
+```
+
+### Focus Events
+
+```.jsx
+() => {
+  const [isFocused, updateIsFocused] = React.useState(false);
+
+  return (<div>
+  <p><strong>Is Focused?: </strong>{isFocused ? 'Yes' : 'No'}</p>
+    <DatePicker
+      onInputBlur={(event) => {
+        updateIsFocused(false);
+      }}
+      onInputFocus={(event) => {
+        updateIsFocused(true);
+      }} />
+  </div>);
+}
+```
+
+### On Change
+
+The `onChange` event is called in multiple instances when internal values are changed and can be used as a generic state change event when you do not want to use each function separately.
+
+- _onInputChange:_ The `value` parameter will return a string. If it is not what we consider a valid date, it will simply be the string typed in to the `input` (ie: 01/21). If we consider the `input` value to be a valid date, it will be the ISO string representation of the date entered.
+- _onDateChange:_ The `value` parameter will return the ISO string representation of the date chosen with the calendar widget.
+- _onInputBlur:_ If the `input` value is considered a valid date the `onChange` function will be called with the ISO string representation of the date in the input being returned in the `value` argument of the function.
+
+```.jsx
+() => {
+  const [changedValue, setChangedValue] = React.useState('');
+
+  function handleChange(value, event) {
+    setChangedValue(value);
   }
+
+  return (<div>
+    <p><strong>Changed Value: </strong>{changedValue}</p>
+    <DatePicker
+      onChange={handleChange} />
+  </div>);
+}
 ```
 
 ## Keyboard Navigation
 
-The `DatePicker` is keyboard navigable for allowing the user to navigte between days, weeks, and months. If you would like to see all of the options for keyboard navigation click on the `?` button in the bottom right corner of the `DatePicker` or press the `?` key.
+The `DatePicker` is keyboard navigable for allowing the user to navigate between days, weeks, and months. If you would like to see all of the options for keyboard navigation click on the `?` button in the bottom right corner of the `DatePicker` or press the `?` key.
 
 ```.jsx
-    <DatePicker labelText="Date" />
+<DatePicker labelText="Date" />
+```
+
+## Custom Styles
+
+Custom styles can be passed into the datePicker component. The `containerStyle` prop will apply to the container; the `inputStyle` prop will apply to the input field.
+The `labelStyle` prop will apply to the field's label; the `messageStyle` prop will apply to the helper/error message.
+Please use discretion when adding custom styles.
+
+```.jsx
+<DatePicker
+  containerStyle={{ border: '2px solid green', maxWidth:  '300px', padding: '2px' }}
+  errorMessage="Please fix the error"
+  inputStyle={{ border: '1px dashed purple', borderRadius: '0' }}
+  labelStyle={{ border: '1px dotted blue' }}
+  labelText="Date"
+  messageStyle={{ border: '1px solid black', padding: '' }} />
+```
+
+## Internationalization
+
+To use a separate `locale` import a `date-fns` locale object (`import { es } from 'date-fns/locale'`) and pass it in
+to the `I18nContext` provider.
+
+<Link to="/api/internationalization">
+  Full example of internationalization override options
+</Link>
+
+```.jsx
+<I18nContext.Provider value={{
+  ...defaultI18n,
+  days: {
+    ...defaultI18n.days,
+    min: {
+      sunday: 'D',
+      monday: 'L',
+      tuesday: 'M',
+      wednesday: 'M',
+      thursday: 'J',
+      friday: 'V',
+      saturday: 'S'
+    }
+  },
+  datePicker: {
+    ...defaultI18n.datePicker,
+    calendarIconAriaLabel: "Calendario",
+    calendarOpenAnnounce: "El widget de calendario ahora está abierto. Presione la tecla de signo de interrogación para obtener los atajos de teclado para cambiar las fechas.",
+    calendarCloseAriaLabel: "Cerrar calendario",
+    previousMonthAriaLabel: 'Mes Anterior',
+    nextMonthAriaLabel: 'Próximo Mes',
+    disabledDayAriaLabel: "No disponible. ",
+    selectedDayAriaLabel: "(Seleccionado)"
+  },
+  locale: es
+}}>
+  <DatePicker labelText="Español" />
+</I18nContext.Provider>
 ```
 
 ## Date Picker Props
 
+**This component uses `forwardRef`. The ref is applied to the Date Picker `input` element.**
+
+All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the `input` element that gets rendered.
+
 <SimplePropsTable
-  props={{
+  propertyValues={{
+    containerStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the component container element',
+    },
     defaultDate: {
       type: {
-        name: 'Date',
+        name: 'Date or string',
       },
       required: false,
       description: 'Default selected date value',
     },
     errorMessage: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: false,
       description:
-        'Text of the error message.  If a value is provided, the error message will be styled as an error state.',
+        'Content of the error message.  If a value is provided, the component will be styled to show an error state.',
       defaultValue: '',
     },
     helperMessage: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: false,
-      description: 'Text of the helper message.',
+      description: 'Content of the helper message.',
       defaultValue: '',
     },
-    inverse: {
+    inputStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the input element',
+    },
+    isInverse: {
       type: {
         name: 'boolean',
       },
@@ -131,12 +273,40 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
     },
+    labelStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the label element',
+    },
     labelText: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: true,
       description: 'Text for label',
+    },
+    maxDate: {
+      type: {
+        name: 'Date or string',
+      },
+      required: false,
+      description: 'Maximum date allowed to be chosen in the calendar',
+    },
+    messageStyle: {
+      type: {
+        name: 'React.CSSProperties',
+      },
+      required: false,
+      description: 'Style properties for the helper or error message',
+    },
+    minDate: {
+      type: {
+        name: 'Date or string',
+      },
+      required: false,
+      description: 'Minimum date allowed to be chosen in the calendar',
     },
     onDateChange: {
       type: {
@@ -145,17 +315,50 @@ The `DatePicker` is keyboard navigable for allowing the user to navigte between 
       required: false,
       description: 'Event that will fire when day is changed',
     },
-    placeholderText: {
+    onInputBlur: {
+      type: {
+        name: '(event: React.FocusEvent) => void',
+      },
+      required: false,
+      description: 'Event that will fire when the text input loses focus',
+    },
+    onInputChange: {
+      type: {
+        name: '(event: React.ChangeEvent) => void;',
+      },
+      required: false,
+      description: 'Event that will fire when the text input is changed',
+    },
+    placeholder: {
       type: {
         name: 'string',
       },
       required: false,
       description: 'Text for input placeholder',
-      defaultValue: 'MM/DD/YYYY',
+      defaultValue: 'mm/dd/yyyy',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+    value: {
+      type: {
+        name: 'Date or string',
+      },
+      required: false,
+      description:
+        'Value of the date input, used when setting the date value externally.',
     },
   }}
 />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ DatePicker }} />
-)
+  <ScopeableLayout
+    {...props}
+    components={{ DatePicker, I18nContext, defaultI18n, es, format }}
+  />
+);

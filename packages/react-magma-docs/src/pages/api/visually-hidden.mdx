@@ -1,10 +1,11 @@
 ---
-title: 'Visually Hidden'
+pageTitle: Visually Hidden API
+title: Visually Hidden
 ---
 
-import { ScopeableLayout } from '../../components/layout'
-import { VisuallyHidden } from 'react-magma-dom'
-import { SimplePropsTable } from '../../components/props-table'
+import { ScopeableLayout } from '../../components/layout';
+import { VisuallyHidden } from 'react-magma-dom';
+import { SimplePropsTable } from '../../components/props-table';
 
 # Visually Hidden
 
@@ -13,15 +14,19 @@ Using the `VisuallyHidden` component will hide the children of this component vi
 ## Basic Usage
 
 ```.jsx
-    <VisuallyHidden>
-        This text can be read by a screen reader, but does not appear on the screen.
-    </VisuallyHidden>
+<VisuallyHidden>
+  This text can be read by a screen reader, but does not appear on the screen.
+</VisuallyHidden>
 ```
 
 ## Visually Hidden Props
 
+**This component uses `forwardRef`. The ref is applied to the outer `div` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
+
 <SimplePropsTable
-  props={{
+  propertyValues={{
     children: {
       type: {
         name: 'node',
@@ -29,9 +34,17 @@ Using the `VisuallyHidden` component will hide the children of this component vi
       required: true,
       description: 'The content of the component',
     },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
   }}
 />
 
 export default props => (
   <ScopeableLayout {...props} components={{ VisuallyHidden }} />
-)
+);

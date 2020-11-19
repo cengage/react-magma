@@ -1,127 +1,224 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { AlertCore, ToastCore } from 'react-magma-core';
-import { Alert, AlertProps, transitionDuration } from '../Alert';
+import styled from '../../theme/styled';
+import { AlertBase, AlertBaseProps, transitionDuration } from '../AlertBase';
+import { getTrapElements } from '../Modal/utils';
+import { useGenerateId } from '../../utils';
+import { ToastsContext } from './ToastsContainer';
 
-export interface ToastProps extends AlertProps {
+export interface ToastProps extends AlertBaseProps {
   alertStyle?: React.CSSProperties;
   containerStyle?: React.CSSProperties;
-  toastDuration?: number;
   disableAutoDismiss?: boolean;
+  toastDuration?: number;
   onDismiss: () => void;
   onMouseEnter?: (event: React.SyntheticEvent) => void;
   onMouseLeave?: (event: React.SyntheticEvent) => void;
 }
 
-const ToastWrapper = styled.div`
-  z-index: 999;
-  position: fixed;
+const ToastWrapper = styled.div<{
+  bottomOffsetForContainer?: number;
+  bottomOffsetForToast?: number;
+}>`
+  bottom: ${props => props.bottomOffsetForToast + 20}px;
   display: flex;
-  left: 25px;
-  right: auto;
-  bottom: 25px;
+  left: 20px;
   justify-content: flex-start;
-  align-items: center;
+  max-width: 600px;
+  min-width: 320px;
+  position: fixed;
+  transform: translateY(${props => 0 - props.bottomOffsetForContainer}px);
+  transition: bottom 0.3s;
+  z-index: 999;
 
-  @keyframes fadein {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes fadeout {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
+  @media (max-width: 600px) {
+    bottom: ${props => props.bottomOffsetForToast + 10}px;
+    left: 10px;
+    right: 10px;
   }
 `;
 
-export class Toast extends React.Component<ToastProps> {
-  constructor(props) {
-    super(props);
+const DEFAULT_TOAST_DURATION = 5000;
+const TOAST_HEIGHT = 65;
 
-    this.handleMouseEnter = this.handleMouseEnter.bind(this);
-    this.handleMouseLeave = this.handleMouseLeave.bind(this);
-  }
+export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
+  (props, ref) => {
+    const timerAutoHide = React.useRef<any>();
+    const [isDismissed, setIsDismissed] = React.useState<boolean>(false);
+    const [isPaused, setIsPaused] = React.useState<boolean>(false);
+    const [timerTimeRemaining, setTimerTimeRemaining] = React.useState<
+      number
+    >();
 
-  handleMouseEnter(handlePause: () => void) {
-    return (event: React.SyntheticEvent) => {
-      this.props.onMouseEnter &&
-        typeof this.props.onMouseEnter === 'function' &&
-        this.props.onMouseEnter(event);
-
-      handlePause();
-    };
-  }
-
-  handleMouseLeave(handleResume: () => void) {
-    return (event: React.SyntheticEvent) => {
-      this.props.onMouseLeave &&
-        typeof this.props.onMouseLeave === 'function' &&
-        this.props.onMouseLeave(event);
-
-      handleResume();
-    };
-  }
-
-  render() {
     const {
       alertStyle,
-      id,
+      id: defaultId,
       testId,
       variant,
-      dismissable,
+      disableAutoDismiss,
       children,
       containerStyle,
-      onDismiss,
       toastDuration,
-      disableAutoDismiss
-    } = this.props;
+      ...other
+    } = props;
+
+    const id = useGenerateId(defaultId);
+
+    const lastFocus = React.useRef<any>();
+
+    const { bottomOffset, toastsArray } = React.useContext(ToastsContext);
+
+    const timerStartTime = Date.now();
+
+    const containerElement = React.useRef<any>();
+
+    function dismissToast() {
+      setIsDismissed(true);
+
+      setTimeout(() => {
+        if (toastsArray.current) {
+          toastsArray.current = toastsArray.current.filter(
+            toastId => toastId !== containerElement.current
+          );
+        }
+      }, 0);
+    }
+
+    function clearTimeoutAndDismiss() {
+      clearTimeout(timerAutoHide.current);
+
+      dismissToast();
+
+      if (lastFocus.current) {
+        lastFocus.current.focus();
+      }
+    }
+
+    function setAutoHideTimer(duration = DEFAULT_TOAST_DURATION) {
+      clearTimeout(timerAutoHide.current);
+      const totalDuration = duration + transitionDuration;
+
+      timerAutoHide.current = setTimeout(() => {
+        dismissToast();
+      }, totalDuration);
+    }
+
+    function handlePause() {
+      const duration = timerTimeRemaining
+        ? timerTimeRemaining
+        : toastDuration
+        ? toastDuration
+        : DEFAULT_TOAST_DURATION;
+      const timeRemaining = duration - (Date.now() - timerStartTime);
+
+      clearTimeout(timerAutoHide.current);
+      setTimerTimeRemaining(timeRemaining);
+
+      setIsPaused(true);
+    }
+
+    function handleResume() {
+      setAutoHideTimer(timerTimeRemaining);
+      setIsPaused(false);
+    }
+
+    function handleMouseEnter(event: React.SyntheticEvent) {
+      props.onMouseEnter &&
+        typeof props.onMouseEnter === 'function' &&
+        props.onMouseEnter(event);
+
+      if (!props.disableAutoDismiss) {
+        handlePause();
+      }
+    }
+
+    function handleMouseLeave(event: React.SyntheticEvent) {
+      props.onMouseLeave &&
+        typeof props.onMouseLeave === 'function' &&
+        props.onMouseLeave(event);
+
+      if (!props.disableAutoDismiss) {
+        handleResume();
+      }
+    }
+
+    function calculateAndSetBottomOffsetForToast() {
+      updateBottomOffsetForToast(
+        typeof toastsArray.current[0] === 'undefined'
+          ? 0
+          : toastsArray.current.indexOf(containerElement.current) * TOAST_HEIGHT
+      );
+    }
+
+    const [bottomOffsetForToast, updateBottomOffsetForToast] = React.useState(
+      0
+    );
+
+    React.useEffect(() => {
+      lastFocus.current = document.activeElement;
+
+      if (!props.disableAutoDismiss) {
+        setAutoHideTimer(props.toastDuration);
+      }
+
+      return () => {
+        clearTimeout(timerAutoHide.current);
+      };
+    }, []);
+
+    React.useEffect(() => {
+      if (!disableAutoDismiss) {
+        const focusableElements = getTrapElements(containerElement);
+        focusableElements.forEach(element => {
+          element.addEventListener('focus', handlePause);
+          element.addEventListener('blur', handleResume);
+        });
+      }
+    }, []);
+
+    React.useEffect(() => {
+      if (toastsArray) {
+        toastsArray.current = toastsArray.current.includes(
+          containerElement.current
+        )
+          ? toastsArray.current
+          : toastsArray.current.concat([containerElement.current]);
+
+        calculateAndSetBottomOffsetForToast();
+      }
+    }, []);
+
+    React.useEffect(() => {
+      calculateAndSetBottomOffsetForToast();
+    }, [toastsArray.current]);
 
     return (
-      <ThemeContext.Consumer>
-        {theme => (
-          <AlertCore
-            transitionDuration={transitionDuration}
-            onDismiss={onDismiss}
-          >
-            {({ handleDismiss, isExiting }) => (
-              <ToastCore
-                toastDuration={toastDuration}
-                disableAutoDismiss={disableAutoDismiss}
-                onDismiss={handleDismiss}
-              >
-                {({ handlePause, handleResume, clearTimeoutAndDismiss }) => (
-                  <ToastWrapper
-                    onMouseEnter={this.handleMouseEnter(handlePause)}
-                    onMouseLeave={this.handleMouseLeave(handleResume)}
-                    style={containerStyle}
-                  >
-                    <Alert
-                      id={id}
-                      testId={testId}
-                      style={alertStyle}
-                      isExiting={isExiting}
-                      dismissable={dismissable}
-                      variant={variant}
-                      onDismiss={clearTimeoutAndDismiss}
-                    >
-                      {children}
-                    </Alert>
-                  </ToastWrapper>
-                )}
-              </ToastCore>
-            )}
-          </AlertCore>
-        )}
-      </ThemeContext.Consumer>
+      <ToastWrapper
+        bottomOffsetForToast={bottomOffsetForToast}
+        bottomOffsetForContainer={bottomOffset}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        ref={containerElement}
+        style={containerStyle}
+        data-testid={testId}
+      >
+        <AlertBase
+          {...other}
+          forceDismiss={clearTimeoutAndDismiss}
+          hasTimerRing={!disableAutoDismiss}
+          id={id}
+          isDismissible
+          isDismissed={isDismissed}
+          isPaused={isPaused}
+          isToast
+          onDismiss={props.onDismiss}
+          ref={ref}
+          style={{ ...alertStyle }}
+          toastDuration={toastDuration ? toastDuration : DEFAULT_TOAST_DURATION}
+          variant={variant}
+        >
+          {children}
+        </AlertBase>
+      </ToastWrapper>
     );
   }
-}
+);

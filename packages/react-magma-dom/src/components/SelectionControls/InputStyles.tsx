@@ -7,7 +7,6 @@ export const DisplayInputStyles = css`
   height: 20px;
   flex-shrink: 0;
   justify-content: center;
-  margin: 2px 10px 0 10px;
   position: relative;
   transition: all 0.2s ease-out;
   width: 20px;
@@ -39,8 +38,46 @@ export const DisplayInputActiveStyles = css`
   transition: transform 0s;
 `;
 
-export const DisplayInputFocusStyles = css`
-  height: 30px;
-  position: absolute;
-  width: 30px;
-`;
+export function buildDisplayInputActiveBackground(props) {
+  return props.isInverse
+    ? props.theme.colors.neutral08
+    : props.color
+    ? props.color
+    : props.theme.colors.primary;
+}
+
+export function buildDisplayInputBorderColor(props) {
+  if (props.isInverse) {
+    if (props.disabled) {
+      return props.theme.colors.disabledInverseText;
+    }
+    if (props.hasError) {
+      return props.theme.colors.danger;
+    }
+    return props.theme.colors.neutral08;
+  }
+  if (props.disabled) {
+    return props.theme.colors.neutral05;
+  }
+  if (props.hasError) {
+    return props.theme.colors.danger;
+  }
+  if (!props.checked && !props.isIndeterminate) {
+    return props.theme.colors.neutral02;
+  }
+  return props.color ? props.color : props.theme.colors.primary;
+}
+
+export function buildDisplayInputFocusStyles(props) {
+  return css`
+    height: 30px;
+    position: absolute;
+    width: 30px;
+    outline: 2px dotted
+      ${props.isInverse
+        ? props.theme.colors.focusInverse
+        : props.theme.colors.focus};
+    top: -7px;
+    left: -7px;
+  `;
+}

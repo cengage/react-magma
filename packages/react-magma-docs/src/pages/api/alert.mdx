@@ -1,15 +1,18 @@
 ---
-title: 'Alerts'
+pageTitle: Alert API
+title: Alert
+props:
+  - AlertProps
 ---
 
-import { ScopeableLayout } from '../../components/layout'
-import { Alert, Button } from 'react-magma-dom'
-import DocsHeading from '../../components/docs-heading'
-import { Link } from 'gatsby'
-import { SimplePropsTable } from '../../components/props-table'
+import { ScopeableLayout } from '../../components/layout';
+import { Alert, Button } from 'react-magma-dom';
+import DocsHeading from '../../components/docs-heading';
+import { Link } from 'gatsby';
+import { SimplePropsTable } from '../../components/props-table';
 
 <DocsHeading to="/design/alerts/" type="design">
-  Alerts
+  Alert
 </DocsHeading>
 
 ## Basic Usage
@@ -20,10 +23,10 @@ Alerts render where ever they are placed contextually in the DOM. The `Toast` co
 See the <Link to="/api/toast/">Toasts documentation</Link> for more information.
 
 ```.jsx
-  <>
-    <Alert>I'm an Alert</Alert>
-    <Alert>I'm an Alert with <a href="#">linked text</a></Alert>
-  </>
+<>
+  <Alert isDismissible toastDuration={5000}>I'm an Alert</Alert>
+  <Alert>I'm an Alert with <a href="#">linked text</a></Alert>
+</>
 ```
 
 ## Variants
@@ -32,52 +35,34 @@ The optional `variant` prop accepts the following values: `info`, `success`, `wa
 This prop determines the icon and color scheme used to style the Alert.
 
 ```.jsx
-  <>
-    <Alert>Default Alert</Alert>
-    <Alert variant="info">Info Alert</Alert>
-    <Alert variant="success">Success Alert</Alert>
-    <Alert variant="warning">Warning Alert with <a href="#">linked text</a></Alert>
-    <Alert variant="danger">Danger Alert<br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Alert>
-  </>
+<>
+  <Alert>Default Alert</Alert>
+  <Alert variant="info">Info Alert</Alert>
+  <Alert variant="success">Success Alert</Alert>
+  <Alert variant="warning">Warning Alert with <a href="#">linked text</a></Alert>
+  <Alert variant="danger">Danger Alert<br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Alert>
+</>
 ```
 
-## Dismissable
+## Dismissible
 
-The `dismissable` prop is optional, and if provided the Alert will render a dismiss button.
-Providing this property only causes the dismiss button to render; it does not control the dismiss behavior itself. If you include the `dismissable` prop,
-you must also include a function in the `onDimiss` prop to handle the dismiss behavior.
+The `isDismissible` prop is optional, and if provided the Alert will render a dismiss button.
+Providing this property only causes the dismiss button to render; it does not control the dismiss behavior itself. If you include the `isDismissible` prop,
+you must also include a function in the `onDismiss` prop to handle the dismiss behavior.
 
-The aria-label, by default is `Close this message` but can be overridden using the optional `closeLabel` prop.
+The aria-label, by default is `Close this message` but can be overridden using the optional `closeAriaLabel` prop.
 
 ```.jsx
-  class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          showAlert: false
-        }
+  () => {
+    const [showAlert, updateShowAlert] = React.useState(false);
 
-        this.onAlertShow = this.onAlertShow.bind(this);
-        this.onAlertDismiss = this.onAlertDismiss.bind(this);
-      }
-
-      onAlertShow() {
-        this.setState({showAlert: true})
-      }
-
-      onAlertDismiss() {
-        this.setState({showAlert: false})
-      }
-
-      render() {
-        const { showAlert } = this.state;
-
-        return (<>
-          {showAlert && <Alert dismissable onDismiss={this.onAlertDismiss}>Dismiss Me<br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Alert>}
-          <Button onClick={this.onAlertShow}>Show Alert</Button>
-        </>)
-      }
-    }
+    return (
+      <>
+        {showAlert && <Alert isDismissible onDismiss={() => updateShowAlert(false)}>Dismiss Me<br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Alert>}
+        <Button onClick={() => updateShowAlert(true)}>Show Alert</Button>
+      </>
+    )
+  }
 ```
 
 ## Testing
@@ -88,15 +73,14 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 <div data-testid="test-id">
   <span>
     <svg
+      aria-hidden="true"
       class="icon"
       height="20"
       width="20"
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 27.3 27.3"
-      aria-labelledby="a1975235-3d64-41aa-ac64-1ab159a123f0"
     >
-      <title id="a1975235-3d64-41aa-ac64-1ab159a123f0" />
       <path
         d="M12.65,9.9V7.14h2.7V9.9ZM14,25A11,11,0,1,0,3,14,11,11,0,0,0,14,25ZM14,.35A13.65,13.65,0,1,1,.35,14,13.62,13.62,0,0,1,14,.35ZM12.65,20.86V12.65h2.7v8.21Z"
         transform="translate(-0.35 -0.35)"
@@ -109,75 +93,12 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 
 ## Alert Props
 
-<SimplePropsTable
-  props={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    closeLabel: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'The text read by screen readers for the close button',
-      defaultValue: '"Close this message"',
-    },
-    dismissable: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will be able to be dismissed and will include a close button',
-      defaultValue: 'false',
-    },
-     inverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the focus state of the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    onDimiss: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description:
-        'Action that fires when the close button is clicked (required when dismissable is true)',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'ID used for testing purposes',
-      defaultValue: '',
-    },
-    variant: {
-      type: {
-        name: 'enum',
-        options: [
-          'AlertVariant.info',
-          'AlertVariant.success',
-          'AlertVariant.warning',
-          'AlertVariant.danger',
-        ],
-      },
-      required: false,
-      description:
-        'The variant of the alert, indicating its function in the UI',
-      defaultValue: 'info',
-    },
-  }}
-/>
+**This component uses `forwardRef`. The ref is applied to the Alert container `div` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
+
+<AlertProps />
 
 export default props => (
   <ScopeableLayout {...props} components={{ Alert, Button }} />
-)
+);

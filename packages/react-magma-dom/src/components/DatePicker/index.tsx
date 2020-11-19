@@ -1,28 +1,54 @@
 import * as React from 'react';
-import { DatePickerCore } from 'react-magma-core';
 import { CalendarContext } from './CalendarContext';
 import { CalendarMonth } from './CalendarMonth';
 import { Announce } from '../Announce';
 import { Input } from '../Input';
-import { format, isValid } from 'date-fns';
+import { InputType } from '../InputBase';
+import { isAfter, isBefore, isValid, isSameDay } from 'date-fns';
 import { ThemeContext } from '../../theme/ThemeContext';
-import styled from '@emotion/styled';
-import { CalendarIcon } from '../Icon/types/CalendarIcon';
+import styled from '../../theme/styled';
+import { CalendarIcon } from 'react-magma-icons';
 import { VisuallyHidden } from '../VisuallyHidden';
-import { handleKeyPress } from './utils';
+import {
+  handleKeyPress,
+  getCalendarMonthWeeks,
+  getPrevMonthFromDate,
+  getNextMonthFromDate,
+  i18nFormat as format,
+  getDateFromString,
+} from './utils';
+import { omit, useGenerateId, Omit, useForkedRef } from '../../utils';
+import { I18nContext } from '../../i18n';
 
-interface DatePickerProps {
+export interface DatePickerProps
+  extends Omit<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    'value' | 'onChange'
+  > {
+  containerStyle?: React.CSSProperties;
   defaultDate?: Date;
-  errorMessage?: string;
-  helperMessage?: string;
+  errorMessage?: React.ReactNode;
+  helperMessage?: React.ReactNode;
   id?: string;
-  inputRef?: React.RefObject<{}>;
-  inverse?: boolean;
-  labelText: string;
-  placeholderText?: string;
+  inputStyle?: React.CSSProperties;
+  isInverse?: boolean;
+  labelStyle?: React.CSSProperties;
+  labelText: React.ReactNode;
+  maxDate?: Date;
+  messageStyle?: React.CSSProperties;
+  minDate?: Date;
+  placeholder?: string;
+  required?: boolean;
+  testId?: string;
+  value?: Date;
+  onChange?: (
+    value: string,
+    event: React.ChangeEvent | React.SyntheticEvent
+  ) => void;
   onDateChange?: (day: Date, event: React.SyntheticEvent) => void;
   onInputBlur?: (event: React.FocusEvent) => void;
   onInputChange?: (event: React.ChangeEvent) => void;
+  onInputFocus?: (event: React.FocusEvent) => void;
 }
 
 const DatePickerContainer = styled.div`
@@ -43,137 +69,231 @@ const DatePickerCalendar = styled.div<{ opened: boolean }>`
   z-index: ${props => (props.opened ? '998' : '-1')};
 `;
 
-export class DatePicker extends React.Component<DatePickerProps> {
-  constructor(props) {
-    super(props);
+export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
+  (props, forwardedRef) => {
+    const theme = React.useContext(ThemeContext);
+    const i18n = React.useContext(I18nContext);
+    const iconRef = React.useRef<HTMLButtonElement>();
+    const inputRef = React.useRef<HTMLInputElement>();
+    const id: string = useGenerateId(props.id);
+    const [showHelperInformation, setShowHelperInformation] = React.useState<
+      boolean
+    >(false);
+    const [calendarOpened, setCalendarOpened] = React.useState<boolean>(false);
+    const [dateFocused, setDateFocused] = React.useState<boolean>(false);
 
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleInputBlur = this.handleInputBlur.bind(this);
-    this.handleInputKeyDown = this.handleInputKeyDown.bind(this);
-    this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.handleDateChange = this.handleDateChange.bind(this);
-    this.handleDaySelection = this.handleDaySelection.bind(this);
-    this.handleCalendarBlur = this.handleCalendarBlur.bind(this);
-    this.handleCloseButtonClick = this.handleCloseButtonClick.bind(this);
-  }
+    const [focusedDate, setFocusedDate] = React.useState<Date>(
+      setDateFromConsumer(props.value || props.defaultDate) ||
+        setDefaultFocusedDate()
+    );
+    const [chosenDate, setChosenDate] = React.useState<Date | null>(
+      setDateFromConsumer(props.value || props.defaultDate)
+    );
 
-  inputRef = React.createRef<any>();
+    const ref = useForkedRef(forwardedRef, inputRef);
 
-  handleInputChange(toggleCalendar: (calendarOpened: boolean) => void) {
-    return event => {
-      toggleCalendar(false);
+    React.useEffect(() => {
+      if (!calendarOpened) {
+        setDateFocused(false);
+      }
+    }, [calendarOpened]);
 
-      this.props.onInputChange &&
-        typeof this.props.onInputChange === 'function' &&
-        this.props.onInputChange(event);
-    };
-  }
+    React.useEffect(() => {
+      if (props.value) {
+        setChosenDate(setDateFromConsumer(props.value));
+        setFocusedDate(
+          setDateFromConsumer(props.value) || setDefaultFocusedDate()
+        );
+      }
+    }, [props.value]);
 
-  handleInputBlur(
-    onDateChange: (day: Date) => void,
-    updateFocusedDate: (day: Date) => void,
-    reset: () => void
-  ) {
-    return (event: React.FocusEvent) => {
-      const { value } = this.inputRef.current;
-      const day = new Date(value);
+    function setDateFromConsumer(date: Date): Date {
+      const convertedDate = getDateFromString(date);
+      const convertedMinDate = getDateFromString(props.minDate);
+      const convertedMaxDate = getDateFromString(props.maxDate);
+
+      return date &&
+        inDateRange(convertedDate, convertedMinDate, convertedMaxDate)
+        ? convertedDate
+        : null;
+    }
+
+    function setDefaultFocusedDate(): Date {
+      const newDate = new Date();
+      const convertedMinDate = getDateFromString(props.minDate);
+      const convertedMaxDate = getDateFromString(props.maxDate);
+
+      if (inDateRange(newDate, convertedMinDate, convertedMaxDate)) {
+        return newDate;
+      } else if (convertedMaxDate || convertedMinDate) {
+        return isBefore(convertedMinDate, newDate)
+          ? convertedMinDate
+          : convertedMaxDate;
+      }
+    }
+
+    function inDateRange(
+      date: Date,
+      minDateValue?: Date,
+      maxDateValue?: Date
+    ): boolean {
+      return (
+        (maxDateValue
+          ? isBefore(date, maxDateValue) || isSameDay(date, maxDateValue)
+          : true) &&
+        (minDateValue
+          ? isAfter(date, minDateValue) || isSameDay(date, minDateValue)
+          : true)
+      );
+    }
+
+    function buildCalendarMonth(date: Date, enableOutsideDates: boolean) {
+      const days = [
+        'sunday',
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+      ];
+      const { startOfWeek } = i18n.datePicker;
+      return getCalendarMonthWeeks(
+        date,
+        enableOutsideDates,
+        days.indexOf(startOfWeek)
+      );
+    }
+
+    function onPrevMonthClick() {
+      setFocusedDate(getPrevMonthFromDate);
+    }
+
+    function onNextMonthClick() {
+      setFocusedDate(getNextMonthFromDate);
+    }
+
+    function onDateChange(day: Date) {
+      setChosenDate(day);
+      setCalendarOpened(false);
+    }
+
+    function reset() {
+      setFocusedDate(setDefaultFocusedDate());
+      setChosenDate(null);
+      setDateFocused(false);
+    }
+
+    function isValidDateFromString(value: string, day: Date) {
       const isValidDateFormat = /^\d{1,2}\/\d{1,2}\/\d{4}$/.test(value);
       const isValidDate = isValid(day);
 
-      if (isValidDateFormat && isValidDate) {
-        this.handleDateChange(day, event, onDateChange, updateFocusedDate);
+      return isValidDateFormat && isValidDate;
+    }
+
+    function handleInputChange(event) {
+      const { value } = event.target;
+      const day = new Date(value);
+      setCalendarOpened(false);
+
+      props.onInputChange &&
+        typeof props.onInputChange === 'function' &&
+        props.onInputChange(event);
+
+      const isValidDay = isValidDateFromString(value, day);
+
+      props.onChange &&
+        typeof props.onChange === 'function' &&
+        props.onChange(isValidDay ? day.toISOString() : value, event);
+    }
+
+    function handleInputFocus(event: React.FocusEvent) {
+      props.onInputFocus &&
+        typeof props.onInputFocus === 'function' &&
+        props.onInputFocus(event);
+    }
+
+    function handleInputBlur(event: React.FocusEvent) {
+      const { value } = inputRef.current;
+      const day = new Date(value);
+      const convertedMinDate = getDateFromString(props.minDate);
+      const convertedMaxDate = getDateFromString(props.maxDate);
+
+      if (
+        isValidDateFromString(value, day) &&
+        inDateRange(day, convertedMinDate, convertedMaxDate)
+      ) {
+        handleDateChange(day, event);
       } else {
         reset && typeof reset === 'function' && reset();
       }
 
-      this.props.onInputBlur &&
-        typeof this.props.onInputBlur === 'function' &&
-        this.props.onInputBlur(event);
-    };
-  }
+      props.onInputBlur &&
+        typeof props.onInputBlur === 'function' &&
+        props.onInputBlur(event);
+    }
 
-  handleInputKeyDown(
-    openHelperInformation: () => void,
-    toggleCalendar: (calendarOpened: boolean) => void
-  ) {
-    return (event: React.KeyboardEvent) => {
+    function handleInputKeyDown(event: React.KeyboardEvent) {
       if (event.key === 'Escape') {
         event.preventDefault();
-        toggleCalendar(false);
-        this.inputRef.current.focus();
+        setCalendarOpened(false);
+        inputRef.current.focus();
       }
 
       if (event.key === '?') {
         event.preventDefault();
-        openHelperInformation();
+        setShowHelperInformation(true);
       }
-    };
-  }
+    }
 
-  handleKeyDown(
-    dateFocused: boolean,
-    focusedDate: Date,
-    toggleCalendar: (calendarOpened: boolean) => void,
-    openHelperInformation: () => void,
-    onDateChange: (day: Date) => void,
-    updateFocusedDate: (day: Date) => void
-  ) {
-    return (event: React.KeyboardEvent) => {
+    function handleKeyDown(event: React.KeyboardEvent) {
       if (dateFocused && document.activeElement.closest('table')) {
         const newChosenDate = handleKeyPress(
           event,
           focusedDate,
-          toggleCalendar,
-          openHelperInformation,
+          setCalendarOpened,
+          setShowHelperInformation,
           onDateChange,
-          this.inputRef
+          iconRef
         );
         if (newChosenDate) {
-          updateFocusedDate(newChosenDate);
+          setFocusedDate(newChosenDate);
         }
       } else {
         if (event.key === 'Escape') {
-          toggleCalendar(false);
-          this.inputRef.current.focus();
+          setCalendarOpened(false);
+          iconRef.current.focus();
         }
 
         if (event.key === '?') {
-          openHelperInformation();
+          setShowHelperInformation(true);
         }
       }
-    };
-  }
+    }
 
-  handleDateChange(
-    day: Date,
-    event: React.SyntheticEvent | React.ChangeEvent,
-    onDateChange: (day: Date) => void,
-    updateFocusedDate?: (day: Date) => void
-  ) {
-    this.props.onDateChange &&
-      typeof this.props.onDateChange === 'function' &&
-      this.props.onDateChange(day, event);
+    function handleDateChange(
+      day: Date,
+      event: React.SyntheticEvent | React.ChangeEvent
+    ) {
+      props.onDateChange &&
+        typeof props.onDateChange === 'function' &&
+        props.onDateChange(day, event);
 
-    onDateChange(day);
+      props.onChange &&
+        typeof props.onChange === 'function' &&
+        props.onChange(day.toISOString(), event);
 
-    updateFocusedDate &&
-      typeof updateFocusedDate === 'function' &&
-      updateFocusedDate(day);
-  }
+      onDateChange(day);
+      setFocusedDate(day);
+    }
 
-  handleDaySelection(onDateChange: (day: Date) => void) {
-    return (day: Date, event: React.SyntheticEvent) => {
-      this.handleDateChange(day, event, onDateChange);
+    function handleDaySelection(day: Date, event: React.SyntheticEvent) {
+      handleDateChange(day, event);
 
-      this.inputRef.current.focus();
-    };
-  }
+      inputRef.current.focus();
+    }
 
-  handleCalendarBlur(
-    toggleCalendar: (calendarOpended: boolean) => void,
-    showHelperInformation: boolean
-  ) {
-    return (event: React.SyntheticEvent) => {
+    function handleCalendarBlur(event: React.SyntheticEvent) {
       const { currentTarget } = event;
 
       // timeout needed for active element to update. Browser behavior.
@@ -182,145 +302,93 @@ export class DatePicker extends React.Component<DatePickerProps> {
         const isInCalendar = currentTarget.contains(document.activeElement);
 
         if (!isInCalendar && !showHelperInformation) {
-          toggleCalendar(false);
+          setCalendarOpened(false);
         }
       }, 0);
-    };
-  }
+    }
 
-  handleCloseButtonClick(toggleCalendar: (calendarOpended: boolean) => void) {
-    return (event: React.SyntheticEvent) => {
-      this.inputRef.current.focus();
-      toggleCalendar(false);
-    };
-  }
+    function handleCloseButtonClick(event: React.SyntheticEvent) {
+      iconRef.current.focus();
+      setCalendarOpened(false);
+    }
 
-  render() {
-    const {
-      defaultDate,
-      errorMessage,
-      helperMessage,
-      id,
-      inverse,
-      labelText,
-      placeholderText
-    } = this.props;
+    function toggleCalendarOpened() {
+      setCalendarOpened(opened => !opened);
+    }
+
+    const { placeholder, testId, ...rest } = props;
+    const other = omit(
+      ['onDateChange', 'onInputChange', 'onInputBlur', 'onInputFocus'],
+      rest
+    );
+
+    const minDate = getDateFromString(props.minDate);
+    const maxDate = getDateFromString(props.maxDate);
+
+    const dateFormat = i18n.dateFormat;
+
+    const inputValue = chosenDate ? format(chosenDate, dateFormat) : '';
 
     return (
-      <DatePickerCore id={id} defaultDate={defaultDate}>
-        {({
-          calendarOpened,
+      <CalendarContext.Provider
+        value={{
           chosenDate,
           focusedDate,
           dateFocused,
+          maxDate,
+          minDate,
           showHelperInformation,
           buildCalendarMonth,
-          toggleCalendar,
-          openHelperInformation,
-          closeHelperInformation,
-          onIconClick,
-          toggleDateFocus,
-          onHelperFocus,
+          setShowHelperInformation,
+          onKeyDown: handleKeyDown,
           onPrevMonthClick,
           onNextMonthClick,
-          updateFocusedDate,
-          onDateChange,
-          reset
-        }) => {
-          const dateFormat = 'MM/DD/YYYY';
-          const inputValue = chosenDate ? format(chosenDate, dateFormat) : '';
-
-          return (
-            <CalendarContext.Provider
-              value={{
-                chosenDate,
-                focusedDate,
-                dateFocused,
-                showHelperInformation,
-                buildCalendarMonth,
-                openHelperInformation,
-                closeHelperInformation,
-                onKeyDown: this.handleKeyDown(
-                  dateFocused,
-                  focusedDate,
-                  toggleCalendar,
-                  openHelperInformation,
-                  onDateChange,
-                  updateFocusedDate
-                ),
-                onPrevMonthClick,
-                onNextMonthClick,
-                onDateChange: this.handleDaySelection(onDateChange),
-                toggleDateFocus,
-                onHelperFocus
-              }}
-            >
-              <DatePickerContainer
-                onBlur={this.handleCalendarBlur(
-                  toggleCalendar,
-                  showHelperInformation
-                )}
-              >
-                <Announce>
-                  {calendarOpened && (
-                    <VisuallyHidden>
-                      Calendar widget is now open. Press the question mark key
-                      to get the keyboard shortcuts for changing dates.
-                    </VisuallyHidden>
-                  )}
-                </Announce>
-                <Input
-                  errorMessage={errorMessage}
-                  helperMessage={helperMessage}
-                  icon={<CalendarIcon />}
-                  iconAriaLabel="Calendar"
-                  onIconClick={onIconClick}
-                  onIconKeyDown={this.handleInputKeyDown(
-                    openHelperInformation,
-                    toggleCalendar
-                  )}
-                  id={id}
-                  inverse={inverse}
-                  ref={this.inputRef}
-                  labelText={labelText}
-                  onChange={this.handleInputChange(toggleCalendar)}
-                  onBlur={this.handleInputBlur(
-                    onDateChange,
-                    updateFocusedDate,
-                    reset
-                  )}
-                  onKeyDown={this.handleInputKeyDown(
-                    openHelperInformation,
-                    toggleCalendar
-                  )}
-                  placeholder={placeholderText ? placeholderText : dateFormat}
-                  value={inputValue}
-                />
-                <ThemeContext.Consumer>
-                  {theme => (
-                    <DatePickerCalendar
-                      data-testid="calendarContainer"
-                      opened={calendarOpened}
-                      theme={theme}
-                    >
-                      <CalendarMonth
-                        focusOnOpen={
-                          calendarOpened && focusedDate && chosenDate
-                        }
-                        handleCloseButtonClick={this.handleCloseButtonClick(
-                          toggleCalendar
-                        )}
-                        calendarOpened={calendarOpened}
-                        toggleDateFocus={toggleDateFocus}
-                      />
-                    </DatePickerCalendar>
-                  )}
-                </ThemeContext.Consumer>
-              </DatePickerContainer>
-            </CalendarContext.Provider>
-          );
+          onDateChange: handleDaySelection,
+          setDateFocused,
         }}
-      </DatePickerCore>
+      >
+        <DatePickerContainer data-testid={testId} onBlur={handleCalendarBlur}>
+          <Announce>
+            {calendarOpened && (
+              <VisuallyHidden>
+                {i18n.datePicker.calendarOpenAnnounce}
+              </VisuallyHidden>
+            )}
+          </Announce>
+          <Input
+            {...other}
+            icon={<CalendarIcon size={17} />}
+            iconAriaLabel={i18n.datePicker.calendarIconAriaLabel}
+            iconRef={iconRef}
+            onIconClick={toggleCalendarOpened}
+            onIconKeyDown={handleInputKeyDown}
+            id={id}
+            ref={ref}
+            onChange={handleInputChange}
+            onBlur={handleInputBlur}
+            onFocus={handleInputFocus}
+            onKeyDown={handleInputKeyDown}
+            placeholder={placeholder ? placeholder : dateFormat.toLowerCase()}
+            type={InputType.text}
+            value={inputValue}
+          />
+
+          <DatePickerCalendar
+            data-testid="calendarContainer"
+            opened={calendarOpened}
+            theme={theme}
+          >
+            <CalendarMonth
+              focusOnOpen={
+                calendarOpened && Boolean(focusedDate) && Boolean(chosenDate)
+              }
+              handleCloseButtonClick={handleCloseButtonClick}
+              calendarOpened={calendarOpened}
+              setDateFocused={setDateFocused}
+            />
+          </DatePickerCalendar>
+        </DatePickerContainer>
+      </CalendarContext.Provider>
     );
   }
-}
+);

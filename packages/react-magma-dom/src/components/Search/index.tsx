@@ -1,69 +1,84 @@
 import * as React from 'react';
-import { Input, InputIconPosition, InputSize, InputType } from '../Input';
-import { Search2Icon } from '../Icon/types/Search2Icon';
+import {
+  InputBase,
+  InputIconPosition,
+  InputSize,
+  InputType,
+} from '../InputBase';
+import { I18nContext } from '../../i18n';
+import { Search2Icon } from 'react-magma-icons';
+import { Spinner } from '../Spinner';
 
 export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
   containerStyle?: React.CSSProperties;
-  errorMessage?: string;
-  helperMessage?: string;
   iconAriaLabel?: string;
-  id?: string;
   inputSize?: InputSize;
   inputStyle?: React.CSSProperties;
-  inverse?: boolean;
   isLoading?: boolean;
+  isInverse?: boolean;
   labelText?: string;
-  placeholderText?: string;
-  onSearch: () => void;
+  onSearch: (term: string) => void;
   testId?: string;
+  value?: string;
 }
 
-export const Search: React.FunctionComponent<SearchProps> = ({
-  containerStyle,
-  errorMessage,
-  helperMessage,
-  iconAriaLabel,
-  id,
-  inverse,
-  inputSize,
-  inputStyle,
-  isLoading,
-  labelText,
-  placeholderText,
-  onSearch,
-  testId
-}: SearchProps) => {
-  const SEARCH = 'Search';
+export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
+  (props, ref) => {
+    const {
+      iconAriaLabel,
+      isLoading,
+      labelText,
+      placeholder,
+      onSearch,
+      ...other
+    } = props;
 
-  // handle search on enter
-  const handleKeyPress = e => {
-    if (e.keyCode === 13) {
-      e.preventDefault();
-      onSearch();
+    const i18n = React.useContext(I18nContext);
+
+    const [value, setValue] = React.useState<string>(props.value);
+
+    const icon = isLoading ? <Spinner /> : <Search2Icon size={17} />;
+
+    React.useEffect(() => {
+      setValue(props.value);
+    }, [props.value]);
+
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+      props.onChange &&
+        typeof props.onChange === 'function' &&
+        props.onChange(event);
+      setValue(event.target.value);
     }
-  };
 
-  return (
-    <Input
-      containerStyle={containerStyle}
-      errorMessage={errorMessage}
-      helperMessage={helperMessage}
-      icon={<Search2Icon />}
-      onIconClick={onSearch}
-      iconAriaLabel={iconAriaLabel ? iconAriaLabel : SEARCH}
-      iconPosition={InputIconPosition.right}
-      id={id}
-      inputSize={inputSize}
-      inputStyle={inputStyle}
-      inverse={inverse}
-      isLoading={isLoading}
-      labelText={labelText ? labelText : SEARCH}
-      labelVisuallyHidden
-      onKeyDown={handleKeyPress}
-      placeholder={placeholderText ? placeholderText : SEARCH}
-      testId={testId}
-      type={InputType.search}
-      value=""
-    />
-  );
-};
+    // handle search on enter
+    function handleKeyPress(event: React.KeyboardEvent) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        handleSearch();
+      }
+    }
+
+    function handleSearch() {
+      onSearch(value);
+    }
+
+    return (
+      <InputBase
+        {...other}
+        aria-label={labelText ? labelText : i18n.search.input.ariaLabel}
+        icon={icon}
+        iconAriaLabel={
+          iconAriaLabel ? iconAriaLabel : i18n.search.iconAriaLabel
+        }
+        iconPosition={InputIconPosition.right}
+        onChange={handleChange}
+        onIconClick={isLoading ? null : handleSearch}
+        onKeyDown={handleKeyPress}
+        placeholder={placeholder ? placeholder : i18n.search.input.placeholder}
+        type={InputType.search}
+        value={value}
+        ref={ref}
+      />
+    );
+  }
+);

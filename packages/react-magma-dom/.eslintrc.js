@@ -1,15 +1,10 @@
+const eslintrc = require('../../.eslintrc');
+
 module.exports = {
-  env: {
-    jest: true
+  ...eslintrc,
+  rules: {
+    complexity: 0,
+    'no-unused-vars': 0,
+    '@typescript-eslint/no-unused-vars': 0,
   },
-  extends: 'cengage/react',
-  parser: 'babel-eslint',
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true
-    },
-    ecmaVersion: 2018,
-    sourceType: 'module'
-  },
-  plugins: ['react']
 };

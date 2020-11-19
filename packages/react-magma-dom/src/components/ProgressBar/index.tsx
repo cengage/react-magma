@@ -1,38 +1,39 @@
 import * as React from 'react';
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
-  animated?: boolean;
-  bgColor?: ProgressBarColor;
+  color?: ProgressBarColor;
   height?: number;
-  inverse?: boolean;
-  labelVisible?: boolean;
+  isAnimated?: boolean;
+  isInverse?: boolean;
+  isLabelVisible?: boolean;
   percentage?: number;
+  testId?: string;
 }
 
 export enum ProgressBarColor {
   danger = 'danger',
   primary = 'primary', // default
-  pop01 = 'pop01',
+  pop = 'pop',
   pop02 = 'pop02',
-  success = 'success'
+  success = 'success',
 }
 
 function buildProgressBarBackground(props) {
-  switch (props.bgColor) {
+  switch (props.color) {
     case 'danger':
       return props.theme.colors.danger;
-    case 'pop01':
-      return props.theme.colors.pop01;
+    case 'pop':
+      return props.theme.colors.pop;
     case 'pop02':
       return props.theme.colors.pop02;
     case 'success':
-      return props.theme.colors.success01;
+      return props.theme.colors.success;
 
     default:
-      return props.inverse
+      return props.isInverse
         ? props.theme.colors.foundation03
         : props.theme.colors.primary;
   }
@@ -45,10 +46,12 @@ const Container = styled.div`
 
 const Track = styled.div<ProgressBarProps>`
   background: ${props =>
-    props.inverse ? 'rgba(0,0,0,0.25)' : props.theme.colors.neutral08};
+    props.isInverse ? 'rgba(0,0,0,0.25)' : props.theme.colors.neutral08};
   border: 1px solid
     ${props =>
-      props.inverse ? props.theme.colors.neutral08 : props.theme.colors.a11y01};
+      props.isInverse
+        ? props.theme.colors.neutral08
+        : props.theme.colors.neutral04};
   display: flex;
   height: ${props => props.height}px;
   padding: 1px;
@@ -62,7 +65,7 @@ const Bar = styled.div<ProgressBarProps>`
   width: ${props => props.percentage}%;
 
   ${props =>
-    props.animated &&
+    props.isAnimated &&
     css`
       background-image: linear-gradient(
         to right,
@@ -95,52 +98,53 @@ const Bar = styled.div<ProgressBarProps>`
 `;
 
 const Percentage = styled.span`
-  font-size: 14px;
+  font-size: ${props => props.theme.typeScale.size02.fontSize};
+  line-height: ${props => props.theme.typeScale.size02.lineHeight};
   margin-left: 10px;
 `;
 
-export const ProgressBar: React.FunctionComponent<
-  ProgressBarProps
-> = React.forwardRef(
-  (
-    {
-      animated,
-      bgColor,
+export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
+  (props, ref) => {
+    const {
+      color,
       height,
-      inverse,
-      labelVisible,
-      percentage
-    }: ProgressBarProps,
-    ref: any
-  ) => {
+      isAnimated,
+      isInverse,
+      isLabelVisible,
+      percentage,
+      testId,
+      ...other
+    } = props;
+
     const percentageValue = percentage ? percentage : 0;
 
+    const theme = React.useContext(ThemeContext);
+
     return (
-      <ThemeContext.Consumer>
-        {theme => (
-          <Container>
-            <Track
-              height={height ? height : 15}
-              inverse={inverse}
-              ref={ref}
-              theme={theme}
-            >
-              <Bar
-                animated={animated}
-                aria-valuenow={percentageValue}
-                aria-valuemin={0}
-                aria-valuemax={100}
-                bgColor={bgColor}
-                inverse={inverse}
-                percentage={percentageValue}
-                role="progressbar"
-                theme={theme}
-              />
-            </Track>
-            {labelVisible && <Percentage>{percentageValue}%</Percentage>}
-          </Container>
+      <Container {...other}>
+        <Track
+          data-testid={testId}
+          height={height ? height : 15}
+          isInverse={isInverse}
+          ref={ref}
+          theme={theme}
+        >
+          <Bar
+            aria-valuenow={percentageValue}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            color={color}
+            isAnimated={isAnimated}
+            isInverse={isInverse}
+            percentage={percentageValue}
+            role="progressbar"
+            theme={theme}
+          />
+        </Track>
+        {isLabelVisible && (
+          <Percentage theme={theme}>{percentageValue}%</Percentage>
         )}
-      </ThemeContext.Consumer>
+      </Container>
     );
   }
 );

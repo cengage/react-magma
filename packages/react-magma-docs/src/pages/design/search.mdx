@@ -1,0 +1,76 @@
+---
+title: Search
+order: 1
+---
+
+import DocsHeading from '../../components/docs-heading';
+import { Input, PasswordInput, Textarea } from 'react-magma-dom';
+import { Link } from 'gatsby';
+import { Paragraph } from 'react-magma-dom';
+
+<DocsHeading to="/api/search/" type="code">
+  Search
+</DocsHeading>
+
+<Paragraph visualStyle="bodyLarge">
+  Search enables users to specify a word or a phrase to find relevant pieces of content without the use of navigation.
+</Paragraph>
+
+<span class="horizontal-spacer"></span>
+
+<figure>
+  <img src="../../images/inputs/search-intro-image.png" alt="" />
+</figure>
+
+## Usage
+
+Search offers users a way to explore a website or application using keywords. Search can be used as the primary means of discovering content, or as a filter to aid the user in finding content.
+
+<span class="horizontal-spacer"></span>
+<hr class="article-divider" />
+
+## Principles
+
+### Discoverable
+
+Search fields should stand out and be easy to find on the page.
+
+### Clear
+
+It should be clear what the search field is capable of searching for.
+
+<span class="horizontal-spacer"></span>
+<hr class="article-divider" />
+
+## Behavior
+
+Set the user’s context for the search with helpful placeholder text within the search field (search documents), that pertains to the page or section the search box is in. Search in the global header should just say search.
+
+<div class="two-col">
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img src="../../images/inputs/header-search.png" alt="" />
+      </figure>
+    </div>
+    <div class="col col-2">
+      <figure>
+        <img src="../../images/inputs/inline-search.png" alt="" />
+      </figure>
+    </div>
+  </div>
+</div>
+
+**Accessibility note:** If the search component’s label and placeholder text differ, VoiceOver on macOS will read both.
+
+### Search results
+
+- Clearly show which results are being displayed with labels or headers (i.e. Results for X).
+- Categorize the search results if they come from different areas (eg. docs, services, apps, tutorials, blogs).
+- Give the user control over their viewing options and ability to sort results (eg. relevancy, popularity, ratings, date).
+- Have a clear, “no results”, message and offer suggestions if possible.
+- Have smart algorithms that can search for similar terms or can search even with misspelled words.
+- Include enough of a description in the results for users to make a judgement as to whether that particular result is relevant.
+- Highlight the search term in the results, where appropriate.
+
+<span class="horizontal-spacer"></span>

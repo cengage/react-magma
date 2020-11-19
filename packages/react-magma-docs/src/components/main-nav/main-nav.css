@@ -2,109 +2,116 @@
 
 .main-nav h2,
 .main-nav h3 {
-    align-items: center;
-    display: flex;
-    font-size: 20px;
-    font-family: "Open Sans", sans-serif;
-    justify-content: space-between;
-    margin: 0;
-    padding: 10px 20px;
+  align-items: center;
+  display: flex;
+  font-size: 20px;
+  font-family: 'Open Sans', Helvetica, sans-serif;
+  justify-content: space-between;
+  margin: 0;
+  padding: 10px 20px;
 }
 
 .main-nav h3 {
-    font-size: 18px;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 20px;
 }
 
 .main-nav hr {
-    background: #dfdfdf;
-    margin: 10px 0;
+  background: #dfdfdf;
+  margin: 10px 0;
 }
 
 .main-nav ul {
-    margin: 0;
-    padding: 0;
-    }
+  margin: 0;
+  padding: 0;
+}
 
 .main-nav ul li {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .main-nav li a {
-    color: #727272;
-    display: block;
-    font-size: 15px;
-    line-height: 20px;
-    padding: 10px 20px;
-    text-decoration: none;
+  color: #727272;
+  display: block;
+  font-size: 15px;
+  line-height: 20px;
+  padding: 10px 20px;
+  text-decoration: none;
 }
 
 .main-nav li a:hover,
 .main-nav li a:focus {
-    background: #f7f7f7;
-    text-decoration: none;
+  background: #f7f7f7;
+  text-decoration: none;
+}
+
+.main-nav ul .submenu {
+  background: #f7f7f7;
+  padding: 0 0 10px 0;
 }
 
 .submenu > li {
-    list-style-type: none;
-    margin: 0;
+  list-style-type: none;
+  margin: 0;
 }
 
 .submenu > li > a {
-    font-size: 13px;
-    line-height: 18px;
-    padding-left: 40px;
+  font-size: 13px;
+  line-height: 18px;
+  padding-left: 40px;
 }
 
 /* Accordion styles */
 .accordion__body {
-    animation: fadein 0.35s ease-in;
-    display: block;
+  animation: fadein 0.35s ease-in;
+  display: block;
 }
 
 .accordion__body--hidden {
-    animation: fadeout 0.35s ease-in;
-    display: none;
+  animation: fadeout 0.35s ease-in;
+  display: none;
 }
 
 .accordion__title {
-    cursor: pointer;
-    border: none;
+  cursor: pointer;
+  border: none;
 }
 
 .accordion__title:hover {
-    background: #f7f7f7;
+  background: #f7f7f7;
 }
 
 .accordion__title svg {
-    transition: transform .35s;
+  transition: transform 0.35s;
 }
 
 .accordion__title[aria-expanded='true'] svg {
-    transform: rotate(-180deg);
+  transform: rotate(-180deg);
 }
 
 @keyframes fadein {
-    0% {
-        height: 0;
-        opacity: 0;
-    }
+  0% {
+    height: 0;
+    opacity: 0;
+  }
 
-    100% {
-        height: 100%;
-        opacity: 1;
-    }
+  100% {
+    height: 100%;
+    opacity: 1;
+  }
 }
 
 @keyframes fadeout {
-    0% {
-        height: 100%;
-        opacity: 1;
-    }
+  0% {
+    height: 100%;
+    opacity: 1;
+  }
 
-    100% {
-        height: 0;
-        opacity: 0;
-    }
+  100% {
+    height: 0;
+    opacity: 0;
+  }
 }

@@ -1,11 +1,20 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { HyperLink } from '../HyperLink';
-import { AngleRightIcon } from '../Icon/types/AngleRightIcon';
+import { BreadCrumbContext } from '.';
 
-export interface BreadcrumbItemProps extends React.HTMLAttributes<HTMLElement> {
-  inverse?: boolean;
+import { Hyperlink } from '../Hyperlink';
+import { AngleRightIcon } from 'react-magma-icons';
+
+/**
+ * @children required
+ */
+export interface BreadcrumbItemProps
+  extends React.HTMLAttributes<HTMLLIElement> {
+  testId?: string;
+  /**
+   * The href value of the link. If left blank, the breadcrumb item will render as a span with aria-current="page" on it.
+   */
   to?: string;
 }
 
@@ -15,40 +24,41 @@ const StyledItem = styled.li`
   padding: 0;
 `;
 
-const StyledSpan = styled.span<BreadcrumbItemProps>`
+const StyledSpan = styled.span<{ isInverse?: boolean }>`
   color: ${props =>
-    props.inverse
+    props.isInverse
       ? props.theme.colors.neutral08
-      : props.theme.colors.neutral04};
+      : props.theme.colors.neutral03};
 
   svg {
     margin: 0 10px;
   }
 `;
 
-export function renderBreadcrumbItem(props) {
-  const { inverse, children, ref, to } = props;
+export const BreadcrumbItem = React.forwardRef<
+  HTMLLIElement,
+  BreadcrumbItemProps
+>((props, ref) => {
+  const { children, to, testId, ...other } = props;
+  const theme = React.useContext(ThemeContext);
+  const { isInverse } = React.useContext(BreadCrumbContext);
 
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <StyledItem ref={ref}>
-          {to ? (
-            <>
-              <HyperLink to={to} inverse={inverse}>
-                {children}
-              </HyperLink>
-              <StyledSpan inverse={inverse} theme={theme}>
-                <AngleRightIcon size={10} />
-              </StyledSpan>
-            </>
-          ) : (
-            <StyledSpan aria-current="page" inverse={inverse} theme={theme}>
-              {children}
-            </StyledSpan>
-          )}
-        </StyledItem>
+    <StyledItem {...other} data-testid={testId} ref={ref}>
+      {to ? (
+        <>
+          <Hyperlink to={to} isInverse={isInverse}>
+            {children}
+          </Hyperlink>
+          <StyledSpan isInverse={isInverse} theme={theme}>
+            <AngleRightIcon size={10} />
+          </StyledSpan>
+        </>
+      ) : (
+        <StyledSpan aria-current="page" isInverse={isInverse} theme={theme}>
+          {children}
+        </StyledSpan>
       )}
-    </ThemeContext.Consumer>
+    </StyledItem>
   );
-}
+});

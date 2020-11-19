@@ -1,0 +1,283 @@
+---
+title: 'Paragraph'
+---
+
+import { ScopeableLayout } from '../../components/layout';
+import { Link } from 'gatsby';
+import { Paragraph, Card, CardBody } from 'react-magma-dom';
+import { SimplePropsTable } from '../../components/props-table';
+
+# Paragraphs
+
+The `Paragraph` component is used to present paragraph content in a clear and consistent manner, by limiting the number to sizes and styles with a UI.
+
+## Basic Usage
+
+```.jsx
+<Paragraph>
+  Basic paragraph component.
+</Paragraph>
+```
+
+## Sizes
+
+There are four visual styles for the paragraph: `bodyLarge`, `bodyMedium`, `bodySmall`, and `bodyXSmall`, which determine the paragraph's relative size (including font-size, line-height, margins, font-weight, etc).
+The default `visualStyle` is `bodyMedium`.
+
+In addition to the paragraph visual styles, the `visualStyle` prop can also accept the values for the different heading visual styles: `headingXLarge`, `headingLarge`, `headingMedium`, `headingSmall`, `headingXSmall` and `heading2XSmall`.
+These visual styles are also used with the <Link to="/api/heading">Heading</Link> component. The underlying HTML will still render as a `p` element.
+
+```.jsx
+<>
+  <Paragraph visualStyle="headingXLarge">
+    Heading x-large styles.
+  </Paragraph>
+
+  <Paragraph visualStyle="headingLarge">
+    Heading large styles.
+  </Paragraph>
+
+  <Paragraph visualStyle="headingMedium">
+    Heading medium styles.
+  </Paragraph>
+
+  <Paragraph visualStyle="headingSmall">
+    Heading small styles.
+  </Paragraph>
+
+  <Paragraph visualStyle="headingXSmall">
+    Heading x-small styles.
+  </Paragraph>
+
+  <Paragraph visualStyle="heading2XSmall">
+    Heading 2x-small styles.
+  </Paragraph>
+
+  <Paragraph visualStyle="bodyLarge">
+    Body large styles.  Lorem ipsum dolar sit amet.
+  </Paragraph>
+
+  <Paragraph visualStyle="bodyMedium">
+    Body medium (default) styles.  Lorem ipsum dolar sit amet.
+  </Paragraph>
+
+  <Paragraph visualStyle="bodySmall">
+    Body small styles.  Lorem ipsum dolar sit amet.
+  </Paragraph>
+
+  <Paragraph visualStyle="bodyXSmall">
+    Body x-small styles.  Lorem ipsum dolar sit amet.
+  </Paragraph>
+</>
+```
+
+## Context Variant
+
+The `contextVariant` prop can be used to set additional styles on a component. The default `contextVariant` is `default`.
+
+The `expressive` context variant can be used in marketing contexts, which may require more variety than the default styles.
+
+The `narrative` context variant can be used for content-heavy contexts, such as a blog-post or an e-reader.
+
+```.jsx
+<>
+  <Paragraph contextVariant="expressive" visualStyle="bodyLarge">
+    Body large.  Lorem ipsum dolar sit amet.
+  </Paragraph>
+
+  <Paragraph contextVariant="expressive" visualStyle="bodyMedium">
+    Body medium (default).  Lorem ipsum dolar sit amet.
+  </Paragraph>
+
+  <Paragraph contextVariant="expressive" visualStyle="bodySmall">
+    Body small.  Lorem ipsum dolar sit amet.
+  </Paragraph>
+
+  <Paragraph contextVariant="expressive" visualStyle="bodyXSmall">
+    Body x-small.  Lorem ipsum dolar sit amet.
+  </Paragraph>
+
+  <Paragraph contextVariant="narrative" visualStyle="bodyLarge">
+    Body large.  Lorem ipsum dolar sit amet.
+  </Paragraph>
+
+  <Paragraph contextVariant="narrative" visualStyle="bodyMedium">
+    Body medium (default).  Lorem ipsum dolar sit amet.
+  </Paragraph>
+
+  <Paragraph contextVariant="narrative" visualStyle="bodySmall">
+    Body small.  Lorem ipsum dolar sit amet.
+  </Paragraph>
+
+  <Paragraph contextVariant="narrative" visualStyle="bodyXSmall">
+    Body x-small.  Lorem ipsum dolar sit amet.
+  </Paragraph>
+</>
+```
+
+## Color
+
+The `color` prop can be used to change the color of the paragraph to convey additional meaning. It accepts the values: `success`, `danger` and `subdued`.
+
+```.jsx
+<>
+  <Paragraph color="success">
+    Success paragraph. Lorem ipsum dolar sit amet.
+  </Paragraph>
+
+  <Paragraph color="subdued">
+    Subdued paragraph.  Lorem ipsum dolar sit amet.
+  </Paragraph>
+
+  <Paragraph color="danger">
+    Danger paragraph.  Lorem ipsum dolar sit amet.
+  </Paragraph>
+</>
+```
+
+## Inverse
+
+The `isInverse` property is an optional boolean that changes the colors so the component can appear on a dark background.
+
+```.jsx
+<Card isInverse>
+  <CardBody>
+    <Paragraph isInverse>
+      Inverse paragraph.  Lorem ipsum dolar sit amet.
+    </Paragraph>
+
+      <Paragraph color="success" isInverse>
+      Success inverse paragraph. Lorem ipsum dolar sit amet.
+    </Paragraph>
+
+    <Paragraph color="subdued" isInverse>
+      Subdued inverse paragraph.  Lorem ipsum dolar sit amet.
+    </Paragraph>
+
+    <Paragraph color="danger" isInverse>
+      Danger inverse paragraph.  Lorem ipsum dolar sit amet.
+    </Paragraph>
+  </CardBody>
+</Card>
+```
+
+## No Margins
+
+By default, the `Paragraph` component includes margins on the top and bottom. When the `noMargins` prop is applied, the element will have a margin value of 0.
+
+```.jsx
+<>
+  <Paragraph noMargins visualStyle="bodyLarge">
+    Body large.  Lorem ipsum dolar sit amet.
+  </Paragraph>
+
+  <Paragraph noMargins visualStyle="bodyMedium">
+    Body medium (default).  Lorem ipsum dolar sit amet.
+  </Paragraph>
+
+  <Paragraph noMargins visualStyle="bodySmall">
+    Body small.  Lorem ipsum dolar sit amet.
+  </Paragraph>
+
+  <Paragraph noMargins visualStyle="bodyXSmall">
+    Body x-small.  Lorem ipsum dolar sit amet.
+  </Paragraph>
+</>
+```
+
+## Paragraph Props
+
+**This component uses `forwardRef`. The ref is applied to the outer `p` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `p` element that gets rendered.
+
+<SimplePropsTable
+  propertyValues={{
+    children: {
+      type: {
+        name: 'node',
+      },
+      required: true,
+      description: 'The content of the component',
+    },
+    color: {
+      type: {
+        name: 'enum',
+        options: [
+          'TypographyColor.danger',
+          'TypographyColor.default',
+          'TypographyColor.success',
+          'TypographyColor.subdued',
+        ],
+      },
+      required: false,
+      description:
+        'The color of the component, helping to convey meaning or relative emphasis',
+      defaultValue: 'default',
+    },
+    contextVariant: {
+      type: {
+        name: 'enum',
+        options: [
+          'TypographyContextVariant.expressive',
+          'TypographyContextVariant.narrative',
+          'TypographyContextVariant.default',
+        ],
+      },
+      description:
+        'Additional styles for typography based on the context of the content',
+      defaultValue: 'default',
+    },
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    noMargins: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, the component will not have the default top and bottom margin and instead will a margin value of 0.',
+      defaultValue: 'false',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+    visualStyle: {
+      type: {
+        name: 'enum',
+        options: [
+          'TypographyVisualStyle.headingXLarge',
+          'TypographyVisualStyle.headingLarge',
+          'TypographyVisualStyle.headingMedium',
+          'TypographyVisualStyle.headingSmall',
+          'TypographyVisualStyle.headingXSmall',
+          'TypographyVisualStyle.heading2XSmall',
+          'TypographyVisualStyle.bodyLarge',
+          'TypographyVisualStyle.bodyMedium',
+          'TypographyVisualStyle.bodySmall',
+          'TypographyVisualStyle.bodyXSmall',
+        ],
+      },
+      required: false,
+      description:
+        'Applies visual styles including font-size, font-weight, line-height and margins',
+      defaultValue: 'bodyMedium',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout {...props} components={{ Paragraph, Card, CardBody }} />
+);

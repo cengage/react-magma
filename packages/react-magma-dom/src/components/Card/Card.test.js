@@ -9,6 +9,22 @@ import { render } from '@testing-library/react';
 const TEXT = 'Test Text';
 
 describe('Card', () => {
+  it('should find elements by testId', () => {
+    const testId = 'test-id';
+    const testId2 = 'test-id2';
+    const testId3 = 'test-id3';
+    const { getByTestId } = render(
+      <Card testId={testId}>
+        <CardHeading testId={testId2}>Card Heading</CardHeading>
+        <CardBody testId={testId3}>Card Body</CardBody>
+      </Card>
+    );
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+    expect(getByTestId(testId2)).toBeInTheDocument();
+    expect(getByTestId(testId3)).toBeInTheDocument();
+  });
+
   it('should render the card component with default styles', () => {
     const { getByText } = render(<Card>{TEXT}</Card>);
 
@@ -39,7 +55,7 @@ describe('Card', () => {
 
     const body = getByText(TEXT);
 
-    expect(body).toHaveStyleRule('padding', '20px');
+    expect(body).toHaveStyleRule('padding', magma.spaceScale.spacing05);
   });
 
   it('should render the card heading component', () => {
@@ -71,9 +87,9 @@ describe('Card', () => {
 
     const card = getByText(TEXT);
 
-    expect(card).toHaveStyleRule('padding-left', '5px');
+    expect(card).toHaveStyleRule('padding-left', magma.spaceScale.spacing02);
     expect(card).toHaveStyleRule('background', magma.colors.danger, {
-      target: ':before'
+      target: ':before',
     });
   });
 
@@ -82,9 +98,9 @@ describe('Card', () => {
 
     const card = getByText(TEXT);
 
-    expect(card).toHaveStyleRule('padding-left', '5px');
+    expect(card).toHaveStyleRule('padding-left', magma.spaceScale.spacing02);
     expect(card).toHaveStyleRule('background', magma.colors.primary, {
-      target: ':before'
+      target: ':before',
     });
   });
 
@@ -93,9 +109,9 @@ describe('Card', () => {
 
     const card = getByText(TEXT);
 
-    expect(card).toHaveStyleRule('padding-left', '5px');
-    expect(card).toHaveStyleRule('background', magma.colors.success01, {
-      target: ':before'
+    expect(card).toHaveStyleRule('padding-left', magma.spaceScale.spacing02);
+    expect(card).toHaveStyleRule('background', magma.colors.success, {
+      target: ':before',
     });
   });
 
@@ -104,9 +120,9 @@ describe('Card', () => {
 
     const card = getByText(TEXT);
 
-    expect(card).toHaveStyleRule('padding-left', '5px');
+    expect(card).toHaveStyleRule('padding-left', magma.spaceScale.spacing02);
     expect(card).toHaveStyleRule('background', magma.colors.pop04, {
-      target: ':before'
+      target: ':before',
     });
   });
 
@@ -127,15 +143,12 @@ describe('Card', () => {
   });
 
   it('should render the card component with inverse styles', () => {
-    const { getByText } = render(
-      <Card background="red" inverse>
-        {TEXT}
-      </Card>
-    );
+    const { getByText } = render(<Card isInverse>{TEXT}</Card>);
 
     const card = getByText(TEXT);
 
-    expect(card).toHaveStyleRule('color', '#FFFFFF');
+    expect(card).toHaveStyleRule('background', magma.colors.foundation);
+    expect(card).toHaveStyleRule('color', magma.colors.neutral08);
   });
 
   it('should render a card with right alignment', () => {

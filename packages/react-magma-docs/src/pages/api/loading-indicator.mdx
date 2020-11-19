@@ -1,15 +1,16 @@
 ---
-title: 'Loading Indicators'
+pageTitle: Loading Indicator API
+title: Loading Indicator
 ---
 
-import { ScopeableLayout } from '../../components/layout'
-import { LoadingIndicator, Announce, Button } from 'react-magma-dom'
-import { SimplePropsTable } from '../../components/props-table'
-import DocsHeading from '../../components/docs-heading'
-import { Link } from 'gatsby'
+import { ScopeableLayout } from '../../components/layout';
+import { LoadingIndicator, Announce, Button } from 'react-magma-dom';
+import { SimplePropsTable } from '../../components/props-table';
+import DocsHeading from '../../components/docs-heading';
+import { Link } from 'gatsby';
 
 <DocsHeading to="/design/loading-indicators/" type="design">
-  Loading Indicators
+  Loading Indicator
 </DocsHeading>
 
 When content is loading, the `LoadingIndicator` component can be used to communicate to users that the wait is expected and everything is normal.
@@ -19,7 +20,7 @@ When content is loading, the `LoadingIndicator` component can be used to communi
 By default, the Loading Indicator uses the <Link to="/api/spinner">Spinner</Link> component.
 
 ```.jsx
-    <LoadingIndicator />
+<LoadingIndicator />
 ```
 
 ## Progress Bar
@@ -28,69 +29,66 @@ The `type` prop can be used to change what sort of loading animation displays. T
 to render the <Link to="/api/progress-bar">Progress Bar</Link> component.
 
 ```.jsx
-    class Example extends React.Component {
-      constructor(props) {
-        super(props)
+() => {
+  const [percentage, setPercentage] = React.useState(0);
 
-        this.state = {
-          percentage: 0
-        }
+  React.useEffect(() => {
+    const timer1 = setTimeout(() => {
+      setPercentage(10);
+    }, 2000);
 
-        this.setTimer = this.setTimer.bind(this);
-      }
+    const timer2 = setTimeout(() => {
+      setPercentage(20);
+    }, 4000);
 
-      setTimer() {
-        setTimeout(() => {
-          this.setState({ percentage: 10 });
-        }, 2000);
+    const timer3 = setTimeout(() => {
+      setPercentage(30);
+    }, 6000);
 
-        setTimeout(() => {
-          this.setState({ percentage: 20 });
-        }, 4000);
+    const timer4 = setTimeout(() => {
+      setPercentage(40);
+    }, 8000);
 
-        setTimeout(() => {
-          this.setState({ percentage: 30 });
-        }, 6000);
+    const timer5 = setTimeout(() => {
+      setPercentage(50);
+    }, 10000);
 
-        setTimeout(() => {
-          this.setState({ percentage: 40 });
-        }, 10000);
+    const timer6 = setTimeout(() => {
+      setPercentage(60);
+    }, 12000);
 
-        setTimeout(() => {
-          this.setState({ percentage: 50 });
-        }, 15000);
+    const timer7 = setTimeout(() => {
+      setPercentage(70);
+    }, 14000);
 
-        setTimeout(() => {
-          this.setState({ percentage: 60 });
-        }, 20000);
+    const timer8 = setTimeout(() => {
+      setPercentage(80);
+    }, 16000);
 
-        setTimeout(() => {
-          this.setState({ percentage: 70 });
-        }, 25000);
+    const timer9 = setTimeout(() => {
+      setPercentage(90);
+    }, 18000);
 
-        setTimeout(() => {
-          this.setState({ percentage: 80 });
-        }, 30000);
+    const timer10 = setTimeout(() => {
+      setPercentage(100);
+    }, 20000);
 
-        setTimeout(() => {
-          this.setState({ percentage: 90 });
-        }, 35000);
-
-        setTimeout(() => {
-          this.setState({ percentage: 100 });
-        }, 40000);
-      }
-
-      componentDidMount() {
-        this.setTimer();
-      }
-
-      render() {
-        const { percentage } = this.state;
-
-        return (<LoadingIndicator percentage={percentage} type='progressbar' />)
-      }
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+      clearTimeout(timer4);
+      clearTimeout(timer5);
+      clearTimeout(timer6);
+      clearTimeout(timer7);
+      clearTimeout(timer8);
+      clearTimeout(timer9);
+      clearTimeout(timer10);
     }
+  }, [])
+
+  return (<LoadingIndicator percentage={percentage} type='progressbar' />)
+}
 ```
 
 ## Custom Messages
@@ -99,58 +97,42 @@ The `LoadingIndicator`, supports three levels of messages. One displays immediat
 These messages can be customized by using the `message1`, `message2` and `message3` props.
 
 ```.jsx
-    <LoadingIndicator
-      message1="Custom message"
-      message2="An additional custom message"
-      message3="Third and final custom message" />
+<LoadingIndicator
+  message1="Custom message"
+  message2="An additional custom message"
+  message3="Third and final custom message" />
 ```
 
 ## Accessibility Considerations
 
-Loading Indicators are indended to alert users to the fact that wait time is expected, so when a `LoadingIndixator` component is added to a UI, it is important that screen readers read the new content.
+Loading Indicators are intended to alert users to the fact that wait time is expected, so when a `LoadingIndicator` component is added to a UI, it is important that screen readers read the new content.
 One way to do this is to the use the <Link to="/api/announce">Announce component</Link>, which employs the `aria-live` attribute. Be sure to place
 the conditional logic to display the `LoadingIndicator` _inside_ the `Announce` component.
 
 ```.jsx
-    class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          showLoader: false
-        }
+() => {
+  const [showLoader, setShowLoader] = React.useState(false);
 
-        this.onLoaderShow = this.onLoaderShow.bind(this);
-        this.onLoaderClose = this.onLoaderClose.bind(this);
-      }
-
-      onLoaderShow() {
-        this.setState({showLoader: true})
-      }
-
-      onLoaderClose() {
-        this.setState({showLoader: false})
-      }
-
-      render() {
-        const { showLoader } = this.state;
-
-        return (<>
-          <p>
-            <Button onClick={this.onLoaderShow}>Show Loading Indicator</Button>
-            <Button onClick={this.onLoaderClose}>Hide Loading Indicator</Button>
-          </p>
-          <Announce>
-            {showLoader && <LoadingIndicator />}
-          </Announce>
-        </>)
-      }
-    }
+  return (
+    <>
+      <p>
+        <Button onClick={() => setShowLoader(true)}>Show Loading Indicator</Button>
+        <Button onClick={() => setShowLoader(false)}>Hide Loading Indicator</Button>
+      </p>
+      <Announce>
+        {showLoader && <LoadingIndicator />}
+      </Announce>
+    </>
+  )
+}
 ```
 
 ## Loading Indicator Props
 
+**All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props will be applied to the internal element. The internal element will be either a `div` when using the `ProgressBar` or a `span` when using the `Spinner`. Additionally, depending on which component is used internally, you can provide any props that the <Link to="/api/spinner#spinner_props">Spinner</Link> or the <Link to="/api/progress-bar#progress_bar%20props">ProgressBar</Link> accepts. This is controlled by the passed in `type` prop.**
+
 <SimplePropsTable
-  props={{
+  propertyValues={{
     message1: {
       type: {
         name: 'string',
@@ -175,6 +157,21 @@ the conditional logic to display the `LoadingIndicator` _inside_ the `Announce` 
       description: 'Message displayed after 15 seconds',
       defaultValue: 'Sorry for the delay. This is taking longer than expected.',
     },
+    percentage: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'Percentage by which the loading indicator should be filled',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
     type: {
       type: {
         name: 'enum',
@@ -195,4 +192,4 @@ export default props => (
     {...props}
     components={{ LoadingIndicator, Announce, Button }}
   />
-)
+);

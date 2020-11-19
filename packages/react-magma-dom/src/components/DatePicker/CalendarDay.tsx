@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
-import styled from '@emotion/styled';
-import { format, isSameDay } from 'date-fns';
-
-// must import CalendarContextInterface for typescript compiler to build types file
-// @ts-ignore: Declared but never read error
-import { CalendarContext, CalendarContextInterface } from './CalendarContext';
+import styled from '../../theme/styled';
+import { isAfter, isBefore, isSameDay } from 'date-fns';
+import { enUS } from 'date-fns/locale';
+import { CalendarContext } from './CalendarContext';
+import { I18nContext } from '../../i18n';
+import { i18nFormat as format } from './utils';
 
 interface CalendarDayProps {
   day: Date;
@@ -13,14 +13,11 @@ interface CalendarDayProps {
   onDateChange?: (day: Date, event: React.SyntheticEvent) => void;
 }
 
-interface CalendarDayState {
-  focused?: boolean;
-}
-
 const CalendarDayCell = styled.td`
   border: 1px solid ${props => props.theme.colors.neutral06};
-  color: ${props => props.theme.colors.neutral02};
-  font-size: 15px;
+  color: ${props => props.theme.colors.neutral};
+  font-size: ${props => props.theme.typeScale.size03.fontSize};
+  line-height: ${props => props.theme.typeScale.size03.lineHeight};
   height: 40px;
   padding: 0;
   position: relative;
@@ -31,19 +28,22 @@ const CalendarDayCell = styled.td`
 const CalendarDayInner = styled.button<{
   isChosen?: boolean;
   isFocused?: boolean;
+  disabled?: boolean;
 }>`
   align-items: center;
   background: ${props =>
     props.isChosen
-      ? props.theme.colors.foundation01
+      ? props.theme.colors.foundation02
       : props.theme.colors.neutral08};
   border: 2px solid transparent;
   border-radius: 100%;
   color: ${props =>
     props.isChosen
       ? props.theme.colors.neutral08
-      : props.theme.colors.neutral02};
-  cursor: pointer;
+      : props.disabled
+      ? props.theme.colors.disabledText
+      : props.theme.colors.neutral};
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   display: flex;
   height: 35px;
   justify-content: center;
@@ -54,8 +54,12 @@ const CalendarDayInner = styled.button<{
   transition: background 0.5s ease-in-out 0s;
   width: 35px;
 
+  &:focus {
+    outline: 2px dotted ${props => props.theme.colors.focus};
+  }
+
   &:before {
-    background: ${props => props.theme.colors.neutral02};
+    background: ${props => props.theme.colors.neutral};
     content: '';
     height: 200%;
     left: 0;
@@ -68,12 +72,8 @@ const CalendarDayInner = styled.button<{
 
   &:hover {
     &:before {
-      opacity: 0.1;
+      opacity: ${props => (props.disabled ? 0 : 0.1)};
     }
-  }
-
-  &:focus {
-    outline: 2px dotted ${props => props.theme.colors.pop02};
   }
 `;
 
@@ -83,7 +83,7 @@ const EmptyCell = styled.td`
 `;
 
 const TodayIndicator = styled.span`
-  border-left: 8px solid ${props => props.theme.colors.pop01};
+  border-left: 8px solid ${props => props.theme.colors.pop};
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
   bottom: -6px;
@@ -95,96 +95,86 @@ const TodayIndicator = styled.span`
   width: 0;
 `;
 
-export class CalendarDay extends React.Component<
-  CalendarDayProps,
-  CalendarDayState
-> {
-  private readonly dayRef = React.createRef<any>();
-  static contextType = CalendarContext;
-  context!: React.ContextType<typeof CalendarContext>;
+export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
+  props: CalendarDayProps
+) => {
+  const dayRef = React.useRef<HTMLButtonElement>();
+  const {
+    dateFocused,
+    focusedDate,
+    chosenDate,
+    maxDate,
+    minDate,
+    setDateFocused,
+    onDateChange,
+  } = React.useContext(CalendarContext);
+  const [focused, setFocused] = React.useState<boolean>(false);
+  const { day, dayFocusable } = props;
 
-  state = {
-    focused: false
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.focusCurrentDay = this.focusCurrentDay.bind(this);
-  }
-
-  componentDidMount() {
-    this.focusCurrentDay();
-  }
-
-  componentDidUpdate() {
-    this.focusCurrentDay();
-  }
-
-  focusCurrentDay() {
-    if (
-      this.context.dateFocused &&
-      isSameDay(this.props.day, this.context.focusedDate)
-    ) {
-      if (!this.state.focused) {
-        this.dayRef.current.focus();
-        this.setState({ focused: true });
-      }
+  React.useEffect(() => {
+    if (dateFocused && isSameDay(props.day, focusedDate)) {
+      dayRef.current.focus();
+      setFocused(true);
     } else {
-      if (this.state.focused) {
-        this.setState({ focused: false });
+      if (focused) {
+        setFocused(false);
       }
     }
+  }, [focusedDate, dateFocused]);
+
+  function onCalendarDayFocus() {
+    setDateFocused(true);
   }
 
-  render() {
-    const { day, dayFocusable } = this.props;
-    const { toggleDateFocus } = this.context;
+  function onDayClick(event: React.SyntheticEvent) {
+    if (disabled) {
+      event.preventDefault();
+      return;
+    }
+
+    onDateChange(day, event);
+  }
+
+  const disabled: boolean =
+    (maxDate ? isAfter(props.day, maxDate) : false) ||
+    (minDate ? isBefore(props.day, minDate) : false);
+
+  const theme = React.useContext(ThemeContext);
+  const i18n = React.useContext(I18nContext);
+
+  if (day) {
+    const sameDateAsFocusedDate = isSameDay(day, focusedDate);
+    const sameDateAsChosenDate = isSameDay(day, chosenDate);
+    const sameDateAsToday = isSameDay(day, new Date());
+    const locale = i18n.locale || enUS;
+    const ariaLabel = `${
+      disabled ? i18n.datePicker.disabledDayAriaLabel : ''
+    } ${format(day, 'EEEE, MMMM do yyyy', locale)} ${
+      sameDateAsToday ? i18n.datePicker.todayAriaLabel : ''
+    } ${sameDateAsChosenDate ? i18n.datePicker.selectedDayAriaLabel : ''}`;
 
     return (
-      <CalendarContext.Consumer>
-        {context => {
-          if (context && day) {
-            const sameDateAsFocusedDate = isSameDay(day, context.focusedDate);
-            const sameDateAsChosenDate = isSameDay(day, context.chosenDate);
-            const sameDateAsToday = isSameDay(day, new Date());
-
-            return (
-              <ThemeContext.Consumer>
-                {theme => (
-                  <CalendarDayCell
-                    onFocus={() => toggleDateFocus(true)}
-                    theme={theme}
-                  >
-                    <CalendarDayInner
-                      aria-label={format(day, 'MMMM Do YYYY')}
-                      isChosen={sameDateAsChosenDate}
-                      isFocused={dayFocusable && sameDateAsFocusedDate}
-                      onClick={e => {
-                        context.onDateChange(day, e);
-                      }}
-                      ref={this.dayRef}
-                      tabIndex={sameDateAsFocusedDate ? 0 : -1}
-                      type="button"
-                      theme={theme}
-                    >
-                      {format(day, 'D')}
-                    </CalendarDayInner>
-                    {sameDateAsToday && (
-                      <TodayIndicator
-                        data-testid="todayIndicator"
-                        theme={theme}
-                      />
-                    )}
-                  </CalendarDayCell>
-                )}
-              </ThemeContext.Consumer>
-            );
-          } else {
-            return <EmptyCell />;
-          }
-        }}
-      </CalendarContext.Consumer>
+      <CalendarDayCell onFocus={onCalendarDayFocus} theme={theme}>
+        <CalendarDayInner
+          aria-disabled={disabled}
+          aria-label={ariaLabel}
+          disabled={disabled}
+          isChosen={sameDateAsChosenDate}
+          isFocused={dayFocusable && sameDateAsFocusedDate}
+          onClick={onDayClick}
+          ref={dayRef}
+          tabIndex={sameDateAsFocusedDate ? 0 : -1}
+          type="button"
+          theme={theme}
+        >
+          {format(day, 'd', locale)}
+        </CalendarDayInner>
+        {sameDateAsToday && (
+          <TodayIndicator data-testid="todayIndicator" theme={theme} />
+        )}
+      </CalendarDayCell>
     );
+  } else {
+    return <EmptyCell />;
   }
-}
+};

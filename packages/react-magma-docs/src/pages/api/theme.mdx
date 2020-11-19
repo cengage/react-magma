@@ -1,64 +1,204 @@
 ---
-title: 'Theming'
+pageTitle: Theming API
+title: Theming
 ---
 
-import { ScopeableLayout } from '../../components/layout'
-import { Select, ThemeContext, magma } from 'react-magma-dom'
-import DemoComponent from '../../components/demo-component'
-import { amgam } from '../../themes/amgam.ts'
-import { amgamDark } from '../../themes/amgamDark.ts'
+import { ScopeableLayout } from '../../components/layout';
+import { Select, ThemeContext, magma } from 'react-magma-dom';
+import DemoComponent from '../../components/demo-component';
+import { amgam } from '../../themes/amgam.ts';
+import { amgamDark } from '../../themes/amgamDark.ts';
 
 # Theming
 
 ## Using Themes
 
-By default, all components in the React Magma library use the Magma theme. However, you can pass in an alternative theme using the `<ThemeContext.Provider>`,
-and passing in your custom theme as the `value` property. Any descendants of the context provider will receive the theme that is passed in.
+By default, all components in the React Magma library use the Magma theme. However, you can pass in an alternative theme using the `<ThemeContext.Provider>`
+and pass in your custom theme as the `value` property. Any descendants of the context provider will receive the theme that is passed in.
 
-Use the dropdown to change theme for the demo component.
+Use the dropdown to change the theme for the demo component.
 
 ```.jsx
-  class Example extends React.Component {
-    constructor(props) {
-      super(props)
-      this.state = {
-        theme: magma
-      }
+() => {
+  const [theme, setTheme] = React.useState(magma);
 
-      this.changeTheme = this.changeTheme.bind(this);
-    }
-
-      changeTheme(theme) {
-        this.setState(state => ({
-          theme: theme.value
-        }));
-    }
-
-    render() {
-      return (
-        <div>
-          <Select
-            id="themeSwitcher"
-            labelText="Select Theme"
-            onChange={this.changeTheme}
-            options={[{
-              value: magma,
-              label: 'Magma (default)'
-            }, {
-              value: amgam,
-              label: 'Amgam'
-            }, {
-              value: amgamDark,
-              label: 'Amgam Dark'
-            }]} />
-
-          <ThemeContext.Provider value={this.state.theme}>
-            <DemoComponent idPrefix="theme1" />
-          </ThemeContext.Provider>
-        </div>
-      )
-    }
+  function handleItemChange(changes) {
+    setTheme(changes.selectedItem.value);
   }
+
+  return (
+    <div>
+      <Select
+        id="themeSwitcher"
+        labelText="Select Theme"
+        onSelectedItemChange={handleItemChange}
+        items={[{
+          value: magma,
+          label: 'Magma (default)'
+        }, {
+          value: amgam,
+          label: 'Amgam'
+        }, {
+          value: amgamDark,
+          label: 'Amgam Dark'
+        }]} />
+
+      <ThemeContext.Provider value={theme}>
+        <DemoComponent idPrefix="theme1" />
+      </ThemeContext.Provider>
+    </div>
+  )
+}
+```
+
+## Typography Scale
+
+One of the features of the Magma theme is a typography scale, that contains thirteen font-size/line-height combinations, to better ensure consistency. Designers are advised not to deviate from these combinations.
+
+The `typeScale` can be set as part of the theme.
+
+```
+typeScale: {
+  size01: {
+    fontSize: '12px',
+    lineHeight: '16px'
+  },
+  size02: {
+    fontSize: '14px',
+    lineHeight: '20px'
+  },
+  size03: {
+    fontSize: '16px',
+    lineHeight: '24px'
+  },
+  size04: {
+    fontSize: '18px',
+    lineHeight: '32px'
+  },
+  size05: {
+    fontSize: '20px',
+    lineHeight: '32px'
+  },
+  size06: {
+    fontSize: '24px',
+    lineHeight: '32px'
+  },
+  size07: {
+    fontSize: '28px',
+    lineHeight: '40px'
+  },
+  size08: {
+    fontSize: '32px',
+    lineHeight: '40px'
+  },
+  size09: {
+    fontSize: '36px',
+    lineHeight: '48px'
+  },
+  size10: {
+    fontSize: '42px',
+    lineHeight: '48px'
+  },
+  size11: {
+    fontSize: '48px',
+    lineHeight: '56px'
+  },
+  size12: {
+    fontSize: '54px',
+    lineHeight: '64px'
+  },
+  size13: {
+    fontSize: '60px',
+    lineHeight: '72px'
+  }
+}
+```
+
+Furthermore, font-size and line-height can be set in the theme for six heading levels and four paragraph relative sizes for two different screen resolutions.
+The theme also contains options for two additional typography variants for those heading and paragraph styles.
+
+```.js
+typographyVisualStyles: {
+  headingXLarge: {
+    mobile: typeScale.size07,
+    desktop: typeScale.size08,
+    fontWeight: 600
+  },
+  headingLarge: {
+    mobile: typeScale.size06,
+    desktop: typeScale.size07,
+    fontWeight: 600
+  },
+  headingMedium: {
+    mobile: typeScale.size05,
+    desktop: typeScale.size06,
+    fontWeight: 600
+  },
+  ...
+},
+typographyExpressiveVisualStyles: {
+  headingXLarge: {
+    mobile: typeScale.size08,
+    desktop: typeScale.size11,
+    fontWeight: 600
+  },
+  headingLarge: {
+    mobile: typeScale.size07,
+    desktop: typeScale.size09,
+    fontWeight: 300
+  },
+  headingMedium: {
+    mobile: typeScale.size06,
+    desktop: typeScale.size07,
+    fontWeight: 300
+  },
+  ...
+},
+typographyNarrativeVisualStyles: {
+  headingXLarge: {
+    mobile: typeScale.size07,
+    desktop: typeScale.size08,
+    fontWeight: 700
+  },
+  headingLarge: {
+    mobile: typeScale.size06,
+    desktop: typeScale.size07,
+    fontWeight: 700
+  },
+  headingMedium: {
+    mobile: typeScale.size05,
+    desktop: typeScale.size06,
+    fontWeight: 700
+  },
+  ...
+}
+
+```
+
+## Space Scale
+
+The Magma theme also has a spacing scale that can be used to implement padding or margins in a consistent fashion.
+Designers are advised to use values from the space scale whenever possible.
+
+The `spaceScale` can be overridden in by defining its values new theme.
+
+```
+spaceScale: {
+  spacing01: '2px',
+  spacing02: '4px',
+  spacing03: '8px',
+  spacing04: '12px',
+  spacing05: '16px',
+  spacing06: '24px',
+  spacing07: '28px',
+  spacing08: '32px',
+  spacing09: '40px',
+  spacing10: '48px',
+  spacing11: '56px',
+  spacing12: '64px',
+  spacing13: '96px',
+  spacing14: '160px'
+}
 ```
 
 export default props => (
@@ -73,4 +213,4 @@ export default props => (
       amgamDark,
     }}
   />
-)
+);

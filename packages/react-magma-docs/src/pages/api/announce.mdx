@@ -1,10 +1,13 @@
 ---
-title: 'Announce'
+pageTitle: Announce API
+title: Announce
+props:
+  - AnnounceProps
 ---
 
-import { ScopeableLayout } from '../../components/layout'
-import { Announce, Button } from 'react-magma-dom'
-import { SimplePropsTable } from '../../components/props-table'
+import { ScopeableLayout } from '../../components/layout';
+import { Announce, Button } from 'react-magma-dom';
+import { SimplePropsTable } from '../../components/props-table';
 
 # Announce
 
@@ -14,32 +17,19 @@ they may not be clear to users of assistive technology. The `Announce` component
 ## Basic Usage
 
 ```.jsx
-  class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          announceContent: 'Initial content'
-        }
+() => {
+  const [announceContent, setAnnounceContent] = React.useState('Initial content');
 
-        this.handleContentUpdate = this.handleContentUpdate.bind(this);
-      }
-
-      handleContentUpdate() {
-        this.setState({announceContent: 'New content replacing the initial content'})
-      }
-
-      render() {
-        const { announceContent } = this.state;
-
-        return (<>
-            <p>This content will be read by a screen reader when it changes.</p>
-            <p><Button onClick={this.handleContentUpdate}>Update content</Button></p>
-            <Announce>
-                <p>{announceContent}</p>
-            </Announce>
-        </>)
-      }
-    }
+  return (
+    <>
+      <p>This content will be read by a screen reader when it changes.</p>
+      <p><Button onClick={() => setAnnounceContent('New content replacing the initial content')}>Update content</Button></p>
+      <Announce>
+        <p>{announceContent}</p>
+      </Announce>
+    </>
+  )
+}
 ```
 
 ## Politeness
@@ -51,69 +41,38 @@ When `polite` is used, assistive technology will notify a users of a change afte
 possibly interrupting the current task. Using `off` will silence these updates, so they will not be read.
 
 ```.jsx
-  class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          announceContentAssertive: 'Initial assertive content',
-          announceContentOff: 'Initial off content'
-        }
+() => {
+  const [announceContentAssertive, setAnnounceContentAssertive] = React.useState('Initial assertive content');
+  const [announceContentOff, setAnnounceContentOff] = React.useState('Initial off content');
 
-        this.handleContentUpdateAssertive = this.handleContentUpdateAssertive.bind(this);
-        this.handleContentUpdateOff = this.handleContentUpdateOff.bind(this);
-      }
-
-      handleContentUpdateAssertive() {
-        this.setState({announceContentAssertive: 'New content replacing the assertive initial content'})
-      }
-
-      handleContentUpdateOff() {
-        this.setState({announceContentOff: 'New content replacing the off initial content'})
-      }
-
-      render() {
-        const { announceContentAssertive, announceContentOff } = this.state;
-
-        return (<>
-            <p>This content will be read by a screen reader immediately when it changes.</p>
-            <p><Button onClick={this.handleContentUpdateAssertive}>Update assertive content</Button></p>
-            <Announce politeness="assertive">
-                <p>{announceContentAssertive}</p>
-            </Announce>
-            <hr />
-            <p>This content will be not read by a screen reader when it changes.</p>
-            <p><Button onClick={this.handleContentUpdateOff}>Update off content</Button></p>
-            <Announce politeness="off">
-                <p>{announceContentOff}</p>
-            </Announce>
-        </>)
-      }
-    }
+  return (<>
+    <p>This content will be read by a screen reader immediately when it changes.</p>
+    <p>
+      <Button onClick={() => setAnnounceContentAssertive('New content replacing the assertive initial content')}>Update assertive content</Button>
+    </p>
+    <Announce politeness="assertive">
+      <p>{announceContentAssertive}</p>
+    </Announce>
+    <hr />
+    <p>This content will be not read by a screen reader when it changes.</p>
+    <p>
+      <Button onClick={() => setAnnounceContentOff('New content replacing the off initial content')}>Update off content</Button>
+    </p>
+    <Announce politeness="off">
+      <p>{announceContentOff}</p>
+    </Announce>
+  </>)
+}
 ```
 
 ## Announce Props
 
-<SimplePropsTable
-  props={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    politeness: {
-      type: {
-        name: 'enum',
-        options: ['assertive', 'off', 'polite'],
-      },
-      required: false,
-      description: 'Value of the `aria-live` attribute',
-      defaultValue: 'polite',
-    },
-  }}
-/>
+**This component uses `forwardRef`. The ref is applied to the Announce container `div` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
+
+<AnnounceProps />
 
 export default props => (
   <ScopeableLayout {...props} components={{ Announce, Button }} />
-)
+);

@@ -1,15 +1,18 @@
 ---
-title: 'Buttons'
+pageTitle: Button API
+title: Button
+props:
+  - ButtonProps
 ---
 
-import { ScopeableLayout } from '../../components/layout'
-import { Button, LinkButton, Input } from 'react-magma-dom'
-import { Link } from 'gatsby'
-import { SimplePropsTable } from '../../components/props-table'
-import DocsHeading from '../../components/docs-heading'
+import { ScopeableLayout } from '../../components/layout';
+import { Button, Input, Card, CardBody } from 'react-magma-dom';
+import { Link } from 'gatsby';
+import DocsHeading from '../../components/docs-heading';
+import { ButtonProps } from '../../components/button-props';
 
 <DocsHeading to="/design/button/" type="design">
-  Buttons
+  Button
 </DocsHeading>
 
 ## Basic Usage
@@ -23,11 +26,11 @@ When used with icons, the Button component takes a slightly different set of pro
 Sizes for buttons include `small`, `medium`, and `large`, with `medium` being the default value.
 
 ```.jsx
-    <>
-        <Button size="small">Small</Button>
-        <Button>Default</Button>
-        <Button size="large">Large</Button>
-    </>
+<>
+  <Button size="small">Small</Button>
+  <Button>Default</Button>
+  <Button size="large">Large</Button>
+</>
 ```
 
 ## Colors
@@ -35,13 +38,13 @@ Sizes for buttons include `small`, `medium`, and `large`, with `medium` being th
 Colors for buttons include `primary`, `secondary`, `success`, `danger`, and `marketing` with `primary` being the default value.
 
 ```.jsx
-    <>
-        <Button color="primary">Primary (default)</Button>
-        <Button color="secondary">Secondary</Button>
-        <Button color="success" >Success</Button>
-        <Button color="danger">Danger</Button>
-        <Button color="marketing">Marketing</Button>
-    </>
+<>
+  <Button color="primary">Primary (default)</Button>
+  <Button color="secondary">Secondary</Button>
+  <Button color="success" >Success</Button>
+  <Button color="danger">Danger</Button>
+  <Button color="marketing">Marketing</Button>
+</>
 ```
 
 ## Variants
@@ -51,39 +54,28 @@ Variants for buttons include `solid`, `outline`, and `link`, with `solid` being 
 The `marketing` buttons do not have `outline` and `link` variants, and will render as solid buttons.
 
 ```.jsx
-    <>
-      <p>
-          <Button color="primary" variant="solid">Solid (default)</Button>
-          <Button color="primary" variant="outline">Outline</Button>
-          <Button color="primary" variant="link">Link</Button>
-      </p>
-      <p>
-          <Button color="secondary" variant="solid">Solid (default)</Button>
-          <Button color="secondary" variant="outline">Outline</Button>
-          <Button color="secondary" variant="link">Link</Button>
-      </p>
-      <p>
-          <Button color="success" variant="solid">Solid (default)</Button>
-          <Button color="success" variant="outline">Outline</Button>
-          <Button color="success" variant="link">Link</Button>
-      </p>
-      <p>
-          <Button color="danger" variant="solid">Solid (default)</Button>
-          <Button color="danger" variant="outline">Outline</Button>
-          <Button color="danger" variant="link">Link</Button>
-      </p>
-    </>
-```
-
-## Link Buttons
-
-Using the `LinkButton` will render a button that is styled exactly like a link. Unlike the using `<Button variant='link' />`,
-the `LinkButton` will render as inline text, the way an `a` element would.
-
-```.jsx
-    <>
-        This is a <LinkButton>link button</LinkButton>.
-    </>
+<>
+  <p>
+    <Button color="primary" variant="solid">Solid (default)</Button>
+    <Button color="primary" variant="outline">Outline</Button>
+    <Button color="primary" variant="link">Link</Button>
+  </p>
+  <p>
+    <Button color="secondary" variant="solid">Solid (default)</Button>
+    <Button color="secondary" variant="outline">Outline</Button>
+    <Button color="secondary" variant="link">Link</Button>
+  </p>
+  <p>
+    <Button color="success" variant="solid">Solid (default)</Button>
+    <Button color="success" variant="outline">Outline</Button>
+    <Button color="success" variant="link">Link</Button>
+  </p>
+  <p>
+    <Button color="danger" variant="solid">Solid (default)</Button>
+    <Button color="danger" variant="outline">Outline</Button>
+    <Button color="danger" variant="link">Link</Button>
+  </p>
+</>
 ```
 
 ## Shapes
@@ -91,48 +83,44 @@ the `LinkButton` will render as inline text, the way an `a` element would.
 Shapes for buttons include `fill`, `leftCap`, and `rightCap`, with `fill` being the default value.
 
 ```.jsx
-    <>
-        <Button color="primary">Fill (default)</Button>
-        <Button color="primary" shape="leftCap">Left Cap</Button>
-        <Button color="primary" shape="rightCap">Right Cap</Button>
-    </>
+<>
+  <Button color="primary">Fill (default)</Button>
+  <Button color="primary" shape="leftCap">Left Cap</Button>
+  <Button color="primary" shape="rightCap">Right Cap</Button>
+</>
 ```
 
 ## Inverse
 
-The `inverse` property is an optional boolean, that reverses the colors so that the buttons can better appear on a dark background.
+The `isInverse` property is an optional boolean, that reverses the colors so that the buttons can better appear on a dark background.
 The default value is `false`.
 
-While `outline inverse buttons` and `link inverse buttons` still accept the `color` property, the `color` property
-online affects `solid inverse buttons`.
+While `outline isInverse buttons` and `link isInverse buttons` still accept the `color` property, the `color` property
+online affects `solid isInverse buttons`.
 
 The `marketing` button does not have an inverse state, as it already is styled to appear well against a dark background.
 
 ```.jsx
-    <div style={{ background : '#00263E', color: '#ffffff', padding: '10px' }}>
-      <p>
-          <Button inverse>Solid inverse</Button>
-          <Button color="secondary" inverse>Solid inverse</Button>
-          <Button color="success" inverse>Solid inverse</Button>
-          <Button color="danger" inverse>Solid inverse</Button>
-          <Button color="marketing" inverse>Marketing inverse</Button>
-      </p>
-      <p>
-          <Button variant="outline" inverse>Outline inverse</Button>
-          <Button variant="link" inverse>Link inverse</Button>
-      </p>
-      <p>
-          <Button disabled inverse>Disabled inverse</Button>
-          <Button disabled inverse variant="outline">Disabled outline inverse</Button>
-          <Button disabled inverse variant="link">Disabled link inverse</Button>
-      </p>
-      <p>
-        This is a <LinkButton inverse>link button</LinkButton>.
-      </p>
-      <p>
-        This is a <LinkButton disabled inverse>disabled link button</LinkButton>.
-      </p>
-    </div>
+<Card isInverse>
+  <CardBody>
+    <p>
+      <Button isInverse>Solid inverse</Button>
+      <Button color="secondary" isInverse>Solid inverse</Button>
+      <Button color="success" isInverse>Solid inverse</Button>
+      <Button color="danger" isInverse>Solid inverse</Button>
+      <Button color="marketing" isInverse>Marketing inverse</Button>
+    </p>
+    <p>
+      <Button variant="outline" isInverse>Outline inverse</Button>
+      <Button variant="link" isInverse>Link inverse</Button>
+    </p>
+    <p>
+      <Button disabled isInverse>Disabled inverse</Button>
+      <Button disabled isInverse variant="outline">Disabled outline inverse</Button>
+      <Button disabled isInverse variant="link">Disabled link inverse</Button>
+    </p>
+  </CardBody>
+</Card>
 ```
 
 ## Text Transform
@@ -141,68 +129,64 @@ Options for the `textTransform` prop for buttons include `uppercase` and `none`,
 This sets the CSS `text-transform` property.
 
 ```.jsx
-    <>
-        <Button>All caps</Button>
-        <Button textTransform="none">No Text Tranform</Button>
-        <Button textTransform="uppercase">Uppercase tranform</Button>
-    </>
+<>
+  <Button>All caps</Button>
+  <Button textTransform="none">No Text Transform</Button>
+  <Button textTransform="uppercase">Uppercase transform</Button>
+</>
 ```
 
-## Block Buttons
+## Full Width
 
-Passing the `block` property will set the button to display full-width.
+Passing the `isFullWidth` property will set the button to display full-width.
 
 ```.jsx
-    <>
-        <Button block>Block button</Button>
-        <Button block color="secondary">Block button</Button>
-    </>
+<>
+  <Button isFullWidth>Full Width button</Button>
+  <Button isFullWidth color="secondary">Full Width button</Button>
+</>
 ```
 
 ## Disabled
 
 ```.jsx
-    <>
-        <Button disabled>Disabled</Button>
-        <Button disabled variant="outline">Disabled</Button>
-        <Button disabled variant="link">Disabled</Button>
-        <p>This is a <LinkButton disabled>disabled link button</LinkButton>.</p>
-    </>
+<>
+  <Button disabled>Disabled</Button>
+  <Button disabled variant="outline">Disabled</Button>
+  <Button disabled variant="link">Disabled</Button>
+</>
 ```
 
 ## Types
 
+The button types `submit` and `reset` are able to be passed in to change the buttons behavior in forms.
+By default, buttons will have a type of `button`.
+
 ```.jsx
-  class Example extends React.Component {
-      constructor(props) {
-        super(props);
-        this.onFormSubmit = this.onFormSubmit.bind(this);
-        this.onFormReset = this.onFormReset.bind(this);
+() => {
+  const inputRef = React.useRef();
 
-        this.inputRef = React.createRef();
-      }
+  function onFormSubmit(event) {
+    event.preventDefault();
+    alert('Form Submitted')
+  }
 
-      onFormSubmit(event) {
-        event.preventDefault();
-        alert('Form Submitted');
-      }
+  function onFormReset(event) {
+    event.preventDefault();
+    inputRef.current.value = '';
+  }
 
-      onFormReset(event) {
-        event.preventDefault();
-        this.inputRef.current.value = '';
-      }
-
-      render() {
-        return <form onSubmit={this.onFormSubmit} onReset={this.onFormReset}>
-          <Input
-            ref={this.inputRef}
-            labelText='Form Field'
-            value='' />
-          <Button type="submit">Submit</Button>
-          <Button type="reset">Reset</Button>
-        </form>
-      }
-    }
+  return (
+    <form onSubmit={onFormSubmit} onReset={onFormReset}>
+      <Input
+        ref={inputRef}
+        labelText='Form Field'
+        value='' />
+      <Button type="submit">Submit</Button>
+      <Button type="reset">Reset</Button>
+    </form>
+  )
+}
 ```
 
 ## Event Handling
@@ -211,30 +195,29 @@ The `onClick` event will fire when the button is clicked, or when the enter or s
 Events do not fire on disabled buttons.
 
 ```.jsx
-  class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          counter: 0
-        }
-      }
+() => {
+  const [counter, setCounter] = React.useState(0);
 
-      render() {
-        return <div>
-        <p><strong>Counter: </strong> <span id="counter">{this.state.counter}</span></p>
-        <Button
-          onClick={() => {
-            this.setState(state => ({counter: state.counter + 1}))
-          }}>Click me</Button>
+  return (
+    <>
+      <p><strong>Counter: </strong> <span id="counter">{counter}</span></p>
+      <Button
+        onClick={() => {
+          setCounter(count => count + 1)
+        }}>
+        Click me
+      </Button>
 
-        <Button
-          disabled
-          onClick={() => {
-            this.setState(state => ({counter: state.counter + 1}))
-          }}>Click me</Button>
-        </div>
-      }
-    }
+      <Button
+        disabled
+        onClick={() => {
+          setCounter(count => count + 1)
+        }}>
+        Click me
+      </Button>
+    </>
+  )
+}
 ```
 
 ## Forward Ref
@@ -242,24 +225,24 @@ Events do not fire on disabled buttons.
 Using React's `forwardRef` feature you can gain access to the reference of the internal button.
 
 ```.jsx
-  class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.buttonRef = React.createRef();
-      }
+() => {
+  const buttonRef = React.useRef();
 
-      render() {
-        return <div>
-        <Button
-          ref={this.buttonRef}>Button to be focused</Button>
+  return (
+    <>
+      <Button ref={buttonRef}>
+        Button to be focused
+      </Button>
 
-        <Button
-          onClick={() => {
-            this.buttonRef.current.focus();
-          }}>Click to focus other button</Button>
-        </div>
-      }
-    }
+      <Button
+        onClick={() => {
+          buttonRef.current.focus();
+        }}>
+        Click to focus other button
+      </Button>
+    </>
+  )
+}
 ```
 
 ## Testing
@@ -272,127 +255,12 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
 
 ## Button Props
 
-<SimplePropsTable
-  props={{
-    block: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the button will take up the full width of its container',
-      defaultValue: 'false',
-    },
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    color: {
-      type: {
-        name: 'enum',
-        options: [
-          'ButtonColor.primary',
-          'ButtonColor.secondary',
-          'ButtonColor.success',
-          'ButtonColor.danger',
-          'ButtonColor.marketing',
-        ],
-      },
-      required: false,
-      description: 'The color of the button, indicating its function in the UI',
-      defaultValue: 'primary',
-    },
-    disabled: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, element is disabled',
-      defaultValue: 'false',
-    },
-    inverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    onClick: {
-      type: {
-        name: 'function',
-      },
-      required: true,
-      description: 'Action that fires when the button is clicked',
-    },
-    shape: {
-      type: {
-        name: 'enum',
-        options: [
-          'ButtonShape.fill',
-          'ButtonShape.leftCap',
-          'ButtonShape.rightCap',
-        ],
-      },
-      required: false,
-      description: 'Defines the border radius',
-      defaultValue: 'fill',
-    },
-    size: {
-      type: {
-        name: 'enum',
-        options: ['ButtonSize.large', 'ButtonSize.medium', 'ButtonSize.small'],
-      },
-      required: false,
-      description: 'The relative size of the button',
-      defaultValue: 'medium',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'ID used for testing purposes',
-      defaultValue: '',
-    },
-    textTransform: {
-      type: {
-        name: 'enum',
-        options: ['ButtonTextTransform.uppercase', 'ButtonTextTransform.none'],
-      },
-      required: false,
-      description: 'Determines whether the button appears in all-caps',
-      defaultValue: 'uppercase',
-    },
-    type: {
-      type: {
-        name: 'enum',
-        options: ['ButtonType.button', 'ButtonType.submit', 'ButtonType.reset'],
-      },
-      required: false,
-      description: 'The type attribute of the button',
-      defaultValue: 'button',
-    },
-    variant: {
-      type: {
-        name: 'enum',
-        options: [
-          'ButtonVariant.solid',
-          'ButtonVariant.outline',
-          'ButtonVariant.link',
-        ],
-      },
-      required: false,
-      description: 'The variant of the button',
-      defaultValue: 'solid',
-    },
-  }}
-/>
+**This component uses `forwardRef`. The ref is applied to the `button` element.**
+
+All of the [standard button attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) can be provided as props and will be applied to the `button` element that gets rendered.
+
+<ButtonProps />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ Button, LinkButton, Input }} />
-)
+  <ScopeableLayout {...props} components={{ Button, Input, Card, CardBody }} />
+);

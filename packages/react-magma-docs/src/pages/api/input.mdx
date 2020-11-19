@@ -1,72 +1,76 @@
 ---
-title: 'Inputs'
+pageTitle: Input API
+title: Input
 ---
 
-import { ScopeableLayout } from '../../components/layout'
+import { ScopeableLayout } from '../../components/layout';
+import {
+  CalendarIcon,
+  EnvelopeOIcon,
+  QuestionCircleIcon,
+  Search2Icon,
+} from 'react-magma-icons';
 import {
   Input,
   Button,
-  CalendarIcon,
-  EnvelopeOIcon,
-  Search2Icon,
-} from 'react-magma-dom'
-import DocsHeading from '../../components/docs-heading'
-import { SimplePropsTable } from '../../components/props-table'
+  IconButton,
+  Spinner,
+  Tooltip,
+  Card,
+  CardBody,
+} from 'react-magma-dom';
+import DocsHeading from '../../components/docs-heading';
+import { Link } from 'gatsby';
+import { SimplePropsTable } from '../../components/props-table';
 
 <DocsHeading to="/design/inputs/" type="design">
-  Inputs
+  Input
 </DocsHeading>
 
 Input fields are used in a number of ways for both collecting and displaying data from the user.
+
+See also: <Link to='/api/password-input'>Password Input</Link>, <Link to='/api/search'>Search</Link> and <Link to='/api/textarea'>Textarea</Link>.
 
 ## Basic Usage
 
 The label/input association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
 
-```.jsx
-    <>
-      <Input
-          labelText='Label' />
-      <Input
-          id="myCustomId"
-          labelText='Label' />
-    </>
-```
-
-## Password
-
-When the `type` prop is set to `password`, the input field that is rendered also have the `type` set to password, meaning that the text is obscured so that it cannot be read, usually by replacing each character with a symbol such as the asterisk ("\*") or a dot ("•").
-
-By default, users can show the password, by pressing a toggle button. To prevent users from showing the password, the optional boolean `hidePasswordMaskButton` can be used.
-
-The following option props can be used to override various text strings that appear on the UI or to users using assistive technology: `hiddenPasswordAnnounceText`, `hidePasswordButtonAriaLabel`, `hidePasswordButtonText`, `shownPasswordAnnounceText`, `showPasswordButtonAriaLabel`, `showPasswordButtonText`.
+Label text can be a string or a react node.
 
 ```.jsx
-  <>
-    <Input
-      labelText='Password'
-      type='password' />
-    <Input
-      hidePasswordMaskButton
-      labelText='Password With No Unmask Button'
-      type='password' />
-  </>
+<>
+  <Input
+    labelText='Label' />
+  <Input
+    id="myCustomId"
+    labelText={<span>Label <i>with node</i></span>} />
+</>
 ```
 
 ## Number
 
 ```.jsx
-    <Input
-        labelText='Number'
-        type='number' />
+<Input
+  labelText='Number'
+  type='number' />
 ```
 
 ## Disabled
 
 ```.jsx
-    <Input
-        labelText='Disabled'
-        disabled />
+<Input
+  labelText='Disabled'
+  disabled />
+```
+
+## Default Value
+
+The `defaultValue` of an input can be set using the `defaultValue` prop.
+
+```.jsx
+<Input
+  labelText='Default value'
+  defaultValue='default' />
 ```
 
 ## Value
@@ -74,9 +78,9 @@ The following option props can be used to override various text strings that app
 The `value` of an input can be set using the `value` prop.
 
 ```.jsx
-    <Input
-        labelText='Default value'
-        value='abc123' />
+<Input
+  labelText='Value'
+  value='abc123' />
 ```
 
 ## Placeholder
@@ -86,42 +90,69 @@ Placeholder text should be used to provide supplemental information about the in
 relied upon to take the place of the label text.
 
 ```.jsx
+<Input
+  labelText='Email Address'
+  placeholder='yourname@example.com' />
+```
+
+## Helper Message
+
+The `helperMessage` appears underneath the input field. It will not appear if an error message is present. Can be a node or a string.
+
+```.jsx
+() => {
+  const helperMessage = <>Helper text goes here. <a href="#">Learn more</a></>;
+
+  return (
     <Input
-        labelText='Email Address'
-        value='yourname@example.com' />
+      helperMessage={helperMessage}
+      labelText='Helper Message' />
+  )
+}
 ```
 
 ## Error Message
 
 If an input has an `errorMessage`, the input will be styled to highlight it's error state and the error message will appear below the input field.
-If an error message is present, it will replace the helper text.
+If an error message is present, it will replace the helper text. Can be a node or a string.
+
+The `required` prop can be used to indicate when a field is required. It is also important to indicate to the user whenever a field is required.
+
+While React Magma provides the error styling, it is up to the consumer app to handle the validation.
 
 ```.jsx
-    <Input
-        errorMessage='Please correct this error'
-        helperMessage='Helper text'
-        labelText='Error Message' />
-```
+() => {
+  const [hasError, setHasError] = React.useState(false);
+  const [nameValue, setNameValue] = React.useState('');
 
-## Helper Message
+  function submit() {
+    if (nameValue === '') {
+      setHasError(true);
+    }
+    else {
+      setHasError(false);
+    }
+  }
 
-The `helperMessage` appears underneath the input field. It will not appear if an error message is present.
+  function reset() {
+    setHasError(false);
+    setNameValue('');
+  }
 
-```.jsx
-    <Input
-        helperMessage='Helper text goes here'
-        labelText='Helper Message' />
-```
-
-## Help Link
-
-Some inputs require a bit of explanation to the user. Passing in a function to the `onHelpLinkClick` prop, will
-display a help link to the right of the input field. The text can be customized using the optional `helpLinkText` prop.
-
-```.jsx
-   <Input
-      labelText='Help Link'
-      onHelpLinkClick={()=> {alert('Help link clicked!')}} />
+  return (
+    <>
+      <Input
+        errorMessage={hasError ? 'Please provide name': null}
+        helperMessage='* Required'
+        labelText='Name *'
+        onChange={(event) => setNameValue(event.target.value)}
+        required
+        value={nameValue} />
+      <Button onClick={submit}>Submit</Button>
+      <Button onClick={reset} color="secondary">Reset</Button>
+    </>
+  )
+}
 ```
 
 ## Input With Icon
@@ -133,233 +164,202 @@ Functionality can be added to the icon by using the `onIconClick` and `onIconKey
 The `iconPosition` position prop is optional and takes the values `left` and `right`, with `left` being the default for non-clickable icons.
 
 ```.jsx
-    <>
-      <Input
-        labelText='Input with Icon on Left'
-        icon={<EnvelopeOIcon />}
-        type="email" />
+<>
+  <Input
+    labelText='Input with Icon on Left'
+    icon={<EnvelopeOIcon />}
+    type="email" />
 
-      <Input
-        iconPosition='right'
-        labelText='Input with Icon on Right'
-        icon={<Search2Icon />} />
+  <Input
+    iconPosition='right'
+    labelText='Input with Icon on Right'
+    icon={<Spinner />}
+    iconAriaLabel="Loading..." />
 
-      <Input
-        labelText='Input with Clickable Icon on Right'
-        iconAriaLabel="Calendar"
-        onIconClick={()=>{alert('Icon clicked')}}
-        icon={<CalendarIcon />} />
-    </>
+  <Input
+    labelText='Input with Clickable Icon on Right'
+    iconAriaLabel="Calendar"
+    onIconClick={()=>{alert('Icon clicked')}}
+    icon={<CalendarIcon />} />
+</>
 ```
 
 ## Input Size
 
-The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default. Input size does not affect multiline textareas.
+The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default.
 
 ```.jsx
-    <>
-      <Input
-        iconPosition='right'
-        labelText='Medium Input'
-        icon={<Search2Icon />} />
-      <Input
-        iconPosition='right'
-        inputSize='large'
-        labelText='Large Input'
-        icon={<Search2Icon />} />
-      <Input
-          errorMessage='Error'
-          labelText='Medium Input With Error' />
-      <Input
-          errorMessage='Error'
-          inputSize='large'
-          labelText='Large Input With Error' />
-      <Input
-          onHelpLinkClick={()=> {alert('Help link clicked!')}}
-          labelText='Medium Input With Help Link' />
-      <Input
-          onHelpLinkClick={()=> {alert('Help link clicked!')}}
-          inputSize='large'
-          labelText='Large Input With Help Link' />
-    </>
-```
+<>
+  <Input
+    labelText='Input large with Icon on Left'
+    inputSize='large'
+    icon={<EnvelopeOIcon />}
+    type="email" />
 
-## IsLoading
+  <Input
+    labelText='Input large with Clickable Icon on Right'
+    iconAriaLabel="Calendar"
+    inputSize='large'
+    onIconClick={()=>{alert('Icon clicked')}}
+    icon={<CalendarIcon />} />
 
-The `isLoading` boolean prop will determine if a loading animation is shown. The loading animation will replace any icon displayed on the right.
-
-```.jsx
-    <>
-      <Input labelText='Loading' isLoading />
-      <Input labelText='Loading Large' inputSize='large' isLoading />
-    </>
+  <Input
+    errorMessage='Error'
+    inputSize='large'
+    labelText='Large Input With Error' />
+</>
 ```
 
 ## Inverse
 
-Inverse is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
+`isInverse` is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
 
 ```.jsx
-    <div style={{ background : '#00263E', padding: '20px' }}>
-      <Input
-          id='inputInverse'
-          inverse
-          labelText='Inverse Input'
-          placeholder='Type in here' />
+<Card isInverse>
+  <CardBody>
+    <Input
+      id='inputInverse'
+      isInverse
+      labelText='Inverse Input'
+      placeholder='Type in here' />
 
-      <Input
-          helperMessage='Helper text'
-          inverse
-          labelText='Inverse Input with Helper Text' />
+    <Input
+      helperMessage='Helper text'
+      isInverse
+      labelText='Inverse Input with Helper Text' />
 
-      <Input
-          errorMessage='Please correct your error'
-          inverse
-          labelText='Inverse Input with Error Message' />
-      <Input
-          inverse
-          labelText='Help Link'
-          onHelpLinkClick={()=> {alert('Help link clicked!')}} />
-    </div>
+    <Input
+      errorMessage='Please fill out this field'
+      isInverse
+      labelText='Inverse Input with Error Message'
+      required />
+  </CardBody>
+</Card>
 ```
 
 ## Input With Hidden Label
 
-The `labelVisuallyHidden` prop can be used to visually hide the text label, while still making the text available to screen readers.
+The `isLabelVisuallyHidden` prop can be used to visually hide the text label, while still making the text available to screen readers.
+
+This option should only be used in rare instances, such as a search field. Providing a visual label is helpful for individuals with cognitive disabilities and users who have fine motor control limitations. When there isn't a visible label, the placeholder text should match the invisible label word for word. This is so speech input users can operate the control with voice commands.
 
 ```.jsx
+<Input
+  icon={<Search2Icon />}
+  isLabelVisuallyHidden
+  labelText='Search'
+  placeholder='Search' />
+```
+
+## Additional Children (e.g. Help Link)
+
+Some inputs require more content next to the form field, such as a help link to provide a bit of explanation to the user.
+If you pass children to the input field, it will render immediately after the input. The container is displayed flex, so the content
+will appear to the right of the field.
+
+```.jsx
+() => {
+  const helpLinkLabel = 'Learn more';
+  const onHelpLinkClick= ()=> {alert('Help link clicked!')};
+
+  return (
+    <Input labelText='Help Link'>
+      <Tooltip
+        content={helpLinkLabel}>
+        <IconButton
+          aria-label={helpLinkLabel}
+          icon={<QuestionCircleIcon />}
+          onClick={onHelpLinkClick}
+          style={{ margin: '0 0 0 7px' }}
+          type='button'
+          variant='link'
+        />
+      </Tooltip>
+    </Input>
+  )
+};
+```
+
+## Change Events
+
+```.jsx
+() => {
+  const [message, setMessage] = React.useState('');
+
+  return (<div>
+    <p><strong>Changed Value: </strong> <span id="changedValue">{message}</span></p>
     <Input
-      iconPosition='right'
-      labelVisuallyHidden
-      labelText='Search'
-      placeholder='Search'
-      icon={<Search2Icon />} />
+      labelText='Test Value'
+      value=''
+      onChange={(event) => setMessage(event.target.value)} />
+  </div>)
+}
 ```
 
-## Multi-line (textarea)
-
-The optional `multiline` boolean prop will cause the component to render a textarea, rather than a text input.
+## Focus Events
 
 ```.jsx
-    <Input
-        id='textarea'
-        labelText='Multi-line Textarea'
-        multiline
-        placeholder='Type in here' />
-```
+() => {
+  const [focused, setFocused] = React.useState(false);
+  const [message, setMessage] = React.useState('');
 
-## Change events
-
-```.jsx
-  class ChangedInput extends React.Component {
-    constructor(props) {
-      super(props)
-      this.state = {
-        message: ''
-      };
-
-      this.changeValueMessage = this.changeValueMessage.bind(this);
-    }
-
-    changeValueMessage(event) {
-      this.setState({message: event.target.value})
-    }
-
-    render() {
-      return <div>
-        <p><strong>Changed Value: </strong> <span id="changedValue">{this.state.message}</span></p>
-        <Input
-          labelText='Test Value'
-          value=''
-          onChange={this.changeValueMessage} />
-      </div>
-    }
+  function changeFocusedMessage() {
+    setFocused(prevFocused => {
+      setMessage(!prevFocused ? 'Yes' : 'No');
+      return !prevFocused
+    });
   }
+
+  return (
+    <div>
+      <p><strong>Focused: </strong> <span id="focused">{message}</span></p>
+      <Input
+        id='inputFocused'
+        labelText='Focused?'
+        onFocus={changeFocusedMessage}
+        onBlur={changeFocusedMessage} />
+    </div>
+  )
+}
 ```
 
-## Focus events
-
-```.jsx
-  class FocusedInput extends React.Component {
-    constructor(props) {
-      super(props)
-      this.state = {
-        focused: false,
-        message: 'No'
-      };
-
-      this.changeFocusedMessage = this.changeFocusedMessage.bind(this);
-    }
-
-    changeFocusedMessage() {
-      const focused = !this.state.focused;
-
-      this.setState(state => ({
-        focused,
-        message: focused ? 'Yes' : 'No',
-      }));
-    }
-
-    render() {
-      return <div>
-        <p><strong>Focused: </strong> <span id="focused">{this.state.message}</span></p>
-        <Input
-          id='inputFocused'
-          labelText='Focused?'
-          onFocus={this.changeFocusedMessage}
-          onBlur={this.changeFocusedMessage} />
-      </div>
-    }
-  }
-```
-
-## Forward ref
+## Forward Ref
 
 Using React's `forwardRef` feature you can gain access to the reference of the internal input.
 
 ```.jsx
-  class Example extends React.Component {
-      constructor(props) {
-        super(props)
-        this.inputRef = React.createRef();
-      }
+() => {
+  const inputRef = React.useRef();
 
-      render() {
-        return <div>
-        <Input
-          ref={this.inputRef}
-          labelText='Input to be focused' />
+  return (
+    <div>
+      <Input
+        ref={inputRef}
+        labelText='Input to be focused' />
 
-        <Button
-          onClick={() => {
-            this.inputRef.current.focus();
-          }}>Click to focus input
-        </Button>
-        </div>
-      }
-    }
+      <Button
+        onClick={() => {
+          inputRef.current.focus();
+        }}>Click to focus input
+      </Button>
+    </div>
+  )
+}
 ```
 
-## Custom styles
+## Custom Styles
 
 Custom styles can be passed into the Input component. The `containerStyle` property will apply to the container.
-Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
+Additional `labelStyle`, `inputStyle` and `messageStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
 
 ```.jsx
-  <div>
-    <Input
-        containerStyle={{ 'border': '1px dotted purple', 'padding': '5px'}}
-        inputStyle={{ 'borderRadius': '0'}}
-        labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
-        labelText='Custom Styles for input' />
-
-    <Input
-        containerStyle={{ 'border': '1px dotted purple', 'padding': '5px'}}
-        inputStyle={{ 'width': '200px', 'height': '50px'}}
-        labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
-        labelText='Custom Styles for textarea (multiline)'
-        multiline />
-  </div>
+<Input
+  containerStyle={{ 'border': '1px dotted purple', 'padding': '5px'}}
+  errorMessage="Styled error message"
+  inputStyle={{ 'borderRadius': '0'}}
+  labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
+  labelText='Custom Styles for input'
+  messageStyle={{ 'color' : 'green'}} />
 ```
 
 ## Testing
@@ -381,16 +381,28 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 </div>
 ```
 
-## Input props
+## Input Props
+
+**This component uses `forwardRef`. The ref is applied to the `input` element.**
+
+All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the `input` element that gets rendered.
 
 <SimplePropsTable
-  props={{
+  propertyValues={{
     containerStyle: {
       type: {
         name: 'React.CSSProperties',
       },
       required: false,
       description: 'Style properties for the component container element',
+    },
+    defaultValue: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Default value for the form field',
+      defaultValue: '',
     },
     disabled: {
       type: {
@@ -402,61 +414,20 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
     },
     errorMessage: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: false,
       description:
-        'Text of the error message.  If a value is provided, the input will be styled as an error state and the error message will display.',
+        'Content of the error message.  If a value is provided, the input will be styled as an error state and the error message will display.',
       defaultValue: '',
     },
     helperMessage: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: false,
-      description: 'Text of the helper message.',
+      description: 'Content of the helper message.',
       defaultValue: '',
-    },
-    helpLinkText: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Aria-label for the help icon',
-      defaultValue: "What's this?",
-    },
-    hiddenPasswordAnnounceText: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Text read by screen reader when the password is hidden',
-      defaultValue: 'Password is now hidden',
-    },
-    hidePasswordButtonAriaLabel: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Aria-label for the "Hide Password" button',
-      defaultValue: 'Hide password',
-    },
-    hidePasswordButtonText: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Text displayed on screen for the "Hide Password" button',
-      defaultValue: 'Hide',
-    },
-    hidePasswordMaskButton: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, label text will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
     },
     icon: {
       type: {
@@ -471,22 +442,6 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       },
       required: false,
       description: 'Text for the aria-label attribute for an icon, if provided',
-      defaultValue: '',
-    },
-    onIconClick: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description: 'Action that will fire when icon is clicked.',
-      defaultValue: '',
-    },
-    onIconKeyDown: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description: 'Action that will fire when icon is receives keypress.',
       defaultValue: '',
     },
     iconPosition: {
@@ -514,13 +469,22 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       required: false,
       description: 'Style properties for the input element',
     },
-    inverse: {
+    isInverse: {
       type: {
         name: 'boolean',
       },
       required: false,
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
+      defaultValue: 'false',
+    },
+    isLabelVisuallyHidden: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'If true, label text will be hidden visually, but will still be read by assistive technology',
       defaultValue: 'false',
     },
     labelStyle: {
@@ -532,19 +496,41 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
     },
     labelText: {
       type: {
-        name: 'string',
+        name: 'ReactNode',
       },
       required: true,
-      description: 'Text for label',
+      description: 'Content for label; can be a node or a string',
     },
-    labelVisuallyHidden: {
+    messageStyle: {
       type: {
-        name: 'boolean',
+        name: 'React.CSSProperties',
       },
       required: false,
-      description:
-        'If true, label text will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
+      description: 'Style properties for the helper or error message',
+    },
+    onIconClick: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Action that will fire when icon is clicked.',
+      defaultValue: '',
+    },
+    onIconKeyDown: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Action that will fire when icon receives keypress.',
+      defaultValue: '',
+    },
+    placeholder: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Text for input placeholder',
+      defaultValue: '',
     },
     required: {
       type: {
@@ -554,38 +540,13 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
       description: 'If true, the form field is required',
       defaultValue: 'false',
     },
-    shownPasswordAnnounceText: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Text read by screen reader when the password is hidden',
-      defaultValue: 'Password is now hidden',
-    },
-    showPasswordButtonAriaLabel: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Aria-label for the "Show Password" button',
-      defaultValue:
-        'Show password. Note: this will visually expose your password on the screen',
-    },
-    showPasswordButtonText: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Text displayed on screen for the "Show Password" button',
-      defaultValue: 'Show',
-    },
     testId: {
       type: {
         name: 'string',
       },
       required: false,
-      description: 'ID used for testing purposes',
-      defaultValue: '',
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     type: {
       type: {
@@ -607,7 +568,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
         name: 'string',
       },
       required: false,
-      description: 'Default value for the form field',
+      description: 'Value for the form field',
       defaultValue: '',
     },
   }}
@@ -616,6 +577,18 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 export default props => (
   <ScopeableLayout
     {...props}
-    components={{ Input, Button, CalendarIcon, EnvelopeOIcon, Search2Icon }}
+    components={{
+      Input,
+      Button,
+      CalendarIcon,
+      EnvelopeOIcon,
+      IconButton,
+      QuestionCircleIcon,
+      Search2Icon,
+      Spinner,
+      Tooltip,
+      Card,
+      CardBody,
+    }}
   />
-)
+);

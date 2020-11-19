@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent } from '@testing-library/react';
 import { HelperInformation } from './HelperInformation';
 
 describe('Calendar Month', () => {
@@ -14,23 +14,23 @@ describe('Calendar Month', () => {
   it('helper information should be visible when open', async () => {
     const { getByText, rerender } = render(<HelperInformation />);
 
-    rerender(<HelperInformation open={true} />);
+    rerender(<HelperInformation isOpen={true} />);
 
     expect(getByText(/keyboard shortcuts/i)).toBeInTheDocument();
   });
 
   it('helper information should not be visible when not open', () => {
-    const { queryByText } = render(<HelperInformation open={false} />);
+    const { queryByText } = render(<HelperInformation isOpen={false} />);
 
     expect(queryByText(/keyboard shortcuts/i)).not.toBeInTheDocument();
   });
 
-  it('should call the onClose method when the helper information is closed', () => {
+  it('should call the onClose method when the helper information is closed', async () => {
     const onCloseSpy = jest.fn();
     const { getByLabelText, getByText, rerender } = render(
       <>
         <button>Click</button>
-        <HelperInformation open={false} onClose={onCloseSpy} />
+        <HelperInformation isOpen={false} onClose={onCloseSpy} />
       </>
     );
 
@@ -39,13 +39,15 @@ describe('Calendar Month', () => {
     rerender(
       <>
         <button>Click</button>
-        <HelperInformation open={true} onClose={onCloseSpy} />
+        <HelperInformation isOpen={true} onClose={onCloseSpy} />
       </>
     );
 
     fireEvent.click(getByLabelText(/close/i));
 
-    jest.runAllTimers();
+    await act(async () => {
+      jest.runAllTimers();
+    });
 
     expect(onCloseSpy).toHaveBeenCalled();
   });

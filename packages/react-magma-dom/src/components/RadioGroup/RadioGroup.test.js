@@ -38,7 +38,7 @@ describe('Radio Group', () => {
   it('should render a radio group with hidden label text with the correct styles', () => {
     const labelText = 'Color';
     const { getByText } = render(
-      <RadioGroup textVisuallyHidden labelText={labelText}>
+      <RadioGroup isTextVisuallyHidden labelText={labelText}>
         <Radio id="colorRadio" labelText="Default Color" value="default" />
       </RadioGroup>
     );
@@ -53,7 +53,7 @@ describe('Radio Group', () => {
         <h3 id="myID">Heading</h3>
         <Radio labelText="Default Color" value="default" />
         <Radio
-          color={magma.colors.success01}
+          color={magma.colors.success}
           labelText="Success Color"
           value="success"
         />
@@ -65,7 +65,7 @@ describe('Radio Group', () => {
     expect(group).toHaveAttribute('aria-labelledby', 'myID');
   });
 
-  it('should not render anything when invalid children are present', () => {
+  it('should not render anything except the container and the message container when invalid children are present', () => {
     const { container } = render(
       <RadioGroup>
         <Radio id="colorRadio" labelText="Default Color" value="default" />
@@ -81,7 +81,7 @@ describe('Radio Group', () => {
       <RadioGroup value="default">
         <Radio id="colorRadio" labelText="Default Color" value="default" />
         <Radio
-          color={magma.colors.success01}
+          color={magma.colors.success}
           id="successColorRadio"
           labelText="Success Color"
           value="success"
@@ -91,6 +91,38 @@ describe('Radio Group', () => {
 
     expect(getByLabelText('Default Color')).toHaveAttribute('checked');
     expect(getByLabelText('Success Color')).not.toHaveAttribute('checked');
+  });
+
+  it('Should render an error message', () => {
+    const errorMessage = 'test error';
+    const { getByText } = render(
+      <RadioGroup value="default" errorMessage={errorMessage} id="testId">
+        <Radio labelText="Default Color" value="default" />
+        <Radio labelText="Success Color" value="success" />
+      </RadioGroup>
+    );
+
+    expect(getByText(errorMessage)).toBeInTheDocument();
+    expect(getByText(errorMessage).parentElement).toHaveAttribute(
+      'id',
+      'testId__desc'
+    );
+  });
+
+  it('Should render a helper message', () => {
+    const helperMessage = 'test helper message';
+    const { getByText } = render(
+      <RadioGroup value="default" helperMessage={helperMessage} id="testId">
+        <Radio labelText="Default Color" value="default" />
+        <Radio labelText="Success Color" value="success" />
+      </RadioGroup>
+    );
+
+    expect(getByText(helperMessage)).toBeInTheDocument();
+    expect(getByText(helperMessage).parentElement).toHaveAttribute(
+      'id',
+      'testId__desc'
+    );
   });
 
   it('Changes the selected radio when clicked', () => {
@@ -105,7 +137,7 @@ describe('Radio Group', () => {
       >
         <Radio id="colorRadio" labelText="Default Color" value="default" />
         <Radio
-          color={magma.colors.success01}
+          color={magma.colors.success}
           id="successColorRadio"
           labelText="Success Color"
           value="success"
@@ -125,10 +157,10 @@ describe('Radio Group', () => {
 
   it('Does not violate accessibility standards', () => {
     const { container } = render(
-      <RadioGroup value="default">
+      <RadioGroup labelText="Choose a Color" value="default">
         <Radio id="colorRadio" labelText="Default Color" value="default" />
         <Radio
-          color={magma.colors.success01}
+          color={magma.colors.success}
           id="successColorRadio"
           labelText="Success Color"
           value="success"

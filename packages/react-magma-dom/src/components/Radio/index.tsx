@@ -2,33 +2,37 @@ import * as React from 'react';
 import {
   DisplayInputStyles,
   DisplayInputActiveStyles,
-  DisplayInputFocusStyles
+  buildDisplayInputActiveBackground,
+  buildDisplayInputBorderColor,
+  buildDisplayInputFocusStyles,
 } from '../SelectionControls/InputStyles';
-import { HiddenStyles } from '../UtilityStyles';
+import { HiddenStyles } from '../../utils/UtilityStyles';
 import { RadioContext } from '../RadioGroup';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
+// Using the base `styled` from `emotion` until import mapping is fixed: https://github.com/emotion-js/emotion/pull/1220
+// import styled from '../../theme/styled';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { generateId } from '../utils';
+import { useGenerateId } from '../../utils';
+
+export enum RadioTextPosition {
+  left = 'left',
+  right = 'right', // default
+}
 
 export interface RadioProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   css?: any; // Adding css prop to fix emotion error
   color?: string;
   containerStyle?: React.CSSProperties;
-  innerRef?: React.Ref<HTMLInputElement>;
   inputStyle?: React.CSSProperties;
-  inverse?: boolean;
+  isInverse?: boolean;
+  isTextVisuallyHidden?: boolean;
   labelStyle?: React.CSSProperties;
-  labelText: string;
-  ref?: any;
+  labelText: React.ReactNode;
   testId?: string;
-  textVisuallyHidden?: boolean;
-}
-
-interface RadioState {
-  id?: string;
+  textPosition?: RadioTextPosition;
 }
 
 const HiddenLabelText = styled.span`
@@ -40,13 +44,17 @@ const HiddenInput = styled.input<{ indeterminate?: boolean }>`
 `;
 
 const StyledFakeInput = styled.span<{
-  inverse: boolean;
+  checked?: boolean;
+  hasError?: boolean;
+  isInverse: boolean;
   disabled: boolean;
   color: string;
+  textPosition?: RadioTextPosition;
+  theme?: any;
 }>`
   ${DisplayInputStyles};
   background: ${props => {
-    if (props.inverse) {
+    if (props.isInverse) {
       return 'none';
     }
     if (props.disabled) {
@@ -54,60 +62,34 @@ const StyledFakeInput = styled.span<{
     }
     return props.theme.colors.neutral08;
   }};
-  border-color: ${props => {
-    if (props.inverse) {
-      if (props.disabled) {
-        return props.theme.colors.disabledInverseText;
-      }
-      return props.theme.colors.neutral08;
-    }
-    if (props.disabled) {
-      return props.theme.colors.neutral05;
-    }
-    return props.theme.colors.neutral03;
-  }};
+  border-color: ${props => buildDisplayInputBorderColor(props)};
   border-radius: 100%;
+  box-shadow: ${props =>
+    props.isInverse && props.hasError
+      ? `0 0 0 1px ${props.theme.colors.neutral08}`
+      : '0 0 0'};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+  margin: ${props =>
+    props.textPosition === 'left' ? '2px 0 0 10px' : '2px 10px 0 0'};
 
   ${HiddenInput}:checked:not(:disabled) + label & {
     background: ${props => {
-      if (props.inverse) {
+      if (props.isInverse) {
         return props.theme.colors.neutral08;
       }
-    }};
-    border-color: ${props => {
-      if (props.inverse) {
-        return props.theme.colors.neutral08;
-      }
-      if (props.disabled) {
-        return props.theme.colors.disabledInverseText;
-      }
-      return props.color ? props.color : props.theme.colors.primary;
     }};
   }
 
   ${HiddenInput}:focus + label & {
     // focus state
     &:before {
-      ${DisplayInputFocusStyles};
-      outline: 2px dotted
-        ${props =>
-          props.inverse
-            ? props.theme.colors.neutral08
-            : props.theme.colors.pop02};
-      top: -7px;
-      left: -7px;
+      ${props => buildDisplayInputFocusStyles(props)};
     }
   }
 
   &:after {
     // active state
-    background: ${props =>
-      props.inverse
-        ? props.theme.colors.neutral08
-        : props.color
-        ? props.color
-        : props.theme.colors.primary};
+    background: ${props => buildDisplayInputActiveBackground(props)};
   }
 
   ${HiddenInput}:not(:disabled):active + label & {
@@ -117,7 +99,7 @@ const StyledFakeInput = styled.span<{
   }
 `;
 
-const SelectedIcon = styled.span<{ color: string }>`
+const SelectedIcon = styled.span<{ color: string; theme?: any }>`
   background: ${props =>
     props.color ? props.color : props.theme.colors.primary};
   border-radius: 100%;
@@ -130,86 +112,74 @@ const SelectedIcon = styled.span<{ color: string }>`
   }
 `;
 
-export class RadioComponent extends React.Component<RadioProps, RadioState> {
-  state: RadioState = {
-    id: generateId(this.props.id)
-  };
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.id !== this.props.id) {
-      this.setState({ id: generateId(this.props.id) });
-    }
-  }
-
-  render() {
-    const { id } = this.state;
+export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
+  (props, ref) => {
+    const id = useGenerateId(props.id);
+    const context = React.useContext(RadioContext);
     const {
       color,
       containerStyle,
       disabled,
-      innerRef,
       inputStyle,
-      inverse,
+      isInverse,
+      isTextVisuallyHidden,
       labelStyle,
       labelText,
       required,
-      textVisuallyHidden,
       testId,
+      textPosition,
       value,
       ...other
-    } = this.props;
+    } = props;
+
+    const theme = React.useContext(ThemeContext);
+
     return (
-      <RadioContext.Consumer>
-        {context =>
-          context && (
-            <ThemeContext.Consumer>
-              {theme => (
-                <StyledContainer style={containerStyle}>
-                  <HiddenInput
-                    {...other}
-                    id={id}
-                    ref={innerRef}
-                    checked={context.selectedValue === value}
-                    data-testid={testId}
-                    disabled={disabled}
-                    name={context.name}
-                    required={required}
-                    type="radio"
-                    value={value}
-                    onBlur={context.onBlur}
-                    onChange={context.onChange}
-                    onFocus={context.onFocus}
-                  />
-                  <StyledLabel
-                    htmlFor={id}
-                    inverse={inverse}
-                    style={labelStyle}
-                  >
-                    <StyledFakeInput
-                      color={color ? color : ''}
-                      disabled={disabled}
-                      inverse={inverse}
-                      style={inputStyle}
-                      theme={theme}
-                    >
-                      <SelectedIcon color={color ? color : ''} theme={theme} />
-                    </StyledFakeInput>
-                    {textVisuallyHidden ? (
-                      <HiddenLabelText>{labelText}</HiddenLabelText>
-                    ) : (
-                      labelText
-                    )}
-                  </StyledLabel>
-                </StyledContainer>
-              )}
-            </ThemeContext.Consumer>
-          )
-        }
-      </RadioContext.Consumer>
+      <StyledContainer style={containerStyle}>
+        <HiddenInput
+          {...other}
+          aria-labelledby={context.descriptionId}
+          id={id}
+          ref={ref}
+          checked={context.selectedValue === value}
+          data-testid={testId}
+          disabled={disabled}
+          name={context.name}
+          required={context.required || required}
+          type="radio"
+          value={value}
+          onBlur={context.onBlur}
+          onChange={context.onChange}
+          onFocus={context.onFocus}
+        />
+        <StyledLabel
+          htmlFor={id}
+          isInverse={context.isInverse || isInverse}
+          style={labelStyle}
+        >
+          {!isTextVisuallyHidden &&
+            textPosition === RadioTextPosition.left &&
+            labelText}
+
+          <StyledFakeInput
+            checked={context.selectedValue === value}
+            color={color ? color : ''}
+            disabled={disabled}
+            isInverse={context.isInverse || isInverse}
+            hasError={context.hasError}
+            style={inputStyle}
+            textPosition={textPosition}
+            theme={theme}
+          >
+            <SelectedIcon color={color ? color : ''} theme={theme} />
+          </StyledFakeInput>
+          {isTextVisuallyHidden ? (
+            <HiddenLabelText>{labelText}</HiddenLabelText>
+          ) : (
+            textPosition !== RadioTextPosition.left && labelText && labelText
+          )}
+        </StyledLabel>
+      </StyledContainer>
     );
   }
-}
-
-export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
-  (props, ref) => <RadioComponent innerRef={ref} {...props} />
 );
