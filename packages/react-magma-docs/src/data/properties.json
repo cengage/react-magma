@@ -1274,7 +1274,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7557,
+        "id": 7559,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1431,7 +1431,7 @@
     },
     "typeParameter": [
       {
-        "id": 7642,
+        "id": 7644,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1440,7 +1440,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7486,
+          "id": 7488,
           "name": "SelectOptions"
         }
       }
@@ -1700,7 +1700,7 @@
     },
     "typeParameter": [
       {
-        "id": 7710,
+        "id": 7712,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1709,7 +1709,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7486,
+          "id": 7488,
           "name": "SelectOptions"
         }
       }
@@ -2400,12 +2400,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 8875,
+          "id": 8877,
           "name": "IconOnlyDropdownButtonProps"
         },
         {
           "type": "reference",
-          "id": 8879,
+          "id": 8881,
           "name": "IconTextDropdownButtonProps"
         }
       ],
@@ -4184,12 +4184,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 11313,
+          "id": 11315,
           "name": "NavTabChildrenProps"
         },
         {
           "type": "reference",
-          "id": 11579,
+          "id": 11581,
           "name": "NavTabComponentProps"
         }
       ],
@@ -5393,7 +5393,7 @@
     },
     "typeParameter": [
       {
-        "id": 7339,
+        "id": 7340,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5531,6 +5531,13 @@
           "name": "string"
         }
       },
+      "placeholder": {
+        "name": "placeholder",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
       "testId": {
         "name": "testId",
         "required": false,
@@ -5550,7 +5557,7 @@
     },
     "typeParameter": [
       {
-        "id": 7444,
+        "id": 7446,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5559,7 +5566,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7486,
+          "id": 7488,
           "name": "SelectOptions"
         }
       }
@@ -5706,7 +5713,7 @@
     },
     "typeParameter": [
       {
-        "id": 7345,
+        "id": 7346,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5715,7 +5722,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7486,
+          "id": 7488,
           "name": "SelectOptions"
         }
       }
@@ -6040,6 +6047,13 @@
           "name": "function"
         }
       },
+      "placeholder": {
+        "name": "placeholder",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
       "scrollIntoView": {
         "name": "scrollIntoView",
         "required": false,
@@ -6095,7 +6109,7 @@
         {
           "type": "reflection",
           "declaration": {
-            "id": 7487,
+            "id": 7489,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -6104,7 +6118,7 @@
             },
             "indexSignature": [
               {
-                "id": 7490,
+                "id": 7492,
                 "name": "__index",
                 "kind": 8192,
                 "kindString": "Index signature",
@@ -6113,7 +6127,7 @@
                 },
                 "parameters": [
                   {
-                    "id": 7491,
+                    "id": 7493,
                     "name": "key",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -6134,7 +6148,7 @@
             ],
             "children": [
               {
-                "id": 7489,
+                "id": 7491,
                 "name": "label",
                 "kind": 32,
                 "kindString": "Variable",
@@ -6154,7 +6168,7 @@
                 }
               },
               {
-                "id": 7488,
+                "id": 7490,
                 "name": "value",
                 "kind": 32,
                 "kindString": "Variable",
@@ -6179,8 +6193,8 @@
                 "title": "Variables",
                 "kind": 32,
                 "children": [
-                  7489,
-                  7488
+                  7491,
+                  7490
                 ]
               }
             ],
@@ -7382,12 +7396,12 @@
       "types": [
         {
           "type": "reference",
-          "id": 10680,
+          "id": 10682,
           "name": "HorizontalTabsProps"
         },
         {
           "type": "reference",
-          "id": 10677,
+          "id": 10679,
           "name": "VerticalTabsProps"
         }
       ]

@@ -145,8 +145,7 @@ This is useful in cases where toasts are intended to display above a component, 
 
 ## Toast Duration
 
-The `toastDuration` prop can be used to set the number of milliseconds that the toast will remain on the screen before it auto-dismisses.  
-This can be useful to set a longer duration for more lengthy toasts. It is recommended that the minimum `toastDuration` is 4000ms. The default is 5000.
+The `toastDuration` prop can be used to set the number of milliseconds that the toast will remain on the screen before it auto-dismisses. This can be useful to set a longer duration for more lengthy toasts. It is recommended that the minimum `toastDuration` is 4000ms. The default is 5000.
 
 ```.jsx
 () => {
@@ -174,7 +173,7 @@ This can be useful to set a longer duration for more lengthy toasts. It is recom
 
 ## Mouse Events
 
-When you hover over the Toast the timer is paused. Once the mouse leaves the Toast the timer is restarted and runs for half of the original toast duration.
+When you hover over the Toast the timer is paused. Once the mouse leaves the Toast the timer is will continue running.
 
 ```.jsx
 () => {

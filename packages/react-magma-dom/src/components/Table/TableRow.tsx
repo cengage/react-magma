@@ -18,7 +18,7 @@ const StyledTableRow = styled.tr<{
   color: inherit;
   display: table-row;
   outline: 0;
-  vertical-align: middle;
+  vertical-align: top;
 
   &:nth-of-type(even) {
     background: ${props =>

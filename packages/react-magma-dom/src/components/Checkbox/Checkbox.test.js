@@ -31,6 +31,46 @@ describe('Checkbox', () => {
     expect(checkbox).not.toHaveAttribute('autoFocus');
   });
 
+  it('should render a checkbox that is checked on render with defaultChecked', () => {
+    const label = 'test label';
+    const { getByLabelText } = render(
+      <Checkbox labelText={label} defaultChecked />
+    );
+
+    expect(getByLabelText(label)).toHaveAttribute('checked');
+  });
+
+  it('should handle checked changes with defaultChecked', () => {
+    const label = 'test label';
+    const { getByLabelText } = render(
+      <Checkbox labelText={label} defaultChecked />
+    );
+
+    const checkbox = getByLabelText(label);
+
+    expect(checkbox).toHaveProperty('checked', true);
+
+    fireEvent.click(checkbox);
+
+    expect(checkbox).toHaveProperty('checked', false);
+  });
+
+  it('should allow for a controlled checked value', () => {
+    const checked = true;
+    const label = 'test label';
+    const { rerender, getByLabelText } = render(
+      <Checkbox labelText={label} checked={checked} />
+    );
+
+    const checkbox = getByLabelText(label);
+
+    expect(checkbox).toHaveProperty('checked', checked);
+
+    rerender(<Checkbox labelText={label} checked={!checked} />);
+
+    expect(checkbox).toHaveProperty('checked', !checked);
+  });
+
   it('should render an checkbox with a value passed through', () => {
     const value = 'Test Value';
     const testId = 'abc123';

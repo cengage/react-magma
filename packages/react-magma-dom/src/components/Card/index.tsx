@@ -83,7 +83,8 @@ const StyledCard = styled.div<CardProps>`
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  padding-left: ${props => (props.calloutType ? '5px' : '0')};
+  padding-left: ${props =>
+    props.calloutType ? props.theme.spaceScale.spacing02 : '0'};
   position: relative;
   text-align: ${props => props.align};
   width: ${props => props.width};
@@ -100,7 +101,7 @@ const StyledCard = styled.div<CardProps>`
         height: 100%;
         position: absolute;
         left: 0;
-        width: 5px;
+        width: ${props.theme.spaceScale.spacing02};
       }
     `}
 `;
