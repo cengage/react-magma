@@ -27,7 +27,10 @@ describe('Heading', () => {
       'font-size',
       magma.typeScale.size07.fontSize
     );
-    expect(heading).toHaveStyleRule('margin', '0 0 16px');
+    expect(heading).toHaveStyleRule(
+      'margin',
+      `0 0 ${magma.spaceScale.spacing05}`
+    );
   });
 
   it('should render an h2', () => {
@@ -41,7 +44,10 @@ describe('Heading', () => {
       'font-size',
       magma.typeScale.size06.fontSize
     );
-    expect(heading).toHaveStyleRule('margin', '48px 0 16px');
+    expect(heading).toHaveStyleRule(
+      'margin',
+      `${magma.spaceScale.spacing10} 0 ${magma.spaceScale.spacing05}`
+    );
   });
 
   it('should render an h3', () => {
@@ -55,7 +61,10 @@ describe('Heading', () => {
       'font-size',
       magma.typeScale.size05.fontSize
     );
-    expect(heading).toHaveStyleRule('margin', '40px 0 16px');
+    expect(heading).toHaveStyleRule(
+      'margin',
+      `${magma.spaceScale.spacing09} 0 ${magma.spaceScale.spacing05}`
+    );
   });
 
   it('should render an h4', () => {
@@ -69,7 +78,10 @@ describe('Heading', () => {
       'font-size',
       magma.typeScale.size04.fontSize
     );
-    expect(heading).toHaveStyleRule('margin', '32px 0 16px');
+    expect(heading).toHaveStyleRule(
+      'margin',
+      `${magma.spaceScale.spacing08} 0 ${magma.spaceScale.spacing05}`
+    );
   });
 
   it('should render an h5', () => {
@@ -83,7 +95,10 @@ describe('Heading', () => {
       'font-size',
       magma.typeScale.size04.fontSize
     );
-    expect(heading).toHaveStyleRule('margin', '24px 0 16px');
+    expect(heading).toHaveStyleRule(
+      'margin',
+      `${magma.spaceScale.spacing06} 0 ${magma.spaceScale.spacing05}`
+    );
   });
 
   it('should render an h6', () => {
@@ -97,7 +112,10 @@ describe('Heading', () => {
       'font-size',
       magma.typeScale.size01.fontSize
     );
-    expect(heading).toHaveStyleRule('margin', '24px 0 8px');
+    expect(heading).toHaveStyleRule(
+      'margin',
+      `${magma.spaceScale.spacing06} 0 ${magma.spaceScale.spacing03}`
+    );
   });
 
   it('should render an component with a different size', () => {
