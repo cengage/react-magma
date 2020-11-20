@@ -20,10 +20,10 @@
     "build": "tsdx build",
     "build-watch": "tsdx watch",
     "generate-properties": "node scripts/generateJSON.js",
-    "copy-changelog": "node ./scripts/copy-changelog.js",
+    "copy-changelog": "node scripts/copy-changelog.js",
     "lint": "eslint ./src",
-    "prepublish": "copy-changelog",
-    "postbuild": "generate-properties"
+    "prepublishOnly": "npm run copy-changelog",
+    "postbuild": "npm run generate-properties"
   },
   "keywords": [],
   "author": "",
