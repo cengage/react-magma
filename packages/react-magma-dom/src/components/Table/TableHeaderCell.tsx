@@ -75,7 +75,7 @@ const SortButton = styled.button<{
   justify-content: ${props =>
     props.textAlign === TableCellAlign.right ? 'flex-end' : 'flex-start'};
   margin: 0;
-  padding: ${props => buildCellPaddingStyle(props.density)}};
+  padding: ${props => buildCellPaddingStyle(props.density, props.theme)}};
   text-align: left;
   width: 100%;
 
@@ -103,7 +103,7 @@ const SortButton = styled.button<{
 `;
 
 const IconWrapper = styled.span`
-  padding-left: 8px;
+  padding-left: ${props => props.theme.spaceScale.spacing03};
 `;
 
 export const TableHeaderCell = React.forwardRef<
@@ -169,7 +169,7 @@ export const TableHeaderCell = React.forwardRef<
           theme={theme}
         >
           <span>{children}</span>
-          <IconWrapper>{SortIcon}</IconWrapper>
+          <IconWrapper theme={theme}>{SortIcon}</IconWrapper>
         </SortButton>
       ) : (
         <>{children}</>
