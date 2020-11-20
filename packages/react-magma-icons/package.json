@@ -1,6 +1,6 @@
 {
   "name": "react-magma-icons",
-  "version": "2.0.0",
+  "version": "1.0.3",
   "license": "ISC",
   "main": "dist/index.js",
   "module": "dist/react-magma-icons.esm.js",
@@ -15,7 +15,7 @@
   },
   "scripts": {
     "test": "tsdx test",
-    "test-watch": "tsdx test --watc",
+    "test-watch": "tsdx test --watch",
     "build": "tsdx build",
     "build-watch": "tsdx watch",
     "lint": "eslint ./src"
