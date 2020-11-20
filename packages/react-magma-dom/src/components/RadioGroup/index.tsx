@@ -2,6 +2,7 @@ import * as React from 'react';
 import { FormGroupLabel } from '../FormGroup';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { InputMessage } from '../Input/InputMessage';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 import styled from '../../theme/styled';
 import { omit, useGenerateId } from '../../utils';
@@ -83,6 +84,8 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
 
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
+    const theme = React.useContext(ThemeContext);
+
     return (
       <div
         {...other}
@@ -112,7 +115,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
           )}
 
           {labelText && !isTextVisuallyHidden && (
-            <FormGroupLabel id={id} style={labelStyle}>
+            <FormGroupLabel id={id} style={labelStyle} theme={theme}>
               {labelText}
             </FormGroupLabel>
           )}
