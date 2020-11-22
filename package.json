@@ -10,7 +10,7 @@
     "build:docs": "lerna run build --scope react-magma-docs --stream --no-progress",
     "build:lite": "lerna run build --ignore react-magma-docs --stream --no-progress",
     "build": "lerna run build --stream --no-progress",
-    "bootstrap": "lerna bootstrap && rimraf packages/react-magma-docs/node_modules/react node_modules/react-dom",
+    "bootstrap": "lerna bootstrap && rimraf packages/react-magma-docs/node_modules/react packages/react-magma-docs/node_modules/react-dom",
     "lint": "lerna run lint",
     "develop": "npm run docs",
     "docs": "lerna exec --scope react-magma-docs gatsby develop",
