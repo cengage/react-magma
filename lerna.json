@@ -15,6 +15,7 @@
       "registry": "http://nexus.mindtap.corp.web/content/repositories/npm.cengage/"
     },
     "version": {
+      "changelogPreset": "conventionalcommits",
       "conventionalCommits": true
     }
   },

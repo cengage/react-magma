@@ -18,7 +18,7 @@
     "cm": "git-cz",
     "cm-retry": "git-cz --retry",
     "check:spelling": "cspell --config=.cspell.json packages/**/*.{md,ts,js,mdx,tsx,jsx}",
-    "publish": "lerna publish",
+    "publish": "lerna publish from-git",
     "prettier": "prettier --write --loglevel warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\""
   },
   "husky": {
