@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.137](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.136...v2.0.0-beta.137) (2020-11-20)
+
+
+
+# [1.6.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.65...v1.6.0) (2020-08-31)
+
+
+### Bug Fixes
+
+* **checkbox:** allow for controlled checkbox ([96bd68e](http://stash.cengage.com:7999/FRONT/react-magma/commits/96bd68e1a37514d0d113e5d3f66e18653d35e898))
+* **checkbox:** fix but with hidden input postioning ([4226ed8](http://stash.cengage.com:7999/FRONT/react-magma/commits/4226ed8792d20449f80eb11a5f3fbe3c2947b9a9))
+
+
+
+# [1.5.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.53...v1.5.0) (2020-07-01)
+
+
+
+# [1.4.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.50...v1.4.0) (2020-06-08)
+
+
+### Bug Fixes
+
+* **modal:** container styles and fix double closing ([5ec52a3](http://stash.cengage.com:7999/FRONT/react-magma/commits/5ec52a3ee79dff478324b71d1c05a0126e6544af))
+
+
+
+# [1.3.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.33...v1.3.0) (2020-04-09)
+
+
+
+# [1.2.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v1.1.0...v1.2.0) (2020-04-07)
+
+
+
+# [1.1.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.32...v1.1.0) (2020-04-07)
+
+
+### Bug Fixes
+
+* **loading indicator:** add css prop to get rid of emotion error ([1033c0e](http://stash.cengage.com:7999/FRONT/react-magma/commits/1033c0e6e1bfa411d055accb78287ee8b99967d8))
+* **search:** add and document style and testid props ([865b523](http://stash.cengage.com:7999/FRONT/react-magma/commits/865b5235333424908da6533316b6ecda8792c01c))
+* **select:** change to custom type for custom components ([e00592c](http://stash.cengage.com:7999/FRONT/react-magma/commits/e00592c5f8731e02d2d7703b37c6d32823e408c2))
+* **tooltip:** allow custom styles ([0beb125](http://stash.cengage.com:7999/FRONT/react-magma/commits/0beb12588a1973fdabdc1b92fd8645dde769e611))
+
+
+### Features
+
+* **selects:** allow custom components for all selects ([9a30128](http://stash.cengage.com:7999/FRONT/react-magma/commits/9a30128e80b18cc4f6af4b04f2ed97cd2d14e6b5))
+
+
+
+
+
 # [2.0.0-beta.136](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.135...v2.0.0-beta.136) (2020-11-19)
 
 
