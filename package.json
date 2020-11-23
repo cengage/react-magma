@@ -56,6 +56,7 @@
     "babel-plugin-emotion": "^10.0.33",
     "babel-plugin-polished": "^1.1.0",
     "commitizen": "2.10.1",
+    "conventional-changelog-conventionalcommits": "^4.5.0",
     "core-js": "^3.1.4",
     "cspell": "^4.1.0",
     "cspell-dict-es-es": "^1.0.19",
