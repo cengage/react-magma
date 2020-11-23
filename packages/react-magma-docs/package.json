@@ -2,6 +2,7 @@
   "name": "react-magma-docs",
   "description": "React Magma docs - take 2",
   "version": "2.0.0",
+  "private": true,
   "dependencies": {
     "@emotion/core": "^10.0.7",
     "@emotion/styled": "^10.0.7",
@@ -44,9 +45,9 @@
   ],
   "license": "MIT",
   "scripts": {
-    "copy-changelog": "node ./tools/copy-changelog.js",
-    "build": "gatsby build --prefix-paths && node ./tools/copy-changelog.js",
+    "build": "gatsby build --prefix-paths",
     "develop": "gatsby develop",
+    "docs": "npm run develop",
     "serve": "gatsby serve",
     "format": "prettier --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\""

@@ -17,10 +17,13 @@
   "scripts": {
     "test": "tsdx test",
     "test-watch": "tsdx test --watch",
-    "build": "tsdx build && npm run generate-properties",
+    "build": "tsdx build",
     "build-watch": "tsdx watch",
     "generate-properties": "node scripts/generateJSON.js",
-    "lint": "eslint ./src"
+    "copy-changelog": "node scripts/copy-changelog.js",
+    "lint": "eslint ./src",
+    "prepublishOnly": "npm run copy-changelog",
+    "postbuild": "npm run generate-properties"
   },
   "keywords": [],
   "author": "",
