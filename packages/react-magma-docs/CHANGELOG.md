@@ -3,98 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.0.0-beta.137](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.136...v2.0.0-beta.137) (2020-11-20)
+# [2.0.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.136...v2.0.0) (2020-11-19)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 # [2.0.0-beta.136](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.135...v2.0.0-beta.136) (2020-11-19)
-
 
 ### Features
 
-* **select:** add placeholder prop to override i18n default ([818809c](http://stash.cengage.com:7999/FRONT/react-magma/commits/818809c0e4e50cbbe2dee09f5bb218eb36a1784a))
-
-
-
-
+- **select:** add placeholder prop to override i18n default ([818809c](http://stash.cengage.com:7999/FRONT/react-magma/commits/818809c0e4e50cbbe2dee09f5bb218eb36a1784a))
 
 # [2.0.0-beta.135](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.134...v2.0.0-beta.135) (2020-11-19)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 # [2.0.0-beta.134](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.133...v2.0.0-beta.134) (2020-11-19)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 # [2.0.0-beta.133](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.132...v2.0.0-beta.133) (2020-11-18)
-
 
 ### Features
 
-* **dropdown:** update dropdown spacing ([2204d0f](http://stash.cengage.com:7999/FRONT/react-magma/commits/2204d0fe45560cb058ff891a4d842bb20e984b23))
-
-
-
-
+- **dropdown:** update dropdown spacing ([2204d0f](http://stash.cengage.com:7999/FRONT/react-magma/commits/2204d0fe45560cb058ff891a4d842bb20e984b23))
 
 # [2.0.0-beta.132](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.131...v2.0.0-beta.132) (2020-11-18)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 # [2.0.0-beta.131](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.130...v2.0.0-beta.131) (2020-11-17)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 # [2.0.0-beta.130](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.129...v2.0.0-beta.130) (2020-11-17)
-
 
 ### Features
 
-* **date-picker:** lowercase placeholder text ([2202013](http://stash.cengage.com:7999/FRONT/react-magma/commits/2202013e663ccde2e330f1df50ccc7774d56882f))
-
-
-
-
+- **date-picker:** lowercase placeholder text ([2202013](http://stash.cengage.com:7999/FRONT/react-magma/commits/2202013e663ccde2e330f1df50ccc7774d56882f))
 
 # [2.0.0-beta.129](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.128...v2.0.0-beta.129) (2020-11-17)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 # [2.0.0-beta.128](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.127...v2.0.0-beta.128) (2020-11-17)
-
 
 ### Features
 
-* **input:** apply new spacing scale to inputs ([b6f75e4](http://stash.cengage.com:7999/FRONT/react-magma/commits/b6f75e4b075dc2c4efff986547b68785e0361c7d))
-* **spacing scale:** addition spacing scale value ([b62c677](http://stash.cengage.com:7999/FRONT/react-magma/commits/b62c677ccaf18534ba72578d60c1569205d07a4b))
-
-
-
-
+- **input:** apply new spacing scale to inputs ([b6f75e4](http://stash.cengage.com:7999/FRONT/react-magma/commits/b6f75e4b075dc2c4efff986547b68785e0361c7d))
+- **spacing scale:** addition spacing scale value ([b62c677](http://stash.cengage.com:7999/FRONT/react-magma/commits/b62c677ccaf18534ba72578d60c1569205d07a4b))
 
 # [2.0.0-beta.127](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.126...v2.0.0-beta.127) (2020-11-17)
 

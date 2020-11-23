@@ -1,7 +1,8 @@
 {
   "name": "react-magma-docs",
   "description": "React Magma docs - take 2",
-  "version": "2.0.0-beta.137",
+  "version": "2.0.0",
+  "private": true,
   "dependencies": {
     "@emotion/core": "^10.0.7",
     "@emotion/styled": "^10.0.7",
@@ -31,8 +32,8 @@
     "react-focus-lock": "1.18.3",
     "react-helmet": "5.2.0",
     "react-live": "^2.2.1",
-    "react-magma-dom": "^2.0.0-beta.137",
-    "react-magma-icons": "^2.0.0-beta.137",
+    "react-magma-dom": "^2.0.0",
+    "react-magma-icons": "^2.0.0",
     "react-magma-legacy-selects": "^1.0.1",
     "react-select": "3.0.8",
     "react-spring": "6.1.9",
@@ -44,9 +45,9 @@
   ],
   "license": "MIT",
   "scripts": {
-    "copy-changelog": "node ./tools/copy-changelog.js",
-    "build": "gatsby build --prefix-paths && node ./tools/copy-changelog.js",
+    "build": "gatsby build --prefix-paths",
     "develop": "gatsby develop",
+    "docs": "npm run develop",
     "serve": "gatsby serve",
     "format": "prettier --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\""
