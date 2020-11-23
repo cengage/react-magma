@@ -21,7 +21,8 @@ interface CalendarMonthProps {
 
 const CalendarContainer = styled.div`
   background: ${props => props.theme.colors.neutral08};
-  padding: 0 19px 10px;
+  padding: 0 ${props => props.theme.spaceScale.spacing05}
+    ${props => props.theme.spaceScale.spacing03};
 `;
 
 const MonthContainer = styled.div`
@@ -34,7 +35,7 @@ const MonthContainer = styled.div`
 const Table = styled.table`
   border-collapse: collapse;
   border-spacing: 0;
-  margin-bottom: 38px;
+  margin-bottom: ${props => props.theme.spaceScale.spacing09};
 `;
 
 const Th = styled.th`
@@ -182,6 +183,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
           role="presentation"
           onBlur={onCalendarTableBlur}
           onFocus={onCalendarTableFocus}
+          theme={theme}
         >
           <tbody>
             <tr>{tableDaysHeaders}</tr>

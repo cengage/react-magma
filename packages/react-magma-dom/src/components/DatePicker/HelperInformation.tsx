@@ -26,8 +26,9 @@ const KeyboardShortcutButtonWrapper = styled.span`
   font-family: monospace;
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
-  margin-right: 10px;
-  padding: 2px 6px;
+  margin-right: ${props => props.theme.spaceScale.spacing03};
+  padding: ${props => props.theme.spaceScale.spacing02}
+    ${props => props.theme.spaceScale.spacing04};
   text-transform: uppercase;
 `;
 
