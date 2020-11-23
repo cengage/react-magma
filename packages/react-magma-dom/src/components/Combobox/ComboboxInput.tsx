@@ -35,10 +35,10 @@ const InputContainer = styled.div<{
     props.isInverse
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral03};
-  border-radius: 4px;
+  border-radius: ${props => props.theme.borderRadius};
   display: flex;
-  min-height: 40px;
-  padding: 0 8px 0 0;
+  min-height: ${props => props.theme.spaceScale.spacing09};
+  padding: 0 ${props => props.theme.spaceScale.spacing03} 0 0;
   width: 100%;
 
   ${props =>
@@ -81,9 +81,9 @@ const StyledInput = styled.input`
   border: 0;
   display: flex;
   flex-grow: 1;
-  height: 32px;
-  min-width: 30px;
-  padding-left: 4px;
+  height: ${props => props.theme.spaceScale.spacing08};
+  min-width: ${props => props.theme.spaceScale.spacing07};
+  padding-left: ${props => props.theme.spaceScale.spacing02};
   width: 0;
 
   &:focus {
@@ -204,7 +204,9 @@ export const ComboboxInput = React.forwardRef(
           </SelectedItemsWrapper>
           {children}
           {isLoading && (
-            <LoadingIndicator style={{ flexShrink: 0, marginRight: '4px' }} />
+            <LoadingIndicator
+              style={{ flexShrink: 0, marginRight: theme.spaceScale.spacing02 }}
+            />
           )}
           <DropdownIndicator aria-label="toggle menu" />
         </InputContainer>
