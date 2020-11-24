@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.0](http://stash.cengage.com:7999///compare/react-magma-dom@2.0.0...react-magma-dom@2.1.0) (2020-11-24)
+
+
+### Features
+
+* **combobox, select:** use spacing from theme ([71d3026](http://stash.cengage.com:7999///commit/71d302656a82a286c16bd2eb4f73893ab5f450f4))
+* **datepicker:** use spacing from theme ([cec752f](http://stash.cengage.com:7999///commit/cec752f1f78a11e8ab571264b4673cfdbfad1a9f))
+* **paragraph, heading:** use spacing scale from theme ([4afac5f](http://stash.cengage.com:7999///commit/4afac5ffd7e3b7d3c78b4bdf9f32a695833ccba7))
+
+## 2.0.0-beta.137 (2020-11-20)
+
+
+### Features
+
+* **multiple:** update components to use spacing from theme ([11323d5](http://stash.cengage.com:7999///commit/11323d5005dea6030596d34bcfea00d001f2a409))
+* **table:** update tables spacing to use theme ([4a8c6b9](http://stash.cengage.com:7999///commit/4a8c6b9189cae6fe6f12397fb2951d9a99a9299b))
+
+
+
 # [2.0.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.136...v2.0.0) (2020-11-19)
 
 # [1.6.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.65...v1.6.0) (2020-08-31)
