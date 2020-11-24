@@ -18,11 +18,11 @@ const CalendarDayCell = styled.td`
   color: ${props => props.theme.colors.neutral};
   font-size: ${props => props.theme.typeScale.size03.fontSize};
   line-height: ${props => props.theme.typeScale.size03.lineHeight};
-  height: 40px;
+  height: ${props => props.theme.spaceScale.spacing09};
   padding: 0;
   position: relative;
   text-align: center;
-  width: 40px;
+  width: ${props => props.theme.spaceScale.spacing09};
 `;
 
 const CalendarDayInner = styled.button<{
@@ -45,14 +45,14 @@ const CalendarDayInner = styled.button<{
       : props.theme.colors.neutral};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   display: flex;
-  height: 35px;
+  height: calc(${props => props.theme.spaceScale.spacing09} - 4px);
   justify-content: center;
-  margin: 2px;
+  margin: ${props => props.theme.spaceScale.spacing01};
   overflow: hidden;
   outline-offset: 0;
   position: relative;
   transition: background 0.5s ease-in-out 0s;
-  width: 35px;
+  width: calc(${props => props.theme.spaceScale.spacing09} - 4px);
 
   &:focus {
     outline: 2px dotted ${props => props.theme.colors.focus};

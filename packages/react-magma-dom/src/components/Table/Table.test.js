@@ -108,8 +108,14 @@ describe('Table', () => {
       </Table>
     );
 
-    expect(getByText('cell 1')).toHaveStyleRule('padding', '4px 8px');
-    expect(getByText('heading 1')).toHaveStyleRule('padding', '4px 8px');
+    expect(getByText('cell 1')).toHaveStyleRule(
+      'padding',
+      `${magma.spaceScale.spacing02} ${magma.spaceScale.spacing03}`
+    );
+    expect(getByText('heading 1')).toHaveStyleRule(
+      'padding',
+      `${magma.spaceScale.spacing02} ${magma.spaceScale.spacing03}`
+    );
   });
 
   it('should render table with loose density', () => {
@@ -130,8 +136,14 @@ describe('Table', () => {
       </Table>
     );
 
-    expect(getByText('cell 1')).toHaveStyleRule('padding', '24px 36px');
-    expect(getByText('heading 1')).toHaveStyleRule('padding', '24px 36px');
+    expect(getByText('cell 1')).toHaveStyleRule(
+      'padding',
+      `${magma.spaceScale.spacing06} ${magma.spaceScale.spacing08}`
+    );
+    expect(getByText('heading 1')).toHaveStyleRule(
+      'padding',
+      `${magma.spaceScale.spacing06} ${magma.spaceScale.spacing08}`
+    );
   });
 
   it('should render table with inverse styles', () => {
@@ -273,7 +285,10 @@ describe('Table', () => {
     expect(getByTestId('header1')).toHaveStyleRule('padding', '0');
     expect(getByTestId('header1').querySelector('button')).toBeInTheDocument();
 
-    expect(getByTestId('header3')).toHaveStyleRule('padding', '12px 16px');
+    expect(getByTestId('header3')).toHaveStyleRule(
+      'padding',
+      `${magma.spaceScale.spacing04} ${magma.spaceScale.spacing05}`
+    );
     expect(
       getByTestId('header3').querySelector('button')
     ).not.toBeInTheDocument();

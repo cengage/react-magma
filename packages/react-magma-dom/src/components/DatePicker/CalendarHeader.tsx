@@ -19,7 +19,8 @@ interface CalendarHeaderProps {
 const CalendarHeaderContainer = styled.div`
   align-items: center;
   display: flex;
-  padding: 25px 0 10px;
+  padding: ${props => props.theme.spaceScale.spacing08} 0
+    ${props => props.theme.spaceScale.spacing03};
 `;
 
 const CalendarIconButton = styled.div<{ next?: boolean }>`
@@ -67,7 +68,7 @@ export const CalendarHeader: React.FunctionComponent<CalendarHeaderProps> = (
     currentMonth.charAt(0).toUpperCase() + currentMonth.slice(1);
 
   return (
-    <CalendarHeaderContainer>
+    <CalendarHeaderContainer theme={theme}>
       <CalendarHeaderText tabIndex={-1} theme={theme} ref={calendarHeader}>
         <Announce>{capitalizeCurrentMonth}</Announce>
       </CalendarHeaderText>

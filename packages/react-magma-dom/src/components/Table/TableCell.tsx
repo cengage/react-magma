@@ -17,8 +17,9 @@ export const baseTableCellStyle = props => css`
     ? props.theme.colors.tint04
     : props.theme.colors.neutral06};
   display: table-cell;
-  line-height: 24px;
-  padding: ${buildCellPaddingStyle(props.density)};
+  font-size: ${props.theme.typeScale.size03.fontSize};
+  line-height: ${props.theme.typeScale.size03.lineHeight};
+  padding: ${buildCellPaddingStyle(props.density, props.theme)};
   text-align: ${props.textAlign};
 
   &:last-of-type {
@@ -26,14 +27,15 @@ export const baseTableCellStyle = props => css`
   }
 `;
 
-export function buildCellPaddingStyle(density) {
+export function buildCellPaddingStyle(density, theme: any) {
   switch (density) {
     case 'compact':
-      return '4px 8px';
+      return `${theme.spaceScale.spacing02} ${theme.spaceScale.spacing03}`;
     case 'loose':
-      return '24px 36px';
+      return `${theme.spaceScale.spacing06} ${theme.spaceScale.spacing08}`;
+
     default:
-      return '12px 16px';
+      return `${theme.spaceScale.spacing04} ${theme.spaceScale.spacing05}`;
   }
 }
 
@@ -42,6 +44,7 @@ const StyledCell = styled.td<{
   hasVerticalBorders?: boolean;
   isInverse?: boolean;
   textAlign?: TableCellAlign;
+  theme?: any;
   width?: string;
 }>`
   ${baseTableCellStyle}

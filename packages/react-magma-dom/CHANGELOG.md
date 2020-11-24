@@ -5,157 +5,132 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [2.0.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.136...v2.0.0) (2020-11-19)
 
-
-
 # [1.6.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.65...v1.6.0) (2020-08-31)
-
 
 ### Bug Fixes
 
-* **checkbox:** allow for controlled checkbox ([96bd68e](http://stash.cengage.com:7999/FRONT/react-magma/commits/96bd68e1a37514d0d113e5d3f66e18653d35e898))
-* **checkbox:** fix but with hidden input postioning ([4226ed8](http://stash.cengage.com:7999/FRONT/react-magma/commits/4226ed8792d20449f80eb11a5f3fbe3c2947b9a9))
-
-
+- **checkbox:** allow for controlled checkbox ([96bd68e](http://stash.cengage.com:7999/FRONT/react-magma/commits/96bd68e1a37514d0d113e5d3f66e18653d35e898))
+- **checkbox:** fix but with hidden input postioning ([4226ed8](http://stash.cengage.com:7999/FRONT/react-magma/commits/4226ed8792d20449f80eb11a5f3fbe3c2947b9a9))
 
 # [1.5.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.53...v1.5.0) (2020-07-01)
 
-
-
 # [1.4.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.50...v1.4.0) (2020-06-08)
-
 
 ### Bug Fixes
 
-* **modal:** container styles and fix double closing ([5ec52a3](http://stash.cengage.com:7999/FRONT/react-magma/commits/5ec52a3ee79dff478324b71d1c05a0126e6544af))
-
-
+- **modal:** container styles and fix double closing ([5ec52a3](http://stash.cengage.com:7999/FRONT/react-magma/commits/5ec52a3ee79dff478324b71d1c05a0126e6544af))
 
 # [1.3.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.33...v1.3.0) (2020-04-09)
 
-
-
 # [1.2.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v1.1.0...v1.2.0) (2020-04-07)
-
-
 
 # [1.1.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.32...v1.1.0) (2020-04-07)
 
-
 ### Bug Fixes
 
-* **loading indicator:** add css prop to get rid of emotion error ([1033c0e](http://stash.cengage.com:7999/FRONT/react-magma/commits/1033c0e6e1bfa411d055accb78287ee8b99967d8))
-* **search:** add and document style and testid props ([865b523](http://stash.cengage.com:7999/FRONT/react-magma/commits/865b5235333424908da6533316b6ecda8792c01c))
-* **select:** change to custom type for custom components ([e00592c](http://stash.cengage.com:7999/FRONT/react-magma/commits/e00592c5f8731e02d2d7703b37c6d32823e408c2))
-* **tooltip:** allow custom styles ([0beb125](http://stash.cengage.com:7999/FRONT/react-magma/commits/0beb12588a1973fdabdc1b92fd8645dde769e611))
-
+- **loading indicator:** add css prop to get rid of emotion error ([1033c0e](http://stash.cengage.com:7999/FRONT/react-magma/commits/1033c0e6e1bfa411d055accb78287ee8b99967d8))
+- **search:** add and document style and testid props ([865b523](http://stash.cengage.com:7999/FRONT/react-magma/commits/865b5235333424908da6533316b6ecda8792c01c))
+- **select:** change to custom type for custom components ([e00592c](http://stash.cengage.com:7999/FRONT/react-magma/commits/e00592c5f8731e02d2d7703b37c6d32823e408c2))
+- **tooltip:** allow custom styles ([0beb125](http://stash.cengage.com:7999/FRONT/react-magma/commits/0beb12588a1973fdabdc1b92fd8645dde769e611))
 
 ### Features
 
-* **selects:** allow custom components for all selects ([9a30128](http://stash.cengage.com:7999/FRONT/react-magma/commits/9a30128e80b18cc4f6af4b04f2ed97cd2d14e6b5))
-
-
-
-
+- **selects:** allow custom components for all selects ([9a30128](http://stash.cengage.com:7999/FRONT/react-magma/commits/9a30128e80b18cc4f6af4b04f2ed97cd2d14e6b5))
 
 # [2.0.0-beta.136](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.135...v2.0.0-beta.136) (2020-11-19)
 
-
 ### Features
 
-* **select:** add placeholder prop to override i18n default ([818809c](http://stash.cengage.com:7999/FRONT/react-magma/commits/818809c0e4e50cbbe2dee09f5bb218eb36a1784a))
-
-
-
-
-
-# [2.0.0-beta.135](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.134...v2.0.0-beta.135) (2020-11-19)
-
-
-### Features
-
-* **card:** update card spacing ([dadfb60](http://stash.cengage.com:7999/FRONT/react-magma/commits/dadfb60ca6c5ba584a8fb278facd9b416a0dd869))
-
-
-
-
-
-# [2.0.0-beta.134](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.133...v2.0.0-beta.134) (2020-11-19)
-
-
-### Features
-
-* **component:** alignment change ([f8ee970](http://stash.cengage.com:7999/FRONT/react-magma/commits/f8ee970a85d3e7cb088bca725881e9f0954a1d85))
-
-
-
-
-
-# [2.0.0-beta.133](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.132...v2.0.0-beta.133) (2020-11-18)
-
-
-### Features
-
-* **dropdown:** update dropdown spacing ([2204d0f](http://stash.cengage.com:7999/FRONT/react-magma/commits/2204d0fe45560cb058ff891a4d842bb20e984b23))
-
-
-
-
-
-# [2.0.0-beta.132](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.131...v2.0.0-beta.132) (2020-11-18)
-
-
-### Features
-
-* **alert, banner:** update styles with spacing scale ([e4bdc19](http://stash.cengage.com:7999/FRONT/react-magma/commits/e4bdc19927d6cc14cc5c949d4ef2e8bbc041162c))
-* **alert, banner:** use new spacing scale for alert, banner ([7bdf07f](http://stash.cengage.com:7999/FRONT/react-magma/commits/7bdf07f75f88b642dccd506c0e4d8cf20a602b1b))
-
-
-
-
-
-# [2.0.0-beta.130](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.129...v2.0.0-beta.130) (2020-11-17)
-
-
-### Features
-
-* **date-picker:** lowercase placeholder text ([2202013](http://stash.cengage.com:7999/FRONT/react-magma/commits/2202013e663ccde2e330f1df50ccc7774d56882f))
-
-
-
-
-
-# [2.0.0-beta.129](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.128...v2.0.0-beta.129) (2020-11-17)
-
-
-### Features
-
-* **component:** spacing updates ([0c4664e](http://stash.cengage.com:7999/FRONT/react-magma/commits/0c4664ef330aa410cfedfd65970999fbbd15e633))
-* **component:** theme values ([95d4196](http://stash.cengage.com:7999/FRONT/react-magma/commits/95d4196737092379f019302248c86ca09d71192b))
-
-
-
-
-
-# [2.0.0-beta.128](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.127...v2.0.0-beta.128) (2020-11-17)
-
+# [1.6.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.65...v1.6.0) (2020-08-31)
 
 ### Bug Fixes
 
-* **password input:** fix button positioning ([8d8a68e](http://stash.cengage.com:7999/FRONT/react-magma/commits/8d8a68e93e0016570dd3adfb4b8fe227637b089f))
+- **checkbox:** allow for controlled checkbox ([96bd68e](http://stash.cengage.com:7999/FRONT/react-magma/commits/96bd68e1a37514d0d113e5d3f66e18653d35e898))
+- **checkbox:** fix but with hidden input postioning ([4226ed8](http://stash.cengage.com:7999/FRONT/react-magma/commits/4226ed8792d20449f80eb11a5f3fbe3c2947b9a9))
 
+# [1.5.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.53...v1.5.0) (2020-07-01)
+
+# [1.4.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.50...v1.4.0) (2020-06-08)
+
+### Bug Fixes
+
+- **modal:** container styles and fix double closing ([5ec52a3](http://stash.cengage.com:7999/FRONT/react-magma/commits/5ec52a3ee79dff478324b71d1c05a0126e6544af))
+
+# [1.3.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.33...v1.3.0) (2020-04-09)
+
+# [1.2.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v1.1.0...v1.2.0) (2020-04-07)
+
+# [1.1.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.32...v1.1.0) (2020-04-07)
+
+### Bug Fixes
+
+- **loading indicator:** add css prop to get rid of emotion error ([1033c0e](http://stash.cengage.com:7999/FRONT/react-magma/commits/1033c0e6e1bfa411d055accb78287ee8b99967d8))
+- **search:** add and document style and testid props ([865b523](http://stash.cengage.com:7999/FRONT/react-magma/commits/865b5235333424908da6533316b6ecda8792c01c))
+- **select:** change to custom type for custom components ([e00592c](http://stash.cengage.com:7999/FRONT/react-magma/commits/e00592c5f8731e02d2d7703b37c6d32823e408c2))
+- **tooltip:** allow custom styles ([0beb125](http://stash.cengage.com:7999/FRONT/react-magma/commits/0beb12588a1973fdabdc1b92fd8645dde769e611))
 
 ### Features
 
-* **buttons:** update buttons for new space scale ([2822993](http://stash.cengage.com:7999/FRONT/react-magma/commits/2822993ae20a153ce75cb149c574a855766b18eb))
-* **icon buttons, inputs:** add icon size to theme ([cc03c73](http://stash.cengage.com:7999/FRONT/react-magma/commits/cc03c7300218250802b4c0c01216eeb060221dfd))
-* **input:** adjustments to password, timepicker ([1db700d](http://stash.cengage.com:7999/FRONT/react-magma/commits/1db700d939b6e1a57bae13b2fe933eea73c77bac))
-* **input:** apply new spacing scale to inputs ([b6f75e4](http://stash.cengage.com:7999/FRONT/react-magma/commits/b6f75e4b075dc2c4efff986547b68785e0361c7d))
-* **spacing scale:** addition spacing scale value ([b62c677](http://stash.cengage.com:7999/FRONT/react-magma/commits/b62c677ccaf18534ba72578d60c1569205d07a4b))
-* **textarea:** update textarea with space scale ([c99c5f9](http://stash.cengage.com:7999/FRONT/react-magma/commits/c99c5f9fae0aa01fca1502ddef0620c1e579d7bc))
+- **selects:** allow custom components for all selects ([9a30128](http://stash.cengage.com:7999/FRONT/react-magma/commits/9a30128e80b18cc4f6af4b04f2ed97cd2d14e6b5))
 
+# [2.0.0-beta.136](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.135...v2.0.0-beta.136) (2020-11-19)
 
+### Features
 
+- **select:** add placeholder prop to override i18n default ([818809c](http://stash.cengage.com:7999/FRONT/react-magma/commits/818809c0e4e50cbbe2dee09f5bb218eb36a1784a))
 
+# [2.0.0-beta.135](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.134...v2.0.0-beta.135) (2020-11-19)
+
+### Features
+
+- **card:** update card spacing ([dadfb60](http://stash.cengage.com:7999/FRONT/react-magma/commits/dadfb60ca6c5ba584a8fb278facd9b416a0dd869))
+
+# [2.0.0-beta.134](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.133...v2.0.0-beta.134) (2020-11-19)
+
+### Features
+
+- **component:** alignment change ([f8ee970](http://stash.cengage.com:7999/FRONT/react-magma/commits/f8ee970a85d3e7cb088bca725881e9f0954a1d85))
+
+# [2.0.0-beta.133](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.132...v2.0.0-beta.133) (2020-11-18)
+
+### Features
+
+- **dropdown:** update dropdown spacing ([2204d0f](http://stash.cengage.com:7999/FRONT/react-magma/commits/2204d0fe45560cb058ff891a4d842bb20e984b23))
+
+# [2.0.0-beta.132](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.131...v2.0.0-beta.132) (2020-11-18)
+
+### Features
+
+- **alert, banner:** update styles with spacing scale ([e4bdc19](http://stash.cengage.com:7999/FRONT/react-magma/commits/e4bdc19927d6cc14cc5c949d4ef2e8bbc041162c))
+- **alert, banner:** use new spacing scale for alert, banner ([7bdf07f](http://stash.cengage.com:7999/FRONT/react-magma/commits/7bdf07f75f88b642dccd506c0e4d8cf20a602b1b))
+
+# [2.0.0-beta.130](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.129...v2.0.0-beta.130) (2020-11-17)
+
+### Features
+
+- **date-picker:** lowercase placeholder text ([2202013](http://stash.cengage.com:7999/FRONT/react-magma/commits/2202013e663ccde2e330f1df50ccc7774d56882f))
+
+# [2.0.0-beta.129](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.128...v2.0.0-beta.129) (2020-11-17)
+
+### Features
+
+- **component:** spacing updates ([0c4664e](http://stash.cengage.com:7999/FRONT/react-magma/commits/0c4664ef330aa410cfedfd65970999fbbd15e633))
+- **component:** theme values ([95d4196](http://stash.cengage.com:7999/FRONT/react-magma/commits/95d4196737092379f019302248c86ca09d71192b))
+
+# [2.0.0-beta.128](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.127...v2.0.0-beta.128) (2020-11-17)
+
+### Bug Fixes
+
+- **password input:** fix button positioning ([8d8a68e](http://stash.cengage.com:7999/FRONT/react-magma/commits/8d8a68e93e0016570dd3adfb4b8fe227637b089f))
+
+### Features
+
+- **buttons:** update buttons for new space scale ([2822993](http://stash.cengage.com:7999/FRONT/react-magma/commits/2822993ae20a153ce75cb149c574a855766b18eb))
+- **icon buttons, inputs:** add icon size to theme ([cc03c73](http://stash.cengage.com:7999/FRONT/react-magma/commits/cc03c7300218250802b4c0c01216eeb060221dfd))
+- **input:** adjustments to password, timepicker ([1db700d](http://stash.cengage.com:7999/FRONT/react-magma/commits/1db700d939b6e1a57bae13b2fe933eea73c77bac))
+- **input:** apply new spacing scale to inputs ([b6f75e4](http://stash.cengage.com:7999/FRONT/react-magma/commits/b6f75e4b075dc2c4efff986547b68785e0361c7d))
+- **spacing scale:** addition spacing scale value ([b62c677](http://stash.cengage.com:7999/FRONT/react-magma/commits/b62c677ccaf18534ba72578d60c1569205d07a4b))
+- **textarea:** update textarea with space scale ([c99c5f9](http://stash.cengage.com:7999/FRONT/react-magma/commits/c99c5f9fae0aa01fca1502ddef0620c1e579d7bc))
 
 # [2.0.0-beta.127](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.126...v2.0.0-beta.127) (2020-11-17)
 

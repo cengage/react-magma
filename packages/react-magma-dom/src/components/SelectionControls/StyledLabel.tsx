@@ -14,9 +14,10 @@ const StyledLabelComponent = styled.label<StyledLabelProps>`
   color: ${props =>
     props.isInverse ? props.theme.colors.neutral08 : 'inherit'};
   display: flex;
-  line-height: 24px;
+  font-size: ${props => props.theme.typeScale.size03.fontSize};
+  line-height: ${props => props.theme.typeScale.size03.lineHeight};
   margin: 0;
-  padding: 10px 0;
+  padding: ${props => props.theme.spaceScale.spacing03} 0;
 `;
 
 export const StyledLabel: React.FunctionComponent<StyledLabelProps> = ({

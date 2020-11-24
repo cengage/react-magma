@@ -172,10 +172,10 @@ export function Select<T>(props: SelectInterface<T>) {
         {isClearable && selectedItem && (
           <ClearIndicator
             aria-label={clearIndicatorAriaLabel}
-            icon={<CrossIcon size={12} />}
+            icon={<CrossIcon size={10} />}
             onClick={defaultHandleClearIndicatorClick}
             size={ButtonSize.small}
-            style={{ margin: '0 4px', height: '28px', width: '28px' }}
+            style={{ marginTop: '0', marginBottom: '0' }}
             testId="clearIndicator"
             variant={ButtonVariant.link}
           />

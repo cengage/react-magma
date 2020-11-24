@@ -5,19 +5,19 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [2.0.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.136...v2.0.0) (2020-11-19)
 
+# <<<<<<< HEAD
+
 **Note:** Version bump only for package react-magma-icons
 
+# [2.0.0-beta.128](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.127...v2.0.0-beta.128) (2020-11-17)
 
+> > > > > > > master
 
-
+**Note:** Version bump only for package react-magma-icons
 
 # [2.0.0-beta.128](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.127...v2.0.0-beta.128) (2020-11-17)
 
 **Note:** Version bump only for package react-magma-icons
-
-
-
-
 
 # [2.0.0-beta.126](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.125...v2.0.0-beta.126) (2020-11-17)
 

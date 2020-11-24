@@ -21,7 +21,7 @@ interface ItemsListProps<T> {
 const NoItemsMessage = styled.span`
   color: ${props => props.theme.colors.neutral04};
   display: block;
-  padding-top: 8px;
+  padding-top: ${props => props.theme.spaceScale.spacing03};
   text-align: center;
 `;
 

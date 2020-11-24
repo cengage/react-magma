@@ -57,13 +57,13 @@ const DatePickerContainer = styled.div`
 
 const DatePickerCalendar = styled.div<{ opened: boolean }>`
   border: 1px solid ${props => props.theme.colors.neutral06};
-  border-radius: 3px;
+  border-radius: ${props => props.theme.borderRadius};
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.15);
   display: ${props => (props.opened ? 'block' : 'none')};
+  margin-top: -${props => props.theme.spaceScale.spacing07};
   opacity: ${props => (props.opened ? '1' : '0')};
-  position: absolute;
   overflow: hidden;
-  top: 70px;
+  position: absolute;
   transition: opacity 0.2s ease-in-out 0s;
   width: 320px;
   z-index: ${props => (props.opened ? '998' : '-1')};
