@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.1.1](http://stash.cengage.com:7999///compare/react-magma-dom@2.1.0...react-magma-dom@2.1.1) (2020-11-24)
+
+**Note:** Version bump only for package react-magma-dom
+
+
+
+
+
 ## [2.1.0](http://stash.cengage.com:7999///compare/react-magma-dom@2.0.0...react-magma-dom@2.1.0) (2020-11-24)
 
 
