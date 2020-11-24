@@ -22,7 +22,7 @@
     "generate-properties": "node scripts/generateJSON.js",
     "copy-changelog": "node scripts/copy-changelog.js",
     "lint": "eslint ./src",
-    "prepublishOnly": "npm run copy-changelog",
+    "__prepublishOnly": "npm run copy-changelog",
     "postbuild": "npm run generate-properties"
   },
   "keywords": [],
