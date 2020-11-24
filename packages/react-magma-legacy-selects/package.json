@@ -1,6 +1,6 @@
 {
   "name": "react-magma-legacy-selects",
-  "version": "2.0.0-beta.115",
+  "version": "1.0.1",
   "license": "ISC",
   "main": "dist/index.js",
   "module": "dist/esm/legacy-selects.esm.js",
@@ -65,5 +65,6 @@
   },
   "dependencies": {
     "@types/uuid": "^8.3.0"
-  }
+  },
+  "gitHead": "cadb4fd5f575f1fbe92c1521bf8228c64b8e2336"
 }
