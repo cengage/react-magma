@@ -11,6 +11,11 @@
     "!dist/reports",
     "lib"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://stash.cengage.com/scm/front/react-magma.git",
+    "directory": "packages/react-magma-dom"
+  },
   "publishConfig": {
     "registry": "http://nexus.mindtap.corp.web/content/repositories/npm.cengage/"
   },

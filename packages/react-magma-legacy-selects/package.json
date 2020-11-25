@@ -20,6 +20,11 @@
     "build-watch": "tsdx watch",
     "lint": "eslint ./src"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://stash.cengage.com/scm/front/react-magma.git",
+    "directory": "packages/react-magma-legacy-selects"
+  },
   "publishConfig": {
     "registry": "http://nexus.mindtap.corp.web/content/repositories/npm.cengage/"
   },

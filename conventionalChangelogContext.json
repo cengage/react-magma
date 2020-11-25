@@ -1,0 +1,6 @@
+{
+  "host":"https://stash.cengage.com",
+  "owner": "projects/FRONT",
+  "repository": "repos/react-magma",
+  "commitUrlFormat": "https://bitbucket.my.domain/projects/{{owner}}/repos/{{repository}}/commits/{{hash}}"
+}
