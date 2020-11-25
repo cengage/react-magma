@@ -1,18 +1,19 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
+import { magma } from 'react-magma-dom';
 
 const SwatchContainer = styled.div`
   width: 200px;
-  margin: 0 20px 20px 0;
-  border: 1px solid #dfdfdf;
-  border-radius: 5px;
+  margin: 0 ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing05} 0;
+  border: 1px solid ${magma.colors.neutral06};
+  border-radius: ${magma.borderRadius};
   overflow: hidden;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 6px 0px;
 
-  @media (max-width: 400px) {
+  @media (max-width: ${magma.breakpoints.small}px) {
     width: 100%;
-    margin-right: 0;
+    margin: ${magma.spaceScale.spacing03};
   }
 `;
 
@@ -22,15 +23,16 @@ const SwatchColor = styled.div`
 `;
 
 const ColorDetails = styled.div`
-  color: #3f3f3f;
-  border-top: 1px solid #dfdfdf;
-  font-size: 13px;
-  padding: 10px 20px;
+  color: ${magma.colors.neutral};
+  border-top: 1px solid ${magma.colors.neutral06};
+  font-size: ${magma.typeScale.size01.fontSize};
+  line-height: ${magma.typeScale.size01.lineHeight};
+  padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05};
   display: flex;
   flex-direction: column;
 
   span {
-    margin-bottom: 5px;
+    margin-bottom: ${magma.spaceScale.spacing02};
   }
 
   span:last-of-type {
