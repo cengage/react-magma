@@ -4184,12 +4184,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 11315,
+          "id": 11316,
           "name": "NavTabChildrenProps"
         },
         {
           "type": "reference",
-          "id": 11581,
+          "id": 11582,
           "name": "NavTabComponentProps"
         }
       ],

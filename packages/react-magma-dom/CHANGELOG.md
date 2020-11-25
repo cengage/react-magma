@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.0](http://stash.cengage.com:7999///compare/react-magma-dom@2.1.1...react-magma-dom@2.2.0) (2020-11-25)
+
+
+### Features
+
+* **component:** spacing updates ([e2ffcaa](http://stash.cengage.com:7999///commit/e2ffcaa3718625a01d8778366c0db13e46c595ac))
+
+
+
 ### [2.1.1](http://stash.cengage.com:7999///compare/react-magma-dom@2.1.0...react-magma-dom@2.1.1) (2020-11-24)
 
 **Note:** Version bump only for package react-magma-dom
