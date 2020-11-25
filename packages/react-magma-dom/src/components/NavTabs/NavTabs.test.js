@@ -4,6 +4,7 @@ import { CheckIcon } from 'react-magma-icons';
 import { NavTabs } from '.';
 import { NavTab } from './NavTab';
 import { render } from '@testing-library/react';
+import { magma } from '../../theme/magma';
 
 describe('NavTabs', () => {
   it('should find element by testId', () => {
@@ -84,7 +85,7 @@ describe('NavTabs', () => {
     expect(container.querySelector('svg')).toBeInTheDocument();
     expect(container.querySelector('span')).toHaveStyleRule(
       'margin',
-      '0 0 5px'
+      `0 0 ${magma.spaceScale.spacing02}`
     );
     expect(getByTestId(testId)).toHaveStyleRule('flex-direction', 'column');
     expect(getByTestId(testId)).toHaveStyleRule('align-items', 'center');
@@ -99,7 +100,7 @@ describe('NavTabs', () => {
 
     expect(container.querySelector('span')).toHaveStyleRule(
       'margin',
-      '0 15px 0 0'
+      `0 ${magma.spaceScale.spacing03} 0 0`
     );
     expect(getByTestId(testId)).not.toHaveStyleRule('flex-direction', 'column');
   });
@@ -118,7 +119,7 @@ describe('NavTabs', () => {
 
     expect(container.querySelector('span')).toHaveStyleRule(
       'margin',
-      '0 15px 0 0'
+      `0 ${magma.spaceScale.spacing03} 0 0`
     );
     expect(getByTestId(testId)).not.toHaveStyleRule('flex-direction', 'column');
   });
@@ -136,7 +137,7 @@ describe('NavTabs', () => {
     );
     expect(container.querySelector('span')).toHaveStyleRule(
       'margin',
-      '5px 0 0'
+      `${magma.spaceScale.spacing02} 0 0`
     );
     expect(getByTestId(testId)).toHaveStyleRule(
       'flex-direction',
@@ -158,7 +159,7 @@ describe('NavTabs', () => {
 
     expect(container.querySelector('span')).toHaveStyleRule(
       'margin',
-      '0 0 0 15px'
+      `0 0 0 ${magma.spaceScale.spacing03}`
     );
     expect(getByTestId(testId)).toHaveStyleRule(
       'flex-direction',

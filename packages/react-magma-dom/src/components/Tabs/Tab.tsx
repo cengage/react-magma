@@ -111,7 +111,8 @@ export const TabStyles = props => css`
     : props.isInverse && !props.isActive
     ? 0.7
     : 1};
-  padding: 13px 20px;
+  padding: ${props.theme.spaceScale.spacing04}
+    ${props.theme.spaceScale.spacing05};
   position: relative;
   pointer-events: ${props.disabled ? 'none' : ''};
   text-align: center;
@@ -175,28 +176,29 @@ function getIconMargin(props) {
 
   switch (props.iconPosition) {
     case TabsIconPosition.left:
-      return '0 15px 0 0';
+      return `0 ${props.theme.spaceScale.spacing03} 0 0`;
     case TabsIconPosition.right:
-      return '0 0 0 15px';
+      return `0 0 0 ${props.theme.spaceScale.spacing03}`;
     case TabsIconPosition.top:
-      return '0 0 5px';
+      return `0 0 ${props.theme.spaceScale.spacing02}`;
     case TabsIconPosition.bottom:
-      return '5px 0 0';
+      return `${props.theme.spaceScale.spacing02} 0 0`;
     default:
-      return '0 0 5px';
+      return `0 0 ${props.theme.spaceScale.spacing02}`;
   }
 }
 
 export const StyledIcon = styled.span<{
   iconPosition: TabsIconPosition;
   isIconOnly?: boolean;
+  theme: ThemeInterface;
 }>`
   display: flex;
   margin: ${props => getIconMargin(props)};
 
   svg {
-    height: 17px;
-    width: 17px;
+    height: 20px;
+    width: 20px;
   }
 `;
 
@@ -270,7 +272,11 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
           theme={theme}
         >
           {icon && (
-            <StyledIcon iconPosition={tabIconPosition} isIconOnly={isIconOnly}>
+            <StyledIcon
+              theme={theme}
+              iconPosition={tabIconPosition}
+              isIconOnly={isIconOnly}
+            >
               {icon}
             </StyledIcon>
           )}

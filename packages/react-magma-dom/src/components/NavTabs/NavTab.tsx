@@ -44,7 +44,15 @@ function instanceOfNavChildrenTab(object: any): object is NavTabChildrenProps {
   return !('component' in object) && 'children' in object;
 }
 
-const StyledTab = styled.a`
+const StyledTab = styled.a<{
+  borderPosition?: any;
+  iconPosition?: TabsIconPosition;
+  isActive?: boolean;
+  isFullWidth?: boolean;
+  isInverse?: boolean;
+  orientation: TabsOrientation;
+  theme: any;
+}>`
   ${TabStyles}
 `;
 
@@ -134,7 +142,9 @@ export const NavTab = React.forwardRef<
           iconPosition={tabIconPosition}
           icon={
             icon && (
-              <StyledIcon iconPosition={tabIconPosition}>{icon}</StyledIcon>
+              <StyledIcon theme={theme} iconPosition={tabIconPosition}>
+                {icon}
+              </StyledIcon>
             )
           }
           isActive={isActive}
@@ -157,7 +167,11 @@ export const NavTab = React.forwardRef<
           theme={theme}
         >
           {icon && (
-            <StyledIcon iconPosition={tabIconPosition} isIconOnly={isIconOnly}>
+            <StyledIcon
+              theme={theme}
+              iconPosition={tabIconPosition}
+              isIconOnly={isIconOnly}
+            >
               {icon}
             </StyledIcon>
           )}
