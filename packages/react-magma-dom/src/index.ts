@@ -117,6 +117,7 @@ export { TimePicker, TimePickerProps } from './components/TimePicker';
 export {
   TypographyProps,
   TypographyColor,
+  TypographyContextVariant,
   TypographyVisualStyle,
 } from './components/Typography';
 export {
