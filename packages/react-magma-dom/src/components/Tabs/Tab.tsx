@@ -232,9 +232,7 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
     const handleClick = (e, index) => {
       changeHandler(e, index);
 
-      if (props.onClick) {
-        props.onClick(e);
-      }
+      props.onClick && typeof props.onClick === 'function' && props.onClick(e);
     };
 
     React.useEffect(() => {
