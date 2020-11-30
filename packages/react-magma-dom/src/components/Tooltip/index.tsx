@@ -223,6 +223,19 @@ const StyledTooltipInner = styled.div<{
 export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   const [isVisible, setIsVisible] = React.useState<boolean>(false);
 
+  React.useEffect(() => {
+    const handleEsc = event => {
+      if (event.keyCode === 27 || event.key === 'Escape') {
+        setIsVisible(false);
+      }
+    };
+    window.addEventListener('keydown', handleEsc);
+
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+    };
+  }, []);
+
   function handleKeyDown(event: React.KeyboardEvent) {
     if (event.key === 'Escape') {
       setIsVisible(false);
