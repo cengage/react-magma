@@ -225,7 +225,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
 
   React.useEffect(() => {
     const handleEsc = event => {
-      if (event.keyCode === 27 || event.key === 'Escape') {
+      if (event.key === 'Escape') {
         setIsVisible(false);
       }
     };
