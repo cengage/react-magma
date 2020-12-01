@@ -4,7 +4,15 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 
 export interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {
+  /**
+   * The color of the spinner border
+   * @default "#006298"
+   */
   color?: string;
+  /**
+   * The height and width of the spinner in pixels
+   * @default 16
+   */
   size?: number;
   testId?: string;
 }
@@ -38,7 +46,7 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
         color={color ? color : theme.colors.primary}
         data-testid={testId}
         ref={ref}
-        size={size ? size : 15}
+        size={size ? size : theme.iconSizes.small}
       />
     );
   }

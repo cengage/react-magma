@@ -2,16 +2,41 @@ import * as React from 'react';
 import { ProgressBar, ProgressBarColor } from '../ProgressBar';
 import { Spinner } from '../Spinner';
 import styled from '@emotion/styled';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { ThemeInterface } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
 
 export interface LoadingIndicatorProps
   extends React.HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
+  /**
+   * @internal
+   */
   css?: any; // Adding css prop to fix emotion error
+  /**
+   * Message displayed for the first five seconds
+   * @default "Loading..."
+   */
   message1?: string;
+  /**
+   * Message displayed for the first five seconds
+   * @default "Thank you for your patience. Still loading..."
+   */
   message2?: string;
+  /**
+   * Message displayed after 15 seconds
+   * @default "Sorry for the delay. This is taking longer than expected."
+   */
   message3?: string;
+  /**
+   * Message displayed for the first five seconds
+   * @default 0
+   */
   percentage?: number;
   testId?: string;
+  /**
+   * Type of loading indictor to display, can be progress bar or spinner
+   * @default LoadingIndicatorType.spinner
+   */
   type?: LoadingIndicatorType;
 }
 
@@ -25,14 +50,13 @@ export interface LoadingIndicatorState {
 }
 
 const StyledLoadingIndicator = styled.div`
-  max-width: 230px;
   text-align: center;
 `;
 
-const MessageContainer = styled.div`
-  font-weight: 600;
-  margin-top: 20px;
-  max-width: 230px;
+const MessageContainer = styled.div<{ theme: ThemeInterface }>`
+  font-size: ${props => props.theme.typeScale.size02.fontSize};
+  line-height: ${props => props.theme.typeScale.size02.lineHeight};
+  margin-top: ${props => props.theme.spaceScale.spacing05};
   min-height: 5em;
   position: relative;
   text-align: center;
@@ -51,6 +75,7 @@ export const LoadingIndicator = React.forwardRef<
 >((props, ref) => {
   const [messageLevel, setMessageLevel] = React.useState<1 | 2 | 3>(1);
 
+  const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
   React.useEffect(() => {
@@ -102,15 +127,15 @@ export const LoadingIndicator = React.forwardRef<
         <ProgressBar
           {...other}
           color={color as ProgressBarColor}
-          height={10}
+          height={12}
           isAnimated
-          isLabelVisible
+          isLoadingIndicator
         />
       ) : (
-        <Spinner {...other} size={50} />
+        <Spinner {...other} size={48} />
       )}
 
-      <MessageContainer>
+      <MessageContainer theme={theme}>
         <Message aria-hidden={messageLevel !== 1} hide={messageLevel !== 1}>
           {message1}
         </Message>
