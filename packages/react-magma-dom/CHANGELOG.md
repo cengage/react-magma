@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.2.1](http://stash.cengage.com:7999///compare/react-magma-dom@2.2.0...react-magma-dom@2.2.1) (2020-12-01)
+
+
+### Bug Fixes
+
+* **dropdown:** export DropdownAlignment and DropdownDropDirection ([458c4b4](http://stash.cengage.com:7999///commit/458c4b4adcbad85a63b1883d5b613cff3cce257d))
+* **typography:** export TypographyContextVariant ([1012171](http://stash.cengage.com:7999///commit/101217160ba2b5bce1e3931d77f39ee77d6f8b64))
+
+
+
 ## [2.2.0](http://stash.cengage.com:7999///compare/react-magma-dom@2.1.1...react-magma-dom@2.2.0) (2020-11-25)
 
 
