@@ -11,7 +11,7 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   color?: ProgressBarColor;
   /**
    * The height in pixels of the progress bar
-   * @default 24
+   * @default 16
    */
   height?: number;
   /**
@@ -78,7 +78,7 @@ const Track = styled.div<ProgressBarProps>`
         : props.theme.colors.neutral04};
   display: flex;
   height: ${props =>
-    props.height ? `${props.height}px` : props.theme.spaceScale.spacing06};
+    props.height ? `${props.height}px` : props.theme.spaceScale.spacing05};
   padding: 1px;
   width: 100%;
 `;
@@ -100,7 +100,7 @@ const Bar = styled.div<ProgressBarProps>`
         ${buildProgressBarBackground(props)} 100%
       );
       background-repeat: no-repeat;
-      background-size: 800px 104px;
+      background-size: 1800px 104px;
       display: inline-block;
       position: relative;
 
@@ -112,11 +112,11 @@ const Bar = styled.div<ProgressBarProps>`
 
       @keyframes placeholderShimmer {
         0% {
-          background-position: -468px 0;
+          background-position: -600px 0;
         }
 
         100% {
-          background-position: 468px 0;
+          background-position: 600px 0;
         }
       }
     `}
