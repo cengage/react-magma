@@ -15,12 +15,40 @@ export enum DropdownAlignment {
 }
 
 export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Index of the item that will active/selected. If none is provided, no item will appear active
+   * @default -1
+   */
   activeIndex?: number;
+  /**
+   * Alignment of the dropdown content
+   * @default `DropdownAlignment.start`
+   */
   alignment?: DropdownAlignment;
+  /**
+   * Position of the dropdown content
+   * @default `DropdownDropDirection.down`
+   */
   dropDirection?: DropdownDropDirection;
+  /**
+   * Max-height of dropdown content
+   * @default 250px
+   */
   maxHeight?: string | number;
+  /**
+   * Function called on dropdown close before focusing the toggle button
+   * @deprecated true
+   */
   onBeforeShiftFocus?: (event: React.SyntheticEvent) => void;
+  /**
+   * Function called when closing the dropdown menu
+   */
+  onClose?: (event: React.SyntheticEvent) => void;
   testId?: string;
+  /**
+   * Width of menu
+   * @default Width of longest menu item
+   */
   width?: string | number;
 }
 
@@ -70,6 +98,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       dropDirection,
       maxHeight,
       onBeforeShiftFocus,
+      onClose,
       testId,
       width,
       ...other
@@ -80,8 +109,6 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     const [activeItemIndex, setActiveItemIndex] = React.useState<number>(
       activeIndex || -1
     );
-
-    const shouldFocusToggleElement = React.useRef<boolean>(true);
 
     const ownRef = React.useRef<any>();
     const toggleRef = React.useRef<HTMLButtonElement>();
@@ -127,15 +154,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         onBeforeShiftFocus(event);
       }
 
-      if (shouldFocusToggleElement.current) {
-        setTimeout(() => {
-          if (toggleRef.current) {
-            toggleRef.current.focus();
-          }
-        }, 0);
-      }
-
-      shouldFocusToggleElement.current = true;
+      onClose && typeof onClose === 'function' && onClose(event);
     }
 
     function getFilteredItem(): [any, number] {
@@ -210,9 +229,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       }, 0);
     }
 
-    function handlePreventMagmaFocus() {
-      shouldFocusToggleElement.current = false;
-    }
+    function handlePreventMagmaFocus() {}
 
     const maxHeightString =
       typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight;
