@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.0.4](http://stash.cengage.com:7999///compare/react-magma-icons@1.0.3...react-magma-icons@1.0.4) (2020-11-24)
+
+## 2.0.0-beta.137 (2020-11-20)
+
+**Note:** Version bump only for package react-magma-icons
+
 # [2.0.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.136...v2.0.0) (2020-11-19)
 
 # <<<<<<< HEAD

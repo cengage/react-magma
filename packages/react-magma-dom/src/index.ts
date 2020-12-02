@@ -38,7 +38,12 @@ export {
   CheckboxProps,
 } from './components/Checkbox';
 export { DatePicker, DatePickerProps } from './components/DatePicker';
-export { Dropdown, DropdownProps } from './components/Dropdown';
+export {
+  Dropdown,
+  DropdownAlignment,
+  DropdownDropDirection,
+  DropdownProps,
+} from './components/Dropdown';
 export { DropdownContent } from './components/Dropdown/DropdownContent';
 export { DropdownDivider } from './components/Dropdown/DropdownDivider';
 export { DropdownHeader } from './components/Dropdown/DropdownHeader';
@@ -117,6 +122,7 @@ export { TimePicker, TimePickerProps } from './components/TimePicker';
 export {
   TypographyProps,
   TypographyColor,
+  TypographyContextVariant,
   TypographyVisualStyle,
 } from './components/Typography';
 export {
