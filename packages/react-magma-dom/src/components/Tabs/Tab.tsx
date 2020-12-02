@@ -229,6 +229,12 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
       isFullWidth,
     } = React.useContext(TabsContext);
 
+    const handleClick = (e, index) => {
+      changeHandler(e, index);
+
+      props.onClick && typeof props.onClick === 'function' && props.onClick(e);
+    };
+
     React.useEffect(() => {
       registerTabButton(buttonRefArray, ownRef);
 
@@ -264,7 +270,7 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
           isActive={isActive}
           isInverse={isInverse}
           isFullWidth={isFullWidth}
-          onClick={e => changeHandler(index, e)}
+          onClick={e => handleClick(index, e)}
           orientation={orientation}
           ref={ref}
           role="tab"

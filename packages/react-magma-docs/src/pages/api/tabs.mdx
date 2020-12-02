@@ -193,7 +193,7 @@ For a custom component you'll receive a `tabsProps` prop that you must spread in
 }
 ```
 
-## Custom Logic
+## Custom Tabs Logic
 
 This is a simple example of Tab Components with custom switching logic
 
@@ -231,6 +231,40 @@ This is a simple example of Tab Components with custom switching logic
     </TabsContainer>
   )
 }
+```
+
+## Custom Tab OnClick
+
+Custom logic can also be added to an individual `Tab`, by using the `onClick` prop.
+
+```.jsx
+() => {
+
+  function customOnClick(index) {
+    console.log('Custom OnClick');
+  }
+
+  return (
+    <TabsContainer activeIndex={1}>
+      <Tabs aria-label="Sample Custom Tab OnClick">
+        <Tab onClick={customOnClick}>Main page</Tab>
+        <Tab>FAQ</Tab>
+        <Tab>About us</Tab>
+      </Tabs>
+
+      <TabPanelsContainer>
+        <TabPanel>
+          <div>Main page</div>
+        </TabPanel>
+        <TabPanel>
+          <div>FAQ</div>
+        </TabPanel>
+        <TabPanel>
+          <div>About us</div>
+        </TabPanel>
+      </TabPanelsContainer>
+    </TabsContainer>
+)}
 ```
 
 ## Disabled Tabs
