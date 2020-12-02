@@ -10,8 +10,9 @@ const StyledButton = styled.div<{ disabled?: boolean; hasError?: boolean }>`
   align-items: center;
   display: flex;
   height: auto;
-  min-height: 40px;
-  padding-left: 4px;
+  min-height: ${props => props.theme.spaceScale.spacing09};
+  padding: 0 ${props => props.theme.spaceScale.spacing03} 0
+    ${props => props.theme.spaceScale.spacing02};
   text-align: left;
 `;
 
@@ -24,7 +25,7 @@ const ChildrenContainer = styled.div`
 
 interface SelectTriggerButtonInterface<T> {
   ariaDescribedBy?: string;
-  children: React.ReactNode[];
+  children: React.ReactNode | React.ReactNode[];
   customComponents?: SelectComponents;
   hasError?: boolean;
   disabled?: boolean;

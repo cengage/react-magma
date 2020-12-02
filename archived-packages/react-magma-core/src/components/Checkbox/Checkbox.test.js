@@ -56,6 +56,28 @@ describe('CheckboxCore', () => {
     expect(newId).toEqual('differentId');
   });
 
+  it('should set the checked value on render with the defaultChecked prop', () => {
+    const { getByTestId } = render(
+      <CheckboxCore defaultChecked={true}>
+        {({ checked }) => <span data-checked={checked} data-testid="target" />}
+      </CheckboxCore>
+    );
+
+    const checked = getByTestId(/target/i).getAttribute('data-checked');
+    expect(checked).toEqual('true');
+  });
+
+  it('should set the checked value on render with the checked prop', () => {
+    const { getByTestId } = render(
+      <CheckboxCore checked={true}>
+        {({ checked }) => <span data-checked={checked} data-testid="target" />}
+      </CheckboxCore>
+    );
+
+    const checked = getByTestId(/target/i).getAttribute('data-checked');
+    expect(checked).toEqual('true');
+  });
+
   it('should update the checked value on rerender with a change in prop checked', () => {
     const { getByTestId, rerender } = render(
       <CheckboxCore checked={false}>

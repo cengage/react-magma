@@ -3,6 +3,7 @@ import { HiddenStyles } from '../../utils/UtilityStyles';
 import { InputMessage } from '../Input/InputMessage';
 import styled from '../../theme/styled';
 import { omit, useGenerateId } from '../../utils';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   containerStyle?: React.CSSProperties;
@@ -30,7 +31,7 @@ export const FormGroupContext = React.createContext<FormGroupContextInterface>({
 export const FormGroupLabel = styled.label`
   display: block;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: ${props => props.theme.spaceScale.spacing02};
   width: 100%;
 `;
 
@@ -58,6 +59,7 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
     const other = omit(['id'], rest);
 
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+    const theme = React.useContext(ThemeContext);
 
     return (
       <div
@@ -82,7 +84,7 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
           )}
 
           {labelText && !isTextVisuallyHidden && (
-            <FormGroupLabel id={id} style={labelStyle}>
+            <FormGroupLabel id={id} style={labelStyle} theme={theme}>
               {labelText}
             </FormGroupLabel>
           )}

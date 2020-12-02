@@ -278,7 +278,6 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
             icon={<CrossIcon size={10} />}
             onClick={defaultHandleClearIndicatorClick}
             size={ButtonSize.small}
-            style={{ margin: '0 5px' }}
             variant={ButtonVariant.link}
           />
         )}

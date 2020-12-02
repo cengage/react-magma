@@ -3,6 +3,7 @@ import styled from '../../theme/styled';
 import { css } from '@emotion/core';
 import { Card } from '../Card';
 import { DropdownContext, DropdownAlignment, DropdownDropDirection } from '.';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 const StyledCard = styled(Card)<{
   alignment?: DropdownAlignment;
@@ -12,11 +13,12 @@ const StyledCard = styled(Card)<{
   width?: string;
 }>`
   display: ${props => (props.isOpen ? 'block' : 'none')};
-  left: 5px;
+  left: ${props => props.theme.spaceScale.spacing02};
   max-height: ${props => (props.maxHeight ? props.maxHeight : '250px')};
   opacity: ${props => (props.isOpen ? '1' : '0')};
   outline: 0;
   overflow-y: auto;
+  padding: ${props => props.theme.spaceScale.spacing03} 0;
   position: absolute;
   transition: opacity 0.3s;
   white-space: nowrap;
@@ -41,14 +43,14 @@ const StyledCard = styled(Card)<{
     css`
       left: auto;
       right: 100%;
-      top: 5px;
+      top: ${props.theme.spaceScale.spacing02};
     `}
 
   ${props =>
     props.dropDirection === 'right' &&
     css`
       left: 100%;
-      top: 5px;
+      top: ${props.theme.spaceScale.spacing02};
     `}
 
   ${props =>
@@ -57,20 +59,20 @@ const StyledCard = styled(Card)<{
     props.dropDirection !== 'right' &&
     css`
       left: auto;
-      right: 5px;
+      right: ${props.theme.spaceScale.spacing02};
     `}
 
  ${props =>
     props.alignment === 'end' &&
     (props.dropDirection === 'left' || props.dropDirection === 'right') &&
     css`
-      bottom: 5px;
+      bottom: ${props.theme.spaceScale.spacing02};
       top: auto;
     `}
 `;
 
 const StyledDiv = styled.div`
-  padding: 5px 0;
+  padding: ${props => props.theme.spaceScale.spacing02} 0;
 `;
 
 export const DropdownContent: React.FunctionComponent = ({
@@ -78,6 +80,7 @@ export const DropdownContent: React.FunctionComponent = ({
   ...other
 }) => {
   const context = React.useContext(DropdownContext);
+  const theme = React.useContext(ThemeContext);
 
   return (
     <StyledCard
@@ -89,6 +92,7 @@ export const DropdownContent: React.FunctionComponent = ({
       maxHeight={context.maxHeight}
       tabIndex={-1}
       testId="dropdownContent"
+      theme={theme}
       width={context.width}
       onBlur={context.handleMenuBlur}
     >
@@ -96,6 +100,7 @@ export const DropdownContent: React.FunctionComponent = ({
         aria-labelledby={context.dropdownButtonId.current}
         ref={context.menuRef}
         role="menu"
+        theme={theme}
       >
         {children}
       </StyledDiv>

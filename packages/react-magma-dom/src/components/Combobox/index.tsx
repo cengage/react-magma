@@ -38,7 +38,6 @@ export interface ComboboxInterface<T extends SelectOptions>
     updateInputItems?: React.Dispatch<React.SetStateAction<T[]>>
   ) => void;
   onItemCreated?: (newItem: T) => void;
-  placeholder?: string;
   toggleButtonRef?: React.Ref<HTMLButtonElement>;
 }
 

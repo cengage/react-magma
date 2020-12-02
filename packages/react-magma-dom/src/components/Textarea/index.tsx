@@ -48,6 +48,10 @@ export interface TextareaProps
    * Style properties for the textarea element
    */
   textareaStyle?: React.CSSProperties;
+  /**
+   * Value for the textarea
+   */
+  value?: string | ReadonlyArray<string> | number;
 }
 
 const Container = styled.div`

@@ -171,7 +171,7 @@ describe('Tab', () => {
     expect(container.querySelector('svg')).toBeInTheDocument();
     expect(container.querySelector('span')).toHaveStyleRule(
       'margin',
-      '0 0 5px'
+      `0 0 ${magma.spaceScale.spacing02}`
     );
     expect(getByTestId(testId)).toHaveStyleRule('flex-direction', 'column');
     expect(getByTestId(testId)).toHaveStyleRule('align-items', 'center');
@@ -186,7 +186,7 @@ describe('Tab', () => {
 
     expect(container.querySelector('span')).toHaveStyleRule(
       'margin',
-      '0 15px 0 0'
+      `0 ${magma.spaceScale.spacing03} 0 0`
     );
     expect(getByTestId(testId)).not.toHaveStyleRule('flex-direction', 'column');
   });
@@ -205,7 +205,7 @@ describe('Tab', () => {
 
     expect(container.querySelector('span')).toHaveStyleRule(
       'margin',
-      '0 15px 0 0'
+      `0 ${magma.spaceScale.spacing03} 0 0`
     );
     expect(getByTestId(testId)).not.toHaveStyleRule('flex-direction', 'column');
   });
@@ -222,7 +222,10 @@ it('should show icon in bottom position', () => {
       </Tab>
     </Tabs>
   );
-  expect(container.querySelector('span')).toHaveStyleRule('margin', '5px 0 0');
+  expect(container.querySelector('span')).toHaveStyleRule(
+    'margin',
+    `${magma.spaceScale.spacing02} 0 0`
+  );
   expect(getByTestId(testId)).toHaveStyleRule(
     'flex-direction',
     'column-reverse'
@@ -243,7 +246,7 @@ it('should show icon in right position', () => {
 
   expect(container.querySelector('span')).toHaveStyleRule(
     'margin',
-    '0 0 0 15px'
+    `0 0 0 ${magma.spaceScale.spacing03}`
   );
   expect(getByTestId(testId)).toHaveStyleRule('flex-direction', 'row-reverse');
 });

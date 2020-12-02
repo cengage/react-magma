@@ -30,6 +30,7 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
     onKeyPress,
     onKeyUp,
     onRemoveSelectedItem,
+    placeholder,
   } = props;
 
   function checkSelectedItemValidity(itemToCheck: T) {
@@ -166,33 +167,36 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
         isInverse={isInverse}
         style={inputStyle}
       >
-        {selectedItems &&
-          selectedItems.map((multiSelectedItem, index) => {
-            const multiSelectedItemString = itemToString(multiSelectedItem);
-            return (
-              <SelectedItemButton
-                aria-label={i18n.multiSelect.selectedItemButtonAriaLabel.replace(
-                  /\{selectedItem\}/g,
-                  multiSelectedItemString
-                )}
-                key={`selected-item-${index}`}
-                {...getSelectedItemProps({
-                  selectedItem: multiSelectedItem,
-                  index,
-                })}
-                onClick={event =>
-                  handleRemoveSelectedItem(event, multiSelectedItem)
-                }
-                onFocus={() => setActiveIndex(index)}
-                theme={theme}
-              >
-                {multiSelectedItemString}
-                <IconWrapper>
-                  <CrossIcon size={8} />
-                </IconWrapper>
-              </SelectedItemButton>
-            );
-          })}
+        {selectedItems && selectedItems.length > 0
+          ? selectedItems.map((multiSelectedItem, index) => {
+              const multiSelectedItemString = itemToString(multiSelectedItem);
+              return (
+                <SelectedItemButton
+                  aria-label={i18n.multiSelect.selectedItemButtonAriaLabel.replace(
+                    /\{selectedItem\}/g,
+                    multiSelectedItemString
+                  )}
+                  key={`selected-item-${index}`}
+                  {...getSelectedItemProps({
+                    selectedItem: multiSelectedItem,
+                    index,
+                  })}
+                  onClick={event =>
+                    handleRemoveSelectedItem(event, multiSelectedItem)
+                  }
+                  onFocus={() => setActiveIndex(index)}
+                  theme={theme}
+                >
+                  {multiSelectedItemString}
+                  <IconWrapper>
+                    <CrossIcon size={8} />
+                  </IconWrapper>
+                </SelectedItemButton>
+              );
+            })
+          : typeof placeholder === 'string'
+          ? placeholder
+          : i18n.multiSelect.placeholder}
       </SelectTriggerButton>
       <ItemsList
         getItemProps={getItemProps}

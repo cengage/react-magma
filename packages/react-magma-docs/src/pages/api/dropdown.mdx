@@ -17,11 +17,8 @@ import {
   DropdownMenuItem,
   DropdownSplitButton,
   DropdownButton,
-  FormGroup,
   Input,
   PasswordInput,
-  Radio,
-  RadioGroup,
   magma,
   Modal,
 } from 'react-magma-dom';
@@ -192,9 +189,9 @@ The items accept an `onClick` event. The `disabled` prop can be used on an item 
 <Dropdown>
   <DropdownButton>Dropdown Menu Items</DropdownButton>
   <DropdownContent>
-    <DropdownMenuItem  onClick={()=>{alert('Item 1 clicked')}}>Menu item 1</DropdownMenuItem>
-    <DropdownMenuItem  disabled onClick={()=>{alert('Item 2 clicked')}}>Menu item 2</DropdownMenuItem>
-    <DropdownMenuItem  onClick={()=>{alert('Item 3 clicked')}}>Menu item 3</DropdownMenuItem>
+    <DropdownMenuItem onClick={()=>{alert('Item 1 clicked')}}>Menu item 1</DropdownMenuItem>
+    <DropdownMenuItem disabled onClick={()=>{alert('Item 2 clicked')}}>Menu item 2</DropdownMenuItem>
+    <DropdownMenuItem onClick={()=>{alert('Item 3 clicked')}}>Menu item 3</DropdownMenuItem>
   </DropdownContent>
 </Dropdown>
 ```
@@ -243,18 +240,20 @@ The `icon` prop can be used to specify an icon for the `DropdownMenuItem` elemen
 
 ## Dropdown with Form
 
-Dropdowns can contain elements other than Dropdown Menu Items. The standard keyboard behavior would apply in these cases.
+Dropdowns can contain elements other than `DropdownMenuItem` components.
+The following examples include form elements, styled with inline styles including variables from the Magma theme.
+
+While users may navigate between `DropdownMenuItem` components using up and down arrow keys,
+browser default keyboard behavior applies to other content.
 
 ```.jsx
 () => {
-  const iconStyle = { marginRight: '10px' };
-
   return (
     <>
-      <Dropdown width='300px' maxHeight='600px'>
+      <Dropdown width='300px'>
         <DropdownButton>Dropdown with Login Form</DropdownButton>
         <DropdownContent>
-          <form style={{padding: '20px'}}>
+          <form style={{ margin: 0, padding: magma.spaceScale.spacing05}}>
             <Input type="email" labelText="Email Address" />
             <PasswordInput labelText="Password" />
             <div style={{textAlign: 'center'}}>
@@ -264,7 +263,7 @@ Dropdowns can contain elements other than Dropdown Menu Items. The standard keyb
             </div>
           </form>
           <DropdownDivider />
-          <div style={{textAlign: 'center', padding: '20px'}}>
+          <div style={{textAlign: 'center', padding: magma.spaceScale.spacing05}}>
             <p>
               Don't have an account?
               <br/>
@@ -273,22 +272,16 @@ Dropdowns can contain elements other than Dropdown Menu Items. The standard keyb
           </div>
         </DropdownContent>
       </Dropdown>
-      <Dropdown maxHeight='600px' width='300px'>
+      <Dropdown width='300px'>
         <DropdownButton>Dropdown with Form 2</DropdownButton>
         <DropdownContent>
-          <form style={{margin: '0 0 5px', color: magma.colors.neutral03}}>
-            <DropdownHeader id='checkboxGroup'>Checkbox Group Label</DropdownHeader>
-            <FormGroup labelledById='checkboxGroup'>
-              <Checkbox labelText='Option number one with a longer label' />
+          <DropdownHeader id='checkboxGroup'>Checkbox Group Label</DropdownHeader>
+          <form style={{ color: magma.colors.neutral03, margin: 0,  paddingLeft: magma.spaceScale.spacing05, paddingRight: magma.spaceScale.spacing05 }}>
+            <div role="group" aria-labelledby='checkboxGroup'>
+              <Checkbox labelText='Option 1' />
               <Checkbox labelText='Option 2' />
-            </FormGroup>
-            <DropdownDivider />
-            <DropdownHeader id='radioGroup'>Radio Group Label</DropdownHeader>
-            <RadioGroup labelledById='radioGroup' name='radioGroupExample' value='1'>
-              <Radio labelText='Option 1' value='1' />
-              <Radio labelText='Option 2' value='2' />
-              <Radio labelText='Option 3' value='3' />
-            </RadioGroup>
+              <Checkbox labelText='Option 3' />
+            </div>
           </form>
         </DropdownContent>
       </Dropdown>
@@ -610,12 +603,9 @@ export default props => (
       DropdownMenuItem,
       DropdownSplitButton,
       DropdownButton,
-      FormGroup,
       Input,
       MenuIcon,
       PasswordInput,
-      Radio,
-      RadioGroup,
       magma,
       Modal,
     }}

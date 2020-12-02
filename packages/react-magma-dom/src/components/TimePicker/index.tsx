@@ -21,6 +21,11 @@ export interface TimePickerProps {
    */
   errorMessage?: React.ReactNode;
   /**
+   * This is internal to stay consistent with our props tables and our messaging around spreading default props to elements.
+   * @internal
+   */
+  id?: string;
+  /**
    * Content of the helper message
    */
   helperMessage?: React.ReactNode;
@@ -45,6 +50,10 @@ export interface TimePickerProps {
    * The stepping interval for the minutes input
    */
   minutesStep?: number;
+  /**
+   * Full time value passed in and converted to use in hour, minute, and AM/PM fields
+   */
+  value?: string;
   /**
    * Function called when the component is changed to a new time
    */

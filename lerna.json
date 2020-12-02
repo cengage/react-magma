@@ -7,7 +7,18 @@
   "command": {
     "bootstrap": {
       "forceLocal": true
+    },
+    "publish": {
+      "allowBranch": ["master", "dev", "hotfix/*"],
+      "preDistTag": "next",
+      "message": "chore(release): publish",
+      "registry": "http://nexus.mindtap.corp.web/content/repositories/npm.cengage/"
+    },
+    "version": {
+      "changelogPreset": "conventionalcommits",
+      "conventionalCommits": true
     }
   },
-  "version": "2.0.0-beta.132"
+  "version": "independent",
+  "granularPathspec": false
 }
