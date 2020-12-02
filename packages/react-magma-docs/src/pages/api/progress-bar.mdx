@@ -67,10 +67,16 @@ The default value is `primary` which renders as `#006298`, or `magma.colors.prim
 
 ## Height
 
-The `height` prop can be used to set the height of the progress bar in pixels. The default value is 16.
+The `height` prop can be used to set the height of the progress bar. Can be a string or a number; if a number is provided the height will be in pixels.
+
+The default value is '16px'.
 
 ```.jsx
-<ProgressBar height={10} percentage={25} />
+<>
+  <ProgressBar height={10} percentage={25} />
+  <br/>
+  <ProgressBar height="2em" percentage={25} />
+</>
 ```
 
 ## Inverse

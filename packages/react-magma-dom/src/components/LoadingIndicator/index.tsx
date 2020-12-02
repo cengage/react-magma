@@ -127,12 +127,12 @@ export const LoadingIndicator = React.forwardRef<
         <ProgressBar
           {...other}
           color={color as ProgressBarColor}
-          height={12}
+          height={theme.spaceScale.spacing04}
           isAnimated
           isLoadingIndicator
         />
       ) : (
-        <Spinner {...other} size={48} />
+        <Spinner {...other} size={theme.spaceScale.spacing10} />
       )}
 
       <MessageContainer theme={theme}>

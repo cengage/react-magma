@@ -240,3 +240,7 @@ export function useForceUpdate() {
   }, []);
   return update;
 }
+
+export function stringIncludesUnit(x) {
+  return x.includes('px') || x.includes('em') || x.includes('%');
+}

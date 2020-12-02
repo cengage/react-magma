@@ -2,6 +2,7 @@ import * as React from 'react';
 import { css } from '@emotion/core';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { stringIncludesUnit } from '../../utils';
 
 export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -10,10 +11,10 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   color?: ProgressBarColor;
   /**
-   * The height in pixels of the progress bar
+   * The height of the progress bar. Can be a string or number; if number is provided height is in px
    * @default 16
    */
-  height?: number;
+  height?: number | string;
   /**
    * If true, the progress bar with have a shimmer animation
    * @default false
@@ -77,8 +78,7 @@ const Track = styled.div<ProgressBarProps>`
         ? props.theme.colors.neutral08
         : props.theme.colors.neutral04};
   display: flex;
-  height: ${props =>
-    props.height ? `${props.height}px` : props.theme.spaceScale.spacing05};
+  height: ${props => props.height};
   padding: 1px;
   width: 100%;
 `;
@@ -153,14 +153,21 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
 
     const theme = React.useContext(ThemeContext);
 
+    const heightString = height
+      ? typeof height === 'number' ||
+        (typeof height === 'string' && !stringIncludesUnit(height))
+        ? `${height}px`
+        : height
+      : theme.spaceScale.spacing05;
+
     return (
-      <Container {...other} isLoadingIndicator={!!isLoadingIndicator}>
+      <Container {...other} isLoadingIndicator={isLoadingIndicator}>
         {isLoadingIndicator && (
           <TopPercentage theme={theme}>{percentageValue}%</TopPercentage>
         )}
         <Track
           data-testid={testId}
-          height={height}
+          height={heightString}
           isInverse={isInverse}
           ref={ref}
           theme={theme}

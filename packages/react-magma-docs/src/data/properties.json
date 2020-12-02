@@ -4560,10 +4560,10 @@
         "name": "height",
         "required": false,
         "type": {
-          "name": "number"
+          "name": "function"
         },
-        "description": "The height in pixels of the progress bar",
-        "defaultValue": "24"
+        "description": "The height of the progress bar. Can be a string or number; if number is provided height is in px",
+        "defaultValue": "16"
       },
       "isAnimated": {
         "name": "isAnimated",
@@ -6516,9 +6516,9 @@
         "name": "size",
         "required": false,
         "type": {
-          "name": "number"
+          "name": "function"
         },
-        "description": "The height and width of the spinner in pixels",
+        "description": "The height and width of the spinner.  Can be a string or number; if number is provided, the size is in px.",
         "defaultValue": "16"
       },
       "testId": {

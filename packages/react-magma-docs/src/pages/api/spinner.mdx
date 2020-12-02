@@ -38,10 +38,16 @@ The default is `magma.colors.primary` (`#006298`), but can be customized using t
 
 ## Size
 
-The default size is 15px, but can be customized using the `size` prop, which takes a number of pixels.
+The `size` prop can be used to set the height and width of the spinner. Can be a string or a number; if a number is provided the height and width will be in pixels.
+
+The default value is '16px'.
 
 ```.jsx
-<Spinner size={30} />
+<>
+  <Spinner size={30} />
+  <br/>
+  <Spinner size="3em" />
+</>
 ```
 
 ## Spinner Props
