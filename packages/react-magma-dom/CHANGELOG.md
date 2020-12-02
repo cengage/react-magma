@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.2.2-alpha.0](http://stash.cengage.com:7999///compare/react-magma-dom@2.2.1...react-magma-dom@2.2.2-alpha.0) (2020-12-02)
+
+
+### Bug Fixes
+
+* **tooltip:** added event watcher on esc key ([3060740](http://stash.cengage.com:7999///commit/3060740a8f23f68f7dd441b73ddb6d01e668748c))
+* **tooltip:** removed deprciated keyCode ([3ad9cb9](http://stash.cengage.com:7999///commit/3ad9cb9b0cd9b9ccd01431b04862ffbfe174df6c))
+
+
+
 ### [2.2.1](http://stash.cengage.com:7999///compare/react-magma-dom@2.2.0...react-magma-dom@2.2.1) (2020-12-01)
 
 
