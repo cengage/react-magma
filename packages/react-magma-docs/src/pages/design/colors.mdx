@@ -6,15 +6,15 @@ order: 1
 
 import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
-
 import ColorSwatch from '../../components/color-swatch';
-
 import { magma, Paragraph } from 'react-magma-dom';
+import DocsHeading from '../../components/docs-heading';
 
-# Color
+<DocsHeading type="design">Color</DocsHeading>
 
 <Paragraph visualStyle="bodyLarge">
-  Color helps express hierarchy, establish brand presence, give meaning, and indicate element states.
+  Color helps express hierarchy, establish brand presence, give meaning, and
+  indicate element states.
 </Paragraph>
 
 ## Color Palette
@@ -102,8 +102,7 @@ Our blues are just like us: confident, cool and collected. They also, just like 
 
 ### Feedback
 
-Feedback colors should be used to reinforce positive or negative feedback to users.  The `successInverse` and `dangerInverse` are designed to be used against dark backgrounds.
-
+Feedback colors should be used to reinforce positive or negative feedback to users. The `successInverse` and `dangerInverse` are designed to be used against dark backgrounds.
 
 <div class="swatch-rows">
   <ColorSwatch color={magma.colors.success}>
@@ -122,7 +121,7 @@ Feedback colors should be used to reinforce positive or negative feedback to use
     <span>rgb(72,162,0)</span>
     <span>3.3:1</span>
   </ColorSwatch>
-   <ColorSwatch color={magma.colors.successInverse}>
+  <ColorSwatch color={magma.colors.successInverse}>
     <span>
       <strong>successInverse</strong>
     </span>
@@ -138,7 +137,7 @@ Feedback colors should be used to reinforce positive or negative feedback to use
     <span>rgb(198,29,35)</span>
     <span>5.8:1</span>
   </ColorSwatch>
-   <ColorSwatch color={magma.colors.dangerInverse}>
+  <ColorSwatch color={magma.colors.dangerInverse}>
     <span>
       <strong>dangerInverse</strong>
     </span>

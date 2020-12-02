@@ -22,6 +22,7 @@ const Container = styled.div`
   @media (min-width: ${magma.breakpoints.small}px) {
     align-items: center;
     flex-direction: row;
+    margin-bottom: 0;
   }
 `;
 
@@ -37,11 +38,11 @@ const DocsHeading = ({ children, to, type }) => (
         noMargins
         visualStyle={TypographyVisualStyle.heading2XSmall}
       >
-        {type === 'design' ? 'Component API' : 'Design Guidelines'}
+        {type === 'api' ? 'Component API' : 'Design Guidelines'}
       </Paragraph>
       <Heading level={1}>{children}</Heading>
     </div>
-    {type === 'design' && to && (
+    {type === 'api' && to && (
       <Hyperlink color="secondary" styledAs="Button" to={to}>
         {linkProps => (
           <Link {...linkProps}>
@@ -52,7 +53,7 @@ const DocsHeading = ({ children, to, type }) => (
       </Hyperlink>
     )}
 
-    {type === 'code' && to && (
+    {type === 'design' && to && (
       <Hyperlink color="secondary" styledAs="Button" to={to}>
         {linkProps => (
           <Link {...linkProps}>
@@ -68,7 +69,7 @@ const DocsHeading = ({ children, to, type }) => (
 DocsHeading.propTypes = {
   children: PropTypes.node.isRequired,
   to: PropTypes.string,
-  type: PropTypes.oneOf(['code', 'design']),
+  type: PropTypes.oneOf(['api', 'design']).isRequired,
 };
 
 export default DocsHeading;
