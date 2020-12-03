@@ -14,7 +14,7 @@ import { IconButton } from '../IconButton';
 import { CrossIcon } from 'react-magma-icons';
 import { Heading } from '../Heading';
 import { TypographyVisualStyle } from '../Typography';
-
+import { ThemeInterface } from '../../theme/magma';
 import { omit, useGenerateId, usePrevious } from '../../utils';
 
 export enum ModalSize {
@@ -36,7 +36,7 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   onEscKeyDown?: (event: KeyboardEvent) => void;
   size?: ModalSize;
   testId?: string;
-  theme?: any;
+  theme?: ThemeInterface;
 }
 
 const ModalContainer = styled.div`
@@ -90,7 +90,10 @@ const ModalContent = styled.div<ModalProps>`
   border-radius: ${props => props.theme.borderRadius};
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   color: ${props => props.theme.colors.neutral};
-  margin: ${props => props.theme.spaceScale.spacing03};
+  margin: ${props =>
+    props.size === 'small'
+      ? `${props.theme.spaceScale.spacing03} auto`
+      : props.theme.spaceScale.spacing03};
   position: relative;
   z-index: 1000;
 
@@ -129,26 +132,32 @@ const ModalContent = styled.div<ModalProps>`
 
   @media (min-width: ${props => props.theme.breakpoints.medium}px) {
     margin: ${props =>
-      props.size !== 'large' ? '30px auto' : props.theme.spaceScale.spacing03};
+      props.size !== 'large'
+        ? `${props.theme.spaceScale.spacing09} auto`
+        : props.theme.spaceScale.spacing03};
   }
 
   @media (min-width: 920px) {
-    margin: 30px auto;
+    margin: ${props => props.theme.spaceScale.spacing09} auto;
   }
 `;
 
-const ModalHeader = styled.div<{ theme?: any }>`
+const ModalHeader = styled.div<{ theme?: ThemeInterface }>`
   padding: ${props => props.theme.spaceScale.spacing05}
-    ${props => props.theme.spaceScale.spacing06} 0
-    ${props => props.theme.spaceScale.spacing06};
-  @media (max-width: 600px) {
+    ${props => props.theme.spaceScale.spacing05} 0
+    ${props => props.theme.spaceScale.spacing05};
+  @media (min-width: ${props => props.theme.breakpoints.small}px) {
     padding: ${props => props.theme.spaceScale.spacing03}
-      ${props => props.theme.spaceScale.spacing05} 0
-      ${props => props.theme.spaceScale.spacing05};
+      ${props => props.theme.spaceScale.spacing06} 0
+      ${props => props.theme.spaceScale.spacing06};
   }
 `;
 
-const H1 = styled(Heading)`
+const H1 = styled(Heading)<{ theme?: ThemeInterface }>`
+  font-size: ${props =>
+    props.theme.typographyVisualStyles.headingSmall.desktop.fontSize};
+  line-height: ${props =>
+    props.theme.typographyVisualStyles.headingSmall.desktop.lineHeight};
   margin: 0;
   padding-right: 50px;
 `;
@@ -163,10 +172,10 @@ const CloseBtn = styled.span`
     width: 15px;
   }
 `;
-const ModalBody = styled.div<{ theme?: any }>`
-  padding: ${props => props.theme.spaceScale.spacing06};
+const ModalBody = styled.div<{ theme?: ThemeInterface }>`
+  padding: ${props => props.theme.spaceScale.spacing05};
 
-  @media (max-width: 600px) {
+  @media (min-width: ${props => props.theme.breakpoints.small}px) {
     padding: ${props => props.theme.spaceScale.spacing05};
   }
 `;
@@ -377,6 +386,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                         ref={headingRef}
                         visualStyle={TypographyVisualStyle.headingSmall}
                         tabIndex={-1}
+                        theme={theme}
                       >
                         {header}
                       </H1>
