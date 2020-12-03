@@ -34,6 +34,7 @@ export interface InternalSelectInterface {
   messageStyle?: React.CSSProperties;
   name?: string;
   placeholder?: string;
+  renderItem?: (options: any) => React.ReactNode;
   testId?: string;
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { I18nContext } from '../../i18n';
 import { StyledCard, StyledList, StyledItem } from './shared';
 import {
   UseSelectGetMenuPropsOptions,
@@ -16,6 +17,7 @@ interface ItemsListProps<T> {
   items: T[];
   itemToString: (item: T) => string;
   menuStyle?: React.CSSProperties;
+  renderItem?: (options: any) => React.ReactNode;
 }
 
 const NoItemsMessage = styled.span`
@@ -24,6 +26,10 @@ const NoItemsMessage = styled.span`
   padding-top: ${props => props.theme.spaceScale.spacing03};
   text-align: center;
 `;
+
+function defaultRenderItem({ itemString, ...props }) {
+  return <StyledItem {...props}>{itemString}</StyledItem>;
+}
 
 export function ItemsList<T>(props: ItemsListProps<T>) {
   const {
@@ -34,9 +40,11 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
     highlightedIndex,
     getItemProps,
     menuStyle,
+    renderItem,
   } = props;
 
   const theme = React.useContext(ThemeContext);
+  const i18n = React.useContext(I18nContext);
 
   const hasItems = items && items.length > 0;
 
@@ -48,20 +56,25 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
             const itemString = instanceOfToBeCreatedItemObject(item)
               ? item.label
               : itemToString(item);
-            return (
-              <StyledItem
-                key={`${itemString}${index}`}
-                isFocused={highlightedIndex === index}
-                {...getItemProps({ item, index })}
-                theme={theme}
-              >
-                {itemString}
-              </StyledItem>
-            );
+
+            const itemProps = {
+              key: `${itemString}${index}`,
+              isFocused: highlightedIndex === index,
+              item,
+              itemString,
+              theme,
+              ...getItemProps({ item, index }),
+            };
+
+            return renderItem && typeof renderItem === 'function'
+              ? renderItem(itemProps)
+              : defaultRenderItem(itemProps);
           })
         ) : (
           <StyledItem tabIndex={-1}>
-            <NoItemsMessage theme={theme}>No options</NoItemsMessage>
+            <NoItemsMessage theme={theme}>
+              {i18n.emptyItemsListText}
+            </NoItemsMessage>
           </StyledItem>
         )}
       </StyledList>

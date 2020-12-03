@@ -44,6 +44,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
     onIsOpenChange,
     onItemCreated,
     placeholder,
+    renderItem,
     selectedItem: passedInSelectedItem,
     toggleButtonRef,
   } = props;
@@ -290,6 +291,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
         items={displayItems}
         itemToString={itemToString}
         menuStyle={menuStyle}
+        renderItem={renderItem}
       />
     </SelectContainer>
   );

@@ -81,6 +81,40 @@ describe('Combobox', () => {
     expect(getByText(items[0].representation)).toBeInTheDocument();
   });
 
+  it('should render custom item component', () => {
+    const labelText = 'Label';
+    const testId = 'test';
+    const items = [
+      { id: '0', label: 'Red', value: 'red' },
+      { id: '1', label: 'Blue', value: 'blue' },
+      { id: '2', label: 'Green', value: 'green' },
+    ];
+    const renderItem = props => {
+      const { isFocused, item, itemString, ...other } = props;
+
+      return (
+        <li {...other} data-testid={item.id}>
+          {itemString}
+        </li>
+      );
+    };
+    const { getByLabelText, getByText, getByTestId } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        renderItem={renderItem}
+      />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+    fireEvent.click(renderedCombobox);
+
+    expect(getByText(items[0].label)).toBeInTheDocument();
+    expect(getByTestId(items[0].id)).toBeInTheDocument();
+  });
+
   it('should allow for selection of multiple items', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];

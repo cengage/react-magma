@@ -36,6 +36,7 @@ export function Select<T>(props: SelectInterface<T>) {
     onKeyPress,
     onKeyUp,
     placeholder,
+    renderItem,
     selectedItem: passedInSelectedItem,
   } = props;
 
@@ -189,6 +190,7 @@ export function Select<T>(props: SelectInterface<T>) {
         items={items}
         itemToString={itemToString}
         menuStyle={menuStyle}
+        renderItem={renderItem}
       />
     </SelectContainer>
   );

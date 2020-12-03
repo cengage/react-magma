@@ -17,6 +17,7 @@ import { SimplePropsTable } from '../../components/props-table';
 import { Link } from 'gatsby';
 import { v4 as uuid } from 'uuid';
 import DocsHeading from '../../components/docs-heading';
+import styled from '@emotion/styled';
 
 <DocsHeading to="/design/select/" type="design">
   Combobox
@@ -913,6 +914,56 @@ interface CustomComboboxItem {
 }
 ```
 
+## Custom Item Render
+
+```.jsx
+() => {
+  const CustomStyledItem = styled.li(props => ({
+    alignSelf: 'center',
+    background: props.isFocused ? props.theme.colors.neutral : 'transparent',
+    borderColor: props.isFocused ? props.theme.colors.pop : 'transparent',
+    lineHeight: '24px',
+    margin: '0',
+    padding: '8px 16px',
+    "&::before": {
+      content: '""',
+      display: 'inline-block',
+      width: '15px',
+      height: '15px',
+      marginRight: '5px',
+      background: props.item.hex
+    }
+  }));
+
+  function itemToString(item) {
+    return item ? item.representation : ''
+  }
+
+  function renderItem(props) {
+    const { itemString, ...other } = props;
+    return (
+      <CustomStyledItem {...other}>
+        {itemString}
+      </CustomStyledItem>
+    )
+  }
+
+  return (
+    <Combobox
+      disableCreateItem
+      labelText="Combobox With Custom Item Render"
+      defaultItems={[
+        { id: 0, name: 'red', representation: 'Red', hex: '#FF0000' },
+        { id: 1, name: 'blue', representation: 'Blue', hex: '#0000FF' },
+        { id: 2, name: 'green', representation: 'Green', hex: '#008000' }
+      ]}
+      itemToString={itemToString}
+      renderItem={renderItem}
+    />
+  )
+}
+```
+
 ## Custom Components
 
 Out of the box, the `Combobox` uses React Magma-styled iconography for the button used to clear the selection, the caret for the dropdown, and the loading animation.
@@ -1298,6 +1349,7 @@ export default props => (
   <ScopeableLayout
     {...props}
     components={{
+      styled,
       Card,
       CardBody,
       Combobox,

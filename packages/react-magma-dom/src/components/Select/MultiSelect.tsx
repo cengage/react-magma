@@ -31,6 +31,7 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
     onKeyUp,
     onRemoveSelectedItem,
     placeholder,
+    renderItem,
   } = props;
 
   function checkSelectedItemValidity(itemToCheck: T) {
@@ -206,6 +207,7 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
         items={getFilteredItems(items)}
         itemToString={itemToString}
         menuStyle={menuStyle}
+        renderItem={renderItem}
       />
     </SelectContainer>
   );
