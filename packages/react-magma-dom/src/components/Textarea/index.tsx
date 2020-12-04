@@ -9,17 +9,48 @@ import { useGenerateId } from '../../utils';
 
 export interface TextareaProps
   extends React.HtmlHTMLAttributes<HTMLTextAreaElement> {
+  /**
+   * Style properties for the component container element
+   */
   containerStyle?: React.CSSProperties;
+  /**
+   * Content of the error message. If a value is provided, the input will be styled as an error state, and the error message will display.
+   */
   errorMessage?: React.ReactNode;
+  /**
+   * @internal
+   */
   hasError?: boolean;
+  /**
+   * Content of the helper message
+   */
   helperMessage?: React.ReactNode;
   isInverse?: boolean;
+  /**
+   * If true, label text will be hidden visually, but will still be read by assistive technology
+   * @default false
+   */
   isLabelVisuallyHidden?: boolean;
+  /**
+   * Style properties for the label element
+   */
   labelStyle?: React.CSSProperties;
+  /**
+   * Content for label; can be a node or a string
+   */
   labelText?: React.ReactNode;
+  /**
+   * Style properties for the helper or error message
+   */
   messageStyle?: React.CSSProperties;
   testId?: string;
+  /**
+   * Style properties for the textarea element
+   */
   textareaStyle?: React.CSSProperties;
+  /**
+   * Value for the textarea
+   */
   value?: string | ReadonlyArray<string> | number;
 }
 

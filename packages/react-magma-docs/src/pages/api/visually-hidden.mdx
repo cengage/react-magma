@@ -1,6 +1,8 @@
 ---
 pageTitle: Visually Hidden API
 title: Visually Hidden
+props:
+  - VisuallyHiddenProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -25,25 +27,7 @@ Using the `VisuallyHidden` component will hide the children of this component vi
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-  }}
-/>
+<VisuallyHiddenProps />
 
 export default props => (
   <ScopeableLayout {...props} components={{ VisuallyHidden }} />

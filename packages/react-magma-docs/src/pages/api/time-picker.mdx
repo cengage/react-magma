@@ -1,6 +1,8 @@
 ---
 pageTitle: Time Picker API
 title: Time Picker
+props:
+  - TimePickerProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -105,95 +107,7 @@ The `containerStyle`, `inputStyle`, `labelStyle` and `messageStyle` props can be
 
 All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the outer `input` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    containerStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the outer container',
-    },
-    errorMessage: {
-      type: {
-        name: 'ReactNode',
-      },
-      required: false,
-      description:
-        'Content of the error message.  If a value is provided, the component will be styled to show an error state.',
-      defaultValue: '',
-    },
-    helperMessage: {
-      type: {
-        name: 'ReactNode',
-      },
-      required: false,
-      description: 'Content of the helper message.',
-      defaultValue: '',
-    },
-    labelStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the label',
-    },
-    labelText: {
-      type: {
-        name: 'ReactNode',
-      },
-      required: true,
-      description: 'Content for label; can be a node or a string',
-    },
-    inputStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the outer input',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the focus state of the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    messageStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the helper or error message',
-    },
-    minutesStep: {
-      type: {
-        name: 'number',
-      },
-      required: false,
-      description: 'The stepping interval for the minutes input',
-      defaultValue: '1',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    value: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'The value of the time picker. Can use the format ##:## AM/PM or ##:##',
-    },
-  }}
-/>
+<TimePickerProps />
 
 export default props => (
   <ScopeableLayout

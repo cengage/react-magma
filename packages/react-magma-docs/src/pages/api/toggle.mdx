@@ -1,6 +1,8 @@
 ---
 pageTitle: Toggle API
 title: Toggle
+props:
+  - ToggleProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -167,116 +169,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 
 All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the `input` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    containerStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the component container element',
-    },
-    disabled: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, element is disabled',
-      defaultValue: 'false',
-    },
-    errorMessage: {
-      type: {
-        name: 'ReactNode',
-      },
-      required: false,
-      description:
-        'Content of the error message for toggle.  If a value is provided, the component will be styled as an error state and the error message will display.',
-      defaultValue: '',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    isTextVisuallyHidden: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, label text will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
-    },
-    labelStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the label element',
-    },
-    labelText: {
-      type: {
-        name: 'ReactNode',
-      },
-      required: true,
-      description: 'Content for label; can be a node or a string',
-    },
-    required: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, the form field is required',
-      defaultValue: 'false',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    textPosition: {
-      type: {
-        name: 'enum',
-        options: ['ToggleTextPosition.left', 'ToggleTextPosition.right'],
-      },
-      required: false,
-      description:
-        'Whether the label appears to the left of the right of the toggle switch',
-      defaultValue: 'left',
-    },
-    thumbStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description:
-        'Style properties for the part of the component that slides back and forth on the track',
-    },
-    trackStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description:
-        'Style properties for track on which the toggle thumb slides',
-    },
-    value: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Value attribute the form field',
-      defaultValue: '',
-    },
-  }}
-/>
+<ToggleProps />
 
 export default props => (
   <ScopeableLayout {...props} components={{ Alert, Toggle }} />

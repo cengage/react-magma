@@ -15,43 +15,23 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### [2.0.4](http://stash.cengage.com:7999///compare/react-magma-docs@2.0.3...react-magma-docs@2.0.4) (2020-12-01)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### [2.0.3](http://stash.cengage.com:7999///compare/react-magma-docs@2.0.2...react-magma-docs@2.0.3) (2020-11-25)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### [2.0.2](http://stash.cengage.com:7999///compare/react-magma-docs@2.0.1...react-magma-docs@2.0.2) (2020-11-24)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### [2.0.1](http://stash.cengage.com:7999///compare/react-magma-docs@2.0.0...react-magma-docs@2.0.1) (2020-11-24)
 
 ## 2.0.0-beta.137 (2020-11-20)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 # [2.0.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.136...v2.0.0) (2020-11-19)
 
