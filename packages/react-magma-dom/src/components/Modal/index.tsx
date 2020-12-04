@@ -143,11 +143,11 @@ const ModalContent = styled.div<ModalProps>`
 `;
 
 const ModalHeader = styled.div<{ theme?: ThemeInterface }>`
-  padding: ${props => props.theme.spaceScale.spacing05}
+  padding: ${props => props.theme.spaceScale.spacing03}
     ${props => props.theme.spaceScale.spacing05} 0
     ${props => props.theme.spaceScale.spacing05};
   @media (min-width: ${props => props.theme.breakpoints.small}px) {
-    padding: ${props => props.theme.spaceScale.spacing03}
+    padding: ${props => props.theme.spaceScale.spacing05}
       ${props => props.theme.spaceScale.spacing06} 0
       ${props => props.theme.spaceScale.spacing06};
   }
@@ -176,7 +176,7 @@ const ModalBody = styled.div<{ theme?: ThemeInterface }>`
   padding: ${props => props.theme.spaceScale.spacing05};
 
   @media (min-width: ${props => props.theme.breakpoints.small}px) {
-    padding: ${props => props.theme.spaceScale.spacing05};
+    padding: ${props => props.theme.spaceScale.spacing06};
   }
 `;
 
