@@ -2,13 +2,38 @@ import * as React from 'react';
 import { css } from '@emotion/core';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { stringIncludesUnit } from '../../utils';
 
 export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * The color variant of the progress bar
+   * @default ProgressBarColor.primary
+   */
   color?: ProgressBarColor;
-  height?: number;
+  /**
+   * The height of the progress bar. Can be a string or number; if number is provided height is in px
+   * @default 16
+   */
+  height?: number | string;
+  /**
+   * If true, the progress bar with have a shimmer animation
+   * @default false
+   */
   isAnimated?: boolean;
   isInverse?: boolean;
+  /**
+   * @internal
+   */
+  isLoadingIndicator?: boolean;
+  /**
+   * If true, the label with the percentage value will display to the right of the progress bar
+   * @default false
+   */
   isLabelVisible?: boolean;
+  /**
+   * The percentage of which the bar is filled
+   * @default 0
+   */
   percentage?: number;
   testId?: string;
 }
@@ -39,9 +64,9 @@ function buildProgressBarBackground(props) {
   }
 }
 
-const Container = styled.div`
+const Container = styled.div<{ isLoadingIndicator?: boolean }>`
   align-items: center;
-  display: flex;
+  display: ${props => (props.isLoadingIndicator ? 'block' : 'flex')};
 `;
 
 const Track = styled.div<ProgressBarProps>`
@@ -53,7 +78,7 @@ const Track = styled.div<ProgressBarProps>`
         ? props.theme.colors.neutral08
         : props.theme.colors.neutral04};
   display: flex;
-  height: ${props => props.height}px;
+  height: ${props => props.height};
   padding: 1px;
   width: 100%;
 `;
@@ -75,7 +100,7 @@ const Bar = styled.div<ProgressBarProps>`
         ${buildProgressBarBackground(props)} 100%
       );
       background-repeat: no-repeat;
-      background-size: 800px 104px;
+      background-size: 1800px 104px;
       display: inline-block;
       position: relative;
 
@@ -87,11 +112,11 @@ const Bar = styled.div<ProgressBarProps>`
 
       @keyframes placeholderShimmer {
         0% {
-          background-position: -468px 0;
+          background-position: -600px 0;
         }
 
         100% {
-          background-position: 468px 0;
+          background-position: 600px 0;
         }
       }
     `}
@@ -100,7 +125,14 @@ const Bar = styled.div<ProgressBarProps>`
 const Percentage = styled.span`
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
-  margin-left: 10px;
+  margin-left: ${props => props.theme.spaceScale.spacing03};
+`;
+
+const TopPercentage = styled.div`
+  font-size: ${props => props.theme.typeScale.size05.fontSize};
+  line-height: ${props => props.theme.typeScale.size05.lineHeight};
+  margin-bottom: ${props => props.theme.spaceScale.spacing03};
+  text-align: center;
 `;
 
 export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
@@ -111,6 +143,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
       isAnimated,
       isInverse,
       isLabelVisible,
+      isLoadingIndicator,
       percentage,
       testId,
       ...other
@@ -120,11 +153,21 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
 
     const theme = React.useContext(ThemeContext);
 
+    const heightString = height
+      ? typeof height === 'number' ||
+        (typeof height === 'string' && !stringIncludesUnit(height))
+        ? `${height}px`
+        : height
+      : theme.spaceScale.spacing05;
+
     return (
-      <Container {...other}>
+      <Container {...other} isLoadingIndicator={isLoadingIndicator}>
+        {isLoadingIndicator && (
+          <TopPercentage theme={theme}>{percentageValue}%</TopPercentage>
+        )}
         <Track
           data-testid={testId}
-          height={height ? height : 15}
+          height={heightString}
           isInverse={isInverse}
           ref={ref}
           theme={theme}

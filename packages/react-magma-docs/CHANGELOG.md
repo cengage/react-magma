@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.0-alpha.1](http://stash.cengage.com:7999///compare/react-magma-docs@2.1.0-alpha.0...react-magma-docs@2.1.0-alpha.1) (2020-12-04)
+
+**Note:** Version bump only for package react-magma-docs
+
+## [2.1.0-alpha.0](http://stash.cengage.com:7999///compare/react-magma-docs@2.0.5-alpha.1...react-magma-docs@2.1.0-alpha.0) (2020-12-04)
+
+### Features
+
+- **loadingindicator, progressbar, spinner:** use new spacing ([513fa48](http://stash.cengage.com:7999///commit/513fa487348b06386648f7a93571c058883d37cc))
+- **progress bar:** update spacing and animation, docs fixes ([221c944](http://stash.cengage.com:7999///commit/221c9445b8e7f6ab47ad22c1bd950958da3bc535))
+- **spinner, progressbar:** allow string or number for size ([e6030d5](http://stash.cengage.com:7999///commit/e6030d56d3e386fe906ef426c5655bd53bdf1620))
+
+### Bug Fixes
+
+- **tabs:** allow for custom onClick on individual tab ([b3f598a](http://stash.cengage.com:7999///commit/b3f598af11ca9a7d4a2a82accaa84d2dc865075a))
+
+### [2.0.5-alpha.1](http://stash.cengage.com:7999///compare/react-magma-docs@2.0.5-alpha.0...react-magma-docs@2.0.5-alpha.1) (2020-12-02)
+
+**Note:** Version bump only for package react-magma-docs
+
+### [2.0.5-alpha.0](http://stash.cengage.com:7999///compare/react-magma-docs@2.0.4...react-magma-docs@2.0.5-alpha.0) (2020-12-02)
+
+**Note:** Version bump only for package react-magma-docs
+
 ### [2.0.4](http://stash.cengage.com:7999///compare/react-magma-docs@2.0.3...react-magma-docs@2.0.4) (2020-12-01)
 
 **Note:** Version bump only for package react-magma-docs
