@@ -2,6 +2,9 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 
+/**
+ * @children required
+ */
 export interface VisuallyHiddenProps
   extends React.HTMLAttributes<HTMLDivElement> {
   testId?: string;

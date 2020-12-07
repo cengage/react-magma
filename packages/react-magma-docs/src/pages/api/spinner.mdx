@@ -1,14 +1,17 @@
 ---
 pageTitle: Spinner API
 title: Spinner
+props:
+  - SpinnerProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
 import { Spinner, magma } from 'react-magma-dom';
 import { SimplePropsTable } from '../../components/props-table';
 import { Link } from 'gatsby';
+import DocsHeading from '../../components/docs-heading';
 
-# Spinner
+<DocsHeading type="api">Spinner</DocsHeading>
 
 Spinners indicate the loading state of a component or page. Spinners are used within the <Link to="/api/loading-indicator">Loading Indicator</Link> component.
 
@@ -36,10 +39,16 @@ The default is `magma.colors.primary` (`#006298`), but can be customized using t
 
 ## Size
 
-The default size is 15px, but can be customized using the `size` prop, which takes a number of pixels.
+The `size` prop can be used to set the height and width of the spinner. Can be a string or a number; if a number is provided the height and width will be in pixels.
+
+The default value is '16px'.
 
 ```.jsx
-<Spinner size={30} />
+<>
+  <Spinner size={30} />
+  <br/>
+  <Spinner size="3em" />
+</>
 ```
 
 ## Spinner Props
@@ -48,42 +57,7 @@ The default size is 15px, but can be customized using the `size` prop, which tak
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `span` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    'aria-label': {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'The read by the screen reader',
-      defaultValue: 'Loading',
-    },
-    color: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'The color of the spinner border',
-      defaultValue: '#006298',
-    },
-    size: {
-      type: {
-        name: 'number',
-      },
-      required: false,
-      description: 'The height and width of the spinner in pixels',
-      defaultValue: '15',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-  }}
-/>
+<SpinnerProps />
 
 export default props => (
   <ScopeableLayout {...props} components={{ Spinner, magma }} />

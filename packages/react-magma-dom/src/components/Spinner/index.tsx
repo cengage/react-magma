@@ -2,10 +2,19 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
+import { stringIncludesUnit } from '../../utils';
 
 export interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {
+  /**
+   * The color of the spinner border
+   * @default "#006298"
+   */
   color?: string;
-  size?: number;
+  /**
+   * The height and width of the spinner.  Can be a string or number; if number is provided, the size is in px.
+   * @default 16
+   */
+  size?: string | number;
   testId?: string;
 }
 
@@ -15,8 +24,8 @@ const StyledSpinner = styled.span<SpinnerProps>`
   border-right-color: transparent;
   border-radius: 50%;
   display: inline-block;
-  height: ${props => props.size}px;
-  width: ${props => props.size}px;
+  height: ${props => props.size};
+  width: ${props => props.size};
 
   @keyframes spinner-border {
     to {
@@ -31,6 +40,14 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
 
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
+
+    const sizeString = size
+      ? typeof size === 'number' ||
+        (typeof size === 'string' && !stringIncludesUnit(size))
+        ? `${size}px`
+        : size
+      : theme.spaceScale.spacing05;
+
     return (
       <StyledSpinner
         {...other}
@@ -38,7 +55,7 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
         color={color ? color : theme.colors.primary}
         data-testid={testId}
         ref={ref}
-        size={size ? size : 15}
+        size={sizeString}
       />
     );
   }

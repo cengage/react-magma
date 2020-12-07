@@ -106,12 +106,31 @@ export declare type Orientation = HorizontalTabsProps | VerticalTabsProps;
 
 export interface TabsProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
+  /**
+   * Alignment of the tabs menu
+   * @default TabsAlignment.left
+   */
   alignment?: TabsAlignment;
+  /**
+   * The text the screen reader will announce that describes your tablist.
+   */
   'aria-label': string;
+  /**
+   * Background color for the tabs menu
+   */
   backgroundColor?: string;
+  /**
+   * The orientation of icon on Tab
+   */
   iconPosition?: TabsIconPosition;
+  /**
+   * If true, the components takes the full width of the screen
+   */
   isFullWidth?: boolean;
   isInverse?: boolean;
+  /**
+   * The onChange handler for managing state of Tabs component by your custom logic.
+   */
   onChange?: (newActiveIndex: number) => void;
   testId?: string;
 }
