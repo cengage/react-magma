@@ -10,6 +10,11 @@
     "dist",
     "src"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cengage/react-magma.git",
+    "directory": "packages/react-magma-legacy-selects"
+  },
   "engines": {
     "node": ">=10"
   },
@@ -19,9 +24,6 @@
     "build": "tsdx build",
     "build-watch": "tsdx watch",
     "lint": "eslint ./src"
-  },
-  "publishConfig": {
-    "registry": "http://nexus.mindtap.corp.web/content/repositories/npm.cengage/"
   },
   "peerDependencies": {
     "@emotion/core": "^10.0.27",

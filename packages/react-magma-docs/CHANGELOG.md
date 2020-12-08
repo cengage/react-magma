@@ -5,12 +5,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [2.1.0](http://stash.cengage.com:7999///compare/react-magma-docs@2.1.0-alpha.1...react-magma-docs@2.1.0) (2020-12-08)
 
-
 ### Bug Fixes
 
-* **dropdown:** remove auto focus of button on close ([2d9a27c](http://stash.cengage.com:7999///commit/2d9a27c6c62165f6b8614ede80a6f5899c12c4af))
-
-
+- **dropdown:** remove auto focus of button on close ([2d9a27c](http://stash.cengage.com:7999///commit/2d9a27c6c62165f6b8614ede80a6f5899c12c4af))
 
 ## [2.1.0-alpha.1](http://stash.cengage.com:7999///compare/react-magma-docs@2.1.0-alpha.0...react-magma-docs@2.1.0-alpha.1) (2020-12-04)
 

@@ -9,11 +9,6 @@
 ### Setup requirements
 
 1. Your project needs to be running **React v16.5** or greater
-2. Make sure you have a `.npmrc` file and are using http://nexus.mindtap.corp.web/content/groups/npm.group/ as your registry.
-
-```sh
-registry=http://nexus.mindtap.corp.web/content/groups/npm.group/
-```
 
 ### Add the react-magma components to your project
 

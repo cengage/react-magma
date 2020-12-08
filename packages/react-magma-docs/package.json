@@ -3,6 +3,11 @@
   "description": "React Magma docs - take 2",
   "version": "2.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cengage/react-magma.git",
+    "directory": "packages/react-magma-docs"
+  },
   "dependencies": {
     "@emotion/core": "^10.0.7",
     "@emotion/styled": "^10.0.7",
@@ -32,8 +37,8 @@
     "react-focus-lock": "1.18.3",
     "react-helmet": "5.2.0",
     "react-live": "^2.2.1",
+    "react-magma-icons": "^1.0.0",
     "react-magma-dom": "^2.3.0",
-    "react-magma-icons": "^2.0.0",
     "react-magma-legacy-selects": "^1.0.1",
     "react-select": "3.0.8",
     "react-spring": "6.1.9",
