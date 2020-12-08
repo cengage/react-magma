@@ -11,9 +11,6 @@
     "!dist/reports",
     "lib"
   ],
-  "publishConfig": {
-    "registry": "http://nexus.mindtap.corp.web/content/repositories/npm.cengage/"
-  },
   "scripts": {
     "test": "tsdx test",
     "test-watch": "tsdx test --watch",

@@ -20,9 +20,6 @@
     "build-watch": "tsdx watch",
     "lint": "eslint ./src"
   },
-  "publishConfig": {
-    "registry": "http://nexus.mindtap.corp.web/content/repositories/npm.cengage/"
-  },
   "peerDependencies": {
     "@emotion/core": "^10.0.27",
     "@emotion/styled": "^10.0.27",

@@ -921,289 +921,6 @@
     }
   },
   {
-    "name": "BaseButtonProps",
-    "kind": 256,
-    "kindString": "Interface",
-    "flags": {},
-    "id": "BaseButtonProps",
-    "tags": {},
-    "properties": {
-      "ref": {
-        "name": "ref",
-        "required": false,
-        "type": {
-          "name": "any"
-        }
-      },
-      "testId": {
-        "name": "testId",
-        "required": false,
-        "type": {
-          "name": "string"
-        },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
-      },
-      "theme": {
-        "name": "theme",
-        "required": false,
-        "type": {
-          "name": "any"
-        }
-      },
-      "type": {
-        "name": "type",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonType.button",
-            "ButtonType.reset",
-            "ButtonType.submit"
-          ]
-        }
-      }
-    }
-  },
-  {
-    "name": "ButtonStyles",
-    "kind": 256,
-    "kindString": "Interface",
-    "flags": {
-      "isExported": true
-    },
-    "id": "ButtonStyles",
-    "tags": {},
-    "properties": {
-      "color": {
-        "name": "color",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonColor.danger",
-            "ButtonColor.marketing",
-            "ButtonColor.primary",
-            "ButtonColor.secondary",
-            "ButtonColor.success"
-          ]
-        }
-      },
-      "isFullWidth": {
-        "name": "isFullWidth",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "isInverse": {
-        "name": "isInverse",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
-      },
-      "shape": {
-        "name": "shape",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonShape.fill",
-            "ButtonShape.leftCap",
-            "ButtonShape.rightCap",
-            "ButtonShape.round"
-          ]
-        }
-      },
-      "size": {
-        "name": "size",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonSize.large",
-            "ButtonSize.medium",
-            "ButtonSize.small"
-          ]
-        }
-      },
-      "textTransform": {
-        "name": "textTransform",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonTextTransform.none",
-            "ButtonTextTransform.uppercase"
-          ]
-        }
-      },
-      "type": {
-        "name": "type",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonType.button",
-            "ButtonType.reset",
-            "ButtonType.submit"
-          ]
-        }
-      },
-      "variant": {
-        "name": "variant",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonVariant.link",
-            "ButtonVariant.outline",
-            "ButtonVariant.solid"
-          ]
-        }
-      }
-    }
-  },
-  {
-    "name": "ButtonProps",
-    "kind": 4194304,
-    "kindString": "Type alias",
-    "flags": {
-      "isExported": true
-    },
-    "type": {
-      "type": "intersection",
-      "types": [
-        {
-          "type": "reference",
-          "id": 369,
-          "name": "BaseButtonProps"
-        },
-        {
-          "type": "reference",
-          "id": 360,
-          "name": "ButtonStyles"
-        }
-      ]
-    },
-    "id": "ButtonProps",
-    "properties": {
-      "color": {
-        "name": "color",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonColor.danger",
-            "ButtonColor.marketing",
-            "ButtonColor.primary",
-            "ButtonColor.secondary",
-            "ButtonColor.success"
-          ]
-        },
-        "description": "The color of the button, indicating its function in the UI",
-        "defaultValue": "ButtonColor.primary"
-      },
-      "isFullWidth": {
-        "name": "isFullWidth",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": " Set the button to display full-width.",
-        "defaultValue": "false"
-      },
-      "isInverse": {
-        "name": "isInverse",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
-      },
-      "shape": {
-        "name": "shape",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonShape.fill",
-            "ButtonShape.leftCap",
-            "ButtonShape.rightCap",
-            "ButtonShape.round"
-          ]
-        },
-        "description": "Defines the border radius",
-        "defaultValue": "ButtonShape.fill"
-      },
-      "size": {
-        "name": "size",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonSize.large",
-            "ButtonSize.medium",
-            "ButtonSize.small"
-          ]
-        },
-        "description": "The relative size of the button",
-        "defaultValue": "ButtonSize.medium"
-      },
-      "testId": {
-        "name": "testId",
-        "required": false,
-        "type": {
-          "name": "string"
-        },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
-      },
-      "textTransform": {
-        "name": "textTransform",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonTextTransform.none",
-            "ButtonTextTransform.uppercase"
-          ]
-        },
-        "description": "Determines whether the button appears in all-caps",
-        "defaultValue": "ButtonTextTransform.uppercase"
-      },
-      "type": {
-        "name": "type",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonType.button",
-            "ButtonType.reset",
-            "ButtonType.submit"
-          ]
-        },
-        "description": "The type attribute of the button\nButtonType.button"
-      },
-      "variant": {
-        "name": "variant",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonVariant.link",
-            "ButtonVariant.outline",
-            "ButtonVariant.solid"
-          ]
-        },
-        "description": "The variant of the button",
-        "defaultValue": "ButtonVariant.solid"
-      }
-    }
-  },
-  {
     "name": "CardBodyProps",
     "kind": 256,
     "kindString": "Interface",
@@ -1557,7 +1274,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7869,
+        "id": 7537,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1714,7 +1431,7 @@
     },
     "typeParameter": [
       {
-        "id": 7954,
+        "id": 7622,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1723,7 +1440,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7798,
+          "id": 7466,
           "name": "SelectOptions"
         }
       }
@@ -1983,7 +1700,7 @@
     },
     "typeParameter": [
       {
-        "id": 8022,
+        "id": 7690,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1992,7 +1709,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7798,
+          "id": 7466,
           "name": "SelectOptions"
         }
       }
@@ -2683,12 +2400,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 9189,
+          "id": 8857,
           "name": "IconOnlyDropdownButtonProps"
         },
         {
           "type": "reference",
-          "id": 9193,
+          "id": 8861,
           "name": "IconTextDropdownButtonProps"
         }
       ],
@@ -3373,328 +3090,6 @@
         "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
       }
     }
-  },
-  {
-    "name": "HyperlinkProps",
-    "kind": 256,
-    "kindString": "Interface",
-    "flags": {
-      "isExported": true
-    },
-    "id": "HyperlinkProps",
-    "tags": {},
-    "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "function"
-        },
-        "description": "The content of the component"
-      },
-      "color": {
-        "name": "color",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonColor.danger",
-            "ButtonColor.marketing",
-            "ButtonColor.primary",
-            "ButtonColor.secondary",
-            "ButtonColor.success"
-          ]
-        },
-        "description": "The color of the button, indicating its function in the UI",
-        "defaultValue": "ButtonColor.primary"
-      },
-      "isFullWidth": {
-        "name": "isFullWidth",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": " Set the button to display full-width.",
-        "defaultValue": "false"
-      },
-      "isInverse": {
-        "name": "isInverse",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
-      },
-      "shape": {
-        "name": "shape",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonShape.fill",
-            "ButtonShape.leftCap",
-            "ButtonShape.rightCap",
-            "ButtonShape.round"
-          ]
-        },
-        "description": "Defines the border radius",
-        "defaultValue": "ButtonShape.fill"
-      },
-      "size": {
-        "name": "size",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonSize.large",
-            "ButtonSize.medium",
-            "ButtonSize.small"
-          ]
-        },
-        "description": "The relative size of the button",
-        "defaultValue": "ButtonSize.medium"
-      },
-      "styledAs": {
-        "name": "styledAs",
-        "required": false,
-        "type": {
-          "name": "function"
-        }
-      },
-      "testId": {
-        "name": "testId",
-        "required": false,
-        "type": {
-          "name": "string"
-        },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
-      },
-      "textTransform": {
-        "name": "textTransform",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonTextTransform.none",
-            "ButtonTextTransform.uppercase"
-          ]
-        },
-        "description": "Determines whether the button appears in all-caps",
-        "defaultValue": "ButtonTextTransform.uppercase"
-      },
-      "to": {
-        "name": "to",
-        "required": true,
-        "type": {
-          "name": "string"
-        }
-      },
-      "type": {
-        "name": "type",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonType.button",
-            "ButtonType.reset",
-            "ButtonType.submit"
-          ]
-        },
-        "description": "The type attribute of the button\nButtonType.button"
-      },
-      "variant": {
-        "name": "variant",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonVariant.link",
-            "ButtonVariant.outline",
-            "ButtonVariant.solid"
-          ]
-        },
-        "description": "The variant of the button",
-        "defaultValue": "ButtonVariant.solid"
-      }
-    }
-  },
-  {
-    "name": "HyperlinkProps",
-    "kind": 256,
-    "kindString": "Interface",
-    "flags": {
-      "isExported": true
-    },
-    "id": "HyperlinkProps",
-    "tags": {},
-    "properties": {
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "function"
-        },
-        "description": "The content of the component"
-      },
-      "color": {
-        "name": "color",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonColor.danger",
-            "ButtonColor.marketing",
-            "ButtonColor.primary",
-            "ButtonColor.secondary",
-            "ButtonColor.success"
-          ]
-        },
-        "description": "The color of the button, indicating its function in the UI",
-        "defaultValue": "ButtonColor.primary"
-      },
-      "isFullWidth": {
-        "name": "isFullWidth",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": " Set the button to display full-width.",
-        "defaultValue": "false"
-      },
-      "isInverse": {
-        "name": "isInverse",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
-      },
-      "positionLeft": {
-        "name": "positionLeft",
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
-      "positionTop": {
-        "name": "positionTop",
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
-      "shape": {
-        "name": "shape",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonShape.fill",
-            "ButtonShape.leftCap",
-            "ButtonShape.rightCap",
-            "ButtonShape.round"
-          ]
-        },
-        "description": "Defines the border radius",
-        "defaultValue": "ButtonShape.fill"
-      },
-      "size": {
-        "name": "size",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonSize.large",
-            "ButtonSize.medium",
-            "ButtonSize.small"
-          ]
-        },
-        "description": "The relative size of the button",
-        "defaultValue": "ButtonSize.medium"
-      },
-      "styledAs": {
-        "name": "styledAs",
-        "required": false,
-        "type": {
-          "name": "function"
-        }
-      },
-      "testId": {
-        "name": "testId",
-        "required": false,
-        "type": {
-          "name": "string"
-        },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
-      },
-      "textTransform": {
-        "name": "textTransform",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonTextTransform.none",
-            "ButtonTextTransform.uppercase"
-          ]
-        },
-        "description": "Determines whether the button appears in all-caps",
-        "defaultValue": "ButtonTextTransform.uppercase"
-      },
-      "to": {
-        "name": "to",
-        "required": true,
-        "type": {
-          "name": "string"
-        }
-      },
-      "type": {
-        "name": "type",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonType.button",
-            "ButtonType.reset",
-            "ButtonType.submit"
-          ]
-        },
-        "description": "The type attribute of the button\nButtonType.button"
-      },
-      "variant": {
-        "name": "variant",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonVariant.link",
-            "ButtonVariant.outline",
-            "ButtonVariant.solid"
-          ]
-        },
-        "description": "The variant of the button",
-        "defaultValue": "ButtonVariant.solid"
-      }
-    }
-  },
-  {
-    "name": "anchorAttributesRemoveColor",
-    "kind": 256,
-    "kindString": "Interface",
-    "flags": {},
-    "id": "anchorAttributesRemoveColor",
-    "tags": {},
-    "properties": {}
-  },
-  {
-    "name": "anchorAttributesRemoveType",
-    "kind": 256,
-    "kindString": "Interface",
-    "flags": {},
-    "id": "anchorAttributesRemoveType",
-    "tags": {},
-    "properties": {}
   },
   {
     "name": "IconOnlyButtonProps",
@@ -4654,12 +4049,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 11658,
+          "id": 11302,
           "name": "NavTabChildrenProps"
         },
         {
           "type": "reference",
-          "id": 11924,
+          "id": 11568,
           "name": "NavTabComponentProps"
         }
       ],
@@ -5508,7 +4903,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7279,
+        "id": 6947,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5576,7 +4971,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7582,
+        "id": 7250,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5654,7 +5049,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7601,
+        "id": 7269,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5742,7 +5137,7 @@
     "type": {
       "type": "reflection",
       "declaration": {
-        "id": 7257,
+        "id": 6925,
         "name": "__type",
         "kind": 65536,
         "kindString": "Type literal",
@@ -5751,7 +5146,7 @@
         },
         "children": [
           {
-            "id": 7258,
+            "id": 6926,
             "name": "ClearIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -5779,7 +5174,7 @@
             }
           },
           {
-            "id": 7259,
+            "id": 6927,
             "name": "DropdownIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -5812,7 +5207,7 @@
             }
           },
           {
-            "id": 7260,
+            "id": 6928,
             "name": "LoadingIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -5832,7 +5227,7 @@
               "typeArguments": [
                 {
                   "type": "reference",
-                  "id": 6993,
+                  "id": 6661,
                   "name": "SpinnerProps"
                 }
               ],
@@ -5845,9 +5240,9 @@
             "title": "Variables",
             "kind": 32,
             "children": [
-              7258,
-              7259,
-              7260
+              6926,
+              6927,
+              6928
             ]
           }
         ],
@@ -5873,7 +5268,7 @@
     },
     "typeParameter": [
       {
-        "id": 7650,
+        "id": 7318,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6037,7 +5432,7 @@
     },
     "typeParameter": [
       {
-        "id": 7756,
+        "id": 7424,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6046,7 +5441,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7798,
+          "id": 7466,
           "name": "SelectOptions"
         }
       }
@@ -6193,7 +5588,7 @@
     },
     "typeParameter": [
       {
-        "id": 7656,
+        "id": 7324,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6202,7 +5597,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7798,
+          "id": 7466,
           "name": "SelectOptions"
         }
       }
@@ -6589,7 +5984,7 @@
         {
           "type": "reflection",
           "declaration": {
-            "id": 7799,
+            "id": 7467,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -6598,7 +5993,7 @@
             },
             "indexSignature": [
               {
-                "id": 7802,
+                "id": 7470,
                 "name": "__index",
                 "kind": 8192,
                 "kindString": "Index signature",
@@ -6607,7 +6002,7 @@
                 },
                 "parameters": [
                   {
-                    "id": 7803,
+                    "id": 7471,
                     "name": "key",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -6628,7 +6023,7 @@
             ],
             "children": [
               {
-                "id": 7801,
+                "id": 7469,
                 "name": "label",
                 "kind": 32,
                 "kindString": "Variable",
@@ -6648,7 +6043,7 @@
                 }
               },
               {
-                "id": 7800,
+                "id": 7468,
                 "name": "value",
                 "kind": 32,
                 "kindString": "Variable",
@@ -6673,8 +6068,8 @@
                 "title": "Variables",
                 "kind": 32,
                 "children": [
-                  7801,
-                  7800
+                  7469,
+                  7468
                 ]
               }
             ],
@@ -6934,154 +6329,6 @@
     }
   },
   {
-    "name": "SkipLinkProps",
-    "kind": 256,
-    "kindString": "Interface",
-    "flags": {
-      "isExported": true
-    },
-    "id": "SkipLinkProps",
-    "tags": {},
-    "properties": {
-      "buttonText": {
-        "name": "buttonText",
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "children": {
-        "name": "children",
-        "required": true,
-        "type": {
-          "name": "function"
-        },
-        "description": "The content of the component"
-      },
-      "color": {
-        "name": "color",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonColor.danger",
-            "ButtonColor.marketing",
-            "ButtonColor.primary",
-            "ButtonColor.secondary",
-            "ButtonColor.success"
-          ]
-        }
-      },
-      "isFullWidth": {
-        "name": "isFullWidth",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": " Set the button to display full-width.",
-        "defaultValue": "false"
-      },
-      "isInverse": {
-        "name": "isInverse",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
-      },
-      "shape": {
-        "name": "shape",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonShape.fill",
-            "ButtonShape.leftCap",
-            "ButtonShape.rightCap",
-            "ButtonShape.round"
-          ]
-        },
-        "description": "Defines the border radius",
-        "defaultValue": "ButtonShape.fill"
-      },
-      "size": {
-        "name": "size",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonSize.large",
-            "ButtonSize.medium",
-            "ButtonSize.small"
-          ]
-        },
-        "description": "The relative size of the button",
-        "defaultValue": "ButtonSize.medium"
-      },
-      "styledAs": {
-        "name": "styledAs",
-        "required": false,
-        "type": {
-          "name": "function"
-        }
-      },
-      "testId": {
-        "name": "testId",
-        "required": false,
-        "type": {
-          "name": "string"
-        },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
-      },
-      "textTransform": {
-        "name": "textTransform",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonTextTransform.none",
-            "ButtonTextTransform.uppercase"
-          ]
-        },
-        "description": "Determines whether the button appears in all-caps",
-        "defaultValue": "ButtonTextTransform.uppercase"
-      },
-      "to": {
-        "name": "to",
-        "required": true,
-        "type": {
-          "name": "string"
-        }
-      },
-      "type": {
-        "name": "type",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonType.button",
-            "ButtonType.reset",
-            "ButtonType.submit"
-          ]
-        },
-        "description": "The type attribute of the button\nButtonType.button"
-      },
-      "variant": {
-        "name": "variant",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonVariant.link",
-            "ButtonVariant.outline",
-            "ButtonVariant.solid"
-          ]
-        }
-      }
-    }
-  },
-  {
     "name": "SkipLinkContentProps",
     "kind": 256,
     "kindString": "Interface",
@@ -7185,146 +6432,6 @@
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
         "defaultValue": "false"
-      },
-      "shape": {
-        "name": "shape",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonShape.fill",
-            "ButtonShape.leftCap",
-            "ButtonShape.rightCap",
-            "ButtonShape.round"
-          ]
-        },
-        "description": "Defines the border radius",
-        "defaultValue": "ButtonShape.fill"
-      },
-      "size": {
-        "name": "size",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonSize.large",
-            "ButtonSize.medium",
-            "ButtonSize.small"
-          ]
-        },
-        "description": "The relative size of the button",
-        "defaultValue": "ButtonSize.medium"
-      },
-      "testId": {
-        "name": "testId",
-        "required": false,
-        "type": {
-          "name": "string"
-        },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
-      },
-      "textTransform": {
-        "name": "textTransform",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonTextTransform.none",
-            "ButtonTextTransform.uppercase"
-          ]
-        },
-        "description": "Determines whether the button appears in all-caps",
-        "defaultValue": "ButtonTextTransform.uppercase"
-      },
-      "to": {
-        "name": "to",
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "type": {
-        "name": "type",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonType.button",
-            "ButtonType.reset",
-            "ButtonType.submit"
-          ]
-        },
-        "description": "The type attribute of the button\nButtonType.button"
-      },
-      "variant": {
-        "name": "variant",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonVariant.link",
-            "ButtonVariant.outline",
-            "ButtonVariant.solid"
-          ]
-        },
-        "description": "The variant of the button",
-        "defaultValue": "ButtonVariant.solid"
-      }
-    }
-  },
-  {
-    "name": "StyledButtonProps",
-    "kind": 256,
-    "kindString": "Interface",
-    "flags": {},
-    "id": "StyledButtonProps",
-    "tags": {},
-    "properties": {
-      "as": {
-        "name": "as",
-        "required": false,
-        "type": {
-          "name": "any"
-        }
-      },
-      "href": {
-        "name": "href",
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "iconOnly": {
-        "name": "iconOnly",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "isFullWidth": {
-        "name": "isFullWidth",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": " Set the button to display full-width.",
-        "defaultValue": "false"
-      },
-      "isInverse": {
-        "name": "isInverse",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
-      },
-      "ref": {
-        "name": "ref",
-        "required": false,
-        "type": {
-          "name": "any"
-        }
       },
       "shape": {
         "name": "shape",
@@ -8172,12 +7279,12 @@
       "types": [
         {
           "type": "reference",
-          "id": 11024,
+          "id": 10668,
           "name": "HorizontalTabsProps"
         },
         {
           "type": "reference",
-          "id": 11021,
+          "id": 10665,
           "name": "VerticalTabsProps"
         }
       ]

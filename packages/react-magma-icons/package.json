@@ -20,9 +20,6 @@
     "build-watch": "tsdx watch",
     "lint": "eslint ./src"
   },
-  "publishConfig": {
-    "registry": "http://nexus.mindtap.corp.web/content/repositories/npm.cengage/"
-  },
   "peerDependencies": {
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0",

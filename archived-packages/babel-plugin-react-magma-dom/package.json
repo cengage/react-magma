@@ -6,9 +6,6 @@
     "lib"
   ],
   "main": "lib/index.js",
-  "publishConfig": {
-    "registry": "http://nexus.mindtap.corp.web/content/repositories/npm.cengage/"
-  },
   "scripts": {
     "DEPRECATED-build": "babel src --out-dir lib || true",
     "DEPRECATED-test": "jest",
