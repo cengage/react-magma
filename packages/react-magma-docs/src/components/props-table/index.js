@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
-import { AsteriskIcon } from 'react-magma-icons';
-import { magma } from 'react-magma-dom';
+import { AsteriskIcon, NotificationIcon } from 'react-magma-icons';
+import { magma, Tooltip, IconButton } from 'react-magma-dom';
 
 export const SimplePropsTable = ({ propertyValues }) => {
   if (propertyValues === undefined) {
@@ -51,6 +51,20 @@ export const SimplePropsTable = ({ propertyValues }) => {
                             color={magma.colors.primary}
                           />
                         </span>
+                      )}
+                      {prop.deprecated && (
+                        <Tooltip content="Deprecated">
+                          <IconButton
+                            aria-label="deprecated"
+                            icon={
+                              <NotificationIcon
+                                size="16"
+                                color={magma.colors.danger}
+                              />
+                            }
+                            variant="link"
+                          />
+                        </Tooltip>
                       )}
                     </span>
                   </td>

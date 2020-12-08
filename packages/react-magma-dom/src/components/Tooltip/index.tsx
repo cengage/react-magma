@@ -12,12 +12,27 @@ export enum EnumTooltipPosition {
 }
 
 export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * The element that triggers the tooltip when it is hovered or focused. Must be a react element (not a string) and should be a focusable element to meet a11y requirements
+   */
   children: React.ReactElement;
+  /**
+   * Style properties for the component container element
+   */
   containerStyle?: React.CSSProperties;
+  /**
+   * The content of the tooltip
+   */
   content: React.ReactNode;
   isInverse?: boolean;
+  /**
+   * Position the tooltip appears in relation to its trigger
+   */
   position?: EnumTooltipPosition;
   testId?: string;
+  /**
+   * Style properties for the tooltip
+   */
   tooltipStyle?: React.CSSProperties;
 }
 
@@ -222,6 +237,19 @@ const StyledTooltipInner = styled.div<{
 // Using any for the ref because it is put ont he passed in children which does not have a specific type
 export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   const [isVisible, setIsVisible] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    const handleEsc = event => {
+      if (event.key === 'Escape') {
+        setIsVisible(false);
+      }
+    };
+    window.addEventListener('keydown', handleEsc);
+
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+    };
+  }, []);
 
   function handleKeyDown(event: React.KeyboardEvent) {
     if (event.key === 'Escape') {

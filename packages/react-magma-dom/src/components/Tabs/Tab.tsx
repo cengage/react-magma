@@ -11,10 +11,20 @@ import { ThemeInterface } from '../../theme/magma';
 
 export interface TabProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /**
+   * Icon to display within the component
+   */
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
+  /**
+   * If true, the component will display with the active/selected state
+   * @default false
+   */
   isActive?: boolean;
   isInverse?: boolean;
   testId?: string;
+  /**
+   * @internal
+   */
   theme?: any;
 }
 
@@ -111,7 +121,8 @@ export const TabStyles = props => css`
     : props.isInverse && !props.isActive
     ? 0.7
     : 1};
-  padding: 13px 20px;
+  padding: ${props.theme.spaceScale.spacing04}
+    ${props.theme.spaceScale.spacing05};
   position: relative;
   pointer-events: ${props.disabled ? 'none' : ''};
   text-align: center;
@@ -175,28 +186,29 @@ function getIconMargin(props) {
 
   switch (props.iconPosition) {
     case TabsIconPosition.left:
-      return '0 15px 0 0';
+      return `0 ${props.theme.spaceScale.spacing03} 0 0`;
     case TabsIconPosition.right:
-      return '0 0 0 15px';
+      return `0 0 0 ${props.theme.spaceScale.spacing03}`;
     case TabsIconPosition.top:
-      return '0 0 5px';
+      return `0 0 ${props.theme.spaceScale.spacing02}`;
     case TabsIconPosition.bottom:
-      return '5px 0 0';
+      return `${props.theme.spaceScale.spacing02} 0 0`;
     default:
-      return '0 0 5px';
+      return `0 0 ${props.theme.spaceScale.spacing02}`;
   }
 }
 
 export const StyledIcon = styled.span<{
   iconPosition: TabsIconPosition;
   isIconOnly?: boolean;
+  theme: ThemeInterface;
 }>`
   display: flex;
   margin: ${props => getIconMargin(props)};
 
   svg {
-    height: 17px;
-    width: 17px;
+    height: 20px;
+    width: 20px;
   }
 `;
 
@@ -226,6 +238,12 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
       isInverse,
       isFullWidth,
     } = React.useContext(TabsContext);
+
+    const handleClick = (index, e) => {
+      changeHandler(index, e);
+
+      props.onClick && typeof props.onClick === 'function' && props.onClick(e);
+    };
 
     React.useEffect(() => {
       registerTabButton(buttonRefArray, ownRef);
@@ -262,7 +280,7 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
           isActive={isActive}
           isInverse={isInverse}
           isFullWidth={isFullWidth}
-          onClick={e => changeHandler(index, e)}
+          onClick={e => handleClick(index, e)}
           orientation={orientation}
           ref={ref}
           role="tab"
@@ -270,7 +288,11 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
           theme={theme}
         >
           {icon && (
-            <StyledIcon iconPosition={tabIconPosition} isIconOnly={isIconOnly}>
+            <StyledIcon
+              theme={theme}
+              iconPosition={tabIconPosition}
+              isIconOnly={isIconOnly}
+            >
               {icon}
             </StyledIcon>
           )}
