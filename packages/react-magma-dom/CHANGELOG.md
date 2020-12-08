@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.0](http://stash.cengage.com:7999///compare/react-magma-dom@2.3.0-alpha.0...react-magma-dom@2.3.0) (2020-12-08)
+
+
+### Bug Fixes
+
+* **dropdown:** remove auto focus of button on close ([2d9a27c](http://stash.cengage.com:7999///commit/2d9a27c6c62165f6b8614ede80a6f5899c12c4af))
+* **modal:** fix modal body, header padding ([33a9b8a](http://stash.cengage.com:7999///commit/33a9b8a6f7a955eb2da4ac77247bb623b22b1410))
+* **modal:** fix style issues ([52e3dc8](http://stash.cengage.com:7999///commit/52e3dc8ca60f14684361d44abad1a9204294ba21))
+
+
+
 ## [2.3.0-alpha.0](http://stash.cengage.com:7999///compare/react-magma-dom@2.2.2-alpha.0...react-magma-dom@2.3.0-alpha.0) (2020-12-04)
 
 ### Features
