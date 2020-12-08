@@ -239,8 +239,8 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
       isFullWidth,
     } = React.useContext(TabsContext);
 
-    const handleClick = (e, index) => {
-      changeHandler(e, index);
+    const handleClick = (index, e) => {
+      changeHandler(index, e);
 
       props.onClick && typeof props.onClick === 'function' && props.onClick(e);
     };

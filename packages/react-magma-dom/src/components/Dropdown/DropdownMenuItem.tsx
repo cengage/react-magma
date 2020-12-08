@@ -8,11 +8,30 @@ import { Omit, useForkedRef } from '../../utils';
 
 export interface DropdownMenuItemProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'> {
+  /**
+   * Leading icon for the menu item
+   */
   icon?: React.ReactElement<IconProps>;
+  /**
+   * @internal
+   */
   index?: number;
+  /**
+   * @internal
+   */
   isActive?: boolean;
+  /**
+   * If true, item will be disabled; it will appear dimmed and onClick event (or any other events) will not fire
+   * @default false
+   */
   disabled?: boolean;
+  /**
+   * Action that fires when the menu item is clicked. If the menuitem also has a value prop, the value will be passed to the onClick handler
+   */
   onClick?: (value?: string) => void;
+  /**
+   * Value of the component, gets passed to the onClick event
+   */
   value?: string;
 }
 

@@ -124,6 +124,7 @@ const filterJson = () => {
           (child.comment && child.comment.shortText) ||
           defaultDescriptions[child.name],
         defaultValue: defaultDefaults[child.name] || tags.default,
+        deprecated: !!tags.deprecated,
       },
     };
   };
