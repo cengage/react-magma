@@ -5,27 +5,15 @@ fs.copyFile(
   '../react-magma-docs/src/pages/api-intro/changelog.mdx',
   err => {
     if (err) throw err;
-    console.log('File was copied to destination');
+    console.log('[react-magma-dom] Changelog was copied to destination');
 
-    const file = './src/pages/api-intro/changelog.mdx';
+    const file = '../react-magma-docs/src/pages/api-intro/changelog.mdx';
 
     const data = fs.readFileSync(file);
     const fd = fs.openSync(file, 'w+');
     const buffer = Buffer.from('---\ntitle: Changelog\norder: 4\n---\n\n');
 
     let textData = data.toString();
-
-    textData = textData.replace(
-      /http:\/\/stash.cengage.com:7999\/FRONT\/react-magma\//g,
-      'http://stash.cengage.com/projects/FRONT/repos/react-magma/'
-    );
-
-    textData = textData.replace(
-      /(http:\/\/stash\.cengage\.com\/projects\/FRONT\/repos\/react-magma\/compare\/)(.*)\.\.\.(.*)/g,
-      '$1diff?targetBranch=refs%2Ftags%2F$2&sourceBranch=refs%2Ftags%2F$3'
-    );
-
-    textData = textData.replace(/(#)( \[.*)/g, '##$2');
 
     const newBufferData = Buffer.from(textData);
 
