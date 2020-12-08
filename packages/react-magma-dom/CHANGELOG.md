@@ -5,29 +5,22 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [2.3.0-alpha.0](http://stash.cengage.com:7999///compare/react-magma-dom@2.2.2-alpha.0...react-magma-dom@2.3.0-alpha.0) (2020-12-04)
 
-
 ### Features
 
-* **loadingindicator, progressbar, spinner:** use new spacing ([513fa48](http://stash.cengage.com:7999///commit/513fa487348b06386648f7a93571c058883d37cc))
-* **progress bar:** update spacing and animation, docs fixes ([221c944](http://stash.cengage.com:7999///commit/221c9445b8e7f6ab47ad22c1bd950958da3bc535))
-* **spinner, progressbar:** allow string or number for size ([e6030d5](http://stash.cengage.com:7999///commit/e6030d56d3e386fe906ef426c5655bd53bdf1620))
-
+- **loadingindicator, progressbar, spinner:** use new spacing ([513fa48](http://stash.cengage.com:7999///commit/513fa487348b06386648f7a93571c058883d37cc))
+- **progress bar:** update spacing and animation, docs fixes ([221c944](http://stash.cengage.com:7999///commit/221c9445b8e7f6ab47ad22c1bd950958da3bc535))
+- **spinner, progressbar:** allow string or number for size ([e6030d5](http://stash.cengage.com:7999///commit/e6030d56d3e386fe906ef426c5655bd53bdf1620))
 
 ### Bug Fixes
 
-* **tabs:** allow for custom onClick on individual tab ([b3f598a](http://stash.cengage.com:7999///commit/b3f598af11ca9a7d4a2a82accaa84d2dc865075a))
-
-
+- **tabs:** allow for custom onClick on individual tab ([b3f598a](http://stash.cengage.com:7999///commit/b3f598af11ca9a7d4a2a82accaa84d2dc865075a))
 
 ### [2.2.2-alpha.0](http://stash.cengage.com:7999///compare/react-magma-dom@2.2.1...react-magma-dom@2.2.2-alpha.0) (2020-12-02)
 
-
 ### Bug Fixes
 
-* **tooltip:** added event watcher on esc key ([3060740](http://stash.cengage.com:7999///commit/3060740a8f23f68f7dd441b73ddb6d01e668748c))
-* **tooltip:** removed deprciated keyCode ([3ad9cb9](http://stash.cengage.com:7999///commit/3ad9cb9b0cd9b9ccd01431b04862ffbfe174df6c))
-
-
+- **tooltip:** added event watcher on esc key ([3060740](http://stash.cengage.com:7999///commit/3060740a8f23f68f7dd441b73ddb6d01e668748c))
+- **tooltip:** removed deprciated keyCode ([3ad9cb9](http://stash.cengage.com:7999///commit/3ad9cb9b0cd9b9ccd01431b04862ffbfe174df6c))
 
 ### [2.2.1](http://stash.cengage.com:7999///compare/react-magma-dom@2.2.0...react-magma-dom@2.2.1) (2020-12-01)
 

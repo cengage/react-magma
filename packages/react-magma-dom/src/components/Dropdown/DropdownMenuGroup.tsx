@@ -4,6 +4,9 @@ import { DropdownHeader } from './DropdownHeader';
 
 export interface DropdownMenuGroupInterface
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Header text to use for the menu group
+   */
   header?: React.ReactNode;
 }
 
