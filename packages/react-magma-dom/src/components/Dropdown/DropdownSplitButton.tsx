@@ -1,30 +1,44 @@
 import * as React from 'react';
 
 import { Button, ButtonShape, ButtonStyles } from '../Button';
-import { IconButton, IconButtonProps } from '../IconButton';
+import { IconButton } from '../IconButton';
 import { CaretDownIcon, CaretUpIcon } from 'react-magma-icons';
 import { DropdownContext, DropdownDropDirection } from '.';
 import { I18nContext } from '../../i18n';
-import { useGenerateId } from '../../utils';
+import { useForkedRef, useGenerateId } from '../../utils';
 
 export interface DropdownSplitButtonProps extends ButtonStyles {
+  /**
+   * The text the screen reader will announce. Required for icon-only buttons
+   */
   'aria-label': string;
+  /**
+   * The content of the component. If no children are provided, the button will render in an icon only style
+   */
   children?: any;
-  icon?: React.ReactElement<IconButtonProps>;
+  /**
+   * Icon to display within the component
+   */
   id?: string;
+  /**
+   * If true, element is disabled
+   */
   disabled?: boolean;
+  /**
+   * Function that fires when the button is clicked
+   */
   onClick?: () => void;
 }
 
-export const DropdownSplitButton: React.FunctionComponent<DropdownSplitButtonProps> = ({
-  'aria-label': ariaLabel,
-  children,
-  icon,
-  id,
-  onClick,
-  ...other
-}: DropdownSplitButtonProps) => {
+export const DropdownSplitButton = React.forwardRef<
+  HTMLButtonElement,
+  DropdownSplitButtonProps
+>((props, forwardedRef) => {
+  const { 'aria-label': ariaLabel, children, id, onClick, ...other } = props;
+
   const context = React.useContext(DropdownContext);
+
+  const ref = useForkedRef(forwardedRef, context.toggleRef);
 
   context.dropdownButtonId.current = useGenerateId(id);
 
@@ -65,8 +79,8 @@ export const DropdownSplitButton: React.FunctionComponent<DropdownSplitButtonPro
         onClick={handleClick}
         shape={ButtonShape.rightCap}
         style={{ marginLeft: 0 }}
-        ref={context.toggleRef}
+        ref={ref}
       />
     </>
   );
-};
+});

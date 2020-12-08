@@ -3,51 +3,56 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-### [2.2.1](http://stash.cengage.com:7999///compare/react-magma-dom@2.2.0...react-magma-dom@2.2.1) (2020-12-01)
-
-
-### Bug Fixes
-
-* **dropdown:** export DropdownAlignment and DropdownDropDirection ([458c4b4](http://stash.cengage.com:7999///commit/458c4b4adcbad85a63b1883d5b613cff3cce257d))
-* **typography:** export TypographyContextVariant ([1012171](http://stash.cengage.com:7999///commit/101217160ba2b5bce1e3931d77f39ee77d6f8b64))
-
-
-
-## [2.2.0](http://stash.cengage.com:7999///compare/react-magma-dom@2.1.1...react-magma-dom@2.2.0) (2020-11-25)
-
+## [2.3.0-alpha.0](http://stash.cengage.com:7999///compare/react-magma-dom@2.2.2-alpha.0...react-magma-dom@2.3.0-alpha.0) (2020-12-04)
 
 ### Features
 
-* **component:** spacing updates ([e2ffcaa](http://stash.cengage.com:7999///commit/e2ffcaa3718625a01d8778366c0db13e46c595ac))
+- **loadingindicator, progressbar, spinner:** use new spacing ([513fa48](http://stash.cengage.com:7999///commit/513fa487348b06386648f7a93571c058883d37cc))
+- **progress bar:** update spacing and animation, docs fixes ([221c944](http://stash.cengage.com:7999///commit/221c9445b8e7f6ab47ad22c1bd950958da3bc535))
+- **spinner, progressbar:** allow string or number for size ([e6030d5](http://stash.cengage.com:7999///commit/e6030d56d3e386fe906ef426c5655bd53bdf1620))
 
+### Bug Fixes
 
+- **tabs:** allow for custom onClick on individual tab ([b3f598a](http://stash.cengage.com:7999///commit/b3f598af11ca9a7d4a2a82accaa84d2dc865075a))
+
+### [2.2.2-alpha.0](http://stash.cengage.com:7999///compare/react-magma-dom@2.2.1...react-magma-dom@2.2.2-alpha.0) (2020-12-02)
+
+### Bug Fixes
+
+- **tooltip:** added event watcher on esc key ([3060740](http://stash.cengage.com:7999///commit/3060740a8f23f68f7dd441b73ddb6d01e668748c))
+- **tooltip:** removed deprciated keyCode ([3ad9cb9](http://stash.cengage.com:7999///commit/3ad9cb9b0cd9b9ccd01431b04862ffbfe174df6c))
+
+### [2.2.1](http://stash.cengage.com:7999///compare/react-magma-dom@2.2.0...react-magma-dom@2.2.1) (2020-12-01)
+
+### Bug Fixes
+
+- **dropdown:** export DropdownAlignment and DropdownDropDirection ([458c4b4](http://stash.cengage.com:7999///commit/458c4b4adcbad85a63b1883d5b613cff3cce257d))
+- **typography:** export TypographyContextVariant ([1012171](http://stash.cengage.com:7999///commit/101217160ba2b5bce1e3931d77f39ee77d6f8b64))
+
+## [2.2.0](http://stash.cengage.com:7999///compare/react-magma-dom@2.1.1...react-magma-dom@2.2.0) (2020-11-25)
+
+### Features
+
+- **component:** spacing updates ([e2ffcaa](http://stash.cengage.com:7999///commit/e2ffcaa3718625a01d8778366c0db13e46c595ac))
 
 ### [2.1.1](http://stash.cengage.com:7999///compare/react-magma-dom@2.1.0...react-magma-dom@2.1.1) (2020-11-24)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ## [2.1.0](http://stash.cengage.com:7999///compare/react-magma-dom@2.0.0...react-magma-dom@2.1.0) (2020-11-24)
-
 
 ### Features
 
-* **combobox, select:** use spacing from theme ([71d3026](http://stash.cengage.com:7999///commit/71d302656a82a286c16bd2eb4f73893ab5f450f4))
-* **datepicker:** use spacing from theme ([cec752f](http://stash.cengage.com:7999///commit/cec752f1f78a11e8ab571264b4673cfdbfad1a9f))
-* **paragraph, heading:** use spacing scale from theme ([4afac5f](http://stash.cengage.com:7999///commit/4afac5ffd7e3b7d3c78b4bdf9f32a695833ccba7))
+- **combobox, select:** use spacing from theme ([71d3026](http://stash.cengage.com:7999///commit/71d302656a82a286c16bd2eb4f73893ab5f450f4))
+- **datepicker:** use spacing from theme ([cec752f](http://stash.cengage.com:7999///commit/cec752f1f78a11e8ab571264b4673cfdbfad1a9f))
+- **paragraph, heading:** use spacing scale from theme ([4afac5f](http://stash.cengage.com:7999///commit/4afac5ffd7e3b7d3c78b4bdf9f32a695833ccba7))
 
 ## 2.0.0-beta.137 (2020-11-20)
 
-
 ### Features
 
-* **multiple:** update components to use spacing from theme ([11323d5](http://stash.cengage.com:7999///commit/11323d5005dea6030596d34bcfea00d001f2a409))
-* **table:** update tables spacing to use theme ([4a8c6b9](http://stash.cengage.com:7999///commit/4a8c6b9189cae6fe6f12397fb2951d9a99a9299b))
-
-
+- **multiple:** update components to use spacing from theme ([11323d5](http://stash.cengage.com:7999///commit/11323d5005dea6030596d34bcfea00d001f2a409))
+- **table:** update tables spacing to use theme ([4a8c6b9](http://stash.cengage.com:7999///commit/4a8c6b9189cae6fe6f12397fb2951d9a99a9299b))
 
 # [2.0.0](http://stash.cengage.com:7999/FRONT/react-magma/compare/v2.0.0-beta.136...v2.0.0) (2020-11-19)
 

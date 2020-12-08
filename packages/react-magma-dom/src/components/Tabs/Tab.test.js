@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tab } from './Tab';
 import { CheckIcon } from 'react-magma-icons';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import { magma } from '../../theme/magma';
 import { Tabs } from '.';
@@ -249,6 +249,22 @@ it('should show icon in right position', () => {
     `0 0 0 ${magma.spaceScale.spacing03}`
   );
   expect(getByTestId(testId)).toHaveStyleRule('flex-direction', 'row-reverse');
+});
+
+it('should show fire a custom onClick event', () => {
+  const testId = 'test-id';
+  const customOnClick = jest.fn();
+
+  const { getByTestId } = render(
+    <Tabs>
+      <Tab testId={testId} onClick={customOnClick}>
+        Tab
+      </Tab>
+    </Tabs>
+  );
+
+  fireEvent.click(getByTestId(testId));
+  expect(customOnClick).toHaveBeenCalled();
 });
 
 describe('Test for accessibility', () => {

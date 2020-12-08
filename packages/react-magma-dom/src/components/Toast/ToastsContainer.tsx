@@ -2,7 +2,14 @@ import * as React from 'react';
 
 export interface ToastsContainerProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Number of additional pixels from bottom of screen
+   * @default 0
+   */
   bottomOffset?: number;
+  /**
+   * @internal
+   */
   toastsArray?: any;
   testId?: string;
 }
