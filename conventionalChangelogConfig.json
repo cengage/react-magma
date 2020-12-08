@@ -1,3 +1,0 @@
-{
-  "commitUrlFormat": "https://bitbucket.my.domain/projects/{{owner}}/repos/{{repository}}/commits/{{hash}}"
-}
