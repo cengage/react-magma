@@ -11,6 +11,11 @@
     "!dist/reports",
     "lib"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cengage/react-magma.git",
+    "directory": "packages/react-magma-dom"
+  },
   "scripts": {
     "test": "tsdx test",
     "test-watch": "tsdx test --watch",
