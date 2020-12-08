@@ -2,6 +2,7 @@
   "name": "react-magma",
   "version": "2.0.0",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "postinstall": "npm run bootstrap && npm run build:lite",
     "test": "jest",

@@ -24,7 +24,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "peerDependencies": {
     "@emotion/core": "^10.0.27",
     "@emotion/styled": "^10.0.27",
