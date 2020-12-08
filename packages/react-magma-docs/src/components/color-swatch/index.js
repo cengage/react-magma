@@ -4,16 +4,16 @@ import PropTypes from 'prop-types';
 import { magma } from 'react-magma-dom';
 
 const SwatchContainer = styled.div`
-  width: 200px;
-  margin: 0 ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing05} 0;
   border: 1px solid ${magma.colors.neutral06};
   border-radius: ${magma.borderRadius};
-  overflow: hidden;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 6px 0px;
+  margin: 0 ${magma.spaceScale.spacing06} ${magma.spaceScale.spacing06} 0;
+  overflow: hidden;
+  width: 200px;
 
   @media (max-width: ${magma.breakpoints.small}px) {
+    margin-right: 0;
     width: 100%;
-    margin: ${magma.spaceScale.spacing03};
   }
 `;
 

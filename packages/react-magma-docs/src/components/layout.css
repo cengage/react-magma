@@ -52,6 +52,14 @@ svg:not(:root) {
 figure {
   margin: 16px 40px;
 }
+button,
+input,
+optgroup,
+select,
+textarea {
+  font: inherit;
+  margin: 0;
+}
 fieldset {
   border: 1px solid #8f8f8f;
   margin: 0 2px;

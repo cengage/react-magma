@@ -163,7 +163,6 @@ export class SlidingDrawer extends React.Component {
               isInverse
               onClick={this.openMenu}
               ref={this.toggleButtonRef}
-              size="large"
               variant="link"
             />
           </MenuButton>

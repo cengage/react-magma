@@ -17,12 +17,17 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: ${magma.spaceScale.spacing06};
 
   @media (min-width: ${magma.breakpoints.small}px) {
     align-items: center;
     flex-direction: row;
-    margin-bottom: 0;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  margin-bottom: ${magma.spaceScale.spacing06};
+  @media (min-width: ${magma.breakpoints.small}px) {
+    margin: 0;
   }
 `;
 
@@ -43,25 +48,29 @@ const DocsHeading = ({ children, to, type }) => (
       <Heading level={1}>{children}</Heading>
     </div>
     {type === 'api' && to && (
-      <Hyperlink color="secondary" styledAs="Button" to={to}>
-        {linkProps => (
-          <Link {...linkProps}>
-            <PaletteIcon size="16" />
-            <ButtonSpan>View Design Guidelines</ButtonSpan>
-          </Link>
-        )}
-      </Hyperlink>
+      <ButtonContainer>
+        <Hyperlink color="secondary" styledAs="Button" to={to}>
+          {linkProps => (
+            <Link {...linkProps}>
+              <PaletteIcon size="16" />
+              <ButtonSpan>View Design Guidelines</ButtonSpan>
+            </Link>
+          )}
+        </Hyperlink>
+      </ButtonContainer>
     )}
 
     {type === 'design' && to && (
-      <Hyperlink color="secondary" styledAs="Button" to={to}>
-        {linkProps => (
-          <Link {...linkProps}>
-            <CodeIcon size="16" />
-            <ButtonSpan>View Component API</ButtonSpan>
-          </Link>
-        )}
-      </Hyperlink>
+      <ButtonContainer>
+        <Hyperlink color="secondary" styledAs="Button" to={to}>
+          {linkProps => (
+            <Link {...linkProps}>
+              <CodeIcon size="16" />
+              <ButtonSpan>View Component API</ButtonSpan>
+            </Link>
+          )}
+        </Hyperlink>
+      </ButtonContainer>
     )}
   </Container>
 );
