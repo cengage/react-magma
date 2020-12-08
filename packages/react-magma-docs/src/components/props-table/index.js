@@ -59,6 +59,20 @@ export const SimplePropsTable = ({ propertyValues }) => {
                           />
                         </span>
                       )}
+                      {prop.deprecated && (
+                        <Tooltip content="Deprecated">
+                          <IconButton
+                            aria-label="deprecated"
+                            icon={
+                              <NotificationIcon
+                                size="16"
+                                color={magma.colors.danger}
+                              />
+                            }
+                            variant="link"
+                          />
+                        </Tooltip>
+                      )}
                     </span>
                   </TableCell>
                   <TableCell>
