@@ -115,6 +115,15 @@ npm run test-core
 
 `npm run covg` to see the generated lcov coverage reports.
 
+#### Wallaby.js
+
+[![Wallaby.js](https://img.shields.io/badge/wallaby.js-powered-blue.svg?style=for-the-badge&logo=github)](https://wallabyjs.com/oss/)
+
+This repository contributors are welcome to use
+[Wallaby.js OSS License](https://wallabyjs.com/oss/) to get
+test results immediately as you type, and see the results in
+your editor right next to your code.
+
 ### End to End Testing
 
 We use [Cypress](https://cypress.io) to create our e2e tests. These tests live in the `e2eTesting` package.
