@@ -33,7 +33,7 @@ Node v12.x or greater with npm 6.1.x or greater
 1. Clone this repo:
 
 ```sh
-git clone ssh://git@stash.corp.web:7999/front/react-magma.git
+git clone git@github.com:cengage/react-magma.git
 ```
 
 2. Install the project's dependencies with the `npm ci` command
