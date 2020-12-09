@@ -25,7 +25,8 @@
         "type": {
           "name": "ReactNode"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       },
       "closeAriaLabel": {
         "name": "closeAriaLabel",
@@ -34,7 +35,8 @@
           "name": "string"
         },
         "description": "The text read by screen readers for the close button",
-        "defaultValue": "\"Close this message\""
+        "defaultValue": "\"Close this message\"",
+        "deprecated": false
       },
       "isDismissible": {
         "name": "isDismissible",
@@ -43,7 +45,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will be able to be dismissed and will include a close button",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -52,7 +55,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "onDismiss": {
         "name": "onDismiss",
@@ -60,7 +64,8 @@
         "type": {
           "name": "function"
         },
-        "description": "Action that fires when the close button is clicked (required when isDismissible is true)"
+        "description": "Action that fires when the close button is clicked (required when isDismissible is true)",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -68,7 +73,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "variant": {
         "name": "variant",
@@ -83,7 +89,8 @@
           ]
         },
         "description": "The variant of the alert, indicating its function in the UI",
-        "defaultValue": "`AlertVariant.info`"
+        "defaultValue": "`AlertVariant.info`",
+        "deprecated": false
       }
     }
   },
@@ -102,42 +109,48 @@
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "forceDismiss": {
         "name": "forceDismiss",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "hasTimerRing": {
         "name": "hasTimerRing",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isDismissed": {
         "name": "isDismissed",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isDismissible": {
         "name": "isDismissible",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isExiting": {
         "name": "isExiting",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -146,28 +159,32 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isPaused": {
         "name": "isPaused",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isToast": {
         "name": "isToast",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "onDismiss": {
         "name": "onDismiss",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -175,14 +192,16 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "toastDuration": {
         "name": "toastDuration",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "variant": {
         "name": "variant",
@@ -195,7 +214,8 @@
             "AlertVariant.success",
             "AlertVariant.warning"
           ]
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -225,7 +245,8 @@
         "type": {
           "name": "ReactNode"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       },
       "politeness": {
         "name": "politeness",
@@ -239,7 +260,8 @@
           ]
         },
         "description": "Value of the `aria-live` attribute",
-        "defaultValue": "AnnouncePoliteness.polite"
+        "defaultValue": "AnnouncePoliteness.polite",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -247,7 +269,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -277,7 +300,8 @@
         "type": {
           "name": "ReactNode"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       },
       "color": {
         "name": "color",
@@ -293,7 +317,8 @@
           ]
         },
         "description": "The color variant of the badge",
-        "defaultValue": "BadgeColor.primary"
+        "defaultValue": "BadgeColor.primary",
+        "deprecated": false
       },
       "onClick": {
         "name": "onClick",
@@ -301,7 +326,8 @@
         "type": {
           "name": "function"
         },
-        "description": "Action that fires when the badge is clicked. Causes the Badge to render as a button instead of a span."
+        "description": "Action that fires when the badge is clicked. Causes the Badge to render as a button instead of a span.",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -309,7 +335,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "variant": {
         "name": "variant",
@@ -322,7 +349,8 @@
           ]
         },
         "description": "Indicates the style variant of the component",
-        "defaultValue": "BadgeVariant.label"
+        "defaultValue": "BadgeVariant.label",
+        "deprecated": false
       }
     }
   },
@@ -352,7 +380,8 @@
         "type": {
           "name": "function"
         },
-        "description": "Action that fires when the action button is clicked. Must be present for button to appear"
+        "description": "Action that fires when the action button is clicked. Must be present for button to appear",
+        "deprecated": false
       },
       "actionButtonText": {
         "name": "actionButtonText",
@@ -360,7 +389,8 @@
         "type": {
           "name": "string"
         },
-        "description": "The text displayed inside of the action button"
+        "description": "The text displayed inside of the action button",
+        "deprecated": false
       },
       "children": {
         "name": "children",
@@ -368,7 +398,8 @@
         "type": {
           "name": "ReactNode"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       },
       "closeAriaLabel": {
         "name": "closeAriaLabel",
@@ -377,7 +408,8 @@
           "name": "string"
         },
         "description": "The text read by screen readers for the close button",
-        "defaultValue": "\"Close this message\""
+        "defaultValue": "\"Close this message\"",
+        "deprecated": false
       },
       "isDismissible": {
         "name": "isDismissible",
@@ -386,7 +418,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will be able to be dismissed and will include a close button",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -395,7 +428,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "onDismiss": {
         "name": "onDismiss",
@@ -403,7 +437,8 @@
         "type": {
           "name": "function"
         },
-        "description": "Action that fires when the close button is clicked (required when isDismissible is true)"
+        "description": "Action that fires when the close button is clicked (required when isDismissible is true)",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -411,7 +446,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "variant": {
         "name": "variant",
@@ -426,7 +462,8 @@
           ]
         },
         "description": "The variant of the alert, indicating its function in the UI",
-        "defaultValue": "`AlertVariant.info`"
+        "defaultValue": "`AlertVariant.info`",
+        "deprecated": false
       }
     }
   },
@@ -456,7 +493,8 @@
         "type": {
           "name": "ReactNode"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -464,7 +502,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "to": {
         "name": "to",
@@ -472,7 +511,8 @@
         "type": {
           "name": "string"
         },
-        "description": "The href value of the link. If left blank, the breadcrumb item will render as a span with aria-current=\"page\" on it."
+        "description": "The href value of the link. If left blank, the breadcrumb item will render as a span with aria-current=\"page\" on it.",
+        "deprecated": false
       }
     }
   },
@@ -493,7 +533,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       }
     }
   },
@@ -523,7 +564,8 @@
         "type": {
           "name": "ReactNode"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -532,7 +574,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -540,7 +583,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -568,7 +612,8 @@
           ]
         },
         "description": "The relative screen size for the breakpoint. Will go from pixel width specified up to the next breakpoint.",
-        "defaultValue": "BreakpointScreenSize.xs"
+        "defaultValue": "BreakpointScreenSize.xs",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -576,7 +621,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -607,7 +653,8 @@
           "name": "object"
         },
         "description": "Object that defines the pixel size of individual breakpoints",
-        "defaultValue": "{ xs: 0, small: 600, medium: 768, large: 1024, xl: 1200 }"
+        "defaultValue": "{ xs: 0, small: 600, medium: 768, large: 1024, xl: 1200 }",
+        "deprecated": false
       },
       "children": {
         "name": "children",
@@ -615,7 +662,8 @@
         "type": {
           "name": "ReactNode"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       }
     }
   },
@@ -643,7 +691,8 @@
         "type": {
           "name": "ReactNode"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -651,7 +700,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "type": {
         "name": "type",
@@ -664,7 +714,8 @@
             "ButtonType.submit"
           ]
         },
-        "description": "The type attribute of the button\nButtonType.button"
+        "description": "The type attribute of the button\nButtonType.button",
+        "deprecated": false
       }
     }
   },
@@ -692,7 +743,8 @@
           ]
         },
         "description": "The color of the button, indicating its function in the UI",
-        "defaultValue": "ButtonColor.primary"
+        "defaultValue": "ButtonColor.primary",
+        "deprecated": false
       },
       "isFullWidth": {
         "name": "isFullWidth",
@@ -701,7 +753,8 @@
           "name": "boolean"
         },
         "description": " Set the button to display full-width.",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -710,7 +763,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "shape": {
         "name": "shape",
@@ -725,7 +779,8 @@
           ]
         },
         "description": "Defines the border radius",
-        "defaultValue": "ButtonShape.fill"
+        "defaultValue": "ButtonShape.fill",
+        "deprecated": false
       },
       "size": {
         "name": "size",
@@ -739,7 +794,8 @@
           ]
         },
         "description": "The relative size of the button",
-        "defaultValue": "ButtonSize.medium"
+        "defaultValue": "ButtonSize.medium",
+        "deprecated": false
       },
       "textTransform": {
         "name": "textTransform",
@@ -752,7 +808,8 @@
           ]
         },
         "description": "Determines whether the button appears in all-caps",
-        "defaultValue": "ButtonTextTransform.uppercase"
+        "defaultValue": "ButtonTextTransform.uppercase",
+        "deprecated": false
       },
       "type": {
         "name": "type",
@@ -765,7 +822,8 @@
             "ButtonType.submit"
           ]
         },
-        "description": "The type attribute of the button\nButtonType.button"
+        "description": "The type attribute of the button\nButtonType.button",
+        "deprecated": false
       },
       "variant": {
         "name": "variant",
@@ -779,7 +837,8 @@
           ]
         },
         "description": "The variant of the button",
-        "defaultValue": "ButtonVariant.solid"
+        "defaultValue": "ButtonVariant.solid",
+        "deprecated": false
       }
     }
   },
@@ -821,7 +880,8 @@
           ]
         },
         "description": "The color of the button, indicating its function in the UI",
-        "defaultValue": "ButtonColor.primary"
+        "defaultValue": "ButtonColor.primary",
+        "deprecated": false
       },
       "isFullWidth": {
         "name": "isFullWidth",
@@ -830,7 +890,8 @@
           "name": "boolean"
         },
         "description": " Set the button to display full-width.",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -839,7 +900,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "shape": {
         "name": "shape",
@@ -854,7 +916,8 @@
           ]
         },
         "description": "Defines the border radius",
-        "defaultValue": "ButtonShape.fill"
+        "defaultValue": "ButtonShape.fill",
+        "deprecated": false
       },
       "size": {
         "name": "size",
@@ -868,7 +931,8 @@
           ]
         },
         "description": "The relative size of the button",
-        "defaultValue": "ButtonSize.medium"
+        "defaultValue": "ButtonSize.medium",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -876,7 +940,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "textTransform": {
         "name": "textTransform",
@@ -889,7 +954,8 @@
           ]
         },
         "description": "Determines whether the button appears in all-caps",
-        "defaultValue": "ButtonTextTransform.uppercase"
+        "defaultValue": "ButtonTextTransform.uppercase",
+        "deprecated": false
       },
       "type": {
         "name": "type",
@@ -902,7 +968,8 @@
             "ButtonType.submit"
           ]
         },
-        "description": "The type attribute of the button\nButtonType.button"
+        "description": "The type attribute of the button\nButtonType.button",
+        "deprecated": false
       },
       "variant": {
         "name": "variant",
@@ -916,7 +983,8 @@
           ]
         },
         "description": "The variant of the button",
-        "defaultValue": "ButtonVariant.solid"
+        "defaultValue": "ButtonVariant.solid",
+        "deprecated": false
       }
     }
   },
@@ -946,7 +1014,8 @@
         "type": {
           "name": "ReactNode"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -954,7 +1023,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -984,7 +1054,8 @@
         "type": {
           "name": "ReactNode"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       },
       "headingLevel": {
         "name": "headingLevel",
@@ -993,7 +1064,8 @@
           "name": "function"
         },
         "description": "Number to indicate which level heading will render (e.g. h1, h2 etc.)",
-        "defaultValue": "4"
+        "defaultValue": "4",
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -1002,7 +1074,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -1010,7 +1083,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -1046,7 +1120,8 @@
           ]
         },
         "description": "Sets the alignment of the card content",
-        "defaultValue": "CardAlignment.left"
+        "defaultValue": "CardAlignment.left",
+        "deprecated": false
       },
       "background": {
         "name": "background",
@@ -1054,7 +1129,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Color for the background and border-color, set by CSS."
+        "description": "Color for the background and border-color, set by CSS.",
+        "deprecated": false
       },
       "calloutType": {
         "name": "calloutType",
@@ -1069,7 +1145,8 @@
           ]
         },
         "description": "If a value is passed, the card will be styled as a callout for the specified type.",
-        "defaultValue": "none"
+        "defaultValue": "none",
+        "deprecated": false
       },
       "children": {
         "name": "children",
@@ -1077,7 +1154,8 @@
         "type": {
           "name": "ReactNode"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       },
       "hasDropShadow": {
         "name": "hasDropShadow",
@@ -1086,7 +1164,8 @@
           "name": "boolean"
         },
         "description": "If true, card will render with a box-shadow",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -1095,7 +1174,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -1103,7 +1183,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "width": {
         "name": "width",
@@ -1111,7 +1192,8 @@
         "type": {
           "name": "function"
         },
-        "description": "Width of the component, set by CSS."
+        "description": "Width of the component, set by CSS.",
+        "deprecated": false
       }
     }
   },
@@ -1130,7 +1212,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       }
     }
   },
@@ -1151,7 +1234,8 @@
           "name": "boolean"
         },
         "description": "If true, element is checked (i.e. selected)",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "color": {
         "name": "color",
@@ -1160,7 +1244,8 @@
           "name": "string"
         },
         "description": "Hex code for the background color",
-        "defaultValue": "#0000FF"
+        "defaultValue": "#0000FF",
+        "deprecated": false
       },
       "containerStyle": {
         "name": "containerStyle",
@@ -1168,7 +1253,8 @@
         "type": {
           "name": "CSSProperties"
         },
-        "description": "Style properties for the component container element"
+        "description": "Style properties for the component container element",
+        "deprecated": false
       },
       "defaultChecked": {
         "name": "defaultChecked",
@@ -1176,7 +1262,8 @@
         "type": {
           "name": "boolean"
         },
-        "description": "If true, checkbox is checked on first render"
+        "description": "If true, checkbox is checked on first render",
+        "deprecated": false
       },
       "disabled": {
         "name": "disabled",
@@ -1185,7 +1272,8 @@
           "name": "boolean"
         },
         "description": "If true, element is disabled",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "errorMessage": {
         "name": "errorMessage",
@@ -1193,14 +1281,16 @@
         "type": {
           "name": "React.ReactNode"
         },
-        "description": "Content of the error message for an individual checkbox. If a value is provided, the input will be styled as an error state and the error message will display."
+        "description": "Content of the error message for an individual checkbox. If a value is provided, the input will be styled as an error state and the error message will display.",
+        "deprecated": false
       },
       "hasError": {
         "name": "hasError",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "inputStyle": {
         "name": "inputStyle",
@@ -1208,7 +1298,8 @@
         "type": {
           "name": "CSSProperties"
         },
-        "description": "Style properties for the checkbox element"
+        "description": "Style properties for the checkbox element",
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -1217,7 +1308,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isTextVisuallyHidden": {
         "name": "isTextVisuallyHidden",
@@ -1226,7 +1318,8 @@
           "name": "boolean"
         },
         "description": "If true, label text will be hidden visually, but will still be read by assistive technology",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "labelStyle": {
         "name": "labelStyle",
@@ -1234,7 +1327,8 @@
         "type": {
           "name": "CSSProperties"
         },
-        "description": "Style properties for the label element"
+        "description": "Style properties for the label element",
+        "deprecated": false
       },
       "labelText": {
         "name": "labelText",
@@ -1242,7 +1336,8 @@
         "type": {
           "name": "React.ReactNode"
         },
-        "description": "Content of label; can be node or string"
+        "description": "Content of label; can be node or string",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -1250,7 +1345,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "textPosition": {
         "name": "textPosition",
@@ -1263,7 +1359,8 @@
           ]
         },
         "description": "Whether the label appears to the left of the right of the checkbox",
-        "defaultValue": "CheckboxTextPosition.right"
+        "defaultValue": "CheckboxTextPosition.right",
+        "deprecated": false
       }
     }
   },
@@ -1289,7 +1386,8 @@
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "children": {
         "name": "children",
@@ -1297,56 +1395,64 @@
         "type": {
           "name": "function"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       },
       "customComponents": {
         "name": "customComponents",
         "required": false,
         "type": {
           "name": "SelectComponents"
-        }
+        },
+        "deprecated": false
       },
       "disabled": {
         "name": "disabled",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "getComboboxProps": {
         "name": "getComboboxProps",
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "getInputProps": {
         "name": "getInputProps",
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "getToggleButtonProps": {
         "name": "getToggleButtonProps",
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "hasError": {
         "name": "hasError",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "inputStyle": {
         "name": "inputStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -1355,70 +1461,80 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isLoading": {
         "name": "isLoading",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "onInputBlur": {
         "name": "onInputBlur",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onInputFocus": {
         "name": "onInputFocus",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onInputKeyDown": {
         "name": "onInputKeyDown",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onInputKeyPress": {
         "name": "onInputKeyPress",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onInputKeyUp": {
         "name": "onInputKeyUp",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "placeholder": {
         "name": "placeholder",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "selectedItems": {
         "name": "selectedItems",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "toggleButtonRef": {
         "name": "toggleButtonRef",
         "required": false,
         "type": {
           "name": "React.Ref"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -1453,84 +1569,96 @@
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "components": {
         "name": "components",
         "required": false,
         "type": {
           "name": "SelectComponents"
-        }
+        },
+        "deprecated": false
       },
       "containerStyle": {
         "name": "containerStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "defaultItems": {
         "name": "defaultItems",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "disableCreateItem": {
         "name": "disableCreateItem",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "disabled": {
         "name": "disabled",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "errorMessage": {
         "name": "errorMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "hasError": {
         "name": "hasError",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "helperMessage": {
         "name": "helperMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "innerRef": {
         "name": "innerRef",
         "required": false,
         "type": {
           "name": "React.Ref"
-        }
+        },
+        "deprecated": false
       },
       "inputStyle": {
         "name": "inputStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "isClearable": {
         "name": "isClearable",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -1539,140 +1667,160 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isLabelVisuallyHidden": {
         "name": "isLabelVisuallyHidden",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isLoading": {
         "name": "isLoading",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isMulti": {
         "name": "isMulti",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "items": {
         "name": "items",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "labelStyle": {
         "name": "labelStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "labelText": {
         "name": "labelText",
         "required": true,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "menuStyle": {
         "name": "menuStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "messageStyle": {
         "name": "messageStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "name": {
         "name": "name",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "newItemTransform": {
         "name": "newItemTransform",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onInputBlur": {
         "name": "onInputBlur",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onInputChange": {
         "name": "onInputChange",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onInputFocus": {
         "name": "onInputFocus",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onInputKeyDown": {
         "name": "onInputKeyDown",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onInputKeyPress": {
         "name": "onInputKeyPress",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onInputKeyUp": {
         "name": "onInputKeyUp",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onInputValueChange": {
         "name": "onInputValueChange",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onItemCreated": {
         "name": "onItemCreated",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "placeholder": {
         "name": "placeholder",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -1680,14 +1828,16 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "toggleButtonRef": {
         "name": "toggleButtonRef",
         "required": false,
         "type": {
           "name": "React.Ref"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -1722,63 +1872,72 @@
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "ariaDescribedBy": {
         "name": "ariaDescribedBy",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "defaultActiveIndex": {
         "name": "defaultActiveIndex",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "defaultSelectedItems": {
         "name": "defaultSelectedItems",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "environment": {
         "name": "environment",
         "required": false,
         "type": {
           "name": "Environment"
-        }
+        },
+        "deprecated": false
       },
       "getA11yRemovalMessage": {
         "name": "getA11yRemovalMessage",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "hasError": {
         "name": "hasError",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "initialActiveIndex": {
         "name": "initialActiveIndex",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "initialSelectedItems": {
         "name": "initialSelectedItems",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -1787,70 +1946,80 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "itemToString": {
         "name": "itemToString",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "keyNavigationNext": {
         "name": "keyNavigationNext",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "keyNavigationPrevious": {
         "name": "keyNavigationPrevious",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "onActiveIndexChange": {
         "name": "onActiveIndexChange",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onRemoveSelectedItem": {
         "name": "onRemoveSelectedItem",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onSelectedItemsChange": {
         "name": "onSelectedItemsChange",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onStateChange": {
         "name": "onStateChange",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "selectedItems": {
         "name": "selectedItems",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "stateReducer": {
         "name": "stateReducer",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -1869,91 +2038,104 @@
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "chosenDate": {
         "name": "chosenDate",
         "required": true,
         "type": {
           "name": "Date"
-        }
+        },
+        "deprecated": false
       },
       "dateFocused": {
         "name": "dateFocused",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "focusedDate": {
         "name": "focusedDate",
         "required": true,
         "type": {
           "name": "Date"
-        }
+        },
+        "deprecated": false
       },
       "maxDate": {
         "name": "maxDate",
         "required": false,
         "type": {
           "name": "Date"
-        }
+        },
+        "deprecated": false
       },
       "minDate": {
         "name": "minDate",
         "required": false,
         "type": {
           "name": "Date"
-        }
+        },
+        "deprecated": false
       },
       "onDateChange": {
         "name": "onDateChange",
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onKeyDown": {
         "name": "onKeyDown",
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onNextMonthClick": {
         "name": "onNextMonthClick",
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onPrevMonthClick": {
         "name": "onPrevMonthClick",
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "setDateFocused": {
         "name": "setDateFocused",
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "setShowHelperInformation": {
         "name": "setShowHelperInformation",
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "showHelperInformation": {
         "name": "showHelperInformation",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -1970,21 +2152,24 @@
         "required": true,
         "type": {
           "name": "Date"
-        }
+        },
+        "deprecated": false
       },
       "dayFocusable": {
         "name": "dayFocusable",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "onDateChange": {
         "name": "onDateChange",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -2001,7 +2186,8 @@
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -2018,28 +2204,32 @@
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "focusOnOpen": {
         "name": "focusOnOpen",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "handleCloseButtonClick": {
         "name": "handleCloseButtonClick",
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "setDateFocused": {
         "name": "setDateFocused",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -2056,14 +2246,16 @@
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "onClose": {
         "name": "onClose",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -2082,42 +2274,48 @@
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "defaultDate": {
         "name": "defaultDate",
         "required": false,
         "type": {
           "name": "Date"
-        }
+        },
+        "deprecated": false
       },
       "errorMessage": {
         "name": "errorMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "helperMessage": {
         "name": "helperMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "id": {
         "name": "id",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "inputStyle": {
         "name": "inputStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -2126,91 +2324,104 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "labelStyle": {
         "name": "labelStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "labelText": {
         "name": "labelText",
         "required": true,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "maxDate": {
         "name": "maxDate",
         "required": false,
         "type": {
           "name": "Date"
-        }
+        },
+        "deprecated": false
       },
       "messageStyle": {
         "name": "messageStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "minDate": {
         "name": "minDate",
         "required": false,
         "type": {
           "name": "Date"
-        }
+        },
+        "deprecated": false
       },
       "onChange": {
         "name": "onChange",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onDateChange": {
         "name": "onDateChange",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onInputBlur": {
         "name": "onInputBlur",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onInputChange": {
         "name": "onInputChange",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onInputFocus": {
         "name": "onInputFocus",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "placeholder": {
         "name": "placeholder",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "required": {
         "name": "required",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -2218,14 +2429,16 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "value": {
         "name": "value",
         "required": false,
         "type": {
           "name": "Date"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -2244,14 +2457,18 @@
         "required": true,
         "type": {
           "name": "string"
-        }
+        },
+        "description": "The text the screen reader will announce. Required for icon-only buttons",
+        "deprecated": false
       },
       "icon": {
         "name": "icon",
         "required": false,
         "type": {
           "name": "ReactElement"
-        }
+        },
+        "description": "Icon to display within the component",
+        "deprecated": false
       }
     }
   },
@@ -2271,14 +2488,17 @@
         "type": {
           "name": "function"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       },
       "icon": {
         "name": "icon",
         "required": false,
         "type": {
           "name": "ReactElement"
-        }
+        },
+        "description": "Icon to display within the component",
+        "deprecated": false
       },
       "iconPosition": {
         "name": "iconPosition",
@@ -2289,7 +2509,10 @@
             "ButtonIconPosition.left",
             "ButtonIconPosition.right"
           ]
-        }
+        },
+        "description": "Position within the button for the icon to appear",
+        "defaultValue": "`ButtonIconPosition.right`",
+        "deprecated": false
       },
       "isFullWidth": {
         "name": "isFullWidth",
@@ -2298,7 +2521,8 @@
           "name": "boolean"
         },
         "description": " Set the button to display full-width.",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -2307,7 +2531,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "shape": {
         "name": "shape",
@@ -2322,7 +2547,8 @@
           ]
         },
         "description": "Defines the border radius",
-        "defaultValue": "ButtonShape.fill"
+        "defaultValue": "ButtonShape.fill",
+        "deprecated": false
       },
       "size": {
         "name": "size",
@@ -2336,7 +2562,8 @@
           ]
         },
         "description": "The relative size of the button",
-        "defaultValue": "ButtonSize.medium"
+        "defaultValue": "ButtonSize.medium",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -2344,7 +2571,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "textTransform": {
         "name": "textTransform",
@@ -2357,7 +2585,8 @@
           ]
         },
         "description": "Determines whether the button appears in all-caps",
-        "defaultValue": "ButtonTextTransform.uppercase"
+        "defaultValue": "ButtonTextTransform.uppercase",
+        "deprecated": false
       },
       "type": {
         "name": "type",
@@ -2370,7 +2599,8 @@
             "ButtonType.submit"
           ]
         },
-        "description": "The type attribute of the button\nButtonType.button"
+        "description": "The type attribute of the button\nButtonType.button",
+        "deprecated": false
       },
       "variant": {
         "name": "variant",
@@ -2384,7 +2614,8 @@
           ]
         },
         "description": "The variant of the button",
-        "defaultValue": "ButtonVariant.solid"
+        "defaultValue": "ButtonVariant.solid",
+        "deprecated": false
       }
     }
   },
@@ -2400,12 +2631,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 8877,
+          "id": 8883,
           "name": "IconOnlyDropdownButtonProps"
         },
         {
           "type": "reference",
-          "id": 8881,
+          "id": 8887,
           "name": "IconTextDropdownButtonProps"
         }
       ],
@@ -2416,21 +2647,143 @@
     "properties": {}
   },
   {
-    "name": "DropdownMenuGroupInterface",
+    "name": "DropdownContentProps",
     "kind": 256,
     "kindString": "Interface",
     "flags": {
       "isExported": true
     },
-    "id": "DropdownMenuGroupInterface",
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
+    "id": "DropdownContentProps",
+    "tags": {
+      "children": "required"
+    },
+    "properties": {
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component",
+        "deprecated": false
+      },
+      "testId": {
+        "name": "testId",
+        "required": false,
+        "type": {
+          "name": "string"
+        },
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
+      }
+    }
+  },
+  {
+    "name": "DropdownDividerProps",
+    "kind": 256,
+    "kindString": "Interface",
+    "flags": {
+      "isExported": true
+    },
+    "id": "DropdownDividerProps",
     "tags": {},
     "properties": {
+      "testId": {
+        "name": "testId",
+        "required": false,
+        "type": {
+          "name": "string"
+        },
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
+      }
+    }
+  },
+  {
+    "name": "DropdownHeaderProps",
+    "kind": 256,
+    "kindString": "Interface",
+    "flags": {
+      "isExported": true
+    },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
+    "id": "DropdownHeaderProps",
+    "tags": {
+      "children": "required"
+    },
+    "properties": {
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component",
+        "deprecated": false
+      },
+      "testId": {
+        "name": "testId",
+        "required": false,
+        "type": {
+          "name": "string"
+        },
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
+      }
+    }
+  },
+  {
+    "name": "DropdownMenuGroupProps",
+    "kind": 256,
+    "kindString": "Interface",
+    "flags": {
+      "isExported": true
+    },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
+    "id": "DropdownMenuGroupProps",
+    "tags": {
+      "children": "required"
+    },
+    "properties": {
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component",
+        "deprecated": false
+      },
       "header": {
         "name": "header",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "description": "Header text to use for the menu group",
+        "deprecated": false
       }
     }
   },
@@ -2449,42 +2802,37 @@
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "description": "If true, item will be disabled; it will appear dimmed and onClick event (or any other events) will not fire",
+        "defaultValue": "false",
+        "deprecated": false
       },
       "icon": {
         "name": "icon",
         "required": false,
         "type": {
           "name": "ReactElement"
-        }
-      },
-      "index": {
-        "name": "index",
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
-      "isActive": {
-        "name": "isActive",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
+        },
+        "description": "Leading icon for the menu item",
+        "deprecated": false
       },
       "onClick": {
         "name": "onClick",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "description": "Action that fires when the menu item is clicked. If the menuitem also has a value prop, the value will be passed to the onClick handler",
+        "deprecated": false
       },
       "value": {
         "name": "value",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "description": "Value of the component, gets passed to the onClick event",
+        "deprecated": false
       }
     }
   },
@@ -2503,7 +2851,9 @@
         "required": true,
         "type": {
           "name": "string"
-        }
+        },
+        "description": "The text the screen reader will announce. Required for icon-only buttons",
+        "deprecated": false
       },
       "children": {
         "name": "children",
@@ -2511,7 +2861,8 @@
         "type": {
           "name": "any"
         },
-        "description": "The content of the component"
+        "description": "The content of the component. If no children are provided, the button will render in an icon only style",
+        "deprecated": false
       },
       "color": {
         "name": "color",
@@ -2527,28 +2878,26 @@
           ]
         },
         "description": "The color of the button, indicating its function in the UI",
-        "defaultValue": "ButtonColor.primary"
+        "defaultValue": "ButtonColor.primary",
+        "deprecated": false
       },
       "disabled": {
         "name": "disabled",
         "required": false,
         "type": {
           "name": "boolean"
-        }
-      },
-      "icon": {
-        "name": "icon",
-        "required": false,
-        "type": {
-          "name": "ReactElement"
-        }
+        },
+        "description": "If true, element is disabled",
+        "deprecated": false
       },
       "id": {
         "name": "id",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "description": "Icon to display within the component",
+        "deprecated": false
       },
       "isFullWidth": {
         "name": "isFullWidth",
@@ -2557,7 +2906,8 @@
           "name": "boolean"
         },
         "description": " Set the button to display full-width.",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -2566,14 +2916,17 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "onClick": {
         "name": "onClick",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "description": "Function that fires when the button is clicked",
+        "deprecated": false
       },
       "shape": {
         "name": "shape",
@@ -2588,7 +2941,8 @@
           ]
         },
         "description": "Defines the border radius",
-        "defaultValue": "ButtonShape.fill"
+        "defaultValue": "ButtonShape.fill",
+        "deprecated": false
       },
       "size": {
         "name": "size",
@@ -2602,7 +2956,8 @@
           ]
         },
         "description": "The relative size of the button",
-        "defaultValue": "ButtonSize.medium"
+        "defaultValue": "ButtonSize.medium",
+        "deprecated": false
       },
       "textTransform": {
         "name": "textTransform",
@@ -2615,7 +2970,8 @@
           ]
         },
         "description": "Determines whether the button appears in all-caps",
-        "defaultValue": "ButtonTextTransform.uppercase"
+        "defaultValue": "ButtonTextTransform.uppercase",
+        "deprecated": false
       },
       "type": {
         "name": "type",
@@ -2628,7 +2984,8 @@
             "ButtonType.submit"
           ]
         },
-        "description": "The type attribute of the button\nButtonType.button"
+        "description": "The type attribute of the button\nButtonType.button",
+        "deprecated": false
       },
       "variant": {
         "name": "variant",
@@ -2642,7 +2999,8 @@
           ]
         },
         "description": "The variant of the button",
-        "defaultValue": "ButtonVariant.solid"
+        "defaultValue": "ButtonVariant.solid",
+        "deprecated": false
       }
     }
   },
@@ -2659,7 +3017,8 @@
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "alignment": {
         "name": "alignment",
@@ -2670,14 +3029,16 @@
             "DropdownAlignment.end",
             "DropdownAlignment.start"
           ]
-        }
+        },
+        "deprecated": false
       },
       "closeDropdown": {
         "name": "closeDropdown",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "dropDirection": {
         "name": "dropDirection",
@@ -2690,105 +3051,120 @@
             "DropdownDropDirection.right",
             "DropdownDropDirection.up"
           ]
-        }
+        },
+        "deprecated": false
       },
       "dropdownButtonId": {
         "name": "dropdownButtonId",
         "required": false,
         "type": {
           "name": "MutableRefObject"
-        }
+        },
+        "deprecated": false
       },
       "handleButtonKeyDown": {
         "name": "handleButtonKeyDown",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "handleMenuBlur": {
         "name": "handleMenuBlur",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "isFixedWidth": {
         "name": "isFixedWidth",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isOpen": {
         "name": "isOpen",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "itemRefArray": {
         "name": "itemRefArray",
         "required": false,
         "type": {
           "name": "MutableRefObject"
-        }
+        },
+        "deprecated": false
       },
       "maxHeight": {
         "name": "maxHeight",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "menuRef": {
         "name": "menuRef",
         "required": false,
         "type": {
           "name": "any"
-        }
+        },
+        "deprecated": false
       },
       "openDropdown": {
         "name": "openDropdown",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "registerDropdownMenuItem": {
         "name": "registerDropdownMenuItem",
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "setActiveItemIndex": {
         "name": "setActiveItemIndex",
         "required": false,
         "type": {
           "name": "React.Dispatch"
-        }
+        },
+        "deprecated": false
       },
       "setIsOpen": {
         "name": "setIsOpen",
         "required": true,
         "type": {
           "name": "React.Dispatch"
-        }
+        },
+        "deprecated": false
       },
       "toggleRef": {
         "name": "toggleRef",
         "required": false,
         "type": {
           "name": "any"
-        }
+        },
+        "deprecated": false
       },
       "width": {
         "name": "width",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -2807,7 +3183,10 @@
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "description": "Index of the item that will active/selected. If none is provided, no item will appear active",
+        "defaultValue": "-1",
+        "deprecated": false
       },
       "alignment": {
         "name": "alignment",
@@ -2818,7 +3197,10 @@
             "DropdownAlignment.end",
             "DropdownAlignment.start"
           ]
-        }
+        },
+        "description": "Alignment of the dropdown content",
+        "defaultValue": "`DropdownAlignment.start`",
+        "deprecated": false
       },
       "dropDirection": {
         "name": "dropDirection",
@@ -2831,21 +3213,38 @@
             "DropdownDropDirection.right",
             "DropdownDropDirection.up"
           ]
-        }
+        },
+        "description": "Position of the dropdown content",
+        "defaultValue": "`DropdownDropDirection.down`",
+        "deprecated": false
       },
       "maxHeight": {
         "name": "maxHeight",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "description": "Max-height of dropdown content",
+        "defaultValue": "250px",
+        "deprecated": false
       },
       "onBeforeShiftFocus": {
         "name": "onBeforeShiftFocus",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "description": "Function called on dropdown close before focusing the toggle button",
+        "deprecated": true
+      },
+      "onClose": {
+        "name": "onClose",
+        "required": false,
+        "type": {
+          "name": "function"
+        },
+        "description": "Function called when closing the dropdown menu",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -2853,14 +3252,18 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "width": {
         "name": "width",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "description": "Width of menu",
+        "defaultValue": "Width of longest menu item",
+        "deprecated": false
       }
     }
   },
@@ -2879,14 +3282,16 @@
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "hasError": {
         "name": "hasError",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -2895,7 +3300,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       }
     }
   },
@@ -2914,21 +3320,24 @@
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "errorMessage": {
         "name": "errorMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "helperMessage": {
         "name": "helperMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -2937,35 +3346,40 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isTextVisuallyHidden": {
         "name": "isTextVisuallyHidden",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "labelStyle": {
         "name": "labelStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "labelText": {
         "name": "labelText",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "labelledById": {
         "name": "labelledById",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -2973,7 +3387,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -2998,7 +3413,8 @@
             "TypographyColor.subdued",
             "TypographyColor.success"
           ]
-        }
+        },
+        "deprecated": false
       },
       "contextVariant": {
         "name": "contextVariant",
@@ -3010,7 +3426,8 @@
             "TypographyContextVariant.expressive",
             "TypographyContextVariant.narrative"
           ]
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -3019,14 +3436,16 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "level": {
         "name": "level",
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -3034,7 +3453,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "visualStyle": {
         "name": "visualStyle",
@@ -3053,7 +3473,8 @@
             "TypographyVisualStyle.headingXLarge",
             "TypographyVisualStyle.headingXSmall"
           ]
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -3072,14 +3493,16 @@
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "minWidth": {
         "name": "minWidth",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -3087,7 +3510,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -3107,7 +3531,8 @@
         "type": {
           "name": "function"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       },
       "color": {
         "name": "color",
@@ -3123,7 +3548,8 @@
           ]
         },
         "description": "The color of the button, indicating its function in the UI",
-        "defaultValue": "ButtonColor.primary"
+        "defaultValue": "ButtonColor.primary",
+        "deprecated": false
       },
       "isFullWidth": {
         "name": "isFullWidth",
@@ -3132,7 +3558,8 @@
           "name": "boolean"
         },
         "description": " Set the button to display full-width.",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -3141,7 +3568,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "shape": {
         "name": "shape",
@@ -3156,7 +3584,8 @@
           ]
         },
         "description": "Defines the border radius",
-        "defaultValue": "ButtonShape.fill"
+        "defaultValue": "ButtonShape.fill",
+        "deprecated": false
       },
       "size": {
         "name": "size",
@@ -3170,14 +3599,16 @@
           ]
         },
         "description": "The relative size of the button",
-        "defaultValue": "ButtonSize.medium"
+        "defaultValue": "ButtonSize.medium",
+        "deprecated": false
       },
       "styledAs": {
         "name": "styledAs",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -3185,7 +3616,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "textTransform": {
         "name": "textTransform",
@@ -3198,14 +3630,16 @@
           ]
         },
         "description": "Determines whether the button appears in all-caps",
-        "defaultValue": "ButtonTextTransform.uppercase"
+        "defaultValue": "ButtonTextTransform.uppercase",
+        "deprecated": false
       },
       "to": {
         "name": "to",
         "required": true,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "type": {
         "name": "type",
@@ -3218,7 +3652,8 @@
             "ButtonType.submit"
           ]
         },
-        "description": "The type attribute of the button\nButtonType.button"
+        "description": "The type attribute of the button\nButtonType.button",
+        "deprecated": false
       },
       "variant": {
         "name": "variant",
@@ -3232,7 +3667,8 @@
           ]
         },
         "description": "The variant of the button",
-        "defaultValue": "ButtonVariant.solid"
+        "defaultValue": "ButtonVariant.solid",
+        "deprecated": false
       }
     }
   },
@@ -3251,14 +3687,16 @@
         "required": true,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "icon": {
         "name": "icon",
         "required": true,
         "type": {
           "name": "ReactElement"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -3278,14 +3716,16 @@
         "type": {
           "name": "function"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       },
       "icon": {
         "name": "icon",
         "required": true,
         "type": {
           "name": "ReactElement"
-        }
+        },
+        "deprecated": false
       },
       "iconPosition": {
         "name": "iconPosition",
@@ -3296,7 +3736,8 @@
             "ButtonIconPosition.left",
             "ButtonIconPosition.right"
           ]
-        }
+        },
+        "deprecated": false
       },
       "isFullWidth": {
         "name": "isFullWidth",
@@ -3305,7 +3746,8 @@
           "name": "boolean"
         },
         "description": " Set the button to display full-width.",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -3314,7 +3756,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "shape": {
         "name": "shape",
@@ -3329,7 +3772,8 @@
           ]
         },
         "description": "Defines the border radius",
-        "defaultValue": "ButtonShape.fill"
+        "defaultValue": "ButtonShape.fill",
+        "deprecated": false
       },
       "size": {
         "name": "size",
@@ -3343,7 +3787,8 @@
           ]
         },
         "description": "The relative size of the button",
-        "defaultValue": "ButtonSize.medium"
+        "defaultValue": "ButtonSize.medium",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -3351,7 +3796,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "textTransform": {
         "name": "textTransform",
@@ -3364,7 +3810,8 @@
           ]
         },
         "description": "Determines whether the button appears in all-caps",
-        "defaultValue": "ButtonTextTransform.uppercase"
+        "defaultValue": "ButtonTextTransform.uppercase",
+        "deprecated": false
       },
       "type": {
         "name": "type",
@@ -3377,7 +3824,8 @@
             "ButtonType.submit"
           ]
         },
-        "description": "The type attribute of the button\nButtonType.button"
+        "description": "The type attribute of the button\nButtonType.button",
+        "deprecated": false
       },
       "variant": {
         "name": "variant",
@@ -3391,7 +3839,8 @@
           ]
         },
         "description": "The variant of the button",
-        "defaultValue": "ButtonVariant.solid"
+        "defaultValue": "ButtonVariant.solid",
+        "deprecated": false
       }
     }
   },
@@ -3415,7 +3864,8 @@
             "ButtonSize.medium",
             "ButtonSize.small"
           ]
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -3463,7 +3913,8 @@
           "name": "string"
         },
         "description": "Status of the indeterminate, three-state checkbox, which includes and indeterminate (e.g. mixed) option.",
-        "defaultValue": "IndeterminateCheckboxStatus.unchecked"
+        "defaultValue": "IndeterminateCheckboxStatus.unchecked",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -3471,7 +3922,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -3490,14 +3942,16 @@
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "id": {
         "name": "id",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "inputSize": {
         "name": "inputSize",
@@ -3508,7 +3962,8 @@
             "InputSize.large",
             "InputSize.medium"
           ]
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -3517,7 +3972,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       }
     }
   },
@@ -3536,42 +3992,48 @@
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "helperMessage": {
         "name": "helperMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "isLabelVisuallyHidden": {
         "name": "isLabelVisuallyHidden",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "labelStyle": {
         "name": "labelStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "labelText": {
         "name": "labelText",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "messageStyle": {
         "name": "messageStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -3590,28 +4052,32 @@
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "hasError": {
         "name": "hasError",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "icon": {
         "name": "icon",
         "required": false,
         "type": {
           "name": "ReactElement"
-        }
+        },
+        "deprecated": false
       },
       "iconAriaLabel": {
         "name": "iconAriaLabel",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "iconPosition": {
         "name": "iconPosition",
@@ -3622,14 +4088,16 @@
             "InputIconPosition.left",
             "InputIconPosition.right"
           ]
-        }
+        },
+        "deprecated": false
       },
       "iconRef": {
         "name": "iconRef",
         "required": false,
         "type": {
           "name": "React.Ref"
-        }
+        },
+        "deprecated": false
       },
       "inputSize": {
         "name": "inputSize",
@@ -3640,14 +4108,16 @@
             "InputSize.large",
             "InputSize.medium"
           ]
-        }
+        },
+        "deprecated": false
       },
       "inputStyle": {
         "name": "inputStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -3656,21 +4126,24 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "onIconClick": {
         "name": "onIconClick",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onIconKeyDown": {
         "name": "onIconKeyDown",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -3678,14 +4151,16 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "theme": {
         "name": "theme",
         "required": false,
         "type": {
           "name": "any"
-        }
+        },
+        "deprecated": false
       },
       "type": {
         "name": "type",
@@ -3699,7 +4174,8 @@
             "InputType.search",
             "InputType.text"
           ]
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -3720,7 +4196,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "size": {
         "name": "size",
@@ -3731,7 +4208,8 @@
             "InputSize.large",
             "InputSize.medium"
           ]
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -3739,14 +4217,16 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "theme": {
         "name": "theme",
         "required": false,
         "type": {
           "name": "any"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -3765,28 +4245,40 @@
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "description": "Message displayed for the first five seconds",
+        "defaultValue": "\"Loading...\"",
+        "deprecated": false
       },
       "message2": {
         "name": "message2",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "description": "Message displayed for the first five seconds",
+        "defaultValue": "\"Thank you for your patience. Still loading...\"",
+        "deprecated": false
       },
       "message3": {
         "name": "message3",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "description": "Message displayed after 15 seconds",
+        "defaultValue": "\"Sorry for the delay. This is taking longer than expected.\"",
+        "deprecated": false
       },
       "percentage": {
         "name": "percentage",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "description": "Message displayed for the first five seconds",
+        "defaultValue": "0",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -3794,7 +4286,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "type": {
         "name": "type",
@@ -3805,7 +4298,10 @@
             "LoadingIndicatorType.progressbar",
             "LoadingIndicatorType.spinner"
           ]
-        }
+        },
+        "description": "Type of loading indictor to display, can be progress bar or spinner",
+        "defaultValue": "LoadingIndicatorType.spinner",
+        "deprecated": false
       }
     }
   },
@@ -3824,7 +4320,8 @@
         "required": true,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -3843,70 +4340,80 @@
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "header": {
         "name": "header",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "id": {
         "name": "id",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "isBackgroundClickDisabled": {
         "name": "isBackgroundClickDisabled",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isCloseButtonHidden": {
         "name": "isCloseButtonHidden",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isEscKeyDownDisabled": {
         "name": "isEscKeyDownDisabled",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isExiting": {
         "name": "isExiting",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isOpen": {
         "name": "isOpen",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "onClose": {
         "name": "onClose",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onEscKeyDown": {
         "name": "onEscKeyDown",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "size": {
         "name": "size",
@@ -3918,7 +4425,8 @@
             "ModalSize.medium",
             "ModalSize.small"
           ]
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -3926,14 +4434,16 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "theme": {
         "name": "theme",
         "required": false,
         "type": {
-          "name": "any"
-        }
+          "name": "ThemeInterface"
+        },
+        "deprecated": false
       }
     }
   },
@@ -3952,21 +4462,24 @@
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "icon": {
         "name": "icon",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "isActive": {
         "name": "isActive",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -3975,7 +4488,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "orientation": {
         "name": "orientation",
@@ -3986,7 +4500,8 @@
             "TabsOrientation.horizontal",
             "TabsOrientation.vertical"
           ]
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -3994,14 +4509,16 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "theme": {
         "name": "theme",
         "required": false,
         "type": {
           "name": "any"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -4019,28 +4536,32 @@
         "type": {
           "name": "function"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       },
       "component": {
         "name": "component",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "icon": {
         "name": "icon",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "isActive": {
         "name": "isActive",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -4049,7 +4570,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "orientation": {
         "name": "orientation",
@@ -4060,7 +4582,8 @@
             "TabsOrientation.horizontal",
             "TabsOrientation.vertical"
           ]
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -4068,21 +4591,24 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "theme": {
         "name": "theme",
         "required": false,
         "type": {
           "name": "any"
-        }
+        },
+        "deprecated": false
       },
       "to": {
         "name": "to",
         "required": true,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -4099,14 +4625,16 @@
         "required": true,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "icon": {
         "name": "icon",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "iconPosition": {
         "name": "iconPosition",
@@ -4119,21 +4647,24 @@
             "TabsIconPosition.right",
             "TabsIconPosition.top"
           ]
-        }
+        },
+        "deprecated": false
       },
       "isActive": {
         "name": "isActive",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isFullWidth": {
         "name": "isFullWidth",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -4142,7 +4673,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "orientation": {
         "name": "orientation",
@@ -4153,7 +4685,8 @@
             "TabsOrientation.horizontal",
             "TabsOrientation.vertical"
           ]
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -4161,14 +4694,16 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "theme": {
         "name": "theme",
         "required": false,
         "type": {
           "name": "any"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -4184,12 +4719,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 11316,
+          "id": 12078,
           "name": "NavTabChildrenProps"
         },
         {
           "type": "reference",
-          "id": 11582,
+          "id": 12344,
           "name": "NavTabComponentProps"
         }
       ],
@@ -4218,7 +4753,8 @@
             "TabsBorderPosition.right",
             "TabsBorderPosition.top"
           ]
-        }
+        },
+        "deprecated": false
       },
       "iconPosition": {
         "name": "iconPosition",
@@ -4231,14 +4767,16 @@
             "TabsIconPosition.right",
             "TabsIconPosition.top"
           ]
-        }
+        },
+        "deprecated": false
       },
       "isFullWidth": {
         "name": "isFullWidth",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -4247,7 +4785,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "orientation": {
         "name": "orientation",
@@ -4258,7 +4797,8 @@
             "TabsOrientation.horizontal",
             "TabsOrientation.vertical"
           ]
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -4289,7 +4829,8 @@
         "type": {
           "name": "any"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       },
       "color": {
         "name": "color",
@@ -4302,7 +4843,8 @@
             "TypographyColor.subdued",
             "TypographyColor.success"
           ]
-        }
+        },
+        "deprecated": false
       },
       "contextVariant": {
         "name": "contextVariant",
@@ -4314,7 +4856,8 @@
             "TypographyContextVariant.expressive",
             "TypographyContextVariant.narrative"
           ]
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -4323,21 +4866,24 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "noMargins": {
         "name": "noMargins",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "ref": {
         "name": "ref",
         "required": false,
         "type": {
           "name": "any"
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -4345,14 +4891,16 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "theme": {
         "name": "theme",
         "required": false,
         "type": {
           "name": "any"
-        }
+        },
+        "deprecated": false
       },
       "visualStyle": {
         "name": "visualStyle",
@@ -4371,7 +4919,8 @@
             "TypographyVisualStyle.headingXLarge",
             "TypographyVisualStyle.headingXSmall"
           ]
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -4390,42 +4939,48 @@
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "errorMessage": {
         "name": "errorMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "helperMessage": {
         "name": "helperMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "hiddenPasswordAnnounceText": {
         "name": "hiddenPasswordAnnounceText",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "hidePasswordButtonAriaLabel": {
         "name": "hidePasswordButtonAriaLabel",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "hidePasswordButtonText": {
         "name": "hidePasswordButtonText",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "inputSize": {
         "name": "inputSize",
@@ -4436,14 +4991,16 @@
             "InputSize.large",
             "InputSize.medium"
           ]
-        }
+        },
+        "deprecated": false
       },
       "inputStyle": {
         "name": "inputStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -4452,63 +5009,72 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isLabelVisuallyHidden": {
         "name": "isLabelVisuallyHidden",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isPasswordMaskButtonHidden": {
         "name": "isPasswordMaskButtonHidden",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "labelStyle": {
         "name": "labelStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "labelText": {
         "name": "labelText",
         "required": true,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "messageStyle": {
         "name": "messageStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "showPasswordButtonAriaLabel": {
         "name": "showPasswordButtonAriaLabel",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "showPasswordButtonText": {
         "name": "showPasswordButtonText",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "shownPasswordAnnounceText": {
         "name": "shownPasswordAnnounceText",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -4516,7 +5082,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -4542,21 +5109,30 @@
             "ProgressBarColor.primary",
             "ProgressBarColor.success"
           ]
-        }
+        },
+        "description": "The color variant of the progress bar",
+        "defaultValue": "ProgressBarColor.primary",
+        "deprecated": false
       },
       "height": {
         "name": "height",
         "required": false,
         "type": {
-          "name": "number"
-        }
+          "name": "function"
+        },
+        "description": "The height of the progress bar. Can be a string or number; if number is provided height is in px",
+        "defaultValue": "16",
+        "deprecated": false
       },
       "isAnimated": {
         "name": "isAnimated",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "description": "If true, the progress bar with have a shimmer animation",
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -4565,21 +5141,28 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isLabelVisible": {
         "name": "isLabelVisible",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "description": "If true, the label with the percentage value will display to the right of the progress bar",
+        "defaultValue": "false",
+        "deprecated": false
       },
       "percentage": {
         "name": "percentage",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "description": "The percentage of which the bar is filled",
+        "defaultValue": "0",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -4587,7 +5170,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -4606,42 +5190,48 @@
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "duration": {
         "name": "duration",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "isActive": {
         "name": "isActive",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "percentage": {
         "name": "percentage",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "radius": {
         "name": "radius",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "strokeWidth": {
         "name": "strokeWidth",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -4649,7 +5239,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -4668,21 +5259,24 @@
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "containerStyle": {
         "name": "containerStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "inputStyle": {
         "name": "inputStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -4691,28 +5285,32 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isTextVisuallyHidden": {
         "name": "isTextVisuallyHidden",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "labelStyle": {
         "name": "labelStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "labelText": {
         "name": "labelText",
         "required": true,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -4720,7 +5318,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "textPosition": {
         "name": "textPosition",
@@ -4731,7 +5330,8 @@
             "RadioTextPosition.left",
             "RadioTextPosition.right"
           ]
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -4750,14 +5350,16 @@
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "hasError": {
         "name": "hasError",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -4766,49 +5368,56 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "name": {
         "name": "name",
         "required": true,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "onBlur": {
         "name": "onBlur",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onChange": {
         "name": "onChange",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onFocus": {
         "name": "onFocus",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "required": {
         "name": "required",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "selectedValue": {
         "name": "selectedValue",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -4827,21 +5436,24 @@
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "errorMessage": {
         "name": "errorMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "helperMessage": {
         "name": "helperMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -4850,70 +5462,80 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isTextVisuallyHidden": {
         "name": "isTextVisuallyHidden",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "labelStyle": {
         "name": "labelStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "labelText": {
         "name": "labelText",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "labelledById": {
         "name": "labelledById",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "name": {
         "name": "name",
         "required": true,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "onBlur": {
         "name": "onBlur",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onChange": {
         "name": "onChange",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onFocus": {
         "name": "onFocus",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "required": {
         "name": "required",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -4921,14 +5543,16 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "value": {
         "name": "value",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -4947,14 +5571,16 @@
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "iconAriaLabel": {
         "name": "iconAriaLabel",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "inputSize": {
         "name": "inputSize",
@@ -4965,14 +5591,16 @@
             "InputSize.large",
             "InputSize.medium"
           ]
-        }
+        },
+        "deprecated": false
       },
       "inputStyle": {
         "name": "inputStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -4981,28 +5609,32 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isLoading": {
         "name": "isLoading",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "labelText": {
         "name": "labelText",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "onSearch": {
         "name": "onSearch",
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -5010,14 +5642,16 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "value": {
         "name": "value",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -5043,49 +5677,56 @@
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "getMenuProps": {
         "name": "getMenuProps",
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "highlightedIndex": {
         "name": "highlightedIndex",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "isOpen": {
         "name": "isOpen",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "itemToString": {
         "name": "itemToString",
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "items": {
         "name": "items",
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "menuStyle": {
         "name": "menuStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -5112,28 +5753,32 @@
         "type": {
           "name": "function"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       },
       "containerStyle": {
         "name": "containerStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "getLabelProps": {
         "name": "getLabelProps",
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "hasError": {
         "name": "hasError",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -5142,28 +5787,32 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isLabelVisuallyHidden": {
         "name": "isLabelVisuallyHidden",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "labelStyle": {
         "name": "labelStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "labelText": {
         "name": "labelText",
         "required": true,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -5189,7 +5838,8 @@
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "children": {
         "name": "children",
@@ -5197,28 +5847,32 @@
         "type": {
           "name": "function"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       },
       "customComponents": {
         "name": "customComponents",
         "required": false,
         "type": {
           "name": "SelectComponents"
-        }
+        },
+        "deprecated": false
       },
       "disabled": {
         "name": "disabled",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "hasError": {
         "name": "hasError",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -5227,28 +5881,32 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "style": {
         "name": "style",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "tabindex": {
         "name": "tabindex",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "toggleButtonProps": {
         "name": "toggleButtonProps",
         "required": true,
         "type": {
           "name": "any"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -5410,7 +6068,8 @@
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -5429,49 +6088,56 @@
         "required": false,
         "type": {
           "name": "SelectComponents"
-        }
+        },
+        "deprecated": false
       },
       "containerStyle": {
         "name": "containerStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "disabled": {
         "name": "disabled",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "errorMessage": {
         "name": "errorMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "helperMessage": {
         "name": "helperMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "inputStyle": {
         "name": "inputStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "isClearable": {
         "name": "isClearable",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -5480,63 +6146,72 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isLabelVisuallyHidden": {
         "name": "isLabelVisuallyHidden",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isMulti": {
         "name": "isMulti",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "labelStyle": {
         "name": "labelStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "labelText": {
         "name": "labelText",
         "required": true,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "menuStyle": {
         "name": "menuStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "messageStyle": {
         "name": "messageStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "name": {
         "name": "name",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "placeholder": {
         "name": "placeholder",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -5544,7 +6219,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -5579,56 +6255,64 @@
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "defaultActiveIndex": {
         "name": "defaultActiveIndex",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "defaultSelectedItems": {
         "name": "defaultSelectedItems",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "environment": {
         "name": "environment",
         "required": false,
         "type": {
           "name": "Environment"
-        }
+        },
+        "deprecated": false
       },
       "getA11yRemovalMessage": {
         "name": "getA11yRemovalMessage",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "hasError": {
         "name": "hasError",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "initialActiveIndex": {
         "name": "initialActiveIndex",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "initialSelectedItems": {
         "name": "initialSelectedItems",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -5637,70 +6321,80 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "itemToString": {
         "name": "itemToString",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "keyNavigationNext": {
         "name": "keyNavigationNext",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "keyNavigationPrevious": {
         "name": "keyNavigationPrevious",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "onActiveIndexChange": {
         "name": "onActiveIndexChange",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onRemoveSelectedItem": {
         "name": "onRemoveSelectedItem",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onSelectedItemsChange": {
         "name": "onSelectedItemsChange",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onStateChange": {
         "name": "onStateChange",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "selectedItems": {
         "name": "selectedItems",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "stateReducer": {
         "name": "stateReducer",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -5735,161 +6429,184 @@
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "circularNavigation": {
         "name": "circularNavigation",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "components": {
         "name": "components",
         "required": false,
         "type": {
           "name": "SelectComponents"
-        }
+        },
+        "deprecated": false
       },
       "containerStyle": {
         "name": "containerStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "defaultHighlightedIndex": {
         "name": "defaultHighlightedIndex",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "defaultIsOpen": {
         "name": "defaultIsOpen",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "defaultSelectedItem": {
         "name": "defaultSelectedItem",
         "required": false,
         "type": {
           "name": "T"
-        }
+        },
+        "deprecated": false
       },
       "disabled": {
         "name": "disabled",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "environment": {
         "name": "environment",
         "required": false,
         "type": {
           "name": "Environment"
-        }
+        },
+        "deprecated": false
       },
       "errorMessage": {
         "name": "errorMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "getA11ySelectionMessage": {
         "name": "getA11ySelectionMessage",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "getA11yStatusMessage": {
         "name": "getA11yStatusMessage",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "getItemId": {
         "name": "getItemId",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "hasError": {
         "name": "hasError",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "helperMessage": {
         "name": "helperMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "deprecated": false
       },
       "highlightedIndex": {
         "name": "highlightedIndex",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "id": {
         "name": "id",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "initialHighlightedIndex": {
         "name": "initialHighlightedIndex",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "initialIsOpen": {
         "name": "initialIsOpen",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "initialSelectedItem": {
         "name": "initialSelectedItem",
         "required": false,
         "type": {
           "name": "T"
-        }
+        },
+        "deprecated": false
       },
       "innerRef": {
         "name": "innerRef",
         "required": false,
         "type": {
           "name": "React.Ref"
-        }
+        },
+        "deprecated": false
       },
       "inputStyle": {
         "name": "inputStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "isClearable": {
         "name": "isClearable",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -5898,182 +6615,208 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isLabelVisuallyHidden": {
         "name": "isLabelVisuallyHidden",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isMulti": {
         "name": "isMulti",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isOpen": {
         "name": "isOpen",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "itemToString": {
         "name": "itemToString",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "items": {
         "name": "items",
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "labelId": {
         "name": "labelId",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "labelStyle": {
         "name": "labelStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "labelText": {
         "name": "labelText",
         "required": true,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "menuId": {
         "name": "menuId",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "menuStyle": {
         "name": "menuStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "messageStyle": {
         "name": "messageStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       },
       "name": {
         "name": "name",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "onBlur": {
         "name": "onBlur",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onFocus": {
         "name": "onFocus",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onHighlightedIndexChange": {
         "name": "onHighlightedIndexChange",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onIsOpenChange": {
         "name": "onIsOpenChange",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onKeyDown": {
         "name": "onKeyDown",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onKeyPress": {
         "name": "onKeyPress",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onKeyUp": {
         "name": "onKeyUp",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onSelectedItemChange": {
         "name": "onSelectedItemChange",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "onStateChange": {
         "name": "onStateChange",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "placeholder": {
         "name": "placeholder",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "scrollIntoView": {
         "name": "scrollIntoView",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "selectedItem": {
         "name": "selectedItem",
         "required": false,
         "type": {
           "name": "T"
-        }
+        },
+        "deprecated": false
       },
       "stateReducer": {
         "name": "stateReducer",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -6081,14 +6824,16 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "toggleButtonId": {
         "name": "toggleButtonId",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -6233,14 +6978,16 @@
         "type": {
           "name": "any"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       },
       "style": {
         "name": "style",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -6260,14 +7007,16 @@
         "type": {
           "name": "any"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       },
       "htmlFor": {
         "name": "htmlFor",
         "required": true,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -6276,14 +7025,16 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "style": {
         "name": "style",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -6302,7 +7053,8 @@
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "children": {
         "name": "children",
@@ -6310,7 +7062,8 @@
         "type": {
           "name": "function"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       },
       "color": {
         "name": "color",
@@ -6326,7 +7079,8 @@
           ]
         },
         "description": "The color of the button, indicating its function in the UI",
-        "defaultValue": "ButtonColor.primary"
+        "defaultValue": "ButtonColor.primary",
+        "deprecated": false
       },
       "isFullWidth": {
         "name": "isFullWidth",
@@ -6335,7 +7089,8 @@
           "name": "boolean"
         },
         "description": " Set the button to display full-width.",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -6344,21 +7099,24 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "positionLeft": {
         "name": "positionLeft",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "positionTop": {
         "name": "positionTop",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "shape": {
         "name": "shape",
@@ -6373,7 +7131,8 @@
           ]
         },
         "description": "Defines the border radius",
-        "defaultValue": "ButtonShape.fill"
+        "defaultValue": "ButtonShape.fill",
+        "deprecated": false
       },
       "size": {
         "name": "size",
@@ -6387,14 +7146,16 @@
           ]
         },
         "description": "The relative size of the button",
-        "defaultValue": "ButtonSize.medium"
+        "defaultValue": "ButtonSize.medium",
+        "deprecated": false
       },
       "styledAs": {
         "name": "styledAs",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -6402,7 +7163,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "textTransform": {
         "name": "textTransform",
@@ -6415,14 +7177,16 @@
           ]
         },
         "description": "Determines whether the button appears in all-caps",
-        "defaultValue": "ButtonTextTransform.uppercase"
+        "defaultValue": "ButtonTextTransform.uppercase",
+        "deprecated": false
       },
       "to": {
         "name": "to",
         "required": true,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "type": {
         "name": "type",
@@ -6435,7 +7199,8 @@
             "ButtonType.submit"
           ]
         },
-        "description": "The type attribute of the button\nButtonType.button"
+        "description": "The type attribute of the button\nButtonType.button",
+        "deprecated": false
       },
       "variant": {
         "name": "variant",
@@ -6449,7 +7214,8 @@
           ]
         },
         "description": "The variant of the button",
-        "defaultValue": "ButtonVariant.solid"
+        "defaultValue": "ButtonVariant.solid",
+        "deprecated": false
       }
     }
   },
@@ -6469,7 +7235,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -6488,14 +7255,20 @@
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "description": "The color of the spinner border",
+        "defaultValue": "\"#006298\"",
+        "deprecated": false
       },
       "size": {
         "name": "size",
         "required": false,
         "type": {
-          "name": "number"
-        }
+          "name": "function"
+        },
+        "description": "The height and width of the spinner.  Can be a string or number; if number is provided, the size is in px.",
+        "defaultValue": "16",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -6503,7 +7276,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -6520,21 +7294,24 @@
         "required": false,
         "type": {
           "name": "any"
-        }
+        },
+        "deprecated": false
       },
       "href": {
         "name": "href",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "iconOnly": {
         "name": "iconOnly",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isFullWidth": {
         "name": "isFullWidth",
@@ -6543,7 +7320,8 @@
           "name": "boolean"
         },
         "description": " Set the button to display full-width.",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -6552,7 +7330,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "shape": {
         "name": "shape",
@@ -6567,7 +7346,8 @@
           ]
         },
         "description": "Defines the border radius",
-        "defaultValue": "ButtonShape.fill"
+        "defaultValue": "ButtonShape.fill",
+        "deprecated": false
       },
       "size": {
         "name": "size",
@@ -6581,7 +7361,8 @@
           ]
         },
         "description": "The relative size of the button",
-        "defaultValue": "ButtonSize.medium"
+        "defaultValue": "ButtonSize.medium",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -6589,7 +7370,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "textTransform": {
         "name": "textTransform",
@@ -6602,14 +7384,16 @@
           ]
         },
         "description": "Determines whether the button appears in all-caps",
-        "defaultValue": "ButtonTextTransform.uppercase"
+        "defaultValue": "ButtonTextTransform.uppercase",
+        "deprecated": false
       },
       "to": {
         "name": "to",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "type": {
         "name": "type",
@@ -6622,7 +7406,8 @@
             "ButtonType.submit"
           ]
         },
-        "description": "The type attribute of the button\nButtonType.button"
+        "description": "The type attribute of the button\nButtonType.button",
+        "deprecated": false
       },
       "variant": {
         "name": "variant",
@@ -6636,7 +7421,8 @@
           ]
         },
         "description": "The variant of the button",
-        "defaultValue": "ButtonVariant.solid"
+        "defaultValue": "ButtonVariant.solid",
+        "deprecated": false
       }
     }
   },
@@ -6656,7 +7442,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -6682,7 +7469,8 @@
             "TableCellAlign.left",
             "TableCellAlign.right"
           ]
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -6690,14 +7478,16 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "width": {
         "name": "width",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -6717,7 +7507,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -6736,21 +7527,24 @@
         "required": false,
         "type": {
           "name": "any"
-        }
+        },
+        "deprecated": false
       },
       "isSortable": {
         "name": "isSortable",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "onSort": {
         "name": "onSort",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "scope": {
         "name": "scope",
@@ -6763,7 +7557,8 @@
             "TableHeaderCellScope.row",
             "TableHeaderCellScope.rowgroup"
           ]
-        }
+        },
+        "deprecated": false
       },
       "sortDirection": {
         "name": "sortDirection",
@@ -6775,7 +7570,8 @@
             "TableSortDirection.descending",
             "TableSortDirection.none"
           ]
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -6783,14 +7579,16 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "width": {
         "name": "width",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -6810,7 +7608,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -6832,28 +7631,32 @@
             "TableDensity.loose",
             "TableDensity.normal"
           ]
-        }
+        },
+        "deprecated": false
       },
       "hasHoverStyles": {
         "name": "hasHoverStyles",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "hasVerticalBorders": {
         "name": "hasVerticalBorders",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "hasZebraStripes": {
         "name": "hasZebraStripes",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -6862,7 +7665,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       }
     }
   },
@@ -6886,28 +7690,32 @@
             "TableDensity.loose",
             "TableDensity.normal"
           ]
-        }
+        },
+        "deprecated": false
       },
       "hasHoverStyles": {
         "name": "hasHoverStyles",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "hasVerticalBorders": {
         "name": "hasVerticalBorders",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "hasZebraStripes": {
         "name": "hasZebraStripes",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -6916,14 +7724,16 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "minWidth": {
         "name": "minWidth",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -6931,7 +7741,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -6950,14 +7761,19 @@
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "description": "Icon to display within the component",
+        "deprecated": false
       },
       "isActive": {
         "name": "isActive",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "description": "If true, the component will display with the active/selected state",
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -6966,7 +7782,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -6974,14 +7791,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
-      },
-      "theme": {
-        "name": "theme",
-        "required": false,
-        "type": {
-          "name": "any"
-        }
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -7000,7 +7811,8 @@
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -7009,7 +7821,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -7017,7 +7830,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -7036,7 +7850,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -7044,7 +7859,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -7061,21 +7877,24 @@
         "required": true,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "isInverseContainer": {
         "name": "isInverseContainer",
         "required": true,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "setActiveTabIndex": {
         "name": "setActiveTabIndex",
         "required": true,
         "type": {
           "name": "React.Dispatch"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -7092,7 +7911,9 @@
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "description": "The index of the current active tab. You can use this for managing state of the tabs component by your custom logic.",
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -7101,7 +7922,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -7109,7 +7931,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -7128,14 +7951,16 @@
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "buttonVisible": {
         "name": "buttonVisible",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -7144,7 +7969,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "orientation": {
         "name": "orientation",
@@ -7155,14 +7981,16 @@
             "TabsOrientation.horizontal",
             "TabsOrientation.vertical"
           ]
-        }
+        },
+        "deprecated": false
       },
       "theme": {
         "name": "theme",
         "required": false,
         "type": {
           "name": "ThemeInterface"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -7181,14 +8009,16 @@
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "orientation": {
         "name": "orientation",
         "required": false,
         "type": {
           "name": "horizontal"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -7211,21 +8041,24 @@
             "TabsBorderPosition.right",
             "TabsBorderPosition.top"
           ]
-        }
+        },
+        "deprecated": false
       },
       "buttonRefArray": {
         "name": "buttonRefArray",
         "required": false,
         "type": {
           "name": "MutableRefObject"
-        }
+        },
+        "deprecated": false
       },
       "changeHandler": {
         "name": "changeHandler",
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "iconPosition": {
         "name": "iconPosition",
@@ -7238,14 +8071,16 @@
             "TabsIconPosition.right",
             "TabsIconPosition.top"
           ]
-        }
+        },
+        "deprecated": false
       },
       "isFullWidth": {
         "name": "isFullWidth",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -7254,7 +8089,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "orientation": {
         "name": "orientation",
@@ -7265,14 +8101,16 @@
             "TabsOrientation.horizontal",
             "TabsOrientation.vertical"
           ]
-        }
+        },
+        "deprecated": false
       },
       "registerTabButton": {
         "name": "registerTabButton",
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -7296,21 +8134,28 @@
             "TabsAlignment.left",
             "TabsAlignment.right"
           ]
-        }
+        },
+        "description": "Alignment of the tabs menu",
+        "defaultValue": "TabsAlignment.left",
+        "deprecated": false
       },
       "aria-label": {
         "name": "aria-label",
         "required": true,
         "type": {
           "name": "string"
-        }
+        },
+        "description": "The text the screen reader will announce that describes your tablist.",
+        "deprecated": false
       },
       "backgroundColor": {
         "name": "backgroundColor",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "description": "Background color for the tabs menu",
+        "deprecated": false
       },
       "iconPosition": {
         "name": "iconPosition",
@@ -7323,14 +8168,18 @@
             "TabsIconPosition.right",
             "TabsIconPosition.top"
           ]
-        }
+        },
+        "description": "The orientation of icon on Tab",
+        "deprecated": false
       },
       "isFullWidth": {
         "name": "isFullWidth",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "description": "If true, the components takes the full width of the screen",
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -7339,14 +8188,17 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "onChange": {
         "name": "onChange",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "description": "The onChange handler for managing state of Tabs component by your custom logic.",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -7354,7 +8206,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -7373,14 +8226,16 @@
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "orientation": {
         "name": "orientation",
         "required": false,
         "type": {
           "name": "vertical"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -7396,12 +8251,12 @@
       "types": [
         {
           "type": "reference",
-          "id": 10682,
+          "id": 11444,
           "name": "HorizontalTabsProps"
         },
         {
           "type": "reference",
-          "id": 10679,
+          "id": 11441,
           "name": "VerticalTabsProps"
         }
       ]
@@ -7425,28 +8280,27 @@
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the component container element",
+        "deprecated": false
       },
       "errorMessage": {
         "name": "errorMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
-      },
-      "hasError": {
-        "name": "hasError",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
+        },
+        "description": "Content of the error message. If a value is provided, the input will be styled as an error state, and the error message will display.",
+        "deprecated": false
       },
       "helperMessage": {
         "name": "helperMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "description": "Content of the helper message",
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -7455,35 +8309,45 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isLabelVisuallyHidden": {
         "name": "isLabelVisuallyHidden",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "description": "If true, label text will be hidden visually, but will still be read by assistive technology",
+        "defaultValue": "false",
+        "deprecated": false
       },
       "labelStyle": {
         "name": "labelStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the label element",
+        "deprecated": false
       },
       "labelText": {
         "name": "labelText",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "description": "Content for label; can be a node or a string",
+        "deprecated": false
       },
       "messageStyle": {
         "name": "messageStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the helper or error message",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -7491,21 +8355,26 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "textareaStyle": {
         "name": "textareaStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the textarea element",
+        "deprecated": false
       },
       "value": {
         "name": "value",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "description": "Value for the textarea",
+        "deprecated": false
       }
     }
   },
@@ -7523,7 +8392,8 @@
         "type": {
           "name": "string"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       }
     }
   },
@@ -7542,35 +8412,36 @@
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the outer container",
+        "deprecated": false
       },
       "errorMessage": {
         "name": "errorMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "description": "Content of the error message. If a value is provided, the component will be styled to show an error state.",
+        "deprecated": false
       },
       "helperMessage": {
         "name": "helperMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
-      },
-      "id": {
-        "name": "id",
-        "required": false,
-        "type": {
-          "name": "string"
-        }
+        },
+        "description": "Content of the helper message",
+        "deprecated": false
       },
       "inputStyle": {
         "name": "inputStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the outer input",
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -7579,49 +8450,62 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "labelStyle": {
         "name": "labelStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the label",
+        "deprecated": false
       },
       "labelText": {
         "name": "labelText",
         "required": true,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "description": "Content for label; can be a node or a string",
+        "deprecated": false
       },
       "messageStyle": {
         "name": "messageStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the helper or error message",
+        "deprecated": false
       },
       "minutesStep": {
         "name": "minutesStep",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "description": "The stepping interval for the minutes input",
+        "deprecated": false
       },
       "onChange": {
         "name": "onChange",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "description": "Function called when the component is changed to a new time",
+        "deprecated": false
       },
       "value": {
         "name": "value",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "description": "Full time value passed in and converted to use in hour, minute, and AM/PM fields",
+        "deprecated": false
       }
     }
   },
@@ -7640,7 +8524,10 @@
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "description": "Number of additional pixels from bottom of screen",
+        "defaultValue": "0",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -7648,14 +8535,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
-      },
-      "toastsArray": {
-        "name": "toastsArray",
-        "required": false,
-        "type": {
-          "name": "any"
-        }
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   },
@@ -7674,14 +8555,16 @@
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "deprecated": false
       },
       "toastsArray": {
         "name": "toastsArray",
         "required": false,
         "type": {
           "name": "any"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -7692,71 +8575,103 @@
     "flags": {
       "isExported": true
     },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
     "id": "ToastProps",
-    "tags": {},
+    "tags": {
+      "children": "required"
+    },
     "properties": {
       "alertStyle": {
         "name": "alertStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "CSS properties for the alert component within the toast container",
+        "deprecated": false
+      },
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component",
+        "deprecated": false
       },
       "closeAriaLabel": {
         "name": "closeAriaLabel",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "containerStyle": {
         "name": "containerStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "CSS properties for the component container",
+        "deprecated": false
       },
       "disableAutoDismiss": {
         "name": "disableAutoDismiss",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "description": "If true, the component will persist until dismissed by the user",
+        "defaultValue": "false",
+        "deprecated": false
       },
       "forceDismiss": {
         "name": "forceDismiss",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "deprecated": false
       },
       "hasTimerRing": {
         "name": "hasTimerRing",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isDismissed": {
         "name": "isDismissed",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isDismissible": {
         "name": "isDismissible",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isExiting": {
         "name": "isExiting",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -7765,42 +8680,51 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isPaused": {
         "name": "isPaused",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "isToast": {
         "name": "isToast",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "onDismiss": {
         "name": "onDismiss",
         "required": true,
         "type": {
           "name": "function"
-        }
+        },
+        "description": "Action that fires when the close button is clicked (required when dismissible is true)",
+        "deprecated": false
       },
       "onMouseEnter": {
         "name": "onMouseEnter",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "description": "Action that fires when the mouse enters the component",
+        "deprecated": false
       },
       "onMouseLeave": {
         "name": "onMouseLeave",
         "required": false,
         "type": {
           "name": "function"
-        }
+        },
+        "description": "Action that fires when the mouse leaves the component",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -7808,14 +8732,18 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "toastDuration": {
         "name": "toastDuration",
         "required": false,
         "type": {
           "name": "number"
-        }
+        },
+        "description": "Number of milliseconds the toast displays before it closes",
+        "defaultValue": "5000",
+        "deprecated": false
       },
       "variant": {
         "name": "variant",
@@ -7828,7 +8756,8 @@
             "AlertVariant.success",
             "AlertVariant.warning"
           ]
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -7847,21 +8776,18 @@
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the component container element",
+        "deprecated": false
       },
       "errorMessage": {
         "name": "errorMessage",
         "required": false,
         "type": {
           "name": "React.ReactNode"
-        }
-      },
-      "hasError": {
-        "name": "hasError",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
+        },
+        "description": "Content of the error message for toggle. If a value is provided, the component will be styled as an error state and the error message will display.",
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -7870,28 +8796,36 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "isTextVisuallyHidden": {
         "name": "isTextVisuallyHidden",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "description": "If true, label text will be hidden visually, but will still be read by assistive technology",
+        "defaultValue": "false",
+        "deprecated": false
       },
       "labelStyle": {
         "name": "labelStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the label element",
+        "deprecated": false
       },
       "labelText": {
         "name": "labelText",
         "required": true,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "description": "Content for label; can be a node or a string",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -7899,7 +8833,8 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "textPosition": {
         "name": "textPosition",
@@ -7910,28 +8845,28 @@
             "ToggleTextPosition.left",
             "ToggleTextPosition.right"
           ]
-        }
-      },
-      "theme": {
-        "name": "theme",
-        "required": false,
-        "type": {
-          "name": "any"
-        }
+        },
+        "description": "Whether the label appears to the left of the right of the toggle switch",
+        "defaultValue": "ToggleTextPosition.left",
+        "deprecated": false
       },
       "thumbStyle": {
         "name": "thumbStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the part of the component that slides back and forth on the track",
+        "deprecated": false
       },
       "trackStyle": {
         "name": "trackStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for track on which the toggle thumb slides",
+        "deprecated": false
       }
     }
   },
@@ -7950,14 +8885,16 @@
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "isVisible": {
         "name": "isVisible",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -7977,21 +8914,26 @@
         "type": {
           "name": "ReactElement"
         },
-        "description": "The content of the component"
+        "description": "The element that triggers the tooltip when it is hovered or focused. Must be a react element (not a string) and should be a focusable element to meet a11y requirements",
+        "deprecated": false
       },
       "containerStyle": {
         "name": "containerStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the component container element",
+        "deprecated": false
       },
       "content": {
         "name": "content",
         "required": true,
         "type": {
           "name": "React.ReactNode"
-        }
+        },
+        "description": "The content of the tooltip",
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -8000,7 +8942,8 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "position": {
         "name": "position",
@@ -8013,7 +8956,9 @@
             "EnumTooltipPosition.right",
             "EnumTooltipPosition.top"
           ]
-        }
+        },
+        "description": "Position the tooltip appears in relation to its trigger",
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -8021,14 +8966,17 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "tooltipStyle": {
         "name": "tooltipStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
+        },
+        "description": "Style properties for the tooltip",
+        "deprecated": false
       }
     }
   },
@@ -8047,7 +8995,8 @@
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "children": {
         "name": "children",
@@ -8055,7 +9004,8 @@
         "type": {
           "name": "any"
         },
-        "description": "The content of the component"
+        "description": "The content of the component",
+        "deprecated": false
       },
       "color": {
         "name": "color",
@@ -8068,7 +9018,8 @@
             "TypographyColor.subdued",
             "TypographyColor.success"
           ]
-        }
+        },
+        "deprecated": false
       },
       "contextVariant": {
         "name": "contextVariant",
@@ -8080,14 +9031,16 @@
             "TypographyContextVariant.expressive",
             "TypographyContextVariant.narrative"
           ]
-        }
+        },
+        "deprecated": false
       },
       "element": {
         "name": "element",
         "required": false,
         "type": {
           "name": "string"
-        }
+        },
+        "deprecated": false
       },
       "isInverse": {
         "name": "isInverse",
@@ -8096,21 +9049,24 @@
           "name": "boolean"
         },
         "description": "If true, the component will have inverse styling to better appear on a dark background",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "deprecated": false
       },
       "noMargins": {
         "name": "noMargins",
         "required": false,
         "type": {
           "name": "boolean"
-        }
+        },
+        "deprecated": false
       },
       "ref": {
         "name": "ref",
         "required": false,
         "type": {
           "name": "any"
-        }
+        },
+        "deprecated": false
       },
       "testId": {
         "name": "testId",
@@ -8118,14 +9074,16 @@
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       },
       "theme": {
         "name": "theme",
         "required": false,
         "type": {
           "name": "any"
-        }
+        },
+        "deprecated": false
       },
       "visualStyle": {
         "name": "visualStyle",
@@ -8144,7 +9102,8 @@
             "TypographyVisualStyle.headingXLarge",
             "TypographyVisualStyle.headingXSmall"
           ]
-        }
+        },
+        "deprecated": false
       }
     }
   },
@@ -8155,16 +9114,36 @@
     "flags": {
       "isExported": true
     },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
     "id": "VisuallyHiddenProps",
-    "tags": {},
+    "tags": {
+      "children": "required"
+    },
     "properties": {
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component",
+        "deprecated": false
+      },
       "testId": {
         "name": "testId",
         "required": false,
         "type": {
           "name": "string"
         },
-        "description": "Test ID attached to an internal element as `data-testid` for consumer testing"
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
       }
     }
   }

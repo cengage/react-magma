@@ -11,10 +11,20 @@ import { ThemeInterface } from '../../theme/magma';
 
 export interface TabProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /**
+   * Icon to display within the component
+   */
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
+  /**
+   * If true, the component will display with the active/selected state
+   * @default false
+   */
   isActive?: boolean;
   isInverse?: boolean;
   testId?: string;
+  /**
+   * @internal
+   */
   theme?: any;
 }
 
@@ -229,8 +239,8 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
       isFullWidth,
     } = React.useContext(TabsContext);
 
-    const handleClick = (e, index) => {
-      changeHandler(e, index);
+    const handleClick = (index, e) => {
+      changeHandler(index, e);
 
       props.onClick && typeof props.onClick === 'function' && props.onClick(e);
     };

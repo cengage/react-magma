@@ -1,6 +1,12 @@
 ---
 pageTitle: Tabs API
 title: Tabs
+props:
+  - TabProps
+  - TabsProps
+  - TabPanelProps
+  - TabPanelContainerProps
+  - TabsContainerProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -17,7 +23,7 @@ import {
 import { SimplePropsTable } from '../../components/props-table';
 import DocsHeading from '../../components/docs-heading';
 
-<DocsHeading to="/design/tabs/" type="design">
+<DocsHeading to="/design/tabs/" type="api">
   Tabs
 </DocsHeading>
 
@@ -736,210 +742,45 @@ It can also be applied to the `TabPanelsContainer` or the individual `TabPanel`.
 
 When using the `component` props in the `Tab` component we will disregard anything passed in as children. If you are using Typescript and try to put a `component` prop and give the `Tab` children, you will get a TypeError that looks something like this: `Types of property 'component' are incompatible. Type 'Element' is not assignable to type 'never'.`. This comes from a custom `XOR` type utility that was created, but we do not have the ability to make the error message clearer.
 
-## Tabs Container API
+## Tabs Container Props
 
 **This component uses `forwardRef`. The ref is applied to the outer `div` element.**
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the `div` element that that wraps the tabs and tab panels.
 
-<SimplePropsTable
-  propertyValues={{
-    activeIndex: {
-      type: {
-        name: 'number',
-      },
-      required: false,
-      description:
-        'The index of the current active tab. You can use this for managing state of the tabs component by your custom logic.',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'The id for react-testing-library.',
-    },
-  }}
-/>
+<TabsContainerProps />
 
-## Tabs API
+## Tabs Props
 
 **This component uses `forwardRef`. The ref is applied to the outer `div` element.**
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the `div` element that that wraps the tabs.
 
-<SimplePropsTable
-  propertyValues={{
-    alignment: {
-      type: {
-        name: 'enum',
-        options: [
-          'TabsAlignment.center',
-          'TabsAlignment.left',
-          'TabsAlignment.right',
-        ],
-      },
-      required: false,
-      description: 'Alignment of the tabs menu',
-      defaultValue: 'left',
-    },
-    'aria-label': {
-      type: {
-        name: 'string',
-      },
-      required: true,
-      description:
-        'The text the screen reader will announce that describes your tablist.',
-    },
-    backgroundColor: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Background color for the tabs menu',
-    },
-    borderPosition: {
-      type: {
-        name: 'enum',
-        options: [
-          'TabsBorderPositionHorizontal.bottom',
-          'TabsBorderPositionHorizontal.top',
-          'TabsBorderPositionVertical.left',
-        ],
-      },
-      required: false,
-      description: 'Position of the current tab indicator border.',
-      defaultValue: 'bottom or left',
-    },
-    iconPosition: {
-      type: {
-        name: '"left" | "top"',
-      },
-      required: false,
-      description: 'The orientation of icon on Tab.',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background.',
-      defaultValue: 'false',
-    },
-    onChange: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description:
-        'The onChange handler for managing state of Tabs component by your custom logic.',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'The id for react-testing-library.',
-    },
-  }}
-/>
+<TabsProps />
 
-## Tab API
+## Tab Props
 
 **This component uses `forwardRef`. The ref is applied to the `button` element.**
 
 All of the [standard button attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) can be provided as props and will be applied to the `button` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    icon: {
-      type: {
-        name: 'React Element',
-      },
-      required: false,
-      description: 'Icon to display within the component',
-    },
-    isActive: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will display with the active/selected state',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background.',
-      defaultValue: 'false',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'The id for react-testing-library.',
-    },
-  }}
-/>
+<TabProps />
 
-## TabPanelsContainer API
+## TabPanelsContainer Props
 
 **This component uses `forwardRef`. The ref is applied to the outer `div` element.**
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the `div` element that that wraps the tab panels.
 
-<SimplePropsTable
-  propertyValues={{
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background.',
-      defaultValue: 'false',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'The id for react-testing-library',
-    },
-  }}
-/>
+<TabPanelContainerProps />
 
-## TabPanel API
+## TabPanel Props
 
 **This component uses `forwardRef`. The ref is applied to the outer `div` element.**
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the `div` element that that wraps the tab panel content.
 
-<SimplePropsTable
-  propertyValues={{
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background.',
-      defaultValue: 'false',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'The id for react-testing-library',
-    },
-  }}
-/>
+<TabPanelProps />
 
 export default props => (
   <ScopeableLayout

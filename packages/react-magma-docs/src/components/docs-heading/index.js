@@ -2,62 +2,74 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
-import { Hyperlink } from 'react-magma-dom';
+import {
+  Heading,
+  Hyperlink,
+  Paragraph,
+  TypographyVisualStyle,
+  magma,
+  TypographyColor,
+} from 'react-magma-dom';
 import { CodeIcon, PaletteIcon } from 'react-magma-icons';
 
-const StyledDiv = styled.div`
+const Container = styled.div`
   align-items: flex-start;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: ${magma.spaceScale.spacing06};
 
-  @media (min-width: 600px) {
+  @media (min-width: ${magma.breakpoints.small}px) {
     align-items: center;
     flex-direction: row;
+    margin-bottom: 0;
   }
 `;
 
-const Heading = styled.h1`
-  margin: 0 0 20px;
-
-  @media (min-width: 600px) {
-    margin: 0;
-  }
+const ButtonSpan = styled.span`
+  padding-left: ${magma.spaceScale.spacing03};
 `;
 
 const DocsHeading = ({ children, to, type }) => (
-  <StyledDiv>
-    <Heading>{children}</Heading>
+  <Container>
+    <div>
+      <Paragraph
+        color={TypographyColor.subdued}
+        noMargins
+        visualStyle={TypographyVisualStyle.heading2XSmall}
+      >
+        {type === 'api' ? 'Component API' : 'Design Guidelines'}
+      </Paragraph>
+      <Heading level={1}>{children}</Heading>
+    </div>
+    {type === 'api' && to && (
+      <Hyperlink color="secondary" styledAs="Button" to={to}>
+        {linkProps => (
+          <Link {...linkProps}>
+            <PaletteIcon size="16" />
+            <ButtonSpan>View Design Guidelines</ButtonSpan>
+          </Link>
+        )}
+      </Hyperlink>
+    )}
 
     {type === 'design' && to && (
       <Hyperlink color="secondary" styledAs="Button" to={to}>
         {linkProps => (
           <Link {...linkProps}>
-            <PaletteIcon size="16" />
-            <span style={{ paddingLeft: '8px' }}>View Design Guidelines</span>
-          </Link>
-        )}
-      </Hyperlink>
-    )}
-
-    {type === 'code' && to && (
-      <Hyperlink color="secondary" styledAs="Button" to={to}>
-        {linkProps => (
-          <Link {...linkProps}>
             <CodeIcon size="16" />
-            <span style={{ paddingLeft: '8px' }}>View Component API</span>
+            <ButtonSpan>View Component API</ButtonSpan>
           </Link>
         )}
       </Hyperlink>
     )}
-  </StyledDiv>
+  </Container>
 );
 
 DocsHeading.propTypes = {
   children: PropTypes.node.isRequired,
   to: PropTypes.string,
-  type: PropTypes.oneOf(['code', 'design']),
+  type: PropTypes.oneOf(['api', 'design']).isRequired,
 };
 
 export default DocsHeading;

@@ -577,12 +577,11 @@ pre tt:after {
 
 .content {
   grid-area: content;
-  padding-top: 30px;
-  padding-bottom: 80px;
+  padding: 28px 0 0;
 }
 
 .content-article {
-  margin: 0 auto;
+  margin: 0 auto 48px;
   max-width: 900px;
   width: 80%;
 }

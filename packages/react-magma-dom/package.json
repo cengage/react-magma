@@ -1,6 +1,6 @@
 {
   "name": "react-magma-dom",
-  "version": "2.2.2-alpha.0",
+  "version": "2.3.0",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -11,8 +11,10 @@
     "!dist/reports",
     "lib"
   ],
-  "publishConfig": {
-    "registry": "http://nexus.mindtap.corp.web/content/repositories/npm.cengage/"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cengage/react-magma.git",
+    "directory": "packages/react-magma-dom"
   },
   "scripts": {
     "test": "tsdx test",
@@ -22,12 +24,12 @@
     "generate-properties": "node scripts/generateJSON.js",
     "copy-changelog": "node scripts/copy-changelog.js",
     "lint": "eslint ./src",
-    "__prepublishOnly": "npm run copy-changelog",
+    "prepublishOnly": "npm run copy-changelog",
     "postbuild": "npm run generate-properties"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "peerDependencies": {
     "@emotion/core": "^10.0.27",
     "@emotion/styled": "^10.0.27",
@@ -70,7 +72,7 @@
     "polished": "^3.2.0",
     "postcss-url": "^8.0.0",
     "promise": "^8.0.3",
-    "react-magma-icons": "^2.0.0",
+    "react-magma-icons": "^1.0.0",
     "react-test-renderer": "^16.13.1",
     "regenerator-runtime": "^0.13.7",
     "rimraf": "^3.0.2",

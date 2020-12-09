@@ -38,14 +38,40 @@ export {
   CheckboxProps,
 } from './components/Checkbox';
 export { DatePicker, DatePickerProps } from './components/DatePicker';
-export { Dropdown, DropdownAlignment, DropdownDropDirection, DropdownProps } from './components/Dropdown';
-export { DropdownContent } from './components/Dropdown/DropdownContent';
-export { DropdownDivider } from './components/Dropdown/DropdownDivider';
-export { DropdownHeader } from './components/Dropdown/DropdownHeader';
-export { DropdownMenuGroup } from './components/Dropdown/DropdownMenuGroup';
-export { DropdownMenuItem } from './components/Dropdown/DropdownMenuItem';
-export { DropdownSplitButton } from './components/Dropdown/DropdownSplitButton';
-export { DropdownButton } from './components/Dropdown/DropdownButton';
+export {
+  Dropdown,
+  DropdownAlignment,
+  DropdownDropDirection,
+  DropdownProps,
+} from './components/Dropdown';
+export {
+  DropdownContent,
+  DropdownContentProps,
+} from './components/Dropdown/DropdownContent';
+export {
+  DropdownDivider,
+  DropdownDividerProps,
+} from './components/Dropdown/DropdownDivider';
+export {
+  DropdownHeader,
+  DropdownHeaderProps,
+} from './components/Dropdown/DropdownHeader';
+export {
+  DropdownMenuGroup,
+  DropdownMenuGroupProps,
+} from './components/Dropdown/DropdownMenuGroup';
+export {
+  DropdownMenuItem,
+  DropdownMenuItemProps,
+} from './components/Dropdown/DropdownMenuItem';
+export {
+  DropdownSplitButton,
+  DropdownSplitButtonProps,
+} from './components/Dropdown/DropdownSplitButton';
+export {
+  DropdownButton,
+  DropdownButtonProps,
+} from './components/Dropdown/DropdownButton';
 export { FormGroup, FormGroupProps } from './components/FormGroup';
 export { Heading, HeadingProps } from './components/Heading';
 export { HideAtBreakpoint } from './components/HideAtBreakpoint';

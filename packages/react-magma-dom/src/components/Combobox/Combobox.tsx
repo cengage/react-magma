@@ -108,7 +108,6 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
           : changes.inputValue;
         return {
           ...changes,
-          ...(displayItems[0] && { selectedItem: displayItems[0] }),
           inputValue,
         };
       }

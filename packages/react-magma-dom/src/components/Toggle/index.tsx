@@ -19,17 +19,49 @@ export enum ToggleTextPosition {
 
 export interface ToggleProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
+  /**
+   * Style properties for the component container element
+   */
   containerStyle?: React.CSSProperties;
+  /**
+   * Content of the error message for toggle. If a value is provided, the component will be styled as an error state and the error message will display.
+   */
   errorMessage?: React.ReactNode;
+  /**
+   * @internal
+   */
   hasError?: boolean;
   isInverse?: boolean;
+  /**
+   * If true, label text will be hidden visually, but will still be read by assistive technology
+   * @default false
+   */
   isTextVisuallyHidden?: boolean;
+  /**
+   * Style properties for the label element
+   */
   labelStyle?: React.CSSProperties;
+  /**
+   * Content for label; can be a node or a string
+   */
   labelText: React.ReactNode;
   testId?: string;
+  /**
+   * Whether the label appears to the left of the right of the toggle switch
+   * @default ToggleTextPosition.left
+   */
   textPosition?: ToggleTextPosition;
+  /**
+   * @internal
+   */
   theme?: any;
+  /**
+   * Style properties for the part of the component that slides back and forth on the track
+   */
   thumbStyle?: React.CSSProperties;
+  /**
+   * Style properties for track on which the toggle thumb slides
+   */
   trackStyle?: React.CSSProperties;
 }
 

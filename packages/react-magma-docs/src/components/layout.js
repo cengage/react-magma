@@ -9,6 +9,7 @@ import LayoutComponent from './layout-component';
 import editorTheme from './editorTheme';
 import { v4 as uuid } from 'uuid';
 import { SimplePropsTable } from './props-table';
+import NetlifyFooter from './NetlifyFooter';
 
 const PreComponent = ({ className, components, ...props }) => {
   const hideCode = props.children.props.hideCode;
@@ -89,6 +90,7 @@ const Layout = ({ children, pageContext }) => {
           <SkipLinkContent>{children}</SkipLinkContent>
         </article>
       </MDXProvider>
+      <NetlifyFooter />
     </LayoutComponent>
   );
 };

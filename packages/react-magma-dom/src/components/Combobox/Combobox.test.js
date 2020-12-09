@@ -125,6 +125,28 @@ describe('Combobox', () => {
     expect(renderedCombobox.value).toEqual(items[0]);
   });
 
+  it('should allow for selection of an item using keyboard navigation', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByLabelText, getByText } = render(
+      <Combobox labelText={labelText} items={items} />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+    renderedCombobox.focus();
+
+    fireEvent.keyDown(renderedCombobox, { key: 'ArrowDown' });
+    fireEvent.keyDown(renderedCombobox, { key: 'ArrowDown' });
+    fireEvent.keyDown(renderedCombobox, { key: 'Enter' });
+
+    expect(renderedCombobox.value).toEqual(items[1]);
+
+    renderedCombobox.blur();
+
+    expect(renderedCombobox.value).toEqual(items[1]);
+  });
+
   it('should call the passed in onIsOpenChange function on combobox open', () => {
     const onIsOpenChange = jest.fn();
     const labelText = 'Label';

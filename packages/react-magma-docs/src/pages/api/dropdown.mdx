@@ -1,12 +1,21 @@
 ---
 pageTitle: Dropdown API
 title: Dropdown
+props:
+  - DropdownProps
+  - DropdownContentProps
+  - DropdownHeaderProps
+  - DropdownMenuGroupProps
+  - DropdownMenuItemProps
+  - DropdownButtonProps
+  - DropdownSplitButtonProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
 import { AsteriskIcon, BellIcon, Cog2Icon, MenuIcon } from 'react-magma-icons';
 
 import {
+  Alert,
   Button,
   Checkbox,
   Dropdown,
@@ -28,7 +37,7 @@ import { Link } from 'gatsby';
 import { ButtonProps } from '../../components/button-props';
 import { IconButtonProps } from '../../components/icon-button-props';
 
-<DocsHeading to="/design/dropdown/" type="design">
+<DocsHeading to="/design/dropdown/" type="api">
   Dropdown
 </DocsHeading>
 
@@ -407,112 +416,46 @@ When another item is selected, that item will become active and the menu will re
 }
 ```
 
-## Prevent Default Focus Handling
+## Handle Focus on Close
 
-By default when the `dropdown` closes we put focus on the button that triggered the opening of the `dropdown`.
-Sometimes this behavior will override the focusing of another element that you want to be focused. For this,
-you can pass in a function named `onBeforeShiftFocus` in which you can call the `preventMagmaFocus` function on the `event`
-to disable the auto-focusing on close.
+By default the consumer is expected to handle the focusing of elements when items are clicked. If there is no new element to focus on item click
+you should focus the trigger button on closing of the dropdown. For this you can use a `ref` passed to the `DropdownButton` or `DropdownSplitButton` and focus that ref in
+the `onClose` function passed to the `Dropdown` component.
 
 ```.jsx
 () => {
-  const [showModal, setShowModal] = React.useState(false);
+  const buttonRef = React.useRef();
 
-  return (
-    <>
-      <Modal header="Modal Title" onClose={() => setShowModal(false)} isOpen={showModal}>
-        <p>This is a modal, doing modal things.</p>
-        <p>This is <a href="#">linked text</a> in the modal</p>
-        <p>This is <a href="#"> some more linked text</a> in the modal</p>
-      </Modal>
+  handleClose = (event) => {
+    buttonRef.current.focus();
+  }
 
-      <Dropdown>
-        <DropdownButton>Without Disabling Auto Focus</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem onClick={() => setShowModal(true)}>Open Modal</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
-
-      <Dropdown onBeforeShiftFocus={event => event.preventMagmaFocus()}>
-        <DropdownButton>Disable Auto Focusing</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem onClick={() => setShowModal(true)}>Open Modal</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
-    </>
-  )
+  return (<Dropdown onClose={handleClose}>
+    <DropdownButton ref={buttonRef}>Basic Dropdown</DropdownButton>
+    <DropdownContent>
+      <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+      <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+    </DropdownContent>
+  </Dropdown>)
 }
 ```
+
+## Prevent Default Focus Handling - Deprecated
+
+<Alert variant="warning">This functionality has been deprecated.</Alert>
+
+Originally by default when the `dropdown` closed we put focus on the button that triggered the opening of the `dropdown`.
+To remove the auto-focusing on close you would pass in a function named `onBeforeShiftFocus` in which you would call the `preventMagmaFocus` function on the `event`.
+This caused a bug when another element was supposed to be focused the focus would be forced back on to the trigger button if you did not put in this workaround.
+To fix this we have deprecated the workaround and the default now is to allow the consumer to handle the focusing of elements.
+If your dropdown items do not trigger an event that changes the focus, you should make sure to put the focus back the correct element
+as seen in this [example of focusing the trigger button on closing of the dropdown](/api/dropdown/#handle_focus_on_close).
 
 ## Dropdown Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**
 
-<SimplePropsTable
-  propertyValues={{
-    activeIndex: {
-      type: {
-        name: 'number',
-      },
-      required: false,
-      description:
-        'Index of the item that will active/selected. If none is provided, no item will appear active.',
-      defaultValue: '-1',
-    },
-    alignment: {
-      type: {
-        name: 'enum',
-        options: ['DropdownAlignment.start, DropdownAlignment.end'],
-      },
-      required: false,
-      description: 'Alignment of the dropdown content',
-      defaultValue: 'start',
-    },
-    dropDirection: {
-      type: {
-        name: 'enum',
-        options: [
-          'DropdownDropDirection.down, DropdownDropDirection.left, DropdownDropDirection.right, DropdownDropDirection.up',
-        ],
-      },
-      required: false,
-      description: 'Position of the dropdown content',
-      defaultValue: 'down',
-    },
-    maxHeight: {
-      type: {
-        name: 'string | number (px)',
-      },
-      required: false,
-      description: 'Max-height of dropdown content',
-      defaultValue: '250px',
-    },
-    onBeforeShiftFocus: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description:
-        'Function called on dropdown close before focusing the toggle button',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    width: {
-      type: {
-        name: 'string | number (px)',
-      },
-      required: false,
-      description: 'Width of menu',
-      defaultValue: 'Width of longest menu item',
-    },
-  }}
-/>
+<DropdownProps />
 
 ## Dropdown Content Props
 
@@ -520,67 +463,32 @@ to disable the auto-focusing on close.
 
 Examples may include an id, a title, event handlers or various aria attributes. It is unlikely that it will be necessary to provide additional props.
 
+<DropdownContentProps />
+
+## Dropdown Header Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<DropdownHeaderProps />
+
 ## Dropdown Menu Group
 
 **Any other props supplied will be provided to the wrapping `div` element.**
 
-<SimplePropsTable
-  propertyValues={{
-    header: {
-      type: {
-        name: 'React.Node',
-      },
-      required: false,
-      description: 'Header text to use for the menu group',
-    },
-  }}
-/>
+<DropdownMenuGroupProps />
 
 ## Dropdown Menu Item
 
 **Any other props supplied will be provided to the wrapping `li` element.**
 
-<SimplePropsTable
-  propertyValues={{
-    icon: {
-      type: {
-        name: 'React.ReactElement',
-      },
-      required: false,
-      description: 'Leading icon for the menu item',
-    },
-    disabled: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, item will be disabled; it will appear dimmed and onClick event (or any other events) will not fire',
-      defaultValue: 'false',
-    },
-    onClick: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description:
-        'Action that fires when the menu item is clicked. If the menuitem also has a value prop, the value will be passed to the onClick handler',
-    },
-    value: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Value of the component, gets passed to the onClick event',
-    },
-  }}
-/>
+<DropdownMenuItemProps />
 
 ## Dropdown Button Props
 
 **DropdownButton and the DropdownSplitButton accept the same props as the <Link to="/api/button">Button</Link> component.**
 
 <ButtonProps />
+<br />
 
 **The DropdownButton can also accept an `icon` property, as in the <Link to="/api/icon-button">Icon Button</Link> component.**
 

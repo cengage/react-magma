@@ -9,18 +9,34 @@ import {
   IconProps,
 } from 'react-magma-icons';
 import { DropdownContext, DropdownDropDirection } from '.';
-import { Omit, useGenerateId, XOR } from '../../utils';
+import { Omit, useForkedRef, useGenerateId, XOR } from '../../utils';
 import { ButtonProps } from '../Button';
 
 export interface IconOnlyDropdownButtonProps
   extends Omit<ButtonProps, 'children'> {
+  /**
+   * Icon to display within the component
+   */
   icon?: React.ReactElement<IconProps>;
+  /**
+   * The text the screen reader will announce. Required for icon-only buttons
+   */
   'aria-label': string;
 }
 
 export interface IconTextDropdownButtonProps extends ButtonProps {
+  /**
+   * Icon to display within the component
+   */
   icon?: React.ReactElement<IconProps>;
+  /**
+   * Position within the button for the icon to appear
+   * @default `ButtonIconPosition.right`
+   */
   iconPosition?: ButtonIconPosition;
+  /**
+   * The content of the component
+   */
   children: React.ReactChild | React.ReactChild[];
 }
 
@@ -35,12 +51,15 @@ function instanceOfIconOnlyDropdownButton(
   return 'icon' in object && !('children' in object);
 }
 
-export const DropdownButton: React.FunctionComponent<DropdownButtonProps> = (
-  props: DropdownButtonProps
-) => {
+export const DropdownButton = React.forwardRef<
+  HTMLButtonElement,
+  DropdownButtonProps
+>((props, forwardedRef) => {
   const context = React.useContext(DropdownContext);
 
   context.dropdownButtonId.current = useGenerateId(props.id);
+
+  const ref = useForkedRef(context.toggleRef, forwardedRef);
 
   function getButtonIcon(dropDirection: DropdownDropDirection) {
     switch (dropDirection) {
@@ -91,9 +110,9 @@ export const DropdownButton: React.FunctionComponent<DropdownButtonProps> = (
       id={context.dropdownButtonId.current}
       onClick={handleClick}
       onKeyDown={context.handleButtonKeyDown}
-      ref={context.toggleRef}
+      ref={ref}
     >
       {children}
     </IconButton>
   );
-};
+});
