@@ -2647,15 +2647,135 @@
     "properties": {}
   },
   {
-    "name": "DropdownMenuGroupInterface",
+    "name": "DropdownContentProps",
     "kind": 256,
     "kindString": "Interface",
     "flags": {
       "isExported": true
     },
-    "id": "DropdownMenuGroupInterface",
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
+    "id": "DropdownContentProps",
+    "tags": {
+      "children": "required"
+    },
+    "properties": {
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component",
+        "deprecated": false
+      },
+      "testId": {
+        "name": "testId",
+        "required": false,
+        "type": {
+          "name": "string"
+        },
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
+      }
+    }
+  },
+  {
+    "name": "DropdownDividerProps",
+    "kind": 256,
+    "kindString": "Interface",
+    "flags": {
+      "isExported": true
+    },
+    "id": "DropdownDividerProps",
     "tags": {},
     "properties": {
+      "testId": {
+        "name": "testId",
+        "required": false,
+        "type": {
+          "name": "string"
+        },
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
+      }
+    }
+  },
+  {
+    "name": "DropdownHeaderProps",
+    "kind": 256,
+    "kindString": "Interface",
+    "flags": {
+      "isExported": true
+    },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
+    "id": "DropdownHeaderProps",
+    "tags": {
+      "children": "required"
+    },
+    "properties": {
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component",
+        "deprecated": false
+      },
+      "testId": {
+        "name": "testId",
+        "required": false,
+        "type": {
+          "name": "string"
+        },
+        "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
+        "deprecated": false
+      }
+    }
+  },
+  {
+    "name": "DropdownMenuGroupProps",
+    "kind": 256,
+    "kindString": "Interface",
+    "flags": {
+      "isExported": true
+    },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
+    "id": "DropdownMenuGroupProps",
+    "tags": {
+      "children": "required"
+    },
+    "properties": {
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component",
+        "deprecated": false
+      },
       "header": {
         "name": "header",
         "required": false,
@@ -4599,12 +4719,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 11310,
+          "id": 12078,
           "name": "NavTabChildrenProps"
         },
         {
           "type": "reference",
-          "id": 11576,
+          "id": 12344,
           "name": "NavTabComponentProps"
         }
       ],
@@ -8131,12 +8251,12 @@
       "types": [
         {
           "type": "reference",
-          "id": 10676,
+          "id": 11444,
           "name": "HorizontalTabsProps"
         },
         {
           "type": "reference",
-          "id": 10673,
+          "id": 11441,
           "name": "VerticalTabsProps"
         }
       ]

@@ -3,7 +3,9 @@ pageTitle: Dropdown API
 title: Dropdown
 props:
   - DropdownProps
-  - DropdownMenuGroupInterface
+  - DropdownContentProps
+  - DropdownHeaderProps
+  - DropdownMenuGroupProps
   - DropdownMenuItemProps
   - DropdownButtonProps
   - DropdownSplitButtonProps
@@ -461,11 +463,19 @@ as seen in this [example of focusing the trigger button on closing of the dropdo
 
 Examples may include an id, a title, event handlers or various aria attributes. It is unlikely that it will be necessary to provide additional props.
 
+<DropdownContentProps />
+
+## Dropdown Header Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<DropdownHeaderProps />
+
 ## Dropdown Menu Group
 
 **Any other props supplied will be provided to the wrapping `div` element.**
 
-<DropdownMenuGroupInterface />
+<DropdownMenuGroupProps />
 
 ## Dropdown Menu Item
 
@@ -478,6 +488,7 @@ Examples may include an id, a title, event handlers or various aria attributes. 
 **DropdownButton and the DropdownSplitButton accept the same props as the <Link to="/api/button">Button</Link> component.**
 
 <ButtonProps />
+<br />
 
 **The DropdownButton can also accept an `icon` property, as in the <Link to="/api/icon-button">Icon Button</Link> component.**
 
