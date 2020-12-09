@@ -23,7 +23,8 @@
     "cm": "git-cz",
     "cm-retry": "git-cz --retry",
     "check:spelling": "cspell --config=.cspell.json packages/**/*.{md,ts,js,mdx,tsx,jsx}",
-    "publish": "lerna publish",
+    "copy:readme": "copy README.md packages/react-magma-dom",
+    "publish": "npm run copy:readme && lerna publish",
     "prettier": "prettier --write --loglevel warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\""
   },
   "husky": {
@@ -63,6 +64,7 @@
     "commitizen": "^4.2.2",
     "conventional-changelog-cli": "^2.1.1",
     "conventional-changelog-conventionalcommits": "^4.5.0",
+    "copy": "^0.3.2",
     "core-js": "^3.1.4",
     "cspell": "^4.1.0",
     "cspell-dict-es-es": "^1.0.19",
