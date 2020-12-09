@@ -7,4 +7,5 @@ coverage
 public
 .DS_Store
 packages/cengage-ts-react-boilerplate
+packages/react-magma-dom/README.md
 *_cache*
