@@ -9,6 +9,7 @@
     "directory": "packages/react-magma-docs"
   },
   "dependencies": {
+    "@babel/plugin-transform-react-jsx": "7.10.4",
     "@emotion/core": "^10.0.7",
     "@emotion/styled": "^10.0.7",
     "@mdx-js/mdx": "^1.5.5",
