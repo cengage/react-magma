@@ -3,6 +3,10 @@ module.exports = {
   siteMetadata: {
     title: 'React Magma Docs',
   },
+  flags: {
+    FAST_DEV: true,
+    FAST_REFRESH: true,
+  },
   plugins: [
     {
       resolve: 'gatsby-plugin-react-svg',
