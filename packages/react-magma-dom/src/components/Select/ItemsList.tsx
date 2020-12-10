@@ -6,7 +6,7 @@ import {
   UseSelectGetMenuPropsOptions,
   UseSelectGetItemPropsOptions,
 } from 'downshift';
-import { instanceOfToBeCreatedItemObject } from '.';
+import { instanceOfToBeCreatedItemObject, ItemRenderOptions } from '.';
 import styled from '../../theme/styled';
 
 interface ItemsListProps<T> {
@@ -57,7 +57,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
               ? item.label
               : itemToString(item);
 
-            const itemProps = {
+            const itemProps: ItemRenderOptions<T> = {
               key: `${itemString}${index}`,
               isFocused: highlightedIndex === index,
               item,
