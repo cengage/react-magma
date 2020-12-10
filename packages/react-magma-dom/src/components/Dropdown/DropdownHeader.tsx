@@ -2,6 +2,14 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 
+/**
+ * @children required
+ */
+export interface DropdownHeaderProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  testId?: string;
+}
+
 const StyledDiv = styled.div`
   color: ${props => props.theme.colors.neutral03};
   font-size: ${props => props.theme.typeScale.size01.fontSize};
@@ -13,14 +21,17 @@ const StyledDiv = styled.div`
   text-transform: uppercase;
 `;
 
-export const DropdownHeader: React.FunctionComponent<React.HTMLAttributes<
-  HTMLDivElement
->> = ({ children, ...other }) => {
+export const DropdownHeader = React.forwardRef<
+  HTMLDivElement,
+  DropdownHeaderProps
+>((props, ref) => {
+  const { children, testId, ...other } = props;
+
   const theme = React.useContext(ThemeContext);
 
   return (
-    <StyledDiv {...other} theme={theme}>
+    <StyledDiv {...other} data-testid={testId} theme={theme}>
       {children}
     </StyledDiv>
   );
-};
+});

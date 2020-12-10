@@ -33,7 +33,7 @@ Node v12.x or greater with npm 6.1.x or greater
 1. Clone this repo:
 
 ```sh
-git clone ssh://git@stash.corp.web:7999/front/react-magma.git
+git clone git@github.com:cengage/react-magma.git
 ```
 
 2. Install the project's dependencies with the `npm ci` command
@@ -114,6 +114,15 @@ npm run test-core
 ```
 
 `npm run covg` to see the generated lcov coverage reports.
+
+#### Wallaby.js
+
+[![Wallaby.js](https://img.shields.io/badge/wallaby.js-powered-blue.svg?style=for-the-badge&logo=github)](https://wallabyjs.com/oss/)
+
+This repository contributors are welcome to use
+[Wallaby.js OSS License](https://wallabyjs.com/oss/) to get
+test results immediately as you type, and see the results in
+your editor right next to your code.
 
 ### End to End Testing
 

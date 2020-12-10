@@ -1,7 +1,8 @@
 import React from 'react';
-import { AsteriskIcon } from 'react-magma-icons';
+import { AsteriskIcon, NotificationIcon } from 'react-magma-icons';
 import {
   magma,
+  IconButton,
   Paragraph,
   Table,
   TableBody,
@@ -9,6 +10,7 @@ import {
   TableCell,
   TableHeaderCell,
   TableRow,
+  Tooltip,
 } from 'react-magma-dom';
 
 export const SimplePropsTable = ({ propertyValues }) => {
