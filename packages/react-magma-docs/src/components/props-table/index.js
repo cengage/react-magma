@@ -67,7 +67,7 @@ export const SimplePropsTable = ({ propertyValues }) => {
                             aria-label="deprecated"
                             icon={
                               <NotificationIcon
-                                size="16"
+                                size={magma.iconSizes.small}
                                 color={magma.colors.danger}
                               />
                             }
