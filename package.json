@@ -18,7 +18,7 @@
     "bootstrap": "lerna bootstrap && rimraf packages/react-magma-docs/node_modules/react packages/react-magma-docs/node_modules/react-dom",
     "lint": "lerna run lint",
     "develop": "npm run docs",
-    "docs": "lerna exec --scope react-magma-docs gatsby develop",
+    "docs": "lerna run --scope react-magma-docs develop",
     "clean": "lerna exec --scope react-magma-docs 'gatsby clean' && lerna clean --yes && rimraf node_modules",
     "cm": "git-cz",
     "cm-retry": "git-cz --retry",
