@@ -89,11 +89,11 @@ describe('Combobox', () => {
       { id: '1', label: 'Blue', value: 'blue' },
       { id: '2', label: 'Green', value: 'green' },
     ];
-    const renderItem = props => {
-      const { isFocused, item, itemString, ...other } = props;
+    const CustomItem = props => {
+      const { itemRef, isFocused, item, itemString, ...other } = props;
 
       return (
-        <li {...other} data-testid={item.id}>
+        <li {...other} data-testid={item.id} ref={itemRef}>
           {itemString}
         </li>
       );
@@ -103,7 +103,7 @@ describe('Combobox', () => {
         isMulti
         labelText={labelText}
         items={items}
-        renderItem={renderItem}
+        components={{ Item: CustomItem }}
       />
     );
 

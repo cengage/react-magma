@@ -6,10 +6,16 @@ import {
   UseSelectGetMenuPropsOptions,
   UseSelectGetItemPropsOptions,
 } from 'downshift';
-import { instanceOfToBeCreatedItemObject, ItemRenderOptions } from '.';
+import { instanceOfToBeCreatedItemObject } from '.';
+import {
+  defaultComponents,
+  SelectComponents,
+  ItemRenderOptions,
+} from './components';
 import styled from '../../theme/styled';
 
 interface ItemsListProps<T> {
+  customComponents?: SelectComponents<T>;
   getItemProps: (options?: UseSelectGetItemPropsOptions<T>) => any;
   getMenuProps: (options?: UseSelectGetMenuPropsOptions) => any;
   highlightedIndex?: number;
@@ -17,7 +23,6 @@ interface ItemsListProps<T> {
   items: T[];
   itemToString: (item: T) => string;
   menuStyle?: React.CSSProperties;
-  renderItem?: (options: any) => React.ReactNode;
 }
 
 const NoItemsMessage = styled.span`
@@ -27,12 +32,9 @@ const NoItemsMessage = styled.span`
   text-align: center;
 `;
 
-function defaultRenderItem({ itemString, ...props }) {
-  return <StyledItem {...props}>{itemString}</StyledItem>;
-}
-
 export function ItemsList<T>(props: ItemsListProps<T>) {
   const {
+    customComponents,
     isOpen,
     getMenuProps,
     items,
@@ -40,13 +42,16 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
     highlightedIndex,
     getItemProps,
     menuStyle,
-    renderItem,
   } = props;
 
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
   const hasItems = items && items.length > 0;
+
+  const { Item } = defaultComponents<T>({
+    ...customComponents,
+  });
 
   return (
     <StyledCard hasDropShadow isOpen={isOpen} style={menuStyle}>
@@ -57,18 +62,24 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
               ? item.label
               : itemToString(item);
 
+            const { ref, ...otherDownshiftItemProps } = getItemProps({
+              item,
+              index,
+            });
+
+            const key = `${itemString}${index}`;
+
             const itemProps: ItemRenderOptions<T> = {
-              key: `${itemString}${index}`,
               isFocused: highlightedIndex === index,
+              itemRef: ref,
               item,
               itemString,
+              key,
               theme,
-              ...getItemProps({ item, index }),
+              ...otherDownshiftItemProps,
             };
 
-            return renderItem && typeof renderItem === 'function'
-              ? renderItem(itemProps)
-              : defaultRenderItem(itemProps);
+            return <Item<T> {...itemProps} key={key} />;
           })
         ) : (
           <StyledItem tabIndex={-1}>

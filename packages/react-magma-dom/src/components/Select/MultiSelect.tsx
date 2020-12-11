@@ -13,6 +13,7 @@ import { I18nContext } from '../../i18n';
 export function MultiSelect<T>(props: MultiSelectInterface<T>) {
   const {
     ariaDescribedBy,
+    components: customComponents,
     hasError,
     inputStyle,
     isLabelVisuallyHidden,
@@ -31,7 +32,6 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
     onKeyUp,
     onRemoveSelectedItem,
     placeholder,
-    renderItem,
   } = props;
 
   function checkSelectedItemValidity(itemToCheck: T) {
@@ -200,6 +200,7 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
           : i18n.multiSelect.placeholder}
       </SelectTriggerButton>
       <ItemsList
+        customComponents={customComponents}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}
@@ -207,7 +208,6 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
         items={getFilteredItems(items)}
         itemToString={itemToString}
         menuStyle={menuStyle}
-        renderItem={renderItem}
       />
     </SelectContainer>
   );

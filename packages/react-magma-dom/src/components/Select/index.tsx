@@ -11,24 +11,14 @@ import { MultiSelect } from './MultiSelect';
 import { InputMessage } from '../Input/InputMessage';
 import { SelectComponents } from './components';
 import { useGenerateId } from '../../utils';
-import { ThemeInterface } from '../../theme/magma';
 
 export type SelectOptions =
   | string
   | { value: string; label: string; [key: string]: any }
   | any;
 
-export type ItemRenderOptions<T> = {
-  key: string;
-  isFocused?: boolean;
-  item: T;
-  itemString: string;
-  theme: ThemeInterface;
-  [key: string]: any;
-};
-
 export interface InternalSelectInterface<T> {
-  components?: SelectComponents;
+  components?: SelectComponents<T>;
   containerStyle?: React.CSSProperties;
   errorMessage?: React.ReactNode;
   helperMessage?: React.ReactNode;
@@ -44,7 +34,6 @@ export interface InternalSelectInterface<T> {
   messageStyle?: React.CSSProperties;
   name?: string;
   placeholder?: string;
-  renderItem?: (options: ItemRenderOptions<T>) => React.ReactNode;
   testId?: string;
 }
 

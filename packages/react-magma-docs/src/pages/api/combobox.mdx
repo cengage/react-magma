@@ -914,7 +914,22 @@ interface CustomComboboxItem {
 }
 ```
 
-## Custom Item Render
+## Custom Components
+
+Out of the box, the `Combobox` renders a styled `li` for items and uses React Magma-styled iconography for the button used to clear the selection, the caret for the dropdown, and the loading animation.
+However, these can be overridden by providing custom components to the `components` prop, in an object containing an `Item`, a `ClearIndicator`, a `DropdownIndicator` and a `LoadingIndicator`.
+
+### Custom Item Component
+
+By default each item will be rendered with the `itemToString` value in a styled `li`. If you would like to add more information or
+would just like to be able to fully customize the look of your items you can pass in an `Item` component that uses the `props` that
+we use internally.
+
+<Alert variant="warning">
+  Be aware. You must pass a <code>ref</code> to your custom item component to
+  make sure the functionality of the entire <code>Combobox</code> continues to
+  work.
+</Alert>
 
 ```.jsx
 () => {
@@ -950,10 +965,10 @@ interface CustomComboboxItem {
     return item ? item.representation : ''
   }
 
-  function renderItem(props) {
-    const { itemString, item, ...other } = props;
+  const CustomItem = props => {
+    const { itemRef, itemString, item, ...other } = props;
     return (
-      <CustomStyledItem {...other}>
+      <CustomStyledItem {...other} ref={itemRef}>
         <ContainerSpan>
           <Hex color={item.hex} theme={props.theme} />
           {itemString}
@@ -965,6 +980,7 @@ interface CustomComboboxItem {
 
   return (
     <Combobox
+      components={{ Item: CustomItem }}
       defaultItems={[
         { id: 0, name: 'red', representation: 'Red', hex: '#FF0000', description: 'The color of roses' },
         { id: 1, name: 'blue', representation: 'Blue', hex: '#0000FF', description: 'The color of blueberries'  },
@@ -973,16 +989,12 @@ interface CustomComboboxItem {
       disableCreateItem
       itemToString={itemToString}
       labelText="Combobox With Custom Item Render"
-      renderItem={renderItem}
     />
   )
 }
 ```
 
-## Custom Components
-
-Out of the box, the `Combobox` uses React Magma-styled iconography for the button used to clear the selection, the caret for the dropdown, and the loading animation.
-However, these can be overridden by providing custom components to the `components` prop, in an object containing a `ClearIndicator`, a `DropdownIndicator` and a `LoadingIndicator`.
+### Other Custom Components
 
 ```.jsx
 () => {

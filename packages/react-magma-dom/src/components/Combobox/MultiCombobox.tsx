@@ -43,7 +43,6 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
     onItemCreated,
     onRemoveSelectedItem,
     placeholder,
-    renderItem,
     toggleButtonRef,
   } = props;
 
@@ -318,6 +317,7 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
         toggleButtonRef={toggleButtonRef}
       />
       <ItemsList
+        customComponents={customComponents}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}
@@ -325,7 +325,6 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
         items={getFilteredItems(displayItems)}
         itemToString={itemToString}
         menuStyle={menuStyle}
-        renderItem={renderItem}
       />
     </SelectContainer>
   );

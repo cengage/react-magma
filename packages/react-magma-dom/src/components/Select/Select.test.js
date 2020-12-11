@@ -100,23 +100,26 @@ describe('Select', () => {
 
   it('should render custom item component', () => {
     const labelText = 'Label';
-    const testId = 'test';
     const items = [
       { id: '0', label: 'Red', value: 'red' },
       { id: '1', label: 'Blue', value: 'blue' },
       { id: '2', label: 'Green', value: 'green' },
     ];
-    const renderItem = props => {
-      const { isFocused, item, itemString, ...other } = props;
+    const CustomItem = props => {
+      const { itemRef, isFocused, item, itemString, ...other } = props;
 
       return (
-        <li {...other} data-testid={item.id}>
+        <li {...other} data-testid={item.id} ref={itemRef}>
           {itemString}
         </li>
       );
     };
     const { getByLabelText, getByText, getByTestId } = render(
-      <Select labelText={labelText} items={items} renderItem={renderItem} />
+      <Select
+        labelText={labelText}
+        items={items}
+        components={{ Item: CustomItem }}
+      />
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
