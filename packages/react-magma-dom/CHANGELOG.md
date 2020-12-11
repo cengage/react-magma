@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+### [2.3.1-alpha.0](https://github.com/cengage/react-magma/compare/react-magma-dom@2.3.0...react-magma-dom@2.3.1-alpha.0) (2020-12-11)
+
+### Bug Fixes
+
+- **combobox:** select correct item using keyboard navigation ([bb05403](https://github.com/cengage/react-magma/commit/bb05403ef49166b3a38de4f7ac8d02fe979e2a83))
+- **dropdown:** add interfaces with default props, testids ([65d15d7](https://github.com/cengage/react-magma/commit/65d15d70131cf45d40622f41e45bd96284729c10))
+- **tab:** handle click parameter names fixed ([70dc881](https://github.com/cengage/react-magma/commit/70dc881078a1823c7031eb973362eef369682dc3))
+
 ## [2.3.0](https://github.com/cengage/react-magma/compare/react-magma-dom@2.3.0...react-magma-dom@2.3.0) (2020-12-08)
 
 ### Features

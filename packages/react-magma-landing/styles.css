@@ -45,24 +45,61 @@ a:focus {
 h1,
 h2,
 h3,
-h4 {
-  color: #003865;
+h4,
+h5,
+h6 {
+  border-bottom: 2px solid transparent;
   font-family: 'Open Sans', Helvetica, sans-serif;
-  font-weight: 300;
-  line-height: 1.2;
-  margin: 20px 0 10px;
+  font-weight: 600;
+}
+
+h1:focus,
+h2:focus,
+h3:focus,
+h4:focus,
+h5:focus,
+h6:focus {
+  border-bottom: 2px dotted #027ee1;
+  outline: 0;
 }
 
 h1 {
-  font-size: 2.8em;
+  font-size: 28px;
+  line-height: 40px;
+  margin: 0 0 16px;
+}
+
+@media (min-width: 600px) {
+  h1 {
+    font-size: 36px;
+    line-height: 40px;
+  }
 }
 
 h2 {
-  font-size: 2.4em;
+  font-size: 24px;
+  line-height: 32px;
+  margin: 48px 0 16px;
+}
+
+@media (min-width: 600px) {
+  h2 {
+    font-size: 28px;
+    line-height: 40px;
+  }
 }
 
 h3 {
-  font-size: 1.867em;
+  font-size: 20px;
+  line-height: 32px;
+  margin: 40px 0 16px;
+}
+
+@media (min-width: 600px) {
+  h3 {
+    font-size: 24px;
+    line-height: 32px;
+  }
 }
 
 ul,
@@ -95,8 +132,6 @@ header {
 
 header h1 {
   color: #fff;
-  font-size: 30px;
-  font-weight: 600;
   margin: 0;
 }
 
@@ -136,7 +171,7 @@ header h1 {
   width: 45%;
   border: 1px solid #dfdfdf;
   box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.15);
-  border-radius: 5px;
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -144,14 +179,15 @@ header h1 {
 
 .box-icon {
   width: 80px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .box .subtext {
-  font-size: 13px;
   color: #727272;
-  margin: 5px 0;
-  line-height: 1.2em;
+  font-size: 14px;
+  line-height: 20px;
+
+  margin: 4px 0;
 }
 
 .btn {
@@ -159,16 +195,16 @@ header h1 {
   background: #006298;
   border: 0;
   border-color: #006298;
-  border-radius: 5px;
+  border-radius: 4px;
   color: #fff;
   display: inline-flex;
-  font-size: 0.875rem;
+  font-size: 16px;
   font-weight: 600;
-  height: 37px;
+  height: 40px;
   line-height: 1;
   justify-content: center;
-  margin-bottom: 10px;
-  padding: 0 15px;
+  margin-bottom: 12px;
+  padding: 12px 16px;
   position: relative;
   overflow: hidden;
   text-decoration: none;
@@ -207,13 +243,13 @@ header h1 {
   transition: transform 0s ease 0s;
 }
 
-@media (max-width: 580px) {
+@media (max-width: 600px) {
   .boxes {
     flex-direction: column;
   }
 
   .box {
-    margin-bottom: 30px;
+    margin-bottom: 32px;
     width: 100%;
   }
 }

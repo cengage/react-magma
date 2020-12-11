@@ -1,3 +1,15 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+### [2.1.1-alpha.0](https://github.com/cengage/react-magma/compare/react-magma-docs@2.1.0...react-magma-docs@2.1.1-alpha.0) (2020-12-11)
+
+### Bug Fixes
+
+- **dropdown:** add interfaces with default props, testids ([65d15d7](https://github.com/cengage/react-magma/commit/65d15d70131cf45d40622f41e45bd96284729c10))
+- **npm:** remove nexus from package-locks ([1f1d8a9](https://github.com/cengage/react-magma/commit/1f1d8a95ba7ba30e2230b2ae4420fa5d7483f9ee))
+
 ## [2.1.0](https://github.com/cengage/react-magma/compare/react-magma-docs@2.1.0...react-magma-docs@2.1.0) (2020-12-08)
 
 ### Features
