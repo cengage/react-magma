@@ -1,9 +1,5 @@
 # React magma
 
-## Known Issues
-
-1. `Legacy context API has been detected within a strict-mode tree` - https://github.com/JedWatson/react-select/pull/3487
-
 ## Getting started with React Magma in your application
 
 ### Setup requirements
@@ -24,7 +20,7 @@ This site has general usage information, as well as information on all of the av
 
 ## Contributing to React Magma
 
-### Dependencies
+### System Dependencies
 
 Node v12.x or greater with npm 6.1.x or greater
 
@@ -54,8 +50,6 @@ npm ci
 ```sh
 npm run docs
 ```
-
-**Note:** _If you get errors about a missing typescript module during step three, you may need to run `npm i -s -D typescript` from `packages/react-magma-native` and rerun the previous two commands._
 
 4. Visit the docs at [http://localhost:3000](http://localhost:3000).
 
