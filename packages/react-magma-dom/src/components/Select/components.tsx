@@ -2,11 +2,24 @@ import * as React from 'react';
 import { IconButton, IconButtonProps } from '../IconButton';
 import { Spinner, SpinnerProps } from '../Spinner';
 import { IconProps, CaretDownIcon } from 'react-magma-icons';
+import { StyledItem } from './shared';
+import { ThemeInterface } from '../../theme/magma';
 
-export type SelectComponents = {
+export type ItemRenderOptions<T> = {
+  key: string;
+  isFocused?: boolean;
+  item: T;
+  itemRef: React.Ref<HTMLLIElement>;
+  itemString: string;
+  theme: ThemeInterface;
+  [key: string]: any;
+};
+
+export type SelectComponents<T> = {
   ClearIndicator?: React.FunctionComponent<IconButtonProps>;
   DropdownIndicator?: React.FunctionComponent<Partial<IconProps>>;
   LoadingIndicator?: React.FunctionComponent<SpinnerProps>;
+  Item?: React.FunctionComponent<ItemRenderOptions<T>>;
 };
 
 export const DefaultClearIndicator = props => {
@@ -28,9 +41,24 @@ export const DefaultLoadingIndicator = props => {
   return <Spinner testId="loadingIndicator" {...props} />;
 };
 
-export const defaultComponents = (props: SelectComponents) => ({
-  ClearIndicator: DefaultClearIndicator,
-  DropdownIndicator: DefaultDropdownIndicator,
-  LoadingIndicator: DefaultLoadingIndicator,
-  ...props,
-});
+export function DefaultItem<T>({
+  itemRef,
+  itemString,
+  ...props
+}: ItemRenderOptions<T>) {
+  return (
+    <StyledItem {...props} ref={itemRef}>
+      {itemString}
+    </StyledItem>
+  );
+}
+
+export function defaultComponents<T>(props: SelectComponents<T>) {
+  return {
+    ClearIndicator: DefaultClearIndicator,
+    DropdownIndicator: DefaultDropdownIndicator,
+    LoadingIndicator: DefaultLoadingIndicator,
+    Item: DefaultItem,
+    ...props,
+  };
+}

@@ -107,7 +107,7 @@ export function Select<T>(props: SelectInterface<T>) {
       getValidItem(passedInSelectedItem, 'selectedItem')),
   });
 
-  const { ClearIndicator } = defaultComponents({
+  const { ClearIndicator } = defaultComponents<T>({
     ...customComponents,
   });
 
@@ -182,6 +182,7 @@ export function Select<T>(props: SelectInterface<T>) {
         )}
       </SelectTriggerButton>
       <ItemsList
+        customComponents={customComponents}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}
