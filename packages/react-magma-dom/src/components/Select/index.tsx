@@ -24,6 +24,7 @@ export interface InternalSelectInterface {
   helperMessage?: React.ReactNode;
   inputStyle?: React.CSSProperties;
   isClearable?: boolean;
+  itemListMaxHeight?: number | string;
   disabled?: boolean;
   isInverse?: boolean;
   isLabelVisuallyHidden?: boolean;

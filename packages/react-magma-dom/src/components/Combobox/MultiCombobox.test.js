@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { Combobox as MultiCombobox } from '.';
+import { magma } from '../../theme/magma';
 
 describe('Combobox', () => {
   it('should render a multi-combobox with items', () => {
@@ -79,6 +80,69 @@ describe('Combobox', () => {
     fireEvent.click(renderedCombobox);
 
     expect(getByText(items[0].representation)).toBeInTheDocument();
+  });
+
+  it('should render an items list with the default max height', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { container, getByLabelText } = render(
+      <MultiCombobox isMulti labelText={labelText} items={items} />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+    fireEvent.click(renderedCombobox);
+
+    expect(container.querySelector('ul')).toHaveStyleRule(
+      'max-height',
+      magma.select.menu.maxHeight
+    );
+  });
+
+  it('should render an items list with the passed in max height as a string', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const maxHeight = '100px';
+    const { container, getByLabelText } = render(
+      <MultiCombobox
+        isMulti
+        itemListMaxHeight={maxHeight}
+        labelText={labelText}
+        items={items}
+      />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+    fireEvent.click(renderedCombobox);
+
+    expect(container.querySelector('ul')).toHaveStyleRule(
+      'max-height',
+      maxHeight
+    );
+  });
+
+  it('should render an items list with the passed in max height as a number', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const maxHeight = 50;
+    const { container, getByLabelText } = render(
+      <MultiCombobox
+        isMulti
+        itemListMaxHeight={maxHeight}
+        labelText={labelText}
+        items={items}
+      />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+    fireEvent.click(renderedCombobox);
+
+    expect(container.querySelector('ul')).toHaveStyleRule(
+      'max-height',
+      `${maxHeight}px`
+    );
   });
 
   it('should allow for selection of multiple items', () => {

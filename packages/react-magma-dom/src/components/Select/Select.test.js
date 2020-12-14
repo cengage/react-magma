@@ -2,6 +2,7 @@ import React from 'react';
 import { render, fireEvent, act } from '@testing-library/react';
 import { Select } from '.';
 import { defaultI18n } from '../../i18n/default';
+import { magma } from '../../theme/magma';
 
 describe('Select', () => {
   it('should render a select with items', () => {
@@ -96,6 +97,67 @@ describe('Select', () => {
     fireEvent.click(renderedSelect);
 
     expect(getByText(items[0].representation)).toBeInTheDocument();
+  });
+
+  it('should render an items list with the default max height', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { container, getByLabelText } = render(
+      <Select labelText={labelText} items={items} />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    fireEvent.click(renderedSelect);
+
+    expect(container.querySelector('ul')).toHaveStyleRule(
+      'max-height',
+      magma.select.menu.maxHeight
+    );
+  });
+
+  it('should render an items list with the passed in max height as a string', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const maxHeight = '100px';
+    const { container, getByLabelText } = render(
+      <Select
+        itemListMaxHeight={maxHeight}
+        labelText={labelText}
+        items={items}
+      />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    fireEvent.click(renderedSelect);
+
+    expect(container.querySelector('ul')).toHaveStyleRule(
+      'max-height',
+      maxHeight
+    );
+  });
+
+  it('should render an items list with the passed in max height as a number', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const maxHeight = 50;
+    const { container, getByLabelText } = render(
+      <Select
+        itemListMaxHeight={maxHeight}
+        labelText={labelText}
+        items={items}
+      />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    fireEvent.click(renderedSelect);
+
+    expect(container.querySelector('ul')).toHaveStyleRule(
+      'max-height',
+      `${maxHeight}px`
+    );
   });
 
   it('should not select an item when typing and select is closed', () => {

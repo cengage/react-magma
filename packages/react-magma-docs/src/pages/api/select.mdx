@@ -1,6 +1,7 @@
----
+m---
 pageTitle: Select API
 title: Select
+
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -997,6 +998,13 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
       },
       required: false,
       description: 'Selectable options.  Can be an array of strings or objects',
+    },
+    itemsListMaxHeight: {
+      type: {
+        name: 'number | string',
+      },
+      required: false,
+      description: 'Max height of the select items list menu',
     },
     itemToString: {
       type: {

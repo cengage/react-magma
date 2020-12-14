@@ -26,6 +26,7 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
     isLabelVisuallyHidden,
     isLoading,
     isInverse,
+    itemListMaxHeight,
     items,
     itemToString,
     labelStyle,
@@ -323,6 +324,7 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
         isOpen={isOpen}
         items={getFilteredItems(displayItems)}
         itemToString={itemToString}
+        maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
         menuStyle={menuStyle}
       />
     </SelectContainer>
