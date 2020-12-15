@@ -122,15 +122,15 @@ const ModalContent = styled.div<ModalProps>`
   max-width: ${props => {
     switch (props.size) {
       case 'large':
-        return '900px';
+        return props.theme.modal.width.large;
       case 'small':
-        return '300px';
+        return props.theme.modal.width.small;
       default:
-        return '750px';
+        return props.theme.modal.width.medium;
     }
   }};
 
-  @media (min-width: ${props => props.theme.breakpoints.medium}px) {
+  @media (min-width: ${props => props.theme.breakpoints.small}px) {
     margin: ${props =>
       props.size !== 'large'
         ? `${props.theme.spaceScale.spacing09} auto`

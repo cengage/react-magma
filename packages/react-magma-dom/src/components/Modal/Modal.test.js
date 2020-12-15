@@ -3,6 +3,7 @@ import { Modal } from '.';
 import { act, render, fireEvent } from '@testing-library/react';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
+import { magma } from '../../theme/magma';
 
 describe('Modal', () => {
   it('should find element by testId', () => {
@@ -67,7 +68,10 @@ describe('Modal', () => {
       </Modal>
     );
 
-    expect(getByTestId('modal-content')).toHaveStyleRule('max-width', '750px');
+    expect(getByTestId('modal-content')).toHaveStyleRule(
+      'max-width',
+      magma.modal.width.medium
+    );
   });
 
   it('should render the modal with the small size', () => {
@@ -84,7 +88,10 @@ describe('Modal', () => {
       </Modal>
     );
 
-    expect(getByTestId('modal-content')).toHaveStyleRule('max-width', '300px');
+    expect(getByTestId('modal-content')).toHaveStyleRule(
+      'max-width',
+      magma.modal.width.small
+    );
   });
 
   it('should render the modal with the large size', () => {
@@ -101,7 +108,10 @@ describe('Modal', () => {
       </Modal>
     );
 
-    expect(getByTestId('modal-content')).toHaveStyleRule('max-width', '900px');
+    expect(getByTestId('modal-content')).toHaveStyleRule(
+      'max-width',
+      magma.modal.width.large
+    );
   });
 
   it('should render a header if one is passed in', () => {
