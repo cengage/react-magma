@@ -29,4 +29,4 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         with:
-          args: deploy --dir=docs/public --alias ${{ github.event.pull_request.number }}
+          args: deploy --dir=packages/react-magma-docs/public --alias ${{ github.event.pull_request.number }}
