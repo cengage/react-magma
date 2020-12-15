@@ -8,8 +8,6 @@ const StyledParagraph = styled(Paragraph)`
   }
 `;
 
-const LeadParagraph = ({ children }) => (
+export const LeadParagraph = ({ children }) => (
   <StyledParagraph visualStyle="bodyLarge">{children}</StyledParagraph>
 );
-
-export default LeadParagraph;
