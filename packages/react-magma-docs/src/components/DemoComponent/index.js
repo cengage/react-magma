@@ -21,7 +21,7 @@ const StyledDiv = styled.div`
   padding: 20px;
 `;
 
-const DemoComponent = idPrefix => (
+export const DemoComponent = idPrefix => (
   <ThemeContext.Consumer>
     {theme =>
       theme && (
@@ -78,5 +78,3 @@ const DemoComponent = idPrefix => (
 DemoComponent.propTypes = {
   idPrefix: PropTypes.string.isRequired,
 };
-
-export default DemoComponent;

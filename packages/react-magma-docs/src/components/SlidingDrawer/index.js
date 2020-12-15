@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import FocusLock from 'react-focus-lock';
 import { MenuIcon, CrossIcon } from 'react-magma-icons';
 import { IconButton, magma } from 'react-magma-dom';
-import MainNav from '../main-nav';
+import { MainNav } from '../MainNav';
 
 export class SlidingDrawer extends React.Component {
   constructor(props) {

@@ -38,7 +38,7 @@ const ColorDetails = styled.div`
   }
 `;
 
-const ColorSwatch = ({ children, color }) => (
+export const ColorSwatch = ({ children, color }) => (
   <SwatchContainer>
     <SwatchColor color={color}></SwatchColor>
     <ColorDetails>{children}</ColorDetails>
@@ -49,5 +49,3 @@ ColorSwatch.propTypes = {
   children: PropTypes.node.isRequired,
   color: PropTypes.any.isRequired,
 };
-
-export default ColorSwatch;

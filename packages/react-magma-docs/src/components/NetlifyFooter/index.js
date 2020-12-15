@@ -7,7 +7,7 @@ const StyledFooter = styled.footer`
   text-align: center;
 `;
 
-const NetlifyFooter = () => (
+export const NetlifyFooter = () => (
   <StyledFooter>
     <a href="https://www.netlify.com">
       <img
@@ -17,5 +17,3 @@ const NetlifyFooter = () => (
     </a>
   </StyledFooter>
 );
-
-export default NetlifyFooter;

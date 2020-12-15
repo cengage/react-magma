@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Logo = () => (
+export const Logo = () => (
   <svg viewBox="0 0 366 422">
     <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
       <g transform="translate(-141.000000, -51.000000)">
@@ -59,5 +59,3 @@ const Logo = () => (
     </g>
   </svg>
 );
-
-export default Logo;

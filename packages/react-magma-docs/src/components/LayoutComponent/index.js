@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-export default props => (
+export const LayoutComponent = props => (
   <>
     <Helmet
       title={props.title ? `${props.title} - React Magma` : 'React Magma'}

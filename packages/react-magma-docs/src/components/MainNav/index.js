@@ -67,7 +67,7 @@ const activeStyle = {
   background: magma.colors.neutral07,
 };
 
-const MainNav = ({ ...props }) => (
+export const MainNav = ({ ...props }) => (
   <StaticQuery
     query={graphql`
       fragment navFields on MdxEdge {
@@ -251,5 +251,3 @@ const MainNav = ({ ...props }) => (
 MainNav.propTypes = {
   handleClick: PropTypes.func,
 };
-
-export default MainNav;

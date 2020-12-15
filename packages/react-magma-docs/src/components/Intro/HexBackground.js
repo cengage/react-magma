@@ -33,12 +33,10 @@ const BackgroundContainer = ({ className, children }) => (
   />
 );
 
-const HexBackground = styled(BackgroundContainer)`
+export const HexBackground = styled(BackgroundContainer)`
   background-attachment: fixed;
   background-size: 498px auto;
   background-repeat: repeat;
   height: 100%;
   width: 100%;
 `;
-
-export default HexBackground;

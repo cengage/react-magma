@@ -1,5 +1,5 @@
 import React from 'react';
-import { SimplePropsTable } from './props-table';
+import { SimplePropsTable } from '../SimplePropsTable';
 
 export const ButtonProps = () => (
   <>

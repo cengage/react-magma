@@ -32,7 +32,7 @@ const HeadingNum = styled.span`
   margin-bottom: 15px;
 `;
 
-const IntroHeading = ({ id, isCta, name, number }) => (
+export const IntroHeading = ({ id, isCta, name, number }) => (
   <ThemeContext.Consumer>
     {theme => (
       <StyledHeading id={id} isCta={isCta} tabIndex={-1} theme={theme}>
@@ -48,5 +48,3 @@ IntroHeading.propTypes = {
   name: PropTypes.string.isRequired,
   number: PropTypes.string,
 };
-
-export default IntroHeading;

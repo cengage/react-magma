@@ -2,18 +2,18 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { CodeIcon, PaletteIcon } from 'react-magma-icons';
 import { Hyperlink, ThemeContext } from 'react-magma-dom';
-import IntroHeading from './intro-heading';
-import IntroSection from './intro-section';
-import NavItem from './nav-item';
-import HexBackground from './hex-background';
+import { HexBackground } from './HexBackground';
+import { IntroHeading } from './IntroHeading';
+import { IntroSection } from './IntroSection';
+import { NavItem } from './NavItem';
 import styled from '@emotion/styled';
 
-import ColorLogo from '../../images/React_Magma_Logo_Color.svg';
-import ImageAccessible from '../../images/img-accessible.svg';
-import ImageComponents from '../../images/img-component-based.svg';
-import ImageDevice from '../../images/img-device-agnostic.svg';
-import ImageEvolving from '../../images/img-evolving.svg';
-import ImageQuality from '../../images/img-quality.svg';
+import ColorLogo from './images/React_Magma_Logo_Color.svg';
+import ImageAccessible from './images/img-accessible.svg';
+import ImageComponents from './images/img-component-based.svg';
+import ImageDevice from './images/img-device-agnostic.svg';
+import ImageEvolving from './images/img-evolving.svg';
+import ImageQuality from './images/img-quality.svg';
 
 const Heading = styled.h1`
   && {
@@ -160,7 +160,6 @@ export class IndexPageContent extends React.Component {
                 />
               </List>
             </nav>
-
             <HexBackground>
               <IntroSection
                 section="sectionIntro"

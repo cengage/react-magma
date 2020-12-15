@@ -30,7 +30,7 @@ const ButtonSpan = styled.span`
   padding-left: ${magma.spaceScale.spacing03};
 `;
 
-const DocsHeading = ({ children, to, type }) => (
+export const DocsHeading = ({ children, to, type }) => (
   <Container>
     <div>
       <Paragraph
@@ -71,5 +71,3 @@ DocsHeading.propTypes = {
   to: PropTypes.string,
   type: PropTypes.oneOf(['api', 'design']).isRequired,
 };
-
-export default DocsHeading;

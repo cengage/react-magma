@@ -30,7 +30,7 @@ const ImgContainer = styled(ScrollAnimation)`
   }
 `;
 
-const IntroSection = ({ afterAnimatedIn, children, image, section }) => (
+export const IntroSection = ({ afterAnimatedIn, children, image, section }) => (
   <ThemeContext.Consumer>
     {theme => (
       <StyledSection section={section} theme={theme}>
@@ -58,5 +58,3 @@ IntroSection.propTypes = {
   image: PropTypes.node,
   afterAnimatedIn: PropTypes.func.isRequired,
 };
-
-export default IntroSection;

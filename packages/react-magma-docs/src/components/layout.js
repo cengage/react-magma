@@ -5,11 +5,11 @@ import { SkipLinkContent, Label, Heading } from 'react-magma-dom';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import { convertTextToId } from '../utils';
 import './layout.css';
-import LayoutComponent from './layout-component';
-import editorTheme from './editorTheme';
+import { LayoutComponent } from './LayoutComponent';
+import { editorTheme } from './editorTheme';
 import { v4 as uuid } from 'uuid';
-import { SimplePropsTable } from './props-table';
-import NetlifyFooter from './NetlifyFooter';
+import { SimplePropsTable } from './SimplePropsTable';
+import { NetlifyFooter } from './NetlifyFooter';
 
 const PreComponent = ({ className, components, ...props }) => {
   const hideCode = props.children.props.hideCode;
@@ -71,7 +71,7 @@ const LinkHeading = props => (
   </Heading>
 );
 
-const Layout = ({ children, pageContext }) => {
+export const Layout = ({ children, pageContext }) => {
   const title =
     pageContext && pageContext.frontmatter
       ? pageContext.frontmatter.pageTitle || pageContext.frontmatter.title || ''
@@ -124,5 +124,3 @@ export const ScopeableLayout = ({ children, components, pageContext }) => {
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };
-
-export default Layout;

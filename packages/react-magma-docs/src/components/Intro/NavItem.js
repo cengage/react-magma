@@ -48,7 +48,7 @@ function handleNavClick(id, onClick) {
   onClick(id);
 }
 
-const NavItem = ({ activeSection, section, number, onClick, text }) => (
+export const NavItem = ({ activeSection, section, number, onClick, text }) => (
   <ThemeContext.Consumer>
     {theme => (
       <Item>
@@ -77,5 +77,3 @@ NavItem.propTypes = {
   section: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
 };
-
-export default NavItem;

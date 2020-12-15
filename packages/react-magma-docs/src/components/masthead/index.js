@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import Logo from '../Logo';
+import { Logo } from '../Logo';
 import styled from '@emotion/styled';
 import { magma } from 'react-magma-dom';
 
@@ -69,7 +69,7 @@ const LogoContainer = styled.div`
   }
 `;
 
-const Masthead = () => (
+export const Masthead = () => (
   <StyledHeader>
     <InnerHeader>
       <LogoLink to="/">
@@ -81,5 +81,3 @@ const Masthead = () => (
     </InnerHeader>
   </StyledHeader>
 );
-
-export default Masthead;
