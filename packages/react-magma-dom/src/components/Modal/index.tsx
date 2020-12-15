@@ -39,14 +39,19 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   theme?: ThemeInterface;
 }
 
-const ModalContainer = styled.div`
+const ModalContainer = styled.div<{ theme: ThemeInterface }>`
   bottom: 0;
   left: 0;
   overflow-y: auto;
+
   position: fixed;
   right: 0;
   top: 0;
   z-index: 998;
+
+  @media (min-width: ${props => props.theme.breakpoints.small}px) {
+    padding: 0 ${props => props.theme.spaceScale.spacing04};
+  }
 `;
 
 const ModalBackdrop = styled.div<{ isExiting?: boolean }>`
@@ -137,7 +142,7 @@ const ModalContent = styled.div<ModalProps>`
         : props.theme.spaceScale.spacing03};
   }
 
-  @media (min-width: 920px) {
+  @media (min-width: ${props => props.theme.breakpoints.large}px) {
     margin: ${props => props.theme.spaceScale.spacing09} auto;
   }
 `;
@@ -368,6 +373,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               }
               ref={focusTrapElement}
               role="dialog"
+              theme={theme}
             >
               <ModalContent
                 {...other}
