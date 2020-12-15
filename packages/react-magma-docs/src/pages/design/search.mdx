@@ -6,19 +6,17 @@ order: 1
 import { DocsHeading } from '../../components/DocsHeading';
 import { Input, PasswordInput, Textarea } from 'react-magma-dom';
 import { Link } from 'gatsby';
-import { Paragraph } from 'react-magma-dom';
+import LeadParagraph from '../../components/lead-paragraph';
 
 <DocsHeading to="/api/search/" type="design">
   Search
 </DocsHeading>
-
-<Paragraph visualStyle="bodyLarge">
+<LeadParagraph>
   Search enables users to specify a word or a phrase to find relevant pieces of
   content without the use of navigation.
-</Paragraph>
+</LeadParagraph>
 
 <span class="horizontal-spacer"></span>
-
 <figure>
   <img src="../../images/inputs/search-intro-image.png" alt="" />
 </figure>

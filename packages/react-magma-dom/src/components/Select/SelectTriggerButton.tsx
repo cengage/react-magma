@@ -26,7 +26,7 @@ const ChildrenContainer = styled.div`
 interface SelectTriggerButtonInterface<T> {
   ariaDescribedBy?: string;
   children: React.ReactNode | React.ReactNode[];
-  customComponents?: SelectComponents;
+  customComponents?: SelectComponents<T>;
   hasError?: boolean;
   disabled?: boolean;
   isInverse?: boolean;
@@ -48,7 +48,7 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
   } = props;
   const theme = React.useContext(ThemeContext);
 
-  const { DropdownIndicator } = defaultComponents({
+  const { DropdownIndicator } = defaultComponents<T>({
     ...customComponents,
   });
 

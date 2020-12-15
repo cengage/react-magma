@@ -115,7 +115,7 @@ The `indeterminate` status cannot be changed by direct user action, it can only 
         status={status}
         labelText="Colors"
       />
-      <div style={{marginLeft: '30px'}}>
+      <div style={{marginLeft: magma.spaceScale.spacing08}}>
         <Checkbox
           checked={checkedItems[0]}
           onChange={e => setCheckedItems([e.target.checked, checkedItems[1]])}
@@ -347,12 +347,11 @@ The `labelText` prop can either be a string, or it can be a React Node.
 
 ```.jsx
 () => {
-  const myLabel = <span style={{  border: '1px solid #3f3f3f', borderRadius: '3px', display: 'inline-block', padding: '10px' }}><strong>Node </strong> as <i>label</i></span>;
+  const myLabel = <strong>Node as <i>label</i></strong>;
 
   return (
     <Checkbox
-      labelText={myLabel}
-      inputStyle={{ alignSelf: 'center' }} />
+      labelText={myLabel} />
   );
 }
 ```
@@ -395,7 +394,7 @@ Placeholders are specific keywords surrounded by curly braces.
         status={status}
         labelText="Colors"
       />
-      <div style={{marginLeft: '30px'}}>
+      <div style={{marginLeft: magma.spaceScale.spacing08}}>
         <Checkbox
           checked={checkedItems[0]}
           onChange={e => setCheckedItems([e.target.checked, checkedItems[1]])}

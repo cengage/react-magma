@@ -5,30 +5,26 @@ order: 1
 ---
 
 import { DocsHeading } from '../../components/DocsHeading';
-import { Input, PasswordInput, Textarea, Paragraph } from 'react-magma-dom';
+import LeadParagraph from '../../components/lead-paragraph';
+import { Input, PasswordInput, Textarea } from 'react-magma-dom';
 import { Link } from 'gatsby';
 
 <DocsHeading to="/api/input/" type="design">
   Input
 </DocsHeading>
-
-<Paragraph visualStyle="bodyLarge">
+<LeadParagraph>
   Inputs enable the user to interact with and input content and data.
-</Paragraph>
+</LeadParagraph>
 
-<span class="horizontal-spacer"></span>
+## Usage
+
+Inputs can be used alone or they can be combined with other types of inputs to create more robust forms. In addition to text fields, other types of inputs include text area, password, search, number, and more.
 
 <figure>
   <div class="image-container">
     <img src="../../images/inputs/inputs-intro-image.png" alt="" />
   </div>
 </figure>
-
-## Usage
-
-Inputs can be used alone or they can be combined with other types of inputs to create more robust forms. In addition to text fields, other types of inputs include text area, password, search, number, and more.
-
-<span class="horizontal-spacer"></span>
 <hr class="article-divider" />
 
 ## Principles

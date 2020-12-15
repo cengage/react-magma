@@ -317,6 +317,7 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
         toggleButtonRef={toggleButtonRef}
       />
       <ItemsList
+        customComponents={customComponents}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}

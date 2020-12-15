@@ -1,9 +1,5 @@
 # React magma
 
-## Known Issues
-
-1. `Legacy context API has been detected within a strict-mode tree` - https://github.com/JedWatson/react-select/pull/3487
-
 ## Getting started with React Magma in your application
 
 ### Setup requirements
@@ -24,7 +20,7 @@ This site has general usage information, as well as information on all of the av
 
 ## Contributing to React Magma
 
-### Dependencies
+### System Dependencies
 
 Node v12.x or greater with npm 6.1.x or greater
 
@@ -55,8 +51,6 @@ npm ci
 npm run docs
 ```
 
-**Note:** _If you get errors about a missing typescript module during step three, you may need to run `npm i -s -D typescript` from `packages/react-magma-native` and rerun the previous two commands._
-
 4. Visit the docs at [http://localhost:3000](http://localhost:3000).
 
 ### Project structure
@@ -69,11 +63,9 @@ Lerna handles dependencies within the monorepo, using symlinks to connect depend
 
 #### Source organization
 
-The component library itself is broken out into multiple projects.
+The project is broken out into multiple packages.
 
-The `react-magma-dom` package is the browser-specific version of the components. The components utilize `react-magma-core` and handle the DOM specific rendering for those components.
-
-The `react-magma-native` package is similar to `react-magma-dom` but is for the native-specific version of the components.
+The `react-magma-dom` package is the React components for use in a browser. We followed this naming convention to leave room for `react-magma-native` and potentially other render targets in the future.
 
 The `react-magma-docs` package handles the React Magma documentation, and is built on the <a href="https://www.gatsbyjs.org/">Gatsby framework</a>.
 
@@ -123,30 +115,6 @@ This repository contributors are welcome to use
 [Wallaby.js OSS License](https://wallabyjs.com/oss/) to get
 test results immediately as you type, and see the results in
 your editor right next to your code.
-
-### End to End Testing
-
-We use [Cypress](https://cypress.io) to create our e2e tests. These tests live in the `e2eTesting` package.
-
-#### Running the Cypress tests
-
-From the `e2eTesting` package, run:
-
-```sh
-npm run test:dev
-```
-
-**Note:** _This will run the Cypress UI, to run in headless mode, run:_
-
-```sh
-npm run test
-```
-
-#### Create a Cypress test
-
-All of the components are found in the `App.js` file. If you have a new component be sure to import it here and add it to the render.
-
-Test files are under the `cypress/integration` folder.
 
 ### Updating the docs
 

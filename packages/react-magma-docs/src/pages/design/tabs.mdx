@@ -7,19 +7,18 @@ order: 1
 import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
 import { DocsHeading } from '../../components/DocsHeading';
-import { Button, Paragraph } from 'react-magma-dom';
+import LeadParagraph from '../../components/lead-paragraph';
+import { Button } from 'react-magma-dom';
 
 <DocsHeading to="/api/tabs/" type="design">
   Tabs
 </DocsHeading>
-
-<Paragraph visualStyle="bodyLarge">
+<LeadParagraph>
   Tabs allow navigation between different sets of related content or can be used
   to navigate an entire application.
-</Paragraph>
+</LeadParagraph>
 
 <span class="horizontal-spacer"></span>
-
 <figure>
   <img src="../../images/tabs/tabs-example.png" alt=" " />
 </figure>
@@ -156,7 +155,6 @@ Icon-only tabs can be very useful for communicating the content they represent, 
     </p>
   </figcaption>
 </figure>
-
 <span class="horizontal-spacer"></span>
 
 ### Active Tab Indicator
@@ -191,7 +189,6 @@ The active tab indicator helps make it very clear which tab is currently selecte
     </div>
   </div>
 </div>
-
 <hr class="article-divider" />
 
 ## States
