@@ -1,9 +1,9 @@
 import React from 'react';
-import { IndexPageContent } from '../components/intro/index-page-content';
+import { IndexPageContent } from '../components/Intro/IndexPageContent';
 import { Global, css } from '@emotion/core';
 import { ThemeContext } from 'react-magma-dom';
 
-import '../components/animate.css';
+import './animate.css';
 
 const IndexPage = () => (
   <ThemeContext.Consumer>
@@ -19,15 +19,17 @@ const IndexPage = () => (
               overflow: hidden;
             }
             .content-article {
-              background: linear-gradient(
-                to bottom,
-                ${theme.colors.foundation02} 0%,
-                ${theme.colors.pop} 100%
-              );
-              margin: 0;
-              max-width: none;
-              padding: 0;
-              width: auto;
+              && {
+                background: linear-gradient(
+                  to bottom,
+                  ${theme.colors.foundation02} 0%,
+                  ${theme.colors.pop} 100%
+                );
+                margin: 0;
+                max-width: none;
+                padding: 0;
+                width: auto;
+              }
             }
           `}
         />

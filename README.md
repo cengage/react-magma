@@ -137,7 +137,7 @@ order: 2
 and import a link to the design guidelines with the correct route
 
 ```js
-import DocsHeading from '../../components/docs-heading';
+import { DocsHeading } from '../../components/DocsHeading';
 
 <DocsHeading to="/design/{component}/" type="design">
   {ComponentName}
