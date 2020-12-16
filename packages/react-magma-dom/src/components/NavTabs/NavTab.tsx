@@ -9,26 +9,57 @@ import { TabsOrientation } from '../Tabs/shared';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { omit, XOR } from '../../utils';
 
+/**
+ * @children required
+ */
 export interface BaseNavTabProps
   extends React.HTMLAttributes<HTMLAnchorElement> {
-  component?: React.ReactNode;
+  /**
+   * @internal
+   */
   css?: any; // Adding css prop to fix emotion error
+  /**
+   * Icon to display within the component
+   */
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
+  /**
+   * If true, the component will display with the active/selected state
+   */
   isActive?: boolean;
   isInverse?: boolean;
+  /**
+   * Determines if the tabs are displayed vertically or horizontally
+   * @default TabsOrientation.horizontal
+   */
   orientation?: TabsOrientation;
   testId?: string;
+  /**
+   * @internal
+   */
   theme?: any;
 }
 
-interface NavTabChildrenProps extends BaseNavTabProps {
+export interface NavTabChildrenProps extends BaseNavTabProps {
   children: JSX.Element | string;
+  /**
+   * The href value of the tab link
+   */
   to: string;
 }
 
-interface NavTabComponentProps extends BaseNavTabProps {
+export interface NavTabComponentProps extends BaseNavTabProps {
+  /**
+   * The prop for custom component instead of `a` in NavTab.
+   */
   component: React.ReactNode;
+  /**
+   * The orientation of icon on NavTab
+   */
   iconPosition?: TabsIconPosition;
+  /**
+   * If true, the tab will take up the full width of its container
+   * @default false
+   */
   isFullWidth?: boolean;
 }
 

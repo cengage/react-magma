@@ -7,8 +7,20 @@ import { I18nContext } from '../../i18n';
 export const TARGET_ID = 'reactMagmaMainContent';
 
 export interface SkipLinkProps extends HyperlinkProps {
+  /**
+   * The text in the skip link
+   * @default "Skip Navigation"
+   */
   buttonText?: string;
+  /**
+   * Number of pixels from the left of the screen for the skip link to be positioned
+   * @default 10
+   */
   positionLeft?: number;
+  /**
+   * Number of pixels from the top of the screen for the skip link to be positioned
+   * @default 10
+   */
   positionTop?: number;
   testId?: string;
 }

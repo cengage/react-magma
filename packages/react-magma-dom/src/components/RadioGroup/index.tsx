@@ -11,21 +11,65 @@ const HiddenLabel = styled.label`
   ${HiddenStyles};
 `;
 
+/**
+ * @children required
+ */
 export interface RadioGroupProps extends React.HTMLAttributes<HTMLDivElement> {
-  onBlur?: () => void;
+  /**
+   * Action that fires when the radio group loses focus
+   */
+  onBlur?: (event: React.FocusEvent) => void;
+  /**
+   * Action that fires when selected value of the radio group changes
+   */
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onFocus?: () => void;
+  /**
+   * Action that fires when one of the radio buttons within the group receives focus
+   */
+  onFocus?: (event: React.FocusEvent) => void;
+  /**
+   * Style properties for the component container element
+   */
   containerStyle?: React.CSSProperties;
+  /**
+   * Content of the error message. If a value is provided, the radio buttons will be styled to show an error state
+   */
   errorMessage?: React.ReactNode;
+  /**
+   * Content of the helper message
+   */
   helperMessage?: React.ReactNode;
   isInverse?: boolean;
+  /**
+   * If true, label text for the radio group will be hidden visually, but will still be read by assistive technology
+   * @default false
+   */
   isTextVisuallyHidden?: boolean;
+  /**
+   * ID of the element that labels the radio group, used in the aria-labelledby attribute for the group. Alternatively, the labelText prop can be used
+   */
   labelledById?: string;
+  /**
+   * Style properties for the label of the radio group
+   */
   labelStyle?: React.CSSProperties;
+  /**
+   * Content of label of the radio group; can be node or string. Alternatively, the labelledById prop can be used
+   */
   labelText?: React.ReactNode;
+  /**
+   * Name attribute the radio group
+   */
   name: string;
+  /**
+   * If true, the user must select one radio button for the form to be valid
+   * @default false
+   */
   required?: boolean;
   testId?: string;
+  /**
+   * Value of the radio button that is the default selected value for the group
+   */
   value?: string;
 }
 
@@ -36,9 +80,9 @@ export interface RadioContextInterface {
   required?: boolean;
   name: string;
   selectedValue?: string;
-  onBlur?: () => void;
+  onBlur?: (event: React.FocusEvent) => void;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onFocus?: () => void;
+  onFocus?: (event: React.FocusEvent) => void;
 }
 
 export const RadioContext = React.createContext<RadioContextInterface>({

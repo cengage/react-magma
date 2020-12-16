@@ -5,14 +5,39 @@ import styled from '../../theme/styled';
 import { omit, useGenerateId } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 
+/**
+ * @children required
+ */
 export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Style properties for the component container element
+   */
   containerStyle?: React.CSSProperties;
+  /**
+   * Content of the error message. If a value is provided, the form fields will be styled to show an error state
+   */
   errorMessage?: React.ReactNode;
+  /**
+   * Content of the helper message
+   */
   helperMessage?: React.ReactNode;
   isInverse?: boolean;
+  /**
+   * If true, label text for the form group will be hidden visually, but will still be read by assistive technology
+   * @default false
+   */
   isTextVisuallyHidden?: boolean;
+  /**
+   * ID of the element that labels the form group, used in the aria-labelledby attribute for the group. Alternatively, the labelText prop can be used
+   */
   labelledById?: string;
+  /**
+   * Style properties for the label of the form group
+   */
   labelStyle?: React.CSSProperties;
+  /**
+   * Content of label for form group; can be a node or a string. Alternatively, the labelledById prop can be used
+   */
   labelText?: React.ReactNode;
   testId?: string;
 }

@@ -1,6 +1,9 @@
 ---
 pageTitle: Nav Tabs API
 title: Nav Tabs
+props:
+  - NavTabChildrenProps
+  - NavTabComponentProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -317,61 +320,20 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 
 ## NavTab Props
 
+There are two variants of the `NavTab` component, one with the internal component being used and one with a component prop passed in as an override.
+The props of the `NavTab` component are slightly different depending on which variant is used.
+
 **This component uses `forwardRef`. The ref is applied to the `a` element.**
 
 All of the [standard anchor attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) can be provided as props and will be applied to the `a` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    component: {
-      type: {
-        name: 'React.ReactElement',
-      },
-      required: false,
-      description:
-        'The prop for custom component instead of `a` in NavTab. When using this prop the `children` of the component and the `to` prop are not used.',
-    },
-    icon: {
-      type: {
-        name: 'React Element',
-      },
-      required: false,
-      description: 'Icon to display within the component',
-    },
-    isActive: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will display with the active/selected state',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background.',
-      defaultValue: 'false',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-  }}
-/>
+### NavTab With Internal Component
+
+<NavTabChildrenProps />
+
+### NavTab With Passed in Component
+
+<NavTabComponentProps />
 
 export default props => (
   <ScopeableLayout

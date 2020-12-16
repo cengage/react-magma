@@ -17,12 +17,34 @@ import {
 
 export interface TableHeaderCellProps
   extends React.HTMLAttributes<HTMLTableHeaderCellElement> {
-  align?: any;
+  /**
+   * Text alignment of the cell content. Right alignment should be used for numeric values
+   * @default TableCellAlign.left
+   */
+  align?: TableCellAlign;
+  /**
+   * If true, the header will render a button for sorting
+   */
   isSortable?: boolean;
+  /**
+   * Event that fires when clicking the table header cell sort button
+   */
   onSort?: () => void;
+  /**
+   * Direction and range of data cells that are covered by the header cell
+   * @default TableHeaderCellScope.col
+   */
   scope?: TableHeaderCellScope;
+  /**
+   * Direction by which the column is sorted
+   * @default TableSortDirection.none
+   */
   sortDirection?: TableSortDirection;
   testId?: string;
+  /**
+   * Width of the component, set by CSS
+   * @default auto
+   */
   width?: string | number;
 }
 

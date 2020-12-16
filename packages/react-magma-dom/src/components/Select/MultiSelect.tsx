@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { MultiSelectInterface } from '.';
+import { MultiSelectProps } from '.';
 import { useSelect, useMultipleSelection } from 'downshift';
 import { CrossIcon } from 'react-magma-icons';
 import { ItemsList } from './ItemsList';
@@ -10,7 +10,7 @@ import { SelectedItemButton, IconWrapper } from './shared';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 
-export function MultiSelect<T>(props: MultiSelectInterface<T>) {
+export function MultiSelect<T>(props: MultiSelectProps<T>) {
   const {
     ariaDescribedBy,
     components: customComponents,

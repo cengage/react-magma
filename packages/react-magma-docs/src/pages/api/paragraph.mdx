@@ -1,5 +1,8 @@
 ---
-title: 'Paragraph'
+pageTitle: Paragraph API
+title: Paragraph
+props:
+  - ParagraphProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -192,92 +195,7 @@ By default, the `Paragraph` component includes margins on the top and bottom. Wh
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `p` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    color: {
-      type: {
-        name: 'enum',
-        options: [
-          'TypographyColor.danger',
-          'TypographyColor.default',
-          'TypographyColor.success',
-          'TypographyColor.subdued',
-        ],
-      },
-      required: false,
-      description:
-        'The color of the component, helping to convey meaning or relative emphasis',
-      defaultValue: 'default',
-    },
-    contextVariant: {
-      type: {
-        name: 'enum',
-        options: [
-          'TypographyContextVariant.expressive',
-          'TypographyContextVariant.narrative',
-          'TypographyContextVariant.default',
-        ],
-      },
-      description:
-        'Additional styles for typography based on the context of the content',
-      defaultValue: 'default',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    noMargins: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will not have the default top and bottom margin and instead will a margin value of 0.',
-      defaultValue: 'false',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    visualStyle: {
-      type: {
-        name: 'enum',
-        options: [
-          'TypographyVisualStyle.headingXLarge',
-          'TypographyVisualStyle.headingLarge',
-          'TypographyVisualStyle.headingMedium',
-          'TypographyVisualStyle.headingSmall',
-          'TypographyVisualStyle.headingXSmall',
-          'TypographyVisualStyle.heading2XSmall',
-          'TypographyVisualStyle.bodyLarge',
-          'TypographyVisualStyle.bodyMedium',
-          'TypographyVisualStyle.bodySmall',
-          'TypographyVisualStyle.bodyXSmall',
-        ],
-      },
-      required: false,
-      description:
-        'Applies visual styles including font-size, font-weight, line-height and margins',
-      defaultValue: 'bodyMedium',
-    },
-  }}
-/>
+<ParagraphProps />
 
 export default props => (
   <ScopeableLayout {...props} components={{ Paragraph, Card, CardBody }} />
