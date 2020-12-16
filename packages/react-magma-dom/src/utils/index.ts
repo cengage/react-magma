@@ -244,3 +244,15 @@ export function useForceUpdate() {
 export function stringIncludesUnit(x) {
   return x.includes('px') || x.includes('em') || x.includes('%');
 }
+
+export function convertStyleValueToString(
+  value: string | number,
+  defaultValue?: string
+): string {
+  return value
+    ? typeof value === 'number' ||
+      (typeof value === 'string' && !stringIncludesUnit(value))
+      ? `${value}px`
+      : value
+    : defaultValue || 'initial';
+}

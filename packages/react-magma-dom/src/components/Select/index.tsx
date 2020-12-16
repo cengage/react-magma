@@ -44,6 +44,10 @@ export interface InternalSelectProps<T> {
    */
   isClearable?: boolean;
   /**
+   * Max-height for the item menu list ul element
+   */
+  itemListMaxHeight?: number | string;
+  /**
    * If true, item will be disabled; it will appear dimmed and events will not fire
    * @default false
    */

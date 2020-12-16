@@ -24,6 +24,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     labelText,
     disabled,
     isInverse,
+    itemListMaxHeight,
     menuStyle,
     onBlur,
     onFocus,
@@ -207,6 +208,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         isOpen={isOpen}
         items={getFilteredItems(items)}
         itemToString={itemToString}
+        maxHeight={itemListMaxHeight || theme.select.menu.maxHeight}
         menuStyle={menuStyle}
       />
     </SelectContainer>

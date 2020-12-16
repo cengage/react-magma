@@ -8,6 +8,7 @@ import { ButtonSize, ButtonVariant } from '../Button';
 import { ItemsList } from './ItemsList';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { useForkedRef } from '../../utils';
 
@@ -20,6 +21,7 @@ export function Select<T>(props: SelectProps<T>) {
     inputStyle,
     isLabelVisuallyHidden,
     innerRef,
+    itemListMaxHeight,
     itemToString,
     items,
     labelStyle,
@@ -40,6 +42,7 @@ export function Select<T>(props: SelectProps<T>) {
   } = props;
 
   const toggleButtonRef = React.useRef<HTMLButtonElement>();
+  const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
   const ref = useForkedRef(innerRef || null, toggleButtonRef);
@@ -187,6 +190,7 @@ export function Select<T>(props: SelectProps<T>) {
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}
         isOpen={isOpen}
+        maxHeight={itemListMaxHeight || theme.select.menu.maxHeight}
         items={items}
         itemToString={itemToString}
         menuStyle={menuStyle}
