@@ -4,7 +4,7 @@ on:
     branches:
       - dev
       - main
-    types: [opened, edited]
+    types: [opened, edited, synchronize, reopened]
 
 jobs:
   build:
@@ -30,8 +30,3 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         with:
           args: deploy --dir=packages/react-magma-docs/public --alias ${{ github.event.pull_request.number }}
-      - name: Add Pull Request Reviewer
-        uses: AveryCameronUofR/add-reviewer-gh-action@1.0.3
-        with: 
-          reviewers: "cengage/react-magma,aaronmaturen,avanslaars,rcgillet,joasmi723"
-          token: ${{ secrets.GITHUB_TOKEN }}
