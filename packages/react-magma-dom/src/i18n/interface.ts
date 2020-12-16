@@ -63,6 +63,7 @@ export interface I18nInterface {
       sunday: string;
     };
   };
+  emptyItemsListText: string;
   alert: {
     dismissAriaLabel: string;
   };

@@ -224,7 +224,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
       getValidItem(passedInSelectedItem, 'selectedItem')),
   });
 
-  const { ClearIndicator } = defaultComponents({
+  const { ClearIndicator } = defaultComponents<T>({
     ...customComponents,
   });
 
@@ -257,21 +257,21 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
       <ComboboxInput
         ariaDescribedBy={ariaDescribedBy}
         customComponents={customComponents}
+        disabled={disabled}
         getComboboxProps={getComboboxProps}
         getInputProps={getInputProps}
         getToggleButtonProps={getToggleButtonProps}
+        hasError={hasError}
+        innerRef={ref}
         inputStyle={inputStyle}
-        disabled={disabled}
         isInverse={isInverse}
         isLoading={isLoading}
-        hasError={hasError}
         onInputBlur={onInputBlur}
         onInputFocus={onInputFocus}
         onInputKeyDown={onInputKeyDown}
         onInputKeyPress={onInputKeyPress}
         onInputKeyUp={onInputKeyUp}
         placeholder={placeholder}
-        ref={ref}
         toggleButtonRef={toggleButtonRef}
       >
         {isClearable && selectedItem && (
@@ -285,6 +285,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
         )}
       </ComboboxInput>
       <ItemsList
+        customComponents={customComponents}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}

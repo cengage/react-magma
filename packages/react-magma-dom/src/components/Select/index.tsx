@@ -17,8 +17,8 @@ export type SelectOptions =
   | { value: string; label: string; [key: string]: any }
   | any;
 
-export interface InternalSelectInterface {
-  components?: SelectComponents;
+export interface InternalSelectInterface<T> {
+  components?: SelectComponents<T>;
   containerStyle?: React.CSSProperties;
   errorMessage?: React.ReactNode;
   helperMessage?: React.ReactNode;
@@ -44,7 +44,7 @@ export interface InternalMultiInterface<T> {
 
 export interface SelectInterface<T extends SelectOptions>
   extends UseSelectProps<T>,
-    InternalSelectInterface {
+    InternalSelectInterface<T> {
   ariaDescribedBy?: string;
   hasError?: boolean;
   innerRef?: React.Ref<HTMLButtonElement>;

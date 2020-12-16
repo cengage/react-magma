@@ -18,7 +18,7 @@ import { useGenerateId } from '../../utils';
 
 export interface ComboboxInterface<T extends SelectOptions>
   extends Omit<UseComboboxProps<T>, 'items'>,
-    InternalSelectInterface {
+    InternalSelectInterface<T> {
   ariaDescribedBy?: string;
   defaultItems?: T[];
   disableCreateItem?: boolean;

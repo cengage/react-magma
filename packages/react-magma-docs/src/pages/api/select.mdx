@@ -19,6 +19,7 @@ import { useSelect } from 'downshift';
 import { Link } from 'gatsby';
 import { v4 as uuid } from 'uuid';
 import DocsHeading from '../../components/docs-heading';
+import styled from '@emotion/styled';
 
 <DocsHeading to="/design/select/" type="api">
   Selects
@@ -801,6 +802,82 @@ interface CustomSelectItem {
 Out of the box, the `Select` component uses React Magma-styled iconography for the button used to clear the selection and the caret for the dropdown.
 However, these can be overridden by providing custom components to the `components` prop, in an object containing a `ClearIndicator` and a `DropdownIndicator`.
 
+### Custom Item Component
+
+By default each item will be rendered with the `itemToString` value in a styled `li`. If you would like to add more information or
+would just like to be able to fully customize the look of your items you can pass in an `Item` component that uses the `props` that
+we use internally.
+
+<Alert variant="warning">
+  Be aware. You must pass a <code>ref</code> to your custom item component to
+  make sure the functionality of the entire <code>Select</code> continues to
+  work.
+</Alert>
+
+```.jsx
+() => {
+  const CustomStyledItem = styled.li(props => ({
+    alignSelf: 'center',
+    background: props.isFocused ? props.theme.colors.neutral07 : 'transparent',
+    lineHeight: '24px',
+    margin: '0',
+    padding: '8px 16px'
+  }));
+
+  const ContainerSpan = styled.span(props => ({
+    display: 'flex',
+    alignItems: 'center'
+  }));
+
+  const Hex = styled.span(props => ({
+    background: props.color,
+    border: `2px solid ${props.theme.colors.neutral}`,
+    borderRadius: props.theme.borderRadius,
+    display: 'inline-flex',
+    height: '16px',
+    marginRight: '4px',
+    width: '16px'
+  }));
+
+  const Description = styled.div(props => ({
+    fontSize: '12px',
+    color:  props.theme.colors.neutral02
+  }));
+
+  function itemToString(item) {
+    return item ? item.representation : ''
+  }
+
+  const CustomItem = props => {
+    const { itemRef, itemString, item, ...other } = props;
+    return (
+      <CustomStyledItem {...other} ref={itemRef}>
+        <ContainerSpan>
+          <Hex color={item.hex} theme={props.theme} />
+          {itemString}
+        </ContainerSpan>
+        <Description theme={props.theme}>{item.description}</Description>
+      </CustomStyledItem>
+    )
+  }
+
+  return (
+    <Select
+      components={{ Item: CustomItem }}
+      labelText="Select With Custom Item Render"
+      items={[
+        { id: 0, name: 'red', representation: 'Red', hex: '#FF0000', description: 'The color of roses' },
+        { id: 1, name: 'blue', representation: 'Blue', hex: '#0000FF', description: 'The color of blueberries'  },
+        { id: 2, name: 'green', representation: 'Green', hex: '#008000', description: 'The color of grass'  }
+      ]}
+      itemToString={itemToString}
+    />
+  )
+}
+```
+
+## Other Custom Components
+
 ```.jsx
 <Select
   id="customComponentsId"
@@ -1082,6 +1159,7 @@ export default props => (
   <ScopeableLayout
     {...props}
     components={{
+      styled,
       Select,
       Alert,
       useSelect,
