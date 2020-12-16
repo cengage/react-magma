@@ -19,13 +19,26 @@ export enum ButtonIconPosition {
 }
 
 export interface IconOnlyButtonProps extends Omit<ButtonProps, 'children'> {
+  /**
+   * Icon to display within the component
+   */
   icon: React.ReactElement<IconProps>;
+  /**
+   * The text the screen reader will announce. Required for icon-only buttons
+   */
   'aria-label': string;
 }
 
 export interface IconTextButtonProps extends ButtonProps {
+  /**
+   * Icon to display within the component
+   */
   icon: React.ReactElement<IconProps>;
   children: React.ReactChild | React.ReactChild[];
+  /**
+   * Position within the button for the icon to appear
+   * @default ButtonIconPosition.right
+   */
   iconPosition?: ButtonIconPosition;
 }
 

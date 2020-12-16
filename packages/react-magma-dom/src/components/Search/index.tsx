@@ -10,15 +10,43 @@ import { Search2Icon } from 'react-magma-icons';
 import { Spinner } from '../Spinner';
 
 export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
+  /**
+   * Style properties for the component container element
+   */
   containerStyle?: React.CSSProperties;
+  /**
+   * Text for icon button aria-label
+   * @default "Search"
+   */
   iconAriaLabel?: string;
+  /**
+   * Relative size of the component
+   * @default InputSize.medium
+   */
   inputSize?: InputSize;
+  /**
+   * Style properties for the input element
+   */
   inputStyle?: React.CSSProperties;
+  /**
+   * If true, the component will show a loading animation instead of a search button
+   * @default false
+   */
   isLoading?: boolean;
   isInverse?: boolean;
+  /**
+   * Text for input aria-label
+   * @default "Search"
+   */
   labelText?: string;
+  /**
+   * Action that will fire when search icon button is clicked
+   */
   onSearch: (term: string) => void;
   testId?: string;
+  /**
+   * Value of the input element
+   */
   value?: string;
 }
 

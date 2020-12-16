@@ -10,9 +10,9 @@ import { useComboboxItems, defaultOnInputValueChange } from './shared';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
-import { MultiComboboxInterface } from '.';
+import { MultiComboboxProps } from '.';
 
-export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
+export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   const [inputValue, setInputValue] = React.useState('');
   const {
     ariaDescribedBy,

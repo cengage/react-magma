@@ -8,12 +8,12 @@ import { ItemsList } from '../Select/ItemsList';
 import { ComboboxInput } from './ComboboxInput';
 import { ButtonSize, ButtonVariant } from '../Button';
 import { useComboboxItems, defaultOnInputValueChange } from './shared';
-import { ComboboxInterface } from '.';
+import { ComboboxProps } from '.';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { useForkedRef } from '../../utils';
 
-export function InternalCombobox<T>(props: ComboboxInterface<T>) {
+export function InternalCombobox<T>(props: ComboboxProps<T>) {
   const {
     ariaDescribedBy,
     components: customComponents,

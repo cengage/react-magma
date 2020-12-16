@@ -6,8 +6,16 @@ import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface TableCellProps
   extends React.HTMLAttributes<HTMLTableCellElement> {
+  /**
+   * Text alignment of the cell content. Right alignment should be used for numeric values
+   * @default TableCellAlign.left
+   */
   align?: TableCellAlign;
   testId?: string;
+  /**
+   * Width of the component, set by CSS
+   * @default auto
+   */
   width?: string | number;
 }
 
