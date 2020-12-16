@@ -1,7 +1,6 @@
 ---
 pageTitle: Select API
 title: Select
-
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -607,6 +606,22 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
 }
 ```
 
+## Custom Items List Height
+
+The items list menu has a default max height that can be changed in the theme or using the `itemListMaxHeight` prop.
+
+```.jsx
+<Select
+  labelText="Select Small Item List Menu"
+  items={[
+    { label: 'Red', value: 'red' },
+    { label: 'Blue', value: 'blue' },
+    { label: 'Green', value: 'green' }
+  ]}
+  itemListMaxHeight='50px'
+/>
+```
+
 ## Custom Styles
 
 Custom styles can be passed into the Select component. The `containerStyle` property will apply to the container.
@@ -1076,7 +1091,7 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
       required: false,
       description: 'Selectable options.  Can be an array of strings or objects',
     },
-    itemsListMaxHeight: {
+    itemListMaxHeight: {
       type: {
         name: 'number | string',
       },
