@@ -23,8 +23,9 @@ jobs:
         run: npm test
       - name: Build
         run: npm run build:docs
-      - name: Preview
+      - name: Deploy PR Preview
         id: netlify
+        if: github.event_name == 'pull_request'
         uses: netlify/actions/cli@master
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
@@ -36,7 +37,7 @@ jobs:
         uses: unsplash/comment-on-pr@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OUTPUT: "This pull request has automatically deployed to Netlify. Preview at: ${{ steps.deploy-preview.outputs.NETLIFY_URL }}"
+          OUTPUT: "This pull request has automatically deployed to Netlify. Preview at: ${{ steps.netlify.outputs.NETLIFY_URL }}"
         with:
           msg: ${{ env.OUTPUT }}
           check_for_duplicate_msg: false
