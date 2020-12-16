@@ -86,11 +86,14 @@ const filterJson = () => {
     );
   };
 
-  const findType = ({ type, id, name, elementType = {} }) => {
+  const findType = ({ type, id, name, elementType = {}, types = [] }) => {
     name = name || elementType.name;
     let suffix = '';
     if (type === 'array') {
       suffix = '[]';
+    }
+    if (type === 'union') {
+      name = types.map(type => type.name).join(' | ');
     }
     if (type === 'reference') {
       const referenceType = findById(id);

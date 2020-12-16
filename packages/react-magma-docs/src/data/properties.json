@@ -1061,7 +1061,7 @@
         "name": "headingLevel",
         "required": false,
         "type": {
-          "name": "function"
+          "name": "1 | 2 | 3 | 4 | 5 | 6"
         },
         "description": "Number to indicate which level heading will render (e.g. h1, h2 etc.)",
         "defaultValue": "4",
@@ -1190,7 +1190,7 @@
         "name": "width",
         "required": false,
         "type": {
-          "name": "function"
+          "name": "string | number"
         },
         "description": "Width of the component, set by CSS.",
         "deprecated": false
@@ -1393,7 +1393,7 @@
         "name": "children",
         "required": false,
         "type": {
-          "name": "function"
+          "name": "React.ReactNode | "
         },
         "description": "The content of the component",
         "deprecated": false
@@ -2500,7 +2500,7 @@
         "name": "children",
         "required": true,
         "type": {
-          "name": "function"
+          "name": "React.ReactChild | "
         },
         "description": "The content of the component",
         "deprecated": false
@@ -3236,7 +3236,7 @@
         "name": "maxHeight",
         "required": false,
         "type": {
-          "name": "function"
+          "name": "string | number"
         },
         "description": "Max-height of dropdown content",
         "defaultValue": "250px",
@@ -3273,7 +3273,7 @@
         "name": "width",
         "required": false,
         "type": {
-          "name": "function"
+          "name": "string | number"
         },
         "description": "Width of menu",
         "defaultValue": "Width of longest menu item",
@@ -3507,7 +3507,7 @@
         "name": "level",
         "required": true,
         "type": {
-          "name": "function"
+          "name": "1 | 2 | 3 | 4 | 5 | 6"
         },
         "description": "Number to indicate which level heading will render (e.g. h1, h2 etc.)",
         "deprecated": false
@@ -3703,7 +3703,7 @@
         "name": "styledAs",
         "required": false,
         "type": {
-          "name": "function"
+          "name": " | "
         },
         "description": "How the hyperlink is styled (can look like either a plain link or a button)",
         "deprecated": false
@@ -3815,7 +3815,7 @@
         "name": "children",
         "required": true,
         "type": {
-          "name": "function"
+          "name": "React.ReactChild | "
         },
         "description": "The content of the component",
         "deprecated": false
@@ -4597,7 +4597,7 @@
         "name": "icon",
         "required": false,
         "type": {
-          "name": "function"
+          "name": "ReactElement | "
         },
         "description": "Icon to display within the component",
         "deprecated": false
@@ -4660,7 +4660,7 @@
         "name": "children",
         "required": true,
         "type": {
-          "name": "function"
+          "name": "Element | string"
         },
         "description": "The content of the component",
         "deprecated": false
@@ -4669,7 +4669,7 @@
         "name": "icon",
         "required": false,
         "type": {
-          "name": "function"
+          "name": "ReactElement | "
         },
         "description": "Icon to display within the component",
         "deprecated": false
@@ -4750,7 +4750,7 @@
         "name": "icon",
         "required": false,
         "type": {
-          "name": "function"
+          "name": "ReactElement | "
         },
         "description": "Icon to display within the component",
         "deprecated": false
@@ -5059,6 +5059,7 @@
         "type": {
           "name": "CSSProperties"
         },
+        "description": "Style properties for the component container element",
         "deprecated": false
       },
       "errorMessage": {
@@ -5067,6 +5068,7 @@
         "type": {
           "name": "React.ReactNode"
         },
+        "description": "Content of the error message. If a value is provided, the input will be styled as an error state and the error message will display",
         "deprecated": false
       },
       "helperMessage": {
@@ -5075,6 +5077,7 @@
         "type": {
           "name": "React.ReactNode"
         },
+        "description": "Content of the helper message",
         "deprecated": false
       },
       "hiddenPasswordAnnounceText": {
@@ -5083,6 +5086,8 @@
         "type": {
           "name": "string"
         },
+        "description": "Text read by screen reader when the password is hidden",
+        "defaultValue": "\"Password is now hidden\"",
         "deprecated": false
       },
       "hidePasswordButtonAriaLabel": {
@@ -5091,6 +5096,8 @@
         "type": {
           "name": "string"
         },
+        "description": "Aria-label for the \"Hide Password\" button",
+        "defaultValue": "\"Hide password\"",
         "deprecated": false
       },
       "hidePasswordButtonText": {
@@ -5099,6 +5106,8 @@
         "type": {
           "name": "string"
         },
+        "description": "Text displayed on screen for the \"Hide Password\" button",
+        "defaultValue": "\"Hide\"",
         "deprecated": false
       },
       "inputSize": {
@@ -5111,6 +5120,8 @@
             "InputSize.medium"
           ]
         },
+        "description": "Relative size of the component",
+        "defaultValue": "InputSize.medium",
         "deprecated": false
       },
       "inputStyle": {
@@ -5119,6 +5130,7 @@
         "type": {
           "name": "CSSProperties"
         },
+        "description": "Style properties for the input element",
         "deprecated": false
       },
       "isInverse": {
@@ -5137,6 +5149,8 @@
         "type": {
           "name": "boolean"
         },
+        "description": "If true, label text will be hidden visually, but will still be read by assistive technology",
+        "defaultValue": "false",
         "deprecated": false
       },
       "isPasswordMaskButtonHidden": {
@@ -5145,6 +5159,8 @@
         "type": {
           "name": "boolean"
         },
+        "description": "If true, label text will be hidden visually, but will still be read by assistive technology",
+        "defaultValue": "false",
         "deprecated": false
       },
       "labelStyle": {
@@ -5153,6 +5169,7 @@
         "type": {
           "name": "CSSProperties"
         },
+        "description": "Style properties for the label element",
         "deprecated": false
       },
       "labelText": {
@@ -5161,6 +5178,7 @@
         "type": {
           "name": "React.ReactNode"
         },
+        "description": "Content of label; can be a node or a string",
         "deprecated": false
       },
       "messageStyle": {
@@ -5169,6 +5187,7 @@
         "type": {
           "name": "CSSProperties"
         },
+        "description": "Style properties for the helper or error message",
         "deprecated": false
       },
       "showPasswordButtonAriaLabel": {
@@ -5177,6 +5196,8 @@
         "type": {
           "name": "string"
         },
+        "description": "Aria-label for the \"Show Password\" button",
+        "defaultValue": "\"Show password. Note: this will visually expose your password on the screen\"",
         "deprecated": false
       },
       "showPasswordButtonText": {
@@ -5185,6 +5206,8 @@
         "type": {
           "name": "string"
         },
+        "description": "Text displayed on screen for the \"Show Password\" button",
+        "defaultValue": "\"Show\"",
         "deprecated": false
       },
       "shownPasswordAnnounceText": {
@@ -5193,6 +5216,8 @@
         "type": {
           "name": "string"
         },
+        "description": "Text read by screen reader when the password is hidden",
+        "defaultValue": "\"Password is now hidden\"",
         "deprecated": false
       },
       "testId": {
@@ -5237,7 +5262,7 @@
         "name": "height",
         "required": false,
         "type": {
-          "name": "function"
+          "name": "number | string"
         },
         "description": "The height of the progress bar. Can be a string or number; if number is provided height is in px",
         "defaultValue": "16",
@@ -5379,6 +5404,8 @@
         "type": {
           "name": "string"
         },
+        "description": "Hex code for the background color",
+        "defaultValue": "#0000FF",
         "deprecated": false
       },
       "containerStyle": {
@@ -5387,6 +5414,7 @@
         "type": {
           "name": "CSSProperties"
         },
+        "description": "Style properties for the component container element",
         "deprecated": false
       },
       "inputStyle": {
@@ -5395,6 +5423,7 @@
         "type": {
           "name": "CSSProperties"
         },
+        "description": "Style properties for the radio button element",
         "deprecated": false
       },
       "isInverse": {
@@ -5413,6 +5442,8 @@
         "type": {
           "name": "boolean"
         },
+        "description": "If true, label text will be hidden visually, but will still be read by assistive technology",
+        "defaultValue": "false",
         "deprecated": false
       },
       "labelStyle": {
@@ -5421,6 +5452,7 @@
         "type": {
           "name": "CSSProperties"
         },
+        "description": "Style properties for the label element",
         "deprecated": false
       },
       "labelText": {
@@ -5429,6 +5461,7 @@
         "type": {
           "name": "React.ReactNode"
         },
+        "description": "Content of label; can be node or string",
         "deprecated": false
       },
       "testId": {
@@ -5450,6 +5483,8 @@
             "RadioTextPosition.right"
           ]
         },
+        "description": "Whether the label appears to the left of the right of the radio button",
+        "defaultValue": "RadioTextPosition.right",
         "deprecated": false
       }
     }
@@ -5547,15 +5582,35 @@
     "flags": {
       "isExported": true
     },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
     "id": "RadioGroupProps",
-    "tags": {},
+    "tags": {
+      "children": "required"
+    },
     "properties": {
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component",
+        "deprecated": false
+      },
       "containerStyle": {
         "name": "containerStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
         },
+        "description": "Style properties for the component container element",
         "deprecated": false
       },
       "errorMessage": {
@@ -5564,6 +5619,7 @@
         "type": {
           "name": "React.ReactNode"
         },
+        "description": "Content of the error message. If a value is provided, the radio buttons will be styled to show an error state",
         "deprecated": false
       },
       "helperMessage": {
@@ -5572,6 +5628,7 @@
         "type": {
           "name": "React.ReactNode"
         },
+        "description": "Content of the helper message",
         "deprecated": false
       },
       "isInverse": {
@@ -5590,6 +5647,8 @@
         "type": {
           "name": "boolean"
         },
+        "description": "If true, label text for the radio group will be hidden visually, but will still be read by assistive technology",
+        "defaultValue": "false",
         "deprecated": false
       },
       "labelStyle": {
@@ -5598,6 +5657,7 @@
         "type": {
           "name": "CSSProperties"
         },
+        "description": "Style properties for the label of the radio group",
         "deprecated": false
       },
       "labelText": {
@@ -5606,6 +5666,7 @@
         "type": {
           "name": "React.ReactNode"
         },
+        "description": "Content of label of the radio group; can be node or string. Alternatively, the labelledById prop can be used",
         "deprecated": false
       },
       "labelledById": {
@@ -5614,6 +5675,7 @@
         "type": {
           "name": "string"
         },
+        "description": "ID of the element that labels the radio group, used in the aria-labelledby attribute for the group. Alternatively, the labelText prop can be used",
         "deprecated": false
       },
       "name": {
@@ -5622,6 +5684,7 @@
         "type": {
           "name": "string"
         },
+        "description": "Name attribute the radio group",
         "deprecated": false
       },
       "onBlur": {
@@ -5630,6 +5693,7 @@
         "type": {
           "name": "function"
         },
+        "description": "Action that fires when the radio group loses focus",
         "deprecated": false
       },
       "onChange": {
@@ -5638,6 +5702,7 @@
         "type": {
           "name": "function"
         },
+        "description": "Action that fires when selected value of the radio group changes",
         "deprecated": false
       },
       "onFocus": {
@@ -5646,6 +5711,7 @@
         "type": {
           "name": "function"
         },
+        "description": "Action that fires when one of the radio buttons within the group receives focus",
         "deprecated": false
       },
       "required": {
@@ -5654,6 +5720,8 @@
         "type": {
           "name": "boolean"
         },
+        "description": "If true, the user must select one radio button for the form to be valid",
+        "defaultValue": "false",
         "deprecated": false
       },
       "testId": {
@@ -5671,6 +5739,7 @@
         "type": {
           "name": "string"
         },
+        "description": "Value of the radio button that is the default selected value for the group",
         "deprecated": false
       }
     }
@@ -5691,6 +5760,7 @@
         "type": {
           "name": "CSSProperties"
         },
+        "description": "Style properties for the component container element",
         "deprecated": false
       },
       "iconAriaLabel": {
@@ -5699,6 +5769,8 @@
         "type": {
           "name": "string"
         },
+        "description": "Text for icon button aria-label",
+        "defaultValue": "\"Search\"",
         "deprecated": false
       },
       "inputSize": {
@@ -5711,6 +5783,8 @@
             "InputSize.medium"
           ]
         },
+        "description": "Relative size of the component",
+        "defaultValue": "InputSize.medium",
         "deprecated": false
       },
       "inputStyle": {
@@ -5719,6 +5793,7 @@
         "type": {
           "name": "CSSProperties"
         },
+        "description": "Style properties for the input element",
         "deprecated": false
       },
       "isInverse": {
@@ -5737,6 +5812,8 @@
         "type": {
           "name": "boolean"
         },
+        "description": "If true, the component will show a loading animation instead of a search button",
+        "defaultValue": "false",
         "deprecated": false
       },
       "labelText": {
@@ -5745,6 +5822,8 @@
         "type": {
           "name": "string"
         },
+        "description": "Text for input aria-label",
+        "defaultValue": "\"Search\"",
         "deprecated": false
       },
       "onSearch": {
@@ -5753,6 +5832,7 @@
         "type": {
           "name": "function"
         },
+        "description": "Action that will fire when search icon button is clicked",
         "deprecated": false
       },
       "testId": {
@@ -5770,6 +5850,7 @@
         "type": {
           "name": "string"
         },
+        "description": "Value of the input element",
         "deprecated": false
       }
     }
@@ -5972,7 +6053,7 @@
         "name": "children",
         "required": true,
         "type": {
-          "name": "function"
+          "name": "React.ReactNode | "
         },
         "description": "The content of the component",
         "deprecated": false
@@ -7465,6 +7546,8 @@
         "type": {
           "name": "string"
         },
+        "description": "The text in the skip link",
+        "defaultValue": "\"Skip Navigation\"",
         "deprecated": false
       },
       "children": {
@@ -7519,6 +7602,8 @@
         "type": {
           "name": "number"
         },
+        "description": "Number of pixels from the left of the screen for the skip link to be positioned",
+        "defaultValue": "10",
         "deprecated": false
       },
       "positionTop": {
@@ -7527,6 +7612,8 @@
         "type": {
           "name": "number"
         },
+        "description": "Number of pixels from the top of the screen for the skip link to be positioned",
+        "defaultValue": "10",
         "deprecated": false
       },
       "shape": {
@@ -7564,7 +7651,7 @@
         "name": "styledAs",
         "required": false,
         "type": {
-          "name": "function"
+          "name": " | "
         },
         "description": "How the hyperlink is styled (can look like either a plain link or a button)",
         "deprecated": false
@@ -7639,9 +7726,28 @@
     "flags": {
       "isExported": true
     },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
     "id": "SkipLinkContentProps",
-    "tags": {},
+    "tags": {
+      "children": "required"
+    },
     "properties": {
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component",
+        "deprecated": false
+      },
       "testId": {
         "name": "testId",
         "required": false,
@@ -7677,7 +7783,7 @@
         "name": "size",
         "required": false,
         "type": {
-          "name": "function"
+          "name": "string | number"
         },
         "description": "The height and width of the spinner.  Can be a string or number; if number is provided, the size is in px.",
         "defaultValue": "16",
@@ -7846,9 +7952,28 @@
     "flags": {
       "isExported": true
     },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
     "id": "TableBodyProps",
-    "tags": {},
+    "tags": {
+      "children": "required"
+    },
     "properties": {
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component",
+        "deprecated": false
+      },
       "testId": {
         "name": "testId",
         "required": false,
@@ -7883,6 +8008,8 @@
             "TableCellAlign.right"
           ]
         },
+        "description": "Text alignment of the cell content. Right alignment should be used for numeric values",
+        "defaultValue": "TableCellAlign.left",
         "deprecated": false
       },
       "testId": {
@@ -7898,8 +8025,10 @@
         "name": "width",
         "required": false,
         "type": {
-          "name": "function"
+          "name": "string | number"
         },
+        "description": "Width of the component, set by CSS",
+        "defaultValue": "auto",
         "deprecated": false
       }
     }
@@ -7911,9 +8040,28 @@
     "flags": {
       "isExported": true
     },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
     "id": "TableHeadProps",
-    "tags": {},
+    "tags": {
+      "children": "required"
+    },
     "properties": {
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component",
+        "deprecated": false
+      },
       "testId": {
         "name": "testId",
         "required": false,
@@ -7939,8 +8087,17 @@
         "name": "align",
         "required": false,
         "type": {
-          "name": "any"
+          "name": "enum",
+          "options": [
+            "TableCellAlign.center",
+            "TableCellAlign.inherit",
+            "TableCellAlign.justify",
+            "TableCellAlign.left",
+            "TableCellAlign.right"
+          ]
         },
+        "description": "Text alignment of the cell content. Right alignment should be used for numeric values",
+        "defaultValue": "TableCellAlign.left",
         "deprecated": false
       },
       "isSortable": {
@@ -7949,6 +8106,7 @@
         "type": {
           "name": "boolean"
         },
+        "description": "If true, the header will render a button for sorting",
         "deprecated": false
       },
       "onSort": {
@@ -7957,6 +8115,7 @@
         "type": {
           "name": "function"
         },
+        "description": "Event that fires when clicking the table header cell sort button",
         "deprecated": false
       },
       "scope": {
@@ -7971,6 +8130,8 @@
             "TableHeaderCellScope.rowgroup"
           ]
         },
+        "description": "Direction and range of data cells that are covered by the header cell",
+        "defaultValue": "TableHeaderCellScope.col",
         "deprecated": false
       },
       "sortDirection": {
@@ -7984,6 +8145,8 @@
             "TableSortDirection.none"
           ]
         },
+        "description": "Direction by which the column is sorted",
+        "defaultValue": "TableSortDirection.none",
         "deprecated": false
       },
       "testId": {
@@ -7999,8 +8162,10 @@
         "name": "width",
         "required": false,
         "type": {
-          "name": "function"
+          "name": "string | number"
         },
+        "description": "Width of the component, set by CSS",
+        "defaultValue": "auto",
         "deprecated": false
       }
     }
@@ -8012,9 +8177,28 @@
     "flags": {
       "isExported": true
     },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
     "id": "TableRowProps",
-    "tags": {},
+    "tags": {
+      "children": "required"
+    },
     "properties": {
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component",
+        "deprecated": false
+      },
       "testId": {
         "name": "testId",
         "required": false,
@@ -8090,9 +8274,28 @@
     "flags": {
       "isExported": true
     },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
     "id": "TableProps",
-    "tags": {},
+    "tags": {
+      "children": "required"
+    },
     "properties": {
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component",
+        "deprecated": false
+      },
       "density": {
         "name": "density",
         "required": false,
@@ -8104,6 +8307,8 @@
             "TableDensity.normal"
           ]
         },
+        "description": "Relative padding of the table cells",
+        "defaultValue": "TableDensity.normal",
         "deprecated": false
       },
       "hasHoverStyles": {
@@ -8112,6 +8317,7 @@
         "type": {
           "name": "boolean"
         },
+        "description": "If true, row will be visually highlighted on hover",
         "deprecated": false
       },
       "hasVerticalBorders": {
@@ -8120,6 +8326,7 @@
         "type": {
           "name": "boolean"
         },
+        "description": "If true, columns will have vertical borders",
         "deprecated": false
       },
       "hasZebraStripes": {
@@ -8128,6 +8335,7 @@
         "type": {
           "name": "boolean"
         },
+        "description": "If true, every other row will have a background color",
         "deprecated": false
       },
       "isInverse": {
@@ -8146,6 +8354,8 @@
         "type": {
           "name": "number"
         },
+        "description": "Minimum width for the table in pixels",
+        "defaultValue": "600",
         "deprecated": false
       },
       "testId": {
@@ -8173,7 +8383,7 @@
         "name": "icon",
         "required": false,
         "type": {
-          "name": "function"
+          "name": "ReactElement | "
         },
         "description": "Icon to display within the component",
         "deprecated": false
@@ -8421,7 +8631,7 @@
         "name": "borderPosition",
         "required": false,
         "type": {
-          "name": "function"
+          "name": "bottom | top"
         },
         "deprecated": false
       },
@@ -8638,7 +8848,7 @@
         "name": "borderPosition",
         "required": false,
         "type": {
-          "name": "function"
+          "name": "left | right"
         },
         "deprecated": false
       },
@@ -8784,7 +8994,7 @@
         "name": "value",
         "required": false,
         "type": {
-          "name": "function"
+          "name": "string | ReadonlyArray | number"
         },
         "description": "Value for the textarea",
         "deprecated": false
