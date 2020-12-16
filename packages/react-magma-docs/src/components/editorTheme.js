@@ -1,52 +1,52 @@
 import { magma } from 'react-magma-dom';
 
-const editorTheme = {
+export const editorTheme = {
   plain: {
     backgroundColor: magma.colors.neutral07,
-    color: magma.colors.neutral
+    color: magma.colors.neutral,
   },
   styles: [
     {
       types: ['comment', 'prolog', 'doctype', 'cdata'],
       style: {
-        color: magma.colors.success
-      }
+        color: magma.colors.success,
+      },
     },
     {
       types: ['namespace'],
       style: {
-        opacity: 1
-      }
+        opacity: 1,
+      },
     },
     {
       types: ['tag', 'operator', 'number'],
       style: {
-        color: magma.colors.foundation02
-      }
+        color: magma.colors.foundation02,
+      },
     },
     {
       types: ['punctuation'],
       style: {
-        color: magma.colors.neutral03
-      }
+        color: magma.colors.neutral03,
+      },
     },
     {
       types: ['property', 'function'],
       style: {
-        color: magma.colors.foundation02
-      }
+        color: magma.colors.foundation02,
+      },
     },
     {
       types: ['tag-id', 'selector', 'atrule-id'],
       style: {
-        color: magma.colors.pop
-      }
+        color: magma.colors.pop,
+      },
     },
     {
       types: ['attr-name'],
       style: {
-        color: magma.colors.primary
-      }
+        color: magma.colors.primary,
+      },
     },
     {
       types: [
@@ -63,43 +63,41 @@ const editorTheme = {
         'regex',
         'at-rule',
         'placeholder',
-        'variable'
+        'variable',
       ],
       style: {
-        color: magma.colors.pop
-      }
+        color: magma.colors.pop,
+      },
     },
     {
       types: ['deleted'],
       style: {
-        textDecorationLine: 'line-through'
-      }
+        textDecorationLine: 'line-through',
+      },
     },
     {
       types: ['inserted'],
       style: {
-        textDecorationLine: 'underline'
-      }
+        textDecorationLine: 'underline',
+      },
     },
     {
       types: ['italic'],
       style: {
-        fontStyle: 'italic'
-      }
+        fontStyle: 'italic',
+      },
     },
     {
       types: ['important', 'bold'],
       style: {
-        fontWeight: 'bold'
-      }
+        fontWeight: 'bold',
+      },
     },
     {
       types: ['important'],
       style: {
-        color: magma.colors.danger
-      }
-    }
-  ]
+        color: magma.colors.danger,
+      },
+    },
+  ],
 };
-
-export default editorTheme;

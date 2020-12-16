@@ -19,9 +19,9 @@ import {
   Card,
   CardBody,
 } from 'react-magma-dom';
-import DocsHeading from '../../components/docs-heading';
+import { DocsHeading } from '../../components/DocsHeading';
 import { Link } from 'gatsby';
-import { SimplePropsTable } from '../../components/props-table';
+import { SimplePropsTable } from '../../components/SimplePropsTable';
 
 <DocsHeading to="/design/inputs/" type="api">
   Input
@@ -270,7 +270,6 @@ will appear to the right of the field.
           aria-label={helpLinkLabel}
           icon={<QuestionCircleIcon />}
           onClick={onHelpLinkClick}
-          style={{ margin: '0 0 0 7px' }}
           type='button'
           variant='link'
         />
