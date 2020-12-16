@@ -1371,7 +1371,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7588,
+        "id": 7584,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1443,6 +1443,14 @@
         "required": false,
         "type": {
           "name": "boolean"
+        },
+        "deprecated": false
+      },
+      "innerRef": {
+        "name": "innerRef",
+        "required": false,
+        "type": {
+          "name": "React.Ref"
         },
         "deprecated": false
       },
@@ -1556,7 +1564,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7507,
+          "id": 7513,
           "name": "SelectOptions"
         }
       }
@@ -1822,14 +1830,6 @@
         },
         "deprecated": false
       },
-      "renderItem": {
-        "name": "renderItem",
-        "required": false,
-        "type": {
-          "name": "function"
-        },
-        "deprecated": false
-      },
       "testId": {
         "name": "testId",
         "required": false,
@@ -1858,7 +1858,7 @@
     },
     "typeParameter": [
       {
-        "id": 7745,
+        "id": 7741,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1867,7 +1867,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7507,
+          "id": 7513,
           "name": "SelectOptions"
         }
       }
@@ -2639,12 +2639,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 8916,
+          "id": 8914,
           "name": "IconOnlyDropdownButtonProps"
         },
         {
           "type": "reference",
-          "id": 8920,
+          "id": 8918,
           "name": "IconTextDropdownButtonProps"
         }
       ],
@@ -4727,12 +4727,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 12111,
+          "id": 12109,
           "name": "NavTabChildrenProps"
         },
         {
           "type": "reference",
-          "id": 12377,
+          "id": 12375,
           "name": "NavTabComponentProps"
         }
       ],
@@ -5670,7 +5670,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 6969,
+        "id": 6992,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5680,6 +5680,14 @@
     "id": "ItemsListProps",
     "tags": {},
     "properties": {
+      "customComponents": {
+        "name": "customComponents",
+        "required": false,
+        "type": {
+          "name": "SelectComponents"
+        },
+        "deprecated": false
+      },
       "getItemProps": {
         "name": "getItemProps",
         "required": true,
@@ -5735,14 +5743,6 @@
           "name": "CSSProperties"
         },
         "deprecated": false
-      },
-      "renderItem": {
-        "name": "renderItem",
-        "required": false,
-        "type": {
-          "name": "function"
-        },
-        "deprecated": false
       }
     }
   },
@@ -5753,7 +5753,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7282,
+        "id": 7296,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5839,7 +5839,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7301,
+        "id": 7315,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5927,16 +5927,241 @@
     }
   },
   {
+    "name": "ItemRenderOptions",
+    "kind": 4194304,
+    "kindString": "Type alias",
+    "flags": {
+      "isExported": true
+    },
+    "typeParameter": [
+      {
+        "id": 6947,
+        "name": "T",
+        "kind": 131072,
+        "kindString": "Type parameter",
+        "flags": {
+          "isExported": true
+        }
+      }
+    ],
+    "type": {
+      "type": "reflection",
+      "declaration": {
+        "id": 6948,
+        "name": "__type",
+        "kind": 65536,
+        "kindString": "Type literal",
+        "flags": {
+          "isExported": true
+        },
+        "indexSignature": [
+          {
+            "id": 6955,
+            "name": "__index",
+            "kind": 8192,
+            "kindString": "Index signature",
+            "flags": {
+              "isExported": true
+            },
+            "parameters": [
+              {
+                "id": 6956,
+                "name": "key",
+                "kind": 32768,
+                "kindString": "Parameter",
+                "flags": {
+                  "isExported": true
+                },
+                "type": {
+                  "type": "intrinsic",
+                  "name": "string"
+                }
+              }
+            ],
+            "type": {
+              "type": "intrinsic",
+              "name": "any"
+            }
+          }
+        ],
+        "children": [
+          {
+            "id": 6950,
+            "name": "isFocused",
+            "kind": 32,
+            "kindString": "Variable",
+            "flags": {
+              "isExported": true,
+              "isOptional": true
+            },
+            "sources": [
+              {
+                "fileName": "src/components/Select/components.tsx",
+                "line": 10,
+                "character": 11
+              }
+            ],
+            "type": {
+              "type": "intrinsic",
+              "name": "boolean"
+            }
+          },
+          {
+            "id": 6951,
+            "name": "item",
+            "kind": 32,
+            "kindString": "Variable",
+            "flags": {
+              "isExported": true
+            },
+            "sources": [
+              {
+                "fileName": "src/components/Select/components.tsx",
+                "line": 11,
+                "character": 6
+              }
+            ],
+            "type": {
+              "type": "typeParameter",
+              "name": "T"
+            }
+          },
+          {
+            "id": 6952,
+            "name": "itemRef",
+            "kind": 32,
+            "kindString": "Variable",
+            "flags": {
+              "isExported": true
+            },
+            "sources": [
+              {
+                "fileName": "src/components/Select/components.tsx",
+                "line": 12,
+                "character": 9
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "reference",
+                  "name": "HTMLLIElement"
+                }
+              ],
+              "name": "React.Ref"
+            }
+          },
+          {
+            "id": 6953,
+            "name": "itemString",
+            "kind": 32,
+            "kindString": "Variable",
+            "flags": {
+              "isExported": true
+            },
+            "sources": [
+              {
+                "fileName": "src/components/Select/components.tsx",
+                "line": 13,
+                "character": 12
+              }
+            ],
+            "type": {
+              "type": "intrinsic",
+              "name": "string"
+            }
+          },
+          {
+            "id": 6949,
+            "name": "key",
+            "kind": 32,
+            "kindString": "Variable",
+            "flags": {
+              "isExported": true
+            },
+            "sources": [
+              {
+                "fileName": "src/components/Select/components.tsx",
+                "line": 9,
+                "character": 5
+              }
+            ],
+            "type": {
+              "type": "intrinsic",
+              "name": "string"
+            }
+          },
+          {
+            "id": 6954,
+            "name": "theme",
+            "kind": 32,
+            "kindString": "Variable",
+            "flags": {
+              "isExported": true
+            },
+            "sources": [
+              {
+                "fileName": "src/components/Select/components.tsx",
+                "line": 14,
+                "character": 7
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "name": "ThemeInterface"
+            }
+          }
+        ],
+        "groups": [
+          {
+            "title": "Variables",
+            "kind": 32,
+            "children": [
+              6950,
+              6951,
+              6952,
+              6953,
+              6949,
+              6954
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "fileName": "src/components/Select/components.tsx",
+            "line": 8,
+            "character": 34
+          }
+        ]
+      }
+    },
+    "id": "ItemRenderOptions",
+    "tags": {},
+    "properties": {}
+  },
+  {
     "name": "SelectComponents",
     "kind": 4194304,
     "kindString": "Type alias",
     "flags": {
       "isExported": true
     },
+    "typeParameter": [
+      {
+        "id": 6958,
+        "name": "T",
+        "kind": 131072,
+        "kindString": "Type parameter",
+        "flags": {
+          "isExported": true
+        }
+      }
+    ],
     "type": {
       "type": "reflection",
       "declaration": {
-        "id": 6947,
+        "id": 6959,
         "name": "__type",
         "kind": 65536,
         "kindString": "Type literal",
@@ -5945,7 +6170,7 @@
         },
         "children": [
           {
-            "id": 6948,
+            "id": 6960,
             "name": "ClearIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -5956,7 +6181,7 @@
             "sources": [
               {
                 "fileName": "src/components/Select/components.tsx",
-                "line": 7,
+                "line": 19,
                 "character": 16
               }
             ],
@@ -5973,7 +6198,7 @@
             }
           },
           {
-            "id": 6949,
+            "id": 6961,
             "name": "DropdownIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -5984,7 +6209,7 @@
             "sources": [
               {
                 "fileName": "src/components/Select/components.tsx",
-                "line": 8,
+                "line": 20,
                 "character": 19
               }
             ],
@@ -6006,7 +6231,41 @@
             }
           },
           {
-            "id": 6950,
+            "id": 6963,
+            "name": "Item",
+            "kind": 32,
+            "kindString": "Variable",
+            "flags": {
+              "isExported": true,
+              "isOptional": true
+            },
+            "sources": [
+              {
+                "fileName": "src/components/Select/components.tsx",
+                "line": 22,
+                "character": 6
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "reference",
+                  "id": 6946,
+                  "typeArguments": [
+                    {
+                      "type": "typeParameter",
+                      "name": "T"
+                    }
+                  ],
+                  "name": "ItemRenderOptions"
+                }
+              ],
+              "name": "FunctionComponent"
+            }
+          },
+          {
+            "id": 6962,
             "name": "LoadingIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -6017,7 +6276,7 @@
             "sources": [
               {
                 "fileName": "src/components/Select/components.tsx",
-                "line": 9,
+                "line": 21,
                 "character": 18
               }
             ],
@@ -6039,17 +6298,18 @@
             "title": "Variables",
             "kind": 32,
             "children": [
-              6948,
-              6949,
-              6950
+              6960,
+              6961,
+              6963,
+              6962
             ]
           }
         ],
         "sources": [
           {
             "fileName": "src/components/Select/components.tsx",
-            "line": 6,
-            "character": 30
+            "line": 18,
+            "character": 33
           }
         ]
       }
@@ -6067,7 +6327,7 @@
     },
     "typeParameter": [
       {
-        "id": 7355,
+        "id": 7365,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6098,7 +6358,7 @@
     },
     "typeParameter": [
       {
-        "id": 7332,
+        "id": 7346,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6240,14 +6500,6 @@
         },
         "deprecated": false
       },
-      "renderItem": {
-        "name": "renderItem",
-        "required": false,
-        "type": {
-          "name": "function"
-        },
-        "deprecated": false
-      },
       "testId": {
         "name": "testId",
         "required": false,
@@ -6268,7 +6520,7 @@
     },
     "typeParameter": [
       {
-        "id": 7465,
+        "id": 7471,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6277,7 +6529,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7507,
+          "id": 7513,
           "name": "SelectOptions"
         }
       }
@@ -6442,7 +6694,7 @@
     },
     "typeParameter": [
       {
-        "id": 7361,
+        "id": 7371,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6451,7 +6703,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7507,
+          "id": 7513,
           "name": "SelectOptions"
         }
       }
@@ -6829,14 +7081,6 @@
         },
         "deprecated": false
       },
-      "renderItem": {
-        "name": "renderItem",
-        "required": false,
-        "type": {
-          "name": "function"
-        },
-        "deprecated": false
-      },
       "scrollIntoView": {
         "name": "scrollIntoView",
         "required": false,
@@ -6881,193 +7125,6 @@
     }
   },
   {
-    "name": "ItemRenderOptions",
-    "kind": 4194304,
-    "kindString": "Type alias",
-    "flags": {
-      "isExported": true
-    },
-    "typeParameter": [
-      {
-        "id": 7514,
-        "name": "T",
-        "kind": 131072,
-        "kindString": "Type parameter",
-        "flags": {
-          "isExported": true
-        }
-      }
-    ],
-    "type": {
-      "type": "reflection",
-      "declaration": {
-        "id": 7515,
-        "name": "__type",
-        "kind": 65536,
-        "kindString": "Type literal",
-        "flags": {
-          "isExported": true
-        },
-        "indexSignature": [
-          {
-            "id": 7521,
-            "name": "__index",
-            "kind": 8192,
-            "kindString": "Index signature",
-            "flags": {
-              "isExported": true
-            },
-            "parameters": [
-              {
-                "id": 7522,
-                "name": "key",
-                "kind": 32768,
-                "kindString": "Parameter",
-                "flags": {
-                  "isExported": true
-                },
-                "type": {
-                  "type": "intrinsic",
-                  "name": "string"
-                }
-              }
-            ],
-            "type": {
-              "type": "intrinsic",
-              "name": "any"
-            }
-          }
-        ],
-        "children": [
-          {
-            "id": 7517,
-            "name": "isFocused",
-            "kind": 32,
-            "kindString": "Variable",
-            "flags": {
-              "isExported": true,
-              "isOptional": true
-            },
-            "sources": [
-              {
-                "fileName": "src/components/Select/index.tsx",
-                "line": 23,
-                "character": 11
-              }
-            ],
-            "type": {
-              "type": "intrinsic",
-              "name": "boolean"
-            }
-          },
-          {
-            "id": 7518,
-            "name": "item",
-            "kind": 32,
-            "kindString": "Variable",
-            "flags": {
-              "isExported": true
-            },
-            "sources": [
-              {
-                "fileName": "src/components/Select/index.tsx",
-                "line": 24,
-                "character": 6
-              }
-            ],
-            "type": {
-              "type": "typeParameter",
-              "name": "T"
-            }
-          },
-          {
-            "id": 7519,
-            "name": "itemString",
-            "kind": 32,
-            "kindString": "Variable",
-            "flags": {
-              "isExported": true
-            },
-            "sources": [
-              {
-                "fileName": "src/components/Select/index.tsx",
-                "line": 25,
-                "character": 12
-              }
-            ],
-            "type": {
-              "type": "intrinsic",
-              "name": "string"
-            }
-          },
-          {
-            "id": 7516,
-            "name": "key",
-            "kind": 32,
-            "kindString": "Variable",
-            "flags": {
-              "isExported": true
-            },
-            "sources": [
-              {
-                "fileName": "src/components/Select/index.tsx",
-                "line": 22,
-                "character": 5
-              }
-            ],
-            "type": {
-              "type": "intrinsic",
-              "name": "string"
-            }
-          },
-          {
-            "id": 7520,
-            "name": "theme",
-            "kind": 32,
-            "kindString": "Variable",
-            "flags": {
-              "isExported": true
-            },
-            "sources": [
-              {
-                "fileName": "src/components/Select/index.tsx",
-                "line": 26,
-                "character": 7
-              }
-            ],
-            "type": {
-              "type": "reference",
-              "name": "ThemeInterface"
-            }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Variables",
-            "kind": 32,
-            "children": [
-              7517,
-              7518,
-              7519,
-              7516,
-              7520
-            ]
-          }
-        ],
-        "sources": [
-          {
-            "fileName": "src/components/Select/index.tsx",
-            "line": 21,
-            "character": 34
-          }
-        ]
-      }
-    },
-    "id": "ItemRenderOptions",
-    "tags": {},
-    "properties": {}
-  },
-  {
     "name": "SelectOptions",
     "kind": 4194304,
     "kindString": "Type alias",
@@ -7084,7 +7141,7 @@
         {
           "type": "reflection",
           "declaration": {
-            "id": 7508,
+            "id": 7514,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -7093,7 +7150,7 @@
             },
             "indexSignature": [
               {
-                "id": 7511,
+                "id": 7517,
                 "name": "__index",
                 "kind": 8192,
                 "kindString": "Index signature",
@@ -7102,7 +7159,7 @@
                 },
                 "parameters": [
                   {
-                    "id": 7512,
+                    "id": 7518,
                     "name": "key",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -7123,7 +7180,7 @@
             ],
             "children": [
               {
-                "id": 7510,
+                "id": 7516,
                 "name": "label",
                 "kind": 32,
                 "kindString": "Variable",
@@ -7133,7 +7190,7 @@
                 "sources": [
                   {
                     "fileName": "src/components/Select/index.tsx",
-                    "line": 18,
+                    "line": 17,
                     "character": 26
                   }
                 ],
@@ -7143,7 +7200,7 @@
                 }
               },
               {
-                "id": 7509,
+                "id": 7515,
                 "name": "value",
                 "kind": 32,
                 "kindString": "Variable",
@@ -7153,7 +7210,7 @@
                 "sources": [
                   {
                     "fileName": "src/components/Select/index.tsx",
-                    "line": 18,
+                    "line": 17,
                     "character": 11
                   }
                 ],
@@ -7168,15 +7225,15 @@
                 "title": "Variables",
                 "kind": 32,
                 "children": [
-                  7510,
-                  7509
+                  7516,
+                  7515
                 ]
               }
             ],
             "sources": [
               {
                 "fileName": "src/components/Select/index.tsx",
-                "line": 18,
+                "line": 17,
                 "character": 3
               }
             ]
@@ -8481,12 +8538,12 @@
       "types": [
         {
           "type": "reference",
-          "id": 11477,
+          "id": 11475,
           "name": "HorizontalTabsProps"
         },
         {
           "type": "reference",
-          "id": 11474,
+          "id": 11472,
           "name": "VerticalTabsProps"
         }
       ]

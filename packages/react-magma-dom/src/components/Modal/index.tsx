@@ -43,15 +43,11 @@ const ModalContainer = styled.div<{ theme: ThemeInterface }>`
   bottom: 0;
   left: 0;
   overflow-y: auto;
-
+  padding: ${props => props.theme.spaceScale.spacing03};
   position: fixed;
   right: 0;
   top: 0;
   z-index: 998;
-
-  @media (min-width: ${props => props.theme.breakpoints.small}px) {
-    padding: 0 ${props => props.theme.spaceScale.spacing04};
-  }
 `;
 
 const ModalBackdrop = styled.div<{ isExiting?: boolean }>`
@@ -95,10 +91,7 @@ const ModalContent = styled.div<ModalProps>`
   border-radius: ${props => props.theme.borderRadius};
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   color: ${props => props.theme.colors.neutral};
-  margin: ${props =>
-    props.size === 'small'
-      ? `${props.theme.spaceScale.spacing03} auto`
-      : props.theme.spaceScale.spacing03};
+  margin: 0 auto;
   position: relative;
   z-index: 1000;
 
@@ -136,14 +129,7 @@ const ModalContent = styled.div<ModalProps>`
   }};
 
   @media (min-width: ${props => props.theme.breakpoints.small}px) {
-    margin: ${props =>
-      props.size !== 'large'
-        ? `${props.theme.spaceScale.spacing09} auto`
-        : props.theme.spaceScale.spacing03};
-  }
-
-  @media (min-width: ${props => props.theme.breakpoints.large}px) {
-    margin: ${props => props.theme.spaceScale.spacing09} auto;
+    margin: ${props => props.theme.spaceScale.spacing08} auto;
   }
 `;
 
@@ -164,18 +150,13 @@ const H1 = styled(Heading)<{ theme?: ThemeInterface }>`
   line-height: ${props =>
     props.theme.typographyVisualStyles.headingSmall.desktop.lineHeight};
   margin: 0;
-  padding-right: 50px;
+  padding-right: ${props => props.theme.spaceScale.spacing10};
 `;
 
 const CloseBtn = styled.span`
   position: absolute;
   top: 0;
   right: 0;
-
-  svg {
-    height: 15px;
-    width: 15px;
-  }
 `;
 const ModalBody = styled.div<{ theme?: ThemeInterface }>`
   padding: ${props => props.theme.spaceScale.spacing05};
@@ -348,7 +329,9 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
 
-    const CloseIcon = <CrossIcon color={theme.colors.neutral03} />;
+    const CloseIcon = (
+      <CrossIcon color={theme.colors.neutral03} size={theme.iconSizes.small} />
+    );
 
     return isModalOpen
       ? ReactDOM.createPortal(
