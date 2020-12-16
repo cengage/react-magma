@@ -1,0 +1,54 @@
+.props-table {
+  padding: 0;
+  table-layout: auto;
+  border-spacing: 0;
+  border-collapse: collapse;
+  display: block;
+  font-size: 14px;
+  overflow-x: initial;
+  overflow-y: hidden;
+  width: 100%;
+}
+
+.props-table thead th {
+  font-weight: 400;
+}
+
+.props-table thead th:nth-of-type(1) {
+  width: 10%;
+}
+
+.props-table thead th:nth-of-type(2) {
+  width: 25%;
+}
+
+.props-table thead th:nth-of-type(3) {
+  width: 15%;
+}
+
+.props-table thead th:nth-of-type(4) {
+  width: 45%;
+}
+
+.props-table td,
+.props-table th {
+  padding: 10px 15px;
+}
+
+.props-table tbody > tr {
+  display: table-row;
+  border-top: 1px solid #ced4de;
+}
+
+.props-table tbody > tr:nth-child(odd) {
+  background: #f7f7f7;
+}
+
+.props-table .prop-name {
+  align-items: center;
+  display: flex;
+}
+
+.props-table .required {
+  padding-left: 10px;
+}
