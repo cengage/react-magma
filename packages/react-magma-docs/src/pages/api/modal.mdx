@@ -1,6 +1,8 @@
 ---
 pageTitle: Modal API
 title: Modal
+props:
+  - ModalProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -184,96 +186,7 @@ If you would like to add a custom close button to the `Modal` be sure not to use
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the `div` element that wraps the modal content.
 
-<SimplePropsTable
-  propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    closeAriaLabel: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'The text read by screen readers for the close button',
-      defaultValue: 'Close dialog',
-    },
-    header: {
-      type: {
-        name: 'node',
-      },
-      required: false,
-      description: 'The content of the modal header',
-    },
-    isBackgroundClickDisabled: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, clicking the backdrop will not dismiss the modal',
-      defaultValue: 'false',
-    },
-    isCloseButtonHidden: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, the close button the the modal will be suppressed',
-      defaultValue: 'false',
-    },
-    isEscKeyDownDisabled: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, pressing the Escape key will not dismiss the modal',
-      defaultValue: 'false',
-    },
-    isOpen: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, the modal will be visible',
-      defaultValue: 'false',
-    },
-    onClose: {
-      type: {
-        name: 'function',
-      },
-      required: true,
-      description: 'Action that fires when the close button is clicked',
-    },
-    onEscKeyDown: {
-      type: {
-        name: 'function',
-      },
-      required: true,
-      description: 'Action that fires when the Escape key is pressed',
-    },
-    size: {
-      type: {
-        name: 'enum',
-        options: ['ModalSize.large', 'ModalSize.medium', 'ModalSize.small'],
-      },
-      required: false,
-      description: 'The relative size of the modal',
-      defaultValue: 'medium',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-  }}
-/>
+<ModalProps />
 
 export default props => (
   <ScopeableLayout

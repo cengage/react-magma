@@ -1,6 +1,8 @@
 ---
 pageTitle: Form Group API
 title: Form Group
+props:
+  - FormGroupProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -114,83 +116,7 @@ The label text for the form group can be hidden visually, but still be read by a
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    containerStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the component container element',
-    },
-    errorMessage: {
-      type: {
-        name: 'ReactNode',
-      },
-      required: false,
-      description:
-        'Content of the error message.  If a value is provided, the form fields will be styled to show an error state',
-      defaultValue: '',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the focus state of the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    isTextVisuallyHidden: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, label text for the form group will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
-    },
-    labelledById: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'ID of the element that labels the form group, used in the aria-labelledby attribute for the group. Alternatively, the labelText prop can be used.',
-      defaultValue: '',
-    },
-    labelStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the label of the form group',
-    },
-    labelText: {
-      type: {
-        name: 'ReactNode',
-      },
-      required: false,
-      description:
-        'Content of label for form group; can be a node or a string. Alternatively, the labelledById prop can be used.',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-  }}
-/>
+<FormGroupProps />
 
 export default props => (
   <ScopeableLayout {...props} components={{ FormGroup, Checkbox, Toggle }} />

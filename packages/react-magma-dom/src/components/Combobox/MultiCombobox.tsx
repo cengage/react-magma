@@ -10,9 +10,9 @@ import { useComboboxItems, defaultOnInputValueChange } from './shared';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
-import { MultiComboboxInterface } from '.';
+import { MultiComboboxProps } from '.';
 
-export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
+export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   const [inputValue, setInputValue] = React.useState('');
   const {
     ariaDescribedBy,
@@ -26,6 +26,7 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
     isLabelVisuallyHidden,
     isLoading,
     isInverse,
+    itemListMaxHeight,
     items,
     itemToString,
     labelStyle,
@@ -324,6 +325,7 @@ export function MultiCombobox<T>(props: MultiComboboxInterface<T>) {
         isOpen={isOpen}
         items={getFilteredItems(displayItems)}
         itemToString={itemToString}
+        maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
         menuStyle={menuStyle}
       />
     </SelectContainer>

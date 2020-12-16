@@ -8,11 +8,12 @@ import { ItemsList } from '../Select/ItemsList';
 import { ComboboxInput } from './ComboboxInput';
 import { ButtonSize, ButtonVariant } from '../Button';
 import { useComboboxItems, defaultOnInputValueChange } from './shared';
-import { ComboboxInterface } from '.';
+import { ComboboxProps } from '.';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { useForkedRef } from '../../utils';
 
-export function InternalCombobox<T>(props: ComboboxInterface<T>) {
+export function InternalCombobox<T>(props: ComboboxProps<T>) {
   const {
     ariaDescribedBy,
     components: customComponents,
@@ -28,6 +29,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
     isLabelVisuallyHidden,
     isLoading,
     isInverse,
+    itemListMaxHeight,
     items,
     itemToString,
     labelStyle,
@@ -48,6 +50,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
     toggleButtonRef,
   } = props;
 
+  const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
   function isCreatedItem(item) {
@@ -289,6 +292,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
         isOpen={isOpen}
         items={displayItems}
         itemToString={itemToString}
+        maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
         menuStyle={menuStyle}
       />
     </SelectContainer>

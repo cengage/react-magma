@@ -21,19 +21,58 @@ export enum InputType {
 
 export interface InputBaseProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
+  /**
+   * Style properties for the component container element
+   */
   containerStyle?: React.CSSProperties;
+  /**
+   * @internal
+   */
   hasError?: boolean;
+  /**
+   * Icon to display within the component
+   */
   icon?: React.ReactElement<IconProps>;
+  /**
+   * Text for the aria-label attribute for an icon, if provided
+   */
   iconAriaLabel?: string;
+  /**
+   * Position within the component for the icon to appear
+   * @default InputIconPosition.right
+   */
   iconPosition?: InputIconPosition;
+  /**
+   * Reference to the icon element
+   */
   iconRef?: React.Ref<HTMLButtonElement>;
+  /**
+   * Relative size of the component
+   * @default InputSize.medium
+   */
   inputSize?: InputSize;
+  /**
+   * Style properties for the input element
+   */
   inputStyle?: React.CSSProperties;
   isInverse?: boolean;
+  /**
+   * Action that will fire when icon is clicked
+   */
   onIconClick?: () => void;
+  /**
+   * Action that will fire when icon receives keypress
+   */
   onIconKeyDown?: (event) => void;
   testId?: string;
+  /**
+   * @internal
+   */
   theme?: any;
+  /**
+   * The type attribute of the form field
+   * @default InputType.text
+   */
   type?: InputType;
 }
 

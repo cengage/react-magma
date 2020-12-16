@@ -129,6 +129,24 @@ export interface Modal {
   };
 }
 
+interface Combobox {
+  menu: {
+    maxHeight: string;
+  };
+}
+
+interface Dropdown {
+  content: {
+    maxHeight: string;
+  };
+}
+
+interface Select {
+  menu: {
+    maxHeight: string;
+  };
+}
+
 export interface ThemeInterface {
   breakpoints: Breakpoints;
   bodyFont: string;
@@ -136,12 +154,15 @@ export interface ThemeInterface {
   bodyNarrativeFont: string;
   borderRadius: string;
   colors: Colors;
+  combobox: Combobox;
   direction: string;
+  dropdown: Dropdown;
   headingFont: string;
   iconSizes: IconSizes;
   spaceScale: SpacingScale;
   headingExpressiveFont: string;
   headingNarrativeFont: string;
+  select: Select;
   typeScale: TypeScale;
   typographyVisualStyles: TypographyVisualStyles;
   typographyExpressiveVisualStyles: TypographyVisualStyles;
@@ -213,6 +234,24 @@ export const magma = {
   headingExpressiveFont: '"Open Sans",Helvetica,sans-serif',
   headingNarrativeFont: "'Noto Serif',Times New Roman,serif",
   direction: 'ltr',
+
+  dropdown: {
+    content: {
+      maxHeight: '250px',
+    },
+  },
+
+  combobox: {
+    menu: {
+      maxHeight: '250px',
+    },
+  },
+
+  select: {
+    menu: {
+      maxHeight: '250px',
+    },
+  },
 
   colors: {
     primary: '#006298', // link color blue

@@ -1,6 +1,13 @@
 ---
 pageTitle: Table API
 title: Table
+props:
+  - TableProps
+  - TableBodyProps
+  - TableCellProps
+  - TableHeadProps
+  - TableHeaderCellProps
+  - TableRowProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -553,169 +560,39 @@ Content other than just text, such as buttons, inputs and other elements can be 
 
 All of the [standard table attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table) can be provided as props and will be applied to the `table` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    density: {
-      type: {
-        name: 'enum',
-        options: [
-          'TableDensity.compact',
-          'TableDensity.loose',
-          'TableDensity.normal',
-        ],
-      },
-      required: false,
-      description: 'Relative padding of the table cells',
-      defaultValue: 'normal',
-    },
-    hasHoverStyles: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, row will be visually highlighted on hover',
-    },
-    hasVerticalBorders: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, columns will have vertical borders',
-    },
-    hasZebraStripes: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, every other row will have a background color',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    minWidth: {
-      type: {
-        name: 'number',
-      },
-      required: false,
-      description: 'Minimum width for the table in pixels',
-      defaultValue: '600',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-  }}
-/>
+<TableProps />
+
+## TableHead Props
+
+**This component uses `forwardRef`. The ref is applied to the `thead` element.**
+
+All of the [standard thead attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/thead) can be provided as props and will be applied to the `th` element that gets rendered.
+
+<TableHeadProps />
 
 ## TableHeaderCell Props
 
 **This component uses `forwardRef`. The ref is applied to the `th` element.**
 
-All of the [standard th attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th) can be provided as props and will be applied to the `th` element that gets rendered.
+All of the [standard th attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th) can be provided as props and will be applied to the `thead` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    align: {
-      type: {
-        name: 'enum',
-        options: [
-          'TableCellAlign.center',
-          'TableCellAlign.inherit',
-          'TableCellAlign.justify',
-          'TableCellAlign.left',
-          'TableCellAlign.right',
-        ],
-      },
-      required: false,
-      description:
-        'Text alignment of the cell content.  Right alignment should be used for numeric values.',
-      defaultValue: 'left',
-    },
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    isSortable: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, the header will render a button for sorting',
-    },
-    onSort: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description:
-        'Event that fires when clicking the table header cell sort button',
-    },
-    scope: {
-      type: {
-        name: 'enum',
-        options: [
-          'TableHeaderCellScope.col',
-          'TableHeaderCellScope.colgroup',
-          'TableHeaderCellScope.row',
-          'TableHeaderCellScope.rowgroup',
-        ],
-        required: false,
-        description:
-          'Scope attribute for header cell.  Indicates which cells are associated to which header.',
-        defaultValue: 'col',
-      },
-    },
-    sortDirection: {
-      type: {
-        name: 'enum',
-        options: [
-          'TableSortDirection.ascending',
-          'TableSortDirection.descending',
-          'TableSortDirection.none',
-        ],
-      },
-      required: false,
-      description: 'Direction by which the column is sorted',
-      defaultValue: 'none',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    width: {
-      type: {
-        name: 'string | number (px)',
-      },
-      required: false,
-      description: 'Width of the component, set by CSS.',
-      defaultValue: 'auto',
-    },
-  }}
-/>
+<TableHeaderCellProps />
+
+## TableBody Props
+
+**This component uses `forwardRef`. The ref is applied to the `tbody` element.**
+
+All of the [standard tbody attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tbody) can be provided as props and will be applied to the `tbody` element that gets rendered.
+
+<TableBodyProps />
+
+## TableRow Props
+
+**This component uses `forwardRef`. The ref is applied to the `tr` element.**
+
+All of the [standard tr attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr) can be provided as props and will be applied to the `tr` element that gets rendered.
+
+<TableRowProps />
 
 ## TableCell Props
 
@@ -723,49 +600,7 @@ All of the [standard th attributes](https://developer.mozilla.org/en-US/docs/Web
 
 All of the [standard td attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/td) can be provided as props and will be applied to the `td` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    align: {
-      type: {
-        name: 'enum',
-        options: [
-          'TableCellAlign.center',
-          'TableCellAlign.inherit',
-          'TableCellAlign.justify',
-          'TableCellAlign.left',
-          'TableCellAlign.right',
-        ],
-      },
-      required: false,
-      description:
-        'Text alignment of the cell content.  Right alignment should be used for numeric values.',
-      defaultValue: 'left',
-    },
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    width: {
-      type: {
-        name: 'string | number (px)',
-      },
-      required: false,
-      description: 'Width of the component, set by CSS.',
-      defaultValue: 'auto',
-    },
-  }}
-/>
+<TableCellProps />
 
 export default props => (
   <ScopeableLayout

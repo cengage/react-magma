@@ -22,7 +22,8 @@ const StyledCard = styled(Card)<{
 }>`
   display: ${props => (props.isOpen ? 'block' : 'none')};
   left: ${props => props.theme.spaceScale.spacing02};
-  max-height: ${props => (props.maxHeight ? props.maxHeight : '250px')};
+  max-height: ${props =>
+    props.maxHeight ? props.maxHeight : props.theme.dropdown.content.maxHeight};
   opacity: ${props => (props.isOpen ? '1' : '0')};
   outline: 0;
   overflow-y: auto;

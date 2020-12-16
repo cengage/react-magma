@@ -50,6 +50,7 @@ const generateJson = () => {
 
 const filterJson = () => {
   const jsonOrig = JSON.parse(fs.readFileSync(outPath, 'utf8'));
+  // console.log(JSON.stringify(jsonOrig, null, 2))
 
   const findById = id => {
     return jsonOrig.children
@@ -85,7 +86,15 @@ const filterJson = () => {
     );
   };
 
-  const findType = ({ type, id, name }) => {
+  const findType = ({ type, id, name, elementType = {}, types = [] }) => {
+    name = name || elementType.name;
+    let suffix = '';
+    if (type === 'array') {
+      suffix = '[]';
+    }
+    if (type === 'union') {
+      name = types.map(type => type.name).join(' | ');
+    }
     if (type === 'reference') {
       const referenceType = findById(id);
       if (referenceType && referenceType.kindString === 'Enumeration') {
@@ -97,7 +106,10 @@ const filterJson = () => {
         };
       }
     }
-    return { name: name || 'function' };
+
+    name = name === 'T' ? 'Generic' : name;
+
+    return { name: `${name || 'function'}${suffix}` };
   };
 
   const filterEmotion = definition =>
@@ -118,7 +130,7 @@ const filterJson = () => {
       ...acc,
       [child.name]: {
         name: child.name,
-        required: !child.flags.isOptional,
+        required: child.flags && !child.flags.isOptional,
         type: findType(child.type),
         description:
           (child.comment && child.comment.shortText) ||

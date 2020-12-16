@@ -13,6 +13,7 @@ import {
   ItemRenderOptions,
 } from './components';
 import styled from '../../theme/styled';
+import { convertStyleValueToString } from '../../utils';
 
 interface ItemsListProps<T> {
   customComponents?: SelectComponents<T>;
@@ -22,6 +23,7 @@ interface ItemsListProps<T> {
   isOpen?: boolean;
   items: T[];
   itemToString: (item: T) => string;
+  maxHeight?: number | string;
   menuStyle?: React.CSSProperties;
 }
 
@@ -41,6 +43,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
     itemToString,
     highlightedIndex,
     getItemProps,
+    maxHeight,
     menuStyle,
   } = props;
 
@@ -49,13 +52,14 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
 
   const hasItems = items && items.length > 0;
 
+  const heightString = convertStyleValueToString(maxHeight);
   const { Item } = defaultComponents<T>({
     ...customComponents,
   });
 
   return (
     <StyledCard hasDropShadow isOpen={isOpen} style={menuStyle}>
-      <StyledList isOpen={isOpen} {...getMenuProps()}>
+      <StyledList isOpen={isOpen} {...getMenuProps()} maxHeight={heightString}>
         {isOpen && hasItems ? (
           items.map((item, index) => {
             const itemString = instanceOfToBeCreatedItemObject(item)

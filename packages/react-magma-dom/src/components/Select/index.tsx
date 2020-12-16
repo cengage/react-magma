@@ -17,54 +17,133 @@ export type SelectOptions =
   | { value: string; label: string; [key: string]: any }
   | any;
 
-export interface InternalSelectInterface<T> {
+export interface InternalSelectProps<T> {
+  /**
+   * This complex object includes all the compositional components that are used. If you wish to overwrite a component, pass in a component to the appropriate namespace
+   */
   components?: SelectComponents<T>;
+  /**
+   * Style properties for the component container
+   */
   containerStyle?: React.CSSProperties;
+  /**
+   * Content of the error message. If a value is provided, the component will be styled to show an error state
+   */
   errorMessage?: React.ReactNode;
+  /**
+   * Content of the helper message
+   */
   helperMessage?: React.ReactNode;
+  /**
+   * Style properties for the select trigger or combobox input
+   */
   inputStyle?: React.CSSProperties;
+  /**
+   * If true, the component include a button for clearing the field
+   * @default false
+   */
   isClearable?: boolean;
+  /**
+   * Max-height for the item menu list ul element
+   */
+  itemListMaxHeight?: number | string;
+  /**
+   * If true, item will be disabled; it will appear dimmed and events will not fire
+   * @default false
+   */
   disabled?: boolean;
   isInverse?: boolean;
+  /**
+   * If true, label text will be hidden visually, but will still be read by assistive technology
+   * @default false
+   */
   isLabelVisuallyHidden?: boolean;
+  /**
+   * If true, multiple items may be selected
+   * @default false
+   */
   isMulti?: boolean;
+  /**
+   * Style properties for the label
+   */
   labelStyle?: React.CSSProperties;
+  /**
+   * Text for label
+   */
   labelText: string;
+  /**
+   * Style properties for the items menu
+   */
   menuStyle?: React.CSSProperties;
+  /**
+   * Style properties for the helper or error message
+   */
   messageStyle?: React.CSSProperties;
-  name?: string;
+  /**
+   * Text for select trigger button or combobox input placeholder
+   */
   placeholder?: string;
   testId?: string;
 }
 
-export interface InternalMultiInterface<T> {
+export interface InternalMultiProps<T> {
+  /**
+   * Event that fires when the clear button is clicked on a multi-selected item
+   */
   onRemoveSelectedItem?: (removedItem: T) => void;
 }
 
-export interface SelectInterface<T extends SelectOptions>
+export interface SelectProps<T extends SelectOptions>
   extends UseSelectProps<T>,
-    InternalSelectInterface<T> {
+    InternalSelectProps<T> {
+  /**
+   * Id of the element that describes the select trigger button
+   */
   ariaDescribedBy?: string;
+  /**
+   * @internal
+   */
   hasError?: boolean;
+  /**
+   * Reference to the trigger button element in the select
+   */
   innerRef?: React.Ref<HTMLButtonElement>;
+  /**
+   * Event that fires when the trigger button loses focus
+   */
   onBlur?: (event: React.FocusEvent) => void;
+  /**
+   * Event that fires when the trigger button gains focus
+   */
   onFocus?: (event: React.FocusEvent) => void;
+  /**
+   * Event that fires when the trigger button receives keypress
+   */
   onKeyDown?: (event: React.KeyboardEvent) => void;
+  /**
+   * Event that will fire when a character is typed while focused on the trigger button
+   */
   onKeyPress?: (event: React.KeyboardEvent) => void;
+  /**
+   * Event that will fire when a keypress is released while focused on the trigger button
+   */
   onKeyUp?: (event: React.KeyboardEvent) => void;
 }
 
-export interface MultiSelectInterface<T extends SelectOptions>
+export interface MultiSelectProps<T extends SelectOptions>
   extends UseMultipleSelectionProps<T>,
-    Omit<SelectInterface<T>, 'onStateChange' | 'stateReducer'>,
-    InternalMultiInterface<T> {
+    Omit<SelectProps<T>, 'onStateChange' | 'stateReducer'>,
+    InternalMultiProps<T> {
+  /**
+   * @internal
+   */
   hasError?: boolean;
   isInverse?: boolean;
 }
 
 export function instanceOfMultiSelect<T>(
   object: any
-): object is MultiSelectInterface<T> {
+): object is MultiSelectProps<T> {
   return 'isMulti' in object && object.type !== 'combo';
 }
 
@@ -92,7 +171,7 @@ export const SelectStateChangeTypes = useSelect.stateChangeTypes;
 export const MultipleSelectionStateChangeTypes =
   useMultipleSelection.stateChangeTypes;
 
-export function Select<T>(props: SelectInterface<T>) {
+export function Select<T>(props: SelectProps<T>) {
   const {
     containerStyle,
     id: defaultId,

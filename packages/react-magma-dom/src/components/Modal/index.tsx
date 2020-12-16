@@ -23,19 +23,56 @@ export enum ModalSize {
   small = 'small',
 }
 
+/**
+ * @children required
+ */
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * The text read by screen readers for the close button
+   * @default "Close dialog"
+   */
   closeAriaLabel?: string;
+  /**
+   * The content of the modal header
+   */
   header?: React.ReactNode;
-  id?: string;
+  /**
+   * If true, clicking the backdrop will not dismiss the modal
+   * @default false
+   */
   isBackgroundClickDisabled?: boolean;
+  /**
+   * If true, the close button the the modal will be suppressed
+   * @default false
+   */
   isCloseButtonHidden?: boolean;
+  /**
+   * If true, pressing the Escape key will not dismiss the modal
+   * @false
+   */
   isEscKeyDownDisabled?: boolean;
-  isExiting?: boolean;
+  /**
+   * If true, the modal will be visible
+   * @default false
+   */
   isOpen?: boolean;
+  /**
+   * Action that fires when the close button is clicked
+   */
   onClose?: () => void;
+  /**
+   * Action that fires when the Escape key is pressed
+   */
   onEscKeyDown?: (event: KeyboardEvent) => void;
+  /**
+   * The relative size of the modal
+   * @default ModalSize.medium
+   */
   size?: ModalSize;
   testId?: string;
+  /**
+   * @internal
+   */
   theme?: ThemeInterface;
 }
 
@@ -82,7 +119,7 @@ const ModalBackdrop = styled.div<{ isExiting?: boolean }>`
   }
 `;
 
-const ModalContent = styled.div<ModalProps>`
+const ModalContent = styled.div<ModalProps & { isExiting?: boolean }>`
   animation: ${props =>
     props.isExiting ? 'fadeSlideOut 500ms' : 'fadeSlideIn 500ms'};
   background: ${props => props.theme.colors.neutral08};

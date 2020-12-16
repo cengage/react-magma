@@ -7,12 +7,29 @@ import {
   TypographyComponent,
 } from '../Typography';
 
+/**
+ * @children required
+ */
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
+  /**
+   * The color of the component, that helps to convey meaning or relative emphasis
+   * @default TypographyColor.default
+   */
   color?: TypographyColor;
+  /**
+   * Additional styles for typography based on the context of the content
+   * @default TypographyColor.default
+   */
   contextVariant?: TypographyContextVariant;
   isInverse?: boolean;
+  /**
+   * Number to indicate which level heading will render (e.g. h1, h2 etc.)
+   */
   level: 1 | 2 | 3 | 4 | 5 | 6;
   testId?: string;
+  /**
+   * Applies visual styles including font-size, font-weight, line-height and margins
+   */
   visualStyle?: TypographyVisualStyle;
 }
 
