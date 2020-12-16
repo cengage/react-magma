@@ -1,6 +1,8 @@
 ---
 pageTitle: Hyperlink API
 title: Hyperlink
+props:
+  - HyperlinkProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -83,125 +85,7 @@ Use this when you want to render something that is from another library. For exa
 
 All of the [standard anchor attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) can be provided as props and will be applied to the `a` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    color: {
-      type: {
-        name: 'enum',
-        options: [
-          'ButtonColor.primary',
-          'ButtonColor.secondary',
-          'ButtonColor.success',
-          'ButtonColor.danger',
-          'ButtonColor.marketing',
-        ],
-      },
-      required: false,
-      description:
-        'If the link is styled as a button, the color of the component, indicating its function in the UI',
-      defaultValue: 'primary',
-    },
-    isFullWidth: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, and if the link is styled as a button, the link will take up the full width of its container',
-      defaultValue: 'false',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    shape: {
-      type: {
-        name: 'enum',
-        options: [
-          'ButtonShape.fill',
-          'ButtonShape.leftCap',
-          'ButtonShape.rightCap',
-        ],
-      },
-      required: false,
-      description:
-        'If the link is styled as a button, this defines the border radius',
-      defaultValue: 'fill',
-    },
-    size: {
-      type: {
-        name: 'enum',
-        options: ['ButtonSize.large', 'ButtonSize.medium', 'ButtonSize.small'],
-      },
-      required: false,
-      description:
-        'If the link is styled as a button, the relative size of the component',
-      defaultValue: 'medium',
-    },
-    styledAs: {
-      type: {
-        name: 'enum',
-        options: ['Button', 'Link'],
-      },
-      required: false,
-      description:
-        'How the hyperlink is styled (can look like either a plain link or a button)',
-      defaultValue: 'Link',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    textTransform: {
-      type: {
-        name: 'enum',
-        options: ['ButtonTextTransform.uppercase', 'ButtonTextTransform.none'],
-      },
-      required: false,
-      description:
-        'If the link is styled as a button, this determines whether the button appears in all-caps',
-      defaultValue: 'uppercase',
-    },
-    to: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'The href value of the link',
-      defaultValue: '',
-    },
-    variant: {
-      type: {
-        name: 'enum',
-        options: [
-          'ButtonVariant.solid',
-          'ButtonVariant.outline',
-          'ButtonVariant.link',
-        ],
-      },
-      required: false,
-      description:
-        'If the link is styled as a button, the variant of the component (e.g. outline, link, solid)',
-      defaultValue: 'solid',
-    },
-  }}
-/>
+<HyperlinkProps />
 
 export default props => (
   <ScopeableLayout

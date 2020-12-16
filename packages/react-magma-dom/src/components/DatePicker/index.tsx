@@ -25,29 +25,83 @@ export interface DatePickerProps
     React.InputHTMLAttributes<HTMLInputElement>,
     'value' | 'onChange'
   > {
+  /**
+   * Style properties for the component container element
+   */
   containerStyle?: React.CSSProperties;
+  /**
+   * Default selected date value
+   */
   defaultDate?: Date;
+  /**
+   * Content of the error message. If a value is provided, the component will be styled to show an error state
+   */
   errorMessage?: React.ReactNode;
+  /**
+   * Content of the helper message
+   */
   helperMessage?: React.ReactNode;
-  id?: string;
+  /**
+   * Style properties for the input element
+   */
   inputStyle?: React.CSSProperties;
   isInverse?: boolean;
+  /**
+   * Style properties for the label element
+   */
   labelStyle?: React.CSSProperties;
+  /**
+   * Text for label
+   */
   labelText: React.ReactNode;
+  /**
+   * Maximum date allowed to be chosen in the calendar
+   */
   maxDate?: Date;
+  /**
+   * Style properties for the helper or error message
+   */
   messageStyle?: React.CSSProperties;
+  /**
+   * Minimum date allowed to be chosen in the calendar
+   */
   minDate?: Date;
+  /**
+   * Text for input placeholder
+   */
   placeholder?: string;
+  /**
+   * If true, this component must have a value
+   * @default false
+   */
   required?: boolean;
   testId?: string;
+  /**
+   * Value of the date input, used when setting the date value externally
+   */
   value?: Date;
+  /**
+   * Event fired in multiple instances when internal values are changed and can be used as a generic state change event
+   */
   onChange?: (
     value: string,
     event: React.ChangeEvent | React.SyntheticEvent
   ) => void;
+  /**
+   * Event that will fire when day is changed
+   */
   onDateChange?: (day: Date, event: React.SyntheticEvent) => void;
+  /**
+   * Event that will fire when the text input loses focus
+   */
   onInputBlur?: (event: React.FocusEvent) => void;
+  /**
+   * Event that will fire when the text input is changed
+   */
   onInputChange?: (event: React.ChangeEvent) => void;
+  /**
+   * Event that will fire when the text input gains focus
+   */
   onInputFocus?: (event: React.FocusEvent) => void;
 }
 
@@ -76,9 +130,10 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     const iconRef = React.useRef<HTMLButtonElement>();
     const inputRef = React.useRef<HTMLInputElement>();
     const id: string = useGenerateId(props.id);
-    const [showHelperInformation, setShowHelperInformation] = React.useState<
-      boolean
-    >(false);
+    const [
+      showHelperInformation,
+      setShowHelperInformation,
+    ] = React.useState<boolean>(false);
     const [calendarOpened, setCalendarOpened] = React.useState<boolean>(false);
     const [dateFocused, setDateFocused] = React.useState<boolean>(false);
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SelectInterface } from '.';
+import { SelectProps } from '.';
 import { useSelect } from 'downshift';
 import { SelectText } from './shared';
 import { defaultComponents } from './components';
@@ -11,7 +11,7 @@ import { SelectTriggerButton } from './SelectTriggerButton';
 import { I18nContext } from '../../i18n';
 import { useForkedRef } from '../../utils';
 
-export function Select<T>(props: SelectInterface<T>) {
+export function Select<T>(props: SelectProps<T>) {
   const {
     ariaDescribedBy,
     components: customComponents,

@@ -1,6 +1,8 @@
 ---
 pageTitle: Heading API
 title: Heading
+props:
+  - HeadingProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -179,101 +181,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the heading (h1-6) element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    color: {
-      type: {
-        name: 'enum',
-        options: [
-          'TypographyColor.danger',
-          'TypographyColor.default',
-          'TypographyColor.success',
-          'TypographyColor.subdued',
-        ],
-      },
-      required: false,
-      description:
-        'The color of the component, that helps to convey meaning or relative emphasis',
-      defaultValue: 'default',
-    },
-    contextVariant: {
-      type: {
-        name: 'enum',
-        options: [
-          'TypographyContextVariant.expressive',
-          'TypographyContextVariant.narrative',
-          'TypographyContextVariant.default',
-        ],
-      },
-      description:
-        'Additional styles for typography based on the context of the content',
-      defaultValue: 'default',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    level: {
-      type: {
-        name: 'number (1-6)',
-      },
-      required: true,
-      description:
-        'Number to indicate which level heading will render (e.g. h1, h2 etc.)',
-      defaultValue: '',
-    },
-    noMargins: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will not have default top and bottom margins for the respective heading element and instead will a margin value of 0.',
-      defaultValue: 'false',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    visualStyle: {
-      type: {
-        name: 'enum',
-        options: [
-          'TypographyVisualStyle.headingXLarge',
-          'TypographyVisualStyle.headingLarge',
-          'TypographyVisualStyle.headingMedium',
-          'TypographyVisualStyle.headingSmall',
-          'TypographyVisualStyle.headingXSmall',
-          'TypographyVisualStyle.heading2XSmall',
-          'TypographyVisualStyle.bodyLarge',
-          'TypographyVisualStyle.bodyMedium',
-          'TypographyVisualStyle.bodySmall',
-          'TypographyVisualStyle.bodyXSmall',
-        ],
-      },
-      required: false,
-      description:
-        'Applies visual styles including font-size, font-weight, line-height and margins',
-      defaultValue: 'Default styles associated with the heading level 1-6',
-    },
-  }}
-/>
+<HeadingProps />
 
 export default props => (
   <ScopeableLayout
