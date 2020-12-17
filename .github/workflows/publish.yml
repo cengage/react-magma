@@ -23,6 +23,19 @@ jobs:
           git config --global user.name 'github-bot'
           git config --global user.email 'github-bot@users.noreply.github.com'
           echo //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }} > .npmrc
+      - name: Verify Changed files
+        uses: tj-actions/verify-changed-files@v5
+        id: changed_files
+        with:
+          files: |
+             packages/react-magma-docs/src/data/properties.json
+      - name: Perform action when files change.
+        if: steps.changed_files.outputs.files_changed == 'true'
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git add packages/react-magma-docs/src/data/properties.json
+          git commit -m 'update properties.json'
+          git push
       - name: Publish (Latest)
         if: github.ref == 'refs/heads/main'
         run: |
