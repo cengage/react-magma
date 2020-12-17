@@ -63,6 +63,7 @@ export const defaultI18n: I18nInterface = {
       sunday: 'S',
     },
   },
+  emptyItemsListText: 'No Options',
   alert: {
     dismissAriaLabel: 'Close this message',
   },

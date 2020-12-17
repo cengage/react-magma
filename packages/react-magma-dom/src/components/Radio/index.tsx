@@ -23,15 +23,42 @@ export enum RadioTextPosition {
 
 export interface RadioProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
+  /**
+   * @internal
+   */
   css?: any; // Adding css prop to fix emotion error
+  /**
+   * Hex code for the background color
+   * @default #0000FF
+   */
   color?: string;
+  /**
+   * Style properties for the component container element
+   */
   containerStyle?: React.CSSProperties;
+  /**
+   * Style properties for the radio button element
+   */
   inputStyle?: React.CSSProperties;
   isInverse?: boolean;
+  /**
+   * If true, label text will be hidden visually, but will still be read by assistive technology
+   * @default false
+   */
   isTextVisuallyHidden?: boolean;
+  /**
+   * Style properties for the label element
+   */
   labelStyle?: React.CSSProperties;
+  /**
+   * Content of label; can be node or string
+   */
   labelText: React.ReactNode;
   testId?: string;
+  /**
+   * Whether the label appears to the left of the right of the radio button
+   * @default RadioTextPosition.right
+   */
   textPosition?: RadioTextPosition;
 }
 

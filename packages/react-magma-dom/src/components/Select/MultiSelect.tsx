@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { MultiSelectInterface } from '.';
+import { MultiSelectProps } from '.';
 import { useSelect, useMultipleSelection } from 'downshift';
 import { CrossIcon } from 'react-magma-icons';
 import { ItemsList } from './ItemsList';
@@ -10,9 +10,10 @@ import { SelectedItemButton, IconWrapper } from './shared';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 
-export function MultiSelect<T>(props: MultiSelectInterface<T>) {
+export function MultiSelect<T>(props: MultiSelectProps<T>) {
   const {
     ariaDescribedBy,
+    components: customComponents,
     hasError,
     inputStyle,
     isLabelVisuallyHidden,
@@ -23,6 +24,7 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
     labelText,
     disabled,
     isInverse,
+    itemListMaxHeight,
     menuStyle,
     onBlur,
     onFocus,
@@ -199,12 +201,14 @@ export function MultiSelect<T>(props: MultiSelectInterface<T>) {
           : i18n.multiSelect.placeholder}
       </SelectTriggerButton>
       <ItemsList
+        customComponents={customComponents}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}
         isOpen={isOpen}
         items={getFilteredItems(items)}
         itemToString={itemToString}
+        maxHeight={itemListMaxHeight || theme.select.menu.maxHeight}
         menuStyle={menuStyle}
       />
     </SelectContainer>

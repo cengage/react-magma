@@ -6,18 +6,15 @@ order: 1
 
 import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
-import DocsHeading from '../../components/docs-heading';
-import { Paragraph } from 'react-magma-dom';
+import { DocsHeading } from '../../components/DocsHeading';
+import { LeadParagraph } from '../../components/LeadParagraph';
 
 <DocsHeading to="/api/card/" type="design">
   Card
 </DocsHeading>
-
-<Paragraph visualStyle="bodyLarge">
+<LeadParagraph>
   Cards provide a flexible container with multiple variants and options.
-</Paragraph>
-
-<span class="horizontal-spacer"></span>
+</LeadParagraph>
 
 <figure>
   <img src="../../images/cards/card-intro-example.png" alt=" " />

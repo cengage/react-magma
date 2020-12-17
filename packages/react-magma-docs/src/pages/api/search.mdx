@@ -1,13 +1,15 @@
 ---
 pageTitle: Search API
 title: Search
+props:
+  - SearchProps
 ---
 
 import { Link } from 'gatsby';
 import { ScopeableLayout } from '../../components/layout';
 import { Search, Card, CardBody } from 'react-magma-dom';
-import { SimplePropsTable } from '../../components/props-table';
-import DocsHeading from '../../components/docs-heading';
+import { SimplePropsTable } from '../../components/SimplePropsTable';
+import { DocsHeading } from '../../components/DocsHeading';
 
 <DocsHeading to="/design/search/" type="api">
   Search
@@ -122,91 +124,7 @@ Please use discretion when adding custom styles.
 
 All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the `input` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    containerStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the component container element',
-    },
-    iconAriaLabel: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Text for icon button aria-label',
-      defaultValue: 'Search',
-    },
-    inputSize: {
-      type: {
-        name: 'enum',
-        options: ['InputSize.large', 'InputSize.medium'],
-      },
-      required: false,
-      description: 'Relative size of the component',
-      defaultValue: 'medium',
-    },
-    inputStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the input element',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    isLoading: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will show a loading animation instead of a search button',
-      defaultValue: 'false',
-    },
-    labelText: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Text for input aria-label',
-      defaultValue: 'Search',
-    },
-    onSearch: {
-      type: {
-        name: 'function',
-      },
-      required: true,
-      description: 'Action that will fire when search icon button is clicked.',
-      defaultValue: '',
-    },
-    placeholder: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Text for input placeholder',
-      defaultValue: 'Search',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-  }}
-/>
+<SearchProps />
 
 export default props => (
   <ScopeableLayout {...props} components={{ Search, Card, CardBody }} />

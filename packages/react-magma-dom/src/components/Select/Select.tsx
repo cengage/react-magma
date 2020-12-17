@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SelectInterface } from '.';
+import { SelectProps } from '.';
 import { useSelect } from 'downshift';
 import { SelectText } from './shared';
 import { defaultComponents } from './components';
@@ -8,10 +8,11 @@ import { ButtonSize, ButtonVariant } from '../Button';
 import { ItemsList } from './ItemsList';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { useForkedRef } from '../../utils';
 
-export function Select<T>(props: SelectInterface<T>) {
+export function Select<T>(props: SelectProps<T>) {
   const {
     ariaDescribedBy,
     components: customComponents,
@@ -20,6 +21,7 @@ export function Select<T>(props: SelectInterface<T>) {
     inputStyle,
     isLabelVisuallyHidden,
     innerRef,
+    itemListMaxHeight,
     itemToString,
     items,
     labelStyle,
@@ -40,6 +42,7 @@ export function Select<T>(props: SelectInterface<T>) {
   } = props;
 
   const toggleButtonRef = React.useRef<HTMLButtonElement>();
+  const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
   const ref = useForkedRef(innerRef || null, toggleButtonRef);
@@ -107,7 +110,7 @@ export function Select<T>(props: SelectInterface<T>) {
       getValidItem(passedInSelectedItem, 'selectedItem')),
   });
 
-  const { ClearIndicator } = defaultComponents({
+  const { ClearIndicator } = defaultComponents<T>({
     ...customComponents,
   });
 
@@ -182,10 +185,12 @@ export function Select<T>(props: SelectInterface<T>) {
         )}
       </SelectTriggerButton>
       <ItemsList
+        customComponents={customComponents}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}
         isOpen={isOpen}
+        maxHeight={itemListMaxHeight || theme.select.menu.maxHeight}
         items={items}
         itemToString={itemToString}
         menuStyle={menuStyle}

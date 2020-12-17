@@ -11,7 +11,6 @@ import {
 } from 'downshift';
 
 import { SelectedItemsWrapper } from '../Select/shared';
-import { SelectOptions } from '../Select';
 
 const ComboBoxContainer = styled.div<{
   hasError?: boolean;
@@ -94,13 +93,14 @@ const StyledInput = styled.input`
 interface ComboboxInputProps<T> {
   ariaDescribedBy?: string;
   children?: React.ReactNode | React.ReactNode[];
-  customComponents?: SelectComponents;
+  customComponents?: SelectComponents<T>;
   getComboboxProps: (options?: UseComboboxGetComboboxPropsOptions) => any;
   getInputProps: (options?: UseComboboxGetInputPropsOptions) => any;
   getToggleButtonProps: (
     options?: UseComboboxGetToggleButtonPropsOptions
   ) => any;
   hasError?: boolean;
+  innerRef?: React.Ref<HTMLInputElement>;
   inputStyle?: React.CSSProperties;
   disabled?: boolean;
   isInverse?: boolean;
@@ -115,102 +115,98 @@ interface ComboboxInputProps<T> {
   toggleButtonRef?: React.Ref<HTMLButtonElement>;
 }
 
-export const ComboboxInput = React.forwardRef(
-  <T extends SelectOptions>(
-    props: ComboboxInputProps<T>,
-    ref: React.Ref<HTMLInputElement>
-  ) => {
-    const {
-      ariaDescribedBy,
-      children,
-      customComponents,
-      getComboboxProps,
-      getInputProps,
-      getToggleButtonProps,
-      hasError,
-      inputStyle,
-      disabled,
-      isInverse,
-      isLoading,
-      onInputBlur,
-      onInputFocus,
-      onInputKeyDown,
-      onInputKeyPress,
-      onInputKeyUp,
-      placeholder,
-      selectedItems,
-      toggleButtonRef,
-    } = props;
-    const theme = React.useContext(ThemeContext);
+export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
+  const {
+    ariaDescribedBy,
+    children,
+    customComponents,
+    getComboboxProps,
+    getInputProps,
+    getToggleButtonProps,
+    hasError,
+    innerRef,
+    inputStyle,
+    disabled,
+    isInverse,
+    isLoading,
+    onInputBlur,
+    onInputFocus,
+    onInputKeyDown,
+    onInputKeyPress,
+    onInputKeyUp,
+    placeholder,
+    selectedItems,
+    toggleButtonRef,
+  } = props;
+  const theme = React.useContext(ThemeContext);
 
-    const [isFocused, setIsFocused] = React.useState<boolean>(false);
+  const [isFocused, setIsFocused] = React.useState<boolean>(false);
 
-    const { DropdownIndicator, LoadingIndicator } = defaultComponents({
-      ...customComponents,
-    });
+  const { DropdownIndicator, LoadingIndicator } = defaultComponents<T>({
+    ...customComponents,
+  });
 
-    function handleBlur(e: React.FocusEvent) {
-      setIsFocused(false);
+  function handleBlur(e: React.FocusEvent) {
+    setIsFocused(false);
 
-      onInputBlur && typeof onInputBlur === 'function' && onInputBlur(e);
-    }
+    onInputBlur && typeof onInputBlur === 'function' && onInputBlur(e);
+  }
 
-    function handleFocus(e: React.FocusEvent) {
-      setIsFocused(true);
+  function handleFocus(e: React.FocusEvent) {
+    setIsFocused(true);
 
-      onInputFocus && typeof onInputFocus === 'function' && onInputFocus(e);
-    }
+    onInputFocus && typeof onInputFocus === 'function' && onInputFocus(e);
+  }
 
-    const inputProps = getInputProps({
-      disabled: disabled,
-      onBlur: handleBlur,
-      onFocus: handleFocus,
-      onKeyDown: onInputKeyDown,
-      onKeyPress: onInputKeyPress,
-      onKeyUp: onInputKeyUp,
-      ...(ref && { ref }),
-    });
+  const inputProps = getInputProps({
+    disabled: disabled,
+    onBlur: handleBlur,
+    onFocus: handleFocus,
+    onKeyDown: onInputKeyDown,
+    onKeyPress: onInputKeyPress,
+    onKeyUp: onInputKeyUp,
+    ...(innerRef && { ref: innerRef }),
+  });
 
-    return (
-      <ComboBoxContainer
-        {...getComboboxProps()}
+  return (
+    <ComboBoxContainer
+      {...getComboboxProps()}
+      hasError={hasError}
+      disabled={disabled}
+      isInverse={isInverse}
+      theme={theme}
+    >
+      <InputContainer
+        {...getToggleButtonProps({
+          disabled,
+          ...(toggleButtonRef && { ref: toggleButtonRef }),
+        })}
         hasError={hasError}
         disabled={disabled}
+        isFocused={isFocused}
         isInverse={isInverse}
+        style={inputStyle}
         theme={theme}
       >
-        <InputContainer
-          {...getToggleButtonProps({
-            disabled,
-            ...(toggleButtonRef && { ref: toggleButtonRef }),
-          })}
-          hasError={hasError}
-          disabled={disabled}
-          isFocused={isFocused}
-          isInverse={isInverse}
-          style={inputStyle}
-          theme={theme}
-        >
-          <SelectedItemsWrapper>
-            {selectedItems}
-            <StyledInput
-              {...inputProps}
-              aria-describedby={ariaDescribedBy}
-              aria-invalid={hasError}
-              disabled={disabled}
-              placeholder={placeholder}
-              theme={theme}
-            />
-          </SelectedItemsWrapper>
-          {children}
-          {isLoading && (
-            <LoadingIndicator
-              style={{ flexShrink: 0, marginRight: theme.spaceScale.spacing02 }}
-            />
-          )}
-          <DropdownIndicator aria-label="toggle menu" />
-        </InputContainer>
-      </ComboBoxContainer>
-    );
-  }
-);
+        <SelectedItemsWrapper>
+          {selectedItems}
+          <StyledInput
+            {...inputProps}
+            aria-describedby={ariaDescribedBy}
+            aria-invalid={hasError}
+            disabled={disabled}
+            placeholder={placeholder}
+            theme={theme}
+          />
+        </SelectedItemsWrapper>
+        {children}
+        {isLoading && (
+          <LoadingIndicator
+            style={{ flexShrink: 0, marginRight: theme.spaceScale.spacing02 }}
+          />
+        )}
+        <DropdownIndicator aria-label="toggle menu" />
+      </InputContainer>
+    </ComboBoxContainer>
+  );
+}

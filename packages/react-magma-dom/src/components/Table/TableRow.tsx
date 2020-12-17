@@ -4,6 +4,9 @@ import { css } from '@emotion/core';
 import { TableContext } from './';
 import { ThemeContext } from '../../theme/ThemeContext';
 
+/**
+ * @children required
+ */
 export interface TableRowProps
   extends React.HTMLAttributes<HTMLTableRowElement> {
   testId?: string;
