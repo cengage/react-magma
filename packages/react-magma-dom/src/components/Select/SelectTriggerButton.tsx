@@ -43,7 +43,7 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
     hasError,
     disabled,
     isInverse,
-    style,
+    style: passedInStyle,
     toggleButtonProps,
   } = props;
   const theme = React.useContext(ThemeContext);
@@ -51,6 +51,8 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
   const { DropdownIndicator } = defaultComponents<T>({
     ...customComponents,
   });
+
+  const style = { ...passedInStyle, cursor: 'default' };
 
   return (
     <StyledButton
