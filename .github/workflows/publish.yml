@@ -32,10 +32,8 @@ jobs:
       - name: Perform action when files change.
         if: steps.changed_files.outputs.files_changed == 'true'
         run: |
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git add packages/react-magma-docs/src/data/properties.json
           git commit -m 'update properties.json'
-          git push
       - name: Publish (Latest)
         if: github.ref == 'refs/heads/main'
         run: |
