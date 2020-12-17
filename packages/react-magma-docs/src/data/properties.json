@@ -2639,12 +2639,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 8912,
+          "id": 8914,
           "name": "IconOnlyDropdownButtonProps"
         },
         {
           "type": "reference",
-          "id": 8916,
+          "id": 8918,
           "name": "IconTextDropdownButtonProps"
         }
       ],
@@ -4727,12 +4727,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 12107,
+          "id": 12109,
           "name": "NavTabChildrenProps"
         },
         {
           "type": "reference",
-          "id": 12373,
+          "id": 12375,
           "name": "NavTabComponentProps"
         }
       ],
@@ -8538,12 +8538,12 @@
       "types": [
         {
           "type": "reference",
-          "id": 11473,
+          "id": 11475,
           "name": "HorizontalTabsProps"
         },
         {
           "type": "reference",
-          "id": 11470,
+          "id": 11472,
           "name": "VerticalTabsProps"
         }
       ]

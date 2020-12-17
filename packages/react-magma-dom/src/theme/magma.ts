@@ -121,6 +121,14 @@ export interface TypographyVisualStyles {
   bodyXSmall: VisualStyle;
 }
 
+export interface Modal {
+  width: {
+    small: string;
+    medium: string;
+    large: string;
+  };
+}
+
 interface Combobox {
   menu: {
     maxHeight: string;
@@ -159,6 +167,7 @@ export interface ThemeInterface {
   typographyVisualStyles: TypographyVisualStyles;
   typographyExpressiveVisualStyles: TypographyVisualStyles;
   typographyNarrativeVisualStyles: TypographyVisualStyles;
+  modal: Modal;
 }
 
 const typeScale = {
@@ -461,6 +470,13 @@ export const magma = {
     bodyXSmall: {
       mobile: typeScale.size01,
       desktop: typeScale.size01,
+    },
+  },
+  modal: {
+    width: {
+      small: '300px',
+      medium: '600px',
+      large: '900px',
     },
   },
 };

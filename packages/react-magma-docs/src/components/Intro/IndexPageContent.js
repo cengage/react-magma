@@ -205,7 +205,6 @@ export class IndexPageContent extends React.Component {
                   </Hyperlink>
                 </ButtonContainer>
               </IntroSection>
-
               <IntroSection
                 section="sectionComponents"
                 image={<ImageComponents style={{ width: '100%' }} />}
@@ -226,7 +225,6 @@ export class IndexPageContent extends React.Component {
                   blocks for the UI.
                 </p>
               </IntroSection>
-
               <IntroSection
                 section="sectionQuality"
                 image={<ImageQuality style={{ width: '100%' }} />}
@@ -239,7 +237,6 @@ export class IndexPageContent extends React.Component {
                   branding, performance, and WCAG 2.0 compliance.
                 </p>
               </IntroSection>
-
               <IntroSection
                 section="sectionAccessible"
                 image={<ImageAccessible style={{ width: '100%' }} />}
@@ -256,7 +253,6 @@ export class IndexPageContent extends React.Component {
                   roles and properties.
                 </p>
               </IntroSection>
-
               <IntroSection
                 section="sectionDevice"
                 image={<ImageDevice style={{ width: '100%' }} />}
@@ -274,7 +270,6 @@ export class IndexPageContent extends React.Component {
                 </p>
                 <p>React Native components coming soon!</p>
               </IntroSection>
-
               <IntroSection
                 section="sectionEvolving"
                 image={<ImageEvolving style={{ width: '100%' }} />}
