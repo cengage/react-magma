@@ -13,7 +13,14 @@ import {
   CircleUpIcon,
   QuestionCircleIcon,
 } from 'react-magma-icons';
-import { Tooltip, IconButton, Card, CardBody } from 'react-magma-dom';
+import {
+  Tooltip,
+  IconButton,
+  Card,
+  CardBody,
+  ThemeContext,
+  magma,
+} from 'react-magma-dom';
 import { DocsHeading } from '../../components/DocsHeading';
 
 <DocsHeading to="/design/tooltips/" type="api">
@@ -106,6 +113,39 @@ The `arrowStyle` prop applies to the arrow indicator.
 </Tooltip>
 ```
 
+## Theming
+
+The values of some style properties are set in the Magma theme.
+
+```
+  tooltip: {
+    arrowSize: '6px',
+    maxWidth: '300px',
+    zIndex: 999,
+  }
+```
+
+```.jsx
+() => {
+  const customTheme = Object.assign({}, magma, {
+    tooltip: Object.assign({}, magma.tooltip, {
+      arrowSize: '15px'
+    })
+  });
+
+  return (
+    <>
+      <ThemeContext.Provider value={customTheme}>
+          <Tooltip
+            content='Tooltip with custom theme'>
+            <IconButton aria-label="Get Help" icon={<QuestionCircleIcon />} variant="link" />
+          </Tooltip>
+      </ThemeContext.Provider>
+    </>
+  )
+}
+```
+
 ## Tooltip Props
 
 **This component uses `forwardRef`. The ref is applied to the tooltip trigger element element.**
@@ -127,6 +167,8 @@ export default props => (
       QuestionCircleIcon,
       Card,
       CardBody,
+      ThemeContext,
+      magma,
     }}
   />
 );
