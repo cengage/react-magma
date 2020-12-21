@@ -2,8 +2,8 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Tooltip } from '.';
-
 import { render, fireEvent } from '@testing-library/react';
+import { magma } from '../../theme/magma';
 
 const CONTENT_TEXT = 'Test Content';
 const TRIGGER_ELEMENT = <button>Test trigger</button>;
@@ -29,6 +29,7 @@ describe('Tooltip', () => {
     const tooltip = container.querySelector('div[role="tooltip"]');
     const tooltipInner = getByText('Test Content');
     const tooltipTrigger = container.firstChild;
+    const arrow = container.querySelector('span');
 
     expect(container).toBeInTheDocument();
 
@@ -38,22 +39,38 @@ describe('Tooltip', () => {
     expect(tooltip).toBeInTheDocument();
     expect(tooltip).toHaveStyleRule('position', 'absolute');
     expect(tooltip).toHaveStyleRule('bottom', '100%');
-    expect(tooltipInner).toHaveStyleRule('background', '#3F3F3F');
-    expect(tooltipInner).toHaveStyleRule('color', '#FFFFFF');
+    expect(tooltip).toHaveStyleRule('bottom', '100%');
+    expect(tooltip).toHaveStyleRule(
+      'padding-bottom',
+      magma.spaceScale.spacing04
+    );
+    expect(tooltipInner).toHaveStyleRule('color', magma.colors.neutral08);
+    expect(arrow).toHaveStyleRule(
+      'border-top',
+      `${magma.tooltip.arrowSize} solid ${magma.colors.neutral}`
+    );
 
     expect(tooltip).toMatchSnapshot();
   });
 
   it('should render the tooltip component with the correct styles when positioned left', () => {
-    const { container, getByText } = render(
+    const { container } = render(
       <Tooltip position="left" content={CONTENT_TEXT}>
         {TRIGGER_ELEMENT}
       </Tooltip>
     );
     const tooltip = container.querySelector('div[role="tooltip"]');
-    const tooltipInner = getByText('Test Content');
+    const arrow = container.querySelector('span');
 
     expect(tooltip).toHaveStyleRule('right', '100%');
+    expect(tooltip).toHaveStyleRule(
+      'padding-right',
+      magma.spaceScale.spacing04
+    );
+    expect(arrow).toHaveStyleRule(
+      'border-left',
+      `${magma.tooltip.arrowSize} solid ${magma.colors.neutral}`
+    );
   });
 
   it('should render the tooltip component with the correct styles when positioned right', () => {
@@ -63,8 +80,14 @@ describe('Tooltip', () => {
       </Tooltip>
     );
     const tooltip = container.querySelector('div[role="tooltip"]');
+    const arrow = container.querySelector('span');
 
     expect(tooltip).toHaveStyleRule('left', '100%');
+    expect(tooltip).toHaveStyleRule('padding-left', magma.spaceScale.spacing04);
+    expect(arrow).toHaveStyleRule(
+      'border-right',
+      `${magma.tooltip.arrowSize} solid ${magma.colors.neutral}`
+    );
   });
 
   it('should render the tooltip component with the correct styles when positioned bottom', () => {
@@ -74,8 +97,14 @@ describe('Tooltip', () => {
       </Tooltip>
     );
     const tooltip = container.querySelector('div[role="tooltip"]');
+    const arrow = container.querySelector('span');
 
     expect(tooltip).toHaveStyleRule('top', '100%');
+    expect(tooltip).toHaveStyleRule('padding-top', magma.spaceScale.spacing04);
+    expect(arrow).toHaveStyleRule(
+      'border-bottom',
+      `${magma.tooltip.arrowSize} solid ${magma.colors.neutral}`
+    );
   });
 
   it('should show the tooltip on focus and hide it on blur', () => {
@@ -138,15 +167,20 @@ describe('Tooltip', () => {
   });
 
   it('should render the tooltip component with the correct styles for the inverse prop', () => {
-    const { getByText } = render(
+    const { container, getByText } = render(
       <Tooltip content={CONTENT_TEXT} isInverse>
         {TRIGGER_ELEMENT}
       </Tooltip>
     );
     const tooltipInner = getByText('Test Content');
+    const arrow = container.querySelector('span');
 
-    expect(tooltipInner).toHaveStyleRule('background', '#FFFFFF');
-    expect(tooltipInner).toHaveStyleRule('color', '#3F3F3F');
+    expect(tooltipInner).toHaveStyleRule('background', magma.colors.neutral08);
+    expect(tooltipInner).toHaveStyleRule('color', magma.colors.neutral);
+    expect(arrow).toHaveStyleRule(
+      'border-top',
+      `${magma.tooltip.arrowSize} solid ${magma.colors.neutral08}`
+    );
   });
 
   it('should render the tooltip component with the correct styles for the inverse prop, positioned left or right', () => {
