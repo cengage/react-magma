@@ -108,17 +108,17 @@ const StyledTooltipInner = styled.div<{
 }>`
   background: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
+      ? props.theme.tooltip.inverse.backgroundColor
+      : props.theme.tooltip.backgroundColor};
   border-radius: ${props => props.theme.borderRadius};
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral
-      : props.theme.colors.neutral08};
+      ? props.theme.tooltip.inverse.textColor
+      : props.theme.tooltip.textColor};
   display: inline-block;
-  font-size: ${props => props.theme.typeScale.size01.fontSize};
-  line-height: ${props => props.theme.typeScale.size01.lineHeight};
-  font-weight: 600;
+  font-size: ${props => props.theme.tooltip.typeScale.fontSize};
+  line-height: ${props => props.theme.tooltip.typeScale.lineHeight};
+  font-weight: ${props => props.theme.tooltip.fontWeight};
   padding: ${props => props.theme.spaceScale.spacing03}
     ${props => props.theme.spaceScale.spacing04};
   position: relative;
@@ -156,8 +156,8 @@ const ToolTipArrow = styled.span<{ position?: any; isInverse?: boolean }>`
       border-right: ${props.theme.tooltip.arrowSize} solid transparent;
       border-top: ${props.theme.tooltip.arrowSize} solid
         ${props.isInverse
-          ? props.theme.colors.neutral08
-          : props.theme.colors.neutral};
+          ? props.theme.tooltip.inverse.backgroundColor
+          : props.theme.tooltip.backgroundColor};
       bottom: -${props.theme.tooltip.arrowSize};
       left: 50%;
       transform: translateX(-50%);
@@ -170,8 +170,8 @@ const ToolTipArrow = styled.span<{ position?: any; isInverse?: boolean }>`
       border-right: ${props.theme.tooltip.arrowSize} solid transparent;
       border-bottom: ${props.theme.tooltip.arrowSize} solid
         ${props.isInverse
-          ? props.theme.colors.neutral08
-          : props.theme.colors.neutral};
+          ? props.theme.tooltip.inverse.backgroundColor
+          : props.theme.tooltip.backgroundColor};
       top: -${props.theme.tooltip.arrowSize};
       left: 50%;
       transform: translateX(-50%);
@@ -184,8 +184,8 @@ const ToolTipArrow = styled.span<{ position?: any; isInverse?: boolean }>`
       border-bottom: ${props.theme.tooltip.arrowSize} solid transparent;
       border-left: ${props.theme.tooltip.arrowSize} solid
         ${props.isInverse
-          ? props.theme.colors.neutral08
-          : props.theme.colors.neutral};
+          ? props.theme.tooltip.inverse.backgroundColor
+          : props.theme.tooltip.backgroundColor};
       right: -${props.theme.tooltip.arrowSize};
       top: 50%;
       transform: translateY(-50%);
@@ -198,8 +198,8 @@ const ToolTipArrow = styled.span<{ position?: any; isInverse?: boolean }>`
       border-bottom: ${props.theme.tooltip.arrowSize} solid transparent;
       border-right: ${props.theme.tooltip.arrowSize} solid
         ${props.isInverse
-          ? props.theme.colors.neutral08
-          : props.theme.colors.neutral};
+          ? props.theme.tooltip.inverse.backgroundColor
+          : props.theme.tooltip.backgroundColor};
       left: -${props.theme.tooltip.arrowSize};
       top: 50%;
       transform: translateY(-50%);
