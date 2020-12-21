@@ -147,6 +147,12 @@ interface Select {
   };
 }
 
+export interface Tooltip {
+  arrowSize: string;
+  maxWidth: string;
+  zIndex: number;
+}
+
 export interface ThemeInterface {
   breakpoints: Breakpoints;
   bodyFont: string;
@@ -168,6 +174,7 @@ export interface ThemeInterface {
   typographyExpressiveVisualStyles: TypographyVisualStyles;
   typographyNarrativeVisualStyles: TypographyVisualStyles;
   modal: Modal;
+  tooltip: Tooltip;
 }
 
 const typeScale = {
@@ -478,5 +485,10 @@ export const magma = {
       medium: '600px',
       large: '900px',
     },
+  },
+  tooltip: {
+    arrowSize: '6px',
+    maxWidth: '300px',
+    zIndex: 999,
   },
 };

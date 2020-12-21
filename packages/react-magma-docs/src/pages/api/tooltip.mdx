@@ -85,10 +85,23 @@ The default value is `false`.
 
 ## Custom Styles
 
-The containing div for the tooltip, and the tooltip component itself can have custom styles applied to it, using the `containerStyle` and `tooltipStyle` props respectively.
+Custom styles can be applied to the tooltip using different style props.
+
+The `containerStyle` prop applies to the outer most container, which contains both the tooltip trigger and the tooltip popover content.
+
+The `tooltipPopoverStyle` prop applies to the outer container around the tooltip popover content. These styles are used for mostly positioning.
+
+The `tooltipStyle` prop applies to the tooltip popover content itself, and includes the background color, border radius, font styles, padding, etc.
+
+The `arrowStyle` prop applies to the arrow indicator.
 
 ```.jsx
-<Tooltip content='Styled tooltip' containerStyle={{background: 'pink', padding: '10px' }} tooltipStyle={{ border: '1px solid red', background: 'yellow', color: 'black', padding: '10px' }}>
+<Tooltip
+  content='Styled tooltip'
+  arrowStyle={{ display: 'none' }}
+  containerStyle={{background: 'pink', padding: '10px' }}
+  tooltipPopoverStyle={{ border: '1px solid blue', padding: 0 }}
+  tooltipStyle={{ border: '1px solid red', background: 'yellow', color: 'black', padding: '10px' }}>
   <IconButton aria-label="Get Help" icon={<QuestionCircleIcon />} variant="link" />
 </Tooltip>
 ```

@@ -9558,6 +9558,15 @@
     "id": "TooltipProps",
     "tags": {},
     "properties": {
+      "arrowStyle": {
+        "name": "arrowStyle",
+        "required": false,
+        "type": {
+          "name": "CSSProperties"
+        },
+        "description": "Style properties for the arrow element",
+        "deprecated": false
+      },
       "children": {
         "name": "children",
         "required": true,
@@ -9573,7 +9582,7 @@
         "type": {
           "name": "CSSProperties"
         },
-        "description": "Style properties for the component container element",
+        "description": "Style properties for the component container element which includes both the tooltip trigger and the tooltip popover content",
         "deprecated": false
       },
       "content": {
@@ -9619,13 +9628,22 @@
         "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
         "deprecated": false
       },
+      "tooltipPopoverStyle": {
+        "name": "tooltipPopoverStyle",
+        "required": false,
+        "type": {
+          "name": "CSSProperties"
+        },
+        "description": "Style properties for the outer container of the tooltip popover content",
+        "deprecated": false
+      },
       "tooltipStyle": {
         "name": "tooltipStyle",
         "required": false,
         "type": {
           "name": "CSSProperties"
         },
-        "description": "Style properties for the tooltip",
+        "description": "Style properties for the inner tooltip content",
         "deprecated": false
       }
     }

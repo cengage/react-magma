@@ -13,11 +13,15 @@ export enum EnumTooltipPosition {
 
 export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
+   * Style properties for the arrow element
+   */
+  arrowStyle?: React.CSSProperties;
+  /**
    * The element that triggers the tooltip when it is hovered or focused. Must be a react element (not a string) and should be a focusable element to meet a11y requirements
    */
   children: React.ReactElement;
   /**
-   * Style properties for the component container element
+   * Style properties for the component container element which includes both the tooltip trigger and the tooltip popover content
    */
   containerStyle?: React.CSSProperties;
   /**
@@ -31,7 +35,11 @@ export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   position?: EnumTooltipPosition;
   testId?: string;
   /**
-   * Style properties for the tooltip
+   * Style properties for the outer container of the tooltip popover content
+   */
+  tooltipPopoverStyle?: React.CSSProperties;
+  /**
+   * Style properties for the inner tooltip content
    */
   tooltipStyle?: React.CSSProperties;
 }
@@ -47,23 +55,21 @@ const ToolTipContainer = styled.div`
 `;
 
 const StyledTooltip = styled.div<{
+  isInverse?: boolean;
   position: EnumTooltipPosition;
   visible?: boolean;
 }>`
   display: ${props => (props.visible ? 'block' : 'none')};
-  font-size: ${props => props.theme.typeScale.size01.fontSize};
-  line-height: ${props => props.theme.typeScale.size01.lineHeight};
-  font-weight: 600;
   position: absolute;
   text-align: center;
-  width: 300px;
-  z-index: 999;
+  width: ${props => props.theme.tooltip.maxWidth};
+  z-index: ${props => props.theme.tooltip.zIndex};
 
   ${props =>
     props.position === 'bottom' &&
     css`
       top: 100%;
-      padding-top: 10px;
+      padding-top: ${props.theme.spaceScale.spacing04};
       left: 50%;
       transform: translateX(-50%);
     `}
@@ -72,7 +78,7 @@ const StyledTooltip = styled.div<{
     props.position === 'left' &&
     css`
       right: 100%;
-      padding-right: 10px;
+      padding-right: ${props.theme.spaceScale.spacing04};
       top: 50%;
       transform: translateY(-50%);
     `}
@@ -81,7 +87,7 @@ const StyledTooltip = styled.div<{
     props.position === 'right' &&
     css`
       left: 100%;
-      padding-left: 10px;
+      padding-left: ${props.theme.spaceScale.spacing04};
       top: 50%;
       transform: translateY(-50%);
     `}
@@ -90,7 +96,7 @@ const StyledTooltip = styled.div<{
     props.position === 'top' &&
     css`
       bottom: 100%;
-      padding-bottom: 10px;
+      padding-bottom: ${props.theme.spaceScale.spacing04};
       left: 50%;
       transform: translateX(-50%);
     `}
@@ -104,49 +110,18 @@ const StyledTooltipInner = styled.div<{
     props.isInverse
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral};
-  border-radius: 3px;
+  border-radius: ${props => props.theme.borderRadius};
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral
       : props.theme.colors.neutral08};
   display: inline-block;
-  padding: 7px 10px;
+  font-size: ${props => props.theme.typeScale.size01.fontSize};
+  line-height: ${props => props.theme.typeScale.size01.lineHeight};
+  font-weight: 600;
+  padding: ${props => props.theme.spaceScale.spacing03}
+    ${props => props.theme.spaceScale.spacing04};
   position: relative;
-
-  &:before,
-  &:after {
-    border-left-color: ${props =>
-      props.position === 'left' || props.position === 'right'
-        ? props.isInverse
-          ? props.theme.colors.neutral08
-          : props.theme.colors.neutral
-        : 'transparent'};
-    border-right-color: ${props =>
-      props.position === 'left' || props.position === 'right'
-        ? props.isInverse
-          ? props.theme.colors.neutral08
-          : props.theme.colors.neutral
-        : 'transparent'};
-    border-top-color: ${props =>
-      props.position === 'left' || props.position === 'right'
-        ? 'transparent'
-        : props.isInverse
-        ? props.theme.colors.neutral08
-        : props.theme.colors.neutral};
-    border-bottom-color: ${props =>
-      props.position === 'left' || props.position === 'right'
-        ? 'transparent'
-        : props.isInverse
-        ? props.theme.colors.neutral08
-        : props.theme.colors.neutral};
-    border-style: solid;
-    content: '';
-    height: 0;
-    left: 50%;
-    position: absolute;
-    transform: translateX(-50%);
-    width: 0;
-  }
 
   ${props =>
     (props.position === 'left' || props.position === 'right') &&
@@ -156,81 +131,78 @@ const StyledTooltipInner = styled.div<{
     `}
 
   ${props =>
-    props.position === 'bottom' &&
-    css`
-      &:after {
-        border-width: 0 5px 5px 5px;
-        bottom: auto;
-        top: -5px;
-      }
-
-      &:before {
-        bottom: auto;
-        border-width: 0 7px 7px 7px;
-        top: -7px;
-      }
-    `}
-
-  ${props =>
     props.position === 'left' &&
     css`
       right: 0;
-
-      &:before,
-      &:after {
-        left: auto;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
-      &:after {
-        right: -5px;
-        border-width: 5px 0 5px 5px;
-      }
-
-      &:before {
-        right: -7px;
-        border-width: 7px 0 7px 7px;
-      }
     `}
 
   ${props =>
     props.position === 'right' &&
     css`
       left: 0;
-
-      &:before,
-      &:after {
-        right: auto;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
-      &:after {
-        left: -5px;
-        border-width: 5px 5px 5px 0;
-      }
-
-      &:before {
-        left: -7px;
-        border-width: 7px 7px 7px 0;
-      }
     `}
+`;
+
+const ToolTipArrow = styled.span<{ position?: any; isInverse?: boolean }>`
+  display: block;
+  height: 0;
+  position: absolute;
+  width: 0;
 
   ${props =>
     props.position === 'top' &&
     css`
-      &:after {
-        bottom: -5px;
-        top: auto;
-        border-width: 5px 5px 0 5px;
-      }
+      border-left: ${props.theme.tooltip.arrowSize} solid transparent;
+      border-right: ${props.theme.tooltip.arrowSize} solid transparent;
+      border-top: ${props.theme.tooltip.arrowSize} solid
+        ${props.isInverse
+          ? props.theme.colors.neutral08
+          : props.theme.colors.neutral};
+      bottom: -${props.theme.tooltip.arrowSize};
+      left: 50%;
+      transform: translateX(-50%);
+    `}
 
-      &:before {
-        bottom: -7px;
-        top: auto;
-        border-width: 7px 7px 0 7px;
-      }
+  ${props =>
+    props.position === 'bottom' &&
+    css`
+      border-left: ${props.theme.tooltip.arrowSize} solid transparent;
+      border-right: ${props.theme.tooltip.arrowSize} solid transparent;
+      border-bottom: ${props.theme.tooltip.arrowSize} solid
+        ${props.isInverse
+          ? props.theme.colors.neutral08
+          : props.theme.colors.neutral};
+      top: -${props.theme.tooltip.arrowSize};
+      left: 50%;
+      transform: translateX(-50%);
+    `}
+
+  ${props =>
+    props.position === 'left' &&
+    css`
+      border-top: ${props.theme.tooltip.arrowSize} solid transparent;
+      border-bottom: ${props.theme.tooltip.arrowSize} solid transparent;
+      border-left: ${props.theme.tooltip.arrowSize} solid
+        ${props.isInverse
+          ? props.theme.colors.neutral08
+          : props.theme.colors.neutral};
+      right: -${props.theme.tooltip.arrowSize};
+      top: 50%;
+      transform: translateY(-50%);
+    `}
+
+  ${props =>
+    props.position === 'right' &&
+    css`
+      border-top: ${props.theme.tooltip.arrowSize} solid transparent;
+      border-bottom: ${props.theme.tooltip.arrowSize} solid transparent;
+      border-right: ${props.theme.tooltip.arrowSize} solid
+        ${props.isInverse
+          ? props.theme.colors.neutral08
+          : props.theme.colors.neutral};
+      left: -${props.theme.tooltip.arrowSize};
+      top: 50%;
+      transform: translateY(-50%);
     `}
 `;
 
@@ -266,6 +238,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   }
 
   const {
+    arrowStyle,
     children,
     content,
     containerStyle,
@@ -273,6 +246,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
     isInverse,
     position,
     testId,
+    tooltipPopoverStyle,
     tooltipStyle,
     ...other
   } = props;
@@ -304,8 +278,10 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
       <StyledTooltip
         aria-hidden={!isVisible}
         id={id}
+        isInverse={!!isInverse}
         position={position ? position : EnumTooltipPosition.top}
         role="tooltip"
+        style={tooltipPopoverStyle}
         theme={theme}
         visible={isVisible}
       >
@@ -316,6 +292,12 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
           theme={theme}
         >
           {content}
+          <ToolTipArrow
+            isInverse={!!isInverse}
+            position={position ? position : EnumTooltipPosition.top}
+            style={arrowStyle}
+            theme={theme}
+          />
         </StyledTooltipInner>
       </StyledTooltip>
     </ToolTipContainer>
