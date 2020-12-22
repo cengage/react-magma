@@ -42,7 +42,9 @@
   },
   "dependencies": {
     "@emotion/styled-base": "^10.0.31",
+    "@popperjs/core": "^2.6.0",
     "polished": "^3.2.0",
+    "react-popper": "^2.2.4",
     "typedoc": "^0.19.2"
   },
   "devDependencies": {

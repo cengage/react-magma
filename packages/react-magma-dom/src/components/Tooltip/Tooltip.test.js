@@ -2,7 +2,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Tooltip } from '.';
-import { render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 
 const CONTENT_TEXT = 'Test Content';
@@ -20,37 +20,32 @@ describe('Tooltip', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
-  it('should render the tooltip component, positioned top by default', () => {
+  it.only('should render the tooltip component, positioned top by default', () => {
     const { container, getByText } = render(
       <Tooltip id="tooltipID" content={CONTENT_TEXT}>
         {TRIGGER_ELEMENT}
       </Tooltip>
     );
+    const tooltipTrigger = container.querySelector('button');
+    
+    expect(container).toBeInTheDocument();
+    
+    expect(tooltipTrigger).toBeInTheDocument();
+ 
+    tooltipTrigger.focus()
+
     const tooltip = container.querySelector('div[role="tooltip"]');
-    const tooltipInner = getByText('Test Content');
-    const tooltipTrigger = container.firstChild;
     const arrow = container.querySelector('span');
 
-    expect(container).toBeInTheDocument();
-
-    expect(tooltipTrigger).toBeInTheDocument();
-    expect(tooltipTrigger).toHaveStyleRule('position', 'relative');
-
     expect(tooltip).toBeInTheDocument();
-    expect(tooltip).toHaveStyleRule('position', 'absolute');
-    expect(tooltip).toHaveStyleRule('bottom', '100%');
-    expect(tooltip).toHaveStyleRule('bottom', '100%');
-    expect(tooltip).toHaveStyleRule(
-      'padding-bottom',
-      magma.spaceScale.spacing04
-    );
-    expect(tooltipInner).toHaveStyleRule('color', magma.colors.neutral08);
-    expect(arrow).toHaveStyleRule(
-      'border-top',
-      `${magma.tooltip.arrowSize} solid ${magma.colors.neutral}`
-    );
+    expect(arrow).toBeInTheDocument();
+    
+    
+    expect(tooltip).toHaveProperty('data-popper-placement', 'top')
 
     expect(tooltip).toMatchSnapshot();
+
+    tooltipTrigger.blur()
   });
 
   it('should render the tooltip component with the correct styles when positioned left', () => {

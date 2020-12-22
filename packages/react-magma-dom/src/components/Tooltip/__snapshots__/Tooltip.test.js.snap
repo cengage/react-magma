@@ -1,101 +1,139 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Tooltip should render the tooltip component, positioned top by default 1`] = `
-.emotion-2 {
-  display: none;
-  position: absolute;
-  text-align: center;
-  width: 300px;
+.emotion-1 {
+  background: #3F3F3F;
+  border-radius: 4px;
+  color: #FFFFFF;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  max-width: 300px;
+  padding: 8px 12px;
   z-index: 999;
-  bottom: 100%;
-  padding-bottom: 12px;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%);
+}
+
+.emotion-1[data-popper-placement='top'] > span:last-child {
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #3F3F3F;
+  bottom: -6px;
+  left: 50% !important;
+  -webkit-transform: translateX(-50%) !important;
+  -ms-transform: translateX(-50%) !important;
+  transform: translateX(-50%) !important;
+}
+
+.emotion-1[data-popper-placement='bottom'] > span:last-child {
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid #3F3F3F;
+  top: -6px;
+  left: 50% !important;
+  -webkit-transform: translateX(-50%) !important;
+  -ms-transform: translateX(-50%) !important;
+  transform: translateX(-50%) !important;
+}
+
+.emotion-1[data-popper-placement='left'] > span:last-child {
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid #3F3F3F;
+  right: -6px;
+  top: 50% !important;
+  -webkit-transform: translateY(-50%) !important;
+  -ms-transform: translateY(-50%) !important;
+  transform: translateY(-50%) !important;
+}
+
+.emotion-1[data-popper-placement='right'] > span:last-child {
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 6px solid #3F3F3F;
+  left: -6px;
+  top: 50% !important;
+  -webkit-transform: translateY(-50%) !important;
+  -ms-transform: translateY(-50%) !important;
+  transform: translateY(-50%) !important;
+}
+
+.emotion-0 {
+  display: block;
+  height: 0;
+  width: 0;
 }
 
 .emotion-1 {
   background: #3F3F3F;
   border-radius: 4px;
   color: #FFFFFF;
-  display: inline-block;
   font-size: 12px;
   line-height: 16px;
   font-weight: 600;
+  max-width: 300px;
   padding: 8px 12px;
-  position: relative;
-}
-
-.emotion-0 {
-  display: block;
-  height: 0;
-  position: absolute;
-  width: 0;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 6px solid #3F3F3F;
-  bottom: -6px;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%);
-}
-
-.emotion-2 {
-  display: none;
-  position: absolute;
-  text-align: center;
-  width: 300px;
   z-index: 999;
-  bottom: 100%;
-  padding-bottom: 12px;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%);
 }
 
-.emotion-1 {
-  background: #3F3F3F;
-  border-radius: 4px;
-  color: #FFFFFF;
-  display: inline-block;
-  font-size: 12px;
-  line-height: 16px;
-  font-weight: 600;
-  padding: 8px 12px;
-  position: relative;
+.emotion-1[data-popper-placement='top'] > span:last-child {
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #3F3F3F;
+  bottom: -6px;
+  left: 50% !important;
+  -webkit-transform: translateX(-50%) !important;
+  -ms-transform: translateX(-50%) !important;
+  transform: translateX(-50%) !important;
+}
+
+.emotion-1[data-popper-placement='bottom'] > span:last-child {
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid #3F3F3F;
+  top: -6px;
+  left: 50% !important;
+  -webkit-transform: translateX(-50%) !important;
+  -ms-transform: translateX(-50%) !important;
+  transform: translateX(-50%) !important;
+}
+
+.emotion-1[data-popper-placement='left'] > span:last-child {
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid #3F3F3F;
+  right: -6px;
+  top: 50% !important;
+  -webkit-transform: translateY(-50%) !important;
+  -ms-transform: translateY(-50%) !important;
+  transform: translateY(-50%) !important;
+}
+
+.emotion-1[data-popper-placement='right'] > span:last-child {
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 6px solid #3F3F3F;
+  left: -6px;
+  top: 50% !important;
+  -webkit-transform: translateY(-50%) !important;
+  -ms-transform: translateY(-50%) !important;
+  transform: translateY(-50%) !important;
 }
 
 .emotion-0 {
   display: block;
   height: 0;
-  position: absolute;
   width: 0;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 6px solid #3F3F3F;
-  bottom: -6px;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%);
 }
 
 <div
-  aria-hidden="true"
-  class="emotion-2"
+  class="emotion-1"
   id="tooltipID"
   role="tooltip"
+  style="position: absolute; left: 0px; top: 0px;"
 >
-  <div
-    class="emotion-1"
-  >
-    Test Content
-    <span
-      class="emotion-0"
-    />
-  </div>
+  Test Content
+  <span
+    class="emotion-0"
+  />
 </div>
 `;
