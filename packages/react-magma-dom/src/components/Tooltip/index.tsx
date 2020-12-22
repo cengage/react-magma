@@ -201,7 +201,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   }
 
   const tooltipTrigger = React.cloneElement(children, {
-    'aria-describedby': id,
+    'aria-describedby': isVisible ? id : null,
     onBlur: hideTooltip,
     onFocus: showTooltip,
     ref: combinedRef,

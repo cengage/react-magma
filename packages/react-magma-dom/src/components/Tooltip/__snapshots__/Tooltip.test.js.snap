@@ -127,13 +127,17 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
 
 <div
   class="emotion-1"
+  data-popper-escaped="true"
+  data-popper-placement="top"
+  data-popper-reference-hidden="true"
   id="tooltipID"
   role="tooltip"
-  style="position: absolute; left: 0px; top: 0px;"
+  style="position: absolute; left: 0px; top: 0px; bottom: 0px; transform: translate(0px, 0px);"
 >
   Test Content
   <span
     class="emotion-0"
+    style="position: absolute; left: 0px; transform: translate(0px, 0px);"
   />
 </div>
 `;
