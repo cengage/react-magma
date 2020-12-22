@@ -8,6 +8,7 @@
     "url": "https://github.com/cengage/react-magma.git"
   },
   "scripts": {
+    "getAlias": "node ./packages/react-magma-dom/scripts/getAlias.js",
     "postinstall": "npm run bootstrap && npm run build:lite",
     "test": "jest",
     "test-watch": "jest --watch",

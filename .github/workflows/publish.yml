@@ -44,6 +44,10 @@ jobs:
           npm run publish -- --conventional-prerelease --yes
       - name: Build
         run: npm run build:docs
+      - name: Get Alias
+        id: info
+        run: |
+          echo "::set-output name=alias::$(npm run --silent getAlias)"
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
@@ -54,7 +58,7 @@ jobs:
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: true
-          alias: ${{ github.head_ref }}
+          alias: ${{ steps.info.outputs.alias }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
