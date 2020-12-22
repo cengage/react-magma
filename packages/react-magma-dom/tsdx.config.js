@@ -8,7 +8,7 @@ module.exports = {
         ...config.output,
         file: null,
         dir: 'dist',
-        entryFileNames: 'esm/[name].js'
+        entryFileNames: 'esm/[name].js',
       },
       external: [
         'react',
@@ -21,12 +21,14 @@ module.exports = {
         '@emotion/styled-base',
         '@emotion/serialize',
         'prop-types',
+        'react-fast-compare',
         'react-input-autosize',
         'react-loadable',
-        'react-magma-icons'
-      ]
+        'react-magma-icons',
+        'warning',
+      ],
     };
 
     return { ...config, ...overrides };
-  }
+  },
 };
