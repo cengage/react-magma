@@ -2,8 +2,8 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Tooltip } from '.';
-
-import { render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent } from '@testing-library/react';
+import { magma } from '../../theme/magma';
 
 const CONTENT_TEXT = 'Test Content';
 const TRIGGER_ELEMENT = <button>Test trigger</button>;
@@ -20,180 +20,237 @@ describe('Tooltip', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
-  it('should render the tooltip component, positioned top by default', () => {
+  it('should render the tooltip component, positioned top by default', async () => {
     const { container, getByText } = render(
       <Tooltip id="tooltipID" content={CONTENT_TEXT}>
         {TRIGGER_ELEMENT}
       </Tooltip>
     );
-    const tooltip = container.querySelector('div[role="tooltip"]');
-    const tooltipInner = getByText('Test Content');
-    const tooltipTrigger = container.firstChild;
+    const tooltipTrigger = container.querySelector('button');
 
     expect(container).toBeInTheDocument();
 
     expect(tooltipTrigger).toBeInTheDocument();
-    expect(tooltipTrigger).toHaveStyleRule('position', 'relative');
+
+    await act(async () => {
+      tooltipTrigger.focus();
+    });
+
+    const tooltip = container.querySelector('div[role="tooltip"]');
+    const arrow = container.querySelector('span');
 
     expect(tooltip).toBeInTheDocument();
-    expect(tooltip).toHaveStyleRule('position', 'absolute');
-    expect(tooltip).toHaveStyleRule('bottom', '100%');
-    expect(tooltipInner).toHaveStyleRule('background', '#3F3F3F');
-    expect(tooltipInner).toHaveStyleRule('color', '#FFFFFF');
-    expect(tooltipInner).toHaveStyleRule('border-bottom-color', '#3F3F3F', {
-      target: ':before',
-    });
-    expect(tooltipInner).toHaveStyleRule('border-top-color', '#3F3F3F', {
-      target: ':before',
-    });
-    expect(tooltipInner).toHaveStyleRule('border-left-color', 'transparent', {
-      target: ':before',
-    });
-    expect(tooltipInner).toHaveStyleRule('border-right-color', 'transparent', {
-      target: ':before',
-    });
+    expect(arrow).toBeInTheDocument();
+
+    expect(tooltip).toHaveAttribute('data-popper-placement', 'top');
 
     expect(tooltip).toMatchSnapshot();
   });
 
-  it('should render the tooltip component with the correct styles when positioned left', () => {
-    const { container, getByText } = render(
+  it('should render the tooltip component with the correct styles when positioned left', async () => {
+    const { container } = render(
       <Tooltip position="left" content={CONTENT_TEXT}>
         {TRIGGER_ELEMENT}
       </Tooltip>
     );
-    const tooltip = container.querySelector('div[role="tooltip"]');
-    const tooltipInner = getByText('Test Content');
+    const tooltipTrigger = container.querySelector('button');
 
-    expect(tooltip).toHaveStyleRule('right', '100%');
-    expect(tooltipInner).toHaveStyleRule('border-bottom-color', 'transparent', {
-      target: ':before',
+    await act(async () => {
+      tooltipTrigger.focus();
     });
-    expect(tooltipInner).toHaveStyleRule('border-top-color', 'transparent', {
-      target: ':before',
-    });
-    expect(tooltipInner).toHaveStyleRule('border-left-color', '#3F3F3F', {
-      target: ':before',
-    });
-    expect(tooltipInner).toHaveStyleRule('border-right-color', '#3F3F3F', {
-      target: ':before',
-    });
+
+    const tooltip = container.querySelector('div[role="tooltip"]');
+
+    expect(tooltip).toHaveAttribute('data-popper-placement', 'left');
   });
 
-  it('should render the tooltip component with the correct styles when positioned right', () => {
+  it('should render the tooltip component with the correct styles when positioned right', async () => {
     const { container } = render(
       <Tooltip position="right" content={CONTENT_TEXT}>
         {TRIGGER_ELEMENT}
       </Tooltip>
     );
+    const tooltipTrigger = container.querySelector('button');
+
+    await act(async () => {
+      tooltipTrigger.focus();
+    });
+
     const tooltip = container.querySelector('div[role="tooltip"]');
 
-    expect(tooltip).toHaveStyleRule('left', '100%');
+    expect(tooltip).toHaveAttribute('data-popper-placement', 'right');
   });
 
-  it('should render the tooltip component with the correct styles when positioned bottom', () => {
+  it('should render the tooltip component with the correct styles when positioned bottom', async () => {
     const { container } = render(
       <Tooltip position="bottom" content={CONTENT_TEXT}>
         {TRIGGER_ELEMENT}
       </Tooltip>
     );
+    const tooltipTrigger = container.querySelector('button');
+
+    await act(async () => {
+      tooltipTrigger.focus();
+    });
+
     const tooltip = container.querySelector('div[role="tooltip"]');
 
-    expect(tooltip).toHaveStyleRule('top', '100%');
+    expect(tooltip).toHaveAttribute('data-popper-placement', 'bottom');
   });
 
   it('should show the tooltip on focus and hide it on blur', () => {
     const { container, getByText } = render(
       <Tooltip content={CONTENT_TEXT}>{TRIGGER_ELEMENT}</Tooltip>
     );
-    const trigger = getByText('Test trigger');
-    const tooltip = container.querySelector('div[role="tooltip"]');
-    expect(tooltip).toHaveStyleRule('display', 'none');
+    const tooltipTrigger = container.querySelector('button');
 
-    fireEvent.focus(trigger);
+    expect(
+      container.querySelector('div[role="tooltip"]')
+    ).not.toBeInTheDocument();
+    fireEvent.focus(tooltipTrigger);
 
-    expect(tooltip).toHaveStyleRule('display', 'block');
-    fireEvent.blur(trigger);
-
-    expect(tooltip).toHaveStyleRule('display', 'none');
+    expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
+    fireEvent.blur(tooltipTrigger);
   });
 
   it('should show the tooltip on mouseenter and hide it on mouseleave', () => {
     const { container, getByText } = render(
       <Tooltip content={CONTENT_TEXT}>{TRIGGER_ELEMENT}</Tooltip>
     );
-    const trigger = getByText('Test trigger');
-    const tooltip = container.querySelector('div[role="tooltip"]');
-    expect(tooltip).toHaveStyleRule('display', 'none');
+    const tooltipTrigger = container.querySelector('button');
 
-    fireEvent.mouseEnter(trigger);
+    expect(
+      container.querySelector('div[role="tooltip"]')
+    ).not.toBeInTheDocument();
 
-    expect(tooltip).toHaveStyleRule('display', 'block');
-    fireEvent.mouseLeave(trigger);
+    fireEvent.mouseEnter(tooltipTrigger);
 
-    expect(tooltip).toHaveStyleRule('display', 'none');
+    expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
+
+    fireEvent.mouseLeave(tooltipTrigger);
+
+    expect(
+      container.querySelector('div[role="tooltip"]')
+    ).not.toBeInTheDocument();
   });
 
   it('should hide the tooltip when the escape key is pressed', () => {
     const { container, getByText } = render(
       <Tooltip content={CONTENT_TEXT}>{TRIGGER_ELEMENT}</Tooltip>
     );
-    const trigger = getByText('Test trigger');
+    const tooltipTrigger = container.querySelector('button');
+
+    fireEvent.focus(tooltipTrigger);
+
     const tooltip = container.querySelector('div[role="tooltip"]');
-    expect(tooltip).toHaveStyleRule('display', 'none');
 
-    fireEvent.focus(trigger);
+    expect(tooltip).toBeInTheDocument();
 
-    expect(tooltip).toHaveStyleRule('display', 'block');
-
-    fireEvent.keyDown(trigger, {
+    fireEvent.keyDown(tooltipTrigger, {
       key: 'ArrowDown',
       code: 40,
     });
 
-    expect(tooltip).toHaveStyleRule('display', 'block');
+    expect(tooltip).toBeInTheDocument();
 
-    fireEvent.keyDown(trigger, {
+    fireEvent.keyDown(tooltipTrigger, {
       key: 'Escape',
       keyCode: 27,
     });
 
-    expect(tooltip).toHaveStyleRule('display', 'none');
+    expect(tooltip).not.toBeInTheDocument();
   });
 
-  it('should render the tooltip component with the correct styles for the inverse prop', () => {
-    const { getByText } = render(
+  it('should render the tooltip component with the correct styles for the inverse prop, position top', async () => {
+    const { container, getByText } = render(
       <Tooltip content={CONTENT_TEXT} isInverse>
         {TRIGGER_ELEMENT}
       </Tooltip>
     );
-    const tooltipInner = getByText('Test Content');
+    const tooltipTrigger = container.querySelector('button');
 
-    expect(tooltipInner).toHaveStyleRule('background', '#FFFFFF');
-    expect(tooltipInner).toHaveStyleRule('color', '#3F3F3F');
+    await act(async () => {
+      tooltipTrigger.focus();
+    });
 
-    expect(tooltipInner).toHaveStyleRule('border-bottom-color', '#FFFFFF', {
-      target: ':before',
-    });
-    expect(tooltipInner).toHaveStyleRule('border-top-color', '#FFFFFF', {
-      target: ':before',
-    });
+    const tooltip = container.querySelector('div[role="tooltip"]');
+
+    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral08);
+    expect(tooltip).toHaveStyleRule('color', magma.colors.neutral);
+    expect(tooltip).toHaveStyleRule(
+      'border-top',
+      `${magma.tooltip.arrowSize} solid ${magma.colors.neutral08}`,
+      { target: "[data-popper-placement='top'] > span:last-child" }
+    );
   });
 
-  it('should render the tooltip component with the correct styles for the inverse prop, positioned left or right', () => {
-    const { getByText } = render(
+  it('should render the tooltip component with the correct styles for the inverse prop, positioned bottom', async () => {
+    const { container, getByText } = render(
+      <Tooltip content={CONTENT_TEXT} position="bottom" isInverse>
+        {TRIGGER_ELEMENT}
+      </Tooltip>
+    );
+    const tooltipTrigger = container.querySelector('button');
+
+    await act(async () => {
+      tooltipTrigger.focus();
+    });
+
+    const tooltip = container.querySelector('div[role="tooltip"]');
+
+    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral08);
+    expect(tooltip).toHaveStyleRule('color', magma.colors.neutral);
+    expect(tooltip).toHaveStyleRule(
+      'border-bottom',
+      `${magma.tooltip.arrowSize} solid ${magma.colors.neutral08}`,
+      { target: "[data-popper-placement='bottom'] > span:last-child" }
+    );
+  });
+
+  it('should render the tooltip component with the correct styles for the inverse prop, positioned left', async () => {
+    const { container, getByText } = render(
       <Tooltip content={CONTENT_TEXT} position="left" isInverse>
         {TRIGGER_ELEMENT}
       </Tooltip>
     );
-    const tooltipInner = getByText('Test Content');
+    const tooltipTrigger = container.querySelector('button');
 
-    expect(tooltipInner).toHaveStyleRule('border-left-color', '#FFFFFF', {
-      target: ':before',
+    await act(async () => {
+      tooltipTrigger.focus();
     });
-    expect(tooltipInner).toHaveStyleRule('border-right-color', '#FFFFFF', {
-      target: ':before',
+
+    const tooltip = container.querySelector('div[role="tooltip"]');
+
+    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral08);
+    expect(tooltip).toHaveStyleRule('color', magma.colors.neutral);
+    expect(tooltip).toHaveStyleRule(
+      'border-left',
+      `${magma.tooltip.arrowSize} solid ${magma.colors.neutral08}`,
+      { target: "[data-popper-placement='left'] > span:last-child" }
+    );
+  });
+
+  it('should render the tooltip component with the correct styles for the inverse prop, positioned right', async () => {
+    const { container, getByText } = render(
+      <Tooltip content={CONTENT_TEXT} position="right" isInverse>
+        {TRIGGER_ELEMENT}
+      </Tooltip>
+    );
+    const tooltipTrigger = container.querySelector('button');
+
+    await act(async () => {
+      tooltipTrigger.focus();
     });
+
+    const tooltip = container.querySelector('div[role="tooltip"]');
+
+    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral08);
+    expect(tooltip).toHaveStyleRule('color', magma.colors.neutral);
+    expect(tooltip).toHaveStyleRule(
+      'border-right',
+      `${magma.tooltip.arrowSize} solid ${magma.colors.neutral08}`,
+      { target: "[data-popper-placement='right'] > span:last-child" }
+    );
   });
 
   it('should throw an error if the tooltip children is more than one element', () => {
