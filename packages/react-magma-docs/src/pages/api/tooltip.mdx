@@ -14,6 +14,7 @@ import {
   QuestionCircleIcon,
 } from 'react-magma-icons';
 import {
+  Alert,
   Tooltip,
   IconButton,
   Card,
@@ -96,18 +97,21 @@ Custom styles can be applied to the tooltip using different style props.
 
 The `containerStyle` prop applies to the outer most container, which contains both the tooltip trigger and the tooltip popover content.
 
-The `tooltipPopoverStyle` prop applies to the outer container around the tooltip popover content. These styles are used for mostly positioning.
-
-The `tooltipStyle` prop applies to the tooltip popover content itself, and includes the background color, border radius, font styles, padding, etc.
+The `tooltipStyle` prop applies to the tooltip popover content itself, and includes the positioning, background color, border radius, font styles, padding, etc.
 
 The `arrowStyle` prop applies to the arrow indicator.
+
+<Alert variant="warning">
+  Be careful changing the positioning styles for the <code>tooltipStyle</code>{' '}
+  or the <code>arrowStyle</code> as they are brought in by an outside library
+  named <code>popperjs</code> to deal with overflow and scrolling
+</Alert>
 
 ```.jsx
 <Tooltip
   content='Styled tooltip'
   arrowStyle={{ display: 'none' }}
   containerStyle={{background: 'pink', padding: '10px' }}
-  tooltipPopoverStyle={{ border: '1px solid blue', padding: 0 }}
   tooltipStyle={{ border: '1px solid red', background: 'yellow', color: 'black', padding: '10px' }}>
   <IconButton aria-label="Get Help" icon={<QuestionCircleIcon />} variant="link" />
 </Tooltip>

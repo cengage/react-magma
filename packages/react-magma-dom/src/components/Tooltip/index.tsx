@@ -35,10 +35,6 @@ export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   position?: EnumTooltipPosition;
   testId?: string;
   /**
-   * Style properties for the outer container of the tooltip popover content
-   */
-  tooltipPopoverStyle?: React.CSSProperties;
-  /**
    * Style properties for the inner tooltip content
    */
   tooltipStyle?: React.CSSProperties;
@@ -188,7 +184,6 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
     isInverse,
     position,
     testId,
-    tooltipPopoverStyle,
     tooltipStyle,
     ...other
   } = props;
@@ -207,9 +202,9 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
     ref: combinedRef,
   });
 
-  const combinedTooltipPopoverStyles = {
+  const combinedTooltipStyles = {
     ...styles.popper,
-    ...tooltipPopoverStyle,
+    ...tooltipStyle,
   };
   const combinedArrowStyle = { ...styles.arrow, ...arrowStyle };
 
@@ -230,7 +225,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
           position={position ? position : EnumTooltipPosition.top}
           ref={setPopperElement}
           role="tooltip"
-          style={combinedTooltipPopoverStyles}
+          style={combinedTooltipStyles}
           theme={theme}
           visible={isVisible}
           {...attributes.popper}
