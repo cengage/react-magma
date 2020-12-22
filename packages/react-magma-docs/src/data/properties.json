@@ -9628,15 +9628,6 @@
         "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
         "deprecated": false
       },
-      "tooltipPopoverStyle": {
-        "name": "tooltipPopoverStyle",
-        "required": false,
-        "type": {
-          "name": "CSSProperties"
-        },
-        "description": "Style properties for the outer container of the tooltip popover content",
-        "deprecated": false
-      },
       "tooltipStyle": {
         "name": "tooltipStyle",
         "required": false,

@@ -23,6 +23,17 @@ const StyledSkipLink = styled(SkipLink)`
   }
 `;
 
+const MainContainer = styled.div`
+  @media (min-width: 1024px) {
+    display: grid;
+    grid-template-columns: 280px auto;
+    grid-template-rows: 80px auto;
+    grid-template-areas:
+      'masthead masthead'
+      'nav content';
+  }
+`;
+
 export const wrapPageElement = ({ element, props }) => {
   // props provide same data to Layout as Page element will get
   // including location, data, etc - you don't need to pass it
@@ -35,11 +46,11 @@ export const wrapPageElement = ({ element, props }) => {
         positionTop={16}
         variant="outline"
       />
-      <div className="main-container">
+      <MainContainer>
         <Masthead />
         <SlidingDrawer />
         <Layout {...props}>{element}</Layout>
-      </div>
+      </MainContainer>
     </>
   );
 };

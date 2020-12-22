@@ -10,6 +10,31 @@ import { editorTheme } from './editorTheme';
 import { v4 as uuid } from 'uuid';
 import { SimplePropsTable } from './SimplePropsTable';
 import { NetlifyFooter } from './NetlifyFooter';
+import styled from '@emotion/styled';
+import { magma } from 'react-magma-dom';
+
+const PreContainer = styled.div`
+  border: 1px solid ${magma.colors.neutral06};
+  display: grid;
+  max-width: 100%;
+`;
+
+const DemoContainer = styled.div`
+  border: 1px solid ${magma.colors.neutral06};
+  margin-bottom: ${magma.spaceScale.spacing06};
+  padding: ${magma.spaceScale.spacing04};
+`;
+
+const ContentArticle = styled.article`
+  margin: 0 auto ${magma.spaceScale.spacing10};
+  max-width: 900px;
+  width: 80%;
+
+  @media (max-width: 600px) {
+    padding: 0 ${magma.spaceScale.spacing05};
+    width: 100%;
+  }
+`;
 
 const PreComponent = ({ className, components, ...props }) => {
   const hideCode = props.children.props.hideCode;
@@ -28,20 +53,20 @@ const PreComponent = ({ className, components, ...props }) => {
       {!hideCode && (
         <>
           <Label htmlFor={liveEditorId.current}>Code Example</Label>
-          <div className="pre-container">
+          <PreContainer>
             <LiveEditor
               textareaId={liveEditorId.current}
               ignoreTabKey
               tabIndex="-1"
             />
-          </div>
+          </PreContainer>
         </>
       )}
       <LiveError />
       {!hidePreview && (
-        <div className="demo-container">
+        <DemoContainer>
           <LivePreview />
-        </div>
+        </DemoContainer>
       )}
     </LiveProvider>
   ) : (
@@ -49,11 +74,7 @@ const PreComponent = ({ className, components, ...props }) => {
   );
 };
 
-const Table = props => (
-  <div style={{ margin: '10px 0' }}>
-    <table {...props} />
-  </div>
-);
+const Table = props => <table {...props} />;
 
 const SectionHeading = props => (
   <Heading
@@ -86,9 +107,9 @@ export const Layout = ({ children, pageContext }) => {
           h3: LinkHeading,
         }}
       >
-        <article className="content-article">
+        <ContentArticle>
           <SkipLinkContent>{children}</SkipLinkContent>
-        </article>
+        </ContentArticle>
       </MDXProvider>
       <NetlifyFooter />
     </LayoutComponent>

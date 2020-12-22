@@ -1,87 +1,10 @@
-html {
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-main,
-menu,
-nav,
-section,
-summary {
-  display: block;
-}
-audio,
-canvas,
-progress,
-video {
-  display: inline-block;
-}
-abbr[title] {
-  border-bottom: none;
-  text-decoration: underline;
-  text-decoration: underline dotted;
-}
-dfn {
-  font-style: italic;
-}
-sub,
-sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
-sub {
-  bottom: -0.25em;
-}
-sup {
-  top: -0.5em;
-}
 img {
   border-style: none;
-}
-svg:not(:root) {
-  overflow: hidden;
-}
-figure {
-  margin: 16px 40px;
-}
-button,
-input,
-optgroup,
-select,
-textarea {
-  font: inherit;
-  margin: 0;
-}
-fieldset {
-  border: 1px solid #8f8f8f;
-  margin: 0 2px;
-  padding: 8px;
-}
-legend {
-  box-sizing: border-box;
-  color: inherit;
-  display: table;
-  max-width: 100%;
-  padding: 0;
-  white-space: normal;
-}
-img {
   max-width: 100%;
   margin: 0;
   padding: 0;
 }
-hgroup {
-  margin: 0;
-  padding: 0;
-}
+
 h1,
 h2,
 h3,
@@ -182,7 +105,6 @@ ol {
   list-style-position: outside;
   list-style-image: none;
 }
-
 dl,
 dd {
   margin: 0 0 24px;
@@ -206,48 +128,12 @@ pre {
   padding: 24px;
   margin: 0 0 24px;
 }
-fieldset {
-  margin: 0 0 24px;
-  padding: 0;
-}
-blockquote {
-  margin: 0 24px 24px;
-  padding: 0;
-}
-form {
-  margin: 0 0 24px;
-  padding: 0;
-}
-noscript {
-  margin: 0 0 24px;
-  padding: 0;
-}
-iframe {
-  margin: 0 0 24px;
-  padding: 0;
-}
 hr {
   background: #8f8f8f;
   border: none;
   height: 1px;
   margin: 0 0 23px;
   padding: 0;
-}
-address {
-  margin: 0 0 24px;
-  padding: 0;
-}
-b {
-  font-weight: bold;
-}
-strong {
-  font-weight: bold;
-}
-dt {
-  font-weight: bold;
-}
-th {
-  font-weight: bold;
 }
 li {
   margin-bottom: 12px;
@@ -277,12 +163,6 @@ li *:last-child {
 li > p {
   margin-bottom: 12px;
 }
-abbr,
-acronym,
-abbr[title] {
-  border-bottom: 1px dotted #8f8f8f;
-  cursor: help;
-}
 tt,
 kbd,
 samp,
@@ -311,61 +191,12 @@ pre code {
   border: 0;
   word-wrap: break-word;
 }
-@media only screen and (max-width: 480px) {
-  html {
-    font-size: 100%;
-  }
-}
-
-/* Layout component styles */
-
-@media (min-width: 1024px) {
-  .main-container {
-    display: grid;
-    grid-template-columns: 280px auto;
-    grid-template-rows: 80px auto;
-    grid-template-areas:
-      'masthead masthead'
-      'nav content';
-  }
-}
 
 /* Content area styles */
-
-.content {
-  grid-area: content;
-  padding: 28px 0 0;
-}
-
-.content-article {
-  margin: 0 auto 48px;
-  max-width: 900px;
-  width: 80%;
-}
-
-@media (max-width: 600px) {
-  .content-article {
-    padding: 0 16px;
-    width: 100%;
-  }
-}
-
-.pre-container {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  display: grid;
-  margin: 0;
-  max-width: 100%;
-}
 
 .horizontal-spacer {
   height: 24px;
   display: block;
-}
-
-.demo-container {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  margin-bottom: 24px;
-  padding: 12px;
 }
 
 /* Demo styles for specific components */
