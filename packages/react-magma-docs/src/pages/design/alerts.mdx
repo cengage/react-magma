@@ -6,6 +6,7 @@ order: 1
 
 import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
+import { Divider } from '../../components/Divider';
 import { DocsHeading } from '../../components/DocsHeading';
 import { LeadParagraph } from '../../components/LeadParagraph';
 import { Alert } from 'react-magma-dom';
@@ -26,7 +27,7 @@ Use alerts to inform users of updates, changes to system status, or as feedback 
   <img src="../../images/alerts/alert-intro-image.png" alt=" " />
 </figure>
 <span class="horizontal-spacer"></span>
-<hr class="article-divider" />
+<Divider />
 
 ## Principles
 
@@ -43,7 +44,7 @@ Alerts should use simple language and as few words as possible. Avoid using erro
 Alerts are interruptive, but their level of interruption should match the information they contain and the context in which they appear.
 
 <span class="horizontal-spacer"></span>
-<hr class="article-divider" />
+<Divider />
 
 ## Anatomy
 
@@ -60,7 +61,7 @@ The basic anatomy of the alert is the same across all three types (banner, inlin
 1. Dismissal timer (only available on toasts)
 
 <span class="horizontal-spacer"></span>
-<hr class="article-divider" />
+<Divider />
 
 ## Colors
 
@@ -94,7 +95,7 @@ Indicates that a system process has encountered an error.
 
 <Alert variant="danger">Oh no, it's all gone horribly wrong!</Alert>
 <span class="horizontal-spacer"></span>
-<hr class="article-divider" />
+<Divider />
 
 ## Alert Types
 
@@ -233,7 +234,7 @@ When the viewport is 600px wide and smaller, we automatically hide the icon and 
   <img src="../../images/alerts/mobile-toast-alert-example.png" alt=" " />
 </figure>
 <span class="horizontal-spacer"></span>
-<hr class="article-divider" />
+<Divider />
 
 ## Accessibility
 

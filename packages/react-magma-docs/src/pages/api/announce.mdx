@@ -7,6 +7,7 @@ props:
 
 import { ScopeableLayout } from '../../components/layout';
 import { Announce, Button } from 'react-magma-dom';
+import { Divider } from '../../components/Divider';
 import { DocsHeading } from '../../components/DocsHeading';
 
 <DocsHeading type="api">Announce</DocsHeading>
@@ -53,7 +54,7 @@ possibly interrupting the current task. Using `off` will silence these updates, 
     <Announce politeness="assertive">
       <p>{announceContentAssertive}</p>
     </Announce>
-    <hr class="article-divider" />
+    <Divider />
     <p>This content will be not read by a screen reader when it changes.</p>
     <p>
       <Button onClick={() => setAnnounceContentOff('New content replacing the off initial content')}>Update off content</Button>

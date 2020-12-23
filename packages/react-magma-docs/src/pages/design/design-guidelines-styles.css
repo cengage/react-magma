@@ -1,11 +1,3 @@
-.article-divider {
-  background: #dfdfdf;
-  border: none;
-  height: 1px;
-  margin: 40px 0;
-  padding: 0;
-}
-
 .two-col {
   display: flex;
   flex-direction: column;
