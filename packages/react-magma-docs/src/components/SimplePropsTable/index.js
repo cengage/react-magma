@@ -27,7 +27,13 @@ export const SimplePropsTable = ({ propertyValues }) => {
       <Paragraph>
         <AsteriskIcon size="12" color={magma.colors.primary} /> = required prop
       </Paragraph>
-      <Table hasZebraStripes>
+      <Table
+        hasZebraStripes
+        style={{
+          fontSize: magma.typeScale.size02.fontSize,
+          lineHeight: magma.typeScale.size02.lineHeight,
+        }}
+      >
         <TableHead>
           <TableRow>
             <TableHeaderCell width="10%">Property</TableHeaderCell>
