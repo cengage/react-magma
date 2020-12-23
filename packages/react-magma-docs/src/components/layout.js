@@ -107,7 +107,7 @@ export const Layout = ({ children, pageContext }) => {
           h3: LinkHeading,
         }}
       >
-        <ContentArticle>
+        <ContentArticle className="content-article">
           <SkipLinkContent>{children}</SkipLinkContent>
         </ContentArticle>
       </MDXProvider>

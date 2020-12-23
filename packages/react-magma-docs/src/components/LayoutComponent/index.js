@@ -20,7 +20,7 @@ export const LayoutComponent = props => (
       <html lang="en" />
     </Helmet>
     <main>
-      <ContentSection>{props.children}</ContentSection>
+      <ContentSection className="content">{props.children}</ContentSection>
     </main>
   </>
 );
