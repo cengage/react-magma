@@ -43,26 +43,19 @@ jobs:
         run: |
           npm run publish -- --conventional-prerelease --yes
       - name: Get Alias
-        id: dev_info
-        if: github.ref == 'refs/heads/dev'
-        run: |
-          echo "::set-output name=alias::$(npm run --silent getAlias)"
-          echo "::set-output name=version::next"
-      - name: Get Alias
-        id: main_info
-        if: github.ref == 'refs/heads/main'
+        id: info
         run: |
           echo "::set-output name=alias::$(npm run --silent getAlias)"
           echo "::set-output name=version::$(npm run --silent getVersion)"
       - name: Build Latest Docs
         run: npm run build:docs
         env:
-          PATH_PREFIX: /version/${{ steps.main_info.outputs.version }}
+          PATH_PREFIX: /version/${{ steps.info.outputs.version }}
       - name: Build Dev Docs
         if: github.ref == 'refs/heads/main'
         run: npm run build:docs
         env:
-          PATH_PREFIX: /version/${{ steps.dev_info.outputs.version }}
+          PATH_PREFIX: /version/next
       - name: Deploy Dev Docs to Netlify
         if: github.ref == 'refs/heads/dev'
         uses: nwtgck/actions-netlify@v1.1
@@ -73,7 +66,7 @@ jobs:
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: true
-          alias: ${{ steps.dev_info.outputs.alias }}
+          alias: next
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -87,7 +80,7 @@ jobs:
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: true
-          alias: ${{ steps.main_info.outputs.alias }}
+          alias: ${{ steps.info.outputs.alias }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
