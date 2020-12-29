@@ -28,11 +28,11 @@ jobs:
         id: changed_files
         with:
           files: |
-             packages/react-magma-docs/src/data/properties.json
+             packages/react-magma-d/src/data/properties.json
       - name: Perform action when files change.
         if: steps.changed_files.outputs.files_changed == 'true'
         run: |
-          git add packages/react-magma-docs/src/data/properties.json
+          git add packages/react-magma-d/src/data/properties.json
           git commit -m 'update properties.json'
       - name: Publish (Latest)
         if: github.ref == 'refs/heads/main'
@@ -42,23 +42,45 @@ jobs:
         if: github.ref == 'refs/heads/dev'
         run: |
           npm run publish -- --conventional-prerelease --yes
-      - name: Build
-        run: npm run build:docs
       - name: Get Alias
         id: info
+        if: github.ref == 'refs/heads/main'
         run: |
           echo "::set-output name=alias::$(npm run --silent getAlias)"
-      - name: Deploy to Netlify
+          echo "::set-output name=version::next"
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "::set-output name=alias::$(npm run --silent getAlias)"
+          echo "::set-output name=version::$(npm run --silent getVersion)"
+      - name: Build
+        run: npm run build:d
+        env:
+          PATH_PREFIX: /version/${{ steps.info.outputs.version }}
+      - name: Deploy Docs to Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
           publish-dir: './packages/react-magma-docs/public'
-          production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: true
           alias: ${{ steps.info.outputs.alias }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Build Landing Page
+        run: npm run build:landing
+      - name: Update landing page on Netlify
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './packages/react-magma-landing/dist'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy Landing page from GitHub Actions"
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+          production-deploy: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

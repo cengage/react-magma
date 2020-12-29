@@ -3,6 +3,9 @@ const semver = require('semver');
 const fs = require('fs');
 const copy = require('copy');
 const mkdirp = require('mkdirp');
+const ejs = require('ejs');
+const english = new Intl.DateTimeFormat('en');
+const path = require('path');
 
 const cleanVersions = ({ versions, time, tags }) => {
   return semver
@@ -12,6 +15,7 @@ const cleanVersions = ({ versions, time, tags }) => {
       return {
         version,
         time: time[version],
+        date: english.format(new Date(time[version])),
         alias: version.replace(/\./g, '-'),
         tags: Object.entries(tags)
           .map(([key, value]) => {
@@ -31,6 +35,7 @@ const enhanceTags = ({ tags, time }) => {
           version: value,
           alias: key.replace(/\./g, '-'),
           time: time[value],
+          date: english.format(new Date(time[value])),
         },
       ];
     })
@@ -50,16 +55,50 @@ const getAllVersions = () => {
     .then(({ data }) => filterNPM(data));
 };
 
-mkdirp('dist');
+mkdirp(path.resolve(__dirname, '../dist'));
 getAllVersions().then(versions => {
   return Promise.all([
-    copy('static/**', 'dist', function (err, files) {
-      if (err) throw err;
-      Promise.resolve(files);
-    }),
-    fs.writeFile('dist/versions', JSON.stringify(versions, null, 2), err => {
-      if (err) throw err;
-      console.log('The file has been saved!');
-    }),
+    copy(
+      path.resolve(__dirname, '../static/**'),
+      path.resolve(__dirname, '../dist'),
+      function (err, files) {
+        if (err) throw err;
+        Promise.resolve(files);
+      }
+    ),
+    fs.writeFile(
+      path.resolve(__dirname, '../dist/versions'),
+      JSON.stringify(versions, null, 2),
+      err => {
+        if (err) throw err;
+        console.log('- dist/versions has been saved!');
+      }
+    ),
+    fs.writeFile(
+      path.resolve(__dirname, '../dist/index.html'),
+      ejs.render(
+        fs
+          .readFileSync(path.resolve(__dirname, '../templates/index.html'))
+          .toString(),
+        versions
+      ),
+      err => {
+        if (err) throw err;
+        console.log('- dist/index.html has been saved!');
+      }
+    ),
+    fs.writeFile(
+      path.resolve(__dirname, '../dist/_redirects'),
+      ejs.render(
+        fs
+          .readFileSync(path.resolve(__dirname, '../templates/_redirects'))
+          .toString(),
+        versions
+      ),
+      err => {
+        if (err) throw err;
+        console.log('- dist/_redirects has been saved!');
+      }
+    ),
   ]);
 });
