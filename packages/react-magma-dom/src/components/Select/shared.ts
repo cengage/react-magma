@@ -30,12 +30,14 @@ export const StyledCard = styled(Card)<{ isOpen?: boolean }>`
   z-index: 2;
 `;
 
-export const StyledList = styled('ul')<{ isOpen?: boolean }>`
+export const StyledList = styled('ul')<{ isOpen?: boolean; maxHeight: string }>`
   display: ${props => (props.isOpen ? 'block' : 'none')};
   list-style: none;
   margin: 0 0 4px;
   outline: none;
   padding: 0;
+  max-height: ${props => props.maxHeight};
+  overflow-y: auto;
 `;
 
 export const StyledItem = styled('li')<{ isFocused?: boolean }>`
@@ -45,6 +47,7 @@ export const StyledItem = styled('li')<{ isFocused?: boolean }>`
   border: 2px dotted;
   border-color: ${props =>
     props.isFocused ? props.theme.colors.focus : 'transparent'};
+  cursor: default;
   line-height: 24px;
   margin: 0;
   padding: 8px 16px;

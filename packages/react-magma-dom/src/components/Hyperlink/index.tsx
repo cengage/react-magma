@@ -7,15 +7,21 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { buttonStyles } from '../StyledButton';
 import { buildPropsWithDefaultButtonStyles } from '../StyledButton/styles';
 
+/**
+ * @children required
+ */
 export interface HyperlinkProps
   extends ButtonStyles,
-    Omit<
-      React.AnchorHTMLAttributes<HTMLAnchorElement>,
-      'color' | 'type' | 'href'
-    > {
-  children: string | React.ReactNode | ((props: object) => React.ReactNode);
+    Omit<React.HTMLAttributes<HTMLAnchorElement>, 'color'> {
+  children: React.ReactNode;
+  /**
+   * How the hyperlink is styled (can look like either a plain link or a button)
+   */
   styledAs?: 'Button' | 'Link';
   testId?: string;
+  /**
+   * The href value of the link
+   */
   to: string;
 }
 

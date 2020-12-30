@@ -2,6 +2,7 @@ import React from 'react';
 import { render, fireEvent, act } from '@testing-library/react';
 import { Select as MultiSelect } from '.';
 import { defaultI18n } from '../../i18n/default';
+import { magma } from '../../theme/magma';
 
 describe('Select', () => {
   it('should render a multi-select with items', () => {
@@ -106,6 +107,102 @@ describe('Select', () => {
     fireEvent.click(renderedSelect);
 
     expect(getByText(items[0].representation)).toBeInTheDocument();
+  });
+
+  it('should render an items list with the default max height', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { container, getByLabelText } = render(
+      <MultiSelect isMulti labelText={labelText} items={items} />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    fireEvent.click(renderedSelect);
+
+    expect(container.querySelector('ul')).toHaveStyleRule(
+      'max-height',
+      magma.select.menu.maxHeight
+    );
+  });
+
+  it('should render an items list with the passed in max height as a string', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const maxHeight = '100px';
+    const { container, getByLabelText } = render(
+      <MultiSelect
+        isMulti
+        itemListMaxHeight={maxHeight}
+        labelText={labelText}
+        items={items}
+      />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    fireEvent.click(renderedSelect);
+
+    expect(container.querySelector('ul')).toHaveStyleRule(
+      'max-height',
+      maxHeight
+    );
+  });
+
+  it('should render an items list with the passed in max height as a number', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const maxHeight = 50;
+    const { container, getByLabelText } = render(
+      <MultiSelect
+        isMulti
+        itemListMaxHeight={maxHeight}
+        labelText={labelText}
+        items={items}
+      />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    fireEvent.click(renderedSelect);
+
+    expect(container.querySelector('ul')).toHaveStyleRule(
+      'max-height',
+      `${maxHeight}px`
+    );
+  });
+
+  it('should render custom item component', () => {
+    const labelText = 'Label';
+    const items = [
+      { id: '0', label: 'Red', value: 'red' },
+      { id: '1', label: 'Blue', value: 'blue' },
+      { id: '2', label: 'Green', value: 'green' },
+    ];
+    const CustomItem = props => {
+      const { itemRef, isFocused, item, itemString, ...other } = props;
+
+      return (
+        <li {...other} data-testid={item.id} ref={itemRef}>
+          {itemString}
+        </li>
+      );
+    };
+    const { getByLabelText, getByText, getByTestId } = render(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        components={{ Item: CustomItem }}
+      />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    fireEvent.click(renderedSelect);
+
+    expect(getByText(items[0].label)).toBeInTheDocument();
+    expect(getByTestId(items[0].id)).toBeInTheDocument();
   });
 
   it('should not select an item when typing and select is closed', () => {

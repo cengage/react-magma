@@ -7,24 +7,42 @@ import {
   TypographyComponent,
 } from '../Typography';
 
+/**
+ * @children required
+ */
 export interface ParagraphProps
   extends React.HTMLAttributes<HTMLParagraphElement> {
-  children?: any;
+  /**
+   * The color of the component, helping to convey meaning or relative emphasis
+   * @default TypographyColor.default
+   */
   color?: TypographyColor;
+  /**
+   * Additional styles for typography based on the context of the content
+   * @default TypographyContextVariant.default
+   */
   contextVariant?: TypographyContextVariant;
   isInverse?: boolean;
+  /**
+   * If true, the component will not have the default top and bottom margin and instead will a margin value of 0
+   * @default false
+   */
   noMargins?: boolean;
-  ref?: any;
   testId?: string;
+  /**
+   * @internal
+   */
   theme?: any;
+  /**
+   * Applies visual styles including font-size, font-weight, line-height and margins
+   * @default TypographyVisualStyle.bodyMedium
+   */
   visualStyle?: TypographyVisualStyle;
 }
 
-export const Paragraph: React.FunctionComponent<ParagraphProps> = React.forwardRef(
-  (
-    { color, testId, visualStyle, children, ...other }: ParagraphProps,
-    ref: any
-  ) => {
+export const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
+  (props, ref) => {
+    const { color, testId, visualStyle, children, ...other } = props;
     const theme = React.useContext(ThemeContext);
 
     return (

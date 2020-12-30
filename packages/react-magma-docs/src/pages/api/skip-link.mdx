@@ -1,13 +1,15 @@
 ---
 pageTitle: Skip Link API
 title: Skip Link
+props:
+  - SkipLinkProps
+  - SkipLinkContentProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
 import { Button } from 'react-magma-dom';
 import { Link } from 'gatsby';
-import { SimplePropsTable } from '../../components/props-table';
-import DocsHeading from '../../components/docs-heading';
+import { DocsHeading } from '../../components/DocsHeading';
 
 <DocsHeading type="api">Skip Link</DocsHeading>
 
@@ -103,111 +105,10 @@ This would render the button 25px from the top, and 25px from the left of the br
 
 All of the [standard anchor attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) can be provided as props and will be applied to the `a` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    buttonText: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'The text in the skip link',
-      defaultValue: "'Skip Navigation'",
-    },
-    color: {
-      type: {
-        name: 'enum',
-        options: [
-          'ButtonColor.primary',
-          'ButtonColor.secondary',
-          'ButtonColor.success',
-          'ButtonColor.danger',
-          'ButtonColor.marketing',
-        ],
-      },
-      required: false,
-      description: 'The color of the button',
-      defaultValue: 'primary',
-    },
-    isFullWidth: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the button will take up the full width of its container',
-      defaultValue: 'false',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    positionLeft: {
-      type: {
-        name: 'number',
-      },
-      required: false,
-      description:
-        'Number of pixels from the left of the screen for the skip link to be positioned ',
-      defaultValue: '10',
-    },
-    positionTop: {
-      type: {
-        name: 'number',
-      },
-      required: false,
-      description:
-        'Number of pixels from the top of the screen for the skip link to be positioned ',
-      defaultValue: '10',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    variant: {
-      type: {
-        name: 'enum',
-        options: [
-          'ButtonVariant.solid',
-          'ButtonVariant.outline',
-          'ButtonVariant.link',
-        ],
-      },
-      required: false,
-      description: 'The variant of the button',
-      defaultValue: 'solid',
-    },
-  }}
-/>
+<SkipLinkProps />
 
 ## Skip Link Content Props
 
-<SimplePropsTable
-  propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: false,
-      description: 'The content of the destination of the skip link',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-  }}
-/>
+<SkipLinkContentProps />
 
 export default props => <ScopeableLayout {...props} components={{ Button }} />;

@@ -14,22 +14,79 @@ import { useGenerateId } from '../../utils';
 
 export interface PasswordInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
+  /**
+   * Style properties for the component container element
+   */
   containerStyle?: React.CSSProperties;
+  /**
+   * Content of the error message. If a value is provided, the input will be styled as an error state and the error message will display
+   */
   errorMessage?: React.ReactNode;
+  /**
+   * Content of the helper message
+   */
   helperMessage?: React.ReactNode;
+  /**
+   * Text read by screen reader when the password is hidden
+   * @default "Password is now hidden"
+   */
   hiddenPasswordAnnounceText?: string;
+  /**
+   * Aria-label for the "Hide Password" button
+   * @default "Hide password"
+   */
   hidePasswordButtonAriaLabel?: string;
+  /**
+   * Text displayed on screen for the "Hide Password" button
+   * @default "Hide"
+   */
   hidePasswordButtonText?: string;
+  /**
+   * Relative size of the component
+   * @default InputSize.medium
+   */
   inputSize?: InputSize;
+  /**
+   * Style properties for the input element
+   */
   inputStyle?: React.CSSProperties;
   isInverse?: boolean;
+  /**
+   * If true, label text will be hidden visually, but will still be read by assistive technology
+   * @default false
+   */
   isLabelVisuallyHidden?: boolean;
+  /**
+   * If true, label text will be hidden visually, but will still be read by assistive technology
+   * @default false
+   */
   isPasswordMaskButtonHidden?: boolean;
+  /**
+   * Style properties for the label element
+   */
   labelStyle?: React.CSSProperties;
+  /**
+   * Content of label; can be a node or a string
+   */
   labelText: React.ReactNode;
+  /**
+   * Style properties for the helper or error message
+   */
   messageStyle?: React.CSSProperties;
+  /**
+   * Text read by screen reader when the password is hidden
+   * @default "Password is now hidden"
+   */
   shownPasswordAnnounceText?: string;
+  /**
+   * Aria-label for the "Show Password" button
+   * @default "Show password. Note: this will visually expose your password on the screen"
+   */
   showPasswordButtonAriaLabel?: string;
+  /**
+   * Text displayed on screen for the "Show Password" button
+   * @default "Show"
+   */
   showPasswordButtonText?: string;
   testId?: string;
 }

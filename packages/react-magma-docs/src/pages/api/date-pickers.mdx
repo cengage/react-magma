@@ -1,13 +1,14 @@
 ---
 pageTitle: Date Picker API
 title: Date Picker
+props:
+  - DatePickerProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
 import { DatePicker, I18nContext, defaultI18n } from 'react-magma-dom';
-import DocsHeading from '../../components/docs-heading';
+import { DocsHeading } from '../../components/DocsHeading';
 import { Link } from 'gatsby';
-import { SimplePropsTable } from '../../components/props-table';
 import { es } from 'date-fns/locale';
 import { format } from 'date-fns';
 
@@ -224,137 +225,7 @@ to the `I18nContext` provider.
 
 All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the `input` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    containerStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the component container element',
-    },
-    defaultDate: {
-      type: {
-        name: 'Date or string',
-      },
-      required: false,
-      description: 'Default selected date value',
-    },
-    errorMessage: {
-      type: {
-        name: 'ReactNode',
-      },
-      required: false,
-      description:
-        'Content of the error message.  If a value is provided, the component will be styled to show an error state.',
-      defaultValue: '',
-    },
-    helperMessage: {
-      type: {
-        name: 'ReactNode',
-      },
-      required: false,
-      description: 'Content of the helper message.',
-      defaultValue: '',
-    },
-    inputStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the input element',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    labelStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the label element',
-    },
-    labelText: {
-      type: {
-        name: 'ReactNode',
-      },
-      required: true,
-      description: 'Text for label',
-    },
-    maxDate: {
-      type: {
-        name: 'Date or string',
-      },
-      required: false,
-      description: 'Maximum date allowed to be chosen in the calendar',
-    },
-    messageStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the helper or error message',
-    },
-    minDate: {
-      type: {
-        name: 'Date or string',
-      },
-      required: false,
-      description: 'Minimum date allowed to be chosen in the calendar',
-    },
-    onDateChange: {
-      type: {
-        name: '(day: Date, event: React.SyntheticEvent) => void',
-      },
-      required: false,
-      description: 'Event that will fire when day is changed',
-    },
-    onInputBlur: {
-      type: {
-        name: '(event: React.FocusEvent) => void',
-      },
-      required: false,
-      description: 'Event that will fire when the text input loses focus',
-    },
-    onInputChange: {
-      type: {
-        name: '(event: React.ChangeEvent) => void;',
-      },
-      required: false,
-      description: 'Event that will fire when the text input is changed',
-    },
-    placeholder: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Text for input placeholder',
-      defaultValue: 'mm/dd/yyyy',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    value: {
-      type: {
-        name: 'Date or string',
-      },
-      required: false,
-      description:
-        'Value of the date input, used when setting the date value externally.',
-    },
-  }}
-/>
+<DatePickerProps />
 
 export default props => (
   <ScopeableLayout

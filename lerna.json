@@ -2,17 +2,17 @@
   "packages": [
     "packages/react-magma-docs",
     "packages/react-magma-dom",
-    "packages/react-magma-icons"
+    "packages/react-magma-icons",
+    "packages/react-magma-landing"
   ],
   "command": {
     "bootstrap": {
       "forceLocal": true
     },
     "publish": {
-      "allowBranch": ["master", "dev", "hotfix/*"],
+      "allowBranch": ["master", "dev", "hotfix/*", "main"],
       "preDistTag": "next",
-      "message": "chore(release): publish",
-      "registry": "http://nexus.mindtap.corp.web/content/repositories/npm.cengage/"
+      "message": "chore(release): publish"
     },
     "version": {
       "changelogPreset": "conventionalcommits",

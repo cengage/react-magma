@@ -1,10 +1,19 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 
+/**
+ * @children required
+ */
 export interface HideAtBreakpointProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  minWidth?: number;
+  /**
+   * Maximum width at which to hide the content
+   */
   maxWidth?: number;
+  /**
+   * Minimum width at which to hide the content
+   */
+  minWidth?: number;
   testId?: string;
 }
 

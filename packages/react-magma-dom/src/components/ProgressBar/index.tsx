@@ -2,7 +2,7 @@ import * as React from 'react';
 import { css } from '@emotion/core';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { stringIncludesUnit } from '../../utils';
+import { convertStyleValueToString } from '../../utils';
 
 export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -153,12 +153,10 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
 
     const theme = React.useContext(ThemeContext);
 
-    const heightString = height
-      ? typeof height === 'number' ||
-        (typeof height === 'string' && !stringIncludesUnit(height))
-        ? `${height}px`
-        : height
-      : theme.spaceScale.spacing05;
+    const heightString = convertStyleValueToString(
+      height,
+      theme.spaceScale.spacing05
+    );
 
     return (
       <Container {...other} isLoadingIndicator={isLoadingIndicator}>

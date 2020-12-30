@@ -2,12 +2,32 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 
+/**
+ * @children required
+ */
 export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
+  /**
+   * Relative padding of the table cells
+   * @default TableDensity.normal
+   */
   density?: TableDensity;
+  /**
+   * If true, row will be visually highlighted on hover
+   */
   hasHoverStyles?: boolean;
+  /**
+   * If true, columns will have vertical borders
+   */
   hasVerticalBorders?: boolean;
+  /**
+   * If true, every other row will have a background color
+   */
   hasZebraStripes?: boolean;
   isInverse?: boolean;
+  /**
+   * Minimum width for the table in pixels
+   * @default 600
+   */
   minWidth?: number;
   testId?: string;
 }

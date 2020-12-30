@@ -1,5 +1,8 @@
 import * as React from 'react';
 
+/**
+ * @children required
+ */
 export interface TableHeadProps
   extends React.HTMLAttributes<HTMLTableSectionElement> {
   testId?: string;

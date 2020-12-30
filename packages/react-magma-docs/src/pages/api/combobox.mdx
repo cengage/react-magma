@@ -1,6 +1,8 @@
 ---
 pageTitle: Combobox API
 title: Combobox
+props:
+  - ComboboxProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -13,10 +15,10 @@ import {
   I18nContext,
   defaultI18n,
 } from 'react-magma-dom';
-import { SimplePropsTable } from '../../components/props-table';
 import { Link } from 'gatsby';
 import { v4 as uuid } from 'uuid';
-import DocsHeading from '../../components/docs-heading';
+import { DocsHeading } from '../../components/DocsHeading';
+import styled from '@emotion/styled';
 
 <DocsHeading to="/design/select/" type="api">
   Combobox
@@ -729,6 +731,22 @@ This is commonly used to provide a typeahead dropdown without allowing custom op
 }
 ```
 
+## Custom Items List Height
+
+The items list menu has a default max height that can be changed in the theme or using the `itemListMaxHeight` prop.
+
+```.jsx
+<Combobox
+  labelText="Combobox Small Item List Menu"
+  defaultItems={[
+    { label: 'Red', value: 'red' },
+    { label: 'Blue', value: 'blue' },
+    { label: 'Green', value: 'green' }
+  ]}
+  itemListMaxHeight='50px'
+/>
+```
+
 ## Custom Styles
 
 Custom styles can be passed into the Combobox component. The `containerStyle` property will apply to the container.
@@ -915,8 +933,85 @@ interface CustomComboboxItem {
 
 ## Custom Components
 
-Out of the box, the `Combobox` uses React Magma-styled iconography for the button used to clear the selection, the caret for the dropdown, and the loading animation.
-However, these can be overridden by providing custom components to the `components` prop, in an object containing a `ClearIndicator`, a `DropdownIndicator` and a `LoadingIndicator`.
+Out of the box, the `Combobox` renders a styled `li` for items and uses React Magma-styled iconography for the button used to clear the selection, the caret for the dropdown, and the loading animation.
+However, these can be overridden by providing custom components to the `components` prop, in an object containing an `Item`, a `ClearIndicator`, a `DropdownIndicator` and a `LoadingIndicator`.
+
+### Custom Item Component
+
+By default each item will be rendered with the `itemToString` value in a styled `li`. If you would like to add more information or
+would just like to be able to fully customize the look of your items you can pass in an `Item` component that uses the `props` that
+we use internally.
+
+<Alert variant="warning">
+  Be aware. You must pass a <code>ref</code> to your custom item component to
+  make sure the functionality of the entire <code>Combobox</code> continues to
+  work.
+</Alert>
+
+```.jsx
+() => {
+  const CustomStyledItem = styled.li(props => ({
+    alignSelf: 'center',
+    background: props.isFocused ? props.theme.colors.neutral07 : 'transparent',
+    lineHeight: '24px',
+    margin: '0',
+    padding: '8px 16px'
+  }));
+
+  const ContainerSpan = styled.span(props => ({
+    display: 'flex',
+    alignItems: 'center'
+  }));
+
+  const Hex = styled.span(props => ({
+    background: props.color,
+    border: `2px solid ${props.theme.colors.neutral}`,
+    borderRadius: props.theme.borderRadius,
+    display: 'inline-flex',
+    height: '16px',
+    marginRight: '4px',
+    width: '16px'
+  }));
+
+  const Description = styled.div(props => ({
+    fontSize: '12px',
+    color:  props.theme.colors.neutral02
+  }));
+
+  function itemToString(item) {
+    return item ? item.representation : ''
+  }
+
+  const CustomItem = props => {
+    const { itemRef, itemString, item, ...other } = props;
+    return (
+      <CustomStyledItem {...other} ref={itemRef}>
+        <ContainerSpan>
+          <Hex color={item.hex} theme={props.theme} />
+          {itemString}
+        </ContainerSpan>
+        <Description theme={props.theme}>{item.description}</Description>
+      </CustomStyledItem>
+    )
+  }
+
+  return (
+    <Combobox
+      components={{ Item: CustomItem }}
+      defaultItems={[
+        { id: 0, name: 'red', representation: 'Red', hex: '#FF0000', description: 'The color of roses' },
+        { id: 1, name: 'blue', representation: 'Blue', hex: '#0000FF', description: 'The color of blueberries'  },
+        { id: 2, name: 'green', representation: 'Green', hex: '#008000', description: 'The color of grass'  }
+      ]}
+      disableCreateItem
+      itemToString={itemToString}
+      labelText="Combobox With Custom Item Render"
+    />
+  )
+}
+```
+
+### Other Custom Components
 
 ```.jsx
 () => {
@@ -1083,221 +1178,13 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
 
 ## Combobox Props
 
-<SimplePropsTable
-  propertyValues={{
-    components: {
-      type: {
-        name: 'DownshiftComponents',
-      },
-      required: false,
-      description: 'Custom components',
-    },
-    containerStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the component container',
-    },
-    errorMessage: {
-      type: {
-        name: 'ReactNode',
-      },
-      required: false,
-      description:
-        'Content of the error message.  If a value is provided, the component will be styled to show an error state',
-      defaultValue: '',
-    },
-    disableCreateItem: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the new items cannot be created by typing in the text field',
-      defaultValue: 'false',
-    },
-    helperMessage: {
-      type: {
-        name: 'ReactNode',
-      },
-      required: false,
-      description: 'Content of the helper message',
-      defaultValue: '',
-    },
-    initialSelectedItem: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Value of the initially selected item',
-    },
-    innerRef: {
-      type: {
-        name: 'React.Ref<HTMLInputElement>',
-      },
-      required: false,
-      description: 'Reference to the input element in the combobox',
-    },
-    inputStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the select input',
-    },
-    isLabelVisuallyHidden: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, label text will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
-    },
-    isMulti: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, multiple items may be selected',
-      defaultValue: 'false',
-    },
-    isClearable: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component include a button for clearing the field',
-      defaultValue: 'false',
-    },
-    disabled: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, item will be disabled; it will appear dimmed and events will not fire',
-      defaultValue: 'false',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    isMulti: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, multiple items may be selected',
-      defaultValue: 'false',
-    },
-    items: {
-      type: {
-        name: 'array',
-      },
-      required: false,
-      description:
-        'Selectable options.  Can be an array of strings or objects.',
-    },
-    itemToString: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description:
-        'Function that returns the string representation of your item which will be applied as the label when using a custom shape for items',
-    },
-    labelStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the label',
-    },
-    labelText: {
-      type: {
-        name: 'ReactNode',
-      },
-      required: true,
-      description: 'Text for label',
-    },
-    messageStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the helper or error message',
-    },
-    onHighlightedIndexChange: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description: 'Event that fires when the highlighted index changes',
-      defaultValue: '',
-    },
-    onIsOpenChange: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description: 'Event that fires when the options menu opens or closes',
-      defaultValue: '',
-    },
-    onSelectedItemChange: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description: 'Event that fires hen the selected item changes',
-      defaultValue: '',
-    },
-    onStateChange: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description: 'Event that fires on every internal state changes',
-      defaultValue: '',
-    },
-    placeholder: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Text for input placeholder',
-      defaultValue: '',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    toggleButtonRef: {
-      type: {
-        name: 'React.Ref<HTMLButtonElement>',
-      },
-      required: false,
-      description:
-        'Reference to the toggle button element wrapping the input in the combobox',
-    },
-  }}
-/>
+<ComboboxProps />
 
 export default props => (
   <ScopeableLayout
     {...props}
     components={{
+      styled,
       Card,
       CardBody,
       Combobox,

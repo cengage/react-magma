@@ -5,6 +5,14 @@ import { Card } from '../Card';
 import { DropdownContext, DropdownAlignment, DropdownDropDirection } from '.';
 import { ThemeContext } from '../../theme/ThemeContext';
 
+/**
+ * @children required
+ */
+export interface DropdownContentProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  testId?: string;
+}
+
 const StyledCard = styled(Card)<{
   alignment?: DropdownAlignment;
   dropDirection?: DropdownDropDirection;
@@ -14,7 +22,8 @@ const StyledCard = styled(Card)<{
 }>`
   display: ${props => (props.isOpen ? 'block' : 'none')};
   left: ${props => props.theme.spaceScale.spacing02};
-  max-height: ${props => (props.maxHeight ? props.maxHeight : '250px')};
+  max-height: ${props =>
+    props.maxHeight ? props.maxHeight : props.theme.dropdown.content.maxHeight};
   opacity: ${props => (props.isOpen ? '1' : '0')};
   outline: 0;
   overflow-y: auto;
@@ -75,10 +84,11 @@ const StyledDiv = styled.div`
   padding: ${props => props.theme.spaceScale.spacing02} 0;
 `;
 
-export const DropdownContent: React.FunctionComponent = ({
-  children,
-  ...other
-}) => {
+export const DropdownContent = React.forwardRef<
+  HTMLDivElement,
+  DropdownContentProps
+>((props, ref) => {
+  const { children, testId, ...other } = props;
   const context = React.useContext(DropdownContext);
   const theme = React.useContext(ThemeContext);
 
@@ -90,8 +100,9 @@ export const DropdownContent: React.FunctionComponent = ({
       hasDropShadow
       isOpen={context.isOpen}
       maxHeight={context.maxHeight}
+      ref={ref}
       tabIndex={-1}
-      testId="dropdownContent"
+      testId={testId || 'dropdownContent'}
       theme={theme}
       width={context.width}
       onBlur={context.handleMenuBlur}
@@ -106,4 +117,4 @@ export const DropdownContent: React.FunctionComponent = ({
       </StyledDiv>
     </StyledCard>
   );
-};
+});

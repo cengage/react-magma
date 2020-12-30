@@ -23,26 +23,64 @@ export enum ModalSize {
   small = 'small',
 }
 
+/**
+ * @children required
+ */
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * The text read by screen readers for the close button
+   * @default "Close dialog"
+   */
   closeAriaLabel?: string;
+  /**
+   * The content of the modal header
+   */
   header?: React.ReactNode;
-  id?: string;
+  /**
+   * If true, clicking the backdrop will not dismiss the modal
+   * @default false
+   */
   isBackgroundClickDisabled?: boolean;
+  /**
+   * If true, the close button the the modal will be suppressed
+   * @default false
+   */
   isCloseButtonHidden?: boolean;
+  /**
+   * If true, pressing the Escape key will not dismiss the modal
+   * @false
+   */
   isEscKeyDownDisabled?: boolean;
-  isExiting?: boolean;
+  /**
+   * If true, the modal will be visible
+   * @default false
+   */
   isOpen?: boolean;
+  /**
+   * Action that fires when the close button is clicked
+   */
   onClose?: () => void;
+  /**
+   * Action that fires when the Escape key is pressed
+   */
   onEscKeyDown?: (event: KeyboardEvent) => void;
+  /**
+   * The relative size of the modal
+   * @default ModalSize.medium
+   */
   size?: ModalSize;
   testId?: string;
+  /**
+   * @internal
+   */
   theme?: ThemeInterface;
 }
 
-const ModalContainer = styled.div`
+const ModalContainer = styled.div<{ theme: ThemeInterface }>`
   bottom: 0;
   left: 0;
   overflow-y: auto;
+  padding: ${props => props.theme.spaceScale.spacing03};
   position: fixed;
   right: 0;
   top: 0;
@@ -81,7 +119,7 @@ const ModalBackdrop = styled.div<{ isExiting?: boolean }>`
   }
 `;
 
-const ModalContent = styled.div<ModalProps>`
+const ModalContent = styled.div<ModalProps & { isExiting?: boolean }>`
   animation: ${props =>
     props.isExiting ? 'fadeSlideOut 500ms' : 'fadeSlideIn 500ms'};
   background: ${props => props.theme.colors.neutral08};
@@ -90,10 +128,7 @@ const ModalContent = styled.div<ModalProps>`
   border-radius: ${props => props.theme.borderRadius};
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   color: ${props => props.theme.colors.neutral};
-  margin: ${props =>
-    props.size === 'small'
-      ? `${props.theme.spaceScale.spacing03} auto`
-      : props.theme.spaceScale.spacing03};
+  margin: 0 auto;
   position: relative;
   z-index: 1000;
 
@@ -122,23 +157,16 @@ const ModalContent = styled.div<ModalProps>`
   max-width: ${props => {
     switch (props.size) {
       case 'large':
-        return '900px';
+        return props.theme.modal.width.large;
       case 'small':
-        return '300px';
+        return props.theme.modal.width.small;
       default:
-        return '750px';
+        return props.theme.modal.width.medium;
     }
   }};
 
-  @media (min-width: ${props => props.theme.breakpoints.medium}px) {
-    margin: ${props =>
-      props.size !== 'large'
-        ? `${props.theme.spaceScale.spacing09} auto`
-        : props.theme.spaceScale.spacing03};
-  }
-
-  @media (min-width: 920px) {
-    margin: ${props => props.theme.spaceScale.spacing09} auto;
+  @media (min-width: ${props => props.theme.breakpoints.small}px) {
+    margin: ${props => props.theme.spaceScale.spacing08} auto;
   }
 `;
 
@@ -159,18 +187,13 @@ const H1 = styled(Heading)<{ theme?: ThemeInterface }>`
   line-height: ${props =>
     props.theme.typographyVisualStyles.headingSmall.desktop.lineHeight};
   margin: 0;
-  padding-right: 50px;
+  padding-right: ${props => props.theme.spaceScale.spacing10};
 `;
 
 const CloseBtn = styled.span`
   position: absolute;
   top: 0;
   right: 0;
-
-  svg {
-    height: 15px;
-    width: 15px;
-  }
 `;
 const ModalBody = styled.div<{ theme?: ThemeInterface }>`
   padding: ${props => props.theme.spaceScale.spacing05};
@@ -343,7 +366,9 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
 
-    const CloseIcon = <CrossIcon color={theme.colors.neutral03} />;
+    const CloseIcon = (
+      <CrossIcon color={theme.colors.neutral03} size={theme.iconSizes.small} />
+    );
 
     return isModalOpen
       ? ReactDOM.createPortal(
@@ -368,6 +393,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               }
               ref={focusTrapElement}
               role="dialog"
+              theme={theme}
             >
               <ModalContent
                 {...other}

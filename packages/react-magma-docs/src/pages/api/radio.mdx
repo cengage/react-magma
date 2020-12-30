@@ -1,6 +1,9 @@
 ---
 pageTitle: Radio Button API
 title: Radio Button
+props:
+  - RadioProps
+  - RadioGroupProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -13,9 +16,8 @@ import {
   CardBody,
   magma,
 } from 'react-magma-dom';
-import DocsHeading from '../../components/docs-heading';
+import { DocsHeading } from '../../components/DocsHeading';
 import { Link } from 'gatsby';
-import { SimplePropsTable } from '../../components/props-table';
 
 <DocsHeading to="/design/selection-controls" type="api">
   Radio Button
@@ -454,132 +456,7 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    containerStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the component container element',
-    },
-    errorMessage: {
-      type: {
-        name: 'ReactNode',
-      },
-      required: false,
-      description:
-        'Content of the error message.  If a value is provided, the radio buttons will be styled to show an error state',
-      defaultValue: '',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component and all child radio buttons will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    isTextVisuallyHidden: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, label text for the radio group will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
-    },
-    labelledById: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'ID of the element that labels the radio group, used in the aria-labelledby attribute for the group.  Alternatively, the labelText prop can be used.',
-      defaultValue: '',
-    },
-    labelStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the label of the radio group',
-    },
-    labelText: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Content of label of the radio group; can be node or string. Alternatively, the labelledById prop can be used.',
-    },
-    onBlur: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description: 'Action that fires when the radio group loses focus',
-    },
-    onChange: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description:
-        'Action that fires when selected value of the radio group changes',
-    },
-    onFocus: {
-      type: {
-        name: 'function',
-      },
-      required: false,
-      description:
-        'Action that fires when one of the radio buttons within the group receives focus',
-    },
-    name: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Name attribute the radio group',
-      defaultValue: '',
-    },
-    required: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the user must select one radio button for the form to be valid',
-      defaultValue: 'false',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    value: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Value of the radio button that is the default selected value for the group',
-      defaultValue: '',
-    },
-  }}
-/>
+<RadioGroupProps />
 
 ## Radio Props
 
@@ -587,106 +464,7 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 
 All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the `input` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    color: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Hex code for the background color',
-      defaultValue: '#0000FF',
-    },
-    containerStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the component container element',
-    },
-    disabled: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, element is disabled',
-      defaultValue: 'false',
-    },
-    inputStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the radio button element',
-    },
-    isInverse: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, the component will have inverse styling to better appear on a dark background',
-      defaultValue: 'false',
-    },
-    isTextVisuallyHidden: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description:
-        'If true, label text will be hidden visually, but will still be read by assistive technology',
-      defaultValue: 'false',
-    },
-    labelStyle: {
-      type: {
-        name: 'React.CSSProperties',
-      },
-      required: false,
-      description: 'Style properties for the label element',
-    },
-    labelText: {
-      type: {
-        name: 'string',
-      },
-      required: true,
-      description: 'Content of label; can be node or string',
-    },
-    required: {
-      type: {
-        name: 'boolean',
-      },
-      required: false,
-      description: 'If true, the form field is required',
-      defaultValue: 'false',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-    textPosition: {
-      type: {
-        name: 'enum',
-        options: ['RadioTextPosition.left', 'RadioTextPosition.right'],
-      },
-      required: false,
-      description:
-        'Whether the label appears to the left of the right of the radio button',
-      defaultValue: 'right',
-    },
-    value: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: 'Value attribute the form field',
-      defaultValue: '',
-    },
-  }}
-/>
+<RadioProps />
 
 export default props => (
   <ScopeableLayout

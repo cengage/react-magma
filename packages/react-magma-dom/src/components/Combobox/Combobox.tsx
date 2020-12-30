@@ -8,11 +8,12 @@ import { ItemsList } from '../Select/ItemsList';
 import { ComboboxInput } from './ComboboxInput';
 import { ButtonSize, ButtonVariant } from '../Button';
 import { useComboboxItems, defaultOnInputValueChange } from './shared';
-import { ComboboxInterface } from '.';
+import { ComboboxProps } from '.';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { useForkedRef } from '../../utils';
 
-export function InternalCombobox<T>(props: ComboboxInterface<T>) {
+export function InternalCombobox<T>(props: ComboboxProps<T>) {
   const {
     ariaDescribedBy,
     components: customComponents,
@@ -28,6 +29,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
     isLabelVisuallyHidden,
     isLoading,
     isInverse,
+    itemListMaxHeight,
     items,
     itemToString,
     labelStyle,
@@ -48,6 +50,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
     toggleButtonRef,
   } = props;
 
+  const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
   function isCreatedItem(item) {
@@ -107,7 +110,6 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
           : changes.inputValue;
         return {
           ...changes,
-          ...(displayItems[0] && { selectedItem: displayItems[0] }),
           inputValue,
         };
       }
@@ -222,7 +224,7 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
       getValidItem(passedInSelectedItem, 'selectedItem')),
   });
 
-  const { ClearIndicator } = defaultComponents({
+  const { ClearIndicator } = defaultComponents<T>({
     ...customComponents,
   });
 
@@ -255,21 +257,21 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
       <ComboboxInput
         ariaDescribedBy={ariaDescribedBy}
         customComponents={customComponents}
+        disabled={disabled}
         getComboboxProps={getComboboxProps}
         getInputProps={getInputProps}
         getToggleButtonProps={getToggleButtonProps}
+        hasError={hasError}
+        innerRef={ref}
         inputStyle={inputStyle}
-        disabled={disabled}
         isInverse={isInverse}
         isLoading={isLoading}
-        hasError={hasError}
         onInputBlur={onInputBlur}
         onInputFocus={onInputFocus}
         onInputKeyDown={onInputKeyDown}
         onInputKeyPress={onInputKeyPress}
         onInputKeyUp={onInputKeyUp}
         placeholder={placeholder}
-        ref={ref}
         toggleButtonRef={toggleButtonRef}
       >
         {isClearable && selectedItem && (
@@ -283,12 +285,14 @@ export function InternalCombobox<T>(props: ComboboxInterface<T>) {
         )}
       </ComboboxInput>
       <ItemsList
+        customComponents={customComponents}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}
         isOpen={isOpen}
         items={displayItems}
         itemToString={itemToString}
+        maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
         menuStyle={menuStyle}
       />
     </SelectContainer>

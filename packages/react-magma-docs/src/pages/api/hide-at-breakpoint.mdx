@@ -1,12 +1,13 @@
 ---
 pageTitle: Hide at Breakpoint API
 title: Hide at Breakpoint
+props:
+  - HideAtBreakpointProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
 import { magma, Card, CardBody, HideAtBreakpoint } from 'react-magma-dom';
-import { SimplePropsTable } from '../../components/props-table';
-import DocsHeading from '../../components/docs-heading';
+import { DocsHeading } from '../../components/DocsHeading';
 
 <DocsHeading type="api">Hide at Breakpoint</DocsHeading>
 
@@ -42,39 +43,7 @@ It takes two props, `minWidth` and `maxWidth` for the minimum and maximum widths
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
-<SimplePropsTable
-  propertyValues={{
-    children: {
-      type: {
-        name: 'node',
-      },
-      required: true,
-      description: 'The content of the component',
-    },
-    maxWidth: {
-      type: {
-        name: 'number',
-      },
-      required: false,
-      description: 'Maximum width at which to hide the content',
-    },
-    minWidth: {
-      type: {
-        name: 'number',
-      },
-      required: false,
-      description: 'Minimum width at which to hide the content',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
-    },
-  }}
-/>
+<HideAtBreakpointProps />
 
 export default props => (
   <ScopeableLayout

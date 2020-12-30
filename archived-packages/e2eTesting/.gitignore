@@ -1,4 +1,0 @@
-build
-cypress/screenshots/
-cypress/videos
-*.log

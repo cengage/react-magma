@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { Combobox } from '.';
+import { magma } from '../../theme/magma';
 
 describe('Combobox', () => {
   it('should render a combobox with items', () => {
@@ -80,6 +81,100 @@ describe('Combobox', () => {
     expect(getByText(items[0].representation)).toBeInTheDocument();
   });
 
+  it('should render an items list with the default max height', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { container, getByLabelText } = render(
+      <Combobox labelText={labelText} items={items} />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+    fireEvent.click(renderedCombobox);
+
+    expect(container.querySelector('ul')).toHaveStyleRule(
+      'max-height',
+      magma.select.menu.maxHeight
+    );
+  });
+
+  it('should render an items list with the passed in max height as a string', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const maxHeight = '100px';
+    const { container, getByLabelText } = render(
+      <Combobox
+        itemListMaxHeight={maxHeight}
+        labelText={labelText}
+        items={items}
+      />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+    fireEvent.click(renderedCombobox);
+
+    expect(container.querySelector('ul')).toHaveStyleRule(
+      'max-height',
+      maxHeight
+    );
+  });
+
+  it('should render an items list with the passed in max height as a number', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const maxHeight = 50;
+    const { container, getByLabelText } = render(
+      <Combobox
+        itemListMaxHeight={maxHeight}
+        labelText={labelText}
+        items={items}
+      />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+    fireEvent.click(renderedCombobox);
+
+    expect(container.querySelector('ul')).toHaveStyleRule(
+      'max-height',
+      `${maxHeight}px`
+    );
+  });
+
+  it('should render custom item component', () => {
+    const labelText = 'Label';
+    const testId = 'test';
+    const items = [
+      { id: '0', label: 'Red', value: 'red' },
+      { id: '1', label: 'Blue', value: 'blue' },
+      { id: '2', label: 'Green', value: 'green' },
+    ];
+    const CustomItem = props => {
+      const { itemRef, isFocused, item, itemString, ...other } = props;
+
+      return (
+        <li {...other} data-testid={item.id} ref={itemRef}>
+          {itemString}
+        </li>
+      );
+    };
+    const { getByLabelText, getByText, getByTestId } = render(
+      <Combobox
+        labelText={labelText}
+        items={items}
+        components={{ Item: CustomItem }}
+      />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+    fireEvent.click(renderedCombobox);
+
+    expect(getByText(items[0].label)).toBeInTheDocument();
+    expect(getByTestId(items[0].id)).toBeInTheDocument();
+  });
+
   it('should allow for selection of an item', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
@@ -94,6 +189,28 @@ describe('Combobox', () => {
     fireEvent.click(getByText(items[0]));
 
     expect(renderedCombobox.value).toEqual(items[0]);
+  });
+
+  it('should allow for selection of an item using keyboard navigation', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByLabelText, getByText } = render(
+      <Combobox labelText={labelText} items={items} />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+    renderedCombobox.focus();
+
+    fireEvent.keyDown(renderedCombobox, { key: 'ArrowDown' });
+    fireEvent.keyDown(renderedCombobox, { key: 'ArrowDown' });
+    fireEvent.keyDown(renderedCombobox, { key: 'Enter' });
+
+    expect(renderedCombobox.value).toEqual(items[1]);
+
+    renderedCombobox.blur();
+
+    expect(renderedCombobox.value).toEqual(items[1]);
   });
 
   it('should call the passed in onIsOpenChange function on combobox open', () => {

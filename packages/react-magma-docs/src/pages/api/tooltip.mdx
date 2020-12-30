@@ -13,9 +13,16 @@ import {
   CircleUpIcon,
   QuestionCircleIcon,
 } from 'react-magma-icons';
-import { Tooltip, IconButton, Card, CardBody } from 'react-magma-dom';
-import { SimplePropsTable } from '../../components/props-table';
-import DocsHeading from '../../components/docs-heading';
+import {
+  Alert,
+  Tooltip,
+  IconButton,
+  Card,
+  CardBody,
+  ThemeContext,
+  magma,
+} from 'react-magma-dom';
+import { DocsHeading } from '../../components/DocsHeading';
 
 <DocsHeading to="/design/tooltips/" type="api">
   Tooltip
@@ -84,14 +91,74 @@ The default value is `false`.
 </Card>
 ```
 
-## Custom Styles
+## Custom Inline Styles
 
-The containing div for the tooltip, and the tooltip component itself can have custom styles applied to it, using the `containerStyle` and `tooltipStyle` props respectively.
+Custom styles can be applied to the tooltip using different style props.
+
+The `containerStyle` prop applies to the outer most container, which contains both the tooltip trigger and the tooltip popover content.
+
+The `tooltipStyle` prop applies to the tooltip popover content itself, and includes the positioning, background color, border radius, font styles, padding, etc.
+
+The `arrowStyle` prop applies to the arrow indicator.
+
+<Alert variant="warning">
+  Be careful changing the positioning styles for the <code>tooltipStyle</code>{' '}
+  or the <code>arrowStyle</code> as they are brought in by an outside library
+  named [popperjs](https://popper.js.org/) to deal with overflow and scrolling.
+</Alert>
 
 ```.jsx
-<Tooltip content='Styled tooltip' containerStyle={{background: 'pink', padding: '10px' }} tooltipStyle={{ border: '1px solid red', background: 'yellow', color: 'black', padding: '10px' }}>
+<Tooltip
+  content='Styled tooltip'
+  arrowStyle={{ display: 'none' }}
+  containerStyle={{background: 'pink', padding: '10px' }}
+  tooltipStyle={{ border: '1px solid red', background: 'yellow', color: 'black', padding: '10px' }}>
   <IconButton aria-label="Get Help" icon={<QuestionCircleIcon />} variant="link" />
 </Tooltip>
+```
+
+## Custom Theme Styles
+
+The values of some style properties are set in the Magma theme.
+
+```
+ tooltip: {
+    arrowSize: '6px',
+    backgroundColor: magma.colors.neutral,
+    fontWeight: 600,
+    maxWidth: '300px',
+    textColor: magma.colors.neutral08,
+    typeScale: magma.typeScale.size01,
+    zIndex: 999,
+    inverse: {
+      backgroundColor: magma.colors.neutral08,
+      textColor: magma.colors.neutral,
+    }
+ }
+```
+
+```.jsx
+() => {
+  const customTheme = Object.assign({}, magma, {
+    tooltip: Object.assign({}, magma.tooltip, {
+      arrowSize: '10px',
+      backgroundColor: magma.colors.primary,
+      fontWeight: 'normal',
+      typeScale: magma.typeScale.size03
+    })
+  });
+
+  return (
+    <>
+      <ThemeContext.Provider value={customTheme}>
+          <Tooltip
+            content='Tooltip with custom theme'>
+            <IconButton aria-label="Get Help" icon={<QuestionCircleIcon />} variant="link" />
+          </Tooltip>
+      </ThemeContext.Provider>
+    </>
+  )
+}
 ```
 
 ## Tooltip Props
@@ -115,6 +182,8 @@ export default props => (
       QuestionCircleIcon,
       Card,
       CardBody,
+      ThemeContext,
+      magma,
     }}
   />
 );
