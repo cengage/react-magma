@@ -1,4 +1,4 @@
-/version/latest  /version/<%= tags.latest.version %> 302
+/version/latest/*  /version/<%= tags.latest.version %>/:splat 302
 
 /version/next/*    https://next--upbeat-sinoussi-f675aa.netlify.app/:splat   200
 <% versions.reverse().forEach(function(version){ %>
