@@ -36,6 +36,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  text-transform: uppercase;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
@@ -141,6 +142,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  text-transform: uppercase;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
@@ -214,9 +216,10 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-0"
-    icon="[object Object]"
+    class="emotion-0 emotion-1"
+    color="primary"
     id="testId"
+    shape="round"
   >
     <svg
       class="icon"
@@ -271,6 +274,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  text-transform: uppercase;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
@@ -376,6 +380,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  text-transform: uppercase;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
@@ -449,9 +454,10 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-0"
-    icon="[object Object]"
+    class="emotion-0 emotion-1"
+    color="primary"
     id="testId"
+    shape="round"
   >
     <svg
       class="icon"
@@ -506,6 +512,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  text-transform: uppercase;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
@@ -611,6 +618,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  text-transform: uppercase;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
@@ -684,9 +692,10 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-0"
-    icon="[object Object]"
+    class="emotion-0 emotion-1"
+    color="secondary"
     id="testId"
+    shape="round"
   >
     <svg
       class="icon"
@@ -741,6 +750,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  text-transform: uppercase;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
@@ -846,6 +856,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  text-transform: uppercase;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
@@ -919,9 +930,10 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-0"
-    icon="[object Object]"
+    class="emotion-0 emotion-1"
+    color="primary"
     id="testId"
+    shape="fill"
   >
     <svg
       class="icon"
@@ -975,6 +987,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  text-transform: uppercase;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
@@ -1079,6 +1092,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  text-transform: uppercase;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
@@ -1152,9 +1166,10 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-0"
-    icon="[object Object]"
+    class="emotion-0 emotion-1"
+    color="primary"
     id="testId"
+    shape="round"
   >
     <svg
       class="icon"
@@ -1375,9 +1390,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-1"
-    icon="[object Object]"
+    class="emotion-1 emotion-2"
+    color="primary"
     id="testId"
+    shape="fill"
   >
     <span
       class="emotion-0"
@@ -1603,9 +1619,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-1"
-    icon="[object Object]"
+    class="emotion-1 emotion-2"
+    color="primary"
     id="testId"
+    shape="fill"
   >
     <span
       class="emotion-0"
@@ -1831,9 +1848,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-1"
-    icon="[object Object]"
+    class="emotion-1 emotion-2"
+    color="primary"
     id="testId"
+    shape="fill"
   >
     <span
       class="emotion-0"
@@ -2059,9 +2077,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-1"
-    icon="[object Object]"
+    class="emotion-1 emotion-2"
+    color="secondary"
     id="testId"
+    shape="fill"
   >
     <span
       class="emotion-0"
@@ -2287,9 +2306,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-1"
-    icon="[object Object]"
+    class="emotion-1 emotion-2"
+    color="primary"
     id="testId"
+    shape="fill"
   >
     <span
       class="emotion-0"
@@ -2515,9 +2535,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-1"
-    icon="[object Object]"
+    class="emotion-1 emotion-2"
+    color="primary"
     id="testId"
+    shape="fill"
   >
     <span
       class="emotion-0"
@@ -2741,9 +2762,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-1"
-    icon="[object Object]"
+    class="emotion-1 emotion-2"
+    color="primary"
     id="testId"
+    shape="fill"
   >
     <span
       class="emotion-0"
