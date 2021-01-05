@@ -57,7 +57,7 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
   (props, ref) => {
     const { children, to, styledAs, testId, ...rest } = props;
 
-    const other = omit(['textTransform', 'positionTop', 'positionLeft'], rest);
+    const other = omit(['positionTop', 'positionLeft', 'type'], rest);
     const theme = React.useContext(ThemeContext);
 
     if (typeof children === 'function') {

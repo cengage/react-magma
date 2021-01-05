@@ -67,11 +67,6 @@ export interface ButtonStyles {
    */
   textTransform?: ButtonTextTransform;
   /**
-   * The type attribute of the button
-   * ButtonType.button
-   */
-  type?: ButtonType;
-  /**
    * The variant of the button
    * @default ButtonVariant.solid
    */
@@ -99,11 +94,7 @@ export type ButtonProps = BaseButtonProps & ButtonStyles;
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
-    const {
-      children,
-
-      ...rest
-    } = props;
+    const { children, ...rest } = props;
 
     return (
       <StyledButton {...rest} ref={ref}>

@@ -19,10 +19,8 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonProps } from '../Button';
 
 interface StyledButtonProps extends ButtonProps {
-  as?: any;
   href?: string;
   iconOnly?: boolean;
-  to?: string;
 }
 
 export const buttonStyles = props => css`
@@ -119,7 +117,7 @@ export const buttonStyles = props => css`
   `}
 `;
 
-export const BaseStyledButton = styled.button<StyledButtonProps>`
+export const BaseStyledButton = styled.button`
   ${buttonStyles}
 `;
 
@@ -128,7 +126,6 @@ export const StyledButton = React.forwardRef<
   StyledButtonProps
 >((props, ref) => {
   const { children, testId, ...other } = props;
-
   const theme = React.useContext(ThemeContext);
 
   return (
