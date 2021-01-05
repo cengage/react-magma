@@ -6,8 +6,9 @@
 
 import React from 'react';
 import { Layout } from './src/components/layout';
-import { SlidingDrawer } from './src/components/SlidingDrawer';
+import { MainContainer } from './src/components/MainContainer';
 import { Masthead } from './src/components/Masthead';
+import { SlidingDrawer } from './src/components/SlidingDrawer';
 import { SkipLink, GlobalStyles } from 'react-magma-dom';
 import styled from '@emotion/styled';
 
@@ -35,11 +36,11 @@ export const wrapPageElement = ({ element, props }) => {
         positionTop={16}
         variant="outline"
       />
-      <div className="main-container">
+      <MainContainer>
         <Masthead />
         <SlidingDrawer />
         <Layout {...props}>{element}</Layout>
-      </div>
+      </MainContainer>
     </>
   );
 };

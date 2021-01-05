@@ -25,8 +25,8 @@ export const baseTableCellStyle = props => css`
     ? props.theme.colors.tint04
     : props.theme.colors.neutral06};
   display: table-cell;
-  font-size: ${props.theme.typeScale.size03.fontSize};
-  line-height: ${props.theme.typeScale.size03.lineHeight};
+  font-size: inherit;
+  line-height: inherit;
   padding: ${buildCellPaddingStyle(props.density, props.theme)};
   text-align: ${props.textAlign};
 
