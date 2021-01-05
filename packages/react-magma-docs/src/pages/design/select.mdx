@@ -6,24 +6,23 @@ order: 1
 
 import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
-import { Divider } from '../../components/Divider';
 import { DocsHeading } from '../../components/DocsHeading';
 import { LeadParagraph } from '../../components/LeadParagraph';
 
 <DocsHeading to="/api/select/" type="design">
   Selects
 </DocsHeading>
+
 <LeadParagraph>
   The Select component allows users to choose one or more options from a list.
   It is used in forms for users to submit data.
 </LeadParagraph>
 
-<span class="horizontal-spacer"></span>
 <figure>
   <img src="../../images/inputs/selects-intro-image.png" alt=" " />
 </figure>
-<span class="horizontal-spacer"></span>
-<Divider />
+
+---
 
 ## Principles
 
@@ -39,8 +38,7 @@ The various states of a Select component should be clearly differentiated from o
 
 Selects should make it easy to understand the requested information and clearly describe any errors.
 
-<span class="horizontal-spacer"></span>
-<Divider />
+---
 
 ## Select vs. Dropdown
 
@@ -49,8 +47,7 @@ While the Select and Dropdown components can look similar, they have different f
 - Use the Select component inside a form where users are selecting from a list of options and submitting data.
 - Use the Dropdown component to display menus and filter or sort content on a page.
 
-<span class="horizontal-spacer"></span>
-<Divider />
+---
 
 ## Advanced Selects
 
@@ -71,4 +68,3 @@ View <Link to="/api/combobox/">component API</Link> for Combobox.
 <figure>
   <img src="../../images/inputs/combobox-example.png" alt=" " />
 </figure>
-<span class="horizontal-spacer"></span>

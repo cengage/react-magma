@@ -6,7 +6,6 @@ order: 1
 
 import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
-import { Divider } from '../../components/Divider';
 import { DocsHeading } from '../../components/DocsHeading';
 import { LeadParagraph } from '../../components/LeadParagraph';
 import { Button } from 'react-magma-dom';
@@ -14,17 +13,17 @@ import { Button } from 'react-magma-dom';
 <DocsHeading to="/api/tabs/" type="design">
   Tabs
 </DocsHeading>
+
 <LeadParagraph>
   Tabs allow navigation between different sets of related content or can be used
   to navigate an entire application.
 </LeadParagraph>
-
 <span class="horizontal-spacer"></span>
 <figure>
   <img src="../../images/tabs/tabs-example.png" alt=" " />
 </figure>
-<span class="horizontal-spacer"></span>
-<Divider />
+
+---
 
 ## Principles
 
@@ -40,8 +39,7 @@ Tabs help users find what they’re looking for by organizing content into categ
 
 Tabs are displayed next to each other because they are equal to each other hierarchically.
 
-<span class="horizontal-spacer"></span>
-<Divider />
+---
 
 ## Anatomy
 
@@ -190,7 +188,8 @@ The active tab indicator helps make it very clear which tab is currently selecte
     </div>
   </div>
 </div>
-<Divider />
+
+---
 
 ## States
 
@@ -204,8 +203,7 @@ The active tab indicator helps make it very clear which tab is currently selecte
 1. Hover
 1. Focus
 
-<span class="horizontal-spacer"></span>
-<Divider />
+---
 
 ## Placement
 
@@ -247,7 +245,8 @@ Tabs are displayed in a single row or column, with each tab connected to the con
     </div>
   </div>
 </div>
-<Divider />
+
+---
 
 ## Tab Layout
 
@@ -343,8 +342,8 @@ Vertical tabs will also automatically scroll when the height of their container 
     </p>
   </figcaption>
 </figure>
-<span class="horizontal-spacer"></span>
-<Divider />
+
+---
 
 ## Inverse Styling
 
@@ -370,4 +369,3 @@ The colors in the Magma palette that you can safely use as a background include:
     alt="visual examples of tabs on dark backgrounds"
   />
 </figure>
-<span class="horizontal-spacer"></span>

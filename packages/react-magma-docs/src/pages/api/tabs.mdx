@@ -20,7 +20,6 @@ import {
   TabsContainer,
   useMediaQuery,
 } from 'react-magma-dom';
-import { Divider } from '../../components/Divider';
 import { DocsHeading } from '../../components/DocsHeading';
 
 <DocsHeading to="/design/tabs/" type="api">
@@ -304,7 +303,6 @@ If a `Tab` is `disabled` using the `disabled` prop, it will not be actionable. I
 The `alignment` prop determines whether the tabs are aligned `left`, `right` or `center`. `Left` is the default.
 
 ```.jsx
-<>
   <TabsContainer>
     <Tabs aria-label="Sample Center Alignment Tabs" alignment='center'>
       <Tab>Main page</Tab>
@@ -323,30 +321,27 @@ The `alignment` prop determines whether the tabs are aligned `left`, `right` or 
       </TabPanel>
     </TabPanelsContainer>
   </TabsContainer>
+```
 
-  <br />
-  <Divider />
-  <br />
-
-  <TabsContainer>
-    <Tabs aria-label="Sample Right Alignment Tabs" alignment='right'>
-      <Tab>Main page</Tab>
-      <Tab>FAQ</Tab>
-      <Tab>About us</Tab>
-    </Tabs>
-    <TabPanelsContainer>
-      <TabPanel>
-        <div>Main page</div>
-      </TabPanel>
-      <TabPanel>
-        <div>FAQ</div>
-      </TabPanel>
-      <TabPanel>
-        <div>About us</div>
-      </TabPanel>
-    </TabPanelsContainer>
-  </TabsContainer>
-</>
+```.jsx
+ <TabsContainer>
+   <Tabs aria-label="Sample Right Alignment Tabs" alignment='right'>
+     <Tab>Main page</Tab>
+     <Tab>FAQ</Tab>
+     <Tab>About us</Tab>
+   </Tabs>
+   <TabPanelsContainer>
+     <TabPanel>
+       <div>Main page</div>
+     </TabPanel>
+     <TabPanel>
+       <div>FAQ</div>
+     </TabPanel>
+     <TabPanel>
+       <div>About us</div>
+     </TabPanel>
+   </TabPanelsContainer>
+ </TabsContainer>
 ```
 
 ## Full-Width

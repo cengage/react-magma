@@ -6,7 +6,7 @@ const HR = styled.hr`
   background: ${magma.colors.neutral06};
   border: none;
   height: 1px;
-  margin: ${magma.spaceScale.spacing09}; 0;
+  margin: ${magma.spaceScale.spacing12} 0 ${magma.spaceScale.spacing09};
   padding: 0;
 `;
 

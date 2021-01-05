@@ -9,6 +9,7 @@ import { LayoutComponent } from './LayoutComponent';
 import { editorTheme } from './editorTheme';
 import { v4 as uuid } from 'uuid';
 import { SimplePropsTable } from './SimplePropsTable';
+import { Divider } from './Divider';
 import { NetlifyFooter } from './NetlifyFooter';
 import styled from '@emotion/styled';
 import { magma } from 'react-magma-dom';
@@ -105,6 +106,7 @@ export const Layout = ({ children, pageContext }) => {
           table: Table,
           h2: SectionHeading,
           h3: LinkHeading,
+          hr: Divider,
         }}
       >
         <ContentArticle className="content-article">
@@ -126,6 +128,7 @@ export const ScopeableLayout = ({ children, components, pageContext }) => {
         table: Table,
         h2: SectionHeading,
         h3: LinkHeading,
+        hr: Divider,
         SimplePropsTable: SimplePropsTable,
         ...properties.reduce((acc, { name, properties }) => {
           return {
