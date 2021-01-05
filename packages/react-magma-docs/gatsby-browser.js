@@ -6,8 +6,9 @@
 
 import React from 'react';
 import { Layout } from './src/components/layout';
-import { SlidingDrawer } from './src/components/SlidingDrawer';
+import { MainContainer } from './src/components/MainContainer';
 import { Masthead } from './src/components/Masthead';
+import { SlidingDrawer } from './src/components/SlidingDrawer';
 import { SkipLink, GlobalStyles } from 'react-magma-dom';
 import styled from '@emotion/styled';
 
@@ -20,17 +21,6 @@ const StyledSkipLink = styled(SkipLink)`
 
   @media (min-width: 1024px) {
     display: inline-flex;
-  }
-`;
-
-const MainContainer = styled.div`
-  @media (min-width: 1024px) {
-    display: grid;
-    grid-template-columns: 280px auto;
-    grid-template-rows: 80px auto;
-    grid-template-areas:
-      'masthead masthead'
-      'nav content';
   }
 `;
 
