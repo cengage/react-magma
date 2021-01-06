@@ -30,106 +30,179 @@ This component uses the <Link to="/api/hide-at-breakpoint/">Hide at Breakpoint</
 
 ## Basic Usage
 
-```.jsx
-<BreakpointsContainer>
-  <Breakpoint screenSize="xs">
-    <Card background={magma.colors.pop04}>
-      <CardBody><strong>Extra-Small: </strong>This will be shown from 0 pixels, up to 599px.</CardBody>
-    </Card>
-  </Breakpoint>
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  Breakpoint,
+  BreakpointsContainer,
+  BreakpointScreenSize,
+  Card,
+  CardBody,
+  magma,
+} from 'react-magma-dom';
 
-  <Breakpoint screenSize="small">
-    <Card isInverse background={magma.colors.foundation02}>
-      <CardBody><strong>Small: </strong>This will be shown from 600px pixels up to 767px.</CardBody>
-    </Card>
-  </Breakpoint>
+export function Example() {
+  return (
+    <BreakpointsContainer>
+      <Breakpoint screenSize={BreakpointScreenSize.xs}>
+        <Card background={magma.colors.pop04}>
+          <CardBody>
+            <strong>Extra-Small: </strong>This will be shown from 0 pixels, up
+            to 599px.
+          </CardBody>
+        </Card>
+      </Breakpoint>
 
-  <Breakpoint screenSize="medium">
-    <Card isInverse background={magma.colors.pop}>
-      <CardBody><strong>Medium: </strong>This text will be visible when the browser width is 768px and up to 1023px.</CardBody>
-    </Card>
-  </Breakpoint>
+      <Breakpoint screenSize={BreakpointScreenSize.small}>
+        <Card isInverse background={magma.colors.foundation02}>
+          <CardBody>
+            <strong>Small: </strong>This will be shown from 600px pixels up to
+            767px.
+          </CardBody>
+        </Card>
+      </Breakpoint>
 
-  <Breakpoint screenSize="large">
-    <Card isInverse background={magma.colors.success}>
-      <CardBody><strong>Large: </strong>This text will be visible when the browser width is 1024px and to 1199px.</CardBody>
-    </Card>
-  </Breakpoint>
+      <Breakpoint screenSize={BreakpointScreenSize.medium}>
+        <Card isInverse background={magma.colors.pop}>
+          <CardBody>
+            <strong>Medium: </strong>This text will be visible when the browser
+            width is 768px and up to 1023px.
+          </CardBody>
+        </Card>
+      </Breakpoint>
 
-  <Breakpoint screenSize="xl">
-    <Card isInverse background={magma.colors.danger}>
-      <CardBody><strong>Extra-Large: </strong>This text will be visible when the browser width is 1200px and greater.</CardBody>
-    </Card>
-  </Breakpoint>
+      <Breakpoint screenSize={BreakpointScreenSize.large}>
+        <Card isInverse background={magma.colors.success}>
+          <CardBody>
+            <strong>Large: </strong>This text will be visible when the browser
+            width is 1024px and to 1199px.
+          </CardBody>
+        </Card>
+      </Breakpoint>
 
-  <br/>
+      <Breakpoint screenSize={BreakpointScreenSize.xl}>
+        <Card isInverse background={magma.colors.danger}>
+          <CardBody>
+            <strong>Extra-Large: </strong>This text will be visible when the
+            browser width is 1200px and greater.
+          </CardBody>
+        </Card>
+      </Breakpoint>
 
-  <Card>
-    <CardBody>This text will always be visible, as it is not part of a breakpoint.</CardBody>
-  </Card>
-</BreakpointsContainer>
+      <br />
+
+      <Card>
+        <CardBody>
+          This text will always be visible, as it is not part of a breakpoint.
+        </CardBody>
+      </Card>
+    </BreakpointsContainer>
+  );
+}
 ```
 
 ## Using Fewer Breakpoints
 
 It is not necessary to use all of the breakpoints. If only two are used, the default breakpoint component will show content up to the first breakpoint. The next one will show content up to the next one, and so on.
 
-```.jsx
-<BreakpointsContainer>
-  <Breakpoint screenSize="xs">
-    <Card background={magma.colors.pop04}>
-      <CardBody><strong>Extra-Small: </strong>This will be shown from 0 pixels, up to 959px.</CardBody>
-    </Card>
-  </Breakpoint>
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  Breakpoint,
+  BreakpointsContainer,
+  BreakpointScreenSize,
+  Card,
+  CardBody,
+  magma,
+} from 'react-magma-dom';
 
-  <Breakpoint screenSize="medium">
-    <Card isInverse background={magma.colors.pop}>
-      <CardBody><strong>Medium: </strong>This text will be visible when the browser width is 960px and larger.</CardBody>
-    </Card>
-  </Breakpoint>
-</BreakpointsContainer>
+export function Example() {
+  return (
+    <BreakpointsContainer>
+      <Breakpoint screenSize={BreakpointScreenSize.xs}>
+        <Card background={magma.colors.pop04}>
+          <CardBody>
+            <strong>Extra-Small: </strong>This will be shown from 0 pixels, up
+            to 959px.
+          </CardBody>
+        </Card>
+      </Breakpoint>
+
+      <Breakpoint screenSize={BreakpointScreenSize.medium}>
+        <Card isInverse background={magma.colors.pop}>
+          <CardBody>
+            <strong>Medium: </strong>This text will be visible when the browser
+            width is 960px and larger.
+          </CardBody>
+        </Card>
+      </Breakpoint>
+    </BreakpointsContainer>
+  );
+}
 ```
 
 ## Custom Breakpoints
 
 Custom breakpoints can be shown by using the `breakpoints` object prop.
 
-```.jsx
-()=> {
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  Breakpoint,
+  BreakpointsContainer,
+  BreakpointScreenSize,
+  Card,
+  CardBody,
+  magma,
+} from 'react-magma-dom';
+
+export function Example() {
   const customBreakpoints = {
     xs: 0,
     small: 400,
     medium: 760,
-    large: 1080
+    large: 1080,
   };
 
   return (
     <BreakpointsContainer breakpoints={customBreakpoints}>
-      <Breakpoint screenSize="xs">
+      <Breakpoint screenSize={BreakpointScreenSize.xs}>
         <Card background={magma.colors.pop04}>
-          <CardBody><strong>Extra-Small: </strong>This will be shown from 0 pixels, up to 499px.</CardBody>
+          <CardBody>
+            <strong>Extra-Small: </strong>This will be shown from 0 pixels, up
+            to 499px.
+          </CardBody>
         </Card>
       </Breakpoint>
 
-      <Breakpoint screenSize="small">
+      <Breakpoint screenSize={BreakpointScreenSize.small}>
         <Card isInverse background={magma.colors.foundation02}>
-          <CardBody><strong>Small: </strong>This will be shown from 400px pixels up to 759px.</CardBody>
+          <CardBody>
+            <strong>Small: </strong>This will be shown from 400px pixels up to
+            759px.
+          </CardBody>
         </Card>
       </Breakpoint>
 
-      <Breakpoint screenSize="medium">
+      <Breakpoint screenSize={BreakpointScreenSize.medium}>
         <Card isInverse background={magma.colors.pop}>
-          <CardBody><strong>Medium: </strong>This text will be visible when the browser width is 760px and up to 1079px.</CardBody>
+          <CardBody>
+            <strong>Medium: </strong>This text will be visible when the browser
+            width is 760px and up to 1079px.
+          </CardBody>
         </Card>
       </Breakpoint>
 
-      <Breakpoint screenSize="large">
+      <Breakpoint screenSize={BreakpointScreenSize.large}>
         <Card isInverse background={magma.colors.success}>
-          <CardBody><strong>Large: </strong>This text will be visible when the browser width is 1080px and greater.</CardBody>
+          <CardBody>
+            <strong>Large: </strong>This text will be visible when the browser
+            width is 1080px and greater.
+          </CardBody>
         </Card>
       </Breakpoint>
     </BreakpointsContainer>
-  )
+  );
 }
 ```
 

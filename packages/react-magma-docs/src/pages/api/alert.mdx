@@ -21,11 +21,20 @@ Alerts are available for any length of text, and may contain HTML markup. They m
 Alerts render where ever they are placed contextually in the DOM. The `Toast` component is similar but renders with a fixed position and has auto dismiss functionality.
 See the <Link to="/api/toast/">Toasts documentation</Link> for more information.
 
-```.jsx
-<>
-  <Alert isDismissible toastDuration={5000}>I'm an Alert</Alert>
-  <Alert>I'm an Alert with <a href="#">linked text</a></Alert>
-</>
+```tsx codesandbox=magma
+import React from 'react';
+import { Alert } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Alert isDismissible>I'm an Alert</Alert>
+      <Alert>
+        I'm an Alert with <a href="#">linked text</a>
+      </Alert>
+    </>
+  );
+}
 ```
 
 ## Variants
@@ -33,14 +42,30 @@ See the <Link to="/api/toast/">Toasts documentation</Link> for more information.
 The optional `variant` prop accepts the following values: `info`, `success`, `warning` and `danger`, with `info` being the default value.
 This prop determines the icon and color scheme used to style the Alert.
 
-```.jsx
-<>
-  <Alert>Default Alert</Alert>
-  <Alert variant="info">Info Alert</Alert>
-  <Alert variant="success">Success Alert</Alert>
-  <Alert variant="warning">Warning Alert with <a href="#">linked text</a></Alert>
-  <Alert variant="danger">Danger Alert<br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Alert>
-</>
+```tsx codesandbox=magma
+import React from 'react';
+import { Alert, AlertVariant } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Alert>Default Alert</Alert>
+      <Alert variant={AlertVariant.info}>Info Alert</Alert>
+      <Alert variant={AlertVariant.success}>Success Alert</Alert>
+      <Alert variant={AlertVariant.warning}>
+        Warning Alert with <a href="#">linked text</a>
+      </Alert>
+      <Alert variant={AlertVariant.danger}>
+        Danger Alert
+        <br />
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
+      </Alert>
+    </>
+  );
+}
 ```
 
 ## Dismissible
@@ -51,17 +76,29 @@ you must also include a function in the `onDismiss` prop to handle the dismiss b
 
 The aria-label, by default is `Close this message` but can be overridden using the optional `closeAriaLabel` prop.
 
-```.jsx
-  () => {
-    const [showAlert, updateShowAlert] = React.useState(false);
+```tsx codesandbox=magma
+import React from 'react';
+import { Alert, Button } from 'react-magma-dom';
 
-    return (
-      <>
-        {showAlert && <Alert isDismissible onDismiss={() => updateShowAlert(false)}>Dismiss Me<br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Alert>}
-        <Button onClick={() => updateShowAlert(true)}>Show Alert</Button>
-      </>
-    )
-  }
+export function Example() {
+  const [showAlert, updateShowAlert] = React.useState<boolean>(false);
+
+  return (
+    <>
+      {showAlert && (
+        <Alert isDismissible onDismiss={() => updateShowAlert(false)}>
+          Dismiss Me
+          <br />
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </Alert>
+      )}
+      <Button onClick={() => updateShowAlert(true)}>Show Alert</Button>
+    </>
+  );
+}
 ```
 
 ## Testing

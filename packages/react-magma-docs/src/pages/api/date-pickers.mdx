@@ -18,32 +18,60 @@ import { format } from 'date-fns';
 
 ## Basic Usage
 
-```.jsx
-<DatePicker labelText="Date" />
+```tsx codesandbox=magma
+import React from 'react';
+import { DatePicker } from 'react-magma-dom';
+
+export function Example() {
+  return <DatePicker labelText="Date" />;
+}
 ```
 
 ## Default Date
 
 By default, no date value is selected. You can add a default date, by using the `defaultDate` prop.
 
-```.jsx
-<DatePicker defaultDate='07/23/2019' labelText="Date" />
+```tsx codesandbox=magma
+import React from 'react';
+import { DatePicker } from 'react-magma-dom';
+
+export function Example() {
+  return <DatePicker defaultDate="07/23/2019" labelText="Date" />;
+}
 ```
 
 ## Value
 
 The `value` prop can also be used so set the date value externally. It will override the `defaultDate` if both are passed.
 
-```.jsx
-<DatePicker defaultDate='07/23/2019' labelText="Date" value='03/12/2019' />
+```tsx codesandbox=magma
+import React from 'react';
+import { DatePicker } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <DatePicker defaultDate="07/23/2019" labelText="Date" value="03/12/2019" />
+  );
+}
 ```
 
 ## Minimum and Maximum Dates
 
 Minimum and Maximum dates can be passed in as `props` to disallow the selection of a date outside of a specific range. If a date value is passed in that does not fit in to the range given, the date picker will try to give focus when entering the calendar on today's date, then the minimum date, and finally the maximum date.
 
-```.jsx
-<DatePicker labelText="Date" minDate={'01/09/2020'}  maxDate={'02/10/2020'} />
+```tsx codesandbox=magma
+import React from 'react';
+import { DatePicker } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <DatePicker
+      labelText="Date"
+      minDate={'01/09/2020'}
+      maxDate={'02/10/2020'}
+    />
+  );
+}
 ```
 
 ## Placeholder Text
@@ -51,20 +79,42 @@ Minimum and Maximum dates can be passed in as `props` to disallow the selection 
 By default, the placeholder text of the input is 'mm/dd/yyyy'. You can override this by using the `placeholder` prop.
 Note: the expected date format should appear somewhere in either the labelText or the placeholder.
 
-```.jsx
-<DatePicker placeholder='Your birthday (format mm/dd/yyyy)' labelText="Birthday" />
+```tsx codesandbox=magma
+import React from 'react';
+import { DatePicker } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <DatePicker
+      placeholder="Your birthday (format mm/dd/yyyy)"
+      labelText="Birthday"
+    />
+  );
+}
 ```
 
 ## Helper Message
 
-```.jsx
-<DatePicker labelText="Help Me" helperMessage="This is your help" />
+```tsx codesandbox=magma
+import React from 'react';
+import { DatePicker } from 'react-magma-dom';
+
+export function Example() {
+  return <DatePicker labelText="Help Me" helperMessage="This is your help" />;
+}
 ```
 
 ## Error Message
 
-```.jsx
-<DatePicker labelText="Error *" errorMessage="You made an error" required />
+```tsx codesandbox=magma
+import React from 'react';
+import { DatePicker } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <DatePicker labelText="Error *" errorMessage="You made an error" required />
+  );
+}
 ```
 
 ## Events
@@ -73,17 +123,26 @@ Note: the expected date format should appear somewhere in either the labelText o
 
 The `onInputChange` is passed to the input's `onChange` method that is in the `DatePicker` component.
 
-```.jsx
-() => {
-  const [inputValue, setInputValue] = React.useState('');
+```tsx codesandbox=magma
+import React from 'react';
+import { DatePicker } from 'react-magma-dom';
 
-  return (<div>
-    <p><strong>Input Value: </strong>{inputValue}</p>
-    <DatePicker
-      onInputChange={(event) => {
-        setInputValue(event.target.value);
-      }} />
-  </div>);
+export function Example() {
+  const [inputValue, setInputValue] = React.useState<string>('');
+
+  function handleInputChange(event: React.EventChangeHandler) {
+    setInputValue(event.target.value);
+  }
+
+  return (
+    <div>
+      <p>
+        <strong>Input Value: </strong>
+        {inputValue}
+      </p>
+      <DatePicker onInputChange={handleInputChange} />
+    </div>
+  );
 }
 ```
 
@@ -91,43 +150,66 @@ The `onInputChange` is passed to the input's `onChange` method that is in the `D
 
 The `onDateChange` function is called when the user changes a date using the calendar widget in the `DatePicker` component.
 
-```.jsx
-() => {
-  const [chosenDate, setChosenDate] = React.useState(0);
+```tsx codesandbox=magma
+import React from 'react';
+import { DatePicker } from 'react-magma-dom';
 
-  return (<div>
-    <p>
-      <strong>Chosen Date: </strong>
-      {chosenDate &&
-        <span>
-          {`${chosenDate.getMonth() + 1}/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
-        </span>
-      }
-    </p>
-    <DatePicker
-      onDateChange={(newChosenDate) => {
-        setChosenDate(newChosenDate);
-      }} />
-  </div>);
+export function Example() {
+  const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
+    undefined
+  );
+
+  function handleDateChange(newChosenDate: Date) {
+    setChosenDate(newChosenDate);
+  }
+
+  return (
+    <div>
+      <p>
+        <strong>Chosen Date: </strong>
+        {chosenDate && (
+          <span>
+            {`${
+              chosenDate.getMonth() + 1
+            }/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
+          </span>
+        )}
+      </p>
+      <DatePicker onDateChange={handleDateChange} />
+    </div>
+  );
 }
 ```
 
 ### Focus Events
 
-```.jsx
-() => {
-  const [isFocused, updateIsFocused] = React.useState(false);
+```tsx codesandbox=magma
+import React from 'react';
+import { DatePicker } from 'react-magma-dom';
 
-  return (<div>
-  <p><strong>Is Focused?: </strong>{isFocused ? 'Yes' : 'No'}</p>
-    <DatePicker
-      onInputBlur={(event) => {
-        updateIsFocused(false);
-      }}
-      onInputFocus={(event) => {
-        updateIsFocused(true);
-      }} />
-  </div>);
+export function Example() {
+  const [isFocused, updateIsFocused] = React.useState<boolean>(false);
+
+  function handleInputBlur(event: React.FocusChangeHandler) {
+    updateIsFocused(false);
+  }
+
+  function handleInputFocus(event: React.FocusChangeHandler) {
+    updateIsFocused(true);
+  }
+
+  return (
+    <div>
+      <p>
+        <strong>Is Focused?: </strong>
+        {isFocused ? 'Yes' : 'No'}
+      </p>
+      <DatePicker
+        onInputBlur={handleInputBlur}
+        onInputFocus={handleInputFocus}
+      />
+    </div>
+  );
 }
 ```
 
@@ -139,19 +221,26 @@ The `onChange` event is called in multiple instances when internal values are ch
 - _onDateChange:_ The `value` parameter will return the ISO string representation of the date chosen with the calendar widget.
 - _onInputBlur:_ If the `input` value is considered a valid date the `onChange` function will be called with the ISO string representation of the date in the input being returned in the `value` argument of the function.
 
-```.jsx
-() => {
-  const [changedValue, setChangedValue] = React.useState('');
+```tsx codesandbox=magma
+import React from 'react';
+import { DatePicker } from 'react-magma-dom';
 
-  function handleChange(value, event) {
+export function Example() {
+  const [changedValue, setChangedValue] = React.useState<string | Date>('');
+
+  function handleChange(value: string | Date, event: React.EventChangeHandler) {
     setChangedValue(value);
   }
 
-  return (<div>
-    <p><strong>Changed Value: </strong>{changedValue}</p>
-    <DatePicker
-      onChange={handleChange} />
-  </div>);
+  return (
+    <div>
+      <p>
+        <strong>Changed Value: </strong>
+        {changedValue}
+      </p>
+      <DatePicker onChange={handleChange} />
+    </div>
+  );
 }
 ```
 
@@ -159,8 +248,13 @@ The `onChange` event is called in multiple instances when internal values are ch
 
 The `DatePicker` is keyboard navigable for allowing the user to navigate between days, weeks, and months. If you would like to see all of the options for keyboard navigation click on the `?` button in the bottom right corner of the `DatePicker` or press the `?` key.
 
-```.jsx
-<DatePicker labelText="Date" />
+```tsx codesandbox=magma
+import React from 'react';
+import { DatePicker } from 'react-magma-dom';
+
+export function Example() {
+  return <DatePicker labelText="Date" />;
+}
 ```
 
 ## Custom Styles
@@ -169,14 +263,26 @@ Custom styles can be passed into the datePicker component. The `containerStyle` 
 The `labelStyle` prop will apply to the field's label; the `messageStyle` prop will apply to the helper/error message.
 Please use discretion when adding custom styles.
 
-```.jsx
-<DatePicker
-  containerStyle={{ border: '2px solid green', maxWidth:  '300px', padding: '2px' }}
-  errorMessage="Please fix the error"
-  inputStyle={{ border: '1px dashed purple', borderRadius: '0' }}
-  labelStyle={{ border: '1px dotted blue' }}
-  labelText="Date"
-  messageStyle={{ border: '1px solid black', padding: '' }} />
+```tsx codesandbox=magma
+import React from 'react';
+import { DatePicker } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <DatePicker
+      containerStyle={{
+        border: '2px solid green',
+        maxWidth: '300px',
+        padding: '2px',
+      }}
+      errorMessage="Please fix the error"
+      inputStyle={{ border: '1px dashed purple', borderRadius: '0' }}
+      labelStyle={{ border: '1px dotted blue' }}
+      labelText="Date"
+      messageStyle={{ border: '1px solid black', padding: '' }}
+    />
+  );
+}
 ```
 
 ## Internationalization
@@ -184,39 +290,48 @@ Please use discretion when adding custom styles.
 To use a separate `locale` import a `date-fns` locale object (`import { es } from 'date-fns/locale'`) and pass it in
 to the `I18nContext` provider.
 
-<Link to="/api/internationalization">
-  Full example of internationalization override options
-</Link>
+Full example of <Link to="/api/internationalization">internationalization override options</Link>
 
-```.jsx
-<I18nContext.Provider value={{
-  ...defaultI18n,
-  days: {
-    ...defaultI18n.days,
-    min: {
-      sunday: 'D',
-      monday: 'L',
-      tuesday: 'M',
-      wednesday: 'M',
-      thursday: 'J',
-      friday: 'V',
-      saturday: 'S'
-    }
-  },
-  datePicker: {
-    ...defaultI18n.datePicker,
-    calendarIconAriaLabel: "Calendario",
-    calendarOpenAnnounce: "El widget de calendario ahora está abierto. Presione la tecla de signo de interrogación para obtener los atajos de teclado para cambiar las fechas.",
-    calendarCloseAriaLabel: "Cerrar calendario",
-    previousMonthAriaLabel: 'Mes Anterior',
-    nextMonthAriaLabel: 'Próximo Mes',
-    disabledDayAriaLabel: "No disponible. ",
-    selectedDayAriaLabel: "(Seleccionado)"
-  },
-  locale: es
-}}>
-  <DatePicker labelText="Español" />
-</I18nContext.Provider>
+```tsx codesandbox=magma
+import React from 'react';
+import { es } from 'date-fns/locale';
+import { DatePicker, I18nContext, defaultI18n } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <I18nContext.Provider
+      value={{
+        ...defaultI18n,
+        days: {
+          ...defaultI18n.days,
+          min: {
+            sunday: 'D',
+            monday: 'L',
+            tuesday: 'M',
+            wednesday: 'M',
+            thursday: 'J',
+            friday: 'V',
+            saturday: 'S',
+          },
+        },
+        datePicker: {
+          ...defaultI18n.datePicker,
+          calendarIconAriaLabel: 'Calendario',
+          calendarOpenAnnounce:
+            'El widget de calendario ahora está abierto. Presione la tecla de signo de interrogación para obtener los atajos de teclado para cambiar las fechas.',
+          calendarCloseAriaLabel: 'Cerrar calendario',
+          previousMonthAriaLabel: 'Mes Anterior',
+          nextMonthAriaLabel: 'Próximo Mes',
+          disabledDayAriaLabel: 'No disponible. ',
+          selectedDayAriaLabel: '(Seleccionado)',
+        },
+        locale: es,
+      }}
+    >
+      <DatePicker labelText="Español" />
+    </I18nContext.Provider>
+  );
+}
 ```
 
 ## Date Picker Props

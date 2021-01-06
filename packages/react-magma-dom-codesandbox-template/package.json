@@ -1,0 +1,35 @@
+{
+  "name": "react-magma-dom-codesandbox-template",
+  "version": "2.3.2-alpha.3",
+  "description": "",
+  "keywords": [],
+  "main": "src/index.tsx",
+  "dependencies": {
+    "@emotion/core": "10.1.1",
+    "@emotion/styled": "10.0.27",
+    "date-fns": "2.16.1",
+    "downshift": "6.0.7",
+    "react": "17.0.0",
+    "react-dom": "17.0.0",
+    "react-magma-dom": "2.3.2",
+    "react-magma-icons": "1.0.5",
+    "react-scripts": "3.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "16.9.19",
+    "@types/react-dom": "16.9.5",
+    "typescript": "3.7.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
