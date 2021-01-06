@@ -811,20 +811,6 @@
         "defaultValue": "ButtonTextTransform.uppercase",
         "deprecated": false
       },
-      "type": {
-        "name": "type",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonType.button",
-            "ButtonType.reset",
-            "ButtonType.submit"
-          ]
-        },
-        "description": "The type attribute of the button\nButtonType.button",
-        "deprecated": false
-      },
       "variant": {
         "name": "variant",
         "required": false,
@@ -854,12 +840,12 @@
       "types": [
         {
           "type": "reference",
-          "id": 369,
+          "id": 367,
           "name": "BaseButtonProps"
         },
         {
           "type": "reference",
-          "id": 360,
+          "id": 359,
           "name": "ButtonStyles"
         }
       ]
@@ -1371,7 +1357,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7583,
+        "id": 7584,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1555,7 +1541,7 @@
     },
     "typeParameter": [
       {
-        "id": 7672,
+        "id": 7673,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1564,7 +1550,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7512,
+          "id": 7513,
           "name": "SelectOptions"
         }
       }
@@ -1887,7 +1873,7 @@
     },
     "typeParameter": [
       {
-        "id": 7740,
+        "id": 7741,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1896,7 +1882,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7512,
+          "id": 7513,
           "name": "SelectOptions"
         }
       }
@@ -2654,12 +2640,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 8910,
+          "id": 8911,
           "name": "IconOnlyDropdownButtonProps"
         },
         {
           "type": "reference",
-          "id": 8914,
+          "id": 8915,
           "name": "IconTextDropdownButtonProps"
         }
       ],
@@ -2994,20 +2980,6 @@
         },
         "description": "Determines whether the button appears in all-caps",
         "defaultValue": "ButtonTextTransform.uppercase",
-        "deprecated": false
-      },
-      "type": {
-        "name": "type",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonType.button",
-            "ButtonType.reset",
-            "ButtonType.submit"
-          ]
-        },
-        "description": "The type attribute of the button\nButtonType.button",
         "deprecated": false
       },
       "variant": {
@@ -3749,20 +3721,6 @@
         "description": "The href value of the link",
         "deprecated": false
       },
-      "type": {
-        "name": "type",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonType.button",
-            "ButtonType.reset",
-            "ButtonType.submit"
-          ]
-        },
-        "description": "The type attribute of the button\nButtonType.button",
-        "deprecated": false
-      },
       "variant": {
         "name": "variant",
         "required": false,
@@ -3994,12 +3952,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 646,
+          "id": 644,
           "name": "IconOnlyButtonProps"
         },
         {
           "type": "reference",
-          "id": 650,
+          "id": 648,
           "name": "IconTextButtonProps"
         }
       ],
@@ -5871,7 +5829,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 6990,
+        "id": 6991,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5962,7 +5920,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7295,
+        "id": 7296,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6048,7 +6006,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7314,
+        "id": 7315,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6144,7 +6102,7 @@
     },
     "typeParameter": [
       {
-        "id": 6945,
+        "id": 6946,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6156,7 +6114,7 @@
     "type": {
       "type": "reflection",
       "declaration": {
-        "id": 6946,
+        "id": 6947,
         "name": "__type",
         "kind": 65536,
         "kindString": "Type literal",
@@ -6165,7 +6123,7 @@
         },
         "indexSignature": [
           {
-            "id": 6953,
+            "id": 6954,
             "name": "__index",
             "kind": 8192,
             "kindString": "Index signature",
@@ -6174,7 +6132,7 @@
             },
             "parameters": [
               {
-                "id": 6954,
+                "id": 6955,
                 "name": "key",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -6195,7 +6153,7 @@
         ],
         "children": [
           {
-            "id": 6948,
+            "id": 6949,
             "name": "isFocused",
             "kind": 32,
             "kindString": "Variable",
@@ -6216,7 +6174,7 @@
             }
           },
           {
-            "id": 6949,
+            "id": 6950,
             "name": "item",
             "kind": 32,
             "kindString": "Variable",
@@ -6236,7 +6194,7 @@
             }
           },
           {
-            "id": 6950,
+            "id": 6951,
             "name": "itemRef",
             "kind": 32,
             "kindString": "Variable",
@@ -6262,7 +6220,7 @@
             }
           },
           {
-            "id": 6951,
+            "id": 6952,
             "name": "itemString",
             "kind": 32,
             "kindString": "Variable",
@@ -6282,7 +6240,7 @@
             }
           },
           {
-            "id": 6947,
+            "id": 6948,
             "name": "key",
             "kind": 32,
             "kindString": "Variable",
@@ -6302,7 +6260,7 @@
             }
           },
           {
-            "id": 6952,
+            "id": 6953,
             "name": "theme",
             "kind": 32,
             "kindString": "Variable",
@@ -6327,12 +6285,12 @@
             "title": "Variables",
             "kind": 32,
             "children": [
-              6948,
               6949,
               6950,
               6951,
-              6947,
-              6952
+              6952,
+              6948,
+              6953
             ]
           }
         ],
@@ -6358,7 +6316,7 @@
     },
     "typeParameter": [
       {
-        "id": 6956,
+        "id": 6957,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6370,7 +6328,7 @@
     "type": {
       "type": "reflection",
       "declaration": {
-        "id": 6957,
+        "id": 6958,
         "name": "__type",
         "kind": 65536,
         "kindString": "Type literal",
@@ -6379,7 +6337,7 @@
         },
         "children": [
           {
-            "id": 6958,
+            "id": 6959,
             "name": "ClearIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -6399,7 +6357,7 @@
               "typeArguments": [
                 {
                   "type": "reference",
-                  "id": 931,
+                  "id": 929,
                   "name": "IconButtonProps"
                 }
               ],
@@ -6407,7 +6365,7 @@
             }
           },
           {
-            "id": 6959,
+            "id": 6960,
             "name": "DropdownIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -6440,7 +6398,7 @@
             }
           },
           {
-            "id": 6961,
+            "id": 6962,
             "name": "Item",
             "kind": 32,
             "kindString": "Variable",
@@ -6460,7 +6418,7 @@
               "typeArguments": [
                 {
                   "type": "reference",
-                  "id": 6944,
+                  "id": 6945,
                   "typeArguments": [
                     {
                       "type": "typeParameter",
@@ -6474,7 +6432,7 @@
             }
           },
           {
-            "id": 6960,
+            "id": 6961,
             "name": "LoadingIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -6494,7 +6452,7 @@
               "typeArguments": [
                 {
                   "type": "reference",
-                  "id": 6681,
+                  "id": 6682,
                   "name": "SpinnerProps"
                 }
               ],
@@ -6507,10 +6465,10 @@
             "title": "Variables",
             "kind": 32,
             "children": [
-              6958,
               6959,
-              6961,
-              6960
+              6960,
+              6962,
+              6961
             ]
           }
         ],
@@ -6536,7 +6494,7 @@
     },
     "typeParameter": [
       {
-        "id": 7364,
+        "id": 7365,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6568,7 +6526,7 @@
     },
     "typeParameter": [
       {
-        "id": 7345,
+        "id": 7346,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6749,7 +6707,7 @@
     },
     "typeParameter": [
       {
-        "id": 7470,
+        "id": 7471,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6758,7 +6716,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7512,
+          "id": 7513,
           "name": "SelectOptions"
         }
       }
@@ -6916,7 +6874,7 @@
     },
     "typeParameter": [
       {
-        "id": 7370,
+        "id": 7371,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6925,7 +6883,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7512,
+          "id": 7513,
           "name": "SelectOptions"
         }
       }
@@ -7381,7 +7339,7 @@
         {
           "type": "reflection",
           "declaration": {
-            "id": 7513,
+            "id": 7514,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -7390,7 +7348,7 @@
             },
             "indexSignature": [
               {
-                "id": 7516,
+                "id": 7517,
                 "name": "__index",
                 "kind": 8192,
                 "kindString": "Index signature",
@@ -7399,7 +7357,7 @@
                 },
                 "parameters": [
                   {
-                    "id": 7517,
+                    "id": 7518,
                     "name": "key",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -7420,7 +7378,7 @@
             ],
             "children": [
               {
-                "id": 7515,
+                "id": 7516,
                 "name": "label",
                 "kind": 32,
                 "kindString": "Variable",
@@ -7440,7 +7398,7 @@
                 }
               },
               {
-                "id": 7514,
+                "id": 7515,
                 "name": "value",
                 "kind": 32,
                 "kindString": "Variable",
@@ -7465,8 +7423,8 @@
                 "title": "Variables",
                 "kind": 32,
                 "children": [
-                  7515,
-                  7514
+                  7516,
+                  7515
                 ]
               }
             ],
@@ -7723,20 +7681,6 @@
         "description": "The href value of the link",
         "deprecated": false
       },
-      "type": {
-        "name": "type",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonType.button",
-            "ButtonType.reset",
-            "ButtonType.submit"
-          ]
-        },
-        "description": "The type attribute of the button\nButtonType.button",
-        "deprecated": false
-      },
       "variant": {
         "name": "variant",
         "required": false,
@@ -7843,14 +7787,6 @@
     "id": "StyledButtonProps",
     "tags": {},
     "properties": {
-      "as": {
-        "name": "as",
-        "required": false,
-        "type": {
-          "name": "any"
-        },
-        "deprecated": false
-      },
       "href": {
         "name": "href",
         "required": false,
@@ -7939,14 +7875,6 @@
         },
         "description": "Determines whether the button appears in all-caps",
         "defaultValue": "ButtonTextTransform.uppercase",
-        "deprecated": false
-      },
-      "to": {
-        "name": "to",
-        "required": false,
-        "type": {
-          "name": "string"
-        },
         "deprecated": false
       },
       "type": {
