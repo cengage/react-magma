@@ -72,12 +72,12 @@ const StyledCard = styled(Card)<{
     `}
 
  ${props =>
-    props.alignment === 'end' &&
-    (props.dropDirection === 'left' || props.dropDirection === 'right') &&
-    css`
-      bottom: ${props.theme.spaceScale.spacing02};
-      top: auto;
-    `}
+   props.alignment === 'end' &&
+   (props.dropDirection === 'left' || props.dropDirection === 'right') &&
+   css`
+     bottom: ${props.theme.spaceScale.spacing02};
+     top: auto;
+   `}
 `;
 
 const StyledDiv = styled.div`

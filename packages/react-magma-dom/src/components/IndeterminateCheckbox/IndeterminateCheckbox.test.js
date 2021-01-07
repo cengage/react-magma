@@ -3,7 +3,6 @@ import { IndeterminateCheckbox } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 import { axe } from 'jest-axe';
-import { BellIcon } from 'react-magma-icons';
 
 describe('Indeterminate Checkbox', () => {
   it('should find element by testId', () => {
@@ -177,12 +176,14 @@ describe('Indeterminate Checkbox', () => {
     );
   });
 
-  it.only('should work with checked status', () => {
+  it('should work with checked status', () => {
     const testId = 'test-id';
-    const { getByTestId } = render(<BellIcon testId={testId} />);
+    const { getByTestId } = render(
+      <IndeterminateCheckbox testId={testId} status="checked" />
+    );
 
     expect(getByTestId(testId)).toBeInTheDocument();
-  })
+  });
 
   it('should trigger the passed in onChange when value of the checkbox is changed', () => {
     const onChangeSpy = jest.fn();

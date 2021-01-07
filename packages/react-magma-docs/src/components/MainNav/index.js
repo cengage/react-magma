@@ -2,70 +2,74 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, StaticQuery, graphql, withPrefix } from 'gatsby';
 import { Location, Router } from '@reach/router';
-import './main-nav.css';
 import { AngleDownIcon } from 'react-magma-icons';
-import { magma } from 'react-magma-dom';
-import { convertTextToId } from '../../utils';
+import { SubMenu } from './SubMenu';
 import {
   Accordion,
   AccordionItem,
   AccordionItemTitle,
   AccordionItemBody,
 } from 'react-accessible-accordion';
-
-const handleAnchorLinkClick = (id, handleClick, e) => {
-  const distanceToTop = el => Math.floor(el.getBoundingClientRect().top);
-
-  e.preventDefault();
-  const targetID = id;
-  const targetAnchor = document.getElementById(id);
-  if (!targetAnchor) return;
-  const originalTop = distanceToTop(targetAnchor);
-
-  window.scrollBy({ top: originalTop, left: 0, behavior: 'smooth' });
-
-  const checkIfDone = setInterval(function () {
-    const atBottom =
-      window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2;
-    if (distanceToTop(targetAnchor) === 0 || atBottom) {
-      targetAnchor.tabIndex = '-1';
-      targetAnchor.focus();
-      window.history.pushState('', '', '#' + targetID);
-      clearInterval(checkIfDone);
-    }
-  }, 100);
-
-  handleClick();
-};
-
-const SubMenu = ({ headings, handleClick }) => {
-  return (
-    <ul className="submenu">
-      {headings.map((heading, index) => {
-        const id = convertTextToId(heading.value);
-
-        return (
-          <li key={index}>
-            <a
-              href={`#${id}`}
-              onClick={e => {
-                handleAnchorLinkClick(id, handleClick, e);
-              }}
-            >
-              {heading.value}
-            </a>
-          </li>
-        );
-      })}
-    </ul>
-  );
-};
+import './accordion.css';
+import styled from '@emotion/styled';
+import { magma } from 'react-magma-dom';
 
 const activeStyle = {
   color: magma.colors.neutral,
   fontWeight: 'bold',
   background: magma.colors.neutral07,
 };
+
+const Heading2 = styled.h2`
+  align-items: center;
+  display: flex;
+  font-size: ${magma.typeScale.size05.fontSize};
+  line-height: ${magma.typeScale.size05.lineHeight};
+  justify-content: space-between;
+  margin: 0;
+  padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06};
+`;
+
+const Heading3 = styled.h3`
+  font-size: ${magma.typeScale.size04.fontSize};
+  line-height: ${magma.typeScale.size04.lineHeight};
+  margin: ${magma.spaceScale.spacing05} 0 0;
+  padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06};
+`;
+
+const HR = styled.hr`
+  background: ${magma.colors.neutral06};
+  border: none;
+  margin: ${magma.spaceScale.spacing03} 0;
+  height: 1px;
+`;
+
+const List = styled.ul`
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+`;
+
+const ListItem = styled.li`
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+`;
+
+const StyledLink = styled(Link)`
+  color: ${magma.colors.neutral03};
+  display: block;
+  font-size: ${magma.typeScale.size03.fontSize};
+  line-height: ${magma.typeScale.size03.lineHeight};
+  padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06};
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    background: ${magma.colors.neutral07};
+    color: ${magma.colors.neutral03};
+  }
+`;
 
 export const MainNav = ({ ...props }) => (
   <StaticQuery
@@ -121,42 +125,42 @@ export const MainNav = ({ ...props }) => (
       }
     `}
     render={data => (
-      <div className="main-nav">
-        <h2>Magma System</h2>
-        <ul>
-          <li>
-            <Link
+      <>
+        <Heading2>Magma System</Heading2>
+        <List>
+          <ListItem>
+            <StyledLink
               activeStyle={activeStyle}
               aria-label="Introduction to the Magma System"
               onClick={props.handleClick}
               to="/"
             >
               Introduction
-            </Link>
-          </li>
-        </ul>
-        <hr />
+            </StyledLink>
+          </ListItem>
+        </List>
+        <HR />
         <Location>
           {({ location }) => (
             <Accordion accordion={false}>
               <AccordionItem expanded={location.pathname.includes('api')}>
                 <AccordionItemTitle>
-                  <h2>
+                  <Heading2>
                     Develop
                     <AngleDownIcon size="16" />
-                  </h2>
+                  </Heading2>
                 </AccordionItemTitle>
                 <AccordionItemBody>
-                  <ul>
+                  <List>
                     {data.apiIntro.edges.map(({ node }) => (
-                      <li key={node.fields.slug}>
-                        <Link
+                      <ListItem key={node.fields.slug}>
+                        <StyledLink
                           activeStyle={activeStyle}
                           onClick={props.handleClick}
                           to={node.fields.slug}
                         >
                           {node.frontmatter.title}
-                        </Link>
+                        </StyledLink>
                         <Router>
                           <SubMenu
                             path={withPrefix(node.fields.slug)}
@@ -164,20 +168,20 @@ export const MainNav = ({ ...props }) => (
                             handleClick={props.handleClick}
                           />
                         </Router>
-                      </li>
+                      </ListItem>
                     ))}
-                  </ul>
-                  <h3>Component API</h3>
-                  <ul>
+                  </List>
+                  <Heading3>Component API</Heading3>
+                  <List>
                     {data.apiDocs.edges.map(({ node }) => (
-                      <li key={node.fields.slug}>
-                        <Link
+                      <ListItem key={node.fields.slug}>
+                        <StyledLink
                           activeStyle={activeStyle}
                           onClick={props.handleClick}
                           to={node.fields.slug}
                         >
                           {node.frontmatter.title}
-                        </Link>
+                        </StyledLink>
                         <Router>
                           <SubMenu
                             path={withPrefix(node.fields.slug)}
@@ -185,30 +189,30 @@ export const MainNav = ({ ...props }) => (
                             handleClick={props.handleClick}
                           />
                         </Router>
-                      </li>
+                      </ListItem>
                     ))}
-                  </ul>
+                  </List>
                 </AccordionItemBody>
               </AccordionItem>
-              <hr />
+              <HR />
               <AccordionItem expanded={location.pathname.includes('design')}>
                 <AccordionItemTitle>
-                  <h2>
+                  <Heading2>
                     Design
                     <AngleDownIcon size="16" />
-                  </h2>
+                  </Heading2>
                 </AccordionItemTitle>
                 <AccordionItemBody>
-                  <ul>
+                  <List>
                     {data.designIntro.edges.map(({ node }) => (
-                      <li key={node.fields.slug}>
-                        <Link
+                      <ListItem key={node.fields.slug}>
+                        <StyledLink
                           activeStyle={activeStyle}
                           onClick={props.handleClick}
                           to={node.fields.slug}
                         >
                           {node.frontmatter.title}
-                        </Link>
+                        </StyledLink>
                         <Router>
                           <SubMenu
                             path={withPrefix(node.fields.slug)}
@@ -216,17 +220,17 @@ export const MainNav = ({ ...props }) => (
                             handleClick={props.handleClick}
                           />
                         </Router>
-                      </li>
+                      </ListItem>
                     ))}
                     {data.designDocs.edges.map(({ node }) => (
-                      <li key={node.fields.slug}>
-                        <Link
+                      <ListItem key={node.fields.slug}>
+                        <StyledLink
                           activeStyle={activeStyle}
                           onClick={props.handleClick}
                           to={node.fields.slug}
                         >
                           {node.frontmatter.title}
-                        </Link>
+                        </StyledLink>
                         <Router>
                           <SubMenu
                             path={withPrefix(node.fields.slug)}
@@ -234,16 +238,16 @@ export const MainNav = ({ ...props }) => (
                             handleClick={props.handleClick}
                           />
                         </Router>
-                      </li>
+                      </ListItem>
                     ))}
-                  </ul>
+                  </List>
                 </AccordionItemBody>
               </AccordionItem>
-              <hr />
+              <HR />
             </Accordion>
           )}
         </Location>
-      </div>
+      </>
     )}
   />
 );

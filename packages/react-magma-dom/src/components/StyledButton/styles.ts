@@ -63,6 +63,8 @@ export function buildButtonPadding(props) {
 }
 
 export function buildButtonBackground(props) {
+  props = buildPropsWithDefaultButtonStyles(props);
+
   if (props.variant !== 'solid' && props.color !== 'marketing') {
     return 'rgba(0,0,0,0)';
   }
@@ -88,6 +90,8 @@ export function buildButtonBackground(props) {
 }
 
 export function buildBorderColor(props) {
+  props = buildPropsWithDefaultButtonStyles(props);
+
   if (props.disabled && props.isInverse && props.variant === 'outline') {
     return props.theme.colors.disabledInverseText;
   }
@@ -116,6 +120,8 @@ export function buildBorderColor(props) {
 }
 
 export function buildColor(props) {
+  props = buildPropsWithDefaultButtonStyles(props);
+
   if (props.disabled && props.isInverse && props.variant !== 'solid') {
     return props.theme.colors.disabledInverseText;
   }
@@ -147,6 +153,8 @@ export function buildColor(props) {
 }
 
 export function buildFocusBackground(props) {
+  props = buildPropsWithDefaultButtonStyles(props);
+
   if (props.color === 'marketing') {
     return lighten(0.1, props.theme.colors.pop04);
   }
@@ -181,6 +189,7 @@ export function buildFocusBackground(props) {
 }
 
 export function buildFocusColor(props) {
+  props = buildPropsWithDefaultButtonStyles(props);
   if (props.color === 'marketing') {
     return props.theme.colors.foundation02;
   }
@@ -209,6 +218,8 @@ export function buildFocusColor(props) {
 }
 
 export function buildAfterBackground(props) {
+  props = buildPropsWithDefaultButtonStyles(props);
+
   if (
     (props.variant !== 'solid' && !props.isInverse) ||
     (props.variant === 'solid' && props.isInverse)
@@ -235,6 +246,8 @@ export function buildAfterBackground(props) {
 }
 
 export function buildActiveBackground(props) {
+  props = buildPropsWithDefaultButtonStyles(props);
+
   if (props.color === 'marketing') {
     return lighten(0.2, props.theme.colors.pop04);
   }
@@ -269,6 +282,8 @@ export function buildActiveBackground(props) {
 }
 
 export function buildActiveColor(props) {
+  props = buildPropsWithDefaultButtonStyles(props);
+
   if (props.color === 'marketing') {
     return props.theme.colors.foundation02;
   }

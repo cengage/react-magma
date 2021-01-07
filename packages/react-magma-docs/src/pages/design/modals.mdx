@@ -14,16 +14,13 @@ import { Button, Modal } from 'react-magma-dom';
 <DocsHeading to="/api/modal/" type="design">
   Modal
 </DocsHeading>
-
 <LeadParagraph>
   Modals inform users about a task and can contain critical information, require
   decisions, or involve multiple tasks.
 </LeadParagraph>
-
 <img src="../../images/modals/modal-example-intro.png" alt=" " />
 
-<span class="horizontal-spacer"></span>
-<hr class="article-divider" />
+---
 
 ## Principles
 
@@ -39,8 +36,7 @@ Modals should be direct in communicating information and dedicated to completing
 
 Modals should appear in response to a user task or an action, with relevant or contextual information.
 
-<span class="horizontal-spacer"></span>
-<hr class="article-divider" />
+---
 
 ## Usage
 
@@ -58,8 +54,7 @@ It's very common to use a modal to quickly edit or manage one or more items on a
 
 <img src="../../images/modals/edit-item-example.png" alt=" " />
 
-<span class="horizontal-spacer"></span>
-<hr class="article-divider" />
+---
 
 ## Sizes
 
@@ -93,8 +88,7 @@ React Magma modals do not have a maximum height at this time. They are as tall a
 
 When the viewport of the device is 600px wide or below, the padding within the modal decreases from 24px to 16px. This matches the change in gutter widths on the overall page layout on smaller devices. The result allows the content of the modal to maximize the available space.
 
-<span class="horizontal-spacer"></span>
-<hr class="article-divider" />
+---
 
 ## Behaviors
 
@@ -117,5 +111,3 @@ When a modal is opened, the focus is automatically put on the title of the modal
 Always validate a user's input entries before a modal is closed. If there are any errors, an inline error alert should be displayed above the form, as well as error messages on any specific inputs that failed validation. The error messages should provide clear instructions on how to resolve the errors and complete the action.
 
 <img src="../../images/modals/modal-validation.png" alt=" " />
-
-<span class="horizontal-spacer"></span>

@@ -61,18 +61,18 @@ const InputContainer = styled.div<{
     `}
 
     ${props =>
-    props.disabled &&
-    css`
-      background: ${props.theme.colors.neutral07};
-      border-color: ${props.theme.colors.neutral05};
-      color: ${props.theme.colors.disabledText};
-      cursor: not-allowed;
-      outline: 0;
-
-      &::placeholder {
+      props.disabled &&
+      css`
+        background: ${props.theme.colors.neutral07};
+        border-color: ${props.theme.colors.neutral05};
         color: ${props.theme.colors.disabledText};
-      }
-    `}
+        cursor: not-allowed;
+        outline: 0;
+
+        &::placeholder {
+          color: ${props.theme.colors.disabledText};
+        }
+      `}
 `;
 
 const StyledInput = styled.input`

@@ -7,6 +7,7 @@ props:
 
 import { ScopeableLayout } from '../../components/layout';
 import { Announce, Button } from 'react-magma-dom';
+import { Divider } from '../../components/Divider';
 import { DocsHeading } from '../../components/DocsHeading';
 
 <DocsHeading type="api">Announce</DocsHeading>
@@ -110,5 +111,5 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 <AnnounceProps />
 
 export default props => (
-  <ScopeableLayout {...props} components={{ Announce, Button }} />
+  <ScopeableLayout {...props} components={{ Announce, Button, Divider }} />
 );
