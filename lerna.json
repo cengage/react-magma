@@ -8,7 +8,12 @@
   "command": {
     "bootstrap": {
       "forceLocal": true,
-      "hoist": ["**"]
+      "hoist": [
+	"**"
+      ],
+      "nohoist": [
+        "react-magma-legacy-selects"
+      ]
     },
     "publish": {
       "allowBranch": ["master", "dev", "hotfix/*", "main"],

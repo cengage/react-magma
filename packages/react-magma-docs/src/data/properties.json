@@ -6210,7 +6210,7 @@
             },
             "sources": [
               {
-                "fileName": "src/components/Select/components.tsx",
+                "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
                 "line": 10,
                 "character": 11
               }
@@ -6230,7 +6230,7 @@
             },
             "sources": [
               {
-                "fileName": "src/components/Select/components.tsx",
+                "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
                 "line": 11,
                 "character": 6
               }
@@ -6250,7 +6250,7 @@
             },
             "sources": [
               {
-                "fileName": "src/components/Select/components.tsx",
+                "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
                 "line": 12,
                 "character": 9
               }
@@ -6276,7 +6276,7 @@
             },
             "sources": [
               {
-                "fileName": "src/components/Select/components.tsx",
+                "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
                 "line": 13,
                 "character": 12
               }
@@ -6296,7 +6296,7 @@
             },
             "sources": [
               {
-                "fileName": "src/components/Select/components.tsx",
+                "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
                 "line": 9,
                 "character": 5
               }
@@ -6316,7 +6316,7 @@
             },
             "sources": [
               {
-                "fileName": "src/components/Select/components.tsx",
+                "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
                 "line": 14,
                 "character": 7
               }
@@ -6343,7 +6343,7 @@
         ],
         "sources": [
           {
-            "fileName": "src/components/Select/components.tsx",
+            "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
             "line": 8,
             "character": 34
           }
@@ -6394,7 +6394,7 @@
             },
             "sources": [
               {
-                "fileName": "src/components/Select/components.tsx",
+                "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
                 "line": 19,
                 "character": 16
               }
@@ -6422,7 +6422,7 @@
             },
             "sources": [
               {
-                "fileName": "src/components/Select/components.tsx",
+                "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
                 "line": 20,
                 "character": 19
               }
@@ -6455,7 +6455,7 @@
             },
             "sources": [
               {
-                "fileName": "src/components/Select/components.tsx",
+                "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
                 "line": 22,
                 "character": 6
               }
@@ -6489,7 +6489,7 @@
             },
             "sources": [
               {
-                "fileName": "src/components/Select/components.tsx",
+                "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
                 "line": 21,
                 "character": 18
               }
@@ -6521,7 +6521,7 @@
         ],
         "sources": [
           {
-            "fileName": "src/components/Select/components.tsx",
+            "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
             "line": 18,
             "character": 33
           }
@@ -7434,7 +7434,7 @@
                 },
                 "sources": [
                   {
-                    "fileName": "src/components/Select/index.tsx",
+                    "fileName": "packages/react-magma-dom/src/components/Select/index.tsx",
                     "line": 17,
                     "character": 26
                   }
@@ -7454,7 +7454,7 @@
                 },
                 "sources": [
                   {
-                    "fileName": "src/components/Select/index.tsx",
+                    "fileName": "packages/react-magma-dom/src/components/Select/index.tsx",
                     "line": 17,
                     "character": 11
                   }
@@ -7477,7 +7477,7 @@
             ],
             "sources": [
               {
-                "fileName": "src/components/Select/index.tsx",
+                "fileName": "packages/react-magma-dom/src/components/Select/index.tsx",
                 "line": 17,
                 "character": 3
               }
