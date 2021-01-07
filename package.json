@@ -8,6 +8,8 @@
     "url": "https://github.com/cengage/react-magma.git"
   },
   "scripts": {
+    "getAlias": "node ./packages/react-magma-dom/scripts/getAlias.js",
+    "getVersion": "node ./packages/react-magma-dom/scripts/getVersion.js",
     "postinstall": "npm run bootstrap && npm run build:lite",
     "test": "jest",
     "test-watch": "jest --watch",
@@ -15,6 +17,7 @@
     "build:docs": "lerna run build --scope react-magma-docs --ignore react-magma-dom-codesandbox-template --stream --no-progress",
     "build:lite": "lerna run build --ignore react-magma-docs --ignore react-magma-dom-codesandbox-template --stream --no-progress",
     "build": "lerna run build --ignore react-magma-dom-codesandbox-template --stream --no-progress",
+    "build:landing": "node packages/react-magma-landing/scripts/build.js",
     "bootstrap": "lerna bootstrap && rimraf packages/react-magma-docs/node_modules/react packages/react-magma-docs/node_modules/react-dom",
     "lint": "lerna run lint",
     "develop": "npm run docs",

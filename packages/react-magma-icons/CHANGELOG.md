@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.0.7-alpha.1 (2021-01-06)
+
+**Note:** Version bump only for package react-magma-icons
+
+
+
+
+
+### 1.0.7-alpha.0 (2021-01-05)
+
+**Note:** Version bump only for package react-magma-icons
+
+
+
+
+
+### 1.0.6 (2020-12-30)
+
+**Note:** Version bump only for package react-magma-icons
+
+
+
+
+
+### 1.0.6-alpha.10 (2020-12-30)
+
+**Note:** Version bump only for package react-magma-icons
+
+
+
+
+
+### 1.0.6-alpha.9 (2020-12-30)
+
+**Note:** Version bump only for package react-magma-icons
+
+
+
+
+
+### 1.0.6-alpha.8 (2020-12-30)
+
+**Note:** Version bump only for package react-magma-icons
+
+
+
+
+
+### 1.0.6-alpha.7 (2020-12-29)
+
+**Note:** Version bump only for package react-magma-icons
+
+
+
+
+
+### 1.0.6-alpha.6 (2020-12-29)
+
+**Note:** Version bump only for package react-magma-icons
+
+
+
+
+
 ### 1.0.6-alpha.5 (2020-12-22)
 
 **Note:** Version bump only for package react-magma-icons

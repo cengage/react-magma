@@ -1,180 +1,9 @@
-html {
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-main,
-menu,
-nav,
-section,
-summary {
-  display: block;
-}
-audio,
-canvas,
-progress,
-video {
-  display: inline-block;
-}
-abbr[title] {
-  border-bottom: none;
-  text-decoration: underline;
-  text-decoration: underline dotted;
-}
-dfn {
-  font-style: italic;
-}
-sub,
-sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
-sub {
-  bottom: -0.25em;
-}
-sup {
-  top: -0.5em;
-}
 img {
   border-style: none;
-}
-svg:not(:root) {
-  overflow: hidden;
-}
-figure {
-  margin: 16px 40px;
-}
-button,
-input,
-optgroup,
-select,
-textarea {
-  font: inherit;
-  margin: 0;
-}
-fieldset {
-  border: 1px solid #8f8f8f;
-  margin: 0 2px;
-  padding: 8px;
-}
-legend {
-  box-sizing: border-box;
-  color: inherit;
-  display: table;
-  max-width: 100%;
-  padding: 0;
-  white-space: normal;
-}
-img {
   max-width: 100%;
   margin: 0;
   padding: 0;
 }
-hgroup {
-  margin: 0;
-  padding: 0;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  border-bottom: 2px solid transparent;
-  font-family: 'Open Sans', Helvetica, sans-serif;
-  font-weight: 600;
-}
-h1:focus,
-h2:focus,
-h3:focus,
-h4:focus,
-h5:focus,
-h6:focus {
-  border-bottom: 2px dotted #027ee1;
-  outline: 0;
-}
-
-h1 {
-  font-size: 28px;
-  line-height: 40px;
-  margin: 0 0 16px;
-}
-
-@media (min-width: 600px) {
-  h1 {
-    font-size: 36px;
-    line-height: 40px;
-  }
-}
-
-h2 {
-  font-size: 24px;
-  line-height: 32px;
-  margin: 48px 0 16px;
-}
-
-@media (min-width: 600px) {
-  h2 {
-    font-size: 28px;
-    line-height: 40px;
-  }
-}
-
-h3 {
-  font-size: 20px;
-  line-height: 32px;
-  margin: 40px 0 16px;
-}
-
-@media (min-width: 600px) {
-  h3 {
-    font-size: 24px;
-    line-height: 32px;
-  }
-}
-
-h4 {
-  font-size: 18px;
-  line-height: 32px;
-  margin: 32px 0 16px;
-}
-
-@media (min-width: 600px) {
-  h4 {
-    font-size: 20px;
-    line-height: 32px;
-  }
-}
-
-h5 {
-  font-size: 18px;
-  line-height: 32px;
-  margin: 24px 0 12px;
-}
-
-@media (min-width: 600px) {
-  h5 {
-    font-size: 20px;
-  }
-}
-
-h6 {
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: 0.32px;
-  line-height: 16px;
-  text-transform: uppercase;
-  margin: 24px 0 8px;
-}
-
 ul,
 ol {
   margin: 0 0 24px 24px;
@@ -182,7 +11,6 @@ ol {
   list-style-position: outside;
   list-style-image: none;
 }
-
 dl,
 dd {
   margin: 0 0 24px;
@@ -205,49 +33,6 @@ pre {
   word-wrap: normal;
   padding: 24px;
   margin: 0 0 24px;
-}
-fieldset {
-  margin: 0 0 24px;
-  padding: 0;
-}
-blockquote {
-  margin: 0 24px 24px;
-  padding: 0;
-}
-form {
-  margin: 0 0 24px;
-  padding: 0;
-}
-noscript {
-  margin: 0 0 24px;
-  padding: 0;
-}
-iframe {
-  margin: 0 0 24px;
-  padding: 0;
-}
-hr {
-  background: #8f8f8f;
-  border: none;
-  height: 1px;
-  margin: 0 0 23px;
-  padding: 0;
-}
-address {
-  margin: 0 0 24px;
-  padding: 0;
-}
-b {
-  font-weight: bold;
-}
-strong {
-  font-weight: bold;
-}
-dt {
-  font-weight: bold;
-}
-th {
-  font-weight: bold;
 }
 li {
   margin-bottom: 12px;
@@ -277,12 +62,6 @@ li *:last-child {
 li > p {
   margin-bottom: 12px;
 }
-abbr,
-acronym,
-abbr[title] {
-  border-bottom: 1px dotted #8f8f8f;
-  cursor: help;
-}
 tt,
 kbd,
 samp,
@@ -311,61 +90,12 @@ pre code {
   border: 0;
   word-wrap: break-word;
 }
-@media only screen and (max-width: 480px) {
-  html {
-    font-size: 100%;
-  }
-}
-
-/* Layout component styles */
-
-@media (min-width: 1024px) {
-  .main-container {
-    display: grid;
-    grid-template-columns: 280px auto;
-    grid-template-rows: 80px auto;
-    grid-template-areas:
-      'masthead masthead'
-      'nav content';
-  }
-}
 
 /* Content area styles */
-
-.content {
-  grid-area: content;
-  padding: 28px 0 0;
-}
-
-.content-article {
-  margin: 0 auto 48px;
-  max-width: 900px;
-  width: 80%;
-}
-
-@media (max-width: 600px) {
-  .content-article {
-    padding: 0 16px;
-    width: 100%;
-  }
-}
-
-.pre-container {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  display: grid;
-  margin: 0;
-  max-width: 100%;
-}
 
 .horizontal-spacer {
   height: 24px;
   display: block;
-}
-
-.demo-container {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  margin-bottom: 24px;
-  padding: 12px;
 }
 
 /* Demo styles for specific components */

@@ -182,7 +182,7 @@ describe('Indeterminate Checkbox', () => {
     const { getByTestId } = render(<BellIcon testId={testId} />);
 
     expect(getByTestId(testId)).toBeInTheDocument();
-  })
+  });
 
   it('should trigger the passed in onChange when value of the checkbox is changed', () => {
     const onChangeSpy = jest.fn();

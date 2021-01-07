@@ -1,6 +1,6 @@
-/** @jsx jsx */
 import * as React from 'react';
-import { jsx, css } from '@emotion/core';
+import { css } from '@emotion/core';
+import styled from '@emotion/styled';
 import {
   buildActiveBackground,
   buildActiveColor,
@@ -19,17 +19,15 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonProps } from '../Button';
 
 interface StyledButtonProps extends ButtonProps {
-  as?: any;
   href?: string;
   iconOnly?: boolean;
-  to?: string;
 }
 
 export const buttonStyles = props => css`
   align-items: center;
   background: ${buildButtonBackground(props)};
   border: ${props.variant === 'outline' ||
-  (props.variant === 'solid' && props.color === 'secondary' && !props.isInverse)
+  (props.variant !== 'link' && props.color === 'secondary' && !props.isInverse)
     ? '2px solid'
     : '0'};
   border-color: ${buildBorderColor(props)};
@@ -53,7 +51,7 @@ export const buttonStyles = props => css`
   position: relative;
   text-align: center;
   text-decoration: none;
-  text-transform: ${props.textTransform};
+  text-transform: ${props.textTransform || 'uppercase'};
   touch-action: manipulation;
   transition: background 0.35s, color 0.35s;
   vertical-align: middle;
@@ -110,43 +108,29 @@ export const buttonStyles = props => css`
   }
 
   ${props.iconOnly &&
-  css`
-    display: inline-flex;
-    justify-content: center;
-    line-height: 1;
-    min-width: 0;
-    padding: 0;
-  `}
+    css`
+      display: inline-flex;
+      justify-content: center;
+      line-height: 1;
+      min-width: 0;
+      padding: 0;
+    `}
+`;
+
+export const BaseStyledButton = styled.button`
+  ${buttonStyles}
 `;
 
 export const StyledButton = React.forwardRef<
   HTMLButtonElement,
   StyledButtonProps
 >((props, ref) => {
-  const {
-    isFullWidth,
-    children,
-    iconOnly,
-    testId,
-    isInverse,
-    color,
-    shape,
-    size,
-    textTransform,
-    variant,
-    ...other
-  } = props;
-
+  const { children, testId, ...other } = props;
   const theme = React.useContext(ThemeContext);
 
   return (
-    <button
-      css={buttonStyles({ ...props, theme })}
-      {...other}
-      data-testid={testId}
-      ref={ref}
-    >
+    <BaseStyledButton {...other} data-testid={testId} ref={ref} theme={theme}>
       {children}
-    </button>
+    </BaseStyledButton>
   );
 });

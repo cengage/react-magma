@@ -3,7 +3,8 @@
     "packages/react-magma-docs",
     "packages/react-magma-dom",
     "packages/react-magma-icons",
-    "packages/react-magma-dom-codesandbox-template"
+    "packages/react-magma-dom-codesandbox-template",
+    "packages/react-magma-landing"
   ],
   "command": {
     "bootstrap": {

@@ -36,6 +36,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  text-transform: uppercase;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
@@ -165,6 +166,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  text-transform: uppercase;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,color 0.35s;
   transition: background 0.35s,color 0.35s;
@@ -261,10 +263,10 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 
 <button
   aria-label="Close this message"
-  class="emotion-0"
-  icon="[object Object]"
+  class="emotion-0 emotion-1"
+  color="primary"
   id="ignoreButton"
-  theme="[object Object]"
+  shape="round"
 >
   <svg
     aria-labelledby="ignoreButton"
