@@ -8,6 +8,7 @@
     "url": "https://github.com/cengage/react-magma.git",
     "directory": "packages/react-magma-docs"
   },
+  "homepage": "https://react-magma.cengage.com",
   "dependencies": {
     "@babel/plugin-transform-react-jsx": "7.10.4",
     "@emotion/core": "^10.0.7",
