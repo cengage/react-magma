@@ -13,6 +13,7 @@ export { BreadcrumbItem } from './components/Breadcrumb/Item';
 export {
   BreakpointsContainer,
   Breakpoint,
+  BreakpointScreenSize,
 } from './components/BreakpointsContainer';
 export {
   Button,
@@ -84,6 +85,7 @@ export {
 export {
   IndeterminateCheckbox,
   IndeterminateCheckboxProps,
+  IndeterminateCheckboxStatus,
 } from './components/IndeterminateCheckbox';
 export { Input, InputProps } from './components/Input';
 export {

@@ -25,13 +25,15 @@
     "copy-changelog": "node scripts/copy-changelog.js",
     "lint": "eslint ./src",
     "prepublishOnly": "npm run copy-changelog",
-    "postbuild": "npm run generate-properties"
+    "postbuild": "npm run generate-properties",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "peerDependencies": {
-    "@emotion/core": "^10.0.27",
+    "@emotion/core": "^10.1.1",
     "@emotion/styled": "^10.0.27",
     "date-fns": "^2.12.0",
     "downshift": "^5.4.5",
@@ -50,6 +52,12 @@
   "devDependencies": {
     "@emotion/core": "^10.0.27",
     "@emotion/styled": "^10.0.27",
+    "@storybook/addon-actions": "^6.1.11",
+    "@storybook/addon-docs": "^6.1.11",
+    "@storybook/addon-info": "^5.3.21",
+    "@storybook/addon-links": "^6.1.11",
+    "@storybook/addons": "^6.1.11",
+    "@storybook/react": "^6.1.11",
     "@testing-library/dom": "^4.1.0",
     "@testing-library/jest-dom": "^4.1.0",
     "@testing-library/react": "^9.1.4",
@@ -74,11 +82,13 @@
     "polished": "^3.2.0",
     "postcss-url": "^8.0.0",
     "promise": "^8.0.3",
+    "react-docgen-typescript-loader": "^3.7.2",
     "react-magma-icons": "^1.0.6-alpha.5",
     "react-test-renderer": "^16.13.1",
     "regenerator-runtime": "^0.13.7",
     "rimraf": "^3.0.2",
     "tsdx": "^0.13.2",
+    "ts-loader": "^8.0.13",
     "uuid": "^8.3.0"
   },
   "gitHead": "cadb4fd5f575f1fbe92c1521bf8228c64b8e2336"

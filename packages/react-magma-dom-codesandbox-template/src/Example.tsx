@@ -1,10 +1,9 @@
-import React from 'react';
-import 'react-magma-dom';
-
+import React from "react";
+import {Alert, AlertVariant} from "react-magma-dom"
 export function Example() {
   return (
     <div>
-      <span>Hello</span>
+      <Alert variant={AlertVariant.danger} >Hello</Alert>
     </div>
   );
 }

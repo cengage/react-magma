@@ -2,11 +2,13 @@
   "packages": [
     "packages/react-magma-docs",
     "packages/react-magma-dom",
-    "packages/react-magma-icons"
+    "packages/react-magma-icons",
+    "packages/react-magma-dom-codesandbox-template"
   ],
   "command": {
     "bootstrap": {
-      "forceLocal": true
+      "forceLocal": true,
+      "hoist": ["**"]
     },
     "publish": {
       "allowBranch": ["master", "dev", "hotfix/*", "main"],
@@ -15,7 +17,8 @@
     },
     "version": {
       "changelogPreset": "conventionalcommits",
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "exact": true
     }
   },
   "version": "independent",

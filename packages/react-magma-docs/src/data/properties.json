@@ -1371,7 +1371,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7583,
+        "id": 7588,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1555,7 +1555,7 @@
     },
     "typeParameter": [
       {
-        "id": 7672,
+        "id": 7677,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1564,7 +1564,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7512,
+          "id": 7517,
           "name": "SelectOptions"
         }
       }
@@ -1887,7 +1887,7 @@
     },
     "typeParameter": [
       {
-        "id": 7740,
+        "id": 7745,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1896,7 +1896,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7512,
+          "id": 7517,
           "name": "SelectOptions"
         }
       }
@@ -2654,12 +2654,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 8910,
+          "id": 8915,
           "name": "IconOnlyDropdownButtonProps"
         },
         {
           "type": "reference",
-          "id": 8914,
+          "id": 8919,
           "name": "IconTextDropdownButtonProps"
         }
       ],
@@ -4023,7 +4023,12 @@
         "name": "status",
         "required": true,
         "type": {
-          "name": "string"
+          "name": "enum",
+          "options": [
+            "IndeterminateCheckboxStatus.checked",
+            "IndeterminateCheckboxStatus.indeterminate",
+            "IndeterminateCheckboxStatus.unchecked"
+          ]
         },
         "description": "Status of the indeterminate, three-state checkbox, which includes and indeterminate (e.g. mixed) option.",
         "defaultValue": "IndeterminateCheckboxStatus.unchecked",
@@ -4845,12 +4850,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 12104,
+          "id": 12109,
           "name": "NavTabChildrenProps"
         },
         {
           "type": "reference",
-          "id": 12369,
+          "id": 12374,
           "name": "NavTabComponentProps"
         }
       ],
@@ -5871,7 +5876,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 6990,
+        "id": 6995,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5962,7 +5967,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7295,
+        "id": 7300,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6048,7 +6053,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7314,
+        "id": 7319,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6144,7 +6149,7 @@
     },
     "typeParameter": [
       {
-        "id": 6945,
+        "id": 6950,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6156,7 +6161,7 @@
     "type": {
       "type": "reflection",
       "declaration": {
-        "id": 6946,
+        "id": 6951,
         "name": "__type",
         "kind": 65536,
         "kindString": "Type literal",
@@ -6165,7 +6170,7 @@
         },
         "indexSignature": [
           {
-            "id": 6953,
+            "id": 6958,
             "name": "__index",
             "kind": 8192,
             "kindString": "Index signature",
@@ -6174,7 +6179,7 @@
             },
             "parameters": [
               {
-                "id": 6954,
+                "id": 6959,
                 "name": "key",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -6195,7 +6200,7 @@
         ],
         "children": [
           {
-            "id": 6948,
+            "id": 6953,
             "name": "isFocused",
             "kind": 32,
             "kindString": "Variable",
@@ -6216,7 +6221,7 @@
             }
           },
           {
-            "id": 6949,
+            "id": 6954,
             "name": "item",
             "kind": 32,
             "kindString": "Variable",
@@ -6236,7 +6241,7 @@
             }
           },
           {
-            "id": 6950,
+            "id": 6955,
             "name": "itemRef",
             "kind": 32,
             "kindString": "Variable",
@@ -6262,7 +6267,7 @@
             }
           },
           {
-            "id": 6951,
+            "id": 6956,
             "name": "itemString",
             "kind": 32,
             "kindString": "Variable",
@@ -6282,7 +6287,7 @@
             }
           },
           {
-            "id": 6947,
+            "id": 6952,
             "name": "key",
             "kind": 32,
             "kindString": "Variable",
@@ -6302,7 +6307,7 @@
             }
           },
           {
-            "id": 6952,
+            "id": 6957,
             "name": "theme",
             "kind": 32,
             "kindString": "Variable",
@@ -6327,12 +6332,12 @@
             "title": "Variables",
             "kind": 32,
             "children": [
-              6948,
-              6949,
-              6950,
-              6951,
-              6947,
-              6952
+              6953,
+              6954,
+              6955,
+              6956,
+              6952,
+              6957
             ]
           }
         ],
@@ -6358,7 +6363,7 @@
     },
     "typeParameter": [
       {
-        "id": 6956,
+        "id": 6961,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6370,7 +6375,7 @@
     "type": {
       "type": "reflection",
       "declaration": {
-        "id": 6957,
+        "id": 6962,
         "name": "__type",
         "kind": 65536,
         "kindString": "Type literal",
@@ -6379,7 +6384,7 @@
         },
         "children": [
           {
-            "id": 6958,
+            "id": 6963,
             "name": "ClearIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -6407,7 +6412,7 @@
             }
           },
           {
-            "id": 6959,
+            "id": 6964,
             "name": "DropdownIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -6440,7 +6445,7 @@
             }
           },
           {
-            "id": 6961,
+            "id": 6966,
             "name": "Item",
             "kind": 32,
             "kindString": "Variable",
@@ -6460,7 +6465,7 @@
               "typeArguments": [
                 {
                   "type": "reference",
-                  "id": 6944,
+                  "id": 6949,
                   "typeArguments": [
                     {
                       "type": "typeParameter",
@@ -6474,7 +6479,7 @@
             }
           },
           {
-            "id": 6960,
+            "id": 6965,
             "name": "LoadingIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -6494,7 +6499,7 @@
               "typeArguments": [
                 {
                   "type": "reference",
-                  "id": 6681,
+                  "id": 6686,
                   "name": "SpinnerProps"
                 }
               ],
@@ -6507,10 +6512,10 @@
             "title": "Variables",
             "kind": 32,
             "children": [
-              6958,
-              6959,
-              6961,
-              6960
+              6963,
+              6964,
+              6966,
+              6965
             ]
           }
         ],
@@ -6536,7 +6541,7 @@
     },
     "typeParameter": [
       {
-        "id": 7364,
+        "id": 7369,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6568,7 +6573,7 @@
     },
     "typeParameter": [
       {
-        "id": 7345,
+        "id": 7350,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6749,7 +6754,7 @@
     },
     "typeParameter": [
       {
-        "id": 7470,
+        "id": 7475,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6758,7 +6763,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7512,
+          "id": 7517,
           "name": "SelectOptions"
         }
       }
@@ -6916,7 +6921,7 @@
     },
     "typeParameter": [
       {
-        "id": 7370,
+        "id": 7375,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6925,7 +6930,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7512,
+          "id": 7517,
           "name": "SelectOptions"
         }
       }
@@ -7381,7 +7386,7 @@
         {
           "type": "reflection",
           "declaration": {
-            "id": 7513,
+            "id": 7518,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -7390,7 +7395,7 @@
             },
             "indexSignature": [
               {
-                "id": 7516,
+                "id": 7521,
                 "name": "__index",
                 "kind": 8192,
                 "kindString": "Index signature",
@@ -7399,7 +7404,7 @@
                 },
                 "parameters": [
                   {
-                    "id": 7517,
+                    "id": 7522,
                     "name": "key",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -7420,7 +7425,7 @@
             ],
             "children": [
               {
-                "id": 7515,
+                "id": 7520,
                 "name": "label",
                 "kind": 32,
                 "kindString": "Variable",
@@ -7440,7 +7445,7 @@
                 }
               },
               {
-                "id": 7514,
+                "id": 7519,
                 "name": "value",
                 "kind": 32,
                 "kindString": "Variable",
@@ -7465,8 +7470,8 @@
                 "title": "Variables",
                 "kind": 32,
                 "children": [
-                  7515,
-                  7514
+                  7520,
+                  7519
                 ]
               }
             ],
@@ -8901,12 +8906,12 @@
       "types": [
         {
           "type": "reference",
-          "id": 11471,
+          "id": 11476,
           "name": "HorizontalTabsProps"
         },
         {
           "type": "reference",
-          "id": 11468,
+          "id": 11473,
           "name": "VerticalTabsProps"
         }
       ]
