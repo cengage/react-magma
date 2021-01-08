@@ -16,6 +16,7 @@
     "url": "https://github.com/cengage/react-magma.git",
     "directory": "packages/react-magma-dom"
   },
+  "homepage": "https://react-magma.cengage.com",
   "scripts": {
     "test": "tsdx test",
     "test-watch": "tsdx test --watch",
