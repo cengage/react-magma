@@ -24,10 +24,12 @@ const Heading2 = styled.h2`
   align-items: center;
   display: flex;
   font-size: ${magma.typeScale.size05.fontSize};
+  font-weight: 600;
   line-height: ${magma.typeScale.size05.lineHeight};
   justify-content: space-between;
   margin: 0;
-  padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06};
+  padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06}
+    ${magma.spaceScale.spacing04};
 `;
 
 const Heading3 = styled.h3`

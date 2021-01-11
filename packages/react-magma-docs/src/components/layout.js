@@ -77,6 +77,8 @@ const PreComponent = ({ className, components, ...props }) => {
 
 const Table = props => <table {...props} />;
 
+const PageHeading = props => <Heading level={1}>{props.children}</Heading>;
+
 const SectionHeading = props => (
   <Heading
     level={2}
@@ -104,6 +106,7 @@ export const Layout = ({ children, pageContext }) => {
       <MDXProvider
         components={{
           table: Table,
+          h1: PageHeading,
           h2: SectionHeading,
           h3: LinkHeading,
           hr: Divider,

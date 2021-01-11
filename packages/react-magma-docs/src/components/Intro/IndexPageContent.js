@@ -19,17 +19,18 @@ const Heading = styled.h1`
   && {
     color: inherit;
     font-family: ${props => props.theme.bodyFont};
-    font-size: 56px;
+    font-size: ${props => props.theme.typeScale.size12.fontSize};
     font-weight: 600;
-    line-height: 64px;
+    line-height: ${props => props.theme.typeScale.size12.lineHeight};
     text-align: center;
-    margin-top: -240px;
+    margin: -240px 0 16px;
     padding-top: 240px;
     text-align: center;
     text-transform: uppercase;
 
     &:focus {
       border-bottom: 2px dotted ${props => props.theme.colors.neutral08};
+      outline: 0;
     }
 
     @media (min-width: ${props => props.theme.breakpoints.medium}px) {
