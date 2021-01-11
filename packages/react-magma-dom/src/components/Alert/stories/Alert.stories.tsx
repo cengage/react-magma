@@ -1,8 +1,32 @@
 import React from 'react';
-import { Alert } from '../index';
+import { Alert, AlertProps } from '../index';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { AlertVariant } from '../../AlertBase';
 
-export const Primary: React.VFC<{}> = () => <Alert>I am an Alert</Alert>;
+const Template: Story<AlertProps> = args => (
+  <Alert {...args}>I am an Alert</Alert>
+);
 
-const Exports = { title: 'Primary' };
+export default {
+  title: 'Alert',
+  component: Alert,
+  argTypes: {
+    variant: {
+      control: {
+        type: 'select',
+        options: AlertVariant,
+      },
+    },
+  },
+} as Meta;
 
-export default Exports;
+export const Default = Template.bind({});
+Default.args = {
+  variant: AlertVariant.danger,
+};
+
+export const Dismissible = Template.bind({});
+Dismissible.args = {
+  variant: AlertVariant.danger,
+  isDismissible: true,
+};

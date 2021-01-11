@@ -1,29 +1,29 @@
+const path = require('path');
+const toPath = _path => path.join(process.cwd(), _path);
+
 module.exports = {
   stories: ['../src/components/**/stories/*.stories.@(ts|tsx)'],
   addons: [
     '@storybook/addon-actions',
     '@storybook/addon-links',
     '@storybook/addon-docs',
+    'storybook-addon-performance/register',
     '@storybook/addon-a11y',
+    '@storybook/addon-toolbars',
+    '@storybook/addon-controls',
   ],
+  typescript: {
+    reactDocgen: false,
+  },
   webpackFinal: async config => {
-    config.module.rules.push({
-      test: /\.(ts|tsx)$/,
-      use: [
-        {
-          loader: require.resolve('ts-loader'),
-          options: {
-            transpileOnly: true,
-          },
+    return {
+      ...config,
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...config.resolve.alias,
         },
-        {
-          loader: require.resolve('react-docgen-typescript-loader'),
-        },
-      ],
-    });
-
-    config.resolve.extensions.push('.ts', '.tsx');
-
-    return config;
+      },
+    };
   },
 };
