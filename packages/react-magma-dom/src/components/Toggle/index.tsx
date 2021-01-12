@@ -183,8 +183,11 @@ const IconContainer = styled.span<{ disabled?: boolean; theme?: any }>`
       : props.theme.colors.neutral08};
   left: 7px;
   position: absolute;
-  margin-top: -13px;
-  top: 50%;
+  top: 4px;
+
+  svg {
+    display: block;
+  }
 `;
 
 const SpanTextLeft = styled.span`
