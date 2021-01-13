@@ -14,7 +14,7 @@ import {
 import { InternalCombobox } from './Combobox';
 import { MultiCombobox } from './MultiCombobox';
 import { InputMessage } from '../Input/InputMessage';
-import { useGenerateId } from '../../utils';
+import { useGenerateId, XOR } from '../../utils';
 
 export interface ComboboxProps<T extends SelectOptions>
   extends Omit<UseComboboxProps<T>, 'items'>,
@@ -44,6 +44,10 @@ export interface ComboboxProps<T extends SelectOptions>
    * If true, the loading component is shown
    * @default false
    */
+  /**
+   * @internal
+   */
+  isMulti?: false;
   isLoading?: boolean;
   /**
    * Default selectable options. Can be an array of strings or objects
@@ -96,8 +100,13 @@ export interface ComboboxProps<T extends SelectOptions>
 
 export interface MultiComboboxProps<T extends SelectOptions>
   extends UseMultipleSelectionProps<T>,
-    Omit<ComboboxProps<T>, 'onStateChange' | 'stateReducer'>,
-    InternalMultiProps<T> {}
+    Omit<ComboboxProps<T>, 'onStateChange' | 'stateReducer' | 'isMulti'>,
+    InternalMultiProps<T> {
+  /**
+   * @internal
+   */
+  isMulti: true;
+}
 
 export function instanceOfMultiCombobox<T>(
   object: any
@@ -105,9 +114,11 @@ export function instanceOfMultiCombobox<T>(
   return 'isMulti' in object;
 }
 
+export type XORComboboxProps<T> = XOR<ComboboxProps<T>, MultiComboboxProps<T>>;
+
 export const ComboboxStateChangeTypes = useCombobox.stateChangeTypes;
 
-export function Combobox<T>(props: ComboboxProps<T>) {
+export function Combobox<T>(props: XORComboboxProps<T>) {
   const {
     containerStyle,
     errorMessage,
@@ -139,14 +150,14 @@ export function Combobox<T>(props: ComboboxProps<T>) {
         <MultiCombobox
           ariaDescribedBy={descriptionId}
           itemToString={itemToString}
-          {...props}
+          {...(props as MultiComboboxProps<T>)}
           hasError={hasError}
         />
       ) : (
         <InternalCombobox
           ariaDescribedBy={descriptionId}
           itemToString={itemToString}
-          {...props}
+          {...(props as ComboboxProps<T>)}
           hasError={hasError}
         />
       )}
